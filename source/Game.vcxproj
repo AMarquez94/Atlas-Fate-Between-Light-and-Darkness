@@ -14,7 +14,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{BC06472A-AE43-4007-AE25-59879F8D23F2}</ProjectGuid>
     <RootNamespace>Game</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -85,11 +85,12 @@
     <ClCompile Include="components\comp_bullet_controller.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
     <ClCompile Include="components\comp_circular_controller.cpp" />
-    <ClCompile Include="components\comp_ia.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_player_controller.cpp" />
     <ClCompile Include="components\comp_render.cpp" />
     <ClCompile Include="components\comp_transform.cpp" />
+    <ClCompile Include="components\ia\ai_controller.cpp" />
+    <ClCompile Include="components\ia\ai_patrol.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\entity_parser.cpp" />
@@ -130,6 +131,7 @@
     <ClCompile Include="render\pixel_shader.cpp" />
     <ClCompile Include="render\render.cpp" />
     <ClCompile Include="render\render_objects.cpp" />
+    <ClCompile Include="render\render_utils.cpp" />
     <ClCompile Include="render\shader_compile.cpp" />
     <ClCompile Include="render\texture\DDSTextureLoader.cpp" />
     <ClCompile Include="render\texture\texture.cpp" />
@@ -146,11 +148,12 @@
     <ClInclude Include="components\comp_bullet_controller.h" />
     <ClInclude Include="components\comp_camera.h" />
     <ClInclude Include="components\comp_circular_controller.h" />
-    <ClInclude Include="components\comp_ia.h" />
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_player_controller.h" />
     <ClInclude Include="components\comp_render.h" />
     <ClInclude Include="components\comp_transform.h" />
+    <ClInclude Include="components\ia\ai_controller.h" />
+    <ClInclude Include="components\ia\ai_patrol.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="entity\common_msgs.h" />
     <ClInclude Include="entity\entity.h" />
@@ -204,6 +207,7 @@
     <ClInclude Include="render\render.h" />
     <ClInclude Include="render\render_objects.h" />
     <ClInclude Include="render\render_technique.h" />
+    <ClInclude Include="render\render_utils.h" />
     <ClInclude Include="render\shader_compiler.h" />
     <ClInclude Include="render\texture\DDSTextureLoader.h" />
     <ClInclude Include="render\texture\texture.h" />

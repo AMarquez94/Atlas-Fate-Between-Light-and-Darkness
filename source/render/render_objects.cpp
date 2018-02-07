@@ -11,6 +11,20 @@ struct TVtxPosClr {
 };
 
 // ---------------------------------------------------
+CRenderMesh* createLineZ() {
+  CRenderMesh* mesh = new CRenderMesh;
+  // Axis aligned X,Y,Z of sizes 1,2,3
+  float vertices[] =
+  {
+    0.0f, 0.0f, 0.0f,  1, 1, 1, 1,
+    0.0f, 0.0f, 1.0f,  1, 1, 1, 1,
+  };
+  if (!mesh->create(vertices, sizeof(vertices), "PosClr", CRenderMesh::LINE_LIST))
+    return nullptr;
+  return mesh;
+}
+
+// ---------------------------------------------------
 CRenderMesh* createAxis() {
   CRenderMesh* mesh = new CRenderMesh;
   // Axis aligned X,Y,Z of sizes 1,2,3
@@ -60,6 +74,7 @@ bool createRenderObjects() {
 
   registerMesh(createAxis(), "axis.mesh");
   registerMesh(createGridXZ(20), "grid.mesh");
+  registerMesh(createLineZ(), "line.mesh");
 
   return true;
 }
@@ -73,4 +88,5 @@ void activateCamera(const CCamera& camera) {
   cb_camera.camera_pos = camera.getPosition();
   cb_camera.updateGPU();
 }
+
 

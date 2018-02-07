@@ -1,20 +1,20 @@
 [{
 		"entity": {
-			"name": "john",
+			"name": "The Enemy",
 			"transform": {
 				"pos": "1 0 0",
 				"lookat": "-1 0 -1"
 			},
 			"render" : {},
-			"ia": {
-				"type": "turret"
+			"ai_patrol": {
+				"waypoints" : [ "-10 0 0", "5 0 5", "2 0 10"] 
 			}
 
 		}
 	},
 	{
 		"entity": {
-			"name": "teapot",
+			"name": "The Player",
 			"render" : {
 				"mesh": "data/meshes/Teapot001.mesh",
 				"texture": "data/textures/wood_d.dds"
@@ -32,7 +32,7 @@
 	},
 	{
 		"entity": {
-			"name": "Enemy1",
+			"name": "Teapot 2",
 			"render" : {
 				"mesh": "data/meshes/Teapot001.mesh",
 				"texture": "data/textures/wood_d.dds"

@@ -148,9 +148,6 @@
     <ClCompile Include="components\comp_render.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="components\comp_ia.cpp">
-      <Filter>components</Filter>
-    </ClCompile>
     <ClCompile Include="components\comp_circular_controller.cpp">
       <Filter>components</Filter>
     </ClCompile>
@@ -162,6 +159,15 @@
     </ClCompile>
     <ClCompile Include="components\comp_bullet_controller.cpp">
       <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="components\ia\ai_controller.cpp">
+      <Filter>components\ia</Filter>
+    </ClCompile>
+    <ClCompile Include="components\ia\ai_patrol.cpp">
+      <Filter>components\ia</Filter>
+    </ClCompile>
+    <ClCompile Include="render\render_utils.cpp">
+      <Filter>render</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -192,9 +198,6 @@
     <Filter Include="modules\game">
       <UniqueIdentifier>{c839f6d7-43fe-4f60-aaaf-a5b91ebc70b3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="logic">
-      <UniqueIdentifier>{e39f942c-ec30-4c53-85c1-ec3049f41d16}</UniqueIdentifier>
-    </Filter>
     <Filter Include="entity">
       <UniqueIdentifier>{8cc8ce76-c5c7-481e-8a57-e7bbafaf97f3}</UniqueIdentifier>
     </Filter>
@@ -224,6 +227,9 @@
     </Filter>
     <Filter Include="components">
       <UniqueIdentifier>{6eab8132-6d47-4b87-afd0-10534d4d1268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\ia">
+      <UniqueIdentifier>{7aeb0eeb-059f-413e-b7de-f85b7219d16d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -460,9 +466,6 @@
     <ClInclude Include="components\comp_render.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="components\comp_ia.h">
-      <Filter>components</Filter>
-    </ClInclude>
     <ClInclude Include="components\comp_circular_controller.h">
       <Filter>components</Filter>
     </ClInclude>
@@ -480,6 +483,15 @@
     </ClInclude>
     <ClInclude Include="components\comp_bullet_controller.h">
       <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="components\ia\ai_controller.h">
+      <Filter>components\ia</Filter>
+    </ClInclude>
+    <ClInclude Include="components\ia\ai_patrol.h">
+      <Filter>components\ia</Filter>
+    </ClInclude>
+    <ClInclude Include="render\render_utils.h">
+      <Filter>render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

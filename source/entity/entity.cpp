@@ -57,6 +57,8 @@ void CEntity::debugInMenu() {
 
 void CEntity::load(const json& j, TEntityParseContext& ctx) {
 
+  ctx.current_entity = CHandle(this);
+
   for (auto it = j.begin(); it != j.end(); ++it) {
 
     auto& comp_name = it.key();

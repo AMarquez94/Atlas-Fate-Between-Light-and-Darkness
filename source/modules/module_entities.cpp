@@ -44,7 +44,7 @@ bool CModuleEntities::start()
   std::vector< std::string > names = j["update"];
   for (auto& n : names) {
     auto om = CHandleManager::getByName(n.c_str());
-    assert(om);
+    assert(om || fatal( "Can't find a manager of components of type %s to update. Check file components.json\n", n.c_str()));
     om_to_update.push_back(om);
   }
 
