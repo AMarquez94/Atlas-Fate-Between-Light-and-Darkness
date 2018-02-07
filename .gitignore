@@ -286,3 +286,15 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+#Custom stuff
+Bin/*.pdb
+Bin/*.ilk
+Bin/*.exe
+Bin/*.ipdb
+Bin/*.iobj
+Build
+.vs/Game/v15
+source/.vs/Game/v15
+/Bin/imgui.ini
+

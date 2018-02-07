@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{BC06472A-AE43-4007-AE25-59879F8D23F2}</ProjectGuid>
+    <RootNamespace>Game</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)..\Bin\</OutDir>
+    <IntDir>$(SolutionDir)..\Build\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IntDir>$(SolutionDir)..\Build\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)..\Bin\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>.;../bin/data/shaders</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>mcv_platform.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>.;../bin/data/shaders</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>mcv_platform.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="camera\camera.cpp" />
+    <ClCompile Include="components\comp_bullet_controller.cpp" />
+    <ClCompile Include="components\comp_camera.cpp" />
+    <ClCompile Include="components\comp_circular_controller.cpp" />
+    <ClCompile Include="components\comp_ia.cpp" />
+    <ClCompile Include="components\comp_name.cpp" />
+    <ClCompile Include="components\comp_player_controller.cpp" />
+    <ClCompile Include="components\comp_render.cpp" />
+    <ClCompile Include="components\comp_transform.cpp" />
+    <ClCompile Include="engine.cpp" />
+    <ClCompile Include="entity\entity.cpp" />
+    <ClCompile Include="entity\entity_parser.cpp" />
+    <ClCompile Include="geometry\angular.cpp" />
+    <ClCompile Include="geometry\geometry.cpp" />
+    <ClCompile Include="geometry\SimpleMath.cpp" />
+    <ClCompile Include="geometry\transform.cpp" />
+    <ClCompile Include="handle\handle_def.cpp" />
+    <ClCompile Include="handle\handle_manager.cpp" />
+    <ClCompile Include="imgui\imgui.cpp" />
+    <ClCompile Include="imgui\imgui_demo.cpp" />
+    <ClCompile Include="imgui\imgui_draw.cpp" />
+    <ClCompile Include="imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="input\devices\keyboard.cpp" />
+    <ClCompile Include="input\devices\mouse.cpp" />
+    <ClCompile Include="input\devices\pad_xbox.cpp" />
+    <ClCompile Include="input\host.cpp" />
+    <ClCompile Include="input\interfaces\interface_mapping.cpp" />
+    <ClCompile Include="input\mapping.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="mcv_platform.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="modules\game\module_gameover.cpp" />
+    <ClCompile Include="modules\game\module_main_menu.cpp" />
+    <ClCompile Include="modules\game\module_splash.cpp" />
+    <ClCompile Include="modules\game\module_test_axis.cpp" />
+    <ClCompile Include="modules\module_entities.cpp" />
+    <ClCompile Include="modules\module_ia.cpp" />
+    <ClCompile Include="modules\module_manager.cpp" />
+    <ClCompile Include="modules\module_render.cpp" />
+    <ClCompile Include="modules\system\module_input.cpp" />
+    <ClCompile Include="modules\test\module_test_input.cpp" />
+    <ClCompile Include="render\cte_buffer.cpp" />
+    <ClCompile Include="render\mesh\mesh.cpp" />
+    <ClCompile Include="render\mesh\mesh_loader.cpp" />
+    <ClCompile Include="render\pixel_shader.cpp" />
+    <ClCompile Include="render\render.cpp" />
+    <ClCompile Include="render\render_objects.cpp" />
+    <ClCompile Include="render\shader_compile.cpp" />
+    <ClCompile Include="render\texture\DDSTextureLoader.cpp" />
+    <ClCompile Include="render\texture\texture.cpp" />
+    <ClCompile Include="render\vertex_declarations.cpp" />
+    <ClCompile Include="render\vertex_shader.cpp" />
+    <ClCompile Include="resources\resources_manager.cpp" />
+    <ClCompile Include="utils\utils.cpp" />
+    <ClCompile Include="windows\app.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Bin\data\shaders\ctes.h" />
+    <ClInclude Include="camera\camera.h" />
+    <ClInclude Include="components\comp_base.h" />
+    <ClInclude Include="components\comp_bullet_controller.h" />
+    <ClInclude Include="components\comp_camera.h" />
+    <ClInclude Include="components\comp_circular_controller.h" />
+    <ClInclude Include="components\comp_ia.h" />
+    <ClInclude Include="components\comp_name.h" />
+    <ClInclude Include="components\comp_player_controller.h" />
+    <ClInclude Include="components\comp_render.h" />
+    <ClInclude Include="components\comp_transform.h" />
+    <ClInclude Include="engine.h" />
+    <ClInclude Include="entity\common_msgs.h" />
+    <ClInclude Include="entity\entity.h" />
+    <ClInclude Include="entity\entity_parser.h" />
+    <ClInclude Include="entity\msgs.h" />
+    <ClInclude Include="geometry\angular.h" />
+    <ClInclude Include="geometry\geometry.h" />
+    <ClInclude Include="geometry\SimpleMath.h" />
+    <ClInclude Include="geometry\transform.h" />
+    <ClInclude Include="handle\handle.h" />
+    <ClInclude Include="handle\handle_def.h" />
+    <ClInclude Include="handle\handle_manager.h" />
+    <ClInclude Include="handle\object_manager.h" />
+    <ClInclude Include="imgui\imconfig.h" />
+    <ClInclude Include="imgui\imgui.h" />
+    <ClInclude Include="imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="imgui\imgui_internal.h" />
+    <ClInclude Include="imgui\stb_rect_pack.h" />
+    <ClInclude Include="imgui\stb_textedit.h" />
+    <ClInclude Include="imgui\stb_truetype.h" />
+    <ClInclude Include="input\button.h" />
+    <ClInclude Include="input\device.h" />
+    <ClInclude Include="input\devices\keyboard.h" />
+    <ClInclude Include="input\devices\mouse.h" />
+    <ClInclude Include="input\devices\pad_xbox.h" />
+    <ClInclude Include="input\enums.h" />
+    <ClInclude Include="input\host.h" />
+    <ClInclude Include="input\interfaces\interface_feedback.h" />
+    <ClInclude Include="input\interfaces\interface_keyboard.h" />
+    <ClInclude Include="input\interfaces\interface_mapping.h" />
+    <ClInclude Include="input\interfaces\interface_mouse.h" />
+    <ClInclude Include="input\interfaces\interface_pad.h" />
+    <ClInclude Include="input\mapping.h" />
+    <ClInclude Include="mcv_platform.h" />
+    <ClInclude Include="modules\gamestate.h" />
+    <ClInclude Include="modules\game\module_gameover.h" />
+    <ClInclude Include="modules\game\module_main_menu.h" />
+    <ClInclude Include="modules\game\module_splash.h" />
+    <ClInclude Include="modules\game\module_test_axis.h" />
+    <ClInclude Include="modules\module.h" />
+    <ClInclude Include="modules\module_entities.h" />
+    <ClInclude Include="modules\module_ia.h" />
+    <ClInclude Include="modules\module_manager.h" />
+    <ClInclude Include="modules\module_render.h" />
+    <ClInclude Include="modules\system\module_input.h" />
+    <ClInclude Include="modules\test\module_test_input.h" />
+    <ClInclude Include="render\cte_buffer.h" />
+    <ClInclude Include="render\mesh\mesh.h" />
+    <ClInclude Include="render\mesh\mesh_loader.h" />
+    <ClInclude Include="render\pixel_shader.h" />
+    <ClInclude Include="render\render.h" />
+    <ClInclude Include="render\render_objects.h" />
+    <ClInclude Include="render\render_technique.h" />
+    <ClInclude Include="render\shader_compiler.h" />
+    <ClInclude Include="render\texture\DDSTextureLoader.h" />
+    <ClInclude Include="render\texture\texture.h" />
+    <ClInclude Include="render\vertex_declarations.h" />
+    <ClInclude Include="render\vertex_shader.h" />
+    <ClInclude Include="resources\resource.h" />
+    <ClInclude Include="resources\resources_manager.h" />
+    <ClInclude Include="utils\data_provider.h" />
+    <ClInclude Include="utils\json.hpp" />
+    <ClInclude Include="utils\timer.h" />
+    <ClInclude Include="utils\utils.h" />
+    <ClInclude Include="windows\app.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="geometry\SimpleMath.inl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
