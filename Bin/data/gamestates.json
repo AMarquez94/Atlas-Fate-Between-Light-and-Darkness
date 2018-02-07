@@ -1,0 +1,26 @@
+{
+	"startup" : "test_axis",
+	"gamestates" : 
+	[
+		{
+			"name" : "splash",
+			"modules" : [ "splash" ]
+		},
+		{
+			"name" : "main_menu",
+			"modules" : [ "main_menu" ]
+		},
+		{
+			"name" : "game_over",
+			"modules" : [ "game_over" ]
+		},
+		{
+			"name" : "test_axis",
+			"modules" : [ "test_axis" ]
+		},
+		{
+			"name" : "test_input",
+			"modules" : [ "test_input" ]
+		}
+	]
+}

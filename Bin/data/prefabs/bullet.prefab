@@ -1,0 +1,13 @@
+[{
+		"entity": {
+			"name": "bullet",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render" : {},
+			"bullet_controller" : {
+				"speed" : 4.0
+			}
+		}
+	}
+]

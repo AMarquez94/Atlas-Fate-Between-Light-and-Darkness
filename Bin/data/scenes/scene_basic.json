@@ -1,0 +1,62 @@
+[{
+		"entity": {
+			"name": "john",
+			"transform": {
+				"pos": "1 0 0",
+				"lookat": "-1 0 -1"
+			},
+			"render" : {},
+			"ia": {
+				"type": "turret"
+			}
+
+		}
+	},
+	{
+		"entity": {
+			"name": "teapot",
+			"render" : {
+				"mesh": "data/meshes/Teapot001.mesh",
+				"texture": "data/textures/wood_d.dds"
+			}
+			,
+			"transform": {
+				"pos": "5 0 0"
+			}
+			, 
+			"player_controller" : {
+				"rotation_speed" : 3.0,
+				"speed" : 3.0
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "Enemy1",
+			"render" : {
+				"mesh": "data/meshes/Teapot001.mesh",
+				"texture": "data/textures/wood_d.dds"
+			}
+			,
+			"transform": {
+				"pos": "-4 0 0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "xthe_camera",
+			"transform": {
+				"pos": "0 3 3"
+			},
+			"render" : {},
+			"circular_controller" : {
+				"radius" : 3,
+				"target" : "teapot"
+			},
+			"camera" : {
+				"fov" : 80 
+			}
+		}
+	}
+]

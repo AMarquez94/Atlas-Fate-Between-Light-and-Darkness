@@ -1,0 +1,17 @@
+{
+	"sizes" : {
+		"default" : 128,
+		"transform" : 64
+	},
+  "init_order" : {
+    "entity" : 100,
+    "transform" : 90
+  },
+	"update" : [
+		"circular_controller",
+		"player_controller",
+		"bullet_controller",
+		"ia",
+		"camera"
+	]
+}

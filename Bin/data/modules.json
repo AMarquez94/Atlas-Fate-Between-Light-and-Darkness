@@ -1,0 +1,20 @@
+{
+	"update" : 
+	[
+		"input",
+		"entities",
+		"render",
+		"main_menu",
+		"splash",
+		"game_over",
+	    "test_input",
+	    "test_axis"
+	],
+	"render" : 
+	[
+		"render",
+		"test_axis",
+		"entities",
+		"input"
+	]
+}
