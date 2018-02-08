@@ -14,10 +14,10 @@ public:
   void load(const json& j, TEntityParseContext& ctx);
   void debugInMenu();
 
-  void IdleState();
-  void SeekWptState();
-  void NextWptState();
-  void ChaseState();
+  void IdleState(float);
+  void SeekWptState(float);
+  void NextWptState(float);
+  void ChaseState(float);
 
   void Init();
 

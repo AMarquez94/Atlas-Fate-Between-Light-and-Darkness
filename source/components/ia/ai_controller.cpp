@@ -16,7 +16,7 @@ TCompTransform* IAIController::getMyTransform() {
 
 // Show common information for the AIControllers
 void IAIController::debugInMenu() {
-  ImGui::Text("State: %s", state.c_str());
+  ImGui::Text("State: %s", stateName.c_str());
   if (ImGui::TreeNode("States")) {
     for (auto it = statemap.begin(); it != statemap.end(); ++it)
       ImGui::Text("%s", it->first.c_str());
@@ -26,10 +26,10 @@ void IAIController::debugInMenu() {
 
 void IAIController::update(float dt)
 {
-  assert(!state.empty());
-  assert(statemap.find(state) != statemap.end());
+  assert(!stateName.empty());
+  assert(statemap.find(stateName) != statemap.end());
   // this is a trusted jump as we've tested for coherence in ChangeState
-  (this->*statemap[state])();
+  (this->*state)(dt);
 }
 
 void IAIController::ChangeState(const std::string& newstate)
@@ -40,7 +40,8 @@ void IAIController::ChangeState(const std::string& newstate)
     // the state we wish to jump to does not exist. we abort
     fatal("Invalid ChangeState(%s)\n", newstate.c_str());
   }
-  state = newstate;
+  stateName = newstate;
+  state = statemap[stateName];
 }
 
 

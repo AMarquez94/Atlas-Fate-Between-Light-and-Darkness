@@ -49,7 +49,7 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 }
 
 
-void CAIPatrol::IdleState()
+void CAIPatrol::IdleState(float dt)
 {
   CEntity *player = (CEntity *)getEntityByName("The Player");
   TCompTransform *mypos = getMyTransform();
@@ -59,7 +59,7 @@ void CAIPatrol::IdleState()
 }
 
 
-void CAIPatrol::SeekWptState()
+void CAIPatrol::SeekWptState(float dt)
 {
   TCompTransform *mypos = getMyTransform();
   float y, r, p;
@@ -88,13 +88,13 @@ void CAIPatrol::SeekWptState()
   if (in_fov) ChangeState("chase");
 }
 
-void CAIPatrol::NextWptState()
+void CAIPatrol::NextWptState(float dt)
 {
   currentWaypoint = (currentWaypoint + 1) % _waypoints.size();
   ChangeState("seekwpt");
 }
 
-void CAIPatrol::ChaseState()
+void CAIPatrol::ChaseState(float dt)
 {
   TCompTransform *mypos = getMyTransform();
   CEntity *player = (CEntity *)getEntityByName("The Player");

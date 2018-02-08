@@ -15,7 +15,7 @@
 // be defined on a derived class. 
 class IAIController;
 
-typedef void (IAIController::*statehandler)();
+typedef void (IAIController::*statehandler)(float);
 
 class IAIController : public TCompBase {
 
@@ -24,7 +24,8 @@ protected:
   CHandle         h_transform;        // Cached
   TCompTransform* getMyTransform();
 
-  std::string                         state;
+  std::string                         stateName;
+  statehandler						  state;
   // the states, as maps to functions
   std::map<std::string, statehandler> statemap;
 
