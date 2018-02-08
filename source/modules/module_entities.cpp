@@ -81,7 +81,7 @@ void CModuleEntities::render()
       return;
 
     cb_object.obj_world = c_transform->asMatrix();
-    //cb_object.obj_color = e->color
+	cb_object.obj_color = c->color;
     cb_object.updateGPU();
     if (c->texture)
       c->texture->activate(0);

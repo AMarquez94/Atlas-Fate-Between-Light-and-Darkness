@@ -23,4 +23,5 @@ void CCteBuffer::destroy() {
 
 void CCteBuffer::activate() {
   Render.ctx->VSSetConstantBuffers(slot, 1, &cb);
+  Render.ctx->PSSetConstantBuffers(slot, 1, &cb);
 }

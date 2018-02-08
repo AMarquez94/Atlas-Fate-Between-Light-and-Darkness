@@ -7,6 +7,7 @@ struct VS_OUTPUT
   float4 Pos : SV_POSITION;
   float3 N : NORMAL;
   float2 UV : UV;
+  float4 COLOR : COLOR;
 };
 
 //--------------------------------------------------------------------------------------
@@ -25,6 +26,7 @@ VS_OUTPUT VS(
   output.Pos = mul(output.Pos, camera_proj);
   output.N = N;
   output.UV = UV;
+  output.COLOR = obj_color;
   return output;
 }
 
@@ -36,6 +38,6 @@ SamplerState samLinear      : register(s0);
 
 float4 PS(VS_OUTPUT input) : SV_Target
 {
-  float4 texture_color = txDiffuse.Sample(samLinear, input.UV);
+  float4 texture_color = obj_color * txDiffuse.Sample(samLinear, input.UV);
   return texture_color;
 }
