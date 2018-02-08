@@ -15,6 +15,7 @@ class CAIPatrol : public IAIController
   float fov;
   float distToIdleWar;
   float distToBack;
+  float distToChase;
   std::string entityToChase;
   int life;
 
