@@ -59,10 +59,11 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
   fov = deg2rad(j.value("fov", 60));
   distToIdleWar = j.value("distToIdleWar", 2.0f);
   distToBack = j.value("distToBack", 1.0f);
+  distToChase = j.value("distToChase", 10.0f);
   entityToChase = j.value("entityToChase", "The Player");
   life = j.value("life", 5);
   idleWarTimerBase = j.value("idleWarTimerBase", 1.0f);
-  idleWarTimerExtra = j.value("idleWarTimerExtra", 2.0f);
+  idleWarTimerExtra = j.value("idleWarTimerExtra", 2);
   orbitRotationBase = deg2rad(j.value("orbitRotationBase", 60));
   orbitRotationExtra = j.value("orbitRotationExtra", 30);
 }
@@ -78,11 +79,7 @@ void CAIPatrol::onMsgDamage(const TMsgDamage& msg) {
 
 void CAIPatrol::IdleState(float dt)
 {
-  CEntity *player = (CEntity *)getEntityByName(entityToChase);
-  TCompTransform *mypos = getMyTransform();
-  TCompTransform *ppos = player->get<TCompTransform>();
-  bool in_fov = mypos->isInFov(ppos->getPosition(), deg2rad(60));
-  if (in_fov) ChangeState("seekwpt");
+  ChangeState("seekwpt");
 }
 
 
@@ -112,7 +109,9 @@ void CAIPatrol::SeekWptState(float dt)
   CEntity *player = (CEntity *)getEntityByName(entityToChase);
   TCompTransform *ppos = player->get<TCompTransform>();
   bool in_fov = mypos->isInFov(ppos->getPosition(), fov);
-  if (in_fov) ChangeState("chase");
+  if (in_fov && VEC3::Distance(mypos->getPosition(), ppos->getPosition()) <= distToChase) {
+	  ChangeState("chase");
+  }
 }
 
 void CAIPatrol::NextWptState(float dt)
@@ -162,7 +161,9 @@ void CAIPatrol::ChaseState(float dt)
   mypos->setPosition(vp);
 
   bool in_fov = mypos->isInFov(ppos->getPosition(), fov);
-  if (!in_fov) ChangeState("closestwpt");
+  if (!in_fov || VEC3::Distance(mypos->getPosition(), ppos->getPosition()) > distToChase + 0.5f) {
+	  ChangeState("closestwpt");
+  }
 
   if (VEC3::Distance(mypos->getPosition(), ppos->getPosition()) <= distToIdleWar) {
 	  idleWarTimerMax = idleWarTimerBase + (rand() % idleWarTimerExtra);

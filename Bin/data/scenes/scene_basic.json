@@ -13,6 +13,7 @@
 				"fov": 60,
 				"distToIdleWar": 2.0,
 				"distToBack": 1.0,
+				"distToChase": 10.0,
 				"entityToChase": "The Player",
 				"life": 5,
 				"idleWarTimerBase": 1.0,
