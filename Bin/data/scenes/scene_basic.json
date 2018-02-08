@@ -56,14 +56,14 @@
 	},
 	{
 		"entity": {
-			"name": "xthe_camera",
+			"name": "the_camera",
 			"transform": {
 				"pos": "0 3 3"
 			},
 			"render" : {},
-			"circular_controller" : {
-				"radius" : 3,
-				"target" : "teapot"
+			"camera_thirdperson" : {
+				"target": "The Player",
+				"offset": "5 10"
 			},
 			"camera" : {
 				"fov" : 80 
