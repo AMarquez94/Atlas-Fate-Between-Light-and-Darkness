@@ -54,6 +54,17 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
     addWaypoint(p);
   }
 
+  speed = j.value("speed", 2.0f);
+  rotationSpeed = deg2rad(j.value("rotationSpeed", 90));
+  fov = deg2rad(j.value("fov", 60));
+  distToIdleWar = j.value("distToIdleWar", 2.0f);
+  distToBack = j.value("distToBack", 1.0f);
+  entityToChase = j.value("entityToChase", "The Player");
+  life = j.value("life", 5);
+  idleWarTimerBase = j.value("idleWarTimerBase", 1.0f);
+  idleWarTimerExtra = j.value("idleWarTimerExtra", 2.0f);
+  orbitRotationBase = deg2rad(j.value("orbitRotationBase", 60));
+  orbitRotationExtra = j.value("orbitRotationExtra", 30);
 }
 
 void CAIPatrol::registerMsgs() {

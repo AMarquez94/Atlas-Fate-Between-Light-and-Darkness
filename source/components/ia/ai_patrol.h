@@ -10,23 +10,23 @@ class CAIPatrol : public IAIController
 	/* Atributes */
   std::vector<VEC3> _waypoints;
   int currentWaypoint;
-  float speed = 2.f;
-  float rotationSpeed = deg2rad(90);
-  float fov = deg2rad(60);
-  float distToIdleWar = 2.f;
-  float distToBack = 1.f;
-  std::string entityToChase = "The Player";
-  int life = 5;
+  float speed;
+  float rotationSpeed;
+  float fov;
+  float distToIdleWar;
+  float distToBack;
+  std::string entityToChase;
+  int life;
 
   /* Timers */
   float idleWarTimer = 0.f;
-  float idleWarTimerBase = 1.f;
-  int idleWarTimerExtra = 2;
   float idleWarTimerMax = 0.f;
+  float idleWarTimerBase;
+  int idleWarTimerExtra;
   float currentOrbitRotation = 0.f;
-  float orbitRotationBase = deg2rad(60);
-  int orbitRotationExtra = 30;
   float orbitRotationMax = 0.f;
+  float orbitRotationBase;
+  int orbitRotationExtra;
 
   DECL_SIBLING_ACCESS();
 
