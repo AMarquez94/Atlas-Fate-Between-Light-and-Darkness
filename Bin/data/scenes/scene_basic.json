@@ -56,14 +56,16 @@
 	},
 	{
 		"entity": {
-			"name": "the_camera",
+			"name": "TPCamera",
 			"transform": {
 				"pos": "0 3 3"
 			},
 			"render" : {},
 			"camera_thirdperson" : {
 				"target": "The Player",
-				"offset": "5 10"
+				"clampangle" : "-20 80",
+				"offset": "0.35 .5 4",
+				"speed" : 3.0
 			},
 			"camera" : {
 				"fov" : 80 
