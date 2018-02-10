@@ -11,6 +11,7 @@ struct TJsonFormatter (
 	-- --------------------
 	fn begin new_ofilename = (
 		ofilename = new_ofilename
+		print new_ofilename
 		fs = createFile  ofilename
 	),
 	
@@ -196,7 +197,7 @@ fn isCollider obj = (
 struct TSceneExporter (
 
 	fs = TJsonFormatter(), 
-	project_path = "c:/code/engine/bin/",
+	project_path = "D:/Users/Alberto/Desktop/MasterBucket/ProjectDeepShadows/Bin/",
 	base_path = "data/",
 	scenes_path = base_path + "scenes/",
 	mesh_path = base_path + "meshes/",
@@ -249,7 +250,6 @@ struct TSceneExporter (
 			local mesh_name = mesh_path + obj.name + ".mesh"
 			fs.writeKeyValue "mesh" mesh_name
 			exportMeshObject obj (project_path + mesh_name )
-
 			fs.writeComma()
 		
 			-- Export material

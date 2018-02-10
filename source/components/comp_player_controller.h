@@ -40,9 +40,6 @@ class TCompPlayerController : public IAIController {
   //const Input::TButton& btCrouch = EngineInput["w"];	
   //const Input::TButton& btSecAction = EngineInput["w"];
 
-
-
-
   DECL_SIBLING_ACCESS();
 
   void onMsgDamage(const TMsgDamage& msg);

@@ -36,7 +36,7 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 			int posX = GET_X_LPARAM(lParam);
 			int posY = GET_Y_LPARAM(lParam);
 			mouse->setPosition(static_cast<float>(posX), static_cast<float>(posY));
-			app_instance->resetMouse = true;
+			app_instance->resetMouse = mouse->_lock_cursor;
 		}
 	}
 		break;
@@ -90,6 +90,8 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 		if (mouse)
 		{
+			ShowCursor(mouse->_lock_cursor);
+			mouse->setLockMouse();
 			mouse->setButton(Input::MOUSE_RIGHT, true);
 			SetCapture(hWnd);
 		}
@@ -182,14 +184,15 @@ void CApp::mainLoop() {
     else
     {
       doFrame();
-
-			/*if(resetMouse)
-			{
-				RECT rect;
-				GetWindowRect(getWnd(), &rect);
-				SetCursorPos((rect.left + rect.right) / 2, (rect.top + rect.bottom) / 2);
-				resetMouse = false;
-			}*/
+	  if (resetMouse)
+	  {
+		  RECT rect;
+		  GetWindowRect(getWnd(), &rect);
+		  SetCursorPos((rect.left + rect.right) / 2.f, (rect.top + rect.bottom) / 2.f);
+		  Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse")); // We do this to bypass the mouse problems
+		  mouse->setPreviousPosition(xres * .5f, 308.f); // ASK Albert, something weird happened..
+		  resetMouse = false;
+	  }
     }
   }
 }

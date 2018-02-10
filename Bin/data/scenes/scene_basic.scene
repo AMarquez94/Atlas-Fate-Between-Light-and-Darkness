@@ -28,9 +28,9 @@
 		"entity": {
 			"name": "The Player",
 			"render" : {
-				"mesh": "data/meshes/Teapot001.mesh",
+				"mesh": "data/meshes/pep.mesh",
 				"materials" : [
-						"data/materials/madera.material"
+						"data/materials/body.material"
 					]
 			}
 			,
@@ -69,11 +69,11 @@
 			"camera_thirdperson" : {
 				"target": "The Player",
 				"clampangle" : "-20 80",
-				"offset": "0.35 .5 4",
-				"speed" : 3.0
+				"offset": "0.25 1.5 2.25",
+				"speed" : 1.0
 			},
 			"camera" : {
-				"fov" : 80 
+				"fov" : 70 
 			}
 		}
 	}

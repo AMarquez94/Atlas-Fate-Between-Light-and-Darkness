@@ -16,16 +16,17 @@ void TCompCameraThirdPerson::debugInMenu()
 void TCompCameraThirdPerson::load(const json& j, TEntityParseContext& ctx)
 {
 	// Read from the json all the input data
-	_speed = j.value("speed", 3.0f);
+	_speed = j.value("speed", 1.0f);
 	_target_name = j.value("target", "");
 	_clamp_angle = loadVEC2(j["clampangle"]);
 	_clipping_offset = loadVEC3(j["offset"]);
 	_clamp_angle = VEC2(deg2rad(_clamp_angle.x), deg2rad(_clamp_angle.y));
 
 	// Load the target and set his axis as our axis.
-	float yaw, pitch, roll;
 	_h_target = ctx.findEntityByName(_target_name);
 	TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>();
+
+	float yaw, pitch, roll;
 	target_transform->getYawPitchRoll(&yaw, &pitch, &roll);
 	_current_euler = VEC2(yaw, pitch);
 }
@@ -41,9 +42,9 @@ void TCompCameraThirdPerson::update(float dt)
 	assert(target_transform);
 
 	// Verbose code
-	_current_euler.x -= mouse._position_delta.x * _speed * 0.001f;
-	_current_euler.y -= mouse._position_delta.y * _speed * 0.001f;
-	_current_euler.y = std::max(-_clamp_angle.y, std::min(_current_euler.y, -_clamp_angle.x)); // clamp(y, _clamp_angle.x, _clamp_angle.y);
+	_current_euler.x -= mouse._position_delta.x * _speed * dt;
+	_current_euler.y -= mouse._position_delta.y * _speed * dt;
+	_current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
 
 	// EulerAngles method based on mcv class
 	VEC3 vertical_offset = VEC3::Up * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)
@@ -54,13 +55,6 @@ void TCompCameraThirdPerson::update(float dt)
 	self_transform->setYawPitchRoll(_current_euler.x, _current_euler.y, 0);
 	VEC3 new_pos = target_position + _clipping_offset.z * -self_transform->getFront();
 	self_transform->setPosition(new_pos);
-
-	// Quaternion method based on Unity prototype, to-do
-	//_mouse_pos.y = clamp(y, _clamp_angle.x, _clamp_angle.y);
-	//Quaternion rotation = Quaternion::CreateFromYawPitchRoll(_mouse_pos.y, _mouse_pos.x, 0);
-	//VEC3 position = (VEC3)(rotation * VEC3(0.0, 0.0, -5)) + target_transform->getPosition();
-	//self_transform->setRotation(rotation);
-	//self_transform->setPosition(position + VEC3(0,4,0));
 }
 
 VEC3 TCompCameraThirdPerson::CameraClipping(void)

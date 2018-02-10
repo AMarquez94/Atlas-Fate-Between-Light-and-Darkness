@@ -159,21 +159,6 @@ function exportMeshObject given_obj outfilename = (
 			append idxs new_idx
 		)
 	)
-
-	-- Dump
-	/*
-	local idx = 1
-	for v in vtxs do (
-		format "Vtx % is %\n" idx v
-		idx = idx + 1
-	)
-	idx = 1
-	for f in idxs do (
-		format "Idx % is %\n" idx f
-		idx = idx + 1
-	)
-	*/
-	
 	saveMeshToFile outfilename obj vtxs idxs "PosNUv"
 	
 	-- If we created a copy of the mesh, it's time to remove it
@@ -182,5 +167,5 @@ function exportMeshObject given_obj outfilename = (
 )
 
 
---exportMeshObject $Box001
+exportMeshObject $crap "D:\\Users\\Alberto\\Desktop\\source\\pep.mesh"
 --exportMeshObject $ "c:\\code\\pep.mesh"
