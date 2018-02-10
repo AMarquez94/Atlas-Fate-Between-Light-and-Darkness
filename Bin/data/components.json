@@ -10,6 +10,7 @@
 	"update" : [
 		"circular_controller",
 		"player_controller",
+		"camera_thirdperson",
 		"bullet_controller",
 		"ai_patrol",
 		"camera"

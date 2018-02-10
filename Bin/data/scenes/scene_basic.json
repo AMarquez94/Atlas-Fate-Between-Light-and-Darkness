@@ -57,14 +57,16 @@
 	},
 	{
 		"entity": {
-			"name": "xthe_camera",
+			"name": "TPCamera",
 			"transform": {
 				"pos": "0 3 3"
 			},
 			"render" : {},
-			"circular_controller" : {
-				"radius" : 3,
-				"target" : "teapot"
+			"camera_thirdperson" : {
+				"target": "The Player",
+				"clampangle" : "-20 80",
+				"offset": "0.35 .5 4",
+				"speed" : 3.0
 			},
 			"camera" : {
 				"fov" : 80 

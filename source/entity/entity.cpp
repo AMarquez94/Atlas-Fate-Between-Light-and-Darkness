@@ -36,6 +36,7 @@ const char* CEntity::getName() const {
 }
 
 void CEntity::debugInMenu() {
+
   if (ImGui::TreeNode(getName())) {
 
     for (int i = 0; i < CHandle::max_types; ++i) {

@@ -13,7 +13,9 @@ extern CPixelShader ps_obj;
 CRenderTechnique tech_solid = { &vs, &ps };
 CRenderTechnique tech_objs = { &vs_obj, &ps_obj };
 
-void TCompRender::debugInMenu() {
+void TCompRender::debugInMenu() 
+{
+	ImGui::ColorEdit4("Background Color", &color.x);
 }
 
 void TCompRender::load(const json& j, TEntityParseContext& ctx) {
@@ -32,4 +34,6 @@ void TCompRender::load(const json& j, TEntityParseContext& ctx) {
     tech = &tech_solid;
   }
 
+  if (j.count("COLOR"))
+	  color = loadVEC4(j["color"]);
 }

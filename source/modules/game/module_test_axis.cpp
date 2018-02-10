@@ -127,7 +127,7 @@ void CModuleTestAxis::render()
   tech_solid.activate();
 
   // Find the entity with name 'the_camera'
-  CHandle h_e_camera = getEntityByName("the_camera");
+  CHandle h_e_camera = getEntityByName("TPCamera");
   if (h_e_camera.isValid()) {
     CEntity* e_camera = h_e_camera;
     TCompCamera* c_camera = e_camera->get< TCompCamera >();
