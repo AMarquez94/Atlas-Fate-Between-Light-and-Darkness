@@ -24,6 +24,7 @@ class TCompPlayerController : public IAIController {
 public:
   void debugInMenu();
   void load(const json& j, TEntityParseContext& ctx);
+  void update(float dt);
   void Init();
   
   static void registerMsgs();
