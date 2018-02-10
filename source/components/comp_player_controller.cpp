@@ -11,6 +11,7 @@ DECL_OBJ_MANAGER("player_controller", TCompPlayerController);
 void TCompPlayerController::debugInMenu() {
   ImGui::DragFloat("Speed", &walkSpeedFactor, 0.1f, 0.f, 20.f);
   ImGui::DragFloat("Rotation", &rotationSpeed, 0.1f, 0.f, 20.f);
+  ImGui::Text("Current speed: %f", currentSpeed);
   ImGui::Text("State: %s", stateName.c_str());
   ImGui::ProgressBar(stamina/maxStamina);
 }
@@ -58,7 +59,6 @@ void TCompPlayerController::IdleState(float dt){
 	else if (motionButtonsPressed()) {
 		ChangeState("motion");
 	}
-	dbg("%f\n", stamina);
 }
 
 
@@ -76,7 +76,6 @@ void TCompPlayerController::MotionState(float dt){
 			ChangeState("smEnter");
 		}
 	}
-	dbg("%f\n", stamina);
 }
 
 
@@ -104,7 +103,6 @@ void TCompPlayerController::ShadowMergingEnterState(float dt){
 	TCompRender* t = get<TCompRender>();
 	t->color = VEC4(0, 0, 0, 0);
 	ChangeState("smHor");
-	dbg("%f\n", stamina);
 }
 
 
@@ -121,7 +119,6 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 	if (!btShadowMerging.isPressed() || stamina == minStamina ) {
 		ChangeState("smExit");
 	}
-	dbg("%f\n", stamina);
 
 	
 }
@@ -146,7 +143,6 @@ void TCompPlayerController::ShadowMergingExitState(float dt){
 	TCompRender* t = get<TCompRender>();
 	t->color = VEC4(1, 1, 1, 1);
 	ChangeState("idle");
-	dbg("%f\n", stamina);
 }
 
 
@@ -186,7 +182,24 @@ void TCompPlayerController::movePlayer(float dt) {
 
 	//----------------------------------------------
 	//Pongo a cero la velocidad actual
-	float amount_moved = walkSpeedFactor * dt;
+	currentSpeed = 0;
+
+	if (stateName.compare("smHor") == 0 || stateName.compare("smVer") == 0) {
+		currentSpeed = walkSpeedFactor;
+	}
+	else {
+		if (btRun.isPressed()) {
+			currentSpeed = runSpeedFactor;
+		}
+		else if (btSlow.isPressed()) {
+			currentSpeed = walkSlowSpeedFactor;
+		}
+		else {
+			currentSpeed = walkSpeedFactor;
+		}
+	}
+
+	float amount_moved = currentSpeed * dt;
 
 	//Detecto el teclado
 	VEC3 local_speed = VEC3::Zero;
@@ -198,6 +211,8 @@ void TCompPlayerController::movePlayer(float dt) {
 		local_speed.x += 1.f;
 	if (btRight.isPressed())
 		local_speed.x -= 1.f;
+
+	local_speed.Normalize();
 
 	c_my_transform->setPosition(c_my_transform->getPosition() + local_speed * amount_moved);
 }

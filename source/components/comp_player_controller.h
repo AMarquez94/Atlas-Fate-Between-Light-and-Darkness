@@ -18,11 +18,11 @@ class TCompPlayerController : public IAIController {
 	float dcrStaminaWall = 20.f;
 	float incrStamina = 20.f;
 
-	float walkSpeedFactor = 1.0f;
-	float runSpeedFactor = 2.0f;
-	float walkSlowSpeedFactor = 0.5f;
+	float walkSpeedFactor = 3.0f;
+	float runSpeedFactor = 5.0f;
+	float walkSlowSpeedFactor = 1.5f;
 	float rotationSpeed = 1.0f;
-	VEC3  speed;
+	float currentSpeed = 0.f;
 
   /* Timers */
 
