@@ -8,7 +8,7 @@ class CPixelShader {
 public:
   bool create(const std::string& filename, const std::string& fn_entry_name);
   void destroy();
-  void activate();
+  void activate() const;
 
 };
 

@@ -43,6 +43,11 @@ bool CTexture::create(const std::string& name) {
   return true;
 }
 
+// Set to the DX driver that we don't want any texture in this slot
+void CTexture::setNullTexture(int slot) {
+	Render.ctx->PSSetShaderResources(slot, 1, nullptr);
+}
+
 void CTexture::activate(int slot) const {
   assert(texture && shader_resource_view);
 

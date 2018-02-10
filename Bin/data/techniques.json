@@ -1,0 +1,16 @@
+{
+	"solid" : {
+		"vs_file": "data/shaders/shaders.fx",
+		"vs_entry_point" : "VS",
+		"vertex_type" : "PosClr",
+		"ps_file": "data/shaders/shaders.fx",
+		"ps_entry_point" : "PS"
+	},
+	"textured" : {
+		"vs_file": "data/shaders/shaders_objs.fx",
+		"vs_entry_point" : "VS",
+		"vertex_type" : "PosNUv",
+		"ps_file": "data/shaders/shaders_objs.fx",
+		"ps_entry_point" : "PS"
+	}
+}

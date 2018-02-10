@@ -1,0 +1,209 @@
+[
+  {
+    "entity":
+    {
+      "name": "Box001"
+      ,
+      "transform":
+      {
+        "pos": "35.0 -6.55671e-07 -15.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/piedras1.material"
+          ]
+        }
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box002"
+      ,
+      "transform":
+      {
+        "pos": "-10.0 -1.5299e-06 -35.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/madera.material"
+          ]
+        }
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box003"
+      ,
+      "transform":
+      {
+        "pos": "35.0 6.55671e-07 15.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/baldosas.material"
+          ]
+        }
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box004"
+      ,
+      "transform":
+      {
+        "pos": "35.0 1.19137e-06 27.2554"
+        ,
+        "rotation": "0.0 0.0 0.0793908 -0.996844"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/piedras1.material"
+          ]
+        }
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box005"
+      ,
+      "transform":
+      {
+        "pos": "35.0 1.72707e-06 39.5107"
+        ,
+        "rotation": "0.0 0.0 0.235476 -0.97188"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/baldosas.material"
+          ]
+        }
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box006"
+      ,
+      "transform":
+      {
+        "pos": "35.0 2.26277e-06 51.7661"
+        ,
+        "rotation": "0.0 0.0 0.403221 -0.915103"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/madera.material"
+          ]
+        }
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "GeoSphere001"
+      ,
+      "transform":
+      {
+        "pos": "20.0 5.0 -20.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/GeoSphere001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/piedras1.material"
+          ]
+        }
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Plane001"
+      ,
+      "transform":
+      {
+        "pos": "5.0 2.18557e-07 5.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plane001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/piedras1.material"
+          ]
+        }
+      ]
+    }
+  }
+]

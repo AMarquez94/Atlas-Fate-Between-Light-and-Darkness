@@ -1,0 +1,10 @@
+{
+  "technique": "textured.tech"
+  ,
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/wood_d.dds"
+  }
+}
