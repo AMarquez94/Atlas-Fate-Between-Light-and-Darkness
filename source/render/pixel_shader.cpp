@@ -29,7 +29,7 @@ void CPixelShader::destroy() {
   SAFE_RELEASE(ps);
 }
 
-void CPixelShader::activate() {
+void CPixelShader::activate() const{
   assert(ps);
   Render.ctx->PSSetShader(ps, NULL, 0);
 }

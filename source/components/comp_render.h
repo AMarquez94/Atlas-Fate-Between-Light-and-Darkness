@@ -5,18 +5,27 @@
 class CRenderMesh;
 class CTexture;
 class CRenderTechnique;
+class CMaterial;
 
 class TCompRender : public TCompBase {
-public:
 
+<<<<<<< HEAD
   const CRenderMesh* mesh = nullptr;
   const CTexture* texture = nullptr;
   VEC4 color = VEC4(1,1,1,1);
 
   CRenderTechnique* tech = nullptr;
+=======
+	void loadMesh(const json& j, TEntityParseContext& ctx);
 
-  void debugInMenu();
-  void load(const json& j, TEntityParseContext& ctx);
+public:
+	VEC4               color = VEC4(1, 1, 1, 1);
+	const CRenderMesh* mesh = nullptr;
+	std::vector<const CMaterial*> materials;
+>>>>>>> dev
 
-  DECL_SIBLING_ACCESS();
+	void debugInMenu();
+	void load(const json& j, TEntityParseContext& ctx);
+
+	DECL_SIBLING_ACCESS();
 };

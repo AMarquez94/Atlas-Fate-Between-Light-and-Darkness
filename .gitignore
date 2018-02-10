@@ -20,7 +20,6 @@
 x64/
 x86/
 bld/
-[Bb]in/
 [Oo]bj/
 [Ll]og/
 
@@ -297,5 +296,4 @@ Build
 .vs/Game/v15
 source/.vs/Game/v15
 /Bin/imgui.ini
-!/Bin/data/	#Except data inside Bin folder
 

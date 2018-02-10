@@ -5,22 +5,18 @@ function writeChunk fs id nbytes = (
 	WriteLong fs nbytes #unsigned
 )
 
-function saveMeshToFile obj vtxs idxs vtxType = (
+function saveMeshToFile outfilename obj vtxs idxs vtxType = (
 	
 	local magicHeader = 0x44444444
 	local magicVtxs = 0x55554433
 	local magicIdxs = 0x55556677
 	local magicEoF = 0x55558888
 	
-	local export_path = "C:\\code\\engine\\bin\\data\\meshes\\"
-	
 	-- Chunk = MagicID(4bytes) + Size(4bytes)
 	-- Chunk HeaderData
 	-- Chunk Vtxs
 	-- Chunk Idxs
 	-- .. Chunk CollisionData
-	
-	local outfilename = export_path + obj.name + ".mesh"
 	
 	local triangle_list = 4
 	
@@ -87,21 +83,24 @@ function areEqualVertexs v1 v2 = (
 	return true
 )
 
-function findIndexOrRegister vtxs new_vtx = (
+function findIndexOrRegister ht vtxs new_vtx = (
 
-	-- Do a linear search...
-	local id = 1
-	for id = 1 to vtxs.count do (
-		if areEqualVertexs vtxs[id] new_vtx then return id
+	-- Key is a string representation of all floats in new_vtx
+	local key = with printAllElements off new_vtx as string
+
+	-- Find the string in the hash map
+	local idx = ht.Item key
+	if idx == undefined then (
+		-- Register it
+		idx = ht.count + 1
+		ht.add key idx			-- Bind "vertex_as_string" to 1
+		append vtxs new_vtx	
 	)
-	
-	-- At this point, it's new, so append it and return the index
-	-- which is the size of the container
-	append vtxs new_vtx
-	return vtxs.count
+	return idx
 )
 
-function exportMeshObject given_obj = (
+
+function exportMeshObject given_obj outfilename = (
 	
 	-- Convert the given object to triangular mesh
 	local obj = given_obj
@@ -123,6 +122,9 @@ function exportMeshObject given_obj = (
 	local maxWorldToLocal = inverse obj.transform
 	local maxWorldToLocalMCV = maxWorldToLocal * maxToMCV
 	
+	-- To quickly find if a vertex is new
+	local HT = dotNetObject "System.Collections.Hashtable"
+
 	local num_faces = getNumFaces obj
 	
 	-- For each face in the model
@@ -135,7 +137,8 @@ function exportMeshObject given_obj = (
 		local normals = meshop.getFaceRNormals obj face_id
 		
 		-- For each vertex of each face
-		for vtx_id in [1,3,2] do (
+		local vtx_id
+		for vtx_id in #(1,3,2) do (
 			
 			-- Get the real vertex id: 1...num_vertexs
 			local posW = getVert obj face[ vtx_id ]
@@ -150,7 +153,7 @@ function exportMeshObject given_obj = (
 			local new_vtx = #( pos.x, pos.y, pos.z, N.x, N.y, N.z, uvA.x, uvA.y ) 
 			
 			-- Check if the vtx is unique
-			local new_idx = findIndexOrRegister vtxs new_vtx
+			local new_idx = findIndexOrRegister ht vtxs new_vtx
 			
 			-- Register the index
 			append idxs new_idx
@@ -171,7 +174,7 @@ function exportMeshObject given_obj = (
 	)
 	*/
 	
-	saveMeshToFile obj vtxs idxs "PosNUv"
+	saveMeshToFile outfilename obj vtxs idxs "PosNUv"
 	
 	-- If we created a copy of the mesh, it's time to remove it
 	if obj != given_obj then delete obj
@@ -180,4 +183,4 @@ function exportMeshObject given_obj = (
 
 
 --exportMeshObject $Box001
-exportMeshObject $Teapot001
+--exportMeshObject $ "c:\\code\\pep.mesh"

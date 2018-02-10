@@ -53,7 +53,7 @@ void CVertexShader::destroy() {
   SAFE_RELEASE(vs);
 }
 
-void CVertexShader::activate() {
+void CVertexShader::activate() const {
 
   assert(vs && vertex_layout);
 
