@@ -12,10 +12,11 @@ class TCompPlayerController : public IAIController {
 	float stamina = 100.f;
 	float maxStamina = 100.f;
 	float minStamina = 0.f;
+	float minStaminaToMerge = 5.0f;
 	float dcrStaminaOnPlaceMultiplier = 0.5f;
-	float dcrStaminaGround = 0.02f;
-	float dcrStaminaWall = 0.08f;
-	float incrStamina = 0.5f;
+	float dcrStaminaGround = 10.f;
+	float dcrStaminaWall = 20.f;
+	float incrStamina = 20.f;
 
 	float walkSpeedFactor = 1.0f;
 	float runSpeedFactor = 2.0f;
@@ -53,7 +54,6 @@ class TCompPlayerController : public IAIController {
 public:
   void debugInMenu();
   void load(const json& j, TEntityParseContext& ctx);
-  //void update(float dt);
   void Init();
   
   static void registerMsgs();

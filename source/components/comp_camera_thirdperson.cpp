@@ -41,7 +41,7 @@ void TCompCameraThirdPerson::update(float dt)
 	assert(target_transform);
 
 	// Verbose code
-	_current_euler.x += mouse._position_delta.x * _speed * 0.001f;
+	_current_euler.x -= mouse._position_delta.x * _speed * 0.001f;
 	_current_euler.y -= mouse._position_delta.y * _speed * 0.001f;
 	_current_euler.y = std::max(-_clamp_angle.y, std::min(_current_euler.y, -_clamp_angle.x)); // clamp(y, _clamp_angle.x, _clamp_angle.y);
 
