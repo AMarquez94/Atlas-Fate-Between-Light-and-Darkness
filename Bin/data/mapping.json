@@ -13,5 +13,50 @@
 		"name" : "blue",
 		"all" : false,
 		"buttons" : [ "pad_lanalogx"]
+	},
+	{
+		"name" : "btUp",
+		"all" : false,
+		"buttons" : [ "w"]
+	},
+	{
+		"name" : "btDown",
+		"all" : false,
+		"buttons" : [ "s"]
+	},
+	{
+		"name" : "btRight",
+		"all" : false,
+		"buttons" : [ "d"]
+	},
+	{
+		"name" : "btLeft",
+		"all" : false,
+		"buttons" : [ "a"]
+	},
+	{
+		"name" : "btShadowMerging",
+		"all" : false,
+		"buttons" : [ "mouse_right"]
+	},
+	{
+		"name" : "btAttack",
+		"all" : false,
+		"buttons" : [ "mouse_left"]
+	},
+	{
+		"name" : "btRun",
+		"all" : false,
+		"buttons" : [ "shift"]
+	},
+	{
+		"name" : "btSlow",
+		"all" : true,
+		"buttons" : [ "control"]
+	},
+	{
+		"name" : "btAction",
+		"all" : false,
+		"buttons" : [ "e"]
 	}
 ]
