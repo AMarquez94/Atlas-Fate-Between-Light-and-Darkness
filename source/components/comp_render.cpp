@@ -7,11 +7,6 @@ DECL_OBJ_MANAGER("render", TCompRender);
 #include "render/texture/texture.h"
 #include "render/texture/material.h"
 
-<<<<<<< HEAD
-void TCompRender::debugInMenu() 
-{
-	ImGui::ColorEdit4("Background Color", &color.x);
-=======
 void TCompRender::debugInMenu() {
 	ImGui::ColorEdit4("Color", &color.x);
 }
@@ -35,7 +30,6 @@ void TCompRender::loadMesh(const json& j, TEntityParseContext& ctx) {
 		const CMaterial* material = Resources.get("data/materials/solid.material")->as<CMaterial>();
 		materials.push_back(material);
 	}
->>>>>>> dev
 }
 
 void TCompRender::load(const json& j, TEntityParseContext& ctx) {
