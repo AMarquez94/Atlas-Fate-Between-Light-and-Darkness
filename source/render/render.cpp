@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "windows/app.h"
 #include "render.h"
+#include <DXGIDebug.h>
 
 #pragma comment(lib, "d3d11")
 
@@ -98,6 +99,16 @@ void CRender::destroyDevice() {
   SAFE_RELEASE(renderTargetView);
   SAFE_RELEASE(swapChain);
   SAFE_RELEASE(ctx);
+
+#ifdef _DEBUG
+  if (0) {
+	  ID3D11Debug* DebugDevice = nullptr;
+	  HRESULT hr = device->QueryInterface(&DebugDevice);
+	  if (DebugDevice)
+		  DebugDevice->ReportLiveDeviceObjects(D3D11_RLDO_SUMMARY);
+  }
+#endif
+
   SAFE_RELEASE(device);
 }
 

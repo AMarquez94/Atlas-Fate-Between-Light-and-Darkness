@@ -96,6 +96,7 @@ bool CRenderMesh::create(
 
 void CRenderMesh::destroy() {
   SAFE_RELEASE(vb);
+  SAFE_RELEASE(ib);
 }
 
 void CRenderMesh::activate() const {

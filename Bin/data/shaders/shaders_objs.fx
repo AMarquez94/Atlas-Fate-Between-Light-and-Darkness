@@ -37,5 +37,5 @@ SamplerState samLinear      : register(s0);
 float4 PS(VS_OUTPUT input) : SV_Target
 {
   float4 texture_color = txDiffuse.Sample(samLinear, input.UV);
-  return texture_color;
+  return texture_color * obj_color;
 }

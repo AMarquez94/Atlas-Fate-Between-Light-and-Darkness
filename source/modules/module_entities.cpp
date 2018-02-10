@@ -2,12 +2,11 @@
 #include "module_entities.h"
 #include "render/render_objects.h"
 #include "render/texture/texture.h"
+#include "render/texture/material.h"
 #include "entity/entity.h"
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
 #include "components/comp_name.h"
-
-
 
 bool CModuleEntities::start()
 {
@@ -81,11 +80,10 @@ void CModuleEntities::render()
       return;
 
     cb_object.obj_world = c_transform->asMatrix();
-    //cb_object.obj_color = e->color
+	cb_object.obj_color = c->color;
     cb_object.updateGPU();
-    if (c->texture)
-      c->texture->activate(0);
-    c->tech->activate();
+	for (auto& m : c->materials)
+		m->activate();
     c->mesh->activateAndRender();
   });
 
