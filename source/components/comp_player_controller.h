@@ -39,6 +39,7 @@ class TCompPlayerController : public IAIController {
   /* TODO: not for milestone 1 */
   //const Input::TButton& btCrouch = EngineInput["w"];	
   //const Input::TButton& btSecAction = EngineInput["w"];
+  std::string target_name;
 
   DECL_SIBLING_ACCESS();
 

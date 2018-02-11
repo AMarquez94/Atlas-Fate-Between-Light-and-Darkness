@@ -102,4 +102,30 @@
       ]
     }
   }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box004"
+      ,
+      "transform":
+      {
+        "pos": "0.0 -50.0 2.18557e-006"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/default_skybox.material"
+          ]
+        }
+      ]
+    }
+  }
 ]

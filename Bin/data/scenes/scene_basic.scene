@@ -40,6 +40,7 @@
 			, 
 			"player_controller" : {
 				"rotation_speed" : 3.0,
+				"target_camera" : "TPCamera",
 				"speed" : 3.0
 			}
 		}

@@ -14690,7 +14690,7 @@ class basic_json
 
     @since version 2.0.0
     */
-    static basic_json diff(const basic_json& source, const basic_json& target,
+    static basic_json diffz(const basic_json& source, const basic_json& target,
                            const std::string& path = "")
     {
         // the patch
