@@ -5,8 +5,12 @@
 				"pos": "1 0 0",
 				"lookat": "-1 0 -1"
 			},
-			"render" : {},
-			"ai_patrol": {
+			"render" : {				
+				"mesh": "data/meshes/bot211.mesh",
+				"materials" : [
+						"data/materials/body.material"
+					]},
+				"ai_patrol": {
 				"waypoints" : [ "-10 0 0", "5 0 5", "2 0 10"] ,
 				"speed": 2.0,
 				"rotationSpeed": 90,
