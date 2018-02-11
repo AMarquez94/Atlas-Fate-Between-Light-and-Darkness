@@ -188,7 +188,7 @@ void CApp::mainLoop() {
 	  {
 		  RECT rect;
 		  GetWindowRect(getWnd(), &rect);
-		  SetCursorPos((rect.left + rect.right) / 2.f, (rect.top + rect.bottom) / 2.f);
+		  SetCursorPos((rect.left + rect.right) *.5f, (rect.top + rect.bottom) *.5f);
 		  Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse")); // We do this to bypass the mouse problems
 		  mouse->setPreviousPosition(xres * .5f, 308.f); // ASK Albert, something weird happened..
 		  resetMouse = false;
