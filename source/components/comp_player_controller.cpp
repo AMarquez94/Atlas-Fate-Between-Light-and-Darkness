@@ -191,8 +191,16 @@ void TCompPlayerController::movePlayer(float dt) {
 		if (btRun.isPressed()) {
 			currentSpeed = runSpeedFactor;
 		}
-		else if (btSlow.isPressed()) {
+		else if (btSlow.isPressed()){
 			currentSpeed = walkSlowSpeedFactor;
+		}
+		else if (btSlowAnalog.isPressed()) {
+			if (abs(btSlowAnalog.value) < TiltNeeded) {
+				currentSpeed = walkSlowSpeedFactor;
+			}
+			else {
+				currentSpeed = walkSpeedFactor;
+			}
 		}
 		else {
 			currentSpeed = walkSpeedFactor;
@@ -210,30 +218,41 @@ void TCompPlayerController::movePlayer(float dt) {
 	VEC3 local_speed = VEC3::Zero;
 	if (btUp.isPressed())
 	{
-		float diff = atan2(sin(c_yaw - yaw), cos(c_yaw - yaw));
-		c_my_transform->setYawPitchRoll(yaw + diff * dt * 10.f, pitch, roll);
-		c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+
+		if (btUp.value == 1.0 || btUp.value > RotationNeeded) {
+			//dbg("value %f \n",btUp.value);
+			float diff = atan2(sin(c_yaw - yaw), cos(c_yaw - yaw));
+			c_my_transform->setYawPitchRoll(yaw + diff * dt * 10.f, pitch, roll);
+			c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+		}
+		
 	}
 	if (btDown.isPressed())
 	{
-		float target_angle = c_yaw - deg2rad(180.f);
-		float diff = atan2(sin(target_angle - yaw), cos(target_angle - yaw));
-		c_my_transform->setYawPitchRoll((yaw)+diff * dt * 10.f, pitch, roll);
-		c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+		if (btDown.value == 1.0 || btDown.value < -RotationNeeded) {
+			float target_angle = c_yaw - deg2rad(180.f);
+			float diff = atan2(sin(target_angle - yaw), cos(target_angle - yaw));
+			c_my_transform->setYawPitchRoll((yaw)+diff * dt * 10.f, pitch, roll);
+			c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+		}	
 	}
 	if (btLeft.isPressed())
 	{
-		float target_angle = c_yaw + deg2rad(90.f);
-		float diff = atan2(sin(target_angle - yaw), cos(target_angle - yaw));
-		c_my_transform->setYawPitchRoll((yaw) + diff * dt * 10.f, pitch, roll);
-		c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+		if (btLeft.value == 1.0 || btLeft.value < -RotationNeeded) {
+			float target_angle = c_yaw + deg2rad(90.f);
+			float diff = atan2(sin(target_angle - yaw), cos(target_angle - yaw));
+			c_my_transform->setYawPitchRoll((yaw)+diff * dt * 10.f, pitch, roll);
+			c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+		}
 	}
 	if (btRight.isPressed())
 	{
-		float target_angle = c_yaw - deg2rad(90.f);
-		float diff = atan2(sin(target_angle - yaw), cos(target_angle - yaw));
-		c_my_transform->setYawPitchRoll((yaw)+diff * dt * 10.f, pitch, roll);
-		c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+		if (btRight.value == 1.0 || btRight.value > RotationNeeded) {
+			float target_angle = c_yaw - deg2rad(90.f);
+			float diff = atan2(sin(target_angle - yaw), cos(target_angle - yaw));
+			c_my_transform->setYawPitchRoll((yaw)+diff * dt * 10.f, pitch, roll);
+			c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+		}
 	}
 	
 	float amount_moved = currentSpeed * dt;
