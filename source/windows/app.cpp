@@ -57,6 +57,8 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 		if (mouse)
 		{
+			ShowCursor(mouse->_lock_cursor);
+			mouse->setLockMouse();
 			mouse->setButton(Input::MOUSE_MIDDLE, false);
 			ReleaseCapture();
 		}
@@ -90,8 +92,6 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 		if (mouse)
 		{
-			ShowCursor(mouse->_lock_cursor);
-			mouse->setLockMouse();
 			mouse->setButton(Input::MOUSE_RIGHT, true);
 			SetCapture(hWnd);
 		}

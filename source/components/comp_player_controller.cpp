@@ -212,24 +212,28 @@ void TCompPlayerController::movePlayer(float dt) {
 	{
 		float diff = atan2(sin(c_yaw - yaw), cos(c_yaw - yaw));
 		c_my_transform->setYawPitchRoll(yaw + diff * dt * 10.f, pitch, roll);
+		c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
 	}
 	if (btDown.isPressed())
 	{
 		float target_angle = c_yaw - deg2rad(180.f);
 		float diff = atan2(sin(target_angle - yaw), cos(target_angle - yaw));
 		c_my_transform->setYawPitchRoll((yaw)+diff * dt * 10.f, pitch, roll);
+		c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
 	}
 	if (btLeft.isPressed())
 	{
 		float target_angle = c_yaw + deg2rad(90.f);
 		float diff = atan2(sin(target_angle - yaw), cos(target_angle - yaw));
 		c_my_transform->setYawPitchRoll((yaw) + diff * dt * 10.f, pitch, roll);
+		c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
 	}
 	if (btRight.isPressed())
 	{
 		float target_angle = c_yaw - deg2rad(90.f);
 		float diff = atan2(sin(target_angle - yaw), cos(target_angle - yaw));
 		c_my_transform->setYawPitchRoll((yaw)+diff * dt * 10.f, pitch, roll);
+		c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
 	}
 	
 	float amount_moved = currentSpeed * dt;
