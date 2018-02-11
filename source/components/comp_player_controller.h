@@ -18,11 +18,17 @@ class TCompPlayerController : public IAIController {
 	float dcrStaminaWall = 20.f;
 	float incrStamina = 20.f;
 
-	float walkSpeedFactor = 3.0f;
-	float runSpeedFactor = 5.0f;
-	float walkSlowSpeedFactor = 1.5f;
+	float walkSpeedFactor = 8.0f;
+	float runSpeedFactor = 15.0f;
+	float walkSlowSpeedFactor = 0.5f;
 	float rotationSpeed = 1.0f;
 	float currentSpeed = 0.f;
+	//These two parameters describe the behaviour of analogs.
+	//RotationNeeded changes the amount of horizontal tilt the players need to apply when the player is going straight forward
+	//in order to start going in diagonal instead of forward.
+	float RotationNeeded = 0.30f;
+	//TiltNeeded changes the amount of tilt the players need to apply in order to walk slow or normally
+	float TiltNeeded = 0.7f;
 
   /* Timers */
 
@@ -35,6 +41,7 @@ class TCompPlayerController : public IAIController {
   const Input::TButton& btAttack = EngineInput["btAttack"];
   const Input::TButton& btRun = EngineInput["btRun"];
   const Input::TButton& btSlow = EngineInput["btSlow"];
+  const Input::TButton& btSlowAnalog = EngineInput["btSlowAnalog"];
   const Input::TButton& btAction = EngineInput["btAction"];
   /* TODO: not for milestone 1 */
   //const Input::TButton& btCrouch = EngineInput["w"];	
