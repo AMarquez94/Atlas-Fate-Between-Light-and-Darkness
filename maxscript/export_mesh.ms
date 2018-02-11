@@ -167,5 +167,5 @@ function exportMeshObject given_obj outfilename = (
 )
 
 
-exportMeshObject $crap "D:\\Users\\Alberto\\Desktop\\source\\pep.mesh"
+exportMeshObject $crap "D:\\Users\\Alberto\\Desktop\\source\\skyboat.mesh"
 --exportMeshObject $ "c:\\code\\pep.mesh"
