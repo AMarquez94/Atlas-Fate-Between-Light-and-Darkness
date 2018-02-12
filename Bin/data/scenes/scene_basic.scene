@@ -8,24 +8,9 @@
 			"render" : {				
 				"mesh": "data/meshes/bot211.mesh",
 				"materials" : [
-						"data/materials/body.material"
-					]},
-				"ai_patrol": {
-				"waypoints" : [ "-10 0 0", "5 0 5", "2 0 10"] ,
-				"speed": 2.0,
-				"rotationSpeed": 90,
-				"fov": 60,
-				"distToIdleWar": 2.0,
-				"distToBack": 1.0,
-				"distToChase": 10.0,
-				"entityToChase": "The Player",
-				"life": 5,
-				"idleWarTimerBase": 1.0,
-				"idleWarTimerExtra": 2,
-				"orbitRotationBase": 60,
-				"orbitRotationExtra": 30
+					"data/materials/body.material"
+				]
 			}
-
 		}
 	},
 	{
