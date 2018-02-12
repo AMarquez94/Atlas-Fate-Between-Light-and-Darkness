@@ -4,6 +4,7 @@
 		"input",
 		"entities",
 		"render",
+		"physics",
 		"main_menu",
 		"splash",
 		"game_over",

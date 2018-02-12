@@ -5,6 +5,7 @@
 #include "modules/module_entities.h"
 #include "modules/module_ia.h"
 #include "modules/system/module_input.h"
+#include "modules/system/module_physics.h"
 
 class CEngine
 {
@@ -26,6 +27,7 @@ private:
   CModuleManager  _modules;
   CModuleRender   _module_render;
   CModuleEntities _module_entities;
+  CModulePhysics _module_physics;
 	CModuleIA       _module_ia;
 	CModuleInput    _module_input;
 };
