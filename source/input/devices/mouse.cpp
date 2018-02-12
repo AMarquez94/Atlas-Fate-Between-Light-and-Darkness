@@ -24,6 +24,7 @@ namespace Input
 		// position
 		data._position_delta = _previous_position - _position;
 		data._position = _position;
+
 		//dbg("posx %.f posy %.f\n", _position.x, _position.y);
 		if (!_lock_cursor) _previous_position = _position; // Refactor
 
@@ -39,9 +40,7 @@ namespace Input
 
 	void CMouse::setPosition(float posX, float posY)
 	{
-		dbg("BEFORE: posx %.f posy %.f\n", _position.x, _position.y);
 		_position = VEC2(posX, posY);
-		dbg("AFTER: posx %.f posy %.f\n", posX, posY);
 	}
 
 	void CMouse::setWheelDelta(float delta)

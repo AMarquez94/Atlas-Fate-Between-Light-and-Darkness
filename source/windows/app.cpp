@@ -187,13 +187,13 @@ void CApp::mainLoop() {
 	  if (resetMouse)
 	  {
 		  POINT pt;
-		  pt.x = xres * .5f;
-		  pt.y = yres * .5f;
+		  pt.x = 512;
+		  pt.y = 320;
 		  ClientToScreen(hWnd, &pt);
 
 		  SetCursorPos(pt.x, pt.y);
 		  Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse")); // We do this to bypass the mouse problems
-		  mouse->setPreviousPosition(xres * .5f, yres * .5f); // ASK Albert, something weird happened..
+		  mouse->setPreviousPosition(512, 320); // ASK Albert, something weird happened..
 		  resetMouse = false;
 	  }
     }

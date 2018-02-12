@@ -59,6 +59,16 @@
     "all": false,
     "buttons": [ "pad_lanalogx", "pad_lanalogy" ]
   },
+   {
+    "name": "MouseX",
+    "all": false,
+    "buttons": [ "pad_ranalogx" ]
+  },
+    {
+    "name": "MouseY",
+    "all": false,
+    "buttons": [ "pad_ranalogy" ]
+  },
   {
     "name": "btAction",
     "all": false,

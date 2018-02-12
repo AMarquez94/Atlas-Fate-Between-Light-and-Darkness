@@ -41,9 +41,15 @@ void TCompCameraThirdPerson::update(float dt)
 	assert(self_transform);
 	assert(target_transform);
 
+	// To remove in the future.
+	float horizontal_delta = mouse._position_delta.x;
+	float vertical_delta = mouse._position_delta.y;
+	if (btHorizontal.isPressed()) horizontal_delta = btHorizontal.value;
+	if (btVertical.isPressed()) vertical_delta = btVertical.value;
+
 	// Verbose code
-	_current_euler.x -= mouse._position_delta.x * _speed * dt;
-	_current_euler.y -= mouse._position_delta.y * _speed * dt;
+	_current_euler.x -= horizontal_delta * _speed * dt;
+	_current_euler.y += vertical_delta * _speed * dt;
 	_current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
 
 	// EulerAngles method based on mcv class

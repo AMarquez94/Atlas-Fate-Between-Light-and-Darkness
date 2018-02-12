@@ -25,9 +25,8 @@ class TCompPlayerController : public IAIController {
 	//These two parameters describe the behaviour of analogs.
 	//RotationNeeded changes the amount of horizontal tilt the players need to apply when the player is going straight forward
 	//in order to start going in diagonal instead of forward.
-	float rotationNeeded;
-	//TiltNeeded changes the amount of tilt the players need to apply in order to walk slow or normally
-	float tiltNeeded;
+	float deadzone = 0.25f;
+	float rotationSpeed = 10.0f;
 
 	/* Timers */
 
@@ -42,6 +41,10 @@ class TCompPlayerController : public IAIController {
 	const Input::TButton& btSlow = EngineInput["btSlow"];
 	const Input::TButton& btSlowAnalog = EngineInput["btSlowAnalog"];
 	const Input::TButton& btAction = EngineInput["btAction"];
+
+	const Input::TButton& btHorizontal = EngineInput["Horizontal"];
+	const Input::TButton& btVertical = EngineInput["Vertical"];
+
 	/* TODO: not for milestone 1 */
 	//const Input::TButton& btCrouch = EngineInput["w"];	
 	//const Input::TButton& btSecAction = EngineInput["w"];
