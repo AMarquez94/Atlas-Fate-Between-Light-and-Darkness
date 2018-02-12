@@ -11,17 +11,24 @@ void CAIPatrol::Init()
 {
   // insert all states in the map
   AddState("idle", (statehandler)&CAIPatrol::IdleState);
-  AddState("seekwpt", (statehandler)&CAIPatrol::SeekWptState);
-  AddState("nextwpt", (statehandler)&CAIPatrol::NextWptState);
-  AddState("closestwpt", (statehandler)&CAIPatrol::ClosestWptState);
+  AddState("seekWpt", (statehandler)&CAIPatrol::SeekWptState);
+  AddState("waitWpt", (statehandler)&CAIPatrol::WaitInWptState);
+  AddState("nextWpt", (statehandler)&CAIPatrol::NextWptState);
+  AddState("closestWpt", (statehandler)&CAIPatrol::ClosestWptState);
+  AddState("suspect", (statehandler)&CAIPatrol::SuspectState);
+  AddState("shootInhibitor", (statehandler)&CAIPatrol::ShootInhibitorState);
   AddState("chase", (statehandler)&CAIPatrol::ChaseState);
+  AddState("attack", (statehandler)&CAIPatrol::AttackState);
   AddState("idleWar", (statehandler)&CAIPatrol::IdleWarState);
-  AddState("chooseOrbitSide", (statehandler)&CAIPatrol::ChooseOrbitSideState);
-  AddState("orbitLeft", (statehandler)&CAIPatrol::OrbitLeftState);
-  AddState("orbitRight", (statehandler)&CAIPatrol::OrbitRightState);
-  AddState("back", (statehandler)&CAIPatrol::BackState);
-  AddState("hit", (statehandler)&CAIPatrol::HitState);
-  AddState("dead", (statehandler)&CAIPatrol::DeadState);
+  AddState("beginAlert", (statehandler)&CAIPatrol::BeginAlertState);
+  AddState("goToNoise", (statehandler)&CAIPatrol::GoToNoiseState);
+  AddState("goToPatrol", (statehandler)&CAIPatrol::GoToPatrolState);
+  AddState("fixPatrol", (statehandler)&CAIPatrol::FixOtherPatrolState);
+  AddState("goToPlayerLastPos", (statehandler)&CAIPatrol::GoPlayerLastPosState);
+  AddState("seekPlayer", (statehandler)&CAIPatrol::SeekPlayerState);
+  AddState("stunned", (statehandler)&CAIPatrol::StunnedState);
+  AddState("fixed", (statehandler)&CAIPatrol::FixedState);
+  AddState("shadowMerged", (statehandler)&CAIPatrol::ShadowMergedState);
 
   // reset the state
   ChangeState("idle");
@@ -33,14 +40,16 @@ void CAIPatrol::debugInMenu() {
   if (ImGui::TreeNode("Waypoints")) {
     for (auto& v : _waypoints) {
       ImGui::PushID(&v);
-      ImGui::DragFloat3("Point", &v.x, 0.1f, -20.f, 20.f);
+      ImGui::DragFloat3("Point", &v.position.x, 0.1f, -20.f, 20.f);
+	  ImGui::SameLine();
+	  ImGui::Text("%.2f", rad2deg(v.rotation));
       ImGui::PopID();
     }
     ImGui::TreePop();
   }
 
   for (size_t i = 0; i < _waypoints.size(); ++i)
-    renderLine(_waypoints[i], _waypoints[(i + 1) % _waypoints.size()], VEC4(0, 1, 0, 1));
+    renderLine(_waypoints[i].position, _waypoints[(i + 1) % _waypoints.size()].position, VEC4(0, 1, 0, 1));
 }
 
 void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
