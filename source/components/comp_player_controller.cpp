@@ -13,6 +13,33 @@ void TCompPlayerController::debugInMenu() {
   ImGui::Text("Current speed: %f", currentSpeed);
   ImGui::Text("State: %s", stateName.c_str());
   ImGui::ProgressBar(stamina/maxStamina);
+
+
+  ImGui::Text("Buttons");
+
+  ImGui::Text("%5s", "UP");
+  ImGui::SameLine();
+  ImGui::Text("%.2f", btUp.value);
+  ImGui::SameLine();
+  ImGui::ProgressBar(fabsf(btUp.value));
+
+  ImGui::Text("%5s", "DOWN");
+  ImGui::SameLine();
+  ImGui::Text("%.2f", btDown.value);
+  ImGui::SameLine();
+  ImGui::ProgressBar(fabsf(btDown.value));
+  
+  ImGui::Text("%5s", "LEFT");
+  ImGui::SameLine();
+  ImGui::Text("%.2f", btLeft.value);
+  ImGui::SameLine();
+  ImGui::ProgressBar(fabsf(btLeft.value));
+  
+  ImGui::Text("%5s", "RIGHT");
+  ImGui::SameLine();
+  ImGui::Text("%.2f", btRight.value);
+  ImGui::SameLine();
+  ImGui::ProgressBar(fabsf(btRight.value));
 }
 
 void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
@@ -76,6 +103,7 @@ void TCompPlayerController::IdleState(float dt){
 
 void TCompPlayerController::MotionState(float dt){ 
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
+
 	if (!motionButtonsPressed()) {
 		ChangeState("idle");
 	}
@@ -264,4 +292,3 @@ void TCompPlayerController::movePlayer(float dt) {
 	float amount_moved = currentSpeed * dt;
 	c_my_transform->setPosition(c_my_transform->getPosition() + c_my_transform->getFront() * amount_moved);
 }
-
