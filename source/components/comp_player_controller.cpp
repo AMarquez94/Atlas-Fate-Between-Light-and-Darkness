@@ -55,6 +55,7 @@ void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	walkSpeedFactor = j.value("walkSpeedFactor", 3.0f);
 	runSpeedFactor = j.value("runSpeedFactor", 6.0f);
 	walkSlowSpeedFactor = j.value("walkSlowSpeedFactor", 1.5f);
+	rotationSpeed = j.value("rotationSpeed", 5.0f);
 
 	currentSpeed = 0.f;
 	target_name = j.value("target_camera", "");
@@ -241,54 +242,36 @@ void TCompPlayerController::movePlayer(float dt) {
 		else if (btSlow.isPressed()) {
 			currentSpeed = walkSlowSpeedFactor;
 		}
-		else if (btSlowAnalog.isPressed()) {
-			currentSpeed = fabsf(btSlowAnalog.value) < deadzone ? walkSlowSpeedFactor : walkSpeedFactor;
-		}
 		else{
 			currentSpeed = walkSpeedFactor;
 		}
 	}
 
-	if (btUp.isPressed())
-	{
-		if (btUp.value == 1.0 || btUp.value > deadzone) {
-			float diff = atan2(sin(c_yaw - yaw), cos(c_yaw - yaw));
-			yaw = yaw + diff * rotationSpeed * dt;
-			c_my_transform->setYawPitchRoll(yaw, pitch, roll);
-		}
+	VEC3 dir = VEC3::Zero;
+	float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
+	float player_accel = inputSpeed * currentSpeed * dt;
 
+	// Little hotfix to surpass negative values on analog pad
+
+	if (btUp.isPressed() && btUp.value > 0) {
+		dir += fabs(btUp.value) * getVectorFromYaw(c_yaw);
 	}
-
-	if (btDown.isPressed())
-	{
-		if (btDown.value == 1.0 || btDown.value < -deadzone) {
-			float target_angle = c_yaw - deg2rad(180.f);
-			float diff = atan2(sin(target_angle - yaw), cos(target_angle - yaw));
-			yaw = yaw + diff * rotationSpeed * dt;
-			c_my_transform->setYawPitchRoll(yaw, pitch, roll);
-		}
+	else if (btDown.isPressed()) {
+		dir += fabs(btDown.value) * getVectorFromYaw(c_yaw - deg2rad(180.f));
 	}
-
-	if (btLeft.isPressed())
-	{
-		if (btLeft.value == 1.0 || btLeft.value < -deadzone) {
-			float target_angle = c_yaw + deg2rad(90.f);
-			float diff = atan2(sin(target_angle - yaw), cos(target_angle - yaw));
-			yaw = yaw + diff * rotationSpeed * dt;
-			c_my_transform->setYawPitchRoll(yaw, pitch, roll);
-		}
+	if (btRight.isPressed() && btRight.value > 0) {
+		dir += fabs(btRight.value) * getVectorFromYaw(c_yaw - deg2rad(90.f));
 	}
-
-	if (btRight.isPressed())
-	{
-		if (btRight.value == 1.0 || btRight.value > deadzone) {
-			float target_angle = c_yaw - deg2rad(90.f);
-			float diff = atan2(sin(target_angle - yaw), cos(target_angle - yaw));
-			yaw = yaw + diff * rotationSpeed * dt;
-			c_my_transform->setYawPitchRoll(yaw, pitch, roll);
-		}
+	else if (btLeft.isPressed()) {
+		dir += fabs(btLeft.value) * getVectorFromYaw(c_yaw + deg2rad(90.f));
 	}
+	dir.Normalize();
 
-	float amount_moved = currentSpeed * dt;
-	c_my_transform->setPosition(c_my_transform->getPosition() + c_my_transform->getFront() * amount_moved);
+	float dir_yaw = getYawFromVector(dir);
+	Quaternion my_rotation = c_my_transform->getRotation();
+	Quaternion new_rotation = Quaternion::CreateFromYawPitchRoll(dir_yaw, pitch, 0);
+	Quaternion quat = Quaternion::Lerp(my_rotation, new_rotation, rotationSpeed * dt);
+
+	c_my_transform->setRotation(quat);
+	c_my_transform->setPosition(c_my_transform->getPosition() + c_my_transform->getFront() * player_accel);
 }

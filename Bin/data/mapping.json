@@ -55,11 +55,6 @@
     "buttons": [ "control" ]
   },
   {
-    "name": "btSlowAnalog",
-    "all": false,
-    "buttons": [ "pad_lanalogx", "pad_lanalogy" ]
-  },
-   {
     "name": "MouseX",
     "all": false,
     "buttons": [ "pad_ranalogx" ]
@@ -69,6 +64,27 @@
     "all": false,
     "buttons": [ "pad_ranalogy" ]
   },
+	   {
+    "name": "Horizontal",
+    "all": false,
+    "buttons": [ "a", "d", "pad_right", "pad_lanalogx" ]
+  },
+    {
+    "name": "Vertical",
+    "all": false,
+    "buttons": [ "w", "s", "pad_down", "pad_lanalogy" ]
+  },
+		   {
+    "name": "HorizontalAnalog",
+    "all": false,
+    "buttons": [ "pad_lanalogx" ]
+  },
+    {
+    "name": "VerticalAnalog",
+    "all": false,
+    "buttons": [ "pad_lanalogy" ]
+  },
+	
   {
     "name": "btAction",
     "all": false,

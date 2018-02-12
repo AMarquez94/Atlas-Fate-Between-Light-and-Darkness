@@ -53,10 +53,9 @@
 				"dcrStaminaWall": 20,
 				"incrStamina": 20,
 				"walkSpeedFactor": 3,
-				"runSpeedFactor": 6,
+				"runSpeedFactor": 5,
 				"walkSlowSpeedFactor": 1.5,
-				"rotationNeeded": 0.3,
-				"tiltNeeded": 0.7
+				"rotationSpeed": 5.0
 			}
 		}
 	},
@@ -86,7 +85,7 @@
 				"target": "The Player",
 				"clampangle" : "-20 80",
 				"offset": "0.25 1.6 2.5",
-				"speed" : 2.0
+				"speed" : 1.0
 			},
 			"camera" : {
 				"fov" : 70 
