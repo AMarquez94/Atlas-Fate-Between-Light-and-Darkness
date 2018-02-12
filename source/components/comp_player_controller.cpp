@@ -10,18 +10,31 @@ DECL_OBJ_MANAGER("player_controller", TCompPlayerController);
 
 void TCompPlayerController::debugInMenu() {
   ImGui::DragFloat("Speed", &walkSpeedFactor, 0.1f, 0.f, 20.f);
-  ImGui::DragFloat("Rotation", &rotationSpeed, 0.1f, 0.f, 20.f);
   ImGui::Text("Current speed: %f", currentSpeed);
   ImGui::Text("State: %s", stateName.c_str());
   ImGui::ProgressBar(stamina/maxStamina);
 }
 
 void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
-  walkSpeedFactor = j.value("speed", 1.0f);
-  rotationSpeed = j.value("rotation_speed", 1.0f);
-  target_name = j.value("target_camera", "");
+	stamina = j.value("stamina", 100.f);
+	maxStamina = j.value("maxStamina", 100.f);
+	minStamina = j.value("minStamina", 0.f);
+	minStaminaToMerge = j.value("minStaminaToMerge", 5.0f);
+	dcrStaminaOnPlaceMultiplier = j.value("dcrStaminaOnPlaceMultiplier", 0.5f);
+	dcrStaminaGround = j.value("dcrStaminaGround", 10.f);
+	dcrStaminaWall = j.value("dcrStaminaWall", 20.f);
+	incrStamina = j.value("incrStamina", 20.f);
 
-  Init();
+	walkSpeedFactor = j.value("walkSpeedFactor", 3.0f);
+	runSpeedFactor = j.value("runSpeedFactor", 6.0f);
+	walkSlowSpeedFactor = j.value("walkSlowSpeedFactor", 1.5f);
+	rotationNeeded = j.value("rotationNeeded", 0.3f);
+	tiltNeeded = j.value("tiltNeeded", 0.7f);
+
+	currentSpeed = 0.f;
+	target_name = j.value("target_camera", "");
+
+	Init();
 }
 
 void TCompPlayerController::Init() {
@@ -177,6 +190,7 @@ bool TCompPlayerController::checkShadows() {
 }
 
 void TCompPlayerController::movePlayer(float dt) {
+
 	//Guardo mi transform
 	TCompTransform *c_my_transform = get<TCompTransform>();
 
@@ -195,7 +209,7 @@ void TCompPlayerController::movePlayer(float dt) {
 			currentSpeed = walkSlowSpeedFactor;
 		}
 		else if (btSlowAnalog.isPressed()) {
-			if (abs(btSlowAnalog.value) < TiltNeeded) {
+			if (fabsf(btSlowAnalog.value) < tiltNeeded) {
 				currentSpeed = walkSlowSpeedFactor;
 			}
 			else {
@@ -214,46 +228,40 @@ void TCompPlayerController::movePlayer(float dt) {
 	trans_camera->getYawPitchRoll(&c_yaw, &c_pitch, &c_roll);
 	c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
 
+
+	float diff = 0.f;
 	//Detecto el teclado
-	VEC3 local_speed = VEC3::Zero;
 	if (btUp.isPressed())
 	{
-
-		if (btUp.value == 1.0 || btUp.value > RotationNeeded) {
+		if (btUp.value == 1.0 || btUp.value > rotationNeeded) {
 			//dbg("value %f \n",btUp.value);
-			float diff = atan2(sin(c_yaw - yaw), cos(c_yaw - yaw));
-			c_my_transform->setYawPitchRoll(yaw + diff * dt * 10.f, pitch, roll);
-			c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+			diff = atan2f(sin(c_yaw - yaw), cos(c_yaw - yaw));
 		}
-		
 	}
 	if (btDown.isPressed())
 	{
-		if (btDown.value == 1.0 || btDown.value < -RotationNeeded) {
+		if (btDown.value == 1.0 || btDown.value < -rotationNeeded) {
 			float target_angle = c_yaw - deg2rad(180.f);
-			float diff = atan2(sin(target_angle - yaw), cos(target_angle - yaw));
-			c_my_transform->setYawPitchRoll((yaw)+diff * dt * 10.f, pitch, roll);
-			c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+			diff = atan2f(sin(target_angle - yaw), cos(target_angle - yaw));
 		}	
 	}
 	if (btLeft.isPressed())
 	{
-		if (btLeft.value == 1.0 || btLeft.value < -RotationNeeded) {
+		if (btLeft.value == 1.0 || btLeft.value < -rotationNeeded) {
 			float target_angle = c_yaw + deg2rad(90.f);
-			float diff = atan2(sin(target_angle - yaw), cos(target_angle - yaw));
-			c_my_transform->setYawPitchRoll((yaw)+diff * dt * 10.f, pitch, roll);
-			c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+			diff = atan2f(sin(target_angle - yaw), cos(target_angle - yaw));
 		}
 	}
 	if (btRight.isPressed())
 	{
-		if (btRight.value == 1.0 || btRight.value > RotationNeeded) {
+		if (btRight.value == 1.0 || btRight.value > rotationNeeded) {
 			float target_angle = c_yaw - deg2rad(90.f);
-			float diff = atan2(sin(target_angle - yaw), cos(target_angle - yaw));
-			c_my_transform->setYawPitchRoll((yaw)+diff * dt * 10.f, pitch, roll);
-			c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+			diff = atan2f(sin(target_angle - yaw), cos(target_angle - yaw));
 		}
 	}
+
+	c_my_transform->setYawPitchRoll((yaw)+diff * dt * 10.f, pitch, roll);
+	c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
 	
 	float amount_moved = currentSpeed * dt;
 	c_my_transform->setPosition(c_my_transform->getPosition() + c_my_transform->getFront() * amount_moved);

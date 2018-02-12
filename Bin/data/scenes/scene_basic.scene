@@ -43,9 +43,20 @@
 			}
 			, 
 			"player_controller" : {
-				"rotation_speed" : 3.0,
 				"target_camera" : "TPCamera",
-				"speed" : 3.0
+				"stamina": 100,
+				"maxStamina": 100,
+				"minStamina": 0,
+				"minStaminaToMerge": 5.0,
+				"dcrStaminaOnPlaceMultiplier": 0.5,
+				"dcrStaminaGround": 10,
+				"dcrStaminaWall": 20,
+				"incrStamina": 20,
+				"walkSpeedFactor": 3,
+				"runSpeedFactor": 6,
+				"walkSlowSpeedFactor": 1.5,
+				"rotationNeeded": 0.3,
+				"tiltNeeded": 0.7
 			}
 		}
 	},
