@@ -1,7 +1,7 @@
 #include "mcv_platform.h"
 #include "entity/entity_parser.h"
 #include "comp_camera_thirdperson.h"
-#include "comp_transform.h"
+#include "../comp_transform.h"
 
 DECL_OBJ_MANAGER("camera_thirdperson", TCompCameraThirdPerson);
 const Input::TInterface_Mouse& mouse = EngineInput.mouse();

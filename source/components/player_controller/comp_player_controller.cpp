@@ -1,8 +1,8 @@
 #include "mcv_platform.h"
 #include "entity/entity_parser.h"
 #include "comp_player_controller.h"
-#include "comp_transform.h"
-#include "comp_render.h"
+#include "../comp_transform.h"
+#include "../comp_render.h"
 #include "entity/common_msgs.h"
 #include "utils/utils.h"
 #include "render/mesh/mesh_loader.h"
@@ -74,6 +74,7 @@ void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	auto pj_walk = loadMesh("data/meshes/pj_walk.mesh");
 	auto pj_run = loadMesh("data/meshes/pj_run.mesh");
 	auto pj_crouch = loadMesh("data/meshes/pj_crouch.mesh");
+	auto pj_shadowmerge = loadMesh("data/meshes/pj_shadowmerge.mesh");
 
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_idle", (CRenderMesh*)pj_idle));
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_attack", (CRenderMesh*)pj_attack));
@@ -81,6 +82,7 @@ void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_walk", (CRenderMesh*)pj_walk));
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_run", (CRenderMesh*)pj_run));
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_crouch", (CRenderMesh*)pj_crouch));
+	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_shadowmerge", (CRenderMesh*)pj_shadowmerge));
 
 	Init();
 }
@@ -190,6 +192,7 @@ void TCompPlayerController::ShadowMergingEnterState(float dt){
 	TCompRender* t = get<TCompRender>();
 	t->color = VEC4(0, 0, 0, 0);
 	ChangeState("smHor");
+	t->mesh = mesh_states.find("pj_shadowmerge")->second;
 }
 
 
@@ -282,7 +285,6 @@ void TCompPlayerController::movePlayer(const float dt) {
 	currentSpeed = 0;
 
 	if (stateName.compare("smHor") == 0 || stateName.compare("smVer") == 0) {
-		//TODO: meter distintas velocidades para mayor control con teclado? (joystick da igual)
 		currentSpeed = walkSpeedFactor;
 	}
 	else {
@@ -292,28 +294,20 @@ void TCompPlayerController::movePlayer(const float dt) {
 			currentSpeed = runSpeedFactor;
 		}
 		else if (btSlow.isPressed()) {
-			if (btCrouch.isPressed()) {
-				c_my_render->mesh = mesh_states.find("pj_crouch")->second;
-				auxStateName = "crouch slow";
-				currentSpeed = walkSlowCrouchSpeedFactor;
-			}
-			else {
-				c_my_render->mesh = mesh_states.find("pj_walk")->second;
-				auxStateName = "walking slow";
-				currentSpeed = walkSlowSpeedFactor;
-			}
+			c_my_render->mesh = mesh_states.find("pj_walk")->second;
+			auxStateName = "walking slow";
+			currentSpeed = walkSlowSpeedFactor;
 		}
-		else{
-			if (btCrouch.isPressed()) {
-				c_my_render->mesh = mesh_states.find("pj_crouch")->second;
-				auxStateName = "crouch";
-				currentSpeed = walkCrouchSpeedFactor;
-			}
-			else {
-				c_my_render->mesh = mesh_states.find("pj_walk")->second;
-				auxStateName = "walking";
-				currentSpeed = walkSpeedFactor;
-			}
+		else if (btCrouch.isPressed()){
+			c_my_render->mesh = mesh_states.find("pj_crouch")->second;
+			auxStateName = "crouch";
+			currentSpeed = walkCrouchSpeedFactor;
+		}
+		else
+		{
+			c_my_render->mesh = mesh_states.find("pj_walk")->second;
+			auxStateName = "walking";
+			currentSpeed = walkSpeedFactor;
 		}
 	}
 

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "comp_base.h"
+#include "../comp_base.h"
 #include "geometry/transform.h"
-#include "ia/ai_controller.h"
+#include "../ia/ai_controller.h"
 #include "entity/common_msgs.h"
 
 class TCompPlayerController : public IAIController {

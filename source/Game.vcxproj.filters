@@ -2,13 +2,8 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="camera\camera.cpp" />
-    <ClCompile Include="components\comp_bullet_controller.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
-    <ClCompile Include="components\comp_camera_thirdperson.cpp" />
-    <ClCompile Include="components\comp_circular_controller.cpp" />
-    <ClCompile Include="components\comp_flyover_controller.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
-    <ClCompile Include="components\comp_player_controller.cpp" />
     <ClCompile Include="components\comp_render.cpp" />
     <ClCompile Include="components\comp_transform.cpp" />
     <ClCompile Include="components\ia\ai_controller.cpp" />
@@ -61,18 +56,19 @@
     <ClCompile Include="resources\resources_manager.cpp" />
     <ClCompile Include="utils\utils.cpp" />
     <ClCompile Include="windows\app.cpp" />
+    <ClCompile Include="components\camera_controller\comp_camera_thirdperson.cpp" />
+    <ClCompile Include="components\camera_controller\comp_circular_controller.cpp" />
+    <ClCompile Include="components\camera_controller\comp_flyover_controller.cpp" />
+    <ClCompile Include="components\object_controller\comp_bullet_controller.cpp" />
+    <ClCompile Include="components\player_controller\comp_player_controller.cpp" />
+    <ClCompile Include="components\camera_controller\comp_camera_shadowmerge.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
     <ClInclude Include="camera\camera.h" />
     <ClInclude Include="components\comp_base.h" />
-    <ClInclude Include="components\comp_bullet_controller.h" />
     <ClInclude Include="components\comp_camera.h" />
-    <ClInclude Include="components\comp_camera_thirdperson.h" />
-    <ClInclude Include="components\comp_circular_controller.h" />
-    <ClInclude Include="components\comp_flyover_controller.h" />
     <ClInclude Include="components\comp_name.h" />
-    <ClInclude Include="components\comp_player_controller.h" />
     <ClInclude Include="components\comp_render.h" />
     <ClInclude Include="components\comp_transform.h" />
     <ClInclude Include="components\ia\ai_controller.h" />
@@ -144,6 +140,12 @@
     <ClInclude Include="utils\timer.h" />
     <ClInclude Include="utils\utils.h" />
     <ClInclude Include="windows\app.h" />
+    <ClInclude Include="components\camera_controller\comp_camera_thirdperson.h" />
+    <ClInclude Include="components\camera_controller\comp_circular_controller.h" />
+    <ClInclude Include="components\camera_controller\comp_flyover_controller.h" />
+    <ClInclude Include="components\object_controller\comp_bullet_controller.h" />
+    <ClInclude Include="components\player_controller\comp_player_controller.h" />
+    <ClInclude Include="components\camera_controller\comp_camera_shadowmerge.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

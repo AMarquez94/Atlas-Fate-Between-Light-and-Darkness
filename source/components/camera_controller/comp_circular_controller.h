@@ -1,6 +1,6 @@
 #pragma once
 
-#include "comp_base.h"
+#include "../comp_base.h"
 #include "geometry/transform.h"
 #include "entity/common_msgs.h"
 
