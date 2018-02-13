@@ -88,6 +88,7 @@
     <ClCompile Include="components\comp_camera.cpp" />
     <ClCompile Include="components\comp_camera_thirdperson.cpp" />
     <ClCompile Include="components\comp_circular_controller.cpp" />
+    <ClCompile Include="components\comp_collider.cpp" />
     <ClCompile Include="components\comp_flyover_controller.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_player_controller.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="components\comp_camera.h" />
     <ClInclude Include="components\comp_camera_thirdperson.h" />
     <ClInclude Include="components\comp_circular_controller.h" />
+    <ClInclude Include="components\comp_collider.h" />
     <ClInclude Include="components\comp_flyover_controller.h" />
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_player_controller.h" />

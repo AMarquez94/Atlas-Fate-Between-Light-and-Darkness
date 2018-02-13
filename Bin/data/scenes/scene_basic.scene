@@ -1,79 +1,89 @@
 [{
-		"entity": {
-			"name": "The Enemy",
-			"transform": {
-				"pos": "1 0 0",
-				"lookat": "-1 0 -1"
-			},
-			"render" : {				
-				"mesh": "data/meshes/bot211.mesh",
-				"materials" : [
-						"data/materials/body.material"
-					]},
-				"ai_patrol": {
-				"waypoints" : [ "-10 0 0", "5 0 5", "2 0 10"] ,
-				"speed": 2.0,
-				"rotationSpeed": 90,
-				"fov": 60,
-				"distToIdleWar": 2.0,
-				"distToBack": 1.0,
-				"distToChase": 10.0,
-				"entityToChase": "The Player",
-				"life": 5,
-				"idleWarTimerBase": 1.0,
-				"idleWarTimerExtra": 2,
-				"orbitRotationBase": 60,
-				"orbitRotationExtra": 30
-			}
+  "entity": {
+    "name": "The Enemy",
+    "transform": {
+      "pos": "1 0 0",
+      "lookat": "-1 0 -1"
+    },
+    "render": {
+      "mesh": "data/meshes/bot211.mesh",
+      "materials": [
+        "data/materials/body.material"
+      ]
+    },
+    "ai_patrol": {
+      "waypoints": [ "-10 0 0", "5 0 5", "2 0 10" ],
+      "speed": 2.0,
+      "rotationSpeed": 90,
+      "fov": 60,
+      "distToIdleWar": 2.0,
+      "distToBack": 1.0,
+      "distToChase": 10.0,
+      "entityToChase": "The Player",
+      "life": 5,
+      "idleWarTimerBase": 1.0,
+      "idleWarTimerExtra": 2,
+      "orbitRotationBase": 60,
+      "orbitRotationExtra": 30
+    },
+    "collider": {
+      "is_dynamic": false,
+      "is_trigger": false,
+      "shape": "sphere",
+      "radius": 2
+    }
 
-		}
+  }
 	},
 	{
-		"entity": {
-			"name": "The Player",
-			"render" : {
-				"mesh": "data/meshes/pep.mesh",
-				"materials" : [
-						"data/materials/body.material"
-					]
-			}
-			,
-			"transform": {
-				"pos": "5 0 0"
-			}
-			, 
-			"player_controller" : {
-				"target_camera" : "TPCamera",
-				"stamina": 100,
-				"maxStamina": 100,
-				"minStamina": 0,
-				"minStaminaToMerge": 5.0,
-				"dcrStaminaOnPlaceMultiplier": 0.5,
-				"dcrStaminaGround": 10,
-				"dcrStaminaWall": 20,
-				"incrStamina": 20,
-				"walkSpeedFactor": 3,
-				"runSpeedFactor": 6,
-				"walkSlowSpeedFactor": 1.5,
-				"rotationNeeded": 0.3,
-				"tiltNeeded": 0.7
-			}
-		}
+    "entity": {
+      "name": "The Player",
+      "render": {
+        "mesh": "data/meshes/pep.mesh",
+        "materials": [
+          "data/materials/body.material"
+        ]
+      },
+      "transform": {
+        "pos": "5 1 1"
+      },
+      "player_controller": {
+        "target_camera": "TPCamera",
+        "stamina": 100,
+        "maxStamina": 100,
+        "minStamina": 0,
+        "minStaminaToMerge": 5.0,
+        "dcrStaminaOnPlaceMultiplier": 0.5,
+        "dcrStaminaGround": 10,
+        "dcrStaminaWall": 20,
+        "incrStamina": 20,
+        "walkSpeedFactor": 3,
+        "runSpeedFactor": 6,
+        "walkSlowSpeedFactor": 1.5,
+        "rotationNeeded": 0.3,
+        "tiltNeeded": 0.7
+      },
+      "collider": {
+        "shape": "capsule",
+        "is_character_controller": true,
+        "radius": 0.5,
+        "height": 1.0
+      }
+    }
 	},
 	{
-		"entity": {
-			"name": "Teapot 2",
-			"render" : {
-				"mesh": "data/meshes/Teapot001.mesh",
-				"materials" : [
-						"data/materials/madera.material"
-					]
-			}
-			,
-			"transform": {
-				"pos": "-4 0 0"
-			}
-		}
+    "entity": {
+      "name": "Teapot 2",
+      "render": {
+        "mesh": "data/meshes/Teapot001.mesh",
+        "materials": [
+          "data/materials/madera.material"
+        ]
+      },
+      "transform": {
+        "pos": "-4 0 0"
+      }
+    }
 	},
 	{
 		"entity": {

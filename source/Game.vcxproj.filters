@@ -62,6 +62,7 @@
     <ClCompile Include="utils\utils.cpp" />
     <ClCompile Include="windows\app.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
+    <ClCompile Include="components\comp_collider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="utils\utils.h" />
     <ClInclude Include="windows\app.h" />
     <ClInclude Include="modules\system\module_physics.h" />
+    <ClInclude Include="components\comp_collider.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

@@ -22,6 +22,7 @@ public:
   CModuleRender& getRender() { return _module_render; }
   CModuleIA& getIA() { return _module_ia; }
   CModuleInput& getInput() { return _module_input; }
+  CModulePhysics& getPhysics() { return _module_physics; }
 
 private:
   CModuleManager  _modules;

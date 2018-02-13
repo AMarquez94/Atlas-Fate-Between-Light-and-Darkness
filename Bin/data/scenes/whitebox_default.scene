@@ -1,27 +1,22 @@
 [
   {
-    "entity":
-    {
-      "name": "Plane001"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-        ,
+    "entity": {
+      "name": "Plane001",
+      "transform": {
+        "pos": "0.0 0.0 0.0",
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
+      },
+      "render": [
         {
-          "mesh": "data/meshes/Plane001.mesh"
-          ,
-          "materials":
-          [
+          "mesh": "data/meshes/Plane001.mesh",
+          "materials": [
             "data/materials/mat_default_grey.material"
           ]
         }
-      ]
+      ],
+      "collider": {
+        "shape": "plane"
+      }
     }
   }
   ,
