@@ -41,8 +41,6 @@ void CAIPatrol::debugInMenu() {
     for (auto& v : _waypoints) {
       ImGui::PushID(&v);
       ImGui::DragFloat3("Point", &v.position.x, 0.1f, -20.f, 20.f);
-	  ImGui::SameLine();
-	  ImGui::Text("%.2f", rad2deg(v.rotation));
       ImGui::PopID();
     }
     ImGui::TreePop();
@@ -59,22 +57,28 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 
   auto& j_waypoints = j["waypoints"];
   for (auto it = j_waypoints.begin(); it != j_waypoints.end(); ++it) {
-    VEC3 p = loadVEC3(it.value());
-    addWaypoint(p);
+	  
+	  Waypoint wpt;
+	  assert(it.value().count("position") == 1);
+	  assert(it.value().count("lookAt") == 1);
+
+	  wpt.position = loadVEC3(it.value()["position"]);
+	  wpt.lookAt = loadVEC3(it.value()["lookAt"]);
+	  addWaypoint(wpt);
   }
 
-  speed = j.value("speed", 2.0f);
-  rotationSpeed = deg2rad(j.value("rotationSpeed", 90));
-  fov = deg2rad(j.value("fov", 60));
-  distToIdleWar = j.value("distToIdleWar", 2.0f);
-  distToBack = j.value("distToBack", 1.0f);
-  distToChase = j.value("distToChase", 10.0f);
-  entityToChase = j.value("entityToChase", "The Player");
-  life = j.value("life", 5);
-  idleWarTimerBase = j.value("idleWarTimerBase", 1.0f);
-  idleWarTimerExtra = j.value("idleWarTimerExtra", 2);
-  orbitRotationBase = deg2rad(j.value("orbitRotationBase", 60));
-  orbitRotationExtra = j.value("orbitRotationExtra", 30);
+//  speed = j.value("speed", 2.0f);
+//  rotationSpeed = deg2rad(j.value("rotationSpeed", 90));
+//  fov = deg2rad(j.value("fov", 60));
+//  distToIdleWar = j.value("distToIdleWar", 2.0f);
+//  distToBack = j.value("distToBack", 1.0f);
+//  distToChase = j.value("distToChase", 10.0f);
+//  entityToChase = j.value("entityToChase", "The Player");
+//  life = j.value("life", 5);
+//  idleWarTimerBase = j.value("idleWarTimerBase", 1.0f);
+//  idleWarTimerExtra = j.value("idleWarTimerExtra", 2);
+//  orbitRotationBase = deg2rad(j.value("orbitRotationBase", 60));
+//  orbitRotationExtra = j.value("orbitRotationExtra", 30);
 }
 
 void CAIPatrol::registerMsgs() {
@@ -88,50 +92,54 @@ void CAIPatrol::onMsgDamage(const TMsgDamage& msg) {
 
 void CAIPatrol::IdleState(float dt)
 {
-  ChangeState("seekwpt");
+  ChangeState("seekWpt");
 }
 
 
 void CAIPatrol::SeekWptState(float dt)
 {
-  TCompTransform *mypos = getMyTransform();
-  float y, r, p;
-  mypos->getYawPitchRoll(&y, &p, &r);
-  if (mypos->isInLeft(getWaypoint()))
-  {
-    y += rotationSpeed * dt;
-  }
-  else
-  {
-    y -= rotationSpeed * dt;
-  }
-  mypos->setYawPitchRoll(y, p, r);
-  VEC3 vp = mypos->getPosition();
-  VEC3 vfwd = mypos->getFront();
-  vfwd.Normalize();
-  vp = vp + speed * dt *vfwd;
-  mypos->setPosition(vp);
-  // next wpt
-  if (VEC3::Distance(getWaypoint(), vp) < 1) ChangeState("nextwpt");
+  //TCompTransform *mypos = getMyTransform();
+  //float y, r, p;
+  //mypos->getYawPitchRoll(&y, &p, &r);
+  //if (mypos->isInLeft(getWaypoint()))
+  //{
+  //  y += rotationSpeed * dt;
+  //}
+  //else
+  //{
+  //  y -= rotationSpeed * dt;
+  //}
+  //mypos->setYawPitchRoll(y, p, r);
+  //VEC3 vp = mypos->getPosition();
+  //VEC3 vfwd = mypos->getFront();
+  //vfwd.Normalize();
+  //vp = vp + speed * dt *vfwd;
+  //mypos->setPosition(vp);
+  //// next wpt
+  //if (VEC3::Distance(getWaypoint(), vp) < 1) ChangeState("nextWpt");
 
-  // chase
-  CEntity *player = (CEntity *)getEntityByName(entityToChase);
-  TCompTransform *ppos = player->get<TCompTransform>();
-  bool in_fov = mypos->isInFov(ppos->getPosition(), fov);
-  if (in_fov && VEC3::Distance(mypos->getPosition(), ppos->getPosition()) <= distToChase) {
-	  ChangeState("chase");
-  }
+  //// chase
+  //CEntity *player = (CEntity *)getEntityByName(entityToChase);
+  //TCompTransform *ppos = player->get<TCompTransform>();
+  //bool in_fov = mypos->isInFov(ppos->getPosition(), fov);
+  //if (in_fov && VEC3::Distance(mypos->getPosition(), ppos->getPosition()) <= distToChase) {
+	 // ChangeState("chase");
+  //}
+}
+
+void CAIPatrol::WaitInWptState(float dt)
+{
 }
 
 void CAIPatrol::NextWptState(float dt)
 {
   currentWaypoint = (currentWaypoint + 1) % _waypoints.size();
-  ChangeState("seekwpt");
+  ChangeState("seekWpt");
 }
 
 
 void CAIPatrol::ClosestWptState(float dt) {
-	float minDistance = INFINITY;
+	/*float minDistance = INFINITY;
 	int  minIndexWpt = 0;
 
 	for (int i = 0; i < _waypoints.size(); i++) {
@@ -143,13 +151,21 @@ void CAIPatrol::ClosestWptState(float dt) {
 	}
 
 	currentWaypoint = minIndexWpt;
-	ChangeState("seekwpt");
+	ChangeState("seekWpt");*/
+}
+
+void CAIPatrol::SuspectState(float dt)
+{
+}
+
+void CAIPatrol::ShootInhibitorState(float dt)
+{
 }
 
 
 void CAIPatrol::ChaseState(float dt)
 {
-  TCompTransform *mypos = getMyTransform();
+  /*TCompTransform *mypos = getMyTransform();
   CEntity *player = (CEntity *)getEntityByName(entityToChase);
   TCompTransform *ppos = player->get<TCompTransform>();
   float y, r, p;
@@ -171,19 +187,23 @@ void CAIPatrol::ChaseState(float dt)
 
   bool in_fov = mypos->isInFov(ppos->getPosition(), fov);
   if (!in_fov || VEC3::Distance(mypos->getPosition(), ppos->getPosition()) > distToChase + 0.5f) {
-	  ChangeState("closestwpt");
+	  ChangeState("closestWpt");
   }
 
   if (VEC3::Distance(mypos->getPosition(), ppos->getPosition()) <= distToIdleWar) {
 	  idleWarTimerMax = idleWarTimerBase + (rand() % idleWarTimerExtra);
 	  ChangeState("idleWar");
   }
+*/
+}
 
+void CAIPatrol::AttackState(float dt)
+{
 }
 
 
 void CAIPatrol::IdleWarState(float dt) {
-	TCompTransform *mypos = getMyTransform();
+	/*TCompTransform *mypos = getMyTransform();
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
 
@@ -216,24 +236,59 @@ void CAIPatrol::IdleWarState(float dt) {
 		else {
 			idleWarTimer += dt;
 		}
-	}
+	}*/
+}
+
+void CAIPatrol::BeginAlertState(float dt)
+{
+}
+
+void CAIPatrol::GoToNoiseState(float dt)
+{
+}
+
+void CAIPatrol::GoToPatrolState(float dt)
+{
+}
+
+void CAIPatrol::FixOtherPatrolState(float dt)
+{
+}
+
+void CAIPatrol::GoPlayerLastPosState(float dt)
+{
+}
+
+void CAIPatrol::SeekPlayerState(float dt)
+{
+}
+
+void CAIPatrol::StunnedState(float dt)
+{
+}
+
+void CAIPatrol::FixedState(float dt)
+{
+}
+
+void CAIPatrol::ShadowMergedState(float dt)
+{
 }
 
 
 void CAIPatrol::ChooseOrbitSideState(float dt) {
-	orbitRotationMax = orbitRotationBase + deg2rad(rand() % orbitRotationExtra);
+	/*orbitRotationMax = orbitRotationBase + deg2rad(rand() % orbitRotationExtra);
 	if (rand() % 2 == 0) {
 		ChangeState("orbitLeft");
 	}
 	else {
 		ChangeState("orbitRight");
-	}
-
+	}*/
 }
 
 
 void CAIPatrol::OrbitLeftState(float dt) {
-	TCompTransform *mypos = getMyTransform();
+	/*TCompTransform *mypos = getMyTransform();
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
 
@@ -258,12 +313,12 @@ void CAIPatrol::OrbitLeftState(float dt) {
 			idleWarTimerMax = idleWarTimerBase + (rand() % idleWarTimerExtra);
 			ChangeState("idleWar");
 		}
-	}
+	}*/
 }
 
 
 void CAIPatrol::OrbitRightState(float dt) {
-	TCompTransform *mypos = getMyTransform();
+	/*TCompTransform *mypos = getMyTransform();
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
 
@@ -288,12 +343,12 @@ void CAIPatrol::OrbitRightState(float dt) {
 			idleWarTimerMax = idleWarTimerBase + (rand() % idleWarTimerExtra);
 			ChangeState("idleWar");
 		}
-	}
+	}*/
 }
 
 
 void CAIPatrol::BackState(float dt) {
-	TCompTransform *mypos = getMyTransform();
+	/*TCompTransform *mypos = getMyTransform();
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
 	float y, r, p;
@@ -316,18 +371,18 @@ void CAIPatrol::BackState(float dt) {
 	if (VEC3::Distance(mypos->getPosition(), ppos->getPosition()) > distToBack + 0.5f) {
 		idleWarTimerMax = idleWarTimerBase + (rand() % idleWarTimerExtra);
 		ChangeState("idleWar");
-	}
+	}*/
 }
 
 
 void CAIPatrol::HitState(float dt) {
-	 life = life - 1;
+	/* life = life - 1;
 	 if (life <= 0) {
 		ChangeState("dead");
 	 }
 	 else {
-		 ChangeState("closestwpt");
-	 }
+		 ChangeState("closestWpt");
+	 }*/
 }
 
 void CAIPatrol::DeadState(float dt) {

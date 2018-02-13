@@ -10,7 +10,24 @@
 				"materials" : [
 					"data/materials/body.material"
 				]
-			}
+			},
+			"ai_patrol" : {
+				"waypoints": 
+				[
+					{
+						"position": "-10 0 0",
+						"lookAt": "-1 0 -1"
+					},
+					{
+						"position": "5 0 5",
+						"lookAt": "-1 0 -1"
+					},
+					{
+						"position": "2 0 10",
+						"lookAt": "-1 0 -1"
+					}
+				]
+			} 
 		}
 	},
 	{

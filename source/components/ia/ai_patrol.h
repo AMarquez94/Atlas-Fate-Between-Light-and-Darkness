@@ -7,7 +7,7 @@
 
 struct Waypoint {
 	VEC3 position;
-	float rotation;				//TODO: guess how to make the waypoint orientated to something
+	VEC3 lookAt;				//TODO: guess how to make the waypoint orientated to something
 };
 
 class CAIPatrol : public IAIController
@@ -74,8 +74,8 @@ public:
 
   void Init();
 
-  void addWaypoint(VEC3 waypoint) { _waypoints.push_back(waypoint); };
-  VEC3 getWaypoint() { return _waypoints[currentWaypoint]; }
+  void addWaypoint(Waypoint wpt) { _waypoints.push_back(wpt); };
+  Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }
 
   static void registerMsgs();
 };
