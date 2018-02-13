@@ -13,6 +13,10 @@ void TCompPlayerController::debugInMenu() {
   ImGui::DragFloat("Speed", &walkSpeedFactor, 0.1f, 0.f, 20.f);
   ImGui::Text("Current speed: %f", currentSpeed);
   ImGui::Text("State: %s", stateName.c_str());
+  if (auxStateName.compare("") != 0) {
+	  ImGui::SameLine();
+	  ImGui::Text(" - %s", auxStateName.c_str());
+  }
   ImGui::ProgressBar(stamina/maxStamina);
 
 
@@ -133,6 +137,7 @@ void TCompPlayerController::MotionState(float dt){
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
 
 	if (!motionButtonsPressed()) {
+		auxStateName = "";
 		ChangeState("idle");
 	}
 	else {
@@ -140,6 +145,7 @@ void TCompPlayerController::MotionState(float dt){
 		movePlayer(dt);
 
 		if (btShadowMerging.getsPressed() && checkShadows()) {
+			auxStateName = "";
 			ChangeState("smEnter");
 		}
 	}
@@ -197,7 +203,7 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 		stamina = Clamp<float>(stamina - (dcrStaminaGround * dcrStaminaOnPlaceMultiplier * dt), minStamina, maxStamina);
 	}
 	
-	if (!btShadowMerging.isPressed() || stamina == minStamina ) {
+	if (!btShadowMerging.isPressed() || stamina <= minStamina ) {
 		ChangeState("smExit");
 	}
 
@@ -247,7 +253,7 @@ void TCompPlayerController::DeadState(float dt){
 }
 
 
-bool TCompPlayerController::motionButtonsPressed() {
+const bool TCompPlayerController::motionButtonsPressed() {
 	return btUp.isPressed() || btDown.isPressed() || btLeft.isPressed() || btRight.isPressed();
 }
 
@@ -257,7 +263,7 @@ bool TCompPlayerController::checkShadows() {
 	return true && stamina > minStaminaToMerge;
 }
 
-void TCompPlayerController::movePlayer(float dt) {
+void TCompPlayerController::movePlayer(const float dt) {
 
 	// Player movement and rotation related method.
 	float yaw, pitch, roll;
@@ -276,30 +282,36 @@ void TCompPlayerController::movePlayer(float dt) {
 	currentSpeed = 0;
 
 	if (stateName.compare("smHor") == 0 || stateName.compare("smVer") == 0) {
+		//TODO: meter distintas velocidades para mayor control con teclado? (joystick da igual)
 		currentSpeed = walkSpeedFactor;
 	}
 	else {
 		if (btRun.isPressed()) {
 			c_my_render->mesh = mesh_states.find("pj_run")->second;
+			auxStateName = "running";
 			currentSpeed = runSpeedFactor;
 		}
 		else if (btSlow.isPressed()) {
 			if (btCrouch.isPressed()) {
 				c_my_render->mesh = mesh_states.find("pj_crouch")->second;
+				auxStateName = "crouch slow";
 				currentSpeed = walkSlowCrouchSpeedFactor;
 			}
 			else {
 				c_my_render->mesh = mesh_states.find("pj_walk")->second;
+				auxStateName = "walking slow";
 				currentSpeed = walkSlowSpeedFactor;
 			}
 		}
 		else{
 			if (btCrouch.isPressed()) {
 				c_my_render->mesh = mesh_states.find("pj_crouch")->second;
+				auxStateName = "crouch";
 				currentSpeed = walkCrouchSpeedFactor;
 			}
 			else {
 				c_my_render->mesh = mesh_states.find("pj_walk")->second;
+				auxStateName = "walking";
 				currentSpeed = walkSpeedFactor;
 			}
 		}

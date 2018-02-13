@@ -26,9 +26,6 @@ class TCompPlayerController : public IAIController {
 	float walkSlowCrouchSpeedFactor;
 	float currentSpeed;
 	float rotationSpeed;
-	//These two parameters describe the behaviour of analogs.
-	//RotationNeeded changes the amount of horizontal tilt the players need to apply when the player is going straight forward
-	//in order to start going in diagonal instead of forward.
 
 	/* Timers */
 
@@ -43,8 +40,6 @@ class TCompPlayerController : public IAIController {
 	const Input::TButton& btSlow = EngineInput["btSlow"];
 	const Input::TButton& btAction = EngineInput["btAction"];
 	const Input::TButton& btCrouch = EngineInput["btCrouch"];
-
-
 	const Input::TButton& btHorizontal = EngineInput["Horizontal"];
 	const Input::TButton& btVertical = EngineInput["Vertical"];
 
@@ -57,8 +52,12 @@ class TCompPlayerController : public IAIController {
 
 	void onMsgDamage(const TMsgDamage& msg);
 
+
+	/* Aux variables */
+	std::string auxStateName = "";
+	
 	/* Private aux functions */
-	bool motionButtonsPressed();
+	const bool motionButtonsPressed();
 	void movePlayer(float);
 
 public:
