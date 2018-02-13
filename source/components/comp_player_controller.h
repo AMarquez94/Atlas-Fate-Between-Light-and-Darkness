@@ -20,8 +20,10 @@ class TCompPlayerController : public IAIController {
 	float incrStamina = 20.f;
 
 	float walkSpeedFactor;
+	float walkCrouchSpeedFactor;
 	float runSpeedFactor;
 	float walkSlowSpeedFactor;
+	float walkSlowCrouchSpeedFactor;
 	float currentSpeed;
 	float rotationSpeed;
 	//These two parameters describe the behaviour of analogs.
@@ -40,6 +42,8 @@ class TCompPlayerController : public IAIController {
 	const Input::TButton& btRun = EngineInput["btRun"];
 	const Input::TButton& btSlow = EngineInput["btSlow"];
 	const Input::TButton& btAction = EngineInput["btAction"];
+	const Input::TButton& btCrouch = EngineInput["btCrouch"];
+
 
 	const Input::TButton& btHorizontal = EngineInput["Horizontal"];
 	const Input::TButton& btVertical = EngineInput["Vertical"];
@@ -67,6 +71,7 @@ public:
 	/* States */
 	void IdleState(float);
 	void MotionState(float);	//Movement
+	void CrouchState(float);
 	void PushState(float);
 	void AttackState(float);
 	void ProbeState(float);

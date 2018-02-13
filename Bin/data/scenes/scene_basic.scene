@@ -41,22 +41,24 @@
 			"transform": {
 				"pos": "5 0 0"
 			}
-			, 
-			"player_controller" : {
-				"target_camera" : "TPCamera",
-				"stamina": 100,
-				"maxStamina": 100,
-				"minStamina": 0,
-				"minStaminaToMerge": 5.0,
-				"dcrStaminaOnPlaceMultiplier": 0.5,
-				"dcrStaminaGround": 10,
-				"dcrStaminaWall": 20,
-				"incrStamina": 20,
-				"walkSpeedFactor": 3,
-				"runSpeedFactor": 5,
-				"walkSlowSpeedFactor": 1.5,
-				"rotationSpeed": 5.0
-			}
+			,
+      "player_controller": {
+        "target_camera": "TPCamera",
+        "stamina": 100,
+        "maxStamina": 100,
+        "minStamina": 0,
+        "minStaminaToMerge": 5.0,
+        "dcrStaminaOnPlaceMultiplier": 0.5,
+        "dcrStaminaGround": 10,
+        "dcrStaminaWall": 20,
+        "incrStamina": 20,
+        "walkSpeedFactor": 4,
+        "walkCrouchSpeedFactor": 3,
+        "runSpeedFactor": 7,
+        "walkSlowSpeedFactor": 1.5,
+        "walkSlowCrouchSpeedFactor": 0.5,
+        "rotationSpeed": 5.0
+      }
 		}
 	},
 	{

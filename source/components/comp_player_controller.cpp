@@ -54,8 +54,10 @@ void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	incrStamina = j.value("incrStamina", 20.f);
 
 	walkSpeedFactor = j.value("walkSpeedFactor", 3.0f);
+	walkCrouchSpeedFactor = j.value("walkCrouchSpeedFactor", 2.0f);
 	runSpeedFactor = j.value("runSpeedFactor", 6.0f);
 	walkSlowSpeedFactor = j.value("walkSlowSpeedFactor", 1.5f);
+	walkSlowCrouchSpeedFactor = j.value("walkSlowCrouchSpeedFactor", 0.5f);
 	rotationSpeed = j.value("rotationSpeed", 5.0f);
 
 	currentSpeed = 0.f;
@@ -94,6 +96,8 @@ void TCompPlayerController::Init() {
 	AddState("land", (statehandler)&TCompPlayerController::LandingState);
 	AddState("hit", (statehandler)&TCompPlayerController::HitState);
 	AddState("dead", (statehandler)&TCompPlayerController::DeadState);
+	AddState("crouch", (statehandler)&TCompPlayerController::CrouchState);
+
 	/* TODO: not for milestone1 */
 	//AddState("probe", (statehandler)&TCompPlayerController::ProbeState);
 	//AddState("push", (statehandler)&TCompPlayerController::PushState);
@@ -117,6 +121,9 @@ void TCompPlayerController::IdleState(float dt){
 	else if (motionButtonsPressed()) {
 		ChangeState("motion");
 	}
+	else if (btCrouch.isPressed()) {
+		ChangeState("crouch");
+	}
 }
 
 
@@ -137,6 +144,20 @@ void TCompPlayerController::MotionState(float dt){
 		}
 	}
 }
+void TCompPlayerController::CrouchState(float dt) {
+	TCompRender *c_my_render = get<TCompRender>();
+	c_my_render->mesh = mesh_states.find("pj_crouch")->second;
+	if (btCrouch.getsReleased()) {
+		ChangeState("idle");
+	}
+	if (btShadowMerging.getsPressed() && checkShadows()) {
+		ChangeState("smEnter");
+	}
+	else if (motionButtonsPressed()) {
+		ChangeState("motion");
+	}
+}
+
 
 
 void TCompPlayerController::PushState(float dt){ 
@@ -263,12 +284,24 @@ void TCompPlayerController::movePlayer(float dt) {
 			currentSpeed = runSpeedFactor;
 		}
 		else if (btSlow.isPressed()) {
-			c_my_render->mesh = mesh_states.find("pj_walk")->second;
-			currentSpeed = walkSlowSpeedFactor;
+			if (btCrouch.isPressed()) {
+				c_my_render->mesh = mesh_states.find("pj_crouch")->second;
+				currentSpeed = walkSlowCrouchSpeedFactor;
+			}
+			else {
+				c_my_render->mesh = mesh_states.find("pj_walk")->second;
+				currentSpeed = walkSlowSpeedFactor;
+			}
 		}
 		else{
-			c_my_render->mesh = mesh_states.find("pj_walk")->second;
-			currentSpeed = walkSpeedFactor;
+			if (btCrouch.isPressed()) {
+				c_my_render->mesh = mesh_states.find("pj_crouch")->second;
+				currentSpeed = walkCrouchSpeedFactor;
+			}
+			else {
+				c_my_render->mesh = mesh_states.find("pj_walk")->second;
+				currentSpeed = walkSpeedFactor;
+			}
 		}
 	}
 
