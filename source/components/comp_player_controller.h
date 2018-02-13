@@ -8,6 +8,7 @@
 class TCompPlayerController : public IAIController {
 
 	/* Attributes */
+	std::map<std::string, CRenderMesh*> mesh_states;
 
 	float stamina;
 	float maxStamina;
@@ -22,11 +23,10 @@ class TCompPlayerController : public IAIController {
 	float runSpeedFactor;
 	float walkSlowSpeedFactor;
 	float currentSpeed;
+	float rotationSpeed;
 	//These two parameters describe the behaviour of analogs.
 	//RotationNeeded changes the amount of horizontal tilt the players need to apply when the player is going straight forward
 	//in order to start going in diagonal instead of forward.
-	float deadzone = 0.25f;
-	float rotationSpeed = 10.0f;
 
 	/* Timers */
 
@@ -39,7 +39,6 @@ class TCompPlayerController : public IAIController {
 	const Input::TButton& btAttack = EngineInput["btAttack"];
 	const Input::TButton& btRun = EngineInput["btRun"];
 	const Input::TButton& btSlow = EngineInput["btSlow"];
-	const Input::TButton& btSlowAnalog = EngineInput["btSlowAnalog"];
 	const Input::TButton& btAction = EngineInput["btAction"];
 
 	const Input::TButton& btHorizontal = EngineInput["Horizontal"];

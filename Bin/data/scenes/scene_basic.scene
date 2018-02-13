@@ -32,7 +32,7 @@
 		"entity": {
 			"name": "The Player",
 			"render" : {
-				"mesh": "data/meshes/pep.mesh",
+				"mesh": "data/meshes/pj_idle.mesh",
 				"materials" : [
 						"data/materials/body.material"
 					]

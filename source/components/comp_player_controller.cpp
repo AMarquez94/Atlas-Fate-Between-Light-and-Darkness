@@ -5,6 +5,7 @@
 #include "comp_render.h"
 #include "entity/common_msgs.h"
 #include "utils/utils.h"
+#include "render/mesh/mesh_loader.h"
 
 DECL_OBJ_MANAGER("player_controller", TCompPlayerController);
 
@@ -60,6 +61,21 @@ void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	currentSpeed = 0.f;
 	target_name = j.value("target_camera", "");
 
+	// Manually loading the necessary meshes
+	auto pj_idle = loadMesh("data/meshes/pj_idle.mesh");
+	auto pj_attack = loadMesh("data/meshes/pj_attack.mesh");
+	auto pj_fall = loadMesh("data/meshes/pj_fall.mesh");
+	auto pj_walk = loadMesh("data/meshes/pj_walk.mesh");
+	auto pj_run = loadMesh("data/meshes/pj_run.mesh");
+	auto pj_crouch = loadMesh("data/meshes/pj_crouch.mesh");
+
+	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_idle", (CRenderMesh*)pj_idle));
+	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_attack", (CRenderMesh*)pj_attack));
+	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_fall", (CRenderMesh*)pj_fall));
+	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_walk", (CRenderMesh*)pj_walk));
+	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_run", (CRenderMesh*)pj_run));
+	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_crouch", (CRenderMesh*)pj_crouch));
+
 	Init();
 }
 
@@ -91,6 +107,9 @@ void TCompPlayerController::registerMsgs() {
 
 
 void TCompPlayerController::IdleState(float dt){
+
+	TCompRender *c_my_render = get<TCompRender>();
+	c_my_render->mesh = mesh_states.find("pj_idle")->second;
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
 	if (btShadowMerging.getsPressed() && checkShadows()) {
 		ChangeState("smEnter");
@@ -103,6 +122,7 @@ void TCompPlayerController::IdleState(float dt){
 
 
 void TCompPlayerController::MotionState(float dt){ 
+
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
 
 	if (!motionButtonsPressed()) {
@@ -223,6 +243,7 @@ void TCompPlayerController::movePlayer(float dt) {
 	float c_yaw, c_pitch, c_roll;
 	CEntity *player_camera = (CEntity *)getEntityByName(target_name);
 
+	TCompRender *c_my_render = get<TCompRender>();
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	TCompTransform * trans_camera = player_camera->get<TCompTransform>();
 	trans_camera->getYawPitchRoll(&c_yaw, &c_pitch, &c_roll);
@@ -230,6 +251,7 @@ void TCompPlayerController::movePlayer(float dt) {
 
 	//----------------------------------------------
 	//Pongo a cero la velocidad actual
+
 	currentSpeed = 0;
 
 	if (stateName.compare("smHor") == 0 || stateName.compare("smVer") == 0) {
@@ -237,12 +259,15 @@ void TCompPlayerController::movePlayer(float dt) {
 	}
 	else {
 		if (btRun.isPressed()) {
+			c_my_render->mesh = mesh_states.find("pj_run")->second;
 			currentSpeed = runSpeedFactor;
 		}
 		else if (btSlow.isPressed()) {
+			c_my_render->mesh = mesh_states.find("pj_walk")->second;
 			currentSpeed = walkSlowSpeedFactor;
 		}
 		else{
+			c_my_render->mesh = mesh_states.find("pj_walk")->second;
 			currentSpeed = walkSpeedFactor;
 		}
 	}
