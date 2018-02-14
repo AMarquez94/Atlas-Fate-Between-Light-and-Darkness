@@ -15,8 +15,11 @@ private:
 	VEC2 _current_euler;
 	VEC3 _clipping_offset;
 
-	const Input::TButton& btHorizontal = EngineInput["MouseX"];
-	const Input::TButton& btVertical = EngineInput["MouseY"];
+	const Input::TButton& btHorizontal = EngineInput["Horizontal"];
+	const Input::TButton& btVertical = EngineInput["Vertical"];
+
+	const Input::TButton& btRHorizontal = EngineInput["MouseX"];
+	const Input::TButton& btRVertical = EngineInput["MouseY"];
 
 public:
   void debugInMenu();

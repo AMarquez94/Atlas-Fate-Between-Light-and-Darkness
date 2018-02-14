@@ -6,6 +6,8 @@ DECL_OBJ_MANAGER("camera", TCompCamera);
 
 void TCompCamera::debugInMenu() {
 
+	float fov = getFov();
+	ImGui::DragFloat("Fov", &fov, 0.01f, 0.1f, 200.f);
 }
 
 void TCompCamera::load(const json& j, TEntityParseContext& ctx) {

@@ -11,6 +11,7 @@
 		"circular_controller",
 		"player_controller",
 		"camera_thirdperson",
+		"camera_shadowmerge",
 		"bullet_controller",
 		"ai_patrol",
 		"flyover_controller",

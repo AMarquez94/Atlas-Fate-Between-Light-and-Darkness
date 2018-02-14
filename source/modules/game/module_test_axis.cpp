@@ -14,7 +14,7 @@
 #include "components/comp_camera.h"
 #include "entity/entity_parser.h"
 
-CCamera        camera;
+CCamera camera;
 
 bool CModuleTestAxis::start()
 {
@@ -40,6 +40,8 @@ bool CModuleTestAxis::start()
   cb_object.activate();
   cb_camera.activate();
 
+  CCamera::main_camera = getEntityByName("TPCamera");
+
   return true;
 }
 
@@ -56,11 +58,9 @@ void CModuleTestAxis::update(float delta)
 
 void CModuleTestAxis::render()
 {
-
   // Find the entity with name 'the_camera'
-  CHandle h_e_camera = getEntityByName("TPCamera");
-  if (h_e_camera.isValid()) {
-    CEntity* e_camera = h_e_camera;
+  if (CCamera::main_camera.isValid()) {
+    CEntity* e_camera = CCamera::main_camera;
     TCompCamera* c_camera = e_camera->get< TCompCamera >();
     assert(c_camera);
     activateCamera(*c_camera);

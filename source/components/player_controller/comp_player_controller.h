@@ -10,6 +10,12 @@ class TCompPlayerController : public IAIController {
 	/* Attributes */
 	std::map<std::string, CRenderMesh*> mesh_states;
 
+	/* Camera stack, to bypass entity delayed loading */
+	/* Replace everything here with a real camera stack */
+	std::string camera_shadowmerge;
+	std::string camera_thirdperson;
+	std::string camera_actual;
+
 	float stamina;
 	float maxStamina;
 	float minStamina;
@@ -43,15 +49,8 @@ class TCompPlayerController : public IAIController {
 	const Input::TButton& btHorizontal = EngineInput["Horizontal"];
 	const Input::TButton& btVertical = EngineInput["Vertical"];
 
-	/* TODO: not for milestone 1 */
-	//const Input::TButton& btCrouch = EngineInput["w"];	
-	//const Input::TButton& btSecAction = EngineInput["w"];
-	std::string target_name;
-
 	DECL_SIBLING_ACCESS();
-
 	void onMsgDamage(const TMsgDamage& msg);
-
 
 	/* Aux variables */
 	std::string auxStateName = "";

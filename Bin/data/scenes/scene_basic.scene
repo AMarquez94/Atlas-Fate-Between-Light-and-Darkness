@@ -44,6 +44,7 @@
 			,
       "player_controller": {
         "target_camera": "TPCamera",
+				"shadow_camera": "SMCamera",
         "stamina": 100,
         "maxStamina": 100,
         "minStamina": 0,
@@ -57,7 +58,7 @@
         "runSpeedFactor": 7,
         "walkSlowSpeedFactor": 1.5,
         "walkSlowCrouchSpeedFactor": 0.5,
-        "rotationSpeed": 5.0
+        "rotationSpeed": 7.0
       }
 		}
 	},
@@ -91,6 +92,23 @@
 			},
 			"camera" : {
 				"fov" : 70 
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "SMCamera",
+			"transform": {
+				"pos": "0 3 3"
+			},
+			"camera_shadowmerge" : {
+				"target": "The Player",
+				"clampangle" : "-20 80",
+				"offset": "0 0.25 2",
+				"speed" : 1.0
+			},
+			"camera" : {
+				"fov" : 80 
 			}
 		}
 	}
