@@ -60,3 +60,7 @@ void IAIController::setEntity(CHandle new_entity) {
   h_entity = new_entity;
   assert(h_entity.isValid());
 }
+
+const std::string IAIController::getStateName() {
+	return stateName;
+}

@@ -8,6 +8,7 @@
 struct Waypoint {
 	VEC3 position;
 	VEC3 lookAt;				//TODO: guess how to make the waypoint orientated to something
+	float minTime;
 };
 
 class CAIPatrol : public IAIController
@@ -18,16 +19,25 @@ class CAIPatrol : public IAIController
 	int currentWaypoint;
 
 
-	//float speed;
-	//float rotationSpeed;
-	//float fov;
+	float speed;
+	float rotationSpeed;
+	std::string entityToChase;
+	float fov;
+	float autoChaseDistance;
+	float maxChaseDistance;
+	float maxTimeSuspecting;
+	float suspectO_Meter = 0.f;
+	float dcrSuspectO_Meter;
+	float incrBaseSuspectO_Meter;
+	VEC3 lastPlayerKnownPos = VEC3::Zero;
+	float distToAttack;
 	//float distToIdleWar;
 	//float distToBack;
 	//float distToChase;
-	//std::string entityToChase;
 	//int life;
 
 	/* Timers */
+	float timerWaitingInWpt = 0.f;
 	//float idleWarTimer = 0.f;
 	//float idleWarTimerMax = 0.f;
 	//float idleWarTimerBase;
@@ -41,12 +51,15 @@ class CAIPatrol : public IAIController
 
 	void onMsgDamage(const TMsgDamage& msg);
 
+	void rotateTowardsVec(VEC3 objective, float dt);
+	bool isPlayerInFov();
+
 public:
 	void load(const json& j, TEntityParseContext& ctx);
 	void debugInMenu();
 
 	void IdleState(float);				//Does nothing
-	void SeekWptState(float);				//Moves to currentWpt
+	void GoToWptState(float);				//Moves to currentWpt
 	void WaitInWptState(float);			//Rotates to the desired position and wait for x time
 	void NextWptState(float);				//Calculates next currentWpt
 	void ClosestWptState(float);			//Calculates the closest waypoint
@@ -55,7 +68,6 @@ public:
 	void ChaseState(float);				//Goes towards the player's position				
 	void AttackState(float);				//Attack the player
 	void IdleWarState(float);				//Waiting before attacks
-	void BeginAlertState(float);			//Turn on lintern. Enter in alert state (easy to see the player)
 	void GoToNoiseState(float);			//The enemy goes to the location where he heard something
 	void GoToPatrolState(float);			//The enemy goes to the location of a stunned enemy in order to repair it
 	void FixOtherPatrolState(float);		//The enemy fixes another enemy
@@ -64,10 +76,7 @@ public:
 	void StunnedState(float);				//The enemy has been stunned by the player
 	void FixedState(float);				//The enemy has been fixed by another enemy
 	void ShadowMergedState(float);		//The enemy has been shadowmerged by the player
-  
-	void ChooseOrbitSideState(float);		
-	void OrbitLeftState(float);
-	void OrbitRightState(float);
+
 	void BackState(float);
 	void HitState(float);
 	void DeadState(float);
