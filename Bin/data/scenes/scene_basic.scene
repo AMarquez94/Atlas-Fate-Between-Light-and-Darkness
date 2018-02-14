@@ -29,8 +29,10 @@
     "collider": {
       "is_dynamic": false,
       "is_trigger": false,
-      "shape": "sphere",
-      "radius": 2
+      "shape": "box",
+      "height": 2,
+      "width": 4,
+      "depth": 10
     }
 
   }
@@ -45,7 +47,7 @@
         ]
       },
       "transform": {
-        "pos": "5 1 1"
+        "pos": "5 100 1"
       },
       "player_controller": {
         "target_camera": "TPCamera",
@@ -67,7 +69,8 @@
         "shape": "capsule",
         "is_character_controller": true,
         "radius": 0.5,
-        "height": 1.0
+        "height": 1.0,
+        "gravity":  true
       }
     }
 	},

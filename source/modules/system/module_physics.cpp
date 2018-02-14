@@ -57,7 +57,15 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
     PxTransform offset(PxVec3(0.f, 0.f, 0.f));
     if (config.shapeType == physx::PxGeometryType::eBOX)
     {
-      shape = gPhysics->createShape(PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z), *gMaterial);
+		if (config.height != 0 && config.width != 0 && config.depth != 0) {
+
+			shape = gPhysics->createShape(PxBoxGeometry(config.height, config.width, config.depth), *gMaterial);
+		}
+		else {
+
+			shape = gPhysics->createShape(PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z), *gMaterial);
+		}
+			
     }
     else if (config.shapeType == physx::PxGeometryType::eSPHERE)
     {

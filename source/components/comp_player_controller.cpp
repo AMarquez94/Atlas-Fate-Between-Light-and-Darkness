@@ -55,6 +55,8 @@ void TCompPlayerController::Init() {
 	//AddState("push", (statehandler)&TCompPlayerController::PushState);
 
 	ChangeState("idle");
+
+	delta_movement = VEC3::Zero;
 }
 
 void TCompPlayerController::registerMsgs() {
@@ -76,6 +78,7 @@ void TCompPlayerController::IdleState(float dt){
 
 void TCompPlayerController::MotionState(float dt){ 
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
+	delta_movement = VEC3::Zero;
 	if (!motionButtonsPressed()) {
 		ChangeState("idle");
 	}
@@ -265,17 +268,8 @@ void TCompPlayerController::movePlayer(float dt) {
 
 	VEC3 new_pos = c_my_transform->getPosition() + c_my_transform->getFront() * amount_moved;
 	
-	VEC3 delta_move = new_pos - c_my_transform->getPosition();
-	TCompCollider* comp_collider = get<TCompCollider>();
-	if (comp_collider && comp_collider->controller)
-	{
-		delta_move.y += -9.81*dt;
-		comp_collider->controller->move(physx::PxVec3(delta_move.x, delta_move.y, delta_move.z), 0.f, dt, physx::PxControllerFilters());
-	}
-	else
-	{
-		//Actualizo la posicion del transform
-		c_my_transform->setPosition(new_pos);
-	}
+	delta_movement = new_pos - c_my_transform->getPosition();
+
+	c_my_transform->setPosition(new_pos);
 }
 

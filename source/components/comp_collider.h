@@ -30,17 +30,22 @@ public:
     
     //todo implement
     VEC3 offset;
-
     float radius;
     float height;
+	float width;
+	float depth;
     physx::PxGeometryType::Enum shapeType;
     int group;
     int mask;
     bool is_dynamic;
     bool is_trigger;
     bool is_character_controller;
+	bool gravity;
 
   };
+  VEC3 lastFramePosition;
+
+  DECL_SIBLING_ACCESS();
 
   TConfig config;
   physx::PxActor* actor;
@@ -48,5 +53,6 @@ public:
   void debugInMenu();
   static void registerMsgs();
   void load(const json& j, TEntityParseContext& ctx);
+  void update(float dt);
   void onCreate(const TMsgEntityCreated& msg);
 };

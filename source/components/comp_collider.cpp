@@ -1,5 +1,7 @@
 #include "mcv_platform.h"
 #include "comp_collider.h"
+#include "comp_transform.h"
+#include "comp_player_controller.h"
 
 DECL_OBJ_MANAGER("collider", TCompCollider);
 
@@ -30,9 +32,17 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
   config.is_trigger = j.value("is_trigger", false);
   config.radius = j.value("radius", 0.f);
   config.height = j.value("height", 0.f);
+  config.width = j.value("width", 0.f);
+  config.depth = j.value("depth", 0.f);
+  config.gravity = j.value("gravity", false);
 
   if (j.count("halfExtent"))
     config.halfExtent = loadVEC3(j["halfExtent"]);
+  
+  lastFramePosition = VEC3::Zero;
+
+
+
 }
 
 
@@ -42,4 +52,25 @@ void TCompCollider::registerMsgs() {
 
 void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
   CEngine::get().getPhysics().createActor(*this);
+  TCompTransform *c_my_tmx = get<TCompTransform>();
+  lastFramePosition = c_my_tmx->getPosition();
+
+}
+
+
+void TCompCollider::update(float dt) {
+
+	if (config.is_character_controller) {
+
+		TCompPlayerController *c_my_plyrcntlr = get<TCompPlayerController>();
+		VEC3 delta = c_my_plyrcntlr->delta_movement;
+		controller->move(physx::PxVec3(delta.x, delta.y, delta.z), 0.f, dt, physx::PxControllerFilters());
+	}
+
+	if (config.gravity) {
+
+		controller->move(physx::PxVec3(0, -9.81 * dt, 0), 0.f, dt, physx::PxControllerFilters());
+	}
+	
+
 }
