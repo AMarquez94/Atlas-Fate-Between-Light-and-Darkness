@@ -11,6 +11,7 @@ public:
 
 	enum eTextureSlot {
 		TS_ALBEDO,
+		TS_LIGHTMAP,
 		TS_NORMAL,
 		TS_COUNT
 	};

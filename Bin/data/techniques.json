@@ -7,9 +7,16 @@
 		"ps_entry_point" : "PS"
 	},
 	"textured" : {
-		"vs_file": "data/shaders/shaders_objs.fx",
+		"vs_file": "data/shaders/shaders_objs_basic.fx",
 		"vs_entry_point" : "VS",
 		"vertex_type" : "PosNUv",
+		"ps_file": "data/shaders/shaders_objs_basic.fx",
+		"ps_entry_point" : "PS"
+	},
+	"textured_bk" : {
+		"vs_file": "data/shaders/shaders_objs.fx",
+		"vs_entry_point" : "VS",
+		"vertex_type" : "PosNUvUv",
 		"ps_file": "data/shaders/shaders_objs.fx",
 		"ps_entry_point" : "PS"
 	}

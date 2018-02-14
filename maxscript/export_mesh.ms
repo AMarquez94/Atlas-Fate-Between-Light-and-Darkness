@@ -115,7 +115,7 @@ function exportMeshObject given_obj outfilename = (
 	local idxs = #()
 	
 	local mapA = 1
-	--local mapB = 3
+	local mapB = 3
 	
 	local maxLocalToWorld = obj.transform
 	local maxToMCV = rotateXMatrix  -90
@@ -124,7 +124,6 @@ function exportMeshObject given_obj outfilename = (
 	
 	-- To quickly find if a vertex is new
 	local HT = dotNetObject "System.Collections.Hashtable"
-
 	local num_faces = getNumFaces obj
 	
 	-- For each face in the model
@@ -134,6 +133,7 @@ function exportMeshObject given_obj outfilename = (
 		-- Retrieve the 3 indexes in the list of vertex positions
 		local face = getFace obj face_id
 		local faceA = meshop.getMapFace obj mapA face_id
+		local faceB = meshop.getMapFace obj mapB face_id
 		local normals = meshop.getFaceRNormals obj face_id
 		
 		-- For each vertex of each face
@@ -145,12 +145,14 @@ function exportMeshObject given_obj outfilename = (
 			local pos = posW * maxWorldToLocalMCV
 			
 			-- Get normals
-			local N = normals[ vtx_id ]
+			local NW = normals[ vtx_id ]
+			local N = NW * maxWorldToLocalMCV.rotationpart
 			
 			-- Get UV's values
 			local uvA = meshop.getMapVert obj mapA faceA[vtx_id]
-		 
-			local new_vtx = #( pos.x, pos.y, pos.z, N.x, N.y, N.z, uvA.x, uvA.y ) 
+		 	local uvB = meshop.getMapVert obj mapB faceB[vtx_id]
+					
+			local new_vtx = #( pos.x, pos.y, pos.z, N.x, N.y, N.z, uvA.x, 1-uvA.y, uvB.x, 1-uvB.y ) 
 			
 			-- Check if the vtx is unique
 			local new_idx = findIndexOrRegister ht vtxs new_vtx
@@ -159,13 +161,11 @@ function exportMeshObject given_obj outfilename = (
 			append idxs new_idx
 		)
 	)
-	saveMeshToFile outfilename obj vtxs idxs "PosNUv"
+	saveMeshToFile outfilename obj vtxs idxs "PosNUvUv"
 	
 	-- If we created a copy of the mesh, it's time to remove it
 	if obj != given_obj then delete obj
 	
 )
 
-
-exportMeshObject $crap "D:\\Users\\Alberto\\Desktop\\source\\skyboat.mesh"
---exportMeshObject $ "c:\\code\\pep.mesh"
+exportMeshObject $Box001 "C:\\Users\\mcv16_alumne\\Desktop\\ENGINE\\pep.mesh"
