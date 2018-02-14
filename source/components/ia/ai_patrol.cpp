@@ -59,32 +59,32 @@ void CAIPatrol::debugInMenu() {
 }
 
 void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
-  setEntity(ctx.current_entity);
+	setEntity(ctx.current_entity);
 
-  Init();
+	Init();
 
-  auto& j_waypoints = j["waypoints"];
-  for (auto it = j_waypoints.begin(); it != j_waypoints.end(); ++it) {
+	auto& j_waypoints = j["waypoints"];
+	for (auto it = j_waypoints.begin(); it != j_waypoints.end(); ++it) {
 	  
-	  Waypoint wpt;
-	  assert(it.value().count("position") == 1);
-	  assert(it.value().count("lookAt") == 1);
+		Waypoint wpt;
+		assert(it.value().count("position") == 1);
+		assert(it.value().count("lookAt") == 1);
 
-	  wpt.position = loadVEC3(it.value()["position"]);
-	  wpt.lookAt = loadVEC3(it.value()["lookAt"]);
-	  wpt.minTime = it.value().value("minTime", 5.f);
-	  addWaypoint(wpt);
-  }
+		wpt.position = loadVEC3(it.value()["position"]);
+		wpt.lookAt = loadVEC3(it.value()["lookAt"]);
+		wpt.minTime = it.value().value("minTime", 5.f);
+		addWaypoint(wpt);
+	}
 
-  speed = j.value("speed", 2.0f);
-  rotationSpeed = deg2rad(j.value("rotationSpeed", 90));
-  fov = deg2rad(j.value("fov", 90));
-  entityToChase = j.value("entityToChase", "The Player");
-  autoChaseDistance = j.value("autoChaseDistance", 5.f);
-  maxChaseDistance = j.value("maxChaseDistance", 7.f);
-  maxTimeSuspecting = j.value("maxTimeSuspecting", 3.f);
-  dcrSuspectO_Meter = j.value("dcrSuspectO_meter", .3f);
-  incrBaseSuspectO_Meter = j.value("incrBaseSuspectO_meter", .3f);
+	speed = j.value("speed", 2.0f);
+	rotationSpeed = deg2rad(j.value("rotationSpeed", 90));
+	fov = deg2rad(j.value("fov", 90));
+	entityToChase = j.value("entityToChase", "The Player");
+	autoChaseDistance = j.value("autoChaseDistance", 5.f);
+	maxChaseDistance = j.value("maxChaseDistance", 7.f);
+	maxTimeSuspecting = j.value("maxTimeSuspecting", 3.f);
+	dcrSuspectO_Meter = j.value("dcrSuspectO_meter", .3f);
+	incrBaseSuspectO_Meter = j.value("incrBaseSuspectO_meter", .3f);
 	distToAttack = j.value("distToIdleWar", 2.0f);
 
 //  distToBack = j.value("distToBack", 1.0f);
@@ -263,6 +263,11 @@ void CAIPatrol::ChaseState(float dt)
   CEntity *player = (CEntity *)getEntityByName(entityToChase);
   TCompTransform *ppos = player->get<TCompTransform>();
 
+  if (lastPlayerKnownPos != VEC3::Zero) {
+
+	  /* If we had the player's previous position, know where he is going */
+	  isLastPlayerKnownDirLeft = mypos->isInLeft(ppos->getPosition() - lastPlayerKnownPos);
+  }
   lastPlayerKnownPos = ppos->getPosition();
 
   float distToPlayer = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
@@ -290,6 +295,12 @@ void CAIPatrol::AttackState(float dt)
 	dbg("tremendo pelotaso de golpe a la cabesa\n");
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform * ppos = player->get<TCompTransform>();
+
+	if (lastPlayerKnownPos != VEC3::Zero) {
+
+		/* If we had the player's previous position, know where he is going */
+		isLastPlayerKnownDirLeft = getMyTransform()->isInLeft(ppos->getPosition() - lastPlayerKnownPos);
+	}
 	lastPlayerKnownPos = ppos->getPosition();
 
 	if (false) {				//TODO: see if the player is hit => is dead
@@ -371,11 +382,7 @@ void CAIPatrol::GoPlayerLastPosState(float dt)
 	else {
 		if (VEC3::Distance(lastPlayerKnownPos, vp) < speed * dt) {
 			mypos->setPosition(lastPlayerKnownPos);
-			lastPlayerKnownPos = VEC3::Zero;
-			TCompRender *cRender = get<TCompRender>();
-			cRender->color = VEC4(1, 1, 1, 1);
-			suspectO_Meter = 0.f;
-			ChangeState("closestWpt");
+			ChangeState("seekPlayer");
 		}
 		else {
 			VEC3 vfwd = mypos->getFront();
@@ -388,6 +395,56 @@ void CAIPatrol::GoPlayerLastPosState(float dt)
 
 void CAIPatrol::SeekPlayerState(float dt)
 {
+
+	TCompTransform *mypos = getMyTransform();
+	CEntity *player = (CEntity *)getEntityByName(entityToChase);
+	TCompTransform *ppos = player->get<TCompTransform>();
+
+	if (isPlayerInFov() && VEC3::Distance(mypos->getPosition(), ppos->getPosition()) < maxChaseDistance) {
+		TCompRender * cRender = get<TCompRender>();
+		cRender->color = VEC4(255, 255, 0, 1);
+		ChangeState("suspect");
+	}
+	else {
+		
+		if (amountRotated >= maxRotation * 3) {
+			suspectO_Meter = 0.f;
+			lastPlayerKnownPos = VEC3::Zero;
+			TCompRender * cRender = get<TCompRender>();
+			cRender->color = VEC4(1, 1, 1, 1);
+			amountRotated = 0.f;
+			ChangeState("closestWpt");
+		}
+		else {
+		
+			float y, p, r;
+			mypos->getYawPitchRoll(&y, &p, &r);
+
+			amountRotated += rotationSpeed * dt;
+
+			if (amountRotated < maxRotation) {
+				if (isLastPlayerKnownDirLeft)
+				{
+					y += rotationSpeed * dt;
+				}
+				else
+				{
+					y -= rotationSpeed * dt;
+				}
+			}
+			else {
+				if (isLastPlayerKnownDirLeft)
+				{
+					y -= rotationSpeed * dt;
+				}
+				else
+				{
+					y += rotationSpeed * dt;
+				}
+			}
+			mypos->setYawPitchRoll(y, p, r);
+		}
+	}
 }
 
 void CAIPatrol::StunnedState(float dt)

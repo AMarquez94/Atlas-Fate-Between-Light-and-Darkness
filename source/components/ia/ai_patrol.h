@@ -30,7 +30,10 @@ class CAIPatrol : public IAIController
 	float dcrSuspectO_Meter;
 	float incrBaseSuspectO_Meter;
 	VEC3 lastPlayerKnownPos = VEC3::Zero;
+	bool isLastPlayerKnownDirLeft = false;
 	float distToAttack;
+	float amountRotated = 0.f;
+	float maxRotation = deg2rad(90.f);
 	//float distToIdleWar;
 	//float distToBack;
 	//float distToChase;
