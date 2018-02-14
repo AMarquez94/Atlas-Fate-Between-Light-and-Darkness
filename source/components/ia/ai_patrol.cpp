@@ -81,7 +81,7 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 	fov = deg2rad(j.value("fov", 90));
 	entityToChase = j.value("entityToChase", "The Player");
 	autoChaseDistance = j.value("autoChaseDistance", 5.f);
-	maxChaseDistance = j.value("maxChaseDistance", 7.f);
+	maxChaseDistance = j.value("maxChaseDistance", 8.f);
 	maxTimeSuspecting = j.value("maxTimeSuspecting", 3.f);
 	dcrSuspectO_Meter = j.value("dcrSuspectO_meter", .3f);
 	incrBaseSuspectO_Meter = j.value("incrBaseSuspectO_meter", .3f);
@@ -382,6 +382,7 @@ void CAIPatrol::GoPlayerLastPosState(float dt)
 	else {
 		if (VEC3::Distance(lastPlayerKnownPos, vp) < speed * dt) {
 			mypos->setPosition(lastPlayerKnownPos);
+			lastPlayerKnownPos = VEC3::Zero;
 			ChangeState("seekPlayer");
 		}
 		else {
@@ -409,7 +410,6 @@ void CAIPatrol::SeekPlayerState(float dt)
 		
 		if (amountRotated >= maxRotation * 3) {
 			suspectO_Meter = 0.f;
-			lastPlayerKnownPos = VEC3::Zero;
 			TCompRender * cRender = get<TCompRender>();
 			cRender->color = VEC4(1, 1, 1, 1);
 			amountRotated = 0.f;
