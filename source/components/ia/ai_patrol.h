@@ -33,7 +33,7 @@ class CAIPatrol : public IAIController
 	bool isLastPlayerKnownDirLeft = false;
 	float distToAttack;
 	float amountRotated = 0.f;
-	float maxRotation = deg2rad(90.f);
+	float maxRotationSeekingPlayer;
 	//float distToIdleWar;
 	//float distToBack;
 	//float distToChase;
@@ -52,7 +52,8 @@ class CAIPatrol : public IAIController
 
 	DECL_SIBLING_ACCESS();
 
-	void onMsgDamage(const TMsgDamage& msg);
+	void onMsgPlayerDead(const TMsgPlayerDead& msg);
+	void onMsgPatrolStunned(const TMsgPatrolStunned& msg);
 
 	void rotateTowardsVec(VEC3 objective, float dt);
 	bool isPlayerInFov();

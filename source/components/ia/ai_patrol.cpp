@@ -85,7 +85,8 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 	maxTimeSuspecting = j.value("maxTimeSuspecting", 3.f);
 	dcrSuspectO_Meter = j.value("dcrSuspectO_meter", .3f);
 	incrBaseSuspectO_Meter = j.value("incrBaseSuspectO_meter", .3f);
-	distToAttack = j.value("distToIdleWar", 2.0f);
+	distToAttack = j.value("distToIdleWar", 1.0f);
+	maxRotationSeekingPlayer = deg2rad(j.value("maxRotationSeekingPlayer", 90));
 
 //  distToBack = j.value("distToBack", 1.0f);
 //  distToChase = j.value("distToChase", 10.0f);
@@ -98,12 +99,29 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void CAIPatrol::registerMsgs() {									//TODO: Change
-	DECL_MSG(CAIPatrol, TMsgDamage, onMsgDamage);					//TODO: Change
+	DECL_MSG(CAIPatrol, TMsgPlayerDead, onMsgPlayerDead);					//TODO: Change
+	DECL_MSG(CAIPatrol, TMsgPatrolStunned, onMsgPatrolStunned);					//TODO: Change
+
 }																	//TODO: Change
-																	//TODO: Change
-void CAIPatrol::onMsgDamage(const TMsgDamage& msg) {				//TODO: Change
-	ChangeState("hit");												//TODO: Change
-}																	//TODO: Change
+
+void CAIPatrol::onMsgPlayerDead(const TMsgPlayerDead& msg) {
+	suspectO_Meter = 0.f;
+	lastPlayerKnownPos = VEC3::Zero;
+	TCompRender *cRender = get<TCompRender>();
+	cRender->color = VEC4(1, 1, 1, 1);
+	ChangeState("closestWpt");
+}
+
+void CAIPatrol::onMsgPatrolStunned(const TMsgPatrolStunned& msg) {
+	TCompRender *cRender = get<TCompRender>();
+	cRender->color = VEC4(1, 1, 1, 1);
+	TCompTransform *mypos = getMyTransform();
+	float y, p, r;
+	mypos->getYawPitchRoll(&y, &p, &r);
+	p = p + deg2rad(90.f);
+	mypos->setYawPitchRoll(y, p, r);
+	ChangeState("stunned");
+}
 
 
 void CAIPatrol::IdleState(float dt)
@@ -292,7 +310,7 @@ void CAIPatrol::ChaseState(float dt)
 
 void CAIPatrol::AttackState(float dt)
 {
-	dbg("tremendo pelotaso de golpe a la cabesa\n");
+	
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform * ppos = player->get<TCompTransform>();
 
@@ -307,11 +325,11 @@ void CAIPatrol::AttackState(float dt)
 		ChangeState("idleWar");
 	}
 	else {
-		suspectO_Meter = 0.f;
-		lastPlayerKnownPos = VEC3::Zero;
-		TCompRender *cRender = get<TCompRender>();
-		cRender->color = VEC4(1, 1, 1, 1);
-		ChangeState("closestWpt");
+		// Notify the entity that he is dead
+		TMsgPlayerHit msg;
+		msg.h_sender = CHandle(this).getOwner();      // Who killed the player
+		CEntity *player = (CEntity *)getEntityByName(entityToChase);
+		player->sendMsg(msg);
 	}
 }
 
@@ -404,11 +422,12 @@ void CAIPatrol::SeekPlayerState(float dt)
 	if (isPlayerInFov() && VEC3::Distance(mypos->getPosition(), ppos->getPosition()) < maxChaseDistance) {
 		TCompRender * cRender = get<TCompRender>();
 		cRender->color = VEC4(255, 255, 0, 1);
+		amountRotated = 0.f;
 		ChangeState("suspect");
 	}
 	else {
 		
-		if (amountRotated >= maxRotation * 3) {
+		if (amountRotated >= maxRotationSeekingPlayer * 3) {
 			suspectO_Meter = 0.f;
 			TCompRender * cRender = get<TCompRender>();
 			cRender->color = VEC4(1, 1, 1, 1);
@@ -422,7 +441,7 @@ void CAIPatrol::SeekPlayerState(float dt)
 
 			amountRotated += rotationSpeed * dt;
 
-			if (amountRotated < maxRotation) {
+			if (amountRotated < maxRotationSeekingPlayer) {
 				if (isLastPlayerKnownDirLeft)
 				{
 					y += rotationSpeed * dt;
@@ -449,6 +468,7 @@ void CAIPatrol::SeekPlayerState(float dt)
 
 void CAIPatrol::StunnedState(float dt)
 {
+	
 }
 
 void CAIPatrol::FixedState(float dt)
@@ -535,6 +555,6 @@ bool CAIPatrol::isPlayerInFov() {
 	std::string playerState = ((TCompPlayerController *)player->get<TCompPlayerController>())->getStateName();
 	bool isPlayerInShadows = playerState.compare("smHor") == 0 || playerState.compare("smVer") == 0;
 
-	return in_fov && !isPlayerInShadows;
+	return in_fov && !isPlayerInShadows && !playerState.compare("dead") == 0;
 }
 

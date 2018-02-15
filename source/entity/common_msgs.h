@@ -19,6 +19,21 @@ struct TMsgDamage {
   DECL_MSG_ID();
 };
 
+struct TMsgPlayerDead {
+	CHandle h_sender;
+	DECL_MSG_ID();
+};
+
+struct TMsgPatrolStunned {
+	CHandle h_sender;
+	DECL_MSG_ID();
+};
+
+struct TMsgPlayerHit {
+	CHandle h_sender;
+	DECL_MSG_ID();
+};
+
 /*
 struct TMsgTimeOut {
   DECL_MSG_ID();

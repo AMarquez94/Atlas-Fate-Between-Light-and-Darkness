@@ -85,7 +85,7 @@ void TCompPlayerController::Init() {
 }
 
 void TCompPlayerController::registerMsgs() {
-
+	DECL_MSG(TCompPlayerController, TMsgPlayerHit, onMsgPlayerHit);
 }
 
 
@@ -204,6 +204,27 @@ void TCompPlayerController::DeadState(float dt){
 
 }
 
+
+void TCompPlayerController::onMsgPlayerHit(const TMsgPlayerHit & msg)
+{
+	ChangeState("dead");
+
+	//TODO: Merge with Juan code
+	//auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+	//...
+	//Notify all enemys that we are dead
+
+	CEntity* enemy = (CEntity* )msg.h_sender;
+	TMsgPlayerDead newMsg;
+	newMsg.h_sender = CHandle(this).getOwner();
+	enemy->sendMsg(newMsg);
+
+	TCompTransform *mypos = get<TCompTransform>();
+	float y, p, r;
+	mypos->getYawPitchRoll(&y, &p, &r);
+	p = p + deg2rad(90.f);
+	mypos->setYawPitchRoll(y, p, r);
+}
 
 bool TCompPlayerController::motionButtonsPressed() {
 	return btUp.isPressed() || btDown.isPressed() || btLeft.isPressed() || btRight.isPressed();

@@ -53,6 +53,7 @@ class TCompPlayerController : public IAIController {
 	DECL_SIBLING_ACCESS();
 
 	void onMsgDamage(const TMsgDamage& msg);
+	void onMsgPlayerHit(const TMsgPlayerHit& msg);
 
 	/* Private aux functions */
 	bool motionButtonsPressed();
