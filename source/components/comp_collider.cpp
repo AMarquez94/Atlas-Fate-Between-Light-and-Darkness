@@ -49,6 +49,7 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 void TCompCollider::registerMsgs() {
 
   DECL_MSG(TCompCollider, TMsgEntityCreated, onCreate);
+  DECL_MSG(TCompCollider, TMsgTriggerEnter, onTriggerEnter);
 }
 
 void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
@@ -59,6 +60,11 @@ void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
 
 }
 
+void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {
+
+	dbg("Entered the trigger!!!!\n");
+
+}
 
 void TCompCollider::update(float dt) {
 

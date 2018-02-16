@@ -4,7 +4,7 @@
 #include "PxPhysicsAPI.h"
 #include "entity/common_msgs.h"
 
-struct TMsgTriggerEnter{
+struct TMsgTriggerEnter {
   CHandle h_other_entity;
   DECL_MSG_ID();
 };
@@ -46,6 +46,7 @@ public:
 
   };
   VEC3 lastFramePosition;
+  void onTriggerEnter(const TMsgTriggerEnter& msg);
 
   DECL_SIBLING_ACCESS();
 

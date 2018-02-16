@@ -77,9 +77,15 @@
       },
       "transform": {
         "pos": "-4 0 0"
+      },
+	  "collider": {
+        "shape": "box",
+        "halfExtent": "2 2 2",
+		"is_trigger": true
       }
     }
 	},
+	
 	{
 		"entity": {
 			"name": "TPCamera",
