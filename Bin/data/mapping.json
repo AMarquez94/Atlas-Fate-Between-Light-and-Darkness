@@ -67,12 +67,12 @@
   {
     "name": "Horizontal",
     "all": false,
-    "buttons": [ "a", "d", "pad_right", "pad_lanalogx" ]
+    "buttons": [ "a", "d", "pad_right", "pad_left", "pad_lanalogx" ]
   },
   {
     "name": "Vertical",
     "all": false,
-    "buttons": [ "w", "s", "pad_down", "pad_lanalogy" ]
+    "buttons": [ "w", "s", "pad_down", "pad_up", "pad_lanalogy" ]
   },
   {
     "name": "btAction",
