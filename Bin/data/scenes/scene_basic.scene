@@ -31,22 +31,20 @@
 		}
 	},
 	{
-		"entity": {
-			"name": "The Player",
-			"render" : {
-				"mesh": "data/meshes/pj_idle.mesh",
-				"materials" : [
-						"data/materials/body.material"
-					]
-			}
-			,
-			"transform": {
-				"pos": "5 0 0"
-			}
-			,
+    "entity": {
+      "name": "The Player",
+      "render": {
+        "mesh": "data/meshes/pj_idle.mesh",
+        "materials": [
+          "data/materials/body.material"
+        ]
+      },
+      "transform": {
+        "pos": "5 100 0"
+      },
       "player_controller": {
         "target_camera": "TPCamera",
-				"shadow_camera": "SMCamera",
+        "shadow_camera": "SMCamera",
         "stamina": 100,
         "maxStamina": 100,
         "minStamina": 0,
@@ -61,24 +59,36 @@
         "walkSlowSpeedFactor": 1.5,
         "walkSlowCrouchSpeedFactor": 0.5,
         "rotationSpeed": 7.0
+      },
+      "collider": {
+        "shape": "capsule",
+        "is_character_controller": true,
+        "radius": 0.35,
+        "height": 1.0,
+        "gravity": true
       }
-		}
+    }
 	},
 	{
-		"entity": {
-			"name": "Teapot 2",
-			"render" : {
-				"mesh": "data/meshes/Teapot001.mesh",
-				"materials" : [
-						"data/materials/madera.material"
-					]
-			}
-			,
-			"transform": {
-				"pos": "-4 0 0"
-			}
-		}
+    "entity": {
+      "name": "Teapot 2",
+      "render": {
+        "mesh": "data/meshes/Teapot001.mesh",
+        "materials": [
+          "data/materials/madera.material"
+        ]
+      },
+      "transform": {
+        "pos": "-4 0 0"
+      },
+	  "collider": {
+        "shape": "box",
+        "halfExtent": "2 2 2",
+		"is_trigger": true
+      }
+    }
 	},
+	
 	{
 		"entity": {
 			"name": "TPCamera",

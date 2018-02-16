@@ -7,14 +7,15 @@
     "entity" : 100,
     "transform" : 90
   },
-	"update" : [
-		"circular_controller",
-		"player_controller",
-		"camera_thirdperson",
-		"camera_shadowmerge",
-		"bullet_controller",
-		"ai_patrol",
-		"flyover_controller",
-		"camera"
-	]
+  "update": [
+    "circular_controller",
+    "player_controller",
+    "collider",
+    "camera_thirdperson",
+    "camera_shadowmerge",
+    "bullet_controller",
+    "ai_patrol",
+    "flyover_controller",
+    "camera"
+  ]
 }
