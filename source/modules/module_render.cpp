@@ -6,6 +6,7 @@
 #include "render/render_utils.h"
 #include "render/texture/material.h"
 #include "render/texture/texture.h"
+#include "resources/json_resource.h"
 #include "camera/camera.h"
 
 //--------------------------------------------------------------------------------------
@@ -41,6 +42,7 @@ bool CModuleRender::start()
     return false;
 
   // Register the resource types
+  Resources.registerResourceClass(getResourceClassOf<CJsonResource>());
   Resources.registerResourceClass(getResourceClassOf<CTexture>());
   Resources.registerResourceClass(getResourceClassOf<CRenderMesh>());
   Resources.registerResourceClass(getResourceClassOf<CRenderTechnique>());

@@ -26,6 +26,8 @@ class CCamera {
 
 public:
 
+	CCamera();
+
   // 
   VEC3 getPosition() const { return pos; }
   VEC3 getTarget() const { return target; }

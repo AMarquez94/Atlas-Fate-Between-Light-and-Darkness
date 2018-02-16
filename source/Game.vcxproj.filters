@@ -172,6 +172,7 @@
     <ClCompile Include="render\texture\material.cpp" />
     <ClCompile Include="render\render_technique.cpp" />
     <ClCompile Include="components\comp_flyover_controller.cpp" />
+    <ClCompile Include="resources\json_resource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="windows">
@@ -498,6 +499,7 @@
     </ClInclude>
     <ClInclude Include="render\texture\material.h" />
     <ClInclude Include="components\comp_flyover_controller.h" />
+    <ClInclude Include="resources\json_resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl">

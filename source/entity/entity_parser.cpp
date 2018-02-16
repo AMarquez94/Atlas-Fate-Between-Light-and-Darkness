@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "entity_parser.h"
 #include "entity.h"
+#include "resources/json_resource.h"
 
 // Find in the current list of entities created, the first entity matching
 // the given name
@@ -25,16 +26,16 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 
   ctx.filename = filename;
 
-  json j_scene = loadJson(filename);
+  const json& j_scene = Resources.get(filename)->as<CJsonResource>()->getJson();
   assert(j_scene.is_array());
 
   // For each item in the array...
   for (int i = 0; i < j_scene.size(); ++i ) {
-    json& j_item = j_scene[i];
+	  auto& j_item = j_scene[i];
 
     assert(j_item.is_object());
     if (j_item.count("entity")) {
-      json& j_entity = j_item["entity"];
+		auto& j_entity = j_item["entity"];
 
       // Create a new fresh entity
       CHandle h_e;

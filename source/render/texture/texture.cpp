@@ -7,7 +7,7 @@ class CTexturesResourceClass : public CResourceClass {
 public:
   CTexturesResourceClass() {
     class_name = "Textures";
-    extension = ".dds";
+	extensions = { ".dds" };
   }
   IResource* create(const std::string& name) const override {
     dbg("Creating texture %s\n", name.c_str());

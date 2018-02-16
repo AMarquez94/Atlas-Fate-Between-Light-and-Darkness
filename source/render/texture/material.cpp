@@ -7,7 +7,7 @@ class CMaterialResourceClass : public CResourceClass {
 public:
 	CMaterialResourceClass() {
 		class_name = "Materials";
-		extension = ".material";
+		extensions = { ".material" };
 	}
 	IResource* create(const std::string& name) const override {
 		dbg("Creating material %s\n", name.c_str());

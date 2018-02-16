@@ -7,7 +7,7 @@ class CRenderMeshResourceClass : public CResourceClass {
 public:
   CRenderMeshResourceClass() {
     class_name = "Meshes";
-    extension = ".mesh";
+	extensions = { ".mesh" };
   }
   IResource* create(const std::string& name) const override {
     dbg("Creating mesh %s\n", name.c_str());

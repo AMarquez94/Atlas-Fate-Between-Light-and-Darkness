@@ -14,7 +14,7 @@ class IResource;
 // A type of resource.
 struct CResourceClass {
   std::string class_name;   // Textures
-  std::string extension;    // .dds
+  std::vector< std::string > extensions;    // .dds
   virtual IResource* create(const std::string& name) const = 0;
 };
 
@@ -35,6 +35,7 @@ public:
   virtual ~IResource() { }
   virtual void destroy() { }
   virtual void debugInMenu() { }
+  virtual void onFileChanged(const std::string& filename) { }
 
   const std::string& getName() const { return name; }
   const CResourceClass* getClass() const {

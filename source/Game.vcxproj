@@ -140,6 +140,7 @@
     <ClCompile Include="render\texture\texture.cpp" />
     <ClCompile Include="render\vertex_declarations.cpp" />
     <ClCompile Include="render\vertex_shader.cpp" />
+    <ClCompile Include="resources\json_resource.cpp" />
     <ClCompile Include="resources\resources_manager.cpp" />
     <ClCompile Include="utils\utils.cpp" />
     <ClCompile Include="windows\app.cpp" />
@@ -218,6 +219,7 @@
     <ClInclude Include="render\texture\texture.h" />
     <ClInclude Include="render\vertex_declarations.h" />
     <ClInclude Include="render\vertex_shader.h" />
+    <ClInclude Include="resources\json_resource.h" />
     <ClInclude Include="resources\resource.h" />
     <ClInclude Include="resources\resources_manager.h" />
     <ClInclude Include="utils\data_provider.h" />

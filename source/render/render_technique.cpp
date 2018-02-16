@@ -6,7 +6,7 @@ class CRenderTechniqueResourceClass : public CResourceClass {
 public:
 	CRenderTechniqueResourceClass() {
 		class_name = "Techniques";
-		extension = ".tech";
+		extensions = { ".tech" };
 	}
 	IResource* create(const std::string& name) const override {
 		fatal("Can't create a technique '%s'. All techniques should be declared in the data/techniques.json", name.c_str());

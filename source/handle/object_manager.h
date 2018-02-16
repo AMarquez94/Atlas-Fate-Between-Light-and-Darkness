@@ -160,6 +160,7 @@ public:
         ImGui::PushID(i);
         objs[i].debugInMenu();
         ImGui::PopID();
+		ImGui::Separator();
       }
       ImGui::TreePop();
     }
