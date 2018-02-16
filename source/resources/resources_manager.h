@@ -10,6 +10,9 @@ class CResourceManager {
   // These are the 'resource classes' stored by extension
   std::map< std::string, const CResourceClass* > resource_classes;
 
+  // To make the reload in proper order
+  std::vector< const CResourceClass* > resource_classes_by_file_change_priority;
+
 public:
 
   void registerResourceClass(const CResourceClass* new_class);
@@ -20,6 +23,7 @@ public:
 
   // 
   void registerResource( IResource* res );
+  void onFileChanged(const std::string& filename);
 
 };
 

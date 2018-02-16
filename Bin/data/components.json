@@ -7,12 +7,13 @@
     "entity" : 100,
     "transform" : 90
   },
-	"update" : [
-		"circular_controller",
-		"player_controller",
-		"bullet_controller",
-		"ai_patrol",
-		"flyover_controller",
-		"camera"
-	]
+  "update": [
+    "circular_controller",
+    "player_controller",
+    "bullet_controller",
+    "ai_patrol",
+    "flyover_controller",
+    "hierarchy",
+    "camera"
+  ]
 }

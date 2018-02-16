@@ -1,0 +1,12 @@
+[{
+		"entity": {
+			"name": "Cannon",
+			"transform": {
+				"pos": "0 0 1"
+			},
+			"render" : {
+				"mesh" : "axis.mesh"
+			}
+		}
+	}
+]

@@ -30,6 +30,11 @@ void TCompRender::loadMesh(const json& j, TEntityParseContext& ctx) {
 		const CMaterial* material = Resources.get("data/materials/solid.material")->as<CMaterial>();
 		materials.push_back(material);
 	}
+
+
+	// If there is a color in the json, read it
+	if (j.count("color"))
+		color = loadVEC4(j["color"]);
 }
 
 void TCompRender::load(const json& j, TEntityParseContext& ctx) {
@@ -43,9 +48,4 @@ void TCompRender::load(const json& j, TEntityParseContext& ctx) {
 		// We accept not receiving an array of mesh inside the comp_render, for handle files
 		loadMesh(j, ctx);
 	}
-
-	// If there is a color in the json, read it
-	if (j.count("color"))
-		color = loadVEC4(j["color"]);
-
 }

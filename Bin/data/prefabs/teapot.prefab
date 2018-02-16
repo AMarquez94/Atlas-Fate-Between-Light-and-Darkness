@@ -1,0 +1,46 @@
+[ {
+		"entity": {
+			"name": "teapot_prefab",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render" : [
+				{
+					"mesh": "data/meshes/Teapot001.mesh",
+					"materials" : [
+						"data/materials/madera.material"
+					],
+					"color" : "0.5 0.5 1.0 1.0"
+				}
+			]
+		}
+	}
+	,
+	{
+		"entity": {
+			"prefab" : "data/prefabs/cannon.prefab",
+			"name": "cannon_left",
+			"transform": {},
+			"comment" : "Enable hierarchy comp to move cannons when the teapot moves",
+			"hierarchy": {
+				"axis": "0 1 0", 
+				"angle" : 30,
+				"pos": "0.5 0 0.86",
+				"parent" : "teapot_prefab"
+			}
+		}
+	},
+	{
+		"entity": {
+			"prefab" : "data/prefabs/cannon.prefab",
+			"name": "cannon_right",
+			"transform": {},
+			"hierarchy": {
+				"axis": "0 1 0", 
+				"angle" : -30,
+				"pos": "-0.5 0 0.86",
+				"parent" : "teapot_prefab"
+			}
+		}
+	}
+]

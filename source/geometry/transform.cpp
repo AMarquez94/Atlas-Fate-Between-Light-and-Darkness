@@ -24,6 +24,19 @@ bool CTransform::load(const json& j) {
 }
 
 // ---------------------------
+CTransform CTransform::combineWith(const CTransform& delta_transform) const {
+	CTransform new_t;
+	new_t.rot = delta_transform.rot * rot;
+
+	VEC3 delta_pos_rotated = VEC3::Transform(delta_transform.pos, rot);
+	new_t.pos = pos + (delta_pos_rotated * scale);
+
+	new_t.scale = scale * delta_transform.scale;
+	return new_t;
+}
+
+// ---------------------------
+
 void CTransform::getYawPitchRoll(float* yaw, float* pitch, float* roll) const {
   VEC3 f = getFront();
   getYawPitchFromVector(f, yaw, pitch);

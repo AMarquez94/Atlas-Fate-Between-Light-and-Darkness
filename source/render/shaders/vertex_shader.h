@@ -7,6 +7,7 @@ class CVertexShader {
   ID3D11InputLayout*   vertex_layout = nullptr;
 
 public:
+	~CVertexShader() { destroy(); }
   bool create(const std::string& filename, const std::string& fn_entry_name, const std::string& vtx_decl_name);
   void destroy();
   void activate() const;

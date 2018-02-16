@@ -43,6 +43,15 @@ bool CTexture::create(const std::string& name) {
   return true;
 }
 
+void CTexture::onFileChanged(const std::string& filename) {
+	if (filename != getName())
+		return;
+	destroy();
+	if (!create(filename)) {
+		// reLoad has failed!!
+	}
+}
+
 // Set to the DX driver that we don't want any texture in this slot
 void CTexture::setNullTexture(int slot) {
 	Render.ctx->PSSetShaderResources(slot, 1, nullptr);

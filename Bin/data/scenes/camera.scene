@@ -1,0 +1,15 @@
+[
+	{
+		"entity": {
+			"name": "the_camera",
+			"transform": {
+				"pos": "0 3 3"
+			},
+			"render" : {},
+			"flyover_controller" : {},
+			"camera" : {
+				"fov" : 80 
+			}
+		}
+	}
+]

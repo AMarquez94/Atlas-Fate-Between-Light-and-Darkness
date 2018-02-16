@@ -23,6 +23,7 @@ public:
 	void activate() const;
 	bool create(const std::string& name);
 	void debugInMenu() override;
+	void onFileChanged(const std::string& filename) override;
 
 protected:
 

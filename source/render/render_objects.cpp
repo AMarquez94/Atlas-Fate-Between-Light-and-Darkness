@@ -7,6 +7,7 @@ CRenderCte<CCteObject> cb_object;
 struct TVtxPosClr {
   VEC3 pos;
   VEC4 color;
+  TVtxPosClr() {}
   TVtxPosClr(VEC3 new_pos, VEC4 new_color) : pos(new_pos), color(new_color){}
 };
 
@@ -43,6 +44,26 @@ CRenderMesh* createAxis() {
 }
 
 // ---------------------------------------------------
+CRenderMesh* createUnitCircleXZ(int nsamples) {
+	CRenderMesh* mesh = new CRenderMesh;
+
+	std::vector< TVtxPosClr > vtxs;
+	vtxs.resize(nsamples * 2);
+	auto* v = vtxs.data();
+	VEC4 clr(1, 1, 1, 1);
+	float du = 2.0f * (float)(M_PI) / (float)(nsamples);
+	VEC3 p = getVectorFromYaw(0.0f);
+	for (int i = 1; i <= nsamples; ++i) {
+		*v++ = TVtxPosClr(VEC3(p.x, 0.0f, p.z), clr);
+		p = getVectorFromYaw(i * du);
+		*v++ = TVtxPosClr(VEC3(p.x, 0.0f, p.z), clr);
+	}
+	assert(v == vtxs.data() + vtxs.size());
+	if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(TVtxPosClr), "PosClr", CRenderMesh::LINE_LIST))
+		return nullptr;
+	return mesh;
+}
+
 CRenderMesh* createGridXZ( int nsteps ) {
   CRenderMesh* mesh = new CRenderMesh;
 
@@ -75,6 +96,7 @@ bool createRenderObjects() {
   registerMesh(createAxis(), "axis.mesh");
   registerMesh(createGridXZ(20), "grid.mesh");
   registerMesh(createLineZ(), "line.mesh");
+  registerMesh(createUnitCircleXZ(32), "circle_xz.mesh");
 
   return true;
 }

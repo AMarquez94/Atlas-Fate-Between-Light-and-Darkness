@@ -29,14 +29,14 @@ const CResourceClass* getResourceClassOf<CMaterial>() {
 // ----------------------------------------------------------
 bool CMaterial::create(const std::string& name) {
 
-	json j = loadJson(name);
+	auto j = loadJson(name);
 
 	std::string technique_name = j["technique"];
 	tech = Resources.get(technique_name)->as<CRenderTechnique>();
 
 	cast_shadows = j.value("shadows", true);
 
-	json& j_textures = j["textures"];
+	auto& j_textures = j["textures"];
 	for (auto it = j_textures.begin(); it != j_textures.end(); ++it) {
 		std::string slot = it.key();
 		std::string texture_name = it.value();
@@ -57,6 +57,17 @@ bool CMaterial::create(const std::string& name) {
 	}
 
 	return true;
+}
+
+void CMaterial::onFileChanged(const std::string& filename) {
+	if (filename == getName()) {
+		create(filename);
+	}
+	else {
+		// Maybe a texture has been updated, get the new shader resource view
+		for (int i = 0; i < TS_COUNT; ++i)
+			srvs[i] = textures[i] ? textures[i]->getShaderResourceView() : nullptr;
+	}
 }
 
 void CMaterial::activate() const {

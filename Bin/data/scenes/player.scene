@@ -1,0 +1,24 @@
+[
+	{
+		"entity": {
+			"name": "The Player",
+			"render" : [
+				{
+					"mesh": "data/meshes/Teapot001.mesh",
+					"materials" : [
+						"data/materials/madera.material"
+					]
+				}
+			]
+			,
+			"transform": {
+				"pos": "5 0 0"
+			}
+			, 
+			"player_controller" : {
+				"rotation_speed" : 3.0,
+				"speed" : 3.0
+			}
+		}
+	}
+]
