@@ -5,6 +5,7 @@
 #include "comp_render.h"
 #include "entity/common_msgs.h"
 #include "utils/utils.h"
+#include "comp_name.h"
 
 DECL_OBJ_MANAGER("player_controller", TCompPlayerController);
 
@@ -65,6 +66,7 @@ void TCompPlayerController::registerMsgs() {
 
 
 void TCompPlayerController::IdleState(float dt){
+
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
 	if (btShadowMerging.getsPressed() && checkShadows()) {
 		ChangeState("smEnter");
@@ -72,11 +74,23 @@ void TCompPlayerController::IdleState(float dt){
 	else if (motionButtonsPressed()) {
 		ChangeState("motion");
 	}
+
+	if (btAttack.getsPressed())
+	{
+		TCompTransform *c_my_transform = get<TCompTransform>();
+		VEC3 my_pos = c_my_transform->getPosition() + VEC3(0,1,0) + c_my_transform->getFront();
+		CHandle hit;
+		CEngine::get().getPhysics().Raycast(my_pos, c_my_transform->getFront(), 300, hit);
+		CEntity * ent = hit;
+		TCompName * tname = ent->get<TCompName>();
+		dbg("Raycast found entity with name %s", tname->getName());
+	}
 }
 
 
 
 void TCompPlayerController::MotionState(float dt){ 
+
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
 	delta_movement = VEC3::Zero;
 	if (!motionButtonsPressed()) {
@@ -110,10 +124,12 @@ void TCompPlayerController::ProbeState(float dt){
 
 void TCompPlayerController::RemovingInhibitorState(float dt){ 
 
+
 }
 
 
 void TCompPlayerController::ShadowMergingEnterState(float dt){
+
 	TCompRender* t = get<TCompRender>();
 	t->color = VEC4(0, 0, 0, 0);
 	ChangeState("smHor");

@@ -75,8 +75,8 @@ void TCompCollider::update(float dt) {
 
 		//controller->move(physx::PxVec3(0, -9.8f * dt, 0), 0.f, dt, physx::PxControllerFilters());
 		velocity.y -= 9.81f * dt;
-		dbg("velocity: %f    dt: %f\n", &velocity.x , &dt);
-		controller->move(physx::PxVec3(velocity.x, velocity.y, velocity.z), 0.f, dt, physx::PxControllerFilters());
+		//dbg("velocity: %f    dt: %f\n", velocity.y , &dt);
+		controller->move(physx::PxVec3(velocity.x, velocity.y * dt, velocity.z), 0.f, dt, physx::PxControllerFilters());
 	}
 
 }

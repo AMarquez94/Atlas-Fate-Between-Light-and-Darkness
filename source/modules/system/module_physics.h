@@ -13,6 +13,8 @@ public:
   virtual void render() override;
   void createActor(TCompCollider& comp_collider);
 
+  bool Raycast(const VEC3 & origin, const VEC3 & dir, float distance, CHandle & hit);
+
 private:
     physx::PxDefaultAllocator gDefaultAllocatorCallback;
     physx::PxDefaultErrorCallback gDefaultErrorCallback;

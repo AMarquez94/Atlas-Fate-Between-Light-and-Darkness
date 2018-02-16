@@ -230,3 +230,23 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
 		}
 	}
 }
+
+bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distance, CHandle & hit)
+{
+	PxVec3 px_origin = PxVec3(origin.x, origin.y, origin.z);
+	PxVec3 px_dir = PxVec3(dir.x, dir.y, dir.z); // [in] Normalized ray direction
+	PxReal px_distance = (PxReal)(distance); // [in] Raycast max distance
+	PxRaycastBuffer px_hit; // [out] Raycast results
+
+	bool status = gScene->raycast(px_origin, px_dir, px_distance, px_hit); // Closest hit
+
+	if (status)
+	{
+		PxRigidActor* rigidActor = ((PxRigidActor*)px_hit.block.actor);
+		CHandle h_comp_collider;
+		h_comp_collider.fromVoidPtr(rigidActor->userData);
+		hit = h_comp_collider.getOwner();
+	}
+
+	return status;
+}
