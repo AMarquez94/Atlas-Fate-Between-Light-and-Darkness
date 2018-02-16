@@ -1,7 +1,7 @@
 #include "mcv_platform.h"
 #include "entity/entity_parser.h"
 #include "comp_circular_controller.h"
-#include "comp_transform.h"
+#include "../comp_transform.h"
 
 DECL_OBJ_MANAGER("circular_controller", TCompCircularController);
 

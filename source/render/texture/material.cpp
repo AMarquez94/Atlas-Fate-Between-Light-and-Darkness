@@ -46,6 +46,8 @@ bool CMaterial::create(const std::string& name) {
 			ts = TS_ALBEDO;
 		else if (slot == "normal")
 			ts = TS_NORMAL;
+		else if (slot == "lightmap")
+			ts = TS_LIGHTMAP;
 		// ...
 
 		assert(ts != TS_COUNT || fatal("Material %s has an invalid texture slot %s\n", name.c_str(), slot.c_str()));

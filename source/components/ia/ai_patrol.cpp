@@ -3,7 +3,7 @@
 #include "ai_patrol.h"
 #include "entity/entity_parser.h"
 #include "components/comp_transform.h"
-#include "components/comp_player_controller.h"
+#include "components/player_controller/comp_player_controller.h"
 #include "components/comp_render.h"
 #include "render/render_utils.h"
 

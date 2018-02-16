@@ -34,7 +34,7 @@
 		"entity": {
 			"name": "The Player",
 			"render" : {
-				"mesh": "data/meshes/pep.mesh",
+				"mesh": "data/meshes/pj_idle.mesh",
 				"materials" : [
 						"data/materials/body.material"
 					]
@@ -43,23 +43,25 @@
 			"transform": {
 				"pos": "5 0 0"
 			}
-			, 
-			"player_controller" : {
-				"target_camera" : "TPCamera",
-				"stamina": 100,
-				"maxStamina": 100,
-				"minStamina": 0,
-				"minStaminaToMerge": 5.0,
-				"dcrStaminaOnPlaceMultiplier": 0.5,
-				"dcrStaminaGround": 10,
-				"dcrStaminaWall": 20,
-				"incrStamina": 20,
-				"walkSpeedFactor": 3,
-				"runSpeedFactor": 6,
-				"walkSlowSpeedFactor": 1.5,
-				"rotationNeeded": 0.3,
-				"tiltNeeded": 0.7
-			}
+			,
+      "player_controller": {
+        "target_camera": "TPCamera",
+				"shadow_camera": "SMCamera",
+        "stamina": 100,
+        "maxStamina": 100,
+        "minStamina": 0,
+        "minStaminaToMerge": 5.0,
+        "dcrStaminaOnPlaceMultiplier": 0.5,
+        "dcrStaminaGround": 10,
+        "dcrStaminaWall": 20,
+        "incrStamina": 20,
+        "walkSpeedFactor": 4,
+        "walkCrouchSpeedFactor": 3,
+        "runSpeedFactor": 7,
+        "walkSlowSpeedFactor": 1.5,
+        "walkSlowCrouchSpeedFactor": 0.5,
+        "rotationSpeed": 7.0
+      }
 		}
 	},
 	{
@@ -88,10 +90,27 @@
 				"target": "The Player",
 				"clampangle" : "-20 80",
 				"offset": "0.25 1.6 2.5",
-				"speed" : 2.0
+				"speed" : 1.0
 			},
 			"camera" : {
 				"fov" : 70 
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "SMCamera",
+			"transform": {
+				"pos": "0 3 3"
+			},
+			"camera_shadowmerge" : {
+				"target": "The Player",
+				"clampangle" : "-20 80",
+				"offset": "0 0.25 2",
+				"speed" : 1.0
+			},
+			"camera" : {
+				"fov" : 80 
 			}
 		}
 	}

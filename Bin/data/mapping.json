@@ -42,7 +42,7 @@
   {
     "name": "btAttack",
     "all": false,
-    "buttons": [ "mouse_left" ]
+    "buttons": [ "mouse_left", "pad_x" ]
   },
   {
     "name": "btRun",
@@ -55,28 +55,38 @@
     "buttons": [ "control" ]
   },
   {
-    "name": "btSlowAnalog",
-    "all": false,
-    "buttons": [ "pad_lanalogx", "pad_lanalogy" ]
-  },
-   {
     "name": "MouseX",
     "all": false,
     "buttons": [ "pad_ranalogx" ]
   },
-    {
+  {
     "name": "MouseY",
     "all": false,
     "buttons": [ "pad_ranalogy" ]
   },
   {
+    "name": "Horizontal",
+    "all": false,
+    "buttons": [ "a", "d", "pad_right", "pad_lanalogx" ]
+  },
+  {
+    "name": "Vertical",
+    "all": false,
+    "buttons": [ "w", "s", "pad_down", "pad_lanalogy" ]
+  },
+  {
     "name": "btAction",
     "all": false,
-    "buttons": [ "e" ]
+    "buttons": [ "e", "pad_y" ]
+  },
+  {
+    "name": "btCrouch",
+    "all": false,
+    "buttons": [ "c", "pad_b" ]
   },
   {
     "name": "btSecAction",
     "all": false,
-    "buttons": [ "space", "pad_a" ]
+    "buttons":  ["space", "pad_a"]
   }
 ]

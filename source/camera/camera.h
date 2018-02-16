@@ -1,5 +1,7 @@
 #pragma once
 
+class CHandle;
+
 class CCamera {
 
   VEC3 pos;         // eye
@@ -25,8 +27,9 @@ class CCamera {
   void updateViewProj();
 
 public:
-
   // 
+	static CHandle main_camera;
+
   VEC3 getPosition() const { return pos; }
   VEC3 getTarget() const { return target; }
 

@@ -1,13 +1,20 @@
 #pragma once
 
-#include "comp_base.h"
+#include "../comp_base.h"
 #include "geometry/transform.h"
-#include "ia/ai_controller.h"
+#include "../ia/ai_controller.h"
 #include "entity/common_msgs.h"
 
 class TCompPlayerController : public IAIController {
 
 	/* Attributes */
+	std::map<std::string, CRenderMesh*> mesh_states;
+
+	/* Camera stack, to bypass entity delayed loading */
+	/* Replace everything here with a real camera stack */
+	std::string camera_shadowmerge;
+	std::string camera_thirdperson;
+	std::string camera_actual;
 
 	float stamina;
 	float maxStamina;
@@ -19,14 +26,12 @@ class TCompPlayerController : public IAIController {
 	float incrStamina = 20.f;
 
 	float walkSpeedFactor;
+	float walkCrouchSpeedFactor;
 	float runSpeedFactor;
 	float walkSlowSpeedFactor;
+	float walkSlowCrouchSpeedFactor;
 	float currentSpeed;
-	//These two parameters describe the behaviour of analogs.
-	//RotationNeeded changes the amount of horizontal tilt the players need to apply when the player is going straight forward
-	//in order to start going in diagonal instead of forward.
-	float deadzone = 0.25f;
-	float rotationSpeed = 10.0f;
+	float rotationSpeed;
 
 	/* Timers */
 	float timerForPressingRemoveInhibitorKey = 0.f;
@@ -42,8 +47,8 @@ class TCompPlayerController : public IAIController {
 	const Input::TButton& btAttack = EngineInput["btAttack"];
 	const Input::TButton& btRun = EngineInput["btRun"];
 	const Input::TButton& btSlow = EngineInput["btSlow"];
-	const Input::TButton& btSlowAnalog = EngineInput["btSlowAnalog"];
 	const Input::TButton& btAction = EngineInput["btAction"];
+	const Input::TButton& btCrouch = EngineInput["btCrouch"];
 	const Input::TButton& btSecAction = EngineInput["btSecAction"];
 
 	const Input::TButton& btHorizontal = EngineInput["Horizontal"];
@@ -62,8 +67,11 @@ class TCompPlayerController : public IAIController {
 	void onMsgPlayerShotInhibitor(const TMsgInhibitorShot& msg);
 
 
+	/* Aux variables */
+	std::string auxStateName = "";
+	
 	/* Private aux functions */
-	bool motionButtonsPressed();
+	const bool motionButtonsPressed();
 	void movePlayer(float);
 	void manageInhibition(float dt);
 
@@ -77,6 +85,7 @@ public:
 	/* States */
 	void IdleState(float);
 	void MotionState(float);	//Movement
+	void CrouchState(float);
 	void PushState(float);
 	void AttackState(float);
 	void ProbeState(float);
