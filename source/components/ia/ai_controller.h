@@ -36,6 +36,7 @@ public:
   void update(float dt);	// recompute behaviour
   void AddState(const std::string&, statehandler);
   void setEntity(CHandle new_entity);
+  const std::string getStateName();
 };
 
 #endif

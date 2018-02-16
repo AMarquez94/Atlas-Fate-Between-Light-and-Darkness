@@ -77,11 +77,16 @@
   {
     "name": "btAction",
     "all": false,
-    "buttons": [ "e", "pad_a" ]
+    "buttons": [ "e", "pad_y" ]
   },
   {
     "name": "btCrouch",
     "all": false,
     "buttons": [ "c", "pad_b" ]
+  },
+  {
+    "name": "btSecAction",
+    "all": false,
+    "buttons":  ["space", "pad_a"]
   }
 ]

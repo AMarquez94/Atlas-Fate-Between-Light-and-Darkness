@@ -20,6 +20,8 @@ void TCompPlayerController::debugInMenu() {
 	  ImGui::SameLine();
 	  ImGui::Text(" - %s", auxStateName.c_str());
   }
+  if (inhibited)
+	  ImGui::Text("N times key pressed: %d", timesRemoveInhibitorKeyPressed);
   ImGui::ProgressBar(stamina/maxStamina);
 
 
@@ -68,6 +70,8 @@ void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	walkSlowSpeedFactor = j.value("walkSlowSpeedFactor", 1.5f);
 	walkSlowCrouchSpeedFactor = j.value("walkSlowCrouchSpeedFactor", 0.5f);
 	rotationSpeed = j.value("rotationSpeed", 5.0f);
+
+	timesToPressRemoveInhibitorKey = j.value("timesToPressRemoveInhibitorKey", 10);
 
 	currentSpeed = 0.f;
 	camera_thirdperson = j.value("target_camera", "");
@@ -121,7 +125,8 @@ void TCompPlayerController::Init() {
 }
 
 void TCompPlayerController::registerMsgs() {
-
+	DECL_MSG(TCompPlayerController, TMsgPlayerHit, onMsgPlayerHit);
+	DECL_MSG(TCompPlayerController, TMsgInhibitorShot, onMsgPlayerShotInhibitor);
 }
 
 
@@ -130,13 +135,23 @@ void TCompPlayerController::IdleState(float dt){
 	TCompRender *c_my_render = get<TCompRender>();
 	c_my_render->mesh = mesh_states.find("pj_idle")->second;
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
+	if (inhibited) {
+		manageInhibition(dt);
+	}
+
 	if (btShadowMerging.getsPressed() && checkShadows()) {
+		timerForPressingRemoveInhibitorKey = 0.f;
+		timesRemoveInhibitorKeyPressed = 0;
 		ChangeState("smEnter");
 	}
 	else if (motionButtonsPressed()) {
+		timerForPressingRemoveInhibitorKey = 0.f;
+		timesRemoveInhibitorKeyPressed = 0;
 		ChangeState("motion");
 	}
 	else if (btCrouch.isPressed()) {
+		TCompRender *c_my_render = get<TCompRender>();
+		c_my_render->mesh = mesh_states.find("pj_crouch")->second;
 		ChangeState("crouch");
 	}
 }
@@ -163,15 +178,21 @@ void TCompPlayerController::MotionState(float dt){
 }
 void TCompPlayerController::CrouchState(float dt) {
 
-	TCompRender *c_my_render = get<TCompRender>();
-	c_my_render->mesh = mesh_states.find("pj_crouch")->second;
+	if (inhibited) {
+		manageInhibition(dt);
+	}
+
 	if (btCrouch.getsReleased()) {
 		ChangeState("idle");
 	}
 	if (btShadowMerging.getsPressed() && checkShadows()) {
+		timerForPressingRemoveInhibitorKey = 0.f;
+		timesRemoveInhibitorKeyPressed = 0;
 		ChangeState("smEnter");
 	}
 	else if (motionButtonsPressed()) {
+		timerForPressingRemoveInhibitorKey = 0.f;
+		timesRemoveInhibitorKeyPressed = 0;
 		ChangeState("motion");
 	}
 }
@@ -282,15 +303,50 @@ void TCompPlayerController::DeadState(float dt){
 }
 
 
-const bool TCompPlayerController::motionButtonsPressed() {
+void TCompPlayerController::onMsgPlayerHit(const TMsgPlayerHit & msg)
+{
+	ChangeState("dead");
 
+	TCompRender* t = get<TCompRender>();
+	t->color = VEC4(1, 1, 1, 1);
+	t->mesh = mesh_states.find("pj_idle")->second;
+
+	//TODO: Merge with Juan code
+	//auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+	//...
+	//Notify all enemys that we are dead
+
+	CEntity* enemy = (CEntity* )msg.h_sender;
+	TMsgPlayerDead newMsg;
+	newMsg.h_sender = CHandle(this).getOwner();
+	enemy->sendMsg(newMsg);
+
+	TCompTransform *mypos = get<TCompTransform>();
+	float y, p, r;
+	mypos->getYawPitchRoll(&y, &p, &r);
+	p = p + deg2rad(90.f);
+	mypos->setYawPitchRoll(y, p, r);
+}
+
+void TCompPlayerController::onMsgPlayerShotInhibitor(const TMsgInhibitorShot& msg) {
+	if (!inhibited) {
+		TCompRender * cRender = get<TCompRender>();
+		cRender->color = VEC4(148, 0, 211, 1);
+		inhibited = true;
+	}
+	else {
+		timesRemoveInhibitorKeyPressed = 0;
+	}
+}
+
+const bool TCompPlayerController::motionButtonsPressed() {
 	return btUp.isPressed() || btDown.isPressed() || btLeft.isPressed() || btRight.isPressed();
 }
 
 bool TCompPlayerController::checkShadows() {
 
 	/* TODO */
-	return true && stamina > minStaminaToMerge;
+	return true && stamina > minStaminaToMerge && !inhibited;
 }
 
 void TCompPlayerController::movePlayer(const float dt) {
@@ -364,4 +420,24 @@ void TCompPlayerController::movePlayer(const float dt) {
 
 	c_my_transform->setRotation(quat);
 	c_my_transform->setPosition(c_my_transform->getPosition() + dir * player_accel);
+}
+
+void TCompPlayerController::manageInhibition(float dt) {
+
+	if (btSecAction.getsPressed()) {
+		timesRemoveInhibitorKeyPressed++;
+		timerForPressingRemoveInhibitorKey = 1.f;
+		if (timesRemoveInhibitorKeyPressed >= timesToPressRemoveInhibitorKey) {
+			TCompRender* t = get<TCompRender>();
+			t->color = VEC4(1, 1, 1, 1);
+			inhibited = false;
+		}
+	}
+	else {
+		timerForPressingRemoveInhibitorKey -= dt;
+		if (timerForPressingRemoveInhibitorKey < 0.f) {
+			timerForPressingRemoveInhibitorKey = 0.f;
+			timesRemoveInhibitorKeyPressed = 0;
+		}
+	}
 }
