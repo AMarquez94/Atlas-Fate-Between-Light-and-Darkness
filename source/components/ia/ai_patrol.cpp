@@ -50,8 +50,11 @@ void CAIPatrol::debugInMenu() {
   ImGui::SameLine();
   ImGui::ProgressBar(suspectO_Meter);
 
-  for (size_t i = 0; i < _waypoints.size(); ++i)
-    renderLine(_waypoints[i].position, _waypoints[(i + 1) % _waypoints.size()].position, VEC4(0, 1, 0, 1));
+  if (_waypoints.size() > 1) {
+	  for (size_t i = 0; i < _waypoints.size(); ++i) {
+		  renderLine(_waypoints[i].position, _waypoints[(i + 1) % _waypoints.size()].position, VEC4(0, 1, 0, 1));
+	  }
+  }
 
   if (lastPlayerKnownPos != VEC3::Zero) {
 	  renderLine(((TCompTransform *)get<TCompTransform>())->getPosition(), lastPlayerKnownPos, VEC4(255, 0, 0, 1));
@@ -101,7 +104,7 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 void CAIPatrol::registerMsgs() {									//TODO: Change
 	DECL_MSG(CAIPatrol, TMsgPlayerDead, onMsgPlayerDead);					//TODO: Change
 	DECL_MSG(CAIPatrol, TMsgPatrolStunned, onMsgPatrolStunned);					//TODO: Change
-
+	DECL_MSG(CAIPatrol, TMsgPatrolShadowMerged, onMsgPatrolShadowMerged);
 }																	//TODO: Change
 
 void CAIPatrol::onMsgPlayerDead(const TMsgPlayerDead& msg) {
@@ -123,6 +126,11 @@ void CAIPatrol::onMsgPatrolStunned(const TMsgPatrolStunned& msg) {
 	ChangeState("stunned");
 }
 
+void CAIPatrol::onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged& msg) {
+	TCompRender *cRender = get<TCompRender>();
+	cRender->color = VEC4(0, 0, 0, 0);
+	ChangeState("shadowMerged");
+}
 
 void CAIPatrol::IdleState(float dt)
 {
@@ -262,15 +270,23 @@ void CAIPatrol::SuspectState(float dt)
 		ChangeState("shootInhibitor");
 	}
 	else if (suspectO_Meter <= 0.f) {
-		TCompRender *cRender = get<TCompRender>();
-		cRender->color = VEC4(1, 1, 1, 1);
-		ChangeState("goToWpt");
+		if (patrolDeadPosition != VEC3::Zero) {
+			//TODO: revive patrol
+		}
+		else {
+			TCompRender *cRender = get<TCompRender>();
+			cRender->color = VEC4(1, 1, 1, 1);
+			ChangeState("goToWpt");
+		}
 	}
 }
 
 void CAIPatrol::ShootInhibitorState(float dt)
 {
-	dbg("Inhibitor shot\n");
+	CEntity *player = (CEntity *)getEntityByName(entityToChase);
+	TMsgInhibitorShot msg;
+	msg.h_sender = CHandle(this).getOwner();
+	player->sendMsg(msg);
 	ChangeState("chase");
 }
 
@@ -299,7 +315,6 @@ void CAIPatrol::ChaseState(float dt)
   }
   else {
 	  rotateTowardsVec(ppos->getPosition(), dt);
-
 	  VEC3 vp = mypos->getPosition();
 	  VEC3 vfwd = mypos->getFront();
 	  vfwd.Normalize();
@@ -377,10 +392,12 @@ void CAIPatrol::GoToNoiseState(float dt)
 
 void CAIPatrol::GoToPatrolState(float dt)
 {
+
 }
 
 void CAIPatrol::FixOtherPatrolState(float dt)
 {
+
 }
 
 void CAIPatrol::GoPlayerLastPosState(float dt)
@@ -408,6 +425,8 @@ void CAIPatrol::GoPlayerLastPosState(float dt)
 			vfwd.Normalize();
 			vp = vp + speed * dt * vfwd;
 			mypos->setPosition(vp);
+
+			//TODO: see if its better to change state here, or in the msg we are going to receive
 		}
 	}
 }
@@ -477,6 +496,8 @@ void CAIPatrol::FixedState(float dt)
 
 void CAIPatrol::ShadowMergedState(float dt)
 {
+	/* Destroy the entity */
+	CHandle(this).getOwner().destroy();
 }
 
 void CAIPatrol::BackState(float dt) {
@@ -504,22 +525,6 @@ void CAIPatrol::BackState(float dt) {
 		idleWarTimerMax = idleWarTimerBase + (rand() % idleWarTimerExtra);
 		ChangeState("idleWar");
 	}*/
-}
-
-
-void CAIPatrol::HitState(float dt) {
-	/* life = life - 1;
-	 if (life <= 0) {
-		ChangeState("dead");
-	 }
-	 else {
-		 ChangeState("closestWpt");
-	 }*/
-}
-
-void CAIPatrol::DeadState(float dt) {
-	fatal("You are dead madafaka");
-	exit(ERROR_VIRUS_INFECTED);
 }
 
 void CAIPatrol::rotateTowardsVec(VEC3 objective, float dt) {

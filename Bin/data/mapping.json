@@ -73,5 +73,10 @@
     "name": "btAction",
     "all": false,
     "buttons": [ "e" ]
+  },
+  {
+    "name": "btSecAction",
+    "all": false,
+    "buttons": [ "space", "pad_a" ]
   }
 ]

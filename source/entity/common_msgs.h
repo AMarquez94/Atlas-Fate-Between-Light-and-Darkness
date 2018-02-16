@@ -34,6 +34,17 @@ struct TMsgPlayerHit {
 	DECL_MSG_ID();
 };
 
+struct TMsgInhibitorShot {
+	CHandle h_sender;
+	DECL_MSG_ID();
+};
+
+struct TMsgPatrolShadowMerged {
+	CHandle h_sender;
+	CHandle h_objective;
+	DECL_MSG_ID();
+};
+
 /*
 struct TMsgTimeOut {
   DECL_MSG_ID();

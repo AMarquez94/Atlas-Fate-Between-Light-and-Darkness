@@ -29,6 +29,9 @@ class TCompPlayerController : public IAIController {
 	float rotationSpeed = 10.0f;
 
 	/* Timers */
+	float timerForPressingRemoveInhibitorKey = 0.f;
+	int timesRemoveInhibitorKeyPressed = 0;
+	int timesToPressRemoveInhibitorKey;
 
 	/* Keys */
 	const Input::TButton& btUp = EngineInput["btUp"];
@@ -41,6 +44,7 @@ class TCompPlayerController : public IAIController {
 	const Input::TButton& btSlow = EngineInput["btSlow"];
 	const Input::TButton& btSlowAnalog = EngineInput["btSlowAnalog"];
 	const Input::TButton& btAction = EngineInput["btAction"];
+	const Input::TButton& btSecAction = EngineInput["btSecAction"];
 
 	const Input::TButton& btHorizontal = EngineInput["Horizontal"];
 	const Input::TButton& btVertical = EngineInput["Vertical"];
@@ -49,15 +53,19 @@ class TCompPlayerController : public IAIController {
 	//const Input::TButton& btCrouch = EngineInput["w"];	
 	//const Input::TButton& btSecAction = EngineInput["w"];
 	std::string target_name;
+	bool inhibited = false;
 
 	DECL_SIBLING_ACCESS();
 
 	void onMsgDamage(const TMsgDamage& msg);
 	void onMsgPlayerHit(const TMsgPlayerHit& msg);
+	void onMsgPlayerShotInhibitor(const TMsgInhibitorShot& msg);
+
 
 	/* Private aux functions */
 	bool motionButtonsPressed();
 	void movePlayer(float);
+	void manageInhibition(float dt);
 
 public:
 	void debugInMenu();

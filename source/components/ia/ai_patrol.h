@@ -34,6 +34,7 @@ class CAIPatrol : public IAIController
 	float distToAttack;
 	float amountRotated = 0.f;
 	float maxRotationSeekingPlayer;
+	VEC3 patrolDeadPosition = VEC3::Zero;
 	//float distToIdleWar;
 	//float distToBack;
 	//float distToChase;
@@ -54,6 +55,7 @@ class CAIPatrol : public IAIController
 
 	void onMsgPlayerDead(const TMsgPlayerDead& msg);
 	void onMsgPatrolStunned(const TMsgPatrolStunned& msg);
+	void onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged& msg);
 
 	void rotateTowardsVec(VEC3 objective, float dt);
 	bool isPlayerInFov();
@@ -82,8 +84,6 @@ public:
 	void ShadowMergedState(float);		//The enemy has been shadowmerged by the player
 
 	void BackState(float);
-	void HitState(float);
-	void DeadState(float);
 
   void Init();
 
