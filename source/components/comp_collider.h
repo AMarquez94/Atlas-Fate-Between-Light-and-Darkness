@@ -22,7 +22,11 @@ enum FilterGroups {
   Characters = Player | Enemy,
   all = -1
 };
+
 class TCompCollider: public TCompBase {
+
+	VEC3 velocity = VEC3::Zero;
+
 public:
   struct TConfig
   {
@@ -31,9 +35,7 @@ public:
     //todo implement
     VEC3 offset;
     float radius;
-    float height;
-	float width;
-	float depth;
+	float height;
     physx::PxGeometryType::Enum shapeType;
     int group;
     int mask;

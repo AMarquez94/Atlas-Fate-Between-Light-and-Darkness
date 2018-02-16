@@ -13,9 +13,12 @@
             "data/materials/piedras1.material"
           ]
         }
-      ]
-    }
-  },
+      ],
+      "collider": {
+        "shape": "box",
+        "halfExtent": "10 3 4"
+      }
+    },
   {
     "entity": {
       "name": "Box002",

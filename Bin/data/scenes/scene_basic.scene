@@ -25,14 +25,6 @@
       "idleWarTimerExtra": 2,
       "orbitRotationBase": 60,
       "orbitRotationExtra": 30
-    },
-    "collider": {
-      "is_dynamic": false,
-      "is_trigger": false,
-      "shape": "box",
-      "height": 2,
-      "width": 4,
-      "depth": 10
     }
 
   }
@@ -68,7 +60,7 @@
       "collider": {
         "shape": "capsule",
         "is_character_controller": true,
-        "radius": 0.5,
+        "radius": 0.35,
         "height": 1.0,
         "gravity":  true
       }

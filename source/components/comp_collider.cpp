@@ -6,9 +6,11 @@
 DECL_OBJ_MANAGER("collider", TCompCollider);
 
 void TCompCollider::debugInMenu() {
+
 }
 
 void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
+
   std::string shape = j["shape"].get<std::string>();
   if (strcmp("box", shape.c_str()) == 0)
   {
@@ -30,10 +32,8 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
   config.is_character_controller = j.value("is_character_controller", false);
   config.is_dynamic = j.value("is_dynamic", false);
   config.is_trigger = j.value("is_trigger", false);
-  config.radius = j.value("radius", 0.f);
   config.height = j.value("height", 0.f);
-  config.width = j.value("width", 0.f);
-  config.depth = j.value("depth", 0.f);
+  config.radius = j.value("radius", 0.f);
   config.gravity = j.value("gravity", false);
 
   if (j.count("halfExtent"))
@@ -47,10 +47,12 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 
 
 void TCompCollider::registerMsgs() {
+
   DECL_MSG(TCompCollider, TMsgEntityCreated, onCreate);
 }
 
 void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
+
   CEngine::get().getPhysics().createActor(*this);
   TCompTransform *c_my_tmx = get<TCompTransform>();
   lastFramePosition = c_my_tmx->getPosition();
@@ -64,13 +66,17 @@ void TCompCollider::update(float dt) {
 
 		TCompPlayerController *c_my_plyrcntlr = get<TCompPlayerController>();
 		VEC3 delta = c_my_plyrcntlr->delta_movement;
-		controller->move(physx::PxVec3(delta.x, delta.y, delta.z), 0.f, dt, physx::PxControllerFilters());
+		//controller->move(physx::PxVec3(delta.x, delta.y, delta.z), 0.f, dt, physx::PxControllerFilters());
+		velocity.x = delta.x;
+		velocity.z = delta.z;
 	}
 
 	if (config.gravity) {
 
-		controller->move(physx::PxVec3(0, -9.81 * dt, 0), 0.f, dt, physx::PxControllerFilters());
+		//controller->move(physx::PxVec3(0, -9.8f * dt, 0), 0.f, dt, physx::PxControllerFilters());
+		velocity.y -= 9.81f * dt;
+		dbg("velocity: %f    dt: %f\n", &velocity.x , &dt);
+		controller->move(physx::PxVec3(velocity.x, velocity.y, velocity.z), 0.f, dt, physx::PxControllerFilters());
 	}
-	
 
 }

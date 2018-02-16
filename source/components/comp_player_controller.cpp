@@ -270,6 +270,6 @@ void TCompPlayerController::movePlayer(float dt) {
 	
 	delta_movement = new_pos - c_my_transform->getPosition();
 
-	c_my_transform->setPosition(new_pos);
+	//c_my_transform->setPosition(new_pos);
 }
 

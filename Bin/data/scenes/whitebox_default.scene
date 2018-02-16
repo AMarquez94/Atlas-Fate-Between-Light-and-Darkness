@@ -21,28 +21,24 @@
   }
   ,
   {
-    "entity":
-    {
-      "name": "Box001"
-      ,
-      "transform":
-      {
-        "pos": "9.9181 4.81843e-007 11.0233"
-        ,
+    "entity": {
+      "name": "Box001",
+      "transform": {
+        "pos": "9.9181 4.81843e-007 11.0233",
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
+      },
+      "render": [
         {
-          "mesh": "data/meshes/Box001.mesh"
-          ,
-          "materials":
-          [
+          "mesh": "data/meshes/Box001.mesh",
+          "materials": [
             "data/materials/mat_default_orange.material"
           ]
         }
-      ]
+      ],
+      "collider": {
+        "shape": "box",
+        "halfExtent": "5.5 12.6 4"
+      }
     }
   }
   ,
@@ -68,7 +64,11 @@
             "data/materials/mat_default_orange.material"
           ]
         }
-      ]
+      ],
+      "collider": {
+        "shape": "box",
+        "halfExtent": "5.5 12.6 4"
+      }
     }
   }
   ,
@@ -94,7 +94,11 @@
             "data/materials/mat_default_orange.material"
           ]
         }
-      ]
+      ],
+      "collider": {
+        "shape": "box",
+        "halfExtent": "5.5 12.6 4"
+      }
     }
   }
   ,
