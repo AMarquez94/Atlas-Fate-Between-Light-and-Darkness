@@ -1,0 +1,10 @@
+{
+  "technique": "textured.tech"
+  ,
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/Tex_0144_0.dds"
+  }
+}

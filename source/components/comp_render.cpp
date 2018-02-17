@@ -48,4 +48,6 @@ void TCompRender::load(const json& j, TEntityParseContext& ctx) {
 		// We accept not receiving an array of mesh inside the comp_render, for handle files
 		loadMesh(j, ctx);
 	}
+  if (j.count("COLOR"))
+	  color = loadVEC4(j["color"]);
 }

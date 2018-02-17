@@ -1,0 +1,12 @@
+{
+  "technique": "textured_bk.tech"
+  ,
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/piedras_c.dds"
+    ,
+    "lightmap": "data/textures/GeoSphere001LightingMap.dds"
+  }
+}

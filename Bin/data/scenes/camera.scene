@@ -1,12 +1,34 @@
 [
-	{
-		"entity": {
-			"name": "the_camera",
+  {
+    "entity": {
+			"name": "TPCamera",
 			"transform": {
 				"pos": "0 3 3"
 			},
 			"render" : {},
-			"flyover_controller" : {},
+			"camera_thirdperson" : {
+				"target": "The Player",
+				"clampangle" : "-20 80",
+				"offset": "0.25 1.6 2.5",
+				"speed" : 1.0
+			},
+			"camera" : {
+				"fov" : 70 
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "SMCamera",
+			"transform": {
+				"pos": "0 3 3"
+			},
+			"camera_shadowmerge" : {
+				"target": "The Player",
+				"clampangle" : "-20 80",
+				"offset": "0 0.25 2",
+				"speed" : 1.0
+			},
 			"camera" : {
 				"fov" : 80 
 			}

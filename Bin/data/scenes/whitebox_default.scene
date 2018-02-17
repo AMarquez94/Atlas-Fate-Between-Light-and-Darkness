@@ -1,0 +1,130 @@
+[
+  {
+    "entity": {
+      "name": "Plane001",
+      "transform": {
+        "pos": "0.0 0.0 0.0",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/Plane001.mesh",
+          "materials": [
+            "data/materials/mat_default_grey.material"
+          ]
+        }
+      ],
+      "collider": {
+        "shape": "plane"
+      }
+    }
+  }
+  ,
+  {
+    "entity": {
+      "name": "Box001",
+      "transform": {
+        "pos": "9.9181 4.81843e-007 11.0233",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/Box001.mesh",
+          "materials": [
+            "data/materials/mat_default_orange.material"
+          ]
+        }
+      ],
+      "collider": {
+        "shape": "box",
+        "halfExtent": "5.5 12.6 4"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box002"
+      ,
+      "transform":
+      {
+        "pos": "-9.9217 4.81843e-007 11.0233"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mat_default_orange.material"
+          ]
+        }
+      ],
+      "collider": {
+        "shape": "box",
+        "halfExtent": "5.5 12.6 4"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box003"
+      ,
+      "transform":
+      {
+        "pos": "-9.9217 -4.82974e-007 -11.0492"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mat_default_orange.material"
+          ]
+        }
+      ],
+      "collider": {
+        "shape": "box",
+        "halfExtent": "5.5 12.6 4"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box004"
+      ,
+      "transform":
+      {
+        "pos": "0.0 -50.0 2.18557e-006"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/default_skybox.material"
+          ]
+        }
+      ]
+    }
+  }
+]

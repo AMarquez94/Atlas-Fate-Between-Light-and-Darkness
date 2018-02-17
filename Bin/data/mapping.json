@@ -1,17 +1,92 @@
 [
-	{
-		"name" : "red",
-		"all" : false,
-		"buttons" : [ "pad_a", "mouse_right", "r"]
-	},
-	{
-		"name" : "green",
-		"all" : true,
-		"buttons" : [ "pad_x", "pad_y"]
-	},
-	{
-		"name" : "blue",
-		"all" : false,
-		"buttons" : [ "pad_lanalogx"]
-	}
+  {
+    "name": "red",
+    "all": false,
+    "buttons": [ "pad_a", "mouse_right", "r" ]
+  },
+  {
+    "name": "green",
+    "all": true,
+    "buttons": [ "pad_x", "pad_y" ]
+  },
+  {
+    "name": "blue",
+    "all": false,
+    "buttons": [ "pad_lanalogx" ]
+  },
+  {
+    "name": "btUp",
+    "all": false,
+    "buttons": [ "w", "pad_up", "pad_lanalogy" ]
+  },
+  {
+    "name": "btDown",
+    "all": false,
+    "buttons": [ "s", "pad_down", "pad_lanalogy" ]
+  },
+  {
+    "name": "btRight",
+    "all": false,
+    "buttons": [ "d", "pad_right", "pad_lanalogx" ]
+  },
+  {
+    "name": "btLeft",
+    "all": false,
+    "buttons": [ "a", "pad_left", "pad_lanalogx" ]
+  },
+  {
+    "name": "btShadowMerging",
+    "all": false,
+    "buttons": [ "mouse_right", "pad_r1" ]
+  },
+  {
+    "name": "btAttack",
+    "all": false,
+    "buttons": [ "mouse_left", "pad_x" ]
+  },
+  {
+    "name": "btRun",
+    "all": false,
+    "buttons": [ "shift", "pad_l2" ]
+  },
+  {
+    "name": "btSlow",
+    "all": false,
+    "buttons": [ "control" ]
+  },
+  {
+    "name": "MouseX",
+    "all": false,
+    "buttons": [ "pad_ranalogx" ]
+  },
+  {
+    "name": "MouseY",
+    "all": false,
+    "buttons": [ "pad_ranalogy" ]
+  },
+  {
+    "name": "Horizontal",
+    "all": false,
+    "buttons": [ "a", "d", "pad_right", "pad_left", "pad_lanalogx" ]
+  },
+  {
+    "name": "Vertical",
+    "all": false,
+    "buttons": [ "w", "s", "pad_down", "pad_up", "pad_lanalogy" ]
+  },
+  {
+    "name": "btAction",
+    "all": false,
+    "buttons": [ "e", "pad_y" ]
+  },
+  {
+    "name": "btCrouch",
+    "all": false,
+    "buttons": [ "c", "pad_b" ]
+  },
+  {
+    "name": "btSecAction",
+    "all": false,
+    "buttons":  ["space", "pad_a"]
+  }
 ]

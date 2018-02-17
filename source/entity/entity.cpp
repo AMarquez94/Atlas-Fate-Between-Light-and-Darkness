@@ -36,6 +36,7 @@ const char* CEntity::getName() const {
 }
 
 void CEntity::debugInMenu() {
+
   if (ImGui::TreeNode(getName())) {
 
 	  // Give option to destroy the entity

@@ -45,6 +45,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <IntDir>$(SolutionDir)..\Build\$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>$(SolutionDir)..\tools\PhysX\PhysX_3.4\Include;$(SolutionDir)..\tools\PhysX\PxShared\Include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)..\Build\$(Platform)\$(Configuration)\</IntDir>
@@ -61,6 +62,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(SolutionDir)../libs/debug/</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -82,19 +84,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera\camera.cpp" />
-    <ClCompile Include="components\comp_bullet_controller.cpp" />
+    <ClCompile Include="components\camera_controller\comp_camera_shadowmerge.cpp" />
+    <ClCompile Include="components\camera_controller\comp_camera_thirdperson.cpp" />
+    <ClCompile Include="components\camera_controller\comp_circular_controller.cpp" />
+    <ClCompile Include="components\camera_controller\comp_flyover_controller.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
-    <ClCompile Include="components\comp_circular_controller.cpp" />
-    <ClCompile Include="components\comp_flyover_controller.cpp" />
+    <ClCompile Include="components\comp_collider.cpp" />
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
-    <ClCompile Include="components\comp_player_controller.cpp" />
     <ClCompile Include="components\comp_render.cpp" />
     <ClCompile Include="components\comp_tags.cpp" />
     <ClCompile Include="components\comp_transform.cpp" />
     <ClCompile Include="components\ia\ai_controller.cpp" />
     <ClCompile Include="components\ia\ai_patrol.cpp" />
+    <ClCompile Include="components\object_controller\comp_bullet_controller.cpp" />
+    <ClCompile Include="components\player_controller\comp_player_controller.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\entity_parser.cpp" />
@@ -128,6 +133,7 @@
     <ClCompile Include="modules\module_manager.cpp" />
     <ClCompile Include="modules\module_render.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
+    <ClCompile Include="modules\system\module_physics.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
     <ClCompile Include="render\mesh\mesh.cpp" />
@@ -152,11 +158,13 @@
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
     <ClInclude Include="camera\camera.h" />
+    <ClInclude Include="components\camera_controller\comp_camera_shadowmerge.h" />
+    <ClInclude Include="components\camera_controller\comp_camera_thirdperson.h" />
+    <ClInclude Include="components\camera_controller\comp_circular_controller.h" />
+    <ClInclude Include="components\camera_controller\comp_flyover_controller.h" />
     <ClInclude Include="components\comp_base.h" />
-    <ClInclude Include="components\comp_bullet_controller.h" />
     <ClInclude Include="components\comp_camera.h" />
-    <ClInclude Include="components\comp_circular_controller.h" />
-    <ClInclude Include="components\comp_flyover_controller.h" />
+    <ClInclude Include="components\comp_collider.h" />
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />
     <ClInclude Include="components\comp_name.h" />
@@ -166,6 +174,8 @@
     <ClInclude Include="components\comp_transform.h" />
     <ClInclude Include="components\ia\ai_controller.h" />
     <ClInclude Include="components\ia\ai_patrol.h" />
+    <ClInclude Include="components\object_controller\comp_bullet_controller.h" />
+    <ClInclude Include="components\player_controller\comp_player_controller.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="entity\common_msgs.h" />
     <ClInclude Include="entity\entity.h" />
@@ -211,6 +221,7 @@
     <ClInclude Include="modules\module_manager.h" />
     <ClInclude Include="modules\module_render.h" />
     <ClInclude Include="modules\system\module_input.h" />
+    <ClInclude Include="modules\system\module_physics.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
     <ClInclude Include="render\cte_buffer.h" />
     <ClInclude Include="render\mesh\mesh.h" />
