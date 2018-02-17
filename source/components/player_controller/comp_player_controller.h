@@ -37,6 +37,23 @@ class TCompPlayerController : public IAIController {
 	float timerForPressingRemoveInhibitorKey = 0.f;
 	int timesRemoveInhibitorKeyPressed = 0;
 	int timesToPressRemoveInhibitorKey;
+	bool inhibited = false;
+
+	/* Messages handled by the player */
+	void onMsgDamage(const TMsgDamage& msg);
+	void onMsgPlayerHit(const TMsgPlayerHit& msg);
+	void onMsgPlayerShotInhibitor(const TMsgInhibitorShot& msg);
+
+	/* Aux variables */
+	std::string auxStateName = "";
+	
+	/* Private aux functions */
+	void movePlayer(float);
+	void manageInhibition(float dt);
+
+	const bool motionButtonsPressed();
+
+	DECL_SIBLING_ACCESS();
 
 	/* Keys */
 	const Input::TButton& btUp = EngineInput["btUp"];
@@ -50,33 +67,12 @@ class TCompPlayerController : public IAIController {
 	const Input::TButton& btAction = EngineInput["btAction"];
 	const Input::TButton& btCrouch = EngineInput["btCrouch"];
 	const Input::TButton& btSecAction = EngineInput["btSecAction"];
-
 	const Input::TButton& btHorizontal = EngineInput["Horizontal"];
 	const Input::TButton& btVertical = EngineInput["Vertical"];
 
-	/* TODO: not for milestone 1 */
-	//const Input::TButton& btCrouch = EngineInput["w"];	
-	//const Input::TButton& btSecAction = EngineInput["w"];
-	std::string target_name;
-	bool inhibited = false;
-
-	DECL_SIBLING_ACCESS();
-
-	void onMsgDamage(const TMsgDamage& msg);
-	void onMsgPlayerHit(const TMsgPlayerHit& msg);
-	void onMsgPlayerShotInhibitor(const TMsgInhibitorShot& msg);
-
-
-	/* Aux variables */
-	std::string auxStateName = "";
-	
-	/* Private aux functions */
-	const bool motionButtonsPressed();
-	void movePlayer(float);
-	void manageInhibition(float dt);
-
 public:
 
+	bool isGrounded;
 	VEC3 delta_movement;
 
 	void debugInMenu();
@@ -104,5 +100,6 @@ public:
 	void HitState(float);
 	void DeadState(float);
 
-	bool checkShadows();
+	bool CheckShadows();
+	bool IsGrounded(void);
 };

@@ -13,8 +13,11 @@
 				"speed" : 1.0
 			},
 			"camera" : {
-				"fov" : 70 
-			}
+				"fov" : 70,
+				"z_near": 0.01,
+				"z_far": 1000
+			},
+			"tags" : ["main_camera"]
 		}
 	},
 	{
@@ -30,8 +33,11 @@
 				"speed" : 1.0
 			},
 			"camera" : {
-				"fov" : 80 
-			}
+				"fov" : 80,
+				"z_near": 0.01,
+				"z_far": 1000
+			},
+			"tags" : ["main_camera"]
 		}
 	}
 ]

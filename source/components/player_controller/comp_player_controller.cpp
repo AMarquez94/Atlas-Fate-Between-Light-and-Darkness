@@ -141,7 +141,7 @@ void TCompPlayerController::IdleState(float dt){
 		manageInhibition(dt);
 	}
 
-	if (btShadowMerging.getsPressed() && checkShadows()) {
+	if (btShadowMerging.getsPressed() && CheckShadows()) {
 		timerForPressingRemoveInhibitorKey = 0.f;
 		timesRemoveInhibitorKeyPressed = 0;
 		ChangeState("smEnter");
@@ -163,7 +163,6 @@ void TCompPlayerController::IdleState(float dt){
 void TCompPlayerController::MotionState(float dt){ 
 
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
-	delta_movement = VEC3::Zero;
 
 	if (!motionButtonsPressed()) {
 		auxStateName = "";
@@ -173,7 +172,7 @@ void TCompPlayerController::MotionState(float dt){
 		
 		movePlayer(dt);
 
-		if (btShadowMerging.getsPressed() && checkShadows()) {
+		if (btShadowMerging.getsPressed() && CheckShadows()) {
 			auxStateName = "";
 			ChangeState("smEnter");
 		}
@@ -188,7 +187,7 @@ void TCompPlayerController::CrouchState(float dt) {
 	if (btCrouch.getsReleased()) {
 		ChangeState("idle");
 	}
-	if (btShadowMerging.getsPressed() && checkShadows()) {
+	if (btShadowMerging.getsPressed() && CheckShadows()) {
 		timerForPressingRemoveInhibitorKey = 0.f;
 		timesRemoveInhibitorKeyPressed = 0;
 		ChangeState("smEnter");
@@ -235,7 +234,7 @@ void TCompPlayerController::ShadowMergingEnterState(float dt){
 
 	// Replace this with an smooth camera interpolation
 	camera_actual = camera_shadowmerge;
-	CCamera::main_camera = getEntityByName(camera_actual);
+	CCamera::main = getEntityByName(camera_actual);
 	ChangeState("smHor");
 }
 
@@ -280,7 +279,7 @@ void TCompPlayerController::ShadowMergingExitState(float dt){
 	// Bring back the main camera to our thirdperson camera
 	// Replace this with an smooth camera interpolation
 	camera_actual = camera_thirdperson;
-	CCamera::main_camera = getEntityByName(camera_actual);
+	CCamera::main = getEntityByName(camera_actual);
 
 	ChangeState("idle");
 }
@@ -343,10 +342,14 @@ void TCompPlayerController::onMsgPlayerShotInhibitor(const TMsgInhibitorShot& ms
 }
 
 const bool TCompPlayerController::motionButtonsPressed() {
+
+	delta_movement = VEC3::Zero;
+	if (!IsGrounded()) return false;
+
 	return btUp.isPressed() || btDown.isPressed() || btLeft.isPressed() || btRight.isPressed();
 }
 
-bool TCompPlayerController::checkShadows() {
+bool TCompPlayerController::CheckShadows() {
 
 	/* TODO */
 	return true && stamina > minStaminaToMerge && !inhibited;
@@ -420,14 +423,11 @@ void TCompPlayerController::movePlayer(const float dt) {
 	Quaternion my_rotation = c_my_transform->getRotation();
 	Quaternion new_rotation = Quaternion::CreateFromYawPitchRoll(dir_yaw, pitch, 0);
 	Quaternion quat = Quaternion::Lerp(my_rotation, new_rotation, rotationSpeed * dt);
-
 	c_my_transform->setRotation(quat);
 
-	float amount_moved = currentSpeed * dt;
-
 	VEC3 new_pos = c_my_transform->getPosition() + dir * player_accel;
-
 	delta_movement = new_pos - c_my_transform->getPosition();
+	
 }
 
 void TCompPlayerController::manageInhibition(float dt) {
@@ -448,4 +448,13 @@ void TCompPlayerController::manageInhibition(float dt) {
 			timesRemoveInhibitorKeyPressed = 0;
 		}
 	}
+}
+
+bool TCompPlayerController::IsGrounded(void)
+{
+	TCompTransform *c_my_transform = get<TCompTransform>();
+	CModulePhysics::RaycastHit hit;
+	CEngine::get().getPhysics().Raycast(c_my_transform->getPosition(), -c_my_transform->getUp(), 3000, hit);
+
+	return isGrounded = hit.distance < 0.3f ? true : false;
 }

@@ -21,9 +21,10 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 	TCompTransform * compTransform = e->get<TCompTransform>();
 	VEC3 pos = compTransform->getPosition();
 	QUAT quat = compTransform->getRotation();
-	PxTransform initialTrans(PxVec3(pos.x, pos.y, pos.z), PxQuat(quat.x, quat.y, quat.z, quat.w));
 
+	PxTransform initialTrans(PxVec3(pos.x, pos.y, pos.z), PxQuat(quat.x, quat.y, quat.z, quat.w));
 	PxRigidActor* actor = nullptr;
+
 	if (config.shapeType == physx::PxGeometryType::ePLANE)
 	{
 		PxRigidStatic* plane = PxCreatePlane(*gPhysics, PxPlane(0, 1, 0, 0), *gMaterial);
@@ -54,10 +55,7 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		PxTransform offset(PxVec3(0.f, 0.f, 0.f));
 		if (config.shapeType == physx::PxGeometryType::eBOX)
 		{
-
 			shape = gPhysics->createShape(PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z), *gMaterial);
-
-
 		}
 		else if (config.shapeType == physx::PxGeometryType::eSPHERE)
 		{
@@ -163,6 +161,7 @@ void CModulePhysics::update(float delta)
 {
 	if (!gScene)
 		return;
+
 	gScene->simulate(delta);
 	gScene->fetchResults(true);
 
@@ -170,6 +169,7 @@ void CModulePhysics::update(float delta)
 	PxActor**actors = gScene->getActiveActors(nbActorsOut);
 
 	for (unsigned int i = 0; i < nbActorsOut; ++i) {
+
 		if (actors[i]->is<PxRigidActor>())
 		{
 			PxRigidActor* rigidActor = ((PxRigidActor*)actors[i]);
@@ -194,6 +194,7 @@ void CModulePhysics::update(float delta)
 			{
 				compTransform->setRotation(QUAT(pxq.x, pxq.y, pxq.z, pxq.w));
 			}
+
 			compTransform->setPosition(VEC3(pxpos.x, pxpos.y, pxpos.z));
 		}
 	}
@@ -231,7 +232,9 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
 	}
 }
 
-bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distance, CHandle & hit)
+/* Auxiliar physics methods */
+
+bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distance, RaycastHit & hit)
 {
 	PxVec3 px_origin = PxVec3(origin.x, origin.y, origin.z);
 	PxVec3 px_dir = PxVec3(dir.x, dir.y, dir.z); // [in] Normalized ray direction
@@ -245,7 +248,13 @@ bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distan
 		PxRigidActor* rigidActor = ((PxRigidActor*)px_hit.block.actor);
 		CHandle h_comp_collider;
 		h_comp_collider.fromVoidPtr(rigidActor->userData);
-		hit = h_comp_collider.getOwner();
+		CEntity * ent_collided = h_comp_collider.getOwner();
+
+		hit.distance = (float)px_hit.block.distance;
+		hit.point = VEC3(px_hit.block.position.x, px_hit.block.position.y, px_hit.block.position.z);
+		hit.normal = VEC3(px_hit.block.normal.x, px_hit.block.normal.y, px_hit.block.normal.z);
+		hit.collider = h_comp_collider;
+		hit.transform = ent_collided->get<TCompTransform>();
 	}
 
 	return status;

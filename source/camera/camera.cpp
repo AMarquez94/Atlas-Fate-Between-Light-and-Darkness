@@ -1,7 +1,7 @@
 #include "mcv_platform.h"
 #include "camera.h"
 
-CHandle CCamera::main_camera;
+CHandle CCamera::main;
 
 
 CCamera::CCamera() {
@@ -41,3 +41,8 @@ void CCamera::setPerspective(float new_fov_vertical, float new_z_near, float new
 	updateViewProj();
 }
 
+
+void CCamera::getMainCamera(void)
+{
+
+}

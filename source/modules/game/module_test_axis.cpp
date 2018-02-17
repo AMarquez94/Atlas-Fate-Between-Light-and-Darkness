@@ -12,6 +12,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 #include "entity/entity_parser.h"
+#include "components/comp_tags.h"
 
 CCamera camera;
 
@@ -47,7 +48,7 @@ bool CModuleTestAxis::start()
   cb_object.activate();
   cb_camera.activate();
 
-  CCamera::main_camera = getEntityByName("TPCamera");
+  CCamera::main = CTagsManager::get().getAllEntitiesByTag(getID("main_camera"))[0];
 
   return true;
 }
@@ -66,8 +67,9 @@ void CModuleTestAxis::update(float delta)
 void CModuleTestAxis::render()
 {
   // Find the entity with name 'the_camera'
-  if (CCamera::main_camera.isValid()) {
-    CEntity* e_camera = CCamera::main_camera;
+	// Replace this by using the first main camera or enabled camera in the scene, Albert.
+  if (CCamera::main.isValid()) {
+    CEntity* e_camera = CCamera::main;
     TCompCamera* c_camera = e_camera->get< TCompCamera >();
     assert(c_camera);
     activateCamera(*c_camera);

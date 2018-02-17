@@ -53,6 +53,17 @@ struct TMsgPatrolShadowMerged {
 	DECL_MSG_ID();
 };
 
+struct TMsgTriggerEnter {
+	CHandle h_other_entity;
+	DECL_MSG_ID();
+};
+
+struct TMsgTriggerExit {
+	CHandle h_other_entity;
+	DECL_MSG_ID();
+};
+
+
 /*
 struct TMsgTimeOut {
   DECL_MSG_ID();
