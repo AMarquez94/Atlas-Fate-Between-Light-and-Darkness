@@ -121,6 +121,8 @@ void TCompPlayerController::Init() {
 	//AddState("probe", (statehandler)&TCompPlayerController::ProbeState);
 	//AddState("push", (statehandler)&TCompPlayerController::PushState);
 
+	delta_movement = VEC3::Zero;
+
 	ChangeState("idle");
 }
 
@@ -161,6 +163,7 @@ void TCompPlayerController::IdleState(float dt){
 void TCompPlayerController::MotionState(float dt){ 
 
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
+	delta_movement = VEC3::Zero;
 
 	if (!motionButtonsPressed()) {
 		auxStateName = "";
@@ -309,6 +312,7 @@ void TCompPlayerController::onMsgPlayerHit(const TMsgPlayerHit & msg)
 
 	TCompRender* t = get<TCompRender>();
 	t->color = VEC4(1, 1, 1, 1);
+	t->mesh = mesh_states.find("pj_idle")->second;
 
 	//TODO: Merge with Juan code
 	//auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
@@ -418,7 +422,12 @@ void TCompPlayerController::movePlayer(const float dt) {
 	Quaternion quat = Quaternion::Lerp(my_rotation, new_rotation, rotationSpeed * dt);
 
 	c_my_transform->setRotation(quat);
-	c_my_transform->setPosition(c_my_transform->getPosition() + dir * player_accel);
+
+	float amount_moved = currentSpeed * dt;
+
+	VEC3 new_pos = c_my_transform->getPosition() + dir * player_accel;
+
+	delta_movement = new_pos - c_my_transform->getPosition();
 }
 
 void TCompPlayerController::manageInhibition(float dt) {

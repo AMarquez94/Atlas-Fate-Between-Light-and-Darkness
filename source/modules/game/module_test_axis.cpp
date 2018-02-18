@@ -24,7 +24,7 @@ bool CModuleTestAxis::start()
   }
   {
 	  TEntityParseContext ctx;
-	  parseScene("data/scenes/scene_lightmap.scene", ctx);
+	  parseScene("data/scenes/whitebox_default.scene", ctx);
   }
   
   camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);

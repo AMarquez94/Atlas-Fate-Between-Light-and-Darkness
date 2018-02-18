@@ -76,6 +76,9 @@ class TCompPlayerController : public IAIController {
 	void manageInhibition(float dt);
 
 public:
+
+	VEC3 delta_movement;
+
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
 	void Init();
