@@ -1,13 +1,27 @@
-[{
-		"entity": {
-			"name": "bullet",
-			"transform": {
-				"pos": "0 0 0"
-			},
-			"render" : {},
-			"bullet_controller" : {
-				"speed" : 4.0
-			}
-		}
-	}
+[
+  {
+    "entity": {
+      "name": "bullet",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render": {
+        "mesh": "circle_xz.mesh"
+      },
+      "bullet_controller": {
+        "speed": 4.0
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "to_right",
+      "transform": {},
+      "render": {},
+      "hierarchy": {
+        "parent": "bullet",
+        "pos": "-1 0 0"
+      }
+    }
+  }
 ]

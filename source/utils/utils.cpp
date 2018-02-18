@@ -70,3 +70,16 @@ json loadJson(const std::string& filename) {
 
 	return j;
 }
+
+// generate a hash from the input buffer
+uint32_t getID(const void* buff, size_t nbytes) {
+	uint32_t seed = 0;
+	uint32_t out_value = 0;
+	MurmurHash3_x86_32(buff, (uint32_t)nbytes, seed, &out_value);
+	assert(out_value != 0);
+	return out_value;
+}
+
+uint32_t getID(const char* txt) {
+	return getID(txt, strlen(txt));
+}

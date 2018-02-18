@@ -8,6 +8,8 @@ class CTransform {
 
 public:
 
+	CTransform combineWith(const CTransform& delta_transform) const;
+
   // -------------------------------------------
   VEC3 getPosition() const { return pos; }
   void setPosition(VEC3 new_pos) { pos = new_pos; }

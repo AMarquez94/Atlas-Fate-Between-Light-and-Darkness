@@ -4,15 +4,31 @@
 CResourceManager Resources;
 
 void CResourceManager::registerResourceClass(const CResourceClass* new_class) {
-  // Given obj can't be null
-  assert(new_class);
-  // Extension must be definedc
-  assert(!new_class->extension.empty());
-  // Can't repeat extension
-  assert(resource_classes.find(new_class->extension) == resource_classes.end());
+	// Given obj can't be null
+	assert(new_class);
 
-  // Save the class by name
-  resource_classes[new_class->extension] = new_class;
+	// There must be at least one extension 
+	assert(!new_class->extensions.empty());
+
+	// Register all extension with this handler
+	for (auto& e : new_class->extensions) {
+		// Can't repeat extension
+		assert(resource_classes.find(e) == resource_classes.end());
+		assert(!e.empty());
+		resource_classes[e] = new_class;
+	}
+	resource_classes_by_file_change_priority.push_back(new_class);
+}
+
+void CResourceManager::onFileChanged(const std::string& filename) {
+	// Scan each category in the order that were registered
+	for (auto& rc : resource_classes_by_file_change_priority) {
+		// Give the oportunity to each resource to reload/refresh if the file has changed
+		for (auto& r : all_resources) {
+			if (r.second->getClass() == rc)
+				r.second->onFileChanged(filename);
+		}
+	}
 }
 
 const IResource* CResourceManager::get(const std::string& res_name) {
@@ -75,6 +91,10 @@ void CResourceManager::debugInMenu() {
     // Scan each registered resource class
     for (auto it : resource_classes) {
       auto res_class = it.second;
+
+	  // If a resource class has several extensions, only show the first one
+	  if (it.second->extensions[0] != it.first)
+		  continue;
 
       // Open section Textures?
       if (ImGui::TreeNode(res_class->class_name.c_str())) {

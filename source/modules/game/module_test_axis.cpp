@@ -7,7 +7,6 @@
 #include "resources/resources_manager.h"
 #include "render/texture/texture.h"
 #include "render/texture/material.h"
-#include "render/render_technique.h"
 #include "handle/handle.h"
 #include "components/comp_name.h"
 #include "components/comp_transform.h"
@@ -25,6 +24,14 @@ bool CModuleTestAxis::start()
   {
 	  TEntityParseContext ctx;
 	  parseScene("data/scenes/whitebox_default.scene", ctx);
+  }
+  {
+	  TEntityParseContext ctx;
+	  parseScene("data/scenes/player.scene", ctx);
+  }
+  {
+	  TEntityParseContext ctx;
+	  parseScene("data/scenes/camera.scene", ctx);
   }
   
   camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);

@@ -3,6 +3,13 @@
 
 CHandle CCamera::main_camera;
 
+
+CCamera::CCamera() {
+	aspect_ratio = 1.f;
+	setPerspective(deg2rad(60.f), 1.0f, 1000.f);
+	lookAt(VEC3(1, 0, 0), VEC3(0, 0, 0), VEC3(0, 1, 0));
+}
+
 void CCamera::updateViewProj() {
   view_proj = view * proj;
 }
@@ -30,7 +37,7 @@ void CCamera::setPerspective(float new_fov_vertical, float new_z_near, float new
 	fov_vertical = new_fov_vertical;
 	z_near = new_z_near;
 	z_far = new_z_far;
-  proj = MAT44::CreatePerspectiveFieldOfView(new_fov_vertical, (float)Render.width / (float)Render.height, new_z_near, new_z_far);
-  updateViewProj();
+	proj = MAT44::CreatePerspectiveFieldOfView(new_fov_vertical, (float)Render.width / (float)Render.height, new_z_near, new_z_far);
+	updateViewProj();
 }
 

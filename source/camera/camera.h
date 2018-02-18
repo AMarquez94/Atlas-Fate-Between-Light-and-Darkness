@@ -27,6 +27,8 @@ class CCamera {
   void updateViewProj();
 
 public:
+	CCamera();
+
   // 
 	static CHandle main_camera;
 

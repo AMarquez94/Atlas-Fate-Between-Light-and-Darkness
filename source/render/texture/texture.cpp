@@ -7,7 +7,7 @@ class CTexturesResourceClass : public CResourceClass {
 public:
   CTexturesResourceClass() {
     class_name = "Textures";
-    extension = ".dds";
+	extensions = { ".dds" };
   }
   IResource* create(const std::string& name) const override {
     dbg("Creating texture %s\n", name.c_str());
@@ -41,6 +41,15 @@ bool CTexture::create(const std::string& name) {
   if( FAILED( hr ) )
     return false;
   return true;
+}
+
+void CTexture::onFileChanged(const std::string& filename) {
+	if (filename != getName())
+		return;
+	destroy();
+	if (!create(filename)) {
+		// reLoad has failed!!
+	}
 }
 
 // Set to the DX driver that we don't want any texture in this slot
