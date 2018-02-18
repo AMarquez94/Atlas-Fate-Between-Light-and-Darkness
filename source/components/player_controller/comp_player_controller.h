@@ -65,6 +65,7 @@ class TCompPlayerController : public IAIController {
 	void onMsgDamage(const TMsgDamage& msg);
 	void onMsgPlayerHit(const TMsgPlayerHit& msg);
 	void onMsgPlayerShotInhibitor(const TMsgInhibitorShot& msg);
+	void onMsgPlayerIlluminated(const TMsgPlayerIlluminated& msg);
 
 
 	/* Aux variables */
@@ -105,4 +106,6 @@ public:
 	void DeadState(float);
 
 	bool checkShadows();
+	const bool isInShadows();
+	const bool isDead();
 };

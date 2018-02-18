@@ -99,6 +99,7 @@
     <ClCompile Include="components\ia\ai_controller.cpp" />
     <ClCompile Include="components\ia\ai_patrol.cpp" />
     <ClCompile Include="components\object_controller\comp_bullet_controller.cpp" />
+    <ClCompile Include="components\object_controller\comp_cone_of_light.cpp" />
     <ClCompile Include="components\player_controller\comp_player_controller.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity\entity.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="components\ia\ai_controller.h" />
     <ClInclude Include="components\ia\ai_patrol.h" />
     <ClInclude Include="components\object_controller\comp_bullet_controller.h" />
+    <ClInclude Include="components\object_controller\comp_cone_of_light.h" />
     <ClInclude Include="components\player_controller\comp_player_controller.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="entity\common_msgs.h" />

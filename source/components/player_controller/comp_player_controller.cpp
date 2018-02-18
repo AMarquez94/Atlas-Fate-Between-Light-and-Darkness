@@ -129,6 +129,7 @@ void TCompPlayerController::Init() {
 void TCompPlayerController::registerMsgs() {
 	DECL_MSG(TCompPlayerController, TMsgPlayerHit, onMsgPlayerHit);
 	DECL_MSG(TCompPlayerController, TMsgInhibitorShot, onMsgPlayerShotInhibitor);
+	DECL_MSG(TCompPlayerController, TMsgPlayerIlluminated, onMsgPlayerIlluminated);
 }
 
 
@@ -342,6 +343,12 @@ void TCompPlayerController::onMsgPlayerShotInhibitor(const TMsgInhibitorShot& ms
 	}
 }
 
+void TCompPlayerController::onMsgPlayerIlluminated(const TMsgPlayerIlluminated& msg) {
+	if (isInShadows()) {
+		ChangeState("smExit");
+	}
+}
+
 const bool TCompPlayerController::motionButtonsPressed() {
 	return btUp.isPressed() || btDown.isPressed() || btLeft.isPressed() || btRight.isPressed();
 }
@@ -448,4 +455,13 @@ void TCompPlayerController::manageInhibition(float dt) {
 			timesRemoveInhibitorKeyPressed = 0;
 		}
 	}
+}
+
+const bool TCompPlayerController::isInShadows() {
+	return this->getStateName().compare("smHor") == 0 || this->getStateName().compare("smVer") == 0;
+}
+
+const bool TCompPlayerController::isDead()
+{
+	return this->getStateName().compare("dead") == 0;
 }

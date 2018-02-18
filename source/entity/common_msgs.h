@@ -53,6 +53,11 @@ struct TMsgPatrolShadowMerged {
 	DECL_MSG_ID();
 };
 
+struct TMsgPlayerIlluminated {
+	CHandle h_sender;
+	DECL_MSG_ID();
+};
+
 /*
 struct TMsgTimeOut {
   DECL_MSG_ID();

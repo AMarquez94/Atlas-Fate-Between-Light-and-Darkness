@@ -6,59 +6,61 @@
 #include "components/player_controller/comp_player_controller.h"
 #include "components/comp_render.h"
 #include "render/render_utils.h"
+#include "components/comp_group.h"
+#include "components/object_controller/comp_cone_of_light.h"
 
 DECL_OBJ_MANAGER("ai_patrol", CAIPatrol);
 
 void CAIPatrol::Init()
 {
-  // insert all states in the map
-  AddState("idle", (statehandler)&CAIPatrol::IdleState);
-  AddState("goToWpt", (statehandler)&CAIPatrol::GoToWptState);
-  AddState("waitInWpt", (statehandler)&CAIPatrol::WaitInWptState);
-  AddState("nextWpt", (statehandler)&CAIPatrol::NextWptState);
-  AddState("closestWpt", (statehandler)&CAIPatrol::ClosestWptState);
-  AddState("suspect", (statehandler)&CAIPatrol::SuspectState);
-  AddState("shootInhibitor", (statehandler)&CAIPatrol::ShootInhibitorState);
-  AddState("chase", (statehandler)&CAIPatrol::ChaseState);
-  AddState("attack", (statehandler)&CAIPatrol::AttackState);
-  AddState("idleWar", (statehandler)&CAIPatrol::IdleWarState);
-  AddState("goToNoise", (statehandler)&CAIPatrol::GoToNoiseState);
-  AddState("goToPatrol", (statehandler)&CAIPatrol::GoToPatrolState);
-  AddState("fixPatrol", (statehandler)&CAIPatrol::FixOtherPatrolState);
-  AddState("goToPlayerLastPos", (statehandler)&CAIPatrol::GoPlayerLastPosState);
-  AddState("seekPlayer", (statehandler)&CAIPatrol::SeekPlayerState);
-  AddState("stunned", (statehandler)&CAIPatrol::StunnedState);
-  AddState("fixed", (statehandler)&CAIPatrol::FixedState);
-  AddState("shadowMerged", (statehandler)&CAIPatrol::ShadowMergedState);
+	// insert all states in the map
+	AddState("idle", (statehandler)&CAIPatrol::IdleState);
+	AddState("goToWpt", (statehandler)&CAIPatrol::GoToWptState);
+	AddState("waitInWpt", (statehandler)&CAIPatrol::WaitInWptState);
+	AddState("nextWpt", (statehandler)&CAIPatrol::NextWptState);
+	AddState("closestWpt", (statehandler)&CAIPatrol::ClosestWptState);
+	AddState("suspect", (statehandler)&CAIPatrol::SuspectState);
+	AddState("shootInhibitor", (statehandler)&CAIPatrol::ShootInhibitorState);
+	AddState("chase", (statehandler)&CAIPatrol::ChaseState);
+	AddState("attack", (statehandler)&CAIPatrol::AttackState);
+	AddState("idleWar", (statehandler)&CAIPatrol::IdleWarState);
+	AddState("goToNoise", (statehandler)&CAIPatrol::GoToNoiseState);
+	AddState("goToPatrol", (statehandler)&CAIPatrol::GoToPatrolState);
+	AddState("fixPatrol", (statehandler)&CAIPatrol::FixOtherPatrolState);
+	AddState("goToPlayerLastPos", (statehandler)&CAIPatrol::GoPlayerLastPosState);
+	AddState("seekPlayer", (statehandler)&CAIPatrol::SeekPlayerState);
+	AddState("stunned", (statehandler)&CAIPatrol::StunnedState);
+	AddState("fixed", (statehandler)&CAIPatrol::FixedState);
+	AddState("shadowMerged", (statehandler)&CAIPatrol::ShadowMergedState);
 
-  // reset the state
-  ChangeState("idle");
-  currentWaypoint = 0;
+	// reset the state
+	ChangeState("idle");
+	currentWaypoint = 0;
 }
 
 void CAIPatrol::debugInMenu() {
-  IAIController::debugInMenu();
-  if (ImGui::TreeNode("Waypoints")) {
-    for (auto& v : _waypoints) {
-      ImGui::PushID(&v);
-      ImGui::DragFloat3("Point", &v.position.x, 0.1f, -20.f, 20.f);
-      ImGui::PopID();
-    }
-    ImGui::TreePop();
-  }
-  ImGui::Text("Suspect Level:");
-  ImGui::SameLine();
-  ImGui::ProgressBar(suspectO_Meter);
+	IAIController::debugInMenu();
+	if (ImGui::TreeNode("Waypoints")) {
+		for (auto& v : _waypoints) {
+			ImGui::PushID(&v);
+			ImGui::DragFloat3("Point", &v.position.x, 0.1f, -20.f, 20.f);
+			ImGui::PopID();
+		}
+		ImGui::TreePop();
+	}
+	ImGui::Text("Suspect Level:");
+	ImGui::SameLine();
+	ImGui::ProgressBar(suspectO_Meter);
 
-  if (_waypoints.size() > 1) {
-	  for (size_t i = 0; i < _waypoints.size(); ++i) {
-		  renderLine(_waypoints[i].position, _waypoints[(i + 1) % _waypoints.size()].position, VEC4(0, 1, 0, 1));
-	  }
-  }
+	if (_waypoints.size() > 1) {
+		for (size_t i = 0; i < _waypoints.size(); ++i) {
+			renderLine(_waypoints[i].position, _waypoints[(i + 1) % _waypoints.size()].position, VEC4(0, 1, 0, 1));
+		}
+	}
 
-  if (lastPlayerKnownPos != VEC3::Zero) {
-	  renderLine(((TCompTransform *)get<TCompTransform>())->getPosition(), lastPlayerKnownPos, VEC4(255, 0, 0, 1));
-  }
+	if (lastPlayerKnownPos != VEC3::Zero) {
+		renderLine(((TCompTransform *)get<TCompTransform>())->getPosition(), lastPlayerKnownPos, VEC4(255, 0, 0, 1));
+	}
 }
 
 void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
@@ -68,7 +70,7 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 
 	auto& j_waypoints = j["waypoints"];
 	for (auto it = j_waypoints.begin(); it != j_waypoints.end(); ++it) {
-	  
+
 		Waypoint wpt;
 		assert(it.value().count("position") == 1);
 		assert(it.value().count("lookAt") == 1);
@@ -81,24 +83,24 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 
 	speed = j.value("speed", 2.0f);
 	rotationSpeed = deg2rad(j.value("rotationSpeed", 90));
-	fov = deg2rad(j.value("fov", 90));
+	fov = deg2rad(j.value("fov", 60));
 	entityToChase = j.value("entityToChase", "The Player");
 	autoChaseDistance = j.value("autoChaseDistance", 5.f);
-	maxChaseDistance = j.value("maxChaseDistance", 8.f);
+	maxChaseDistance = j.value("maxChaseDistance", 10.f);
 	maxTimeSuspecting = j.value("maxTimeSuspecting", 3.f);
 	dcrSuspectO_Meter = j.value("dcrSuspectO_meter", .3f);
 	incrBaseSuspectO_Meter = j.value("incrBaseSuspectO_meter", .3f);
 	distToAttack = j.value("distToIdleWar", 1.0f);
 	maxRotationSeekingPlayer = deg2rad(j.value("maxRotationSeekingPlayer", 90));
 
-//  distToBack = j.value("distToBack", 1.0f);
-//  distToChase = j.value("distToChase", 10.0f);
-//  entityToChase = j.value("entityToChase", "The Player");
-//  life = j.value("life", 5);
-//  idleWarTimerBase = j.value("idleWarTimerBase", 1.0f);
-//  idleWarTimerExtra = j.value("idleWarTimerExtra", 2);
-//  orbitRotationBase = deg2rad(j.value("orbitRotationBase", 60));
-//  orbitRotationExtra = j.value("orbitRotationExtra", 30);
+	//  distToBack = j.value("distToBack", 1.0f);
+	//  distToChase = j.value("distToChase", 10.0f);
+	//  entityToChase = j.value("entityToChase", "The Player");
+	//  life = j.value("life", 5);
+	//  idleWarTimerBase = j.value("idleWarTimerBase", 1.0f);
+	//  idleWarTimerExtra = j.value("idleWarTimerExtra", 2);
+	//  orbitRotationBase = deg2rad(j.value("orbitRotationBase", 60));
+	//  orbitRotationExtra = j.value("orbitRotationExtra", 30);
 }
 
 void CAIPatrol::registerMsgs() {									//TODO: Change
@@ -134,16 +136,16 @@ void CAIPatrol::onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged& msg) {
 
 void CAIPatrol::IdleState(float dt)
 {
-  ChangeState("goToWpt");
+	ChangeState("goToWpt");
 }
 
 /**
-	Moves to currentWpt position
+Moves to currentWpt position
 */
 void CAIPatrol::GoToWptState(float dt)
 {
 	TCompTransform *mypos = getMyTransform();
-	rotateTowardsVec(getWaypoint().position, dt);	
+	rotateTowardsVec(getWaypoint().position, dt);
 
 	VEC3 vp = mypos->getPosition();
 
@@ -172,21 +174,21 @@ void CAIPatrol::GoToWptState(float dt)
 		}
 	}
 
-  //// next wpt
-  //if (VEC3::Distance(getWaypoint(), vp) < 1) ChangeState("nextWpt");
+	//// next wpt
+	//if (VEC3::Distance(getWaypoint(), vp) < 1) ChangeState("nextWpt");
 
-  //// chase
-  //CEntity *player = (CEntity *)getEntityByName(entityToChase);
-  //TCompTransform *ppos = player->get<TCompTransform>();
-  //bool in_fov = mypos->isInFov(ppos->getPosition(), fov);
-  //if (in_fov && VEC3::Distance(mypos->getPosition(), ppos->getPosition()) <= distToChase) {
-	 // ChangeState("chase");
-  //}
+	//// chase
+	//CEntity *player = (CEntity *)getEntityByName(entityToChase);
+	//TCompTransform *ppos = player->get<TCompTransform>();
+	//bool in_fov = mypos->isInFov(ppos->getPosition(), fov);
+	//if (in_fov && VEC3::Distance(mypos->getPosition(), ppos->getPosition()) <= distToChase) {
+	// ChangeState("chase");
+	//}
 }
 
 /**
-	Waits in the current position the time set in the currentWpt unless
-	it sees the enemy
+Waits in the current position the time set in the currentWpt unless
+it sees the enemy
 */
 void CAIPatrol::WaitInWptState(float dt)
 {
@@ -217,8 +219,8 @@ void CAIPatrol::WaitInWptState(float dt)
 
 void CAIPatrol::NextWptState(float dt)
 {
-  currentWaypoint = (currentWaypoint + 1) % _waypoints.size();
-  ChangeState("goToWpt");
+	currentWaypoint = (currentWaypoint + 1) % _waypoints.size();
+	ChangeState("goToWpt");
 }
 
 
@@ -239,8 +241,8 @@ void CAIPatrol::ClosestWptState(float dt) {
 }
 
 /**
-	The enemy thinks he may have seen the player. Rotates towards him and wait until he is sure
-	(this will depend on the distance and player's noise)
+The enemy thinks he may have seen the player. Rotates towards him and wait until he is sure
+(this will depend on the distance and player's noise)
 */
 void CAIPatrol::SuspectState(float dt)
 {
@@ -256,7 +258,7 @@ void CAIPatrol::SuspectState(float dt)
 		suspectO_Meter = 1.f;
 		rotateTowardsVec(ppos->getPosition(), dt);
 	}
-	else if(isPlayerInFov() && distanceToPlayer <= maxChaseDistance) {
+	else if (isPlayerInFov() && distanceToPlayer <= maxChaseDistance) {
 		suspectO_Meter += dt * incrBaseSuspectO_Meter;							//TODO: increment more depending distance and noise
 		rotateTowardsVec(ppos->getPosition(), dt);
 	}
@@ -283,6 +285,7 @@ void CAIPatrol::SuspectState(float dt)
 
 void CAIPatrol::ShootInhibitorState(float dt)
 {
+	turnOnLight();
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TMsgInhibitorShot msg;
 	msg.h_sender = CHandle(this).getOwner();
@@ -293,39 +296,39 @@ void CAIPatrol::ShootInhibitorState(float dt)
 
 void CAIPatrol::ChaseState(float dt)
 {
-  TCompTransform *mypos = getMyTransform();
-  CEntity *player = (CEntity *)getEntityByName(entityToChase);
-  TCompTransform *ppos = player->get<TCompTransform>();
+	TCompTransform *mypos = getMyTransform();
+	CEntity *player = (CEntity *)getEntityByName(entityToChase);
+	TCompTransform *ppos = player->get<TCompTransform>();
 
-  if (lastPlayerKnownPos != VEC3::Zero) {
+	if (lastPlayerKnownPos != VEC3::Zero) {
 
-	  /* If we had the player's previous position, know where he is going */
-	  isLastPlayerKnownDirLeft = mypos->isInLeft(ppos->getPosition() - lastPlayerKnownPos);
-  }
-  lastPlayerKnownPos = ppos->getPosition();
+		/* If we had the player's previous position, know where he is going */
+		isLastPlayerKnownDirLeft = mypos->isInLeft(ppos->getPosition() - lastPlayerKnownPos);
+	}
+	lastPlayerKnownPos = ppos->getPosition();
 
-  float distToPlayer = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
-  if (!isPlayerInFov() || distToPlayer >= maxChaseDistance + 0.5f) {
-	  TCompRender * cRender = get<TCompRender>();
-	  cRender->color = VEC4(255, 255, 0, 1);
-	  ChangeState("goToPlayerLastPos");
-  }
-  else if (distToPlayer < distToAttack) {
-	  ChangeState("attack");
-  }
-  else {
-	  rotateTowardsVec(ppos->getPosition(), dt);
-	  VEC3 vp = mypos->getPosition();
-	  VEC3 vfwd = mypos->getFront();
-	  vfwd.Normalize();
-	  vp = vp + speed * dt * vfwd;
-	  mypos->setPosition(vp);
-  }
+	float distToPlayer = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
+	if (!isPlayerInFov() || distToPlayer >= maxChaseDistance + 0.5f) {
+		TCompRender * cRender = get<TCompRender>();
+		cRender->color = VEC4(255, 255, 0, 1);
+		ChangeState("goToPlayerLastPos");
+	}
+	else if (distToPlayer < distToAttack) {
+		ChangeState("attack");
+	}
+	else {
+		rotateTowardsVec(ppos->getPosition(), dt);
+		VEC3 vp = mypos->getPosition();
+		VEC3 vfwd = mypos->getFront();
+		vfwd.Normalize();
+		vp = vp + speed * dt * vfwd;
+		mypos->setPosition(vp);
+	}
 }
 
 void CAIPatrol::AttackState(float dt)
 {
-	
+
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform * ppos = player->get<TCompTransform>();
 
@@ -355,34 +358,34 @@ void CAIPatrol::IdleWarState(float dt) {
 	TCompTransform *ppos = player->get<TCompTransform>();
 
 	if (VEC3::Distance(mypos->getPosition(), ppos->getPosition()) <= distToBack) {
-		idleWarTimer = 0;
-		ChangeState("back");
+	idleWarTimer = 0;
+	ChangeState("back");
 	}
 	else if(VEC3::Distance(mypos->getPosition(), ppos->getPosition()) > distToIdleWar + 0.5){
-		idleWarTimer = 0;
-		ChangeState("chase");
+	idleWarTimer = 0;
+	ChangeState("chase");
 	}
 	else {
 
-		float y, r, p;
-		mypos->getYawPitchRoll(&y, &p, &r);
-		if (mypos->isInLeft(ppos->getPosition()))
-		{
-			y += rotationSpeed * dt;
-		}
-		else
-		{
-			y -= rotationSpeed * dt;
-		}
-		mypos->setYawPitchRoll(y, p, r);
+	float y, r, p;
+	mypos->getYawPitchRoll(&y, &p, &r);
+	if (mypos->isInLeft(ppos->getPosition()))
+	{
+	y += rotationSpeed * dt;
+	}
+	else
+	{
+	y -= rotationSpeed * dt;
+	}
+	mypos->setYawPitchRoll(y, p, r);
 
-		if (idleWarTimer >= idleWarTimerMax) {
-			idleWarTimer = 0;
-			ChangeState("chooseOrbitSide");
-		}
-		else {
-			idleWarTimer += dt;
-		}
+	if (idleWarTimer >= idleWarTimerMax) {
+	idleWarTimer = 0;
+	ChangeState("chooseOrbitSide");
+	}
+	else {
+	idleWarTimer += dt;
+	}
 	}*/
 }
 
@@ -445,7 +448,7 @@ void CAIPatrol::SeekPlayerState(float dt)
 		ChangeState("suspect");
 	}
 	else {
-		
+
 		if (amountRotated >= maxRotationSeekingPlayer * 3) {
 			suspectO_Meter = 0.f;
 			TCompRender * cRender = get<TCompRender>();
@@ -454,7 +457,7 @@ void CAIPatrol::SeekPlayerState(float dt)
 			ChangeState("closestWpt");
 		}
 		else {
-		
+
 			float y, p, r;
 			mypos->getYawPitchRoll(&y, &p, &r);
 
@@ -487,7 +490,7 @@ void CAIPatrol::SeekPlayerState(float dt)
 
 void CAIPatrol::StunnedState(float dt)
 {
-	
+
 }
 
 void CAIPatrol::FixedState(float dt)
@@ -508,11 +511,11 @@ void CAIPatrol::BackState(float dt) {
 	mypos->getYawPitchRoll(&y, &p, &r);
 	if (mypos->isInLeft(ppos->getPosition()))
 	{
-		y += rotationSpeed * dt;
+	y += rotationSpeed * dt;
 	}
 	else
 	{
-		y -= rotationSpeed * dt;
+	y -= rotationSpeed * dt;
 	}
 	mypos->setYawPitchRoll(y, p, r);
 	VEC3 vp = mypos->getPosition();
@@ -522,8 +525,8 @@ void CAIPatrol::BackState(float dt) {
 	mypos->setPosition(vp);
 
 	if (VEC3::Distance(mypos->getPosition(), ppos->getPosition()) > distToBack + 0.5f) {
-		idleWarTimerMax = idleWarTimerBase + (rand() % idleWarTimerExtra);
-		ChangeState("idleWar");
+	idleWarTimerMax = idleWarTimerBase + (rand() % idleWarTimerExtra);
+	ChangeState("idleWar");
 	}*/
 }
 
@@ -552,14 +555,20 @@ bool CAIPatrol::isPlayerInFov() {
 	TCompTransform *mypos = getMyTransform();
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
+	TCompPlayerController *pController = player->get <TCompPlayerController>();
 
 	/* Player inside cone of vision */
 	bool in_fov = mypos->isInFov(ppos->getPosition(), fov);
 
-	/* Player not shadow_merged */
-	std::string playerState = ((TCompPlayerController *)player->get<TCompPlayerController>())->getStateName();
-	bool isPlayerInShadows = playerState.compare("smHor") == 0 || playerState.compare("smVer") == 0;
-
-	return in_fov && !isPlayerInShadows && !playerState.compare("dead") == 0;
+	return in_fov && !pController->isInShadows() && !pController->isDead();
 }
 
+
+
+void CAIPatrol::turnOnLight()
+{
+	TCompGroup* cGroup = get<TCompGroup>();
+	CEntity* eCone = cGroup->getHandleByName("Cone of Light");
+	TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
+	cConeController->turnOnLight();
+}

@@ -59,6 +59,7 @@ class CAIPatrol : public IAIController
 
 	void rotateTowardsVec(VEC3 objective, float dt);
 	bool isPlayerInFov();
+	void turnOnLight();
 
 public:
 	void load(const json& j, TEntityParseContext& ctx);

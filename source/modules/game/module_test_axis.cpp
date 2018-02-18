@@ -17,10 +17,10 @@ CCamera camera;
 
 bool CModuleTestAxis::start()
 {
-  {
+ /* {
 	TEntityParseContext ctx;
 	parseScene("data/scenes/scene_basic.scene", ctx);
-  }
+  }*/
   {
 	  TEntityParseContext ctx;
 	  parseScene("data/scenes/whitebox_default.scene", ctx);
@@ -28,6 +28,10 @@ bool CModuleTestAxis::start()
   {
 	  TEntityParseContext ctx;
 	  parseScene("data/scenes/player.scene", ctx);
+  }
+  {
+	  TEntityParseContext ctx;
+	  parseScene("data/scenes/enemy.scene", ctx);
   }
   {
 	  TEntityParseContext ctx;
