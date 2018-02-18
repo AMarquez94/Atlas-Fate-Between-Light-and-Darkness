@@ -56,10 +56,12 @@ class CAIPatrol : public IAIController
 	void onMsgPlayerDead(const TMsgPlayerDead& msg);
 	void onMsgPatrolStunned(const TMsgPatrolStunned& msg);
 	void onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged& msg);
+	void onMsgPatrolFixed(const TMsgPatrolFixed& msg);
 
 	void rotateTowardsVec(VEC3 objective, float dt);
 	bool isPlayerInFov();
 	void turnOnLight();
+	void turnOffLight();
 
 public:
 	void load(const json& j, TEntityParseContext& ctx);

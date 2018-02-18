@@ -8,6 +8,8 @@
 #include "render/mesh/mesh_loader.h"
 #include "render/render_objects.h"
 #include "components/comp_camera.h"
+#include "components/comp_tags.h"
+#include "components/ia/ai_patrol.h"
 
 DECL_OBJ_MANAGER("player_controller", TCompPlayerController);
 
@@ -70,6 +72,7 @@ void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	walkSlowSpeedFactor = j.value("walkSlowSpeedFactor", 1.5f);
 	walkSlowCrouchSpeedFactor = j.value("walkSlowCrouchSpeedFactor", 0.5f);
 	rotationSpeed = j.value("rotationSpeed", 5.0f);
+	distToAttack = j.value("distToAttack", 2.0f);
 
 	timesToPressRemoveInhibitorKey = j.value("timesToPressRemoveInhibitorKey", 10);
 
@@ -135,6 +138,8 @@ void TCompPlayerController::registerMsgs() {
 
 void TCompPlayerController::IdleState(float dt){
 
+	checkAttack();
+
 	TCompRender *c_my_render = get<TCompRender>();
 	c_my_render->mesh = mesh_states.find("pj_idle")->second;
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
@@ -145,17 +150,26 @@ void TCompPlayerController::IdleState(float dt){
 	if (btShadowMerging.getsPressed() && checkShadows()) {
 		timerForPressingRemoveInhibitorKey = 0.f;
 		timesRemoveInhibitorKeyPressed = 0;
+		allowAttack(false, CHandle());
 		ChangeState("smEnter");
+		return;
 	}
 	else if (motionButtonsPressed()) {
 		timerForPressingRemoveInhibitorKey = 0.f;
 		timesRemoveInhibitorKeyPressed = 0;
 		ChangeState("motion");
+		return;
 	}
 	else if (btCrouch.isPressed()) {
 		TCompRender *c_my_render = get<TCompRender>();
 		c_my_render->mesh = mesh_states.find("pj_crouch")->second;
 		ChangeState("crouch");
+		return;
+	}
+
+	if (canAttack && btAttack.getsPressed()) {
+		ChangeState("attack");
+		return;
 	}
 }
 
@@ -163,12 +177,15 @@ void TCompPlayerController::IdleState(float dt){
 
 void TCompPlayerController::MotionState(float dt){ 
 
+	checkAttack();
+
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
 	delta_movement = VEC3::Zero;
 
 	if (!motionButtonsPressed()) {
 		auxStateName = "";
 		ChangeState("idle");
+		return;
 	}
 	else {
 		
@@ -176,11 +193,19 @@ void TCompPlayerController::MotionState(float dt){
 
 		if (btShadowMerging.getsPressed() && checkShadows()) {
 			auxStateName = "";
+			allowAttack(false, CHandle());
 			ChangeState("smEnter");
+			return;
 		}
+	}
+
+	if (canAttack && btAttack.getsPressed()) {
+		ChangeState("attack");
 	}
 }
 void TCompPlayerController::CrouchState(float dt) {
+	
+	checkAttack();
 
 	if (inhibited) {
 		manageInhibition(dt);
@@ -188,16 +213,24 @@ void TCompPlayerController::CrouchState(float dt) {
 
 	if (btCrouch.getsReleased()) {
 		ChangeState("idle");
+		return;
 	}
 	if (btShadowMerging.getsPressed() && checkShadows()) {
 		timerForPressingRemoveInhibitorKey = 0.f;
 		timesRemoveInhibitorKeyPressed = 0;
+		allowAttack(false, CHandle());
 		ChangeState("smEnter");
+		return;
 	}
 	else if (motionButtonsPressed()) {
 		timerForPressingRemoveInhibitorKey = 0.f;
 		timesRemoveInhibitorKeyPressed = 0;
 		ChangeState("motion");
+		return;
+	}
+
+	if (canAttack && btAttack.getsPressed()) {
+		ChangeState("attack");
 	}
 }
 
@@ -209,7 +242,11 @@ void TCompPlayerController::PushState(float dt){
 
 
 void TCompPlayerController::AttackState(float dt){ 
-
+	TMsgPatrolStunned msg;
+	msg.h_sender = CHandle(this).getOwner();
+	enemyToAttack.sendMsg(msg);
+	allowAttack(false, CHandle());
+	ChangeState("idle");
 }
 
 
@@ -253,6 +290,7 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 	
 	if (!btShadowMerging.isPressed() || stamina <= minStamina ) {
 		ChangeState("smExit");
+		return;
 	}
 }
 
@@ -464,4 +502,43 @@ const bool TCompPlayerController::isInShadows() {
 const bool TCompPlayerController::isDead()
 {
 	return this->getStateName().compare("dead") == 0;
+}
+
+const bool TCompPlayerController::checkAttack()
+{
+	auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+	bool found = false;
+	CHandle enemy = CHandle();
+	int i = 0;
+	while (i < handles.size() && !found) {
+		TCompTransform * mypos = get<TCompTransform>();
+		TCompTransform * epos = ((CEntity*)handles[i])->get<TCompTransform>();
+		if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < distToAttack 
+			&& !epos->isInFront(mypos->getPosition())) {
+
+			CAIPatrol * aipatrol = ((CEntity*)handles[i])->get<CAIPatrol>();
+			if (aipatrol->getStateName().compare("stunned") != 0) {
+				found = true;
+				enemy = handles[i];
+			}
+		}
+		i++;
+	}
+
+	allowAttack(found, enemy);
+	return found;
+}
+
+void TCompPlayerController::allowAttack(bool allow, CHandle enemy) {
+	if (allow && !canAttack) {
+		canAttack = true;
+		TCompRender *c_my_render = get<TCompRender>();
+		c_my_render->color = VEC4(255, 0, 0, 1);
+	}
+	else if(!allow && canAttack) {
+		canAttack = false;
+		TCompRender *c_my_render = get<TCompRender>();
+		c_my_render->color = VEC4(1, 1, 1, 1);
+	}
+	enemyToAttack = enemy;
 }

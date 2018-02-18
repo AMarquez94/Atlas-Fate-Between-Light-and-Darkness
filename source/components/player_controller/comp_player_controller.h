@@ -32,6 +32,9 @@ class TCompPlayerController : public IAIController {
 	float walkSlowCrouchSpeedFactor;
 	float currentSpeed;
 	float rotationSpeed;
+	float distToAttack;
+	float canAttack = false;
+	CHandle enemyToAttack;
 
 	/* Timers */
 	float timerForPressingRemoveInhibitorKey = 0.f;
@@ -75,6 +78,7 @@ class TCompPlayerController : public IAIController {
 	const bool motionButtonsPressed();
 	void movePlayer(float);
 	void manageInhibition(float dt);
+	void allowAttack(bool allow, CHandle enemy);
 
 public:
 
@@ -108,4 +112,5 @@ public:
 	bool checkShadows();
 	const bool isInShadows();
 	const bool isDead();
+	const bool checkAttack();
 };

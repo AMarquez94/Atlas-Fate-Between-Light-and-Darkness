@@ -19,4 +19,5 @@ public:
   void load(const json& j, TEntityParseContext& ctx);
   void update(float dt);
   void turnOnLight();
+  void turnOffLight();
 };

@@ -46,3 +46,11 @@ void TCompConeOfLightController::turnOnLight() {
 	}
 }
 
+void TCompConeOfLightController::turnOffLight() {
+	if (turnedOn) {
+		TCompRender* cRender = get < TCompRender>();
+		cRender->mesh = Resources.get("empty_mesh.mesh")->as<CRenderMesh>();
+		turnedOn = false;
+	}
+}
+

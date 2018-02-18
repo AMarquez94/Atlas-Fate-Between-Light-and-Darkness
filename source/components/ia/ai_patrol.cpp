@@ -107,6 +107,7 @@ void CAIPatrol::registerMsgs() {									//TODO: Change
 	DECL_MSG(CAIPatrol, TMsgPlayerDead, onMsgPlayerDead);					//TODO: Change
 	DECL_MSG(CAIPatrol, TMsgPatrolStunned, onMsgPatrolStunned);					//TODO: Change
 	DECL_MSG(CAIPatrol, TMsgPatrolShadowMerged, onMsgPatrolShadowMerged);
+	DECL_MSG(CAIPatrol, TMsgPatrolFixed, onMsgPatrolFixed);
 }																	//TODO: Change
 
 void CAIPatrol::onMsgPlayerDead(const TMsgPlayerDead& msg) {
@@ -114,6 +115,9 @@ void CAIPatrol::onMsgPlayerDead(const TMsgPlayerDead& msg) {
 	lastPlayerKnownPos = VEC3::Zero;
 	TCompRender *cRender = get<TCompRender>();
 	cRender->color = VEC4(1, 1, 1, 1);
+
+	turnOffLight();
+
 	ChangeState("closestWpt");
 }
 
@@ -125,6 +129,13 @@ void CAIPatrol::onMsgPatrolStunned(const TMsgPatrolStunned& msg) {
 	mypos->getYawPitchRoll(&y, &p, &r);
 	p = p + deg2rad(90.f);
 	mypos->setYawPitchRoll(y, p, r);
+	turnOffLight();
+
+	TCompGroup* cGroup = get<TCompGroup>();
+	CEntity* eCone = cGroup->getHandleByName("Cone of Vision");
+	TCompRender * coneRender = eCone->get<TCompRender>();
+	coneRender->visible = false;
+
 	ChangeState("stunned");
 }
 
@@ -132,6 +143,25 @@ void CAIPatrol::onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged& msg) {
 	TCompRender *cRender = get<TCompRender>();
 	cRender->color = VEC4(0, 0, 0, 0);
 	ChangeState("shadowMerged");
+}
+
+void CAIPatrol::onMsgPatrolFixed(const TMsgPatrolFixed& msg) {
+
+	if (getStateName().compare("stunned") == 0) {
+		TCompTransform *mypos = getMyTransform();
+		float y, p, r;
+		mypos->getYawPitchRoll(&y, &p, &r);
+		p = p - deg2rad(90.f);
+		mypos->setYawPitchRoll(y, p, r);
+		turnOnLight();
+
+		TCompGroup* cGroup = get<TCompGroup>();
+		CEntity* eCone = cGroup->getHandleByName("Cone of Vision");
+		TCompRender * coneRender = eCone->get<TCompRender>();
+		coneRender->visible = true;
+
+		ChangeState("idle");
+	}
 }
 
 void CAIPatrol::IdleState(float dt)
@@ -351,7 +381,6 @@ void CAIPatrol::AttackState(float dt)
 	}
 }
 
-
 void CAIPatrol::IdleWarState(float dt) {
 	/*TCompTransform *mypos = getMyTransform();
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
@@ -563,12 +592,17 @@ bool CAIPatrol::isPlayerInFov() {
 	return in_fov && !pController->isInShadows() && !pController->isDead();
 }
 
-
-
 void CAIPatrol::turnOnLight()
 {
 	TCompGroup* cGroup = get<TCompGroup>();
 	CEntity* eCone = cGroup->getHandleByName("Cone of Light");
 	TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
 	cConeController->turnOnLight();
+}
+
+void CAIPatrol::turnOffLight() {
+	TCompGroup* cGroup = get<TCompGroup>();
+	CEntity* eCone = cGroup->getHandleByName("Cone of Light");
+	TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
+	cConeController->turnOffLight();
 }
