@@ -37,10 +37,12 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 	config.radius = j.value("radius", 0.f);
 	config.gravity = j.value("gravity", false);
 
+	// todo: extend this be able to parse more than group and mask
+	config.group = CEngine::get().getPhysics().getFilterByName(j.value("group", "all"));
+	config.mask = CEngine::get().getPhysics().getFilterByName(j.value("mask", "all"));
+
 	if (j.count("halfExtent"))
 		config.halfExtent = loadVEC3(j["halfExtent"]);
-
-	delta_position = VEC3::Zero;
 }
 
 void TCompCollider::update(float dt) {
@@ -50,9 +52,9 @@ void TCompCollider::update(float dt) {
 		TCompPlayerController *c_my_plyrcntlr = get<TCompPlayerController>();
 		assert(c_my_plyrcntlr);
 		VEC3 delta = c_my_plyrcntlr->delta_movement;
-		controller->move(physx::PxVec3(delta.x, delta.y, delta.z), 0.f, dt, physx::PxControllerFilters());
-		//velocity.x = delta.x;
-		//velocity.z = delta.z;
+		//controller->move(physx::PxVec3(delta.x, delta.y, delta.z), 0.f, dt, physx::PxControllerFilters());
+		velocity.x = delta.x;
+		velocity.z = delta.z;
 	}
 
 	if (config.gravity) {
@@ -83,4 +85,14 @@ void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {
 void TCompCollider::onTriggerExit(const TMsgTriggerExit& msg) {
 
 	dbg("Exited the trigger!!!!\n");
+}
+
+void TCompCollider::Resize(float new_size)
+{
+	controller->resize((physx::PxReal)new_size);
+}
+
+void TCompCollider::SetUpVector(VEC3 new_up)
+{
+	controller->setUpDirection(physx::PxVec3(new_up.x, new_up.y, new_up.z));
 }

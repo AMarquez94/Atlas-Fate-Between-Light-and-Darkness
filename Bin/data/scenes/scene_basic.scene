@@ -46,8 +46,9 @@
       },
 			"collider": {
         "shape": "box",
+				"radius": 0.5,
         "halfExtent": "2 2 2",
-			"is_trigger": true
+				"is_trigger": true
       }
     }
   }

@@ -17,7 +17,6 @@ private:
 
 	const Input::TButton& btHorizontal = EngineInput["Horizontal"];
 	const Input::TButton& btVertical = EngineInput["Vertical"];
-
 	const Input::TButton& btRHorizontal = EngineInput["MouseX"];
 	const Input::TButton& btRVertical = EngineInput["MouseY"];
 
@@ -26,7 +25,7 @@ public:
   void load(const json& j, TEntityParseContext& ctx);
   void update(float dt);
 
-  VEC3 CameraClipping(void);
+  float CameraClipping(const VEC3 & origin, const VEC3 & dir);
 
   DECL_SIBLING_ACCESS();
 };

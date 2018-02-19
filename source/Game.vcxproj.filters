@@ -70,6 +70,7 @@
     <ClCompile Include="components\camera_controller\comp_flyover_controller.cpp" />
     <ClCompile Include="components\physics\comp_collider.cpp" />
     <ClCompile Include="components\physics\comp_rigibody.cpp" />
+    <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="components\camera_controller\comp_flyover_controller.h" />
     <ClInclude Include="components\physics\comp_collider.h" />
     <ClInclude Include="components\physics\comp_rigibody.h" />
+    <ClInclude Include="components\player_controller\comp_shadow_controller.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

@@ -9,7 +9,7 @@
         ]
       },
       "transform": {
-        "pos": "5 100 0"
+        "pos": "-10.5 0 2.5"
       },
       "player_controller": {
         "target_camera": "TPCamera",
@@ -27,15 +27,19 @@
         "runSpeedFactor": 7,
         "walkSlowSpeedFactor": 1.5,
         "walkSlowCrouchSpeedFactor": 0.5,
-        "rotationSpeed": 7.0
+        "rotationSpeed": 10.0
       },
       "collider": {
         "shape": "capsule",
         "is_character_controller": true,
-        "radius": 0.35,
-        "height": 1.0,
+        "is_dynamic" : true,
+				"radius": 0.35,
+        "height": 1,
+				"mask": "wall",
+				"group": "player",
         "gravity": true
-      }
+      },
+			"group": "player"
     }
   }
 ]

@@ -8,48 +8,49 @@
 #include "render/mesh/mesh_loader.h"
 #include "render/render_objects.h"
 #include "components/comp_camera.h"
+#include "components/physics/comp_collider.h"
 
 DECL_OBJ_MANAGER("player_controller", TCompPlayerController);
 
 void TCompPlayerController::debugInMenu() {
 
-  ImGui::DragFloat("Speed", &walkSpeedFactor, 0.1f, 0.f, 20.f);
-  ImGui::Text("Current speed: %f", currentSpeed);
-  ImGui::Text("State: %s", stateName.c_str());
-  if (auxStateName.compare("") != 0) {
-	  ImGui::SameLine();
-	  ImGui::Text(" - %s", auxStateName.c_str());
-  }
-  if (inhibited)
-	  ImGui::Text("N times key pressed: %d", timesRemoveInhibitorKeyPressed);
-  ImGui::ProgressBar(stamina/maxStamina);
+	ImGui::DragFloat("Speed", &walkSpeedFactor, 0.1f, 0.f, 20.f);
+	ImGui::Text("Current speed: %f", currentSpeed);
+	ImGui::Text("State: %s", stateName.c_str());
+	if (auxStateName.compare("") != 0) {
+		ImGui::SameLine();
+		ImGui::Text(" - %s", auxStateName.c_str());
+	}
+	if (inhibited)
+		ImGui::Text("N times key pressed: %d", timesRemoveInhibitorKeyPressed);
+	ImGui::ProgressBar(stamina/maxStamina);
 
 
-  ImGui::Text("Buttons");
+	ImGui::Text("Buttons");
 
-  ImGui::Text("%5s", "UP");
-  ImGui::SameLine();
-  ImGui::Text("%.2f", btUp.value);
-  ImGui::SameLine();
-  ImGui::ProgressBar(fabsf(btUp.value));
+	ImGui::Text("%5s", "UP");
+	ImGui::SameLine();
+	ImGui::Text("%.2f", btUp.value);
+	ImGui::SameLine();
+	ImGui::ProgressBar(fabsf(btUp.value));
 
-  ImGui::Text("%5s", "DOWN");
-  ImGui::SameLine();
-  ImGui::Text("%.2f", btDown.value);
-  ImGui::SameLine();
-  ImGui::ProgressBar(fabsf(btDown.value));
+	ImGui::Text("%5s", "DOWN");
+	ImGui::SameLine();
+	ImGui::Text("%.2f", btDown.value);
+	ImGui::SameLine();
+	ImGui::ProgressBar(fabsf(btDown.value));
   
-  ImGui::Text("%5s", "LEFT");
-  ImGui::SameLine();
-  ImGui::Text("%.2f", btLeft.value);
-  ImGui::SameLine();
-  ImGui::ProgressBar(fabsf(btLeft.value));
+	ImGui::Text("%5s", "LEFT");
+	ImGui::SameLine();
+	ImGui::Text("%.2f", btLeft.value);
+	ImGui::SameLine();
+	ImGui::ProgressBar(fabsf(btLeft.value));
   
-  ImGui::Text("%5s", "RIGHT");
-  ImGui::SameLine();
-  ImGui::Text("%.2f", btRight.value);
-  ImGui::SameLine();
-  ImGui::ProgressBar(fabsf(btRight.value));
+	ImGui::Text("%5s", "RIGHT");
+	ImGui::SameLine();
+	ImGui::Text("%.2f", btRight.value);
+	ImGui::SameLine();
+	ImGui::ProgressBar(fabsf(btRight.value));
 }
 
 void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
@@ -122,7 +123,6 @@ void TCompPlayerController::Init() {
 	//AddState("push", (statehandler)&TCompPlayerController::PushState);
 
 	delta_movement = VEC3::Zero;
-
 	ChangeState("idle");
 }
 
@@ -152,13 +152,12 @@ void TCompPlayerController::IdleState(float dt){
 		ChangeState("motion");
 	}
 	else if (btCrouch.isPressed()) {
+
 		TCompRender *c_my_render = get<TCompRender>();
 		c_my_render->mesh = mesh_states.find("pj_crouch")->second;
 		ChangeState("crouch");
 	}
 }
-
-
 
 void TCompPlayerController::MotionState(float dt){ 
 
@@ -185,6 +184,7 @@ void TCompPlayerController::CrouchState(float dt) {
 	}
 
 	if (btCrouch.getsReleased()) {
+		
 		ChangeState("idle");
 	}
 	if (btShadowMerging.getsPressed() && CheckShadows()) {
@@ -207,7 +207,7 @@ void TCompPlayerController::PushState(float dt){
 
 
 void TCompPlayerController::AttackState(float dt){ 
-
+	dbg("attacked the enemy");
 }
 
 
@@ -228,10 +228,6 @@ void TCompPlayerController::ShadowMergingEnterState(float dt){
 	t->color = VEC4(0, 0, 0, 0);
 	t->mesh = mesh_states.find("pj_shadowmerge")->second;
 
-	CEntity* e_camera = getEntityByName(camera_shadowmerge);
-	TCompCamera* c_camera = e_camera->get< TCompCamera >();
-	assert(c_camera);
-
 	// Replace this with an smooth camera interpolation
 	camera_actual = camera_shadowmerge;
 	CCamera::main = getEntityByName(camera_actual);
@@ -240,6 +236,8 @@ void TCompPlayerController::ShadowMergingEnterState(float dt){
 
 
 void TCompPlayerController::ShadowMergingHorizontalState(float dt){ 
+
+	//NormalChange();
 
 	if (motionButtonsPressed()) {
 		movePlayer(dt);
@@ -280,7 +278,6 @@ void TCompPlayerController::ShadowMergingExitState(float dt){
 	// Replace this with an smooth camera interpolation
 	camera_actual = camera_thirdperson;
 	CCamera::main = getEntityByName(camera_actual);
-
 	ChangeState("idle");
 }
 
@@ -344,7 +341,7 @@ void TCompPlayerController::onMsgPlayerShotInhibitor(const TMsgInhibitorShot& ms
 const bool TCompPlayerController::motionButtonsPressed() {
 
 	delta_movement = VEC3::Zero;
-	if (!IsGrounded()) return false;
+	//if (!IsGrounded()) return false;
 
 	return btUp.isPressed() || btDown.isPressed() || btLeft.isPressed() || btRight.isPressed();
 }
@@ -363,6 +360,7 @@ void TCompPlayerController::movePlayer(const float dt) {
 	CEntity *player_camera = (CEntity *)getEntityByName(camera_actual);
 
 	TCompRender *c_my_render = get<TCompRender>();
+	TCompCollider * collider = get<TCompCollider>();
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	TCompTransform * trans_camera = player_camera->get<TCompTransform>();
 	trans_camera->getYawPitchRoll(&c_yaw, &c_pitch, &c_roll);
@@ -375,27 +373,32 @@ void TCompPlayerController::movePlayer(const float dt) {
 
 	if (stateName.compare("smHor") == 0 || stateName.compare("smVer") == 0) {
 		currentSpeed = walkSpeedFactor;
+		collider->Resize(0.01);
 	}
 	else {
 		if (btRun.isPressed()) {
 			c_my_render->mesh = mesh_states.find("pj_run")->second;
 			auxStateName = "running";
 			currentSpeed = runSpeedFactor;
+			collider->Resize(collider->config.height);
 		}
 		else if (btSlow.isPressed()) {
 			c_my_render->mesh = mesh_states.find("pj_walk")->second;
 			auxStateName = "walking slow";
 			currentSpeed = walkSlowSpeedFactor;
+			collider->Resize(collider->config.height);
 		}
 		else if (btCrouch.isPressed()){
 			c_my_render->mesh = mesh_states.find("pj_crouch")->second;
 			auxStateName = "crouch";
 			currentSpeed = walkCrouchSpeedFactor;
+			collider->Resize(0.45f);
 		}
 		else{
 			c_my_render->mesh = mesh_states.find("pj_walk")->second;
 			auxStateName = "walking";
 			currentSpeed = walkSpeedFactor;
+			collider->Resize(collider->config.height);
 		}
 	}
 
@@ -430,6 +433,58 @@ void TCompPlayerController::movePlayer(const float dt) {
 	
 }
 
+
+void TCompPlayerController::movePlayerShadow(const float dt) {
+
+	// Player movement and rotation related method.
+	float yaw, pitch, roll;
+	float c_yaw, c_pitch, c_roll;
+	CEntity *player_camera = (CEntity *)getEntityByName(camera_actual);
+
+	TCompRender *c_my_render = get<TCompRender>();
+	TCompTransform *c_my_transform = get<TCompTransform>();
+	TCompTransform * trans_camera = player_camera->get<TCompTransform>();
+	trans_camera->getYawPitchRoll(&c_yaw, &c_pitch, &c_roll);
+	c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+
+	//----------------------------------------------
+	//Pongo a cero la velocidad actual
+
+	currentSpeed = 0;
+	currentSpeed = walkSpeedFactor;
+
+	VEC3 dir = VEC3::Zero;
+	float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
+	float player_accel = inputSpeed * currentSpeed * dt;
+
+	// Little hotfix to surpass negative values on analog pad
+
+	if (btUp.isPressed() && btUp.value > 0) {
+		dir += fabs(btUp.value) * getVectorFromYaw(c_yaw);
+	}
+	else if (btDown.isPressed()) {
+		dir += fabs(btDown.value) * getVectorFromYaw(c_yaw - deg2rad(180.f));
+	}
+	if (btRight.isPressed() && btRight.value > 0) {
+		dir += fabs(btRight.value) * getVectorFromYaw(c_yaw - deg2rad(90.f));
+	}
+	else if (btLeft.isPressed()) {
+		dir += fabs(btLeft.value) * getVectorFromYaw(c_yaw + deg2rad(90.f));
+	}
+	dir.Normalize();
+
+	float dir_yaw = getYawFromVector(dir);
+	Quaternion my_rotation = c_my_transform->getRotation();
+	Quaternion new_rotation = Quaternion::CreateFromYawPitchRoll(dir_yaw, pitch, 0);
+	Quaternion quat = Quaternion::Lerp(my_rotation, new_rotation, rotationSpeed * dt);
+	c_my_transform->setRotation(quat);
+
+	VEC3 new_pos = c_my_transform->getPosition() + c_my_transform->getPosition() + dir * player_accel;
+	delta_movement = new_pos - c_my_transform->getPosition();
+
+}
+
+
 void TCompPlayerController::manageInhibition(float dt) {
 
 	if (btSecAction.getsPressed()) {
@@ -452,9 +507,33 @@ void TCompPlayerController::manageInhibition(float dt) {
 
 bool TCompPlayerController::IsGrounded(void)
 {
-	TCompTransform *c_my_transform = get<TCompTransform>();
 	CModulePhysics::RaycastHit hit;
+	TCompTransform *c_my_transform = get<TCompTransform>();
 	CEngine::get().getPhysics().Raycast(c_my_transform->getPosition(), -c_my_transform->getUp(), 3000, hit);
 
 	return isGrounded = hit.distance < 0.3f ? true : false;
+}
+
+bool done = false;
+void TCompPlayerController::NormalChange(void)
+{
+	CModulePhysics::RaycastHit hit;
+	TCompCollider *c_my_collider = get<TCompCollider>();
+	TCompTransform *c_my_transform = get<TCompTransform>();
+	if (CEngine::get().getPhysics().Raycast(c_my_transform->getPosition(), c_my_transform->getFront(), c_my_collider->config.radius + 0.15f, hit))
+	{
+		if (done == true)return;
+
+		VEC3 new_forward = hit.normal.Cross(c_my_transform->getLeft());
+
+		float yaw, pitch, roll;
+		c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+		Quaternion new_rotation = Quaternion::CreateFromYawPitchRoll(yaw, pitch - deg2rad(90.f), 0);
+
+		dbg("triying to change gravity uhmm");
+		c_my_transform->setRotation(new_rotation);
+		c_my_collider->SetUpVector(hit.normal);
+		c_my_collider->normal_gravity = -hit.normal;
+		done = true;
+	}
 }

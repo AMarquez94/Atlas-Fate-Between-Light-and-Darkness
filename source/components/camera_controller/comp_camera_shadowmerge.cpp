@@ -62,6 +62,8 @@ void TCompCameraShadowMerge::update(float dt)
 
 	self_transform->setPosition(target_position);
 	self_transform->setYawPitchRoll(_current_euler.x, _current_euler.y, 0);
+
+	//float z_distance = CameraClipping(target_position, -self_transform->getFront());
 	VEC3 new_pos = target_position + _clipping_offset.z * -self_transform->getFront();
 	self_transform->setPosition(new_pos);
 
@@ -70,7 +72,11 @@ void TCompCameraShadowMerge::update(float dt)
 	setPerspective(deg2rad(current_fov), 0.1f, 1000.f);
 }
 
-VEC3 TCompCameraShadowMerge::CameraClipping(void)
+float TCompCameraShadowMerge::CameraClipping(const VEC3 & origin, const VEC3 & dir)
 {
-	return VEC3();
+	CModulePhysics::RaycastHit hit;
+	if (CEngine::get().getPhysics().Raycast(origin, dir, _clipping_offset.z, hit))
+		return Clamp(hit.distance - 0.1f, 0.2f, _clipping_offset.z);
+
+	return _clipping_offset.z;
 }

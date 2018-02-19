@@ -19,11 +19,26 @@ public:
 		TCompCollider * collider;
 	};
 
+	enum FilterGroup {
+		Wall = 1 << 0,
+		Floor = 1 << 1,
+		Player = 1 << 2,
+		Enemy = 1 << 3,
+		Scenario = Wall | Floor,
+		Characters = Player | Enemy,
+		All = -1
+	};
+
 	CModulePhysics(const std::string& aname) : IModule(aname) { }
 	virtual bool start() override;
 	virtual void update(float delta) override;
 	virtual void render() override;
 	void createActor(TCompCollider& comp_collider);
+	
+	// Filter methods
+	FilterGroup getFilterByName(const std::string& name);
+	void setupFiltering(physx::PxShape* shape, physx::PxU32 filterGroup, physx::PxU32 filterMask);
+	void setupFiltering(physx::PxRigidActor* actor, physx::PxU32 filterGroup, physx::PxU32 filterMask);
 
 	bool Raycast(const VEC3 & origin, const VEC3 & dir, float distance, RaycastHit & hit);
 
@@ -41,10 +56,6 @@ private:
 	physx::PxPvd*                  gPvd;
 	physx::PxFoundation*			gFoundation;
 	physx::PxControllerManager*     mControllerManager;
-	physx::PxCapsuleController* ctrl;
-
-
-	void createStack(const physx::PxTransform& t, physx::PxU32 size, physx::PxReal halfExtent);
 
 	class CustomSimulationEventCallback : public physx::PxSimulationEventCallback
 	{

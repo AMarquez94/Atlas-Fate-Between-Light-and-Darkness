@@ -24,7 +24,7 @@ bool CModuleTestAxis::start()
   }
   {
 	  TEntityParseContext ctx;
-	  parseScene("data/scenes/whitebox_default.scene", ctx);
+	  parseScene("data/scenes/whitebox_test.scene", ctx);
   }
   {
 	  TEntityParseContext ctx;

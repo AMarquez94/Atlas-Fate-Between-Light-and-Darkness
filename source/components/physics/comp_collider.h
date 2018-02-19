@@ -4,16 +4,6 @@
 #include "PxPhysicsAPI.h"
 #include "entity/common_msgs.h"
 
-enum FilterGroups {
-
-	Wall = 0 << 1,
-	Floor = 0 << 2,
-	Player = 0 << 3,
-	Enemy = 0 << 4,
-	Characters = Player | Enemy,
-	all = -1
-};
-
 class TCompCollider : public TCompBase {
 
 	DECL_SIBLING_ACCESS();
@@ -28,8 +18,8 @@ public:
 		float radius;
 		float height;
 
-		int mask;
-		int group;
+		unsigned int mask;
+		unsigned int group;
 		physx::PxGeometryType::Enum shapeType;
 
 		bool is_dynamic; // Replace this with bitshifting
@@ -41,7 +31,6 @@ public:
 	TConfig config;
 	physx::PxActor* actor;
 	physx::PxController* controller;
-	VEC3 delta_position;
 
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
@@ -51,4 +40,10 @@ public:
 	void onCreate(const TMsgEntityCreated& msg);
 	void onTriggerEnter(const TMsgTriggerEnter& msg);
 	void onTriggerExit(const TMsgTriggerExit& msg);
+
+	/* Aux methods, temp */
+	void Resize(float new_size);
+	void SetUpVector(VEC3 new_up);
+
+	VEC3 normal_gravity = VEC3(0, -9.8f, 0);
 };

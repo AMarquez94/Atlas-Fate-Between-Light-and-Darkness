@@ -50,6 +50,8 @@ class TCompPlayerController : public IAIController {
 	/* Private aux functions */
 	void movePlayer(float);
 	void manageInhibition(float dt);
+	void movePlayerShadow(float);
+	void NormalChange(void);
 
 	const bool motionButtonsPressed();
 

@@ -101,6 +101,7 @@
     <ClCompile Include="components\object_controller\comp_bullet_controller.cpp" />
     <ClCompile Include="components\physics\comp_rigibody.cpp" />
     <ClCompile Include="components\player_controller\comp_player_controller.cpp" />
+    <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\entity_parser.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="components\object_controller\comp_bullet_controller.h" />
     <ClInclude Include="components\physics\comp_rigibody.h" />
     <ClInclude Include="components\player_controller\comp_player_controller.h" />
+    <ClInclude Include="components\player_controller\comp_shadow_controller.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="entity\common_msgs.h" />
     <ClInclude Include="entity\entity.h" />
