@@ -14,6 +14,7 @@
     "camera_thirdperson",
     "camera_shadowmerge",
     "bullet_controller",
+		"shadow_controller",
     "ai_patrol",
     "flyover_controller",
     "hierarchy",

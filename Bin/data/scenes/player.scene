@@ -39,6 +39,8 @@
 				"group": "player",
         "gravity": true
       },
+			"shadow_controller": {
+			},
 			"group": "player"
     }
   }

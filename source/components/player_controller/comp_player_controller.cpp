@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "entity/entity_parser.h"
 #include "comp_player_controller.h"
+#include "comp_shadow_controller.h"
 #include "../comp_transform.h"
 #include "../comp_render.h"
 #include "entity/common_msgs.h"
@@ -136,6 +137,7 @@ void TCompPlayerController::IdleState(float dt){
 
 	TCompRender *c_my_render = get<TCompRender>();
 	c_my_render->mesh = mesh_states.find("pj_idle")->second;
+
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
 	if (inhibited) {
 		manageInhibition(dt);
@@ -367,6 +369,12 @@ void TCompPlayerController::movePlayer(const float dt) {
 	c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
 
 	//----------------------------------------------
+	// Testing purposes only, remove when needed.
+	TCompShadowController * shadow_oracle = get<TCompShadowController>();
+	if (shadow_oracle->is_shadow) c_my_render->color = Color(0, .8f, 1);
+	else c_my_render->color = Color(1, 1, 1);
+	//----------------------------------------------
+
 	//Pongo a cero la velocidad actual
 
 	currentSpeed = 0;
