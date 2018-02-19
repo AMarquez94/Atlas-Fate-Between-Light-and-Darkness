@@ -51,6 +51,7 @@ void CAIPatrol::debugInMenu() {
 	ImGui::Text("Suspect Level:");
 	ImGui::SameLine();
 	ImGui::ProgressBar(suspectO_Meter);
+	ImGui::Text("Speed %f", speed);
 
 	if (_waypoints.size() > 1) {
 		for (size_t i = 0; i < _waypoints.size(); ++i) {
@@ -70,6 +71,7 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 
 	if (j.count("waypoints") > 0) {
 		auto& j_waypoints = j["waypoints"];
+		_waypoints.clear();
 		for (auto it = j_waypoints.begin(); it != j_waypoints.end(); ++it) {
 
 			Waypoint wpt;
@@ -83,17 +85,21 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 		}
 	}
 
-	speed = j.value("speed", 2.0f);
-	rotationSpeed = deg2rad(j.value("rotationSpeed", 90));
-	fov = deg2rad(j.value("fov", 60));
-	entityToChase = j.value("entityToChase", "The Player");
-	autoChaseDistance = j.value("autoChaseDistance", 5.f);
-	maxChaseDistance = j.value("maxChaseDistance", 10.f);
-	maxTimeSuspecting = j.value("maxTimeSuspecting", 3.f);
-	dcrSuspectO_Meter = j.value("dcrSuspectO_meter", .3f);
-	incrBaseSuspectO_Meter = j.value("incrBaseSuspectO_meter", .3f);
-	distToAttack = j.value("distToIdleWar", 1.0f);
-	maxRotationSeekingPlayer = deg2rad(j.value("maxRotationSeekingPlayer", 90));
+	speed = j.value("speed", speed);
+	rotationSpeedDeg = j.value("rotationSpeed", rotationSpeedDeg);
+	fovDeg = j.value("fov", fovDeg);
+	entityToChase = j.value("entityToChase", entityToChase);
+	autoChaseDistance = j.value("autoChaseDistance", autoChaseDistance);
+	maxChaseDistance = j.value("maxChaseDistance", maxChaseDistance);
+	maxTimeSuspecting = j.value("maxTimeSuspecting", maxTimeSuspecting);
+	dcrSuspectO_Meter = j.value("dcrSuspectO_meter", dcrSuspectO_Meter);
+	incrBaseSuspectO_Meter = j.value("incrBaseSuspectO_meter", incrBaseSuspectO_Meter);
+	distToAttack = j.value("distToIdleWar", distToAttack);
+	maxRotationSeekingPlayerDeg = j.value("maxRotationSeekingPlayer", maxRotationSeekingPlayerDeg);
+
+	rotationSpeed = deg2rad(rotationSpeedDeg);
+	fov = deg2rad(fovDeg);
+	maxRotationSeekingPlayer = deg2rad(maxRotationSeekingPlayerDeg);
 
 	//  distToBack = j.value("distToBack", 1.0f);
 	//  distToChase = j.value("distToChase", 10.0f);
@@ -150,12 +156,26 @@ void CAIPatrol::onMsgPatrolStunned(const TMsgPatrolStunned& msg) {
 	TCompRender * coneRender = eCone->get<TCompRender>();
 	coneRender->visible = false;
 
+	/* Tell the other patrols I am stunned */
+	CEngine::get().getIA().patrolSB.stunnedPatrols.emplace_back(CHandle(this).getOwner());
+
 	ChangeState("stunned");
 }
 
 void CAIPatrol::onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged& msg) {
 	TCompRender *cRender = get<TCompRender>();
 	cRender->color = VEC4(0, 0, 0, 0);
+
+	/* Stop telling the other patrols that I am stunned */
+	bool found = false;
+	std::vector <CHandle> &stunnedPatrols = CEngine::get().getIA().patrolSB.stunnedPatrols;
+	for (int i = 0; i <stunnedPatrols.size() && !found; i++) {
+		if (stunnedPatrols[i] == CHandle(this).getOwner()) {
+			found = true;
+			stunnedPatrols.erase(stunnedPatrols.begin() + i);
+		}
+	}
+
 	ChangeState("shadowMerged");
 }
 
@@ -173,6 +193,16 @@ void CAIPatrol::onMsgPatrolFixed(const TMsgPatrolFixed& msg) {
 		CEntity* eCone = cGroup->getHandleByName("Cone of Vision");
 		TCompRender * coneRender = eCone->get<TCompRender>();
 		coneRender->visible = true;
+
+		/* Stop telling the other patrols that I am stunned */
+		bool found = false;
+		std::vector <CHandle> &stunnedPatrols = CEngine::get().getIA().patrolSB.stunnedPatrols;
+		for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
+			if (stunnedPatrols[i] == CHandle(this).getOwner()) {
+				found = true;
+				stunnedPatrols.erase(stunnedPatrols.begin() + i);
+			}
+		}
 
 		ChangeState("idle");
 	}
@@ -217,17 +247,9 @@ void CAIPatrol::GoToWptState(float dt)
 			ChangeState("suspect");
 		}
 	}
-
-	//// next wpt
-	//if (VEC3::Distance(getWaypoint(), vp) < 1) ChangeState("nextWpt");
-
-	//// chase
-	//CEntity *player = (CEntity *)getEntityByName(entityToChase);
-	//TCompTransform *ppos = player->get<TCompTransform>();
-	//bool in_fov = mypos->isInFov(ppos->getPosition(), fov);
-	//if (in_fov && VEC3::Distance(mypos->getPosition(), ppos->getPosition()) <= distToChase) {
-	// ChangeState("chase");
-	//}
+	else if (isStunnedPatrolInFov() || lastStunnedPatrolKnownPos != VEC3::Zero) {
+		ChangeState("goToPatrol");
+	}
 }
 
 /**
@@ -258,6 +280,9 @@ void CAIPatrol::WaitInWptState(float dt)
 			cRender->color = VEC4(255, 255, 0, 1);
 			ChangeState("suspect");
 		}
+	}
+	else if (isStunnedPatrolInFov() || lastStunnedPatrolKnownPos != VEC3::Zero) {
+		ChangeState("goToPatrol");
 	}
 }
 
@@ -316,8 +341,8 @@ void CAIPatrol::SuspectState(float dt)
 		ChangeState("shootInhibitor");
 	}
 	else if (suspectO_Meter <= 0.f) {
-		if (patrolDeadPosition != VEC3::Zero) {
-			//TODO: revive patrol
+		if (lastStunnedPatrolKnownPos != VEC3::Zero) {
+			ChangeState("goToPatrol");
 		}
 		else {
 			TCompRender *cRender = get<TCompRender>();
@@ -396,40 +421,7 @@ void CAIPatrol::AttackState(float dt)
 }
 
 void CAIPatrol::IdleWarState(float dt) {
-	/*TCompTransform *mypos = getMyTransform();
-	CEntity *player = (CEntity *)getEntityByName(entityToChase);
-	TCompTransform *ppos = player->get<TCompTransform>();
 
-	if (VEC3::Distance(mypos->getPosition(), ppos->getPosition()) <= distToBack) {
-	idleWarTimer = 0;
-	ChangeState("back");
-	}
-	else if(VEC3::Distance(mypos->getPosition(), ppos->getPosition()) > distToIdleWar + 0.5){
-	idleWarTimer = 0;
-	ChangeState("chase");
-	}
-	else {
-
-	float y, r, p;
-	mypos->getYawPitchRoll(&y, &p, &r);
-	if (mypos->isInLeft(ppos->getPosition()))
-	{
-	y += rotationSpeed * dt;
-	}
-	else
-	{
-	y -= rotationSpeed * dt;
-	}
-	mypos->setYawPitchRoll(y, p, r);
-
-	if (idleWarTimer >= idleWarTimerMax) {
-	idleWarTimer = 0;
-	ChangeState("chooseOrbitSide");
-	}
-	else {
-	idleWarTimer += dt;
-	}
-	}*/
 }
 
 void CAIPatrol::GoToNoiseState(float dt)
@@ -438,12 +430,52 @@ void CAIPatrol::GoToNoiseState(float dt)
 
 void CAIPatrol::GoToPatrolState(float dt)
 {
+	TCompTransform *mypos = getMyTransform();
+	rotateTowardsVec(lastStunnedPatrolKnownPos, dt);
 
+	VEC3 vp = mypos->getPosition();
+
+	if (VEC3::Distance(vp, lastStunnedPatrolKnownPos) < distToAttack) {
+		if (isStunnedPatrolInPos(lastStunnedPatrolKnownPos)) {
+			ChangeState("fixPatrol");
+		}
+		else {
+			lastStunnedPatrolKnownPos = VEC3::Zero;
+			ChangeState("seekPlayer");
+		}
+		
+	}
+	else {
+		VEC3 vfwd = mypos->getFront();
+		vfwd.Normalize();
+		vp = vp + speed * dt *vfwd;
+		mypos->setPosition(vp);				//Move towards wpt
+	}
+
+	if (isPlayerInFov()) {
+		TCompTransform *mypos = getMyTransform();
+		CEntity *player = (CEntity *)getEntityByName(entityToChase);
+		TCompTransform *ppos = player->get<TCompTransform>();
+
+		/* Distance to player */
+		float distanceToPlayer = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
+		if (distanceToPlayer < maxChaseDistance) {
+			TCompRender *cRender = get<TCompRender>();
+			cRender->color = VEC4(255, 255, 0, 1);
+			ChangeState("suspect");
+		}
+	}
 }
 
 void CAIPatrol::FixOtherPatrolState(float dt)
 {
-
+	CEntity* eStunnedPatrol = getPatrolInPos(lastStunnedPatrolKnownPos);
+	TMsgPatrolFixed msg;
+	msg.h_sender = CHandle(this).getOwner();
+	eStunnedPatrol->sendMsg(msg);
+	lastStunnedPatrolKnownPos = VEC3::Zero;
+	turnOnLight();
+	ChangeState("closestWpt");
 }
 
 void CAIPatrol::GoPlayerLastPosState(float dt)
@@ -594,7 +626,7 @@ void CAIPatrol::rotateTowardsVec(VEC3 objective, float dt) {
 }
 
 bool CAIPatrol::isPlayerInFov() {
-	// chase
+
 	TCompTransform *mypos = getMyTransform();
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
@@ -604,6 +636,67 @@ bool CAIPatrol::isPlayerInFov() {
 	bool in_fov = mypos->isInFov(ppos->getPosition(), fov);
 
 	return in_fov && !pController->isInShadows() && !pController->isDead();
+}
+
+bool CAIPatrol::isStunnedPatrolInFov()
+{
+	std::vector <CHandle> &stunnedPatrols = CEngine::get().getIA().patrolSB.stunnedPatrols;
+
+	bool found = false;
+
+	if (stunnedPatrols.size() > 0) {
+		TCompTransform *mypos = getMyTransform();
+		for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
+			TCompTransform* stunnedPatrol = ((CEntity*)stunnedPatrols[i])->get<TCompTransform>();
+			if (mypos->isInFov(stunnedPatrol->getPosition(), fov) 
+				&& VEC3::Distance(mypos->getPosition(), stunnedPatrol->getPosition()) < maxChaseDistance) {
+				found = true;
+				lastStunnedPatrolKnownPos = stunnedPatrol->getPosition();
+			}
+		}
+	}
+
+	return found;
+}
+
+bool CAIPatrol::isStunnedPatrolInPos(VEC3 lastPos)
+{
+	std::vector <CHandle> &stunnedPatrols = CEngine::get().getIA().patrolSB.stunnedPatrols;
+
+	bool found = false;
+
+	if (stunnedPatrols.size() > 0) {
+		TCompTransform *mypos = getMyTransform();
+		for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
+			TCompTransform* stunnedPatrol = ((CEntity*)stunnedPatrols[i])->get<TCompTransform>();
+			if (stunnedPatrol->getPosition() == lastPos){
+				found = true;
+			}
+		}
+	}
+
+	return found;
+}
+
+CHandle CAIPatrol::getPatrolInPos(VEC3 lastPos)
+{
+	std::vector <CHandle> &stunnedPatrols = CEngine::get().getIA().patrolSB.stunnedPatrols;
+
+	bool found = false;
+	CHandle h_stunnedPatrol;
+
+	if (stunnedPatrols.size() > 0) {
+		TCompTransform *mypos = getMyTransform();
+		for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
+			TCompTransform* stunnedPatrol = ((CEntity*)stunnedPatrols[i])->get<TCompTransform>();
+			if (stunnedPatrol->getPosition() == lastPos) {
+				found = true;
+				h_stunnedPatrol = stunnedPatrols[i];
+			}
+		}
+	}
+
+	return h_stunnedPatrol;
 }
 
 void CAIPatrol::turnOnLight()

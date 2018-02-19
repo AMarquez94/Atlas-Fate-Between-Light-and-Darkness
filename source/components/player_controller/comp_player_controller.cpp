@@ -171,16 +171,6 @@ void TCompPlayerController::IdleState(float dt){
 		ChangeState("attack");
 		return;
 	}
-
-	if (btSecAction.getsPressed()) {
-		auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
-		for (auto h : handles) {
-			CEntity* ePatrol = (CEntity*)h;
-			TMsgPatrolFixed msg;
-			msg.h_sender = CHandle(this);
-			ePatrol->sendMsg(msg);
-		}
-	}
 }
 
 
@@ -363,15 +353,13 @@ void TCompPlayerController::onMsgPlayerHit(const TMsgPlayerHit & msg)
 	t->color = VEC4(1, 1, 1, 1);
 	t->mesh = mesh_states.find("pj_idle")->second;
 
-	//TODO: Merge with Juan code
-	//auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
-	//...
-	//Notify all enemys that we are dead
-
-	CEntity* enemy = (CEntity* )msg.h_sender;
 	TMsgPlayerDead newMsg;
 	newMsg.h_sender = CHandle(this).getOwner();
-	enemy->sendMsg(newMsg);
+	auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+	for (auto h : handles) {
+		CEntity* enemy = h;
+		enemy->sendMsg(newMsg);
+	}
 
 	TCompTransform *mypos = get<TCompTransform>();
 	float y, p, r;

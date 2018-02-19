@@ -13,7 +13,8 @@
 			]
 		},
 		"ai_patrol": {
-			"speed": 3.0
+			"speed": 3.0,
+			"entityToChase": "The Player"
 		},
       "tags": [ "enemy" ]
     }

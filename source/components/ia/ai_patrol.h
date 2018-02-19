@@ -19,37 +19,28 @@ class CAIPatrol : public IAIController
 	int currentWaypoint;
 
 
-	float speed;
+	float speed = 2.f;
+	float rotationSpeedDeg = 90.f;
 	float rotationSpeed;
-	std::string entityToChase;
+	std::string entityToChase = "The Player";
+	float fovDeg = 60.f;
 	float fov;
-	float autoChaseDistance;
-	float maxChaseDistance;
-	float maxTimeSuspecting;
+	float autoChaseDistance = 5.f;
+	float maxChaseDistance = 10.f;
+	float maxTimeSuspecting = 3.f;
 	float suspectO_Meter = 0.f;
-	float dcrSuspectO_Meter;
-	float incrBaseSuspectO_Meter;
-	VEC3 lastPlayerKnownPos = VEC3::Zero;
+	float dcrSuspectO_Meter = .3f;
+	float incrBaseSuspectO_Meter = .3f;
 	bool isLastPlayerKnownDirLeft = false;
-	float distToAttack;
+	float distToAttack = 1.f;
 	float amountRotated = 0.f;
+	float maxRotationSeekingPlayerDeg = 90.f;
 	float maxRotationSeekingPlayer;
-	VEC3 patrolDeadPosition = VEC3::Zero;
-	//float distToIdleWar;
-	//float distToBack;
-	//float distToChase;
-	//int life;
+	VEC3 lastPlayerKnownPos = VEC3::Zero;
+	VEC3 lastStunnedPatrolKnownPos = VEC3::Zero;
 
 	/* Timers */
 	float timerWaitingInWpt = 0.f;
-	//float idleWarTimer = 0.f;
-	//float idleWarTimerMax = 0.f;
-	//float idleWarTimerBase;
-	//int idleWarTimerExtra;
-	//float currentOrbitRotation = 0.f;
-	//float orbitRotationMax = 0.f;
-	//float orbitRotationBase;
-	//int orbitRotationExtra;
 
 	DECL_SIBLING_ACCESS();
 
@@ -61,6 +52,9 @@ class CAIPatrol : public IAIController
 
 	void rotateTowardsVec(VEC3 objective, float dt);
 	bool isPlayerInFov();
+	bool isStunnedPatrolInFov();
+	bool isStunnedPatrolInPos(VEC3 lastPos);
+	CHandle getPatrolInPos(VEC3 lastPos);
 	void turnOnLight();
 	void turnOffLight();
 
