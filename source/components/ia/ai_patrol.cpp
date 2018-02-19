@@ -68,17 +68,19 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 
 	Init();
 
-	auto& j_waypoints = j["waypoints"];
-	for (auto it = j_waypoints.begin(); it != j_waypoints.end(); ++it) {
+	if (j.count("waypoints") > 0) {
+		auto& j_waypoints = j["waypoints"];
+		for (auto it = j_waypoints.begin(); it != j_waypoints.end(); ++it) {
 
-		Waypoint wpt;
-		assert(it.value().count("position") == 1);
-		assert(it.value().count("lookAt") == 1);
+			Waypoint wpt;
+			assert(it.value().count("position") == 1);
+			assert(it.value().count("lookAt") == 1);
 
-		wpt.position = loadVEC3(it.value()["position"]);
-		wpt.lookAt = loadVEC3(it.value()["lookAt"]);
-		wpt.minTime = it.value().value("minTime", 5.f);
-		addWaypoint(wpt);
+			wpt.position = loadVEC3(it.value()["position"]);
+			wpt.lookAt = loadVEC3(it.value()["lookAt"]);
+			wpt.minTime = it.value().value("minTime", 5.f);
+			addWaypoint(wpt);
+		}
 	}
 
 	speed = j.value("speed", 2.0f);
@@ -103,12 +105,24 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 	//  orbitRotationExtra = j.value("orbitRotationExtra", 30);
 }
 
-void CAIPatrol::registerMsgs() {									//TODO: Change
-	DECL_MSG(CAIPatrol, TMsgPlayerDead, onMsgPlayerDead);					//TODO: Change
-	DECL_MSG(CAIPatrol, TMsgPatrolStunned, onMsgPatrolStunned);					//TODO: Change
+void CAIPatrol::registerMsgs() {
+	DECL_MSG(CAIPatrol, TMsgEntityCreated, onMsgPatrolCreated);
+	DECL_MSG(CAIPatrol, TMsgPlayerDead, onMsgPlayerDead);
+	DECL_MSG(CAIPatrol, TMsgPatrolStunned, onMsgPatrolStunned);
 	DECL_MSG(CAIPatrol, TMsgPatrolShadowMerged, onMsgPatrolShadowMerged);
 	DECL_MSG(CAIPatrol, TMsgPatrolFixed, onMsgPatrolFixed);
-}																	//TODO: Change
+}
+
+void CAIPatrol::onMsgPatrolCreated(const TMsgEntityCreated& msg) {
+
+	if(_waypoints.size() == 0){
+		Waypoint wpt;
+		wpt.position = ((TCompTransform*)get<TCompTransform>())->getPosition();
+		wpt.lookAt = ((TCompTransform*)get<TCompTransform>())->getFront();
+		wpt.minTime = 1.f;
+		addWaypoint(wpt);
+	}
+}
 
 void CAIPatrol::onMsgPlayerDead(const TMsgPlayerDead& msg) {
 	suspectO_Meter = 0.f;
@@ -127,7 +141,7 @@ void CAIPatrol::onMsgPatrolStunned(const TMsgPatrolStunned& msg) {
 	TCompTransform *mypos = getMyTransform();
 	float y, p, r;
 	mypos->getYawPitchRoll(&y, &p, &r);
-	p = p + deg2rad(90.f);
+	p = p + deg2rad(89.9f);
 	mypos->setYawPitchRoll(y, p, r);
 	turnOffLight();
 
@@ -151,7 +165,7 @@ void CAIPatrol::onMsgPatrolFixed(const TMsgPatrolFixed& msg) {
 		TCompTransform *mypos = getMyTransform();
 		float y, p, r;
 		mypos->getYawPitchRoll(&y, &p, &r);
-		p = p - deg2rad(90.f);
+		p = p - deg2rad(89.9f);
 		mypos->setYawPitchRoll(y, p, r);
 		turnOnLight();
 

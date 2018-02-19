@@ -1,84 +1,41 @@
 [
-  {
-    "entity": {
-      "name": "The Enemy",
-      "transform": {
-        "pos": "1 0 0",
-        "lookat": "-1 0 -1"
-      },
-		"render" : {				
-			"mesh": "data/meshes/bot211.mesh",
-			"materials" : [
-				"data/materials/body.material"
-			]
-		},
-		"ai_patrol" : {
-			"waypoints": 
-			[
-				{
-					"position": "-10 0 0",
+	{
+		"entity": {
+			"name": "Enemies"
+		}
+	},
+	{
+		"entity": {
+			"prefab" : "data/prefabs/patrol.prefab",
+			"name": "The Enemy 1",
+			"transform": {
+				"pos": "1 0 0"
+			},
+			"ai_patrol": {
+				"waypoints": [
+				  {
+					"position": "10 0 0",
 					"lookAt": "-1 0 -1"
-				},
-				{
-					"position": "5 0 5",
+				  },
+				  {
+					"position": "-5 0 -5",
 					"lookAt": "-1 0 -1"
-				},
-				{
-					"position": "2 0 10",
+				  },
+				  {
+					"position": "-2 0 -10",
 					"lookAt": "-1 0 -1"
-				}
-			]
-		},
-		"tags" : ["enemy"]
-    }
-  },
-  {
-    "entity": {
-      "name": "Cone of Vision",
-      "transform": {},
-      "render": {
-		 "mesh": "cone_of_vision.mesh"
-	  },
-      "hierarchy": {
-        "parent": "The Enemy"
-      }
-    }
-  },
-  {
-    "entity": {
-      "name": "Cone of Light",
-      "transform": {},
-      "render": {
-		 "mesh": "empty_mesh.mesh"
-	  },
-      "hierarchy": {
-        "parent": "The Enemy"
-      },
-	  "cone_of_light" : {
-			"fov": 30,
-			"dist": 10.0,
-			"target": "The Player",
-			"default_mesh": "cone_of_light.mesh"
-		} 
-    }
-  },
-  {
-    "entity": {
-      "name": "Teapot 2",
-      "render": {
-        "mesh": "data/meshes/Teapot001.mesh",
-        "materials": [
-          "data/materials/madera.material"
-        ]
-      },
-      "transform": {
-        "pos": "-4 0 0"
-      },
-			"collider": {
-        "shape": "box",
-        "halfExtent": "2 2 2",
-			"is_trigger": true
-      }
-    }
-  }
+				  }
+				]
+			}
+		}
+	},
+	{
+		"entity": {
+			"prefab" : "data/prefabs/patrol.prefab",
+			"name": "The Enemy 2",
+			"transform": {
+				"pos": "-1 0 0"
+			}
+		}
+	}
 ]

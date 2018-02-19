@@ -45,7 +45,7 @@ void TCompCameraShadowMerge::update(float dt)
 	assert(target_transform);
 
 	// To remove in the future.
-	float horizontal_delta = EngineInput.mouse()._position_delta.x;
+	float horizontal_delta = -EngineInput.mouse()._position_delta.x;
 	float vertical_delta = EngineInput.mouse()._position_delta.y;
 	if (btRHorizontal.isPressed()) horizontal_delta = btRHorizontal.value;
 	if (btRVertical.isPressed()) vertical_delta = btRVertical.value;

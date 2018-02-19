@@ -50,10 +50,12 @@ void IAIController::AddState(const std::string& name, statehandler sh)
   // try to find a state with the suitable name
   if (statemap.find(name) != statemap.end())
   {
-    // the state we wish to jump to does exist. we abort
-    fatal("Invalid AddState(%s). Already defined.\n", name.c_str());
+    //TODO: 
+    //fatal("Invalid AddState(%s). Already defined.\n", name.c_str());
   }
-  statemap[name] = sh;
+  else {
+	statemap[name] = sh;
+  }
 }
 
 void IAIController::setEntity(CHandle new_entity) {

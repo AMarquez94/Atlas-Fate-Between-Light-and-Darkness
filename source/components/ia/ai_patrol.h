@@ -53,6 +53,7 @@ class CAIPatrol : public IAIController
 
 	DECL_SIBLING_ACCESS();
 
+	void onMsgPatrolCreated(const TMsgEntityCreated& msg);
 	void onMsgPlayerDead(const TMsgPlayerDead& msg);
 	void onMsgPatrolStunned(const TMsgPatrolStunned& msg);
 	void onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged& msg);

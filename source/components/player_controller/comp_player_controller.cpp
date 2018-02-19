@@ -171,6 +171,16 @@ void TCompPlayerController::IdleState(float dt){
 		ChangeState("attack");
 		return;
 	}
+
+	if (btSecAction.getsPressed()) {
+		auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+		for (auto h : handles) {
+			CEntity* ePatrol = (CEntity*)h;
+			TMsgPatrolFixed msg;
+			msg.h_sender = CHandle(this);
+			ePatrol->sendMsg(msg);
+		}
+	}
 }
 
 
@@ -366,7 +376,7 @@ void TCompPlayerController::onMsgPlayerHit(const TMsgPlayerHit & msg)
 	TCompTransform *mypos = get<TCompTransform>();
 	float y, p, r;
 	mypos->getYawPitchRoll(&y, &p, &r);
-	p = p + deg2rad(90.f);
+	p = p + deg2rad(89.9f);
 	mypos->setYawPitchRoll(y, p, r);
 }
 
