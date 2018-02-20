@@ -341,7 +341,7 @@ void CAIPatrol::SuspectState(float dt)
 		ChangeState("shootInhibitor");
 	}
 	else if (suspectO_Meter <= 0.f) {
-		if (lastStunnedPatrolKnownPos != VEC3::Zero) {
+		if (isStunnedPatrolInFov() || lastStunnedPatrolKnownPos != VEC3::Zero) {
 			ChangeState("goToPatrol");
 		}
 		else {

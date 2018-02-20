@@ -73,6 +73,7 @@ void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	walkSlowCrouchSpeedFactor = j.value("walkSlowCrouchSpeedFactor", 0.5f);
 	rotationSpeed = j.value("rotationSpeed", 5.0f);
 	distToAttack = j.value("distToAttack", 2.0f);
+	distToSM = j.value("distToSM", 2.5f);
 
 	timesToPressRemoveInhibitorKey = j.value("timesToPressRemoveInhibitorKey", 10);
 
@@ -112,6 +113,7 @@ void TCompPlayerController::Init() {
 	AddState("smEnemy", (statehandler)&TCompPlayerController::ShadowMergingEnemyState);
 	AddState("smLand", (statehandler)&TCompPlayerController::ShadowMergingLandingState);
 	AddState("smExit", (statehandler)&TCompPlayerController::ShadowMergingExitState);
+	AddState("push", (statehandler)&TCompPlayerController::PushState);
 	AddState("attack", (statehandler)&TCompPlayerController::AttackState);
 	AddState("rmInhibitor", (statehandler)&TCompPlayerController::RemovingInhibitorState);
 	AddState("fall", (statehandler)&TCompPlayerController::FallingState);
@@ -122,7 +124,6 @@ void TCompPlayerController::Init() {
 
 	/* TODO: not for milestone1 */
 	//AddState("probe", (statehandler)&TCompPlayerController::ProbeState);
-	//AddState("push", (statehandler)&TCompPlayerController::PushState);
 
 	delta_movement = VEC3::Zero;
 
@@ -144,7 +145,10 @@ void TCompPlayerController::IdleState(float dt){
 	c_my_render->mesh = mesh_states.find("pj_idle")->second;
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
 	if (inhibited) {
-		manageInhibition(dt);
+		if (manageInhibition(dt)) {
+			ChangeState("rmInhibitor");
+			return;
+		}
 	}
 
 	if (btShadowMerging.getsPressed() && checkShadows()) {
@@ -169,6 +173,11 @@ void TCompPlayerController::IdleState(float dt){
 
 	if (canAttack && btAttack.getsPressed()) {
 		ChangeState("attack");
+		return;
+	}
+
+	if (btAction.getsPressed() && checkTouchingStunnedEnemy().isValid()) {
+		ChangeState("push");
 		return;
 	}
 }
@@ -201,6 +210,12 @@ void TCompPlayerController::MotionState(float dt){
 
 	if (canAttack && btAttack.getsPressed()) {
 		ChangeState("attack");
+		return;
+	}
+
+	if (btAction.getsPressed() && checkTouchingStunnedEnemy().isValid()) {
+		ChangeState("push");
+		return;
 	}
 }
 void TCompPlayerController::CrouchState(float dt) {
@@ -208,7 +223,10 @@ void TCompPlayerController::CrouchState(float dt) {
 	checkAttack();
 
 	if (inhibited) {
-		manageInhibition(dt);
+		if (manageInhibition(dt)) {
+			ChangeState("rmInhibitor");
+			return;
+		}
 	}
 
 	if (btCrouch.getsReleased()) {
@@ -231,6 +249,12 @@ void TCompPlayerController::CrouchState(float dt) {
 
 	if (canAttack && btAttack.getsPressed()) {
 		ChangeState("attack");
+		return;
+	}
+
+	if (btAction.getsPressed() && checkTouchingStunnedEnemy().isValid()) {
+		ChangeState("push");
+		return;
 	}
 }
 
@@ -238,6 +262,15 @@ void TCompPlayerController::CrouchState(float dt) {
 
 void TCompPlayerController::PushState(float dt){ 
 
+	delta_movement = VEC3::Zero;
+	enemyToSM = checkTouchingStunnedEnemy();
+	if (!btAction.isPressed() || !enemyToSM.isValid()) {
+		enemyToSM = CHandle();
+		ChangeState("idle");
+	}
+	else if(btShadowMerging.getsPressed() && checkShadows() && checkEnemyInShadows(enemyToSM)) {
+		ChangeState("smEnemy");
+	}
 }
 
 
@@ -256,7 +289,7 @@ void TCompPlayerController::ProbeState(float dt){
 
 
 void TCompPlayerController::RemovingInhibitorState(float dt){ 
-
+	ChangeState("idle");
 }
 
 
@@ -301,7 +334,27 @@ void TCompPlayerController::ShadowMergingVerticalState(float dt){
 
 
 void TCompPlayerController::ShadowMergingEnemyState(float dt){
+	// Change the render to the shadow merge mesh, TO REFACTOR
+	TCompRender* t = get<TCompRender>();
+	t->color = VEC4(0, 0, 0, 0);
+	t->mesh = mesh_states.find("pj_shadowmerge")->second;
 
+	CEntity* e_camera = getEntityByName(camera_shadowmerge);
+	TCompCamera* c_camera = e_camera->get< TCompCamera >();
+	assert(c_camera);
+
+	// Replace this with an smooth camera interpolation
+	camera_actual = camera_shadowmerge;
+	CCamera::main_camera = getEntityByName(camera_actual);
+
+	TMsgPatrolShadowMerged msg;
+	msg.h_sender = CHandle(this).getOwner();
+	msg.h_objective = enemyToSM;
+	enemyToSM.sendMsg(msg);
+
+	enemyToSM = CHandle();
+
+	ChangeState("smHor");
 }
 
 
@@ -473,7 +526,7 @@ void TCompPlayerController::movePlayer(const float dt) {
 	delta_movement = new_pos - c_my_transform->getPosition();
 }
 
-void TCompPlayerController::manageInhibition(float dt) {
+bool TCompPlayerController::manageInhibition(float dt) {
 
 	if (btSecAction.getsPressed()) {
 		timesRemoveInhibitorKeyPressed++;
@@ -491,6 +544,8 @@ void TCompPlayerController::manageInhibition(float dt) {
 			timesRemoveInhibitorKeyPressed = 0;
 		}
 	}
+
+	return !inhibited;
 }
 
 const bool TCompPlayerController::isInShadows() {
@@ -539,4 +594,32 @@ void TCompPlayerController::allowAttack(bool allow, CHandle enemy) {
 		c_my_render->color = VEC4(1, 1, 1, 1);
 	}
 	enemyToAttack = enemy;
+}
+
+CHandle TCompPlayerController::checkTouchingStunnedEnemy()
+{
+	auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+	bool found = false;
+	CHandle enemy = CHandle();
+	int i = 0;
+	while (i < handles.size() && !found) {
+		TCompTransform * mypos = get<TCompTransform>();
+		TCompTransform * epos = ((CEntity*)handles[i])->get<TCompTransform>();
+		if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < distToSM 
+			&& mypos->isInFront(epos->getPosition())) {
+
+			CAIPatrol * aipatrol = ((CEntity*)handles[i])->get<CAIPatrol>();
+			if (aipatrol->getStateName().compare("stunned") == 0) {
+				found = true;
+				enemy = handles[i];
+			}
+		}
+		i++;
+	}
+	return enemy;
+}
+
+bool TCompPlayerController::checkEnemyInShadows(CHandle enemy)
+{
+	return true;	//TODO: Check if enemy is in shadows when going to sm
 }
