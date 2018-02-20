@@ -9,7 +9,7 @@
         ]
       },
       "transform": {
-        "pos": "-10.5 0 2.5"
+        "pos": "-20.5 0 2.5"
       },
       "player_controller": {
         "target_camera": "TPCamera",
@@ -32,15 +32,15 @@
       "collider": {
         "shape": "capsule",
         "is_character_controller": true,
-				"radius": 0.35,
+		"radius": 0.35,
         "height": 1,
-				"mask": "wall",
-				"group": "player",
+		"mask": "wall",
+		"group": "player",
         "gravity": true
       },
-			"shadow_controller": {
-			},
-			"group": "player"
+		"shadow_controller": {
+		},
+		"group": "player"
     }
   }
 ]

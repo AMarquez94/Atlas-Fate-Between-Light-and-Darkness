@@ -133,7 +133,6 @@ void TCompPlayerController::registerMsgs() {
 	DECL_MSG(TCompPlayerController, TMsgInhibitorShot, onMsgPlayerShotInhibitor);
 }
 
-
 void TCompPlayerController::IdleState(float dt){
 
 	TCompRender *c_my_render = get<TCompRender>();
@@ -180,6 +179,7 @@ void TCompPlayerController::MotionState(float dt){
 		}
 	}
 }
+
 void TCompPlayerController::CrouchState(float dt) {
 
 	if (inhibited) {
@@ -202,27 +202,21 @@ void TCompPlayerController::CrouchState(float dt) {
 	}
 }
 
-
-
 void TCompPlayerController::PushState(float dt){ 
 
 }
-
 
 void TCompPlayerController::AttackState(float dt){ 
 	dbg("attacked the enemy");
 }
 
-
 void TCompPlayerController::ProbeState(float dt){ 
 
 }
 
-
 void TCompPlayerController::RemovingInhibitorState(float dt){ 
 
 }
-
 
 void TCompPlayerController::ShadowMergingEnterState(float dt){
 
@@ -237,14 +231,16 @@ void TCompPlayerController::ShadowMergingEnterState(float dt){
 	ChangeState("smHor");
 }
 
-
 void TCompPlayerController::ShadowMergingHorizontalState(float dt){ 
 
 	//NormalChange();
 
 	if (motionButtonsPressed()) {
 		if (NormalChange())
+		{
 			ChangeState("smVer");
+			return;
+		}
 
 		movePlayer(dt);
 		stamina = Clamp<float>(stamina - (dcrStaminaGround * dt), minStamina, maxStamina);
@@ -258,35 +254,32 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 	}
 }
 
-
 void TCompPlayerController::ShadowMergingVerticalState(float dt){ 
+
 	movePlayerShadow(dt);
 
-	if (!IsGrounded())
-	{
-		ChangeState("smExit");
-		TCompCollider * collider = get<TCompCollider>();
-		TCompTransform * c_my_transform = get<TCompTransform>();
-		collider->normal_gravity = VEC3(0, -9.81f, 0);
-		collider->SetUpVector(VEC3(0, 1.f, 0));
-		float yaw, pitch, roll;
-		c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
-		Quaternion new_rotation = Quaternion::CreateFromYawPitchRoll(yaw, 0, 0);
+	//if (!IsGrounded())
+	//{
+	//	ChangeState("smExit");
+	//	TCompCollider * collider = get<TCompCollider>();
+	//	TCompTransform * c_my_transform = get<TCompTransform>();
+	//	collider->normal_gravity = VEC3(0, -9.81f, 0);
+	//	collider->SetUpVector(VEC3(0, 1.f, 0));
+	//	float yaw, pitch, roll;
+	//	c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+	//	Quaternion new_rotation = Quaternion::CreateFromYawPitchRoll(yaw, 0, 0);
 
-		c_my_transform->setRotation(new_rotation);
-	}
+	//	c_my_transform->setRotation(new_rotation);
+	//}
 }
-
 
 void TCompPlayerController::ShadowMergingEnemyState(float dt){
 
 }
 
-
 void TCompPlayerController::ShadowMergingLandingState(float dt){ 
 
 }
-
 
 void TCompPlayerController::ShadowMergingExitState(float dt){
 
@@ -301,26 +294,21 @@ void TCompPlayerController::ShadowMergingExitState(float dt){
 	ChangeState("idle");
 }
 
-
 void TCompPlayerController::FallingState(float dt){
 
 }
-
 
 void TCompPlayerController::LandingState(float dt){
 
 }
 
-
 void TCompPlayerController::HitState(float dt){
 
 }
 
-
 void TCompPlayerController::DeadState(float dt){
 
 }
-
 
 void TCompPlayerController::onMsgPlayerHit(const TMsgPlayerHit & msg)
 {
@@ -456,13 +444,11 @@ void TCompPlayerController::movePlayer(const float dt) {
 
 	VEC3 new_pos = c_my_transform->getPosition() + dir * player_accel;
 	delta_movement = new_pos - c_my_transform->getPosition();
-	
 }
-
 
 void TCompPlayerController::movePlayerShadow(const float dt) {
 
-	//// Player movement and rotation related method.
+	// Player movement and rotation related method.
 	float yaw, pitch, roll;
 	float c_yaw, c_pitch, c_roll;
 	CEntity *player_camera = (CEntity *)getEntityByName(camera_actual);
@@ -474,7 +460,6 @@ void TCompPlayerController::movePlayerShadow(const float dt) {
 	trans_camera->getYawPitchRoll(&c_yaw, &c_pitch, &c_roll);
 	c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
 
-
 	VEC3 dir = VEC3::Zero;
 	float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
 	float player_accel = inputSpeed * currentSpeed * dt;
@@ -485,7 +470,6 @@ void TCompPlayerController::movePlayerShadow(const float dt) {
 	normal_norm.Normalize();
 	VEC3 proj = (up - up.Dot(normal_norm) * normal_norm);
 	proj.Normalize();
-
 	// Little hotfix to surpass negative values on analog pad
 
 	if (btUp.isPressed() && btUp.value > 0) {
@@ -502,12 +486,19 @@ void TCompPlayerController::movePlayerShadow(const float dt) {
 	}
 	dir.Normalize();
 
+	//VEC3 temp = c_my_transform->getFront();
+	//VEC3 new_pos = c_my_transform->getPosition() + dir * player_accel;
+	//delta_movement = new_pos - c_my_transform->getPosition();
+	
+	//c_my_transform->setYawPitchRoll(yaw + 0.001f, pitch, roll);
 
+	//dbg("Front vector x:%f y:%f z:%f\n", c_my_transform->getFront().x, c_my_transform->getFront().y, c_my_transform->getFront().z);
+	//dbg("Up vector x:%f y:%f z:%f\n", c_my_transform->getUp().x, c_my_transform->getUp().y, c_my_transform->getUp().z);
 
-	VEC3 new_pos = c_my_transform->getPosition() + dir * player_accel;
-	delta_movement = new_pos - c_my_transform->getPosition();
+	//VEC3 my_pos = c_my_transform->getPosition();
+	//VEC3 new_pos_new = my_pos - 2 * VEC3(-1,0,0);
+	//c_my_transform->lookAt(c_my_transform->getPosition(), new_pos_new);
 }
-
 
 void TCompPlayerController::manageInhibition(float dt) {
 
@@ -544,28 +535,36 @@ bool TCompPlayerController::NormalChange(void)
 	TCompCollider *c_my_collider = get<TCompCollider>();
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * 0.01f;
-	if (CEngine::get().getPhysics().Raycast(upwards_offset, c_my_transform->getFront(), c_my_collider->config.radius + 0.3f, hit))
+
+	if (CEngine::get().getPhysics().Raycast(upwards_offset, c_my_transform->getFront(), c_my_collider->config.radius + 0.1f, hit))
 	{
 		//if (done == true)return;
 		VEC3 new_forward = hit.normal.Cross(c_my_transform->getLeft());
-		
 		CHandle cold = hit.collider;
 		CEntity * top = cold.getOwner();
 		TCompName * name = top->get<TCompName>();
-
 		dbg("on wall with %s\n", name->getName());
+
+		CEntity *player_camera = (CEntity *)getEntityByName(camera_actual);
+		TCompTransform * trans_camera = player_camera->get<TCompTransform>();
+		TCompCollider * collider = get<TCompCollider>();
+
 		float yaw, pitch, roll;
 		c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
-		Quaternion new_rotation = Quaternion::CreateFromYawPitchRoll(yaw, pitch - deg2rad(89.9f), 0);
+		
+		VEC3 target = c_my_transform->getPosition() + 10 * VEC3(0, 1, 0);
+		//c_my_transform->setPosition(hit.point);
+		//c_my_transform->lookAt(hit.point, target);
 
-		c_my_transform->setRotation(new_rotation);
 		c_my_collider->SetUpVector(hit.normal);
 		c_my_collider->normal_gravity = -hit.normal;
 		//c_my_transform->setPosition(hit.point);
-
-		TCompCollider * collider = get<TCompCollider>();
 		collider->normal_gravity = -hit.normal;
 
+		Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), target, hit.normal);
+		Quaternion quat = Quaternion::CreateFromRotationMatrix(test);
+		c_my_transform->setRotation(quat);
+		
 		return true;
 	}
 

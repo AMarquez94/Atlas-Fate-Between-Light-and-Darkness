@@ -42,7 +42,6 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		capsuleDesc.climbingMode = PxCapsuleClimbingMode::eCONSTRAINED;
 		cDesc = &capsuleDesc;
 		cDesc->material = gMaterial;
-
 		PxCapsuleController * ctrl = static_cast<PxCapsuleController*>(mControllerManager->createController(*cDesc));
 		PX_ASSERT(ctrl);
 		ctrl->setFootPosition(PxExtendedVec3(pos.x, pos.y, pos.z));
@@ -59,9 +58,11 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		{
 			shape = gPhysics->createShape(PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z), *gMaterial);
 			offset.p.y = config.halfExtent.y;
-			shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, true);
-			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
 			shape->setContactOffset(0.0001);
+
+			//shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, true);
+			//shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
+
 		}
 		else if (config.shapeType == physx::PxGeometryType::eSPHERE)
 		{
@@ -116,17 +117,17 @@ void CModulePhysics::setupFiltering(PxRigidActor* actor, PxU32 filterGroup, PxU3
 {
 	PxFilterData filterData;
 	filterData.word0 = filterGroup; // word0 = own ID
-	filterData.word1 = filterMask;  // word1 = ID mask to filter pairs that trigger a
-									// contact callback;
+	filterData.word1 = filterMask;	// word1 = ID mask to filter pairs that trigger a contact callback;
 	const PxU32 numShapes = actor->getNbShapes();
-	PxShape** shapes = (PxShape**)malloc(sizeof(PxShape*)*numShapes);
-	actor->getShapes(shapes, numShapes);
+	std::vector<PxShape*> shapes;
+	shapes.resize(numShapes);
+	actor->getShapes(&shapes[0], numShapes);
 	for (PxU32 i = 0; i < numShapes; i++)
 	{
 		PxShape* shape = shapes[i];
 		shape->setSimulationFilterData(filterData);
+		shape->setQueryFilterData(filterData);
 	}
-	free(shapes);
 }
 
 CModulePhysics::FilterGroup CModulePhysics::getFilterByName(const std::string& name)
@@ -160,7 +161,6 @@ PxFilterFlags CustomFilterShader(
   PxPairFlags& pairFlags, const void* constantBlock, PxU32 constantBlockSize
 )
 {
-
 	dbg("triying to collide");
     if ( (filterData0.word0 & filterData1.word1) && (filterData1.word0 & filterData0.word1) )
     {
@@ -199,9 +199,11 @@ bool CModulePhysics::start()
 	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 	sceneDesc.cpuDispatcher = gDispatcher;
 	sceneDesc.filterShader = CustomFilterShader;
+	sceneDesc.flags = PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS | PxSceneFlag::eENABLE_ACTIVE_ACTORS;
 	gScene = gPhysics->createScene(sceneDesc);
 	gScene->setFlag(PxSceneFlag::eENABLE_ACTIVE_ACTORS, true);
 	gScene->setFlag(PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS, true);
+
 	PxPvdSceneClient* pvdClient = gScene->getScenePvdClient();
 
 	if (pvdClient)
