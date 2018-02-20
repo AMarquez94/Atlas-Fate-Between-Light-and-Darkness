@@ -52,15 +52,15 @@ void TCompCollider::update(float dt) {
 		TCompPlayerController *c_my_plyrcntlr = get<TCompPlayerController>();
 		assert(c_my_plyrcntlr);
 		VEC3 delta = c_my_plyrcntlr->delta_movement;
-		//controller->move(physx::PxVec3(delta.x, delta.y, delta.z), 0.f, dt, physx::PxControllerFilters());
-		velocity.x = delta.x;
-		velocity.z = delta.z;
+		controller->move(physx::PxVec3(delta.x, delta.y, delta.z), 0.f, dt, physx::PxControllerFilters());
+		//velocity.x = delta.x;
+		//velocity.z = delta.z;
 	}
 
 	if (config.gravity) {
 
-		velocity.y -= 9.81f * dt;
-		controller->move(physx::PxVec3(velocity.x, velocity.y * dt, velocity.z), 0.f, dt, physx::PxControllerFilters());
+		//velocity.y -= 9.81f * dt;
+		controller->move(physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z), 0.f, dt, physx::PxControllerFilters());
 	}
 }
 

@@ -40,7 +40,6 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		capsuleDesc.height = config.height;
 		capsuleDesc.radius = config.radius;
 		capsuleDesc.climbingMode = PxCapsuleClimbingMode::eCONSTRAINED;
-		capsuleDesc.contactOffset = 0.0001;
 		cDesc = &capsuleDesc;
 		cDesc->material = gMaterial;
 
@@ -60,6 +59,9 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		{
 			shape = gPhysics->createShape(PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z), *gMaterial);
 			offset.p.y = config.halfExtent.y;
+			shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, true);
+			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
+			shape->setContactOffset(0.0001);
 		}
 		else if (config.shapeType == physx::PxGeometryType::eSPHERE)
 		{
@@ -114,17 +116,17 @@ void CModulePhysics::setupFiltering(PxRigidActor* actor, PxU32 filterGroup, PxU3
 {
 	PxFilterData filterData;
 	filterData.word0 = filterGroup; // word0 = own ID
-	filterData.word1 = filterMask;	// word1 = ID mask to filter pairs that trigger a contact callback;
+	filterData.word1 = filterMask;  // word1 = ID mask to filter pairs that trigger a
+									// contact callback;
 	const PxU32 numShapes = actor->getNbShapes();
-	std::vector<PxShape*> shapes;
-	shapes.resize(numShapes);
-	actor->getShapes(&shapes[0], numShapes);
+	PxShape** shapes = (PxShape**)malloc(sizeof(PxShape*)*numShapes);
+	actor->getShapes(shapes, numShapes);
 	for (PxU32 i = 0; i < numShapes; i++)
 	{
 		PxShape* shape = shapes[i];
 		shape->setSimulationFilterData(filterData);
-		shape->setQueryFilterData(filterData);
 	}
+	free(shapes);
 }
 
 CModulePhysics::FilterGroup CModulePhysics::getFilterByName(const std::string& name)
@@ -158,6 +160,8 @@ PxFilterFlags CustomFilterShader(
   PxPairFlags& pairFlags, const void* constantBlock, PxU32 constantBlockSize
 )
 {
+
+	dbg("triying to collide");
     if ( (filterData0.word0 & filterData1.word1) && (filterData1.word0 & filterData0.word1) )
     {
         if ( PxFilterObjectIsTrigger(attributes0) || PxFilterObjectIsTrigger(attributes1) )
@@ -197,6 +201,7 @@ bool CModulePhysics::start()
 	sceneDesc.filterShader = CustomFilterShader;
 	gScene = gPhysics->createScene(sceneDesc);
 	gScene->setFlag(PxSceneFlag::eENABLE_ACTIVE_ACTORS, true);
+	gScene->setFlag(PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS, true);
 	PxPvdSceneClient* pvdClient = gScene->getScenePvdClient();
 
 	if (pvdClient)
@@ -285,6 +290,16 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
 		{
 			e_trigger->sendMsg(TMsgTriggerExit{ h_other_comp_collider.getOwner() });
 		}
+	}
+}
+
+void CModulePhysics::CustomSimulationEventCallback::onContact(const physx::PxContactPairHeader& pairHeader, const physx::PxContactPair* pairs, physx::PxU32 nbPairs)
+{
+	for (PxU32 i = 0; i < nbPairs; i++)
+	{
+		const PxContactPair& cp = pairs[i];
+
+		dbg("contact found\n");
 	}
 }
 

@@ -31,7 +31,7 @@ void TCompShadowController::update(float dt) {
 	VEC3 new_pos = c_my_transform->getPosition() + 0.1f * c_my_transform->getUp();
 	is_shadow = IsPointInShadows(new_pos);
 
-	is_shadow == true ? dbg("i'm in shadow\n") : dbg("i'm in light\n");
+	//is_shadow == true ? dbg("i'm in shadow\n") : dbg("i'm in light\n");
  }
 
 void TCompShadowController::Init() {

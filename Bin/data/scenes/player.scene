@@ -32,7 +32,6 @@
       "collider": {
         "shape": "capsule",
         "is_character_controller": true,
-        "is_dynamic" : true,
 				"radius": 0.35,
         "height": 1,
 				"mask": "wall",

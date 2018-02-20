@@ -42,7 +42,7 @@ void TCompCameraThirdPerson::update(float dt)
 	assert(target_transform);
 
 	// To remove in the future.
-	float horizontal_delta = mouse._position_delta.x;
+	float horizontal_delta = -mouse._position_delta.x;
 	float vertical_delta = mouse._position_delta.y;
 	if (btHorizontal.isPressed()) horizontal_delta = btHorizontal.value;
 	if (btVertical.isPressed()) vertical_delta = btVertical.value;
