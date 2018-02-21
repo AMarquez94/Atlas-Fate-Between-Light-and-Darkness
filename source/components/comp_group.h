@@ -5,11 +5,14 @@
 
 class CTransform;
 
+DECL_SIBLING_ACCESS();
+
 struct TCompGroup : public TCompBase {
-  VHandles handles;
-  ~TCompGroup();
-  void debugInMenu();
-  void add(CHandle h_new_child);
+	VHandles handles;
+	~TCompGroup();
+	void debugInMenu();
+	void add(CHandle h_new_child);
+	CHandle getHandleByName(std::string name);
 
 };
 

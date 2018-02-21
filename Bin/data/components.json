@@ -10,10 +10,14 @@
   "update": [
     "circular_controller",
     "player_controller",
+    "collider",
+    "camera_thirdperson",
+    "camera_shadowmerge",
     "bullet_controller",
     "ai_patrol",
     "flyover_controller",
     "hierarchy",
+	"cone_of_light",
     "camera"
   ]
 }

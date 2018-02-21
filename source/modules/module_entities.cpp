@@ -103,16 +103,17 @@ void CModuleEntities::render()
   auto om_render = getObjectManager<TCompRender>();
   om_render->forEach([](TCompRender* c) {
 
-    TCompTransform* c_transform = c->get<TCompTransform>();
-    if (!c_transform)
-      return;
+	  if (c->visible) {
+		  TCompTransform* c_transform = c->get<TCompTransform>();
+		  if (!c_transform)
+			  return;
 
-    cb_object.obj_world = c_transform->asMatrix();
-	cb_object.obj_color = c->color;
-    cb_object.updateGPU();
-	for (auto& m : c->materials)
-		m->activate();
-    c->mesh->activateAndRender();
+		  cb_object.obj_world = c_transform->asMatrix();
+		  cb_object.obj_color = c->color;
+		  cb_object.updateGPU();
+		  for (auto& m : c->materials)
+			  m->activate();
+		  c->mesh->activateAndRender();
+	  }
   });
-
 }

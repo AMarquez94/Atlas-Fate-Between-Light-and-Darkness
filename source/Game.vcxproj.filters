@@ -1,164 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="camera\camera.cpp" />
+    <ClCompile Include="components\comp_camera.cpp" />
+    <ClCompile Include="components\comp_name.cpp" />
+    <ClCompile Include="components\comp_render.cpp" />
+    <ClCompile Include="components\comp_transform.cpp" />
+    <ClCompile Include="components\ia\ai_controller.cpp" />
+    <ClCompile Include="components\ia\ai_patrol.cpp" />
+    <ClCompile Include="engine.cpp" />
+    <ClCompile Include="entity\entity.cpp" />
+    <ClCompile Include="entity\entity_parser.cpp" />
+    <ClCompile Include="geometry\angular.cpp" />
+    <ClCompile Include="geometry\geometry.cpp" />
+    <ClCompile Include="geometry\SimpleMath.cpp" />
+    <ClCompile Include="geometry\transform.cpp" />
+    <ClCompile Include="handle\handle_def.cpp" />
+    <ClCompile Include="handle\handle_manager.cpp" />
+    <ClCompile Include="imgui\imgui.cpp" />
+    <ClCompile Include="imgui\imgui_demo.cpp" />
+    <ClCompile Include="imgui\imgui_draw.cpp" />
+    <ClCompile Include="imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="input\devices\keyboard.cpp" />
+    <ClCompile Include="input\devices\mouse.cpp" />
+    <ClCompile Include="input\devices\pad_xbox.cpp" />
+    <ClCompile Include="input\host.cpp" />
+    <ClCompile Include="input\interfaces\interface_mapping.cpp" />
+    <ClCompile Include="input\mapping.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="windows\app.cpp">
-      <Filter>windows</Filter>
-    </ClCompile>
     <ClCompile Include="mcv_platform.cpp" />
-    <ClCompile Include="utils\utils.cpp">
-      <Filter>utils</Filter>
-    </ClCompile>
-    <ClCompile Include="render\render.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="geometry\geometry.cpp">
-      <Filter>geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="render\cte_buffer.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="geometry\SimpleMath.cpp">
-      <Filter>geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="engine.cpp" />
-    <ClCompile Include="camera\camera.cpp">
-      <Filter>camera</Filter>
-    </ClCompile>
-    <ClCompile Include="geometry\angular.cpp">
-      <Filter>geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui.cpp">
-      <Filter>imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_demo.cpp">
-      <Filter>imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_draw.cpp">
-      <Filter>imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_impl_dx11.cpp">
-      <Filter>imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="render\mesh\mesh.cpp">
-      <Filter>render\mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="render\mesh\mesh_loader.cpp">
-      <Filter>render\mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="modules\module_manager.cpp">
-      <Filter>modules</Filter>
-    </ClCompile>
-    <ClCompile Include="modules\module_render.cpp">
-      <Filter>modules</Filter>
-    </ClCompile>
-    <ClCompile Include="render\render_objects.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="geometry\transform.cpp">
-      <Filter>geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="modules\game\module_gameover.cpp">
-      <Filter>modules\game</Filter>
-    </ClCompile>
-    <ClCompile Include="modules\game\module_main_menu.cpp">
-      <Filter>modules\game</Filter>
-    </ClCompile>
-    <ClCompile Include="modules\game\module_splash.cpp">
-      <Filter>modules\game</Filter>
-    </ClCompile>
-    <ClCompile Include="entity\entity.cpp">
-      <Filter>entity</Filter>
-    </ClCompile>
-    <ClCompile Include="modules\module_entities.cpp">
-      <Filter>modules</Filter>
-    </ClCompile>
-    <ClCompile Include="modules\module_ia.cpp">
-      <Filter>modules</Filter>
-    </ClCompile>
-    <ClCompile Include="resources\resources_manager.cpp">
-      <Filter>resources</Filter>
-    </ClCompile>
-    <ClCompile Include="render\texture\texture.cpp">
-      <Filter>render\texture</Filter>
-    </ClCompile>
-    <ClCompile Include="render\texture\DDSTextureLoader.cpp">
-      <Filter>render\texture</Filter>
-    </ClCompile>
-    <ClCompile Include="modules\module_render.cpp" />
-    <ClCompile Include="engine.cpp" />
-    <ClCompile Include="modules\module_manager.cpp" />
-    <ClCompile Include="modules\game\module_splash.cpp" />
     <ClCompile Include="modules\game\module_gameover.cpp" />
     <ClCompile Include="modules\game\module_main_menu.cpp" />
-    <ClCompile Include="modules\system\module_input.cpp">
-      <Filter>modules\system</Filter>
-    </ClCompile>
-    <ClCompile Include="modules\test\module_test_input.cpp">
-      <Filter>modules\test</Filter>
-    </ClCompile>
-    <ClCompile Include="input\interfaces\interface_mapping.cpp">
-      <Filter>input\interfaces</Filter>
-    </ClCompile>
-    <ClCompile Include="input\host.cpp">
-      <Filter>input</Filter>
-    </ClCompile>
-    <ClCompile Include="input\mapping.cpp">
-      <Filter>input</Filter>
-    </ClCompile>
-    <ClCompile Include="input\devices\pad_xbox.cpp">
-      <Filter>input\devices</Filter>
-    </ClCompile>
-    <ClCompile Include="input\devices\mouse.cpp">
-      <Filter>input\devices</Filter>
-    </ClCompile>
-    <ClCompile Include="input\devices\keyboard.cpp">
-      <Filter>input\devices</Filter>
-    </ClCompile>
-    <ClCompile Include="modules\game\module_test_axis.cpp">
-      <Filter>modules\game</Filter>
-    </ClCompile>
-    <ClCompile Include="handle\handle_manager.cpp">
-      <Filter>handle</Filter>
-    </ClCompile>
-    <ClCompile Include="handle\handle_def.cpp">
-      <Filter>handle</Filter>
-    </ClCompile>
-    <ClCompile Include="components\comp_name.cpp">
-      <Filter>components</Filter>
-    </ClCompile>
-    <ClCompile Include="components\comp_transform.cpp">
-      <Filter>components</Filter>
-    </ClCompile>
-    <ClCompile Include="entity\entity_parser.cpp">
-      <Filter>entity</Filter>
-    </ClCompile>
-    <ClCompile Include="components\comp_render.cpp">
-      <Filter>components</Filter>
-    </ClCompile>
-    <ClCompile Include="components\comp_circular_controller.cpp">
-      <Filter>components</Filter>
-    </ClCompile>
-    <ClCompile Include="components\comp_camera.cpp">
-      <Filter>components</Filter>
-    </ClCompile>
-    <ClCompile Include="components\comp_player_controller.cpp">
-      <Filter>components</Filter>
-    </ClCompile>
-    <ClCompile Include="components\comp_bullet_controller.cpp">
-      <Filter>components</Filter>
-    </ClCompile>
-    <ClCompile Include="components\ia\ai_controller.cpp">
-      <Filter>components\ia</Filter>
-    </ClCompile>
-    <ClCompile Include="components\ia\ai_patrol.cpp">
-      <Filter>components\ia</Filter>
-    </ClCompile>
-    <ClCompile Include="render\render_utils.cpp">
-      <Filter>render</Filter>
-    </ClCompile>
-    <ClCompile Include="render\texture\material.cpp" />
-    <ClCompile Include="components\comp_flyover_controller.cpp" />
+    <ClCompile Include="modules\game\module_splash.cpp" />
+    <ClCompile Include="modules\game\module_test_axis.cpp" />
+    <ClCompile Include="modules\module_entities.cpp" />
+    <ClCompile Include="modules\module_ia.cpp" />
+    <ClCompile Include="modules\module_manager.cpp" />
+    <ClCompile Include="modules\module_render.cpp" />
+    <ClCompile Include="modules\system\module_input.cpp" />
+    <ClCompile Include="modules\test\module_test_input.cpp" />
+    <ClCompile Include="render\cte_buffer.cpp" />
+    <ClCompile Include="render\mesh\mesh.cpp" />
+    <ClCompile Include="render\mesh\mesh_loader.cpp" />
+    <ClCompile Include="render\render.cpp" />
+    <ClCompile Include="render\render_objects.cpp" />
+    <ClCompile Include="render\render_utils.cpp" />
     <ClCompile Include="resources\json_resource.cpp" />
     <ClCompile Include="components\comp_tags.cpp" />
     <ClCompile Include="utils\murmur3\murmur3.cpp" />
@@ -169,320 +55,87 @@
     <ClCompile Include="render\shaders\shader_compile.cpp" />
     <ClCompile Include="render\shaders\vertex_declarations.cpp" />
     <ClCompile Include="render\shaders\vertex_shader.cpp" />
+    <ClCompile Include="render\texture\DDSTextureLoader.cpp" />
+    <ClCompile Include="render\texture\material.cpp" />
+    <ClCompile Include="render\texture\texture.cpp" />
+    <ClCompile Include="resources\resources_manager.cpp" />
+    <ClCompile Include="utils\utils.cpp" />
+    <ClCompile Include="windows\app.cpp" />
+    <ClCompile Include="components\comp_collider.cpp" />
+    <ClCompile Include="modules\system\module_physics.cpp" />
+    <ClCompile Include="components\player_controller\comp_player_controller.cpp" />
+    <ClCompile Include="components\object_controller\comp_bullet_controller.cpp" />
+    <ClCompile Include="components\camera_controller\comp_camera_shadowmerge.cpp" />
+    <ClCompile Include="components\camera_controller\comp_camera_thirdperson.cpp" />
+    <ClCompile Include="components\camera_controller\comp_circular_controller.cpp" />
+    <ClCompile Include="components\camera_controller\comp_flyover_controller.cpp" />
+    <ClCompile Include="components\object_controller\comp_cone_of_light.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="windows">
-      <UniqueIdentifier>{7e18a503-c518-44a1-bdd1-9a23fc3a7748}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="utils">
-      <UniqueIdentifier>{d4150658-d18f-4afb-8edf-8bc18c8cc566}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="render">
-      <UniqueIdentifier>{f59edeab-e7b5-4bb1-8bec-6f6c338e1e16}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="geometry">
-      <UniqueIdentifier>{17cb7c13-2cc0-4dac-a74b-7ff23eb471ba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="camera">
-      <UniqueIdentifier>{8ad50971-b2f8-472d-b2aa-68bc12f58643}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="modules">
-      <UniqueIdentifier>{c4bce8e4-2de6-4baa-9684-b007922346a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="imgui">
-      <UniqueIdentifier>{77913fb0-96e2-4cae-9e03-247c9aaabea5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="render\mesh">
-      <UniqueIdentifier>{bc423af1-ca1b-409d-b7cf-a10870233979}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="modules\game">
-      <UniqueIdentifier>{c839f6d7-43fe-4f60-aaaf-a5b91ebc70b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="entity">
-      <UniqueIdentifier>{8cc8ce76-c5c7-481e-8a57-e7bbafaf97f3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="resources">
-      <UniqueIdentifier>{1aba5716-4479-4658-a654-943d5a0828fc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="render\texture">
-      <UniqueIdentifier>{77db5160-d7db-4198-82cf-720819771bae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="modules\system">
-      <UniqueIdentifier>{ce1b537e-9fa8-4f8e-92d6-b9fd66052911}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="modules\test">
-      <UniqueIdentifier>{37d64f1e-90ce-4bb3-b067-2e4887c6e666}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="input">
-      <UniqueIdentifier>{550e65b2-6608-451a-a754-aba45e471b1a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="input\devices">
-      <UniqueIdentifier>{310a8e38-cf6c-497a-9c60-c1c12a0e1f22}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="input\interfaces">
-      <UniqueIdentifier>{2a9c7dff-51a9-4ed9-8671-456d300842cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="handle">
-      <UniqueIdentifier>{853f815f-18b8-44cc-944c-17d979fc6f48}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="components">
-      <UniqueIdentifier>{6eab8132-6d47-4b87-afd0-10534d4d1268}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="components\ia">
-      <UniqueIdentifier>{7aeb0eeb-059f-413e-b7de-f85b7219d16d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="render\shaders">
-      <UniqueIdentifier>{0db6850e-eb50-42d4-9773-45df5bc2f947}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="windows\app.h">
-      <Filter>windows</Filter>
-    </ClInclude>
+    <ClInclude Include="..\Bin\data\shaders\ctes.h" />
+    <ClInclude Include="camera\camera.h" />
+    <ClInclude Include="components\comp_base.h" />
+    <ClInclude Include="components\comp_camera.h" />
+    <ClInclude Include="components\comp_name.h" />
+    <ClInclude Include="components\comp_render.h" />
+    <ClInclude Include="components\comp_transform.h" />
+    <ClInclude Include="components\ia\ai_controller.h" />
+    <ClInclude Include="components\ia\ai_patrol.h" />
+    <ClInclude Include="engine.h" />
+    <ClInclude Include="entity\common_msgs.h" />
+    <ClInclude Include="entity\entity.h" />
+    <ClInclude Include="entity\entity_parser.h" />
+    <ClInclude Include="entity\msgs.h" />
+    <ClInclude Include="geometry\angular.h" />
+    <ClInclude Include="geometry\geometry.h" />
+    <ClInclude Include="geometry\SimpleMath.h" />
+    <ClInclude Include="geometry\transform.h" />
+    <ClInclude Include="handle\handle.h" />
+    <ClInclude Include="handle\handle_def.h" />
+    <ClInclude Include="handle\handle_manager.h" />
+    <ClInclude Include="handle\object_manager.h" />
+    <ClInclude Include="imgui\imconfig.h" />
+    <ClInclude Include="imgui\imgui.h" />
+    <ClInclude Include="imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="imgui\imgui_internal.h" />
+    <ClInclude Include="imgui\stb_rect_pack.h" />
+    <ClInclude Include="imgui\stb_textedit.h" />
+    <ClInclude Include="imgui\stb_truetype.h" />
+    <ClInclude Include="input\button.h" />
+    <ClInclude Include="input\device.h" />
+    <ClInclude Include="input\devices\keyboard.h" />
+    <ClInclude Include="input\devices\mouse.h" />
+    <ClInclude Include="input\devices\pad_xbox.h" />
+    <ClInclude Include="input\enums.h" />
+    <ClInclude Include="input\host.h" />
+    <ClInclude Include="input\interfaces\interface_feedback.h" />
+    <ClInclude Include="input\interfaces\interface_keyboard.h" />
+    <ClInclude Include="input\interfaces\interface_mapping.h" />
+    <ClInclude Include="input\interfaces\interface_mouse.h" />
+    <ClInclude Include="input\interfaces\interface_pad.h" />
+    <ClInclude Include="input\mapping.h" />
     <ClInclude Include="mcv_platform.h" />
-    <ClInclude Include="utils\utils.h">
-      <Filter>utils</Filter>
-    </ClInclude>
-    <ClInclude Include="render\render.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="render\cte_buffer.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="geometry\geometry.h">
-      <Filter>geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="geometry\SimpleMath.h">
-      <Filter>geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="engine.h" />
-    <ClInclude Include="camera\camera.h">
-      <Filter>camera</Filter>
-    </ClInclude>
-    <ClInclude Include="geometry\angular.h">
-      <Filter>geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Bin\data\shaders\ctes.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="utils\data_provider.h">
-      <Filter>utils</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\gamestate.h">
-      <Filter>modules</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imconfig.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imgui.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imgui_impl_dx11.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\imgui_internal.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="utils\json.hpp">
-      <Filter>utils</Filter>
-    </ClInclude>
-    <ClInclude Include="render\mesh\mesh.h">
-      <Filter>render\mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="render\mesh\mesh_loader.h">
-      <Filter>render\mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\module.h">
-      <Filter>modules</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\module_manager.h">
-      <Filter>modules</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\module_render.h">
-      <Filter>modules</Filter>
-    </ClInclude>
-    <ClInclude Include="render\render_objects.h">
-      <Filter>render</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\stb_rect_pack.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\stb_textedit.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\stb_truetype.h">
-      <Filter>imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="geometry\transform.h">
-      <Filter>geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\game\module_gameover.h">
-      <Filter>modules\game</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\game\module_main_menu.h">
-      <Filter>modules\game</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\game\module_splash.h">
-      <Filter>modules\game</Filter>
-    </ClInclude>
-    <ClInclude Include="entity\entity.h">
-      <Filter>entity</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\module_entities.h">
-      <Filter>modules</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\module_ia.h">
-      <Filter>modules</Filter>
-    </ClInclude>
-    <ClInclude Include="resources\resource.h">
-      <Filter>resources</Filter>
-    </ClInclude>
-    <ClInclude Include="resources\resources_manager.h">
-      <Filter>resources</Filter>
-    </ClInclude>
-    <ClInclude Include="render\texture\texture.h">
-      <Filter>render\texture</Filter>
-    </ClInclude>
-    <ClInclude Include="render\texture\DDSTextureLoader.h">
-      <Filter>render\texture</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\module.h">
-      <Filter>modules</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\game\module_gameover.h">
-      <Filter>modules</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\game\module_main_menu.h">
-      <Filter>modules</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\module_manager.h">
-      <Filter>modules</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\game\module_splash.h">
-      <Filter>modules</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\gamestate.h">
-      <Filter>modules</Filter>
-    </ClInclude>
-    <ClInclude Include="utils\json.hpp">
-      <Filter>utils</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\module_render.h" />
-    <ClInclude Include="engine.h" />
-    <ClInclude Include="modules\module.h" />
-    <ClInclude Include="modules\module_manager.h" />
-    <ClInclude Include="modules\game\module_splash.h" />
+    <ClInclude Include="modules\gamestate.h" />
     <ClInclude Include="modules\game\module_gameover.h" />
     <ClInclude Include="modules\game\module_main_menu.h" />
-    <ClInclude Include="modules\gamestate.h" />
-    <ClInclude Include="utils\json.hpp" />
-    <ClInclude Include="modules\system\module_input.h">
-      <Filter>modules\system</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\test\module_test_input.h">
-      <Filter>modules\test</Filter>
-    </ClInclude>
-    <ClInclude Include="input\interfaces\interface_feedback.h">
-      <Filter>input\interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="input\interfaces\interface_keyboard.h">
-      <Filter>input\interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="input\interfaces\interface_mapping.h">
-      <Filter>input\interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="input\interfaces\interface_mouse.h">
-      <Filter>input\interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="input\interfaces\interface_pad.h">
-      <Filter>input\interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="input\button.h">
-      <Filter>input</Filter>
-    </ClInclude>
-    <ClInclude Include="input\device.h">
-      <Filter>input</Filter>
-    </ClInclude>
-    <ClInclude Include="input\enums.h">
-      <Filter>input</Filter>
-    </ClInclude>
-    <ClInclude Include="input\host.h">
-      <Filter>input</Filter>
-    </ClInclude>
-    <ClInclude Include="input\mapping.h">
-      <Filter>input</Filter>
-    </ClInclude>
-    <ClInclude Include="input\devices\pad_xbox.h">
-      <Filter>input\devices</Filter>
-    </ClInclude>
-    <ClInclude Include="input\devices\mouse.h">
-      <Filter>input\devices</Filter>
-    </ClInclude>
-    <ClInclude Include="input\devices\keyboard.h">
-      <Filter>input\devices</Filter>
-    </ClInclude>
-    <ClInclude Include="modules\game\module_test_axis.h">
-      <Filter>modules\game</Filter>
-    </ClInclude>
-    <ClInclude Include="handle\handle.h">
-      <Filter>handle</Filter>
-    </ClInclude>
-    <ClInclude Include="handle\handle_def.h">
-      <Filter>handle</Filter>
-    </ClInclude>
-    <ClInclude Include="handle\handle_manager.h">
-      <Filter>handle</Filter>
-    </ClInclude>
-    <ClInclude Include="handle\object_manager.h">
-      <Filter>handle</Filter>
-    </ClInclude>
-    <ClInclude Include="components\comp_base.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="components\comp_name.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="utils\timer.h">
-      <Filter>utils</Filter>
-    </ClInclude>
-    <ClInclude Include="components\comp_transform.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="entity\entity_parser.h">
-      <Filter>entity</Filter>
-    </ClInclude>
-    <ClInclude Include="components\comp_render.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="components\comp_circular_controller.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="components\comp_camera.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="components\comp_player_controller.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="entity\msgs.h">
-      <Filter>entity</Filter>
-    </ClInclude>
-    <ClInclude Include="entity\common_msgs.h">
-      <Filter>entity</Filter>
-    </ClInclude>
-    <ClInclude Include="components\comp_bullet_controller.h">
-      <Filter>components</Filter>
-    </ClInclude>
-    <ClInclude Include="components\ia\ai_controller.h">
-      <Filter>components\ia</Filter>
-    </ClInclude>
-    <ClInclude Include="components\ia\ai_patrol.h">
-      <Filter>components\ia</Filter>
-    </ClInclude>
-    <ClInclude Include="render\render_utils.h">
-      <Filter>render</Filter>
-    </ClInclude>
+    <ClInclude Include="modules\game\module_splash.h" />
+    <ClInclude Include="modules\game\module_test_axis.h" />
+    <ClInclude Include="modules\module.h" />
+    <ClInclude Include="modules\module_entities.h" />
+    <ClInclude Include="modules\module_ia.h" />
+    <ClInclude Include="modules\module_manager.h" />
+    <ClInclude Include="modules\module_render.h" />
+    <ClInclude Include="modules\system\module_input.h" />
+    <ClInclude Include="modules\test\module_test_input.h" />
+    <ClInclude Include="render\cte_buffer.h" />
+    <ClInclude Include="render\mesh\mesh.h" />
+    <ClInclude Include="render\mesh\mesh_loader.h" />
+    <ClInclude Include="render\render.h" />
+    <ClInclude Include="render\render_objects.h" />
+    <ClInclude Include="render\render_utils.h" />
+    <ClInclude Include="render\texture\DDSTextureLoader.h" />
     <ClInclude Include="render\texture\material.h" />
-    <ClInclude Include="components\comp_flyover_controller.h" />
+    <ClInclude Include="render\texture\texture.h" />
     <ClInclude Include="resources\json_resource.h" />
     <ClInclude Include="utils\directory_watcher.h" />
     <ClInclude Include="components\comp_tags.h" />
@@ -494,10 +147,25 @@
     <ClInclude Include="render\shaders\shader_compiler.h" />
     <ClInclude Include="render\shaders\vertex_declarations.h" />
     <ClInclude Include="render\shaders\vertex_shader.h" />
+    <ClInclude Include="resources\resource.h" />
+    <ClInclude Include="resources\resources_manager.h" />
+    <ClInclude Include="utils\data_provider.h" />
+    <ClInclude Include="utils\json.hpp" />
+    <ClInclude Include="utils\timer.h" />
+    <ClInclude Include="utils\utils.h" />
+    <ClInclude Include="windows\app.h" />
+    <ClInclude Include="components\comp_collider.h" />
+    <ClInclude Include="components\comp_player_controller.h" />
+    <ClInclude Include="modules\system\module_physics.h" />
+    <ClInclude Include="components\player_controller\comp_player_controller.h" />
+    <ClInclude Include="components\object_controller\comp_bullet_controller.h" />
+    <ClInclude Include="components\camera_controller\comp_camera_shadowmerge.h" />
+    <ClInclude Include="components\camera_controller\comp_camera_thirdperson.h" />
+    <ClInclude Include="components\camera_controller\comp_circular_controller.h" />
+    <ClInclude Include="components\camera_controller\comp_flyover_controller.h" />
+    <ClInclude Include="components\object_controller\comp_cone_of_light.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="geometry\SimpleMath.inl">
-      <Filter>geometry</Filter>
-    </None>
+    <None Include="geometry\SimpleMath.inl" />
   </ItemGroup>
 </Project>

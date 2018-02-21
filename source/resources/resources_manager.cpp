@@ -112,15 +112,9 @@ void CResourceManager::debugInMenu() {
 
           }
         }
-
         ImGui::TreePop();
       }
     }
-
     ImGui::TreePop();
   }
-
-
-
-
 }
