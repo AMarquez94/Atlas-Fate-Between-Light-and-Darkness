@@ -17,17 +17,20 @@ CModuleInput::CModuleInput(const std::string& name)
 {}
 
 LRESULT CModuleInput::OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-	int errorCode = -1;
 	
-	if (WM_INPUT) {
+	if (msg == WM_INPUT) {
 
 		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 
 		UINT dwSize = 64;
 		static BYTE lpb[64];
 
-		GetRawInputData((HRAWINPUT)lParam, RID_INPUT,
+		int rc = GetRawInputData((HRAWINPUT)lParam, RID_INPUT,
 			lpb, &dwSize, sizeof(RAWINPUTHEADER));
+
+		if (rc == -1) {
+			return 0;
+		}
 
 		RAWINPUT* raw = (RAWINPUT*)lpb;
 
@@ -39,11 +42,12 @@ LRESULT CModuleInput::OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			mouse->setPositionDelta(xPosRelative, yPosRelative);
 
 			dbg("Mouse : %d - %d\n", xPosRelative, yPosRelative);
-			errorCode = 0;
+
+			CApp::get().resetMouse = mouse->_lock_cursor;
 		}
 	}
 
-	return errorCode;
+	return 0;
 }
 
 bool CModuleInput::start()

@@ -191,19 +191,17 @@ void CApp::mainLoop() {
     }
     else
     {
-		//if (resetMouse)
-		//{
-		//	POINT pt;
-		//	
-		//	pt.x = xres / 2;
-		//	pt.y = yres / 2;
-		//	ClientToScreen(hWnd, &pt);
+		if (resetMouse)
+		{
+			POINT pt;
+			
+			pt.x = xres / 2;
+			pt.y = yres / 2;
+			ClientToScreen(hWnd, &pt);
 
-		//	SetCursorPos(pt.x, pt.y);
-		//	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse")); // We do this to bypass the mouse problems
-		//	mouse->setPreviousPosition(xres / 2, yres / 2); // ASK Albert, something weird happened..
-		//	resetMouse = false;
-		//}
+			SetCursorPos(pt.x, pt.y);
+			resetMouse = false;
+		}
 		doFrame();
     }
   }

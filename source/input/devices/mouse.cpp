@@ -24,6 +24,7 @@ namespace Input
 		// position
 		data._position_delta = _position_delta;
 		data._position = data._position + data._position_delta;
+		_position_delta = VEC2::Zero;	//reset previous position
 
 		//dbg("posx %.f posy %.f\n", _position.x, _position.y);
 		//if (!_lock_cursor) _previous_position = _position; // Refactor
