@@ -17,12 +17,14 @@ namespace Input
 		void setWheelDelta(float delta);
 
 		void setPreviousPosition(float posX, float posY);
+		void setPositionDelta(float deltaX, float deltaY);
 		void setLockMouse();
 
 	private:
 		bool _buttons[MOUSE_BUTTONS];
 		VEC2 _position;
 		VEC2 _previous_position;
+		VEC2 _position_delta;
 		float _wheel_delta;
 	};
 }

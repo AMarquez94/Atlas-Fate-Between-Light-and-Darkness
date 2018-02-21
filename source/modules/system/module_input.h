@@ -13,10 +13,12 @@ class CModuleInput : public IModule
 {
 public:
 	CModuleInput(const std::string& name);
-  bool start() override;
-  bool stop() override;
-  void update(float delta) override;
+	bool start() override;
+	bool startRawInput();
+	bool stop() override;
+	void update(float delta) override;
 	void render() override;
+	LRESULT OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) override;
 
 	void assignDevice(int hostIdx, Input::IDevice* device);
 	void assignMapping(int hostIdx, Input::CMapping* mapping);

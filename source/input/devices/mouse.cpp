@@ -22,11 +22,11 @@ namespace Input
 		data._buttons[MOUSE_RIGHT].update(delta, _buttons[MOUSE_RIGHT] ? 1.f : 0.f);
 
 		// position
-		data._position_delta = _previous_position - _position;
-		data._position = _position;
+		data._position_delta = _position_delta;
+		data._position = data._position + data._position_delta;
 
 		//dbg("posx %.f posy %.f\n", _position.x, _position.y);
-		if (!_lock_cursor) _previous_position = _position; // Refactor
+		//if (!_lock_cursor) _previous_position = _position; // Refactor
 
 		// wheel
 		data._wheel_delta = _wheel_delta;
@@ -51,6 +51,11 @@ namespace Input
 	void CMouse::setPreviousPosition(float posX, float posY)
 	{
 		_previous_position = VEC2(posX, posY);
+	}
+
+	void CMouse::setPositionDelta(float deltaX, float deltaY)
+	{
+		_position_delta = VEC2(deltaX, deltaY);
 	}
 
 	void CMouse::setLockMouse()

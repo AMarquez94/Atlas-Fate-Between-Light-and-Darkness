@@ -5,6 +5,7 @@
 #include "input/devices/pad_xbox.h"
 #include "input/mapping.h"
 #include "utils/json.hpp"
+#include "windows/app.h"
 #include <fstream>
 
 // for convenience
@@ -15,9 +16,40 @@ CModuleInput::CModuleInput(const std::string& name)
 	: IModule(name)
 {}
 
+LRESULT CModuleInput::OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+	int errorCode = -1;
+	
+	if (WM_INPUT) {
+
+		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+
+		UINT dwSize = 64;
+		static BYTE lpb[64];
+
+		GetRawInputData((HRAWINPUT)lParam, RID_INPUT,
+			lpb, &dwSize, sizeof(RAWINPUTHEADER));
+
+		RAWINPUT* raw = (RAWINPUT*)lpb;
+
+		if (raw->header.dwType == RIM_TYPEMOUSE)
+		{
+			int xPosRelative = raw->data.mouse.lLastX;
+			int yPosRelative = raw->data.mouse.lLastY;
+
+			mouse->setPositionDelta(xPosRelative, yPosRelative);
+
+			dbg("Mouse : %d - %d\n", xPosRelative, yPosRelative);
+			errorCode = 0;
+		}
+	}
+
+	return errorCode;
+}
+
 bool CModuleInput::start()
 {
 	loadButtonDefinitions("data/keyboard_keys.json");
+
 
 	static Input::CKeyboard keyboard("keyboard");
 	static Input::CMouse mouse("mouse");
@@ -29,7 +61,27 @@ bool CModuleInput::start()
 	assignDevice(Input::PLAYER_1, &pad);
 	assignMapping(Input::PLAYER_1, &mapping);
 
-  return true;
+	bool rawInputStarted = startRawInput();
+	assert(rawInputStarted);
+
+	return true;
+}
+
+bool CModuleInput::startRawInput()
+{
+	#ifndef HID_USAGE_PAGE_GENERIC
+	#define HID_USAGE_PAGE_GENERIC         ((USHORT) 0x01)
+	#endif
+	#ifndef HID_USAGE_GENERIC_MOUSE
+	#define HID_USAGE_GENERIC_MOUSE        ((USHORT) 0x02)
+	#endif
+
+	RAWINPUTDEVICE Rid[1];
+	Rid[0].usUsagePage = HID_USAGE_PAGE_GENERIC;
+	Rid[0].usUsage = HID_USAGE_GENERIC_MOUSE;
+	Rid[0].dwFlags = RIDEV_INPUTSINK;
+	Rid[0].hwndTarget = CApp::get().getWnd();
+	return RegisterRawInputDevices(Rid, 1, sizeof(Rid[0]));
 }
 
 void CModuleInput::render()
