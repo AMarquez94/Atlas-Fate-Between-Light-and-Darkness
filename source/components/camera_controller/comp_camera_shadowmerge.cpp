@@ -18,7 +18,7 @@ void TCompCameraShadowMerge::debugInMenu()
 void TCompCameraShadowMerge::load(const json& j, TEntityParseContext& ctx)
 {
 	// Read from the json all the input data
-	_speed = j.value("speed", 1.0f);
+	_speed = j.value("speed", 1.5f);
 	_target_name = j.value("target", "");
 	_clamp_angle = loadVEC2(j["clampangle"]);
 	_clipping_offset = loadVEC3(j["offset"]);
@@ -45,8 +45,8 @@ void TCompCameraShadowMerge::update(float dt)
 	assert(target_transform);
 
 	// To remove in the future.
-	float horizontal_delta = -EngineInput.mouse()._position_delta.x;
-	float vertical_delta = EngineInput.mouse()._position_delta.y;
+	float horizontal_delta = EngineInput.mouse()._position_delta.x;
+	float vertical_delta = -EngineInput.mouse()._position_delta.y;
 	if (btRHorizontal.isPressed()) horizontal_delta = btRHorizontal.value;
 	if (btRVertical.isPressed()) vertical_delta = btRVertical.value;
 
