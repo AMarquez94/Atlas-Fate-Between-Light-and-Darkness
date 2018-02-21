@@ -590,6 +590,7 @@ bool TCompPlayerController::CocaveNormalTest(void)
 		if (hit.distance > 0.55f)
 		{
 			dbg("collided convex");
+			VEC3 old_position = c_my_transform->getPosition();
 			VEC3 new_forward = -hit.normal.Cross(c_my_transform->getLeft());
 			VEC3 target = hit.point + new_forward;
 			c_my_collider->SetUpVector(hit.normal);
@@ -598,7 +599,8 @@ bool TCompPlayerController::CocaveNormalTest(void)
 			Matrix test = Matrix::CreateLookAt(hit.point, target, hit.normal).Transpose();
 			Quaternion quat = Quaternion::CreateFromRotationMatrix(test);
 			c_my_transform->setRotation(quat);
-			c_my_transform->setPosition(VEC3(0,0,0));
+			c_my_transform->setPosition(hit.point);
+			delta_movement = c_my_transform->getPosition() - old_position;
 		}
 
 		return true;
