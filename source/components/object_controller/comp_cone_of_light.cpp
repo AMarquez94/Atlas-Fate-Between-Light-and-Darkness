@@ -16,8 +16,18 @@ void TCompConeOfLightController::load(const json& j, TEntityParseContext& ctx) {
 	fov = deg2rad(j.value("fov", 30.f));
 	dist = j.value("dist", 10.f);
 	player = (CEntity*) getEntityByName(j.value("target", "The Player"));
-	defaultMesh = j.value("default_mesh", "cone_of_light.mesh");
-	turnedOn = false;
+	turnedOn = j.value("turnedOn", false);;
+}
+
+void TCompConeOfLightController::registerMsgs() {
+	DECL_MSG(TCompConeOfLightController, TMsgEntityCreated, onMsgEntityCreated);
+}
+
+void TCompConeOfLightController::onMsgEntityCreated(const TMsgEntityCreated& msg) {
+	if (!turnedOn) {
+		TCompRender* cRender = get < TCompRender>();
+		cRender->visible = false;
+	}
 }
 
 void TCompConeOfLightController::update(float dt) {
@@ -41,7 +51,7 @@ void TCompConeOfLightController::update(float dt) {
 void TCompConeOfLightController::turnOnLight() {
 	if (!turnedOn) {
 		TCompRender* cRender = get < TCompRender>();
-		cRender->mesh = Resources.get(defaultMesh)->as<CRenderMesh>();
+		cRender->visible = true;
 		turnedOn = true;
 	}
 }
@@ -49,8 +59,7 @@ void TCompConeOfLightController::turnOnLight() {
 void TCompConeOfLightController::turnOffLight() {
 	if (turnedOn) {
 		TCompRender* cRender = get < TCompRender>();
-		cRender->mesh = Resources.get("empty_mesh.mesh")->as<CRenderMesh>();
+		cRender->visible = false;
 		turnedOn = false;
 	}
 }
-

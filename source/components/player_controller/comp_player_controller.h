@@ -38,6 +38,8 @@ class TCompPlayerController : public IAIController {
 	CHandle enemyToAttack;
 	CHandle enemyToSM;
 
+	bool crouched = false;
+
 	/* Timers */
 	float timerForPressingRemoveInhibitorKey = 0.f;
 	int timesRemoveInhibitorKeyPressed = 0;
@@ -97,7 +99,6 @@ public:
 	/* States */
 	void IdleState(float);
 	void MotionState(float);	//Movement
-	void CrouchState(float);
 	void PushState(float);
 	void AttackState(float);
 	void ProbeState(float);

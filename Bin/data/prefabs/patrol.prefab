@@ -36,7 +36,7 @@
       "name": "Cone of Light",
       "transform": {},
       "render": {
-        "mesh": "empty_mesh.mesh"
+        "mesh": "cone_of_light.mesh"
       },
       "hierarchy": {
         "parent": "The Enemy"
@@ -44,8 +44,7 @@
       "cone_of_light": {
         "fov": 30,
         "dist": 10.0,
-        "target": "The Player",
-        "default_mesh": "cone_of_light.mesh"
+        "target": "The Player"
       }
     }
   }

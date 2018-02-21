@@ -131,14 +131,14 @@ void CAIPatrol::onMsgPatrolCreated(const TMsgEntityCreated& msg) {
 }
 
 void CAIPatrol::onMsgPlayerDead(const TMsgPlayerDead& msg) {
-	suspectO_Meter = 0.f;
-	lastPlayerKnownPos = VEC3::Zero;
-	TCompRender *cRender = get<TCompRender>();
-	cRender->color = VEC4(1, 1, 1, 1);
-
-	turnOffLight();
-
-	ChangeState("closestWpt");
+	if (getStateName().compare("stunned") != 0) {
+		suspectO_Meter = 0.f;
+		lastPlayerKnownPos = VEC3::Zero;
+		TCompRender *cRender = get<TCompRender>();
+		cRender->color = VEC4(1, 1, 1, 1);
+		turnOffLight();
+		ChangeState("closestWpt");
+	}
 }
 
 void CAIPatrol::onMsgPatrolStunned(const TMsgPatrolStunned& msg) {
@@ -155,6 +155,8 @@ void CAIPatrol::onMsgPatrolStunned(const TMsgPatrolStunned& msg) {
 	CEntity* eCone = cGroup->getHandleByName("Cone of Vision");
 	TCompRender * coneRender = eCone->get<TCompRender>();
 	coneRender->visible = false;
+
+	lastPlayerKnownPos = VEC3::Zero;
 
 	/* Tell the other patrols I am stunned */
 	CEngine::get().getIA().patrolSB.stunnedPatrols.emplace_back(CHandle(this).getOwner());
@@ -350,6 +352,10 @@ void CAIPatrol::SuspectState(float dt)
 			ChangeState("goToWpt");
 		}
 	}
+
+	if (lastStunnedPatrolKnownPos == VEC3::Zero) {
+		isStunnedPatrolInFov();
+	}
 }
 
 void CAIPatrol::ShootInhibitorState(float dt)
@@ -392,6 +398,10 @@ void CAIPatrol::ChaseState(float dt)
 		vfwd.Normalize();
 		vp = vp + speed * dt * vfwd;
 		mypos->setPosition(vp);
+	}
+
+	if (lastStunnedPatrolKnownPos == VEC3::Zero) {
+		isStunnedPatrolInFov();
 	}
 }
 
@@ -507,6 +517,9 @@ void CAIPatrol::GoPlayerLastPosState(float dt)
 			//TODO: see if its better to change state here, or in the msg we are going to receive
 		}
 	}
+	if (lastStunnedPatrolKnownPos == VEC3::Zero) {
+		isStunnedPatrolInFov();
+	}
 }
 
 void CAIPatrol::SeekPlayerState(float dt)
@@ -559,6 +572,9 @@ void CAIPatrol::SeekPlayerState(float dt)
 				}
 			}
 			mypos->setYawPitchRoll(y, p, r);
+		}
+		if (lastStunnedPatrolKnownPos == VEC3::Zero) {
+			isStunnedPatrolInFov();
 		}
 	}
 }

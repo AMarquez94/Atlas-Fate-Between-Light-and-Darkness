@@ -12,16 +12,6 @@ struct TVtxPosClr {
 };
 
 // ---------------------------------------------------
-CRenderMesh* createEmptyMesh() {
-	CRenderMesh* mesh = new CRenderMesh;
-
-	std::vector<TVtxPosClr> vtxs;
-	vtxs.emplace_back(VEC3::Zero, VEC4::Zero);
-
-	if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(TVtxPosClr), "PosClr", CRenderMesh::LINE_LIST))
-		return nullptr;
-	return mesh;
-}
 
 CRenderMesh* createLineZ() {
 	CRenderMesh* mesh = new CRenderMesh;
@@ -129,7 +119,6 @@ void registerMesh(CRenderMesh* new_mesh, const char* name) {
 }
 
 bool createRenderObjects() {
-	registerMesh(createEmptyMesh(), "empty_mesh.mesh");
 	registerMesh(createAxis(), "axis.mesh");
 	registerMesh(createGridXZ(20), "grid.mesh");
 	registerMesh(createLineZ(), "line.mesh");

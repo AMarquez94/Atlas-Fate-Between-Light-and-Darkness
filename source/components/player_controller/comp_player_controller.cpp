@@ -120,7 +120,6 @@ void TCompPlayerController::Init() {
 	AddState("land", (statehandler)&TCompPlayerController::LandingState);
 	AddState("hit", (statehandler)&TCompPlayerController::HitState);
 	AddState("dead", (statehandler)&TCompPlayerController::DeadState);
-	AddState("crouch", (statehandler)&TCompPlayerController::CrouchState);
 
 	/* TODO: not for milestone1 */
 	//AddState("probe", (statehandler)&TCompPlayerController::ProbeState);
@@ -141,8 +140,15 @@ void TCompPlayerController::IdleState(float dt){
 
 	checkAttack();
 
-	TCompRender *c_my_render = get<TCompRender>();
-	c_my_render->mesh = mesh_states.find("pj_idle")->second;
+	if (!crouched) {
+		TCompRender *c_my_render = get<TCompRender>();
+		c_my_render->mesh = mesh_states.find("pj_idle")->second;
+	}
+	else {
+		TCompRender *c_my_render = get<TCompRender>();
+		c_my_render->mesh = mesh_states.find("pj_crouch")->second;
+	}
+
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
 	if (inhibited) {
 		if (manageInhibition(dt)) {
@@ -155,6 +161,7 @@ void TCompPlayerController::IdleState(float dt){
 		timerForPressingRemoveInhibitorKey = 0.f;
 		timesRemoveInhibitorKeyPressed = 0;
 		allowAttack(false, CHandle());
+		crouched = false;
 		ChangeState("smEnter");
 		return;
 	}
@@ -164,11 +171,8 @@ void TCompPlayerController::IdleState(float dt){
 		ChangeState("motion");
 		return;
 	}
-	else if (btCrouch.isPressed()) {
-		TCompRender *c_my_render = get<TCompRender>();
-		c_my_render->mesh = mesh_states.find("pj_crouch")->second;
-		ChangeState("crouch");
-		return;
+	else if (btCrouch.getsPressed()) {
+		crouched = !crouched;
 	}
 
 	if (canAttack && btAttack.getsPressed()) {
@@ -203,48 +207,14 @@ void TCompPlayerController::MotionState(float dt){
 		if (btShadowMerging.getsPressed() && checkShadows()) {
 			auxStateName = "";
 			allowAttack(false, CHandle());
+			crouched = false;
 			ChangeState("smEnter");
 			return;
 		}
 	}
 
-	if (canAttack && btAttack.getsPressed()) {
-		ChangeState("attack");
-		return;
-	}
-
-	if (btAction.getsPressed() && checkTouchingStunnedEnemy().isValid()) {
-		ChangeState("push");
-		return;
-	}
-}
-void TCompPlayerController::CrouchState(float dt) {
-	
-	checkAttack();
-
-	if (inhibited) {
-		if (manageInhibition(dt)) {
-			ChangeState("rmInhibitor");
-			return;
-		}
-	}
-
-	if (btCrouch.getsReleased()) {
-		ChangeState("idle");
-		return;
-	}
-	if (btShadowMerging.getsPressed() && checkShadows()) {
-		timerForPressingRemoveInhibitorKey = 0.f;
-		timesRemoveInhibitorKeyPressed = 0;
-		allowAttack(false, CHandle());
-		ChangeState("smEnter");
-		return;
-	}
-	else if (motionButtonsPressed()) {
-		timerForPressingRemoveInhibitorKey = 0.f;
-		timesRemoveInhibitorKeyPressed = 0;
-		ChangeState("motion");
-		return;
+	if (btCrouch.getsPressed()) {
+		crouched = !crouched;
 	}
 
 	if (canAttack && btAttack.getsPressed()) {
@@ -253,12 +223,11 @@ void TCompPlayerController::CrouchState(float dt) {
 	}
 
 	if (btAction.getsPressed() && checkTouchingStunnedEnemy().isValid()) {
+		crouched = false;
 		ChangeState("push");
 		return;
 	}
 }
-
-
 
 void TCompPlayerController::PushState(float dt){ 
 
@@ -272,7 +241,6 @@ void TCompPlayerController::PushState(float dt){
 		ChangeState("smEnemy");
 	}
 }
-
 
 void TCompPlayerController::AttackState(float dt){ 
 	TMsgPatrolStunned msg;
@@ -472,15 +440,24 @@ void TCompPlayerController::movePlayer(const float dt) {
 	else {
 		if (btRun.isPressed()) {
 			c_my_render->mesh = mesh_states.find("pj_run")->second;
+			crouched = false;
 			auxStateName = "running";
 			currentSpeed = runSpeedFactor;
 		}
 		else if (btSlow.isPressed()) {
-			c_my_render->mesh = mesh_states.find("pj_walk")->second;
-			auxStateName = "walking slow";
-			currentSpeed = walkSlowSpeedFactor;
+
+			if (crouched) {
+				c_my_render->mesh = mesh_states.find("pj_crouch")->second;
+				auxStateName = "crouch";
+				currentSpeed = walkCrouchSpeedFactor;
+			}
+			else {
+				c_my_render->mesh = mesh_states.find("pj_walk")->second;
+				auxStateName = "walking slow";
+				currentSpeed = walkSlowSpeedFactor;
+			}
 		}
-		else if (btCrouch.isPressed()){
+		else if (crouched){
 			c_my_render->mesh = mesh_states.find("pj_crouch")->second;
 			auxStateName = "crouch";
 			currentSpeed = walkCrouchSpeedFactor;
