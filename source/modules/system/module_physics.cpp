@@ -45,7 +45,7 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		PxCapsuleController * ctrl = static_cast<PxCapsuleController*>(mControllerManager->createController(*cDesc));
 		PX_ASSERT(ctrl);
 		ctrl->setFootPosition(PxExtendedVec3(pos.x, pos.y, pos.z));
-		ctrl->setContactOffset(0.001);
+		ctrl->setContactOffset(0.0001);
 		actor = ctrl->getActor();
 		comp_collider.controller = ctrl;
 		setupFiltering(actor, config.group, config.mask);
@@ -58,10 +58,8 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		{
 			shape = gPhysics->createShape(PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z), *gMaterial);
 			offset.p.y = config.halfExtent.y;
-			shape->setContactOffset(0.0001);
-
-			//shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, true);
-			//shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
+			//shape->setContactOffset(1);
+			//shape->setRestOffset(0);
 
 		}
 		else if (config.shapeType == physx::PxGeometryType::eSPHERE)
@@ -201,8 +199,6 @@ bool CModulePhysics::start()
 	sceneDesc.filterShader = CustomFilterShader;
 	sceneDesc.flags = PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS | PxSceneFlag::eENABLE_ACTIVE_ACTORS;
 	gScene = gPhysics->createScene(sceneDesc);
-	gScene->setFlag(PxSceneFlag::eENABLE_ACTIVE_ACTORS, true);
-	gScene->setFlag(PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS, true);
 
 	PxPvdSceneClient* pvdClient = gScene->getScenePvdClient();
 

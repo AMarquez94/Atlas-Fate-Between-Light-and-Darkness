@@ -52,6 +52,7 @@ class TCompPlayerController : public IAIController {
 	void manageInhibition(float dt);
 	void movePlayerShadow(float);
 	bool NormalChange(void);
+	bool CocaveNormalTest(void);
 
 	const bool motionButtonsPressed();
 
