@@ -37,6 +37,7 @@ class TCompPlayerController : public IAIController {
 
 	/* Aux offset */
 	float maxGroundDistance = 0.3f;
+	float convexMaxDistance = 0.55f;
 
 	/* Timers */
 	int timesToPressRemoveInhibitorKey;

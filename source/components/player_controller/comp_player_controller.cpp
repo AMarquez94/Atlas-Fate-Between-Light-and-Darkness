@@ -163,6 +163,7 @@ void TCompPlayerController::IdleState(float dt){
 
 void TCompPlayerController::MotionState(float dt){ 
 
+	delta_movement = VEC3::Zero;
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
 
 	if (!motionButtonsPressed()) {
@@ -233,6 +234,7 @@ void TCompPlayerController::ShadowMergingEnterState(float dt){
 
 void TCompPlayerController::ShadowMergingHorizontalState(float dt){ 
 
+	delta_movement = VEC3::Zero;
 	if (motionButtonsPressed()) {
 		if (ConcaveTest())
 		{
@@ -254,6 +256,7 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 
 void TCompPlayerController::ShadowMergingVerticalState(float dt){ 
 
+	delta_movement = VEC3::Zero;
 	// Move the player
 	movePlayerShadow(dt);
 
@@ -264,13 +267,15 @@ void TCompPlayerController::ShadowMergingVerticalState(float dt){
 	stamina = Clamp<float>(stamina - (dcrStaminaWall * dt), minStamina, maxStamina);
 
 	// Check if we are still in shadow mode or grounded.
-	if (!ShadowTest() || stamina <= minStamina || !btShadowMerging.isPressed())
+	if (!ShadowTest() || !btShadowMerging.isPressed())
 	{
 		TCompCollider * c_my_collider = get<TCompCollider>();
 		c_my_collider->SetUpVector(-1 * EnginePhysics.gravity);
 		c_my_collider->normal_gravity = EnginePhysics.gravity;
 		TCompTransform *c_my_transform = get<TCompTransform>();
-		Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), c_my_transform->getFront(), EnginePhysics.gravity).Transpose();
+
+		VEC3 new_front = c_my_transform->getLeft().Cross(EnginePhysics.gravity);
+		Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), new_front, -EnginePhysics.gravity).Transpose();
 		c_my_transform->setRotation(Quaternion::CreateFromRotationMatrix(test));
 		// Include a safe release position.
 		ChangeState("smExit");
@@ -353,7 +358,6 @@ void TCompPlayerController::onMsgPlayerShotInhibitor(const TMsgInhibitorShot& ms
 const bool TCompPlayerController::motionButtonsPressed() {
 
 	delta_movement = VEC3::Zero;
-	//if (!IsGrounded()) return false;
 
 	return btUp.isPressed() || btDown.isPressed() || btLeft.isPressed() || btRight.isPressed();
 }
@@ -517,10 +521,16 @@ void TCompPlayerController::manageInhibition(float dt) {
 
 const bool TCompPlayerController::GroundTest(void)
 {
-	CModulePhysics::RaycastHit hit;
+	// Do some ground tests
+	CModulePhysics::RaycastHit hit1;
+	CModulePhysics::RaycastHit hit2;
 	TCompTransform *c_my_transform = get<TCompTransform>();
-	EnginePhysics.Raycast(c_my_transform->getPosition() - 0.5f * c_my_transform->getFront(), -c_my_transform->getUp(), 3000, hit);
-	return isGrounded = hit.distance < maxGroundDistance ? true : false;
+	EnginePhysics.Raycast(c_my_transform->getPosition() + 0.15f * c_my_transform->getFront(), -c_my_transform->getUp(), 3000, hit1);
+	EnginePhysics.Raycast(c_my_transform->getPosition() - 0.15f * c_my_transform->getFront(), -c_my_transform->getUp(), 3000, hit2);
+	bool a = hit1.distance < maxGroundDistance ? true : false;
+	bool b = hit2.distance < maxGroundDistance ? true : false;
+
+	return isGrounded = a || b ? true : false;
 }
 
 const bool TCompPlayerController::ConcaveTest(void)
@@ -532,7 +542,7 @@ const bool TCompPlayerController::ConcaveTest(void)
 
 	if (EnginePhysics.Raycast(upwards_offset, c_my_transform->getFront(), c_my_collider->config.radius + .1f, hit))
 	{
-		if (EnginePhysics.gravity.Dot(hit.normal) < 0.01f)
+		if (EnginePhysics.gravity.Dot(hit.normal) < .01f)
 		{
 			VEC3 old_position = c_my_transform->getPosition();
 			VEC3 new_forward = hit.normal.Cross(c_my_transform->getLeft());
@@ -564,7 +574,7 @@ const bool TCompPlayerController::ConvexTest(void)
 
 	if (EnginePhysics.Raycast(upwards_offset, new_dir, 0.6f, hit))
 	{
-		if (hit.distance > 0.55f && EnginePhysics.gravity.Dot(hit.normal) < 0.01f)
+		if (hit.distance > convexMaxDistance && EnginePhysics.gravity.Dot(hit.normal) < .01f)
 		{
 			VEC3 old_position = c_my_transform->getPosition();
 			VEC3 new_forward = -hit.normal.Cross(c_my_transform->getLeft());
@@ -587,5 +597,5 @@ const bool TCompPlayerController::ConvexTest(void)
 const bool TCompPlayerController::ShadowTest() {
 
 	/* TODO */
-	return true && stamina > minStaminaToMerge && !inhibited;
+	return true && stamina > minStaminaToMerge && !inhibited && GroundTest();
 }
