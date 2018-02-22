@@ -256,30 +256,21 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 
 void TCompPlayerController::ShadowMergingVerticalState(float dt){ 
 
-	delta_movement = VEC3::Zero;
+	//delta_movement = VEC3::Zero;
 	// Move the player
 	movePlayerShadow(dt);
 
 	// Do the shadow plane change tests
-	ConcaveTest();
-	ConvexTest();
-
-	stamina = Clamp<float>(stamina - (dcrStaminaWall * dt), minStamina, maxStamina);
+	if(ConcaveTest()){}
+	else ConvexTest();
 
 	// Check if we are still in shadow mode or grounded.
-	if (!ShadowTest() || !btShadowMerging.isPressed())
+	if (!ShadowTest())// || !btShadowMerging.isPressed())
 	{
-		TCompCollider * c_my_collider = get<TCompCollider>();
-		c_my_collider->SetUpVector(-1 * EnginePhysics.gravity);
-		c_my_collider->normal_gravity = EnginePhysics.gravity;
-		TCompTransform *c_my_transform = get<TCompTransform>();
-
-		VEC3 new_front = c_my_transform->getLeft().Cross(EnginePhysics.gravity);
-		Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), new_front, -EnginePhysics.gravity).Transpose();
-		c_my_transform->setRotation(Quaternion::CreateFromRotationMatrix(test));
-		// Include a safe release position.
-		ChangeState("smExit");
+		ResetPlayer();
 	}
+
+	stamina = Clamp<float>(stamina - (dcrStaminaWall * dt), minStamina, maxStamina);
 }
 
 void TCompPlayerController::ShadowMergingEnemyState(float dt){
@@ -345,6 +336,7 @@ void TCompPlayerController::onMsgPlayerHit(const TMsgPlayerHit & msg)
 }
 
 void TCompPlayerController::onMsgPlayerShotInhibitor(const TMsgInhibitorShot& msg) {
+
 	if (!inhibited) {
 		TCompRender * cRender = get<TCompRender>();
 		cRender->color = VEC4(148, 0, 211, 1);
@@ -582,8 +574,8 @@ const bool TCompPlayerController::ConvexTest(void)
 			c_my_collider->SetUpVector(hit.normal);
 			c_my_collider->normal_gravity = -hit.normal;
 
-			Matrix test = Matrix::CreateLookAt(hit.point, target, hit.normal).Transpose();
-			c_my_transform->setRotation(Quaternion::CreateFromRotationMatrix(test));
+			QUAT new_rotation = createLookAt(hit.point, target, hit.normal);
+			c_my_transform->setRotation(new_rotation);
 			c_my_transform->setPosition(hit.point);
 			delta_movement = c_my_transform->getPosition() - old_position;
 
@@ -597,5 +589,31 @@ const bool TCompPlayerController::ConvexTest(void)
 const bool TCompPlayerController::ShadowTest() {
 
 	/* TODO */
-	return true && stamina > minStaminaToMerge && !inhibited && GroundTest();
+	return stamina > 0.f;// && !inhibited;// && GroundTest();
+}
+
+void TCompPlayerController::ResetPlayer()
+{
+	CEntity *player_camera = (CEntity *)getEntityByName(camera_actual);
+	TCompCollider * c_my_collider = get<TCompCollider>();
+	TCompTransform *c_my_transform = get<TCompTransform>();
+	TCompTransform * trans_camera = player_camera->get<TCompTransform>();
+
+	VEC3 up = trans_camera->getFront();
+	VEC3 proj_plane = projectVector(up, -EnginePhysics.gravity);
+	VEC3 new_front = c_my_transform->getPosition() - proj_plane;
+
+	// Set collider gravity settings
+	c_my_collider->SetUpVector(-EnginePhysics.gravity);
+	c_my_collider->normal_gravity = EnginePhysics.gravity;
+
+	QUAT new_rotation = createLookAt(c_my_transform->getPosition(), new_front, -EnginePhysics.gravity);
+	c_my_transform->setRotation(new_rotation);
+
+	// Include a safe release position.
+	//VEC3 old_position = c_my_transform->getPosition();
+	//VEC3 safe_position = old_position + (c_my_collider->config.radius + 0.05f) * c_my_transform->getUp();
+
+	dbg("output_up %f %f %f", c_my_transform->getUp().x, c_my_transform->getUp().y, c_my_transform->getUp().z);
+	ChangeState("smExit");
 }

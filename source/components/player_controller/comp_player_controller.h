@@ -48,6 +48,7 @@ class TCompPlayerController : public IAIController {
 	void movePlayer(float);
 	void movePlayerShadow(float);
 	void manageInhibition(float dt);
+	void ResetPlayer(void);
 
 	const bool ConcaveTest(void);
 	const bool ConvexTest(void);

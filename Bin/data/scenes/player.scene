@@ -17,7 +17,7 @@
         "stamina": 100,
         "maxStamina": 100,
         "minStamina": 0,
-        "minStaminaToMerge": 5.0,
+        "minStaminaToMerge": 0.0,
         "dcrStaminaOnPlaceMultiplier": 0.5,
         "dcrStaminaGround": 10,
         "dcrStaminaWall": 20,
