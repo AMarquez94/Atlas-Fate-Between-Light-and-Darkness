@@ -65,7 +65,7 @@ void TCompCameraThirdPerson::update(float dt)
 	self_transform->setPosition(new_pos);
 }
 
-float TCompCameraThirdPerson::CameraClipping(const VEC3 & origin, const VEC3 & dir)
+float TCompCameraThirdPerson::CameraClipping(const VEC3	& origin, const VEC3 & dir)
 {
 	CModulePhysics::RaycastHit hit;
 	if (CEngine::get().getPhysics().Raycast(origin, dir, _clipping_offset.z, hit))

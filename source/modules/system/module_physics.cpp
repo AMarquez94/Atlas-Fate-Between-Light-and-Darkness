@@ -12,6 +12,8 @@
 
 using namespace physx;
 
+const VEC3 CModulePhysics::gravity(0, -1, 0);
+
 void CModulePhysics::createActor(TCompCollider& comp_collider)
 {
 	const TCompCollider::TConfig & config = comp_collider.config;
@@ -193,7 +195,7 @@ bool CModulePhysics::start()
 	gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true, gPvd);
 
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
-	sceneDesc.gravity = PxVec3(0.0f, -9.81f, 0.0f);
+	sceneDesc.gravity = PxVec3(gravity.x, -9.81f * gravity.y, gravity.z);
 	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 	sceneDesc.cpuDispatcher = gDispatcher;
 	sceneDesc.filterShader = CustomFilterShader;

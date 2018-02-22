@@ -143,7 +143,7 @@ void TCompPlayerController::IdleState(float dt){
 		manageInhibition(dt);
 	}
 
-	if (btShadowMerging.getsPressed() && CheckShadows()) {
+	if (btShadowMerging.getsPressed() && ShadowTest()) {
 		timerForPressingRemoveInhibitorKey = 0.f;
 		timesRemoveInhibitorKeyPressed = 0;
 		ChangeState("smEnter");
@@ -173,7 +173,7 @@ void TCompPlayerController::MotionState(float dt){
 		
 		movePlayer(dt);
 
-		if (btShadowMerging.getsPressed() && CheckShadows()) {
+		if (btShadowMerging.getsPressed() && ShadowTest()) {
 			auxStateName = "";
 			ChangeState("smEnter");
 		}
@@ -190,7 +190,7 @@ void TCompPlayerController::CrouchState(float dt) {
 		
 		ChangeState("idle");
 	}
-	if (btShadowMerging.getsPressed() && CheckShadows()) {
+	if (btShadowMerging.getsPressed() && ShadowTest()) {
 		timerForPressingRemoveInhibitorKey = 0.f;
 		timesRemoveInhibitorKeyPressed = 0;
 		ChangeState("smEnter");
@@ -233,10 +233,8 @@ void TCompPlayerController::ShadowMergingEnterState(float dt){
 
 void TCompPlayerController::ShadowMergingHorizontalState(float dt){ 
 
-	//NormalChange();
-
 	if (motionButtonsPressed()) {
-		if (NormalChange())
+		if (ConcaveTest())
 		{
 			ChangeState("smVer");
 			return;
@@ -256,28 +254,27 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 
 void TCompPlayerController::ShadowMergingVerticalState(float dt){ 
 
+	// Move the player
 	movePlayerShadow(dt);
-	if (NormalChange())
-	{
 
-	}
-	else
-	{
-		CocaveNormalTest();
-	}
-	//if (!IsGrounded())
-	//{
-	//	ChangeState("smExit");
-	//	TCompCollider * collider = get<TCompCollider>();
-	//	TCompTransform * c_my_transform = get<TCompTransform>();
-	//	collider->normal_gravity = VEC3(0, -9.81f, 0);
-	//	collider->SetUpVector(VEC3(0, 1.f, 0));
-	//	float yaw, pitch, roll;
-	//	c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
-	//	Quaternion new_rotation = Quaternion::CreateFromYawPitchRoll(yaw, 0, 0);
+	// Do the shadow plane change tests
+	ConcaveTest();
+	ConvexTest();
 
-	//	c_my_transform->setRotation(new_rotation);
-	//}
+	stamina = Clamp<float>(stamina - (dcrStaminaWall * dt), minStamina, maxStamina);
+
+	// Check if we are still in shadow mode or grounded.
+	if (!ShadowTest() || stamina <= minStamina || !btShadowMerging.isPressed())
+	{
+		TCompCollider * c_my_collider = get<TCompCollider>();
+		c_my_collider->SetUpVector(-1 * EnginePhysics.gravity);
+		c_my_collider->normal_gravity = EnginePhysics.gravity;
+		TCompTransform *c_my_transform = get<TCompTransform>();
+		Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), c_my_transform->getFront(), EnginePhysics.gravity).Transpose();
+		c_my_transform->setRotation(Quaternion::CreateFromRotationMatrix(test));
+		// Include a safe release position.
+		ChangeState("smExit");
+	}
 }
 
 void TCompPlayerController::ShadowMergingEnemyState(float dt){
@@ -359,12 +356,6 @@ const bool TCompPlayerController::motionButtonsPressed() {
 	//if (!IsGrounded()) return false;
 
 	return btUp.isPressed() || btDown.isPressed() || btLeft.isPressed() || btRight.isPressed();
-}
-
-bool TCompPlayerController::CheckShadows() {
-
-	/* TODO */
-	return true && stamina > minStaminaToMerge && !inhibited;
 }
 
 void TCompPlayerController::movePlayer(const float dt) {
@@ -472,17 +463,10 @@ void TCompPlayerController::movePlayerShadow(const float dt) {
 	float player_accel = inputSpeed * currentSpeed * dt;
 	VEC3 up = trans_camera->getUp();
 
-	//VEC3 normal_norm = collider->normal_gravity;
-	//normal_norm.Normalize();
-
-	//float distance = -normal_norm.Dot(up);
-	//VEC3 proj = up * normal_norm * distance;
-	// rotate vector normal from yaw.
 	VEC3 normal_norm = collider->normal_gravity;
 	normal_norm.Normalize();
 	VEC3 proj = (up - up.Dot(normal_norm) * normal_norm);
 	proj.Normalize();
-	// Little hotfix to surpass negative values on analog pad
 
 	if (btUp.isPressed() && btUp.value > 0) {
 		dir += proj;
@@ -498,24 +482,17 @@ void TCompPlayerController::movePlayerShadow(const float dt) {
 	}
 	dir.Normalize();
 
-	VEC3 temp = c_my_transform->getFront();
-	VEC3 new_pos = c_my_transform->getPosition() + dir * player_accel;
-	delta_movement = new_pos - c_my_transform->getPosition();
-	
 	if (dir != VEC3::Zero)
 	{
-		VEC3 new_pos = c_my_transform->getPosition() - dir * 10;
+		VEC3 new_pos = c_my_transform->getPosition() - dir;
 		Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), new_pos, c_my_transform->getUp()).Transpose();
 		Quaternion quat = Quaternion::CreateFromRotationMatrix(test);
 		c_my_transform->setRotation(quat);
 	}
 
-	dbg("Front vector x:%f y:%f z:%f\n", dir.x, dir.y, dir.z);
-	//dbg("Up vector x:%f y:%f z:%f\n", c_my_transform->getUp().x, c_my_transform->getUp().y, c_my_transform->getUp().z);
-
-	//VEC3 my_pos = c_my_transform->getPosition();
-	//VEC3 new_pos_new = my_pos - 2 * VEC3(-1,0,0);
-	//c_my_transform->lookAt(c_my_transform->getPosition(), new_pos_new);
+	VEC3 temp = c_my_transform->getFront();
+	VEC3 new_pos = c_my_transform->getPosition() + dir * player_accel;
+	delta_movement = new_pos - c_my_transform->getPosition();
 }
 
 void TCompPlayerController::manageInhibition(float dt) {
@@ -538,67 +515,33 @@ void TCompPlayerController::manageInhibition(float dt) {
 	}
 }
 
-bool TCompPlayerController::IsGrounded(void)
+const bool TCompPlayerController::GroundTest(void)
 {
 	CModulePhysics::RaycastHit hit;
 	TCompTransform *c_my_transform = get<TCompTransform>();
-	CEngine::get().getPhysics().Raycast(c_my_transform->getPosition(), -c_my_transform->getUp(), 3000, hit);
-
-	return isGrounded = hit.distance < 0.3f ? true : false;
+	EnginePhysics.Raycast(c_my_transform->getPosition() - 0.5f * c_my_transform->getFront(), -c_my_transform->getUp(), 3000, hit);
+	return isGrounded = hit.distance < maxGroundDistance ? true : false;
 }
 
-bool TCompPlayerController::NormalChange(void)
+const bool TCompPlayerController::ConcaveTest(void)
 {
 	CModulePhysics::RaycastHit hit;
 	TCompCollider *c_my_collider = get<TCompCollider>();
 	TCompTransform *c_my_transform = get<TCompTransform>();
-	VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * 0.01f;
+	VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * .01f;
 
-	if (CEngine::get().getPhysics().Raycast(upwards_offset, c_my_transform->getFront(), c_my_collider->config.radius + 0.1f, hit))
+	if (EnginePhysics.Raycast(upwards_offset, c_my_transform->getFront(), c_my_collider->config.radius + .1f, hit))
 	{
-		VEC3 new_forward = hit.normal.Cross(c_my_transform->getLeft());
-
-		TCompCollider * collider = get<TCompCollider>();
-		VEC3 target = c_my_transform->getPosition() + new_forward;
-		c_my_collider->SetUpVector(hit.normal);
-		c_my_collider->normal_gravity = -hit.normal;
-		collider->normal_gravity = -hit.normal;
-
-		Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), target, hit.normal).Transpose();
-		Quaternion quat = Quaternion::CreateFromRotationMatrix(test);
-		c_my_transform->setRotation(quat);
-		
-		return true;
-	}
-
-	return false;
-}
-
-// Need to tweak a little vector issue to make it work properly. TESTING.
-bool TCompPlayerController::CocaveNormalTest(void)
-{
-	CModulePhysics::RaycastHit hit;
-	TCompCollider *c_my_collider = get<TCompCollider>();
-	TCompTransform *c_my_transform = get<TCompTransform>();
-	VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * 0.01f;
-	upwards_offset = upwards_offset + c_my_transform->getFront() * c_my_collider->config.radius;
-	VEC3 new_dir = -c_my_transform->getUp() + -c_my_transform->getFront();
-	new_dir.Normalize();
-
-	if (CEngine::get().getPhysics().Raycast(upwards_offset, new_dir, 0.6f, hit))
-	{
-		if (hit.distance > 0.55f)
+		if (EnginePhysics.gravity.Dot(hit.normal) < 0.01f)
 		{
-			dbg("collided convex");
 			VEC3 old_position = c_my_transform->getPosition();
-			VEC3 new_forward = -hit.normal.Cross(c_my_transform->getLeft());
-			VEC3 target = hit.point + new_forward;
+			VEC3 new_forward = hit.normal.Cross(c_my_transform->getLeft());
+			VEC3 target = c_my_transform->getPosition() + new_forward;
 			c_my_collider->SetUpVector(hit.normal);
 			c_my_collider->normal_gravity = -hit.normal;
 
-			Matrix test = Matrix::CreateLookAt(hit.point, target, hit.normal).Transpose();
-			Quaternion quat = Quaternion::CreateFromRotationMatrix(test);
-			c_my_transform->setRotation(quat);
+			Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), target, hit.normal).Transpose();
+			c_my_transform->setRotation(Quaternion::CreateFromRotationMatrix(test));
 			c_my_transform->setPosition(hit.point);
 			delta_movement = c_my_transform->getPosition() - old_position;
 		}
@@ -607,4 +550,42 @@ bool TCompPlayerController::CocaveNormalTest(void)
 	}
 
 	return false;
+}
+
+const bool TCompPlayerController::ConvexTest(void)
+{
+	CModulePhysics::RaycastHit hit;
+	TCompCollider *c_my_collider = get<TCompCollider>();
+	TCompTransform *c_my_transform = get<TCompTransform>();
+	VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * .01f;
+	upwards_offset = upwards_offset + c_my_transform->getFront() * c_my_collider->config.radius;
+	VEC3 new_dir = -c_my_transform->getUp() + -c_my_transform->getFront();
+	new_dir.Normalize();
+
+	if (EnginePhysics.Raycast(upwards_offset, new_dir, 0.6f, hit))
+	{
+		if (hit.distance > 0.55f && EnginePhysics.gravity.Dot(hit.normal) < 0.01f)
+		{
+			VEC3 old_position = c_my_transform->getPosition();
+			VEC3 new_forward = -hit.normal.Cross(c_my_transform->getLeft());
+			VEC3 target = hit.point + new_forward;
+			c_my_collider->SetUpVector(hit.normal);
+			c_my_collider->normal_gravity = -hit.normal;
+
+			Matrix test = Matrix::CreateLookAt(hit.point, target, hit.normal).Transpose();
+			c_my_transform->setRotation(Quaternion::CreateFromRotationMatrix(test));
+			c_my_transform->setPosition(hit.point);
+			delta_movement = c_my_transform->getPosition() - old_position;
+
+			return true;
+		}
+	}
+
+	return false;
+}
+
+const bool TCompPlayerController::ShadowTest() {
+
+	/* TODO */
+	return true && stamina > minStaminaToMerge && !inhibited;
 }

@@ -7,7 +7,7 @@
 
 class TCompPlayerController : public IAIController {
 
-	/* Attributes */
+	std::string auxStateName = "";
 	std::map<std::string, CRenderMesh*> mesh_states;
 
 	/* Camera stack, to bypass entity delayed loading */
@@ -16,6 +16,7 @@ class TCompPlayerController : public IAIController {
 	std::string camera_thirdperson;
 	std::string camera_actual;
 
+	/* Player stamina */
 	float stamina;
 	float maxStamina;
 	float minStamina;
@@ -24,39 +25,41 @@ class TCompPlayerController : public IAIController {
 	float dcrStaminaGround;
 	float dcrStaminaWall;
 	float incrStamina = 20.f;
-
+	
+	/* Player speeds*/
 	float walkSpeedFactor;
-	float walkCrouchSpeedFactor;
-	float runSpeedFactor;
 	float walkSlowSpeedFactor;
+	float walkCrouchSpeedFactor;
 	float walkSlowCrouchSpeedFactor;
 	float currentSpeed;
 	float rotationSpeed;
+	float runSpeedFactor;
+
+	/* Aux offset */
+	float maxGroundDistance = 0.3f;
 
 	/* Timers */
-	float timerForPressingRemoveInhibitorKey = 0.f;
-	int timesRemoveInhibitorKeyPressed = 0;
 	int timesToPressRemoveInhibitorKey;
-	bool inhibited = false;
+	int timesRemoveInhibitorKeyPressed = 0;
+	float timerForPressingRemoveInhibitorKey = 0.f;
+
+	/* Private aux functions */
+	void movePlayer(float);
+	void movePlayerShadow(float);
+	void manageInhibition(float dt);
+
+	const bool ConcaveTest(void);
+	const bool ConvexTest(void);
+	const bool ShadowTest(void);
+	const bool GroundTest(void);
+	const bool motionButtonsPressed(void);
+
+	DECL_SIBLING_ACCESS();
 
 	/* Messages handled by the player */
 	void onMsgDamage(const TMsgDamage& msg);
 	void onMsgPlayerHit(const TMsgPlayerHit& msg);
 	void onMsgPlayerShotInhibitor(const TMsgInhibitorShot& msg);
-
-	/* Aux variables */
-	std::string auxStateName = "";
-	
-	/* Private aux functions */
-	void movePlayer(float);
-	void manageInhibition(float dt);
-	void movePlayerShadow(float);
-	bool NormalChange(void);
-	bool CocaveNormalTest(void);
-
-	const bool motionButtonsPressed();
-
-	DECL_SIBLING_ACCESS();
 
 	/* Keys */
 	const Input::TButton& btUp = EngineInput["btUp"];
@@ -76,14 +79,13 @@ class TCompPlayerController : public IAIController {
 public:
 
 	bool isGrounded;
+	bool inhibited = false;
 	VEC3 delta_movement;
 
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
 	void Init();
   
-	static void registerMsgs();
-
 	/* States */
 	void IdleState(float);
 	void MotionState(float);	//Movement
@@ -103,6 +105,6 @@ public:
 	void HitState(float);
 	void DeadState(float);
 
-	bool CheckShadows();
-	bool IsGrounded(void);
+	static void registerMsgs();
+
 };

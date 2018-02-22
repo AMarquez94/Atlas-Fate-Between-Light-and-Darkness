@@ -10,6 +10,8 @@ class CModulePhysics : public IModule
 {
 public:
 
+	static const VEC3 gravity;
+
 	struct RaycastHit
 	{
 		VEC3 point;
@@ -33,6 +35,8 @@ public:
 	virtual bool start() override;
 	virtual void update(float delta) override;
 	virtual void render() override;
+
+	/* Main procedure methods */
 	void createActor(TCompCollider& comp_collider);
 	
 	// Filter methods
@@ -40,22 +44,24 @@ public:
 	void setupFiltering(physx::PxShape* shape, physx::PxU32 filterGroup, physx::PxU32 filterMask);
 	void setupFiltering(physx::PxRigidActor* actor, physx::PxU32 filterGroup, physx::PxU32 filterMask);
 
+	/* Ray casting & related methods*/
 	bool Raycast(const VEC3 & origin, const VEC3 & dir, float distance, RaycastHit & hit);
-
+	
+	//bool Raycast(const VEC3 & origin, const VEC3 & dir, float distance, RaycastHit & hit, const PxFilterData & filter);
+	//bool SphereCast(const VEC3 & origin, const VEC3 & dir, float distance, RaycastHit & hit);
 private:
+
+	physx::PxPhysics* gPhysics;
+	physx::PxDefaultCpuDispatcher* gDispatcher;
 	physx::PxDefaultAllocator gDefaultAllocatorCallback;
 	physx::PxDefaultErrorCallback gDefaultErrorCallback;
 
-	physx::PxPhysics*				gPhysics;
+	physx::PxScene* gScene;
+	physx::PxMaterial* gMaterial;
 
-	physx::PxDefaultCpuDispatcher*	gDispatcher;
-	physx::PxScene*				gScene;
-
-	physx::PxMaterial*				gMaterial;
-
-	physx::PxPvd*                  gPvd;
-	physx::PxFoundation*			gFoundation;
-	physx::PxControllerManager*     mControllerManager;
+	physx::PxPvd* gPvd;
+	physx::PxFoundation* gFoundation;
+	physx::PxControllerManager* mControllerManager;
 
 	class CustomSimulationEventCallback : public physx::PxSimulationEventCallback
 	{
