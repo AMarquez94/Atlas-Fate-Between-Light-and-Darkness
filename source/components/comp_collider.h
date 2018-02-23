@@ -41,11 +41,10 @@ public:
     int mask;
     bool is_dynamic;
     bool is_trigger;
-    bool is_character_controller;
+    bool is_controller;
 	bool gravity;
 
   };
-  VEC3 lastFramePosition;
   void onTriggerEnter(const TMsgTriggerEnter& msg);
 
   DECL_SIBLING_ACCESS();

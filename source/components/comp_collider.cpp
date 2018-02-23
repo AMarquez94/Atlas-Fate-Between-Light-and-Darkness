@@ -2,6 +2,7 @@
 #include "comp_collider.h"
 #include "comp_transform.h"
 #include "player_controller/comp_player_controller.h"
+#include "comp_PhysXMovement.h"
 
 DECL_OBJ_MANAGER("collider", TCompCollider);
 
@@ -29,7 +30,7 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
     config.shapeType = physx::PxGeometryType::eCAPSULE;
   }
   
-  config.is_character_controller = j.value("is_character_controller", false);
+  config.is_controller = j.value("is_controller", false);
   config.is_dynamic = j.value("is_dynamic", false);
   config.is_trigger = j.value("is_trigger", false);
   config.height = j.value("height", 0.f);
@@ -38,10 +39,6 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 
   if (j.count("halfExtent"))
     config.halfExtent = loadVEC3(j["halfExtent"]);
-  
-  lastFramePosition = VEC3::Zero;
-
-
 
 }
 
@@ -55,8 +52,6 @@ void TCompCollider::registerMsgs() {
 void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
 
   CEngine::get().getPhysics().createActor(*this);
-  TCompTransform *c_my_tmx = get<TCompTransform>();
-  lastFramePosition = c_my_tmx->getPosition();
 
 }
 
@@ -68,10 +63,10 @@ void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {
 
 void TCompCollider::update(float dt) {
 
-	if (config.is_character_controller) {
+	if (config.is_controller) {
 
-		TCompPlayerController *c_my_plyrcntlr = get<TCompPlayerController>();
-		VEC3 delta = c_my_plyrcntlr->delta_movement;
+		TCompPhysXMovement *physX_movement = get<TCompPhysXMovement>();
+		VEC3 delta = physX_movement->delta_movement;
 		//controller->move(physx::PxVec3(delta.x, delta.y, delta.z), 0.f, dt, physx::PxControllerFilters());
 		velocity.x = delta.x;
 		velocity.z = delta.z;

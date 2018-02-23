@@ -93,6 +93,7 @@
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
+    <ClCompile Include="components\comp_PhysXMovement.cpp" />
     <ClCompile Include="components\comp_render.cpp" />
     <ClCompile Include="components\comp_tags.cpp" />
     <ClCompile Include="components\comp_transform.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />
     <ClInclude Include="components\comp_name.h" />
+    <ClInclude Include="components\comp_PhysXMovement.h" />
     <ClInclude Include="components\comp_player_controller.h" />
     <ClInclude Include="components\comp_render.h" />
     <ClInclude Include="components\comp_tags.h" />

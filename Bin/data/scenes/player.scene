@@ -31,7 +31,7 @@
       },
       "collider": {
         "shape": "capsule",
-        "is_character_controller": true,
+        "is_controller": true,
         "radius": 0.35,
         "height": 1.0,
         "gravity": true

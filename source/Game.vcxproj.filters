@@ -70,6 +70,7 @@
     <ClCompile Include="components\camera_controller\comp_circular_controller.cpp" />
     <ClCompile Include="components\camera_controller\comp_flyover_controller.cpp" />
     <ClCompile Include="components\object_controller\comp_cone_of_light.cpp" />
+    <ClCompile Include="components\comp_PhysXMovement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="components\camera_controller\comp_circular_controller.h" />
     <ClInclude Include="components\camera_controller\comp_flyover_controller.h" />
     <ClInclude Include="components\object_controller\comp_cone_of_light.h" />
+    <ClInclude Include="components\comp_PhysXMovement.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

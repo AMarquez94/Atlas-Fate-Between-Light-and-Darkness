@@ -10,6 +10,7 @@
   "update": [
     "circular_controller",
     "player_controller",
+    "physx_movement",
     "collider",
     "camera_thirdperson",
     "camera_shadowmerge",
@@ -17,7 +18,7 @@
     "ai_patrol",
     "flyover_controller",
     "hierarchy",
-	"cone_of_light",
+    "cone_of_light",
     "camera"
   ]
 }

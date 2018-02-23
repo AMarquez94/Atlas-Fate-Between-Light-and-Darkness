@@ -69,6 +69,7 @@ class TCompPlayerController : public IAIController {
 
 	DECL_SIBLING_ACCESS();
 
+	void onEntityCreated(const TMsgEntityCreated& msg);
 	void onMsgDamage(const TMsgDamage& msg);
 	void onMsgPlayerHit(const TMsgPlayerHit& msg);
 	void onMsgPlayerShotInhibitor(const TMsgInhibitorShot& msg);
@@ -88,12 +89,10 @@ class TCompPlayerController : public IAIController {
 
 public:
 
-	VEC3 delta_movement;
-
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
 	void Init();
-  
+
 	static void registerMsgs();
 
 	/* States */

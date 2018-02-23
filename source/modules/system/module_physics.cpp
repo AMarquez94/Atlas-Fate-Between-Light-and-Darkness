@@ -30,7 +30,7 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		actor = plane;
 		gScene->addActor(*actor);
 	}
-	else if (config.shapeType == physx::PxGeometryType::eCAPSULE && config.is_character_controller)
+	else if (config.shapeType == physx::PxGeometryType::eCAPSULE && config.is_controller)
 	{
 		PxControllerDesc* cDesc;
 		PxCapsuleControllerDesc capsuleDesc;
