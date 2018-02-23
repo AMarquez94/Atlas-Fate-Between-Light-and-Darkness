@@ -10,7 +10,6 @@
 #include "components/comp_camera.h"
 #include "components/comp_tags.h"
 #include "components/ia/ai_patrol.h"
-#include "../comp_PhysXMovement.h"
 
 DECL_OBJ_MANAGER("player_controller", TCompPlayerController);
 
@@ -193,10 +192,6 @@ void TCompPlayerController::MotionState(float dt){
 	checkAttack();
 
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
-	TCompPhysXMovement* pXmv = get<TCompPhysXMovement>();
-	if (pXmv != NULL) {
-		pXmv->delta_movement = VEC3::Zero;
-	}
 
 	if (!motionButtonsPressed()) {
 		auxStateName = "";
@@ -372,22 +367,6 @@ void TCompPlayerController::DeadState(float dt){
 void TCompPlayerController::onEntityCreated(const TMsgEntityCreated & msg)
 {
 
-	TCompPhysXMovement* pXmv = get<TCompPhysXMovement>();
-	if (pXmv == NULL) {
-		//Getting the entity to add the component
-		CEntity *e = CHandle(this).getOwner();
-		auto om = CHandleManager::getByName("physx_movement");
-		//Getting the component type
-		int comp_type = om->getType();										
-		CHandle h_comp = e->get(comp_type);
-		//Adding the component
-		if (!h_comp.isValid()) {
-			h_comp = om->createHandle();
-			e->set(comp_type, h_comp);
-		}
-		
-	}
-
 }
 
 void TCompPlayerController::onMsgPlayerHit(const TMsgPlayerHit & msg)
@@ -524,8 +503,8 @@ void TCompPlayerController::movePlayer(const float dt) {
 
 	VEC3 new_pos = c_my_transform->getPosition() + dir * player_accel;
 
-	TCompPhysXMovement *physXMovement = get<TCompPhysXMovement>();
-	physXMovement->delta_movement = new_pos - c_my_transform->getPosition();
+	c_my_transform->setPosition(new_pos);
+
 }
 
 bool TCompPlayerController::manageInhibition(float dt) {

@@ -2,7 +2,6 @@
 #include "comp_collider.h"
 #include "comp_transform.h"
 #include "player_controller/comp_player_controller.h"
-#include "comp_PhysXMovement.h"
 
 DECL_OBJ_MANAGER("collider", TCompCollider);
 
@@ -52,7 +51,8 @@ void TCompCollider::registerMsgs() {
 void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
 
   CEngine::get().getPhysics().createActor(*this);
-
+  TCompTransform *transform = get<TCompTransform>();
+  lastFramePosition = transform->getPosition();
 }
 
 void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {
@@ -65,18 +65,21 @@ void TCompCollider::update(float dt) {
 
 	if (config.is_controller) {
 
-		TCompPhysXMovement *physX_movement = get<TCompPhysXMovement>();
-		VEC3 delta = physX_movement->delta_movement;
-		//controller->move(physx::PxVec3(delta.x, delta.y, delta.z), 0.f, dt, physx::PxControllerFilters());
-		velocity.x = delta.x;
-		velocity.z = delta.z;
+		TCompTransform *transform = get<TCompTransform>();
+		VEC3 new_pos = transform->getPosition();
+		VEC3 delta_movement = new_pos - lastFramePosition;
+		velocity.x = delta_movement.x;
+		velocity.z = delta_movement.z;
+		lastFramePosition = new_pos;
 	}
 
 	if (config.gravity) {
 
-		//controller->move(physx::PxVec3(0, -9.8f * dt, 0), 0.f, dt, physx::PxControllerFilters());
 		velocity.y -= 9.81f * dt;
-		//dbg("velocity: %f    dt: %f\n", velocity.y , &dt);
+	}
+
+	if (config.is_controller || config.gravity) {
+
 		controller->move(physx::PxVec3(velocity.x, velocity.y * dt, velocity.z), 0.f, dt, physx::PxControllerFilters());
 	}
 

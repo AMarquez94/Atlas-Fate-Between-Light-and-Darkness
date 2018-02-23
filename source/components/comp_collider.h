@@ -26,8 +26,9 @@ enum FilterGroups {
 class TCompCollider: public TCompBase {
 
 	VEC3 velocity = VEC3::Zero;
-
+	
 public:
+   VEC3 lastFramePosition;
   struct TConfig
   {
     VEC3 halfExtent;

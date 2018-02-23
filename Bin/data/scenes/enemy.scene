@@ -14,40 +14,11 @@
 			"ai_patrol": {
 				"waypoints": [
 				  {
-					"position": "-10 0 0",
+					"position": "-14.3 0 4.8",
 					"lookAt": "-1 0 -1"
 				  },
 				  {
-					"position": "5 0 5",
-					"lookAt": "-1 0 -1"
-				  },
-				  {
-					"position": "2 0 10",
-					"lookAt": "-1 0 -1"
-				  }
-				]
-			}
-		}
-	},
-	{
-		"entity": {
-			"prefab" : "data/prefabs/patrol.prefab",
-			"name": "The Enemy 2",
-			"transform": {
-				"pos": "-7 0 5"
-			},
-			"ai_patrol": {
-				"waypoints": [
-				  {
-					"position": "-5 0 0",
-					"lookAt": "-1 0 -1"
-				  },
-				  {
-					"position": "-5 0 -5",
-					"lookAt": "-1 0 -1"
-				  },
-				  {
-					"position": "0 0 3",
+					"position": "5 0 15",
 					"lookAt": "-1 0 -1"
 				  }
 				]
