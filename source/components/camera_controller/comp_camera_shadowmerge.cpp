@@ -61,7 +61,7 @@ void TCompCameraShadowMerge::update(float dt)
 	_current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
 
 	// EulerAngles method based on mcv class
-	VEC3 vertical_offset = target_transform ->getUp() * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)
+	VEC3 vertical_offset = 0.1f * target_transform ->getUp() * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)
 	VEC3 horizontal_offset = self_transform->getLeft() * _clipping_offset.x;
 	VEC3 target_position = target_transform->getPosition() + vertical_offset + horizontal_offset;
 

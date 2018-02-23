@@ -52,7 +52,7 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 	for (unsigned int x = 0; x < static_points.size(); x++) {
 
 		float distance = VEC3::Distance(static_points[x], point);
-		if (!EnginePhysics.Raycast(point, -light_dir, distance, hit))
+		if (!EnginePhysics.Raycast(point, -light_dir, distance, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario")))
 			return false;
 	}
 

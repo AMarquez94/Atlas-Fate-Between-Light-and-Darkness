@@ -44,10 +44,11 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		capsuleDesc.climbingMode = PxCapsuleClimbingMode::eCONSTRAINED;
 		cDesc = &capsuleDesc;
 		cDesc->material = gMaterial;
+		cDesc->contactOffset = 0.001f;
 		PxCapsuleController * ctrl = static_cast<PxCapsuleController*>(mControllerManager->createController(*cDesc));
 		PX_ASSERT(ctrl);
 		ctrl->setFootPosition(PxExtendedVec3(pos.x, pos.y, pos.z));
-		ctrl->setContactOffset(0.0001);
+		ctrl->setContactOffset(0.001);
 		actor = ctrl->getActor();
 		comp_collider.controller = ctrl;
 		setupFiltering(actor, config.group, config.mask);
@@ -61,7 +62,8 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		{
 			shape = gPhysics->createShape(PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z), *gMaterial);
 			offset.p.y = config.halfExtent.y;
-			shape->setContactOffset(1);
+			shape->setContactOffset(1.f);
+			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
 			//shape->setRestOffset(0);
 
 		}
@@ -170,7 +172,8 @@ PxFilterFlags CustomFilterShader(
 		if (filterData0.word0 == 4 && filterData1.word0 == 1)
 		{
 			dbg("collided with a wall\n");
-			return PxFilterFlag::eKILL;
+			pairFlags = PxPairFlag::eNOTIFY_TOUCH_LOST;
+			return (PxFilterFlag::eKILL);
 		}
 
         if ( PxFilterObjectIsTrigger(attributes0) || PxFilterObjectIsTrigger(attributes1) )
@@ -210,6 +213,7 @@ bool CModulePhysics::start()
 	sceneDesc.filterShader = CustomFilterShader;
 	sceneDesc.flags = PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS | PxSceneFlag::eENABLE_ACTIVE_ACTORS;
 	gScene = gPhysics->createScene(sceneDesc);
+	gScene->setFlag(PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS, true);
 
 	PxPvdSceneClient* pvdClient = gScene->getScenePvdClient();
 
