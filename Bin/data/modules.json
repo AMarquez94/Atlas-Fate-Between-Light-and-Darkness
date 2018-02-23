@@ -8,13 +8,15 @@
     "splash",
     "game_over",
     "test_input",
-    "test_axis"
+    "test_axis",
+	"cameras"
   ],
 	"render" : 
 	[
 		"render",
 		"test_axis",
 		"entities",
-		"input"
+		"input",
+		"cameras"
 	]
 }

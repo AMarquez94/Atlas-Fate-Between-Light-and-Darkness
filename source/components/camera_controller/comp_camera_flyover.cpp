@@ -22,34 +22,56 @@ void TCompCameraFlyover::update(float dt)
 	VEC3 left = c_transform->getLeft();
 	VEC3 up = VEC3::UnitY;
 
-	// movement
-	float deltaSpeed = _speed * dt;
-	if (EngineInput["turbo"].isPressed())
-		deltaSpeed *= 2.f;
-	VEC3 off;
-	off += front * EngineInput["front"].value * deltaSpeed;
-	off += -front * EngineInput["back"].value * deltaSpeed;
-	off += left * EngineInput["left"].value * deltaSpeed;
-	off += -left * EngineInput["right"].value * deltaSpeed;
-	off += up * EngineInput["up"].value * deltaSpeed;
-	off += -up * EngineInput["down"].value * deltaSpeed;
-
-	// rotation
-	float yaw, pitch;
-	getYawPitchFromVector(front, &yaw, &pitch);
-
-	auto& mouse = EngineInput.mouse();
-	if (mouse.button(Input::MOUSE_RIGHT).isPressed())
-	{
-		VEC2 mOff = mouse._position_delta;
-		yaw += -mOff.x * _sensitivity;
-		pitch += -mOff.y * _sensitivity;
-		pitch = Clamp(pitch, -_maxPitch, _maxPitch);
+	if (btDebugPause.getsPressed()) {
+		paused = !paused;
+		if (paused) {
+			previousCamera = CCamera::main_camera;
+			CCamera::main_camera = CHandle(this).getOwner();
+		}
+		else {
+			CCamera::main_camera = previousCamera;
+		}
 	}
 
-	// final values
-	VEC3 newPos = pos + off;
-	VEC3 newFront = getVectorFromYawPitch(yaw, pitch);
+	if (!paused) {
+		CEntity* camera = CCamera::main_camera;
+		TCompTransform* tMainCamera = camera->get<TCompTransform>();
+		float y, p, r;
+		tMainCamera->getYawPitchRoll(&y,&p,&r);
+		c_transform->setPosition(tMainCamera->getPosition());
+		c_transform->setYawPitchRoll(y,p,r);
+	}
+	else {
 
-	c_transform->lookAt(newPos, newPos + newFront);
+		// movement
+		float deltaSpeed = _speed * dt;
+		if (EngineInput["turbo"].isPressed())
+			deltaSpeed *= 2.f;
+		VEC3 off;
+		off += front * EngineInput["btUp"].value * deltaSpeed;
+		off += -front * EngineInput["btDown"].value * deltaSpeed;
+		off += left * EngineInput["btLeft"].value * deltaSpeed;
+		off += -left * EngineInput["btRight"].value * deltaSpeed;
+		off += up * EngineInput["up"].value * deltaSpeed;
+		off += -up * EngineInput["down"].value * deltaSpeed;
+
+		// rotation
+		float yaw, pitch;
+		getYawPitchFromVector(front, &yaw, &pitch);
+
+		auto& mouse = EngineInput.mouse();
+		if (mouse.button(Input::MOUSE_RIGHT).isPressed())
+		{
+			VEC2 mOff = mouse._position_delta;
+			yaw += -mOff.x * _sensitivity;
+			pitch += -mOff.y * _sensitivity;
+			pitch = Clamp(pitch, -_maxPitch, _maxPitch);
+		}
+
+		// final values
+		VEC3 newPos = pos + off;
+		VEC3 newFront = getVectorFromYawPitch(yaw, pitch);
+
+		c_transform->lookAt(newPos, newPos + newFront);
+	}
 }

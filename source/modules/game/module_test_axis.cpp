@@ -53,6 +53,12 @@ bool CModuleTestAxis::start()
 
   CCamera::main_camera = getEntityByName("TPCamera");
 
+  CHandle h_camera = getEntityByName("test_camera_flyover");
+  Engine.getCameras().setDefaultCamera(h_camera);
+
+  h_camera = getEntityByName("the_camera");
+  Engine.getCameras().setOutputCamera(h_camera);
+
   return true;
 }
 

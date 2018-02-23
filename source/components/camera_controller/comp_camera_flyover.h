@@ -12,6 +12,10 @@ public:
 	void update(float dt);
 
 private:
+	const Input::TButton& btDebugPause = EngineInput["btDebugPause"];
+	bool paused = false;
+	CHandle previousCamera;
+
 	float _speed = 10.f;
 	float _sensitivity = 0.005f;
 	float _maxPitch = (float)M_PI_2 - 1e-4f;
