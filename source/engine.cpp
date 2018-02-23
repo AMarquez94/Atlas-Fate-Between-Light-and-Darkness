@@ -10,7 +10,7 @@
 //--------------------------------------------------------------------------------------
 CEngine& CEngine::get() {
   static CEngine engine;
-  return engine;
+  return engine;;
 }
 
 CEngine::CEngine()
