@@ -21,11 +21,24 @@ public:
 		TCompCollider * collider;
 	};
 
+	enum QueryFlag
+	{
+		eSTATIC = (1 << 0),
+		eDYNAMIC = (1 << 1),
+		ePREFILTER = (1 << 2),
+		ePOSTFILTER = (1 << 3),	
+		eANY_HIT = (1 << 4),
+		eNO_BLOCK = (1 << 5),
+		eRESERVED = (1 << 15)
+	};
+
 	enum FilterGroup {
+
 		Wall = 1 << 0,
 		Floor = 1 << 1,
 		Player = 1 << 2,
 		Enemy = 1 << 3,
+		Ignore = 1 << 4,
 		Scenario = Wall | Floor,
 		Characters = Player | Enemy,
 		All = -1
@@ -45,9 +58,7 @@ public:
 	void setupFiltering(physx::PxRigidActor* actor, physx::PxU32 filterGroup, physx::PxU32 filterMask);
 
 	/* Ray casting & related methods*/
-	bool Raycast(const VEC3 & origin, const VEC3 & dir, float distance, RaycastHit & hit);
-	
-	//bool Raycast(const VEC3 & origin, const VEC3 & dir, float distance, RaycastHit & hit, const PxFilterData & filter);
+	bool Raycast(const VEC3 & origin, const VEC3 & dir, float distance, RaycastHit & hit, QueryFlag flag = QueryFlag::eSTATIC, FilterGroup mask = FilterGroup::All);
 	//bool SphereCast(const VEC3 & origin, const VEC3 & dir, float distance, RaycastHit & hit);
 private:
 

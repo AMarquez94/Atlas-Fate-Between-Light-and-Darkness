@@ -61,15 +61,15 @@ void TCompCameraShadowMerge::update(float dt)
 	_current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
 
 	// EulerAngles method based on mcv class
-	VEC3 vertical_offset = VEC3::Up * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)
+	VEC3 vertical_offset = target_transform ->getUp() * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)
 	VEC3 horizontal_offset = self_transform->getLeft() * _clipping_offset.x;
 	VEC3 target_position = target_transform->getPosition() + vertical_offset + horizontal_offset;
 
 	self_transform->setPosition(target_position);
 	self_transform->setYawPitchRoll(_current_euler.x, _current_euler.y, 0);
 
-	//float z_distance = CameraClipping(target_position, -self_transform->getFront());
-	VEC3 new_pos = target_position + _clipping_offset.z * -self_transform->getFront();
+	float z_distance = CameraClipping(target_position, -self_transform->getFront());
+	VEC3 new_pos = target_position + z_distance * -self_transform->getFront();
 	self_transform->setPosition(new_pos);
 
 	float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
@@ -80,8 +80,8 @@ void TCompCameraShadowMerge::update(float dt)
 float TCompCameraShadowMerge::CameraClipping(const VEC3 & origin, const VEC3 & dir)
 {
 	CModulePhysics::RaycastHit hit;
-	if (CEngine::get().getPhysics().Raycast(origin, dir, _clipping_offset.z, hit))
-		return Clamp(hit.distance - 0.1f, 0.2f, _clipping_offset.z);
+	if (EnginePhysics.Raycast(origin, dir, _clipping_offset.z, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario")))
+		return Clamp(hit.distance - 0.1f, 0.5f, _clipping_offset.z);
 
 	return _clipping_offset.z;
 }

@@ -10,6 +10,8 @@ class TCompCollider : public TCompBase {
 
 public:
 
+	bool isGrounded;
+
 	struct TConfig
 	{
 		//todo implement

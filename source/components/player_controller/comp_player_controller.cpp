@@ -533,19 +533,8 @@ void TCompPlayerController::manageInhibition(float dt) {
 const bool TCompPlayerController::GroundTest(void)
 {
 	// Do some ground tests
-	CModulePhysics::RaycastHit hit1[4];
-	TCompTransform *c_my_transform = get<TCompTransform>();
-	VEC3 offset_position = c_my_transform->getPosition() + VEC3(0, 0.1f, 0);
-	EnginePhysics.Raycast(offset_position + 0.5f * c_my_transform->getFront(), -c_my_transform->getUp(), 3000, hit1[0]);
-	EnginePhysics.Raycast(offset_position - 0.5f * c_my_transform->getFront(), -c_my_transform->getUp(), 3000, hit1[1]);
-	EnginePhysics.Raycast(offset_position + 0.5f * c_my_transform->getLeft(), -c_my_transform->getUp(), 3000, hit1[2]);
-	EnginePhysics.Raycast(offset_position - 0.5f * c_my_transform->getLeft(), -c_my_transform->getUp(), 3000, hit1[3]);
-	bool a = hit1[1].distance < maxGroundDistance ? true : false;
-	bool b = hit1[1].distance < maxGroundDistance ? true : false;
-	bool c = hit1[2].distance < maxGroundDistance ? true : false;
-	bool d = hit1[3].distance < maxGroundDistance ? true : false;
-
-	return isGrounded = a || b || c || d ? true : false;
+	TCompCollider *c_my_collider = get<TCompCollider>();
+	return 	c_my_collider->isGrounded;
 }
 
 const bool TCompPlayerController::ConcaveTest(void)
@@ -555,7 +544,7 @@ const bool TCompPlayerController::ConcaveTest(void)
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * .01f;
 
-	if (EnginePhysics.Raycast(upwards_offset, c_my_transform->getFront(), c_my_collider->config.radius + .1f, hit))
+	if (EnginePhysics.Raycast(upwards_offset, c_my_transform->getFront(), c_my_collider->config.radius + .1f, hit, EnginePhysics.eSTATIC , EnginePhysics.getFilterByName("scenario")))
 	{
 		if (EnginePhysics.gravity.Dot(hit.normal) < .01f)
 		{
@@ -587,7 +576,7 @@ const bool TCompPlayerController::ConvexTest(void)
 	VEC3 new_dir = -c_my_transform->getUp() + -c_my_transform->getFront();
 	new_dir.Normalize();
 
-	if (EnginePhysics.Raycast(upwards_offset, new_dir, 0.6f, hit))
+	if (EnginePhysics.Raycast(upwards_offset, new_dir, 0.6f, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario")))
 	{
 		if (hit.distance > convexMaxDistance && EnginePhysics.gravity.Dot(hit.normal) < .01f)
 		{

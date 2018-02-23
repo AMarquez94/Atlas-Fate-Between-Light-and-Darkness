@@ -148,6 +148,9 @@ CModulePhysics::FilterGroup CModulePhysics::getFilterByName(const std::string& n
 	else if (strcmp("floor", name.c_str()) == 0) {
 		return CModulePhysics::FilterGroup::Floor;
 	}
+	else if (strcmp("ignore", name.c_str()) == 0) {
+		return CModulePhysics::FilterGroup::Ignore;
+	}
 	else if (strcmp("scenario", name.c_str()) == 0) {
 		return CModulePhysics::FilterGroup::Scenario;
 	}
@@ -166,7 +169,6 @@ PxFilterFlags CustomFilterShader(
     {
 		if (filterData0.word0 == 4 && filterData1.word0 == 1)
 		{
-			pairFlags = PxPairFlag::eTRIGGER_DEFAULT;
 			dbg("collided with a wall\n");
 			return PxFilterFlag::eKILL;
 		}
@@ -311,14 +313,18 @@ void CModulePhysics::CustomSimulationEventCallback::onContact(const physx::PxCon
 
 /* Auxiliar physics methods */
 
-bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distance, RaycastHit & hit)
+bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distance, RaycastHit & hit, QueryFlag flag, FilterGroup mask)
 {
 	PxVec3 px_origin = PxVec3(origin.x, origin.y, origin.z);
 	PxVec3 px_dir = PxVec3(dir.x, dir.y, dir.z); // [in] Normalized ray direction
 	PxReal px_distance = (PxReal)(distance); // [in] Raycast max distance
-	PxRaycastBuffer px_hit; // [out] Raycast results
 
-	bool status = gScene->raycast(px_origin, px_dir, px_distance, px_hit); // Closest hit
+	PxRaycastBuffer px_hit; // [out] Raycast results
+	PxQueryFilterData filterData;
+	filterData.data.word0 = mask;
+	filterData.flags = PxQueryFlag::Enum(flag);
+
+	bool status = gScene->raycast(px_origin, px_dir, px_distance, px_hit, PxHitFlags(PxHitFlag::eDEFAULT), filterData); // Closest hit
 
 	if (status)
 	{

@@ -80,7 +80,6 @@ class TCompPlayerController : public IAIController {
 
 public:
 
-	bool isGrounded;
 	bool inhibited = false;
 	VEC3 delta_movement;
 
