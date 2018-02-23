@@ -28,7 +28,7 @@ class TCompCollider: public TCompBase {
 	VEC3 velocity = VEC3::Zero;
 	
 public:
-   VEC3 lastFramePosition;
+   
   struct TConfig
   {
     VEC3 halfExtent;
@@ -50,6 +50,7 @@ public:
 
   DECL_SIBLING_ACCESS();
 
+  VEC3 lastFramePosition;
   TConfig config;
   physx::PxActor* actor;
   physx::PxController* controller;

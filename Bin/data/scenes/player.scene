@@ -32,7 +32,7 @@
       "collider": {
         "shape": "capsule",
         "is_controller": true,
-        "radius": 0.35,
+        "radius": 0.55,
         "height": 1.0,
         "gravity": true
       }

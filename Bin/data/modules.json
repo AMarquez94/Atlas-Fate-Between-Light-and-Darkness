@@ -2,13 +2,13 @@
   "update": [
     "input",
     "entities",
-    "physics",
     "render",
     "main_menu",
     "splash",
     "game_over",
     "test_input",
-    "test_axis"
+    "test_axis",
+    "physics"
   ],
 	"render" : 
 	[

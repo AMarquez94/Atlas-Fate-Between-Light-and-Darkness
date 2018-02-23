@@ -224,7 +224,8 @@ void CAIPatrol::GoToWptState(float dt)
 	rotateTowardsVec(getWaypoint().position, dt);
 
 	VEC3 vp = mypos->getPosition();
-
+	VEC3 patata = vp;
+	dbg("\nPatrol: LastFrame: %f %f %f", vp.x, vp.y, vp.z );
 	if (VEC3::Distance(getWaypoint().position, vp) < speed * dt) {
 		mypos->setPosition(getWaypoint().position);
 		ChangeState("waitInWpt");
@@ -235,7 +236,10 @@ void CAIPatrol::GoToWptState(float dt)
 		vp = vp + speed * dt *vfwd;
 		mypos->setPosition(vp);				//Move towards wpt
 	}
-
+	VEC3 delta = vp - patata;
+	dbg("      newPosition: %f %f %f\n",vp.x, vp.y, vp.z);
+	dbg("\nPatrol Delta Movement %f %f %f\n", delta.x, delta.y, delta.z);
+	dbg("");
 	if (isPlayerInFov()) {
 		TCompTransform *mypos = getMyTransform();
 		CEntity *player = (CEntity *)getEntityByName(entityToChase);

@@ -70,6 +70,8 @@ void TCompCollider::update(float dt) {
 		VEC3 delta_movement = new_pos - lastFramePosition;
 		velocity.x = delta_movement.x;
 		velocity.z = delta_movement.z;
+		dbg("\nCollider: LastFrame: %f %f %f      newPosition: %f %f %f\n", lastFramePosition.x, lastFramePosition.y, lastFramePosition.z, new_pos.x, new_pos.y, new_pos.z);
+		dbg("\nCollider Delta Movement %f %f %f\n", delta_movement.x, delta_movement.y, delta_movement.z);
 		lastFramePosition = new_pos;
 	}
 
