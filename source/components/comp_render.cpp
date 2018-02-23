@@ -16,7 +16,7 @@ void TCompRender::loadMesh(const json& j, TEntityParseContext& ctx) {
 	
 	std::string name_mesh = j.value("mesh", "axis.mesh");
 	mesh = Resources.get(name_mesh)->as<CRenderMesh>();
-
+	int a = j.count("materials");
 	if (j.count("materials")) {
 		auto& j_mats = j["materials"];
 		assert(j_mats.is_array());

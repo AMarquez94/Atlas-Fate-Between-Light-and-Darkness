@@ -18,6 +18,7 @@
     "ai_patrol",
     "flyover_controller",
     "hierarchy",
-    "camera"
+    "camera",
+    "dynamic_objects"
   ]
 }

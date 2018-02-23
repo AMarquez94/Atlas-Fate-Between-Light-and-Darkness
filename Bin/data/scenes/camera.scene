@@ -10,7 +10,7 @@
 				"target": "The Player",
 				"clampangle" : "-20 80",
 				"offset": "0.25 1.6 2.5",
-				"speed" : 1.0
+				"speed" : 5.0
 			},
 			"camera" : {
 				"fov" : 70,

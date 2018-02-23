@@ -69,11 +69,17 @@
       "transform": {
         "pos": "-4 0 0"
       },
-			"collider": {
-        "shape": "box",
-				"radius": 0.5,
-        "halfExtent": "2 2 2",
-				"is_trigger": true
+      "dynamic_objects": {
+        "waypoints": [
+          {
+            "position": "0 0 0"
+          },
+          {
+            "position": "5 5 5"
+          }
+        ],
+        "speed": 4,
+        "rotationSpeed": 180
       }
     }
   }

@@ -89,6 +89,7 @@
     <ClCompile Include="components\camera_controller\comp_circular_controller.cpp" />
     <ClCompile Include="components\camera_controller\comp_flyover_controller.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
+    <ClCompile Include="components\comp_dynamic_objects.cpp" />
     <ClCompile Include="components\physics\comp_collider.cpp" />
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="components\camera_controller\comp_flyover_controller.h" />
     <ClInclude Include="components\comp_base.h" />
     <ClInclude Include="components\comp_camera.h" />
+    <ClInclude Include="components\comp_dynamic_objects.h" />
     <ClInclude Include="components\physics\comp_collider.h" />
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />
