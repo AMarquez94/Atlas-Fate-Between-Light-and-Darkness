@@ -28,7 +28,7 @@
 			},
 			"camera_shadowmerge" : {
 				"target": "The Player",
-				"clampangle" : "-20 80",
+				"clampangle" : "-80 80",
 				"offset": "0 0.25 2",
 				"speed" : 1.0
 			},

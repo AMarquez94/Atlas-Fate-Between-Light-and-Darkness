@@ -51,6 +51,7 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		actor = ctrl->getActor();
 		comp_collider.controller = ctrl;
 		setupFiltering(actor, config.group, config.mask);
+		
 	}
 	else
 	{
@@ -60,7 +61,7 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		{
 			shape = gPhysics->createShape(PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z), *gMaterial);
 			offset.p.y = config.halfExtent.y;
-			//shape->setContactOffset(1);
+			shape->setContactOffset(1);
 			//shape->setRestOffset(0);
 
 		}
@@ -161,9 +162,15 @@ PxFilterFlags CustomFilterShader(
   PxPairFlags& pairFlags, const void* constantBlock, PxU32 constantBlockSize
 )
 {
-	dbg("triying to collide");
     if ( (filterData0.word0 & filterData1.word1) && (filterData1.word0 & filterData0.word1) )
     {
+		if (filterData0.word0 == 4 && filterData1.word0 == 1)
+		{
+			pairFlags = PxPairFlag::eTRIGGER_DEFAULT;
+			dbg("collided with a wall\n");
+			return PxFilterFlag::eKILL;
+		}
+
         if ( PxFilterObjectIsTrigger(attributes0) || PxFilterObjectIsTrigger(attributes1) )
         {
             pairFlags = PxPairFlag::eTRIGGER_DEFAULT;
@@ -298,7 +305,6 @@ void CModulePhysics::CustomSimulationEventCallback::onContact(const physx::PxCon
 	for (PxU32 i = 0; i < nbPairs; i++)
 	{
 		const PxContactPair& cp = pairs[i];
-
 		dbg("contact found\n");
 	}
 }

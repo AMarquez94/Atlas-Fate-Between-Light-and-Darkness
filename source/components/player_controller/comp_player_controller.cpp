@@ -81,24 +81,6 @@ void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	camera_shadowmerge = j.value("shadow_camera", "");
 	camera_actual = camera_thirdperson;
 
-	// Manually loading the necessary meshes
-	auto pj_idle = loadMesh("data/meshes/pj_idle.mesh");
-	auto pj_attack = loadMesh("data/meshes/pj_attack.mesh");
-	auto pj_fall = loadMesh("data/meshes/pj_fall.mesh");
-	auto pj_walk = loadMesh("data/meshes/pj_walk.mesh");
-	auto pj_run = loadMesh("data/meshes/pj_run.mesh");
-	auto pj_crouch = loadMesh("data/meshes/pj_crouch.mesh");
-	auto pj_shadowmerge = loadMesh("data/meshes/pj_shadowmerge.mesh");
-
-	// Insert them in the map.
-	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_idle", (CRenderMesh*)pj_idle));
-	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_attack", (CRenderMesh*)pj_attack));
-	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_fall", (CRenderMesh*)pj_fall));
-	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_walk", (CRenderMesh*)pj_walk));
-	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_run", (CRenderMesh*)pj_run));
-	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_crouch", (CRenderMesh*)pj_crouch));
-	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_shadowmerge", (CRenderMesh*)pj_shadowmerge));
-
 	Init();
 }
 
@@ -119,6 +101,24 @@ void TCompPlayerController::Init() {
 	AddState("hit", (statehandler)&TCompPlayerController::HitState);
 	AddState("dead", (statehandler)&TCompPlayerController::DeadState);
 	AddState("crouch", (statehandler)&TCompPlayerController::CrouchState);
+
+	// Manually loading the necessary meshes
+	auto pj_idle = loadMesh("data/meshes/pj_idle.mesh");
+	auto pj_attack = loadMesh("data/meshes/pj_attack.mesh");
+	auto pj_fall = loadMesh("data/meshes/pj_fall.mesh");
+	auto pj_walk = loadMesh("data/meshes/pj_walk.mesh");
+	auto pj_run = loadMesh("data/meshes/pj_run.mesh");
+	auto pj_crouch = loadMesh("data/meshes/pj_crouch.mesh");
+	auto pj_shadowmerge = loadMesh("data/meshes/pj_shadowmerge.mesh");
+
+	// Insert them in the map.
+	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_idle", (CRenderMesh*)pj_idle));
+	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_attack", (CRenderMesh*)pj_attack));
+	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_fall", (CRenderMesh*)pj_fall));
+	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_walk", (CRenderMesh*)pj_walk));
+	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_run", (CRenderMesh*)pj_run));
+	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_crouch", (CRenderMesh*)pj_crouch));
+	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_shadowmerge", (CRenderMesh*)pj_shadowmerge));
 
 	/* TODO: not for milestone1 */
 	//AddState("probe", (statehandler)&TCompPlayerController::ProbeState);
@@ -221,6 +221,13 @@ void TCompPlayerController::RemovingInhibitorState(float dt){
 
 void TCompPlayerController::ShadowMergingEnterState(float dt){
 
+	TCompShadowController * shadow_oracle = get<TCompShadowController>();
+	if (!shadow_oracle->is_shadow)
+	{
+		ChangeState("smExit");
+		return;
+	}
+
 	// Change the render to the shadow merge mesh, TO REFACTOR
 	TCompRender* t = get<TCompRender>();
 	t->color = VEC4(0, 0, 0, 0);
@@ -235,6 +242,11 @@ void TCompPlayerController::ShadowMergingEnterState(float dt){
 void TCompPlayerController::ShadowMergingHorizontalState(float dt){ 
 
 	delta_movement = VEC3::Zero;
+
+	if (!ShadowTest()) {
+		ChangeState("smExit");
+	}
+
 	if (motionButtonsPressed()) {
 		if (ConcaveTest())
 		{
@@ -248,24 +260,19 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 	else {
 		stamina = Clamp<float>(stamina - (dcrStaminaGround * dcrStaminaOnPlaceMultiplier * dt), minStamina, maxStamina);
 	}
-	
-	if (!btShadowMerging.isPressed() || stamina <= minStamina ) {
-		ChangeState("smExit");
-	}
+
 }
 
 void TCompPlayerController::ShadowMergingVerticalState(float dt){ 
 
-	//delta_movement = VEC3::Zero;
+	delta_movement = VEC3::Zero;
 	// Move the player
 	movePlayerShadow(dt);
-
-	// Do the shadow plane change tests
-	if(ConcaveTest()){}
-	else ConvexTest();
+	ConcaveTest();
+	ConvexTest();
 
 	// Check if we are still in shadow mode or grounded.
-	if (!ShadowTest())// || !btShadowMerging.isPressed())
+	if (!ShadowTest())
 	{
 		ResetPlayer();
 	}
@@ -296,10 +303,16 @@ void TCompPlayerController::ShadowMergingExitState(float dt){
 
 void TCompPlayerController::FallingState(float dt){
 
+	TCompRender *c_my_render = get<TCompRender>();
+	c_my_render->mesh = mesh_states.find("pj_fall")->second;
+
+	if (GroundTest())
+		ChangeState("land");
 }
 
 void TCompPlayerController::LandingState(float dt){
 
+	ChangeState("idle");
 }
 
 void TCompPlayerController::HitState(float dt){
@@ -351,6 +364,11 @@ const bool TCompPlayerController::motionButtonsPressed() {
 
 	delta_movement = VEC3::Zero;
 
+	if (!GroundTest()) {
+		ChangeState("fall");
+
+		return false;
+	}
 	return btUp.isPressed() || btDown.isPressed() || btLeft.isPressed() || btRight.isPressed();
 }
 
@@ -465,16 +483,16 @@ void TCompPlayerController::movePlayerShadow(const float dt) {
 	proj.Normalize();
 
 	if (btUp.isPressed() && btUp.value > 0) {
-		dir += proj;
+		dir += fabs(btUp.value) * proj;
 	}
 	else if (btDown.isPressed()) {
-		dir += -proj;
+		dir += fabs(btDown.value) * -proj;
 	}
 	if (btRight.isPressed() && btRight.value > 0) {
-		dir += normal_norm.Cross(proj);
+		dir += fabs(btRight.value) * normal_norm.Cross(proj);
 	}
 	else if (btLeft.isPressed()) {
-		dir += -normal_norm.Cross(proj);
+		dir += fabs(btLeft.value) * -normal_norm.Cross(proj);
 	}
 	dir.Normalize();
 
@@ -511,18 +529,23 @@ void TCompPlayerController::manageInhibition(float dt) {
 	}
 }
 
+// Refactor this with physx function
 const bool TCompPlayerController::GroundTest(void)
 {
 	// Do some ground tests
-	CModulePhysics::RaycastHit hit1;
-	CModulePhysics::RaycastHit hit2;
+	CModulePhysics::RaycastHit hit1[4];
 	TCompTransform *c_my_transform = get<TCompTransform>();
-	EnginePhysics.Raycast(c_my_transform->getPosition() + 0.15f * c_my_transform->getFront(), -c_my_transform->getUp(), 3000, hit1);
-	EnginePhysics.Raycast(c_my_transform->getPosition() - 0.15f * c_my_transform->getFront(), -c_my_transform->getUp(), 3000, hit2);
-	bool a = hit1.distance < maxGroundDistance ? true : false;
-	bool b = hit2.distance < maxGroundDistance ? true : false;
+	VEC3 offset_position = c_my_transform->getPosition() + VEC3(0, 0.1f, 0);
+	EnginePhysics.Raycast(offset_position + 0.5f * c_my_transform->getFront(), -c_my_transform->getUp(), 3000, hit1[0]);
+	EnginePhysics.Raycast(offset_position - 0.5f * c_my_transform->getFront(), -c_my_transform->getUp(), 3000, hit1[1]);
+	EnginePhysics.Raycast(offset_position + 0.5f * c_my_transform->getLeft(), -c_my_transform->getUp(), 3000, hit1[2]);
+	EnginePhysics.Raycast(offset_position - 0.5f * c_my_transform->getLeft(), -c_my_transform->getUp(), 3000, hit1[3]);
+	bool a = hit1[1].distance < maxGroundDistance ? true : false;
+	bool b = hit1[1].distance < maxGroundDistance ? true : false;
+	bool c = hit1[2].distance < maxGroundDistance ? true : false;
+	bool d = hit1[3].distance < maxGroundDistance ? true : false;
 
-	return isGrounded = a || b ? true : false;
+	return isGrounded = a || b || c || d ? true : false;
 }
 
 const bool TCompPlayerController::ConcaveTest(void)
@@ -588,8 +611,8 @@ const bool TCompPlayerController::ConvexTest(void)
 
 const bool TCompPlayerController::ShadowTest() {
 
-	/* TODO */
-	return stamina > 0.f;// && !inhibited;// && GroundTest();
+	TCompShadowController * shadow_oracle = get<TCompShadowController>();
+	return stamina > 0.f && !inhibited && shadow_oracle->is_shadow && btShadowMerging.isPressed();
 }
 
 void TCompPlayerController::ResetPlayer()
@@ -614,6 +637,5 @@ void TCompPlayerController::ResetPlayer()
 	//VEC3 old_position = c_my_transform->getPosition();
 	//VEC3 safe_position = old_position + (c_my_collider->config.radius + 0.05f) * c_my_transform->getUp();
 
-	dbg("output_up %f %f %f", c_my_transform->getUp().x, c_my_transform->getUp().y, c_my_transform->getUp().z);
 	ChangeState("smExit");
 }

@@ -89,7 +89,7 @@
       {
         "shape": "box",
 				"mask": "player",
-				"group": "wall",
+				"group": "floor",
         "halfExtent": "50.0 0.5 50.0"
       }
     }
