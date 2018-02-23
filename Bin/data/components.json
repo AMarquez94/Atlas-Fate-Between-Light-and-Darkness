@@ -17,7 +17,7 @@
     "ai_patrol",
     "hierarchy",
 	"cone_of_light",
-    "camera",
-	"camera_flyover"
+	"camera_flyover",
+    "camera"
   ]
 }

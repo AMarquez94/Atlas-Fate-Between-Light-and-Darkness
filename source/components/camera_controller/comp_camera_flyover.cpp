@@ -25,23 +25,14 @@ void TCompCameraFlyover::update(float dt)
 	if (btDebugPause.getsPressed()) {
 		paused = !paused;
 		if (paused) {
-			previousCamera = CCamera::main_camera;
-			CCamera::main_camera = CHandle(this).getOwner();
+			Engine.getCameras().blendInCamera(CHandle(this).getOwner(), 1.f, CModuleCameras::EPriority::TEMPORARY);
 		}
 		else {
-			CCamera::main_camera = previousCamera;
+			Engine.getCameras().blendOutCamera(CHandle(this).getOwner(), 1.f);
 		}
 	}
 
-	if (!paused) {
-		CEntity* camera = CCamera::main_camera;
-		TCompTransform* tMainCamera = camera->get<TCompTransform>();
-		float y, p, r;
-		tMainCamera->getYawPitchRoll(&y,&p,&r);
-		c_transform->setPosition(tMainCamera->getPosition());
-		c_transform->setYawPitchRoll(y,p,r);
-	}
-	else {
+	if (paused) {
 
 		// movement
 		float deltaSpeed = _speed * dt;

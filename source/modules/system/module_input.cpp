@@ -41,8 +41,6 @@ LRESULT CModuleInput::OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 			mouse->setPositionDelta(xPosRelative, yPosRelative);
 
-			dbg("Mouse : %d - %d\n", xPosRelative, yPosRelative);
-
 			CApp::get().resetMouse = mouse->_lock_cursor;
 		}
 	}

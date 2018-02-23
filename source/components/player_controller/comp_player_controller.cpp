@@ -274,7 +274,7 @@ void TCompPlayerController::ShadowMergingEnterState(float dt){
 
 	// Replace this with an smooth camera interpolation
 	camera_actual = camera_shadowmerge;
-	CCamera::main_camera = getEntityByName(camera_actual);
+	Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
 	ChangeState("smHor");
 }
 
@@ -312,8 +312,9 @@ void TCompPlayerController::ShadowMergingEnemyState(float dt){
 	assert(c_camera);
 
 	// Replace this with an smooth camera interpolation
+	Engine.getCameras().blendOutCamera(getEntityByName(camera_actual), .2f);
 	camera_actual = camera_shadowmerge;
-	CCamera::main_camera = getEntityByName(camera_actual);
+	Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
 
 	TMsgPatrolShadowMerged msg;
 	msg.h_sender = CHandle(this).getOwner();
@@ -339,8 +340,10 @@ void TCompPlayerController::ShadowMergingExitState(float dt){
 
 	// Bring back the main camera to our thirdperson camera
 	// Replace this with an smooth camera interpolation
+	Engine.getCameras().blendOutCamera(getEntityByName(camera_actual), .2f);
 	camera_actual = camera_thirdperson;
-	CCamera::main_camera = getEntityByName(camera_actual);
+	Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
+
 
 	ChangeState("idle");
 }
