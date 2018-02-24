@@ -19,6 +19,7 @@ CEngine::CEngine()
   , _module_ia("ia")
 	, _module_input("input")
 	, _module_physics("physics")
+	, _module_cameras("cameras")
 {}
 
 bool CEngine::start() {
@@ -34,6 +35,8 @@ bool CEngine::start() {
 	_modules.registerSystemModule(&_module_ia);
 	_modules.registerSystemModule(&_module_input);
 	_modules.registerSystemModule(&_module_physics);
+	_modules.registerSystemModule(&_module_cameras);
+
 
 	_modules.registerGameModule(&module_splash);
 	_modules.registerGameModule(&module_main_menu);

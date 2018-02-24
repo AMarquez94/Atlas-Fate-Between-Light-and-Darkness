@@ -4,6 +4,7 @@
     "entities",
     "physics",
     "render",
+	"cameras",
     "main_menu",
     "splash",
     "game_over",
@@ -15,6 +16,7 @@
 		"render",
 		"test_axis",
 		"entities",
-		"input"
+		"input",
+		"cameras"
 	]
 }

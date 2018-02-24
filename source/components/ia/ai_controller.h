@@ -19,6 +19,9 @@ typedef void (IAIController::*statehandler)(float);
 
 class IAIController : public TCompBase {
 
+	const Input::TButton& btDebugPause = EngineInput["btDebugPause"];
+	bool paused = false;
+
 protected:
   CHandle         h_entity;
   CHandle         h_transform;        // Cached

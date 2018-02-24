@@ -1,9 +1,6 @@
 #include "mcv_platform.h"
 #include "camera.h"
 
-CHandle CCamera::main_camera;
-
-
 CCamera::CCamera() {
 	aspect_ratio = 1.f;
 	setPerspective(deg2rad(60.f), 1.0f, 1000.f);
@@ -40,4 +37,3 @@ void CCamera::setPerspective(float new_fov_vertical, float new_z_near, float new
 	proj = MAT44::CreatePerspectiveFieldOfView(new_fov_vertical, (float)Render.width / (float)Render.height, new_z_near, new_z_far);
 	updateViewProj();
 }
-

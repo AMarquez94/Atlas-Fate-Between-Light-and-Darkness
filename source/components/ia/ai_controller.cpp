@@ -26,10 +26,16 @@ void IAIController::debugInMenu() {
 
 void IAIController::update(float dt)
 {
-  assert(!stateName.empty());
-  assert(statemap.find(stateName) != statemap.end());
-  // this is a trusted jump as we've tested for coherence in ChangeState
-  (this->*state)(dt);
+	if (!paused) {
+		assert(!stateName.empty());
+		assert(statemap.find(stateName) != statemap.end());
+		// this is a trusted jump as we've tested for coherence in ChangeState
+		(this->*state)(dt);
+	}
+
+	if (btDebugPause.getsPressed()) {
+		paused = !paused;
+	}
 }
 
 void IAIController::ChangeState(const std::string& newstate)
