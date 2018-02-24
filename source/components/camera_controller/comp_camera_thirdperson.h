@@ -18,6 +18,9 @@ private:
 
 	const Input::TButton& btHorizontal = EngineInput["MouseX"];
 	const Input::TButton& btVertical = EngineInput["MouseY"];
+	const Input::TButton& btDebugPause = EngineInput["btDebugPause"];
+
+	float pause;
 
 public:
   void debugInMenu();

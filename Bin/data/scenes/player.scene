@@ -13,7 +13,8 @@
       },
       "player_controller": {
         "target_camera": "TPCamera",
-        "shadow_camera": "SMCamera",
+        "shadow_camera_hor": "SMCameraHor",
+		"shadow_camera_ver": "SMCameraVer",
         "stamina": 100,
         "maxStamina": 100,
         "minStamina": 0,

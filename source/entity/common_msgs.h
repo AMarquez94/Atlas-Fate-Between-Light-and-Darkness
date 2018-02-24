@@ -78,6 +78,18 @@ struct TMsgTriggerExit {
 	DECL_MSG_ID();
 };
 
+struct TMsgCameraActivated {
+	DECL_MSG_ID();
+};
+
+struct TMsgCameraDeprecated {
+	DECL_MSG_ID();
+};
+
+struct TMsgCameraFullyActivated {
+	DECL_MSG_ID();
+};
+
 /*
 struct TMsgTimeOut {
   DECL_MSG_ID();

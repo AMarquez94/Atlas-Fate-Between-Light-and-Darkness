@@ -29,40 +29,48 @@ void TCompCameraThirdPerson::load(const json& j, TEntityParseContext& ctx)
 	float yaw, pitch, roll;
 	target_transform->getYawPitchRoll(&yaw, &pitch, &roll);
 	_current_euler = VEC2(yaw, pitch);
+
+	pause = false;
 }
 
 void TCompCameraThirdPerson::update(float dt)
 {
-	if (!_h_target.isValid())
-		return;
+	if (!pause) {
+		if (!_h_target.isValid())
+			return;
 
-	TCompTransform* self_transform = get<TCompTransform>();
-	TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>(); // we will need to consume this.
-	assert(self_transform);
-	assert(target_transform);
+		TCompTransform* self_transform = get<TCompTransform>();
+		TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>(); // we will need to consume this.
+		assert(self_transform);
+		assert(target_transform);
 
-	// To remove in the future.
-	float horizontal_delta = mouse._position_delta.x;
-	float vertical_delta = -mouse._position_delta.y;
-	if (btHorizontal.isPressed()) horizontal_delta = btHorizontal.value;
-	if (btVertical.isPressed()) vertical_delta = btVertical.value;
+		// To remove in the future.
+		float horizontal_delta = mouse._position_delta.x;
+		float vertical_delta = -mouse._position_delta.y;
+		if (btHorizontal.isPressed()) horizontal_delta = btHorizontal.value;
+		if (btVertical.isPressed()) vertical_delta = btVertical.value;
 
-	// Verbose code
-	_current_euler.x -= horizontal_delta * _speed * dt;
-	_current_euler.y += vertical_delta * _speed * dt;
-	_current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
+		// Verbose code
+		_current_euler.x -= horizontal_delta * _speed * dt;
+		_current_euler.y += vertical_delta * _speed * dt;
+		_current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
 
-	// EulerAngles method based on mcv class
-	VEC3 vertical_offset = VEC3::Up * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)
-	VEC3 horizontal_offset = self_transform->getLeft() * _clipping_offset.x;
-	VEC3 target_position = target_transform->getPosition() + vertical_offset + horizontal_offset;
+		// EulerAngles method based on mcv class
+		VEC3 vertical_offset = VEC3::Up * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)
+		VEC3 horizontal_offset = self_transform->getLeft() * _clipping_offset.x;
+		VEC3 target_position = target_transform->getPosition() + vertical_offset + horizontal_offset;
 
-	self_transform->setPosition(target_position);
-	self_transform->setYawPitchRoll(_current_euler.x, _current_euler.y, 0);
+		self_transform->setPosition(target_position);
+		self_transform->setYawPitchRoll(_current_euler.x, _current_euler.y, 0);
 
-	float z_distance = CameraClipping(target_position, -self_transform->getFront());
-	VEC3 new_pos = target_position + z_distance * -self_transform->getFront();
-	self_transform->setPosition(new_pos);
+		float z_distance = CameraClipping(target_position, -self_transform->getFront());
+		VEC3 new_pos = target_position + z_distance * -self_transform->getFront();
+		self_transform->setPosition(new_pos);
+	}
+
+	if (btDebugPause.getsPressed()) {
+		pause = !pause;
+	}
 }
 
 float TCompCameraThirdPerson::CameraClipping(const VEC3	& origin, const VEC3 & dir)

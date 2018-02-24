@@ -26,7 +26,7 @@
 				"camera_thirdperson" : {
 					"target": "The Player",
 					"clampangle" : "-20 80",
-					"offset": "0.25 1.6 2.5",
+					"offset": "0.25 1.6 2",
 					"speed" : 1.5
 				},
 				"camera" : {
@@ -38,16 +38,40 @@
 	},
 	{
 		"entity": {
-			"name": "SMCamera",
+			"name": "SMCameraHor",
+			"transform": {
+				"pos": "0 3 3"
+			},
+			"render": {},
+			"camera_shadowmerge" : {
+				"target": "The Player",
+				"clampangle" : "10 80",
+				"offset": "0 0.5 1.75",
+				"speed" : 1.5,
+				"starting_pitch": -35
+			},
+			"camera" : {
+				"fov" : 80,
+				"z_near": 0.01,
+				"z_far": 1000
+			},
+			"tags" : ["main_camera"]
+		}
+	},
+	{
+		"entity": {
+			"name": "SMCameraVer",
 			"transform": {
 				"pos": "0 3 3"
 			},
 			"camera_shadowmerge" : {
 				"target": "The Player",
 				"clampangle" : "-80 80",
-				"offset": "0 0.25 2",
-				"speed" : 1.5
+				"offset": "0 0.5 1.75",
+				"speed" : 1.5,
+				"starting_pitch": 0
 			},
+			"render": {},
 			"camera" : {
 				"fov" : 80,
 				"z_near": 0.01,

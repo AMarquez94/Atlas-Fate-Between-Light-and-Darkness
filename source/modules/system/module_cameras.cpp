@@ -57,6 +57,9 @@ void CModuleCameras::update(float delta)
 				{
 					mc.state = TMixedCamera::ST_IDLE;
 					mc.time = 0.f;
+					
+					TMsgCameraFullyActivated msg;
+					mc.camera.sendMsg(msg);
 				}
 			}
 			else if (mc.state == TMixedCamera::ST_BLENDING_OUT)
@@ -84,10 +87,14 @@ void CModuleCameras::update(float delta)
 	VMixedCameras::iterator it = _mixedCameras.begin();
 	while (it != _mixedCameras.end())
 	{
-		if (it->weight <= 0.f)
+		if (it->weight <= 0.f) {
+			TMsgCameraDeprecated msg;
+			it->camera.sendMsg(msg);
 			it = _mixedCameras.erase(it);
-		else
+		}
+		else {
 			++it;
+		}
 	}
 
 	// save the result
@@ -121,6 +128,9 @@ void CModuleCameras::blendInCamera(CHandle camera, float blendTime, EPriority pr
 		new_mc.blendIn(blendTime);
 
 		_mixedCameras.push_back(new_mc);
+
+		TMsgCameraActivated msg;
+		camera.sendMsg(msg);
 	}
 }
 

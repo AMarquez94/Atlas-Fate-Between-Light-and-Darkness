@@ -81,7 +81,8 @@ void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
 
 	currentSpeed = 0.f;
 	camera_thirdperson = j.value("target_camera", "");
-	camera_shadowmerge = j.value("shadow_camera", "");
+	camera_shadowmerge_hor = j.value("shadow_camera_hor", "");
+	camera_shadowmerge_ver = j.value("shadow_camera_ver", "");
 	camera_actual = camera_thirdperson;
 
 	Init();
@@ -278,7 +279,7 @@ void TCompPlayerController::ShadowMergingEnterState(float dt){
 	t->mesh = mesh_states.find("pj_shadowmerge")->second;
 
 	// Replace this with an smooth camera interpolation
-	camera_actual = camera_shadowmerge;
+	camera_actual = camera_shadowmerge_hor;
 	Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
 	ChangeState("smHor");
 }
@@ -292,11 +293,18 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 	if (motionButtonsPressed()) {
 		if (ConcaveTest() || ConvexTest())
 		{
+			CEntity* e_camera = getEntityByName(camera_shadowmerge_ver);
+			TCompCamera* c_camera = e_camera->get< TCompCamera >();
+			assert(c_camera);
+
+			// Replace this with an smooth camera interpolation
+			camera_actual = camera_shadowmerge_ver;
+			Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
 			ChangeState("smVer");
 			return;
 		}
 
-		movePlayer(dt);
+		movePlayerShadow(dt);
 		stamina = Clamp<float>(stamina - (dcrStaminaGround * dt), minStamina, maxStamina);
 	}
 	else {
@@ -311,18 +319,33 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 
 void TCompPlayerController::ShadowMergingVerticalState(float dt){ 
 
-	// Move the player
-	movePlayerShadow(dt);
-	ConcaveTest();
-	ConvexTest();
+	if (motionButtonsPressed()) {
+		if (ConcaveTest() || ConvexTest()) {
+			CEntity* e_camera = getEntityByName(camera_shadowmerge_hor);
+			TCompCamera* c_camera = e_camera->get< TCompCamera >();
+			assert(c_camera);
+
+			// Replace this with an smooth camera interpolation
+			camera_actual = camera_shadowmerge_hor;
+			Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
+			ChangeState("smHor");
+			return;
+		}
+
+		// Move the player
+		movePlayerShadow(dt);
+		stamina = Clamp<float>(stamina - (dcrStaminaWall * dt), minStamina, maxStamina);
+	}
+	else {
+		stamina = Clamp<float>(stamina - (dcrStaminaWall * dcrStaminaOnPlaceMultiplier * dt), minStamina, maxStamina);
+	}
+	
 
 	// Check if we are still in shadow mode or grounded.
 	if (!ShadowTest())
 	{
 		ResetPlayer();
 	}
-
-	stamina = Clamp<float>(stamina - (dcrStaminaWall * dt), minStamina, maxStamina);
 }
 
 void TCompPlayerController::ShadowMergingEnemyState(float dt){
@@ -331,13 +354,13 @@ void TCompPlayerController::ShadowMergingEnemyState(float dt){
 	t->color = VEC4(0, 0, 0, 0);
 	t->mesh = mesh_states.find("pj_shadowmerge")->second;
 
-	CEntity* e_camera = getEntityByName(camera_shadowmerge);
+	CEntity* e_camera = getEntityByName(camera_shadowmerge_hor);
 	TCompCamera* c_camera = e_camera->get< TCompCamera >();
 	assert(c_camera);
 
 	// Replace this with an smooth camera interpolation
 	Engine.getCameras().blendOutCamera(getEntityByName(camera_actual), .2f);
-	camera_actual = camera_shadowmerge;
+	camera_actual = camera_shadowmerge_hor;
 	Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
 
 	TMsgPatrolShadowMerged msg;
@@ -377,12 +400,19 @@ void TCompPlayerController::FallingState(float dt){
 	TCompRender *c_my_render = get<TCompRender>();
 	c_my_render->mesh = mesh_states.find("pj_fall")->second;
 
-	if (GroundTest())
-		ChangeState("land");
+	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
+
+	if (GroundTest()) {
+		if (ShadowTest()) {
+			ChangeState("smEnter");
+		}
+		else {
+			ChangeState("land");
+		}
+	}
 }
 
 void TCompPlayerController::LandingState(float dt){
-
 	ChangeState("idle");
 }
 
@@ -479,42 +509,37 @@ void TCompPlayerController::movePlayer(const float dt) {
 
 	currentSpeed = 0;
 
-	if (stateName.compare("smHor") == 0 || stateName.compare("smVer") == 0) {
-		currentSpeed = walkSpeedFactor;
+	if (btRun.isPressed()) {
+		c_my_render->mesh = mesh_states.find("pj_run")->second;
+		crouched = false;
+		auxStateName = "running";
+		currentSpeed = runSpeedFactor;
+		collider->Resize(collider->config.height);
 	}
-	else {
-		if (btRun.isPressed()) {
-			c_my_render->mesh = mesh_states.find("pj_run")->second;
-			crouched = false;
-			auxStateName = "running";
-			currentSpeed = runSpeedFactor;
-			collider->Resize(collider->config.height);
-		}
-		else if (btSlow.isPressed()) {
+	else if (btSlow.isPressed()) {
 
-			if (crouched) {
-				c_my_render->mesh = mesh_states.find("pj_crouch")->second;
-				auxStateName = "crouch";
-				currentSpeed = walkCrouchSpeedFactor;
-			}
-			else {
-				c_my_render->mesh = mesh_states.find("pj_walk")->second;
-				auxStateName = "walking slow";
-				currentSpeed = walkSlowSpeedFactor;
-			}
-		}
-		else if (crouched){
+		if (crouched) {
 			c_my_render->mesh = mesh_states.find("pj_crouch")->second;
 			auxStateName = "crouch";
 			currentSpeed = walkCrouchSpeedFactor;
-			collider->Resize(0.45f);
 		}
-		else{
+		else {
 			c_my_render->mesh = mesh_states.find("pj_walk")->second;
-			auxStateName = "walking";
-			currentSpeed = walkSpeedFactor;
-			collider->Resize(collider->config.height);
+			auxStateName = "walking slow";
+			currentSpeed = walkSlowSpeedFactor;
 		}
+	}
+	else if (crouched){
+		c_my_render->mesh = mesh_states.find("pj_crouch")->second;
+		auxStateName = "crouch";
+		currentSpeed = walkCrouchSpeedFactor;
+		collider->Resize(0.45f);
+	}
+	else{
+		c_my_render->mesh = mesh_states.find("pj_walk")->second;
+		auxStateName = "walking";
+		currentSpeed = walkSpeedFactor;
+		collider->Resize(collider->config.height);
 	}
 
 	VEC3 dir = VEC3::Zero;
@@ -548,6 +573,7 @@ void TCompPlayerController::movePlayer(const float dt) {
 
 void TCompPlayerController::movePlayerShadow(const float dt) {
 
+	currentSpeed = walkSpeedFactor;
 	// Player movement and rotation related method.
 	float yaw, pitch, roll;
 	float c_yaw, c_pitch, c_roll;
@@ -647,11 +673,9 @@ const bool TCompPlayerController::ConcaveTest(void)
 			Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), target, hit.normal).Transpose();
 			c_my_transform->setRotation(Quaternion::CreateFromRotationMatrix(test));
 			c_my_transform->setPosition(hit.point);
-			//delta_movement = c_my_transform->getPosition() - old_position;
 		}
-			return true;
+		return true;
 	}
-
 	return false;
 }
 
@@ -680,7 +704,6 @@ const bool TCompPlayerController::ConvexTest(void)
 			return true;
 		}
 	}
-
 	return false;
 }
 
@@ -802,5 +825,10 @@ void TCompPlayerController::manageCrouch()
 		TCompCollider * collider = get<TCompCollider>();
 		collider->Resize(collider->config.height);
 	}
+}
+
+float TCompPlayerController::getAnglePlayerFloor() {
+
+	return 0.f;
 }
 

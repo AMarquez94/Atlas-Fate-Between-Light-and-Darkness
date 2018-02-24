@@ -11,7 +11,8 @@ class TCompPlayerController : public IAIController {
 
 	/* Camera stack, to bypass entity delayed loading */
 	/* Replace everything here with a real camera stack */
-	std::string camera_shadowmerge;
+	std::string camera_shadowmerge_hor;
+	std::string camera_shadowmerge_ver;
 	std::string camera_thirdperson;
 	std::string camera_actual;
 
@@ -92,6 +93,7 @@ class TCompPlayerController : public IAIController {
 	CHandle checkTouchingStunnedEnemy();
 	bool checkEnemyInShadows(CHandle enemy);
 	void manageCrouch();
+	float getAnglePlayerFloor();
 
 	const bool ConcaveTest(void);
 	const bool ConvexTest(void);
