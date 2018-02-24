@@ -69,7 +69,6 @@ class TCompPlayerController : public IAIController {
 
 	DECL_SIBLING_ACCESS();
 
-	void onEntityCreated(const TMsgEntityCreated& msg);
 	void onMsgDamage(const TMsgDamage& msg);
 	void onMsgPlayerHit(const TMsgPlayerHit& msg);
 	void onMsgPlayerShotInhibitor(const TMsgInhibitorShot& msg);

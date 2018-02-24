@@ -46,6 +46,7 @@ void TCompCollider::registerMsgs() {
 
   DECL_MSG(TCompCollider, TMsgEntityCreated, onCreate);
   DECL_MSG(TCompCollider, TMsgTriggerEnter, onTriggerEnter);
+  DECL_MSG(TCompCollider, TMsgEntityDestroyed, onDestroy);
 }
 
 void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
@@ -53,6 +54,10 @@ void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
   CEngine::get().getPhysics().createActor(*this);
   TCompTransform *transform = get<TCompTransform>();
   lastFramePosition = transform->getPosition();
+}
+
+void TCompCollider::onDestroy(const TMsgEntityDestroyed & msg)
+{
 }
 
 void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {
@@ -64,15 +69,14 @@ void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {
 void TCompCollider::update(float dt) {
 
 	if (config.is_controller) {
-
-		TCompTransform *transform = get<TCompTransform>();
-		VEC3 new_pos = transform->getPosition();
-		VEC3 delta_movement = new_pos - lastFramePosition;
-		velocity.x = delta_movement.x;
-		velocity.z = delta_movement.z;
-		dbg("\nCollider: LastFrame: %f %f %f      newPosition: %f %f %f\n", lastFramePosition.x, lastFramePosition.y, lastFramePosition.z, new_pos.x, new_pos.y, new_pos.z);
-		dbg("\nCollider Delta Movement %f %f %f\n", delta_movement.x, delta_movement.y, delta_movement.z);
-		lastFramePosition = new_pos;
+		if (CHandle(this).getOwner().isValid()) {
+			TCompTransform *transform = get<TCompTransform>();
+			VEC3 new_pos = transform->getPosition();
+			VEC3 delta_movement = new_pos - lastFramePosition;
+			velocity.x = delta_movement.x;
+			velocity.z = delta_movement.z;
+			lastFramePosition = new_pos;
+		}
 	}
 
 	if (config.gravity) {
@@ -84,5 +88,4 @@ void TCompCollider::update(float dt) {
 
 		controller->move(physx::PxVec3(velocity.x, velocity.y * dt, velocity.z), 0.f, dt, physx::PxControllerFilters());
 	}
-
 }

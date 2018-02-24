@@ -4,16 +4,6 @@
 #include "PxPhysicsAPI.h"
 #include "entity/common_msgs.h"
 
-struct TMsgTriggerEnter {
-  CHandle h_other_entity;
-  DECL_MSG_ID();
-};
-
-struct TMsgTriggerExit {
-  CHandle h_other_entity;
-  DECL_MSG_ID();
-};
-
 enum FilterGroups {
   Wall = 0 << 1,
   Floor = 0 << 2,
@@ -26,6 +16,7 @@ enum FilterGroups {
 class TCompCollider: public TCompBase {
 
 	VEC3 velocity = VEC3::Zero;
+	void onDestroy(const TMsgEntityDestroyed& msg);
 	
 public:
    

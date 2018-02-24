@@ -129,7 +129,6 @@ void TCompPlayerController::Init() {
 
 void TCompPlayerController::registerMsgs() {
 	DECL_MSG(TCompPlayerController, TMsgPlayerHit, onMsgPlayerHit);
-	DECL_MSG(TCompPlayerController, TMsgEntityCreated, onEntityCreated);
 	DECL_MSG(TCompPlayerController, TMsgInhibitorShot, onMsgPlayerShotInhibitor);
 	DECL_MSG(TCompPlayerController, TMsgPlayerIlluminated, onMsgPlayerIlluminated);
 }
@@ -363,12 +362,6 @@ void TCompPlayerController::HitState(float dt){
 
 
 void TCompPlayerController::DeadState(float dt){
-
-}
-
-
-void TCompPlayerController::onEntityCreated(const TMsgEntityCreated & msg)
-{
 
 }
 

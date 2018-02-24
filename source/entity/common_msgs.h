@@ -8,6 +8,11 @@ struct TMsgEntityCreated {
   DECL_MSG_ID();
 };
 
+struct TMsgEntityDestroyed {
+	CHandle h_other_entity;
+	DECL_MSG_ID();
+};
+
 struct TMsgAssignBulletOwner {
   CHandle h_owner;
   DECL_MSG_ID();
@@ -60,6 +65,16 @@ struct TMsgPatrolFixed {
 
 struct TMsgPlayerIlluminated {
 	CHandle h_sender;
+	DECL_MSG_ID();
+};
+
+struct TMsgTriggerEnter {
+	CHandle h_other_entity;
+	DECL_MSG_ID();
+};
+
+struct TMsgTriggerExit {
+	CHandle h_other_entity;
 	DECL_MSG_ID();
 };
 
