@@ -61,7 +61,6 @@
     <ClCompile Include="resources\resources_manager.cpp" />
     <ClCompile Include="utils\utils.cpp" />
     <ClCompile Include="windows\app.cpp" />
-    <ClCompile Include="components\comp_collider.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
     <ClCompile Include="components\player_controller\comp_player_controller.cpp" />
     <ClCompile Include="components\object_controller\comp_bullet_controller.cpp" />
@@ -73,6 +72,9 @@
     <ClCompile Include="geometry\curve.cpp" />
     <ClCompile Include="components\camera_controller\comp_camera_flyover.cpp" />
     <ClCompile Include="components\camera_controller\comp_camera_orbit.cpp" />
+    <ClCompile Include="components\physics\comp_collider.cpp" />
+    <ClCompile Include="components\physics\comp_rigibody.cpp" />
+    <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -157,7 +159,6 @@
     <ClInclude Include="utils\timer.h" />
     <ClInclude Include="utils\utils.h" />
     <ClInclude Include="windows\app.h" />
-    <ClInclude Include="components\comp_collider.h" />
     <ClInclude Include="components\comp_player_controller.h" />
     <ClInclude Include="modules\system\module_physics.h" />
     <ClInclude Include="components\player_controller\comp_player_controller.h" />
@@ -171,6 +172,9 @@
     <ClInclude Include="geometry\curve.h" />
     <ClInclude Include="components\camera_controller\comp_camera_flyover.h" />
     <ClInclude Include="components\camera_controller\comp_camera_orbit.h" />
+    <ClInclude Include="components\physics\comp_collider.h" />
+    <ClInclude Include="components\physics\comp_rigibody.h" />
+    <ClInclude Include="components\player_controller\comp_shadow_controller.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

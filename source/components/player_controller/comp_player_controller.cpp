@@ -2,8 +2,8 @@
 #include "entity/entity_parser.h"
 #include "comp_player_controller.h"
 #include "comp_shadow_controller.h"
-#include "../comp_transform.h"
-#include "../comp_render.h"
+#include "components/comp_transform.h"
+#include "components/comp_render.h"
 #include "entity/common_msgs.h"
 #include "utils/utils.h"
 #include "render/mesh/mesh_loader.h"
@@ -229,14 +229,12 @@ void TCompPlayerController::MotionState(float dt){
 }
 
 void TCompPlayerController::PushState(float dt){ 
-
-	
 	enemyToSM = checkTouchingStunnedEnemy();
 	if (!btAction.isPressed() || !enemyToSM.isValid()) {
 		enemyToSM = CHandle();
 		ChangeState("idle");
 	}
-	else if(btShadowMerging.getsPressed() && checkShadows() && checkEnemyInShadows(enemyToSM)) {
+	else if(btShadowMerging.getsPressed() && ShadowTest() && checkEnemyInShadows(enemyToSM)) {
 		ChangeState("smEnemy");
 	}
 }
@@ -279,8 +277,6 @@ void TCompPlayerController::ShadowMergingEnterState(float dt){
 
 void TCompPlayerController::ShadowMergingHorizontalState(float dt){ 
 
-	delta_movement = VEC3::Zero;
-
 	if (!ShadowTest()) {
 		ChangeState("smExit");
 	}
@@ -307,7 +303,6 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 
 void TCompPlayerController::ShadowMergingVerticalState(float dt){ 
 
-	delta_movement = VEC3::Zero;
 	// Move the player
 	movePlayerShadow(dt);
 	ConcaveTest();
@@ -432,8 +427,6 @@ void TCompPlayerController::onMsgPlayerIlluminated(const TMsgPlayerIlluminated& 
 
 const bool TCompPlayerController::motionButtonsPressed() {
 
-	delta_movement = VEC3::Zero;
-
 	if (!GroundTest()) {
 		ChangeState("fall");
 
@@ -469,7 +462,7 @@ void TCompPlayerController::movePlayer(const float dt) {
 
 	if (stateName.compare("smHor") == 0 || stateName.compare("smVer") == 0) {
 		currentSpeed = walkSpeedFactor;
-		collider->Resize(0.01);
+		collider->Resize(0.01f);
 	}
 	else {
 		if (btRun.isPressed()) {
@@ -532,8 +525,7 @@ void TCompPlayerController::movePlayer(const float dt) {
 	Quaternion quat = Quaternion::Lerp(my_rotation, new_rotation, rotationSpeed * dt);
 	c_my_transform->setRotation(quat);
 
-	VEC3 new_pos = c_my_transform->getPosition() + dir * player_accel;
-	delta_movement = new_pos - c_my_transform->getPosition();
+	c_my_transform->setPosition(c_my_transform->getPosition() + dir * player_accel);
 }
 
 void TCompPlayerController::movePlayerShadow(const float dt) {
@@ -638,7 +630,7 @@ const bool TCompPlayerController::ConcaveTest(void)
 			Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), target, hit.normal).Transpose();
 			c_my_transform->setRotation(Quaternion::CreateFromRotationMatrix(test));
 			c_my_transform->setPosition(hit.point);
-			delta_movement = c_my_transform->getPosition() - old_position;
+			//delta_movement = c_my_transform->getPosition() - old_position;
 		}
 
 		return true;
@@ -670,7 +662,7 @@ const bool TCompPlayerController::ConvexTest(void)
 			QUAT new_rotation = createLookAt(hit.point, target, hit.normal);
 			c_my_transform->setRotation(new_rotation);
 			c_my_transform->setPosition(hit.point);
-			delta_movement = c_my_transform->getPosition() - old_position;
+			//delta_movement = c_my_transform->getPosition() - old_position;
 
 			return true;
 		}

@@ -1,8 +1,8 @@
 #include "mcv_platform.h"
 #include "entity/entity_parser.h"
 #include "comp_shadow_controller.h"
-#include "../comp_transform.h"
-#include "../comp_render.h"
+#include "components/comp_transform.h"
+#include "components/comp_render.h"
 #include "entity/common_msgs.h"
 #include "utils/utils.h"
 #include "render/mesh/mesh_loader.h"
@@ -18,7 +18,7 @@ void TCompShadowController::debugInMenu() {
 
 void TCompShadowController::load(const json& j, TEntityParseContext& ctx) {
 
-	static_points.emplace_back(VEC3(56.436,48.786,31.666));
+	static_points.emplace_back(VEC3(56.436f,48.786f,31.666f));
 	Init();
 }
 
@@ -43,7 +43,7 @@ void TCompShadowController::Init() {
 // We can also use this public method from outside this class.
 bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 {
-	VEC3 light_dir = VEC3(-0.7663, -0.384137, -0.514998); // Hardcoded for testing purposes only!!!
+	VEC3 light_dir = VEC3(-0.7663f, -0.384137f, -0.514998f); // Hardcoded for testing purposes only!!!
 	// We need a safe system to retrieve the light direction and origin spot.
 	// Also we need to distinguish between light types.
 	// Different light tests must be made.
@@ -72,8 +72,8 @@ void TCompShadowController::GenerateSurroundingPoints(const VEC3 & point)
 		{
 			float lRadius = nradius / (x + 1);
 			float t = y / (float)test_amount;
-			float h = .5f * lRadius * cos(t * 2 * M_PI) + point.x;
-			float v = .5f * lRadius * sin(t * 2 * M_PI) + point.z;
+			float h = .5f * lRadius * cosf(t * 2 * M_PI) + point.x;
+			float v = .5f * lRadius * sinf(t * 2 * M_PI) + point.z;
 		}
 	}
 }

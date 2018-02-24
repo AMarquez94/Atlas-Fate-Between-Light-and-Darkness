@@ -1,0 +1,30 @@
+[
+	{
+		"entity": {
+			"name": "Lights"
+		}
+	},
+	{
+		"entity":
+		{
+		  "name": "prop_light",
+		  "transform":
+		  {
+			"pos": "56.436 48.786 31.666"
+			,
+			"rotation": "0.0 0.0 0.0 -1.0"
+		  },
+		  "render":
+		  [
+			{
+			  "mesh": "data/meshes/Teapot001.mesh"
+			  ,
+			  "materials":
+			  [
+				"data/materials/mtl_default_orange.material"
+			  ]
+			}
+		  ]
+		}
+	}
+]

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../comp_base.h"
+#include "components/comp_base.h"
 #include "geometry/transform.h"
-#include "../ia/ai_controller.h"
+#include "components/ia/ai_controller.h"
 #include "entity/common_msgs.h"
 
 class TCompShadowController : public TCompBase {

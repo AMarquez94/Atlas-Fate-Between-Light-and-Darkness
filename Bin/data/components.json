@@ -14,7 +14,7 @@
     "camera_thirdperson",
     "camera_shadowmerge",
     "bullet_controller",
-		"shadow_controller"
+	"shadow_controller",
     "hierarchy",
     "cone_of_light",
     "collider",

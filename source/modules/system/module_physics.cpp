@@ -169,12 +169,12 @@ PxFilterFlags CustomFilterShader(
 {
     if ( (filterData0.word0 & filterData1.word1) && (filterData1.word0 & filterData0.word1) )
     {
-		if (filterData0.word0 == 4 && filterData1.word0 == 1)
-		{
-			dbg("collided with a wall\n");
-			pairFlags = PxPairFlag::eNOTIFY_TOUCH_LOST;
-			return (PxFilterFlag::eKILL);
-		}
+		//if (filterData0.word0 == 4 && filterData1.word0 == 1)
+		//{
+		//	dbg("collided with a wall\n");
+		//	pairFlags = PxPairFlag::eNOTIFY_TOUCH_LOST;
+		//	return (PxFilterFlag::eKILL);
+		//}
 
         if ( PxFilterObjectIsTrigger(attributes0) || PxFilterObjectIsTrigger(attributes1) )
         {
@@ -213,7 +213,7 @@ bool CModulePhysics::start()
 	sceneDesc.filterShader = CustomFilterShader;
 	sceneDesc.flags = PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS | PxSceneFlag::eENABLE_ACTIVE_ACTORS;
 	gScene = gPhysics->createScene(sceneDesc);
-	gScene->setFlag(PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS, true);
+	//gScene->setFlag(PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS, true);
 
 	PxPvdSceneClient* pvdClient = gScene->getScenePvdClient();
 

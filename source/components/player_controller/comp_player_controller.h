@@ -1,13 +1,12 @@
 #pragma once
 
-#include "../comp_base.h"
+#include "components/comp_base.h"
 #include "geometry/transform.h"
-#include "../ia/ai_controller.h"
+#include "components/ia/ai_controller.h"
 #include "entity/common_msgs.h"
 
 class TCompPlayerController : public IAIController {
 
-	std::string auxStateName = "";
 	std::map<std::string, CRenderMesh*> mesh_states;
 
 	/* Camera stack, to bypass entity delayed loading */
@@ -27,6 +26,7 @@ class TCompPlayerController : public IAIController {
 	float incrStamina = 20.f;
 	
 	/* Player speeds*/
+	float runSpeedFactor;
 	float walkSpeedFactor;
 	float walkSlowSpeedFactor;
 	float walkCrouchSpeedFactor;
@@ -50,24 +50,7 @@ class TCompPlayerController : public IAIController {
 	int timesRemoveInhibitorKeyPressed = 0;
 	float timerForPressingRemoveInhibitorKey = 0.f;
 
-	/* Private aux functions */
-	void movePlayer(float);
-	void movePlayerShadow(float);
-	void manageInhibition(float dt);
-	void ResetPlayer(void);
-
-	const bool ConcaveTest(void);
-	const bool ConvexTest(void);
-	const bool ShadowTest(void);
-	const bool GroundTest(void);
-	const bool motionButtonsPressed(void);
-
 	DECL_SIBLING_ACCESS();
-
-	/* Messages handled by the player */
-	void onMsgDamage(const TMsgDamage& msg);
-	void onMsgPlayerHit(const TMsgPlayerHit& msg);
-	void onMsgPlayerShotInhibitor(const TMsgInhibitorShot& msg);
 
 	/* Keys */
 	const Input::TButton& btUp = EngineInput["btUp"];
@@ -90,9 +73,6 @@ class TCompPlayerController : public IAIController {
 	std::string target_name;
 	bool inhibited = false;
 
-	DECL_SIBLING_ACCESS();
-
-	void onMsgDamage(const TMsgDamage& msg);
 	void onMsgPlayerHit(const TMsgPlayerHit& msg);
 	void onMsgPlayerShotInhibitor(const TMsgInhibitorShot& msg);
 	void onMsgPlayerIlluminated(const TMsgPlayerIlluminated& msg);
@@ -102,17 +82,24 @@ class TCompPlayerController : public IAIController {
 	std::string auxStateName = "";
 	
 	/* Private aux functions */
-	const bool motionButtonsPressed();
-	void movePlayer(float);
+
+	void movePlayer(const float dt);
+	void movePlayerShadow(const float dt);
 	bool manageInhibition(float dt);
+	void ResetPlayer(void);
+	const bool motionButtonsPressed();
 	void allowAttack(bool allow, CHandle enemy);
 	CHandle checkTouchingStunnedEnemy();
 	bool checkEnemyInShadows(CHandle enemy);
 
+	const bool ConcaveTest(void);
+	const bool ConvexTest(void);
+	const bool ShadowTest(void);
+	const bool GroundTest(void);
+
 public:
 
-	bool inhibited = false;
-	VEC3 delta_movement;
+	//VEC3 delta_movement;
 
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
@@ -138,7 +125,7 @@ public:
 	void HitState(float);
 	void DeadState(float);
 
-	bool checkShadows();
+	//bool checkShadows();
 	const bool isInShadows();
 	const bool isDead();
 	const bool checkAttack();
