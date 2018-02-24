@@ -61,6 +61,7 @@ void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
 
 void TCompCollider::onDestroy(const TMsgEntityDestroyed & msg)
 {
+	this->actor->release();
 }
 
 void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {

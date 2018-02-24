@@ -15,6 +15,8 @@ uint32_t getNextUniqueMsgID() {
 
 CEntity::~CEntity() {
   // Comp 0 is not valid
+	TMsgEntityDestroyed msg;
+	this->sendMsg(msg);
   for (uint32_t i = 1; i < CHandleManager::getNumDefinedTypes(); ++i) {
     CHandle h = comps[i];
     if (comps[i].isValid())
