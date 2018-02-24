@@ -29,7 +29,7 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
     config.shapeType = physx::PxGeometryType::eCAPSULE;
   }
   
-  config.is_character_controller = j.value("is_character_controller", false);
+  config.is_controller = j.value("is_controller", false);
   config.is_dynamic = j.value("is_dynamic", false);
   config.is_trigger = j.value("is_trigger", false);
   config.height = j.value("height", 0.f);
@@ -38,10 +38,6 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 
   if (j.count("halfExtent"))
     config.halfExtent = loadVEC3(j["halfExtent"]);
-  
-  lastFramePosition = VEC3::Zero;
-
-
 
 }
 
@@ -55,9 +51,8 @@ void TCompCollider::registerMsgs() {
 void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
 
   CEngine::get().getPhysics().createActor(*this);
-  TCompTransform *c_my_tmx = get<TCompTransform>();
-  lastFramePosition = c_my_tmx->getPosition();
-
+  TCompTransform *transform = get<TCompTransform>();
+  lastFramePosition = transform->getPosition();
 }
 
 void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {
@@ -68,20 +63,25 @@ void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {
 
 void TCompCollider::update(float dt) {
 
-	if (config.is_character_controller) {
+	if (config.is_controller) {
 
-		TCompPlayerController *c_my_plyrcntlr = get<TCompPlayerController>();
-		VEC3 delta = c_my_plyrcntlr->delta_movement;
-		//controller->move(physx::PxVec3(delta.x, delta.y, delta.z), 0.f, dt, physx::PxControllerFilters());
-		velocity.x = delta.x;
-		velocity.z = delta.z;
+		TCompTransform *transform = get<TCompTransform>();
+		VEC3 new_pos = transform->getPosition();
+		VEC3 delta_movement = new_pos - lastFramePosition;
+		velocity.x = delta_movement.x;
+		velocity.z = delta_movement.z;
+		dbg("\nCollider: LastFrame: %f %f %f      newPosition: %f %f %f\n", lastFramePosition.x, lastFramePosition.y, lastFramePosition.z, new_pos.x, new_pos.y, new_pos.z);
+		dbg("\nCollider Delta Movement %f %f %f\n", delta_movement.x, delta_movement.y, delta_movement.z);
+		lastFramePosition = new_pos;
 	}
 
 	if (config.gravity) {
 
-		//controller->move(physx::PxVec3(0, -9.8f * dt, 0), 0.f, dt, physx::PxControllerFilters());
 		velocity.y -= 9.81f * dt;
-		//dbg("velocity: %f    dt: %f\n", velocity.y , &dt);
+	}
+
+	if (config.is_controller || config.gravity) {
+
 		controller->move(physx::PxVec3(velocity.x, velocity.y * dt, velocity.z), 0.f, dt, physx::PxControllerFilters());
 	}
 

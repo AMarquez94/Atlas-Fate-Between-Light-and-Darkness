@@ -26,8 +26,9 @@ enum FilterGroups {
 class TCompCollider: public TCompBase {
 
 	VEC3 velocity = VEC3::Zero;
-
+	
 public:
+   
   struct TConfig
   {
     VEC3 halfExtent;
@@ -41,15 +42,15 @@ public:
     int mask;
     bool is_dynamic;
     bool is_trigger;
-    bool is_character_controller;
+    bool is_controller;
 	bool gravity;
 
   };
-  VEC3 lastFramePosition;
   void onTriggerEnter(const TMsgTriggerEnter& msg);
 
   DECL_SIBLING_ACCESS();
 
+  VEC3 lastFramePosition;
   TConfig config;
   physx::PxActor* actor;
   physx::PxController* controller;

@@ -9,7 +9,7 @@
 #pragma comment(lib,"PhysX3Extensions.lib")
 #pragma comment(lib,"PxFoundation_x64.lib")
 #pragma comment(lib,"PxPvdSDK_x64.lib")
-#pragma comment(lib, "PhysX3CharacterKinematic_x64.lib")
+#pragma comment(lib,"PhysX3CharacterKinematic_x64.lib")
 
 using namespace physx;
 
@@ -30,7 +30,7 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		actor = plane;
 		gScene->addActor(*actor);
 	}
-	else if (config.shapeType == physx::PxGeometryType::eCAPSULE && config.is_character_controller)
+	else if (config.shapeType == physx::PxGeometryType::eCAPSULE && config.is_controller)
 	{
 		PxControllerDesc* cDesc;
 		PxCapsuleControllerDesc capsuleDesc;
@@ -195,6 +195,7 @@ void CModulePhysics::update(float delta)
 				compTransform->setRotation(QUAT(pxq.x, pxq.y, pxq.z, pxq.w));
 			}
 			compTransform->setPosition(VEC3(pxpos.x, pxpos.y, pxpos.z));
+			compCollider->lastFramePosition = VEC3(pxpos.x, pxpos.y, pxpos.z);
 		}
 	}
 }
