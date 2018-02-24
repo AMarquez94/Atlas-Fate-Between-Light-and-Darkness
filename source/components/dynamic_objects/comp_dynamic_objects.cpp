@@ -1,6 +1,6 @@
 #include "mcv_platform.h"
 #include "comp_dynamic_objects.h"
-#include "comp_transform.h"
+#include "components\comp_transform.h"
 #include "entity/entity_parser.h"
 #include "render/render_utils.h"
 

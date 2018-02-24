@@ -82,11 +82,15 @@
           },
           {
             "position": "5 5 5"
+          },
+          {
+            "position": "-5 5 5"
           }
         ],
         "speed": 4,
         "rotationSpeed": 180
-      }
+      },
+      "dynamic_cycle": {}
     }
   }
 ]

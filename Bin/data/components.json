@@ -19,6 +19,7 @@
     "flyover_controller",
     "hierarchy",
     "camera",
-    "dynamic_objects"
+    "dynamic_objects",
+    "dynamic_cycle"
   ]
 }

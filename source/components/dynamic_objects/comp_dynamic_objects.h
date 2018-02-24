@@ -1,6 +1,6 @@
 #pragma once
 
-#include "comp_base.h"
+#include "components\comp_base.h"
 
 
 
@@ -25,5 +25,6 @@ public:
 
 	void addWaypoint(VEC3 wpt) { _waypoints.push_back(wpt); };
 	VEC3 getWaypoint() { return _waypoints[_currentWaypoint]; }
+	std::vector<VEC3> getWaypoints() { return _waypoints; }
 
 };
