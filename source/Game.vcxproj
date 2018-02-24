@@ -84,12 +84,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera\camera.cpp" />
+    <ClCompile Include="components\camera_controller\comp_camera_flyover.cpp" />
+    <ClCompile Include="components\camera_controller\comp_camera_orbit.cpp" />
     <ClCompile Include="components\camera_controller\comp_camera_shadowmerge.cpp" />
     <ClCompile Include="components\camera_controller\comp_camera_thirdperson.cpp" />
     <ClCompile Include="components\camera_controller\comp_circular_controller.cpp" />
-    <ClCompile Include="components\camera_controller\comp_flyover_controller.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
-    <ClCompile Include="components\comp_collider.cpp" />
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
@@ -100,11 +100,15 @@
     <ClCompile Include="components\ia\ai_patrol.cpp" />
     <ClCompile Include="components\object_controller\comp_bullet_controller.cpp" />
     <ClCompile Include="components\object_controller\comp_cone_of_light.cpp" />
+    <ClCompile Include="components\physics\comp_collider.cpp" />
+    <ClCompile Include="components\physics\comp_rigibody.cpp" />
     <ClCompile Include="components\player_controller\comp_player_controller.cpp" />
+    <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\entity_parser.cpp" />
     <ClCompile Include="geometry\angular.cpp" />
+    <ClCompile Include="geometry\curve.cpp" />
     <ClCompile Include="geometry\geometry.cpp" />
     <ClCompile Include="geometry\SimpleMath.cpp" />
     <ClCompile Include="geometry\transform.cpp" />
@@ -133,6 +137,7 @@
     <ClCompile Include="modules\module_ia.cpp" />
     <ClCompile Include="modules\module_manager.cpp" />
     <ClCompile Include="modules\module_render.cpp" />
+    <ClCompile Include="modules\system\module_cameras.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
@@ -159,13 +164,13 @@
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
     <ClInclude Include="camera\camera.h" />
+    <ClInclude Include="components\camera_controller\comp_camera_flyover.h" />
+    <ClInclude Include="components\camera_controller\comp_camera_orbit.h" />
     <ClInclude Include="components\camera_controller\comp_camera_shadowmerge.h" />
     <ClInclude Include="components\camera_controller\comp_camera_thirdperson.h" />
     <ClInclude Include="components\camera_controller\comp_circular_controller.h" />
-    <ClInclude Include="components\camera_controller\comp_flyover_controller.h" />
     <ClInclude Include="components\comp_base.h" />
     <ClInclude Include="components\comp_camera.h" />
-    <ClInclude Include="components\comp_collider.h" />
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />
     <ClInclude Include="components\comp_name.h" />
@@ -177,14 +182,19 @@
     <ClInclude Include="components\ia\ai_patrol.h" />
     <ClInclude Include="components\object_controller\comp_bullet_controller.h" />
     <ClInclude Include="components\object_controller\comp_cone_of_light.h" />
+    <ClInclude Include="components\physics\comp_collider.h" />
+    <ClInclude Include="components\physics\comp_rigibody.h" />
     <ClInclude Include="components\player_controller\comp_player_controller.h" />
+    <ClInclude Include="components\player_controller\comp_shadow_controller.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="entity\common_msgs.h" />
     <ClInclude Include="entity\entity.h" />
     <ClInclude Include="entity\entity_parser.h" />
     <ClInclude Include="entity\msgs.h" />
     <ClInclude Include="geometry\angular.h" />
+    <ClInclude Include="geometry\curve.h" />
     <ClInclude Include="geometry\geometry.h" />
+    <ClInclude Include="geometry\interpolators.h" />
     <ClInclude Include="geometry\SimpleMath.h" />
     <ClInclude Include="geometry\transform.h" />
     <ClInclude Include="handle\handle.h" />
@@ -222,6 +232,7 @@
     <ClInclude Include="modules\module_ia.h" />
     <ClInclude Include="modules\module_manager.h" />
     <ClInclude Include="modules\module_render.h" />
+    <ClInclude Include="modules\system\module_cameras.h" />
     <ClInclude Include="modules\system\module_input.h" />
     <ClInclude Include="modules\system\module_physics.h" />
     <ClInclude Include="modules\test\module_test_input.h" />

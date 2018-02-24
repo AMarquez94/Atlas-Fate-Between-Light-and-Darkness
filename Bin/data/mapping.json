@@ -88,5 +88,10 @@
     "name": "btSecAction",
     "all": false,
     "buttons":  ["space", "pad_a"]
+  },
+  {
+    "name": "btDebugPause",
+    "all": false,
+    "buttons":  ["f1"]
   }
 ]

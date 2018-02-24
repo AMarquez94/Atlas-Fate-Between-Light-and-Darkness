@@ -4,6 +4,7 @@
 
 void CModuleIA::update(float delta)
 {
+
 }
 
 void CModuleIA::render()

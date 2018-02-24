@@ -12,6 +12,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 #include "entity/entity_parser.h"
+#include "components/comp_tags.h"
 
 CCamera camera;
 
@@ -23,7 +24,7 @@ bool CModuleTestAxis::start()
   }*/
   {
 	  TEntityParseContext ctx;
-	  parseScene("data/scenes/whitebox_default.scene", ctx);
+	  parseScene("data/scenes/whitebox_test.scene", ctx);
   }
   {
 	  TEntityParseContext ctx;
@@ -37,7 +38,11 @@ bool CModuleTestAxis::start()
 	  TEntityParseContext ctx;
 	  parseScene("data/scenes/camera.scene", ctx);
   }
-  
+  {
+	  TEntityParseContext ctx;
+	  parseScene("data/scenes/lights.scene", ctx);
+  }
+ 
   camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
   camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
 
@@ -51,7 +56,13 @@ bool CModuleTestAxis::start()
   cb_object.activate();
   cb_camera.activate();
 
-  CCamera::main_camera = getEntityByName("TPCamera");
+  CHandle h_camera = getEntityByName("TPCamera");
+  if(h_camera.isValid())
+	Engine.getCameras().setDefaultCamera(h_camera);
+
+  h_camera = getEntityByName("main_camera");
+  if(h_camera.isValid())
+	Engine.getCameras().setOutputCamera(h_camera);
 
   return true;
 }
@@ -70,8 +81,9 @@ void CModuleTestAxis::update(float delta)
 void CModuleTestAxis::render()
 {
   // Find the entity with name 'the_camera'
-  if (CCamera::main_camera.isValid()) {
-    CEntity* e_camera = CCamera::main_camera;
+	CHandle h_e_camera = getEntityByName("main_camera");
+  if (h_e_camera.isValid()) {
+    CEntity* e_camera = h_e_camera;
     TCompCamera* c_camera = e_camera->get< TCompCamera >();
     assert(c_camera);
     activateCamera(*c_camera);

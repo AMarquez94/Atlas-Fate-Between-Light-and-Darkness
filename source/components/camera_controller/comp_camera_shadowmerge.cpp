@@ -50,19 +50,26 @@ void TCompCameraShadowMerge::update(float dt)
 	if (btRHorizontal.isPressed()) horizontal_delta = btRHorizontal.value;
 	if (btRVertical.isPressed()) vertical_delta = btRVertical.value;
 
+	//VEC2 current_clamp = VEC2::Zero;
+	//float c_angle = rad2deg(cos(target_transform->getUp().Dot(-EnginePhysics.gravity)));
+	//if (target_transform->getFront().Dot(-EnginePhysics.gravity) > 0) current_clamp = VEC2(_clamp_angle.x - c_angle, _clamp_angle.y - c_angle);
+	//else current_clamp = VEC2(_clamp_angle.x + c_angle, _clamp_angle.y + c_angle);
+
 	// Verbose code
 	_current_euler.x -= horizontal_delta * _speed * dt;
 	_current_euler.y += vertical_delta * _speed * dt;
 	_current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
 
 	// EulerAngles method based on mcv class
-	VEC3 vertical_offset = VEC3::Up * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)
+	VEC3 vertical_offset = 0.1f * target_transform ->getUp() * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)
 	VEC3 horizontal_offset = self_transform->getLeft() * _clipping_offset.x;
 	VEC3 target_position = target_transform->getPosition() + vertical_offset + horizontal_offset;
 
 	self_transform->setPosition(target_position);
 	self_transform->setYawPitchRoll(_current_euler.x, _current_euler.y, 0);
-	VEC3 new_pos = target_position + _clipping_offset.z * -self_transform->getFront();
+
+	float z_distance = CameraClipping(target_position, -self_transform->getFront());
+	VEC3 new_pos = target_position + z_distance * -self_transform->getFront();
 	self_transform->setPosition(new_pos);
 
 	float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
@@ -70,7 +77,11 @@ void TCompCameraShadowMerge::update(float dt)
 	setPerspective(deg2rad(current_fov), 0.1f, 1000.f);
 }
 
-VEC3 TCompCameraShadowMerge::CameraClipping(void)
+float TCompCameraShadowMerge::CameraClipping(const VEC3 & origin, const VEC3 & dir)
 {
-	return VEC3();
+	CModulePhysics::RaycastHit hit;
+	if (EnginePhysics.Raycast(origin, dir, _clipping_offset.z, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario")))
+		return Clamp(hit.distance - 0.1f, 0.5f, _clipping_offset.z);
+
+	return _clipping_offset.z;
 }

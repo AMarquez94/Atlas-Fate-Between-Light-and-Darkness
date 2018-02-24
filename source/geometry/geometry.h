@@ -20,5 +20,11 @@ QUAT loadQUAT(const json& j);
 
 #include "geometry/transform.h"
 
+template<typename T>
+T lerp(const T& minValue, const T& maxValue, float ratio)
+{
+	return minValue + (maxValue - minValue) * ratio;
+}
+
 #endif
 

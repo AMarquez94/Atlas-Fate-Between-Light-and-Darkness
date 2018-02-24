@@ -11,6 +11,7 @@ private:
 	std::string _target_name;
 
 	float _speed;
+
 	VEC2 _clamp_angle;
 	VEC2 _current_euler;
 	VEC3 _clipping_offset;
@@ -23,7 +24,7 @@ public:
   void load(const json& j, TEntityParseContext& ctx);
   void update(float dt);
 
-  VEC3 CameraClipping(void);
+  float CameraClipping(const VEC3 & origin, const VEC3 & dir);
 
   DECL_SIBLING_ACCESS();
 };

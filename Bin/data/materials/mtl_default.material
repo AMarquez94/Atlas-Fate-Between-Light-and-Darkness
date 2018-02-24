@@ -1,0 +1,10 @@
+{
+  "technique": "textured_bk.tech"
+  ,
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/texture_default.dds"
+  }
+}

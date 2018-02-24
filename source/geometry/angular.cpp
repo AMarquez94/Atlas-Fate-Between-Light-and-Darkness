@@ -22,3 +22,19 @@ void getYawPitchFromVector(VEC3 front, float* yaw, float* pitch) {
 	*pitch = atan2f(front.y, mdo_xz);
 }
 
+VEC3 projectVector(const VEC3 & vector, const VEC3 & normal){
+
+	VEC3 normal_norm = normal;
+	normal_norm.Normalize();
+
+	VEC3 proj = (vector - vector.Dot(normal_norm) * normal_norm);
+	proj.Normalize();
+
+	return proj;
+}
+
+QUAT createLookAt(const VEC3& origin, const VEC3& front, const VEC3& up)
+{
+	Matrix test = Matrix::CreateLookAt(origin, front, up).Transpose();
+	return Quaternion::CreateFromRotationMatrix(test);
+}

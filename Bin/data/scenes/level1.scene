@@ -16,6 +16,7 @@
       ],
       "collider": {
         "shape": "box",
+				"radius": 0.5,
         "halfExtent": "10 3 4"
       }
     },
