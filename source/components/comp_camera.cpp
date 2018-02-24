@@ -5,6 +5,7 @@
 DECL_OBJ_MANAGER("camera", TCompCamera);
 
 void TCompCamera::debugInMenu() {
+
 	float fov_deg = rad2deg(getFov());
 	float new_znear = getZNear();
 	float new_zfar = getZFar();
@@ -17,19 +18,18 @@ void TCompCamera::debugInMenu() {
 
 void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
 
-  // ..
 	float fov_deg = j.value("fov", rad2deg(getFov()));
 	float z_near = j.value("z_near", getZNear());
 	float z_far = j.value("z_far", getZFar());
-  setPerspective(deg2rad(fov_deg), z_near, z_far);
+	setPerspective(deg2rad(fov_deg), z_near, z_far);
 
 }
 
 void TCompCamera::update(float dt) {
 
-  TCompTransform* c = get<TCompTransform>();
-  assert(c);
-  this->lookAt(c->getPosition(), c->getPosition() + c->getFront(), c->getUp());
+	TCompTransform* c = get<TCompTransform>();
+	assert(c);
+	this->lookAt(c->getPosition(), c->getPosition() + c->getFront(), c->getUp());
 
 }
 

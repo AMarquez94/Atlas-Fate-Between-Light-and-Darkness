@@ -1,0 +1,340 @@
+[
+  {
+    "entity":
+    {
+      "name": "prop_ground"
+      ,
+      "transform":
+      {
+        "pos": "0.0 -1.0 0.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/prop_ground.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default_grey.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "prop_building1"
+      ,
+      "transform":
+      {
+        "pos": "30.0 0.0 -30.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/prop_building1.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default_orange.material"
+          ]
+        }
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_test"
+      ,
+      "transform":
+      {
+        "pos": "30.0 0.0 -30.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+				"mask": "player",
+				"group": "scenario",
+        "halfExtent": "20.0 5.0 20.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_ground"
+      ,
+      "transform":
+      {
+        "pos": "0.0 -1.0 0.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box",
+				"mask": "player",
+				"group": "floor",
+        "halfExtent": "50.0 0.5 50.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_test001"
+      ,
+      "transform":
+      {
+        "pos": "30.0 0.0 40.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box",
+				"mask": "player",
+				"group": "scenario",
+        "halfExtent": "20.0 5.0 10.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_test002"
+      ,
+      "transform":
+      {
+        "pos": "-40.0 0.0 40.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box",
+				"mask": "player",
+				"group": "scenario",
+        "halfExtent": "10.0 15.0 10.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_test003"
+      ,
+      "transform":
+      {
+        "pos": "-28.5019 0.0 3.1003"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+				"mask": "player",
+				"group": "scenario",
+        "halfExtent": "1.0 2.25 4.375"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_test004"
+      ,
+      "transform":
+      {
+        "pos": "-28.5019 0.0 -17.2457"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+				"mask": "player",
+				"group": "scenario",
+        "halfExtent": "1.0 2.185 4.375"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_fence"
+      ,
+      "transform":
+      {
+        "pos": "-27.5512 0.0 -7.07464"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box",
+				"mask": "player",
+				"group": "wall",
+        "halfExtent": "0.05 1.5 5.75"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_box02"
+      ,
+      "transform":
+      {
+        "pos": "-9.7562 0.0 -2.85966"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "halfExtent": "1.0 1.00556 1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_box003"
+      ,
+      "transform":
+      {
+        "pos": "-10.9195 0.0 2.42679"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "halfExtent": "1.0 1.00556 1.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "collider_test005"
+      ,
+      "transform":
+      {
+        "pos": "37.0 10.0 -30.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "halfExtent": "13.0 5.0 20.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_box004"
+      ,
+      "transform":
+      {
+        "pos": "9.09386 0.0 7.18544"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "halfExtent": "0.5 0.5 0.5"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_wall3"
+      ,
+      "transform":
+      {
+        "pos": "-28.5019 0.0 18.9984"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "halfExtent": "1.0 2.25 4.375"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_wall004"
+      ,
+      "transform":
+      {
+        "pos": "-28.5019 1.5562 11.0442"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "halfExtent": "1.0 1.475 3.6"
+      }
+    }
+  }
+]

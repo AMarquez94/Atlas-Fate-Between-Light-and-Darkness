@@ -35,20 +35,6 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
   case WM_DESTROY:
     PostQuitMessage(0);
     break;
-
-	case WM_MOUSEMOVE:
-	{
-		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-		if (mouse)
-		{
-			/*int posX = GET_X_LPARAM(lParam);
-			int posY = GET_Y_LPARAM(lParam);
-			mouse->setPosition(static_cast<float>(posX), static_cast<float>(posY));
-			app_instance->resetMouse = mouse->_lock_cursor;*/
-		}
-	}
-		break;
-
 	case WM_MBUTTONDOWN:
 	{
 		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));

@@ -59,15 +59,18 @@ void TCompCameraThirdPerson::update(float dt)
 
 	self_transform->setPosition(target_position);
 	self_transform->setYawPitchRoll(_current_euler.x, _current_euler.y, 0);
-	VEC3 new_pos = target_position + _clipping_offset.z * -self_transform->getFront();
+
+	float z_distance = CameraClipping(target_position, -self_transform->getFront());
+	VEC3 new_pos = target_position + z_distance * -self_transform->getFront();
 	self_transform->setPosition(new_pos);
 }
 
-VEC3 TCompCameraThirdPerson::CameraClipping(void)
+float TCompCameraThirdPerson::CameraClipping(const VEC3	& origin, const VEC3 & dir)
 {
-	//TO-DO
-	// Raycast from player direction to desired camera pos
-	// Return the position
+	CModulePhysics::RaycastHit hit;
 
-	return VEC3();
+	if (EnginePhysics.Raycast(origin, dir, _clipping_offset.z, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario")))
+		return Clamp(hit.distance - 0.1f, 0.2f, _clipping_offset.z);
+
+	return _clipping_offset.z;
 }

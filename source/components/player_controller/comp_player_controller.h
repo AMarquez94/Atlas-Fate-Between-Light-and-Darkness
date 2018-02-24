@@ -7,7 +7,7 @@
 
 class TCompPlayerController : public IAIController {
 
-	/* Attributes */
+	std::string auxStateName = "";
 	std::map<std::string, CRenderMesh*> mesh_states;
 
 	/* Camera stack, to bypass entity delayed loading */
@@ -16,6 +16,7 @@ class TCompPlayerController : public IAIController {
 	std::string camera_thirdperson;
 	std::string camera_actual;
 
+	/* Player stamina */
 	float stamina;
 	float maxStamina;
 	float minStamina;
@@ -24,11 +25,11 @@ class TCompPlayerController : public IAIController {
 	float dcrStaminaGround;
 	float dcrStaminaWall;
 	float incrStamina = 20.f;
-
+	
+	/* Player speeds*/
 	float walkSpeedFactor;
-	float walkCrouchSpeedFactor;
-	float runSpeedFactor;
 	float walkSlowSpeedFactor;
+	float walkCrouchSpeedFactor;
 	float walkSlowCrouchSpeedFactor;
 	float currentSpeed;
 	float rotationSpeed;
@@ -40,10 +41,33 @@ class TCompPlayerController : public IAIController {
 
 	bool crouched = false;
 
+	/* Aux offset */
+	float maxGroundDistance = 0.3f;
+	float convexMaxDistance = 0.55f;
+
 	/* Timers */
-	float timerForPressingRemoveInhibitorKey = 0.f;
-	int timesRemoveInhibitorKeyPressed = 0;
 	int timesToPressRemoveInhibitorKey;
+	int timesRemoveInhibitorKeyPressed = 0;
+	float timerForPressingRemoveInhibitorKey = 0.f;
+
+	/* Private aux functions */
+	void movePlayer(float);
+	void movePlayerShadow(float);
+	void manageInhibition(float dt);
+	void ResetPlayer(void);
+
+	const bool ConcaveTest(void);
+	const bool ConvexTest(void);
+	const bool ShadowTest(void);
+	const bool GroundTest(void);
+	const bool motionButtonsPressed(void);
+
+	DECL_SIBLING_ACCESS();
+
+	/* Messages handled by the player */
+	void onMsgDamage(const TMsgDamage& msg);
+	void onMsgPlayerHit(const TMsgPlayerHit& msg);
+	void onMsgPlayerShotInhibitor(const TMsgInhibitorShot& msg);
 
 	/* Keys */
 	const Input::TButton& btUp = EngineInput["btUp"];
@@ -57,7 +81,6 @@ class TCompPlayerController : public IAIController {
 	const Input::TButton& btAction = EngineInput["btAction"];
 	const Input::TButton& btCrouch = EngineInput["btCrouch"];
 	const Input::TButton& btSecAction = EngineInput["btSecAction"];
-
 	const Input::TButton& btHorizontal = EngineInput["Horizontal"];
 	const Input::TButton& btVertical = EngineInput["Vertical"];
 
@@ -87,6 +110,9 @@ class TCompPlayerController : public IAIController {
 	bool checkEnemyInShadows(CHandle enemy);
 
 public:
+
+	bool inhibited = false;
+	VEC3 delta_movement;
 
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);

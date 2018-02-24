@@ -1,0 +1,12 @@
+{
+  "technique": "textured_bk.tech"
+  ,
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/default_grey.dds"
+    ,
+    "lightmap": "data/textures/lightmap_ground.dds"
+  }
+}

@@ -30,7 +30,7 @@ public:
 	CCamera();
 
   // 
-	static CHandle main_camera;
+	static CHandle main;
 
   VEC3 getPosition() const { return pos; }
   VEC3 getTarget() const { return target; }
@@ -60,5 +60,6 @@ public:
   // 
   void lookAt(VEC3 new_pos, VEC3 new_target, VEC3 new_up_aux = VEC3(0, 1, 0));
   void setPerspective(float new_fov_vertical, float new_z_near, float new_z_far );
+  void getMainCamera(void);
 
 };

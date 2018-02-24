@@ -46,6 +46,7 @@ void IAIController::ChangeState(const std::string& newstate)
     // the state we wish to jump to does not exist. we abort
     fatal("Invalid ChangeState(%s)\n", newstate.c_str());
   }
+
   stateName = newstate;
   state = statemap[stateName];
 }

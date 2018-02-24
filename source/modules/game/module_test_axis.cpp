@@ -12,6 +12,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_camera.h"
 #include "entity/entity_parser.h"
+#include "components/comp_tags.h"
 
 CCamera camera;
 
@@ -23,7 +24,7 @@ bool CModuleTestAxis::start()
   }*/
   {
 	  TEntityParseContext ctx;
-	  parseScene("data/scenes/whitebox_default.scene", ctx);
+	  parseScene("data/scenes/whitebox_test.scene", ctx);
   }
   {
 	  TEntityParseContext ctx;
