@@ -91,6 +91,7 @@ class TCompPlayerController : public IAIController {
 	void allowAttack(bool allow, CHandle enemy);
 	CHandle checkTouchingStunnedEnemy();
 	bool checkEnemyInShadows(CHandle enemy);
+	void manageCrouch();
 
 	const bool ConcaveTest(void);
 	const bool ConvexTest(void);
@@ -124,6 +125,8 @@ public:
 	void LandingState(float);
 	void HitState(float);
 	void DeadState(float);
+
+	const bool checkPaused();
 
 	//bool checkShadows();
 	const bool isInShadows();

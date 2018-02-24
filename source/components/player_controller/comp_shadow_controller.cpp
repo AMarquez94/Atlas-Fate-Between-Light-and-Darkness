@@ -9,6 +9,7 @@
 #include "render/render_objects.h"
 #include "components/comp_camera.h"
 #include "components/physics/comp_collider.h"
+#include "components/player_controller/comp_player_controller.h"
 
 DECL_OBJ_MANAGER("shadow_controller", TCompShadowController);
 
@@ -24,14 +25,17 @@ void TCompShadowController::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompShadowController::update(float dt) {
 
-	// Do it for n points, every update. 
-	// Change this later to a fixed update function, avoid lot of raycast checks...
+	TCompPlayerController * pc = get<TCompPlayerController>();
+	if (!pc->checkPaused()) {
+		// Do it for n points, every update. 
+		// Change this later to a fixed update function, avoid lot of raycast checks...
 
-	TCompTransform * c_my_transform = get<TCompTransform>();
-	VEC3 new_pos = c_my_transform->getPosition() + 0.1f * c_my_transform->getUp();
-	is_shadow = IsPointInShadows(new_pos);
+		TCompTransform * c_my_transform = get<TCompTransform>();
+		VEC3 new_pos = c_my_transform->getPosition() + 0.1f * c_my_transform->getUp();
+		is_shadow = IsPointInShadows(new_pos);
 
-	//is_shadow == true ? dbg("i'm in shadow\n") : dbg("i'm in light\n");
+		//is_shadow == true ? dbg("i'm in shadow\n") : dbg("i'm in light\n");
+	}
  }
 
 void TCompShadowController::Init() {

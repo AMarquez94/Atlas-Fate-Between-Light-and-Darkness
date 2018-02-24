@@ -29,7 +29,6 @@ void TCompPlayerController::debugInMenu() {
 		ImGui::Text("N times key pressed: %d", timesRemoveInhibitorKeyPressed);
 	ImGui::ProgressBar(stamina/maxStamina);
 
-
 	ImGui::Text("Buttons");
 
 	ImGui::Text("%5s", "UP");
@@ -172,7 +171,7 @@ void TCompPlayerController::IdleState(float dt){
 		return;
 	}
 	else if (btCrouch.getsPressed()) {
-		crouched = !crouched;
+		manageCrouch();
 	}
 
 	if (canAttack && btAttack.getsPressed()) {
@@ -185,8 +184,6 @@ void TCompPlayerController::IdleState(float dt){
 		return;
 	}
 }
-
-
 
 void TCompPlayerController::MotionState(float dt){ 
 
@@ -214,6 +211,14 @@ void TCompPlayerController::MotionState(float dt){
 
 	if (btCrouch.getsPressed()) {
 		crouched = !crouched;
+		if (crouched) {
+			TCompCollider * collider = get<TCompCollider>();
+			collider->Resize(0.45f);
+		}
+		else {
+			TCompCollider * collider = get<TCompCollider>();
+			collider->Resize(collider->config.height);
+		}
 	}
 
 	if (canAttack && btAttack.getsPressed()) {
@@ -264,6 +269,9 @@ void TCompPlayerController::ShadowMergingEnterState(float dt){
 		return;
 	}
 
+	TCompCollider * collider = get<TCompCollider>();
+	collider->Resize(0.01f);
+
 	// Change the render to the shadow merge mesh, TO REFACTOR
 	TCompRender* t = get<TCompRender>();
 	t->color = VEC4(0, 0, 0, 0);
@@ -282,7 +290,7 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 	}
 
 	if (motionButtonsPressed()) {
-		if (ConcaveTest())
+		if (ConcaveTest() || ConvexTest())
 		{
 			ChangeState("smVer");
 			return;
@@ -294,8 +302,8 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 	else {
 		stamina = Clamp<float>(stamina - (dcrStaminaGround * dcrStaminaOnPlaceMultiplier * dt), minStamina, maxStamina);
 	}
-	
-	if (!btShadowMerging.isPressed() || stamina <= minStamina ) {
+
+	if (!btShadowMerging.isPressed() || stamina <= minStamina) {
 		ChangeState("smExit");
 		return;
 	}
@@ -352,12 +360,14 @@ void TCompPlayerController::ShadowMergingExitState(float dt){
 	TCompRender* t = get<TCompRender>();
 	t->color = VEC4(1, 1, 1, 1);
 
+	TCompCollider *collider = get<TCompCollider>();
+	collider->Resize(collider->config.height);
+
 	// Bring back the main camera to our thirdperson camera
 	// Replace this with an smooth camera interpolation
 	Engine.getCameras().blendOutCamera(getEntityByName(camera_actual), .2f);
 	camera_actual = camera_thirdperson;
 	Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
-
 
 	ChangeState("idle");
 }
@@ -382,6 +392,11 @@ void TCompPlayerController::HitState(float dt){
 
 void TCompPlayerController::DeadState(float dt){
 
+}
+
+const bool TCompPlayerController::checkPaused()
+{
+	return paused;
 }
 
 void TCompPlayerController::onMsgPlayerHit(const TMsgPlayerHit & msg)
@@ -421,7 +436,9 @@ void TCompPlayerController::onMsgPlayerShotInhibitor(const TMsgInhibitorShot& ms
 
 void TCompPlayerController::onMsgPlayerIlluminated(const TMsgPlayerIlluminated& msg) {
 	if (isInShadows()) {
-		ChangeState("smExit");
+
+		ResetPlayer();
+		//ChangeState("smExit");
 	}
 }
 
@@ -452,8 +469,10 @@ void TCompPlayerController::movePlayer(const float dt) {
 	//----------------------------------------------
 	// Testing purposes only, remove when needed.
 	TCompShadowController * shadow_oracle = get<TCompShadowController>();
-	if (shadow_oracle->is_shadow) c_my_render->color = Color(0, .8f, 1);
-	else c_my_render->color = Color(1, 1, 1);
+	if (c_my_render->color == VEC4(1, 1, 1, 1) || c_my_render->color == VEC4(0, .8f, 1, 1)) {
+		if (shadow_oracle->is_shadow) c_my_render->color = Color(0, .8f, 1);
+		else c_my_render->color = Color(1, 1, 1);
+	}
 	//----------------------------------------------
 
 	//Pongo a cero la velocidad actual
@@ -462,7 +481,6 @@ void TCompPlayerController::movePlayer(const float dt) {
 
 	if (stateName.compare("smHor") == 0 || stateName.compare("smVer") == 0) {
 		currentSpeed = walkSpeedFactor;
-		collider->Resize(0.01f);
 	}
 	else {
 		if (btRun.isPressed()) {
@@ -621,7 +639,6 @@ const bool TCompPlayerController::ConcaveTest(void)
 	{
 		if (EnginePhysics.gravity.Dot(hit.normal) < .01f)
 		{
-			VEC3 old_position = c_my_transform->getPosition();
 			VEC3 new_forward = hit.normal.Cross(c_my_transform->getLeft());
 			VEC3 target = c_my_transform->getPosition() + new_forward;
 			c_my_collider->SetUpVector(hit.normal);
@@ -632,8 +649,7 @@ const bool TCompPlayerController::ConcaveTest(void)
 			c_my_transform->setPosition(hit.point);
 			//delta_movement = c_my_transform->getPosition() - old_position;
 		}
-
-		return true;
+			return true;
 	}
 
 	return false;
@@ -653,7 +669,6 @@ const bool TCompPlayerController::ConvexTest(void)
 	{
 		if (hit.distance > convexMaxDistance && EnginePhysics.gravity.Dot(hit.normal) < .01f)
 		{
-			VEC3 old_position = c_my_transform->getPosition();
 			VEC3 new_forward = -hit.normal.Cross(c_my_transform->getLeft());
 			VEC3 target = hit.point + new_forward;
 			c_my_collider->SetUpVector(hit.normal);
@@ -662,8 +677,6 @@ const bool TCompPlayerController::ConvexTest(void)
 			QUAT new_rotation = createLookAt(hit.point, target, hit.normal);
 			c_my_transform->setRotation(new_rotation);
 			c_my_transform->setPosition(hit.point);
-			//delta_movement = c_my_transform->getPosition() - old_position;
-
 			return true;
 		}
 	}
@@ -777,3 +790,17 @@ bool TCompPlayerController::checkEnemyInShadows(CHandle enemy)
 {
 	return true;	//TODO: Check if enemy is in shadows when going to sm
 }
+
+void TCompPlayerController::manageCrouch()
+{
+	crouched = !crouched;
+	if (crouched) {
+		TCompCollider * collider = get<TCompCollider>();
+		collider->Resize(0.45f);
+	}
+	else {
+		TCompCollider * collider = get<TCompCollider>();
+		collider->Resize(collider->config.height);
+	}
+}
+
