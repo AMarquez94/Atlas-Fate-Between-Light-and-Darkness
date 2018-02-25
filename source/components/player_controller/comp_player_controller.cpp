@@ -780,8 +780,15 @@ void TCompPlayerController::allowAttack(bool allow, CHandle enemy) {
 	}
 	else if (!allow && canAttack) {
 		canAttack = false;
-		TCompRender *c_my_render = get<TCompRender>();
-		c_my_render->color = VEC4(1, 1, 1, 1);
+		if (!inhibited) {
+			TCompRender *c_my_render = get<TCompRender>();
+			c_my_render->color = VEC4(1, 1, 1, 1);
+		}
+		else {
+			TCompRender *c_my_render = get<TCompRender>();
+			c_my_render->color = VEC4(148, 0, 211, 1);
+		}
+		
 	}
 	enemyToAttack = enemy;
 }
