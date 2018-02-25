@@ -84,6 +84,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera\camera.cpp" />
+    <ClCompile Include="components\camera_controller\comp_auxcamera_shadowmerge.cpp" />
     <ClCompile Include="components\camera_controller\comp_camera_flyover.cpp" />
     <ClCompile Include="components\camera_controller\comp_camera_orbit.cpp" />
     <ClCompile Include="components\camera_controller\comp_camera_shadowmerge.cpp" />
@@ -164,6 +165,7 @@
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
     <ClInclude Include="camera\camera.h" />
+    <ClInclude Include="components\camera_controller\comp_auxcamera_shadowmerge.h" />
     <ClInclude Include="components\camera_controller\comp_camera_flyover.h" />
     <ClInclude Include="components\camera_controller\comp_camera_orbit.h" />
     <ClInclude Include="components\camera_controller\comp_camera_shadowmerge.h" />

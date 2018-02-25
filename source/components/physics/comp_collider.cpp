@@ -108,3 +108,9 @@ void TCompCollider::SetUpVector(VEC3 new_up)
 {
 	controller->setUpDirection(physx::PxVec3(new_up.x, new_up.y, new_up.z));
 }
+
+VEC3 TCompCollider::GetUpVector()
+{
+	physx::PxVec3 upDirection = controller->getUpDirection();
+	return VEC3(upDirection.x,upDirection.y,upDirection.z);
+}

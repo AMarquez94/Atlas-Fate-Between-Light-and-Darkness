@@ -13,6 +13,7 @@
     "ai_patrol",
     "camera_thirdperson",
     "camera_shadowmerge",
+	"auxcamera_shadowmerge",
     "bullet_controller",
 	"shadow_controller",
     "hierarchy",

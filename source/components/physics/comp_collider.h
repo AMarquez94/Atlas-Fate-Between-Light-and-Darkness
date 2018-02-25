@@ -61,6 +61,7 @@ public:
   /* Aux methods, temp */
   void Resize(float new_size);
   void SetUpVector(VEC3 new_up);
+  VEC3 GetUpVector();
 
   VEC3 normal_gravity = VEC3(0, -9.8f, 0);
 };

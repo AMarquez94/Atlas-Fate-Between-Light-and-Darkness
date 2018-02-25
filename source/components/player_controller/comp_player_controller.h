@@ -93,7 +93,8 @@ class TCompPlayerController : public IAIController {
 	CHandle checkTouchingStunnedEnemy();
 	bool checkEnemyInShadows(CHandle enemy);
 	void manageCrouch();
-	float getAnglePlayerFloor();
+	bool playerInFloor();
+
 
 	const bool ConcaveTest(void);
 	const bool ConvexTest(void);

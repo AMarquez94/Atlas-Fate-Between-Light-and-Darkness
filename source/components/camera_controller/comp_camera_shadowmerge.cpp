@@ -24,6 +24,7 @@ void TCompCameraShadowMerge::load(const json& j, TEntityParseContext& ctx)
 	_clamp_angle = loadVEC2(j["clampangle"]);
 	_clipping_offset = loadVEC3(j["offset"]);
 	_clamp_angle = VEC2(deg2rad(_clamp_angle.x), deg2rad(_clamp_angle.y));
+	_starting_pitch = deg2rad(j.value("starting_pitch", 0.f));
 
 	// Load the target and set his axis as our axis.
 	_h_target = ctx.findEntityByName(_target_name);
@@ -31,7 +32,7 @@ void TCompCameraShadowMerge::load(const json& j, TEntityParseContext& ctx)
 
 	float yaw, pitch, roll;
 	target_transform->getYawPitchRoll(&yaw, &pitch, &roll);
-	_original_euler = VEC2(yaw, pitch + deg2rad(j.value("starting_pitch", -60.f)));
+	_original_euler = VEC2(yaw, pitch + _starting_pitch);
 	_current_euler = _original_euler;
 
 	pause = false;
@@ -47,6 +48,29 @@ void TCompCameraShadowMerge::registerMsgs()
 void TCompCameraShadowMerge::onMsgCameraActive(const TMsgCameraActivated &msg)
 {
 	active = true;
+
+	std::string mahName = ((TCompName*)get<TCompName>())->getName();
+	if (mahName.compare("SMCameraVer") == 0) {
+		
+		TCompTransform* targetTrans = ((CEntity*)_h_target)->get<TCompTransform>();
+		TCompCollider* targetCollider = ((CEntity*)_h_target)->get<TCompCollider>();
+		TCompTransform* myTrans = get<TCompTransform>();
+
+
+		VEC3 dist = myTrans->getPosition() - targetTrans->getPosition();
+
+		dbg("Dist (%f, %f, %f)\n", dist.x, dist.y, dist.z);
+		dbg("PPos (%f, %f, %f)\n", targetTrans->getPosition().x, targetTrans->getPosition().y, targetTrans->getPosition().z);
+		myTrans->setPosition(myTrans->getPosition() - dist);
+		dbg("New pos (%f, %f, %f)\n", myTrans->getPosition().x, myTrans->getPosition().y, myTrans->getPosition().z);
+		float deltayaw = myTrans->getDeltaYawToAimTo(myTrans->getPosition() + targetCollider->normal_gravity);
+		dbg("deltayaw %f\n", deltayaw);
+		_current_euler.x = _current_euler.x + deltayaw;
+		myTrans->setPosition(myTrans->getPosition() + dist);
+		//float y, p, r;
+		//myTrans->lookAt(myTrans->getPosition(), myTrans->getPosition() - targetCollider->normal_gravity);
+	}
+
 	dbg("Camera active %s\n", ((TCompName*)get<TCompName>())->getName());
 }
 
@@ -120,4 +144,40 @@ float TCompCameraShadowMerge::CameraClipping(const VEC3 & origin, const VEC3 & d
 		return Clamp(hit.distance - 0.1f, 0.5f, _clipping_offset.z);
 
 	return _clipping_offset.z;
+}
+
+const float TCompCameraShadowMerge::getSpeed()
+{
+	return _speed;
+}
+
+const VEC2 TCompCameraShadowMerge::getClampAngle()
+{
+	return _clamp_angle;
+}
+
+const VEC2 TCompCameraShadowMerge::getOriginalEuler()
+{
+	return _original_euler;
+}
+
+const VEC2 TCompCameraShadowMerge::getCurrentEuler()
+{
+	return _current_euler;
+}
+
+const VEC3 TCompCameraShadowMerge::getClippingOffset()
+{
+	return _clipping_offset;
+}
+
+const CHandle TCompCameraShadowMerge::getCameraTarget()
+{
+	return _h_target;
+}
+
+void TCompCameraShadowMerge::setCurrentEuler(float x, float y)
+{
+	_current_euler.x = x;
+	_current_euler.y = y;
 }

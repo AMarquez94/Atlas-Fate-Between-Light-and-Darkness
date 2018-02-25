@@ -18,23 +18,24 @@
 	},
 	{
 		"entity": {
-				"name": "TPCamera",
-				"transform": {
-					"pos": "0 3 3"
-				},
-				"render" : {},
-				"camera_thirdperson" : {
-					"target": "The Player",
-					"clampangle" : "-20 80",
-					"offset": "0.25 1.6 2",
-					"speed" : 1.5
-				},
-				"camera" : {
-					"fov" : 80,
-					"z_near": 0.01,
-					"z_far": 1000
-				}
-			}
+			"name": "TPCamera",
+			"transform": {
+				"pos": "0 3 3"
+			},
+			"render" : {},
+			"camera_thirdperson" : {
+				"target": "The Player",
+				"clampangle" : "-20 80",
+				"offset": "0.25 1.6 2",
+				"speed" : 1.5
+			},
+			"camera" : {
+				"fov" : 80,
+				"z_near": 0.01,
+				"z_far": 1000
+			},
+			"tags" : ["main_camera"]
+		}
 	},
 	{
 		"entity": {
@@ -78,6 +79,24 @@
 				"z_far": 1000
 			},
 			"tags" : ["main_camera"]
+		}
+	},
+	{
+		"xentity": {
+			"name": "AuxCameraVer",
+			"transform": {},
+			"hierarchy": {
+				"parent": "SMCameraVer"
+			},
+			"render" : {},
+			"auxcamera_shadowmerge": {
+			},
+			"camera" : {
+				"fov" : 80,
+				"z_near": 0.01,
+				"z_far": 1000
+			},
+			"tags" : ["aux_camera"]
 		}
 	},
 	{

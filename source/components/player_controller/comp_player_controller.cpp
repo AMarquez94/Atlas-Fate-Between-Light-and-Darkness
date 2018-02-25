@@ -193,6 +193,7 @@ void TCompPlayerController::MotionState(float dt){
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
 
 	if (!motionButtonsPressed()) {
+		currentSpeed = 0;
 		auxStateName = "";
 		ChangeState("idle");
 		return;
@@ -205,6 +206,7 @@ void TCompPlayerController::MotionState(float dt){
 			auxStateName = "";
 			allowAttack(false, CHandle());
 			crouched = false;
+			currentSpeed = 0;
 			ChangeState("smEnter");
 			return;
 		}
@@ -286,50 +288,61 @@ void TCompPlayerController::ShadowMergingEnterState(float dt){
 
 void TCompPlayerController::ShadowMergingHorizontalState(float dt){ 
 
-	if (!ShadowTest()) {
-		ChangeState("smExit");
-	}
 
 	if (motionButtonsPressed()) {
+
+		TCompTransform *t = get<TCompTransform>();
+		VEC3 position = t->getPosition();
+
 		if (ConcaveTest() || ConvexTest())
 		{
-			CEntity* e_camera = getEntityByName(camera_shadowmerge_ver);
-			TCompCamera* c_camera = e_camera->get< TCompCamera >();
-			assert(c_camera);
+			if (!playerInFloor()) {
 
-			// Replace this with an smooth camera interpolation
-			camera_actual = camera_shadowmerge_ver;
-			Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
-			ChangeState("smVer");
-			return;
+				CEntity* e_camera = getEntityByName(camera_shadowmerge_ver);
+				TCompCamera* c_camera = e_camera->get< TCompCamera >();
+				assert(c_camera);
+
+				// Replace this with an smooth camera interpolation
+				camera_actual = camera_shadowmerge_ver;
+				Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
+				ChangeState("smVer");
+				return;
+			}
 		}
 
 		movePlayerShadow(dt);
 		stamina = Clamp<float>(stamina - (dcrStaminaGround * dt), minStamina, maxStamina);
 	}
 	else {
+		currentSpeed = 0;
 		stamina = Clamp<float>(stamina - (dcrStaminaGround * dcrStaminaOnPlaceMultiplier * dt), minStamina, maxStamina);
 	}
 
-	if (!btShadowMerging.isPressed() || stamina <= minStamina) {
+	if (!ShadowTest()) {
 		ChangeState("smExit");
-		return;
 	}
 }
 
 void TCompPlayerController::ShadowMergingVerticalState(float dt){ 
 
 	if (motionButtonsPressed()) {
-		if (ConcaveTest() || ConvexTest()) {
-			CEntity* e_camera = getEntityByName(camera_shadowmerge_hor);
-			TCompCamera* c_camera = e_camera->get< TCompCamera >();
-			assert(c_camera);
 
-			// Replace this with an smooth camera interpolation
-			camera_actual = camera_shadowmerge_hor;
-			Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
-			ChangeState("smHor");
-			return;
+		TCompTransform *t = get<TCompTransform>();
+		VEC3 position = t->getPosition();
+
+		if (ConcaveTest() || ConvexTest()) {
+
+			if (playerInFloor()) {
+				CEntity* e_camera = getEntityByName(camera_shadowmerge_hor);
+				TCompCamera* c_camera = e_camera->get< TCompCamera >();
+				assert(c_camera);
+
+				// Replace this with an smooth camera interpolation
+				camera_actual = camera_shadowmerge_hor;
+				Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
+				ChangeState("smHor");
+				return;
+			}
 		}
 
 		// Move the player
@@ -337,6 +350,7 @@ void TCompPlayerController::ShadowMergingVerticalState(float dt){
 		stamina = Clamp<float>(stamina - (dcrStaminaWall * dt), minStamina, maxStamina);
 	}
 	else {
+		currentSpeed = 0;
 		stamina = Clamp<float>(stamina - (dcrStaminaWall * dcrStaminaOnPlaceMultiplier * dt), minStamina, maxStamina);
 	}
 	
@@ -667,12 +681,18 @@ const bool TCompPlayerController::ConcaveTest(void)
 		{
 			VEC3 new_forward = hit.normal.Cross(c_my_transform->getLeft());
 			VEC3 target = c_my_transform->getPosition() + new_forward;
+
+			dbg("angles concave: %f\n", rad2deg(acosf(hit.normal.Dot(c_my_collider->GetUpVector()))));
+
 			c_my_collider->SetUpVector(hit.normal);
 			c_my_collider->normal_gravity = -hit.normal;
 
 			Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), target, hit.normal).Transpose();
-			c_my_transform->setRotation(Quaternion::CreateFromRotationMatrix(test));
-			c_my_transform->setPosition(hit.point);
+
+			Quaternion new_rotation = Quaternion::CreateFromRotationMatrix(test);
+			VEC3 new_pos = hit.point;
+			c_my_transform->setRotation(new_rotation);
+			c_my_transform->setPosition(new_pos);
 		}
 		return true;
 	}
@@ -695,12 +715,16 @@ const bool TCompPlayerController::ConvexTest(void)
 		{
 			VEC3 new_forward = -hit.normal.Cross(c_my_transform->getLeft());
 			VEC3 target = hit.point + new_forward;
+
+			dbg("angles convex: %f\n", 180 + rad2deg(acosf(hit.normal.Dot(c_my_collider->GetUpVector()))));
+
 			c_my_collider->SetUpVector(hit.normal);
 			c_my_collider->normal_gravity = -hit.normal;
 
 			QUAT new_rotation = createLookAt(hit.point, target, hit.normal);
+			VEC3 new_pos = hit.point;
 			c_my_transform->setRotation(new_rotation);
-			c_my_transform->setPosition(hit.point);
+			c_my_transform->setPosition(new_pos);
 			return true;
 		}
 	}
@@ -834,8 +858,13 @@ void TCompPlayerController::manageCrouch()
 	}
 }
 
-float TCompPlayerController::getAnglePlayerFloor() {
+bool TCompPlayerController::playerInFloor() {
 
-	return 0.f;
+	VEC3 normalGravityNormal = VEC3(0.f,-1.f,0.f);
+	//dbg("Prev pos: (%f,%f,%f) - New pos: (%f,%f,%f)\n", prev_pos.x, prev_pos.y, prev_pos.z, new_pos.x, new_pos.y, new_pos.z);
+	TCompCollider *c = get<TCompCollider>();
+	VEC3 playerGravityNormal = c->normal_gravity;
+
+	return normalGravityNormal.Dot(playerGravityNormal) == 1.f;
 }
 
