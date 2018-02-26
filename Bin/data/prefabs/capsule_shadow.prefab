@@ -1,0 +1,13 @@
+[
+  {
+    "entity": {
+      "name": "capsule_shadow",
+      "transform": {
+        "pos": "0 0 1"
+      },
+      "render": {
+        "mesh": "axis.mesh"
+      }
+    }
+  }
+]

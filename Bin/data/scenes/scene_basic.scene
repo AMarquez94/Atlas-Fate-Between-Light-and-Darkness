@@ -50,13 +50,8 @@
   },
   {
     "entity": {
-      "name": "Teapot 2",
-      "render": {
-        "mesh": "data/meshes/Teapot001.mesh",
-        "materials": [
-          "data/materials/madera.material"
-        ]
-      },
+      "prefab": "data/prefabs/capsule.prefab",
+      "name": "Capsule 1",
       "transform": {
         "pos": "0 0 0"
       },
@@ -76,13 +71,8 @@
   },
   {
     "entity": {
-      "name": "Teapot 3",
-      "render": {
-        "mesh": "data/meshes/Teapot001.mesh",
-        "materials": [
-          "data/materials/madera.material"
-        ]
-      },
+      "prefab": "data/prefabs/capsule.prefab",
+      "name": "Capsule 2",
       "transform": {
         "pos": "1.73 1.73 1.73"
       },
@@ -102,13 +92,8 @@
   },
   {
     "entity": {
-      "name": "Teapot 4",
-      "render": {
-        "mesh": "data/meshes/Teapot001.mesh",
-        "materials": [
-          "data/materials/madera.material"
-        ]
-      },
+      "prefab": "data/prefabs/capsule.prefab",
+      "name": "Capsule 3",
       "transform": {
         "pos": "3.46 3.46 3.46"
       },
