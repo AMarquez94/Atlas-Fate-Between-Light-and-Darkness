@@ -1,11 +1,11 @@
 {
-	"sizes" : {
-		"default" : 128,
-		"transform" : 64
-	},
-  "init_order" : {
-    "entity" : 100,
-    "transform" : 90
+  "sizes": {
+    "default": 128,
+    "transform": 64
+  },
+  "init_order": {
+    "entity": 100,
+    "transform": 90
   },
   "update": [
     "circular_controller",
@@ -13,13 +13,16 @@
     "ai_patrol",
     "camera_thirdperson",
     "camera_shadowmerge",
-	"auxcamera_shadowmerge",
+    "auxcamera_shadowmerge",
     "bullet_controller",
-	"shadow_controller",
+    "shadow_controller",
     "hierarchy",
     "cone_of_light",
     "collider",
     "camera_flyover",
     "camera"
+  ],
+  "render_debug": [
+    "player_controller"
   ]
 }

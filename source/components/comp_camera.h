@@ -7,6 +7,7 @@ class TCompCamera : public CCamera, public TCompBase {
 
 public:
 	void debugInMenu();
+	void renderDebug();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
 	DECL_SIBLING_ACCESS();

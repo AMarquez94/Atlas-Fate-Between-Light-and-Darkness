@@ -7,6 +7,11 @@ DECL_OBJ_MANAGER("transform", TCompTransform);
 void TCompTransform::debugInMenu() {
   CTransform::debugInMenu();
 }
+void TCompTransform::renderDebug() {
+	/*setWorldTransform(asMatrix());
+	auto axis = Resources.get("axis.mesh")->as<CRenderMesh>();
+	axis->activateAndRender();*/
+}
 
 
 void TCompTransform::set(const CTransform& new_tmx) {

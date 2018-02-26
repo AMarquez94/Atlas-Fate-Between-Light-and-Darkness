@@ -143,6 +143,7 @@ public:
   // ---------------------------------------------
   // Virtual methods applying to all objects
   virtual void updateAll(float dt) = 0;
+  virtual void renderDebugAll() = 0;
   //virtual void renderInDebugAll() = 0;
   virtual void debugInMenuAll() = 0;
 

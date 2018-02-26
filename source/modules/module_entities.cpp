@@ -9,6 +9,16 @@
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
 
+void CModuleEntities::loadListOfManagers(const json& j, std::vector< CHandleManager* > &managers) {
+	managers.clear();
+	// For each entry in j["update"] add entry to om_to_update 
+	std::vector< std::string > names = j;
+	for (auto& n : names) {
+		auto om = CHandleManager::getByName(n.c_str());
+		assert(om || fatal("Can't find a manager of components of type %s to update. Check file components.json\n", n.c_str()));
+		managers.push_back(om);
+	}
+}
 bool CModuleEntities::start()
 {
   json j = loadJson("data/components.json");
@@ -39,14 +49,8 @@ bool CModuleEntities::start()
     dbg("Initializing obj manager %s with %d\n", om->getName(), sz);
     om->init(sz, false);
   }
-
-  // For each entry in j["update"] add entry to om_to_update
-  std::vector< std::string > names = j["update"];
-  for (auto& n : names) {
-    auto om = CHandleManager::getByName(n.c_str());
-    assert(om || fatal( "Can't find a manager of components of type %s to update. Check file components.json\n", n.c_str()));
-    om_to_update.push_back(om);
-  }
+  loadListOfManagers(j["update"], om_to_update);
+  loadListOfManagers(j["render_debug"], om_to_render_debug);
 
   return true;
 }
@@ -115,5 +119,11 @@ void CModuleEntities::render()
 			  m->activate();
 		  c->mesh->activateAndRender();
 	  }
+
   });
+  // Change the technique to some debug solid
+  auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
+  solid->activate();
+  for (auto om : om_to_render_debug)
+	  om->renderDebugAll();
 }

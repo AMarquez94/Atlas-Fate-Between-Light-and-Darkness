@@ -106,6 +106,7 @@ public:
 	//VEC3 delta_movement;
 
 	void debugInMenu();
+	void renderDebug();
 	void load(const json& j, TEntityParseContext& ctx);
 	void Init();
 

@@ -16,6 +16,15 @@ void TCompCamera::debugInMenu() {
 		setPerspective(deg2rad(fov_deg), new_znear, new_zfar);
 }
 
+void TCompCamera::renderDebug() {
+	// world = inverse( view_proj ) 
+	// setWorldTransform(...); 
+	// mesh = x,y entre -1..1.... z entre 0...1 
+	// activar mesh y pintar 
+	//auto axis = Resources.get("axis.mesh")->as<CRenderMesh>(); 
+	//axis->activateAndRender(); 
+}
+
 void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
 
 	float fov_deg = j.value("fov", rad2deg(getFov()));

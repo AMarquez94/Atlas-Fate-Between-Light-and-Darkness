@@ -56,6 +56,18 @@ void TCompPlayerController::debugInMenu() {
 	ImGui::ProgressBar(fabsf(btRight.value));
 }
 
+void TCompPlayerController::renderDebug() {
+	ImGui::Begin("");
+	ImGui::Text("State: %s", stateName.c_str());
+	if (stateName.find("sm") == 0) {
+		/*while (stateName != "smExit") {
+			ImGui::ProgressBar(stamina / maxStamina);
+		}*/
+		ImGui::ProgressBar(stamina / maxStamina);
+	}
+	ImGui::End();
+}
+
 void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
 
 	// Reading the input values from the json
