@@ -51,8 +51,8 @@ void TCompAuxCameraShadowMerge::registerMsgs()
 
 void TCompAuxCameraShadowMerge::onMsgEntityCreated(const TMsgEntityCreated & msg)
 {
-	TCompHierarchy * tHierarchy = get<TCompHierarchy>();
-	_h_parent = getEntityByName(tHierarchy->parent_name);
+	//TCompHierarchy * tHierarchy = get<TCompHierarchy>();
+	_h_parent = getEntityByName("SMCameraVer");
 	TCompCameraShadowMerge *tParentController = ((CEntity *)_h_parent)->get<TCompCameraShadowMerge>();
 
 	_speed = tParentController->getSpeed();
