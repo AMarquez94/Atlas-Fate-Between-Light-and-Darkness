@@ -22,9 +22,17 @@ bool CModuleTestAxis::start()
 	TEntityParseContext ctx;
 	parseScene("data/scenes/scene_basic.scene", ctx);
   }*/
+	{
+		TEntityParseContext ctx;
+		parseScene("data/scenes/dp_milestone1_lights.scene", ctx);
+	}
   {
 	  TEntityParseContext ctx;
-	  parseScene("data/scenes/whitebox_test.scene", ctx);
+	  parseScene("data/scenes/dp_milestone1_objects.scene", ctx);
+  }
+  {
+	  TEntityParseContext ctx;
+	  parseScene("data/scenes/dp_milestone1_colliders.scene", ctx);
   }
   {
 	  TEntityParseContext ctx;
@@ -37,10 +45,6 @@ bool CModuleTestAxis::start()
   {
 	  TEntityParseContext ctx;
 	  parseScene("data/scenes/camera.scene", ctx);
-  }
-  {
-	  TEntityParseContext ctx;
-	  parseScene("data/scenes/lights.scene", ctx);
   }
  
   camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);

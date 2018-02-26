@@ -72,6 +72,15 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 			shape = gPhysics->createShape(PxSphereGeometry(config.radius), *gMaterial);
 			offset.p.y = config.radius;
 		}
+		else if (config.shapeType == physx::PxGeometryType::eSPHERE)
+		{
+			shape = gPhysics->createShape(PxSphereGeometry(config.radius), *gMaterial);
+			offset.p.y = config.radius;
+		}
+		else if (config.shapeType == physx::PxGeometryType::eTRIANGLEMESH)
+		{
+
+		}
 		//....todo: more shapes
 
 		setupFiltering(shape, config.group, config.mask);
@@ -102,9 +111,57 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		gScene->addActor(*actor);
 	}
 
-
 	comp_collider.actor = actor;
 	actor->userData = h_comp_collider.asVoidPtr();
+}
+
+/* To refactor afterwards, add dynamic lights */
+void CModulePhysics::createComplexActor(TCompCollider& comp_collider)
+{
+	const TCompCollider::TConfig & config = comp_collider.config;
+	CHandle h_comp_collider(&comp_collider);
+	CEntity* e = h_comp_collider.getOwner();
+	TCompTransform * compTransform = e->get<TCompTransform>();
+	VEC3 pos = compTransform->getPosition();
+	QUAT quat = compTransform->getRotation();
+
+	PxTransform initialTrans(PxVec3(pos.x, pos.y, pos.z), PxQuat(quat.x, quat.y, quat.z, quat.w));
+	PxRigidActor* actor = nullptr;
+
+	PxTolerancesScale scale;
+	PxCookingParams params(scale);
+	params.meshPreprocessParams |= PxMeshPreprocessingFlag::eDISABLE_CLEAN_MESH;
+	params.meshPreprocessParams |= PxMeshPreprocessingFlag::eDISABLE_ACTIVE_EDGES_PRECOMPUTE;
+	params.meshCookingHint = PxMeshCookingHint::eCOOKING_PERFORMANCE;
+
+	//theCooking->setParams(params);
+	/*
+	PxTriangleMeshDesc meshDesc;
+	meshDesc.points.count = nbVerts;
+	meshDesc.points.stride = sizeof(PxVec3);
+	meshDesc.points.data = verts;
+
+	meshDesc.triangles.count = triCount;
+	meshDesc.triangles.stride = 3 * sizeof(PxU32);
+	meshDesc.triangles.data = indices32;
+
+	#ifdef _DEBUG
+	// mesh should be validated before cooked without the mesh cleaning
+	bool res = theCooking->validateTriangleMesh(meshDesc);
+	PX_ASSERT(res);
+	#endif
+
+	PxTriangleMesh* aTriangleMesh = theCooking->createTriangleMesh(meshDesc, gPhysics->getPhysicsInsertionCallback());
+
+	if (config.is_trigger)
+	{
+		meshDesc->setFlag(PxShapeFlag::eSIMULATION_SHAPE, false);
+		shape->setFlag(PxShapeFlag::eTRIGGER_SHAPE, true);
+		actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
+	}
+	*/
+	gScene->addActor(*actor);
+	setupFiltering(actor, config.group, config.mask);
 }
 
 void CModulePhysics::setupFiltering(PxShape* shape, PxU32 filterGroup, PxU32 filterMask)

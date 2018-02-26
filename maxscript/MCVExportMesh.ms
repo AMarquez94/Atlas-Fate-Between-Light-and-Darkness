@@ -95,7 +95,6 @@ function findIndexOrRegister ht vtxs new_vtx = (
 
 function exportMeshObject given_obj outfilename = (
 
-	print outfilename
 	-- Convert the given object to triangular mesh
 	local obj = given_obj
 	if classof obj != TriMesh then (
@@ -150,8 +149,6 @@ function exportMeshObject given_obj outfilename = (
 		 	local uvB = meshop.getMapVert obj mapB faceB[vtx_id]
 					
 			local new_vtx = #( pos.x, pos.y, pos.z, N.x, N.y, N.z, uvA.x, 1-uvA.y, uvB.x, 1-uvB.y ) 
-			
-			-- Check if the vtx is unique
 			local new_idx = findIndexOrRegister ht vtxs new_vtx
 			
 			-- Register the index
@@ -165,3 +162,56 @@ function exportMeshObject given_obj outfilename = (
 	if obj != given_obj then delete obj
 	
 )
+
+
+function exportColliderObject given_obj outfilename = (
+
+	-- Convert the given object to triangular mesh
+	local obj = given_obj
+	if classof obj != TriMesh then (
+		obj = copy given_obj
+		obj.name = given_obj.name
+		convertToMesh obj
+	)
+	
+	-- The final list of vtxs and indexes to be exported
+	local vtxs = #()
+	local idxs = #()
+	
+	local maxLocalToWorld = obj.transform
+	local maxToMCV = rotateXMatrix  -90
+	local maxWorldToLocal = inverse obj.transform
+	local maxWorldToLocalMCV = maxWorldToLocal * maxToMCV
+	
+	-- To quickly find if a vertex is new
+	local HT = dotNetObject "System.Collections.Hashtable"
+	local num_faces = getNumFaces obj
+	
+	-- For each face in the model
+	for face_id = 1 to num_faces do (
+		
+		-- Retrieve the 3 indexes in the list of vertex positions
+		local face = getFace obj face_id
+
+		-- For each vertex of each face
+		for vtx_id in #(1,3,2) do (
+			
+			-- Get the real vertex id: 1...num_vertexs
+			local posW = getVert obj face[ vtx_id ]
+			local pos = posW * maxWorldToLocalMCV
+
+			local new_vtx = #( pos.x, pos.y, pos.z) 
+			local new_idx = findIndexOrRegister ht vtxs new_vtx
+			
+			-- Register the index
+			append idxs new_idx
+		)
+	)
+
+	saveMeshToFile outfilename obj vtxs idxs "PosN"
+	
+	-- If we created a copy of the mesh, it's time to remove it
+	if obj != given_obj then delete obj
+	
+)
+

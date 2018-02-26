@@ -93,6 +93,7 @@
     <ClCompile Include="components\comp_camera.cpp" />
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
+    <ClCompile Include="components\comp_light.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_render.cpp" />
     <ClCompile Include="components\comp_tags.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="components\comp_camera.h" />
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />
+    <ClInclude Include="components\comp_light.h" />
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_player_controller.h" />
     <ClInclude Include="components\comp_render.h" />

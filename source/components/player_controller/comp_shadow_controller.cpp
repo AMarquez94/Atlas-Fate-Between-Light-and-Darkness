@@ -10,6 +10,8 @@
 #include "components/comp_camera.h"
 #include "components/physics/comp_collider.h"
 #include "components/player_controller/comp_player_controller.h"
+#include "components/comp_tags.h"
+#include "components/comp_light.h"
 
 DECL_OBJ_MANAGER("shadow_controller", TCompShadowController);
 
@@ -19,7 +21,19 @@ void TCompShadowController::debugInMenu() {
 
 void TCompShadowController::load(const json& j, TEntityParseContext& ctx) {
 
-	static_points.emplace_back(VEC3(56.436f,48.786f,31.666f));
+	auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("light"));
+	for (auto h : handles) {
+		CEntity* current_light = h;
+		TCompLight * c_light = current_light->get<TCompLight>();
+		if (c_light->type == "directional") // by now we will only retrieve directional lights
+		{
+			TCompTransform * c_light_trans = current_light->get<TCompTransform>();
+			static_points.push_back(c_light_trans->getPosition()); c_light_trans->getFront();
+			static_dirs.push_back(c_light_trans->getFront());
+		}
+	}
+
+	//static_points.emplace_back(VEC3(56.436f,48.786f,31.666f));
 	Init();
 }
 
@@ -47,7 +61,7 @@ void TCompShadowController::Init() {
 // We can also use this public method from outside this class.
 bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 {
-	VEC3 light_dir = VEC3(-0.7663f, -0.384137f, -0.514998f); // Hardcoded for testing purposes only!!!
+	//VEC3 light_dir = VEC3(-0.7663f, -0.384137f, -0.514998f); // Hardcoded for testing purposes only!!!
 	// We need a safe system to retrieve the light direction and origin spot.
 	// Also we need to distinguish between light types.
 	// Different light tests must be made.
@@ -56,7 +70,7 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 	for (unsigned int x = 0; x < static_points.size(); x++) {
 
 		float distance = VEC3::Distance(static_points[x], point);
-		if (!EnginePhysics.Raycast(point, -light_dir, distance, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario")))
+		if (!EnginePhysics.Raycast(point, -static_dirs[x], distance, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario")))
 			return false;
 	}
 

@@ -93,11 +93,17 @@ struct TJsonFormatter (
 )
 
 fn isCollider obj = (
-	if obj.layer.name != "collisions" and obj.layer.name != "triggers" then return false
-	if classof obj != Box and classof obj != Sphere then throw "Collisions must be Spheres or Boxes."
-	-- if name starts with col_...
+	
+	if obj.layer.name != "colliders" and obj.layer.name != "triggers" then return false
+	return true
+)
+
+fn isLight obj = (
+	
+	if obj.layer.name != "lights" and superclassof obj != light then return false
 	return true
 )	
+
 
 fn doesFolderExist f create:false =
 (
@@ -116,6 +122,15 @@ function checkPoint p_point = (
 	if abs(p_point.z) < .00001 do ( p_point.z = 0 )
 	
 	return p_point
+)
+
+function createLayer layerName = (
+	
+	if LayerManager.getLayerFromName layerName == undefined then (
+		LayerManager.newLayerFromName layerName
+	)		
+	
+	return LayerManager.getLayerFromName layerName
 )
 
 function checkDirectories outpath = (

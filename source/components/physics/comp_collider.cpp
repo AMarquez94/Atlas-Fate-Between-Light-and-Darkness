@@ -49,6 +49,7 @@ void TCompCollider::registerMsgs() {
 
   DECL_MSG(TCompCollider, TMsgEntityCreated, onCreate);
   DECL_MSG(TCompCollider, TMsgTriggerEnter, onTriggerEnter);
+  DECL_MSG(TCompCollider, TMsgTriggerExit, onTriggerExit);
   DECL_MSG(TCompCollider, TMsgEntityDestroyed, onDestroy);
 }
 
@@ -68,6 +69,12 @@ void TCompCollider::onDestroy(const TMsgEntityDestroyed & msg)
 void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {
 
 	dbg("Entered the trigger!!!!\n");
+
+}
+
+void TCompCollider::onTriggerExit(const TMsgTriggerExit& msg) {
+
+	dbg("Exited the trigger!!!!\n");
 
 }
 

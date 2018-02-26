@@ -51,6 +51,7 @@ public:
 
 	/* Main procedure methods */
 	void createActor(TCompCollider& comp_collider);
+	void createComplexActor(TCompCollider& comp_collider);
 	
 	// Filter methods
 	FilterGroup getFilterByName(const std::string& name);

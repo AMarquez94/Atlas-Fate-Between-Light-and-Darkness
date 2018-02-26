@@ -15,6 +15,7 @@ public:
 	float test_levels;
 
 	std::vector<VEC3> static_points;
+	std::vector<VEC3> static_dirs;
 
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);

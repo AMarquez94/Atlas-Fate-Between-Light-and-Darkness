@@ -16,9 +16,9 @@ struct TMaterialExporter (
 			map_filename = map.filename
 		)
 		local base_name = getFilenameFile map_filename
-		local json_filename = base_path + "textures/" + base_name + ".dds"
+		local json_filename = "data\\textures\\" + base_name + ".dds"
 		local ofull_path = project_path + json_filename
-		
+		print ofull_path
 		-- Check if ofull_path exists
 		if not doesFileExist ofull_path then (
 			format "We should copy from % to %\n" map_filename ofull_path
@@ -92,6 +92,8 @@ struct TSceneExporter (
 	scenes_path = base_path + "scenes/",
 	mesh_path = base_path + "meshes/",
 	mats_path = base_path + "materials/",
+	cols_path = base_path + "colliders/",
+	tex_path = base_path + "textures/",
 	
 	fn exportName obj = (
 		fs.writeKeyValue "name" obj.name
@@ -124,31 +126,31 @@ struct TSceneExporter (
 	-- ----------------------------------------------------------
 	fn exportRenderMesh obj = (
 		
+		local exported_materials = #(mats_path + "mtl_default.material")
 		local mat = obj.material
 		if mat == undefined then (
-			throw ("Obj " + obj.name + " does NOT have a material")
+			print ("Obj " + obj.name + " does NOT have a material")
 		)
-		if not (isValidName mat.name) then (
+		if mat != undefined and not (isValidName mat.name) then (
 			throw ("Obj " + obj.name + " has a material with an invalid name " + mat.name )
 		)
 		
 		fs.beginObj()
 		
-			-- Export Mesh
-			local mesh_name = mesh_path + obj.name + ".mesh"
-			fs.writeKeyValue "mesh" mesh_name
-			exportMeshObject obj (project_path + mesh_name )
-			fs.writeComma()
-		
-			-- Export material
-			--local mat_name = mats_path + mat.name + ".material"
-			--fs.writeKeyValue "material" mat_name
+		-- Export Mesh
+		local mesh_name = mesh_path + obj.name + ".mesh"
+		fs.writeKeyValue "mesh" mesh_name
+		exportMeshObject obj (project_path + mesh_name )
+		fs.writeComma()
+	
+		if mat != undefined then (
 			local me = TMaterialExporter project_path:project_path base_path:base_path
-			local exported_materials = me.exportMaterial mat mats_path obj
+			exported_materials = me.exportMaterial mat mats_path obj
+		)
 		
-			fs.writeKey "materials"
-			fs.arrayOfStrings exported_materials
-		
+		fs.writeKey "materials"
+		fs.arrayOfStrings exported_materials
+	
 		fs.endObj()
 	),
 	
@@ -158,15 +160,42 @@ struct TSceneExporter (
 		fs.writeKey "collider" 
 		fs.beginObj()
 		
-		if classof obj == Sphere then (
-			fs.writeKeyValue "shape" "sphere"
+		if superclassof obj == light then ( -- to temp bypass light triggers
+			fs.writeKeyValue "shape" "sphere" 
+			fs.writeComma()
+			fs.writeKeyValue "radius" 5
+			fs.writeComma()
+			fs.writeKeyValue "trigger" true
+		)
+		else if classof obj == Sphere  then (
+			fs.writeKeyValue "shape" "sphere" 
 			fs.writeComma()
 			fs.writeKeyValue "radius" obj.radius
 		) else if classof obj == Box then (
-			fs.writeKeyValue "shape" "box"
+			fs.writeKeyValue "shape" "box" 
 			fs.writeComma()
-			-- Warning, order might be incorrect!!!
 			fs.writeKeyValue "halfExtent" [abs (obj.width * .5f), abs (obj.height * .5f), abs (obj.length * .5f)]
+		) else (
+			
+			if obj.parent != undefined then (
+				local col_path = project_path + cols_path + obj.name + ".collider"
+				if obj.mesh.verts.count == obj.parent.mesh.verts.count then (
+				-- We are facing, wether convex or mesh collider.
+				fs.writeKeyValue "shape" "mesh" 
+				fs.writeComma()
+				fs.writeKeyValue "name" (cols_path + obj.name + ".collider")
+				) else (
+					fs.writeKeyValue "shape" "convex" 
+					fs.writeComma()
+					fs.writeKeyValue "name" (cols_path + obj.name + ".collider")
+				)
+			) else  (
+				fs.writeKeyValue "shape" "mesh" 
+				fs.writeComma()
+				fs.writeKeyValue "name" (cols_path + obj.name + ".collider")
+			)
+			
+			exportColliderObject obj col_path
 		)
 		
 		-- Add it in the user properties panel of max:     density = 10
@@ -183,6 +212,48 @@ struct TSceneExporter (
 	
 		fs.endObj()
 	),
+	
+	-- ----------------------------------------------------------	
+	fn exportCompLight obj = (
+		
+		fs.writeKey "light" 
+		fs.beginObj()
+		
+		if classof obj == Directionallight then (
+		fs.writeKeyValue "type" "directional"
+		fs.writeComma()
+		)
+		else if classof obj == targetSpot  then ( 
+			
+		local target = getnodebyname (obj.name + ".Target")
+		fs.writeKeyValue "type" "spotlight"
+		fs.writeComma()
+		fs.writeKeyValue "range" (distance target.pos obj.pos)
+		fs.writeComma()
+		fs.writeKeyValue "angle" obj.hotspot
+		fs.writeComma()
+		)
+		else if classof obj == Omnilight   then (
+		fs.writeKeyValue "type" "pointlight"
+		fs.writeComma()
+		fs.writeKeyValue "range" obj.farAttenEnd 
+		fs.writeComma()
+		)
+		else if classof obj == skylight   then (
+		fs.writeKeyValue "type" "ambient"
+		fs.writeComma()
+		)
+		
+		fs.writeKeyValue "color" [obj.rgb.r, obj.rgb.g, obj.rgb.b]
+		fs.writeComma()
+		fs.writeKeyValue "intensity" obj.multiplier 
+		fs.writeComma()
+		fs.writeKeyValue "shadows" obj.castShadows 
+		fs.writeComma()
+		fs.writeKey "tags"
+		fs.arrayOfStrings #("light")
+		fs.endObj()
+	),
 
 	-- ----------------------------------------------------------
 	fn exportEditableMesh obj = (
@@ -193,18 +264,32 @@ struct TSceneExporter (
 		fs.writeComma()
 		fs.writeKey "render" 
 		fs.beginArray()
-			exportRenderMesh obj
+		exportRenderMesh obj
 		fs.endArray()
 		
+		-- Do some work here to support hierarchy and groups
 		for child in obj.children do (
-			
 			if isCollider child then (
 				fs.writeComma()
 				exportCompCollider child
 			)
-			
 		)
 	),
+	
+	
+	fn exportEntityLight obj = (
+		
+		-- It will be exported as part of the parent. Ejemplo del cofre y su caja de colision.
+		if obj.parent != undefined then return false
+		exportName obj 
+		fs.writeComma()
+		exportTransform obj
+		fs.writeComma()
+		exportCompLight obj
+		fs.writeComma()
+		exportCompCollider obj
+	),
+	
 	
 	-- ----------------------------------------------------------
 	fn exportEntityCollider obj = (
@@ -225,15 +310,18 @@ struct TSceneExporter (
 		fs.beginObj()
 		fs.writeKey "entity"
 			fs.beginObj()
-			--if classof obj == Camera then exportCamera obj
-			if classof obj == Editable_Mesh then exportEditableMesh obj
-			else if isCollider obj then exportEntityCollider obj
-			else (
+			if isCollider obj then (exportEntityCollider obj )
+			else if isLight obj then ( exportEntityLight obj )
+			else exportEditableMesh obj
+			/*else (
 				format "Warning. Don't kwow how to export obj % of class %\n" obj.name ((classof obj) as string)
-			)
+			)*/
 			fs.endObj()
 		fs.endObj()
 	),
+	
+	-- ----------------------------------------------------------
+	-- ----------------------------------------------------------
 	
 	fn exportAll nodes ofilename prg = (
 		
@@ -250,10 +338,11 @@ struct TSceneExporter (
 		doesFolderExist (project_path + scenes_path) create:true
 		doesFolderExist (project_path + mesh_path) create:true
 		doesFolderExist (project_path + mats_path) create:true
+		doesFolderExist (project_path + cols_path) create:true
+		doesFolderExist (project_path + tex_path) create:true
 		
 		-- Decide output filename based on .max filename
 		local full_path = project_path + scenes_path + ofilename + ".scene"
-		print full_path
 		format "Exporting to %\n" full_path
 		fs.begin full_path
 		fs.beginArray()

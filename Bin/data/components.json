@@ -1,7 +1,7 @@
 {
 	"sizes" : {
-		"default" : 128,
-		"transform" : 64
+		"default" : 512,
+		"transform" : 512
 	},
   "init_order" : {
     "entity" : 100,
@@ -13,9 +13,9 @@
     "ai_patrol",
     "camera_thirdperson",
     "camera_shadowmerge",
-	"auxcamera_shadowmerge",
     "bullet_controller",
-	"shadow_controller",
+		"shadow_controller",
+		"light",
     "hierarchy",
     "cone_of_light",
     "collider",

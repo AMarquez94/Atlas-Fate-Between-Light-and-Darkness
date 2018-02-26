@@ -6,7 +6,7 @@ gc()
 filein "DPManager.ms"
 filein "MCVExportMesh.ms"
 filein "MCVExportScene.ms"
-
+filein "DPGenerator.ms"
 -- Create a rollout floater and load it.
 try(cui.UnRegisterDialogBar FirstDialog)catch()
 try(destroyDialog FirstDialog)catch()
@@ -82,75 +82,104 @@ rollout SBSelection "Selection Tools" width:477 height:252
 )
 
 -- Export tools, to export entire scenes or meshes.
-rollout SBExport "Export Tools" width:474 height:358
+rollout SBExport "Export Tools" width:474 height:469
 (
 	edittext 'asset_dir' "Asset dir:" pos:[18,17] width:389 height:20 fieldwidth:340 labelOnTop:false align:#left
 	button 'btn_test' "..." pos:[420,17] width:25 height:21 toolTip:"This is a tooltip" align:#left
 	
 	GroupBox 'grp1' "Export Mesh" pos:[10,54] width:450 height:101 align:#left
-	GroupBox 'grp2' "Export Scene" pos:[11,162] width:450 height:153 align:#left
-	progressBar 'pb6' "ProgressBar" pos:[12,326] width:449 height:21 align:#left color:green
+	GroupBox 'grp2' "Export Scene" pos:[10,270] width:450 height:153 align:#left
+	progressBar 'pb6' "ProgressBar" pos:[11,434] width:449 height:21 color:(color 0 255 0) align:#left
 	edittext 'edt24' "Name" pos:[193,79] width:234 height:19 align:#left
 	button 'btn34' "Export Selection" pos:[194,117] width:173 height:22 align:#left
 	button 'btn35' "All" pos:[376,117] width:51 height:22 align:#left
 	checkbox 'chk1' "Generate Collider" pos:[29,107] width:102 height:14 align:#left
 	checkbox 'chk2' "Generate LOD" pos:[29,82] width:88 height:14 align:#left
-	button 'btn36' "Button" pos:[159,186] width:2 height:116 align:#left
-	button 'btn39' "Export Selection" pos:[192,273] width:173 height:22 align:#left
-	button 'btn40' "All" pos:[374,273] width:51 height:22 align:#left
+	button 'btn36' "Button" pos:[158,294] width:2 height:116 align:#left
+	button 'btn39' "Export Selection" pos:[191,381] width:173 height:22 align:#left
+	button 'btn40' "All" pos:[373,381] width:51 height:22 align:#left
 	button 'btn41' "Button" pos:[160,75] width:2 height:70 align:#left
-	edittext 'scene_name' "Name" pos:[192,192] width:234 height:19 align:#left
-	checkbox 'chk5' "Generate Colliders" pos:[29,272] width:108 height:14 align:#left
-	checkbox 'chk6' "Generate LODS" pos:[29,247] width:97 height:14 align:#left
-	checkbox 'chk7' "Generate Textures" pos:[29,221] width:107 height:14 align:#left checked:true
-	checkbox 'chk8' "Generate Materials" pos:[29,196] width:111 height:14 align:#left checked:true
-	checkbox 'chk9' "Rewrite existing files" pos:[308,223] width:120 height:14 align:#left checked:true
+	edittext 'scene_name' "Name" pos:[191,300] width:234 height:19 align:#left
+	checkbox 'chk5' "Generate Colliders" pos:[28,380] width:108 height:14 align:#left
+	checkbox 'chk6' "Generate LODS" pos:[28,355] width:97 height:14 align:#left
+	checkbox 'chk7' "Generate Textures" pos:[28,329] width:107 height:14 checked:true align:#left
+	checkbox 'chk8' "Generate Materials" pos:[28,304] width:111 height:14 checked:true align:#left
+	checkbox 'chk9' "Rewrite existing files" pos:[307,331] width:120 height:14 checked:true align:#left
+
+	GroupBox 'grp10' "Export Prefab" pos:[10,161] width:450 height:101 align:#left
+	edittext 'edt12' "Name" pos:[193,186] width:234 height:19 align:#left
+	button 'btn27' "Export Selection" pos:[194,224] width:173 height:22 align:#left
+	button 'btn28' "All" pos:[376,224] width:51 height:22 align:#left
+	checkbox 'chk24' "Generate Collider" pos:[29,214] width:102 height:14 align:#left
+	checkbox 'chk25' "Generate LOD" pos:[29,189] width:88 height:14 align:#left
+	button 'btn29' "Button" pos:[160,182] width:2 height:70 align:#left
 	
-	on SBExport open do (
-		scene_name.text = getFilenameFile maxFileName
+	on SBExport open do
+	(
+			scene_name.text = getFilenameFile maxFileName
 	)
 	
-	on btn_Test pressed do (
-		
-		dir = getSavePath caption:"Select Folder" initialDir:#images
-		asset_dir.text = dir
-	)
-	
-	on btn34 pressed do (
-		
-		pb6.value = 0
-		local objs_selected = selection as array
-		man_mexport.id = edt24.text
-		man_mexport.has_lod = chk2.state 
-		man_mexport.has_collider = chk1.state 
-		man_mexport.ExportMesh objs_selected asset_dir.text
-	)
-	
-	on btn35 pressed do (
-		
-		pb6.value = 0
-		man_mexport.id = edt24.text
-		man_mexport.has_lod = chk2.state 
-		man_mexport.has_collider = chk1.state 
-		man_mexport.ExportMesh $* asset_dir.text	
-	)
-	
-	on btn39 pressed do (
-		
-		pb6.value = 0
-		local objs_selected = selection as array
-		local scene_exporter = TSceneExporter()
-		scene_exporter.project_path = asset_dir.text +"\\"
-		scene_exporter.exportAll objs_selected scene_name.text pb6
-	)
-	
-	on btn40 pressed do (
-		
-		pb6.value = 0
-		local scene_exporter = TSceneExporter()
-		scene_exporter.project_path = asset_dir.text +"\\"
-		scene_exporter.exportAll $* scene_name.text pb6
-	)
+	on btn_test pressed do
+	(
+			
+			dir = getSavePath caption:"Select Folder" initialDir:#images
+			asset_dir.text = dir
+		)
+	on btn34 pressed do
+	(
+			
+			pb6.value = 0
+			local objs_selected = selection as array
+			man_mexport.id = edt24.text
+			man_mexport.has_lod = chk2.state 
+			man_mexport.has_collider = chk1.state 
+			man_mexport.ExportMesh objs_selected asset_dir.text
+		)
+	on btn35 pressed do
+	(
+			
+			pb6.value = 0
+			man_mexport.id = edt24.text
+			man_mexport.has_lod = chk2.state 
+			man_mexport.has_collider = chk1.state 
+			man_mexport.ExportMesh $* asset_dir.text	
+		)
+	on btn39 pressed do
+	(
+			
+			pb6.value = 0
+			local objs_selected = selection as array
+			local scene_exporter = TSceneExporter()
+			scene_exporter.project_path = asset_dir.text +"\\"
+			scene_exporter.exportAll objs_selected scene_name.text pb6
+		)
+	on btn40 pressed do
+	(
+			
+			pb6.value = 0
+			local scene_exporter = TSceneExporter()
+			scene_exporter.project_path = asset_dir.text +"\\"
+			scene_exporter.exportAll $* scene_name.text pb6
+		)
+	on btn27 pressed do
+	(
+			
+			pb6.value = 0
+			local objs_selected = selection as array
+			man_mexport.id = edt24.text
+			man_mexport.has_lod = chk2.state 
+			man_mexport.has_collider = chk1.state 
+			man_mexport.ExportMesh objs_selected asset_dir.text
+		)
+	on btn28 pressed do
+	(
+			
+			pb6.value = 0
+			man_mexport.id = edt24.text
+			man_mexport.has_lod = chk2.state 
+			man_mexport.has_collider = chk1.state 
+			man_mexport.ExportMesh $* asset_dir.text	
+		)
 )
 
 -- Animation tools
@@ -160,10 +189,27 @@ rollout SBAnimator "Animation Tools"
 )
 
 -- Utils Tools
-rollout SBUtils "Utils Tools" 
+rollout SBUtils "Utils Tools" width:469 height:95
 (
-
+	dropdownList 'ddl3' "" pos:[138,36] width:93 height:21 items:#("basic", "convex", "mesh") align:#left
+	label 'lbl3' "Type" pos:[108,38] width:29 height:17 align:#left
+	GroupBox 'grp11' "Collider Generator" pos:[9,9] width:453 height:74 align:#left
+	button 'btn30' "Generate Selection" pos:[242,37] width:120 height:20 align:#left
+	button 'btn31' "All" pos:[374,37] width:54 height:20 align:#left
+	checkbox 'chk1' "As Entity" pos:[25,38] width:72 height:16 align:#left
+	
+	on btn30 pressed do
+	(
+			local col_gen = ColliderGenerator type:ddl3.selected
+			col_gen.generateCollider selection chk1.state 
+		)
+	on btn31 pressed do
+	(
+			local col_gen = ColliderGenerator type:ddl3.selected
+			col_gen.generateCollider rootScene.world.children chk1.state 
+		)
 )
+
 -- Asset Library
 rollout SBLibrary "Asset Library" 
 (
@@ -177,4 +223,4 @@ addrollout SBExport FirstDialog rolledUp:on
 addrollout SBAnimator FirstDialog rolledUp:on
 addrollout SBUtils FirstDialog rolledUp:on
 addrollout SBLibrary FirstDialog rolledUp:on
---cui.RegisterDialogBar Fi
+--cui.RegisterDial
