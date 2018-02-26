@@ -10,16 +10,17 @@
 			"prefab": "data/prefabs/capsule.prefab",
 			"name": "Capsule 1",
 			"transform": {
-				"pos": "0 0 0"
+				"pos": "-5 38 4"
 			},
 			"dynamic_objects": {
-				"waypoints": [{
-						"position": "0 0 0"
-					},
-					{
-						"position": "5 5 5"
-					}
-				],
+        "waypoints": [
+          {
+            "position": "-5 38 4"
+          },
+          {
+            "position": "-5 50 130"
+          }
+        ],
 				"speed": 4,
 				"rotationSpeed": 180
 			}
