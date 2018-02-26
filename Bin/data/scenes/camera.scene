@@ -82,7 +82,7 @@
 		}
 	},
 	{
-		"xentity": {
+		"entity": {
 			"name": "AuxCameraVer",
 			"transform": {},
 			"hierarchy": {

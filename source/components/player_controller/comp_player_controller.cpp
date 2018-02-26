@@ -355,6 +355,9 @@ void TCompPlayerController::ShadowMergingVerticalState(float dt){
 				ChangeState("smHor");
 				return;
 			}
+			else {
+				Engine.getCameras().blendInCamera(getEntityByName("AuxCameraVer"), .2f, CModuleCameras::EPriority::TEMPORARY);
+			}
 		}
 
 		// Move the player
@@ -385,7 +388,7 @@ void TCompPlayerController::ShadowMergingEnemyState(float dt){
 	assert(c_camera);
 
 	// Replace this with an smooth camera interpolation
-	Engine.getCameras().blendOutCamera(getEntityByName(camera_actual), .2f);
+	//Engine.getCameras().blendOutCamera(getEntityByName(camera_actual), .2f);
 	camera_actual = camera_shadowmerge_hor;
 	Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
 
@@ -414,7 +417,7 @@ void TCompPlayerController::ShadowMergingExitState(float dt){
 
 	// Bring back the main camera to our thirdperson camera
 	// Replace this with an smooth camera interpolation
-	Engine.getCameras().blendOutCamera(getEntityByName(camera_actual), .2f);
+	//Engine.getCameras().blendOutCamera(getEntityByName(camera_actual), .2f);
 	camera_actual = camera_thirdperson;
 	Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
 

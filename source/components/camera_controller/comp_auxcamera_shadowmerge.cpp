@@ -28,7 +28,7 @@ void TCompAuxCameraShadowMerge::load(const json& j, TEntityParseContext& ctx)
 	//_clipping_offset = loadVEC3(j["offset"]);
 	//_clamp_angle = VEC2(deg2rad(_clamp_angle.x), deg2rad(_clamp_angle.y));
 
-	//// Load the target and set his axis as our axis.
+	// Load the target and set his axis as our axis.
 	//_h_target = ctx.findEntityByName(_target_name);
 	//TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>();
 
@@ -65,10 +65,11 @@ void TCompAuxCameraShadowMerge::onMsgEntityCreated(const TMsgEntityCreated & msg
 void TCompAuxCameraShadowMerge::onMsgCameraActive(const TMsgCameraActivated &msg)
 {
 	active = true;
-	/*TCompTransform* targetTrans = ((CEntity*)_h_target)->get<TCompTransform>();
+	TCompTransform* targetTrans = ((CEntity*)_h_target)->get<TCompTransform>();
 	TCompCollider* targetCollider = ((CEntity*)_h_target)->get<TCompCollider>();
 	TCompTransform* myTrans = get<TCompTransform>();
 
+	dbg("My pos (%f,%f,%f)\n", myTrans->getPosition().x, myTrans->getPosition().y, myTrans->getPosition().z);
 
 	VEC3 dist = myTrans->getPosition() - targetTrans->getPosition();
 
@@ -77,9 +78,9 @@ void TCompAuxCameraShadowMerge::onMsgCameraActive(const TMsgCameraActivated &msg
 	myTrans->setPosition(myTrans->getPosition() - dist);
 	dbg("New pos (%f, %f, %f)\n", myTrans->getPosition().x, myTrans->getPosition().y, myTrans->getPosition().z);
 	float deltayaw = myTrans->getDeltaYawToAimTo(myTrans->getPosition() + targetCollider->normal_gravity);
-	dbg("deltayaw %f\n", deltayaw);
+	dbg("deltayaw %f\n", rad2deg(deltayaw));
 	_current_euler.x = _current_euler.x + deltayaw;
-	myTrans->setPosition(myTrans->getPosition() + dist);*/
+	myTrans->setPosition(myTrans->getPosition() + dist);
 }
 
 void TCompAuxCameraShadowMerge::onMsgCameraFullActive(const TMsgCameraFullyActivated & msg)
@@ -92,7 +93,7 @@ void TCompAuxCameraShadowMerge::onMsgCameraFullActive(const TMsgCameraFullyActiv
 	parentTrans->setPosition(myTrans->getPosition());
 	parentController->setCurrentEuler(_current_euler.x, _current_euler.y);
 
-	Engine.getCameras().blendOutCamera(CHandle(this).getOwner(), 0.f);
+	Engine.getCameras().blendOutCamera(CHandle(this).getOwner(), .0f);
 	Engine.getCameras().blendInCamera(getEntityByName(parentName), .0f, CModuleCameras::EPriority::GAMEPLAY);
 
 	//Engine.getCameras().blendInCamera();
