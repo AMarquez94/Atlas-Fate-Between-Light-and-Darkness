@@ -20,7 +20,8 @@
     "cone_of_light",
     "collider",
     "camera_flyover",
-    "camera"
+    "camera",
+    "dynamic_objects"
   ],
   "render_debug": [
     "player_controller"

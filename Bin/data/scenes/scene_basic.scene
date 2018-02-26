@@ -1,0 +1,114 @@
+[
+  {
+    "entity": {
+      "name": "The Enemy",
+      "transform": {
+        "pos": "1 0 0",
+        "lookat": "-1 0 -1"
+      },
+      "render": {
+        "mesh": "data/meshes/bot211.mesh",
+        "materials": [
+          "data/materials/body.material"
+        ]
+      },
+      "ai_patrol": {
+        "waypoints": [
+          {
+            "position": "-10 0 0",
+            "lookAt": "-1 0 -1"
+          },
+          {
+            "position": "5 0 5",
+            "lookAt": "-1 0 -1"
+          },
+          {
+            "position": "2 0 10",
+            "lookAt": "-1 0 -1"
+          }
+        ]
+      }
+
+    }
+  },
+  {
+    "entity": {
+      "name": "prop_light",
+      "transform": {
+        "pos": "56.436 48.786 31.666",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/Teapot001.mesh",
+          "materials": [
+            "data/materials/mtl_default_orange.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity": {
+      "prefab": "data/prefabs/capsule.prefab",
+      "name": "Capsule 1",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "dynamic_objects": {
+        "waypoints": [
+          {
+            "position": "0 0 0"
+          },
+          {
+            "position": "5 5 5"
+          }
+        ],
+        "speed": 4,
+        "rotationSpeed": 180
+      }
+    }
+  },
+  {
+    "entity": {
+      "prefab": "data/prefabs/capsule.prefab",
+      "name": "Capsule 2",
+      "transform": {
+        "pos": "1.73 1.73 1.73"
+      },
+      "dynamic_objects": {
+        "waypoints": [
+          {
+            "position": "0 0 0"
+          },
+          {
+            "position": "5 5 5"
+          }
+        ],
+        "speed": 4,
+        "rotationSpeed": 180
+      }
+    }
+  },
+  {
+    "entity": {
+      "prefab": "data/prefabs/capsule.prefab",
+      "name": "Capsule 3",
+      "transform": {
+        "pos": "3.46 3.46 3.46"
+      },
+      "dynamic_objects": {
+        "waypoints": [
+          {
+            "position": "0 0 0"
+          },
+          {
+            "position": "5 5 5"
+          }
+        ],
+        "speed": 4,
+        "rotationSpeed": 180
+      }
+    }
+  }
+]
