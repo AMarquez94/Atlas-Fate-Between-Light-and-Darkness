@@ -50,7 +50,7 @@ void TCompDynamicObjects::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompDynamicObjects::Init() {
-	_currentWaypoint = 0;
+	_currentWaypoint = 1;
 }
 
 void TCompDynamicObjects::rotateTowardsVec(VEC3 objective, float dt) {
@@ -94,8 +94,8 @@ void TCompDynamicObjects::StartCycle(){
 	}
 }
 void TCompDynamicObjects::update(float dt) {
-	StartCycle();
-	if (_start) {
+	//StartCycle();
+	if (!_start) {
 		TCompTransform *mypos = get<TCompTransform>();
 		if (_currentWaypoint != _waypoints.size()) {
 			//rotateTowardsVec(getWaypoint(), dt);
