@@ -221,9 +221,10 @@
       ,
       "collider":
       {
-        "shape": "box"
-        ,				"mask": "player",
-				"group": "scenario",
+        "shape": "box",
+		"is_trigger" : true,
+        "mask": "player",
+		"group": "scenario",
         "halfExtent": "1.0 1.00556 1.0"
       }
     }

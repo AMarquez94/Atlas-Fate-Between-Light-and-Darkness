@@ -1,0 +1,27 @@
+[
+  {
+    "entity":
+    {
+      "name": "suelo"
+      ,
+      "transform":
+      {
+        "pos": "-10.9078 0.0 8.58285"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/suelo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default_checker_floor.material"
+          ]
+        }
+      ]
+    }
+  }
+]

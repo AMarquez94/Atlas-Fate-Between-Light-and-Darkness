@@ -95,7 +95,7 @@ void TCompCollider::update(float dt) {
 	if (config.gravity) {
 
 		//velocity += normal_gravity;
-		physx::PxControllerCollisionFlags col = controller->move(physx::PxVec3(normal_gravity.x, normal_gravity.y * dt * 10, normal_gravity.z), 0.f, dt, physx::PxControllerFilters());
+		physx::PxControllerCollisionFlags col = controller->move(physx::PxVec3(normal_gravity.x, normal_gravity.y * dt, normal_gravity.z), 0.f, dt, physx::PxControllerFilters());
 		isGrounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN) ? true : false;
 		//dbg("%f %f %f\n", normal_gravity.x, normal_gravity.y, normal_gravity.z);
 	}

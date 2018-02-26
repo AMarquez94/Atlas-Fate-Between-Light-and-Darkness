@@ -12,6 +12,7 @@
 #include "components/player_controller/comp_player_controller.h"
 #include "components/comp_tags.h"
 #include "components/comp_light.h"
+#include "../comp_name.h"
 
 DECL_OBJ_MANAGER("shadow_controller", TCompShadowController);
 
@@ -21,19 +22,6 @@ void TCompShadowController::debugInMenu() {
 
 void TCompShadowController::load(const json& j, TEntityParseContext& ctx) {
 
-	auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("light"));
-	for (auto h : handles) {
-		CEntity* current_light = h;
-		TCompLight * c_light = current_light->get<TCompLight>();
-		if (c_light->type == "directional") // by now we will only retrieve directional lights
-		{
-			TCompTransform * c_light_trans = current_light->get<TCompTransform>();
-			static_points.push_back(c_light_trans->getPosition()); c_light_trans->getFront();
-			static_dirs.push_back(c_light_trans->getFront());
-		}
-	}
-
-	//static_points.emplace_back(VEC3(56.436f,48.786f,31.666f));
 	Init();
 }
 
@@ -58,6 +46,26 @@ void TCompShadowController::Init() {
 	// Retrieve all scene lights
 }
 
+void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
+
+	auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("light"));
+
+	for (auto h : handles) {
+		CEntity* current_light = h;
+		TCompLight * c_light = current_light->get<TCompLight>();
+		if (c_light->type == "directional") // by now we will only retrieve directional lights
+		{
+			static_lights.push_back(c_light);
+		}
+	}
+}
+
+void TCompShadowController::registerMsgs() {
+
+	DECL_MSG(TCompShadowController, TMsgSceneCreated, onSceneCreated);
+}
+
+
 // We can also use this public method from outside this class.
 bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 {
@@ -67,11 +75,21 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 	// Different light tests must be made.
 
 	CModulePhysics::RaycastHit hit;
-	for (unsigned int x = 0; x < static_points.size(); x++) {
+	for (unsigned int x = 0; x < static_lights.size(); x++) {
+		CEntity * c_entity = CHandle(static_lights[x]).getOwner();
+		TCompTransform * c_trans = c_entity->get<TCompTransform>();
+		VEC3 front = c_trans->getFront();
 
-		float distance = VEC3::Distance(static_points[x], point);
-		if (!EnginePhysics.Raycast(point, -static_dirs[x], distance, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario")))
+		float distance = VEC3::Distance(c_trans->getPosition(), point);
+		if (!EnginePhysics.Raycast(point, c_trans->getFront(), distance, hit, EnginePhysics.eSTATIC))
 			return false;
+
+		if (EnginePhysics.Raycast(point, c_trans->getFront(), distance, hit, EnginePhysics.eSTATIC))
+		{
+			CEntity * ent = CHandle(hit.transform).getOwner();
+			TCompName * text = ent->get<TCompName>();
+			dbg("entity name: %s", text->getName());
+		}
 	}
 
 	// Get all entites tagged as dynamic light, and test them.

@@ -71,16 +71,12 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		{
 			shape = gPhysics->createShape(PxSphereGeometry(config.radius), *gMaterial);
 			offset.p.y = config.radius;
+			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
 		}
-		else if (config.shapeType == physx::PxGeometryType::eSPHERE)
-		{
-			shape = gPhysics->createShape(PxSphereGeometry(config.radius), *gMaterial);
-			offset.p.y = config.radius;
-		}
-		else if (config.shapeType == physx::PxGeometryType::eTRIANGLEMESH)
-		{
+		//else if (config.shapeType == physx::PxGeometryType::eTRIANGLEMESH)
+		//{
 
-		}
+		//}
 		//....todo: more shapes
 
 		setupFiltering(shape, config.group, config.mask);

@@ -35,8 +35,8 @@ struct ExportMeshManager (
 	id, 
 	has_collider,
 	has_lod,
-	base_path = "data/",
-	mesh_path = base_path + "meshes/",
+	base_path = "data\\",
+	mesh_path = base_path + "meshes\\",
 	
 	function ExportMesh out_group out_path = (
 	
@@ -52,16 +52,16 @@ struct ExportMeshManager (
 		--------------------------------------------------------------------------------
 		
 		if out_group.count == 1 and id != "" then  (
-			local str_path = out_path + "/" + id + ".mesh"
+			local str_path = out_path + "\\" + id + ".mesh"
 			exportMeshObject out_group[1] str_path
 		)
 		else if out_group.count == 1 then (
-			local str_path = out_path+ "/" + out_group[1].Name + ".mesh"
+			local str_path = out_path+ "\\" + out_group[1].Name + ".mesh"
 			exportMeshObject out_group[1] str_path
 		)
 		else (
 			for i in out_group do (
-				local str_path = out_path+ "/" + i.Name + "_" + id + ".mesh"
+				local str_path = out_path+ "\\" + i.Name + "_" + id + ".mesh"
 				exportMeshObject i str_path
 			)
 		)

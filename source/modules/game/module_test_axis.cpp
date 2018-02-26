@@ -18,34 +18,35 @@ CCamera camera;
 
 bool CModuleTestAxis::start()
 {
- /* {
-	TEntityParseContext ctx;
-	parseScene("data/scenes/scene_basic.scene", ctx);
-  }*/
+
+	//{
+	//	TEntityParseContext ctx;
+	//	parseScene("data/scenes/whitebox_test.scene", ctx);
+	//}
 	{
 		TEntityParseContext ctx;
 		parseScene("data/scenes/dp_milestone1_lights.scene", ctx);
 	}
-  {
-	  TEntityParseContext ctx;
-	  parseScene("data/scenes/dp_milestone1_objects.scene", ctx);
-  }
-  {
-	  TEntityParseContext ctx;
-	  parseScene("data/scenes/dp_milestone1_colliders.scene", ctx);
-  }
-  {
-	  TEntityParseContext ctx;
-	  parseScene("data/scenes/player.scene", ctx);
-  }
-  {
-	  TEntityParseContext ctx;
-	  parseScene("data/scenes/enemy.scene", ctx);
-  }
-  {
-	  TEntityParseContext ctx;
-	  parseScene("data/scenes/camera.scene", ctx);
-  }
+	{
+		TEntityParseContext ctx;
+		parseScene("data/scenes/dp_milestone1_objects.scene", ctx);
+	}
+	{
+		TEntityParseContext ctx;
+		parseScene("data/scenes/dp_milestone1_colliders.scene", ctx);
+	}
+	{
+		TEntityParseContext ctx;
+		parseScene("data/scenes/player.scene", ctx);
+	}
+	{
+		TEntityParseContext ctx;
+		parseScene("data/scenes/enemy.scene", ctx);
+	}
+	{
+		TEntityParseContext ctx;
+		parseScene("data/scenes/camera.scene", ctx);
+	}
  
   camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
   camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
@@ -67,6 +68,13 @@ bool CModuleTestAxis::start()
   h_camera = getEntityByName("main_camera");
   if(h_camera.isValid())
 	Engine.getCameras().setOutputCamera(h_camera);
+
+  auto om = getObjectManager<CEntity>();
+  om->forEach([](CEntity* e) {
+	  TMsgSceneCreated msg;
+	  CHandle h_e(e);
+	  h_e.sendMsg(msg);
+  });
 
   return true;
 }

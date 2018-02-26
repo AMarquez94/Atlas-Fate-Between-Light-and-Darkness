@@ -685,7 +685,7 @@ const bool TCompPlayerController::ConcaveTest(void)
 			dbg("angles concave: %f\n", rad2deg(acosf(hit.normal.Dot(c_my_collider->GetUpVector()))));
 
 			c_my_collider->SetUpVector(hit.normal);
-			c_my_collider->normal_gravity = -hit.normal;
+			c_my_collider->normal_gravity = 9.8f * -hit.normal;
 
 			Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), target, hit.normal).Transpose();
 
@@ -719,7 +719,7 @@ const bool TCompPlayerController::ConvexTest(void)
 			dbg("angles convex: %f\n", 180 + rad2deg(acosf(hit.normal.Dot(c_my_collider->GetUpVector()))));
 
 			c_my_collider->SetUpVector(hit.normal);
-			c_my_collider->normal_gravity = -hit.normal;
+			c_my_collider->normal_gravity = 9.8f * -hit.normal;
 
 			QUAT new_rotation = createLookAt(hit.point, target, hit.normal);
 			VEC3 new_pos = hit.point;
@@ -733,8 +733,9 @@ const bool TCompPlayerController::ConvexTest(void)
 
 const bool TCompPlayerController::ShadowTest() {
 
+	TCompCollider *c_my_collider = get<TCompCollider>();
 	TCompShadowController * shadow_oracle = get<TCompShadowController>();
-	return stamina > 0.f && !inhibited && shadow_oracle->is_shadow && btShadowMerging.isPressed();
+	return stamina > 0.f && !inhibited && shadow_oracle->is_shadow && btShadowMerging.isPressed() && c_my_collider->isGrounded;
 }
 
 void TCompPlayerController::ResetPlayer()
@@ -750,7 +751,7 @@ void TCompPlayerController::ResetPlayer()
 
 	// Set collider gravity settings
 	c_my_collider->SetUpVector(-EnginePhysics.gravity);
-	c_my_collider->normal_gravity = EnginePhysics.gravity;
+	c_my_collider->normal_gravity = 9.8f * EnginePhysics.gravity;
 
 	QUAT new_rotation = createLookAt(c_my_transform->getPosition(), new_front, -EnginePhysics.gravity);
 	c_my_transform->setRotation(new_rotation);
