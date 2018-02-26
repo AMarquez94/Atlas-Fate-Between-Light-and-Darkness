@@ -11,7 +11,7 @@ namespace Input
 		_buttons[MOUSE_RIGHT] = false;
 		_wheel_delta = 0.f;
 		_position = VEC2(0.5f, 0.5f);
-		_lock_cursor = false;
+		_lock_cursor = true;
 	}
 
 	void CMouse::updateMouseData(float delta, TInterface_Mouse& data)
