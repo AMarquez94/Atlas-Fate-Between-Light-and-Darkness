@@ -25,45 +25,5 @@
 				"rotationSpeed": 180
 			}
 		}
-	},
-	{
-		"entity": {
-			"prefab": "data/prefabs/capsule.prefab",
-			"name": "Capsule 2",
-			"transform": {
-				"pos": "1.73 1.73 1.73"
-			},
-			"dynamic_objects": {
-				"waypoints": [{
-						"position": "0 0 0"
-					},
-					{
-						"position": "5 5 5"
-					}
-				],
-				"speed": 4,
-				"rotationSpeed": 180
-			}
-		}
-	},
-	{
-		"entity": {
-			"prefab": "data/prefabs/capsule.prefab",
-			"name": "Capsule 3",
-			"transform": {
-				"pos": "3.46 3.46 3.46"
-			},
-			"dynamic_objects": {
-				"waypoints": [{
-						"position": "0 0 0"
-					},
-					{
-						"position": "5 5 5"
-					}
-				],
-				"speed": 4,
-				"rotationSpeed": 180
-			}
-		}
 	}
 ]
