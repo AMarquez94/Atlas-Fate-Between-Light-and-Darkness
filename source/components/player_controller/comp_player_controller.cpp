@@ -310,10 +310,17 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 	if (motionButtonsPressed()) {
 
 		TCompTransform *t = get<TCompTransform>();
+		TCompCollider *c_my_collider = get<TCompCollider>();
+
 		VEC3 position = t->getPosition();
+		VEC3 prevUp = c_my_collider->GetUpVector();
 
 		if (ConcaveTest() || ConvexTest())
 		{
+
+			VEC3 postUp = c_my_collider->GetUpVector();
+			VEC3 dirToLookAt = -(prevUp + postUp);
+
 			if (!playerInFloor()) {
 
 				CEntity* e_camera = getEntityByName(camera_shadowmerge_ver);
@@ -321,10 +328,26 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 				assert(c_camera);
 
 				// Replace this with an smooth camera interpolation
+
+				TMsgSetCameraActive msg;
+				msg.previousCamera = camera_actual;
 				camera_actual = camera_shadowmerge_ver;
-				Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
+				msg.actualCamera = camera_actual;
+				msg.directionToLookAt = dirToLookAt;
+				CEntity* eCamera = getEntityByName("AuxCameraVer");
+				eCamera->sendMsg(msg);
+
+				//Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
 				ChangeState("smVer");
 				return;
+			}
+			else {
+				TMsgSetCameraActive msg;
+				msg.previousCamera = camera_actual;
+				msg.actualCamera = camera_actual;
+				msg.directionToLookAt = dirToLookAt;
+				CEntity* eCamera = getEntityByName("AuxCameraVer");
+				eCamera->sendMsg(msg);
 			}
 		}
 
@@ -346,9 +369,17 @@ void TCompPlayerController::ShadowMergingVerticalState(float dt){
 	if (motionButtonsPressed()) {
 
 		TCompTransform *t = get<TCompTransform>();
+		TCompCollider *c_my_collider = get<TCompCollider>();
+
 		VEC3 position = t->getPosition();
 
+		VEC3 prevUp = c_my_collider->GetUpVector();
+
 		if (ConcaveTest() || ConvexTest()) {
+
+			VEC3 postUp = c_my_collider->GetUpVector();
+			VEC3 dirToLookAt = -(prevUp + postUp);
+			dirToLookAt.Normalize();
 
 			if (playerInFloor()) {
 				CEntity* e_camera = getEntityByName(camera_shadowmerge_hor);
@@ -357,9 +388,16 @@ void TCompPlayerController::ShadowMergingVerticalState(float dt){
 
 				// Replace this with an smooth camera interpolation
 
+
+				TMsgSetCameraActive msg;
+				msg.previousCamera = camera_actual;
+				msg.actualCamera = camera_shadowmerge_hor;
+				msg.directionToLookAt = dirToLookAt;
+				CEntity* eCamera = getEntityByName("AuxCameraVer");
+				eCamera->sendMsg(msg);
 				camera_actual = camera_shadowmerge_hor;
 
-				Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
+				//Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
 				ChangeState("smHor");
 				return;
 			}
@@ -367,6 +405,7 @@ void TCompPlayerController::ShadowMergingVerticalState(float dt){
 				TMsgSetCameraActive msg;
 				msg.previousCamera = camera_actual;
 				msg.actualCamera = camera_actual;
+				msg.directionToLookAt = dirToLookAt;
 				CEntity* eCamera = getEntityByName("AuxCameraVer");
 				eCamera->sendMsg(msg);
 				//Engine.getCameras().blendInCamera(getEntityByName("AuxCameraVer"), .2f, CModuleCameras::EPriority::TEMPORARY);

@@ -21,22 +21,6 @@ void TCompAuxCameraShadowMerge::debugInMenu()
 
 void TCompAuxCameraShadowMerge::load(const json& j, TEntityParseContext& ctx)
 {
-	//// Read from the json all the input data
-	//_speed = j.value("speed", 1.5f);
-	//_target_name = j.value("target", "");
-	//_clamp_angle = loadVEC2(j["clampangle"]);
-	//_clipping_offset = loadVEC3(j["offset"]);
-	//_clamp_angle = VEC2(deg2rad(_clamp_angle.x), deg2rad(_clamp_angle.y));
-
-	// Load the target and set his axis as our axis.
-	//_h_target = ctx.findEntityByName(_target_name);
-	//TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>();
-
-	//float yaw, pitch, roll;
-	//target_transform->getYawPitchRoll(&yaw, &pitch, &roll);
-	//_original_euler = VEC2(yaw, pitch + deg2rad(j.value("starting_pitch", -60.f)));
-	//_current_euler = _original_euler;
-
 	pause = false;
 	active = false;
 }
@@ -52,17 +36,11 @@ void TCompAuxCameraShadowMerge::registerMsgs()
 
 void TCompAuxCameraShadowMerge::onMsgEntityCreated(const TMsgEntityCreated & msg)
 {
-	//TCompHierarchy * tHierarchy = get<TCompHierarchy>();
-	//_h_parent = getEntityByName("SMCameraVer");
-	//TCompCameraShadowMerge *tParentController = ((CEntity *)_h_parent)->get<TCompCameraShadowMerge>();
-
-
 }
 
 void TCompAuxCameraShadowMerge::onMsgCameraActive(const TMsgCameraActivated &msg)
 {
 	active = true;
-
 }
 
 void TCompAuxCameraShadowMerge::onMsgCameraFullActive(const TMsgCameraFullyActivated & msg)
@@ -73,12 +51,11 @@ void TCompAuxCameraShadowMerge::onMsgCameraFullActive(const TMsgCameraFullyActiv
 
 	parentTrans->setPosition(myTrans->getPosition());
 	parentTrans->setRotation(myTrans->getRotation());
-	parentController->setCurrentEuler(_current_euler.x, _current_euler.y);
+	parentController->setCurrentEuler(_current_euler.x , _current_euler.y);
 
-	dbg("Current euler: %f, %f\n", rad2deg(parentController->getCurrentEuler().x), rad2deg(parentController->getCurrentEuler().y));
+	//dbg("Current euler: %f, %f\n", rad2deg(parentController->getCurrentEuler().x), rad2deg(parentController->getCurrentEuler().y));
 
 	Engine.getCameras().blendOutCamera(CHandle(this).getOwner(), .0f);
-	Engine.getCameras().blendInCamera(CHandle(eCamera), .0f, CModuleCameras::EPriority::GAMEPLAY);
 	//Engine.getCameras().blendOutCamera(CHandle(ePrevCamera), .0f);
 }
 
@@ -120,15 +97,36 @@ void TCompAuxCameraShadowMerge::onMsgCameraSetActive(const TMsgSetCameraActive &
 
 	myTrans->setPosition(myTrans->getPosition() - dist);
 
-	VEC3 vecToAim = targetCollider->normal_gravity;
+	VEC3 vecToAim = msg.directionToLookAt;
 	vecToAim.Normalize();
-	float deltayaw = myTrans->getDeltaYawToAimTo(myTrans->getPosition() + vecToAim);
+	
+	
 
-	_current_euler.x = _current_euler.x + deltayaw;
+	float prey, prep, y, p;
+	myTrans->getYawPitchRoll(&prey,&prep,0);
+	//myTrans->setYawPitchRoll(y + deltayaw, p, r);
+	myTrans->lookAt(myTrans->getPosition(), myTrans->getPosition() + vecToAim);
+
+	float deltayaw = myTrans->getDeltaYawToAimTo(myTrans->getPosition() + vecToAim);
+	//dbg("DELTA YAW: %f\n", deltayaw);
+
+	myTrans->getYawPitchRoll(&y, &p, 0);
+
+	_current_euler.x = _current_euler.x + (y - prey);
+	_current_euler.y = _current_euler.y + (p - prep);
+	//dbg("EULER: %f, %f\n", rad2deg(_current_euler.x), rad2deg(_current_euler.y));
 	//_current_euler.y = _current_euler.y + p - pre_p;// _starting_pitch;
 	myTrans->setPosition(myTrans->getPosition() + dist);
 	
-	Engine.getCameras().blendInCamera(CHandle(this).getOwner(), .2f, CModuleCameras::EPriority::TEMPORARY);
+	Engine.getCameras().blendInCamera(CHandle(this).getOwner(), .5f, CModuleCameras::EPriority::TEMPORARY);
+
+	if (msg.actualCamera.compare(msg.previousCamera) != 0) {
+		tCameraPos->setPosition(myTrans->getPosition());
+		tCameraPos->setRotation(myTrans->getRotation());
+		tCameraController->setCurrentEuler(_current_euler.x, _current_euler.y);
+	}
+
+	Engine.getCameras().blendInCamera(CHandle(eCamera), .5f, CModuleCameras::EPriority::GAMEPLAY);
 }
 
 void TCompAuxCameraShadowMerge::update(float dt)

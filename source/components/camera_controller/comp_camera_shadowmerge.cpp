@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "entity/entity_parser.h"
 #include "comp_camera_shadowmerge.h"
+#include "components/camera_controller/comp_camera_thirdperson.h"
 #include "components/comp_transform.h"
 #include "components/comp_name.h"
 
@@ -42,14 +43,13 @@ void TCompCameraShadowMerge::load(const json& j, TEntityParseContext& ctx)
 void TCompCameraShadowMerge::registerMsgs()
 {
 	DECL_MSG(TCompCameraShadowMerge, TMsgCameraActivated, onMsgCameraActive);
+	DECL_MSG(TCompCameraShadowMerge, TMsgCameraFullyActivated, onMsgCameraFullActive);
 	DECL_MSG(TCompCameraShadowMerge, TMsgCameraDeprecated, onMsgCameraDeprecated);
 	DECL_MSG(TCompCameraShadowMerge, TMsgSetCameraActive, onMsgActivateMyself);
 }
 
 void TCompCameraShadowMerge::onMsgCameraActive(const TMsgCameraActivated &msg)
 {
-	active = true;
-
 	std::string mahName = ((TCompName*)get<TCompName>())->getName();
 	if (mahName.compare("SMCameraVer") == 0) {
 		
@@ -75,9 +75,17 @@ void TCompCameraShadowMerge::onMsgCameraActive(const TMsgCameraActivated &msg)
 	dbg("Camera active %s\n", ((TCompName*)get<TCompName>())->getName());
 }
 
+void TCompCameraShadowMerge::onMsgCameraFullActive(const TMsgCameraFullyActivated & msg)
+{
+	active = true;
+	dbg("Camera full active %s\n", ((TCompName*)get<TCompName>())->getName());
+}
+
 void TCompCameraShadowMerge::onMsgCameraDeprecated(const TMsgCameraDeprecated &msg)
 {
 	active = false;
+	TCompCameraThirdPerson *tTpCamera = ((CEntity*)getEntityByName("TPCamera"))->get<TCompCameraThirdPerson>();
+	_current_euler.x = tTpCamera->getCurrentEuler().x;
 	_current_euler.y = _original_euler.y;
 	dbg("Camera inactive %s\n", ((TCompName*)get<TCompName>())->getName());
 }

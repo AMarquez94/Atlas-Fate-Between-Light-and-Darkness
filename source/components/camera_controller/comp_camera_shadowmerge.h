@@ -27,6 +27,7 @@ private:
 	bool active;
 
 	void onMsgCameraActive(const TMsgCameraActivated &msg);
+	void onMsgCameraFullActive(const TMsgCameraFullyActivated &msg);
 	void onMsgCameraDeprecated(const TMsgCameraDeprecated &msg);
 	void onMsgActivateMyself(const TMsgSetCameraActive &msg);
 
