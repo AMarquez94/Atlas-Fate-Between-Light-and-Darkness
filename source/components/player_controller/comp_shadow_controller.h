@@ -19,6 +19,7 @@ public:
 	float test_levels;
 
 	std::vector<TCompLight*> static_lights;
+	std::vector<TCompCollider*> dynamic_lights;
 
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);

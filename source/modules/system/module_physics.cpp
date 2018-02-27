@@ -2,6 +2,8 @@
 #include "module_physics.h"
 #include "entity/entity.h"
 #include "components/comp_transform.h"
+#include "render/mesh/mesh.h"
+#include "render/mesh/mesh_loader.h"
 
 #pragma comment(lib,"PhysX3_x64.lib")
 #pragma comment(lib,"PhysX3Common_x64.lib")
@@ -9,6 +11,7 @@
 #pragma comment(lib,"PxFoundation_x64.lib")
 #pragma comment(lib,"PxPvdSDK_x64.lib")
 #pragma comment(lib,"PhysX3CharacterKinematic_x64.lib")
+#pragma comment(lib,"PhysX3Cooking_x64.lib")
 
 using namespace physx;
 
@@ -73,10 +76,32 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 			offset.p.y = config.radius;
 			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
 		}
-		//else if (config.shapeType == physx::PxGeometryType::eTRIANGLEMESH)
-		//{
+		else if (config.shapeType == physx::PxGeometryType::eTRIANGLEMESH)
+		{
+			//shape = gPhysics->createShape(PxSphereGeometry(1), *gMaterial);
+			//offset.p.y = config.radius;
+			//shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
 
-		//}
+			CRenderMesh* res = loadMesh("data/meshes/Teapot001.mesh");//basic testing
+			res->ib;
+			PxTriangleMeshDesc meshDesc;
+			meshDesc.points.count = res->num_vertexs;
+			meshDesc.points.stride = sizeof(PxVec3);
+			meshDesc.points.data = res->vb;
+			meshDesc.triangles.count = res->num_indices / 3;
+			meshDesc.triangles.stride = 3 * sizeof(PxU32);
+			meshDesc.triangles.data = res->ib;
+
+			PxDefaultMemoryOutputStream writeBuffer;
+			PxTriangleMeshCookingResult::Enum result;
+			bool status = gCooking->cookTriangleMesh(meshDesc, writeBuffer, &result);
+
+			PxDefaultMemoryInputData readBuffer(writeBuffer.getData(), writeBuffer.getSize());
+			PxTriangleMesh * tr_mesh = gPhysics->createTriangleMesh(readBuffer);
+			//tr_mesh->release();
+
+			return;
+		}
 		//....todo: more shapes
 
 		setupFiltering(shape, config.group, config.mask);
@@ -95,6 +120,7 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 
 		if (config.is_trigger)
 		{
+			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, false);
 			shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, false);
 			shape->setFlag(PxShapeFlag::eTRIGGER_SHAPE, true);
 			actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
@@ -281,6 +307,9 @@ bool CModulePhysics::start()
 	mControllerManager = PxCreateControllerManager(*gScene);
 	gScene->setSimulationEventCallback(&customSimulationEventCallback);
 
+	PxInitExtensions(*gPhysics, gPvd);
+	gCooking = PxCreateCooking(PX_PHYSICS_VERSION, *gFoundation, PxCookingParams(gPhysics->getTolerancesScale()));
+
 	return true;
 }
 
@@ -352,10 +381,14 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
 		if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_FOUND)
 		{
 			e_trigger->sendMsg(TMsgTriggerEnter{ h_other_comp_collider.getOwner() });
+			TCompCollider * comp = (TCompCollider*)h_trigger_comp_collider;
+			comp->isInside = true;
 		}
 		else if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_LOST)
 		{
 			e_trigger->sendMsg(TMsgTriggerExit{ h_other_comp_collider.getOwner() });
+			TCompCollider * comp = (TCompCollider*)h_trigger_comp_collider;
+			comp->isInside = false;
 		}
 	}
 }

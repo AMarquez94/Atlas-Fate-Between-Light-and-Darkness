@@ -25,6 +25,10 @@ bool CModuleTestAxis::start()
 	//}
 	{
 		TEntityParseContext ctx;
+		parseScene("data/scenes/dp_teapot_test.scene", ctx);
+	}
+	{
+		TEntityParseContext ctx;
 		parseScene("data/scenes/dp_milestone1_lights.scene", ctx);
 	}
 	{

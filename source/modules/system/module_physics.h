@@ -70,6 +70,7 @@ private:
 
 	physx::PxScene* gScene;
 	physx::PxMaterial* gMaterial;
+	physx::PxCooking * gCooking;
 
 	physx::PxPvd* gPvd;
 	physx::PxFoundation* gFoundation;

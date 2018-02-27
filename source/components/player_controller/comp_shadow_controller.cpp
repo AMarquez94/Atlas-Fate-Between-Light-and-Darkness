@@ -48,15 +48,22 @@ void TCompShadowController::Init() {
 
 void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
 
-	auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("light"));
+	auto& light_handles = CTagsManager::get().getAllEntitiesByTag(getID("light"));
+	auto& collider_handles = CTagsManager::get().getAllEntitiesByTag(getID("collider_light"));
 
-	for (auto h : handles) {
+	for (auto h : light_handles) {
 		CEntity* current_light = h;
 		TCompLight * c_light = current_light->get<TCompLight>();
 		if (c_light->type == "directional") // by now we will only retrieve directional lights
 		{
 			static_lights.push_back(c_light);
 		}
+	}
+
+	for (auto h : collider_handles) {
+		CEntity* current_collider = h;
+		TCompCollider * c_collider = current_collider->get<TCompCollider>();
+		dynamic_lights.push_back(c_collider);
 	}
 }
 
@@ -69,7 +76,6 @@ void TCompShadowController::registerMsgs() {
 // We can also use this public method from outside this class.
 bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 {
-	//VEC3 light_dir = VEC3(-0.7663f, -0.384137f, -0.514998f); // Hardcoded for testing purposes only!!!
 	// We need a safe system to retrieve the light direction and origin spot.
 	// Also we need to distinguish between light types.
 	// Different light tests must be made.
@@ -78,26 +84,29 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 	for (unsigned int x = 0; x < static_lights.size(); x++) {
 		CEntity * c_entity = CHandle(static_lights[x]).getOwner();
 		TCompTransform * c_trans = c_entity->get<TCompTransform>();
-		VEC3 front = c_trans->getFront();
 
 		float distance = VEC3::Distance(c_trans->getPosition(), point);
-		if (!EnginePhysics.Raycast(point, c_trans->getFront(), distance, hit, EnginePhysics.eSTATIC))
+		if (!EnginePhysics.Raycast(point, c_trans->getUp(), distance, hit, EnginePhysics.eSTATIC))
 			return false;
 
-		if (EnginePhysics.Raycast(point, c_trans->getFront(), distance, hit, EnginePhysics.eSTATIC))
-		{
-			CEntity * ent = CHandle(hit.transform).getOwner();
-			TCompName * text = ent->get<TCompName>();
-			dbg("entity name: %s", text->getName());
-		}
+		//if (EnginePhysics.Raycast(point, c_trans->getUp(), distance, hit, EnginePhysics.eSTATIC))
+		//{
+		//	CEntity * ent = CHandle(hit.transform).getOwner();
+		//	TCompName * text = ent->get<TCompName>();
+		//	dbg("entity name: %s\n", text->getName());
+		//}
 	}
 
-	// Get all entites tagged as dynamic light, and test them.
-	// Use their transform to do the check.
+	for (unsigned int x = 0; x < dynamic_lights.size(); x++)
+	{
+		if (dynamic_lights[x]->isInside)
+			return false;
+	}
 
 	return true;
 }
 
+/* Method used to generate local points, we will apply transform later on */
 void TCompShadowController::GenerateSurroundingPoints(const VEC3 & point)
 {
 	float radius = 0.35f;

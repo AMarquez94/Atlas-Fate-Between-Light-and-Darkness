@@ -25,6 +25,8 @@ class TCompCollider: public TCompBase {
 public:
    
 	bool isGrounded;
+	bool isInside;
+
   struct TConfig
   {
     
