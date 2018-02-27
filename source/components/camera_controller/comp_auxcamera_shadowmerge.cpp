@@ -68,11 +68,15 @@ void TCompAuxCameraShadowMerge::onMsgCameraDeprecated(const TMsgCameraDeprecated
 
 void TCompAuxCameraShadowMerge::onMsgCameraSetActive(const TMsgSetCameraActive & msg)
 {
+	//if (active && msg.actualCamera.compare(eCamera->getName()) != 0) {
+	//	dbg("Camera %s cancelled \n",eCamera->getName());
+	//	Engine.getCameras().cancelCamera(eCamera);
+	//}
+
 	/* Set the aux camera with the smcamera */
 	TCompTransform* myTrans = get<TCompTransform>();
 	eCamera = getEntityByName(msg.actualCamera);
 	ePrevCamera = getEntityByName(msg.previousCamera);
-
 
 	TCompTransform *tCameraPos = eCamera->get<TCompTransform>();
 	TCompCameraShadowMerge *tCameraController = eCamera->get<TCompCameraShadowMerge>();
@@ -99,26 +103,20 @@ void TCompAuxCameraShadowMerge::onMsgCameraSetActive(const TMsgSetCameraActive &
 
 	VEC3 vecToAim = msg.directionToLookAt;
 	vecToAim.Normalize();
-	
-	
 
 	float prey, prep, y, p;
 	myTrans->getYawPitchRoll(&prey,&prep,0);
-	//myTrans->setYawPitchRoll(y + deltayaw, p, r);
 	myTrans->lookAt(myTrans->getPosition(), myTrans->getPosition() + vecToAim);
 
 	float deltayaw = myTrans->getDeltaYawToAimTo(myTrans->getPosition() + vecToAim);
-	//dbg("DELTA YAW: %f\n", deltayaw);
 
 	myTrans->getYawPitchRoll(&y, &p, 0);
 
 	_current_euler.x = _current_euler.x + (y - prey);
 	_current_euler.y = _current_euler.y + (p - prep);
-	//dbg("EULER: %f, %f\n", rad2deg(_current_euler.x), rad2deg(_current_euler.y));
-	//_current_euler.y = _current_euler.y + p - pre_p;// _starting_pitch;
 	myTrans->setPosition(myTrans->getPosition() + dist);
 	
-	Engine.getCameras().blendInCamera(CHandle(this).getOwner(), .5f, CModuleCameras::EPriority::TEMPORARY);
+	Engine.getCameras().blendInCamera(CHandle(this).getOwner(), .4f, CModuleCameras::EPriority::TEMPORARY);
 
 	if (msg.actualCamera.compare(msg.previousCamera) != 0) {
 		tCameraPos->setPosition(myTrans->getPosition());
@@ -126,7 +124,7 @@ void TCompAuxCameraShadowMerge::onMsgCameraSetActive(const TMsgSetCameraActive &
 		tCameraController->setCurrentEuler(_current_euler.x, _current_euler.y);
 	}
 
-	Engine.getCameras().blendInCamera(CHandle(eCamera), .5f, CModuleCameras::EPriority::GAMEPLAY);
+	Engine.getCameras().blendInCamera(CHandle(eCamera), .4f, CModuleCameras::EPriority::GAMEPLAY);
 }
 
 void TCompAuxCameraShadowMerge::update(float dt)

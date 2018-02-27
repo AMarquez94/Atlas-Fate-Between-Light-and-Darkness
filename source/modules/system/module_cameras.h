@@ -18,13 +18,14 @@ public:
 	void setOutputCamera(CHandle camera);
 	void blendInCamera(CHandle camera, float blendTime = 0.f, EPriority priority = EPriority::DEFAULT, Interpolator::IInterpolator* interpolator = nullptr);
 	void blendOutCamera(CHandle camera, float blendTime = 0.f);
+	void cancelCamera(CHandle camera);
 
 private:
 	void renderInMenu();
 
 	struct TMixedCamera
 	{
-		enum EState { ST_BLENDING_IN, ST_IDLE, ST_BLENDING_OUT };
+		enum EState { ST_BLENDING_IN, ST_IDLE, ST_BLENDING_OUT, ST_CANCELLED };
 
 		CHandle camera;
 		EState state = EState::ST_IDLE;
