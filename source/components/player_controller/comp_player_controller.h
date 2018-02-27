@@ -98,6 +98,7 @@ class TCompPlayerController : public IAIController {
 	bool checkEnemyInShadows(CHandle enemy);
 	void manageCrouch();
 	bool playerInFloor();
+	bool canStandUp();
 
 
 	const bool ConcaveTest(void);
