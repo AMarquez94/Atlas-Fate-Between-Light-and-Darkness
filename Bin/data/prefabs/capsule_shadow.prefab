@@ -7,6 +7,15 @@
       },
       "render": {
         "mesh": "axis.mesh"
+      },
+      "light": {
+        "type": "dynamic_c",
+        "color": "0 0 0",
+        "intensity": 0.78,
+        "shadows": true,
+        "tags": [
+          "light"
+        ]
       }
     }
   }

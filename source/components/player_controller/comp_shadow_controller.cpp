@@ -31,6 +31,9 @@ void TCompShadowController::load(const json& j, TEntityParseContext& ctx) {
 			static_points.push_back(c_light_trans->getPosition()); c_light_trans->getFront();
 			static_dirs.push_back(c_light_trans->getFront());
 		}
+		if (c_light->type == "dynamic_c") {
+			dbg("XD");
+		}
 	}
 
 	//static_points.emplace_back(VEC3(56.436f,48.786f,31.666f));
