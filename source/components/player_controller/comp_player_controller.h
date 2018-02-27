@@ -25,6 +25,9 @@ class TCompPlayerController : public IAIController {
 	float dcrStaminaGround;
 	float dcrStaminaWall;
 	float incrStamina = 20.f;
+
+	float dcrStaminaGroundAux = 0.f;
+	float dcrStaminaWallAux = 0.f;
 	
 	/* Player speeds*/
 	float runSpeedFactor;
@@ -67,6 +70,7 @@ class TCompPlayerController : public IAIController {
 	const Input::TButton& btSecAction = EngineInput["btSecAction"];
 	const Input::TButton& btHorizontal = EngineInput["Horizontal"];
 	const Input::TButton& btVertical = EngineInput["Vertical"];
+	const Input::TButton& btDebugShadows = EngineInput["btDebugShadows"];
 
 	/* TODO: not for milestone 1 */
 	//const Input::TButton& btCrouch = EngineInput["w"];	

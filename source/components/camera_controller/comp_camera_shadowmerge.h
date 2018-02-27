@@ -49,6 +49,7 @@ public:
   const VEC2 getCurrentEuler() { return _current_euler; }
   const VEC3 getClippingOffset() { return _clipping_offset; }
   const CHandle getCameraTarget() { return _h_target; }
+  const float getStartingPitch() { return _starting_pitch; };
 
   void setCurrentEuler(float x, float y);
 };

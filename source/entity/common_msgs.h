@@ -80,7 +80,8 @@ struct TMsgTriggerExit {
 };
 
 struct TMsgSetCameraActive {
-	CHandle h_previous_camera;
+	std::string previousCamera;
+	std::string actualCamera;
 	VEC3 directionToLookAt;
 	DECL_MSG_ID();
 };

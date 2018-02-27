@@ -57,14 +57,9 @@ void TCompPlayerController::debugInMenu() {
 }
 
 void TCompPlayerController::renderDebug() {
-	ImGui::Begin("");
+	ImGui::Begin("UI");
 	ImGui::Text("State: %s", stateName.c_str());
-	if (stateName.find("sm") == 0) {
-		/*while (stateName != "smExit") {
-			ImGui::ProgressBar(stamina / maxStamina);
-		}*/
-		ImGui::ProgressBar(stamina / maxStamina);
-	}
+	ImGui::ProgressBar(stamina / maxStamina);
 	ImGui::End();
 }
 
@@ -195,6 +190,17 @@ void TCompPlayerController::IdleState(float dt){
 	if (btAction.getsPressed() && checkTouchingStunnedEnemy().isValid()) {
 		ChangeState("push");
 		return;
+	}
+
+	if (btDebugShadows.getsPressed()) {
+		float temp;
+		temp = dcrStaminaWall;
+		dcrStaminaWall = dcrStaminaWallAux;
+		dcrStaminaWallAux = temp;
+
+		temp = dcrStaminaGround;
+		dcrStaminaGround = dcrStaminaGroundAux;
+		dcrStaminaGroundAux = temp;
 	}
 }
 
@@ -350,13 +356,20 @@ void TCompPlayerController::ShadowMergingVerticalState(float dt){
 				assert(c_camera);
 
 				// Replace this with an smooth camera interpolation
+
 				camera_actual = camera_shadowmerge_hor;
+
 				Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
 				ChangeState("smHor");
 				return;
 			}
 			else {
-				Engine.getCameras().blendInCamera(getEntityByName("AuxCameraVer"), .2f, CModuleCameras::EPriority::TEMPORARY);
+				TMsgSetCameraActive msg;
+				msg.previousCamera = camera_actual;
+				msg.actualCamera = camera_actual;
+				CEntity* eCamera = getEntityByName("AuxCameraVer");
+				eCamera->sendMsg(msg);
+				//Engine.getCameras().blendInCamera(getEntityByName("AuxCameraVer"), .2f, CModuleCameras::EPriority::TEMPORARY);
 			}
 		}
 

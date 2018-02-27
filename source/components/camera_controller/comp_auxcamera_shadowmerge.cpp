@@ -47,69 +47,94 @@ void TCompAuxCameraShadowMerge::registerMsgs()
 	DECL_MSG(TCompAuxCameraShadowMerge, TMsgCameraActivated, onMsgCameraActive);
 	DECL_MSG(TCompAuxCameraShadowMerge, TMsgCameraDeprecated, onMsgCameraDeprecated);
 	DECL_MSG(TCompAuxCameraShadowMerge, TMsgCameraFullyActivated, onMsgCameraFullActive);
+	DECL_MSG(TCompAuxCameraShadowMerge, TMsgSetCameraActive, onMsgCameraSetActive);
 }
 
 void TCompAuxCameraShadowMerge::onMsgEntityCreated(const TMsgEntityCreated & msg)
 {
 	//TCompHierarchy * tHierarchy = get<TCompHierarchy>();
-	_h_parent = getEntityByName("SMCameraVer");
-	TCompCameraShadowMerge *tParentController = ((CEntity *)_h_parent)->get<TCompCameraShadowMerge>();
+	//_h_parent = getEntityByName("SMCameraVer");
+	//TCompCameraShadowMerge *tParentController = ((CEntity *)_h_parent)->get<TCompCameraShadowMerge>();
 
-	_speed = tParentController->getSpeed();
-	_h_target = tParentController->getCameraTarget();
-	_clamp_angle = tParentController->getClampAngle();
-	_clipping_offset = tParentController->getClippingOffset();
-	_clamp_angle = tParentController->getClampAngle();
+
 }
 
 void TCompAuxCameraShadowMerge::onMsgCameraActive(const TMsgCameraActivated &msg)
 {
 	active = true;
-	TCompTransform* targetTrans = ((CEntity*)_h_target)->get<TCompTransform>();
-	TCompCollider* targetCollider = ((CEntity*)_h_target)->get<TCompCollider>();
-	TCompTransform* myTrans = get<TCompTransform>();
 
-	dbg("My pos (%f,%f,%f)\n", myTrans->getPosition().x, myTrans->getPosition().y, myTrans->getPosition().z);
-
-	VEC3 dist = myTrans->getPosition() - targetTrans->getPosition();
-
-	dbg("Dist (%f, %f, %f)\n", dist.x, dist.y, dist.z);
-	dbg("PPos (%f, %f, %f)\n", targetTrans->getPosition().x, targetTrans->getPosition().y, targetTrans->getPosition().z);
-	myTrans->setPosition(myTrans->getPosition() - dist);
-	dbg("New pos (%f, %f, %f)\n", myTrans->getPosition().x, myTrans->getPosition().y, myTrans->getPosition().z);
-	float deltayaw = myTrans->getDeltaYawToAimTo(myTrans->getPosition() + targetCollider->normal_gravity);
-	dbg("deltayaw %f\n", rad2deg(deltayaw));
-	_current_euler.x = _current_euler.x + deltayaw;
-	myTrans->setPosition(myTrans->getPosition() + dist);
 }
 
 void TCompAuxCameraShadowMerge::onMsgCameraFullActive(const TMsgCameraFullyActivated & msg)
 {
 	TCompTransform* myTrans = get<TCompTransform>();
-	TCompTransform *parentTrans = ((CEntity*)_h_parent)->get<TCompTransform>();
-	TCompCameraShadowMerge *parentController = ((CEntity*)_h_parent)->get<TCompCameraShadowMerge>();
-	std::string parentName = ((CEntity*)_h_parent)->getName();
+	TCompTransform *parentTrans = eCamera->get<TCompTransform>();
+	TCompCameraShadowMerge *parentController = eCamera->get<TCompCameraShadowMerge>();
 
 	parentTrans->setPosition(myTrans->getPosition());
+	parentTrans->setRotation(myTrans->getRotation());
 	parentController->setCurrentEuler(_current_euler.x, _current_euler.y);
 
-	Engine.getCameras().blendOutCamera(CHandle(this).getOwner(), .0f);
-	Engine.getCameras().blendInCamera(getEntityByName(parentName), .0f, CModuleCameras::EPriority::GAMEPLAY);
+	dbg("Current euler: %f, %f\n", rad2deg(parentController->getCurrentEuler().x), rad2deg(parentController->getCurrentEuler().y));
 
-	//Engine.getCameras().blendInCamera();
+	Engine.getCameras().blendOutCamera(CHandle(this).getOwner(), .0f);
+	Engine.getCameras().blendInCamera(CHandle(eCamera), .0f, CModuleCameras::EPriority::GAMEPLAY);
+	//Engine.getCameras().blendOutCamera(CHandle(ePrevCamera), .0f);
 }
 
 void TCompAuxCameraShadowMerge::onMsgCameraDeprecated(const TMsgCameraDeprecated &msg)
 {
 	active = false;
-	_current_euler.y = _original_euler.y;
+	//_current_euler.y = _original_euler.y;
 	dbg("Camera inactive %s\n", ((TCompName*)get<TCompName>())->getName());
+}
+
+void TCompAuxCameraShadowMerge::onMsgCameraSetActive(const TMsgSetCameraActive & msg)
+{
+	/* Set the aux camera with the smcamera */
+	TCompTransform* myTrans = get<TCompTransform>();
+	eCamera = getEntityByName(msg.actualCamera);
+	ePrevCamera = getEntityByName(msg.previousCamera);
+
+
+	TCompTransform *tCameraPos = eCamera->get<TCompTransform>();
+	TCompCameraShadowMerge *tCameraController = eCamera->get<TCompCameraShadowMerge>();
+
+	myTrans->setPosition(tCameraPos->getPosition());
+	myTrans->setRotation(tCameraPos->getRotation());
+
+	_speed = tCameraController->getSpeed();
+	_h_target = tCameraController->getCameraTarget();
+	_clamp_angle = tCameraController->getClampAngle();
+	_clipping_offset = tCameraController->getClippingOffset();
+	_clamp_angle = tCameraController->getClampAngle();
+	_current_euler = tCameraController->getCurrentEuler();
+	_starting_pitch = tCameraController->getStartingPitch();
+
+	/* Set the aux camera with the player */
+
+	TCompTransform* targetTrans = ((CEntity*)_h_target)->get<TCompTransform>();
+	TCompCollider* targetCollider = ((CEntity*)_h_target)->get<TCompCollider>();
+
+	VEC3 dist = myTrans->getPosition() - targetTrans->getPosition();
+
+	myTrans->setPosition(myTrans->getPosition() - dist);
+
+	VEC3 vecToAim = targetCollider->normal_gravity;
+	vecToAim.Normalize();
+	float deltayaw = myTrans->getDeltaYawToAimTo(myTrans->getPosition() + vecToAim);
+
+	_current_euler.x = _current_euler.x + deltayaw;
+	//_current_euler.y = _current_euler.y + p - pre_p;// _starting_pitch;
+	myTrans->setPosition(myTrans->getPosition() + dist);
+	
+	Engine.getCameras().blendInCamera(CHandle(this).getOwner(), .2f, CModuleCameras::EPriority::TEMPORARY);
 }
 
 void TCompAuxCameraShadowMerge::update(float dt)
 {
 
-	if (!pause) {
+	if (!pause && active) {
 		if (!_h_target.isValid())
 			return;
 
@@ -123,25 +148,16 @@ void TCompAuxCameraShadowMerge::update(float dt)
 		float horizontal_delta = 0.f;
 		float vertical_delta = 0.f;
 
-
 		// To remove in the future.
 		horizontal_delta = EngineInput.mouse()._position_delta.x;
 		vertical_delta = -EngineInput.mouse()._position_delta.y;
 		if (btRHorizontal.isPressed()) horizontal_delta = btRHorizontal.value;
 		if (btRVertical.isPressed()) vertical_delta = btRVertical.value;
 
-		//VEC2 current_clamp = VEC2::Zero;
-		//float c_angle = rad2deg(cos(target_transform->getUp().Dot(-EnginePhysics.gravity)));
-		//if (target_transform->getFront().Dot(-EnginePhysics.gravity) > 0) current_clamp = VEC2(_clamp_angle.x - c_angle, _clamp_angle.y - c_angle);
-		//else current_clamp = VEC2(_clamp_angle.x + c_angle, _clamp_angle.y + c_angle);
-
 		// Verbose code
 		_current_euler.x -= horizontal_delta * _speed * dt;
-
-		if (active) {
-			_current_euler.y += vertical_delta * _speed * dt;
-			_current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
-		}
+		_current_euler.y += vertical_delta * _speed * dt;
+		_current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
 
 		// EulerAngles method based on mcv class
 		VEC3 vertical_offset = 0.1f * target_transform->getUp() * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)

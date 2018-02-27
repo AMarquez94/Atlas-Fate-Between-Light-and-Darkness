@@ -10,12 +10,15 @@ private:
 	CHandle     _h_target;
 	std::string _target_name;
 	CHandle		_h_parent;
+	CEntity * eCamera;
+	CEntity * ePrevCamera;
 
 	float _speed;
 	VEC2 _clamp_angle;
 	VEC2 _original_euler;
 	VEC2 _current_euler;
 	VEC3 _clipping_offset;
+	float _starting_pitch;
 
 	const Input::TButton& btHorizontal = EngineInput["Horizontal"];
 	const Input::TButton& btVertical = EngineInput["Vertical"];
@@ -30,6 +33,7 @@ private:
 	void onMsgCameraActive(const TMsgCameraActivated &msg);
 	void onMsgCameraFullActive(const TMsgCameraFullyActivated &msg);
 	void onMsgCameraDeprecated(const TMsgCameraDeprecated &msg);
+	void onMsgCameraSetActive(const TMsgSetCameraActive &msg);
 
 public:
   void debugInMenu();

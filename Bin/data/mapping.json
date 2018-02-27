@@ -93,5 +93,10 @@
     "name": "btDebugPause",
     "all": false,
     "buttons":  ["f1"]
+  },
+  {
+    "name": "btDebugShadows",
+    "all": false,
+    "buttons":  ["f2"]
   }
 ]
