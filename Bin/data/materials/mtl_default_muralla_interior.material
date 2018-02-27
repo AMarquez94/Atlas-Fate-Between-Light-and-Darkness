@@ -1,0 +1,12 @@
+{
+  "technique": "textured_bk.tech"
+  ,
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/checker.dds"
+    ,
+    "lightmap": "data/textures/muralla_interior_lm.dds"
+  }
+}

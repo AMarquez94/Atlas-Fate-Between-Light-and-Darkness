@@ -34,7 +34,7 @@ struct TMaterialExporter (
 		format "Exporting material % % %\n" mat_name mat (classof mat as string)
 		fs.begin (project_path + mat_name )
 		fs.beginObj()
-			fs.writeKeyValue "technique" "textured.tech"
+			fs.writeKeyValue "technique" "textured_bk.tech"
 			fs.writeComma()
 			fs.writeKeyValue "shadows" true
 			fs.writeComma()
