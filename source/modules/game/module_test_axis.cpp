@@ -27,18 +27,18 @@ bool CModuleTestAxis::start()
 		TEntityParseContext ctx;
 		parseScene("data/scenes/dp_teapot_test.scene", ctx);
 	}
-	{
-		TEntityParseContext ctx;
-		parseScene("data/scenes/final_milestone1_lights.scene", ctx);
-	}
+	//{
+	//	TEntityParseContext ctx;
+	//	parseScene("data/scenes/final_milestone1_lights.scene", ctx);
+	//}
 	{
 		TEntityParseContext ctx;
 		parseScene("data/scenes/final_milestone1_map.scene", ctx);
 	}
-	{
-		TEntityParseContext ctx;
-		parseScene("data/scenes/final_milestone1_colliders.scene", ctx);
-	}
+	//{
+	//	TEntityParseContext ctx;
+	//	parseScene("data/scenes/final_milestone1_colliders.scene", ctx);
+	//}
 	{
 		TEntityParseContext ctx;
 		parseScene("data/scenes/player.scene", ctx);

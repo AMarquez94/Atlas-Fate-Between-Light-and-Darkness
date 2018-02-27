@@ -61,6 +61,7 @@ public:
 	/* Ray casting & related methods*/
 	bool Raycast(const VEC3 & origin, const VEC3 & dir, float distance, RaycastHit & hit, QueryFlag flag = QueryFlag::eSTATIC, FilterGroup mask = FilterGroup::All);
 	//bool SphereCast(const VEC3 & origin, const VEC3 & dir, float distance, RaycastHit & hit);
+
 private:
 
 	physx::PxPhysics* gPhysics;

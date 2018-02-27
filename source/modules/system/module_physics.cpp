@@ -73,33 +73,39 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		else if (config.shapeType == physx::PxGeometryType::eSPHERE)
 		{
 			shape = gPhysics->createShape(PxSphereGeometry(config.radius), *gMaterial);
-			offset.p.y = config.radius;
+			//offset.p.y = config.radius;
 			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
 		}
 		else if (config.shapeType == physx::PxGeometryType::eTRIANGLEMESH)
 		{
-			//shape = gPhysics->createShape(PxSphereGeometry(1), *gMaterial);
-			//offset.p.y = config.radius;
-			//shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
+			CRenderMesh * mesh = loadMesh("data/meshes/Teapot001.mesh");
 
-			CRenderMesh* res = loadMesh("data/meshes/Teapot001.mesh");//basic testing
-			res->ib;
-			PxTriangleMeshDesc meshDesc;
-			meshDesc.points.count = res->num_vertexs;
-			meshDesc.points.stride = sizeof(PxVec3);
-			meshDesc.points.data = res->vb;
-			meshDesc.triangles.count = res->num_indices / 3;
-			meshDesc.triangles.stride = 3 * sizeof(PxU32);
-			meshDesc.triangles.data = res->ib;
+			const PxU32 numVerts = 64;
+			PxVec3* vertices = new PxVec3[numVerts];
 
-			PxDefaultMemoryOutputStream writeBuffer;
-			PxTriangleMeshCookingResult::Enum result;
-			bool status = gCooking->cookTriangleMesh(meshDesc, writeBuffer, &result);
+			// Prepare random verts
+			for (PxU32 i = 0; i < numVerts; i++)
+			{
+				vertices[i] = mesh->vb[i];//PxVec3(urand(-20.0f, 20.0f), urand(-20.0f, 20.0f), urand(-20.0f, 20.0f));
+			}
 
-			PxDefaultMemoryInputData readBuffer(writeBuffer.getData(), writeBuffer.getSize());
-			PxTriangleMesh * tr_mesh = gPhysics->createTriangleMesh(readBuffer);
-			//tr_mesh->release();
+			PxCookingParams params = gCooking->getParams();
+			params.convexMeshCookingType = PxConvexMeshCookingType::eINFLATION_INCREMENTAL_HULL;
+			params.gaussMapLimit = 128;
+			gCooking->setParams(params);
 
+			// Setup the convex mesh descriptor
+			PxConvexMeshDesc desc;
+			desc.points.data = vertices;
+			desc.points.count = numVerts;
+			desc.points.stride = sizeof(PxVec3);
+			desc.flags = PxConvexFlag::eCOMPUTE_CONVEX;
+			
+			PxConvexMesh* convex = gCooking->createConvexMesh(desc, gPhysics->getPhysicsInsertionCallback());
+			PxConvexMeshGeometry convex_geo = PxConvexMeshGeometry(convex, PxMeshScale(), PxConvexMeshGeometryFlags());
+			actor = gPhysics->createRigidStatic(initialTrans);
+			actor->createShape(convex_geo, *gMaterial);
+			gScene->addActor(*actor);
 			return;
 		}
 		//....todo: more shapes
@@ -277,6 +283,7 @@ bool CModulePhysics::start()
 	}
 
 	gPvd = PxCreatePvd(*gFoundation);
+
 	if (!gPvd) {
 		return false;
 	}
@@ -284,15 +291,15 @@ bool CModulePhysics::start()
 	PxPvdTransport* transport = PxDefaultPvdSocketTransportCreate("127.0.0.1", 5425, 10);
 	bool  is_ok = gPvd->connect(*transport, PxPvdInstrumentationFlag::eALL);
 	gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true, gPvd);
+	gCooking = PxCreateCooking(PX_PHYSICS_VERSION, *gFoundation, PxCookingParams(PxTolerancesScale()));
+	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
 	sceneDesc.gravity = PxVec3(gravity.x, -9.81f * gravity.y, gravity.z);
-	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 	sceneDesc.cpuDispatcher = gDispatcher;
 	sceneDesc.filterShader = CustomFilterShader;
 	sceneDesc.flags = PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS | PxSceneFlag::eENABLE_ACTIVE_ACTORS;
 	gScene = gPhysics->createScene(sceneDesc);
-	//gScene->setFlag(PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS, true);
 
 	PxPvdSceneClient* pvdClient = gScene->getScenePvdClient();
 
@@ -308,7 +315,6 @@ bool CModulePhysics::start()
 	gScene->setSimulationEventCallback(&customSimulationEventCallback);
 
 	PxInitExtensions(*gPhysics, gPvd);
-	gCooking = PxCreateCooking(PX_PHYSICS_VERSION, *gFoundation, PxCookingParams(gPhysics->getTolerancesScale()));
 
 	return true;
 }

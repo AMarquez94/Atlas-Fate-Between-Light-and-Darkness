@@ -94,3 +94,8 @@ int pnpoly(int nvert, float *vertx, float *verty, float testx, float testy)
 	}
 	return c;
 }
+
+float urand(float loVal, float hiVal)
+{
+	return loVal + (float(rand()) / RAND_MAX)*(hiVal - loVal);
+}
