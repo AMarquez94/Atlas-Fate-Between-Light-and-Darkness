@@ -176,9 +176,8 @@ struct TSceneExporter (
 			fs.writeComma()
 			fs.writeKeyValue "halfExtent" [abs (obj.width * .5f), abs (obj.height * .5f), abs (obj.length * .5f)]
 		) else (
-			
+			local col_path = project_path + cols_path + obj.name + ".collider"
 			if obj.parent != undefined then (
-				local col_path = project_path + cols_path + obj.name + ".collider"
 				if obj.mesh.verts.count == obj.parent.mesh.verts.count then (
 				-- We are facing, wether convex or mesh collider.
 				fs.writeKeyValue "shape" "mesh" 

@@ -68,18 +68,15 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 			offset.p.y = config.halfExtent.y;
 			shape->setContactOffset(1.f);
 			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
-			//shape->setRestOffset(0);
-
 		}
 		else if (config.shapeType == physx::PxGeometryType::eSPHERE)
 		{
 			shape = gPhysics->createShape(PxSphereGeometry(config.radius), *gMaterial);
-			//offset.p.y = config.radius;
 			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
 		}
 		else if (config.shapeType == physx::PxGeometryType::eCONVEXMESH)
 		{
-			TMeshLoader * collider_mesh = loadCollider("data/colliders/collider_Teapot001.collider"); // Move this to a custom collider resource
+			TMeshLoader * collider_mesh = loadCollider(config.filename.c_str());  // Move this to a custom collider resource
 
 			PxCookingParams params = gCooking->getParams();
 			params.convexMeshCookingType = PxConvexMeshCookingType::eINFLATION_INCREMENTAL_HULL;
@@ -96,13 +93,20 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 			PxConvexMesh* convex = gCooking->createConvexMesh(desc, gPhysics->getPhysicsInsertionCallback());
 			PxConvexMeshGeometry convex_geo = PxConvexMeshGeometry(convex, PxMeshScale(), PxConvexMeshGeometryFlags());
 			actor = gPhysics->createRigidStatic(initialTrans);
-			actor->createShape(convex_geo, *gMaterial);
+			PxShape * shape = actor->createShape(convex_geo, *gMaterial);
+			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
+			actor->attachShape(*shape);
+			shape->release();
 			gScene->addActor(*actor);
+
+			setupFiltering(actor, config.group, config.mask);
+			comp_collider.actor = actor;
+			actor->userData = h_comp_collider.asVoidPtr();
 			return;
 		}
 		else if (config.shapeType == physx::PxGeometryType::eTRIANGLEMESH)
 		{
-			TMeshLoader * collider_mesh = loadCollider("data/colliders/collider_Teapot001.collider"); // Move this to a custom collider resource
+			TMeshLoader * collider_mesh = loadCollider(config.filename.c_str()); // Move this to a custom collider resource
 
 			PxTriangleMeshDesc meshDesc;
 			meshDesc.points.data = collider_mesh->vtxs.data();
@@ -112,13 +116,20 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 
 			meshDesc.triangles.data = collider_mesh->idxs.data();
 			meshDesc.triangles.count = collider_mesh->header.num_indices;
-			meshDesc.triangles.stride = 3 * collider_mesh->header.bytes_per_idx;
+			meshDesc.triangles.stride = 3* collider_mesh->header.bytes_per_idx;
 
 			PxTriangleMesh * tri_mesh = gCooking->createTriangleMesh(meshDesc, gPhysics->getPhysicsInsertionCallback());
 			PxTriangleMeshGeometry tri_geo = PxTriangleMeshGeometry(tri_mesh, PxMeshScale());
 			actor = gPhysics->createRigidStatic(initialTrans);
-			actor->createShape(tri_geo, *gMaterial);
+			PxShape * shape = actor->createShape(tri_geo, *gMaterial);
+			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
+			actor->attachShape(*shape);
+			shape->release();
 			gScene->addActor(*actor);
+
+			setupFiltering(actor, config.group, config.mask);
+			comp_collider.actor = actor;
+			actor->userData = h_comp_collider.asVoidPtr();
 			return;
 		}
 		//....todo: more shapes

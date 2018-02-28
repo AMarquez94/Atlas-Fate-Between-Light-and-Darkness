@@ -37,7 +37,7 @@ bool CModuleTestAxis::start()
 	}
 	{
 		TEntityParseContext ctx;
-		parseScene("data/scenes/final_milestone1_colliders.scene", ctx);
+		parseScene("data/scenes/final_milestone1_colliders_test.scene", ctx);
 	}
 	{
 		TEntityParseContext ctx;

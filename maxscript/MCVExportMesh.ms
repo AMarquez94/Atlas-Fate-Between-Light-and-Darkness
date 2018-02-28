@@ -8,6 +8,7 @@ function writeChunk fs id nbytes = (
 
 function saveMeshToFile outfilename obj vtxs idxs vtxType = (
 	
+	print outfilename
 	-- Chunk = MagicID(4bytes) + Size(4bytes)
 	local magicHeader = 0x44444444	-- Chunk HeaderData
 	local magicVtxs = 0x55554433		-- Chunk Vtxs
@@ -208,6 +209,8 @@ function exportColliderObject given_obj outfilename = (
 		)
 	)
 
+	print "teesssst"
+	print outfilename
 	saveMeshToFile outfilename obj vtxs idxs "PosN"
 	
 	-- If we created a copy of the mesh, it's time to remove it

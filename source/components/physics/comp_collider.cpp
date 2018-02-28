@@ -30,6 +30,10 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
   }
   else if (strcmp("convex", shape.c_str()) == 0)
   {
+	  config.shapeType = physx::PxGeometryType::eCONVEXMESH;
+  }
+  else if (strcmp("mesh", shape.c_str()) == 0)
+  {
 	  config.shapeType = physx::PxGeometryType::eTRIANGLEMESH;
   }
 
@@ -39,6 +43,7 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
   config.height = j.value("height", 0.f);
   config.radius = j.value("radius", 0.f);
   config.gravity = j.value("gravity", false);
+  config.filename = j.value("name", "");
 
   config.group = CEngine::get().getPhysics().getFilterByName(j.value("group", "all"));
   config.mask = CEngine::get().getPhysics().getFilterByName(j.value("mask", "all"));
