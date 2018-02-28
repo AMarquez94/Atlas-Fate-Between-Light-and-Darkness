@@ -53,6 +53,10 @@ class TCompPlayerController : public IAIController {
 	int timesToPressRemoveInhibitorKey;
 	int timesRemoveInhibitorKeyPressed = 0;
 	float timerForPressingRemoveInhibitorKey = 0.f;
+	float maxTimeToSMFalling;
+	float timeFallingWhenSMPressed = 0.f;
+	float timeFalling = 0.f;
+	float timeFallingToDie;
 
 	DECL_SIBLING_ACCESS();
 
@@ -99,6 +103,7 @@ class TCompPlayerController : public IAIController {
 	void manageCrouch();
 	bool playerInFloor();
 	bool canStandUp();
+	void setPlayerDead();
 
 
 	const bool ConcaveTest(void);

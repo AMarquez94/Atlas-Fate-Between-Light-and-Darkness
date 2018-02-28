@@ -19,6 +19,7 @@ DECL_OBJ_MANAGER("player_controller", TCompPlayerController);
 void TCompPlayerController::debugInMenu() {
 
 	ImGui::DragFloat("Speed", &walkSpeedFactor, 0.1f, 0.f, 20.f);
+	ImGui::DragFloat("maxTimeToSMFalling", &maxTimeToSMFalling, 0.f, 0.f, 1.f);
 	ImGui::Text("Current speed: %f", currentSpeed);
 	ImGui::Text("State: %s", stateName.c_str());
 	if (auxStateName.compare("") != 0) {
@@ -86,7 +87,10 @@ void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	distToAttack = j.value("distToAttack", 2.0f);
 	distToSM = j.value("distToSM", 2.5f);
 
-	timesToPressRemoveInhibitorKey = j.value("timesToPressRemoveInhibitorKey", 10);
+	timesToPressRemoveInhibitorKey = j.value("timesToPressRemoveInhibitorKey", 5);
+	maxTimeToSMFalling = j.value("maxTimeToSMFalling", 0.15f);
+	timeFallingToDie = j.value("timeFallingToDie", .8f);
+
 
 	currentSpeed = 0.f;
 	camera_thirdperson = j.value("target_camera", "");
@@ -502,12 +506,38 @@ void TCompPlayerController::FallingState(float dt){
 
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
 
+	timeFalling += dt;
+
+	if (btShadowMerging.getsPressed()) {
+		timeFallingWhenSMPressed = timeFalling;
+	}
+	else if (timeFallingWhenSMPressed != 0.f && btShadowMerging.getsReleased()) {
+		timeFallingWhenSMPressed = 0.f;
+	}
+
+
 	if (GroundTest()) {
-		if (ShadowTest()) {
+		if (timeFallingWhenSMPressed != 0.f && 
+			timeFalling <= timeFallingWhenSMPressed + maxTimeToSMFalling && 
+			ShadowTest()) {
+
+			timeFalling = 0.f;
+			timeFallingWhenSMPressed = 0.f;
+
 			ChangeState("smEnter");
+			return;
+		}
+		else if(timeFalling < timeFallingToDie) {
+			timeFalling = 0.f;
+			timeFallingWhenSMPressed = 0.f;
+			ChangeState("land");
+			return;
 		}
 		else {
-			ChangeState("land");
+			timeFalling = 0.f;
+			timeFallingWhenSMPressed = 0.f;
+			setPlayerDead();
+			return;
 		}
 	}
 }
@@ -531,25 +561,7 @@ const bool TCompPlayerController::checkPaused()
 
 void TCompPlayerController::onMsgPlayerHit(const TMsgPlayerHit & msg)
 {
-	ChangeState("dead");
-
-	TCompRender* t = get<TCompRender>();
-	t->color = VEC4(1, 1, 1, 1);
-	t->mesh = mesh_states.find("pj_idle")->second;
-
-	TMsgPlayerDead newMsg;
-	newMsg.h_sender = CHandle(this).getOwner();
-	auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
-	for (auto h : handles) {
-		CEntity* enemy = h;
-		enemy->sendMsg(newMsg);
-	}
-
-	TCompTransform *mypos = get<TCompTransform>();
-	float y, p, r;
-	mypos->getYawPitchRoll(&y, &p, &r);
-	p = p + deg2rad(89.9f);
-	mypos->setYawPitchRoll(y, p, r);
+	setPlayerDead();
 }
 
 void TCompPlayerController::onMsgPlayerShotInhibitor(const TMsgInhibitorShot& msg) {
@@ -967,5 +979,28 @@ bool TCompPlayerController::canStandUp()
 	TCompCollider *tMyCollider = get<TCompCollider>();
 
 	return !crouched || !EnginePhysics.Raycast(mypos->getPosition() + VEC3(0.f, 0.1f, 0.f), mypos->getUp(), tMyCollider->config.height + tMyCollider->config.height / 2, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario"));
+}
+
+void TCompPlayerController::setPlayerDead()
+{
+	ChangeState("dead");
+
+	TCompRender* t = get<TCompRender>();
+	t->color = VEC4(1, 1, 1, 1);
+	t->mesh = mesh_states.find("pj_idle")->second;
+
+	TMsgPlayerDead newMsg;
+	newMsg.h_sender = CHandle(this).getOwner();
+	auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+	for (auto h : handles) {
+		CEntity* enemy = h;
+		enemy->sendMsg(newMsg);
+	}
+
+	TCompTransform *mypos = get<TCompTransform>();
+	float y, p, r;
+	mypos->getYawPitchRoll(&y, &p, &r);
+	p = p + deg2rad(89.9f);
+	mypos->setYawPitchRoll(y, p, r);
 }
 
