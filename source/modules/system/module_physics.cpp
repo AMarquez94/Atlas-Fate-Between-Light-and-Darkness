@@ -327,7 +327,7 @@ bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distan
 	PxRaycastBuffer px_hit; // [out] Raycast results
 	PxQueryFilterData filterData;
 	filterData.data.word0 = mask;
-	filterData.flags = PxQueryFlag::Enum(flag);
+	filterData.flags |= PxQueryFlag::Enum(flag);
 
 	bool status = gScene->raycast(px_origin, px_dir, px_distance, px_hit, PxHitFlags(PxHitFlag::eDEFAULT), filterData); // Closest hit
 

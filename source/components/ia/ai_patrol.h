@@ -52,6 +52,7 @@ class CAIPatrol : public IAIController
 
 	void rotateTowardsVec(VEC3 objective, float dt);
 	bool isPlayerInFov();
+	bool isEntityHidden(CHandle h_entity);
 	bool isStunnedPatrolInFov();
 	bool isStunnedPatrolInPos(VEC3 lastPos);
 	CHandle getPatrolInPos(VEC3 lastPos);

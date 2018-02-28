@@ -958,6 +958,6 @@ bool TCompPlayerController::canStandUp()
 	TCompTransform *mypos = get<TCompTransform>();
 	TCompCollider *tMyCollider = get<TCompCollider>();
 
-	return !crouched || !EnginePhysics.Raycast(mypos->getPosition() + VEC3(0.f, 0.1f, 0.f), mypos->getUp(), tMyCollider->config.height + tMyCollider->config.height / 2, hit, EnginePhysics.eSTATIC);
+	return !crouched || !EnginePhysics.Raycast(mypos->getPosition() + VEC3(0.f, 0.1f, 0.f), mypos->getUp(), tMyCollider->config.height + tMyCollider->config.height / 2, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario"));
 }
 
