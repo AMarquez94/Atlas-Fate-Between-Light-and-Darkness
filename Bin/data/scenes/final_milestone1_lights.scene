@@ -2,6 +2,36 @@
   {
     "entity":
     {
+      "name": "Sky001"
+      ,
+      "transform":
+      {
+        "pos": "-97.5828 0.0 72.4961"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "light":
+      {
+        "type": "ambient"
+        ,
+        "color": "233.0 233.0 243.0"
+        ,
+        "intensity": 0.44
+        ,
+        "shadows": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "FDirect001"
       ,
       "transform":
@@ -11,6 +41,7 @@
         "rotation": "0.0910224 0.657154 -0.365414 -0.652944"
       }
       ,
+	  "render":{},
       "light":
       {
         "type": "directional"
@@ -20,46 +51,12 @@
         "intensity": 0.78
         ,
         "shadows": true
-        ,
-        "tags":
-        [
-          "light"
-        ]
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot003"
-      ,
-      "transform":
-      {
-        "pos": "3.45951 -0.359059 -26.3873"
-        ,
-        "rotation": "-0.0245657 -0.910489 0.054664 -0.409168"
       }
       ,
-      "light":
-      {
-        "type": "spotlight"
-        ,
-        "range": 9.12776
-        ,
-        "angle": 64.0
-        ,
-        "color": "255.0 255.0 255.0"
-        ,
-        "intensity": 0.65
-        ,
-        "shadows": true
-        ,
-        "tags":
-        [
-          "light"
-        ]
-      }
+      "tags":
+      [
+        "light"
+      ]
     }
   }
   ,
@@ -72,7 +69,7 @@
       {
         "pos": "-6.35864 -0.359059 -39.4716"
         ,
-        "rotation": "0.00199072 -0.993708 0.110543 0.0178951"
+        "rotation": "0.00199072 -0.993708 0.110543 0.0178952"
       }
       ,
       "light":
@@ -88,12 +85,12 @@
         "intensity": 0.65
         ,
         "shadows": true
-        ,
-        "tags":
-        [
-          "light"
-        ]
       }
+      ,
+      "tags":
+      [
+        "light"
+      ]
     }
   }
   ,
@@ -122,53 +119,56 @@
         "intensity": 0.65
         ,
         "shadows": true
-        ,
-        "tags":
-        [
-          "light"
-        ]
       }
+      ,
+      "tags":
+      [
+        "light"
+      ]
     }
   }
   ,
   {
     "entity":
     {
-      "name": "Sky001"
+      "name": "Spot003"
       ,
       "transform":
       {
-        "pos": "-97.5828 0.0 72.4961"
+        "pos": "3.45951 -0.359059 -26.3873"
         ,
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "-0.0245657 -0.910488 0.054664 -0.409169"
       }
       ,
       "light":
       {
-        "type": "ambient"
+        "type": "spotlight"
         ,
-        "color": "233.0 233.0 243.0"
+        "range": 9.12776
         ,
-        "intensity": 0.44
+        "angle": 64.0
+        ,
+        "color": "255.0 255.0 255.0"
+        ,
+        "intensity": 0.65
         ,
         "shadows": true
-        ,
-        "tags":
-        [
-          "light"
-        ]
       }
+      ,
+      "tags":
+      [
+        "light"
+      ]
     }
   },
-	{
+    	{
     "entity":
     {
       "name": "spot_collider3"
       ,
       "transform":
       {
-        "pos": "-23.8001 -9.22614 -22.1312"
-        ,
+        "pos": "-23.8001 -9.22614 -22.1312",
         "rotation": "0.0 0.0 0.0 -1.0"
       }
       ,
@@ -176,11 +176,14 @@
       {
         "shape": "sphere",
 				"is_trigger" : true,
-        "radius": 5.21433
-      }
+        "radius": 5.6
+      },
+      "tags":
+      [
+        "collider_light"
+      ]
     }
-  }
-  ,
+  },
   {
     "entity":
     {
@@ -189,17 +192,19 @@
       "transform":
       {
         "pos": "2.43315 -8.91186 -25.5493",
-				"is_trigger" : true,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
       ,
       "collider":
       {
-        "shape": "sphere"
-        ,
+        "shape": "sphere",
 				"is_trigger" : true,
-        "radius": 4.91918
-      }
+        "radius": 5.6
+      },
+      "tags":
+      [
+        "collider_light"
+      ]
     }
   }
   ,
@@ -219,8 +224,59 @@
       {
         "shape": "sphere",
 				"is_trigger" : true,
-        "radius": 5.21433
-      }
+        "radius": 5.6
+      },
+      "tags":
+      [
+        "collider_light"
+      ]
+    }
+  },
+	  {
+    "entity":
+    {
+      "name": "spot_collider004"
+      ,
+      "transform":
+      {
+        "pos": "-31.722 -0.230708 63.5476"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "shape": "sphere",
+				"is_trigger" : true,
+        "radius": 5.6
+      },
+      "tags":
+      [
+        "collider_light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "spot_collider005"
+      ,
+      "transform":
+      {
+        "pos": "-13.8389 -0.23071 29.817"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "shape": "sphere",
+				"is_trigger" : true,
+        "radius": 5.6
+      },
+      "tags":
+      [
+        "collider_light"
+      ]
     }
   }
 ]

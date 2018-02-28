@@ -68,3 +68,14 @@ CRenderMesh* loadMesh(const char* filename) {
 
   return mesh;
 }
+
+TMeshLoader* loadCollider(const char* filename) {
+	CFileDataProvider fdp(filename);
+	assert(fdp.isValid());
+
+	TMeshLoader* loader = new TMeshLoader();
+	if (!loader->load(fdp))
+		return nullptr;
+
+	return loader;
+}

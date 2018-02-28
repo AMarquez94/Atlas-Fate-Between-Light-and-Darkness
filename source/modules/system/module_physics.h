@@ -51,8 +51,7 @@ public:
 
 	/* Main procedure methods */
 	void createActor(TCompCollider& comp_collider);
-	void createComplexActor(TCompCollider& comp_collider);
-	
+
 	// Filter methods
 	FilterGroup getFilterByName(const std::string& name);
 	void setupFiltering(physx::PxShape* shape, physx::PxU32 filterGroup, physx::PxU32 filterMask);
@@ -61,6 +60,7 @@ public:
 	/* Ray casting & related methods*/
 	bool Raycast(const VEC3 & origin, const VEC3 & dir, float distance, RaycastHit & hit, QueryFlag flag = QueryFlag::eSTATIC, FilterGroup mask = FilterGroup::All);
 	//bool SphereCast(const VEC3 & origin, const VEC3 & dir, float distance, RaycastHit & hit);
+
 private:
 
 	physx::PxPhysics* gPhysics;
@@ -70,6 +70,7 @@ private:
 
 	physx::PxScene* gScene;
 	physx::PxMaterial* gMaterial;
+	physx::PxCooking * gCooking;
 
 	physx::PxPvd* gPvd;
 	physx::PxFoundation* gFoundation;

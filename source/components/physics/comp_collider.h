@@ -25,6 +25,8 @@ class TCompCollider: public TCompBase {
 public:
    
 	bool isGrounded;
+	bool isInside;
+
   struct TConfig
   {
     
@@ -36,6 +38,7 @@ public:
 
     unsigned int mask;
     unsigned int group;
+	std::string filename;
     physx::PxGeometryType::Enum shapeType;
 
     bool is_dynamic;

@@ -8,6 +8,10 @@ struct TMsgEntityCreated {
   DECL_MSG_ID();
 };
 
+struct TMsgSceneCreated {
+	DECL_MSG_ID();
+};
+
 struct TMsgEntityDestroyed {
 	CHandle h_other_entity;
 	DECL_MSG_ID();

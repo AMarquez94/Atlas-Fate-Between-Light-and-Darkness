@@ -16,7 +16,7 @@ struct TMaterialExporter (
 			map_filename = map.filename
 		)
 		local base_name = getFilenameFile map_filename
-		local json_filename = "data\\textures\\" + base_name + ".dds"
+		local json_filename = "data/textures/" + base_name + ".dds"
 		local ofull_path = project_path + json_filename
 		print ofull_path
 		-- Check if ofull_path exists
@@ -34,7 +34,7 @@ struct TMaterialExporter (
 		format "Exporting material % % %\n" mat_name mat (classof mat as string)
 		fs.begin (project_path + mat_name )
 		fs.beginObj()
-			fs.writeKeyValue "technique" "textured.tech"
+			fs.writeKeyValue "technique" "textured_bk.tech"
 			fs.writeComma()
 			fs.writeKeyValue "shadows" true
 			fs.writeComma()
@@ -249,9 +249,6 @@ struct TSceneExporter (
 		fs.writeKeyValue "intensity" obj.multiplier 
 		fs.writeComma()
 		fs.writeKeyValue "shadows" obj.castShadows 
-		fs.writeComma()
-		fs.writeKey "tags"
-		fs.arrayOfStrings #("light")
 		fs.endObj()
 	),
 
@@ -287,7 +284,8 @@ struct TSceneExporter (
 		fs.writeComma()
 		exportCompLight obj
 		fs.writeComma()
-		exportCompCollider obj
+		fs.writeKey "tags"
+		fs.arrayOfStrings #("light")
 	),
 	
 	

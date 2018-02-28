@@ -2,6 +2,8 @@
 #include "module_physics.h"
 #include "entity/entity.h"
 #include "components/comp_transform.h"
+#include "render/mesh/mesh.h"
+#include "render/mesh/mesh_loader.h"
 
 #pragma comment(lib,"PhysX3_x64.lib")
 #pragma comment(lib,"PhysX3Common_x64.lib")
@@ -9,11 +11,13 @@
 #pragma comment(lib,"PxFoundation_x64.lib")
 #pragma comment(lib,"PxPvdSDK_x64.lib")
 #pragma comment(lib,"PhysX3CharacterKinematic_x64.lib")
+#pragma comment(lib,"PhysX3Cooking_x64.lib")
 
 using namespace physx;
 
 const VEC3 CModulePhysics::gravity(0, -1, 0);
 
+/* REFACTOR THIS IN THE FUTURE, IT'S A BIG MESS */
 void CModulePhysics::createActor(TCompCollider& comp_collider)
 {
 	const TCompCollider::TConfig & config = comp_collider.config;
@@ -70,16 +74,52 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		else if (config.shapeType == physx::PxGeometryType::eSPHERE)
 		{
 			shape = gPhysics->createShape(PxSphereGeometry(config.radius), *gMaterial);
-			offset.p.y = config.radius;
+			//offset.p.y = config.radius;
+			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
 		}
-		else if (config.shapeType == physx::PxGeometryType::eSPHERE)
+		else if (config.shapeType == physx::PxGeometryType::eCONVEXMESH)
 		{
-			shape = gPhysics->createShape(PxSphereGeometry(config.radius), *gMaterial);
-			offset.p.y = config.radius;
+			TMeshLoader * collider_mesh = loadCollider("data/colliders/collider_Teapot001.collider"); // Move this to a custom collider resource
+
+			PxCookingParams params = gCooking->getParams();
+			params.convexMeshCookingType = PxConvexMeshCookingType::eINFLATION_INCREMENTAL_HULL;
+			params.gaussMapLimit = 256;
+			gCooking->setParams(params);
+
+			// Setup the convex mesh descriptor
+			PxConvexMeshDesc desc;
+			desc.points.data = collider_mesh->vtxs.data();
+			desc.points.count = collider_mesh->header.num_vertexs;
+			desc.points.stride = sizeof(PxVec3);
+			desc.flags = PxConvexFlag::eCOMPUTE_CONVEX;
+			
+			PxConvexMesh* convex = gCooking->createConvexMesh(desc, gPhysics->getPhysicsInsertionCallback());
+			PxConvexMeshGeometry convex_geo = PxConvexMeshGeometry(convex, PxMeshScale(), PxConvexMeshGeometryFlags());
+			actor = gPhysics->createRigidStatic(initialTrans);
+			actor->createShape(convex_geo, *gMaterial);
+			gScene->addActor(*actor);
+			return;
 		}
 		else if (config.shapeType == physx::PxGeometryType::eTRIANGLEMESH)
 		{
+			TMeshLoader * collider_mesh = loadCollider("data/colliders/collider_Teapot001.collider"); // Move this to a custom collider resource
 
+			PxTriangleMeshDesc meshDesc;
+			meshDesc.points.data = collider_mesh->vtxs.data();
+			meshDesc.points.count = collider_mesh->header.num_vertexs;
+			meshDesc.points.stride = sizeof(PxVec3);
+			meshDesc.flags = PxMeshFlag::e16_BIT_INDICES | PxMeshFlag::eFLIPNORMALS;
+
+			meshDesc.triangles.data = collider_mesh->idxs.data();
+			meshDesc.triangles.count = collider_mesh->header.num_indices;
+			meshDesc.triangles.stride = 3 * collider_mesh->header.bytes_per_idx;
+
+			PxTriangleMesh * tri_mesh = gCooking->createTriangleMesh(meshDesc, gPhysics->getPhysicsInsertionCallback());
+			PxTriangleMeshGeometry tri_geo = PxTriangleMeshGeometry(tri_mesh, PxMeshScale());
+			actor = gPhysics->createRigidStatic(initialTrans);
+			actor->createShape(tri_geo, *gMaterial);
+			gScene->addActor(*actor);
+			return;
 		}
 		//....todo: more shapes
 
@@ -99,6 +139,7 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 
 		if (config.is_trigger)
 		{
+			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, false);
 			shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, false);
 			shape->setFlag(PxShapeFlag::eTRIGGER_SHAPE, true);
 			actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
@@ -113,55 +154,6 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 
 	comp_collider.actor = actor;
 	actor->userData = h_comp_collider.asVoidPtr();
-}
-
-/* To refactor afterwards, add dynamic lights */
-void CModulePhysics::createComplexActor(TCompCollider& comp_collider)
-{
-	const TCompCollider::TConfig & config = comp_collider.config;
-	CHandle h_comp_collider(&comp_collider);
-	CEntity* e = h_comp_collider.getOwner();
-	TCompTransform * compTransform = e->get<TCompTransform>();
-	VEC3 pos = compTransform->getPosition();
-	QUAT quat = compTransform->getRotation();
-
-	PxTransform initialTrans(PxVec3(pos.x, pos.y, pos.z), PxQuat(quat.x, quat.y, quat.z, quat.w));
-	PxRigidActor* actor = nullptr;
-
-	PxTolerancesScale scale;
-	PxCookingParams params(scale);
-	params.meshPreprocessParams |= PxMeshPreprocessingFlag::eDISABLE_CLEAN_MESH;
-	params.meshPreprocessParams |= PxMeshPreprocessingFlag::eDISABLE_ACTIVE_EDGES_PRECOMPUTE;
-	params.meshCookingHint = PxMeshCookingHint::eCOOKING_PERFORMANCE;
-
-	//theCooking->setParams(params);
-	/*
-	PxTriangleMeshDesc meshDesc;
-	meshDesc.points.count = nbVerts;
-	meshDesc.points.stride = sizeof(PxVec3);
-	meshDesc.points.data = verts;
-
-	meshDesc.triangles.count = triCount;
-	meshDesc.triangles.stride = 3 * sizeof(PxU32);
-	meshDesc.triangles.data = indices32;
-
-	#ifdef _DEBUG
-	// mesh should be validated before cooked without the mesh cleaning
-	bool res = theCooking->validateTriangleMesh(meshDesc);
-	PX_ASSERT(res);
-	#endif
-
-	PxTriangleMesh* aTriangleMesh = theCooking->createTriangleMesh(meshDesc, gPhysics->getPhysicsInsertionCallback());
-
-	if (config.is_trigger)
-	{
-		meshDesc->setFlag(PxShapeFlag::eSIMULATION_SHAPE, false);
-		shape->setFlag(PxShapeFlag::eTRIGGER_SHAPE, true);
-		actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
-	}
-	*/
-	gScene->addActor(*actor);
-	setupFiltering(actor, config.group, config.mask);
 }
 
 void CModulePhysics::setupFiltering(PxShape* shape, PxU32 filterGroup, PxU32 filterMask)
@@ -255,6 +247,7 @@ bool CModulePhysics::start()
 	}
 
 	gPvd = PxCreatePvd(*gFoundation);
+
 	if (!gPvd) {
 		return false;
 	}
@@ -262,15 +255,15 @@ bool CModulePhysics::start()
 	PxPvdTransport* transport = PxDefaultPvdSocketTransportCreate("127.0.0.1", 5425, 10);
 	bool  is_ok = gPvd->connect(*transport, PxPvdInstrumentationFlag::eALL);
 	gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true, gPvd);
+	gCooking = PxCreateCooking(PX_PHYSICS_VERSION, *gFoundation, PxCookingParams(PxTolerancesScale()));
+	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
 	sceneDesc.gravity = PxVec3(gravity.x, -9.81f * gravity.y, gravity.z);
-	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 	sceneDesc.cpuDispatcher = gDispatcher;
 	sceneDesc.filterShader = CustomFilterShader;
 	sceneDesc.flags = PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS | PxSceneFlag::eENABLE_ACTIVE_ACTORS;
 	gScene = gPhysics->createScene(sceneDesc);
-	//gScene->setFlag(PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS, true);
 
 	PxPvdSceneClient* pvdClient = gScene->getScenePvdClient();
 
@@ -284,6 +277,8 @@ bool CModulePhysics::start()
 	gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.6f);
 	mControllerManager = PxCreateControllerManager(*gScene);
 	gScene->setSimulationEventCallback(&customSimulationEventCallback);
+
+	PxInitExtensions(*gPhysics, gPvd);
 
 	return true;
 }
@@ -356,10 +351,14 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
 		if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_FOUND)
 		{
 			e_trigger->sendMsg(TMsgTriggerEnter{ h_other_comp_collider.getOwner() });
+			TCompCollider * comp = (TCompCollider*)h_trigger_comp_collider;
+			comp->isInside = true;
 		}
 		else if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_LOST)
 		{
 			e_trigger->sendMsg(TMsgTriggerExit{ h_other_comp_collider.getOwner() });
+			TCompCollider * comp = (TCompCollider*)h_trigger_comp_collider;
+			comp->isInside = false;
 		}
 	}
 }
@@ -384,7 +383,7 @@ bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distan
 	PxRaycastBuffer px_hit; // [out] Raycast results
 	PxQueryFilterData filterData;
 	filterData.data.word0 = mask;
-	filterData.flags = PxQueryFlag::Enum(flag);
+	filterData.flags = PxQueryFlag:: PxQueryFlag::Enum(flag);
 
 	bool status = gScene->raycast(px_origin, px_dir, px_distance, px_hit, PxHitFlags(PxHitFlag::eDEFAULT), filterData); // Closest hit
 

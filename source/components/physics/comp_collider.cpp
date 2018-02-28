@@ -28,7 +28,11 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
   {
     config.shapeType = physx::PxGeometryType::eCAPSULE;
   }
-  
+  else if (strcmp("convex", shape.c_str()) == 0)
+  {
+	  config.shapeType = physx::PxGeometryType::eTRIANGLEMESH;
+  }
+
   config.is_controller = j.value("is_controller", false);
   config.is_dynamic = j.value("is_dynamic", false);
   config.is_trigger = j.value("is_trigger", false);
@@ -42,6 +46,9 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
   if (j.count("halfExtent"))
     config.halfExtent = loadVEC3(j["halfExtent"]);
 
+  // Setting some default values.
+  isInside = false;
+  isGrounded = false;
 }
 
 
@@ -95,7 +102,7 @@ void TCompCollider::update(float dt) {
 	if (config.gravity) {
 
 		//velocity += normal_gravity;
-		physx::PxControllerCollisionFlags col = controller->move(physx::PxVec3(normal_gravity.x, normal_gravity.y * dt * 10, normal_gravity.z), 0.f, dt, physx::PxControllerFilters());
+		physx::PxControllerCollisionFlags col = controller->move(physx::PxVec3(normal_gravity.x, normal_gravity.y * dt, normal_gravity.z), 0.f, dt, physx::PxControllerFilters());
 		isGrounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN) ? true : false;
 		//dbg("%f %f %f\n", normal_gravity.x, normal_gravity.y, normal_gravity.z);
 	}

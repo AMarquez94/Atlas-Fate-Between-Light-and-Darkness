@@ -31,7 +31,7 @@ public:
 
   void debugInMenu();
 
-private:
+public: // Doing it for testing purposes
   
   ID3D11Buffer*      vb = nullptr;
   ID3D11Buffer*      ib = nullptr;      // index buffer
