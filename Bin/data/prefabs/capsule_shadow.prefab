@@ -5,18 +5,23 @@
       "transform": {
         "pos": "0 0 1"
       },
-      "render": {
-        "mesh": "axis.mesh"
-      },
-      "light": {
-        "type": "dynamic_c",
-        "color": "0 0 0",
-        "intensity": 0.78,
-        "shadows": true,
-        "tags": [
-          "light"
-        ]
-      }
+      "render": [
+        {
+          "mesh": "data/meshes/Capsule_shadow.mesh",
+          "color": "0.1 0.1 0.1 1.0"
+        }
+      ],
+        "light"
+        :
+        {
+          "type": "dynamic_c",
+          "color": "0 0 0",
+          "intensity": 0.78,
+          "shadows": true,
+          "tags": [
+            "light"
+          ]
+        }
     }
   }
 ]

@@ -7,7 +7,7 @@
       },
       "render": [
         {
-          "mesh": "data/meshes/Teapot001.mesh",
+          "mesh": "data/meshes/Capsule.mesh",
           "materials": [
             "data/materials/mat_default_orange.material"
           ],
@@ -22,8 +22,8 @@
       "transform": {},
       "comment": "Enable hierarchy comp to move cannons when the teapot moves",
       "hierarchy": {
-        "axis": "0 1 0",
-        "angle": 0,
+        "axis": "0 0 1",
+        "angle": 90,
         "pos": "17 -35 0",
         "parent": "capsule_prefab"
       }

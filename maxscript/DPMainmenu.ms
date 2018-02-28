@@ -116,70 +116,69 @@ rollout SBExport "Export Tools" width:474 height:469
 	
 	on SBExport open do
 	(
-			scene_name.text = getFilenameFile maxFileName
+		scene_name.text = getFilenameFile maxFileName
 	)
 	
 	on btn_test pressed do
-	(
-			
-			dir = getSavePath caption:"Select Folder" initialDir:#images
-			asset_dir.text = dir
-		)
+	(			
+		dir = getSavePath caption:"Select Folder" initialDir:#images
+		asset_dir.text = dir
+	)
+		
 	on btn34 pressed do
 	(
-			
-			pb6.value = 0
-			local objs_selected = selection as array
-			man_mexport.id = edt24.text
-			man_mexport.has_lod = chk2.state 
-			man_mexport.has_collider = chk1.state 
-			man_mexport.ExportMesh objs_selected asset_dir.text
-		)
+		pb6.value = 0
+		local objs_selected = selection as array
+		man_mexport.id = edt24.text
+		man_mexport.has_lod = chk2.state 
+		man_mexport.has_collider = chk1.state 
+		man_mexport.ExportMesh objs_selected asset_dir.text
+	)
+	
 	on btn35 pressed do
-	(
-			
-			pb6.value = 0
-			man_mexport.id = edt24.text
-			man_mexport.has_lod = chk2.state 
-			man_mexport.has_collider = chk1.state 
-			man_mexport.ExportMesh $* asset_dir.text	
-		)
+	(			
+		pb6.value = 0
+		man_mexport.id = edt24.text
+		man_mexport.has_lod = chk2.state 
+		man_mexport.has_collider = chk1.state 
+		man_mexport.ExportMesh $* asset_dir.text	
+	)
+		
 	on btn39 pressed do
 	(
-			
-			pb6.value = 0
-			local objs_selected = selection as array
-			local scene_exporter = TSceneExporter()
-			scene_exporter.project_path = asset_dir.text +"\\"
-			scene_exporter.exportAll objs_selected scene_name.text pb6
-		)
+		pb6.value = 0
+		local objs_selected = selection as array
+		local scene_exporter = TSceneExporter()
+		scene_exporter.project_path = asset_dir.text +"\\"
+		scene_exporter.exportAll objs_selected scene_name.text pb6
+	)
+		
 	on btn40 pressed do
 	(
-			
-			pb6.value = 0
-			local scene_exporter = TSceneExporter()
-			scene_exporter.project_path = asset_dir.text +"\\"
-			scene_exporter.exportAll $* scene_name.text pb6
-		)
+		pb6.value = 0
+		local scene_exporter = TSceneExporter()
+		scene_exporter.project_path = asset_dir.text +"\\"
+		scene_exporter.exportAll $* scene_name.text pb6
+	)
+		
 	on btn27 pressed do
 	(
-			
-			pb6.value = 0
-			local objs_selected = selection as array
-			man_mexport.id = edt24.text
-			man_mexport.has_lod = chk2.state 
-			man_mexport.has_collider = chk1.state 
-			man_mexport.ExportMesh objs_selected asset_dir.text
-		)
+		pb6.value = 0
+		local objs_selected = selection as array
+		man_mexport.id = edt24.text
+		man_mexport.has_lod = chk2.state 
+		man_mexport.has_collider = chk1.state 
+		man_mexport.ExportMesh objs_selected asset_dir.text
+	)
+	
 	on btn28 pressed do
-	(
-			
-			pb6.value = 0
-			man_mexport.id = edt24.text
-			man_mexport.has_lod = chk2.state 
-			man_mexport.has_collider = chk1.state 
-			man_mexport.ExportMesh $* asset_dir.text	
-		)
+	(			
+		pb6.value = 0
+		man_mexport.id = edt24.text
+		man_mexport.has_lod = chk2.state 
+		man_mexport.has_collider = chk1.state 
+		man_mexport.ExportMesh $* asset_dir.text	
+	)
 )
 
 -- Animation tools
