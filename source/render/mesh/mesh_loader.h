@@ -38,3 +38,4 @@ struct TMeshLoader {
 };
 
 CRenderMesh* loadMesh(const char* filename);
+TMeshLoader* loadCollider(const char* filename);

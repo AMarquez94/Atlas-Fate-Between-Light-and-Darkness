@@ -51,8 +51,7 @@ public:
 
 	/* Main procedure methods */
 	void createActor(TCompCollider& comp_collider);
-	void createComplexActor(TCompCollider& comp_collider);
-	
+
 	// Filter methods
 	FilterGroup getFilterByName(const std::string& name);
 	void setupFiltering(physx::PxShape* shape, physx::PxU32 filterGroup, physx::PxU32 filterMask);

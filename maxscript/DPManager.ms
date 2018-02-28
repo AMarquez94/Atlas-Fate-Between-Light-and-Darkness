@@ -1,5 +1,5 @@
 filein "DPUtils.ms"
-
+filein "MCVExportMesh.ms"
 
 -- To replace
 struct ExportSceneManager (

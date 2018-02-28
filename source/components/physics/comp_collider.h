@@ -38,6 +38,7 @@ public:
 
     unsigned int mask;
     unsigned int group;
+	std::string filename;
     physx::PxGeometryType::Enum shapeType;
 
     bool is_dynamic;
