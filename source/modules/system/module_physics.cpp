@@ -111,12 +111,12 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 			PxTriangleMeshDesc meshDesc;
 			meshDesc.points.data = collider_mesh->vtxs.data();
 			meshDesc.points.count = collider_mesh->header.num_vertexs;
-			meshDesc.points.stride = sizeof(PxVec3);
+			meshDesc.points.stride = collider_mesh->header.bytes_per_vtx;
 			meshDesc.flags = PxMeshFlag::e16_BIT_INDICES | PxMeshFlag::eFLIPNORMALS;
 
 			meshDesc.triangles.data = collider_mesh->idxs.data();
-			meshDesc.triangles.count = collider_mesh->header.num_indices;
-			meshDesc.triangles.stride = 3* collider_mesh->header.bytes_per_idx;
+			meshDesc.triangles.count = collider_mesh->header.num_indices / 3;
+			meshDesc.triangles.stride = 3 * collider_mesh->header.bytes_per_idx;
 
 			PxTriangleMesh * tri_mesh = gCooking->createTriangleMesh(meshDesc, gPhysics->getPhysicsInsertionCallback());
 			PxTriangleMeshGeometry tri_geo = PxTriangleMeshGeometry(tri_mesh, PxMeshScale());
