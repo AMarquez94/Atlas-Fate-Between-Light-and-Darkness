@@ -56,6 +56,15 @@ void TCompPlayerController::debugInMenu() {
 	ImGui::ProgressBar(fabsf(btRight.value));
 }
 
+void TCompPlayerController::renderDebug() {
+	ImGui::Begin("UI");
+	ImGui::Text("State: %s", stateName.c_str());
+	ImGui::Text("Stamina:", stateName.c_str());
+	ImGui::SameLine();
+	ImGui::ProgressBar(stamina / maxStamina);
+	ImGui::End();
+}
+
 void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
 
 	// Reading the input values from the json
@@ -184,6 +193,17 @@ void TCompPlayerController::IdleState(float dt){
 		ChangeState("push");
 		return;
 	}
+
+	if (btDebugShadows.getsPressed()) {
+		float temp;
+		temp = dcrStaminaWall;
+		dcrStaminaWall = dcrStaminaWallAux;
+		dcrStaminaWallAux = temp;
+
+		temp = dcrStaminaGround;
+		dcrStaminaGround = dcrStaminaGroundAux;
+		dcrStaminaGroundAux = temp;
+	}
 }
 
 void TCompPlayerController::MotionState(float dt){ 
@@ -292,10 +312,17 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 	if (motionButtonsPressed()) {
 
 		TCompTransform *t = get<TCompTransform>();
+		TCompCollider *c_my_collider = get<TCompCollider>();
+
 		VEC3 position = t->getPosition();
+		VEC3 prevUp = c_my_collider->GetUpVector();
 
 		if (ConcaveTest() || ConvexTest())
 		{
+
+			VEC3 postUp = c_my_collider->GetUpVector();
+			VEC3 dirToLookAt = -(prevUp + postUp);
+
 			if (!playerInFloor()) {
 
 				CEntity* e_camera = getEntityByName(camera_shadowmerge_ver);
@@ -303,10 +330,26 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 				assert(c_camera);
 
 				// Replace this with an smooth camera interpolation
+
+				TMsgSetCameraActive msg;
+				msg.previousCamera = camera_actual;
 				camera_actual = camera_shadowmerge_ver;
-				Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
+				msg.actualCamera = camera_actual;
+				msg.directionToLookAt = dirToLookAt;
+				CEntity* eCamera = getEntityByName("AuxCameraVer");
+				eCamera->sendMsg(msg);
+
+				//Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
 				ChangeState("smVer");
 				return;
+			}
+			else {
+				TMsgSetCameraActive msg;
+				msg.previousCamera = camera_actual;
+				msg.actualCamera = camera_actual;
+				msg.directionToLookAt = dirToLookAt;
+				CEntity* eCamera = getEntityByName("AuxCameraVer");
+				eCamera->sendMsg(msg);
 			}
 		}
 
@@ -328,9 +371,17 @@ void TCompPlayerController::ShadowMergingVerticalState(float dt){
 	if (motionButtonsPressed()) {
 
 		TCompTransform *t = get<TCompTransform>();
+		TCompCollider *c_my_collider = get<TCompCollider>();
+
 		VEC3 position = t->getPosition();
 
+		VEC3 prevUp = c_my_collider->GetUpVector();
+
 		if (ConcaveTest() || ConvexTest()) {
+
+			VEC3 postUp = c_my_collider->GetUpVector();
+			VEC3 dirToLookAt = -(prevUp + postUp);
+			dirToLookAt.Normalize();
 
 			if (playerInFloor()) {
 				CEntity* e_camera = getEntityByName(camera_shadowmerge_hor);
@@ -338,10 +389,28 @@ void TCompPlayerController::ShadowMergingVerticalState(float dt){
 				assert(c_camera);
 
 				// Replace this with an smooth camera interpolation
+
+
+				TMsgSetCameraActive msg;
+				msg.previousCamera = camera_actual;
+				msg.actualCamera = camera_shadowmerge_hor;
+				msg.directionToLookAt = dirToLookAt;
+				CEntity* eCamera = getEntityByName("AuxCameraVer");
+				eCamera->sendMsg(msg);
 				camera_actual = camera_shadowmerge_hor;
-				Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
+
+				//Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
 				ChangeState("smHor");
 				return;
+			}
+			else {
+				TMsgSetCameraActive msg;
+				msg.previousCamera = camera_actual;
+				msg.actualCamera = camera_actual;
+				msg.directionToLookAt = dirToLookAt;
+				CEntity* eCamera = getEntityByName("AuxCameraVer");
+				eCamera->sendMsg(msg);
+				//Engine.getCameras().blendInCamera(getEntityByName("AuxCameraVer"), .2f, CModuleCameras::EPriority::TEMPORARY);
 			}
 		}
 
@@ -397,8 +466,17 @@ void TCompPlayerController::ShadowMergingExitState(float dt){
 	TCompRender* t = get<TCompRender>();
 	t->color = VEC4(1, 1, 1, 1);
 
-	TCompCollider *collider = get<TCompCollider>();
-	collider->Resize(collider->config.height);
+
+	crouched = true;
+	if (canStandUp()) {
+		TCompCollider *collider = get<TCompCollider>();
+		collider->Resize(collider->config.height);
+		crouched = false;
+	}
+	else {
+		TCompCollider *collider = get<TCompCollider>();
+		collider->Resize(0.45f);
+	}
 
 	// Bring back the main camera to our thirdperson camera
 	// Replace this with an smooth camera interpolation
@@ -523,7 +601,7 @@ void TCompPlayerController::movePlayer(const float dt) {
 
 	currentSpeed = 0;
 
-	if (btRun.isPressed()) {
+	if (btRun.isPressed() && canStandUp()) {	//TODO: Improve? Always raycasting when running
 		c_my_render->mesh = mesh_states.find("pj_run")->second;
 		crouched = false;
 		auxStateName = "running";
@@ -848,14 +926,19 @@ bool TCompPlayerController::checkEnemyInShadows(CHandle enemy)
 
 void TCompPlayerController::manageCrouch()
 {
-	crouched = !crouched;
-	if (crouched) {
+	if (crouched && canStandUp()) {
+
+		/* get up if we can */
 		TCompCollider * collider = get<TCompCollider>();
 		collider->Resize(0.45f);
+		crouched = false;
 	}
 	else {
+
+		/* crouch */
 		TCompCollider * collider = get<TCompCollider>();
 		collider->Resize(collider->config.height);
+		crouched = true;
 	}
 }
 
@@ -867,5 +950,14 @@ bool TCompPlayerController::playerInFloor() {
 	VEC3 playerGravityNormal = c->normal_gravity;
 
 	return normalGravityNormal.Dot(playerGravityNormal) == 1.f;
+}
+
+bool TCompPlayerController::canStandUp()
+{
+	CModulePhysics::RaycastHit hit;
+	TCompTransform *mypos = get<TCompTransform>();
+	TCompCollider *tMyCollider = get<TCompCollider>();
+
+	return !crouched || !EnginePhysics.Raycast(mypos->getPosition() + VEC3(0.f, 0.1f, 0.f), mypos->getUp(), tMyCollider->config.height + tMyCollider->config.height / 2, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario"));
 }
 

@@ -58,10 +58,6 @@ void CAIPatrol::debugInMenu() {
 			renderLine(_waypoints[i].position, _waypoints[(i + 1) % _waypoints.size()].position, VEC4(0, 1, 0, 1));
 		}
 	}
-
-	if (lastPlayerKnownPos != VEC3::Zero) {
-		renderLine(((TCompTransform *)get<TCompTransform>())->getPosition(), lastPlayerKnownPos, VEC4(255, 0, 0, 1));
-	}
 }
 
 void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
@@ -323,11 +319,11 @@ void CAIPatrol::SuspectState(float dt)
 	/* Distance to player */
 	float distanceToPlayer = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
 
-	if (isPlayerInFov() && distanceToPlayer <= autoChaseDistance) {
+	if (distanceToPlayer <= autoChaseDistance && isPlayerInFov()) {
 		suspectO_Meter = 1.f;
 		rotateTowardsVec(ppos->getPosition(), dt);
 	}
-	else if (isPlayerInFov() && distanceToPlayer <= maxChaseDistance) {
+	else if (distanceToPlayer <= maxChaseDistance && isPlayerInFov()) {
 		suspectO_Meter += dt * incrBaseSuspectO_Meter;							//TODO: increment more depending distance and noise
 		rotateTowardsVec(ppos->getPosition(), dt);
 	}
@@ -495,7 +491,7 @@ void CAIPatrol::GoPlayerLastPosState(float dt)
 
 	VEC3 vp = mypos->getPosition();
 
-	if (isPlayerInFov() && VEC3::Distance(mypos->getPosition(), ppos->getPosition()) < maxChaseDistance) {
+	if (VEC3::Distance(mypos->getPosition(), ppos->getPosition()) < maxChaseDistance && isPlayerInFov()) {
 		TCompRender * cRender = get<TCompRender>();
 		cRender->color = VEC4(255, 255, 0, 1);
 		ChangeState("suspect");
@@ -527,7 +523,7 @@ void CAIPatrol::SeekPlayerState(float dt)
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
 
-	if (isPlayerInFov() && VEC3::Distance(mypos->getPosition(), ppos->getPosition()) < maxChaseDistance) {
+	if (VEC3::Distance(mypos->getPosition(), ppos->getPosition()) < maxChaseDistance && isPlayerInFov()) {
 		TCompRender * cRender = get<TCompRender>();
 		cRender->color = VEC4(255, 255, 0, 1);
 		amountRotated = 0.f;
@@ -649,7 +645,39 @@ bool CAIPatrol::isPlayerInFov() {
 	/* Player inside cone of vision */
 	bool in_fov = mypos->isInFov(ppos->getPosition(), fov);
 
-	return in_fov && !pController->isInShadows() && !pController->isDead();
+	return in_fov && !pController->isInShadows() && !pController->isDead() && !isEntityHidden(getEntityByName(entityToChase));
+}
+
+bool CAIPatrol::isEntityHidden(CHandle h_entity)
+{
+	CEntity *entity = h_entity;
+	TCompTransform *mypos = getMyTransform();
+	TCompTransform *eTransform = entity->get<TCompTransform>();
+	TCompCollider *myCollider = get<TCompCollider>();
+	TCompCollider *eCollider = entity->get<TCompCollider>();
+
+	bool isHidden = true;
+
+	VEC3 myPosition = mypos->getPosition();
+	VEC3 origin = myPosition + VEC3(0, myCollider->config.height * 2, 0);
+	VEC3 dest = VEC3::Zero;
+	VEC3 dir = VEC3::Zero;
+
+	float i = 0;
+	while (isHidden && i < eCollider->config.height * 2) {
+		dest = eTransform->getPosition() + VEC3(0, Clamp(i - .1f, 0.f, eCollider->config.height * 2), 0);
+		dir = dest - origin;
+		dir.Normalize();
+		CModulePhysics::RaycastHit hit;
+		float dist = VEC3::Distance(origin,dest);
+
+		//TODO: only works when behind scenery. Make the same for other enemies, dynamic objects...
+		if (!EnginePhysics.Raycast(origin, dir, dist, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario"))) {
+			isHidden = false;
+		}
+		i = i + (eCollider->config.height / 2);
+	}
+	return isHidden;
 }
 
 bool CAIPatrol::isStunnedPatrolInFov()

@@ -204,6 +204,9 @@ bool CApp::readConfig() {
   time_since_last_render.reset();
 
   CEngine::get().getRender().configure(xres, yres);
+
+  ShowCursor(false);
+
   return true;
 }
 

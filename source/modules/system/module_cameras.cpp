@@ -66,6 +66,9 @@ void CModuleCameras::update(float delta)
 			{
 				mc.weight = 1.f - Clamp(mc.time / mc.blendOutTime, 0.f, 1.f);
 			}
+			else if (mc.state == TMixedCamera::ST_CANCELLED) {
+				mc.weight = 0.f;
+			}
 
 			if (mc.weight > 0.f)
 			{
@@ -134,6 +137,15 @@ void CModuleCameras::blendInCamera(CHandle camera, float blendTime, EPriority pr
 	}
 }
 
+void CModuleCameras::cancelCamera(CHandle camera)
+{
+	TMixedCamera* mc = getMixedCamera(camera);
+	if (mc)
+	{
+		mc->state = TMixedCamera::ST_CANCELLED;
+	}
+}
+
 void CModuleCameras::blendOutCamera(CHandle camera, float blendTime)
 {
 	TMixedCamera* mc = getMixedCamera(camera);
@@ -175,7 +187,7 @@ void CModuleCameras::checkDeprecated()
 	for (int i = _mixedCameras.size() - 1; i >= 0; --i)
 	{
 		TMixedCamera& mc = _mixedCameras[i];
-		if (mc.type == GAMEPLAY && mc.weight >= 1.f)
+		if (mc.type == GAMEPLAY && mc.weight >= 1.f && mc.state != TMixedCamera::ST_CANCELLED )
 		{
 			// check if there's another gameplay camera
 			// if so, and prepare it to be removed
@@ -187,6 +199,9 @@ void CModuleCameras::checkDeprecated()
 					otherMc.weight = 0.f;
 				}
 			}
+		}
+		else if (TMixedCamera::ST_CANCELLED) {
+			//mc.weight = 0.f;
 		}
 	}
 }

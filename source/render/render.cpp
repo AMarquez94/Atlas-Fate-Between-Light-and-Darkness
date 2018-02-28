@@ -36,6 +36,7 @@ bool CRender::createDevice(int new_width, int new_height) {
   sd.SampleDesc.Count = 1;
   sd.SampleDesc.Quality = 0;
   sd.Windowed = TRUE;
+  sd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
   D3D_FEATURE_LEVEL featureLevel = D3D_FEATURE_LEVEL_11_0;
   HRESULT hr;
@@ -93,6 +94,8 @@ bool CRender::createDevice(int new_width, int new_height) {
 
 // -------------------------------------------------------------------
 void CRender::destroyDevice() {
+
+	swapChain->SetFullscreenState(FALSE, NULL);
   if (ctx) ctx->ClearState();
   SAFE_RELEASE(depthTexture);
   SAFE_RELEASE(depthStencilView);

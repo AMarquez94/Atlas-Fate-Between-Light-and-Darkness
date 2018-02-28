@@ -138,4 +138,10 @@ void activateCamera(const CCamera& camera) {
 	cb_camera.updateGPU();
 }
 
+void setWorldTransform(MAT44 new_matrix, VEC4 new_color) {
+	cb_object.obj_world = new_matrix;
+	cb_object.obj_color = new_color;
+	cb_object.updateGPU();
+}
+
 

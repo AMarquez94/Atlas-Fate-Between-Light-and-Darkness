@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../comp_base.h"
+#include "components/comp_base.h"
 #include "camera/camera.h"
 #include "entity/common_msgs.h"
 
@@ -27,7 +27,11 @@ private:
 	bool active;
 
 	void onMsgCameraActive(const TMsgCameraActivated &msg);
+	void onMsgCameraFullActive(const TMsgCameraFullyActivated &msg);
 	void onMsgCameraDeprecated(const TMsgCameraDeprecated &msg);
+	void onMsgActivateMyself(const TMsgSetCameraActive &msg);
+
+	void activateCamera();
 
 public:
   void debugInMenu();
@@ -40,12 +44,13 @@ public:
 
   static void registerMsgs();
 
-  const float getSpeed();
-  const VEC2 getClampAngle();
-  const VEC2 getOriginalEuler();
-  const VEC2 getCurrentEuler();
-  const VEC3 getClippingOffset();
-  const CHandle getCameraTarget();
+  const float getSpeed() { return _speed; }
+  const VEC2 getClampAngle() { return _clamp_angle; }
+  const VEC2 getOriginalEuler() { return _original_euler; }
+  const VEC2 getCurrentEuler() { return _current_euler; }
+  const VEC3 getClippingOffset() { return _clipping_offset; }
+  const CHandle getCameraTarget() { return _h_target; }
+  const float getStartingPitch() { return _starting_pitch; };
 
   void setCurrentEuler(float x, float y);
 };

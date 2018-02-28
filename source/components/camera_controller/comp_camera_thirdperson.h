@@ -28,6 +28,7 @@ public:
   void update(float dt);
 
   float CameraClipping(const VEC3 & origin, const VEC3 & dir);
+  const VEC2 getCurrentEuler() { return _current_euler; }
 
   DECL_SIBLING_ACCESS();
 };

@@ -113,7 +113,7 @@ public:
   }
 
   // ----------------------------------------
-  void updateAll(float dt) {
+  void updateAll(float dt) override {
     assert(objs);
 
     /*
@@ -129,6 +129,12 @@ public:
       for (uint32_t i = 0; i < num_objs_used; ++i) 
         objs[i].update(dt);
     //}
+  }
+  // ---------------------------------------- 
+  void renderDebugAll() override {
+	  assert(objs);
+	  for (uint32_t i = 0; i < num_objs_used; ++i)
+		  objs[i].renderDebug();
   }
   
   // -------------------------------

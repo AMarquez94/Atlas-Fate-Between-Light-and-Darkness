@@ -31,6 +31,7 @@ struct TMsgDamage {
 // Sent to all entities from a parsed file once all the entities
 // in that file has been created. Used to link entities between them
 struct TEntityParseContext;
+
 struct TMsgEntitiesGroupCreated {
 	const TEntityParseContext& ctx;
 	DECL_MSG_ID();
@@ -79,6 +80,13 @@ struct TMsgTriggerEnter {
 
 struct TMsgTriggerExit {
 	CHandle h_other_entity;
+	DECL_MSG_ID();
+};
+
+struct TMsgSetCameraActive {
+	std::string previousCamera;
+	std::string actualCamera;
+	VEC3 directionToLookAt;
 	DECL_MSG_ID();
 };
 

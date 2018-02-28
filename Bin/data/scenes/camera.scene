@@ -79,11 +79,10 @@
 		}
 	},
 	{
-		"xentity": {
+		"entity": {
 			"name": "AuxCameraVer",
-			"transform": {},
-			"hierarchy": {
-				"parent": "SMCameraVer"
+			"transform": {
+				"pos": "0 3 3"
 			},
 			"auxcamera_shadowmerge": {
 			},

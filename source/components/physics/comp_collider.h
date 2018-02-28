@@ -35,6 +35,7 @@ public:
     VEC3 halfExtent;
     float radius;
 	float height;
+	float currentHeight;
 
     unsigned int mask;
     unsigned int group;

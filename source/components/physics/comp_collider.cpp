@@ -41,6 +41,7 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
   config.is_dynamic = j.value("is_dynamic", false);
   config.is_trigger = j.value("is_trigger", false);
   config.height = j.value("height", 0.f);
+  config.currentHeight = config.height;
   config.radius = j.value("radius", 0.f);
   config.gravity = j.value("gravity", false);
   config.filename = j.value("name", "");
@@ -120,6 +121,7 @@ void TCompCollider::update(float dt) {
 
 void TCompCollider::Resize(float new_size)
 {
+	config.currentHeight = new_size;
 	controller->resize((physx::PxReal)new_size);
 }
 

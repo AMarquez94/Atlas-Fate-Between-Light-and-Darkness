@@ -126,5 +126,35 @@
         }
       ]
     }
+  },
+  {
+    "entity":
+    {
+      "name": "Box005"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+        ,
+        "rotation": "0.0 0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/default_skybox.material"
+          ]
+        }
+      ]
+    },
+      "collider": {
+        "shape": "box",
+        "halfExtent": "5.5 12.6 4",
+		"is_trigger": true
+      }
   }
 ]
