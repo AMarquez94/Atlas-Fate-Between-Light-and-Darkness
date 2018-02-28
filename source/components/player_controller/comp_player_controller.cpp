@@ -317,11 +317,17 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 		VEC3 position = t->getPosition();
 		VEC3 prevUp = c_my_collider->GetUpVector();
 
-		if (ConcaveTest() || ConvexTest())
+
+		bool concaveTest = ConcaveTest();
+		bool convexTest = ConvexTest();
+
+		if (concaveTest || convexTest)
 		{
 
 			VEC3 postUp = c_my_collider->GetUpVector();
 			VEC3 dirToLookAt = -(prevUp + postUp);
+
+			float anglesTurned = rad2deg(acosf(prevUp.Dot(postUp)));
 
 			if (!playerInFloor()) {
 
@@ -343,7 +349,7 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 				ChangeState("smVer");
 				return;
 			}
-			else {
+			else if(fabsf(anglesTurned) >= 45.f) {
 				TMsgSetCameraActive msg;
 				msg.previousCamera = camera_actual;
 				msg.actualCamera = camera_actual;
@@ -377,9 +383,14 @@ void TCompPlayerController::ShadowMergingVerticalState(float dt){
 
 		VEC3 prevUp = c_my_collider->GetUpVector();
 
-		if (ConcaveTest() || ConvexTest()) {
+		bool concaveTest = ConcaveTest();
+		bool convexTest = ConvexTest();
+
+		if (concaveTest || convexTest) {
 
 			VEC3 postUp = c_my_collider->GetUpVector();
+			float anglesTurned = rad2deg(acosf(prevUp.Dot(postUp)));
+			//anglesTurned = convexTest ? anglesTurned + 180.f : anglesTurned;
 			VEC3 dirToLookAt = -(prevUp + postUp);
 			dirToLookAt.Normalize();
 
@@ -398,19 +409,16 @@ void TCompPlayerController::ShadowMergingVerticalState(float dt){
 				CEntity* eCamera = getEntityByName("AuxCameraVer");
 				eCamera->sendMsg(msg);
 				camera_actual = camera_shadowmerge_hor;
-
-				//Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
 				ChangeState("smHor");
 				return;
 			}
-			else {
+			else if(fabsf(anglesTurned) >= 45.f) {
 				TMsgSetCameraActive msg;
 				msg.previousCamera = camera_actual;
 				msg.actualCamera = camera_actual;
 				msg.directionToLookAt = dirToLookAt;
 				CEntity* eCamera = getEntityByName("AuxCameraVer");
 				eCamera->sendMsg(msg);
-				//Engine.getCameras().blendInCamera(getEntityByName("AuxCameraVer"), .2f, CModuleCameras::EPriority::TEMPORARY);
 			}
 		}
 
