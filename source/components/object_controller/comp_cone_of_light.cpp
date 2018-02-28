@@ -81,21 +81,16 @@ bool TCompConeOfLightController::isPlayerHiddenFromLight(CEntity* player)
 	TCompCollider *myCollider = parent->get<TCompCollider>();
 	TCompCollider *pCollider = player->get<TCompCollider>();
 
-	bool isHidden = true;
-
 	VEC3 myPosition = mypos->getPosition();
 
 	origin = myPosition + VEC3(0, myCollider->config.height + .1f, 0);
-	dest = pTransform->getPosition();
+	dest = pTransform->getPosition() + VEC3(0,.1f,0);
 	VEC3 dir = dest - origin;
 	dir.Normalize();
+	float distance = VEC3::Distance(origin, dest);
 	
 	CModulePhysics::RaycastHit hit;
-	if (EnginePhysics.Raycast(origin, dir, dist + 1.f, hit)) {
-		CEntity* entityHit = CHandle(hit.collider).getOwner();
-		dbg("Entity seen %s - %s", entityHit->getName(), player->getName());
-		isHidden = CHandle(hit.collider).getOwner() != CHandle(player);
-	}
 
-	return isHidden;
+	//TODO: only works when behind scenery. Make the same for other enemies, dynamic objects...
+	return EnginePhysics.Raycast(origin, dir, distance, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario"));
 }

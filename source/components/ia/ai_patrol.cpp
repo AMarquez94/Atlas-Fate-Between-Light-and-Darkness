@@ -669,10 +669,11 @@ bool CAIPatrol::isEntityHidden(CHandle h_entity)
 		dir = dest - origin;
 		dir.Normalize();
 		CModulePhysics::RaycastHit hit;
-		if (EnginePhysics.Raycast(origin, dir, maxChaseDistance + 2.f, hit)) {
-			if (CHandle(hit.collider).getOwner() == h_entity) {
-				isHidden = false;
-			}
+		float dist = VEC3::Distance(origin,dest);
+
+		//TODO: only works when behind scenery. Make the same for other enemies, dynamic objects...
+		if (!EnginePhysics.Raycast(origin, dir, dist, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario"))) {
+			isHidden = false;
 		}
 		i = i + (eCollider->config.height / 2);
 	}

@@ -953,7 +953,6 @@ bool TCompPlayerController::playerInFloor() {
 
 bool TCompPlayerController::canStandUp()
 {
-	bool result;
 	CModulePhysics::RaycastHit hit;
 	TCompTransform *mypos = get<TCompTransform>();
 	TCompCollider *tMyCollider = get<TCompCollider>();

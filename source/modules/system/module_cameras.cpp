@@ -201,7 +201,7 @@ void CModuleCameras::checkDeprecated()
 			}
 		}
 		else if (TMixedCamera::ST_CANCELLED) {
-			mc.weight == 0.f;
+			mc.weight = 0.f;
 		}
 	}
 }
