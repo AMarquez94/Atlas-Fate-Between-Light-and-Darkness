@@ -14,7 +14,7 @@
       "ai_patrol": {
         "waypoints": [
           {
-            "position": "-14.3 0 4.8",
+            "position": "-12.4 0 7.8",
             "lookAt": "-1 0 -1"
           },
           {

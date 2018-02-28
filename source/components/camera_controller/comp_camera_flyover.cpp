@@ -64,5 +64,9 @@ void TCompCameraFlyover::update(float dt)
 		VEC3 newFront = getVectorFromYawPitch(yaw, pitch);
 
 		c_transform->lookAt(newPos, newPos + newFront);
+
+		if (btDebugGetPos.getsPressed()) {
+			dbg("Camera pos - (%f,%f,%f)", newPos.x, newPos.y, newPos.z);
+		}
 	}
 }
