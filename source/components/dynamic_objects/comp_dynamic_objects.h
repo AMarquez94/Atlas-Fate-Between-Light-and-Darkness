@@ -37,7 +37,6 @@ class TCompDynamicObjects : public TCompBase {
 	//Positions of each instance
 	std::vector <VEC3> _pos;
 	//Clones
-	std::vector<CHandle> _clones_h;
 	std::vector <CEntity*> _clones;
 	//Boolean to see if we have to send a message
 	bool _playerWasInShadows;

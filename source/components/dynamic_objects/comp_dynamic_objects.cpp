@@ -123,9 +123,7 @@ void TCompDynamicObjects::CalculatePositions(int foo) {
  }
 
 void TCompDynamicObjects::CreateClone(TEntityParseContext ctx, int it) {
-	CHandle clone_h = ctx.entities_loaded[0];
-	CEntity* clone = clone_h;
-	_clones_h.push_back(clone_h);
+	CEntity* clone = ctx.entities_loaded[0];
 	_clones.push_back(clone);
 	TCompTransform *mypos = _clones[it]->get<TCompTransform>();
 
@@ -193,8 +191,6 @@ void TCompDynamicObjects::update(float dt) {
 	TCompTransform* target_transform = target->get<TCompTransform>();
 	VEC3 target_pos = target_transform->getPosition();
 
-
-
 	if (!_playerWasInShadows && IsPlayerInShadows(target_pos, capsule_shadow_pos, _offsetShadow)) {
 		TMsgEnteredCapsuleShadow msgEnter;
 		target->sendMsg(msgEnter);
@@ -208,8 +204,8 @@ void TCompDynamicObjects::update(float dt) {
 	Move(mypos, dt);
 
 	for (int it = 0; it < _clones.size(); it++) {
-		CHandle h_c = _clones[it];
-		CEntity* clone_shadow = h_c;
+		CEntity *clone_shadow = _clones[it];
+
 		TCompTransform* mypos2 = clone_shadow->get<TCompTransform>();
 		VEC3 clone_shadow_pos = mypos2->getPosition();
 
