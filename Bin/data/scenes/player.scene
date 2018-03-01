@@ -9,7 +9,7 @@
         ]
       },
       "transform": {
-        "pos": "5 20 30"
+        "pos": "5 14 30"
       },
       "player_controller": {
         "target_camera": "TPCamera",

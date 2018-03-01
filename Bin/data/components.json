@@ -22,8 +22,8 @@
     "collider",
     "camera_flyover",
     "camera",
-    "dynamic_objects"
-	  "game_manager_controller"
+    "dynamic_objects",
+	"game_manager_controller"
   ],
   "render_debug": [
     "player_controller",
