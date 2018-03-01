@@ -41,6 +41,7 @@ class TCompDynamicObjects : public TCompBase {
 	std::vector <CEntity*> _clones;
 	//Boolean to see if we have to send a message
 	bool _playerWasInShadows;
+	float x = 0, y = 0, z = 0;
 
 	void rotateTowardsVec(VEC3 objective, float dt);
 

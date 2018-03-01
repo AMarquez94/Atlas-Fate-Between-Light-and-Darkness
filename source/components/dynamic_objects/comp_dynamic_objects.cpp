@@ -9,6 +9,9 @@ DECL_OBJ_MANAGER("dynamic_objects", TCompDynamicObjects);
 
 
 void TCompDynamicObjects::debugInMenu() {
+	/*ImGui::DragFloat("X", &x, 0.1f, -20.f, 20.f);
+	ImGui::DragFloat("Y", &y, 0.1f, -20.f, 20.f);
+	ImGui::DragFloat("Z", &z, 0.1f, -20.f, 20.f);*/
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	VEC3 Pos = c_my_transform->getPosition();
 	ImGui::DragFloat("Point", &Pos.x, 0.1f, -20.f, 20.f);
@@ -27,6 +30,7 @@ void TCompDynamicObjects::debugInMenu() {
 	ImGui::DragFloat("Speed", &_speed, 0.1f, 0.f, 10.f);
 	ImGui::DragInt("Current Waypoint", &_currentWaypoint, 0, 0, 10);
 }
+
 void TCompDynamicObjects::StartCycle() {
 	if (!_start) {
 		TCompTransform *mypos = get<TCompTransform>();
@@ -90,16 +94,15 @@ void TCompDynamicObjects::load(const json& j, TEntityParseContext& ctx) {
 
 	_currentEntity = ctx.current_entity;
 
-
 	Init();
 }
 
 void TCompDynamicObjects::Init() {
-	_currentWaypoint = 1;
-	//Hardcoded constant distance between each capsule and its shadow
 	_offsetShadow.x = 17;
-	_offsetShadow.y = -35;
+	_offsetShadow.y = -31;
 	_offsetShadow.z = 0;
+
+	_currentWaypoint = 1;
 
 	_playerWasInShadows = false;
 	for (auto it = 0; it < _waypoints.size() - 1; it++) {
@@ -159,19 +162,21 @@ void TCompDynamicObjects::Move(TCompTransform* mypos, float dt) {
 bool TCompDynamicObjects::CheckProximity(float x, float y, float z) {
 	//This function estimates the proximity of the target with the fake shadow
 	//Hardcoded numbers to make it work
-	if ((x < 0.1) && (y > 3 && y < 5) && (z > 0.54 && z < 1.5)) {
+	if ((x < 0.1) && (y < 0.94) && (z < 0.45)) {
 		return true;
 	}
 	else {
 		return false;
 	}
+		return false;
 }
 bool TCompDynamicObjects::IsPlayerInShadows(VEC3 target_pos, VEC3 capsule_shadow_pos, VEC3 offset) {
 	VEC3 shadow_pos(capsule_shadow_pos.x + offset.x, capsule_shadow_pos.y + offset.y, capsule_shadow_pos.z + offset.z);
 
-	float x = fabs(target_pos.x - shadow_pos.x);
-	float y = fabs(target_pos.y - shadow_pos.y);
-	float z = fabs(target_pos.z - shadow_pos.z);
+	x = fabs(target_pos.x - shadow_pos.x);
+	y = fabs(target_pos.y - shadow_pos.y);
+	z = fabs(target_pos.z - shadow_pos.z);	
+
 
 	if (CheckProximity(x, y, z)) {
 		return true;
@@ -195,15 +200,12 @@ void TCompDynamicObjects::update(float dt) {
 		target->sendMsg(msgEnter);
 		_playerWasInShadows = true;
 	}
-	else if(_playerWasInShadows && !IsPlayerInShadows(target_pos, capsule_shadow_pos, _offsetShadow)){
+	else if(_playerWasInShadows && !IsPlayerInShadows(target_pos, capsule_shadow_pos, _offsetShadow)) {
 		TMsgExitedCapsuleShadow msgExit;
 		target->sendMsg(msgExit);
 		_playerWasInShadows = false;
 	}
-	else if (_playerWasInShadows && IsPlayerInShadows(target_pos, capsule_shadow_pos, _offsetShadow)) {
-
-	}
-	//Move(mypos, dt);
+	Move(mypos, dt);
 
 	for (int it = 0; it < _clones.size(); it++) {
 		CHandle h_c = _clones[it];
@@ -212,15 +214,16 @@ void TCompDynamicObjects::update(float dt) {
 		VEC3 clone_shadow_pos = mypos2->getPosition();
 
 		if (!_playerWasInShadows && IsPlayerInShadows(target_pos, clone_shadow_pos, _offsetShadow)) {
+			_currentEntity = clone_shadow;
 			TMsgEnteredCapsuleShadow msgEnter;
 			target->sendMsg(msgEnter);
 			_playerWasInShadows = true;
 		}
-		else if (_playerWasInShadows && !IsPlayerInShadows(target_pos, clone_shadow_pos, _offsetShadow)) {
+		else if (_playerWasInShadows && !IsPlayerInShadows(target_pos, clone_shadow_pos, _offsetShadow) && (_currentEntity == clone_shadow)) {
 			TMsgExitedCapsuleShadow msgExit;
 			target->sendMsg(msgExit);
 			_playerWasInShadows = false;
 		}
-		//Move(mypos2, dt);
+		Move(mypos2, dt);
 	}	
 }

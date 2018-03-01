@@ -10,7 +10,7 @@
 			"prefab": "data/prefabs/capsule.prefab",
 			"name": "Capsule 1",
 			"transform": {
-				"pos": "-5 38 4"
+        "pos": "-5 38 4"
 			},
 			"dynamic_objects": {
         "waypoints": [

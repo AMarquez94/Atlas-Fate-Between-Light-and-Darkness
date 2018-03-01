@@ -19,12 +19,12 @@
   {
     "entity": {
       "prefab": "data/prefabs/capsule_shadow.prefab",
-      "transform": {},
+      "transform": {},      
       "comment": "Enable hierarchy comp to move cannons when the teapot moves",
       "hierarchy": {
         "axis": "0 0 1",
         "angle": 90,
-        "pos": "17 -31 1",
+        "pos": "17 -31 0",
         "parent": "capsule_prefab"
       }
     }
