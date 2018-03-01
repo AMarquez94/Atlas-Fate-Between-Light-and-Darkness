@@ -10,11 +10,14 @@ class TCompLight;
 class TCompShadowController : public TCompBase {
 
 	void onSceneCreated(const TMsgSceneCreated& msg);
+	void onEnteredCapsuleShadow(const TMsgEnteredCapsuleShadow& msg);
+	void onExitedCapsuleShadow(const TMsgExitedCapsuleShadow& msg);
 
 	DECL_SIBLING_ACCESS();
 public:
 
 	bool is_shadow;
+	bool capsule_shadow;
 	float test_amount;
 	float test_levels;
 

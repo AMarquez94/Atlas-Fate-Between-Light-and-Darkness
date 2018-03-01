@@ -77,6 +77,7 @@
     <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
     <ClCompile Include="components\camera_controller\comp_auxcamera_shadowmerge.cpp" />
     <ClCompile Include="components\comp_light.cpp" />
+    <ClCompile Include="components\dynamic_objects\comp_dynamic_objects.cpp" />
     <ClCompile Include="components\game_controller\comp_game_manager_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -180,6 +181,7 @@
     <ClInclude Include="components\player_controller\comp_shadow_controller.h" />
     <ClInclude Include="components\camera_controller\comp_auxcamera_shadowmerge.h" />
     <ClInclude Include="components\comp_light.h" />
+    <ClInclude Include="components\dynamic_objects\comp_dynamic_objects.h" />
     <ClInclude Include="components\game_controller\comp_game_manager_controller.h" />
   </ItemGroup>
   <ItemGroup>

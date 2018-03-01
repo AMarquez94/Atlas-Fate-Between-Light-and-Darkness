@@ -53,6 +53,10 @@ bool CModuleTestAxis::start()
 	}
 	{
 		TEntityParseContext ctx;
+		parseScene("data/scenes/capsules.scene", ctx);
+	}
+	{
+		TEntityParseContext ctx;
 		parseScene("data/scenes/menu.scene", ctx);
 	}
  
