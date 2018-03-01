@@ -11,6 +11,12 @@ struct TMsgEntityCreated {
 struct TMsgSceneCreated {
 	DECL_MSG_ID();
 };
+struct TMsgEnteredCapsuleShadow {
+	DECL_MSG_ID();
+};
+struct TMsgExitedCapsuleShadow {
+	DECL_MSG_ID();
+};
 
 struct TMsgEntityDestroyed {
 	CHandle h_other_entity;

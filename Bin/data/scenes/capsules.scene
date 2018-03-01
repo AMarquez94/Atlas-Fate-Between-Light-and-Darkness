@@ -22,7 +22,8 @@
           }
         ],
 				"speed": 4,
-				"rotationSpeed": 180
+        "rotationSpeed": 180,
+        "target": "The Player"
 			}
 		}
 	}

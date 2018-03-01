@@ -9,14 +9,14 @@
         ]
       },
       "transform": {
-        "pos": "5 10 0"
+        "pos": "5 20 30"
       },
       "player_controller": {
         "target_camera": "TPCamera",
         "shadow_camera_hor": "SMCameraHor",
 		"shadow_camera_ver": "SMCameraVer",
-        "stamina": 100,
-        "maxStamina": 100,
+        "stamina": 1000,
+        "maxStamina": 1000,
         "minStamina": 0,
         "minStaminaToMerge": 0.0,
         "dcrStaminaOnPlaceMultiplier": 0.5,

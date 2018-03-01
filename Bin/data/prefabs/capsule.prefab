@@ -24,7 +24,7 @@
       "hierarchy": {
         "axis": "0 0 1",
         "angle": 90,
-        "pos": "17 -35 0",
+        "pos": "17 -31 1",
         "parent": "capsule_prefab"
       }
     }

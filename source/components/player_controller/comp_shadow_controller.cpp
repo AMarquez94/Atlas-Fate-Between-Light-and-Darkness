@@ -47,7 +47,6 @@ void TCompShadowController::Init() {
 }
 
 void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
-
 	auto& light_handles = CTagsManager::get().getAllEntitiesByTag(getID("light"));
 	auto& collider_handles = CTagsManager::get().getAllEntitiesByTag(getID("collider_light"));
 
@@ -66,16 +65,32 @@ void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
 		dynamic_lights.push_back(c_collider);
 	}
 }
+void TCompShadowController::onEnteredCapsuleShadow(const TMsgEnteredCapsuleShadow& msg) {
+	capsule_shadow = true;
+	dbg("Entraste bien \n");
 
+}
+void TCompShadowController::onExitedCapsuleShadow(const TMsgExitedCapsuleShadow& msg) {
+	capsule_shadow = false;
+	dbg("Saliste bien \n");
+}
 void TCompShadowController::registerMsgs() {
 
 	DECL_MSG(TCompShadowController, TMsgSceneCreated, onSceneCreated);
+	DECL_MSG(TCompShadowController, TMsgEnteredCapsuleShadow, onEnteredCapsuleShadow);
+	DECL_MSG(TCompShadowController, TMsgExitedCapsuleShadow, onExitedCapsuleShadow);
+
 }
 
 
 // We can also use this public method from outside this class.
 bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 {
+	if (capsule_shadow) {
+		return true;
+	}
+	
+	
 	// We need a safe system to retrieve the light direction and origin spot.
 	// Also we need to distinguish between light types.
 	// Different light tests must be made.
@@ -102,6 +117,7 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 		if (dynamic_lights[x]->isInside)
 			return false;
 	}
+
 
 	return true;
 }
