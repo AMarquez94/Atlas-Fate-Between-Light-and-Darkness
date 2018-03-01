@@ -12,14 +12,14 @@ class CApp {
   static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
   // 
-  int xres = 0;
-  int yres = 0;
   CTimer time_since_last_render;
   CDirectoyWatcher resources_dir_watcher;
 
   static CApp* app_instance;
 
 public:
+	int xres = 0;
+	int yres = 0;
 	bool resetMouse = false;
 
   static CApp& get() {

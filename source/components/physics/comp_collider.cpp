@@ -75,8 +75,13 @@ void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
 
 void TCompCollider::onDestroy(const TMsgEntityDestroyed & msg)
 {
-	this->actor->getScene()->removeActor(*(this->actor));
-	this->controller->release();
+	if(actor && actor->getScene())
+		actor->getScene()->removeActor(*actor);
+		actor = nullptr;
+	if (controller != NULL && controller) {
+		controller->release();
+		controller = nullptr;
+	}
 }
 
 void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {

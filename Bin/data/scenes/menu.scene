@@ -1,0 +1,11 @@
+[
+  {
+    "entity": {
+      "name": "Game Manager",
+      "transform": {},
+      "game_manager_controller": {
+		    "player": "The Player"
+      }
+    }
+  }
+]

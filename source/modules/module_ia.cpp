@@ -11,3 +11,8 @@ void CModuleIA::render()
 {
 
 }
+
+void CModuleIA::clearSharedBoards()
+{
+	patrolSB.stunnedPatrols.clear();
+}

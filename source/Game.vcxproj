@@ -98,6 +98,7 @@
     <ClCompile Include="components\comp_render.cpp" />
     <ClCompile Include="components\comp_tags.cpp" />
     <ClCompile Include="components\comp_transform.cpp" />
+    <ClCompile Include="components\game_controller\comp_game_manager_controller.cpp" />
     <ClCompile Include="components\ia\ai_controller.cpp" />
     <ClCompile Include="components\ia\ai_patrol.cpp" />
     <ClCompile Include="components\object_controller\comp_bullet_controller.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="components\comp_render.h" />
     <ClInclude Include="components\comp_tags.h" />
     <ClInclude Include="components\comp_transform.h" />
+    <ClInclude Include="components\game_controller\comp_game_manager_controller.h" />
     <ClInclude Include="components\ia\ai_controller.h" />
     <ClInclude Include="components\ia\ai_patrol.h" />
     <ClInclude Include="components\object_controller\comp_bullet_controller.h" />

@@ -878,15 +878,17 @@ const bool TCompPlayerController::checkAttack()
 	CHandle enemy = CHandle();
 	int i = 0;
 	while (i < handles.size() && !found) {
-		TCompTransform * mypos = get<TCompTransform>();
-		TCompTransform * epos = ((CEntity*)handles[i])->get<TCompTransform>();
-		if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < distToAttack
-			&& !epos->isInFront(mypos->getPosition())) {
+		if (handles[i].isValid()) {
+			TCompTransform * mypos = get<TCompTransform>();
+			TCompTransform * epos = ((CEntity*)handles[i])->get<TCompTransform>();
+			if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < distToAttack
+				&& !epos->isInFront(mypos->getPosition())) {
 
-			CAIPatrol * aipatrol = ((CEntity*)handles[i])->get<CAIPatrol>();
-			if (aipatrol->getStateName().compare("stunned") != 0) {
-				found = true;
-				enemy = handles[i];
+				CAIPatrol * aipatrol = ((CEntity*)handles[i])->get<CAIPatrol>();
+				if (aipatrol->getStateName().compare("stunned") != 0) {
+					found = true;
+					enemy = handles[i];
+				}
 			}
 		}
 		i++;

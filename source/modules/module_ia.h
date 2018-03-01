@@ -15,6 +15,7 @@ public:
   CModuleIA(const std::string& aname) : IModule(aname) { }
   void update(float delta) override;
   void render() override;
+  void clearSharedBoards();
 
   /* SharedBoards */
   PatrolSharedBoard patrolSB;

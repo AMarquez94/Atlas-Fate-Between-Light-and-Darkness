@@ -20,6 +20,8 @@ public:
 	void blendOutCamera(CHandle camera, float blendTime = 0.f);
 	void cancelCamera(CHandle camera);
 
+	void deleteAllCameras();
+
 private:
 	void renderInMenu();
 

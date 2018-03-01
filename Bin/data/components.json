@@ -15,15 +15,17 @@
     "camera_shadowmerge",
     "auxcamera_shadowmerge",
     "bullet_controller",
-		"shadow_controller",
-		"light",
+	"shadow_controller",
+	"light",
     "hierarchy",
     "cone_of_light",
     "collider",
     "camera_flyover",
-    "camera"
+    "camera",
+	"game_manager_controller"
   ],
   "render_debug": [
-    "player_controller"
+    "player_controller",
+	"game_manager_controller"
   ]
 }

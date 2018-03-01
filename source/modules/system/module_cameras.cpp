@@ -146,6 +146,11 @@ void CModuleCameras::cancelCamera(CHandle camera)
 	}
 }
 
+void CModuleCameras::deleteAllCameras()
+{
+	_mixedCameras.clear();
+}
+
 void CModuleCameras::blendOutCamera(CHandle camera, float blendTime)
 {
 	TMixedCamera* mc = getMixedCamera(camera);

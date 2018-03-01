@@ -4,19 +4,20 @@
     "entities",
     "render",
 	"cameras",
+	"physics",
     "main_menu",
     "splash",
-    "game_over",
     "test_input",
     "test_axis",
-    "physics"
+	"game_over"
   ],
 	"render" : 
 	[
 		"render",
-		"test_axis",
 		"entities",
 		"input",
-		"cameras"
+		"cameras",
+		"game_over",
+		"test_axis"
 	]
 }

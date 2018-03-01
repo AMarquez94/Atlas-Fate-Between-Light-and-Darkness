@@ -127,3 +127,12 @@ void CModuleEntities::render()
   for (auto om : om_to_render_debug)
 	  om->renderDebugAll();
 }
+
+void CModuleEntities::destroyAllEntities() {
+	auto om = getObjectManager<CEntity>();
+	om->forEach([](CEntity* e) {
+		CHandle h_e(e);
+		h_e.destroy();
+	});
+	CHandleManager::destroyAllPendingObjects();
+}

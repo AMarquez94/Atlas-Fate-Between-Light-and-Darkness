@@ -25,6 +25,7 @@ public:
   CModuleInput& getInput() { return _module_input; }
   CModulePhysics& getPhysics() { return _module_physics; }
   CModuleCameras& getCameras() { return _module_cameras; }
+  CModuleEntities& getEntities() { return _module_entities; }
 
 private:
   CModuleManager  _modules;
