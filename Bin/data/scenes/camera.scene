@@ -80,7 +80,7 @@
 	},
 	{
 		"entity": {
-			"name": "AuxCameraVer",
+			"name": "SMCameraAux",
 			"transform": {
 				"pos": "0 3 3"
 			},

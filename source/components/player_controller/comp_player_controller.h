@@ -14,6 +14,7 @@ class TCompPlayerController : public IAIController {
 	std::string camera_shadowmerge_hor;
 	std::string camera_shadowmerge_ver;
 	std::string camera_thirdperson;
+	std::string camera_shadowmerge_aux;
 	std::string camera_actual;
 
 	/* Player stamina */

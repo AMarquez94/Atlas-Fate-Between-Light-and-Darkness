@@ -86,8 +86,8 @@ void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	rotationSpeed = j.value("rotationSpeed", 5.0f);
 	distToAttack = j.value("distToAttack", 2.0f);
 	distToSM = j.value("distToSM", 2.5f);
-
 	timesToPressRemoveInhibitorKey = j.value("timesToPressRemoveInhibitorKey", 5);
+
 	maxTimeToSMFalling = j.value("maxTimeToSMFalling", 0.15f);
 	timeFallingToDie = j.value("timeFallingToDie", .8f);
 
@@ -96,6 +96,7 @@ void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	camera_thirdperson = j.value("target_camera", "");
 	camera_shadowmerge_hor = j.value("shadow_camera_hor", "");
 	camera_shadowmerge_ver = j.value("shadow_camera_ver", "");
+	camera_shadowmerge_aux = j.value("shadow_camera_aux", "");
 	camera_actual = camera_thirdperson;
 
 	Init();
@@ -346,7 +347,7 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 				camera_actual = camera_shadowmerge_ver;
 				msg.actualCamera = camera_actual;
 				msg.directionToLookAt = dirToLookAt;
-				CEntity* eCamera = getEntityByName("AuxCameraVer");
+				CEntity* eCamera = getEntityByName(camera_shadowmerge_aux);
 				eCamera->sendMsg(msg);
 
 				//Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
@@ -358,7 +359,7 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 				msg.previousCamera = camera_actual;
 				msg.actualCamera = camera_actual;
 				msg.directionToLookAt = dirToLookAt;
-				CEntity* eCamera = getEntityByName("AuxCameraVer");
+				CEntity* eCamera = getEntityByName(camera_shadowmerge_aux);
 				eCamera->sendMsg(msg);
 			}
 		}
@@ -410,7 +411,7 @@ void TCompPlayerController::ShadowMergingVerticalState(float dt){
 				msg.previousCamera = camera_actual;
 				msg.actualCamera = camera_shadowmerge_hor;
 				msg.directionToLookAt = dirToLookAt;
-				CEntity* eCamera = getEntityByName("AuxCameraVer");
+				CEntity* eCamera = getEntityByName(camera_shadowmerge_aux);
 				eCamera->sendMsg(msg);
 				camera_actual = camera_shadowmerge_hor;
 				ChangeState("smHor");
@@ -421,7 +422,7 @@ void TCompPlayerController::ShadowMergingVerticalState(float dt){
 				msg.previousCamera = camera_actual;
 				msg.actualCamera = camera_actual;
 				msg.directionToLookAt = dirToLookAt;
-				CEntity* eCamera = getEntityByName("AuxCameraVer");
+				CEntity* eCamera = getEntityByName(camera_shadowmerge_aux);
 				eCamera->sendMsg(msg);
 			}
 		}

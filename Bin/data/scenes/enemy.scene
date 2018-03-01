@@ -5,31 +5,49 @@
 		}
 	},
 	{
-    "entity": {
-      "prefab": "data/prefabs/patrol.prefab",
-      "name": "The Enemy 1",
-      "transform": {
-        "pos": "1 10 0"
-      },
-      "ai_patrol": {
-        "waypoints": [
-          {
-            "position": "-12.4 0 7.8",
-            "lookAt": "-1 0 -1"
-          },
-          {
-            "position": "5 0 15",
-            "lookAt": "-1 0 -1"
-          }
-        ]
-      },
-      "collider": {
-        "shape": "capsule",
-        "is_controller": true,
-        "radius": 0.55,
-        "height": 1.0,
-        "gravity": true
-      }
-    }
+		"entity": {
+		  "prefab": "data/prefabs/patrol.prefab",
+		  "name": "The Enemy 1",
+		  "transform": {
+			"pos": "-26 0.014 72",
+			"lookat": "1 0 1"
+		  },
+		  "ai_patrol": {},
+		  "collider": {
+			"shape": "capsule",
+			"is_controller": true,
+			"radius": 0.55,
+			"height": 1.0,
+			"gravity": true
+		  }
+		}
+	},
+	{
+		"entity": {
+		  "prefab": "data/prefabs/patrol.prefab",
+		  "name": "The Enemy 2",
+		  "transform": {
+			"pos": "-25 0.014 110",
+			"lookat": "1 0 0"
+		  },
+		  "ai_patrol": {
+			  "waypoints": [
+			  {
+				"position": "-25 0.014 110",
+				"lookAt": "1 0 0"
+			  },
+			  {
+				"position": "0 0.014 110",
+				"lookAt": "-1 0 0"
+			  }]
+		  },
+		  "collider": {
+			"shape": "capsule",
+			"is_controller": true,
+			"radius": 0.55,
+			"height": 1.0,
+			"gravity": true
+		  }
+		}
 	}
 ]

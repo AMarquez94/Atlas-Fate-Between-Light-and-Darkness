@@ -15,6 +15,7 @@
         "target_camera": "TPCamera",
         "shadow_camera_hor": "SMCameraHor",
 		"shadow_camera_ver": "SMCameraVer",
+		"shadow_camera_aux": "SMCameraAux",
         "stamina": 100,
         "maxStamina": 100,
         "minStamina": 0,
@@ -28,7 +29,10 @@
         "runSpeedFactor": 7,
         "walkSlowSpeedFactor": 1.5,
         "walkSlowCrouchSpeedFactor": 0.5,
-        "rotationSpeed": 10.0
+        "rotationSpeed": 10.0,
+		"timesToPressRemoveInhibitorKey": 5,
+		"maxTimeToSMFalling": 0.15,
+		"timeFallingToDie": 0.8
       },
       "collider": {
         "shape": "capsule",
