@@ -34,31 +34,36 @@ void TCompPlayerController::debugInMenu() {
 
 	ImGui::Text("%5s", "UP");
 	ImGui::SameLine();
-	ImGui::Text("%.2f", btUp.value);
+	ImGui::Text("%.2f", EngineInput["btUp"].value);
 	ImGui::SameLine();
-	ImGui::ProgressBar(fabsf(btUp.value));
+	ImGui::ProgressBar(fabsf(EngineInput["btUp"].value));
 
 	ImGui::Text("%5s", "DOWN");
 	ImGui::SameLine();
-	ImGui::Text("%.2f", btDown.value);
+	ImGui::Text("%.2f", EngineInput["btDown"].value);
 	ImGui::SameLine();
-	ImGui::ProgressBar(fabsf(btDown.value));
+	ImGui::ProgressBar(fabsf(EngineInput["btDown"].value));
   
 	ImGui::Text("%5s", "LEFT");
 	ImGui::SameLine();
-	ImGui::Text("%.2f", btLeft.value);
+	ImGui::Text("%.2f", EngineInput["btLeft"].value);
 	ImGui::SameLine();
-	ImGui::ProgressBar(fabsf(btLeft.value));
+	ImGui::ProgressBar(fabsf(EngineInput["btLeft"].value));
   
 	ImGui::Text("%5s", "RIGHT");
 	ImGui::SameLine();
-	ImGui::Text("%.2f", btRight.value);
+	ImGui::Text("%.2f", EngineInput["btRight"].value);
 	ImGui::SameLine();
-	ImGui::ProgressBar(fabsf(btRight.value));
+	ImGui::ProgressBar(fabsf(EngineInput["btRight"].value));
 }
 
 void TCompPlayerController::renderDebug() {
-	ImGui::Begin("UI");
+	ImGui::Begin("UI", NULL, 
+		ImGuiWindowFlags_::ImGuiWindowFlags_NoMove |
+		ImGuiWindowFlags_::ImGuiWindowFlags_NoInputs |
+		ImGuiWindowFlags_::ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_::ImGuiWindowFlags_NoTitleBar );
+
 	ImGui::Text("State: %s", stateName.c_str());
 	ImGui::Text("Stamina:", stateName.c_str());
 	ImGui::SameLine();
@@ -121,6 +126,7 @@ void TCompPlayerController::Init() {
 	AddState("dead", (statehandler)&TCompPlayerController::DeadState);
 
 	// Manually loading the necessary meshes
+	// Replace tis with resource creation
 	auto pj_idle = loadMesh("data/meshes/pj_idle.mesh");
 	auto pj_attack = loadMesh("data/meshes/pj_attack.mesh");
 	auto pj_fall = loadMesh("data/meshes/pj_fall.mesh");
@@ -171,7 +177,7 @@ void TCompPlayerController::IdleState(float dt){
 		}
 	}
 
-	if (btShadowMerging.getsPressed() && ShadowTest()) {
+	if (EngineInput["btShadowMerging"].getsPressed() && ShadowTest()) {
 		timerForPressingRemoveInhibitorKey = 0.f;
 		timesRemoveInhibitorKeyPressed = 0;
 		allowAttack(false, CHandle());
@@ -185,21 +191,21 @@ void TCompPlayerController::IdleState(float dt){
 		ChangeState("motion");
 		return;
 	}
-	else if (btCrouch.getsPressed()) {
+	else if (EngineInput["btCrouch"].getsPressed()) {
 		manageCrouch();
 	}
 
-	if (canAttack && btAttack.getsPressed()) {
+	if (canAttack && EngineInput["btAttack"].getsPressed()) {
 		ChangeState("attack");
 		return;
 	}
 
-	if (btAction.getsPressed() && checkTouchingStunnedEnemy().isValid()) {
+	if (EngineInput["btAction"].getsPressed() && checkTouchingStunnedEnemy().isValid()) {
 		ChangeState("push");
 		return;
 	}
 
-	if (btDebugShadows.getsPressed()) {
+	if (EngineInput["btDebugShadows"].getsPressed()) {
 		float temp;
 		temp = dcrStaminaWall;
 		dcrStaminaWall = dcrStaminaWallAux;
@@ -227,7 +233,7 @@ void TCompPlayerController::MotionState(float dt){
 		
 		movePlayer(dt);
 
-		if (btShadowMerging.getsPressed() && ShadowTest()) {
+		if (EngineInput["btShadowMerging"].getsPressed() && ShadowTest()) {
 			auxStateName = "";
 			allowAttack(false, CHandle());
 			crouched = false;
@@ -237,7 +243,7 @@ void TCompPlayerController::MotionState(float dt){
 		}
 	}
 
-	if (btCrouch.getsPressed()) {
+	if (EngineInput["btCrouch"].getsPressed()) {
 		crouched = !crouched;
 		if (crouched) {
 			TCompCollider * collider = get<TCompCollider>();
@@ -249,12 +255,12 @@ void TCompPlayerController::MotionState(float dt){
 		}
 	}
 
-	if (canAttack && btAttack.getsPressed()) {
+	if (canAttack && EngineInput["btAttack"].getsPressed()) {
 		ChangeState("attack");
 		return;
 	}
 
-	if (btAction.getsPressed() && checkTouchingStunnedEnemy().isValid()) {
+	if (EngineInput["btAction"].getsPressed() && checkTouchingStunnedEnemy().isValid()) {
 		crouched = false;
 		ChangeState("push");
 		return;
@@ -263,11 +269,11 @@ void TCompPlayerController::MotionState(float dt){
 
 void TCompPlayerController::PushState(float dt){ 
 	enemyToSM = checkTouchingStunnedEnemy();
-	if (!btAction.isPressed() || !enemyToSM.isValid()) {
+	if (!EngineInput["btAction"].isPressed() || !enemyToSM.isValid()) {
 		enemyToSM = CHandle();
 		ChangeState("idle");
 	}
-	else if(btShadowMerging.getsPressed() && ShadowTest() && checkEnemyInShadows(enemyToSM)) {
+	else if(EngineInput["btShadowMerging"].getsPressed() && ShadowTest() && checkEnemyInShadows(enemyToSM)) {
 		ChangeState("smEnemy");
 	}
 }
@@ -383,9 +389,7 @@ void TCompPlayerController::ShadowMergingVerticalState(float dt){
 
 		TCompTransform *t = get<TCompTransform>();
 		TCompCollider *c_my_collider = get<TCompCollider>();
-
 		VEC3 position = t->getPosition();
-
 		VEC3 prevUp = c_my_collider->GetUpVector();
 
 		bool concaveTest = ConcaveTest();
@@ -509,10 +513,10 @@ void TCompPlayerController::FallingState(float dt){
 
 	timeFalling += dt;
 
-	if (btShadowMerging.getsPressed()) {
+	if (EngineInput["btShadowMerging"].getsPressed()) {
 		timeFallingWhenSMPressed = timeFalling;
 	}
-	else if (timeFallingWhenSMPressed != 0.f && btShadowMerging.getsReleased()) {
+	else if (timeFallingWhenSMPressed != 0.f && EngineInput["btShadowMerging"].getsReleased()) {
 		timeFallingWhenSMPressed = 0.f;
 	}
 
@@ -592,7 +596,7 @@ const bool TCompPlayerController::motionButtonsPressed() {
 
 		return false;
 	}
-	return btUp.isPressed() || btDown.isPressed() || btLeft.isPressed() || btRight.isPressed();
+	return EngineInput["btUp"].isPressed() || EngineInput["btDown"].isPressed() || EngineInput["btLeft"].isPressed() || EngineInput["btRight"].isPressed();
 }
 
 void TCompPlayerController::movePlayer(const float dt) {
@@ -622,14 +626,14 @@ void TCompPlayerController::movePlayer(const float dt) {
 
 	currentSpeed = 0;
 
-	if (btRun.isPressed() && canStandUp()) {	//TODO: Improve? Always raycasting when running
+	if (EngineInput["btRun"].isPressed() && canStandUp()) {	//TODO: Improve? Always raycasting when running
 		c_my_render->mesh = mesh_states.find("pj_run")->second;
 		crouched = false;
 		auxStateName = "running";
 		currentSpeed = runSpeedFactor;
 		collider->Resize(collider->config.height);
 	}
-	else if (btSlow.isPressed()) {
+	else if (EngineInput["btSlow"].isPressed()) {
 
 		if (crouched) {
 			c_my_render->mesh = mesh_states.find("pj_crouch")->second;
@@ -656,22 +660,22 @@ void TCompPlayerController::movePlayer(const float dt) {
 	}
 
 	VEC3 dir = VEC3::Zero;
-	float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
+	float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
 	float player_accel = inputSpeed * currentSpeed * dt;
 
 	// Little hotfix to surpass negative values on analog pad
 
-	if (btUp.isPressed() && btUp.value > 0) {
-		dir += fabs(btUp.value) * getVectorFromYaw(c_yaw);
+	if (EngineInput["btUp"].isPressed() && EngineInput["btUp"].value > 0) {
+		dir += fabs(EngineInput["btUp"].value) * getVectorFromYaw(c_yaw);
 	}
-	else if (btDown.isPressed()) {
-		dir += fabs(btDown.value) * getVectorFromYaw(c_yaw - deg2rad(180.f));
+	else if (EngineInput["btDown"].isPressed()) {
+		dir += fabs(EngineInput["btDown"].value) * getVectorFromYaw(c_yaw - deg2rad(180.f));
 	}
-	if (btRight.isPressed() && btRight.value > 0) {
-		dir += fabs(btRight.value) * getVectorFromYaw(c_yaw - deg2rad(90.f));
+	if (EngineInput["btRight"].isPressed() && EngineInput["btRight"].value > 0) {
+		dir += fabs(EngineInput["btRight"].value) * getVectorFromYaw(c_yaw - deg2rad(90.f));
 	}
-	else if (btLeft.isPressed()) {
-		dir += fabs(btLeft.value) * getVectorFromYaw(c_yaw + deg2rad(90.f));
+	else if (EngineInput["btLeft"].isPressed()) {
+		dir += fabs(EngineInput["btLeft"].value) * getVectorFromYaw(c_yaw + deg2rad(90.f));
 	}
 	dir.Normalize();
 
@@ -700,7 +704,7 @@ void TCompPlayerController::movePlayerShadow(const float dt) {
 	c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
 
 	VEC3 dir = VEC3::Zero;
-	float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
+	float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
 	float player_accel = inputSpeed * currentSpeed * dt;
 	VEC3 up = trans_camera->getUp();
 
@@ -709,17 +713,17 @@ void TCompPlayerController::movePlayerShadow(const float dt) {
 	VEC3 proj = (up - up.Dot(normal_norm) * normal_norm);
 	proj.Normalize();
 
-	if (btUp.isPressed() && btUp.value > 0) {
-		dir += fabs(btUp.value) * proj;
+	if (EngineInput["btUp"].isPressed() && EngineInput["btUp"].value > 0) {
+		dir += fabs(EngineInput["btUp"].value) * proj;
 	}
-	else if (btDown.isPressed()) {
-		dir += fabs(btDown.value) * -proj;
+	else if (EngineInput["btDown"].isPressed()) {
+		dir += fabs(EngineInput["btDown"].value) * -proj;
 	}
-	if (btRight.isPressed() && btRight.value > 0) {
-		dir += fabs(btRight.value) * normal_norm.Cross(proj);
+	if (EngineInput["btRight"].isPressed() && EngineInput["btRight"].value > 0) {
+		dir += fabs(EngineInput["btRight"].value) * normal_norm.Cross(proj);
 	}
-	else if (btLeft.isPressed()) {
-		dir += fabs(btLeft.value) * -normal_norm.Cross(proj);
+	else if (EngineInput["btLeft"].isPressed()) {
+		dir += fabs(EngineInput["btLeft"].value) * -normal_norm.Cross(proj);
 	}
 	dir.Normalize();
 
@@ -740,7 +744,7 @@ void TCompPlayerController::movePlayerShadow(const float dt) {
 
 bool TCompPlayerController::manageInhibition(float dt) {
 
-	if (btSecAction.getsPressed()) {
+	if (EngineInput["btSecAction"].getsPressed()) {
 		timesRemoveInhibitorKeyPressed++;
 		timerForPressingRemoveInhibitorKey = 1.f;
 		if (timesRemoveInhibitorKeyPressed >= timesToPressRemoveInhibitorKey) {
@@ -834,7 +838,7 @@ const bool TCompPlayerController::ShadowTest() {
 
 	TCompCollider *c_my_collider = get<TCompCollider>();
 	TCompShadowController * shadow_oracle = get<TCompShadowController>();
-	return stamina > 0.f && !inhibited && shadow_oracle->is_shadow && btShadowMerging.isPressed() && c_my_collider->isGrounded;
+	return stamina > 0.f && !inhibited && shadow_oracle->is_shadow && EngineInput["btShadowMerging"].isPressed() && c_my_collider->isGrounded;
 }
 
 void TCompPlayerController::ResetPlayer()
@@ -854,10 +858,6 @@ void TCompPlayerController::ResetPlayer()
 
 	QUAT new_rotation = createLookAt(c_my_transform->getPosition(), new_front, -EnginePhysics.gravity);
 	c_my_transform->setRotation(new_rotation);
-
-	// Include a safe release position.
-	//VEC3 old_position = c_my_transform->getPosition();
-	//VEC3 safe_position = old_position + (c_my_collider->config.radius + 0.05f) * c_my_transform->getUp();
 
 	ChangeState("smExit");
 }
@@ -968,7 +968,6 @@ void TCompPlayerController::manageCrouch()
 bool TCompPlayerController::playerInFloor() {
 
 	VEC3 normalGravityNormal = VEC3(0.f,-1.f,0.f);
-	//dbg("Prev pos: (%f,%f,%f) - New pos: (%f,%f,%f)\n", prev_pos.x, prev_pos.y, prev_pos.z, new_pos.x, new_pos.y, new_pos.z);
 	TCompCollider *c = get<TCompCollider>();
 	VEC3 playerGravityNormal = c->normal_gravity;
 

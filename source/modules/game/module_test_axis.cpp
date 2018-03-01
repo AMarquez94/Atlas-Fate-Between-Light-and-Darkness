@@ -19,14 +19,6 @@ CCamera camera;
 bool CModuleTestAxis::start()
 {
 
-	//{
-	//	TEntityParseContext ctx;
-	//	parseScene("data/scenes/whitebox_test.scene", ctx);
-	//}
-	{
-		TEntityParseContext ctx;
-		parseScene("data/scenes/dp_teapot_test.scene", ctx);
-	}
 	{
 		TEntityParseContext ctx;
 		parseScene("data/scenes/final_milestone1_lights.scene", ctx);
@@ -37,7 +29,7 @@ bool CModuleTestAxis::start()
 	}
 	{
 		TEntityParseContext ctx;
-		parseScene("data/scenes/final_milestone1_colliders_test.scene", ctx);
+		parseScene("data/scenes/final_milestone1_colliders.scene", ctx);
 	}
 	{
 		TEntityParseContext ctx;

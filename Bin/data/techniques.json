@@ -1,23 +1,23 @@
 {
 	"solid" : {
-		"vs_file": "data/shaders/shaders.fx",
-		"vs_entry_point" : "VS",
+		"vs_file": "data/shaders/shader_master.fx",
+		"vs_entry_point" : "vs_CtColor",
 		"vertex_type" : "PosClr",
-		"ps_file": "data/shaders/shaders.fx",
-		"ps_entry_point" : "PS"
+		"ps_file": "data/shaders/shader_master.fx",
+		"ps_entry_point" : "ps_Ctcolor"
 	},
 	"textured" : {
-		"vs_file": "data/shaders/shaders_objs_basic.fx",
-		"vs_entry_point" : "VS",
+		"vs_file": "data/shaders/shader_master.fx",
+		"vs_entry_point" : "vs_Basic",
 		"vertex_type" : "PosNUv",
-		"ps_file": "data/shaders/shaders_objs_basic.fx",
-		"ps_entry_point" : "PS"
+		"ps_file": "data/shaders/shader_master.fx",
+		"ps_entry_point" : "ps_Basic"
 	},
 	"textured_bk" : {
-		"vs_file": "data/shaders/shaders_objs.fx",
-		"vs_entry_point" : "VS",
+		"vs_file": "data/shaders/shader_master.fx",
+		"vs_entry_point" : "vs_Lightmap",
 		"vertex_type" : "PosNUvUv",
-		"ps_file": "data/shaders/shaders_objs.fx",
-		"ps_entry_point" : "PS"
+		"ps_file": "data/shaders/shader_master.fx",
+		"ps_entry_point" : "ps_Lightmap"
 	}
 }

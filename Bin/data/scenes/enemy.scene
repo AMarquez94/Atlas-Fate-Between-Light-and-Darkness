@@ -47,6 +47,10 @@
 			"radius": 0.55,
 			"height": 1.0,
 			"gravity": true
+		  },
+		  "collider": {
+			"shape": "sphere",
+			"radius": 2
 		  }
 		}
 	}

@@ -5,6 +5,6 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/Tex_0144_0.dds"
+    "albedo": "data/textures/checker.dds"
   }
 }

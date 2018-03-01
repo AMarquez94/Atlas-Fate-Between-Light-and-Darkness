@@ -59,30 +59,8 @@ class TCompPlayerController : public IAIController {
 	float timeFalling = 0.f;
 	float timeFallingToDie;
 
-	DECL_SIBLING_ACCESS();
-
-	/* Keys */
-	const Input::TButton& btUp = EngineInput["btUp"];
-	const Input::TButton& btDown = EngineInput["btDown"];
-	const Input::TButton& btRight = EngineInput["btRight"];
-	const Input::TButton& btLeft = EngineInput["btLeft"];
-	const Input::TButton& btShadowMerging = EngineInput["btShadowMerging"];
-	const Input::TButton& btAttack = EngineInput["btAttack"];
-	const Input::TButton& btRun = EngineInput["btRun"];
-	const Input::TButton& btSlow = EngineInput["btSlow"];
-	const Input::TButton& btAction = EngineInput["btAction"];
-	const Input::TButton& btCrouch = EngineInput["btCrouch"];
-	const Input::TButton& btSecAction = EngineInput["btSecAction"];
-	const Input::TButton& btHorizontal = EngineInput["Horizontal"];
-	const Input::TButton& btVertical = EngineInput["Vertical"];
-	const Input::TButton& btDebugShadows = EngineInput["btDebugShadows"];
-
-	/* TODO: not for milestone 1 */
-	//const Input::TButton& btCrouch = EngineInput["w"];	
-	//const Input::TButton& btSecAction = EngineInput["w"];
 	std::string target_name;
 	bool inhibited = false;
-
 	void onMsgPlayerHit(const TMsgPlayerHit& msg);
 	void onMsgPlayerShotInhibitor(const TMsgInhibitorShot& msg);
 	void onMsgPlayerIlluminated(const TMsgPlayerIlluminated& msg);
@@ -111,6 +89,8 @@ class TCompPlayerController : public IAIController {
 	const bool ConvexTest(void);
 	const bool ShadowTest(void);
 	const bool GroundTest(void);
+
+	DECL_SIBLING_ACCESS();
 
 public:
 
