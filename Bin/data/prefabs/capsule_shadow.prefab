@@ -1,0 +1,16 @@
+[
+  {
+    "entity": {
+      "name": "capsule_shadow",
+      "transform": {
+        "pos": "0 0 1"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/Capsule_shadow.mesh",
+          "color": "1 1 1 1.0"
+        }
+      ]
+    }
+  }
+]
