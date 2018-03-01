@@ -20,7 +20,7 @@ public:
 		TCompTransform * transform;
 		TCompCollider * collider;
 	};
-
+	
 	enum QueryFlag
 	{
 		eSTATIC = (1 << 0),

@@ -23,7 +23,6 @@ public:
 
 	std::vector<TCompLight*> static_lights;
 	std::vector<TCompCollider*> dynamic_lights;
-	std::vector<CEntity*> capsule_shadows;
 
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
