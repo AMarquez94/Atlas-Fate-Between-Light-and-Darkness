@@ -73,9 +73,10 @@ class TCompPlayerController : public IAIController {
 
 	void movePlayer(const float dt);
 	void movePlayerShadow(const float dt);
-	bool manageInhibition(float dt);
-	void ResetPlayer(void);
 	const bool motionButtonsPressed();
+
+	bool manageInhibition(float dt);
+
 	void allowAttack(bool allow, CHandle enemy);
 	CHandle checkTouchingStunnedEnemy();
 	bool checkEnemyInShadows(CHandle enemy);
@@ -83,7 +84,7 @@ class TCompPlayerController : public IAIController {
 	bool playerInFloor();
 	bool canStandUp();
 	void setPlayerDead();
-
+	void ResetPlayer(void);
 
 	const bool ConcaveTest(void);
 	const bool ConvexTest(void);
@@ -121,10 +122,9 @@ public:
 	void HitState(float);
 	void DeadState(float);
 
-	const bool checkPaused();
-
 	//bool checkShadows();
 	const bool isInShadows();
 	const bool isDead();
 	const bool checkAttack();
+	const bool checkPaused();
 };

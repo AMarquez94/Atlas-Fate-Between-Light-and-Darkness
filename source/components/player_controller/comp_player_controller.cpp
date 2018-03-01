@@ -151,6 +151,7 @@ void TCompPlayerController::Init() {
 }
 
 void TCompPlayerController::registerMsgs() {
+
 	DECL_MSG(TCompPlayerController, TMsgPlayerHit, onMsgPlayerHit);
 	DECL_MSG(TCompPlayerController, TMsgInhibitorShot, onMsgPlayerShotInhibitor);
 	DECL_MSG(TCompPlayerController, TMsgPlayerIlluminated, onMsgPlayerIlluminated);
@@ -791,7 +792,6 @@ const bool TCompPlayerController::ConcaveTest(void)
 			c_my_collider->normal_gravity = 9.8f * -hit.normal;
 
 			Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), target, hit.normal).Transpose();
-
 			Quaternion new_rotation = Quaternion::CreateFromRotationMatrix(test);
 			VEC3 new_pos = hit.point;
 			c_my_transform->setRotation(new_rotation);
@@ -982,6 +982,15 @@ bool TCompPlayerController::canStandUp()
 
 	return !crouched || !EnginePhysics.Raycast(mypos->getPosition() + VEC3(0.f, 0.1f, 0.f), mypos->getUp(), tMyCollider->config.height + tMyCollider->config.height / 2, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario"));
 }
+
+//bool TCompPlayerController::canStandUp()
+//{
+//	CModulePhysics::RaycastHit hit;
+//	TCompTransform *mypos = get<TCompTransform>();
+//	TCompCollider *tMyCollider = get<TCompCollider>();
+//
+//	if(EnginePhysics.Raycast(mypos->getPosition() + VEC3(0.f, 0.1f, 0.f), mypos->getUp(), tMyCollider->config.height + tMyCollider->config.height / 2, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario"));
+//}
 
 void TCompPlayerController::setPlayerDead()
 {

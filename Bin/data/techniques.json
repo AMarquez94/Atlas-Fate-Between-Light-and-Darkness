@@ -6,6 +6,13 @@
 		"ps_file": "data/shaders/shader_master.fx",
 		"ps_entry_point" : "ps_Ctcolor"
 	},
+	"solid_normal" : {
+		"vs_file": "data/shaders/shader_master.fx",
+		"vs_entry_point" : "vs_Basic",
+		"vertex_type" : "PosNUv",
+		"ps_file": "data/shaders/shader_master.fx",
+		"ps_entry_point" : "ps_BasicNormal"
+	},
 	"textured" : {
 		"vs_file": "data/shaders/shader_master.fx",
 		"vs_entry_point" : "vs_Basic",

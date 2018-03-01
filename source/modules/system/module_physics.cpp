@@ -56,7 +56,6 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		actor = ctrl->getActor();
 		comp_collider.controller = ctrl;
 		setupFiltering(actor, config.group, config.mask);
-		
 	}
 	else
 	{

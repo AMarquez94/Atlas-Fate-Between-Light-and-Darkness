@@ -14,8 +14,8 @@
       "player_controller": {
         "target_camera": "TPCamera",
         "shadow_camera_hor": "SMCameraHor",
-		"shadow_camera_ver": "SMCameraVer",
-		"shadow_camera_aux": "SMCameraAux",
+				"shadow_camera_ver": "SMCameraVer",
+				"shadow_camera_aux": "SMCameraAux",
         "stamina": 100,
         "maxStamina": 100,
         "minStamina": 0,
@@ -30,22 +30,22 @@
         "walkSlowSpeedFactor": 1.5,
         "walkSlowCrouchSpeedFactor": 0.5,
         "rotationSpeed": 10.0,
-		"timesToPressRemoveInhibitorKey": 5,
-		"maxTimeToSMFalling": 0.15,
-		"timeFallingToDie": 0.8
+				"timesToPressRemoveInhibitorKey": 5,
+				"maxTimeToSMFalling": 0.15,
+				"timeFallingToDie": 0.8
       },
       "collider": {
         "shape": "capsule",
         "is_controller": true,
-        "radius": 0.35,
+        "radius": 0.25,
         "height": 1.0,
-		"mask": "wall",
-		"group": "player",
+				"mask": "wall",
+				"group": "player",
         "gravity": true
       },
-		"shadow_controller": {
-		},
-		"group": "player"
-    }
+			"shadow_controller": {
+			},
+			"group": "player"
+			}
   }
 ]

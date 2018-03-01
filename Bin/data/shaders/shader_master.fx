@@ -4,6 +4,8 @@ Texture2D    txDiffuse      : register(t0);
 Texture2D    txLightmap     : register(t1);
 SamplerState samLinear      : register(s0);
 
+static float3 Light = float3(-0.3575,0.7163,-0.5991);
+
 // Variable declaration
   
 struct VS_OUTPUT_CTCOLOR
@@ -74,9 +76,18 @@ float4 ps_Ctcolor(VS_OUTPUT_CTCOLOR input) : SV_Target
 	return input.Color;
 }
 
+float4 ps_BasicNormal(VS_OUTPUT_BASIC input) : SV_Target
+{
+	Light = normalize( Light );
+	float diffuseAmount = dot( input.N, Light );
+	diffuseAmount = saturate( 0.2 + diffuseAmount );
+	diffuseAmount = 0.3 + diffuseAmount * 0.7;
+
+	return obj_color * diffuseAmount;
+}
+
 float4 ps_Basic(VS_OUTPUT_BASIC input) : SV_Target
 {
-	float3 Light = float3(1,1,1);
 	Light = normalize( Light );
 	float diffuseAmount = dot( input.N, Light );
 	diffuseAmount = saturate( 0.2 + diffuseAmount );
@@ -88,7 +99,6 @@ float4 ps_Basic(VS_OUTPUT_BASIC input) : SV_Target
 
 float4 ps_Lightmap(VS_OUTPUT_LIGHTMAP input) : SV_Target
 {
-	float3 Light = float3(1,1,1);
 	Light = normalize( Light );
 	float diffuseAmount = dot( input.N, Light );
 	diffuseAmount = saturate( 0.2 + diffuseAmount );

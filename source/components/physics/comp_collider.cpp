@@ -87,13 +87,11 @@ void TCompCollider::onDestroy(const TMsgEntityDestroyed & msg)
 void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {
 
 	dbg("Entered the trigger!!!!\n");
-
 }
 
 void TCompCollider::onTriggerExit(const TMsgTriggerExit& msg) {
 
 	dbg("Exited the trigger!!!!\n");
-
 }
 
 void TCompCollider::update(float dt) {
@@ -103,8 +101,6 @@ void TCompCollider::update(float dt) {
 			TCompTransform *transform = get<TCompTransform>();
 			VEC3 new_pos = transform->getPosition();
 			VEC3 delta_movement = new_pos - lastFramePosition;
-			//velocity.x = delta_movement.x;
-			//velocity.z = delta_movement.z;
 			controller->move(physx::PxVec3(delta_movement.x, delta_movement.y, delta_movement.z), 0.f, dt, physx::PxControllerFilters());
 			lastFramePosition = new_pos;
 		}
@@ -113,15 +109,9 @@ void TCompCollider::update(float dt) {
 	if (config.gravity) {
 
 		//velocity += normal_gravity;
-		physx::PxControllerCollisionFlags col = controller->move(physx::PxVec3(normal_gravity.x, normal_gravity.y * dt, normal_gravity.z), 0.f, dt, physx::PxControllerFilters());
+		physx::PxControllerCollisionFlags col = controller->move(physx::PxVec3(normal_gravity.x * dt, normal_gravity.y * dt, normal_gravity.z * dt), 0.f, dt, physx::PxControllerFilters());
 		isGrounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN) ? true : false;
-		//dbg("%f %f %f\n", normal_gravity.x, normal_gravity.y, normal_gravity.z);
 	}
-
-	//if (config.is_controller || config.gravity) {
-
-	//	//controller->move(physx::PxVec3(velocity.x, velocity.y * dt, velocity.z), 0.f, dt, physx::PxControllerFilters());
-	//}
 }
 
 void TCompCollider::Resize(float new_size)

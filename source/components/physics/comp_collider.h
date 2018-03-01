@@ -3,15 +3,31 @@
 #include "components/comp_base.h"
 #include "PxPhysicsAPI.h"
 #include "entity/common_msgs.h"
+#include "render/mesh/mesh_loader.h"
 
-enum FilterGroups {
-  Wall = 0 << 1,
-  Floor = 0 << 2,
-  Player = 0 << 3,
-  Enemy = 0 << 4,
-  Characters = Player | Enemy,
-  all = -1
+// TO-DO After milestone1
+/* 
+// ----------------------------------------------
+class ColliderMeshResourceClass : public CResourceClass {
+public:
+	ColliderMeshResourceClass() {
+		class_name = "Meshes";
+		extensions = { ".mesh" };
+	}
+	IResource* create(const std::string& name) const override {
+		dbg("Creating mesh %s\n", name.c_str());
+		TMeshLoader* res = loadCollider(name.c_str());
+		return res;
+	}
 };
+
+// A specialization of the template defined at the top of this file
+// If someone class getResourceClassOf<CTexture>, use this function:
+template<>
+const CResourceClass* getResourceClassOf<CRenderMesh>() {
+	static ColliderMeshResourceClass the_resource_class;
+	return &the_resource_class;
+}*/
 
 class TCompCollider: public TCompBase {
 
@@ -24,8 +40,8 @@ class TCompCollider: public TCompBase {
 	
 public:
    
-	bool isGrounded;
 	bool isInside;
+	bool isGrounded;
 
   struct TConfig
   {

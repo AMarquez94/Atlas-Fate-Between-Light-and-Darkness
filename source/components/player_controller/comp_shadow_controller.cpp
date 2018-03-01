@@ -66,14 +66,17 @@ void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
 	}
 }
 void TCompShadowController::onEnteredCapsuleShadow(const TMsgEnteredCapsuleShadow& msg) {
+
 	capsule_shadow = true;
 	dbg("Entraste bien \n");
-
 }
+
 void TCompShadowController::onExitedCapsuleShadow(const TMsgExitedCapsuleShadow& msg) {
+
 	capsule_shadow = false;
 	dbg("Saliste bien \n");
 }
+
 void TCompShadowController::registerMsgs() {
 
 	DECL_MSG(TCompShadowController, TMsgSceneCreated, onSceneCreated);
@@ -101,9 +104,11 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 		TCompTransform * c_trans = c_entity->get<TCompTransform>();
 
 		float distance = VEC3::Distance(c_trans->getPosition(), point);
+		VEC3 upvector = c_trans->getUp();
 		if (!EnginePhysics.Raycast(point, c_trans->getUp(), distance, hit, EnginePhysics.eSTATIC))
 			return false;
 
+		// Debug, enable if needed.
 		//if (EnginePhysics.Raycast(point, c_trans->getUp(), distance, hit, EnginePhysics.eSTATIC))
 		//{
 		//	CEntity * ent = CHandle(hit.transform).getOwner();
