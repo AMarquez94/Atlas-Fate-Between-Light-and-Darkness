@@ -58,19 +58,37 @@ void TCompPlayerController::debugInMenu() {
 }
 
 void TCompPlayerController::renderDebug() {
-	ImGui::Begin("UI", NULL, 
+	//UI Window's Size
+	ImGui::SetNextWindowSize(ImVec2(200, 60), ImGuiCond_Always);
+	//UI Window's Position
+	ImGui::SetNextWindowPos(ImVec2(30, 30));
+	//Transparent backgroun - ergo alpha = 0 (RGBA)
+	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
+	//Some style added
+	ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 10);
+	ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1);
+	ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(255.0f, 255.0f, 0.0f, 1.0f));
+
+	ImGui::Begin("UI",NULL,
 		ImGuiWindowFlags_::ImGuiWindowFlags_NoMove |
 		ImGuiWindowFlags_::ImGuiWindowFlags_NoInputs |
 		ImGuiWindowFlags_::ImGuiWindowFlags_NoResize |
 		ImGuiWindowFlags_::ImGuiWindowFlags_NoTitleBar );
 
 	ImGui::Text("State: %s", stateName.c_str());
-	ImGui::Text("Stamina:", stateName.c_str());
-	ImGui::SetWindowSize(ImVec2(250, 60));
-	ImGui::SetWindowPos(ImVec2(20, 20));
-	ImGui::SameLine();
-	ImGui::ProgressBar(stamina / maxStamina);
+	
+
+	if (stamina != maxStamina) {
+		ImGui::Text("Stamina:", stateName.c_str());
+		ImGui::SameLine();
+		ImGui::ProgressBar(stamina / maxStamina);
+	}
+
 	ImGui::End();
+
+	ImGui::PopStyleVar(2);
+	ImGui::PopStyleColor(2);
+
 }
 
 void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
