@@ -98,6 +98,38 @@ void TCompPlayerController::renderDebug() {
 	ImGui::PopStyleVar(2);
 	ImGui::PopStyleColor(2);
 
+	// AJUSTE PARÁMETROS
+	ImGui::Begin("Ajuste parametros:");
+	if (ImGui::CollapsingHeader("Player")) {
+		ImGui::Text("Vel. player");
+		ImGui::DragFloat(" ", &walkSpeedFactor, 0.1f, 0.1f, 20.f);
+		ImGui::Text("Vel. rotacion player");
+		ImGui::DragFloat("   ", &rotationSpeed, 0.5f, 0.1f, 20.f);
+		ImGui::Text("Vel. player lento");
+		ImGui::DragFloat("      ", &walkSlowSpeedFactor, 0.1f, 0.1f, 20.f);
+		ImGui::Text("Vel. player corriendo");
+		ImGui::DragFloat("         ", &runSpeedFactor, 0.1f, 0.1f, 20.f);
+		ImGui::Text("Vel. player agachado");
+		ImGui::DragFloat("           ", &walkCrouchSpeedFactor, 0.1f, 0.1f, 20.f);
+		ImGui::Text("Vel. player agachado lento");
+		ImGui::DragFloat("             ", &walkSlowCrouchSpeedFactor, 0.1f, 0.1f, 20.f);
+		ImGui::Text("Tiempo cayendo para morir");
+		ImGui::DragFloat("                ", &timeFallingToDie, 0.f, 0.1f, 2.f);
+		ImGui::Text("Offset de tiempo para SM caida");
+		ImGui::DragFloat("                       ", &maxTimeToSMFalling, 0.f, 0.1f, 2.f);
+		ImGui::Text("Decr. stamina suelo");
+		ImGui::DragFloat("                         ", &dcrStaminaGround, 0.f, 1.f, 50.f);
+		ImGui::Text("Decr. stamina pared");
+		ImGui::DragFloat("                            ", &dcrStaminaWall, 0.f, 1.f, 50.f);
+		ImGui::Text("Multiplicador decr. lento");
+		ImGui::DragFloat("                                ", &dcrStaminaOnPlaceMultiplier, 0.f, 0.1f, 1.f);
+		ImGui::Text("Incr. stamina");
+		ImGui::DragFloat("                                   ", &incrStamina, 0.f, 1.f, 50.f);
+		ImGui::Text("Veces pulsar para quitar inhibidor");
+		ImGui::DragInt("                                        ", &timesToPressRemoveInhibitorKey, 1, 1, 10);
+	}
+	ImGui::End();
+
 }
 
 void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {

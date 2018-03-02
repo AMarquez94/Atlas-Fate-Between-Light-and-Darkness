@@ -62,6 +62,7 @@ class CAIPatrol : public IAIController
 public:
 	void load(const json& j, TEntityParseContext& ctx);
 	void debugInMenu();
+	void renderDebug();
 
 	void IdleState(float);				//Does nothing
 	void GoToWptState(float);				//Moves to currentWpt

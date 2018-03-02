@@ -27,6 +27,7 @@
   ],
   "render_debug": [
     "player_controller",
-	"game_manager_controller"
+	"game_manager_controller",
+	"ai_patrol"
   ]
 }
