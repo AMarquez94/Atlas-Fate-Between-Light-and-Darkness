@@ -66,6 +66,8 @@ void TCompPlayerController::renderDebug() {
 
 	ImGui::Text("State: %s", stateName.c_str());
 	ImGui::Text("Stamina:", stateName.c_str());
+	ImGui::SetWindowSize(ImVec2(250, 60));
+	ImGui::SetWindowPos(ImVec2(20, 20));
 	ImGui::SameLine();
 	ImGui::ProgressBar(stamina / maxStamina);
 	ImGui::End();
@@ -155,6 +157,7 @@ void TCompPlayerController::registerMsgs() {
 	DECL_MSG(TCompPlayerController, TMsgPlayerHit, onMsgPlayerHit);
 	DECL_MSG(TCompPlayerController, TMsgInhibitorShot, onMsgPlayerShotInhibitor);
 	DECL_MSG(TCompPlayerController, TMsgPlayerIlluminated, onMsgPlayerIlluminated);
+	DECL_MSG(TCompPlayerController, TMsgPlayerDead, onMsgPlayerKilled);
 }
 
 void TCompPlayerController::IdleState(float dt){
@@ -590,6 +593,12 @@ void TCompPlayerController::onMsgPlayerIlluminated(const TMsgPlayerIlluminated& 
 	}
 }
 
+void TCompPlayerController::onMsgPlayerKilled(const TMsgPlayerDead& msg)
+{
+	setPlayerDead();
+	dbg("Died outside map bounds!!\n");
+}
+
 const bool TCompPlayerController::motionButtonsPressed() {
 
 	if (!GroundTest()) {
@@ -812,7 +821,7 @@ const bool TCompPlayerController::ConvexTest(void)
 	VEC3 new_dir = -c_my_transform->getUp() + -c_my_transform->getFront();
 	new_dir.Normalize();
 
-	if (EnginePhysics.Raycast(upwards_offset, new_dir, 0.6f, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario")))
+	if (EnginePhysics.Raycast(upwards_offset, new_dir, 1.6f, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario")))
 	{
 		if (hit.distance > convexMaxDistance && EnginePhysics.gravity.Dot(hit.normal) < .01f)
 		{
@@ -971,7 +980,7 @@ bool TCompPlayerController::playerInFloor() {
 	TCompCollider *c = get<TCompCollider>();
 	VEC3 playerGravityNormal = c->normal_gravity;
 
-	return normalGravityNormal.Dot(playerGravityNormal) == 1.f;
+	return normalGravityNormal.Dot(playerGravityNormal) >= cosf(deg2rad(30.f));
 }
 
 bool TCompPlayerController::canStandUp()

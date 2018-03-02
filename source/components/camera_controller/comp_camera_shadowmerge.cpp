@@ -162,7 +162,7 @@ void TCompCameraShadowMerge::update(float dt)
 		VEC3 horizontal_offset = self_transform->getLeft() * _clipping_offset.x;
 		VEC3 target_position = target_transform->getPosition() + vertical_offset + horizontal_offset;
 
-		self_transform->setPosition(target_position);
+		//self_transform->setPosition(target_position);
 		self_transform->setYawPitchRoll(_current_euler.x, _current_euler.y, 0);
 
 		float z_distance = CameraClipping(target_position, -self_transform->getFront());
@@ -183,7 +183,7 @@ float TCompCameraShadowMerge::CameraClipping(const VEC3 & origin, const VEC3 & d
 {
 	CModulePhysics::RaycastHit hit;
 	if (EnginePhysics.Raycast(origin, dir, _clipping_offset.z, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario")))
-		return Clamp(hit.distance - 0.1f, 0.5f, _clipping_offset.z);
+		return Clamp(hit.distance - 0.3f, 0.f, _clipping_offset.z);
 
 	return _clipping_offset.z;
 }

@@ -52,6 +52,10 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
   if (j.count("halfExtent"))
     config.halfExtent = loadVEC3(j["halfExtent"]);
 
+  // Seting flags for triggers, refactor in the future.
+  if (j.count("triggerKill"))
+	  config.flags = triggerKill;
+
   // Setting some default values.
   isInside = false;
   isGrounded = false;
@@ -86,6 +90,13 @@ void TCompCollider::onDestroy(const TMsgEntityDestroyed & msg)
 
 void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {
 
+	if (config.flags & triggerKill)
+	{
+		TMsgPlayerDead n_msg;
+		n_msg.h_sender = CHandle(this).getOwner();
+		CEntity * player = CHandle(msg.h_other_entity);// CHandle(msg.h_other_entity);
+		player->sendMsg(n_msg);
+	}
 	dbg("Entered the trigger!!!!\n");
 }
 
@@ -109,7 +120,8 @@ void TCompCollider::update(float dt) {
 	if (config.gravity) {
 
 		//velocity += normal_gravity;
-		physx::PxControllerCollisionFlags col = controller->move(physx::PxVec3(normal_gravity.x * dt, normal_gravity.y * dt, normal_gravity.z * dt), 0.f, dt, physx::PxControllerFilters());
+		physx::PxVec3 down_force = physx::PxVec3(normal_gravity.x * dt, normal_gravity.y * dt, normal_gravity.z * dt);
+		physx::PxControllerCollisionFlags col = controller->move(down_force, 0.f, dt, physx::PxControllerFilters());
 		isGrounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN) ? true : false;
 	}
 }

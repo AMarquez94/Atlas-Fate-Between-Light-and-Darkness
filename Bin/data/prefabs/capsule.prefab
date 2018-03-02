@@ -20,12 +20,12 @@
     "entity": {
       "name": "capsule_shadow",
       "transform": {
-        "pos": "0 0 1"
+        "pos": "0 0 0"
       },
       "render": [
         {
           "mesh": "data/meshes/Capsule_shadow.mesh",
-          "color": "0 0 0 0.0",
+          "color": "0.3 0.3 0.3 0.0",
           "materials": [
             "data/materials/mtl_default_shadows.material"
           ]
@@ -35,7 +35,7 @@
       "hierarchy": {
         "axis": "0 0 1",
         "angle": 90,
-        "pos": "17 -31 0",
+        "pos": "17 -35 0",
         "parent": "capsule_prefab"
       }
 	}

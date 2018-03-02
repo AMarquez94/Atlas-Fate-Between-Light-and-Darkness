@@ -29,6 +29,13 @@ const CResourceClass* getResourceClassOf<CRenderMesh>() {
 	return &the_resource_class;
 }*/
 
+enum {
+	triggerKill = (1 << 0),
+	triggerEnemy = (1 << 1),
+	triggerCheckpoint = (1 << 2)
+};
+typedef uint32_t triggerFlags;
+
 class TCompCollider: public TCompBase {
 
 	VEC3 velocity = VEC3::Zero;
@@ -45,7 +52,8 @@ public:
 
   struct TConfig
   {
-    
+	 triggerFlags flags;
+
     //todo implement
     VEC3 offset;
     VEC3 halfExtent;

@@ -64,7 +64,7 @@ class TCompPlayerController : public IAIController {
 	void onMsgPlayerHit(const TMsgPlayerHit& msg);
 	void onMsgPlayerShotInhibitor(const TMsgInhibitorShot& msg);
 	void onMsgPlayerIlluminated(const TMsgPlayerIlluminated& msg);
-
+	void onMsgPlayerKilled(const TMsgPlayerDead& msg);
 
 	/* Aux variables */
 	std::string auxStateName = "";
