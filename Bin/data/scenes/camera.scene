@@ -45,12 +45,12 @@
 			"camera_shadowmerge" : {
 				"target": "The Player",
 				"clampangle" : "10 80",
-				"offset": "0 0.5 1.75",
+				"offset": "0 0.5 2.7",
 				"speed" : 1.5,
 				"starting_pitch": -35
 			},
 			"camera" : {
-				"fov" : 80,
+				"fov" : 95,
 				"z_near": 0.01,
 				"z_far": 1000
 			},
@@ -66,12 +66,12 @@
 			"camera_shadowmerge" : {
 				"target": "The Player",
 				"clampangle" : "-80 80",
-				"offset": "0 0.5 1.75",
+				"offset": "0 0.5 2.7",
 				"speed" : 1.5,
 				"starting_pitch": 0
 			},
 			"camera" : {
-				"fov" : 80,
+				"fov" : 95,
 				"z_near": 0.01,
 				"z_far": 1000
 			},
@@ -87,7 +87,7 @@
 			"auxcamera_shadowmerge": {
 			},
 			"camera" : {
-				"fov" : 80,
+				"fov" : 95,
 				"z_near": 0.01,
 				"z_far": 1000
 			},

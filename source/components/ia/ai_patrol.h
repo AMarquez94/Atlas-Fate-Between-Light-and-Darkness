@@ -19,18 +19,18 @@ class CAIPatrol : public IAIController
 	int currentWaypoint;
 
 
-	float speed = 2.f;
-	float rotationSpeedDeg = 90.f;
+	float speed = 5.5f;
+	float rotationSpeedDeg = 90.0f;
 	float rotationSpeed;
 	std::string entityToChase = "The Player";
-	float fovDeg = 60.f;
+	float fovDeg = 70.f;
 	float fov;
-	float autoChaseDistance = 5.f;
-	float maxChaseDistance = 10.f;
+	float autoChaseDistance = 15.f;
+	float maxChaseDistance = 35.f;
 	float maxTimeSuspecting = 3.f;
 	float suspectO_Meter = 0.f;
 	float dcrSuspectO_Meter = .3f;
-	float incrBaseSuspectO_Meter = .3f;
+	float incrBaseSuspectO_Meter = .5f;
 	bool isLastPlayerKnownDirLeft = false;
 	float distToAttack = 1.f;
 	float amountRotated = 0.f;

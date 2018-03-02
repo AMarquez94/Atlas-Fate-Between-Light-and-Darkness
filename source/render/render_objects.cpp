@@ -123,8 +123,8 @@ bool createRenderObjects() {
 	registerMesh(createGridXZ(20), "grid.mesh");
 	registerMesh(createLineZ(), "line.mesh");
 	registerMesh(createUnitCircleXZ(32), "circle_xz.mesh");
-	registerMesh(createCone(deg2rad(60), 10.f, 10, VEC4(1.0f, 1.0f, 1.0f, 1.0f)), "cone_of_vision.mesh");
-	registerMesh(createCone(deg2rad(30), 10.f, 10, VEC4(1.0f, 1.0f, 0.0f, 1.0f)), "cone_of_light.mesh");
+	registerMesh(createCone(deg2rad(70), 35.f, 10, VEC4(1.0f, 1.0f, 1.0f, 1.0f)), "cone_of_vision.mesh");
+	registerMesh(createCone(deg2rad(35), 20.f, 10, VEC4(1.0f, 1.0f, 0.0f, 1.0f)), "cone_of_light.mesh");
 	return true;
 }
 

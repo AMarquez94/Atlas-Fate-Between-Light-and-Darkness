@@ -1,51 +1,51 @@
 [
-  {
-    "entity": {
-      "name": "The Player",
-      "render": {
-        "mesh": "data/meshes/pj_idle.mesh",
-        "materials": [
-          "data/materials/body.material"
-        ]
-      },
-      "transform": {
-        "pos": "-14 1 -35"
-      },
-      "player_controller": {
-        "target_camera": "TPCamera",
-        "shadow_camera_hor": "SMCameraHor",
+	{
+		"entity": {
+			"name": "The Player",
+			"render": {
+			"mesh": "data/meshes/pj_idle.mesh",
+			"materials": [
+			  "data/materials/body.material"
+			]
+			},
+			"transform": {
+				"pos": "-14 1 100"
+			},
+			"player_controller": {
+				"target_camera": "TPCamera",
+				"shadow_camera_hor": "SMCameraHor",
 				"shadow_camera_ver": "SMCameraVer",
 				"shadow_camera_aux": "SMCameraAux",
-        "stamina": 100,
-        "maxStamina": 100,
-        "minStamina": 0,
-        "minStaminaToMerge": 0.0,
-        "dcrStaminaOnPlaceMultiplier": 0.5,
-        "dcrStaminaGround": 10,
-        "dcrStaminaWall": 20,
-        "incrStamina": 20,
-        "walkSpeedFactor": 4,
-        "walkCrouchSpeedFactor": 3,
-        "runSpeedFactor": 7,
-        "walkSlowSpeedFactor": 1.5,
-        "walkSlowCrouchSpeedFactor": 0.5,
-        "rotationSpeed": 10.0,
+				"stamina": 100,
+				"maxStamina": 100,
+				"minStamina": 0,
+				"minStaminaToMerge": 0.0,
+				"dcrStaminaOnPlaceMultiplier": 0.75,
+				"dcrStaminaGround": 12.5,
+				"dcrStaminaWall": 17.5,
+				"incrStamina": 15,
+				"walkSpeedFactor": 4,
+				"walkCrouchSpeedFactor": 3,
+				"runSpeedFactor": 5.5,
+				"walkSlowSpeedFactor": 1.5,
+				"walkSlowCrouchSpeedFactor": 0.5,
+				"rotationSpeed": 10.0,
 				"timesToPressRemoveInhibitorKey": 5,
-				"maxTimeToSMFalling": 0.15,
-				"timeFallingToDie": 0.8
-      },
-      "collider": {
-        "shape": "capsule",
-        "is_controller": true,
-        "radius": 0.35,
-        "height": 1.0,
+				"maxTimeToSMFalling": 0.3,
+				"timeFallingToDie": 1.2
+			},
+			"collider": {
+				"shape": "capsule",
+				"is_controller": true,
+				"radius": 0.35,
+				"height": 1.0,
 				"mask": "wall",
 				"group": "player",
-        "gravity": true
-      },
+				"gravity": true
+			},
 			"shadow_controller": {
 			},
 			"group": "player"
-			}
-  }
+		}
+	}
 ]
