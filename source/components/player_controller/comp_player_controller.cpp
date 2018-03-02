@@ -62,7 +62,7 @@ void TCompPlayerController::renderDebug() {
 	ImGui::SetNextWindowSize(ImVec2(200, 60), ImGuiCond_Always);
 	//UI Window's Position
 	ImGui::SetNextWindowPos(ImVec2(30, 30));
-	//Transparent backgroun - ergo alpha = 0 (RGBA)
+	//Transparent background - ergo alpha = 0 (RGBA)
 	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
 	//Some style added
 	ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 10);
@@ -74,16 +74,25 @@ void TCompPlayerController::renderDebug() {
 		ImGuiWindowFlags_::ImGuiWindowFlags_NoInputs |
 		ImGuiWindowFlags_::ImGuiWindowFlags_NoResize |
 		ImGuiWindowFlags_::ImGuiWindowFlags_NoTitleBar );
+	{
+		/*------------------------------------------------
+		--------------------------------------------------
+		-----------ADD UI INFO TO DISPLAY HERE----------*/
 
-	ImGui::Text("State: %s", stateName.c_str());
-	
+		ImGui::Text("State: %s", stateName.c_str());
 
-	if (stamina != maxStamina) {
-		ImGui::Text("Stamina:", stateName.c_str());
-		ImGui::SameLine();
-		ImGui::ProgressBar(stamina / maxStamina);
+
+		if (stamina != maxStamina) {
+			ImGui::Text("Stamina:", stateName.c_str());
+			ImGui::SameLine();
+			ImGui::ProgressBar(stamina / maxStamina);
+		}
+
+
+		/*------------------------------------------------
+		--------------------------------------------------
+		-----------END OF INFORMATION DISPLAYED----------*/
 	}
-
 	ImGui::End();
 
 	ImGui::PopStyleVar(2);
