@@ -14,17 +14,17 @@
 			},
 			"dynamic_objects": {
         "waypoints": [
-          {
-            "position": "-5 38 4"
-          },
-          {
-            "position": "-5 50 130"
-          }
-        ],
-				"speed": 4,
-        "rotationSpeed": 180,
-        "target": "The Player"
-			}
+		  {
+			"position": "-5 38 4"
+		  },
+		  {
+			"position": "-5 50 130"
+		  }
+		],
+		"speed": 4,
+		"rotationSpeed": 180,
+		"target": "The Player"
+		}
 		}
 	}
 ]

@@ -39,7 +39,7 @@ VS_OUTPUT_CTCOLOR vs_CtColor(float4 Pos : POSITION, float4 Color : COLOR)
 	output.Pos = mul(Pos, obj_world);
 	output.Pos = mul(output.Pos, camera_view);
 	output.Pos = mul(output.Pos, camera_proj);
-	output.Color = obj_color;
+	output.Color = Color;
 	return output;
 }
 
