@@ -5,7 +5,7 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/checker.dds"
+    "albedo": "data/textures/casas_df.dds"
     ,
     "lightmap": "data/textures/casas_final_lm.dds"
   }

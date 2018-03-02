@@ -37,7 +37,7 @@
       "collider": {
         "shape": "capsule",
         "is_controller": true,
-        "radius": 0.25,
+        "radius": 0.35,
         "height": 1.0,
 				"mask": "wall",
 				"group": "player",
