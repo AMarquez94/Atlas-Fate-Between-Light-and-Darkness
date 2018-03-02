@@ -11,77 +11,86 @@ void TCompCollider::debugInMenu() {
 
 void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 
-  std::string shape = j["shape"].get<std::string>();
-  if (strcmp("box", shape.c_str()) == 0)
-  {
-    config.shapeType = physx::PxGeometryType::eBOX;
-  }
-  else if (strcmp("sphere", shape.c_str()) == 0)
-  {
-    config.shapeType = physx::PxGeometryType::eSPHERE;
-  }
-  else if (strcmp("plane", shape.c_str()) == 0)
-  {
-    config.shapeType = physx::PxGeometryType::ePLANE;
-  }
-  else if (strcmp("capsule", shape.c_str()) == 0)
-  {
-    config.shapeType = physx::PxGeometryType::eCAPSULE;
-  }
-  else if (strcmp("convex", shape.c_str()) == 0)
-  {
-	  config.shapeType = physx::PxGeometryType::eCONVEXMESH;
-  }
-  else if (strcmp("mesh", shape.c_str()) == 0)
-  {
-	  config.shapeType = physx::PxGeometryType::eTRIANGLEMESH;
-  }
+	std::string shape = j["shape"].get<std::string>();
+	if (strcmp("box", shape.c_str()) == 0)
+	{
+		config.shapeType = physx::PxGeometryType::eBOX;
+	}
+	else if (strcmp("sphere", shape.c_str()) == 0)
+	{
+		config.shapeType = physx::PxGeometryType::eSPHERE;
+	}
+	else if (strcmp("plane", shape.c_str()) == 0)
+	{
+		config.shapeType = physx::PxGeometryType::ePLANE;
+	}
+	else if (strcmp("capsule", shape.c_str()) == 0)
+	{
+		config.shapeType = physx::PxGeometryType::eCAPSULE;
+	}
+	else if (strcmp("convex", shape.c_str()) == 0)
+	{
+		config.shapeType = physx::PxGeometryType::eCONVEXMESH;
+	}
+	else if (strcmp("mesh", shape.c_str()) == 0)
+	{
+		config.shapeType = physx::PxGeometryType::eTRIANGLEMESH;
+	}
 
-  config.is_controller = j.value("is_controller", false);
-  config.is_dynamic = j.value("is_dynamic", false);
-  config.is_trigger = j.value("is_trigger", false);
-  config.height = j.value("height", 0.f);
-  config.currentHeight = config.height;
-  config.radius = j.value("radius", 0.f);
-  config.gravity = j.value("gravity", false);
-  config.filename = j.value("name", "");
+	config.is_controller = j.value("is_controller", false);
+	config.is_dynamic = j.value("is_dynamic", false);
+	config.is_trigger = j.value("is_trigger", false);
+	config.height = j.value("height", 0.f);
+	config.currentHeight = config.height;
+	config.radius = j.value("radius", 0.f);
+	config.gravity = j.value("gravity", false);
+	config.filename = j.value("name", "");
 
-  config.group = CEngine::get().getPhysics().getFilterByName(j.value("group", "all"));
-  config.mask = CEngine::get().getPhysics().getFilterByName(j.value("mask", "all"));
+	config.group = CEngine::get().getPhysics().getFilterByName(j.value("group", "all"));
+	config.mask = CEngine::get().getPhysics().getFilterByName(j.value("mask", "all"));
 
-  if (j.count("halfExtent"))
-    config.halfExtent = loadVEC3(j["halfExtent"]);
+	if (j.count("halfExtent"))
+		config.halfExtent = loadVEC3(j["halfExtent"]);
 
-  // Seting flags for triggers, refactor in the future.
-  if (j.count("triggerKill"))
-	  config.flags = triggerKill;
+	// Seting flags for triggers, refactor in the future.a
+	if (j.count("triggerKill"))
+		config.flags = triggerKill;
 
-  // Setting some default values.
-  isInside = false;
-  isGrounded = false;
+	// Setting some default values.
+	isInside = false;
+	isGrounded = false;
+
+	physx::PxFilterData * characterFilterData = new physx::PxFilterData();
+	characterFilterData->word0 = config.group;
+	characterFilterData->word1 = config.mask;
+
+	filters = physx::PxControllerFilters();
+	filters.mFilterCallback = &customQueryFilter;
+	filters.mFilterData = characterFilterData;
+
 }
 
 
 void TCompCollider::registerMsgs() {
 
-  DECL_MSG(TCompCollider, TMsgEntityCreated, onCreate);
-  DECL_MSG(TCompCollider, TMsgTriggerEnter, onTriggerEnter);
-  DECL_MSG(TCompCollider, TMsgTriggerExit, onTriggerExit);
-  DECL_MSG(TCompCollider, TMsgEntityDestroyed, onDestroy);
+	DECL_MSG(TCompCollider, TMsgEntityCreated, onCreate);
+	DECL_MSG(TCompCollider, TMsgTriggerEnter, onTriggerEnter);
+	DECL_MSG(TCompCollider, TMsgTriggerExit, onTriggerExit);
+	DECL_MSG(TCompCollider, TMsgEntityDestroyed, onDestroy);
 }
 
 void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
 
-  CEngine::get().getPhysics().createActor(*this);
-  TCompTransform *transform = get<TCompTransform>();
-  lastFramePosition = transform->getPosition();
+	CEngine::get().getPhysics().createActor(*this);
+	TCompTransform *transform = get<TCompTransform>();
+	lastFramePosition = transform->getPosition();
 }
 
 void TCompCollider::onDestroy(const TMsgEntityDestroyed & msg)
 {
-	if(actor && actor->getScene())
+	if (actor && actor->getScene())
 		actor->getScene()->removeActor(*actor);
-		actor = nullptr;
+	actor = nullptr;
 	if (controller != NULL && controller) {
 		controller->release();
 		controller = nullptr;
@@ -112,7 +121,8 @@ void TCompCollider::update(float dt) {
 			TCompTransform *transform = get<TCompTransform>();
 			VEC3 new_pos = transform->getPosition();
 			VEC3 delta_movement = new_pos - lastFramePosition;
-			controller->move(physx::PxVec3(delta_movement.x, delta_movement.y, delta_movement.z), 0.f, dt, physx::PxControllerFilters());
+
+			controller->move(physx::PxVec3(delta_movement.x, delta_movement.y, delta_movement.z), 0.f, dt, filters);
 			lastFramePosition = new_pos;
 		}
 	}
@@ -144,5 +154,23 @@ void TCompCollider::SetUpVector(VEC3 new_up)
 VEC3 TCompCollider::GetUpVector()
 {
 	physx::PxVec3 upDirection = controller->getUpDirection();
-	return VEC3(upDirection.x,upDirection.y,upDirection.z);
+	return VEC3(upDirection.x, upDirection.y, upDirection.z);
+}
+
+physx::PxQueryHitType::Enum TCompCollider::CustomQueryFilterCallback::preFilter(const physx::PxFilterData& filterData, const physx::PxShape* shape, const physx::PxRigidActor* actor, physx::PxHitFlags& queryFlags)
+{
+	const physx::PxFilterData& filterData1 = shape->getQueryFilterData();
+
+	if ((filterData.word0 & filterData1.word1) && (filterData1.word0 & filterData.word1))
+	{
+		//if (filterData.word0 == 4 && filterData1.word1 == 1) {
+
+		//  dbg("collided with a wall\n");
+		//  //pairFlags = PxPairFlag::eNOTIFY_TOUCH_LOST;
+		//  //return (PxFilterFlag::eKILL);
+		//}
+		//dbg("\nentra al if");
+		return physx::PxQueryHitType::eBLOCK;
+	}
+	return physx::PxQueryHitType::eTOUCH;
 }

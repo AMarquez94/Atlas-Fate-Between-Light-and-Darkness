@@ -1568,7 +1568,9 @@
       {
         "shape": "box"
         ,
-        "halfExtent": "30.0 1.72738 0.1"
+        "halfExtent": "30.0 1.72738 0.1",
+		"group": "wall",
+		"mask": "player"
       }
     }
   }
