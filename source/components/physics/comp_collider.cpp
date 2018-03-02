@@ -119,9 +119,13 @@ void TCompCollider::update(float dt) {
 
 	if (config.gravity) {
 
-		//velocity += normal_gravity;
-		physx::PxVec3 down_force = physx::PxVec3(normal_gravity.x * dt, normal_gravity.y * dt, normal_gravity.z * dt);
-		physx::PxControllerCollisionFlags col = controller->move(down_force, 0.f, dt, physx::PxControllerFilters());
+		if (isGrounded) {
+			totalDownForce = physx::PxVec3(normal_gravity.x * dt, normal_gravity.y * dt, normal_gravity.z * dt);
+		}
+		else {
+			totalDownForce += (physx::PxVec3(normal_gravity.x * dt, normal_gravity.y * dt, normal_gravity.z * dt)) * dt;
+		}
+		physx::PxControllerCollisionFlags col = controller->move(totalDownForce, 0.f, dt, physx::PxControllerFilters());
 		isGrounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN) ? true : false;
 	}
 }

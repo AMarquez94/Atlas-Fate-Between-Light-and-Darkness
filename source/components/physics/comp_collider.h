@@ -92,4 +92,6 @@ public:
   VEC3 GetUpVector();
 
   VEC3 normal_gravity = VEC3(0, -9.8f, 0);
+
+  physx::PxVec3 totalDownForce = physx::PxVec3(0, 0, 0);
 };
