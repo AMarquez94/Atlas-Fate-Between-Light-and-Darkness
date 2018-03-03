@@ -23,6 +23,7 @@ public:
 
 	std::vector<TCompLight*> static_lights;
 	std::vector<TCompCollider*> dynamic_lights;
+	physx::PxQueryFilterData shadowDetectionFilter;
 
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);

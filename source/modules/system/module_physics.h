@@ -40,7 +40,7 @@ public:
 		Player = 1 << 2,
 		Enemy = 1 << 3,
 		Ignore = 1 << 4,
-		fence = 1 << 5,
+		Fence = 1 << 5,
 		Scenario = Wall | Floor,
 		Characters = Player | Enemy,
 		All = -1

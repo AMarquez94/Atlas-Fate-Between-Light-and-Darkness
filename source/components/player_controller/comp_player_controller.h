@@ -8,6 +8,7 @@
 class TCompPlayerController : public IAIController {
 
 	std::map<std::string, CRenderMesh*> mesh_states;
+	physx::PxQueryFilterData shadowMergeFilter;
 
 	/* Camera stack, to bypass entity delayed loading */
 	/* Replace everything here with a real camera stack */

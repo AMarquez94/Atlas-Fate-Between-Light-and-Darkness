@@ -267,6 +267,8 @@
       {
         "shape": "box"
         ,
+		"group": "fence",
+		"mask": "scenario",
         "halfExtent": "0.15 0.675 3.5"
       }
     }
@@ -287,7 +289,9 @@
       "collider":
       {
         "shape": "box"
-        ,
+        ,		
+		"group": "fence",
+		"mask": "scenario",
         "halfExtent": "0.15 0.675 1.0164"
       }
     }
@@ -309,6 +313,8 @@
       {
         "shape": "box"
         ,
+		"group": "fence",
+		"mask": "scenario",
         "halfExtent": "0.15 0.675 3.0"
       }
     }
@@ -330,6 +336,8 @@
       {
         "shape": "box"
         ,
+		"group": "fence",
+		"mask": "scenario",
         "halfExtent": "0.15 0.675 6.0"
       }
     }
@@ -351,6 +359,8 @@
       {
         "shape": "box"
         ,
+		"group": "fence",
+		"mask": "scenario",
         "halfExtent": "0.1 0.575 4.50968"
       }
     }
@@ -1569,8 +1579,8 @@
         "shape": "box"
         ,
         "halfExtent": "30.0 1.72738 0.1",
-				"group": "wall",
-				"mask": "player"
+		"group": "wall",
+		"mask": "player"
       }
     }
   }

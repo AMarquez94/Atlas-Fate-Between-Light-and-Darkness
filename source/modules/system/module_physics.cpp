@@ -285,9 +285,7 @@ bool CModulePhysics::start()
 
 	// Set a default filter to do query checks
 	physx::PxFilterData pxFilterData;
-	pxFilterData.word0 = FilterGroup::Wall;
-	pxFilterData.word1 = FilterGroup::Scenario;
-	//pxFilterData.word2 = FilterGroup::Wall;
+	pxFilterData.word0 = FilterGroup::Scenario;
 	defaultFilter.data = pxFilterData;
 
 	return true;

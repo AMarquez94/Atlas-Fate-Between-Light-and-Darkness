@@ -165,6 +165,12 @@ void TCompPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	camera_shadowmerge_aux = j.value("shadow_camera_aux", "");
 	camera_actual = camera_thirdperson;
 
+	physx::PxFilterData pxFilterData;
+	pxFilterData.word1 = EnginePhysics.FilterGroup::Scenario;
+	//pxFilterData.word1 = EnginePhysics.FilterGroup::Wall;
+
+	shadowMergeFilter.data = pxFilterData;
+
 	Init();
 }
 
@@ -571,6 +577,7 @@ void TCompPlayerController::ShadowMergingExitState(float dt){
 	// Memory leak, be careful.
 	physx::PxFilterData * characterFilterData = new physx::PxFilterData();
 	characterFilterData->word0 = collider->config.group;
+	characterFilterData->word1 = EnginePhysics.FilterGroup::All;
 
 	collider->filters.mFilterData = characterFilterData;
 	ChangeState("idle");
@@ -860,6 +867,7 @@ const bool TCompPlayerController::ConcaveTest(void)
 	{
 		VEC3 hit_normal = VEC3(hit.normal.x, hit.normal.y, hit.normal.z);
 		VEC3 hit_point = VEC3(hit.position.x, hit.position.y, hit.position.z);
+
 		if (EnginePhysics.gravity.Dot(hit_normal) < .01f)
 		{
 			VEC3 new_forward = hit_normal.Cross(c_my_transform->getLeft());

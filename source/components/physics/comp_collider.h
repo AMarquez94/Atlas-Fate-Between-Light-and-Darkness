@@ -101,7 +101,7 @@ public:
 	public:
 		physx::PxQueryHitType::Enum PxQueryFilterCallback::preFilter(const physx::PxFilterData& filterData, const physx::PxShape* shape, const physx::PxRigidActor* actor, physx::PxHitFlags& queryFlags);
 		physx::PxQueryHitType::Enum PxQueryFilterCallback::postFilter(const physx::PxFilterData& filterData, const physx::PxQueryHit& hit) {
-			return physx::PxQueryHitType::eNONE;
+			return physx::PxQueryHitType::eTOUCH;
 		}
 	};
 

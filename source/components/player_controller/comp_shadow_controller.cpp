@@ -64,7 +64,13 @@ void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
 		TCompCollider * c_collider = current_collider->get<TCompCollider>();
 		dynamic_lights.push_back(c_collider);
 	}
+
+	physx::PxFilterData pxFilterData;
+	//pxFilterData.word0 = EnginePhysics.FilterGroup::Scenario;
+	pxFilterData.word1 = EnginePhysics.FilterGroup::Fence;
+	shadowDetectionFilter.data = pxFilterData;
 }
+
 void TCompShadowController::onEnteredCapsuleShadow(const TMsgEnteredCapsuleShadow& msg) {
 
 	capsule_shadow = true;
@@ -85,14 +91,12 @@ void TCompShadowController::registerMsgs() {
 
 }
 
-
 // We can also use this public method from outside this class.
 bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 {
 	if (capsule_shadow) {
 		return true;
 	}
-	
 	
 	// We need a safe system to retrieve the light direction and origin spot.
 	// Also we need to distinguish between light types.
@@ -105,7 +109,7 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 
 		float distance = VEC3::Distance(c_trans->getPosition(), point);
 		VEC3 upvector = c_trans->getUp();
-		if (!EnginePhysics.Raycast(point, c_trans->getUp(), distance, hit, physx::PxQueryFlag::eSTATIC))
+		if (!EnginePhysics.Raycast(point, c_trans->getUp(), distance, hit, physx::PxQueryFlag::eSTATIC, shadowDetectionFilter))
 			return false;
 
 		// Debug, enable if needed.
@@ -122,7 +126,6 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 		if (dynamic_lights[x]->isInside)
 			return false;
 	}
-
 
 	return true;
 }
