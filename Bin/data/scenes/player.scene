@@ -31,8 +31,8 @@
 				"walkSlowCrouchSpeedFactor": 0.5,
 				"rotationSpeed": 10.0,
 				"timesToPressRemoveInhibitorKey": 5,
-				"maxTimeToSMFalling": 0.3,
-				"timeFallingToDie": 1.2
+				"maxTimeToSMFalling": 0.2,
+				"timeFallingToDie": 0.8
 			},
 			"collider": {
 				"shape": "capsule",
