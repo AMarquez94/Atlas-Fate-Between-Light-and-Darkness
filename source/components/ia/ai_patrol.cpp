@@ -471,7 +471,7 @@ void CAIPatrol::GoToPatrolState(float dt)
 
 	VEC3 vp = mypos->getPosition();
 
-	if (VEC3::Distance(vp, lastStunnedPatrolKnownPos) < distToAttack) {
+	if (VEC3::Distance(vp, lastStunnedPatrolKnownPos) < distToAttack + 1.f) {
 		if (isStunnedPatrolInPos(lastStunnedPatrolKnownPos)) {
 			ChangeState("fixPatrol");
 		}
@@ -723,7 +723,8 @@ bool CAIPatrol::isStunnedPatrolInFov()
 		for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
 			TCompTransform* stunnedPatrol = ((CEntity*)stunnedPatrols[i])->get<TCompTransform>();
 			if (mypos->isInFov(stunnedPatrol->getPosition(), fov) 
-				&& VEC3::Distance(mypos->getPosition(), stunnedPatrol->getPosition()) < maxChaseDistance) {
+				&& VEC3::Distance(mypos->getPosition(), stunnedPatrol->getPosition()) < maxChaseDistance
+				&& !isEntityHidden(stunnedPatrols[i])) {
 				found = true;
 				lastStunnedPatrolKnownPos = stunnedPatrol->getPosition();
 			}
