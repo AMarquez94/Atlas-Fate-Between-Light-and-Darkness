@@ -50,7 +50,7 @@
 				"starting_pitch": -35
 			},
 			"camera" : {
-				"fov" : 95,
+				"fov" : 90,
 				"z_near": 0.01,
 				"z_far": 1000
 			},
@@ -71,7 +71,7 @@
 				"starting_pitch": 0
 			},
 			"camera" : {
-				"fov" : 95,
+				"fov" : 90,
 				"z_near": 0.01,
 				"z_far": 1000
 			},
@@ -87,7 +87,7 @@
 			"auxcamera_shadowmerge": {
 			},
 			"camera" : {
-				"fov" : 95,
+				"fov" : 90,
 				"z_near": 0.01,
 				"z_far": 1000
 			},

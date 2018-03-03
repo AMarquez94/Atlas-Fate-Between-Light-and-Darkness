@@ -60,14 +60,6 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 	isInside = false;
 	isGrounded = false;
 
-	physx::PxFilterData * characterFilterData = new physx::PxFilterData();
-	characterFilterData->word0 = config.group;
-	characterFilterData->word1 = config.mask;
-
-	filters = physx::PxControllerFilters();
-	filters.mFilterCallback = &customQueryFilter;
-	filters.mFilterData = characterFilterData;
-
 }
 
 
@@ -84,12 +76,21 @@ void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
 	CEngine::get().getPhysics().createActor(*this);
 	TCompTransform *transform = get<TCompTransform>();
 	lastFramePosition = transform->getPosition();
+
+	physx::PxFilterData * characterFilterData = new physx::PxFilterData();
+	characterFilterData->word0 = config.group;
+	characterFilterData->word1 = config.mask;
+
+	filters = physx::PxControllerFilters();
+	//filters.mFilterCallback = &customQueryFilter;
+	filters.mFilterData = characterFilterData;
 }
 
 void TCompCollider::onDestroy(const TMsgEntityDestroyed & msg)
 {
 	if (actor && actor->getScene())
 		actor->getScene()->removeActor(*actor);
+
 	actor = nullptr;
 	if (controller != NULL && controller) {
 		controller->release();
@@ -135,7 +136,7 @@ void TCompCollider::update(float dt) {
 		else {
 			totalDownForce += (physx::PxVec3(normal_gravity.x * dt, normal_gravity.y * dt, normal_gravity.z * dt)) * dt;
 		}
-		physx::PxControllerCollisionFlags col = controller->move(totalDownForce, 0.f, dt, physx::PxControllerFilters());
+		physx::PxControllerCollisionFlags col = controller->move(totalDownForce, 0.f, dt, filters);
 		isGrounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN) ? true : false;
 	}
 }
@@ -159,18 +160,19 @@ VEC3 TCompCollider::GetUpVector()
 
 physx::PxQueryHitType::Enum TCompCollider::CustomQueryFilterCallback::preFilter(const physx::PxFilterData& filterData, const physx::PxShape* shape, const physx::PxRigidActor* actor, physx::PxHitFlags& queryFlags)
 {
-	const physx::PxFilterData& filterData1 = shape->getQueryFilterData();
+	//const physx::PxFilterData& filterData1 = shape->getQueryFilterData();
+	//CHandle n_comp_collider;
+	//n_comp_collider.fromVoidPtr(actor->userData);
+	//TCompCollider * n_collider = n_comp_collider;
 
-	if ((filterData.word0 & filterData1.word1) && (filterData1.word0 & filterData.word1))
-	{
-		//if (filterData.word0 == 4 && filterData1.word1 == 1) {
+	//if ((filterData.word0 & filterData1.word1) && (filterData1.word0 & filterData.word1))
+	//{
+	//	if (n_collider->config.flags & disableFilter) {
 
-		//  dbg("collided with a wall\n");
-		//  //pairFlags = PxPairFlag::eNOTIFY_TOUCH_LOST;
-		//  //return (PxFilterFlag::eKILL);
-		//}
-		//dbg("\nentra al if");
-		return physx::PxQueryHitType::eBLOCK;
-	}
+	//		dbg("blockea la collision\n");
+	//		return physx::PxQueryHitType::eTOUCH;
+	//	}
+	//	return physx::PxQueryHitType::eBLOCK;
+	//}
 	return physx::PxQueryHitType::eTOUCH;
 }

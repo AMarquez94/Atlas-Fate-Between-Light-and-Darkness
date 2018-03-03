@@ -98,14 +98,14 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 	// Also we need to distinguish between light types.
 	// Different light tests must be made.
 
-	CModulePhysics::RaycastHit hit;
+	physx::PxRaycastHit hit;
 	for (unsigned int x = 0; x < static_lights.size(); x++) {
 		CEntity * c_entity = CHandle(static_lights[x]).getOwner();
 		TCompTransform * c_trans = c_entity->get<TCompTransform>();
 
 		float distance = VEC3::Distance(c_trans->getPosition(), point);
 		VEC3 upvector = c_trans->getUp();
-		if (!EnginePhysics.Raycast(point, c_trans->getUp(), distance, hit, EnginePhysics.eSTATIC))
+		if (!EnginePhysics.Raycast(point, c_trans->getUp(), distance, hit, physx::PxQueryFlag::eSTATIC))
 			return false;
 
 		// Debug, enable if needed.

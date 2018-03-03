@@ -700,11 +700,11 @@ bool CAIPatrol::isEntityHidden(CHandle h_entity)
 		dest = eTransform->getPosition() + VEC3(0, Clamp(i - .1f, 0.f, eCollider->config.height * 2), 0);
 		dir = dest - origin;
 		dir.Normalize();
-		CModulePhysics::RaycastHit hit;
+		physx::PxRaycastHit hit;
 		float dist = VEC3::Distance(origin,dest);
 
 		//TODO: only works when behind scenery. Make the same for other enemies, dynamic objects...
-		if (!EnginePhysics.Raycast(origin, dir, dist, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario"))) {
+		if (!EnginePhysics.Raycast(origin, dir, dist, hit, physx::PxQueryFlag::eSTATIC)) {
 			isHidden = false;
 		}
 		i = i + (eCollider->config.height / 2);

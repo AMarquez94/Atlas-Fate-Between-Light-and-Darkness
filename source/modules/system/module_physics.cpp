@@ -16,6 +16,7 @@
 using namespace physx;
 
 const VEC3 CModulePhysics::gravity(0, -1, 0);
+physx::PxQueryFilterData CModulePhysics::defaultFilter;
 
 /* REFACTOR THIS IN THE FUTURE, IT'S A BIG MESS */
 void CModulePhysics::createActor(TCompCollider& comp_collider)
@@ -228,13 +229,6 @@ PxFilterFlags CustomFilterShader(
 {
     if ( (filterData0.word0 & filterData1.word1) && (filterData1.word0 & filterData0.word1) )
     {
-		//if (filterData0.word0 == 4 && filterData1.word0 == 1)
-		//{
-		//	dbg("collided with a wall\n");
-		//	pairFlags = PxPairFlag::eNOTIFY_TOUCH_LOST;
-		//	return (PxFilterFlag::eKILL);
-		//}
-
         if ( PxFilterObjectIsTrigger(attributes0) || PxFilterObjectIsTrigger(attributes1) )
         {
             pairFlags = PxPairFlag::eTRIGGER_DEFAULT;
@@ -287,8 +281,14 @@ bool CModulePhysics::start()
 	gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.6f);
 	mControllerManager = PxCreateControllerManager(*gScene);
 	gScene->setSimulationEventCallback(&customSimulationEventCallback);
-
 	PxInitExtensions(*gPhysics, gPvd);
+
+	// Set a default filter to do query checks
+	physx::PxFilterData pxFilterData;
+	pxFilterData.word0 = FilterGroup::Wall;
+	pxFilterData.word1 = FilterGroup::Scenario;
+	//pxFilterData.word2 = FilterGroup::Wall;
+	defaultFilter.data = pxFilterData;
 
 	return true;
 }
@@ -378,38 +378,23 @@ void CModulePhysics::CustomSimulationEventCallback::onContact(const physx::PxCon
 	for (PxU32 i = 0; i < nbPairs; i++)
 	{
 		const PxContactPair& cp = pairs[i];
-		dbg("contact found\n");
+		//dbg("contact found\n");
 	}
 }
 
 /* Auxiliar physics methods */
 
-bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distance, RaycastHit & hit, QueryFlag flag, FilterGroup mask)
+bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distance, physx::PxRaycastHit & hit, physx::PxQueryFlag::Enum flag, physx::PxQueryFilterData filterdata)
 {
 	PxVec3 px_origin = PxVec3(origin.x, origin.y, origin.z);
 	PxVec3 px_dir = PxVec3(dir.x, dir.y, dir.z); // [in] Normalized ray direction
 	PxReal px_distance = (PxReal)(distance); // [in] Raycast max distance
 
 	PxRaycastBuffer px_hit; // [out] Raycast results
-	PxQueryFilterData filterData;
-	filterData.data.word0 = mask;
-	filterData.flags = PxQueryFlag:: PxQueryFlag::Enum(flag);
+	filterdata.flags = flag;
 
-	bool status = gScene->raycast(px_origin, px_dir, px_distance, px_hit, PxHitFlags(PxHitFlag::eDEFAULT), filterData); // Closest hit
-
-	if (status)
-	{
-		PxRigidActor* rigidActor = ((PxRigidActor*)px_hit.block.actor);
-		CHandle h_comp_collider;
-		h_comp_collider.fromVoidPtr(rigidActor->userData);
-		CEntity * ent_collided = h_comp_collider.getOwner();
-
-		hit.distance = (float)px_hit.block.distance;
-		hit.point = VEC3(px_hit.block.position.x, px_hit.block.position.y, px_hit.block.position.z);
-		hit.normal = VEC3(px_hit.block.normal.x, px_hit.block.normal.y, px_hit.block.normal.z);
-		hit.collider = h_comp_collider;
-		hit.transform = ent_collided->get<TCompTransform>();
-	}
+	bool status = gScene->raycast(px_origin, px_dir, px_distance, px_hit, PxHitFlags(PxHitFlag::eDEFAULT), filterdata); // Closest hit
+	hit = px_hit.block;
 
 	return status;
 }

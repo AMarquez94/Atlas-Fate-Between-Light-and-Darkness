@@ -35,6 +35,7 @@ private:
 	void onMsgCameraDeprecated(const TMsgCameraDeprecated &msg);
 	void onMsgCameraSetActive(const TMsgSetCameraActive &msg);
 
+	physx::PxQueryFilterData cameraFilter;
 public:
   void debugInMenu();
   void load(const json& j, TEntityParseContext& ctx);

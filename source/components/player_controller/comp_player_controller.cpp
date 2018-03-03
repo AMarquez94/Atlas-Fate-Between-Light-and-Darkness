@@ -368,6 +368,11 @@ void TCompPlayerController::ShadowMergingEnterState(float dt){
 
 	TCompCollider * collider = get<TCompCollider>();
 	collider->Resize(0.01f);
+	physx::PxFilterData * characterFilterData = new physx::PxFilterData();
+	characterFilterData->word0 = collider->config.group;
+	characterFilterData->word1 = EnginePhysics.FilterGroup::Wall;
+
+	collider->filters.mFilterData = characterFilterData;
 
 	// Change the render to the shadow merge mesh, TO REFACTOR
 	TCompRender* t = get<TCompRender>();
@@ -543,18 +548,17 @@ void TCompPlayerController::ShadowMergingLandingState(float dt){
 void TCompPlayerController::ShadowMergingExitState(float dt){
 
 	// Change the render to the normal mesh, TO REFACTOR
+	TCompCollider *collider = get<TCompCollider>();
 	TCompRender* t = get<TCompRender>();
 	t->color = VEC4(1, 1, 1, 1);
 
 
 	crouched = true;
 	if (canStandUp()) {
-		TCompCollider *collider = get<TCompCollider>();
 		collider->Resize(collider->config.height);
 		crouched = false;
 	}
 	else {
-		TCompCollider *collider = get<TCompCollider>();
 		collider->Resize(0.45f);
 	}
 
@@ -564,6 +568,11 @@ void TCompPlayerController::ShadowMergingExitState(float dt){
 	camera_actual = camera_thirdperson;
 	Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
 
+	// Memory leak, be careful.
+	physx::PxFilterData * characterFilterData = new physx::PxFilterData();
+	characterFilterData->word0 = collider->config.group;
+
+	collider->filters.mFilterData = characterFilterData;
 	ChangeState("idle");
 }
 
@@ -842,26 +851,28 @@ const bool TCompPlayerController::GroundTest(void)
 
 const bool TCompPlayerController::ConcaveTest(void)
 {
-	CModulePhysics::RaycastHit hit;
+	physx::PxRaycastHit hit;
 	TCompCollider *c_my_collider = get<TCompCollider>();
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * .01f;
 
-	if (EnginePhysics.Raycast(upwards_offset, c_my_transform->getFront(), c_my_collider->config.radius + .1f, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario")))
+	if (EnginePhysics.Raycast(upwards_offset, c_my_transform->getFront(), c_my_collider->config.radius + .1f, hit, physx::PxQueryFlag::eSTATIC))
 	{
-		if (EnginePhysics.gravity.Dot(hit.normal) < .01f)
+		VEC3 hit_normal = VEC3(hit.normal.x, hit.normal.y, hit.normal.z);
+		VEC3 hit_point = VEC3(hit.position.x, hit.position.y, hit.position.z);
+		if (EnginePhysics.gravity.Dot(hit_normal) < .01f)
 		{
-			VEC3 new_forward = hit.normal.Cross(c_my_transform->getLeft());
+			VEC3 new_forward = hit_normal.Cross(c_my_transform->getLeft());
 			VEC3 target = c_my_transform->getPosition() + new_forward;
 
-			dbg("angles concave: %f\n", rad2deg(acosf(hit.normal.Dot(c_my_collider->GetUpVector()))));
+			dbg("angles concave: %f\n", rad2deg(acosf(hit_normal.Dot(c_my_collider->GetUpVector()))));
 
-			c_my_collider->SetUpVector(hit.normal);
-			c_my_collider->normal_gravity = 9.8f * -hit.normal;
+			c_my_collider->SetUpVector(hit_normal);
+			c_my_collider->normal_gravity = 9.8f * -hit_normal;
 
-			Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), target, hit.normal).Transpose();
+			Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), target, hit_normal).Transpose();
 			Quaternion new_rotation = Quaternion::CreateFromRotationMatrix(test);
-			VEC3 new_pos = hit.point;
+			VEC3 new_pos = hit_point;
 			c_my_transform->setRotation(new_rotation);
 			c_my_transform->setPosition(new_pos);
 		}
@@ -872,7 +883,7 @@ const bool TCompPlayerController::ConcaveTest(void)
 
 const bool TCompPlayerController::ConvexTest(void)
 {
-	CModulePhysics::RaycastHit hit;
+	physx::PxRaycastHit hit;
 	TCompCollider *c_my_collider = get<TCompCollider>();
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * .01f;
@@ -880,20 +891,22 @@ const bool TCompPlayerController::ConvexTest(void)
 	VEC3 new_dir = -c_my_transform->getUp() + -c_my_transform->getFront();
 	new_dir.Normalize();
 
-	if (EnginePhysics.Raycast(upwards_offset, new_dir, 1.6f, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario")))
+	if (EnginePhysics.Raycast(upwards_offset, new_dir, 1.6f, hit, physx::PxQueryFlag::eSTATIC))
 	{
-		if (hit.distance > convexMaxDistance && EnginePhysics.gravity.Dot(hit.normal) < .01f)
+		VEC3 hit_normal = VEC3(hit.normal.x, hit.normal.y, hit.normal.z);
+		VEC3 hit_point = VEC3(hit.position.x, hit.position.y, hit.position.z);
+		if (hit.distance > convexMaxDistance && EnginePhysics.gravity.Dot(hit_normal) < .01f)
 		{
-			VEC3 new_forward = -hit.normal.Cross(c_my_transform->getLeft());
-			VEC3 target = hit.point + new_forward;
+			VEC3 new_forward = -hit_normal.Cross(c_my_transform->getLeft());
+			VEC3 target = hit_point + new_forward;
 
-			dbg("angles convex: %f\n", 180 + rad2deg(acosf(hit.normal.Dot(c_my_collider->GetUpVector()))));
+			dbg("angles convex: %f\n", 180 + rad2deg(acosf(hit_normal.Dot(c_my_collider->GetUpVector()))));
 
-			c_my_collider->SetUpVector(hit.normal);
-			c_my_collider->normal_gravity = 9.8f * -hit.normal;
+			c_my_collider->SetUpVector(hit_normal);
+			c_my_collider->normal_gravity = 9.8f * -hit_normal;
 
-			QUAT new_rotation = createLookAt(hit.point, target, hit.normal);
-			VEC3 new_pos = hit.point;
+			QUAT new_rotation = createLookAt(hit_point, target, hit_normal);
+			VEC3 new_pos = hit_point;
 			c_my_transform->setRotation(new_rotation);
 			c_my_transform->setPosition(new_pos);
 			return true;
@@ -1044,21 +1057,12 @@ bool TCompPlayerController::playerInFloor() {
 
 bool TCompPlayerController::canStandUp()
 {
-	CModulePhysics::RaycastHit hit;
+	physx::PxRaycastHit hit;
 	TCompTransform *mypos = get<TCompTransform>();
 	TCompCollider *tMyCollider = get<TCompCollider>();
 
-	return !crouched || !EnginePhysics.Raycast(mypos->getPosition() + VEC3(0.f, 0.1f, 0.f), mypos->getUp(), tMyCollider->config.height + tMyCollider->config.height / 2, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario"));
+	return !crouched || !EnginePhysics.Raycast(mypos->getPosition() + VEC3(0.f, 0.1f, 0.f), mypos->getUp(), tMyCollider->config.height + tMyCollider->config.height / 2, hit, physx::PxQueryFlag::eSTATIC);
 }
-
-//bool TCompPlayerController::canStandUp()
-//{
-//	CModulePhysics::RaycastHit hit;
-//	TCompTransform *mypos = get<TCompTransform>();
-//	TCompCollider *tMyCollider = get<TCompCollider>();
-//
-//	if(EnginePhysics.Raycast(mypos->getPosition() + VEC3(0.f, 0.1f, 0.f), mypos->getUp(), tMyCollider->config.height + tMyCollider->config.height / 2, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario"));
-//}
 
 void TCompPlayerController::setPlayerDead()
 {

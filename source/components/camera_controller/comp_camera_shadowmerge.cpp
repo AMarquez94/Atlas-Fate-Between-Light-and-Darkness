@@ -38,6 +38,11 @@ void TCompCameraShadowMerge::load(const json& j, TEntityParseContext& ctx)
 
 	pause = false;
 	active = false;
+
+	physx::PxFilterData pxFilterData;
+	pxFilterData.word1 = EnginePhysics.FilterGroup::Scenario;
+
+	cameraFilter.data = pxFilterData;
 }
 
 void TCompCameraShadowMerge::registerMsgs()
@@ -181,8 +186,8 @@ void TCompCameraShadowMerge::update(float dt)
 
 float TCompCameraShadowMerge::CameraClipping(const VEC3 & origin, const VEC3 & dir)
 {
-	CModulePhysics::RaycastHit hit;
-	if (EnginePhysics.Raycast(origin, dir, _clipping_offset.z, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario")))
+	physx::PxRaycastHit hit;
+	if (EnginePhysics.Raycast(origin, dir, _clipping_offset.z, hit, physx::PxQueryFlag::eSTATIC, cameraFilter))
 		return Clamp(hit.distance - 0.3f, 0.f, _clipping_offset.z);
 
 	return _clipping_offset.z;

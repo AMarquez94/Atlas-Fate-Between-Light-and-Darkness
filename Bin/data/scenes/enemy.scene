@@ -16,7 +16,7 @@
 		  "collider": {
 			"shape": "capsule",
 			"is_controller": true,
-			"radius": 0.55,
+			"radius": 0.65,
 			"height": 1.0,
 			"gravity": true
 		  }
@@ -44,7 +44,7 @@
 		  "collider": {
 			"shape": "capsule",
 			"is_controller": true,
-			"radius": 0.55,
+			"radius": 0.65,
 			"height": 1.0,
 			"gravity": true
 		  },

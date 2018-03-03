@@ -32,9 +32,10 @@ return &the_resource_class;
 enum {
 	triggerKill = (1 << 0),
 	triggerEnemy = (1 << 1),
-	triggerCheckpoint = (1 << 2)
+	triggerCheckpoint = (1 << 2),
+	disableFilter = (1 << 3)
 };
-typedef uint32_t triggerFlags;
+typedef uint32_t colliderFlags;
 
 class TCompCollider : public TCompBase {
 
@@ -52,7 +53,7 @@ public:
 
 	struct TConfig
 	{
-		triggerFlags flags;
+		colliderFlags flags;
 
 		//todo implement
 		VEC3 offset;

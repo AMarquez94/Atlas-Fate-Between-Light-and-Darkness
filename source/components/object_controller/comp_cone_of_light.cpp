@@ -89,8 +89,8 @@ bool TCompConeOfLightController::isPlayerHiddenFromLight(CEntity* player)
 	dir.Normalize();
 	float distance = VEC3::Distance(origin, dest);
 	
-	CModulePhysics::RaycastHit hit;
+	physx::PxRaycastHit hit;
 
 	//TODO: only works when behind scenery. Make the same for other enemies, dynamic objects...
-	return EnginePhysics.Raycast(origin, dir, distance, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario"));
+	return EnginePhysics.Raycast(origin, dir, distance, hit, physx::PxQueryFlag::eSTATIC);
 }

@@ -75,9 +75,9 @@ void TCompCameraThirdPerson::update(float dt)
 
 float TCompCameraThirdPerson::CameraClipping(const VEC3	& origin, const VEC3 & dir)
 {
-	CModulePhysics::RaycastHit hit;
+	physx::PxRaycastHit hit;
 
-	if (EnginePhysics.Raycast(origin, dir, _clipping_offset.z, hit, EnginePhysics.eSTATIC, EnginePhysics.getFilterByName("scenario")))
+	if (EnginePhysics.Raycast(origin, dir, _clipping_offset.z, hit, physx::PxQueryFlag::eSTATIC))
 		return Clamp(hit.distance - 0.1f, 0.2f, _clipping_offset.z);
 
 	return _clipping_offset.z;
