@@ -62,10 +62,10 @@ json loadJson(const std::string& filename) {
 			continue;
 		}
 
-		// The json is correct, we can leave the while loop
-		break;
 
 #endif
+		// The json is correct, we can leave the while loop
+		break;
 	}
 
 	return j;
