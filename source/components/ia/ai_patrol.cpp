@@ -61,35 +61,35 @@ void CAIPatrol::debugInMenu() {
 }
 
 void CAIPatrol::renderDebug() {
-	// AJUSTE PARÁMETROS
+	//// AJUSTE PARÁMETROS
 
-	CEntity* e = CHandle(this).getOwner();
-	std::string nombreAux = e->getName();
-	std::string nombre = "Enemigo ";
-	nombre = nombre + nombreAux;
+	//CEntity* e = CHandle(this).getOwner();
+	//std::string nombreAux = e->getName();
+	//std::string nombre = "Enemigo ";
+	//nombre = nombre + nombreAux;
 
-	ImGui::Begin("Ajuste parametros:");
-	if (ImGui::CollapsingHeader(nombre.c_str())) {
-		ImGui::Text("Vel. enemigo %s", e->getName());
-		ImGui::DragFloat("", &speed, 0.1f, 0.1f, 20.f);
-		ImGui::Text("Vel. rot. enemigo %s", e->getName());
-		ImGui::DragFloat(" ", &rotationSpeed, 0.1f, 0.1f, 20.f);
-		ImGui::Text("Fov %s", e->getName());
-		ImGui::DragFloat("  ", &fov, 0.1f, 0.1f, 30.f);
-		ImGui::Text("Distancia para atacar al player 100x100 %s", e->getName());
-		ImGui::DragFloat("   ", &autoChaseDistance, 0.1f, 0.1f, 20.f);
-		ImGui::Text("Distancia max ver player %s", e->getName());
-		ImGui::DragFloat("    ", &maxChaseDistance, 0.1f, 0.1f, 20.f);
-		ImGui::Text("Max tiempo sospecha %s", e->getName());
-		ImGui::DragFloat("      ", &maxTimeSuspecting, 0.5f, 0.5f, 5.f);
-		ImGui::Text("Decr. sospecha %s", e->getName());
-		ImGui::DragFloat("         ", &dcrSuspectO_Meter, 0.05f, 0.05f, .5f);
-		ImGui::Text("Incr. sospecha %s", e->getName());
-		ImGui::DragFloat("            ", &incrBaseSuspectO_Meter, 0.05f, 0.05f, .5f);
-		ImGui::Text("Dist para atacar %s", e->getName());
-		ImGui::DragFloat("               ", &distToAttack, 0.1f, 0.1f, 2.f);
-	}
-	ImGui::End();
+	//ImGui::Begin("Ajuste parametros:");
+	//if (ImGui::CollapsingHeader(nombre.c_str())) {
+	//	ImGui::Text("Vel. enemigo %s", e->getName());
+	//	ImGui::DragFloat("", &speed, 0.1f, 0.1f, 20.f);
+	//	ImGui::Text("Vel. rot. enemigo %s", e->getName());
+	//	ImGui::DragFloat(" ", &rotationSpeed, 0.1f, 0.1f, 20.f);
+	//	ImGui::Text("Fov %s", e->getName());
+	//	ImGui::DragFloat("  ", &fov, 0.1f, 0.1f, 30.f);
+	//	ImGui::Text("Distancia para atacar al player 100x100 %s", e->getName());
+	//	ImGui::DragFloat("   ", &autoChaseDistance, 0.1f, 0.1f, 20.f);
+	//	ImGui::Text("Distancia max ver player %s", e->getName());
+	//	ImGui::DragFloat("    ", &maxChaseDistance, 0.1f, 0.1f, 20.f);
+	//	ImGui::Text("Max tiempo sospecha %s", e->getName());
+	//	ImGui::DragFloat("      ", &maxTimeSuspecting, 0.5f, 0.5f, 5.f);
+	//	ImGui::Text("Decr. sospecha %s", e->getName());
+	//	ImGui::DragFloat("         ", &dcrSuspectO_Meter, 0.05f, 0.05f, .5f);
+	//	ImGui::Text("Incr. sospecha %s", e->getName());
+	//	ImGui::DragFloat("            ", &incrBaseSuspectO_Meter, 0.05f, 0.05f, .5f);
+	//	ImGui::Text("Dist para atacar %s", e->getName());
+	//	ImGui::DragFloat("               ", &distToAttack, 0.1f, 0.1f, 2.f);
+	//}
+	//ImGui::End();
 }
 
 void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
@@ -122,7 +122,7 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 	maxTimeSuspecting = j.value("maxTimeSuspecting", maxTimeSuspecting);
 	dcrSuspectO_Meter = j.value("dcrSuspectO_meter", dcrSuspectO_Meter);
 	incrBaseSuspectO_Meter = j.value("incrBaseSuspectO_meter", incrBaseSuspectO_Meter);
-	distToAttack = j.value("distToIdleWar", distToAttack);
+	distToAttack = j.value("distToAttack", 1.5f);
 	maxRotationSeekingPlayerDeg = j.value("maxRotationSeekingPlayer", maxRotationSeekingPlayerDeg);
 
 	rotationSpeed = deg2rad(rotationSpeedDeg);

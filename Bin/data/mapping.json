@@ -17,22 +17,22 @@
   {
     "name": "btUp",
     "all": false,
-    "buttons": [ "w", "pad_up", "pad_lanalogy" ]
+    "buttons": [ "w", "pad_lanalogy" ]
   },
   {
     "name": "btDown",
     "all": false,
-    "buttons": [ "s", "pad_down", "pad_lanalogy" ]
+    "buttons": [ "s", "pad_lanalogy" ]
   },
   {
     "name": "btRight",
     "all": false,
-    "buttons": [ "d", "pad_right", "pad_lanalogx" ]
+    "buttons": [ "d", "pad_lanalogx" ]
   },
   {
     "name": "btLeft",
     "all": false,
-    "buttons": [ "a", "pad_left", "pad_lanalogx" ]
+    "buttons": [ "a", "pad_lanalogx" ]
   },
   {
     "name": "btShadowMerging",
@@ -67,12 +67,12 @@
   {
     "name": "Horizontal",
     "all": false,
-    "buttons": [ "a", "d", "pad_right", "pad_left", "pad_lanalogx" ]
+    "buttons": [ "a", "d", "pad_lanalogx" ]
   },
   {
     "name": "Vertical",
     "all": false,
-    "buttons": [ "w", "s", "pad_down", "pad_up", "pad_lanalogy" ]
+    "buttons": [ "w", "s", "pad_lanalogy" ]
   },
   {
     "name": "btAction",
@@ -102,6 +102,26 @@
   {
     "name": "btPause",
     "all": false,
-    "buttons":  ["escape"]
+    "buttons":  ["escape", "pad_start"]
+  },
+  {
+    "name": "btUpAux",
+    "all": false,
+    "buttons":  ["pad_up", "up"]
+  },
+  {
+    "name": "btDownAux",
+    "all": false,
+    "buttons":  ["pad_down", "down"]
+  },
+  {
+    "name": "btMenuConfirm",
+    "all": false,
+    "buttons":  ["return", "pad_a"]
+  },
+  {
+    "name": "btMenuCancel",
+    "all": false,
+    "buttons":  ["pad_b"]
   }
 ]

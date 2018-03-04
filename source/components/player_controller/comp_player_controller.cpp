@@ -78,17 +78,9 @@ void TCompPlayerController::renderDebug() {
 		/*------------------------------------------------
 		--------------------------------------------------
 		-----------ADD UI INFO TO DISPLAY HERE----------*/
-
-		ImGui::Text("State: %s", stateName.c_str());
-
-
-		if (stamina != maxStamina) {
-			ImGui::Text("Stamina:", stateName.c_str());
-			ImGui::SameLine();
-			ImGui::ProgressBar(stamina / maxStamina);
-		}
-
-
+		ImGui::Text("Stamina:", stateName.c_str());
+		ImGui::SameLine();
+		ImGui::ProgressBar(stamina / maxStamina);
 		/*------------------------------------------------
 		--------------------------------------------------
 		-----------END OF INFORMATION DISPLAYED----------*/
@@ -99,7 +91,7 @@ void TCompPlayerController::renderDebug() {
 	ImGui::PopStyleColor(2);
 
 	// AJUSTE PARÁMETROS
-	ImGui::Begin("Ajuste parametros:");
+	/*ImGui::Begin("Ajuste parametros:");
 	if (ImGui::CollapsingHeader("Player")) {
 		ImGui::Text("Vel. player");
 		ImGui::DragFloat(" ", &walkSpeedFactor, 0.1f, 0.1f, 20.f);
@@ -128,7 +120,7 @@ void TCompPlayerController::renderDebug() {
 		ImGui::Text("Veces pulsar para quitar inhibidor");
 		ImGui::DragInt("                                        ", &timesToPressRemoveInhibitorKey, 1, 1, 10);
 	}
-	ImGui::End();
+	ImGui::End();*/
 
 }
 

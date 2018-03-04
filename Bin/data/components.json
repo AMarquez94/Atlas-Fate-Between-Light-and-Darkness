@@ -23,6 +23,7 @@
     "camera_flyover",
     "camera",
     "dynamic_objects",
+	"capsule_shadow_controller",
 	"game_manager_controller"
   ],
   "render_debug": [

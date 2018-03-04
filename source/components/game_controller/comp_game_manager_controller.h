@@ -10,6 +10,9 @@ class TCompGameManagerController : public TCompBase {
 
 	CHandle player;
 	bool menuVisible;
+	int menuPosition = -1;
+	int menuSize = 2;
+
 	DECL_SIBLING_ACCESS();
 
 public:
