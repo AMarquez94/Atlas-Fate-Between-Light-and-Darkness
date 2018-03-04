@@ -3,13 +3,13 @@
     "input",
     "entities",
     "render",
-	"cameras",
 	"physics",
     "main_menu",
     "splash",
     "test_input",
     "test_axis",
-	"game_over"
+	"game_over",
+	"cameras"
   ],
   "render": [
     "render",
