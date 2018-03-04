@@ -37,7 +37,10 @@
         "angle": 90,
         "pos": "17 -35 0",
         "parent": "capsule_prefab"
-      }
+      },
+	  "capsule_shadow_controller": {
+		"max_z" : 80
+	  }
 	}
   }
 ]
