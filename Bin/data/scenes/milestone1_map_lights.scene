@@ -100,7 +100,7 @@
       ,
       "transform":
       {
-        "pos": "-6.35864 -0.359059 -39.4716"
+        "pos": "-6.35864 -0.359059 -38.4716"
         ,
         "rotation": "0.00199072 -0.993708 0.110543 0.0178952"
       }
@@ -119,6 +119,7 @@
         ,
         "shadows": true
       },
+			"render":{},
       "tags":
       [
         "light"
@@ -300,7 +301,7 @@
       {
         "shape": "sphere",
 				"is_trigger" : true,
-        "radius": 5.6
+        "radius": 5.2
       },
       "tags":
       [
@@ -323,7 +324,7 @@
       {
         "shape": "sphere",
 				"is_trigger" : true,
-        "radius": 5.6
+        "radius": 5.2
       },
       "tags":
       [
@@ -348,7 +349,7 @@
       {
         "shape": "sphere",
 				"is_trigger" : true,
-        "radius": 5.6
+        "radius": 5.2
       },
       "tags":
       [
