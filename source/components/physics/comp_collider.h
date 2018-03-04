@@ -61,6 +61,7 @@ public:
 		float radius;
 		float height;
 		float currentHeight;
+		float vOffset;
 
 		unsigned int mask;
 		unsigned int group;

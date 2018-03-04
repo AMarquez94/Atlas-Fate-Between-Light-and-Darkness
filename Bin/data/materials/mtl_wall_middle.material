@@ -7,6 +7,6 @@
   {
     "albedo": "data/textures/tx_df_wall03.dds"
     ,
-    "lightmap": "data/textures/tx_lm_wallInterior.dds"
+    "lightmap": "data/textures/tx_lm_wallMiddle.dds"
   }
 }

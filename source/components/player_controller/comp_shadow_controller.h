@@ -22,6 +22,7 @@ public:
 	float test_levels;
 
 	std::vector<TCompLight*> static_lights;
+	std::vector<TCompLight*> static_spots;
 	std::vector<TCompCollider*> dynamic_lights;
 	physx::PxQueryFilterData shadowDetectionFilter;
 
@@ -31,6 +32,7 @@ public:
 	void Init();
 
 	bool IsPointInShadows(const VEC3 & point);
+	bool GetClosestLight(const VEC3 & point);
 
 	static void registerMsgs();
 private:

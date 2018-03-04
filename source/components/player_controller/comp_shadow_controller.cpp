@@ -57,12 +57,17 @@ void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
 		{
 			static_lights.push_back(c_light);
 		}
+		else if (c_light->type == "spotlight") // by now we will only retrieve directional lights
+		{
+			static_spots.push_back(c_light);
+		}
 	}
 
 	for (auto h : collider_handles) {
 		CEntity* current_collider = h;
 		TCompCollider * c_collider = current_collider->get<TCompCollider>();
-		dynamic_lights.push_back(c_collider);
+		if(c_collider != NULL)
+			dynamic_lights.push_back(c_collider);
 	}
 
 	physx::PxFilterData pxFilterData;
@@ -124,7 +129,10 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 	for (unsigned int x = 0; x < dynamic_lights.size(); x++)
 	{
 		if (dynamic_lights[x]->isInside)
-			return false;
+		{
+			if(GetClosestLight(point))
+				return false;
+		}
 	}
 
 	return true;
@@ -145,4 +153,33 @@ void TCompShadowController::GenerateSurroundingPoints(const VEC3 & point)
 			float v = .5f * lRadius * sinf(t * 2 * M_PI) + point.z;
 		}
 	}
+}
+
+// Refactor this afterwards, little trick to avoid collider/light relationship by now.
+bool TCompShadowController::GetClosestLight(const VEC3 & point)
+{
+	VEC3 candidate = VEC3();
+	float maxDist = INFINITY;
+
+	for (unsigned int x = 0; x < static_spots.size(); x++)
+	{
+		TCompLight * c_light = static_spots[x];
+		CEntity * ent = CHandle(c_light).getOwner();
+		TCompTransform * c_transform = ent->get<TCompTransform>();
+		float newDist = VEC3::Distance(c_transform->getPosition(), point);
+		if (newDist < maxDist)
+		{
+			maxDist = newDist;
+			candidate = c_transform->getPosition();
+		}
+	}
+
+	VEC3 dir = point - candidate;
+	dir.Normalize();
+
+	physx::PxRaycastHit hit;
+	if (EnginePhysics.Raycast(point, dir, maxDist, hit, physx::PxQueryFlag::eSTATIC, shadowDetectionFilter))
+		return false;
+
+	return true;
 }

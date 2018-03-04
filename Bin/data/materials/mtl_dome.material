@@ -1,0 +1,12 @@
+{
+  "technique": "textured_bk.tech"
+  ,
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_df_dome.dds"
+    ,
+    "lightmap": "data/textures/tx_lm_cathedralDome.dds"
+  }
+}

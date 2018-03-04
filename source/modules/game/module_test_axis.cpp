@@ -21,15 +21,15 @@ bool CModuleTestAxis::start()
 
 	{
 		TEntityParseContext ctx;
-		parseScene("data/scenes/final_milestone1_lights.scene", ctx);
+		parseScene("data/scenes/milestone1_map_lights.scene", ctx);
 	}
 	{
 		TEntityParseContext ctx;
-		parseScene("data/scenes/final_milestone1_map.scene", ctx);
+		parseScene("data/scenes/milestone1_map_meshes.scene", ctx);
 	}
 	{
 		TEntityParseContext ctx;
-		parseScene("data/scenes/final_milestone1_colliders.scene", ctx);
+		parseScene("data/scenes/milestone1_map_colliders.scene", ctx);
 	}
 	{
 		TEntityParseContext ctx;

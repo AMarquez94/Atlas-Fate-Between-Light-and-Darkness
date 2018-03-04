@@ -68,11 +68,13 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 			offset.p.y = config.halfExtent.y;
 			shape->setContactOffset(1.f);
 			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
+
 		}
 		else if (config.shapeType == physx::PxGeometryType::eSPHERE)
 		{
 			shape = gPhysics->createShape(PxSphereGeometry(config.radius), *gMaterial);
 			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
+			offset.p.y = config.vOffset;
 		}
 		else if (config.shapeType == physx::PxGeometryType::eCONVEXMESH)
 		{

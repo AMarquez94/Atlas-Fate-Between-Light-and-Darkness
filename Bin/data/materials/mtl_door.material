@@ -1,0 +1,12 @@
+{
+  "technique": "textured.tech"
+  ,
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_df_door.dds"
+    ,
+    "lightmap": "data/textures/tx_df_door.dds"
+  }
+}

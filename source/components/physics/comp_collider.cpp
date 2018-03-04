@@ -41,6 +41,7 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 	config.is_dynamic = j.value("is_dynamic", false);
 	config.is_trigger = j.value("is_trigger", false);
 	config.height = j.value("height", 0.f);
+	config.vOffset = j.value("vOffset", 0.f);
 	config.currentHeight = config.height;
 	config.radius = j.value("radius", 0.f);
 	config.gravity = j.value("gravity", false);
@@ -54,7 +55,7 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 
 	// Seting flags for triggers, refactor in the future.a
 	if (j.count("triggerKill"))
-		config.flags = triggerKill;
+		config.flags |= triggerKill;
 
 	// Setting some default values.
 	isInside = false;
