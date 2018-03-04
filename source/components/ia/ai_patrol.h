@@ -32,7 +32,7 @@ class CAIPatrol : public IAIController
 	float dcrSuspectO_Meter = .3f;
 	float incrBaseSuspectO_Meter = .5f;
 	bool isLastPlayerKnownDirLeft = false;
-	float distToAttack = 1.f;
+	float distToAttack = 1.5f;
 	float amountRotated = 0.f;
 	float maxRotationSeekingPlayerDeg = 90.f;
 	float maxRotationSeekingPlayer;
