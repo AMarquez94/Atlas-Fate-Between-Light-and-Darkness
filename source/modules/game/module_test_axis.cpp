@@ -18,7 +18,6 @@ CCamera camera;
 
 bool CModuleTestAxis::start()
 {
-
 	{
 		TEntityParseContext ctx;
 		parseScene("data/scenes/milestone1_map_lights.scene", ctx);
