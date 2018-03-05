@@ -147,8 +147,8 @@ void TCompShadowController::GenerateSurroundingPoints(const VEC3 & point)
 		{
 			float lRadius = nradius / (x + 1);
 			float t = y / (float)test_amount;
-			float h = .5f * lRadius * cosf(t * 2 * M_PI) + point.x;
-			float v = .5f * lRadius * sinf(t * 2 * M_PI) + point.z;
+			float h = .5f * lRadius * cosf(t * 2.f * (float)M_PI) + point.x;
+			float v = .5f * lRadius * sinf(t * 2.f * (float)M_PI) + point.z;
 		}
 	}
 }
