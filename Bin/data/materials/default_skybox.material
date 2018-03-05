@@ -6,5 +6,7 @@
   "textures":
   {
     "albedo": "data/textures/default_skybox.dds"
+    ,
+    "lightmap": "data/textures/default_texture.dds"
   }
 }
