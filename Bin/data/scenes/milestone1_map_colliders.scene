@@ -57,7 +57,7 @@
       {
         "shape": "box"
         ,
-        "halfExtent": "4.25207 1.33788 4.08023"
+        "halfExtent": "4.35207 1.43788 4.18023"
       }
     }
   }
@@ -579,7 +579,7 @@
       {
         "shape": "box"
         ,
-        "halfExtent": "2.6 10.5 40.5789"
+        "halfExtent": "2.6 11.5 40.5789"
       }
     }
   }
@@ -2031,6 +2031,26 @@
         "shape": "box"
         ,
         "halfExtent": "2.5 10.5265 3.625"
+      }
+    }
+  },
+	  {
+    "entity":
+    {
+      "name": "collider_edificio_inicio_bajo010"
+      ,
+      "transform":
+      {
+        "pos": "7.71338 12.0127 -5.00957"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "halfExtent": "3.0 0.5 4.5"
       }
     }
   }
