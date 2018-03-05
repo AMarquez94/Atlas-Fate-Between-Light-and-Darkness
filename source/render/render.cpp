@@ -33,9 +33,10 @@ bool CRender::createDevice(int new_width, int new_height) {
   sd.BufferDesc.RefreshRate.Denominator = 1;
   sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
   sd.OutputWindow = CApp::get().getWnd();
+
   sd.SampleDesc.Count = 1;
   sd.SampleDesc.Quality = 0;
-  sd.Windowed = TRUE;
+  sd.Windowed = FALSE;
   sd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
   D3D_FEATURE_LEVEL featureLevel = D3D_FEATURE_LEVEL_11_0;
