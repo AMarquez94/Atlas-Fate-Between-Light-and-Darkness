@@ -53,7 +53,7 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		PxCapsuleController * ctrl = static_cast<PxCapsuleController*>(mControllerManager->createController(*cDesc));
 		PX_ASSERT(ctrl);
 		ctrl->setFootPosition(PxExtendedVec3(pos.x, pos.y, pos.z));
-		ctrl->setContactOffset(0.001);
+		ctrl->setContactOffset(0.001f);
 		actor = ctrl->getActor();
 		comp_collider.controller = ctrl;
 		setupFiltering(actor, config.group, config.mask);

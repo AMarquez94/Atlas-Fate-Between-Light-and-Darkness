@@ -60,7 +60,7 @@ void TCompPlayerController::debugInMenu() {
 
 void TCompPlayerController::renderDebug() {
 	//UI Window's Size
-	ImGui::SetNextWindowSize(ImVec2(CApp::get().xres, CApp::get().yres), ImGuiCond_Always);
+	ImGui::SetNextWindowSize(ImVec2((float)CApp::get().xres, (float)CApp::get().yres), ImGuiCond_Always);
 	//UI Window's Position
 	ImGui::SetNextWindowPos(ImVec2(0, 0));
 	//Transparent background - ergo alpha = 0 (RGBA)
@@ -83,7 +83,7 @@ void TCompPlayerController::renderDebug() {
 		ImGui::SetCursorPos(ImVec2(CApp::get().xres * 0.02f, CApp::get().yres * 0.06f));
 		ImGui::Text("Stamina:", stateName.c_str());
 		ImGui::SetCursorPos(ImVec2(CApp::get().xres * 0.05f, CApp::get().yres * 0.05f));
-		ImGui::ProgressBar(stamina / maxStamina, ImVec2(CApp::get().xres/5, CApp::get().yres/30));
+		ImGui::ProgressBar(stamina / maxStamina, ImVec2(CApp::get().xres/5.f, CApp::get().yres/30.f));
 
 		/*------------------------------------------------
 		--------------------------------------------------

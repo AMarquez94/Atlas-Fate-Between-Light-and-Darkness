@@ -189,7 +189,7 @@ void CModuleCameras::blendCameras(const CCamera* camera1, const CCamera* camera2
 void CModuleCameras::checkDeprecated()
 {
 	// checks if there are cameras that should be removed
-	for (int i = _mixedCameras.size() - 1; i >= 0; --i)
+	for (int i = (int)_mixedCameras.size() - 1; i >= 0; --i)
 	{
 		TMixedCamera& mc = _mixedCameras[i];
 		if (mc.type == GAMEPLAY && mc.weight >= 1.f && mc.state != TMixedCamera::ST_CANCELLED )

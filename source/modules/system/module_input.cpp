@@ -39,7 +39,7 @@ LRESULT CModuleInput::OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			int xPosRelative = raw->data.mouse.lLastX;
 			int yPosRelative = raw->data.mouse.lLastY;
 
-			mouse->setPositionDelta(xPosRelative, yPosRelative);
+			mouse->setPositionDelta((float)xPosRelative, (float)yPosRelative);
 
 			CApp::get().resetMouse = mouse->_lock_cursor;
 		}

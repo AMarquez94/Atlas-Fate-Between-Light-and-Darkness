@@ -21,7 +21,7 @@ void TCompGameManagerController::renderDebug()
 		ImGui::SetNextWindowSize(ImVec2(100.f, 75.f));
 		ImGui::Begin("MENU", false, window_flags);
 		ImGui::CaptureMouseFromApp(false);
-		ImGui::SetWindowPos("MENU", ImVec2(CApp::get().xres/2, CApp::get().yres/2 - 100.f));
+		ImGui::SetWindowPos("MENU", ImVec2(CApp::get().xres/2.f, CApp::get().yres/2.f - 100.f));
 		ImGui::Selectable("Restart game", menuPosition == 0);
 		ImGui::Selectable("Exit game", menuPosition == 1);
 		ImGui::End();
