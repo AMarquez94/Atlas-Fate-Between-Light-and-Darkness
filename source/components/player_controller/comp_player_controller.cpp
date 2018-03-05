@@ -80,9 +80,9 @@ void TCompPlayerController::renderDebug() {
 		--------------------------------------------------
 		-----------ADD UI INFO TO DISPLAY HERE----------*/
 
-		ImGui::SetCursorPos(ImVec2(CApp::get().xres * 0.02, CApp::get().yres * 0.055));
+		ImGui::SetCursorPos(ImVec2(CApp::get().xres * 0.02f, CApp::get().yres * 0.055f));
 		ImGui::Text("Stamina:", stateName.c_str());
-		ImGui::SetCursorPos(ImVec2(CApp::get().xres * 0.05, CApp::get().yres * 0.05));
+		ImGui::SetCursorPos(ImVec2(CApp::get().xres * 0.05f, CApp::get().yres * 0.05f));
 		ImGui::ProgressBar(stamina / maxStamina, ImVec2(CApp::get().xres/3, CApp::get().yres/40));
 
 		/*------------------------------------------------

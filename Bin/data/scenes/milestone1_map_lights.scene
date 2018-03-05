@@ -119,7 +119,6 @@
         ,
         "shadows": true
       },
-			"render":{},
       "tags":
       [
         "light"

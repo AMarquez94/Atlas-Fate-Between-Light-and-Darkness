@@ -52,7 +52,7 @@ public:
 	void Init(); 
 	void update(float dt);
 	void StartCycle();
-	void CalculatePositions(int);
+	void CalculatePositions(float);
 	void CreateClone(TEntityParseContext, int);
 	void Move(TCompTransform*, float);
 	bool IsPlayerInShadows(VEC3, VEC3, VEC3);

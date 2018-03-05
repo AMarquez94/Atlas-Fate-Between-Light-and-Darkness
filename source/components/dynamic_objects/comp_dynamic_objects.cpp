@@ -108,17 +108,17 @@ void TCompDynamicObjects::Init() {
 	for (auto it = 0; it < _waypoints.size() - 1; it++) {
 		_totalDistance += VEC3::Distance(_waypoints[it], _waypoints[it + 1]);
 	}
-	_numClones = _totalDistance / (_width + _offset);
+	_numClones = (int)(_totalDistance / (_width + _offset));
 	_amountMoved = _width + _offset;
 	for (int it = 0; it < _numClones; it++) {
-		CalculatePositions(it);
+		CalculatePositions((float)it);
 		TEntityParseContext ctx;
 		parseScene("data/prefabs/capsule.prefab", ctx);
 		CreateClone(ctx, it);
 	}
 }
 
-void TCompDynamicObjects::CalculatePositions(int foo) {
+void TCompDynamicObjects::CalculatePositions(float foo) {
 	_pos.push_back(_waypoints[0] + _dir * _amountMoved * foo);
  }
 
