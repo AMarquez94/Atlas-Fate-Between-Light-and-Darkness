@@ -124,6 +124,7 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 	incrBaseSuspectO_Meter = j.value("incrBaseSuspectO_meter", incrBaseSuspectO_Meter);
 	distToAttack = j.value("distToAttack", 1.5f);
 	maxRotationSeekingPlayerDeg = j.value("maxRotationSeekingPlayer", maxRotationSeekingPlayerDeg);
+	startLightsOn = j.value("startLightsOn", startLightsOn);
 
 	rotationSpeed = deg2rad(rotationSpeedDeg);
 	fov = deg2rad(fovDeg);
@@ -175,7 +176,7 @@ void CAIPatrol::onMsgPatrolStunned(const TMsgPatrolStunned& msg) {
 	TCompTransform *mypos = getMyTransform();
 	float y, p, r;
 	mypos->getYawPitchRoll(&y, &p, &r);
-	p = p + deg2rad(89.9f);
+	p = p + deg2rad(89.f);
 	mypos->setYawPitchRoll(y, p, r);
 	turnOffLight();
 
@@ -215,7 +216,7 @@ void CAIPatrol::onMsgPatrolFixed(const TMsgPatrolFixed& msg) {
 		TCompTransform *mypos = getMyTransform();
 		float y, p, r;
 		mypos->getYawPitchRoll(&y, &p, &r);
-		p = p - deg2rad(89.9f);
+		p = p - deg2rad(89.f);
 		mypos->setYawPitchRoll(y, p, r);
 		turnOnLight();
 
@@ -240,6 +241,9 @@ void CAIPatrol::onMsgPatrolFixed(const TMsgPatrolFixed& msg) {
 
 void CAIPatrol::IdleState(float dt)
 {
+	if (startLightsOn) {
+		turnOnLight();
+	}
 	ChangeState("goToWpt");
 }
 
