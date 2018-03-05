@@ -1964,26 +1964,5 @@
         "halfExtent": "2.5 10.5265 3.625"
       }
     }
-  },
-	{
-    "entity":
-    {
-      "name": "trigger_kill"
-      ,
-      "transform":
-      {
-        "pos": "-10.1614 -109.01548 105.92"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box",
-				"is_trigger": true,
-				"triggerKill" : true,
-        "halfExtent": "62.6036 17.8668 188.295"
-      }
-    }
   }
 ]

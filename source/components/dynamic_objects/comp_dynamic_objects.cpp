@@ -99,7 +99,7 @@ void TCompDynamicObjects::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompDynamicObjects::Init() {
 	_offsetShadow.x = 17;
-	_offsetShadow.y = -31;
+	_offsetShadow.y = -35;
 	_offsetShadow.z = 0;
 
 	_currentWaypoint = 1;

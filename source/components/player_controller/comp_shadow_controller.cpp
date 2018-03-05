@@ -130,7 +130,7 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 	{
 		if (dynamic_lights[x]->isInside)
 		{
-			if(GetClosestLight(point))
+			if (GetClosestLight(point))
 				return false;
 		}
 	}
@@ -178,7 +178,7 @@ bool TCompShadowController::GetClosestLight(const VEC3 & point)
 	dir.Normalize();
 
 	physx::PxRaycastHit hit;
-	if (EnginePhysics.Raycast(point, dir, maxDist, hit, physx::PxQueryFlag::eSTATIC, shadowDetectionFilter))
+	if (EnginePhysics.Raycast(candidate, dir, maxDist - 0.2f, hit, physx::PxQueryFlag::eSTATIC, shadowDetectionFilter))
 		return false;
 
 	return true;

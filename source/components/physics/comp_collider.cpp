@@ -108,12 +108,12 @@ void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {
 		CEntity * player = CHandle(msg.h_other_entity);// CHandle(msg.h_other_entity);
 		player->sendMsg(n_msg);
 	}
-	dbg("Entered the trigger!!!!\n");
+	//dbg("Entered the trigger!!!!\n");
 }
 
 void TCompCollider::onTriggerExit(const TMsgTriggerExit& msg) {
 
-	dbg("Exited the trigger!!!!\n");
+	//dbg("Exited the trigger!!!!\n");
 }
 
 void TCompCollider::update(float dt) {
