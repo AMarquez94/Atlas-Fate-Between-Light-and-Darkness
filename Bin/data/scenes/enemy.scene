@@ -18,7 +18,8 @@
 			"is_controller": true,
 			"radius": 0.65,
 			"height": 1.0,
-			"gravity": true
+			"gravity": true,
+			"group" : "enemy"
 		  }
 		}
 	},
@@ -46,7 +47,8 @@
 			"is_controller": true,
 			"radius": 0.65,
 			"height": 1.0,
-			"gravity": true
+			"gravity": true,
+			"group" : "enemy"
 		  }
 		}
 	}

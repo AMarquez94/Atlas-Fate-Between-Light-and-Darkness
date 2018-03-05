@@ -362,13 +362,23 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
 		{
 			e_trigger->sendMsg(TMsgTriggerEnter{ h_other_comp_collider.getOwner() });
 			TCompCollider * comp = (TCompCollider*)h_trigger_comp_collider;
-			comp->isInside = true;
+			TCompCollider * comp_enemy = (TCompCollider*)h_other_comp_collider;
+
+			if(comp_enemy->config.group & FilterGroup::Player)
+			{
+				comp->isInside = true;
+			}
 		}
 		else if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_LOST)
 		{
 			e_trigger->sendMsg(TMsgTriggerExit{ h_other_comp_collider.getOwner() });
 			TCompCollider * comp = (TCompCollider*)h_trigger_comp_collider;
-			comp->isInside = false;
+			TCompCollider * comp_enemy = (TCompCollider*)h_other_comp_collider;
+
+			if (comp_enemy->config.group & FilterGroup::Player)
+			{
+				comp->isInside = false;
+			}
 		}
 	}
 }
