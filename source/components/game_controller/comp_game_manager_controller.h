@@ -10,6 +10,7 @@ class TCompGameManagerController : public TCompBase {
 
 	CHandle player;
 	bool menuVisible;
+	bool victoryMenuVisible;
 	int menuPosition = -1;
 	int menuSize = 2;
 

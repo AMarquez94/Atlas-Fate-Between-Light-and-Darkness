@@ -2053,5 +2053,26 @@
         "halfExtent": "3.0 0.5 4.5"
       }
     }
+  },
+  {
+    "entity":
+    {
+      "name": "collider_victory"
+      ,
+      "transform":
+      {
+        "pos": "-11.0 0 252.24"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box",
+		"is_trigger" : true,
+        "halfExtent": "5 5 25"
+      },
+	  "tags" : ["victory_trigger"]
+    }
   }
 ]
