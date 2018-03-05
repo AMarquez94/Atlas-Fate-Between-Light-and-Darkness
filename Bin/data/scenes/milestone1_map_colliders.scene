@@ -321,6 +321,8 @@
       {
         "shape": "box"
         ,
+				"group": "fence",
+				"mask": "scenario",
         "halfExtent": "0.12 0.675 3.4143"
       }
     }
@@ -342,6 +344,8 @@
       {
         "shape": "box"
         ,
+				"group": "fence",
+				"mask": "scenario",
         "halfExtent": "0.15 0.675 1.5"
       }
     }

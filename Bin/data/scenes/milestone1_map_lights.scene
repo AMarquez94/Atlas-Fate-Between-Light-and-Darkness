@@ -382,22 +382,21 @@
       ]
     }
   },
-  {
+	  {
     "entity":
     {
       "name": "spot_collider005"
       ,
       "transform":
       {
-        "pos": "-31.5311 0.253604 66.3719"
+        "pos": "-31.5311 0.253 66.3719"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
       ,
       "collider":
       {
-        "shape": "sphere"
-        ,
+        "shape": "sphere",
 				"is_trigger" : true,
         "radius": 4.4
 

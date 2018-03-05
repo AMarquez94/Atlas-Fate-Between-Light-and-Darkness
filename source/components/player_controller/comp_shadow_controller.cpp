@@ -99,9 +99,9 @@ void TCompShadowController::registerMsgs() {
 // We can also use this public method from outside this class.
 bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 {
-	if (capsule_shadow) {
-		return true;
-	}
+	//if (capsule_shadow) {
+	//	return true;
+	//}
 	
 	// We need a safe system to retrieve the light direction and origin spot.
 	// Also we need to distinguish between light types.
@@ -130,7 +130,7 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 	{
 		if (dynamic_lights[x]->isInside)
 		{
-			//if (GetClosestLight(point))
+			if (GetClosestLight(point))
 				return false;
 		}
 	}
