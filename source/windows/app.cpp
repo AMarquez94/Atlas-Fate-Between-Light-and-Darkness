@@ -148,7 +148,7 @@ bool CApp::createWindow(HINSTANCE new_hInstance, int nCmdShow) {
   // Create window
   RECT rc = { 0, 0, xres, yres };
   AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
-  hWnd = CreateWindow("MCVWindowsClass", "Direct3D 11 MCV Project",
+  hWnd = CreateWindow("MCVWindowsClass", "Project Deep Shadows",
     WS_OVERLAPPEDWINDOW,
     CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, hInstance,
     NULL);
