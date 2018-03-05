@@ -15,10 +15,10 @@
 			"dynamic_objects": {
         "waypoints": [
 		  {
-			"position": "-5 38 4"
+			"position": "-5 40 4"
 		  },
 		  {
-			"position": "-5 50 130"
+			"position": "-5 62 254"
 		  }
 		],
 		"speed": 4,
