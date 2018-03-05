@@ -39,7 +39,7 @@
         "parent": "capsule_prefab"
       },
 	  "capsule_shadow_controller": {
-		"max_z" : 80
+		"max_z" : 73
 	  }
 	}
   }
