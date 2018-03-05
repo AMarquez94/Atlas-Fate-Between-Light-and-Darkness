@@ -13,6 +13,7 @@
 #include "components/ia/ai_patrol.h"
 #include "components/physics/comp_collider.h"
 #include "components/comp_name.h"
+#include "windows/app.h"
 
 DECL_OBJ_MANAGER("player_controller", TCompPlayerController);
 
@@ -59,9 +60,9 @@ void TCompPlayerController::debugInMenu() {
 
 void TCompPlayerController::renderDebug() {
 	//UI Window's Size
-	ImGui::SetNextWindowSize(ImVec2(200, 60), ImGuiCond_Always);
+	ImGui::SetNextWindowSize(ImVec2(CApp::get().xres, CApp::get().yres), ImGuiCond_Always);
 	//UI Window's Position
-	ImGui::SetNextWindowPos(ImVec2(30, 30));
+	ImGui::SetNextWindowPos(ImVec2(0, 0));
 	//Transparent background - ergo alpha = 0 (RGBA)
 	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
 	//Some style added
@@ -78,9 +79,12 @@ void TCompPlayerController::renderDebug() {
 		/*------------------------------------------------
 		--------------------------------------------------
 		-----------ADD UI INFO TO DISPLAY HERE----------*/
+
+		ImGui::SetCursorPos(ImVec2(CApp::get().xres * 0.02, CApp::get().yres * 0.055));
 		ImGui::Text("Stamina:", stateName.c_str());
-		ImGui::SameLine();
-		ImGui::ProgressBar(stamina / maxStamina);
+		ImGui::SetCursorPos(ImVec2(CApp::get().xres * 0.05, CApp::get().yres * 0.05));
+		ImGui::ProgressBar(stamina / maxStamina, ImVec2(CApp::get().xres/3, CApp::get().yres/40));
+
 		/*------------------------------------------------
 		--------------------------------------------------
 		-----------END OF INFORMATION DISPLAYED----------*/
