@@ -38,6 +38,7 @@ class CAIPatrol : public IAIController
 	float maxRotationSeekingPlayer;
 	VEC3 lastPlayerKnownPos = VEC3::Zero;
 	VEC3 lastStunnedPatrolKnownPos = VEC3::Zero;
+	bool startLightsOn = false;
 
 	/* Timers */
 	float timerWaitingInWpt = 0.f;

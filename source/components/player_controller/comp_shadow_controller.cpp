@@ -79,13 +79,11 @@ void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
 void TCompShadowController::onEnteredCapsuleShadow(const TMsgEnteredCapsuleShadow& msg) {
 
 	capsule_shadow = true;
-	dbg("Entraste bien \n");
 }
 
 void TCompShadowController::onExitedCapsuleShadow(const TMsgExitedCapsuleShadow& msg) {
 
 	capsule_shadow = false;
-	dbg("Saliste bien \n");
 }
 
 void TCompShadowController::registerMsgs() {

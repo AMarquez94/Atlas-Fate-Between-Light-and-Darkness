@@ -9,7 +9,7 @@
 		  "prefab": "data/prefabs/patrol.prefab",
 		  "name": "The Enemy 1",
 		  "transform": {
-			"pos": "-26 0 72",
+			"pos": "-26 0 75",
 			"lookat": "1 0 1"
 		  },
 		  "ai_patrol": {},
@@ -102,7 +102,8 @@
 				"position": "-12 0.848 230",
 				"lookAt": "0 0 1"
 			  }
-			  ]
+			  ],
+			  "startLightsOn": true
 		  },
 		  "collider": {
 			"shape": "capsule",
@@ -164,7 +165,8 @@
 				"position": "-8 0.848 173",
 				"lookAt": "0 0 -1"
 			  }
-			  ]
+			  ],
+			  "startLightsOn": true
 		  },
 		  "collider": {
 			"shape": "capsule",
