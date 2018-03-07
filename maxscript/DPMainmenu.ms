@@ -21,7 +21,7 @@ man_selection.updateManager()
 global man_mexport = ExportMeshManager()
 
 -- Banner rollout
-rollout FirstRollout "Version: 1.0.0"
+rollout FirstRollout "Version: 1.2.0"
 (
 	bitmap theBitmap "Bitmap" width:450 height:112 fileName:"aragami_banner2.bmp"
 )
@@ -192,7 +192,7 @@ rollout SBAnimator "Animation Tools"
 )
 
 -- Utils Tools
-rollout SBUtils "Utils Tools" width:469 height:249
+rollout SBUtils "Utils Tools" width:469 height:263
 (
 	dropdownList 'ddl3' "" pos:[91,39] width:93 height:21 items:#("basic", "convex", "mesh") align:#left
 	label 'lbl3' "Type" pos:[63,42] width:29 height:17 align:#left
@@ -226,7 +226,7 @@ rollout SBUtils "Utils Tools" width:469 height:249
 	
 	on btn7 pressed do
 	(
-
+		removeComponent selection ddl2.selected
 	)
 	
 )
@@ -244,4 +244,3 @@ addrollout SBExport FirstDialog rolledUp:on
 addrollout SBAnimator FirstDialog rolledUp:on
 addrollout SBUtils FirstDialog rolledUp:on
 addrollout SBLibrary FirstDialog rolledUp:on
---cui.Register

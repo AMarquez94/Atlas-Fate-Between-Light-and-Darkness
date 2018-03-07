@@ -65,14 +65,6 @@ function removeComponent c_selection type = (
 	print "entered"
 	
 	for obj in c_selection do (
-		z = 1
-		while z !=undefined do 
-		(  
-			z = custattributes.getdef i 1  
-			--print z
-			/*if z == c_type then (
-				custAttributes.delete i z 
-			)*/
-		) 
+		custAttributes.delete obj c_type
 	)
 )
