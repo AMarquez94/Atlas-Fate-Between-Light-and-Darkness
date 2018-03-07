@@ -1,19 +1,10 @@
 #pragma once
 
 #include "components/comp_base.h"
-#include "comp_bt.h"
 
-struct BTNode {
+class TCompIAController;
 
-private: 
-
-	enum EType;
-
-	std::string name;
-	EType type;
-	std::vector<BTNode*> children;
-	BTNode *parent;
-	BTNode *right;
+class BTNode {
 
 public:
 	enum EType { RANDOM = 0, SEQUENCE, PRIORITY, ACTION, NUM_TYPES };
@@ -29,4 +20,11 @@ public:
 	void update(float dt, TCompIAController* bt);
 	const std::string getName();
 
+private:
+
+	std::string name;
+	EType type;
+	std::vector<BTNode*> children;
+	BTNode *parent;
+	BTNode *right;
 };

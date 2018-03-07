@@ -3,13 +3,12 @@
 #include "components/comp_base.h"
 #include "btnode.h"
 
-
-typedef int (TCompIAController::*BTAction)();
-typedef bool (TCompIAController::*BTCondition)();
-
-struct TCompIAController : public TCompBase {
+class TCompIAController : public TCompBase {
 
 private:
+
+	typedef int (TCompIAController::*BTAction)();
+	typedef bool (TCompIAController::*BTCondition)();
 
 	/* The nodes as map (so we have both map and tree for the same structure */
 	std::map<std::string, BTNode *> tree;

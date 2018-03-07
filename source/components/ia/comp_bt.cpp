@@ -31,7 +31,7 @@ BTNode * TCompIAController::createRoot(std::string rootName, BTNode::EType type,
 		addAction(rootName, btAction);
 	}
 
-	current == nullptr;
+	current = nullptr;
 	return root;
 }
 
