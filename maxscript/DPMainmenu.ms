@@ -7,6 +7,8 @@ filein "DPManager.ms"
 filein "MCVExportMesh.ms"
 filein "MCVExportScene.ms"
 filein "DPGenerator.ms"
+filein "DPComponents.ms"
+
 -- Create a rollout floater and load it.
 try(cui.UnRegisterDialogBar FirstDialog)catch()
 try(destroyDialog FirstDialog)catch()
@@ -46,7 +48,7 @@ rollout SBSelection "Selection Tools" width:477 height:252
 	label 'lbl1' "Layers:" pos:[35,87] width:39 height:14 align:#left
 	button 'btn13' "Button" pos:[248,36] width:2 height:181 align:#left
 	dropdownList 'sel_cat' "" pos:[73,118] width:149 height:21 align:#left
-	label 'lbl4' "Category:" pos:[22,121] width:50 height:14 align:#left
+	label 'lbl4' "Tag:" pos:[22,121] width:50 height:14 align:#left
 	
 	local var1 = ""
 	local var2 = sel_layers.selected 
@@ -64,11 +66,13 @@ rollout SBSelection "Selection Tools" width:477 height:252
 	on mesh_filter changed var1 do ( 
 		lbx1.items = man_selection.updateHierarchy var1 var2 var3 
 	)
+	
 	on sel_layers selected  var2 do (
 		var2 = sel_layers.items[var2]
 		man_selection.updateManager() 
 		lbx1.items = man_selection.updateHierarchy var1 var2 var3 
 	)
+	
 	on sel_cat selected  var3 do ( 
 		 var3 = sel_cat.items[var3]
 		man_selection.updateManager() 
@@ -188,25 +192,43 @@ rollout SBAnimator "Animation Tools"
 )
 
 -- Utils Tools
-rollout SBUtils "Utils Tools" width:469 height:95
+rollout SBUtils "Utils Tools" width:469 height:249
 (
-	dropdownList 'ddl3' "" pos:[138,36] width:93 height:21 items:#("basic", "convex", "mesh") align:#left
-	label 'lbl3' "Type" pos:[108,38] width:29 height:17 align:#left
-	GroupBox 'grp11' "Collider Generator" pos:[9,9] width:453 height:74 align:#left
-	button 'btn30' "Generate Selection" pos:[242,37] width:120 height:20 align:#left
-	button 'btn31' "All" pos:[374,37] width:54 height:20 align:#left
-	checkbox 'chk1' "As Entity" pos:[25,38] width:72 height:16 align:#left
+	dropdownList 'ddl3' "" pos:[91,39] width:93 height:21 items:#("basic", "convex", "mesh") align:#left
+	label 'lbl3' "Type" pos:[63,42] width:29 height:17 align:#left
+	GroupBox 'grp11' "Collider Generator" pos:[9,9] width:453 height:108 align:#left
+	button 'btn30' "Generate Selection" pos:[249,40] width:155 height:20 align:#left
+	button 'btn31' "Generate All" pos:[249,73] width:155 height:20 align:#left
+	checkbox 'chk1' "As Entity" pos:[105,74] width:72 height:16 align:#left
+	
+	GroupBox 'grp5' "Component Generator" pos:[8,130] width:453 height:107 align:#left
+	dropdownList 'ddl2' "" pos:[93,162] width:93 height:21 items:#("tag", "collider") align:#left
+	label 'lbl4' "Type" pos:[63,164] width:29 height:17 align:#left
+	button 'btn3' "Generate Selection" pos:[247,163] width:156 height:20 align:#left	
+	button 'btn7' "Remove Selection" pos:[247,197] width:156 height:20 align:#left
 	
 	on btn30 pressed do
 	(
-			local col_gen = ColliderGenerator type:ddl3.selected
-			col_gen.generateCollider selection chk1.state 
-		)
+		local col_gen = ColliderGenerator type:ddl3.selected
+		col_gen.generateCollider selection chk1.state 
+	)
+	
 	on btn31 pressed do
 	(
-			local col_gen = ColliderGenerator type:ddl3.selected
-			col_gen.generateCollider rootScene.world.children chk1.state 
-		)
+		local col_gen = ColliderGenerator type:ddl3.selected
+		col_gen.generateCollider rootScene.world.children chk1.state 
+	)
+	
+	on btn3 pressed do
+	(
+		addComponent selection ddl2.selected
+	)
+	
+	on btn7 pressed do
+	(
+
+	)
+	
 )
 
 -- Asset Library
@@ -222,4 +244,4 @@ addrollout SBExport FirstDialog rolledUp:on
 addrollout SBAnimator FirstDialog rolledUp:on
 addrollout SBUtils FirstDialog rolledUp:on
 addrollout SBLibrary FirstDialog rolledUp:on
---cui.RegisterDial
+--cui.Register
