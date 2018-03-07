@@ -1,7 +1,9 @@
 #include "mcv_platform.h"
 #include "comp_bt.h"
 
-BTNode * TCompIAController::createNode(std::string name)
+void TCompIAController::debugInMenu() {}
+
+BTNode * TCompIAController::createNode(const std::string& name)
 {
 	assert(findNode(name) != nullptr);
 	BTNode *btNode = new BTNode(name);
@@ -9,16 +11,12 @@ BTNode * TCompIAController::createNode(std::string name)
 	return btNode;
 }
 
-BTNode * TCompIAController::findNode(std::string name)
+BTNode * TCompIAController::findNode(const std::string& name)
 {
 	return tree.find(name) == tree.end() ? nullptr : tree[name];
 }
 
-void TCompIAController::debugInMenu() {
-
-}
-
-BTNode * TCompIAController::createRoot(std::string rootName, BTNode::EType type, BTCondition btCondition, BTAction btAction)
+BTNode * TCompIAController::createRoot(const std::string& rootName, BTNode::EType type, BTCondition btCondition, BTAction btAction)
 {
 	BTNode *root = createNode(rootName);
 	root->setParent(nullptr);
@@ -35,7 +33,7 @@ BTNode * TCompIAController::createRoot(std::string rootName, BTNode::EType type,
 	return root;
 }
 
-BTNode * TCompIAController::addChild(std::string parentName, std::string childName, BTNode::EType type, BTCondition btCondition, BTAction btAction)
+BTNode * TCompIAController::addChild(const std::string& parentName, std::string childName, BTNode::EType type, BTCondition btCondition, BTAction btAction)
 {
 	BTNode *parent = findNode(parentName);
 	assert(parent);
@@ -52,13 +50,13 @@ BTNode * TCompIAController::addChild(std::string parentName, std::string childNa
 	return son;
 }
 
-void TCompIAController::addAction(std::string actionName, BTAction btAction)
+void TCompIAController::addAction(const std::string& actionName, BTAction btAction)
 {
 	assert(actions.find(actionName) == actions.end());
 	actions[actionName] = btAction;	//TODO: mirar fallo
 }
 
-int TCompIAController::execAction(std::string actionName)
+BTNode::ERes TCompIAController::execAction(const std::string& actionName)
 {
 	if (actions.find(actionName) == actions.end()) {
 		fatal("ERROR: Missing node action for node %s\n", actionName);
@@ -67,13 +65,13 @@ int TCompIAController::execAction(std::string actionName)
 	return (this->*actions[actionName])();
 }
 
-void TCompIAController::addCondition(std::string conditionName, BTCondition btCondition)
+void TCompIAController::addCondition(const std::string& conditionName, BTCondition btCondition)
 {
 	assert(conditions.find(conditionName) == conditions.end());
 	conditions[conditionName] = btCondition;
 }
 
-bool TCompIAController::testCondition(std::string conditionName)
+bool TCompIAController::testCondition(const std::string& conditionName)
 {
 	if (conditions.find(conditionName) == conditions.end()) {
 		//No condition => we assume is true

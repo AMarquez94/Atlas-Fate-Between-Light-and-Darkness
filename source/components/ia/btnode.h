@@ -1,6 +1,7 @@
 #pragma once
 
 #include "components/comp_base.h"
+//#include "comp_bt.h"
 
 class TCompIAController;
 
@@ -10,8 +11,8 @@ public:
 	enum EType { RANDOM = 0, SEQUENCE, PRIORITY, ACTION, NUM_TYPES };
 	enum ERes { STAY = 0, LEAVE, NUM_RES};
 
-	BTNode(std::string btName);
-	void create(std::string btName);
+	BTNode(const std::string& btName);
+	void create(const std::string& btName);
 	bool isRoot();
 	void setParent(BTNode *newParent);
 	void setRight(BTNode *newRight);
