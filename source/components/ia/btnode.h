@@ -8,7 +8,7 @@ class TCompIAController;
 class BTNode {
 
 public:
-	enum EType { RANDOM = 0, SEQUENCE, PRIORITY, ACTION, NUM_TYPES };
+	enum EType { RANDOM = 0, SEQUENCE, PRIORITY, ACTION, NUM_TYPES, FAILURE = -1 };
 	enum ERes { STAY = 0, LEAVE, NUM_RES};
 
 	BTNode(const std::string& btName);

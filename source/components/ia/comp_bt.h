@@ -49,4 +49,6 @@ public:
 	void setCurrent(BTNode *currentNode);
 
 	void update(float dt);
+
+	BTNode::EType stringToNodeType(std::string&);
 };

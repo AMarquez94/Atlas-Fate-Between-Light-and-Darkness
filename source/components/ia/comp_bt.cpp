@@ -87,6 +87,24 @@ void TCompIAController::setCurrent(BTNode * currentNode)
 	current = currentNode;
 }
 
+BTNode::EType TCompIAController::stringToNodeType(std::string& string) {
+	if (string.compare("RANDOM") == 0) {
+		return BTNode::EType::RANDOM;
+	}
+	else if (string.compare("SEQUENCE") == 0) {
+		return BTNode::EType::SEQUENCE;
+	}
+	else if (string.compare("PRIORITY") == 0) {
+		return BTNode::EType::PRIORITY;
+	}
+	else if (string.compare("ACTION") == 0) {
+		return BTNode::EType::ACTION;
+	}
+	else {
+		return BTNode::EType::FAILURE;
+	}
+}
+
 void TCompIAController::update(float dt) {
 	if (current == nullptr) {
 		root->update(dt, this);

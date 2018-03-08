@@ -14,25 +14,29 @@ void TCompAITest::debugInMenu() {
 
 
 void TCompAITest::load(const json& j, TEntityParseContext& ctx) {
-	std::string name;
-	std::string aux = "a";
-	int foo = aux.compare("u");
-	name = "john doe";
-	for (int i = 0; i < name.size(); i++) {
-		name.at(i) = toupper(name.at(i));
-	}
-	if (j.count("ai_test") > 0) {
-		assert(j.count("createRoot") == 1);
-		if (j.count("createRoot") == 1) {
-			assert(j.count("rootName")==1);
-			name = j.value("rootName","");
-			assert(j.count("type") == 1);
-			aux = j.value("type", "");
-			int foo = aux.compare("PRIORITY");
+
+	std::string rootName, childName, type;
+	BTNode::EType nodeType;
+
+	assert(j.count("createRoot") == 1);
+	if (j.count("createRoot") == 1) {
+		auto& j_root = j["createRoot"];
+		assert(j_root.count("rootName") == 1);
+		rootName = j_root.value("rootName", "");
+		assert(j_root.count("type") == 1);
+		type = j_root.value("type", "");
+		if (j_root.count("condition") == 1) {
 
 		}
+		if (j_root.count("action") == 1) {
+
+		}
+		ToUpperCase(type);
+		nodeType = stringToNodeType(type);
+		assert(nodeType != BTNode::EType::FAILURE);
+		createRoot(rootName, nodeType, NULL, NULL);
 	}
-	createRoot("soldier", BTNode::EType::PRIORITY, nullptr, nullptr);
+	//createRoot("soldier", BTNode::EType::PRIORITY, nullptr, nullptr);
 	addChild("soldier", "escape", BTNode::EType::ACTION, (BTCondition)&TCompAITest::conditionEscape, (BTAction)&TCompAITest::actionEscape);
 	addChild("soldier", "combat", BTNode::EType::SEQUENCE, nullptr, nullptr);
 	addChild("soldier", "idle", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAITest::actionIdle);
