@@ -1,0 +1,75 @@
+[
+	{
+		"entity": {
+			"name": "Enemies_bt"
+		}
+	},
+	{
+		"entity": {
+		  "name": "First BT",
+      "transform": {
+        "pos": "0 0 0",
+        "lookat": "1 0 1"
+      },
+      "ai_test": {
+        "createRoot": {
+          "rootName": "soldier",
+          "type": "priority",
+          "condition": "nullptr",
+          "action": "nullptr"
+        },
+        "addChild": {
+          "child 1": {
+            "parent": "soldier",
+            "name": "escape",
+            "type": "action",
+            "condition": "conditionEscape",
+            "action": "actionEscape"
+          },
+          "child 2": {
+            "parent": "soldier",
+            "name": "combat",
+            "type": "sequence",
+            "condition": "nullptr",
+            "action": ""
+          },
+          "child 3": {
+            "parent": "soldier",
+            "name": "idle",
+            "type": "action",
+            "condition": "nullptr",
+            "action": "actionIdle"
+          },
+          "child 4": {
+            "parent": "combat",
+            "name": "pursuit",
+            "type": "action",
+            "condition": "nullptr",
+            "action": "actionPursuit"
+          },
+          "child 5": {
+            "parent": "combat",
+            "name": "shoot",
+            "type": "sequence",
+            "condition": "nullptr",
+            "action": "nullptr"
+          },
+          "child 6": {
+            "parent": "shoot",
+            "name": "shootGrenade",
+            "type": "action",
+            "condition": "nullptr",
+            "action": "actionShootGrenade"
+          },
+          "child 7": {
+            "parent": "shoot",
+            "name": "shootPistol",
+            "type": "action",
+            "condition": "nullptr",
+            "action": "actionShootPistol"
+          }
+        }
+      }
+		}
+	}
+]

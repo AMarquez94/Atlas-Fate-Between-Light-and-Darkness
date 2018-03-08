@@ -14,6 +14,24 @@ void TCompAITest::debugInMenu() {
 
 
 void TCompAITest::load(const json& j, TEntityParseContext& ctx) {
+	std::string name;
+	std::string aux = "a";
+	int foo = aux.compare("u");
+	name = "john doe";
+	for (int i = 0; i < name.size(); i++) {
+		name.at(i) = toupper(name.at(i));
+	}
+	if (j.count("ai_test") > 0) {
+		assert(j.count("createRoot") == 1);
+		if (j.count("createRoot") == 1) {
+			assert(j.count("rootName")==1);
+			name = j.value("rootName","");
+			assert(j.count("type") == 1);
+			aux = j.value("type", "");
+			int foo = aux.compare("PRIORITY");
+
+		}
+	}
 	createRoot("soldier", BTNode::EType::PRIORITY, nullptr, nullptr);
 	addChild("soldier", "escape", BTNode::EType::ACTION, (BTCondition)&TCompAITest::conditionEscape, (BTAction)&TCompAITest::actionEscape);
 	addChild("soldier", "combat", BTNode::EType::SEQUENCE, nullptr, nullptr);
