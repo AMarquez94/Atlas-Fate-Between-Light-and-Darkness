@@ -3,11 +3,11 @@ clearListener()
 gc()
 
 -- First, we include the necessary files
+filein "DPComponents.ms"
 filein "DPManager.ms"
 filein "MCVExportMesh.ms"
 filein "MCVExportScene.ms"
 filein "DPGenerator.ms"
-filein "DPComponents.ms"
 
 -- Create a rollout floater and load it.
 try(cui.UnRegisterDialogBar FirstDialog)catch()
@@ -210,13 +210,13 @@ rollout SBUtils "Utils Tools" width:469 height:263
 	on btn30 pressed do
 	(
 		local col_gen = ColliderGenerator type:ddl3.selected
-		col_gen.generateCollider selection chk1.state 
+		col_gen.generateCollider selection (not chk1.state) 
 	)
 	
 	on btn31 pressed do
 	(
 		local col_gen = ColliderGenerator type:ddl3.selected
-		col_gen.generateCollider rootScene.world.children chk1.state 
+		col_gen.generateCollider rootScene.world.children (not chk1.state) 
 	)
 	
 	on btn3 pressed do

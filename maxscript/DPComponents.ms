@@ -1,6 +1,7 @@
 component_collider = attributes component_collider
+Redefine:component_collider
 (
-	parameters main rollout:params
+	parameters cmp_col rollout:cmp_col
 	(
 		col_group type: #string ui:col_group default:"All"
 		col_mask type: #string ui:col_mask default:""
@@ -10,7 +11,7 @@ component_collider = attributes component_collider
 		is_gravity type: #boolean ui:isgravity default:false
 	)
 	
-	rollout params "Component Collider" width:162 height:174
+	rollout cmp_col "Component Collider" width:162 height:174
 	(
 		edittext 'col_group' "Group" width:130 height:20 align:#center
 		edittext 'col_mask' "Mask" width:130 height:20 align:#center
@@ -23,8 +24,9 @@ component_collider = attributes component_collider
 )
 
 component_tag = attributes component_tag
+Redefine:component_tag
 (
-	parameters main rollout:params
+	parameters cmp_tag rollout:cmp_tag
 	(
 		tag1 type: #string ui:tag1 default:"All"
 		tag2 type: #string ui:tag2 default:""
@@ -32,7 +34,7 @@ component_tag = attributes component_tag
 		tag4 type: #string ui:tag4 default:""
 	)
 	
-	rollout params "Component Tag" width:162 height:174
+	rollout cmp_tag "Component Tag" width:162 height:174
 	(
 		edittext 'tag1' "Tag 1" width:130 height:20 align:#center
 		edittext 'tag2' "Tag 2" width:130 height:20 align:#center
@@ -62,9 +64,38 @@ function addComponent c_selection type = (
 function removeComponent c_selection type = (
 	
 	local c_type = getByType type
-	print "entered"
 	
 	for obj in c_selection do (
-		custAttributes.delete obj c_type
+		
+		local comp = retrieveDefComponent obj c_type
+		if comp != undefined then ( custAttributes.delete obj comp)
+	
 	)
+)
+
+function retrieveDefComponent obj type = (
+	
+	local totalIndex = custAttributes.count obj
+	
+	for att_index = 1 to totalIndex do (
+		local attr_iter = custAttributes.getdef obj att_index
+		if attr_iter.name == type.name then ( return attr_iter )
+	)
+	
+	return undefined
+)
+
+function retrieveComponent obj type = (
+	
+	local totalIndex = custAttributes.count obj
+	
+	for att_index = 1 to totalIndex do (
+		local attr_iter = custAttributes.getdef obj att_index
+		if attr_iter.name == type.name then ( 
+			local comp_final = custAttributes.get obj attr_iter
+			return comp_final
+		)
+	)
+	
+	return undefined
 )

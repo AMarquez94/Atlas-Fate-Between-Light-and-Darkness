@@ -2,6 +2,7 @@ clearListener()
 gc()
 
 filein "DPUtils.ms"
+filein "DPComponents.ms"
 
 struct TMaterialExporter (
 	
@@ -104,6 +105,75 @@ struct TSceneExporter (
 		return findString aname " " == undefined 
 	),
 	
+	function writeComponents obj = (
+		
+		-- Prepare comps to be serialized.
+		writeTagComponent obj
+		writeColliderComponent obj
+	),
+
+	function writeTagComponent obj = (
+		
+		c_values = retrieveComponent obj component_tag
+
+		if  c_values != undefined then (
+			
+			local final_tags = #()
+			local total_tags = #(c_values.tag1, c_values.tag2, c_values.tag3, c_values.tag4)
+			for tag in total_tags do (
+				if tag != "" then ( append final_Tags tag )
+			)
+			
+			total_tags
+			fs.writeComma()
+			fs.writeKey "tags"
+			fs.arrayOfStrings final_tags
+		)
+
+	),
+
+	function writeColliderComponent obj = (
+		
+		c_values = retrieveComponent obj component_collider
+		
+		if  c_values != undefined then (
+			
+			fs.writeComma()
+			fs.writeKeyValue "group" c_values.col_group
+			fs.writeComma()
+			fs.writeKeyValue "mask" c_values.col_mask
+			fs.writeComma()
+			fs.writeKeyValue "is_trigger" c_values.is_trigger
+			fs.writeComma()
+			fs.writeKeyValue "is_dynamic" c_values.is_dynamic
+			fs.writeComma()
+			fs.writeKeyValue "is_controller" c_values.is_controller			
+			fs.writeComma()
+			fs.writeKeyValue "is_gravity" c_values.is_gravity	
+			
+		)
+	),
+	
+	function writeHierComponent obj = (
+				
+		if obj.parent != undefined then (
+			fs.writeKey "hierarchy" 
+			fs.beginObj()
+			fs.writeKeyValue "parent" obj.parent.name
+			fs.endObj()
+		)
+	),
+	
+	function writeGroupComponent obj = (
+		
+		local is_group = isgrouphead obj.parent
+		if is_group then (
+			fs.writeKey "group" 
+			fs.beginObj()
+		
+		)
+	),
+	
 	-- ----------------------------------------------------------
 	fn exportTransform obj = (
 		fs.writeKey "transform" 
@@ -197,18 +267,7 @@ struct TSceneExporter (
 			exportColliderObject obj col_path
 		)
 		
-		-- Add it in the user properties panel of max:     density = 10
-		local density = getUserProp obj "density"
-		if density != undefined then (
-			fs.writeComma()
-			fs.writeKeyValue "density" density
-		)
-		
-		if obj.layer.name == "triggers" then (
-			fs.writeComma()
-			fs.writeKeyValue "trigger" true
-		)
-	
+		writeColliderComponent obj
 		fs.endObj()
 	),
 	
@@ -285,6 +344,7 @@ struct TSceneExporter (
 		fs.writeComma()
 		fs.writeKey "tags"
 		fs.arrayOfStrings #("light")
+		
 	),
 	
 	
@@ -310,9 +370,8 @@ struct TSceneExporter (
 			if isCollider obj then (exportEntityCollider obj )
 			else if isLight obj then ( exportEntityLight obj )
 			else exportEditableMesh obj
-			/*else (
-				format "Warning. Don't kwow how to export obj % of class %\n" obj.name ((classof obj) as string)
-			)*/
+			writeTagComponent obj
+			writeHierComponent obj
 			fs.endObj()
 		fs.endObj()
 	),
@@ -356,8 +415,11 @@ struct TSceneExporter (
 			prg.value = (nitems + 1)* prg_step
 		)
 		
+		prg.value = 100
 		fs.endArray()
-		fs.end()		
+		fs.end()	
+		
+		messageBox ("Scene SUCCESFULLY exported at location: \n\n" + full_path)		
 	)
 )
 
