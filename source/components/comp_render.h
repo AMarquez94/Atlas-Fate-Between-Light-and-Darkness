@@ -16,6 +16,7 @@ public:
 	std::vector<const CMaterial*> materials;
 
 	void debugInMenu();
+	void renderDebug();
 	void load(const json& j, TEntityParseContext& ctx);
 	void loadMesh(const json& j, TEntityParseContext& ctx);
 

@@ -9,8 +9,15 @@ DECL_OBJ_MANAGER("render", TCompRender);
 
 void TCompRender::debugInMenu() {
 	ImGui::ColorEdit4("Color", &color.x);
-	for (auto &m : materials)
-		((CMaterial*)m)->debugInMenu();
+	for (auto &m : materials) {
+		if (m)
+			((CMaterial*)m)->debugInMenu();
+	}
+}
+
+void TCompRender::renderDebug() {
+	//mesh->activate();
+	//mesh->render();
 }
 
 void TCompRender::loadMesh(const json& j, TEntityParseContext& ctx) {

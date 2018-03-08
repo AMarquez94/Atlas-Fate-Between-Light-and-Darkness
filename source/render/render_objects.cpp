@@ -86,6 +86,46 @@ CRenderMesh* createGridXZ(int nsteps) {
 	return mesh;
 }
 
+// ---------------------------------------------------
+CRenderMesh* createCameraFrustum() {
+	CRenderMesh* mesh = new CRenderMesh;
+
+	std::vector<TVtxPosClr> vtxs;
+	VEC4 clr(1, 1, 1, 1);
+	vtxs.emplace_back(VEC3(-1, -1, 0), clr);
+	vtxs.emplace_back(VEC3(1, -1, 0), clr);
+	vtxs.emplace_back(VEC3(-1, -1, 1), clr);
+	vtxs.emplace_back(VEC3(1, -1, 1), clr);
+	vtxs.emplace_back(VEC3(-1, 1, 0), clr);
+	vtxs.emplace_back(VEC3(1, 1, 0), clr);
+	vtxs.emplace_back(VEC3(-1, 1, 1), clr);
+	vtxs.emplace_back(VEC3(1, 1, 1), clr);
+
+	std::vector<uint16_t> idxs;
+	for (int i = 0; i < 4; ++i) {
+		// Lines along +x
+		idxs.push_back(i * 2);
+		idxs.push_back(i * 2 + 1);
+		// Vertical lines
+		idxs.push_back(i);
+		idxs.push_back(i + 4);
+	}
+	idxs.push_back(0);
+	idxs.push_back(2);
+	idxs.push_back(1);
+	idxs.push_back(3);
+	idxs.push_back(4);
+	idxs.push_back(6);
+	idxs.push_back(5);
+	idxs.push_back(7);
+	if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(TVtxPosClr), "PosClr"
+		, CRenderMesh::LINE_LIST
+		, idxs.data(), idxs.size() * sizeof(uint16_t), sizeof(uint16_t)
+	))
+		return nullptr;
+	return mesh;
+}
+
 CRenderMesh* createCone(float fov, float dist, int steps, VEC4 clr) {
 	CRenderMesh* mesh = new CRenderMesh;
 
@@ -123,6 +163,7 @@ bool createRenderObjects() {
 	registerMesh(createGridXZ(20), "grid.mesh");
 	registerMesh(createLineZ(), "line.mesh");
 	registerMesh(createUnitCircleXZ(32), "circle_xz.mesh");
+	registerMesh(createCameraFrustum(), "unit_frustum.mesh");
 	registerMesh(createCone(deg2rad(70), 35.f, 10, VEC4(1.0f, 1.0f, 1.0f, 1.0f)), "cone_of_vision.mesh");
 	registerMesh(createCone(deg2rad(35), 20.f, 10, VEC4(1.0f, 1.0f, 0.0f, 1.0f)), "cone_of_light.mesh");
 	return true;
