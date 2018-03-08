@@ -11,6 +11,7 @@
     "circular_controller",
     "player_controller",
     "ai_patrol",
+	"ai_test",
     "bullet_controller",
 	"shadow_controller",
 	"light",

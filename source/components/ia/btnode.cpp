@@ -4,27 +4,27 @@
 
 BTNode::BTNode(const std::string& btName)
 {
-	this->name = btName;
+	name = btName;
 }
 
 void BTNode::create(const std::string& btName) {
-	this->name = btName;
+	name = btName;
 }
 
 bool BTNode::isRoot() {
-	return this->parent == nullptr;	//NULL or nullptr?
+	return parent == nullptr;
 }
 
 void BTNode::setParent(BTNode *newParent) {
-	this->parent = newParent;
+	parent = newParent;
 }
 
 void BTNode::setRight(BTNode *newRight) {
-	this->right = newRight;
+	right = newRight;
 }
 
 void BTNode::addChild(BTNode *newChild) {
-	if (!this->children.empty()) {
+	if (!children.empty()) {
 
 		/* If node already had children, last node connected to the new one */
 		children.back()->setRight(newChild);
@@ -45,7 +45,7 @@ void BTNode::update(float dt, TCompIAController *bt) {
 			/* Run the controller of this node */
 
 			/* Calculate what's the next node to use in the next frame */
-			int res = bt->execAction(name);
+			ERes res = bt->execAction(name, dt);
 			if (res == ERes::STAY) {
 				bt->setCurrent(this);
 			}
@@ -92,7 +92,7 @@ void BTNode::update(float dt, TCompIAController *bt) {
 		case EType::PRIORITY: 
 		{
 			for (int i = 0; i < children.size(); i++) {
-				if (bt->testCondition(children[i]->getName())) {
+				if (bt->testCondition(children[i]->getName(), dt)) {
 					children[i]->update(dt, bt);
 					break;
 				}

@@ -5,7 +5,7 @@ void TCompIAController::debugInMenu() {}
 
 BTNode * TCompIAController::createNode(const std::string& name)
 {
-	assert(findNode(name) != nullptr);
+	assert(findNode(name) == nullptr);
 	BTNode *btNode = new BTNode(name);
 	tree[name] = btNode;
 	return btNode;
@@ -56,13 +56,13 @@ void TCompIAController::addAction(const std::string& actionName, BTAction btActi
 	actions[actionName] = btAction;	//TODO: mirar fallo
 }
 
-BTNode::ERes TCompIAController::execAction(const std::string& actionName)
+BTNode::ERes TCompIAController::execAction(const std::string& actionName, float dt)
 {
 	if (actions.find(actionName) == actions.end()) {
 		fatal("ERROR: Missing node action for node %s\n", actionName);
 		return BTNode::LEAVE;
 	}
-	return (this->*actions[actionName])();
+	return (this->*actions[actionName])(dt);
 }
 
 void TCompIAController::addCondition(const std::string& conditionName, BTCondition btCondition)
@@ -71,14 +71,14 @@ void TCompIAController::addCondition(const std::string& conditionName, BTConditi
 	conditions[conditionName] = btCondition;
 }
 
-bool TCompIAController::testCondition(const std::string& conditionName)
+bool TCompIAController::testCondition(const std::string& conditionName, float dt)
 {
 	if (conditions.find(conditionName) == conditions.end()) {
 		//No condition => we assume is true
 		return true;
 	}
 	else {
-		return (this->*conditions[conditionName])();
+		return (this->*conditions[conditionName])(dt);
 	}
 }
 
@@ -95,4 +95,3 @@ void TCompIAController::update(float dt) {
 		current->update(dt, this);
 	}
 }
-

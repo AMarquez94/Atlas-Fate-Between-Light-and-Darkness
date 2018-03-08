@@ -7,10 +7,14 @@ class BTNode;
 
 class TCompIAController : public TCompBase {
 
-private:
 
-	typedef BTNode::ERes (TCompIAController::*BTAction)();
-	typedef bool (TCompIAController::*BTCondition)();
+protected:
+
+	typedef BTNode::ERes(TCompIAController::*BTAction)(float dt);
+	typedef bool (TCompIAController::*BTCondition)(float dt);
+
+
+private:
 
 	/* The nodes as map (so we have both map and tree for the same structure */
 	std::map<std::string, BTNode *> tree;
@@ -29,6 +33,8 @@ private:
 
 public:
 
+	std::string name;
+
 	void debugInMenu();
 	virtual void load(const json& j, TEntityParseContext& ctx) = 0;
 
@@ -37,9 +43,9 @@ public:
 	BTNode *addChild(const std::string& parentName, std::string childName, BTNode::EType type, BTCondition btCondition, BTAction btAction);
 
 	void addAction(const std::string& actionName, BTAction btAction);
-	BTNode::ERes execAction(const std::string& actionName);
+	BTNode::ERes execAction(const std::string& actionName, float dt);
 	void addCondition(const std::string& conditionName, BTCondition btCondition);
-	bool testCondition(const std::string& conditionName);
+	bool testCondition(const std::string& conditionName, float dt);
 	void setCurrent(BTNode *currentNode);
 
 	void update(float dt);

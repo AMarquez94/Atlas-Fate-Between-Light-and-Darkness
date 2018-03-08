@@ -82,6 +82,7 @@
     <ClCompile Include="components\dynamic_objects\comp_capsule_shadow.cpp" />
     <ClCompile Include="components\ia\btnode.cpp" />
     <ClCompile Include="components\ia\comp_bt.cpp" />
+    <ClCompile Include="components\ia\comp_bt_test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -189,6 +190,7 @@
     <ClInclude Include="components\dynamic_objects\comp_capsule_shadow.h" />
     <ClInclude Include="components\ia\btnode.h" />
     <ClInclude Include="components\ia\comp_bt.h" />
+    <ClInclude Include="components\ia\comp_bt_test.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
