@@ -2,6 +2,7 @@
 #define INC_RENDER_MESH_H_
 
 #include "resources/resource.h"
+#include "mesh_subgroup.h"
 
 class CVertexDecl;
 
@@ -22,14 +23,21 @@ public:
     eTopology   new_topology,
     const void* index_data = nullptr,
     size_t      num_index_bytes = 0,
-    size_t      bytes_per_index = 0 
+    size_t      bytes_per_index = 0 ,
+	VMeshSubGroups* new_subgroups = nullptr
   );
   void destroy() override;
   void activate() const;
   void render() const;
+  void renderSubMesh(uint32_t subgroup_idx) const;
   void activateAndRender() const;
 
   void debugInMenu();
+
+  const VMeshSubGroups& getSubGroups() const {
+	  return subgroups;
+	  
+  }
 
 public: // Doing it for testing purposes
   
@@ -40,6 +48,7 @@ public: // Doing it for testing purposes
   UINT               num_vertexs = 0;
   UINT               num_indices = 0;
   DXGI_FORMAT        index_fmt = DXGI_FORMAT_UNKNOWN;
+  VMeshSubGroups     subgroups;
 };
 
 

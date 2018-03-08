@@ -78,7 +78,6 @@ bool CVertexDeclManager::create() {
 	  createNew("PosNUvUv", layout, ARRAYSIZE(layout));
   }
 
-
   return true;
 }
 

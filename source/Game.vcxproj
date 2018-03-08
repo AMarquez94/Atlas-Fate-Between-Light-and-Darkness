@@ -253,6 +253,7 @@
     <ClInclude Include="render\cte_buffer.h" />
     <ClInclude Include="render\mesh\mesh.h" />
     <ClInclude Include="render\mesh\mesh_loader.h" />
+    <ClInclude Include="render\mesh\mesh_subgroup.h" />
     <ClInclude Include="render\render.h" />
     <ClInclude Include="render\render_objects.h" />
     <ClInclude Include="render\render_utils.h" />
