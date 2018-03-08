@@ -14,7 +14,7 @@ void TCompAITest::debugInMenu() {
 
 
 void TCompAITest::load(const json& j, TEntityParseContext& ctx) {
-	createRoot("soldier", BTNode::EType::SEQUENCE, nullptr, nullptr);
+	createRoot("soldier", BTNode::EType::PRIORITY, nullptr, nullptr);
 	addChild("soldier", "escape", BTNode::EType::ACTION, (BTCondition)&TCompAITest::conditionEscape, (BTAction)&TCompAITest::actionEscape);
 	addChild("soldier", "combat", BTNode::EType::SEQUENCE, nullptr, nullptr);
 	addChild("soldier", "idle", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAITest::actionIdle);
