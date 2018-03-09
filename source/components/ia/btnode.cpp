@@ -47,7 +47,16 @@ void BTNode::update(float dt, TCompIAController *bt) {
 			/* Calculate what's the next node to use in the next frame */
 			ERes res = bt->execAction(name, dt);
 			if (res == ERes::STAY) {
-				bt->setCurrent(this);
+				if (bt->testAssert(name, dt)) {
+
+					/* We test if the assert (if any) is true every step */
+					bt->setCurrent(this);
+				}
+				else {
+
+					/* Assert failed => reset */
+					bt->setCurrent(nullptr);
+				}
 			}
 			else if(res == ERes::LEAVE) {
 

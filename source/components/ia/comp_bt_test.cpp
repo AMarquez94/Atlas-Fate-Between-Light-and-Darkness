@@ -14,14 +14,14 @@ void TCompAITest::debugInMenu() {
 
 
 void TCompAITest::load(const json& j, TEntityParseContext& ctx) {
-	createRoot("soldier", BTNode::EType::PRIORITY, nullptr, nullptr);
-	addChild("soldier", "escape", BTNode::EType::ACTION, (BTCondition)&TCompAITest::conditionEscape, (BTAction)&TCompAITest::actionEscape);
-	addChild("soldier", "combat", BTNode::EType::SEQUENCE, nullptr, nullptr);
-	addChild("soldier", "idle", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAITest::actionIdle);
-	addChild("combat", "pursuit", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAITest::actionPursuit);
-	addChild("combat", "shoot", BTNode::EType::SEQUENCE, nullptr, nullptr);
-	addChild("shoot", "shootgrenade", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAITest::actionShootGrenade);
-	addChild("shoot", "shootpistol", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAITest::actionShootPistol);
+	createRoot("soldier", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
+	addChild("soldier", "escape", BTNode::EType::ACTION, (BTCondition)&TCompAITest::conditionEscape, (BTAction)&TCompAITest::actionEscape, nullptr);
+	addChild("soldier", "combat", BTNode::EType::SEQUENCE, nullptr, nullptr, nullptr);
+	addChild("soldier", "idle", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAITest::actionIdle, nullptr);
+	addChild("combat", "pursuit", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAITest::actionPursuit, nullptr);
+	addChild("combat", "shoot", BTNode::EType::SEQUENCE, nullptr, nullptr, nullptr);
+	addChild("shoot", "shootgrenade", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAITest::actionShootGrenade, nullptr);
+	addChild("shoot", "shootpistol", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAITest::actionShootPistol, nullptr);
 }
 
 void TCompAITest::onMsgEntityCreated(const TMsgEntityCreated & msg)

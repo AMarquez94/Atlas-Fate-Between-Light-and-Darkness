@@ -16,7 +16,7 @@ BTNode * TCompIAController::findNode(const std::string& name)
 	return tree.find(name) == tree.end() ? nullptr : tree[name];
 }
 
-BTNode * TCompIAController::createRoot(const std::string& rootName, BTNode::EType type, BTCondition btCondition, BTAction btAction)
+BTNode * TCompIAController::createRoot(const std::string& rootName, BTNode::EType type, BTCondition btCondition, BTAction btAction, BTAssert btAssert)
 {
 	BTNode *root = createNode(rootName);
 	root->setParent(nullptr);
@@ -28,12 +28,15 @@ BTNode * TCompIAController::createRoot(const std::string& rootName, BTNode::ETyp
 	if (btAction != nullptr) {
 		addAction(rootName, btAction);
 	}
+	if (btAssert != nullptr) {
+		addAssert(rootName, btAssert);
+	}
 
 	current = nullptr;
 	return root;
 }
 
-BTNode * TCompIAController::addChild(const std::string& parentName, std::string childName, BTNode::EType type, BTCondition btCondition, BTAction btAction)
+BTNode * TCompIAController::addChild(const std::string& parentName, std::string childName, BTNode::EType type, BTCondition btCondition, BTAction btAction, BTAssert btAssert)
 {
 	BTNode *parent = findNode(parentName);
 	assert(parent);
@@ -46,6 +49,9 @@ BTNode * TCompIAController::addChild(const std::string& parentName, std::string 
 	}
 	if (btAction != nullptr) {
 		addAction(childName, btAction);
+	}
+	if (btAssert != nullptr) {
+		addAssert(childName, btAssert);
 	}
 	return son;
 }
@@ -79,6 +85,23 @@ bool TCompIAController::testCondition(const std::string& conditionName, float dt
 	}
 	else {
 		return (this->*conditions[conditionName])(dt);
+	}
+}
+
+void TCompIAController::addAssert(const std::string & assertName, BTAssert btAssert)
+{
+	assert(asserts.find(assertName) == asserts.end());
+	asserts[assertName] = btAssert;
+}
+
+bool TCompIAController::testAssert(const std::string & assertName, float dt)
+{
+	if (asserts.find(assertName) == asserts.end()) {
+		//No assert condition => we assume is true
+		return true;
+	}
+	else {
+		return (this->*asserts[assertName])(dt);
 	}
 }
 

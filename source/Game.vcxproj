@@ -109,6 +109,7 @@
     <ClCompile Include="components\ia\ai_patrol.cpp" />
     <ClCompile Include="components\ia\btnode.cpp" />
     <ClCompile Include="components\ia\comp_bt.cpp" />
+    <ClCompile Include="components\ia\comp_bt_patrol.cpp" />
     <ClCompile Include="components\ia\comp_bt_test.cpp" />
     <ClCompile Include="components\object_controller\comp_bullet_controller.cpp" />
     <ClCompile Include="components\object_controller\comp_cone_of_light.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="components\ia\ai_patrol.h" />
     <ClInclude Include="components\ia\btnode.h" />
     <ClInclude Include="components\ia\comp_bt.h" />
+    <ClInclude Include="components\ia\comp_bt_patrol.h" />
     <ClInclude Include="components\ia\comp_bt_test.h" />
     <ClInclude Include="components\object_controller\comp_bullet_controller.h" />
     <ClInclude Include="components\object_controller\comp_cone_of_light.h" />
