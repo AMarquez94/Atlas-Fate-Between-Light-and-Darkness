@@ -83,6 +83,7 @@
     <ClCompile Include="render\render_manager.cpp" />
     <ClCompile Include="components\comp_aabb.cpp" />
     <ClCompile Include="components\comp_culling.cpp" />
+    <ClCompile Include="profiling\profiling.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -192,6 +193,7 @@
     <ClInclude Include="render\render_manager.h" />
     <ClInclude Include="components\comp_aabb.h" />
     <ClInclude Include="components\comp_culling.h" />
+    <ClInclude Include="profiling\profiling.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

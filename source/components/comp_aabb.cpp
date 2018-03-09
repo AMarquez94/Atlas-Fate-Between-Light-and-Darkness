@@ -64,6 +64,7 @@ void TCompAbsAABB::registerMsgs() {
 // ------------------------------------------------------
 // Updates AbsAABB from LocalAABB and CompTransform
 void TCompLocalAABB::update(float dt) {
+  PROFILE_FUNCTION("LocalAABB");
   const TCompTransform *in_tmx = get< TCompTransform >();
   TCompAbsAABB *abs_aabb = get<TCompAbsAABB>();
 

@@ -30,6 +30,7 @@
 #include "utils/json.hpp"
 using json = nlohmann::json;
 
+#include "profiling/profiling.h"
 #include "geometry/geometry.h"
 #include "render/render.h"
 #include "utils/utils.h"

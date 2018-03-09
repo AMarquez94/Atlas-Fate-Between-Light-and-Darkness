@@ -58,10 +58,13 @@ bool CModuleEntities::start()
 
 void CModuleEntities::update(float delta)
 {
-  for (auto om : om_to_update)
-    om->updateAll(delta);
+	for (auto om : om_to_update)
+	{
+		PROFILE_FUNCTION(om->getName());
+		om->updateAll(delta);
+	}
 
-  CHandleManager::destroyAllPendingObjects();
+	CHandleManager::destroyAllPendingObjects();
 }
 
 void CModuleEntities::render()
@@ -108,6 +111,18 @@ void CModuleEntities::render()
   solid->activate();
   for (auto om : om_to_render_debug)
 	  om->renderDebugAll();
+}
+
+void CModuleEntities::renderDebugOfComponents() {
+	PROFILE_FUNCTION("renderDebugOfComponents");
+	// Change the technique to some debug solid
+	auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
+	solid->activate();
+	for (auto om : om_to_render_debug)
+		for (auto om : om_to_render_debug) {
+			PROFILE_FUNCTION(om->getName());
+			om->renderDebugAll();
+		}
 }
 
 void CModuleEntities::destroyAllEntities() {

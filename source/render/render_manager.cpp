@@ -142,7 +142,7 @@ void CRenderManager::setEntityCamera(CHandle h_new_entity_camera) {
 
 void CRenderManager::renderCategory(const char* category_name) {
 
-  //PROFILE_FUNCTION(category_name);
+  PROFILE_FUNCTION(category_name);
   //CTraceScoped gpu_scope(category_name);
 
   uint32_t category_id = getID(category_name);
@@ -179,7 +179,7 @@ void CRenderManager::renderCategory(const char* category_name) {
 
   // For each key in the range of keys
   while (it != last) {
-    //PROFILE_FUNCTION("Key");
+    PROFILE_FUNCTION("Key");
 
     // Do the culling
     if (culling_bits) {

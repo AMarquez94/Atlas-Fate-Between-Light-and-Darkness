@@ -264,6 +264,9 @@ bool CModulePhysics::start()
 	gCooking = PxCreateCooking(PX_PHYSICS_VERSION, *gFoundation, PxCookingParams(PxTolerancesScale()));
 	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 
+	if (!gPhysics)
+		fatal("PxCreatePhysics failed");
+
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
 	sceneDesc.gravity = PxVec3(gravity.x, -9.81f * gravity.y, gravity.z);
 	sceneDesc.cpuDispatcher = gDispatcher;

@@ -95,6 +95,12 @@ void CModuleRender::update(float delta)
 
 void CModuleRender::render()
 {
+  static int nframes = 5;
+  ImGui::DragInt("NumFrames To Capture", &nframes, 0.1f, 1, 20);
+  if (ImGui::SmallButton("Start CPU Trace Capturing")) {
+	PROFILE_SET_NFRAMES(nframes);
+  }
+
   // Edit the Background color
   ImGui::ColorEdit4("Background Color", _backgroundColor);
 
@@ -122,11 +128,21 @@ void CModuleRender::setBackgroundColor(float r, float g, float b, float a)
 
 void CModuleRender::generateFrame() {
 
-  CEngine::get().getModules().render();
+  {
+	PROFILE_FUNCTION("CModuleRender::generateFrame");
+	CEngine::get().getModules().render();
+  }
 
-  ImGui::Render();
+  {
+	PROFILE_FUNCTION("ImGui::Render");
+	ImGui::Render();
+  }
 
   // Present the information rendered to the back buffer to the front buffer (the screen)
   Render.swapChain->Present(0, 0);
+  {
+	PROFILE_FUNCTION("Render.swapChain");
+	Render.swapChain->Present(0, 0);
+  }
 }
 
