@@ -126,6 +126,36 @@ CRenderMesh* createCameraFrustum() {
 	return mesh;
 }
 
+// ----------------------------------
+// To render wired AABB's
+CRenderMesh* createWiredUnitCube() {
+	std::vector<TVtxPosClr> vtxs =
+	{
+		{ VEC3(-0.5f,-0.5f, -0.5f),  VEC4(1, 1, 1, 1) },    // 
+	{ VEC3(0.5f,-0.5f, -0.5f),   VEC4(1, 1, 1, 1) },
+	{ VEC3(-0.5f, 0.5f, -0.5f),  VEC4(1, 1, 1, 1) },
+	{ VEC3(0.5f, 0.5f, -0.5f),   VEC4(1, 1, 1, 1) },    // 
+	{ VEC3(-0.5f,-0.5f, 0.5f),   VEC4(1, 1, 1, 1) },    // 
+	{ VEC3(0.5f,-0.5f, 0.5f),    VEC4(1, 1, 1, 1) },
+	{ VEC3(-0.5f, 0.5f, 0.5f),   VEC4(1, 1, 1, 1) },
+	{ VEC3(0.5f, 0.5f, 0.5f),    VEC4(1, 1, 1, 1) },    // 
+	};
+	const std::vector<uint16_t> idxs = {
+		0, 1, 2, 3, 4, 5, 6, 7
+		, 0, 2, 1, 3, 4, 6, 5, 7
+		, 0, 4, 1, 5, 2, 6, 3, 7
+	};
+	CRenderMesh* mesh = new CRenderMesh;
+	const int nindices = 8 * 3;
+	if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(TVtxPosClr), "PosClr"
+		, CRenderMesh::LINE_LIST
+		, idxs.data(), idxs.size() * sizeof(uint16_t), sizeof(uint16_t)
+	))
+		return nullptr;
+	return mesh;
+}
+
+
 CRenderMesh* createCone(float fov, float dist, int steps, VEC4 clr) {
 	CRenderMesh* mesh = new CRenderMesh;
 
@@ -166,6 +196,7 @@ bool createRenderObjects() {
 	registerMesh(createCameraFrustum(), "unit_frustum.mesh");
 	registerMesh(createCone(deg2rad(70), 35.f, 10, VEC4(1.0f, 1.0f, 1.0f, 1.0f)), "cone_of_vision.mesh");
 	registerMesh(createCone(deg2rad(35), 20.f, 10, VEC4(1.0f, 1.0f, 0.0f, 1.0f)), "cone_of_light.mesh");
+	registerMesh(createWiredUnitCube(), "wired_unit_cube.mesh");
 	return true;
 }
 
@@ -190,7 +221,7 @@ void renderMesh(const CRenderMesh* mesh, MAT44 new_matrix, VEC4 color) {
 	assert(mesh);
 	auto vdecl = mesh->getVertexDecl();
 	assert(vdecl);
-	const char* tech_name = "solid_normal.tech";
+	const char* tech_name = "solid.tech";
 	if (vdecl->name == "PosNUv")
 		tech_name = "textured.tech";
 	else if (vdecl->name == "PosNUvUv")
@@ -203,4 +234,15 @@ void renderMesh(const CRenderMesh* mesh, MAT44 new_matrix, VEC4 color) {
 	setWorldTransform(new_matrix, color);
 	mesh->activateAndRender();
 	prev_tech->activate();
+}
+
+// ---------------------------------------------
+void renderWiredAABB(const AABB& aabb, MAT44 world, VEC4 color) {
+	// Accede a una mesh que esta centrada en el origen y
+	// tiene 0.5 de half size
+	auto mesh = Resources.get("wired_unit_cube.mesh")->as<CRenderMesh>();
+	MAT44 unit_cube_to_aabb = MAT44::CreateScale(VEC3(aabb.Extents) * 2.f)
+		* MAT44::CreateTranslation(aabb.Center)
+		* world;
+	renderMesh(mesh, unit_cube_to_aabb, color);
 }

@@ -40,6 +40,7 @@ public:
   }
 
   const CVertexDecl* getVertexDecl() const { return vtx_decl; }
+  const AABB& getAABB() const { return aabb; }
 
 public: // Doing it for testing purposes
   
@@ -50,6 +51,7 @@ public: // Doing it for testing purposes
   UINT               num_vertexs = 0;
   UINT               num_indices = 0;
   DXGI_FORMAT        index_fmt = DXGI_FORMAT_UNKNOWN;
+  AABB               aabb;
   VMeshSubGroups     subgroups;
 };
 

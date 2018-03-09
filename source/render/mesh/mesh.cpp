@@ -105,6 +105,8 @@ bool CRenderMesh::create(
 			subgroups.push_back({ 0, num_vertexs, 0, 0 });
 	}
 
+	AABB::CreateFromPoints(aabb, num_vertexs, (const VEC3*)vertex_data, vtx_decl->bytes_per_vertex);
+
 	return true;
 }
 

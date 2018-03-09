@@ -13,6 +13,7 @@
 #include "components/comp_camera.h"
 #include "entity/entity_parser.h"
 #include "components/comp_tags.h"
+#include "render/render_manager.h"
 
 CCamera camera;
 
@@ -122,6 +123,7 @@ void CModuleTestAxis::render()
     TCompCamera* c_camera = e_camera->get< TCompCamera >();
     assert(c_camera);
     activateCamera(*c_camera);
+	CRenderManager::get().setEntityCamera(h_e_camera);
   }
   else {
     activateCamera(camera);

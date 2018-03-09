@@ -15,6 +15,8 @@
 	"shadow_controller",
 	"light",
     "hierarchy",
+		"local_aabb",
+		"culling",
     "cone_of_light",
     "collider",
     "camera_flyover",

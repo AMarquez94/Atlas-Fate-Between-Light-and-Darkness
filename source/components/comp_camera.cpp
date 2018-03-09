@@ -15,6 +15,8 @@ void TCompCamera::debugInMenu() {
 	changed |= ImGui::DragFloat("Z Far", &new_zfar, 1.0f, 2.0f, 3000.0f);
 	if (changed)
 		setPerspective(deg2rad(fov_deg), new_znear, new_zfar);
+
+	ImGui::LabelText("AspectRatio", "%f", getAspectRatio());
 }
 
 void TCompCamera::renderDebug() {

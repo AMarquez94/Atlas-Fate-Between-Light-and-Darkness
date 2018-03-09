@@ -108,7 +108,6 @@ struct TMsgCameraFullyActivated {
 	DECL_MSG_ID();
 };
 
-/*
 struct TMsgTimeOut {
   DECL_MSG_ID();
 };
@@ -126,7 +125,6 @@ struct TMsgSpawnAt {
   CTransform where;
   DECL_MSG_ID();
 };
-*/
 
 #endif
 

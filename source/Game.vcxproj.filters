@@ -81,6 +81,8 @@
     <ClCompile Include="components\game_controller\comp_game_manager_controller.cpp" />
     <ClCompile Include="components\dynamic_objects\comp_capsule_shadow.cpp" />
     <ClCompile Include="render\render_manager.cpp" />
+    <ClCompile Include="components\comp_aabb.cpp" />
+    <ClCompile Include="components\comp_culling.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -188,6 +190,8 @@
     <ClInclude Include="components\dynamic_objects\comp_capsule_shadow.h" />
     <ClInclude Include="render\mesh\mesh_subgroup.h" />
     <ClInclude Include="render\render_manager.h" />
+    <ClInclude Include="components\comp_aabb.h" />
+    <ClInclude Include="components\comp_culling.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

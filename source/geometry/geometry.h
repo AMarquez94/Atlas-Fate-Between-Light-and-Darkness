@@ -10,6 +10,7 @@ typedef Vector3     VEC3;
 typedef Vector4     VEC4;
 typedef Matrix      MAT44;
 typedef Quaternion  QUAT;
+typedef DirectX::BoundingBox AABB;
 
 #include "angular.h"
 
