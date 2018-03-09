@@ -228,10 +228,12 @@ void TCompPlayerController::IdleState(float dt){
 	if (!crouched) {
 		TCompRender *c_my_render = get<TCompRender>();
 		c_my_render->meshes[0].mesh = mesh_states.find("pj_idle")->second;
+		c_my_render->refreshMeshesInRenderManager();
 	}
 	else {
 		TCompRender *c_my_render = get<TCompRender>();
 		c_my_render->meshes[0].mesh = mesh_states.find("pj_crouch")->second;
+		c_my_render->refreshMeshesInRenderManager();
 	}
 
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
@@ -380,6 +382,7 @@ void TCompPlayerController::ShadowMergingEnterState(float dt){
 	TCompRender* t = get<TCompRender>();
 	t->color = VEC4(0, 0, 0, 0);
 	t->meshes[0].mesh = mesh_states.find("pj_shadowmerge")->second;
+	t->refreshMeshesInRenderManager();
 
 	// Replace this with an smooth camera interpolation
 	camera_actual = camera_shadowmerge_hor;
@@ -523,6 +526,7 @@ void TCompPlayerController::ShadowMergingEnemyState(float dt){
 	TCompRender* t = get<TCompRender>();
 	t->color = VEC4(0, 0, 0, 0);
 	t->meshes[0].mesh = mesh_states.find("pj_shadowmerge")->second;
+	t->refreshMeshesInRenderManager();
 
 	CEntity* e_camera = getEntityByName(camera_shadowmerge_hor);
 	TCompCamera* c_camera = e_camera->get< TCompCamera >();
@@ -709,6 +713,7 @@ void TCompPlayerController::movePlayer(const float dt) {
 
 	if (EngineInput["btRun"].isPressed() && canStandUp()) {	//TODO: Improve? Always raycasting when running
 		c_my_render->meshes[0].mesh = mesh_states.find("pj_run")->second;
+		c_my_render->refreshMeshesInRenderManager();
 		crouched = false;
 		auxStateName = "running";
 		currentSpeed = runSpeedFactor;
@@ -718,23 +723,27 @@ void TCompPlayerController::movePlayer(const float dt) {
 
 		if (crouched) {
 			c_my_render->meshes[0].mesh = mesh_states.find("pj_crouch")->second;
+			c_my_render->refreshMeshesInRenderManager();
 			auxStateName = "crouch";
 			currentSpeed = walkCrouchSpeedFactor;
 		}
 		else {
 			c_my_render->meshes[0].mesh = mesh_states.find("pj_walk")->second;
+			c_my_render->refreshMeshesInRenderManager();
 			auxStateName = "walking slow";
 			currentSpeed = walkSlowSpeedFactor;
 		}
 	}
 	else if (crouched){
 		c_my_render->meshes[0].mesh = mesh_states.find("pj_crouch")->second;
+		c_my_render->refreshMeshesInRenderManager();
 		auxStateName = "crouch";
 		currentSpeed = walkCrouchSpeedFactor;
 		collider->Resize(0.45f);
 	}
 	else{
 		c_my_render->meshes[0].mesh = mesh_states.find("pj_walk")->second;
+		c_my_render->refreshMeshesInRenderManager();
 		auxStateName = "walking";
 		currentSpeed = walkSpeedFactor;
 		collider->Resize(collider->config.height);

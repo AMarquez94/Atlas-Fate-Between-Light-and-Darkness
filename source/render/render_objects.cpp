@@ -190,7 +190,7 @@ void renderMesh(const CRenderMesh* mesh, MAT44 new_matrix, VEC4 color) {
 	assert(mesh);
 	auto vdecl = mesh->getVertexDecl();
 	assert(vdecl);
-	const char* tech_name = "solid.tech";
+	const char* tech_name = "solid_normal.tech";
 	if (vdecl->name == "PosNUv")
 		tech_name = "textured.tech";
 	else if (vdecl->name == "PosNUvUv")

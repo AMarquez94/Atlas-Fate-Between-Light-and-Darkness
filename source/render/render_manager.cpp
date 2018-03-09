@@ -3,7 +3,7 @@
 #include "render/render.h"
 #include "render/texture/material.h"
 #include "components/comp_transform.h"
-
+#include "components/comp_render.h"
 #include "render_objects.h"
 
 /*
@@ -138,12 +138,11 @@ void CRenderManager::setEntityCamera(CHandle h_new_entity_camera) {
 }
 
 void CRenderManager::renderCategory(const char* category_name) {
+
   //PROFILE_FUNCTION(category_name);
   //CTraceScoped gpu_scope(category_name);
 
   uint32_t category_id = getID(category_name);
-
-  // 
   render_keys.sortIfRequired();
 
   // Find the range of itarator matching the requested category 
@@ -191,9 +190,13 @@ void CRenderManager::renderCategory(const char* category_name) {
     //  }
     //}
 
+	// Adding small hotfix to solve color missing.
+	TCompRender * c_render = it->h_render_owner;
+
     // World asociada a mi objeto
     const TCompTransform* c_transform = it->h_transform;
     cb_object.obj_world = c_transform->asMatrix();
+	cb_object.obj_color = c_render->color;
     cb_object.updateGPU();
 
     // Do we have to change the material wrt the prev draw call?

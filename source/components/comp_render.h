@@ -8,8 +8,6 @@ class CRenderTechnique;
 class CMaterial;
 
 class TCompRender : public TCompBase {
-	void loadMesh(const json& j, TEntityParseContext& ctx);
-	void refreshMeshesInRenderManager();
 
 public:
 
@@ -25,10 +23,12 @@ public:
 	};
 	std::vector<CMeshWithMaterials> meshes;
 
-
 	void debugInMenu();
 	void renderDebug();
 	void load(const json& j, TEntityParseContext& ctx);
+
+	void loadMesh(const json& j, TEntityParseContext& ctx);
+	void refreshMeshesInRenderManager();
 
 	DECL_SIBLING_ACCESS();
 };
