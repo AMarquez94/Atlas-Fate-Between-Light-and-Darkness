@@ -98,12 +98,25 @@ bool CModuleTestAxis::stop()
 
 void CModuleTestAxis::update(float delta)
 {
+	static VEC3 world_pos;
+	ImGui::DragFloat3("Pos", &world_pos.x, 0.025f, -50.f, 50.f);
+
+	VEC2 mouse = EngineInput.mouse()._position;
+	if (h_e_camera.isValid()) {
+		CEntity* e_camera = h_e_camera;
+		TCompCamera* c_camera = e_camera->get< TCompCamera >();
+
+		VEC3 screen_coords;
+		bool inside = c_camera->getScreenCoordsOfWorldCoord(world_pos, &screen_coords);
+		ImGui::Text("Inside: %s  Coords: %1.2f, %1.2f  Z:%f", inside ? "YES" : "NO ", screen_coords.x, screen_coords.y, screen_coords.z);
+		ImGui::Text("Mouse at %1.2f, %1.2f", mouse.x, mouse.y);
+	}
 }
 
 void CModuleTestAxis::render()
 {
   // Find the entity with name 'the_camera'
-	CHandle h_e_camera = getEntityByName("main_camera");
+	 h_e_camera = getEntityByName("main_camera");
   if (h_e_camera.isValid()) {
     CEntity* e_camera = h_e_camera;
     TCompCamera* c_camera = e_camera->get< TCompCamera >();

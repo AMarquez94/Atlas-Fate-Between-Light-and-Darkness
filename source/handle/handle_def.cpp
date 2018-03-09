@@ -26,6 +26,12 @@ void CHandle::debugInMenu() {
     hm->debugInMenu( *this );
 }
 
+void CHandle::renderDebug() {
+	auto hm = CHandleManager::getByType(type);
+	if (hm)
+		hm->renderDebug(*this);
+}
+
 void CHandle::load(const json& j, TEntityParseContext& ctx) {
   auto hm = CHandleManager::getByType(type);
   if (hm)

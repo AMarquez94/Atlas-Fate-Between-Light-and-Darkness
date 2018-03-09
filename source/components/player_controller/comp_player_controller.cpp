@@ -227,11 +227,11 @@ void TCompPlayerController::IdleState(float dt){
 
 	if (!crouched) {
 		TCompRender *c_my_render = get<TCompRender>();
-		c_my_render->mesh = mesh_states.find("pj_idle")->second;
+		c_my_render->meshes[0].mesh = mesh_states.find("pj_idle")->second;
 	}
 	else {
 		TCompRender *c_my_render = get<TCompRender>();
-		c_my_render->mesh = mesh_states.find("pj_crouch")->second;
+		c_my_render->meshes[0].mesh = mesh_states.find("pj_crouch")->second;
 	}
 
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
@@ -379,7 +379,7 @@ void TCompPlayerController::ShadowMergingEnterState(float dt){
 	// Change the render to the shadow merge mesh, TO REFACTOR
 	TCompRender* t = get<TCompRender>();
 	t->color = VEC4(0, 0, 0, 0);
-	t->mesh = mesh_states.find("pj_shadowmerge")->second;
+	t->meshes[0].mesh = mesh_states.find("pj_shadowmerge")->second;
 
 	// Replace this with an smooth camera interpolation
 	camera_actual = camera_shadowmerge_hor;
@@ -522,7 +522,7 @@ void TCompPlayerController::ShadowMergingEnemyState(float dt){
 	// Change the render to the shadow merge mesh, TO REFACTOR
 	TCompRender* t = get<TCompRender>();
 	t->color = VEC4(0, 0, 0, 0);
-	t->mesh = mesh_states.find("pj_shadowmerge")->second;
+	t->meshes[0].mesh = mesh_states.find("pj_shadowmerge")->second;
 
 	CEntity* e_camera = getEntityByName(camera_shadowmerge_hor);
 	TCompCamera* c_camera = e_camera->get< TCompCamera >();
@@ -582,7 +582,7 @@ void TCompPlayerController::ShadowMergingExitState(float dt){
 void TCompPlayerController::FallingState(float dt){
 
 	TCompRender *c_my_render = get<TCompRender>();
-	c_my_render->mesh = mesh_states.find("pj_fall")->second;
+	c_my_render->meshes[0].mesh = mesh_states.find("pj_fall")->second;
 
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
 
@@ -708,7 +708,7 @@ void TCompPlayerController::movePlayer(const float dt) {
 	currentSpeed = 0;
 
 	if (EngineInput["btRun"].isPressed() && canStandUp()) {	//TODO: Improve? Always raycasting when running
-		c_my_render->mesh = mesh_states.find("pj_run")->second;
+		c_my_render->meshes[0].mesh = mesh_states.find("pj_run")->second;
 		crouched = false;
 		auxStateName = "running";
 		currentSpeed = runSpeedFactor;
@@ -717,24 +717,24 @@ void TCompPlayerController::movePlayer(const float dt) {
 	else if (EngineInput["btSlow"].isPressed()) {
 
 		if (crouched) {
-			c_my_render->mesh = mesh_states.find("pj_crouch")->second;
+			c_my_render->meshes[0].mesh = mesh_states.find("pj_crouch")->second;
 			auxStateName = "crouch";
 			currentSpeed = walkCrouchSpeedFactor;
 		}
 		else {
-			c_my_render->mesh = mesh_states.find("pj_walk")->second;
+			c_my_render->meshes[0].mesh = mesh_states.find("pj_walk")->second;
 			auxStateName = "walking slow";
 			currentSpeed = walkSlowSpeedFactor;
 		}
 	}
 	else if (crouched){
-		c_my_render->mesh = mesh_states.find("pj_crouch")->second;
+		c_my_render->meshes[0].mesh = mesh_states.find("pj_crouch")->second;
 		auxStateName = "crouch";
 		currentSpeed = walkCrouchSpeedFactor;
 		collider->Resize(0.45f);
 	}
 	else{
-		c_my_render->mesh = mesh_states.find("pj_walk")->second;
+		c_my_render->meshes[0].mesh = mesh_states.find("pj_walk")->second;
 		auxStateName = "walking";
 		currentSpeed = walkSpeedFactor;
 		collider->Resize(collider->config.height);
@@ -1074,7 +1074,7 @@ void TCompPlayerController::setPlayerDead()
 
 	TCompRender* t = get<TCompRender>();
 	t->color = VEC4(1, 1, 1, 1);
-	t->mesh = mesh_states.find("pj_idle")->second;
+	t->meshes[0].mesh = mesh_states.find("pj_idle")->second;
 
 	TMsgPlayerDead newMsg;
 	newMsg.h_sender = CHandle(this).getOwner();

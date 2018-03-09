@@ -8,6 +8,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
+#include "render/render_manager.h"
 
 void CModuleEntities::loadListOfManagers(const json& j, std::vector< CHandleManager* > &managers) {
 	managers.clear();
@@ -99,32 +100,8 @@ void CModuleEntities::render()
 
   CTagsManager::get().debugInMenu();
 
-  //static bool is_open = false;
-  //ImGui::Checkbox("ImGui Demo", &is_open);
-  //ImGui::ShowDemoWindow(&is_open);
-
-  // Do the basic render
-  auto om_render = getObjectManager<TCompRender>();
-  om_render->forEach([](TCompRender* c) {
-
-	  TCompTransform* c_transform = c->get<TCompTransform>();
-	  if (!c_transform)
-		  return;
-
-	  cb_object.obj_world = c_transform->asMatrix();
-	  cb_object.obj_color = c->color;
-	  cb_object.updateGPU();
-
-	  int idx = 0;
-	  c->mesh->activate();
-	  for (auto& m : c->materials) {
-		  if (m) {
-			  m->activate();
-			  c->mesh->renderSubMesh(idx);
-		  }
-		  ++idx;
-	  }
-  });
+  CRenderManager::get().renderCategory("default");
+  CRenderManager::get().debugInMenu();
 
   // Change the technique to some debug solid
   auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();

@@ -39,6 +39,8 @@ public:
 	  
   }
 
+  const CVertexDecl* getVertexDecl() const { return vtx_decl; }
+
 public: // Doing it for testing purposes
   
   ID3D11Buffer*      vb = nullptr;

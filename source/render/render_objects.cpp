@@ -185,4 +185,22 @@ void setWorldTransform(MAT44 new_matrix, VEC4 new_color) {
 	cb_object.updateGPU();
 }
 
+void renderMesh(const CRenderMesh* mesh, MAT44 new_matrix, VEC4 color) {
 
+	assert(mesh);
+	auto vdecl = mesh->getVertexDecl();
+	assert(vdecl);
+	const char* tech_name = "solid.tech";
+	if (vdecl->name == "PosNUv")
+		tech_name = "textured.tech";
+	else if (vdecl->name == "PosNUvUv")
+		tech_name = "textured_bk.tech";
+	
+	auto prev_tech = CRenderTechnique::current;
+	auto tech = Resources.get(tech_name)->as<CRenderTechnique>();
+	tech->activate();
+	
+	setWorldTransform(new_matrix, color);
+	mesh->activateAndRender();
+	prev_tech->activate();
+}

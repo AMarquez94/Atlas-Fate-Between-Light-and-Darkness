@@ -3,6 +3,17 @@
 
 void renderLine(VEC3 src, VEC3 dst, VEC4 color);
 
+// ---------------------------------------
+enum RSConfig {
+	RSCFG_DEFAULT
+	, RSCFG_REVERSE_CULLING
+	, RSCFG_CULL_NONE
+	, RSCFG_SHADOWS
+	, RSCFG_WIREFRAME
+	, RSCFG_COUNT
+};
+void activateRSConfig(RSConfig cfg);
+
 // --------------------------------------------
 enum eSamplerType {
 	SAMPLER_WRAP_LINEAR = 0

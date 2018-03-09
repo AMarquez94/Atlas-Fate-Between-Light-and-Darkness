@@ -180,6 +180,13 @@ void CHandleManager::debugInMenu(CHandle who) {
   debugInMenuObj(ed.internal_index);
 }
 
+void CHandleManager::renderDebug(CHandle who) {
+	if (!who.isValid())
+		return;
+	auto& ed = external_to_internal[who.getExternalIndex()];
+	renderDebugObj(ed.internal_index);
+}
+
 void CHandleManager::load(CHandle who, const json& j, TEntityParseContext& ctx) {
   if (!who.isValid())
     return;

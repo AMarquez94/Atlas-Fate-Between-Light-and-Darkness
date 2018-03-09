@@ -42,6 +42,11 @@ class CObjectManager : public CHandleManager
     addr_to_use->debugInMenu();
   }
 
+  void renderDebugObj(uint32_t internal_idx) override {
+	  TObj * addr_to_use = objs + internal_idx;
+	  addr_to_use->renderDebug();
+  }
+
   void loadObj(uint32_t internal_idx, const json& j, TEntityParseContext& ctx) override {
     TObj* addr_to_use = objs + internal_idx;
     addr_to_use->load( j, ctx );

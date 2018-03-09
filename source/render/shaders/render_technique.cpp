@@ -3,6 +3,8 @@
 #include "pixel_shader.h"
 #include "vertex_shader.h"
 
+const CRenderTechnique* CRenderTechnique::current = nullptr;
+
 // ----------------------------------------------
 class CRenderTechniqueResourceClass : public CResourceClass {
 public:
@@ -65,7 +67,7 @@ bool CRenderTechnique::create(const std::string& name, json& j) {
 	// --------------------------------------------
 	vs_file = j.value("vs_file", "data/shaders/shaders.fx");
 	vs_entry_point = j.value("vs_entry_point", "VS");
-	vertex_type = j["vertex_type"];
+	vertex_type = j.value("vertex_type", "");
 	ps_file = j.value("ps_file", vs_file);
 	ps_entry_point = j.value("ps_entry_point", "PS");
 
@@ -74,6 +76,8 @@ bool CRenderTechnique::create(const std::string& name, json& j) {
 	if (!reloadPS())
 		return false;
 
+	category = j.value("category", "default");
+	category_id = getID(category.c_str());
 	setNameAndClass(name, getResourceClassOf<CRenderTechnique>());
 
 	return true;
@@ -87,10 +91,15 @@ void CRenderTechnique::destroy() {
 }
 
 void CRenderTechnique::activate() const {
+	// If I'm the current active tech, no need to reactive myself in DX
+	if (current == this)
+		return;
 	assert(vs);
 	vs->activate();
 	assert(ps);
 	ps->activate();
+	// Save me as the current active technique
+	current = this;
 }
 
 void CRenderTechnique::debugInMenu() {

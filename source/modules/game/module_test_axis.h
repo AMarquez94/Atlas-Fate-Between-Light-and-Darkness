@@ -4,6 +4,8 @@
 
 class CModuleTestAxis : public IModule
 {
+	CHandle h_e_camera;
+
 public:
   CModuleTestAxis(const std::string& aname) : IModule(aname) { }
   bool start() override;

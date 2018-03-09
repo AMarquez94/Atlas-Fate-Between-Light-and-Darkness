@@ -14,6 +14,84 @@ void renderLine(VEC3 src, VEC3 dst, VEC4 color) {
   mesh->activateAndRender();
 }
 
+// -----------------------------------------------
+struct CRasterizers {
+
+	ID3D11RasterizerState *rasterize_states[RSCFG_COUNT];
+	const char*            names[RSCFG_COUNT];
+
+	bool add(const D3D11_RASTERIZER_DESC& desc, RSConfig cfg, const char* name) {
+		// Create the dx obj in the slot 'cfg'
+		HRESULT hr = Render.device->CreateRasterizerState(&desc, &rasterize_states[cfg]);
+		if (FAILED(hr))
+			return false;
+		// Assing the name
+		// setDXName(rasterize_states[cfg], name);
+		// Save also the name for the ui
+		names[cfg] = name;
+		return true;
+	}
+
+	bool create() {
+
+		rasterize_states[RSCFG_DEFAULT] = nullptr;
+		names[RSCFG_DEFAULT] = "default";
+
+		// Depth bias options when rendering the shadows
+		D3D11_RASTERIZER_DESC sdesc = {
+			D3D11_FILL_SOLID, // D3D11_FILL_MODE FillMode;
+			D3D11_CULL_BACK,  // D3D11_CULL_MODE CullMode;
+			FALSE,            // BOOL FrontCounterClockwise;
+			13,               // INT DepthBias;
+			0.0f,             // FLOAT DepthBiasClamp;
+			2.0f,             // FLOAT SlopeScaledDepthBias;
+			TRUE,             // BOOL DepthClipEnable;
+			FALSE,            // BOOL ScissorEnable;
+			FALSE,            // BOOL MultisampleEnable;
+			FALSE,            // BOOL AntialiasedLineEnable;
+		};
+		if (!add(sdesc, RSCFG_SHADOWS, "shadows"))
+			return false;
+
+		// --------------------------------------------------
+		// No culling at all
+		D3D11_RASTERIZER_DESC desc = {
+			D3D11_FILL_SOLID, // D3D11_FILL_MODE FillMode;
+			D3D11_CULL_NONE,  // D3D11_CULL_MODE CullMode;
+			FALSE,            // BOOL FrontCounterClockwise;
+			0,                // INT DepthBias;
+			0.0f,             // FLOAT DepthBiasClamp;
+			0.0,              // FLOAT SlopeScaledDepthBias;
+			TRUE,             // BOOL DepthClipEnable;
+			FALSE,            // BOOL ScissorEnable;
+			FALSE,            // BOOL MultisampleEnable;
+			FALSE,            // BOOL AntialiasedLineEnable;
+		};
+		if (!add(desc, RSCFG_CULL_NONE, "cull_none"))
+			return false;
+
+		// Culling is reversed. Used when rendering the light volumes
+		desc.CullMode = D3D11_CULL_FRONT;
+		if (!add(desc, RSCFG_REVERSE_CULLING, "reverse_culling"))
+			return false;
+
+		// Wireframe and default culling back
+		desc.FillMode = D3D11_FILL_WIREFRAME;
+		desc.CullMode = D3D11_CULL_BACK;
+		if (!add(desc, RSCFG_WIREFRAME, "wireframe"))
+			return false;
+
+		return true;
+	}
+
+	void destroy() {
+		for (int i = 0; i < RSCFG_COUNT; ++i)
+			SAFE_RELEASE(rasterize_states[i]);
+	}
+
+};
+
+
 // ------------------------------------------------------------
 struct CSamplers {
 	ID3D11SamplerState* all_samplers[SAMPLERS_COUNT];
@@ -123,6 +201,7 @@ struct CSamplers {
 
 // -----------------------------------------------
 static CSamplers    samplers;
+static CRasterizers rasterizers;
 
 // Activate just one
 void activateSampler(int slot, eSamplerType sample) {
@@ -134,23 +213,44 @@ void activateAllSamplers() {
 	Render.ctx->PSSetSamplers(0, SAMPLERS_COUNT, samplers.all_samplers);
 }
 
+void activateRSConfig(enum RSConfig cfg) {
+	Render.ctx->RSSetState(rasterizers.rasterize_states[cfg]);
+}
+
+// ---------------------------------------
+RSConfig RSConfigFromString(const std::string& aname) {
+	for (int i = 0; i < RSCFG_COUNT; ++i) {
+		if (rasterizers.names[i] == aname)
+			return RSConfig(i);
+	}
+	fatal("Invalid rsconfig name %s\n", aname.c_str());
+	return RSCFG_DEFAULT;
+}
+
+bool renderInMenu(RSConfig& cfg) {
+	return ImGui::Combo("RSConfig", (int*)&cfg, rasterizers.names, RSCFG_COUNT);
+}
+
 // -----------------------------------------------
 bool createRenderUtils() {
 
 	bool is_ok = true;
 
 	is_ok &= samplers.create();
+	is_ok &= rasterizers.create();
 
 	activateDefaultRenderState();
 	return is_ok;
 }
 
 void destroyRenderUtils() {
+	rasterizers.destroy();
 	samplers.destroy();
 }
 
 void activateDefaultRenderState() {
 	activateAllSamplers();
+	activateRSConfig(RSCFG_DEFAULT);
 }
 
 
