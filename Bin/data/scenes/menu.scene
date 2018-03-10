@@ -5,8 +5,7 @@
       "transform": {},
       "game_manager_controller": {
 		    "player": "The Player"
-      },
-	  "ai_test": {}
+      }
     }
   }
 ]

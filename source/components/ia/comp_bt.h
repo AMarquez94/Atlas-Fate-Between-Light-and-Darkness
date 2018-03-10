@@ -14,6 +14,7 @@ protected:
 	typedef bool (TCompIAController::*BTCondition)(float dt);
 	typedef bool (TCompIAController::*BTAssert)(float dt);
 
+	BTNode *current;
 
 private:
 
@@ -30,7 +31,6 @@ private:
 	std::map<std::string, BTAssert> asserts;
 
 	BTNode *root;
-	BTNode *current;
 
 	BTNode *createNode(const std::string& name);
 	BTNode *findNode(const std::string& name);

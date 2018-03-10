@@ -970,7 +970,7 @@ const bool TCompPlayerController::checkAttack()
 				&& !epos->isInFront(mypos->getPosition())) {
 
 				CAIPatrol * aipatrol = ((CEntity*)handles[i])->get<CAIPatrol>();
-				if (aipatrol->getStateName().compare("stunned") != 0) {
+				if (aipatrol && aipatrol->getStateName().compare("stunned") != 0) {
 					found = true;
 					enemy = handles[i];
 				}
