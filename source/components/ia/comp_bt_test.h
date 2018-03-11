@@ -11,7 +11,15 @@ private:
 
 	void onMsgEntityCreated(const TMsgEntityCreated& msg);
 
+	/* The cpp functions that implements node actions (behaviours) */
+	std::map<std::string, BTAction> actions_test;
+
+	/* The cpp functions that implements conditions */
+	std::map<std::string, BTCondition> conditions_test;
+
 public:
+	void loadActions() override;
+	void loadConditions() override;
 	void load(const json& j, TEntityParseContext& ctx) override;
 	void debugInMenu();
 

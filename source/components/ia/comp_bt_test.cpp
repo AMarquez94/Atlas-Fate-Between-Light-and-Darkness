@@ -15,8 +15,13 @@ void TCompAITest::debugInMenu() {
 
 void TCompAITest::load(const json& j, TEntityParseContext& ctx) {
 
-	std::string rootName, childName, type;
+	std::string rootName, childName, parentName, condition, action, type;
 	BTNode::EType nodeType;
+	BTAction actionNode;
+	BTCondition conditionNode;
+
+	loadActions();
+	loadConditions();
 
 	assert(j.count("createRoot") == 1);
 	if (j.count("createRoot") == 1) {
@@ -25,31 +30,67 @@ void TCompAITest::load(const json& j, TEntityParseContext& ctx) {
 		rootName = j_root.value("rootName", "");
 		assert(j_root.count("type") == 1);
 		type = j_root.value("type", "");
-		if (j_root.count("condition") == 1) {
-
-		}
-		if (j_root.count("action") == 1) {
-
-		}
 		ToUpperCase(type);
 		nodeType = stringToNodeType(type);
 		assert(nodeType != BTNode::EType::FAILURE);
+		
+		if (j_root.count("condition") == 1) {
+			int a = 0;
+		}
+		if (j_root.count("action") == 1) {
+			int a = 0;
+		}
+
 		createRoot(rootName, nodeType, NULL, NULL);
+		int aux = j.count("addChild");
+		if (j.count("addChild") > 0) {
+			auto& j_addChild = j["addChild"];
+			for (auto it = j_addChild.begin(); it != j_addChild.end(); ++it) {
+				assert(it.value().count("parent") > 0);
+				parentName = it.value()["parent"];
+				assert(it.value().count("name") > 0);
+				childName = it.value()["name"];
+				assert(it.value().count("type") > 0);
+				type = it.value()["type"];
+				ToUpperCase(type);
+				nodeType = stringToNodeType(type);
+				assert(nodeType != BTNode::EType::FAILURE);
+				assert(it.value().count("condition") > 0);
+				condition = it.value()["condition"];
+				//ToUpperCase(condition);
+				conditionNode = conditions_initializer[condition];
+				assert(it.value().count("action") > 0);
+				action = it.value()["action"];
+				//ToUpperCase(action);
+				actionNode = actions_initializer[action];
+
+				addChild(parentName, childName, nodeType, conditionNode, actionNode);
+			}
+		}
 	}
-	//createRoot("soldier", BTNode::EType::PRIORITY, nullptr, nullptr);
-	addChild("soldier", "escape", BTNode::EType::ACTION, (BTCondition)&TCompAITest::conditionEscape, (BTAction)&TCompAITest::actionEscape);
-	addChild("soldier", "combat", BTNode::EType::SEQUENCE, nullptr, nullptr);
-	addChild("soldier", "idle", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAITest::actionIdle);
-	addChild("combat", "pursuit", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAITest::actionPursuit);
-	addChild("combat", "shoot", BTNode::EType::SEQUENCE, nullptr, nullptr);
-	addChild("shoot", "shootgrenade", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAITest::actionShootGrenade);
-	addChild("shoot", "shootpistol", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAITest::actionShootPistol);
 }
 
 void TCompAITest::onMsgEntityCreated(const TMsgEntityCreated & msg)
 {
 	TCompName *tName = get<TCompName>();
 	name = tName->getName();
+}
+
+void TCompAITest::loadActions() {
+	actions_initializer.clear();
+
+	actions_initializer["actionIdle"] = (BTAction)&TCompAITest::actionIdle;
+	actions_initializer["actionEscape"] = (BTAction)&TCompAITest::actionEscape;
+	actions_initializer["actionShoot"] = (BTAction)&TCompAITest::actionShoot;
+	actions_initializer["actionShootGrenade"] = (BTAction)&TCompAITest::actionShootGrenade;
+	actions_initializer["actionShootPistol"] = (BTAction)&TCompAITest::actionShootPistol;
+	actions_initializer["actionPursuit"] = (BTAction)&TCompAITest::actionPursuit;
+}
+
+void TCompAITest::loadConditions() {
+	conditions_initializer.clear();
+
+	conditions_initializer["conditionEscape"] = (BTCondition)&TCompAITest::conditionEscape;
 }
 
 int TCompAITest::actionIdle(float dt)
@@ -90,7 +131,7 @@ int TCompAITest::actionPursuit(float dt)
 	return BTNode::ERes::LEAVE;
 }
 
-bool TCompAITest::conditionEscape(float dt)
+bool TCompAITest::conditionEscape(float dt) 
 {
 	dbg("%s: testing escape\n", name.c_str());
 	return rand() % 2;

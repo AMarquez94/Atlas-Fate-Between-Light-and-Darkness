@@ -13,6 +13,10 @@ protected:
 	typedef BTNode::ERes(TCompIAController::*BTAction)(float dt);
 	typedef bool (TCompIAController::*BTCondition)(float dt);
 
+	std::map<std::string, BTAction> actions_initializer;
+	std::map<std::string, BTCondition> conditions_initializer;
+
+
 
 private:
 
@@ -22,8 +26,10 @@ private:
 	/* The cpp functions that implements node actions (behaviours) */
 	std::map<std::string, BTAction> actions;
 
+
 	/* The cpp functions that implements conditions */
 	std::map<std::string, BTCondition> conditions;
+
 
 	BTNode *root;
 	BTNode *current;
@@ -51,4 +57,6 @@ public:
 	void update(float dt);
 
 	BTNode::EType stringToNodeType(std::string&);
+	virtual void loadActions() { }
+	virtual void loadConditions() { }
 };

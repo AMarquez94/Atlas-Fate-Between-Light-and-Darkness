@@ -20,55 +20,53 @@
         },
         "addChild": [
           {
-            "child 1": {
-              "parent": "soldier",
-              "name": "escape",
-              "type": "action",
-              "condition": "conditionEscape",
-              "action": "actionEscape"
-            },
-            "child 2": {
-              "parent": "soldier",
-              "name": "combat",
-              "type": "sequence",
-              "condition": "nullptr",
-              "action": ""
-            },
-            "child 3": {
-              "parent": "soldier",
-              "name": "idle",
-              "type": "action",
-              "condition": "nullptr",
-              "action": "actionIdle"
-            },
-            "child 4": {
-              "parent": "combat",
-              "name": "pursuit",
-              "type": "action",
-              "condition": "nullptr",
-              "action": "actionPursuit"
-            },
-            "child 5": {
-              "parent": "combat",
-              "name": "shoot",
-              "type": "sequence",
-              "condition": "nullptr",
-              "action": "nullptr"
-            },
-            "child 6": {
-              "parent": "shoot",
-              "name": "shootGrenade",
-              "type": "action",
-              "condition": "nullptr",
-              "action": "actionShootGrenade"
-            },
-            "child 7": {
-              "parent": "shoot",
-              "name": "shootPistol",
-              "type": "action",
-              "condition": "nullptr",
-              "action": "actionShootPistol"
-            }
+            "parent": "soldier",
+            "name": "escape",
+            "type": "action",
+            "condition": "conditionEscape",
+            "action": "actionEscape"
+          },
+          {
+            "parent": "soldier",
+            "name": "combat",
+            "type": "sequence",
+            "condition": "nullptr",
+            "action": ""
+          },
+          {
+            "parent": "soldier",
+            "name": "idle",
+            "type": "action",
+            "condition": "nullptr",
+            "action": "actionIdle"
+          },
+          {
+            "parent": "combat",
+            "name": "pursuit",
+            "type": "action",
+            "condition": "nullptr",
+            "action": "actionPursuit"
+          },
+          {
+            "parent": "combat",
+            "name": "shoot",
+            "type": "sequence",
+            "condition": "nullptr",
+            "action": "nullptr"
+          },
+          {
+            "parent": "shoot",
+            "name": "shootGrenade",
+            "type": "action",
+            "condition": "nullptr",
+            "action": "actionShootGrenade"
+          },
+          {
+            "parent": "shoot",
+            "name": "shootPistol",
+            "type": "action",
+            "condition": "nullptr",
+            "action": "actionShootPistol"
           }
         ]
       }
