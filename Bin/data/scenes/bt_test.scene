@@ -16,7 +16,7 @@
           "rootName": "soldier",
           "type": "priority",
           "condition": "nullptr",
-          "action": "nullptr"
+          "action": ""
         },
         "addChild": [
           {

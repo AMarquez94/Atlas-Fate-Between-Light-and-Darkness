@@ -27,22 +27,35 @@ void TCompAITest::load(const json& j, TEntityParseContext& ctx) {
 	if (j.count("createRoot") == 1) {
 		auto& j_root = j["createRoot"];
 		assert(j_root.count("rootName") == 1);
-		rootName = j_root.value("rootName", "");
+		rootName = j_root.value("rootName", "defaultValue");
 		assert(j_root.count("type") == 1);
-		type = j_root.value("type", "");
+		type = j_root.value("type", "defaultValue");
 		ToUpperCase(type);
 		nodeType = stringToNodeType(type);
 		assert(nodeType != BTNode::EType::FAILURE);
 		
+
 		if (j_root.count("condition") == 1) {
-			int a = 0;
+			condition = j_root.value("condition", "defaultValue");
+			if (conditions_initializer.find(condition) == conditions_initializer.end()) {
+				conditionNode = NULL;
+			}
+			else {
+				conditionNode = conditions_initializer[condition];
+			}
 		}
 		if (j_root.count("action") == 1) {
-			int a = 0;
+			action = j_root.value("action", "defaultValue");
+			if (actions_initializer.find(action) == actions_initializer.end()) {
+				actionNode = NULL;
+			}
+			else {
+				actionNode = actions_initializer[action];
+			}
 		}
 
-		createRoot(rootName, nodeType, NULL, NULL);
-		int aux = j.count("addChild");
+		createRoot(rootName, nodeType, conditionNode, actionNode);
+		//int aux = j.count("addChild");
 		if (j.count("addChild") > 0) {
 			auto& j_addChild = j["addChild"];
 			for (auto it = j_addChild.begin(); it != j_addChild.end(); ++it) {
@@ -58,12 +71,21 @@ void TCompAITest::load(const json& j, TEntityParseContext& ctx) {
 				assert(it.value().count("condition") > 0);
 				condition = it.value()["condition"];
 				//ToUpperCase(condition);
-				conditionNode = conditions_initializer[condition];
+				if (conditions_initializer.find(condition) == conditions_initializer.end()) {
+					conditionNode = NULL;
+				}
+				else {
+					conditionNode = conditions_initializer[condition];
+				}
 				assert(it.value().count("action") > 0);
 				action = it.value()["action"];
 				//ToUpperCase(action);
-				actionNode = actions_initializer[action];
-
+				if (actions_initializer.find(action) == actions_initializer.end()) {
+					actionNode = NULL;
+				}
+				else {
+					actionNode = actions_initializer[action];
+				}
 				addChild(parentName, childName, nodeType, conditionNode, actionNode);
 			}
 		}
