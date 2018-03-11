@@ -22,6 +22,8 @@ void TCompAIPatrol::debugInMenu() {
 	ImGui::Text("Suspect Level:");
 	ImGui::SameLine();
 	ImGui::ProgressBar(suspectO_Meter);
+
+	ImGui::Text("Last player pos: %f, %f, %f", lastPlayerKnownPos.x, lastPlayerKnownPos.y, lastPlayerKnownPos.z);
 }
 
 void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
@@ -39,13 +41,13 @@ void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 	addChild("manageDoPatrol", "managePlayerSeen", BTNode::EType::PRIORITY, (BTCondition)&TCompAIPatrol::conditionPlayerSeen, nullptr, nullptr);
 	addChild("manageDoPatrol", "managePlayerWasSeen", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPatrol::conditionPlayerWasSeen, nullptr, nullptr);
 	addChild("manageDoPatrol", "managePatrolSeen", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPatrol::conditionPatrolSeen, nullptr, nullptr);
-	addChild("manageDoPatrol", "managePatrolWasSeen", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPatrol::conditionPatrolWasSeen, nullptr, nullptr);
-	addChild("manageDoPatrol", "goToWpt", BTNode::EType::ACTION, (BTCondition)&TCompAIPatrol::conditionGoToWpt, (BTAction)&TCompAIPatrol::actionGoToWpt, (BTAssert)&TCompAIPatrol::assertGoToWpt);
-	addChild("manageDoPatrol", "waitInWpt", BTNode::EType::ACTION, (BTCondition)&TCompAIPatrol::conditionWaitInWpt, (BTAction)&TCompAIPatrol::actionWaitInWpt, (BTAssert)&TCompAIPatrol::assertWaitInWpt);
+	addChild("manageDoPatrol", "goToWpt", BTNode::EType::ACTION, (BTCondition)&TCompAIPatrol::conditionGoToWpt, (BTAction)&TCompAIPatrol::actionGoToWpt, (BTAssert)&TCompAIPatrol::assertPlayerAndPatrolNotInFov);
+	addChild("manageDoPatrol", "waitInWpt", BTNode::EType::ACTION, (BTCondition)&TCompAIPatrol::conditionWaitInWpt, (BTAction)&TCompAIPatrol::actionWaitInWpt, (BTAssert)&TCompAIPatrol::assertPlayerAndPatrolNotInFov);
 	addChild("manageDoPatrol", "nextWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionNextWpt, nullptr);
 
 	addChild("managePlayerSeen", "manageChase", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPatrol::conditionChase, nullptr, nullptr);
 	addChild("managePlayerSeen", "suspect", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionSuspect, nullptr);
+	addChild("manageChase", "markPlayerAsSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionMarkPlayerAsSeen , nullptr);
 	addChild("manageChase", "shootInhibitor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionShootInhibitor, nullptr);
 	addChild("manageChase", "beginAlertChase", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionBeginAlert, nullptr);
 	addChild("manageChase", "manageGoingToAttack", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
@@ -55,19 +57,23 @@ void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 	addChild("managePlayerAttacked", "endAlertAttacked", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionEndAlert, nullptr);
 	addChild("managePlayerAttacked", "closestWptAttacked", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionClosestWpt, nullptr);
 
+	addChild("managePlayerWasSeen", "resetPlayerWasSeenVariables", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionResetPlayerWasSeenVariables, nullptr);
 	addChild("managePlayerWasSeen", "goToPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionGoToPlayerLastPos, (BTAssert)&TCompAIPatrol::assertPlayerNotInFov);
 	addChild("managePlayerWasSeen", "lookForPlayerSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionLookForPlayer, (BTAssert)&TCompAIPatrol::assertPlayerNotInFov);
 	addChild("managePlayerWasSeen", "closestWptPlayerSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionClosestWpt, nullptr);
 
-	addChild("managePatrolSeen", "markPatrolAsSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionMarkPatrolAsSeen, nullptr);
-	addChild("managePatrolSeen", "goToPatrol", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionGoToPatrol, (BTAssert)&TCompAIPatrol::assertPlayerNotInFovAndPatrolInFov);
-	addChild("managePatrolSeen", "fixPatrol", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionFixPatrol, nullptr);
-	addChild("managePatrolSeen", "beginAlertPatrolSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionBeginAlert, nullptr);
-	addChild("managePatrolSeen", "closestWptPatrolSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionClosestWpt, nullptr);
+	addChild("managePatrolSeen", "goToPatrol", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionGoToPatrol, (BTAssert)&TCompAIPatrol::assertPlayerNotInFov);
+	addChild("managePatrolSeen", "manageInPatrolPos", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
 
-	addChild("managePatrolWasSeen", "goToPatrolPrevPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionGoToPatrolPrevPos, (BTAssert)&TCompAIPatrol::assertPlayerAndPatrolNotInFov);
-	addChild("managePatrolWasSeen", "lookForPlayerPatrolWasSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionLookForPlayer, (BTAssert)&TCompAIPatrol::assertPlayerAndPatrolNotInFov);
-	addChild("managePatrolWasSeen", "closestWptPatrolWasSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionClosestWpt, nullptr);
+	addChild("manageInPatrolPos", "manageFixPatrol", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPatrol::conditionFixPatrol, nullptr, nullptr);
+	addChild("manageFixPatrol", "fixPatrol", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionFixPatrol, nullptr);
+	addChild("manageFixPatrol", "beginAlertPatrolSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionBeginAlert, nullptr);
+	addChild("manageFixPatrol", "closestWptPatrolSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionClosestWpt, nullptr);
+
+	addChild("manageInPatrolPos", "managePatrolLost", BTNode::EType::SEQUENCE, nullptr, nullptr, nullptr);
+	addChild("managePatrolLost", "markPatrolAsLost", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionMarkPatrolAsLost, nullptr);
+	addChild("managePatrolLost", "lookForPlayerPatrolWasSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionLookForPlayer, (BTAssert)&TCompAIPatrol::assertPlayerAndPatrolNotInFov);
+	addChild("managePatrolLost", "closestWptPatrolWasSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionClosestWpt, nullptr);
 
 	if (j.count("waypoints") > 0) {
 		auto& j_waypoints = j["waypoints"];
@@ -106,26 +112,122 @@ void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
 	}
 }
 
+void TCompAIPatrol::onMsgPlayerDead(const TMsgPlayerDead& msg) {
+
+	alarmEnded = false;
+	if (!isPatrolStunned()) {
+
+		/* We reset the timer if we are not stunned*/
+		current = nullptr;
+	}
+}
+
+void TCompAIPatrol::onMsgPatrolStunned(const TMsgPatrolStunned & msg)
+{
+	hasBeenStunned = true;
+
+	TCompRender *cRender = get<TCompRender>();
+	cRender->color = VEC4(1, 1, 1, 1);
+	TCompTransform *mypos = get<TCompTransform>();
+	float y, p, r;
+	mypos->getYawPitchRoll(&y, &p, &r);
+	p = p + deg2rad(89.f);
+	mypos->setYawPitchRoll(y, p, r);
+	turnOffLight();
+
+	TCompGroup* cGroup = get<TCompGroup>();
+	CEntity* eCone = cGroup->getHandleByName("Cone of Vision");
+	TCompRender * coneRender = eCone->get<TCompRender>();
+	coneRender->visible = false;
+
+	lastPlayerKnownPos = VEC3::Zero;
+
+	/* Tell the other patrols I am stunned */
+	CEngine::get().getIA().patrolSB.stunnedPatrols.emplace_back(CHandle(this).getOwner());
+
+	current = nullptr;
+}
+
+void TCompAIPatrol::onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged & msg)
+{
+	hasBeenShadowMerged = true;
+
+	TCompRender *cRender = get<TCompRender>();
+	cRender->color = VEC4(0, 0, 0, 0);
+
+	/* Stop telling the other patrols that I am stunned */
+	bool found = false;
+	std::vector <CHandle> &stunnedPatrols = CEngine::get().getIA().patrolSB.stunnedPatrols;
+	for (int i = 0; i <stunnedPatrols.size() && !found; i++) {
+		if (stunnedPatrols[i] == CHandle(this).getOwner()) {
+			found = true;
+			stunnedPatrols.erase(stunnedPatrols.begin() + i);
+		}
+	}
+
+	current = nullptr;
+}
+
+void TCompAIPatrol::onMsgPatrolFixed(const TMsgPatrolFixed & msg)
+{
+	if (isPatrolStunned()) {
+
+		hasBeenFixed = true;
+
+		TCompTransform *mypos = get<TCompTransform>();
+		float y, p, r;
+		mypos->getYawPitchRoll(&y, &p, &r);
+		p = p - deg2rad(89.f);
+		mypos->setYawPitchRoll(y, p, r);
+		turnOnLight();
+
+		TCompGroup* cGroup = get<TCompGroup>();
+		CEntity* eCone = cGroup->getHandleByName("Cone of Vision");
+		TCompRender * coneRender = eCone->get<TCompRender>();
+		coneRender->visible = true;
+
+		/* Stop telling the other patrols that I am stunned */
+		bool found = false;
+		std::vector <CHandle> &stunnedPatrols = CEngine::get().getIA().patrolSB.stunnedPatrols;
+		for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
+			if (stunnedPatrols[i] == CHandle(this).getOwner()) {
+				found = true;
+				stunnedPatrols.erase(stunnedPatrols.begin() + i);
+			}
+		}
+
+		current = nullptr;
+	}
+}
+
 void TCompAIPatrol::registerMsgs()
 {
 	DECL_MSG(TCompAIPatrol, TMsgEntityCreated, onMsgEntityCreated);
+	DECL_MSG(TCompAIPatrol, TMsgPlayerDead, onMsgPlayerDead);
+	DECL_MSG(TCompAIPatrol, TMsgPatrolStunned, onMsgPatrolStunned);
+	DECL_MSG(TCompAIPatrol, TMsgPatrolShadowMerged, onMsgPatrolShadowMerged);
+	DECL_MSG(TCompAIPatrol, TMsgPatrolFixed, onMsgPatrolFixed);
 }
 
 /* ACTIONS */
 
 BTNode::ERes TCompAIPatrol::actionShadowMerged(float dt)
 {
-	return BTNode::ERes();
+	/* Destroy the entity */
+	CHandle(this).getOwner().destroy();
+	return BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIPatrol::actionStunned(float dt)
 {
-	return BTNode::ERes();
+	return BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIPatrol::actionFixed(float dt)
 {
-	return BTNode::ERes();
+	hasBeenStunned = false;
+	hasBeenFixed = false;
+	return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIPatrol::actionBeginAlert(float dt)
@@ -159,6 +261,8 @@ BTNode::ERes TCompAIPatrol::actionEndAlert(float dt)
 	suspectO_Meter = 0.f;
 	TCompRender *cRender = get<TCompRender>();
 	cRender->color = VEC4(1, 1, 1, 1);
+	lastPlayerKnownPos = VEC3::Zero;
+	alarmEnded = true;
 	return BTNode::ERes::LEAVE;
 }
 
@@ -236,6 +340,14 @@ BTNode::ERes TCompAIPatrol::actionSuspect(float dt)
 	}
 }
 
+BTNode::ERes TCompAIPatrol::actionMarkPlayerAsSeen(float dt)
+{
+	CEntity *player = (CEntity *)getEntityByName(entityToChase);
+	TCompTransform * ppos = player->get<TCompTransform>();
+	lastPlayerKnownPos = ppos->getPosition();
+	return BTNode::ERes::LEAVE;
+}
+
 BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 {
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
@@ -257,6 +369,8 @@ BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
 	TCompTransform *mypos = get<TCompTransform>();
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
+
+	isStunnedPatrolInFov();
 
 	if (lastPlayerKnownPos != VEC3::Zero) {
 
@@ -297,34 +411,122 @@ BTNode::ERes TCompAIPatrol::actionAttack(float dt)
 	return BTNode::ERes::LEAVE;
 }
 
+BTNode::ERes TCompAIPatrol::actionResetPlayerWasSeenVariables(float dt)
+{
+	amountRotated = 0.f;
+	return BTNode::ERes::LEAVE;
+}
+
 BTNode::ERes TCompAIPatrol::actionGoToPlayerLastPos(float dt)
 {
-	return BTNode::ERes();
+	TCompTransform *mypos = get<TCompTransform>();
+	CEntity *player = (CEntity *)getEntityByName(entityToChase);
+	TCompTransform *ppos = player->get<TCompTransform>();
+	rotateTowardsVec(lastPlayerKnownPos, dt);
+
+	isStunnedPatrolInFov();
+
+	VEC3 vp = mypos->getPosition();
+
+	if (VEC3::Distance(lastPlayerKnownPos, vp) < speed * dt) {
+		mypos->setPosition(lastPlayerKnownPos);
+		lastPlayerKnownPos = VEC3::Zero;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		VEC3 vfwd = mypos->getFront();
+		vfwd.Normalize();
+		vp = vp + speed * dt * vfwd;
+		mypos->setPosition(vp);
+		return BTNode::ERes::STAY;
+	}
 }
 
 BTNode::ERes TCompAIPatrol::actionLookForPlayer(float dt)
 {
-	return BTNode::ERes();
-}
+	TCompTransform *mypos = get<TCompTransform>();
+	CEntity *player = (CEntity *)getEntityByName(entityToChase);
+	TCompTransform *ppos = player->get<TCompTransform>();
 
-BTNode::ERes TCompAIPatrol::actionMarkPatrolAsSeen(float dt)
-{
-	return BTNode::ERes();
+	isStunnedPatrolInFov();
+
+	if (amountRotated >= maxRotationSeekingPlayer * 3) {
+		suspectO_Meter = 0.f;
+		TCompRender * cRender = get<TCompRender>();
+		cRender->color = VEC4(1, 1, 1, 1);
+		amountRotated = 0.f;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+
+		float y, p, r;
+		mypos->getYawPitchRoll(&y, &p, &r);
+
+		amountRotated += rotationSpeed * dt;
+
+		if (amountRotated < maxRotationSeekingPlayer) {
+			if (isLastPlayerKnownDirLeft)
+			{
+				y += rotationSpeed * dt;
+			}
+			else
+			{
+				y -= rotationSpeed * dt;
+			}
+		}
+		else {
+			if (isLastPlayerKnownDirLeft)
+			{
+				y -= rotationSpeed * dt;
+			}
+			else
+			{
+				y += rotationSpeed * dt;
+			}
+		}
+		mypos->setYawPitchRoll(y, p, r);
+
+		return BTNode::ERes::STAY;
+	}
 }
 
 BTNode::ERes TCompAIPatrol::actionGoToPatrol(float dt)
 {
-	return BTNode::ERes();
+	TCompTransform *mypos = get<TCompTransform>();
+	rotateTowardsVec(lastStunnedPatrolKnownPos, dt);
+
+	VEC3 vp = mypos->getPosition();
+
+	if (VEC3::Distance(vp, lastStunnedPatrolKnownPos) < distToAttack + 1.f) {
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		VEC3 vfwd = mypos->getFront();
+		vfwd.Normalize();
+		vp = vp + speed * dt *vfwd;
+		mypos->setPosition(vp);
+		return BTNode::ERes::STAY;
+	}
 }
 
 BTNode::ERes TCompAIPatrol::actionFixPatrol(float dt)
 {
-	return BTNode::ERes();
+	CHandle hPatrol = getPatrolInPos(lastStunnedPatrolKnownPos);
+	if (hPatrol.isValid()) {
+		CEntity* eStunnedPatrol = hPatrol;
+		TMsgPatrolFixed msg;
+		msg.h_sender = CHandle(this).getOwner();
+		eStunnedPatrol->sendMsg(msg);
+		lastStunnedPatrolKnownPos = VEC3::Zero;
+	}
+	
+	return BTNode::ERes::LEAVE;
 }
 
-BTNode::ERes TCompAIPatrol::actionGoToPatrolPrevPos(float dt)
+BTNode::ERes TCompAIPatrol::actionMarkPatrolAsLost(float dt)
 {
-	return BTNode::ERes();
+	lastStunnedPatrolKnownPos = VEC3::Zero;
+	return BTNode::ERes::LEAVE;
 }
 
 
@@ -332,22 +534,22 @@ BTNode::ERes TCompAIPatrol::actionGoToPatrolPrevPos(float dt)
 
 bool TCompAIPatrol::conditionManageStun(float dt)
 {
-	return false;
+	return hasBeenStunned;
 }
 
 bool TCompAIPatrol::conditionEndAlert(float dt)
 {
-	return false;
+	return !alarmEnded;
 }
 
 bool TCompAIPatrol::conditionShadowMerged(float dt)
 {
-	return false;
+	return hasBeenShadowMerged;
 }
 
 bool TCompAIPatrol::conditionFixed(float dt)
 {
-	return false;
+	return hasBeenFixed;
 }
 
 bool TCompAIPatrol::conditionPlayerSeen(float dt)
@@ -357,17 +559,17 @@ bool TCompAIPatrol::conditionPlayerSeen(float dt)
 
 bool TCompAIPatrol::conditionPlayerWasSeen(float dt)
 {
-	return false;
+	return lastPlayerKnownPos != VEC3::Zero;
 }
 
 bool TCompAIPatrol::conditionPatrolSeen(float dt)
 {
-	return false;
+	return isStunnedPatrolInFov() || lastStunnedPatrolKnownPos != VEC3::Zero;
 }
 
-bool TCompAIPatrol::conditionPatrolWasSeen(float dt)
+bool TCompAIPatrol::conditionFixPatrol(float dt)
 {
-	return false;
+	return isStunnedPatrolInPos(lastStunnedPatrolKnownPos);
 }
 
 bool TCompAIPatrol::conditionGoToWpt(float dt)
@@ -399,34 +601,19 @@ bool TCompAIPatrol::conditionPlayerAttacked(float dt)
 
 /* ASSERTS */
 
-bool TCompAIPatrol::assertGoToWpt(float dt)
-{
-	return !isPlayerInFov();
-}
-
-bool TCompAIPatrol::assertWaitInWpt(float dt)
-{
-	return !isPlayerInFov() /* && !isPatrolInFov() */;
-}
-
 bool TCompAIPatrol::assertPlayerInFov(float dt)
 {
-	return false;
+	return isPlayerInFov();
 }
 
 bool TCompAIPatrol::assertPlayerNotInFov(float dt)
 {
-	return false;
-}
-
-bool TCompAIPatrol::assertPlayerNotInFovAndPatrolInFov(float dt)
-{
-	return false;
+	return !isPlayerInFov();
 }
 
 bool TCompAIPatrol::assertPlayerAndPatrolNotInFov(float dt)
 {
-	return false;
+	return !isPlayerInFov() && !isStunnedPatrolInFov();
 }
 
 /* AUX FUNCTIONS */
@@ -514,4 +701,67 @@ void TCompAIPatrol::turnOffLight() {
 	CEntity* eCone = cGroup->getHandleByName("Cone of Light");
 	TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
 	cConeController->turnOffLight();
+}
+
+bool TCompAIPatrol::isStunnedPatrolInFov()
+{
+	std::vector <CHandle> &stunnedPatrols = CEngine::get().getIA().patrolSB.stunnedPatrols;
+
+	bool found = false;
+
+	if (stunnedPatrols.size() > 0) {
+		TCompTransform *mypos = get<TCompTransform>();
+		for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
+			TCompTransform* stunnedPatrol = ((CEntity*)stunnedPatrols[i])->get<TCompTransform>();
+			if (mypos->isInFov(stunnedPatrol->getPosition(), fov)
+				&& VEC3::Distance(mypos->getPosition(), stunnedPatrol->getPosition()) < maxChaseDistance
+				&& !isEntityHidden(stunnedPatrols[i])) {
+				found = true;
+				lastStunnedPatrolKnownPos = stunnedPatrol->getPosition();
+			}
+		}
+	}
+
+	return found;
+}
+
+
+bool TCompAIPatrol::isStunnedPatrolInPos(VEC3 lastPos)
+{
+	std::vector <CHandle> &stunnedPatrols = CEngine::get().getIA().patrolSB.stunnedPatrols;
+
+	bool found = false;
+
+	if (stunnedPatrols.size() > 0) {
+		TCompTransform *mypos = get<TCompTransform>();
+		for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
+			TCompTransform* stunnedPatrol = ((CEntity*)stunnedPatrols[i])->get<TCompTransform>();
+			if (stunnedPatrol->getPosition() == lastPos) {
+				found = true;
+			}
+		}
+	}
+
+	return found;
+}
+
+CHandle TCompAIPatrol::getPatrolInPos(VEC3 lastPos)
+{
+	std::vector <CHandle> &stunnedPatrols = CEngine::get().getIA().patrolSB.stunnedPatrols;
+
+	bool found = false;
+	CHandle h_stunnedPatrol;
+
+	if (stunnedPatrols.size() > 0) {
+		TCompTransform *mypos = get <TCompTransform>();
+		for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
+			TCompTransform* stunnedPatrol = ((CEntity*)stunnedPatrols[i])->get<TCompTransform>();
+			if (stunnedPatrol->getPosition() == lastPos) {
+				found = true;
+				h_stunnedPatrol = stunnedPatrols[i];
+			}
+		}
+	}
+
+	return h_stunnedPatrol;
 }

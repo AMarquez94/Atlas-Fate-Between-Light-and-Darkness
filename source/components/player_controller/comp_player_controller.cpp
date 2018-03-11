@@ -10,7 +10,7 @@
 #include "render/render_objects.h"
 #include "components/comp_camera.h"
 #include "components/comp_tags.h"
-#include "components/ia/ai_patrol.h"
+#include "components/ia/comp_bt_patrol.h"
 #include "components/physics/comp_collider.h"
 #include "components/comp_name.h"
 #include "windows/app.h"
@@ -969,8 +969,8 @@ const bool TCompPlayerController::checkAttack()
 			if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < distToAttack
 				&& !epos->isInFront(mypos->getPosition())) {
 
-				CAIPatrol * aipatrol = ((CEntity*)handles[i])->get<CAIPatrol>();
-				if (aipatrol && aipatrol->getStateName().compare("stunned") != 0) {
+				TCompAIPatrol * aipatrol = ((CEntity*)handles[i])->get<TCompAIPatrol>();
+				if (aipatrol && !aipatrol->isPatrolStunned()) {
 					found = true;
 					enemy = handles[i];
 				}
@@ -1016,8 +1016,8 @@ CHandle TCompPlayerController::checkTouchingStunnedEnemy()
 		if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < distToSM
 			&& mypos->isInFront(epos->getPosition())) {
 
-			CAIPatrol * aipatrol = ((CEntity*)handles[i])->get<CAIPatrol>();
-			if (aipatrol->getStateName().compare("stunned") == 0) {
+			TCompAIPatrol * aipatrol = ((CEntity*)handles[i])->get<TCompAIPatrol>();
+			if (aipatrol->isPatrolStunned()) {
 				found = true;
 				enemy = handles[i];
 			}

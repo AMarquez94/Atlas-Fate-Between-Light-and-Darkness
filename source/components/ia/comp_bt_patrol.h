@@ -17,7 +17,7 @@ private:
 	std::vector<Waypoint> _waypoints;
 	int currentWaypoint;
 
-	float speed = 5.5f;
+	float speed = 3.5f;
 	float rotationSpeedDeg = 90.0f;
 	float rotationSpeed;
 	std::string entityToChase = "The Player";
@@ -37,6 +37,10 @@ private:
 	VEC3 lastPlayerKnownPos = VEC3::Zero;
 	VEC3 lastStunnedPatrolKnownPos = VEC3::Zero;
 	bool startLightsOn = false;
+	bool alarmEnded = true;
+	bool hasBeenStunned = false;
+	bool hasBeenShadowMerged = false;
+	bool hasBeenFixed = false;
 
 	std::string validState = "";
 
@@ -46,6 +50,10 @@ private:
 	DECL_SIBLING_ACCESS();
 
 	void onMsgEntityCreated(const TMsgEntityCreated& msg);
+	void onMsgPlayerDead(const TMsgPlayerDead& msg);
+	void onMsgPatrolStunned(const TMsgPatrolStunned& msg);
+	void onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged& msg);
+	void onMsgPatrolFixed(const TMsgPatrolFixed& msg);
 
 	/* Aux functions */
 	const Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }
@@ -55,6 +63,9 @@ private:
 	bool isEntityHidden(CHandle hEntity);
 	void turnOnLight();
 	void turnOffLight();
+	bool isStunnedPatrolInFov();
+	bool isStunnedPatrolInPos(VEC3 lastPos);
+	CHandle getPatrolInPos(VEC3 lastPos);
 
 public:
 	void load(const json& j, TEntityParseContext& ctx) override;
@@ -70,15 +81,16 @@ public:
 	BTNode::ERes actionWaitInWpt(float dt);
 	BTNode::ERes actionNextWpt(float dt);
 	BTNode::ERes actionSuspect(float dt);
+	BTNode::ERes actionMarkPlayerAsSeen(float dt);
 	BTNode::ERes actionShootInhibitor(float dt);
 	BTNode::ERes actionChasePlayer(float dt);
 	BTNode::ERes actionAttack(float dt);
+	BTNode::ERes actionResetPlayerWasSeenVariables(float dt);
 	BTNode::ERes actionGoToPlayerLastPos(float dt);
 	BTNode::ERes actionLookForPlayer(float dt);
-	BTNode::ERes actionMarkPatrolAsSeen(float dt);
 	BTNode::ERes actionGoToPatrol(float dt);
 	BTNode::ERes actionFixPatrol(float dt);
-	BTNode::ERes actionGoToPatrolPrevPos(float dt);
+	BTNode::ERes actionMarkPatrolAsLost(float dt);
 
 	bool conditionManageStun(float dt);
 	bool conditionEndAlert(float dt);
@@ -87,18 +99,17 @@ public:
 	bool conditionPlayerSeen(float dt);
 	bool conditionPlayerWasSeen(float dt);
 	bool conditionPatrolSeen(float dt);
-	bool conditionPatrolWasSeen(float dt);
+	bool conditionFixPatrol(float dt);
 	bool conditionGoToWpt(float dt);
 	bool conditionWaitInWpt(float dt);
 	bool conditionChase(float dt);
 	bool conditionPlayerAttacked(float dt);
 
-	bool assertGoToWpt(float dt);
-	bool assertWaitInWpt(float dt);
 	bool assertPlayerInFov(float dt);
 	bool assertPlayerNotInFov(float dt);
-	bool assertPlayerNotInFovAndPatrolInFov(float dt);
 	bool assertPlayerAndPatrolNotInFov(float dt);
+
+	bool isPatrolStunned() { return current && current->getName().compare("stunned") == 0; }
 
 	static void registerMsgs();
 };
