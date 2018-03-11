@@ -14,6 +14,7 @@
 #include "entity/entity_parser.h"
 #include "components/comp_tags.h"
 #include "render/render_manager.h"
+#include "input/devices/mouse.h"
 
 CCamera camera;
 
@@ -79,6 +80,10 @@ bool CModuleTestAxis::start()
 	  CHandle h_e(e);
 	  h_e.sendMsg(msg);
   });
+
+  Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+  mouse->setLockMouse();
+  ShowCursor(false);
 
   return true;
 }
