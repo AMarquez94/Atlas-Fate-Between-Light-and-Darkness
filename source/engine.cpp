@@ -22,6 +22,7 @@ CEngine::CEngine()
 	, _module_input("input")
 	, _module_physics("physics")
 	, _module_cameras("cameras")
+	, _module_fsm("fsm")
 {}
 
 bool CEngine::start() {

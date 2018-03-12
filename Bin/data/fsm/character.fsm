@@ -1,0 +1,107 @@
+{
+	"initial_state" : "idle",
+	"states" : [
+		{
+			"name" : "idle",
+			"type" : "AnimationState",
+			"animation" : "idle"
+		},
+		{
+			"name" : "walk",
+			"type" : "AnimationState",
+			"animation" : "walk"
+		},
+		{
+			"name" : "jump",
+			"type" : "JumpState"
+		},
+		{
+			"name" : "hit",
+			"type" : "HitState"
+		}
+	],
+	"transitions" : [
+		{
+			"type" : "VariableTransition",
+			"source" : "idle",
+			"target" : "jump",
+			"variable_name" : "jump",
+			"variable_type" : "bool",
+			"variable_value" : true,
+			"variable_op" : "equal"
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "walk",
+			"target" : "jump",
+			"variable_name" : "jump",
+			"variable_type" : "bool",
+			"variable_value" : true,
+			"variable_op" : "equal"
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "idle",
+			"target" : "walk",
+			"variable_name" : "speed",
+			"variable_type" : "float",
+			"variable_value" : 0.0,
+			"variable_op" : "greater"
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "walk",
+			"target" : "idle",
+			"variable_name" : "speed",
+			"variable_type" : "float",
+			"variable_value" : 0.0,
+			"variable_op" : "equal"
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "jump",
+			"target" : "idle",
+			"variable_name" : "onGround",
+			"variable_type" : "bool",
+			"variable_value" : true,
+			"variable_op" : "equal"
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "idle",
+			"target" : "hit",
+			"variable_name" : "hit",
+			"variable_type" : "bool",
+			"variable_value" : true,
+			"variable_op" : "equal"
+		},
+		{
+			"type" : "TimeTransition",
+			"source" : "hit",
+			"target" : "idle",
+			"time" : 1.0
+		}
+	],
+	"variables" : [
+		{
+			"name" : "speed",
+			"type" : "float",
+			"value" : 0.0
+		},
+		{
+			"name" : "jump",
+			"type" : "bool",
+			"value" : false
+		},
+		{
+			"name" : "hit",
+			"type" : "bool",
+			"value" : false
+		},
+		{
+			"name" : "onGround",
+			"type" : "bool",
+			"value" : true
+		}
+	]
+}

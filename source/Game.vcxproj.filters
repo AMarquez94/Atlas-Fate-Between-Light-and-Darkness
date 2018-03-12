@@ -84,6 +84,13 @@
     <ClCompile Include="components\comp_culling.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
     <ClCompile Include="modules\game\module_game_manager.cpp" />
+    <ClCompile Include="fsm\context.cpp" />
+    <ClCompile Include="fsm\custom_states.cpp" />
+    <ClCompile Include="fsm\custom_transitions.cpp" />
+    <ClCompile Include="fsm\factory.cpp" />
+    <ClCompile Include="fsm\fsm.cpp" />
+    <ClCompile Include="utils\variant.cpp" />
+    <ClCompile Include="modules\system\module_fsm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -194,6 +201,15 @@
     <ClInclude Include="components\comp_culling.h" />
     <ClInclude Include="profiling\profiling.h" />
     <ClInclude Include="modules\game\module_game_manager.h" />
+    <ClInclude Include="fsm\context.h" />
+    <ClInclude Include="fsm\custom_states.h" />
+    <ClInclude Include="fsm\custom_transitions.h" />
+    <ClInclude Include="fsm\factory.h" />
+    <ClInclude Include="fsm\fsm.h" />
+    <ClInclude Include="fsm\state.h" />
+    <ClInclude Include="fsm\transition.h" />
+    <ClInclude Include="utils\variant.h" />
+    <ClInclude Include="modules\system\module_fsm.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

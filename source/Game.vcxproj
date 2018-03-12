@@ -117,6 +117,11 @@
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\entity_parser.cpp" />
+    <ClCompile Include="fsm\context.cpp" />
+    <ClCompile Include="fsm\custom_states.cpp" />
+    <ClCompile Include="fsm\custom_transitions.cpp" />
+    <ClCompile Include="fsm\factory.cpp" />
+    <ClCompile Include="fsm\fsm.cpp" />
     <ClCompile Include="geometry\angular.cpp" />
     <ClCompile Include="geometry\curve.cpp" />
     <ClCompile Include="geometry\geometry.cpp" />
@@ -149,6 +154,7 @@
     <ClCompile Include="modules\module_manager.cpp" />
     <ClCompile Include="modules\module_render.cpp" />
     <ClCompile Include="modules\system\module_cameras.cpp" />
+    <ClCompile Include="modules\system\module_fsm.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
@@ -172,6 +178,7 @@
     <ClCompile Include="resources\resources_manager.cpp" />
     <ClCompile Include="utils\murmur3\murmur3.cpp" />
     <ClCompile Include="utils\utils.cpp" />
+    <ClCompile Include="utils\variant.cpp" />
     <ClCompile Include="windows\app.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -210,6 +217,13 @@
     <ClInclude Include="entity\entity.h" />
     <ClInclude Include="entity\entity_parser.h" />
     <ClInclude Include="entity\msgs.h" />
+    <ClInclude Include="fsm\context.h" />
+    <ClInclude Include="fsm\custom_states.h" />
+    <ClInclude Include="fsm\custom_transitions.h" />
+    <ClInclude Include="fsm\factory.h" />
+    <ClInclude Include="fsm\fsm.h" />
+    <ClInclude Include="fsm\state.h" />
+    <ClInclude Include="fsm\transition.h" />
     <ClInclude Include="geometry\angular.h" />
     <ClInclude Include="geometry\curve.h" />
     <ClInclude Include="geometry\geometry.h" />
@@ -253,6 +267,7 @@
     <ClInclude Include="modules\module_manager.h" />
     <ClInclude Include="modules\module_render.h" />
     <ClInclude Include="modules\system\module_cameras.h" />
+    <ClInclude Include="modules\system\module_fsm.h" />
     <ClInclude Include="modules\system\module_input.h" />
     <ClInclude Include="modules\system\module_physics.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
@@ -282,6 +297,7 @@
     <ClInclude Include="utils\murmur3\murmur3.h" />
     <ClInclude Include="utils\timer.h" />
     <ClInclude Include="utils\utils.h" />
+    <ClInclude Include="utils\variant.h" />
     <ClInclude Include="windows\app.h" />
   </ItemGroup>
   <ItemGroup>
