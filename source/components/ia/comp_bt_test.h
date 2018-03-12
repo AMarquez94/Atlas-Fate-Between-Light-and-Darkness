@@ -17,6 +17,11 @@ private:
 	/* The cpp functions that implements conditions */
 	std::map<std::string, BTCondition> conditions_test;
 
+	struct arguments {
+		float speed, flee, movement, ugh, escape;
+		bool speedB = false, fleeB = false, movementB = false, ughB = false, escapeB = false;
+	}conditionsArgs, actionsArgs;
+
 public:
 	void loadActions() override;
 	void loadConditions() override;
@@ -30,6 +35,7 @@ public:
 	int actionShootPistol(float dt);
 	int actionPursuit(float dt);
 	bool conditionEscape(float dt);
+
 
 
 	void waitInput();

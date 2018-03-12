@@ -101,7 +101,7 @@ BTNode::EType TCompIAController::stringToNodeType(std::string& string) {
 		return BTNode::EType::ACTION;
 	}
 	else {
-		return BTNode::EType::FAILURE;
+		fatal("Node type not recognized");
 	}
 }
 

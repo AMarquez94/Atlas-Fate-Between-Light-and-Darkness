@@ -17,8 +17,8 @@ void TCompAITest::load(const json& j, TEntityParseContext& ctx) {
 
 	std::string rootName, childName, parentName, condition, action, type;
 	BTNode::EType nodeType;
-	BTAction actionNode;
-	BTCondition conditionNode;
+	BTAction actionNode = nullptr;
+	BTCondition conditionNode = nullptr;
 
 	loadActions();
 	loadConditions();
@@ -32,13 +32,12 @@ void TCompAITest::load(const json& j, TEntityParseContext& ctx) {
 		type = j_root.value("type", "defaultValue");
 		ToUpperCase(type);
 		nodeType = stringToNodeType(type);
-		assert(nodeType != BTNode::EType::FAILURE);
 		
 
 		if (j_root.count("condition") == 1) {
 			condition = j_root.value("condition", "defaultValue");
 			if (conditions_initializer.find(condition) == conditions_initializer.end()) {
-				conditionNode = NULL;
+				conditionNode = nullptr;
 			}
 			else {
 				conditionNode = conditions_initializer[condition];
@@ -47,7 +46,7 @@ void TCompAITest::load(const json& j, TEntityParseContext& ctx) {
 		if (j_root.count("action") == 1) {
 			action = j_root.value("action", "defaultValue");
 			if (actions_initializer.find(action) == actions_initializer.end()) {
-				actionNode = NULL;
+				actionNode = nullptr;
 			}
 			else {
 				actionNode = actions_initializer[action];
@@ -67,24 +66,47 @@ void TCompAITest::load(const json& j, TEntityParseContext& ctx) {
 				type = it.value()["type"];
 				ToUpperCase(type);
 				nodeType = stringToNodeType(type);
-				assert(nodeType != BTNode::EType::FAILURE);
+
 				assert(it.value().count("condition") > 0);
 				condition = it.value()["condition"];
 				//ToUpperCase(condition);
 				if (conditions_initializer.find(condition) == conditions_initializer.end()) {
-					conditionNode = NULL;
+					conditionNode = nullptr;
+					dbg("The condition %s of the child %s was not found. Setting it as NULL \n", condition.c_str(), childName.c_str());
 				}
 				else {
 					conditionNode = conditions_initializer[condition];
+					if (it.value().count("conditionArg") == 1) {
+						auto& j_condArg = it.value()["conditionArg"];
+						//We start retrieving the parameters
+						if (j_condArg.count("escape") == 1) {
+							conditionsArgs.escapeB = true;
+							conditionsArgs.escape = j_condArg.value("escape", 0);
+						}
+					}
 				}
 				assert(it.value().count("action") > 0);
 				action = it.value()["action"];
 				//ToUpperCase(action);
 				if (actions_initializer.find(action) == actions_initializer.end()) {
 					actionNode = NULL;
+					dbg("The action %s of the child %s was not found. Setting it as NULL \n", action.c_str(), childName.c_str());
 				}
 				else {
 					actionNode = actions_initializer[action];
+					if (it.value().count("actionArg") == 1) {
+						auto& j_actArg = it.value()["actionArg"];
+						//We start retrieving the parameters
+						if (j_actArg.count("movement") == 1) {
+							actionsArgs.movementB = true;
+							actionsArgs.movement = j_actArg.value("movement", 0);
+						}
+						if (j_actArg.count("ugh") == 1) {
+							actionsArgs.ughB = true;
+							actionsArgs.ugh = j_actArg.value("ugh", 0);
+						}
+					}
+
 				}
 				addChild(parentName, childName, nodeType, conditionNode, actionNode);
 			}
@@ -155,8 +177,14 @@ int TCompAITest::actionPursuit(float dt)
 
 bool TCompAITest::conditionEscape(float dt) 
 {
-	dbg("%s: testing escape\n", name.c_str());
-	return rand() % 2;
+	if (conditionsArgs.escapeB) {
+		dbg("%s: testing escape with parameter\n", name.c_str());
+		return conditionsArgs.escape;
+	}
+	else {
+		dbg("%s: testing escape\n", name.c_str());
+		return rand() % 2;
+	}
 }
 
 void TCompAITest::registerMsgs()

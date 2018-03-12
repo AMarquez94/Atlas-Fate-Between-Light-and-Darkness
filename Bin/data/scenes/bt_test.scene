@@ -24,7 +24,16 @@
             "name": "escape",
             "type": "action",
             "condition": "conditionEscape",
-            "action": "actionEscape"
+            "conditionArg": {
+              "speed": "4.5",
+              "flee": "2",
+              "escape": 1.0
+            },
+            "action": "actionEscape",
+            "actionArg": {
+              "movement": 4.1,
+              "ugh": 2.14
+            }
           },
           {
             "parent": "soldier",

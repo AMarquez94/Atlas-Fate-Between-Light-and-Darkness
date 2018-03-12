@@ -9,13 +9,15 @@ class TCompIAController : public TCompBase {
 
 
 protected:
+	virtual struct args {};
+
 
 	typedef BTNode::ERes(TCompIAController::*BTAction)(float dt);
 	typedef bool (TCompIAController::*BTCondition)(float dt);
 
 	std::map<std::string, BTAction> actions_initializer;
 	std::map<std::string, BTCondition> conditions_initializer;
-
+	//std::map<std::string, args> arguments;
 
 
 private:
