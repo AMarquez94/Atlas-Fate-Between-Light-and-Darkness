@@ -281,7 +281,7 @@ struct TSceneExporter (
 		fs.writeKeyValue "type" "directional"
 		fs.writeComma()
 		)
-		else if classof obj == targetSpot  then ( 
+		else if classof obj == targetSpot or classof obj == freeSpot then ( 
 			
 		local target = getnodebyname (obj.name + ".Target")
 		fs.writeKeyValue "type" "spotlight"

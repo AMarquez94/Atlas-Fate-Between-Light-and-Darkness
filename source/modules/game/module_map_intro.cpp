@@ -1,5 +1,5 @@
 #include "mcv_platform.h"
-#include "module_test_axis.h"
+#include "module_map_intro.h"
 #include "camera/camera.h"
 #include "render/render_objects.h"
 #include "entity/entity.h"
@@ -18,11 +18,11 @@
 
 CCamera camera;
 
-bool CModuleTestAxis::start()
+bool CModuleMapIntro::start()
 {
 	{
 		TEntityParseContext ctx;
-		parseScene("data/scenes/milestone1_lights.scene", ctx);
+		parseScene("data/scenes/milestone1_map_lights.scene", ctx);
 	}
 	{
 		TEntityParseContext ctx;
@@ -84,7 +84,7 @@ bool CModuleTestAxis::start()
 	return true;
 }
 
-bool CModuleTestAxis::stop()
+bool CModuleMapIntro::stop()
 {
 
 	/* delete all entities in scene */
@@ -98,7 +98,7 @@ bool CModuleTestAxis::stop()
 	return true;
 }
 
-void CModuleTestAxis::update(float delta)
+void CModuleMapIntro::update(float delta)
 {
 	static VEC3 world_pos;
 	ImGui::DragFloat3("Pos", &world_pos.x, 0.025f, -50.f, 50.f);
@@ -115,7 +115,7 @@ void CModuleTestAxis::update(float delta)
 	}
 }
 
-void CModuleTestAxis::render()
+void CModuleMapIntro::render()
 {
 	// Find the entity with name 'the_camera'
 	h_e_camera = getEntityByName("main_camera");

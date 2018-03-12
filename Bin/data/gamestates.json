@@ -15,8 +15,8 @@
 			"modules" : [ "game_over" ]
 		},
 		{
-			"name" : "test_axis",
-			"modules" : [ "test_axis", "game_manager" ]
+			"name" : "map_intro",
+			"modules" : [ "map_intro", "game_manager" ]
 		},
 		{
 			"name" : "test_input",

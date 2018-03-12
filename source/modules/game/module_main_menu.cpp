@@ -39,7 +39,7 @@ void CModuleMainMenu::render()
 	if (ImGui::IsItemClicked() || (menu_load == 0 && EngineInput["btMenuConfirm"].getsPressed()))
 	{
 		dbg("changed level state\n");
-		CEngine::get().getModules().changeGameState("test_axis");
+		CEngine::get().getModules().changeGameState("map_intro");
 	}
 
 	ImGui::Selectable("Select level", menu_load == 1);

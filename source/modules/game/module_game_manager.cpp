@@ -78,7 +78,7 @@ void CModuleGameManager::render()
 		if (ImGui::IsItemClicked() || (menuPosition == 0 && EngineInput["btMenuConfirm"].getsPressed()))
 		{
 			dbg("Restarting the game\n");
-			CEngine::get().getModules().changeGameState("test_axis");
+			CEngine::get().getModules().changeGameState("map_intro");
 		}
 
 		ImGui::Selectable("Exit game", menuPosition == 1);

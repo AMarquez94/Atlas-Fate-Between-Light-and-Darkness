@@ -8,9 +8,9 @@
 			  "data/materials/body.material"
 			]
 			},
-      "transform": {
-        "pos": "-14 -2 -35"
-      },
+			"transform": {
+				"pos": "-14 -2 -35"
+			},
 			"player_controller": {
 				"target_camera": "TPCamera",
 				"shadow_camera_hor": "SMCameraHor",

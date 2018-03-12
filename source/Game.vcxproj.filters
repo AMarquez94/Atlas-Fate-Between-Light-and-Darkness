@@ -32,7 +32,6 @@
     <ClCompile Include="modules\game\module_gameover.cpp" />
     <ClCompile Include="modules\game\module_main_menu.cpp" />
     <ClCompile Include="modules\game\module_splash.cpp" />
-    <ClCompile Include="modules\game\module_test_axis.cpp" />
     <ClCompile Include="modules\module_entities.cpp" />
     <ClCompile Include="modules\module_ia.cpp" />
     <ClCompile Include="modules\module_manager.cpp" />
@@ -91,6 +90,7 @@
     <ClCompile Include="fsm\fsm.cpp" />
     <ClCompile Include="utils\variant.cpp" />
     <ClCompile Include="modules\system\module_fsm.cpp" />
+    <ClCompile Include="modules\game\module_map_intro.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -140,7 +140,6 @@
     <ClInclude Include="modules\game\module_gameover.h" />
     <ClInclude Include="modules\game\module_main_menu.h" />
     <ClInclude Include="modules\game\module_splash.h" />
-    <ClInclude Include="modules\game\module_test_axis.h" />
     <ClInclude Include="modules\module.h" />
     <ClInclude Include="modules\module_entities.h" />
     <ClInclude Include="modules\module_ia.h" />
@@ -210,6 +209,7 @@
     <ClInclude Include="fsm\transition.h" />
     <ClInclude Include="utils\variant.h" />
     <ClInclude Include="modules\system\module_fsm.h" />
+    <ClInclude Include="modules\game\module_map_intro.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
