@@ -94,6 +94,7 @@ void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 	rotationSpeed = deg2rad(rotationSpeedDeg);
 	fov = deg2rad(fovDeg);
 	maxRotationSeekingPlayer = deg2rad(maxRotationSeekingPlayerDeg);
+	startLightsOn = j.value("startLightsOn", false);
 	currentWaypoint = 0;
 	/* TODO: ¿Init node? */
 }
@@ -109,6 +110,10 @@ void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
 		wpt.lookAt = ((TCompTransform*)get<TCompTransform>())->getFront();
 		wpt.minTime = 1.f;
 		addWaypoint(wpt);
+	}
+
+	if (startLightsOn) {
+		turnOnLight();
 	}
 }
 
@@ -331,7 +336,7 @@ BTNode::ERes TCompAIPatrol::actionSuspect(float dt)
 
 	if (suspectO_Meter <= 0.f || suspectO_Meter >= 1.f) {
 		if (suspectO_Meter <= 0) {
-			cRender->color = VEC4(255, 0, 0, 1);
+			cRender->color = VEC4(1, 1, 1, 1);
 		}
 		return BTNode::ERes::LEAVE;
 	}
@@ -644,12 +649,14 @@ bool TCompAIPatrol::isPlayerInFov() {
 	if (hPlayer.isValid()) {
 		CEntity *ePlayer = hPlayer;
 		TCompTransform *ppos = ePlayer->get<TCompTransform>();
+
+		float dist = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
 		TCompPlayerController *pController = ePlayer->get<TCompPlayerController>();
 		
 		/* Player inside cone of vision */
 		bool in_fov = mypos->isInFov(ppos->getPosition(), fov);
 
-		return in_fov && !pController->isInShadows() && !pController->isDead() && !isEntityHidden(hPlayer);
+		return in_fov && !pController->isInShadows() && !pController->isDead() && dist <= maxChaseDistance && !isEntityHidden(hPlayer);
 	}
 	else {
 		return false;

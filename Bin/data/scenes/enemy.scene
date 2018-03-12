@@ -9,6 +9,25 @@
 		  "prefab": "data/prefabs/patrol.prefab",
 		  "name": "The Enemy 1",
 		  "transform": {
+			"pos": "-26 0 75",
+			"lookat": "1 0 1"
+		  },
+		  "ai_patrol": {},
+		  "collider": {
+			"shape": "capsule",
+			"is_controller": true,
+			"radius": 0.65,
+			"height": 1.0,
+			"gravity": true,
+			"group" : "enemy"
+		  }
+		}
+	},
+	{
+		"entity": {
+		  "prefab": "data/prefabs/patrol.prefab",
+		  "name": "The Enemy 2",
+		  "transform": {
 			"pos": "-25 0 110",
 			"lookat": "1 0 0"
 		  },
@@ -36,21 +55,118 @@
 	{
 		"entity": {
 		  "prefab": "data/prefabs/patrol.prefab",
-		  "name": "The Enemy 2",
+		  "name": "The Enemy 3",
 		  "transform": {
-			"pos": "0 0 112",
-			"lookat": "-1 0 0"
+			"pos": "-12 0.848 248",
+			"lookat": "0 0 -1"
 		  },
 		  "ai_patrol": {
 			  "waypoints": [
 			  {
-				"position": "0 0 112",
-				"lookAt": "-1 0 0"
+				"position": "-12 0.848 248",
+				"lookAt": "0 0 -1"
 			  },
 			  {
-				"position": "-25 0 112",
-				"lookAt": "1 0 0"
-			  }]
+				"position": "-12 0.848 230",
+				"lookAt": "0 0 -1"
+			  },
+			  {
+				"position": "-12 0.848 209",
+				"lookAt": "0 0 -1"
+			  },
+			  {
+				"position": "-12 0.848 191",
+				"lookAt": "0 0 -1"
+			  },
+			  {
+				"position": "-12 0.848 173",
+				"lookAt": "0 0 -1"
+			  },
+			  {
+				"position": "-12 0.848 147",
+				"lookAt": "0 0 -1"
+			  },
+			  {
+				"position": "-12 0.848 173",
+				"lookAt": "0 0 1"
+			  },
+			  {
+				"position": "-12 0.848 191",
+				"lookAt": "0 0 1"
+			  },
+			  {
+				"position": "-12 0.848 209",
+				"lookAt": "0 0 1"
+			  },
+			  {
+				"position": "-12 0.848 230",
+				"lookAt": "0 0 1"
+			  }
+			  ],
+			  "startLightsOn": true
+		  },
+		  "collider": {
+			"shape": "capsule",
+			"is_controller": true,
+			"radius": 0.65,
+			"height": 1.0,
+			"gravity": true,
+			"group" : "enemy"
+		  }
+		}
+	},
+	{
+		"entity": {
+		  "prefab": "data/prefabs/patrol.prefab",
+		  "name": "The Enemy 4",
+		  "transform": {
+			"pos": "-8 0.848 147",
+			"lookat": "0 0 -1"
+		  },
+		  "ai_patrol": {
+			  "waypoints": [
+			  {
+				"position": "-8 0.848 147",
+				"lookAt": "0 0 -1"
+			  },
+			  {
+				"position": "-8 0.848 173",
+				"lookAt": "0 0 1"
+			  },
+			  {
+				"position": "-8 0.848 191",
+				"lookAt": "0 0 1"
+			  },
+			  {
+				"position": "-8 0.848 209",
+				"lookAt": "0 0 1"
+			  },
+			  {
+				"position": "-8 0.848 230",
+				"lookAt": "0 0 1"
+			  },
+			  {
+				"position": "-8 0.848 248",
+				"lookAt": "0 0 -1"
+			  },
+			  {
+				"position": "-8 0.848 230",
+				"lookAt": "0 0 -1"
+			  },
+			  {
+				"position": "-8 0.848 209",
+				"lookAt": "0 0 -1"
+			  },
+			  {
+				"position": "-8 0.848 191",
+				"lookAt": "0 0 -1"
+			  },
+			  {
+				"position": "-8 0.848 173",
+				"lookAt": "0 0 -1"
+			  }
+			  ],
+			  "startLightsOn": true
 		  },
 		  "collider": {
 			"shape": "capsule",
