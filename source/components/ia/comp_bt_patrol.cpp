@@ -580,7 +580,7 @@ bool TCompAIPatrol::conditionFixPatrol(float dt)
 bool TCompAIPatrol::conditionGoToWpt(float dt)
 {
 	TCompTransform* mypos = get<TCompTransform>();
-	return VEC3::Distance(mypos->getPosition(), _waypoints[currentWaypoint].position) != 0;
+	return VEC3::Distance(mypos->getPosition(), _waypoints[currentWaypoint].position) > 0.1f;
 }
 
 bool TCompAIPatrol::conditionWaitInWpt(float dt)
