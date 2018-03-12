@@ -16,22 +16,21 @@ class TCompShadowController : public TCompBase {
 	DECL_SIBLING_ACCESS();
 public:
 
-	bool is_shadow;
-	bool capsule_shadow;
 	float test_amount;
 	float test_levels;
-
-	std::vector<CHandle> static_lights;
-	std::vector<CHandle> dynamic_lights;
 	physx::PxQueryFilterData shadowDetectionFilter;
 
+	bool is_shadow;
+	bool capsule_shadow;
+	std::vector<CHandle> static_lights;
+	std::vector<CHandle> dynamic_lights;
+
+	void Init();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
-	void Init();
 
 	bool IsPointInShadows(const VEC3 & point);
-	//bool GetClosestLight(const VEC3 & point);
 
 	static void registerMsgs();
 private:

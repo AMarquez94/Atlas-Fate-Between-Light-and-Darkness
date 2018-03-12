@@ -137,32 +137,3 @@ void TCompShadowController::GenerateSurroundingPoints(const VEC3 & point)
 		}
 	}
 }
-
-//// Refactor this afterwards, little trick to avoid collider/light relationship by now.
-//bool TCompShadowController::GetClosestLight(const VEC3 & point)
-//{
-//	VEC3 candidate = VEC3();
-//	float maxDist = INFINITY;
-//
-//	for (unsigned int x = 0; x < static_spots.size(); x++)
-//	{
-//		TCompLight * c_light = static_spots[x];
-//		CEntity * ent = CHandle(c_light).getOwner();
-//		TCompTransform * c_transform = ent->get<TCompTransform>();
-//		float newDist = VEC3::Distance(c_transform->getPosition(), point);
-//		if (newDist < maxDist)
-//		{
-//			maxDist = newDist;
-//			candidate = c_transform->getPosition();
-//		}
-//	}
-//
-//	VEC3 dir = point - candidate;
-//	dir.Normalize();
-//
-//	physx::PxRaycastHit hit;
-//	if (EnginePhysics.Raycast(candidate, dir, maxDist - 0.2f, hit, physx::PxQueryFlag::eSTATIC, shadowDetectionFilter))
-//		return false;
-//
-//	return true;
-//}

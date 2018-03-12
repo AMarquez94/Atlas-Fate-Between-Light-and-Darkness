@@ -872,6 +872,7 @@ const bool TCompPlayerController::ConcaveTest(void)
 	{
 		VEC3 hit_normal = VEC3(hit.normal.x, hit.normal.y, hit.normal.z);
 		VEC3 hit_point = VEC3(hit.position.x, hit.position.y, hit.position.z);
+		if (hit_normal == c_my_transform->getUp()) return false;
 
 		if (EnginePhysics.gravity.Dot(hit_normal) < .01f)
 		{
@@ -888,8 +889,8 @@ const bool TCompPlayerController::ConcaveTest(void)
 			VEC3 new_pos = hit_point;
 			c_my_transform->setRotation(new_rotation);
 			c_my_transform->setPosition(new_pos);
+			return true;
 		}
-		return true;
 	}
 	return false;
 }
@@ -901,13 +902,16 @@ const bool TCompPlayerController::ConvexTest(void)
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * .01f;
 	upwards_offset = upwards_offset + c_my_transform->getFront() * c_my_collider->config.radius;
-	VEC3 new_dir = -c_my_transform->getUp() + -c_my_transform->getFront();
+	VEC3 new_dir = c_my_transform->getUp() + c_my_transform->getFront();
 	new_dir.Normalize();
 
-	if (EnginePhysics.Raycast(upwards_offset, new_dir, 1.6f, hit, physx::PxQueryFlag::eSTATIC))
+	float maxDistance = 6 * c_my_collider->config.radius;
+	if (EnginePhysics.Raycast(upwards_offset, -new_dir, maxDistance, hit, physx::PxQueryFlag::eSTATIC))
 	{
 		VEC3 hit_normal = VEC3(hit.normal.x, hit.normal.y, hit.normal.z);
 		VEC3 hit_point = VEC3(hit.position.x, hit.position.y, hit.position.z);
+		if (hit_normal == c_my_transform->getUp()) return false;
+
 		if (hit.distance > convexMaxDistance && EnginePhysics.gravity.Dot(hit_normal) < .01f)
 		{
 			VEC3 new_forward = -hit_normal.Cross(c_my_transform->getLeft());
