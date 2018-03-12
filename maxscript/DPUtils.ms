@@ -136,3 +136,10 @@ function createLayer layerName = (
 function checkDirectories outpath = (
 	
 )
+
+fn clamp minVal maxVal val =
+(
+	if val < minVal then val = minVal
+	else if val > maxVal then val = maxVal
+	return val
+)

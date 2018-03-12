@@ -1,5 +1,4 @@
 component_collider = attributes component_collider
-Redefine:component_collider
 (
 	parameters cmp_col rollout:cmp_col
 	(
@@ -24,7 +23,6 @@ Redefine:component_collider
 )
 
 component_tag = attributes component_tag
-Redefine:component_tag
 (
 	parameters cmp_tag rollout:cmp_tag
 	(

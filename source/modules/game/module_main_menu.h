@@ -7,14 +7,16 @@ class CModuleMainMenu : public IModule
 	ImGuiWindowFlags window_flags;
 	unsigned int window_width;
 	unsigned int window_height;
+	unsigned menu_load = 0;
+	const unsigned int menu_size = 6;
 
-	UINT32 level_load = 0;
 	float time;
-	float transition_speed = 0.5f;
 
 public:
+	float transition_speed = 0.5f;
 
 	public:CModuleMainMenu(const std::string& name): IModule(name) {}
 	bool start() override;
 	void update(float delta) override;
+	void render() override;
 };

@@ -12,8 +12,8 @@
     "player_controller",
     "ai_patrol",
     "bullet_controller",
-	"shadow_controller",
-	"light",
+		"shadow_controller",
+		"light",
     "hierarchy",
 		"local_aabb",
 		"culling",
@@ -21,8 +21,7 @@
     "collider",
     "camera_flyover",
     "dynamic_objects",
-	"capsule_shadow_controller",
-	"game_manager_controller",
+		"capsule_shadow_controller",
     "camera_thirdperson",
     "camera_shadowmerge",
     "auxcamera_shadowmerge",
@@ -30,7 +29,6 @@
   ],
   "render_debug": [
     "player_controller",
-	"game_manager_controller",
-	"ai_patrol"
+		"ai_patrol"
   ]
 }

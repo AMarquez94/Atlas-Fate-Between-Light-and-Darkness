@@ -5,15 +5,18 @@
     "render",
 		"physics",
     "main_menu",
+		"game_manager",
     "splash",
     "test_input",
     "test_axis",
-	"game_over",
-	"cameras"
+		"game_over",
+		"cameras"
   ],
   "render": [
     "render",
     "input",
+		"main_menu",
+		"game_manager",
     "test_axis",
     "game_over",
     "entities",

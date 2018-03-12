@@ -331,6 +331,46 @@ struct TSceneExporter (
 		)
 	),
 	
+	fn createLightCollider obj = (
+		
+		local col_path = project_path + cols_path + obj.name + ".collider"
+		if classof obj == targetSpot or classof obj == freeSpot  then ( 
+			local dist = obj.targetDistance
+			if dist == undefined then ( dist = obj.baseObject.targetDistance )
+			local int_radius = tan(obj.falloff * .5f) * dist
+			local totalsides = clamp 12 32 ((int_radius * .25f) as integer)
+			local collider = cone radius1:int_radius radius2:0 height:dist heightsegs:1 sides:totalsides
+			collider.transform = obj.transform
+			collider.position = (obj.position - obj.dir * dist)
+			collider = convertToMesh collider
+			collider.pivot = obj.position
+			
+			fs.writeKey "collider" 
+			fs.beginObj()
+			fs.writeKeyValue "shape" "convex" 
+			fs.writeComma()
+			fs.writeKeyValue "name" (cols_path + obj.name + ".collider")
+			fs.writeComma()
+			fs.writeKeyValue "is_trigger" true
+			fs.endObj()
+			fs.writeComma()
+			
+			exportColliderObject collider col_path
+			delete collider
+		)
+		else if classof obj == omnilight then ( 
+			fs.writeKey "collider" 
+			fs.beginObj()
+			fs.writeKeyValue "shape" "sphere" 
+			fs.writeComma()
+			fs.writeKeyValue "radius" obj.farAttenEnd 
+			fs.writeComma()
+			fs.writeKeyValue "is_trigger" true
+			fs.endObj()
+			fs.writeComma()
+		)
+		
+	),
 	
 	fn exportEntityLight obj = (
 		
@@ -342,6 +382,7 @@ struct TSceneExporter (
 		fs.writeComma()
 		exportCompLight obj
 		fs.writeComma()
+		createLightCollider obj
 		fs.writeKey "tags"
 		fs.arrayOfStrings #("light")
 		

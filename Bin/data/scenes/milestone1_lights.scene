@@ -17,7 +17,7 @@
         ,
         "color": "233.0 233.0 243.0"
         ,
-        "intensity": 0.44
+        "intensity": 0.03
         ,
         "shadows": true
       }
@@ -39,7 +39,8 @@
         "pos": "-41.052 75.8762 1.19601"
         ,
         "rotation": "0.0910224 0.657154 -0.365414 -0.652944"
-      },
+      }
+      ,
       "light":
       {
         "type": "directional"
@@ -47,40 +48,6 @@
         "color": "206.0 210.0 249.0"
         ,
         "intensity": 0.78
-        ,
-        "shadows": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot002"
-      ,
-      "transform":
-      {
-        "pos": "-6.35864 -0.359059 -39.4716"
-        ,
-        "rotation": "0.00199072 -0.993708 0.110543 0.0178952"
-      }
-      ,
-      "light":
-      {
-        "type": "spotlight"
-        ,
-        "range": 9.28929
-        ,
-        "angle": 64.0
-        ,
-        "color": "255.0 255.0 255.0"
-        ,
-        "intensity": 0.65
         ,
         "shadows": true
       }
@@ -119,6 +86,58 @@
         "shadows": true
       }
       ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot001.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot002"
+      ,
+      "transform":
+      {
+        "pos": "-6.35864 -0.359059 -39.4716"
+        ,
+        "rotation": "0.00199072 -0.993708 0.110543 0.0178952"
+      }
+      ,
+      "light":
+      {
+        "type": "spotlight"
+        ,
+        "range": 9.28929
+        ,
+        "angle": 64.0
+        ,
+        "color": "255.0 255.0 255.0"
+        ,
+        "intensity": 0.65
+        ,
+        "shadows": true
+      }
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot002.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
       "tags":
       [
         "light"
@@ -153,55 +172,61 @@
         "shadows": true
       }
       ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot003.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
       "tags":
       [
         "light"
       ]
     }
-  },
-    	{
-    "entity":
-    {
-      "name": "spot_collider3"
-      ,
-      "transform":
-      {
-        "pos": "-23.8001 -9.22614 -22.1312",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "sphere",
-				"is_trigger" : true,
-        "radius": 5.6
-      },
-      "tags":
-      [
-        "collider_light"
-      ]
-    }
-  },
+  }
+  ,
   {
     "entity":
     {
-      "name": "spot_collider1"
+      "name": "Spot004"
       ,
       "transform":
       {
-        "pos": "2.43315 -8.91186 -25.5493",
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "-13.4556 13.4591 28.7654"
+        ,
+        "rotation": "-0.0148164 -0.928059 0.0233591 0.371405"
+      }
+      ,
+      "light":
+      {
+        "type": "spotlight"
+        ,
+        "range": 16.147
+        ,
+        "angle": 35.3
+        ,
+        "color": "255.0 255.0 255.0"
+        ,
+        "intensity": 0.65
+        ,
+        "shadows": true
       }
       ,
       "collider":
       {
-        "shape": "sphere",
-				"is_trigger" : true,
-        "radius": 5.6
-      },
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot004.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
       "tags":
       [
-        "collider_light"
+        "light"
       ]
     }
   }
@@ -209,47 +234,42 @@
   {
     "entity":
     {
-      "name": "spot_collider2"
+      "name": "Spot005"
       ,
       "transform":
       {
-        "pos": "-6.23571 -8.91187 -36.8719"
+        "pos": "-32.8709 13.4756 66.0087"
         ,
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "-0.00366781 0.445259 -0.0222632 -0.895117"
+      }
+      ,
+      "light":
+      {
+        "type": "spotlight"
+        ,
+        "range": 16.0292
+        ,
+        "angle": 35.3
+        ,
+        "color": "255.0 255.0 255.0"
+        ,
+        "intensity": 0.65
+        ,
+        "shadows": true
       }
       ,
       "collider":
       {
-        "shape": "sphere",
-				"is_trigger" : true,
-        "radius": 5.6
-      },
-      "tags":
-      [
-        "collider_light"
-      ]
-    }
-  },
-	  {
-    "entity":
-    {
-      "name": "spot_collider004"
-      ,
-      "transform":
-      {
-        "pos": "-31.722 -0.230708 63.5476"
+        "shape": "convex"
         ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      },
-      "collider":
-      {
-        "shape": "sphere",
-				"is_trigger" : true,
-        "radius": 5.6
-      },
+        "name": "data/colliders/Spot005.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
       "tags":
       [
-        "collider_light"
+        "light"
       ]
     }
   }
@@ -257,23 +277,73 @@
   {
     "entity":
     {
-      "name": "spot_collider005"
+      "name": "Spot025"
       ,
       "transform":
       {
-        "pos": "-13.8389 -0.23071 29.817"
+        "pos": "-11.2101 20.8219 164.25"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      },
+      }
+      ,
+      "light":
+      {
+        "color": "255.0 255.0 255.0"
+        ,
+        "intensity": 0.99
+        ,
+        "shadows": true
+      }
+      ,
       "collider":
       {
-        "shape": "sphere",
-				"is_trigger" : true,
-        "radius": 5.6
-      },
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot025.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
       "tags":
       [
-        "collider_light"
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot026"
+      ,
+      "transform":
+      {
+        "pos": "-11.2101 20.8219 219.542"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "light":
+      {
+        "color": "255.0 255.0 255.0"
+        ,
+        "intensity": 0.99
+        ,
+        "shadows": true
+      }
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot026.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
       ]
     }
   }

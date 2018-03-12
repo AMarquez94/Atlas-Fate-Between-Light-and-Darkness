@@ -235,7 +235,8 @@ function exportColliderObject given_obj outfilename = (
 	-- The final list of vtxs and indexes to be exported
 	local vtxs = #()
 	local idxs = #()
-	
+	local subgroups = #()
+		
 	local maxLocalToWorld = obj.transform
 	local maxToMCV = rotateXMatrix  -90
 	local maxWorldToLocal = inverse obj.transform
