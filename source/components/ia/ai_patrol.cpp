@@ -9,7 +9,7 @@
 #include "components/comp_group.h"
 #include "components/object_controller/comp_cone_of_light.h"
 
-DECL_OBJ_MANAGER("ai_patrol", CAIPatrol);
+DECL_OBJ_MANAGER("ai_patrol_old", CAIPatrol);
 
 void CAIPatrol::Init()
 {
@@ -455,7 +455,6 @@ void CAIPatrol::AttackState(float dt)
 		// Notify the entity that he is dead
 		TMsgPlayerHit msg;
 		msg.h_sender = CHandle(this).getOwner();      // Who killed the player
-		CEntity *player = (CEntity *)getEntityByName(entityToChase);
 		player->sendMsg(msg);
 	}
 }

@@ -83,6 +83,7 @@
     <ClCompile Include="components\ia\btnode.cpp" />
     <ClCompile Include="components\ia\comp_bt.cpp" />
     <ClCompile Include="components\ia\comp_bt_test.cpp" />
+    <ClCompile Include="components\ia\comp_bt_patrol.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -191,6 +192,7 @@
     <ClInclude Include="components\ia\btnode.h" />
     <ClInclude Include="components\ia\comp_bt.h" />
     <ClInclude Include="components\ia\comp_bt_test.h" />
+    <ClInclude Include="components\ia\comp_bt_patrol.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
