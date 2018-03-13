@@ -134,7 +134,7 @@ void TCompCollider::update(float dt) {
 			totalDownForce = physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z) * dt;
 		}
 		else {
-			totalDownForce += 2 * physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z) * dt;
+			totalDownForce += 2.5f * physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z) * dt;
 		}
 		velocity += totalDownForce;
 	}

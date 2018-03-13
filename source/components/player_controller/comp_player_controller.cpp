@@ -56,6 +56,7 @@ void TCompPlayerController::debugInMenu() {
 	ImGui::Text("%.2f", EngineInput["btRight"].value);
 	ImGui::SameLine();
 	ImGui::ProgressBar(fabsf(EngineInput["btRight"].value));
+	dbg("Current state: %s\n", stateName.c_str());
 }
 
 void TCompPlayerController::renderDebug() {
@@ -298,6 +299,15 @@ void TCompPlayerController::MotionState(float dt){
 	}
 	else {
 		
+		if (!GroundTest()) {
+			TCompRender *c_my_render = get<TCompRender>();
+			c_my_render->meshes[0].mesh = mesh_states.find("pj_fall")->second;
+			c_my_render->refreshMeshesInRenderManager();
+			ChangeState("fall");
+
+			return;
+		}
+
 		movePlayer(dt);
 
 		if (EngineInput["btShadowMerging"].getsPressed() && ShadowTest()) {
@@ -392,7 +402,6 @@ void TCompPlayerController::ShadowMergingEnterState(float dt){
 
 void TCompPlayerController::ShadowMergingHorizontalState(float dt){ 
 
-
 	if (motionButtonsPressed()) {
 
 		TCompTransform *t = get<TCompTransform>();
@@ -401,9 +410,11 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 		VEC3 position = t->getPosition();
 		VEC3 prevUp = c_my_collider->GetUpVector();
 
-
-		bool concaveTest = ConcaveTest();
+		bool concaveTest = false;
 		bool convexTest = ConvexTest();
+
+		if(!convexTest)
+			concaveTest = ConcaveTest();
 
 		if (concaveTest || convexTest)
 		{
@@ -465,8 +476,11 @@ void TCompPlayerController::ShadowMergingVerticalState(float dt){
 		VEC3 position = t->getPosition();
 		VEC3 prevUp = c_my_collider->GetUpVector();
 
-		bool concaveTest = ConcaveTest();
+		bool concaveTest = false;
 		bool convexTest = ConvexTest();
+
+		if (!convexTest)
+			concaveTest = ConcaveTest();
 
 		if (concaveTest || convexTest) {
 
@@ -482,8 +496,6 @@ void TCompPlayerController::ShadowMergingVerticalState(float dt){
 				assert(c_camera);
 
 				// Replace this with an smooth camera interpolation
-
-
 				TMsgSetCameraActive msg;
 				msg.previousCamera = camera_actual;
 				msg.actualCamera = camera_shadowmerge_hor;
@@ -583,15 +595,12 @@ void TCompPlayerController::ShadowMergingExitState(float dt){
 	ChangeState("idle");
 }
 
+// Big mess, related to playercontroller status..
 void TCompPlayerController::FallingState(float dt){
 
-	TCompRender *c_my_render = get<TCompRender>();
-	c_my_render->meshes[0].mesh = mesh_states.find("pj_fall")->second;
-
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
-
 	timeFalling += dt;
-	movePlayer(dt);
+	movePlayerShadow(dt);
 
 	if (EngineInput["btShadowMerging"].getsPressed()) {
 		timeFallingWhenSMPressed = timeFalling;
@@ -599,7 +608,6 @@ void TCompPlayerController::FallingState(float dt){
 	else if (timeFallingWhenSMPressed != 0.f && EngineInput["btShadowMerging"].getsReleased()) {
 		timeFallingWhenSMPressed = 0.f;
 	}
-
 
 	if (GroundTest()) {
 		if (timeFallingWhenSMPressed != 0.f && 
@@ -625,6 +633,7 @@ void TCompPlayerController::FallingState(float dt){
 			return;
 		}
 	}
+
 }
 
 void TCompPlayerController::LandingState(float dt){
@@ -677,11 +686,6 @@ void TCompPlayerController::onMsgPlayerKilled(const TMsgPlayerDead& msg)
 
 const bool TCompPlayerController::motionButtonsPressed() {
 
-	if (!GroundTest()) {
-		ChangeState("fall");
-
-		return false;
-	}
 	return EngineInput["btUp"].isPressed() || EngineInput["btDown"].isPressed() || EngineInput["btLeft"].isPressed() || EngineInput["btRight"].isPressed();
 }
 
@@ -775,7 +779,6 @@ void TCompPlayerController::movePlayer(const float dt) {
 	Quaternion new_rotation = Quaternion::CreateFromYawPitchRoll(dir_yaw, pitch, 0);
 	Quaternion quat = Quaternion::Lerp(my_rotation, new_rotation, rotationSpeed * dt);
 	c_my_transform->setRotation(quat);
-
 	c_my_transform->setPosition(c_my_transform->getPosition() + dir * player_accel);
 }
 
@@ -879,7 +882,6 @@ const bool TCompPlayerController::ConcaveTest(void)
 		{
 			VEC3 new_forward = hit_normal.Cross(c_my_transform->getLeft());
 			VEC3 target = c_my_transform->getPosition() + new_forward;
-
 			dbg("angles concave: %f\n", rad2deg(acosf(hit_normal.Dot(c_my_collider->GetUpVector()))));
 
 			c_my_collider->SetUpVector(hit_normal);
@@ -893,6 +895,7 @@ const bool TCompPlayerController::ConcaveTest(void)
 			return true;
 		}
 	}
+
 	return false;
 }
 
@@ -902,22 +905,21 @@ const bool TCompPlayerController::ConvexTest(void)
 	TCompCollider *c_my_collider = get<TCompCollider>();
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * .01f;
-	upwards_offset = upwards_offset + c_my_transform->getFront() * c_my_collider->config.radius;
+	//upwards_offset = upwards_offset + c_my_transform->getFront() * c_my_collider->config.radius;
 	VEC3 new_dir = c_my_transform->getUp() + c_my_transform->getFront();
 	new_dir.Normalize();
 
 	float maxDistance = 6 * c_my_collider->config.radius;
-	if (EnginePhysics.Raycast(upwards_offset, -new_dir, maxDistance, hit, physx::PxQueryFlag::eSTATIC))
+	if (EnginePhysics.Raycast(upwards_offset, -new_dir, 0.15f, hit, physx::PxQueryFlag::eSTATIC))
 	{
 		VEC3 hit_normal = VEC3(hit.normal.x, hit.normal.y, hit.normal.z);
 		VEC3 hit_point = VEC3(hit.position.x, hit.position.y, hit.position.z);
 		if (hit_normal == c_my_transform->getUp()) return false;
 
-		if (hit.distance > convexMaxDistance && EnginePhysics.gravity.Dot(hit_normal) < .01f)
+		if (EnginePhysics.gravity.Dot(hit_normal) < .01f)
 		{
 			VEC3 new_forward = -hit_normal.Cross(c_my_transform->getLeft());
 			VEC3 target = hit_point + new_forward;
-
 			dbg("angles convex: %f\n", 180 + rad2deg(acosf(hit_normal.Dot(c_my_collider->GetUpVector()))));
 
 			c_my_collider->SetUpVector(hit_normal);
@@ -930,6 +932,7 @@ const bool TCompPlayerController::ConvexTest(void)
 			return true;
 		}
 	}
+
 	return false;
 }
 

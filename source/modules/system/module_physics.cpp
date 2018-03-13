@@ -49,11 +49,11 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 		capsuleDesc.climbingMode = PxCapsuleClimbingMode::eCONSTRAINED;
 		cDesc = &capsuleDesc;
 		cDesc->material = gMaterial;
-		cDesc->contactOffset = 0.001f;
+		cDesc->contactOffset = 0.01f;
 		PxCapsuleController * ctrl = static_cast<PxCapsuleController*>(mControllerManager->createController(*cDesc));
 		PX_ASSERT(ctrl);
 		ctrl->setFootPosition(PxExtendedVec3(pos.x, pos.y, pos.z));
-		ctrl->setContactOffset(0.001f);
+		ctrl->setContactOffset(0.01f);
 		actor = ctrl->getActor();
 		comp_collider.controller = ctrl;
 		setupFiltering(actor, config.group, config.mask);
@@ -299,7 +299,7 @@ bool CModulePhysics::start()
 		pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_SCENEQUERIES, true);
 	}
 
-	gMaterial = gPhysics->createMaterial(0.5f, 0.5f, 0.6f);
+	gMaterial = gPhysics->createMaterial(0.5f, 0.2f, 0.1f);
 	mControllerManager = PxCreateControllerManager(*gScene);
 	gScene->setSimulationEventCallback(&customSimulationEventCallback);
 	PxInitExtensions(*gPhysics, gPvd);
