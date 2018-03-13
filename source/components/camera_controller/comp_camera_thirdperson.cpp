@@ -31,6 +31,39 @@ void TCompCameraThirdPerson::load(const json& j, TEntityParseContext& ctx)
 	_current_euler = VEC2(yaw, pitch);
 
 	pause = false;
+	active = false;
+}
+
+void TCompCameraThirdPerson::registerMsgs()
+{
+	DECL_MSG(TCompCameraThirdPerson, TMsgCameraActivated, onMsgCameraActive);
+	DECL_MSG(TCompCameraThirdPerson, TMsgCameraDeprecated, onMsgCameraDeprecated);
+	DECL_MSG(TCompCameraThirdPerson, TMsgCameraFullyActivated, onMsgCameraFullActive);
+	DECL_MSG(TCompCameraThirdPerson, TMsgSetCameraActive, onMsgCameraSetActive);
+}
+
+void TCompCameraThirdPerson::onMsgCameraActive(const TMsgCameraActivated & msg)
+{
+
+}
+
+void TCompCameraThirdPerson::onMsgCameraFullActive(const TMsgCameraFullyActivated & msg)
+{
+	active = true;
+}
+
+void TCompCameraThirdPerson::onMsgCameraDeprecated(const TMsgCameraDeprecated & msg)
+{
+	active = false;
+}
+
+void TCompCameraThirdPerson::onMsgCameraSetActive(const TMsgSetCameraActive & msg)
+{
+	if (active) {
+		Engine.getCameras().cancelCamera(CHandle(this).getOwner());
+	}
+
+	Engine.getCameras().blendInCamera(CHandle(this).getOwner(), .2f, CModuleCameras::EPriority::GAMEPLAY);
 }
 
 void TCompCameraThirdPerson::update(float dt)

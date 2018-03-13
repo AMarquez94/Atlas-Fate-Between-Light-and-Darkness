@@ -96,6 +96,10 @@ struct TMsgSetCameraActive {
 	DECL_MSG_ID();
 };
 
+struct TMsgSetCameraCancelled {
+	DECL_MSG_ID();
+};
+
 struct TMsgCameraActivated {
 	DECL_MSG_ID();
 };
