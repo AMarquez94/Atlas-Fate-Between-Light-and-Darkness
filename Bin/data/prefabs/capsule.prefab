@@ -31,7 +31,6 @@
           ]
         }
       ],
-	  "comment": "Enable hierarchy comp to move cannons when the teapot moves",
       "hierarchy": {
         "axis": "0 0 1",
         "angle": 90,

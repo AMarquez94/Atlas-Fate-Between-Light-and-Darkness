@@ -65,7 +65,7 @@ void TCompIAController::addAction(const std::string& actionName, BTAction btActi
 BTNode::ERes TCompIAController::execAction(const std::string& actionName, float dt)
 {
 	if (actions.find(actionName) == actions.end()) {
-		fatal("ERROR: Missing node action for node %s\n", actionName);
+		fatal("ERROR: Missing node action for action%s \n", actionName.c_str());
 		return BTNode::LEAVE;
 	}
 	return (this->*actions[actionName])(dt);
@@ -124,7 +124,7 @@ BTNode::EType TCompIAController::stringToNodeType(std::string& string) {
 		return BTNode::EType::ACTION;
 	}
 	else {
-		fatal("Node type not recognized");
+		fatal("Node type %s not recognized \n", string.c_str());
 	}
 }
 

@@ -66,10 +66,22 @@ private:
 	bool isStunnedPatrolInFov();
 	bool isStunnedPatrolInPos(VEC3 lastPos);
 	CHandle getPatrolInPos(VEC3 lastPos);
+	
+	//load
+	void loadActions() override;
+	void loadConditions() override;
+	void loadAsserts() override;
+
+	struct arguments {
+		float speed, flee, movement, ugh, escape;
+		bool speedB = false, fleeB = false, movementB = false, ughB = false, escapeB = false;
+	}conditionsArgs, actionsArgs;
 
 public:
 	void load(const json& j, TEntityParseContext& ctx) override;
 	void debugInMenu();
+
+
 
 	BTNode::ERes actionShadowMerged(float dt);
 	BTNode::ERes actionStunned(float dt);
