@@ -53,7 +53,7 @@ void TCompAITest::load(const json& j, TEntityParseContext& ctx) {
 			}
 		}
 
-		createRoot(rootName, nodeType, conditionNode, actionNode);
+		createRoot(rootName, nodeType, conditionNode, actionNode, nullptr);
 		//int aux = j.count("addChild");
 		if (j.count("addChild") > 0) {
 			auto& j_addChild = j["addChild"];
@@ -108,7 +108,7 @@ void TCompAITest::load(const json& j, TEntityParseContext& ctx) {
 					}
 
 				}
-				addChild(parentName, childName, nodeType, conditionNode, actionNode);
+				addChild(parentName, childName, nodeType, conditionNode, actionNode, nullptr);
 			}
 		}
 	}

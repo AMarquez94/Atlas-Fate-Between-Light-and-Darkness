@@ -9,16 +9,21 @@ class TCompIAController : public TCompBase {
 
 
 protected:
-	virtual struct args {};
-
 
 	typedef BTNode::ERes(TCompIAController::*BTAction)(float dt);
 	typedef bool (TCompIAController::*BTCondition)(float dt);
 	typedef bool (TCompIAController::*BTAssert)(float dt);
-
+	
+	//Auxiliar maps for initializing in the instantiations
 	std::map<std::string, BTAction> actions_initializer;
 	std::map<std::string, BTCondition> conditions_initializer;
-	//std::map<std::string, args> arguments;
+	std::map<std::string, BTCondition> asserts_initializer;
+	
+	//Auxiliar functions for the load in the instantiations
+	BTNode::EType stringToNodeType(std::string&);
+	virtual void loadActions() { }
+	virtual void loadConditions() { }
+	virtual void loadAsserts() { }
 
 	BTNode *current;
 
@@ -62,8 +67,4 @@ public:
 	void setCurrent(BTNode *currentNode);
 
 	void update(float dt);
-
-	BTNode::EType stringToNodeType(std::string&);
-	virtual void loadActions() { }
-	virtual void loadConditions() { }
 };
