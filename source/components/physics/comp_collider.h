@@ -39,7 +39,7 @@ typedef uint32_t colliderFlags;
 
 class TCompCollider : public TCompBase {
 
-	VEC3 velocity = VEC3::Zero;
+	physx::PxVec3 velocity = physx::PxVec3(0, 0, 0);
 
 	void onCreate(const TMsgEntityCreated& msg);
 	void onDestroy(const TMsgEntityDestroyed& msg);
@@ -91,6 +91,7 @@ public:
 	/* Aux methods, temp */
 	void Resize(float new_size);
 	void SetUpVector(VEC3 new_up);
+	void SetUpVelocity(float velocity);
 	VEC3 GetUpVector();
 
 	VEC3 normal_gravity = VEC3(0, -9.8f, 0);

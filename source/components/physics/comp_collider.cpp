@@ -118,26 +118,30 @@ void TCompCollider::onTriggerExit(const TMsgTriggerExit& msg) {
 
 void TCompCollider::update(float dt) {
 
+	velocity = physx::PxVec3(0, 9.8f, 0);
 	if (config.is_controller) {
 		if (CHandle(this).getOwner().isValid()) {
 			TCompTransform *transform = get<TCompTransform>();
 			VEC3 new_pos = transform->getPosition();
 			VEC3 delta_movement = new_pos - lastFramePosition;
-
-			controller->move(physx::PxVec3(delta_movement.x, delta_movement.y, delta_movement.z), 0.f, dt, filters);
+			velocity = physx::PxVec3(delta_movement.x, delta_movement.y, delta_movement.z) / dt;
 			lastFramePosition = new_pos;
 		}
 	}
 
 	if (config.gravity) {
-
 		if (isGrounded) {
-			totalDownForce = physx::PxVec3(normal_gravity.x * dt, normal_gravity.y * dt, normal_gravity.z * dt);
+			totalDownForce = physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z) * dt;
 		}
 		else {
-			totalDownForce += (physx::PxVec3(normal_gravity.x * dt, normal_gravity.y * dt, normal_gravity.z * dt)) * dt;
+			totalDownForce += 2 * physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z) * dt;
 		}
-		physx::PxControllerCollisionFlags col = controller->move(totalDownForce, 0.f, dt, filters);
+		velocity += totalDownForce;
+	}
+
+	if (config.gravity || config.is_controller) {
+
+		physx::PxControllerCollisionFlags col = controller->move(velocity * dt, 0.f, dt, filters);
 		isGrounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN) ? true : false;
 	}
 }
@@ -146,6 +150,12 @@ void TCompCollider::Resize(float new_size)
 {
 	config.currentHeight = new_size;
 	controller->resize((physx::PxReal)new_size);
+}
+
+void TCompCollider::SetUpVelocity(float velocity) {
+
+	totalDownForce = physx::PxVec3(-normal_gravity.x * 0.006960f, -normal_gravity.y * 0.006960f, -normal_gravity.z * 0.006960f);
+	totalDownForce *= velocity;
 }
 
 void TCompCollider::SetUpVector(VEC3 new_up)

@@ -591,6 +591,7 @@ void TCompPlayerController::FallingState(float dt){
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
 
 	timeFalling += dt;
+	movePlayer(dt);
 
 	if (EngineInput["btShadowMerging"].getsPressed()) {
 		timeFallingWhenSMPressed = timeFalling;
