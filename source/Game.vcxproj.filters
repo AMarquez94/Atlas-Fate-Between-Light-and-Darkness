@@ -91,6 +91,7 @@
     <ClCompile Include="utils\variant.cpp" />
     <ClCompile Include="modules\system\module_fsm.cpp" />
     <ClCompile Include="modules\game\module_map_intro.cpp" />
+    <ClCompile Include="resources\collider_resource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -210,6 +211,7 @@
     <ClInclude Include="utils\variant.h" />
     <ClInclude Include="modules\system\module_fsm.h" />
     <ClInclude Include="modules\game\module_map_intro.h" />
+    <ClInclude Include="resources\collider_resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

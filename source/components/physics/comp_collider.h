@@ -3,73 +3,7 @@
 #include "components/comp_base.h"
 #include "PxPhysicsAPI.h"
 #include "entity/common_msgs.h"
-#include "render/mesh/mesh_loader.h"
-
-// TO-DO After milestone1
-
-// ----------------------------------------------
-class ColliderMeshResourceClass : public CResourceClass {
-public:
-	ColliderMeshResourceClass() {
-	class_name = "olliders";
-	extensions = { ".collider" };
-	}
-	IResource* create(const std::string& name) const override {
-	dbg("Creating mesh %s\n", name.c_str());
-	TMeshLoader* res = loadCollider(name.c_str());
-	return res;
-	}
-};
-
-// A specialization of the template defined at the top of this file
-// If someone class getResourceClassOf<CTexture>, use this function:
-template<>
-	const CResourceClass* getResourceClassOf<CRenderMesh>() {
-	static ColliderMeshResourceClass the_resource_class;
-	return &the_resource_class;
-}
-
-struct TColliderConfig {
-
-	bool is_trigger;
-
-	physx::PxVec3 center;
-	physx::PxActor* actor;
-	physx::PxMaterial* gMaterial;
-
-};
-
-struct TBoxColliderConfig : public TColliderConfig
-{
-	physx::PxVec3 size;
-};
-
-struct TSphereColliderConfig : public TColliderConfig
-{
-	float radius;
-};
-
-struct TCapsuleColliderConfig : public TColliderConfig
-{
-	float height;
-	float radius;
-	physx::PxVec3 direction;
-};
-
-struct TConvexColliderConfig : public TColliderConfig
-{
-	float height;
-	float radius;
-	physx::PxVec3 direction;
-};
-
-
-struct TMeshColliderConfig : public TColliderConfig
-{
-	float height;
-	float radius;
-	physx::PxVec3 direction;
-};
+#include "resources/collider_resource.h"
 
 class TCompCollider : public TCompBase {
 	
@@ -90,7 +24,7 @@ class TCompCollider : public TCompBase {
 public:
 
 	// Collider parameter description
-	TColliderConfig * config;
+	CPhysicsCollider * collider_resource;
 
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
