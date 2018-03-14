@@ -6,6 +6,8 @@
 
 class TCompRigidbody : public TCompBase {
 
+	physx::PxControllerFilters filters;
+
 	DECL_SIBLING_ACCESS();
 
 public:
@@ -30,4 +32,15 @@ public:
 
 	static void registerMsgs();
 	void onCreate(const TMsgEntityCreated& msg);
+
+	class CustomQueryFilterCallback : public physx::PxQueryFilterCallback {
+
+	public:
+		physx::PxQueryHitType::Enum PxQueryFilterCallback::preFilter(const physx::PxFilterData& filterData, const physx::PxShape* shape, const physx::PxRigidActor* actor, physx::PxHitFlags& queryFlags);
+		physx::PxQueryHitType::Enum PxQueryFilterCallback::postFilter(const physx::PxFilterData& filterData, const physx::PxQueryHit& hit) {
+			return physx::PxQueryHitType::eTOUCH;
+		}
+	};
+
+	CustomQueryFilterCallback customQueryFilter;
 };

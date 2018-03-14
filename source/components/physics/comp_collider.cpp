@@ -60,7 +60,6 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 	// Setting some default values.
 	isInside = false;
 	isGrounded = false;
-
 }
 
 
