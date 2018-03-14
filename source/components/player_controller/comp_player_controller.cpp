@@ -211,6 +211,11 @@ void TCompPlayerController::Init() {
 	/* TODO: not for milestone1 */
 	//AddState("probe", (statehandler)&TCompPlayerController::ProbeState);
 
+	physx::PxFilterData pxFilterData;
+	pxFilterData.word1 = EnginePhysics.FilterGroup::Scenario;
+
+	playerFilter.data = pxFilterData;
+
 	ChangeState("idle");
 }
 
@@ -410,15 +415,11 @@ void TCompPlayerController::ShadowMergingHorizontalState(float dt){
 		VEC3 position = t->getPosition();
 		VEC3 prevUp = c_my_collider->GetUpVector();
 
-		bool concaveTest = false;
 		bool convexTest = ConvexTest();
-
-		if(!convexTest)
-			concaveTest = ConcaveTest();
+		bool concaveTest = ConcaveTest();
 
 		if (concaveTest || convexTest)
 		{
-
 			VEC3 postUp = c_my_collider->GetUpVector();
 			VEC3 dirToLookAt = -(prevUp + postUp);
 
@@ -476,11 +477,8 @@ void TCompPlayerController::ShadowMergingVerticalState(float dt){
 		VEC3 position = t->getPosition();
 		VEC3 prevUp = c_my_collider->GetUpVector();
 
-		bool concaveTest = false;
 		bool convexTest = ConvexTest();
-
-		if (!convexTest)
-			concaveTest = ConcaveTest();
+		bool concaveTest = ConcaveTest();
 
 		if (concaveTest || convexTest) {
 
@@ -872,7 +870,7 @@ const bool TCompPlayerController::ConcaveTest(void)
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * .01f;
 
-	if (EnginePhysics.Raycast(upwards_offset, c_my_transform->getFront(), c_my_collider->config.radius + .1f, hit, physx::PxQueryFlag::eSTATIC))
+	if (EnginePhysics.Raycast(upwards_offset, c_my_transform->getFront(), c_my_collider->config.radius + .1f, hit, physx::PxQueryFlag::eSTATIC, playerFilter))
 	{
 		VEC3 hit_normal = VEC3(hit.normal.x, hit.normal.y, hit.normal.z);
 		VEC3 hit_point = VEC3(hit.position.x, hit.position.y, hit.position.z);
@@ -882,7 +880,6 @@ const bool TCompPlayerController::ConcaveTest(void)
 		{
 			VEC3 new_forward = hit_normal.Cross(c_my_transform->getLeft());
 			VEC3 target = c_my_transform->getPosition() + new_forward;
-			dbg("angles concave: %f\n", rad2deg(acosf(hit_normal.Dot(c_my_collider->GetUpVector()))));
 
 			c_my_collider->SetUpVector(hit_normal);
 			c_my_collider->normal_gravity = 9.8f * -hit_normal;
@@ -905,28 +902,25 @@ const bool TCompPlayerController::ConvexTest(void)
 	TCompCollider *c_my_collider = get<TCompCollider>();
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * .01f;
-	//upwards_offset = upwards_offset + c_my_transform->getFront() * c_my_collider->config.radius;
 	VEC3 new_dir = c_my_transform->getUp() + c_my_transform->getFront();
 	new_dir.Normalize();
 
-	float maxDistance = 6 * c_my_collider->config.radius;
-	if (EnginePhysics.Raycast(upwards_offset, -new_dir, 0.15f, hit, physx::PxQueryFlag::eSTATIC))
+	if (EnginePhysics.Raycast(upwards_offset, -new_dir, 0.65f, hit, physx::PxQueryFlag::eSTATIC, playerFilter))
 	{
 		VEC3 hit_normal = VEC3(hit.normal.x, hit.normal.y, hit.normal.z);
 		VEC3 hit_point = VEC3(hit.position.x, hit.position.y, hit.position.z);
 		if (hit_normal == c_my_transform->getUp()) return false;
 
-		if (EnginePhysics.gravity.Dot(hit_normal) < .01f)
+		if (hit.distance > .015f && EnginePhysics.gravity.Dot(hit_normal) < .01f)
 		{
 			VEC3 new_forward = -hit_normal.Cross(c_my_transform->getLeft());
 			VEC3 target = hit_point + new_forward;
-			dbg("angles convex: %f\n", 180 + rad2deg(acosf(hit_normal.Dot(c_my_collider->GetUpVector()))));
 
 			c_my_collider->SetUpVector(hit_normal);
 			c_my_collider->normal_gravity = 9.8f * -hit_normal;
 
 			QUAT new_rotation = createLookAt(hit_point, target, hit_normal);
-			VEC3 new_pos = hit_point;
+			VEC3 new_pos = hit_point + c_my_collider->config.radius * new_forward;
 			c_my_transform->setRotation(new_rotation);
 			c_my_transform->setPosition(new_pos);
 			return true;
@@ -940,7 +934,7 @@ const bool TCompPlayerController::ShadowTest() {
 
 	TCompCollider *c_my_collider = get<TCompCollider>();
 	TCompShadowController * shadow_oracle = get<TCompShadowController>();
-	return stamina > 0.f && !inhibited && shadow_oracle->is_shadow && EngineInput["btShadowMerging"].isPressed() && c_my_collider->isGrounded;
+	return stamina > 0.f && !inhibited && shadow_oracle->is_shadow && EngineInput["btShadowMerging"].isPressed();
 }
 
 void TCompPlayerController::ResetPlayer()
