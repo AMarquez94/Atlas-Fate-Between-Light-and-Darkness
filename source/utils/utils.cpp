@@ -99,3 +99,9 @@ float urand(float loVal, float hiVal)
 {
 	return loVal + (float(rand()) / RAND_MAX)*(hiVal - loVal);
 }
+
+void ToUpperCase(std::string& string) {
+	for (int i = 0; i < string.size(); i++) {
+		string.at(i) = toupper(string.at(i));
+	}
+}

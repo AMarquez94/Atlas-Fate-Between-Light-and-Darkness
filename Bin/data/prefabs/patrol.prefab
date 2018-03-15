@@ -12,11 +12,7 @@
 			  "data/materials/body.material"
 			]
 		},
-		"ai_patrol": {
-			"speed": 4.5,
-			"entityToChase": "The Player"
-		},
-      "tags": [ "enemy" ]
+		"tags": [ "enemy" ]
     }
   },
   {

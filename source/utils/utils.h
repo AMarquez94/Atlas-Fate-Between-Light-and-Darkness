@@ -27,5 +27,7 @@ T Clamp(const T& n, const T& lower, const T& upper) {
 
 float urand(float loVal, float hiVal);
 
+void ToUpperCase(std::string&);
+
 #endif
 

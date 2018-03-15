@@ -63,11 +63,9 @@ void TCompGameManagerController::update(float dt) {
 			else {
 				menuPosition = (menuPosition + menuSize - 1) % menuSize;
 			}
-			dbg("Posicion %d\n", menuPosition);
 		}
 		else if(EngineInput["btDownAux"].getsPressed()){
 			menuPosition = (menuPosition + 1) % menuSize;
-			dbg("Posicion %d\n", menuPosition);
 		}
 
 		if (EngineInput["btMenuConfirm"].getsPressed()) {
