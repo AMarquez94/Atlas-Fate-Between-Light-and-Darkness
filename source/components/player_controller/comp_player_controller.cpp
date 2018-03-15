@@ -227,11 +227,13 @@ void TCompPlayerController::IdleState(float dt){
 
 	if (!crouched) {
 		TCompRender *c_my_render = get<TCompRender>();
-		c_my_render->mesh = mesh_states.find("pj_idle")->second;
+		c_my_render->meshes[0].mesh = mesh_states.find("pj_idle")->second;
+		c_my_render->refreshMeshesInRenderManager();
 	}
 	else {
 		TCompRender *c_my_render = get<TCompRender>();
-		c_my_render->mesh = mesh_states.find("pj_crouch")->second;
+		c_my_render->meshes[0].mesh = mesh_states.find("pj_crouch")->second;
+		c_my_render->refreshMeshesInRenderManager();
 	}
 
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
@@ -379,7 +381,8 @@ void TCompPlayerController::ShadowMergingEnterState(float dt){
 	// Change the render to the shadow merge mesh, TO REFACTOR
 	TCompRender* t = get<TCompRender>();
 	t->color = VEC4(0, 0, 0, 0);
-	t->mesh = mesh_states.find("pj_shadowmerge")->second;
+	t->meshes[0].mesh = mesh_states.find("pj_shadowmerge")->second;
+	t->refreshMeshesInRenderManager();
 
 	// Replace this with an smooth camera interpolation
 	camera_actual = camera_shadowmerge_hor;
@@ -522,7 +525,8 @@ void TCompPlayerController::ShadowMergingEnemyState(float dt){
 	// Change the render to the shadow merge mesh, TO REFACTOR
 	TCompRender* t = get<TCompRender>();
 	t->color = VEC4(0, 0, 0, 0);
-	t->mesh = mesh_states.find("pj_shadowmerge")->second;
+	t->meshes[0].mesh = mesh_states.find("pj_shadowmerge")->second;
+	t->refreshMeshesInRenderManager();
 
 	CEntity* e_camera = getEntityByName(camera_shadowmerge_hor);
 	TCompCamera* c_camera = e_camera->get< TCompCamera >();
@@ -582,7 +586,7 @@ void TCompPlayerController::ShadowMergingExitState(float dt){
 void TCompPlayerController::FallingState(float dt){
 
 	TCompRender *c_my_render = get<TCompRender>();
-	c_my_render->mesh = mesh_states.find("pj_fall")->second;
+	c_my_render->meshes[0].mesh = mesh_states.find("pj_fall")->second;
 
 	stamina = Clamp<float>(stamina + (incrStamina * dt), minStamina, maxStamina);
 
@@ -708,7 +712,8 @@ void TCompPlayerController::movePlayer(const float dt) {
 	currentSpeed = 0;
 
 	if (EngineInput["btRun"].isPressed() && canStandUp()) {	//TODO: Improve? Always raycasting when running
-		c_my_render->mesh = mesh_states.find("pj_run")->second;
+		c_my_render->meshes[0].mesh = mesh_states.find("pj_run")->second;
+		c_my_render->refreshMeshesInRenderManager();
 		crouched = false;
 		auxStateName = "running";
 		currentSpeed = runSpeedFactor;
@@ -717,24 +722,28 @@ void TCompPlayerController::movePlayer(const float dt) {
 	else if (EngineInput["btSlow"].isPressed()) {
 
 		if (crouched) {
-			c_my_render->mesh = mesh_states.find("pj_crouch")->second;
+			c_my_render->meshes[0].mesh = mesh_states.find("pj_crouch")->second;
+			c_my_render->refreshMeshesInRenderManager();
 			auxStateName = "crouch";
 			currentSpeed = walkCrouchSpeedFactor;
 		}
 		else {
-			c_my_render->mesh = mesh_states.find("pj_walk")->second;
+			c_my_render->meshes[0].mesh = mesh_states.find("pj_walk")->second;
+			c_my_render->refreshMeshesInRenderManager();
 			auxStateName = "walking slow";
 			currentSpeed = walkSlowSpeedFactor;
 		}
 	}
 	else if (crouched){
-		c_my_render->mesh = mesh_states.find("pj_crouch")->second;
+		c_my_render->meshes[0].mesh = mesh_states.find("pj_crouch")->second;
+		c_my_render->refreshMeshesInRenderManager();
 		auxStateName = "crouch";
 		currentSpeed = walkCrouchSpeedFactor;
 		collider->Resize(0.45f);
 	}
 	else{
-		c_my_render->mesh = mesh_states.find("pj_walk")->second;
+		c_my_render->meshes[0].mesh = mesh_states.find("pj_walk")->second;
+		c_my_render->refreshMeshesInRenderManager();
 		auxStateName = "walking";
 		currentSpeed = walkSpeedFactor;
 		collider->Resize(collider->config.height);
@@ -863,6 +872,7 @@ const bool TCompPlayerController::ConcaveTest(void)
 	{
 		VEC3 hit_normal = VEC3(hit.normal.x, hit.normal.y, hit.normal.z);
 		VEC3 hit_point = VEC3(hit.position.x, hit.position.y, hit.position.z);
+		if (hit_normal == c_my_transform->getUp()) return false;
 
 		if (EnginePhysics.gravity.Dot(hit_normal) < .01f)
 		{
@@ -879,8 +889,8 @@ const bool TCompPlayerController::ConcaveTest(void)
 			VEC3 new_pos = hit_point;
 			c_my_transform->setRotation(new_rotation);
 			c_my_transform->setPosition(new_pos);
+			return true;
 		}
-		return true;
 	}
 	return false;
 }
@@ -892,13 +902,16 @@ const bool TCompPlayerController::ConvexTest(void)
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * .01f;
 	upwards_offset = upwards_offset + c_my_transform->getFront() * c_my_collider->config.radius;
-	VEC3 new_dir = -c_my_transform->getUp() + -c_my_transform->getFront();
+	VEC3 new_dir = c_my_transform->getUp() + c_my_transform->getFront();
 	new_dir.Normalize();
 
-	if (EnginePhysics.Raycast(upwards_offset, new_dir, 1.6f, hit, physx::PxQueryFlag::eSTATIC))
+	float maxDistance = 6 * c_my_collider->config.radius;
+	if (EnginePhysics.Raycast(upwards_offset, -new_dir, maxDistance, hit, physx::PxQueryFlag::eSTATIC))
 	{
 		VEC3 hit_normal = VEC3(hit.normal.x, hit.normal.y, hit.normal.z);
 		VEC3 hit_point = VEC3(hit.position.x, hit.position.y, hit.position.z);
+		if (hit_normal == c_my_transform->getUp()) return false;
+
 		if (hit.distance > convexMaxDistance && EnginePhysics.gravity.Dot(hit_normal) < .01f)
 		{
 			VEC3 new_forward = -hit_normal.Cross(c_my_transform->getLeft());
@@ -1074,7 +1087,7 @@ void TCompPlayerController::setPlayerDead()
 
 	TCompRender* t = get<TCompRender>();
 	t->color = VEC4(1, 1, 1, 1);
-	t->mesh = mesh_states.find("pj_idle")->second;
+	t->meshes[0].mesh = mesh_states.find("pj_idle")->second;
 
 	TMsgPlayerDead newMsg;
 	newMsg.h_sender = CHandle(this).getOwner();

@@ -8,7 +8,7 @@ using json = nlohmann::json;
 
 bool CModuleManager::start()
 {
-  bool ok = startModules(_system_modules);
+	bool ok = startModules(_system_modules);
 
 	if (_startup_gs)
 	{
@@ -18,15 +18,15 @@ bool CModuleManager::start()
 	return ok;
 }
 
-bool CModuleManager::stop() 
+bool CModuleManager::stop()
 {
-  bool ok = true;
+	bool ok = true;
 	if (_current_gs)
 	{
 		ok &= stopModules(*_current_gs);
 		_current_gs = nullptr;
 	}
-  ok &= stopModules(_system_modules);
+	ok &= stopModules(_system_modules);
 
 	for (auto& gs : _gamestates)
 	{
@@ -34,19 +34,19 @@ bool CModuleManager::stop()
 	}
 	_gamestates.clear();
 
-  return ok;
+	return ok;
 }
 
 // Dispatch the OS msg to all modules registered as system module
 LRESULT CModuleManager::OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-  bool processed = false;
-  for (auto& mod : _system_modules)
-  {
-    processed |= (mod->OnOSMsg(hWnd, msg, wParam, lParam ) != 0);
-  }
-  if (processed)
-    return 1;
-  return 0;
+	bool processed = false;
+	for (auto& mod : _system_modules)
+	{
+		processed |= (mod->OnOSMsg(hWnd, msg, wParam, lParam) != 0);
+	}
+	if (processed)
+		return 1;
+	return 0;
 }
 
 void CModuleManager::update(float delta)
@@ -55,8 +55,9 @@ void CModuleManager::update(float delta)
 
 	for (auto& mod : _update_modules)
 	{
-		if (mod->isActive()) 
+		if (mod->isActive())
 		{
+			PROFILE_FUNCTION(mod->getName().c_str());
 			mod->update(delta);
 		}
 	}
@@ -68,6 +69,7 @@ void CModuleManager::render()
 	{
 		if (mod->isActive())
 		{
+			PROFILE_FUNCTION(mod->getName().c_str());
 			mod->render();
 		}
 	}
@@ -77,13 +79,13 @@ void CModuleManager::render()
 
 void CModuleManager::registerSystemModule(IModule* mod)
 {
-  _registered_modules.push_back(mod);
-  _system_modules.push_back(mod);
+	_registered_modules.push_back(mod);
+	_system_modules.push_back(mod);
 }
 
 void CModuleManager::registerGameModule(IModule* mod)
 {
-  _registered_modules.push_back(mod);
+	_registered_modules.push_back(mod);
 }
 
 IModule* CModuleManager::getModule(const std::string& modName)
@@ -101,19 +103,19 @@ IModule* CModuleManager::getModule(const std::string& modName)
 
 void CModuleManager::registerGameState(CGameState* gs)
 {
-  _gamestates.push_back(gs);
+	_gamestates.push_back(gs);
 }
 
 CGameState* CModuleManager::getGameState(const std::string& gsName)
 {
-  auto it = std::find_if(_gamestates.begin(), _gamestates.end(), [&](const CGameState* gs) {
-    return gs->getName() == gsName;
-  });
-  if (it != _gamestates.end())
-  {
-    return *it;
-  }
-  return nullptr;
+	auto it = std::find_if(_gamestates.begin(), _gamestates.end(), [&](const CGameState* gs) {
+		return gs->getName() == gsName;
+	});
+	if (it != _gamestates.end())
+	{
+		return *it;
+	}
+	return nullptr;
 }
 
 void CModuleManager::changeGameState(const std::string& gsName)
@@ -147,27 +149,27 @@ bool CModuleManager::stopModule(IModule* mod)
 
 bool CModuleManager::startModules(VModules& modules)
 {
-  bool ok = true;
-  for (auto& mod : modules)
-  {
+	bool ok = true;
+	for (auto& mod : modules)
+	{
 		ok &= startModule(mod);
-  }
-  return ok;
+	}
+	return ok;
 }
 
 bool CModuleManager::stopModules(VModules& modules)
 {
-  bool ok = true;
-  for (auto& mod : modules)
-  {
+	bool ok = true;
+	for (auto& mod : modules)
+	{
 		ok &= stopModule(mod);
-  }
-  return ok;
+	}
+	return ok;
 }
 
 void CModuleManager::loadModules(const std::string& filename)
 {
-  json json_data = loadJson(filename);
+	json json_data = loadJson(filename);
 
 	// parse update modules
 	dbg("UPDATE\n");
@@ -206,7 +208,7 @@ void CModuleManager::loadModules(const std::string& filename)
 
 void CModuleManager::loadGamestates(const std::string& filename)
 {
-  json json_data = loadJson(filename);
+	json json_data = loadJson(filename);
 
 	// parse gamestates
 	dbg("GAMESTATES\n");
@@ -241,6 +243,7 @@ void CModuleManager::loadGamestates(const std::string& filename)
 
 void CModuleManager::applyRequestedGameState()
 {
+	PROFILE_FUNCTION("CModuleManager::applyRequestedGameState");
 	if (_requested_gs)
 	{
 		// stop current game modules
@@ -251,7 +254,7 @@ void CModuleManager::applyRequestedGameState()
 
 		// start new gamestate modules
 		startModules(*_requested_gs);
-		
+
 		_current_gs = _requested_gs;
 		_requested_gs = nullptr;
 	}
@@ -259,6 +262,7 @@ void CModuleManager::applyRequestedGameState()
 
 void CModuleManager::renderDebug()
 {
+	PROFILE_FUNCTION("CModuleManager::renderDebug");
 	if (ImGui::TreeNode("Modules"))
 	{
 		for (auto& mod : _registered_modules)

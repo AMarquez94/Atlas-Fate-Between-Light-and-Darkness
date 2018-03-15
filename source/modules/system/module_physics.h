@@ -13,26 +13,6 @@ public:
 	static const VEC3 gravity;
 	static physx::PxQueryFilterData defaultFilter;
 
-	//struct RaycastHit
-	//{
-	//	VEC3 point;
-	//	VEC3 normal;
-	//	float distance;
-	//	TCompTransform * transform;
-	//	TCompCollider * collider;
-	//};
-	//
-	//enum QueryFlag
-	//{
-	//	eSTATIC = (1 << 0),
-	//	eDYNAMIC = (1 << 1),
-	//	ePREFILTER = (1 << 2),
-	//	ePOSTFILTER = (1 << 3),	
-	//	eANY_HIT = (1 << 4),
-	//	eNO_BLOCK = (1 << 5),
-	//	eRESERVED = (1 << 15)
-	//};
-
 	enum FilterGroup {
 
 		Wall = 1 << 0,

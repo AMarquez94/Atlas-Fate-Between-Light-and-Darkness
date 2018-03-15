@@ -41,6 +41,7 @@ void CEntity::debugInMenu() {
 
   if (ImGui::TreeNode(getName())) {
 
+	  renderDebug();
 	  // Give option to destroy the entity
 	  ImGui::SameLine();
 	  if (ImGui::SmallButton("Del")) {
@@ -110,4 +111,14 @@ void CEntity::load(const json& j, TEntityParseContext& ctx) {
   // the entity is fully loaded.
   sendMsg(TMsgEntityCreated());
 
+}
+
+void CEntity::renderDebug() {
+
+	for (uint32_t i = 0; i < CHandleManager::getNumDefinedTypes(); ++i) {
+		CHandle h = comps[i];
+		if (h.isValid())
+			h.renderDebug();
+		
+	}
 }

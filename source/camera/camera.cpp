@@ -34,6 +34,30 @@ void CCamera::setPerspective(float new_fov_vertical, float new_z_near, float new
 	fov_vertical = new_fov_vertical;
 	z_near = new_z_near;
 	z_far = new_z_far;
-	proj = MAT44::CreatePerspectiveFieldOfView(new_fov_vertical, (float)Render.width / (float)Render.height, new_z_near, new_z_far);
+	assert(z_far > z_near);
+	aspect_ratio = (float)Render.width / (float)Render.height;
+	proj = MAT44::CreatePerspectiveFieldOfView(new_fov_vertical, aspect_ratio, new_z_near, new_z_far);
 	updateViewProj();
 }
+
+bool CCamera::getScreenCoordsOfWorldCoord(VEC3 world_pos, VEC3* result) const {
+
+	// It's also dividing by w  -> [-1..1]
+	VEC3 pos_in_homo_space = VEC3::Transform(world_pos, getViewProjection());
+
+	VEC3 pos_in_screen_space(
+		(pos_in_homo_space.x + 1.0f) * 0.5f * Render.width,
+		(1.0f - pos_in_homo_space.y) * 0.5f * Render.height,
+		pos_in_homo_space.z
+	);
+
+	assert(result);
+	*result = pos_in_screen_space;
+
+	// Return true if the coord is inside the frustum
+	return pos_in_homo_space.x >= -1.0f && pos_in_homo_space.x <= 1.0f
+		&& pos_in_homo_space.y >= -1.0f && pos_in_homo_space.y <= 1.0f
+		&& pos_in_homo_space.z >= 0.0f && pos_in_homo_space.z <= 1.0f
+		;
+}
+

@@ -15,7 +15,7 @@ void CCurve::addKnot(const VEC3& point)
 VEC3 CCurve::evaluateAsCatmull(float ratio) const
 {
 	ratio = Clamp(ratio, 0.f, 0.99999f);
-	int nsegments = (int)_knots.size() - 3;
+	auto nsegments = _knots.size() - 3;
 	float ratioPerSegment = 1.f / (float)nsegments;
 	int currentSegment = (int)(ratio / ratioPerSegment);
 	float segmentRatio = fmodf(ratio, ratioPerSegment) / ratioPerSegment;

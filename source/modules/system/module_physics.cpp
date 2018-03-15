@@ -81,7 +81,7 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 			TMeshLoader * collider_mesh = loadCollider(config.filename.c_str());  // Move this to a custom collider resource
 
 			PxCookingParams params = gCooking->getParams();
-			params.convexMeshCookingType = PxConvexMeshCookingType::eINFLATION_INCREMENTAL_HULL;
+			params.convexMeshCookingType = PxConvexMeshCookingType::eQUICKHULL;
 			params.gaussMapLimit = 256;
 			gCooking->setParams(params);
 
@@ -95,8 +95,16 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 			PxConvexMesh* convex = gCooking->createConvexMesh(desc, gPhysics->getPhysicsInsertionCallback());
 			PxConvexMeshGeometry convex_geo = PxConvexMeshGeometry(convex, PxMeshScale(), PxConvexMeshGeometryFlags());
 			actor = gPhysics->createRigidStatic(initialTrans);
-			PxShape * shape = actor->createShape(convex_geo, *gMaterial);
-			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
+			shape = actor->createShape(convex_geo, *gMaterial);
+
+			if (config.is_trigger)
+			{
+				shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, false);
+				shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, false);
+				shape->setFlag(PxShapeFlag::eTRIGGER_SHAPE, true);
+				actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
+			}
+
 			actor->attachShape(*shape);
 			shape->release();
 			gScene->addActor(*actor);
@@ -123,8 +131,16 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 			PxTriangleMesh * tri_mesh = gCooking->createTriangleMesh(meshDesc, gPhysics->getPhysicsInsertionCallback());
 			PxTriangleMeshGeometry tri_geo = PxTriangleMeshGeometry(tri_mesh, PxMeshScale());
 			actor = gPhysics->createRigidStatic(initialTrans);
-			PxShape * shape = actor->createShape(tri_geo, *gMaterial);
-			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
+			shape = actor->createShape(tri_geo, *gMaterial);
+
+			if (config.is_trigger)
+			{
+				shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, false);
+				shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, false);
+				shape->setFlag(PxShapeFlag::eTRIGGER_SHAPE, true);
+				actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
+			}
+
 			actor->attachShape(*shape);
 			shape->release();
 			gScene->addActor(*actor);
@@ -264,6 +280,9 @@ bool CModulePhysics::start()
 	gCooking = PxCreateCooking(PX_PHYSICS_VERSION, *gFoundation, PxCookingParams(PxTolerancesScale()));
 	gDispatcher = PxDefaultCpuDispatcherCreate(2);
 
+	if (!gPhysics)
+		fatal("PxCreatePhysics failed");
+
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
 	sceneDesc.gravity = PxVec3(gravity.x, -9.81f * gravity.y, gravity.z);
 	sceneDesc.cpuDispatcher = gDispatcher;
@@ -358,6 +377,7 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
 		h_other_comp_collider.fromVoidPtr(pairs[i].otherActor->userData);
 		CEntity* e_trigger = h_trigger_comp_collider.getOwner();
 
+		dbg("trigger touch\n");
 		if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_FOUND)
 		{
 			e_trigger->sendMsg(TMsgTriggerEnter{ h_other_comp_collider.getOwner() });

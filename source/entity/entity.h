@@ -23,6 +23,7 @@ public:
   }
 
   void debugInMenu();
+  void renderDebug();
 
   void set(uint32_t comp_type, CHandle new_comp);
   void load(const json& j, TEntityParseContext& ctx);

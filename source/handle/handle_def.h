@@ -96,6 +96,7 @@ public:
 
   // 
   void    debugInMenu();
+  void    renderDebug();
   void    load(const json& j, TEntityParseContext& ctx);
 
   template< class TMsg >

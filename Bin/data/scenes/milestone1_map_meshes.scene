@@ -347,8 +347,7 @@
         "pos": "-10.7136 0.789496 254.0"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
+			},
       "render":
       [
         {
@@ -359,7 +358,9 @@
             "data/materials/mtl_door.material"
           ]
         }
-      ]
+      ],
+			"abs_aabb": true,
+			"local_aabb": true
     }
   }
   ,

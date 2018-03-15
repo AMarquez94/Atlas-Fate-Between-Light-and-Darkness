@@ -4,34 +4,38 @@
 #include "modules/game/module_splash.h"
 #include "modules/game/module_main_menu.h"
 #include "modules/game/module_gameover.h"
-#include "modules/game/module_test_axis.h"
+#include "modules/game/module_map_intro.h"
+#include "modules/game/module_game_manager.h"
 #include "modules/test/module_test_input.h"
 
 //--------------------------------------------------------------------------------------
 CEngine& CEngine::get() {
-  static CEngine engine;
-  return engine;
+
+	static CEngine engine;
+	return engine;
 }
 
 CEngine::CEngine()
-  : _module_render("render")
-  , _module_entities("entities")
-  , _module_ia("ia")
+	: _module_render("render")
+	, _module_entities("entities")
+	, _module_ia("ia")
 	, _module_input("input")
 	, _module_physics("physics")
 	, _module_cameras("cameras")
+	, _module_fsm("fsm")
 {}
 
 bool CEngine::start() {
 
-  static CModuleSplash   module_splash("splash");
-  static CModuleMainMenu module_main_menu("main_menu");
-  static CModuleGameOver module_game_over("game_over");
-  static CModuleTestAxis module_test_axis("test_axis");
+	static CModuleSplash module_splash("splash");
+	static CModuleGameManager module_game_manager("game_manager");
+	static CModuleMainMenu module_main_menu("main_menu");
+	static CModuleGameOver module_game_over("game_over");
+	static CModuleMapIntro module_map_intro("map_intro");
 	static CModuleTestInput module_test_input("test_input");
 
-  _modules.registerSystemModule(&_module_render);
-  _modules.registerSystemModule(&_module_entities);
+	_modules.registerSystemModule(&_module_render);
+	_modules.registerSystemModule(&_module_entities);
 	_modules.registerSystemModule(&_module_ia);
 	_modules.registerSystemModule(&_module_input);
 	_modules.registerSystemModule(&_module_physics);
@@ -39,9 +43,10 @@ bool CEngine::start() {
 
 
 	_modules.registerGameModule(&module_splash);
+	_modules.registerGameModule(&module_game_manager);
 	_modules.registerGameModule(&module_main_menu);
-  _modules.registerGameModule(&module_game_over);
-	_modules.registerGameModule(&module_test_axis);
+	_modules.registerGameModule(&module_game_over);
+	_modules.registerGameModule(&module_map_intro);
 	_modules.registerGameModule(&module_test_input);
 
 	_modules.loadModules("data/modules.json");
@@ -51,17 +56,20 @@ bool CEngine::start() {
 }
 
 bool CEngine::stop() {
-  bool ok = true;
-  ok &= _modules.stop();
-  return ok;
+
+	bool ok = true;
+	ok &= _modules.stop();
+	return ok;
 }
 
 void CEngine::update(float delta)
 {
-  _modules.update(delta);
+	PROFILE_FUNCTION("CEngine::update");
+	_modules.update(delta);
 }
 
 void CEngine::render()
 {
-  _module_render.generateFrame();
+	PROFILE_FUNCTION("CEngine::render");
+	_module_render.generateFrame();
 }

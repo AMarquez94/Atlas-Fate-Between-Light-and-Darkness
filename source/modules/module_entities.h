@@ -5,10 +5,10 @@
 
 class CModuleEntities : public IModule
 {
-
   std::vector< CHandleManager* > om_to_update;
   std::vector< CHandleManager* > om_to_render_debug;
   void loadListOfManagers(const json& j, std::vector< CHandleManager* > &managers);
+  void renderDebugOfComponents();
 
 public:
   CModuleEntities(const std::string& aname) : IModule(aname) { }

@@ -86,6 +86,76 @@ CRenderMesh* createGridXZ(int nsteps) {
 	return mesh;
 }
 
+// ---------------------------------------------------
+CRenderMesh* createCameraFrustum() {
+	CRenderMesh* mesh = new CRenderMesh;
+
+	std::vector<TVtxPosClr> vtxs;
+	VEC4 clr(1, 1, 1, 1);
+	vtxs.emplace_back(VEC3(-1, -1, 0), clr);
+	vtxs.emplace_back(VEC3(1, -1, 0), clr);
+	vtxs.emplace_back(VEC3(-1, -1, 1), clr);
+	vtxs.emplace_back(VEC3(1, -1, 1), clr);
+	vtxs.emplace_back(VEC3(-1, 1, 0), clr);
+	vtxs.emplace_back(VEC3(1, 1, 0), clr);
+	vtxs.emplace_back(VEC3(-1, 1, 1), clr);
+	vtxs.emplace_back(VEC3(1, 1, 1), clr);
+
+	std::vector<uint16_t> idxs;
+	for (int i = 0; i < 4; ++i) {
+		// Lines along +x
+		idxs.push_back(i * 2);
+		idxs.push_back(i * 2 + 1);
+		// Vertical lines
+		idxs.push_back(i);
+		idxs.push_back(i + 4);
+	}
+	idxs.push_back(0);
+	idxs.push_back(2);
+	idxs.push_back(1);
+	idxs.push_back(3);
+	idxs.push_back(4);
+	idxs.push_back(6);
+	idxs.push_back(5);
+	idxs.push_back(7);
+	if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(TVtxPosClr), "PosClr"
+		, CRenderMesh::LINE_LIST
+		, idxs.data(), idxs.size() * sizeof(uint16_t), sizeof(uint16_t)
+	))
+		return nullptr;
+	return mesh;
+}
+
+// ----------------------------------
+// To render wired AABB's
+CRenderMesh* createWiredUnitCube() {
+	std::vector<TVtxPosClr> vtxs =
+	{
+		{ VEC3(-0.5f,-0.5f, -0.5f),  VEC4(1, 1, 1, 1) },    // 
+	{ VEC3(0.5f,-0.5f, -0.5f),   VEC4(1, 1, 1, 1) },
+	{ VEC3(-0.5f, 0.5f, -0.5f),  VEC4(1, 1, 1, 1) },
+	{ VEC3(0.5f, 0.5f, -0.5f),   VEC4(1, 1, 1, 1) },    // 
+	{ VEC3(-0.5f,-0.5f, 0.5f),   VEC4(1, 1, 1, 1) },    // 
+	{ VEC3(0.5f,-0.5f, 0.5f),    VEC4(1, 1, 1, 1) },
+	{ VEC3(-0.5f, 0.5f, 0.5f),   VEC4(1, 1, 1, 1) },
+	{ VEC3(0.5f, 0.5f, 0.5f),    VEC4(1, 1, 1, 1) },    // 
+	};
+	const std::vector<uint16_t> idxs = {
+		0, 1, 2, 3, 4, 5, 6, 7
+		, 0, 2, 1, 3, 4, 6, 5, 7
+		, 0, 4, 1, 5, 2, 6, 3, 7
+	};
+	CRenderMesh* mesh = new CRenderMesh;
+	const int nindices = 8 * 3;
+	if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(TVtxPosClr), "PosClr"
+		, CRenderMesh::LINE_LIST
+		, idxs.data(), idxs.size() * sizeof(uint16_t), sizeof(uint16_t)
+	))
+		return nullptr;
+	return mesh;
+}
+
+
 CRenderMesh* createCone(float fov, float dist, int steps, VEC4 clr) {
 	CRenderMesh* mesh = new CRenderMesh;
 
@@ -123,8 +193,10 @@ bool createRenderObjects() {
 	registerMesh(createGridXZ(20), "grid.mesh");
 	registerMesh(createLineZ(), "line.mesh");
 	registerMesh(createUnitCircleXZ(32), "circle_xz.mesh");
+	registerMesh(createCameraFrustum(), "unit_frustum.mesh");
 	registerMesh(createCone(deg2rad(70), 35.f, 10, VEC4(1.0f, 1.0f, 1.0f, 1.0f)), "cone_of_vision.mesh");
 	registerMesh(createCone(deg2rad(35), 20.f, 10, VEC4(1.0f, 1.0f, 0.0f, 1.0f)), "cone_of_light.mesh");
+	registerMesh(createWiredUnitCube(), "wired_unit_cube.mesh");
 	return true;
 }
 
@@ -144,4 +216,33 @@ void setWorldTransform(MAT44 new_matrix, VEC4 new_color) {
 	cb_object.updateGPU();
 }
 
+void renderMesh(const CRenderMesh* mesh, MAT44 new_matrix, VEC4 color) {
 
+	assert(mesh);
+	auto vdecl = mesh->getVertexDecl();
+	assert(vdecl);
+	const char* tech_name = "solid.tech";
+	if (vdecl->name == "PosNUv")
+		tech_name = "textured.tech";
+	else if (vdecl->name == "PosNUvUv")
+		tech_name = "textured_bk.tech";
+	
+	auto prev_tech = CRenderTechnique::current;
+	auto tech = Resources.get(tech_name)->as<CRenderTechnique>();
+	tech->activate();
+	
+	setWorldTransform(new_matrix, color);
+	mesh->activateAndRender();
+	prev_tech->activate();
+}
+
+// ---------------------------------------------
+void renderWiredAABB(const AABB& aabb, MAT44 world, VEC4 color) {
+	// Accede a una mesh que esta centrada en el origen y
+	// tiene 0.5 de half size
+	auto mesh = Resources.get("wired_unit_cube.mesh")->as<CRenderMesh>();
+	MAT44 unit_cube_to_aabb = MAT44::CreateScale(VEC3(aabb.Extents) * 2.f)
+		* MAT44::CreateTranslation(aabb.Center)
+		* world;
+	renderMesh(mesh, unit_cube_to_aabb, color);
+}

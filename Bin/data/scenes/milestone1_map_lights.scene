@@ -85,7 +85,16 @@
         ,
         "shadows": true
       }
-			,
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot001.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
       "tags":
       [
         "light"
@@ -118,7 +127,17 @@
         "intensity": 0.65
         ,
         "shadows": true
-      },
+      }
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot002.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
       "tags":
       [
         "light"
@@ -151,7 +170,17 @@
         "intensity": 0.65
         ,
         "shadows": true
-      },
+      }
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot003.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
       "tags":
       [
         "light"
@@ -168,14 +197,14 @@
       {
         "pos": "-13.4556 13.4591 28.7654"
         ,
-        "rotation": "-0.022968 -0.92756 0.0362107 0.371205"
+        "rotation": "-0.0148164 -0.928059 0.0233591 0.371405"
       }
       ,
       "light":
       {
         "type": "spotlight"
         ,
-        "range": 10.4218
+        "range": 16.147
         ,
         "angle": 35.3
         ,
@@ -184,7 +213,17 @@
         "intensity": 0.65
         ,
         "shadows": true
-      },
+      }
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot004.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
       "tags":
       [
         "light"
@@ -199,16 +238,16 @@
       ,
       "transform":
       {
-        "pos": "-31.8709 13.4756 66.0087"
+        "pos": "-32.8709 13.4756 66.0087"
         ,
-        "rotation": "-0.00638077 0.44503 -0.0387306 -0.894655"
+        "rotation": "-0.00366781 0.445259 -0.0222632 -0.895117"
       }
       ,
       "light":
       {
         "type": "spotlight"
         ,
-        "range": 9.21869
+        "range": 16.0292
         ,
         "angle": 35.3
         ,
@@ -217,7 +256,17 @@
         "intensity": 0.65
         ,
         "shadows": true
-      },
+      }
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot005.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
       "tags":
       [
         "light"
@@ -239,13 +288,22 @@
       ,
       "light":
       {
-			  "type": "spotlight"
+	    "type": "spotlight"
         ,
         "color": "255.0 255.0 255.0"
         ,
         "intensity": 0.99
         ,
         "shadows": true
+      }
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot025.collider"
+        ,
+        "is_trigger": true
       }
       ,
       "tags":
@@ -269,7 +327,7 @@
       ,
       "light":
       {
-				"type": "spotlight"
+	    "type": "spotlight"
         ,
         "color": "255.0 255.0 255.0"
         ,
@@ -278,235 +336,19 @@
         "shadows": true
       }
       ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot026.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
       "tags":
       [
         "light"
       ]
     }
   }
-	,
-	    	{
-    "entity":
-    {
-      "name": "spot_collider3"
-      ,
-      "transform":
-      {
-        "pos": "-23.8001 -9.22614 -22.1312",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "sphere",
-				"is_trigger" : true,
-        "radius": 5.2
-      },
-      "tags":
-      [
-        "collider_light"
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "spot_collider1"
-      ,
-      "transform":
-      {
-        "pos": "2.43315 -8.91186 -25.5493",
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "sphere",
-				"is_trigger" : true,
-        "radius": 5.2
-      },
-      "tags":
-      [
-        "collider_light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "spot_collider2"
-      ,
-      "transform":
-      {
-        "pos": "-6.23571 -8.91187 -36.8719"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "sphere",
-				"is_trigger" : true,
-        "radius": 5.2
-      },
-      "tags":
-      [
-        "collider_light"
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "spot_collider004"
-      ,
-      "transform":
-      {
-        "pos": "-13.4956 1.11992 29.8863"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "sphere"
-        ,
-				"is_trigger" : true,
-        "radius": 4.2
-      },
-      "tags":
-      [
-        "collider_light"
-      ]
-    }
-  },
-	  {
-    "entity":
-    {
-      "name": "spot_collider005"
-      ,
-      "transform":
-      {
-        "pos": "-31.5311 0.253 66.3719"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "sphere",
-				"is_trigger" : true,
-        "radius": 4.4
-
-      },
-      "tags":
-      [
-        "collider_light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "spot_collider006"
-      ,
-      "transform":
-      {
-        "pos": "-31.5311 4.11629 66.3113"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "sphere"
-        ,
-				"is_trigger" : true,
-        "radius": 3.0
-      },
-      "tags":
-      [
-        "collider_light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "spot_collider007"
-      ,
-      "transform":
-      {
-        "pos": "-31.9766 7.23195 66.1409"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "sphere"
-        ,
-				"is_trigger" : true,
-        "radius": 2.0
-      },
-      "tags":
-      [
-        "collider_light"
-      ]
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "spot_collider009"
-      ,
-      "transform":
-      {
-        "pos": "-11.4213 1.11993 160.816"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "sphere"
-        ,
-				"is_trigger" : true,
-        "radius": 26.0
-      },
-      "tags":
-      [
-        "collider_light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "spot_collider010"
-      ,
-      "transform":
-      {
-        "pos": "-11.4213 1.11993 219.82"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "sphere"
-        ,
-				"is_trigger" : true,
-        "radius": 22.0
-      },
-      "tags":
-      [
-        "collider_light"
-      ]
-    }
-  }	
 ]

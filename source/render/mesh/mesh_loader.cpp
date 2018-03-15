@@ -29,6 +29,13 @@ bool TMeshLoader::load(CDataProvider& dp) {
       dp.readBytes(idxs.data(), chunk.num_bytes);
       break;
 
+	case magicSubGroups: {
+		static const int bytes_per_subgroup = sizeof(TMeshSubGroup);
+		assert(chunk.num_bytes == header.num_subgroups * bytes_per_subgroup);
+		subgroups.resize(header.num_subgroups);
+		dp.readBytes(subgroups.data(), chunk.num_bytes);
+		break; }
+
     case magicEoF:
       eof_found = true;
       break;
@@ -42,6 +49,10 @@ bool TMeshLoader::load(CDataProvider& dp) {
   assert(!idxs.empty());
   assert(!vtxs.empty());
   assert( strlen( header.vertex_type_name ) > 0 );
+
+  // In case the mesh is old...
+  if (subgroups.empty())
+	  subgroups.push_back({ 0, header.num_indices, 0, 0 });
 
   return true;
 }
@@ -63,6 +74,7 @@ CRenderMesh* loadMesh(const char* filename) {
     , loader.idxs.data()
     , loader.idxs.size()
     , loader.header.bytes_per_idx
+	, &loader.subgroups
   )) 
     return nullptr;
 

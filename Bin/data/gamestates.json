@@ -1,5 +1,5 @@
 {
-	"startup" : "test_axis",
+	"startup" : "main_menu",
 	"gamestates" : 
 	[
 		{
@@ -15,8 +15,8 @@
 			"modules" : [ "game_over" ]
 		},
 		{
-			"name" : "test_axis",
-			"modules" : [ "test_axis" ]
+			"name" : "map_intro",
+			"modules" : [ "map_intro", "game_manager" ]
 		},
 		{
 			"name" : "test_input",

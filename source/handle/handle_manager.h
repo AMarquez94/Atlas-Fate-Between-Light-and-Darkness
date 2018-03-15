@@ -60,6 +60,7 @@ protected:
   virtual void moveObj(uint32_t src_internal_idx, uint32_t dst_internal_idx) = 0;
   virtual void loadObj(uint32_t src_internal_idx, const json& j, TEntityParseContext& ctx) = 0;
   virtual void debugInMenuObj(uint32_t internal_idx) = 0;
+  virtual void renderDebugObj(uint32_t internal_idx) = 0;
 
 public:
   // ---------------------------------------------------------
@@ -138,6 +139,7 @@ public:
   CHandle createHandle();
   void    destroyHandle(CHandle h);
   void    debugInMenu(CHandle h);
+  void    renderDebug(CHandle h);
   void    load(CHandle h, const json& j, TEntityParseContext& ctx);
 
   // ---------------------------------------------

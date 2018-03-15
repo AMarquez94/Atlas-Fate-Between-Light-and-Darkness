@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "comp_transform.h"
 #include "entity/entity_parser.h"
+#include "render/render_objects.h"
 
 DECL_OBJ_MANAGER("transform", TCompTransform);
 
@@ -8,9 +9,9 @@ void TCompTransform::debugInMenu() {
   CTransform::debugInMenu();
 }
 void TCompTransform::renderDebug() {
-	/*setWorldTransform(asMatrix());
+	setWorldTransform(asMatrix());
 	auto axis = Resources.get("axis.mesh")->as<CRenderMesh>();
-	axis->activateAndRender();*/
+	axis->activateAndRender();
 }
 
 

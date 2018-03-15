@@ -17,6 +17,9 @@ void TCompCameraFlyover::load(const json& j, TEntityParseContext& ctx) {
 void TCompCameraFlyover::update(float dt)
 {
 	TCompTransform* c_transform = get<TCompTransform>();
+	if (!c_transform)
+		return;
+
 	VEC3 pos = c_transform->getPosition();
 	VEC3 front = c_transform->getFront();
 	VEC3 left = c_transform->getLeft();
