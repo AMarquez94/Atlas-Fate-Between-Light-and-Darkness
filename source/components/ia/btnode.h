@@ -20,6 +20,7 @@ public:
 	void setType(EType type);
 	void update(float dt, TCompIAController* bt);
 	const std::string getName();
+	void printNode(int level, TCompIAController *bt);
 
 private:
 

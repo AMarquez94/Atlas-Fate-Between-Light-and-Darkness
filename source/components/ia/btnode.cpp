@@ -125,3 +125,40 @@ void BTNode::update(float dt, TCompIAController *bt) {
 const std::string BTNode::getName() {
 	return this->name;
 }
+
+void BTNode::printNode(int level, TCompIAController *bt)
+{
+	std::string text = level == 0 ? "" : " ";
+	for (int i = 0; i < level; i++) {
+		text = text + "| ";
+	}
+	text = text + this->getName();
+	switch (type) {
+		case EType::ACTION:
+			text = text + " (act.)";
+			break;
+		case EType::ASSERT:
+			text = text + " (ass.)";
+			break;
+		case EType::RANDOM:
+			text = text + " (r)";
+			break;
+		case EType::PRIORITY:
+			text = text + " (p)";
+			break;
+		case EType::SEQUENCE:
+			text = text + " (s)";
+			break;
+	}
+	if (bt->getCurrent() == this) {
+		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(255.0f, 255.0f, 0.0f, 1.0f));
+		ImGui::Text("%s", text.c_str());
+		ImGui::PopStyleColor();
+	}
+	else {
+		ImGui::Text("%s", text.c_str());
+	}
+	for (int i = 0; i < children.size(); i++) {
+		children[i]->printNode(level + 1, bt);
+	}
+}

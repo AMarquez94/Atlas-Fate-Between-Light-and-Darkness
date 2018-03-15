@@ -12,6 +12,8 @@
 DECL_OBJ_MANAGER("ai_patrol", TCompAIPatrol);
 
 void TCompAIPatrol::debugInMenu() {
+
+	TCompIAController::debugInMenu();
 	
 	if (current) {
 		validState = current->getName();
@@ -170,7 +172,7 @@ void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 	addChild("manageChase", "beginAlertChase", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionBeginAlert, nullptr);
 	addChild("manageChase", "manageGoingToAttack", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
 	addChild("manageGoingToAttack", "managePlayerAttacked", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPatrol::conditionPlayerAttacked, nullptr, nullptr);
-	addChild("manageGoingToAttack", "ChasePlayer", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionChasePlayer, nullptr);
+	addChild("manageGoingToAttack", "chasePlayer", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionChasePlayer, nullptr);
 	addChild("managePlayerAttacked", "attack", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionAttack, nullptr);
 	addChild("managePlayerAttacked", "endAlertAttacked", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionEndAlert, nullptr);
 	addChild("managePlayerAttacked", "closestWptAttacked", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPatrol::actionClosestWpt, nullptr);

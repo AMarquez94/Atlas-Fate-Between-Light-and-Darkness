@@ -47,6 +47,8 @@ private:
 	BTNode *createNode(const std::string& name);
 	BTNode *findNode(const std::string& name);
 
+	void printTree();
+
 public:
 
 	std::string name;
@@ -65,6 +67,7 @@ public:
 	void addAssert(const std::string& assertName, BTAssert btAssert);
 	bool testAssert(const std::string& assertName, float dt);
 	void setCurrent(BTNode *currentNode);
+	BTNode* getCurrent() { return current; };
 
 	void update(float dt);
 };

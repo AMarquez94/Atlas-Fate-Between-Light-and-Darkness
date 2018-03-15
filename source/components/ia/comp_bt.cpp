@@ -1,7 +1,14 @@
 #include "mcv_platform.h"
 #include "comp_bt.h"
 
-void TCompIAController::debugInMenu() {}
+void TCompIAController::debugInMenu() {
+
+	if (ImGui::CollapsingHeader("BT Nodes")) {
+		ImGui::Separator();
+		printTree();
+		ImGui::Separator();
+	}
+}
 
 BTNode * TCompIAController::createNode(const std::string& name)
 {
@@ -135,4 +142,10 @@ void TCompIAController::update(float dt) {
 	else {
 		current->update(dt, this);
 	}
+}
+
+
+void TCompIAController::printTree()
+{
+	root->printNode(0, this);
 }
