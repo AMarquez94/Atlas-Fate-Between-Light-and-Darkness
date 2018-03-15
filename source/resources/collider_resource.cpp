@@ -191,20 +191,24 @@ void CPhysicsCapsule::create(TCompTransform * c_transform) {
 	physx::PxControllerDesc* cDesc;
 	physx::PxCapsuleControllerDesc capsuleDesc;
 	PX_ASSERT(desc.mType == physx::PxControllerShapeType::eCAPSULE);
+	physx::PxControllerManager * gManager = EnginePhysics.getPhysxController();
 
 	capsuleDesc.height = height;
 	capsuleDesc.radius = radius;
 	capsuleDesc.climbingMode = physx::PxCapsuleClimbingMode::eCONSTRAINED;
 	cDesc = &capsuleDesc;
 	cDesc->material = material;
-	cDesc->contactOffset = 0.01f;
-	physx::PxCapsuleController * ctrl = static_cast<physx::PxCapsuleController*>(mControllerManager->createController(*cDesc));
+	cDesc->contactOffset = contact_offset;
+	physx::PxCapsuleController * ctrl = static_cast<physx::PxCapsuleController*>(gManager->createController(*cDesc));
 	PX_ASSERT(ctrl);
 
+	VEC3 pos = c_transform->getPosition();
+	QUAT quat = c_transform->getRotation();
 	ctrl->setFootPosition(physx::PxExtendedVec3(pos.x, pos.y, pos.z));
-	ctrl->setContactOffset(0.01f);
+	ctrl->setContactOffset(contact_offset);
 	actor = ctrl->getActor();
-	setupFiltering(actor, config.group, config.mask);
+
+	setupFiltering(actor, group, mask);
 }
 
 void CPhysicsCapsule::debugInMenu() {
@@ -217,83 +221,83 @@ void CPhysicsConvex::load(const json& j, TEntityParseContext& ctx) {
 
 void CPhysicsConvex::create(TCompTransform * c_transform) {
 
-	PxCookingParams params = gCooking->getParams();
-	params.convexMeshCookingType = PxConvexMeshCookingType::eQUICKHULL;
+	physx::PxCooking * gCooking = EnginePhysics.getCooking();
+	physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
+	physx::PxScene * gScene = EnginePhysics.getPhysxScene();
+
+	physx::PxCookingParams params = gCooking->getParams();
+	params.convexMeshCookingType = convextype;
 	params.gaussMapLimit = 256;
 	gCooking->setParams(params);
 
 	// Setup the convex mesh descriptor
-	PxConvexMeshDesc desc;
-	desc.points.data = collider_mesh->vtxs.data();
-	desc.points.count = collider_mesh->header.num_vertexs;
-	desc.points.stride = sizeof(PxVec3);
-	desc.flags = PxConvexFlag::eCOMPUTE_CONVEX;
+	physx::PxConvexMeshDesc desc;
+	desc.points.data = mesh->vtxs.data();
+	desc.points.count = mesh->num_vertexs;
+	desc.points.stride = sizeof(physx::PxVec3);
+	desc.flags = physx::PxConvexFlag::eCOMPUTE_CONVEX;
 
-	PxConvexMesh* convex = gCooking->createConvexMesh(desc, gPhysics->getPhysicsInsertionCallback());
-	PxConvexMeshGeometry convex_geo = PxConvexMeshGeometry(convex, PxMeshScale(), PxConvexMeshGeometryFlags());
+	physx::PxConvexMesh* convex = gCooking->createConvexMesh(desc, gPhysics->getPhysicsInsertionCallback());
+	physx::PxConvexMeshGeometry convex_geo = physx::PxConvexMeshGeometry(convex, physx::PxMeshScale(), physx::PxConvexMeshGeometryFlags());
+
+	VEC3 pos = c_transform->getPosition();
+	QUAT quat = c_transform->getRotation();
+	physx::PxTransform initialTrans(physx::PxVec3(pos.x, pos.y, pos.z), physx::PxQuat(quat.x, quat.y, quat.z, quat.w));
 	actor = gPhysics->createRigidStatic(initialTrans);
-	shape = actor->createShape(convex_geo, *gMaterial);
 
-	if (config.is_trigger)
-	{
-		shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, false);
-		shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, false);
-		shape->setFlag(PxShapeFlag::eTRIGGER_SHAPE, true);
-		actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
-	}
+	physx::PxShape * actor_shape = actor->createShape(convex_geo, *material);
+	setAsTrigger(actor_shape, is_trigger);
+	setupFiltering(actor, group, mask);
 
-	actor->attachShape(*shape);
-	shape->release();
+	actor->attachShape(*actor_shape);
+	actor_shape->release();
+
 	gScene->addActor(*actor);
-
-	setupFiltering(actor, config.group, config.mask);
-	comp_collider.actor = actor;
-	actor->userData = h_comp_collider.asVoidPtr();
 }
 
 void CPhysicsConvex::debugInMenu() {
 
 }
 
-void CPhysicsConvex::load(const json& j, TEntityParseContext& ctx) {
+void CPhysicsTriangleMesh::load(const json& j, TEntityParseContext& ctx) {
 
 }
 
-void CPhysicsConvex::create(TCompTransform * c_transform) {
+void CPhysicsTriangleMesh::create(TCompTransform * c_transform) {
 
-	PxTriangleMeshDesc meshDesc;
-	meshDesc.points.data = collider_mesh->vtxs.data();
-	meshDesc.points.count = collider_mesh->header.num_vertexs;
-	meshDesc.points.stride = collider_mesh->header.bytes_per_vtx;
-	meshDesc.flags = PxMeshFlag::e16_BIT_INDICES | PxMeshFlag::eFLIPNORMALS;
+	physx::PxCooking * gCooking = EnginePhysics.getCooking();
+	physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
+	physx::PxScene * gScene = EnginePhysics.getPhysxScene();
 
-	meshDesc.triangles.data = collider_mesh->idxs.data();
-	meshDesc.triangles.count = collider_mesh->header.num_indices / 3;
-	meshDesc.triangles.stride = 3 * collider_mesh->header.bytes_per_idx;
+	// Setup the triangle mesh descriptor
+	physx::PxTriangleMeshDesc meshDesc;
+	meshDesc.points.data = mesh->vtxs.data();
+	meshDesc.points.count = mesh->num_vertexs;
+	meshDesc.points.stride = mesh->bytes_per_vtx;
+	meshDesc.flags = physx::PxMeshFlag::e16_BIT_INDICES | physx::PxMeshFlag::eFLIPNORMALS;
 
-	PxTriangleMesh * tri_mesh = gCooking->createTriangleMesh(meshDesc, gPhysics->getPhysicsInsertionCallback());
-	PxTriangleMeshGeometry tri_geo = PxTriangleMeshGeometry(tri_mesh, PxMeshScale());
+	meshDesc.triangles.data = mesh->idxs.data();
+	meshDesc.triangles.count = mesh->num_indices / 3;
+	meshDesc.triangles.stride = 3 * mesh->bytes_per_idx;
+
+	physx::PxTriangleMesh * tri_mesh = gCooking->createTriangleMesh(meshDesc, gPhysics->getPhysicsInsertionCallback());
+	physx::PxTriangleMeshGeometry tri_geo = physx::PxTriangleMeshGeometry(tri_mesh, physx::PxMeshScale());
+
+	VEC3 pos = c_transform->getPosition();
+	QUAT quat = c_transform->getRotation();
+	physx::PxTransform initialTrans(physx::PxVec3(pos.x, pos.y, pos.z), physx::PxQuat(quat.x, quat.y, quat.z, quat.w));
 	actor = gPhysics->createRigidStatic(initialTrans);
-	shape = actor->createShape(tri_geo, *gMaterial);
 
-	if (config.is_trigger)
-	{
-		shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, false);
-		shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, false);
-		shape->setFlag(PxShapeFlag::eTRIGGER_SHAPE, true);
-		actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
-	}
+	physx::PxShape * actor_shape = actor->createShape(tri_geo, *material);
+	setAsTrigger(actor_shape, is_trigger);
+	setupFiltering(actor, group, mask);
 
-	actor->attachShape(*shape);
-	shape->release();
+	actor->attachShape(*actor_shape);
+	actor_shape->release();
+
 	gScene->addActor(*actor);
-
-	setupFiltering(actor, config.group, config.mask);
-	comp_collider.actor = actor;
-	actor->userData = h_comp_collider.asVoidPtr();
-	return;
 }
 
-void CPhysicsConvex::debugInMenu() {
+void CPhysicsTriangleMesh::debugInMenu() {
 
 }

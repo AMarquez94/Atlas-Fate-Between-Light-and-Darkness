@@ -10,6 +10,8 @@ struct CPhysicsMesh : public IResource {
 
 	uint32_t num_vertexs = 0;
 	uint32_t num_indices = 0;
+	uint32_t bytes_per_vtx = 0;
+	uint32_t bytes_per_idx = 0;
 	std::vector< uint8_t > vtxs;
 	std::vector< uint8_t > idxs;
 
@@ -27,7 +29,7 @@ public:
 
 struct CPhysicsCollider {
 
-	physx::PxActor* actor;
+	physx::PxRigidActor* actor;
 	physx::PxMaterial* material;
 	physx::PxGeometryType shape_type;
 
@@ -57,7 +59,7 @@ public:
 	virtual void create(TCompTransform * c_transform) {}
 	virtual void debugInMenu() {}
 
-	physx::PxActor* getActor(void) { return actor; };
+	physx::PxRigidActor* getActor(void) { return actor; };
 	void setupFiltering(physx::PxShape* shape, physx::PxU32 filterGroup, physx::PxU32 filterMask);
 	void setupFiltering(physx::PxRigidActor* actor, physx::PxU32 filterGroup, physx::PxU32 filterMask);
 	void setAsTrigger(physx::PxShape * shape, bool state);
@@ -104,6 +106,8 @@ public:
 struct CPhysicsConvex : public CPhysicsCollider{
 
 	CPhysicsMesh * mesh;
+	physx::PxConvexMeshCookingType::Enum convextype = physx::PxConvexMeshCookingType::eQUICKHULL;
+
 public:
 	float height;
 	float radius;
