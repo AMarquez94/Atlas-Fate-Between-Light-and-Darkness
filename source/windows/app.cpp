@@ -205,7 +205,7 @@ bool CApp::readConfig() {
 
   CEngine::get().getRender().configure(xres, yres);
 
-  ShowCursor(true);
+  ShowCursor(false);
 
   return true;
 }
