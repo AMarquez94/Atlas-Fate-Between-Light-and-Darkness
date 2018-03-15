@@ -35,7 +35,6 @@ private:
 	/* The cpp functions that implements node actions (behaviours) */
 	std::map<std::string, BTAction> actions;
 
-
 	/* The cpp functions that implements conditions */
 	std::map<std::string, BTCondition> conditions;
 

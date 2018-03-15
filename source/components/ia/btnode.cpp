@@ -137,9 +137,6 @@ void BTNode::printNode(int level, TCompIAController *bt)
 		case EType::ACTION:
 			text = text + " (act.)";
 			break;
-		case EType::ASSERT:
-			text = text + " (ass.)";
-			break;
 		case EType::RANDOM:
 			text = text + " (r)";
 			break;

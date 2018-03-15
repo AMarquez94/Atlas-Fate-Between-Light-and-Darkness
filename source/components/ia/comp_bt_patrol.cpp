@@ -106,7 +106,7 @@ void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 						//We start retrieving the parameters
 						if (j_condArg.count("escape") == 1) {
 							conditionsArgs.escapeB = true;
-							conditionsArgs.escape = j_condArg.value("escape", 0);
+							conditionsArgs.escape = j_condArg.value("escape", 0.f);
 						}
 					}
 				}
@@ -124,11 +124,11 @@ void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 						//We start retrieving the parameters
 						if (j_actArg.count("movement") == 1) {
 							actionsArgs.movementB = true;
-							actionsArgs.movement = j_actArg.value("movement", 0);
+							actionsArgs.movement = j_actArg.value("movement", 0.f);
 						}
 						if (j_actArg.count("ugh") == 1) {
 							actionsArgs.ughB = true;
-							actionsArgs.ugh = j_actArg.value("ugh", 0);
+							actionsArgs.ugh = j_actArg.value("ugh", 0.f);
 						}
 					}
 
