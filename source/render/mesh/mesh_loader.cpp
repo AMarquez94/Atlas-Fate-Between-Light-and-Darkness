@@ -81,13 +81,22 @@ CRenderMesh* loadMesh(const char* filename) {
   return mesh;
 }
 
-TMeshLoader* loadCollider(const char* filename) {
+CPhysicsMesh* loadPhysicsMesh(const char* filename) {
 	CFileDataProvider fdp(filename);
 	assert(fdp.isValid());
 
-	TMeshLoader* loader = new TMeshLoader();
-	if (!loader->load(fdp))
+	TMeshLoader loader;
+	if (!loader.load(fdp))
 		return nullptr;
 
-	return loader;
+	CPhysicsMesh * physx_mesh = new CPhysicsMesh();
+	if (!physx_mesh->create(
+		loader.vtxs.data()
+		, loader.idxs.data()
+		, loader.vtxs.size()
+		, loader.idxs.size()
+	))
+		return nullptr;
+
+	return physx_mesh;
 }

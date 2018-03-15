@@ -24,7 +24,7 @@ class TCompCollider : public TCompBase {
 public:
 
 	// Collider parameter description
-	CPhysicsCollider * collider_resource;
+	CPhysicsCollider * config;
 
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);

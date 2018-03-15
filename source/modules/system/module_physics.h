@@ -13,19 +13,6 @@ public:
 	static const VEC3 gravity;
 	static physx::PxQueryFilterData defaultFilter;
 
-	enum FilterGroup {
-
-		Wall = 1 << 0,
-		Floor = 1 << 1,
-		Player = 1 << 2,
-		Enemy = 1 << 3,
-		Ignore = 1 << 4,
-		Fence = 1 << 5,
-		Scenario = Wall | Floor,
-		Characters = Player | Enemy,
-		All = -1
-	};
-
 	CModulePhysics(const std::string& aname) : IModule(aname) { }
 	virtual bool start() override;
 	virtual void update(float delta) override;
@@ -36,8 +23,8 @@ public:
 
 	// Filter methods
 	FilterGroup getFilterByName(const std::string& name);
-	void setupFiltering(physx::PxShape* shape, physx::PxU32 filterGroup, physx::PxU32 filterMask);
-	void setupFiltering(physx::PxRigidActor* actor, physx::PxU32 filterGroup, physx::PxU32 filterMask);
+	physx::PxScene* getPhysxScene() { return gScene; }
+	physx::PxPhysics* getPhysxFactory() { return gPhysics; }
 
 	/* Ray casting & related methods*/
 

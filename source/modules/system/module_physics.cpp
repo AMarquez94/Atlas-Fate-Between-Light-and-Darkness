@@ -185,32 +185,6 @@ void CModulePhysics::createActor(TCompCollider& comp_collider)
 	actor->userData = h_comp_collider.asVoidPtr();
 }
 
-void CModulePhysics::setupFiltering(PxShape* shape, PxU32 filterGroup, PxU32 filterMask)
-{
-	PxFilterData filterData;
-	filterData.word0 = filterGroup; // word0 = own ID
-	filterData.word1 = filterMask;	// word1 = ID mask to filter pairs that trigger a contact callback;
-	shape->setSimulationFilterData(filterData);
-	shape->setQueryFilterData(filterData);
-}
-
-void CModulePhysics::setupFiltering(PxRigidActor* actor, PxU32 filterGroup, PxU32 filterMask)
-{
-	PxFilterData filterData;
-	filterData.word0 = filterGroup; // word0 = own ID
-	filterData.word1 = filterMask;	// word1 = ID mask to filter pairs that trigger a contact callback;
-	const PxU32 numShapes = actor->getNbShapes();
-	std::vector<PxShape*> shapes;
-	shapes.resize(numShapes);
-	actor->getShapes(&shapes[0], numShapes);
-	for (PxU32 i = 0; i < numShapes; i++)
-	{
-		PxShape* shape = shapes[i];
-		shape->setSimulationFilterData(filterData);
-		shape->setQueryFilterData(filterData);
-	}
-}
-
 CModulePhysics::FilterGroup CModulePhysics::getFilterByName(const std::string& name)
 {
 	if (strcmp("player", name.c_str()) == 0) {
@@ -236,8 +210,6 @@ CModulePhysics::FilterGroup CModulePhysics::getFilterByName(const std::string& n
 	}
 	return CModulePhysics::FilterGroup::All;
 }
-
-
 
 PxFilterFlags CustomFilterShader(
   PxFilterObjectAttributes attributes0, PxFilterData filterData0,
