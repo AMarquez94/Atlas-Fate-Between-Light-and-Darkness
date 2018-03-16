@@ -1,10 +1,10 @@
 {
 	"solid" : {
-		"vs_file": "data/shaders/shader_master.fx",
-		"vs_entry_point" : "vs_CtColor",
+		"vs_file": "data/shaders/solid.fx",
+		"vs_entry_point" : "VS",
 		"vertex_type" : "PosClr",
-		"ps_file": "data/shaders/shader_master.fx",
-		"ps_entry_point" : "ps_Ctcolor"
+		"ps_file": "data/shaders/solid.fx",
+		"ps_entry_point" : "PS"
 	},
 	"solid_objs" : {
 		"vs_file": "data/shaders/solid.fx",

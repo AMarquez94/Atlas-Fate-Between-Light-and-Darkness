@@ -15,6 +15,7 @@
     "bullet_controller",
     "shadow_controller",
     "skeleton",
+    "bone_tracker",
     "light",
     "hierarchy",
 		"local_aabb",

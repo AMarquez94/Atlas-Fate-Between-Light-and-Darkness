@@ -226,7 +226,9 @@ void renderMesh(const CRenderMesh* mesh, MAT44 new_matrix, VEC4 color) {
 		tech_name = "textured.tech";
 	else if (vdecl->name == "PosNUvUv")
 		tech_name = "textured_bk.tech";
-	
+	else if (vdecl->name == "PosNUvSkin")
+		tech_name = "solid_objs_skin.tech";
+
 	auto prev_tech = CRenderTechnique::current;
 	auto tech = Resources.get(tech_name)->as<CRenderTechnique>();
 	tech->activate();

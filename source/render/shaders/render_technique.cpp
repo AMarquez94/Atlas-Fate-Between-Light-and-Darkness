@@ -78,6 +78,8 @@ bool CRenderTechnique::create(const std::string& name, json& j) {
 
 	category = j.value("category", "default");
 	category_id = getID(category.c_str());
+	uses_skin = j.value("uses_skin", false);
+
 	setNameAndClass(name, getResourceClassOf<CRenderTechnique>());
 
 	return true;

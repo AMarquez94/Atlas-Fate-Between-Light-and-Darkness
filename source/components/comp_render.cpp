@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "comp_render.h"
 #include "comp_transform.h"
+#include "skeleton/comp_skeleton.h"
 
 DECL_OBJ_MANAGER("render", TCompRender);
 
@@ -10,6 +11,7 @@ DECL_OBJ_MANAGER("render", TCompRender);
 #include "render/render_utils.h"
 #include "render/render_manager.h"
 #include "entity/entity_parser.h"
+
 
 TCompRender::~TCompRender() {
 	// Delete all references of me in the render manager
@@ -38,6 +40,14 @@ void TCompRender::renderDebug() {
 	activateRSConfig(RSCFG_WIREFRAME);
 	TCompTransform * transform = get<TCompTransform>();
 	assert(transform);
+	
+	//If we have an skeleton, make sure the required bones are actived and updated
+	TCompSkeleton* skel = get<TCompSkeleton>();
+	if (skel) {
+		skel->updateCtesBones();
+		skel->cb_bones.activate();
+	}
+
 	for (auto& mwm : meshes)
 		renderMesh(mwm.mesh, transform->asMatrix(), color);
 	activateRSConfig(RSCFG_DEFAULT);
