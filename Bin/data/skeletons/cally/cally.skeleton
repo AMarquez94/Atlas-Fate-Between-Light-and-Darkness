@@ -1,0 +1,10 @@
+{
+	"name":"cally",
+	"anims" : [
+		{ "name" : "jog"},
+		{ "name" : "idle"},
+		{ "name" : "walk"},
+		{ "name" : "wave"},
+		{ "name" : "kick"}
+	]
+}
