@@ -21,11 +21,17 @@ protected:
 	
 	//Auxiliar functions for the load in the instantiations
 	BTNode::EType stringToNodeType(std::string&);
-	virtual void loadActions() { }
-	virtual void loadConditions() { }
-	virtual void loadAsserts() { }
+	virtual void loadActions() {};
+	virtual void loadConditions() {};
+	virtual void loadAsserts() {};
+	void loadTree(const json& j);
 
 	BTNode *current;
+
+	struct arguments {
+		float speed, flee, movement, ugh, escape;
+		bool speedB = false, fleeB = false, movementB = false, ughB = false, escapeB = false;
+	}conditionsArgs, actionsArgs;
 
 private:
 
@@ -53,7 +59,7 @@ public:
 	std::string name;
 
 	void debugInMenu();
-	virtual void load(const json& j, TEntityParseContext& ctx) = 0;
+	virtual void load(const json& j, TEntityParseContext& ctx) {};
 
 	/* Calls to declare root and children. Use nullptr when you dont need/want a BTCondition or BTAction */
 	BTNode *createRoot(const std::string& rootName, BTNode::EType type, BTCondition btCondition, BTAction btAction, BTAssert btAssert);

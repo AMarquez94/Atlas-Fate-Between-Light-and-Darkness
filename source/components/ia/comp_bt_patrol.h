@@ -72,11 +72,6 @@ private:
 	void loadConditions() override;
 	void loadAsserts() override;
 
-	struct arguments {
-		float speed, flee, movement, ugh, escape;
-		bool speedB = false, fleeB = false, movementB = false, ughB = false, escapeB = false;
-	}conditionsArgs, actionsArgs;
-
 public:
 	void load(const json& j, TEntityParseContext& ctx) override;
 	void debugInMenu();
