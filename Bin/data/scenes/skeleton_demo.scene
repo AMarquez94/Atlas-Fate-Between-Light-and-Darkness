@@ -1,0 +1,40 @@
+[
+  {
+    "entity":
+    {
+      "name": "Paladin"
+      ,
+      "transform":
+      {
+        "pos": "0 0 0",
+        "rotation": "0.0 0.0 0.0 1.0"
+      },
+      "skeleton": {
+        "skeleton": "data/skeletons/paladin/paladin.skeleton"
+      },
+      "abs_aabb":true,
+      "local_aabb":true,
+      "render" : [
+        {
+          "mesh": "data/skeletons/paladin/paladin.mesh"
+          ,
+          "materials":
+          [
+            "data/skeletons/paladin/paladin.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity": 
+    {
+      "name": "Shield",
+      "transform": {},
+      "bone_tracker" : {
+        "parent" : "Paladin",
+        "bone":"Bip01 L Forearm"
+      }
+    }
+  }
+]

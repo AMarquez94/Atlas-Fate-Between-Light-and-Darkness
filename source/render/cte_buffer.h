@@ -22,16 +22,21 @@ public:
 // -----------------------------------------
 template< typename TPOD >
 class CRenderCte : public TPOD, public CCteBuffer {
+	const char* name = nullptr;
 public:
-  bool create(int new_slot) {
-    slot = new_slot;
-    return createData(sizeof(TPOD));
-  }
 
-  void updateGPU() {
-    const TPOD* pod = this;
-    Render.ctx->UpdateSubresource(cb, 0, NULL, pod, 0, 0);
-  }
+	CRenderCte(const char* new_name) : name(new_name) {
+	}
+
+	bool create(int new_slot) {
+		slot = new_slot;
+		return createData(sizeof(TPOD));
+	}
+
+	void updateGPU() {
+		const TPOD* pod = this;
+		Render.ctx->UpdateSubresource(cb, 0, NULL, pod, 0, 0);
+	}
 };
 
 /*

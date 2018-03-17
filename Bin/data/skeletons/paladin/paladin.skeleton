@@ -1,0 +1,9 @@
+{
+	"name":"paladin",
+	"anims" : [
+		{ "name" : "walk"}
+	],
+  "bone_ids_to_debug" : [
+    3
+  ]
+}

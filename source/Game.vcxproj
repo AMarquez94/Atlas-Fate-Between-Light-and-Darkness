@@ -118,6 +118,9 @@
     <ClCompile Include="components\physics\comp_rigibody.cpp" />
     <ClCompile Include="components\player_controller\comp_player_controller.cpp" />
     <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
+    <ClCompile Include="components\skeleton\comp_bone_tracker.cpp" />
+    <ClCompile Include="components\skeleton\comp_skeleton.cpp" />
+    <ClCompile Include="components\skeleton\game_core_skeleton.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\entity_parser.cpp" />
@@ -220,6 +223,10 @@
     <ClInclude Include="components\physics\comp_rigibody.h" />
     <ClInclude Include="components\player_controller\comp_player_controller.h" />
     <ClInclude Include="components\player_controller\comp_shadow_controller.h" />
+    <ClInclude Include="components\skeleton\cal3d2engine.h" />
+    <ClInclude Include="components\skeleton\comp_bone_tracker.h" />
+    <ClInclude Include="components\skeleton\comp_skeleton.h" />
+    <ClInclude Include="components\skeleton\game_core_skeleton.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="entity\common_msgs.h" />
     <ClInclude Include="entity\entity.h" />
@@ -300,6 +307,7 @@
     <ClInclude Include="resources\resource.h" />
     <ClInclude Include="resources\resources_manager.h" />
     <ClInclude Include="utils\data_provider.h" />
+    <ClInclude Include="utils\data_saver.h" />
     <ClInclude Include="utils\directory_watcher.h" />
     <ClInclude Include="utils\json.hpp" />
     <ClInclude Include="utils\murmur3\murmur3.h" />
@@ -310,6 +318,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Cal3D\Cal3D.vcxproj">
+      <Project>{f13518a5-98d4-48a8-98ed-81b5e9d70bce}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -18,6 +18,8 @@ public:
   QUAT getRotation() const { return rot; }
   void setRotation(QUAT new_rot) { rot = new_rot; }
 
+  float getScale() const { return scale; }
+
   // -------------------------------------------
   MAT44 asMatrix() const {
     return MAT44::CreateScale(scale)

@@ -18,6 +18,7 @@ bool fatal(const char* fmt, ...);
 
 bool isPressed(int key);
 
+bool fileExists(const std::string& afilename);
 json loadJson(const std::string& filename);
 
 template <typename T>

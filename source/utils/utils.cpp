@@ -26,6 +26,16 @@ bool isPressed(int key) {
 
 
 // --------------------------------------------------------
+// Quick and dirty..
+bool fileExists(const std::string& afilename) {
+	FILE* f = fopen(afilename.c_str(), "rb");
+	if (!f)
+		return false;
+	fclose(f);
+	return true;
+}
+
+// --------------------------------------------------------
 json loadJson(const std::string& filename) {
 
 	json j;
