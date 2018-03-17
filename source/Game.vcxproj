@@ -111,7 +111,7 @@
     <ClCompile Include="components\object_controller\comp_bullet_controller.cpp" />
     <ClCompile Include="components\object_controller\comp_cone_of_light.cpp" />
     <ClCompile Include="components\physics\comp_collider.cpp" />
-    <ClCompile Include="components\physics\comp_rigibody.cpp" />
+    <ClCompile Include="components\physics\comp_rigidbody.cpp" />
     <ClCompile Include="components\player_controller\comp_player_controller.cpp" />
     <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
     <ClCompile Include="engine.cpp" />
@@ -158,6 +158,9 @@
     <ClCompile Include="modules\system\module_input.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
+    <ClCompile Include="physics\physics_collider.cpp" />
+    <ClCompile Include="physics\physics_filter.cpp" />
+    <ClCompile Include="physics\physics_mesh.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
     <ClCompile Include="render\mesh\mesh.cpp" />
@@ -174,7 +177,6 @@
     <ClCompile Include="render\texture\DDSTextureLoader.cpp" />
     <ClCompile Include="render\texture\material.cpp" />
     <ClCompile Include="render\texture\texture.cpp" />
-    <ClCompile Include="resources\collider_resource.cpp" />
     <ClCompile Include="resources\json_resource.cpp" />
     <ClCompile Include="resources\resources_manager.cpp" />
     <ClCompile Include="utils\murmur3\murmur3.cpp" />
@@ -210,7 +212,7 @@
     <ClInclude Include="components\object_controller\comp_bullet_controller.h" />
     <ClInclude Include="components\object_controller\comp_cone_of_light.h" />
     <ClInclude Include="components\physics\comp_collider.h" />
-    <ClInclude Include="components\physics\comp_rigibody.h" />
+    <ClInclude Include="components\physics\comp_rigidbody.h" />
     <ClInclude Include="components\player_controller\comp_player_controller.h" />
     <ClInclude Include="components\player_controller\comp_shadow_controller.h" />
     <ClInclude Include="engine.h" />
@@ -272,6 +274,9 @@
     <ClInclude Include="modules\system\module_input.h" />
     <ClInclude Include="modules\system\module_physics.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
+    <ClInclude Include="physics\physics_collider.h" />
+    <ClInclude Include="physics\physics_filter.h" />
+    <ClInclude Include="physics\physics_mesh.h" />
     <ClInclude Include="profiling\profiling.h" />
     <ClInclude Include="render\cte_buffer.h" />
     <ClInclude Include="render\mesh\mesh.h" />
@@ -289,7 +294,6 @@
     <ClInclude Include="render\texture\DDSTextureLoader.h" />
     <ClInclude Include="render\texture\material.h" />
     <ClInclude Include="render\texture\texture.h" />
-    <ClInclude Include="resources\collider_resource.h" />
     <ClInclude Include="resources\json_resource.h" />
     <ClInclude Include="resources\resource.h" />
     <ClInclude Include="resources\resources_manager.h" />

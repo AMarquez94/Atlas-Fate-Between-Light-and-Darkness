@@ -6,8 +6,6 @@
 
 bool CModuleGameManager::start()
 {
-	CEngine::get().getRender().setBackgroundColor(1.f, 0.f, 0.f, 1.f);
-  
 	window_flags = 0;
 	window_flags |= ImGuiWindowFlags_NoMove;
 	window_flags |= ImGuiWindowFlags_NoResize;
@@ -32,7 +30,7 @@ void CModuleGameManager::update(float delta)
 
 		CEntity* eCollider = handles[i];
 		TCompCollider * e = eCollider->get<TCompCollider>();
-		if (e->isInside) {
+		if (e->player_inside) {
 
 			victoryMenuVisible = true;
 			found = true;

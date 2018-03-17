@@ -18,6 +18,7 @@
 		"local_aabb",
 		"culling",
     "cone_of_light",
+		"rigidbody",
     "collider",
     "camera_flyover",
     "dynamic_objects",

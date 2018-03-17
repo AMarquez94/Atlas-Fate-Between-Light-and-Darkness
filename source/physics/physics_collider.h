@@ -1,65 +1,37 @@
 #pragma once
 
 #include "PxPhysicsAPI.h"
-#include "entity/common_msgs.h"
-#include "resources/resource.h"
+#include "physics/physics_filter.h"
 
+class CPhysicsMesh;
 class TCompTransform;
 
-struct CPhysicsMesh : public IResource {
+class CPhysicsCollider {
 
-	uint32_t num_vertexs = 0;
-	uint32_t num_indices = 0;
-	uint32_t bytes_per_vtx = 0;
-	uint32_t bytes_per_idx = 0;
-	std::vector< uint8_t > vtxs;
-	std::vector< uint8_t > idxs;
-
-public:
-
-	bool create(
-		  const void* vertex_data
-		, const void* index_data
-		, uint32_t vertex_size
-		, uint32_t index_size);
-
-	void destroy() override;
-	void debugInMenu() override;
-};
-
-struct CPhysicsCollider {
-
-	physx::PxRigidActor* actor;
+protected:
 	physx::PxMaterial* material;
 	physx::PxGeometryType shape_type;
 
 public:
 
-	enum FilterGroup {
-
-		Wall = 1 << 0,
-		Floor = 1 << 1,
-		Player = 1 << 2,
-		Enemy = 1 << 3,
-		Ignore = 1 << 4,
-		Fence = 1 << 5,
-		Scenario = Wall | Floor,
-		Characters = Player | Enemy,
-		All = -1
-	};
+	static physx::PxMaterial* default_material;
 
 	bool is_trigger;
+	physx::PxRigidActor* actor;
 
 	physx::PxU32 group;
 	physx::PxU32 mask;
-	physx::PxVec3 center;
-	physx::PxF32 contact_offset;
+	physx::PxVec3 center = physx::PxVec3(); // move this...
+	physx::PxF32 contact_offset = 0.01f;
 
-	virtual void load(const json& j, TEntityParseContext& ctx) {}
-	virtual void create(TCompTransform * c_transform) {}
-	virtual void debugInMenu() {}
+	virtual physx::PxShape* createShape() = 0;
+	virtual void load(const json& j, TEntityParseContext& ctx) = 0;
+	virtual physx::PxController* createController(TCompTransform * c_transform) = 0;
+	virtual void debugInMenu() = 0;
 
-	physx::PxRigidActor* getActor(void) { return actor; };
+	void createStatic(physx::PxShape* actor_shape, TCompTransform * c_transform);
+	void createDynamic(physx::PxShape* actor_shape, TCompTransform * c_transform);
+
 	void setupFiltering(physx::PxShape* shape, physx::PxU32 filterGroup, physx::PxU32 filterMask);
 	void setupFiltering(physx::PxRigidActor* actor, physx::PxU32 filterGroup, physx::PxU32 filterMask);
 	void setAsTrigger(physx::PxShape * shape, bool state);
@@ -69,26 +41,31 @@ struct CPhysicsBox : public CPhysicsCollider{
 
 public:
 	physx::PxVec3 size;
+
+	physx::PxShape*  createShape() override;
+	physx::PxController* createController(TCompTransform * c_transform) override;
 	void load(const json& j, TEntityParseContext& ctx) override;
-	void create(TCompTransform * c_transform) override;
 	void debugInMenu() override;
 };
 
 struct CPhysicsPlane: public CPhysicsCollider {
 
 public:
+
+	physx::PxShape*  createShape() override;
+	physx::PxController* createController(TCompTransform * c_transform) { fatal("UNSUPPORTED\n"); return nullptr; };
 	void load(const json& j, TEntityParseContext& ctx) override;
-	void create(TCompTransform * c_transform) override;
 	void debugInMenu() override;
 };
-
 
 struct CPhysicsSphere : public CPhysicsCollider{
 
 public:
 	float radius;
+
+	physx::PxShape*  createShape() override;
+	physx::PxController* createController(TCompTransform * c_transform) { fatal("UNSUPPORTED\n"); return nullptr; };
 	void load(const json& j, TEntityParseContext& ctx) override;
-	void create(TCompTransform * c_transform) override;
 	void debugInMenu() override;
 };
 
@@ -98,34 +75,42 @@ public:
 	float height;
 	float radius;
 
+	physx::PxShape*  createShape() override;
+	physx::PxController* createController(TCompTransform * c_transform) override;
 	void load(const json& j, TEntityParseContext& ctx) override;
-	void create(TCompTransform * c_transform) override;
 	void debugInMenu() override;
 };
 
 struct CPhysicsConvex : public CPhysicsCollider{
 
 	CPhysicsMesh * mesh;
+	std::string filename;
+	physx::PxConvexFlags flags;
+
 	physx::PxConvexMeshCookingType::Enum convextype = physx::PxConvexMeshCookingType::eQUICKHULL;
 
 public:
 	float height;
 	float radius;
 
+	physx::PxShape*  createShape() override;
+	physx::PxController* createController(TCompTransform * c_transform) { fatal("UNSUPPORTED\n"); return nullptr; };
 	void load(const json& j, TEntityParseContext& ctx) override;
-	void create(TCompTransform * c_transform) override;
 	void debugInMenu() override;
 };
-
 
 struct CPhysicsTriangleMesh : public CPhysicsCollider{
 
 	CPhysicsMesh * mesh;
+	std::string filename;
+	physx::PxMeshFlags flags;
+
 public:
 	float height;
 	float radius;
 
+	physx::PxShape*  createShape() override;
+	physx::PxController* createController(TCompTransform * c_transform) { fatal("UNSUPPORTED\n"); return nullptr; };
 	void load(const json& j, TEntityParseContext& ctx) override;
-	void create(TCompTransform * c_transform) override;
 	void debugInMenu() override;
 };

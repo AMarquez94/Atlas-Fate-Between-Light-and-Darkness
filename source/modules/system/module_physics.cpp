@@ -4,6 +4,8 @@
 #include "components/comp_transform.h"
 #include "render/mesh/mesh.h"
 #include "render/mesh/mesh_loader.h"
+#include "physics/physics_collider.h"
+#include "components/physics/comp_rigidbody.h"
 
 #pragma comment(lib,"PhysX3_x64.lib")
 #pragma comment(lib,"PhysX3Common_x64.lib")
@@ -17,219 +19,6 @@ using namespace physx;
 
 const VEC3 CModulePhysics::gravity(0, -1, 0);
 physx::PxQueryFilterData CModulePhysics::defaultFilter;
-
-/* REFACTOR THIS IN THE FUTURE, IT'S A BIG MESS */
-void CModulePhysics::createActor(TCompCollider& comp_collider)
-{
-	const TCompCollider::TConfig & config = comp_collider.config;
-	CHandle h_comp_collider(&comp_collider);
-	CEntity* e = h_comp_collider.getOwner();
-	TCompTransform * compTransform = e->get<TCompTransform>();
-	VEC3 pos = compTransform->getPosition();
-	QUAT quat = compTransform->getRotation();
-
-	PxTransform initialTrans(PxVec3(pos.x, pos.y, pos.z), PxQuat(quat.x, quat.y, quat.z, quat.w));
-	PxRigidActor* actor = nullptr;
-
-	if (config.shapeType == physx::PxGeometryType::ePLANE)
-	{
-		PxRigidStatic* plane = PxCreatePlane(*gPhysics, PxPlane(0, 1, 0, 0), *gMaterial);
-		actor = plane;
-		setupFiltering(actor, config.group, config.mask);
-		gScene->addActor(*actor);
-	}
-	else if (config.shapeType == physx::PxGeometryType::eCAPSULE && config.is_controller)
-	{
-		PxControllerDesc* cDesc;
-		PxCapsuleControllerDesc capsuleDesc;
-
-		PX_ASSERT(desc.mType == PxControllerShapeType::eCAPSULE);
-		capsuleDesc.height = config.height;
-		capsuleDesc.radius = config.radius;
-		capsuleDesc.climbingMode = PxCapsuleClimbingMode::eCONSTRAINED;
-		cDesc = &capsuleDesc;
-		cDesc->material = gMaterial;
-		cDesc->contactOffset = 0.01f;
-		PxCapsuleController * ctrl = static_cast<PxCapsuleController*>(mControllerManager->createController(*cDesc));
-		PX_ASSERT(ctrl);
-		ctrl->setFootPosition(PxExtendedVec3(pos.x, pos.y, pos.z));
-		ctrl->setContactOffset(0.01f);
-		actor = ctrl->getActor();
-		comp_collider.controller = ctrl;
-		setupFiltering(actor, config.group, config.mask);
-	}
-	else
-	{
-		PxShape* shape = nullptr;
-		PxTransform offset(PxVec3(0.f, 0.f, 0.f));
-		if (config.shapeType == physx::PxGeometryType::eBOX)
-		{
-			shape = gPhysics->createShape(PxBoxGeometry(config.halfExtent.x, config.halfExtent.y, config.halfExtent.z), *gMaterial);
-			offset.p.y = config.halfExtent.y;
-			shape->setContactOffset(1.f);
-			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
-
-		}
-		else if (config.shapeType == physx::PxGeometryType::eSPHERE)
-		{
-			shape = gPhysics->createShape(PxSphereGeometry(config.radius), *gMaterial);
-			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, true);
-			offset.p.y = config.vOffset;
-		}
-		else if (config.shapeType == physx::PxGeometryType::eCONVEXMESH)
-		{
-			TMeshLoader * collider_mesh = loadCollider(config.filename.c_str());  // Move this to a custom collider resource
-
-			PxCookingParams params = gCooking->getParams();
-			params.convexMeshCookingType = PxConvexMeshCookingType::eQUICKHULL;
-			params.gaussMapLimit = 256;
-			gCooking->setParams(params);
-
-			// Setup the convex mesh descriptor
-			PxConvexMeshDesc desc;
-			desc.points.data = collider_mesh->vtxs.data();
-			desc.points.count = collider_mesh->header.num_vertexs;
-			desc.points.stride = sizeof(PxVec3);
-			desc.flags = PxConvexFlag::eCOMPUTE_CONVEX;
-			
-			PxConvexMesh* convex = gCooking->createConvexMesh(desc, gPhysics->getPhysicsInsertionCallback());
-			PxConvexMeshGeometry convex_geo = PxConvexMeshGeometry(convex, PxMeshScale(), PxConvexMeshGeometryFlags());
-			actor = gPhysics->createRigidStatic(initialTrans);
-			shape = actor->createShape(convex_geo, *gMaterial);
-
-			if (config.is_trigger)
-			{
-				shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, false);
-				shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, false);
-				shape->setFlag(PxShapeFlag::eTRIGGER_SHAPE, true);
-				actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
-			}
-
-			actor->attachShape(*shape);
-			shape->release();
-			gScene->addActor(*actor);
-
-			setupFiltering(actor, config.group, config.mask);
-			comp_collider.actor = actor;
-			actor->userData = h_comp_collider.asVoidPtr();
-			return;
-		}
-		else if (config.shapeType == physx::PxGeometryType::eTRIANGLEMESH)
-		{
-			TMeshLoader * collider_mesh = loadCollider(config.filename.c_str()); // Move this to a custom collider resource
-
-			PxTriangleMeshDesc meshDesc;
-			meshDesc.points.data = collider_mesh->vtxs.data();
-			meshDesc.points.count = collider_mesh->header.num_vertexs;
-			meshDesc.points.stride = collider_mesh->header.bytes_per_vtx;
-			meshDesc.flags = PxMeshFlag::e16_BIT_INDICES | PxMeshFlag::eFLIPNORMALS;
-
-			meshDesc.triangles.data = collider_mesh->idxs.data();
-			meshDesc.triangles.count = collider_mesh->header.num_indices / 3;
-			meshDesc.triangles.stride = 3 * collider_mesh->header.bytes_per_idx;
-
-			PxTriangleMesh * tri_mesh = gCooking->createTriangleMesh(meshDesc, gPhysics->getPhysicsInsertionCallback());
-			PxTriangleMeshGeometry tri_geo = PxTriangleMeshGeometry(tri_mesh, PxMeshScale());
-			actor = gPhysics->createRigidStatic(initialTrans);
-			shape = actor->createShape(tri_geo, *gMaterial);
-
-			if (config.is_trigger)
-			{
-				shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, false);
-				shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, false);
-				shape->setFlag(PxShapeFlag::eTRIGGER_SHAPE, true);
-				actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
-			}
-
-			actor->attachShape(*shape);
-			shape->release();
-			gScene->addActor(*actor);
-
-			setupFiltering(actor, config.group, config.mask);
-			comp_collider.actor = actor;
-			actor->userData = h_comp_collider.asVoidPtr();
-			return;
-		}
-		//....todo: more shapes
-
-		setupFiltering(shape, config.group, config.mask);
-		shape->setLocalPose(offset);
-		if (config.is_dynamic)
-		{
-			PxRigidDynamic* body = gPhysics->createRigidDynamic(initialTrans);
-			actor = body;
-			PxRigidBodyExt::updateMassAndInertia(*body, 10.0f);
-		}
-		else
-		{
-			PxRigidStatic* body = gPhysics->createRigidStatic(initialTrans);
-			actor = body;
-		}
-
-		if (config.is_trigger)
-		{
-			shape->setFlag(PxShapeFlag::eSCENE_QUERY_SHAPE, false);
-			shape->setFlag(PxShapeFlag::eSIMULATION_SHAPE, false);
-			shape->setFlag(PxShapeFlag::eTRIGGER_SHAPE, true);
-			actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
-		}
-
-		assert(shape);
-		assert(actor);
-		actor->attachShape(*shape);
-		shape->release();
-		gScene->addActor(*actor);
-	}
-
-	comp_collider.actor = actor;
-	actor->userData = h_comp_collider.asVoidPtr();
-}
-
-CModulePhysics::FilterGroup CModulePhysics::getFilterByName(const std::string& name)
-{
-	if (strcmp("player", name.c_str()) == 0) {
-		return CModulePhysics::FilterGroup::Player;
-	}
-	else if (strcmp("enemy", name.c_str()) == 0) {
-		return CModulePhysics::FilterGroup::Enemy;
-	}
-	else if (strcmp("characters", name.c_str()) == 0) {
-		return CModulePhysics::FilterGroup::Characters;
-	}
-	else if (strcmp("wall", name.c_str()) == 0) {
-		return CModulePhysics::FilterGroup::Wall;
-	}
-	else if (strcmp("floor", name.c_str()) == 0) {
-		return CModulePhysics::FilterGroup::Floor;
-	}
-	else if (strcmp("ignore", name.c_str()) == 0) {
-		return CModulePhysics::FilterGroup::Ignore;
-	}
-	else if (strcmp("scenario", name.c_str()) == 0) {
-		return CModulePhysics::FilterGroup::Scenario;
-	}
-	return CModulePhysics::FilterGroup::All;
-}
-
-PxFilterFlags CustomFilterShader(
-  PxFilterObjectAttributes attributes0, PxFilterData filterData0,
-  PxFilterObjectAttributes attributes1, PxFilterData filterData1,
-  PxPairFlags& pairFlags, const void* constantBlock, PxU32 constantBlockSize
-)
-{
-    if ( (filterData0.word0 & filterData1.word1) && (filterData1.word0 & filterData0.word1) )
-    {
-        if ( PxFilterObjectIsTrigger(attributes0) || PxFilterObjectIsTrigger(attributes1) )
-        {
-            pairFlags = PxPairFlag::eTRIGGER_DEFAULT;
-        }
-        else {
-            pairFlags = PxPairFlag::eCONTACT_DEFAULT | PxPairFlag::eNOTIFY_TOUCH_FOUND;
-        }
-        return PxFilterFlag::eDEFAULT;
-    }
-    return PxFilterFlag::eSUPPRESS;
-}
 
 bool CModulePhysics::start()
 {
@@ -271,7 +60,7 @@ bool CModulePhysics::start()
 		pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_SCENEQUERIES, true);
 	}
 
-	gMaterial = gPhysics->createMaterial(0.5f, 0.2f, 0.1f);
+	CPhysicsCollider::default_material = gPhysics->createMaterial(0.5f, 0.5f, 0.1f);
 	mControllerManager = PxCreateControllerManager(*gScene);
 	gScene->setSimulationEventCallback(&customSimulationEventCallback);
 	PxInitExtensions(*gPhysics, gPvd);
@@ -307,23 +96,27 @@ void CModulePhysics::update(float delta)
 			h_comp_collider.fromVoidPtr(rigidActor->userData);
 
 			CEntity* e = h_comp_collider.getOwner();
-			TCompTransform * compTransform = e->get<TCompTransform>();
 			TCompCollider* compCollider = h_comp_collider;
+			TCompTransform * compTransform = e->get<TCompTransform>();
+			TCompRigidbody * compRigibody = e->get<TCompRigidbody>();
 
-			if (compCollider->controller)
+			if (compRigibody)
 			{
-				PxExtendedVec3 pxpos_ext = compCollider->controller->getFootPosition();
-				pxpos.x = pxpos_ext.x;
-				pxpos.y = pxpos_ext.y;
-				pxpos.z = pxpos_ext.z;
-			}
-			else
-			{
-				compTransform->setRotation(QUAT(pxq.x, pxq.y, pxq.z, pxq.w));
-			}
+				if (compRigibody->is_controller)
+				{
+					PxExtendedVec3 pxpos_ext = compRigibody->controller->getFootPosition();
+					pxpos.x = pxpos_ext.x;
+					pxpos.y = pxpos_ext.y;
+					pxpos.z = pxpos_ext.z;
+				}
+				else
+				{
+					compTransform->setRotation(QUAT(pxq.x, pxq.y, pxq.z, pxq.w));
+				}
 
-			compTransform->setPosition(VEC3(pxpos.x, pxpos.y, pxpos.z));
-			compCollider->lastFramePosition = VEC3(pxpos.x, pxpos.y, pxpos.z);
+				compTransform->setPosition(VEC3(pxpos.x, pxpos.y, pxpos.z));
+				compRigibody->lastFramePosition = VEC3(pxpos.x, pxpos.y, pxpos.z);
+			}
 		}
 	}
 }
@@ -355,22 +148,12 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
 			e_trigger->sendMsg(TMsgTriggerEnter{ h_other_comp_collider.getOwner() });
 			TCompCollider * comp = (TCompCollider*)h_trigger_comp_collider;
 			TCompCollider * comp_enemy = (TCompCollider*)h_other_comp_collider;
-
-			if(comp_enemy->config.group & FilterGroup::Player)
-			{
-				comp->isInside = true;
-			}
 		}
 		else if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_LOST)
 		{
 			e_trigger->sendMsg(TMsgTriggerExit{ h_other_comp_collider.getOwner() });
 			TCompCollider * comp = (TCompCollider*)h_trigger_comp_collider;
 			TCompCollider * comp_enemy = (TCompCollider*)h_other_comp_collider;
-
-			if (comp_enemy->config.group & FilterGroup::Player)
-			{
-				comp->isInside = false;
-			}
 		}
 	}
 }

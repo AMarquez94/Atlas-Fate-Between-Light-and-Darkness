@@ -83,7 +83,7 @@ bool TCompConeOfLightController::isPlayerHiddenFromLight(CEntity* player)
 
 	VEC3 myPosition = mypos->getPosition();
 
-	origin = myPosition + VEC3(0, myCollider->config.height + .1f, 0);
+	origin = myPosition + VEC3(0, 3 + .1f, 0);
 	dest = pTransform->getPosition() + VEC3(0,.1f,0);
 	VEC3 dir = dest - origin;
 	dir.Normalize();

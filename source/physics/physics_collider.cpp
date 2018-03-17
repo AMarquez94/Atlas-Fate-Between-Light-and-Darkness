@@ -1,57 +1,10 @@
 #include "mcv_platform.h"
-#include "collider_resource.h"
+#include "physics_collider.h"
 #include "components/comp_transform.h"
-// ----------------------------------------------
-class ColliderMeshResourceClass : public CResourceClass {
-public:
-	ColliderMeshResourceClass() {
-		class_name = "colliders";
-		extensions = { ".collider" };
-	}
-	IResource* create(const std::string& name) const override {
-		dbg("Creating mesh %s\n", name.c_str());
-		CPhysicsMesh* res = NULL;// loadCollider(name.c_str());
-		return res;
-	}
-};
+#include "physics/physics_mesh.h"
+#include "render/mesh/mesh_loader.h"
 
-// A specialization of the template defined at the top of this file
-// If someone class getResourceClassOf<CTexture>, use this function:
-template<>
-const CResourceClass* getResourceClassOf<CPhysicsCollider>() {
-	static ColliderMeshResourceClass the_resource_class;
-	return &the_resource_class;
-}
-
-bool CPhysicsMesh::create(
-	const void* vertex_data,
-	const void* index_data,
-	uint32_t vertex_size,
-	uint32_t index_size){
-
-	assert(vertex_data != nullptr);
-	assert(index_data != nullptr);
-
-	num_vertexs = vertex_size;
-	num_indices = index_size;
-
-	uint8_t *vertex_buffer = (uint8_t*)vertex_data;
-	uint8_t *index_buffer = (uint8_t*)index_data;
-
-	vtxs = std::vector<uint8_t>(vertex_buffer, vertex_buffer + vertex_size);
-	idxs = std::vector<uint8_t>(index_buffer, index_buffer + index_size);
-}
-
-void CPhysicsMesh::destroy()
-{
-	// Release data
-}
-
-void CPhysicsMesh::debugInMenu() {
-
-	ImGui::Text("%d vertexs", num_vertexs);
-	ImGui::Text("%d vertexs", num_indices);
-}
+physx::PxMaterial* CPhysicsCollider::default_material;
 
 void CPhysicsCollider::setupFiltering(physx::PxShape* shape, physx::PxU32 filterGroup, physx::PxU32 filterMask)
 {
@@ -87,6 +40,43 @@ void CPhysicsCollider::setAsTrigger(physx::PxShape * shape, bool state)
 	shape->setFlag(physx::PxShapeFlag::eTRIGGER_SHAPE, state);
 }
 
+void CPhysicsCollider::createStatic(physx::PxShape* actor_shape, TCompTransform * c_transform)
+{
+	physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
+	physx::PxScene * gScene = EnginePhysics.getPhysxScene();
+
+	VEC3 pos = c_transform->getPosition();
+	QUAT quat = c_transform->getRotation();
+	physx::PxTransform transform(physx::PxVec3(pos.x, pos.y, pos.z), physx::PxQuat(quat.x, quat.y, quat.z, quat.w));
+	physx::PxRigidActor *rigid_actor = gPhysics->createRigidStatic(transform);
+
+	actor = rigid_actor;
+	actor->attachShape(*actor_shape);
+	actor_shape->release();
+
+	setupFiltering(actor, group, mask);
+	gScene->addActor(*actor);
+}
+
+void CPhysicsCollider::createDynamic(physx::PxShape* actor_shape, TCompTransform * c_transform)
+{
+	physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
+	physx::PxScene * gScene = EnginePhysics.getPhysxScene();
+
+	VEC3 pos = c_transform->getPosition();
+	QUAT quat = c_transform->getRotation();
+	physx::PxTransform transform(physx::PxVec3(pos.x, pos.y, pos.z), physx::PxQuat(quat.x, quat.y, quat.z, quat.w));
+	physx::PxRigidDynamic* rigid_actor = gPhysics->createRigidDynamic(transform);
+	physx::PxRigidBodyExt::updateMassAndInertia(*rigid_actor, 10.0f);
+
+	actor = rigid_actor;
+	actor->attachShape(*actor_shape);
+	actor_shape->release();
+
+	setupFiltering(actor, group, mask);
+	gScene->addActor(*actor);
+}
+
 /* PHYSX BOX COLLIDER CONFIGURATION */
 void CPhysicsBox::load(const json& j, TEntityParseContext& ctx){
 
@@ -96,28 +86,44 @@ void CPhysicsBox::load(const json& j, TEntityParseContext& ctx){
 	size = physx::PxVec3(box_size.x, box_size.y, box_size.z);
 }
 
-void CPhysicsBox::create(TCompTransform * c_transform){
+physx::PxShape* CPhysicsBox::createShape(){
 
-	physx::PxRigidActor * rigidactor;
+	material = default_material;
 	physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
-	physx::PxScene * gScene = EnginePhysics.getPhysxScene();
+
 	physx::PxShape * actor_shape = gPhysics->createShape(physx::PxBoxGeometry(size.x, size.y, size.z), *material);
-	actor_shape->setLocalPose(physx::PxTransform(physx::PxVec3(center.x, center.y, center.z)));
+	actor_shape->setLocalPose(physx::PxTransform(physx::PxVec3(center.x, center.y + size.y, center.z)));
 	actor_shape->setContactOffset(contact_offset);
 	setupFiltering(actor_shape, group, mask);
 	setAsTrigger(actor_shape, is_trigger);
 
+	return actor_shape;
+}
+
+physx::PxController* CPhysicsBox::createController(TCompTransform * c_transform) {
+
+	physx::PxControllerDesc* cDesc;
+	physx::PxBoxControllerDesc boxDesc;
+	physx::PxControllerManager * gManager = EnginePhysics.getPhysxController();
+
+	boxDesc.halfHeight = size.y;
+	boxDesc.halfSideExtent = size.x;
+	boxDesc.halfForwardExtent = size.z;
+	cDesc = &boxDesc;
+	cDesc->material = material;
+	cDesc->contactOffset = contact_offset;
+	physx::PxBoxController * ctrl = static_cast<physx::PxBoxController*>(gManager->createController(*cDesc));
+	PX_ASSERT(ctrl);
+
 	VEC3 pos = c_transform->getPosition();
 	QUAT quat = c_transform->getRotation();
-	physx::PxTransform initialTrans(physx::PxVec3(pos.x, pos.y, pos.z), physx::PxQuat(quat.x, quat.y, quat.z, quat.w));
-	actor = gPhysics->createRigidStatic(initialTrans);
+	ctrl->setFootPosition(physx::PxExtendedVec3(pos.x, pos.y, pos.z));
+	ctrl->setContactOffset(contact_offset);
+	
+	actor = ctrl->getActor();
+	setupFiltering(actor, group, mask);
 
-	assert(actor);
-	assert(actor_shape);
-
-	rigidactor->attachShape(*actor_shape);
-	actor_shape->release();
-	gScene->addActor(*actor);
+	return ctrl;
 }
 
 void CPhysicsBox::debugInMenu(){
@@ -129,19 +135,17 @@ void CPhysicsPlane::load(const json& j, TEntityParseContext& ctx) {
 
 }
 
-void CPhysicsPlane::create(TCompTransform * c_transform) {
+physx::PxShape* CPhysicsPlane::createShape() {
 
-	physx::PxRigidActor * rigidactor;
+	material = default_material;
 	physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
-	physx::PxScene * gScene = EnginePhysics.getPhysxScene();
 
-	VEC3 pos = c_transform->getPosition();
-	QUAT quat = c_transform->getRotation();
-	actor = physx::PxCreatePlane(*gPhysics, physx::PxPlane(pos.x, pos.y, pos.z, 0), *material);
-	setupFiltering(actor, group, mask);
+	physx::PxShape * actor_shape = gPhysics->createShape(physx::PxPlaneGeometry(), *material);
+	actor_shape->setLocalPose(physx::PxTransform(physx::PxVec3(center.x, center.y, center.z)));
+	setupFiltering(actor_shape, group, mask);
+	setAsTrigger(actor_shape, is_trigger);
 
-	assert(actor);
-	gScene->addActor(*actor);
+	return actor_shape;
 }
 
 void CPhysicsPlane::debugInMenu() {
@@ -154,28 +158,18 @@ void CPhysicsSphere::load(const json& j, TEntityParseContext& ctx){
 	radius = j.value("radius", 0.f);
 }
 
-void CPhysicsSphere::create(TCompTransform * c_transform){
+physx::PxShape* CPhysicsSphere::createShape(){
 
-	physx::PxRigidActor * rigidactor;
+	material = default_material;
 	physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
-	physx::PxScene * gScene = EnginePhysics.getPhysxScene();
+
 	physx::PxShape * actor_shape = gPhysics->createShape(physx::PxSphereGeometry(radius), *material);
 	actor_shape->setLocalPose(physx::PxTransform(physx::PxVec3(center.x, center.y, center.z)));
 	actor_shape->setContactOffset(contact_offset);
 	setupFiltering(actor_shape, group, mask);
 	setAsTrigger(actor_shape, is_trigger);
 
-	VEC3 pos = c_transform->getPosition();
-	QUAT quat = c_transform->getRotation();
-	physx::PxTransform initialTrans(physx::PxVec3(pos.x, pos.y, pos.z), physx::PxQuat(quat.x, quat.y, quat.z, quat.w));
-	actor = gPhysics->createRigidStatic(initialTrans);
-
-	assert(actor);
-	assert(actor_shape);
-
-	rigidactor->attachShape(*actor_shape);
-	actor_shape->release();
-	gScene->addActor(*actor);
+	return actor_shape;
 }
 
 void CPhysicsSphere::debugInMenu(){
@@ -184,13 +178,29 @@ void CPhysicsSphere::debugInMenu(){
 
 void CPhysicsCapsule::load(const json& j, TEntityParseContext& ctx) {
 
+	height = j.value("height", 0.f);
+	radius = j.value("radius", 0.f);
 }
 
-void CPhysicsCapsule::create(TCompTransform * c_transform) {
+physx::PxShape* CPhysicsCapsule::createShape() {
 
+	material = default_material;
+	physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
+
+	physx::PxShape * actor_shape = gPhysics->createShape(physx::PxCapsuleGeometry(radius, height), *material);
+	actor_shape->setLocalPose(physx::PxTransform(physx::PxVec3(center.x, center.y, center.z)));
+	actor_shape->setContactOffset(contact_offset);
+	setupFiltering(actor_shape, group, mask);
+	setAsTrigger(actor_shape, is_trigger);
+
+	return actor_shape;
+}
+
+physx::PxController* CPhysicsCapsule::createController(TCompTransform * c_transform) {
+
+	material = EnginePhysics.getPhysxFactory()->createMaterial(0.5f, 0.2f, 0.1f);
 	physx::PxControllerDesc* cDesc;
 	physx::PxCapsuleControllerDesc capsuleDesc;
-	PX_ASSERT(desc.mType == physx::PxControllerShapeType::eCAPSULE);
 	physx::PxControllerManager * gManager = EnginePhysics.getPhysxController();
 
 	capsuleDesc.height = height;
@@ -206,9 +216,11 @@ void CPhysicsCapsule::create(TCompTransform * c_transform) {
 	QUAT quat = c_transform->getRotation();
 	ctrl->setFootPosition(physx::PxExtendedVec3(pos.x, pos.y, pos.z));
 	ctrl->setContactOffset(contact_offset);
-	actor = ctrl->getActor();
 
+	actor = ctrl->getActor();
 	setupFiltering(actor, group, mask);
+
+	return ctrl;
 }
 
 void CPhysicsCapsule::debugInMenu() {
@@ -217,9 +229,14 @@ void CPhysicsCapsule::debugInMenu() {
 
 void CPhysicsConvex::load(const json& j, TEntityParseContext& ctx) {
 
+	filename = j.value("name", "");
 }
 
-void CPhysicsConvex::create(TCompTransform * c_transform) {
+physx::PxShape* CPhysicsConvex::createShape() {
+
+	material = default_material;
+	mesh = loadPhysicsMesh(filename.c_str());
+	TMeshLoader * collider_mesh = loadCollider(filename.c_str());
 
 	physx::PxCooking * gCooking = EnginePhysics.getCooking();
 	physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
@@ -232,27 +249,18 @@ void CPhysicsConvex::create(TCompTransform * c_transform) {
 
 	// Setup the convex mesh descriptor
 	physx::PxConvexMeshDesc desc;
-	desc.points.data = mesh->vtxs.data();
-	desc.points.count = mesh->num_vertexs;
+	desc.points.data = collider_mesh->vtxs.data();
+	desc.points.count = collider_mesh->header.num_vertexs;
 	desc.points.stride = sizeof(physx::PxVec3);
 	desc.flags = physx::PxConvexFlag::eCOMPUTE_CONVEX;
 
 	physx::PxConvexMesh* convex = gCooking->createConvexMesh(desc, gPhysics->getPhysicsInsertionCallback());
 	physx::PxConvexMeshGeometry convex_geo = physx::PxConvexMeshGeometry(convex, physx::PxMeshScale(), physx::PxConvexMeshGeometryFlags());
-
-	VEC3 pos = c_transform->getPosition();
-	QUAT quat = c_transform->getRotation();
-	physx::PxTransform initialTrans(physx::PxVec3(pos.x, pos.y, pos.z), physx::PxQuat(quat.x, quat.y, quat.z, quat.w));
-	actor = gPhysics->createRigidStatic(initialTrans);
-
-	physx::PxShape * actor_shape = actor->createShape(convex_geo, *material);
+	physx::PxShape * actor_shape = gPhysics->createShape(convex_geo, *material);
+	setupFiltering(actor_shape, group, mask);
 	setAsTrigger(actor_shape, is_trigger);
-	setupFiltering(actor, group, mask);
 
-	actor->attachShape(*actor_shape);
-	actor_shape->release();
-
-	gScene->addActor(*actor);
+	return actor_shape;
 }
 
 void CPhysicsConvex::debugInMenu() {
@@ -261,9 +269,14 @@ void CPhysicsConvex::debugInMenu() {
 
 void CPhysicsTriangleMesh::load(const json& j, TEntityParseContext& ctx) {
 
+	filename = j.value("name", "");
 }
 
-void CPhysicsTriangleMesh::create(TCompTransform * c_transform) {
+physx::PxShape* CPhysicsTriangleMesh::createShape() {
+
+	material = default_material;
+	mesh = loadPhysicsMesh(filename.c_str());
+	TMeshLoader * collider_mesh = loadCollider(filename.c_str());
 
 	physx::PxCooking * gCooking = EnginePhysics.getCooking();
 	physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
@@ -271,31 +284,22 @@ void CPhysicsTriangleMesh::create(TCompTransform * c_transform) {
 
 	// Setup the triangle mesh descriptor
 	physx::PxTriangleMeshDesc meshDesc;
-	meshDesc.points.data = mesh->vtxs.data();
-	meshDesc.points.count = mesh->num_vertexs;
-	meshDesc.points.stride = mesh->bytes_per_vtx;
+	meshDesc.points.data = collider_mesh->vtxs.data();
+	meshDesc.points.count = collider_mesh->header.num_vertexs;
+	meshDesc.points.stride = collider_mesh->header.bytes_per_vtx;
 	meshDesc.flags = physx::PxMeshFlag::e16_BIT_INDICES | physx::PxMeshFlag::eFLIPNORMALS;
 
-	meshDesc.triangles.data = mesh->idxs.data();
-	meshDesc.triangles.count = mesh->num_indices / 3;
-	meshDesc.triangles.stride = 3 * mesh->bytes_per_idx;
+	meshDesc.triangles.data = collider_mesh->idxs.data();
+	meshDesc.triangles.count = collider_mesh->header.num_indices / 3;
+	meshDesc.triangles.stride = 3 * collider_mesh->header.bytes_per_idx;
 
 	physx::PxTriangleMesh * tri_mesh = gCooking->createTriangleMesh(meshDesc, gPhysics->getPhysicsInsertionCallback());
 	physx::PxTriangleMeshGeometry tri_geo = physx::PxTriangleMeshGeometry(tri_mesh, physx::PxMeshScale());
-
-	VEC3 pos = c_transform->getPosition();
-	QUAT quat = c_transform->getRotation();
-	physx::PxTransform initialTrans(physx::PxVec3(pos.x, pos.y, pos.z), physx::PxQuat(quat.x, quat.y, quat.z, quat.w));
-	actor = gPhysics->createRigidStatic(initialTrans);
-
-	physx::PxShape * actor_shape = actor->createShape(tri_geo, *material);
+	physx::PxShape * actor_shape = gPhysics->createShape(tri_geo, *material);
+	setupFiltering(actor_shape, group, mask);
 	setAsTrigger(actor_shape, is_trigger);
-	setupFiltering(actor, group, mask);
 
-	actor->attachShape(*actor_shape);
-	actor_shape->release();
-
-	gScene->addActor(*actor);
+	return actor_shape;
 }
 
 void CPhysicsTriangleMesh::debugInMenu() {

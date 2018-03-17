@@ -3,6 +3,7 @@
 #include "modules/module.h"
 #include "components/physics/comp_collider.h"
 #include "PxPhysicsAPI.h"
+#include "physics/physics_filter.h"
 
 class TCompTransform;
 
@@ -18,19 +19,13 @@ public:
 	virtual void update(float delta) override;
 	virtual void render() override;
 
-	/* Main procedure methods */
-	void createActor(TCompCollider& comp_collider);
-
-	// Filter methods
-	FilterGroup getFilterByName(const std::string& name);
-
 	// Physx module getters
 	physx::PxScene* getPhysxScene() { return gScene; }
 	physx::PxPhysics* getPhysxFactory() { return gPhysics; }
 	physx::PxControllerManager* getPhysxController() { return mControllerManager; }
 	physx::PxCooking* getCooking() { return gCooking; }
-	/* Ray casting & related methods*/
 
+	/* Ray casting & related methods*/
 	bool Raycast(const VEC3 & origin, const VEC3 & dir, float distance, physx::PxRaycastHit & hit, physx::PxQueryFlag::Enum flag = physx::PxQueryFlag::eSTATIC, physx::PxQueryFilterData filterdata = defaultFilter);
 	//bool SphereCast(const VEC3 & origin, const VEC3 & dir, float distance, RaycastHit & hit);
 

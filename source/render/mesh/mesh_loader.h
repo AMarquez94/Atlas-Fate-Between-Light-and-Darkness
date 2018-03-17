@@ -43,3 +43,4 @@ struct TMeshLoader {
 
 CRenderMesh* loadMesh(const char* filename);
 CPhysicsMesh* loadPhysicsMesh(const char* filename);
+TMeshLoader* loadCollider(const char* filename);

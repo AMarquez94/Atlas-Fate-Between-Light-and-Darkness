@@ -15,12 +15,15 @@
 		  "ai_patrol": {},
 		  "collider": {
 			"shape": "capsule",
-			"is_controller": true,
 			"radius": 0.65,
 			"height": 1.0,
 			"gravity": true,
 			"group" : "enemy"
-		  }
+		  },
+			"rigidbody": {
+				"is_controller": true,
+				"is_gravity": true
+			}
 		}
 	},
 	{
@@ -44,12 +47,15 @@
 		  },
 		  "collider": {
 			"shape": "capsule",
-			"is_controller": true,
 			"radius": 0.65,
 			"height": 1.0,
 			"gravity": true,
 			"group" : "enemy"
-		  }
+		  },
+			"rigidbody": {
+				"is_controller": true,
+				"is_gravity": true
+			}
 		}
 	},
 	{
@@ -112,7 +118,11 @@
 			"height": 1.0,
 			"gravity": true,
 			"group" : "enemy"
-		  }
+		  },
+			"rigidbody": {
+				"is_controller": true,
+				"is_gravity": true
+			}
 		}
 	},
 	{
@@ -170,12 +180,15 @@
 		  },
 		  "collider": {
 			"shape": "capsule",
-			"is_controller": true,
 			"radius": 0.65,
 			"height": 1.0,
 			"gravity": true,
 			"group" : "enemy"
-		  }
+		  },
+			"rigidbody": {
+				"is_controller": true,
+				"is_gravity": true
+			}
 		}
 	}
 ]
