@@ -570,6 +570,11 @@ void TCompPlayerController::ShadowMergingExitState(float dt){
 
 	// Bring back the main camera to our thirdperson camera
 	// Replace this with an smooth camera interpolation
+	TMsgSetCameraCancelled msg;
+	CEntity* eCamera = getEntityByName(camera_shadowmerge_aux);
+	eCamera->sendMsg(msg);
+
+
 	Engine.getCameras().blendOutCamera(getEntityByName(camera_actual), .2f);
 	camera_actual = camera_thirdperson;
 	Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);

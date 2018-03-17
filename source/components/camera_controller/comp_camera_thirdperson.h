@@ -16,11 +16,19 @@ private:
 	VEC2 _current_euler;
 	VEC3 _clipping_offset;
 
+	bool active;
+
 	const Input::TButton& btHorizontal = EngineInput["MouseX"];
 	const Input::TButton& btVertical = EngineInput["MouseY"];
 	const Input::TButton& btDebugPause = EngineInput["btDebugPause"];
 
 	float pause;
+
+	void onMsgCameraActive(const TMsgCameraActivated &msg);
+	void onMsgCameraFullActive(const TMsgCameraFullyActivated &msg);
+	void onMsgCameraDeprecated(const TMsgCameraDeprecated &msg);
+	void onMsgCameraSetActive(const TMsgSetCameraActive &msg);
+
 
 public:
   void debugInMenu();
@@ -31,4 +39,6 @@ public:
   const VEC2 getCurrentEuler() { return _current_euler; }
 
   DECL_SIBLING_ACCESS();
+
+  static void registerMsgs();
 };
