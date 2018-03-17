@@ -91,6 +91,11 @@
     <ClCompile Include="utils\variant.cpp" />
     <ClCompile Include="modules\system\module_fsm.cpp" />
     <ClCompile Include="modules\game\module_map_intro.cpp" />
+    <ClCompile Include="components\ia\btnode.cpp" />
+    <ClCompile Include="components\ia\comp_bt.cpp" />
+    <ClCompile Include="components\ia\comp_bt_patrol.cpp" />
+    <ClCompile Include="components\ia\comp_bt_test.cpp" />
+    <ClCompile Include="components\ia\comp_bt_mimetic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -210,6 +215,11 @@
     <ClInclude Include="utils\variant.h" />
     <ClInclude Include="modules\system\module_fsm.h" />
     <ClInclude Include="modules\game\module_map_intro.h" />
+    <ClInclude Include="components\ia\btnode.h" />
+    <ClInclude Include="components\ia\comp_bt.h" />
+    <ClInclude Include="components\ia\comp_bt_patrol.h" />
+    <ClInclude Include="components\ia\comp_bt_test.h" />
+    <ClInclude Include="components\ia\comp_bt_mimetic.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

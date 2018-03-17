@@ -4,7 +4,7 @@
 #include "comp_bt.h"
 #include "modules/module_ia.h"
 
-class TCompAIPatrol : public TCompIAController {
+class TCompAIMimetic : public TCompIAController {
 
 private:
 
@@ -46,9 +46,6 @@ private:
 
 	void onMsgEntityCreated(const TMsgEntityCreated& msg);
 	void onMsgPlayerDead(const TMsgPlayerDead& msg);
-	void onMsgPatrolStunned(const TMsgPatrolStunned& msg);
-	void onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged& msg);
-	void onMsgPatrolFixed(const TMsgPatrolFixed& msg);
 
 	/* Aux functions */
 	const Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }
@@ -58,9 +55,6 @@ private:
 	bool isEntityHidden(CHandle hEntity);
 	void turnOnLight();
 	void turnOffLight();
-	bool isStunnedPatrolInFov();
-	bool isStunnedPatrolInPos(VEC3 lastPos);
-	CHandle getPatrolInPos(VEC3 lastPos);
 	
 	//load
 	void loadActions() override;
@@ -71,45 +65,39 @@ public:
 	void load(const json& j, TEntityParseContext& ctx) override;
 	void debugInMenu();
 
-	BTNode::ERes actionShadowMerged(float dt);
+	/* ACTIONS */
 	BTNode::ERes actionStunned(float dt);
-	BTNode::ERes actionFixed(float dt);
-	BTNode::ERes actionBeginAlert(float dt);
-	BTNode::ERes actionClosestWpt(float dt);
-	BTNode::ERes actionEndAlert(float dt);
+	BTNode::ERes actionObserve(float dt);
+	BTNode::ERes actionSetActive(float dt);
+	BTNode::ERes actionJumpFloor(float dt);
 	BTNode::ERes actionGoToWpt(float dt);
 	BTNode::ERes actionWaitInWpt(float dt);
 	BTNode::ERes actionNextWpt(float dt);
-	BTNode::ERes actionSuspect(float dt);
-	BTNode::ERes actionMarkPlayerAsSeen(float dt);
-	BTNode::ERes actionShootInhibitor(float dt);
-	BTNode::ERes actionChasePlayer(float dt);
-	BTNode::ERes actionAttack(float dt);
-	BTNode::ERes actionResetPlayerWasSeenVariables(float dt);
+	BTNode::ERes actionSleep(float dt);
+	BTNode::ERes actionWakeUp(float dt);
+	BTNode::ERes actionChasePlayerWithNoise(float dt);
 	BTNode::ERes actionGoToPlayerLastPos(float dt);
-	BTNode::ERes actionLookForPlayer(float dt);
-	BTNode::ERes actionGoToPatrol(float dt);
-	BTNode::ERes actionFixPatrol(float dt);
-	BTNode::ERes actionMarkPatrolAsLost(float dt);
+	BTNode::ERes actionWaitInPlayerLastPos(float dt);
+	BTNode::ERes actionSetGoInactive(float dt);
+	BTNode::ERes actionGoToInitialPos(float dt);
+	BTNode::ERes actionJumpWall(float dt);
+	BTNode::ERes actionSetInactive(float dt);
+	/* CONDITIONS */
+	bool conditionHasBeenStunned(float dt);
+	bool conditionIsTypeWall(float dt);
+	bool conditionIsNotPlayerInFov(float dt);
+	bool conditionIsNotActive(float dt);
+	bool conditionIsTypeFloor(float dt);
+	bool conditionIsTypeSleep(float dt);
+	bool conditionHasNotWaypoints(float dt);
+	bool conditionNotListenedNoise(float dt);
+	bool conditionIsPlayerInFov(float dt);
+	bool conditionNotGoingInactive(float dt);
 
-	bool conditionManageStun(float dt);
-	bool conditionEndAlert(float dt);
-	bool conditionShadowMerged(float dt);
-	bool conditionFixed(float dt);
-	bool conditionPlayerSeen(float dt);
-	bool conditionPlayerWasSeen(float dt);
-	bool conditionPatrolSeen(float dt);
-	bool conditionFixPatrol(float dt);
-	bool conditionGoToWpt(float dt);
-	bool conditionWaitInWpt(float dt);
-	bool conditionChase(float dt);
-	bool conditionPlayerAttacked(float dt);
+	/* ASSERTS */
+	bool assertNotPlayerInFov(float dt);
 
-	bool assertPlayerInFov(float dt);
-	bool assertPlayerNotInFov(float dt);
-	bool assertPlayerAndPatrolNotInFov(float dt);
 
-	bool isPatrolStunned() { return current && current->getName().compare("stunned") == 0; }
 
 	static void registerMsgs();
 };
