@@ -143,7 +143,7 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 void CAIPatrol::registerMsgs() {
 	DECL_MSG(CAIPatrol, TMsgEntityCreated, onMsgPatrolCreated);
 	DECL_MSG(CAIPatrol, TMsgPlayerDead, onMsgPlayerDead);
-	DECL_MSG(CAIPatrol, TMsgPatrolStunned, onMsgPatrolStunned);
+	DECL_MSG(CAIPatrol, TMsgEnemyStunned, onMsgPatrolStunned);
 	DECL_MSG(CAIPatrol, TMsgPatrolShadowMerged, onMsgPatrolShadowMerged);
 	DECL_MSG(CAIPatrol, TMsgPatrolFixed, onMsgPatrolFixed);
 }
@@ -170,7 +170,7 @@ void CAIPatrol::onMsgPlayerDead(const TMsgPlayerDead& msg) {
 	}
 }
 
-void CAIPatrol::onMsgPatrolStunned(const TMsgPatrolStunned& msg) {
+void CAIPatrol::onMsgPatrolStunned(const TMsgEnemyStunned& msg) {
 	TCompRender *cRender = get<TCompRender>();
 	cRender->color = VEC4(1, 1, 1, 1);
 	TCompTransform *mypos = getMyTransform();

@@ -346,7 +346,7 @@ void TCompPlayerController::PushState(float dt){
 }
 
 void TCompPlayerController::AttackState(float dt){ 
-	TMsgPatrolStunned msg;
+	TMsgEnemyStunned msg;
 	msg.h_sender = CHandle(this).getOwner();
 	enemyToAttack.sendMsg(msg);
 	allowAttack(false, CHandle());

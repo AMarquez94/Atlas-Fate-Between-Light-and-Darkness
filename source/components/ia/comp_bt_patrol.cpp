@@ -138,7 +138,7 @@ void TCompAIPatrol::onMsgPlayerDead(const TMsgPlayerDead& msg) {
 	}
 }
 
-void TCompAIPatrol::onMsgPatrolStunned(const TMsgPatrolStunned & msg)
+void TCompAIPatrol::onMsgPatrolStunned(const TMsgEnemyStunned & msg)
 {
 	hasBeenStunned = true;
 
@@ -220,7 +220,7 @@ void TCompAIPatrol::registerMsgs()
 {
 	DECL_MSG(TCompAIPatrol, TMsgEntityCreated, onMsgEntityCreated);
 	DECL_MSG(TCompAIPatrol, TMsgPlayerDead, onMsgPlayerDead);
-	DECL_MSG(TCompAIPatrol, TMsgPatrolStunned, onMsgPatrolStunned);
+	DECL_MSG(TCompAIPatrol, TMsgEnemyStunned, onMsgPatrolStunned);
 	DECL_MSG(TCompAIPatrol, TMsgPatrolShadowMerged, onMsgPatrolShadowMerged);
 	DECL_MSG(TCompAIPatrol, TMsgPatrolFixed, onMsgPatrolFixed);
 }

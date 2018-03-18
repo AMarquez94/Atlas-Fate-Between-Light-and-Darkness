@@ -12,6 +12,8 @@ private:
 	std::vector<Waypoint> _waypoints;
 	int currentWaypoint;
 
+	enum EType { FLOOR = 0, WALL, NUM_TYPES };
+
 	float speed = 3.5f;
 	float rotationSpeedDeg = 90.0f;
 	float rotationSpeed;
@@ -42,10 +44,14 @@ private:
 	/* Timers */
 	float timerWaitingInWpt = 0.f;
 
+	bool isSlept;
+	EType type;
+
 	DECL_SIBLING_ACCESS();
 
 	void onMsgEntityCreated(const TMsgEntityCreated& msg);
 	void onMsgPlayerDead(const TMsgPlayerDead& msg);
+	void onMsgMimeticStunned(const TMsgEnemyStunned& msg);
 
 	/* Aux functions */
 	const Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }

@@ -168,10 +168,34 @@ void TCompAIMimetic::onMsgPlayerDead(const TMsgPlayerDead& msg) {
 	alarmEnded = false;
 }
 
+void TCompAIMimetic::onMsgMimeticStunned(const TMsgEnemyStunned & msg)
+{
+	hasBeenStunned = true;
+
+	TCompRender *cRender = get<TCompRender>();
+	cRender->color = VEC4(1, 1, 1, 1);
+	TCompTransform *mypos = get<TCompTransform>();
+	float y, p, r;
+	mypos->getYawPitchRoll(&y, &p, &r);
+	p = p + deg2rad(89.f);
+	mypos->setYawPitchRoll(y, p, r);
+	turnOffLight();
+
+	//TCompGroup* cGroup = get<TCompGroup>();
+	//CEntity* eCone = cGroup->getHandleByName("Cone of Vision");
+	//TCompRender * coneRender = eCone->get<TCompRender>();
+	//coneRender->visible = false;
+
+	lastPlayerKnownPos = VEC3::Zero;
+
+	current = nullptr;
+}
+
 void TCompAIMimetic::registerMsgs()
 {
 	DECL_MSG(TCompAIMimetic, TMsgEntityCreated, onMsgEntityCreated);
 	DECL_MSG(TCompAIMimetic, TMsgPlayerDead, onMsgPlayerDead);
+	DECL_MSG(TCompAIMimetic, TMsgEnemyStunned, onMsgMimeticStunned);
 }
 
 void TCompAIMimetic::loadActions() {
@@ -193,7 +217,7 @@ void TCompAIMimetic::loadAsserts() {
 
 BTNode::ERes TCompAIMimetic::actionStunned(float dt)
 {
-	return BTNode::ERes();
+	return BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIMimetic::actionObserve(float dt)
@@ -213,12 +237,34 @@ BTNode::ERes TCompAIMimetic::actionJumpFloor(float dt)
 
 BTNode::ERes TCompAIMimetic::actionGoToWpt(float dt)
 {
-	return BTNode::ERes();
+	TCompTransform *mypos = get<TCompTransform>();
+	rotateTowardsVec(getWaypoint().position, dt);
+
+	VEC3 vp = mypos->getPosition();
+	if (VEC3::Distance(getWaypoint().position, vp) < speed * dt) {
+		mypos->setPosition(getWaypoint().position);
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		VEC3 vfwd = mypos->getFront();
+		vfwd.Normalize();
+		vp = vp + speed * dt *vfwd;
+		mypos->setPosition(vp);				//Move towards wpt
+		return BTNode::ERes::STAY;
+	}
 }
 
 BTNode::ERes TCompAIMimetic::actionWaitInWpt(float dt)
 {
-	return BTNode::ERes();
+	if (timerWaitingInWpt >= getWaypoint().minTime) {
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		timerWaitingInWpt += dt;
+		TCompTransform *mypos = get<TCompTransform>();
+		rotateTowardsVec(mypos->getPosition() + getWaypoint().lookAt, dt);
+		return BTNode::ERes::STAY;
+	}
 }
 
 BTNode::ERes TCompAIMimetic::actionNextWpt(float dt)
@@ -276,17 +322,17 @@ BTNode::ERes TCompAIMimetic::actionSetInactive(float dt)
 
 bool TCompAIMimetic::conditionHasBeenStunned(float dt)
 {
-	return false;
+	return hasBeenStunned;
 }
 
 bool TCompAIMimetic::conditionIsTypeWall(float dt)
 {
-	return false;
+	return type == EType::WALL;
 }
 
 bool TCompAIMimetic::conditionIsNotPlayerInFov(float dt)
 {
-	return false;
+	return !isPlayerInFov();
 }
 
 bool TCompAIMimetic::conditionIsNotActive(float dt)
@@ -296,17 +342,17 @@ bool TCompAIMimetic::conditionIsNotActive(float dt)
 
 bool TCompAIMimetic::conditionIsTypeFloor(float dt)
 {
-	return false;
+	return type == EType::FLOOR;
 }
 
 bool TCompAIMimetic::conditionIsTypeSleep(float dt)
 {
-	return false;
+	return isSlept;
 }
 
 bool TCompAIMimetic::conditionHasNotWaypoints(float dt)
 {
-	return false;
+	return _waypoints.size() == 0;
 }
 
 bool TCompAIMimetic::conditionNotListenedNoise(float dt)
@@ -316,7 +362,7 @@ bool TCompAIMimetic::conditionNotListenedNoise(float dt)
 
 bool TCompAIMimetic::conditionIsPlayerInFov(float dt)
 {
-	return false;
+	return isPlayerInFov();
 }
 
 bool TCompAIMimetic::conditionNotGoingInactive(float dt)
@@ -328,7 +374,7 @@ bool TCompAIMimetic::conditionNotGoingInactive(float dt)
 
 bool TCompAIMimetic::assertNotPlayerInFov(float dt)
 {
-	return false;
+	return !isPlayerInFov();
 }
 
 /* AUX FUNCTIONS */
