@@ -56,7 +56,10 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 	addChild("manageInactiveTypeSleep", "sleep", BTNode::EType::ACTION, (BTCondition)&TCompAIMimetic::conditionNotListenedNoise, (BTAction)&TCompAIMimetic::actionSleep, nullptr);
 	addChild("manageInactiveTypeSleep", "wakeUp", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWakeUp, nullptr);
 
-	addChild("mimetic", "manageChase", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionIsPlayerInFov, nullptr, nullptr);
+	addChild("mimetic", "manageSuspect", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionNotSurePlayerInFov, nullptr, nullptr);
+	addChild("manageSuspect", "suspect", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSuspect, nullptr);
+
+	addChild("mimetic", "manageChase", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionPlayerSeenForSure, nullptr, nullptr);
 	addChild("manageChase", "chasePlayerWithNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionChasePlayerWithNoise, nullptr);
 
 	addChild("mimetic", "managePlayerLost", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionNotGoingInactive, nullptr, nullptr);
@@ -282,6 +285,41 @@ BTNode::ERes TCompAIMimetic::actionWakeUp(float dt)
 	return BTNode::ERes();
 }
 
+BTNode::ERes TCompAIMimetic::actionSuspect(float dt)
+{
+	TCompRender *cRender = get<TCompRender>();
+	cRender->color = VEC4(255, 255, 0, 1);
+	// chase
+	TCompTransform *mypos = get<TCompTransform>();
+	CEntity *player = getEntityByName(entityToChase);
+	TCompTransform *ppos = player->get<TCompTransform>();
+
+	/* Distance to player */
+	float distanceToPlayer = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
+
+	if (distanceToPlayer <= autoChaseDistance && isPlayerInFov()) {
+		suspectO_Meter = 1.f;
+		rotateTowardsVec(ppos->getPosition(), dt);
+	}
+	else if (distanceToPlayer <= maxChaseDistance && isPlayerInFov()) {
+		suspectO_Meter = Clamp(suspectO_Meter + dt * incrBaseSuspectO_Meter, 0.f, 1.f);							//TODO: increment more depending distance and noise
+		rotateTowardsVec(ppos->getPosition(), dt);
+	}
+	else {
+		suspectO_Meter = Clamp(suspectO_Meter - dt * dcrSuspectO_Meter, 0.f, 1.f);
+	}
+
+	if (suspectO_Meter <= 0.f || suspectO_Meter >= 1.f) {
+		if (suspectO_Meter <= 0) {
+			cRender->color = VEC4(1, 1, 1, 1);
+		}
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		return BTNode::ERes::STAY;
+	}
+}
+
 BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
 {
 	return BTNode::ERes();
@@ -289,7 +327,25 @@ BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
 
 BTNode::ERes TCompAIMimetic::actionGoToPlayerLastPos(float dt)
 {
-	return BTNode::ERes();
+	TCompTransform *mypos = get<TCompTransform>();
+	CEntity *player = (CEntity *)getEntityByName(entityToChase);
+	TCompTransform *ppos = player->get<TCompTransform>();
+	rotateTowardsVec(lastPlayerKnownPos, dt);
+
+	VEC3 vp = mypos->getPosition();
+
+	if (VEC3::Distance(lastPlayerKnownPos, vp) < speed * dt) {
+		mypos->setPosition(lastPlayerKnownPos);
+		lastPlayerKnownPos = VEC3::Zero;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		VEC3 vfwd = mypos->getFront();
+		vfwd.Normalize();
+		vp = vp + speed * dt * vfwd;
+		mypos->setPosition(vp);
+		return BTNode::ERes::STAY;
+	}
 }
 
 BTNode::ERes TCompAIMimetic::actionWaitInPlayerLastPos(float dt)
@@ -360,6 +416,16 @@ bool TCompAIMimetic::conditionNotListenedNoise(float dt)
 	return false;
 }
 
+bool TCompAIMimetic::conditionNotSurePlayerInFov(float dt)
+{
+	return suspectO_Meter > 0.f || isPlayerInFov();
+}
+
+bool TCompAIMimetic::conditionPlayerSeenForSure(float dt)
+{
+	return isPlayerInFov() && suspectO_Meter >= 1.f;
+}
+
 bool TCompAIMimetic::conditionIsPlayerInFov(float dt)
 {
 	return isPlayerInFov();
@@ -367,7 +433,7 @@ bool TCompAIMimetic::conditionIsPlayerInFov(float dt)
 
 bool TCompAIMimetic::conditionNotGoingInactive(float dt)
 {
-	return false;
+	return !goingInactive;
 }
 
 /* ASSERTS */

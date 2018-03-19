@@ -392,11 +392,11 @@ BTNode::ERes TCompAIPatrol::actionSuspect(float dt)
 		rotateTowardsVec(ppos->getPosition(), dt);
 	}
 	else if (distanceToPlayer <= maxChaseDistance && isPlayerInFov()) {
-		suspectO_Meter += dt * incrBaseSuspectO_Meter;							//TODO: increment more depending distance and noise
+		suspectO_Meter = Clamp(suspectO_Meter + dt * incrBaseSuspectO_Meter, 0.f, 1.f);							//TODO: increment more depending distance and noise
 		rotateTowardsVec(ppos->getPosition(), dt);
 	}
 	else {
-		suspectO_Meter -= dt * dcrSuspectO_Meter;
+		suspectO_Meter = Clamp(suspectO_Meter - dt * dcrSuspectO_Meter, 0.f, 1.f);
 	}
 
 	if (suspectO_Meter <= 0.f || suspectO_Meter >= 1.f) {
