@@ -7,6 +7,7 @@ namespace FSM
   class AnimationState : public IState
   {
     virtual void onStart(CContext& ctx) const override;
+	virtual void onFinish(CContext& ctx) const override;
     virtual bool load(const json& jData);
 
   private:
@@ -16,6 +17,7 @@ namespace FSM
   class JumpState : public IState
   {
     virtual void onStart(CContext& ctx) const override;
+	virtual void onFinish(CContext& ctx) const override;
     virtual bool load(const json& jData);
 
   private:
@@ -25,6 +27,7 @@ namespace FSM
   class HitState : public IState
   {
     virtual void onStart(CContext& ctx) const override;
+	virtual void onFinish(CContext& ctx) const override;
     virtual bool load(const json& jData);
   };
 }
