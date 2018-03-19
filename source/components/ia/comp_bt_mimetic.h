@@ -46,6 +46,7 @@ private:
 
 	bool isSlept;
 	EType type;
+	bool isActive;
 	bool goingInactive;
 
 	DECL_SIBLING_ACCESS();
@@ -97,7 +98,7 @@ public:
 	bool conditionIsNotPlayerInFov(float dt);
 	bool conditionIsNotActive(float dt);
 	bool conditionIsTypeFloor(float dt);
-	bool conditionIsTypeSleep(float dt);
+	bool conditionIsSlept(float dt);
 	bool conditionHasNotWaypoints(float dt);
 	bool conditionNotListenedNoise(float dt);
 	bool conditionNotSurePlayerInFov(float dt);
