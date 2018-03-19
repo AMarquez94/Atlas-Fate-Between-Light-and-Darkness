@@ -9,6 +9,7 @@
 #include "resources/json_resource.h"
 #include "physics/physics_mesh.h"
 #include "camera/camera.h"
+#include "fsm/fsm.h"
 
 //--------------------------------------------------------------------------------------
 
@@ -49,6 +50,7 @@ bool CModuleRender::start()
   Resources.registerResourceClass(getResourceClassOf<CRenderTechnique>());
   Resources.registerResourceClass(getResourceClassOf<CMaterial>());
   Resources.registerResourceClass(getResourceClassOf<CPhysicsMesh>());
+  //Resources.registerResourceClass(getResourceClassOf<FSM::CMachine>());
 
   if (!createRenderObjects())
     return false;

@@ -16,8 +16,10 @@ namespace FSM
     const IState* getInitialState() const { return _initialState; }
     const VStates& getStates() const { return _states; }
     const VTransitions& getTransitions() const { return _transitions; }
+    const MVariants& getVariables() const { return _variables; }
 
     const IState* getState(const std::string& name) const;
+    void getStateTransitions(const IState* state, VTransitions& output) const;
 
   private:
     VStates _states;

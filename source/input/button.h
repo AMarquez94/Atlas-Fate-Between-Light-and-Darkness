@@ -29,6 +29,11 @@ namespace Input
 			return wasPressed() && !isPressed();
 		}
 
+		bool hasChanged() const
+		{
+			return prevValue != value;
+		}
+
 		void update(float delta, float currentValue)
 		{
 			time_pressed += delta;

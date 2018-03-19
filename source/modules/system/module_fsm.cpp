@@ -16,23 +16,25 @@ CModuleFSM::CModuleFSM(const std::string& name)
 
 bool CModuleFSM::start()
 {
-  Resources.registerResourceClass(getResourceClassOf<FSM::CMachine>());
+	Resources.registerResourceClass(getResourceClassOf<FSM::CMachine>());
 
-  _factory.registerInstancer("AnimationState", new FSM::StateInstancer<FSM::AnimationState>());
-  
-  _factory.registerInstancer("VariableTransition", new FSM::TransitionInstancer<FSM::VariableTransition>());
-  _factory.registerInstancer("TimeTransition", new FSM::TransitionInstancer<FSM::TimeTransition>());
+	_factory.registerInstancer("AnimationState", new FSM::StateInstancer<FSM::AnimationState>());
+	_factory.registerInstancer("JumpState", new FSM::StateInstancer<FSM::JumpState>());
+	_factory.registerInstancer("HitState", new FSM::StateInstancer<FSM::HitState>());
+
+	_factory.registerInstancer("VariableTransition", new FSM::TransitionInstancer<FSM::VariableTransition>());
+	_factory.registerInstancer("TimeTransition", new FSM::TransitionInstancer<FSM::TimeTransition>());
 
 
-  const FSM::CMachine* myFsm = Resources.get("data/fsm/character.fsm")->as<FSM::CMachine>();
-  assert(myFsm);
+	//const FSM::CMachine* myFsm = Resources.get("data/fsm/character.fsm")->as<FSM::CMachine>();
+	//assert(myFsm);
 
-  return true;
+	return true;
 }
 
 bool CModuleFSM::stop()
 {
-  return true;
+	return true;
 }
 
 void CModuleFSM::renderInMenu()

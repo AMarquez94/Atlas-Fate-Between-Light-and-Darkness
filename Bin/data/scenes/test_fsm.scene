@@ -1,0 +1,24 @@
+[
+	{
+		"entity": {
+			"name": "fsm",
+			"transform": {
+				"pos": "-15 -2 -35",
+				"lookat" : "0 0 0"
+			},
+			"render" : [
+				{
+					"mesh": "data/meshes/Teapot001.mesh",
+					"materials" : [
+						"data/materials/body.material"
+					]
+				}
+			],
+			"fsm" : {
+				"file" : "data/fsm/test.fsm"
+			},
+			"player_input" : {},
+			"fake_animation" : {}
+		}
+	}
+]

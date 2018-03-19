@@ -45,8 +45,12 @@ namespace FSM
     for (auto& jState : jStates)
     {
       const std::string& stType = jState["type"];
+      const std::string& stName = jState["name"];
+      bool isFinal = jState.value("final", false);
+      
       IState* st = factory.makeState(stType);
-      st->setName(name);
+      st->setName(stName);
+      st->setFinal(isFinal);
       st->load(jState);
       _states.push_back(st);
     }
@@ -58,16 +62,19 @@ namespace FSM
       ITransition* tr = factory.makeTransition(type);
       const std::string& source = jTransition["source"];
       const std::string& target = jTransition["target"];
+      bool negated = jTransition.value("negated", false);
       tr->setSource(getState(source));
       tr->setTarget(getState(target));
+      tr->setNegated(negated);
       tr->load(jTransition);
+      assert(tr->getSourceState() && tr->getTargetState());
       _transitions.push_back(tr);
     }
 
     auto& jVariables = jData["variables"];
     for (auto& jVariable : jVariables)
     {
-      _variables.addVariant(jVariable);
+      _variables.setVariant(jVariable);
     }
 
     const std::string& initialState = jData["initial_state"];
@@ -86,5 +93,16 @@ namespace FSM
       }
     }
     return nullptr;
+  }
+
+  void CMachine::getStateTransitions(const IState* state, VTransitions& output) const
+  {
+    for (auto& transition : _transitions)
+    {
+      if (transition->getSourceState() == state)
+      {
+        output.push_back(transition);
+      }
+    }
   }
 }

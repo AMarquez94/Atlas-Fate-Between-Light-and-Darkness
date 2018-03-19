@@ -50,53 +50,108 @@ CHandle CVariant::getHandle() const
   }
 }
 
-void MVariants::addVariant(const std::string& name, bool value)
+void CVariant::load(const json& jData)
+{
+  const std::string& name = jData["name"];
+  const std::string& type = jData["type"];
+
+  setName(name);
+  if (type == "bool")
+  {
+    setBool(jData.value("value", false));
+  }
+  else if (type == "int")
+  {
+    setInt(jData.value("value", 0));
+  }
+  else if (type == "float")
+  {
+    setFloat(jData.value("value", 0.f));
+  }
+  else if (type == "handle" || type == "string")
+  {
+    setString(jData.value("value", ""));
+  }
+}
+
+std::string CVariant::toString() const
+{
+  switch (_type)
+  {
+  case EType::BOOL: return _bValue ? "true" : "false";
+  case EType::INT: return std::to_string(_iValue);
+  case EType::FLOAT: return std::to_string(_fValue);
+  case EType::HANDLE: {
+    CEntity* entity = _hValue;
+    if (entity)
+    {
+      return entity->getName();
+    }
+    else {
+      return _hValue.isValid() ? "valid" : "...";
+    }
+  }
+  case EType::STRING: return _sValue;
+  default: return "";
+  }
+}
+
+void MVariants::clear()
+{
+  _variants.clear();
+}
+
+void MVariants::setVariant(const std::string& name, bool value)
 {
   _variants[name].setBool(value);
 }
 
-void MVariants::addVariant(const std::string& name, int value)
+void MVariants::setVariant(const std::string& name, int value)
 {
   _variants[name].setInt(value);
 }
 
-void MVariants::addVariant(const std::string& name, float value)
+void MVariants::setVariant(const std::string& name, float value)
 {
   _variants[name].setFloat(value);
 }
 
-void MVariants::addVariant(const std::string& name, CHandle value)
+void MVariants::setVariant(const std::string& name, CHandle value)
 {
   _variants[name].setHandle(value);
 }
 
-void MVariants::addVariant(const json& jData)
+void MVariants::setVariant(const std::string& name, const std::string& value)
 {
-  const std::string& name = jData["name"];
-
-  CVariant var;
-  var.setName(name);
-  const std::string& type = jData["type"];
-  if (type == "bool")
-  {
-    var.setBool(jData.value("value", false));
-  }
-  if (type == "int")
-  {
-    var.setInt(jData.value("value", 0));
-  }
-  if (type == "float")
-  {
-    var.setFloat(jData.value("value", 0.f));
-  }
-  if (type == "handle" || type == "string")
-  {
-    var.setString(jData.value("value", ""));
-  }
+  _variants[name].setString(value);
 }
 
-CVariant* MVariants::getVariant(const std::string& name) const
+void MVariants::setVariant(const std::string& name, const CVariant& value)
 {
+  _variants[name] = value;
+}
+
+void MVariants::setVariant(const json& jData)
+{
+  CVariant var;
+  var.load(jData);
+  _variants[var.getName()] = var;
+}
+
+CVariant* MVariants::getVariant(const std::string& name)
+{
+  return const_cast<CVariant*>(const_cast<const MVariants*>(this)->getVariant(name));
+}
+
+const CVariant* MVariants::getVariant(const std::string& name) const
+{
+  for (auto& var : _variants)
+  {
+    if (var.first == name)
+    {
+      return &var.second;
+    }
+  }
   return nullptr;
 }
 

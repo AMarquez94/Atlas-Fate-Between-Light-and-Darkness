@@ -25,6 +25,9 @@ public:
   void setFloat(float value);
   void setHandle(CHandle value);
   void setString(const std::string& value);
+  
+  void load(const json& jData);
+  std::string toString() const;
 
 private:
   std::string _name;
@@ -42,13 +45,20 @@ private:
 class MVariants
 {
 public:
-  void addVariant(const std::string& name, bool value);
-  void addVariant(const std::string& name, int value);
-  void addVariant(const std::string& name, float value);
-  void addVariant(const std::string& name, CHandle value);
-  void addVariant(const json& jData);
+  using MNamedVariants = std::map<std::string, CVariant>;
 
-  CVariant* getVariant(const std::string& name) const;
+  void clear();
+  void setVariant(const std::string& name, bool value);
+  void setVariant(const std::string& name, int value);
+  void setVariant(const std::string& name, float value);
+  void setVariant(const std::string& name, CHandle value);
+  void setVariant(const std::string& name, const std::string& value);
+  void setVariant(const std::string& name, const CVariant& value);
+  void setVariant(const json& jData);
+
+  const MNamedVariants& getVariants() const { return _variants; }
+  CVariant* getVariant(const std::string& name);
+  const CVariant* getVariant(const std::string& name) const;
 
   bool getBool(const std::string& name, bool defaultValue = false) const;
   int getInt(const std::string& name, int defaultValue = 0) const;
@@ -56,5 +66,5 @@ public:
   CHandle getHandle(const std::string& name, CHandle defaultValue = CHandle()) const;
 
 private:
-  std::map<std::string, CVariant> _variants;
+  MNamedVariants _variants;
 };

@@ -8,34 +8,23 @@ namespace FSM
   {
     virtual void onStart(CContext& ctx) const override;
     virtual bool load(const json& jData);
+
+  private:
+    std::string _animationName;
   };
 
-  /*class ChangeMeshState : public IState
+  class JumpState : public IState
   {
-    virtual void onStart(CContext& ctx) const override 
-    {
-      TCompRender* render = ...;
-      CMesh* mesh = Resources.getMesh(meshName);
-      render->setMesh(mesh);
-
-      TCompPhysics* c_physics;
-      c_physics->addImpulse(VEC3(0, 1, 0) * _force);
-    }
+    virtual void onStart(CContext& ctx) const override;
+    virtual bool load(const json& jData);
 
   private:
-    std::string& meshName;
-  };*/
+    float _force = 1.f;
+  };
 
-
-  /*class JumpState : public IState
+  class HitState : public IState
   {
-    virtual void onStart(CContext& ctx) const override
-    {
-      TCompPhysics* c_physics;
-      c_physics->addImpulse(VEC3(0, 1, 0) * _jumpForce);
-    }
-
-  private:
-    float _jumpForce;
-  };*/
+    virtual void onStart(CContext& ctx) const override;
+    virtual bool load(const json& jData);
+  };
 }
