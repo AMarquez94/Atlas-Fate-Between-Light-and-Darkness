@@ -13,18 +13,63 @@
 		},
 		{
 			"name" : "walk",
-			"type" : "WalkState",
+			"type" : "AnimationState",
 			"animation" : "walk"
 		},
 		{
+			"name" : "jump",
+			"type" : "AnimationState",
+			"animation" : "jump"
+		},
+		{
 			"name" : "run",
-			"type" : "RunState",
+			"type" : "AnimationState",
 			"animation" : "run"
 		},
 		{
+			"name" : "attack",
+			"type" : "AnimationState",
+			"animation" : "attack"
+		},
+		{
 			"name" : "fall",
-			"type" : "FallState",
+			"type" : "AnimationState",
 			"animation" : "fall"
+		},
+		{
+			"name" : "merge_enter",
+			"type" : "AnimationState",
+			"animation" : "merge_enter"
+		},
+		{
+			"name" : "merge_exit",
+			"type" : "AnimationState",
+			"animation" : "merge_exit"
+		},
+		{
+			"name" : "merge_horizontal",
+			"type" : "AnimationState",
+			"animation" : "merge_horizontal"
+		},
+		{
+			"name" : "merge_vertical",
+			"type" : "AnimationState",
+			"animation" : "merge_vertical"
+		},
+		{
+			"name" : "merge_enemy",
+			"type" : "AnimationState",
+			"animation" : "merge_enemy"
+		},
+		{
+			"name" : "land",
+			"type" : "AnimationState",
+			"animation" : "land"
+		},
+		{
+			"name" : "dead",
+			"type" : "AnimationState",
+			"animation" : "dead"
 		}
 	],
 	"transitions" : [
@@ -47,8 +92,9 @@
 			"variable" : {
 				"name" : "speed",
 				"type" : "float",
-				"value" : 1.0
-			}
+				"value" : 0.0
+			},
+			"operation" : "greater"
 		},
 		{
 			"type" : "VariableTransition",
@@ -64,16 +110,16 @@
 		{
 			"type" : "VariableTransition",
 			"source" : "idle",
-			"target" : "fall",
+			"target" : "jump",
 			"variable" : {
-				"name" : "fall",
+				"name" : "jump",
 				"type" : "bool",
 				"value" : true
 			}
 		},
 		{
 			"type" : "VariableTransition",
-			"source" : "fall",
+			"source" : "jump",
 			"target" : "idle",
 			"variable" : {
 				"name" : "onGround",
@@ -89,7 +135,7 @@
 			"value" : 0.0
 		},
 		{
-			"name" : "fall",
+			"name" : "jump",
 			"type" : "bool",
 			"value" : false
 		},

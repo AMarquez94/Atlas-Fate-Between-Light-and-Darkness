@@ -24,20 +24,59 @@ namespace FSM
 
 	}
 
-	bool JumpState::load(const json& jData) {
+	bool WalkState::load(const json& jData) {
+
+		_animationName = jData["animation"];
+		_speed = jData.value("speed", 1.f);
+		return true;
+	}
+
+	void WalkState::onStart(CContext& ctx) const {
+
+		// Send a message to the player controller
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgAnimation{ "walk" });
+	}
+
+	void WalkState::onFinish(CContext& ctx) const {
+
+	}
+
+	bool RunState::load(const json& jData) {
+
+		_animationName = jData["animation"];
+		_speed = jData.value("speed", 1.f);
+
+		return true;
+	}
+
+	void RunState::onStart(CContext& ctx) const {
+
+		// Send a message to the player controller
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgAnimation{ "run" });
+	}
+
+	void RunState::onFinish(CContext& ctx) const {
+
+	}
+
+	bool FallState::load(const json& jData) {
 
 		_force = jData.value("force", 1.f);
 
 		return true;
 	}
 
-	void JumpState::onStart(CContext& ctx) const {
+	void FallState::onStart(CContext& ctx) const {
 
 		// Send a message to the player controller
-
+		// Send a message to the player controller
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgAnimation{ "fall" });
 	}
 
-	void JumpState::onFinish(CContext& ctx) const {
+	void FallState::onFinish(CContext& ctx) const {
 
 	}
 

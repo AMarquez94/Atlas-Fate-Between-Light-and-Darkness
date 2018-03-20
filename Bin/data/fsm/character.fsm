@@ -102,6 +102,11 @@
 			"value" : 0.0
 		},
 		{
+			"name" : "boost_speed",
+			"type" : "float",
+			"value" : 0.0
+		},
+		{
 			"name" : "jump",
 			"type" : "bool",
 			"value" : false

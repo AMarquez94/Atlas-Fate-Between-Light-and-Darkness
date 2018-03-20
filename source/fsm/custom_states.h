@@ -14,7 +14,7 @@ namespace FSM
     std::string _animationName;
   };
 
-  class JumpState : public IState
+  class FallState : public IState
   {
     virtual void onStart(CContext& ctx) const override;
 	virtual void onFinish(CContext& ctx) const override;
@@ -22,6 +22,29 @@ namespace FSM
 
   private:
     float _force = 1.f;
+	std::string _animationName;
+  };
+
+  class WalkState : public IState
+  {
+	  virtual void onStart(CContext& ctx) const override;
+	  virtual void onFinish(CContext& ctx) const override;
+	  virtual bool load(const json& jData);
+
+  private:
+	  float _speed = 1.f;
+	  std::string _animationName;
+  };
+
+  class RunState : public IState
+  {
+	  virtual void onStart(CContext& ctx) const override;
+	  virtual void onFinish(CContext& ctx) const override;
+	  virtual bool load(const json& jData);
+
+  private:
+	  float _speed = 1.f;
+	  std::string _animationName;
   };
 
   class HitState : public IState

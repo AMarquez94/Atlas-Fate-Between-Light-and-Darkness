@@ -35,7 +35,7 @@ void TCompFakeAnimation::update(float dt)
 	{
 		yaw = M_2_PI * _time;
 	}
-	else if (_animationName == "jump")
+	else if (_animationName == "fall")
 	{
 		const float duration = 1.f;
 		float ratio = _time / duration;

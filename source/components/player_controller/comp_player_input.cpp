@@ -12,30 +12,93 @@ void TCompPlayerInput::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompPlayerInput::update(float dt)
 {
-	if (EngineInput["btUp"].hasChanged())
+	CEntity* e = CHandle(this).getOwner();
+
+	/* Movement messages*/
 	{
-		TMsgSetFSMVariable jumpMsg;
-		jumpMsg.variant.setName("speed");
-		jumpMsg.variant.setFloat(EngineInput["btUp"].value);
-		CEntity* e = CHandle(this).getOwner();
-		e->sendMsg(jumpMsg);
+		TMsgSetFSMVariable walkMsg;
+		walkMsg.variant.setName("speed");
+
+		if (EngineInput["btUp"].hasChanged()){
+			walkMsg.variant.setFloat(EngineInput["btUp"].value);
+			e->sendMsg(walkMsg);
+		}
+		else if (EngineInput["btDown"].hasChanged()) {
+			walkMsg.variant.setFloat(EngineInput["btDown"].value);
+			e->sendMsg(walkMsg);
+		}
+		else if (EngineInput["btLeft"].hasChanged()) {
+			walkMsg.variant.setFloat(EngineInput["btLeft"].value);
+			e->sendMsg(walkMsg);
+		}
+		else if (EngineInput["btRight"].hasChanged()) {
+			walkMsg.variant.setFloat(EngineInput["btRight"].value);
+			e->sendMsg(walkMsg);
+		}
+
+		/* Speed boost messages */
+		{
+			TMsgSetFSMVariable boostMsg;
+			boostMsg.variant.setName("boost_speed");
+
+			if (EngineInput["btRun"].hasChanged()) {
+				boostMsg.variant.setFloat(EngineInput["btRun"].value);
+				e->sendMsg(boostMsg);
+			}
+
+			if (EngineInput["btSlow"].hasChanged()) {
+				boostMsg.variant.setFloat(-EngineInput["btSlow"].value);
+				e->sendMsg(boostMsg);
+			}
+		}
 	}
 
-	if (EngineInput["btDown"].hasChanged())
+	/* Shadow merge messages*/
 	{
-		TMsgSetFSMVariable jumpMsg;
-		jumpMsg.variant.setName("speedx");
-		jumpMsg.variant.setFloat(-EngineInput["btDown"].value);
-		CEntity* e = CHandle(this).getOwner();
-		e->sendMsg(jumpMsg);
+		TMsgSetFSMVariable shadowMerge;
+		shadowMerge.variant.setName("merge");
+		shadowMerge.variant.setBool(EngineInput["btShadowMerging"].isPressed());
+
+		if (EngineInput["btShadowMerging"].hasChanged())
+		{
+			e->sendMsg(shadowMerge);
+		}
 	}
 
-	if (EngineInput["jump"].hasChanged())
+	/* Player/User interaction messages */
 	{
-		//TMsgSetFSMVariable speedMsg;
-		//speedMsg.variant.setName("speed");
-		//speedMsg.variant.setFloat(EngineInput["move"].value);
-		//CEntity* e = CHandle(this).getOwner();
-		//e->sendMsg(speedMsg);
+
+		if (EngineInput["btAttack"].hasChanged())
+		{
+			TMsgSetFSMVariable attack;
+			attack.variant.setName("attack");
+			attack.variant.setBool(EngineInput["btAttack"].isPressed());
+			e->sendMsg(attack);
+		}
+
+		if (EngineInput["btCrouch"].hasChanged())
+		{
+			TMsgSetFSMVariable crouch;
+			crouch.variant.setName("crouch");
+			crouch.variant.setBool(EngineInput["btCrouch"].isPressed());
+			e->sendMsg(crouch);
+		}
+
+		if (EngineInput["btAction"].hasChanged())
+		{
+			TMsgSetFSMVariable action;
+			action.variant.setName("action");
+			action.variant.setBool(EngineInput["action"].isPressed());
+			e->sendMsg(action);
+		}
+
+		if (EngineInput["btSecAction"].hasChanged())
+		{
+			TMsgSetFSMVariable action;
+			action.variant.setName("action_sec");
+			action.variant.setBool(EngineInput["btSecAction"].isPressed());
+			e->sendMsg(action);
+		}
 	}
+
 }
