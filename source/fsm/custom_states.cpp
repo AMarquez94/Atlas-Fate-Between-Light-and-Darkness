@@ -80,6 +80,43 @@ namespace FSM
 
 	}
 
+
+	bool CrouchState::load(const json& jData) {
+
+
+		return true;
+	}
+
+	void CrouchState::onStart(CContext& ctx) const {
+
+		// Send a message to the player controller
+		// Send a message to the player controller
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgAnimation{ "crouch" });
+	}
+
+	void CrouchState::onFinish(CContext& ctx) const {
+
+	}
+
+	bool MergeState::load(const json& jData) {
+
+
+		return true;
+	}
+
+	void MergeState::onStart(CContext& ctx) const {
+
+		// Send a message to the player controller
+		// Send a message to the player controller
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgAnimation{ "crouch" });
+	}
+
+	void MergeState::onFinish(CContext& ctx) const {
+
+	}
+
 	bool HitState::load(const json& jData) {
 
 		// ..

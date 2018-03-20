@@ -22,6 +22,16 @@
 			"animation" : "run"
 		},
 		{
+			"name" : "crouch",
+			"type" : "CrouchState",
+			"animation" : "crouch"
+		},
+		{
+			"name" : "merge",
+			"type" : "MergeState",
+			"animation" : "merge"
+		},
+		{
 			"name" : "fall",
 			"type" : "FallState",
 			"animation" : "fall"
@@ -61,7 +71,7 @@
 			},
 			"negated" : true
 		},
-				{
+		{
 			"type" : "VariableTransition",
 			"source" : "walk",
 			"target" : "run",
@@ -81,6 +91,16 @@
 				"value" : 1.0
 			},
 			"negated" : true
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "walk",
+			"target" : "crouch",
+			"variable" : {
+				"name" : "crouch",
+				"type" : "bool",
+				"bool" : true
+			}
 		},
 		{
 			"type" : "VariableTransition",
@@ -116,6 +136,11 @@
 		},
 		{
 			"name" : "fall",
+			"type" : "bool",
+			"value" : false
+		},
+		{
+			"name" : "crouch",
 			"type" : "bool",
 			"value" : false
 		},

@@ -47,6 +47,28 @@ namespace FSM
 	  std::string _animationName;
   };
 
+  class CrouchState : public IState
+  {
+	  virtual void onStart(CContext& ctx) const override;
+	  virtual void onFinish(CContext& ctx) const override;
+	  virtual bool load(const json& jData);
+
+  private:
+	  float _speed = 1.f;
+	  std::string _animationName;
+  };
+
+  class MergeState : public IState
+  {
+	  virtual void onStart(CContext& ctx) const override;
+	  virtual void onFinish(CContext& ctx) const override;
+	  virtual bool load(const json& jData);
+
+  private:
+	  float _speed = 1.f;
+	  std::string _animationName;
+  };
+
   class HitState : public IState
   {
     virtual void onStart(CContext& ctx) const override;
