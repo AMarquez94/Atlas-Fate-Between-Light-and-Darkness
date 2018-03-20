@@ -4,7 +4,7 @@
 struct TEntityParseContext;
 
 struct TCompBase {
-	bool visible = true;
+  bool visible = true;
   void debugInMenu() {}
   void renderDebug() {}
   void load( const json& j, TEntityParseContext& ctx ) {}

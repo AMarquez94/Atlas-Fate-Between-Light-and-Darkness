@@ -181,6 +181,14 @@ void CRenderManager::renderCategory(const char* category_name) {
   while (it != last) {
     PROFILE_FUNCTION("Key");
 
+	TCompRender * c_render = it->h_render_owner;
+
+	/* Test if component render is marked as visible */
+	if (!c_render->visible) {
+		++it;
+		continue;
+	}
+
     // Do the culling
     if (culling_bits) {
       TCompAbsAABB* aabb = it->h_aabb;
@@ -194,7 +202,6 @@ void CRenderManager::renderCategory(const char* category_name) {
     }
 
 	// Adding small hotfix to solve color missing.
-	TCompRender * c_render = it->h_render_owner;
 
     // World asociada a mi objeto
     const TCompTransform* c_transform = it->h_transform;
