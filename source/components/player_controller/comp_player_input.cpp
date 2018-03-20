@@ -37,19 +37,17 @@ void TCompPlayerInput::update(float dt)
 		}
 
 		/* Speed boost messages */
-		{
-			TMsgSetFSMVariable boostMsg;
-			boostMsg.variant.setName("boost_speed");
+		TMsgSetFSMVariable boostMsg;
+		boostMsg.variant.setName("boost_speed");
 
-			if (EngineInput["btRun"].hasChanged()) {
-				boostMsg.variant.setFloat(EngineInput["btRun"].value);
-				e->sendMsg(boostMsg);
-			}
+		if (EngineInput["btRun"].hasChanged()) {
+			boostMsg.variant.setFloat(EngineInput["btRun"].value);
+			e->sendMsg(boostMsg);
+		}
 
-			if (EngineInput["btSlow"].hasChanged()) {
-				boostMsg.variant.setFloat(-EngineInput["btSlow"].value);
-				e->sendMsg(boostMsg);
-			}
+		if (EngineInput["btSlow"].hasChanged()) {
+			boostMsg.variant.setFloat(EngineInput["btSlow"].value);
+			e->sendMsg(boostMsg);
 		}
 	}
 

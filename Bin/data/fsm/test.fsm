@@ -61,6 +61,27 @@
 			},
 			"negated" : true
 		},
+				{
+			"type" : "VariableTransition",
+			"source" : "walk",
+			"target" : "run",
+			"variable" : {
+				"name" : "boost_speed",
+				"type" : "float",
+				"value" : 1.0
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "run",
+			"target" : "walk",
+			"variable" : {
+				"name" : "boost_speed",
+				"type" : "float",
+				"value" : 1.0
+			},
+			"negated" : true
+		},
 		{
 			"type" : "VariableTransition",
 			"source" : "idle",
@@ -85,6 +106,11 @@
 	"variables" : [
 		{
 			"name" : "speed",
+			"type" : "float",
+			"value" : 0.0
+		},
+		{
+			"name" : "boost_speed",
 			"type" : "float",
 			"value" : 0.0
 		},
