@@ -78,6 +78,7 @@ public:
 	BTNode::ERes actionSetActive(float dt);
 	BTNode::ERes actionJumpFloor(float dt);
 	BTNode::ERes actionGoToWpt(float dt);
+	BTNode::ERes actionResetTimerWaiting(float dt);
 	BTNode::ERes actionWaitInWpt(float dt);
 	BTNode::ERes actionNextWpt(float dt);
 	BTNode::ERes actionSleep(float dt);
