@@ -28,9 +28,6 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 	loadConditions();
 	loadAsserts();
 	//TCompIAController::loadTree(j);
-	/*CHandle h(this);
-	CEntity* e = h.getOwner();
-	std::string aux = e->getName();*/
 	
 	createRoot("mimetic", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
 	addChild("mimetic", "stunned", BTNode::EType::ACTION, (BTCondition)&TCompAIMimetic::conditionHasBeenStunned, (BTAction)&TCompAIMimetic::actionStunned, nullptr);
@@ -70,11 +67,11 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 	addChild("managePlayerLost", "setGoInactive", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetGoInactive, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
 
 	addChild("mimetic", "manageGoingInactive", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
-	addChild("mimetic", "manageGoingInactiveTypeWall", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionIsTypeWall, nullptr, nullptr);
+	addChild("manageGoingInactive", "manageGoingInactiveTypeWall", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionIsTypeWall, nullptr, nullptr);
 	addChild("manageGoingInactiveTypeWall", "goToInitialPosTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
 	addChild("manageGoingInactiveTypeWall", "jumpWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionJumpWall, nullptr);
 	addChild("manageGoingInactiveTypeWall", "setInactiveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetInactive, nullptr);
-	addChild("mimetic", "manageGoingInactiveTypeFloor", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionIsTypeFloor, nullptr, nullptr);
+	addChild("manageGoingInactive", "manageGoingInactiveTypeFloor", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionIsTypeFloor, nullptr, nullptr);
 	addChild("manageGoingInactiveTypeFloor", "goToInitialPosTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
 	addChild("manageGoingInactiveTypeFloor", "setInactiveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetInactive, nullptr);
 
@@ -142,9 +139,9 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 		}
 	}
 
+	type = EType::FLOOR;
 	rotationSpeed = deg2rad(rotationSpeedDeg);
 	fov = deg2rad(fovDeg);
-	maxRotationSeekingPlayer = deg2rad(maxRotationSeekingPlayerDeg);
 	startLightsOn = j.value("startLightsOn", false);
 	currentWaypoint = 0;
 	/* TODO: ¿Init node? */
@@ -155,17 +152,13 @@ void TCompAIMimetic::onMsgEntityCreated(const TMsgEntityCreated & msg)
 	TCompName *tName = get<TCompName>();
 	name = tName->getName();
 
-	if (_waypoints.size() == 0) {
-		Waypoint wpt;
-		wpt.position = ((TCompTransform*)get<TCompTransform>())->getPosition();
-		wpt.lookAt = ((TCompTransform*)get<TCompTransform>())->getFront();
-		wpt.minTime = 1.f;
-		addWaypoint(wpt);
-	}
-
 	if (startLightsOn) {
 		turnOnLight();
 	}
+
+	TCompTransform *tTransform = get<TCompTransform>();
+	initialLookAt = tTransform->getFront();
+	initialPos = tTransform->getPosition();
 }
 
 void TCompAIMimetic::onMsgPlayerDead(const TMsgPlayerDead& msg) {
@@ -227,7 +220,25 @@ BTNode::ERes TCompAIMimetic::actionStunned(float dt)
 
 BTNode::ERes TCompAIMimetic::actionObserve(float dt)
 {
-	return BTNode::ERes();
+	if (isPlayerInFov()) {
+		amountRotatedObserving = 0.f;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		TCompTransform * myPos = get<TCompTransform>();
+		if (amountRotatedObserving >= maxAmountRotateObserving * 3) {
+			amountRotatedObserving = 0.f;
+		}
+		else {
+			float y, p, r;
+			myPos->getYawPitchRoll(&y, &p, &r);
+			amountRotatedObserving += rotationSpeed * dt;
+			float newYaw = amountRotatedObserving < maxAmountRotateObserving ? rotationSpeed * dt : -rotationSpeed * dt;
+			y += newYaw;
+			myPos->setYawPitchRoll(y, p, r);
+		}
+		return BTNode::ERes::STAY;
+	}
 }
 
 BTNode::ERes TCompAIMimetic::actionSetActive(float dt)
@@ -238,7 +249,7 @@ BTNode::ERes TCompAIMimetic::actionSetActive(float dt)
 
 BTNode::ERes TCompAIMimetic::actionJumpFloor(float dt)
 {
-	return BTNode::ERes();
+	return BTNode::ERes::UNIMPLEMENTED; //TODO implement
 }
 
 BTNode::ERes TCompAIMimetic::actionGoToWpt(float dt)
@@ -387,28 +398,51 @@ BTNode::ERes TCompAIMimetic::actionGoToPlayerLastPos(float dt)
 
 BTNode::ERes TCompAIMimetic::actionWaitInPlayerLastPos(float dt)
 {
-	return BTNode::ERes();
+	timerWaitingInWpt += dt;
+	if (timerWaitingInWpt < 5.f /*TODO: not hardcoded*/) {
+		return BTNode::STAY;
+	}
+	else {
+		return BTNode::ERes::LEAVE;
+	}
 }
 
 BTNode::ERes TCompAIMimetic::actionSetGoInactive(float dt)
 {
 	goingInactive = true;
+	suspectO_Meter = 0.f;
 	return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIMimetic::actionGoToInitialPos(float dt)
 {
-	return BTNode::ERes();
+	TCompTransform *mypos = get<TCompTransform>();
+	rotateTowardsVec(initialPos, dt);
+
+	VEC3 vp = mypos->getPosition();
+
+	if (VEC3::Distance(initialPos, vp) < speed * dt) {
+		mypos->setPosition(initialPos);
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		VEC3 vfwd = mypos->getFront();
+		vfwd.Normalize();
+		vp = vp + speed * dt * vfwd;
+		mypos->setPosition(vp);
+		return BTNode::ERes::STAY;
+	}
 }
 
 BTNode::ERes TCompAIMimetic::actionJumpWall(float dt)
 {
-	return BTNode::ERes();
+	return BTNode::ERes::UNIMPLEMENTED;
 }
 
 BTNode::ERes TCompAIMimetic::actionSetInactive(float dt)
 {
 	isActive = false;
+	goingInactive = false;
 	return BTNode::ERes::LEAVE;
 }
 
@@ -457,7 +491,7 @@ bool TCompAIMimetic::conditionNotListenedNoise(float dt)
 
 bool TCompAIMimetic::conditionNotSurePlayerInFov(float dt)
 {
-	return suspectO_Meter > 0.f || isPlayerInFov() && suspectO_Meter < 1.f;
+	return suspectO_Meter < 1.f && (suspectO_Meter > 0.f || isPlayerInFov());
 }
 
 bool TCompAIMimetic::conditionPlayerSeenForSure(float dt)

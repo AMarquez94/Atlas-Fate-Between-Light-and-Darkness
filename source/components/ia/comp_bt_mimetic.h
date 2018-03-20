@@ -15,7 +15,7 @@ private:
 	enum EType { FLOOR = 0, WALL, NUM_TYPES };
 
 	float speed = 3.5f;
-	float rotationSpeedDeg = 90.0f;
+	float rotationSpeedDeg = 90.f;
 	float rotationSpeed;
 	std::string entityToChase = "The Player";
 	float fovDeg = 70.f;
@@ -26,28 +26,27 @@ private:
 	float suspectO_Meter = 0.f;
 	float dcrSuspectO_Meter = .3f;
 	float incrBaseSuspectO_Meter = .5f;
-	bool isLastPlayerKnownDirLeft = false;
 	float distToAttack = 1.5f;
-	float amountRotated = 0.f;
-	float maxRotationSeekingPlayerDeg = 90.f;
-	float maxRotationSeekingPlayer;
 	VEC3 lastPlayerKnownPos = VEC3::Zero;
-	VEC3 lastStunnedPatrolKnownPos = VEC3::Zero;
 	bool startLightsOn = false;
 	bool alarmEnded = true;
 	bool hasBeenStunned = false;
-	bool hasBeenShadowMerged = false;
-	bool hasBeenFixed = false;
+	bool isLastPlayerKnownDirLeft = false;
 
 	std::string validState = "";
 
 	/* Timers */
 	float timerWaitingInWpt = 0.f;
 
-	bool isSlept;
+	bool isSlept = false;
 	EType type;
-	bool isActive;
-	bool goingInactive;
+	bool isActive = false;
+	bool goingInactive = false;
+	VEC3 initialPos;
+	VEC3 initialLookAt;
+
+	float amountRotatedObserving = 0.f;
+	float maxAmountRotateObserving = deg2rad(45.f);;
 
 	DECL_SIBLING_ACCESS();
 

@@ -1,1536 +1,1371 @@
-[
-	{
+[{
 		"entity": {
 			"name": "Enemies"
 		}
-	},
-	{
-		"entity": {
-		  "prefab": "data/prefabs/patrol.prefab",
-		  "name": "The Enemy 1",
-		  "transform": {
-			"pos": "-26 0 75",
-			"lookat": "1 0 1"
-		  },
-      "ai_patrol": {
+	}, {
+		"xentity": {
+			"prefab": "data/prefabs/patrol.prefab",
+			"name": "Patrol 1",
+			"transform": {
+				"pos": "-26 0 75",
+				"lookat": "1 0 1"
+			},
+			"ai_patrol": {
 
-        "createRoot": {
-          "rootName": "patrol",
-          "type": "priority",
-          "condition": "nullptr",
-          "action": "",
-          "assert": ""
-        },
-        "addChild": [
-          {
-            "parent": "patrol",
-            "name": "manageStun",
-            "type": "priority",
-            "condition": "conditionManageStun",
-            "conditionArg": {
-              "speed": "4.5",
-              "flee": "2",
-              "escape": 1.0
-            },
-            "action": "",
-            "actionArg": {
-              "movement": 4.1,
-              "ugh": 2.14
-            },
-            "assert": ""
-          },
-          {
-            "parent": "manageStun",
-            "name": "shadowMerged",
-            "type": "action",
-            "condition": "conditionShadowMerged",
-            "action": "actionShadowMerged",
-            "assert": ""
-          },
-          {
-            "parent": "manageStun",
-            "name": "manageFixed",
-            "type": "sequence",
-            "condition": "conditionFixed",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageStun",
-            "name": "stunned",
-            "type": "action",
-            "condition": "",
-            "action": "actionStunned",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixed",
-            "name": "fixed",
-            "type": "action",
-            "condition": "",
-            "action": "actionFixed",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixed",
-            "name": "beginAlertFixed",
-            "type": "action",
-            "condition": "",
-            "action": "actionBeginAlert",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixed",
-            "name": "closestWptFixed",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          },
-          {
-            "parent": "patrol",
-            "name": "endAlertRoot",
-            "type": "action",
-            "condition": "conditionEndAlert",
-            "action": "actionEndAlert",
-            "assert": ""
-          },
-          {
-            "parent": "patrol",
-            "name": "manageDoPatrol",
-            "type": "priority",
-            "condition": "",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "managePlayerSeen",
-            "type": "priority",
-            "condition": "conditionPlayerSeen",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "managePlayerWasSeen",
-            "type": "sequence",
-            "condition": "conditionPlayerWasSeen",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "managePatrolSeen",
-            "type": "sequence",
-            "condition": "conditionPatrolSeen",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "goToWpt",
-            "type": "action",
-            "condition": "conditionGoToWpt",
-            "action": "actionGoToWpt",
-            "assert": "assertPlayerAndPatrolNotInFov"
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "waitInWpt",
-            "type": "action",
-            "condition": "conditionWaitInWpt",
-            "action": "actionWaitInWpt",
-            "assert": "assertPlayerAndPatrolNotInFov"
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "nextWpt",
-            "type": "action",
-            "condition": "",
-            "action": "actionNextWpt",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerSeen",
-            "name": "manageChase",
-            "type": "sequence",
-            "condition": "conditionChase",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerSeen",
-            "name": "suspect",
-            "type": "action",
-            "condition": "",
-            "action": "actionSuspect",
-            "assert": ""
-          },
-          {
-            "parent": "manageChase",
-            "name": "markPlayerAsSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionMarkPlayerAsSeen",
-            "assert": ""
-          },
-          {
-            "parent": "manageChase",
-            "name": "shootInhibitor",
-            "type": "action",
-            "condition": "",
-            "action": "actionShootInhibitor",
-            "assert": ""
-          },
-          {
-            "parent": "manageChase",
-            "name": "beginAlertChase",
-            "type": "action",
-            "condition": "",
-            "action": "actionBeginAlert",
-            "assert": ""
-          },
-          {
-            "parent": "manageChase",
-            "name": "manageGoingToAttack",
-            "type": "priority",
-            "condition": "",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageGoingToAttack",
-            "name": "managePlayerAttacked",
-            "type": "sequence",
-            "condition": "conditionPlayerAttacked",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageGoingToAttack",
-            "name": "ChasePlayer",
-            "type": "action",
-            "condition": "",
-            "action": "actionChasePlayer",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerAttacked",
-            "name": "attack",
-            "type": "action",
-            "condition": "",
-            "action": "actionAttack",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerAttacked",
-            "name": "endAlertAttacked",
-            "type": "action",
-            "condition": "",
-            "action": "actionEndAlert",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerAttacked",
-            "name": "closestWptAttacked",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerWasSeen",
-            "name": "resetPlayerWasSeenVariables",
-            "type": "action",
-            "condition": "",
-            "action": "actionResetPlayerWasSeenVariables",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerWasSeen",
-            "name": "goToPlayerLastPos",
-            "type": "action",
-            "condition": "",
-            "action": "actionGoToPlayerLastPos",
-            "assert": "assertPlayerNotInFov"
-          },
-          {
-            "parent": "managePlayerWasSeen",
-            "name": "lookForPlayerSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionLookForPlayer",
-            "assert": "assertPlayerNotInFov"
-          },
-          {
-            "parent": "managePlayerWasSeen",
-            "name": "closestWptPlayerSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          },
-          {
-            "parent": "managePatrolSeen",
-            "name": "goToPatrol",
-            "type": "action",
-            "condition": "",
-            "action": "actionGoToPatrol",
-            "assert": "assertPlayerNotInFov"
-          },
-          {
-            "parent": "managePatrolSeen",
-            "name": "manageInPatrolPos",
-            "type": "priority",
-            "condition": "",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageInPatrolPos",
-            "name": "manageFixPatrol",
-            "type": "sequence",
-            "condition": "conditionFixPatrol",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixPatrol",
-            "name": "fixPatrol",
-            "type": "action",
-            "condition": "",
-            "action": "actionFixPatrol",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixPatrol",
-            "name": "beginAlertPatrolSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionBeginAlert",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixPatrol",
-            "name": "closestWptPatrolSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          },
-          {
-            "parent": "manageInPatrolPos",
-            "name": "managePatrolLost",
-            "type": "sequence",
-            "condition": "",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "managePatrolLost",
-            "name": "markPatrolAsLost",
-            "type": "action",
-            "condition": "",
-            "action": "actionMarkPatrolAsLost",
-            "assert": ""
-          },
-          {
-            "parent": "managePatrolLost",
-            "name": "lookForPlayerPatrolWasSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionLookForPlayer",
-            "assert": "assertPlayerAndPatrolNotInFov"
-          },
-          {
-            "parent": "managePatrolLost",
-            "name": "closestWptPatrolWasSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          }
-        ]
-      },
-		  "collider": {
-			"shape": "capsule",
-			"is_controller": true,
-			"radius": 0.65,
-			"height": 1.0,
-			"gravity": true,
-			"group" : "enemy"
-		  }
+				"createRoot": {
+					"rootName": "patrol",
+					"type": "priority",
+					"condition": "nullptr",
+					"action": "",
+					"assert": ""
+				},
+				"addChild": [{
+						"parent": "patrol",
+						"name": "manageStun",
+						"type": "priority",
+						"condition": "conditionManageStun",
+						"conditionArg": {
+							"speed": "4.5",
+							"flee": "2",
+							"escape": 1.0
+						},
+						"action": "",
+						"actionArg": {
+							"movement": 4.1,
+							"ugh": 2.14
+						},
+						"assert": ""
+					}, {
+						"parent": "manageStun",
+						"name": "shadowMerged",
+						"type": "action",
+						"condition": "conditionShadowMerged",
+						"action": "actionShadowMerged",
+						"assert": ""
+					}, {
+						"parent": "manageStun",
+						"name": "manageFixed",
+						"type": "sequence",
+						"condition": "conditionFixed",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageStun",
+						"name": "stunned",
+						"type": "action",
+						"condition": "",
+						"action": "actionStunned",
+						"assert": ""
+					}, {
+						"parent": "manageFixed",
+						"name": "fixed",
+						"type": "action",
+						"condition": "",
+						"action": "actionFixed",
+						"assert": ""
+					}, {
+						"parent": "manageFixed",
+						"name": "beginAlertFixed",
+						"type": "action",
+						"condition": "",
+						"action": "actionBeginAlert",
+						"assert": ""
+					}, {
+						"parent": "manageFixed",
+						"name": "closestWptFixed",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}, {
+						"parent": "patrol",
+						"name": "endAlertRoot",
+						"type": "action",
+						"condition": "conditionEndAlert",
+						"action": "actionEndAlert",
+						"assert": ""
+					}, {
+						"parent": "patrol",
+						"name": "manageDoPatrol",
+						"type": "priority",
+						"condition": "",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "managePlayerSeen",
+						"type": "priority",
+						"condition": "conditionPlayerSeen",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "managePlayerWasSeen",
+						"type": "sequence",
+						"condition": "conditionPlayerWasSeen",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "managePatrolSeen",
+						"type": "sequence",
+						"condition": "conditionPatrolSeen",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "goToWpt",
+						"type": "action",
+						"condition": "conditionGoToWpt",
+						"action": "actionGoToWpt",
+						"assert": "assertPlayerAndPatrolNotInFov"
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "waitInWpt",
+						"type": "action",
+						"condition": "conditionWaitInWpt",
+						"action": "actionWaitInWpt",
+						"assert": "assertPlayerAndPatrolNotInFov"
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "nextWpt",
+						"type": "action",
+						"condition": "",
+						"action": "actionNextWpt",
+						"assert": ""
+					}, {
+						"parent": "managePlayerSeen",
+						"name": "manageChase",
+						"type": "sequence",
+						"condition": "conditionChase",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "managePlayerSeen",
+						"name": "suspect",
+						"type": "action",
+						"condition": "",
+						"action": "actionSuspect",
+						"assert": ""
+					}, {
+						"parent": "manageChase",
+						"name": "markPlayerAsSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionMarkPlayerAsSeen",
+						"assert": ""
+					}, {
+						"parent": "manageChase",
+						"name": "shootInhibitor",
+						"type": "action",
+						"condition": "",
+						"action": "actionShootInhibitor",
+						"assert": ""
+					}, {
+						"parent": "manageChase",
+						"name": "beginAlertChase",
+						"type": "action",
+						"condition": "",
+						"action": "actionBeginAlert",
+						"assert": ""
+					}, {
+						"parent": "manageChase",
+						"name": "manageGoingToAttack",
+						"type": "priority",
+						"condition": "",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageGoingToAttack",
+						"name": "managePlayerAttacked",
+						"type": "sequence",
+						"condition": "conditionPlayerAttacked",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageGoingToAttack",
+						"name": "ChasePlayer",
+						"type": "action",
+						"condition": "",
+						"action": "actionChasePlayer",
+						"assert": ""
+					}, {
+						"parent": "managePlayerAttacked",
+						"name": "attack",
+						"type": "action",
+						"condition": "",
+						"action": "actionAttack",
+						"assert": ""
+					}, {
+						"parent": "managePlayerAttacked",
+						"name": "endAlertAttacked",
+						"type": "action",
+						"condition": "",
+						"action": "actionEndAlert",
+						"assert": ""
+					}, {
+						"parent": "managePlayerAttacked",
+						"name": "closestWptAttacked",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}, {
+						"parent": "managePlayerWasSeen",
+						"name": "resetPlayerWasSeenVariables",
+						"type": "action",
+						"condition": "",
+						"action": "actionResetPlayerWasSeenVariables",
+						"assert": ""
+					}, {
+						"parent": "managePlayerWasSeen",
+						"name": "goToPlayerLastPos",
+						"type": "action",
+						"condition": "",
+						"action": "actionGoToPlayerLastPos",
+						"assert": "assertPlayerNotInFov"
+					}, {
+						"parent": "managePlayerWasSeen",
+						"name": "lookForPlayerSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionLookForPlayer",
+						"assert": "assertPlayerNotInFov"
+					}, {
+						"parent": "managePlayerWasSeen",
+						"name": "closestWptPlayerSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}, {
+						"parent": "managePatrolSeen",
+						"name": "goToPatrol",
+						"type": "action",
+						"condition": "",
+						"action": "actionGoToPatrol",
+						"assert": "assertPlayerNotInFov"
+					}, {
+						"parent": "managePatrolSeen",
+						"name": "manageInPatrolPos",
+						"type": "priority",
+						"condition": "",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageInPatrolPos",
+						"name": "manageFixPatrol",
+						"type": "sequence",
+						"condition": "conditionFixPatrol",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageFixPatrol",
+						"name": "fixPatrol",
+						"type": "action",
+						"condition": "",
+						"action": "actionFixPatrol",
+						"assert": ""
+					}, {
+						"parent": "manageFixPatrol",
+						"name": "beginAlertPatrolSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionBeginAlert",
+						"assert": ""
+					}, {
+						"parent": "manageFixPatrol",
+						"name": "closestWptPatrolSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}, {
+						"parent": "manageInPatrolPos",
+						"name": "managePatrolLost",
+						"type": "sequence",
+						"condition": "",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "managePatrolLost",
+						"name": "markPatrolAsLost",
+						"type": "action",
+						"condition": "",
+						"action": "actionMarkPatrolAsLost",
+						"assert": ""
+					}, {
+						"parent": "managePatrolLost",
+						"name": "lookForPlayerPatrolWasSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionLookForPlayer",
+						"assert": "assertPlayerAndPatrolNotInFov"
+					}, {
+						"parent": "managePatrolLost",
+						"name": "closestWptPatrolWasSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}
+				]
+			},
+			"collider": {
+				"shape": "capsule",
+				"is_controller": true,
+				"radius": 0.65,
+				"height": 1.0,
+				"gravity": true,
+				"group": "enemy"
+			}
 		}
-	},
-	{
+	}, {
 		"entity": {
-		  "prefab": "data/prefabs/patrol.prefab",
-		  "name": "The Enemy 2",
-		  "transform": {
-			"pos": "-25 0 110",
-			"lookat": "1 0 0"
-		  },
-      "ai_patrol": {
-        "waypoints": [
-          {
-            "position": "-25 0 110",
-            "lookAt": "1 0 0"
-          },
-          {
-            "position": "0 0 110",
-            "lookAt": "-1 0 0"
-          }
-        ],
-        "createRoot": {
-          "rootName": "patrol",
-          "type": "priority",
-          "condition": "nullptr",
-          "action": "",
-          "assert": ""
-        },
-        "addChild": [
-          {
-            "parent": "patrol",
-            "name": "manageStun",
-            "type": "priority",
-            "condition": "conditionManageStun",
-            "conditionArg": {
-              "speed": "4.5",
-              "flee": "2",
-              "escape": 1.0
-            },
-            "action": "",
-            "actionArg": {
-              "movement": 4.1,
-              "ugh": 2.14
-            },
-            "assert": ""
-          },
-          {
-            "parent": "manageStun",
-            "name": "shadowMerged",
-            "type": "action",
-            "condition": "conditionShadowMerged",
-            "action": "actionShadowMerged",
-            "assert": ""
-          },
-          {
-            "parent": "manageStun",
-            "name": "manageFixed",
-            "type": "sequence",
-            "condition": "conditionFixed",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageStun",
-            "name": "stunned",
-            "type": "action",
-            "condition": "",
-            "action": "actionStunned",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixed",
-            "name": "fixed",
-            "type": "action",
-            "condition": "",
-            "action": "actionFixed",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixed",
-            "name": "beginAlertFixed",
-            "type": "action",
-            "condition": "",
-            "action": "actionBeginAlert",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixed",
-            "name": "closestWptFixed",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          },
-          {
-            "parent": "patrol",
-            "name": "endAlertRoot",
-            "type": "action",
-            "condition": "conditionEndAlert",
-            "action": "actionEndAlert",
-            "assert": ""
-          },
-          {
-            "parent": "patrol",
-            "name": "manageDoPatrol",
-            "type": "priority",
-            "condition": "",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "managePlayerSeen",
-            "type": "priority",
-            "condition": "conditionPlayerSeen",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "managePlayerWasSeen",
-            "type": "sequence",
-            "condition": "conditionPlayerWasSeen",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "managePatrolSeen",
-            "type": "sequence",
-            "condition": "conditionPatrolSeen",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "goToWpt",
-            "type": "action",
-            "condition": "conditionGoToWpt",
-            "action": "actionGoToWpt",
-            "assert": "assertPlayerAndPatrolNotInFov"
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "waitInWpt",
-            "type": "action",
-            "condition": "conditionWaitInWpt",
-            "action": "actionWaitInWpt",
-            "assert": "assertPlayerAndPatrolNotInFov"
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "nextWpt",
-            "type": "action",
-            "condition": "",
-            "action": "actionNextWpt",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerSeen",
-            "name": "manageChase",
-            "type": "sequence",
-            "condition": "conditionChase",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerSeen",
-            "name": "suspect",
-            "type": "action",
-            "condition": "",
-            "action": "actionSuspect",
-            "assert": ""
-          },
-          {
-            "parent": "manageChase",
-            "name": "markPlayerAsSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionMarkPlayerAsSeen",
-            "assert": ""
-          },
-          {
-            "parent": "manageChase",
-            "name": "shootInhibitor",
-            "type": "action",
-            "condition": "",
-            "action": "actionShootInhibitor",
-            "assert": ""
-          },
-          {
-            "parent": "manageChase",
-            "name": "beginAlertChase",
-            "type": "action",
-            "condition": "",
-            "action": "actionBeginAlert",
-            "assert": ""
-          },
-          {
-            "parent": "manageChase",
-            "name": "manageGoingToAttack",
-            "type": "priority",
-            "condition": "",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageGoingToAttack",
-            "name": "managePlayerAttacked",
-            "type": "sequence",
-            "condition": "conditionPlayerAttacked",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageGoingToAttack",
-            "name": "ChasePlayer",
-            "type": "action",
-            "condition": "",
-            "action": "actionChasePlayer",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerAttacked",
-            "name": "attack",
-            "type": "action",
-            "condition": "",
-            "action": "actionAttack",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerAttacked",
-            "name": "endAlertAttacked",
-            "type": "action",
-            "condition": "",
-            "action": "actionEndAlert",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerAttacked",
-            "name": "closestWptAttacked",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerWasSeen",
-            "name": "resetPlayerWasSeenVariables",
-            "type": "action",
-            "condition": "",
-            "action": "actionResetPlayerWasSeenVariables",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerWasSeen",
-            "name": "goToPlayerLastPos",
-            "type": "action",
-            "condition": "",
-            "action": "actionGoToPlayerLastPos",
-            "assert": "assertPlayerNotInFov"
-          },
-          {
-            "parent": "managePlayerWasSeen",
-            "name": "lookForPlayerSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionLookForPlayer",
-            "assert": "assertPlayerNotInFov"
-          },
-          {
-            "parent": "managePlayerWasSeen",
-            "name": "closestWptPlayerSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          },
-          {
-            "parent": "managePatrolSeen",
-            "name": "goToPatrol",
-            "type": "action",
-            "condition": "",
-            "action": "actionGoToPatrol",
-            "assert": "assertPlayerNotInFov"
-          },
-          {
-            "parent": "managePatrolSeen",
-            "name": "manageInPatrolPos",
-            "type": "priority",
-            "condition": "",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageInPatrolPos",
-            "name": "manageFixPatrol",
-            "type": "sequence",
-            "condition": "conditionFixPatrol",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixPatrol",
-            "name": "fixPatrol",
-            "type": "action",
-            "condition": "",
-            "action": "actionFixPatrol",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixPatrol",
-            "name": "beginAlertPatrolSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionBeginAlert",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixPatrol",
-            "name": "closestWptPatrolSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          },
-          {
-            "parent": "manageInPatrolPos",
-            "name": "managePatrolLost",
-            "type": "sequence",
-            "condition": "",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "managePatrolLost",
-            "name": "markPatrolAsLost",
-            "type": "action",
-            "condition": "",
-            "action": "actionMarkPatrolAsLost",
-            "assert": ""
-          },
-          {
-            "parent": "managePatrolLost",
-            "name": "lookForPlayerPatrolWasSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionLookForPlayer",
-            "assert": "assertPlayerAndPatrolNotInFov"
-          },
-          {
-            "parent": "managePatrolLost",
-            "name": "closestWptPatrolWasSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          }
-        ]
-      },
-		  "collider": {
-			"shape": "capsule",
-			"is_controller": true,
-			"radius": 0.65,
-			"height": 1.0,
-			"gravity": true,
-			"group" : "enemy"
-		  }
+			"prefab": "data/prefabs/patrol.prefab",
+			"name": "Patrol 2",
+			"transform": {
+				"pos": "-25 0 110",
+				"lookat": "1 0 0"
+			},
+			"ai_patrol": {
+				"waypoints": [{
+						"position": "-25 0 110",
+						"lookAt": "1 0 0"
+					}, {
+						"position": "0 0 110",
+						"lookAt": "-1 0 0"
+					}
+				],
+				"createRoot": {
+					"rootName": "patrol",
+					"type": "priority",
+					"condition": "nullptr",
+					"action": "",
+					"assert": ""
+				},
+				"addChild": [{
+						"parent": "patrol",
+						"name": "manageStun",
+						"type": "priority",
+						"condition": "conditionManageStun",
+						"conditionArg": {
+							"speed": "4.5",
+							"flee": "2",
+							"escape": 1.0
+						},
+						"action": "",
+						"actionArg": {
+							"movement": 4.1,
+							"ugh": 2.14
+						},
+						"assert": ""
+					}, {
+						"parent": "manageStun",
+						"name": "shadowMerged",
+						"type": "action",
+						"condition": "conditionShadowMerged",
+						"action": "actionShadowMerged",
+						"assert": ""
+					}, {
+						"parent": "manageStun",
+						"name": "manageFixed",
+						"type": "sequence",
+						"condition": "conditionFixed",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageStun",
+						"name": "stunned",
+						"type": "action",
+						"condition": "",
+						"action": "actionStunned",
+						"assert": ""
+					}, {
+						"parent": "manageFixed",
+						"name": "fixed",
+						"type": "action",
+						"condition": "",
+						"action": "actionFixed",
+						"assert": ""
+					}, {
+						"parent": "manageFixed",
+						"name": "beginAlertFixed",
+						"type": "action",
+						"condition": "",
+						"action": "actionBeginAlert",
+						"assert": ""
+					}, {
+						"parent": "manageFixed",
+						"name": "closestWptFixed",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}, {
+						"parent": "patrol",
+						"name": "endAlertRoot",
+						"type": "action",
+						"condition": "conditionEndAlert",
+						"action": "actionEndAlert",
+						"assert": ""
+					}, {
+						"parent": "patrol",
+						"name": "manageDoPatrol",
+						"type": "priority",
+						"condition": "",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "managePlayerSeen",
+						"type": "priority",
+						"condition": "conditionPlayerSeen",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "managePlayerWasSeen",
+						"type": "sequence",
+						"condition": "conditionPlayerWasSeen",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "managePatrolSeen",
+						"type": "sequence",
+						"condition": "conditionPatrolSeen",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "goToWpt",
+						"type": "action",
+						"condition": "conditionGoToWpt",
+						"action": "actionGoToWpt",
+						"assert": "assertPlayerAndPatrolNotInFov"
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "waitInWpt",
+						"type": "action",
+						"condition": "conditionWaitInWpt",
+						"action": "actionWaitInWpt",
+						"assert": "assertPlayerAndPatrolNotInFov"
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "nextWpt",
+						"type": "action",
+						"condition": "",
+						"action": "actionNextWpt",
+						"assert": ""
+					}, {
+						"parent": "managePlayerSeen",
+						"name": "manageChase",
+						"type": "sequence",
+						"condition": "conditionChase",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "managePlayerSeen",
+						"name": "suspect",
+						"type": "action",
+						"condition": "",
+						"action": "actionSuspect",
+						"assert": ""
+					}, {
+						"parent": "manageChase",
+						"name": "markPlayerAsSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionMarkPlayerAsSeen",
+						"assert": ""
+					}, {
+						"parent": "manageChase",
+						"name": "shootInhibitor",
+						"type": "action",
+						"condition": "",
+						"action": "actionShootInhibitor",
+						"assert": ""
+					}, {
+						"parent": "manageChase",
+						"name": "beginAlertChase",
+						"type": "action",
+						"condition": "",
+						"action": "actionBeginAlert",
+						"assert": ""
+					}, {
+						"parent": "manageChase",
+						"name": "manageGoingToAttack",
+						"type": "priority",
+						"condition": "",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageGoingToAttack",
+						"name": "managePlayerAttacked",
+						"type": "sequence",
+						"condition": "conditionPlayerAttacked",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageGoingToAttack",
+						"name": "ChasePlayer",
+						"type": "action",
+						"condition": "",
+						"action": "actionChasePlayer",
+						"assert": ""
+					}, {
+						"parent": "managePlayerAttacked",
+						"name": "attack",
+						"type": "action",
+						"condition": "",
+						"action": "actionAttack",
+						"assert": ""
+					}, {
+						"parent": "managePlayerAttacked",
+						"name": "endAlertAttacked",
+						"type": "action",
+						"condition": "",
+						"action": "actionEndAlert",
+						"assert": ""
+					}, {
+						"parent": "managePlayerAttacked",
+						"name": "closestWptAttacked",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}, {
+						"parent": "managePlayerWasSeen",
+						"name": "resetPlayerWasSeenVariables",
+						"type": "action",
+						"condition": "",
+						"action": "actionResetPlayerWasSeenVariables",
+						"assert": ""
+					}, {
+						"parent": "managePlayerWasSeen",
+						"name": "goToPlayerLastPos",
+						"type": "action",
+						"condition": "",
+						"action": "actionGoToPlayerLastPos",
+						"assert": "assertPlayerNotInFov"
+					}, {
+						"parent": "managePlayerWasSeen",
+						"name": "lookForPlayerSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionLookForPlayer",
+						"assert": "assertPlayerNotInFov"
+					}, {
+						"parent": "managePlayerWasSeen",
+						"name": "closestWptPlayerSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}, {
+						"parent": "managePatrolSeen",
+						"name": "goToPatrol",
+						"type": "action",
+						"condition": "",
+						"action": "actionGoToPatrol",
+						"assert": "assertPlayerNotInFov"
+					}, {
+						"parent": "managePatrolSeen",
+						"name": "manageInPatrolPos",
+						"type": "priority",
+						"condition": "",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageInPatrolPos",
+						"name": "manageFixPatrol",
+						"type": "sequence",
+						"condition": "conditionFixPatrol",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageFixPatrol",
+						"name": "fixPatrol",
+						"type": "action",
+						"condition": "",
+						"action": "actionFixPatrol",
+						"assert": ""
+					}, {
+						"parent": "manageFixPatrol",
+						"name": "beginAlertPatrolSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionBeginAlert",
+						"assert": ""
+					}, {
+						"parent": "manageFixPatrol",
+						"name": "closestWptPatrolSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}, {
+						"parent": "manageInPatrolPos",
+						"name": "managePatrolLost",
+						"type": "sequence",
+						"condition": "",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "managePatrolLost",
+						"name": "markPatrolAsLost",
+						"type": "action",
+						"condition": "",
+						"action": "actionMarkPatrolAsLost",
+						"assert": ""
+					}, {
+						"parent": "managePatrolLost",
+						"name": "lookForPlayerPatrolWasSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionLookForPlayer",
+						"assert": "assertPlayerAndPatrolNotInFov"
+					}, {
+						"parent": "managePatrolLost",
+						"name": "closestWptPatrolWasSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}
+				]
+			},
+			"collider": {
+				"shape": "capsule",
+				"is_controller": true,
+				"radius": 0.65,
+				"height": 1.0,
+				"gravity": true,
+				"group": "enemy"
+			}
 		}
-	},
-	{
+	}, {
 		"entity": {
-		  "prefab": "data/prefabs/patrol.prefab",
-		  "name": "The Enemy 3",
-		  "transform": {
-			"pos": "-12 0.848 248",
-			"lookat": "0 0 -1"
-		  },
-      "ai_patrol": {
-        "waypoints": [
-          {
-            "position": "-12 0.848 248",
-            "lookAt": "0 0 -1"
-          },
-          {
-            "position": "-12 0.848 230",
-            "lookAt": "0 0 -1"
-          },
-          {
-            "position": "-12 0.848 209",
-            "lookAt": "0 0 -1"
-          },
-          {
-            "position": "-12 0.848 191",
-            "lookAt": "0 0 -1"
-          },
-          {
-            "position": "-12 0.848 173",
-            "lookAt": "0 0 -1"
-          },
-          {
-            "position": "-12 0.848 147",
-            "lookAt": "0 0 -1"
-          },
-          {
-            "position": "-12 0.848 173",
-            "lookAt": "0 0 1"
-          },
-          {
-            "position": "-12 0.848 191",
-            "lookAt": "0 0 1"
-          },
-          {
-            "position": "-12 0.848 209",
-            "lookAt": "0 0 1"
-          },
-          {
-            "position": "-12 0.848 230",
-            "lookAt": "0 0 1"
-          }
-        ],
-        "startLightsOn": true,
-        "createRoot": {
-          "rootName": "patrol",
-          "type": "priority",
-          "condition": "nullptr",
-          "action": "",
-          "assert": ""
-        },
-        "addChild": [
-          {
-            "parent": "patrol",
-            "name": "manageStun",
-            "type": "priority",
-            "condition": "conditionManageStun",
-            "conditionArg": {
-              "speed": "4.5",
-              "flee": "2",
-              "escape": 1.0
-            },
-            "action": "",
-            "actionArg": {
-              "movement": 4.1,
-              "ugh": 2.14
-            },
-            "assert": ""
-          },
-          {
-            "parent": "manageStun",
-            "name": "shadowMerged",
-            "type": "action",
-            "condition": "conditionShadowMerged",
-            "action": "actionShadowMerged",
-            "assert": ""
-          },
-          {
-            "parent": "manageStun",
-            "name": "manageFixed",
-            "type": "sequence",
-            "condition": "conditionFixed",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageStun",
-            "name": "stunned",
-            "type": "action",
-            "condition": "",
-            "action": "actionStunned",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixed",
-            "name": "fixed",
-            "type": "action",
-            "condition": "",
-            "action": "actionFixed",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixed",
-            "name": "beginAlertFixed",
-            "type": "action",
-            "condition": "",
-            "action": "actionBeginAlert",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixed",
-            "name": "closestWptFixed",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          },
-          {
-            "parent": "patrol",
-            "name": "endAlertRoot",
-            "type": "action",
-            "condition": "conditionEndAlert",
-            "action": "actionEndAlert",
-            "assert": ""
-          },
-          {
-            "parent": "patrol",
-            "name": "manageDoPatrol",
-            "type": "priority",
-            "condition": "",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "managePlayerSeen",
-            "type": "priority",
-            "condition": "conditionPlayerSeen",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "managePlayerWasSeen",
-            "type": "sequence",
-            "condition": "conditionPlayerWasSeen",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "managePatrolSeen",
-            "type": "sequence",
-            "condition": "conditionPatrolSeen",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "goToWpt",
-            "type": "action",
-            "condition": "conditionGoToWpt",
-            "action": "actionGoToWpt",
-            "assert": "assertPlayerAndPatrolNotInFov"
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "waitInWpt",
-            "type": "action",
-            "condition": "conditionWaitInWpt",
-            "action": "actionWaitInWpt",
-            "assert": "assertPlayerAndPatrolNotInFov"
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "nextWpt",
-            "type": "action",
-            "condition": "",
-            "action": "actionNextWpt",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerSeen",
-            "name": "manageChase",
-            "type": "sequence",
-            "condition": "conditionChase",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerSeen",
-            "name": "suspect",
-            "type": "action",
-            "condition": "",
-            "action": "actionSuspect",
-            "assert": ""
-          },
-          {
-            "parent": "manageChase",
-            "name": "markPlayerAsSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionMarkPlayerAsSeen",
-            "assert": ""
-          },
-          {
-            "parent": "manageChase",
-            "name": "shootInhibitor",
-            "type": "action",
-            "condition": "",
-            "action": "actionShootInhibitor",
-            "assert": ""
-          },
-          {
-            "parent": "manageChase",
-            "name": "beginAlertChase",
-            "type": "action",
-            "condition": "",
-            "action": "actionBeginAlert",
-            "assert": ""
-          },
-          {
-            "parent": "manageChase",
-            "name": "manageGoingToAttack",
-            "type": "priority",
-            "condition": "",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageGoingToAttack",
-            "name": "managePlayerAttacked",
-            "type": "sequence",
-            "condition": "conditionPlayerAttacked",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageGoingToAttack",
-            "name": "ChasePlayer",
-            "type": "action",
-            "condition": "",
-            "action": "actionChasePlayer",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerAttacked",
-            "name": "attack",
-            "type": "action",
-            "condition": "",
-            "action": "actionAttack",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerAttacked",
-            "name": "endAlertAttacked",
-            "type": "action",
-            "condition": "",
-            "action": "actionEndAlert",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerAttacked",
-            "name": "closestWptAttacked",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerWasSeen",
-            "name": "resetPlayerWasSeenVariables",
-            "type": "action",
-            "condition": "",
-            "action": "actionResetPlayerWasSeenVariables",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerWasSeen",
-            "name": "goToPlayerLastPos",
-            "type": "action",
-            "condition": "",
-            "action": "actionGoToPlayerLastPos",
-            "assert": "assertPlayerNotInFov"
-          },
-          {
-            "parent": "managePlayerWasSeen",
-            "name": "lookForPlayerSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionLookForPlayer",
-            "assert": "assertPlayerNotInFov"
-          },
-          {
-            "parent": "managePlayerWasSeen",
-            "name": "closestWptPlayerSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          },
-          {
-            "parent": "managePatrolSeen",
-            "name": "goToPatrol",
-            "type": "action",
-            "condition": "",
-            "action": "actionGoToPatrol",
-            "assert": "assertPlayerNotInFov"
-          },
-          {
-            "parent": "managePatrolSeen",
-            "name": "manageInPatrolPos",
-            "type": "priority",
-            "condition": "",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageInPatrolPos",
-            "name": "manageFixPatrol",
-            "type": "sequence",
-            "condition": "conditionFixPatrol",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixPatrol",
-            "name": "fixPatrol",
-            "type": "action",
-            "condition": "",
-            "action": "actionFixPatrol",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixPatrol",
-            "name": "beginAlertPatrolSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionBeginAlert",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixPatrol",
-            "name": "closestWptPatrolSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          },
-          {
-            "parent": "manageInPatrolPos",
-            "name": "managePatrolLost",
-            "type": "sequence",
-            "condition": "",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "managePatrolLost",
-            "name": "markPatrolAsLost",
-            "type": "action",
-            "condition": "",
-            "action": "actionMarkPatrolAsLost",
-            "assert": ""
-          },
-          {
-            "parent": "managePatrolLost",
-            "name": "lookForPlayerPatrolWasSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionLookForPlayer",
-            "assert": "assertPlayerAndPatrolNotInFov"
-          },
-          {
-            "parent": "managePatrolLost",
-            "name": "closestWptPatrolWasSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          }
-        ]
-      },
-		  "collider": {
-			"shape": "capsule",
-			"is_controller": true,
-			"radius": 0.65,
-			"height": 1.0,
-			"gravity": true,
-			"group" : "enemy"
-		  }
+			"prefab": "data/prefabs/patrol.prefab",
+			"name": "Patrol 3",
+			"transform": {
+				"pos": "-12 0.848 248",
+				"lookat": "0 0 -1"
+			},
+			"ai_patrol": {
+				"waypoints": [{
+						"position": "-12 0.848 248",
+						"lookAt": "0 0 -1"
+					}, {
+						"position": "-12 0.848 230",
+						"lookAt": "0 0 -1"
+					}, {
+						"position": "-12 0.848 209",
+						"lookAt": "0 0 -1"
+					}, {
+						"position": "-12 0.848 191",
+						"lookAt": "0 0 -1"
+					}, {
+						"position": "-12 0.848 173",
+						"lookAt": "0 0 -1"
+					}, {
+						"position": "-12 0.848 147",
+						"lookAt": "0 0 -1"
+					}, {
+						"position": "-12 0.848 173",
+						"lookAt": "0 0 1"
+					}, {
+						"position": "-12 0.848 191",
+						"lookAt": "0 0 1"
+					}, {
+						"position": "-12 0.848 209",
+						"lookAt": "0 0 1"
+					}, {
+						"position": "-12 0.848 230",
+						"lookAt": "0 0 1"
+					}
+				],
+				"startLightsOn": true,
+				"createRoot": {
+					"rootName": "patrol",
+					"type": "priority",
+					"condition": "nullptr",
+					"action": "",
+					"assert": ""
+				},
+				"addChild": [{
+						"parent": "patrol",
+						"name": "manageStun",
+						"type": "priority",
+						"condition": "conditionManageStun",
+						"conditionArg": {
+							"speed": "4.5",
+							"flee": "2",
+							"escape": 1.0
+						},
+						"action": "",
+						"actionArg": {
+							"movement": 4.1,
+							"ugh": 2.14
+						},
+						"assert": ""
+					}, {
+						"parent": "manageStun",
+						"name": "shadowMerged",
+						"type": "action",
+						"condition": "conditionShadowMerged",
+						"action": "actionShadowMerged",
+						"assert": ""
+					}, {
+						"parent": "manageStun",
+						"name": "manageFixed",
+						"type": "sequence",
+						"condition": "conditionFixed",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageStun",
+						"name": "stunned",
+						"type": "action",
+						"condition": "",
+						"action": "actionStunned",
+						"assert": ""
+					}, {
+						"parent": "manageFixed",
+						"name": "fixed",
+						"type": "action",
+						"condition": "",
+						"action": "actionFixed",
+						"assert": ""
+					}, {
+						"parent": "manageFixed",
+						"name": "beginAlertFixed",
+						"type": "action",
+						"condition": "",
+						"action": "actionBeginAlert",
+						"assert": ""
+					}, {
+						"parent": "manageFixed",
+						"name": "closestWptFixed",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}, {
+						"parent": "patrol",
+						"name": "endAlertRoot",
+						"type": "action",
+						"condition": "conditionEndAlert",
+						"action": "actionEndAlert",
+						"assert": ""
+					}, {
+						"parent": "patrol",
+						"name": "manageDoPatrol",
+						"type": "priority",
+						"condition": "",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "managePlayerSeen",
+						"type": "priority",
+						"condition": "conditionPlayerSeen",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "managePlayerWasSeen",
+						"type": "sequence",
+						"condition": "conditionPlayerWasSeen",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "managePatrolSeen",
+						"type": "sequence",
+						"condition": "conditionPatrolSeen",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "goToWpt",
+						"type": "action",
+						"condition": "conditionGoToWpt",
+						"action": "actionGoToWpt",
+						"assert": "assertPlayerAndPatrolNotInFov"
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "waitInWpt",
+						"type": "action",
+						"condition": "conditionWaitInWpt",
+						"action": "actionWaitInWpt",
+						"assert": "assertPlayerAndPatrolNotInFov"
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "nextWpt",
+						"type": "action",
+						"condition": "",
+						"action": "actionNextWpt",
+						"assert": ""
+					}, {
+						"parent": "managePlayerSeen",
+						"name": "manageChase",
+						"type": "sequence",
+						"condition": "conditionChase",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "managePlayerSeen",
+						"name": "suspect",
+						"type": "action",
+						"condition": "",
+						"action": "actionSuspect",
+						"assert": ""
+					}, {
+						"parent": "manageChase",
+						"name": "markPlayerAsSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionMarkPlayerAsSeen",
+						"assert": ""
+					}, {
+						"parent": "manageChase",
+						"name": "shootInhibitor",
+						"type": "action",
+						"condition": "",
+						"action": "actionShootInhibitor",
+						"assert": ""
+					}, {
+						"parent": "manageChase",
+						"name": "beginAlertChase",
+						"type": "action",
+						"condition": "",
+						"action": "actionBeginAlert",
+						"assert": ""
+					}, {
+						"parent": "manageChase",
+						"name": "manageGoingToAttack",
+						"type": "priority",
+						"condition": "",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageGoingToAttack",
+						"name": "managePlayerAttacked",
+						"type": "sequence",
+						"condition": "conditionPlayerAttacked",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageGoingToAttack",
+						"name": "ChasePlayer",
+						"type": "action",
+						"condition": "",
+						"action": "actionChasePlayer",
+						"assert": ""
+					}, {
+						"parent": "managePlayerAttacked",
+						"name": "attack",
+						"type": "action",
+						"condition": "",
+						"action": "actionAttack",
+						"assert": ""
+					}, {
+						"parent": "managePlayerAttacked",
+						"name": "endAlertAttacked",
+						"type": "action",
+						"condition": "",
+						"action": "actionEndAlert",
+						"assert": ""
+					}, {
+						"parent": "managePlayerAttacked",
+						"name": "closestWptAttacked",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}, {
+						"parent": "managePlayerWasSeen",
+						"name": "resetPlayerWasSeenVariables",
+						"type": "action",
+						"condition": "",
+						"action": "actionResetPlayerWasSeenVariables",
+						"assert": ""
+					}, {
+						"parent": "managePlayerWasSeen",
+						"name": "goToPlayerLastPos",
+						"type": "action",
+						"condition": "",
+						"action": "actionGoToPlayerLastPos",
+						"assert": "assertPlayerNotInFov"
+					}, {
+						"parent": "managePlayerWasSeen",
+						"name": "lookForPlayerSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionLookForPlayer",
+						"assert": "assertPlayerNotInFov"
+					}, {
+						"parent": "managePlayerWasSeen",
+						"name": "closestWptPlayerSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}, {
+						"parent": "managePatrolSeen",
+						"name": "goToPatrol",
+						"type": "action",
+						"condition": "",
+						"action": "actionGoToPatrol",
+						"assert": "assertPlayerNotInFov"
+					}, {
+						"parent": "managePatrolSeen",
+						"name": "manageInPatrolPos",
+						"type": "priority",
+						"condition": "",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageInPatrolPos",
+						"name": "manageFixPatrol",
+						"type": "sequence",
+						"condition": "conditionFixPatrol",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageFixPatrol",
+						"name": "fixPatrol",
+						"type": "action",
+						"condition": "",
+						"action": "actionFixPatrol",
+						"assert": ""
+					}, {
+						"parent": "manageFixPatrol",
+						"name": "beginAlertPatrolSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionBeginAlert",
+						"assert": ""
+					}, {
+						"parent": "manageFixPatrol",
+						"name": "closestWptPatrolSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}, {
+						"parent": "manageInPatrolPos",
+						"name": "managePatrolLost",
+						"type": "sequence",
+						"condition": "",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "managePatrolLost",
+						"name": "markPatrolAsLost",
+						"type": "action",
+						"condition": "",
+						"action": "actionMarkPatrolAsLost",
+						"assert": ""
+					}, {
+						"parent": "managePatrolLost",
+						"name": "lookForPlayerPatrolWasSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionLookForPlayer",
+						"assert": "assertPlayerAndPatrolNotInFov"
+					}, {
+						"parent": "managePatrolLost",
+						"name": "closestWptPatrolWasSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}
+				]
+			},
+			"collider": {
+				"shape": "capsule",
+				"is_controller": true,
+				"radius": 0.65,
+				"height": 1.0,
+				"gravity": true,
+				"group": "enemy"
+			}
 		}
-	},
-	{
+	}, {
 		"entity": {
-		  "prefab": "data/prefabs/patrol.prefab",
-		  "name": "The Enemy 4",
-		  "transform": {
-			"pos": "-8 0.848 147",
-			"lookat": "0 0 -1"
-		  },
-      "ai_patrol": {
-        "waypoints": [
-          {
-            "position": "-8 0.848 147",
-            "lookAt": "0 0 -1"
-          },
-          {
-            "position": "-8 0.848 173",
-            "lookAt": "0 0 1"
-          },
-          {
-            "position": "-8 0.848 191",
-            "lookAt": "0 0 1"
-          },
-          {
-            "position": "-8 0.848 209",
-            "lookAt": "0 0 1"
-          },
-          {
-            "position": "-8 0.848 230",
-            "lookAt": "0 0 1"
-          },
-          {
-            "position": "-8 0.848 248",
-            "lookAt": "0 0 -1"
-          },
-          {
-            "position": "-8 0.848 230",
-            "lookAt": "0 0 -1"
-          },
-          {
-            "position": "-8 0.848 209",
-            "lookAt": "0 0 -1"
-          },
-          {
-            "position": "-8 0.848 191",
-            "lookAt": "0 0 -1"
-          },
-          {
-            "position": "-8 0.848 173",
-            "lookAt": "0 0 -1"
-          }
-        ],
-        "startLightsOn": true,
-        "createRoot": {
-          "rootName": "patrol",
-          "type": "priority",
-          "condition": "nullptr",
-          "action": "",
-          "assert": ""
-        },
-        "addChild": [
-          {
-            "parent": "patrol",
-            "name": "manageStun",
-            "type": "priority",
-            "condition": "conditionManageStun",
-            "conditionArg": {
-              "speed": "4.5",
-              "flee": "2",
-              "escape": 1.0
-            },
-            "action": "",
-            "actionArg": {
-              "movement": 4.1,
-              "ugh": 2.14
-            },
-            "assert": ""
-          },
-          {
-            "parent": "manageStun",
-            "name": "shadowMerged",
-            "type": "action",
-            "condition": "conditionShadowMerged",
-            "action": "actionShadowMerged",
-            "assert": ""
-          },
-          {
-            "parent": "manageStun",
-            "name": "manageFixed",
-            "type": "sequence",
-            "condition": "conditionFixed",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageStun",
-            "name": "stunned",
-            "type": "action",
-            "condition": "",
-            "action": "actionStunned",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixed",
-            "name": "fixed",
-            "type": "action",
-            "condition": "",
-            "action": "actionFixed",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixed",
-            "name": "beginAlertFixed",
-            "type": "action",
-            "condition": "",
-            "action": "actionBeginAlert",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixed",
-            "name": "closestWptFixed",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          },
-          {
-            "parent": "patrol",
-            "name": "endAlertRoot",
-            "type": "action",
-            "condition": "conditionEndAlert",
-            "action": "actionEndAlert",
-            "assert": ""
-          },
-          {
-            "parent": "patrol",
-            "name": "manageDoPatrol",
-            "type": "priority",
-            "condition": "",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "managePlayerSeen",
-            "type": "priority",
-            "condition": "conditionPlayerSeen",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "managePlayerWasSeen",
-            "type": "sequence",
-            "condition": "conditionPlayerWasSeen",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "managePatrolSeen",
-            "type": "sequence",
-            "condition": "conditionPatrolSeen",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "goToWpt",
-            "type": "action",
-            "condition": "conditionGoToWpt",
-            "action": "actionGoToWpt",
-            "assert": "assertPlayerAndPatrolNotInFov"
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "waitInWpt",
-            "type": "action",
-            "condition": "conditionWaitInWpt",
-            "action": "actionWaitInWpt",
-            "assert": "assertPlayerAndPatrolNotInFov"
-          },
-          {
-            "parent": "manageDoPatrol",
-            "name": "nextWpt",
-            "type": "action",
-            "condition": "",
-            "action": "actionNextWpt",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerSeen",
-            "name": "manageChase",
-            "type": "sequence",
-            "condition": "conditionChase",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerSeen",
-            "name": "suspect",
-            "type": "action",
-            "condition": "",
-            "action": "actionSuspect",
-            "assert": ""
-          },
-          {
-            "parent": "manageChase",
-            "name": "markPlayerAsSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionMarkPlayerAsSeen",
-            "assert": ""
-          },
-          {
-            "parent": "manageChase",
-            "name": "shootInhibitor",
-            "type": "action",
-            "condition": "",
-            "action": "actionShootInhibitor",
-            "assert": ""
-          },
-          {
-            "parent": "manageChase",
-            "name": "beginAlertChase",
-            "type": "action",
-            "condition": "",
-            "action": "actionBeginAlert",
-            "assert": ""
-          },
-          {
-            "parent": "manageChase",
-            "name": "manageGoingToAttack",
-            "type": "priority",
-            "condition": "",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageGoingToAttack",
-            "name": "managePlayerAttacked",
-            "type": "sequence",
-            "condition": "conditionPlayerAttacked",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageGoingToAttack",
-            "name": "ChasePlayer",
-            "type": "action",
-            "condition": "",
-            "action": "actionChasePlayer",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerAttacked",
-            "name": "attack",
-            "type": "action",
-            "condition": "",
-            "action": "actionAttack",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerAttacked",
-            "name": "endAlertAttacked",
-            "type": "action",
-            "condition": "",
-            "action": "actionEndAlert",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerAttacked",
-            "name": "closestWptAttacked",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerWasSeen",
-            "name": "resetPlayerWasSeenVariables",
-            "type": "action",
-            "condition": "",
-            "action": "actionResetPlayerWasSeenVariables",
-            "assert": ""
-          },
-          {
-            "parent": "managePlayerWasSeen",
-            "name": "goToPlayerLastPos",
-            "type": "action",
-            "condition": "",
-            "action": "actionGoToPlayerLastPos",
-            "assert": "assertPlayerNotInFov"
-          },
-          {
-            "parent": "managePlayerWasSeen",
-            "name": "lookForPlayerSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionLookForPlayer",
-            "assert": "assertPlayerNotInFov"
-          },
-          {
-            "parent": "managePlayerWasSeen",
-            "name": "closestWptPlayerSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          },
-          {
-            "parent": "managePatrolSeen",
-            "name": "goToPatrol",
-            "type": "action",
-            "condition": "",
-            "action": "actionGoToPatrol",
-            "assert": "assertPlayerNotInFov"
-          },
-          {
-            "parent": "managePatrolSeen",
-            "name": "manageInPatrolPos",
-            "type": "priority",
-            "condition": "",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageInPatrolPos",
-            "name": "manageFixPatrol",
-            "type": "sequence",
-            "condition": "conditionFixPatrol",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixPatrol",
-            "name": "fixPatrol",
-            "type": "action",
-            "condition": "",
-            "action": "actionFixPatrol",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixPatrol",
-            "name": "beginAlertPatrolSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionBeginAlert",
-            "assert": ""
-          },
-          {
-            "parent": "manageFixPatrol",
-            "name": "closestWptPatrolSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          },
-          {
-            "parent": "manageInPatrolPos",
-            "name": "managePatrolLost",
-            "type": "sequence",
-            "condition": "",
-            "action": "",
-            "assert": ""
-          },
-          {
-            "parent": "managePatrolLost",
-            "name": "markPatrolAsLost",
-            "type": "action",
-            "condition": "",
-            "action": "actionMarkPatrolAsLost",
-            "assert": ""
-          },
-          {
-            "parent": "managePatrolLost",
-            "name": "lookForPlayerPatrolWasSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionLookForPlayer",
-            "assert": "assertPlayerAndPatrolNotInFov"
-          },
-          {
-            "parent": "managePatrolLost",
-            "name": "closestWptPatrolWasSeen",
-            "type": "action",
-            "condition": "",
-            "action": "actionClosestWpt",
-            "assert": ""
-          }
-        ]
-      },
-		  "collider": {
-			"shape": "capsule",
-			"is_controller": true,
-			"radius": 0.65,
-			"height": 1.0,
-			"gravity": true,
-			"group" : "enemy"
-		  }
+			"prefab": "data/prefabs/patrol.prefab",
+			"name": "Patrol 4",
+			"transform": {
+				"pos": "-8 0.848 147",
+				"lookat": "0 0 -1"
+			},
+			"ai_patrol": {
+				"waypoints": [{
+						"position": "-8 0.848 147",
+						"lookAt": "0 0 -1"
+					}, {
+						"position": "-8 0.848 173",
+						"lookAt": "0 0 1"
+					}, {
+						"position": "-8 0.848 191",
+						"lookAt": "0 0 1"
+					}, {
+						"position": "-8 0.848 209",
+						"lookAt": "0 0 1"
+					}, {
+						"position": "-8 0.848 230",
+						"lookAt": "0 0 1"
+					}, {
+						"position": "-8 0.848 248",
+						"lookAt": "0 0 -1"
+					}, {
+						"position": "-8 0.848 230",
+						"lookAt": "0 0 -1"
+					}, {
+						"position": "-8 0.848 209",
+						"lookAt": "0 0 -1"
+					}, {
+						"position": "-8 0.848 191",
+						"lookAt": "0 0 -1"
+					}, {
+						"position": "-8 0.848 173",
+						"lookAt": "0 0 -1"
+					}
+				],
+				"startLightsOn": true,
+				"createRoot": {
+					"rootName": "patrol",
+					"type": "priority",
+					"condition": "nullptr",
+					"action": "",
+					"assert": ""
+				},
+				"addChild": [{
+						"parent": "patrol",
+						"name": "manageStun",
+						"type": "priority",
+						"condition": "conditionManageStun",
+						"conditionArg": {
+							"speed": "4.5",
+							"flee": "2",
+							"escape": 1.0
+						},
+						"action": "",
+						"actionArg": {
+							"movement": 4.1,
+							"ugh": 2.14
+						},
+						"assert": ""
+					}, {
+						"parent": "manageStun",
+						"name": "shadowMerged",
+						"type": "action",
+						"condition": "conditionShadowMerged",
+						"action": "actionShadowMerged",
+						"assert": ""
+					}, {
+						"parent": "manageStun",
+						"name": "manageFixed",
+						"type": "sequence",
+						"condition": "conditionFixed",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageStun",
+						"name": "stunned",
+						"type": "action",
+						"condition": "",
+						"action": "actionStunned",
+						"assert": ""
+					}, {
+						"parent": "manageFixed",
+						"name": "fixed",
+						"type": "action",
+						"condition": "",
+						"action": "actionFixed",
+						"assert": ""
+					}, {
+						"parent": "manageFixed",
+						"name": "beginAlertFixed",
+						"type": "action",
+						"condition": "",
+						"action": "actionBeginAlert",
+						"assert": ""
+					}, {
+						"parent": "manageFixed",
+						"name": "closestWptFixed",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}, {
+						"parent": "patrol",
+						"name": "endAlertRoot",
+						"type": "action",
+						"condition": "conditionEndAlert",
+						"action": "actionEndAlert",
+						"assert": ""
+					}, {
+						"parent": "patrol",
+						"name": "manageDoPatrol",
+						"type": "priority",
+						"condition": "",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "managePlayerSeen",
+						"type": "priority",
+						"condition": "conditionPlayerSeen",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "managePlayerWasSeen",
+						"type": "sequence",
+						"condition": "conditionPlayerWasSeen",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "managePatrolSeen",
+						"type": "sequence",
+						"condition": "conditionPatrolSeen",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "goToWpt",
+						"type": "action",
+						"condition": "conditionGoToWpt",
+						"action": "actionGoToWpt",
+						"assert": "assertPlayerAndPatrolNotInFov"
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "waitInWpt",
+						"type": "action",
+						"condition": "conditionWaitInWpt",
+						"action": "actionWaitInWpt",
+						"assert": "assertPlayerAndPatrolNotInFov"
+					}, {
+						"parent": "manageDoPatrol",
+						"name": "nextWpt",
+						"type": "action",
+						"condition": "",
+						"action": "actionNextWpt",
+						"assert": ""
+					}, {
+						"parent": "managePlayerSeen",
+						"name": "manageChase",
+						"type": "sequence",
+						"condition": "conditionChase",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "managePlayerSeen",
+						"name": "suspect",
+						"type": "action",
+						"condition": "",
+						"action": "actionSuspect",
+						"assert": ""
+					}, {
+						"parent": "manageChase",
+						"name": "markPlayerAsSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionMarkPlayerAsSeen",
+						"assert": ""
+					}, {
+						"parent": "manageChase",
+						"name": "shootInhibitor",
+						"type": "action",
+						"condition": "",
+						"action": "actionShootInhibitor",
+						"assert": ""
+					}, {
+						"parent": "manageChase",
+						"name": "beginAlertChase",
+						"type": "action",
+						"condition": "",
+						"action": "actionBeginAlert",
+						"assert": ""
+					}, {
+						"parent": "manageChase",
+						"name": "manageGoingToAttack",
+						"type": "priority",
+						"condition": "",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageGoingToAttack",
+						"name": "managePlayerAttacked",
+						"type": "sequence",
+						"condition": "conditionPlayerAttacked",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageGoingToAttack",
+						"name": "ChasePlayer",
+						"type": "action",
+						"condition": "",
+						"action": "actionChasePlayer",
+						"assert": ""
+					}, {
+						"parent": "managePlayerAttacked",
+						"name": "attack",
+						"type": "action",
+						"condition": "",
+						"action": "actionAttack",
+						"assert": ""
+					}, {
+						"parent": "managePlayerAttacked",
+						"name": "endAlertAttacked",
+						"type": "action",
+						"condition": "",
+						"action": "actionEndAlert",
+						"assert": ""
+					}, {
+						"parent": "managePlayerAttacked",
+						"name": "closestWptAttacked",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}, {
+						"parent": "managePlayerWasSeen",
+						"name": "resetPlayerWasSeenVariables",
+						"type": "action",
+						"condition": "",
+						"action": "actionResetPlayerWasSeenVariables",
+						"assert": ""
+					}, {
+						"parent": "managePlayerWasSeen",
+						"name": "goToPlayerLastPos",
+						"type": "action",
+						"condition": "",
+						"action": "actionGoToPlayerLastPos",
+						"assert": "assertPlayerNotInFov"
+					}, {
+						"parent": "managePlayerWasSeen",
+						"name": "lookForPlayerSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionLookForPlayer",
+						"assert": "assertPlayerNotInFov"
+					}, {
+						"parent": "managePlayerWasSeen",
+						"name": "closestWptPlayerSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}, {
+						"parent": "managePatrolSeen",
+						"name": "goToPatrol",
+						"type": "action",
+						"condition": "",
+						"action": "actionGoToPatrol",
+						"assert": "assertPlayerNotInFov"
+					}, {
+						"parent": "managePatrolSeen",
+						"name": "manageInPatrolPos",
+						"type": "priority",
+						"condition": "",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageInPatrolPos",
+						"name": "manageFixPatrol",
+						"type": "sequence",
+						"condition": "conditionFixPatrol",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "manageFixPatrol",
+						"name": "fixPatrol",
+						"type": "action",
+						"condition": "",
+						"action": "actionFixPatrol",
+						"assert": ""
+					}, {
+						"parent": "manageFixPatrol",
+						"name": "beginAlertPatrolSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionBeginAlert",
+						"assert": ""
+					}, {
+						"parent": "manageFixPatrol",
+						"name": "closestWptPatrolSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}, {
+						"parent": "manageInPatrolPos",
+						"name": "managePatrolLost",
+						"type": "sequence",
+						"condition": "",
+						"action": "",
+						"assert": ""
+					}, {
+						"parent": "managePatrolLost",
+						"name": "markPatrolAsLost",
+						"type": "action",
+						"condition": "",
+						"action": "actionMarkPatrolAsLost",
+						"assert": ""
+					}, {
+						"parent": "managePatrolLost",
+						"name": "lookForPlayerPatrolWasSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionLookForPlayer",
+						"assert": "assertPlayerAndPatrolNotInFov"
+					}, {
+						"parent": "managePatrolLost",
+						"name": "closestWptPatrolWasSeen",
+						"type": "action",
+						"condition": "",
+						"action": "actionClosestWpt",
+						"assert": ""
+					}
+				]
+			},
+			"collider": {
+				"shape": "capsule",
+				"is_controller": true,
+				"radius": 0.65,
+				"height": 1.0,
+				"gravity": true,
+				"group": "enemy"
+			}
+		}
+	}, {
+		"entity": {
+			"prefab": "data/prefabs/mimetic.prefab",
+			"name": "Mimetic 1",
+			"transform": {
+				"pos": "-26 0 75",
+				"lookat": "1 0 1"
+			},
+			"ai_mimetic": {
+				"startLightsOn": false,
+				"type": "floor",
+				"isSlept": false
+			},
+			"collider": {
+				"shape": "capsule",
+				"is_controller": true,
+				"radius": 0.65,
+				"height": 1.0,
+				"gravity": true,
+				"group": "enemy"
+			}
 		}
 	}
 ]

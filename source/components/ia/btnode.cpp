@@ -90,6 +90,9 @@ void BTNode::update(float dt, TCompIAController *bt) {
 					bt->setCurrent(nullptr);
 				}
 			}
+			else if (res == ERes::UNIMPLEMENTED) {
+				fatal("ACTION UNIMPLEMENTED");
+			}
 			break;
 		}
 		case EType::RANDOM:

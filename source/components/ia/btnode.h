@@ -9,7 +9,7 @@ class BTNode {
 
 public:
 	enum EType { RANDOM = 0, SEQUENCE, PRIORITY, ACTION, NUM_TYPES};
-	enum ERes { STAY = 0, LEAVE, NUM_RES};
+	enum ERes { STAY = 0, LEAVE, NUM_RES, UNIMPLEMENTED };
 
 	BTNode(const std::string& btName);
 	void create(const std::string& btName);
