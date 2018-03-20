@@ -53,6 +53,7 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 	addChild("manageObserve", "observeTypeFloor", BTNode::EType::ACTION, (BTCondition)&TCompAIMimetic::conditionHasNotWaypoints, (BTAction)&TCompAIMimetic::actionObserve, nullptr);
 	addChild("manageObserve", "managePatrol", BTNode::EType::SEQUENCE, nullptr, nullptr, nullptr);
 	addChild("managePatrol", "goToWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToWpt, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
+	addChild("managePatrol", "resetTimerWaitInWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionResetTimerWaiting, nullptr);
 	addChild("managePatrol", "waitInWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitInWpt, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
 	addChild("managePatrol", "nextWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionNextWpt, nullptr);
 
@@ -64,6 +65,7 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 
 	addChild("mimetic", "managePlayerLost", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionNotGoingInactive, nullptr, nullptr);
 	addChild("managePlayerLost", "goToPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToPlayerLastPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
+	addChild("managePlayerLost", "resetTimerWaitInPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionResetTimerWaiting, nullptr);
 	addChild("managePlayerLost", "waitInPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitInPlayerLastPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
 	addChild("managePlayerLost", "setGoInactive", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetGoInactive, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
 
@@ -258,6 +260,12 @@ BTNode::ERes TCompAIMimetic::actionGoToWpt(float dt)
 	}
 }
 
+BTNode::ERes TCompAIMimetic::actionResetTimerWaiting(float dt)
+{
+	timerWaitingInWpt = 0.f;
+	return BTNode::ERes::LEAVE;
+}
+
 BTNode::ERes TCompAIMimetic::actionWaitInWpt(float dt)
 {
 	if (timerWaitingInWpt >= getWaypoint().minTime) {
@@ -449,7 +457,7 @@ bool TCompAIMimetic::conditionNotListenedNoise(float dt)
 
 bool TCompAIMimetic::conditionNotSurePlayerInFov(float dt)
 {
-	return suspectO_Meter > 0.f || isPlayerInFov();
+	return suspectO_Meter > 0.f || isPlayerInFov() && suspectO_Meter < 1.f;
 }
 
 bool TCompAIMimetic::conditionPlayerSeenForSure(float dt)
