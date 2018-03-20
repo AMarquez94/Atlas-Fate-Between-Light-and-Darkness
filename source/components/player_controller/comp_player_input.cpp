@@ -78,7 +78,7 @@ void TCompPlayerInput::update(float dt)
 		{
 			TMsgSetFSMVariable crouch;
 			crouch.variant.setName("crouch");
-			crouch.variant.setBool(EngineInput["btCrouch"].isPressed());
+			crouch.variant.setBool(EngineInput["btCrouch"].value);
 			e->sendMsg(crouch);
 		}
 
