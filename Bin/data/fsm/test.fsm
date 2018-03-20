@@ -39,18 +39,6 @@
 	],
 	"transitions" : [
 		{
-			"type" : "TimeTransition",
-			"source" : "idle",
-			"target" : "idleAction",
-			"time" : 3.0
-		},
-		{
-			"type" : "TimeTransition",
-			"source" : "idleAction",
-			"target" : "idle",
-			"time" : 1.0
-		},
-		{
 			"type" : "VariableTransition",
 			"source" : "idle",
 			"target" : "walk",
@@ -58,7 +46,8 @@
 				"name" : "speed",
 				"type" : "float",
 				"value" : 1.0
-			}
+			},
+			"operation" :"greater_equal" 
 		},
 		{
 			"type" : "VariableTransition",
@@ -67,9 +56,8 @@
 			"variable" : {
 				"name" : "speed",
 				"type" : "float",
-				"value" : 1.0
-			},
-			"negated" : true
+				"value" : 0.0
+			}
 		},
 		{
 			"type" : "VariableTransition",
@@ -95,21 +83,22 @@
 		{
 			"type" : "VariableTransition",
 			"source" : "idle",
-			"target" : "fall",
+			"target" : "crouch",
 			"variable" : {
-				"name" : "fall",
+				"name" : "crouch",
 				"type" : "bool",
 				"value" : true
-			}
+			},
+			"operation" : "equal"
 		},
 		{
 			"type" : "VariableTransition",
-			"source" : "fall",
+			"source" : "crouch",
 			"target" : "idle",
 			"variable" : {
-				"name" : "onGround",
+				"name" : "crouch",
 				"type" : "bool",
-				"value" : true
+				"value" : false
 			}
 		},
 		{
@@ -119,8 +108,20 @@
 			"variable" : {
 				"name" : "crouch",
 				"type" : "bool",
-				"bool" : true
-			}
+				"value" : true
+			},
+			"operation" : "equal"
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "walk",
+			"target" : "crouch",
+			"variable" : {
+				"name" : "crouch",
+				"type" : "bool",
+				"value" : true
+			},
+			"operation" : "equal"
 		},
 		{
 			"type" : "VariableTransition",
@@ -129,9 +130,48 @@
 			"variable" : {
 				"name" : "crouch",
 				"type" : "bool",
-				"bool" : false
-			},
-			"negated" : true
+				"value" : false
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "idle",
+			"target" : "merge",
+			"variable" : {
+				"name" : "onmerge",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "walk",
+			"target" : "merge",
+			"variable" : {
+				"name" : "onmerge",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "run",
+			"target" : "merge",
+			"variable" : {
+				"name" : "onmerge",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "merge",
+			"target" : "idle",
+			"variable" : {
+				"name" : "onmerge",
+				"type" : "bool",
+				"value" : false
+			}
 		}
 	],
 	"variables" : [
@@ -153,7 +193,7 @@
 		{
 			"name" : "crouch",
 			"type" : "bool",
-			"value" : true
+			"value" : false
 		},
 		{
 			"name" : "onmerge",

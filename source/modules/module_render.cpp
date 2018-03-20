@@ -50,7 +50,6 @@ bool CModuleRender::start()
   Resources.registerResourceClass(getResourceClassOf<CRenderTechnique>());
   Resources.registerResourceClass(getResourceClassOf<CMaterial>());
   Resources.registerResourceClass(getResourceClassOf<CPhysicsMesh>());
-  //Resources.registerResourceClass(getResourceClassOf<FSM::CMachine>());
 
   if (!createRenderObjects())
     return false;

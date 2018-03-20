@@ -22,6 +22,10 @@ bool CModuleMapIntro::start()
 {
 	{
 		TEntityParseContext ctx;
+		parseScene("data/scenes/test_fsm.scene", ctx);
+	}
+	{
+		TEntityParseContext ctx;
 		parseScene("data/scenes/milestone1_map_lights.scene", ctx);
 	}
 	{
@@ -47,10 +51,6 @@ bool CModuleMapIntro::start()
 	{
 		TEntityParseContext ctx;
 		parseScene("data/scenes/capsules.scene", ctx);
-	}
-	{
-		TEntityParseContext ctx;
-		parseScene("data/scenes/test_fsm.scene", ctx);
 	}
 
 	camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);

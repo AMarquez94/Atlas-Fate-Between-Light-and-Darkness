@@ -5,12 +5,15 @@
 
 class TCompPlayerInput : public TCompBase
 {
-  DECL_SIBLING_ACCESS();
+	/* Trick to save button state */
+	bool crouchButton = false;
+
+	DECL_SIBLING_ACCESS();
 
 public:
-  void debugInMenu();
-  void load(const json& j, TEntityParseContext& ctx);
-  void update(float dt);
+	void debugInMenu();
+	void load(const json& j, TEntityParseContext& ctx);
+	void update(float dt);
 
 private:
 };

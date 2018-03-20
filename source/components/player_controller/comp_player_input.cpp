@@ -16,23 +16,17 @@ void TCompPlayerInput::update(float dt)
 
 	/* Movement messages*/
 	{
-		TMsgSetFSMVariable walkMsg;
-		walkMsg.variant.setName("speed");
+		if (EngineInput["btUp"].hasChanged() 
+			|| EngineInput["btDown"].hasChanged() 
+			|| EngineInput["btLeft"].hasChanged() 
+			|| EngineInput["btRight"].hasChanged()){
 
-		if (EngineInput["btUp"].hasChanged()){
-			walkMsg.variant.setFloat(EngineInput["btUp"].value);
-			e->sendMsg(walkMsg);
-		}
-		else if (EngineInput["btDown"].hasChanged()) {
-			walkMsg.variant.setFloat(EngineInput["btDown"].value);
-			e->sendMsg(walkMsg);
-		}
-		else if (EngineInput["btLeft"].hasChanged()) {
-			walkMsg.variant.setFloat(EngineInput["btLeft"].value);
-			e->sendMsg(walkMsg);
-		}
-		else if (EngineInput["btRight"].hasChanged()) {
-			walkMsg.variant.setFloat(EngineInput["btRight"].value);
+			TMsgSetFSMVariable walkMsg;
+			walkMsg.variant.setName("speed");
+			float total_value = (EngineInput["btRight"].value + EngineInput["btLeft"].value
+								+ EngineInput["btUp"].value + EngineInput["btDown"].value);
+
+			walkMsg.variant.setFloat(total_value);
 			e->sendMsg(walkMsg);
 		}
 
@@ -53,12 +47,11 @@ void TCompPlayerInput::update(float dt)
 
 	/* Shadow merge messages*/
 	{
-		TMsgSetFSMVariable shadowMerge;
-		shadowMerge.variant.setName("merge");
-		shadowMerge.variant.setBool(EngineInput["btShadowMerging"].isPressed());
-
 		if (EngineInput["btShadowMerging"].hasChanged())
 		{
+			TMsgSetFSMVariable shadowMerge;
+			shadowMerge.variant.setName("onmerge");
+			shadowMerge.variant.setBool(EngineInput["btShadowMerging"].isPressed());
 			e->sendMsg(shadowMerge);
 		}
 	}
@@ -74,11 +67,12 @@ void TCompPlayerInput::update(float dt)
 			e->sendMsg(attack);
 		}
 
-		if (EngineInput["btCrouch"].hasChanged())
+		if (EngineInput["btCrouch"].getsPressed())
 		{
+			crouchButton = !crouchButton;
 			TMsgSetFSMVariable crouch;
 			crouch.variant.setName("crouch");
-			crouch.variant.setBool(EngineInput["btCrouch"].value);
+			crouch.variant.setBool(crouchButton);
 			e->sendMsg(crouch);
 		}
 
@@ -86,7 +80,7 @@ void TCompPlayerInput::update(float dt)
 		{
 			TMsgSetFSMVariable action;
 			action.variant.setName("action");
-			action.variant.setBool(EngineInput["action"].isPressed());
+			action.variant.setBool(true);
 			e->sendMsg(action);
 		}
 
