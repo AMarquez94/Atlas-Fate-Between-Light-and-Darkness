@@ -14,11 +14,11 @@ private:
 
 	enum EType { FLOOR = 0, WALL, NUM_TYPES };
 
-	float speed = 3.5f;
-	float rotationSpeedDeg = 90.f;
-	float rotationSpeed;
+	float speed = 5.5f;
+	float rotationSpeedChaseDeg = 359.f;
+	float rotationSpeedChase;
 	std::string entityToChase = "The Player";
-	float fovDeg = 70.f;
+	float fovDeg = 120.f;
 	float fov;
 	float autoChaseDistance = 15.f;
 	float maxChaseDistance = 35.f;
@@ -44,6 +44,7 @@ private:
 	bool goingInactive = false;
 	VEC3 initialPos;
 	VEC3 initialLookAt;
+	float rotationSpeedObservation = deg2rad(45.f);
 
 	float amountRotatedObserving = 0.f;
 	float maxAmountRotateObserving = deg2rad(45.f);;
@@ -57,7 +58,7 @@ private:
 	/* Aux functions */
 	const Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }
 	void addWaypoint(const Waypoint& wpt) { _waypoints.push_back(wpt); };
-	void rotateTowardsVec(VEC3 objective, float dt);
+	void rotateTowardsVec(VEC3 objective, float rotationSpeed, float dt);
 	bool isPlayerInFov();
 	bool isEntityHidden(CHandle hEntity);
 	void turnOnLight();

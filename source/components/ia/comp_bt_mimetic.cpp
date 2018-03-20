@@ -140,7 +140,7 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 	}
 
 	type = EType::FLOOR;
-	rotationSpeed = deg2rad(rotationSpeedDeg);
+	rotationSpeedChase = deg2rad(rotationSpeedChaseDeg);
 	fov = deg2rad(fovDeg);
 	startLightsOn = j.value("startLightsOn", false);
 	currentWaypoint = 0;
@@ -232,8 +232,8 @@ BTNode::ERes TCompAIMimetic::actionObserve(float dt)
 		else {
 			float y, p, r;
 			myPos->getYawPitchRoll(&y, &p, &r);
-			amountRotatedObserving += rotationSpeed * dt;
-			float newYaw = amountRotatedObserving < maxAmountRotateObserving ? rotationSpeed * dt : -rotationSpeed * dt;
+			amountRotatedObserving += rotationSpeedObservation * dt;
+			float newYaw = amountRotatedObserving < maxAmountRotateObserving ? rotationSpeedObservation * dt : -rotationSpeedObservation * dt;
 			y += newYaw;
 			myPos->setYawPitchRoll(y, p, r);
 		}
@@ -255,7 +255,7 @@ BTNode::ERes TCompAIMimetic::actionJumpFloor(float dt)
 BTNode::ERes TCompAIMimetic::actionGoToWpt(float dt)
 {
 	TCompTransform *mypos = get<TCompTransform>();
-	rotateTowardsVec(getWaypoint().position, dt);
+	rotateTowardsVec(getWaypoint().position, rotationSpeedObservation, dt);
 
 	VEC3 vp = mypos->getPosition();
 	if (VEC3::Distance(getWaypoint().position, vp) < speed * dt) {
@@ -285,7 +285,7 @@ BTNode::ERes TCompAIMimetic::actionWaitInWpt(float dt)
 	else {
 		timerWaitingInWpt += dt;
 		TCompTransform *mypos = get<TCompTransform>();
-		rotateTowardsVec(mypos->getPosition() + getWaypoint().lookAt, dt);
+		rotateTowardsVec(mypos->getPosition() + getWaypoint().lookAt, rotationSpeedObservation, dt);
 		return BTNode::ERes::STAY;
 	}
 }
@@ -322,11 +322,12 @@ BTNode::ERes TCompAIMimetic::actionSuspect(float dt)
 
 	if (distanceToPlayer <= autoChaseDistance && isPlayerInFov()) {
 		suspectO_Meter = 1.f;
-		rotateTowardsVec(ppos->getPosition(), dt);
+		cRender->color = VEC4(255, 0, 0, 1);
+		rotateTowardsVec(ppos->getPosition(), rotationSpeedObservation, dt);
 	}
 	else if (distanceToPlayer <= maxChaseDistance && isPlayerInFov()) {
 		suspectO_Meter = Clamp(suspectO_Meter + dt * incrBaseSuspectO_Meter, 0.f, 1.f);							//TODO: increment more depending distance and noise
-		rotateTowardsVec(ppos->getPosition(), dt);
+		rotateTowardsVec(ppos->getPosition(), rotationSpeedObservation, dt);
 	}
 	else {
 		suspectO_Meter = Clamp(suspectO_Meter - dt * dcrSuspectO_Meter, 0.f, 1.f);
@@ -335,6 +336,9 @@ BTNode::ERes TCompAIMimetic::actionSuspect(float dt)
 	if (suspectO_Meter <= 0.f || suspectO_Meter >= 1.f) {
 		if (suspectO_Meter <= 0) {
 			cRender->color = VEC4(1, 1, 1, 1);
+		}
+		else {
+			cRender->color = VEC4(255, 0, 0, 1);
 		}
 		return BTNode::ERes::LEAVE;
 	}
@@ -348,6 +352,9 @@ BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
 	TCompTransform *mypos = get<TCompTransform>();
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
+	TCompRender * cRender = get<TCompRender>();
+
+	cRender->color = VEC4(255, 0, 0, 1);
 
 	if (lastPlayerKnownPos != VEC3::Zero) {
 
@@ -358,12 +365,11 @@ BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
 
 	float distToPlayer = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
 	if (!isPlayerInFov() || distToPlayer >= maxChaseDistance + 0.5f) {
-		TCompRender * cRender = get<TCompRender>();
 		cRender->color = VEC4(255, 255, 0, 1);
 		return BTNode::ERes::LEAVE;
 	}
 	else {
-		rotateTowardsVec(ppos->getPosition(), dt);
+		rotateTowardsVec(ppos->getPosition(), rotationSpeedChase, dt);
 		VEC3 vp = mypos->getPosition();
 		VEC3 vfwd = mypos->getFront();
 		vfwd.Normalize();
@@ -378,7 +384,7 @@ BTNode::ERes TCompAIMimetic::actionGoToPlayerLastPos(float dt)
 	TCompTransform *mypos = get<TCompTransform>();
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
-	rotateTowardsVec(lastPlayerKnownPos, dt);
+	rotateTowardsVec(lastPlayerKnownPos, rotationSpeedChaseDeg, dt);
 
 	VEC3 vp = mypos->getPosition();
 
@@ -409,6 +415,8 @@ BTNode::ERes TCompAIMimetic::actionWaitInPlayerLastPos(float dt)
 
 BTNode::ERes TCompAIMimetic::actionSetGoInactive(float dt)
 {
+	TCompRender * cRender = get<TCompRender>();
+	cRender->color = VEC4(1, 1, 1, 1);
 	goingInactive = true;
 	suspectO_Meter = 0.f;
 	return BTNode::ERes::LEAVE;
@@ -417,7 +425,7 @@ BTNode::ERes TCompAIMimetic::actionSetGoInactive(float dt)
 BTNode::ERes TCompAIMimetic::actionGoToInitialPos(float dt)
 {
 	TCompTransform *mypos = get<TCompTransform>();
-	rotateTowardsVec(initialPos, dt);
+	rotateTowardsVec(initialPos, rotationSpeedChaseDeg, dt);
 
 	VEC3 vp = mypos->getPosition();
 
@@ -517,7 +525,7 @@ bool TCompAIMimetic::assertNotPlayerInFov(float dt)
 }
 
 /* AUX FUNCTIONS */
-void TCompAIMimetic::rotateTowardsVec(VEC3 objective, float dt){
+void TCompAIMimetic::rotateTowardsVec(VEC3 objective, float rotationSpeed, float dt){
 	TCompTransform *mypos = get<TCompTransform>();
 	float y, r, p;
 	mypos->getYawPitchRoll(&y, &p, &r);

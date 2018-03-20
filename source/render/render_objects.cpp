@@ -194,7 +194,7 @@ bool createRenderObjects() {
 	registerMesh(createLineZ(), "line.mesh");
 	registerMesh(createUnitCircleXZ(32), "circle_xz.mesh");
 	registerMesh(createCameraFrustum(), "unit_frustum.mesh");
-	registerMesh(createCone(deg2rad(70), 35.f, 10, VEC4(1.0f, 1.0f, 1.0f, 1.0f)), "cone_of_vision.mesh");
+	registerMesh(createCone(deg2rad(120), 35.f, 10, VEC4(1.0f, 1.0f, 1.0f, 1.0f)), "cone_of_vision.mesh");
 	registerMesh(createCone(deg2rad(35), 20.f, 10, VEC4(1.0f, 1.0f, 0.0f, 1.0f)), "cone_of_light.mesh");
 	registerMesh(createWiredUnitCube(), "wired_unit_cube.mesh");
 	return true;
