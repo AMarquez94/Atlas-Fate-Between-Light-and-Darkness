@@ -117,17 +117,17 @@ namespace FSM
 
 	}
 
-	bool HitState::load(const json& jData) {
+	bool AttackState::load(const json& jData) {
 
 		// ..
 		return true;
 	}
 
-	void HitState::onStart(CContext& ctx) const {
+	void AttackState::onStart(CContext& ctx) const {
 
 		// ..
 	}
-	void HitState::onFinish(CContext& ctx) const {
+	void AttackState::onFinish(CContext& ctx) const {
 
 	}
 

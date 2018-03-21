@@ -69,7 +69,7 @@ namespace FSM
 	  std::string _animationName;
   };
 
-  class HitState : public IState
+  class AttackState : public IState
   {
     virtual void onStart(CContext& ctx) const override;
 	virtual void onFinish(CContext& ctx) const override;

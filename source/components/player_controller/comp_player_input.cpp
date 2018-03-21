@@ -84,12 +84,14 @@ void TCompPlayerInput::update(float dt)
 			e->sendMsg(action);
 		}
 
-		if (EngineInput["btSecAction"].hasChanged())
+		if (EngineInput["btSecAction"].getsPressed())
 		{
+			inhibition++;
 			TMsgSetFSMVariable action;
 			action.variant.setName("action_sec");
-			action.variant.setBool(EngineInput["btSecAction"].isPressed());
+			action.variant.setFloat(inhibition);
 			e->sendMsg(action);
+			if (inhibition == 5) inhibition = 0;
 		}
 	}
 

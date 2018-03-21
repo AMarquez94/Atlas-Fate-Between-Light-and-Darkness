@@ -35,6 +35,11 @@
 			"name" : "fall",
 			"type" : "FallState",
 			"animation" : "fall"
+		},
+		{
+			"name" : "attack",
+			"type" : "AttackState",
+			"animation" : "attack"
 		}
 	],
 	"transitions" : [
@@ -172,6 +177,76 @@
 				"type" : "bool",
 				"value" : false
 			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "idle",
+			"target" : "fall",
+			"variable" : {
+				"name" : "fall",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "fall",
+			"target" : "idle",
+			"variable" : {
+				"name" : "onGround",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "fall",
+			"target" : "merge",
+			"variable" : {
+				"name" : "onFallMerge",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "idle",
+			"target" : "attack",
+			"variable" : {
+				"name" : "attack",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "walk",
+			"target" : "attack",
+			"variable" : {
+				"name" : "attack",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "run",
+			"target" : "attack",
+			"variable" : {
+				"name" : "attack",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "attack",
+			"target" : "idle",
+			"variable" : {
+				"name" : "attack",
+				"type" : "bool",
+				"value" : false
+			}
 		}
 	],
 	"variables" : [
@@ -182,6 +257,11 @@
 		},
 		{
 			"name" : "boost_speed",
+			"type" : "float",
+			"value" : 0.0
+		},
+		{
+			"name" : "attack",
 			"type" : "float",
 			"value" : 0.0
 		},
@@ -202,6 +282,11 @@
 		},
 		{
 			"name" : "onGround",
+			"type" : "bool",
+			"value" : true
+		},
+		{
+			"name" : "onFallMerge",
 			"type" : "bool",
 			"value" : true
 		}

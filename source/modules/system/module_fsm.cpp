@@ -24,7 +24,7 @@ bool CModuleFSM::start()
 	_factory.registerInstancer("FallState", new FSM::StateInstancer<FSM::FallState>());
 	_factory.registerInstancer("CrouchState", new FSM::StateInstancer<FSM::CrouchState>());
 	_factory.registerInstancer("MergeState", new FSM::StateInstancer<FSM::MergeState>());
-	_factory.registerInstancer("HitState", new FSM::StateInstancer<FSM::HitState>());
+	_factory.registerInstancer("AttackState", new FSM::StateInstancer<FSM::AttackState>());
 
 	_factory.registerInstancer("VariableTransition", new FSM::TransitionInstancer<FSM::VariableTransition>());
 	_factory.registerInstancer("TimeTransition", new FSM::TransitionInstancer<FSM::TimeTransition>());

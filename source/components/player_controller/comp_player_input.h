@@ -5,7 +5,8 @@
 
 class TCompPlayerInput : public TCompBase
 {
-	/* Trick to save button state */
+	/* Trick to save button state values */
+	int inhibition = 0;
 	bool crouchButton = false;
 
 	DECL_SIBLING_ACCESS();
