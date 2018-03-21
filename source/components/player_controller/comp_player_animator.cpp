@@ -1,21 +1,21 @@
 #include "mcv_platform.h"
-#include "comp_fake_animation_controller.h"
+#include "comp_player_animator.h"
 #include "components/comp_transform.h"
 #include "components/comp_fsm.h"
 
-DECL_OBJ_MANAGER("fake_animation", TCompFakeAnimation);
+DECL_OBJ_MANAGER("player_animator", TCompPlayerAnimator);
 
-void TCompFakeAnimation::debugInMenu() {
+void TCompPlayerAnimator::debugInMenu() {
 	//ImGui::DragFloat("Sensitivity", &_sensitivity, 0.01f, 0.001f, 0.1f);
 	ImGui::Text("Animation name: %s", _animationName);
 }
 
-void TCompFakeAnimation::load(const json& j, TEntityParseContext& ctx) {
+void TCompPlayerAnimator::load(const json& j, TEntityParseContext& ctx) {
 	//_sensitivity = j.value("sensitivity", _sensitivity);
 	_animationName = "";
 }
 
-void TCompFakeAnimation::update(float dt)
+void TCompPlayerAnimator::update(float dt)
 {
 	TCompTransform* c_transform = get<TCompTransform>();
 	VEC3 pos = c_transform->getPosition();
@@ -59,12 +59,12 @@ void TCompFakeAnimation::update(float dt)
 	c_transform->lookAt(pos, pos + newFront);
 }
 
-void TCompFakeAnimation::registerMsgs() {
+void TCompPlayerAnimator::registerMsgs() {
 
-	DECL_MSG(TCompFakeAnimation, TMsgAnimation, onAnimation);
+	DECL_MSG(TCompPlayerAnimator, TMsgAnimation, onAnimation);
 }
 
-void TCompFakeAnimation::onAnimation(const TMsgAnimation& msg)
+void TCompPlayerAnimator::onAnimation(const TMsgAnimation& msg)
 {
 	_animationName = msg.animationName;
 	_time = 0.f;

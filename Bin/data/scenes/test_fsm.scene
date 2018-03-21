@@ -18,7 +18,8 @@
 				"file" : "data/fsm/test.fsm"
 			},
 			"player_input" : {},
-			"fake_animation" : {}
+			"player_animator" : {},
+			"player_tempcontroller" : {}
 		}
 	}
 ]

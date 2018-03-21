@@ -2,7 +2,7 @@
 #include "custom_states.h"
 #include "context.h"
 
-#include "components/player_controller/comp_fake_animation_controller.h"
+#include "components/player_controller/comp_player_animator.h"
 
 namespace FSM
 {

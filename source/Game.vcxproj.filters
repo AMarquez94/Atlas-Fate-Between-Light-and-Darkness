@@ -95,8 +95,9 @@
     <ClCompile Include="physics\physics_filter.cpp" />
     <ClCompile Include="components\physics\comp_rigidbody.cpp" />
     <ClCompile Include="components\comp_fsm.cpp" />
-    <ClCompile Include="components\player_controller\comp_fake_animation_controller.cpp" />
     <ClCompile Include="components\player_controller\comp_player_input.cpp" />
+    <ClCompile Include="components\player_controller\comp_player_animator.cpp" />
+    <ClCompile Include="components\player_controller\comp_player_tempcontroller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -220,8 +221,9 @@
     <ClInclude Include="physics\physics_filter.h" />
     <ClInclude Include="components\physics\comp_rigidbody.h" />
     <ClInclude Include="components\comp_fsm.h" />
-    <ClInclude Include="components\player_controller\comp_fake_animation_controller.h" />
     <ClInclude Include="components\player_controller\comp_player_input.h" />
+    <ClInclude Include="components\player_controller\comp_player_animator.h" />
+    <ClInclude Include="components\player_controller\comp_player_tempcontroller.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

@@ -2,12 +2,12 @@
 
 #include "components/comp_base.h"
 
-struct TMsgAnimation {
-  std::string animationName;
+struct TMsgAction {
+  std::string action_name;
   DECL_MSG_ID();
 };
 
-class TCompFakeAnimation : public TCompBase
+class TCompTempPlayerController : public TCompBase
 {
   DECL_SIBLING_ACCESS();
 
@@ -18,9 +18,9 @@ public:
   void update(float dt);
 
 private:
-  void onAnimation(const TMsgAnimation& msg);
+  void onAction(const TMsgAction& msg);
 
-  std::string _animationName;
+  std::string _action_name;
   float _time = 0.f;
 };
 

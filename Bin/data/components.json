@@ -28,7 +28,7 @@
     "auxcamera_shadowmerge",
 		"camera",
 		"fsm",
-		"fake_animation",
+		"player_animator",
 		"player_input"
   ],
   "render_debug": [
