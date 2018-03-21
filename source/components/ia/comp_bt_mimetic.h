@@ -14,11 +14,11 @@ private:
 
 	enum EType { FLOOR = 0, WALL, NUM_TYPES };
 
-	float speed = 5.5f;
+	float speed = 3.f;
 	float rotationSpeedChaseDeg = 359.f;
 	float rotationSpeedChase;
 	std::string entityToChase = "The Player";
-	float fovDeg = 120.f;
+	float fovDeg = 179.f;
 	float fov;
 	float autoChaseDistance = 15.f;
 	float maxChaseDistance = 35.f;
@@ -45,6 +45,8 @@ private:
 	VEC3 initialPos;
 	VEC3 initialLookAt;
 	float rotationSpeedObservation = deg2rad(45.f);
+	float waitTimeInLasPlayerPos = 3.f;
+	float chaseSpeed = 6.f;
 
 	float amountRotatedObserving = 0.f;
 	float maxAmountRotateObserving = deg2rad(45.f);;
@@ -58,7 +60,7 @@ private:
 	/* Aux functions */
 	const Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }
 	void addWaypoint(const Waypoint& wpt) { _waypoints.push_back(wpt); };
-	void rotateTowardsVec(VEC3 objective, float rotationSpeed, float dt);
+	bool rotateTowardsVec(VEC3 objective, float rotationSpeed, float dt);
 	bool isPlayerInFov();
 	bool isEntityHidden(CHandle hEntity);
 	void turnOnLight();
@@ -85,11 +87,13 @@ public:
 	BTNode::ERes actionSleep(float dt);
 	BTNode::ERes actionWakeUp(float dt);
 	BTNode::ERes actionSuspect(float dt);
+	BTNode::ERes actionResetVariablesChase(float dt);
 	BTNode::ERes actionChasePlayerWithNoise(float dt);
 	BTNode::ERes actionGoToPlayerLastPos(float dt);
 	BTNode::ERes actionWaitInPlayerLastPos(float dt);
 	BTNode::ERes actionSetGoInactive(float dt);
 	BTNode::ERes actionGoToInitialPos(float dt);
+	BTNode::ERes actionRotateToInitialPos(float dt);
 	BTNode::ERes actionJumpWall(float dt);
 	BTNode::ERes actionSetInactive(float dt);
 
