@@ -36,25 +36,25 @@ void TCompConeOfLightController::onMsgEntityCreated(const TMsgEntityCreated& msg
 }
 
 void TCompConeOfLightController::update(float dt) {
-	if (turnedOn) {
-		TCompPlayerController* pController = player->get<TCompPlayerController>();
-		if (pController->isInShadows()) {
-			TCompTransform* ppos = player->get<TCompTransform>();
-			TCompTransform* mypos = get<TCompTransform>();
-			bool inDist = VEC3::Distance(mypos->getPosition(), ppos->getPosition()) < dist;
-			if (VEC3::Distance(mypos->getPosition(), ppos->getPosition()) < dist 
-				&& mypos->isInFov(ppos->getPosition(), fov)) {
-				if (!isPlayerHiddenFromLight(player)) {
-					TMsgPlayerIlluminated msg;
-					msg.h_sender = CHandle(this).getOwner();
-					player->sendMsg(msg);
-				}
-				else {
-					dbg("That bastard is hidden\n");
-				}
-			}
-		}
-	}
+	//if (turnedOn) {
+	//	TCompPlayerController* pController = player->get<TCompPlayerController>();
+	//	if (pController->isInShadows()) {
+	//		TCompTransform* ppos = player->get<TCompTransform>();
+	//		TCompTransform* mypos = get<TCompTransform>();
+	//		bool inDist = VEC3::Distance(mypos->getPosition(), ppos->getPosition()) < dist;
+	//		if (VEC3::Distance(mypos->getPosition(), ppos->getPosition()) < dist 
+	//			&& mypos->isInFov(ppos->getPosition(), fov)) {
+	//			if (!isPlayerHiddenFromLight(player)) {
+	//				TMsgPlayerIlluminated msg;
+	//				msg.h_sender = CHandle(this).getOwner();
+	//				player->sendMsg(msg);
+	//			}
+	//			else {
+	//				dbg("That bastard is hidden\n");
+	//			}
+	//		}
+	//	}
+	//}
 }
 
 void TCompConeOfLightController::turnOnLight() {

@@ -286,7 +286,7 @@
 		{
 			"name" : "onstamina",
 			"type" : "float",
-			"value" : 0.0
+			"value" : 1.0
 		},
 		{
 			"name" : "fall",

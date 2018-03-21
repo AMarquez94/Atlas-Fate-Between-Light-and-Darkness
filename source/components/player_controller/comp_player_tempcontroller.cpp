@@ -25,5 +25,5 @@ void TCompTempPlayerController::registerMsgs() {
 
 void TCompTempPlayerController::onAction(const TMsgAction& msg)
 {
-
+	// Change the current state.
 }

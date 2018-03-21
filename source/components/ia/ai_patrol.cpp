@@ -676,12 +676,11 @@ bool CAIPatrol::isPlayerInFov() {
 	TCompTransform *mypos = getMyTransform();
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
-	TCompPlayerController *pController = player->get <TCompPlayerController>();
 
 	/* Player inside cone of vision */
 	bool in_fov = mypos->isInFov(ppos->getPosition(), fov);
 
-	return in_fov && !pController->isInShadows() && !pController->isDead() && !isEntityHidden(getEntityByName(entityToChase));
+	return in_fov && !isEntityHidden(getEntityByName(entityToChase));
 }
 
 bool CAIPatrol::isEntityHidden(CHandle h_entity)
