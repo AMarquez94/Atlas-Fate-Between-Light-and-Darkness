@@ -33,6 +33,7 @@ namespace FSM
 
   private:
 	  float _speed = 1.f;
+	  float _rotation_speed = 1.f;
 	  std::string _animationName;
   };
 
@@ -44,6 +45,7 @@ namespace FSM
 
   private:
 	  float _speed = 1.f;
+	  float _rotation_speed = 1.f;
 	  std::string _animationName;
   };
 
@@ -55,6 +57,7 @@ namespace FSM
 
   private:
 	  float _speed = 1.f;
+	  float _rotation_speed = 1.f;
 	  std::string _animationName;
   };
 
@@ -74,5 +77,7 @@ namespace FSM
     virtual void onStart(CContext& ctx) const override;
 	virtual void onFinish(CContext& ctx) const override;
     virtual bool load(const json& jData);
+  private:
+	  std::string _animationName;
   };
 }

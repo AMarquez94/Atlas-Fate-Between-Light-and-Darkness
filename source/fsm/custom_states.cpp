@@ -27,7 +27,9 @@ namespace FSM
 	bool WalkState::load(const json& jData) {
 
 		_animationName = jData["animation"];
-		_speed = jData.value("speed", 1.f);
+		_speed = jData.value("speed", 4.f);
+		_rotation_speed = jData.value("rotationSpeed", 10.f);
+
 		return true;
 	}
 
@@ -46,6 +48,7 @@ namespace FSM
 
 		_animationName = jData["animation"];
 		_speed = jData.value("speed", 1.f);
+		_rotation_speed = jData.value("rotationSpeed", 10.f);
 
 		return true;
 	}
@@ -64,7 +67,7 @@ namespace FSM
 	bool FallState::load(const json& jData) {
 
 		_force = jData.value("force", 1.f);
-
+		_animationName = jData["animation"];
 		return true;
 	}
 
@@ -83,6 +86,9 @@ namespace FSM
 
 	bool CrouchState::load(const json& jData) {
 
+		_animationName = jData["animation"];
+		_speed = jData.value("speed", 1.f);
+		_rotation_speed = jData.value("rotationSpeed", 10.f);
 
 		return true;
 	}
@@ -101,7 +107,7 @@ namespace FSM
 
 	bool MergeState::load(const json& jData) {
 
-
+		_animationName = jData["animation"];
 		return true;
 	}
 
@@ -119,7 +125,8 @@ namespace FSM
 
 	bool AttackState::load(const json& jData) {
 
-		// ..
+		_animationName = jData["animation"];
+
 		return true;
 	}
 

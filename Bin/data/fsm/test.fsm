@@ -14,17 +14,23 @@
 		{
 			"name" : "walk",
 			"type" : "WalkState",
-			"animation" : "walk"
+			"animation" : "walk",
+			"speed" : 4,
+			"rotationSpeed": 10.0
 		},
 		{
 			"name" : "run",
 			"type" : "RunState",
-			"animation" : "run"
+			"animation" : "run",
+			"speed" : 4,
+			"rotationSpeed": 10.0
 		},
 		{
 			"name" : "crouch",
 			"type" : "CrouchState",
-			"animation" : "crouch"
+			"animation" : "crouch",
+			"speed" : 3,
+			"rotationSpeed": 5.0
 		},
 		{
 			"name" : "merge",
@@ -34,12 +40,14 @@
 		{
 			"name" : "fall",
 			"type" : "FallState",
-			"animation" : "fall"
+			"animation" : "fall",
+			"force" : 3
 		},
 		{
 			"name" : "attack",
 			"type" : "AttackState",
-			"animation" : "attack"
+			"animation" : "attack",
+			"damage" : 10
 		}
 	],
 	"transitions" : [
@@ -180,6 +188,16 @@
 		},
 		{
 			"type" : "VariableTransition",
+			"source" : "merge",
+			"target" : "idle",
+			"variable" : {
+				"name" : "onstamina",
+				"type" : "float",
+				"value" : 0.0
+			}
+		},
+		{
+			"type" : "VariableTransition",
 			"source" : "idle",
 			"target" : "fall",
 			"variable" : {
@@ -262,6 +280,11 @@
 		},
 		{
 			"name" : "attack",
+			"type" : "float",
+			"value" : 0.0
+		},
+		{
+			"name" : "onstamina",
 			"type" : "float",
 			"value" : 0.0
 		},
