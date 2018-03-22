@@ -130,6 +130,9 @@ namespace FSM
 		// Send a message to the player controller
 		//CEntity* e = ctx.getOwner();
 		//e->sendMsg(TMsgAnimation{ "crouch" });
+
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgChangeState{ (actionhandler)&TCompTempPlayerController::playerShadowMotion, "pj_shadowmerge" });
 	}
 
 	void MergeState::onFinish(CContext& ctx) const {

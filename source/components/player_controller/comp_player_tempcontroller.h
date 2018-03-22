@@ -15,9 +15,13 @@ struct TMsgChangeState {
 
 class TCompTempPlayerController : public TCompBase
 {
+	/* DEPRECATED */
 	std::map<std::string, CRenderMesh*> mesh_states;
 
 	actionhandler state;
+	physx::PxQueryFilterData shadowMergeFilter;
+	physx::PxQueryFilterData playerFilter;
+
 	float currentSpeed = 4.f;
 	float rotationSpeed = 10.f;
 
@@ -27,17 +31,20 @@ class TCompTempPlayerController : public TCompBase
 	DECL_SIBLING_ACCESS();
 
 public:
-	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
 
 	/* State functions */
 	void playerMotion(float dt);
+	void playerShadowMotion(float dt);
 	void idleState(float dt);
 
 	/* Auxiliar functions */
 	void shadowState();
+	const bool ConcaveTest(void);
+	const bool ConvexTest(void);
 
+	static void registerMsgs();
 };
 
