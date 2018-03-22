@@ -36,10 +36,10 @@ bool CModuleMapIntro::start()
 		TEntityParseContext ctx;
 		parseScene("data/scenes/milestone1_map_colliders.scene", ctx);
 	}
-	{
-		TEntityParseContext ctx;
-		parseScene("data/scenes/player.scene", ctx);
-	}
+	//{
+	//	TEntityParseContext ctx;
+	//	parseScene("data/scenes/player.scene", ctx);
+	//}
 	{
 		TEntityParseContext ctx;
 		parseScene("data/scenes/enemy.scene", ctx);

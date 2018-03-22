@@ -1,8 +1,14 @@
 #include "mcv_platform.h"
 #include "custom_states.h"
 #include "context.h"
-
 #include "components/player_controller/comp_player_animator.h"
+#include "components/player_controller/comp_player_tempcontroller.h"
+
+//class TCompTempPlayerController;
+//class TCompPlayerAnimator;
+//
+//typedef void (TCompTempPlayerController::*actionhandler)(float);
+//typedef void (TCompPlayerAnimator::*animatonhandler)(float);
 
 namespace FSM
 {
@@ -16,8 +22,10 @@ namespace FSM
 
 	void AnimationState::onStart(CContext& ctx) const {
 
+		//CEntity* e = ctx.getOwner();
+		//e->sendMsg(TMsgAnimation{ _animationName });
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgAnimation{ _animationName });
+		e->sendMsg(TMsgChangeState{ (actionhandler)&TCompTempPlayerController::idleState, "pj_idle" });
 	}
 
 	void AnimationState::onFinish(CContext& ctx) const {
@@ -36,8 +44,11 @@ namespace FSM
 	void WalkState::onStart(CContext& ctx) const {
 
 		// Send a message to the player controller
+		//CEntity* e = ctx.getOwner();
+		//e->sendMsg(TMsgAnimation{ "walk" });
+
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgAnimation{ "walk" });
+		e->sendMsg(TMsgChangeState{ (actionhandler)&TCompTempPlayerController::playerMotion, "pj_walk" });
 	}
 
 	void WalkState::onFinish(CContext& ctx) const {
@@ -56,8 +67,8 @@ namespace FSM
 	void RunState::onStart(CContext& ctx) const {
 
 		// Send a message to the player controller
-		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgAnimation{ "run" });
+		//CEntity* e = ctx.getOwner();
+		//e->sendMsg(TMsgAnimation{ "run" });
 	}
 
 	void RunState::onFinish(CContext& ctx) const {
@@ -75,8 +86,8 @@ namespace FSM
 
 		// Send a message to the player controller
 		// Send a message to the player controller
-		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgAnimation{ "fall" });
+		//CEntity* e = ctx.getOwner();
+		//e->sendMsg(TMsgAnimation{ "fall" });
 	}
 
 	void FallState::onFinish(CContext& ctx) const {
@@ -97,8 +108,10 @@ namespace FSM
 
 		// Send a message to the player controller
 		// Send a message to the player controller
+		//CEntity* e = ctx.getOwner();
+		//e->sendMsg(TMsgAnimation{ "crouch" });
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgAnimation{ "crouch" });
+		e->sendMsg(TMsgChangeState{ (actionhandler)&TCompTempPlayerController::playerMotion, "pj_crouch" });
 	}
 
 	void CrouchState::onFinish(CContext& ctx) const {
@@ -115,8 +128,8 @@ namespace FSM
 
 		// Send a message to the player controller
 		// Send a message to the player controller
-		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgAnimation{ "crouch" });
+		//CEntity* e = ctx.getOwner();
+		//e->sendMsg(TMsgAnimation{ "crouch" });
 	}
 
 	void MergeState::onFinish(CContext& ctx) const {

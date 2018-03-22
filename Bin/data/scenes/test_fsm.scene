@@ -1,25 +1,40 @@
 [
 	{
 		"entity": {
-			"name": "fsm",
+			"name": "The Player",
 			"transform": {
-				"pos": "-15 -2 -35",
-				"lookat" : "0 0 0"
+				"pos": "-15 -2 -35"
 			},
-			"render" : [
-				{
-					"mesh": "data/meshes/Teapot001.mesh",
-					"materials" : [
-						"data/materials/body.material"
-					]
-				}
-			],
-			"fsm" : {
+			"render": {
+			"mesh": "data/meshes/pj_idle.mesh",
+			"materials": [
+			  "data/materials/body.material" ]
+			},
+			"collider": {
+				"shape": "capsule",
+				"radius": 0.3,
+				"height": 1.0,
+				"group": "player"
+			},
+			"rigidbody": {
+				"is_controller": true,
+				"is_gravity": true
+			},
+			"shadow_controller": {
+			},
+				"fsm" : {
 				"file" : "data/fsm/test.fsm"
 			},
 			"player_input" : {},
 			"player_animator" : {},
-			"player_tempcontroller" : {}
+			"player_tempcontroller" : {
+				"target_camera": "TPCamera"
+			},
+			"group": "player",
+      "tags":
+      [
+        "player"
+      ]
 		}
 	}
 ]

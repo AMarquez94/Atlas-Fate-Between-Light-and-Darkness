@@ -17,46 +17,46 @@ void TCompPlayerAnimator::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompPlayerAnimator::update(float dt)
 {
-	TCompTransform* c_transform = get<TCompTransform>();
-	VEC3 pos = c_transform->getPosition();
-	VEC3 front = c_transform->getFront();
-	float yaw, pitch;
-	getYawPitchFromVector(front, &yaw, &pitch);
+	//TCompTransform* c_transform = get<TCompTransform>();
+	//VEC3 pos = c_transform->getPosition();
+	//VEC3 front = c_transform->getFront();
+	//float yaw, pitch;
+	//getYawPitchFromVector(front, &yaw, &pitch);
 
-	_time += dt;
+	//_time += dt;
 
-	if (_animationName == "idle")
-	{
-		pos.y = 0.5f * sinf(_time);
-		yaw = 0.f;
-		pitch = 0.f;
-	}
-	else if (_animationName == "idleAction")
-	{
-		yaw = M_2_PI * _time;
-	}
-	else if (_animationName == "fall")
-	{
-		const float duration = 1.f;
-		float ratio = _time / duration;
-		pos.y = ratio * 5.f;
+	//if (_animationName == "idle")
+	//{
+	//	pos.y = 0.5f * sinf(_time);
+	//	yaw = 0.f;
+	//	pitch = 0.f;
+	//}
+	//else if (_animationName == "idleAction")
+	//{
+	//	yaw = M_2_PI * _time;
+	//}
+	//else if (_animationName == "fall")
+	//{
+	//	const float duration = 1.f;
+	//	float ratio = _time / duration;
+	//	pos.y = ratio * 5.f;
 
-		TMsgSetFSMVariable groundMsg;
-		groundMsg.variant.setName("onGround");
-		groundMsg.variant.setBool(ratio >= 1.f);
-		CEntity* e = CHandle(this).getOwner();
-		e->sendMsg(groundMsg);
-	}
-	else if (_animationName == "walk")
-	{
-		const float speed = 5.f;
-		pos.x += speed * dt;
-		pos.y = 0.f;
-	}
+	//	TMsgSetFSMVariable groundMsg;
+	//	groundMsg.variant.setName("onGround");
+	//	groundMsg.variant.setBool(ratio >= 1.f);
+	//	CEntity* e = CHandle(this).getOwner();
+	//	e->sendMsg(groundMsg);
+	//}
+	//else if (_animationName == "walk")
+	//{
+	//	const float speed = 5.f;
+	//	pos.x += speed * dt;
+	//	pos.y = 0.f;
+	//}
 
-	// final values
-	VEC3 newFront = getVectorFromYawPitch(yaw, pitch);
-	c_transform->lookAt(pos, pos + newFront);
+	//// final values
+	//VEC3 newFront = getVectorFromYawPitch(yaw, pitch);
+	//c_transform->lookAt(pos, pos + newFront);
 }
 
 void TCompPlayerAnimator::registerMsgs() {
@@ -66,6 +66,6 @@ void TCompPlayerAnimator::registerMsgs() {
 
 void TCompPlayerAnimator::onAnimation(const TMsgAnimation& msg)
 {
-	_animationName = msg.animationName;
+	state = msg.animation_state;
 	_time = 0.f;
 }

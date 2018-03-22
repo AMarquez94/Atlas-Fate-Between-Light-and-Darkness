@@ -2,25 +2,31 @@
 
 #include "components/comp_base.h"
 
+class TCompPlayerAnimator;
+
+typedef void (TCompPlayerAnimator::*animationhandler)(float);
+
 struct TMsgAnimation {
-  std::string animationName;
-  DECL_MSG_ID();
+	animationhandler animation_state;
+	DECL_MSG_ID();
 };
 
 class TCompPlayerAnimator : public TCompBase
 {
-  DECL_SIBLING_ACCESS();
+	animationhandler state;
+
+	DECL_SIBLING_ACCESS();
 
 public:
-  static void registerMsgs();
-  void debugInMenu();
-  void load(const json& j, TEntityParseContext& ctx);
-  void update(float dt);
+	static void registerMsgs();
+	void debugInMenu();
+	void load(const json& j, TEntityParseContext& ctx);
+	void update(float dt);
 
 private:
-  void onAnimation(const TMsgAnimation& msg);
+	void onAnimation(const TMsgAnimation& msg);
 
-  std::string _animationName;
-  float _time = 0.f;
+	std::string _animationName;
+	float _time = 0.f;
 };
 

@@ -1,35 +1,43 @@
 #pragma once
 
 #include "components/comp_base.h"
+class TCompTempPlayerController;
 
-struct TMsgAction {
-  std::string action_name;
-  DECL_MSG_ID();
+typedef void (TCompTempPlayerController::*actionhandler)(float);
+
+struct TMsgChangeState {
+	actionhandler action_state;
+	std::string meshname;
+	float speed;
+
+	DECL_MSG_ID();
 };
-
-typedef void (TCompTempPlayerController::*statehandler)(float);
 
 class TCompTempPlayerController : public TCompBase
 {
-  DECL_SIBLING_ACCESS();
+	std::map<std::string, CRenderMesh*> mesh_states;
 
-  std::string                         stateName;
-  statehandler						  state;
-  // the states, as maps to functions
-  std::map<std::string, statehandler> statemap;
+	actionhandler state;
+	float currentSpeed = 4.f;
+	float rotationSpeed = 10.f;
+
+	void onChangeState(const TMsgChangeState& msg);
+	//void onPlayerShadows(const TMsgShadowState & msg);
+
+	DECL_SIBLING_ACCESS();
 
 public:
-  static void registerMsgs();
-  void debugInMenu();
-  void load(const json& j, TEntityParseContext& ctx);
-  void update(float dt);
+	static void registerMsgs();
+	void debugInMenu();
+	void load(const json& j, TEntityParseContext& ctx);
+	void update(float dt);
 
-  void playerMotion(float dt);
+	/* State functions */
+	void playerMotion(float dt);
+	void idleState(float dt);
 
-private:
-  void onAction(const TMsgAction& msg);
+	/* Auxiliar functions */
+	void shadowState();
 
-  std::string _action_name;
-  float _time = 0.f;
 };
 
