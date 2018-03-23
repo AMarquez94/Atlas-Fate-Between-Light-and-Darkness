@@ -25,7 +25,7 @@ namespace FSM
 		//CEntity* e = ctx.getOwner();
 		//e->sendMsg(TMsgAnimation{ _animationName });
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgChangeState{ (actionhandler)&TCompTempPlayerController::idleState, "pj_idle" });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_idle" });
 	}
 
 	void AnimationState::onFinish(CContext& ctx) const {
@@ -48,7 +48,7 @@ namespace FSM
 		//e->sendMsg(TMsgAnimation{ "walk" });
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgChangeState{ (actionhandler)&TCompTempPlayerController::playerMotion, "pj_walk" });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_walk", _speed });
 	}
 
 	void WalkState::onFinish(CContext& ctx) const {
@@ -58,7 +58,7 @@ namespace FSM
 	bool RunState::load(const json& jData) {
 
 		_animationName = jData["animation"];
-		_speed = jData.value("speed", 1.f);
+		_speed = jData.value("speed", 5.5f);
 		_rotation_speed = jData.value("rotationSpeed", 10.f);
 
 		return true;
@@ -69,6 +69,9 @@ namespace FSM
 		// Send a message to the player controller
 		//CEntity* e = ctx.getOwner();
 		//e->sendMsg(TMsgAnimation{ "run" });
+
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_run", _speed });
 	}
 
 	void RunState::onFinish(CContext& ctx) const {
@@ -98,7 +101,7 @@ namespace FSM
 	bool CrouchState::load(const json& jData) {
 
 		_animationName = jData["animation"];
-		_speed = jData.value("speed", 1.f);
+		_speed = jData.value("speed", 3.f);
 		_rotation_speed = jData.value("rotationSpeed", 10.f);
 
 		return true;
@@ -111,7 +114,7 @@ namespace FSM
 		//CEntity* e = ctx.getOwner();
 		//e->sendMsg(TMsgAnimation{ "crouch" });
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgChangeState{ (actionhandler)&TCompTempPlayerController::playerMotion, "pj_crouch" });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_crouch", _speed });
 	}
 
 	void CrouchState::onFinish(CContext& ctx) const {
@@ -121,6 +124,8 @@ namespace FSM
 	bool MergeState::load(const json& jData) {
 
 		_animationName = jData["animation"];
+		_speed = jData.value("speed", 3.f);
+
 		return true;
 	}
 
@@ -132,11 +137,13 @@ namespace FSM
 		//e->sendMsg(TMsgAnimation{ "crouch" });
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgChangeState{ (actionhandler)&TCompTempPlayerController::playerShadowMotion, "pj_shadowmerge" });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::mergeState, "pj_shadowmerge", _speed });
 	}
 
 	void MergeState::onFinish(CContext& ctx) const {
 
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::resetState });
 	}
 
 	bool AttackState::load(const json& jData) {

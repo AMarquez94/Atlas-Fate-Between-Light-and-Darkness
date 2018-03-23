@@ -22,7 +22,7 @@
 			"name" : "run",
 			"type" : "RunState",
 			"animation" : "run",
-			"speed" : 4,
+			"speed" : 5.5,
 			"rotationSpeed": 10.0
 		},
 		{
@@ -35,12 +35,14 @@
 		{
 			"name" : "merge",
 			"type" : "MergeState",
-			"animation" : "merge"
+			"animation" : "merge",
+			"speed" : 4
 		},
 		{
 			"name" : "fall",
 			"type" : "FallState",
 			"animation" : "fall",
+			"speed" : 2,
 			"force" : 3
 		},
 		{

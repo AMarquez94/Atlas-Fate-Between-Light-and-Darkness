@@ -5,13 +5,44 @@
 #include "components/comp_render.h"
 #include "components/physics/comp_rigidbody.h"
 #include "components/player_controller/comp_shadow_controller.h"
-
 #include "render/mesh/mesh_loader.h"
+#include "windows/app.h"
 
 DECL_OBJ_MANAGER("player_tempcontroller", TCompTempPlayerController);
 
 void TCompTempPlayerController::debugInMenu() {
 
+}
+
+void TCompTempPlayerController::renderDebug() {
+
+	//UI Window's Size
+	ImGui::SetNextWindowSize(ImVec2((float)CApp::get().xres, (float)CApp::get().yres), ImGuiCond_Always);
+	//UI Window's Position
+	ImGui::SetNextWindowPos(ImVec2(0, 0));
+	//Transparent background - ergo alpha = 0 (RGBA)
+	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
+	//Some style added
+	ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2);
+	ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1);
+	ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(255.0f, 255.0f, 0.0f, 1.0f));
+
+	ImGui::Begin("UI", NULL,
+		ImGuiWindowFlags_::ImGuiWindowFlags_NoMove |
+		ImGuiWindowFlags_::ImGuiWindowFlags_NoInputs |
+		ImGuiWindowFlags_::ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_::ImGuiWindowFlags_NoTitleBar);
+	{
+		ImGui::SetCursorPos(ImVec2(CApp::get().xres * 0.02f, CApp::get().yres * 0.06f));
+		ImGui::Text("Stamina:");
+		ImGui::SetCursorPos(ImVec2(CApp::get().xres * 0.05f + 25, CApp::get().yres * 0.05f));
+		ImGui::ProgressBar(stamina / maxStamina, ImVec2(CApp::get().xres / 5.f, CApp::get().yres / 30.f));
+
+	}
+
+	ImGui::End();
+	ImGui::PopStyleVar(2);
+	ImGui::PopStyleColor(2);
 }
 
 void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
@@ -35,13 +66,13 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_crouch", (CRenderMesh*)pj_crouch));
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_shadowmerge", (CRenderMesh*)pj_shadowmerge));
 
-	physx::PxFilterData pxFilterData;
-	pxFilterData.word1 = FilterGroup::Scenario;
-	shadowMergeFilter.data = pxFilterData;
+	physx::PxFilterData pxShadowFilterData;
+	pxShadowFilterData.word1 = FilterGroup::Scenario;
+	shadowMergeFilter.data = pxShadowFilterData;
 
-	physx::PxFilterData pxFilterData;
-	pxFilterData.word1 = FilterGroup::Scenario;
-	playerFilter.data = pxFilterData;
+	physx::PxFilterData pxPlayerFilterData;
+	pxPlayerFilterData.word1 = FilterGroup::Scenario;
+	playerFilter.data = pxPlayerFilterData;
 }
 
 void TCompTempPlayerController::update(float dt) {
@@ -52,27 +83,37 @@ void TCompTempPlayerController::update(float dt) {
 
 void TCompTempPlayerController::registerMsgs() {
 
-	DECL_MSG(TCompTempPlayerController, TMsgChangeState, onChangeState);
+	DECL_MSG(TCompTempPlayerController, TMsgStateStart, onStateStart);
+	DECL_MSG(TCompTempPlayerController, TMsgStateFinish, onStateFinish);
 }
 
-void TCompTempPlayerController::onChangeState(const TMsgChangeState& msg){
+void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg){
 
-	state = msg.action_state;
+	state = msg.action_start;
+	currentSpeed = msg.speed;
 
 	/* Temp change of player mesh*/
 	TCompRender *c_my_render = get<TCompRender>();
 	c_my_render->meshes[0].mesh = mesh_states.find(msg.meshname)->second;
 	c_my_render->refreshMeshesInRenderManager();
 
+	// Get the target camera and set it as our new camera.
 	// Change the current state.
 }
+
+
+void TCompTempPlayerController::onStateFinish(const TMsgStateFinish& msg) {
+
+	(this->*msg.action_finish)();
+}
+
 
 void TCompTempPlayerController::idleState(float dt){
 
 }
 
 /* Main thirdperson player motion movement handled here */
-void TCompTempPlayerController::playerMotion(float dt){
+void TCompTempPlayerController::walkState(float dt){
 
 	// Player movement and rotation related method.
 	float yaw, pitch, roll;
@@ -103,15 +144,22 @@ void TCompTempPlayerController::playerMotion(float dt){
 	}
 	dir.Normalize();
 
-	float dir_yaw = getYawFromVector(dir);
-	Quaternion my_rotation = c_my_transform->getRotation();
-	Quaternion new_rotation = Quaternion::CreateFromYawPitchRoll(dir_yaw, pitch, 0);
-	Quaternion quat = Quaternion::Lerp(my_rotation, new_rotation, rotationSpeed * dt);
-	if(dir != VEC3::Zero) c_my_transform->setRotation(quat);
+	if (dir != VEC3::Zero) {
+		float dir_yaw = getYawFromVector(dir);
+		Quaternion my_rotation = c_my_transform->getRotation();
+		Quaternion new_rotation = Quaternion::CreateFromYawPitchRoll(dir_yaw, pitch, 0);
+		Quaternion quat = Quaternion::Lerp(my_rotation, new_rotation, rotationSpeed * dt);
+		c_my_transform->setRotation(quat);
+	}
+
 	c_my_transform->setPosition(c_my_transform->getPosition() + dir * player_accel);
 }
 
-void TCompTempPlayerController::playerShadowMotion(float dt) {
+void TCompTempPlayerController::mergeState(float dt) {
+
+	ConvexTest();
+	ConcaveTest();
+	StaminaTest();
 
 	// Player movement and rotation related method.
 	CEntity *player_camera = (CEntity *)getEntityByName("SMCameraHor");
@@ -159,7 +207,6 @@ void TCompTempPlayerController::playerShadowMotion(float dt) {
 const bool TCompTempPlayerController::ConcaveTest(void)
 {
 	physx::PxRaycastHit hit;
-	TCompCollider *c_my_collider = get<TCompCollider>();
 	TCompRigidbody *rigidbody = get<TCompRigidbody>();
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * .01f;
@@ -193,7 +240,6 @@ const bool TCompTempPlayerController::ConcaveTest(void)
 const bool TCompTempPlayerController::ConvexTest(void)
 {
 	physx::PxRaycastHit hit;
-	TCompCollider *c_my_collider = get<TCompCollider>();
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	TCompRigidbody *rigidbody = get<TCompRigidbody>();
 	VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * .01f;
@@ -224,6 +270,42 @@ const bool TCompTempPlayerController::ConvexTest(void)
 
 	return false;
 }
+
+const bool TCompTempPlayerController::StaminaTest(void)
+{
+	TCompShadowController * shadow_oracle = get<TCompShadowController>();
+
+	if (!shadow_oracle->is_shadow) {
+
+		TMsgSetFSMVariable groundMsg;
+		groundMsg.variant.setName("onmerge");
+		groundMsg.variant.setBool(shadow_oracle->is_shadow);
+		CEntity* e = CHandle(this).getOwner();
+		e->sendMsg(groundMsg);
+	}
+
+	return true;
+}
+
+void TCompTempPlayerController::resetState()
+{
+	CEntity *player_camera = (CEntity *)getEntityByName("TPCamera");
+	TCompRigidbody *rigidbody = get<TCompRigidbody>();
+	TCompTransform *c_my_transform = get<TCompTransform>();
+	TCompTransform * trans_camera = player_camera->get<TCompTransform>();
+
+	VEC3 up = trans_camera->getFront();
+	VEC3 proj_plane = projectVector(up, -EnginePhysics.gravity);
+	VEC3 new_front = c_my_transform->getPosition() - proj_plane;
+
+	// Set collider gravity settings
+	rigidbody->SetUpVector(-EnginePhysics.gravity);
+	rigidbody->normal_gravity = 9.8f * EnginePhysics.gravity;
+
+	QUAT new_rotation = createLookAt(c_my_transform->getPosition(), new_front, -EnginePhysics.gravity);
+	c_my_transform->setRotation(new_rotation);
+}
+
 
 /* Temporal function to determine our player shadow color, set this to a shader change..*/
 void TCompTempPlayerController::shadowState() {

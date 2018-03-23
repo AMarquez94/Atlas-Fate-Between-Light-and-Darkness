@@ -34,6 +34,7 @@
   ],
   "render_debug": [
     "player_controller",
+		"player_tempcontroller",
 		"ai_patrol"
   ]
 }
