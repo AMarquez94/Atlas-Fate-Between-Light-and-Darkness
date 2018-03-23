@@ -7,6 +7,7 @@
 #include "components/comp_render.h"
 #include "components/comp_group.h"
 #include "components/object_controller/comp_cone_of_light.h"
+#include "geometry/angular.h"
 
 
 DECL_OBJ_MANAGER("ai_mimetic", TCompAIMimetic);
@@ -40,15 +41,28 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 	addChild("manageInactiveTypeSleep", "sleep", BTNode::EType::ACTION, (BTCondition)&TCompAIMimetic::conditionNotListenedNoise, (BTAction)&TCompAIMimetic::actionSleep, nullptr);
 	addChild("manageInactiveTypeSleep", "wakeUp", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWakeUp, nullptr);
 
-	addChild("manageInactiveTypeWall", "observeTypeWall", BTNode::EType::ACTION, (BTCondition)&TCompAIMimetic::conditionIsNotPlayerInFov, (BTAction)&TCompAIMimetic::actionObserve, nullptr);
+	addChild("manageInactiveTypeWall", "manageObserveTypeWall", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionIsNotPlayerInFov, nullptr, nullptr);
 	addChild("manageInactiveTypeWall", "manageSetActiveTypeWall", BTNode::EType::SEQUENCE, nullptr, nullptr, nullptr);
 	addChild("manageSetActiveTypeWall", "setActiveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetActive, nullptr);
 	addChild("manageSetActiveTypeWall", "jumpFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionJumpFloor, nullptr);
 
-	addChild("manageInactiveTypeFloor", "manageObserve", BTNode::EType::PRIORITY, (BTCondition)&TCompAIMimetic::conditionIsNotPlayerInFov, nullptr, nullptr);
+	addChild("manageObserveTypeWall", "resetVariablesObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionResetObserveVariables, nullptr);
+	addChild("manageObserveTypeWall", "turnLeftObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionObserveLeft, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
+	addChild("manageObserveTypeWall", "waitLeftObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitObserving, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
+	addChild("manageObserveTypeWall", "turnRightObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionObserveRight, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
+	addChild("manageObserveTypeWall", "waitRightObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitObserving, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
+
+	addChild("manageInactiveTypeFloor", "manageInactiveBehaviour", BTNode::EType::PRIORITY, (BTCondition)&TCompAIMimetic::conditionIsNotPlayerInFov, nullptr, nullptr);
 	addChild("manageInactiveTypeFloor", "setActiveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetActive, nullptr);
-	addChild("manageObserve", "observeTypeFloor", BTNode::EType::ACTION, (BTCondition)&TCompAIMimetic::conditionHasNotWaypoints, (BTAction)&TCompAIMimetic::actionObserve, nullptr);
-	addChild("manageObserve", "managePatrol", BTNode::EType::SEQUENCE, nullptr, nullptr, nullptr);
+	addChild("manageInactiveBehaviour", "manageObserveTypeFloor", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionHasNotWaypoints, nullptr, nullptr);
+	addChild("manageInactiveBehaviour", "managePatrol", BTNode::EType::SEQUENCE, nullptr, nullptr, nullptr);
+	
+	addChild("manageObserveTypeFloor", "resetVariablesObserveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionResetObserveVariables, nullptr);
+	addChild("manageObserveTypeFloor", "turnLeftObserveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionObserveLeft, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
+	addChild("manageObserveTypeFloor", "waitLeftObserveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitObserving, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
+	addChild("manageObserveTypeFloor", "turnRightObserveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionObserveRight, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
+	addChild("manageObserveTypeFloor", "waitRightObserveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitObserving, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
+	
 	addChild("managePatrol", "goToWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToWpt, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
 	addChild("managePatrol", "resetTimerWaitInWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionResetTimerWaiting, nullptr);
 	addChild("managePatrol", "waitInWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitInWpt, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
@@ -78,54 +92,6 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 	addChild("manageGoingInactiveTypeFloor", "goToInitialPosTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
 	addChild("manageGoingInactiveTypeFloor", "rotateToInitialPosTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionRotateToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
 	addChild("manageGoingInactiveTypeFloor", "setInactiveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetInactive, nullptr);
-
-	/*createRoot("patrol", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
-	addChild("patrol", "manageStun", BTNode::EType::PRIORITY, (BTCondition)&TCompAIMimetic::conditionManageStun, nullptr, nullptr);
-	addChild("manageStun", "shadowmerged", BTNode::EType::ACTION, (BTCondition)&TCompAIMimetic::conditionShadowMerged, (BTAction)&TCompAIMimetic::actionShadowMerged, nullptr);
-	addChild("manageStun", "manageFixed", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionFixed, nullptr, nullptr);
-	addChild("manageStun", "stunned", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionStunned, nullptr);
-	addChild("manageFixed", "fixed", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionFixed, nullptr);
-	addChild("manageFixed", "beginAlertFixed", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionBeginAlert, nullptr);
-	addChild("manageFixed", "closestWptFixed", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionClosestWpt, nullptr);
-	addChild("patrol", "endAlertRoot", BTNode::EType::ACTION, (BTCondition)&TCompAIMimetic::conditionEndAlert, (BTAction)&TCompAIMimetic::actionEndAlert, nullptr);
-	addChild("patrol", "manageDoPatrol", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
-
-	addChild("manageDoPatrol", "managePlayerSeen", BTNode::EType::PRIORITY, (BTCondition)&TCompAIMimetic::conditionPlayerSeen, nullptr, nullptr);
-	addChild("manageDoPatrol", "managePlayerWasSeen", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionPlayerWasSeen, nullptr, nullptr);
-	addChild("manageDoPatrol", "managePatrolSeen", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionPatrolSeen, nullptr, nullptr);
-	addChild("manageDoPatrol", "goToWpt", BTNode::EType::ACTION, (BTCondition)&TCompAIMimetic::conditionGoToWpt, (BTAction)&TCompAIMimetic::actionGoToWpt, (BTAssert)&TCompAIMimetic::assertPlayerAndPatrolNotInFov);
-	addChild("manageDoPatrol", "waitInWpt", BTNode::EType::ACTION, (BTCondition)&TCompAIMimetic::conditionWaitInWpt, (BTAction)&TCompAIMimetic::actionWaitInWpt, (BTAssert)&TCompAIMimetic::assertPlayerAndPatrolNotInFov);
-	addChild("manageDoPatrol", "nextWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionNextWpt, nullptr);
-
-	addChild("managePlayerSeen", "manageChase", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionChase, nullptr, nullptr);
-	addChild("managePlayerSeen", "suspect", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSuspect, nullptr);
-	addChild("manageChase", "markPlayerAsSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionMarkPlayerAsSeen , nullptr);
-	addChild("manageChase", "shootInhibitor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionShootInhibitor, nullptr);
-	addChild("manageChase", "beginAlertChase", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionBeginAlert, nullptr);
-	addChild("manageChase", "manageGoingToAttack", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
-	addChild("manageGoingToAttack", "managePlayerAttacked", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionPlayerAttacked, nullptr, nullptr);
-	addChild("manageGoingToAttack", "chasePlayer", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionChasePlayer, nullptr);
-	addChild("managePlayerAttacked", "attack", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionAttack, nullptr);
-	addChild("managePlayerAttacked", "endAlertAttacked", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionEndAlert, nullptr);
-	addChild("managePlayerAttacked", "closestWptAttacked", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionClosestWpt, nullptr);
-
-	addChild("managePlayerWasSeen", "resetPlayerWasSeenVariables", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionResetPlayerWasSeenVariables, nullptr);
-	addChild("managePlayerWasSeen", "goToPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToPlayerLastPos, (BTAssert)&TCompAIMimetic::assertPlayerNotInFov);
-	addChild("managePlayerWasSeen", "lookForPlayerSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionLookForPlayer, (BTAssert)&TCompAIMimetic::assertPlayerNotInFov);
-	addChild("managePlayerWasSeen", "closestWptPlayerSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionClosestWpt, nullptr);
-
-	addChild("managePatrolSeen", "goToPatrol", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToPatrol, (BTAssert)&TCompAIMimetic::assertPlayerNotInFov);
-	addChild("managePatrolSeen", "manageInPatrolPos", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
-
-	addChild("manageInPatrolPos", "manageFixPatrol", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionFixPatrol, nullptr, nullptr);
-	addChild("manageFixPatrol", "fixPatrol", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionFixPatrol, nullptr);
-	addChild("manageFixPatrol", "beginAlertPatrolSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionBeginAlert, nullptr);
-	addChild("manageFixPatrol", "closestWptPatrolSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionClosestWpt, nullptr);
-
-	addChild("manageInPatrolPos", "managePatrolLost", BTNode::EType::SEQUENCE, nullptr, nullptr, nullptr);
-	addChild("managePatrolLost", "markPatrolAsLost", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionMarkPatrolAsLost, nullptr);
-	addChild("managePatrolLost", "lookForPlayerPatrolWasSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionLookForPlayer, (BTAssert)&TCompAIMimetic::assertPlayerAndPatrolNotInFov);
-	addChild("managePatrolLost", "closestWptPatrolWasSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionClosestWpt, nullptr);*/
 
 	if (j.count("waypoints") > 0) {
 		auto& j_waypoints = j["waypoints"];
@@ -222,28 +188,81 @@ BTNode::ERes TCompAIMimetic::actionStunned(float dt)
 	return BTNode::ERes::STAY;
 }
 
-BTNode::ERes TCompAIMimetic::actionObserve(float dt)
+BTNode::ERes TCompAIMimetic::actionResetObserveVariables(float dt)
+{
+	timerWaitingInObservation = 0.f;
+	return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIMimetic::actionObserveRight(float dt)
 {
 	if (isPlayerInFov()) {
-		amountRotatedObserving = 0.f;
 		return BTNode::ERes::LEAVE;
 	}
 	else {
-		TCompTransform * myPos = get<TCompTransform>();
-		if (amountRotatedObserving >= maxAmountRotateObserving * 4) {
-			amountRotatedObserving = 0.f;
+		VEC3 objective = rotateVectorAroundAxis(initialLookAt, VEC3(0,1,0), maxAmountRotateObserving);
+		TCompTransform *mypos = get<TCompTransform>();
+		if (rotateTowardsVec(mypos->getPosition() + objective, rotationSpeedObservation, dt)) {
+			return BTNode::ERes::LEAVE;
 		}
 		else {
-			float y, p, r;
-			myPos->getYawPitchRoll(&y, &p, &r);
-			amountRotatedObserving += rotationSpeedObservation * dt;
-			float newYaw = amountRotatedObserving < maxAmountRotateObserving || amountRotatedObserving > maxAmountRotateObserving * 3 ? rotationSpeedObservation * dt : -rotationSpeedObservation * dt;
-			y += newYaw;
-			myPos->setYawPitchRoll(y, p, r);
+			return BTNode::ERes::STAY;
 		}
-		return BTNode::ERes::STAY;
 	}
 }
+
+BTNode::ERes TCompAIMimetic::actionObserveLeft(float dt)
+{
+	if (isPlayerInFov()) {
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		VEC3 objective = rotateVectorAroundAxis(initialLookAt, VEC3(0, 1.f, 0), -maxAmountRotateObserving);
+		TCompTransform *mypos = get<TCompTransform>();
+		if (rotateTowardsVec(mypos->getPosition() + objective, rotationSpeedObservation, dt)) {
+			return BTNode::ERes::LEAVE;
+		}
+		else {
+			return BTNode::ERes::STAY;
+		}
+	}
+}
+
+BTNode::ERes TCompAIMimetic::actionWaitObserving(float dt)
+{
+	timerWaitingInObservation += dt;
+
+	if (timerWaitingInObservation < 2.f) {
+		return BTNode::ERes::STAY;
+	}
+	else {
+		timerWaitingInObservation = 0.f;
+		return BTNode::ERes::LEAVE;
+	}
+}
+//
+//BTNode::ERes TCompAIMimetic::actionObserve(float dt)
+//{
+//	if (isPlayerInFov()) {
+//		amountRotatedObserving = 0.f;
+//		return BTNode::ERes::LEAVE;
+//	}
+//	else {
+//		TCompTransform * myPos = get<TCompTransform>();
+//		if (amountRotatedObserving >= maxAmountRotateObserving * 4) {
+//			amountRotatedObserving = 0.f;
+//		}
+//		else {
+//			float y, p, r;
+//			myPos->getYawPitchRoll(&y, &p, &r);
+//			amountRotatedObserving += rotationSpeedObservation * dt;
+//			float newYaw = amountRotatedObserving < maxAmountRotateObserving || amountRotatedObserving > maxAmountRotateObserving * 3 ? rotationSpeedObservation * dt : -rotationSpeedObservation * dt;
+//			y += newYaw;
+//			myPos->setYawPitchRoll(y, p, r);
+//		}
+//		return BTNode::ERes::STAY;
+//	}
+//}
 
 BTNode::ERes TCompAIMimetic::actionSetActive(float dt)
 {

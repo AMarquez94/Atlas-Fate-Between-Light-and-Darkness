@@ -37,6 +37,7 @@ private:
 
 	/* Timers */
 	float timerWaitingInWpt = 0.f;
+	float timerWaitingInObservation = 0.f;
 
 	bool isSlept = false;
 	EType type;
@@ -44,12 +45,12 @@ private:
 	bool goingInactive = false;
 	VEC3 initialPos;
 	VEC3 initialLookAt;
-	float rotationSpeedObservation = deg2rad(45.f);
+	float rotationSpeedObservation = deg2rad(40.f);
 	float waitTimeInLasPlayerPos = 3.f;
 	float chaseSpeed = 6.f;
 
 	float amountRotatedObserving = 0.f;
-	float maxAmountRotateObserving = deg2rad(45.f);;
+	float maxAmountRotateObserving = deg2rad(45.f);
 
 	DECL_SIBLING_ACCESS();
 
@@ -77,7 +78,10 @@ public:
 
 	/* ACTIONS */
 	BTNode::ERes actionStunned(float dt);
-	BTNode::ERes actionObserve(float dt);
+	BTNode::ERes actionResetObserveVariables(float dt);
+	BTNode::ERes actionObserveRight(float dt);
+	BTNode::ERes actionObserveLeft(float dt);
+	BTNode::ERes actionWaitObserving(float dt);
 	BTNode::ERes actionSetActive(float dt);
 	BTNode::ERes actionJumpFloor(float dt);
 	BTNode::ERes actionGoToWpt(float dt);
