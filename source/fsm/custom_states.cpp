@@ -81,6 +81,7 @@ namespace FSM
 	bool FallState::load(const json& jData) {
 
 		_force = jData.value("force", 1.f);
+		_speed = jData.value("speed", 3.f);
 		_animationName = jData["animation"];
 		return true;
 	}
@@ -91,6 +92,9 @@ namespace FSM
 		// Send a message to the player controller
 		//CEntity* e = ctx.getOwner();
 		//e->sendMsg(TMsgAnimation{ "fall" });
+
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_fall", _speed });
 	}
 
 	void FallState::onFinish(CContext& ctx) const {
@@ -149,13 +153,14 @@ namespace FSM
 	bool AttackState::load(const json& jData) {
 
 		_animationName = jData["animation"];
-
+		_speed = jData.value("speed", 2.f);
 		return true;
 	}
 
 	void AttackState::onStart(CContext& ctx) const {
 
-		// ..
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_attack", _speed });
 	}
 	void AttackState::onFinish(CContext& ctx) const {
 

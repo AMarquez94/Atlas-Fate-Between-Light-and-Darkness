@@ -152,7 +152,6 @@ void CPhysicsPlane::debugInMenu() {
 
 }
 
-
 void CPhysicsSphere::load(const json& j, TEntityParseContext& ctx){
 
 	radius = j.value("radius", 0.f);

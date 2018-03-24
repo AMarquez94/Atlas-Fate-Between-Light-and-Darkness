@@ -62,7 +62,7 @@
 				"type" : "float",
 				"value" : 1.0
 			},
-			"operation" :"greater_equal" 
+			"operation" :"greater" 
 		},
 		{
 			"type" : "VariableTransition",
@@ -108,27 +108,6 @@
 		},
 		{
 			"type" : "VariableTransition",
-			"source" : "crouch",
-			"target" : "idle",
-			"variable" : {
-				"name" : "crouch",
-				"type" : "bool",
-				"value" : false
-			}
-		},
-		{
-			"type" : "VariableTransition",
-			"source" : "idle",
-			"target" : "crouch",
-			"variable" : {
-				"name" : "crouch",
-				"type" : "bool",
-				"value" : true
-			},
-			"operation" : "equal"
-		},
-		{
-			"type" : "VariableTransition",
 			"source" : "walk",
 			"target" : "crouch",
 			"variable" : {
@@ -137,6 +116,16 @@
 				"value" : true
 			},
 			"operation" : "equal"
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "crouch",
+			"target" : "run",
+			"variable" : {
+				"name" : "boost_speed",
+				"type" : "float",
+				"value" : 1.0
+			}
 		},
 		{
 			"type" : "VariableTransition",
@@ -190,12 +179,22 @@
 		},
 		{
 			"type" : "VariableTransition",
-			"source" : "merge",
-			"target" : "idle",
+			"source" : "walk",
+			"target" : "fall",
 			"variable" : {
-				"name" : "onstamina",
-				"type" : "float",
-				"value" : 0.0
+				"name" : "onGround",
+				"type" : "bool",
+				"value" : false
+			}
+		},
+				{
+			"type" : "VariableTransition",
+			"source" : "run",
+			"target" : "fall",
+			"variable" : {
+				"name" : "onGround",
+				"type" : "bool",
+				"value" : false
 			}
 		},
 		{
@@ -203,9 +202,9 @@
 			"source" : "idle",
 			"target" : "fall",
 			"variable" : {
-				"name" : "fall",
+				"name" : "onGround",
 				"type" : "bool",
-				"value" : true
+				"value" : false
 			}
 		},
 		{
@@ -259,14 +258,10 @@
 			}
 		},
 		{
-			"type" : "VariableTransition",
+			"type" : "TimeTransition",
 			"source" : "attack",
 			"target" : "idle",
-			"variable" : {
-				"name" : "attack",
-				"type" : "bool",
-				"value" : false
-			}
+			"time" : 1.0
 		}
 	],
 	"variables" : [
@@ -286,16 +281,6 @@
 			"value" : 0.0
 		},
 		{
-			"name" : "onstamina",
-			"type" : "float",
-			"value" : 1.0
-		},
-		{
-			"name" : "fall",
-			"type" : "bool",
-			"value" : false
-		},
-		{
 			"name" : "crouch",
 			"type" : "bool",
 			"value" : false
@@ -313,7 +298,7 @@
 		{
 			"name" : "onFallMerge",
 			"type" : "bool",
-			"value" : true
+			"value" : false
 		}
 	]
 }

@@ -78,7 +78,11 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 void TCompTempPlayerController::update(float dt) {
 
 	(this->*state)(dt);
-	shadowState();
+
+	// Methods that always must be running on background
+	isGrounded = groundTest(dt);
+	staminaTest(dt);
+	shadowRender(dt);
 }
 
 void TCompTempPlayerController::registerMsgs() {
@@ -101,12 +105,10 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg){
 	// Change the current state.
 }
 
-
 void TCompTempPlayerController::onStateFinish(const TMsgStateFinish& msg) {
 
 	(this->*msg.action_finish)();
 }
-
 
 void TCompTempPlayerController::idleState(float dt){
 
@@ -128,7 +130,9 @@ void TCompTempPlayerController::walkState(float dt){
 
 	VEC3 up = trans_camera->getFront();
 	VEC3 normal_norm = c_my_transform->getUp();
+	normal_norm.Normalize();
 	VEC3 proj = projectVector(up, normal_norm);
+	proj.Normalize();
 
 	if (EngineInput["btUp"].isPressed() && EngineInput["btUp"].value > 0) {
 		dir += fabs(EngineInput["btUp"].value) * proj;
@@ -157,9 +161,9 @@ void TCompTempPlayerController::walkState(float dt){
 
 void TCompTempPlayerController::mergeState(float dt) {
 
-	ConvexTest();
-	ConcaveTest();
-	StaminaTest();
+	convexTest();
+	concaveTest();
+	isMerged = onMergeTest(dt);
 
 	// Player movement and rotation related method.
 	CEntity *player_camera = (CEntity *)getEntityByName("SMCameraHor");
@@ -176,6 +180,7 @@ void TCompTempPlayerController::mergeState(float dt) {
 	VEC3 dir = VEC3::Zero;
 	VEC3 up = trans_camera->getUp();
 	VEC3 normal_norm = rigidbody->normal_gravity;
+	normal_norm.Normalize();
 	VEC3 proj = projectVector(up, normal_norm);
 
 	if (EngineInput["btUp"].isPressed() && EngineInput["btUp"].value > 0) {
@@ -204,8 +209,8 @@ void TCompTempPlayerController::mergeState(float dt) {
 	c_my_transform->setPosition(new_pos);
 }
 
-const bool TCompTempPlayerController::ConcaveTest(void)
-{
+const bool TCompTempPlayerController::concaveTest(void){
+
 	physx::PxRaycastHit hit;
 	TCompRigidbody *rigidbody = get<TCompRigidbody>();
 	TCompTransform *c_my_transform = get<TCompTransform>();
@@ -223,7 +228,7 @@ const bool TCompTempPlayerController::ConcaveTest(void)
 			VEC3 target = c_my_transform->getPosition() + new_forward;
 
 			rigidbody->SetUpVector(hit_normal);
-			rigidbody->normal_gravity = 9.8f * -hit_normal;
+			rigidbody->normal_gravity = EnginePhysics.gravityMod * -hit_normal;
 
 			Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), target, hit_normal).Transpose();
 			Quaternion new_rotation = Quaternion::CreateFromRotationMatrix(test);
@@ -237,8 +242,8 @@ const bool TCompTempPlayerController::ConcaveTest(void)
 	return false;
 }
 
-const bool TCompTempPlayerController::ConvexTest(void)
-{
+const bool TCompTempPlayerController::convexTest(void){
+
 	physx::PxRaycastHit hit;
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	TCompRigidbody *rigidbody = get<TCompRigidbody>();
@@ -258,7 +263,7 @@ const bool TCompTempPlayerController::ConvexTest(void)
 			VEC3 target = hit_point + new_forward;
 
 			rigidbody->SetUpVector(hit_normal);
-			rigidbody->normal_gravity = 9.8f * -hit_normal;
+			rigidbody->normal_gravity = EnginePhysics.gravityMod * -hit_normal;
 
 			QUAT new_rotation = createLookAt(hit_point, target, hit_normal);
 			VEC3 new_pos = hit_point + 0.35f * new_forward;
@@ -271,11 +276,11 @@ const bool TCompTempPlayerController::ConvexTest(void)
 	return false;
 }
 
-const bool TCompTempPlayerController::StaminaTest(void)
-{
+const bool TCompTempPlayerController::onMergeTest(float dt){
+
 	TCompShadowController * shadow_oracle = get<TCompShadowController>();
 
-	if (!shadow_oracle->is_shadow) {
+	if (isMerged != shadow_oracle->is_shadow) {
 
 		TMsgSetFSMVariable groundMsg;
 		groundMsg.variant.setName("onmerge");
@@ -284,11 +289,39 @@ const bool TCompTempPlayerController::StaminaTest(void)
 		e->sendMsg(groundMsg);
 	}
 
-	return true;
+	return shadow_oracle->is_shadow;
 }
 
-void TCompTempPlayerController::resetState()
-{
+const bool TCompTempPlayerController::groundTest(float dt) {
+
+	TCompRigidbody *c_my_collider = get<TCompRigidbody>();
+
+	if (isGrounded != c_my_collider->is_grounded) {
+
+		TMsgSetFSMVariable groundMsg;
+		groundMsg.variant.setName("onGround");
+		groundMsg.variant.setBool(c_my_collider->is_grounded);
+		CEntity* e = CHandle(this).getOwner();
+		e->sendMsg(groundMsg);
+	}
+
+	return c_my_collider->is_grounded;
+}
+
+void TCompTempPlayerController::staminaTest(float dt) {
+
+	if (isMerged) {
+
+		// Determine stamina decreasing ratio depending on players up vector.
+
+	}
+	else {
+		stamina = Clamp<float>(stamina + (increaseStamina * dt), minStamina, maxStamina);
+	}
+}
+
+void TCompTempPlayerController::resetState(){
+
 	CEntity *player_camera = (CEntity *)getEntityByName("TPCamera");
 	TCompRigidbody *rigidbody = get<TCompRigidbody>();
 	TCompTransform *c_my_transform = get<TCompTransform>();
@@ -300,15 +333,14 @@ void TCompTempPlayerController::resetState()
 
 	// Set collider gravity settings
 	rigidbody->SetUpVector(-EnginePhysics.gravity);
-	rigidbody->normal_gravity = 9.8f * EnginePhysics.gravity;
+	rigidbody->normal_gravity = EnginePhysics.gravityMod * EnginePhysics.gravity;
 
 	QUAT new_rotation = createLookAt(c_my_transform->getPosition(), new_front, -EnginePhysics.gravity);
 	c_my_transform->setRotation(new_rotation);
 }
 
-
 /* Temporal function to determine our player shadow color, set this to a shader change..*/
-void TCompTempPlayerController::shadowState() {
+void TCompTempPlayerController::shadowRender(float dt) {
 
 	TCompRender *c_my_render = get<TCompRender>();
 	TCompShadowController * shadow_oracle = get<TCompShadowController>();

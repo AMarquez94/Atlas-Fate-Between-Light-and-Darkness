@@ -16,9 +16,9 @@ void TCompPlayerInput::update(float dt)
 
 	/* Movement messages*/
 	{
-		if (EngineInput["btUp"].hasChanged() 
-			|| EngineInput["btDown"].hasChanged() 
-			|| EngineInput["btLeft"].hasChanged() 
+		if (EngineInput["btUp"].hasChanged()
+			|| EngineInput["btDown"].hasChanged()
+			|| EngineInput["btLeft"].hasChanged()
 			|| EngineInput["btRight"].hasChanged()){
 
 			TMsgSetFSMVariable walkMsg;
@@ -27,6 +27,7 @@ void TCompPlayerInput::update(float dt)
 								+ EngineInput["btUp"].value + EngineInput["btDown"].value);
 
 			walkMsg.variant.setFloat(total_value);
+			dbg("total value %f\n", total_value);
 			e->sendMsg(walkMsg);
 		}
 
@@ -35,6 +36,13 @@ void TCompPlayerInput::update(float dt)
 		boostMsg.variant.setName("boost_speed");
 
 		if (EngineInput["btRun"].hasChanged()) {
+			
+			crouchButton = false;
+			TMsgSetFSMVariable crouch;
+			crouch.variant.setName("crouch");
+			crouch.variant.setBool(false);
+			e->sendMsg(crouch);
+
 			boostMsg.variant.setFloat(EngineInput["btRun"].value);
 			e->sendMsg(boostMsg);
 		}

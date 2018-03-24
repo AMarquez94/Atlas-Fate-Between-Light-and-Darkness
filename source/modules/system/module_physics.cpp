@@ -18,6 +18,7 @@
 using namespace physx;
 
 const VEC3 CModulePhysics::gravity(0, -1, 0);
+const float CModulePhysics::gravityMod = 9.8f;
 physx::PxQueryFilterData CModulePhysics::defaultFilter;
 
 bool CModulePhysics::start()

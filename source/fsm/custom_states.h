@@ -22,6 +22,7 @@ namespace FSM
 
   private:
     float _force = 1.f;
+	float _speed = 1.f;
 	std::string _animationName;
   };
 
@@ -78,6 +79,7 @@ namespace FSM
 	virtual void onFinish(CContext& ctx) const override;
     virtual bool load(const json& jData);
   private:
+	  float _speed = 2.f;
 	  std::string _animationName;
   };
 }
