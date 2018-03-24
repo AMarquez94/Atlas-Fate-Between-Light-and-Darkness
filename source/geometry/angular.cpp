@@ -41,8 +41,8 @@ QUAT createLookAt(const VEC3& origin, const VEC3& front, const VEC3& up)
 
 VEC3 rotateVectorAroundAxis(const VEC3& vecToRotate, const VEC3& axisToRotate, float deltaRotation)
 {
-	double cos_delta = cosf(deltaRotation);
-	double sin_delta = sinf(deltaRotation);
+	float cos_delta = cosf(deltaRotation);
+	float sin_delta = sinf(deltaRotation);
 
 	return (vecToRotate * cos_delta) + (axisToRotate.Cross(vecToRotate) * sin_delta) + (axisToRotate * axisToRotate.Dot(vecToRotate)) * (1 - cos_delta);
 }

@@ -719,7 +719,7 @@ bool TCompAIPatrol::isPlayerInFov() {
 		TCompPlayerController *pController = ePlayer->get<TCompPlayerController>();
 		
 		/* Player inside cone of vision */
-		bool in_fov = mypos->isInFov(ppos->getPosition(), fov);
+		bool in_fov = mypos->isInFov(ppos->getPosition(), fov, deg2rad(89.f));
 
 		return in_fov && !pController->isInShadows() && !pController->isDead() && dist <= maxChaseDistance && !isEntityHidden(hPlayer);
 	}
@@ -785,7 +785,7 @@ bool TCompAIPatrol::isStunnedPatrolInFov()
 		TCompTransform *mypos = get<TCompTransform>();
 		for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
 			TCompTransform* stunnedPatrol = ((CEntity*)stunnedPatrols[i])->get<TCompTransform>();
-			if (mypos->isInFov(stunnedPatrol->getPosition(), fov)
+			if (mypos->isInFov(stunnedPatrol->getPosition(), fov, deg2rad(89.f))
 				&& VEC3::Distance(mypos->getPosition(), stunnedPatrol->getPosition()) < maxChaseDistance
 				&& !isEntityHidden(stunnedPatrols[i])) {
 				found = true;

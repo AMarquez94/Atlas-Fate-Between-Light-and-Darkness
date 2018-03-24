@@ -599,7 +599,7 @@ bool TCompAIMimetic::isPlayerInFov() {
 		TCompPlayerController *pController = ePlayer->get<TCompPlayerController>();
 		
 		/* Player inside cone of vision */
-		bool in_fov = mypos->isInFov(ppos->getPosition(), fov);
+		bool in_fov = mypos->isInFov(ppos->getPosition(), fov, deg2rad(89.f));
 
 		return in_fov && !pController->isInShadows() && !pController->isDead() && dist <= maxChaseDistance && !isEntityHidden(hPlayer);
 	}

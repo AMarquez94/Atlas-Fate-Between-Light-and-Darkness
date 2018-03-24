@@ -43,7 +43,7 @@ void TCompConeOfLightController::update(float dt) {
 			TCompTransform* mypos = get<TCompTransform>();
 			bool inDist = VEC3::Distance(mypos->getPosition(), ppos->getPosition()) < dist;
 			if (VEC3::Distance(mypos->getPosition(), ppos->getPosition()) < dist 
-				&& mypos->isInFov(ppos->getPosition(), fov)) {
+				&& mypos->isInFov(ppos->getPosition(), fov, deg2rad(45.f))) {
 				if (!isPlayerHiddenFromLight(player)) {
 					TMsgPlayerIlluminated msg;
 					msg.h_sender = CHandle(this).getOwner();
