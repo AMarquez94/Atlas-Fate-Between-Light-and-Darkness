@@ -34,6 +34,7 @@ void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 	loadConditions();
 	loadAsserts();
 	TCompIAController::loadTree(j);
+	loadArguments();
 	/*CHandle h(this);
 	CEntity* e = h.getOwner();
 	std::string aux = e->getName();*/
@@ -276,6 +277,19 @@ void TCompAIPatrol::loadAsserts() {
 	asserts_initializer["assertPlayerNotInFov"] = (BTCondition)&TCompAIPatrol::assertPlayerNotInFov;
 	asserts_initializer["assertPlayerAndPatrolNotInFov"] = (BTCondition)&TCompAIPatrol::assertPlayerAndPatrolNotInFov;
 
+
+}
+
+void TCompAIPatrol::loadArguments() {
+	if (arguments.find("speed") != arguments.end()) {
+		speed = arguments["speed"].getFloat();
+	}
+	if (arguments.find("ugh") != arguments.end()) {
+		float ugh = arguments["ugh"].getFloat();
+	}
+	if (arguments.find("movement") != arguments.end()) {
+		float movement = arguments["movement"].getFloat();
+	}
 
 }
 

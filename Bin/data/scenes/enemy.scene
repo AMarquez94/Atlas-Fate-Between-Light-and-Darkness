@@ -27,16 +27,41 @@
             "name": "manageStun",
             "type": "priority",
             "condition": "conditionManageStun",
-            "conditionArg": {
-              "speed": "4.5",
-              "flee": "2",
-              "escape": 1.0
+            "conditionArg": [
+            {
+              "variable_name" : "speed",
+              "variable_type" : "float",
+              "variable_value" : 4.5,
+              "variable_op" : ""
             },
+            {
+              "variable_name" : "flee",
+              "variable_type" : "int",
+              "variable_value" : 2,
+              "variable_op" : ""
+            },
+            {
+              "variable_name" : "escape",
+              "variable_type" : "bool",
+              "variable_value" : true,
+              "variable_op" : ""            
+            }
+          ],
             "action": "",
-            "actionArg": {
-              "movement": 4.1,
-              "ugh": 2.14
+            "actionArg": [
+            {
+              "variable_name" : "movement",
+              "variable_type" : "float",
+              "variable_value" : 4.1,
+              "variable_op" : ""
             },
+            {
+              "variable_name" : "ugh",
+              "variable_type" : "float",
+              "variable_value" : 2.14,
+              "variable_op" : ""
+            }
+          ],
             "assert": ""
           },
           {
