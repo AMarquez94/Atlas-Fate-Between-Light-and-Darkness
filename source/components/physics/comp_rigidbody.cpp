@@ -56,9 +56,6 @@ void TCompRigidbody::update(float dt) {
 		physx::PxControllerCollisionFlags col = controller->move(velocity * dt, 0.f, dt, filters);
 		is_grounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN) ? true : false;
 		
-	} else if (is_gravity)
-	{
-		//TO-DO ADDFORCE ONLY.
 	}
 }
 

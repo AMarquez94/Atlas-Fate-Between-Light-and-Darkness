@@ -16,6 +16,17 @@ namespace FSM
     EOperation _operation = EOperation::EQUAL;
   };
 
+  class MultipleVariableTransition : public ITransition
+  {
+	  virtual bool checkCondition(CContext& ctx) const override;
+	  virtual bool load(const json& jData) override;
+
+  private:
+	  enum class EOperation { EQUAL = 0, GREATER, GREATER_EQUAL };
+	  std::vector<CVariant> _variables;
+	  std::vector<EOperation> _operations;
+  };
+
   class TimeTransition : public ITransition
   {
     virtual bool checkCondition(CContext& ctx) const override;

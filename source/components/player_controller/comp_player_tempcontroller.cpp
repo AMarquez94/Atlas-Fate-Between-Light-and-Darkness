@@ -1,12 +1,13 @@
 #include "mcv_platform.h"
 #include "comp_player_tempcontroller.h"
-#include "components/comp_transform.h"
 #include "components/comp_fsm.h"
+#include "components/comp_tags.h"
 #include "components/comp_render.h"
+#include "components/comp_transform.h"
 #include "components/physics/comp_rigidbody.h"
 #include "components/physics/comp_collider.h"
-#include "physics/physics_collider.h"
 #include "components/player_controller/comp_shadow_controller.h"
+#include "physics/physics_collider.h"
 #include "render/mesh/mesh_loader.h"
 #include "windows/app.h"
 
@@ -99,7 +100,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 
 	pxPlayerFilterData = new physx::PxFilterData();
 	pxPlayerFilterData->word0 = c_my_collider->config->group;
-	pxPlayerFilterData->word1 = FilterGroup::Scenario; // All
+	pxPlayerFilterData->word1 = FilterGroup::All;
 
 	physx::PxFilterData pxFilterData;
 	pxFilterData.word1 = FilterGroup::Scenario;
@@ -153,6 +154,7 @@ void TCompTempPlayerController::walkState(float dt){
 	VEC3 dir = VEC3::Zero;
 	float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
 	float player_accel = inputSpeed * currentSpeed * dt;
+	//dbg(" speeds: %f , %f\n", inputSpeed, currentSpeed);
 
 	VEC3 up = trans_camera->getFront();
 	VEC3 normal_norm = c_my_transform->getUp();
@@ -202,7 +204,7 @@ void TCompTempPlayerController::mergeState(float dt) {
 
 	float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
 	float player_accel = inputSpeed * currentSpeed * dt;
-	
+
 	VEC3 dir = VEC3::Zero;
 	VEC3 up = trans_camera->getUp();
 	VEC3 normal_norm = rigidbody->normal_gravity;
@@ -307,35 +309,45 @@ const bool TCompTempPlayerController::convexTest(void){
 /* Bitshifting test to determine if we are merged within the shadows */
 const bool TCompTempPlayerController::onMergeTest(float dt){
 
+	CEntity* e = CHandle(this).getOwner();
 	TCompRigidbody *c_my_rigidbody = get<TCompRigidbody>();
 	TCompShadowController * shadow_oracle = get<TCompShadowController>();
 
 	// Tests: inShadows + minStamina + grounded + button hold -> sent to fsm
 	bool mergeTest = true;
+	bool mergefall = fallingDistance > 0 && fallingDistance < maxFallingDistance;
+
 	mergeTest &= shadow_oracle->is_shadow;
 	mergeTest &= stamina > minStamina;
-	mergeTest &= isGrounded;
-	mergeTest &= EngineInput["btShadowMerging"].isPressed();
-
 	// Minimum stamina condition
 	if (isMerged == false)
 		mergeTest &= stamina > minStaminaChange;
+
+	//mergeTest &= !isMerged && stamina > minStaminaChange ? true : false;
+	//// Check the falling shadow merge
+	if (mergeTest && mergefall && !isGrounded) {
+		TMsgSetFSMVariable onFallMsg;
+		onFallMsg.variant.setName("onFallMerge");
+		onFallMsg.variant.setBool(mergefall && EngineInput["btShadowMerging"].isPressed());
+		e->sendMsg(onFallMsg);
+	}
+
+	mergeTest &= EngineInput["btShadowMerging"].isPressed();
+	//mergeTest &= !isInhibited;
 
 	if (mergeTest != isMerged) {
 
 		TMsgSetFSMVariable groundMsg;
 		groundMsg.variant.setName("onmerge");
-		groundMsg.variant.setBool(mergeTest);
-		CEntity* e = CHandle(this).getOwner();
+		groundMsg.variant.setBool(mergeTest & isGrounded);
 		e->sendMsg(groundMsg);
 
-		c_my_rigidbody->filters.mFilterData = isMerged == true ? pxShadowFilterData : pxPlayerFilterData;
-	}
+		TMsgSetFSMVariable onFallMsg;
+		onFallMsg.variant.setName("onFallMerge");
+		onFallMsg.variant.setBool(mergefall & !isMerged);
+		e->sendMsg(onFallMsg);
 
-	// Check the falling shadow merge
-
-	if (mergeTest & true) {
-		// shadow fall
+		c_my_rigidbody->filters.mFilterData = isMerged == true ? pxPlayerFilterData : pxShadowFilterData;
 	}
 
 	return mergeTest;
@@ -353,10 +365,21 @@ const bool TCompTempPlayerController::groundTest(float dt) {
 		groundMsg.variant.setBool(c_my_collider->is_grounded);
 		CEntity* e = CHandle(this).getOwner();
 		e->sendMsg(groundMsg);
+
+		// Determine if it's a dead falling state depending on time falling.
 	}
 
 	// Get distance to ground
 	// Compute falling time
+	if (!isGrounded) {
+
+		physx::PxRaycastHit hit;
+		TCompTransform *c_my_transform = get<TCompTransform>();
+		if (EnginePhysics.Raycast(c_my_transform->getPosition(), -c_my_transform->getUp(), 1000, hit, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery)) {
+			fallingDistance = hit.distance;
+			dbg("fallingDistance %f", fallingDistance);
+		}
+	}
 
 	return c_my_collider->is_grounded;
 }
@@ -404,14 +427,52 @@ void TCompTempPlayerController::resetState(){
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	TCompTransform * trans_camera = player_camera->get<TCompTransform>();
 
-	VEC3 up = trans_camera->getFront();
-	VEC3 proj_plane = projectVector(up, -EnginePhysics.gravity);
-	VEC3 new_front = c_my_transform->getPosition() - proj_plane;
+	VEC3 dir = VEC3::Zero;
+	VEC3 up = trans_camera->getUp();
+	VEC3 normal_norm = rigidbody->normal_gravity;
+	normal_norm.Normalize();
+	VEC3 proj = projectVector(up, normal_norm);
+
+	if (EngineInput["btUp"].isPressed() && EngineInput["btUp"].value > 0) {
+		dir += fabs(EngineInput["btUp"].value) * proj;
+	}
+	else if (EngineInput["btDown"].isPressed()) {
+		dir += fabs(EngineInput["btDown"].value) * -proj;
+	}
+	if (EngineInput["btRight"].isPressed() && EngineInput["btRight"].value > 0) {
+		dir += fabs(EngineInput["btRight"].value) * normal_norm.Cross(proj);
+	}
+	else if (EngineInput["btLeft"].isPressed()) {
+		dir += fabs(EngineInput["btLeft"].value) * -normal_norm.Cross(proj);
+	}
+	dir.Normalize();
 
 	// Set collider gravity settings
 	rigidbody->SetUpVector(-EnginePhysics.gravity);
 	rigidbody->normal_gravity = EnginePhysics.gravityMod * EnginePhysics.gravity;
 
-	QUAT new_rotation = createLookAt(c_my_transform->getPosition(), new_front, -EnginePhysics.gravity);
-	c_my_transform->setRotation(new_rotation);
+	if (dir != VEC3::Zero)
+	{
+		VEC3 new_pos = c_my_transform->getPosition() - dir;
+		Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), new_pos, c_my_transform->getUp()).Transpose();
+		Quaternion quat = Quaternion::CreateFromRotationMatrix(test);
+		c_my_transform->setRotation(quat);
+	}
+}
+
+void TCompTempPlayerController::deadState(float dt)
+{
+	TMsgPlayerDead newMsg;
+	newMsg.h_sender = CHandle(this).getOwner();
+	auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+	for (auto h : handles) {
+		CEntity* enemy = h;
+		enemy->sendMsg(newMsg);
+	}
+
+	TCompTransform *mypos = get<TCompTransform>();
+	float y, p, r;
+	mypos->getYawPitchRoll(&y, &p, &r);
+	p = p + deg2rad(89.9f);
+	mypos->setYawPitchRoll(y, p, r);
 }

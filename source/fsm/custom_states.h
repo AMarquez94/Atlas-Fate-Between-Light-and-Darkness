@@ -68,7 +68,43 @@ namespace FSM
 		std::string _animationName;
 	};
 
+	class EnterMergeState : public IState
+	{
+		virtual void onStart(CContext& ctx) const override;
+		virtual void onFinish(CContext& ctx) const override;
+		virtual bool load(const json& jData);
+
+	private:
+		float _size = 1.f;
+		float _speed = 1.f;
+		std::string _animationName;
+	};
+
 	class MergeState : public IState
+	{
+		virtual void onStart(CContext& ctx) const override;
+		virtual void onFinish(CContext& ctx) const override;
+		virtual bool load(const json& jData);
+
+	private:
+		float _size = 1.f;
+		float _speed = 1.f;
+		std::string _animationName;
+	};
+
+	class ExitMergeState : public IState
+	{
+		virtual void onStart(CContext& ctx) const override;
+		virtual void onFinish(CContext& ctx) const override;
+		virtual bool load(const json& jData);
+
+	private:
+		float _size = 1.f;
+		float _speed = 1.f;
+		std::string _animationName;
+	};
+
+	class LandMergeState : public IState
 	{
 		virtual void onStart(CContext& ctx) const override;
 		virtual void onFinish(CContext& ctx) const override;

@@ -39,11 +39,32 @@
 			"size" : 0.25
 		},
 		{
+			"name" : "entermerge",
+			"type" : "EnterMergeState",
+			"animation" : "entermerge",
+			"speed" : 4,
+			"size" : 1
+		},
+		{
 			"name" : "merge",
 			"type" : "MergeState",
 			"animation" : "merge",
 			"speed" : 4,
 			"size" : 0.15
+		},
+		{
+			"name" : "exitmerge",
+			"type" : "ExitMergeState",
+			"animation" : "exitmerge",
+			"speed" : 4,
+			"size" : 1
+		},
+		{
+			"name" : "landmerge",
+			"type" : "LandMergeState",
+			"animation" : "exitmerge",
+			"speed" : 4,
+			"size" : 1
 		},
 		{
 			"name" : "fall",
@@ -149,7 +170,7 @@
 		{
 			"type" : "VariableTransition",
 			"source" : "idle",
-			"target" : "merge",
+			"target" : "entermerge",
 			"variable" : {
 				"name" : "onmerge",
 				"type" : "bool",
@@ -159,7 +180,7 @@
 		{
 			"type" : "VariableTransition",
 			"source" : "walk",
-			"target" : "merge",
+			"target" : "entermerge",
 			"variable" : {
 				"name" : "onmerge",
 				"type" : "bool",
@@ -169,7 +190,7 @@
 		{
 			"type" : "VariableTransition",
 			"source" : "run",
-			"target" : "merge",
+			"target" : "entermerge",
 			"variable" : {
 				"name" : "onmerge",
 				"type" : "bool",
@@ -177,14 +198,26 @@
 			}
 		},
 		{
+			"type" : "TimeTransition",
+			"source" : "entermerge",
+			"target" : "merge",
+			"time" : 0.1
+		},
+		{
 			"type" : "VariableTransition",
 			"source" : "merge",
-			"target" : "idle",
+			"target" : "exitmerge",
 			"variable" : {
 				"name" : "onmerge",
 				"type" : "bool",
 				"value" : false
 			}
+		},
+		{
+			"type" : "TimeTransition",
+			"source" : "exitmerge",
+			"target" : "idle",
+			"time" : 0.1
 		},
 		{
 			"type" : "VariableTransition",
@@ -219,7 +252,7 @@
 		{
 			"type" : "VariableTransition",
 			"source" : "fall",
-			"target" : "idle",
+			"target" : "walk",
 			"variable" : {
 				"name" : "onGround",
 				"type" : "bool",
@@ -229,12 +262,18 @@
 		{
 			"type" : "VariableTransition",
 			"source" : "fall",
-			"target" : "merge",
+			"target" : "landmerge",
 			"variable" : {
 				"name" : "onFallMerge",
 				"type" : "bool",
 				"value" : true
 			}
+		},
+		{
+			"type" : "TimeTransition",
+			"source" : "landmerge",
+			"target" : "merge",
+			"time" : 0.5
 		},
 		{
 			"type" : "VariableTransition",
@@ -306,6 +345,11 @@
 		},
 		{
 			"name" : "onFallMerge",
+			"type" : "bool",
+			"value" : false
+		},
+		{
+			"name" : "ondead",
 			"type" : "bool",
 			"value" : false
 		}

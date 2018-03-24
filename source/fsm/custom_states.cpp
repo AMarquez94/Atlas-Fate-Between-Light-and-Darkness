@@ -93,7 +93,6 @@ namespace FSM
 	void FallState::onStart(CContext& ctx) const {
 
 		// Send a message to the player controller
-		// Send a message to the player controller
 		//CEntity* e = ctx.getOwner();
 		//e->sendMsg(TMsgAnimation{ "fall" });
 
@@ -119,15 +118,40 @@ namespace FSM
 	void CrouchState::onStart(CContext& ctx) const {
 
 		// Send a message to the player controller
-		// Send a message to the player controller
 		//CEntity* e = ctx.getOwner();
 		//e->sendMsg(TMsgAnimation{ "crouch" });
+
 		CEntity* e = ctx.getOwner();
 		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_crouch", _speed, _size });
 	}
 
 	void CrouchState::onFinish(CContext& ctx) const {
 
+	}
+
+	bool EnterMergeState::load(const json& jData) {
+
+		_animationName = jData["animation"];
+		_speed = jData.value("speed", 3.f);
+		_size = jData.value("size", 1.f);
+
+		return true;
+	}
+
+	void EnterMergeState::onStart(CContext& ctx) const {
+
+		// Send a message to the player controller
+		//CEntity* e = ctx.getOwner();
+		//e->sendMsg(TMsgAnimation{ "crouch" });
+
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_fall", _speed, _size });
+	}
+
+	void EnterMergeState::onFinish(CContext& ctx) const {
+
+		//CEntity* e = ctx.getOwner();
+		//e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::resetState });
 	}
 
 	bool MergeState::load(const json& jData) {
@@ -142,7 +166,6 @@ namespace FSM
 	void MergeState::onStart(CContext& ctx) const {
 
 		// Send a message to the player controller
-		// Send a message to the player controller
 		//CEntity* e = ctx.getOwner();
 		//e->sendMsg(TMsgAnimation{ "crouch" });
 
@@ -155,6 +178,54 @@ namespace FSM
 		CEntity* e = ctx.getOwner();
 		e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::resetState });
 	}
+
+	bool ExitMergeState::load(const json& jData) {
+
+		_animationName = jData["animation"];
+		_speed = jData.value("speed", 3.f);
+		_size = jData.value("size", 1.f);
+
+		return true;
+	}
+
+	void ExitMergeState::onStart(CContext& ctx) const {
+
+		// Send a message to the player controller
+		//CEntity* e = ctx.getOwner();
+		//e->sendMsg(TMsgAnimation{ "crouch" });
+
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_fall", _speed, _size });
+
+		// Disable the rigidbody so that we can handle our transition in air manually
+	}
+
+	void ExitMergeState::onFinish(CContext& ctx) const {
+
+		//CEntity* e = ctx.getOwner();
+		//e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::resetState });
+		// Re enable rigidbody.
+	}
+
+
+	bool LandMergeState::load(const json& jData) {
+
+		_animationName = jData["animation"];
+		_speed = jData.value("speed", 2.f);
+		_size = jData.value("size", 1.f);
+
+		return true;
+	}
+
+	void LandMergeState::onStart(CContext& ctx) const {
+
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_fall", _speed, _size });
+	}
+	void LandMergeState::onFinish(CContext& ctx) const {
+
+	}
+
 
 	bool AttackState::load(const json& jData) {
 

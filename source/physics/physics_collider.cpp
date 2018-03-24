@@ -197,7 +197,7 @@ physx::PxShape* CPhysicsCapsule::createShape() {
 
 physx::PxController* CPhysicsCapsule::createController(TCompTransform * c_transform) {
 
-	material = EnginePhysics.getPhysxFactory()->createMaterial(0.5f, 0.2f, 0.1f);
+	material = EnginePhysics.getPhysxFactory()->createMaterial(0.1f, 0.1f, 0.1f);
 	physx::PxControllerDesc* cDesc;
 	physx::PxCapsuleControllerDesc capsuleDesc;
 	physx::PxControllerManager * gManager = EnginePhysics.getPhysxController();
