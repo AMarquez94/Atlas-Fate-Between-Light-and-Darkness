@@ -11,6 +11,7 @@ struct TMsgStateStart {
 	actionhandler action_start;
 	std::string meshname;
 	float speed;
+	float size;
 
 	DECL_MSG_ID();
 };
@@ -29,15 +30,17 @@ class TCompTempPlayerController : public TCompBase
 	/* DEPRECATED */
 	std::map<std::string, CRenderMesh*> mesh_states;
 
-	physx::PxQueryFilterData shadowMergeFilter;
-	physx::PxQueryFilterData playerFilter;
+	physx::PxFilterData * pxPlayerFilterData;
+	physx::PxFilterData * pxShadowFilterData;
+	physx::PxQueryFilterData PxPlayerDiscardQuery;
 
 	actionhandler state;
 	CHandle current_camera;
 
+	float mergeAngle = 0.45f;
 	float currentSpeed = 4.f;
 	float rotationSpeed = 10.f;
-	float mergeAngle = 0.45f;
+	float fallingTime = 0.f;
 
 	/* Stamina private variables */
 	float stamina = 100.f;
@@ -47,9 +50,11 @@ class TCompTempPlayerController : public TCompBase
 	const float decrStaticStamina = 0.75f;
 	const float decrStaminaHorizontal = 12.5f;
 	const float decrStaminaVertical = 17.5f;
+	const float minStaminaChange = 25.f;
 
 	void onStateStart(const TMsgStateStart& msg);
 	void onStateFinish(const TMsgStateFinish& msg);
+	void onCreate(const TMsgEntityCreated& msg);
 
 	DECL_SIBLING_ACCESS();
 
@@ -76,8 +81,8 @@ public:
 	const bool groundTest(float dt);
 
 	/* Auxiliar functions */
-	void staminaTest(float dt);
-	void shadowRender(float dt);
+	void updateStamina(float dt);
+	void updateShader(float dt);
 	void resetState();
 
 	static void registerMsgs();

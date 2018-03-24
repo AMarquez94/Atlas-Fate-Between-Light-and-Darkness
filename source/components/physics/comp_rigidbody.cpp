@@ -55,6 +55,7 @@ void TCompRigidbody::update(float dt) {
 
 		physx::PxControllerCollisionFlags col = controller->move(velocity * dt, 0.f, dt, filters);
 		is_grounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN) ? true : false;
+		
 	} else if (is_gravity)
 	{
 		//TO-DO ADDFORCE ONLY.
@@ -108,7 +109,8 @@ void TCompRigidbody::onDestroy(const TMsgEntityDestroyed & msg)
 void TCompRigidbody::Resize(float new_size)
 {
 	//config->currentHeight = new_size;
-	controller->resize((physx::PxReal)new_size);
+	if(controller != NULL)
+		controller->resize((physx::PxReal)new_size);
 }
 
 void TCompRigidbody::SetUpVector(VEC3 new_up)

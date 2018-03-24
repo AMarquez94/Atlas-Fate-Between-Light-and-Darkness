@@ -4,52 +4,61 @@
 		{
 			"name" : "idle",
 			"type" : "AnimationState",
-			"animation" : "idle"
+			"animation" : "idle",
+			"speed" : 0,
+			"size" : 1
 		},
 		{
 			"name" : "idleAction",
 			"type" : "AnimationState",
-			"animation" : "idleAction"
+			"animation" : "idleAction",
+			"size" : 1
 		},
 		{
 			"name" : "walk",
 			"type" : "WalkState",
 			"animation" : "walk",
 			"speed" : 4,
-			"rotationSpeed": 10.0
+			"rotationSpeed": 10.0,
+			"size" : 1
 		},
 		{
 			"name" : "run",
 			"type" : "RunState",
 			"animation" : "run",
 			"speed" : 5.5,
-			"rotationSpeed": 10.0
+			"rotationSpeed": 10.0,
+			"size" : 1
 		},
 		{
 			"name" : "crouch",
 			"type" : "CrouchState",
 			"animation" : "crouch",
 			"speed" : 3,
-			"rotationSpeed": 5.0
+			"rotationSpeed": 5.0,
+			"size" : 0.25
 		},
 		{
 			"name" : "merge",
 			"type" : "MergeState",
 			"animation" : "merge",
-			"speed" : 4
+			"speed" : 4,
+			"size" : 0.15
 		},
 		{
 			"name" : "fall",
 			"type" : "FallState",
 			"animation" : "fall",
 			"speed" : 2,
-			"force" : 3
+			"force" : 3,
+			"size" : 1
 		},
 		{
 			"name" : "attack",
 			"type" : "AttackState",
 			"animation" : "attack",
-			"damage" : 10
+			"damage" : 10,
+			"size" : 1
 		}
 	],
 	"transitions" : [

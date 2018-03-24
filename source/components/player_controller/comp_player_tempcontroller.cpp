@@ -4,6 +4,8 @@
 #include "components/comp_fsm.h"
 #include "components/comp_render.h"
 #include "components/physics/comp_rigidbody.h"
+#include "components/physics/comp_collider.h"
+#include "physics/physics_collider.h"
 #include "components/player_controller/comp_shadow_controller.h"
 #include "render/mesh/mesh_loader.h"
 #include "windows/app.h"
@@ -65,49 +67,69 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_run", (CRenderMesh*)pj_run));
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_crouch", (CRenderMesh*)pj_crouch));
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_shadowmerge", (CRenderMesh*)pj_shadowmerge));
-
-	/* Variable initialization */
-	physx::PxFilterData pxShadowFilterData;
-	pxShadowFilterData.word1 = FilterGroup::Scenario;
-	shadowMergeFilter.data = pxShadowFilterData;
-
-	physx::PxFilterData pxPlayerFilterData;
-	pxPlayerFilterData.word1 = FilterGroup::Scenario;
-	playerFilter.data = pxPlayerFilterData;
-
-	isInhibited = isGrounded = isMerged = false;
 }
 
+/* Player controller main update */
 void TCompTempPlayerController::update(float dt) {
 
 	(this->*state)(dt);
 
 	// Methods that always must be running on background
 	isGrounded = groundTest(dt);
-	staminaTest(dt);
-	shadowRender(dt);
+	isMerged = onMergeTest(dt);
+	updateStamina(dt);
+	updateShader(dt);
 }
 
 void TCompTempPlayerController::registerMsgs() {
 
 	DECL_MSG(TCompTempPlayerController, TMsgStateStart, onStateStart);
 	DECL_MSG(TCompTempPlayerController, TMsgStateFinish, onStateFinish);
+	DECL_MSG(TCompTempPlayerController, TMsgEntityCreated, onCreate);
 }
 
+void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
+
+	/* Variable initialization */
+	TCompCollider * c_my_collider = get<TCompCollider>();
+
+	pxShadowFilterData = new physx::PxFilterData();
+	pxShadowFilterData->word0 = c_my_collider->config->group;
+	pxShadowFilterData->word1 = FilterGroup::Wall;
+
+	pxPlayerFilterData = new physx::PxFilterData();
+	pxPlayerFilterData->word0 = c_my_collider->config->group;
+	pxPlayerFilterData->word1 = FilterGroup::Scenario; // All
+
+	physx::PxFilterData pxFilterData;
+	pxFilterData.word1 = FilterGroup::Scenario;
+	PxPlayerDiscardQuery.data = pxFilterData;
+
+	isInhibited = isGrounded = isMerged = false;
+}
+
+/* Call this function once the state has been changed */
 void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg){
 
-	state = msg.action_start;
-	currentSpeed = msg.speed;
+	if (msg.action_start != NULL) {
 
-	/* Temp change of player mesh*/
-	TCompRender *c_my_render = get<TCompRender>();
-	c_my_render->meshes[0].mesh = mesh_states.find(msg.meshname)->second;
-	c_my_render->refreshMeshesInRenderManager();
+		state = msg.action_start;
+		currentSpeed = msg.speed;
 
-	// Get the target camera and set it as our new camera.
-	// Change the current state.
+		/* Temp change of player mesh*/
+		TCompRender *c_my_render = get<TCompRender>();
+		c_my_render->meshes[0].mesh = mesh_states.find(msg.meshname)->second;
+		c_my_render->refreshMeshesInRenderManager();
+
+		TCompRigidbody * rigidbody = get<TCompRigidbody>();
+		rigidbody->Resize(msg.size);
+
+		// Get the target camera and set it as our new camera.
+		// Change the current state.
+	}
 }
 
+/* Call this function once the state has finished */
 void TCompTempPlayerController::onStateFinish(const TMsgStateFinish& msg) {
 
 	(this->*msg.action_finish)();
@@ -168,7 +190,6 @@ void TCompTempPlayerController::mergeState(float dt) {
 
 	convexTest();
 	concaveTest();
-	isMerged = onMergeTest(dt);
 
 	// Player movement and rotation related method.
 	CEntity *player_camera = (CEntity *)getEntityByName("SMCameraHor");
@@ -222,7 +243,7 @@ const bool TCompTempPlayerController::concaveTest(void){
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * .01f;
 
-	if (EnginePhysics.Raycast(upwards_offset, c_my_transform->getFront(), 0.35f + .1f, hit, physx::PxQueryFlag::eSTATIC, playerFilter))
+	if (EnginePhysics.Raycast(upwards_offset, c_my_transform->getFront(), 0.35f + .1f, hit, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery))
 	{
 		VEC3 hit_normal = VEC3(hit.normal.x, hit.normal.y, hit.normal.z);
 		VEC3 hit_point = VEC3(hit.position.x, hit.position.y, hit.position.z);
@@ -258,7 +279,7 @@ const bool TCompTempPlayerController::convexTest(void){
 	VEC3 new_dir = c_my_transform->getUp() + c_my_transform->getFront();
 	new_dir.Normalize();
 
-	if (EnginePhysics.Raycast(upwards_offset, -new_dir, 0.65f, hit, physx::PxQueryFlag::eSTATIC, playerFilter))
+	if (EnginePhysics.Raycast(upwards_offset, -new_dir, 0.65f, hit, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery))
 	{
 		VEC3 hit_normal = VEC3(hit.normal.x, hit.normal.y, hit.normal.z);
 		VEC3 hit_point = VEC3(hit.position.x, hit.position.y, hit.position.z);
@@ -286,18 +307,38 @@ const bool TCompTempPlayerController::convexTest(void){
 /* Bitshifting test to determine if we are merged within the shadows */
 const bool TCompTempPlayerController::onMergeTest(float dt){
 
+	TCompRigidbody *c_my_rigidbody = get<TCompRigidbody>();
 	TCompShadowController * shadow_oracle = get<TCompShadowController>();
 
-	if (isMerged != shadow_oracle->is_shadow) {
+	// Tests: inShadows + minStamina + grounded + button hold -> sent to fsm
+	bool mergeTest = true;
+	mergeTest &= shadow_oracle->is_shadow;
+	mergeTest &= stamina > minStamina;
+	mergeTest &= isGrounded;
+	mergeTest &= EngineInput["btShadowMerging"].isPressed();
+
+	// Minimum stamina condition
+	if (isMerged == false)
+		mergeTest &= stamina > minStaminaChange;
+
+	if (mergeTest != isMerged) {
 
 		TMsgSetFSMVariable groundMsg;
 		groundMsg.variant.setName("onmerge");
-		groundMsg.variant.setBool(shadow_oracle->is_shadow);
+		groundMsg.variant.setBool(mergeTest);
 		CEntity* e = CHandle(this).getOwner();
 		e->sendMsg(groundMsg);
+
+		c_my_rigidbody->filters.mFilterData = isMerged == true ? pxShadowFilterData : pxPlayerFilterData;
 	}
 
-	return shadow_oracle->is_shadow;
+	// Check the falling shadow merge
+
+	if (mergeTest & true) {
+		// shadow fall
+	}
+
+	return mergeTest;
 }
 
 /* Players logic depending on ground state */
@@ -314,11 +355,14 @@ const bool TCompTempPlayerController::groundTest(float dt) {
 		e->sendMsg(groundMsg);
 	}
 
+	// Get distance to ground
+	// Compute falling time
+
 	return c_my_collider->is_grounded;
 }
 
 /* Sets the player current stamina depending on player status */
-void TCompTempPlayerController::staminaTest(float dt) {
+void TCompTempPlayerController::updateStamina(float dt) {
 
 	if (isMerged) {
 
@@ -340,6 +384,18 @@ void TCompTempPlayerController::staminaTest(float dt) {
 	}
 }
 
+/* Temporal function to determine our player shadow color, set this to a shader change..*/
+void TCompTempPlayerController::updateShader(float dt) {
+
+	TCompRender *c_my_render = get<TCompRender>();
+	TCompShadowController * shadow_oracle = get<TCompShadowController>();
+
+	if (c_my_render->color == VEC4(1, 1, 1, 1) || c_my_render->color == VEC4(0, .8f, 1, 1)) {
+		if (shadow_oracle->is_shadow) c_my_render->color = Color(0, .8f, 1);
+		else c_my_render->color = Color(1, 1, 1);
+	}
+}
+
 /* Resets the player to it's default state parameters */
 void TCompTempPlayerController::resetState(){
 
@@ -358,16 +414,4 @@ void TCompTempPlayerController::resetState(){
 
 	QUAT new_rotation = createLookAt(c_my_transform->getPosition(), new_front, -EnginePhysics.gravity);
 	c_my_transform->setRotation(new_rotation);
-}
-
-/* Temporal function to determine our player shadow color, set this to a shader change..*/
-void TCompTempPlayerController::shadowRender(float dt) {
-
-	TCompRender *c_my_render = get<TCompRender>();
-	TCompShadowController * shadow_oracle = get<TCompShadowController>();
-
-	if (c_my_render->color == VEC4(1, 1, 1, 1) || c_my_render->color == VEC4(0, .8f, 1, 1)) {
-		if (shadow_oracle->is_shadow) c_my_render->color = Color(0, .8f, 1);
-		else c_my_render->color = Color(1, 1, 1);
-	}
 }

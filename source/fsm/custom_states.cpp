@@ -16,7 +16,8 @@ namespace FSM
 	bool AnimationState::load(const json& jData){
 
 		_animationName = jData["animation"];
-
+		_speed = jData.value("speed", 4.f);
+		_size = jData.value("size", 1.f);
 		return true;
 	}
 
@@ -25,7 +26,7 @@ namespace FSM
 		//CEntity* e = ctx.getOwner();
 		//e->sendMsg(TMsgAnimation{ _animationName });
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_idle" });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_idle", _speed, _size });
 	}
 
 	void AnimationState::onFinish(CContext& ctx) const {
@@ -36,6 +37,7 @@ namespace FSM
 
 		_animationName = jData["animation"];
 		_speed = jData.value("speed", 4.f);
+		_size = jData.value("size", 1.f);
 		_rotation_speed = jData.value("rotationSpeed", 10.f);
 
 		return true;
@@ -48,7 +50,7 @@ namespace FSM
 		//e->sendMsg(TMsgAnimation{ "walk" });
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_walk", _speed });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_walk", _speed, _size });
 	}
 
 	void WalkState::onFinish(CContext& ctx) const {
@@ -59,6 +61,7 @@ namespace FSM
 
 		_animationName = jData["animation"];
 		_speed = jData.value("speed", 5.5f);
+		_size = jData.value("size", 1.f);
 		_rotation_speed = jData.value("rotationSpeed", 10.f);
 
 		return true;
@@ -71,7 +74,7 @@ namespace FSM
 		//e->sendMsg(TMsgAnimation{ "run" });
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_run", _speed });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_run", _speed, _size });
 	}
 
 	void RunState::onFinish(CContext& ctx) const {
@@ -82,6 +85,7 @@ namespace FSM
 
 		_force = jData.value("force", 1.f);
 		_speed = jData.value("speed", 3.f);
+		_size = jData.value("size", 1.f);
 		_animationName = jData["animation"];
 		return true;
 	}
@@ -94,7 +98,7 @@ namespace FSM
 		//e->sendMsg(TMsgAnimation{ "fall" });
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_fall", _speed });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_fall", _speed, _size });
 	}
 
 	void FallState::onFinish(CContext& ctx) const {
@@ -106,6 +110,7 @@ namespace FSM
 
 		_animationName = jData["animation"];
 		_speed = jData.value("speed", 3.f);
+		_size = jData.value("size", 1.f);
 		_rotation_speed = jData.value("rotationSpeed", 10.f);
 
 		return true;
@@ -118,7 +123,7 @@ namespace FSM
 		//CEntity* e = ctx.getOwner();
 		//e->sendMsg(TMsgAnimation{ "crouch" });
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_crouch", _speed });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_crouch", _speed, _size });
 	}
 
 	void CrouchState::onFinish(CContext& ctx) const {
@@ -129,6 +134,7 @@ namespace FSM
 
 		_animationName = jData["animation"];
 		_speed = jData.value("speed", 3.f);
+		_size = jData.value("size", 1.f);
 
 		return true;
 	}
@@ -141,7 +147,7 @@ namespace FSM
 		//e->sendMsg(TMsgAnimation{ "crouch" });
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::mergeState, "pj_shadowmerge", _speed });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::mergeState, "pj_shadowmerge", _speed, _size });
 	}
 
 	void MergeState::onFinish(CContext& ctx) const {
@@ -154,13 +160,14 @@ namespace FSM
 
 		_animationName = jData["animation"];
 		_speed = jData.value("speed", 2.f);
+		_size = jData.value("size", 1.f);
 		return true;
 	}
 
 	void AttackState::onStart(CContext& ctx) const {
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_attack", _speed });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_attack", _speed, _size });
 	}
 	void AttackState::onFinish(CContext& ctx) const {
 

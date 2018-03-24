@@ -27,7 +27,6 @@ void TCompPlayerInput::update(float dt)
 								+ EngineInput["btUp"].value + EngineInput["btDown"].value);
 
 			walkMsg.variant.setFloat(total_value);
-			dbg("total value %f\n", total_value);
 			e->sendMsg(walkMsg);
 		}
 
@@ -57,10 +56,10 @@ void TCompPlayerInput::update(float dt)
 	{
 		if (EngineInput["btShadowMerging"].hasChanged())
 		{
-			TMsgSetFSMVariable shadowMerge;
-			shadowMerge.variant.setName("onmerge");
-			shadowMerge.variant.setBool(EngineInput["btShadowMerging"].isPressed());
-			e->sendMsg(shadowMerge);
+			//TMsgSetFSMVariable shadowMerge;
+			//shadowMerge.variant.setName("onmerge");
+			//shadowMerge.variant.setBool(EngineInput["btShadowMerging"].isPressed());
+			//e->sendMsg(shadowMerge);
 		}
 	}
 
