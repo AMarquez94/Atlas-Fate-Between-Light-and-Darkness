@@ -23,7 +23,7 @@
 			"shadow_controller": {
 			},
 				"fsm" : {
-				"file" : "data/fsm/test.fsm"
+				"file" : "data/fsm/player.fsm"
 			},
 			"player_input" : {},
 			"player_animator" : {},

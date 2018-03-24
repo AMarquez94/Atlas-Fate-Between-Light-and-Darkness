@@ -37,15 +37,19 @@ class TCompTempPlayerController : public TCompBase
 
 	float currentSpeed = 4.f;
 	float rotationSpeed = 10.f;
+	float mergeAngle = 0.45f;
 
+	/* Stamina private variables */
 	float stamina = 100.f;
-	float minStamina = 100.f;
-	float maxStamina = 100.f;
-	float increaseStamina = 15.f;
+	const float minStamina = 0.f;
+	const float maxStamina = 100.f;
+	const float incrStamina = 15.f;
+	const float decrStaticStamina = 0.75f;
+	const float decrStaminaHorizontal = 12.5f;
+	const float decrStaminaVertical = 17.5f;
 
 	void onStateStart(const TMsgStateStart& msg);
 	void onStateFinish(const TMsgStateFinish& msg);
-	//void onPlayerShadows(const TMsgShadowState & msg);
 
 	DECL_SIBLING_ACCESS();
 
@@ -53,6 +57,7 @@ public:
 
 	bool isMerged;
 	bool isGrounded;
+	bool isInhibited;
 
 	void debugInMenu();
 	void renderDebug();

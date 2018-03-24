@@ -37,7 +37,7 @@ void TCompTempPlayerController::renderDebug() {
 		ImGui::Text("Stamina:");
 		ImGui::SetCursorPos(ImVec2(CApp::get().xres * 0.05f + 25, CApp::get().yres * 0.05f));
 		ImGui::ProgressBar(stamina / maxStamina, ImVec2(CApp::get().xres / 5.f, CApp::get().yres / 30.f));
-
+		ImGui::Text("is merged %d", isMerged);
 	}
 
 	ImGui::End();
@@ -66,6 +66,7 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_crouch", (CRenderMesh*)pj_crouch));
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_shadowmerge", (CRenderMesh*)pj_shadowmerge));
 
+	/* Variable initialization */
 	physx::PxFilterData pxShadowFilterData;
 	pxShadowFilterData.word1 = FilterGroup::Scenario;
 	shadowMergeFilter.data = pxShadowFilterData;
@@ -73,6 +74,8 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	physx::PxFilterData pxPlayerFilterData;
 	pxPlayerFilterData.word1 = FilterGroup::Scenario;
 	playerFilter.data = pxPlayerFilterData;
+
+	isInhibited = isGrounded = isMerged = false;
 }
 
 void TCompTempPlayerController::update(float dt) {
@@ -110,6 +113,7 @@ void TCompTempPlayerController::onStateFinish(const TMsgStateFinish& msg) {
 	(this->*msg.action_finish)();
 }
 
+/* Idle state method, no logic yet */
 void TCompTempPlayerController::idleState(float dt){
 
 }
@@ -159,6 +163,7 @@ void TCompTempPlayerController::walkState(float dt){
 	c_my_transform->setPosition(c_my_transform->getPosition() + dir * player_accel);
 }
 
+/* Player motion movement when is shadow merged, tests included */
 void TCompTempPlayerController::mergeState(float dt) {
 
 	convexTest();
@@ -209,6 +214,7 @@ void TCompTempPlayerController::mergeState(float dt) {
 	c_my_transform->setPosition(new_pos);
 }
 
+/* Concave test, this determines if there is a surface normal change on concave angles */
 const bool TCompTempPlayerController::concaveTest(void){
 
 	physx::PxRaycastHit hit;
@@ -242,6 +248,7 @@ const bool TCompTempPlayerController::concaveTest(void){
 	return false;
 }
 
+/* Convex test, this determines if there is a surface normal change on convex angles */
 const bool TCompTempPlayerController::convexTest(void){
 
 	physx::PxRaycastHit hit;
@@ -276,6 +283,7 @@ const bool TCompTempPlayerController::convexTest(void){
 	return false;
 }
 
+/* Bitshifting test to determine if we are merged within the shadows */
 const bool TCompTempPlayerController::onMergeTest(float dt){
 
 	TCompShadowController * shadow_oracle = get<TCompShadowController>();
@@ -292,6 +300,7 @@ const bool TCompTempPlayerController::onMergeTest(float dt){
 	return shadow_oracle->is_shadow;
 }
 
+/* Players logic depending on ground state */
 const bool TCompTempPlayerController::groundTest(float dt) {
 
 	TCompRigidbody *c_my_collider = get<TCompRigidbody>();
@@ -308,18 +317,30 @@ const bool TCompTempPlayerController::groundTest(float dt) {
 	return c_my_collider->is_grounded;
 }
 
+/* Sets the player current stamina depending on player status */
 void TCompTempPlayerController::staminaTest(float dt) {
 
 	if (isMerged) {
 
-		// Determine stamina decreasing ratio depending on players up vector.
+		// Determine stamina decreasing ratio multiplier depending on movement
+		TCompRigidbody *c_my_rigidbody = get<TCompRigidbody>();
+		TCompTransform *c_my_transform = get<TCompTransform>();
+		float staminaMultiplier = c_my_rigidbody->lastFramePosition == c_my_transform->getPosition() ? decrStaticStamina : 1;
 
+		// Determine stamina decreasing ratio depending on players up vector.
+		if (fabs(EnginePhysics.gravity.Dot(c_my_rigidbody->GetUpVector())) < mergeAngle) {
+			stamina = Clamp(stamina - (decrStaminaVertical * staminaMultiplier * dt), minStamina, maxStamina);
+		}
+		else {
+			stamina = Clamp(stamina - (decrStaminaHorizontal * staminaMultiplier * dt), minStamina, maxStamina);
+		}
 	}
 	else {
-		stamina = Clamp<float>(stamina + (increaseStamina * dt), minStamina, maxStamina);
+		stamina = Clamp(stamina + (incrStamina * dt), minStamina, maxStamina);
 	}
 }
 
+/* Resets the player to it's default state parameters */
 void TCompTempPlayerController::resetState(){
 
 	CEntity *player_camera = (CEntity *)getEntityByName("TPCamera");
