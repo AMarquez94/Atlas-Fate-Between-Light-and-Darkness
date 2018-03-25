@@ -15,8 +15,6 @@ struct TMsgStateStart {
 	float speed;
 	float size;
 
-	//TMsgSetFSMVariable message_start;
-
 	DECL_MSG_ID();
 };
 
@@ -25,8 +23,6 @@ struct TMsgStateFinish {
 	actionfinish action_finish;
 	std::string meshname;
 	float speed;
-
-	//TMsgSetFSMVariable message_finish;
 
 	DECL_MSG_ID();
 };
@@ -47,8 +43,11 @@ class TCompTempPlayerController : public TCompBase
 	float currentSpeed = 4.f;
 	float rotationSpeed = 10.f;
 	float fallingTime = 0.f;
+	float maxFallingTime = 0.8f;
 	float fallingDistance = 0.f;
-	float maxFallingDistance = 12.f;
+	float maxFallingDistance = 1.5f;
+	float maxAttackDistance = 1.f;
+	unsigned int initialPoints = 5.f;
 
 	/* Stamina private variables */
 	float stamina = 100.f;
@@ -60,9 +59,14 @@ class TCompTempPlayerController : public TCompBase
 	const float decrStaminaVertical = 17.5f;
 	const float minStaminaChange = 15.f;
 
+	void onCreate(const TMsgEntityCreated& msg);
 	void onStateStart(const TMsgStateStart& msg);
 	void onStateFinish(const TMsgStateFinish& msg);
-	void onCreate(const TMsgEntityCreated& msg);
+
+	void onPlayerHit(const TMsgPlayerHit& msg);
+	void onPlayerKilled(const TMsgPlayerDead& msg);
+	void onPlayerLocate(const TMsgInhibitorShot& msg);
+	void onPlayerExpose(const TMsgPlayerIlluminated& msg);
 
 	DECL_SIBLING_ACCESS();
 
@@ -71,6 +75,7 @@ public:
 	bool isMerged;
 	bool isGrounded;
 	bool isInhibited;
+	unsigned int hitPoints;
 
 	void debugInMenu();
 	void renderDebug();
@@ -82,7 +87,7 @@ public:
 	void idleState(float dt);
 	void deadState(float dt);
 	void mergeState(float dt);
-	void resetState();
+	void attackState(float dt);
 
 	/* Player condition tests */
 	const bool concaveTest(void);
@@ -93,6 +98,9 @@ public:
 	/* Auxiliar functions */
 	void updateStamina(float dt);
 	void updateShader(float dt);
+	void resetState();
+	void mergeEnemy();
+	CHandle closeEnemy();
 
 	static void registerMsgs();
 };

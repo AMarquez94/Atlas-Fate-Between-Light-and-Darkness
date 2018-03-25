@@ -68,7 +68,6 @@ void CPhysicsCollider::createDynamic(physx::PxShape* actor_shape, TCompTransform
 	physx::PxTransform transform(physx::PxVec3(pos.x, pos.y, pos.z), physx::PxQuat(quat.x, quat.y, quat.z, quat.w));
 	physx::PxRigidDynamic* rigid_actor = gPhysics->createRigidDynamic(transform);
 	physx::PxRigidBodyExt::updateMassAndInertia(*rigid_actor, 10.0f);
-
 	actor = rigid_actor;
 	actor->attachShape(*actor_shape);
 	actor_shape->release();
@@ -197,7 +196,7 @@ physx::PxShape* CPhysicsCapsule::createShape() {
 
 physx::PxController* CPhysicsCapsule::createController(TCompTransform * c_transform) {
 
-	material = EnginePhysics.getPhysxFactory()->createMaterial(0.1f, 0.1f, 0.1f);
+	material = EnginePhysics.getPhysxFactory()->createMaterial(0.6f, 0.4f, 0.1f);
 	physx::PxControllerDesc* cDesc;
 	physx::PxCapsuleControllerDesc capsuleDesc;
 	physx::PxControllerManager * gManager = EnginePhysics.getPhysxController();
@@ -205,6 +204,7 @@ physx::PxController* CPhysicsCapsule::createController(TCompTransform * c_transf
 	capsuleDesc.height = height;
 	capsuleDesc.radius = radius;
 	capsuleDesc.climbingMode = physx::PxCapsuleClimbingMode::eCONSTRAINED;
+	capsuleDesc.scaleCoeff = 1.0f;
 	cDesc = &capsuleDesc;
 	cDesc->material = material;
 	cDesc->contactOffset = contact_offset;

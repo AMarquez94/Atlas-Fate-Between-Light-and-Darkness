@@ -5,6 +5,7 @@
 #include "physics/physics_collider.h"
 
 DECL_OBJ_MANAGER("rigidbody", TCompRigidbody);
+bool temp_ground = true;
 
 TCompRigidbody::~TCompRigidbody() {
 
@@ -54,9 +55,13 @@ void TCompRigidbody::update(float dt) {
 	if (is_controller) {
 
 		physx::PxControllerCollisionFlags col = controller->move(velocity * dt, 0.f, dt, filters);
-		is_grounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN) ? true : false;
-		
-	}
+		is_grounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN) ? true : false; //ask roger
+		//if (grounded == temp_ground) 
+		//	is_grounded = grounded;
+
+		//temp_ground = grounded;
+		//dbg("total ground %d\n", is_grounded);
+	} 
 }
 
 /* Collider/Trigger messages */

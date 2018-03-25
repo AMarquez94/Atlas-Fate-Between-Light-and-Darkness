@@ -3,6 +3,7 @@
 #include "components/comp_fsm.h"
 #include "components/comp_tags.h"
 #include "components/comp_render.h"
+#include "components/ia/ai_patrol.h"
 #include "components/comp_transform.h"
 #include "components/physics/comp_rigidbody.h"
 #include "components/physics/comp_collider.h"
@@ -106,7 +107,9 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 	pxFilterData.word1 = FilterGroup::Scenario;
 	PxPlayerDiscardQuery.data = pxFilterData;
 
+	/* Initial reset messages */
 	isInhibited = isGrounded = isMerged = false;
+	hitPoints = 0;
 }
 
 /* Call this function once the state has been changed */
@@ -134,6 +137,38 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg){
 void TCompTempPlayerController::onStateFinish(const TMsgStateFinish& msg) {
 
 	(this->*msg.action_finish)();
+}
+
+void TCompTempPlayerController::onPlayerHit(const TMsgPlayerHit & msg)
+{
+	CEntity* e = CHandle(this).getOwner();
+	TMsgSetFSMVariable groundMsg;
+	groundMsg.variant.setName("onDead");
+	groundMsg.variant.setBool(true);
+	e->sendMsg(groundMsg);
+}
+
+void TCompTempPlayerController::onPlayerKilled(const TMsgPlayerDead & msg)
+{
+	CEntity* e = CHandle(this).getOwner();
+	TMsgSetFSMVariable groundMsg;
+	groundMsg.variant.setName("onDead");
+	groundMsg.variant.setBool(true);
+	e->sendMsg(groundMsg);
+}
+
+void TCompTempPlayerController::onPlayerLocate(const TMsgInhibitorShot & msg)
+{
+	isInhibited = true;
+}
+
+void TCompTempPlayerController::onPlayerExpose(const TMsgPlayerIlluminated & msg)
+{
+	CEntity* e = CHandle(this).getOwner();
+	TMsgSetFSMVariable groundMsg;
+	groundMsg.variant.setName("onmerge");
+	groundMsg.variant.setBool(false); // & isGrounded
+	e->sendMsg(groundMsg);
 }
 
 /* Idle state method, no logic yet */
@@ -237,6 +272,66 @@ void TCompTempPlayerController::mergeState(float dt) {
 	c_my_transform->setPosition(new_pos);
 }
 
+/* Resets the player to it's default state parameters */
+void TCompTempPlayerController::resetState() {
+
+	CEntity *player_camera = (CEntity *)getEntityByName("TPCamera");
+	TCompRigidbody *rigidbody = get<TCompRigidbody>();
+	TCompTransform *c_my_transform = get<TCompTransform>();
+	TCompTransform * trans_camera = player_camera->get<TCompTransform>();
+
+	VEC3 dir = VEC3::Zero;
+	VEC3 up = trans_camera->getUp();
+	VEC3 proj = projectVector(up, -EnginePhysics.gravity);
+	proj.Normalize();
+
+	if (EngineInput["btUp"].isPressed() && EngineInput["btUp"].value > 0) {
+		dir += fabs(EngineInput["btUp"].value) * proj;
+	}
+	else if (EngineInput["btDown"].isPressed()) {
+		dir += fabs(EngineInput["btDown"].value) * -proj;
+	}
+	if (EngineInput["btRight"].isPressed() && EngineInput["btRight"].value > 0) {
+		dir += fabs(EngineInput["btRight"].value) * EnginePhysics.gravity.Cross(proj);
+	}
+	else if (EngineInput["btLeft"].isPressed()) {
+		dir += fabs(EngineInput["btLeft"].value) * -EnginePhysics.gravity.Cross(proj);
+	}
+	dir.Normalize();
+
+	// Set collider gravity settings
+	rigidbody->SetUpVector(-EnginePhysics.gravity);
+	rigidbody->normal_gravity = EnginePhysics.gravityMod * EnginePhysics.gravity;
+
+	if (dir != VEC3::Zero)
+	{
+		VEC3 new_pos = c_my_transform->getPosition() - dir;
+		Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), new_pos, -EnginePhysics.gravity).Transpose();
+		Quaternion quat = Quaternion::CreateFromRotationMatrix(test);
+		c_my_transform->setRotation(quat);
+	}
+}
+
+/* Player dead state */
+void TCompTempPlayerController::deadState(float dt)
+{
+	TMsgPlayerDead newMsg;
+	newMsg.h_sender = CHandle(this).getOwner();
+	auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+	for (auto h : handles) {
+		CEntity* enemy = h;
+		enemy->sendMsg(newMsg);
+	}
+
+	TCompTransform *mypos = get<TCompTransform>();
+	float y, p, r;
+	mypos->getYawPitchRoll(&y, &p, &r);
+	p = p + deg2rad(89.9f);
+	mypos->setYawPitchRoll(y, p, r);
+
+	state = (actionhandler)&TCompTempPlayerController::idleState;
+}
+
 /* Concave test, this determines if there is a surface normal change on concave angles */
 const bool TCompTempPlayerController::concaveTest(void){
 
@@ -316,30 +411,37 @@ const bool TCompTempPlayerController::onMergeTest(float dt){
 	// Tests: inShadows + minStamina + grounded + button hold -> sent to fsm
 	bool mergeTest = true;
 	bool mergefall = fallingDistance > 0 && fallingDistance < maxFallingDistance;
-
 	mergeTest &= shadow_oracle->is_shadow;
 	mergeTest &= stamina > minStamina;
+	//mergeTest &= !isMerged && stamina > minStaminaChange ? true : false;
+
 	// Minimum stamina condition
 	if (isMerged == false)
 		mergeTest &= stamina > minStaminaChange;
 
-	//mergeTest &= !isMerged && stamina > minStaminaChange ? true : false;
-	//// Check the falling shadow merge
+	// Check the falling shadow merge
 	if (mergeTest && mergefall && !isGrounded) {
+
+		bool isPressed = EngineInput["btShadowMerging"].isPressed();
 		TMsgSetFSMVariable onFallMsg;
 		onFallMsg.variant.setName("onFallMerge");
-		onFallMsg.variant.setBool(mergefall && EngineInput["btShadowMerging"].isPressed());
+		onFallMsg.variant.setBool(mergefall & isPressed);
 		e->sendMsg(onFallMsg);
+
+		TMsgSetFSMVariable groundMsg;
+		groundMsg.variant.setName("onmerge");
+		groundMsg.variant.setBool(mergeTest & isPressed); // & isGrounded
+		e->sendMsg(groundMsg);
 	}
 
 	mergeTest &= EngineInput["btShadowMerging"].isPressed();
-	//mergeTest &= !isInhibited;
+	mergeTest &= !isInhibited;
 
 	if (mergeTest != isMerged) {
 
 		TMsgSetFSMVariable groundMsg;
 		groundMsg.variant.setName("onmerge");
-		groundMsg.variant.setBool(mergeTest & isGrounded);
+		groundMsg.variant.setBool(mergeTest & isGrounded); // & isGrounded
 		e->sendMsg(groundMsg);
 
 		TMsgSetFSMVariable onFallMsg;
@@ -360,24 +462,32 @@ const bool TCompTempPlayerController::groundTest(float dt) {
 
 	if (isGrounded != c_my_collider->is_grounded) {
 
+		CEntity* e = CHandle(this).getOwner();
+
 		TMsgSetFSMVariable groundMsg;
 		groundMsg.variant.setName("onGround");
 		groundMsg.variant.setBool(c_my_collider->is_grounded);
-		CEntity* e = CHandle(this).getOwner();
 		e->sendMsg(groundMsg);
 
-		// Determine if it's a dead falling state depending on time falling.
+		TMsgSetFSMVariable falldead;
+		falldead.variant.setName("onFallDead");
+		falldead.variant.setBool(fallingTime > maxFallingTime);
+		e->sendMsg(falldead);
+
+		dbg("falling time %f\n", fallingTime);
+		fallingTime = 0.f;
 	}
 
 	// Get distance to ground
 	// Compute falling time
 	if (!isGrounded) {
 
+		fallingTime += dt;
+
 		physx::PxRaycastHit hit;
 		TCompTransform *c_my_transform = get<TCompTransform>();
 		if (EnginePhysics.Raycast(c_my_transform->getPosition(), -c_my_transform->getUp(), 1000, hit, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery)) {
 			fallingDistance = hit.distance;
-			dbg("fallingDistance %f", fallingDistance);
 		}
 	}
 
@@ -419,60 +529,50 @@ void TCompTempPlayerController::updateShader(float dt) {
 	}
 }
 
-/* Resets the player to it's default state parameters */
-void TCompTempPlayerController::resetState(){
+/* Attack state, kills the closest enemy if true*/
+void TCompTempPlayerController::attackState(float dt) {
 
-	CEntity *player_camera = (CEntity *)getEntityByName("TPCamera");
-	TCompRigidbody *rigidbody = get<TCompRigidbody>();
-	TCompTransform *c_my_transform = get<TCompTransform>();
-	TCompTransform * trans_camera = player_camera->get<TCompTransform>();
+	CHandle enemy = closeEnemy();
 
-	VEC3 dir = VEC3::Zero;
-	VEC3 up = trans_camera->getUp();
-	VEC3 normal_norm = rigidbody->normal_gravity;
-	normal_norm.Normalize();
-	VEC3 proj = projectVector(up, normal_norm);
-
-	if (EngineInput["btUp"].isPressed() && EngineInput["btUp"].value > 0) {
-		dir += fabs(EngineInput["btUp"].value) * proj;
-	}
-	else if (EngineInput["btDown"].isPressed()) {
-		dir += fabs(EngineInput["btDown"].value) * -proj;
-	}
-	if (EngineInput["btRight"].isPressed() && EngineInput["btRight"].value > 0) {
-		dir += fabs(EngineInput["btRight"].value) * normal_norm.Cross(proj);
-	}
-	else if (EngineInput["btLeft"].isPressed()) {
-		dir += fabs(EngineInput["btLeft"].value) * -normal_norm.Cross(proj);
-	}
-	dir.Normalize();
-
-	// Set collider gravity settings
-	rigidbody->SetUpVector(-EnginePhysics.gravity);
-	rigidbody->normal_gravity = EnginePhysics.gravityMod * EnginePhysics.gravity;
-
-	if (dir != VEC3::Zero)
-	{
-		VEC3 new_pos = c_my_transform->getPosition() - dir;
-		Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), new_pos, c_my_transform->getUp()).Transpose();
-		Quaternion quat = Quaternion::CreateFromRotationMatrix(test);
-		c_my_transform->setRotation(quat);
+	if (enemy.isValid()) {
+		TMsgPatrolStunned msg;
+		msg.h_sender = CHandle(this).getOwner();
+		enemy.sendMsg(msg);
 	}
 }
 
-void TCompTempPlayerController::deadState(float dt)
-{
-	TMsgPlayerDead newMsg;
-	newMsg.h_sender = CHandle(this).getOwner();
+/* Attack state, kills the closest enemy if true*/
+void TCompTempPlayerController::mergeEnemy() {
+
+	CHandle enemy = closeEnemy();
+
+	if (enemy.isValid()) {
+		TMsgPatrolShadowMerged msg;
+		msg.h_sender = CHandle(this).getOwner();
+		msg.h_objective = enemy;
+		enemy.sendMsg(msg);
+	}
+}
+
+CHandle TCompTempPlayerController::closeEnemy() {
+
 	auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
-	for (auto h : handles) {
-		CEntity* enemy = h;
-		enemy->sendMsg(newMsg);
+
+	for (unsigned int i = 0; i < handles.size(); i++) {
+		if (!handles[i].isValid()) continue;
+
+		TCompTransform * mypos = get<TCompTransform>();
+		TCompTransform * epos = ((CEntity*)handles[i])->get<TCompTransform>();
+		if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < maxAttackDistance
+			&& !epos->isInFront(mypos->getPosition())) {
+
+			CAIPatrol * aipatrol = ((CEntity*)handles[i])->get<CAIPatrol>();
+			if (aipatrol->getStateName().compare("stunned") != 0) {
+				return handles[i];
+
+			}
+		}
 	}
 
-	TCompTransform *mypos = get<TCompTransform>();
-	float y, p, r;
-	mypos->getYawPitchRoll(&y, &p, &r);
-	p = p + deg2rad(89.9f);
-	mypos->setYawPitchRoll(y, p, r);
+	return CHandle();
 }

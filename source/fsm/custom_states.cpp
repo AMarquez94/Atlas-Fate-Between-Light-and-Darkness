@@ -150,8 +150,8 @@ namespace FSM
 
 	void EnterMergeState::onFinish(CContext& ctx) const {
 
-		//CEntity* e = ctx.getOwner();
-		//e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::resetState });
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::mergeEnemy });
 	}
 
 	bool MergeState::load(const json& jData) {
@@ -241,6 +241,24 @@ namespace FSM
 		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_attack", _speed, _size });
 	}
 	void AttackState::onFinish(CContext& ctx) const {
+
+	}
+
+
+	bool DeadState::load(const json& jData) {
+
+		_animationName = jData["animation"];
+		_speed = jData.value("speed", 2.f);
+		_size = jData.value("size", 1.f);
+		return true;
+	}
+
+	void DeadState::onStart(CContext& ctx) const {
+
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::deadState, "pj_fall", _speed, _size });
+	}
+	void DeadState::onFinish(CContext& ctx) const {
 
 	}
 

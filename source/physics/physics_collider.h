@@ -22,7 +22,7 @@ public:
 	physx::PxU32 group;
 	physx::PxU32 mask;
 	physx::PxVec3 center = physx::PxVec3(); // move this...
-	physx::PxF32 contact_offset = 0.01f;
+	physx::PxF32 contact_offset = 0.001f;
 
 	virtual physx::PxShape* createShape() = 0;
 	virtual void load(const json& j, TEntityParseContext& ctx) = 0;

@@ -61,7 +61,7 @@ bool CModulePhysics::start()
 		pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_SCENEQUERIES, true);
 	}
 
-	CPhysicsCollider::default_material = gPhysics->createMaterial(0.5f, 0.5f, 0.1f);
+	CPhysicsCollider::default_material = gPhysics->createMaterial(0.5f, 0.5f, 0.6f);
 	mControllerManager = PxCreateControllerManager(*gScene);
 	gScene->setSimulationEventCallback(&customSimulationEventCallback);
 	PxInitExtensions(*gPhysics, gPvd);

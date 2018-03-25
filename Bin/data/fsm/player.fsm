@@ -80,6 +80,13 @@
 			"animation" : "attack",
 			"damage" : 10,
 			"size" : 1
+		},
+		{
+			"name" : "dead",
+			"type" : "DeadState",
+			"animation" : "dead",
+			"damage" : 10,
+			"size" : 1
 		}
 	],
 	"transitions" : [
@@ -216,7 +223,7 @@
 		{
 			"type" : "TimeTransition",
 			"source" : "exitmerge",
-			"target" : "idle",
+			"target" : "walk",
 			"time" : 0.1
 		},
 		{
@@ -265,6 +272,16 @@
 			"target" : "landmerge",
 			"variable" : {
 				"name" : "onFallMerge",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "idle",
+			"target" : "dead",
+			"variable" : {
+				"name" : "onFallDead",
 				"type" : "bool",
 				"value" : true
 			}
@@ -349,7 +366,12 @@
 			"value" : false
 		},
 		{
-			"name" : "ondead",
+			"name" : "onFallDead",
+			"type" : "bool",
+			"value" : false
+		},
+		{
+			"name" : "onDead",
 			"type" : "bool",
 			"value" : false
 		}
