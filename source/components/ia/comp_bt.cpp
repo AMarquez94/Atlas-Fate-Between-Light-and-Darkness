@@ -144,7 +144,7 @@ void TCompIAController::loadTree(const json & j)
 	BTAction actionNode = nullptr;
 	BTCondition conditionNode = nullptr, assertNode = nullptr;
 
-	assert(j.count("createRoot") == 1);
+	//assert(j.count("createRoot") == 1);
 	if (j.count("createRoot") == 1) {
 		auto& j_root = j["createRoot"];
 		assert(j_root.count("rootName") == 1);
