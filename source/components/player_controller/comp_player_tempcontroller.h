@@ -100,7 +100,7 @@ public:
 	void updateShader(float dt);
 	void resetState();
 	void mergeEnemy();
-	CHandle closeEnemy();
+	CHandle closeEnemy(const std::string & state = "undefined");
 
 	static void registerMsgs();
 };

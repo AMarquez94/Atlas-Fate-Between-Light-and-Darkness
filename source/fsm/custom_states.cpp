@@ -93,9 +93,6 @@ namespace FSM
 	void FallState::onStart(CContext& ctx) const {
 
 		// Send a message to the player controller
-		//CEntity* e = ctx.getOwner();
-		//e->sendMsg(TMsgAnimation{ "fall" });
-
 		CEntity* e = ctx.getOwner();
 		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_fall", _speed, _size });
 	}
@@ -177,6 +174,7 @@ namespace FSM
 
 		CEntity* e = ctx.getOwner();
 		e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::resetState });
+		dbg("reset stated\n");
 	}
 
 	bool ExitMergeState::load(const json& jData) {
@@ -244,6 +242,23 @@ namespace FSM
 
 	}
 
+	bool RemoveInhibitor::load(const json& jData) {
+
+		_animationName = jData["animation"];
+		_speed = jData.value("speed", 2.f);
+		_size = jData.value("size", 1.f);
+		return true;
+	}
+
+	void RemoveInhibitor::onStart(CContext& ctx) const {
+
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_idle", _speed, _size });
+	}
+
+	void RemoveInhibitor::onFinish(CContext& ctx) const {
+
+	}
 
 	bool DeadState::load(const json& jData) {
 

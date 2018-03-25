@@ -87,6 +87,13 @@
 			"animation" : "dead",
 			"damage" : 10,
 			"size" : 1
+		},
+		{
+			"name" : "removeInhibitor",
+			"type" : "RemoveInhibitor",
+			"animation" : "removenhibitor",
+			"damage" : 10,
+			"size" : 1
 		}
 	],
 	"transitions" : [
@@ -176,6 +183,16 @@
 		},
 		{
 			"type" : "VariableTransition",
+			"source" : "crouch",
+			"target" : "fall",
+			"variable" : {
+				"name" : "onGround",
+				"type" : "bool",
+				"value" : false
+			}
+		},
+		{
+			"type" : "VariableTransition",
 			"source" : "idle",
 			"target" : "entermerge",
 			"variable" : {
@@ -258,6 +275,22 @@
 		},
 		{
 			"type" : "VariableTransition",
+			"source" : "idle",
+			"target" : "removeInhibitor",
+			"variable" : {
+				"name" : "hitPoints",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "TimeTransition",
+			"source" : "removeInhibitor",
+			"target" : "idle",
+			"time" : 0.5
+		},
+		{
+			"type" : "VariableTransition",
 			"source" : "fall",
 			"target" : "walk",
 			"variable" : {
@@ -278,7 +311,27 @@
 		},
 		{
 			"type" : "VariableTransition",
+			"source" : "walk",
+			"target" : "dead",
+			"variable" : {
+				"name" : "onFallDead",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "VariableTransition",
 			"source" : "idle",
+			"target" : "dead",
+			"variable" : {
+				"name" : "onFallDead",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "run",
 			"target" : "dead",
 			"variable" : {
 				"name" : "onFallDead",
@@ -372,6 +425,11 @@
 		},
 		{
 			"name" : "onDead",
+			"type" : "bool",
+			"value" : false
+		},
+		{
+			"name" : "hitPoints",
 			"type" : "bool",
 			"value" : false
 		}

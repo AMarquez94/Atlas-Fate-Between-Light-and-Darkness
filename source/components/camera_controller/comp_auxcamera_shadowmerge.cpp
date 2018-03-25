@@ -139,8 +139,6 @@ void TCompAuxCameraShadowMerge::update(float dt)
 			return;
 
 		TCompTransform* self_transform = get<TCompTransform>();
-
-
 		TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>(); // we will need to consume this.
 		assert(self_transform);
 		assert(target_transform);

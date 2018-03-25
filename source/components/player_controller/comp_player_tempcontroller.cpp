@@ -80,7 +80,7 @@ void TCompTempPlayerController::update(float dt) {
 	isGrounded = groundTest(dt);
 	isMerged = onMergeTest(dt);
 	updateStamina(dt);
-	updateShader(dt);
+	updateShader(dt); // Move this to player render component...
 }
 
 void TCompTempPlayerController::registerMsgs() {
@@ -160,6 +160,13 @@ void TCompTempPlayerController::onPlayerKilled(const TMsgPlayerDead & msg)
 void TCompTempPlayerController::onPlayerLocate(const TMsgInhibitorShot & msg)
 {
 	isInhibited = true;
+	hitPoints = initialPoints;
+
+	//CEntity* e = CHandle(this).getOwner();
+	//TMsgSetFSMVariable groundMsg;
+	//groundMsg.variant.setName("hitPoints");
+	//groundMsg.variant.setFloat(hitPoints); // & isGrounded
+	//e->sendMsg(groundMsg);
 }
 
 void TCompTempPlayerController::onPlayerExpose(const TMsgPlayerIlluminated & msg)
@@ -281,7 +288,7 @@ void TCompTempPlayerController::resetState() {
 	TCompTransform * trans_camera = player_camera->get<TCompTransform>();
 
 	VEC3 dir = VEC3::Zero;
-	VEC3 up = trans_camera->getUp();
+	VEC3 up = trans_camera->getFront();
 	VEC3 proj = projectVector(up, -EnginePhysics.gravity);
 	proj.Normalize();
 
@@ -303,13 +310,12 @@ void TCompTempPlayerController::resetState() {
 	rigidbody->SetUpVector(-EnginePhysics.gravity);
 	rigidbody->normal_gravity = EnginePhysics.gravityMod * EnginePhysics.gravity;
 
-	if (dir != VEC3::Zero)
-	{
-		VEC3 new_pos = c_my_transform->getPosition() - dir;
-		Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), new_pos, -EnginePhysics.gravity).Transpose();
-		Quaternion quat = Quaternion::CreateFromRotationMatrix(test);
-		c_my_transform->setRotation(quat);
-	}
+	if (dir == VEC3::Zero) dir = proj;
+
+	VEC3 new_pos = c_my_transform->getPosition() - dir;
+	Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), new_pos, -EnginePhysics.gravity).Transpose();
+	Quaternion quat = Quaternion::CreateFromRotationMatrix(test);
+	c_my_transform->setRotation(quat);
 }
 
 /* Player dead state */
@@ -474,6 +480,11 @@ const bool TCompTempPlayerController::groundTest(float dt) {
 		falldead.variant.setBool(fallingTime > maxFallingTime);
 		e->sendMsg(falldead);
 
+		TMsgSetFSMVariable crouch;
+		crouch.variant.setName("crouch");
+		crouch.variant.setBool(false);
+		e->sendMsg(crouch);
+
 		dbg("falling time %f\n", fallingTime);
 		fallingTime = 0.f;
 	}
@@ -544,7 +555,7 @@ void TCompTempPlayerController::attackState(float dt) {
 /* Attack state, kills the closest enemy if true*/
 void TCompTempPlayerController::mergeEnemy() {
 
-	CHandle enemy = closeEnemy();
+	CHandle enemy = closeEnemy("stunned");
 
 	if (enemy.isValid()) {
 		TMsgPatrolShadowMerged msg;
@@ -554,7 +565,8 @@ void TCompTempPlayerController::mergeEnemy() {
 	}
 }
 
-CHandle TCompTempPlayerController::closeEnemy() {
+/* Replace this for spatial index method/ trigger volume */
+CHandle TCompTempPlayerController::closeEnemy(const std::string & state) {
 
 	auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
 
@@ -563,14 +575,13 @@ CHandle TCompTempPlayerController::closeEnemy() {
 
 		TCompTransform * mypos = get<TCompTransform>();
 		TCompTransform * epos = ((CEntity*)handles[i])->get<TCompTransform>();
-		if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < maxAttackDistance
+		if (VEC3::Distance(mypos->getPosition(), 
+			epos->getPosition()) < maxAttackDistance
 			&& !epos->isInFront(mypos->getPosition())) {
 
 			CAIPatrol * aipatrol = ((CEntity*)handles[i])->get<CAIPatrol>();
-			if (aipatrol->getStateName().compare("stunned") != 0) {
-				return handles[i];
-
-			}
+			if(state.compare("undefined") != 0) return handles[i];
+			if (aipatrol->getStateName().compare(state) != 0) return handles[i];
 		}
 	}
 

@@ -127,6 +127,17 @@ namespace FSM
 		std::string _animationName;
 	};
 
+	class RemoveInhibitor : public IState
+	{
+		virtual void onStart(CContext& ctx) const override;
+		virtual void onFinish(CContext& ctx) const override;
+		virtual bool load(const json& jData);
+	private:
+		float _size = 1.f;
+		float _speed = 2.f;
+		std::string _animationName;
+	};
+
 	class DeadState : public IState
 	{
 		virtual void onStart(CContext& ctx) const override;

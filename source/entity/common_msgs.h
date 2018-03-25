@@ -126,5 +126,12 @@ struct TMsgSpawnAt {
   DECL_MSG_ID();
 };
 
+struct TMsgScenePaused {
+	DECL_MSG_ID();
+};
+
+struct TMsgSceneUnPaused {
+	DECL_MSG_ID();
+};
 #endif
 

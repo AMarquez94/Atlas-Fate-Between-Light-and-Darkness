@@ -1,6 +1,8 @@
 #include "mcv_platform.h"
 #include "comp_player_input.h"
 #include "components/comp_fsm.h"
+#include "components/comp_transform.h"
+#include "components/player_controller/comp_player_tempcontroller.h"
 
 DECL_OBJ_MANAGER("player_input", TCompPlayerInput);
 
@@ -76,6 +78,12 @@ void TCompPlayerInput::update(float dt)
 
 		if (EngineInput["btCrouch"].getsPressed())
 		{
+			// Replace this with triggers contact.
+			/*CEntity * c_my_entity = CHandle(this).getOwner();
+			TCompCollider * c_my_collider = c_my_entity->get<TCompCollider>();
+			TCompTransform * c_my_transform = c_my_entity->get<TCompTransform>();
+			if(!c_my_collider->collisionDistance(c_my_transform->getPosition(), -EnginePhysics.gravity, 1.f) && crouchButton)
+			*/
 			crouchButton = !crouchButton;
 			TMsgSetFSMVariable crouch;
 			crouch.variant.setName("crouch");
@@ -91,14 +99,20 @@ void TCompPlayerInput::update(float dt)
 			e->sendMsg(action);
 		}
 
-		if (EngineInput["btSecAction"].getsPressed())
+		if (EngineInput["btSecAction"].hasChanged())
 		{
-			inhibition++;
-			TMsgSetFSMVariable action;
-			action.variant.setName("action_sec");
-			action.variant.setFloat(inhibition);
-			e->sendMsg(action);
-			if (inhibition == 5) inhibition = 0;
+			/* Move this from here.. */
+			CEntity * c_my_entity = CHandle(this).getOwner();
+			TCompTempPlayerController * c_my_player  = c_my_entity->get<TCompTempPlayerController>();
+
+			if (c_my_player->hitPoints > 0) {
+
+				TMsgSetFSMVariable action;
+				action.variant.setName("hitPoints");
+				action.variant.setBool(EngineInput["btSecAction"].getsPressed());
+				e->sendMsg(action);
+				c_my_player->hitPoints--;
+			}
 		}
 	}
 
