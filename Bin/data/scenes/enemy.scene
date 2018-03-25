@@ -7,8 +7,7 @@
 			"prefab": "data/prefabs/patrol.prefab",
 			"name": "Patrol 1",
 			"transform": {
-				"pos": "-26 0 75",
-				"lookat": "1 0 1"
+				"pos": "-26 0 75"
 			},
 			"ai_patrol": {
 
@@ -1350,12 +1349,11 @@
 			"prefab": "data/prefabs/mimetic.prefab",
 			"name": "Mimetic 1",
 			"transform": {
-				"pos": "-26 0 75",
-				"lookat": "1 0 1"
+				"pos": "-25 3.2 86"
 			},
 			"ai_mimetic": {
 				"startLightsOn": false,
-				"type": "floor",
+				"type": "wall",
 				"isSlept": false
 			},
 			"collider": {

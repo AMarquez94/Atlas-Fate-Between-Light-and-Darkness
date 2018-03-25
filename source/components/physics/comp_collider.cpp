@@ -6,7 +6,7 @@
 DECL_OBJ_MANAGER("collider", TCompCollider);
 
 void TCompCollider::debugInMenu() {
-
+	ImGui::Text("Gravity %f %f %f", normal_gravity.x, normal_gravity.y, normal_gravity.z);
 }
 
 void TCompCollider::load(const json& j, TEntityParseContext& ctx) {

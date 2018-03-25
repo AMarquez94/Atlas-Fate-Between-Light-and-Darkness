@@ -66,6 +66,8 @@ private:
 	bool isEntityHidden(CHandle hEntity);
 	void turnOnLight();
 	void turnOffLight();
+	void setGravityToFaceWall();
+	EType parseStringMimeticType(const std::string& typeString);
 	
 	//load
 	void loadActions() override;
@@ -79,11 +81,10 @@ public:
 	/* ACTIONS */
 	BTNode::ERes actionStunned(float dt);
 	BTNode::ERes actionResetObserveVariables(float dt);
-	BTNode::ERes actionObserveRight(float dt);
 	BTNode::ERes actionObserveLeft(float dt);
+	BTNode::ERes actionObserveRight(float dt);
 	BTNode::ERes actionWaitObserving(float dt);
 	BTNode::ERes actionSetActive(float dt);
-	BTNode::ERes actionJumpFloor(float dt);
 	BTNode::ERes actionGoToWpt(float dt);
 	BTNode::ERes actionResetTimerWaiting(float dt);
 	BTNode::ERes actionWaitInWpt(float dt);
@@ -91,6 +92,7 @@ public:
 	BTNode::ERes actionSleep(float dt);
 	BTNode::ERes actionWakeUp(float dt);
 	BTNode::ERes actionSuspect(float dt);
+	BTNode::ERes actionJumpFloor(float dt);
 	BTNode::ERes actionResetVariablesChase(float dt);
 	BTNode::ERes actionChasePlayerWithNoise(float dt);
 	BTNode::ERes actionGoToPlayerLastPos(float dt);

@@ -116,9 +116,11 @@ void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
 	name = tName->getName();
 
 	if (_waypoints.size() == 0) {
+
+		TCompTransform * tPos = get<TCompTransform>();
 		Waypoint wpt;
-		wpt.position = ((TCompTransform*)get<TCompTransform>())->getPosition();
-		wpt.lookAt = ((TCompTransform*)get<TCompTransform>())->getFront();
+		wpt.position =tPos->getPosition();
+		wpt.lookAt = tPos->getFront();
 		wpt.minTime = 1.f;
 		addWaypoint(wpt);
 	}

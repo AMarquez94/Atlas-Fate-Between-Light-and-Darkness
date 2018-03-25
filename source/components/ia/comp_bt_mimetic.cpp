@@ -42,9 +42,7 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 	addChild("manageInactiveTypeSleep", "wakeUp", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWakeUp, nullptr);
 
 	addChild("manageInactiveTypeWall", "manageObserveTypeWall", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionIsNotPlayerInFov, nullptr, nullptr);
-	addChild("manageInactiveTypeWall", "manageSetActiveTypeWall", BTNode::EType::SEQUENCE, nullptr, nullptr, nullptr);
-	addChild("manageSetActiveTypeWall", "setActiveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetActive, nullptr);
-	addChild("manageSetActiveTypeWall", "jumpFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionJumpFloor, nullptr);
+	addChild("manageInactiveTypeWall", "setActiveTypewall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetActive, nullptr);
 
 	addChild("manageObserveTypeWall", "resetVariablesObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionResetObserveVariables, nullptr);
 	addChild("manageObserveTypeWall", "turnLeftObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionObserveLeft, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
@@ -73,6 +71,7 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 	addChild("manageSuspect", "rotateToInitialPosSuspect", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionRotateToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
 
 	addChild("mimetic", "manageChase", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionPlayerSeenForSure, nullptr, nullptr);
+	addChild("manageChase", "jumpFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionJumpFloor, nullptr);
 	addChild("manageChase", "resetVariablesChase", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionResetVariablesChase, nullptr);
 	addChild("manageChase", "chasePlayerWithNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionChasePlayerWithNoise, nullptr);
 
@@ -109,7 +108,7 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 		}
 	}
 
-	type = EType::FLOOR;
+	type = parseStringMimeticType(j.value("type", ""));
 	rotationSpeedChase = deg2rad(rotationSpeedChaseDeg);
 	fov = deg2rad(fovDeg);
 	startLightsOn = j.value("startLightsOn", false);
@@ -129,6 +128,10 @@ void TCompAIMimetic::onMsgEntityCreated(const TMsgEntityCreated & msg)
 	TCompTransform *tTransform = get<TCompTransform>();
 	initialLookAt = tTransform->getFront();
 	initialPos = tTransform->getPosition();
+
+	if (type == EType::WALL) {
+		setGravityToFaceWall();
+	}
 }
 
 void TCompAIMimetic::onMsgPlayerDead(const TMsgPlayerDead& msg) {
@@ -194,13 +197,13 @@ BTNode::ERes TCompAIMimetic::actionResetObserveVariables(float dt)
 	return BTNode::ERes::LEAVE;
 }
 
-BTNode::ERes TCompAIMimetic::actionObserveRight(float dt)
+BTNode::ERes TCompAIMimetic::actionObserveLeft(float dt)
 {
 	if (isPlayerInFov()) {
 		return BTNode::ERes::LEAVE;
 	}
 	else {
-		VEC3 objective = rotateVectorAroundAxis(initialLookAt, VEC3(0,1,0), maxAmountRotateObserving);
+		VEC3 objective = rotateVectorAroundAxis(initialLookAt, VEC3(0, 1.f, 0), maxAmountRotateObserving);
 		TCompTransform *mypos = get<TCompTransform>();
 		if (rotateTowardsVec(mypos->getPosition() + objective, rotationSpeedObservation, dt)) {
 			return BTNode::ERes::LEAVE;
@@ -211,13 +214,13 @@ BTNode::ERes TCompAIMimetic::actionObserveRight(float dt)
 	}
 }
 
-BTNode::ERes TCompAIMimetic::actionObserveLeft(float dt)
+BTNode::ERes TCompAIMimetic::actionObserveRight(float dt)
 {
 	if (isPlayerInFov()) {
 		return BTNode::ERes::LEAVE;
 	}
 	else {
-		VEC3 objective = rotateVectorAroundAxis(initialLookAt, VEC3(0, 1.f, 0), -maxAmountRotateObserving);
+		VEC3 objective = rotateVectorAroundAxis(initialLookAt, VEC3(0, 1, 0), -maxAmountRotateObserving);
 		TCompTransform *mypos = get<TCompTransform>();
 		if (rotateTowardsVec(mypos->getPosition() + objective, rotationSpeedObservation, dt)) {
 			return BTNode::ERes::LEAVE;
@@ -272,7 +275,10 @@ BTNode::ERes TCompAIMimetic::actionSetActive(float dt)
 
 BTNode::ERes TCompAIMimetic::actionJumpFloor(float dt)
 {
-	return BTNode::ERes::UNIMPLEMENTED; //TODO implement
+	TCompCollider *tCollider = get<TCompCollider>();
+
+	tCollider->normal_gravity = VEC3(0,-9.8,0);
+	return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIMimetic::actionGoToWpt(float dt)
@@ -460,8 +466,12 @@ BTNode::ERes TCompAIMimetic::actionGoToInitialPos(float dt)
 
 	VEC3 vp = mypos->getPosition();
 
-	if (VEC3::Distance(initialPos, vp) < speed * dt) {
-		mypos->setPosition(initialPos);
+	VEC3 initialPosWithoutY = VEC3(initialPos.x, 0, initialPos.z);
+	VEC3 vpWithoutY = VEC3(vp.x, 0, vp.z);
+
+
+	if (VEC3::Distance(initialPosWithoutY, vpWithoutY) < speed * dt) {
+		mypos->setPosition(VEC3(initialPos.x, vp.y, initialPos.z));
 		return BTNode::ERes::LEAVE;
 	}
 	else {
@@ -483,7 +493,19 @@ BTNode::ERes TCompAIMimetic::actionRotateToInitialPos(float dt)
 
 BTNode::ERes TCompAIMimetic::actionJumpWall(float dt)
 {
-	return BTNode::ERes::UNIMPLEMENTED;
+	TCompTransform * tTransform = get<TCompTransform>();
+	VEC3 pos = tTransform->getPosition();
+	pos = pos + tTransform->getUp() * chaseSpeed * 4 * dt;
+
+	if (pos.y >= initialPos.y) {
+		tTransform->setPosition(initialPos);
+		setGravityToFaceWall();
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		tTransform->setPosition(pos);
+		return BTNode::ERes::STAY;
+	}
 }
 
 BTNode::ERes TCompAIMimetic::actionSetInactive(float dt)
@@ -653,4 +675,43 @@ void TCompAIMimetic::turnOffLight() {
 	CEntity* eCone = cGroup->getHandleByName("Cone of Light");
 	TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
 	cConeController->turnOffLight();
+}
+
+void TCompAIMimetic::setGravityToFaceWall()
+{
+	TCompCollider * tCollider = get<TCompCollider>();
+	TCompTransform * tTransform = get<TCompTransform>();
+	physx::PxRaycastHit hit;
+
+	VEC3 directions[4] = {VEC3(1,0,0), VEC3(-1,0,0), VEC3(0,0,1), VEC3(0,0,-1)};
+	float minDistance = INFINITY;
+	VEC3 finalDir;
+
+	for (int i = 0; i < 4; i++) {
+		
+
+		if (EnginePhysics.Raycast(tTransform->getPosition(), directions[i], 2.f, hit, physx::PxQueryFlag::eSTATIC)) {
+			if (hit.distance < minDistance) {
+				minDistance = hit.distance;
+				finalDir = directions[i];
+			}
+		}
+	}
+
+	tCollider->normal_gravity = finalDir * 9.8f;
+}
+
+TCompAIMimetic::EType TCompAIMimetic::parseStringMimeticType(const std::string & typeString)
+{
+	if (typeString.compare("floor") == 0) {
+		return EType::FLOOR;
+	}
+	else if (typeString.compare("wall") == 0) {
+		return EType::WALL;
+	}
+	else {
+		fatal("Mimetic type not recognized");
+		return EType::NUM_TYPES;
+	}
+	
 }
