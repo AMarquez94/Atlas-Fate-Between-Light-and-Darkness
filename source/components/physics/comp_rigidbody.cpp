@@ -27,8 +27,7 @@ void TCompRigidbody::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompRigidbody::update(float dt) {
 
-	CEntity* e = CHandle(this).getOwner();
-	TCompCollider * c_collider = e->get<TCompCollider>();
+	TCompCollider * c_collider = get<TCompCollider>();
 	velocity = physx::PxVec3(0, 9.8f, 0);
 
 	if (is_controller) {
