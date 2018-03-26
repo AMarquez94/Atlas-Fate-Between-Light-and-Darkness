@@ -94,14 +94,15 @@
     <ClCompile Include="components\ia\comp_bt.cpp" />
     <ClCompile Include="components\ia\comp_bt_patrol.cpp" />
     <ClCompile Include="components\ia\comp_bt_test.cpp" />
-	<ClCompile Include="components\ia\comp_bt_mimetic.cpp" />
+    <ClCompile Include="components\ia\comp_bt_mimetic.cpp" />
     <ClCompile Include="components\skeleton\comp_bone_tracker.cpp" />
     <ClCompile Include="components\skeleton\comp_skeleton.cpp" />
     <ClCompile Include="components\skeleton\game_core_skeleton.cpp" />
-	<ClCompile Include="physics\physics_mesh.cpp" />
-	<ClCompile Include="physics\physics_collider.cpp" />
+    <ClCompile Include="physics\physics_mesh.cpp" />
+    <ClCompile Include="physics\physics_collider.cpp" />
     <ClCompile Include="physics\physics_filter.cpp" />
-	<ClCompile Include="components\physics\comp_rigidbody.cpp" />
+    <ClCompile Include="components\physics\comp_rigidbody.cpp" />
+    <ClCompile Include="components\camera_controller\comp_curve_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -225,15 +226,16 @@
     <ClInclude Include="components\ia\comp_bt_patrol.h" />
     <ClInclude Include="components\ia\comp_bt_test.h" />
     <ClInclude Include="components\skeleton\cal3d2engine.h" />
-	<ClInclude Include="components\ia\comp_bt_mimetic.h" />
-	<ClInclude Include="physics\physics_mesh.h" />
+    <ClInclude Include="components\ia\comp_bt_mimetic.h" />
+    <ClInclude Include="physics\physics_mesh.h" />
     <ClInclude Include="physics\physics_collider.h" />
     <ClInclude Include="physics\physics_filter.h" />
     <ClInclude Include="components\skeleton\comp_bone_tracker.h" />
     <ClInclude Include="components\skeleton\comp_skeleton.h" />
     <ClInclude Include="components\skeleton\game_core_skeleton.h" />
-	<ClInclude Include="components\physics\comp_rigidbody.h" />
+    <ClInclude Include="components\physics\comp_rigidbody.h" />
     <ClInclude Include="utils\data_saver.h" />
+    <ClInclude Include="components\camera_controller\comp_curve_controller.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
