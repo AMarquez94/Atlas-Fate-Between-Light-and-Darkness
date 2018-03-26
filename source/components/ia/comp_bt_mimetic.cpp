@@ -8,6 +8,10 @@
 #include "components/comp_group.h"
 #include "components/object_controller/comp_cone_of_light.h"
 #include "geometry/angular.h"
+#include "components/physics/comp_rigidbody.h"
+#include "components/physics/comp_collider.h"
+#include "physics/physics_collider.h"
+#include "render/render_utils.h"
 
 
 DECL_OBJ_MANAGER("ai_mimetic", TCompAIMimetic);
@@ -18,6 +22,18 @@ void TCompAIMimetic::debugInMenu() {
 	
 	if (current) {
 		validState = current->getName();
+	}
+
+	if (lastRay != VEC3::Zero) {
+
+		TCompTransform *mypos = get<TCompTransform>();
+		TCompCollider *myCollider = get<TCompCollider>();
+		CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
+		VEC3 origin = mypos->getPosition() + VEC3(0, capsuleCollider->height * 2, 0);
+
+
+		renderLine(origin, lastRay, VEC4(0, 1, 0, 1));
+
 	}
 	
 	ImGui::Text("Current state: %s", validState.c_str());
@@ -276,7 +292,7 @@ BTNode::ERes TCompAIMimetic::actionSetActive(float dt)
 
 BTNode::ERes TCompAIMimetic::actionJumpFloor(float dt)
 {
-	TCompCollider *tCollider = get<TCompCollider>();
+	TCompRigidbody *tCollider = get<TCompRigidbody>();
 
 	tCollider->setNormalGravity(VEC3(0,-9.8f,0));
 	return BTNode::ERes::LEAVE;
@@ -494,8 +510,8 @@ BTNode::ERes TCompAIMimetic::actionRotateToInitialPos(float dt)
 
 BTNode::ERes TCompAIMimetic::actionJumpWall(float dt)
 {
-	TCompCollider *tCollider = get<TCompCollider>();
-	tCollider->Jump(VEC3(0,0.075f,0));
+	TCompRigidbody *tCollider = get<TCompRigidbody>();
+	tCollider->Jump(VEC3(0,15.f,0));
 	return BTNode::ERes::LEAVE;
 }
 
@@ -641,16 +657,18 @@ bool TCompAIMimetic::isEntityHidden(CHandle hEntity)
 	TCompCollider *myCollider = get<TCompCollider>();
 	TCompCollider *eCollider = entity->get<TCompCollider>();
 
+	CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
+
 	bool isHidden = true;
 
 	VEC3 myPosition = mypos->getPosition();
-	VEC3 origin = myPosition + VEC3(0, myCollider->config.height * 2, 0);
+	VEC3 origin = myPosition + VEC3(0, capsuleCollider->height * 2, 0);
 	VEC3 dest = VEC3::Zero;
 	VEC3 dir = VEC3::Zero;
 
 	float i = 0;
-	while (isHidden && i < eCollider->config.height * 2) {
-		dest = eTransform->getPosition() + VEC3(0, Clamp(i - .1f, 0.f, eCollider->config.height * 2), 0);
+	while (isHidden && i < capsuleCollider->height * 1.5f) {
+		dest = eTransform->getPosition() + VEC3(0.f, Clamp(i - .1f, 0.5f, capsuleCollider->height * 1.5f), 0.f);
 		dir = dest - origin;
 		dir.Normalize();
 		physx::PxRaycastHit hit;
@@ -658,9 +676,10 @@ bool TCompAIMimetic::isEntityHidden(CHandle hEntity)
 
 		//TODO: only works when behind scenery. Make the same for other enemies, dynamic objects...
 		if (!EnginePhysics.Raycast(origin, dir, dist, hit, physx::PxQueryFlag::eSTATIC)) {
+			lastRay = dest;
 			isHidden = false;
 		}
-		i = i + (eCollider->config.height / 2);
+		i = i + (capsuleCollider->height / 3);
 	}
 	return isHidden;
 }
@@ -682,7 +701,7 @@ void TCompAIMimetic::turnOffLight() {
 
 void TCompAIMimetic::setGravityToFaceWall()
 {
-	TCompCollider * tCollider = get<TCompCollider>();
+	TCompRigidbody * tCollider = get<TCompRigidbody>();
 	TCompTransform * tTransform = get<TCompTransform>();
 	physx::PxRaycastHit hit;
 

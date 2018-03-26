@@ -121,3 +121,16 @@ VEC3 TCompRigidbody::GetUpVector()
 	physx::PxVec3 upDirection = controller->getUpDirection();
 	return VEC3(upDirection.x, upDirection.y, upDirection.z);
 }
+
+void TCompRigidbody::Jump(VEC3 forceUp)
+{
+	if (is_grounded) {
+		totalDownForce = physx::PxVec3(forceUp.x, forceUp.y, forceUp.z);
+		is_grounded = false;
+	}
+}
+
+void TCompRigidbody::setNormalGravity(VEC3 newGravity) {
+	normal_gravity = newGravity;
+	totalDownForce = physx::PxVec3(0, 0, 0);
+}

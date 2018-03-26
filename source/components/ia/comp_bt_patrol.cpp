@@ -7,6 +7,9 @@
 #include "components/comp_render.h"
 #include "components/comp_group.h"
 #include "components/object_controller/comp_cone_of_light.h"
+#include "components/physics/comp_rigidbody.h"
+#include "components/physics/comp_collider.h"
+#include "physics/physics_collider.h"
 
 
 DECL_OBJ_MANAGER("ai_patrol", TCompAIPatrol);
@@ -738,16 +741,18 @@ bool TCompAIPatrol::isEntityHidden(CHandle hEntity)
 	TCompCollider *myCollider = get<TCompCollider>();
 	TCompCollider *eCollider = entity->get<TCompCollider>();
 
+	CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
+
 	bool isHidden = true;
 
 	VEC3 myPosition = mypos->getPosition();
-	VEC3 origin = myPosition + VEC3(0, myCollider->config.height * 2, 0);
+	VEC3 origin = myPosition + VEC3(0, capsuleCollider->height * 2, 0);
 	VEC3 dest = VEC3::Zero;
 	VEC3 dir = VEC3::Zero;
 
 	float i = 0;
-	while (isHidden && i < eCollider->config.height * 2) {
-		dest = eTransform->getPosition() + VEC3(0, Clamp(i - .1f, 0.f, eCollider->config.height * 2), 0);
+	while (isHidden && i < capsuleCollider->height * 2) {
+		dest = eTransform->getPosition() + VEC3(0, Clamp(i - .1f, 0.f, capsuleCollider->height * 2), 0);
 		dir = dest - origin;
 		dir.Normalize();
 		physx::PxRaycastHit hit;
@@ -757,7 +762,7 @@ bool TCompAIPatrol::isEntityHidden(CHandle hEntity)
 		if (!EnginePhysics.Raycast(origin, dir, dist, hit, physx::PxQueryFlag::eSTATIC)) {
 			isHidden = false;
 		}
-		i = i + (eCollider->config.height / 2);
+		i = i + (capsuleCollider->height / 2);
 	}
 	return isHidden;
 }
