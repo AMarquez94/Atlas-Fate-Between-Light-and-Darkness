@@ -65,7 +65,7 @@ void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
 
 	physx::PxFilterData pxFilterData;
 	//pxFilterData.word0 = EnginePhysics.FilterGroup::Scenario;
-	pxFilterData.word1 = EnginePhysics.FilterGroup::Fence;
+	pxFilterData.word1 = FilterGroup::Fence;
 	shadowDetectionFilter.data = pxFilterData;
 }
 
@@ -108,7 +108,7 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 		CEntity * c_entity = dynamic_lights[i];
 		TCompCollider * c_collider = c_entity->get<TCompCollider>();
 		TCompTransform * c_transform = c_entity->get<TCompTransform>();
-		if (c_collider->isInside)
+		if (c_collider->player_inside)
 		{
 			VEC3 dir = point - c_transform->getPosition();
 			dir.Normalize();

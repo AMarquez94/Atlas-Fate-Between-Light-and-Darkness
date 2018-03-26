@@ -7,6 +7,7 @@
 #include "render/texture/material.h"
 #include "render/texture/texture.h"
 #include "resources/json_resource.h"
+#include "physics/physics_mesh.h"
 #include "camera/camera.h"
 
 //--------------------------------------------------------------------------------------
@@ -47,6 +48,7 @@ bool CModuleRender::start()
   Resources.registerResourceClass(getResourceClassOf<CRenderMesh>());
   Resources.registerResourceClass(getResourceClassOf<CRenderTechnique>());
   Resources.registerResourceClass(getResourceClassOf<CMaterial>());
+  Resources.registerResourceClass(getResourceClassOf<CPhysicsMesh>());
 
   if (!createRenderObjects())
     return false;

@@ -310,13 +310,16 @@
 					}
 				]
 			},
-			"collider": {
-				"shape": "capsule",
+		  "collider": {
+			"shape": "capsule",
+			"radius": 0.65,
+			"height": 1.0,
+			"gravity": true,
+			"group" : "enemy"
+		  },
+			"rigidbody": {
 				"is_controller": true,
-				"radius": 0.65,
-				"height": 1.0,
-				"gravity": true,
-				"group": "enemy"
+				"is_gravity": true
 			}
 		}
 	}, {
@@ -635,13 +638,16 @@
 					}
 				]
 			},
-			"collider": {
-				"shape": "capsule",
+		  "collider": {
+			"shape": "capsule",
+			"radius": 0.65,
+			"height": 1.0,
+			"gravity": true,
+			"group" : "enemy"
+		  },
+			"rigidbody": {
 				"is_controller": true,
-				"radius": 0.65,
-				"height": 1.0,
-				"gravity": true,
-				"group": "enemy"
+				"is_gravity": true
 			}
 		}
 	}, {
@@ -985,13 +991,16 @@
 					}
 				]
 			},
-			"collider": {
-				"shape": "capsule",
+		  "collider": {
+			"shape": "capsule",
+			"radius": 0.65,
+			"height": 1.0,
+			"gravity": true,
+			"group" : "enemy"
+		  },
+			"rigidbody": {
 				"is_controller": true,
-				"radius": 0.65,
-				"height": 1.0,
-				"gravity": true,
-				"group": "enemy"
+				"is_gravity": true
 			}
 		}
 	}, {
@@ -1335,13 +1344,16 @@
 					}
 				]
 			},
-			"collider": {
-				"shape": "capsule",
+		  "collider": {
+			"shape": "capsule",
+			"radius": 0.65,
+			"height": 1.0,
+			"gravity": true,
+			"group" : "enemy"
+		  },
+			"rigidbody": {
 				"is_controller": true,
-				"radius": 0.65,
-				"height": 1.0,
-				"gravity": true,
-				"group": "enemy"
+				"is_gravity": true
 			}
 		}
 	}, {
@@ -1356,13 +1368,16 @@
 				"type": "wall",
 				"isSlept": false
 			},
-			"collider": {
-				"shape": "capsule",
+		  "collider": {
+			"shape": "capsule",
+			"radius": 0.65,
+			"height": 1.0,
+			"gravity": true,
+			"group" : "enemy"
+		  },
+			"rigidbody": {
 				"is_controller": true,
-				"radius": 0.65,
-				"height": 1.0,
-				"gravity": true,
-				"group": "enemy"
+				"is_gravity": true
 			}
 		}
 	}
