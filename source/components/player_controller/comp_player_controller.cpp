@@ -890,7 +890,7 @@ const bool TCompPlayerController::ConcaveTest(void)
 			VEC3 target = c_my_transform->getPosition() + new_forward;
 
 			rigidbody->SetUpVector(hit_normal);
-			rigidbody->normal_gravity = 9.8f * -hit_normal;
+			rigidbody->normal_gravity = CModulePhysics::gravityMod * -hit_normal;
 
 			Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), target, hit_normal).Transpose();
 			Quaternion new_rotation = Quaternion::CreateFromRotationMatrix(test);
@@ -926,7 +926,7 @@ const bool TCompPlayerController::ConvexTest(void)
 			VEC3 target = hit_point + new_forward;
 
 			rigidbody->SetUpVector(hit_normal);
-			rigidbody->normal_gravity = 9.8f * -hit_normal;
+			rigidbody->normal_gravity = CModulePhysics::gravityMod * -hit_normal;
 
 			QUAT new_rotation = createLookAt(hit_point, target, hit_normal);
 			VEC3 new_pos = hit_point + 0.35f * new_forward;
@@ -960,7 +960,7 @@ void TCompPlayerController::ResetPlayer()
 
 	// Set collider gravity settings
 	rigidbody->SetUpVector(-EnginePhysics.gravity);
-	rigidbody->normal_gravity = 9.8f * EnginePhysics.gravity;
+	rigidbody->normal_gravity = CModulePhysics::gravityMod * EnginePhysics.gravity;
 
 	QUAT new_rotation = createLookAt(c_my_transform->getPosition(), new_front, -EnginePhysics.gravity);
 	c_my_transform->setRotation(new_rotation);
