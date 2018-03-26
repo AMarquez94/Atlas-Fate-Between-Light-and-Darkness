@@ -24,18 +24,6 @@ void TCompAIMimetic::debugInMenu() {
 		validState = current->getName();
 	}
 
-	if (lastRay != VEC3::Zero) {
-
-		TCompTransform *mypos = get<TCompTransform>();
-		TCompCollider *myCollider = get<TCompCollider>();
-		CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
-		VEC3 origin = mypos->getPosition() + VEC3(0, capsuleCollider->height * 2, 0);
-
-
-		renderLine(origin, lastRay, VEC4(0, 1, 0, 1));
-
-	}
-	
 	ImGui::Text("Current state: %s", validState.c_str());
 }
 
@@ -667,8 +655,8 @@ bool TCompAIMimetic::isEntityHidden(CHandle hEntity)
 	VEC3 dir = VEC3::Zero;
 
 	float i = 0;
-	while (isHidden && i < capsuleCollider->height * 1.5f) {
-		dest = eTransform->getPosition() + VEC3(0.f, Clamp(i - .1f, 0.5f, capsuleCollider->height * 1.5f), 0.f);
+	while (isHidden && i < capsuleCollider->height * 2.f) {
+		dest = eTransform->getPosition() + VEC3(0.f, Clamp(i - .1f, 0.5f, capsuleCollider->height * 2.f), 0.f);
 		dir = dest - origin;
 		dir.Normalize();
 		physx::PxRaycastHit hit;
@@ -676,10 +664,9 @@ bool TCompAIMimetic::isEntityHidden(CHandle hEntity)
 
 		//TODO: only works when behind scenery. Make the same for other enemies, dynamic objects...
 		if (!EnginePhysics.Raycast(origin, dir, dist, hit, physx::PxQueryFlag::eSTATIC)) {
-			lastRay = dest;
 			isHidden = false;
 		}
-		i = i + (capsuleCollider->height / 3);
+		i = i + (capsuleCollider->height / 2);
 	}
 	return isHidden;
 }

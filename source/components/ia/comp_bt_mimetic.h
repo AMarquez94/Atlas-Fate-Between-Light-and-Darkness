@@ -52,8 +52,6 @@ private:
 	float amountRotatedObserving = 0.f;
 	float maxAmountRotateObserving = deg2rad(45.f);
 
-	VEC3 lastRay = VEC3::Zero;
-
 	DECL_SIBLING_ACCESS();
 
 	void onMsgEntityCreated(const TMsgEntityCreated& msg);
