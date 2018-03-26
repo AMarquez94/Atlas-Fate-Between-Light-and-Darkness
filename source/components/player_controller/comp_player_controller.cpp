@@ -960,7 +960,7 @@ void TCompPlayerController::ResetPlayer()
 
 	// Set collider gravity settings
 	rigidbody->SetUpVector(-EnginePhysics.gravity);
-	rigidbody->normal_gravity = 9.8f * EnginePhysics.gravity;
+	rigidbody->normal_gravity = CModulePhysics::gravityMod * EnginePhysics.gravity;
 
 	QUAT new_rotation = createLookAt(c_my_transform->getPosition(), new_front, -EnginePhysics.gravity);
 	c_my_transform->setRotation(new_rotation);
