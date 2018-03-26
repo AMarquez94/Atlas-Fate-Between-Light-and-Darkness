@@ -67,6 +67,17 @@ void CModuleEntities::update(float delta)
 	CHandleManager::destroyAllPendingObjects();
 }
 
+bool CModuleEntities::stop() {
+	// Destroy all entities, should destroy all components in chain
+	auto hm = getObjectManager<CEntity>();
+	hm->forEach([](CEntity* e) {
+		CHandle h(e);
+		h.destroy();
+	});
+	CHandleManager::destroyAllPendingObjects();
+	return true;
+}
+
 void CModuleEntities::render()
 {
   Resources.debugInMenu();
