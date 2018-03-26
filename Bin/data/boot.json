@@ -1,0 +1,14 @@
+{
+	"boot_scenes" : [
+		"data/scenes/player_fsm.scene",
+		"data/scenes/milestone1_map_lights.scene",
+		"data/scenes/milestone1_map_meshes.scene",
+		"data/scenes/milestone1_map_colliders.scene",
+		"data/scenes/enemy.scene",
+		"data/scenes/camera.scene",
+		"data/scenes/capsules.scene"
+	],
+  "unused_scenes" : [
+    "dummy"
+  ]
+}
