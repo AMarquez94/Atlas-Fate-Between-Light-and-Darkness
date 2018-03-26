@@ -74,7 +74,12 @@
 			"type" : "LandMergeState",
 			"animation" : "exitmerge",
 			"speed" : 4,
-			"size" : 1
+			"size" : 1,
+			"camera" : {
+				"target" : "SMCameraHor",
+				"blendOut" : 0.0,
+				"blendIn" : 0.5
+			}
 		},
 		{
 			"name" : "fall",

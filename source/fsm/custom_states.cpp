@@ -227,7 +227,7 @@ namespace FSM
 	void LandMergeState::onStart(CContext& ctx) const {
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_fall", _speed, _size });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_fall", _speed, _size, _target });
 	}
 	void LandMergeState::onFinish(CContext& ctx) const {
 

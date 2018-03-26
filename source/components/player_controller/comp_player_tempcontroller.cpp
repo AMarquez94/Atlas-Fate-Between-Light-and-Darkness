@@ -10,6 +10,7 @@
 #include "components/player_controller/comp_shadow_controller.h"
 #include "physics/physics_collider.h"
 #include "render/mesh/mesh_loader.h"
+#include "components/comp_name.h"
 #include "windows/app.h"
 
 DECL_OBJ_MANAGER("player_tempcontroller", TCompTempPlayerController);
@@ -273,16 +274,22 @@ void TCompTempPlayerController::mergeState(float dt) {
 
 	if (convexTest() || concaveTest()) {
 
+		CHandle eCamera = getEntityByName("SMCameraAux");
+		TCompName * name = ((CEntity*)target_camera)->get<TCompName>();
 		VEC3 postUp = c_my_transform->getUp();
 		VEC3 dirToLookAt = -(prevUp + postUp);
 		dirToLookAt.Normalize();
 
-		//TMsgSetCameraActive msg;
-		//msg.previousCamera = target_camera;
-		//msg.actualCamera = target_camera;
-		//msg.directionToLookAt = dirToLookAt;
-		//CEntity* eCamera = getEntityByName("SMCameraAux");
-		//eCamera->sendMsg(msg);
+		std::string target_name = EnginePhysics.gravity.Dot(c_my_transform->getUp()) < mergeAngle ? "SMCameraVer" : "SMCameraHor";
+
+		TMsgSetCameraActive msg;
+		msg.previousCamera = name->getName();
+		target_camera = getEntityByName(target_name);
+		msg.actualCamera = target_name;
+		msg.directionToLookAt = dirToLookAt;
+		((CEntity*)eCamera)->sendMsg(msg);
+		dbg("normals %f %f\n", prevUp.x, postUp.x);
+		return;
 	}
 
 	float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
@@ -293,6 +300,7 @@ void TCompTempPlayerController::mergeState(float dt) {
 	VEC3 normal_norm = rigidbody->normal_gravity;
 	normal_norm.Normalize();
 	VEC3 proj = projectVector(up, normal_norm);
+	proj.Normalize();
 
 	if (EngineInput["btUp"].isPressed() && EngineInput["btUp"].value > 0) {
 		dir += fabs(EngineInput["btUp"].value) * proj;
@@ -489,7 +497,7 @@ const bool TCompTempPlayerController::onMergeTest(float dt){
 
 		TMsgSetFSMVariable groundMsg;
 		groundMsg.variant.setName("onmerge");
-		groundMsg.variant.setBool(mergeTest & isGrounded); // & isGrounded
+		groundMsg.variant.setBool(mergeTest & isGrounded & EngineInput["btShadowMerging"].hasChanged()); // & isGrounded
 		e->sendMsg(groundMsg);
 
 		TMsgSetFSMVariable onFallMsg;

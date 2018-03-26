@@ -28,8 +28,7 @@ void TCompRigidbody::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompRigidbody::update(float dt) {
 
-	CEntity* e = CHandle(this).getOwner();
-	TCompCollider * c_collider = e->get<TCompCollider>();
+	TCompCollider * c_collider = get<TCompCollider>();
 	velocity = physx::PxVec3(0, CModulePhysics::gravityMod, 0);
 
 	if (is_controller) {
@@ -72,13 +71,12 @@ void TCompRigidbody::registerMsgs() {
 
 void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
 
-	CEntity* e = CHandle(this).getOwner();
-	TCompCollider * c_collider = e->get<TCompCollider>();
+	TCompCollider * c_collider = get<TCompCollider>();
 
 	// Let the rigidbody handle the creation if it exists..
 	if (c_collider != nullptr)
 	{
-		TCompTransform * compTransform = e->get<TCompTransform>();
+		TCompTransform * compTransform = get<TCompTransform>();
 
 		if (is_controller)
 		{
