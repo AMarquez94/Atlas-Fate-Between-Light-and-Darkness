@@ -206,18 +206,22 @@ void TCompIAController::loadTree(const json & j)
 				else {
 					conditionNode = conditions_initializer[condition];
 					if (it.value().count("conditionArg") > 0) {
+						//Default parameters for the conditions
+						//Retrieving values from the prefab
 						auto& j_conditionArg = it.value()["conditionArg"];
 						for (auto ite = j_conditionArg.begin(); ite != j_conditionArg.end(); ++ite) {
+							//Running some checks
 							assert(ite.value().count("variable_name") > 0);
 							assert(ite.value().count("variable_type") > 0);
 							assert(ite.value().count("variable_value") > 0);
 							assert(ite.value().count("variable_op") > 0);
-
+							//Retrieving info
 							variantName = ite.value()["variable_name"];
+							variantName = variantName + "_" + condition + "_" + childName;
 							variantType = ite.value()["variable_type"];
 							ToUpperCase(variantType);
 							variantOp = ite.value()["variable_op"];
-
+							//Depending on the variable type, we create the variant and we save it in arguments
 							if (variantType == "INT") {
 								int variantValue = ite.value()["variable_value"];
 								CVariant parameter;
@@ -253,18 +257,22 @@ void TCompIAController::loadTree(const json & j)
 				else {
 					actionNode = actions_initializer[action];
 					if (it.value().count("actionArg") > 0) {
+						//Default parameters for the actions
+						//Retrieving values from the prefab
 						auto& j_actionArg = it.value()["actionArg"];
 						for (auto ite = j_actionArg.begin(); ite != j_actionArg.end(); ++ite) {
+							//Running some checks
 							assert(ite.value().count("variable_name") > 0);
 							assert(ite.value().count("variable_type") > 0);
 							assert(ite.value().count("variable_value") > 0);
 							assert(ite.value().count("variable_op") > 0);
-
+							//Retrieving info
 							variantName = ite.value()["variable_name"];
+							variantName = variantName + "_" + action + "_" + childName;
 							variantType = ite.value()["variable_type"];
 							ToUpperCase(variantType);
 							variantOp = ite.value()["variable_op"];
-
+							//Depending on the variable type, we create the variant and we save it in arguments
 							if (variantType == "INT") {
 								int variantValue = ite.value()["variable_value"];
 								CVariant parameter;
@@ -289,6 +297,7 @@ void TCompIAController::loadTree(const json & j)
 						}
 
 					}
+
 				}
 				assert(it.value().count("assert") > 0);
 				assert = it.value().value("assert", "");
@@ -302,6 +311,74 @@ void TCompIAController::loadTree(const json & j)
 				}
 				addChild(parentName, childName, nodeType, conditionNode, actionNode, assertNode);
 			}
+		}
+	}
+}
+
+void TCompIAController::loadParameters(const json& j) {
+	
+	std::string argCondName, argActName, aux;
+	CVariant::EType type;
+
+	if (j.count("argCond") > 0) {
+		auto& j_argCond = j["argCond"];
+		for (auto it = j_argCond.begin(); it != j_argCond.end(); ++it) {
+			assert(it.value().count("nodeName") == 1);
+			assert(it.value().count("conditionName") == 1);
+			assert(it.value().count("variableName") == 1);
+			assert(it.value().count("newValue") == 1);
+
+			aux = it.value()["conditionName"];
+
+			argCondName = it.value()["variableName"];
+			argCondName += "_";
+			argCondName += aux;
+			argCondName += "_";
+			aux = it.value()["nodeName"];
+			argCondName += aux;
+
+			assert(arguments.find(argCondName) != arguments.end());
+			type = arguments[argCondName].getType();
+			switch (type) {
+			case CVariant::EType::BOOL:
+			{
+				bool newValue = it.value()["newValue"];
+				arguments[argCondName].setBool(newValue);
+				break;
+			}
+			case CVariant::EType::FLOAT:
+			{
+				float newValue = it.value()["newValue"];
+				arguments[argCondName].setFloat(newValue);
+				break;
+			}
+			case CVariant::EType::INT:
+			{
+				int newValue = it.value()["newValue"];
+				arguments[argCondName].setInt(newValue);
+				break;
+			}
+			case CVariant::EType::STRING:
+			{
+				std::string newValue = it.value()["newValue"];
+				arguments[argCondName].setString(newValue);
+				break;
+			}
+			default:
+			{
+				fatal("Type not defined!");
+				break;
+			}
+			}
+		}
+	}
+	if (j.count("argAct") > 0) {
+		auto& j_argAct = j["argAct"];
+		for (auto it = j_argAct.begin(); it != j_argAct.end(); ++it) {
+			assert(it.value().count("nodeName") == 1);
+			assert(it.value().count("actionName") == 1);
+			assert(it.value().count("variableName") == 1);
+			assert(it.value().count("newValue") == 1);
 		}
 	}
 }

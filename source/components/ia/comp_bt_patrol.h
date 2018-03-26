@@ -66,7 +66,6 @@ private:
 	void loadActions() override;
 	void loadConditions() override;
 	void loadAsserts() override;
-	void loadArguments() override;
 
 public:
 	void load(const json& j, TEntityParseContext& ctx) override;

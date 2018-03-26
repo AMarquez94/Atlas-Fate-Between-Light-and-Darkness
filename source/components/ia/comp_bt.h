@@ -27,10 +27,9 @@ protected:
 	virtual void loadActions() {};
 	virtual void loadConditions() {};
 	virtual void loadAsserts() {};
-	//Function to use inside each instantiation
-	virtual void loadArguments() {};
 
 	void loadTree(const json& j);
+	void loadParameters(const json& j);
 
 	BTNode *current;
 

@@ -8,10 +8,10 @@
 		"entity": {
 		  "prefab": "data/prefabs/patrol.prefab",
 		  "name": "The Enemy 1",
-		  "transform": {
-			"pos": "-26 0 75",
-			"lookat": "1 0 1"
-		  },
+      "transform": {
+        "pos": "-26 0 75",
+        "lookat": "1 0 1"
+      },
 		  "collider": {
 			"shape": "capsule",
 			"is_controller": true,
@@ -39,6 +39,19 @@
           {
             "position": "0 0 110",
             "lookAt": "-1 0 0"
+          }
+        ],
+        "argCond": [
+          {
+            "nodeName": "manageStun",
+            "conditionName": "conditionManageStun",
+            "variableName": "hasBeenStunned",
+            "newValue": true
+          }
+        ],
+        "xargAct": [
+          {
+
           }
         ]
       },
