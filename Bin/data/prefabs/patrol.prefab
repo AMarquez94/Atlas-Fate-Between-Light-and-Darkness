@@ -1,5 +1,5 @@
 [
-	{
+  {
     "entity": {
       "name": "The Enemy",
       "transform": {
@@ -99,6 +99,26 @@
             "name": "managePlayerSeen",
             "type": "priority",
             "condition": "conditionPlayerSeen",
+            "conditionArg": [
+              {
+                "variable_name": "entityToChase",
+                "variable_type": "string",
+                "variable_value": "The Player",
+                "variable_op": ""
+              },
+              {
+                "variable_name": "fov",
+                "variable_type": "float",
+                "variable_value": 70.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "maxChaseDistance",
+                "variable_type": "float",
+                "variable_value": 35.0,
+                "variable_op": ""
+              }
+            ],
             "action": "",
             "assert": ""
           },
@@ -115,6 +135,20 @@
             "name": "managePatrolSeen",
             "type": "sequence",
             "condition": "conditionPatrolSeen",
+            "conditionArg": [
+              {
+                "variable_name": "fov",
+                "variable_type": "float",
+                "variable_value": 70.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "maxChaseDistance",
+                "variable_type": "float",
+                "variable_value": 35.0,
+                "variable_op": ""
+              }
+            ],
             "action": "",
             "assert": ""
           },
@@ -124,6 +158,20 @@
             "type": "action",
             "condition": "conditionGoToWpt",
             "action": "actionGoToWpt",
+            "actionArg": [
+              {
+                "variable_name": "speed",
+                "variable_type": "float",
+                "variable_value": 3.5,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "rotationSpeed",
+                "variable_type": "float",
+                "variable_value": 90.0,
+                "variable_op": ""
+              }
+            ],
             "assert": "assertPlayerAndPatrolNotInFov"
           },
           {
@@ -132,6 +180,14 @@
             "type": "action",
             "condition": "conditionWaitInWpt",
             "action": "actionWaitInWpt",
+            "actionArg": [
+              {
+                "variable_name": "rotationSpeed",
+                "variable_type": "float",
+                "variable_value": 90.0,
+                "variable_op": ""
+              }
+            ],
             "assert": "assertPlayerAndPatrolNotInFov"
           },
           {
@@ -156,6 +212,50 @@
             "type": "action",
             "condition": "",
             "action": "actionSuspect",
+            "actionArg": [
+              {
+                "variable_name": "rotationSpeed",
+                "variable_type": "float",
+                "variable_value": 90.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "fov",
+                "variable_type": "float",
+                "variable_value": 70.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "autoChaseDistance",
+                "variable_type": "float",
+                "variable_value": 15.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "maxChaseDistance",
+                "variable_type": "float",
+                "variable_value": 35.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "dcrSuspectO_Meter",
+                "variable_type": "float",
+                "variable_value": 0.3,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "incrBaseSuspectO_Meter",
+                "variable_type": "float",
+                "variable_value": 0.5,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "entityToChase",
+                "variable_type": "string",
+                "variable_value": "The Player",
+                "variable_op": ""
+              }
+            ],
             "assert": ""
           },
           {
@@ -164,6 +264,14 @@
             "type": "action",
             "condition": "",
             "action": "actionMarkPlayerAsSeen",
+            "actionArg": [
+              {
+                "variable_name": "entityToChase",
+                "variable_type": "string",
+                "variable_value": "The Player",
+                "variable_op": ""
+              }
+            ],
             "assert": ""
           },
           {
@@ -172,6 +280,14 @@
             "type": "action",
             "condition": "",
             "action": "actionShootInhibitor",
+            "actionArg": [
+              {
+                "variable_name": "entityToChase",
+                "variable_type": "string",
+                "variable_value": "The Player",
+                "variable_op": ""
+              }
+            ],
             "assert": ""
           },
           {
@@ -195,6 +311,20 @@
             "name": "managePlayerAttacked",
             "type": "sequence",
             "condition": "conditionPlayerAttacked",
+            "conditionArg": [
+              {
+                "variable_name": "distToAttack",
+                "variable_type": "float",
+                "variable_value": 1.5,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "entityToChase",
+                "variable_type": "string",
+                "variable_value": "The Player",
+                "variable_op": ""
+              }
+            ],
             "action": "",
             "assert": ""
           },
@@ -204,6 +334,44 @@
             "type": "action",
             "condition": "",
             "action": "actionChasePlayer",
+            "actionArg": [
+              {
+                "variable_name": "speed",
+                "variable_type": "float",
+                "variable_value": 3.5,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "rotationSpeed",
+                "variable_type": "float",
+                "variable_value": 90.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "fov",
+                "variable_type": "float",
+                "variable_value": 70.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "maxChaseDistance",
+                "variable_type": "float",
+                "variable_value": 35.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "distToAttack",
+                "variable_type": "float",
+                "variable_value": 1.5,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "entityToChase",
+                "variable_type": "string",
+                "variable_value": "The Player",
+                "variable_op": ""
+              }
+            ],
             "assert": ""
           },
           {
@@ -212,6 +380,14 @@
             "type": "action",
             "condition": "",
             "action": "actionAttack",
+            "actionArg": [
+              {
+                "variable_name": "entityToChase",
+                "variable_type": "string",
+                "variable_value": "The Player",
+                "variable_op": ""
+              }
+            ],
             "assert": ""
           },
           {
@@ -244,6 +420,38 @@
             "type": "action",
             "condition": "",
             "action": "actionGoToPlayerLastPos",
+            "actionArg": [
+              {
+                "variable_name": "speed",
+                "variable_type": "float",
+                "variable_value": 3.5,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "rotationSpeed",
+                "variable_type": "float",
+                "variable_value": 90.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "fov",
+                "variable_type": "float",
+                "variable_value": 70.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "maxChaseDistance",
+                "variable_type": "float",
+                "variable_value": 35.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "entityToChase",
+                "variable_type": "string",
+                "variable_value": "The Player",
+                "variable_op": ""
+              }
+            ],
             "assert": "assertPlayerNotInFov"
           },
           {
@@ -252,6 +460,38 @@
             "type": "action",
             "condition": "",
             "action": "actionLookForPlayer",
+            "actionArg": [
+              {
+                "variable_name": "rotationSpeed",
+                "variable_type": "float",
+                "variable_value": 90.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "fov",
+                "variable_type": "float",
+                "variable_value": 70.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "maxRotationSeekingPlayer",
+                "variable_type": "float",
+                "variable_value": 90.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "maxChaseDistance",
+                "variable_type": "float",
+                "variable_value": 35.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "entityToChase",
+                "variable_type": "string",
+                "variable_value": "The Player",
+                "variable_op": ""
+              }
+            ],
             "assert": "assertPlayerNotInFov"
           },
           {
@@ -268,6 +508,26 @@
             "type": "action",
             "condition": "",
             "action": "actionGoToPatrol",
+            "actionArg": [
+              {
+                "variable_name": "speed",
+                "variable_type": "float",
+                "variable_value": 3.5,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "rotationSpeed",
+                "variable_type": "float",
+                "variable_value": 90.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "distToAttack",
+                "variable_type": "float",
+                "variable_value": 1.5,
+                "variable_op": ""
+              }
+            ],
             "assert": "assertPlayerNotInFov"
           },
           {

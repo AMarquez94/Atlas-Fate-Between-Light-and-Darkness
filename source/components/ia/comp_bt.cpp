@@ -223,21 +223,31 @@ void TCompIAController::loadTree(const json & j)
 							variantOp = ite.value()["variable_op"];
 							//Depending on the variable type, we create the variant and we save it in arguments
 							if (variantType == "INT") {
+								assert(ite.value()["variable_value"].is_number_integer());
 								int variantValue = ite.value()["variable_value"];
 								CVariant parameter;
 								parameter.setInt(variantValue);
 								arguments[variantName] = parameter;
 							}
 							else if (variantType == "FLOAT") {
+								assert(ite.value()["variable_value"].is_number_float());
 								float variantValue = ite.value()["variable_value"];
 								CVariant parameter;
 								parameter.setFloat(variantValue);
 								arguments[variantName] = parameter;
 							}
 							else if (variantType == "BOOL") {
+								assert(ite.value()["variable_value"].is_boolean());
 								bool variantValue = ite.value()["variable_value"];
 								CVariant parameter;
 								parameter.setBool(variantValue);
+								arguments[variantName] = parameter;
+							}
+							else if (variantType == "STRING") {
+								assert(ite.value()["variable_value"].is_string());
+								std::string variantValue = ite.value()["variable_value"];
+								CVariant parameter;
+								parameter.setString(variantValue);
 								arguments[variantName] = parameter;
 							}
 							else {
@@ -274,21 +284,31 @@ void TCompIAController::loadTree(const json & j)
 							variantOp = ite.value()["variable_op"];
 							//Depending on the variable type, we create the variant and we save it in arguments
 							if (variantType == "INT") {
+								assert(ite.value()["variable_value"].is_number_integer());
 								int variantValue = ite.value()["variable_value"];
 								CVariant parameter;
 								parameter.setInt(variantValue);
 								arguments[variantName] = parameter;
 							}
 							else if (variantType == "FLOAT") {
+								assert(ite.value()["variable_value"].is_number_float());
 								float variantValue = ite.value()["variable_value"];
 								CVariant parameter;
 								parameter.setFloat(variantValue);
 								arguments[variantName] = parameter;
 							}
 							else if (variantType == "BOOL") {
+								assert(ite.value()["variable_value"].is_boolean());
 								bool variantValue = ite.value()["variable_value"];
 								CVariant parameter;
 								parameter.setBool(variantValue);
+								arguments[variantName] = parameter;
+							}
+							else if (variantType == "STRING") {
+								assert(ite.value()["variable_value"].is_string());
+								std::string variantValue = ite.value()["variable_value"];
+								CVariant parameter;
+								parameter.setString(variantValue);
 								arguments[variantName] = parameter;
 							}
 							else {

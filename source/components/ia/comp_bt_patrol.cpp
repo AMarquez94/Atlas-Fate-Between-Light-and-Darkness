@@ -54,10 +54,6 @@ void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 			addWaypoint(wpt);
 		}
 	}
-
-	rotationSpeed = deg2rad(rotationSpeedDeg);
-	fov = deg2rad(fovDeg);
-	maxRotationSeekingPlayer = deg2rad(maxRotationSeekingPlayerDeg);
 	startLightsOn = j.value("startLightsOn", false);
 	currentWaypoint = 0;
 	/* TODO: ¿Init node? */
@@ -292,8 +288,13 @@ BTNode::ERes TCompAIPatrol::actionEndAlert(float dt)
 
 BTNode::ERes TCompAIPatrol::actionGoToWpt(float dt)
 {
+	assert(arguments.find("speed_actionGoToWpt_goToWpt") != arguments.end());
+	float speed = arguments["speed_actionGoToWpt_goToWpt"].getFloat();
+	assert(arguments.find("rotationSpeed_actionGoToWpt_goToWpt") != arguments.end());
+	float rotationSpeed = deg2rad(arguments["rotationSpeed_actionGoToWpt_goToWpt"].getFloat());
+
 	TCompTransform *mypos = get<TCompTransform>();
-	rotateTowardsVec(getWaypoint().position, dt);
+	rotateTowardsVec(getWaypoint().position, dt, rotationSpeed);
 
 	VEC3 vp = mypos->getPosition();
 	if (VEC3::Distance(getWaypoint().position, vp) < speed * dt) {
@@ -311,13 +312,16 @@ BTNode::ERes TCompAIPatrol::actionGoToWpt(float dt)
 
 BTNode::ERes TCompAIPatrol::actionWaitInWpt(float dt)
 {
+	assert(arguments.find("rotationSpeed_actionWaitInWpt_waitInWpt") != arguments.end());
+	float rotationSpeed = deg2rad(arguments["rotationSpeed_actionWaitInWpt_waitInWpt"].getFloat());
+	
 	if (timerWaitingInWpt >= getWaypoint().minTime) {
 		return BTNode::ERes::LEAVE;
 	}
 	else {
 		timerWaitingInWpt += dt;
 		TCompTransform *mypos = get<TCompTransform>();
-		rotateTowardsVec(mypos->getPosition() + getWaypoint().lookAt, dt);
+		rotateTowardsVec(mypos->getPosition() + getWaypoint().lookAt, dt, rotationSpeed);
 		return BTNode::ERes::STAY;
 	}
 }
@@ -331,6 +335,21 @@ BTNode::ERes TCompAIPatrol::actionNextWpt(float dt)
 
 BTNode::ERes TCompAIPatrol::actionSuspect(float dt)
 {
+	assert(arguments.find("rotationSpeed_actionSuspect_suspect") != arguments.end());
+	float rotationSpeed = deg2rad(arguments["rotationSpeed_actionSuspect_suspect"].getFloat());
+	assert(arguments.find("fov_actionSuspect_suspect") != arguments.end());
+	float fov = deg2rad(arguments["fov_actionSuspect_suspect"].getFloat());
+	assert(arguments.find("autoChaseDistance_actionSuspect_suspect") != arguments.end());
+	float autoChaseDistance = arguments["autoChaseDistance_actionSuspect_suspect"].getFloat();
+	assert(arguments.find("maxChaseDistance_actionSuspect_suspect") != arguments.end());
+	float maxChaseDistance = arguments["maxChaseDistance_actionSuspect_suspect"].getFloat();
+	assert(arguments.find("dcrSuspectO_Meter_actionSuspect_suspect") != arguments.end());
+	float dcrSuspectO_Meter = arguments["dcrSuspectO_Meter_actionSuspect_suspect"].getFloat();
+	assert(arguments.find("incrBaseSuspectO_Meter_actionSuspect_suspect") != arguments.end());
+	float incrBaseSuspectO_Meter = arguments["incrBaseSuspectO_Meter_actionSuspect_suspect"].getFloat();
+	assert(arguments.find("entityToChase_actionSuspect_suspect") != arguments.end());
+	std::string entityToChase = arguments["entityToChase_actionSuspect_suspect"].getString();
+	
 	TCompRender *cRender = get<TCompRender>();
 	cRender->color = VEC4(255, 255, 0, 1);
 	// chase
@@ -341,13 +360,13 @@ BTNode::ERes TCompAIPatrol::actionSuspect(float dt)
 	/* Distance to player */
 	float distanceToPlayer = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
 
-	if (distanceToPlayer <= autoChaseDistance && isPlayerInFov()) {
+	if (distanceToPlayer <= autoChaseDistance && isPlayerInFov(entityToChase, fov, maxChaseDistance)) {
 		suspectO_Meter = 1.f;
-		rotateTowardsVec(ppos->getPosition(), dt);
+		rotateTowardsVec(ppos->getPosition(), dt, rotationSpeed);
 	}
-	else if (distanceToPlayer <= maxChaseDistance && isPlayerInFov()) {
+	else if (distanceToPlayer <= maxChaseDistance && isPlayerInFov(entityToChase, fov, maxChaseDistance)) {
 		suspectO_Meter = Clamp(suspectO_Meter + dt * incrBaseSuspectO_Meter, 0.f, 1.f);							//TODO: increment more depending distance and noise
-		rotateTowardsVec(ppos->getPosition(), dt);
+		rotateTowardsVec(ppos->getPosition(), dt, rotationSpeed);
 	}
 	else {
 		suspectO_Meter = Clamp(suspectO_Meter - dt * dcrSuspectO_Meter, 0.f, 1.f);
@@ -366,6 +385,9 @@ BTNode::ERes TCompAIPatrol::actionSuspect(float dt)
 
 BTNode::ERes TCompAIPatrol::actionMarkPlayerAsSeen(float dt)
 {
+	assert(arguments.find("entityToChase_actionMarkPlayerAsSeen_markPlayerAsSeen") != arguments.end());
+	std::string entityToChase = arguments["entityToChase_actionMarkPlayerAsSeen_markPlayerAsSeen"].getString();
+	
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform * ppos = player->get<TCompTransform>();
 	lastPlayerKnownPos = ppos->getPosition();
@@ -374,6 +396,9 @@ BTNode::ERes TCompAIPatrol::actionMarkPlayerAsSeen(float dt)
 
 BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 {
+	assert(arguments.find("entityToChase_actionShootInhibitor_shootInhibitor") != arguments.end());
+	std::string entityToChase = arguments["entityToChase_actionShootInhibitor_shootInhibitor"].getString();
+	
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompPlayerController *pController = player->get<TCompPlayerController>();
 	TCompRender *cRender = get<TCompRender>();
@@ -390,11 +415,24 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 
 BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
 {
+	assert(arguments.find("speed_actionChasePlayer_ChasePlayer") != arguments.end());
+	float speed = arguments["speed_actionChasePlayer_ChasePlayer"].getFloat();
+	assert(arguments.find("rotationSpeed_actionChasePlayer_ChasePlayer") != arguments.end());
+	float rotationSpeed = deg2rad(arguments["rotationSpeed_actionChasePlayer_ChasePlayer"].getFloat());
+	assert(arguments.find("fov_actionChasePlayer_ChasePlayer") != arguments.end());
+	float fov = deg2rad(arguments["fov_actionChasePlayer_ChasePlayer"].getFloat());
+	assert(arguments.find("maxChaseDistance_actionChasePlayer_ChasePlayer") != arguments.end());
+	float maxChaseDistance = arguments["maxChaseDistance_actionChasePlayer_ChasePlayer"].getFloat();
+	assert(arguments.find("distToAttack_actionChasePlayer_ChasePlayer") != arguments.end());
+	float distToAttack = arguments["distToAttack_actionChasePlayer_ChasePlayer"].getFloat();
+	assert(arguments.find("entityToChase_actionChasePlayer_ChasePlayer") != arguments.end());
+	std::string entityToChase = arguments["entityToChase_actionChasePlayer_ChasePlayer"].getString();
+
 	TCompTransform *mypos = get<TCompTransform>();
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
 
-	isStunnedPatrolInFov();
+	isStunnedPatrolInFov(fov, maxChaseDistance);
 
 	if (lastPlayerKnownPos != VEC3::Zero) {
 
@@ -404,7 +442,7 @@ BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
 	lastPlayerKnownPos = ppos->getPosition();
 
 	float distToPlayer = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
-	if (!isPlayerInFov() || distToPlayer >= maxChaseDistance + 0.5f) {
+	if (!isPlayerInFov(entityToChase, fov, maxChaseDistance) || distToPlayer >= maxChaseDistance + 0.5f) {
 		TCompRender * cRender = get<TCompRender>();
 		cRender->color = VEC4(255, 255, 0, 1);
 		return BTNode::ERes::LEAVE;
@@ -413,7 +451,7 @@ BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
 		return BTNode::ERes::LEAVE;
 	}
 	else {
-		rotateTowardsVec(ppos->getPosition(), dt);
+		rotateTowardsVec(ppos->getPosition(), dt, rotationSpeed);
 		VEC3 vp = mypos->getPosition();
 		VEC3 vfwd = mypos->getFront();
 		vfwd.Normalize();
@@ -425,6 +463,9 @@ BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
 
 BTNode::ERes TCompAIPatrol::actionAttack(float dt)
 {
+	assert(arguments.find("entityToChase_actionAttack_attack") != arguments.end());
+	std::string entityToChase = arguments["entityToChase_actionAttack_attack"].getString();
+	
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform * ppos = player->get<TCompTransform>();
 
@@ -443,12 +484,23 @@ BTNode::ERes TCompAIPatrol::actionResetPlayerWasSeenVariables(float dt)
 
 BTNode::ERes TCompAIPatrol::actionGoToPlayerLastPos(float dt)
 {
+	assert(arguments.find("speed_actionGoToPlayerLastPos_goToPlayerLastPos") != arguments.end());
+	float speed = arguments["speed_actionGoToPlayerLastPos_goToPlayerLastPos"].getFloat();
+	assert(arguments.find("rotationSpeed_actionGoToPlayerLastPos_goToPlayerLastPos") != arguments.end());
+	float rotationSpeed = deg2rad(arguments["rotationSpeed_actionGoToPlayerLastPos_goToPlayerLastPos"].getFloat());
+	assert(arguments.find("fov_actionGoToPlayerLastPos_goToPlayerLastPos") != arguments.end());
+	float fov = deg2rad(arguments["fov_actionGoToPlayerLastPos_goToPlayerLastPos"].getFloat());
+	assert(arguments.find("maxChaseDistance_actionGoToPlayerLastPos_goToPlayerLastPos") != arguments.end());
+	float maxChaseDistance = arguments["maxChaseDistance_actionGoToPlayerLastPos_goToPlayerLastPos"].getFloat();
+	assert(arguments.find("entityToChase_actionGoToPlayerLastPos_goToPlayerLastPos") != arguments.end());
+	std::string entityToChase = arguments["entityToChase_actionGoToPlayerLastPos_goToPlayerLastPos"].getString();
+	
 	TCompTransform *mypos = get<TCompTransform>();
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
-	rotateTowardsVec(lastPlayerKnownPos, dt);
+	rotateTowardsVec(lastPlayerKnownPos, dt, rotationSpeed);
 
-	isStunnedPatrolInFov();
+	isStunnedPatrolInFov(fov, maxChaseDistance);
 
 	VEC3 vp = mypos->getPosition();
 
@@ -468,11 +520,22 @@ BTNode::ERes TCompAIPatrol::actionGoToPlayerLastPos(float dt)
 
 BTNode::ERes TCompAIPatrol::actionLookForPlayer(float dt)
 {
+	assert(arguments.find("rotationSpeed_actionLookForPlayer_lookForPlayerSeen") != arguments.end());
+	float rotationSpeed = deg2rad(arguments["rotationSpeed_actionLookForPlayer_lookForPlayerSeen"].getFloat());
+	assert(arguments.find("fov_actionLookForPlayer_lookForPlayerSeen") != arguments.end());
+	float fov = deg2rad(arguments["fov_actionLookForPlayer_lookForPlayerSeen"].getFloat());
+	assert(arguments.find("maxRotationSeekingPlayer_actionLookForPlayer_lookForPlayerSeen") != arguments.end());
+	float maxRotationSeekingPlayer = deg2rad(arguments["maxRotationSeekingPlayer_actionLookForPlayer_lookForPlayerSeen"].getFloat());
+	assert(arguments.find("maxChaseDistance_actionLookForPlayer_lookForPlayerSeen") != arguments.end());
+	float maxChaseDistance = arguments["maxChaseDistance_actionLookForPlayer_lookForPlayerSeen"].getFloat();
+	assert(arguments.find("entityToChase_actionLookForPlayer_lookForPlayerSeen") != arguments.end());
+	std::string entityToChase = arguments["entityToChase_actionLookForPlayer_lookForPlayerSeen"].getString();
+	
 	TCompTransform *mypos = get<TCompTransform>();
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
 
-	isStunnedPatrolInFov();
+	isStunnedPatrolInFov(fov, maxChaseDistance);
 
 	if (amountRotated >= maxRotationSeekingPlayer * 3) {
 		suspectO_Meter = 0.f;
@@ -516,8 +579,15 @@ BTNode::ERes TCompAIPatrol::actionLookForPlayer(float dt)
 
 BTNode::ERes TCompAIPatrol::actionGoToPatrol(float dt)
 {
+	assert(arguments.find("speed_actionGoToPatrol_goToPatrol") != arguments.end());
+	float speed = arguments["speed_actionGoToPatrol_goToPatrol"].getFloat();
+	assert(arguments.find("rotationSpeed_actionGoToPatrol_goToPatrol") != arguments.end());
+	float rotationSpeed = deg2rad(arguments["rotationSpeed_actionGoToPatrol_goToPatrol"].getFloat());
+	assert(arguments.find("distToAttack_actionGoToPatrol_goToPatrol") != arguments.end());
+	float distToAttack = arguments["distToAttack_actionGoToPatrol_goToPatrol"].getFloat();
+	
 	TCompTransform *mypos = get<TCompTransform>();
-	rotateTowardsVec(lastStunnedPatrolKnownPos, dt);
+	rotateTowardsVec(lastStunnedPatrolKnownPos, dt, rotationSpeed);
 
 	VEC3 vp = mypos->getPosition();
 
@@ -578,7 +648,14 @@ bool TCompAIPatrol::conditionFixed(float dt)
 
 bool TCompAIPatrol::conditionPlayerSeen(float dt)
 {
-	return isPlayerInFov();
+	assert(arguments.find("entityToChase_conditionPlayerSeen_managePlayerSeen") != arguments.end());
+	std::string entityToChase = arguments["entityToChase_conditionPlayerSeen_managePlayerSeen"].getString();
+	assert(arguments.find("fov_conditionPlayerSeen_managePlayerSeen") != arguments.end());
+	float fov = deg2rad(arguments["fov_conditionPlayerSeen_managePlayerSeen"].getFloat());
+	assert(arguments.find("maxChaseDistance_conditionPlayerSeen_managePlayerSeen") != arguments.end());
+	float maxChaseDistance = arguments["maxChaseDistance_conditionPlayerSeen_managePlayerSeen"].getFloat();
+	
+	return isPlayerInFov(entityToChase, fov, maxChaseDistance);
 }
 
 bool TCompAIPatrol::conditionPlayerWasSeen(float dt)
@@ -588,7 +665,12 @@ bool TCompAIPatrol::conditionPlayerWasSeen(float dt)
 
 bool TCompAIPatrol::conditionPatrolSeen(float dt)
 {
-	return isStunnedPatrolInFov() || lastStunnedPatrolKnownPos != VEC3::Zero;
+	assert(arguments.find("fov_conditionPatrolSeen_managePatrolSeen") != arguments.end());
+	float fov = deg2rad(arguments["fov_conditionPatrolSeen_managePatrolSeen"].getFloat());
+	assert(arguments.find("maxChaseDistance_conditionPatrolSeen_managePatrolSeen") != arguments.end());
+	float maxChaseDistance = arguments["maxChaseDistance_conditionPatrolSeen_managePatrolSeen"].getFloat();
+	
+	return isStunnedPatrolInFov(fov, maxChaseDistance) || lastStunnedPatrolKnownPos != VEC3::Zero;
 }
 
 bool TCompAIPatrol::conditionFixPatrol(float dt)
@@ -615,6 +697,11 @@ bool TCompAIPatrol::conditionChase(float dt)
 
 bool TCompAIPatrol::conditionPlayerAttacked(float dt)
 {
+	assert(arguments.find("entityToChase_conditionPlayerAttacked_managePlayerAttacked") != arguments.end());
+	std::string entityToChase = arguments["entityToChase_conditionPlayerAttacked_managePlayerAttacked"].getString();
+	assert(arguments.find("distToAttack_conditionPlayerAttacked_managePlayerAttacked") != arguments.end());
+	float distToAttack = arguments["distToAttack_conditionPlayerAttacked_managePlayerAttacked"].getFloat();
+	
 	TCompTransform *mypos = get<TCompTransform>();
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
@@ -627,21 +714,36 @@ bool TCompAIPatrol::conditionPlayerAttacked(float dt)
 
 bool TCompAIPatrol::assertPlayerInFov(float dt)
 {
-	return isPlayerInFov();
+	assert(arguments.find("fov_actionSuspect_suspect") != arguments.end());
+	float fov = deg2rad(arguments["fov_actionSuspect_suspect"].getFloat());
+	assert(arguments.find("maxChaseDistance_actionSuspect_suspect") != arguments.end());
+	float maxChaseDistance = arguments["maxChaseDistance_actionSuspect_suspect"].getFloat();
+	
+	return isPlayerInFov("The Player", fov, maxChaseDistance);
 }
 
 bool TCompAIPatrol::assertPlayerNotInFov(float dt)
 {
-	return !isPlayerInFov();
+	assert(arguments.find("fov_actionSuspect_suspect") != arguments.end());
+	float fov = deg2rad(arguments["fov_actionSuspect_suspect"].getFloat());
+	assert(arguments.find("maxChaseDistance_actionSuspect_suspect") != arguments.end());
+	float maxChaseDistance = arguments["maxChaseDistance_actionSuspect_suspect"].getFloat();
+	
+	return !isPlayerInFov("The Player", fov, maxChaseDistance);
 }
 
 bool TCompAIPatrol::assertPlayerAndPatrolNotInFov(float dt)
 {
-	return !isPlayerInFov() && !isStunnedPatrolInFov();
+	assert(arguments.find("fov_actionSuspect_suspect") != arguments.end());
+	float fov = deg2rad(arguments["fov_actionSuspect_suspect"].getFloat());
+	assert(arguments.find("maxChaseDistance_actionSuspect_suspect") != arguments.end());
+	float maxChaseDistance = arguments["maxChaseDistance_actionSuspect_suspect"].getFloat();
+	
+	return !isPlayerInFov("The Player", fov, maxChaseDistance) && !isStunnedPatrolInFov(fov, maxChaseDistance);
 }
 
 /* AUX FUNCTIONS */
-void TCompAIPatrol::rotateTowardsVec(VEC3 objective, float dt) {
+void TCompAIPatrol::rotateTowardsVec(VEC3 objective, float dt, float rotationSpeed) {
 	TCompTransform *mypos = get<TCompTransform>();
 	float y, r, p;
 	mypos->getYawPitchRoll(&y, &p, &r);
@@ -661,7 +763,7 @@ void TCompAIPatrol::rotateTowardsVec(VEC3 objective, float dt) {
 	mypos->setYawPitchRoll(y, p, r);
 }
 
-bool TCompAIPatrol::isPlayerInFov() {
+bool TCompAIPatrol::isPlayerInFov(std::string entityToChase, float fov, float maxChaseDistance) {
 
 	TCompTransform *mypos = get<TCompTransform>();
 	CHandle hPlayer = getEntityByName(entityToChase);
@@ -731,7 +833,7 @@ void TCompAIPatrol::turnOffLight() {
 	cConeController->turnOffLight();
 }
 
-bool TCompAIPatrol::isStunnedPatrolInFov()
+bool TCompAIPatrol::isStunnedPatrolInFov(float fov, float maxChaseDistance)
 {
 	std::vector <CHandle> &stunnedPatrols = CEngine::get().getIA().patrolSB.stunnedPatrols;
 
