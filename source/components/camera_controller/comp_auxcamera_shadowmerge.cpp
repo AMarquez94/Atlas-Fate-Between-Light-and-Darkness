@@ -26,8 +26,7 @@ void TCompAuxCameraShadowMerge::load(const json& j, TEntityParseContext& ctx)
 	active = false;
 
 	physx::PxFilterData pxFilterData;
-	pxFilterData.word1 = EnginePhysics.FilterGroup::Scenario;
-
+	pxFilterData.word1 = FilterGroup::Scenario;
 	cameraFilter.data = pxFilterData;
 
 	_blendInTime = j.value("bendInTime", .4f);

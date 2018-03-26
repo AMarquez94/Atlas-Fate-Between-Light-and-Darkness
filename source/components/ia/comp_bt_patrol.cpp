@@ -7,6 +7,9 @@
 #include "components/comp_render.h"
 #include "components/comp_group.h"
 #include "components/object_controller/comp_cone_of_light.h"
+#include "components/physics/comp_rigidbody.h"
+#include "components/physics/comp_collider.h"
+#include "physics/physics_collider.h"
 
 
 DECL_OBJ_MANAGER("ai_patrol", TCompAIPatrol);
@@ -66,9 +69,11 @@ void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
 	name = tName->getName();
 
 	if (_waypoints.size() == 0) {
+
+		TCompTransform * tPos = get<TCompTransform>();
 		Waypoint wpt;
-		wpt.position = ((TCompTransform*)get<TCompTransform>())->getPosition();
-		wpt.lookAt = ((TCompTransform*)get<TCompTransform>())->getFront();
+		wpt.position =tPos->getPosition();
+		wpt.lookAt = tPos->getFront();
 		wpt.minTime = 1.f;
 		addWaypoint(wpt);
 	}
@@ -668,7 +673,7 @@ bool TCompAIPatrol::isPlayerInFov() {
 		TCompPlayerController *pController = ePlayer->get<TCompPlayerController>();
 
 		/* Player inside cone of vision */
-		bool in_fov = mypos->isInFov(ppos->getPosition(), fov);
+		bool in_fov = mypos->isInFov(ppos->getPosition(), fov, deg2rad(89.f));
 
 		return in_fov && !pController->isInShadows() && !pController->isDead() && dist <= maxChaseDistance && !isEntityHidden(hPlayer);
 	}
@@ -685,16 +690,18 @@ bool TCompAIPatrol::isEntityHidden(CHandle hEntity)
 	TCompCollider *myCollider = get<TCompCollider>();
 	TCompCollider *eCollider = entity->get<TCompCollider>();
 
+	CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
+
 	bool isHidden = true;
 
 	VEC3 myPosition = mypos->getPosition();
-	VEC3 origin = myPosition + VEC3(0, myCollider->config.height * 2, 0);
+	VEC3 origin = myPosition + VEC3(0, capsuleCollider->height * 2, 0);
 	VEC3 dest = VEC3::Zero;
 	VEC3 dir = VEC3::Zero;
 
 	float i = 0;
-	while (isHidden && i < eCollider->config.height * 2) {
-		dest = eTransform->getPosition() + VEC3(0, Clamp(i - .1f, 0.f, eCollider->config.height * 2), 0);
+	while (isHidden && i < capsuleCollider->height * 2) {
+		dest = eTransform->getPosition() + VEC3(0, Clamp(i - .1f, 0.f, capsuleCollider->height * 2), 0);
 		dir = dest - origin;
 		dir.Normalize();
 		physx::PxRaycastHit hit;
@@ -704,7 +711,7 @@ bool TCompAIPatrol::isEntityHidden(CHandle hEntity)
 		if (!EnginePhysics.Raycast(origin, dir, dist, hit, physx::PxQueryFlag::eSTATIC)) {
 			isHidden = false;
 		}
-		i = i + (eCollider->config.height / 2);
+		i = i + (capsuleCollider->height / 2);
 	}
 	return isHidden;
 }
@@ -734,7 +741,7 @@ bool TCompAIPatrol::isStunnedPatrolInFov()
 		TCompTransform *mypos = get<TCompTransform>();
 		for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
 			TCompTransform* stunnedPatrol = ((CEntity*)stunnedPatrols[i])->get<TCompTransform>();
-			if (mypos->isInFov(stunnedPatrol->getPosition(), fov)
+			if (mypos->isInFov(stunnedPatrol->getPosition(), fov, deg2rad(89.f))
 				&& VEC3::Distance(mypos->getPosition(), stunnedPatrol->getPosition()) < maxChaseDistance
 				&& !isEntityHidden(stunnedPatrols[i])) {
 				found = true;

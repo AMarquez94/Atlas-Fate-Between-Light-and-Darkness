@@ -14,11 +14,11 @@ private:
 
 	enum EType { FLOOR = 0, WALL, NUM_TYPES };
 
-	float speed = 3.5f;
-	float rotationSpeedDeg = 90.0f;
-	float rotationSpeed;
+	float speed = 3.f;
+	float rotationSpeedChaseDeg = 359.f;
+	float rotationSpeedChase;
 	std::string entityToChase = "The Player";
-	float fovDeg = 70.f;
+	float fovDeg = 179.f;
 	float fov;
 	float autoChaseDistance = 15.f;
 	float maxChaseDistance = 35.f;
@@ -26,28 +26,31 @@ private:
 	float suspectO_Meter = 0.f;
 	float dcrSuspectO_Meter = .3f;
 	float incrBaseSuspectO_Meter = .5f;
-	bool isLastPlayerKnownDirLeft = false;
 	float distToAttack = 1.5f;
-	float amountRotated = 0.f;
-	float maxRotationSeekingPlayerDeg = 90.f;
-	float maxRotationSeekingPlayer;
 	VEC3 lastPlayerKnownPos = VEC3::Zero;
-	VEC3 lastStunnedPatrolKnownPos = VEC3::Zero;
 	bool startLightsOn = false;
 	bool alarmEnded = true;
 	bool hasBeenStunned = false;
-	bool hasBeenShadowMerged = false;
-	bool hasBeenFixed = false;
+	bool isLastPlayerKnownDirLeft = false;
 
 	std::string validState = "";
 
 	/* Timers */
 	float timerWaitingInWpt = 0.f;
+	float timerWaitingInObservation = 0.f;
 
-	bool isSlept;
+	bool isSlept = false;
 	EType type;
-	bool isActive;
-	bool goingInactive;
+	bool isActive = false;
+	bool goingInactive = false;
+	VEC3 initialPos;
+	VEC3 initialLookAt;
+	float rotationSpeedObservation = deg2rad(40.f);
+	float waitTimeInLasPlayerPos = 3.f;
+	float chaseSpeed = 6.f;
+
+	float amountRotatedObserving = 0.f;
+	float maxAmountRotateObserving = deg2rad(45.f);
 
 	DECL_SIBLING_ACCESS();
 
@@ -58,11 +61,13 @@ private:
 	/* Aux functions */
 	const Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }
 	void addWaypoint(const Waypoint& wpt) { _waypoints.push_back(wpt); };
-	void rotateTowardsVec(VEC3 objective, float dt);
+	bool rotateTowardsVec(VEC3 objective, float rotationSpeed, float dt);
 	bool isPlayerInFov();
 	bool isEntityHidden(CHandle hEntity);
 	void turnOnLight();
 	void turnOffLight();
+	void setGravityToFaceWall();
+	EType parseStringMimeticType(const std::string& typeString);
 	
 	//load
 	void loadActions() override;
@@ -75,9 +80,11 @@ public:
 
 	/* ACTIONS */
 	BTNode::ERes actionStunned(float dt);
-	BTNode::ERes actionObserve(float dt);
+	BTNode::ERes actionResetObserveVariables(float dt);
+	BTNode::ERes actionObserveLeft(float dt);
+	BTNode::ERes actionObserveRight(float dt);
+	BTNode::ERes actionWaitObserving(float dt);
 	BTNode::ERes actionSetActive(float dt);
-	BTNode::ERes actionJumpFloor(float dt);
 	BTNode::ERes actionGoToWpt(float dt);
 	BTNode::ERes actionResetTimerWaiting(float dt);
 	BTNode::ERes actionWaitInWpt(float dt);
@@ -85,12 +92,16 @@ public:
 	BTNode::ERes actionSleep(float dt);
 	BTNode::ERes actionWakeUp(float dt);
 	BTNode::ERes actionSuspect(float dt);
+	BTNode::ERes actionJumpFloor(float dt);
+	BTNode::ERes actionResetVariablesChase(float dt);
 	BTNode::ERes actionChasePlayerWithNoise(float dt);
 	BTNode::ERes actionGoToPlayerLastPos(float dt);
 	BTNode::ERes actionWaitInPlayerLastPos(float dt);
 	BTNode::ERes actionSetGoInactive(float dt);
 	BTNode::ERes actionGoToInitialPos(float dt);
+	BTNode::ERes actionRotateToInitialPos(float dt);
 	BTNode::ERes actionJumpWall(float dt);
+	BTNode::ERes actionHoldOnWall(float dt);
 	BTNode::ERes actionSetInactive(float dt);
 
 	/* CONDITIONS */

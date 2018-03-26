@@ -244,7 +244,7 @@ struct TSceneExporter (
 		) else if classof obj == Box then (
 			fs.writeKeyValue "shape" "box" 
 			fs.writeComma()
-			fs.writeKeyValue "halfExtent" [abs (obj.width * .5f), abs (obj.height * .5f), abs (obj.length * .5f)]
+			fs.writeKeyValue "size" [abs (obj.width * .5f), abs (obj.height * .5f), abs (obj.length * .5f)]
 		) else (
 			local col_path = project_path + cols_path + obj.name + ".collider"
 			if obj.parent != undefined then (

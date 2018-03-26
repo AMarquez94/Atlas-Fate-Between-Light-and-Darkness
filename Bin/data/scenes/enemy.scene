@@ -14,15 +14,17 @@
       },
 		  "collider": {
 			"shape": "capsule",
-			"is_controller": true,
 			"radius": 0.65,
 			"height": 1.0,
 			"gravity": true,
 			"group" : "enemy"
-		  }
+		  },
+			"rigidbody": {
+				"is_controller": true,
+				"is_gravity": true
+			}
 		}
-	},
-	{
+	}, {
 		"entity": {
 		  "prefab": "data/prefabs/patrol.prefab",
 		  "name": "The Enemy 2",
@@ -41,7 +43,7 @@
             "lookAt": "-1 0 0"
           }
         ],
-        "argCond": [
+        "xargCond": [
           {
             "nodeName": "manageStun",
             "conditionName": "conditionManageStun",
@@ -57,15 +59,17 @@
       },
 		  "collider": {
 			"shape": "capsule",
-			"is_controller": true,
 			"radius": 0.65,
 			"height": 1.0,
 			"gravity": true,
 			"group" : "enemy"
-		  }
+		  },
+			"rigidbody": {
+				"is_controller": true,
+				"is_gravity": true
+			}
 		}
-	},
-	{
+	}, {
 		"entity": {
 		  "prefab": "data/prefabs/patrol.prefab",
 		  "name": "The Enemy 3",
@@ -120,15 +124,17 @@
       },
 		  "collider": {
 			"shape": "capsule",
-			"is_controller": true,
 			"radius": 0.65,
 			"height": 1.0,
 			"gravity": true,
 			"group" : "enemy"
-		  }
+		  },
+			"rigidbody": {
+				"is_controller": true,
+				"is_gravity": true
+			}
 		}
-	},
-	{
+	}, {
 		"entity": {
 		  "prefab": "data/prefabs/patrol.prefab",
 		  "name": "The Enemy 4",
@@ -183,12 +189,39 @@
       },
 		  "collider": {
 			"shape": "capsule",
-			"is_controller": true,
 			"radius": 0.65,
 			"height": 1.0,
 			"gravity": true,
 			"group" : "enemy"
-		  }
+		  },
+			"rigidbody": {
+				"is_controller": true,
+				"is_gravity": true
+			}
+		}
+	}, {
+		"entity": {
+			"prefab": "data/prefabs/mimetic.prefab",
+			"name": "Mimetic 1",
+			"transform": {
+				"pos": "-25 3.2 86"
+			},
+			"ai_mimetic": {
+				"startLightsOn": false,
+				"type": "wall",
+				"isSlept": false
+			},
+		  "collider": {
+			"shape": "capsule",
+			"radius": 0.65,
+			"height": 1.0,
+			"gravity": true,
+			"group" : "enemy"
+		  },
+			"rigidbody": {
+				"is_controller": true,
+				"is_gravity": true
+			}
 		}
 	}
 ]

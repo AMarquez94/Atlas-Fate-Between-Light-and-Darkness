@@ -72,7 +72,6 @@
     <ClCompile Include="components\camera_controller\comp_camera_flyover.cpp" />
     <ClCompile Include="components\camera_controller\comp_camera_orbit.cpp" />
     <ClCompile Include="components\physics\comp_collider.cpp" />
-    <ClCompile Include="components\physics\comp_rigibody.cpp" />
     <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
     <ClCompile Include="components\camera_controller\comp_auxcamera_shadowmerge.cpp" />
     <ClCompile Include="components\comp_light.cpp" />
@@ -96,6 +95,10 @@
     <ClCompile Include="components\ia\comp_bt_patrol.cpp" />
     <ClCompile Include="components\ia\comp_bt_test.cpp" />
     <ClCompile Include="components\ia\comp_bt_mimetic.cpp" />
+    <ClCompile Include="physics\physics_mesh.cpp" />
+    <ClCompile Include="physics\physics_collider.cpp" />
+    <ClCompile Include="physics\physics_filter.cpp" />
+    <ClCompile Include="components\physics\comp_rigidbody.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -193,7 +196,6 @@
     <ClInclude Include="components\camera_controller\comp_camera_flyover.h" />
     <ClInclude Include="components\camera_controller\comp_camera_orbit.h" />
     <ClInclude Include="components\physics\comp_collider.h" />
-    <ClInclude Include="components\physics\comp_rigibody.h" />
     <ClInclude Include="components\player_controller\comp_shadow_controller.h" />
     <ClInclude Include="components\camera_controller\comp_auxcamera_shadowmerge.h" />
     <ClInclude Include="components\comp_light.h" />
@@ -220,6 +222,10 @@
     <ClInclude Include="components\ia\comp_bt_patrol.h" />
     <ClInclude Include="components\ia\comp_bt_test.h" />
     <ClInclude Include="components\ia\comp_bt_mimetic.h" />
+    <ClInclude Include="physics\physics_mesh.h" />
+    <ClInclude Include="physics\physics_collider.h" />
+    <ClInclude Include="physics\physics_filter.h" />
+    <ClInclude Include="components\physics\comp_rigidbody.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

@@ -1,36 +1,37 @@
 {
-  "sizes": {
-    "default": 512,
-    "transform": 512
-  },
-  "init_order": {
-    "entity": 100,
-    "transform": 90
-  },
-  "update": [
-    "circular_controller",
-    "player_controller",
-    "ai_patrol",
-	"ai_mimetic",
-    "ai_test",
-    "bullet_controller",
-    "shadow_controller",
-    "light",
-    "hierarchy",
+	"sizes": {
+		"default": 512,
+		"transform": 512
+	},
+	"init_order": {
+		"entity": 100,
+		"transform": 90
+	},
+	"update": [
+		"circular_controller",
+		"player_controller",
+		"ai_patrol",
+		"ai_mimetic",
+		"ai_test",
+		"bullet_controller",
+		"shadow_controller",
+		"light",
+		"hierarchy",
 		"local_aabb",
 		"culling",
     "cone_of_light",
+		"rigidbody",
     "collider",
     "camera_flyover",
     "dynamic_objects",
 		"capsule_shadow_controller",
-    "camera_thirdperson",
-    "camera_shadowmerge",
-    "auxcamera_shadowmerge",
-    "camera"
-  ],
-  "render_debug": [
-    "player_controller",
+		"camera_thirdperson",
+		"camera_shadowmerge",
+		"auxcamera_shadowmerge",
+		"camera"
+	],
+	"render_debug": [
+		"player_controller",
 		"ai_patrol"
-  ]
+	]
 }

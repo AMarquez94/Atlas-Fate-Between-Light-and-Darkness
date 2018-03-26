@@ -38,3 +38,11 @@ QUAT createLookAt(const VEC3& origin, const VEC3& front, const VEC3& up)
 	Matrix test = Matrix::CreateLookAt(origin, front, up).Transpose();
 	return Quaternion::CreateFromRotationMatrix(test);
 }
+
+VEC3 rotateVectorAroundAxis(const VEC3& vecToRotate, const VEC3& axisToRotate, float deltaRotation)
+{
+	float cos_delta = cosf(deltaRotation);
+	float sin_delta = sinf(deltaRotation);
+
+	return (vecToRotate * cos_delta) + (axisToRotate.Cross(vecToRotate) * sin_delta) + (axisToRotate * axisToRotate.Dot(vecToRotate)) * (1 - cos_delta);
+}
