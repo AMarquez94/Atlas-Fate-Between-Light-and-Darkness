@@ -21,17 +21,18 @@
 		"local_aabb",
 		"culling",
     "cone_of_light",
+		"rigidbody",
     "collider",
     "camera_flyover",
     "dynamic_objects",
 		"capsule_shadow_controller",
-    "camera_thirdperson",
-    "camera_shadowmerge",
-    "auxcamera_shadowmerge",
-    "camera"
-  ],
-  "render_debug": [
-    "player_controller",
+		"camera_thirdperson",
+		"camera_shadowmerge",
+		"auxcamera_shadowmerge",
+		"camera"
+	],
+	"render_debug": [
+		"player_controller",
 		"ai_patrol"
-  ]
+	]
 }

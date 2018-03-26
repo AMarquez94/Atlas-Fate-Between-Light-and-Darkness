@@ -7,6 +7,9 @@
 #include "components/comp_render.h"
 #include "components/comp_group.h"
 #include "components/object_controller/comp_cone_of_light.h"
+#include "components/physics/comp_rigidbody.h"
+#include "components/physics/comp_collider.h"
+#include "physics/physics_collider.h"
 
 
 DECL_OBJ_MANAGER("ai_patrol", TCompAIPatrol);
@@ -29,124 +32,15 @@ void TCompAIPatrol::debugInMenu() {
 }
 
 void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
-	std::string rootName, childName, parentName, condition, action, assert, type;
-	BTNode::EType nodeType;
-	BTAction actionNode = nullptr;
-	BTCondition conditionNode = nullptr, assertNode = nullptr;
 
 	loadActions();
 	loadConditions();
 	loadAsserts();
+	TCompIAController::loadTree(j);
 	/*CHandle h(this);
 	CEntity* e = h.getOwner();
 	std::string aux = e->getName();*/
-	assert(j.count("createRoot") == 1);
-	if (j.count("createRoot") == 1) {
-		auto& j_root = j["createRoot"];
-		assert(j_root.count("rootName") == 1);
-		rootName = j_root.value("rootName", "defaultValue");
-		assert(j_root.count("type") == 1);
-		type = j_root.value("type", "defaultValue");
-		ToUpperCase(type);
-		nodeType = stringToNodeType(type);
-
-
-		if (j_root.count("condition") == 1) {
-			condition = j_root.value("condition", "defaultValue");
-			if (conditions_initializer.find(condition) == conditions_initializer.end()) {
-				conditionNode = nullptr;
-			}
-			else {
-				conditionNode = conditions_initializer[condition];
-			}
-		}
-		if (j_root.count("action") == 1) {
-			action = j_root.value("action", "defaultValue");
-			if (actions_initializer.find(action) == actions_initializer.end()) {
-				actionNode = nullptr;
-			}
-			else {
-				actionNode = actions_initializer[action];
-			}
-		}
-		if (j_root.count("assert") == 1) {
-			assert = j_root.value("assert", "defaultValue");
-			if (asserts_initializer.find(assert) == asserts_initializer.end()) {
-				assertNode = nullptr;
-			}
-			else {
-				assertNode = asserts_initializer[assert];
-			}
-		}
-
-		createRoot(rootName, nodeType, conditionNode, actionNode, assertNode);
-		if (j.count("addChild") > 0) {
-			auto& j_addChild = j["addChild"];
-			for (auto it = j_addChild.begin(); it != j_addChild.end(); ++it) {
-				assert(it.value().count("parent") > 0);
-				parentName = it.value()["parent"];
-				assert(it.value().count("name") > 0);
-				childName = it.value()["name"];
-				assert(it.value().count("type") > 0);
-				type = it.value()["type"];
-				ToUpperCase(type);
-				nodeType = stringToNodeType(type);
-
-				assert(it.value().count("condition") > 0);
-				condition = it.value()["condition"];
-				//ToUpperCase(condition);
-				if (conditions_initializer.find(condition) == conditions_initializer.end()) {
-					conditionNode = nullptr;
-					//dbg("The condition %s of the child %s was not found. Setting it as NULL \n", condition.c_str(), childName.c_str());
-				}
-				else {
-					conditionNode = conditions_initializer[condition];
-					if (it.value().count("conditionArg") == 1) {
-						auto& j_condArg = it.value()["conditionArg"];
-						//We start retrieving the parameters
-						if (j_condArg.count("escape") == 1) {
-							conditionsArgs.escapeB = true;
-							conditionsArgs.escape = j_condArg.value("escape", 0.f);
-						}
-					}
-				}
-				assert(it.value().count("action") > 0);
-				action = it.value()["action"];
-				//ToUpperCase(action);
-				if (actions_initializer.find(action) == actions_initializer.end()) {
-					actionNode = NULL;
-					//dbg("The action %s of the child %s was not found. Setting it as NULL \n", action.c_str(), childName.c_str());
-				}
-				else {
-					actionNode = actions_initializer[action];
-					if (it.value().count("actionArg") == 1) {
-						auto& j_actArg = it.value()["actionArg"];
-						//We start retrieving the parameters
-						if (j_actArg.count("movement") == 1) {
-							actionsArgs.movementB = true;
-							actionsArgs.movement = j_actArg.value("movement", 0.f);
-						}
-						if (j_actArg.count("ugh") == 1) {
-							actionsArgs.ughB = true;
-							actionsArgs.ugh = j_actArg.value("ugh", 0.f);
-						}
-					}
-
-				}
-				assert(it.value().count("assert") > 0);
-				assert = it.value()["assert"];
-				//ToUpperCase(condition);
-				if (asserts_initializer.find(assert) == asserts_initializer.end()) {
-					assertNode = nullptr;
-					//dbg("The assert %s of the child %s was not found. Setting it as NULL \n", assert.c_str(), childName.c_str());
-				}
-				else {
-					assertNode = asserts_initializer[assert];
-				}
-				addChild(parentName, childName, nodeType, conditionNode, actionNode, assertNode);
-			}
-		}
-	}
+	
 	/*createRoot("patrol", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
 	addChild("patrol", "manageStun", BTNode::EType::PRIORITY, (BTCondition)&TCompAIPatrol::conditionManageStun, nullptr, nullptr);
 	addChild("manageStun", "shadowmerged", BTNode::EType::ACTION, (BTCondition)&TCompAIPatrol::conditionShadowMerged, (BTAction)&TCompAIPatrol::actionShadowMerged, nullptr);
@@ -225,9 +119,11 @@ void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
 	name = tName->getName();
 
 	if (_waypoints.size() == 0) {
+
+		TCompTransform * tPos = get<TCompTransform>();
 		Waypoint wpt;
-		wpt.position = ((TCompTransform*)get<TCompTransform>())->getPosition();
-		wpt.lookAt = ((TCompTransform*)get<TCompTransform>())->getFront();
+		wpt.position =tPos->getPosition();
+		wpt.lookAt = tPos->getFront();
 		wpt.minTime = 1.f;
 		addWaypoint(wpt);
 	}
@@ -247,7 +143,7 @@ void TCompAIPatrol::onMsgPlayerDead(const TMsgPlayerDead& msg) {
 	}
 }
 
-void TCompAIPatrol::onMsgPatrolStunned(const TMsgPatrolStunned & msg)
+void TCompAIPatrol::onMsgPatrolStunned(const TMsgEnemyStunned & msg)
 {
 	hasBeenStunned = true;
 
@@ -329,7 +225,7 @@ void TCompAIPatrol::registerMsgs()
 {
 	DECL_MSG(TCompAIPatrol, TMsgEntityCreated, onMsgEntityCreated);
 	DECL_MSG(TCompAIPatrol, TMsgPlayerDead, onMsgPlayerDead);
-	DECL_MSG(TCompAIPatrol, TMsgPatrolStunned, onMsgPatrolStunned);
+	DECL_MSG(TCompAIPatrol, TMsgEnemyStunned, onMsgPatrolStunned);
 	DECL_MSG(TCompAIPatrol, TMsgPatrolShadowMerged, onMsgPatrolShadowMerged);
 	DECL_MSG(TCompAIPatrol, TMsgPatrolFixed, onMsgPatrolFixed);
 }
@@ -501,11 +397,11 @@ BTNode::ERes TCompAIPatrol::actionSuspect(float dt)
 		rotateTowardsVec(ppos->getPosition(), dt);
 	}
 	else if (distanceToPlayer <= maxChaseDistance && isPlayerInFov()) {
-		suspectO_Meter += dt * incrBaseSuspectO_Meter;							//TODO: increment more depending distance and noise
+		suspectO_Meter = Clamp(suspectO_Meter + dt * incrBaseSuspectO_Meter, 0.f, 1.f);							//TODO: increment more depending distance and noise
 		rotateTowardsVec(ppos->getPosition(), dt);
 	}
 	else {
-		suspectO_Meter -= dt * dcrSuspectO_Meter;
+		suspectO_Meter = Clamp(suspectO_Meter - dt * dcrSuspectO_Meter, 0.f, 1.f);
 	}
 
 	if (suspectO_Meter <= 0.f || suspectO_Meter >= 1.f) {
@@ -828,7 +724,7 @@ bool TCompAIPatrol::isPlayerInFov() {
 		TCompPlayerController *pController = ePlayer->get<TCompPlayerController>();
 		
 		/* Player inside cone of vision */
-		bool in_fov = mypos->isInFov(ppos->getPosition(), fov);
+		bool in_fov = mypos->isInFov(ppos->getPosition(), fov, deg2rad(89.f));
 
 		return in_fov && !pController->isInShadows() && !pController->isDead() && dist <= maxChaseDistance && !isEntityHidden(hPlayer);
 	}
@@ -845,16 +741,18 @@ bool TCompAIPatrol::isEntityHidden(CHandle hEntity)
 	TCompCollider *myCollider = get<TCompCollider>();
 	TCompCollider *eCollider = entity->get<TCompCollider>();
 
+	CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
+
 	bool isHidden = true;
 
 	VEC3 myPosition = mypos->getPosition();
-	VEC3 origin = myPosition + VEC3(0, myCollider->config.height * 2, 0);
+	VEC3 origin = myPosition + VEC3(0, capsuleCollider->height * 2, 0);
 	VEC3 dest = VEC3::Zero;
 	VEC3 dir = VEC3::Zero;
 
 	float i = 0;
-	while (isHidden && i < eCollider->config.height * 2) {
-		dest = eTransform->getPosition() + VEC3(0, Clamp(i - .1f, 0.f, eCollider->config.height * 2), 0);
+	while (isHidden && i < capsuleCollider->height * 2) {
+		dest = eTransform->getPosition() + VEC3(0, Clamp(i - .1f, 0.f, capsuleCollider->height * 2), 0);
 		dir = dest - origin;
 		dir.Normalize();
 		physx::PxRaycastHit hit;
@@ -864,7 +762,7 @@ bool TCompAIPatrol::isEntityHidden(CHandle hEntity)
 		if (!EnginePhysics.Raycast(origin, dir, dist, hit, physx::PxQueryFlag::eSTATIC)) {
 			isHidden = false;
 		}
-		i = i + (eCollider->config.height / 2);
+		i = i + (capsuleCollider->height / 2);
 	}
 	return isHidden;
 }
@@ -894,7 +792,7 @@ bool TCompAIPatrol::isStunnedPatrolInFov()
 		TCompTransform *mypos = get<TCompTransform>();
 		for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
 			TCompTransform* stunnedPatrol = ((CEntity*)stunnedPatrols[i])->get<TCompTransform>();
-			if (mypos->isInFov(stunnedPatrol->getPosition(), fov)
+			if (mypos->isInFov(stunnedPatrol->getPosition(), fov, deg2rad(89.f))
 				&& VEC3::Distance(mypos->getPosition(), stunnedPatrol->getPosition()) < maxChaseDistance
 				&& !isEntityHidden(stunnedPatrols[i])) {
 				found = true;

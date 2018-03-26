@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "mesh_loader.h"
 #include "utils/data_provider.h"
+#include "physics/physics_mesh.h"
 #include "utils/data_saver.h"
 
 bool TMeshLoader::load(CDataProvider& dp) {
@@ -99,6 +100,28 @@ CRenderMesh* loadMesh(const char* filename) {
 		return nullptr;
 
 	return mesh;
+}
+
+CPhysicsMesh* loadPhysicsMesh(const char* filename) {
+	CFileDataProvider fdp(filename);
+	assert(fdp.isValid());
+
+	TMeshLoader loader;
+	if (!loader.load(fdp))
+		return nullptr;
+
+	CPhysicsMesh * physx_mesh = new CPhysicsMesh();
+	if (!physx_mesh->create(
+		loader.vtxs.data()
+		, loader.idxs.data()
+		, loader.vtxs.size()
+		, loader.idxs.size()
+		, loader.header.bytes_per_vtx
+		, loader.header.bytes_per_idx
+	))
+		return nullptr;
+
+	return physx_mesh;
 }
 
 TMeshLoader* loadCollider(const char* filename) {

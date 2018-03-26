@@ -11,73 +11,7 @@
         "pos": "0 0 0",
         "lookat": "1 0 1"
       },
-      "ai_test": {
-        "createRoot": {
-          "rootName": "soldier",
-          "type": "priority",
-          "condition": "nullptr",
-          "action": ""
-        },
-        "addChild": [
-          {
-            "parent": "soldier",
-            "name": "escape",
-            "type": "action",
-            "condition": "conditionEscape",
-            "conditionArg": {
-              "speed": "4.5",
-              "flee": "2",
-              "escape": 1.0
-            },
-            "action": "actionEscape",
-            "actionArg": {
-              "movement": 4.1,
-              "ugh": 2.14
-            }
-          },
-          {
-            "parent": "soldier",
-            "name": "combat",
-            "type": "sequence",
-            "condition": "nullptr",
-            "action": ""
-          },
-          {
-            "parent": "soldier",
-            "name": "idle",
-            "type": "action",
-            "condition": "nullptr",
-            "action": "actionIdle"
-          },
-          {
-            "parent": "combat",
-            "name": "pursuit",
-            "type": "action",
-            "condition": "nullptr",
-            "action": "actionPursuit"
-          },
-          {
-            "parent": "combat",
-            "name": "shoot",
-            "type": "sequence",
-            "condition": "nullptr",
-            "action": "nullptr"
-          },
-          {
-            "parent": "shoot",
-            "name": "shootGrenade",
-            "type": "action",
-            "condition": "nullptr",
-            "action": "actionShootGrenade"
-          },
-          {
-            "parent": "shoot",
-            "name": "shootPistol",
-            "type": "action",
-            "condition": "nullptr",
-            "action": "actionShootPistol"
-          }
-        ]
+      "ai_mimetic": {
       }
     }
   }

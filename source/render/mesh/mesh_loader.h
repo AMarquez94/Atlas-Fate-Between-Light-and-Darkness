@@ -3,6 +3,7 @@
 class CDataProvider;
 class CDataSaver;
 class CRenderMesh;
+class CPhysicsMesh;
 
 #include "mesh_subgroup.h"
 
@@ -44,4 +45,5 @@ struct TMeshLoader {
 };
 
 CRenderMesh* loadMesh(const char* filename);
+CPhysicsMesh* loadPhysicsMesh(const char* filename);
 TMeshLoader* loadCollider(const char* filename);

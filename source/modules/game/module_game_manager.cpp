@@ -6,8 +6,6 @@
 
 bool CModuleGameManager::start()
 {
-	CEngine::get().getRender().setBackgroundColor(1.f, 0.f, 0.f, 1.f);
-  
 	window_flags = 0;
 	window_flags |= ImGuiWindowFlags_NoMove;
 	window_flags |= ImGuiWindowFlags_NoResize;
@@ -32,7 +30,7 @@ void CModuleGameManager::update(float delta)
 
 		CEntity* eCollider = handles[i];
 		TCompCollider * e = eCollider->get<TCompCollider>();
-		if (e->isInside) {
+		if (e->player_inside) {
 
 			victoryMenuVisible = true;
 			found = true;
@@ -61,7 +59,7 @@ void CModuleGameManager::render()
 	// Replace this with separated menus
 	if (victoryMenuVisible) {
 
-		ImGui::SetNextWindowSize(ImVec2(window_width, window_height));
+		ImGui::SetNextWindowSize(ImVec2((float)window_width, (float)window_height));
 		ImGui::Begin("VICTORY!", false, window_flags);
 		ImGui::CaptureMouseFromApp(false);
 		ImGui::SetWindowPos("VICTORY!", ImVec2(menu_position.x, menu_position.y));
@@ -70,7 +68,7 @@ void CModuleGameManager::render()
 	}
 	else if (menuVisible) {
 
-		ImGui::SetNextWindowSize(ImVec2(window_width, window_height));
+		ImGui::SetNextWindowSize(ImVec2((float)window_width, (float)window_height));
 		ImGui::Begin("MENU", false, window_flags);
 		ImGui::CaptureMouseFromApp(false);
 		ImGui::SetWindowPos("MENU", ImVec2(menu_position.x, menu_position.y));

@@ -11,3 +11,5 @@ void getYawPitchFromVector(VEC3 front, float* yaw, float* pitch);
 
 VEC3 projectVector(const VEC3 & vector, const VEC3 & normal);
 QUAT createLookAt(const VEC3& origin, const VEC3& front, const VEC3& up);
+
+VEC3 rotateVectorAroundAxis(const VEC3& vecToRotate, const VEC3& axisToRotate, float deltaRotation);

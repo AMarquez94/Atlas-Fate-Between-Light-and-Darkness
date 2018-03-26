@@ -9,6 +9,12 @@ struct PatrolSharedBoard {
 	std::vector<CHandle> stunnedPatrols;
 };
 
+struct Waypoint {
+	VEC3 position;
+	VEC3 lookAt;				//TODO: guess how to make the waypoint orientated to something
+	float minTime;
+};
+
 class CModuleIA : public IModule
 {
 public:

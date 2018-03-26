@@ -31,7 +31,7 @@ void CModuleMainMenu::render()
 	VEC2 menu_position = VEC2(CApp::get().xres * .5f - (window_width * .5f),
 		CApp::get().yres * .5f - (window_height * .5f));
 
-	ImGui::SetNextWindowSize(ImVec2(window_width, window_height));
+	ImGui::SetNextWindowSize(ImVec2((float)window_width, (float)window_height));
 	ImGui::Begin("MENU", false, window_flags);
 	ImGui::CaptureMouseFromApp(false);
 	ImGui::SetWindowPos("MENU", ImVec2(menu_position.x, menu_position.y));

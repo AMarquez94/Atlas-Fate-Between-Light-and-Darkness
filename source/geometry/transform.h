@@ -1,6 +1,8 @@
 #ifndef INC_GEOMETRY_TRANSFORM_H_
 #define INC_GEOMETRY_TRANSFORM_H_
 
+#include "utils\utils.h"
+
 class CTransform {
   QUAT rot;
   VEC3 pos;
@@ -66,8 +68,24 @@ public:
     return atan2f(amount_left, amount_front);
   }
 
-  bool isInFov(VEC3 p, float full_fov) const {
-    return fabsf( getDeltaYawToAimTo(p) ) <= (full_fov * 0.5f);
+  float getDeltaPitchToAimTo(VEC3 p) const {
+	  VEC3 delta = p - pos;
+	  float amount_front = getFront().Dot(delta);
+	  float amount_up = getUp().Dot(delta);
+	  return atan2f(amount_up, amount_front);
+  }
+
+  bool isInFov(VEC3 p, float hor_full_fov, float ver_full_fov) const {
+    return fabsf( getDeltaYawToAimTo(p) ) <= (hor_full_fov * 0.5f) &&
+		fabsf(getDeltaPitchToAimTo(p)) <= (ver_full_fov * 0.5f);
+  }
+
+  bool isInVerticalFov(VEC3 p, float ver_full_fov) const {
+	  return fabsf(getDeltaPitchToAimTo(p)) <= (ver_full_fov * 0.5f);
+  }
+
+  bool isInHorizontalFov(VEC3 p, float hor_full_fov) const {
+	  return fabsf(getDeltaYawToAimTo(p)) <= (hor_full_fov * 0.5f);
   }
 
   // -------------------------------------------

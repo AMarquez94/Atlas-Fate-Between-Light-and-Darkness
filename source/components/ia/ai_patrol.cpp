@@ -143,7 +143,7 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 void CAIPatrol::registerMsgs() {
 	DECL_MSG(CAIPatrol, TMsgEntityCreated, onMsgPatrolCreated);
 	DECL_MSG(CAIPatrol, TMsgPlayerDead, onMsgPlayerDead);
-	DECL_MSG(CAIPatrol, TMsgPatrolStunned, onMsgPatrolStunned);
+	DECL_MSG(CAIPatrol, TMsgEnemyStunned, onMsgPatrolStunned);
 	DECL_MSG(CAIPatrol, TMsgPatrolShadowMerged, onMsgPatrolShadowMerged);
 	DECL_MSG(CAIPatrol, TMsgPatrolFixed, onMsgPatrolFixed);
 }
@@ -170,7 +170,7 @@ void CAIPatrol::onMsgPlayerDead(const TMsgPlayerDead& msg) {
 	}
 }
 
-void CAIPatrol::onMsgPatrolStunned(const TMsgPatrolStunned& msg) {
+void CAIPatrol::onMsgPatrolStunned(const TMsgEnemyStunned& msg) {
 	TCompRender *cRender = get<TCompRender>();
 	cRender->color = VEC4(1, 1, 1, 1);
 	TCompTransform *mypos = getMyTransform();
@@ -678,7 +678,7 @@ bool CAIPatrol::isPlayerInFov() {
 	TCompPlayerController *pController = player->get <TCompPlayerController>();
 
 	/* Player inside cone of vision */
-	bool in_fov = mypos->isInFov(ppos->getPosition(), fov);
+	bool in_fov = mypos->isInFov(ppos->getPosition(), fov, deg2rad(89.f));
 
 	return in_fov && !pController->isInShadows() && !pController->isDead() && !isEntityHidden(getEntityByName(entityToChase));
 }
@@ -694,13 +694,13 @@ bool CAIPatrol::isEntityHidden(CHandle h_entity)
 	bool isHidden = true;
 
 	VEC3 myPosition = mypos->getPosition();
-	VEC3 origin = myPosition + VEC3(0, myCollider->config.height * 2, 0);
+	VEC3 origin = myPosition + VEC3(0, 3 * 2, 0);
 	VEC3 dest = VEC3::Zero;
 	VEC3 dir = VEC3::Zero;
 
 	float i = 0;
-	while (isHidden && i < eCollider->config.height * 2) {
-		dest = eTransform->getPosition() + VEC3(0, Clamp(i - .1f, 0.f, eCollider->config.height * 2), 0);
+	while (isHidden && i < 3 * 2) {
+		dest = eTransform->getPosition() + VEC3(0, Clamp(i - .1f, 0.f, 3.f * 2), 0);
 		dir = dest - origin;
 		dir.Normalize();
 		physx::PxRaycastHit hit;
@@ -710,7 +710,7 @@ bool CAIPatrol::isEntityHidden(CHandle h_entity)
 		if (!EnginePhysics.Raycast(origin, dir, dist, hit, physx::PxQueryFlag::eSTATIC)) {
 			isHidden = false;
 		}
-		i = i + (eCollider->config.height / 2);
+		i = i + (3 / 2);
 	}
 	return isHidden;
 }
@@ -725,7 +725,7 @@ bool CAIPatrol::isStunnedPatrolInFov()
 		TCompTransform *mypos = getMyTransform();
 		for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
 			TCompTransform* stunnedPatrol = ((CEntity*)stunnedPatrols[i])->get<TCompTransform>();
-			if (mypos->isInFov(stunnedPatrol->getPosition(), fov) 
+			if (mypos->isInFov(stunnedPatrol->getPosition(), fov, deg2rad(89.f))
 				&& VEC3::Distance(mypos->getPosition(), stunnedPatrol->getPosition()) < maxChaseDistance
 				&& !isEntityHidden(stunnedPatrols[i])) {
 				found = true;
