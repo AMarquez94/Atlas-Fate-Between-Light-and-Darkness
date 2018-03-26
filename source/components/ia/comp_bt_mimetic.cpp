@@ -86,6 +86,7 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 	addChild("manageGoingInactiveTypeWall", "goToInitialPosTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
 	addChild("manageGoingInactiveTypeWall", "rotateToInitialPosTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionRotateToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
 	addChild("manageGoingInactiveTypeWall", "jumpWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionJumpWall, nullptr);
+	addChild("manageGoingInactiveTypeWall", "holdOnWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionHoldOnWall, nullptr);
 	addChild("manageGoingInactiveTypeWall", "setInactiveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetInactive, nullptr);
 	addChild("manageGoingInactive", "manageGoingInactiveTypeFloor", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionIsTypeFloor, nullptr, nullptr);
 	addChild("manageGoingInactiveTypeFloor", "goToInitialPosTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
@@ -277,7 +278,7 @@ BTNode::ERes TCompAIMimetic::actionJumpFloor(float dt)
 {
 	TCompCollider *tCollider = get<TCompCollider>();
 
-	tCollider->normal_gravity = VEC3(0,-9.8,0);
+	tCollider->setNormalGravity(VEC3(0,-9.8f,0));
 	return BTNode::ERes::LEAVE;
 }
 
@@ -493,19 +494,21 @@ BTNode::ERes TCompAIMimetic::actionRotateToInitialPos(float dt)
 
 BTNode::ERes TCompAIMimetic::actionJumpWall(float dt)
 {
-	TCompTransform * tTransform = get<TCompTransform>();
-	VEC3 pos = tTransform->getPosition();
-	pos = pos + tTransform->getUp() * chaseSpeed * 4 * dt;
+	TCompCollider *tCollider = get<TCompCollider>();
+	tCollider->Jump(VEC3(0,0.075f,0));
+	return BTNode::ERes::LEAVE;
+}
 
-	if (pos.y >= initialPos.y) {
+BTNode::ERes TCompAIMimetic::actionHoldOnWall(float dt)
+{
+
+	TCompTransform * tTransform = get<TCompTransform>();
+	if (tTransform->getPosition().y >= initialPos.y) {
 		tTransform->setPosition(initialPos);
 		setGravityToFaceWall();
 		return BTNode::ERes::LEAVE;
 	}
-	else {
-		tTransform->setPosition(pos);
-		return BTNode::ERes::STAY;
-	}
+	return BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIMimetic::actionSetInactive(float dt)
@@ -698,7 +701,7 @@ void TCompAIMimetic::setGravityToFaceWall()
 		}
 	}
 
-	tCollider->normal_gravity = finalDir * 9.8f;
+	tCollider->setNormalGravity(finalDir * 9.8f);
 }
 
 TCompAIMimetic::EType TCompAIMimetic::parseStringMimeticType(const std::string & typeString)

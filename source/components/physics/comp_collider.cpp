@@ -159,6 +159,19 @@ VEC3 TCompCollider::GetUpVector()
 	return VEC3(upDirection.x, upDirection.y, upDirection.z);
 }
 
+void TCompCollider::Jump(VEC3 forceUp)
+{
+	if (isGrounded) {
+		totalDownForce = physx::PxVec3(forceUp.x, forceUp.y, forceUp.z);
+		isGrounded = false;
+	}
+}
+
+void TCompCollider::setNormalGravity(VEC3 newGravity) {
+	normal_gravity = newGravity;
+	totalDownForce = physx::PxVec3(0, 0, 0);
+}
+
 physx::PxQueryHitType::Enum TCompCollider::CustomQueryFilterCallback::preFilter(const physx::PxFilterData& filterData, const physx::PxShape* shape, const physx::PxRigidActor* actor, physx::PxHitFlags& queryFlags)
 {
 	//const physx::PxFilterData& filterData1 = shape->getQueryFilterData();

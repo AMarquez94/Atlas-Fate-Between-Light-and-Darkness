@@ -97,6 +97,9 @@ public:
 	physx::PxVec3 totalDownForce = physx::PxVec3(0, 0, 0);
 	physx::PxControllerFilters filters;
 
+	void Jump(VEC3 forceUp);
+	void setNormalGravity(VEC3 newGravity);
+
 	class CustomQueryFilterCallback : public physx::PxQueryFilterCallback {
 
 	public:

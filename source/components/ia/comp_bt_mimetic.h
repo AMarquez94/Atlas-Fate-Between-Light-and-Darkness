@@ -101,6 +101,7 @@ public:
 	BTNode::ERes actionGoToInitialPos(float dt);
 	BTNode::ERes actionRotateToInitialPos(float dt);
 	BTNode::ERes actionJumpWall(float dt);
+	BTNode::ERes actionHoldOnWall(float dt);
 	BTNode::ERes actionSetInactive(float dt);
 
 	/* CONDITIONS */
