@@ -3,6 +3,7 @@
 #include "windows/app.h"
 #include "input/devices/mouse.h"
 #include "components/comp_tags.h"
+#include "entity/common_msgs.h"
 
 bool CModuleGameManager::start()
 {
@@ -17,6 +18,8 @@ bool CModuleGameManager::start()
 	isPaused = false;
 	victoryMenuVisible = false;
 	menuVisible = false;
+
+	player = CTagsManager::get().getAllEntitiesByTag(getID("player"))[0];
 
 	return true;
 }
@@ -39,6 +42,9 @@ void CModuleGameManager::update(float delta)
 	}
 
 	if (EngineInput["btPause"].getsPressed()) {
+		TMsgScenePaused msg;
+		msg.isPaused = !menuVisible;
+		player.sendMsg(msg);
 		menuVisible = !menuVisible;
 	}
 

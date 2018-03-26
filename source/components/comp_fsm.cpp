@@ -34,11 +34,13 @@ void TCompFSM::debugInMenu()
     }
     ImGui::TreePop();
   }
+  isPaused = false;
 }
 
 void TCompFSM::registerMsgs() {
   DECL_MSG(TCompFSM, TMsgEntityCreated, onCreate);
   DECL_MSG(TCompFSM, TMsgSetFSMVariable, onVariableValue);
+  DECL_MSG(TCompFSM, TMsgScenePaused, onPaused);
 }
 
 // -------------------------------------------------
@@ -52,12 +54,19 @@ void TCompFSM::load(const json& j, TEntityParseContext& ctx)
 
 void TCompFSM::update(float dt) 
 {
-  _context.update(dt);
+	if (!isPaused) {
+		_context.update(dt);
+	}
 }
 
 void TCompFSM::onCreate(const TMsgEntityCreated& msg) {
   _context.setOwner(CHandle(this).getOwner());
   _context.start();
+}
+
+void TCompFSM::onPaused(const TMsgScenePaused& msg) {
+
+	isPaused = msg.isPaused;
 }
 
 void TCompFSM::onVariableValue(const TMsgSetFSMVariable& msg)

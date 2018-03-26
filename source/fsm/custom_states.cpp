@@ -2,8 +2,6 @@
 #include "custom_states.h"
 #include "context.h"
 #include "components/player_controller/comp_player_animator.h"
-#include "components/player_controller/comp_player_tempcontroller.h"
-
 //class TCompTempPlayerController;
 //class TCompPlayerAnimator;
 //
@@ -12,12 +10,22 @@
 
 namespace FSM
 {
+	TargetCamera * getTargetCamera(const json& jData) {
+
+		TargetCamera * target = new TargetCamera();
+		target->name = jData["target"];
+		target->blendIn = jData.value("blendIn", 0.01f);
+		target->blendOut = jData.value("blendOut", 0.01f);
+
+		return target;
+	}
 
 	bool AnimationState::load(const json& jData){
 
 		_animationName = jData["animation"];
 		_speed = jData.value("speed", 4.f);
 		_size = jData.value("size", 1.f);
+		if(jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
 
@@ -39,7 +47,7 @@ namespace FSM
 		_speed = jData.value("speed", 4.f);
 		_size = jData.value("size", 1.f);
 		_rotation_speed = jData.value("rotationSpeed", 10.f);
-
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
 
@@ -63,7 +71,7 @@ namespace FSM
 		_speed = jData.value("speed", 5.5f);
 		_size = jData.value("size", 1.f);
 		_rotation_speed = jData.value("rotationSpeed", 10.f);
-
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
 
@@ -87,6 +95,7 @@ namespace FSM
 		_speed = jData.value("speed", 3.f);
 		_size = jData.value("size", 1.f);
 		_animationName = jData["animation"];
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
 
@@ -108,7 +117,7 @@ namespace FSM
 		_speed = jData.value("speed", 3.f);
 		_size = jData.value("size", 1.f);
 		_rotation_speed = jData.value("rotationSpeed", 10.f);
-
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
 
@@ -131,7 +140,7 @@ namespace FSM
 		_animationName = jData["animation"];
 		_speed = jData.value("speed", 3.f);
 		_size = jData.value("size", 1.f);
-
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
 
@@ -142,7 +151,7 @@ namespace FSM
 		//e->sendMsg(TMsgAnimation{ "crouch" });
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_fall", _speed, _size });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_fall", _speed, _size, _target });
 	}
 
 	void EnterMergeState::onFinish(CContext& ctx) const {
@@ -156,7 +165,7 @@ namespace FSM
 		_animationName = jData["animation"];
 		_speed = jData.value("speed", 3.f);
 		_size = jData.value("size", 1.f);
-
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
 
@@ -182,7 +191,7 @@ namespace FSM
 		_animationName = jData["animation"];
 		_speed = jData.value("speed", 3.f);
 		_size = jData.value("size", 1.f);
-
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
 
@@ -193,7 +202,7 @@ namespace FSM
 		//e->sendMsg(TMsgAnimation{ "crouch" });
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_fall", _speed, _size });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_fall", _speed, _size, _target });
 
 		// Disable the rigidbody so that we can handle our transition in air manually
 	}
@@ -211,7 +220,7 @@ namespace FSM
 		_animationName = jData["animation"];
 		_speed = jData.value("speed", 2.f);
 		_size = jData.value("size", 1.f);
-
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
 
@@ -230,6 +239,7 @@ namespace FSM
 		_animationName = jData["animation"];
 		_speed = jData.value("speed", 2.f);
 		_size = jData.value("size", 1.f);
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
 
@@ -247,6 +257,7 @@ namespace FSM
 		_animationName = jData["animation"];
 		_speed = jData.value("speed", 2.f);
 		_size = jData.value("size", 1.f);
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
 
@@ -265,6 +276,7 @@ namespace FSM
 		_animationName = jData["animation"];
 		_speed = jData.value("speed", 2.f);
 		_size = jData.value("size", 1.f);
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
 

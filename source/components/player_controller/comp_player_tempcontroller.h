@@ -1,6 +1,8 @@
 #pragma once
 
 #include "components/comp_base.h"
+#include "geometry/transform.h"
+#include "components/ia/ai_controller.h"
 #include "entity/common_msgs.h"
 
 class TCompTempPlayerController;
@@ -8,12 +10,20 @@ class TCompTempPlayerController;
 typedef void (TCompTempPlayerController::*actionfinish)();
 typedef void (TCompTempPlayerController::*actionhandler)(float);
 
+struct TargetCamera {
+	std::string name;
+	float blendIn;
+	float blendOut;
+};
+
 struct TMsgStateStart {
 	
 	actionhandler action_start;
 	std::string meshname;
 	float speed;
 	float size;
+
+	TargetCamera * target_camera = nullptr;
 
 	DECL_MSG_ID();
 };
@@ -37,27 +47,27 @@ class TCompTempPlayerController : public TCompBase
 	physx::PxQueryFilterData PxPlayerDiscardQuery;
 
 	actionhandler state;
-	CHandle current_camera;
+	CHandle target_camera;
 
-	float mergeAngle = 0.45f;
-	float currentSpeed = 4.f;
-	float rotationSpeed = 10.f;
-	float fallingTime = 0.f;
-	float maxFallingTime = 0.8f;
-	float fallingDistance = 0.f;
-	float maxFallingDistance = 1.5f;
-	float maxAttackDistance = 1.f;
-	unsigned int initialPoints = 5.f;
+	float mergeAngle;
+	float currentSpeed;
+	float rotationSpeed;
+	float fallingTime;
+	float maxFallingTime;
+	float fallingDistance;
+	float maxFallingDistance;
+	float maxAttackDistance;
+	unsigned int initialPoints;
 
 	/* Stamina private variables */
-	float stamina = 100.f;
-	const float minStamina = 0.f;
-	const float maxStamina = 100.f;
-	const float incrStamina = 15.f;
-	const float decrStaticStamina = 0.75f;
-	const float decrStaminaHorizontal = 12.5f;
-	const float decrStaminaVertical = 17.5f;
-	const float minStaminaChange = 15.f;
+	float stamina;
+	float minStamina;
+	float maxStamina;
+	float incrStamina;
+	float decrStaticStamina;
+	float decrStaminaHorizontal;
+	float decrStaminaVertical;
+	float minStaminaChange;
 
 	void onCreate(const TMsgEntityCreated& msg);
 	void onStateStart(const TMsgStateStart& msg);
@@ -67,11 +77,13 @@ class TCompTempPlayerController : public TCompBase
 	void onPlayerKilled(const TMsgPlayerDead& msg);
 	void onPlayerLocate(const TMsgInhibitorShot& msg);
 	void onPlayerExpose(const TMsgPlayerIlluminated& msg);
+	void onPlayerPaused(const TMsgScenePaused& msg);
 
 	DECL_SIBLING_ACCESS();
 
 public:
 
+	bool isPaused;
 	bool isMerged;
 	bool isGrounded;
 	bool isInhibited;

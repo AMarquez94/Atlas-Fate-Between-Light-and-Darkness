@@ -30,7 +30,7 @@ void TCompRigidbody::update(float dt) {
 
 	CEntity* e = CHandle(this).getOwner();
 	TCompCollider * c_collider = e->get<TCompCollider>();
-	velocity = physx::PxVec3(0, 9.8f, 0);
+	velocity = physx::PxVec3(0, CModulePhysics::gravityMod, 0);
 
 	if (is_controller) {
 		if (CHandle(this).getOwner().isValid()) {

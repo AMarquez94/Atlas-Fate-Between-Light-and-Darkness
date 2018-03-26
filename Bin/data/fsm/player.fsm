@@ -43,7 +43,12 @@
 			"type" : "EnterMergeState",
 			"animation" : "entermerge",
 			"speed" : 4,
-			"size" : 1
+			"size" : 1,
+			"camera" : {
+				"target" : "SMCameraHor",
+				"blendOut" : 0.0,
+				"blendIn" : 0.2
+			}
 		},
 		{
 			"name" : "merge",
@@ -57,7 +62,12 @@
 			"type" : "ExitMergeState",
 			"animation" : "exitmerge",
 			"speed" : 4,
-			"size" : 1
+			"size" : 1,
+			"camera" : {
+				"target" : "TPCamera",
+				"blendOut" : 0.2,
+				"blendIn" : 0.2
+			}
 		},
 		{
 			"name" : "landmerge",

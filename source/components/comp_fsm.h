@@ -5,21 +5,26 @@
 
 
 struct TMsgSetFSMVariable {
-  CVariant variant;
-  DECL_MSG_ID();
+	CVariant variant;
+	DECL_MSG_ID();
 };
 
 class TCompFSM : public TCompBase {
 public:
-  static void registerMsgs();
-  void debugInMenu();
-  void load(const json& j, TEntityParseContext& ctx);
-  void update(float dt);
-  DECL_SIBLING_ACCESS();
 
-  void onCreate(const TMsgEntityCreated& msg);
-  void onVariableValue(const TMsgSetFSMVariable& msg);
+	bool isPaused;
+	void debugInMenu();
+	void load(const json& j, TEntityParseContext& ctx);
+	void update(float dt);
+
+	void onPaused(const TMsgScenePaused& msg);
+	void onCreate(const TMsgEntityCreated& msg);
+	void onVariableValue(const TMsgSetFSMVariable& msg);
+
+	static void registerMsgs();
 
 private:
-  FSM::CContext _context;
+
+	FSM::CContext _context;
+	DECL_SIBLING_ACCESS();
 };

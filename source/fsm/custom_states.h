@@ -1,9 +1,12 @@
 #pragma once
 
 #include "state.h"
+#include "components/player_controller/comp_player_tempcontroller.h"
 
 namespace FSM
 {
+	TargetCamera * getTargetCamera(const json& jData);
+
 	class AnimationState : public IState
 	{
 		virtual void onStart(CContext& ctx) const override;
@@ -11,6 +14,7 @@ namespace FSM
 		virtual bool load(const json& jData);
 
 	private:
+		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
 		std::string _animationName;
@@ -23,6 +27,7 @@ namespace FSM
 		virtual bool load(const json& jData);
 
 	private:
+		TargetCamera * _target = nullptr;
 		float _force = 1.f;
 		float _speed = 1.f;
 		float _size = 1.f;
@@ -36,6 +41,7 @@ namespace FSM
 		virtual bool load(const json& jData);
 
 	private:
+		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
 		float _rotation_speed = 1.f;
@@ -49,6 +55,7 @@ namespace FSM
 		virtual bool load(const json& jData);
 
 	private:
+		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
 		float _rotation_speed = 1.f;
@@ -62,6 +69,7 @@ namespace FSM
 		virtual bool load(const json& jData);
 
 	private:
+		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
 		float _rotation_speed = 1.f;
@@ -75,6 +83,7 @@ namespace FSM
 		virtual bool load(const json& jData);
 
 	private:
+		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
 		std::string _animationName;
@@ -87,6 +96,7 @@ namespace FSM
 		virtual bool load(const json& jData);
 
 	private:
+		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
 		std::string _animationName;
@@ -99,6 +109,7 @@ namespace FSM
 		virtual bool load(const json& jData);
 
 	private:
+		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
 		std::string _animationName;
@@ -111,6 +122,7 @@ namespace FSM
 		virtual bool load(const json& jData);
 
 	private:
+		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
 		std::string _animationName;
@@ -122,6 +134,7 @@ namespace FSM
 		virtual void onFinish(CContext& ctx) const override;
 		virtual bool load(const json& jData);
 	private:
+		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 2.f;
 		std::string _animationName;
@@ -133,6 +146,7 @@ namespace FSM
 		virtual void onFinish(CContext& ctx) const override;
 		virtual bool load(const json& jData);
 	private:
+		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 2.f;
 		std::string _animationName;
@@ -144,6 +158,7 @@ namespace FSM
 		virtual void onFinish(CContext& ctx) const override;
 		virtual bool load(const json& jData);
 	private:
+		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 2.f;
 		std::string _animationName;

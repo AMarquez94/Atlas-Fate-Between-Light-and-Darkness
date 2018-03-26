@@ -69,18 +69,33 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_run", (CRenderMesh*)pj_run));
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_crouch", (CRenderMesh*)pj_crouch));
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_shadowmerge", (CRenderMesh*)pj_shadowmerge));
+
+	mergeAngle = j.value("mergeAngle", 0.45);
+	maxFallingTime = j.value("maxFallingTime", 0.8);
+	maxFallingDistance = j.value("maxFallingDistance", 1.5);
+	maxAttackDistance = j.value("maxAttackDistance", 1);
+	minStamina = j.value("minStamina", 0.f);
+	maxStamina = j.value("maxStamina", 100.f);
+	incrStamina = j.value("incrStamina", 15);
+	decrStaticStamina = j.value("decrStaticStamina", 0.75),
+	decrStaminaHorizontal = j.value("decrStaminaHorizontal", 12.5);
+	decrStaminaVertical = j.value("decrStaminaVertical", 17.5);
+	minStaminaChange = j.value("minStaminaChange", 15);
 }
 
 /* Player controller main update */
 void TCompTempPlayerController::update(float dt) {
 
-	(this->*state)(dt);
+	if (!isPaused) {
 
-	// Methods that always must be running on background
-	isGrounded = groundTest(dt);
-	isMerged = onMergeTest(dt);
-	updateStamina(dt);
-	updateShader(dt); // Move this to player render component...
+		(this->*state)(dt);
+
+		// Methods that always must be running on background
+		isGrounded = groundTest(dt);
+		isMerged = onMergeTest(dt);
+		updateStamina(dt);
+		updateShader(dt); // Move this to player render component...
+	}
 }
 
 void TCompTempPlayerController::registerMsgs() {
@@ -88,6 +103,11 @@ void TCompTempPlayerController::registerMsgs() {
 	DECL_MSG(TCompTempPlayerController, TMsgStateStart, onStateStart);
 	DECL_MSG(TCompTempPlayerController, TMsgStateFinish, onStateFinish);
 	DECL_MSG(TCompTempPlayerController, TMsgEntityCreated, onCreate);
+	DECL_MSG(TCompTempPlayerController, TMsgPlayerHit, onPlayerHit);
+	DECL_MSG(TCompTempPlayerController, TMsgPlayerDead, onPlayerKilled);
+	DECL_MSG(TCompTempPlayerController, TMsgInhibitorShot, onPlayerLocate);
+	DECL_MSG(TCompTempPlayerController, TMsgPlayerIlluminated, onPlayerExpose);
+	DECL_MSG(TCompTempPlayerController, TMsgScenePaused, onPlayerPaused);
 }
 
 void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
@@ -108,8 +128,14 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 	PxPlayerDiscardQuery.data = pxFilterData;
 
 	/* Initial reset messages */
-	isInhibited = isGrounded = isMerged = false;
 	hitPoints = 0;
+	stamina = 100.f;
+	fallingTime = 0.f;
+	currentSpeed = 4.f;
+	initialPoints = 0.f;
+	rotationSpeed = 10.f;
+	fallingDistance = 0.f;
+	isInhibited = isGrounded = isMerged = false;
 }
 
 /* Call this function once the state has been changed */
@@ -129,7 +155,14 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg){
 		rigidbody->Resize(msg.size);
 
 		// Get the target camera and set it as our new camera.
-		// Change the current state.
+		if (msg.target_camera) {
+			Engine.getCameras().blendOutCamera(target_camera, msg.target_camera->blendOut);
+			target_camera = getEntityByName(msg.target_camera->name);
+			Engine.getCameras().blendInCamera(target_camera, msg.target_camera->blendIn, CModuleCameras::EPriority::GAMEPLAY);
+		}
+		else {
+			target_camera = getEntityByName("TPCamera"); //replace this
+		}
 	}
 }
 
@@ -161,12 +194,6 @@ void TCompTempPlayerController::onPlayerLocate(const TMsgInhibitorShot & msg)
 {
 	isInhibited = true;
 	hitPoints = initialPoints;
-
-	//CEntity* e = CHandle(this).getOwner();
-	//TMsgSetFSMVariable groundMsg;
-	//groundMsg.variant.setName("hitPoints");
-	//groundMsg.variant.setFloat(hitPoints); // & isGrounded
-	//e->sendMsg(groundMsg);
 }
 
 void TCompTempPlayerController::onPlayerExpose(const TMsgPlayerIlluminated & msg)
@@ -176,6 +203,11 @@ void TCompTempPlayerController::onPlayerExpose(const TMsgPlayerIlluminated & msg
 	groundMsg.variant.setName("onmerge");
 	groundMsg.variant.setBool(false); // & isGrounded
 	e->sendMsg(groundMsg);
+}
+
+void TCompTempPlayerController::onPlayerPaused(const TMsgScenePaused& msg) {
+
+	isPaused = msg.isPaused;
 }
 
 /* Idle state method, no logic yet */
@@ -188,7 +220,7 @@ void TCompTempPlayerController::walkState(float dt){
 
 	// Player movement and rotation related method.
 	float yaw, pitch, roll;
-	CEntity *player_camera = (CEntity *)getEntityByName("TPCamera");
+	CEntity *player_camera = target_camera;
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	TCompTransform * trans_camera = player_camera->get<TCompTransform>();
 	c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
@@ -232,17 +264,26 @@ void TCompTempPlayerController::walkState(float dt){
 /* Player motion movement when is shadow merged, tests included */
 void TCompTempPlayerController::mergeState(float dt) {
 
-	convexTest();
-	concaveTest();
-
 	// Player movement and rotation related method.
-	CEntity *player_camera = (CEntity *)getEntityByName("SMCameraHor");
-
-	TCompRender *c_my_render = get<TCompRender>();
-	TCompCollider * collider = get<TCompCollider>();
+	CEntity *player_camera = target_camera;
 	TCompRigidbody * rigidbody = get<TCompRigidbody>();
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	TCompTransform * trans_camera = player_camera->get<TCompTransform>();
+	VEC3 prevUp = c_my_transform->getUp();
+
+	if (convexTest() || concaveTest()) {
+
+		VEC3 postUp = c_my_transform->getUp();
+		VEC3 dirToLookAt = -(prevUp + postUp);
+		dirToLookAt.Normalize();
+
+		//TMsgSetCameraActive msg;
+		//msg.previousCamera = target_camera;
+		//msg.actualCamera = target_camera;
+		//msg.directionToLookAt = dirToLookAt;
+		//CEntity* eCamera = getEntityByName("SMCameraAux");
+		//eCamera->sendMsg(msg);
+	}
 
 	float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
 	float player_accel = inputSpeed * currentSpeed * dt;
@@ -282,7 +323,7 @@ void TCompTempPlayerController::mergeState(float dt) {
 /* Resets the player to it's default state parameters */
 void TCompTempPlayerController::resetState() {
 
-	CEntity *player_camera = (CEntity *)getEntityByName("TPCamera");
+	CEntity *player_camera = target_camera;
 	TCompRigidbody *rigidbody = get<TCompRigidbody>();
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	TCompTransform * trans_camera = player_camera->get<TCompTransform>();
@@ -292,6 +333,7 @@ void TCompTempPlayerController::resetState() {
 	VEC3 proj = projectVector(up, -EnginePhysics.gravity);
 	proj.Normalize();
 
+	/* Refactor this later on */
 	if (EngineInput["btUp"].isPressed() && EngineInput["btUp"].value > 0) {
 		dir += fabs(EngineInput["btUp"].value) * proj;
 	}

@@ -22,13 +22,23 @@
 			},
 			"shadow_controller": {
 			},
-				"fsm" : {
+			"fsm" : {
 				"file" : "data/fsm/player.fsm"
 			},
 			"player_input" : {},
 			"player_animator" : {},
 			"player_tempcontroller" : {
-				"target_camera": "TPCamera"
+				"mergeAngle": 0.45,
+				"maxFallingTime": 0.8,
+				"maxFallingDistance": 1.5,
+				"maxAttackDistance": 1,
+				"minStamina": 0,
+				"maxStamina": 100,
+				"incrStamina": 15,
+				"decrStaticStamina": 0.75,
+				"decrStaminaHorizontal": 12.5,
+				"decrStaminaVertical": 17.5,
+				"minStaminaChange": 15
 			},
 			"group": "player",
       "tags":
