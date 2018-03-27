@@ -115,5 +115,46 @@
 			},
 			"culling": true
 		}
+	},
+	{
+		"entity": {
+			"name": "test_camera_curve",
+			"transform": {
+				"pos": "5 25 0",
+				"lookat": "0 0 0"
+			},
+			"curve_controller" :
+			{
+				"curve" : "data/curves/test_curve.curve",
+				"speed" : 0.25,
+				"target" : "The Player",
+				"loop": false
+			},
+			"camera" : {
+				"fov" : 60,
+				"z_near": 0.01,
+				"z_far": 1000
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "trigger_camera_curve",
+			"transform": {
+				"pos": "-5 2 28",
+				"lookat": "0 0 0"
+			},
+			"trigger_camera" :
+			{
+				"target" : "test_camera_curve"
+			},
+			"render": {},
+			"collider":
+			{
+				"shape": "sphere",
+				"is_trigger" : true,
+				"radius": 6.5
+			}
+		}
 	}
 ]

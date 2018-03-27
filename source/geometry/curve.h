@@ -11,10 +11,12 @@ public:
 	bool load(const std::string& name);
 	void clear();
 	void addKnot(const VEC3& point);
+	void addKnotAtIndex(const VEC3& point, int index) const;
+	void removeKnotAtIndex(int index) const;
 	VEC3 evaluate(float ratio) const;
 	VEC3 evaluateAsCatmull(float ratio) const;
 
 private:
-	std::vector<VEC3> _knots;
+	std::vector<VEC3> * _knots = new std::vector<VEC3>();
 	EType _type = EType::UNKNOWN;
 };

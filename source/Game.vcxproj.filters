@@ -103,6 +103,7 @@
     <ClCompile Include="physics\physics_filter.cpp" />
     <ClCompile Include="components\physics\comp_rigidbody.cpp" />
     <ClCompile Include="components\camera_controller\comp_curve_controller.cpp" />
+    <ClCompile Include="components\object_controller\comp_trigger_camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -236,6 +237,7 @@
     <ClInclude Include="components\physics\comp_rigidbody.h" />
     <ClInclude Include="utils\data_saver.h" />
     <ClInclude Include="components\camera_controller\comp_curve_controller.h" />
+    <ClInclude Include="components\object_controller\comp_trigger_camera.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

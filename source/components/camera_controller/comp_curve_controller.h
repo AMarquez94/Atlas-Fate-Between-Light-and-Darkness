@@ -15,6 +15,8 @@ public:
 
   void setRatio(float ratio) { _ratio = ratio; }
 
+  static void registerMsgs();
+
 private:
   VEC3 getTargetPos();
 
@@ -23,6 +25,11 @@ private:
   float _speed = 0.f;
   CHandle _target;
   std::string _targetName;
-  bool _automove = false;
+  bool _active = false;
+  bool _loop = false;
+
+  void onMsgCameraActive(const TMsgCameraActivated & msg);
+  void onMsgCameraFullActive(const TMsgCameraFullyActivated& msg);
+  void onMsgCameraDeprecated(const TMsgCameraDeprecated & msg);
 };
 

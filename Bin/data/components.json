@@ -24,6 +24,8 @@
 		"rigidbody",
 		"collider",
 		"camera_flyover",
+		"curve_controller",
+		"trigger_camera",
 		"dynamic_objects",
 		"capsule_shadow_controller",
 		"camera_thirdperson",

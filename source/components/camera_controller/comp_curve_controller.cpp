@@ -2,6 +2,7 @@
 #include "comp_curve_controller.h"
 #include "components/comp_transform.h"
 #include "geometry/curve.h"
+#include "entity/common_msgs.h"
 
 DECL_OBJ_MANAGER("curve_controller", TCompCurve);
 
@@ -17,7 +18,16 @@ void TCompCurve::load(const json& j, TEntityParseContext& ctx) {
 
   _speed = j.value<float>("speed", 0.f);
 
-  _targetName = j["target"];
+  _targetName = j.value("target", "");
+
+  _loop = j.value("loop", false);
+}
+
+void TCompCurve::registerMsgs()
+{
+	DECL_MSG(TCompCurve, TMsgCameraActivated, onMsgCameraActive);
+	DECL_MSG(TCompCurve, TMsgCameraFullyActivated, onMsgCameraFullActive);
+	DECL_MSG(TCompCurve, TMsgCameraDeprecated, onMsgCameraDeprecated);
 }
 
 void TCompCurve::update(float dt)
@@ -26,10 +36,10 @@ void TCompCurve::update(float dt)
     return;
 
   // actualizar ratio
-  if (_automove)
+  if (_active)
   {
     _ratio += _speed * dt;
-    if (_ratio >= 1.f)
+    if (_loop && _ratio >= 1.f)
       _ratio = 0.f;
   }
 
@@ -56,4 +66,23 @@ VEC3 TCompCurve::getTargetPos()
     return c_transform->getPosition();
   }
   return VEC3::Zero;
+}
+
+void TCompCurve::onMsgCameraActive(const TMsgCameraActivated & msg) {
+	CHandle outputCamera = Engine.getCameras().getOutputCamera();
+	CEntity * eOutputCamera = outputCamera;
+	TCompTransform * cPos = eOutputCamera->get<TCompTransform>();
+	_curve->addKnotAtIndex(cPos->getPosition(), 0);
+}
+
+void TCompCurve::onMsgCameraFullActive(const TMsgCameraFullyActivated & msg)
+{
+	_active = true;
+}
+
+void TCompCurve::onMsgCameraDeprecated(const TMsgCameraDeprecated & msg)
+{
+	_active = false;
+	_ratio = 0.f;
+	_curve->removeKnotAtIndex(0);
 }

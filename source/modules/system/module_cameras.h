@@ -22,6 +22,8 @@ public:
 
 	void deleteAllCameras();
 
+	CHandle getOutputCamera();
+
 private:
 	void renderInMenu();
 

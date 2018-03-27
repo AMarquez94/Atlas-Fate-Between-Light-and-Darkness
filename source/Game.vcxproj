@@ -116,6 +116,7 @@
     <ClCompile Include="components\ia\comp_bt_test.cpp" />
     <ClCompile Include="components\object_controller\comp_bullet_controller.cpp" />
     <ClCompile Include="components\object_controller\comp_cone_of_light.cpp" />
+    <ClCompile Include="components\object_controller\comp_trigger_camera.cpp" />
     <ClCompile Include="components\physics\comp_collider.cpp" />
     <ClCompile Include="components\physics\comp_rigidbody.cpp" />
     <ClCompile Include="components\player_controller\comp_player_controller.cpp" />
@@ -226,6 +227,7 @@
     <ClInclude Include="components\ia\comp_bt_test.h" />
     <ClInclude Include="components\object_controller\comp_bullet_controller.h" />
     <ClInclude Include="components\object_controller\comp_cone_of_light.h" />
+    <ClInclude Include="components\object_controller\comp_trigger_camera.h" />
     <ClInclude Include="components\physics\comp_collider.h" />
     <ClInclude Include="components\physics\comp_rigidbody.h" />
     <ClInclude Include="components\player_controller\comp_player_controller.h" />
