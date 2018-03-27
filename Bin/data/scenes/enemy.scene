@@ -43,17 +43,20 @@
             "lookAt": "-1 0 0"
           }
         ],
-        "xargCond": [
+        "argCond": [
           {
-            "nodeName": "manageStun",
-            "conditionName": "conditionManageStun",
-            "variableName": "hasBeenStunned",
-            "newValue": true
+            "nodeName": "managePlayerSeen",
+            "conditionName": "conditionPlayerSeen",
+            "variableName": "fov",
+            "newValue": 120.0
           }
         ],
-        "xargAct": [
+        "argAct": [
           {
-
+            "nodeName": "goToWpt",
+            "actionName": "actionGoToWpt",
+            "variableName": "speed",
+            "newValue": 17.0
           }
         ]
       },

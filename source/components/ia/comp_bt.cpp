@@ -368,8 +368,13 @@ void TCompIAController::loadParameters(const json& j) {
 			}
 			case CVariant::EType::FLOAT:
 			{
-				float newValue = it.value()["newValue"];
-				arguments[argCondName].setFloat(newValue);
+				float fov2 = arguments["fov_conditionPlayerSeen_managePlayerSeen"].getFloat();
+				CVariant newValue;
+				newValue.setFloat(it.value()["newValue"]);
+				arguments[argCondName] = newValue;
+
+				fov2 = arguments["fov_conditionPlayerSeen_managePlayerSeen"].getFloat();
+
 				break;
 			}
 			case CVariant::EType::INT:
@@ -399,6 +404,49 @@ void TCompIAController::loadParameters(const json& j) {
 			assert(it.value().count("actionName") == 1);
 			assert(it.value().count("variableName") == 1);
 			assert(it.value().count("newValue") == 1);
+
+			aux = it.value()["actionName"];
+
+			argActName = it.value()["variableName"];
+			argActName += "_";
+			argActName += aux;
+			argActName += "_";
+			aux = it.value()["nodeName"];
+			argActName += aux;
+
+			assert(arguments.find(argActName) != arguments.end());
+			type = arguments[argActName].getType();
+			switch (type) {
+			case CVariant::EType::BOOL:
+			{
+				bool newValue = it.value()["newValue"];
+				arguments[argActName].setBool(newValue);
+				break;
+			}
+			case CVariant::EType::FLOAT:
+			{
+				float newValue = it.value()["newValue"];
+				arguments[argActName].setFloat(newValue);
+				break;
+			}
+			case CVariant::EType::INT:
+			{
+				int newValue = it.value()["newValue"];
+				arguments[argActName].setInt(newValue);
+				break;
+			}
+			case CVariant::EType::STRING:
+			{
+				std::string newValue = it.value()["newValue"];
+				arguments[argActName].setString(newValue);
+				break;
+			}
+			default:
+			{
+				fatal("Type not defined!");
+				break;
+			}
+			}
 		}
 	}
 }
