@@ -10,32 +10,32 @@ CApp* CApp::app_instance = nullptr;
 // 
 //--------------------------------------------------------------------------------------
 LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
-  PAINTSTRUCT ps;
-  HDC hdc;
+	PAINTSTRUCT ps;
+	HDC hdc;
 
-  // If the OS processes it, do not process anymore
-  if (CEngine::get().getModules().OnOSMsg(hWnd, message, wParam, lParam))
-    return 1;
+	// If the OS processes it, do not process anymore
+	if (CEngine::get().getModules().OnOSMsg(hWnd, message, wParam, lParam))
+		return 1;
 
-  switch (message)
-  {
+	switch (message)
+	{
 
-  case CDirectoyWatcher::WM_FILE_CHANGED: {
-	  const char* filename = (const char*)lParam;
-	  dbg("File has changed! %s (%d)\n", filename, wParam);
-	  Resources.onFileChanged(filename);
-	  delete[] filename;
-	  break;
-  }
-  case WM_PAINT:
-    // Validate screen repaint in os/windows 
-    hdc = BeginPaint(hWnd, &ps);
-    EndPaint(hWnd, &ps);
-    break;
+	case CDirectoyWatcher::WM_FILE_CHANGED: {
+		const char* filename = (const char*)lParam;
+		dbg("File has changed! %s (%d)\n", filename, wParam);
+		Resources.onFileChanged(filename);
+		delete[] filename;
+		break;
+	}
+	case WM_PAINT:
+		// Validate screen repaint in os/windows 
+		hdc = BeginPaint(hWnd, &ps);
+		EndPaint(hWnd, &ps);
+		break;
 
-  case WM_DESTROY:
-    PostQuitMessage(0);
-    break;
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		break;
 	case WM_MBUTTONDOWN:
 	{
 		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
@@ -115,11 +115,11 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 	}
 	break;
 
-  default:
-    return DefWindowProc(hWnd, message, wParam, lParam);
-  }
+	default:
+		return DefWindowProc(hWnd, message, wParam, lParam);
+	}
 
-  return 0;
+	return 0;
 }
 
 //--------------------------------------------------------------------------------------
@@ -127,106 +127,108 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 //--------------------------------------------------------------------------------------
 bool CApp::createWindow(HINSTANCE new_hInstance, int nCmdShow) {
 
-  hInstance = new_hInstance;
+	hInstance = new_hInstance;
 
-  // Register class
-  WNDCLASSEX wcex;
-  wcex.cbSize = sizeof(WNDCLASSEX);
-  wcex.style = CS_HREDRAW | CS_VREDRAW;
-  wcex.lpfnWndProc = WndProc;
-  wcex.cbClsExtra = 0;
-  wcex.cbWndExtra = 0;
-  wcex.hInstance = hInstance;
-  wcex.hIcon = NULL;
-  wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
-  wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-  wcex.lpszMenuName = NULL;
-  wcex.lpszClassName = "MCVWindowsClass";
-  wcex.hIconSm = NULL;
-  if (!RegisterClassEx(&wcex))
-    return false;
+	// Register class
+	WNDCLASSEX wcex;
+	wcex.cbSize = sizeof(WNDCLASSEX);
+	wcex.style = CS_HREDRAW | CS_VREDRAW;
+	wcex.lpfnWndProc = WndProc;
+	wcex.cbClsExtra = 0;
+	wcex.cbWndExtra = 0;
+	wcex.hInstance = hInstance;
+	wcex.hIcon = NULL;
+	wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+	wcex.lpszMenuName = NULL;
+	wcex.lpszClassName = "MCVWindowsClass";
+	wcex.hIconSm = NULL;
+	if (!RegisterClassEx(&wcex))
+		return false;
 
-  // Create window
-  RECT rc = { 0, 0, xres, yres };
-  AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
-  hWnd = CreateWindow("MCVWindowsClass", "Project Deep Shadows",
-    WS_OVERLAPPEDWINDOW,
-    CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, hInstance,
-    NULL);
-  if (!hWnd)
-    return false;
+	// Create window
+	RECT rc = { 0, 0, xres, yres };
+	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
+	hWnd = CreateWindow("MCVWindowsClass", "Project Deep Shadows",
+		WS_OVERLAPPEDWINDOW,
+		CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, hInstance,
+		NULL);
+	if (!hWnd)
+		return false;
 
-  ShowWindow(hWnd, nCmdShow);
+	ShowWindow(hWnd, nCmdShow);
 	//ShowCursor(false);
 
-  return true;
+	return true;
 }
 
 //--------------------------------------------------------------------------------------
 // Process windows msgs, or if nothing to do, generate a new frame
 //--------------------------------------------------------------------------------------
 void CApp::mainLoop() {
-  // Main message loop
-  MSG msg = { 0 };
-  while (WM_QUIT != msg.message)
-  {
-    // Check if windows has some msg for us
-    if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-    {
-      TranslateMessage(&msg);
-      DispatchMessage(&msg);
-    }
-    else
-    {
-		if (resetMouse)
+	// Main message loop
+	MSG msg = { 0 };
+	while (WM_QUIT != msg.message)
+	{
+		// Check if windows has some msg for us
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
-			POINT pt;
-			
-			pt.x = xres / 2;
-			pt.y = yres / 2;
-			ClientToScreen(hWnd, &pt);
-
-			SetCursorPos(pt.x, pt.y);
-			resetMouse = false;
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
 		}
-		doFrame();
-    }
-  }
+		else
+		{
+			if (resetMouse)
+			{
+				POINT pt;
+
+				pt.x = xres / 2;
+				pt.y = yres / 2;
+				ClientToScreen(hWnd, &pt);
+
+				SetCursorPos(pt.x, pt.y);
+				resetMouse = false;
+			}
+			doFrame();
+		}
+	}
 }
 
 //--------------------------------------------------------------------------------------
 // Read any basic configuration required to boot, initial resolution, full screen, modules, ...
 //--------------------------------------------------------------------------------------
 bool CApp::readConfig() {
-  // ...
-  xres = 1080;
-  yres = 640;
+	// ...
+	xres = 1080;
+	yres = 640;
 
-  time_since_last_render.reset();
+	time_since_last_render.reset();
 
-  CEngine::get().getRender().configure(xres, yres);
+	CEngine::get().getRender().configure(xres, yres);
 
-  ShowCursor(false);
+	ShowCursor(false);
 
-  return true;
+	return true;
 }
 
 //--------------------------------------------------------------------------------------
 bool CApp::start() {
-  return CEngine::get().start();
+
+	resources_dir_watcher.start("data", getWnd());
+	return CEngine::get().start();
 }
 
 //--------------------------------------------------------------------------------------
 bool CApp::stop() {
-  return CEngine::get().stop();
+	return CEngine::get().stop();
 }
 
 //--------------------------------------------------------------------------------------
 void CApp::doFrame() {
-  PROFILE_FRAME_BEGINS();
-  PROFILE_FUNCTION("App::doFrame");
-  float dt = time_since_last_render.elapsedAndReset();
-  CEngine::get().update(dt);
-  CEngine::get().render();
+	PROFILE_FRAME_BEGINS();
+	PROFILE_FUNCTION("App::doFrame");
+	float dt = time_since_last_render.elapsedAndReset();
+	CEngine::get().update(dt);
+	CEngine::get().render();
 }
 

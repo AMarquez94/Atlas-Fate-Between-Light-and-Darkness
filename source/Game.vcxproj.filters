@@ -224,6 +224,7 @@
     <ClInclude Include="components\player_controller\comp_player_input.h" />
     <ClInclude Include="components\player_controller\comp_player_animator.h" />
     <ClInclude Include="components\player_controller\comp_player_tempcontroller.h" />
+    <ClInclude Include="utils\data_saver.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

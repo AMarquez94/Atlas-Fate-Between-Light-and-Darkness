@@ -1,7 +1,7 @@
 
 #define CB_CAMERA    0
 #define CB_OBJECT    1
-
+#define CB_LIGHT     3
 #ifdef WIN32
 
 #define CB_DEF(xName,idx)   struct xName
@@ -31,4 +31,12 @@ CB_DEF(CCteObject, CB_OBJECT)   // Generates the b1
 {
   MAT44 obj_world;
   VEC4  obj_color;
+};
+
+CB_DEF(CCteLight, CB_LIGHT)
+{
+	VEC4  light_color;
+	VEC3  light_pos;
+	float light_intensity;
+	MAT44 light_view_proj_offset;
 };
