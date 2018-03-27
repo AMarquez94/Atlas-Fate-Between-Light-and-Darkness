@@ -104,7 +104,7 @@ float4 ps_Lightmap(VS_OUTPUT_LIGHTMAP input) : SV_Target
 	diffuseAmount = saturate( 0.2 + diffuseAmount );
 	diffuseAmount = 0.3 + diffuseAmount * 0.7;
 
-	float4 texture_color = txDiffuse.Sample(samLinear, input.UV);
-	float4 texture_color2 = txLightmap.Sample(samLinear, input.UVB);
-	return texture_color2 * texture_color * obj_color;
+	float4 texture_albedo = txDiffuse.Sample(samLinear, input.UV);
+	float4 texture_lightmap = txLightmap.Sample(samLinear, input.UVB);
+	return texture_albedo * texture_lightmap * obj_color;
 }

@@ -30,14 +30,13 @@ void TCompCameraThirdPerson::load(const json& j, TEntityParseContext& ctx)
 	target_transform->getYawPitchRoll(&yaw, &pitch, &roll);
 	_current_euler = VEC2(yaw, pitch);
 
-	pause = false;
 }
 
 void TCompCameraThirdPerson::update(float dt)
 {
-	if (!pause) {
-		if (!_h_target.isValid())
-			return;
+	if (!paused) {
+
+		if (!_h_target.isValid()) return;
 
 		TCompTransform* self_transform = get<TCompTransform>();
 		TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>(); // we will need to consume this.
@@ -47,8 +46,8 @@ void TCompCameraThirdPerson::update(float dt)
 		// To remove in the future.
 		float horizontal_delta = mouse._position_delta.x;
 		float vertical_delta = -mouse._position_delta.y;
-		if (btHorizontal.isPressed()) horizontal_delta = btHorizontal.value;
-		if (btVertical.isPressed()) vertical_delta = btVertical.value;
+		if (EngineInput["MouseX"].isPressed()) horizontal_delta = EngineInput["MouseX"].value;
+		if (EngineInput["MouseY"].isPressed()) vertical_delta = EngineInput["MouseY"].value;
 
 		// Verbose code
 		_current_euler.x -= horizontal_delta * _speed * dt;
@@ -67,18 +66,24 @@ void TCompCameraThirdPerson::update(float dt)
 		VEC3 new_pos = target_position + z_distance * -self_transform->getFront();
 		self_transform->setPosition(new_pos);
 	}
-
-	if (btDebugPause.getsPressed()) {
-		pause = !pause;
-	}
 }
 
 float TCompCameraThirdPerson::CameraClipping(const VEC3	& origin, const VEC3 & dir)
 {
 	physx::PxRaycastHit hit;
-
 	if (EnginePhysics.Raycast(origin, dir, _clipping_offset.z, hit, physx::PxQueryFlag::eSTATIC))
 		return Clamp(hit.distance - 0.1f, 0.2f, _clipping_offset.z);
 
 	return _clipping_offset.z;
 }
+
+void TCompCameraThirdPerson::registerMsgs()
+{
+	DECL_MSG(TCompCameraThirdPerson, TMsgScenePaused, onPause);
+}
+
+void TCompCameraThirdPerson::onPause(const TMsgScenePaused& msg) {
+
+	paused = msg.isPaused;
+}
+

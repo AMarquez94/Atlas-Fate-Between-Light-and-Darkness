@@ -12,7 +12,6 @@ struct TMsgSetFSMVariable {
 class TCompFSM : public TCompBase {
 public:
 
-	bool isPaused;
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);

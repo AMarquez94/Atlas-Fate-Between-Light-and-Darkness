@@ -83,7 +83,6 @@ class TCompTempPlayerController : public TCompBase
 
 public:
 
-	bool isPaused;
 	bool isMerged;
 	bool isGrounded;
 	bool isInhibited;

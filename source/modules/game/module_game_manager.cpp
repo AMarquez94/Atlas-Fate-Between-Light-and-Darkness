@@ -1,9 +1,11 @@
 #include "mcv_platform.h"
 #include "module_game_manager.h"
-#include "windows/app.h"
 #include "input/devices/mouse.h"
 #include "components/comp_tags.h"
 #include "entity/common_msgs.h"
+#include "entity/msgs.h"
+#include "modules/module_entities.h"
+#include "windows/app.h"
 
 bool CModuleGameManager::start()
 {
@@ -42,9 +44,17 @@ void CModuleGameManager::update(float delta)
 	}
 
 	if (EngineInput["btPause"].getsPressed()) {
+
+		// Send pause message
 		TMsgScenePaused msg;
 		msg.isPaused = !menuVisible;
-		player.sendMsg(msg);
+		EngineEntities.broadcastMsg(msg);
+
+		// Lock/Unlock the cursor
+		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+		ShowCursor(!menuVisible);
+		mouse->setLockMouse();
+
 		menuVisible = !menuVisible;
 	}
 

@@ -87,7 +87,7 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 /* Player controller main update */
 void TCompTempPlayerController::update(float dt) {
 
-	if (!isPaused) {
+	if (!paused) {
 
 		(this->*state)(dt);
 
@@ -208,7 +208,7 @@ void TCompTempPlayerController::onPlayerExpose(const TMsgPlayerIlluminated & msg
 
 void TCompTempPlayerController::onPlayerPaused(const TMsgScenePaused& msg) {
 
-	isPaused = msg.isPaused;
+	paused = msg.isPaused;
 }
 
 /* Idle state method, no logic yet */

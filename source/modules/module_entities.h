@@ -17,6 +17,15 @@ public:
   void update(float delta) override;
   void render() override;
   void destroyAllEntities();
+
+  template< class TMsg >
+  void broadcastMsg(const TMsg& msg) {
+	  auto om = getObjectManager<CEntity>();
+	  om->forEach([&](CEntity* e) {
+	  	CHandle h_e(e);
+	  	h_e.sendMsg(msg);
+	  });
+  }
 };
 
 CHandle getEntityByName(const std::string& name);

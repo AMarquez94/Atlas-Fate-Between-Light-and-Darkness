@@ -34,7 +34,7 @@ void TCompFSM::debugInMenu()
     }
     ImGui::TreePop();
   }
-  isPaused = false;
+  paused = false;
 }
 
 void TCompFSM::registerMsgs() {
@@ -54,7 +54,7 @@ void TCompFSM::load(const json& j, TEntityParseContext& ctx)
 
 void TCompFSM::update(float dt) 
 {
-	if (!isPaused) {
+	if (!paused) {
 		_context.update(dt);
 	}
 }
@@ -66,7 +66,7 @@ void TCompFSM::onCreate(const TMsgEntityCreated& msg) {
 
 void TCompFSM::onPaused(const TMsgScenePaused& msg) {
 
-	isPaused = msg.isPaused;
+	paused = msg.isPaused;
 }
 
 void TCompFSM::onVariableValue(const TMsgSetFSMVariable& msg)
