@@ -112,6 +112,7 @@ public:
 	void resetState();
 	void mergeEnemy();
 	CHandle closeEnemy(const std::string & state = "undefined");
+	bool isDead();
 
 	static void registerMsgs();
 };

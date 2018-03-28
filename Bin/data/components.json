@@ -9,7 +9,6 @@
   },
   "update": [
     "circular_controller",
-    "player_controller",
 		"player_tempcontroller",
     "ai_patrol",
     "ai_mimetic",
@@ -38,7 +37,6 @@
 		"player_input"
   ],
   "render_debug": [
-    "player_controller",
 		"player_tempcontroller",
 		"ai_patrol"
 	]

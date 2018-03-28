@@ -3,7 +3,7 @@
 #include "btnode.h"
 #include "components/comp_name.h"
 #include "components/comp_transform.h"
-#include "components/player_controller/comp_player_controller.h"
+#include "components/player_controller/comp_player_tempcontroller.h"
 #include "components/comp_render.h"
 #include "components/comp_group.h"
 #include "components/object_controller/comp_cone_of_light.h"
@@ -625,12 +625,12 @@ bool TCompAIMimetic::isPlayerInFov() {
 		TCompTransform *ppos = ePlayer->get<TCompTransform>();
 
 		float dist = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
-		TCompPlayerController *pController = ePlayer->get<TCompPlayerController>();
+		TCompTempPlayerController *pController = ePlayer->get<TCompTempPlayerController>();
 		
 		/* Player inside cone of vision */
 		bool in_fov = mypos->isInFov(ppos->getPosition(), fov, deg2rad(89.f));
 
-		return in_fov && !pController->isInShadows() && !pController->isDead() && dist <= maxChaseDistance && !isEntityHidden(hPlayer);
+		return in_fov && !pController->isMerged && !pController->isDead() && dist <= maxChaseDistance && !isEntityHidden(hPlayer);
 	}
 	else {
 		return false;

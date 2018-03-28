@@ -3,7 +3,7 @@
 #include "components/comp_fsm.h"
 #include "components/comp_tags.h"
 #include "components/comp_render.h"
-#include "components/ia/ai_patrol.h"
+#include "components/ia/comp_bt_patrol.h"
 #include "components/comp_transform.h"
 #include "components/physics/comp_rigidbody.h"
 #include "components/physics/comp_collider.h"
@@ -596,7 +596,7 @@ void TCompTempPlayerController::attackState(float dt) {
 	CHandle enemy = closeEnemy();
 
 	if (enemy.isValid()) {
-		TMsgPatrolStunned msg;
+		TMsgEnemyStunned msg;
 		msg.h_sender = CHandle(this).getOwner();
 		enemy.sendMsg(msg);
 	}
@@ -629,11 +629,18 @@ CHandle TCompTempPlayerController::closeEnemy(const std::string & state) {
 			epos->getPosition()) < maxAttackDistance
 			&& !epos->isInFront(mypos->getPosition())) {
 
-			CAIPatrol * aipatrol = ((CEntity*)handles[i])->get<CAIPatrol>();
+			TCompAIPatrol * aipatrol = ((CEntity*)handles[i])->get<TCompAIPatrol>();
 			if(state.compare("undefined") != 0) return handles[i];
-			if (aipatrol->getStateName().compare(state) != 0) return handles[i];
+			if (aipatrol->getCurrent()->getName().compare(state) != 0) return handles[i];
 		}
 	}
 
 	return CHandle();
+}
+
+bool TCompTempPlayerController::isDead()
+{
+	TCompFSM *fsm = get<TCompFSM>();
+	fsm->getStateName().compare("dead");
+	return false;
 }

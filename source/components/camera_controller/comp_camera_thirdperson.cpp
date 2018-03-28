@@ -40,6 +40,7 @@ void TCompCameraThirdPerson::registerMsgs()
 	DECL_MSG(TCompCameraThirdPerson, TMsgCameraDeprecated, onMsgCameraDeprecated);
 	DECL_MSG(TCompCameraThirdPerson, TMsgCameraFullyActivated, onMsgCameraFullActive);
 	DECL_MSG(TCompCameraThirdPerson, TMsgSetCameraActive, onMsgCameraSetActive);
+	DECL_MSG(TCompCameraThirdPerson, TMsgScenePaused, onPause);
 }
 
 void TCompCameraThirdPerson::onMsgCameraActive(const TMsgCameraActivated & msg)
@@ -109,11 +110,6 @@ float TCompCameraThirdPerson::CameraClipping(const VEC3	& origin, const VEC3 & d
 		return Clamp(hit.distance - 0.1f, 0.2f, _clipping_offset.z);
 
 	return _clipping_offset.z;
-}
-
-void TCompCameraThirdPerson::registerMsgs()
-{
-	DECL_MSG(TCompCameraThirdPerson, TMsgScenePaused, onPause);
 }
 
 void TCompCameraThirdPerson::onPause(const TMsgScenePaused& msg) {

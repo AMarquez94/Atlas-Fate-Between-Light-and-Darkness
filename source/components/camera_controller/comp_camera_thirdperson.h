@@ -16,6 +16,7 @@ private:
 	VEC3 _clipping_offset;
 
 	bool active;
+	bool pause;
 
 	const Input::TButton& btHorizontal = EngineInput["MouseX"];
 	const Input::TButton& btVertical = EngineInput["MouseY"];
@@ -37,8 +38,6 @@ public:
 
   const VEC2 getCurrentEuler() { return _current_euler; }
   float CameraClipping(const VEC3 & origin, const VEC3 & dir);
-
-  DECL_SIBLING_ACCESS();
 
   static void registerMsgs();
 };

@@ -43,6 +43,11 @@ void TCompFSM::registerMsgs() {
   DECL_MSG(TCompFSM, TMsgScenePaused, onPaused);
 }
 
+const std::string TCompFSM::getStateName()
+{
+	return _context.getCurrentState()->getName();
+}
+
 // -------------------------------------------------
 void TCompFSM::load(const json& j, TEntityParseContext& ctx)
 {

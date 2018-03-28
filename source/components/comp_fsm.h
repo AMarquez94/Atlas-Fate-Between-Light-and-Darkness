@@ -22,6 +22,8 @@ public:
 
 	static void registerMsgs();
 
+	const std::string getStateName();
+
 private:
 
 	FSM::CContext _context;

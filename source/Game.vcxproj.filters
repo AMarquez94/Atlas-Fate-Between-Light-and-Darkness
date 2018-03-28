@@ -7,7 +7,6 @@
     <ClCompile Include="components\comp_render.cpp" />
     <ClCompile Include="components\comp_transform.cpp" />
     <ClCompile Include="components\ia\ai_controller.cpp" />
-    <ClCompile Include="components\ia\ai_patrol.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\entity_parser.cpp" />
@@ -61,7 +60,6 @@
     <ClCompile Include="utils\utils.cpp" />
     <ClCompile Include="windows\app.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
-    <ClCompile Include="components\player_controller\comp_player_controller.cpp" />
     <ClCompile Include="components\object_controller\comp_bullet_controller.cpp" />
     <ClCompile Include="components\camera_controller\comp_camera_shadowmerge.cpp" />
     <ClCompile Include="components\camera_controller\comp_camera_thirdperson.cpp" />
@@ -118,7 +116,6 @@
     <ClInclude Include="components\comp_render.h" />
     <ClInclude Include="components\comp_transform.h" />
     <ClInclude Include="components\ia\ai_controller.h" />
-    <ClInclude Include="components\ia\ai_patrol.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="entity\common_msgs.h" />
     <ClInclude Include="entity\entity.h" />
@@ -193,7 +190,6 @@
     <ClInclude Include="windows\app.h" />
     <ClInclude Include="components\comp_player_controller.h" />
     <ClInclude Include="modules\system\module_physics.h" />
-    <ClInclude Include="components\player_controller\comp_player_controller.h" />
     <ClInclude Include="components\object_controller\comp_bullet_controller.h" />
     <ClInclude Include="components\camera_controller\comp_camera_shadowmerge.h" />
     <ClInclude Include="components\camera_controller\comp_camera_thirdperson.h" />
