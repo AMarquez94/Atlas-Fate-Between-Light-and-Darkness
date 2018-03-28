@@ -8,7 +8,9 @@
 #include "render/texture/texture.h"
 #include "resources/json_resource.h"
 #include "components/skeleton/game_core_skeleton.h"
+#include "physics/physics_mesh.h"
 #include "camera/camera.h"
+#include "geometry/curve.h"
 
 //--------------------------------------------------------------------------------------
 
@@ -49,6 +51,9 @@ bool CModuleRender::start()
   Resources.registerResourceClass(getResourceClassOf<CRenderTechnique>());
   Resources.registerResourceClass(getResourceClassOf<CMaterial>());
   Resources.registerResourceClass(getResourceClassOf<CGameCoreSkeleton>());
+  Resources.registerResourceClass(getResourceClassOf<CPhysicsMesh>());
+  Resources.registerResourceClass(getResourceClassOf<CCurve>());
+
 
   if (!createRenderObjects())
     return false;

@@ -2,12 +2,7 @@
 
 #include "components/comp_base.h"
 #include "comp_bt.h"
-
-struct Waypoint {
-	VEC3 position;
-	VEC3 lookAt;				//TODO: guess how to make the waypoint orientated to something
-	float minTime;
-};
+#include "modules/module_ia.h"
 
 class TCompAIPatrol : public TCompIAController {
 
@@ -51,7 +46,7 @@ private:
 
 	void onMsgEntityCreated(const TMsgEntityCreated& msg);
 	void onMsgPlayerDead(const TMsgPlayerDead& msg);
-	void onMsgPatrolStunned(const TMsgPatrolStunned& msg);
+	void onMsgPatrolStunned(const TMsgEnemyStunned& msg);
 	void onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged& msg);
 	void onMsgPatrolFixed(const TMsgPatrolFixed& msg);
 
@@ -72,16 +67,9 @@ private:
 	void loadConditions() override;
 	void loadAsserts() override;
 
-	struct arguments {
-		float speed, flee, movement, ugh, escape;
-		bool speedB = false, fleeB = false, movementB = false, ughB = false, escapeB = false;
-	}conditionsArgs, actionsArgs;
-
 public:
 	void load(const json& j, TEntityParseContext& ctx) override;
 	void debugInMenu();
-
-
 
 	BTNode::ERes actionShadowMerged(float dt);
 	BTNode::ERes actionStunned(float dt);

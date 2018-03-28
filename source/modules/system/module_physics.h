@@ -3,6 +3,7 @@
 #include "modules/module.h"
 #include "components/physics/comp_collider.h"
 #include "PxPhysicsAPI.h"
+#include "physics/physics_filter.h"
 
 class TCompTransform;
 
@@ -13,34 +14,18 @@ public:
 	static const VEC3 gravity;
 	static physx::PxQueryFilterData defaultFilter;
 
-	enum FilterGroup {
-
-		Wall = 1 << 0,
-		Floor = 1 << 1,
-		Player = 1 << 2,
-		Enemy = 1 << 3,
-		Ignore = 1 << 4,
-		Fence = 1 << 5,
-		Scenario = Wall | Floor,
-		Characters = Player | Enemy,
-		All = -1
-	};
-
 	CModulePhysics(const std::string& aname) : IModule(aname) { }
 	virtual bool start() override;
 	virtual void update(float delta) override;
 	virtual void render() override;
 
-	/* Main procedure methods */
-	void createActor(TCompCollider& comp_collider);
-
-	// Filter methods
-	FilterGroup getFilterByName(const std::string& name);
-	void setupFiltering(physx::PxShape* shape, physx::PxU32 filterGroup, physx::PxU32 filterMask);
-	void setupFiltering(physx::PxRigidActor* actor, physx::PxU32 filterGroup, physx::PxU32 filterMask);
+	// Physx module getters
+	physx::PxScene* getPhysxScene() { return gScene; }
+	physx::PxPhysics* getPhysxFactory() { return gPhysics; }
+	physx::PxControllerManager* getPhysxController() { return mControllerManager; }
+	physx::PxCooking* getCooking() { return gCooking; }
 
 	/* Ray casting & related methods*/
-
 	bool Raycast(const VEC3 & origin, const VEC3 & dir, float distance, physx::PxRaycastHit & hit, physx::PxQueryFlag::Enum flag = physx::PxQueryFlag::eSTATIC, physx::PxQueryFilterData filterdata = defaultFilter);
 	//bool SphereCast(const VEC3 & origin, const VEC3 & dir, float distance, RaycastHit & hit);
 

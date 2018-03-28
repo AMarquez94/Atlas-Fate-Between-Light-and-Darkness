@@ -1,9 +1,10 @@
 [
 	{
     "entity": {
-		"name": "The Enemy",
+		"name": "Mimetic",
 		"transform": {
-			"lookat": "-1 0 0"
+			"pos": "0 0 0",
+			"lookat": "1 0 0"
 		},
 		"render": {
 			"mesh": "data/meshes/bot211.mesh",
@@ -22,7 +23,7 @@
         "mesh": "cone_of_vision.mesh"
       },
       "hierarchy": {
-        "parent": "The Enemy"
+        "parent": "Mimetic"
       }
     }
   },
@@ -34,7 +35,7 @@
         "mesh": "cone_of_light.mesh"
       },
       "hierarchy": {
-        "parent": "The Enemy"
+        "parent": "Mimetic"
       },
       "cone_of_light": {
         "fov": 35,

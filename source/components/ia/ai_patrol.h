@@ -3,13 +3,7 @@
 
 #include "ai_controller.h"
 #include "entity/common_msgs.h"
-
-
-struct Waypoint {
-	VEC3 position;
-	VEC3 lookAt;				//TODO: guess how to make the waypoint orientated to something
-	float minTime;
-};
+#include "modules/module_ia.h"
 
 class CAIPatrol : public IAIController
 {
@@ -47,7 +41,7 @@ class CAIPatrol : public IAIController
 
 	void onMsgPatrolCreated(const TMsgEntityCreated& msg);
 	void onMsgPlayerDead(const TMsgPlayerDead& msg);
-	void onMsgPatrolStunned(const TMsgPatrolStunned& msg);
+	void onMsgPatrolStunned(const TMsgEnemyStunned& msg);
 	void onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged& msg);
 	void onMsgPatrolFixed(const TMsgPatrolFixed& msg);
 

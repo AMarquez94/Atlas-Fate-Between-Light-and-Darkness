@@ -2,16 +2,16 @@
   "update": 
   [
     "input",
+    "physics",
     "entities",
     "render",
-    "physics",
+  "cameras",
     "main_menu",
     "game_manager",
     "splash",
     "test_input",
     "map_intro",
-    "game_over",
-    "cameras"
+	"game_over"	
   ],
   "render": 
   [
