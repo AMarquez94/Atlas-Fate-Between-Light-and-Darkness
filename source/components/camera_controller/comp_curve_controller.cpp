@@ -3,10 +3,20 @@
 #include "components/comp_transform.h"
 #include "geometry/curve.h"
 #include "entity/common_msgs.h"
+#include "render/render_utils.h"
 
 DECL_OBJ_MANAGER("curve_controller", TCompCurve);
 
 void TCompCurve::debugInMenu() {
+
+	for (int i = 0; i < 100; ++i) {
+		VEC3 pos = _curve->evaluateAsCatmull((float)i / (float)100);
+		VEC3 pos2 = _curve->evaluateAsCatmull((float)(i+1) / (float)100);
+
+		renderLine(pos, pos2, VEC4(1.f, 1.f, 1.f, 1.f));
+	}
+
+
   //ImGui::DragFloat("Sensitivity", &_sensitivity, 0.01f, 0.001f, 0.1f);
 }
 
@@ -41,17 +51,17 @@ void TCompCurve::update(float dt)
     _ratio += _speed * dt;
     if (_loop && _ratio >= 1.f)
       _ratio = 0.f;
+
+	// evaluar curva con dicho ratio
+	VEC3 pos = _curve->evaluate(_ratio);
+
+	// obtener la posicion del target
+	VEC3 targetPos = getTargetPos();
+
+	// actualizar la transform con la nueva posicion
+	TCompTransform* c_transform = get<TCompTransform>();
+	c_transform->lookAt(pos, targetPos);
   }
-
-  // evaluar curva con dicho ratio
-  VEC3 pos = _curve->evaluate(_ratio);
-
-  // obtener la posicion del target
-  VEC3 targetPos = getTargetPos();
-
-  // actualizar la transform con la nueva posicion
-  TCompTransform* c_transform = get<TCompTransform>();
-  c_transform->lookAt(pos, targetPos);
 }
 
 VEC3 TCompCurve::getTargetPos()
@@ -69,10 +79,8 @@ VEC3 TCompCurve::getTargetPos()
 }
 
 void TCompCurve::onMsgCameraActive(const TMsgCameraActivated & msg) {
-	CHandle outputCamera = Engine.getCameras().getOutputCamera();
-	CEntity * eOutputCamera = outputCamera;
-	TCompTransform * cPos = eOutputCamera->get<TCompTransform>();
-	_curve->addKnotAtIndex(cPos->getPosition(), 0);
+	VEC3 pos = Engine.getCameras().getResultPos();
+	_curve->addKnotAtIndex(pos, 1);
 }
 
 void TCompCurve::onMsgCameraFullActive(const TMsgCameraFullyActivated & msg)
@@ -84,5 +92,5 @@ void TCompCurve::onMsgCameraDeprecated(const TMsgCameraDeprecated & msg)
 {
 	_active = false;
 	_ratio = 0.f;
-	_curve->removeKnotAtIndex(0);
+	_curve->removeKnotAtIndex(1);
 }

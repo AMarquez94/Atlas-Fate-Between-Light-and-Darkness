@@ -120,15 +120,8 @@
 		"entity": {
 			"name": "test_camera_curve",
 			"transform": {
-				"pos": "5 25 0",
-				"lookat": "0 0 0"
-			},
-			"curve_controller" :
-			{
-				"curve" : "data/curves/test_curve.curve",
-				"speed" : 0.25,
-				"target" : "The Player",
-				"loop": false
+				"pos": "-12 10 45",
+				"lookat": "9 0 31"
 			},
 			"camera" : {
 				"fov" : 60,
@@ -146,14 +139,15 @@
 			},
 			"trigger_camera" :
 			{
-				"target" : "test_camera_curve"
+				"target" : "test_camera_curve",
+				"blend_in_time": 1.5,
+				"blend_out_time": 1.5
 			},
-			"render": {},
 			"collider":
 			{
 				"shape": "sphere",
 				"is_trigger" : true,
-				"radius": 6.5
+				"radius": 5
 			}
 		}
 	}

@@ -20,6 +20,10 @@ private:
   CHandle _targetCamera;
   std::string _targetName;
 
+  float _blendInTime;
+  float _blendOutTime;
+  std::string _interpolator; //TODO
+
   void onMsgTriggerEnter(const TMsgTriggerEnter& msg);
   void onMsgTriggerExit(const TMsgTriggerExit& msg);
 };
