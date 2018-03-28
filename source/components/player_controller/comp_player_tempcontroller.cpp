@@ -71,17 +71,18 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_crouch", (CRenderMesh*)pj_crouch));
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_shadowmerge", (CRenderMesh*)pj_shadowmerge));
 
-	mergeAngle = j.value("mergeAngle", 0.45);
-	maxFallingTime = j.value("maxFallingTime", 0.8);
-	maxFallingDistance = j.value("maxFallingDistance", 1.5);
-	maxAttackDistance = j.value("maxAttackDistance", 1);
+	mergeAngle = j.value("mergeAngle", 0.45f);
+	maxFallingTime = j.value("maxFallingTime", 0.8f);
+	maxFallingDistance = j.value("maxFallingDistance", 1.5f);
+	maxAttackDistance = j.value("maxAttackDistance", 1.f);
 	minStamina = j.value("minStamina", 0.f);
 	maxStamina = j.value("maxStamina", 100.f);
-	incrStamina = j.value("incrStamina", 15);
-	decrStaticStamina = j.value("decrStaticStamina", 0.75),
-	decrStaminaHorizontal = j.value("decrStaminaHorizontal", 12.5);
-	decrStaminaVertical = j.value("decrStaminaVertical", 17.5);
-	minStaminaChange = j.value("minStaminaChange", 15);
+	incrStamina = j.value("incrStamina", 15.f);
+	decrStaticStamina = j.value("decrStaticStamina", 0.75f),
+	decrStaminaHorizontal = j.value("decrStaminaHorizontal", 12.5f);
+	decrStaminaVertical = j.value("decrStaminaVertical", 17.5f);
+	minStaminaChange = j.value("minStaminaChange", 15.f);
+	auxCamera = j.value("auxCamera", "");
 }
 
 /* Player controller main update */
@@ -133,7 +134,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 	stamina = 100.f;
 	fallingTime = 0.f;
 	currentSpeed = 4.f;
-	initialPoints = 0.f;
+	initialPoints = 0;
 	rotationSpeed = 10.f;
 	fallingDistance = 0.f;
 	isInhibited = isGrounded = isMerged = false;
@@ -316,6 +317,13 @@ void TCompTempPlayerController::resetState(float dt) {
 	c_my_transform->setRotation(quat);
 }
 
+void TCompTempPlayerController::exitMergeState(float dt)
+{
+	TMsgSetCameraCancelled msg;
+	CEntity * eCamera = getEntityByName(auxCamera);
+	eCamera->sendMsg(msg);
+}
+
 /* Player dead state */
 void TCompTempPlayerController::deadState(float dt)
 {
@@ -475,7 +483,7 @@ const bool TCompTempPlayerController::groundTest(float dt) {
 
 		TMsgSetFSMVariable falldead;
 		falldead.variant.setName("onFallDead");
-		falldead.variant.setBool(fallingTime > maxFallingTime & !isMerged);
+		falldead.variant.setBool(fallingTime > maxFallingTime && !isMerged);
 		e->sendMsg(falldead);
 
 		TMsgSetFSMVariable crouch;

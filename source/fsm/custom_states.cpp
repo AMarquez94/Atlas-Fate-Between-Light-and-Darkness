@@ -209,8 +209,8 @@ namespace FSM
 
 	void ExitMergeState::onFinish(CContext& ctx) const {
 
-		//CEntity* e = ctx.getOwner();
-		//e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::resetState });
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::exitMergeState });
 		// Re enable rigidbody.
 	}
 
