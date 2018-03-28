@@ -253,13 +253,12 @@ void TCompTempPlayerController::mergeState(float dt) {
 	TCompRigidbody * rigidbody = get<TCompRigidbody>();
 	TCompTransform *c_my_transform = get<TCompTransform>();
 	TCompTransform * trans_camera = player_camera->get<TCompTransform>();
-	VEC3 prevUp = c_my_transform->getUp();
+	float angle_test = fabs(EnginePhysics.gravity.Dot(c_my_transform->getUp()));
 
+	VEC3 prevUp = c_my_transform->getUp();
+	VEC3 up = angle_test < mergeAngle ? trans_camera->getUp() : trans_camera->getFront();
 	float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
 	float player_accel = inputSpeed * currentSpeed * dt;
-
-	//VEC3 up = trans_camera->getUp();
-	VEC3 up = EnginePhysics.gravity.Dot(c_my_transform->getUp()) < mergeAngle ? trans_camera->getUp() : -EnginePhysics.gravity;
 
 	VEC3 normal_norm = rigidbody->normal_gravity;
 	normal_norm.Normalize();
@@ -275,14 +274,15 @@ void TCompTempPlayerController::mergeState(float dt) {
 
 	if (convexTest() || concaveTest()) {
 
+		angle_test = fabs(EnginePhysics.gravity.Dot(c_my_transform->getUp()));
+		std::string target_name = angle_test < mergeAngle ? "SMCameraVer" : "SMCameraHor";
+		dbCameraState = target_name;
+
 		CHandle eCamera = getEntityByName("SMCameraAux");
 		TCompName * name = ((CEntity*)target_camera)->get<TCompName>();
 		VEC3 postUp = c_my_transform->getUp();
 		VEC3 dirToLookAt = -(prevUp + postUp);
 		dirToLookAt.Normalize();
-
-		std::string target_name = fabs(EnginePhysics.gravity.Dot(c_my_transform->getUp())) < mergeAngle ? "SMCameraVer" : "SMCameraHor";
-		dbCameraState = target_name;
 
 		TMsgSetCameraActive msg;
 		msg.previousCamera = name->getName();
@@ -483,7 +483,7 @@ const bool TCompTempPlayerController::groundTest(float dt) {
 
 		TMsgSetFSMVariable falldead;
 		falldead.variant.setName("onFallDead");
-		falldead.variant.setBool(fallingTime > maxFallingTime && !isMerged);
+		falldead.variant.setBool((fallingTime > maxFallingTime) & !isMerged);
 		e->sendMsg(falldead);
 
 		TMsgSetFSMVariable crouch;
