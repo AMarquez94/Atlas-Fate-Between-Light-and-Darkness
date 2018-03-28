@@ -1,8 +1,9 @@
 #include "mcv_platform.h"
 #include "render_objects.h"
 
-CRenderCte<CCteCamera> cb_camera;
-CRenderCte<CCteObject> cb_object;
+CRenderCte<CCteCamera> cb_camera("Camera");
+CRenderCte<CCteObject> cb_object("Object");
+CRenderCte<CCteLight>  cb_light("Light");
 
 struct TVtxPosClr {
 	VEC3 pos;

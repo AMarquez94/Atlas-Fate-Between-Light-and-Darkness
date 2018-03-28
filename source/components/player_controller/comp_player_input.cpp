@@ -114,6 +114,11 @@ void TCompPlayerInput::update(float dt)
 				c_my_player->hitPoints--;
 			}
 		}
+
+		if (EngineInput["btDebugShadows"].getsPressed()) {
+			TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
+			c_my_player->dbgDisableStamina = !c_my_player->dbgDisableStamina;
+		}
 	}
 
 }

@@ -8,6 +8,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
+#include "components/comp_light.h"
 #include "render/render_manager.h"
 
 void CModuleEntities::loadListOfManagers(const json& j, std::vector< CHandleManager* > &managers) {
@@ -113,6 +114,11 @@ void CModuleEntities::render()
   }
 
   CTagsManager::get().debugInMenu();
+
+  // I just need to activate one light... but at this moment...	
+  getObjectManager<TCompLight>()->forEach([](TCompLight* c) {
+	c->activate();
+  });
 
   CRenderManager::get().renderCategory("default");
   CRenderManager::get().debugInMenu();

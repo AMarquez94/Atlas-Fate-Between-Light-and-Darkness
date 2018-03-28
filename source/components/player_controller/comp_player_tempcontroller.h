@@ -11,6 +11,7 @@ typedef void (TCompTempPlayerController::*actionfinish)();
 typedef void (TCompTempPlayerController::*actionhandler)(float);
 
 struct TargetCamera {
+
 	std::string name;
 	float blendIn;
 	float blendOut;
@@ -82,6 +83,9 @@ class TCompTempPlayerController : public TCompBase
 	DECL_SIBLING_ACCESS();
 
 public:
+	/* Debug variables */
+	bool dbgDisableStamina;
+	std::string dbCameraState;
 
 	bool isMerged;
 	bool isGrounded;
@@ -99,6 +103,7 @@ public:
 	void deadState(float dt);
 	void mergeState(float dt);
 	void attackState(float dt);
+	void resetState(float dt);
 
 	/* Player condition tests */
 	const bool concaveTest(void);
@@ -109,8 +114,9 @@ public:
 	/* Auxiliar functions */
 	void updateStamina(float dt);
 	void updateShader(float dt);
-	void resetState();
 	void mergeEnemy();
+
+	VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
 	CHandle closeEnemy(const std::string & state = "undefined");
 
 	static void registerMsgs();
