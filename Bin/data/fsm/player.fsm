@@ -179,6 +179,16 @@
 		{
 			"type" : "VariableTransition",
 			"source" : "crouch",
+			"target" : "entermerge",
+			"variable" : {
+				"name" : "onmerge",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "crouch",
 			"target" : "run",
 			"variable" : {
 				"name" : "boost_speed",

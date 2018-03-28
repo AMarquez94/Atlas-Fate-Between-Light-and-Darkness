@@ -44,6 +44,9 @@ bool CModuleMapIntro::start()
 	if (!cb_object.create(CB_OBJECT))
 		return false;
 
+	if (!cb_light.create(CB_LIGHT))
+		return false;
+
 	cb_object.activate();
 	cb_camera.activate();
 
@@ -71,7 +74,6 @@ bool CModuleMapIntro::start()
 
 bool CModuleMapIntro::stop()
 {
-
 	/* delete all entities in scene */
 	Engine.getEntities().destroyAllEntities();
 	Engine.getCameras().deleteAllCameras();
@@ -79,6 +81,7 @@ bool CModuleMapIntro::stop()
 
 	cb_camera.destroy();
 	cb_object.destroy();
+	cb_light.destroy();
 
 	return true;
 }

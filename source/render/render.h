@@ -24,6 +24,10 @@ extern CRender Render;
 
 #define SAFE_RELEASE(x)  if(x) x->Release(), x = nullptr;
 
+// To assign a name to each DX object
+#define setDXName(dx_obj,new_name) \
+        (dx_obj)->SetPrivateData(WKPDID_D3DDebugObjectName, (UINT)strlen(new_name), new_name);
+
 #include "render/mesh/mesh.h"
 #include "render/shaders/render_technique.h"
 #include "render/shaders/vertex_declarations.h"

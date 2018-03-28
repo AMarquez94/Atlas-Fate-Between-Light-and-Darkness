@@ -319,6 +319,7 @@
     <ClInclude Include="render\texture\DDSTextureLoader.h" />
     <ClInclude Include="render\texture\material.h" />
     <ClInclude Include="render\texture\texture.h" />
+    <ClInclude Include="render\texture\texture_slots.h" />
     <ClInclude Include="resources\json_resource.h" />
     <ClInclude Include="resources\resource.h" />
     <ClInclude Include="resources\resources_manager.h" />

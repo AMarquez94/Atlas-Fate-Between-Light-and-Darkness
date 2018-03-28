@@ -5,16 +5,15 @@
 class CCteBuffer {
 
 protected:
-  ID3D11Buffer*      cb = nullptr;
-  int                slot = -1;
-  bool createData(UINT num_bytes);
+	ID3D11Buffer * cb = nullptr;
+	int                slot = -1;
+	bool createData(UINT num_bytes, const char* new_name);
 
 public:
 
-  void destroy();
-  void activate();
+	void destroy();
+	void activate();
 };
-
 // -----------------------------------------
 // I'm a join combination of the CPU struct (TPOD) and 
 // the struct (CCteBuffer) which have the members to have a 
@@ -30,7 +29,7 @@ public:
 
 	bool create(int new_slot) {
 		slot = new_slot;
-		return createData(sizeof(TPOD));
+		return createData(sizeof(TPOD), name);
 	}
 
 	void updateGPU() {

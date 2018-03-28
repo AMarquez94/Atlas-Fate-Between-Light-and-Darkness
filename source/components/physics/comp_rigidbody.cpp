@@ -46,7 +46,7 @@ void TCompRigidbody::update(float dt) {
 			totalDownForce = physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z) * dt;
 		}
 		else {
-			totalDownForce += 3.f * physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z) * dt;
+			totalDownForce += 5.f * physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z) * dt;
 		}
 		velocity += totalDownForce;
 	}
@@ -55,11 +55,6 @@ void TCompRigidbody::update(float dt) {
 
 		physx::PxControllerCollisionFlags col = controller->move(velocity * dt, 0.f, dt, filters);
 		is_grounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN) ? true : false; //ask roger
-		//if (grounded == temp_ground) 
-		//	is_grounded = grounded;
-
-		//temp_ground = grounded;
-		//dbg("total ground %d\n", is_grounded);
 	} 
 }
 

@@ -3,6 +3,7 @@
 
 CRenderCte<CCteCamera> cb_camera("Camera");
 CRenderCte<CCteObject> cb_object("Object");
+CRenderCte<CCteLight>  cb_light("Light");
 
 struct TVtxPosClr {
 	VEC3 pos;

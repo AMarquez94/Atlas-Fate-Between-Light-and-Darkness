@@ -242,6 +242,7 @@
     <ClInclude Include="utils\data_saver.h" />
     <ClInclude Include="components\camera_controller\comp_curve_controller.h" />
     <ClInclude Include="components\object_controller\comp_trigger_camera.h" />
+    <ClInclude Include="render\texture\texture_slots.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
