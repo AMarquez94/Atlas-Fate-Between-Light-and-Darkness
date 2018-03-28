@@ -22,6 +22,9 @@ public:
 
 	void deleteAllCameras();
 
+	CHandle getOutputCamera();
+	VEC3 getResultPos() { return resultPos; };
+
 private:
 	void renderInMenu();
 
@@ -45,10 +48,12 @@ private:
 	using VMixedCameras = std::vector<TMixedCamera>;
 
 	TMixedCamera* getMixedCamera(CHandle camera);
-	void blendCameras(const CCamera* camera1, const CCamera* camera2, float ratio, CCamera* output) const;
+	void blendCameras(const CCamera* camera1, const CCamera* camera2, float ratio, CCamera* output);
 	void checkDeprecated();
 
 	VMixedCameras _mixedCameras;
 	CHandle _defaultCamera;
 	CHandle _outputCamera;
+
+	VEC3 resultPos;
 };

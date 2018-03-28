@@ -1,22 +1,24 @@
 {
-  "update": [
+  "update": 
+  [
     "input",
     "physics",
     "entities",
     "render",
   "cameras",
     "main_menu",
-	"game_manager",
+    "game_manager",
     "splash",
     "test_input",
     "map_intro",
 	"game_over"	
   ],
-  "render": [
+  "render": 
+  [
     "render",
     "input",
-	"main_menu",
-	"game_manager",
+    "main_menu",
+    "game_manager",
     "map_intro",
     "game_over",
     "entities",

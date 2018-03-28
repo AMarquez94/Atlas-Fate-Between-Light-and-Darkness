@@ -40,6 +40,9 @@ public:
 	void SetUpVector(VEC3 new_up);
 	VEC3 GetUpVector();
 
+	void Jump(VEC3 forceUp);
+	void setNormalGravity(VEC3 newGravity);
+
 	static void registerMsgs();
 
 	//class CustomQueryFilterCallback : public physx::PxQueryFilterCallback {

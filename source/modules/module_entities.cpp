@@ -58,10 +58,11 @@ bool CModuleEntities::start()
 
 void CModuleEntities::update(float delta)
 {
+	float scaled_time = delta * time_scale_factor;
 	for (auto om : om_to_update)
 	{
 		PROFILE_FUNCTION(om->getName());
-		om->updateAll(delta);
+		om->updateAll(scaled_time);
 	}
 
 	CHandleManager::destroyAllPendingObjects();
@@ -81,6 +82,8 @@ bool CModuleEntities::stop() {
 void CModuleEntities::render()
 {
   Resources.debugInMenu();
+
+  ImGui::DragFloat("Time Factor",&time_scale_factor,0.01f,0.f,1.0f);
 
   if (ImGui::TreeNode("All Entities...")) {
 

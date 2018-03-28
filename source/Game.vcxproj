@@ -94,6 +94,7 @@
     <ClCompile Include="components\camera_controller\comp_camera_shadowmerge.cpp" />
     <ClCompile Include="components\camera_controller\comp_camera_thirdperson.cpp" />
     <ClCompile Include="components\camera_controller\comp_circular_controller.cpp" />
+    <ClCompile Include="components\camera_controller\comp_curve_controller.cpp" />
     <ClCompile Include="components\comp_aabb.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
     <ClCompile Include="components\comp_culling.cpp" />
@@ -111,13 +112,22 @@
     <ClCompile Include="components\dynamic_objects\comp_dynamic_objects.cpp" />
     <ClCompile Include="components\ia\ai_controller.cpp" />
     <ClCompile Include="components\ia\ai_patrol.cpp" />
+    <ClCompile Include="components\ia\btnode.cpp" />
+    <ClCompile Include="components\ia\comp_bt.cpp" />
+    <ClCompile Include="components\ia\comp_bt_mimetic.cpp" />
+    <ClCompile Include="components\ia\comp_bt_patrol.cpp" />
+    <ClCompile Include="components\ia\comp_bt_test.cpp" />
     <ClCompile Include="components\object_controller\comp_bullet_controller.cpp" />
     <ClCompile Include="components\object_controller\comp_cone_of_light.cpp" />
+    <ClCompile Include="components\object_controller\comp_trigger_camera.cpp" />
     <ClCompile Include="components\physics\comp_collider.cpp" />
     <ClCompile Include="components\physics\comp_rigidbody.cpp" />
     <ClCompile Include="components\player_controller\comp_player_controller.cpp" />
     <ClCompile Include="components\player_controller\comp_player_tempcontroller.cpp" />
     <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
+    <ClCompile Include="components\skeleton\comp_bone_tracker.cpp" />
+    <ClCompile Include="components\skeleton\comp_skeleton.cpp" />
+    <ClCompile Include="components\skeleton\game_core_skeleton.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\entity_parser.cpp" />
@@ -197,6 +207,7 @@
     <ClInclude Include="components\camera_controller\comp_camera_shadowmerge.h" />
     <ClInclude Include="components\camera_controller\comp_camera_thirdperson.h" />
     <ClInclude Include="components\camera_controller\comp_circular_controller.h" />
+    <ClInclude Include="components\camera_controller\comp_curve_controller.h" />
     <ClInclude Include="components\comp_aabb.h" />
     <ClInclude Include="components\comp_base.h" />
     <ClInclude Include="components\comp_camera.h" />
@@ -216,13 +227,23 @@
     <ClInclude Include="components\dynamic_objects\comp_dynamic_objects.h" />
     <ClInclude Include="components\ia\ai_controller.h" />
     <ClInclude Include="components\ia\ai_patrol.h" />
+    <ClInclude Include="components\ia\btnode.h" />
+    <ClInclude Include="components\ia\comp_bt.h" />
+    <ClInclude Include="components\ia\comp_bt_mimetic.h" />
+    <ClInclude Include="components\ia\comp_bt_patrol.h" />
+    <ClInclude Include="components\ia\comp_bt_test.h" />
     <ClInclude Include="components\object_controller\comp_bullet_controller.h" />
     <ClInclude Include="components\object_controller\comp_cone_of_light.h" />
+    <ClInclude Include="components\object_controller\comp_trigger_camera.h" />
     <ClInclude Include="components\physics\comp_collider.h" />
     <ClInclude Include="components\physics\comp_rigidbody.h" />
     <ClInclude Include="components\player_controller\comp_player_controller.h" />
     <ClInclude Include="components\player_controller\comp_player_tempcontroller.h" />
     <ClInclude Include="components\player_controller\comp_shadow_controller.h" />
+    <ClInclude Include="components\skeleton\cal3d2engine.h" />
+    <ClInclude Include="components\skeleton\comp_bone_tracker.h" />
+    <ClInclude Include="components\skeleton\comp_skeleton.h" />
+    <ClInclude Include="components\skeleton\game_core_skeleton.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="entity\common_msgs.h" />
     <ClInclude Include="entity\entity.h" />
@@ -317,6 +338,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Cal3D\Cal3D.vcxproj">
+      <Project>{f13518a5-98d4-48a8-98ed-81b5e9d70bce}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

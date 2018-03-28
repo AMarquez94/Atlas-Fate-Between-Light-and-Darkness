@@ -130,10 +130,17 @@ void CModuleCameras::blendInCamera(CHandle camera, float blendTime, EPriority pr
 		new_mc.interpolator = interpolator;
 		new_mc.blendIn(blendTime);
 
-		_mixedCameras.push_back(new_mc);
 
 		TMsgCameraActivated msg;
 		camera.sendMsg(msg);
+
+		if (blendTime == 0.f) {
+			new_mc.weight = 1.f;
+			TMsgCameraFullyActivated msg;
+			camera.sendMsg(msg);
+		}
+
+		_mixedCameras.push_back(new_mc);
 	}
 }
 
@@ -149,6 +156,11 @@ void CModuleCameras::cancelCamera(CHandle camera)
 void CModuleCameras::deleteAllCameras()
 {
 	_mixedCameras.clear();
+}
+
+CHandle CModuleCameras::getOutputCamera()
+{
+	return _outputCamera;
 }
 
 void CModuleCameras::blendOutCamera(CHandle camera, float blendTime)
@@ -172,18 +184,18 @@ CModuleCameras::TMixedCamera* CModuleCameras::getMixedCamera(CHandle camera)
 	return nullptr;
 }
 
-void CModuleCameras::blendCameras(const CCamera* camera1, const CCamera* camera2, float ratio, CCamera* output) const
+void CModuleCameras::blendCameras(const CCamera* camera1, const CCamera* camera2, float ratio, CCamera* output)
 {
 	assert(camera1 && camera2 && output);
 
-	VEC3 newPos = VEC3::Lerp(camera1->getPosition(), camera2->getPosition(), ratio);
+	resultPos = VEC3::Lerp(camera1->getPosition(), camera2->getPosition(), ratio);
 	VEC3 newFront = VEC3::Lerp(camera1->getFront(), camera2->getFront(), ratio);
 	float newFov = lerp(camera1->getFov(), camera2->getFov(), ratio);
 	float newZnear = lerp(camera1->getZNear(), camera2->getZNear(), ratio);
 	float newZfar = lerp(camera1->getZFar(), camera2->getZFar(), ratio);
 
 	output->setPerspective(newFov, newZnear, newZfar);
-	output->lookAt(newPos, newPos + newFront);
+	output->lookAt(resultPos, resultPos + newFront);
 }
 
 void CModuleCameras::checkDeprecated()

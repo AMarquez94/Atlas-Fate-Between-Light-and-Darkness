@@ -18,6 +18,7 @@ bool fatal(const char* fmt, ...);
 
 bool isPressed(int key);
 
+bool fileExists(const std::string& afilename);
 json loadJson(const std::string& filename);
 bool fileExists(const std::string& afilename);
 
@@ -27,6 +28,8 @@ T Clamp(const T& n, const T& lower, const T& upper) {
 }
 
 float urand(float loVal, float hiVal);
+
+void ToUpperCase(std::string&);
 
 #endif
 

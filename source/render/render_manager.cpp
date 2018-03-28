@@ -8,6 +8,7 @@
 #include "components/comp_render.h"
 #include "components/comp_culling.h"
 #include "components/comp_aabb.h"
+#include "components/skeleton/comp_skeleton.h"
 
 /*
 #include "render/shader_cte_buffer.h"
@@ -38,9 +39,9 @@ bool CRenderManager::sortRenderKeys(const TRenderKey& k1, const TRenderKey& k2) 
   // Category
   if (k1.material->tech->getCategoryID() != k2.material->tech->getCategoryID())
     return k1.material->tech->getCategoryID() < k2.material->tech->getCategoryID();
-  //// NonSkin -> Skin  
-  //if (k1.material->tech->usesSkin() != k2.material->tech->usesSkin())
-  //  return k1.material->tech->usesSkin() < k2.material->tech->usesSkin();
+  // NonSkin -> Skin  
+  if (k1.material->tech->usesSkin() != k2.material->tech->usesSkin())
+    return k1.material->tech->usesSkin() < k2.material->tech->usesSkin();
   // Render tech
   if (k1.material->tech != k2.material->tech)
     return k1.material->tech < k2.material->tech;
@@ -164,7 +165,7 @@ void CRenderManager::renderCategory(const char* category_name) {
   //cte_object.activate();
   //cte_material.activate();
 
-  //bool using_skin = false;
+  bool using_skin = false;
 
   // Convert iterators to raw pointers, using distance from start of the container
   // to avoid accessing the *range.second when range.second == render_keys.end()
@@ -181,6 +182,14 @@ void CRenderManager::renderCategory(const char* category_name) {
   while (it != last) {
     PROFILE_FUNCTION("Key");
 
+	TCompRender * c_render = it->h_render_owner;
+
+	/* Test if component render is marked as visible */
+	if (!c_render->visible) {
+		++it;
+		continue;
+	}
+
     // Do the culling
     if (culling_bits) {
       TCompAbsAABB* aabb = it->h_aabb;
@@ -194,7 +203,6 @@ void CRenderManager::renderCategory(const char* category_name) {
     }
 
 	// Adding small hotfix to solve color missing.
-	TCompRender * c_render = it->h_render_owner;
 
     // World asociada a mi objeto
     const TCompTransform* c_transform = it->h_transform;
@@ -205,18 +213,18 @@ void CRenderManager::renderCategory(const char* category_name) {
     // Do we have to change the material wrt the prev draw call?
     if (prev_it->material != it->material) {
       it->material->activate();
-      //using_skin = it->material->usesSkin();
+      using_skin = it->material->tech->usesSkin();
     }
 
-    // Is our material using skinning data?
-    //if (using_skin) {
-    //  CEntity* e = it->h_render_owner.getOwner();
-    //  assert(e);
-    //  TCompSkeleton* cs = e->get<TCompSkeleton>();
-    //  assert(cs);
-    //  cs->updateCtesBones();
-    //  cs->cte_bones.activate();
-    //}
+    //Is our material using skinning data?
+    if (using_skin) {
+      CEntity* e = it->h_render_owner.getOwner();
+      assert(e);
+      TCompSkeleton* cs = e->get<TCompSkeleton>();
+      assert(cs);
+      cs->updateCtesBones();
+      cs->cb_bones.activate();
+    }
 
     //if (uses_capa) {
     //  CCapaShader* cp = (CCapaShader*) it->tech;

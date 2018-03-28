@@ -36,6 +36,16 @@ bool fileExists(const std::string& afilename) {
 }
 
 // --------------------------------------------------------
+// Quick and dirty..
+bool fileExists(const std::string& afilename) {
+	FILE* f = fopen(afilename.c_str(), "rb");
+	if (!f)
+		return false;
+	fclose(f);
+	return true;
+}
+
+// --------------------------------------------------------
 json loadJson(const std::string& filename) {
 
 	json j;
@@ -108,4 +118,10 @@ int pnpoly(int nvert, float *vertx, float *verty, float testx, float testy)
 float urand(float loVal, float hiVal)
 {
 	return loVal + (float(rand()) / RAND_MAX)*(hiVal - loVal);
+}
+
+void ToUpperCase(std::string& string) {
+	for (int i = 0; i < string.size(); i++) {
+		string.at(i) = toupper(string.at(i));
+	}
 }

@@ -1,10 +1,29 @@
 {
 	"solid" : {
-		"vs_file": "data/shaders/shader_master.fx",
-		"vs_entry_point" : "vs_CtColor",
+		"vs_file": "data/shaders/solid.fx",
+		"vs_entry_point" : "VS",
 		"vertex_type" : "PosClr",
-		"ps_file": "data/shaders/shader_master.fx",
-		"ps_entry_point" : "ps_Ctcolor"
+		"ps_file": "data/shaders/solid.fx",
+		"ps_entry_point" : "PS"
+	},
+	"solid_objs" : {
+		"vs_file": "data/shaders/solid.fx",
+		"vs_entry_point" : "VS_Objs",
+		"vertex_type" : "PosNUv",
+		"ps_file": "data/shaders/solid.fx",
+		"ps_entry_point" : "PS"
+	},
+	"solid_objs_uv2" : {
+		"vs_file": "data/shaders/solid.fx",
+		"vs_entry_point" : "VS_Objs_uv2",
+		"vertex_type" : "PosNUvUv",
+		"ps_file": "data/shaders/solid.fx",
+		"ps_entry_point" : "PS"
+	},
+	"solid_objs_skin" : {
+		"vs_file": "data/shaders/solid.fx",
+		"vs_entry_point" : "VS_Objs_Skin",
+		"vertex_type" : "PosNUvSkin"
 	},
 	"solid_normal" : {
 		"vs_file": "data/shaders/shader_master.fx",
@@ -26,5 +45,11 @@
 		"vertex_type" : "PosNUvUv",
 		"ps_file": "data/shaders/shader_master.fx",
 		"ps_entry_point" : "ps_Lightmap"
+	},
+	"textured_skin" : {
+		"vs_file": "data/shaders/textured.fx",
+		"vs_entry_point" : "VS_Skin",
+		"vertex_type" : "PosNUvSkin",
+		"uses_skin" : true
 	}
 }

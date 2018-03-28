@@ -17,6 +17,7 @@ void TCompAuxCameraShadowMerge::debugInMenu()
 	ImGui::DragFloat3("Offsets", &_clipping_offset.x, 0.1f, -20.f, 20.f);
 	ImGui::DragFloat2("Angles", &_clamp_angle.x, 0.1f, -90.f, 90.f);
 	ImGui::DragFloat("Speed", &_speed, 0.1f, 0.f, 20.f);
+	ImGui::DragFloat("BendIn Time", &_blendInTime, 0.f, 0.1f, 4.f);
 }
 
 void TCompAuxCameraShadowMerge::load(const json& j, TEntityParseContext& ctx)
@@ -27,19 +28,17 @@ void TCompAuxCameraShadowMerge::load(const json& j, TEntityParseContext& ctx)
 	physx::PxFilterData pxFilterData;
 	pxFilterData.word1 = FilterGroup::Scenario;
 	cameraFilter.data = pxFilterData;
+
+	_blendInTime = j.value("bendInTime", .4f);
 }
 
 void TCompAuxCameraShadowMerge::registerMsgs()
 {
-	DECL_MSG(TCompAuxCameraShadowMerge, TMsgEntityCreated, onMsgEntityCreated);
 	DECL_MSG(TCompAuxCameraShadowMerge, TMsgCameraActivated, onMsgCameraActive);
 	DECL_MSG(TCompAuxCameraShadowMerge, TMsgCameraDeprecated, onMsgCameraDeprecated);
 	DECL_MSG(TCompAuxCameraShadowMerge, TMsgCameraFullyActivated, onMsgCameraFullActive);
 	DECL_MSG(TCompAuxCameraShadowMerge, TMsgSetCameraActive, onMsgCameraSetActive);
-}
-
-void TCompAuxCameraShadowMerge::onMsgEntityCreated(const TMsgEntityCreated & msg)
-{
+	DECL_MSG(TCompAuxCameraShadowMerge, TMsgSetCameraCancelled, onMsgCameraSetCancelled);
 }
 
 void TCompAuxCameraShadowMerge::onMsgCameraActive(const TMsgCameraActivated &msg)
@@ -50,6 +49,7 @@ void TCompAuxCameraShadowMerge::onMsgCameraActive(const TMsgCameraActivated &msg
 void TCompAuxCameraShadowMerge::onMsgCameraFullActive(const TMsgCameraFullyActivated & msg)
 {
 	TCompTransform* myTrans = get<TCompTransform>();
+	CEntity * eCamera = hCamera;
 	TCompTransform *parentTrans = eCamera->get<TCompTransform>();
 	TCompCameraShadowMerge *parentController = eCamera->get<TCompCameraShadowMerge>();
 
@@ -60,7 +60,6 @@ void TCompAuxCameraShadowMerge::onMsgCameraFullActive(const TMsgCameraFullyActiv
 	//dbg("Current euler: %f, %f\n", rad2deg(parentController->getCurrentEuler().x), rad2deg(parentController->getCurrentEuler().y));
 
 	Engine.getCameras().blendOutCamera(CHandle(this).getOwner(), .0f);
-	//Engine.getCameras().blendOutCamera(CHandle(ePrevCamera), .0f);
 }
 
 void TCompAuxCameraShadowMerge::onMsgCameraDeprecated(const TMsgCameraDeprecated &msg)
@@ -78,9 +77,19 @@ void TCompAuxCameraShadowMerge::onMsgCameraSetActive(const TMsgSetCameraActive &
 	//}
 
 	/* Set the aux camera with the smcamera */
+	bool differentCameras = msg.actualCamera.compare(msg.previousCamera) != 0;
+
+	if (hCamera.isValid() && active && differentCameras) {
+		dbg("Cancel previous camera %s - new camera %s\n", ((CEntity *)hCamera)->getName(), msg.actualCamera.c_str());
+		Engine.getCameras().cancelCamera(hCamera);
+		Engine.getCameras().cancelCamera(CHandle(this).getOwner());
+	}
+
 	TCompTransform* myTrans = get<TCompTransform>();
-	eCamera = getEntityByName(msg.actualCamera);
-	ePrevCamera = getEntityByName(msg.previousCamera);
+
+	hCamera = getEntityByName(msg.actualCamera);
+
+	CEntity * eCamera = hCamera;
 
 	TCompTransform *tCameraPos = eCamera->get<TCompTransform>();
 	TCompCameraShadowMerge *tCameraController = eCamera->get<TCompCameraShadowMerge>();
@@ -120,15 +129,21 @@ void TCompAuxCameraShadowMerge::onMsgCameraSetActive(const TMsgSetCameraActive &
 	_current_euler.y = _current_euler.y + (p - prep);
 	myTrans->setPosition(myTrans->getPosition() + dist);
 	
-	Engine.getCameras().blendInCamera(CHandle(this).getOwner(), .4f, CModuleCameras::EPriority::TEMPORARY);
+	Engine.getCameras().blendInCamera(CHandle(this).getOwner(), _blendInTime, CModuleCameras::EPriority::TEMPORARY);
 
-	if (msg.actualCamera.compare(msg.previousCamera) != 0) {
+	if (differentCameras) {
 		tCameraPos->setPosition(myTrans->getPosition());
 		tCameraPos->setRotation(myTrans->getRotation());
 		tCameraController->setCurrentEuler(_current_euler.x, _current_euler.y);
+		Engine.getCameras().blendInCamera(hCamera, _blendInTime, CModuleCameras::EPriority::GAMEPLAY);
 	}
+}
 
-	Engine.getCameras().blendInCamera(CHandle(eCamera), .4f, CModuleCameras::EPriority::GAMEPLAY);
+void TCompAuxCameraShadowMerge::onMsgCameraSetCancelled(const TMsgSetCameraCancelled & msg)
+{
+	if (active) {
+		Engine.getCameras().cancelCamera(CHandle(this).getOwner());
+	}
 }
 
 void TCompAuxCameraShadowMerge::update(float dt)

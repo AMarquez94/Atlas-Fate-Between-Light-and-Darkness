@@ -3,8 +3,7 @@
     "entity": {
 		"name": "The Enemy",
 		"transform": {
-			"pos": "2 0 2",
-			"lookat": "-1 0 -1"
+			"lookat": "-1 0 0"
 		},
 		"render": {
 			"mesh": "data/meshes/bot211.mesh",
@@ -12,11 +11,7 @@
 			  "data/materials/body.material"
 			]
 		},
-		"ai_patrol": {
-			"speed": 4.5,
-			"entityToChase": "The Player"
-		},
-      "tags": [ "enemy" ]
+		"tags": [ "enemy" ]
     }
   },
   {

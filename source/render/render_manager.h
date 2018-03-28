@@ -52,14 +52,23 @@ private:
 
       std::sort(begin(), end(), sortRenderKeys);
 
+	  bool ownerHasBeenDeleted = false;
       for (auto& key : (*this)) {
         // Cache the handle of the component transform of my entity
-        CEntity* e_owner = key.h_render_owner.getOwner();
-        assert(e_owner);
-        key.h_transform = e_owner->get< TCompTransform >();
+
+		  if (key.h_render_owner.getOwner().isValid()) {
+			CEntity* e_owner = key.h_render_owner.getOwner();
+			assert(e_owner);
+			key.h_transform = e_owner->get< TCompTransform >();
+		  }
+		  else {
+			  ownerHasBeenDeleted = true;
+		  }
       }
 
-      is_dirty = false;
+	  if (!ownerHasBeenDeleted) {
+	      is_dirty = false;
+	  }
     }
 
     bool is_dirty = false;

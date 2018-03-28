@@ -48,7 +48,7 @@ struct TMsgPlayerDead {
 	DECL_MSG_ID();
 };
 
-struct TMsgPatrolStunned {
+struct TMsgEnemyStunned {
 	CHandle h_sender;
 	DECL_MSG_ID();
 };
@@ -93,6 +93,10 @@ struct TMsgSetCameraActive {
 	std::string previousCamera;
 	std::string actualCamera;
 	VEC3 directionToLookAt;
+	DECL_MSG_ID();
+};
+
+struct TMsgSetCameraCancelled {
 	DECL_MSG_ID();
 };
 

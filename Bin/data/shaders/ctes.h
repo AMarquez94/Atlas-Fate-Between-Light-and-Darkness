@@ -1,7 +1,13 @@
+#ifndef INC_RENDER_CTES_H_
+#define INC_RENDER_CTES_H_
 
-#define CB_CAMERA    0
-#define CB_OBJECT    1
-#define CB_LIGHT     3
+#define CB_CAMERA       0
+#define CB_OBJECT       1
+#define CB_SKIN_BONES	2
+#define CB_LIGHT		3
+
+#define MAX_SUPPORTED_BONES        128
+
 #ifdef WIN32
 
 #define CB_DEF(xName,idx)   struct xName
@@ -21,16 +27,16 @@
 
 CB_DEF(CCteCamera, CB_CAMERA)   // Generates the b0
 {
-  MAT44 camera_view;
-  MAT44 camera_proj;
-  VEC3  camera_pos;
-  float camera_dummy;
+	MAT44 camera_view;
+	MAT44 camera_proj;
+	VEC3  camera_pos;
+	float camera_dummy;
 };
 
 CB_DEF(CCteObject, CB_OBJECT)   // Generates the b1
 {
-  MAT44 obj_world;
-  VEC4  obj_color;
+	MAT44 obj_world;
+	VEC4  obj_color;
 };
 
 CB_DEF(CCteLight, CB_LIGHT)
@@ -40,3 +46,10 @@ CB_DEF(CCteLight, CB_LIGHT)
 	float light_intensity;
 	MAT44 light_view_proj_offset;
 };
+
+CB_DEF(CCteSkinBones, CB_SKIN_BONES)
+{
+	MAT44 Bones[MAX_SUPPORTED_BONES];
+};
+
+#endif

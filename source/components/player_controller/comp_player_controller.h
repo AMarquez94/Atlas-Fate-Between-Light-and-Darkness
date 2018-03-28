@@ -127,5 +127,6 @@ public:
 	const bool isInShadows();
 	const bool isDead();
 	const bool checkAttack();
+	const bool isInhibited() { return inhibited; };
 	const bool checkPaused();
 };

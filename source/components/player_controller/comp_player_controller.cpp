@@ -10,7 +10,7 @@
 #include "render/render_objects.h"
 #include "components/comp_camera.h"
 #include "components/comp_tags.h"
-#include "components/ia/ai_patrol.h"
+#include "components/ia/comp_bt_patrol.h"
 #include "components/physics/comp_collider.h"
 #include "components/physics/comp_rigidbody.h"
 #include "physics/physics_collider.h"
@@ -362,7 +362,7 @@ void TCompPlayerController::PushState(float dt){
 }
 
 void TCompPlayerController::AttackState(float dt){ 
-	TMsgPatrolStunned msg;
+	TMsgEnemyStunned msg;
 	msg.h_sender = CHandle(this).getOwner();
 	enemyToAttack.sendMsg(msg);
 	allowAttack(false, CHandle());
@@ -585,6 +585,11 @@ void TCompPlayerController::ShadowMergingExitState(float dt){
 
 	// Bring back the main camera to our thirdperson camera
 	// Replace this with an smooth camera interpolation
+	TMsgSetCameraCancelled msg;
+	CEntity* eCamera = getEntityByName(camera_shadowmerge_aux);
+	eCamera->sendMsg(msg);
+
+
 	Engine.getCameras().blendOutCamera(getEntityByName(camera_actual), .2f);
 	camera_actual = camera_thirdperson;
 	Engine.getCameras().blendInCamera(getEntityByName(camera_actual), .2f, CModuleCameras::EPriority::GAMEPLAY);
@@ -990,8 +995,8 @@ const bool TCompPlayerController::checkAttack()
 			if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < distToAttack
 				&& !epos->isInFront(mypos->getPosition())) {
 
-				CAIPatrol * aipatrol = ((CEntity*)handles[i])->get<CAIPatrol>();
-				if (aipatrol->getStateName().compare("stunned") != 0) {
+				TCompAIPatrol * aipatrol = ((CEntity*)handles[i])->get<TCompAIPatrol>();
+				if (aipatrol && !aipatrol->isPatrolStunned()) {
 					found = true;
 					enemy = handles[i];
 				}
@@ -1037,8 +1042,8 @@ CHandle TCompPlayerController::checkTouchingStunnedEnemy()
 		if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < distToSM
 			&& mypos->isInFront(epos->getPosition())) {
 
-			CAIPatrol * aipatrol = ((CEntity*)handles[i])->get<CAIPatrol>();
-			if (aipatrol->getStateName().compare("stunned") == 0) {
+			TCompAIPatrol * aipatrol = ((CEntity*)handles[i])->get<TCompAIPatrol>();
+			if (aipatrol->isPatrolStunned()) {
 				found = true;
 				enemy = handles[i];
 			}

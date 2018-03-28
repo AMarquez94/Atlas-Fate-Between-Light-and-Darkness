@@ -97,35 +97,11 @@ void TCompCameraShadowMerge::onMsgCameraDeprecated(const TMsgCameraDeprecated &m
 
 void TCompCameraShadowMerge::onMsgActivateMyself(const TMsgSetCameraActive & msg)
 {
-	//CEntity * eOtherCamera = msg.h_previous_camera;
-	//TCompName * tOtherCameraName = eOtherCamera->get<TCompName>();
+	if (active) {
+		Engine.getCameras().cancelCamera(CHandle(this).getOwner());
+	}
 
-
-	//std::string myName = ((TCompName*)get<TCompName>())->getName();
-	//std::string otherName = tOtherCameraName->getName();
-	//if (otherName.compare("SMCameraHor") == 0) {
-	//	if (myName.compare("SMCameraVer") == 0) {
-
-
-	//		/* Camera Horizontal to Vertical */
-
-	//		TCompTransform* targetTrans = ((CEntity*)_h_target)->get<TCompTransform>();
-	//		TCompCollider* targetCollider = ((CEntity*)_h_target)->get<TCompCollider>();
-	//		TCompTransform* myTrans = get<TCompTransform>();
-
-
-	//		VEC3 dist = myTrans->getPosition() - targetTrans->getPosition();
-
-	//		//dbg("Dist (%f, %f, %f)\n", dist.x, dist.y, dist.z);
-	//		//dbg("PPos (%f, %f, %f)\n", targetTrans->getPosition().x, targetTrans->getPosition().y, targetTrans->getPosition().z);
-	//		myTrans->setPosition(myTrans->getPosition() - dist);
-	//		//dbg("New pos (%f, %f, %f)\n", myTrans->getPosition().x, myTrans->getPosition().y, myTrans->getPosition().z);
-	//		float deltayaw = myTrans->getDeltaYawToAimTo(myTrans->getPosition() + targetCollider->normal_gravity);
-	//		//dbg("deltayaw %f\n", deltayaw);
-	//		_current_euler.x = _current_euler.x + deltayaw;
-	//		myTrans->setPosition(myTrans->getPosition() + dist);
-	//	}
-	//}
+	Engine.getCameras().blendInCamera(CHandle(this).getOwner(), .2f, CModuleCameras::EPriority::GAMEPLAY);
 }
 
 void TCompCameraShadowMerge::update(float dt)

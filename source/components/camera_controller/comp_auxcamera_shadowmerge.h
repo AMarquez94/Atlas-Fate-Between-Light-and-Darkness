@@ -10,8 +10,7 @@ private:
 	CHandle     _h_target;
 	std::string _target_name;
 	CHandle		_h_parent;
-	CEntity * eCamera;
-	CEntity * ePrevCamera;
+	CHandle		hCamera;
 
 	float _speed;
 	VEC2 _clamp_angle;
@@ -19,6 +18,8 @@ private:
 	VEC2 _current_euler;
 	VEC3 _clipping_offset;
 	float _starting_pitch;
+
+	float _blendInTime;
 
 	const Input::TButton& btHorizontal = EngineInput["Horizontal"];
 	const Input::TButton& btVertical = EngineInput["Vertical"];
@@ -29,11 +30,11 @@ private:
 	bool pause;
 	bool active;
 
-	void onMsgEntityCreated(const TMsgEntityCreated &msg);
 	void onMsgCameraActive(const TMsgCameraActivated &msg);
 	void onMsgCameraFullActive(const TMsgCameraFullyActivated &msg);
 	void onMsgCameraDeprecated(const TMsgCameraDeprecated &msg);
 	void onMsgCameraSetActive(const TMsgSetCameraActive &msg);
+	void onMsgCameraSetCancelled(const TMsgSetCameraCancelled &msg);
 
 	physx::PxQueryFilterData cameraFilter;
 public:

@@ -1,8 +1,8 @@
 #include "mcv_platform.h"
 #include "render_objects.h"
 
-CRenderCte<CCteCamera> cb_camera;
-CRenderCte<CCteObject> cb_object;
+CRenderCte<CCteCamera> cb_camera("Camera");
+CRenderCte<CCteObject> cb_object("Object");
 
 struct TVtxPosClr {
 	VEC3 pos;
@@ -156,21 +156,33 @@ CRenderMesh* createWiredUnitCube() {
 }
 
 
-CRenderMesh* createCone(float fov, float dist, int steps, VEC4 clr) {
+CRenderMesh* createCone(float hor_fov, float ver_fov, float dist, int steps, VEC4 clr) {
 	CRenderMesh* mesh = new CRenderMesh;
 
 	std::vector<TVtxPosClr> vtxs;
 
 	vtxs.emplace_back(VEC3(0.f, 0.f, 0.f), clr);
-	vtxs.emplace_back(VEC3(dist * sinf(-fov / 2), 0.f, dist * cosf(-fov / 2)), clr);
+	vtxs.emplace_back(VEC3(dist * sinf(-hor_fov / 2), 0.f, dist * cosf(-hor_fov / 2)), clr);
 	vtxs.emplace_back(VEC3(0.f, 0.f, 0.f), clr);
-	vtxs.emplace_back(VEC3(dist * sinf(fov / 2), 0.f, dist * cosf(fov / 2)), clr);
+	vtxs.emplace_back(VEC3(dist * sinf(hor_fov / 2), 0.f, dist * cosf(hor_fov / 2)), clr);
 
-	float fovUnit = fov / steps;
+	float fovUnit = hor_fov / steps;
 
 	for (int i = -steps / 2; i < steps / 2; i++) {
 		vtxs.emplace_back(VEC3(dist * sinf(fovUnit * i), 0.f, dist * cosf(fovUnit * i)), clr);
 		vtxs.emplace_back(VEC3(dist * sinf(fovUnit * (i + 1)), 0.f, dist * cosf(fovUnit * (i + 1))), clr);
+	}
+
+	vtxs.emplace_back(VEC3(0.f, 0.f, 0.f), clr);
+	vtxs.emplace_back(VEC3(0.f, dist * sinf(-ver_fov / 2), dist * cosf(-ver_fov / 2)), clr);
+	vtxs.emplace_back(VEC3(0.f, 0.f, 0.f), clr);
+	vtxs.emplace_back(VEC3(0.f, dist * sinf(ver_fov / 2), dist * cosf(ver_fov / 2)), clr);
+
+	fovUnit = ver_fov / steps;
+
+	for (int i = -steps / 2; i < steps / 2; i++) {
+		vtxs.emplace_back(VEC3(0.f, dist * sinf(fovUnit * i), dist * cosf(fovUnit * i)), clr);
+		vtxs.emplace_back(VEC3(0.f, dist * sinf(fovUnit * (i + 1)), dist * cosf(fovUnit * (i + 1))), clr);
 	}
 
 
@@ -194,8 +206,8 @@ bool createRenderObjects() {
 	registerMesh(createLineZ(), "line.mesh");
 	registerMesh(createUnitCircleXZ(32), "circle_xz.mesh");
 	registerMesh(createCameraFrustum(), "unit_frustum.mesh");
-	registerMesh(createCone(deg2rad(70), 35.f, 10, VEC4(1.0f, 1.0f, 1.0f, 1.0f)), "cone_of_vision.mesh");
-	registerMesh(createCone(deg2rad(35), 20.f, 10, VEC4(1.0f, 1.0f, 0.0f, 1.0f)), "cone_of_light.mesh");
+	registerMesh(createCone(deg2rad(179.f), deg2rad(89.f), 35.f, 10, VEC4(1.0f, 1.0f, 1.0f, 1.0f)), "cone_of_vision.mesh");
+	registerMesh(createCone(deg2rad(35.f), deg2rad(45.f), 20.f, 10, VEC4(1.0f, 1.0f, 0.0f, 1.0f)), "cone_of_light.mesh");
 	registerMesh(createWiredUnitCube(), "wired_unit_cube.mesh");
 	return true;
 }
@@ -226,7 +238,9 @@ void renderMesh(const CRenderMesh* mesh, MAT44 new_matrix, VEC4 color) {
 		tech_name = "textured.tech";
 	else if (vdecl->name == "PosNUvUv")
 		tech_name = "textured_bk.tech";
-	
+	else if (vdecl->name == "PosNUvSkin")
+		tech_name = "solid_objs_skin.tech";
+
 	auto prev_tech = CRenderTechnique::current;
 	auto tech = Resources.get(tech_name)->as<CRenderTechnique>();
 	tech->activate();

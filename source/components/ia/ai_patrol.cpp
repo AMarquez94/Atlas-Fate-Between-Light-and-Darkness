@@ -9,7 +9,7 @@
 #include "components/comp_group.h"
 #include "components/object_controller/comp_cone_of_light.h"
 
-DECL_OBJ_MANAGER("ai_patrol", CAIPatrol);
+DECL_OBJ_MANAGER("ai_patrol_old", CAIPatrol);
 
 void CAIPatrol::Init()
 {
@@ -143,7 +143,7 @@ void CAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 void CAIPatrol::registerMsgs() {
 	DECL_MSG(CAIPatrol, TMsgEntityCreated, onMsgPatrolCreated);
 	DECL_MSG(CAIPatrol, TMsgPlayerDead, onMsgPlayerDead);
-	DECL_MSG(CAIPatrol, TMsgPatrolStunned, onMsgPatrolStunned);
+	DECL_MSG(CAIPatrol, TMsgEnemyStunned, onMsgPatrolStunned);
 	DECL_MSG(CAIPatrol, TMsgPatrolShadowMerged, onMsgPatrolShadowMerged);
 	DECL_MSG(CAIPatrol, TMsgPatrolFixed, onMsgPatrolFixed);
 }
@@ -170,7 +170,7 @@ void CAIPatrol::onMsgPlayerDead(const TMsgPlayerDead& msg) {
 	}
 }
 
-void CAIPatrol::onMsgPatrolStunned(const TMsgPatrolStunned& msg) {
+void CAIPatrol::onMsgPatrolStunned(const TMsgEnemyStunned& msg) {
 	TCompRender *cRender = get<TCompRender>();
 	cRender->color = VEC4(1, 1, 1, 1);
 	TCompTransform *mypos = getMyTransform();
@@ -455,7 +455,6 @@ void CAIPatrol::AttackState(float dt)
 		// Notify the entity that he is dead
 		TMsgPlayerHit msg;
 		msg.h_sender = CHandle(this).getOwner();      // Who killed the player
-		CEntity *player = (CEntity *)getEntityByName(entityToChase);
 		player->sendMsg(msg);
 	}
 }
@@ -678,7 +677,7 @@ bool CAIPatrol::isPlayerInFov() {
 	TCompTransform *ppos = player->get<TCompTransform>();
 
 	/* Player inside cone of vision */
-	bool in_fov = mypos->isInFov(ppos->getPosition(), fov);
+	bool in_fov = mypos->isInFov(ppos->getPosition(), fov, deg2rad(89.f));
 
 	return in_fov && !isEntityHidden(getEntityByName(entityToChase));
 }
@@ -725,7 +724,7 @@ bool CAIPatrol::isStunnedPatrolInFov()
 		TCompTransform *mypos = getMyTransform();
 		for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
 			TCompTransform* stunnedPatrol = ((CEntity*)stunnedPatrols[i])->get<TCompTransform>();
-			if (mypos->isInFov(stunnedPatrol->getPosition(), fov) 
+			if (mypos->isInFov(stunnedPatrol->getPosition(), fov, deg2rad(89.f))
 				&& VEC3::Distance(mypos->getPosition(), stunnedPatrol->getPosition()) < maxChaseDistance
 				&& !isEntityHidden(stunnedPatrols[i])) {
 				found = true;

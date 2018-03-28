@@ -1,0 +1,47 @@
+[
+	{
+    "entity": {
+		"name": "Mimetic",
+		"transform": {
+			"pos": "0 0 0",
+			"lookat": "1 0 0"
+		},
+		"render": {
+			"mesh": "data/meshes/bot211.mesh",
+			"materials": [
+			  "data/materials/body.material"
+			]
+		},
+		"tags": [ "enemy" ]
+    }
+  },
+  {
+    "entity": {
+      "name": "Cone of Vision",
+      "transform": {},
+      "render": {
+        "mesh": "cone_of_vision.mesh"
+      },
+      "hierarchy": {
+        "parent": "Mimetic"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Cone of Light",
+      "transform": {},
+      "render": {
+        "mesh": "cone_of_light.mesh"
+      },
+      "hierarchy": {
+        "parent": "Mimetic"
+      },
+      "cone_of_light": {
+        "fov": 35,
+        "dist": 20.0,
+        "target": "The Player"
+      }
+    }
+  }
+]

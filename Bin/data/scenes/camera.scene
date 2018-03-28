@@ -115,5 +115,40 @@
 			},
 			"culling": true
 		}
+	},
+	{
+		"entity": {
+			"name": "test_camera_curve",
+			"transform": {
+				"pos": "-12 10 45",
+				"lookat": "9 0 31"
+			},
+			"camera" : {
+				"fov" : 60,
+				"z_near": 0.01,
+				"z_far": 1000
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "trigger_camera_curve",
+			"transform": {
+				"pos": "-5 2 28",
+				"lookat": "0 0 0"
+			},
+			"trigger_camera" :
+			{
+				"target" : "test_camera_curve",
+				"blend_in_time": 1.5,
+				"blend_out_time": 1.5
+			},
+			"collider":
+			{
+				"shape": "sphere",
+				"is_trigger" : true,
+				"radius": 5
+			}
+		}
 	}
 ]
