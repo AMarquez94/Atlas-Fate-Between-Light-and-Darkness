@@ -15,6 +15,7 @@
 #include "components/comp_tags.h"
 #include "render/render_manager.h"
 #include "input/devices/mouse.h"
+#include "input/enums.h"
 
 CCamera camera;
 
@@ -88,6 +89,13 @@ void CModuleMapIntro::update(float delta)
 	ImGui::DragFloat3("Pos", &world_pos.x, 0.025f, -50.f, 50.f);
 
 	VEC2 mouse = EngineInput.mouse()._position;
+
+	if (EngineInput.mouse().button(Input::EMouseButton::MOUSE_MIDDLE).getsPressed()) {
+		Input::CMouse* cMouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+		cMouse->setLockMouse();
+		ShowCursor(!cMouse->isMouseLocked());
+	}
+
 	if (h_e_camera.isValid()) {
 		CEntity* e_camera = h_e_camera;
 		TCompCamera* c_camera = e_camera->get< TCompCamera >();

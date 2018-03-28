@@ -59,6 +59,7 @@ class TCompTempPlayerController : public TCompBase
 	float maxFallingDistance;
 	float maxAttackDistance;
 	unsigned int initialPoints;
+	std::string auxCamera;
 
 	/* Stamina private variables */
 	float stamina;
@@ -104,6 +105,7 @@ public:
 	void mergeState(float dt);
 	void attackState(float dt);
 	void resetState(float dt);
+	void exitMergeState(float dt);
 
 	/* Player condition tests */
 	const bool concaveTest(void);

@@ -19,6 +19,7 @@ namespace Input
 		void setPreviousPosition(float posX, float posY);
 		void setPositionDelta(float deltaX, float deltaY);
 		void setLockMouse();
+		bool isMouseLocked() { return _lock_cursor; };
 
 	private:
 		bool _buttons[MOUSE_BUTTONS];

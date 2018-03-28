@@ -499,7 +499,7 @@ BTNode::ERes TCompAIMimetic::actionRotateToInitialPos(float dt)
 BTNode::ERes TCompAIMimetic::actionJumpWall(float dt)
 {
 	TCompRigidbody *tCollider = get<TCompRigidbody>();
-	tCollider->Jump(VEC3(0,15.f,0));
+	tCollider->Jump(VEC3(0,20.f,0));
 	return BTNode::ERes::LEAVE;
 }
 

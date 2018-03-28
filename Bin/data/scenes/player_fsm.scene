@@ -38,7 +38,8 @@
 				"decrStaticStamina": 0.75,
 				"decrStaminaHorizontal": 12.5,
 				"decrStaminaVertical": 17.5,
-				"minStaminaChange": 15
+				"minStaminaChange": 15,
+				"auxCamera": "SMCameraAux"
 			},
 			"group": "player",
       "tags":
