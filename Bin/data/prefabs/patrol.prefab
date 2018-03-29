@@ -11,7 +11,7 @@
 			  "data/materials/body.material"
 			]
 		},
-		"tags": [ "enemy" ]
+		"tags": [ "enemy", "patrol" ]
     }
   },
   {

@@ -136,7 +136,7 @@ void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
 void TCompAIPatrol::onMsgPlayerDead(const TMsgPlayerDead& msg) {
 
 	alarmEnded = false;
-	if (!isPatrolStunned()) {
+	if (!isStunned()) {
 
 		/* We reset the timer if we are not stunned*/
 		current = nullptr;
@@ -191,7 +191,7 @@ void TCompAIPatrol::onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged & msg)
 
 void TCompAIPatrol::onMsgPatrolFixed(const TMsgPatrolFixed & msg)
 {
-	if (isPatrolStunned()) {
+	if (isStunned()) {
 
 		hasBeenFixed = true;
 

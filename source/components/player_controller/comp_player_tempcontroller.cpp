@@ -4,6 +4,7 @@
 #include "components/comp_tags.h"
 #include "components/comp_render.h"
 #include "components/ia/comp_bt_patrol.h"
+#include "components/ia/comp_bt_mimetic.h"
 #include "components/comp_transform.h"
 #include "components/physics/comp_rigidbody.h"
 #include "components/physics/comp_collider.h"
@@ -526,13 +527,15 @@ void TCompTempPlayerController::updateStamina(float dt) {
 /* Attack state, kills the closest enemy if true*/
 void TCompTempPlayerController::attackState(float dt) {
 
-	CHandle enemy = closeEnemy();
+	CHandle enemy = closestEnemyToStun();
 
 	if (enemy.isValid()) {
 		TMsgEnemyStunned msg;
 		msg.h_sender = CHandle(this).getOwner();
 		enemy.sendMsg(msg);
 	}
+
+	state = (actionhandler)&TCompTempPlayerController::walkState;
 }
 
 /* Attack state, kills the closest enemy if true*/
@@ -551,20 +554,84 @@ void TCompTempPlayerController::mergeEnemy() {
 /* Replace this for spatial index method/ trigger volume */
 CHandle TCompTempPlayerController::closeEnemy(const std::string & state) {
 
-	auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+	TCompTransform * mypos = get<TCompTransform>();
 
-	for (unsigned int i = 0; i < handles.size(); i++) {
-		if (!handles[i].isValid()) continue;
 
-		TCompTransform * mypos = get<TCompTransform>();
-		TCompTransform * epos = ((CEntity*)handles[i])->get<TCompTransform>();
-		if (VEC3::Distance(mypos->getPosition(), 
-			epos->getPosition()) < maxAttackDistance
+	/* Manage patrols */
+	auto& handlesPatrol = CTagsManager::get().getAllEntitiesByTag(getID("patrol"));
+
+	for (unsigned int i = 0; i < handlesPatrol.size(); i++) {
+		if (!handlesPatrol[i].isValid()) continue;
+		
+		CEntity * eEnemy = handlesPatrol[i];
+		TCompTransform * epos = eEnemy->get<TCompTransform>();
+		
+		if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < maxAttackDistance
 			&& !epos->isInFront(mypos->getPosition())) {
 
-			TCompAIPatrol * aipatrol = ((CEntity*)handles[i])->get<TCompAIPatrol>();
-			if(state.compare("undefined") != 0) return handles[i];
-			if (aipatrol->getCurrent()->getName().compare(state) != 0) return handles[i];
+			TCompAIPatrol * aipatrol = eEnemy->get<TCompAIPatrol>();
+			if(state.compare("undefined") != 0) return handlesPatrol[i];
+			if (!aipatrol->isStunned()) return handlesPatrol[i];
+		}
+	}
+
+	auto& handlesMimetic = CTagsManager::get().getAllEntitiesByTag(getID("mimetic"));
+
+	for (unsigned int i = 0; i < handlesMimetic.size(); i++) {
+		if (!handlesMimetic[i].isValid()) continue;
+
+		CEntity * eEnemy = handlesMimetic[i];
+		TCompTransform * epos = eEnemy->get<TCompTransform>();
+
+		if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < maxAttackDistance) {
+
+			TCompAIMimetic * aimimetic = eEnemy->get<TCompAIMimetic>();
+			if (state.compare("undefined") != 0) return handlesMimetic[i];
+			if (!aimimetic->isStunned()) return handlesMimetic[i];
+		}
+	}
+
+	return CHandle();
+}
+
+/* Replace this for spatial index method/ trigger volume */
+CHandle TCompTempPlayerController::closestEnemyToStun() {
+
+	TCompTransform * mypos = get<TCompTransform>();
+
+	/* Manage patrols */
+	auto& handlesPatrol = CTagsManager::get().getAllEntitiesByTag(getID("patrol"));
+
+	for (unsigned int i = 0; i < handlesPatrol.size(); i++) {
+		if (!handlesPatrol[i].isValid()) continue;
+
+		CEntity * eEnemy = handlesPatrol[i];
+		TCompTransform * epos = eEnemy->get<TCompTransform>();
+
+		if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < maxAttackDistance
+			&& !epos->isInFront(mypos->getPosition())) {
+
+			TCompAIPatrol * aipatrol = eEnemy->get<TCompAIPatrol>();
+			if (!aipatrol->isStunned()) {
+				return handlesPatrol[i];
+			}
+		}
+	}
+
+	auto& handlesMimetic = CTagsManager::get().getAllEntitiesByTag(getID("mimetic"));
+
+	for (unsigned int i = 0; i < handlesMimetic.size(); i++) {
+		if (!handlesMimetic[i].isValid()) continue;
+
+		CEntity * eEnemy = handlesMimetic[i];
+		TCompTransform * epos = eEnemy->get<TCompTransform>();
+
+		if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < maxAttackDistance) {
+
+			TCompAIMimetic * aimimetic = eEnemy->get<TCompAIMimetic>();
+			if (!aimimetic->isStunned()) {
+				return handlesMimetic[i];
+			}
 		}
 	}
 

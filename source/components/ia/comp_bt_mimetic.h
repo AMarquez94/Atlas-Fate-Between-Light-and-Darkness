@@ -121,7 +121,7 @@ public:
 	/* ASSERTS */
 	bool assertNotPlayerInFov(float dt);
 
-
+	bool isStunned() { return current && current->getName().compare("stunned") == 0; }
 
 	static void registerMsgs();
 };

@@ -68,12 +68,20 @@ void TCompPlayerInput::update(float dt)
 	/* Player/User interaction messages */
 	{
 
-		if (EngineInput["btAttack"].hasChanged())
+		if (EngineInput["btAttack"].getsPressed())
 		{
 			TMsgSetFSMVariable attack;
 			attack.variant.setName("attack");
-			attack.variant.setBool(EngineInput["btAttack"].isPressed());
+			attack.variant.setBool(true);
 			e->sendMsg(attack);
+			attackButtonJustPressed = true;
+		}
+		else if (attackButtonJustPressed) {
+			TMsgSetFSMVariable attack;
+			attack.variant.setName("attack");
+			attack.variant.setBool(false);
+			e->sendMsg(attack);
+			attackButtonJustPressed = false;
 		}
 
 		if (EngineInput["btCrouch"].getsPressed())
