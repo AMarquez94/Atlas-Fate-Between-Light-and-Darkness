@@ -5,6 +5,7 @@
 #include "modules/game/module_main_menu.h"
 #include "modules/game/module_gameover.h"
 #include "modules/game/module_map_intro.h"
+#include "modules/game/module_level_select.h"
 #include "modules/game/module_game_manager.h"
 #include "modules/test/module_test_input.h"
 
@@ -32,6 +33,7 @@ bool CEngine::start() {
 	static CModuleMainMenu module_main_menu("main_menu");
 	static CModuleGameOver module_game_over("game_over");
 	static CModuleMapIntro module_map_intro("map_intro");
+	static CModuleLevelSelect module_level_select("level_select");
 	static CModuleTestInput module_test_input("test_input");
 
 	_modules.registerSystemModule(&_module_render);
@@ -48,6 +50,7 @@ bool CEngine::start() {
 	_modules.registerGameModule(&module_game_over);
 	_modules.registerGameModule(&module_map_intro);
 	_modules.registerGameModule(&module_test_input);
+	_modules.registerGameModule(&module_level_select);
 
 	_modules.loadModules("data/modules.json");
 	_modules.loadGamestates("data/gamestates.json");

@@ -53,7 +53,7 @@ void CModuleGameManager::update(float delta)
 		// Lock/Unlock the cursor
 		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 		ShowCursor(!menuVisible);
-		mouse->setLockMouse();
+		mouse->setLockMouse(menuVisible);
 
 		menuVisible = !menuVisible;
 	}

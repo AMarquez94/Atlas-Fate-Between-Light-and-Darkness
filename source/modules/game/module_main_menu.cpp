@@ -17,7 +17,7 @@ bool CModuleMainMenu::start()
 	
 	// Initialization settings
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-	mouse->setLockMouse();
+	mouse->setLockMouse(false);
 	ShowCursor(true);
 
 	return true;
@@ -46,6 +46,7 @@ void CModuleMainMenu::render()
 	if (ImGui::IsItemClicked() || (menu_load == 1 && EngineInput["btMenuConfirm"].getsPressed()))
 	{
 		dbg("changed select state\n");
+		CEngine::get().getModules().changeGameState("level_select");
 	}
 
 	ImGui::Selectable("Controls", menu_load == 2);

@@ -63,7 +63,7 @@ bool CModuleMapIntro::start()
 	});
 
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-	mouse->setLockMouse();
+	mouse->setLockMouse(true);
 	ShowCursor(false);
 
 	return true;
@@ -87,14 +87,7 @@ void CModuleMapIntro::update(float delta)
 {
 	static VEC3 world_pos;
 	ImGui::DragFloat3("Pos", &world_pos.x, 0.025f, -50.f, 50.f);
-
 	VEC2 mouse = EngineInput.mouse()._position;
-
-	if (EngineInput.mouse().button(Input::EMouseButton::MOUSE_MIDDLE).getsPressed()) {
-		Input::CMouse* cMouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-		cMouse->setLockMouse();
-		ShowCursor(!cMouse->isMouseLocked());
-	}
 
 	if (h_e_camera.isValid()) {
 		CEntity* e_camera = h_e_camera;

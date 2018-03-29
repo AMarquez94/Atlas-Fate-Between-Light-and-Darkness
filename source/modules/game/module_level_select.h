@@ -9,13 +9,13 @@ class CModuleLevelSelect : public IModule
 	unsigned int window_width;
 	unsigned int window_height;
 	unsigned int menuPosition = 0;
-	const unsigned int menuSize = 2;
+	const unsigned int menuSize = 3;
 
-	bool isPaused;
-	bool menuVisible;
-	bool victoryMenuVisible;
+	float time;
 
 public:
+
+	float transition_speed = 0.5f;
 
 	CModuleLevelSelect(const std::string& name): IModule(name) {}
 
