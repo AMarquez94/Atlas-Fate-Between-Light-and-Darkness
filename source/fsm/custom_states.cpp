@@ -246,7 +246,7 @@ namespace FSM
 	void AttackState::onStart(CContext& ctx) const {
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_attack", _speed, _size });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::attackState, "pj_attack", _speed, _size });
 	}
 	void AttackState::onFinish(CContext& ctx) const {
 

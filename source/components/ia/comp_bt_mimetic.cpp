@@ -157,10 +157,10 @@ void TCompAIMimetic::onMsgMimeticStunned(const TMsgEnemyStunned & msg)
 	mypos->setYawPitchRoll(y, p, r);
 	turnOffLight();
 
-	//TCompGroup* cGroup = get<TCompGroup>();
-	//CEntity* eCone = cGroup->getHandleByName("Cone of Vision");
-	//TCompRender * coneRender = eCone->get<TCompRender>();
-	//coneRender->visible = false;
+	TCompGroup* cGroup = get<TCompGroup>();
+	CEntity* eCone = cGroup->getHandleByName("Cone of Vision");
+	TCompRender * coneRender = eCone->get<TCompRender>();
+	coneRender->visible = false;
 
 	lastPlayerKnownPos = VEC3::Zero;
 
