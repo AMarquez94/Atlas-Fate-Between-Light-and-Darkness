@@ -3,7 +3,7 @@
 		"entity": {
 			"name": "The Player",
 			"transform": {
-				"pos": "-7 2 28"
+				"pos": "-7 1 12.846"
 			},
 			"render": {
 			"mesh": "data/meshes/pj_idle.mesh",
@@ -30,8 +30,8 @@
 			"player_tempcontroller" : {
 				"mergeAngle": 0.45,
 				"maxFallingTime": 0.8,
-				"maxFallingDistance": 1.5,
-				"maxAttackDistance": 1,
+				"maxFallingDistance": 6,
+				"maxAttackDistance": 2,
 				"minStamina": 0,
 				"maxStamina": 100,
 				"incrStamina": 15,

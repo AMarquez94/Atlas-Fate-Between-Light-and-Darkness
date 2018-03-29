@@ -231,6 +231,8 @@ namespace FSM
 	}
 	void LandMergeState::onFinish(CContext& ctx) const {
 
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::resetMerge });
 	}
 
 

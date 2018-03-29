@@ -117,6 +117,7 @@ public:
 	void updateStamina(float dt);
 	void updateShader(float dt);
 	void mergeEnemy();
+	void resetMerge();
 
 	VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
 	CHandle closeEnemy(const std::string & state = "undefined");

@@ -335,6 +335,12 @@
 			}
 		},
 		{
+			"type" : "TimeTransition",
+			"source" : "landmerge",
+			"target" : "merge",
+			"time" : 0.6
+		},
+		{
 			"type" : "VariableTransition",
 			"source" : "walk",
 			"target" : "dead",
@@ -363,12 +369,6 @@
 				"type" : "bool",
 				"value" : true
 			}
-		},
-		{
-			"type" : "TimeTransition",
-			"source" : "landmerge",
-			"target" : "merge",
-			"time" : 0.5
 		},
 		{
 			"type" : "VariableTransition",

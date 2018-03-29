@@ -425,45 +425,34 @@ const bool TCompTempPlayerController::onMergeTest(float dt){
 	bool mergefall = fallingDistance > 0 && fallingDistance < maxFallingDistance;
 	mergeTest &= shadow_oracle->is_shadow;
 	mergeTest &= stamina > minStamina;
-	//mergeTest &= !isMerged && stamina > minStaminaChange ? true : false;
+	mergeTest &= !isInhibited;
 
-	// Minimum stamina condition
-	if (isMerged == false)
+	// If we are not merged.
+	if (!isMerged) {
 		mergeTest &= stamina > minStaminaChange;
+		mergeTest &= EngineInput["btShadowMerging"].hasChanged();
 
-	// Check the falling shadow merge
-	if (mergeTest && mergefall && !isGrounded) {
-
-		bool isPressed = EngineInput["btShadowMerging"].isPressed();
 		TMsgSetFSMVariable onFallMsg;
 		onFallMsg.variant.setName("onFallMerge");
-		onFallMsg.variant.setBool(mergefall & isPressed);
-		e->sendMsg(onFallMsg);
+		mergefall &= mergeTest;
 
-		TMsgSetFSMVariable groundMsg;
-		groundMsg.variant.setName("onmerge");
-		groundMsg.variant.setBool(mergeTest & isPressed); // & isGrounded
-		e->sendMsg(groundMsg);
+		onFallMsg.variant.setBool(mergefall);
+		e->sendMsg(onFallMsg);
+		dbg("IS NOT MERGED\n");
 	}
 
 	mergeTest &= EngineInput["btShadowMerging"].isPressed();
-	mergeTest &= !isInhibited;
+	mergeTest &= isGrounded;
 
+	// If the mergetest changed since last frame, update the fsm
 	if (mergeTest != isMerged) {
-
 		TMsgSetFSMVariable groundMsg;
 		groundMsg.variant.setName("onmerge");
-		groundMsg.variant.setBool(mergeTest & isGrounded & EngineInput["btShadowMerging"].hasChanged()); // & isGrounded
+		groundMsg.variant.setBool(mergeTest);
 		e->sendMsg(groundMsg);
-
-		TMsgSetFSMVariable onFallMsg;
-		onFallMsg.variant.setName("onFallMerge");
-		onFallMsg.variant.setBool(mergefall & !isMerged);
-		e->sendMsg(onFallMsg);
-
 		c_my_rigidbody->filters.mFilterData = isMerged == true ? pxPlayerFilterData : pxShadowFilterData;
 	}
-
+	
 	return mergeTest;
 }
 
@@ -491,7 +480,7 @@ const bool TCompTempPlayerController::groundTest(float dt) {
 		crouch.variant.setBool(false);
 		e->sendMsg(crouch);
 
-		dbg("falling time %f\n", fallingTime);
+		//dbg("falling time %f\n", fallingTime);
 		fallingTime = 0.f;
 	}
 
@@ -614,8 +603,27 @@ VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & le
 	return dir;
 }
 
+/* Auxiliary functions */
+
 bool TCompTempPlayerController::isDead()
 {
 	TCompFSM *fsm = get<TCompFSM>();
 	return fsm->getStateName().compare("dead") == 0;
+}
+
+// Needed to avoid the isGround problem by now
+void TCompTempPlayerController::resetMerge() {
+
+	isMerged = true;
+	CEntity* e = CHandle(this).getOwner();
+
+	TMsgSetFSMVariable groundMsg;
+	groundMsg.variant.setName("onmerge");
+	groundMsg.variant.setBool(true);
+	e->sendMsg(groundMsg);
+
+	TMsgSetFSMVariable fallMsg;
+	fallMsg.variant.setName("onFallDead");
+	fallMsg.variant.setBool(false);
+	e->sendMsg(fallMsg);
 }
