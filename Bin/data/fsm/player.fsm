@@ -405,6 +405,76 @@
 			"source" : "attack",
 			"target" : "idle",
 			"time" : 1.0
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "idle",
+			"target" : "dead",
+			"variable" : {
+				"name" : "onDead",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "walk",
+			"target" : "dead",
+			"variable" : {
+				"name" : "onDead",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "run",
+			"target" : "dead",
+			"variable" : {
+				"name" : "onDead",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "crouch",
+			"target" : "dead",
+			"variable" : {
+				"name" : "onDead",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "fall",
+			"target" : "dead",
+			"variable" : {
+				"name" : "onDead",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "entermerge",
+			"target" : "dead",
+			"variable" : {
+				"name" : "onDead",
+				"type" : "bool",
+				"value" : true
+			}
+		},
+		{
+			"type" : "VariableTransition",
+			"source" : "exitmerge",
+			"target" : "dead",
+			"variable" : {
+				"name" : "onDead",
+				"type" : "bool",
+				"value" : true
+			}
 		}
 	],
 	"variables" : [

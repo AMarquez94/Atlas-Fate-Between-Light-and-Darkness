@@ -476,7 +476,7 @@ BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
 
 BTNode::ERes TCompAIPatrol::actionAttack(float dt)
 {
-	CEntity *player = (CEntity *)getEntityByName(entityToChase);
+	CEntity *player = getEntityByName(entityToChase);
 	TCompTransform * ppos = player->get<TCompTransform>();
 
 	/* TODO: always hit at the moment - change this */

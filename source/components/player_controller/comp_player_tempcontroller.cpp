@@ -483,7 +483,7 @@ const bool TCompTempPlayerController::groundTest(float dt) {
 
 		TMsgSetFSMVariable falldead;
 		falldead.variant.setName("onFallDead");
-		falldead.variant.setBool(fallingTime > maxFallingTime && !isMerged);
+		falldead.variant.setBool(fallingTime > maxFallingTime & !isMerged);
 		e->sendMsg(falldead);
 
 		TMsgSetFSMVariable crouch;
@@ -617,6 +617,5 @@ VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & le
 bool TCompTempPlayerController::isDead()
 {
 	TCompFSM *fsm = get<TCompFSM>();
-	fsm->getStateName().compare("dead");
-	return false;
+	return fsm->getStateName().compare("dead") == 0;
 }
