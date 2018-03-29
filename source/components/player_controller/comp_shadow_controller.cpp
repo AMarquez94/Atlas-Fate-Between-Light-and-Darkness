@@ -9,7 +9,6 @@
 #include "render/render_objects.h"
 #include "components/comp_camera.h"
 #include "components/physics/comp_collider.h"
-#include "components/player_controller/comp_player_controller.h"
 #include "components/comp_tags.h"
 #include "components/comp_light.h"
 #include "../comp_name.h"

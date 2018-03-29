@@ -65,8 +65,8 @@
 			"size" : 1,
 			"camera" : {
 				"target" : "TPCamera",
-				"blendOut" : 0.2,
-				"blendIn" : 0.2
+				"blendOut" : 0.4,
+				"blendIn" : 0.4
 			}
 		},
 		{
