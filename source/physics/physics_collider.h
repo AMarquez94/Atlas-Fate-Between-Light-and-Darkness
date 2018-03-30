@@ -16,7 +16,8 @@ public:
 
 	static physx::PxMaterial* default_material;
 
-	bool is_trigger;
+	bool is_trigger = false;
+	bool is_controller = false;
 	physx::PxRigidActor* actor;
 
 	physx::PxU32 group;

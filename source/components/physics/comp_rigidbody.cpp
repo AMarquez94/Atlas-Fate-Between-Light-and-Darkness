@@ -9,7 +9,12 @@ bool temp_ground = true;
 
 TCompRigidbody::~TCompRigidbody() {
 
-	//TO-DO
+	// Delete the controller.
+	if (is_controller) {
+		controller->release();
+	}
+
+	// Rigidbody destruction here.
 }
 
 void TCompRigidbody::debugInMenu() {
@@ -77,6 +82,7 @@ void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
 		{
 			controller = c_collider->config->createController(compTransform);
 			c_collider->config->actor->userData = CHandle(c_collider).asVoidPtr();
+			c_collider->config->is_controller = true;
 		}
 		else
 		{
@@ -103,7 +109,12 @@ void TCompRigidbody::onDestroy(const TMsgEntityDestroyed & msg)
 
 void TCompRigidbody::Resize(float new_size)
 {
-	//config->currentHeight = new_size;
+	// Cannot resize if no collider is present.
+	TCompCollider * c_collider = get<TCompCollider>();
+
+	if (!c_collider || !c_collider->config->actor) 
+		return;
+
 	if(controller != NULL)
 		controller->resize((physx::PxReal)new_size);
 }
@@ -128,6 +139,7 @@ void TCompRigidbody::Jump(VEC3 forceUp)
 }
 
 void TCompRigidbody::setNormalGravity(VEC3 newGravity) {
+
 	normal_gravity = newGravity;
 	totalDownForce = physx::PxVec3(0, 0, 0);
 }

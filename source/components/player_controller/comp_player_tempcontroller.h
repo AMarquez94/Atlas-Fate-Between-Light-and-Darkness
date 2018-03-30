@@ -118,12 +118,11 @@ public:
 	void updateShader(float dt);
 	void mergeEnemy();
 	void resetMerge();
+	bool isDead();
 
 	VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
 	CHandle closeEnemy(const std::string & state = "undefined");
 	CHandle closestEnemyToStun();
-
-	bool isDead();
 
 	static void registerMsgs();
 };

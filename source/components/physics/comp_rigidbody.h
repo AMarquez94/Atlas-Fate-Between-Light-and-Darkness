@@ -16,7 +16,8 @@ class TCompRigidbody : public TCompBase {
 
 public:
 
-	physx::PxController* controller;
+	physx::PxRigidBody* rigidbody = nullptr;
+	physx::PxController* controller = nullptr;
 	physx::PxControllerFilters filters;
 
 	float mass;

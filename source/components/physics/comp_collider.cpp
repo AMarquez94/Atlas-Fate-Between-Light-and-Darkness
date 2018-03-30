@@ -8,12 +8,13 @@ DECL_OBJ_MANAGER("collider", TCompCollider);
 
 TCompCollider::~TCompCollider(){
 
+	// In case it's a controller, delegate it's destruction to the rigidbody.
 	if (config->actor != nullptr){
 
-		if (config->actor && config->actor->getScene())
-			config->actor->getScene()->removeActor(*config->actor);
-
-		config->actor = nullptr;
+		if (!config->is_controller) {
+			config->actor->release();
+			config->actor = nullptr;
+		}
 	}
 }
 

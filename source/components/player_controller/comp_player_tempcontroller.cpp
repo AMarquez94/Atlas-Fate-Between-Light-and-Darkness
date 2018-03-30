@@ -436,10 +436,8 @@ const bool TCompTempPlayerController::onMergeTest(float dt){
 		TMsgSetFSMVariable onFallMsg;
 		onFallMsg.variant.setName("onFallMerge");
 		mergefall &= mergeTest;
-
 		onFallMsg.variant.setBool(mergefall);
 		e->sendMsg(onFallMsg);
-		dbg("IS NOT MERGED\n");
 	}
 
 	mergeTest &= EngineInput["btShadowMerging"].isPressed();
