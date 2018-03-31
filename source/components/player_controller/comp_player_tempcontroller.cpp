@@ -266,7 +266,7 @@ void TCompTempPlayerController::mergeState(float dt) {
 	float angle_test = fabs(EnginePhysics.gravity.Dot(c_my_transform->getUp()));
 
 	VEC3 prevUp = c_my_transform->getUp();
-	VEC3 up = angle_test < mergeAngle ? trans_camera->getUp() : trans_camera->getFront();
+	VEC3 up = angle_test < mergeAngle ? -EnginePhysics.gravity : trans_camera->getFront();
 	float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
 	float player_accel = inputSpeed * currentSpeed * dt;
 
