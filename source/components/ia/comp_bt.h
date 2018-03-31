@@ -33,6 +33,7 @@ protected:
 		bool speedB = false, fleeB = false, movementB = false, ughB = false, escapeB = false;
 	}conditionsArgs, actionsArgs;
 
+	void onMsgScenePaused(const TMsgScenePaused& msg);
 private:
 
 	/* The nodes as map (so we have both map and tree for the same structure */
@@ -53,7 +54,6 @@ private:
 	BTNode *findNode(const std::string& name);
 
 	void printTree();
-
 public:
 
 	std::string name;
