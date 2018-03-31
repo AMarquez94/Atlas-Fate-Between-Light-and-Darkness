@@ -118,7 +118,7 @@ physx::PxController* CPhysicsBox::createController(TCompTransform * c_transform)
 	QUAT quat = c_transform->getRotation();
 	ctrl->setFootPosition(physx::PxExtendedVec3(pos.x, pos.y, pos.z));
 	ctrl->setContactOffset(contact_offset);
-	
+
 	actor = ctrl->getActor();
 	setupFiltering(actor, group, mask);
 
@@ -204,7 +204,7 @@ physx::PxController* CPhysicsCapsule::createController(TCompTransform * c_transf
 	capsuleDesc.height = height;
 	capsuleDesc.radius = radius;
 	capsuleDesc.climbingMode = physx::PxCapsuleClimbingMode::eCONSTRAINED;
-	capsuleDesc.scaleCoeff = 1.0f;
+	capsuleDesc.scaleCoeff = 0.99f;
 	cDesc = &capsuleDesc;
 	cDesc->material = material;
 	cDesc->contactOffset = contact_offset;
@@ -217,6 +217,7 @@ physx::PxController* CPhysicsCapsule::createController(TCompTransform * c_transf
 	ctrl->setContactOffset(contact_offset);
 
 	actor = ctrl->getActor();
+	actor->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, true);
 	setupFiltering(actor, group, mask);
 
 	return ctrl;

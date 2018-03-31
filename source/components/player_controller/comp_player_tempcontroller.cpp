@@ -84,6 +84,7 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	decrStaminaVertical = j.value("decrStaminaVertical", 17.5f);
 	minStaminaChange = j.value("minStaminaChange", 15.f);
 	auxCamera = j.value("auxCamera", "");
+	paused = true;
 }
 
 /* Player controller main update */
@@ -140,6 +141,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 	fallingDistance = 0.f;
 	isInhibited = isGrounded = isMerged = false;
 	dbgDisableStamina = false;
+	paused = false;
 }
 
 /* Call this function once the state has been changed */
@@ -404,7 +406,7 @@ const bool TCompTempPlayerController::convexTest(void){
 			rigidbody->normal_gravity = EnginePhysics.gravityMod * -hit_normal;
 
 			QUAT new_rotation = createLookAt(hit_point, target, hit_normal);
-			VEC3 new_pos = hit_point + 0.35f * new_forward;
+			VEC3 new_pos = hit_point + 0.3f * new_forward;
 			c_my_transform->setRotation(new_rotation);
 			c_my_transform->setPosition(new_pos);
 			return true;
@@ -450,6 +452,7 @@ const bool TCompTempPlayerController::onMergeTest(float dt){
 		groundMsg.variant.setBool(mergeTest);
 		e->sendMsg(groundMsg);
 		c_my_rigidbody->filters.mFilterData = isMerged == true ? pxPlayerFilterData : pxShadowFilterData;
+		//c_my_rigidbody->controller->setStepOffset(0);
 	}
 	
 	return mergeTest;

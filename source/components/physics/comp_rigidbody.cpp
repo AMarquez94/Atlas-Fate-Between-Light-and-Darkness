@@ -34,33 +34,25 @@ void TCompRigidbody::load(const json& j, TEntityParseContext& ctx) {
 void TCompRigidbody::update(float dt) {
 
 	TCompCollider * c_collider = get<TCompCollider>();
-	velocity = physx::PxVec3(0, CModulePhysics::gravityMod, 0);
+	velocity = physx::PxVec3(0,0,0);
 
-	if (is_controller) {
-		if (CHandle(this).getOwner().isValid()) {
-			TCompTransform *transform = get<TCompTransform>();
-			VEC3 new_pos = transform->getPosition();
-			VEC3 delta_movement = new_pos - lastFramePosition;
-			velocity = physx::PxVec3(delta_movement.x, delta_movement.y, delta_movement.z) / dt;
-			lastFramePosition = new_pos;
+	if (CHandle(this).getOwner().isValid()) {
+		TCompTransform *transform = get<TCompTransform>();
+		VEC3 new_pos = transform->getPosition();
+		VEC3 delta_movement = new_pos - lastFramePosition;
+		velocity = physx::PxVec3(delta_movement.x, delta_movement.y, delta_movement.z) / dt;
+		lastFramePosition = new_pos;
+
+		if (is_gravity) {
+			if (is_grounded) totalDownForce = physx::PxVec3(0, 0, 0);
+			physx::PxVec3 actualDownForce = physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z);
+			velocity += (actualDownForce + totalDownForce);
+			totalDownForce += 3.f * actualDownForce * dt;
 		}
 	}
 
-	if (is_gravity) {
-		if (is_grounded) {
-			totalDownForce = physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z) * dt;
-		}
-		else {
-			totalDownForce += 5.f * physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z) * dt;
-		}
-		velocity += totalDownForce;
-	}
-
-	if (is_controller) {
-
-		physx::PxControllerCollisionFlags col = controller->move(velocity * dt, 0.f, dt, filters);
-		is_grounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN) ? true : false; //ask roger
-	} 
+	physx::PxControllerCollisionFlags col = controller->move(velocity * dt, 0.f, dt, filters);
+	is_grounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN);
 }
 
 /* Collider/Trigger messages */

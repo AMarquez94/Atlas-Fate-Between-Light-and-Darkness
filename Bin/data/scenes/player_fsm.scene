@@ -3,7 +3,7 @@
 		"entity": {
 			"name": "The Player",
 			"transform": {
-				"pos": "-7 1 65"
+				"pos": "-7 1 12"
 			},
 			"render": {
 			"mesh": "data/meshes/pj_idle.mesh",
@@ -14,7 +14,8 @@
 				"shape": "capsule",
 				"radius": 0.3,
 				"height": 1.0,
-				"group": "player"
+				"group": "player",
+				"mask": "All"
 			},
 			"rigidbody": {
 				"is_controller": true,
