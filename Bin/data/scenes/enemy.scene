@@ -1361,11 +1361,37 @@
 			"prefab": "data/prefabs/mimetic.prefab",
 			"name": "Mimetic 1",
 			"transform": {
-				"pos": "-25 3.2 86"
+				"pos": "-25 3.2 86",
+				"lookat": "-24 3.2 86"
 			},
 			"ai_mimetic": {
 				"startLightsOn": false,
 				"type": "wall",
+				"isSlept": false
+			},
+		  "collider": {
+			"shape": "capsule",
+			"radius": 0.65,
+			"height": 1.0,
+			"gravity": true,
+			"group" : "enemy"
+		  },
+			"rigidbody": {
+				"is_controller": true,
+				"is_gravity": true
+			}
+		}
+	}, {
+		"entity": {
+			"prefab": "data/prefabs/mimetic.prefab",
+			"name": "Mimetic 2",
+			"transform": {
+				"pos": "-25 0 70",
+				"lookat": "-25 0 71"
+			},
+			"ai_mimetic": {
+				"startLightsOn": false,
+				"type": "floor",
 				"isSlept": false
 			},
 		  "collider": {
