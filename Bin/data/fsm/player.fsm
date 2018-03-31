@@ -55,7 +55,8 @@
 			"type" : "MergeState",
 			"animation" : "merge",
 			"speed" : 4,
-			"size" : 0.15
+			"size" : 0.1,
+			"radius" : 0.1
 		},
 		{
 			"name" : "exitmerge",
@@ -63,6 +64,7 @@
 			"animation" : "exitmerge",
 			"speed" : 4,
 			"size" : 1,
+			"radius" : 0.3,
 			"camera" : {
 				"target" : "TPCamera",
 				"blendOut" : 0.4,

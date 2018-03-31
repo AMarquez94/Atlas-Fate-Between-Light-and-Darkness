@@ -158,7 +158,14 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg){
 		c_my_render->refreshMeshesInRenderManager();
 
 		TCompRigidbody * rigidbody = get<TCompRigidbody>();
+		TCompTransform * t_trans = get<TCompTransform>();
 		rigidbody->Resize(msg.size);
+
+		physx::PxCapsuleController* caps = (physx::PxCapsuleController*)rigidbody->controller;
+		if (caps != nullptr) {
+			caps->setRadius(msg.radius);
+			caps->setFootPosition(physx::PxExtendedVec3(t_trans->getPosition().x, t_trans->getPosition().y, t_trans->getPosition().z));
+		}
 
 		// Get the target camera and set it as our new camera.
 		if (msg.target_camera) {
@@ -391,7 +398,7 @@ const bool TCompTempPlayerController::convexTest(void){
 	VEC3 new_dir = c_my_transform->getUp() + c_my_transform->getFront();
 	new_dir.Normalize();
 
-	if (EnginePhysics.Raycast(upwards_offset, -new_dir, 0.65f, hit, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery))
+	if (EnginePhysics.Raycast(upwards_offset, -new_dir, 0.95f, hit, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery))
 	{
 		VEC3 hit_normal = VEC3(hit.normal.x, hit.normal.y, hit.normal.z);
 		VEC3 hit_point = VEC3(hit.position.x, hit.position.y, hit.position.z);
@@ -438,6 +445,7 @@ const bool TCompTempPlayerController::onMergeTest(float dt){
 		TMsgSetFSMVariable onFallMsg;
 		onFallMsg.variant.setName("onFallMerge");
 		mergefall &= mergeTest;
+		mergefall &= EngineInput["btShadowMerging"].isPressed();
 		onFallMsg.variant.setBool(mergefall);
 		e->sendMsg(onFallMsg);
 	}

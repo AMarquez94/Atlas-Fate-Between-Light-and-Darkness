@@ -23,6 +23,7 @@ struct TMsgStateStart {
 	std::string meshname;
 	float speed;
 	float size;
+	float radius;
 
 	TargetCamera * target_camera = nullptr;
 

@@ -16,6 +16,7 @@ namespace FSM
 	private:
 		TargetCamera * _target = nullptr;
 		float _size = 1.f;
+		float _radius = 0.3f;
 		float _speed = 1.f;
 		std::string _animationName;
 	};
@@ -31,6 +32,7 @@ namespace FSM
 		float _force = 1.f;
 		float _speed = 1.f;
 		float _size = 1.f;
+		float _radius = 0.3f;
 		std::string _animationName;
 	};
 
@@ -44,6 +46,7 @@ namespace FSM
 		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
+		float _radius = 0.3f;
 		float _rotation_speed = 1.f;
 		std::string _animationName;
 	};
@@ -58,6 +61,7 @@ namespace FSM
 		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
+		float _radius = 0.3f;
 		float _rotation_speed = 1.f;
 		std::string _animationName;
 	};
@@ -72,6 +76,7 @@ namespace FSM
 		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
+		float _radius = 0.3f;
 		float _rotation_speed = 1.f;
 		std::string _animationName;
 	};
@@ -86,6 +91,7 @@ namespace FSM
 		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
+		float _radius = 0.3f;
 		std::string _animationName;
 	};
 
@@ -99,6 +105,7 @@ namespace FSM
 		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
+		float _radius = 0.3f;
 		std::string _animationName;
 	};
 
@@ -112,6 +119,7 @@ namespace FSM
 		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
+		float _radius = 0.3f;
 		std::string _animationName;
 	};
 
@@ -125,6 +133,7 @@ namespace FSM
 		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
+		float _radius = 0.3f;
 		std::string _animationName;
 	};
 
@@ -137,6 +146,7 @@ namespace FSM
 		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 2.f;
+		float _radius = 0.3f;
 		std::string _animationName;
 	};
 
@@ -149,6 +159,7 @@ namespace FSM
 		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 2.f;
+		float _radius = 0.3f;
 		std::string _animationName;
 	};
 
@@ -161,6 +172,7 @@ namespace FSM
 		TargetCamera * _target = nullptr;
 		float _size = 1.f;
 		float _speed = 2.f;
+		float _radius = 0.3f;
 		std::string _animationName;
 	};
 }
