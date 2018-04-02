@@ -161,17 +161,21 @@ struct TSceneExporter (
 			fs.beginObj()
 			fs.writeKeyValue "parent" obj.parent.name
 			fs.endObj()
+			fs.writeComma()
 		)
 	),
 	
 	function writeGroupComponent obj = (
 		
-		local is_group = isgrouphead obj.parent
-		if is_group then (
-			fs.writeKey "group" 
-			fs.beginObj()
-		
+		if obj.parent != undefined then (
+			local is_group = isgrouphead obj.parent
+			if is_group then (
+				fs.writeKey "group" 
+				fs.beginObj()
+				fs.writeComma()
+			)
 		)
+		
 	),
 
 	-- ----------------------------------------------------------
@@ -302,7 +306,7 @@ struct TSceneExporter (
 		fs.writeComma()
 		)
 		
-		fs.writeKeyValue "color" [obj.rgb.r, obj.rgb.g, obj.rgb.b]
+		fs.writeKeyValue "color" [obj.rgb.r, obj.rgb.g, obj.rgb.b, obj.rgb.a]
 		fs.writeComma()
 		fs.writeKeyValue "intensity" obj.multiplier 
 		fs.writeComma()
@@ -317,14 +321,12 @@ struct TSceneExporter (
 		fs.writeComma()
 		exportTransform obj
 		fs.writeComma()
+		writeHierComponent obj
+		writeGroupComponent obj
 		fs.writeKey "render" 
 		fs.beginArray()
 		exportRenderMesh obj
 		fs.endArray()
-		fs.writeComma()
-		writeHierComponent obj
-		fs.writeComma()
-		writeGroupComponent obj
 		
 		for child in obj.children do (
 			if isCollider child then (
@@ -422,10 +424,12 @@ struct TSceneExporter (
 	
 	fn exportRoot filename = (
 		fs.beginObj()
-		fs.writeKey filename
+		fs.writeKey "entity"
 		fs.beginObj()
+		fs.writeKeyValue "name" filename
 		fs.endObj()
 		fs.endObj()
+		fs.writeComma()
 	),
 	
 	-- ----------------------------------------------------------

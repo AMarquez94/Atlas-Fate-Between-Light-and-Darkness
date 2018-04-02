@@ -1,0 +1,12 @@
+{
+  "technique": "textured.tech"
+  ,
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/ovw/prop_wall_outerior.dds"
+    ,
+    "lightmap": "data/textures/default_texture.dds"
+  }
+}

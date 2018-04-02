@@ -1,0 +1,201 @@
+[
+  {
+    "entity":
+    {
+      "name": "sp_test_lights"
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box003"
+      ,
+      "transform":
+      {
+        "pos": "-4.68712 0.880732 -21.5568"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ovw/Box003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/ovw/mtl_ovw_wall.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "15.6466 5.22566 1.24404"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box001"
+      ,
+      "transform":
+      {
+        "pos": "-1.21213 0.0 1.35551"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ovw/Box001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/ovw/mtl_ovw_floor.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "50.0 0.5 50.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Sphere001"
+      ,
+      "transform":
+      {
+        "pos": "-4.63021 2.85823 -13.9517"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ovw/Sphere001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/ovw/mtl_ovw_metal.material"
+          ]
+        }
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Sphere002"
+      ,
+      "transform":
+      {
+        "pos": "-6.94024 2.85823 -13.9517"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ovw/Sphere002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/ovw/mtl_ovw_metal.material"
+          ]
+        }
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Sphere003"
+      ,
+      "transform":
+      {
+        "pos": "-2.26306 2.85823 -13.9517"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/ovw/Sphere003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/ovw/mtl_ovw_metal.material"
+          ]
+        }
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot001"
+      ,
+      "transform":
+      {
+        "pos": "-4.62722 10.185 -19.9464"
+        ,
+        "lookat": "-4.694 -16.782 -8.716"
+      }
+      ,
+      "light":
+      {
+        "type": "spotlight"
+        ,
+				"proj_type": "ortographic"
+				,
+        "range": 29.2116
+        ,
+        "angle": 91.8
+        ,
+        "color": "255.0 255.0 255.0 255.0"
+        ,
+        "intensity": 1.0
+        ,
+        "shadows": true
+				,
+				"projector" : "data/textures/batman.dds"
+				,
+        "z_far" : 50
+      }
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/ovw/Spot001.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+]

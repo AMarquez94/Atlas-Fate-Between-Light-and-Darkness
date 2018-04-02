@@ -21,7 +21,9 @@ void TCompLight::renderDebug() {
 
 void TCompLight::load(const json& j, TEntityParseContext& ctx) {
 
-	type = j.value("type", "default"); // Might move this out of here ?
+	TCompCamera::load(j, ctx);
+
+	type = j.value("type", "default"); 
 	intensity = j.value("intensity", 1.0f);
 	color = loadVEC4(j["color"]);
 
@@ -37,6 +39,7 @@ void TCompLight::load(const json& j, TEntityParseContext& ctx) {
 
 
 void TCompLight::update(float dt) {
+
 	// Can't use the TCompCamera::update because inside it calls 
 		  // get<TCompTransform> which tries to convert 'this' to an instance
 		  // of TCompCamera, but will fail because we are a CompLightDir

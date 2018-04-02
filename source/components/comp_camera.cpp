@@ -10,11 +10,22 @@ void TCompCamera::debugInMenu() {
 	float fov_deg = rad2deg(getFov());
 	float new_znear = getZNear();
 	float new_zfar = getZFar();
-	bool changed = ImGui::DragFloat("Fov", &fov_deg, 0.1f, 30.f, 175.f);
-	changed |= ImGui::DragFloat("Z Near", &new_znear, 0.001f, 0.01f, 1.0f);
-	changed |= ImGui::DragFloat("Z Far", &new_zfar, 1.0f, 2.0f, 3000.0f);
-	if (changed)
-		setPerspective(deg2rad(fov_deg), new_znear, new_zfar);
+	float orto_size = getOrtosize();
+
+	if (type == CCamera::CType::PERSPECTIVE) {
+		bool changed = ImGui::DragFloat("Fov", &fov_deg, 0.1f, 30.f, 175.f);
+		changed |= ImGui::DragFloat("Z Near", &new_znear, 0.001f, 0.01f, 1.0f);
+		changed |= ImGui::DragFloat("Z Far", &new_zfar, 1.0f, 2.0f, 3000.0f);
+		if (changed)
+			setPerspective(deg2rad(fov_deg), new_znear, new_zfar);
+	}
+	else {
+		bool changed = ImGui::DragFloat("ORTOSIZE", &orto_size, 1.f, 1.f, 200.f);
+		changed |= ImGui::DragFloat("Z Near", &new_znear, 0.001f, 0.01f, 1.0f);
+		changed |= ImGui::DragFloat("Z Far", &new_zfar, 1.0f, 2.0f, 3000.0f);
+		if (changed)
+			setOrtographic(orto_size, new_znear, new_zfar);
+	}
 
 	ImGui::LabelText("AspectRatio", "%f", getAspectRatio());
 }
@@ -42,7 +53,17 @@ void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
 	float fov_deg = j.value("fov", rad2deg(getFov()));
 	float z_near = j.value("z_near", getZNear());
 	float z_far = j.value("z_far", getZFar());
-	setPerspective(deg2rad(fov_deg), z_near, z_far);
+	float orto_size = j.value("ortosize", 10.f);
+	const std::string type = j.value("proj_type", "perspective");
+
+	if (type == "perspective") {
+		this->type = PERSPECTIVE;
+		setPerspective(deg2rad(fov_deg), z_near, z_far);
+	}
+	else {
+		this->type = ORTOGRAPHIC;
+		setOrtographic(orto_size, z_near, z_far);
+	}
 
 }
 
