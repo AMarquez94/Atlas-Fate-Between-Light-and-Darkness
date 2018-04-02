@@ -51,13 +51,21 @@ void TCompRigidbody::update(float dt) {
 		}
 	}
 
-	physx::PxControllerCollisionFlags col = controller->move(velocity * dt, 0.f, dt, filters);
-	is_grounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN);
+	if (is_controller){
+		physx::PxControllerCollisionFlags col = controller->move(velocity * dt, 0.f, dt, filters);
+		is_grounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN);
+	}
+	else {
+		TCompTransform *c_transform = get<TCompTransform>();
+		VEC3 pos = c_transform->getPosition();
+		QUAT quat = c_transform->getRotation();
+		physx::PxTransform transform(physx::PxVec3(pos.x, pos.y, pos.z), physx::PxQuat(quat.x, quat.y, quat.z, quat.w));
+		c_collider->config->actor->setGlobalPose(transform);
+	}
 }
 
 /* Collider/Trigger messages */
 void TCompRigidbody::registerMsgs() {
-
 	DECL_MSG(TCompRigidbody, TMsgEntityCreated, onCreate);
 }
 
@@ -92,11 +100,6 @@ void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
 		//filters.mFilterCallback = &customQueryFilter;
 		filters.mFilterData = characterFilterData;
 	}
-}
-
-void TCompRigidbody::onDestroy(const TMsgEntityDestroyed & msg)
-{
-	//delete this;
 }
 
 void TCompRigidbody::Resize(float new_size)

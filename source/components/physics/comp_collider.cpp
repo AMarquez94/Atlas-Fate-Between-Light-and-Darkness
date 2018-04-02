@@ -134,7 +134,6 @@ void TCompCollider::onTriggerExit(const TMsgTriggerExit& msg) {
 }
 
 void TCompCollider::update(float dt) {
-
 }
 
 bool TCompCollider::collisionDistance(const VEC3 & org, const VEC3 & dir, float maxDistance) {

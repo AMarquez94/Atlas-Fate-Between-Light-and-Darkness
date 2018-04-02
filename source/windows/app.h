@@ -21,6 +21,8 @@ public:
 	int xres = 0;
 	int yres = 0;
 	bool resetMouse = false;
+	bool hasFocus = true;
+	bool lostFocus = false;
 
   static CApp& get() {
     assert(app_instance);

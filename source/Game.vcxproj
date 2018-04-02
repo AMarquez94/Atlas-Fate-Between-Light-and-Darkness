@@ -98,6 +98,7 @@
     <ClCompile Include="components\comp_aabb.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
     <ClCompile Include="components\comp_culling.cpp" />
+    <ClCompile Include="components\object_controller\comp_noise_emitter.cpp" />
     <ClCompile Include="components\player_controller\comp_player_animator.cpp" />
     <ClCompile Include="components\comp_fsm.cpp" />
     <ClCompile Include="components\comp_group.cpp" />
@@ -211,6 +212,7 @@
     <ClInclude Include="components\comp_base.h" />
     <ClInclude Include="components\comp_camera.h" />
     <ClInclude Include="components\comp_culling.h" />
+    <ClInclude Include="components\object_controller\comp_noise_emitter.h" />
     <ClInclude Include="components\player_controller\comp_player_animator.h" />
     <ClInclude Include="components\comp_fsm.h" />
     <ClInclude Include="components\comp_group.h" />

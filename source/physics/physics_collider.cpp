@@ -58,6 +58,24 @@ void CPhysicsCollider::createStatic(physx::PxShape* actor_shape, TCompTransform 
 	gScene->addActor(*actor);
 }
 
+//void CPhysicsCollider::createDynamic(physx::PxShape* actor_shape, TCompTransform * c_transform)
+//{
+//	physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
+//	physx::PxScene * gScene = EnginePhysics.getPhysxScene();
+//
+//	VEC3 pos = c_transform->getPosition();
+//	QUAT quat = c_transform->getRotation();
+//	physx::PxTransform transform(physx::PxVec3(pos.x, pos.y, pos.z), physx::PxQuat(quat.x, quat.y, quat.z, quat.w));
+//	physx::PxRigidActor *rigid_actor = gPhysics->createRigidDynamic(transform); //gPhysics->createRigidStatic(transform);
+//
+//	actor = rigid_actor;
+//	actor->attachShape(*actor_shape);
+//	actor_shape->release();
+//
+//	setupFiltering(actor, group, mask);
+//	gScene->addActor(*actor);
+//}
+
 void CPhysicsCollider::createDynamic(physx::PxShape* actor_shape, TCompTransform * c_transform)
 {
 	physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();

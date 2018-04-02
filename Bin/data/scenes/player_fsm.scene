@@ -6,9 +6,9 @@
 				"pos": "-7 1 12"
 			},
 			"render": {
-			"mesh": "data/meshes/pj_idle.mesh",
-			"materials": [
-			  "data/materials/body.material" ]
+				"mesh": "data/meshes/pj_idle.mesh",
+				"materials": [
+					"data/materials/body.material"]
 			},
 			"collider": {
 				"shape": "capsule",
@@ -21,14 +21,13 @@
 				"is_controller": true,
 				"is_gravity": true
 			},
-			"shadow_controller": {
+			"shadow_controller": {},
+			"fsm": {
+				"file": "data/fsm/player.fsm"
 			},
-			"fsm" : {
-				"file" : "data/fsm/player.fsm"
-			},
-			"player_input" : {},
-			"player_animator" : {},
-			"player_tempcontroller" : {
+			"player_input": {},
+			"player_animator": {},
+			"player_tempcontroller": {
 				"mergeAngle": 0.45,
 				"maxFallingTime": 0.8,
 				"maxFallingDistance": 6,
@@ -42,11 +41,29 @@
 				"minStaminaChange": 15,
 				"auxCamera": "SMCameraAux"
 			},
-			"group": "player",
-      "tags":
-      [
-        "player"
-      ]
+			"tags":
+			[
+				"player"
+			]
 		}
-	}
+	},
+  {
+    "entity": {
+      "name": "Noise Emitter",
+	  "hierarchy": {
+        "parent": "The Player"
+      },
+	  "transform": {},
+	  "collider": {
+		"shape": "sphere",
+		"radius": 0.1,
+		"is_trigger": true
+	  },
+		"rigidbody": {
+			"is_controller": false,
+			"is_gravity": false
+		},
+		"noise_emitter": {}
+    }
+  }
 ]

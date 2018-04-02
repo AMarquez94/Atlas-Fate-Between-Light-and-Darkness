@@ -115,6 +115,15 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 	}
 	break;
 
+	case WM_SETFOCUS:
+		CApp::get().hasFocus = true;
+		break;
+
+	case WM_KILLFOCUS:
+		CApp::get().hasFocus = false;
+		CApp::get().lostFocus = true;
+		break;
+
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}

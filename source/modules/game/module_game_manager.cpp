@@ -43,7 +43,9 @@ void CModuleGameManager::update(float delta)
 		}
 	}
 
-	if (EngineInput["btPause"].getsPressed()) {
+	if (EngineInput["btPause"].getsPressed() || (!menuVisible && CApp::get().lostFocus)) {
+
+		CApp::get().lostFocus = false;
 
 		// Send pause message
 		TMsgScenePaused msg;

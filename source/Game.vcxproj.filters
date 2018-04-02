@@ -107,6 +107,7 @@
     <ClCompile Include="components\camera_controller\comp_curve_controller.cpp" />
     <ClCompile Include="components\object_controller\comp_trigger_camera.cpp" />
     <ClCompile Include="modules\game\module_level_select.cpp" />
+    <ClCompile Include="components\object_controller\comp_noise_emitter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -245,6 +246,7 @@
     <ClInclude Include="components\object_controller\comp_trigger_camera.h" />
     <ClInclude Include="render\texture\texture_slots.h" />
     <ClInclude Include="modules\game\module_level_select.h" />
+    <ClInclude Include="components\object_controller\comp_noise_emitter.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

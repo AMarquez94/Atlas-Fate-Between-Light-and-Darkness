@@ -3,16 +3,16 @@
 		"default": 512,
 		"transform": 512
 	},
-  "init_order" : {
-    "entity" : 100,
-    "transform" : 90
-  },
-  "update": [
-    "circular_controller",
+	"init_order": {
+		"entity": 100,
+		"transform": 90
+	},
+	"update": [
+		"circular_controller",
 		"player_tempcontroller",
-    "ai_patrol",
-    "ai_mimetic",
-    "bullet_controller",
+		"ai_patrol",
+		"ai_mimetic",
+		"bullet_controller",
 		"shadow_controller",
 		"skeleton",
 		"bone_tracker",
@@ -23,20 +23,21 @@
 		"cone_of_light",
 		"rigidbody",
 		"collider",
+		"noise_emitter",
 		"camera_flyover",
 		"curve_controller",
 		"trigger_camera",
 		"dynamic_objects",
 		"capsule_shadow_controller",
-    "camera_thirdperson",
-    "camera_shadowmerge",
-    "auxcamera_shadowmerge",
+		"camera_thirdperson",
+		"camera_shadowmerge",
+		"auxcamera_shadowmerge",
 		"camera",
 		"fsm",
 		"player_animator",
 		"player_input"
-  ],
-  "render_debug": [
+	],
+	"render_debug": [
 		"player_tempcontroller",
 		"ai_patrol"
 	]
