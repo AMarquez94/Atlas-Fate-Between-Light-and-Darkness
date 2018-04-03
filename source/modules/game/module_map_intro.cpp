@@ -47,11 +47,11 @@ bool CModuleMapIntro::start()
 	cb_object.activate();
 	cb_camera.activate();
 
-	CHandle h_camera = getEntityByName("TPCamera");
+	CHandle h_camera = getEntityByName("test_camera_flyover");
 	if (h_camera.isValid())
 		Engine.getCameras().setDefaultCamera(h_camera);
 
-	h_camera = getEntityByName("main_camera");
+	h_camera = getEntityByName("test_camera_flyover");
 	if (h_camera.isValid())
 		Engine.getCameras().setOutputCamera(h_camera);
 

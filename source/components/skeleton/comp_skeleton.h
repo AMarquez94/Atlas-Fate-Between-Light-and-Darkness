@@ -8,6 +8,8 @@
 class CalModel;
 
 struct TCompSkeleton : public TCompBase {
+
+	int actualCycleId;
   CRenderCte<CCteSkinBones> cb_bones;
   CalModel* model = nullptr;
   TCompSkeleton();

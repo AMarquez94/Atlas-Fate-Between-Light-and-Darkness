@@ -56,7 +56,8 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
   model = new CalModel(core_model);
   
   // Play the first animation, at weight 100%, now!
-  model->getMixer()->blendCycle(0, 1.0f, 0.f);
+  actualCycleId = 0;
+  model->getMixer()->blendCycle(actualCycleId, 0.5f, 0.f);
   
   // Do a time zero update just to have the bones in a correct place
   model->update(0.f);
@@ -74,6 +75,7 @@ void TCompSkeleton::update(float dt) {
 
 void TCompSkeleton::debugInMenu() {
   static int anim_id = 0;
+  static float weight = 1.0f;
   static float in_delay = 0.3f;
   static float out_delay = 0.3f;
   static bool auto_lock = false;
@@ -85,9 +87,12 @@ void TCompSkeleton::debugInMenu() {
     ImGui::Text("%s", core_anim->getName().c_str());
   ImGui::DragFloat("In Delay", &in_delay, 0.01f, 0, 1.f);
   ImGui::DragFloat("Out Delay", &out_delay, 0.01f, 0, 1.f);
+  ImGui::DragFloat("Weight", &weight, 0.01f, 0, 1.f);
   ImGui::Checkbox("Auto lock", &auto_lock);
   if (ImGui::SmallButton("As Cycle")) {
-    model->getMixer()->blendCycle(anim_id, 1.0f, in_delay);
+    model->getMixer()->blendCycle(anim_id, weight, in_delay);
+	//model->getMixer()->clearCycle(actualCycleId, out_delay);
+	//actualCycleId = anim_id;
   }
   if (ImGui::SmallButton("As Action")) {
     model->getMixer()->executeAction(anim_id, in_delay, out_delay, 1.0f, auto_lock);
