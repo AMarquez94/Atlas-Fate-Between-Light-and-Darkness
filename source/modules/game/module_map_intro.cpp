@@ -29,23 +29,17 @@ bool CModuleMapIntro::start()
 		parseScene(scene_name, ctx);
 	}
 
-	//// -------------------------------------------
-	//if (!cb_camera.create(CB_CAMERA))
-	//	return false;
-	//// -------------------------------------------
-	//if (!cb_object.create(CB_OBJECT))
-	//	return false;
-
-	//if (!cb_light.create(CB_LIGHT))
-	//	return false;
-
-	//cb_light.activate();
-	//cb_object.activate();
-	//cb_camera.activate();
-
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 	mouse->setLockMouse(true);
 	ShowCursor(false);
+
+	CHandle h_camera = getEntityByName("TPCamera");
+	if (h_camera.isValid())
+		Engine.getCameras().setDefaultCamera(h_camera);
+
+	h_camera = getEntityByName("main_camera");
+	if (h_camera.isValid())
+		Engine.getCameras().setOutputCamera(h_camera);
 
 	auto om = getObjectManager<CEntity>();
 	om->forEach([](CEntity* e) {
@@ -59,9 +53,9 @@ bool CModuleMapIntro::start()
 
 bool CModuleMapIntro::stop()
 {
-	cb_camera.destroy();
-	cb_object.destroy();
-	cb_light.destroy();
+	Engine.getEntities().destroyAllEntities();
+	Engine.getCameras().deleteAllCameras();
+	Engine.getIA().clearSharedBoards();
 
 	return true;
 }

@@ -75,6 +75,20 @@ bool CModuleRender::start()
 
 	setBackgroundColor(0.0f, 0.125f, 0.3f, 1.f);
 
+	// -------------------------------------------
+	if (!cb_camera.create(CB_CAMERA))
+		return false;
+	// -------------------------------------------
+	if (!cb_object.create(CB_OBJECT))
+		return false;
+
+	if (!cb_light.create(CB_LIGHT))
+		return false;
+
+	cb_light.activate();
+	cb_object.activate();
+	cb_camera.activate();
+
 	camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
 	camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
 
@@ -92,10 +106,13 @@ bool CModuleRender::stop()
 
 	destroyRenderUtils();
 	destroyRenderObjects();
-
 	Resources.destroyAll();
-
 	Render.destroyDevice();
+
+	cb_camera.destroy();
+	cb_object.destroy();
+	cb_light.destroy();
+
 	return true;
 }
 
@@ -136,7 +153,7 @@ void CModuleRender::activateMainCamera() {
 
 	CCamera* cam = &camera;
 
-	CHandle h_e_camera = getEntityByName("TPCamera");
+	CHandle h_e_camera = getEntityByName("main_camera");
 	if (h_e_camera.isValid()) {
 		CEntity* e_camera = h_e_camera;
 		TCompCamera* c_camera = e_camera->get< TCompCamera >();
@@ -153,6 +170,7 @@ void CModuleRender::generateFrame() {
 	{
 		PROFILE_FUNCTION("CModuleRender::shadowsMapsGeneration");
 		CTraceScoped gpu_scope("shadowsMapsGeneration");
+
 		// Generate the shadow map for each active light
 		getObjectManager<TCompLight>()->forEach([](TCompLight* c) {
 			c->generateShadowMap();

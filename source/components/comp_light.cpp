@@ -122,6 +122,7 @@ void TCompLight::activate() {
 
 // ------------------------------------------------------
 void TCompLight::generateShadowMap() {
+
 	if (!shadows_rt || !shadows_enabled)
 		return;
 

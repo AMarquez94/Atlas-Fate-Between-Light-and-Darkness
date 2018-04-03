@@ -32,20 +32,6 @@ bool CModuleMapTest::start()
 	//camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
 	//camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
 
-	// -------------------------------------------
-	if (!cb_camera.create(CB_CAMERA))
-		return false;
-	// -------------------------------------------
-	if (!cb_object.create(CB_OBJECT))
-		return false;
-
-	if (!cb_light.create(CB_LIGHT))
-		return false;
-
-	cb_light.activate();
-	cb_object.activate();
-	cb_camera.activate();
-
 	auto om = getObjectManager<CEntity>();
 	om->forEach([](CEntity* e) {
 		TMsgSceneCreated msg;
@@ -62,9 +48,9 @@ bool CModuleMapTest::start()
 
 bool CModuleMapTest::stop()
 {
-	cb_camera.destroy();
-	cb_object.destroy();
-	cb_light.destroy();
+	Engine.getEntities().destroyAllEntities();
+	Engine.getCameras().deleteAllCameras();
+	Engine.getIA().clearSharedBoards();
 
 	return true;
 }

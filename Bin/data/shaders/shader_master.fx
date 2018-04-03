@@ -2,7 +2,7 @@
 
 Texture2D    txDiffuse      : register(t0);
 Texture2D    txLightmap     : register(t1);
-Texture2D    txLightProjector : register(t3);  // TS_LIGHT_PROJECTOR
+Texture2D    txLightProjector : register(t5);  // TS_LIGHT_PROJECTOR
 
 SamplerState samLinear      : register(s0);
 SamplerState samBorderLinear : register(s1);
