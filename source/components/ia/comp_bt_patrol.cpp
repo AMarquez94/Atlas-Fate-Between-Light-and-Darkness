@@ -652,7 +652,6 @@ bool TCompAIPatrol::conditionPlayerSeen(float dt)
 	std::string entityToChase = arguments["entityToChase_conditionPlayerSeen_managePlayerSeen"].getString();
 	assert(arguments.find("fov_conditionPlayerSeen_managePlayerSeen") != arguments.end());
 	float fov = deg2rad(arguments["fov_conditionPlayerSeen_managePlayerSeen"].getFloat());
-	float fov2 = arguments["fov_conditionPlayerSeen_managePlayerSeen"].getFloat();
 	assert(arguments.find("maxChaseDistance_conditionPlayerSeen_managePlayerSeen") != arguments.end());
 	float maxChaseDistance = arguments["maxChaseDistance_conditionPlayerSeen_managePlayerSeen"].getFloat();
 	

@@ -362,31 +362,26 @@ void TCompIAController::loadParameters(const json& j) {
 			switch (type) {
 			case CVariant::EType::BOOL:
 			{
-				bool newValue = it.value()["newValue"];
-				arguments[argCondName].setBool(newValue);
+				arguments[argCondName].setBool(it.value()["newValue"]);
+
 				break;
 			}
 			case CVariant::EType::FLOAT:
 			{
-				float fov2 = arguments["fov_conditionPlayerSeen_managePlayerSeen"].getFloat();
-				CVariant newValue;
-				newValue.setFloat(it.value()["newValue"]);
-				arguments[argCondName] = newValue;
-
-				fov2 = arguments["fov_conditionPlayerSeen_managePlayerSeen"].getFloat();
+				arguments[argCondName].setFloat(it.value()["newValue"]);
 
 				break;
 			}
 			case CVariant::EType::INT:
 			{
-				int newValue = it.value()["newValue"];
-				arguments[argCondName].setInt(newValue);
+				arguments[argCondName].setInt(it.value()["newValue"]);
+
 				break;
 			}
 			case CVariant::EType::STRING:
 			{
-				std::string newValue = it.value()["newValue"];
-				arguments[argCondName].setString(newValue);
+				arguments[argCondName].setString(it.value()["newValue"]);
+
 				break;
 			}
 			default:
@@ -419,26 +414,26 @@ void TCompIAController::loadParameters(const json& j) {
 			switch (type) {
 			case CVariant::EType::BOOL:
 			{
-				bool newValue = it.value()["newValue"];
-				arguments[argActName].setBool(newValue);
+				arguments[argCondName].setBool(it.value()["newValue"]);
+
 				break;
 			}
 			case CVariant::EType::FLOAT:
 			{
-				float newValue = it.value()["newValue"];
-				arguments[argActName].setFloat(newValue);
+				arguments[argCondName].setFloat(it.value()["newValue"]);
+
 				break;
 			}
 			case CVariant::EType::INT:
 			{
-				int newValue = it.value()["newValue"];
-				arguments[argActName].setInt(newValue);
+				arguments[argCondName].setInt(it.value()["newValue"]);
+
 				break;
 			}
 			case CVariant::EType::STRING:
 			{
-				std::string newValue = it.value()["newValue"];
-				arguments[argActName].setString(newValue);
+				arguments[argCondName].setString(it.value()["newValue"]);
+
 				break;
 			}
 			default:
