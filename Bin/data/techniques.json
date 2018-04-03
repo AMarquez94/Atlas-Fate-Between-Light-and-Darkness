@@ -23,7 +23,7 @@
 	"solid_objs_skin" : {
 		"vs_file": "data/shaders/solid.fx",
 		"vs_entry_point" : "VS_Objs_Skin",
-		"vertex_type" : "PosNUvSkin"
+		"vertex_type" : "PosNUvTanSkin"
 	},
 	"solid_normal" : {
 		"vs_file": "data/shaders/shader_master.fx",
