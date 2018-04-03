@@ -46,11 +46,11 @@ void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
 		CEntity* current_light = h;
 		TCompLight * c_light = current_light->get<TCompLight>();
 		if (c_light == NULL) continue;
-		if (c_light->type == "directional") // by now we will only retrieve directional lights
+		if (c_light->getType() == "directional") // by now we will only retrieve directional lights
 		{
 			static_lights.push_back(h);
 		}
-		else if (c_light->type == "spotlight" || c_light->type == "pointlight") // by now we will only retrieve directional lights
+		else if (c_light->getType() == "spotlight" || c_light->getType() == "pointlight") // by now we will only retrieve directional lights
 		{
 			TCompCollider * c_collider = current_light->get<TCompCollider>();
 			if (c_collider != NULL)

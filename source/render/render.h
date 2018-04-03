@@ -28,6 +28,7 @@ extern CRender Render;
 #define setDXName(dx_obj,new_name) \
         (dx_obj)->SetPrivateData(WKPDID_D3DDebugObjectName, (UINT)strlen(new_name), new_name);
 
+#include "render/gpu_trace.h"
 #include "render/mesh/mesh.h"
 #include "render/shaders/render_technique.h"
 #include "render/shaders/vertex_declarations.h"

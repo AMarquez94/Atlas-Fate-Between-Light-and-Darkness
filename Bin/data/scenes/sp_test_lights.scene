@@ -181,6 +181,8 @@
 				"projector" : "data/textures/batman.dds"
 				,
         "z_far" : 50
+				,
+				"casts_shadows" : false
       }
       ,
       "collider":

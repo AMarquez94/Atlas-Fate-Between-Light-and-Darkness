@@ -44,6 +44,9 @@ bool CVertexShader::create(const std::string& filename, const std::string& fn_en
   if (FAILED(hr))
     return false;
 
+  setDXName(vertex_layout, vtx_decl_name.c_str());
+  setDXName(vs, (filename + ":" + fn_entry_name).c_str());
+
   return true;
 
 }

@@ -22,6 +22,8 @@ bool CPixelShader::create(const std::string& filename, const std::string& fn_ent
   if (FAILED(hr))
     return false;
 
+  setDXName(ps, (filename + ":" + fn_entry_name).c_str());
+
   return true;
 }
 

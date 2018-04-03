@@ -4,7 +4,6 @@
 
 class CModuleMapIntro : public IModule
 {
-	CHandle h_e_camera;
 
 public:
 	CModuleMapIntro(const std::string& aname) : IModule(aname) { }

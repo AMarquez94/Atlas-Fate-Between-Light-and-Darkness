@@ -41,7 +41,7 @@ bool CMaterial::create(const std::string& name) {
 		std::string slot = it.key();
 		std::string texture_name = it.value();
 
-		eTextureSlot ts = TS_NUM_MATERIALS_SLOTS;
+		int ts = TS_NUM_MATERIALS_SLOTS;
 		if (slot == "albedo")
 			ts = TS_ALBEDO;
 		else if (slot == "normal")
@@ -68,20 +68,20 @@ void CMaterial::onFileChanged(const std::string& filename) {
 	}
 	else {
 		// Maybe a texture has been updated, get the new shader resource view
-		for (int i = 0; i < TS_NUM_MATERIALS_SLOTS; ++i)
+		for (int i = 0; i < max_textures; ++i)
 			srvs[i] = textures[i] ? textures[i]->getShaderResourceView() : nullptr;
 	}
 }
 
 void CMaterial::activate() const {
 	tech->activate();
-	Render.ctx->PSSetShaderResources(0, TS_NUM_MATERIALS_SLOTS, (ID3D11ShaderResourceView**)srvs);
+	Render.ctx->PSSetShaderResources(0, max_textures, (ID3D11ShaderResourceView**)srvs);
 }
 
 void CMaterial::debugInMenu() {
 	((CRenderTechnique*)tech)->debugInMenu();
 	ImGui::Checkbox("Cast Shadows", &cast_shadows);
-	for (int i = 0; i < TS_NUM_MATERIALS_SLOTS; ++i)
+	for (int i = 0; i < max_textures; ++i)
 		if (textures[i])
 			((CTexture*)textures[i])->debugInMenu();
 }

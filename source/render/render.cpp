@@ -4,6 +4,8 @@
 #include <DXGIDebug.h>
 
 #pragma comment(lib, "d3d11")
+#pragma comment(lib, "d3d9")      // For the perf funcs
+#pragma comment(lib, "dxguid")    // For the setDXName
 
 CRender Render;
 

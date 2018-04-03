@@ -51,5 +51,21 @@
 		"vs_entry_point" : "VS_Skin",
 		"vertex_type" : "PosNUvSkin",
 		"uses_skin" : true
+	},
+	"shadows" : {
+		"vs_file": "data/shaders/shader_master.fx",
+		"vs_entry_point" : "vs_Basic",
+		"vertex_type" : "PosNUv",
+		"ps_entry_point" : "ps_Basic",
+		"rs_config" : "shadows",
+		"category" : "shadows"
+	},
+	"shadows_skin" : {
+		"vs_file": "data/shaders/textured.fx",
+		"vs_entry_point" : "VS_Skin",
+		"vertex_type" : "PosNUvSkin",
+		"ps_entry_point" : "",
+		"rs_config" : "shadows",
+		"category" : "shadows"
 	}
 }

@@ -1,5 +1,5 @@
 #include "mcv_platform.h"
-#include "module_map_intro.h"
+#include "module_map_test.h"
 #include "camera/camera.h"
 #include "render/render_objects.h"
 #include "entity/entity.h"
@@ -17,9 +17,7 @@
 #include "input/devices/mouse.h"
 #include "input/enums.h"
 
-CCamera camera;
-
-bool CModuleMapIntro::start()
+bool CModuleMapTest::start()
 {
 	json jboot = loadJson("data/boot.json");
 	
@@ -31,8 +29,8 @@ bool CModuleMapIntro::start()
 		parseScene(scene_name, ctx);
 	}
 
-	camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
-	camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
+	//camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
+	//camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
 
 	// -------------------------------------------
 	if (!cb_camera.create(CB_CAMERA))
@@ -48,14 +46,6 @@ bool CModuleMapIntro::start()
 	cb_object.activate();
 	cb_camera.activate();
 
-	CHandle h_camera = getEntityByName("TPCamera");
-	if (h_camera.isValid())
-		Engine.getCameras().setDefaultCamera(h_camera);
-
-	h_camera = getEntityByName("main_camera");
-	if (h_camera.isValid())
-		Engine.getCameras().setOutputCamera(h_camera);
-
 	auto om = getObjectManager<CEntity>();
 	om->forEach([](CEntity* e) {
 		TMsgSceneCreated msg;
@@ -70,13 +60,8 @@ bool CModuleMapIntro::start()
 	return true;
 }
 
-bool CModuleMapIntro::stop()
+bool CModuleMapTest::stop()
 {
-	/* delete all entities in scene */
-	Engine.getEntities().destroyAllEntities();
-	Engine.getCameras().deleteAllCameras();
-	Engine.getIA().clearSharedBoards();
-
 	cb_camera.destroy();
 	cb_object.destroy();
 	cb_light.destroy();
@@ -84,38 +69,15 @@ bool CModuleMapIntro::stop()
 	return true;
 }
 
-void CModuleMapIntro::update(float delta)
+void CModuleMapTest::update(float delta)
 {
 	static VEC3 world_pos;
 	ImGui::DragFloat3("Pos", &world_pos.x, 0.025f, -50.f, 50.f);
 	VEC2 mouse = EngineInput.mouse()._position;
-
-	if (h_e_camera.isValid()) {
-		CEntity* e_camera = h_e_camera;
-		TCompCamera* c_camera = e_camera->get< TCompCamera >();
-
-		VEC3 screen_coords;
-		bool inside = c_camera->getScreenCoordsOfWorldCoord(world_pos, &screen_coords);
-		ImGui::Text("Inside: %s  Coords: %1.2f, %1.2f  Z:%f", inside ? "YES" : "NO ", screen_coords.x, screen_coords.y, screen_coords.z);
-		ImGui::Text("Mouse at %1.2f, %1.2f", mouse.x, mouse.y);
-	}
 }
 
-void CModuleMapIntro::render()
+void CModuleMapTest::render()
 {
-	// Find the entity with name 'the_camera'
-	h_e_camera = getEntityByName("main_camera");
-	if (h_e_camera.isValid()) {
-		CEntity* e_camera = h_e_camera;
-		TCompCamera* c_camera = e_camera->get< TCompCamera >();
-		assert(c_camera);
-		activateCamera(*c_camera);
-		CRenderManager::get().setEntityCamera(h_e_camera);
-	}
-	else {
-		activateCamera(camera);
-	}
-
 	// Render the grid
 	cb_object.obj_world = MAT44::Identity;
 	cb_object.obj_color = VEC4(1, 1, 1, 1);

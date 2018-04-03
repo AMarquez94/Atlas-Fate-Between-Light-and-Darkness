@@ -70,7 +70,8 @@ void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
 void TCompCamera::update(float dt) {
 
 	TCompTransform* c = get<TCompTransform>();
-	assert(c);
+	if (!c)
+		return;
 	this->lookAt(c->getPosition(), c->getPosition() + c->getFront(), c->getUp());
 
 }

@@ -14,6 +14,23 @@ void renderLine(VEC3 src, VEC3 dst, VEC4 color) {
   mesh->activateAndRender();
 }
 
+
+// ---------------------------------------------------------------
+// Reads a DX11 format from a string
+DXGI_FORMAT readFormat(const json& j, const std::string& label) {
+	std::string format = j.value(label, "");
+	assert(!format.empty());
+
+	if (format == "none")
+		return DXGI_FORMAT_UNKNOWN;
+	if (format == "R8G8B8A8_UNORM")
+		return DXGI_FORMAT_R8G8B8A8_UNORM;
+	if (format == "R32_TYPELESS")
+		return DXGI_FORMAT_R32_TYPELESS;
+
+	return DXGI_FORMAT_UNKNOWN;
+}
+
 // -----------------------------------------------
 struct CRasterizers {
 
@@ -26,7 +43,7 @@ struct CRasterizers {
 		if (FAILED(hr))
 			return false;
 		// Assing the name
-		// setDXName(rasterize_states[cfg], name);
+		setDXName(rasterize_states[cfg], name);
 		// Save also the name for the ui
 		names[cfg] = name;
 		return true;

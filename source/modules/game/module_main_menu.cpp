@@ -2,6 +2,7 @@
 #include "module_main_menu.h"
 #include "windows/app.h"
 #include "input/devices/mouse.h"
+#include "render/render_objects.h"
 
 bool CModuleMainMenu::start()
 {
@@ -19,6 +20,28 @@ bool CModuleMainMenu::start()
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 	mouse->setLockMouse(false);
 	ShowCursor(true);
+
+	// -------------------------------------------
+	if (!cb_camera.create(CB_CAMERA))
+		return false;
+	// -------------------------------------------
+	if (!cb_object.create(CB_OBJECT))
+		return false;
+
+	if (!cb_light.create(CB_LIGHT))
+		return false;
+
+	CHandle h_camera = getEntityByName("TPCamera");
+	if (h_camera.isValid())
+		Engine.getCameras().setDefaultCamera(h_camera);
+
+	h_camera = getEntityByName("main_camera");
+	if (h_camera.isValid())
+		Engine.getCameras().setOutputCamera(h_camera);
+
+	cb_light.activate();
+	cb_object.activate();
+	cb_camera.activate();
 
 	return true;
 }

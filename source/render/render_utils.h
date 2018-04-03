@@ -2,6 +2,7 @@
 #define INC_RENDER_UTILS_H_
 
 void renderLine(VEC3 src, VEC3 dst, VEC4 color);
+DXGI_FORMAT readFormat(const json& j, const std::string& label);
 
 // ---------------------------------------
 enum RSConfig {
@@ -32,6 +33,8 @@ void activateSampler(int slot, eSamplerType cfg);
 bool createRenderUtils();
 void destroyRenderUtils();
 void activateDefaultRenderState();
+
+RSConfig RSConfigFromString(const std::string& aname);
 
 #endif
 

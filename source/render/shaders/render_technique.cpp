@@ -45,8 +45,8 @@ bool CRenderTechnique::reloadVS() {
 bool CRenderTechnique::reloadPS() {
 
 	// To support shadow map generation which does not use any PS
-	//if (ps_name.empty())
-	//  return true;
+	if (ps_entry_point.empty())
+		return true;
 
 	auto new_ps = new CPixelShader;
 	if (!new_ps->create(ps_file.c_str(), ps_entry_point.c_str()))
@@ -80,6 +80,8 @@ bool CRenderTechnique::create(const std::string& name, json& j) {
 	category_id = getID(category.c_str());
 	uses_skin = j.value("uses_skin", false);
 
+	rs_config = RSConfigFromString(j.value("rs_config", "default"));
+
 	setNameAndClass(name, getResourceClassOf<CRenderTechnique>());
 
 	return true;
@@ -98,8 +100,17 @@ void CRenderTechnique::activate() const {
 		return;
 	assert(vs);
 	vs->activate();
-	assert(ps);
-	ps->activate();
+
+	// We might not have a valid ps, for example, when rendering the
+	// shadows maps
+	if (ps)
+		ps->activate();
+	else
+		Render.ctx->PSSetShader(nullptr, nullptr, 0);
+
+	// Activate my defined rs (rasterization state) config
+	activateRSConfig(rs_config);
+
 	// Save me as the current active technique
 	current = this;
 }

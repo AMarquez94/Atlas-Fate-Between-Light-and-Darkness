@@ -118,19 +118,9 @@ void CModuleEntities::render()
 
   CTagsManager::get().debugInMenu();
 
-  // I just need to activate one light... but at this moment...	
-  getObjectManager<TCompLight>()->forEach([](TCompLight* c) {
-	c->activate();
-  });
-
-  CRenderManager::get().renderCategory("default");
   CRenderManager::get().debugInMenu();
 
-  // Change the technique to some debug solid
-  auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
-  solid->activate();
-  for (auto om : om_to_render_debug)
-	  om->renderDebugAll();
+  renderDebugOfComponents();
 }
 
 void CModuleEntities::renderDebugOfComponents() {

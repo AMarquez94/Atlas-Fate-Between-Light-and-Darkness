@@ -5,7 +5,6 @@ CCamera::CCamera() {
 	
 	type = PERSPECTIVE;
 
-	aspect_ratio = 1.f;
 	setPerspective(deg2rad(60.f), 1.0f, 1000.f);
 	lookAt(VEC3(1, 0, 0), VEC3(0, 0, 0), VEC3(0, 1, 0));
 }
@@ -41,9 +40,7 @@ void CCamera::setPerspective(float new_fov_vertical, float new_z_near, float new
 	fov_vertical = new_fov_vertical;
 	z_near = new_z_near;
 	z_far = new_z_far;
-	assert(z_far > z_near);
 
-	aspect_ratio = (float)Render.width / (float)Render.height;
 	proj = MAT44::CreatePerspectiveFieldOfView(new_fov_vertical, aspect_ratio, new_z_near, new_z_far);
 	updateViewProj();
 }
@@ -55,10 +52,21 @@ void CCamera::setOrtographic(float ortosize, float new_z_near, float new_z_far) 
 	z_near = new_z_near;
 	z_far = new_z_far;
 	orto_size = ortosize;
-	assert(z_far > z_near);
 
 	proj = MAT44::CreateOrthographic(ortosize, ortosize, new_z_near, new_z_far);
 	updateViewProj();
+}
+
+void CCamera::setViewport(int x0, int y0, int width, int height) {
+	// save params
+	viewport.x0 = x0;
+	viewport.y0 = y0;
+	viewport.width = width;
+	viewport.height = height;
+
+	aspect_ratio = (float)width / (float)height;
+
+	setPerspective(fov_vertical, z_near, z_far);
 }
 
 bool CCamera::getScreenCoordsOfWorldCoord(VEC3 world_pos, VEC3* result) const {
@@ -66,9 +74,10 @@ bool CCamera::getScreenCoordsOfWorldCoord(VEC3 world_pos, VEC3* result) const {
 	// It's also dividing by w  -> [-1..1]
 	VEC3 pos_in_homo_space = VEC3::Transform(world_pos, getViewProjection());
 
+	// Convert to 0..1 and then to viewport coordinates
 	VEC3 pos_in_screen_space(
-		(pos_in_homo_space.x + 1.0f) * 0.5f * Render.width,
-		(1.0f - pos_in_homo_space.y) * 0.5f * Render.height,
+		viewport.x0 + (pos_in_homo_space.x + 1.0f) * 0.5f * viewport.width,
+		viewport.y0 + (1.0f - pos_in_homo_space.y) * 0.5f * viewport.height,
 		pos_in_homo_space.z
 	);
 

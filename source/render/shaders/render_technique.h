@@ -1,4 +1,5 @@
 #pragma once
+#include "render/render_utils.h"
 
 class CVertexShader;
 class CPixelShader;
@@ -15,6 +16,8 @@ class CRenderTechnique : public IResource {
 
 	std::string category = "default";
 	uint32_t category_id = 0;
+
+	RSConfig rs_config = RSCFG_DEFAULT;
 
 	bool reloadVS();
 	bool reloadPS();

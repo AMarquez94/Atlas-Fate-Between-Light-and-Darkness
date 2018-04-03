@@ -6,6 +6,20 @@
 #define CB_SKIN_BONES	2
 #define CB_LIGHT		3
 
+// -------------------------------------------------
+// Texture Slots
+// Materials
+#define TS_ALBEDO              0
+#define TS_LIGHTMAP            1
+#define TS_NORMAL              2
+// .. Other slots of the material
+#define TS_NUM_MATERIALS_SLOTS 3
+
+// Here goes the slots not associated to a material
+#define TS_LIGHT_PROJECTOR     5
+#define TS_LIGHT_SHADOW_MAP    6 
+
+// -------------------------------------------------
 #define MAX_SUPPORTED_BONES        128
 
 #ifdef WIN32
@@ -22,6 +36,7 @@
 #define MAT44                     matrix
 #define VEC4                      float4
 #define VEC3                      float3
+#define SLOT(slot_number)                 : register(t##slot_number)
 
 #endif
 
@@ -44,7 +59,15 @@ CB_DEF(CCteLight, CB_LIGHT)
 	VEC4  light_color;
 	VEC3  light_pos;
 	float light_intensity;
+
+	// Align x4
+	float light_shadows_step;
+	float light_shadows_inverse_resolution;     // 1.0f / 256.0
+	float light_shadows_step_with_inv_res;      // light_shadows_step * light_shadows_inverse_resolution
+	float light_dummy2;                           // To keep aligment at 4 floats
+												  // Align x4
 	MAT44 light_view_proj_offset;
+
 };
 
 CB_DEF(CCteSkinBones, CB_SKIN_BONES)

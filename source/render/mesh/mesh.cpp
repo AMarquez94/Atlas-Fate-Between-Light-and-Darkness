@@ -26,7 +26,13 @@ const CResourceClass* getResourceClassOf<CRenderMesh>() {
   return &the_resource_class;
 }
 
-
+void CRenderMesh::setNameAndClass(const std::string& new_name, const CResourceClass* new_class) {
+	IResource::setNameAndClass(new_name, new_class);
+	// Use the name to assign the same name to the DX objects
+	setDXName(vb, new_name.c_str());
+	if (ib)
+		setDXName(ib, new_name.c_str());
+}
 
 bool CRenderMesh::create(
   const void* vertex_data,

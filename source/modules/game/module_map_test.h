@@ -4,7 +4,6 @@
 
 class CModuleMapTest : public IModule
 {
-	CHandle h_e_camera;
 
 public:
 	CModuleMapTest(const std::string& aname) : IModule(aname) { }
