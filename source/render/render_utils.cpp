@@ -171,7 +171,7 @@ struct CSamplers {
 		return false;
 		setDXName(all_samplers[SAMPLER_BORDER_LINEAR], "BORDER_LINEAR");
 
-		/*
+		
 		// PCF sampling
 		D3D11_SAMPLER_DESC sampler_desc = {
 		D3D11_FILTER_COMPARISON_MIN_MAG_LINEAR_MIP_POINT,// D3D11_FILTER Filter;
@@ -191,6 +191,7 @@ struct CSamplers {
 		return false;
 		setDXName(all_samplers[SAMPLER_PCF_SHADOWS], "PCF_SHADOWS");
 
+		/*
 		ZeroMemory(&sampDesc, sizeof(sampDesc));
 		sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
 		sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;

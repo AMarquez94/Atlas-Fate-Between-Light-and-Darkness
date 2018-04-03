@@ -1,11 +1,4 @@
-#include "ctes.h"
-
-Texture2D    txDiffuse      : register(t0);
-Texture2D    txLightmap     : register(t1);
-Texture2D    txLightProjector : register(t5);  // TS_LIGHT_PROJECTOR
-
-SamplerState samLinear      : register(s0);
-SamplerState samBorderLinear : register(s1);
+#include "common.fx"
 
 static float3 Light = float3(-0.3575,0.7163,-0.5991);
 
@@ -103,17 +96,24 @@ float4 ps_Basic(VS_OUTPUT_BASIC input) : SV_Target
 	float3 pos_in_light_homo_space = pos_in_light_proj_space.xyz / pos_in_light_proj_space.w; // -1..1																							  // Use these coords to access the projector texture of the light dir
 	float4 light_projector_color = txLightProjector.Sample(samBorderLinear, pos_in_light_homo_space.xy);
 
+	float shadow_factor = computeShadowFactor( input.wPos );
+		
 	// Fade to zero in the last 1% of the zbuffer of the light
 	light_projector_color *= smoothstep(1.0f, 0.99f, pos_in_light_homo_space.z);
-	float3 Light = light_pos - input.wPos;
-	Light = normalize(Light);
 	
-	float diffuseAmount = dot(input.N, Light);
-	diffuseAmount = saturate(0.2 + diffuseAmount);
-	diffuseAmount = 0.2 + diffuseAmount;
+  // Diffuse amount N.L
+  float3 Light = light_pos - input.wPos;
+  Light = normalize( Light );
+  float diffuseAmount = dot( input.N, Light );
+  diffuseAmount = saturate( 0.2 + diffuseAmount );
 
-	float4 texture_albedo = txDiffuse.Sample(samLinear, input.UV);
-	return (texture_albedo * diffuseAmount * obj_color) + (light_projector_color* light_intensity * light_color);
+  float light_amount = diffuseAmount * shadow_factor;
+  
+	// Add a minimum of 0.25 of light
+  light_amount = 0.25 + light_amount * 0.75;
+	
+	float4 texture_albedo = txAlbedo.Sample(samLinear, input.UV);
+	return (texture_albedo * diffuseAmount * light_amount * obj_color) + (light_projector_color* light_intensity * light_color);
 }
 
 float4 ps_Lightmap(VS_OUTPUT_LIGHTMAP input) : SV_Target
@@ -137,7 +137,7 @@ float4 ps_Lightmap(VS_OUTPUT_LIGHTMAP input) : SV_Target
 	diffuseAmount = saturate( 0.2 + diffuseAmount );
 	diffuseAmount = 0.3 + diffuseAmount;
 
-	float4 texture_albedo = txDiffuse.Sample(samLinear, input.UV);
-	float4 texture_lightmap = txLightmap.Sample(samLinear, input.UVB);
+	float4 texture_albedo = txAlbedo.Sample(samLinear, input.UV);
+	float4 texture_lightmap = txLightMap.Sample(samLinear, input.UVB);
 	return texture_albedo * texture_lightmap * diffuseAmount * obj_color;
 }

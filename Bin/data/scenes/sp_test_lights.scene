@@ -164,25 +164,19 @@
       ,
       "light":
       {
-        "type": "spotlight"
-        ,
-				"proj_type": "ortographic"
-				,
-        "range": 29.2116
-        ,
-        "angle": 91.8
-        ,
-        "color": "255.0 255.0 255.0 255.0"
-        ,
-        "intensity": 1.0
-        ,
-        "shadows": true
-				,
-				"projector" : "data/textures/batman.dds"
-				,
-        "z_far" : 50
-				,
-				"casts_shadows" : false
+        "type": "spotlight",
+				"proj_type": "ortographic",
+        "range": 29.2116,
+        "angle": 91.8,
+        "color": "255.0 255.0 255.0 255.0",
+        "intensity": 1.0,
+        "shadows": true,
+				"projector" : "data/textures/batman.dds",
+        "z_far" : 50,
+        "casts_shadows" : true,
+        "shadows_step" : 1.0,
+        "shadows_resolution" : 256,
+        "shadows_fmt" : "R32_TYPELESS"
       }
       ,
       "collider":
