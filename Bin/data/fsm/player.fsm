@@ -6,13 +6,23 @@
 			"type" : "AnimationState",
 			"animation" : "idle",
 			"speed" : 0,
-			"size" : 1
+			"size" : 1,
+			"noise" : {
+				"is_only_once": false,
+				"radius": 0.01,
+				"time_to_repeat": 1
+			}
 		},
 		{
 			"name" : "idleAction",
 			"type" : "AnimationState",
 			"animation" : "idleAction",
-			"size" : 1
+			"size" : 1,
+			"noise" : {
+				"is_only_once": false,
+				"radius": 0.01,
+				"time_to_repeat": 1
+			}
 		},
 		{
 			"name" : "walk",
@@ -20,7 +30,12 @@
 			"animation" : "walk",
 			"speed" : 4,
 			"rotationSpeed": 10.0,
-			"size" : 1
+			"size" : 1,
+			"noise" : {
+				"is_only_once": false,
+				"radius": 2.0,
+				"time_to_repeat": 1
+			}
 		},
 		{
 			"name" : "run",
@@ -28,7 +43,12 @@
 			"animation" : "run",
 			"speed" : 5.5,
 			"rotationSpeed": 10.0,
-			"size" : 1
+			"size" : 1,
+			"noise" : {
+				"is_only_once": false,
+				"radius": 3.0,
+				"time_to_repeat": 0.75
+			}
 		},
 		{
 			"name" : "crouch",
@@ -36,7 +56,12 @@
 			"animation" : "crouch",
 			"speed" : 3,
 			"rotationSpeed": 5.0,
-			"size" : 0.25
+			"size" : 0.25,
+			"noise" : {
+				"is_only_once": false,
+				"radius": 1.0,
+				"time_to_repeat": 1
+			}
 		},
 		{
 			"name" : "entermerge",
@@ -48,6 +73,11 @@
 				"target" : "SMCameraHor",
 				"blendOut" : 0.0,
 				"blendIn" : 0.2
+			},
+			"noise" : {
+				"is_only_once": false,
+				"radius": 0.01,
+				"time_to_repeat": 1
 			}
 		},
 		{
@@ -56,7 +86,12 @@
 			"animation" : "merge",
 			"speed" : 4,
 			"size" : 0.1,
-			"radius" : 0.1
+			"radius" : 0.01,
+			"noise": {
+				"is_only_once": false,
+				"radius": 0.01,
+				"time_to_repeat": 1
+			}
 		},
 		{
 			"name" : "exitmerge",
@@ -69,6 +104,11 @@
 				"target" : "TPCamera",
 				"blendOut" : 0.4,
 				"blendIn" : 0.4
+			},
+			"noise" : {
+				"is_only_once": false,
+				"radius": 0.01,
+				"time_to_repeat": 1
 			}
 		},
 		{
@@ -81,6 +121,11 @@
 				"target" : "SMCameraHor",
 				"blendOut" : 0.0,
 				"blendIn" : 0.5
+			},
+			"noise" : {
+				"is_only_once": false,
+				"radius": 0.01,
+				"time_to_repeat": 1
 			}
 		},
 		{
@@ -89,28 +134,48 @@
 			"animation" : "fall",
 			"speed" : 2,
 			"force" : 3,
-			"size" : 1
+			"size" : 1,
+			"noise" : {
+				"is_only_once": false,
+				"radius": 0.01,
+				"time_to_repeat": 1
+			}
 		},
 		{
 			"name" : "attack",
 			"type" : "AttackState",
 			"animation" : "attack",
 			"damage" : 10,
-			"size" : 1
+			"size" : 1,
+			"noise" : {
+				"is_only_once": true,
+				"radius": 1.0,
+				"time_to_repeat": 1
+			}
 		},
 		{
 			"name" : "dead",
 			"type" : "DeadState",
 			"animation" : "dead",
 			"damage" : 10,
-			"size" : 1
+			"size" : 1,
+			"noise" : {
+				"is_only_once": true,
+				"radius": 0.01,
+				"time_to_repeat": 1
+			}
 		},
 		{
 			"name" : "removeInhibitor",
 			"type" : "RemoveInhibitor",
 			"animation" : "removenhibitor",
 			"damage" : 10,
-			"size" : 1
+			"size" : 1,
+			"noise" : {
+				"is_only_once": false,
+				"radius": 0.01,
+				"time_to_repeat": 1
+			}
 		}
 	],
 	"transitions" : [

@@ -17,6 +17,12 @@ struct TargetCamera {
 	float blendOut;
 };
 
+struct Noise {
+	bool isOnlyOnce;
+	float noiseRadius;
+	float timeToRepeat;
+};
+
 struct TMsgStateStart {
 	
 	actionhandler action_start;
@@ -26,6 +32,8 @@ struct TMsgStateStart {
 	float radius;
 
 	TargetCamera * target_camera = nullptr;
+
+	Noise * noise = nullptr;
 
 	DECL_MSG_ID();
 };
@@ -61,7 +69,6 @@ class TCompTempPlayerController : public TCompBase
 	float maxAttackDistance;
 	unsigned int initialPoints;
 	std::string auxCamera;
-	bool noiseMade;
 
 	/* Stamina private variables */
 	float stamina;

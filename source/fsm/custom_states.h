@@ -6,6 +6,8 @@
 namespace FSM
 {
 	TargetCamera * getTargetCamera(const json& jData);
+	
+	Noise * getNoise(const json& jData);
 
 	class AnimationState : public IState
 	{
@@ -15,6 +17,7 @@ namespace FSM
 
 	private:
 		TargetCamera * _target = nullptr;
+		Noise * _noise = nullptr;
 		float _size = 1.f;
 		float _radius = 0.3f;
 		float _speed = 1.f;
@@ -29,6 +32,7 @@ namespace FSM
 
 	private:
 		TargetCamera * _target = nullptr;
+		Noise * _noise = nullptr;
 		float _force = 1.f;
 		float _speed = 1.f;
 		float _size = 1.f;
@@ -44,6 +48,7 @@ namespace FSM
 
 	private:
 		TargetCamera * _target = nullptr;
+		Noise * _noise = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
 		float _radius = 0.3f;
@@ -59,6 +64,7 @@ namespace FSM
 
 	private:
 		TargetCamera * _target = nullptr;
+		Noise * _noise = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
 		float _radius = 0.3f;
@@ -74,6 +80,7 @@ namespace FSM
 
 	private:
 		TargetCamera * _target = nullptr;
+		Noise * _noise = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
 		float _radius = 0.3f;
@@ -89,6 +96,7 @@ namespace FSM
 
 	private:
 		TargetCamera * _target = nullptr;
+		Noise * _noise = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
 		float _radius = 0.3f;
@@ -103,6 +111,7 @@ namespace FSM
 
 	private:
 		TargetCamera * _target = nullptr;
+		Noise * _noise = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
 		float _radius = 0.3f;
@@ -117,6 +126,7 @@ namespace FSM
 
 	private:
 		TargetCamera * _target = nullptr;
+		Noise * _noise = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
 		float _radius = 0.3f;
@@ -131,6 +141,7 @@ namespace FSM
 
 	private:
 		TargetCamera * _target = nullptr;
+		Noise * _noise = nullptr;
 		float _size = 1.f;
 		float _speed = 1.f;
 		float _radius = 0.3f;
@@ -144,6 +155,7 @@ namespace FSM
 		virtual bool load(const json& jData);
 	private:
 		TargetCamera * _target = nullptr;
+		Noise * _noise = nullptr;
 		float _size = 1.f;
 		float _speed = 2.f;
 		float _radius = 0.3f;
@@ -157,6 +169,7 @@ namespace FSM
 		virtual bool load(const json& jData);
 	private:
 		TargetCamera * _target = nullptr;
+		Noise * _noise = nullptr;
 		float _size = 1.f;
 		float _speed = 2.f;
 		float _radius = 0.3f;
@@ -170,6 +183,7 @@ namespace FSM
 		virtual bool load(const json& jData);
 	private:
 		TargetCamera * _target = nullptr;
+		Noise * _noise = nullptr;
 		float _size = 1.f;
 		float _speed = 2.f;
 		float _radius = 0.3f;

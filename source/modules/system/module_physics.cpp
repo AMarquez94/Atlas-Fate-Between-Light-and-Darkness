@@ -143,7 +143,7 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
 		h_other_comp_collider.fromVoidPtr(pairs[i].otherActor->userData);
 		CEntity* e_trigger = h_trigger_comp_collider.getOwner();
 
-		dbg("trigger touch\n");
+		//dbg("trigger touch\n");
 		if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_FOUND)
 		{
 			e_trigger->sendMsg(TMsgTriggerEnter{ h_other_comp_collider.getOwner() });

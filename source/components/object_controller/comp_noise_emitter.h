@@ -16,7 +16,7 @@ public:
 private:
 
   CHandle _hSource;
-  float _timeToMakeNoise;
+  float _timeToRepeatNoise;
   float _timer = 0.f;
   bool _once = false;
   bool _onceNoiseMade = false;

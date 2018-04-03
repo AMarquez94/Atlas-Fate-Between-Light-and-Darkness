@@ -11,7 +11,8 @@ void TCompNoiseEmitter::debugInMenu() {
 }
 
 void TCompNoiseEmitter::load(const json& j, TEntityParseContext& ctx) {
-	_timeToMakeNoise = 2.f;
+	_timeToRepeatNoise = 2.f;
+	_once = true;
 }
 
 void TCompNoiseEmitter::registerMsgs()
@@ -53,10 +54,12 @@ void TCompNoiseEmitter::onMsgTriggerExit(const TMsgTriggerExit & msg)
 void TCompNoiseEmitter::onMsgMakeNoise(const TMsgMakeNoise & msg)
 {
 	_timer = INFINITY;
-	_timeToMakeNoise = msg.timeToMakeNoise;
+	_timeToRepeatNoise = msg.timeToRepeat;
 	_onceNoiseMade = false;
 	_once = msg.isOnlyOnce;
 	resizeEmitter(msg.noiseRadius);
+
+	dbg("Noise: radius %f - timeToRepeat %f - once %s\n", msg.noiseRadius, _timeToRepeatNoise, _once ? "true" : "false");
 }
 
 void TCompNoiseEmitter::resizeEmitter(float radius)
@@ -68,6 +71,7 @@ void TCompNoiseEmitter::resizeEmitter(float radius)
 	physx::PxShape * shape = cCollider->config->createShape();
 	cCollider->config->actor->detachShape(*cCollider->config->shape);
 	cCollider->config->actor->attachShape(*shape);
+	cCollider->config->shape = shape;
 	shape->release();
 }
 
@@ -75,7 +79,7 @@ void TCompNoiseEmitter::update(float dt)
 {
 	_timer += dt;
 
-	if (_timer > _timeToMakeNoise) {
+	if (_timer > _timeToRepeatNoise) {
 		if (!_once || _once && !_onceNoiseMade) {
 			
 			TCompTransform * tPos = get<TCompTransform>();
