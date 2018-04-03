@@ -20,8 +20,10 @@ private:
   float _timer = 0.f;
   bool _once = false;
   bool _onceNoiseMade = false;
+  bool _isNoise = false;
   std::vector<CHandle> hEntitiesInNoiseRadius;
 
+  void onMsgEntityCreated(const TMsgEntityCreated& msg);
   void onMsgTriggerEnter(const TMsgTriggerEnter& msg);
   void onMsgTriggerExit(const TMsgTriggerExit& msg);
   void onMsgMakeNoise(const TMsgMakeNoise& msg);

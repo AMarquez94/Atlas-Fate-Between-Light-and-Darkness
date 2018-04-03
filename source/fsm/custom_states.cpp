@@ -23,9 +23,18 @@ namespace FSM
 
 	Noise * getNoise(const json& jData) {
 		Noise * noise = new Noise();
-		noise->isOnlyOnce = jData.value("is_only_once", false);
-		noise->noiseRadius = jData.value("radius", 0.01f);
-		noise->timeToRepeat = jData.value("time_to_repeat", 1.f);
+		if (jData != NULL) {
+			noise->isNoise = true;
+			noise->isOnlyOnce = jData.value("is_only_once", false);
+			noise->noiseRadius = jData.value("radius", 0.01f);
+			noise->timeToRepeat = jData.value("time_to_repeat", 1.f);
+		}
+		else {
+			noise->isNoise = false;
+			noise->isOnlyOnce = false;
+			noise->noiseRadius = 0.01f;
+			noise->timeToRepeat = 1.f;
+		}
 
 		return noise;
 	}
@@ -38,7 +47,7 @@ namespace FSM
 		_speed = jData.value("speed", 4.f);
 		_size = jData.value("size", 1.f);
 		_radius = jData.value("radius", 0.3f);
-		_noise = getNoise(jData["noise"]);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
 		if(jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
@@ -62,7 +71,7 @@ namespace FSM
 		_size = jData.value("size", 1.f);
 		_radius = jData.value("radius", 0.3f);
 		_rotation_speed = jData.value("rotationSpeed", 10.f);
-		_noise = getNoise(jData["noise"]);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
 		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
@@ -88,7 +97,7 @@ namespace FSM
 		_size = jData.value("size", 1.f);
 		_radius = jData.value("radius", 0.3f);
 		_rotation_speed = jData.value("rotationSpeed", 10.f);
-		_noise = getNoise(jData["noise"]);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
 		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
@@ -114,7 +123,7 @@ namespace FSM
 		_size = jData.value("size", 1.f);
 		_radius = jData.value("radius", 0.3f);
 		_animationName = jData["animation"];
-		_noise = getNoise(jData["noise"]);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
 		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
@@ -138,7 +147,7 @@ namespace FSM
 		_size = jData.value("size", 1.f);
 		_radius = jData.value("radius", 0.3f);
 		_rotation_speed = jData.value("rotationSpeed", 10.f);
-		_noise = getNoise(jData["noise"]);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
 		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
@@ -163,7 +172,7 @@ namespace FSM
 		_speed = jData.value("speed", 3.f);
 		_size = jData.value("size", 1.f);
 		_radius = jData.value("radius", 0.3f);
-		_noise = getNoise(jData["noise"]);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
 		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
@@ -199,7 +208,7 @@ namespace FSM
 		_speed = jData.value("speed", 3.f);
 		_size = jData.value("size", 1.f);
 		_radius = jData.value("radius", 0.3f);
-		_noise = getNoise(jData["noise"]);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
 		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
@@ -226,7 +235,7 @@ namespace FSM
 		_speed = jData.value("speed", 3.f);
 		_size = jData.value("size", 1.f);
 		_radius = jData.value("radius", 0.3f);
-		_noise = getNoise(jData["noise"]);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
 		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
@@ -271,7 +280,7 @@ namespace FSM
 		_speed = jData.value("speed", 2.f);
 		_size = jData.value("size", 1.f);
 		_radius = jData.value("radius", 0.3f);
-		_noise = getNoise(jData["noise"]);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
 		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
@@ -294,7 +303,7 @@ namespace FSM
 		_speed = jData.value("speed", 2.f);
 		_size = jData.value("size", 1.f);
 		_radius = jData.value("radius", 0.3f);
-		_noise = getNoise(jData["noise"]);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
 		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
@@ -314,7 +323,7 @@ namespace FSM
 		_speed = jData.value("speed", 2.f);
 		_size = jData.value("size", 1.f);
 		_radius = jData.value("radius", 0.3f);
-		_noise = getNoise(jData["noise"]);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
 		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
@@ -335,7 +344,7 @@ namespace FSM
 		_speed = jData.value("speed", 2.f);
 		_size = jData.value("size", 1.f);
 		_radius = jData.value("radius", 0.3f);
-		_noise = getNoise(jData["noise"]);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
 		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}

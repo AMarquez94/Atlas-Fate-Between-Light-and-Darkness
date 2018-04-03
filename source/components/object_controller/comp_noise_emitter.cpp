@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "comp_noise_emitter.h"
 #include "components/comp_transform.h"
+#include "components/comp_hierarchy.h"
 #include "components/physics/comp_rigidbody.h"
 #include "entity/common_msgs.h"
 #include "physics/physics_collider.h"
@@ -17,14 +18,25 @@ void TCompNoiseEmitter::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompNoiseEmitter::registerMsgs()
 {
+	DECL_MSG(TCompNoiseEmitter, TMsgEntityCreated, onMsgEntityCreated);
 	DECL_MSG(TCompNoiseEmitter, TMsgTriggerEnter, onMsgTriggerEnter);
 	DECL_MSG(TCompNoiseEmitter, TMsgTriggerExit, onMsgTriggerExit);
 	DECL_MSG(TCompNoiseEmitter, TMsgMakeNoise, onMsgMakeNoise);
 }
 
+void TCompNoiseEmitter::onMsgEntityCreated(const TMsgEntityCreated & msg)
+{
+	TCompHierarchy * tHierarchy = get<TCompHierarchy>();
+	_hSource = getEntityByName(tHierarchy->parent_name);
+}
+
 void TCompNoiseEmitter::onMsgTriggerEnter(const TMsgTriggerEnter & msg)
 {
-	if (msg.h_other_entity != _hSource) {
+
+	CEntity * c_other = msg.h_other_entity;
+	TCompCollider * c_collider = c_other->get<TCompCollider>();
+
+	if (c_collider->config->group & FilterGroup::Enemy) {
 		bool found = false;
 		for (int i = 0; !found && i < hEntitiesInNoiseRadius.size(); i++) {
 			if (hEntitiesInNoiseRadius[i] == msg.h_other_entity) {
@@ -40,7 +52,11 @@ void TCompNoiseEmitter::onMsgTriggerEnter(const TMsgTriggerEnter & msg)
 
 void TCompNoiseEmitter::onMsgTriggerExit(const TMsgTriggerExit & msg)
 {
-	if (msg.h_other_entity != _hSource) {
+
+	CEntity * c_other = msg.h_other_entity;
+	TCompCollider * c_collider = c_other->get<TCompCollider>();
+
+	if (c_collider->config->group & FilterGroup::Enemy) {
 		bool found = false;
 		for (int i = 0; !found && i < hEntitiesInNoiseRadius.size(); i++) {
 			if (hEntitiesInNoiseRadius[i] == msg.h_other_entity) {
@@ -53,13 +69,14 @@ void TCompNoiseEmitter::onMsgTriggerExit(const TMsgTriggerExit & msg)
 
 void TCompNoiseEmitter::onMsgMakeNoise(const TMsgMakeNoise & msg)
 {
+	_isNoise = msg.isNoise;
 	_timer = INFINITY;
 	_timeToRepeatNoise = msg.timeToRepeat;
 	_onceNoiseMade = false;
 	_once = msg.isOnlyOnce;
 	resizeEmitter(msg.noiseRadius);
 
-	dbg("Noise: radius %f - timeToRepeat %f - once %s\n", msg.noiseRadius, _timeToRepeatNoise, _once ? "true" : "false");
+	dbg("Noise: is noise %s - Radius: %f - timeToRepeat: %f\n", _isNoise ? "true" : "false", msg.noiseRadius, msg.timeToRepeat);
 }
 
 void TCompNoiseEmitter::resizeEmitter(float radius)
@@ -79,7 +96,7 @@ void TCompNoiseEmitter::update(float dt)
 {
 	_timer += dt;
 
-	if (_timer > _timeToRepeatNoise) {
+	if (_isNoise && _timer > _timeToRepeatNoise) {
 		if (!_once || _once && !_onceNoiseMade) {
 			
 			TCompTransform * tPos = get<TCompTransform>();

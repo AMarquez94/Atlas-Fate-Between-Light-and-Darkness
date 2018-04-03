@@ -145,6 +145,7 @@ struct TMsgMakeNoise {
 	float noiseRadius;
 	bool isOnlyOnce;
 	float timeToRepeat;
+	bool isNoise;
 	DECL_MSG_ID();
 };
 

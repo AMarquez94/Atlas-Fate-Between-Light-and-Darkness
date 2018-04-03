@@ -21,6 +21,7 @@ struct Noise {
 	bool isOnlyOnce;
 	float noiseRadius;
 	float timeToRepeat;
+	bool isNoise;
 };
 
 struct TMsgStateStart {

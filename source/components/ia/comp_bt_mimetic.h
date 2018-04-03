@@ -57,6 +57,7 @@ private:
 	void onMsgEntityCreated(const TMsgEntityCreated& msg);
 	void onMsgPlayerDead(const TMsgPlayerDead& msg);
 	void onMsgMimeticStunned(const TMsgEnemyStunned& msg);
+	void onMsgNoiseListened(const TMsgNoiseMade& msg);
 
 	/* Aux functions */
 	const Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }

@@ -167,12 +167,21 @@ void TCompAIMimetic::onMsgMimeticStunned(const TMsgEnemyStunned & msg)
 	current = nullptr;
 }
 
+void TCompAIMimetic::onMsgNoiseListened(const TMsgNoiseMade & msg)
+{
+	CEntity* eSource = msg.hNoiseSource;
+	TCompName * tSourceName = eSource->get<TCompName>();
+	TCompName * tName = get<TCompName>();
+	dbg("Noise heard by %s coming from %s\n", tName->getName(), tSourceName->getName());
+}
+
 void TCompAIMimetic::registerMsgs()
 {
 	DECL_MSG(TCompAIMimetic, TMsgScenePaused, onMsgScenePaused);
 	DECL_MSG(TCompAIMimetic, TMsgEntityCreated, onMsgEntityCreated);
 	DECL_MSG(TCompAIMimetic, TMsgPlayerDead, onMsgPlayerDead);
 	DECL_MSG(TCompAIMimetic, TMsgEnemyStunned, onMsgMimeticStunned);
+	DECL_MSG(TCompAIMimetic, TMsgNoiseMade, onMsgNoiseListened);
 }
 
 void TCompAIMimetic::loadActions() {
