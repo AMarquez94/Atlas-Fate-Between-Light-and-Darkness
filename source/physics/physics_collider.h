@@ -19,6 +19,7 @@ public:
 	bool is_trigger = false;
 	bool is_controller = false;
 	physx::PxRigidActor* actor;
+	physx::PxShape* shape;
 
 	physx::PxU32 group;
 	physx::PxU32 mask;

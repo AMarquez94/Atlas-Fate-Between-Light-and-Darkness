@@ -13,6 +13,7 @@
 #include "render/mesh/mesh_loader.h"
 #include "components/comp_name.h"
 #include "windows/app.h"
+#include "components/comp_group.h"
 
 DECL_OBJ_MANAGER("player_tempcontroller", TCompTempPlayerController);
 
@@ -142,6 +143,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 	isInhibited = isGrounded = isMerged = false;
 	dbgDisableStamina = false;
 	paused = false;
+	noiseMade = false;
 }
 
 /* Call this function once the state has been changed */
@@ -181,7 +183,7 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg){
 
 /* Call this function once the state has finished */
 void TCompTempPlayerController::onStateFinish(const TMsgStateFinish& msg) {
-
+	noiseMade = false;
 	(this->*msg.action_finish)();
 }
 
@@ -225,7 +227,16 @@ void TCompTempPlayerController::onPlayerPaused(const TMsgScenePaused& msg) {
 
 /* Idle state method, no logic yet */
 void TCompTempPlayerController::idleState(float dt){
-
+	if (!noiseMade) {
+		noiseMade = true;
+		TMsgMakeNoise msg;
+		msg.isOnlyOnce = false;
+		msg.noiseRadius = 1.f;
+		msg.timeToMakeNoise = 1.f;
+		TCompGroup* cGroup = get<TCompGroup>();
+		CEntity* eNoiseEmitter = cGroup->getHandleByName("Noise Emitter");
+		eNoiseEmitter->sendMsg(msg);
+	}
 }
 
 /* Main thirdperson player motion movement handled here */
@@ -253,6 +264,17 @@ void TCompTempPlayerController::walkState(float dt){
 	Quaternion quat = Quaternion::Lerp(my_rotation, new_rotation, rotationSpeed * dt);
 	c_my_transform->setRotation(quat);
 	c_my_transform->setPosition(c_my_transform->getPosition() + dir * player_accel);
+
+	if (!noiseMade) {
+		noiseMade = true;
+		TMsgMakeNoise msg;
+		msg.isOnlyOnce = false;
+		msg.noiseRadius = 7.f;
+		msg.timeToMakeNoise = 1.f;
+		TCompGroup* cGroup = get<TCompGroup>();
+		CEntity* eNoiseEmitter = cGroup->getHandleByName("Noise Emitter");
+		eNoiseEmitter->sendMsg(msg);
+	}
 }
 
 /* Player motion movement when is shadow merged, tests included */

@@ -61,6 +61,7 @@ class TCompTempPlayerController : public TCompBase
 	float maxAttackDistance;
 	unsigned int initialPoints;
 	std::string auxCamera;
+	bool noiseMade;
 
 	/* Stamina private variables */
 	float stamina;

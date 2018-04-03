@@ -18,8 +18,14 @@ private:
   CHandle _hSource;
   float _timeToMakeNoise;
   float _timer = 0.f;
+  bool _once = false;
+  bool _onceNoiseMade = false;
+  std::vector<CHandle> hEntitiesInNoiseRadius;
 
   void onMsgTriggerEnter(const TMsgTriggerEnter& msg);
   void onMsgTriggerExit(const TMsgTriggerExit& msg);
+  void onMsgMakeNoise(const TMsgMakeNoise& msg);
+
+  void resizeEmitter(float radius);
 };
 

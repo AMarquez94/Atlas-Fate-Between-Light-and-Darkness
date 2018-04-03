@@ -49,6 +49,27 @@ void registerMsg(TMethod method) {
 #define DECL_MSG( acomp, amsg, amethod ) \
   registerMsg< acomp, amsg >(&acomp::amethod)
 
+template< typename TComp, typename TMsg >
+void unregisterMsg() {
+	std::pair< uint32_t, TCallbackSlot > v;
+	v.first = TMsg::getMsgID();
+	v.second.comp_type = getObjectManager<TComp>()->getType();
+	for (auto it = all_registered_msgs.begin(); it != all_registered_msgs.end(); )
+	{
+		if ((it->first) == v.first && it->second.comp_type == v.second.comp_type)
+		{
+			it = all_registered_msgs.erase(it);
+			break;
+		}
+		else {
+			it++;
+		}
+	}
+}
+
+#define UNDECL_MSG( acomp, amsg ) \
+  unregisterMsg< acomp, amsg >()
+
 uint32_t getNextUniqueMsgID();
 
 // Each TMsgStruct defining this will get assigned a new uint32_t
