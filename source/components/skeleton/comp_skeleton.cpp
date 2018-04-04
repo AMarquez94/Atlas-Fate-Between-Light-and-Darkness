@@ -56,10 +56,13 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
   model = new CalModel(core_model);
 
   // Play the first animation, at weight 100%, now!
-  actualCycleAnimId1 = 0;
-  actualCycleAnimId2 = 2;
-  model->getMixer()->blendCycle(actualCycleAnimId1, 0.5f, 0.f);
-  model->getMixer()->blendCycle(actualCycleAnimId2, 0.5f, 0.f);
+  actualCycleAnimId[0] = -1;
+  actualCycleAnimId[1] = -1;
+
+  actualCycleAnimId[0] = 0;
+  actualCycleAnimId[1] = 2;
+  model->getMixer()->blendCycle(actualCycleAnimId[0], 0.5f, 0.f);
+  model->getMixer()->blendCycle(actualCycleAnimId[1], 0.5f, 0.f);
   // Do a time zero update just to have the bones in a correct place
   model->update(0.f);
 }
@@ -68,8 +71,9 @@ void TCompSkeleton::update(float dt) {
   PROFILE_FUNCTION("updateSkel");
   assert(model);
 
-  if (actualCycleAnimId2 != -1) {
-
+  if (actualCycleAnimId[1] != -1 && lastFrameCyclicAnimationWeight != cyclicAnimationWeight) {
+	  model->getMixer()->blendCycle(actualCycleAnimId[0], cyclicAnimationWeight, 0.f);
+	  model->getMixer()->blendCycle(actualCycleAnimId[1], 1.f - cyclicAnimationWeight, 0.f);
   }
 
   TCompTransform* tmx = get<TCompTransform>();
@@ -77,6 +81,8 @@ void TCompSkeleton::update(float dt) {
   QUAT rot = tmx->getRotation();
   model->getMixer()->setWorldTransform(DX2Cal(pos), DX2Cal(rot));
   model->update(dt);
+
+  lastFrameCyclicAnimationWeight = cyclicAnimationWeight;
 }
 
 void TCompSkeleton::debugInMenu() {
@@ -96,13 +102,13 @@ void TCompSkeleton::debugInMenu() {
   ImGui::DragFloat("Out Delay", &out_delay, 0.01f, 0, 1.f);
   ImGui::DragFloat("Weight", &weight, 0.01f, 0, 1.f);
   if (lastWeight != weight) {
-	  model->getMixer()->blendCycle(actualCycleAnimId1, weight, 0.f);
-	  model->getMixer()->blendCycle(actualCycleAnimId2, 1 - weight, 0.f);
+	  model->getMixer()->blendCycle(actualCycleAnimId[0], weight, 0.f);
+	  model->getMixer()->blendCycle(actualCycleAnimId[1], 1.f - weight, 0.f);
   }
   ImGui::Checkbox("Auto lock", &auto_lock);
   if (ImGui::SmallButton("As Cycle")) {
 	  //model->getMixer()->clearCycle(actualCycleAnimId1, out_delay); 
-	  model->getMixer()->blendCycle(actualCycleAnimId1, weight, in_delay);
+	  model->getMixer()->blendCycle(actualCycleAnimId[1], weight, in_delay);
 	
 	//actualCycleId = anim_id;
   }
@@ -206,18 +212,43 @@ void TCompSkeleton::renderDebug() {
 }
 
 
-void changeCyclicAnimation(int animId) {
+void TCompSkeleton::changeCyclicAnimation(int animId, float in_delay,  float out_delay) {
 
+	model->getMixer()->clearCycle(actualCycleAnimId[0], out_delay);
+	if (actualCycleAnimId[1] != -1) {
+		model->getMixer()->clearCycle(actualCycleAnimId[1], out_delay);
+	}
+	model->getMixer()->blendCycle(animId, 1.0f, in_delay);
+	actualCycleAnimId[0] = animId;
+	actualCycleAnimId[1] = -1;
 }
-void changeCyclicAnimation(int anim1Id, int anim2Id, float weight) {
+void TCompSkeleton::changeCyclicAnimation(int anim1Id, int anim2Id, float weight, float in_delay, float out_delay) {
 
+	model->getMixer()->clearCycle(actualCycleAnimId[0], out_delay);
+	if (actualCycleAnimId[1] != -1) {
+		model->getMixer()->clearCycle(actualCycleAnimId[1], out_delay);
+	}
+	model->getMixer()->blendCycle(anim1Id, weight, in_delay);
+	model->getMixer()->blendCycle(anim2Id, 1.f - weight, in_delay);
+	actualCycleAnimId[0] = anim1Id;
+	actualCycleAnimId[1] = anim2Id;
 }
-void executeActionAnimation(int animId) {
+void TCompSkeleton::executeActionAnimation(int animId, float in_delay, float out_delay) {
+	bool auto_lock = false;
+	model->getMixer()->executeAction(animId, in_delay, out_delay, 1.0f, auto_lock);
+}
 
+void TCompSkeleton::setCyclicAnimationWeight(float new_value) {
+
+	cyclicAnimationWeight = new_value;
 }
-void setCyclicAnimationWeight(float new_value) {
-	
+
+float TCompSkeleton::getCyclicAnimationWeight() {
+
+	return cyclicAnimationWeight;
 }
-float getCyclicAnimationWeight() {
-	return 0.f;
+
+int TCompSkeleton::getAnimationIdByName(std::string animName) {
+
+	return -1;
 }
