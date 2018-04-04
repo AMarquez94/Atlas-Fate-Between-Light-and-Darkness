@@ -40,4 +40,13 @@ using json = nlohmann::json;
 #include "engine.h"
 #include "resources/resources_manager.h"
 
+extern "C"
+{
+#include "lua-5.3.4/src/lua.h"
+#include "lua-5.3.4/src/lualib.h"
+#include "lua-5.3.4/src/lauxlib.h"
+
+}
+
+
 #endif

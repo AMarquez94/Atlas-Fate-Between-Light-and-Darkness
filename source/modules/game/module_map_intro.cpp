@@ -20,6 +20,7 @@ CCamera camera;
 
 bool CModuleMapIntro::start()
 {
+	lua_State *ls;
 	{
 		TEntityParseContext ctx;
 		parseScene("data/scenes/milestone1_map_lights.scene", ctx);
