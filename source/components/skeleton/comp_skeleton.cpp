@@ -54,11 +54,12 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
   auto res_skel = Resources.get(skel_name)->as< CGameCoreSkeleton >();
   CalCoreModel* core_model = const_cast<CGameCoreSkeleton*>(res_skel);
   model = new CalModel(core_model);
-  
+
   // Play the first animation, at weight 100%, now!
-  actualCycleId = 0;
-  model->getMixer()->blendCycle(actualCycleId, 0.5f, 0.f);
-  
+  actualCycleAnimId1 = 0;
+  actualCycleAnimId2 = 2;
+  model->getMixer()->blendCycle(actualCycleAnimId1, 0.5f, 0.f);
+  model->getMixer()->blendCycle(actualCycleAnimId2, 0.5f, 0.f);
   // Do a time zero update just to have the bones in a correct place
   model->update(0.f);
 }
@@ -66,6 +67,11 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
 void TCompSkeleton::update(float dt) {
   PROFILE_FUNCTION("updateSkel");
   assert(model);
+
+  if (actualCycleAnimId2 != -1) {
+
+  }
+
   TCompTransform* tmx = get<TCompTransform>();
   VEC3 pos = tmx->getPosition();
   QUAT rot = tmx->getRotation();
@@ -76,10 +82,11 @@ void TCompSkeleton::update(float dt) {
 void TCompSkeleton::debugInMenu() {
   static int anim_id = 0;
   static float weight = 1.0f;
+  static float lastWeight = 1.0f;
   static float in_delay = 0.3f;
   static float out_delay = 0.3f;
   static bool auto_lock = false;
-
+  dbg("%f\n\n", weight);
   // Play aacton/cycle from the menu
   ImGui::DragInt("Anim Id", &anim_id, 0.1f, 0, model->getCoreModel()->getCoreAnimationCount()-1);
   auto core_anim = model->getCoreModel()->getCoreAnimation(anim_id);
@@ -88,10 +95,17 @@ void TCompSkeleton::debugInMenu() {
   ImGui::DragFloat("In Delay", &in_delay, 0.01f, 0, 1.f);
   ImGui::DragFloat("Out Delay", &out_delay, 0.01f, 0, 1.f);
   ImGui::DragFloat("Weight", &weight, 0.01f, 0, 1.f);
+  if (lastWeight != weight) {
+	  //model->getMixer()->clearCycle(actualCycleAnimId1, 0.f);
+	  model->getMixer()->blendCycle(actualCycleAnimId1, weight, 0.f);
+	  //model->getMixer()->clearCycle(actualCycleAnimId2, 0.f);
+	  model->getMixer()->blendCycle(actualCycleAnimId2, 1 - weight, 0.f);
+  }
   ImGui::Checkbox("Auto lock", &auto_lock);
   if (ImGui::SmallButton("As Cycle")) {
-    model->getMixer()->blendCycle(anim_id, weight, in_delay);
-	//model->getMixer()->clearCycle(actualCycleId, out_delay);
+	  //model->getMixer()->clearCycle(actualCycleAnimId1, out_delay); 
+	  model->getMixer()->blendCycle(actualCycleAnimId1, weight, in_delay);
+	
 	//actualCycleId = anim_id;
   }
   if (ImGui::SmallButton("As Action")) {
@@ -143,6 +157,7 @@ void TCompSkeleton::debugInMenu() {
       core_skel->debugInMenu();
     ImGui::TreePop();
   }
+  lastWeight = weight;
 }
 
 void TCompSkeleton::updateCtesBones() {
@@ -190,4 +205,21 @@ void TCompSkeleton::renderDebug() {
   float scale = transform->getScale();
   for (int currLine = 0; currLine < nrLines; currLine++)
     renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale, VEC4(1, 1, 1, 1));
+}
+
+
+void changeCyclicAnimation(int animId) {
+
+}
+void changeCyclicAnimation(int anim1Id, int anim2Id, float weight) {
+
+}
+void executeActionAnimation(int animId) {
+
+}
+void setCyclicAnimationWeight(float new_value) {
+	
+}
+float getCyclicAnimationWeight() {
+	return 0.f;
 }
