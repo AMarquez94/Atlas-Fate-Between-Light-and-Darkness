@@ -55,6 +55,13 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
   CalCoreModel* core_model = const_cast<CGameCoreSkeleton*>(res_skel);
   model = new CalModel(core_model);
 
+  for (int i = 0; i < model->getCoreModel()->getCoreAnimationCount();i++) {
+
+	  auto core_anim = model->getCoreModel()->getCoreAnimation(i);
+	  if (core_anim)
+		stringAnimationIdMap[core_anim->getName()] = i;
+  }
+  int a = getAnimationIdByName("hola");
   // Play the first animation, at weight 100%, now!
   actualCycleAnimId[0] = -1;
   actualCycleAnimId[1] = -1;
@@ -248,7 +255,12 @@ float TCompSkeleton::getCyclicAnimationWeight() {
 	return cyclicAnimationWeight;
 }
 
+//Returns the id value of the animation in the skeleton component. 
+//If -1 is returned is because the animation name doesen't exists.
 int TCompSkeleton::getAnimationIdByName(std::string animName) {
-
+	
+	if (stringAnimationIdMap.find(animName) != stringAnimationIdMap.end()) {
+		return stringAnimationIdMap[animName];
+	}
 	return -1;
 }

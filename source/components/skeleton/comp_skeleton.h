@@ -9,7 +9,7 @@ class CalModel;
 
 struct TCompSkeleton : public TCompBase {
 
-
+	std::map<std::string, int> stringAnimationIdMap;
 	int actualCycleAnimId[2];
 	float cyclicAnimationWeight;
 	float lastFrameCyclicAnimationWeight;
