@@ -9,7 +9,13 @@ class CalModel;
 
 struct TCompSkeleton : public TCompBase {
 
-	int actualCycleId;
+	struct AnimationSet {
+		int* animations;
+		float weight = 1.0f;
+	};
+
+  int actualCycleId;
+  float weights;
   CRenderCte<CCteSkinBones> cb_bones;
   CalModel* model = nullptr;
   TCompSkeleton();

@@ -97,6 +97,9 @@ void TCompSkeleton::debugInMenu() {
   if (ImGui::SmallButton("As Action")) {
     model->getMixer()->executeAction(anim_id, in_delay, out_delay, 1.0f, auto_lock);
   }
+  if (ImGui::SmallButton("Set Zero")) {
+	  model->getMixer()->setAnimationTime(0.f);
+  }
 
   // Dump Mixer
   auto mixer = model->getMixer();
