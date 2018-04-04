@@ -18,6 +18,7 @@
 // Here goes the slots not associated to a material
 #define TS_LIGHT_PROJECTOR     5
 #define TS_LIGHT_SHADOW_MAP    6 
+#define TS_ENVIRONMENT_MAP     7
 
 // -------------------------------------------------
 #define MAX_SUPPORTED_BONES        128

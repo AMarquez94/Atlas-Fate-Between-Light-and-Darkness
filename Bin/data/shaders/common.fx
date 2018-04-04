@@ -8,6 +8,8 @@ Texture2D    txLightMap       SLOT( TS_LIGHTMAP );
 Texture2D    txLightProjector SLOT( TS_LIGHT_PROJECTOR );
 Texture2D    txLightShadowMap SLOT( TS_LIGHT_SHADOW_MAP );
 
+TextureCube  txEnvironmentMap SLOT( TS_ENVIRONMENT_MAP );
+
 //--------------------------------------------------------------------------------------
 SamplerState samLinear        : register(s0);
 SamplerState samBorderLinear  : register(s1);

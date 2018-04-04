@@ -2,6 +2,8 @@
 #include "render_technique.h"
 #include "pixel_shader.h"
 #include "vertex_shader.h"
+#include "render/texture/texture.h"
+#include "ctes.h"              // TS_CUBEMAP...
 
 const CRenderTechnique* CRenderTechnique::current = nullptr;
 
@@ -82,6 +84,23 @@ bool CRenderTechnique::create(const std::string& name, json& j) {
 
 	rs_config = RSConfigFromString(j.value("rs_config", "default"));
 
+	  // Load textures associated to this technique
+	if (j.count("textures")) {
+		auto& j_textures = j["textures"];
+		for (auto it = j_textures.begin(); it != j_textures.end(); ++it) {
+			TSlot s;
+			if (it.key() == "environment") {
+				s.slot = TS_ENVIRONMENT_MAP;
+			}
+			else {
+				fatal("Invalid key '%s' in textures for technique %s\n", it.key().c_str(), name.c_str());
+				continue;
+			}
+			s.texture = Resources.get(it.value())->as<CTexture>();
+			textures.push_back(s);
+		}
+	}
+
 	setNameAndClass(name, getResourceClassOf<CRenderTechnique>());
 
 	return true;
@@ -110,6 +129,10 @@ void CRenderTechnique::activate() const {
 
 	// Activate my defined rs (rasterization state) config
 	activateRSConfig(rs_config);
+
+	// Activate the textures associated to this technique
+		for (auto& t : textures)
+			t.texture->activate(t.slot);
 
 	// Save me as the current active technique
 	current = this;

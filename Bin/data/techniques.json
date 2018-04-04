@@ -37,7 +37,10 @@
 		"vs_entry_point" : "vs_Basic",
 		"vertex_type" : "PosNUv",
 		"ps_file": "data/shaders/shader_master.fx",
-		"ps_entry_point" : "ps_Basic"
+		"ps_entry_point" : "ps_Basic",
+		"textures" : { 
+			"environment" : "data/textures/cubemaps/beach.dds" 
+		}
 	},
 	"textured_bk" : {
 		"vs_file": "data/shaders/shader_master.fx",

@@ -101,6 +101,14 @@ float4 ps_Basic(VS_OUTPUT_BASIC input) : SV_Target
 	// Fade to zero in the last 1% of the zbuffer of the light
 	light_projector_color *= smoothstep(1.0f, 0.99f, pos_in_light_homo_space.z);
 	
+	// Sample in the direction of the N with a bias
+  float4 env_color = txEnvironmentMap.SampleBias(samLinear, input.N, 5 );
+
+	// Sample in the reflected direction of the eye
+	float3 eye = camera_pos - input.wPos;
+	float3 eye_refl = reflect( -eye, input.N );
+	float4 env_color_refl = txEnvironmentMap.Sample(samLinear, eye_refl );
+
   // Diffuse amount N.L
   float3 Light = light_pos - input.wPos;
   Light = normalize( Light );
@@ -110,10 +118,10 @@ float4 ps_Basic(VS_OUTPUT_BASIC input) : SV_Target
   float light_amount = diffuseAmount * shadow_factor;
   
 	// Add a minimum of 0.25 of light
-  light_amount = 0.25 + light_amount * 0.75;
+  light_amount = 0.35 + light_amount * 0.75;
 	
 	float4 texture_albedo = txAlbedo.Sample(samLinear, input.UV);
-	return (texture_albedo * diffuseAmount * light_amount * obj_color) + (light_projector_color* light_intensity * light_color);
+	return env_color * (texture_albedo * diffuseAmount * light_amount * obj_color) + (light_projector_color* light_intensity * light_color);
 }
 
 float4 ps_Lightmap(VS_OUTPUT_LIGHTMAP input) : SV_Target
