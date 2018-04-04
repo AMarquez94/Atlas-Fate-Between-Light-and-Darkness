@@ -38,6 +38,7 @@ private:
 	/* Timers */
 	float timerWaitingInWpt = 0.f;
 	float timerWaitingInObservation = 0.f;
+	float timerToExplode = 0.f;
 
 	bool isSlept = false;
 	EType type;
@@ -81,6 +82,7 @@ public:
 
 	/* ACTIONS */
 	BTNode::ERes actionStunned(float dt);
+	BTNode::ERes actionExplode(float dt);
 	BTNode::ERes actionResetObserveVariables(float dt);
 	BTNode::ERes actionObserveLeft(float dt);
 	BTNode::ERes actionObserveRight(float dt);

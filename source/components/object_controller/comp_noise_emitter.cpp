@@ -5,10 +5,20 @@
 #include "components/physics/comp_rigidbody.h"
 #include "entity/common_msgs.h"
 #include "physics/physics_collider.h"
+#include "components/comp_name.h"
+#include "components/comp_tags.h"
 
 DECL_OBJ_MANAGER("noise_emitter", TCompNoiseEmitter);
 
 void TCompNoiseEmitter::debugInMenu() {
+	ImGui::Separator();
+	for (int i = 0; i < hEntitiesInNoiseRadius.size(); i++) {
+		CEntity *e = hEntitiesInNoiseRadius[i];
+		TCompName *tName = e->get<TCompName>();
+		std::string temp = tName->getName();
+		ImGui::Text("Nombre: %s", temp.c_str());
+	}
+	ImGui::Separator();
 }
 
 void TCompNoiseEmitter::load(const json& j, TEntityParseContext& ctx) {
@@ -34,9 +44,10 @@ void TCompNoiseEmitter::onMsgTriggerEnter(const TMsgTriggerEnter & msg)
 {
 
 	CEntity * c_other = msg.h_other_entity;
-	TCompCollider * c_collider = c_other->get<TCompCollider>();
+	TCompTags * tTag = c_other->get<TCompTags>();
+	
 
-	if (c_collider->config->group & FilterGroup::Enemy) {
+	if (tTag && tTag->hasTag(getID("enemy"))) {
 		bool found = false;
 		for (int i = 0; !found && i < hEntitiesInNoiseRadius.size(); i++) {
 			if (hEntitiesInNoiseRadius[i] == msg.h_other_entity) {
@@ -52,11 +63,11 @@ void TCompNoiseEmitter::onMsgTriggerEnter(const TMsgTriggerEnter & msg)
 
 void TCompNoiseEmitter::onMsgTriggerExit(const TMsgTriggerExit & msg)
 {
-
 	CEntity * c_other = msg.h_other_entity;
-	TCompCollider * c_collider = c_other->get<TCompCollider>();
+	TCompTags * tTag = c_other->get<TCompTags>();
 
-	if (c_collider->config->group & FilterGroup::Enemy) {
+
+	if (tTag && tTag->hasTag(getID("enemy"))) {
 		bool found = false;
 		for (int i = 0; !found && i < hEntitiesInNoiseRadius.size(); i++) {
 			if (hEntitiesInNoiseRadius[i] == msg.h_other_entity) {
@@ -106,8 +117,13 @@ void TCompNoiseEmitter::update(float dt)
 			for (int i = 0; i < hEntitiesInNoiseRadius.size(); i++) {
 
 				/* TODO: tirar rayos y esas vergas para amortiguar sonido con paredes */
-				CEntity *e = hEntitiesInNoiseRadius[i];
-				e->sendMsg(msg);
+				if (hEntitiesInNoiseRadius[i].isValid()) {
+					CEntity *e = hEntitiesInNoiseRadius[i];
+					e->sendMsg(msg);
+				}
+				else {
+					hEntitiesInNoiseRadius.erase(hEntitiesInNoiseRadius.begin() + i);
+				}
 			}
 
 			_timer = 0;

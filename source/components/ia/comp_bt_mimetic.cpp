@@ -35,7 +35,9 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 	//TCompIAController::loadTree(j);
 	
 	createRoot("mimetic", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
-	addChild("mimetic", "stunned", BTNode::EType::ACTION, (BTCondition)&TCompAIMimetic::conditionHasBeenStunned, (BTAction)&TCompAIMimetic::actionStunned, nullptr);
+	addChild("mimetic", "manageStun", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionHasBeenStunned, nullptr, nullptr);
+	addChild("manageStun", "stunned", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionStunned, nullptr);
+	addChild("manageStun", "exploded", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionExplode, nullptr);
 	
 	addChild("mimetic", "manageInactive", BTNode::EType::PRIORITY, (BTCondition)&TCompAIMimetic::conditionIsNotActive, nullptr, nullptr);
 	addChild("manageInactive", "manageInactiveTypeSleep", BTNode::EType::PRIORITY, (BTCondition)&TCompAIMimetic::conditionIsSlept, nullptr, nullptr);
@@ -203,6 +205,19 @@ void TCompAIMimetic::loadAsserts() {
 
 BTNode::ERes TCompAIMimetic::actionStunned(float dt)
 {
+	timerToExplode += dt;
+
+	if (timerToExplode > 1.f) {
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		return BTNode::ERes::STAY;
+	}
+}
+
+BTNode::ERes TCompAIMimetic::actionExplode(float dt)
+{
+	CHandle(this).getOwner().destroy();
 	return BTNode::ERes::STAY;
 }
 

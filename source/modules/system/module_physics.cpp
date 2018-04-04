@@ -131,17 +131,26 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
 {
 	for (PxU32 i = 0; i < count; ++i)
 	{
-		if (pairs[i].flags & (PxTriggerPairFlag::eREMOVED_SHAPE_TRIGGER | PxTriggerPairFlag::eREMOVED_SHAPE_OTHER))
-		{
-			continue;
-		}
 
 		CHandle h_trigger_comp_collider;
 		h_trigger_comp_collider.fromVoidPtr(pairs[i].triggerActor->userData);
 
 		CHandle h_other_comp_collider;
 		h_other_comp_collider.fromVoidPtr(pairs[i].otherActor->userData);
+
+		if (!h_other_comp_collider.isValid() || !h_trigger_comp_collider.isValid() || !h_trigger_comp_collider.getOwner().isValid()) {
+			continue;
+		}
+
 		CEntity* e_trigger = h_trigger_comp_collider.getOwner();
+
+		if (pairs[i].flags & (PxTriggerPairFlag::eREMOVED_SHAPE_TRIGGER | PxTriggerPairFlag::eREMOVED_SHAPE_OTHER))
+		{
+			e_trigger->sendMsg(TMsgTriggerExit{ h_other_comp_collider.getOwner() });
+			TCompCollider * comp = (TCompCollider*)h_trigger_comp_collider;
+			TCompCollider * comp_enemy = (TCompCollider*)h_other_comp_collider;
+			continue;
+		}
 
 		//dbg("trigger touch\n");
 		if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_FOUND)
