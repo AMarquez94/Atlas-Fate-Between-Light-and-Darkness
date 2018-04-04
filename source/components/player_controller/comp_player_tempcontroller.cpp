@@ -187,9 +187,6 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg){
 			CEntity * eNoiseEmitter = tGroup->getHandleByName("Noise Emitter");
 			eNoiseEmitter->sendMsg(msgToSend);
 		}
-		else {
-			dbg("Fallo raro raro\n\n\n");
-		}
 	}
 }
 
