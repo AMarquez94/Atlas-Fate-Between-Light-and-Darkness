@@ -18,9 +18,20 @@
 
 CCamera camera;
 
+
+static int sum_lol(lua_State *L) {
+	int n = lua_gettop(L);
+	int sum = 0;
+	for (int i = 1; i <= n; i++) {
+		sum += lua_tonumber(L, i);
+	}
+	lua_pushnumber(L, sum);				//pushear resultados a la pila
+	return 1;							//devolver el num de resultados que hemos puesto en la pila
+}
+
+
 bool CModuleMapIntro::start()
 {
-	lua_State *ls;
 	{
 		TEntityParseContext ctx;
 		parseScene("data/scenes/milestone1_map_lights.scene", ctx);
@@ -56,6 +67,11 @@ bool CModuleMapIntro::start()
 
 	camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
 	camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
+
+	lua_State *ls = luaL_newstate();
+	lua_register(ls, "hello", sum_lol);
+	int sum = luaL_dofile(ls, "test.lua");
+	lua_close(ls);
 
 	// -------------------------------------------
 	if (!cb_camera.create(CB_CAMERA))
