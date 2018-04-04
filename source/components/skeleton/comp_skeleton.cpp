@@ -96,9 +96,7 @@ void TCompSkeleton::debugInMenu() {
   ImGui::DragFloat("Out Delay", &out_delay, 0.01f, 0, 1.f);
   ImGui::DragFloat("Weight", &weight, 0.01f, 0, 1.f);
   if (lastWeight != weight) {
-	  //model->getMixer()->clearCycle(actualCycleAnimId1, 0.f);
 	  model->getMixer()->blendCycle(actualCycleAnimId1, weight, 0.f);
-	  //model->getMixer()->clearCycle(actualCycleAnimId2, 0.f);
 	  model->getMixer()->blendCycle(actualCycleAnimId2, 1 - weight, 0.f);
   }
   ImGui::Checkbox("Auto lock", &auto_lock);
