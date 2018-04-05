@@ -22,6 +22,7 @@ struct Noise {
 	float noiseRadius;
 	float timeToRepeat;
 	bool isNoise;
+	bool isArtificial;
 };
 
 struct TMsgStateStart {

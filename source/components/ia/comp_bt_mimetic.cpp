@@ -47,29 +47,29 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 	addChild("manageInactiveTypeSleep", "sleep", BTNode::EType::ACTION, (BTCondition)&TCompAIMimetic::conditionNotListenedNoise, (BTAction)&TCompAIMimetic::actionSleep, nullptr);
 	addChild("manageInactiveTypeSleep", "wakeUp", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWakeUp, nullptr);
 
-	addChild("manageInactiveTypeWall", "manageObserveTypeWall", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionIsNotPlayerInFov, nullptr, nullptr);
+	addChild("manageInactiveTypeWall", "manageObserveTypeWall", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionIsNotPlayerInFovAndNotNoise, nullptr, nullptr);
 	addChild("manageInactiveTypeWall", "setActiveTypewall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetActive, nullptr);
 
 	addChild("manageObserveTypeWall", "resetVariablesObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionResetObserveVariables, nullptr);
-	addChild("manageObserveTypeWall", "turnLeftObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionObserveLeft, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
-	addChild("manageObserveTypeWall", "waitLeftObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitObserving, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
-	addChild("manageObserveTypeWall", "turnRightObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionObserveRight, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
-	addChild("manageObserveTypeWall", "waitRightObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitObserving, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
+	addChild("manageObserveTypeWall", "turnLeftObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionObserveLeft, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
+	addChild("manageObserveTypeWall", "waitLeftObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitObserving, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
+	addChild("manageObserveTypeWall", "turnRightObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionObserveRight, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
+	addChild("manageObserveTypeWall", "waitRightObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitObserving, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
 
-	addChild("manageInactiveTypeFloor", "manageInactiveBehaviour", BTNode::EType::PRIORITY, (BTCondition)&TCompAIMimetic::conditionIsNotPlayerInFov, nullptr, nullptr);
+	addChild("manageInactiveTypeFloor", "manageInactiveBehaviour", BTNode::EType::PRIORITY, (BTCondition)&TCompAIMimetic::conditionIsNotPlayerInFovAndNotNoise, nullptr, nullptr);
 	addChild("manageInactiveTypeFloor", "setActiveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetActive, nullptr);
 	addChild("manageInactiveBehaviour", "manageObserveTypeFloor", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionHasNotWaypoints, nullptr, nullptr);
 	addChild("manageInactiveBehaviour", "managePatrol", BTNode::EType::SEQUENCE, nullptr, nullptr, nullptr);
 	
 	addChild("manageObserveTypeFloor", "resetVariablesObserveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionResetObserveVariables, nullptr);
-	addChild("manageObserveTypeFloor", "turnLeftObserveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionObserveLeft, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
-	addChild("manageObserveTypeFloor", "waitLeftObserveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitObserving, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
-	addChild("manageObserveTypeFloor", "turnRightObserveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionObserveRight, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
-	addChild("manageObserveTypeFloor", "waitRightObserveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitObserving, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
+	addChild("manageObserveTypeFloor", "turnLeftObserveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionObserveLeft, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
+	addChild("manageObserveTypeFloor", "waitLeftObserveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitObserving, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
+	addChild("manageObserveTypeFloor", "turnRightObserveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionObserveRight, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
+	addChild("manageObserveTypeFloor", "waitRightObserveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitObserving, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
 	
-	addChild("managePatrol", "goToWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToWpt, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
+	addChild("managePatrol", "goToWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToWpt, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
 	addChild("managePatrol", "resetTimerWaitInWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionResetTimerWaiting, nullptr);
-	addChild("managePatrol", "waitInWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitInWpt, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
+	addChild("managePatrol", "waitInWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitInWpt, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
 	addChild("managePatrol", "nextWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionNextWpt, nullptr);
 
 	addChild("mimetic", "manageChase", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionPlayerSeenForSure, nullptr, nullptr);
@@ -77,26 +77,36 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 	addChild("manageChase", "resetVariablesChase", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionResetVariablesChase, nullptr);
 	addChild("manageChase", "chasePlayerWithNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionChasePlayerWithNoise, nullptr);
 
+	addChild("mimetic", "manageArtificialNoise", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionHasHeardArtificialNoise, nullptr, nullptr);
+	addChild("manageArtificialNoise", "markArtificialNoiseAsInactive", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionMarkNoiseAsInactive, nullptr);
+	addChild("manageArtificialNoise", "goToNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToNoiseSource, nullptr/*(BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise*/);
+	addChild("manageArtificialNoise", "waitInNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitInNoiseSource, nullptr/*(BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise*/);
+
 	addChild("mimetic", "manageSuspect", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionNotSurePlayerInFov, nullptr, nullptr);
 	addChild("manageSuspect", "suspect", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSuspect, nullptr);
-	addChild("manageSuspect", "rotateToInitialPosSuspect", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionRotateToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
+	addChild("manageSuspect", "rotateToInitialPosSuspect", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionRotateToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
+
+	addChild("mimetic", "manageNaturalNoise", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionHasHeardNaturalNoise, nullptr, nullptr);
+	addChild("manageNaturalNoise", "markNaturalNoiseAsInactive", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionMarkNoiseAsInactive, nullptr);
+	addChild("manageNaturalNoise", "rotateToNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionRotateToNoiseSource, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
+	addChild("manageNaturalNoise", "setGoInactiveAfterNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetGoInactive, nullptr);
 
 	addChild("mimetic", "managePlayerLost", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionNotGoingInactive, nullptr, nullptr);
-	addChild("managePlayerLost", "goToPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToPlayerLastPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
+	addChild("managePlayerLost", "goToPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToPlayerLastPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
 	addChild("managePlayerLost", "resetTimerWaitInPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionResetTimerWaiting, nullptr);
-	addChild("managePlayerLost", "waitInPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitInPlayerLastPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
-	addChild("managePlayerLost", "setGoInactive", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetGoInactive, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
+	addChild("managePlayerLost", "waitInPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitInPlayerLastPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
+	addChild("managePlayerLost", "setGoInactive", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetGoInactive, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
 
 	addChild("mimetic", "manageGoingInactive", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
 	addChild("manageGoingInactive", "manageGoingInactiveTypeWall", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionIsTypeWall, nullptr, nullptr);
-	addChild("manageGoingInactiveTypeWall", "goToInitialPosTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
-	addChild("manageGoingInactiveTypeWall", "rotateToInitialPosTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionRotateToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
+	addChild("manageGoingInactiveTypeWall", "goToInitialPosTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
+	addChild("manageGoingInactiveTypeWall", "rotateToInitialPosTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionRotateToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
 	addChild("manageGoingInactiveTypeWall", "jumpWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionJumpWall, nullptr);
 	addChild("manageGoingInactiveTypeWall", "holdOnWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionHoldOnWall, nullptr);
 	addChild("manageGoingInactiveTypeWall", "setInactiveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetInactive, nullptr);
 	addChild("manageGoingInactive", "manageGoingInactiveTypeFloor", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionIsTypeFloor, nullptr, nullptr);
-	addChild("manageGoingInactiveTypeFloor", "goToInitialPosTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
-	addChild("manageGoingInactiveTypeFloor", "rotateToInitialPosTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionRotateToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFov);
+	addChild("manageGoingInactiveTypeFloor", "goToInitialPosTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
+	addChild("manageGoingInactiveTypeFloor", "rotateToInitialPosTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionRotateToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
 	addChild("manageGoingInactiveTypeFloor", "setInactiveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetInactive, nullptr);
 
 	if (j.count("waypoints") > 0) {
@@ -171,10 +181,19 @@ void TCompAIMimetic::onMsgMimeticStunned(const TMsgEnemyStunned & msg)
 
 void TCompAIMimetic::onMsgNoiseListened(const TMsgNoiseMade & msg)
 {
-	CEntity* eSource = msg.hNoiseSource;
-	TCompName * tSourceName = eSource->get<TCompName>();
-	TCompName * tName = get<TCompName>();
-	dbg("Noise heard by %s coming from %s\n", tName->getName(), tSourceName->getName());
+	if (!msg.isArtificialNoise && !isPlayerInFov()) {
+		hasHeardNaturalNoise = true;
+		noiseSource = msg.noiseOrigin;
+	}
+	else {
+		if (msg.isArtificialNoise) {
+			hasHeardArtificialNoise = true;
+		}
+		else {
+			hasHeardNaturalNoise = true;
+		}
+		noiseSource = msg.noiseOrigin;
+	}
 }
 
 void TCompAIMimetic::registerMsgs()
@@ -407,6 +426,13 @@ BTNode::ERes TCompAIMimetic::actionSuspect(float dt)
 	}
 }
 
+BTNode::ERes TCompAIMimetic::actionRotateToNoiseSource(float dt)
+{
+	TCompTransform *myPos = get<TCompTransform>();
+	bool isInObjective = rotateTowardsVec(noiseSource, rotationSpeedObservation, dt);
+	return isInObjective ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
+}
+
 BTNode::ERes TCompAIMimetic::actionResetVariablesChase(float dt)
 {
 	goingInactive = false;
@@ -442,6 +468,44 @@ BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
 			vfwd.Normalize();
 			vp = vp + chaseSpeed * dt * vfwd;
 			mypos->setPosition(vp);
+		return BTNode::ERes::STAY;
+	}
+}
+
+BTNode::ERes TCompAIMimetic::actionMarkNoiseAsInactive(float dt)
+{
+	timerWaitingInObservation = 0.f;
+	hasHeardArtificialNoise = false;
+	hasHeardNaturalNoise = false;
+	return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIMimetic::actionGoToNoiseSource(float dt)
+{
+	TCompTransform *mypos = get<TCompTransform>();
+	rotateTowardsVec(noiseSource, rotationSpeedObservation, dt);
+
+	VEC3 vp = mypos->getPosition();
+	if (VEC3::Distance(noiseSource, vp) < speed * dt) {
+		mypos->setPosition(noiseSource);
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		VEC3 vfwd = mypos->getFront();
+		vfwd.Normalize();
+		vp = vp + speed * dt *vfwd;
+		mypos->setPosition(vp);				//Move towards wpt
+		return BTNode::ERes::STAY;
+	}
+}
+
+BTNode::ERes TCompAIMimetic::actionWaitInNoiseSource(float dt)
+{
+	timerWaitingInObservation += dt;
+	if (timerWaitingInObservation > 1.f) {
+		return BTNode::ERes::LEAVE;
+	}
+	else {
 		return BTNode::ERes::STAY;
 	}
 }
@@ -518,7 +582,6 @@ BTNode::ERes TCompAIMimetic::actionRotateToInitialPos(float dt)
 	TCompTransform *myPos = get<TCompTransform>();
 	bool isInObjective = rotateTowardsVec(myPos->getPosition() + initialLookAt, rotationSpeedObservation, dt);
 	return isInObjective ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
-	return BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIMimetic::actionJumpWall(float dt)
@@ -560,9 +623,9 @@ bool TCompAIMimetic::conditionIsTypeWall(float dt)
 	return type == EType::WALL;
 }
 
-bool TCompAIMimetic::conditionIsNotPlayerInFov(float dt)
+bool TCompAIMimetic::conditionIsNotPlayerInFovAndNotNoise(float dt)
 {
-	return !isPlayerInFov();
+	return !hasHeardNaturalNoise && !hasHeardArtificialNoise && !isPlayerInFov();
 }
 
 bool TCompAIMimetic::conditionIsNotActive(float dt)
@@ -587,7 +650,7 @@ bool TCompAIMimetic::conditionHasNotWaypoints(float dt)
 
 bool TCompAIMimetic::conditionNotListenedNoise(float dt)
 {
-	return false;
+	return hasHeardNaturalNoise || hasHeardArtificialNoise;
 }
 
 bool TCompAIMimetic::conditionNotSurePlayerInFov(float dt)
@@ -595,9 +658,19 @@ bool TCompAIMimetic::conditionNotSurePlayerInFov(float dt)
 	return suspectO_Meter < 1.f && (suspectO_Meter > 0.f || isPlayerInFov());
 }
 
+bool TCompAIMimetic::conditionHasHeardNaturalNoise(float dt)
+{
+	return hasHeardNaturalNoise;
+}
+
 bool TCompAIMimetic::conditionPlayerSeenForSure(float dt)
 {
 	return isPlayerInFov() && suspectO_Meter >= 1.f;
+}
+
+bool TCompAIMimetic::conditionHasHeardArtificialNoise(float dt)
+{
+	return hasHeardArtificialNoise;
 }
 
 bool TCompAIMimetic::conditionIsPlayerInFov(float dt)
@@ -611,6 +684,11 @@ bool TCompAIMimetic::conditionNotGoingInactive(float dt)
 }
 
 /* ASSERTS */
+
+bool TCompAIMimetic::assertNotPlayerInFovNorNoise(float dt)
+{
+	return !hasHeardArtificialNoise && !hasHeardNaturalNoise && !isPlayerInFov();
+}
 
 bool TCompAIMimetic::assertNotPlayerInFov(float dt)
 {

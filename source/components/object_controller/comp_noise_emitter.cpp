@@ -85,6 +85,7 @@ void TCompNoiseEmitter::onMsgMakeNoise(const TMsgMakeNoise & msg)
 	_timeToRepeatNoise = msg.timeToRepeat;
 	_onceNoiseMade = false;
 	_once = msg.isOnlyOnce;
+	_artificial = msg.isArtificial;
 	resizeEmitter(msg.noiseRadius);
 
 	dbg("Noise: is noise %s - Radius: %f - timeToRepeat: %f\n", _isNoise ? "true" : "false", msg.noiseRadius, msg.timeToRepeat);
@@ -114,6 +115,7 @@ void TCompNoiseEmitter::update(float dt)
 			TMsgNoiseMade msg;
 			msg.hNoiseSource = _hSource;
 			msg.noiseOrigin = tPos->getPosition();
+			msg.isArtificialNoise = _artificial;
 			for (int i = 0; i < hEntitiesInNoiseRadius.size(); i++) {
 
 				/* TODO: tirar rayos y esas vergas para amortiguar sonido con paredes */

@@ -182,6 +182,7 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg){
 		msgToSend.isOnlyOnce = msg.noise->isOnlyOnce;
 		msgToSend.noiseRadius = msg.noise->noiseRadius;
 		msgToSend.timeToRepeat = msg.noise->timeToRepeat;
+		msgToSend.isArtificial = msg.noise->isArtificial;
 		TCompGroup * tGroup = get<TCompGroup>();
 		if (tGroup) {
 			CEntity * eNoiseEmitter = tGroup->getHandleByName("Noise Emitter");

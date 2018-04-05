@@ -138,6 +138,7 @@ struct TMsgScenePaused {
 struct TMsgNoiseMade {
 	CHandle hNoiseSource;
 	VEC3 noiseOrigin;
+	bool isArtificialNoise;
 	DECL_MSG_ID();
 };
 
@@ -146,6 +147,7 @@ struct TMsgMakeNoise {
 	bool isOnlyOnce;
 	float timeToRepeat;
 	bool isNoise;
+	bool isArtificial;
 	DECL_MSG_ID();
 };
 

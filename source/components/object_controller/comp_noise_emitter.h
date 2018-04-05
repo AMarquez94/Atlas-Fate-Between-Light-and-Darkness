@@ -21,6 +21,7 @@ private:
   bool _once = false;
   bool _onceNoiseMade = false;
   bool _isNoise = false;
+  bool _artificial = false;
   std::vector<CHandle> hEntitiesInNoiseRadius;
 
   void onMsgEntityCreated(const TMsgEntityCreated& msg);

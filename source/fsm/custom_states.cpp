@@ -28,12 +28,14 @@ namespace FSM
 			noise->isOnlyOnce = jData.value("is_only_once", false);
 			noise->noiseRadius = jData.value("radius", 0.01f);
 			noise->timeToRepeat = jData.value("time_to_repeat", 1.f);
+			noise->isArtificial = jData.value("is_artificial", false);
 		}
 		else {
 			noise->isNoise = false;
 			noise->isOnlyOnce = false;
 			noise->noiseRadius = 0.01f;
 			noise->timeToRepeat = 1.f;
+			noise->isArtificial = false;
 		}
 
 		return noise;
