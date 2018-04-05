@@ -5,8 +5,8 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/ovw/prop_wall_outerior.dds"
-    ,
+    "albedo": "data/textures/ovw/fieldstone-c.dds",
+		"normal": "data/textures/ovw/fieldstone-n.dds",
     "lightmap": "data/textures/default_texture.dds"
   }
 }

@@ -11,31 +11,35 @@
 		"vs_entry_point" : "VS_Objs",
 		"vertex_type" : "PosNUv",
 		"ps_file": "data/shaders/solid.fx",
-		"ps_entry_point" : "PS"
+		"ps_entry_point" : "PS",
+		"rs_config" : "wireframe"
 	},
 	"solid_objs_uv2" : {
 		"vs_file": "data/shaders/solid.fx",
 		"vs_entry_point" : "VS_Objs_uv2",
-		"vertex_type" : "PosNUvUv",
+		"vertex_type" : "PosNUvUvT",
 		"ps_file": "data/shaders/solid.fx",
-		"ps_entry_point" : "PS"
+		"ps_entry_point" : "PS",
+		"rs_config" : "wireframe"
 	},
 	"solid_objs_skin" : {
 		"vs_file": "data/shaders/solid.fx",
 		"vs_entry_point" : "VS_Objs_Skin",
-		"vertex_type" : "PosNUvSkin"
+		"vertex_type" : "PosNUvSkin",
+		"rs_config" : "wireframe"
 	},
 	"solid_normal" : {
-		"vs_file": "data/shaders/shader_master.fx",
-		"vs_entry_point" : "vs_Basic",
+		"vs_file": "data/shaders/solid.fx",
+		"vs_entry_point" : "VS_Objs",
 		"vertex_type" : "PosNUv",
-		"ps_file": "data/shaders/shader_master.fx",
-		"ps_entry_point" : "ps_BasicNormal"
+		"ps_file": "data/shaders/solid.fx",
+		"ps_entry_point" : "PS",
+		"rs_config" : "wireframe"
 	},
 	"textured" : {
 		"vs_file": "data/shaders/shader_master.fx",
 		"vs_entry_point" : "vs_Basic",
-		"vertex_type" : "PosNUv",
+		"vertex_type" : "PosNUvUvT",
 		"ps_file": "data/shaders/shader_master.fx",
 		"ps_entry_point" : "ps_Basic",
 		"textures" : { 

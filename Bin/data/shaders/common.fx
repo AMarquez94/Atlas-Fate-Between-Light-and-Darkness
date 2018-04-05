@@ -4,10 +4,10 @@
 //--------------------------------------------------------------------------------------
 Texture2D    txAlbedo         SLOT( TS_ALBEDO );
 Texture2D    txLightMap       SLOT( TS_LIGHTMAP );
+Texture2D    txNormal       	SLOT( TS_NORMAL );
 
 Texture2D    txLightProjector SLOT( TS_LIGHT_PROJECTOR );
 Texture2D    txLightShadowMap SLOT( TS_LIGHT_SHADOW_MAP );
-
 TextureCube  txEnvironmentMap SLOT( TS_ENVIRONMENT_MAP );
 
 //--------------------------------------------------------------------------------------
@@ -89,3 +89,24 @@ float computeShadowFactor( float3 wPos ) {
   return shadow_factor / 12.f;
 }
 
+float3 computeNormalMap( float3 inputN, float4 inputT, float2 inUV ) {
+
+  // You might want to normalize input.N and input.T.xyz
+
+  // Normal map comes in the range 0..1. Recover it in the range -1..1
+  float3 normal_color = txNormal.Sample(samLinear, inUV).xyz * 2.0 - 1.0;
+
+  // Prepare a 3x3 matrix to convert from tangent space to world space
+  float3 N = inputN; 
+  float3 T = inputT.xyz;
+  float3 B = cross( N, T ) * inputT.w;
+
+  float3x3 TBN = float3x3( T, B, N );
+  float3 wN = mul( normal_color, TBN );
+  wN = normalize( wN );
+
+  // Uncomment to disable normal map
+  //wN = N;
+
+  return wN;
+}
