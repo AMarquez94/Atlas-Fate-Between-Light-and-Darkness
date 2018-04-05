@@ -61,7 +61,7 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
 	  if (core_anim)
 		stringAnimationIdMap[core_anim->getName()] = i;
   }
-  int a = getAnimationIdByName("hola");
+
   // Play the first animation, at weight 100%, now!
   actualCycleAnimId[0] = -1;
   actualCycleAnimId[1] = -1;
@@ -218,7 +218,6 @@ void TCompSkeleton::renderDebug() {
     renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale, VEC4(1, 1, 1, 1));
 }
 
-
 void TCompSkeleton::changeCyclicAnimation(int animId, float in_delay,  float out_delay) {
 
 	model->getMixer()->clearCycle(actualCycleAnimId[0], out_delay);
@@ -229,6 +228,7 @@ void TCompSkeleton::changeCyclicAnimation(int animId, float in_delay,  float out
 	actualCycleAnimId[0] = animId;
 	actualCycleAnimId[1] = -1;
 }
+
 void TCompSkeleton::changeCyclicAnimation(int anim1Id, int anim2Id, float weight, float in_delay, float out_delay) {
 
 	model->getMixer()->clearCycle(actualCycleAnimId[0], out_delay);
@@ -240,16 +240,20 @@ void TCompSkeleton::changeCyclicAnimation(int anim1Id, int anim2Id, float weight
 	actualCycleAnimId[0] = anim1Id;
 	actualCycleAnimId[1] = anim2Id;
 }
+
 void TCompSkeleton::executeActionAnimation(int animId, float in_delay, float out_delay) {
+
 	bool auto_lock = false;
 	model->getMixer()->executeAction(animId, in_delay, out_delay, 1.0f, auto_lock);
 }
 
+//Set the weight added to a combination of twi cyclic animations
 void TCompSkeleton::setCyclicAnimationWeight(float new_value) {
 
 	cyclicAnimationWeight = new_value;
 }
 
+//Get the weight added to a combination of twi cyclic animations
 float TCompSkeleton::getCyclicAnimationWeight() {
 
 	return cyclicAnimationWeight;
@@ -263,4 +267,17 @@ int TCompSkeleton::getAnimationIdByName(std::string animName) {
 		return stringAnimationIdMap[animName];
 	}
 	return -1;
+}
+
+//Return if there is an animation of the type action executing
+bool TCompSkeleton::actionAnimationOnExecution() {
+
+	return false;
+}
+
+//return if the specified animation is executing
+bool TCompSkeleton::isExecutingAnimation(int animId) {
+	
+	//return model->getMixer()->getAnimationActionList().size > 0;
+	return false;
 }

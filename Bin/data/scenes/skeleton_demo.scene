@@ -14,6 +14,7 @@
       },
       "abs_aabb":true,
       "local_aabb":true,
+      "player_animator":true,
       "render" : [
         {
           "mesh": "data/skeletons/cally/cally.mesh"

@@ -30,6 +30,8 @@ struct TCompSkeleton : public TCompBase {
 	void setCyclicAnimationWeight(float new_value);
 	float getCyclicAnimationWeight();
 	int getAnimationIdByName(std::string animName);
+	bool actionAnimationOnExecution();
+	bool isExecutingAnimation(int animId);
 
 	DECL_SIBLING_ACCESS();
 };
