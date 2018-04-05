@@ -56,6 +56,8 @@ private:
 	float amountRotatedObserving = 0.f;
 	float maxAmountRotateObserving = deg2rad(45.f);
 
+	float rotationSpeedNoise = deg2rad(120.f);
+
 	DECL_SIBLING_ACCESS();
 
 	void onMsgEntityCreated(const TMsgEntityCreated& msg);

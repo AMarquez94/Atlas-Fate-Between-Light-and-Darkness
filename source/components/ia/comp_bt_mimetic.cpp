@@ -79,6 +79,7 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 
 	addChild("mimetic", "manageArtificialNoise", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionHasHeardArtificialNoise, nullptr, nullptr);
 	addChild("manageArtificialNoise", "markArtificialNoiseAsInactive", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionMarkNoiseAsInactive, nullptr);
+	addChild("manageArtificialNoise", "jumpFloorNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionJumpFloor, nullptr);
 	addChild("manageArtificialNoise", "goToNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToNoiseSource, nullptr/*(BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise*/);
 	addChild("manageArtificialNoise", "waitInNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitInNoiseSource, nullptr/*(BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise*/);
 
@@ -429,7 +430,7 @@ BTNode::ERes TCompAIMimetic::actionSuspect(float dt)
 BTNode::ERes TCompAIMimetic::actionRotateToNoiseSource(float dt)
 {
 	TCompTransform *myPos = get<TCompTransform>();
-	bool isInObjective = rotateTowardsVec(noiseSource, rotationSpeedObservation, dt);
+	bool isInObjective = rotateTowardsVec(noiseSource, rotationSpeedNoise, dt);
 	return isInObjective ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
 
@@ -437,6 +438,21 @@ BTNode::ERes TCompAIMimetic::actionResetVariablesChase(float dt)
 {
 	goingInactive = false;
 	isActive = true;
+	hasHeardArtificialNoise = false;
+	hasHeardNaturalNoise = false;
+
+	TMsgMakeNoise msg;
+	msg.isArtificial = true;
+	msg.isNoise = true;
+	msg.isOnlyOnce = false;
+	msg.timeToRepeat = 1.f;
+	msg.noiseRadius = 20.f;
+	TCompGroup * tGroup = get<TCompGroup>();
+	if (tGroup) {
+		CEntity * eNoiseEmitter = tGroup->getHandleByName("Noise Emitter");
+		eNoiseEmitter->sendMsg(msg);
+	}
+
 	return BTNode::ERes::LEAVE;
 }
 
@@ -459,6 +475,17 @@ BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
 	float distToPlayer = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
 	if (!isPlayerInFov() || distToPlayer >= maxChaseDistance + 0.5f) {
 		cRender->color = VEC4(255, 255, 0, 1);
+		TMsgMakeNoise msg;
+		msg.isArtificial = true;
+		msg.isNoise = false;
+		msg.isOnlyOnce = false;
+		msg.timeToRepeat = 1.f;
+		msg.noiseRadius = 0.01f;
+		TCompGroup * tGroup = get<TCompGroup>();
+		if (tGroup) {
+			CEntity * eNoiseEmitter = tGroup->getHandleByName("Noise Emitter");
+			eNoiseEmitter->sendMsg(msg);
+		}
 		return BTNode::ERes::LEAVE;
 	}
 	else {
@@ -483,17 +510,26 @@ BTNode::ERes TCompAIMimetic::actionMarkNoiseAsInactive(float dt)
 BTNode::ERes TCompAIMimetic::actionGoToNoiseSource(float dt)
 {
 	TCompTransform *mypos = get<TCompTransform>();
-	rotateTowardsVec(noiseSource, rotationSpeedObservation, dt);
+	rotateTowardsVec(noiseSource, rotationSpeedNoise, dt);
 
 	VEC3 vp = mypos->getPosition();
-	if (VEC3::Distance(noiseSource, vp) < speed * dt) {
+
+	CEntity * ePlayer = getEntityByName(entityToChase);
+	TCompTransform * ppos = get<TCompTransform>();
+	VEC3 pp = ppos->getPosition();
+
+	if (VEC3::Distance(vp, pp) <= autoChaseDistance && isPlayerInFov()) {
+		return BTNode::ERes::LEAVE;
+	}
+
+	if (VEC3::Distance(noiseSource, vp) < speed * 1.5f * dt) {
 		mypos->setPosition(noiseSource);
 		return BTNode::ERes::LEAVE;
 	}
 	else {
 		VEC3 vfwd = mypos->getFront();
 		vfwd.Normalize();
-		vp = vp + speed * dt *vfwd;
+		vp = vp + speed * 1.5f * dt *vfwd;
 		mypos->setPosition(vp);				//Move towards wpt
 		return BTNode::ERes::STAY;
 	}
@@ -501,6 +537,17 @@ BTNode::ERes TCompAIMimetic::actionGoToNoiseSource(float dt)
 
 BTNode::ERes TCompAIMimetic::actionWaitInNoiseSource(float dt)
 {
+
+	TCompTransform *mypos = get<TCompTransform>();
+	VEC3 vp = mypos->getPosition();
+	CEntity * ePlayer = getEntityByName(entityToChase);
+	TCompTransform * ppos = get<TCompTransform>();
+	VEC3 pp = ppos->getPosition();
+
+	if (VEC3::Distance(vp, pp) <= autoChaseDistance && isPlayerInFov()) {
+		return BTNode::ERes::LEAVE;
+	}
+
 	timerWaitingInObservation += dt;
 	if (timerWaitingInObservation > 1.f) {
 		return BTNode::ERes::LEAVE;
@@ -550,6 +597,7 @@ BTNode::ERes TCompAIMimetic::actionSetGoInactive(float dt)
 	cRender->color = VEC4(1, 1, 1, 1);
 	goingInactive = true;
 	suspectO_Meter = 0.f;
+	lastPlayerKnownPos = VEC3::Zero;
 	return BTNode::ERes::LEAVE;
 }
 

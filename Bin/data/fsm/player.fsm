@@ -24,7 +24,7 @@
 			"noise" : {
 				"is_only_once": false,
 				"radius": 2.0,
-				"time_to_repeat": 1,
+				"time_to_repeat": 0.75,
 				"is_artificial": false
 			}
 		},
@@ -38,7 +38,7 @@
 			"noise" : {
 				"is_only_once": false,
 				"radius": 3.0,
-				"time_to_repeat": 0.75,
+				"time_to_repeat": 0.5,
 				"is_artificial": false
 			}
 		},
@@ -108,7 +108,13 @@
 			"type" : "AttackState",
 			"animation" : "attack",
 			"damage" : 10,
-			"size" : 1
+			"size" : 1,
+			"noise" : {
+				"is_only_once": true,
+				"radius": 5.0,
+				"time_to_repeat": 0.5,
+				"is_artificial": true
+			}
 		},
 		{
 			"name" : "dead",
