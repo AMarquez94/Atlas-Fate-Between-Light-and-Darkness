@@ -67,9 +67,8 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
   actualCycleAnimId[1] = -1;
 
   actualCycleAnimId[0] = 0;
-  actualCycleAnimId[1] = 2;
-  model->getMixer()->blendCycle(actualCycleAnimId[0], 0.5f, 0.f);
-  model->getMixer()->blendCycle(actualCycleAnimId[1], 0.5f, 0.f);
+  model->getMixer()->blendCycle(actualCycleAnimId[0], 1.f, 0.f);
+
   // Do a time zero update just to have the bones in a correct place
   model->update(0.f);
 }

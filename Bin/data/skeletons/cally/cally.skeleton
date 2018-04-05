@@ -1,8 +1,8 @@
 {
 	"name":"cally",
 	"anims" : [
-		{ "name" : "jog" },
-		{ "name" : "idle"},
+		{ "name" : "idle" },
+		{ "name" : "jog"},
 		{ "name" : "walk"},
 		{ "name" : "wave"},
 		{ "name" : "kick"}

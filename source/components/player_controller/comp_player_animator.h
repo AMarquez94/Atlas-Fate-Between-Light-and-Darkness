@@ -32,6 +32,8 @@ public:
 
 	void initializeAnimations();
 
+	bool playAnimation(EAnimation animation);
+
 private:
 
 	struct AnimationSet {

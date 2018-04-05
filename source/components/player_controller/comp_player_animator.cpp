@@ -7,7 +7,28 @@ DECL_OBJ_MANAGER("player_animator", TCompPlayerAnimator);
 
 void TCompPlayerAnimator::debugInMenu() {
 	//ImGui::DragFloat("Sensitivity", &_sensitivity, 0.01f, 0.001f, 0.1f);
+	static float delta_movement = 0.0f;
 	ImGui::Text("Animation name: %s", _animationName);
+
+	if (ImGui::SmallButton("Idle")) {
+		playAnimation(EAnimation::IDLE);
+	}
+
+	if (ImGui::SmallButton("Walk")) {
+		playAnimation(EAnimation::WALK);
+	}
+
+	if (ImGui::SmallButton("Run")) {
+		playAnimation(EAnimation::RUN);
+	}
+
+	if (ImGui::SmallButton("Attack")) {
+		playAnimation(EAnimation::ATTACK);
+	}
+
+	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);
+	TCompSkeleton * compSkeleton = get<TCompSkeleton>();
+	compSkeleton->setCyclicAnimationWeight(delta_movement);
 }
 
 void TCompPlayerAnimator::load(const json& j, TEntityParseContext& ctx) {
@@ -33,7 +54,7 @@ void TCompPlayerAnimator::initializeAnimations() {
 		EAnimationSize::DOUBLE,
 		"jog",
 		"walk",
-		1.0f
+		0.0f
 	);
 
 	initializeAnimation(
@@ -101,4 +122,32 @@ void TCompPlayerAnimator::onCreated(const TMsgEntityCreated& msg) {
 	TCompSkeleton * compSkeleton = get<TCompSkeleton>();
 	assert(compSkeleton);
 	initializeAnimations();
+}
+
+bool TCompPlayerAnimator::playAnimation(EAnimation animation) {
+
+	if (animationsMap.find(animation) == animationsMap.end()) {
+		return false;
+	}
+	TCompSkeleton * compSkeleton = get<TCompSkeleton>();
+	AnimationSet animSet = animationsMap[animation];
+
+	switch (animSet.animationType)
+	{
+	case EAnimationType::CYCLIC:
+
+		if (animSet.animationType == EAnimationSize::DOUBLE) {
+			compSkeleton->changeCyclicAnimation(animSet.animationId, animSet.secondAnimationId, animSet.weight);
+		}
+		else {
+			compSkeleton->changeCyclicAnimation(animSet.animationId);
+		}
+		break;
+	
+	case EAnimationType::ACTION :
+		compSkeleton->executeActionAnimation(animSet.animationId);
+		break;
+	
+	}
+
 }
