@@ -243,6 +243,7 @@ void TCompSkeleton::changeCyclicAnimation(int anim1Id, int anim2Id, float weight
 void TCompSkeleton::executeActionAnimation(int animId, float in_delay, float out_delay) {
 
 	bool auto_lock = false;
+	model->getMixer()->getAnimationActionList().clear();
 	model->getMixer()->executeAction(animId, in_delay, out_delay, 1.0f, auto_lock);
 }
 
@@ -258,8 +259,7 @@ float TCompSkeleton::getCyclicAnimationWeight() {
 	return cyclicAnimationWeight;
 }
 
-//Returns the id value of the animation in the skeleton component. 
-//If -1 is returned is because the animation name doesen't exists.
+//Returns the id value of the animation in the skeleton component. If -1 is returned is because the animation name doesen't exists.
 int TCompSkeleton::getAnimationIdByName(std::string animName) {
 	
 	if (stringAnimationIdMap.find(animName) != stringAnimationIdMap.end()) {

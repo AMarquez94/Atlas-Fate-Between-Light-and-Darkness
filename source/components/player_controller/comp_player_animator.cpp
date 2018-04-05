@@ -151,3 +151,26 @@ bool TCompPlayerAnimator::playAnimation(EAnimation animation) {
 	}
 
 }
+
+bool  TCompPlayerAnimator::isCyclic(EAnimation animation) {
+
+	if (animationsMap.find(animation) == animationsMap.end()) {
+		fatal("Animation doesn't exists");
+	}
+	AnimationSet animSet = animationsMap[animation];
+	return animSet.animationType == EAnimationType::CYCLIC;
+}
+
+bool  TCompPlayerAnimator::isComposed(EAnimation animation) {
+
+	if (animationsMap.find(animation) == animationsMap.end()) {
+		fatal("Animation doesn't exists");
+	}
+	AnimationSet animSet = animationsMap[animation];
+	return animSet.animationSize == EAnimationSize::DOUBLE;
+}
+
+TCompPlayerAnimator::EAnimation TCompPlayerAnimator::actualAnimation() {
+
+	return actualCyclicAnimation.animation;
+}

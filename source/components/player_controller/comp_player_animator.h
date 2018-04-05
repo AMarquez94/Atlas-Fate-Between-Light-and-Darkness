@@ -33,6 +33,9 @@ public:
 	void initializeAnimations();
 
 	bool playAnimation(EAnimation animation);
+	bool isCyclic(EAnimation animation);
+	bool isComposed(EAnimation animation);
+	EAnimation actualAnimation();
 
 private:
 
@@ -47,6 +50,8 @@ private:
 		int secondAnimationId = -1;
 		float weight = 1.0f;
 	};
+
+	AnimationSet actualCyclicAnimation;
 
 	std::map<EAnimation, AnimationSet> animationsMap;
 	std::string _animationName;
