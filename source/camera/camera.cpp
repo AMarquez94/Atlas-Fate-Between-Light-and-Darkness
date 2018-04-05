@@ -66,7 +66,10 @@ void CCamera::setViewport(int x0, int y0, int width, int height) {
 
 	aspect_ratio = (float)width / (float)height;
 
-	setPerspective(fov_vertical, z_near, z_far);
+	if (type == CType::PERSPECTIVE)
+		setPerspective(fov_vertical, z_near, z_far);
+	else
+		setOrtographic(orto_size, z_near, z_far);
 }
 
 bool CCamera::getScreenCoordsOfWorldCoord(VEC3 world_pos, VEC3* result) const {
