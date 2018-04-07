@@ -5,11 +5,12 @@
 #include "render/render_objects.h"
 #include "render/render_utils.h"
 #include "render/render_manager.h"
-#include "components/comp_light.h"
+#include "components/lighting/comp_light.h"
 #include "render/texture/material.h"
 #include "render/texture/texture.h"
 #include "resources/json_resource.h"
 #include "components/skeleton/game_core_skeleton.h"
+#include "components/lighting/comp_skybox.h"
 #include "physics/physics_mesh.h"
 #include "camera/camera.h"
 #include "geometry/curve.h"
@@ -186,14 +187,18 @@ void CModuleRender::generateFrame() {
 		float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red,green,blue,alpha
 		Render.ctx->ClearRenderTargetView(Render.renderTargetView, _backgroundColor);
 		Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
-
 		activateMainCamera();
 
 		getObjectManager<TCompLight>()->forEach([](TCompLight* c) {
 			c->activate();
 		});
 
+		getObjectManager<TCompSkybox>()->forEach([](TCompSkybox* c) { // Might move this out of here..
+			c->activate(); 
+		});
+
 		CRenderManager::get().renderCategory("default");
+		CRenderManager::get().renderCategory("post_render");
 
 		// Debug render
 		{

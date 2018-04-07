@@ -34,8 +34,7 @@
 				"z_near": 0.01,
 				"z_far": 1000
 			},
-			"tags" : ["main_camera"]
-			,
+			"tags" : ["main_camera"],
 			"culling": true
 		}
 	},

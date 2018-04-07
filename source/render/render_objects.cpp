@@ -157,7 +157,6 @@ CRenderMesh* createWiredUnitCube() {
 	return mesh;
 }
 
-
 CRenderMesh* createCone(float hor_fov, float ver_fov, float dist, int steps, VEC4 clr) {
 	CRenderMesh* mesh = new CRenderMesh;
 

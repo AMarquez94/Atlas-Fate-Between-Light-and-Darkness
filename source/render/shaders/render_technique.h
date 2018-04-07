@@ -19,6 +19,7 @@ class CRenderTechnique : public IResource {
 	uint32_t category_id = 0;
 
 	RSConfig rs_config = RSCFG_DEFAULT;
+	OMConfig om_config = OMCFG_DEFAULT;
 
 	bool reloadVS();
 	bool reloadPS();

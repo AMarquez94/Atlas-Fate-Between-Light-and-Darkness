@@ -7,10 +7,12 @@
 		"data/scenes/enemy.scene",
 		"data/scenes/camera.scene",
 		"data/scenes/capsules.scene",
-		"data/scenes/bt_test.scene"
+		"data/scenes/bt_test.scene",
+		"data/scenes/render_aux.scene"
 	],
 	"light_scenes_test" : [
 		"data/scenes/player_fsm.scene",
+		"data/scenes/render_aux.scene",
 		"data/scenes/sp_test_lights.scene",
 		"data/scenes/camera.scene"
 	],

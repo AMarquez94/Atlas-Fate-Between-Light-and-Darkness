@@ -15,6 +15,13 @@ enum RSConfig {
 };
 void activateRSConfig(RSConfig cfg);
 
+enum OMConfig {
+	OMCFG_DEFAULT
+	, OMCFG_LESS_EQUAL
+	, OMCFG_COUNT
+};
+void activateOMConfig(OMConfig cfg);
+
 // --------------------------------------------
 enum eSamplerType {
 	  SAMPLER_WRAP_LINEAR = 0
@@ -35,6 +42,7 @@ void destroyRenderUtils();
 void activateDefaultRenderState();
 
 RSConfig RSConfigFromString(const std::string& aname);
+OMConfig OMConfigFromString(const std::string& aname);
 
 #endif
 

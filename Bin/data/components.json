@@ -34,7 +34,8 @@
 		"camera",
 		"fsm",
 		"player_animator",
-		"player_input"
+		"player_input",
+		"skybox"
   ],
   "render_debug": [
 		"player_tempcontroller",

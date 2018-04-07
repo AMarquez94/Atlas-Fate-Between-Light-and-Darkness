@@ -1,6 +1,6 @@
 #include "mcv_platform.h"
 #include "comp_light.h"
-#include "comp_transform.h"
+#include "../comp_transform.h"
 #include "render/render_objects.h"    // cb_light
 #include "render/texture/texture.h"
 #include "ctes.h"                     // texture slots

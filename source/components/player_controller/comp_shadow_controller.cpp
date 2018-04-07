@@ -10,7 +10,7 @@
 #include "components/comp_camera.h"
 #include "components/physics/comp_collider.h"
 #include "components/comp_tags.h"
-#include "components/comp_light.h"
+#include "components/lighting/comp_light.h"
 #include "../comp_name.h"
 
 DECL_OBJ_MANAGER("shadow_controller", TCompShadowController);

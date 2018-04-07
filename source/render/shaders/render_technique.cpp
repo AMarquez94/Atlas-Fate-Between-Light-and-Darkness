@@ -83,6 +83,7 @@ bool CRenderTechnique::create(const std::string& name, json& j) {
 	uses_skin = j.value("uses_skin", false);
 
 	rs_config = RSConfigFromString(j.value("rs_config", "default"));
+	om_config = OMConfigFromString(j.value("om_config", "default"));
 
 	  // Load textures associated to this technique
 	if (j.count("textures")) {
@@ -128,6 +129,7 @@ void CRenderTechnique::activate() const {
 		Render.ctx->PSSetShader(nullptr, nullptr, 0);
 
 	// Activate my defined rs (rasterization state) config
+	activateOMConfig(om_config);
 	activateRSConfig(rs_config);
 
 	// Activate the textures associated to this technique

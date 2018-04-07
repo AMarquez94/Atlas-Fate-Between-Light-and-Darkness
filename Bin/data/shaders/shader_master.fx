@@ -32,6 +32,20 @@ struct VS_OUTPUT_LIGHTMAP
 // Vertex Shaders
 //--------------------------------------------------------------------------------------
 
+VS_OUTPUT_BASIC vs_Skybox( float4 Pos : POSITION, float3 N   : NORMAL, float2 UV  : TEXCOORD0)
+{
+  VS_OUTPUT_BASIC output = (VS_OUTPUT_BASIC)0;
+  output.Pos = mul(Pos, obj_world);
+  output.Pos = mul(output.Pos, camera_view);
+  output.Pos = mul(output.Pos, camera_proj);
+	output.Pos = output.Pos.xyww;
+	
+  // Rotate the normal
+  output.N = mul(N, (float3x3)obj_world);
+  output.UV = UV;
+  return output;
+}
+
 VS_OUTPUT_CTCOLOR vs_CtColor(float4 Pos : POSITION, float4 Color : COLOR)
 {
 	VS_OUTPUT_CTCOLOR output = (VS_OUTPUT_CTCOLOR)0;
@@ -81,6 +95,11 @@ VS_OUTPUT_LIGHTMAP vs_Lightmap( float4 Pos : POSITION, float3 N : NORMAL, float2
 float4 ps_Ctcolor(VS_OUTPUT_CTCOLOR input) : SV_Target
 {
 	return input.Color;
+}
+
+float4 ps_Skybox(VS_OUTPUT_BASIC input) : SV_Target
+{
+  return txAlbedo.Sample(samLinear, input.UV);
 }
 
 float4 ps_BasicNormal(VS_OUTPUT_BASIC input) : SV_Target

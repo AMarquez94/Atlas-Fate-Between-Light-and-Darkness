@@ -108,6 +108,48 @@ struct CRasterizers {
 
 };
 
+// ------------------------------------------------------------
+struct CDepthSTencils {
+
+	ID3D11DepthStencilState *stencil_states[OMCFG_COUNT];
+	const char*            names[OMCFG_COUNT];
+
+	bool add(const D3D11_DEPTH_STENCIL_DESC& desc, OMConfig cfg, const char* name) {
+		// Create the dx obj in the slot 'cfg'
+		HRESULT hr = Render.device->CreateDepthStencilState(&desc, &stencil_states[cfg]);
+		if (FAILED(hr))
+			return false;
+		// Assing the name
+		setDXName(stencil_states[cfg], name);
+		// Save also the name for the ui
+		names[cfg] = name;
+		return true;
+	}
+
+	bool create() {
+
+		stencil_states[RSCFG_DEFAULT] = nullptr;
+		names[RSCFG_DEFAULT] = "default";
+
+		D3D11_DEPTH_STENCIL_DESC desc = {
+			TRUE,						// DepthEnable;
+			D3D11_DEPTH_WRITE_MASK_ALL, // DepthWriteMask;
+			D3D11_COMPARISON_LESS_EQUAL, // DepthFunc;
+			FALSE,							// StencilEnable;
+			D3D11_DEFAULT_STENCIL_READ_MASK,							//  StencilReadMask;
+			D3D11_DEFAULT_STENCIL_WRITE_MASK,							// StencilWriteMask;
+		};
+		if (!add(desc, OMCFG_LESS_EQUAL, "less_equal"))
+			return false;
+
+		return true;
+	}
+
+	void destroy() {
+		for (int i = 0; i < OMCFG_COUNT; ++i)
+			SAFE_RELEASE(stencil_states[i]);
+	}
+};
 
 // ------------------------------------------------------------
 struct CSamplers {
@@ -218,10 +260,10 @@ struct CSamplers {
 };
 
 
-
 // -----------------------------------------------
 static CSamplers    samplers;
 static CRasterizers rasterizers;
+static CDepthSTencils depthstencils;
 
 // Activate just one
 void activateSampler(int slot, eSamplerType sample) {
@@ -237,6 +279,10 @@ void activateRSConfig(enum RSConfig cfg) {
 	Render.ctx->RSSetState(rasterizers.rasterize_states[cfg]);
 }
 
+void activateOMConfig(enum OMConfig cfg) {
+	Render.ctx->OMSetDepthStencilState(depthstencils.stencil_states[cfg], 0);
+}
+
 // ---------------------------------------
 RSConfig RSConfigFromString(const std::string& aname) {
 	for (int i = 0; i < RSCFG_COUNT; ++i) {
@@ -245,6 +291,16 @@ RSConfig RSConfigFromString(const std::string& aname) {
 	}
 	fatal("Invalid rsconfig name %s\n", aname.c_str());
 	return RSCFG_DEFAULT;
+}
+
+// ---------------------------------------
+OMConfig OMConfigFromString(const std::string& aname) {
+	for (int i = 0; i < RSCFG_COUNT; ++i) {
+		if (depthstencils.names[i] == aname)
+			return OMConfig(i);
+	}
+	fatal("Invalid omconfig name %s\n", aname.c_str());
+	return OMCFG_DEFAULT;
 }
 
 bool renderInMenu(RSConfig& cfg) {
@@ -258,6 +314,7 @@ bool createRenderUtils() {
 
 	is_ok &= samplers.create();
 	is_ok &= rasterizers.create();
+	is_ok &= depthstencils.create();
 
 	activateDefaultRenderState();
 	return is_ok;
@@ -266,6 +323,7 @@ bool createRenderUtils() {
 void destroyRenderUtils() {
 	rasterizers.destroy();
 	samplers.destroy();
+	depthstencils.destroy();
 }
 
 void activateDefaultRenderState() {
