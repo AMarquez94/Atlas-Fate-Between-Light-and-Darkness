@@ -19,7 +19,8 @@ class CRenderTechnique : public IResource {
 	uint32_t category_id = 0;
 
 	RSConfig rs_config = RSCFG_DEFAULT;
-	OMConfig om_config = OMCFG_DEFAULT;
+	ZConfig z_config = ZCFG_DEFAULT;
+	BlendConfig blend_config = BLEND_CFG_DEFAULT;
 
 	bool reloadVS();
 	bool reloadPS();

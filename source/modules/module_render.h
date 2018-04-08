@@ -4,8 +4,12 @@
 #include "camera/camera.h"
 #include "handle/handle_def.h"
 
+class CRenderToTexture;
+
 class CModuleRender : public IModule
 {
+	CRenderToTexture* rt_main = nullptr;
+
 public:
 	CModuleRender(const std::string& name);
 	bool start() override;
@@ -27,5 +31,5 @@ private:
 
 	int _xres;
 	int _yres;
-	float _backgroundColor[4];
+	VEC4 _backgroundColor;
 };

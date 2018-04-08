@@ -14,7 +14,7 @@ bool CVertexShader::create(const std::string& filename, const std::string& fn_en
   hr = CompileShaderFromFile(filename.c_str(), fn_entry_name.c_str(), "vs_4_0", &pVSBlob);
   if (FAILED(hr))
   {
-    fatal("Failed to compile vertex shader, function %s, at file %s.\n", filename.c_str(), fn_entry_name.c_str());
+	fatal("Failed to compile vertex shader at file %s, function %s.\n", filename.c_str(), fn_entry_name.c_str());
     return false;
   }
 

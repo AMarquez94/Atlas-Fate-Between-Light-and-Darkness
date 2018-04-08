@@ -67,7 +67,8 @@ bool CRenderTechnique::reloadPS() {
 bool CRenderTechnique::create(const std::string& name, json& j) {
 
 	// --------------------------------------------
-	vs_file = j.value("vs_file", "data/shaders/shaders.fx");
+	vs_file = j.value("vs_file", "");
+	if (vs_file.empty()) fatal("vs_file of technique %s must not be empty", name.c_str());
 	vs_entry_point = j.value("vs_entry_point", "VS");
 	vertex_type = j.value("vertex_type", "");
 	ps_file = j.value("ps_file", vs_file);
@@ -83,7 +84,8 @@ bool CRenderTechnique::create(const std::string& name, json& j) {
 	uses_skin = j.value("uses_skin", false);
 
 	rs_config = RSConfigFromString(j.value("rs_config", "default"));
-	om_config = OMConfigFromString(j.value("om_config", "default"));
+	z_config = ZConfigFromString(j.value("z", "default"));
+	blend_config = BlendConfigFromString(j.value("blend", "default"));
 
 	  // Load textures associated to this technique
 	if (j.count("textures")) {
@@ -128,8 +130,8 @@ void CRenderTechnique::activate() const {
 	else
 		Render.ctx->PSSetShader(nullptr, nullptr, 0);
 
-	// Activate my defined rs (rasterization state) config
-	activateOMConfig(om_config);
+	activateZConfig(z_config);
+	activateBlendConfig(blend_config);
 	activateRSConfig(rs_config);
 
 	// Activate the textures associated to this technique
@@ -145,6 +147,9 @@ void CRenderTechnique::debugInMenu() {
 	ImGui::LabelText("VS", "%s", vs_entry_point.c_str());
 	ImGui::LabelText("PS FX", "%s", ps_file.c_str());
 	ImGui::LabelText("VS", "%s", ps_entry_point.c_str());
+	::renderInMenu(z_config);
+	::renderInMenu(rs_config);
+	::renderInMenu(blend_config);
 }
 
 void CRenderTechnique::onFileChanged(const std::string& filename) {

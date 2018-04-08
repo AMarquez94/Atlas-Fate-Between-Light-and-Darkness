@@ -31,7 +31,11 @@ bool CMaterial::create(const std::string& name) {
 
 	auto j = loadJson(name);
 
-	std::string technique_name = j["technique"];
+	// If nothing is set, use 'pbr.tech'
+	std::string technique_name = "pbr.tech";
+	if (j.count("technique"))
+		technique_name = j["technique"];
+
 	tech = Resources.get(technique_name)->as<CRenderTechnique>();
 
 	cast_shadows = j.value("shadows", true);

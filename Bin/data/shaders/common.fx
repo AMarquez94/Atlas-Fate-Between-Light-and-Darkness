@@ -10,6 +10,11 @@ Texture2D    txLightProjector SLOT( TS_LIGHT_PROJECTOR );
 Texture2D    txLightShadowMap SLOT( TS_LIGHT_SHADOW_MAP );
 TextureCube  txEnvironmentMap SLOT( TS_ENVIRONMENT_MAP );
 
+// output from deferred
+Texture2D    txGBufferAlbedos     SLOT( TS_DEFERRED_ALBEDOS );
+Texture2D    txGBufferNormals     SLOT( TS_DEFERRED_NORMALS );
+Texture2D    txGBufferLinearDepth SLOT( TS_DEFERRED_LINEAR_DEPTH );
+
 //--------------------------------------------------------------------------------------
 SamplerState samLinear        : register(s0);
 SamplerState samBorderLinear  : register(s1);
@@ -109,4 +114,15 @@ float3 computeNormalMap( float3 inputN, float4 inputT, float2 inUV ) {
   //wN = N;
 
   return wN;
+}
+
+// -----------------------------------------------------
+// Converts range -1..1 to 0..1
+float4 encodeNormal( float3 n, float nw ) {
+   return float4(( n + 1. ) * 0.5, nw );
+}
+
+// Converts range 0..1 to -1..1
+float3 decodeNormal( float3 n ) {
+  return ( n.xyz * 2. - 1. );
 }

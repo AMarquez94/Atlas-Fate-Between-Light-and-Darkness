@@ -12,7 +12,7 @@ bool CPixelShader::create(const std::string& filename, const std::string& fn_ent
   hr = CompileShaderFromFile(filename.c_str(), fn_entry_name.c_str(), "ps_4_0", &pPSBlob);
   if (FAILED(hr))
   {
-    fatal("Failed to compile pixel shader, function %s, at file %s.\n", filename.c_str(), fn_entry_name.c_str());
+	fatal("Failed to compile pixel shader at file %s, function %s.\n", filename.c_str(), fn_entry_name.c_str());
     return false;
   }
 
