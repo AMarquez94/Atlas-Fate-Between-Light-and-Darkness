@@ -254,6 +254,25 @@ void activateCamera(CCamera& camera, int width, int height) {
 	cb_camera.camera_tan_half_fov = tan(camera.getFov() * 0.5f);
 	cb_camera.camera_aspect_ratio = camera.getAspectRatio();
 
+	cb_camera.camera_inv_resolution = VEC2(1.0f / (float)width, 1.0f / (float)height);
+	
+	// Simplify conversion from screen coords to world coords 
+	MAT44 m = MAT44::CreateScale(-cb_camera.camera_inv_resolution.x * 2.f, -cb_camera.camera_inv_resolution.y * 2.f, 1.f)
+		*MAT44::CreateTranslation(1, 1, 0)
+		*MAT44::CreateScale(cb_camera.camera_tan_half_fov * cb_camera.camera_aspect_ratio, cb_camera.camera_tan_half_fov, 1.f)
+		*MAT44::CreateScale(cb_camera.camera_zfar);
+	
+	// Now the transform local to world coords part
+	// float3 wPos =
+	//     CameraFront.xyz * view_dir.z
+	//   + CameraLeft.xyz  * view_dir.x
+	//   + CameraUp.xyz    * view_dir.y
+	MAT44 mtx_axis = MAT44::Identity;
+	mtx_axis.Forward(-camera.getFront());      // -getFront() because MAT44.Forward negates our input
+	mtx_axis.Left(-camera.getLeft());
+	mtx_axis.Up(camera.getUp());
+	
+	cb_camera.camera_screen_to_world = m * mtx_axis;
 	cb_camera.updateGPU();
 }
 

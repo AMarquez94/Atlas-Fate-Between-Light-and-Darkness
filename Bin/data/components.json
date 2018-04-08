@@ -17,6 +17,7 @@
 		"skeleton",
 		"bone_tracker",
 		"light",
+		"light_point",
 		"hierarchy",
 		"local_aabb",
 		"culling",

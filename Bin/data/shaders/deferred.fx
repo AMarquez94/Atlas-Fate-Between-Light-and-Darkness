@@ -1,10 +1,8 @@
 #include "common.fx"
 
 // ----------------------------------------
-float4 PS(in float4 iPosition : SV_Position ) : SV_Target
+float4 PS(in float4 iPosition : SV_Position) : SV_Target
 {
-
-/*
   int3 ss_load_coords = uint3(iPosition.xy, 0);
   float4 oAlbedo = txGBufferAlbedos.Load(ss_load_coords);
   float4 oNormal = float4(decodeNormal( txGBufferNormals.Load(ss_load_coords).xyz ), 1);
@@ -23,6 +21,5 @@ float4 PS(in float4 iPosition : SV_Position ) : SV_Target
   return abs(wPos.x - (int)wPos.x) * abs(wPos.z - (int)wPos.z);
 
   //float4 LightsAmount = txAccLights.Sample(samLinear, input.UV);
-  return oAlbedo;*/
-	return float4(1,1,1,1);
+  return oAlbedo;
 }

@@ -3,11 +3,13 @@
 #include "module.h"
 #include "camera/camera.h"
 #include "handle/handle_def.h"
+#include "render/deferred_renderer.h"
 
 class CRenderToTexture;
 
 class CModuleRender : public IModule
 {
+	CDeferredRenderer deferred;
 	CRenderToTexture* rt_main = nullptr;
 
 public:

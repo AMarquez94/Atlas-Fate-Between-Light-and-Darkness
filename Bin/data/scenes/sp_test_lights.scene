@@ -168,14 +168,14 @@
 				"proj_type": "ortographic",
         "range": 29.2116,
         "angle": 91.8,
-        "color": "255.0 255.0 255.0 255.0",
+        "color": "1.0 1.0 1.0 1.0",
         "intensity": 1.0,
         "shadows": true,
 				"projector" : "data/textures/batman.dds",
         "z_far" : 50,
         "casts_shadows" : true,
         "shadows_step" : 1.0,
-        "shadows_resolution" : 256,
+        "shadows_resolution" : 1024,
         "shadows_fmt" : "R32_TYPELESS"
       }
       ,
@@ -192,6 +192,20 @@
       [
         "light"
       ]
+    }
+  },
+	{
+    "entity":
+    {
+      "name": "LightPoint00",
+      "transform": {
+        "pos": "0 5 0"
+      },
+      "light_point": {
+        "intensity": 5,
+        "color" :  "1.0 1.0 1.0 1",
+        "radius" : 10
+      }
     }
   }
 ]

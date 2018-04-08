@@ -110,6 +110,8 @@
     <ClCompile Include="render\texture\render_to_texture.cpp" />
     <ClCompile Include="components\lighting\comp_light.cpp" />
     <ClCompile Include="components\lighting\comp_skybox.cpp" />
+    <ClCompile Include="render\deferred_renderer.cpp" />
+    <ClCompile Include="components\lighting\comp_light_point.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -251,6 +253,8 @@
     <ClInclude Include="render\gpu_trace.h" />
     <ClInclude Include="components\lighting\comp_light.h" />
     <ClInclude Include="components\lighting\comp_skybox.h" />
+    <ClInclude Include="render\deferred_renderer.h" />
+    <ClInclude Include="components\lighting\comp_light_point.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

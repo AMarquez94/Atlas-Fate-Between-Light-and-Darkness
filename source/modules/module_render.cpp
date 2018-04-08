@@ -81,6 +81,9 @@ bool CModuleRender::start()
 	if (!rt_main->createRT("rt_main.dds", Render.width, Render.height, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN, true))
 		return false;
 
+	if (!deferred.create(Render.width, Render.height))
+		return false;
+
 	setBackgroundColor(0.0f, 0.125f, 0.3f, 1.f);
 
 	// -------------------------------------------
@@ -188,24 +191,16 @@ void CModuleRender::generateFrame() {
 	{
 		CTraceScoped gpu_scope("Frame");
 		PROFILE_FUNCTION("CModuleRender::generateFrame");
-		Render.startRenderInBackbuffer();
 
-		// Clear the back buffer 
-		float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red,green,blue,alpha
-		Render.ctx->ClearRenderTargetView(Render.renderTargetView, &_backgroundColor.x);
-		Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 		activateMainCamera();
-
-		getObjectManager<TCompLight>()->forEach([](TCompLight* c) {
+		
+		getObjectManager<TCompSkybox>()->forEach([](TCompSkybox* c) { // Might move this out of here..
 			c->activate();
 		});
 
-		getObjectManager<TCompSkybox>()->forEach([](TCompSkybox* c) { // Might move this out of here..
-			c->activate(); 
-		});
-
-		CRenderManager::get().renderCategory("default");
-		CRenderManager::get().renderCategory("post_render");
+		deferred.render(rt_main);
+		Render.startRenderInBackbuffer();
+		renderFullScreenQuad("dump_texture.tech", rt_main);
 
 		// Debug render
 		{
@@ -227,10 +222,46 @@ void CModuleRender::generateFrame() {
 		Render.swapChain->Present(0, 0);
 	}
 
-	// Present the information rendered to the back buffer to the front buffer (the screen)
-	{
-		PROFILE_FUNCTION("Render.swapChain");
-		Render.swapChain->Present(0, 0);
-	}
+	//{
+	//	CTraceScoped gpu_scope("Frame");
+	//	PROFILE_FUNCTION("CModuleRender::generateFrame");
+	//	Render.startRenderInBackbuffer();
+
+	//	// Clear the back buffer 
+	//	float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red,green,blue,alpha
+	//	Render.ctx->ClearRenderTargetView(Render.renderTargetView, &_backgroundColor.x);
+	//	Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+	//	activateMainCamera();
+
+	//	getObjectManager<TCompLight>()->forEach([](TCompLight* c) {
+	//		c->activate();
+	//	});
+
+	//	getObjectManager<TCompSkybox>()->forEach([](TCompSkybox* c) { // Might move this out of here..
+	//		c->activate(); 
+	//	});
+
+	//	CRenderManager::get().renderCategory("default");
+	//	CRenderManager::get().renderCategory("post_render");
+
+	//	// Debug render
+	//	{
+	//		PROFILE_FUNCTION("Modules");
+	//		CTraceScoped gpu_scope("Modules");
+	//		CEngine::get().getModules().render();
+	//	}
+	//}
+
+	//{
+	//	PROFILE_FUNCTION("ImGui::Render");
+	//	CTraceScoped gpu_scope("ImGui");
+	//	ImGui::Render();
+	//}
+
+	//// Present the information rendered to the back buffer to the front buffer (the screen)
+	//{
+	//	PROFILE_FUNCTION("Render.swapChain");
+	//	Render.swapChain->Present(0, 0);
+	//}
 }
 

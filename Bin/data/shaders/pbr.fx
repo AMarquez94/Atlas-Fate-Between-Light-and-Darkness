@@ -2,7 +2,6 @@
 
 #define PI 3.14159265359f
 
-
 //--------------------------------------------------------------------------------------
 // GBuffer generation pass. Vertex
 //--------------------------------------------------------------------------------------
@@ -62,18 +61,13 @@ void PS_GBuffer(
 }
 
 //--------------------------------------------------------------------------------------
-void decodeGBuffer( 
-     in float2 iPosition          // Screen coords
-   , out float3 wPos 
-   , out float3 N 
-   , out float3 real_albedo
-   ) {
+void decodeGBuffer(in float2 iPosition, out float3 wPos, out float3 N, out float3 real_albedo ) {
 
   int3 ss_load_coords = uint3(iPosition.xy, 0);
 
   // Recover world position coords
   float  zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
-  //wPos = getWorldCoords(iPosition.xy, zlinear);
+  wPos = getWorldCoords(iPosition.xy, zlinear);
 
   // Recuperar la normal en ese pixel. Sabiendo que se
   // guardó en el rango 0..1 pero las normales se mueven
@@ -88,12 +82,10 @@ void decodeGBuffer(
 
 //--------------------------------------------------------------------------------------
 // Ambient pass, to compute the ambient light of each pixel
-float4 PS_ambient(
-  in float4 iPosition : SV_Position
-) : SV_Target
+float4 PS_ambient(in float4 iPosition : SV_Position) : SV_Target
 {
   // Will do something interesting here...
-  return 0; // float4( 0.2, 0.2, 0.2, 0.f );
+  return float4( 0.1, 0.1, 0.1, 0.f );
 }
 
 //--------------------------------------------------------------------------------------
@@ -125,7 +117,8 @@ float4 PS_dir_lights( in float4 iPosition : SV_Position ) : SV_Target
   float diffuseAmount = dot( N, Light );
   diffuseAmount = saturate( diffuseAmount );
   
-  float4 light_amount = diffuseAmount * light_color * light_intensity * shadow_factor;
+	float4 textAlbedo = float4(albedo, 1);
+  float4 light_amount = textAlbedo * diffuseAmount * light_color * light_intensity * shadow_factor;
 
   return float4( light_amount.xyz, 1 );
 }
@@ -145,12 +138,13 @@ float4 PS_point_lights( in float4 iPosition : SV_Position ) : SV_Target
   float diffuseAmount = dot( N, Light );
   diffuseAmount = saturate( diffuseAmount );
 
-  float att_ratio = ( 1. - smoothstep( 0.90, 0.98, distance_to_light ));
+  float att_ratio = ( 1. - smoothstep( 0.90, 0.98, distance_to_light / light_radius ));
 
   // Att per distance
   float att_factor = att_ratio / ( distance_to_light );
-
-  float4 light_amount = diffuseAmount * light_color * light_intensity * att_factor;
+	
+	float4 textAlbedo = float4(albedo, 1);
+  float4 light_amount = textAlbedo * diffuseAmount * light_color * light_intensity * att_factor;
 
   return float4( light_amount.xyz, 1 );
 }
