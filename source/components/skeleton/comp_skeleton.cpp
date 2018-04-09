@@ -98,10 +98,24 @@ void TCompSkeleton::debugInMenu() {
   static float in_delay = 0.3f;
   static float out_delay = 0.3f;
   static bool auto_lock = false;
-  dbg("%f\n\n", weight);
+  
   // Play aacton/cycle from the menu
   ImGui::DragInt("Anim Id", &anim_id, 0.1f, 0, model->getCoreModel()->getCoreAnimationCount()-1);
   auto core_anim = model->getCoreModel()->getCoreAnimation(anim_id);
+  if (ImGui::SmallButton("Set Speed")) {
+	  for (int i = 0; i < model->getMixer()->getAnimationVector().size(); i++) {
+		  CalAnimation* anim = model->getMixer()->getAnimationVector()[i];
+		  if (anim != 0)	anim->setTimeFactor(0.3f);
+	  }
+	  //model->getMixer()->getAnimationVector()[0]->setTimeFactor(0.3f);
+	  dbg("");
+
+  }
+  for (int i = 0; i < model->getMixer()->getAnimationVector().size(); i++) {
+	  CalAnimation* anim = model->getMixer()->getAnimationVector()[i];
+	  if (anim != 0)	dbg("%f\n\n", anim->getTimeFactor());
+  }
+  //dbg("%i\n\n", model->getMixer()->getAnimationVector().size());
   if(core_anim)
     ImGui::Text("%s", core_anim->getName().c_str());
   ImGui::DragFloat("In Delay", &in_delay, 0.01f, 0, 1.f);
