@@ -21,8 +21,8 @@ void TCompAnimator::initializeAnimations() {
 
 bool TCompAnimator::initializeAnimation(EAnimation animation, EAnimationType animationType, EAnimationSize animationSize, std::string animationName, std::string secondAnimationName, float weight) {
 	
-	//CEntity* e = ownHandle->getOwner();
-	TCompSkeleton * compSkeleton = ownHandle->get<TCompSkeleton>();
+	CEntity* e = ownHandle;
+	TCompSkeleton * compSkeleton = e->get<TCompSkeleton>();
 	AnimationSet auxAnimSet;
 	auxAnimSet.animation = animation;
 	auxAnimSet.animationType = animationType;
@@ -60,8 +60,8 @@ bool TCompAnimator::playAnimation(EAnimation animation) {
 	if (animationsMap.find(animation) == animationsMap.end()) {
 		return false;
 	}
-	//CEntity* e = ownHandle->getOwner();
-	TCompSkeleton * compSkeleton = ownHandle->get<TCompSkeleton>();
+	CEntity* e = ownHandle;
+	TCompSkeleton * compSkeleton = e->get<TCompSkeleton>();
 	AnimationSet animSet = animationsMap[animation];
 
 	switch (animSet.animationType)

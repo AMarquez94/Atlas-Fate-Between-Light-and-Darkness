@@ -76,8 +76,8 @@ void TCompPlayerAnimator::registerMsgs() {
 
 void TCompPlayerAnimator::onCreated(const TMsgEntityCreated& msg) {
 	ownHandle = CHandle(this).getOwner();
-	//CEntity *e = ownHandle->getOwner();
-	TCompSkeleton * compSkeleton = ownHandle->get<TCompSkeleton>();
+	CEntity *e = ownHandle;
+	TCompSkeleton * compSkeleton = e->get<TCompSkeleton>();
 	assert(compSkeleton);
 	initializeAnimations();
 }

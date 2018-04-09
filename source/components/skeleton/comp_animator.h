@@ -28,7 +28,7 @@ public:
 		float weight = 1.0f;
 	};
 
-	CEntity* ownHandle;
+	CHandle ownHandle;
 	AnimationSet actualCyclicAnimation;
 	std::map<EAnimation, AnimationSet> animationsMap;
 	std::string _animationName;
