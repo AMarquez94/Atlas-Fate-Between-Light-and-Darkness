@@ -376,16 +376,10 @@ void TCompTempPlayerController::deadState(float dt)
 }
 
 void TCompTempPlayerController::removingInhibitorState(float dt) {
-	if (timesRemoveInhibitorKeyPressed == hitPoints && isInhibited) {
-		TCompRender *c_render = get<TCompRender>();
-		c_render->color = VEC4(1, 1, 1, 1);
-		timesRemoveInhibitorKeyPressed = 0;
-		isInhibited = false;
-	}
-	else {
-		timesRemoveInhibitorKeyPressed++;
-	}
-	
+	TCompRender *c_render = get<TCompRender>();
+	c_render->color = VEC4(1, 1, 1, 1);
+	timesRemoveInhibitorKeyPressed = 0;
+	isInhibited = false;	
 }
 
 /* Concave test, this determines if there is a surface normal change on concave angles */
