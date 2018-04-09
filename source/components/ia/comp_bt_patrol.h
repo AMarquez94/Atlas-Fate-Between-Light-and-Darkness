@@ -108,7 +108,7 @@ public:
 	bool assertPlayerNotInFov(float dt);
 	bool assertPlayerAndPatrolNotInFov(float dt);
 
-	bool isPatrolStunned() { return current && current->getName().compare("stunned") == 0; }
+	bool isStunned() { return current && current->getName().compare("stunned") == 0; }
 
 	static void registerMsgs();
 };

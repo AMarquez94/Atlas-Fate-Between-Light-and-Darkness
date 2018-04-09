@@ -66,7 +66,7 @@ void TCompAuxCameraShadowMerge::onMsgCameraDeprecated(const TMsgCameraDeprecated
 {
 	active = false;
 	//_current_euler.y = _original_euler.y;
-	dbg("Camera inactive %s\n", ((TCompName*)get<TCompName>())->getName());
+	//dbg("Camera inactive %s\n", ((TCompName*)get<TCompName>())->getName());
 }
 
 void TCompAuxCameraShadowMerge::onMsgCameraSetActive(const TMsgSetCameraActive & msg)
@@ -80,7 +80,7 @@ void TCompAuxCameraShadowMerge::onMsgCameraSetActive(const TMsgSetCameraActive &
 	bool differentCameras = msg.actualCamera.compare(msg.previousCamera) != 0;
 
 	if (hCamera.isValid() && active && differentCameras) {
-		dbg("Cancel previous camera %s - new camera %s\n", ((CEntity *)hCamera)->getName(), msg.actualCamera.c_str());
+		//dbg("Cancel previous camera %s - new camera %s\n", ((CEntity *)hCamera)->getName(), msg.actualCamera.c_str());
 		Engine.getCameras().cancelCamera(hCamera);
 		Engine.getCameras().cancelCamera(CHandle(this).getOwner());
 	}
@@ -154,8 +154,6 @@ void TCompAuxCameraShadowMerge::update(float dt)
 			return;
 
 		TCompTransform* self_transform = get<TCompTransform>();
-
-
 		TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>(); // we will need to consume this.
 		assert(self_transform);
 		assert(target_transform);

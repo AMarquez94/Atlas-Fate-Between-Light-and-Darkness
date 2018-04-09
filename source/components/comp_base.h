@@ -4,13 +4,16 @@
 struct TEntityParseContext;
 
 struct TCompBase {
-  bool visible = true;
-  void debugInMenu() {}
-  void renderDebug() {}
-  void load( const json& j, TEntityParseContext& ctx ) {}
-  void update(float dt) {}
 
-  static void registerMsgs() {}
+	bool visible = true;
+	bool paused = false;
+
+	void debugInMenu() {}
+	void renderDebug() {}
+	void load(const json& j, TEntityParseContext& ctx) {}
+	void update(float dt) {}
+
+	static void registerMsgs() {}
 };
 
 // Add this macro inside each derived class so the

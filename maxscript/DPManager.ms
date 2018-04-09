@@ -40,6 +40,7 @@ struct ExportMeshManager (
 	
 	function ExportMesh out_group out_path = (
 	
+		print out_group
 		-- Check for path requirements 
 		local req_path = findstring out_path "bin"
 		
@@ -52,7 +53,6 @@ struct ExportMeshManager (
 		local meshes_folder = out_path + "/" + mesh_path 
 		doesFolderExist meshes_folder create:true
 		--------------------------------------------------------------------------------
-		
 		if out_group.count == 1 and id != "" then  (
 			local str_path = meshes_folder + id + ".mesh"
 			exportMeshObject out_group[1] str_path

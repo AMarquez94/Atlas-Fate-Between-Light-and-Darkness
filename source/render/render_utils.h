@@ -16,10 +16,10 @@ void activateRSConfig(RSConfig cfg);
 
 // --------------------------------------------
 enum eSamplerType {
-	SAMPLER_WRAP_LINEAR = 0
+	  SAMPLER_WRAP_LINEAR = 0
+	, SAMPLER_BORDER_LINEAR
 	/*
 	, SAMPLER_CLAMP_LINEAR
-	, SAMPLER_BORDER_LINEAR
 	, SAMPLER_PCF_SHADOWS
 	, SAMPLER_CLAMP_BILINEAR
 	, SAMPLER_CLAMP_POINT

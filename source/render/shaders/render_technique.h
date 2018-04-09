@@ -11,6 +11,8 @@ class CRenderTechnique : public IResource {
 	std::string ps_entry_point;
 	std::string vertex_type;
 
+	bool uses_skin = false;
+
 	std::string category = "default";
 	uint32_t category_id = 0;
 
@@ -28,6 +30,7 @@ public:
 	void debugInMenu() override;
 	void destroy() override;
 	void onFileChanged(const std::string& filename) override;
+	bool usesSkin() const { return uses_skin; }
 
 	uint32_t getCategoryID() const { return category_id; }
 	const std::string& getCategory() const { return category; }

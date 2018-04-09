@@ -33,6 +33,8 @@ protected:
 
 	BTNode *current;
 
+	void onMsgScenePaused(const TMsgScenePaused& msg);
+
 private:
 
 	/* The nodes as map (so we have both map and tree for the same structure */
@@ -53,7 +55,6 @@ private:
 	BTNode *findNode(const std::string& name);
 
 	void printTree();
-
 public:
 
 	std::string name;

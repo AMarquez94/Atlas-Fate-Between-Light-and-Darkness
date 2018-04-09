@@ -9,53 +9,62 @@ namespace FSM
   void CContext::setFSM(const CMachine* fsm)
   {
     _fsm = fsm;
+    if (_fsm)
+    {
+      initializeVariables();
+    }
   }
 
   void CContext::start()
   {
-    if (_state == EState::IDLE)
+    if (_internalState == EState::IDLE)
     {
-      _state = EState::RUNNING;
+      _internalState = EState::RUNNING;
       setCurrentState(_fsm->getInitialState());
     }
   }
 
   void CContext::stop()
   {
-    if (_state == EState::RUNNING)
+    if (_internalState == EState::RUNNING)
     {
       if (_currentState)
       {
         _currentState->onFinish(*this);
         _currentState = nullptr;
       }
-      _state = EState::IDLE;
+      _internalState = EState::IDLE;
     }
   }
 
   void CContext::update(float delta)
   {
-    if (_state == EState::RUNNING)
+    if (_internalState == EState::RUNNING)
     {
+      _timeInState += delta;
       bool finished = _currentState->update(delta, *this);
       if (finished)
       {
-        _state = EState::FINISHED;
+        _internalState = EState::FINISHED;
       }
       else
       {
         VTransitions stateTransitions;
-        getStateTransitions(_currentState, stateTransitions);
+        _fsm->getStateTransitions(_currentState, stateTransitions);
         for (auto& transition : stateTransitions)
         {
-          if (transition->checkCondition(*this))
+          bool pass = transition->checkCondition(*this);
+          if (transition->isNegated())
+          {
+            pass = !pass;
+          }
+          if (pass)
           {
             setCurrentState(transition->getTargetState());
             break;
           }
         }
       }
-
     }
   }
 
@@ -67,6 +76,7 @@ namespace FSM
       _currentState->onFinish(*this);
       _currentState = nullptr;
     }
+    _timeInState = 0.f;
 
     // start new state
     if (state)
@@ -76,19 +86,52 @@ namespace FSM
     }
   }
 
+  void CContext::setOwner(CHandle handle)
+  {
+    _owner = handle;
+  }
+
+  void CContext::setVariable(const std::string& name, bool value)
+  {
+    _variables.setVariant(name, value);
+  }
+
+  void CContext::setVariable(const std::string& name, int value)
+  {
+    _variables.setVariant(name, value);
+  }
+
+  void CContext::setVariable(const std::string& name, float value)
+  {
+    _variables.setVariant(name, value);
+  }
+
+  void CContext::setVariable(const std::string& name, CHandle value)
+  {
+    _variables.setVariant(name, value);
+  }
+
+  void CContext::setVariable(const std::string& name, const std::string& value)
+  {
+    _variables.setVariant(name, value);
+  }
+
+  void CContext::setVariable(const std::string& name, const CVariant& var)
+  {
+    _variables.setVariant(name, var);
+  }
+
   const CVariant* CContext::getVariable(const std::string& name) const
   {
     return _variables.getVariant(name);
   }
 
-  void CContext::getStateTransitions(const IState* state, VTransitions& output) const
+  void CContext::initializeVariables()
   {
-    for (auto& transition : _fsm->getTransitions())
+    _variables.clear();
+    if (_fsm)
     {
-      if (transition->getSourceState() == state)
-      {
-        output.push_back(transition);
-      }
+      _variables = _fsm->getVariables();
     }
   }
 

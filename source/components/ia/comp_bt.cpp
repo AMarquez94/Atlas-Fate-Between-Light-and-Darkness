@@ -447,16 +447,22 @@ void TCompIAController::loadParameters(const json& j) {
 }
 
 void TCompIAController::update(float dt) {
-	if (current == nullptr) {
-		root->update(dt, this);
-	}
-	else {
-		current->update(dt, this);
+	if (!paused) {
+		if (current == nullptr) {
+			root->update(dt, this);
+		}
+		else {
+			current->update(dt, this);
+		}
 	}
 }
-
 
 void TCompIAController::printTree()
 {
 	root->printNode(0, this);
+}
+
+void TCompIAController::onMsgScenePaused(const TMsgScenePaused & msg)
+{
+	paused = !paused;
 }

@@ -11,18 +11,19 @@ private:
 	std::string _target_name;
 
 	float _speed;
-
 	VEC2 _clamp_angle;
 	VEC2 _current_euler;
 	VEC3 _clipping_offset;
 
 	bool active;
+	bool pause;
 
 	const Input::TButton& btHorizontal = EngineInput["MouseX"];
 	const Input::TButton& btVertical = EngineInput["MouseY"];
 	const Input::TButton& btDebugPause = EngineInput["btDebugPause"];
+	void onPause(const TMsgScenePaused& msg);
 
-	float pause;
+	DECL_SIBLING_ACCESS();
 
 	void onMsgCameraActive(const TMsgCameraActivated &msg);
 	void onMsgCameraFullActive(const TMsgCameraFullyActivated &msg);
@@ -35,10 +36,8 @@ public:
   void load(const json& j, TEntityParseContext& ctx);
   void update(float dt);
 
-  float CameraClipping(const VEC3 & origin, const VEC3 & dir);
   const VEC2 getCurrentEuler() { return _current_euler; }
-
-  DECL_SIBLING_ACCESS();
+  float CameraClipping(const VEC3 & origin, const VEC3 & dir);
 
   static void registerMsgs();
 };

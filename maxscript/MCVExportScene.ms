@@ -173,7 +173,7 @@ struct TSceneExporter (
 		
 		)
 	),
-	
+
 	-- ----------------------------------------------------------
 	fn exportTransform obj = (
 		fs.writeKey "transform" 
@@ -321,8 +321,11 @@ struct TSceneExporter (
 		fs.beginArray()
 		exportRenderMesh obj
 		fs.endArray()
+		fs.writeComma()
+		writeHierComponent obj
+		fs.writeComma()
+		writeGroupComponent obj
 		
-		-- Do some work here to support hierarchy and groups
 		for child in obj.children do (
 			if isCollider child then (
 				fs.writeComma()
@@ -417,6 +420,14 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
+	fn exportRoot filename = (
+		fs.beginObj()
+		fs.writeKey filename
+		fs.beginObj()
+		fs.endObj()
+		fs.endObj()
+	),
+	
 	-- ----------------------------------------------------------
 	-- ----------------------------------------------------------
 	
@@ -447,13 +458,14 @@ struct TSceneExporter (
 		local nitems = 0
 		local prg_step = 100 / (nodes.count + 1)
 		
+		exportRoot ofilename -- Export root
 		for obj in nodes do (
 			
 			if nitems > 0 then  fs.writeComma()
 			exportEntity obj
 			nitems = nitems + 1
 			
-			prg.value = (nitems + 1)* prg_step
+			prg.value = (nitems + 1) * prg_step
 		)
 		
 		prg.value = 100

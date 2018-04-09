@@ -9,7 +9,6 @@
 #include "render/render_objects.h"
 #include "components/comp_camera.h"
 #include "components/physics/comp_collider.h"
-#include "components/player_controller/comp_player_controller.h"
 #include "components/comp_tags.h"
 #include "components/comp_light.h"
 #include "../comp_name.h"
@@ -27,14 +26,10 @@ void TCompShadowController::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompShadowController::update(float dt) {
 
-	TCompPlayerController * pc = get<TCompPlayerController>();
-	if (!pc->checkPaused()) {
-
-		TCompTransform * c_my_transform = get<TCompTransform>();
-		VEC3 new_pos = c_my_transform->getPosition() + 0.1f * c_my_transform->getUp();
-		is_shadow = IsPointInShadows(new_pos);
-		//is_shadow == true ? dbg("i'm in shadow\n") : dbg("i'm in light\n");
-	}
+	TCompTransform * c_my_transform = get<TCompTransform>();
+	VEC3 new_pos = c_my_transform->getPosition() + 0.1f * c_my_transform->getUp();
+	is_shadow = IsPointInShadows(new_pos);
+	//is_shadow == true ? dbg("i'm in shadow\n") : dbg("i'm in light\n");
  }
 
 void TCompShadowController::Init() {

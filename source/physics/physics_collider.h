@@ -16,13 +16,15 @@ public:
 
 	static physx::PxMaterial* default_material;
 
-	bool is_trigger;
+	bool is_trigger = false;
+	bool is_controller = false;
 	physx::PxRigidActor* actor;
+	physx::PxShape* shape;
 
 	physx::PxU32 group;
 	physx::PxU32 mask;
 	physx::PxVec3 center = physx::PxVec3(); // move this...
-	physx::PxF32 contact_offset = 0.01f;
+	physx::PxF32 contact_offset = 0.001f;
 
 	virtual physx::PxShape* createShape() = 0;
 	virtual void load(const json& j, TEntityParseContext& ctx) = 0;

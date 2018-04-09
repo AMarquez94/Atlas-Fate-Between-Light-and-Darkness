@@ -8,6 +8,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
+#include "components/comp_light.h"
 #include "render/render_manager.h"
 
 void CModuleEntities::loadListOfManagers(const json& j, std::vector< CHandleManager* > &managers) {
@@ -58,18 +59,32 @@ bool CModuleEntities::start()
 
 void CModuleEntities::update(float delta)
 {
+	float scaled_time = delta * time_scale_factor;
 	for (auto om : om_to_update)
 	{
 		PROFILE_FUNCTION(om->getName());
-		om->updateAll(delta);
+		om->updateAll(scaled_time);
 	}
 
 	CHandleManager::destroyAllPendingObjects();
 }
 
+bool CModuleEntities::stop() {
+	// Destroy all entities, should destroy all components in chain
+	auto hm = getObjectManager<CEntity>();
+	hm->forEach([](CEntity* e) {
+		CHandle h(e);
+		h.destroy();
+	});
+	CHandleManager::destroyAllPendingObjects();
+	return true;
+}
+
 void CModuleEntities::render()
 {
   Resources.debugInMenu();
+
+  ImGui::DragFloat("Time Factor",&time_scale_factor,0.01f,0.f,1.0f);
 
   if (ImGui::TreeNode("All Entities...")) {
 
@@ -102,6 +117,11 @@ void CModuleEntities::render()
   }
 
   CTagsManager::get().debugInMenu();
+
+  // I just need to activate one light... but at this moment...	
+  getObjectManager<TCompLight>()->forEach([](TCompLight* c) {
+	c->activate();
+  });
 
   CRenderManager::get().renderCategory("default");
   CRenderManager::get().debugInMenu();

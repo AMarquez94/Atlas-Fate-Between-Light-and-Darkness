@@ -1,4 +1,5 @@
 #include "mcv_platform.h"
+#include "windows/app.h"
 
 void dbg(const char* format, ...) {
   va_list argptr;
@@ -21,9 +22,19 @@ bool fatal(const char* format, ...) {
 }
 
 bool isPressed(int key) {
-  return(::GetAsyncKeyState(key) & 0x8000) == 0x8000;
+  return CApp::get().hasFocus && (::GetAsyncKeyState(key) & 0x8000) == 0x8000;
 }
 
+// --------------------------------------------------------
+// Quick and dirty..
+bool fileExists(const std::string& afilename) {
+	FILE * f = fopen(afilename.c_str(), "rb");
+	if (!f)
+		return false;
+	fclose(f);
+	return true;
+	
+}
 
 // --------------------------------------------------------
 json loadJson(const std::string& filename) {

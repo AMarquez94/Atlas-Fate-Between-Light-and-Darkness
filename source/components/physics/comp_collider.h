@@ -29,5 +29,8 @@ public:
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
 
+	/* Auxiliar methods */
+	bool collisionDistance(const VEC3 & org, const VEC3 & dir, float maxDistance);
+
 	static void registerMsgs();
 };

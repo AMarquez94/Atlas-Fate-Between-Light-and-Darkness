@@ -12,7 +12,7 @@
           "data/materials/body.material"
         ]
       },
-      "tags": [ "enemy" ],
+      "tags": [ "enemy", "patrol" ],
       "ai_patrol": {
         "createRoot": {
           "rootName": "patrol",

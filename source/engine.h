@@ -13,27 +13,27 @@ class CEngine
 {
 public:
 	CEngine();
-  static CEngine& get();
+	static CEngine& get();
 
-  bool start();
-  bool stop();
-  void update(float delta);
-  void render();
+	bool start();
+	bool stop();
+	void update(float delta);
+	void render();
 
-  CModuleManager& getModules() { return _modules; }
-  CModuleRender& getRender() { return _module_render; }
-  CModuleIA& getIA() { return _module_ia; }
-  CModuleInput& getInput() { return _module_input; }
-  CModulePhysics& getPhysics() { return _module_physics; }
-  CModuleCameras& getCameras() { return _module_cameras; }
-  CModuleEntities& getEntities() { return _module_entities; }
-  CModuleFSM& getFSM() { return _module_fsm; }
+	CModuleManager& getModules() { return _modules; }
+	CModuleRender& getRender() { return _module_render; }
+	CModuleIA& getIA() { return _module_ia; }
+	CModuleInput& getInput() { return _module_input; }
+	CModulePhysics& getPhysics() { return _module_physics; }
+	CModuleCameras& getCameras() { return _module_cameras; }
+	CModuleEntities& getEntities() { return _module_entities; }
+	CModuleFSM& getFSM() { return _module_fsm; }
 
 private:
-  CModuleManager  _modules;
-  CModuleRender   _module_render;
-  CModuleEntities _module_entities;
-  CModulePhysics _module_physics;
+	CModuleManager  _modules;
+	CModuleRender   _module_render;
+	CModuleEntities _module_entities;
+	CModulePhysics _module_physics;
 	CModuleIA       _module_ia;
 	CModuleInput    _module_input;
 	CModuleCameras  _module_cameras;
@@ -42,4 +42,7 @@ private:
 
 #define Engine CEngine::get()
 #define EngineInput CEngine::get().getInput()
+#define EngineRender CEngine::get().getRender()
+#define EngineCameras CEngine::get().getCameras()
 #define EnginePhysics CEngine::get().getPhysics()
+#define EngineEntities CEngine::get().getEntities()

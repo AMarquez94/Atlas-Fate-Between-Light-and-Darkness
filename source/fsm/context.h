@@ -19,14 +19,31 @@ namespace FSM
     void update(float delta);
 
     void setCurrentState(const IState* state);
+    void setOwner(CHandle handle);
+    
+    void setVariable(const std::string& name, bool value);
+    void setVariable(const std::string& name, int value);
+    void setVariable(const std::string& name, float value);
+    void setVariable(const std::string& name, CHandle value);
+    void setVariable(const std::string& name, const std::string& value);
+    void setVariable(const std::string& name, const CVariant& var);
 
+    const CMachine* getFSM() const { return _fsm; }
+    EState getInternalState() const { return _internalState; }
+    const IState* getCurrentState() const { return _currentState; }
+    CHandle getOwner() const { return _owner; }
+    const MVariants& getVariables() const { return _variables; }
     const CVariant* getVariable(const std::string& name) const;
-    void getStateTransitions(const IState* state, VTransitions& output) const;
+    float getTimeInState() const { return _timeInState; }
 
   private:
+    void initializeVariables();
+
     const CMachine* _fsm = nullptr;
-    EState _state = EState::IDLE;
+    EState _internalState = EState::IDLE;
     const IState* _currentState = nullptr;
     MVariants _variables;
+    CHandle _owner;
+    float _timeInState = 0.f;
   };
 }

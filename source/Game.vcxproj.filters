@@ -7,7 +7,6 @@
     <ClCompile Include="components\comp_render.cpp" />
     <ClCompile Include="components\comp_transform.cpp" />
     <ClCompile Include="components\ia\ai_controller.cpp" />
-    <ClCompile Include="components\ia\ai_patrol.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\entity_parser.cpp" />
@@ -61,7 +60,6 @@
     <ClCompile Include="utils\utils.cpp" />
     <ClCompile Include="windows\app.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
-    <ClCompile Include="components\player_controller\comp_player_controller.cpp" />
     <ClCompile Include="components\object_controller\comp_bullet_controller.cpp" />
     <ClCompile Include="components\camera_controller\comp_camera_shadowmerge.cpp" />
     <ClCompile Include="components\camera_controller\comp_camera_thirdperson.cpp" />
@@ -95,10 +93,21 @@
     <ClCompile Include="components\ia\comp_bt_patrol.cpp" />
     <ClCompile Include="components\ia\comp_bt_test.cpp" />
     <ClCompile Include="components\ia\comp_bt_mimetic.cpp" />
+    <ClCompile Include="components\skeleton\comp_bone_tracker.cpp" />
+    <ClCompile Include="components\skeleton\comp_skeleton.cpp" />
+    <ClCompile Include="components\skeleton\game_core_skeleton.cpp" />
     <ClCompile Include="physics\physics_mesh.cpp" />
     <ClCompile Include="physics\physics_collider.cpp" />
     <ClCompile Include="physics\physics_filter.cpp" />
     <ClCompile Include="components\physics\comp_rigidbody.cpp" />
+    <ClCompile Include="components\comp_fsm.cpp" />
+    <ClCompile Include="components\player_controller\comp_player_input.cpp" />
+    <ClCompile Include="components\player_controller\comp_player_animator.cpp" />
+    <ClCompile Include="components\player_controller\comp_player_tempcontroller.cpp" />
+    <ClCompile Include="components\camera_controller\comp_curve_controller.cpp" />
+    <ClCompile Include="components\object_controller\comp_trigger_camera.cpp" />
+    <ClCompile Include="modules\game\module_level_select.cpp" />
+    <ClCompile Include="components\object_controller\comp_noise_emitter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -109,7 +118,6 @@
     <ClInclude Include="components\comp_render.h" />
     <ClInclude Include="components\comp_transform.h" />
     <ClInclude Include="components\ia\ai_controller.h" />
-    <ClInclude Include="components\ia\ai_patrol.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="entity\common_msgs.h" />
     <ClInclude Include="entity\entity.h" />
@@ -184,7 +192,6 @@
     <ClInclude Include="windows\app.h" />
     <ClInclude Include="components\comp_player_controller.h" />
     <ClInclude Include="modules\system\module_physics.h" />
-    <ClInclude Include="components\player_controller\comp_player_controller.h" />
     <ClInclude Include="components\object_controller\comp_bullet_controller.h" />
     <ClInclude Include="components\camera_controller\comp_camera_shadowmerge.h" />
     <ClInclude Include="components\camera_controller\comp_camera_thirdperson.h" />
@@ -221,11 +228,25 @@
     <ClInclude Include="components\ia\comp_bt.h" />
     <ClInclude Include="components\ia\comp_bt_patrol.h" />
     <ClInclude Include="components\ia\comp_bt_test.h" />
+    <ClInclude Include="components\skeleton\cal3d2engine.h" />
     <ClInclude Include="components\ia\comp_bt_mimetic.h" />
     <ClInclude Include="physics\physics_mesh.h" />
     <ClInclude Include="physics\physics_collider.h" />
     <ClInclude Include="physics\physics_filter.h" />
+    <ClInclude Include="components\skeleton\comp_bone_tracker.h" />
+    <ClInclude Include="components\skeleton\comp_skeleton.h" />
+    <ClInclude Include="components\skeleton\game_core_skeleton.h" />
     <ClInclude Include="components\physics\comp_rigidbody.h" />
+    <ClInclude Include="components\comp_fsm.h" />
+    <ClInclude Include="components\player_controller\comp_player_input.h" />
+    <ClInclude Include="components\player_controller\comp_player_animator.h" />
+    <ClInclude Include="components\player_controller\comp_player_tempcontroller.h" />
+    <ClInclude Include="utils\data_saver.h" />
+    <ClInclude Include="components\camera_controller\comp_curve_controller.h" />
+    <ClInclude Include="components\object_controller\comp_trigger_camera.h" />
+    <ClInclude Include="render\texture\texture_slots.h" />
+    <ClInclude Include="modules\game\module_level_select.h" />
+    <ClInclude Include="components\object_controller\comp_noise_emitter.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
