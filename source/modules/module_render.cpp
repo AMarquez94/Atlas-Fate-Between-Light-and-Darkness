@@ -222,12 +222,13 @@ void CModuleRender::generateFrame() {
 
 		activateMainCamera();
 		cb_globals.updateGPU();
+		deferred.render(rt_main);
 
 		getObjectManager<TCompSkybox>()->forEach([](TCompSkybox* c) { // Might move this out of here..
 			c->activate();
 		});
+		CRenderManager::get().renderCategory("post_render");
 
-		deferred.render(rt_main);
 		Render.startRenderInBackbuffer();
 		renderFullScreenQuad("dump_texture.tech", rt_main);
 

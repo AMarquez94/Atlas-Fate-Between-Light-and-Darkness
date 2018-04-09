@@ -41,7 +41,6 @@ void CDeferredRenderer::renderGBuffer() {
 
   // Render the solid objects that output to the G-Buffer
   CRenderManager::get().renderCategory("gbuffer");
-  CRenderManager::get().renderCategory("post_render");
 
   // Disable rendering to all render targets.
   ID3D11RenderTargetView* rt_nulls[nrender_targets];
