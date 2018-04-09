@@ -81,6 +81,7 @@ class TCompTempPlayerController : public TCompBase
 	float decrStaminaHorizontal;
 	float decrStaminaVertical;
 	float minStaminaChange;
+	int timesRemoveInhibitorKeyPressed = 0;
 
 	void onCreate(const TMsgEntityCreated& msg);
 	void onStateStart(const TMsgStateStart& msg);
@@ -117,6 +118,7 @@ public:
 	void attackState(float dt);
 	void resetState(float dt);
 	void exitMergeState(float dt);
+	void removingInhibitorState(float dt);
 
 	/* Player condition tests */
 	const bool concaveTest(void);

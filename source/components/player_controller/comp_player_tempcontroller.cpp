@@ -85,6 +85,7 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	decrStaminaVertical = j.value("decrStaminaVertical", 17.5f);
 	minStaminaChange = j.value("minStaminaChange", 15.f);
 	auxCamera = j.value("auxCamera", "");
+	hitPoints = j.value("hitpoints", -1);
 	paused = true;
 }
 
@@ -137,7 +138,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 	stamina = 100.f;
 	fallingTime = 0.f;
 	currentSpeed = 4.f;
-	initialPoints = 0;
+	initialPoints = 5.;
 	rotationSpeed = 10.f;
 	fallingDistance = 0.f;
 	isInhibited = isGrounded = isMerged = false;
@@ -216,8 +217,17 @@ void TCompTempPlayerController::onPlayerKilled(const TMsgPlayerDead & msg)
 
 void TCompTempPlayerController::onPlayerLocate(const TMsgInhibitorShot & msg)
 {
-	isInhibited = true;
-	hitPoints = initialPoints;
+	CEntity* e = CHandle(this).getOwner();
+	TMsgSetFSMVariable manageInhibitor;
+	if (!isInhibited) {
+		isInhibited = true;
+		TCompRender *c_render = get<TCompRender>();
+		c_render->color = VEC4(128, 0, 128, 1);
+		hitPoints = initialPoints;
+	}else {
+		timesRemoveInhibitorKeyPressed = 0;
+	}
+	
 }
 
 void TCompTempPlayerController::onPlayerExpose(const TMsgPlayerIlluminated & msg)
@@ -363,6 +373,19 @@ void TCompTempPlayerController::deadState(float dt)
 	mypos->setYawPitchRoll(y, p, r);
 
 	state = (actionhandler)&TCompTempPlayerController::idleState;
+}
+
+void TCompTempPlayerController::removingInhibitorState(float dt) {
+	if (timesRemoveInhibitorKeyPressed == hitPoints && isInhibited) {
+		TCompRender *c_render = get<TCompRender>();
+		c_render->color = VEC4(1, 1, 1, 1);
+		timesRemoveInhibitorKeyPressed = 0;
+		isInhibited = false;
+	}
+	else {
+		timesRemoveInhibitorKeyPressed++;
+	}
+	
 }
 
 /* Concave test, this determines if there is a surface normal change on concave angles */

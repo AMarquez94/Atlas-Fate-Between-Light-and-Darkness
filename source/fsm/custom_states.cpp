@@ -332,8 +332,8 @@ namespace FSM
 
 	void RemoveInhibitor::onStart(CContext& ctx) const {
 
-		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_idle", _speed, _radius, _size, nullptr, _noise });
+ 		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::removingInhibitorState, "pj_idle", _speed, _radius, _size, nullptr, _noise });
 	}
 
 	void RemoveInhibitor::onFinish(CContext& ctx) const {
