@@ -14,14 +14,14 @@
       },
       "tags": [ "enemy", "patrol" ],
       "ai_patrol": {
-        "createRoot": {
+        "root": {
           "rootName": "patrol",
           "type": "priority",
           "condition": "nullptr",
           "action": "",
           "assert": ""
         },
-        "addChild": [
+        "children": [
           {
             "parent": "patrol",
             "name": "manageStun",
@@ -94,6 +94,102 @@
             "action": "",
             "assert": ""
           },
+		  {
+            "parent": "manageDoPatrol",
+            "name": "manageArtificialNoise",
+            "type": "sequence",
+            "condition": "conditionIsArtificialNoise",
+            "action": "",
+            "assert": ""
+          },
+		  {
+            "parent": "manageArtificialNoise",
+            "name": "markArtificialNoiseAsInactive",
+            "type": "action",
+            "condition": "",
+            "action": "actionMarkNoiseAsInactive",
+            "assert": ""
+          },
+		  {
+            "parent": "manageArtificialNoise",
+            "name": "goToArtificialNoiseSource",
+            "type": "action",
+            "condition": "",
+            "action": "actionGoToNoiseSource",
+			"actionArg": [
+              {
+                "variable_name": "speed",
+                "variable_type": "float",
+                "variable_value": 3.5,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "rotationSpeed",
+                "variable_type": "float",
+                "variable_value": 90.0,
+                "variable_op": ""
+              },
+			  {
+                "variable_name": "entityToChase",
+                "variable_type": "string",
+                "variable_value": "The Player",
+                "variable_op": ""
+              },
+              {
+                "variable_name": "autoChaseDistance",
+                "variable_type": "float",
+                "variable_value": 15.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "maxChaseDistance",
+                "variable_type": "float",
+                "variable_value": 35.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "fov",
+                "variable_type": "float",
+                "variable_value": 70.0,
+                "variable_op": ""
+              }
+            ],
+            "assert": ""
+          },
+		  {
+            "parent": "manageArtificialNoise",
+            "name": "waitInArtificialNoiseSource",
+            "type": "action",
+            "condition": "",
+            "action": "actionWaitInNoiseSource",
+			"actionArg": [
+			  {
+                "variable_name": "entityToChase",
+                "variable_type": "string",
+                "variable_value": "The Player",
+                "variable_op": ""
+              },
+              {
+                "variable_name": "autoChaseDistance",
+                "variable_type": "float",
+                "variable_value": 15.0,
+                "variable_op": ""
+              },
+			  {
+                "variable_name": "fov",
+                "variable_type": "float",
+                "variable_value": 70.0,
+                "variable_op": ""
+              },
+			  {
+                "variable_name": "maxChaseDistance",
+                "variable_type": "float",
+                "variable_value": 35.0,
+                "variable_op": ""
+              }
+            ],
+            "assert": ""
+          },
           {
             "parent": "manageDoPatrol",
             "name": "managePlayerSeen",
@@ -121,6 +217,30 @@
             ],
             "action": "",
             "assert": ""
+          },
+		  {
+            "parent": "manageDoPatrol",
+            "name": "manageNaturalNoise",
+            "type": "sequence",
+            "condition": "conditionIsNaturalNoise",
+            "action": "",
+            "assert": ""
+          },
+		  {
+            "parent": "manageNaturalNoise",
+            "name": "markNaturalNoiseAsInactive",
+            "type": "action",
+            "condition": "",
+            "action": "actionMarkNoiseAsInactive",
+            "assert": ""
+          },
+		  {
+            "parent": "manageNaturalNoise",
+            "name": "rotateToNoiseSource",
+            "type": "action",
+            "condition": "",
+            "action": "actionRotateToNoiseSource",
+            "assert": "assertNotPlayerInFovNorArtificialNoise"
           },
           {
             "parent": "manageDoPatrol",
@@ -172,7 +292,7 @@
                 "variable_op": ""
               }
             ],
-            "assert": "assertPlayerAndPatrolNotInFov"
+            "assert": "assertPlayerAndPatrolNotInFovNotNoise"
           },
           {
             "parent": "manageDoPatrol",
@@ -188,7 +308,7 @@
                 "variable_op": ""
               }
             ],
-            "assert": "assertPlayerAndPatrolNotInFov"
+            "assert": "assertPlayerAndPatrolNotInFovNotNoise"
           },
           {
             "parent": "manageDoPatrol",
@@ -256,7 +376,7 @@
                 "variable_op": ""
               }
             ],
-            "assert": ""
+            "assert": "assertNotHeardArtificialNoise"
           },
           {
             "parent": "manageChase",
@@ -452,7 +572,7 @@
                 "variable_op": ""
               }
             ],
-            "assert": "assertPlayerNotInFov"
+            "assert": "assertPlayerNotInFovNorNoise"
           },
           {
             "parent": "managePlayerWasSeen",
@@ -492,7 +612,7 @@
                 "variable_op": ""
               }
             ],
-            "assert": "assertPlayerNotInFov"
+            "assert": "assertPlayerNotInFovNorNoise"
           },
           {
             "parent": "managePlayerWasSeen",
@@ -592,7 +712,7 @@
             "type": "action",
             "condition": "",
             "action": "actionLookForPlayer",
-            "assert": "assertPlayerAndPatrolNotInFov"
+            "assert": "assertPlayerAndPatrolNotInFovNotNoise"
           },
           {
             "parent": "managePatrolLost",

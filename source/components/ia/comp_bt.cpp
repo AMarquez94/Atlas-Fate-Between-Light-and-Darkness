@@ -144,9 +144,9 @@ void TCompIAController::loadTree(const json & j)
 	BTAction actionNode = nullptr;
 	BTCondition conditionNode = nullptr, assertNode = nullptr;
 
-	//assert(j.count("createRoot") == 1);
-	if (j.count("createRoot") == 1) {
-		auto& j_root = j["createRoot"];
+	//assert(j.count("root") == 1);
+	if (j.count("root") == 1) {
+		auto& j_root = j["root"];
 		assert(j_root.count("rootName") == 1);
 		rootName = j_root.value("rootName", "defaultValue");
 		assert(j_root.count("type") == 1);
@@ -184,8 +184,8 @@ void TCompIAController::loadTree(const json & j)
 		}
 
 		createRoot(rootName, nodeType, conditionNode, actionNode, assertNode);
-		if (j.count("addChild") > 0) {
-			auto& j_addChild = j["addChild"];
+		if (j.count("children") > 0) {
+			auto& j_addChild = j["children"];
 			for (auto it = j_addChild.begin(); it != j_addChild.end(); ++it) {
 				assert(it.value().count("parent") > 0);
 				parentName = it.value().value("parent", "");

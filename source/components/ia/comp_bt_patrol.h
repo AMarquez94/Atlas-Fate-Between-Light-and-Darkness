@@ -36,10 +36,15 @@ private:
 	bool hasBeenShadowMerged = false;
 	bool hasBeenFixed = false;
 
+	bool hasHeardNaturalNoise = false;
+	bool hasHeardArtificialNoise = false;
+	VEC3 noiseSource = VEC3::Zero;
+
 	std::string validState = "";
 
 	/* Timers */
 	float timerWaitingInWpt = 0.f;
+	float timerWaitingInNoise = 0.f;
 
 	DECL_SIBLING_ACCESS();
 
@@ -48,11 +53,12 @@ private:
 	void onMsgPatrolStunned(const TMsgEnemyStunned& msg);
 	void onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged& msg);
 	void onMsgPatrolFixed(const TMsgPatrolFixed& msg);
+	void onMsgNoiseListened(const TMsgNoiseMade& msg);
 
 	/* Aux functions */
 	const Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }
 	void addWaypoint(const Waypoint& wpt) { _waypoints.push_back(wpt); };
-	void rotateTowardsVec(VEC3 objective, float dt, float rotationSpeed);
+	bool rotateTowardsVec(VEC3 objective, float dt, float rotationSpeed);
 	bool isPlayerInFov(std::string entityToChase, float fov, float maxChaseDistance);
 	bool isEntityHidden(CHandle hEntity);
 	void turnOnLight();
@@ -76,6 +82,9 @@ public:
 	BTNode::ERes actionBeginAlert(float dt);
 	BTNode::ERes actionClosestWpt(float dt);
 	BTNode::ERes actionEndAlert(float dt);
+	BTNode::ERes actionMarkNoiseAsInactive(float dt);
+	BTNode::ERes actionGoToNoiseSource(float dt);
+	BTNode::ERes actionWaitInNoiseSource(float dt);
 	BTNode::ERes actionGoToWpt(float dt);
 	BTNode::ERes actionWaitInWpt(float dt);
 	BTNode::ERes actionNextWpt(float dt);
@@ -84,6 +93,7 @@ public:
 	BTNode::ERes actionShootInhibitor(float dt);
 	BTNode::ERes actionChasePlayer(float dt);
 	BTNode::ERes actionAttack(float dt);
+	BTNode::ERes actionRotateToNoiseSource(float dt);
 	BTNode::ERes actionResetPlayerWasSeenVariables(float dt);
 	BTNode::ERes actionGoToPlayerLastPos(float dt);
 	BTNode::ERes actionLookForPlayer(float dt);
@@ -95,6 +105,8 @@ public:
 	bool conditionEndAlert(float dt);
 	bool conditionShadowMerged(float dt);
 	bool conditionFixed(float dt);
+	bool conditionIsArtificialNoise(float dt);
+	bool conditionIsNaturalNoise(float dt);
 	bool conditionPlayerSeen(float dt);
 	bool conditionPlayerWasSeen(float dt);
 	bool conditionPatrolSeen(float dt);
@@ -107,6 +119,10 @@ public:
 	bool assertPlayerInFov(float dt);
 	bool assertPlayerNotInFov(float dt);
 	bool assertPlayerAndPatrolNotInFov(float dt);
+	bool assertNotHeardArtificialNoise(float dt);
+	bool assertNotPlayerInFovNorArtificialNoise(float dt);
+	bool assertPlayerNotInFovNorNoise(float dt);
+	bool assertPlayerAndPatrolNotInFovNotNoise(float dt);
 
 	bool isStunned() { return current && current->getName().compare("stunned") == 0; }
 
