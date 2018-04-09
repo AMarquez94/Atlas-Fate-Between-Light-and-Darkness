@@ -26,6 +26,8 @@ const CResourceClass* getResourceClassOf<CMaterial>() {
 	return &the_resource_class;
 }
 
+CMaterial::CMaterial() : cb_material("Material") {}
+
 // ----------------------------------------------------------
 bool CMaterial::create(const std::string& name) {
 
@@ -52,7 +54,10 @@ bool CMaterial::create(const std::string& name) {
 			ts = TS_NORMAL;
 		else if (slot == "lightmap")
 			ts = TS_LIGHTMAP;
-		// ...
+		else if (slot == "metallic")
+			ts = TS_METALLIC;
+		else if (slot == "roughness")
+			ts = TS_ROUGHNESS;
 
 		assert(ts != TS_NUM_MATERIALS_SLOTS || fatal("Material %s has an invalid texture slot %s\n", name.c_str(), slot.c_str()));
 		textures[ts] = Resources.get(texture_name)->as<CTexture>();
@@ -60,6 +65,14 @@ bool CMaterial::create(const std::string& name) {
 		// To update all textures in a single DX call
 		srvs[ts] = textures[ts]->getShaderResourceView();
 	}
+
+	if (!cb_material.create(CB_MATERIAL))
+		return false;
+
+	cb_material.scalar_metallic = -1.f;     // Initially disabled
+	cb_material.scalar_roughness = -1.f;
+	cb_material.scalar_irradiance_vs_mipmaps = 0.f;
+	cb_material.updateGPU();
 
 	return true;
 }
@@ -75,7 +88,12 @@ void CMaterial::onFileChanged(const std::string& filename) {
 	}
 }
 
+void CMaterial::destroy() {
+	cb_material.destroy();
+}
+
 void CMaterial::activate() const {
+	cb_material.activate();
 	tech->activate();
 	Render.ctx->PSSetShaderResources(0, max_textures, (ID3D11ShaderResourceView**)srvs);
 }
@@ -86,4 +104,22 @@ void CMaterial::debugInMenu() {
 	for (int i = 0; i < max_textures; ++i)
 		if (textures[i])
 			((CTexture*)textures[i])->debugInMenu();
+
+	// Allow overwrite the metallic and roughness of the material
+	bool enabled;
+	
+	enabled = (cb_material.scalar_metallic >= 0.f);
+	if (ImGui::Checkbox("Custom Metallic", &enabled))
+		cb_material.scalar_metallic = enabled ? 0.f : -1.f;
+	if (cb_material.scalar_metallic >= 0.f)
+		ImGui::DragFloat("Metallic", &cb_material.scalar_metallic, 0.01f, 0.f, 1.f);
+
+	enabled = (cb_material.scalar_roughness >= 0.f);
+	if (ImGui::Checkbox("Custom Roughness", &enabled))
+		cb_material.scalar_roughness = enabled ? 0.f : -1.f;
+	if (cb_material.scalar_roughness >= 0.f)
+		ImGui::DragFloat("Roughness", &cb_material.scalar_roughness, 0.01f, 0.f, 1.f);
+	
+	ImGui::DragFloat("irradiance_vs_mipmaps", &cb_material.scalar_irradiance_vs_mipmaps, 0.01f, 0.f, 1.f);
+	cb_material.updateGPU();
 }

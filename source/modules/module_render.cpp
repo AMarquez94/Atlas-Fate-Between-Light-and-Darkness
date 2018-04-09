@@ -96,9 +96,20 @@ bool CModuleRender::start()
 	if (!cb_light.create(CB_LIGHT))
 		return false;
 
+	if (!cb_globals.create(CB_GLOBALS))
+		return false;
+
+	cb_globals.global_exposure_adjustment = 1.f;
+	cb_globals.global_ambient_adjustment = 1.f;
+	cb_globals.global_world_time = 0.f;
+	cb_globals.global_hdr_enabled = 1.f;
+	cb_globals.global_gamma_correction_enabled = 1.f;
+	cb_globals.global_tone_mapping_mode = 1.f;
+
 	cb_light.activate();
 	cb_object.activate();
 	cb_camera.activate();
+	cb_globals.activate();
 
 	camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
 	camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
@@ -123,6 +134,7 @@ bool CModuleRender::stop()
 	cb_camera.destroy();
 	cb_object.destroy();
 	cb_light.destroy();
+	cb_globals.destroy();
 
 	return true;
 }
@@ -132,6 +144,8 @@ void CModuleRender::update(float delta)
 	(void)delta;
 	// Notify ImGUI that we are starting a new frame
 	ImGui_ImplDX11_NewFrame();
+
+	cb_globals.global_world_time += delta;
 }
 
 void CModuleRender::render()
@@ -144,6 +158,20 @@ void CModuleRender::render()
 
 	// Edit the Background color
 	ImGui::ColorEdit4("Background Color", &_backgroundColor.x);
+	ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.1f, 32.f);
+	ImGui::DragFloat("Ambient Adjustment", &cb_globals.global_ambient_adjustment, 0.01f, 0.0f, 1.f);
+
+	//ImGui::ColorEdit4("Background Color", &_backgroundColor.x);
+		
+	if (ImGui::TreeNode("Render Control")) {
+		ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.1f, 32.f);
+		ImGui::DragFloat("Ambient Adjustment", &cb_globals.global_ambient_adjustment, 0.01f, 0.0f, 1.f);
+		ImGui::DragFloat("HDR", &cb_globals.global_hdr_enabled, 0.01f, 0.0f, 1.f);
+		ImGui::DragFloat("Gamma Correction", &cb_globals.global_gamma_correction_enabled, 0.01f, 0.0f, 1.f);
+		ImGui::DragFloat("Reinhard vs Uncharted2", &cb_globals.global_tone_mapping_mode, 0.01f, 0.0f, 1.f);
+		ImGui::TreePop();
+	}
+
 }
 
 void CModuleRender::configure(int xres, int yres)
@@ -193,7 +221,8 @@ void CModuleRender::generateFrame() {
 		PROFILE_FUNCTION("CModuleRender::generateFrame");
 
 		activateMainCamera();
-		
+		cb_globals.updateGPU();
+
 		getObjectManager<TCompSkybox>()->forEach([](TCompSkybox* c) { // Might move this out of here..
 			c->activate();
 		});

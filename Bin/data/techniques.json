@@ -104,7 +104,11 @@
     "vs_entry_point": "VS_GBuffer",
     "ps_entry_point": "PS_GBuffer",
     "vertex_type": "PosNUvUvT",
-    "category" : "gbuffer"
+    "category" : "gbuffer",
+		"textures" : { 
+      "environment" : "data/textures/cubemaps/env.dds", 
+      "irradiance" : "data/textures/cubemaps/irradiance.dds" 
+    }
   },
 	  "pbr_ambient": {
     "vs_file": "data/shaders/screen_quad.fx",

@@ -70,7 +70,7 @@ bool CDeferredRenderer::create(int xres, int yres) {
     return false;
 
   rt_acc_light = new CRenderToTexture;
-  if (!rt_acc_light->createRT("acc_light.dds", xres, yres, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN, true))
+  if (!rt_acc_light->createRT("acc_light.dds", xres, yres, DXGI_FORMAT_R16G16B16A16_FLOAT, DXGI_FORMAT_UNKNOWN, true))
     return false;
 
   return true;

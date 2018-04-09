@@ -5,20 +5,26 @@
 #define CB_OBJECT       1
 #define CB_SKIN_BONES	2
 #define CB_LIGHT		3
+#define CB_GLOBALS      4
+#define CB_MATERIAL     5
 
 // -------------------------------------------------
 // Texture Slots
 // Materials
 #define TS_ALBEDO              0
-#define TS_LIGHTMAP            1
-#define TS_NORMAL              2
+#define TS_NORMAL              1
+#define TS_METALLIC            2
+#define TS_ROUGHNESS           3
+#define TS_LIGHTMAP            4
+
 // .. Other slots of the material
-#define TS_NUM_MATERIALS_SLOTS 3
+#define TS_NUM_MATERIALS_SLOTS 5
 
 // Here goes the slots not associated to a material
 #define TS_LIGHT_PROJECTOR     5
 #define TS_LIGHT_SHADOW_MAP    6 
 #define TS_ENVIRONMENT_MAP     7
+#define TS_IRRADIANCE_MAP      8
 
 #define TS_DEFERRED_ALBEDOS           10
 #define TS_DEFERRED_NORMALS           11
@@ -88,6 +94,26 @@ CB_DEF(CCteLight, CB_LIGHT)
 												  // Align x4
 	MAT44 light_view_proj_offset;
 
+};
+
+CB_DEF(CCteGlobals, CB_GLOBALS)   // Generates the b1
+{
+	float global_world_time;
+	float global_exposure_adjustment;
+	float global_ambient_adjustment;
+	float global_hdr_enabled;
+	float global_gamma_correction_enabled;
+	float global_tone_mapping_mode;
+	float global_dummy1;
+	float global_dummy2;
+};
+
+CB_DEF(CCteMaterial, CB_MATERIAL)
+{
+	float  scalar_roughness;
+	float  scalar_metallic;
+	float  scalar_irradiance_vs_mipmaps;
+	float  material_dummy;
 };
 
 CB_DEF(CCteSkinBones, CB_SKIN_BONES)

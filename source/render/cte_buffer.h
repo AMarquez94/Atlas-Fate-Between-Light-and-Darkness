@@ -12,7 +12,7 @@ protected:
 public:
 
 	void destroy();
-	void activate();
+	void activate() const;
 };
 // -----------------------------------------
 // I'm a join combination of the CPU struct (TPOD) and 

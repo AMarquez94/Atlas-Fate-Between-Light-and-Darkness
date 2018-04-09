@@ -104,7 +104,7 @@ void TCompLight::activate() {
 	cb_light.light_intensity = intensity;
 	cb_light.light_pos = c->getPosition();
 	cb_light.light_view_proj_offset = getViewProjection() * mtx_offset;
-	cb_light.light_radius = 1.f;
+	cb_light.light_radius = getZFar();
 	cb_light.updateGPU();
 
 	// If we have a ZTexture, it's the time to activate it

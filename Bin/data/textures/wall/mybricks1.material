@@ -1,0 +1,11 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/wall/mybricks1_basecolor.dds",
+    "normal": "data/textures/wall/mybricks1_normal.dds",
+    "metallic": "data/textures/wall/mybricks1_metallic.dds",
+    "roughness": "data/textures/wall/mybricks1_roughness.dds"
+  }
+}

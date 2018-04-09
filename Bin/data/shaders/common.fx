@@ -5,11 +5,14 @@
 Texture2D    txAlbedo         SLOT( TS_ALBEDO );
 Texture2D    txLightMap       SLOT( TS_LIGHTMAP );
 Texture2D    txNormal         SLOT( TS_NORMAL );
+Texture2D    txMetallic       SLOT( TS_METALLIC );
+Texture2D    txRoughness      SLOT( TS_ROUGHNESS );
 
 // from the light and env
 Texture2D    txLightProjector SLOT( TS_LIGHT_PROJECTOR );
 Texture2D    txLightShadowMap SLOT( TS_LIGHT_SHADOW_MAP );
 TextureCube  txEnvironmentMap SLOT( TS_ENVIRONMENT_MAP );
+TextureCube  txIrradianceMap  SLOT( TS_IRRADIANCE_MAP );
 
 // output from deferred
 Texture2D    txGBufferAlbedos     SLOT( TS_DEFERRED_ALBEDOS );
