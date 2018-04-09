@@ -15,6 +15,7 @@ void TCompPlayerInput::load(const json& j, TEntityParseContext& ctx) {
 void TCompPlayerInput::update(float dt)
 {
 	CEntity* e = CHandle(this).getOwner();
+	_time += dt;
 
 	/* Movement messages*/
 	{
@@ -107,22 +108,29 @@ void TCompPlayerInput::update(float dt)
 			e->sendMsg(action);
 		}
 
-		if (EngineInput["btSecAction"].isPressed())
+		if (EngineInput["btSecAction"].getsPressed())
 		{
 			/* Move this from here.. */
 			CEntity * c_my_entity = CHandle(this).getOwner();
 			TCompTempPlayerController * c_my_player = c_my_entity->get<TCompTempPlayerController>();
 
 			if (c_my_player->isInhibited) {
-				if (c_my_player->hitPoints > 0) {
-					c_my_player->hitPoints--;
-					if (c_my_player->hitPoints == 0) {
-						TMsgSetFSMVariable action;
-						e->sendMsg(action);
-						c_my_player->hitPoints = c_my_player->initialPoints;
-					}
+				TMsgSetFSMVariable keyPressed;
+				keyPressed.variant.setName("hitPoints");
+				keyPressed.variant.setBool(true);
+				e->sendMsg(keyPressed);
+			}
+		}
 
-				}
+		if (EngineInput["btSecAction"].getsReleased()) {
+			CEntity * c_my_entity = CHandle(this).getOwner();
+			TCompTempPlayerController * c_my_player = c_my_entity->get<TCompTempPlayerController>();
+
+			if (c_my_player->isInhibited) {
+				TMsgSetFSMVariable keyPressed;
+				keyPressed.variant.setName("hitPoints");
+				keyPressed.variant.setBool(false);
+				e->sendMsg(keyPressed);
 			}
 		}
 

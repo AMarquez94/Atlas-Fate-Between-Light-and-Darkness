@@ -43,14 +43,14 @@ namespace FSM
 
 
 
-	bool AnimationState::load(const json& jData){
+	bool AnimationState::load(const json& jData) {
 
 		_animationName = jData["animation"];
 		_speed = jData.value("speed", 4.f);
 		_size = jData.value("size", 1.f);
 		_radius = jData.value("radius", 0.3f);
 		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
-		if(jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
 		return true;
 	}
 
@@ -331,11 +331,10 @@ namespace FSM
 	}
 
 	void RemoveInhibitor::onStart(CContext& ctx) const {
-		bool aux = ctx.getVariable("hitPoints")->getBool();
-		if (ctx.getVariable("hitPoints")->getBool()) {
-			CEntity* e = ctx.getOwner();
-			e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::removingInhibitorState, "pj_idle", _speed, _radius, _size, nullptr, _noise });
-		}
+
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::removingInhibitorState, "pj_idle", _speed, _radius, _size, nullptr, _noise });
+
 	}
 
 	void RemoveInhibitor::onFinish(CContext& ctx) const {

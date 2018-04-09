@@ -40,7 +40,7 @@
         "decrStaminaVertical": 17.5,
         "minStaminaChange": 15,
         "auxCamera": "SMCameraAux",
-        "hitpoints": 5
+        "timesRemoveInhibitorKeyPressed": 5
       },
 			"tags":
 			[
