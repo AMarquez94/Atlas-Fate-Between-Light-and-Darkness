@@ -10,11 +10,12 @@ class TCompPlayerAnimator : public TCompAnimator
 {
 	DECL_SIBLING_ACCESS();
 public:
-	enum EAnimation { IDLE = 0, WALK, RUN, FALL, ATTACK_IDLE, ATTACK };
 	void debugInMenu();
 	static void registerMsgs();
-
-	void initializeAnimations();
 	void onCreated(const TMsgEntityCreated& msg);
+
+	enum EAnimation { IDLE = 0, WALK, RUN, FALL, ATTACK_IDLE, ATTACK };
+	void initializeAnimations();
+	
 };
 
