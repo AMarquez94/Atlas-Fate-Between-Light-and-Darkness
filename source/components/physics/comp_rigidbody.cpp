@@ -33,10 +33,11 @@ void TCompRigidbody::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompRigidbody::update(float dt) {
 
-	TCompCollider * c_collider = get<TCompCollider>();
-	velocity = physx::PxVec3(0,0,0);
-
 	if (CHandle(this).getOwner().isValid()) {
+
+		TCompCollider * c_collider = get<TCompCollider>();
+		velocity = physx::PxVec3(0,0,0);
+
 		TCompTransform *transform = get<TCompTransform>();
 		VEC3 new_pos = transform->getPosition();
 		VEC3 delta_movement = new_pos - lastFramePosition;
@@ -49,18 +50,18 @@ void TCompRigidbody::update(float dt) {
 			velocity += (actualDownForce + totalDownForce);
 			totalDownForce += 3.f * actualDownForce * dt;
 		}
-	}
 
-	if (is_controller){
-		physx::PxControllerCollisionFlags col = controller->move(velocity * dt, 0.f, dt, filters);
-		is_grounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN);
-	}
-	else {
-		TCompTransform *c_transform = get<TCompTransform>();
-		VEC3 pos = c_transform->getPosition();
-		QUAT quat = c_transform->getRotation();
-		physx::PxTransform transform(physx::PxVec3(pos.x, pos.y, pos.z), physx::PxQuat(quat.x, quat.y, quat.z, quat.w));
-		c_collider->config->actor->setGlobalPose(transform);
+		if (is_controller){
+			physx::PxControllerCollisionFlags col = controller->move(velocity * dt, 0.f, dt, filters);
+			is_grounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN);
+		}
+		else {
+			TCompTransform *c_transform = get<TCompTransform>();
+			VEC3 pos = c_transform->getPosition();
+			QUAT quat = c_transform->getRotation();
+			physx::PxTransform transform(physx::PxVec3(pos.x, pos.y, pos.z), physx::PxQuat(quat.x, quat.y, quat.z, quat.w));
+			c_collider->config->actor->setGlobalPose(transform);
+		}
 	}
 }
 

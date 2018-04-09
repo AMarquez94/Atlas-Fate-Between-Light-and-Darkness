@@ -98,6 +98,9 @@ void CModulePhysics::update(float delta)
 
 			CEntity* e = h_comp_collider.getOwner();
 			TCompCollider* compCollider = h_comp_collider;
+			if (!h_comp_collider.isValid() || !h_comp_collider.getOwner().isValid()) {
+				continue;
+			}
 			TCompTransform * compTransform = e->get<TCompTransform>();
 			TCompRigidbody * compRigibody = e->get<TCompRigidbody>();
 

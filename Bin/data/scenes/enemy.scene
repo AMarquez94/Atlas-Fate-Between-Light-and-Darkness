@@ -5,7 +5,7 @@
 		}
 	},
 	{
-		"entity": {
+		"xentity": {
 		  "prefab": "data/prefabs/patrol.prefab",
 		  "name": "The Enemy 1",
       "transform": {
