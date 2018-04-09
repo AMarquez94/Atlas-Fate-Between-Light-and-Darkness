@@ -35,6 +35,8 @@ protected:
 
 	void onMsgScenePaused(const TMsgScenePaused& msg);
 
+	bool isParentOfCurrent(BTNode * son, const std::string& possibleParent);
+
 private:
 
 	/* The nodes as map (so we have both map and tree for the same structure */

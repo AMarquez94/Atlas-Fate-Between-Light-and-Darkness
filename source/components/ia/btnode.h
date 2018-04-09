@@ -15,6 +15,7 @@ public:
 	void create(const std::string& btName);
 	bool isRoot();
 	void setParent(BTNode *newParent);
+	BTNode * getParent() { return parent; };
 	void setRight(BTNode *newRight);
 	void addChild(BTNode *newChild);
 	void setType(EType type);

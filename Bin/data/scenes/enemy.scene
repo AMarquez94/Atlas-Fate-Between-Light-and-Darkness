@@ -73,7 +73,7 @@
 			}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 		  "prefab": "data/prefabs/patrol.prefab",
 		  "name": "The Enemy 3",
 		  "transform": {
@@ -138,7 +138,7 @@
 			}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 		  "prefab": "data/prefabs/patrol.prefab",
 		  "name": "The Enemy 4",
 		  "transform": {

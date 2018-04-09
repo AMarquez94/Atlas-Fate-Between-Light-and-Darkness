@@ -142,12 +142,6 @@
                 "variable_op": ""
               },
               {
-                "variable_name": "maxChaseDistance",
-                "variable_type": "float",
-                "variable_value": 35.0,
-                "variable_op": ""
-              },
-              {
                 "variable_name": "fov",
                 "variable_type": "float",
                 "variable_value": 70.0,
@@ -179,12 +173,6 @@
                 "variable_name": "fov",
                 "variable_type": "float",
                 "variable_value": 70.0,
-                "variable_op": ""
-              },
-			  {
-                "variable_name": "maxChaseDistance",
-                "variable_type": "float",
-                "variable_value": 35.0,
                 "variable_op": ""
               }
             ],
@@ -240,6 +228,14 @@
             "type": "action",
             "condition": "",
             "action": "actionRotateToNoiseSource",
+			"actionArg": [
+              {
+                "variable_name": "rotationSpeed",
+                "variable_type": "float",
+                "variable_value": 90.0,
+                "variable_op": ""
+              }
+            ],
             "assert": "assertNotPlayerInFovNorArtificialNoise"
           },
           {
