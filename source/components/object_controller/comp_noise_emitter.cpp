@@ -93,8 +93,6 @@ void TCompNoiseEmitter::onMsgMakeNoise(const TMsgMakeNoise & msg)
 	_once = msg.isOnlyOnce;
 	_artificial = msg.isArtificial;
 	resizeEmitter(msg.noiseRadius);
-
-	dbg("Noise: is noise %s - Radius: %f - timeToRepeat: %f\n", _isNoise ? "true" : "false", msg.noiseRadius, msg.timeToRepeat);
 }
 
 void TCompNoiseEmitter::resizeEmitter(float radius)

@@ -49,9 +49,6 @@ void TCompConeOfLightController::update(float dt) {
 					msg.h_sender = CHandle(this).getOwner();
 					player->sendMsg(msg);
 				}
-				else {
-					dbg("That bastard is hidden\n");
-				}
 			}
 		}
 	}

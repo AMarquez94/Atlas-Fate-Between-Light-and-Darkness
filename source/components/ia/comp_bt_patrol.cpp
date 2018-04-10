@@ -374,7 +374,6 @@ BTNode::ERes TCompAIPatrol::actionGoToNoiseSource(float dt)
 
 
 	if (VEC3::Distance(noiseSource, vp) < speed * dt) {
-		dbg("SALIMOS!!! (por llegar al source)\n");
 		mypos->setPosition(noiseSource);
 		return BTNode::ERes::LEAVE;
 	}
