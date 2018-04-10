@@ -445,7 +445,7 @@ BTNode::ERes TCompAIMimetic::actionResetVariablesChase(float dt)
 	msg.isArtificial = true;
 	msg.isNoise = true;
 	msg.isOnlyOnce = false;
-	msg.timeToRepeat = 1.f;
+	msg.timeToRepeat = .4f;
 	msg.noiseRadius = 20.f;
 	TCompGroup * tGroup = get<TCompGroup>();
 	if (tGroup) {
@@ -479,7 +479,7 @@ BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
 		msg.isArtificial = true;
 		msg.isNoise = false;
 		msg.isOnlyOnce = false;
-		msg.timeToRepeat = 1.f;
+		msg.timeToRepeat = 10.f;
 		msg.noiseRadius = 0.01f;
 		TCompGroup * tGroup = get<TCompGroup>();
 		if (tGroup) {

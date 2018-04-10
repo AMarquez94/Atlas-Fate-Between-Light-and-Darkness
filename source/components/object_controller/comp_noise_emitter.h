@@ -25,6 +25,7 @@ private:
   std::vector<CHandle> hEntitiesInNoiseRadius;
 
   void onMsgEntityCreated(const TMsgEntityCreated& msg);
+  void onMsgScenePaused(const TMsgScenePaused & msg);
   void onMsgTriggerEnter(const TMsgTriggerEnter& msg);
   void onMsgTriggerExit(const TMsgTriggerExit& msg);
   void onMsgMakeNoise(const TMsgMakeNoise& msg);

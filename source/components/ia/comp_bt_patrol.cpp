@@ -10,6 +10,7 @@
 #include "components/physics/comp_rigidbody.h"
 #include "components/physics/comp_collider.h"
 #include "physics/physics_collider.h"
+#include "render/render_utils.h"
 
 
 DECL_OBJ_MANAGER("ai_patrol", TCompAIPatrol);
@@ -171,17 +172,23 @@ void TCompAIPatrol::onMsgNoiseListened(const TMsgNoiseMade & msg)
 {
 	assert(arguments.find("fov_actionSuspect_suspect") != arguments.end());
 	float fov = deg2rad(arguments["fov_actionSuspect_suspect"].getFloat());
-	assert(arguments.find("maxChaseDistance_actionSuspect_suspect") != arguments.end());
-	float maxChaseDistance = arguments["maxChaseDistance_actionSuspect_suspect"].getFloat();
+	assert(arguments.find("autoChaseDistance_actionSuspect_suspect") != arguments.end());
+	float autoChaseDistance = arguments["autoChaseDistance_actionSuspect_suspect"].getFloat();
 
 	dbg("Recibimos mensaje. Comprobando si estamos ya siguiendo el ruido... %s\n", isParentOfCurrent(current, "manageArtificialNoise") || isParentOfCurrent(current, "manageNaturalNoise") ? "true" : "false");
 
-	bool isManagingArtificialNoise = isParentOfCurrent(current, "manageArtificialNoise");
+	bool isManagingArtificialNoise = isParentOfCurrent(current, "goToArtificialNoiseSource");
 	bool isManagingNaturalNoise = isParentOfCurrent(current, "manageNaturalNoise");
+	bool isChasingPlayer = isParentOfCurrent(current, "manageChase");
 
-	if (!isManagingArtificialNoise) {
-		if ((!isManagingNaturalNoise || msg.isArtificialNoise) && !isPlayerInFov("The Player", fov, maxChaseDistance)) {
-			msg.isArtificialNoise ? hasHeardArtificialNoise = true : hasHeardNaturalNoise = true;
+	if (!isChasingPlayer && !isManagingArtificialNoise) {
+		if (!isPlayerInFov("The Player", fov, autoChaseDistance)) {
+			if (msg.isArtificialNoise) {
+				hasHeardArtificialNoise = true;
+			}
+			else if (!isManagingNaturalNoise && !msg.isArtificialNoise) {
+				hasHeardNaturalNoise = true;
+			}
 		}
 	}
 
@@ -257,7 +264,6 @@ void TCompAIPatrol::loadConditions() {
 	conditions_initializer["conditionWaitInWpt"] = (BTCondition)&TCompAIPatrol::conditionWaitInWpt;
 	conditions_initializer["conditionChase"] = (BTCondition)&TCompAIPatrol::conditionChase;
 	conditions_initializer["conditionPlayerAttacked"] = (BTCondition)&TCompAIPatrol::conditionPlayerAttacked;
-
 }
 
 void TCompAIPatrol::loadAsserts() {
@@ -333,6 +339,7 @@ BTNode::ERes TCompAIPatrol::actionMarkNoiseAsInactive(float dt)
 {
 	hasHeardArtificialNoise = false;
 	hasHeardNaturalNoise = false;
+	timerWaitingInNoise = 0.f;
 	return BTNode::ERes::LEAVE;
 }
 
@@ -360,10 +367,8 @@ BTNode::ERes TCompAIPatrol::actionGoToNoiseSource(float dt)
 
 	float lolol = VEC3::Distance(noiseSource, vp);
 
-	dbg("JASUDFAUSDFJASDF %f\n", lolol);
-
-	if (VEC3::Distance(vp, pp) <= autoChaseDistance - 1.f && isPlayerInFov(entityToChase, fov - deg2rad(1.f), autoChaseDistance - 1.f)) {
-		dbg("SALIMOS!!! (por ver al player)\n");
+	if (isPlayerInFov(entityToChase, fov - deg2rad(1.f), autoChaseDistance - 1.f)) {
+		current = nullptr;
 		return BTNode::ERes::LEAVE;
 	}
 
@@ -397,14 +402,13 @@ BTNode::ERes TCompAIPatrol::actionWaitInNoiseSource(float dt)
 	TCompTransform * ppos = get<TCompTransform>();
 	VEC3 pp = ppos->getPosition();
 
-	if (VEC3::Distance(vp, pp) <= autoChaseDistance && isPlayerInFov(entityToChase, fov, autoChaseDistance)) {
-		timerWaitingInNoise = 0.f;
+	if (isPlayerInFov(entityToChase, fov - deg2rad(1.f), autoChaseDistance - 1.f)) {
+		current = nullptr;
 		return BTNode::ERes::LEAVE;
 	}
 
 	timerWaitingInNoise += dt;
-	if (timerWaitingInNoise > 1.f) {
-		timerWaitingInNoise = 0.f;
+	if (timerWaitingInNoise > 3.f) {
 		return BTNode::ERes::LEAVE;
 	}
 	else {
@@ -865,9 +869,7 @@ bool TCompAIPatrol::assertPlayerInFov(float dt)
 	assert(arguments.find("maxChaseDistance_actionSuspect_suspect") != arguments.end());
 	float maxChaseDistance = arguments["maxChaseDistance_actionSuspect_suspect"].getFloat();
 	
-	/*return*/ bool result = isPlayerInFov("The Player", fov, maxChaseDistance);
-	dbg("Player in fov %s\n", result ? "true" : "false");
-	return result;
+	return isPlayerInFov("The Player", fov, maxChaseDistance);
 }
 
 bool TCompAIPatrol::assertPlayerNotInFov(float dt)
@@ -877,9 +879,7 @@ bool TCompAIPatrol::assertPlayerNotInFov(float dt)
 	assert(arguments.find("maxChaseDistance_actionSuspect_suspect") != arguments.end());
 	float maxChaseDistance = arguments["maxChaseDistance_actionSuspect_suspect"].getFloat();
 	
-	/*return*/ bool result = !isPlayerInFov("The Player", fov, maxChaseDistance);
-	dbg("Player not in fov %s\n", result ? "true" : "false");
-	return result;
+	return !isPlayerInFov("The Player", fov, maxChaseDistance);
 }
 
 bool TCompAIPatrol::assertPlayerAndPatrolNotInFov(float dt)
@@ -889,9 +889,7 @@ bool TCompAIPatrol::assertPlayerAndPatrolNotInFov(float dt)
 	assert(arguments.find("maxChaseDistance_actionSuspect_suspect") != arguments.end());
 	float maxChaseDistance = arguments["maxChaseDistance_actionSuspect_suspect"].getFloat();
 	
-	/* return */ bool result = !isPlayerInFov("The Player", fov, maxChaseDistance) && !isStunnedPatrolInFov(fov, maxChaseDistance);
-	dbg("Player not in fov nor noise %s\n", result ? "true" : "false");
-	return result;
+	return !isPlayerInFov("The Player", fov, maxChaseDistance) && !isStunnedPatrolInFov(fov, maxChaseDistance);
 }
 
 bool TCompAIPatrol::assertNotHeardArtificialNoise(float dt)
@@ -907,7 +905,7 @@ bool TCompAIPatrol::assertNotPlayerInFovNorArtificialNoise(float dt)
 	float maxChaseDistance = arguments["maxChaseDistance_actionSuspect_suspect"].getFloat();
 
 	/*return*/ bool result =!isPlayerInFov("The Player", fov, maxChaseDistance) && !hasHeardArtificialNoise;
-	dbg("Player not in fov nor artificial noise %s\n", result ? "true" : "false");
+	//dbg("Player not in fov nor artificial noise %s\n", result ? "true" : "false");
 	return result;
 }
 
@@ -918,9 +916,7 @@ bool TCompAIPatrol::assertPlayerNotInFovNorNoise(float dt)
 	assert(arguments.find("maxChaseDistance_actionSuspect_suspect") != arguments.end());
 	float maxChaseDistance = arguments["maxChaseDistance_actionSuspect_suspect"].getFloat();
 
-	/*return */ bool result = !isPlayerInFov("The Player", fov, maxChaseDistance) && !hasHeardArtificialNoise && !hasHeardNaturalNoise;
-	dbg("Player not in fov nor noise %s\n", result ? "true" : "false");
-	return result;
+	return !isPlayerInFov("The Player", fov, maxChaseDistance) && !hasHeardArtificialNoise && !hasHeardNaturalNoise;
 }
 
 bool TCompAIPatrol::assertPlayerAndPatrolNotInFovNotNoise(float dt)
@@ -931,7 +927,7 @@ bool TCompAIPatrol::assertPlayerAndPatrolNotInFovNotNoise(float dt)
 	float maxChaseDistance = arguments["maxChaseDistance_actionSuspect_suspect"].getFloat();
 
 	/* return */ bool result = !isPlayerInFov("The Player", fov, maxChaseDistance) && !isStunnedPatrolInFov(fov, maxChaseDistance) && !hasHeardArtificialNoise && !hasHeardNaturalNoise;
-	dbg("Player and patrol not in fov nor noise %s\n", result ? "true" : "false");
+	//dbg("Player and patrol not in fov nor noise %s\n", result ? "true" : "false");
 	return result;
 }
 

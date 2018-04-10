@@ -144,7 +144,7 @@
               {
                 "variable_name": "fov",
                 "variable_type": "float",
-                "variable_value": 70.0,
+                "variable_value": 179.0,
                 "variable_op": ""
               }
             ],
@@ -172,11 +172,11 @@
 			  {
                 "variable_name": "fov",
                 "variable_type": "float",
-                "variable_value": 70.0,
+                "variable_value": 179.0,
                 "variable_op": ""
               }
             ],
-            "assert": ""
+            "assert": "assertNotHeardArtificialNoise"
           },
           {
             "parent": "manageDoPatrol",
@@ -193,7 +193,7 @@
               {
                 "variable_name": "fov",
                 "variable_type": "float",
-                "variable_value": 70.0,
+                "variable_value": 179.0,
                 "variable_op": ""
               },
               {
@@ -255,7 +255,7 @@
               {
                 "variable_name": "fov",
                 "variable_type": "float",
-                "variable_value": 70.0,
+                "variable_value": 179.0,
                 "variable_op": ""
               },
               {
@@ -338,7 +338,7 @@
               {
                 "variable_name": "fov",
                 "variable_type": "float",
-                "variable_value": 70.0,
+                "variable_value": 179.0,
                 "variable_op": ""
               },
               {
@@ -466,7 +466,7 @@
               {
                 "variable_name": "fov",
                 "variable_type": "float",
-                "variable_value": 70.0,
+                "variable_value": 179.0,
                 "variable_op": ""
               },
               {
@@ -552,7 +552,7 @@
               {
                 "variable_name": "fov",
                 "variable_type": "float",
-                "variable_value": 70.0,
+                "variable_value": 179.0,
                 "variable_op": ""
               },
               {
@@ -586,7 +586,7 @@
               {
                 "variable_name": "fov",
                 "variable_type": "float",
-                "variable_value": 70.0,
+                "variable_value": 179.0,
                 "variable_op": ""
               },
               {

@@ -29,6 +29,7 @@ void TCompNoiseEmitter::load(const json& j, TEntityParseContext& ctx) {
 void TCompNoiseEmitter::registerMsgs()
 {
 	DECL_MSG(TCompNoiseEmitter, TMsgEntityCreated, onMsgEntityCreated);
+	DECL_MSG(TCompNoiseEmitter, TMsgScenePaused, onMsgScenePaused);
 	DECL_MSG(TCompNoiseEmitter, TMsgTriggerEnter, onMsgTriggerEnter);
 	DECL_MSG(TCompNoiseEmitter, TMsgTriggerExit, onMsgTriggerExit);
 	DECL_MSG(TCompNoiseEmitter, TMsgMakeNoise, onMsgMakeNoise);
@@ -38,6 +39,11 @@ void TCompNoiseEmitter::onMsgEntityCreated(const TMsgEntityCreated & msg)
 {
 	TCompHierarchy * tHierarchy = get<TCompHierarchy>();
 	_hSource = getEntityByName(tHierarchy->parent_name);
+}
+
+void TCompNoiseEmitter::onMsgScenePaused(const TMsgScenePaused & msg)
+{
+	paused = !paused;
 }
 
 void TCompNoiseEmitter::onMsgTriggerEnter(const TMsgTriggerEnter & msg)
@@ -106,6 +112,10 @@ void TCompNoiseEmitter::resizeEmitter(float radius)
 
 void TCompNoiseEmitter::update(float dt)
 {
+	if (paused) {
+		return;
+	}
+
 	_timer += dt;
 
 	if (_isNoise && _timer > _timeToRepeatNoise) {
