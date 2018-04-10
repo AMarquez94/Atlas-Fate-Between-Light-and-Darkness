@@ -94,6 +94,7 @@ void TCompSkeleton::update(float dt) {
 void TCompSkeleton::debugInMenu() {
   static int anim_id = 0;
   static float weight = 1.0f;
+  static float speed = 1.0f;
   static float lastWeight = 1.0f;
   static float in_delay = 0.3f;
   static float out_delay = 0.3f;
@@ -101,11 +102,14 @@ void TCompSkeleton::debugInMenu() {
   
   // Play aacton/cycle from the menu
   ImGui::DragInt("Anim Id", &anim_id, 0.1f, 0, model->getCoreModel()->getCoreAnimationCount()-1);
+  ImGui::DragFloat("Speed", &speed, 0.01f, 0, 5.f);
   auto core_anim = model->getCoreModel()->getCoreAnimation(anim_id);
   if (ImGui::SmallButton("Set Speed")) {
 	  for (int i = 0; i < model->getMixer()->getAnimationVector().size(); i++) {
 		  CalAnimation* anim = model->getMixer()->getAnimationVector()[i];
-		  if (anim != 0)	anim->setTimeFactor(0.3f);
+		  if (anim != 0) {
+			  anim->setTimeFactor(speed);
+		  }
 	  }
 	  //model->getMixer()->getAnimationVector()[0]->setTimeFactor(0.3f);
 	  dbg("");
@@ -113,7 +117,7 @@ void TCompSkeleton::debugInMenu() {
   }
   for (int i = 0; i < model->getMixer()->getAnimationVector().size(); i++) {
 	  CalAnimation* anim = model->getMixer()->getAnimationVector()[i];
-	  if (anim != 0)	dbg("%f\n\n", anim->getTimeFactor());
+	  if (anim != 0)	dbg("%s    %f\n\n", anim->getCoreAnimation()->getName().c_str(), anim->getTimeFactor());
   }
   //dbg("%i\n\n", model->getMixer()->getAnimationVector().size());
   if(core_anim)
