@@ -25,8 +25,11 @@ struct TCompSkeleton : public TCompBase {
 	void updateCtesBones();
 
 	void changeCyclicAnimation(int animId, float in_delay = 0.15f, float out_delay = 0.15f);
+	void changeCyclicAnimation(int animId, float speed, float in_delay = 0.15f, float out_delay = 0.15f);
 	void changeCyclicAnimation(int anim1Id, int anim2Id, float weight, float in_delay = 0.15f, float out_delay = 0.15f);
+	void changeCyclicAnimation(int anim1Id, int anim2Id, float weight, float speed, float in_delay = 0.15f, float out_delay = 0.15f);
 	void executeActionAnimation(int animId, float in_delay = 0.15f, float out_delay = 0.15f);
+	void executeActionAnimation(int animId, float speed, float in_delay = 0.15f, float out_delay = 0.15f);
 	void setCyclicAnimationWeight(float new_value);
 	float getCyclicAnimationWeight();
 	int getAnimationIdByName(std::string animName);

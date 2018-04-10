@@ -19,7 +19,7 @@ void TCompAnimator::initializeAnimations() {
 	
 }
 
-bool TCompAnimator::initializeAnimation(EAnimation animation, EAnimationType animationType, EAnimationSize animationSize, std::string animationName, std::string secondAnimationName, float weight) {
+bool TCompAnimator::initializeAnimation(EAnimation animation, EAnimationType animationType, EAnimationSize animationSize, std::string animationName, std::string secondAnimationName, float weight, float speed) {
 	
 	CEntity* e = ownHandle;
 	TCompSkeleton * compSkeleton = e->get<TCompSkeleton>();
@@ -40,6 +40,7 @@ bool TCompAnimator::initializeAnimation(EAnimation animation, EAnimationType ani
 		return false;
 	}
 	auxAnimSet.weight = weight;
+	auxAnimSet.speed = speed;
 	animationsMap[animation] = auxAnimSet;
 	return false;
 }
@@ -70,14 +71,23 @@ bool TCompAnimator::playAnimation(EAnimation animation) {
 
 		if (animSet.animationType == EAnimationSize::DOUBLE) {
 			compSkeleton->changeCyclicAnimation(animSet.animationId, animSet.secondAnimationId, animSet.weight);
+			if (animSet.speed != 1) {
+				compSkeleton->changeCyclicAnimation(animSet.animationId, animSet.secondAnimationId, animSet.weight, animSet.speed, 0.15f,0.15f);
+			}
 		}
 		else {
 			compSkeleton->changeCyclicAnimation(animSet.animationId);
+			if (animSet.speed != 1) {
+				compSkeleton->changeCyclicAnimation(animSet.animationId, animSet.speed, 0.15f, 0.15f);
+			}
 		}
 		break;
 
 	case EAnimationType::ACTION:
 		compSkeleton->executeActionAnimation(animSet.animationId);
+		if (animSet.speed != 1) {
+			compSkeleton->executeActionAnimation(animSet.animationId, animSet.speed, 0.15f, 0.15f);
+		}
 		break;
 
 	}

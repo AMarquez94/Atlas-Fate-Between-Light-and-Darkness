@@ -26,6 +26,7 @@ public:
 		int animationId = -1;
 		int secondAnimationId = -1;
 		float weight = 1.0f;
+		float speed = 1.0f;
 	};
 
 	CHandle ownHandle;
@@ -40,7 +41,7 @@ public:
 	void update(float dt);
 	void initializeAnimations();
 
-	bool initializeAnimation(EAnimation animation, EAnimationType animationType, EAnimationSize animationSize, std::string animationName, std::string secondAnimationName, float weight);
+	bool initializeAnimation(EAnimation animation, EAnimationType animationType, EAnimationSize animationSize, std::string animationName, std::string secondAnimationName, float weight, float speed);
 	bool playAnimation(EAnimation animation);
 	bool isCyclic(EAnimation animation);
 	bool isComposed(EAnimation animation);

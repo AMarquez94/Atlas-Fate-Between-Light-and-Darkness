@@ -105,21 +105,43 @@ void TCompSkeleton::debugInMenu() {
   ImGui::DragFloat("Speed", &speed, 0.01f, 0, 5.f);
   auto core_anim = model->getCoreModel()->getCoreAnimation(anim_id);
   if (ImGui::SmallButton("Set Speed")) {
-	  for (int i = 0; i < model->getMixer()->getAnimationVector().size(); i++) {
-		  CalAnimation* anim = model->getMixer()->getAnimationVector()[i];
-		  if (anim != 0) {
-			  anim->setTimeFactor(speed);
+	  int debug = 3;
+	  switch (debug) {
+	  case 1:
+		  for (int i = 0; i < model->getMixer()->getAnimationVector().size(); i++) {
+			  CalAnimation* anim = model->getMixer()->getAnimationVector()[i];
+
+			  if (anim != 0) {
+				  dbg("printing\n\n");
+				  anim->setTimeFactor(speed);
+			  }
 		  }
+		  break;
+	  case 2:
+		  model->getMixer()->setTimeFactor(speed);
+		  break;
+
+	  case 3:
+		  std::list<CalAnimationAction *>::iterator iteratorAnimationAction;
+		  iteratorAnimationAction = model->getMixer()->getAnimationActionList().begin();
+
+		  while (iteratorAnimationAction != model->getMixer()->getAnimationActionList().end())
+		  {
+			  // find the specified action and remove it
+			  (*iteratorAnimationAction)->setTimeFactor(speed);
+			  iteratorAnimationAction++;
+		  }
+		  break;
 	  }
-	  //model->getMixer()->getAnimationVector()[0]->setTimeFactor(0.3f);
-	  dbg("");
 
   }
+  /*
   for (int i = 0; i < model->getMixer()->getAnimationVector().size(); i++) {
 	  CalAnimation* anim = model->getMixer()->getAnimationVector()[i];
 	  if (anim != 0)	dbg("%s    %f\n\n", anim->getCoreAnimation()->getName().c_str(), anim->getTimeFactor());
-  }
-  //dbg("%i\n\n", model->getMixer()->getAnimationVector().size());
+  }*/
+
+ // dbg("%i\n\n",);
   if(core_anim)
     ImGui::Text("%s", core_anim->getName().c_str());
   ImGui::DragFloat("In Delay", &in_delay, 0.01f, 0, 1.f);
@@ -246,6 +268,27 @@ void TCompSkeleton::changeCyclicAnimation(int animId, float in_delay,  float out
 	actualCycleAnimId[1] = -1;
 }
 
+void TCompSkeleton::changeCyclicAnimation(int animId, float speed, float in_delay, float out_delay) {
+
+	model->getMixer()->clearCycle(actualCycleAnimId[0], out_delay);
+	if (actualCycleAnimId[1] != -1) {
+		model->getMixer()->clearCycle(actualCycleAnimId[1], out_delay);
+	}
+
+	model->getMixer()->blendCycle(animId, 1.0f, in_delay);
+	actualCycleAnimId[0] = animId;
+	actualCycleAnimId[1] = -1;
+
+	std::list<CalAnimationCycle *>::iterator iteratorAnimationCycle;
+	iteratorAnimationCycle = model->getMixer()->getAnimationCycle().begin();
+	while (iteratorAnimationCycle != model->getMixer()->getAnimationCycle().end())
+	{
+		// find the specified action and remove it
+		(*iteratorAnimationCycle)->setTimeFactor(speed);
+		iteratorAnimationCycle++;
+	}
+}
+
 void TCompSkeleton::changeCyclicAnimation(int anim1Id, int anim2Id, float weight, float in_delay, float out_delay) {
 
 	model->getMixer()->clearCycle(actualCycleAnimId[0], out_delay);
@@ -258,6 +301,29 @@ void TCompSkeleton::changeCyclicAnimation(int anim1Id, int anim2Id, float weight
 	actualCycleAnimId[1] = anim2Id;
 }
 
+void TCompSkeleton::changeCyclicAnimation(int anim1Id, int anim2Id, float weight, float speed, float in_delay, float out_delay) {
+
+	model->getMixer()->clearCycle(actualCycleAnimId[0], out_delay);
+	if (actualCycleAnimId[1] != -1) {
+		model->getMixer()->clearCycle(actualCycleAnimId[1], out_delay);
+	}
+	model->getMixer()->blendCycle(anim1Id, weight, in_delay);
+	model->getMixer()->blendCycle(anim2Id, 1.f - weight, in_delay);
+	actualCycleAnimId[0] = anim1Id;
+	actualCycleAnimId[1] = anim2Id;
+
+	std::list<CalAnimationCycle *>::iterator iteratorAnimationCycle;
+	iteratorAnimationCycle = model->getMixer()->getAnimationCycle().begin();
+	while (iteratorAnimationCycle != model->getMixer()->getAnimationCycle().end())
+	{
+		// find the specified action and remove it
+		(*iteratorAnimationCycle)->setTimeFactor(speed);
+		iteratorAnimationCycle++;
+	}
+	//model->getMixer()->setTimeFactor(speed);
+
+}
+
 void TCompSkeleton::executeActionAnimation(int animId, float in_delay, float out_delay) {
 
 	bool auto_lock = false;
@@ -266,6 +332,25 @@ void TCompSkeleton::executeActionAnimation(int animId, float in_delay, float out
 		a->remove(out_delay);
 	}
 	model->getMixer()->executeAction(animId, in_delay, out_delay, 1.0f, auto_lock);
+}
+
+void TCompSkeleton::executeActionAnimation(int animId, float speed, float in_delay, float out_delay) {
+
+	bool auto_lock = false;
+	//model->getMixer()->getAnimationActionList().clear();
+	for (auto a : model->getMixer()->getAnimationActionList()) {
+		a->remove(out_delay);
+	}
+	model->getMixer()->executeAction(animId, in_delay, out_delay, 1.0f, auto_lock);
+
+	std::list<CalAnimationAction *>::iterator iteratorAnimationAction;
+	iteratorAnimationAction = model->getMixer()->getAnimationActionList().begin();
+	while (iteratorAnimationAction != model->getMixer()->getAnimationActionList().end())
+	{
+		// find the specified action and remove it
+		(*iteratorAnimationAction)->setTimeFactor(speed);
+		iteratorAnimationAction++;
+	}
 }
 
 //Set the weight added to a combination of twi cyclic animations

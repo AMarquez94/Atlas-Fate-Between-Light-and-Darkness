@@ -39,6 +39,7 @@ void TCompPlayerAnimator::initializeAnimations() {
 		EAnimationSize::SINGLE,
 		"idle",
 		"",
+		1.0f,
 		1.0f
 	);
 
@@ -48,7 +49,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 		EAnimationSize::DOUBLE,
 		"jog",
 		"walk",
-		0.0f
+		0.0f,
+		1.0f
 	);
 
 	initializeAnimation(
@@ -57,6 +59,7 @@ void TCompPlayerAnimator::initializeAnimations() {
 		EAnimationSize::SINGLE,
 		"jog",
 		"",
+		1.0f,
 		1.0f
 	);
 
@@ -66,7 +69,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 		EAnimationSize::SINGLE,
 		"kick",
 		"",
-		1.0f
+		1.0f,
+		0.2f
 	);
 }
 
