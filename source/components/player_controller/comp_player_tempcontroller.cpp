@@ -374,22 +374,44 @@ void TCompTempPlayerController::deadState(float dt)
 }
 
 void TCompTempPlayerController::removingInhibitorState(float dt) {
+	CEntity* player = CHandle(this).getOwner();
 
-	CEntity *a = CHandle(this).getOwner();
-	std::string aux = a->getName();
-	if (initialPoints == timesRemoveInhibitorKeyPressed) timeInhib = 0;
+	
+	if (initialPoints == timesRemoveInhibitorKeyPressed){
+		timeInhib = 0;
+	}
 	if (timesRemoveInhibitorKeyPressed > 0 && timeInhib <= timeToPressAgain) {
 		timesRemoveInhibitorKeyPressed--;
+		timeInhib = 0;
+		dbg("Im in removing inhib state \n %d Key strokes remaining \n \n", timesRemoveInhibitorKeyPressed);
 		if (timesRemoveInhibitorKeyPressed == 0) {
 			TCompRender *c_render = get<TCompRender>();
 			c_render->color = VEC4(1, 1, 1, 1);
 			timesRemoveInhibitorKeyPressed = 0;
 			isInhibited = false;
+			
+			
 		}
 	}
 	else {
-		timesRemoveInhibitorKeyPressed = initialPoints;
+		timesRemoveInhibitorKeyPressed = initialPoints - 1;
+		timeInhib = 0;
+		dbg("Im in removing inhib state but I was too slow \n %d Key strokes remaining \n \n", timesRemoveInhibitorKeyPressed);
+
 	}
+	TMsgSetFSMVariable finished;
+	finished.variant.setName("finished");
+	finished.variant.setBool(true);
+	player->sendMsg(finished);
+	
+	TMsgSetFSMVariable keyPressed;
+	keyPressed.variant.setName("hitPoints");
+	keyPressed.variant.setBool(false);
+	player->sendMsg(keyPressed);
+
+	dbg("---------------------------------------------------------------------------- \n");
+
+
 }
 
 /* Concave test, this determines if there is a surface normal change on concave angles */

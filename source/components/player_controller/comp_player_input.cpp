@@ -122,18 +122,6 @@ void TCompPlayerInput::update(float dt)
 			}
 		}
 
-		if (EngineInput["btSecAction"].getsReleased()) {
-			CEntity * c_my_entity = CHandle(this).getOwner();
-			TCompTempPlayerController * c_my_player = c_my_entity->get<TCompTempPlayerController>();
-
-			if (c_my_player->isInhibited) {
-				TMsgSetFSMVariable keyPressed;
-				keyPressed.variant.setName("hitPoints");
-				keyPressed.variant.setBool(false);
-				e->sendMsg(keyPressed);
-			}
-		}
-
 		if (EngineInput["btDebugShadows"].getsPressed()) {
 			TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
 			c_my_player->dbgDisableStamina = !c_my_player->dbgDisableStamina;
