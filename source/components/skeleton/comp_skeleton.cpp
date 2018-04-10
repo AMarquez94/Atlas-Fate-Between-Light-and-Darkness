@@ -266,6 +266,7 @@ void TCompSkeleton::changeCyclicAnimation(int animId, float in_delay,  float out
 	model->getMixer()->blendCycle(animId, 1.0f, in_delay);
 	actualCycleAnimId[0] = animId;
 	actualCycleAnimId[1] = -1;
+	model->getMixer()->setTimeFactor(1.0f);
 }
 
 void TCompSkeleton::changeCyclicAnimation(int animId, float speed, float in_delay, float out_delay) {
@@ -278,15 +279,7 @@ void TCompSkeleton::changeCyclicAnimation(int animId, float speed, float in_dela
 	model->getMixer()->blendCycle(animId, 1.0f, in_delay);
 	actualCycleAnimId[0] = animId;
 	actualCycleAnimId[1] = -1;
-
-	std::list<CalAnimationCycle *>::iterator iteratorAnimationCycle;
-	iteratorAnimationCycle = model->getMixer()->getAnimationCycle().begin();
-	while (iteratorAnimationCycle != model->getMixer()->getAnimationCycle().end())
-	{
-		// find the specified action and remove it
-		(*iteratorAnimationCycle)->setTimeFactor(speed);
-		iteratorAnimationCycle++;
-	}
+	model->getMixer()->setTimeFactor(speed);
 }
 
 void TCompSkeleton::changeCyclicAnimation(int anim1Id, int anim2Id, float weight, float in_delay, float out_delay) {
@@ -299,6 +292,7 @@ void TCompSkeleton::changeCyclicAnimation(int anim1Id, int anim2Id, float weight
 	model->getMixer()->blendCycle(anim2Id, 1.f - weight, in_delay);
 	actualCycleAnimId[0] = anim1Id;
 	actualCycleAnimId[1] = anim2Id;
+	model->getMixer()->setTimeFactor(1.0f);
 }
 
 void TCompSkeleton::changeCyclicAnimation(int anim1Id, int anim2Id, float weight, float speed, float in_delay, float out_delay) {
@@ -312,15 +306,7 @@ void TCompSkeleton::changeCyclicAnimation(int anim1Id, int anim2Id, float weight
 	actualCycleAnimId[0] = anim1Id;
 	actualCycleAnimId[1] = anim2Id;
 
-	std::list<CalAnimationCycle *>::iterator iteratorAnimationCycle;
-	iteratorAnimationCycle = model->getMixer()->getAnimationCycle().begin();
-	while (iteratorAnimationCycle != model->getMixer()->getAnimationCycle().end())
-	{
-		// find the specified action and remove it
-		(*iteratorAnimationCycle)->setTimeFactor(speed);
-		iteratorAnimationCycle++;
-	}
-	//model->getMixer()->setTimeFactor(speed);
+	model->getMixer()->setTimeFactor(speed);
 
 }
 

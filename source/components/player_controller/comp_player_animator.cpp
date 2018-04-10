@@ -70,7 +70,7 @@ void TCompPlayerAnimator::initializeAnimations() {
 		"kick",
 		"",
 		1.0f,
-		0.2f
+		1.0f
 	);
 }
 
