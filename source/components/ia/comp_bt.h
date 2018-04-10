@@ -30,6 +30,7 @@ protected:
 
 	void loadTree(const json& j);
 	void loadParameters(const json& j);
+	void loadParameterVariables(const json& j, const std::string& type, const std::string& name);
 
 	BTNode *current;
 

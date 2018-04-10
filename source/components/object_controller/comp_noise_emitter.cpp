@@ -112,35 +112,35 @@ void TCompNoiseEmitter::resizeEmitter(float radius)
 
 void TCompNoiseEmitter::update(float dt)
 {
-	if (paused) {
-		return;
-	}
+	if (!paused && _hSource.isValid()) {
 
-	_timer += dt;
+		_timer += dt;
 
-	if (_isNoise && _timer > _timeToRepeatNoise) {
-		if (!_once || _once && !_onceNoiseMade) {
+		if (_isNoise && _timer > _timeToRepeatNoise) {
+			if (!_once || _once && !_onceNoiseMade) {
 			
-			TCompTransform * tPos = get<TCompTransform>();
-			TMsgNoiseMade msg;
-			msg.hNoiseSource = _hSource;
-			msg.noiseOrigin = tPos->getPosition();
-			msg.isArtificialNoise = _artificial;
-			for (int i = 0; i < hEntitiesInNoiseRadius.size(); i++) {
+				TMsgNoiseMade msg;
+				msg.hNoiseSource = _hSource;
+				CEntity *eSource = _hSource;
+				TCompTransform * tPos = eSource->get<TCompTransform>();
+				msg.noiseOrigin = tPos->getPosition();
+				msg.isArtificialNoise = _artificial;
+				for (int i = 0; i < hEntitiesInNoiseRadius.size(); i++) {
 
-				/* TODO: tirar rayos y esas vergas para amortiguar sonido con paredes */
-				if (hEntitiesInNoiseRadius[i].isValid()) {
-					CEntity *e = hEntitiesInNoiseRadius[i];
-					e->sendMsg(msg);
+					/* TODO: tirar rayos y esas vergas para amortiguar sonido con paredes */
+					if (hEntitiesInNoiseRadius[i].isValid()) {
+						CEntity *e = hEntitiesInNoiseRadius[i];
+						e->sendMsg(msg);
+					}
+					else {
+						hEntitiesInNoiseRadius.erase(hEntitiesInNoiseRadius.begin() + i);
+					}
 				}
-				else {
-					hEntitiesInNoiseRadius.erase(hEntitiesInNoiseRadius.begin() + i);
-				}
-			}
 
-			_timer = 0;
-			if (_once) {
-				_onceNoiseMade = true;
+				_timer = 0;
+				if (_once) {
+					_onceNoiseMade = true;
+				}
 			}
 		}
 	}

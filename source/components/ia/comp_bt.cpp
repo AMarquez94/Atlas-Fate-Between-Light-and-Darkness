@@ -138,7 +138,7 @@ BTNode::EType TCompIAController::stringToNodeType(std::string& string) {
 
 void TCompIAController::loadTree(const json & j)
 {
-	std::string rootName, childName, parentName, condition, action, assert, type, variantName, variantType, variantOp;
+	std::string rootName, childName, parentName, condition, action, assert, type;
 
 	BTNode::EType nodeType;
 	BTAction actionNode = nullptr;
@@ -209,52 +209,7 @@ void TCompIAController::loadTree(const json & j)
 						//Default parameters for the conditions
 						//Retrieving values from the prefab
 						auto& j_conditionArg = it.value()["conditionArg"];
-						for (auto ite = j_conditionArg.begin(); ite != j_conditionArg.end(); ++ite) {
-							//Running some checks
-							assert(ite.value().count("variable_name") > 0);
-							assert(ite.value().count("variable_type") > 0);
-							assert(ite.value().count("variable_value") > 0);
-							assert(ite.value().count("variable_op") > 0);
-							//Retrieving info
-							variantName = ite.value()["variable_name"];
-							variantName = variantName + "_" + condition + "_" + childName;
-							variantType = ite.value()["variable_type"];
-							ToUpperCase(variantType);
-							variantOp = ite.value()["variable_op"];
-							//Depending on the variable type, we create the variant and we save it in arguments
-							if (variantType == "INT") {
-								assert(ite.value()["variable_value"].is_number_integer());
-								int variantValue = ite.value()["variable_value"];
-								CVariant parameter;
-								parameter.setInt(variantValue);
-								arguments[variantName] = parameter;
-							}
-							else if (variantType == "FLOAT") {
-								assert(ite.value()["variable_value"].is_number_float());
-								float variantValue = ite.value()["variable_value"];
-								CVariant parameter;
-								parameter.setFloat(variantValue);
-								arguments[variantName] = parameter;
-							}
-							else if (variantType == "BOOL") {
-								assert(ite.value()["variable_value"].is_boolean());
-								bool variantValue = ite.value()["variable_value"];
-								CVariant parameter;
-								parameter.setBool(variantValue);
-								arguments[variantName] = parameter;
-							}
-							else if (variantType == "STRING") {
-								assert(ite.value()["variable_value"].is_string());
-								std::string variantValue = ite.value()["variable_value"];
-								CVariant parameter;
-								parameter.setString(variantValue);
-								arguments[variantName] = parameter;
-							}
-							else {
-								fatal("La vida es dura, el tipo de variable %s no es aceptada. Revisa el Json", variantType.c_str());
-							}
-						}
-
+						loadParameterVariables(j_conditionArg, condition, childName);
 					}
 				}
 				assert(it.value().count("action") > 0);
@@ -270,52 +225,7 @@ void TCompIAController::loadTree(const json & j)
 						//Default parameters for the actions
 						//Retrieving values from the prefab
 						auto& j_actionArg = it.value()["actionArg"];
-						for (auto ite = j_actionArg.begin(); ite != j_actionArg.end(); ++ite) {
-							//Running some checks
-							assert(ite.value().count("variable_name") > 0);
-							assert(ite.value().count("variable_type") > 0);
-							assert(ite.value().count("variable_value") > 0);
-							assert(ite.value().count("variable_op") > 0);
-							//Retrieving info
-							variantName = ite.value()["variable_name"];
-							variantName = variantName + "_" + action + "_" + childName;
-							variantType = ite.value()["variable_type"];
-							ToUpperCase(variantType);
-							variantOp = ite.value()["variable_op"];
-							//Depending on the variable type, we create the variant and we save it in arguments
-							if (variantType == "INT") {
-								assert(ite.value()["variable_value"].is_number_integer());
-								int variantValue = ite.value()["variable_value"];
-								CVariant parameter;
-								parameter.setInt(variantValue);
-								arguments[variantName] = parameter;
-							}
-							else if (variantType == "FLOAT") {
-								assert(ite.value()["variable_value"].is_number_float());
-								float variantValue = ite.value()["variable_value"];
-								CVariant parameter;
-								parameter.setFloat(variantValue);
-								arguments[variantName] = parameter;
-							}
-							else if (variantType == "BOOL") {
-								assert(ite.value()["variable_value"].is_boolean());
-								bool variantValue = ite.value()["variable_value"];
-								CVariant parameter;
-								parameter.setBool(variantValue);
-								arguments[variantName] = parameter;
-							}
-							else if (variantType == "STRING") {
-								assert(ite.value()["variable_value"].is_string());
-								std::string variantValue = ite.value()["variable_value"];
-								CVariant parameter;
-								parameter.setString(variantValue);
-								arguments[variantName] = parameter;
-							}
-							else {
-								fatal("La vida es dura, el tipo de variable %s no es aceptada. Revisa el Json", variantType.c_str());
-							}
-						}
-
+						loadParameterVariables(j_actionArg, action, childName);
 					}
 
 				}
@@ -328,6 +238,12 @@ void TCompIAController::loadTree(const json & j)
 				}
 				else {
 					assertNode = asserts_initializer[assert];
+					if (it.value().count("assertArg") > 0) {
+						//Default parameters for the conditions
+						//Retrieving values from the prefab
+						auto& j_assertArg = it.value()["assertArg"];
+						loadParameterVariables(j_assertArg, assert, childName);
+					}
 				}
 				addChild(parentName, childName, nodeType, conditionNode, actionNode, assertNode);
 			}
@@ -348,13 +264,13 @@ void TCompIAController::loadParameters(const json& j) {
 			assert(it.value().count("variableName") == 1);
 			assert(it.value().count("newValue") == 1);
 
-			aux = it.value()["conditionName"];
+			aux = it.value().value("conditionName", "");
 
-			argCondName = it.value()["variableName"];
+			argCondName = it.value().value("variableName", "");
 			argCondName += "_";
 			argCondName += aux;
 			argCondName += "_";
-			aux = it.value()["nodeName"];
+			aux = it.value().value("nodeName", "");
 			argCondName += aux;
 
 			assert(arguments.find(argCondName) != arguments.end());
@@ -400,13 +316,13 @@ void TCompIAController::loadParameters(const json& j) {
 			assert(it.value().count("variableName") == 1);
 			assert(it.value().count("newValue") == 1);
 
-			aux = it.value()["actionName"];
+			aux = it.value().value("actionName", "");
 
-			argActName = it.value()["variableName"];
+			argActName = it.value().value("variableName", "");
 			argActName += "_";
 			argActName += aux;
 			argActName += "_";
-			aux = it.value()["nodeName"];
+			aux = it.value().value("nodeName", "");
 			argActName += aux;
 
 			assert(arguments.find(argActName) != arguments.end());
@@ -442,6 +358,56 @@ void TCompIAController::loadParameters(const json& j) {
 				break;
 			}
 			}
+		}
+	}
+}
+
+void TCompIAController::loadParameterVariables(const json & j,const std::string& type,const std::string& name)
+{
+	std::string variantName, variantType, variantOp;
+	for (auto ite = j.begin(); ite != j.end(); ++ite) {
+		//Running some checks
+		assert(ite.value().count("variable_name") > 0);
+		assert(ite.value().count("variable_type") > 0);
+		assert(ite.value().count("variable_value") > 0);
+		assert(ite.value().count("variable_op") > 0);
+		//Retrieving info
+		variantName = ite.value().value("variable_name", "");
+		variantName = variantName + "_" + type + "_" + name;
+		variantType = ite.value().value("variable_type", "");
+		ToUpperCase(variantType);
+		variantOp = ite.value().value("variable_op", "");
+		//Depending on the variable type, we create the variant and we save it in arguments
+		if (variantType == "INT") {
+			assert(ite.value()["variable_value"].is_number_integer());
+			int variantValue = ite.value()["variable_value"];
+			CVariant parameter;
+			parameter.setInt(variantValue);
+			arguments[variantName] = parameter;
+		}
+		else if (variantType == "FLOAT") {
+			assert(ite.value()["variable_value"].is_number_float());
+			float variantValue = ite.value()["variable_value"];
+			CVariant parameter;
+			parameter.setFloat(variantValue);
+			arguments[variantName] = parameter;
+		}
+		else if (variantType == "BOOL") {
+			assert(ite.value()["variable_value"].is_boolean());
+			bool variantValue = ite.value()["variable_value"];
+			CVariant parameter;
+			parameter.setBool(variantValue);
+			arguments[variantName] = parameter;
+		}
+		else if (variantType == "STRING") {
+			assert(ite.value()["variable_value"].is_string());
+			std::string variantValue = ite.value()["variable_value"];
+			CVariant parameter;
+			parameter.setString(variantValue);
+			arguments[variantName] = parameter;
+		}
+		else {
+			fatal("La vida es dura, el tipo de variable %s no es aceptada. Revisa el Json", variantType.c_str());
 		}
 	}
 }

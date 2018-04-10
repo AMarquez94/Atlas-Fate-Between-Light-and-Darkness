@@ -629,7 +629,8 @@ CHandle TCompTempPlayerController::closestEnemyToStun() {
 		TCompTransform * epos = eEnemy->get<TCompTransform>();
 
 		if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < maxAttackDistance
-			&& !epos->isInFront(mypos->getPosition())) {
+			&& !epos->isInFront(mypos->getPosition())
+			&& mypos->isInFront(epos->getPosition())) {
 
 			TCompAIPatrol * aipatrol = eEnemy->get<TCompAIPatrol>();
 			if (!aipatrol->isStunned()) {
@@ -646,7 +647,8 @@ CHandle TCompTempPlayerController::closestEnemyToStun() {
 		CEntity * eEnemy = handlesMimetic[i];
 		TCompTransform * epos = eEnemy->get<TCompTransform>();
 
-		if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < maxAttackDistance) {
+		if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < maxAttackDistance
+			&& mypos->isInFront(epos->getPosition())) {
 
 			TCompAIMimetic * aimimetic = eEnemy->get<TCompAIMimetic>();
 			if (!aimimetic->isStunned()) {

@@ -144,7 +144,7 @@
               {
                 "variable_name": "fov",
                 "variable_type": "float",
-                "variable_value": 179.0,
+                "variable_value": 120.0,
                 "variable_op": ""
               }
             ],
@@ -172,7 +172,7 @@
 			  {
                 "variable_name": "fov",
                 "variable_type": "float",
-                "variable_value": 179.0,
+                "variable_value": 120.0,
                 "variable_op": ""
               }
             ],
@@ -193,7 +193,7 @@
               {
                 "variable_name": "fov",
                 "variable_type": "float",
-                "variable_value": 179.0,
+                "variable_value": 120.0,
                 "variable_op": ""
               },
               {
@@ -236,7 +236,21 @@
                 "variable_op": ""
               }
             ],
-            "assert": "assertNotPlayerInFovNorArtificialNoise"
+            "assert": "assertNotPlayerInFovNorArtificialNoise",
+			"assertArg": [
+              {
+                "variable_name": "fov",
+                "variable_type": "float",
+                "variable_value": 110.0,
+                "variable_op": ""
+              },
+              {
+                "variable_name": "maxChaseDistance",
+                "variable_type": "float",
+                "variable_value": 34.0,
+                "variable_op": ""
+              }
+            ]
           },
           {
             "parent": "manageDoPatrol",
@@ -255,7 +269,7 @@
               {
                 "variable_name": "fov",
                 "variable_type": "float",
-                "variable_value": 179.0,
+                "variable_value": 120.0,
                 "variable_op": ""
               },
               {
@@ -338,7 +352,7 @@
               {
                 "variable_name": "fov",
                 "variable_type": "float",
-                "variable_value": 179.0,
+                "variable_value": 120.0,
                 "variable_op": ""
               },
               {
@@ -466,7 +480,7 @@
               {
                 "variable_name": "fov",
                 "variable_type": "float",
-                "variable_value": 179.0,
+                "variable_value": 120.0,
                 "variable_op": ""
               },
               {
@@ -552,7 +566,7 @@
               {
                 "variable_name": "fov",
                 "variable_type": "float",
-                "variable_value": 179.0,
+                "variable_value": 120.0,
                 "variable_op": ""
               },
               {
@@ -586,7 +600,7 @@
               {
                 "variable_name": "fov",
                 "variable_type": "float",
-                "variable_value": 179.0,
+                "variable_value": 120.0,
                 "variable_op": ""
               },
               {
@@ -727,7 +741,7 @@
       "name": "Cone of Vision",
       "transform": {},
       "render": {
-        "mesh": "cone_of_vision.mesh"
+        "mesh": "cone_of_vision_patrol.mesh"
       },
       "hierarchy": {
         "parent": "The Enemy"

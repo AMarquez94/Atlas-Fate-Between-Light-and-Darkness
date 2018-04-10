@@ -5,7 +5,7 @@
 		}
 	},
 	{
-		"xentity": {
+		"entity": {
 		  "prefab": "data/prefabs/patrol.prefab",
 		  "name": "The Enemy 1",
       "transform": {
@@ -42,22 +42,6 @@
             "position": "0 0 110",
             "lookAt": "-1 0 0"
           }
-        ],
-        "argCond": [
-          {
-            "nodeName": "managePlayerSeen",
-            "conditionName": "conditionPlayerSeen",
-            "variableName": "fov",
-            "newValue": 120.0
-          }
-        ],
-        "argAct": [
-          {
-            "nodeName": "goToWpt",
-            "actionName": "actionGoToWpt",
-            "variableName": "speed",
-            "newValue": 17.0
-          }
         ]
       },
 		  "collider": {
@@ -73,7 +57,7 @@
 			}
 		}
 	}, {
-		"xentity": {
+		"entity": {
 		  "prefab": "data/prefabs/patrol.prefab",
 		  "name": "The Enemy 3",
 		  "transform": {
@@ -138,7 +122,7 @@
 			}
 		}
 	}, {
-		"xentity": {
+		"entity": {
 		  "prefab": "data/prefabs/patrol.prefab",
 		  "name": "The Enemy 4",
 		  "transform": {
@@ -228,7 +212,7 @@
 			}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/mimetic.prefab",
 			"name": "Mimetic 2",
 			"transform": {

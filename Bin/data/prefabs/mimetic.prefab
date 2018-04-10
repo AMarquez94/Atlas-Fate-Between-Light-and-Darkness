@@ -19,7 +19,7 @@
       "name": "Cone of Vision",
       "transform": {},
       "render": {
-        "mesh": "cone_of_vision.mesh"
+        "mesh": "cone_of_vision_patrol.mesh"
       },
       "hierarchy": {
         "parent": "Mimetic"
