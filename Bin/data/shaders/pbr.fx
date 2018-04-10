@@ -103,7 +103,7 @@ void decodeGBuffer(
   // In the alpha of the albedo, we stored the metallic value
   // and in the alpha of the normal, we stored the roughness
   float  metallic = albedo.a;
-         roughness = N_rt.a;
+  roughness = N_rt.a;
  
   // Apply gamma correction to albedo to bring it back to linear.
   albedo.rgb = pow(albedo.rgb, 2.2f);
@@ -124,48 +124,48 @@ void decodeGBuffer(
 
 // -------------------------------------------------
 // Gloss = 1 - rough*rough
-float3 Specular_F_Roughness(float3 specularColor, float gloss, float3 h, float3 v) {
+float3 Specular_F_Roughness(float3 specularColor, float gloss, float3 h, float3 v) 
+{
   // Sclick using roughness to attenuate fresnel.
   return (specularColor + (max(gloss, specularColor) - specularColor) * pow((1 - saturate(dot(v, h))), 5));
 }
 
 float NormalDistribution_GGX(float a, float NdH)
 {
-    // Isotropic ggx.
-    float a2 = a*a;
-    float NdH2 = NdH * NdH;
+	// Isotropic ggx.
+	float a2 = a*a;
+	float NdH2 = NdH * NdH;
 
-    float denominator = NdH2 * (a2 - 1.0f) + 1.0f;
-    denominator *= denominator;
-    denominator *= PI;
+	float denominator = NdH2 * (a2 - 1.0f) + 1.0f;
+	denominator *= denominator;
+	denominator *= PI;
 
-    return a2 / denominator;
+	return a2 / denominator;
 }
 
 float Geometric_Smith_Schlick_GGX(float a, float NdV, float NdL)
 {
-        // Smith schlick-GGX.
-    float k = a * 0.5f;
-    float GV = NdV / (NdV * (1 - k) + k);
-    float GL = NdL / (NdL * (1 - k) + k);
+  // Smith schlick-GGX.
+	float k = a * 0.5f;
+	float GV = NdV / (NdV * (1 - k) + k);
+	float GL = NdL / (NdL * (1 - k) + k);
 
-    return GV * GL;
+	return GV * GL;
 }
-
 
 float Specular_D(float a, float NdH)
 {
-    return NormalDistribution_GGX(a, NdH);
+  return NormalDistribution_GGX(a, NdH);
 }
 
 float Specular_G(float a, float NdV, float NdL, float NdH, float VdH, float LdV) 
 {
-    return Geometric_Smith_Schlick_GGX( a, NdV, NdL );
+  return Geometric_Smith_Schlick_GGX( a, NdV, NdL );
 }
 
 float3 Fresnel_Schlick(float3 specularColor, float3 h, float3 v)
 {
-    return (specularColor + (1.0f - specularColor) * pow((1.0f - saturate(dot(v, h))), 5));
+	return (specularColor + (1.0f - specularColor) * pow((1.0f - saturate(dot(v, h))), 5));
 }
 
 float3 Specular_F(float3 specularColor, float3 h, float3 v)
@@ -212,7 +212,7 @@ float4 PS_ambient(
   float g_ReflectionIntensity = 1.0;
   float g_AmbientLightIntensity = 1.0;
 
-  float4 self_illum = float4(0,0,0,0); //txGSelfIllum.Load(uint3(iPosition.xy,0));
+  float4 self_illum = txEmissive.Load(uint3(iPosition.xy,0));
 
   float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + 
                               albedo.xyz * irradiance * g_AmbientLightIntensity

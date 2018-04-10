@@ -7,6 +7,7 @@ Texture2D    txLightMap       SLOT( TS_LIGHTMAP );
 Texture2D    txNormal         SLOT( TS_NORMAL );
 Texture2D    txMetallic       SLOT( TS_METALLIC );
 Texture2D    txRoughness      SLOT( TS_ROUGHNESS );
+Texture2D    txEmissive       SLOT( TS_EMISSIVE );
 
 // from the light and env
 Texture2D    txLightProjector SLOT( TS_LIGHT_PROJECTOR );

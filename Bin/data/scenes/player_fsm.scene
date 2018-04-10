@@ -3,7 +3,7 @@
 		"entity": {
 			"name": "The Player",
 			"transform": {
-				"pos": "-7 1 12"
+        "pos": "-4.62722 10.185 -15.9464"
 			},
 			"render": {
 			"mesh": "data/meshes/pj_idle.mesh",

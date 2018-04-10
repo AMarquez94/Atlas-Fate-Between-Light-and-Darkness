@@ -82,9 +82,9 @@ bool CModuleEntities::stop() {
 
 void CModuleEntities::render()
 {
-  Resources.debugInMenu();
+	ImGui::DragFloat("Time Factor", &time_scale_factor, 0.01f, 0.f, 1.0f);
 
-  ImGui::DragFloat("Time Factor",&time_scale_factor,0.01f,0.f,1.0f);
+  Resources.debugInMenu();
 
   if (ImGui::TreeNode("All Entities...")) {
 

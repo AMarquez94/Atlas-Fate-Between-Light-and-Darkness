@@ -15,21 +15,22 @@
 #define TS_NORMAL              1
 #define TS_METALLIC            2
 #define TS_ROUGHNESS           3
-#define TS_LIGHTMAP            4
+#define TS_EMISSIVE            4
+#define TS_LIGHTMAP            5
 
 // .. Other slots of the material
-#define TS_NUM_MATERIALS_SLOTS 5
+#define TS_NUM_MATERIALS_SLOTS 6
 
 // Here goes the slots not associated to a material
-#define TS_LIGHT_PROJECTOR     5
-#define TS_LIGHT_SHADOW_MAP    6 
-#define TS_ENVIRONMENT_MAP     7
-#define TS_IRRADIANCE_MAP      8
+#define TS_LIGHT_PROJECTOR     7
+#define TS_LIGHT_SHADOW_MAP    8 
+#define TS_ENVIRONMENT_MAP     9
+#define TS_IRRADIANCE_MAP      10
 
-#define TS_DEFERRED_ALBEDOS           10
-#define TS_DEFERRED_NORMALS           11
-#define TS_DEFERRED_LINEAR_DEPTH      12
-#define TS_DEFERRED_ACC_LIGHTS        13
+#define TS_DEFERRED_ALBEDOS           11
+#define TS_DEFERRED_NORMALS           12
+#define TS_DEFERRED_LINEAR_DEPTH      13
+#define TS_DEFERRED_ACC_LIGHTS        14
 
 // -------------------------------------------------
 #define MAX_SUPPORTED_BONES        128

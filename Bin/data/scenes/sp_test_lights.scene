@@ -72,14 +72,14 @@
     }
   }
   ,
-  {
+	{
     "entity":
     {
-      "name": "Sphere001"
+      "name": "low_mecha"
       ,
       "transform":
       {
-        "pos": "-4.63021 2.85823 -13.9517"
+        "pos": "-4.63021 1 -13.9517"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -87,63 +87,11 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ovw/Sphere001.mesh"
+          "mesh": "data/meshes/low_mecha.mesh"
           ,
           "materials":
           [
-            "data/textures/rustediron2/rustediron2.material"
-          ]
-        }
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Sphere002"
-      ,
-      "transform":
-      {
-        "pos": "-6.94024 2.85823 -13.9517"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ovw/Sphere002.mesh"
-          ,
-          "materials":
-          [
-            "data/textures/rustediron2/rustediron2.material"
-          ]
-        }
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Sphere003"
-      ,
-      "transform":
-      {
-        "pos": "-2.26306 2.85823 -13.9517"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/ovw/Sphere003.mesh"
-          ,
-          "materials":
-          [
-            "data/textures/rustediron2/rustediron2.material"
+            "data/materials/mtl_low_mecha.material"
           ]
         }
       ]
@@ -169,7 +117,7 @@
         "range": 29.2116,
         "angle": 91.8,
         "color": "1.0 1.0 1.0 1.0",
-        "intensity": 1.0,
+        "intensity": 4.0,
         "shadows": true,
 				"projector" : "data/textures/batman.dds",
         "z_far" : 50,
