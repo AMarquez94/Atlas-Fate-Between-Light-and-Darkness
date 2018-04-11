@@ -30,6 +30,7 @@
       "player_tempcontroller": {
         "mergeAngle": 0.45,
         "maxFallingTime": 0.8,
+		"hardFallingTime" : 0.5
         "maxFallingDistance": 6,
         "maxAttackDistance": 2,
         "minStamina": 0,

@@ -66,6 +66,7 @@ class TCompTempPlayerController : public TCompBase
 	float rotationSpeed;
 	float fallingTime;
 	float maxFallingTime;
+	float hardFallingTime;
 	float fallingDistance;
 	float maxFallingDistance;
 	float maxAttackDistance;

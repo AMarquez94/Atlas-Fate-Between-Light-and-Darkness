@@ -299,6 +299,47 @@ namespace FSM
 	}
 
 
+	bool SoftLandState::load(const json& jData) {
+
+		_animationName = jData["animation"];
+		_speed = jData.value("speed", 2.f);
+		_size = jData.value("size", 1.f);
+		_radius = jData.value("radius", 0.3f);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+		return true;
+	}
+
+	void SoftLandState::onStart(CContext& ctx) const {
+
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_idle", _speed, _size, _radius, _target, _noise });
+	}
+	void SoftLandState::onFinish(CContext& ctx) const {
+
+	}
+
+	bool HardLandState::load(const json& jData) {
+
+		_animationName = jData["animation"];
+		_speed = jData.value("speed", 2.f);
+		_size = jData.value("size", 1.f);
+		_radius = jData.value("radius", 0.3f);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+		return true;
+	}
+
+	void HardLandState::onStart(CContext& ctx) const {
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_crouch", _speed, _size, _radius, _target, _noise });
+	}
+
+	void HardLandState::onFinish(CContext& ctx) const {
+
+	}
+
+
 	bool AttackState::load(const json& jData) {
 
 		_animationName = jData["animation"];
@@ -360,5 +401,4 @@ namespace FSM
 	void DeadState::onFinish(CContext& ctx) const {
 
 	}
-
 }

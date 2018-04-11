@@ -27,10 +27,11 @@ bool CModuleFSM::start()
 	_factory.registerInstancer("MergeState", new FSM::StateInstancer<FSM::MergeState>());
 	_factory.registerInstancer("ExitMergeState", new FSM::StateInstancer<FSM::ExitMergeState>());
 	_factory.registerInstancer("LandMergeState", new FSM::StateInstancer<FSM::LandMergeState>());
+	_factory.registerInstancer("SoftLandState", new FSM::StateInstancer<FSM::SoftLandState>());
+	_factory.registerInstancer("HardLandState", new FSM::StateInstancer<FSM::HardLandState>());
 	_factory.registerInstancer("AttackState", new FSM::StateInstancer<FSM::AttackState>());
 	_factory.registerInstancer("RemoveInhibitor", new FSM::StateInstancer<FSM::RemoveInhibitor>());
 	_factory.registerInstancer("DeadState", new FSM::StateInstancer<FSM::DeadState>());
-
 	_factory.registerInstancer("VariableTransition", new FSM::TransitionInstancer<FSM::VariableTransition>());
 	_factory.registerInstancer("TimeTransition", new FSM::TransitionInstancer<FSM::TimeTransition>());
 

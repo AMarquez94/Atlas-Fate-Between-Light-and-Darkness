@@ -75,13 +75,14 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 
 	mergeAngle = j.value("mergeAngle", 0.45f);
 	maxFallingTime = j.value("maxFallingTime", 0.8f);
+	hardFallingTime = j.value("hardFallingTime", 0.5f);
 	maxFallingDistance = j.value("maxFallingDistance", 1.5f);
 	maxAttackDistance = j.value("maxAttackDistance", 1.f);
 	minStamina = j.value("minStamina", 0.f);
 	maxStamina = j.value("maxStamina", 100.f);
 	incrStamina = j.value("incrStamina", 15.f);
 	decrStaticStamina = j.value("decrStaticStamina", 0.75f),
-		decrStaminaHorizontal = j.value("decrStaminaHorizontal", 12.5f);
+	decrStaminaHorizontal = j.value("decrStaminaHorizontal", 12.5f);
 	decrStaminaVertical = j.value("decrStaminaVertical", 17.5f);
 	minStaminaChange = j.value("minStaminaChange", 15.f);
 	auxCamera = j.value("auxCamera", "");
@@ -350,6 +351,12 @@ void TCompTempPlayerController::exitMergeState(float dt)
 	TMsgSetCameraCancelled msg;
 	CEntity * eCamera = getEntityByName(auxCamera);
 	eCamera->sendMsg(msg);
+
+	CEntity *e = CHandle(this).getOwner();
+	TMsgSetFSMVariable crouch;
+	crouch.variant.setName("crouch");
+	crouch.variant.setBool(false);
+	e->sendMsg(crouch);
 }
 
 /* Player dead state */
@@ -537,8 +544,13 @@ const bool TCompTempPlayerController::groundTest(float dt) {
 
 		TMsgSetFSMVariable falldead;
 		falldead.variant.setName("onFallDead");
-		falldead.variant.setBool((fallingTime > maxFallingTime) & !isMerged);
+		falldead.variant.setBool(c_my_collider->is_grounded & (fallingTime > maxFallingTime) & !isMerged);
 		e->sendMsg(falldead);
+
+		TMsgSetFSMVariable hardLanded;
+		hardLanded.variant.setName("onHardLanded");
+		hardLanded.variant.setBool(c_my_collider->is_grounded & (fallingTime > hardFallingTime && fallingTime < maxFallingTime) & !isMerged);
+		e->sendMsg(hardLanded);
 
 		TMsgSetFSMVariable crouch;
 		crouch.variant.setName("crouch");
@@ -764,4 +776,9 @@ void TCompTempPlayerController::resetMerge() {
 	fallMsg.variant.setName("onFallDead");
 	fallMsg.variant.setBool(false);
 	e->sendMsg(fallMsg);
+
+	TMsgSetFSMVariable hardFallMsg;
+	hardFallMsg.variant.setName("onHardLanded");
+	hardFallMsg.variant.setBool(false);
+	e->sendMsg(hardFallMsg);
 }
