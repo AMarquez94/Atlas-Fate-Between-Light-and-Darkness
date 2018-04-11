@@ -386,8 +386,8 @@ std::vector<VEC3> TCompSkeleton::getFeetPositions() {
 		float x = model->getSkeleton()->getBone(feetBonesId[i])->getTranslationAbsolute().x;
 		float y = model->getSkeleton()->getBone(feetBonesId[i])->getTranslationAbsolute().y;
 		float z = model->getSkeleton()->getBone(feetBonesId[i])->getTranslationAbsolute().z;
-		feetPositions[i] = VEC3(x,y,z);
+		feetPositions.push_back(VEC3(x,y,z));
 	}
-	
+	dbg("");
 	return feetPositions;
 }
