@@ -5,10 +5,16 @@
 #include "physics/physics_collider.h"
 
 DECL_OBJ_MANAGER("rigidbody", TCompRigidbody);
+bool temp_ground = true;
 
 TCompRigidbody::~TCompRigidbody() {
 
-	//TO-DO
+	// Delete the controller.
+	if (is_controller) {
+		controller->release();
+	}
+
+	// Rigidbody destruction here.
 }
 
 void TCompRigidbody::debugInMenu() {
@@ -27,59 +33,57 @@ void TCompRigidbody::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompRigidbody::update(float dt) {
 
-	TCompCollider * c_collider = get<TCompCollider>();
-	velocity = physx::PxVec3(0, 9.8f, 0);
+	if (CHandle(this).getOwner().isValid()) {
 
-	if (is_controller) {
-		if (CHandle(this).getOwner().isValid()) {
-			TCompTransform *transform = get<TCompTransform>();
-			VEC3 new_pos = transform->getPosition();
-			VEC3 delta_movement = new_pos - lastFramePosition;
-			velocity = physx::PxVec3(delta_movement.x, delta_movement.y, delta_movement.z) / dt;
-			lastFramePosition = new_pos;
+		TCompCollider * c_collider = get<TCompCollider>();
+		velocity = physx::PxVec3(0,0,0);
+
+		TCompTransform *transform = get<TCompTransform>();
+		VEC3 new_pos = transform->getPosition();
+		VEC3 delta_movement = new_pos - lastFramePosition;
+		velocity = physx::PxVec3(delta_movement.x, delta_movement.y, delta_movement.z) / dt;
+		lastFramePosition = new_pos;
+
+		if (is_gravity) {
+			if (is_grounded) totalDownForce = physx::PxVec3(0, 0, 0);
+			physx::PxVec3 actualDownForce = physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z);
+			velocity += (actualDownForce + totalDownForce);
+			totalDownForce += 3.f * actualDownForce * dt;
 		}
-	}
 
-	if (is_gravity) {
-		if (is_grounded) {
-			totalDownForce = physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z) * dt;
+		if (is_controller){
+			physx::PxControllerCollisionFlags col = controller->move(velocity * dt, 0.f, dt, filters);
+			is_grounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN);
 		}
 		else {
-			totalDownForce += 3.f * physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z) * dt;
+			TCompTransform *c_transform = get<TCompTransform>();
+			VEC3 pos = c_transform->getPosition();
+			QUAT quat = c_transform->getRotation();
+			physx::PxTransform transform(physx::PxVec3(pos.x, pos.y, pos.z), physx::PxQuat(quat.x, quat.y, quat.z, quat.w));
+			c_collider->config->actor->setGlobalPose(transform);
 		}
-		velocity += totalDownForce;
-	}
-
-	if (is_controller) {
-
-		physx::PxControllerCollisionFlags col = controller->move(velocity * dt, 0.f, dt, filters);
-		is_grounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN) ? true : false;
-	} else if (is_gravity)
-	{
-		//TO-DO ADDFORCE ONLY.
 	}
 }
 
 /* Collider/Trigger messages */
 void TCompRigidbody::registerMsgs() {
-
 	DECL_MSG(TCompRigidbody, TMsgEntityCreated, onCreate);
 }
 
 void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
 
-	CEntity* e = CHandle(this).getOwner();
-	TCompCollider * c_collider = e->get<TCompCollider>();
+	TCompCollider * c_collider = get<TCompCollider>();
 
 	// Let the rigidbody handle the creation if it exists..
 	if (c_collider != nullptr)
 	{
-		TCompTransform * compTransform = e->get<TCompTransform>();
+		TCompTransform * compTransform = get<TCompTransform>();
 
 		if (is_controller)
 		{
 			controller = c_collider->config->createController(compTransform);
 			c_collider->config->actor->userData = CHandle(c_collider).asVoidPtr();
+			c_collider->config->is_controller = true;
 		}
 		else
 		{
@@ -99,15 +103,16 @@ void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
 	}
 }
 
-void TCompRigidbody::onDestroy(const TMsgEntityDestroyed & msg)
-{
-	//delete this;
-}
-
 void TCompRigidbody::Resize(float new_size)
 {
-	//config->currentHeight = new_size;
-	controller->resize((physx::PxReal)new_size);
+	// Cannot resize if no collider is present.
+	TCompCollider * c_collider = get<TCompCollider>();
+
+	if (!c_collider || !c_collider->config->actor) 
+		return;
+
+	if(controller != NULL)
+		controller->resize((physx::PxReal)new_size);
 }
 
 void TCompRigidbody::SetUpVector(VEC3 new_up)
@@ -130,6 +135,7 @@ void TCompRigidbody::Jump(VEC3 forceUp)
 }
 
 void TCompRigidbody::setNormalGravity(VEC3 newGravity) {
+
 	normal_gravity = newGravity;
 	totalDownForce = physx::PxVec3(0, 0, 0);
 }

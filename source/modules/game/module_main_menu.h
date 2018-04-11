@@ -15,7 +15,7 @@ class CModuleMainMenu : public IModule
 public:
 	float transition_speed = 0.5f;
 
-	public:CModuleMainMenu(const std::string& name): IModule(name) {}
+	CModuleMainMenu(const std::string& name): IModule(name) {}
 	bool start() override;
 	void update(float delta) override;
 	void render() override;

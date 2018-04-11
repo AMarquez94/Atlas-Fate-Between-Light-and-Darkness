@@ -130,5 +130,26 @@ struct TMsgSpawnAt {
   DECL_MSG_ID();
 };
 
+struct TMsgScenePaused {
+	bool isPaused;
+	DECL_MSG_ID();
+};
+
+struct TMsgNoiseMade {
+	CHandle hNoiseSource;
+	VEC3 noiseOrigin;
+	bool isArtificialNoise;
+	DECL_MSG_ID();
+};
+
+struct TMsgMakeNoise {
+	float noiseRadius;
+	bool isOnlyOnce;
+	float timeToRepeat;
+	bool isNoise;
+	bool isArtificial;
+	DECL_MSG_ID();
+};
+
 #endif
 

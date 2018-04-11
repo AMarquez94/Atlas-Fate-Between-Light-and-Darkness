@@ -60,6 +60,7 @@ void CPhysicsCollider::createStatic(physx::PxShape* actor_shape, TCompTransform 
 
 void CPhysicsCollider::createDynamic(physx::PxShape* actor_shape, TCompTransform * c_transform)
 {
+	shape = actor_shape;
 	physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
 	physx::PxScene * gScene = EnginePhysics.getPhysxScene();
 
@@ -68,7 +69,6 @@ void CPhysicsCollider::createDynamic(physx::PxShape* actor_shape, TCompTransform
 	physx::PxTransform transform(physx::PxVec3(pos.x, pos.y, pos.z), physx::PxQuat(quat.x, quat.y, quat.z, quat.w));
 	physx::PxRigidDynamic* rigid_actor = gPhysics->createRigidDynamic(transform);
 	physx::PxRigidBodyExt::updateMassAndInertia(*rigid_actor, 10.0f);
-
 	actor = rigid_actor;
 	actor->attachShape(*actor_shape);
 	actor_shape->release();
@@ -119,7 +119,7 @@ physx::PxController* CPhysicsBox::createController(TCompTransform * c_transform)
 	QUAT quat = c_transform->getRotation();
 	ctrl->setFootPosition(physx::PxExtendedVec3(pos.x, pos.y, pos.z));
 	ctrl->setContactOffset(contact_offset);
-	
+
 	actor = ctrl->getActor();
 	setupFiltering(actor, group, mask);
 
@@ -151,7 +151,6 @@ physx::PxShape* CPhysicsPlane::createShape() {
 void CPhysicsPlane::debugInMenu() {
 
 }
-
 
 void CPhysicsSphere::load(const json& j, TEntityParseContext& ctx){
 
@@ -198,7 +197,7 @@ physx::PxShape* CPhysicsCapsule::createShape() {
 
 physx::PxController* CPhysicsCapsule::createController(TCompTransform * c_transform) {
 
-	material = EnginePhysics.getPhysxFactory()->createMaterial(0.5f, 0.2f, 0.1f);
+	material = EnginePhysics.getPhysxFactory()->createMaterial(0.6f, 0.4f, 0.1f);
 	physx::PxControllerDesc* cDesc;
 	physx::PxCapsuleControllerDesc capsuleDesc;
 	physx::PxControllerManager * gManager = EnginePhysics.getPhysxController();
@@ -206,6 +205,7 @@ physx::PxController* CPhysicsCapsule::createController(TCompTransform * c_transf
 	capsuleDesc.height = height;
 	capsuleDesc.radius = radius;
 	capsuleDesc.climbingMode = physx::PxCapsuleClimbingMode::eCONSTRAINED;
+	capsuleDesc.scaleCoeff = 0.99f;
 	cDesc = &capsuleDesc;
 	cDesc->material = material;
 	cDesc->contactOffset = contact_offset;
@@ -218,6 +218,7 @@ physx::PxController* CPhysicsCapsule::createController(TCompTransform * c_transf
 	ctrl->setContactOffset(contact_offset);
 
 	actor = ctrl->getActor();
+	actor->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, true);
 	setupFiltering(actor, group, mask);
 
 	return ctrl;

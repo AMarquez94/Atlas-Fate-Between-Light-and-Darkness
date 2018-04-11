@@ -3,6 +3,7 @@
 
 CRenderCte<CCteCamera> cb_camera("Camera");
 CRenderCte<CCteObject> cb_object("Object");
+CRenderCte<CCteLight>  cb_light("Light");
 
 struct TVtxPosClr {
 	VEC3 pos;
@@ -206,7 +207,8 @@ bool createRenderObjects() {
 	registerMesh(createLineZ(), "line.mesh");
 	registerMesh(createUnitCircleXZ(32), "circle_xz.mesh");
 	registerMesh(createCameraFrustum(), "unit_frustum.mesh");
-	registerMesh(createCone(deg2rad(179.f), deg2rad(89.f), 35.f, 10, VEC4(1.0f, 1.0f, 1.0f, 1.0f)), "cone_of_vision.mesh");
+	registerMesh(createCone(deg2rad(179.f), deg2rad(89.f), 35.f, 10, VEC4(1.0f, 1.0f, 1.0f, 1.0f)), "cone_of_vision_mimetic.mesh");
+	registerMesh(createCone(deg2rad(120.f), deg2rad(89.f), 35.f, 10, VEC4(1.0f, 1.0f, 1.0f, 1.0f)), "cone_of_vision_patrol.mesh");
 	registerMesh(createCone(deg2rad(35.f), deg2rad(45.f), 20.f, 10, VEC4(1.0f, 1.0f, 0.0f, 1.0f)), "cone_of_light.mesh");
 	registerMesh(createWiredUnitCube(), "wired_unit_cube.mesh");
 	return true;

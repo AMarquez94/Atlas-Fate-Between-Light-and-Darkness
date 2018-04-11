@@ -10,8 +10,6 @@
       "transform": {
         "pos": "0 0 0",
         "lookat": "1 0 1"
-      },
-      "ai_mimetic": {
       }
     }
   }

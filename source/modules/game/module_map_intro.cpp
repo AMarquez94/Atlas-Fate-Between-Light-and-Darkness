@@ -15,6 +15,7 @@
 #include "components/comp_tags.h"
 #include "render/render_manager.h"
 #include "input/devices/mouse.h"
+#include "input/enums.h"
 
 
 /* TO INCLUDE LUA */
@@ -43,37 +44,14 @@ CCamera camera;
 
 bool CModuleMapIntro::start()
 {
-	{
+	json jboot = loadJson("data/boot.json");
+	
+	// Auto load some scenes
+	std::vector< std::string > scenes_to_auto_load = jboot["intro_scenes"];
+	for (auto& scene_name : scenes_to_auto_load) {
+		dbg("Autoloading scene %s\n", scene_name.c_str());
 		TEntityParseContext ctx;
-		parseScene("data/scenes/milestone1_map_lights.scene", ctx);
-	}
-	{
-		TEntityParseContext ctx;
-		parseScene("data/scenes/milestone1_map_meshes.scene", ctx);
-	}
-	{
-		TEntityParseContext ctx;
-		parseScene("data/scenes/milestone1_map_colliders.scene", ctx);
-	}
-	{
-		TEntityParseContext ctx;
-		parseScene("data/scenes/player.scene", ctx);
-	}
-	{
-		TEntityParseContext ctx;
-		parseScene("data/scenes/enemy.scene", ctx);
-	}
-	{
-		TEntityParseContext ctx;
-		parseScene("data/scenes/camera.scene", ctx);
-	}
-	{
-		TEntityParseContext ctx;
-		parseScene("data/scenes/capsules.scene", ctx);
-	}
-	{
-		TEntityParseContext ctx;
-		parseScene("data/scenes/bt_test.scene", ctx);
+		parseScene(scene_name, ctx);
 	}
 
 	camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
@@ -90,6 +68,9 @@ bool CModuleMapIntro::start()
 		return false;
 	// -------------------------------------------
 	if (!cb_object.create(CB_OBJECT))
+		return false;
+
+	if (!cb_light.create(CB_LIGHT))
 		return false;
 
 	cb_object.activate();
@@ -111,7 +92,7 @@ bool CModuleMapIntro::start()
 	});
 
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-	mouse->setLockMouse();
+	mouse->setLockMouse(true);
 	ShowCursor(false);
 
 	return true;
@@ -119,7 +100,6 @@ bool CModuleMapIntro::start()
 
 bool CModuleMapIntro::stop()
 {
-
 	/* delete all entities in scene */
 	Engine.getEntities().destroyAllEntities();
 	Engine.getCameras().deleteAllCameras();
@@ -127,6 +107,7 @@ bool CModuleMapIntro::stop()
 
 	cb_camera.destroy();
 	cb_object.destroy();
+	cb_light.destroy();
 
 	return true;
 }
@@ -135,8 +116,8 @@ void CModuleMapIntro::update(float delta)
 {
 	static VEC3 world_pos;
 	ImGui::DragFloat3("Pos", &world_pos.x, 0.025f, -50.f, 50.f);
-
 	VEC2 mouse = EngineInput.mouse()._position;
+
 	if (h_e_camera.isValid()) {
 		CEntity* e_camera = h_e_camera;
 		TCompCamera* c_camera = e_camera->get< TCompCamera >();

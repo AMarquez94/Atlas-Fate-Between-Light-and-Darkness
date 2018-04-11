@@ -12,6 +12,7 @@ class CModulePhysics : public IModule
 public:
 
 	static const VEC3 gravity;
+	static const float gravityMod;
 	static physx::PxQueryFilterData defaultFilter;
 
 	CModulePhysics(const std::string& aname) : IModule(aname) { }

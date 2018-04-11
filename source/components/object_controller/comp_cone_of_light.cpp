@@ -4,7 +4,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_tags.h"
 #include "components/comp_render.h"
-#include "components/player_controller/comp_player_controller.h"
+#include "components/player_controller/comp_player_tempcontroller.h"
 #include "render/mesh/mesh_loader.h"
 #include "render/render_utils.h"
 
@@ -37,8 +37,8 @@ void TCompConeOfLightController::onMsgEntityCreated(const TMsgEntityCreated& msg
 
 void TCompConeOfLightController::update(float dt) {
 	if (turnedOn) {
-		TCompPlayerController* pController = player->get<TCompPlayerController>();
-		if (pController->isInShadows()) {
+		TCompTempPlayerController* pController = player->get<TCompTempPlayerController>();
+		if (pController->isMerged) {
 			TCompTransform* ppos = player->get<TCompTransform>();
 			TCompTransform* mypos = get<TCompTransform>();
 			bool inDist = VEC3::Distance(mypos->getPosition(), ppos->getPosition()) < dist;
@@ -48,9 +48,6 @@ void TCompConeOfLightController::update(float dt) {
 					TMsgPlayerIlluminated msg;
 					msg.h_sender = CHandle(this).getOwner();
 					player->sendMsg(msg);
-				}
-				else {
-					dbg("That bastard is hidden\n");
 				}
 			}
 		}

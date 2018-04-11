@@ -143,6 +143,9 @@ function exportMeshObject given_obj outfilename = (
 	local idxs = #()
 	local subgroups = #()
 		
+	-- An array of arrays, each containing the list of faces using the material nth
+	local faces_by_material_used = getMaterialsUsedByMesh obj
+	
 	local mapA = 1
 	local mapB = 3
 	
@@ -151,6 +154,7 @@ function exportMeshObject given_obj outfilename = (
 	local maxWorldToLocal = inverse obj.transform
 	local maxWorldToLocalMCV = maxWorldToLocal * maxToMCV
 	
+
 	-- To quickly find if a vertex is new
 	local HT = dotNetObject "System.Collections.Hashtable"
 	local num_faces = getNumFaces obj
@@ -159,16 +163,17 @@ function exportMeshObject given_obj outfilename = (
 	mapB = mapA
 	
 	if mapB_status == true then ( mapB = 3 )
-	
+		
 -- For each material used by the mesh
 	local mat_idx 
 	for mat_idx = 1 to faces_by_material_used.count do (
 		local faces = faces_by_material_used[mat_idx]
 		if faces == undefined then continue
-		
+
 		-- We are starting a new group. 
 		local new_subgroup = TMeshSubGroup()
 		new_subgroup.first_idx = idxs.count
+		
 		-- Each face uses 3 indices..
 		new_subgroup.num_indices = faces.count * 3
 		new_subgroup.material_index = subgroups.count

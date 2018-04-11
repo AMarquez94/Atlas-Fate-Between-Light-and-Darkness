@@ -32,12 +32,16 @@ private:
 	bool alarmEnded = true;
 	bool hasBeenStunned = false;
 	bool isLastPlayerKnownDirLeft = false;
+	bool hasHeardArtificialNoise = false;
+	bool hasHeardNaturalNoise = false;
+	VEC3 noiseSource = VEC3::Zero;
 
 	std::string validState = "";
 
 	/* Timers */
 	float timerWaitingInWpt = 0.f;
 	float timerWaitingInObservation = 0.f;
+	float timerToExplode = 0.f;
 
 	bool isSlept = false;
 	EType type;
@@ -52,11 +56,14 @@ private:
 	float amountRotatedObserving = 0.f;
 	float maxAmountRotateObserving = deg2rad(45.f);
 
+	float rotationSpeedNoise = deg2rad(120.f);
+
 	DECL_SIBLING_ACCESS();
 
 	void onMsgEntityCreated(const TMsgEntityCreated& msg);
 	void onMsgPlayerDead(const TMsgPlayerDead& msg);
 	void onMsgMimeticStunned(const TMsgEnemyStunned& msg);
+	void onMsgNoiseListened(const TMsgNoiseMade& msg);
 
 	/* Aux functions */
 	const Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }
@@ -80,6 +87,7 @@ public:
 
 	/* ACTIONS */
 	BTNode::ERes actionStunned(float dt);
+	BTNode::ERes actionExplode(float dt);
 	BTNode::ERes actionResetObserveVariables(float dt);
 	BTNode::ERes actionObserveLeft(float dt);
 	BTNode::ERes actionObserveRight(float dt);
@@ -91,10 +99,14 @@ public:
 	BTNode::ERes actionNextWpt(float dt);
 	BTNode::ERes actionSleep(float dt);
 	BTNode::ERes actionWakeUp(float dt);
-	BTNode::ERes actionSuspect(float dt);
 	BTNode::ERes actionJumpFloor(float dt);
 	BTNode::ERes actionResetVariablesChase(float dt);
 	BTNode::ERes actionChasePlayerWithNoise(float dt);
+	BTNode::ERes actionMarkNoiseAsInactive(float dt);
+	BTNode::ERes actionGoToNoiseSource(float dt);
+	BTNode::ERes actionWaitInNoiseSource(float dt);
+	BTNode::ERes actionSuspect(float dt);
+	BTNode::ERes actionRotateToNoiseSource(float dt);
 	BTNode::ERes actionGoToPlayerLastPos(float dt);
 	BTNode::ERes actionWaitInPlayerLastPos(float dt);
 	BTNode::ERes actionSetGoInactive(float dt);
@@ -107,21 +119,24 @@ public:
 	/* CONDITIONS */
 	bool conditionHasBeenStunned(float dt);
 	bool conditionIsTypeWall(float dt);
-	bool conditionIsNotPlayerInFov(float dt);
+	bool conditionIsNotPlayerInFovAndNotNoise(float dt);
 	bool conditionIsNotActive(float dt);
 	bool conditionIsTypeFloor(float dt);
 	bool conditionIsSlept(float dt);
 	bool conditionHasNotWaypoints(float dt);
 	bool conditionNotListenedNoise(float dt);
-	bool conditionNotSurePlayerInFov(float dt);
 	bool conditionPlayerSeenForSure(float dt);
+	bool conditionHasHeardArtificialNoise(float dt);
+	bool conditionNotSurePlayerInFov(float dt);
+	bool conditionHasHeardNaturalNoise(float dt);
 	bool conditionIsPlayerInFov(float dt);
 	bool conditionNotGoingInactive(float dt);
 
 	/* ASSERTS */
+	bool assertNotPlayerInFovNorNoise(float dt);
 	bool assertNotPlayerInFov(float dt);
 
-
+	bool isStunned() { return current && current->getName().compare("stunned") == 0; }
 
 	static void registerMsgs();
 };

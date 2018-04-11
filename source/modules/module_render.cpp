@@ -11,6 +11,7 @@
 #include "physics/physics_mesh.h"
 #include "camera/camera.h"
 #include "geometry/curve.h"
+#include "fsm/fsm.h"
 
 //--------------------------------------------------------------------------------------
 

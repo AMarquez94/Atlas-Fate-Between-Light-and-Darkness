@@ -3,7 +3,8 @@
 
 #define CB_CAMERA       0
 #define CB_OBJECT       1
-#define CB_SKIN_BONES   2
+#define CB_SKIN_BONES	2
+#define CB_LIGHT		3
 
 #define MAX_SUPPORTED_BONES        128
 
@@ -36,6 +37,14 @@ CB_DEF(CCteObject, CB_OBJECT)   // Generates the b1
 {
 	MAT44 obj_world;
 	VEC4  obj_color;
+};
+
+CB_DEF(CCteLight, CB_LIGHT)
+{
+	VEC4  light_color;
+	VEC3  light_pos;
+	float light_intensity;
+	MAT44 light_view_proj_offset;
 };
 
 CB_DEF(CCteSkinBones, CB_SKIN_BONES)

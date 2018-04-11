@@ -1,8 +1,11 @@
 #include "mcv_platform.h"
 #include "module_game_manager.h"
-#include "windows/app.h"
 #include "input/devices/mouse.h"
 #include "components/comp_tags.h"
+#include "entity/common_msgs.h"
+#include "entity/msgs.h"
+#include "modules/module_entities.h"
+#include "windows/app.h"
 
 bool CModuleGameManager::start()
 {
@@ -17,6 +20,8 @@ bool CModuleGameManager::start()
 	isPaused = false;
 	victoryMenuVisible = false;
 	menuVisible = false;
+
+	player = CTagsManager::get().getAllEntitiesByTag(getID("player"))[0];
 
 	return true;
 }
@@ -38,7 +43,20 @@ void CModuleGameManager::update(float delta)
 		}
 	}
 
-	if (EngineInput["btPause"].getsPressed()) {
+	if (EngineInput["btPause"].getsPressed() || (!menuVisible && CApp::get().lostFocus)) {
+
+		CApp::get().lostFocus = false;
+
+		// Send pause message
+		TMsgScenePaused msg;
+		msg.isPaused = !menuVisible;
+		EngineEntities.broadcastMsg(msg);
+
+		// Lock/Unlock the cursor
+		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+		ShowCursor(!menuVisible);
+		mouse->setLockMouse(menuVisible);
+
 		menuVisible = !menuVisible;
 	}
 

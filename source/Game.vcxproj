@@ -98,17 +98,20 @@
     <ClCompile Include="components\comp_aabb.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
     <ClCompile Include="components\comp_culling.cpp" />
+    <ClCompile Include="components\object_controller\comp_noise_emitter.cpp" />
+    <ClCompile Include="components\player_controller\comp_player_animator.cpp" />
+    <ClCompile Include="components\comp_fsm.cpp" />
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
     <ClCompile Include="components\comp_light.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
+    <ClCompile Include="components\player_controller\comp_player_input.cpp" />
     <ClCompile Include="components\comp_render.cpp" />
     <ClCompile Include="components\comp_tags.cpp" />
     <ClCompile Include="components\comp_transform.cpp" />
     <ClCompile Include="components\dynamic_objects\comp_capsule_shadow.cpp" />
     <ClCompile Include="components\dynamic_objects\comp_dynamic_objects.cpp" />
     <ClCompile Include="components\ia\ai_controller.cpp" />
-    <ClCompile Include="components\ia\ai_patrol.cpp" />
     <ClCompile Include="components\ia\btnode.cpp" />
     <ClCompile Include="components\ia\comp_bt.cpp" />
     <ClCompile Include="components\ia\comp_bt_mimetic.cpp" />
@@ -119,7 +122,7 @@
     <ClCompile Include="components\object_controller\comp_trigger_camera.cpp" />
     <ClCompile Include="components\physics\comp_collider.cpp" />
     <ClCompile Include="components\physics\comp_rigidbody.cpp" />
-    <ClCompile Include="components\player_controller\comp_player_controller.cpp" />
+    <ClCompile Include="components\player_controller\comp_player_tempcontroller.cpp" />
     <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
     <ClCompile Include="components\skeleton\comp_bone_tracker.cpp" />
     <ClCompile Include="components\skeleton\comp_skeleton.cpp" />
@@ -156,6 +159,7 @@
     </ClCompile>
     <ClCompile Include="modules\game\module_gameover.cpp" />
     <ClCompile Include="modules\game\module_game_manager.cpp" />
+    <ClCompile Include="modules\game\module_level_select.cpp" />
     <ClCompile Include="modules\game\module_main_menu.cpp" />
     <ClCompile Include="modules\game\module_map_intro.cpp" />
     <ClCompile Include="modules\game\module_splash.cpp" />
@@ -208,18 +212,21 @@
     <ClInclude Include="components\comp_base.h" />
     <ClInclude Include="components\comp_camera.h" />
     <ClInclude Include="components\comp_culling.h" />
+    <ClInclude Include="components\object_controller\comp_noise_emitter.h" />
+    <ClInclude Include="components\player_controller\comp_player_animator.h" />
+    <ClInclude Include="components\comp_fsm.h" />
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />
     <ClInclude Include="components\comp_light.h" />
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_player_controller.h" />
+    <ClInclude Include="components\player_controller\comp_player_input.h" />
     <ClInclude Include="components\comp_render.h" />
     <ClInclude Include="components\comp_tags.h" />
     <ClInclude Include="components\comp_transform.h" />
     <ClInclude Include="components\dynamic_objects\comp_capsule_shadow.h" />
     <ClInclude Include="components\dynamic_objects\comp_dynamic_objects.h" />
     <ClInclude Include="components\ia\ai_controller.h" />
-    <ClInclude Include="components\ia\ai_patrol.h" />
     <ClInclude Include="components\ia\btnode.h" />
     <ClInclude Include="components\ia\comp_bt.h" />
     <ClInclude Include="components\ia\comp_bt_mimetic.h" />
@@ -230,7 +237,7 @@
     <ClInclude Include="components\object_controller\comp_trigger_camera.h" />
     <ClInclude Include="components\physics\comp_collider.h" />
     <ClInclude Include="components\physics\comp_rigidbody.h" />
-    <ClInclude Include="components\player_controller\comp_player_controller.h" />
+    <ClInclude Include="components\player_controller\comp_player_tempcontroller.h" />
     <ClInclude Include="components\player_controller\comp_shadow_controller.h" />
     <ClInclude Include="components\skeleton\cal3d2engine.h" />
     <ClInclude Include="components\skeleton\comp_bone_tracker.h" />
@@ -282,6 +289,7 @@
     <ClInclude Include="modules\gamestate.h" />
     <ClInclude Include="modules\game\module_gameover.h" />
     <ClInclude Include="modules\game\module_game_manager.h" />
+    <ClInclude Include="modules\game\module_level_select.h" />
     <ClInclude Include="modules\game\module_main_menu.h" />
     <ClInclude Include="modules\game\module_map_intro.h" />
     <ClInclude Include="modules\game\module_splash.h" />
@@ -315,6 +323,7 @@
     <ClInclude Include="render\texture\DDSTextureLoader.h" />
     <ClInclude Include="render\texture\material.h" />
     <ClInclude Include="render\texture\texture.h" />
+    <ClInclude Include="render\texture\texture_slots.h" />
     <ClInclude Include="resources\json_resource.h" />
     <ClInclude Include="resources\resource.h" />
     <ClInclude Include="resources\resources_manager.h" />

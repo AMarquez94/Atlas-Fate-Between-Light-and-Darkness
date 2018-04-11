@@ -8,6 +8,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
+#include "components/comp_light.h"
 #include "render/render_manager.h"
 
 void CModuleEntities::loadListOfManagers(const json& j, std::vector< CHandleManager* > &managers) {
@@ -68,6 +69,17 @@ void CModuleEntities::update(float delta)
 	CHandleManager::destroyAllPendingObjects();
 }
 
+bool CModuleEntities::stop() {
+	// Destroy all entities, should destroy all components in chain
+	auto hm = getObjectManager<CEntity>();
+	hm->forEach([](CEntity* e) {
+		CHandle h(e);
+		h.destroy();
+	});
+	CHandleManager::destroyAllPendingObjects();
+	return true;
+}
+
 void CModuleEntities::render()
 {
   Resources.debugInMenu();
@@ -105,6 +117,11 @@ void CModuleEntities::render()
   }
 
   CTagsManager::get().debugInMenu();
+
+  // I just need to activate one light... but at this moment...	
+  getObjectManager<TCompLight>()->forEach([](TCompLight* c) {
+	c->activate();
+  });
 
   CRenderManager::get().renderCategory("default");
   CRenderManager::get().debugInMenu();

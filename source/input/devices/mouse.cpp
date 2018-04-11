@@ -59,9 +59,9 @@ namespace Input
 		_position_delta = VEC2(deltaX, deltaY);
 	}
 
-	void CMouse::setLockMouse()
+	void CMouse::setLockMouse(bool state)
 	{
-		_lock_cursor = !_lock_cursor;
+		_lock_cursor = state;
 	}
 
 }

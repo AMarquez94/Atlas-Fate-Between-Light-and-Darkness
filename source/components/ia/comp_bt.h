@@ -2,6 +2,7 @@
 
 #include "components/comp_base.h"
 #include "btnode.h"
+#include "utils\variant.h"
 
 class BTNode;
 
@@ -18,20 +19,24 @@ protected:
 	std::map<std::string, BTAction> actions_initializer;
 	std::map<std::string, BTCondition> conditions_initializer;
 	std::map<std::string, BTCondition> asserts_initializer;
+	std::map<std::string, CVariant> arguments;
+
 	
 	//Auxiliar functions for the load in the instantiations
 	BTNode::EType stringToNodeType(std::string&);
 	virtual void loadActions() {};
 	virtual void loadConditions() {};
 	virtual void loadAsserts() {};
+
 	void loadTree(const json& j);
+	void loadParameters(const json& j);
+	void loadParameterVariables(const json& j, const std::string& type, const std::string& name);
 
 	BTNode *current;
 
-	struct arguments {
-		float speed, flee, movement, ugh, escape;
-		bool speedB = false, fleeB = false, movementB = false, ughB = false, escapeB = false;
-	}conditionsArgs, actionsArgs;
+	void onMsgScenePaused(const TMsgScenePaused& msg);
+
+	bool isParentOfCurrent(BTNode * son, const std::string& possibleParent);
 
 private:
 
@@ -53,7 +58,6 @@ private:
 	BTNode *findNode(const std::string& name);
 
 	void printTree();
-
 public:
 
 	std::string name;

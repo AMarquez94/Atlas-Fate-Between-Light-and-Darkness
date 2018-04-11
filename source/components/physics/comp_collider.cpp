@@ -8,12 +8,13 @@ DECL_OBJ_MANAGER("collider", TCompCollider);
 
 TCompCollider::~TCompCollider(){
 
+	// In case it's a controller, delegate it's destruction to the rigidbody.
 	if (config->actor != nullptr){
 
-		if (config->actor && config->actor->getScene())
-			config->actor->getScene()->removeActor(*config->actor);
-
-		config->actor = nullptr;
+		if (!config->is_controller) {
+			config->actor->release();
+			config->actor = nullptr;
+		}
 	}
 }
 
@@ -133,5 +134,14 @@ void TCompCollider::onTriggerExit(const TMsgTriggerExit& msg) {
 }
 
 void TCompCollider::update(float dt) {
+}
 
+bool TCompCollider::collisionDistance(const VEC3 & org, const VEC3 & dir, float maxDistance) {
+
+	physx::PxRaycastHit hit;
+	if (EnginePhysics.Raycast(org, dir, maxDistance, hit, physx::PxQueryFlag::eSTATIC)) {
+		return hit.distance < maxDistance ? true : false;
+	}
+
+	return false;
 }

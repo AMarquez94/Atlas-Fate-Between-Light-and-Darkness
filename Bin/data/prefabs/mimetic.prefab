@@ -3,8 +3,7 @@
     "entity": {
 		"name": "Mimetic",
 		"transform": {
-			"pos": "0 0 0",
-			"lookat": "1 0 0"
+			"pos": "0 0 0"
 		},
 		"render": {
 			"mesh": "data/meshes/bot211.mesh",
@@ -12,7 +11,7 @@
 			  "data/materials/body.material"
 			]
 		},
-		"tags": [ "enemy" ]
+		"tags": [ "enemy", "mimetic" ]
     }
   },
   {
@@ -20,7 +19,7 @@
       "name": "Cone of Vision",
       "transform": {},
       "render": {
-        "mesh": "cone_of_vision.mesh"
+        "mesh": "cone_of_vision_patrol.mesh"
       },
       "hierarchy": {
         "parent": "Mimetic"
@@ -42,6 +41,26 @@
         "dist": 20.0,
         "target": "The Player"
       }
+    }
+  },
+  {
+    "entity": {
+      "name": "Noise Emitter",
+	  "hierarchy": {
+        "parent": "Mimetic"
+      },
+	  "transform": {},
+	  "collider": {
+		"shape": "sphere",
+		"radius": 0.01,
+		"is_trigger": true,
+		"group": "enemy"
+	  },
+		"rigidbody": {
+			"is_controller": false,
+			"is_gravity": false
+		},
+		"noise_emitter": {}
     }
   }
 ]

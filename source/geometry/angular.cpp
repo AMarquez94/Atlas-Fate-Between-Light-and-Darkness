@@ -24,10 +24,7 @@ void getYawPitchFromVector(VEC3 front, float* yaw, float* pitch) {
 
 VEC3 projectVector(const VEC3 & vector, const VEC3 & normal){
 
-	VEC3 normal_norm = normal;
-	normal_norm.Normalize();
-
-	VEC3 proj = (vector - vector.Dot(normal_norm) * normal_norm);
+	VEC3 proj = (vector - vector.Dot(normal) * normal);
 	proj.Normalize();
 
 	return proj;

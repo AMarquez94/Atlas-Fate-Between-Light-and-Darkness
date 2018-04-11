@@ -77,13 +77,13 @@ void TCompCameraShadowMerge::onMsgCameraActive(const TMsgCameraActivated &msg)
 		//myTrans->lookAt(myTrans->getPosition(), myTrans->getPosition() - targetCollider->normal_gravity);
 	}
 
-	dbg("Camera active %s\n", ((TCompName*)get<TCompName>())->getName());
+	//dbg("Camera active %s\n", ((TCompName*)get<TCompName>())->getName());
 }
 
 void TCompCameraShadowMerge::onMsgCameraFullActive(const TMsgCameraFullyActivated & msg)
 {
 	active = true;
-	dbg("Camera full active %s\n", ((TCompName*)get<TCompName>())->getName());
+	//dbg("Camera full active %s\n", ((TCompName*)get<TCompName>())->getName());
 }
 
 void TCompCameraShadowMerge::onMsgCameraDeprecated(const TMsgCameraDeprecated &msg)
@@ -92,7 +92,7 @@ void TCompCameraShadowMerge::onMsgCameraDeprecated(const TMsgCameraDeprecated &m
 	TCompCameraThirdPerson *tTpCamera = ((CEntity*)getEntityByName("TPCamera"))->get<TCompCameraThirdPerson>();
 	_current_euler.x = tTpCamera->getCurrentEuler().x;
 	_current_euler.y = _original_euler.y;
-	dbg("Camera inactive %s\n", ((TCompName*)get<TCompName>())->getName());
+	//dbg("Camera inactive %s\n", ((TCompName*)get<TCompName>())->getName());
 }
 
 void TCompCameraShadowMerge::onMsgActivateMyself(const TMsgSetCameraActive & msg)

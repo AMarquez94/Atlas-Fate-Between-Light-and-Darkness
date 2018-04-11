@@ -12,23 +12,22 @@ private:
 	std::vector<Waypoint> _waypoints;
 	int currentWaypoint;
 
-	float speed = 3.5f;
-	float rotationSpeedDeg = 90.0f;
-	float rotationSpeed;
-	std::string entityToChase = "The Player";
-	float fovDeg = 70.f;
-	float fov;
-	float autoChaseDistance = 15.f;
-	float maxChaseDistance = 35.f;
-	float maxTimeSuspecting = 3.f;
+	//float speed = 3.5f;
+	//float rotationSpeedDeg = 90.0f;
+	//float rotationSpeed;
+	//std::string entityToChase = "The Player";
+	//float fovDeg = 70.f;
+	//float fov;
+	//float autoChaseDistance = 15.f;
+	//float maxChaseDistance = 35.f;
 	float suspectO_Meter = 0.f;
-	float dcrSuspectO_Meter = .3f;
-	float incrBaseSuspectO_Meter = .5f;
+	//float dcrSuspectO_Meter = .3f;
+	//float incrBaseSuspectO_Meter = .5f;
 	bool isLastPlayerKnownDirLeft = false;
-	float distToAttack = 1.5f;
+	//float distToAttack = 1.5f;
 	float amountRotated = 0.f;
-	float maxRotationSeekingPlayerDeg = 90.f;
-	float maxRotationSeekingPlayer;
+	//float maxRotationSeekingPlayerDeg = 90.f;
+	//float maxRotationSeekingPlayer;
 	VEC3 lastPlayerKnownPos = VEC3::Zero;
 	VEC3 lastStunnedPatrolKnownPos = VEC3::Zero;
 	bool startLightsOn = false;
@@ -37,10 +36,15 @@ private:
 	bool hasBeenShadowMerged = false;
 	bool hasBeenFixed = false;
 
+	bool hasHeardNaturalNoise = false;
+	bool hasHeardArtificialNoise = false;
+	VEC3 noiseSource = VEC3::Zero;
+
 	std::string validState = "";
 
 	/* Timers */
 	float timerWaitingInWpt = 0.f;
+	float timerWaitingInNoise = 0.f;
 
 	DECL_SIBLING_ACCESS();
 
@@ -49,16 +53,17 @@ private:
 	void onMsgPatrolStunned(const TMsgEnemyStunned& msg);
 	void onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged& msg);
 	void onMsgPatrolFixed(const TMsgPatrolFixed& msg);
+	void onMsgNoiseListened(const TMsgNoiseMade& msg);
 
 	/* Aux functions */
 	const Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }
 	void addWaypoint(const Waypoint& wpt) { _waypoints.push_back(wpt); };
-	void rotateTowardsVec(VEC3 objective, float dt);
-	bool isPlayerInFov();
+	bool rotateTowardsVec(VEC3 objective, float dt, float rotationSpeed);
+	bool isPlayerInFov(std::string entityToChase, float fov, float maxChaseDistance);
 	bool isEntityHidden(CHandle hEntity);
 	void turnOnLight();
 	void turnOffLight();
-	bool isStunnedPatrolInFov();
+	bool isStunnedPatrolInFov(float fov, float maxChaseDistance);
 	bool isStunnedPatrolInPos(VEC3 lastPos);
 	CHandle getPatrolInPos(VEC3 lastPos);
 	
@@ -77,6 +82,9 @@ public:
 	BTNode::ERes actionBeginAlert(float dt);
 	BTNode::ERes actionClosestWpt(float dt);
 	BTNode::ERes actionEndAlert(float dt);
+	BTNode::ERes actionMarkNoiseAsInactive(float dt);
+	BTNode::ERes actionGoToNoiseSource(float dt);
+	BTNode::ERes actionWaitInNoiseSource(float dt);
 	BTNode::ERes actionGoToWpt(float dt);
 	BTNode::ERes actionWaitInWpt(float dt);
 	BTNode::ERes actionNextWpt(float dt);
@@ -85,6 +93,7 @@ public:
 	BTNode::ERes actionShootInhibitor(float dt);
 	BTNode::ERes actionChasePlayer(float dt);
 	BTNode::ERes actionAttack(float dt);
+	BTNode::ERes actionRotateToNoiseSource(float dt);
 	BTNode::ERes actionResetPlayerWasSeenVariables(float dt);
 	BTNode::ERes actionGoToPlayerLastPos(float dt);
 	BTNode::ERes actionLookForPlayer(float dt);
@@ -96,6 +105,8 @@ public:
 	bool conditionEndAlert(float dt);
 	bool conditionShadowMerged(float dt);
 	bool conditionFixed(float dt);
+	bool conditionIsArtificialNoise(float dt);
+	bool conditionIsNaturalNoise(float dt);
 	bool conditionPlayerSeen(float dt);
 	bool conditionPlayerWasSeen(float dt);
 	bool conditionPatrolSeen(float dt);
@@ -108,8 +119,12 @@ public:
 	bool assertPlayerInFov(float dt);
 	bool assertPlayerNotInFov(float dt);
 	bool assertPlayerAndPatrolNotInFov(float dt);
+	bool assertNotHeardArtificialNoise(float dt);
+	bool assertNotPlayerInFovNorArtificialNoise(float dt);
+	bool assertPlayerNotInFovNorNoise(float dt);
+	bool assertPlayerAndPatrolNotInFovNotNoise(float dt);
 
-	bool isPatrolStunned() { return current && current->getName().compare("stunned") == 0; }
+	bool isStunned() { return current && current->getName().compare("stunned") == 0; }
 
 	static void registerMsgs();
 };

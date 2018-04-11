@@ -16,23 +16,34 @@ CModuleFSM::CModuleFSM(const std::string& name)
 
 bool CModuleFSM::start()
 {
-  Resources.registerResourceClass(getResourceClassOf<FSM::CMachine>());
+	Resources.registerResourceClass(getResourceClassOf<FSM::CMachine>());
 
-  _factory.registerInstancer("AnimationState", new FSM::StateInstancer<FSM::AnimationState>());
-  
-  _factory.registerInstancer("VariableTransition", new FSM::TransitionInstancer<FSM::VariableTransition>());
-  _factory.registerInstancer("TimeTransition", new FSM::TransitionInstancer<FSM::TimeTransition>());
+	_factory.registerInstancer("AnimationState", new FSM::StateInstancer<FSM::AnimationState>());
+	_factory.registerInstancer("WalkState", new FSM::StateInstancer<FSM::WalkState>());
+	_factory.registerInstancer("RunState", new FSM::StateInstancer<FSM::RunState>());
+	_factory.registerInstancer("FallState", new FSM::StateInstancer<FSM::FallState>());
+	_factory.registerInstancer("CrouchState", new FSM::StateInstancer<FSM::CrouchState>());
+	_factory.registerInstancer("EnterMergeState", new FSM::StateInstancer<FSM::EnterMergeState>());
+	_factory.registerInstancer("MergeState", new FSM::StateInstancer<FSM::MergeState>());
+	_factory.registerInstancer("ExitMergeState", new FSM::StateInstancer<FSM::ExitMergeState>());
+	_factory.registerInstancer("LandMergeState", new FSM::StateInstancer<FSM::LandMergeState>());
+	_factory.registerInstancer("AttackState", new FSM::StateInstancer<FSM::AttackState>());
+	_factory.registerInstancer("RemoveInhibitor", new FSM::StateInstancer<FSM::RemoveInhibitor>());
+	_factory.registerInstancer("DeadState", new FSM::StateInstancer<FSM::DeadState>());
+
+	_factory.registerInstancer("VariableTransition", new FSM::TransitionInstancer<FSM::VariableTransition>());
+	_factory.registerInstancer("TimeTransition", new FSM::TransitionInstancer<FSM::TimeTransition>());
 
 
-  const FSM::CMachine* myFsm = Resources.get("data/fsm/character.fsm")->as<FSM::CMachine>();
-  assert(myFsm);
+	//const FSM::CMachine* myFsm = Resources.get("data/fsm/character.fsm")->as<FSM::CMachine>();
+	//assert(myFsm);
 
-  return true;
+	return true;
 }
 
 bool CModuleFSM::stop()
 {
-  return true;
+	return true;
 }
 
 void CModuleFSM::renderInMenu()

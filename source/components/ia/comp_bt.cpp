@@ -139,13 +139,14 @@ BTNode::EType TCompIAController::stringToNodeType(std::string& string) {
 void TCompIAController::loadTree(const json & j)
 {
 	std::string rootName, childName, parentName, condition, action, assert, type;
+
 	BTNode::EType nodeType;
 	BTAction actionNode = nullptr;
 	BTCondition conditionNode = nullptr, assertNode = nullptr;
 
-	assert(j.count("createRoot") == 1);
-	if (j.count("createRoot") == 1) {
-		auto& j_root = j["createRoot"];
+	//assert(j.count("root") == 1);
+	if (j.count("root") == 1) {
+		auto& j_root = j["root"];
 		assert(j_root.count("rootName") == 1);
 		rootName = j_root.value("rootName", "defaultValue");
 		assert(j_root.count("type") == 1);
@@ -183,8 +184,8 @@ void TCompIAController::loadTree(const json & j)
 		}
 
 		createRoot(rootName, nodeType, conditionNode, actionNode, assertNode);
-		if (j.count("addChild") > 0) {
-			auto& j_addChild = j["addChild"];
+		if (j.count("children") > 0) {
+			auto& j_addChild = j["children"];
 			for (auto it = j_addChild.begin(); it != j_addChild.end(); ++it) {
 				assert(it.value().count("parent") > 0);
 				parentName = it.value().value("parent", "");
@@ -204,13 +205,11 @@ void TCompIAController::loadTree(const json & j)
 				}
 				else {
 					conditionNode = conditions_initializer[condition];
-					if (it.value().count("conditionArg") == 1) {
-						auto& j_condArg = it.value()["conditionArg"];
-						//We start retrieving the parameters
-						if (j_condArg.count("escape") == 1) {
-							conditionsArgs.escapeB = true;
-							conditionsArgs.escape = j_condArg.value("escape", 0.f);
-						}
+					if (it.value().count("conditionArg") > 0) {
+						//Default parameters for the conditions
+						//Retrieving values from the prefab
+						auto& j_conditionArg = it.value()["conditionArg"];
+						loadParameterVariables(j_conditionArg, condition, childName);
 					}
 				}
 				assert(it.value().count("action") > 0);
@@ -222,17 +221,11 @@ void TCompIAController::loadTree(const json & j)
 				}
 				else {
 					actionNode = actions_initializer[action];
-					if (it.value().count("actionArg") == 1) {
-						auto& j_actArg = it.value()["actionArg"];
-						//We start retrieving the parameters
-						if (j_actArg.count("movement") == 1) {
-							actionsArgs.movementB = true;
-							actionsArgs.movement = j_actArg.value("movement", 0.f);
-						}
-						if (j_actArg.count("ugh") == 1) {
-							actionsArgs.ughB = true;
-							actionsArgs.ugh = j_actArg.value("ugh", 0.f);
-						}
+					if (it.value().count("actionArg") > 0) {
+						//Default parameters for the actions
+						//Retrieving values from the prefab
+						auto& j_actionArg = it.value()["actionArg"];
+						loadParameterVariables(j_actionArg, action, childName);
 					}
 
 				}
@@ -245,6 +238,12 @@ void TCompIAController::loadTree(const json & j)
 				}
 				else {
 					assertNode = asserts_initializer[assert];
+					if (it.value().count("assertArg") > 0) {
+						//Default parameters for the conditions
+						//Retrieving values from the prefab
+						auto& j_assertArg = it.value()["assertArg"];
+						loadParameterVariables(j_assertArg, assert, childName);
+					}
 				}
 				addChild(parentName, childName, nodeType, conditionNode, actionNode, assertNode);
 			}
@@ -252,17 +251,200 @@ void TCompIAController::loadTree(const json & j)
 	}
 }
 
-void TCompIAController::update(float dt) {
-	if (current == nullptr) {
-		root->update(dt, this);
+void TCompIAController::loadParameters(const json& j) {
+	
+	std::string argCondName, argActName, aux;
+	CVariant::EType type;
+
+	if (j.count("argCond") > 0) {
+		auto& j_argCond = j["argCond"];
+		for (auto it = j_argCond.begin(); it != j_argCond.end(); ++it) {
+			assert(it.value().count("nodeName") == 1);
+			assert(it.value().count("conditionName") == 1);
+			assert(it.value().count("variableName") == 1);
+			assert(it.value().count("newValue") == 1);
+
+			aux = it.value().value("conditionName", "");
+
+			argCondName = it.value().value("variableName", "");
+			argCondName += "_";
+			argCondName += aux;
+			argCondName += "_";
+			aux = it.value().value("nodeName", "");
+			argCondName += aux;
+
+			assert(arguments.find(argCondName) != arguments.end());
+			type = arguments[argCondName].getType();
+			switch (type) {
+			case CVariant::EType::BOOL:
+			{
+				arguments[argCondName].setBool(it.value()["newValue"]);
+
+				break;
+			}
+			case CVariant::EType::FLOAT:
+			{
+				arguments[argCondName].setFloat(it.value()["newValue"]);
+
+				break;
+			}
+			case CVariant::EType::INT:
+			{
+				arguments[argCondName].setInt(it.value()["newValue"]);
+
+				break;
+			}
+			case CVariant::EType::STRING:
+			{
+				arguments[argCondName].setString(it.value()["newValue"]);
+
+				break;
+			}
+			default:
+			{
+				fatal("Type not defined!");
+				break;
+			}
+			}
+		}
 	}
-	else {
-		current->update(dt, this);
+	if (j.count("argAct") > 0) {
+		auto& j_argAct = j["argAct"];
+		for (auto it = j_argAct.begin(); it != j_argAct.end(); ++it) {
+			assert(it.value().count("nodeName") == 1);
+			assert(it.value().count("actionName") == 1);
+			assert(it.value().count("variableName") == 1);
+			assert(it.value().count("newValue") == 1);
+
+			aux = it.value().value("actionName", "");
+
+			argActName = it.value().value("variableName", "");
+			argActName += "_";
+			argActName += aux;
+			argActName += "_";
+			aux = it.value().value("nodeName", "");
+			argActName += aux;
+
+			assert(arguments.find(argActName) != arguments.end());
+			type = arguments[argActName].getType();
+			switch (type) {
+			case CVariant::EType::BOOL:
+			{
+				arguments[argCondName].setBool(it.value()["newValue"]);
+
+				break;
+			}
+			case CVariant::EType::FLOAT:
+			{
+				arguments[argCondName].setFloat(it.value()["newValue"]);
+
+				break;
+			}
+			case CVariant::EType::INT:
+			{
+				arguments[argCondName].setInt(it.value()["newValue"]);
+
+				break;
+			}
+			case CVariant::EType::STRING:
+			{
+				arguments[argCondName].setString(it.value()["newValue"]);
+
+				break;
+			}
+			default:
+			{
+				fatal("Type not defined!");
+				break;
+			}
+			}
+		}
 	}
 }
 
+void TCompIAController::loadParameterVariables(const json & j,const std::string& type,const std::string& name)
+{
+	std::string variantName, variantType, variantOp;
+	for (auto ite = j.begin(); ite != j.end(); ++ite) {
+		//Running some checks
+		assert(ite.value().count("variable_name") > 0);
+		assert(ite.value().count("variable_type") > 0);
+		assert(ite.value().count("variable_value") > 0);
+		assert(ite.value().count("variable_op") > 0);
+		//Retrieving info
+		variantName = ite.value().value("variable_name", "");
+		variantName = variantName + "_" + type + "_" + name;
+		variantType = ite.value().value("variable_type", "");
+		ToUpperCase(variantType);
+		variantOp = ite.value().value("variable_op", "");
+		//Depending on the variable type, we create the variant and we save it in arguments
+		if (variantType == "INT") {
+			assert(ite.value()["variable_value"].is_number_integer());
+			int variantValue = ite.value()["variable_value"];
+			CVariant parameter;
+			parameter.setInt(variantValue);
+			arguments[variantName] = parameter;
+		}
+		else if (variantType == "FLOAT") {
+			assert(ite.value()["variable_value"].is_number_float());
+			float variantValue = ite.value()["variable_value"];
+			CVariant parameter;
+			parameter.setFloat(variantValue);
+			arguments[variantName] = parameter;
+		}
+		else if (variantType == "BOOL") {
+			assert(ite.value()["variable_value"].is_boolean());
+			bool variantValue = ite.value()["variable_value"];
+			CVariant parameter;
+			parameter.setBool(variantValue);
+			arguments[variantName] = parameter;
+		}
+		else if (variantType == "STRING") {
+			assert(ite.value()["variable_value"].is_string());
+			std::string variantValue = ite.value()["variable_value"];
+			CVariant parameter;
+			parameter.setString(variantValue);
+			arguments[variantName] = parameter;
+		}
+		else {
+			fatal("La vida es dura, el tipo de variable %s no es aceptada. Revisa el Json", variantType.c_str());
+		}
+	}
+}
+
+void TCompIAController::update(float dt) {
+	if (!paused) {
+		if (current == nullptr) {
+			root->update(dt, this);
+		}
+		else {
+			current->update(dt, this);
+		}
+	}
+}
 
 void TCompIAController::printTree()
 {
 	root->printNode(0, this);
+}
+
+void TCompIAController::onMsgScenePaused(const TMsgScenePaused & msg)
+{
+	paused = !paused;
+}
+
+bool TCompIAController::isParentOfCurrent(BTNode * son, const std::string& possibleParent)
+{
+	assert(findNode(possibleParent));
+	if (son == nullptr || son->isRoot()) {
+		return false;
+	}
+	else {
+		if (son->getParent()->getName().compare(possibleParent) == 0) {
+			return true;
+		}
+		else {
+			return isParentOfCurrent(son->getParent(), possibleParent);
+		}
+	}
 }

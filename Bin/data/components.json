@@ -9,7 +9,7 @@
 	},
 	"update": [
 		"circular_controller",
-		"player_controller",
+		"player_tempcontroller",
 		"ai_patrol",
 		"ai_mimetic",
 		"bullet_controller",
@@ -23,6 +23,7 @@
 		"cone_of_light",
 		"rigidbody",
 		"collider",
+		"noise_emitter",
 		"camera_flyover",
 		"curve_controller",
 		"trigger_camera",
@@ -31,10 +32,13 @@
 		"camera_thirdperson",
 		"camera_shadowmerge",
 		"auxcamera_shadowmerge",
-		"camera"
+		"camera",
+		"fsm",
+		"player_animator",
+		"player_input"
 	],
 	"render_debug": [
-		"player_controller",
+		"player_tempcontroller",
 		"ai_patrol"
 	]
 }

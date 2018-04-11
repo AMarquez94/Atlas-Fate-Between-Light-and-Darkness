@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../comp_base.h"
+#include "components/comp_base.h"
 #include "PxPhysicsAPI.h"
 #include "entity/common_msgs.h"
 
@@ -10,13 +10,13 @@ class TCompRigidbody : public TCompBase {
 	physx::PxVec3 totalDownForce = physx::PxVec3(0, 0, 0);
 
 	void onCreate(const TMsgEntityCreated& msg);
-	void onDestroy(const TMsgEntityDestroyed& msg);
 
 	DECL_SIBLING_ACCESS();
 
 public:
 
-	physx::PxController* controller;
+	physx::PxRigidBody* rigidbody = nullptr;
+	physx::PxController* controller = nullptr;
 	physx::PxControllerFilters filters;
 
 	float mass;
