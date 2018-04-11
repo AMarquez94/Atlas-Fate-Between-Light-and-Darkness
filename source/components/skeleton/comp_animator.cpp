@@ -54,8 +54,6 @@ void TCompAnimator::registerMsgs() {
 //	DECL_MSG(TCompAnimator, TMsgEntityCreated, onCreated);
 }
 
-
-
 bool TCompAnimator::playAnimation(EAnimation animation) {
 
 	if (animationsMap.find(animation) == animationsMap.end()) {
@@ -115,4 +113,28 @@ bool  TCompAnimator::isComposed(EAnimation animation) {
 TCompAnimator::EAnimation TCompAnimator::actualAnimation() {
 
 	return actualCyclicAnimation.animation;
+}
+
+void  TCompAnimator::setFeetIds(std::vector<int> feetBonesId) {
+
+	CEntity* e = ownHandle;
+	TCompSkeleton * compSkeleton = e->get<TCompSkeleton>();
+
+	compSkeleton->setFeetId(feetBonesId);
+}
+
+void TCompAnimator::setFeetNumAndCalculate(int numFeet) {
+
+	CEntity* e = ownHandle;
+	TCompSkeleton * compSkeleton = e->get<TCompSkeleton>();
+
+	compSkeleton->guessFeetBonesId(numFeet);
+}
+
+std::vector<VEC3> TCompAnimator::getFeetPositions() {
+
+	CEntity* e = ownHandle;
+	TCompSkeleton * compSkeleton = e->get<TCompSkeleton>();
+
+	return compSkeleton->getFeetPositions();
 }

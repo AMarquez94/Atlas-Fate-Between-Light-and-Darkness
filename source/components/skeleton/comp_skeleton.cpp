@@ -71,6 +71,7 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
 
   // Do a time zero update just to have the bones in a correct place
   model->update(0.f);
+  
 }
 
 void TCompSkeleton::update(float dt) {
@@ -104,6 +105,11 @@ void TCompSkeleton::debugInMenu() {
   ImGui::DragInt("Anim Id", &anim_id, 0.1f, 0, model->getCoreModel()->getCoreAnimationCount()-1);
   ImGui::DragFloat("Speed", &speed, 0.01f, 0, 5.f);
   auto core_anim = model->getCoreModel()->getCoreAnimation(anim_id);
+
+  if (ImGui::SmallButton("Guess Bones")) {
+	  guessFeetBonesId(2);
+  }
+
   if (ImGui::SmallButton("Set Speed")) {
 	  int debug = 3;
 	  switch (debug) {
@@ -371,4 +377,62 @@ bool TCompSkeleton::isExecutingAnimation(int animId) {
 	
 	//return model->getMixer()->getAnimationActionList().size > 0;
 	return false;
+}
+
+//Returns the n bones that are positioned lowest by the y axis.
+void TCompSkeleton::guessFeetBonesId(int feetNum) {
+
+	std::vector<int> bonesId;
+	std::vector<float> bonesHeight;
+	float minValue = 99999999.f;
+	
+	for (int i = 0; i < model->getSkeleton()->getVectorBone().size();i++) {
+
+		bonesId.emplace_back(i);
+		bonesHeight.emplace_back(model->getSkeleton()->getBone(i)->getTranslationAbsolute().y);
+	}
+
+	float heightAux = 0;
+	int idAux = 0;
+
+	for (int j = 0; j < bonesId.size(); j++) {
+		for (int k = 0; k < bonesId.size() - 1; k++) {
+			if (bonesHeight[k] > bonesHeight[k + 1]) {
+				heightAux = bonesHeight[k];
+				idAux = bonesId[k];
+
+				bonesHeight[k] = bonesHeight[k + 1];
+				bonesId[k] = bonesId[k + 1];
+
+				bonesHeight[k + 1] = heightAux;
+				bonesId[k + 1] = idAux;
+			}
+		}
+	}
+
+	std::vector<int> auxFeetBonesId;
+
+	for (int a = 0; a < feetNum; a++) {
+		auxFeetBonesId.emplace_back(bonesId[a]);
+	}
+
+	feetBonesId = auxFeetBonesId;
+}
+
+void TCompSkeleton::setFeetId(std::vector<int> feetId) {
+	feetBonesId = feetId;
+}
+
+std::vector<VEC3> TCompSkeleton::getFeetPositions() {
+
+	std::vector<VEC3> feetPositions;
+
+	for (int i = 0; i < feetBonesId.size(); i++) {
+		float x = model->getSkeleton()->getBone(feetBonesId[i])->getTranslationAbsolute().x;
+		float y = model->getSkeleton()->getBone(feetBonesId[i])->getTranslationAbsolute().y;
+		float z = model->getSkeleton()->getBone(feetBonesId[i])->getTranslationAbsolute().z;
+		feetPositions[i] = VEC3(x,y,z);
+	}
+	
+	return feetPositions;
 }

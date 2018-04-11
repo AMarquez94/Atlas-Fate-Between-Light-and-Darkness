@@ -10,6 +10,7 @@ class CalModel;
 struct TCompSkeleton : public TCompBase {
 
 	std::map<std::string, int> stringAnimationIdMap;
+	std::vector<int> feetBonesId;
 	int actualCycleAnimId[2];
 	float cyclicAnimationWeight;
 	float lastFrameCyclicAnimationWeight;
@@ -35,6 +36,10 @@ struct TCompSkeleton : public TCompBase {
 	int getAnimationIdByName(std::string animName);
 	bool actionAnimationOnExecution();
 	bool isExecutingAnimation(int animId);
+
+	void guessFeetBonesId(int feetNum);
+	void setFeetId(std::vector<int> feetId);
+	std::vector<VEC3> getFeetPositions();
 
 	DECL_SIBLING_ACCESS();
 };

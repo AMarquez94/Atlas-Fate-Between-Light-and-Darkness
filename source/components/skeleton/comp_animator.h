@@ -46,5 +46,9 @@ public:
 	bool isCyclic(EAnimation animation);
 	bool isComposed(EAnimation animation);
 	EAnimation actualAnimation();
+
+	void  setFeetIds(std::vector<int> feetBonesId);
+	void setFeetNumAndCalculate(int numFeet);
+	std::vector<VEC3> getFeetPositions();
 	
 };
