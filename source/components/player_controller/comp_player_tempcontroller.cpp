@@ -113,8 +113,8 @@ void TCompTempPlayerController::registerMsgs() {
 	DECL_MSG(TCompTempPlayerController, TMsgEntityCreated, onCreate);
 	DECL_MSG(TCompTempPlayerController, TMsgPlayerHit, onPlayerHit);
 	DECL_MSG(TCompTempPlayerController, TMsgPlayerDead, onPlayerKilled);
-	DECL_MSG(TCompTempPlayerController, TMsgInhibitorShot, onPlayerLocate);
-	DECL_MSG(TCompTempPlayerController, TMsgPlayerIlluminated, onPlayerExpose);
+	DECL_MSG(TCompTempPlayerController, TMsgInhibitorShot, onPlayerInhibited);
+	DECL_MSG(TCompTempPlayerController, TMsgPlayerIlluminated, onPlayerExposed);
 	DECL_MSG(TCompTempPlayerController, TMsgScenePaused, onPlayerPaused);
 }
 
@@ -140,7 +140,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 	stamina = 100.f;
 	fallingTime = 0.f;
 	currentSpeed = 4.f;
-	initialPoints = 5.;
+	initialPoints = 5;
 	rotationSpeed = 10.f;
 	fallingDistance = 0.f;
 	isInhibited = isGrounded = isMerged = false;
@@ -217,24 +217,23 @@ void TCompTempPlayerController::onPlayerKilled(const TMsgPlayerDead & msg)
 	e->sendMsg(groundMsg);
 }
 
-void TCompTempPlayerController::onPlayerLocate(const TMsgInhibitorShot & msg)
+void TCompTempPlayerController::onPlayerInhibited(const TMsgInhibitorShot & msg)
 {
 	if (!isInhibited) {
 		isInhibited = true;
-		TCompRender *c_render = get<TCompRender>();
-		c_render->color = VEC4(128, 0, 128, 1);
 	}
 	timesRemoveInhibitorKeyPressed = initialPoints;
 
 }
 
-void TCompTempPlayerController::onPlayerExpose(const TMsgPlayerIlluminated & msg)
+void TCompTempPlayerController::onPlayerExposed(const TMsgPlayerIlluminated & msg)
 {
 	CEntity* e = CHandle(this).getOwner();
-	TMsgSetFSMVariable groundMsg;
-	groundMsg.variant.setName("onmerge");
-	groundMsg.variant.setBool(false); // & isGrounded
-	e->sendMsg(groundMsg);
+	TMsgSetFSMVariable notMergeMsg;
+	notMergeMsg.variant.setName("onmerge");
+	notMergeMsg.variant.setBool(false); // & isGrounded
+	isMerged = false;
+	e->sendMsg(notMergeMsg);
 }
 
 void TCompTempPlayerController::onPlayerPaused(const TMsgScenePaused& msg) {
@@ -385,12 +384,8 @@ void TCompTempPlayerController::removingInhibitorState(float dt) {
 		timeInhib = 0;
 		dbg("Im in removing inhib state \n %d Key strokes remaining \n \n", timesRemoveInhibitorKeyPressed);
 		if (timesRemoveInhibitorKeyPressed == 0) {
-			TCompRender *c_render = get<TCompRender>();
-			c_render->color = VEC4(1, 1, 1, 1);
 			timesRemoveInhibitorKeyPressed = 0;
 			isInhibited = false;
-			
-			
 		}
 	}
 	else {
@@ -715,9 +710,14 @@ void TCompTempPlayerController::updateShader(float dt) {
 	TCompRender *c_my_render = get<TCompRender>();
 	TCompShadowController * shadow_oracle = get<TCompShadowController>();
 
-	if (c_my_render->color == VEC4(1, 1, 1, 1) || c_my_render->color == VEC4(0, .8f, 1, 1)) {
-		if (shadow_oracle->is_shadow) c_my_render->color = Color(0, .8f, 1);
-		else c_my_render->color = Color(1, 1, 1);
+	if (isInhibited) {
+		c_my_render->color = VEC4(128, 0, 128, 1);
+	}
+	else if (shadow_oracle->is_shadow) {
+		c_my_render->color = VEC4(0, .8f, 1, 1);
+	}
+	else {
+		c_my_render->color = VEC4(1, 1, 1, 1);
 	}
 }
 

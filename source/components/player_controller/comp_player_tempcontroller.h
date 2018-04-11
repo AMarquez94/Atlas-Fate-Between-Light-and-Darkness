@@ -91,8 +91,8 @@ class TCompTempPlayerController : public TCompBase
 
 	void onPlayerHit(const TMsgPlayerHit& msg);
 	void onPlayerKilled(const TMsgPlayerDead& msg);
-	void onPlayerLocate(const TMsgInhibitorShot& msg);
-	void onPlayerExpose(const TMsgPlayerIlluminated& msg);
+	void onPlayerInhibited(const TMsgInhibitorShot& msg);
+	void onPlayerExposed(const TMsgPlayerIlluminated& msg);
 	void onPlayerPaused(const TMsgScenePaused& msg);
 
 	DECL_SIBLING_ACCESS();
@@ -107,8 +107,6 @@ public:
 	bool isInhibited;
 	unsigned int initialPoints;
 	unsigned int hitPoints;
-
-	
 
 	void debugInMenu();
 	void renderDebug();
