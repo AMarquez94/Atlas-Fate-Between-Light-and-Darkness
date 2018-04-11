@@ -74,6 +74,9 @@ bool CMaterial::create(const std::string& name) {
 	cb_material.scalar_metallic = -1.f;     // Initially disabled
 	cb_material.scalar_roughness = -1.f;
 	cb_material.scalar_irradiance_vs_mipmaps = 0.f;
+	cb_material.emissive_color = VEC4(1, 1, 1, 1);
+	cb_material.emissive_intensity = 75.f;
+	//cb_material.material_dummy = 1.f;
 	cb_material.updateGPU();
 
 	return true;
@@ -119,9 +122,13 @@ void CMaterial::debugInMenu() {
 	enabled = (cb_material.scalar_roughness >= 0.f);
 	if (ImGui::Checkbox("Custom Roughness", &enabled))
 		cb_material.scalar_roughness = enabled ? 0.f : -1.f;
+
 	if (cb_material.scalar_roughness >= 0.f)
 		ImGui::DragFloat("Roughness", &cb_material.scalar_roughness, 0.01f, 0.f, 1.f);
 	
+	ImGui::DragFloat("Emissive Intensity", &cb_material.emissive_intensity, 0.01f, 0.f, 1000.f);
+	ImGui::ColorEdit3("Emissive Color", &cb_material.emissive_color.x);
+
 	ImGui::DragFloat("irradiance_vs_mipmaps", &cb_material.scalar_irradiance_vs_mipmaps, 0.01f, 0.f, 1.f);
 	cb_material.updateGPU();
 }

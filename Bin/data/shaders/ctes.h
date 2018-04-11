@@ -31,6 +31,7 @@
 #define TS_DEFERRED_NORMALS           12
 #define TS_DEFERRED_LINEAR_DEPTH      13
 #define TS_DEFERRED_ACC_LIGHTS        14
+#define TS_DEFERRED_SELF_ILLUMINATION 15
 
 // -------------------------------------------------
 #define MAX_SUPPORTED_BONES        128
@@ -114,7 +115,9 @@ CB_DEF(CCteMaterial, CB_MATERIAL)
 	float  scalar_roughness;
 	float  scalar_metallic;
 	float  scalar_irradiance_vs_mipmaps;
-	float  material_dummy;
+	float  emissive_intensity;
+	VEC4  emissive_color;
+	//float  material_dummy;
 };
 
 CB_DEF(CCteSkinBones, CB_SKIN_BONES)

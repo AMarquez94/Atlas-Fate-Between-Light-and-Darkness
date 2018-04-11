@@ -48,13 +48,15 @@ void PS_GBuffer(
 , out float4 o_albedo : SV_Target0
 , out float4 o_normal : SV_Target1
 , out float1 o_depth  : SV_Target2
+, out float4 o_selfIllum  : SV_Target3
 )
 {
   // Store in the Alpha channel of the albedo texture, the 'metallic' amount of
   // the material
   o_albedo = txAlbedo.Sample(samLinear, iTex0);
   o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
-
+	o_selfIllum = txEmissive.Sample(samLinear, iTex0);
+	
   float3 N = computeNormalMap( iNormal, iTangent, iTex0 );
   
   // Save roughness in the alpha coord of the N render target
@@ -212,7 +214,7 @@ float4 PS_ambient(
   float g_ReflectionIntensity = 1.0;
   float g_AmbientLightIntensity = 1.0;
 
-  float4 self_illum = txEmissive.Load(uint3(iPosition.xy,0));
+  float4 self_illum = emissive_intensity * emissive_color * txSelfIllum.Load(uint3(iPosition.xy,0));
 
   float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + 
                               albedo.xyz * irradiance * g_AmbientLightIntensity

@@ -72,6 +72,56 @@
     }
   }
   ,
+			{
+    "entity":
+    {
+      "name": "player_main"
+      ,
+      "transform":
+      {
+        "pos": "-4 1 -13.9517"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/main_player.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_player_main.material"
+          ]
+        }
+      ]
+    }
+  },
+	{
+    "entity":
+    {
+      "name": "enemy_crab"
+      ,
+      "transform":
+      {
+        "pos": "-3 1.3 -13.9517"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/enemy_crab.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_enemy_crab.material"
+          ]
+        }
+      ]
+    }
+  },
 	{
     "entity":
     {
@@ -79,7 +129,7 @@
       ,
       "transform":
       {
-        "pos": "-4.63021 1 -13.9517"
+        "pos": "-5.5 1 -13.9517"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }

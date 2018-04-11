@@ -1,0 +1,14 @@
+{
+	"technique" : "pbr_player.tech"
+	,
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/player/Shade_mtl_BaseColor.dds",
+		"normal": "data/textures/player/Shade_mtl_Normal.dds",
+    "metallic": "data/textures/player/Shade_mtl_Metallic.dds",
+		"roughness": "data/textures/player/Shade_mtl_Roughness.dds",
+		"emissive": "data/textures/player/Shade_mtl_Emissive.dds"
+  }
+}

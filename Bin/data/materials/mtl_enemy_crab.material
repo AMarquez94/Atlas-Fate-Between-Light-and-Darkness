@@ -1,0 +1,12 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/enemy/tx_robotCrab_a.dds",
+		"normal": "data/textures/enemy/tx_robotCrab_n.dds",
+    "metallic": "data/textures/enemy/tx_robotCrab_m.dds",
+		"roughness": "data/textures/enemy/tx_robotCrab_r.dds",
+		"emissive": "data/textures/enemy/tx_robotCrab_e.dds"
+  }
+}
