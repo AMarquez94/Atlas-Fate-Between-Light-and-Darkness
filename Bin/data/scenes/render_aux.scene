@@ -31,5 +31,34 @@
       ],
 			"skybox":{}
     }
+  },
+    {
+    "entity": {
+      "name": "ShadowMerge_Light",
+      "transform": {},
+      "render": {},
+      "hierarchy": {
+        "parent": "The Player",
+        "pos": "0 2 0",
+		"lookat": "0 -1 0"
+      },
+	  "light":
+      {
+        "type": "spotlight",
+		"proj_type": "ortographic",
+        "range": 29.2116,
+        "angle": 91.8,
+        "color": "1.0 1.0 1.0 1.0",
+        "intensity": 4.0,
+        "shadows": true,
+		"ortosize" : 1,
+		"projector" : "data/textures/light_cookie.dds",
+        "z_far" : 50,
+        "casts_shadows" : true,
+        "shadows_step" : 1.0,
+        "shadows_resolution" : 1024,
+        "shadows_fmt" : "R32_TYPELESS"
+      }
+    }
   }
 ]

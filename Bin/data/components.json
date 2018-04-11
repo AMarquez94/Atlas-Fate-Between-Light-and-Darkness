@@ -8,8 +8,6 @@
     "transform" : 90
   },
   "update": [
-		"light",
-		"light_point",
     "circular_controller",
 		"player_tempcontroller",
     "ai_patrol",
@@ -24,6 +22,8 @@
 		"cone_of_light",
 		"rigidbody",
 		"collider",
+				"light",
+		"light_point",
 		"camera_flyover",
 		"curve_controller",
 		"trigger_camera",
