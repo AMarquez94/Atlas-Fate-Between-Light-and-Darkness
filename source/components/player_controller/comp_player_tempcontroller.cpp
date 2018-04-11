@@ -81,10 +81,12 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	maxStamina = j.value("maxStamina", 100.f);
 	incrStamina = j.value("incrStamina", 15.f);
 	decrStaticStamina = j.value("decrStaticStamina", 0.75f),
-	decrStaminaHorizontal = j.value("decrStaminaHorizontal", 12.5f);
+		decrStaminaHorizontal = j.value("decrStaminaHorizontal", 12.5f);
 	decrStaminaVertical = j.value("decrStaminaVertical", 17.5f);
 	minStaminaChange = j.value("minStaminaChange", 15.f);
 	auxCamera = j.value("auxCamera", "");
+	timesRemoveInhibitorKeyPressed = j.value("timesRemoveInhibitorKeyPressed", -1);
+	initialPoints = j.value("timesRemoveInhibitorKeyPressed", -1);
 	paused = true;
 }
 
@@ -100,6 +102,7 @@ void TCompTempPlayerController::update(float dt) {
 		isMerged = onMergeTest(dt);
 		updateStamina(dt);
 		updateShader(dt); // Move this to player render component...
+		timeInhib += dt;
 	}
 }
 
@@ -137,7 +140,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 	stamina = 100.f;
 	fallingTime = 0.f;
 	currentSpeed = 4.f;
-	initialPoints = 0;
+	initialPoints = 5.;
 	rotationSpeed = 10.f;
 	fallingDistance = 0.f;
 	isInhibited = isGrounded = isMerged = false;
@@ -146,7 +149,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 }
 
 /* Call this function once the state has been changed */
-void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg){
+void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg) {
 
 	if (msg.action_start != NULL) {
 
@@ -216,8 +219,13 @@ void TCompTempPlayerController::onPlayerKilled(const TMsgPlayerDead & msg)
 
 void TCompTempPlayerController::onPlayerLocate(const TMsgInhibitorShot & msg)
 {
-	isInhibited = true;
-	hitPoints = initialPoints;
+	if (!isInhibited) {
+		isInhibited = true;
+		TCompRender *c_render = get<TCompRender>();
+		c_render->color = VEC4(128, 0, 128, 1);
+	}
+	timesRemoveInhibitorKeyPressed = initialPoints;
+
 }
 
 void TCompTempPlayerController::onPlayerExpose(const TMsgPlayerIlluminated & msg)
@@ -235,12 +243,12 @@ void TCompTempPlayerController::onPlayerPaused(const TMsgScenePaused& msg) {
 }
 
 /* Idle state method, no logic yet */
-void TCompTempPlayerController::idleState(float dt){
+void TCompTempPlayerController::idleState(float dt) {
 
 }
 
 /* Main thirdperson player motion movement handled here */
-void TCompTempPlayerController::walkState(float dt){
+void TCompTempPlayerController::walkState(float dt) {
 
 	// Player movement and rotation related method.
 	float yaw, pitch, roll;
@@ -365,8 +373,49 @@ void TCompTempPlayerController::deadState(float dt)
 	state = (actionhandler)&TCompTempPlayerController::idleState;
 }
 
+void TCompTempPlayerController::removingInhibitorState(float dt) {
+	CEntity* player = CHandle(this).getOwner();
+
+	
+	if (initialPoints == timesRemoveInhibitorKeyPressed){
+		timeInhib = 0;
+	}
+	if (timesRemoveInhibitorKeyPressed > 0 && timeInhib <= timeToPressAgain) {
+		timesRemoveInhibitorKeyPressed--;
+		timeInhib = 0;
+		dbg("Im in removing inhib state \n %d Key strokes remaining \n \n", timesRemoveInhibitorKeyPressed);
+		if (timesRemoveInhibitorKeyPressed == 0) {
+			TCompRender *c_render = get<TCompRender>();
+			c_render->color = VEC4(1, 1, 1, 1);
+			timesRemoveInhibitorKeyPressed = 0;
+			isInhibited = false;
+			
+			
+		}
+	}
+	else {
+		timesRemoveInhibitorKeyPressed = initialPoints - 1;
+		timeInhib = 0;
+		dbg("Im in removing inhib state but I was too slow \n %d Key strokes remaining \n \n", timesRemoveInhibitorKeyPressed);
+
+	}
+	TMsgSetFSMVariable finished;
+	finished.variant.setName("finished");
+	finished.variant.setBool(true);
+	player->sendMsg(finished);
+	
+	TMsgSetFSMVariable keyPressed;
+	keyPressed.variant.setName("hitPoints");
+	keyPressed.variant.setBool(false);
+	player->sendMsg(keyPressed);
+
+	dbg("---------------------------------------------------------------------------- \n");
+
+
+}
+
 /* Concave test, this determines if there is a surface normal change on concave angles */
-const bool TCompTempPlayerController::concaveTest(void){
+const bool TCompTempPlayerController::concaveTest(void) {
 
 	physx::PxRaycastHit hit;
 	TCompRigidbody *rigidbody = get<TCompRigidbody>();
@@ -400,7 +449,7 @@ const bool TCompTempPlayerController::concaveTest(void){
 }
 
 /* Convex test, this determines if there is a surface normal change on convex angles */
-const bool TCompTempPlayerController::convexTest(void){
+const bool TCompTempPlayerController::convexTest(void) {
 
 	physx::PxRaycastHit hit;
 	TCompTransform *c_my_transform = get<TCompTransform>();
@@ -435,7 +484,7 @@ const bool TCompTempPlayerController::convexTest(void){
 }
 
 /* Bitshifting test to determine if we are merged within the shadows */
-const bool TCompTempPlayerController::onMergeTest(float dt){
+const bool TCompTempPlayerController::onMergeTest(float dt) {
 
 	CEntity* e = CHandle(this).getOwner();
 	TCompRigidbody *c_my_rigidbody = get<TCompRigidbody>();
@@ -473,7 +522,7 @@ const bool TCompTempPlayerController::onMergeTest(float dt){
 		c_my_rigidbody->filters.mFilterData = isMerged == true ? pxPlayerFilterData : pxShadowFilterData;
 		//c_my_rigidbody->controller->setStepOffset(0);
 	}
-	
+
 	return mergeTest;
 }
 
@@ -582,15 +631,15 @@ CHandle TCompTempPlayerController::closeEnemy(const std::string & state) {
 
 	for (unsigned int i = 0; i < handlesPatrol.size(); i++) {
 		if (!handlesPatrol[i].isValid()) continue;
-		
+
 		CEntity * eEnemy = handlesPatrol[i];
 		TCompTransform * epos = eEnemy->get<TCompTransform>();
-		
+
 		if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < maxAttackDistance
 			&& !epos->isInFront(mypos->getPosition())) {
 
 			TCompAIPatrol * aipatrol = eEnemy->get<TCompAIPatrol>();
-			if(state.compare("undefined") != 0) return handlesPatrol[i];
+			if (state.compare("undefined") != 0) return handlesPatrol[i];
 			if (!aipatrol->isStunned()) return handlesPatrol[i];
 		}
 	}

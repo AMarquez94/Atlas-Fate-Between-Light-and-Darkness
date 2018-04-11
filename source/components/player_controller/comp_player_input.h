@@ -18,5 +18,6 @@ public:
 	void update(float dt);
 
 private:
+	float _time;
 };
 

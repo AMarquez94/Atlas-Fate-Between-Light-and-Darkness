@@ -69,7 +69,6 @@ class TCompTempPlayerController : public TCompBase
 	float fallingDistance;
 	float maxFallingDistance;
 	float maxAttackDistance;
-	unsigned int initialPoints;
 	std::string auxCamera;
 
 	/* Stamina private variables */
@@ -81,6 +80,10 @@ class TCompTempPlayerController : public TCompBase
 	float decrStaminaHorizontal;
 	float decrStaminaVertical;
 	float minStaminaChange;
+	
+	int timesRemoveInhibitorKeyPressed = 0;
+	float timeToPressAgain = 0.7f;
+	float timeInhib = 0.0f;
 
 	void onCreate(const TMsgEntityCreated& msg);
 	void onStateStart(const TMsgStateStart& msg);
@@ -102,7 +105,10 @@ public:
 	bool isMerged;
 	bool isGrounded;
 	bool isInhibited;
+	unsigned int initialPoints;
 	unsigned int hitPoints;
+
+	
 
 	void debugInMenu();
 	void renderDebug();
@@ -117,6 +123,7 @@ public:
 	void attackState(float dt);
 	void resetState(float dt);
 	void exitMergeState(float dt);
+	void removingInhibitorState(float dt);
 
 	/* Player condition tests */
 	const bool concaveTest(void);

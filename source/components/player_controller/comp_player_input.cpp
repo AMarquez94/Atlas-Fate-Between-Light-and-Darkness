@@ -15,18 +15,19 @@ void TCompPlayerInput::load(const json& j, TEntityParseContext& ctx) {
 void TCompPlayerInput::update(float dt)
 {
 	CEntity* e = CHandle(this).getOwner();
+	_time += dt;
 
 	/* Movement messages*/
 	{
 		if (EngineInput["btUp"].hasChanged()
 			|| EngineInput["btDown"].hasChanged()
 			|| EngineInput["btLeft"].hasChanged()
-			|| EngineInput["btRight"].hasChanged()){
+			|| EngineInput["btRight"].hasChanged()) {
 
 			TMsgSetFSMVariable walkMsg;
 			walkMsg.variant.setName("speed");
 			float total_value = (EngineInput["btRight"].value + EngineInput["btLeft"].value
-								+ EngineInput["btUp"].value + EngineInput["btDown"].value);
+				+ EngineInput["btUp"].value + EngineInput["btDown"].value);
 
 			walkMsg.variant.setFloat(total_value);
 			e->sendMsg(walkMsg);
@@ -37,7 +38,7 @@ void TCompPlayerInput::update(float dt)
 		boostMsg.variant.setName("boost_speed");
 
 		if (EngineInput["btRun"].hasChanged()) {
-			
+
 			crouchButton = false;
 			TMsgSetFSMVariable crouch;
 			crouch.variant.setName("crouch");
@@ -107,19 +108,17 @@ void TCompPlayerInput::update(float dt)
 			e->sendMsg(action);
 		}
 
-		if (EngineInput["btSecAction"].hasChanged())
+		if (EngineInput["btSecAction"].getsPressed())
 		{
 			/* Move this from here.. */
 			CEntity * c_my_entity = CHandle(this).getOwner();
-			TCompTempPlayerController * c_my_player  = c_my_entity->get<TCompTempPlayerController>();
+			TCompTempPlayerController * c_my_player = c_my_entity->get<TCompTempPlayerController>();
 
-			if (c_my_player->hitPoints > 0) {
-
-				TMsgSetFSMVariable action;
-				action.variant.setName("hitPoints");
-				action.variant.setBool(EngineInput["btSecAction"].getsPressed());
-				e->sendMsg(action);
-				c_my_player->hitPoints--;
+			if (c_my_player->isInhibited) {
+				TMsgSetFSMVariable keyPressed;
+				keyPressed.variant.setName("hitPoints");
+				keyPressed.variant.setBool(true);
+				e->sendMsg(keyPressed);
 			}
 		}
 
