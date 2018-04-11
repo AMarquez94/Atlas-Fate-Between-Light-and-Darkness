@@ -63,31 +63,20 @@ bool TCompAnimator::playAnimation(EAnimation animation) {
 	TCompSkeleton * compSkeleton = e->get<TCompSkeleton>();
 	AnimationSet animSet = animationsMap[animation];
 
+	int anim1id = animSet.animationId;
+	int anim2id = animSet.secondAnimationId;
+	float weight = animSet.weight;
+	float speed = animSet.speed;
+
 	switch (animSet.animationType)
 	{
 	case EAnimationType::CYCLIC:
-
-		if (animSet.animationType == EAnimationSize::DOUBLE) {
-			compSkeleton->changeCyclicAnimation(animSet.animationId, animSet.secondAnimationId, animSet.weight);
-			if (animSet.speed != 1) {
-				compSkeleton->changeCyclicAnimation(animSet.animationId, animSet.secondAnimationId, animSet.weight, animSet.speed, 0.15f,0.15f);
-			}
-		}
-		else {
-			compSkeleton->changeCyclicAnimation(animSet.animationId);
-			if (animSet.speed != 1) {
-				compSkeleton->changeCyclicAnimation(animSet.animationId, animSet.speed, 0.15f, 0.15f);
-			}
-		}
+		compSkeleton->changeCyclicAnimation(anim1id, speed, anim2id, weight);
 		break;
 
 	case EAnimationType::ACTION:
-		compSkeleton->executeActionAnimation(animSet.animationId);
-		if (animSet.speed != 1) {
-			compSkeleton->executeActionAnimation(animSet.animationId, animSet.speed, 0.15f, 0.15f);
-		}
+		compSkeleton->executeActionAnimation(anim1id,speed);
 		break;
-
 	}
 
 }
