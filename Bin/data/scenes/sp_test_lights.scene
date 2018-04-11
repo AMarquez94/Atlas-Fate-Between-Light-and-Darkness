@@ -169,7 +169,7 @@
         "color": "1.0 1.0 1.0 1.0",
         "intensity": 4.0,
         "shadows": true,
-				"projector" : "data/textures/batman.dds",
+				"projector" : "data/textures/light_cookie.dds",
         "z_far" : 50,
         "casts_shadows" : true,
         "shadows_step" : 1.0,

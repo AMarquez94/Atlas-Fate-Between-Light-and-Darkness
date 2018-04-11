@@ -264,12 +264,14 @@ float4 shade(
   float  NdL = saturate(dot(N, light_dir));
   float  NdV = saturate(dot(N, view_dir));
   float3 h   = normalize(light_dir + view_dir); // half vector
-
+	
+	float4 light_projector_color = projectColor(wPos);
+	
   float  NdH = saturate(dot(N, h));
   float  VdH = saturate(dot(view_dir, h));
   float  LdV = saturate(dot(light_dir, view_dir));
   float  a   = max(0.001f, roughness * roughness);
-  float3 cDiff = Diffuse(albedo);
+  float3 cDiff = Diffuse(albedo) * light_projector_color.xyz;
   float3 cSpec = Specular(specular_color, h, view_dir, light_dir, a, NdL, NdV, NdH, VdH, LdV);
 
   float  att = ( 1. - smoothstep( 0.90, 0.98, distance_to_light / light_radius ));

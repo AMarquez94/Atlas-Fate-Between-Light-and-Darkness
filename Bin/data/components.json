@@ -8,6 +8,8 @@
     "transform" : 90
   },
   "update": [
+		"light",
+		"light_point",
     "circular_controller",
 		"player_tempcontroller",
     "ai_patrol",
@@ -16,8 +18,6 @@
 		"shadow_controller",
 		"skeleton",
 		"bone_tracker",
-		"light",
-		"light_point",
 		"hierarchy",
 		"local_aabb",
 		"culling",

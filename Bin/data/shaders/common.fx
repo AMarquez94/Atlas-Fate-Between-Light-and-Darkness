@@ -173,4 +173,26 @@ float4 encodeNormal( float3 n, float nw ) {
 // Converts range 0..1 to -1..1
 float3 decodeNormal( float3 n ) {
   return ( n.xyz * 2. - 1. );
+} 
+
+float4 projectColor(float3 wPos){
+
+		// Convert pixel position in world space to light space
+	float4 pos_in_light_proj_space = mul(float4(wPos,1), light_view_proj_offset);
+	float3 pos_in_light_homo_space = pos_in_light_proj_space.xyz / pos_in_light_proj_space.w; // -1..1
+
+	// Use these coords to access the projector texture of the light dir
+	float4 light_projector_color = float4(1,1,1,1);
+	light_projector_color *= txLightProjector.Sample(samBorderLinear, pos_in_light_homo_space.xy);
+	if (pos_in_light_proj_space.z < 0.)
+		light_projector_color = float4(0,0,0,0);
+
+	// Fade to zero in the last 1% of the zbuffer of the light
+	light_projector_color *= smoothstep(1.0f, 0.69f, pos_in_light_homo_space.z);
+	
+	// Leave this here as a test, we won't need it yet
+	if(light_projector_color.x == 0 && light_projector_color.y == 0 && light_projector_color.z == 0)
+		return float4(1,1,1,1);
+	
+	return light_projector_color;
 }
