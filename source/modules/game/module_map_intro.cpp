@@ -47,11 +47,11 @@ bool CModuleMapIntro::start()
 	cb_object.activate();
 	cb_camera.activate();
 
-	CHandle h_camera = getEntityByName("test_camera_flyover");
+	CHandle h_camera = getEntityByName("TPCamera");
 	if (h_camera.isValid())
 		Engine.getCameras().setDefaultCamera(h_camera);
 
-	h_camera = getEntityByName("test_camera_flyover");
+	h_camera = getEntityByName("main_camera");
 	if (h_camera.isValid())
 		Engine.getCameras().setOutputCamera(h_camera);
 
@@ -88,12 +88,6 @@ void CModuleMapIntro::update(float delta)
 	static VEC3 world_pos;
 	ImGui::DragFloat3("Pos", &world_pos.x, 0.025f, -50.f, 50.f);
 	VEC2 mouse = EngineInput.mouse()._position;
-
-	if (EngineInput.mouse().button(Input::EMouseButton::MOUSE_MIDDLE).getsPressed()) {
-		Input::CMouse* cMouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-		cMouse->setLockMouse(false);
-		ShowCursor(!cMouse->isMouseLocked());
-	}
 
 	if (h_e_camera.isValid()) {
 		CEntity* e_camera = h_e_camera;

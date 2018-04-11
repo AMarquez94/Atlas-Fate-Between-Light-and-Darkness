@@ -8,8 +8,8 @@
 		"entity": {
 			"name": "main_camera",
 			"transform": {
-				"pos": "90 160 095",
-				"lookat" : "-135 -30 0"
+				"pos": "0 0 0",
+				"lookat" : "0 0 0"
 			},
 			"camera" : {
 				"fov" : 80
@@ -104,8 +104,8 @@
 		"entity": {
 			"name": "test_camera_flyover",
 			"transform": {
-				"pos": "90 160 095",
-				"lookat" : "-135 -30 0"
+				"pos": "5 5 0",
+				"lookat" : "0 0 0"
 			},
 			"camera_flyover" : {},
 			"camera" : {
