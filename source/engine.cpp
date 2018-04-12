@@ -7,6 +7,7 @@
 #include "modules/game/module_map_intro.h"
 #include "modules/game/module_level_select.h"
 #include "modules/game/module_game_manager.h"
+#include "modules/game/module_game_console.h"
 #include "modules/test/module_test_input.h"
 
 //--------------------------------------------------------------------------------------
@@ -30,6 +31,7 @@ bool CEngine::start() {
 
 	static CModuleSplash module_splash("splash");
 	static CModuleGameManager module_game_manager("game_manager");
+	static CModuleGameConsole module_game_console("game_console");
 	static CModuleMainMenu module_main_menu("main_menu");
 	static CModuleGameOver module_game_over("game_over");
 	static CModuleMapIntro module_map_intro("map_intro");
@@ -46,6 +48,7 @@ bool CEngine::start() {
 
 	_modules.registerGameModule(&module_splash);
 	_modules.registerGameModule(&module_game_manager);
+	_modules.registerGameModule(&module_game_console);
 	_modules.registerGameModule(&module_main_menu);
 	_modules.registerGameModule(&module_game_over);
 	_modules.registerGameModule(&module_map_intro);

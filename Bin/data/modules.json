@@ -8,6 +8,7 @@
 		"cameras",
     "main_menu",
     "game_manager",
+	"game_console",
     "splash",
     "test_input",
     "map_intro",
@@ -20,8 +21,9 @@
     "input",
     "main_menu",
     "game_manager",
+	"game_console",
     "map_intro",
-		"level_select",
+	"level_select",
     "game_over",
     "entities",
     "cameras"
