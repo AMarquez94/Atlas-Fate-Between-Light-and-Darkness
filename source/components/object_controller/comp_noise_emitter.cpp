@@ -53,7 +53,7 @@ void TCompNoiseEmitter::onMsgTriggerEnter(const TMsgTriggerEnter & msg)
 	TCompTags * tTag = c_other->get<TCompTags>();
 	
 
-	if (tTag && tTag->hasTag(getID("enemy"))) {
+	if (msg.h_other_entity != _hSource && tTag && tTag->hasTag(getID("enemy"))) {
 		bool found = false;
 		for (int i = 0; !found && i < hEntitiesInNoiseRadius.size(); i++) {
 			if (hEntitiesInNoiseRadius[i] == msg.h_other_entity) {
@@ -73,7 +73,7 @@ void TCompNoiseEmitter::onMsgTriggerExit(const TMsgTriggerExit & msg)
 	TCompTags * tTag = c_other->get<TCompTags>();
 
 
-	if (tTag && tTag->hasTag(getID("enemy"))) {
+	if (msg.h_other_entity != _hSource && tTag && tTag->hasTag(getID("enemy"))) {
 		bool found = false;
 		for (int i = 0; !found && i < hEntitiesInNoiseRadius.size(); i++) {
 			if (hEntitiesInNoiseRadius[i] == msg.h_other_entity) {

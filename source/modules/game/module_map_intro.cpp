@@ -30,15 +30,17 @@ CCamera camera;
 
 /* EXAMPLE LUA FUNCTION */
 //static int sum_lol(lua_State *L) {
-//	int n = lua_gettop(L);
+//	int n = lua_gettop(L);				//siempre hay que hacer control de errores en la funcion (en este caso, contar parametros entrantes y salientes)
 //	int sum = 0;
-//	for (int i = 1; i <= n; i++) {
+//	for (int i = 1; i <= n; i++) {		//ojo, en lua las listas empiezan por 1 y no por 0
 //		dbg("%d", lua_tointeger(L, i));
 //		sum += lua_tointeger(L, i);
 //	}
 //	lua_pushnumber(L, sum);				//pushear resultados a la pila
 //	fatal("Sum %d", sum);
 //	return 1;							//devolver el num de resultados que hemos puesto en la pila
+//
+//	/* Siempre revisar que los parametros esten bien y que los resultados esten bien tambien */
 //}
 
 
@@ -60,7 +62,7 @@ bool CModuleMapIntro::start()
 	/* EXAMPLE LUA EXECUTION */
 	//lua_State *ls = luaL_newstate();
 	//lua_register(ls, "hello", sum_lol);
-	//luaL_dofile(ls, "test.lua");
+	//luaL_dofile(ls, "data/scripts/test.lua");
 	//lua_close(ls);
 
 	// -------------------------------------------

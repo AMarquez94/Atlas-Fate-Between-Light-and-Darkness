@@ -736,7 +736,7 @@ BTNode::ERes TCompAIPatrol::actionGoToPatrol(float dt)
 	else {
 		VEC3 vfwd = mypos->getFront();
 		vfwd.Normalize();
-		vp = vp + speed * dt *vfwd;
+		vp = vp + speed * dt * vfwd;
 		mypos->setPosition(vp);
 		return BTNode::ERes::STAY;
 	}
