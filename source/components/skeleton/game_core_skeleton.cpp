@@ -235,6 +235,7 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
   if (!is_ok)
     return false;
 
+
   // Check if there is already a .mesh
   std::string cmf = root_path + name + ".cmf";
   if (fileExists(cmf)) {
@@ -244,7 +245,7 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
     std::string skin_mesh_file = root_path + name + ".mesh";
     convertCalCoreMesh2RenderMesh(getCoreMesh(mesh_id), skin_mesh_file);
     // Delete the cmf file
-    // std::remove(cmf.c_str());
+    std::remove(cmf.c_str());
   }
 
   // Read all anims

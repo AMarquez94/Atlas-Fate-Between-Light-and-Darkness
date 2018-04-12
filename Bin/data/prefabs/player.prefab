@@ -1,21 +1,21 @@
-[
-  {
-    "entity":
+[ {
+		"entity":
 	    {
 	      "name": "superplayer",
 	      "transform":
 	      {
-	        "pos": "-10 0 -5",
+	        "pos": "0 0 0",
 	        "rotation": "0.0 0.0 0.0 1.0"
 	      },
 	      "skeleton": {
-	        "skeleton": "data/skeletons/Bip001/player.skeleton"
+	        "skeleton": "data/skeletons/player/player.skeleton"
 	      },
 	      "abs_aabb":true,
 	      "local_aabb":true,
+	      "player_animator":true,
 	      "render" : [
 	        {
-	          "mesh": "data/skeletons/Bip001/Bip001.mesh"
+	          "mesh": "data/skeletons/player/body_.mesh"
 	          ,
 	          "materials":
 	          [
@@ -24,5 +24,5 @@
 	        }
 	      ]
 	    }
-  }
+	}
 ]

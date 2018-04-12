@@ -239,8 +239,10 @@ void renderMesh(const CRenderMesh* mesh, MAT44 new_matrix, VEC4 color) {
 		tech_name = "textured.tech";
 	else if (vdecl->name == "PosNUvUv")
 		tech_name = "textured_bk.tech";
-	else if (vdecl->name == "PosNUvSkin")
+	else if (vdecl->name == "PosNUvSkin") {
 		tech_name = "solid_objs_skin.tech";
+		return;
+	}
 	else if (vdecl->name == "PosNUvTanSkin")
 		tech_name = "solid_objs_skin.tech";
 

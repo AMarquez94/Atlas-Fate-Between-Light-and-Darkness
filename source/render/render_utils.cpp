@@ -3,12 +3,14 @@
 #include "render_objects.h"
 
 void renderLine(VEC3 src, VEC3 dst, VEC4 color) {
-  MAT44 world = MAT44::CreateLookAt(src, dst, VEC3(0, 1, 0)).Invert();
   float distance = VEC3::Distance(src, dst);
-  world = MAT44::CreateScale(1, 1, -distance) * world;
-  cb_object.obj_world = world;
-  cb_object.obj_color = color;
-  cb_object.updateGPU();
+  if (distance != 0.f) {
+	  MAT44 world = MAT44::CreateLookAt(src, dst, VEC3(0, 1, 0)).Invert();
+	  world = MAT44::CreateScale(1, 1, -distance) * world;
+	  cb_object.obj_world = world;
+	  cb_object.obj_color = color;
+	  cb_object.updateGPU();
+  }
 
   auto mesh = Resources.get("line.mesh")->as<CRenderMesh>();
   mesh->activateAndRender();
