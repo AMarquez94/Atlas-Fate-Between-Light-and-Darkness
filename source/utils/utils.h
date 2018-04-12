@@ -32,5 +32,7 @@ float urand(float loVal, float hiVal);
 
 void ToUpperCase(std::string&);
 
+int Strnicmp(const char* str1, const char* str2, int n);
+
 #endif
 

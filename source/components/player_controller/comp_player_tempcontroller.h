@@ -95,6 +95,7 @@ class TCompTempPlayerController : public TCompBase
 	void onPlayerInhibited(const TMsgInhibitorShot& msg);
 	void onPlayerExposed(const TMsgPlayerIlluminated& msg);
 	void onPlayerPaused(const TMsgScenePaused& msg);
+	void onConsoleChanged(const TMsgConsoleOn& msg);
 
 	DECL_SIBLING_ACCESS();
 

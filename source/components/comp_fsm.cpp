@@ -40,7 +40,8 @@ void TCompFSM::debugInMenu()
 void TCompFSM::registerMsgs() {
   DECL_MSG(TCompFSM, TMsgEntityCreated, onCreate);
   DECL_MSG(TCompFSM, TMsgSetFSMVariable, onVariableValue);
-  DECL_MSG(TCompFSM, TMsgScenePaused, onPaused);
+  DECL_MSG(TCompFSM, TMsgScenePaused, onPaused); 
+  DECL_MSG(TCompFSM, TMsgConsoleOn, onConsoleChanged);
 }
 
 const std::string TCompFSM::getStateName()
@@ -59,7 +60,7 @@ void TCompFSM::load(const json& j, TEntityParseContext& ctx)
 
 void TCompFSM::update(float dt) 
 {
-	if (!paused) {
+	if (!paused && !isConsoleOn) {
 		_context.update(dt);
 	}
 }
@@ -77,4 +78,9 @@ void TCompFSM::onPaused(const TMsgScenePaused& msg) {
 void TCompFSM::onVariableValue(const TMsgSetFSMVariable& msg)
 {
   _context.setVariable(msg.variant.getName(), msg.variant);
+}
+
+void TCompFSM::onConsoleChanged(const TMsgConsoleOn & msg)
+{
+	isConsoleOn = msg.isConsoleOn;
 }

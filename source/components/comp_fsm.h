@@ -19,6 +19,7 @@ public:
 	void onPaused(const TMsgScenePaused& msg);
 	void onCreate(const TMsgEntityCreated& msg);
 	void onVariableValue(const TMsgSetFSMVariable& msg);
+	void onConsoleChanged(const TMsgConsoleOn& msg);
 
 	static void registerMsgs();
 

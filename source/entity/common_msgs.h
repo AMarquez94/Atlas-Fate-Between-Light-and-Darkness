@@ -135,6 +135,11 @@ struct TMsgScenePaused {
 	DECL_MSG_ID();
 };
 
+struct TMsgConsoleOn {
+	bool isConsoleOn;
+	DECL_MSG_ID();
+};
+
 struct TMsgNoiseMade {
 	CHandle hNoiseSource;
 	VEC3 noiseOrigin;

@@ -7,6 +7,7 @@ struct TCompBase {
 
 	bool visible = true;
 	bool paused = false;
+	bool isConsoleOn = false;
 
 	void debugInMenu() {}
 	void renderDebug() {}

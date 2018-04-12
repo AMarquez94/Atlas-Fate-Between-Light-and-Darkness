@@ -94,7 +94,7 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 /* Player controller main update */
 void TCompTempPlayerController::update(float dt) {
 
-	if (!paused) {
+	if (!paused && !isConsoleOn) {
 
 		(this->*state)(dt);
 
@@ -117,6 +117,7 @@ void TCompTempPlayerController::registerMsgs() {
 	DECL_MSG(TCompTempPlayerController, TMsgInhibitorShot, onPlayerInhibited);
 	DECL_MSG(TCompTempPlayerController, TMsgPlayerIlluminated, onPlayerExposed);
 	DECL_MSG(TCompTempPlayerController, TMsgScenePaused, onPlayerPaused);
+	DECL_MSG(TCompTempPlayerController, TMsgConsoleOn, onConsoleChanged);
 }
 
 void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
@@ -240,6 +241,11 @@ void TCompTempPlayerController::onPlayerExposed(const TMsgPlayerIlluminated & ms
 void TCompTempPlayerController::onPlayerPaused(const TMsgScenePaused& msg) {
 
 	paused = msg.isPaused;
+}
+
+void TCompTempPlayerController::onConsoleChanged(const TMsgConsoleOn & msg)
+{
+	isConsoleOn = msg.isConsoleOn;
 }
 
 /* Idle state method, no logic yet */

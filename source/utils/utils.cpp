@@ -120,3 +120,12 @@ void ToUpperCase(std::string& string) {
 		string.at(i) = toupper(string.at(i));
 	}
 }
+
+int Strnicmp(const char * str1, const char * str2, int n)
+{
+	int d = 0; 
+	while (n > 0 && (d = toupper(*str2) - toupper(*str1)) == 0 && *str1) { 
+		str1++; str2++; n--; 
+	} 
+	return d;
+}
