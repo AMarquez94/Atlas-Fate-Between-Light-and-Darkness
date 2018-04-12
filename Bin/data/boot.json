@@ -15,6 +15,7 @@
 		"data/scenes/render_aux.scene",
 		"data/scenes/sp_test_lights.scene",
 		"data/scenes/sp_dynamic_lights.scene",
+		"data/scenes/enemy.scene",
 		"data/scenes/camera.scene"
 	],
   "unused_scenes" : [

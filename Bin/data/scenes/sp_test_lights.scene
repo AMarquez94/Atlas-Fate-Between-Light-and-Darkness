@@ -169,7 +169,7 @@
         "color": "1.0 1.0 1.0 1.0",
         "intensity": 4.0,
         "shadows": true,
-				"projector" : "data/textures/light_cookie_hard.dds",
+		"projector" : "data/textures/default_white.dds",
         "z_far" : 50,
         "casts_shadows" : true,
         "shadows_step" : 1.0,
@@ -200,6 +200,7 @@
       },
       "light_point": {
         "intensity": 5,
+		"projector" : "data/textures/default_white.dds",
         "color" :  "1.0 1.0 1.0 1",
         "radius" : 10
       }

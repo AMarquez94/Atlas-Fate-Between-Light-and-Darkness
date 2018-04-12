@@ -233,12 +233,12 @@ namespace FSM
 		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_fall", _speed, _size, _radius, _target });
 
 		// Testing!
-		CHandle player_light = getEntityByName("LightPlayer");
-		if (player_light.isValid()) {
-			CEntity * entity_light = (CEntity*)player_light;
-			TCompLight * light = entity_light->get<TCompLight>();
-			light->isEnabled = false;
-		}
+		//CHandle player_light = getEntityByName("LightPlayer");
+		//if (player_light.isValid()) {
+		//	CEntity * entity_light = (CEntity*)player_light;
+		//	TCompLight * light = entity_light->get<TCompLight>();
+		//	light->isEnabled = false;
+		//}
 
 		// Disable the rigidbody so that we can handle our transition in air manually
 		// Hardcoded for testing purposes, move this out of here in the future

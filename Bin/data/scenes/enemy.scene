@@ -1013,34 +1013,7 @@
 			},
 			"ai_patrol": {
 				"waypoints": [{
-						"position": "-8 0.848 147",
-						"lookAt": "0 0 -1"
-					}, {
-						"position": "-8 0.848 173",
-						"lookAt": "0 0 1"
-					}, {
-						"position": "-8 0.848 191",
-						"lookAt": "0 0 1"
-					}, {
-						"position": "-8 0.848 209",
-						"lookAt": "0 0 1"
-					}, {
-						"position": "-8 0.848 230",
-						"lookAt": "0 0 1"
-					}, {
-						"position": "-8 0.848 248",
-						"lookAt": "0 0 -1"
-					}, {
-						"position": "-8 0.848 230",
-						"lookAt": "0 0 -1"
-					}, {
-						"position": "-8 0.848 209",
-						"lookAt": "0 0 -1"
-					}, {
-						"position": "-8 0.848 191",
-						"lookAt": "0 0 -1"
-					}, {
-						"position": "-8 0.848 173",
+						"position": "0 0 0",
 						"lookAt": "0 0 -1"
 					}
 				],
@@ -1361,7 +1334,7 @@
 			"prefab": "data/prefabs/mimetic.prefab",
 			"name": "Mimetic 1",
 			"transform": {
-				"pos": "-25 3.2 86",
+				"pos": "0 0 0",
 				"lookat": "-24 3.2 86"
 			},
 			"ai_mimetic": {
@@ -1386,7 +1359,7 @@
 			"prefab": "data/prefabs/mimetic.prefab",
 			"name": "Mimetic 2",
 			"transform": {
-				"pos": "-25 0 70",
+				"pos": "0 0 0",
 				"lookat": "-25 0 71"
 			},
 			"ai_mimetic": {
@@ -1404,7 +1377,7 @@
 			"rigidbody": {
 				"is_controller": true,
 				"is_gravity": true
-			}
+			}   
 		}
 	}
 ]

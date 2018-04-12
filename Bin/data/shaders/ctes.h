@@ -93,7 +93,8 @@ CB_DEF(CCteLight, CB_LIGHT)
 	float light_shadows_inverse_resolution;     // 1.0f / 256.0
 	float light_shadows_step_with_inv_res;      // light_shadows_step * light_shadows_inverse_resolution
 	float light_radius;                         // Used by point lights
-												  // Align x4
+	bool has_projector; // Align x4
+	bool has_projector_dummy; // Align x4
 	MAT44 light_view_proj_offset;
 
 };
