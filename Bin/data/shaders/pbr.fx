@@ -70,6 +70,11 @@ void PS_GBuffer(
   if (scalar_roughness >= 0.f)
     o_normal.a = scalar_roughness;
 
+	float4 light_projector_color = projectColor(iWorldPos);
+	
+	//if(light_projector_color.a > 0)
+	o_albedo = o_albedo * light_projector_color;
+		
   // Compute the Z in linear space, and normalize it in the range 0...1
   // In the range z=0 to z=zFar of the camera (not zNear)
   float3 camera2wpos = iWorldPos - camera_pos;
@@ -114,8 +119,8 @@ void decodeGBuffer(
   // If metallic = 0, albedo is the albedo, if metallic = 1, the
   // used albedo is almost black
   real_albedo = albedo.rgb * ( 1. - metallic );
-
-  // 0.03 default specular value for dielectric.
+	
+	// 0.03 default specular value for dielectric.
   real_specular_color = lerp(0.03f, albedo.rgb, metallic);
 
   // Eye to object
@@ -264,16 +269,14 @@ float4 shade(
   float  NdL = saturate(dot(N, light_dir));
   float  NdV = saturate(dot(N, view_dir));
   float3 h   = normalize(light_dir + view_dir); // half vector
-	
-	float4 light_projector_color = projectColor(wPos);
-	
+		
   float  NdH = saturate(dot(N, h));
   float  VdH = saturate(dot(view_dir, h));
   float  LdV = saturate(dot(light_dir, view_dir));
   float  a   = max(0.001f, roughness * roughness);
-  float3 cDiff = Diffuse(albedo) * light_projector_color.xyz;
-  float3 cSpec = Specular(specular_color, h, view_dir, light_dir, a, NdL, NdV, NdH, VdH, LdV);
-
+  float3 cDiff = Diffuse(albedo);
+  float3 cSpec = Specular(specular_color, h, view_dir, light_dir, a, NdL, NdV, NdH, VdH, LdV);	
+	
   float  att = ( 1. - smoothstep( 0.90, 0.98, distance_to_light / light_radius ));
   // att *= 1 / distance_to_light;
 

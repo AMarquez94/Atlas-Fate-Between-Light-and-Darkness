@@ -6,7 +6,7 @@
 
 bool CModuleMainMenu::start()
 {
-	CEngine::get().getRender().setBackgroundColor(1.f, 0.f, 0.f, 1.f);
+	CEngine::get().getRender().setBackgroundColor(1.f, 1.f, 1.f, 1.f);
   
 	window_flags = 0;
 	window_flags |= ImGuiWindowFlags_NoMove;

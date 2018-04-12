@@ -220,6 +220,11 @@ void CModuleRender::generateFrame() {
 		CTraceScoped gpu_scope("Frame");
 		PROFILE_FUNCTION("CModuleRender::generateFrame");
 
+		//// Clear the back buffer 
+		//float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red,green,blue,alpha
+		//Render.ctx->ClearRenderTargetView(Render.renderTargetView, &_backgroundColor.x);
+		//Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
+
 		activateMainCamera();
 		cb_globals.updateGPU();
 		deferred.render(rt_main);
@@ -251,47 +256,5 @@ void CModuleRender::generateFrame() {
 		PROFILE_FUNCTION("Render.swapChain");
 		Render.swapChain->Present(0, 0);
 	}
-
-	//{
-	//	CTraceScoped gpu_scope("Frame");
-	//	PROFILE_FUNCTION("CModuleRender::generateFrame");
-	//	Render.startRenderInBackbuffer();
-
-	//	// Clear the back buffer 
-	//	float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red,green,blue,alpha
-	//	Render.ctx->ClearRenderTargetView(Render.renderTargetView, &_backgroundColor.x);
-	//	Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
-	//	activateMainCamera();
-
-	//	getObjectManager<TCompLight>()->forEach([](TCompLight* c) {
-	//		c->activate();
-	//	});
-
-	//	getObjectManager<TCompSkybox>()->forEach([](TCompSkybox* c) { // Might move this out of here..
-	//		c->activate(); 
-	//	});
-
-	//	CRenderManager::get().renderCategory("default");
-	//	CRenderManager::get().renderCategory("post_render");
-
-	//	// Debug render
-	//	{
-	//		PROFILE_FUNCTION("Modules");
-	//		CTraceScoped gpu_scope("Modules");
-	//		CEngine::get().getModules().render();
-	//	}
-	//}
-
-	//{
-	//	PROFILE_FUNCTION("ImGui::Render");
-	//	CTraceScoped gpu_scope("ImGui");
-	//	ImGui::Render();
-	//}
-
-	//// Present the information rendered to the back buffer to the front buffer (the screen)
-	//{
-	//	PROFILE_FUNCTION("Render.swapChain");
-	//	Render.swapChain->Present(0, 0);
-	//}
 }
 

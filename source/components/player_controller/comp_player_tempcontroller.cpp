@@ -61,7 +61,7 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	auto pj_walk = loadMesh("data/meshes/pj_walk.mesh");
 	auto pj_run = loadMesh("data/meshes/pj_run.mesh");
 	auto pj_crouch = loadMesh("data/meshes/pj_crouch.mesh");
-	auto pj_shadowmerge = loadMesh("data/meshes/pj_shadowmerge.mesh");
+	auto pj_shadowmerge = Resources.get("axis.mesh")->as<CRenderMesh>();
 
 	// Insert them in the map.
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_idle", (CRenderMesh*)pj_idle));

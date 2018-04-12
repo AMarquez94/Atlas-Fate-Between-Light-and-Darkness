@@ -24,6 +24,7 @@ void TCompLight::renderDebug() {
 
 void TCompLight::load(const json& j, TEntityParseContext& ctx) {
 
+	isEnabled = true;
 	TCompCamera::load(j, ctx);
 
 	type = j.value("type", "default"); 
@@ -89,7 +90,7 @@ void TCompLight::onDestroy(const TMsgEntityDestroyed & msg) {
 void TCompLight::activate() {
 
 	TCompTransform * c = get<TCompTransform>();
-	if (!c)
+	if (!c || !isEnabled)
 		return;
 
 	if (projector)

@@ -163,13 +163,13 @@
       "light":
       {
         "type": "spotlight",
-				"proj_type": "ortographic",
+				"proj_type": "perspective",
         "range": 29.2116,
         "angle": 91.8,
         "color": "1.0 1.0 1.0 1.0",
         "intensity": 4.0,
         "shadows": true,
-				"projector" : "data/textures/light_cookie.dds",
+				"projector" : "data/textures/light_cookie_hard.dds",
         "z_far" : 50,
         "casts_shadows" : true,
         "shadows_step" : 1.0,
@@ -184,8 +184,7 @@
         "name": "data/colliders/ovw/Spot001.collider"
         ,
         "is_trigger": true
-      }
-      ,
+      },
       "tags":
       [
         "light"
