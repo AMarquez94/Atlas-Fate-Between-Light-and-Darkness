@@ -15,7 +15,31 @@
 	      "local_aabb":true,
 	      "render" : [
 	        {
-	          "mesh": "data/skeletons/Bip001/Bip001.mesh"
+	          "mesh": "data/skeletons/Bip001/body.mesh"
+	          ,
+	          "materials":
+	          [
+	            "data/skeletons/paladin/paladin.material"
+	          ]
+	        },
+	        {
+	          "mesh": "data/skeletons/Bip001/hood.mesh"
+	          ,
+	          "materials":
+	          [
+	            "data/skeletons/paladin/paladin.material"
+	          ]
+	        },
+	        {
+	          "mesh": "data/skeletons/Bip001/tira_R.mesh"
+	          ,
+	          "materials":
+	          [
+	            "data/skeletons/paladin/paladin.material"
+	          ]
+	        },
+	        {
+	          "mesh": "data/skeletons/Bip001/tira_L.mesh"
 	          ,
 	          "materials":
 	          [
