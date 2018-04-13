@@ -279,7 +279,15 @@ namespace FSM
 
 		CEntity* e = ctx.getOwner();
 		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_fall", _speed, _size, _radius, _target });
+	
+		CHandle player_light = getEntityByName("LightPlayer");
+		if (player_light.isValid()) {
+			CEntity * entity_light = (CEntity*)player_light;
+			TCompLight * light = entity_light->get<TCompLight>();
+			light->isEnabled = true;
+		}
 	}
+
 	void LandMergeState::onFinish(CContext& ctx) const {
 
 		CEntity* e = ctx.getOwner();
@@ -294,6 +302,7 @@ namespace FSM
 		_size = jData.value("size", 1.f);
 		_radius = jData.value("radius", 0.3f);
 		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+
 		return true;
 	}
 

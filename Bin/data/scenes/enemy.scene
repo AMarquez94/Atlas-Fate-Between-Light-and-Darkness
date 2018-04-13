@@ -1013,9 +1013,45 @@
 			},
 			"ai_patrol": {
 				"waypoints": [{
-						"position": "0 0 0",
-						"lookAt": "0 0 -1"
-					}
+            "position": "-8 0.848 147",
+            "lookAt": "0 0 -1"
+          },
+          {
+            "position": "-8 0.848 173",
+            "lookAt": "0 0 1"
+          },
+          {
+            "position": "-8 0.848 191",
+            "lookAt": "0 0 1"
+          },
+          {
+            "position": "-8 0.848 209",
+            "lookAt": "0 0 1"
+          },
+          {
+            "position": "-8 0.848 230",
+            "lookAt": "0 0 1"
+          },
+          {
+            "position": "-8 0.848 248",
+            "lookAt": "0 0 -1"
+          },
+          {
+            "position": "-8 0.848 230",
+            "lookAt": "0 0 -1"
+          },
+          {
+            "position": "-8 0.848 209",
+            "lookAt": "0 0 -1"
+          },
+          {
+            "position": "-8 0.848 191",
+            "lookAt": "0 0 -1"
+          },
+          {
+            "position": "-8 0.848 173",
+            "lookAt": "0 0 -1"
+          }
 				],
 				"startLightsOn": true,
 				"createRoot": {

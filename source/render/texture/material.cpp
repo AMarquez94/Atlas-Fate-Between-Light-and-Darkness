@@ -75,7 +75,7 @@ bool CMaterial::create(const std::string& name) {
 	cb_material.scalar_roughness = -1.f;
 	cb_material.scalar_irradiance_vs_mipmaps = 0.f;
 	cb_material.emissive_color = VEC4(1, 1, 1, 1);
-	cb_material.emissive_intensity = 10.f;
+	cb_material.emissive_intensity = 40.f;
 	//cb_material.material_dummy = 1.f;
 	cb_material.updateGPU();
 

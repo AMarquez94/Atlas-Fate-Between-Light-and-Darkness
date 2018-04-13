@@ -213,7 +213,7 @@ float4 PS_ambient(
 	float3 env_fresnel = Specular_F_Roughness(specular_color, 1. - roughness * roughness, N, view_dir);
 	//return float4(env_fresnel, 1 );
 
-	float g_ReflectionIntensity = 1.0;
+	float g_ReflectionIntensity = 0.4;
 	float g_AmbientLightIntensity = 1.0;
 
 	float4 self_illum = emissive_intensity * emissive_color * txSelfIllum.Load(uint3(iPosition.xy,0));
@@ -258,10 +258,6 @@ float4 shade(
 
 	// Shadow factor entre 0 (totalmente en sombra) y 1 (no ocluido)
 	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.;
-
-	// Use the projector if it has one
-	//use_projector == 1 ? return projectColor(wPos) : float4(albedo.xyz, 1);
-	//albedo = projected_light.xyz;
 
 	// From wPos to Light
 	float3 light_dir_full = light_pos.xyz - wPos;

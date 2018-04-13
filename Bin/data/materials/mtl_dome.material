@@ -1,12 +1,11 @@
 {
-  "technique": "textured_bk.tech"
-  ,
   "shadows": true
   ,
   "textures":
   {
-    "albedo": "data/textures/tx_df_dome.dds"
-    ,
-    "lightmap": "data/textures/tx_lm_cathedralDome.dds"
+    "albedo": "data/textures/m2/tx_dome-a.dds",
+		"normal": "data/textures/m2/tx_dome-n.dds",
+    "metallic": "data/textures/m2/tx_dome-m.dds",
+		"roughness": "data/textures/m2/tx_dome-r.dds"
   }
 }

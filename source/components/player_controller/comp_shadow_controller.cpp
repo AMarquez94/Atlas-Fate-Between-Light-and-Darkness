@@ -94,7 +94,7 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 		TCompTransform * c_trans = c_entity->get<TCompTransform>();
 
 		float distance = VEC3::Distance(c_trans->getPosition(), point);
-		if (!EnginePhysics.Raycast(point, c_trans->getUp(), distance, hit, physx::PxQueryFlag::eSTATIC, shadowDetectionFilter))
+		if (!EnginePhysics.Raycast(point, -c_trans->getFront(), distance, hit, physx::PxQueryFlag::eSTATIC, shadowDetectionFilter))
 			return false;
 	}
 

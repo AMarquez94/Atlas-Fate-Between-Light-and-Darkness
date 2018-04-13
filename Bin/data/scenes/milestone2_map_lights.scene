@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "Sky001"
+      "name": "milestone2_map_lights"
       ,
       "transform":
       {
@@ -36,13 +36,48 @@
 				"proj_type": "ortographic",
         "range": 29.2116,
         "angle": 91.8,
-        "color": "1.0 1.0 1.0 1.0",
-        "intensity": 1.0,
+        "color": "0.274 0.561 0.882 1.0",
+        "intensity": 2.0,
 				"ortosize": 500,
         "shadows": true,
-        "z_far" : 500,
+        "z_far" : 600,
         "casts_shadows" : true,
-        "shadows_step" : 1.0,
+        "shadows_step" : 3,
+        "shadows_resolution" : 8192,
+        "shadows_fmt" : "R32_TYPELESS"
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  },
+	  {
+    "entity":
+    {
+      "name": "FDirect002"
+      ,
+      "transform":
+      {
+        "pos": "-108.621 211.253 -112.052"
+        ,
+        "lookat": "6.875 7.401 58.464"
+      }
+      ,
+      "light":
+      {
+        "type": "directional",
+				"proj_type": "ortographic",
+        "range": 29.2116,
+        "angle": 91.8,
+        "color": "0.274 0.561 0.882 1.0",
+        "intensity": 2.0,
+				"ortosize": 200,
+        "shadows": true,
+        "z_far" : 600,
+        "casts_shadows" : true,
+        "shadows_step" : 3,
         "shadows_resolution" : 8192,
         "shadows_fmt" : "R32_TYPELESS"
       }
@@ -73,7 +108,7 @@
         "range": 29.2116,
         "angle": 91.8,
         "color": "1.0 1.0 1.0 1.0",
-        "intensity": 4.0,
+        "intensity": 3.0,
         "shadows": true,
         "z_far" : 50,
         "casts_shadows" : true,
@@ -117,7 +152,7 @@
         "range": 29.2116,
         "angle": 91.8,
         "color": "1.0 1.0 1.0 1.0",
-        "intensity": 4.0,
+        "intensity": 3.0,
         "shadows": true,
         "z_far" : 50,
         "casts_shadows" : true,
@@ -161,7 +196,7 @@
         "range": 29.2116,
         "angle": 91.8,
         "color": "1.0 1.0 1.0 1.0",
-        "intensity": 4.0,
+        "intensity": 3.0,
         "shadows": true,
         "z_far" : 50,
         "casts_shadows" : true,
@@ -193,7 +228,7 @@
       ,
       "transform":
       {
-        "pos": "-13.4556 11.4591 28.7654"
+        "pos": "-13.4556 10 28.7654"
         ,
         "lookat": "-13.619 -2.663 29.643"
       }
@@ -205,9 +240,9 @@
         "range": 29.2116,
         "angle": 91.8,
         "color": "1.0 1.0 1.0 1.0",
-        "intensity": 4.0,
+        "intensity": 3.0,
         "shadows": true,
-        "z_far" : 50,
+        "z_far" : 15,
         "casts_shadows" : true,
         "shadows_step" : 1.0,
         "shadows_resolution" : 1024,
@@ -249,7 +284,7 @@
         "range": 29.2116,
         "angle": 91.8,
         "color": "1.0 1.0 1.0 1.0",
-        "intensity": 4.0,
+        "intensity": 3.0,
         "shadows": true,
         "z_far" : 50,
         "casts_shadows" : true,
@@ -263,114 +298,6 @@
         "shape": "convex"
         ,
         "name": "data/colliders/Spot005.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot025"
-      ,
-      "transform":
-      {
-        "pos": "-11.2101 20.8219 164.25"
-        ,
-        "lookat": "-11.2101 10.8219 164.25"
-      }
-      ,
-      "light":
-      {
-	    "type": "spotlight"
-        ,
-        "color": "255.0 255.0 255.0 255.0"
-        ,
-        "intensity": 0.99
-        ,
-        "shadows": true
-      }
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot025.collider"
-        ,
-        "is_trigger": true
-      },
-			      "light":
-      {
-        "type": "spotlight",
-				"proj_type": "perspective",
-        "range": 29.2116,
-        "angle": 91.8,
-        "color": "1.0 1.0 1.0 1.0",
-        "intensity": 4.0,
-        "shadows": true,
-        "z_far" : 50,
-        "casts_shadows" : true,
-        "shadows_step" : 1.0,
-        "shadows_resolution" : 1024,
-        "shadows_fmt" : "R32_TYPELESS"
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot026"
-      ,
-      "transform":
-      {
-        "pos": "-11.2101 20.8219 219.542"
-        ,
-        "lookat": "-11.2101 10.8219 219.542"
-      }
-      ,
-      "light":
-      {
-	    "type": "spotlight"
-        ,
-        "color": "255.0 255.0 255.0 255.0"
-        ,
-        "intensity": 0.99
-        ,
-        "shadows": true
-      },
-			 "light":
-      {
-        "type": "spotlight",
-				"proj_type": "perspective",
-        "range": 29.2116,
-        "angle": 91.8,
-        "color": "1.0 1.0 1.0 1.0",
-        "intensity": 4.0,
-        "shadows": true,
-        "z_far" : 50,
-        "casts_shadows" : true,
-        "shadows_step" : 1.0,
-        "shadows_resolution" : 1024,
-        "shadows_fmt" : "R32_TYPELESS"
-      }
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot026.collider"
         ,
         "is_trigger": true
       }
