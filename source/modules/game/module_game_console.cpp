@@ -10,12 +10,18 @@
 
 bool CModuleGameConsole::start()
 {
-	window_flags = 0;
-	window_flags |= ImGuiWindowFlags_NoMove;
-	window_flags |= ImGuiWindowFlags_NoResize;
-	window_flags |= ImGuiWindowFlags_NoCollapse;
-	window_flags |= ImGuiWindowFlags_NoScrollbar;
-	window_flags |= ImGuiWindowFlags_NoTitleBar;
+	window_console_flags = 0;
+	window_console_flags |= ImGuiWindowFlags_NoMove;
+	window_console_flags |= ImGuiWindowFlags_NoResize;
+	window_console_flags |= ImGuiWindowFlags_NoCollapse;
+	window_console_flags |= ImGuiWindowFlags_NoScrollbar;
+	window_console_flags |= ImGuiWindowFlags_NoTitleBar;
+
+	window_output_flags = 0;
+	window_output_flags |= ImGuiWindowFlags_NoMove;
+	window_output_flags |= ImGuiWindowFlags_NoResize;
+	window_output_flags |= ImGuiWindowFlags_NoCollapse;
+	window_output_flags |= ImGuiWindowFlags_NoTitleBar;
 
 	console_flags = 0;
 	console_flags |= ImGuiInputTextFlags_CallbackHistory;
@@ -27,6 +33,10 @@ bool CModuleGameConsole::start()
 	allCommands.push_back("prueba");
 	allCommands.push_back("pruebendo");
 	allCommands.push_back("equisde");
+
+	console_height = 20;
+	output_height = 160;
+	scrollDeltaDistance = 65.f;
 
 	return true;
 }
@@ -43,6 +53,17 @@ void CModuleGameConsole::update(float delta)
 		TMsgConsoleOn msg;
 		msg.isConsoleOn = consoleVisible;
 		ePlayer->sendMsg(msg);
+
+		if (!consoleVisible) {
+			outputVisible = false;
+		}
+	}
+
+	if (outputVisible) {
+		if (EngineInput.mouse()._wheel_delta != 0) {
+			outputLockCursorAtBottom = false;
+			offsetOutputCursor = EngineInput.mouse()._wheel_delta * scrollDeltaDistance;
+		}
 	}
 }
 
@@ -50,21 +71,69 @@ void CModuleGameConsole::render()
 {
 	VEC2 menu_position = VEC2(0,0);
 
-	if (consoleVisible) {
-		ImGui::SetNextWindowSize(ImVec2(Render.width,20));
-		ImGui::Begin("Console", false, window_flags);
+	if (outputVisible) {
+		ImGui::SetNextWindowSize(ImVec2(Render.width, output_height));
+		ImGui::Begin("Output", false, window_output_flags);
 		ImGui::CaptureMouseFromApp(false);
-		ImGui::SetWindowPos("Console", ImVec2(menu_position.x, menu_position.y));
+		ImGui::SetWindowPos("Output", ImVec2(menu_position.x, menu_position.y));
+		for (int i = 0; i < output.size(); i++) {
+			ImGui::TextColored(output[i].color, output[i].text.c_str());
+		}
+
+		float scrollY = ImGui::GetScrollY();
+		float maxScrollY = ImGui::GetScrollMaxY();
+
+		scrollY = Clamp(scrollY - offsetOutputCursor, 0.f, maxScrollY);
+		offsetOutputCursor = 0;
+
+		if (scrollY == maxScrollY) {
+			outputLockCursorAtBottom = true;
+		}
+
+		if (outputLockCursorAtBottom) {
+			ImGui::SetScrollHere();
+		}
+		else {
+			ImGui::SetScrollY(scrollY);
+		}
+
+		ImGui::End();
+	}
+	if (consoleVisible) {
+		ImGui::SetNextWindowSize(ImVec2(Render.width,console_height));
+		ImGui::Begin("Console", false, window_console_flags);
+		ImGui::CaptureMouseFromApp(false);
+		ImGui::SetWindowPos("Console", ImVec2(menu_position.x, outputVisible ? menu_position.y + output_height : menu_position.y));
 		ImGui::PushItemWidth(-1);
 		if (ImGui::InputText("Console", command, IM_ARRAYSIZE(command), console_flags, ConsoleBehaviourCallbackStub, (void *)this)) {
 			std::string commandString = command;
 			if (commandString.size() > 0) {
 
-				/* Ejecutar LUA */
-				dbg("%s\n",command);
-				historicCommands.push_back(commandString);
-				*command = 0;
-				historicCommandsPos = historicCommands.size();
+				if (commandString.compare("expand") == 0) {
+					outputVisible = true;
+					*command = 0;
+				}
+				else if (commandString.compare("contract") == 0) {
+					outputVisible = false;
+					*command = 0;
+				}
+				else {
+					/* Ejecutar LUA */
+					dbg("%s\n", command);
+					historicCommands.push_back(commandString);
+					*command = 0;
+					historicCommandsPos = historicCommands.size();
+
+					OutputString outString;
+
+					outString.text = "> " + commandString;
+					outString.color = ImVec4(1, 1, 1, 1);
+					output.emplace_back(outString);
+
+					outString.text = "This will be the solution";
+					outString.color = ImVec4(1, 0, 0, 1);
+					output.emplace_back(outString);
+				}
 			}
 		}
 		ImGui::PopItemWidth();
