@@ -1,12 +1,9 @@
 {
-  "technique": "textured_bk.tech"
-  ,
   "shadows": true
   ,
   "textures":
   {
-    "albedo": "data/textures/tx_df_floor.dds"
-    ,
-    "lightmap": "data/textures/tx_lm_floor.dds"
+    "albedo": "data/textures/ovw/prop_floor_outerior.dds",
+		"normal": "data/textures/ovw/prop_floor_outerior_nml.dds"
   }
 }

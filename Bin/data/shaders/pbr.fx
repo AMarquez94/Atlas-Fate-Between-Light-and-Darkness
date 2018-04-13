@@ -70,8 +70,7 @@ void PS_GBuffer(
 	if (scalar_roughness >= 0.f)
 		o_normal.a = scalar_roughness;
 
-	float4 light_projector_color = projectColor(iWorldPos);
-	o_albedo = o_albedo * light_projector_color;
+	//o_albedo = use_projector == 1 ? o_albedo * projectColor(iWorldPos) : o_albedo;
 
 	// Compute the Z in linear space, and normalize it in the range 0...1
 	// In the range z=0 to z=zFar of the camera (not zNear)
@@ -260,6 +259,10 @@ float4 shade(
 	// Shadow factor entre 0 (totalmente en sombra) y 1 (no ocluido)
 	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.;
 
+	// Use the projector if it has one
+	//use_projector == 1 ? return projectColor(wPos) : float4(albedo.xyz, 1);
+	//albedo = projected_light.xyz;
+
 	// From wPos to Light
 	float3 light_dir_full = light_pos.xyz - wPos;
 	float  distance_to_light = length(light_dir_full);
@@ -279,7 +282,13 @@ float4 shade(
 	float  att = (1. - smoothstep(0.90, 0.98, distance_to_light / light_radius));
 	// att *= 1 / distance_to_light;
 
-	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity * shadow_factor;
+	// Little trick by now, will fix later.
+	float4 projectedColor = float4(1, 1, 1, 1);
+	if (use_projector)
+		return float4(-projectColor(wPos).xyz * light_color.xyz * NdL * (cDiff * (1.0f - cSpec) ) * att * light_intensity * shadow_factor,1) * 0.5;
+
+
+	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity * shadow_factor ;
 	return float4(final_color, 1);
 }
 

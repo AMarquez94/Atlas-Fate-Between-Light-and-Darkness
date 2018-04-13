@@ -1334,7 +1334,7 @@
 			"prefab": "data/prefabs/mimetic.prefab",
 			"name": "Mimetic 1",
 			"transform": {
-				"pos": "0 0 0",
+				"pos": "-25 3.2 86",
 				"lookat": "-24 3.2 86"
 			},
 			"ai_mimetic": {
@@ -1359,7 +1359,7 @@
 			"prefab": "data/prefabs/mimetic.prefab",
 			"name": "Mimetic 2",
 			"transform": {
-				"pos": "0 0 0",
+				"pos": "-25 0 70",
 				"lookat": "-25 0 71"
 			},
 			"ai_mimetic": {

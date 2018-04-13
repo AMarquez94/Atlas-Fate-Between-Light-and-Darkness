@@ -169,7 +169,6 @@
         "color": "1.0 1.0 1.0 1.0",
         "intensity": 4.0,
         "shadows": true,
-		"projector" : "data/textures/default_white.dds",
         "z_far" : 50,
         "casts_shadows" : true,
         "shadows_step" : 1.0,
@@ -200,10 +199,34 @@
       },
       "light_point": {
         "intensity": 5,
-		"projector" : "data/textures/default_white.dds",
         "color" :  "1.0 1.0 1.0 1",
         "radius" : 10
       }
+    }
+  },
+	  {
+    "entity":
+    {
+      "name": "st_houses_start"
+      ,
+      "transform":
+      {
+        "pos": "-10.9313 4.03536 -23.6423"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/st_door.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_low_mecha.material"
+          ]
+        }
+      ]
     }
   }
 ]

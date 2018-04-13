@@ -12,7 +12,6 @@ class TCompLight : public TCompCamera {
 
 	VEC4			color = VEC4(1, 1, 1, 1);
 	float			intensity = 1.0f;
-	const CTexture* projector = nullptr;
 
 	// Shadows params
 	bool              shadows_enabled = false;    // Dynamic
@@ -26,6 +25,8 @@ class TCompLight : public TCompCamera {
 
 	DECL_SIBLING_ACCESS();
 public:
+
+	const CTexture* projector = nullptr;
 
 	/* spotlight parameters */
 	float range;

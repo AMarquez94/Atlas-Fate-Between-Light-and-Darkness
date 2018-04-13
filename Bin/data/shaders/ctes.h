@@ -93,8 +93,13 @@ CB_DEF(CCteLight, CB_LIGHT)
 	float light_shadows_inverse_resolution;     // 1.0f / 256.0
 	float light_shadows_step_with_inv_res;      // light_shadows_step * light_shadows_inverse_resolution
 	float light_radius;                         // Used by point lights
-	bool has_projector; // Align x4
-	bool has_projector_dummy; // Align x4
+
+	//Some dummy values to upload to the gpu
+	float dummy1;
+	float dummy2;
+	float dummy3;
+	int use_projector;
+
 	MAT44 light_view_proj_offset;
 
 };

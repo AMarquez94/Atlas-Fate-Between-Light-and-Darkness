@@ -1,12 +1,11 @@
 {
-  "technique": "textured_bk.tech"
-  ,
   "shadows": true
   ,
   "textures":
   {
-    "albedo": "data/textures/tx_df_metal.dds"
-    ,
-    "lightmap": "data/textures/tx_lm_metallic.dds"
+    "albedo": "data/textures/m2/tx_rust-a.dds",
+		"normal": "data/textures/m2/tx_rust-n.dds",
+    "metallic": "data/textures/m2/tx_rust-m.dds",
+		"roughness": "data/textures/m2/tx_rust-r.dds"
   }
 }

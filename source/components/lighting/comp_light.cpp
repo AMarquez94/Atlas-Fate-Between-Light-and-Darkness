@@ -93,8 +93,14 @@ void TCompLight::activate() {
 	if (!c || !isEnabled)
 		return;
 
-	if (projector)
+	// Handling the projector
+	if (projector){
 		projector->activate(TS_LIGHT_PROJECTOR);
+		cb_light.use_projector = 1;
+	}
+	else {
+		cb_light.use_projector = 0;
+	}
 
 	// To avoid converting the range -1..1 to 0..1 in the shader
 	// we concatenate the view_proj with a matrix to apply this offset

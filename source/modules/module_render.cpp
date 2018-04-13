@@ -45,6 +45,7 @@ bool parseTechniques() {
 
 bool CModuleRender::start()
 {
+
 	if (!Render.createDevice(_xres, _yres))
 		return false;
 

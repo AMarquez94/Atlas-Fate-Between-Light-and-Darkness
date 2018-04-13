@@ -1,12 +1,11 @@
 {
-  "technique": "textured_bk.tech"
-  ,
   "shadows": true
   ,
   "textures":
   {
-    "albedo": "data/textures/tx_df_wood.dds"
-    ,
-    "lightmap": "data/textures/tx_lm_fencebars.dds"
+    "albedo": "data/textures/sculptedfloorboards4/sculptedfloorboards4_basecolor.dds",
+    "normal": "data/textures/sculptedfloorboards4/sculptedfloorboards4_normal.dds",
+    "metallic": "data/textures/sculptedfloorboards4/sculptedfloorboards4_metalness.dds",
+    "roughness": "data/textures/sculptedfloorboards4/sculptedfloorboards4_roughness.dds"
   }
 }

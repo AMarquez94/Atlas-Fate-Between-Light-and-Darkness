@@ -6,9 +6,9 @@
 			"lookat": "-1 0 0"
 		},
 		"render": {
-			"mesh": "data/meshes/bot211.mesh",
+			"mesh": "data/meshes/low_mecha.mesh",
 			"materials": [
-			  "data/materials/body.material"
+			  "data/materials/mtl_low_mecha.material"
 			]
 		},
 		"tags": [ "enemy", "patrol" ]
@@ -43,28 +43,28 @@
       }
     }
   },
-  {
+	    {
     "entity":
     {
       "name": "FlashLight"
       ,
       "transform":
       {
-        "pos": "0 1 0"
-        ,
-        "lookat": "0 0 1"
+        "pos": "0 1 0",
+        "rotation": "0 0 0 0 "
       }
       ,
       "light":
       {
         "type": "spotlight",
-		"proj_type": "perspective",
+				"proj_type": "perspective",
         "range": 29.2116,
         "angle": 91.8,
         "color": "1.0 1.0 1.0 1.0",
         "intensity": 5.0,
         "shadows": true,
-        "z_far" : 6,
+        "z_far" : 12,
+				"fov" : 80,
         "casts_shadows" : true,
         "shadows_step" : 1.0,
         "shadows_resolution" : 1024,
@@ -73,8 +73,9 @@
 	  "hierarchy": {
         "parent": "The Enemy",
         "pos": "0 1 0",
-		"lookat": "0 0 1"
+				"lookat": "0 0 1"
       }
     }
   }
+
 ]

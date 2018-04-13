@@ -188,14 +188,7 @@ float4 projectColor(float3 wPos){
 		light_projector_color = float4(0,0,0,0);
 
 	// Fade to zero in the last 1% of the zbuffer of the light
-	//light_projector_color *= smoothstep(1.0f, 0.88f, pos_in_light_homo_space.z);
-	
-	// Very dirty trick by now!
-	//if(light_projector_color.x == 0 && light_projector_color.y == 0 && light_projector_color.z == 0 && light_projector_color.a == 0)
-	//	return float4(1,1,1,1);
-	//
-	//if(light_projector_color.a == 1)
-	//	return float4(0,0,0,0);
-	//	
+	light_projector_color *= smoothstep(1.0f, 0.15f, pos_in_light_homo_space.z);
+		
 	return light_projector_color;
 }
