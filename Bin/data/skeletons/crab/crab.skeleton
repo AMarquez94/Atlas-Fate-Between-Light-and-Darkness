@@ -1,0 +1,6 @@
+{
+	"name":"crab",
+	"anims" : [
+		{ "name" : "run" }
+	]
+}
