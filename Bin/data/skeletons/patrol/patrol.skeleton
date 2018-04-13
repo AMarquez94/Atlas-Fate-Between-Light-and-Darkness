@@ -1,0 +1,6 @@
+{
+	"name":"patrol",
+	"anims" : [
+		{ "name" : "Mech_Idle10" }
+	]
+}
