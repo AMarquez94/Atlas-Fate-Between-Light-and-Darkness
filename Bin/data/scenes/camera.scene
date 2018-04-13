@@ -130,7 +130,7 @@
 		}
 	},
 	{
-		"entity": {
+		"xentity": {
 			"name": "trigger_camera_curve",
 			"transform": {
 				"pos": "-5 2 28",

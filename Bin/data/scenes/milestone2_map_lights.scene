@@ -42,8 +42,8 @@
         "shadows": true,
         "z_far" : 600,
         "casts_shadows" : true,
-        "shadows_step" : 3,
-        "shadows_resolution" : 8192,
+        "shadows_step" : 1,
+        "shadows_resolution" : 4096,
         "shadows_fmt" : "R32_TYPELESS"
       }
       ,
@@ -77,8 +77,8 @@
         "shadows": true,
         "z_far" : 600,
         "casts_shadows" : true,
-        "shadows_step" : 3,
-        "shadows_resolution" : 8192,
+        "shadows_step" : 1,
+        "shadows_resolution" : 4096,
         "shadows_fmt" : "R32_TYPELESS"
       }
       ,

@@ -205,7 +205,7 @@ float4 PS_ambient(
 	// Here we are sampling using the cubemap-miplevel 4, and the already blurred txIrradiance texture
 	// and mixing it in base to the scalar_irradiance_vs_mipmaps which comes from the ImGui.
 	// Remove the interpolation in the final version!!!
-	float3 irradiance_mipmaps = txEnvironmentMap.SampleLevel(samLinear, N, 4).xyz;
+	float3 irradiance_mipmaps = txEnvironmentMap.SampleLevel(samLinear, N, 8).xyz;
 	float3 irradiance_texture = txIrradianceMap.Sample(samLinear, N).xyz;
 	float3 irradiance = irradiance_texture * scalar_irradiance_vs_mipmaps + irradiance_mipmaps * (1. - scalar_irradiance_vs_mipmaps);
 
