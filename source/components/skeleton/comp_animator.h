@@ -42,7 +42,7 @@ public:
 	void initializeAnimations();
 
 	bool initializeAnimation(EAnimation animation, EAnimationType animationType, EAnimationSize animationSize, std::string animationName, std::string secondAnimationName, float weight, float speed);
-	bool playAnimation(EAnimation animation);
+	bool playAnimationConverted(EAnimation animation, float speed = 1.0f);
 	bool isCyclic(EAnimation animation);
 	bool isComposed(EAnimation animation);
 	EAnimation actualAnimation();

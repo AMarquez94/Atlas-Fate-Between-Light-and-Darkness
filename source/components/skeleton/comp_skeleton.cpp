@@ -101,53 +101,12 @@ void TCompSkeleton::debugInMenu() {
   static float out_delay = 0.3f;
   static bool auto_lock = false;
   
-  // Play aacton/cycle from the menu
+  // Play action/cycle from the menu
   ImGui::DragInt("Anim Id", &anim_id, 0.1f, 0, model->getCoreModel()->getCoreAnimationCount()-1);
   ImGui::DragFloat("Speed", &speed, 0.01f, 0, 5.f);
   auto core_anim = model->getCoreModel()->getCoreAnimation(anim_id);
 
-  if (ImGui::SmallButton("Guess Bones")) {
-	  guessFeetBonesId(2);
-  }
 
-  if (ImGui::SmallButton("Set Speed")) {
-	  int debug = 3;
-	  switch (debug) {
-	  case 1:
-		  for (int i = 0; i < model->getMixer()->getAnimationVector().size(); i++) {
-			  CalAnimation* anim = model->getMixer()->getAnimationVector()[i];
-
-			  if (anim != 0) {
-				  dbg("printing\n\n");
-				  anim->setTimeFactor(speed);
-			  }
-		  }
-		  break;
-	  case 2:
-		  model->getMixer()->setTimeFactor(speed);
-		  break;
-
-	  case 3:
-		  std::list<CalAnimationAction *>::iterator iteratorAnimationAction;
-		  iteratorAnimationAction = model->getMixer()->getAnimationActionList().begin();
-
-		  while (iteratorAnimationAction != model->getMixer()->getAnimationActionList().end())
-		  {
-			  // find the specified action and remove it
-			  (*iteratorAnimationAction)->setTimeFactor(speed);
-			  iteratorAnimationAction++;
-		  }
-		  break;
-	  }
-
-  }
-  /*
-  for (int i = 0; i < model->getMixer()->getAnimationVector().size(); i++) {
-	  CalAnimation* anim = model->getMixer()->getAnimationVector()[i];
-	  if (anim != 0)	dbg("%s    %f\n\n", anim->getCoreAnimation()->getName().c_str(), anim->getTimeFactor());
-  }*/
-
- // dbg("%i\n\n",);
   if(core_anim)
     ImGui::Text("%s", core_anim->getName().c_str());
   ImGui::DragFloat("In Delay", &in_delay, 0.01f, 0, 1.f);
@@ -159,15 +118,13 @@ void TCompSkeleton::debugInMenu() {
   }
   ImGui::Checkbox("Auto lock", &auto_lock);
   if (ImGui::SmallButton("As Cycle")) {
-	  //model->getMixer()->clearCycle(actualCycleAnimId1, out_delay); 
-	  model->getMixer()->blendCycle(actualCycleAnimId[1], weight, in_delay);
+	  this->changeCyclicAnimation(anim_id);
 	
-	//actualCycleId = anim_id;
   }
   if (ImGui::SmallButton("As Action")) {
     model->getMixer()->executeAction(anim_id, in_delay, out_delay, 1.0f, auto_lock);
   }
-  if (ImGui::SmallButton("Set Zero")) {
+  if (ImGui::SmallButton("Set Time Zero")) {
 	  model->getMixer()->setAnimationTime(0.f);
   }
 
@@ -324,7 +281,7 @@ int TCompSkeleton::getAnimationIdByName(std::string animName) {
 //Return if there is an animation of the type action executing
 bool TCompSkeleton::actionAnimationOnExecution() {
 
-	return false;
+	return model->getMixer()->getAnimationActionList().size() > 0;
 }
 
 //return if the specified animation is executing

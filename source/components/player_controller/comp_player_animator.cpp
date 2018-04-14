@@ -6,24 +6,24 @@
 DECL_OBJ_MANAGER("player_animator", TCompPlayerAnimator);
 
 void TCompPlayerAnimator::debugInMenu() {
-	//ImGui::DragFloat("Sensitivity", &_sensitivity, 0.01f, 0.001f, 0.1f);
-	static float delta_movement = 0.0f;
-	ImGui::Text("Animation name: %s", _animationName);
 
+	static float delta_movement = 0.0f;
+	static float speed = 1.0f;
+	ImGui::DragFloat("Speed", &speed, 0.01f, 0, 3.f);
 	if (ImGui::SmallButton("Idle")) {
-		playAnimation((TCompAnimator::EAnimation)EAnimation::IDLE);
+		playAnimation(EAnimation::IDLE, speed);
 	}
 
 	if (ImGui::SmallButton("Walk")) {
-		playAnimation((TCompAnimator::EAnimation)EAnimation::WALK);
+		playAnimation(EAnimation::WALK, speed);
 	}
 
 	if (ImGui::SmallButton("Run")) {
-		playAnimation((TCompAnimator::EAnimation)EAnimation::RUN);
+		playAnimation(EAnimation::RUN, speed);
 	}
 
 	if (ImGui::SmallButton("Attack")) {
-		playAnimation((TCompAnimator::EAnimation)EAnimation::ATTACK);
+		playAnimation(EAnimation::ATTACK, speed);
 	}
 
 	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);
@@ -86,4 +86,9 @@ void TCompPlayerAnimator::onCreated(const TMsgEntityCreated& msg) {
 	assert(compSkeleton);
 	initializeAnimations();
 	setFeetNumAndCalculate(2);
+}
+
+bool TCompPlayerAnimator::playAnimation(EAnimation animation, float speed) {
+
+	return playAnimationConverted((TCompAnimator::EAnimation)animation, speed);
 }

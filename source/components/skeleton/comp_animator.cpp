@@ -54,7 +54,7 @@ void TCompAnimator::registerMsgs() {
 //	DECL_MSG(TCompAnimator, TMsgEntityCreated, onCreated);
 }
 
-bool TCompAnimator::playAnimation(EAnimation animation) {
+bool TCompAnimator::playAnimationConverted(EAnimation animation, float speed) {
 
 	if (animationsMap.find(animation) == animationsMap.end()) {
 		return false;
@@ -66,16 +66,17 @@ bool TCompAnimator::playAnimation(EAnimation animation) {
 	int anim1id = animSet.animationId;
 	int anim2id = animSet.secondAnimationId;
 	float weight = animSet.weight;
-	float speed = animSet.speed;
+	float aux_speed = animSet.speed;
+	if (speed != 1.0f) aux_speed = speed;
 
 	switch (animSet.animationType)
 	{
 	case EAnimationType::CYCLIC:
-		compSkeleton->changeCyclicAnimation(anim1id, speed, anim2id, weight);
+		compSkeleton->changeCyclicAnimation(anim1id, aux_speed, anim2id, weight);
 		break;
 
 	case EAnimationType::ACTION:
-		compSkeleton->executeActionAnimation(anim1id,speed);
+		compSkeleton->executeActionAnimation(anim1id, aux_speed);
 		break;
 	}
 

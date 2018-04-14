@@ -5,9 +5,10 @@
 		"data/scenes/milestone1_map_meshes.scene",
 		"data/scenes/milestone1_map_colliders.scene",
 		"data/scenes/enemy.scene",
-    "data/scenes/camera.scene",
+    	"data/scenes/camera.scene",
 		"data/scenes/bt_test.scene",
 		"data/scenes/skeleton_patrol.scene",
+		"data/scenes/skeleton_player.scene",
 		"data/scenes/skeleton_demo.scene"
 	],
 	"light_scenes_test" : [

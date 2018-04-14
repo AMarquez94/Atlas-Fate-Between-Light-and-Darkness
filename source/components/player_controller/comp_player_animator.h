@@ -16,6 +16,6 @@ public:
 
 	enum EAnimation { IDLE = 0, WALK, RUN, FALL, ATTACK_IDLE, ATTACK };
 	void initializeAnimations();
-	
+	bool playAnimation(EAnimation animation, float speed = 1.0f);
 };
 

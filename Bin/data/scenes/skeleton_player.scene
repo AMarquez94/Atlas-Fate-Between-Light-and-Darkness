@@ -1,0 +1,52 @@
+[
+  {
+    "entity":
+	    {
+	      "name": "superplayer",
+	      "transform":
+	      {
+	        "pos": "-10 0 -5",
+	        "rotation": "0.0 0.0 0.0 1.0"
+	      },
+	      "skeleton": {
+	        "skeleton": "data/skeletons/Bip001/player.skeleton"
+	      },
+	      "abs_aabb":true,
+	      "local_aabb":true,
+	      "render" : [
+	        {
+	          "mesh": "data/skeletons/Bip001/body.mesh"
+	          ,
+	          "materials":
+	          [
+	            "data/skeletons/paladin/paladin.material"
+	          ]
+	        },
+	        {
+	          "mesh": "data/skeletons/Bip001/hood.mesh"
+	          ,
+	          "materials":
+	          [
+	            "data/skeletons/paladin/paladin.material"
+	          ]
+	        },
+	        {
+	          "mesh": "data/skeletons/Bip001/tira_R.mesh"
+	          ,
+	          "materials":
+	          [
+	            "data/skeletons/paladin/paladin.material"
+	          ]
+	        },
+	        {
+	          "mesh": "data/skeletons/Bip001/tira_L.mesh"
+	          ,
+	          "materials":
+	          [
+	            "data/skeletons/paladin/paladin.material"
+	          ]
+	        }
+	      ]
+	    }
+  }
+]
