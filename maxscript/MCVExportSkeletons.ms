@@ -1,14 +1,14 @@
 clearListener()
 
 struct  TSkeletonsExporter (
-	project_path = "D:/Games/Deep_Shadows/Bin/data/skeletons/crab/",
-	skel_name = "crab",			-- smurf
+	project_path = "D:/Games/Deep_Shadows/Bin/data/skeletons/player/",
+	skel_name = "player",			-- smurf
 	skel_root_path,					-- "C:/../bin/data/skeletons/smurf/,
 	skel_file, 						-- "C:/../bin/data/skeletons/smurf/smurf.csf"
 	
 	fn isBone obj = ( 
 		-- Discard black bones
-		return obj.wireColor != Black
+		return classof obj == Biped_Object and obj.wireColor != Black
 	),
 	-- Search the root bones in the scene to define the .csf
 	fn findSkelCandidates = (
@@ -73,8 +73,8 @@ struct  TSkeletonsExporter (
 		local root = root_bones[1]
 		
 		-- Pasar a modo figura si esta en modo pose
-		--local was_in_figure_mode = root.controller.figureMode
-		--root.controller.figureMode = true
+		local was_in_figure_mode = root.controller.figureMode
+		root.controller.figureMode = true
 		local bones_to_export = findBoneCandidates()
 		
 		for b in bones_to_export do (
@@ -118,4 +118,4 @@ struct  TSkeletonsExporter (
 gc()
 se = TSkeletonsExporter()
 se.exportSkelAndMeshes()
---se.exportAnim()
+se.exportAnim()
