@@ -1,32 +1,21 @@
 #pragma once
 
 #include "components/comp_base.h"
+#include "components/skeleton/comp_skeleton.h"
+#include "components/skeleton/comp_animator.h"
 
 class TCompPlayerAnimator;
 
-typedef void (TCompPlayerAnimator::*animationhandler)(float);
-
-struct TMsgAnimation {
-	animationhandler animation_state;
-	DECL_MSG_ID();
-};
-
-class TCompPlayerAnimator : public TCompBase
+class TCompPlayerAnimator : public TCompAnimator
 {
-	animationhandler state;
-
 	DECL_SIBLING_ACCESS();
-
 public:
-	static void registerMsgs();
 	void debugInMenu();
-	void load(const json& j, TEntityParseContext& ctx);
-	void update(float dt);
+	static void registerMsgs();
+	void onCreated(const TMsgEntityCreated& msg);
 
-private:
-	void onAnimation(const TMsgAnimation& msg);
-
-	std::string _animationName;
-	float _time = 0.f;
+	enum EAnimation { IDLE = 0, WALK, RUN, FALL, ATTACK_IDLE, ATTACK };
+	void initializeAnimations();
+	bool playAnimation(EAnimation animation, float speed = 1.0f);
 };
 

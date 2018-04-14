@@ -108,6 +108,7 @@
     <ClCompile Include="components\object_controller\comp_trigger_camera.cpp" />
     <ClCompile Include="modules\game\module_level_select.cpp" />
     <ClCompile Include="components\object_controller\comp_noise_emitter.cpp" />
+    <ClCompile Include="components\skeleton\comp_animator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -247,6 +248,8 @@
     <ClInclude Include="render\texture\texture_slots.h" />
     <ClInclude Include="modules\game\module_level_select.h" />
     <ClInclude Include="components\object_controller\comp_noise_emitter.h" />
+    <ClInclude Include="components\skeleton\comp_animator.h" />
+    <ClInclude Include="utils\dirent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

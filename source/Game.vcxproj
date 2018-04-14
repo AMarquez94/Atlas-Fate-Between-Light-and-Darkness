@@ -124,6 +124,7 @@
     <ClCompile Include="components\physics\comp_rigidbody.cpp" />
     <ClCompile Include="components\player_controller\comp_player_tempcontroller.cpp" />
     <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
+    <ClCompile Include="components\skeleton\comp_animator.cpp" />
     <ClCompile Include="components\skeleton\comp_bone_tracker.cpp" />
     <ClCompile Include="components\skeleton\comp_skeleton.cpp" />
     <ClCompile Include="components\skeleton\game_core_skeleton.cpp" />
@@ -240,6 +241,7 @@
     <ClInclude Include="components\player_controller\comp_player_tempcontroller.h" />
     <ClInclude Include="components\player_controller\comp_shadow_controller.h" />
     <ClInclude Include="components\skeleton\cal3d2engine.h" />
+    <ClInclude Include="components\skeleton\comp_animator.h" />
     <ClInclude Include="components\skeleton\comp_bone_tracker.h" />
     <ClInclude Include="components\skeleton\comp_skeleton.h" />
     <ClInclude Include="components\skeleton\game_core_skeleton.h" />
@@ -330,6 +332,7 @@
     <ClInclude Include="utils\data_provider.h" />
     <ClInclude Include="utils\data_saver.h" />
     <ClInclude Include="utils\directory_watcher.h" />
+    <ClInclude Include="utils\dirent.h" />
     <ClInclude Include="utils\json.hpp" />
     <ClInclude Include="utils\murmur3\murmur3.h" />
     <ClInclude Include="utils\timer.h" />
