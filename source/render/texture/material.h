@@ -9,15 +9,14 @@ class CTexture;
 // ----------------------------------------------
 class CMaterial : public IResource {
 
-	bool  cast_shadows = true;
-
 	static const int max_textures = TS_NUM_MATERIALS_SLOTS;
 	CRenderCte<CCteMaterial> cb_material;
+
+	bool  cast_shadows = true;
 
 public:
 
 	const CTexture* textures[max_textures];
-
 	const CRenderTechnique* tech = nullptr;
 
 	CMaterial();

@@ -6,7 +6,7 @@
 class CTexture;
 class CRenderToTexture;
 
-class TCompLight : public TCompCamera {
+class TCompLightDir : public TCompCamera {
 
 	std::string type; // replace this
 

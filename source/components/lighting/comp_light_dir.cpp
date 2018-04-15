@@ -1,5 +1,5 @@
 #include "mcv_platform.h"
-#include "comp_light.h"
+#include "comp_light_dir.h"
 #include "../comp_transform.h"
 #include "render/render_objects.h"    // cb_light
 #include "render/texture/texture.h"
@@ -9,20 +9,20 @@
 #include "render/render_utils.h"
 #include "render/gpu_trace.h"
 
-DECL_OBJ_MANAGER("light", TCompLight);
+DECL_OBJ_MANAGER("light_dir", TCompLightDir);
 
-void TCompLight::debugInMenu() {
+void TCompLightDir::debugInMenu() {
 	TCompCamera::debugInMenu();
 	ImGui::DragFloat("Intensity", &intensity, 0.01f, 0.f, 10.f);
 	ImGui::ColorEdit3("Color", &color.x);
 }
 
-void TCompLight::renderDebug() {
+void TCompLightDir::renderDebug() {
 
 	TCompCamera::renderDebug();
 }
 
-void TCompLight::load(const json& j, TEntityParseContext& ctx) {
+void TCompLightDir::load(const json& j, TEntityParseContext& ctx) {
 
 	isEnabled = true;
 	TCompCamera::load(j, ctx);
@@ -59,35 +59,32 @@ void TCompLight::load(const json& j, TEntityParseContext& ctx) {
 }
 
 
-void TCompLight::update(float dt) {
+void TCompLightDir::update(float dt) {
 
-	// Can't use the TCompCamera::update because inside it calls 
-		  // get<TCompTransform> which tries to convert 'this' to an instance
-		  // of TCompCamera, but will fail because we are a CompLightDir
 	TCompTransform * c = get<TCompTransform>();
 	if (!c)
 		return;
+
 	this->lookAt(c->getPosition(), c->getPosition() + c->getFront(), c->getUp());
 }
 
-void TCompLight::registerMsgs() {
+void TCompLightDir::registerMsgs() {
 
-	DECL_MSG(TCompLight, TMsgEntityCreated, onCreate);
-	DECL_MSG(TCompLight, TMsgEntityDestroyed, onDestroy);
+	DECL_MSG(TCompLightDir, TMsgEntityCreated, onCreate);
+	DECL_MSG(TCompLightDir, TMsgEntityDestroyed, onDestroy);
 }
 
-
-void TCompLight::onCreate(const TMsgEntityCreated& msg) {
+void TCompLightDir::onCreate(const TMsgEntityCreated& msg) {
 
 	//EnginePhysics.createActor(*this);
 
 }
 
-void TCompLight::onDestroy(const TMsgEntityDestroyed & msg) {
+void TCompLightDir::onDestroy(const TMsgEntityDestroyed & msg) {
 
 }
 
-void TCompLight::activate() {
+void TCompLightDir::activate() {
 
 	TCompTransform * c = get<TCompTransform>();
 	if (!c || !isEnabled)
@@ -129,7 +126,7 @@ void TCompLight::activate() {
 
 
 // ------------------------------------------------------
-void TCompLight::generateShadowMap() {
+void TCompLightDir::generateShadowMap() {
 
 	if (!shadows_rt || !shadows_enabled)
 		return;

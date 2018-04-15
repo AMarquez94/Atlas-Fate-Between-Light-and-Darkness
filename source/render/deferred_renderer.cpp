@@ -4,7 +4,7 @@
 #include "render_utils.h"
 #include "render_objects.h"
 #include "resources/resources_manager.h"
-#include "components/lighting/comp_light.h"
+#include "components/lighting/comp_light_dir.h"
 #include "components/lighting/comp_light_point.h"
 #include "components/comp_transform.h"
 #include "ctes.h"
@@ -141,7 +141,7 @@ void CDeferredRenderer::renderDirectionalLights() {
   mesh->activate();
 
   // Para todas las luces... pintala
-  getObjectManager<TCompLight>()->forEach([mesh](TCompLight* c) {
+  getObjectManager<TCompLightDir>()->forEach([mesh](TCompLightDir* c) {
 
     // subir las contantes de la posicion/dir
     // activar el shadow map...

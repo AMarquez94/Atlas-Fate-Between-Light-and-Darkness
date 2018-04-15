@@ -160,7 +160,7 @@
         "lookat": "-4.694 -16.782 -8.716"
       }
       ,
-      "light":
+      "light_dir":
       {
         "type": "spotlight",
 				"proj_type": "perspective",

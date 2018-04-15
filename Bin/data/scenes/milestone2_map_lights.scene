@@ -30,7 +30,7 @@
         "lookat": "6.875 7.401 58.464"
       }
       ,
-      "light":
+      "light_dir":
       {
         "type": "directional",
 				"proj_type": "ortographic",
@@ -43,7 +43,7 @@
         "z_far" : 600,
         "casts_shadows" : true,
         "shadows_step" : 1,
-        "shadows_resolution" : 4096,
+        "shadows_resolution" : 8192,
         "shadows_fmt" : "R32_TYPELESS"
       }
       ,
@@ -54,7 +54,7 @@
     }
   },
 	  {
-    "entity":
+    "xentity":
     {
       "name": "FDirect002"
       ,
@@ -65,7 +65,7 @@
         "lookat": "6.875 7.401 58.464"
       }
       ,
-      "light":
+      "light_dir":
       {
         "type": "directional",
 				"proj_type": "ortographic",
@@ -101,7 +101,7 @@
         "lookat": "-24.065 -9.421 -22.131"
       }
       ,
-      "light":
+      "light_dir":
       {
         "type": "spotlight",
 				"proj_type": "perspective",
@@ -145,7 +145,7 @@
         "lookat": "-6.285 -9.421 -37.431"
       }
       ,
-      "light":
+      "light_dir":
       {
         "type": "spotlight",
 				"proj_type": "perspective",
@@ -189,7 +189,7 @@
         "lookat": "2.643 -9.421 -25.662"
       }
       ,
-      "light":
+      "light_dir":
       {
         "type": "spotlight",
 				"proj_type": "perspective",
@@ -233,7 +233,7 @@
         "lookat": "-13.619 -2.663 29.643"
       }
       ,
-      "light":
+      "light_dir":
       {
         "type": "spotlight",
 				"proj_type": "perspective",
@@ -277,7 +277,7 @@
         "lookat": "-32.18 -2.537 66.221"
       }
       ,
-      "light":
+      "light_dir":
       {
         "type": "spotlight",
 				"proj_type": "perspective",

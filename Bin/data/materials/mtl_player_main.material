@@ -10,5 +10,6 @@
     "metallic": "data/textures/player/Shade_mtl_Metallic.dds",
 		"roughness": "data/textures/player/Shade_mtl_Roughness.dds",
 		"emissive": "data/textures/player/Shade_mtl_Emissive.dds"
-  }
+  },
+	"color" : "1.0 0.0 0.0 1.0"
 }

@@ -22,7 +22,7 @@
 		"cone_of_light",
 		"rigidbody",
 		"collider",
-				"light",
+		"light_dir",
 		"light_point",
 		"camera_flyover",
 		"curve_controller",

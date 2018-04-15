@@ -32,7 +32,7 @@ public:
 		return createData(sizeof(TPOD), name);
 	}
 
-	void updateGPU() {
+	void updateGPU() const {
 		const TPOD* pod = this;
 		Render.ctx->UpdateSubresource(cb, 0, NULL, pod, 0, 0);
 	}

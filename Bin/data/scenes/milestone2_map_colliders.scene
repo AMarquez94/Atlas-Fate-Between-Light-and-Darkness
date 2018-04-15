@@ -1,4 +1,10 @@
-[
+[  
+	{
+    "entity":
+    {
+      "name": "milestone2_map_colliders"
+    }
+  },
   {
     "entity":
     {

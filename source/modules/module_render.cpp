@@ -5,7 +5,7 @@
 #include "render/render_objects.h"
 #include "render/render_utils.h"
 #include "render/render_manager.h"
-#include "components/lighting/comp_light.h"
+#include "components/lighting/comp_light_dir.h"
 #include "render/texture/material.h"
 #include "render/texture/texture.h"
 #include "resources/json_resource.h"
@@ -151,18 +151,17 @@ void CModuleRender::update(float delta)
 
 void CModuleRender::render()
 {
-	static int nframes = 5;
-	ImGui::DragInt("NumFrames To Capture", &nframes, 0.1f, 1, 20);
-	if (ImGui::SmallButton("Start CPU Trace Capturing")) {
-		PROFILE_SET_NFRAMES(nframes);
+	if (ImGui::TreeNode("Miscellaneous")) {
+		static int nframes = 5;
+		ImGui::DragInt("NumFrames To Capture", &nframes, 0.1f, 1, 20);
+		if (ImGui::SmallButton("Start CPU Trace Capturing")) {
+			PROFILE_SET_NFRAMES(nframes);
+		}
+
+		// Edit the Background color
+		ImGui::ColorEdit4("Background Color", &_backgroundColor.x);
+		ImGui::DragFloat("Time Factor", &EngineEntities.time_scale_factor, 0.01f, 0.f, 1.0f);
 	}
-
-	// Edit the Background color
-	ImGui::ColorEdit4("Background Color", &_backgroundColor.x);
-	ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.1f, 32.f);
-	ImGui::DragFloat("Ambient Adjustment", &cb_globals.global_ambient_adjustment, 0.01f, 0.0f, 1.f);
-
-	//ImGui::ColorEdit4("Background Color", &_backgroundColor.x);
 		
 	if (ImGui::TreeNode("Render Control")) {
 		ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.1f, 32.f);
@@ -172,7 +171,6 @@ void CModuleRender::render()
 		ImGui::DragFloat("Reinhard vs Uncharted2", &cb_globals.global_tone_mapping_mode, 0.01f, 0.0f, 1.f);
 		ImGui::TreePop();
 	}
-
 }
 
 void CModuleRender::configure(int xres, int yres)
@@ -212,7 +210,7 @@ void CModuleRender::generateFrame() {
 		CTraceScoped gpu_scope("shadowsMapsGeneration");
 
 		// Generate the shadow map for each active light
-		getObjectManager<TCompLight>()->forEach([](TCompLight* c) {
+		getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
 			c->generateShadowMap();
 		});
 	}

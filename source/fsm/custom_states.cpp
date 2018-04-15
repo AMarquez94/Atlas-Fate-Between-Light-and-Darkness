@@ -3,7 +3,7 @@
 #include "context.h"
 #include "components/player_controller/comp_player_animator.h"
 #include "components/physics/comp_rigidbody.h"
-#include "components/lighting/comp_light.h"
+#include "components/lighting/comp_light_dir.h"
 
 //class TCompTempPlayerController;
 //class TCompPlayerAnimator;
@@ -166,7 +166,7 @@ namespace FSM
 		CHandle player_light = getEntityByName("LightPlayer");
 		if (player_light.isValid()) {
 			CEntity * entity_light = (CEntity*)player_light;
-			TCompLight * light = entity_light->get<TCompLight>();
+			TCompLightDir * light = entity_light->get<TCompLightDir>();
 			light->isEnabled = true;
 		}
 
@@ -236,7 +236,7 @@ namespace FSM
 		CHandle player_light = getEntityByName("LightPlayer");
 		if (player_light.isValid()) {
 			CEntity * entity_light = (CEntity*)player_light;
-			TCompLight * light = entity_light->get<TCompLight>();
+			TCompLightDir * light = entity_light->get<TCompLightDir>();
 			light->isEnabled = false;
 		}
 
@@ -283,7 +283,7 @@ namespace FSM
 		CHandle player_light = getEntityByName("LightPlayer");
 		if (player_light.isValid()) {
 			CEntity * entity_light = (CEntity*)player_light;
-			TCompLight * light = entity_light->get<TCompLight>();
+			TCompLightDir * light = entity_light->get<TCompLightDir>();
 			light->isEnabled = true;
 		}
 	}

@@ -121,9 +121,8 @@ CB_DEF(CCteMaterial, CB_MATERIAL)
 	float  scalar_roughness;
 	float  scalar_metallic;
 	float  scalar_irradiance_vs_mipmaps;
-	float  emissive_intensity;
-	VEC4  emissive_color;
-	//float  material_dummy;
+	float  scalar_emission;
+	VEC4  color_emission;
 };
 
 CB_DEF(CCteSkinBones, CB_SKIN_BONES)

@@ -6,9 +6,9 @@
 #include "entity/entity.h"
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
+#include "components/lighting/comp_light_dir.h"
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
-#include "components/lighting/comp_light.h"
 #include "render/render_manager.h"
 
 void CModuleEntities::loadListOfManagers(const json& j, std::vector< CHandleManager* > &managers) {
@@ -21,6 +21,7 @@ void CModuleEntities::loadListOfManagers(const json& j, std::vector< CHandleMana
 		managers.push_back(om);
 	}
 }
+
 bool CModuleEntities::start()
 {
   json j = loadJson("data/components.json");
@@ -82,8 +83,6 @@ bool CModuleEntities::stop() {
 
 void CModuleEntities::render()
 {
-	ImGui::DragFloat("Time Factor", &time_scale_factor, 0.01f, 0.f, 1.0f);
-
   Resources.debugInMenu();
 
   if (ImGui::TreeNode("All Entities...")) {

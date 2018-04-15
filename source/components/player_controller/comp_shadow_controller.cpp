@@ -10,7 +10,7 @@
 #include "components/comp_camera.h"
 #include "components/physics/comp_collider.h"
 #include "components/comp_tags.h"
-#include "components/lighting/comp_light.h"
+#include "components/lighting/comp_light_dir.h"
 #include "../comp_name.h"
 
 DECL_OBJ_MANAGER("shadow_controller", TCompShadowController);
@@ -29,22 +29,22 @@ void TCompShadowController::update(float dt) {
 	TCompTransform * c_my_transform = get<TCompTransform>();
 	VEC3 new_pos = c_my_transform->getPosition() + 0.1f * c_my_transform->getUp();
 	is_shadow = IsPointInShadows(new_pos);
-	//is_shadow == true ? dbg("i'm in shadow\n") : dbg("i'm in light\n");
  }
 
 void TCompShadowController::Init() {
 
 	is_shadow = false;
-	// Retrieve all scene lights
 }
 
 void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
 
+	// Retrieve all scene lights
 	auto& light_handles = CTagsManager::get().getAllEntitiesByTag(getID("light"));
 
 	for (auto h : light_handles) {
 		CEntity* current_light = h;
-		TCompLight * c_light = current_light->get<TCompLight>();
+		TCompLightDir * c_light = current_light->get<TCompLightDir>();
+
 		if (c_light == NULL) continue;
 		if (c_light->getType() == "directional") // by now we will only retrieve directional lights
 		{

@@ -62,8 +62,6 @@ bool CModuleMapIntro::stop()
 
 void CModuleMapIntro::update(float delta)
 {
-	static VEC3 world_pos;
-	ImGui::DragFloat3("Pos", &world_pos.x, 0.025f, -50.f, 50.f);
 	VEC2 mouse = EngineInput.mouse()._position;
 
 }

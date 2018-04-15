@@ -2,7 +2,6 @@
 
 #define PI 3.14159265359f
 
-
 //--------------------------------------------------------------------------------------
 // GBuffer generation pass. Vertex
 //--------------------------------------------------------------------------------------
@@ -184,43 +183,35 @@ float3 Specular(float3 specularColor, float3 h, float3 v, float3 l, float a, flo
 
 //--------------------------------------------------------------------------------------
 // Ambient pass, to compute the ambient light of each pixel
-float4 PS_ambient(
-	in float4 iPosition : SV_Position
-) : SV_Target
+float4 PS_ambient( in float4 iPosition : SV_Position) : SV_Target
 {
-
 	// Declare some float3 to store the values from the GBuffer
-	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
 	float  roughness;
+	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
 	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir);
 
 	// if roughness = 0 -> I want to use the miplevel 0, the all-detailed image
 	// if roughness = 1 -> I will use the most blurred image, the 8-th mipmap, If image was 256x256 => 1x1
 	float mipIndex = roughness * roughness * 8.0f;
 	float3 env = txEnvironmentMap.SampleLevel(samLinear, reflected_dir, mipIndex).xyz;
-	// Convert the color to linear also.
-	env = pow(env, 2.2f);
+	env = pow(env, 2.2f);	// Convert the color to linear also.
 
 	// The irrandiance, is read using the N direction.
 	// Here we are sampling using the cubemap-miplevel 4, and the already blurred txIrradiance texture
 	// and mixing it in base to the scalar_irradiance_vs_mipmaps which comes from the ImGui.
 	// Remove the interpolation in the final version!!!
-	float3 irradiance_mipmaps = txEnvironmentMap.SampleLevel(samLinear, N, 8).xyz;
+	float3 irradiance_mipmaps = txEnvironmentMap.SampleLevel(samLinear, N, 4).xyz;
 	float3 irradiance_texture = txIrradianceMap.Sample(samLinear, N).xyz;
 	float3 irradiance = irradiance_texture * scalar_irradiance_vs_mipmaps + irradiance_mipmaps * (1. - scalar_irradiance_vs_mipmaps);
 
 	// How much the environment we see
 	float3 env_fresnel = Specular_F_Roughness(specular_color, 1. - roughness * roughness, N, view_dir);
-	//return float4(env_fresnel, 1 );
 
-	float g_ReflectionIntensity = 0.4;
+	float g_ReflectionIntensity = 1.0;
 	float g_AmbientLightIntensity = 1.0;
+	float4 self_illum = scalar_emission * color_emission * txSelfIllum.Load(uint3(iPosition.xy,0));
 
-	float4 self_illum = emissive_intensity * emissive_color * txSelfIllum.Load(uint3(iPosition.xy,0));
-
-	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity +
-								albedo.xyz * irradiance * g_AmbientLightIntensity
-								, 1.0f) + self_illum;
+	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f) + self_illum;
 
 	return final_color * global_ambient_adjustment;
 }
@@ -240,15 +231,13 @@ void VS_pass(
 }
 
 // --------------------------------------------------------
-float3 Diffuse(float3 pAlbedo) {
+float3 Diffuse(float3 pAlbedo)
+{
 	return pAlbedo / PI;
 }
 
 // --------------------------------------------------------
-float4 shade(
-	float4 iPosition
-	, bool   use_shadows
-)
+float4 shade(float4 iPosition, bool use_shadows)
 {
 	// Decode GBuffer information
 	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
@@ -281,10 +270,9 @@ float4 shade(
 	// Little trick by now, will fix later.
 	float4 projectedColor = float4(1, 1, 1, 1);
 	if (use_projector)
-		return float4(-projectColor(wPos).xyz * light_color.xyz * NdL * (cDiff * (1.0f - cSpec) ) * att * light_intensity * shadow_factor,1) * 0.5;
+		return float4(-projectColor(wPos).xyz * light_color.xyz * NdL * (cDiff * (1.0f - cSpec) ) * att * light_intensity * shadow_factor, 1) * 0.5;
 
-
-	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity * shadow_factor ;
+	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity * shadow_factor;
 	return float4(final_color, 1);
 }
 

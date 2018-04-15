@@ -104,7 +104,7 @@
     <ClCompile Include="components\comp_fsm.cpp" />
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
-    <ClCompile Include="components\lighting\comp_light.cpp" />
+    <ClCompile Include="components\lighting\comp_light_dir.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\player_controller\comp_player_input.cpp" />
     <ClCompile Include="components\comp_render.cpp" />
@@ -222,7 +222,7 @@
     <ClInclude Include="components\comp_fsm.h" />
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />
-    <ClInclude Include="components\lighting\comp_light.h" />
+    <ClInclude Include="components\lighting\comp_light_dir.h" />
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_player_controller.h" />
     <ClInclude Include="components\player_controller\comp_player_input.h" />
