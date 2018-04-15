@@ -44,7 +44,7 @@
 		"ps_entry_point" : "ps_Basic",
 		"category" : "gbuffer",
 		"textures" : { 
-			"environment" : "data/textures/cubemaps/beach.dds" 
+			"environment" : "data/textures/cubemaps/posx.dds" 
 		}
 	},
 	"textured_bk" : {
@@ -76,15 +76,6 @@
 		"rs_config" : "shadows",
 		"category" : "shadows"
 	},
-	"skybox" : {
-		"vs_file": "data/shaders/textured.fx",
-		"vs_entry_point" : "VS",
-		"vertex_type" : "PosNUvUvT",
-		"ps_entry_point" : "PS",
-		"z" : "test_equal",
-		"category" : "post_render"
-	},
-	
 	"dump_texture" : {
     "vs_file": "data/shaders/screen_quad.fx",
     "vertex_type" : "PosClr",
@@ -171,5 +162,14 @@
 		"textures" : { 
 			"noise" : "data/textures/noise_cloud3.dds" 
 		}
-	}
+	},
+	"pbr_skybox": {
+    "vs_file": "data/shaders/pbr.fx",
+    "vs_entry_point": "VS_skybox",
+		"vertex_type" : "PosClr",
+    "ps_file": "data/shaders/pbr.fx",
+    "ps_entry_point": "PS_skybox",
+		"z" : "test_equal",
+    "category" : "pbr_skybox"
+  }
 }

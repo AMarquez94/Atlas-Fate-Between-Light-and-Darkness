@@ -22,7 +22,7 @@ bool CModuleMapIntro::start()
 	json jboot = loadJson("data/boot.json");
 	
 	// Auto load some scenes
-	std::vector< std::string > scenes_to_auto_load = jboot["light_scenes_test"];
+	std::vector< std::string > scenes_to_auto_load = jboot["intro_scenes"];
 	for (auto& scene_name : scenes_to_auto_load) {
 		dbg("Autoloading scene %s\n", scene_name.c_str());
 		TEntityParseContext ctx;

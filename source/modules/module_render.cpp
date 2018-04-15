@@ -10,7 +10,6 @@
 #include "render/texture/texture.h"
 #include "resources/json_resource.h"
 #include "components/skeleton/game_core_skeleton.h"
-#include "components/lighting/comp_skybox.h"
 #include "physics/physics_mesh.h"
 #include "camera/camera.h"
 #include "geometry/curve.h"
@@ -101,7 +100,7 @@ bool CModuleRender::start()
 		return false;
 
 	cb_globals.global_exposure_adjustment = 0.4f;
-	cb_globals.global_ambient_adjustment = 0.130f;
+	cb_globals.global_ambient_adjustment = 0.170f;
 	cb_globals.global_world_time = 0.f;
 	cb_globals.global_hdr_enabled = 1.f;
 	cb_globals.global_gamma_correction_enabled = 1.f;
@@ -161,6 +160,7 @@ void CModuleRender::render()
 		// Edit the Background color
 		ImGui::ColorEdit4("Background Color", &_backgroundColor.x);
 		ImGui::DragFloat("Time Factor", &EngineEntities.time_scale_factor, 0.01f, 0.f, 1.0f);
+		ImGui::TreePop();
 	}
 		
 	if (ImGui::TreeNode("Render Control")) {
@@ -232,10 +232,10 @@ void CModuleRender::generateFrame() {
 
 		CRenderManager::get().renderCategory("distorsions");
 
-		getObjectManager<TCompSkybox>()->forEach([](TCompSkybox* c) { // Might move this out of here..
-			c->activate();
-		});
-		CRenderManager::get().renderCategory("post_render");
+		//getObjectManager<TCompSkybox>()->forEach([](TCompSkybox* c) { // Might move this out of here..
+		//	c->activate();
+		//});
+		//CRenderManager::get().renderCategory("post_render");
 
 
 		// Debug render

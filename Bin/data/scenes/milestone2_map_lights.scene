@@ -38,11 +38,11 @@
         "angle": 91.8,
         "color": "0.274 0.561 0.882 1.0",
         "intensity": 2.0,
-				"ortosize": 500,
+				"ortosize": 400,
         "shadows": true,
         "z_far" : 600,
         "casts_shadows" : true,
-        "shadows_step" : 1,
+        "shadows_step" : 3,
         "shadows_resolution" : 8192,
         "shadows_fmt" : "R32_TYPELESS"
       }

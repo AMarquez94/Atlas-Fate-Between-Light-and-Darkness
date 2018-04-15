@@ -108,7 +108,6 @@
     <ClCompile Include="modules\game\module_level_select.cpp" />
     <ClCompile Include="modules\game\module_map_test.cpp" />
     <ClCompile Include="render\texture\render_to_texture.cpp" />
-    <ClCompile Include="components\lighting\comp_skybox.cpp" />
     <ClCompile Include="render\deferred_renderer.cpp" />
     <ClCompile Include="components\lighting\comp_light_point.cpp" />
     <ClCompile Include="components\lighting\comp_light_dir.cpp" />
@@ -251,7 +250,6 @@
     <ClInclude Include="modules\game\module_map_test.h" />
     <ClInclude Include="render\texture\render_to_texture.h" />
     <ClInclude Include="render\gpu_trace.h" />
-    <ClInclude Include="components\lighting\comp_skybox.h" />
     <ClInclude Include="render\deferred_renderer.h" />
     <ClInclude Include="components\lighting\comp_light_point.h" />
     <ClInclude Include="components\lighting\comp_light_dir.h" />
