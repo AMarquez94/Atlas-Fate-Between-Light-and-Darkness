@@ -17,6 +17,7 @@
 //
 
 #define _USE_MATH_DEFINES
+#include "mcv_platform.h"
 #include <string.h>
 #include "DebugDraw.h"
 #include "DetourMath.h"
