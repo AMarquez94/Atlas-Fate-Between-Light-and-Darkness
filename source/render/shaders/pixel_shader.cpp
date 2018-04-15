@@ -11,10 +11,7 @@ bool CPixelShader::create(const std::string& filename, const std::string& fn_ent
   ID3DBlob* pPSBlob = NULL;
   hr = CompileShaderFromFile(filename.c_str(), fn_entry_name.c_str(), "ps_4_0", &pPSBlob);
   if (FAILED(hr))
-  {
-	fatal("Failed to compile pixel shader at file %s, function %s.\n", filename.c_str(), fn_entry_name.c_str());
     return false;
-  }
 
   // Create the pixel shader in the GPU
   hr = Render.device->CreatePixelShader(pPSBlob->GetBufferPointer(), pPSBlob->GetBufferSize(), NULL, &ps);

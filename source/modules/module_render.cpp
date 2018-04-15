@@ -227,14 +227,16 @@ void CModuleRender::generateFrame() {
 		activateMainCamera();
 		cb_globals.updateGPU();
 		deferred.render(rt_main);
+		Render.startRenderInBackbuffer();
+		renderFullScreenQuad("dump_texture.tech", rt_main);
+
+		CRenderManager::get().renderCategory("distorsions");
 
 		getObjectManager<TCompSkybox>()->forEach([](TCompSkybox* c) { // Might move this out of here..
 			c->activate();
 		});
 		CRenderManager::get().renderCategory("post_render");
 
-		Render.startRenderInBackbuffer();
-		renderFullScreenQuad("dump_texture.tech", rt_main);
 
 		// Debug render
 		{

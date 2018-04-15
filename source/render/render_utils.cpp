@@ -259,22 +259,20 @@ struct CSamplers {
 		sampDesc.ComparisonFunc = D3D11_COMPARISON_ALWAYS;
 		sampDesc.MinLOD = 0;
 		sampDesc.MaxLOD = D3D11_FLOAT32_MAX;
-		HRESULT hr = Render.device->CreateSamplerState(
-			&sampDesc, &all_samplers[SAMPLER_WRAP_LINEAR]);
+		HRESULT hr = Render.device->CreateSamplerState(&sampDesc, &all_samplers[SAMPLER_WRAP_LINEAR]);
 		if (FAILED(hr))
 			return false;
 
 		
 		setDXName(all_samplers[SAMPLER_WRAP_LINEAR], "WRAP_LINEAR");
-		/*
+		
 		sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
 		sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
 		sampDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
 		sampDesc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
-		hr = ::Render.device->CreateSamplerState(
-		&sampDesc, &all_samplers[SAMPLER_CLAMP_LINEAR]);
+		hr = ::Render.device->CreateSamplerState(&sampDesc, &all_samplers[SAMPLER_CLAMP_LINEAR]);
 		if (FAILED(hr))
-		return false;
+			return false;
 		setDXName(all_samplers[SAMPLER_CLAMP_LINEAR], "CLAMP_LINEAR");
 
 		// For FXAA Bilinear becasue in the mips we do point
@@ -282,12 +280,10 @@ struct CSamplers {
 		sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
 		sampDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
 		sampDesc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
-		hr = Render.device->CreateSamplerState(
-		&sampDesc, &all_samplers[SAMPLER_CLAMP_BILINEAR]);
+		hr = Render.device->CreateSamplerState(&sampDesc, &all_samplers[SAMPLER_CLAMP_BILINEAR]);
 		if (FAILED(hr))
-		return false;
+			return false;
 		setDXName(all_samplers[SAMPLER_CLAMP_BILINEAR], "CLAMP_BILINEAR");
-		*/
 
 		ZeroMemory(&sampDesc, sizeof(sampDesc));
 		sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
@@ -298,10 +294,9 @@ struct CSamplers {
 		sampDesc.BorderColor[1] = 0;
 		sampDesc.BorderColor[2] = 0;
 		sampDesc.BorderColor[3] = 0;
-		hr = Render.device->CreateSamplerState(
-		&sampDesc, &all_samplers[SAMPLER_BORDER_LINEAR]);
+		hr = Render.device->CreateSamplerState(&sampDesc, &all_samplers[SAMPLER_BORDER_LINEAR]);
 		if (FAILED(hr))
-		return false;
+			return false;
 		setDXName(all_samplers[SAMPLER_BORDER_LINEAR], "BORDER_LINEAR");
 
 		
@@ -318,24 +313,20 @@ struct CSamplers {
 		0,//FLOAT MinLOD;
 		0//FLOAT MaxLOD;
 		};
-		hr = Render.device->CreateSamplerState(
-		&sampler_desc, &all_samplers[SAMPLER_PCF_SHADOWS]);
+		hr = Render.device->CreateSamplerState(&sampler_desc, &all_samplers[SAMPLER_PCF_SHADOWS]);
 		if (FAILED(hr))
-		return false;
+			return false;
 		setDXName(all_samplers[SAMPLER_PCF_SHADOWS], "PCF_SHADOWS");
 
-		/*
 		ZeroMemory(&sampDesc, sizeof(sampDesc));
 		sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
 		sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
 		sampDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
 		sampDesc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
-		hr = Render.device->CreateSamplerState(
-		&sampDesc, &all_samplers[SAMPLER_CLAMP_POINT]);
+		hr = Render.device->CreateSamplerState(&sampDesc, &all_samplers[SAMPLER_CLAMP_POINT]);
 		if (FAILED(hr))
-		return false;
+			return false;
 		setDXName(all_samplers[SAMPLER_CLAMP_POINT], "CLAMP_POINT");
-		*/
 
 		return true;
 	}

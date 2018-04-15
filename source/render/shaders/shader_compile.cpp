@@ -57,7 +57,7 @@ HRESULT CompileShaderFromFile(
 			fatal("Can't open shader file %s", szFileName);
 		}
 		if (pErrorBlob != NULL) {
-			fatal("Error compiling shader at file %s:\n%s", szFileName, (char*)pErrorBlob->GetBufferPointer());
+			fatal("Error compiling shader %s %s at file %s:\n%s", szShaderModel, szEntryPoint, szFileName, (char*)pErrorBlob->GetBufferPointer());
 		}
 		if (pErrorBlob) pErrorBlob->Release();
 		return hr;

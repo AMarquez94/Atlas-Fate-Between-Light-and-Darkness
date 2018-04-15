@@ -33,6 +33,16 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 		EndPaint(hWnd, &ps);
 		break;
 
+	case WM_SETFOCUS:
+		if (app_instance)
+			app_instance->has_focus = true;
+		break;
+	
+	case WM_KILLFOCUS:
+		if (app_instance)
+			app_instance->has_focus = false;
+		break;
+
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;

@@ -26,6 +26,7 @@
 #define TS_LIGHT_SHADOW_MAP    8 
 #define TS_ENVIRONMENT_MAP     9
 #define TS_IRRADIANCE_MAP      10
+#define TS_NOISE_MAP           11
 
 #define TS_DEFERRED_ALBEDOS           11
 #define TS_DEFERRED_NORMALS           12

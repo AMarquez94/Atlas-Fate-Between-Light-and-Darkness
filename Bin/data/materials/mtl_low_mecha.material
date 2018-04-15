@@ -9,5 +9,6 @@
 		"roughness": "data/textures/enemy/Mech_low_1001_Roughness.dds",
 		"emissive": "data/textures/enemy/Mech_low_1001_Emissive.dds",
 		"lightmap": "data/textures/enemy/Mech_low_1001_Normal.dds"
-  }
+  },
+	"color" : "1.0 0.0 0.0 1.0"
 }

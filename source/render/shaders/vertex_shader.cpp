@@ -13,10 +13,7 @@ bool CVertexShader::create(const std::string& filename, const std::string& fn_en
   ID3DBlob* pVSBlob = NULL;
   hr = CompileShaderFromFile(filename.c_str(), fn_entry_name.c_str(), "vs_4_0", &pVSBlob);
   if (FAILED(hr))
-  {
-	fatal("Failed to compile vertex shader at file %s, function %s.\n", filename.c_str(), fn_entry_name.c_str());
     return false;
-  }
 
   // Create the vertex shader in the GPU
   hr = Render.device->CreateVertexShader( pVSBlob->GetBufferPointer(), pVSBlob->GetBufferSize(), NULL, &vs);

@@ -71,12 +71,12 @@ bool CMaterial::create(const std::string& name) {
 	if (!cb_material.create(CB_MATERIAL))
 		return false;
 
-	// Load values from json
-	cb_material.scalar_emission = j.value("emission", 10.0f);
-	cb_material.scalar_metallic = j.value("metallic", 0.0f);
-	cb_material.scalar_roughness = j.value("smoothness", 0.5f);
+	// Load default values
+	cb_material.scalar_metallic = -1.f;
+	cb_material.scalar_roughness = -1.f;
 	cb_material.scalar_irradiance_vs_mipmaps = 0.f;
 	cb_material.color_emission = VEC4(1, 1, 1, 1);
+	cb_material.scalar_emission = j.value("emission", 20.0f);
 
 	if (j.count("color"))
 		cb_material.color_emission = loadVEC4(j["color"]);
@@ -105,7 +105,6 @@ void CMaterial::destroy() {
 void CMaterial::activate() const {
 
 	cb_material.activate();
-
 	tech->activate();
 	Render.ctx->PSSetShaderResources(0, max_textures, (ID3D11ShaderResourceView**)srvs);
 }
@@ -118,8 +117,21 @@ void CMaterial::debugInMenu() {
 		if (textures[i])
 			((CTexture*)textures[i])->debugInMenu();
 
-	ImGui::DragFloat("Metallic", &cb_material.scalar_metallic, 0.01f, 0.f, 1.f);
-	ImGui::DragFloat("Roughness", &cb_material.scalar_roughness, 0.01f, 0.f, 1.f);
+	// Allow overwrite the metallic and roughness of the material
+	bool enabled;
+
+	enabled = (cb_material.scalar_metallic >= 0.f);
+	if (ImGui::Checkbox("Custom Metallic", &enabled))
+		cb_material.scalar_metallic = enabled ? 0.f : -1.f;
+	if (cb_material.scalar_metallic >= 0.f)
+		ImGui::DragFloat("Metallic", &cb_material.scalar_metallic, 0.01f, 0.f, 1.f);
+
+	enabled = (cb_material.scalar_roughness >= 0.f);
+	if (ImGui::Checkbox("Custom Roughness", &enabled))
+		cb_material.scalar_roughness = enabled ? 0.f : -1.f;
+	if (cb_material.scalar_roughness >= 0.f)
+		ImGui::DragFloat("Roughness", &cb_material.scalar_roughness, 0.01f, 0.f, 1.f);
+
 	ImGui::DragFloat("Emissive Intensity", &cb_material.scalar_emission, 0.01f, 0.f, 1000.f);
 	ImGui::ColorEdit3("Emissive Color", &cb_material.color_emission.x);
 	ImGui::DragFloat("irradiance_vs_mipmaps", &cb_material.scalar_irradiance_vs_mipmaps, 0.01f, 0.f, 1.f);

@@ -54,12 +54,11 @@ void PS_GBuffer(
 	// the material
 	o_albedo = txAlbedo.Sample(samLinear, iTex0);
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
-	o_selfIllum = txEmissive.Sample(samLinear, iTex0);
-
-	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
+	o_selfIllum = color_emission * txEmissive.Sample(samLinear, iTex0);
 
 	// Save roughness in the alpha coord of the N render target
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
+	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
 	o_normal = encodeNormal(N, roughness);
 
 	// Si el material lo pide, sobreescribir los valores de la textura
@@ -68,8 +67,6 @@ void PS_GBuffer(
 		o_albedo.a = scalar_metallic;
 	if (scalar_roughness >= 0.f)
 		o_normal.a = scalar_roughness;
-
-	//o_albedo = use_projector == 1 ? o_albedo * projectColor(iWorldPos) : o_albedo;
 
 	// Compute the Z in linear space, and normalize it in the range 0...1
 	// In the range z=0 to z=zFar of the camera (not zNear)
@@ -100,6 +97,7 @@ void decodeGBuffer(
 	// en el rango -1..1
 	float4 N_rt = txGBufferNormals.Load(ss_load_coords);
 	N = decodeNormal(N_rt.xyz);
+	N = normalize(N);
 
 	// Get other inputs from the GBuffer
 	float4 albedo = txGBufferAlbedos.Load(ss_load_coords);
@@ -207,9 +205,9 @@ float4 PS_ambient( in float4 iPosition : SV_Position) : SV_Target
 	// How much the environment we see
 	float3 env_fresnel = Specular_F_Roughness(specular_color, 1. - roughness * roughness, N, view_dir);
 
-	float g_ReflectionIntensity = 1.0;
+	float g_ReflectionIntensity = 0.5;
 	float g_AmbientLightIntensity = 1.0;
-	float4 self_illum = scalar_emission * color_emission * txSelfIllum.Load(uint3(iPosition.xy,0));
+	float4 self_illum = scalar_emission * txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
 
 	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f) + self_illum;
 
@@ -285,4 +283,3 @@ float4 PS_dir_lights(in float4 iPosition : SV_Position) : SV_Target
 {
   return shade(iPosition, true);
 }
-

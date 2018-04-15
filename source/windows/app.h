@@ -14,6 +14,7 @@ class CApp {
   // 
   CTimer time_since_last_render;
   CDirectoyWatcher resources_dir_watcher;
+  bool             has_focus = false;
 
   static CApp* app_instance;
 
@@ -38,6 +39,8 @@ public:
     assert(app_instance == this);
     app_instance = nullptr;
   }
+
+  bool hasFocus() const { return has_focus; }
 
   // Remove copy ctor
   CApp(const CApp&) = delete;

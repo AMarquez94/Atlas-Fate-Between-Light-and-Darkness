@@ -97,10 +97,13 @@ bool CRenderTechnique::create(const std::string& name, json& j) {
 			}
 			else if (it.key() == "irradiance")
 				s.slot = TS_IRRADIANCE_MAP;
+			else if (it.key() == "noise")
+				s.slot = TS_NOISE_MAP;
 			else {
 				fatal("Invalid key '%s' in textures for technique %s\n", it.key().c_str(), name.c_str());
 				continue;
 			}
+
 			s.texture = Resources.get(it.value())->as<CTexture>();
 			textures.push_back(s);
 		}
