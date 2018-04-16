@@ -140,7 +140,7 @@
     "vertex_type" : "PosNUvUvT",
     "category" : "pbr_proc",
     "z" : "inverse_test_no_write",
-		"rs_config" : "reverse_culling",
+	"rs_config" : "reverse_culling",
     "blend" : "additive"
   },
 	"pbr_projection": {

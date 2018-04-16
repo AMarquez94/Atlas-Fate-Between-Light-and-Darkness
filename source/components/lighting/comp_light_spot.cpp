@@ -12,9 +12,10 @@
 DECL_OBJ_MANAGER("light_spot", TCompLightSpot);
 
 void TCompLightSpot::debugInMenu() {
-	TCompCamera::debugInMenu();
-	ImGui::DragFloat("Intensity", &intensity, 0.01f, 0.f, 10.f);
 	ImGui::ColorEdit3("Color", &color.x);
+	ImGui::DragFloat("Intensity", &intensity, 0.01f, 0.f, 10.f);
+	ImGui::DragFloat("Angle", &angle, 0.5f, 0.f, 180.f);
+	ImGui::DragFloat("Range", &range, 0.5f, 0.f, 120.f);
 }
 
 void TCompLightSpot::renderDebug() {
@@ -65,7 +66,9 @@ MAT44 TCompLightSpot::getWorld() {
 	if (!c)
 		return MAT44::Identity;
 
-	return MAT44::CreateScale(VEC3(1,1,1)) * c->asMatrix();
+	float new_scale = tan(-angle * .5f) * range;
+	dbg("angle value %f\n", new_scale);
+	return MAT44::CreateScale(VEC3(new_scale, new_scale, range)) * c->asMatrix();
 }
 
 void TCompLightSpot::update(float dt) {
@@ -102,12 +105,11 @@ void TCompLightSpot::activate() {
 	cb_light.light_color = color;
 	cb_light.light_intensity = intensity;
 	cb_light.light_pos = c->getPosition();
-	cb_light.light_radius = 1 * c->getScale();
+	cb_light.light_radius = 1;
 	cb_light.light_view_proj_offset = MAT44::Identity;
 	cb_light.use_projector = 0;
 	cb_light.updateGPU();
 }
-
 
 // ------------------------------------------------------
 void TCompLightSpot::generateShadowMap() {

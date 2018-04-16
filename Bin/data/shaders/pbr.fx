@@ -270,7 +270,7 @@ float4 shade(float4 iPosition, bool use_shadows)
 	if (use_projector)
 		return float4(-projectColor(wPos).xyz * light_color.xyz * NdL * (cDiff * (1.0f - cSpec) ) * att * light_intensity * shadow_factor, 1) * 0.5;
 
-	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity * shadow_factor;
+	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * 1 * light_intensity * shadow_factor;
 	return float4(final_color, 1);
 }
 
