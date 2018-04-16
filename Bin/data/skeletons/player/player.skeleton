@@ -1,6 +1,7 @@
 {
 	"name":"player",
 	"anims" : [
-		{ "name" : "idle"}
+		{ "name" : "idle"},
+		{ "name" : "walk"}
 	]
 }
