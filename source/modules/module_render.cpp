@@ -6,6 +6,7 @@
 #include "render/render_utils.h"
 #include "render/render_manager.h"
 #include "components/lighting/comp_light_dir.h"
+#include "components/lighting/comp_light_spot.h"
 #include "render/texture/material.h"
 #include "render/texture/texture.h"
 #include "resources/json_resource.h"
@@ -213,6 +214,11 @@ void CModuleRender::generateFrame() {
 		getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
 			c->generateShadowMap();
 		});
+
+		// Generate the shadow map for each active light
+		//getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
+		//	c->generateShadowMap();
+		//});
 	}
 
 	{

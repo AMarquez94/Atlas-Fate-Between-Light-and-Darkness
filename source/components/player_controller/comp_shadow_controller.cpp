@@ -10,7 +10,10 @@
 #include "components/comp_camera.h"
 #include "components/physics/comp_collider.h"
 #include "components/comp_tags.h"
+
 #include "components/lighting/comp_light_dir.h"
+#include "components/lighting/comp_light_spot.h"
+#include "components/lighting/comp_light_point.h"
 #include "../comp_name.h"
 
 DECL_OBJ_MANAGER("shadow_controller", TCompShadowController);
@@ -43,14 +46,15 @@ void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
 
 	for (auto h : light_handles) {
 		CEntity* current_light = h;
-		TCompLightDir * c_light = current_light->get<TCompLightDir>();
+		TCompLightDir * c_light_dir = current_light->get<TCompLightDir>();
+		TCompLightSpot * c_light_spot = current_light->get<TCompLightSpot>();
+		TCompLightPoint* c_light_point = current_light->get<TCompLightPoint>();
 
-		if (c_light == NULL) continue;
-		if (c_light->getType() == "directional") // by now we will only retrieve directional lights
+		if (c_light_dir) // by now we will only retrieve directional lights
 		{
 			static_lights.push_back(h);
 		}
-		else if (c_light->getType() == "spotlight" || c_light->getType() == "pointlight") // by now we will only retrieve directional lights
+		else if (c_light_spot || c_light_point) // by now we will only retrieve directional lights
 		{
 			TCompCollider * c_collider = current_light->get<TCompCollider>();
 			if (c_collider != NULL)

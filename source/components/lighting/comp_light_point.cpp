@@ -42,6 +42,7 @@ void TCompLightPoint::load(const json& j, TEntityParseContext& ctx) {
 // -------------------------------------------------
 // Updates the Shader Cte Light with MY information
 void TCompLightPoint::activate() {
+
   TCompTransform* c = get<TCompTransform>();
   if (!c)
     return;

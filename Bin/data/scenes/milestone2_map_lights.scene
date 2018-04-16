@@ -96,15 +96,11 @@
       ,
       "transform":
       {
-        "pos": "-25.7279 -0.359059 -21.7629"
-        ,
+        "pos": "-25.7279 -0.359059 -21.7629",
         "lookat": "-24.065 -9.421 -22.131"
-      }
-      ,
-      "light_dir":
+      },
+      "light_spot":
       {
-        "type": "spotlight",
-				"proj_type": "perspective",
         "range": 29.2116,
         "angle": 91.8,
         "color": "1.0 1.0 1.0 1.0",
@@ -119,10 +115,8 @@
       ,
       "collider":
       {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot001.collider"
-        ,
+        "shape": "convex",
+        "name": "data/colliders/Spot001.collider",
         "is_trigger": true
       }
       ,

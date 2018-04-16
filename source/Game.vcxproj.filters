@@ -111,6 +111,7 @@
     <ClCompile Include="render\deferred_renderer.cpp" />
     <ClCompile Include="components\lighting\comp_light_point.cpp" />
     <ClCompile Include="components\lighting\comp_light_dir.cpp" />
+    <ClCompile Include="components\lighting\comp_light_spot.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -253,6 +254,7 @@
     <ClInclude Include="render\deferred_renderer.h" />
     <ClInclude Include="components\lighting\comp_light_point.h" />
     <ClInclude Include="components\lighting\comp_light_dir.h" />
+    <ClInclude Include="components\lighting\comp_light_spot.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

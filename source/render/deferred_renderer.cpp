@@ -6,6 +6,7 @@
 #include "resources/resources_manager.h"
 #include "components/lighting/comp_light_dir.h"
 #include "components/lighting/comp_light_point.h"
+#include "components/lighting/comp_light_spot.h"
 #include "components/comp_transform.h"
 #include "ctes.h"
 
@@ -101,6 +102,7 @@ void CDeferredRenderer::renderAccLight() {
 	rt_acc_light->clear(VEC4(0, 0, 0, 0));
 	renderAmbientPass();
 	renderPointLights();
+	renderSpotLights();
 	renderDirectionalLights();
 	renderSkyBox();
 }
@@ -161,10 +163,37 @@ void CDeferredRenderer::renderDirectionalLights() {
 	});
 }
 
+// -------------------------------------------------------------------------
+void CDeferredRenderer::renderSpotLights() {
+	CTraceScoped gpu_scope("renderSpotLights");
+
+	// Activate tech for the light dir 
+	auto* tech = Resources.get("pbr_spot_lights.tech")->as<CRenderTechnique>();
+	tech->activate();
+
+	// All light directional use the same mesh
+	auto* mesh = Resources.get("data/meshes/UnitCone.mesh")->as<CRenderMesh>();
+	mesh->activate();
+
+	// Para todas las luces... pintala
+	getObjectManager<TCompLightSpot>()->forEach([mesh](TCompLightSpot* c) {
+
+		// subir las contantes de la posicion/dir
+		// activar el shadow map...
+		c->activate();
+
+		setWorldTransform(c->getWorld());
+
+		// mandar a pintar una geometria que refleje los pixeles que potencialmente
+		// puede iluminar esta luz.... El Frustum solido
+		mesh->render();
+	});
+}
+
 // --------------------------------------
 void CDeferredRenderer::render(CRenderToTexture* rt_destination) {
-	assert(rt_destination);
 
+	assert(rt_destination);
 	renderGBuffer();
 
 	// Do the same with the acc light

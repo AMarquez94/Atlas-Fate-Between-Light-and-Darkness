@@ -284,6 +284,11 @@ float4 PS_dir_lights(in float4 iPosition : SV_Position) : SV_Target
   return shade(iPosition, true);
 }
 
+float4 PS_spot_lights(in float4 iPosition : SV_Position) : SV_Target
+{
+	return shade(iPosition, false);
+}
+
 // ----------------------------------------
 void VS_skybox(in float4 iPosition : POSITION, in float4 iColor : COLOR0, out float4 oPosition : SV_Position)
 {

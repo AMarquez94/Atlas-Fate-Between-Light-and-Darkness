@@ -27,7 +27,6 @@ void TCompLightDir::load(const json& j, TEntityParseContext& ctx) {
 	isEnabled = true;
 	TCompCamera::load(j, ctx);
 
-	type = j.value("type", "default"); 
 	intensity = j.value("intensity", 1.0f);
 	color = loadVEC4(j["color"]);
 
@@ -75,8 +74,6 @@ void TCompLightDir::registerMsgs() {
 }
 
 void TCompLightDir::onCreate(const TMsgEntityCreated& msg) {
-
-	//EnginePhysics.createActor(*this);
 
 }
 

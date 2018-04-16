@@ -18,6 +18,7 @@ public:
   void renderAmbientPass();
   void renderDirectionalLights();
   void renderPointLights();
+  void renderSpotLights();
   void renderSkyBox() const;
 
 public:

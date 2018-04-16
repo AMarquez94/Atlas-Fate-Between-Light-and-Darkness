@@ -6,7 +6,7 @@
 class CTexture;
 class CRenderToTexture;
 
-class TCompLightDir : public TCompCamera {
+class TCompLightSpot : public TCompCamera {
 
 	VEC4			color = VEC4(1, 1, 1, 1);
 	float			intensity = 1.0f;
@@ -37,6 +37,7 @@ public:
 
 	void activate();
 	void generateShadowMap();
+	MAT44 getWorld();
 
 	static void registerMsgs();
 };

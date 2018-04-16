@@ -23,6 +23,7 @@
 		"rigidbody",
 		"collider",
 		"light_dir",
+		"light_spot",
 		"light_point",
 		"camera_flyover",
 		"curve_controller",
