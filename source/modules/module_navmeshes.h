@@ -54,7 +54,8 @@ public:
   bool stop() override;
   void update(float delta) override;
   void render() override;
-  void buildNavmesh();
+  void buildNavmesh(const std::string& path);
+  void destroyNavmesh();
 
   //void build();
   //dtNavMesh* create(const rcConfig& cfg);

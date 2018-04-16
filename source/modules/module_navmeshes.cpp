@@ -11,15 +11,14 @@ bool CModuleNavmesh::start()
 
 bool CModuleNavmesh::stop()
 {
-  navmesh.destroy();
-  navmeshCreated = false;
+  destroyNavmesh();
   return true;
 }
 
 void CModuleNavmesh::update(float delta)
 {
   if (EngineInput["btDebugNavmesh"].getsPressed()) {
-    buildNavmesh();
+    buildNavmesh("data/navmeshes/test.bin");
     navmeshCreated = true;
   }
 
@@ -31,9 +30,16 @@ void CModuleNavmesh::render()
   navmesh.render(false);
 }
 
-void CModuleNavmesh::buildNavmesh()
+void CModuleNavmesh::buildNavmesh(const std::string& path)
 {
   /* TODO: add our config */
   navmesh.m_input.clearInput();
-  navmesh.build();
+  navmesh.loadAll(path.c_str());
+  navmesh.m_draw_mode = CNavmesh::EDrawMode::NAVMESH_DRAW_MESH;
+  //navmesh.build();
+}
+
+void CModuleNavmesh::destroyNavmesh() {
+  navmesh.destroy();
+  navmeshCreated = false;
 }
