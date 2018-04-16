@@ -109,9 +109,6 @@ dtNavMesh* CNavmesh::loadAll(const char* path)
 
   fclose(fp);
 
-  if (m_navMesh)
-    prepareQueries();
-
   return mesh;
 }
 

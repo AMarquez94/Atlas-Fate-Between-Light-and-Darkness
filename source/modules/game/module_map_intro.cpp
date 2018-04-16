@@ -56,6 +56,8 @@ bool CModuleMapIntro::start()
 		parseScene(scene_name, ctx);
 	}
 
+  Engine.getNavmeshes().buildNavmesh("data/navmeshes/test.bin");
+
 	camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
 	camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
 
@@ -106,6 +108,7 @@ bool CModuleMapIntro::stop()
 	Engine.getEntities().destroyAllEntities();
 	Engine.getCameras().deleteAllCameras();
 	Engine.getIA().clearSharedBoards();
+  Engine.getNavmeshes().destroyNavmesh();
 
 	cb_camera.destroy();
 	cb_object.destroy();
