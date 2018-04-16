@@ -3,6 +3,7 @@
 	"anims" : [
 		{ "name" : "idle"},
 		{ "name" : "walk"},
-		{ "name" : "attack"}
+		{ "name" : "attack"},
+		{ "name" : "death"}
 	]
 }
