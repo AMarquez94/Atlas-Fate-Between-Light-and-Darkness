@@ -3,6 +3,7 @@
 #include "modules/module.h"
 #include "entity/entity.h"
 #include "navmesh/navmesh.h"
+#include "navmesh/navmesh_query.h"
 //#include "navmesh/recast/Recast.h"
 //#include "navmesh/recast/DetourNavMesh.h"
 //#include "navmesh/recast/DetourNavMeshQuery.h"
@@ -56,6 +57,7 @@ public:
   void render() override;
   void buildNavmesh(const std::string& path);
   void destroyNavmesh();
+  const std::vector<VEC3> CModuleNavmesh::findPath(VEC3 start, VEC3 end);
 
   //void build();
   //dtNavMesh* create(const rcConfig& cfg);
@@ -66,6 +68,7 @@ public:
 private:
 
   CNavmesh navmesh;
+  CNavmeshQuery navmeshQuery = CNavmeshQuery(&navmesh);
   bool navmeshCreated;
   //rcHeightfield * m_solid;
   //rcCompactHeightfield* m_chf;

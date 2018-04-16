@@ -14,11 +14,17 @@
 #include "components/comp_name.h"
 #include "windows/app.h"
 #include "components/comp_group.h"
+#include "render/render_utils.h"
 
 DECL_OBJ_MANAGER("player_tempcontroller", TCompTempPlayerController);
 
 void TCompTempPlayerController::debugInMenu() {
-
+ 
+  if (points.size() > 1) {
+    for (int i = 0; i < points.size() - 1; i++) {
+      renderLine(points[i], points[i+1], VEC4(1,1,1,1));
+    }
+  }
 }
 
 void TCompTempPlayerController::renderDebug() {
@@ -104,6 +110,11 @@ void TCompTempPlayerController::update(float dt) {
 		updateStamina(dt);
 		updateShader(dt); // Move this to player render component...
 		timeInhib += dt;
+
+    if (EngineInput["btDebugNavmesh"].getsPressed()) {
+      TCompTransform *tpos = get<TCompTransform>();
+      points = Engine.getNavmeshes().findPath(tpos->getPosition(), VEC3(-25.f, 0.f, 70.f));
+    }
 	}
 }
 

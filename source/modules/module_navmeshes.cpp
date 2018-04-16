@@ -5,6 +5,7 @@
 bool CModuleNavmesh::start()
 {
   navmesh = CNavmesh();
+  //navmeshQuery = CNavmeshQuery(&navmesh);
   navmeshCreated = false;
   return true;
 }
@@ -40,4 +41,8 @@ void CModuleNavmesh::buildNavmesh(const std::string& path)
 void CModuleNavmesh::destroyNavmesh() {
   navmesh.destroy();
   navmeshCreated = false;
+}
+
+const std::vector<VEC3> CModuleNavmesh::findPath(VEC3 start, VEC3 end) {
+  return navmeshQuery.findPath(start, end);
 }

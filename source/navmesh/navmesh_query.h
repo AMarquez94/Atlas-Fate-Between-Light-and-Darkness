@@ -37,7 +37,7 @@ public:
   void resetTools( );
   void updateTool( );
   void findInside( TPos& pos );
-  void findPath( TPos& start, TPos& end );
+  const std::vector<VEC3> findPath( VEC3 start, VEC3 end );
   void wallDistance( TPos& pos );
   void raycast( TPos& start, TPos& end );
 
