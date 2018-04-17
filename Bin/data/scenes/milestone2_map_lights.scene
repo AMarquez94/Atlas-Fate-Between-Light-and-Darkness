@@ -42,7 +42,7 @@
         "shadows": true,
         "z_far" : 600,
         "casts_shadows" : true,
-        "shadows_step" : 3,
+        "shadows_step" : 0.1,
         "shadows_resolution" : 8192,
         "shadows_fmt" : "R32_TYPELESS"
       }
@@ -102,15 +102,9 @@
       "light_spot":
       {
         "range": 29.2116,
-        "angle": 91.8,
+        "angle": 90,
         "color": "1.0 1.0 1.0 1.0",
-        "intensity": 3.0,
-        "shadows": true,
-        "z_far" : 50,
-        "casts_shadows" : true,
-        "shadows_step" : 1.0,
-        "shadows_resolution" : 1024,
-        "shadows_fmt" : "R32_TYPELESS"
+        "intensity": 5.0
       }
       ,
       "collider":

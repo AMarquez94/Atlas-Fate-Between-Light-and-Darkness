@@ -114,7 +114,7 @@
       "irradiance" : "data/textures/cubemaps/irradiance.dds" 
     }
   },
-	  "pbr_ambient": {
+  "pbr_ambient": {
     "vs_file": "data/shaders/screen_quad.fx",
     "ps_file": "data/shaders/pbr.fx",
     "ps_entry_point": "PS_ambient",
@@ -132,25 +132,6 @@
     "z" : "inverse_test_no_write",
     "blend" : "additive"
   },
-	  "pbr_spot_lights": {
-    "vs_file": "data/shaders/pbr.fx",
-    "ps_file": "data/shaders/pbr.fx",
-    "vs_entry_point": "VS_pass",
-    "ps_entry_point": "PS_spot_lights",
-    "vertex_type" : "PosNUvUvT",
-    "category" : "pbr_proc",
-    "z" : "inverse_test_no_write",
-	"rs_config" : "reverse_culling",
-    "blend" : "additive"
-  },
-	"pbr_projection": {
-    "vs_file": "data/shaders/pbr.fx",
-    "ps_file": "data/shaders/pbr.fx",
-    "vs_entry_point": "VS_pass",
-    "ps_entry_point": "PS_dir_lights",
-    "vertex_type" : "PosNUvUvT",
-		"category" : "projection"
-  },
   "pbr_point_lights": {
     "vs_file": "data/shaders/pbr.fx",
     "ps_file": "data/shaders/pbr.fx",
@@ -161,6 +142,25 @@
     "z" : "inverse_test_no_write",
     "rs_config" : "reverse_culling",
     "blend" : "additive"
+  },
+	  "pbr_spot_lights": {
+    "vs_file": "data/shaders/pbr.fx",
+    "ps_file": "data/shaders/pbr.fx",
+    "vs_entry_point": "VS_pass",
+    "ps_entry_point": "PS_spot_lights",
+    "vertex_type" : "PosNUvUvT",
+    "category" : "pbr_proc",
+    "z" : "inverse_test_no_write",
+		"rs_config" : "reverse_culling",
+    "blend" : "additive"
+  },
+	"pbr_projection": {
+    "vs_file": "data/shaders/pbr.fx",
+    "ps_file": "data/shaders/pbr.fx",
+    "vs_entry_point": "VS_pass",
+    "ps_entry_point": "PS_dir_lights",
+    "vertex_type" : "PosNUvUvT",
+		"category" : "projection"
   },
 	"water": {
 		"vs_file": "data/shaders/water.fx",

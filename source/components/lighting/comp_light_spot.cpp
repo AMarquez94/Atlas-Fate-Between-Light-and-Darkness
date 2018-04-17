@@ -66,8 +66,7 @@ MAT44 TCompLightSpot::getWorld() {
 	if (!c)
 		return MAT44::Identity;
 
-	float new_scale = tan(-angle * .5f) * range;
-	dbg("angle value %f\n", new_scale);
+	float new_scale = tan(deg2rad(angle) * .5f) * range;
 	return MAT44::CreateScale(VEC3(new_scale, new_scale, range)) * c->asMatrix();
 }
 
@@ -102,11 +101,17 @@ void TCompLightSpot::activate() {
 	if (!c)
 		return;
 
+	// To avoid converting the range -1..1 to 0..1 in the shader
+	// we concatenate the view_proj with a matrix to apply this offset
+	MAT44 mtx_offset = MAT44::CreateScale(VEC3(0.5f, -0.5f, 1.0f))
+		* MAT44::CreateTranslation(VEC3(0.5f, 0.5f, 0.0f));
+
+	float new_scale = tan(deg2rad(angle) * .5f) * range;
 	cb_light.light_color = color;
 	cb_light.light_intensity = intensity;
 	cb_light.light_pos = c->getPosition();
-	cb_light.light_radius = 1;
-	cb_light.light_view_proj_offset = MAT44::Identity;
+	cb_light.light_radius = new_scale * c->getScale();
+	cb_light.light_view_proj_offset = getViewProjection() * mtx_offset;
 	cb_light.use_projector = 0;
 	cb_light.updateGPU();
 }
@@ -114,25 +119,25 @@ void TCompLightSpot::activate() {
 // ------------------------------------------------------
 void TCompLightSpot::generateShadowMap() {
 
-	//if (!shadows_rt || !shadows_enabled)
-	//	return;
+	if (!shadows_rt || !shadows_enabled)
+		return;
 
-	//// In this slot is where we activate the render targets that we are going
-	//// to update now. You can't be active as texture and render target at the
-	//// same time
-	//CTexture::setNullTexture(TS_LIGHT_SHADOW_MAP);
+	// In this slot is where we activate the render targets that we are going
+	// to update now. You can't be active as texture and render target at the
+	// same time
+	CTexture::setNullTexture(TS_LIGHT_SHADOW_MAP);
 
-	//CTraceScoped gpu_scope(shadows_rt->getName().c_str());
-	//shadows_rt->activateRT();
+	CTraceScoped gpu_scope(shadows_rt->getName().c_str());
+	shadows_rt->activateRT();
 
-	//{
-	//	PROFILE_FUNCTION("Clear&SetCommonCtes");
-	//	shadows_rt->clearZ();
-	//	// We are going to render the scene from the light position & orientation
-	//	activateCamera(*this, shadows_rt->getWidth(), shadows_rt->getHeight());
-	//}
+	{
+		PROFILE_FUNCTION("Clear&SetCommonCtes");
+		shadows_rt->clearZ();
+		// We are going to render the scene from the light position & orientation
+		activateCamera(*this, shadows_rt->getWidth(), shadows_rt->getHeight());
+	}
 
-	//CRenderManager::get().renderCategory("shadows");
+	CRenderManager::get().renderCategory("shadows");
 }
 
 

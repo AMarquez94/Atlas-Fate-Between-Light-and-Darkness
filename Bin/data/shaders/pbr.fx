@@ -181,7 +181,7 @@ float3 Specular(float3 specularColor, float3 h, float3 v, float3 l, float a, flo
 
 //--------------------------------------------------------------------------------------
 // Ambient pass, to compute the ambient light of each pixel
-float4 PS_ambient( in float4 iPosition : SV_Position) : SV_Target
+float4 PS_ambient(in float4 iPosition : SV_Position) : SV_Target
 {
 	// Declare some float3 to store the values from the GBuffer
 	float  roughness;
@@ -262,26 +262,27 @@ float4 shade(float4 iPosition, bool use_shadows)
 	float3 cDiff = Diffuse(albedo);
 	float3 cSpec = Specular(specular_color, h, view_dir, light_dir, a, NdL, NdV, NdH, VdH, LdV);
 
+	//float att = 1.0f / (1 + 0.09f * distance_to_light + 0.032f * distance_to_light * distance_to_light);
 	float  att = (1. - smoothstep(0.90, 0.98, distance_to_light / light_radius));
-	// att *= 1 / distance_to_light;
+	//att *= 1 / distance_to_light;
 
 	// Little trick by now, will fix later.
-	float4 projectedColor = float4(1, 1, 1, 1);
-	if (use_projector)
-		return float4(-projectColor(wPos).xyz * light_color.xyz * NdL * (cDiff * (1.0f - cSpec) ) * att * light_intensity * shadow_factor, 1) * 0.5;
+	//float4 projectedColor = float4(1, 1, 1, 1);
+	//if (use_projector)
+	//	return float4(-projectColor(wPos).xyz * light_color.xyz * NdL * (cDiff * (1.0f - cSpec) ) * att * light_intensity * shadow_factor, 1) * 0.5;
 
-	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * 1 * light_intensity * shadow_factor;
+	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity * shadow_factor;
 	return float4(final_color, 1);
 }
 
 float4 PS_point_lights(in float4 iPosition : SV_Position) : SV_Target
 {
-  return shade(iPosition, false);
+	return shade(iPosition, false);
 }
 
 float4 PS_dir_lights(in float4 iPosition : SV_Position) : SV_Target
 {
-  return shade(iPosition, true);
+	return shade(iPosition, true);
 }
 
 float4 PS_spot_lights(in float4 iPosition : SV_Position) : SV_Target

@@ -216,33 +216,23 @@ void CModuleRender::generateFrame() {
 		});
 
 		// Generate the shadow map for each active light
-		//getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
-		//	c->generateShadowMap();
-		//});
+		getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
+			c->generateShadowMap();
+		});
 	}
 
 	{
 		CTraceScoped gpu_scope("Frame");
 		PROFILE_FUNCTION("CModuleRender::generateFrame");
 
-		//// Clear the back buffer 
-		//float ClearColor[4] = { 0.0f, 0.125f, 0.3f, 1.0f }; // red,green,blue,alpha
-		//Render.ctx->ClearRenderTargetView(Render.renderTargetView, &_backgroundColor.x);
-		//Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
-
 		activateMainCamera();
 		cb_globals.updateGPU();
 		deferred.render(rt_main);
-		Render.startRenderInBackbuffer();
-		renderFullScreenQuad("dump_texture.tech", rt_main);
-
+		
 		CRenderManager::get().renderCategory("distorsions");
 
-		//getObjectManager<TCompSkybox>()->forEach([](TCompSkybox* c) { // Might move this out of here..
-		//	c->activate();
-		//});
-		//CRenderManager::get().renderCategory("post_render");
-
+		Render.startRenderInBackbuffer();
+		renderFullScreenQuad("dump_texture.tech", rt_main);
 
 		// Debug render
 		{

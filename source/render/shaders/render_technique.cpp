@@ -134,10 +134,10 @@ void CRenderTechnique::activate() const {
 		ps->activate();
 	else
 		Render.ctx->PSSetShader(nullptr, nullptr, 0);
-
+	
+	activateRSConfig(rs_config);
 	activateZConfig(z_config);
 	activateBlendConfig(blend_config);
-	activateRSConfig(rs_config);
 
 	// Activate the textures associated to this technique
 		for (auto& t : textures)
