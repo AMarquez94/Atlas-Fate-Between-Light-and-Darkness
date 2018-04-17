@@ -18,9 +18,11 @@ public:
   void render() override;
   void buildNavmesh(const std::string& path);
   void destroyNavmesh();
+
   const std::vector<VEC3> findPath(VEC3 start, VEC3 end);
   float wallDistance(VEC3 pos);
   bool raycast(VEC3 start, VEC3 end, VEC3& hitPos);
+  VEC3 closestNavmeshPoint(VEC3 start);
 
 private:
 

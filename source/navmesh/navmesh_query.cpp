@@ -153,14 +153,14 @@ const std::vector<VEC3> CNavmeshQuery::findPath( VEC3 start, VEC3 end ) {
   std::vector<VEC3> path;
   int m_npolys, m_nsmoothPath = 0;
   dtPolyRef m_startRef, m_endRef;
-  VEC3 m_polyPickExt;
   VEC3 m_smoothPath[MAX_SMOOTH];
   dtPolyRef m_polys[MAX_POLYS];
 
   dtStatus m_pathFindStatus = DT_FAILURE;
 
-  data->m_navQuery->findNearestPoly(&start.x, &m_polyPickExt.x, &m_filter, &m_startRef, 0);
-  data->m_navQuery->findNearestPoly(&end.x, &m_polyPickExt.x, &m_filter, &m_endRef, 0);
+
+  data->m_navQuery->findNearestPoly(&start.x, &nearestPolyExtents.x, &m_filter, &m_startRef, 0);
+  data->m_navQuery->findNearestPoly(&end.x, &nearestPolyExtents.x, &m_filter, &m_endRef, 0);
 
   data->m_navQuery->findPath( m_startRef, m_endRef, &start.x, &end.x, &m_filter, m_polys, &m_npolys, MAX_POLYS );
 
@@ -290,10 +290,10 @@ float CNavmeshQuery::wallDistance( VEC3 pos ) {
     /* TODO: note - only returns the distance. If we want the hit pos or the hit normal,
       return it as a reference or something like that */
     float m_distanceToWall = -1.f;
-    VEC3 m_hitPos, m_hitNormal, m_polyPickExt;
+    VEC3 m_hitPos, m_hitNormal;
 
     dtPolyRef m_startRef;
-    data->m_navQuery->findNearestPoly(&pos.x, &m_polyPickExt.x, &m_filter, &m_startRef, 0);
+    data->m_navQuery->findNearestPoly(&pos.x, &nearestPolyExtents.x, &m_filter, &m_startRef, 0);
     data->m_navQuery->findDistanceToWall( m_startRef, &pos.x, 100.0f, &m_filter, &m_distanceToWall, &m_hitPos.x, &m_hitNormal.x );
     return m_distanceToWall;
 }
@@ -302,12 +302,12 @@ bool CNavmeshQuery::raycast( VEC3 start,VEC3 end, VEC3& hitPos ) {
 
     int m_npolys = 0;
     float t = 0;
-    VEC3 m_hitPos, m_hitNormal, m_polyPickExt;
+    VEC3 m_hitPos, m_hitNormal;
     bool m_hitResult;
     dtPolyRef m_polys[MAX_POLYS];
 
     dtPolyRef m_startRef;
-    data->m_navQuery->findNearestPoly(&start.x, &m_polyPickExt.x, &m_filter, &m_startRef, 0);
+    data->m_navQuery->findNearestPoly(&start.x, &nearestPolyExtents.x, &m_filter, &m_startRef, 0);
 
     data->m_navQuery->raycast( m_startRef, &start.x, &end.x, &m_filter, &t, &m_hitNormal.x, m_polys, &m_npolys, MAX_POLYS );
 
@@ -329,4 +329,13 @@ bool CNavmeshQuery::raycast( VEC3 start,VEC3 end, VEC3& hitPos ) {
     }
 
     return m_hitResult;
+}
+
+VEC3 CNavmeshQuery::closestNavmeshPoint(VEC3 currentPoint)
+{
+  int m_npolys, m_nsmoothPath = 0;
+  VEC3 closestPoint;
+  dtPolyRef m_startRef;
+  data->m_navQuery->findNearestPoly(&currentPoint.x, &nearestPolyExtents.x, &m_filter, &m_startRef, &closestPoint.x);
+  return closestPoint;
 }

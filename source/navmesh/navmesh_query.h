@@ -17,6 +17,7 @@ public:
   const std::vector<VEC3> findPath( VEC3 start, VEC3 end );
   float wallDistance( VEC3 pos );
   bool raycast( VEC3 start, VEC3 end, VEC3& hitPos );
+  VEC3 closestNavmeshPoint(VEC3 currentPoint);
 
 private:
 
@@ -25,6 +26,9 @@ private:
 
   static const int MAX_POLYS = 256;
   static const int MAX_SMOOTH = 2048;
+
+  /* Default extent. To change if needed */
+  VEC2 nearestPolyExtents = VEC2(10.f, 10.f);
 };
 
 #endif

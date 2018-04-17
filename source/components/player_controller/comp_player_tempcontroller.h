@@ -52,9 +52,6 @@ struct TMsgStateFinish {
 class TCompTempPlayerController : public TCompBase
 {
 
-  std::vector<VEC3> points;
-  VEC3 hitPos = VEC3::Zero;
-
 	/* DEPRECATED */
 	std::map<std::string, CRenderMesh*> mesh_states;
 
