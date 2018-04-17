@@ -1,6 +1,5 @@
 #include "mcv_platform.h"
 #include "navmesh_query.h"
-#include "navmesh/recast/DetourDebugDraw.h"
 
 inline bool inRange( const float* v1, const float* v2, const float r, const float h ) {
   const float dx = v2[ 0 ] - v1[ 0 ];
@@ -155,6 +154,8 @@ const std::vector<VEC3> CNavmeshQuery::findPath( VEC3 start, VEC3 end ) {
   int m_npolys, m_nsmoothPath = 0;
   dtPolyRef m_startRef, m_endRef;
   VEC3 m_polyPickExt;
+  VEC3 m_smoothPath[MAX_SMOOTH];
+  dtPolyRef m_polys[MAX_POLYS];
 
   dtStatus m_pathFindStatus = DT_FAILURE;
 
@@ -178,7 +179,7 @@ const std::vector<VEC3> CNavmeshQuery::findPath( VEC3 start, VEC3 end ) {
 
     m_nsmoothPath = 0;
 
-    dtVcopy( &m_smoothPath[ m_nsmoothPath * 3 ], &iterPos.x );
+    m_smoothPath[m_nsmoothPath] = iterPos;
     m_nsmoothPath++;
 
     // Move towards target a small advancement at a time until target reached or
@@ -229,14 +230,14 @@ const std::vector<VEC3> CNavmeshQuery::findPath( VEC3 start, VEC3 end ) {
         iterPos = targetPos;
         if( m_nsmoothPath < MAX_SMOOTH ) {
           path.push_back(iterPos);
-          dtVcopy( &m_smoothPath[ m_nsmoothPath * 3 ], &iterPos.x );
+          m_smoothPath[m_nsmoothPath] = iterPos;
           m_nsmoothPath++;
         }
         break;
       }
       else if( offMeshConnection && inRange( &iterPos.x, steerPos, SLOP, 1.0f ) ) {
         // Reached off-mesh connection.
-        float startPos[ 3 ], endPos[ 3 ];
+        VEC3 startPos, endPos;
 
         // Advance the path up to and over the off-mesh connection.
         dtPolyRef prevRef = 0, polyRef = polys[ 0 ];
@@ -251,21 +252,21 @@ const std::vector<VEC3> CNavmeshQuery::findPath( VEC3 start, VEC3 end ) {
         npolys -= npos;
 
         // Handle the connection.
-        dtStatus status = data->m_navMesh->getOffMeshConnectionPolyEndPoints( prevRef, polyRef, startPos, endPos );
+        dtStatus status = data->m_navMesh->getOffMeshConnectionPolyEndPoints( prevRef, polyRef, &startPos.x, &endPos.x );
         if( dtStatusSucceed( status ) ) {
           if( m_nsmoothPath < MAX_SMOOTH ) {
-            path.push_back(VEC3(startPos[0], startPos[1], startPos[2]));
-            dtVcopy( &m_smoothPath[ m_nsmoothPath * 3 ], startPos );
+            path.push_back(startPos);
+            m_smoothPath[m_nsmoothPath] = startPos;
             m_nsmoothPath++;
             // Hack to make the dotted path not visible during off-mesh connection.
             if( m_nsmoothPath & 1 ) {
-              path.push_back(VEC3(startPos[0], startPos[1], startPos[2]));
-              dtVcopy( &m_smoothPath[ m_nsmoothPath * 3 ], startPos );
+              path.push_back(startPos);
+              m_smoothPath[m_nsmoothPath] = startPos;
               m_nsmoothPath++;
             }
           }
           // Move position at the other side of the off-mesh link.
-          dtVcopy( &iterPos.x, endPos );
+          iterPos = endPos;
           float eh = 0.0f;
           data->m_navQuery->getPolyHeight( polys[ 0 ], &iterPos.x, &eh );
           iterPos.y = eh;
@@ -275,7 +276,7 @@ const std::vector<VEC3> CNavmeshQuery::findPath( VEC3 start, VEC3 end ) {
       // Store results.
       if( m_nsmoothPath < MAX_SMOOTH ) {
         path.push_back(iterPos);
-        dtVcopy( &m_smoothPath[ m_nsmoothPath * 3 ], &iterPos.x );
+        m_smoothPath[m_nsmoothPath] = iterPos;
         m_nsmoothPath++;
       }
     }
@@ -299,14 +300,11 @@ float CNavmeshQuery::wallDistance( VEC3 pos ) {
 
 bool CNavmeshQuery::raycast( VEC3 start,VEC3 end, VEC3& hitPos ) {
 
-    int m_nstraightPath, m_npolys = 0;
+    int m_npolys = 0;
     float t = 0;
-    m_nstraightPath = 2;
-    m_straightPath[ 0 ] = start.x;
-    m_straightPath[ 1 ] = start.y;
-    m_straightPath[ 2 ] = start.z;
     VEC3 m_hitPos, m_hitNormal, m_polyPickExt;
     bool m_hitResult;
+    dtPolyRef m_polys[MAX_POLYS];
 
     dtPolyRef m_startRef;
     data->m_navQuery->findNearestPoly(&start.x, &m_polyPickExt.x, &m_filter, &m_startRef, 0);
@@ -329,8 +327,6 @@ bool CNavmeshQuery::raycast( VEC3 start,VEC3 end, VEC3& hitPos ) {
       data->m_navQuery->getPolyHeight( m_polys[ m_npolys - 1 ], &hitPos.x, &h );
       hitPos.y = h;
     }
-
-    dtVcopy( &m_straightPath[ 3 ], &hitPos.x );
 
     return m_hitResult;
 }

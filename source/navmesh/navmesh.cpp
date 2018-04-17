@@ -1,7 +1,6 @@
 #include "mcv_platform.h"
 #include "navmesh.h"
 #include "navmesh/recast/DetourNavMeshBuilder.h"
-#include "navmesh/recast/RecastDump.h"
 #include "navmesh/recast/DetourDebugDraw.h"
 
 CNavmesh::CNavmesh( ) 
@@ -77,6 +76,7 @@ void CNavmesh::loadAll(const char* path)
 
   fclose(fp);
 
+  assert(mesh);
   m_navMesh = mesh;
 }
 
