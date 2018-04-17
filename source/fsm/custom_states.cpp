@@ -43,7 +43,7 @@ namespace FSM
 
 
 
-	bool AnimationState::load(const json& jData) {
+	bool IdleState::load(const json& jData) {
 
 		_animationName = jData["animation"];
 		_speed = jData.value("speed", 4.f);
@@ -54,15 +54,16 @@ namespace FSM
 		return true;
 	}
 
-	void AnimationState::onStart(CContext& ctx) const {
+	void IdleState::onStart(CContext& ctx) const {
 
 		//CEntity* e = ctx.getOwner();
 		//e->sendMsg(TMsgAnimation{ _animationName });
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_idle", _speed, _size, _radius, nullptr, _noise });
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, nullptr, _noise });
 	}
 
-	void AnimationState::onFinish(CContext& ctx) const {
+	void IdleState::onFinish(CContext& ctx) const {
 
 	}
 
@@ -85,7 +86,8 @@ namespace FSM
 		//e->sendMsg(TMsgAnimation{ "walk" });
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_walk", _speed, _size, _radius, nullptr, _noise });
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::WALK , 1.0f });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, nullptr, _noise });
 	}
 
 	void WalkState::onFinish(CContext& ctx) const {
@@ -111,7 +113,7 @@ namespace FSM
 		//e->sendMsg(TMsgAnimation{ "run" });
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_run", _speed, _size, _radius, nullptr, _noise });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, nullptr, _noise });
 	}
 
 	void RunState::onFinish(CContext& ctx) const {
@@ -134,7 +136,7 @@ namespace FSM
 
 		// Send a message to the player controller
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_fall", _speed, _size, _radius, nullptr, _noise });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, nullptr, _noise });
 	}
 
 	void FallState::onFinish(CContext& ctx) const {
@@ -161,7 +163,7 @@ namespace FSM
 		//e->sendMsg(TMsgAnimation{ "crouch" });
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, "pj_crouch", _speed, _size, _radius, nullptr, _noise });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, nullptr, _noise });
 	}
 
 	void CrouchState::onFinish(CContext& ctx) const {
@@ -186,7 +188,7 @@ namespace FSM
 		//e->sendMsg(TMsgAnimation{ "crouch" });
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_fall", _speed, _size, _radius, _target, _noise });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
 
 		// Hardcoded for testing purposes, move this out of here in the future
 		//TCompTempPlayerController * t_comp = e->get<TCompTempPlayerController>();
@@ -221,7 +223,7 @@ namespace FSM
 		CEntity* e = ctx.getOwner();
 		//e->sendMsg(TMsgAnimation{ "crouch" });
 
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::mergeState, "pj_shadowmerge", _speed, _size, _radius, nullptr, _noise });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::mergeState, _speed, _size, _radius, nullptr, _noise });
 	}
 
 	void MergeState::onFinish(CContext& ctx) const {
@@ -249,7 +251,7 @@ namespace FSM
 		//e->sendMsg(TMsgAnimation{ "crouch" });
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_fall", _speed, _size, _radius, _target, _noise });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
 
 		// Disable the rigidbody so that we can handle our transition in air manually
 		// Hardcoded for testing purposes, move this out of here in the future
@@ -290,7 +292,7 @@ namespace FSM
 	void LandMergeState::onStart(CContext& ctx) const {
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_fall", _speed, _size, _radius, _target, _noise });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState,_speed, _size, _radius, _target, _noise });
 	}
 	void LandMergeState::onFinish(CContext& ctx) const {
 
@@ -313,7 +315,7 @@ namespace FSM
 	void SoftLandState::onStart(CContext& ctx) const {
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_idle", _speed, _size, _radius, _target, _noise });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
 	}
 	void SoftLandState::onFinish(CContext& ctx) const {
 
@@ -332,7 +334,7 @@ namespace FSM
 
 	void HardLandState::onStart(CContext& ctx) const {
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, "pj_crouch", _speed, _size, _radius, _target, _noise });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
 	}
 
 	void HardLandState::onFinish(CContext& ctx) const {
@@ -354,7 +356,8 @@ namespace FSM
 	void AttackState::onStart(CContext& ctx) const {
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::attackState, "pj_attack", _speed, _radius, _size, nullptr, _noise });
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::ATTACK , 1.0f });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::attackState, _speed, _radius, _size, nullptr, _noise });
 	}
 	void AttackState::onFinish(CContext& ctx) const {
 
@@ -374,7 +377,7 @@ namespace FSM
 	void RemoveInhibitor::onStart(CContext& ctx) const {
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::removingInhibitorState, "pj_idle", _speed, _radius, _size, nullptr, _noise });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::removingInhibitorState, _speed, _radius, _size, nullptr, _noise });
 
 	}
 
@@ -396,7 +399,8 @@ namespace FSM
 	void DeadState::onStart(CContext& ctx) const {
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::deadState, "pj_fall", _speed, _radius, _size, nullptr, _noise });
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::DEATH , 1.0f });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::deadState, _speed, _radius, _size, nullptr, _noise });
 	}
 	void DeadState::onFinish(CContext& ctx) const {
 

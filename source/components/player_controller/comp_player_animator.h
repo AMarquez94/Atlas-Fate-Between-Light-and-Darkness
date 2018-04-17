@@ -8,14 +8,24 @@ class TCompPlayerAnimator;
 
 class TCompPlayerAnimator : public TCompAnimator
 {
-	DECL_SIBLING_ACCESS();
 public:
+	enum EAnimation { IDLE = 0, WALK, ATTACK, DEATH };
+	struct TMsgExecuteAnimation {
+
+		TCompPlayerAnimator::EAnimation animation;
+		float speed;
+		DECL_MSG_ID();
+	};
+
+	DECL_SIBLING_ACCESS();
+
 	void debugInMenu();
 	static void registerMsgs();
 	void onCreated(const TMsgEntityCreated& msg);
+	void playMsgAnimation(const TMsgExecuteAnimation& msg);
 
-	enum EAnimation { IDLE = 0, WALK, RUN, FALL, ATTACK_IDLE, ATTACK };
+	
 	void initializeAnimations();
-	bool playAnimation(EAnimation animation, float speed = 1.0f);
+	bool playAnimation(TCompPlayerAnimator::EAnimation animation, float speed = 1.0f);
 };
 

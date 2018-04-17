@@ -3,14 +3,14 @@
 	"states" : [
 		{
 			"name" : "idle",
-			"type" : "AnimationState",
+			"type" : "IdleState",
 			"animation" : "idle",
 			"speed" : 0,
 			"size" : 1
 		},
 		{
 			"name" : "idleAction",
-			"type" : "AnimationState",
+			"type" : "IdleState",
 			"animation" : "idleAction",
 			"size" : 1
 		},

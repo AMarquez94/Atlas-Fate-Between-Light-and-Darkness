@@ -8,7 +8,8 @@ struct  TSkeletonsExporter (
 	
 	fn isBone obj = ( 
 		-- Discard black bones
-		return classof obj == Biped_Object and obj.wireColor != Black
+		if obj.wireColor == Black then  return false
+		return classof obj == Biped_Object or classof obj == Dummy or classof obj == BoneGeometry or classof obj == Star
 	),
 	-- Search the root bones in the scene to define the .csf
 	fn findSkelCandidates = (
@@ -61,6 +62,7 @@ struct  TSkeletonsExporter (
 	-- Find a bone candidate to be the root, and choose his name as name of the output file
 	fn findRootBone = (
 		local root_bones = findSkelCandidates()
+		if root_bones.count == 0 then throw "Can't find any root bone skeleton"
 		local root = root_bones[1]
 		setSkelName root.name
 		return root_bones
@@ -72,9 +74,14 @@ struct  TSkeletonsExporter (
 		local root_bones = findRootBone()
 		local root = root_bones[1]
 		
+		format "Root is %\n" root
+		
 		-- Pasar a modo figura si esta en modo pose
-		local was_in_figure_mode = root.controller.figureMode
-		root.controller.figureMode = true
+		local was_in_figure_mode = false;
+		if classof root.controller == Biped then (
+			was_in_figure_mode = root.controller.figureMode
+			root.controller.figureMode = true
+		)
 		local bones_to_export = findBoneCandidates()
 		
 		for b in bones_to_export do (
@@ -94,7 +101,7 @@ struct  TSkeletonsExporter (
 		)
 		
 		-- Restaurar el modo pose si es q estaba en modo pose inicialmente
-		if was_in_figure_mode == false then root.controller.figureMode = false
+		if was_in_figure_mode == false and classof root.controller == Biped then root.controller.figureMode = false
     ),
 	
 	fn exportAnim = (
@@ -111,7 +118,15 @@ struct  TSkeletonsExporter (
 		local begin_time =  animationRange.start as integer * frameRate / 4800  
 		local end_time = animationRange.end as integer  * frameRate / 4800
 		local rc = ExportCalAnim animation_file skel_file bones_to_export begin_time end_time 0 frameRate
-		if rc != 0 then throw ("Failed to export cal3d anim: " + (rc as integer) )
+		
+		if rc != 0 then (
+			format "animation_file %\n" animation_file
+			format "skel_file %\n" skel_file
+			format "bones_to_export %\n" bones_to_export
+			format "begin_time %\n" begin_time
+			format "end_time %\n" end_time
+			throw ("Failed to export cal3d anim: " + (rc as string) )
+		)
 	)
 )
 

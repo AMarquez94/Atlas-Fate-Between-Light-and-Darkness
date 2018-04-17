@@ -78,6 +78,10 @@ void CGameCoreSkeleton::debugInMenu() {
         ImGui::LabelText( "ID", "%d", bone_id );
         if (ImGui::SmallButton("Show Axis"))
           bone_ids_to_debug.push_back(bone_id);
+
+		CalVector pos = cb->getTranslationAbsolute();
+		ImGui::LabelText("Pos", "%f %f %f", pos.x, pos.y, pos.z);
+
         ImGui::TreePop();
       }
     }

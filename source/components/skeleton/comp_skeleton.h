@@ -33,7 +33,7 @@ struct TCompSkeleton : public TCompBase {
 	int getAnimationIdByName(std::string animName);
 	bool actionAnimationOnExecution();
 	bool isExecutingAnimation(int animId);
-
+	float getAnimationDuration(int animId);
 	void guessFeetBonesId(int feetNum);
 	void setFeetId(std::vector<int> feetId);
 	std::vector<VEC3> getFeetPositions();

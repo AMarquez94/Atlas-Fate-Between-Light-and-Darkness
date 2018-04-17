@@ -4,6 +4,7 @@
 #include "geometry/transform.h"
 #include "components/ia/ai_controller.h"
 #include "entity/common_msgs.h"
+#include "components/player_controller/comp_player_animator.h"
 
 class TCompTempPlayerController;
 
@@ -28,7 +29,6 @@ struct Noise {
 struct TMsgStateStart {
 	
 	actionhandler action_start;
-	std::string meshname;
 	float speed;
 	float size;
 	float radius;

@@ -1,6 +1,6 @@
 {
 	"name":"crab",
 	"anims" : [
-		{ "name" : "run" }
+		{"name": "idle"}
 	]
 }

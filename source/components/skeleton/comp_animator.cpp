@@ -128,3 +128,17 @@ std::vector<VEC3> TCompAnimator::getFeetPositions() {
 
 	return compSkeleton->getFeetPositions();
 }
+
+
+float  TCompAnimator::getAnimationDuration(EAnimation animation) {
+
+	CEntity* e = ownHandle;
+	TCompSkeleton * compSkeleton = e->get<TCompSkeleton>();
+	
+	if (animationsMap.find(animation) == animationsMap.end()) {
+		fatal("Animation doesn't exists");
+	}
+	AnimationSet animSet = animationsMap[animation];
+
+	return compSkeleton->getAnimationDuration(animSet.animationId);
+}

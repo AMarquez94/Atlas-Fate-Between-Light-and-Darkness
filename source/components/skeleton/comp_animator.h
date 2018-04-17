@@ -47,7 +47,9 @@ public:
 	bool isComposed(EAnimation animation);
 	EAnimation actualAnimation();
 
-	void  setFeetIds(std::vector<int> feetBonesId);
+	float getAnimationDuration(EAnimation animation);
+
+	void setFeetIds(std::vector<int> feetBonesId);
 	void setFeetNumAndCalculate(int numFeet);
 	std::vector<VEC3> getFeetPositions();
 	

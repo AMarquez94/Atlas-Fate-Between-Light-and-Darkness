@@ -348,3 +348,11 @@ std::vector<VEC3> TCompSkeleton::getFeetPositions() {
 	dbg("");
 	return feetPositions;
 }
+
+float TCompSkeleton::getAnimationDuration(int animId) {
+
+	auto core_anim = model->getCoreModel()->getCoreAnimation(animId);
+	if (core_anim)
+		return core_anim->getDuration();
+	return -1.f;
+}

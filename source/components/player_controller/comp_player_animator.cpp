@@ -13,17 +13,14 @@ void TCompPlayerAnimator::debugInMenu() {
 	if (ImGui::SmallButton("Idle")) {
 		playAnimation(EAnimation::IDLE, speed);
 	}
-
 	if (ImGui::SmallButton("Walk")) {
 		playAnimation(EAnimation::WALK, speed);
 	}
-
-	if (ImGui::SmallButton("Run")) {
-		playAnimation(EAnimation::RUN, speed);
-	}
-
 	if (ImGui::SmallButton("Attack")) {
 		playAnimation(EAnimation::ATTACK, speed);
+	}
+	if (ImGui::SmallButton("Death")) {
+		playAnimation(EAnimation::DEATH, speed);
 	}
 
 	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);
@@ -46,18 +43,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::WALK,
 		EAnimationType::CYCLIC,
-		EAnimationSize::DOUBLE,
-		"jog",
-		"walk",
-		0.0f,
-		1.0f
-	);
-
-	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::RUN,
-		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"jog",
+		"walk",
 		"",
 		1.0f,
 		1.0f
@@ -67,7 +54,17 @@ void TCompPlayerAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::ATTACK,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"kick",
+		"attack",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::DEATH,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"death",
 		"",
 		1.0f,
 		1.0f
@@ -76,6 +73,7 @@ void TCompPlayerAnimator::initializeAnimations() {
 
 void TCompPlayerAnimator::registerMsgs() {
 	DECL_MSG(TCompPlayerAnimator, TMsgEntityCreated, onCreated);
+	DECL_MSG(TCompPlayerAnimator, TMsgExecuteAnimation, playMsgAnimation);
 }
 
 void TCompPlayerAnimator::onCreated(const TMsgEntityCreated& msg) {
@@ -88,7 +86,12 @@ void TCompPlayerAnimator::onCreated(const TMsgEntityCreated& msg) {
 	setFeetNumAndCalculate(2);
 }
 
-bool TCompPlayerAnimator::playAnimation(EAnimation animation, float speed) {
+bool TCompPlayerAnimator::playAnimation(TCompPlayerAnimator::EAnimation animation, float speed) {
 
 	return playAnimationConverted((TCompAnimator::EAnimation)animation, speed);
+}
+
+void TCompPlayerAnimator::playMsgAnimation(const TMsgExecuteAnimation& msg) {
+
+	playAnimation(msg.animation,msg.speed);
 }
