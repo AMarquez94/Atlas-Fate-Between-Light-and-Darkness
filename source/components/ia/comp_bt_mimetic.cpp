@@ -24,6 +24,12 @@ void TCompAIMimetic::debugInMenu() {
 		validState = current->getName();
 	}
 
+  if (navmeshPath.size() > 1) {
+    for (int i = 0; i < navmeshPath.size() - 1; i++) {
+      renderLine(navmeshPath[i], navmeshPath[i+1], VEC4(1,0,0,1));
+    }
+  }
+
 	ImGui::Text("Current state: %s", validState.c_str());
 }
 
@@ -67,6 +73,7 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 	addChild("manageObserveTypeFloor", "turnRightObserveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionObserveRight, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
 	addChild("manageObserveTypeFloor", "waitRightObserveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitObserving, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
 	
+  addChild("managePatrol", "generateNavmeshGoToWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGenerateNavmeshWpt, nullptr);
 	addChild("managePatrol", "goToWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToWpt, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
 	addChild("managePatrol", "resetTimerWaitInWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionResetTimerWaiting, nullptr);
 	addChild("managePatrol", "waitInWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitInWpt, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
@@ -323,6 +330,17 @@ BTNode::ERes TCompAIMimetic::actionSetActive(float dt)
 	return BTNode::ERes::LEAVE;
 }
 
+BTNode::ERes TCompAIMimetic::actionGenerateNavmeshWpt(float dt)
+{
+  TCompTransform *tTransform = get<TCompTransform>();
+  navmeshPath = EngineNavmeshes.findPath(tTransform->getPosition(), _waypoints[currentWaypoint].position);
+  if (navmeshPath.size() > 0) {
+    navmeshPath.insert(navmeshPath.begin(), tTransform->getPosition());
+  }
+  navmeshPathPoint = 0;
+  return BTNode::ERes::LEAVE;
+}
+
 BTNode::ERes TCompAIMimetic::actionJumpFloor(float dt)
 {
 	TCompRigidbody *tCollider = get<TCompRigidbody>();
@@ -333,21 +351,21 @@ BTNode::ERes TCompAIMimetic::actionJumpFloor(float dt)
 
 BTNode::ERes TCompAIMimetic::actionGoToWpt(float dt)
 {
-	TCompTransform *mypos = get<TCompTransform>();
-	rotateTowardsVec(getWaypoint().position, rotationSpeedObservation, dt);
+  TCompTransform *mypos = get<TCompTransform>();
+  rotateTowardsVec(getWaypoint().position, rotationSpeedObservation, dt);
 
-	VEC3 vp = mypos->getPosition();
-	if (VEC3::Distance(getWaypoint().position, vp) < speed * dt) {
-		mypos->setPosition(getWaypoint().position);
-		return BTNode::ERes::LEAVE;
-	}
-	else {
-		VEC3 vfwd = mypos->getFront();
-		vfwd.Normalize();
-		vp = vp + speed * dt *vfwd;
-		mypos->setPosition(vp);				//Move towards wpt
-		return BTNode::ERes::STAY;
-	}
+  VEC3 vp = mypos->getPosition();
+  if (VEC3::Distance(getWaypoint().position, vp) < speed * dt) {
+    mypos->setPosition(getWaypoint().position);
+    return BTNode::ERes::LEAVE;
+  }
+  else {
+    VEC3 vfwd = mypos->getFront();
+    vfwd.Normalize();
+    vp = vp + speed * dt *vfwd;
+    mypos->setPosition(vp);				//Move towards wpt
+    return BTNode::ERes::STAY;
+  }
 }
 
 BTNode::ERes TCompAIMimetic::actionResetTimerWaiting(float dt)

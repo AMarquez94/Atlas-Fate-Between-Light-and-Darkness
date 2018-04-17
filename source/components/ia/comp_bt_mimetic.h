@@ -35,6 +35,8 @@ private:
 	bool hasHeardArtificialNoise = false;
 	bool hasHeardNaturalNoise = false;
 	VEC3 noiseSource = VEC3::Zero;
+  std::vector<VEC3> navmeshPath;
+  unsigned int navmeshPathPoint;
 
 	std::string validState = "";
 
@@ -93,6 +95,7 @@ public:
 	BTNode::ERes actionObserveRight(float dt);
 	BTNode::ERes actionWaitObserving(float dt);
 	BTNode::ERes actionSetActive(float dt);
+  BTNode::ERes actionGenerateNavmeshWpt(float dt);
 	BTNode::ERes actionGoToWpt(float dt);
 	BTNode::ERes actionResetTimerWaiting(float dt);
 	BTNode::ERes actionWaitInWpt(float dt);
