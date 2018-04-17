@@ -44,10 +44,10 @@ void TCompPlayerAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::WALK,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"walk",
+		"walk2",
 		"",
 		1.0f,
-		1.0f
+		1.7f
 	);
 
 	initializeAnimation(
