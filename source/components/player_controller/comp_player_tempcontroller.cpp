@@ -114,6 +114,7 @@ void TCompTempPlayerController::update(float dt) {
     if (EngineInput["btDebugNavmesh"].getsPressed()) {
       TCompTransform *tpos = get<TCompTransform>();
       points = Engine.getNavmeshes().findPath(tpos->getPosition(), VEC3(-25.f, 0.f, 70.f));
+      dbg("Wall distance %f\n", Engine.getNavmeshes().wallDistance(tpos->getPosition()));
     }
 	}
 }

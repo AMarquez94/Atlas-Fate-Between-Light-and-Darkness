@@ -137,11 +137,7 @@
     <ClCompile Include="navmesh\recast\RecastRasterization.cpp" />
     <ClCompile Include="navmesh\recast\RecastRegion.cpp" />
     <ClCompile Include="navmesh\navmesh.cpp" />
-    <ClCompile Include="navmesh\navmesh_builder.cpp" />
-    <ClCompile Include="navmesh\navmesh_input.cpp" />
     <ClCompile Include="navmesh\navmesh_query.cpp" />
-    <ClCompile Include="navmesh\navmesh_render.cpp" />
-    <ClCompile Include="navmesh\PerfTimer.cpp" />
     <ClCompile Include="modules\module_navmeshes.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -307,11 +303,7 @@
     <ClInclude Include="navmesh\recast\RecastDebugDraw.h" />
     <ClInclude Include="navmesh\recast\RecastDump.h" />
     <ClInclude Include="navmesh\navmesh.h" />
-    <ClInclude Include="navmesh\navmesh_builder.h" />
-    <ClInclude Include="navmesh\navmesh_input.h" />
     <ClInclude Include="navmesh\navmesh_query.h" />
-    <ClInclude Include="navmesh\navmesh_render.h" />
-    <ClInclude Include="navmesh\PerfTimer.h" />
     <ClInclude Include="modules\module_navmeshes.h" />
   </ItemGroup>
   <ItemGroup>
