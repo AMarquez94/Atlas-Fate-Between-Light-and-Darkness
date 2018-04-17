@@ -33,17 +33,17 @@
       "light_dir":
       {
         "type": "directional",
-				"proj_type": "ortographic",
+		"proj_type": "ortographic",
         "range": 29.2116,
         "angle": 91.8,
         "color": "0.274 0.561 0.882 1.0",
         "intensity": 2.0,
-				"ortosize": 400,
+		"ortosize": 600,
         "shadows": true,
-        "z_far" : 600,
+        "z_far" : 400,
         "casts_shadows" : true,
-        "shadows_step" : 0.1,
-        "shadows_resolution" : 8192,
+        "shadows_step" : 1.5,
+        "shadows_resolution" : 2048,
         "shadows_fmt" : "R32_TYPELESS"
       }
       ,

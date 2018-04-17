@@ -91,6 +91,7 @@ struct TSceneExporter (
 	project_path = "",
 	base_path = "data/",
 	scenes_path = base_path + "scenes/",
+	prefabs_path = base_path + "prefabs/",
 	mesh_path = base_path + "meshes/",
 	mats_path = base_path + "materials/",
 	cols_path = base_path + "colliders/",
@@ -417,7 +418,6 @@ struct TSceneExporter (
 			else if isLight obj then ( exportEntityLight obj )
 			else exportEditableMesh obj
 			writeTagComponent obj
-			writeHierComponent obj
 			fs.endObj()
 		fs.endObj()
 	),
@@ -435,7 +435,7 @@ struct TSceneExporter (
 	-- ----------------------------------------------------------
 	-- ----------------------------------------------------------
 	
-	fn exportAll nodes ofilename prg = (
+	fn exportAll nodes ofilename prg is_scene = (
 		
 		-------------------------------------------------------------------------
 		local req_path = findstring project_path "\bin"
@@ -454,7 +454,12 @@ struct TSceneExporter (
 		doesFolderExist (project_path + tex_path) create:true
 		
 		-- Decide output filename based on .max filename
-		local full_path = project_path + scenes_path + ofilename + ".scene"
+		--local full_path = project_path + prefabs_path + ofilename + ".prefab"
+		--if (is_scene == true) then ( 
+			local full_path = project_path + scenes_path + ofilename + ".scene"
+			exportRoot ofilename -- Export root
+		--)
+		
 		format "Exporting to %\n" full_path
 		fs.begin full_path
 		fs.beginArray()
@@ -462,7 +467,6 @@ struct TSceneExporter (
 		local nitems = 0
 		local prg_step = 100 / (nodes.count + 1)
 		
-		exportRoot ofilename -- Export root
 		for obj in nodes do (
 			
 			if nitems > 0 then  fs.writeComma()

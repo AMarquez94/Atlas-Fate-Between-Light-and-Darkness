@@ -282,12 +282,46 @@ float4 PS_point_lights(in float4 iPosition : SV_Position) : SV_Target
 
 float4 PS_dir_lights(in float4 iPosition : SV_Position) : SV_Target
 {
+
 	return shade(iPosition, true);
 }
 
 float4 PS_spot_lights(in float4 iPosition : SV_Position) : SV_Target
 {
-	return shade(iPosition, false);
+	// Decode GBuffer information
+	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
+	float  roughness;
+	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir);
+	N = normalize(N);
+
+	// From wPos to Light
+	float3 light_dir_full = light_pos.xyz - wPos;
+	float  distance_to_light = length(light_dir_full);
+	float3 light_dir = light_dir_full / distance_to_light;
+
+	float  NdL = saturate(dot(N, light_dir));
+	float  NdV = saturate(dot(N, view_dir));
+	float3 h = normalize(light_dir + view_dir); // half vector
+
+	float  NdH = saturate(dot(N, h));
+	float  VdH = saturate(dot(view_dir, h));
+	float  LdV = saturate(dot(light_dir, view_dir));
+	float  a = max(0.001f, roughness * roughness);
+	float3 cDiff = Diffuse(albedo);
+	float3 cSpec = Specular(specular_color, h, view_dir, light_dir, a, NdL, NdV, NdH, VdH, LdV);
+
+	//float att = 1.0f / (1 + 0.09f * distance_to_light + 0.032f * distance_to_light * distance_to_light);
+	float  att = (1. - smoothstep(0.90, 0.98, distance_to_light / light_radius));
+	//att *= 1 / distance_to_light;
+
+	float lightToSurfaceAngle = degrees(acos(dot(-light_dir, light_color.xyz)));
+	if (lightToSurfaceAngle < 22.5) 
+	{
+		float3 final_color = NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity;
+		return float4(final_color, 1);
+	}
+
+	return float4(0, 0, 0, 0);
 }
 
 // ----------------------------------------

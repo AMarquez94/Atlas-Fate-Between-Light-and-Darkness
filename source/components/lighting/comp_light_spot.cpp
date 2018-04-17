@@ -107,7 +107,7 @@ void TCompLightSpot::activate() {
 		* MAT44::CreateTranslation(VEC3(0.5f, 0.5f, 0.0f));
 
 	float new_scale = tan(deg2rad(angle) * .5f) * range;
-	cb_light.light_color = color;
+	cb_light.light_color = VEC4(c->getFront().x, c->getFront().y, c->getFront().z, 1); //color;
 	cb_light.light_intensity = intensity;
 	cb_light.light_pos = c->getPosition();
 	cb_light.light_radius = new_scale * c->getScale();

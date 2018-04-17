@@ -66,7 +66,7 @@ bool CDeferredRenderer::create(int xres, int yres) {
 		return false;
 
 	rt_normals = new CRenderToTexture;
-	if (!rt_normals->createRT("g_normals.dds", xres, yres, DXGI_FORMAT_R16G16B16A16_UNORM))
+	if (!rt_normals->createRT("g_normals.dds", xres, yres, DXGI_FORMAT_R8G8B8A8_UNORM))
 		return false;
 
 	rt_self_illum = new CRenderToTexture;
