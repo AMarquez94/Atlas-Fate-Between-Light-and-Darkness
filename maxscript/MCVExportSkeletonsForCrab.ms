@@ -1,8 +1,8 @@
 clearListener()
 
 struct  TSkeletonsExporter (
-	project_path = "D:/Games/Deep_Shadows/Bin/data/skeletons/player/",
-	skel_name = "player",			-- smurf
+	project_path = "D:/Games/Deep_Shadows/Bin/data/skeletons/crab/",
+	skel_name = "crab",			-- smurf
 	skel_root_path,					-- "C:/../bin/data/skeletons/smurf/,
 	skel_file, 						-- "C:/../bin/data/skeletons/smurf/smurf.csf"
 	
@@ -132,5 +132,5 @@ struct  TSkeletonsExporter (
 
 gc()
 se = TSkeletonsExporter()
-se.exportSkelAndMeshes()
+--se.exportSkelAndMeshes()
 se.exportAnim()

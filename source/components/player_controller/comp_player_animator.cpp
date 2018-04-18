@@ -47,7 +47,7 @@ void TCompPlayerAnimator::initializeAnimations() {
 		"walk2",
 		"",
 		1.0f,
-		1.7f
+		1.0f
 	);
 
 	initializeAnimation(
