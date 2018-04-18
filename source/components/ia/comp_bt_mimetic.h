@@ -18,7 +18,7 @@ private:
 	float rotationSpeedChaseDeg = 359.f;
 	float rotationSpeedChase;
 	std::string entityToChase = "The Player";
-	float fovDeg = 179.f;
+	float fovDeg = 120.f;
 	float fov;
 	float autoChaseDistance = 15.f;
 	float maxChaseDistance = 35.f;
@@ -36,8 +36,11 @@ private:
 	bool hasHeardNaturalNoise = false;
 	VEC3 noiseSource = VEC3::Zero;
   bool noiseSourceChanged = false;
+
   std::vector<VEC3> navmeshPath;
   unsigned int navmeshPathPoint;
+  bool recalculateNavmesh = false;
+  float maxDistanceToNavmeshPoint = 3.f;
 
 	std::string validState = "";
 
@@ -53,6 +56,7 @@ private:
 	VEC3 initialPos;
 	VEC3 initialLookAt;
 	float rotationSpeedObservation = deg2rad(40.f);
+  float rotationSpeedPatrolling = deg2rad(80.f);
 	float waitTimeInLasPlayerPos = 3.f;
 	float chaseSpeed = 6.f;
 
@@ -78,6 +82,7 @@ private:
 	void turnOffLight();
 	void setGravityToFaceWall();
 	EType parseStringMimeticType(const std::string& typeString);
+  bool moveToPoint(float speed, float rotationSpeed, VEC3 objective, float dt);
 	
 	//load
 	void loadActions() override;
@@ -122,12 +127,14 @@ public:
 	BTNode::ERes actionJumpWall(float dt);
 	BTNode::ERes actionHoldOnWall(float dt);
 	BTNode::ERes actionSetInactive(float dt);
+  BTNode::ERes actionClosestWpt(float dt);
 
 	/* CONDITIONS */
 	bool conditionHasBeenStunned(float dt);
 	bool conditionIsTypeWall(float dt);
 	bool conditionIsNotPlayerInFovAndNotNoise(float dt);
 	bool conditionIsNotActive(float dt);
+  bool conditionHasWpts(float dt);
 	bool conditionIsTypeFloor(float dt);
 	bool conditionIsSlept(float dt);
 	bool conditionHasNotWaypoints(float dt);
