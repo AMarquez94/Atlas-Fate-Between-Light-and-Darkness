@@ -33,14 +33,16 @@
       "light_dir":
       {
         "type": "directional",
-		"proj_type": "ortographic",
+				"proj_type": "ortographic",
         "range": 29.2116,
         "angle": 75,
         "color": "0.274 0.561 0.882 1.0",
         "intensity": 2.0,
-		"ortosize": 600,
+				"ortosize": 150,
         "shadows": true,
+				"fov" : 15,
         "z_far" : 400,
+				"z_near" : 3,
         "casts_shadows" : true,
         "shadows_step" : 1.5,
         "shadows_resolution" : 2048,
@@ -73,7 +75,7 @@
         "angle": 75,
         "color": "0.274 0.561 0.882 1.0",
         "intensity": 2.0,
-				"ortosize": 200,
+				"ortosize": 150,
         "shadows": true,
         "z_far" : 600,
         "casts_shadows" : true,
@@ -96,15 +98,23 @@
       ,
       "transform":
       {
-        "pos": "-25.7279 -0.359059 -21.7629",
+        "pos": "-25.7279 -1.284 -21.7629",
         "lookat": "-24.065 -9.421 -22.131"
       },
       "light_spot":
       {
+        "type": "spotlight",
+				"proj_type": "perspective",
         "range": 29.2116,
         "angle": 75,
         "color": "1.0 1.0 1.0 1.0",
-        "intensity": 5.0
+        "intensity": 3.0,
+        "shadows": true,
+        "z_far" : 50,
+        "casts_shadows" : true,
+        "shadows_step" : 1.0,
+        "shadows_resolution" : 1024,
+        "shadows_fmt" : "R32_TYPELESS"
       }
       ,
       "collider":
@@ -128,14 +138,14 @@
       ,
       "transform":
       {
-        "pos": "-6.35864 -0.7 -39.4",
+        "pos": "-6.35864 -1.284 -39.4",
         "lookat": "-6.285 -9.421 -37.431"
       }
       ,
       "light_spot":
       {
         "type": "spotlight",
-		"proj_type": "perspective",
+				"proj_type": "perspective",
         "range": 29.2116,
         "angle": 75,
         "color": "1.0 1.0 1.0 1.0",
@@ -171,7 +181,7 @@
       ,
       "transform":
       {
-        "pos": "3.45951 -0.8 -26.3873"
+        "pos": "3.45951 -1.284 -26.3873"
         ,
         "lookat": "2.643 -9.421 -25.662"
       }

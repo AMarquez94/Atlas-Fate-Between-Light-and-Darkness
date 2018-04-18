@@ -58,21 +58,19 @@
       {
         "type": "spotlight",
 				"proj_type": "perspective",
-        "range": 29.2116,
-        "angle": 91.8,
+        "range": 15,
+        "angle": 75,
         "color": "0.3 1.0 1.0 1.0",
         "intensity": 10.0,
         "shadows": true,
-        "z_far" : 12,
-				"fov" : 70,
         "casts_shadows" : true,
         "shadows_step" : 1.0,
         "shadows_resolution" : 256,
         "shadows_fmt" : "R32_TYPELESS"
       },      
-	"hierarchy": {
+			"hierarchy": {
         "parent": "The Enemy",
-        "pos": "0 1 0",
+        "pos": "0 1 0.75",
 				"lookat": "0 0 3"
       }
     }

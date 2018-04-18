@@ -32,7 +32,7 @@ void TCompLightSpot::load(const json& j, TEntityParseContext& ctx) {
 
 	intensity = j.value("intensity", 1.0f);
 	color = loadVEC4(j["color"]);
-
+	
 	casts_shadows = j.value("shadows", true);
 	angle = j.value("angle", 45.f);
 	range = j.value("range", 10.f);
@@ -80,6 +80,7 @@ void TCompLightSpot::update(float dt) {
 		return;
 
 	this->lookAt(c->getPosition(), c->getPosition() + c->getFront(), c->getUp());
+	this->setPerspective(deg2rad(angle), 0.1f, range); // might change this znear in the future, hardcoded for clipping purposes.
 }
 
 void TCompLightSpot::registerMsgs() {
@@ -105,8 +106,7 @@ void TCompLightSpot::activate() {
 	projector->activate(TS_LIGHT_PROJECTOR);
 	// To avoid converting the range -1..1 to 0..1 in the shader
 	// we concatenate the view_proj with a matrix to apply this offset
-	MAT44 mtx_offset = MAT44::CreateScale(VEC3(0.5f, -0.5f, 1.0f))
-		* MAT44::CreateTranslation(VEC3(0.5f, 0.5f, 0.0f));
+	MAT44 mtx_offset = MAT44::CreateScale(VEC3(0.5f, -0.5f, 1.0f)) * MAT44::CreateTranslation(VEC3(0.5f, 0.5f, 0.0f));
 
 	float spot_angle = deg2rad(angle * .5f);
 	cb_light.light_color = color;
@@ -117,6 +117,18 @@ void TCompLightSpot::activate() {
 	cb_light.light_angle = cos(spot_angle);
 	cb_light.light_direction = VEC4(c->getFront().x, c->getFront().y, c->getFront().z, 1);
 	cb_light.updateGPU();
+
+	// If we have a ZTexture, it's the time to activate it
+	if (shadows_rt) {
+
+		cb_light.light_shadows_inverse_resolution = 1.0f / (float)shadows_rt->getWidth();
+		cb_light.light_shadows_step = shadows_step;
+		cb_light.light_shadows_step_with_inv_res = shadows_step / (float)shadows_rt->getWidth();
+		cb_light.light_radius = 0.f;
+
+		assert(shadows_rt->getZTexture());
+		shadows_rt->getZTexture()->activate(TS_LIGHT_SHADOW_MAP);
+	}
 }
 
 // ------------------------------------------------------

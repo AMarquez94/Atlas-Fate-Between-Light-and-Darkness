@@ -179,6 +179,7 @@ float3 decodeNormal(float3 n) {
 	return (n.xyz * 2. - 1.);
 }
 
+// Projects pixel image on given world coordinate
 float4 projectColor(float3 wPos) {
 
 	// Convert pixel position in world space to light space
@@ -193,6 +194,5 @@ float4 projectColor(float3 wPos) {
 
 	// Fade to zero in the last 1% of the zbuffer of the light
 	//light_projector_color *= smoothstep(1.0f, 0.15f, pos_in_light_homo_space.z);
-
 	return light_projector_color;
 }

@@ -6,13 +6,13 @@
     }
   },
   {
-    "entity":
+    "xentity":
     {
       "name": "LightPlayer"
       ,
       "transform":
       {
-        "pos": "-4.62722 10.185 -19.9464"
+        "pos": "-4.62722 2.185 -19.9464"
         ,
         "lookat": "-4.694 -16.782 -8.716"
       }
@@ -24,7 +24,7 @@
         "range": 29.2116,
         "angle": 91.8,
         "color": "1.0 1.0 1.0 1.0",
-				"projector" : "data/textures/light_cookie_hard.dds",
+				"projector" : "data/textures/batman.dds",
         "intensity": 1.0,
 				"ortosize" : 0.6,
         "shadows": true,

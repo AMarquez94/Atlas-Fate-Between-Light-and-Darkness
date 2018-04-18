@@ -263,9 +263,11 @@ float4 shade(float4 iPosition, bool use_shadows)
 	//att *= 1 / distance_to_light;
 
 	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.; // shadow factor
-	float clamp_spot = dot(light_dir, -light_direction.xyz) > light_angle ? 1 : 0; // spot factor 
 
-	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor * clamp_spot;// *projectColor(wPos).xyz;
+	float clamp_spot = dot(light_dir, -light_direction.xyz) > light_angle ? 1.0 : 0.0; // spot factor 
+
+	//return projectColor(wPos);
+	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * clamp_spot * shadow_factor * projectColor(wPos).xyz;
 	return float4(final_color, 1);
 }
 
@@ -281,7 +283,7 @@ float4 PS_dir_lights(in float4 iPosition : SV_Position) : SV_Target
 
 float4 PS_spot_lights(in float4 iPosition : SV_Position) : SV_Target
 {
-	return shade(iPosition, false);
+	return shade(iPosition, true);
 }
 
 // ----------------------------------------
