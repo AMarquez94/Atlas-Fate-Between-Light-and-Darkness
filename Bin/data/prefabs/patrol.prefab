@@ -54,7 +54,7 @@
         "rotation": "0 0 0 0"
       }
       ,
-      "light_dir":
+      "light_spot":
       {
         "type": "spotlight",
 				"proj_type": "perspective",
@@ -70,7 +70,7 @@
         "shadows_resolution" : 256,
         "shadows_fmt" : "R32_TYPELESS"
       },      
-			"hierarchy": {
+	"hierarchy": {
         "parent": "The Enemy",
         "pos": "0 1 0",
 				"lookat": "0 0 3"

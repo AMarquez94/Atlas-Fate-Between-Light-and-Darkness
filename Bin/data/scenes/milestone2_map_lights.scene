@@ -35,7 +35,7 @@
         "type": "directional",
 		"proj_type": "ortographic",
         "range": 29.2116,
-        "angle": 91.8,
+        "angle": 75,
         "color": "0.274 0.561 0.882 1.0",
         "intensity": 2.0,
 		"ortosize": 600,
@@ -70,7 +70,7 @@
         "type": "directional",
 				"proj_type": "ortographic",
         "range": 29.2116,
-        "angle": 91.8,
+        "angle": 75,
         "color": "0.274 0.561 0.882 1.0",
         "intensity": 2.0,
 				"ortosize": 200,
@@ -102,7 +102,7 @@
       "light_spot":
       {
         "range": 29.2116,
-        "angle": 90,
+        "angle": 75,
         "color": "1.0 1.0 1.0 1.0",
         "intensity": 5.0
       }
@@ -128,17 +128,16 @@
       ,
       "transform":
       {
-        "pos": "-6.35864 -0.7 -39.4"
-        ,
+        "pos": "-6.35864 -0.7 -39.4",
         "lookat": "-6.285 -9.421 -37.431"
       }
       ,
-      "light_dir":
+      "light_spot":
       {
         "type": "spotlight",
-				"proj_type": "perspective",
+		"proj_type": "perspective",
         "range": 29.2116,
-        "angle": 91.8,
+        "angle": 75,
         "color": "1.0 1.0 1.0 1.0",
         "intensity": 3.0,
         "shadows": true,
@@ -177,12 +176,12 @@
         "lookat": "2.643 -9.421 -25.662"
       }
       ,
-      "light_dir":
+      "light_spot":
       {
         "type": "spotlight",
 				"proj_type": "perspective",
         "range": 29.2116,
-        "angle": 91.8,
+        "angle": 75,
         "color": "1.0 1.0 1.0 1.0",
         "intensity": 3.0,
         "shadows": true,
@@ -221,12 +220,12 @@
         "lookat": "-13.619 -2.663 29.643"
       }
       ,
-      "light_dir":
+      "light_spot":
       {
         "type": "spotlight",
 				"proj_type": "perspective",
         "range": 29.2116,
-        "angle": 91.8,
+        "angle": 75,
         "color": "1.0 1.0 1.0 1.0",
         "intensity": 3.0,
         "shadows": true,
@@ -265,12 +264,12 @@
         "lookat": "-32.18 -2.537 66.221"
       }
       ,
-      "light_dir":
+      "light_spot":
       {
         "type": "spotlight",
 				"proj_type": "perspective",
         "range": 29.2116,
-        "angle": 91.8,
+        "angle": 75,
         "color": "1.0 1.0 1.0 1.0",
         "intensity": 3.0,
         "shadows": true,

@@ -14,7 +14,7 @@ DECL_OBJ_MANAGER("light_spot", TCompLightSpot);
 void TCompLightSpot::debugInMenu() {
 	ImGui::ColorEdit3("Color", &color.x);
 	ImGui::DragFloat("Intensity", &intensity, 0.01f, 0.f, 10.f);
-	ImGui::DragFloat("Angle", &angle, 0.5f, 0.f, 180.f);
+	ImGui::DragFloat("Angle", &angle, 0.5f, 0.f, 179.99f);
 	ImGui::DragFloat("Range", &range, 0.5f, 0.f, 120.f);
 }
 
@@ -69,7 +69,7 @@ MAT44 TCompLightSpot::getWorld() {
 	if (!c)
 		return MAT44::Identity;
 
-	float new_scale = tan(deg2rad(angle) * .5f) * range;
+	float new_scale = 2 * tan(deg2rad(angle * .5f)) * range;
 	return MAT44::CreateScale(VEC3(new_scale, new_scale, range)) * c->asMatrix();
 }
 
@@ -90,8 +90,6 @@ void TCompLightSpot::registerMsgs() {
 
 void TCompLightSpot::onCreate(const TMsgEntityCreated& msg) {
 
-	//EnginePhysics.createActor(*this);
-
 }
 
 void TCompLightSpot::onDestroy(const TMsgEntityDestroyed & msg) {
@@ -110,12 +108,14 @@ void TCompLightSpot::activate() {
 	MAT44 mtx_offset = MAT44::CreateScale(VEC3(0.5f, -0.5f, 1.0f))
 		* MAT44::CreateTranslation(VEC3(0.5f, 0.5f, 0.0f));
 
-	float new_scale = tan(deg2rad(angle) * .5f) * range;
-	cb_light.light_color = VEC4(c->getFront().x, c->getFront().y, c->getFront().z, 1); //color;
+	float spot_angle = deg2rad(angle * .5f);
+	cb_light.light_color = color;
 	cb_light.light_intensity = intensity;
 	cb_light.light_pos = c->getPosition();
-	cb_light.light_radius = new_scale * c->getScale();
+	cb_light.light_radius = range * c->getScale();
 	cb_light.light_view_proj_offset = getViewProjection() * mtx_offset;
+	cb_light.light_angle = cos(spot_angle);
+	cb_light.light_direction = VEC4(c->getFront().x, c->getFront().y, c->getFront().z, 1);
 	cb_light.updateGPU();
 }
 

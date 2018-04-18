@@ -86,6 +86,7 @@ CB_DEF(CCteObject, CB_OBJECT)   // Generates the b1
 CB_DEF(CCteLight, CB_LIGHT)
 {
 	VEC4  light_color;
+	VEC4  light_direction;
 	VEC3  light_pos;
 	float light_intensity;
 

@@ -260,20 +260,13 @@ float4 shade(float4 iPosition, bool use_shadows)
 	float3 cSpec = Specular(specular_color, h, view_dir, light_dir, a, NdL, NdV, NdH, VdH, LdV);
 
 	float  att = (1. - smoothstep(0.90, 0.98, distance_to_light / light_radius)); // Att, point light
-	//float  att_spot = (1. - smoothstep(light_angle_spot, 1, dot(-light_dir, light_color.xyz)));
 	//att *= 1 / distance_to_light;
 
-	// Shadow factor entre 0 (totalmente en sombra) y 1 (no ocluido)
-	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.;
+	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.; // shadow factor
+	float clamp_spot = dot(light_dir, -light_direction.xyz) > light_angle ? 1 : 0; // spot factor 
 
-	// Determine spot angle, temp condition
-	float lightToSurfaceAngle = degrees(acos(dot(-light_dir, light_color.xyz)));
-	if (lightToSurfaceAngle < 22.5) {
-		float3 final_color = NdL * (cDiff * (1.0f - cSpec) + cSpec) * att * light_intensity * shadow_factor;// *projectColor(wPos).xyz;
-		return float4(final_color, 1);
-	}
-
-	return float4(0, 0, 0, 1);
+	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor * clamp_spot;// *projectColor(wPos).xyz;
+	return float4(final_color, 1);
 }
 
 float4 PS_point_lights(in float4 iPosition : SV_Position) : SV_Target
