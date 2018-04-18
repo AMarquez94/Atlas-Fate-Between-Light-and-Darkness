@@ -38,6 +38,9 @@ void TCompLightDir::load(const json& j, TEntityParseContext& ctx) {
 		std::string projector_name = j.value("projector", "");
 		projector = Resources.get(projector_name)->as<CTexture>();
 	}
+	else {
+		projector = Resources.get("data/textures/default_white.dds")->as<CTexture>();
+	}
 
 	// Check if we need to allocate a shadow map
 	casts_shadows = j.value("casts_shadows", false);
@@ -88,13 +91,7 @@ void TCompLightDir::activate() {
 		return;
 
 	// Handling the projector
-	if (projector){
-		projector->activate(TS_LIGHT_PROJECTOR);
-		cb_light.use_projector = 1;
-	}
-	else {
-		cb_light.use_projector = 0;
-	}
+	projector->activate(TS_LIGHT_PROJECTOR);
 
 	// To avoid converting the range -1..1 to 0..1 in the shader
 	// we concatenate the view_proj with a matrix to apply this offset

@@ -41,6 +41,9 @@ void TCompLightSpot::load(const json& j, TEntityParseContext& ctx) {
 		std::string projector_name = j.value("projector", "");
 		projector = Resources.get(projector_name)->as<CTexture>();
 	}
+	else {
+		projector = Resources.get("data/textures/default_white.dds")->as<CTexture>();
+	}
 
 	// Check if we need to allocate a shadow map
 	casts_shadows = j.value("casts_shadows", false);
@@ -101,6 +104,7 @@ void TCompLightSpot::activate() {
 	if (!c)
 		return;
 
+	projector->activate(TS_LIGHT_PROJECTOR);
 	// To avoid converting the range -1..1 to 0..1 in the shader
 	// we concatenate the view_proj with a matrix to apply this offset
 	MAT44 mtx_offset = MAT44::CreateScale(VEC3(0.5f, -0.5f, 1.0f))
@@ -112,7 +116,6 @@ void TCompLightSpot::activate() {
 	cb_light.light_pos = c->getPosition();
 	cb_light.light_radius = new_scale * c->getScale();
 	cb_light.light_view_proj_offset = getViewProjection() * mtx_offset;
-	cb_light.use_projector = 0;
 	cb_light.updateGPU();
 }
 

@@ -186,13 +186,13 @@ float4 projectColor(float3 wPos) {
 	float3 pos_in_light_homo_space = pos_in_light_proj_space.xyz / pos_in_light_proj_space.w; // -1..1
 
 	// Use these coords to access the projector texture of the light dir
-	float4 light_projector_color = float4(1, 1, 1, 1);
-	light_projector_color *= txLightProjector.Sample(samBorderLinear, pos_in_light_homo_space.xy);
-	if (pos_in_light_proj_space.z < 0.)
-		light_projector_color = float4(0, 0, 0, 0);
+	float4 light_projector_color = txLightProjector.Sample(samBorderLinear, pos_in_light_homo_space.xy);
+
+	//if (pos_in_light_proj_space.z < 0.)
+		//light_projector_color = float4(0, 0, 0, 0);
 
 	// Fade to zero in the last 1% of the zbuffer of the light
-	light_projector_color *= smoothstep(1.0f, 0.15f, pos_in_light_homo_space.z);
+	//light_projector_color *= smoothstep(1.0f, 0.15f, pos_in_light_homo_space.z);
 
 	return light_projector_color;
 }

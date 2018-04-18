@@ -96,10 +96,10 @@ CB_DEF(CCteLight, CB_LIGHT)
 	float light_radius;                         // Used by point lights
 
 	//Some dummy values to upload to the gpu
-	float dummy1;
+	float light_angle;
+	float light_cut_off;
+	float light_cuto_out;
 	float dummy2;
-	float dummy3;
-	int use_projector;
 
 	MAT44 light_view_proj_offset;
 
