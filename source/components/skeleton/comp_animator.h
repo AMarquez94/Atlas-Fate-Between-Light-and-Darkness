@@ -46,6 +46,7 @@ public:
 	bool isCyclic(EAnimation animation);
 	bool isComposed(EAnimation animation);
 	EAnimation actualAnimation();
+	bool isPlayingAnimation(EAnimation animation);
 
 	float getAnimationDuration(EAnimation animation);
 

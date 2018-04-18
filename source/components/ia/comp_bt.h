@@ -61,6 +61,7 @@ private:
 public:
 
 	std::string name;
+	float timeAnimating = 0.0f;
 
 	void debugInMenu();
 	virtual void load(const json& j, TEntityParseContext& ctx) {};

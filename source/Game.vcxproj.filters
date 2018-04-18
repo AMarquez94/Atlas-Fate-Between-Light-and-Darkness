@@ -109,6 +109,7 @@
     <ClCompile Include="modules\game\module_level_select.cpp" />
     <ClCompile Include="components\object_controller\comp_noise_emitter.cpp" />
     <ClCompile Include="components\skeleton\comp_animator.cpp" />
+    <ClCompile Include="components\ia\comp_patrol_animator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -250,6 +251,7 @@
     <ClInclude Include="components\object_controller\comp_noise_emitter.h" />
     <ClInclude Include="components\skeleton\comp_animator.h" />
     <ClInclude Include="utils\dirent.h" />
+    <ClInclude Include="components\ia\comp_patrol_animator.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

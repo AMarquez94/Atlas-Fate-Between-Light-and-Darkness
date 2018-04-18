@@ -119,13 +119,21 @@ void TCompSkeleton::debugInMenu() {
   ImGui::Checkbox("Auto lock", &auto_lock);
   if (ImGui::SmallButton("As Cycle")) {
 	  this->changeCyclicAnimation(anim_id);
+	  
 	
   }
   if (ImGui::SmallButton("As Action")) {
-    model->getMixer()->executeAction(anim_id, in_delay, out_delay, 1.0f, auto_lock);
+	  executeActionAnimation(anim_id);
+	if (this->isExecutingActionAnimation(model->getCoreModel()->getCoreAnimation(anim_id)->getName())) dbg("\nexecuting\n");
+	else dbg("\nnot executing\n");
   }
   if (ImGui::SmallButton("Set Time Zero")) {
 	  model->getMixer()->setAnimationTime(0.f);
+  }
+
+  if (ImGui::SmallButton("IsExecuting")) {
+	  if (this->isExecutingCyclicAnimation(anim_id)) dbg("\nexecuting\n");
+	  else dbg("\nnot executing\n");
   }
 
   // Dump Mixer
@@ -285,9 +293,23 @@ bool TCompSkeleton::actionAnimationOnExecution() {
 }
 
 //return if the specified animation is executing
-bool TCompSkeleton::isExecutingAnimation(int animId) {
+bool TCompSkeleton::isExecutingCyclicAnimation(int animId) {
 	
-	//return model->getMixer()->getAnimationActionList().size > 0;
+	return model->getMixer()->getAnimationVector()[animId] != NULL;
+}
+
+
+bool TCompSkeleton::isExecutingActionAnimation(std::string animName) {
+
+	std::list<CalAnimationAction *>::iterator iteratorAnimationAction;
+	iteratorAnimationAction = model->getMixer()->getAnimationActionList().begin();
+	while (iteratorAnimationAction != model->getMixer()->getAnimationActionList().end())
+	{
+		if ((*iteratorAnimationAction)->getCoreAnimation()->getName().compare(animName)) {
+			return true;
+		}
+		iteratorAnimationAction++;
+	}
 	return false;
 }
 

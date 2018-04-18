@@ -142,3 +142,21 @@ float  TCompAnimator::getAnimationDuration(EAnimation animation) {
 
 	return compSkeleton->getAnimationDuration(animSet.animationId);
 }
+
+bool TCompAnimator::isPlayingAnimation(EAnimation animation) {
+	CEntity* e = ownHandle;
+	TCompSkeleton * compSkeleton = e->get<TCompSkeleton>();
+
+	if (animationsMap.find(animation) == animationsMap.end()) {
+		fatal("Animation doesn't exists");
+	}
+	AnimationSet animSet = animationsMap[animation];
+	bool toReturn = false;
+	if (animSet.animationType == TCompAnimator::EAnimationType::ACTION) {
+		toReturn = compSkeleton->isExecutingActionAnimation(animSet.animationName);
+	}
+	if (animSet.animationType == TCompAnimator::EAnimationType::CYCLIC) {
+		toReturn = compSkeleton->isExecutingCyclicAnimation(animSet.animationId);
+	}
+	return toReturn;
+}
