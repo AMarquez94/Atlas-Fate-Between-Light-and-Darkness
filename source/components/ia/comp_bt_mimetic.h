@@ -35,6 +35,7 @@ private:
 	bool hasHeardArtificialNoise = false;
 	bool hasHeardNaturalNoise = false;
 	VEC3 noiseSource = VEC3::Zero;
+  bool noiseSourceChanged = false;
   std::vector<VEC3> navmeshPath;
   unsigned int navmeshPathPoint;
 
@@ -106,13 +107,16 @@ public:
 	BTNode::ERes actionResetVariablesChase(float dt);
 	BTNode::ERes actionChasePlayerWithNoise(float dt);
 	BTNode::ERes actionMarkNoiseAsInactive(float dt);
+  BTNode::ERes actionGenerateNavmeshNoiseSource(float dt);
 	BTNode::ERes actionGoToNoiseSource(float dt);
 	BTNode::ERes actionWaitInNoiseSource(float dt);
 	BTNode::ERes actionSuspect(float dt);
 	BTNode::ERes actionRotateToNoiseSource(float dt);
+  BTNode::ERes actionGenerateNavmeshPlayerLastPos(float dt);
 	BTNode::ERes actionGoToPlayerLastPos(float dt);
 	BTNode::ERes actionWaitInPlayerLastPos(float dt);
 	BTNode::ERes actionSetGoInactive(float dt);
+  BTNode::ERes actionGenerateNavmeshInitialPos(float dt);
 	BTNode::ERes actionGoToInitialPos(float dt);
 	BTNode::ERes actionRotateToInitialPos(float dt);
 	BTNode::ERes actionJumpWall(float dt);
