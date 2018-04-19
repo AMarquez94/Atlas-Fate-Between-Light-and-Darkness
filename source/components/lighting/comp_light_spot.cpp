@@ -111,16 +111,16 @@ void TCompLightSpot::activate() {
 	// we concatenate the view_proj with a matrix to apply this offset
 	MAT44 mtx_offset = MAT44::CreateScale(VEC3(0.5f, -0.5f, 1.0f)) * MAT44::CreateTranslation(VEC3(0.5f, 0.5f, 0.0f));
 
-	float spot_angle = deg2rad(angle * .5f);
+	float spot_angle = cos(deg2rad(angle * .5f));
 	cb_light.light_color = color;
 	cb_light.light_intensity = intensity;
 	cb_light.light_pos = c->getPosition();
 	cb_light.light_radius = range * c->getScale();
 	cb_light.light_view_proj_offset = getViewProjection() * mtx_offset;
-	cb_light.light_angle = cos(spot_angle);
+	cb_light.light_angle = spot_angle;
 	cb_light.light_direction = VEC4(c->getFront().x, c->getFront().y, c->getFront().z, 1);
-	cb_light.light_inner_cut = cos(deg2rad(inner_cut * .5f));
-	cb_light.light_outer_cut = cos(spot_angle);
+	cb_light.light_inner_cut = cos(deg2rad(Clamp(inner_cut, 0.f, angle) * .5f));
+	cb_light.light_outer_cut = spot_angle;
 	cb_light.updateGPU();
 
 	// If we have a ZTexture, it's the time to activate it

@@ -38,7 +38,7 @@
         "angle": 75,
         "color": "0.274 0.561 0.882 1.0",
         "intensity": 2.0,
-				"ortosize": 150,
+				"ortosize": 450,
         "shadows": true,
 				"fov" : 15,
         "z_far" : 400,

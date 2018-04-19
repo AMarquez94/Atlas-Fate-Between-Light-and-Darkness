@@ -24,7 +24,7 @@ void VS(
   oTangent.w = iTangent.w;
 
   // Simulate a normal perturbation
-  world_pos.xyz += oNormal * 0.2 * sin( 5 * global_world_time + world_pos.x + world_pos.z * 0.2);
+  world_pos.xyz += oNormal * 0.05 * sin( 5 * global_world_time + world_pos.x + world_pos.z * 0.2);
 
   oPos = mul(world_pos, camera_view_proj);
 
@@ -58,9 +58,9 @@ float4 PS(
   int3 ss_load_coords = uint3(iPosition.xy, 0);
 
   // Obtain a random value associated to each pos in the surface
-  float4 noise0 = txNoiseMap.Sample( samLinear, iTex0 * 2.0 + 0.8 * global_world_time * float2(.5,0)) * 2 - 1;      // -1..1
-  float4 noise1 = txNoiseMap.Sample( samLinear, iTex0 * 8.0 + 0.7 * global_world_time * float2(.5,0.1)) * 2 - 1;      // -1..1
-  float4 noise2 = txNoiseMap.Sample( samLinear, iTex0 * 16 + 0.7 * global_world_time * float2(.55,-0.123)) * 2 - 1;      // -1..1
+  float4 noise0 = txNoiseMap.Sample( samLinear, iTex0 * 2.0 + 0.4 * global_world_time * float2(.5,0)) * 2 - 1;      // -1..1
+  float4 noise1 = txNoiseMap.Sample( samLinear, iTex0 * 8.0 + 0.5 * global_world_time * float2(.5,0.1)) * 2 - 1;      // -1..1
+  float4 noise2 = txNoiseMap.Sample( samLinear, iTex0 * 16 + 0.5 * global_world_time * float2(.55,-0.123)) * 2 - 1;      // -1..1
 
   // Add 3 octaves to break pattern repetition
   float2 noiseF = noise0.xy + noise1.xy * 0.5 + noise2.xy * .25;
@@ -78,10 +78,10 @@ float4 PS(
   float  zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
   float3 sea_bottom_wpos = getWorldCoords(iPosition.xy, zlinear);
 
-  float4 water_color = obj_color;
+  float4 water_color = color_material;
 
   float  distance_of_water_traversed = length( sea_bottom_wpos - iWorldPos );
-  float  amount_of_color_base = exp( -distance_of_water_traversed * 0.03 );
+  float  amount_of_color_base = exp( -distance_of_water_traversed * 0.06 );
   float4 surface_color = lerp( water_color, color_base, amount_of_color_base );
 
   // Shadow factor entre 0 (totalmente en sombra) y 1 (no ocluido)
@@ -107,9 +107,8 @@ float4 PS(
   // Add some specular
   float3 L = normalize( light_pos.xyz - iWorldPos );
   float spec_term = getSpecularTerm(iWorldPos, N, L);
-
   float4 final_color = surface_color * amount + env_color * ( 1 - amount );
 
   // Add spec + final color
-  return final_color + spec_term * shadow_factor;
+  return final_color + spec_term * 0.75 * shadow_factor;
 }

@@ -9,5 +9,5 @@
 		"roughness": "data/textures/enemy/tx_robotCrab_r.dds",
 		"emissive": "data/textures/enemy/tx_robotCrab_e.dds"
   },
-	"color" : "1.0 0.0 0.0 1.0"
+	"self_color" : "1.0 0.0 0.0 1.0"
 }

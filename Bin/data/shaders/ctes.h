@@ -124,7 +124,8 @@ CB_DEF(CCteMaterial, CB_MATERIAL)
 	float  scalar_metallic;
 	float  scalar_irradiance_vs_mipmaps;
 	float  scalar_emission;
-	VEC4  color_emission;
+	VEC4   color_emission;
+	VEC4   color_material;
 };
 
 CB_DEF(CCteSkinBones, CB_SKIN_BONES)

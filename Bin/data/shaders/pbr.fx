@@ -235,7 +235,7 @@ float3 Diffuse(float3 pAlbedo)
 }
 
 // --------------------------------------------------------
-float4 shade(float4 iPosition, bool use_shadows)
+float4 shade(float4 iPosition, out float3 light_dir, bool use_shadows)
 {
 	// Decode GBuffer information
 	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
@@ -246,7 +246,7 @@ float4 shade(float4 iPosition, bool use_shadows)
 	// From wPos to Light
 	float3 light_dir_full = light_pos.xyz - wPos;
 	float  distance_to_light = length(light_dir_full);
-	float3 light_dir = light_dir_full / distance_to_light;
+	light_dir = light_dir_full / distance_to_light;
 
 	float  NdL = saturate(dot(N, light_dir));
 	float  NdV = saturate(dot(N, view_dir));
@@ -263,30 +263,35 @@ float4 shade(float4 iPosition, bool use_shadows)
 	//att *= 1 / distance_to_light;
 
 	// Spotlight attenuation
-	float theta = dot(light_dir, -light_direction.xyz);
-	float att_spot = clamp((theta - light_outer_cut) / (light_inner_cut - light_outer_cut), 0, 1);
-	float clamp_spot = theta > light_angle ? 1.0 * att_spot : 0.0; // spot factor 
-
 	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.; // shadow factor
 
 	//return projectColor(wPos);
-	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * clamp_spot * shadow_factor;
+	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor;
 	return float4(final_color, 1);
 }
 
 float4 PS_point_lights(in float4 iPosition : SV_Position) : SV_Target
 {
-	return shade(iPosition, false);
+	float3 out_lightdir;
+	return shade(iPosition, out_lightdir, false);
 }
 
 float4 PS_dir_lights(in float4 iPosition : SV_Position) : SV_Target
-{
-	return shade(iPosition, true);
+{ 
+	float3 out_lightdir;
+	return shade(iPosition, out_lightdir, true);
 }
 
 float4 PS_spot_lights(in float4 iPosition : SV_Position) : SV_Target
-{
-	return shade(iPosition, true);
+{ 
+	float3 out_lightdir;
+	float4 light_color = shade(iPosition, out_lightdir, true);
+
+	float theta = dot(out_lightdir, -light_direction.xyz);
+	float att_spot = clamp((theta - light_outer_cut) / (light_inner_cut - light_outer_cut), 0, 1);
+	float clamp_spot = theta > light_angle ? 1.0 * att_spot : 0.0; // spot factor 
+	
+	return light_color * clamp_spot;
 }
 
 // ----------------------------------------

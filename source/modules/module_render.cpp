@@ -228,11 +228,11 @@ void CModuleRender::generateFrame() {
 		activateMainCamera();
 		cb_globals.updateGPU();
 		deferred.render(rt_main);
-		
-		CRenderManager::get().renderCategory("distorsions");
 
 		Render.startRenderInBackbuffer();
 		renderFullScreenQuad("dump_texture.tech", rt_main);
+
+		CRenderManager::get().renderCategory("distorsions");
 
 		// Debug render
 		{

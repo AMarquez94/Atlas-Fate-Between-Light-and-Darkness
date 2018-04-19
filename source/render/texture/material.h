@@ -11,7 +11,8 @@ class CMaterial : public IResource {
 
 	static const int max_textures = TS_NUM_MATERIALS_SLOTS;
 	CRenderCte<CCteMaterial> cb_material;
-
+	
+	VEC4 color;
 	bool  cast_shadows = true;
 
 public:

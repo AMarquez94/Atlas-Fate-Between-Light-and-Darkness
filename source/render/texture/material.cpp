@@ -39,7 +39,6 @@ bool CMaterial::create(const std::string& name) {
 		technique_name = j["technique"];
 
 	tech = Resources.get(technique_name)->as<CRenderTechnique>();
-
 	cast_shadows = j.value("shadows", true);
 
 	auto& j_textures = j["textures"];
@@ -78,8 +77,12 @@ bool CMaterial::create(const std::string& name) {
 	cb_material.color_emission = VEC4(1, 1, 1, 1);
 	cb_material.scalar_emission = j.value("emission", 20.0f);
 
+	if (j.count("self_color"))
+		cb_material.color_emission = loadVEC4(j["self_color"]);
+
+	cb_material.color_material = VEC4(1, 1, 1, 1);
 	if (j.count("color"))
-		cb_material.color_emission = loadVEC4(j["color"]);
+		cb_material.color_material = loadVEC4(j["color"]);
 
 	cb_material.updateGPU();
 
