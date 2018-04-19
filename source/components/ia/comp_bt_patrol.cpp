@@ -563,10 +563,9 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 	TCompRender *cRender = get<TCompRender>();
 
 	//Animation To Change
-	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	/*TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
 	float animDuration = myAnimator->getAnimationDuration((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::ATTACK);
 	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::ATTACK)) {
-		dbg("\nquepaaaaaaa\n");
 		myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::ATTACK);
 	}
 	timeAnimating += dt;
@@ -574,7 +573,7 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 		return BTNode::ERes::STAY;
 	}
 	//myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
-	timeAnimating = 0.0f;
+	timeAnimating = 0.0f;*/
 	cRender->color = VEC4(255, 0, 0, 1);
 
 	if (!pController->isInhibited) {
