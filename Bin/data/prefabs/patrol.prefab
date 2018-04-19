@@ -218,6 +218,14 @@
           },
 		  {
             "parent": "manageArtificialNoise",
+            "name": "generateNavmeshNoise",
+            "type": "action",
+            "condition": "",
+            "action": "actionGenerateNavmeshNoise",
+            "assert": ""
+          },
+		  {
+            "parent": "manageArtificialNoise",
             "name": "goToArtificialNoiseSource",
             "type": "action",
             "condition": "",
@@ -388,11 +396,27 @@
             "action": "",
             "assert": ""
           },
-          {
+		  {
             "parent": "manageDoPatrol",
+            "name": "managePatrolGoToWpt",
+            "type": "sequence",
+            "condition": "conditionGoToWpt",
+            "action": "",
+            "assert": ""
+          },
+		  {
+            "parent": "managePatrolGoToWpt",
+            "name": "generateNavmeshWpt",
+            "type": "action",
+            "condition": "",
+            "action": "actionGenerateNavmeshWpt",
+            "assert": ""
+          },
+          {
+            "parent": "managePatrolGoToWpt",
             "name": "goToWpt",
             "type": "action",
-            "condition": "conditionGoToWpt",
+            "condition": "",
             "action": "actionGoToWpt",
             "actionArg": [
               {
@@ -532,6 +556,14 @@
             "type": "action",
             "condition": "",
             "action": "actionBeginAlert",
+            "assert": ""
+          },
+		  {
+            "parent": "manageChase",
+            "name": "generateNavmeshChase",
+            "type": "action",
+            "condition": "",
+            "action": "actionGenerateNavmeshChase",
             "assert": ""
           },
           {
@@ -736,6 +768,14 @@
             "type": "action",
             "condition": "",
             "action": "actionClosestWpt",
+            "assert": ""
+          },
+		  {
+            "parent": "managePatrolSeen",
+            "name": "generateNavmeshGoToPatrol",
+            "type": "action",
+            "condition": "",
+            "action": "actionGenerateNavmeshGoToPatrol",
             "assert": ""
           },
           {

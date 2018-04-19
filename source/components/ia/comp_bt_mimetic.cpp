@@ -451,6 +451,7 @@ BTNode::ERes TCompAIMimetic::actionGenerateNavmeshPlayerLastPos(float dt)
   TCompTransform *tpos = get<TCompTransform>();
   navmeshPath = Engine.getNavmeshes().findPath(tpos->getPosition(), lastPlayerKnownPos);
   navmeshPathPoint = 0;
+  recalculateNavmesh = false;
   return BTNode::ERes::LEAVE;
 }
 
@@ -479,6 +480,7 @@ BTNode::ERes TCompAIMimetic::actionResetVariablesChase(float dt)
 
   navmeshPath = Engine.getNavmeshes().findPath(tpos->getPosition(), ppos->getPosition());
   navmeshPathPoint = 0;
+  recalculateNavmesh = false;
 
 	return BTNode::ERes::LEAVE;
 }
@@ -558,6 +560,7 @@ BTNode::ERes TCompAIMimetic::actionGenerateNavmeshNoiseSource(float dt)
   navmeshPath = Engine.getNavmeshes().findPath(tpos->getPosition(), noiseSource);
   navmeshPathPoint = 0;
   noiseSourceChanged = false;
+  recalculateNavmesh = false;
   return BTNode::ERes::LEAVE;
 }
 
@@ -642,6 +645,7 @@ BTNode::ERes TCompAIMimetic::actionGenerateNavmeshInitialPos(float dt)
   TCompTransform *tTransform = get<TCompTransform>();
   navmeshPath = EngineNavmeshes.findPath(tTransform->getPosition(), initialPos);
   navmeshPathPoint = 0;
+  recalculateNavmesh = false;
   return BTNode::ERes::LEAVE;
 }
 
@@ -951,7 +955,6 @@ bool TCompAIMimetic::moveToPoint(float speed, float rotationSpeed, VEC3 objectiv
   VEC3 vp = mypos->getPosition();
 
   if (VEC3::Distance(objective, vp) <= fabsf(left.Dot(finalDir)) * maxDistanceToNavmeshPoint + 0.1f) {
-    //mypos->setPosition(objective);
     return true;
   }
   else {
