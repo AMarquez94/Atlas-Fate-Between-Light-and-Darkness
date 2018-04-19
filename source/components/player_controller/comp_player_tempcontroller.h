@@ -51,6 +51,7 @@ struct TMsgStateFinish {
 
 class TCompTempPlayerController : public TCompBase
 {
+
 	/* DEPRECATED */
 	std::map<std::string, CRenderMesh*> mesh_states;
 

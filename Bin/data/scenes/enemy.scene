@@ -5,7 +5,7 @@
 		}
 	},
 	{
-		"entity": {
+		"xentity": {
 		  "prefab": "data/prefabs/patrol.prefab",
 		  "name": "The Enemy 1",
       "transform": {
@@ -25,7 +25,7 @@
 			}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 		  "prefab": "data/prefabs/patrol.prefab",
 		  "name": "The Enemy 2",
 		  "transform": {
@@ -57,7 +57,7 @@
 			}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 		  "prefab": "data/prefabs/patrol.prefab",
 		  "name": "The Enemy 3",
 		  "transform": {
@@ -122,7 +122,7 @@
 			}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 		  "prefab": "data/prefabs/patrol.prefab",
 		  "name": "The Enemy 4",
 		  "transform": {
@@ -212,7 +212,7 @@
 			}
 		}
 	}, {
-		"xentity": {
+		"entity": {
 			"prefab": "data/prefabs/mimetic.prefab",
 			"name": "Mimetic 2",
 			"transform": {
@@ -220,6 +220,16 @@
 				"lookat": "-25 0 71"
 			},
 			"ai_mimetic": {
+				"waypoints": [
+				  {
+					"position": "-25 0 70",
+					"lookAt": "1 0 1"
+				  },
+				  {
+					"position": "-25 0 110",
+					"lookAt": "1 0 0"
+				  }
+				],
 				"startLightsOn": false,
 				"type": "floor",
 				"isSlept": false

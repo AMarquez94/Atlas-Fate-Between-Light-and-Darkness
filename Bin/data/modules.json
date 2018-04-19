@@ -5,23 +5,25 @@
     "physics",
     "entities",
     "render",
-		"cameras",
+	"navmeshes",
+	"cameras",
     "main_menu",
     "game_manager",
     "splash",
     "test_input",
     "map_intro",
-		"level_select",
-		"game_over"	
+	"level_select",
+	"game_over"	
   ],
   "render": 
   [
     "render",
+	"navmeshes",
     "input",
     "main_menu",
     "game_manager",
     "map_intro",
-		"level_select",
+	"level_select",
     "game_over",
     "entities",
     "cameras"

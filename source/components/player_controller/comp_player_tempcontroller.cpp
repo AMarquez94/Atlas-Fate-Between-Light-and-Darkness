@@ -14,11 +14,11 @@
 #include "components/comp_name.h"
 #include "windows/app.h"
 #include "components/comp_group.h"
+#include "render/render_utils.h"
 
 DECL_OBJ_MANAGER("player_tempcontroller", TCompTempPlayerController);
 
 void TCompTempPlayerController::debugInMenu() {
-
 }
 
 void TCompTempPlayerController::renderDebug() {

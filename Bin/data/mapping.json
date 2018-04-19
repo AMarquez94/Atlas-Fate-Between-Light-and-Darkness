@@ -123,5 +123,10 @@
     "name": "btMenuCancel",
     "all": false,
     "buttons":  ["pad_b"]
+  },
+  {
+    "name": "btDebugNavmesh",
+    "all": false,
+    "buttons":  ["n"]
   }
 ]

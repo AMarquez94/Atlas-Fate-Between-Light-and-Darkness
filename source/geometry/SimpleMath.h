@@ -256,6 +256,7 @@ struct Vector3 : public XMFLOAT3
 
     // Static functions
     static float Distance( const Vector3& v1, const Vector3& v2 );
+    static float Distance2D(const Vector3& v1, const Vector3& v2);
     static float DistanceSquared( const Vector3& v1, const Vector3& v2 );
 
     static void Min( const Vector3& v1, const Vector3& v2, Vector3& result );

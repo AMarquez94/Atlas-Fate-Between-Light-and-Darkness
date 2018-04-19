@@ -24,6 +24,12 @@ void TCompAIMimetic::debugInMenu() {
 		validState = current->getName();
 	}
 
+  if (navmeshPath.size() > 1) {
+    for (int i = 0; i < navmeshPath.size() - 1; i++) {
+      renderLine(navmeshPath[i], navmeshPath[i+1], VEC4(1,0,0,1));
+    }
+  }
+
 	ImGui::Text("Current state: %s", validState.c_str());
 }
 
@@ -67,6 +73,7 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 	addChild("manageObserveTypeFloor", "turnRightObserveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionObserveRight, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
 	addChild("manageObserveTypeFloor", "waitRightObserveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitObserving, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
 	
+  addChild("managePatrol", "generateNavmeshGoToWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGenerateNavmeshWpt, nullptr);
 	addChild("managePatrol", "goToWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToWpt, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
 	addChild("managePatrol", "resetTimerWaitInWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionResetTimerWaiting, nullptr);
 	addChild("managePatrol", "waitInWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitInWpt, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
@@ -80,8 +87,10 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 	addChild("mimetic", "manageArtificialNoise", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionHasHeardArtificialNoise, nullptr, nullptr);
 	addChild("manageArtificialNoise", "markArtificialNoiseAsInactive", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionMarkNoiseAsInactive, nullptr);
 	addChild("manageArtificialNoise", "jumpFloorNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionJumpFloor, nullptr);
+  addChild("manageArtificialNoise", "generateNavmeshNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGenerateNavmeshNoiseSource, nullptr/*(BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise*/);
 	addChild("manageArtificialNoise", "goToNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToNoiseSource, nullptr/*(BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise*/);
 	addChild("manageArtificialNoise", "waitInNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitInNoiseSource, nullptr/*(BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise*/);
+  addChild("manageArtificialNoise", "setGoInactiveArtificialNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetGoInactive, nullptr/*(BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise*/);
 
 	addChild("mimetic", "manageSuspect", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionNotSurePlayerInFov, nullptr, nullptr);
 	addChild("manageSuspect", "suspect", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSuspect, nullptr);
@@ -93,19 +102,25 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 	addChild("manageNaturalNoise", "setGoInactiveAfterNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetGoInactive, nullptr);
 
 	addChild("mimetic", "managePlayerLost", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionNotGoingInactive, nullptr, nullptr);
+	addChild("managePlayerLost", "generateNavmeshPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGenerateNavmeshPlayerLastPos, nullptr);
 	addChild("managePlayerLost", "goToPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToPlayerLastPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
 	addChild("managePlayerLost", "resetTimerWaitInPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionResetTimerWaiting, nullptr);
 	addChild("managePlayerLost", "waitInPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitInPlayerLastPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
-	addChild("managePlayerLost", "setGoInactive", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetGoInactive, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
+	addChild("managePlayerLost", "setGoInactive", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetGoInactive, nullptr);
 
 	addChild("mimetic", "manageGoingInactive", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
 	addChild("manageGoingInactive", "manageGoingInactiveTypeWall", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionIsTypeWall, nullptr, nullptr);
-	addChild("manageGoingInactiveTypeWall", "goToInitialPosTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
+  addChild("manageGoingInactiveTypeWall", "goToInitialPosTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
+  addChild("manageGoingInactiveTypeWall", "generateNavmeshInitialPosTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGenerateNavmeshInitialPos, nullptr);
 	addChild("manageGoingInactiveTypeWall", "rotateToInitialPosTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionRotateToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
 	addChild("manageGoingInactiveTypeWall", "jumpWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionJumpWall, nullptr);
 	addChild("manageGoingInactiveTypeWall", "holdOnWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionHoldOnWall, nullptr);
 	addChild("manageGoingInactiveTypeWall", "setInactiveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetInactive, nullptr);
+  addChild("manageGoingInactive", "manageGoingInactiveTypeWpts", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionHasWpts, nullptr, nullptr);
+  addChild("manageGoingInactiveTypeWpts", "closestWptTypeWpts", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionClosestWpt, nullptr);
+  addChild("manageGoingInactiveTypeWpts", "setInactiveTypeWpts", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetInactive, nullptr);
 	addChild("manageGoingInactive", "manageGoingInactiveTypeFloor", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionIsTypeFloor, nullptr, nullptr);
+	addChild("manageGoingInactiveTypeFloor", "generateNavmeshInitialPosTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGenerateNavmeshInitialPos, nullptr);
 	addChild("manageGoingInactiveTypeFloor", "goToInitialPosTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
 	addChild("manageGoingInactiveTypeFloor", "rotateToInitialPosTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionRotateToInitialPos, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
 	addChild("manageGoingInactiveTypeFloor", "setInactiveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetInactive, nullptr);
@@ -193,6 +208,7 @@ void TCompAIMimetic::onMsgNoiseListened(const TMsgNoiseMade & msg)
 		else {
 			hasHeardNaturalNoise = true;
 		}
+    noiseSourceChanged = noiseSource != msg.noiseOrigin;
 		noiseSource = msg.noiseOrigin;
 	}
 }
@@ -323,6 +339,7 @@ BTNode::ERes TCompAIMimetic::actionSetActive(float dt)
 	return BTNode::ERes::LEAVE;
 }
 
+
 BTNode::ERes TCompAIMimetic::actionJumpFloor(float dt)
 {
 	TCompRigidbody *tCollider = get<TCompRigidbody>();
@@ -331,23 +348,18 @@ BTNode::ERes TCompAIMimetic::actionJumpFloor(float dt)
 	return BTNode::ERes::LEAVE;
 }
 
+BTNode::ERes TCompAIMimetic::actionGenerateNavmeshWpt(float dt)
+{
+  TCompTransform *tTransform = get<TCompTransform>();
+  navmeshPath = EngineNavmeshes.findPath(tTransform->getPosition(), _waypoints[currentWaypoint].position);
+  navmeshPathPoint = 0;
+  recalculateNavmesh = false;
+  return BTNode::ERes::LEAVE;
+}
+
 BTNode::ERes TCompAIMimetic::actionGoToWpt(float dt)
 {
-	TCompTransform *mypos = get<TCompTransform>();
-	rotateTowardsVec(getWaypoint().position, rotationSpeedObservation, dt);
-
-	VEC3 vp = mypos->getPosition();
-	if (VEC3::Distance(getWaypoint().position, vp) < speed * dt) {
-		mypos->setPosition(getWaypoint().position);
-		return BTNode::ERes::LEAVE;
-	}
-	else {
-		VEC3 vfwd = mypos->getFront();
-		vfwd.Normalize();
-		vp = vp + speed * dt *vfwd;
-		mypos->setPosition(vp);				//Move towards wpt
-		return BTNode::ERes::STAY;
-	}
+  return moveToPoint(speed, rotationSpeedPatrolling, getWaypoint().position, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIMimetic::actionResetTimerWaiting(float dt)
@@ -434,6 +446,14 @@ BTNode::ERes TCompAIMimetic::actionRotateToNoiseSource(float dt)
 	return isInObjective ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
 
+BTNode::ERes TCompAIMimetic::actionGenerateNavmeshPlayerLastPos(float dt)
+{
+  TCompTransform *tpos = get<TCompTransform>();
+  navmeshPath = Engine.getNavmeshes().findPath(tpos->getPosition(), lastPlayerKnownPos);
+  navmeshPathPoint = 0;
+  return BTNode::ERes::LEAVE;
+}
+
 BTNode::ERes TCompAIMimetic::actionResetVariablesChase(float dt)
 {
 	goingInactive = false;
@@ -453,15 +473,25 @@ BTNode::ERes TCompAIMimetic::actionResetVariablesChase(float dt)
 		eNoiseEmitter->sendMsg(msg);
 	}
 
+  TCompTransform *tpos = get<TCompTransform>();
+  CEntity *player = getEntityByName(entityToChase);
+  TCompTransform *ppos = player->get<TCompTransform>();
+
+  navmeshPath = Engine.getNavmeshes().findPath(tpos->getPosition(), ppos->getPosition());
+  navmeshPathPoint = 0;
+
 	return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
 {
 	TCompTransform *mypos = get<TCompTransform>();
-	CEntity *player = (CEntity *)getEntityByName(entityToChase);
+	CEntity *player = getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
 	TCompRender * cRender = get<TCompRender>();
+
+  hasHeardArtificialNoise = false;
+  hasHeardNaturalNoise = false;
 
 	cRender->color = VEC4(255, 0, 0, 1);
 
@@ -470,6 +500,12 @@ BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
 		/* If we had the player's previous position, know where he is going */
 		isLastPlayerKnownDirLeft = mypos->isInLeft(ppos->getPosition() - lastPlayerKnownPos);
 	}
+
+  if (lastPlayerKnownPos != ppos->getPosition()) {
+    navmeshPath = EngineNavmeshes.findPath(mypos->getPosition(), ppos->getPosition());
+    navmeshPathPoint = 0;
+  }
+
 	lastPlayerKnownPos = ppos->getPosition();
 
 	float distToPlayer = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
@@ -489,12 +525,21 @@ BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
 		return BTNode::ERes::LEAVE;
 	}
 	else {
-			rotateTowardsVec(ppos->getPosition(), rotationSpeedChase, dt);
-			VEC3 vp = mypos->getPosition();
-			VEC3 vfwd = mypos->getFront();
-			vfwd.Normalize();
-			vp = vp + chaseSpeed * dt * vfwd;
-			mypos->setPosition(vp);
+
+    VEC3 nextPos = navmeshPath.size() > 0 && navmeshPathPoint < navmeshPath.size() ?
+      navmeshPath[navmeshPathPoint] :
+      ppos->getPosition();
+    
+		rotateTowardsVec(nextPos, rotationSpeedChase, dt);
+		VEC3 vp = mypos->getPosition();
+		VEC3 vfwd = mypos->getFront();
+		vfwd.Normalize();
+		vp = vp + chaseSpeed * dt * vfwd;
+		mypos->setPosition(vp);
+
+    if (VEC3::Distance2D(nextPos, vp) <= maxDistanceToNavmeshPoint) {
+      navmeshPathPoint++;
+    }
 		return BTNode::ERes::STAY;
 	}
 }
@@ -507,11 +552,18 @@ BTNode::ERes TCompAIMimetic::actionMarkNoiseAsInactive(float dt)
 	return BTNode::ERes::LEAVE;
 }
 
+BTNode::ERes TCompAIMimetic::actionGenerateNavmeshNoiseSource(float dt)
+{
+  TCompTransform *tpos = get<TCompTransform>();
+  navmeshPath = Engine.getNavmeshes().findPath(tpos->getPosition(), noiseSource);
+  navmeshPathPoint = 0;
+  noiseSourceChanged = false;
+  return BTNode::ERes::LEAVE;
+}
+
 BTNode::ERes TCompAIMimetic::actionGoToNoiseSource(float dt)
 {
 	TCompTransform *mypos = get<TCompTransform>();
-	rotateTowardsVec(noiseSource, rotationSpeedNoise, dt);
-
 	VEC3 vp = mypos->getPosition();
 
 	CEntity * ePlayer = getEntityByName(entityToChase);
@@ -520,19 +572,14 @@ BTNode::ERes TCompAIMimetic::actionGoToNoiseSource(float dt)
 
 	if (VEC3::Distance(vp, pp) <= autoChaseDistance && isPlayerInFov()) {
 		return BTNode::ERes::LEAVE;
-	}
-
-	if (VEC3::Distance(noiseSource, vp) < speed * 1.5f * dt) {
-		mypos->setPosition(noiseSource);
-		return BTNode::ERes::LEAVE;
-	}
-	else {
-		VEC3 vfwd = mypos->getFront();
-		vfwd.Normalize();
-		vp = vp + speed * 1.5f * dt *vfwd;
-		mypos->setPosition(vp);				//Move towards wpt
-		return BTNode::ERes::STAY;
-	}
+  }
+  else {
+    if (noiseSourceChanged) {
+      navmeshPath = Engine.getNavmeshes().findPath(mypos->getPosition(), noiseSource);
+      navmeshPathPoint = 0;
+    }
+    return moveToPoint(speed, rotationSpeedPatrolling, noiseSource, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
+  }
 }
 
 BTNode::ERes TCompAIMimetic::actionWaitInNoiseSource(float dt)
@@ -559,25 +606,14 @@ BTNode::ERes TCompAIMimetic::actionWaitInNoiseSource(float dt)
 
 BTNode::ERes TCompAIMimetic::actionGoToPlayerLastPos(float dt)
 {
-	TCompTransform *mypos = get<TCompTransform>();
-	CEntity *player = (CEntity *)getEntityByName(entityToChase);
-	TCompTransform *ppos = player->get<TCompTransform>();
-	rotateTowardsVec(lastPlayerKnownPos, rotationSpeedChaseDeg, dt);
 
-	VEC3 vp = mypos->getPosition();
-
-	if (VEC3::Distance(lastPlayerKnownPos, vp) < speed * dt) {
-		mypos->setPosition(lastPlayerKnownPos);
-		lastPlayerKnownPos = VEC3::Zero;
-		return BTNode::ERes::LEAVE;
-	}
-	else {
-		VEC3 vfwd = mypos->getFront();
-		vfwd.Normalize();
-		vp = vp + speed * dt * vfwd;
-		mypos->setPosition(vp);
-		return BTNode::ERes::STAY;
-	}
+  if (moveToPoint(speed, rotationSpeedChase, lastPlayerKnownPos, dt)) {
+    lastPlayerKnownPos = VEC3::Zero;
+    return BTNode::ERes::LEAVE;
+  }
+  else {
+    return BTNode::ERes::STAY;
+  }
 }
 
 BTNode::ERes TCompAIMimetic::actionWaitInPlayerLastPos(float dt)
@@ -601,28 +637,20 @@ BTNode::ERes TCompAIMimetic::actionSetGoInactive(float dt)
 	return BTNode::ERes::LEAVE;
 }
 
+BTNode::ERes TCompAIMimetic::actionGenerateNavmeshInitialPos(float dt)
+{
+  TCompTransform *tTransform = get<TCompTransform>();
+  navmeshPath = EngineNavmeshes.findPath(tTransform->getPosition(), initialPos);
+  navmeshPathPoint = 0;
+  return BTNode::ERes::LEAVE;
+}
+
 BTNode::ERes TCompAIMimetic::actionGoToInitialPos(float dt)
 {
 	TCompTransform *mypos = get<TCompTransform>();
-	rotateTowardsVec(initialPos, rotationSpeedObservation, dt);
+  VEC3 initialPosWithMyY = VEC3(initialPos.x, mypos->getPosition().y, initialPos.z);
 
-	VEC3 vp = mypos->getPosition();
-
-	VEC3 initialPosWithoutY = VEC3(initialPos.x, 0, initialPos.z);
-	VEC3 vpWithoutY = VEC3(vp.x, 0, vp.z);
-
-
-	if (VEC3::Distance(initialPosWithoutY, vpWithoutY) < speed * dt) {
-		mypos->setPosition(VEC3(initialPos.x, vp.y, initialPos.z));
-		return BTNode::ERes::LEAVE;
-	}
-	else {
-		VEC3 vfwd = mypos->getFront();
-		vfwd.Normalize();
-		vp = vp + speed * dt * vfwd;
-		mypos->setPosition(vp);
-		return BTNode::ERes::STAY;
-	}
+  return moveToPoint(speed, rotationSpeedPatrolling, initialPosWithMyY, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIMimetic::actionRotateToInitialPos(float dt)
@@ -658,6 +686,25 @@ BTNode::ERes TCompAIMimetic::actionSetInactive(float dt)
 	return BTNode::ERes::LEAVE;
 }
 
+BTNode::ERes TCompAIMimetic::actionClosestWpt(float dt)
+{
+  float minDistance = INFINITY;
+  int  minIndexWpt = 0;
+
+  TCompTransform *mypos = get<TCompTransform>();
+
+  for (int i = 0; i < _waypoints.size(); i++) {
+    float currDistance = VEC3::Distance(mypos->getPosition(), _waypoints[i].position);
+    if (currDistance < minDistance) {
+      minDistance = currDistance;
+      minIndexWpt = i;
+    }
+  }
+
+  currentWaypoint = minIndexWpt;
+  return BTNode::ERes::LEAVE;
+}
+
 
 /* CONDITIONS */
 
@@ -679,6 +726,11 @@ bool TCompAIMimetic::conditionIsNotPlayerInFovAndNotNoise(float dt)
 bool TCompAIMimetic::conditionIsNotActive(float dt)
 {
 	return !isActive;
+}
+
+bool TCompAIMimetic::conditionHasWpts(float dt)
+{
+  return _waypoints.size() > 0;
 }
 
 bool TCompAIMimetic::conditionIsTypeFloor(float dt)
@@ -747,8 +799,8 @@ bool TCompAIMimetic::assertNotPlayerInFov(float dt)
 bool TCompAIMimetic::rotateTowardsVec(VEC3 objective, float rotationSpeed, float dt){
 	bool isInObjective = false;
 	TCompTransform *mypos = get<TCompTransform>();
-	float y, r, p;
-	mypos->getYawPitchRoll(&y, &p, &r);
+  float y, r, p;
+  mypos->getYawPitchRoll(&y, &p, &r);
 	float deltaYaw = mypos->getDeltaYawToAimTo(objective);
 	if (fabsf(deltaYaw) <= rotationSpeed * dt) {
 		y += deltaYaw;
@@ -762,12 +814,13 @@ bool TCompAIMimetic::rotateTowardsVec(VEC3 objective, float rotationSpeed, float
 		else {
 			y -= rotationSpeed * dt;
 		}
+	  mypos->setYawPitchRoll(y, p, r);
 	}
-	mypos->setYawPitchRoll(y, p, r);
 	return isInObjective;
 }
 
 bool TCompAIMimetic::isPlayerInFov() {
+  //return false; //TODO: Borrar
 
 	TCompTransform *mypos = get<TCompTransform>();
 	CHandle hPlayer = getEntityByName(entityToChase);
@@ -874,4 +927,51 @@ TCompAIMimetic::EType TCompAIMimetic::parseStringMimeticType(const std::string &
 		return EType::NUM_TYPES;
 	}
 	
+}
+
+bool TCompAIMimetic::moveToPoint(float speed, float rotationSpeed, VEC3 objective, float dt)
+{
+  TCompTransform *mypos = get<TCompTransform>();
+
+  VEC3 nextPos = navmeshPath.size() > 0 && navmeshPathPoint < navmeshPath.size() ?
+    navmeshPath[navmeshPathPoint] :
+    objective;
+
+  rotateTowardsVec(nextPos, rotationSpeed, dt);
+
+  VEC3 left = mypos->getLeft();
+  left.Normalize();
+  VEC3 finalDir = objective - mypos->getPosition();
+  finalDir = VEC3(finalDir.x, 0.f, finalDir.z);
+  finalDir.Normalize();
+  VEC3 intermediateDir = nextPos - mypos->getPosition();
+  intermediateDir = VEC3(intermediateDir.x, 0, intermediateDir.z);
+  intermediateDir.Normalize();
+
+  VEC3 vp = mypos->getPosition();
+
+  if (VEC3::Distance(objective, vp) <= fabsf(left.Dot(finalDir)) * maxDistanceToNavmeshPoint + 0.1f) {
+    //mypos->setPosition(objective);
+    return true;
+  }
+  else {
+    float actualSpeed = speed;
+    VEC3 front = mypos->getFront();
+    front.Normalize();
+    if (fabsf(front.Dot(intermediateDir) < 0.6f)) {
+      actualSpeed = 0;
+    }
+    else if (!recalculateNavmesh) {
+      navmeshPath = EngineNavmeshes.findPath(vp, objective);
+      navmeshPathPoint = 0;
+      recalculateNavmesh = true;
+    }
+    vp = vp + actualSpeed * dt * front;
+    mypos->setPosition(vp);				//Move towards wpt
+
+    if (VEC3::Distance2D(nextPos, vp) <= fabsf(left.Dot(intermediateDir) * maxDistanceToNavmeshPoint) + 0.1f) {
+      navmeshPathPoint++;
+    }
+    return false;
+  }
 }
