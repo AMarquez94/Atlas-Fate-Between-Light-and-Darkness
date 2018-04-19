@@ -262,12 +262,15 @@ float4 shade(float4 iPosition, bool use_shadows)
 	float  att = (1. - smoothstep(0.90, 0.98, distance_to_light / light_radius)); // Att, point light
 	//att *= 1 / distance_to_light;
 
+	// Spotlight attenuation
+	float theta = dot(light_dir, -light_direction.xyz);
+	float att_spot = clamp((theta - light_outer_cut) / (light_inner_cut - light_outer_cut), 0, 1);
+	float clamp_spot = theta > light_angle ? 1.0 * att_spot : 0.0; // spot factor 
+
 	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.; // shadow factor
 
-	float clamp_spot = dot(light_dir, -light_direction.xyz) > light_angle ? 1.0 : 0.0; // spot factor 
-
 	//return projectColor(wPos);
-	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * clamp_spot * shadow_factor * projectColor(wPos).xyz;
+	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * clamp_spot * shadow_factor;
 	return float4(final_color, 1);
 }
 

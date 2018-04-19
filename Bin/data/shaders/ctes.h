@@ -96,10 +96,10 @@ CB_DEF(CCteLight, CB_LIGHT)
 	float light_shadows_step_with_inv_res;      // light_shadows_step * light_shadows_inverse_resolution
 	float light_radius;                         // Used by point lights
 
-	//Some dummy values to upload to the gpu
+	//Some spotlight related values.
 	float light_angle;
-	float light_cut_off;
-	float light_cuto_out;
+	float light_inner_cut;
+	float light_outer_cut;
 	float dummy2;
 
 	MAT44 light_view_proj_offset;

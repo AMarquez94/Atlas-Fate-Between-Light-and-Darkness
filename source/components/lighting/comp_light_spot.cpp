@@ -14,8 +14,9 @@ DECL_OBJ_MANAGER("light_spot", TCompLightSpot);
 void TCompLightSpot::debugInMenu() {
 	ImGui::ColorEdit3("Color", &color.x);
 	ImGui::DragFloat("Intensity", &intensity, 0.01f, 0.f, 10.f);
-	ImGui::DragFloat("Angle", &angle, 0.5f, 0.f, 179.99f);
-	ImGui::DragFloat("Range", &range, 0.5f, 0.f, 120.f);
+	ImGui::DragFloat("Angle", &angle, 0.5f, 1.f, 160.f);
+	ImGui::DragFloat("Cut Out", &inner_cut, 0.5f, 1.f, angle);
+	ImGui::DragFloat("Range", &range, 0.5f, 1.f, 120.f);
 }
 
 void TCompLightSpot::renderDebug() {
@@ -36,6 +37,8 @@ void TCompLightSpot::load(const json& j, TEntityParseContext& ctx) {
 	casts_shadows = j.value("shadows", true);
 	angle = j.value("angle", 45.f);
 	range = j.value("range", 10.f);
+	inner_cut = j.value("inner_cut", angle);
+	outer_cut = j.value("outer_cut", angle);
 
 	if (j.count("projector")) {
 		std::string projector_name = j.value("projector", "");
@@ -69,7 +72,7 @@ MAT44 TCompLightSpot::getWorld() {
 	if (!c)
 		return MAT44::Identity;
 
-	float new_scale = 2 * tan(deg2rad(angle * .5f)) * range;
+	float new_scale = tan(deg2rad(angle * .5f)) * range;
 	return MAT44::CreateScale(VEC3(new_scale, new_scale, range)) * c->asMatrix();
 }
 
@@ -116,6 +119,8 @@ void TCompLightSpot::activate() {
 	cb_light.light_view_proj_offset = getViewProjection() * mtx_offset;
 	cb_light.light_angle = cos(spot_angle);
 	cb_light.light_direction = VEC4(c->getFront().x, c->getFront().y, c->getFront().z, 1);
+	cb_light.light_inner_cut = cos(deg2rad(inner_cut * .5f));
+	cb_light.light_outer_cut = cos(spot_angle);
 	cb_light.updateGPU();
 
 	// If we have a ZTexture, it's the time to activate it

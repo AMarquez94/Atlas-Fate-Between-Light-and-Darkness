@@ -29,6 +29,8 @@ public:
 	/* spotlight parameters */
 	float range;
 	float angle;
+	float inner_cut;
+	float outer_cut;
 
 	void debugInMenu();
 	void renderDebug();
