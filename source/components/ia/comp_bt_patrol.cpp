@@ -11,6 +11,7 @@
 #include "components/physics/comp_collider.h"
 #include "physics/physics_collider.h"
 #include "render/render_utils.h"
+#include "components/ia/comp_patrol_animator.h"
 
 
 DECL_OBJ_MANAGER("ai_patrol", TCompAIPatrol);
@@ -289,6 +290,10 @@ BTNode::ERes TCompAIPatrol::actionShadowMerged(float dt)
 
 BTNode::ERes TCompAIPatrol::actionStunned(float dt)
 {
+	//Animation To Change
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+
 	return BTNode::ERes::STAY;
 }
 
@@ -302,6 +307,10 @@ BTNode::ERes TCompAIPatrol::actionFixed(float dt)
 BTNode::ERes TCompAIPatrol::actionBeginAlert(float dt)
 {
 	turnOnLight();
+	//Animation To Change
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+
 	return BTNode::ERes::LEAVE;
 }
 
@@ -326,6 +335,11 @@ BTNode::ERes TCompAIPatrol::actionClosestWpt(float dt)
 
 BTNode::ERes TCompAIPatrol::actionEndAlert(float dt)
 {
+
+	//Animation To Change
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+
 	turnOffLight();
 	suspectO_Meter = 0.f;
 	TCompRender *cRender = get<TCompRender>();
@@ -358,6 +372,9 @@ BTNode::ERes TCompAIPatrol::actionGoToNoiseSource(float dt)
 
 	TCompTransform *mypos = get<TCompTransform>();
 	rotateTowardsVec(noiseSource, rotationSpeed, dt);
+
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
 
 	VEC3 vp = mypos->getPosition();
 
@@ -400,6 +417,9 @@ BTNode::ERes TCompAIPatrol::actionWaitInNoiseSource(float dt)
 	CEntity * ePlayer = getEntityByName(entityToChase);
 	TCompTransform * ppos = get<TCompTransform>();
 	VEC3 pp = ppos->getPosition();
+	//Animation To Change
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
 
 	if (isPlayerInFov(entityToChase, fov - deg2rad(1.f), autoChaseDistance - 1.f)) {
 		current = nullptr;
@@ -424,6 +444,9 @@ BTNode::ERes TCompAIPatrol::actionGoToWpt(float dt)
 
 	TCompTransform *mypos = get<TCompTransform>();
 	rotateTowardsVec(getWaypoint().position, dt, rotationSpeed);
+	//Animation To Change
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
 
 	VEC3 vp = mypos->getPosition();
 	if (VEC3::Distance(getWaypoint().position, vp) < speed * dt) {
@@ -444,6 +467,10 @@ BTNode::ERes TCompAIPatrol::actionWaitInWpt(float dt)
 	assert(arguments.find("rotationSpeed_actionWaitInWpt_waitInWpt") != arguments.end());
 	float rotationSpeed = deg2rad(arguments["rotationSpeed_actionWaitInWpt_waitInWpt"].getFloat());
 	
+	//Animation To Change
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+
 	if (timerWaitingInWpt >= getWaypoint().minTime) {
 		return BTNode::ERes::LEAVE;
 	}
@@ -478,7 +505,10 @@ BTNode::ERes TCompAIPatrol::actionSuspect(float dt)
 	float incrBaseSuspectO_Meter = arguments["incrBaseSuspectO_Meter_actionSuspect_suspect"].getFloat();
 	assert(arguments.find("entityToChase_actionSuspect_suspect") != arguments.end());
 	std::string entityToChase = arguments["entityToChase_actionSuspect_suspect"].getString();
-	
+	//Animation To Change
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+
 	TCompRender *cRender = get<TCompRender>();
 	cRender->color = VEC4(255, 255, 0, 1);
 	// chase
@@ -532,6 +562,19 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 	TCompTempPlayerController *pController = player->get<TCompTempPlayerController>();
 	TCompRender *cRender = get<TCompRender>();
 
+	//Animation To Change
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	float animDuration = myAnimator->getAnimationDuration((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::ATTACK);
+	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::ATTACK)) {
+		dbg("\nquepaaaaaaa\n");
+		myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::ATTACK);
+	}
+	timeAnimating += dt;
+	if (timeAnimating < animDuration) {
+		return BTNode::ERes::STAY;
+	}
+	//myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+	timeAnimating = 0.0f;
 	cRender->color = VEC4(255, 0, 0, 1);
 
 	if (!pController->isInhibited) {
@@ -558,8 +601,11 @@ BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
 	std::string entityToChase = arguments["entityToChase_actionChasePlayer_ChasePlayer"].getString();
 
 	TCompTransform *mypos = get<TCompTransform>();
-	CEntity *player = (CEntity *)getEntityByName(entityToChase);
+	CEntity *player = getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
+
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
 
 	isStunnedPatrolInFov(fov, maxChaseDistance);
 
@@ -610,6 +656,10 @@ BTNode::ERes TCompAIPatrol::actionRotateToNoiseSource(float dt)
 	assert(arguments.find("rotationSpeed_actionRotateToNoiseSource_rotateToNoiseSource") != arguments.end());
 	float rotationSpeed = deg2rad(arguments["rotationSpeed_actionRotateToNoiseSource_rotateToNoiseSource"].getFloat());
 
+	//Animation To Change
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+
 	TCompTransform *myPos = get<TCompTransform>();
 	bool isInObjective = rotateTowardsVec(noiseSource, rotationSpeed, dt);
 	return isInObjective ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
@@ -638,6 +688,9 @@ BTNode::ERes TCompAIPatrol::actionGoToPlayerLastPos(float dt)
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
 	rotateTowardsVec(lastPlayerKnownPos, dt, rotationSpeed);
+	//Animation To Change
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
 
 	isStunnedPatrolInFov(fov, maxChaseDistance);
 
@@ -673,6 +726,9 @@ BTNode::ERes TCompAIPatrol::actionLookForPlayer(float dt)
 	TCompTransform *mypos = get<TCompTransform>();
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
+	//Animation To Change
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
 
 	isStunnedPatrolInFov(fov, maxChaseDistance);
 
@@ -727,6 +783,10 @@ BTNode::ERes TCompAIPatrol::actionGoToPatrol(float dt)
 	
 	TCompTransform *mypos = get<TCompTransform>();
 	rotateTowardsVec(lastStunnedPatrolKnownPos, dt, rotationSpeed);
+	//Animation To Change
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
+
 
 	VEC3 vp = mypos->getPosition();
 
@@ -744,6 +804,9 @@ BTNode::ERes TCompAIPatrol::actionGoToPatrol(float dt)
 
 BTNode::ERes TCompAIPatrol::actionFixPatrol(float dt)
 {
+	//Animation To Change
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
 	CHandle hPatrol = getPatrolInPos(lastStunnedPatrolKnownPos);
 	if (hPatrol.isValid()) {
 		CEntity* eStunnedPatrol = hPatrol;
@@ -835,6 +898,7 @@ bool TCompAIPatrol::conditionGoToWpt(float dt)
 
 bool TCompAIPatrol::conditionWaitInWpt(float dt)
 {
+
 	return timerWaitingInWpt < _waypoints[currentWaypoint].minTime;
 	/* TODO: manage resets if necessary */
 }

@@ -6,66 +6,92 @@
 DECL_OBJ_MANAGER("player_animator", TCompPlayerAnimator);
 
 void TCompPlayerAnimator::debugInMenu() {
-	//ImGui::DragFloat("Sensitivity", &_sensitivity, 0.01f, 0.001f, 0.1f);
-	ImGui::Text("Animation name: %s", _animationName);
+
+	static float delta_movement = 0.0f;
+	static float speed = 1.0f;
+	ImGui::DragFloat("Speed", &speed, 0.01f, 0, 3.f);
+	if (ImGui::SmallButton("Idle")) {
+		playAnimation(EAnimation::IDLE, speed);
+	}
+	if (ImGui::SmallButton("Walk")) {
+		playAnimation(EAnimation::WALK, speed);
+	}
+	if (ImGui::SmallButton("Attack")) {
+		playAnimation(EAnimation::ATTACK, speed);
+	}
+	if (ImGui::SmallButton("Death")) {
+		playAnimation(EAnimation::DEATH, speed);
+	}
+
+	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);
+	TCompSkeleton * compSkeleton = get<TCompSkeleton>();
+	compSkeleton->setCyclicAnimationWeight(delta_movement);
 }
 
-void TCompPlayerAnimator::load(const json& j, TEntityParseContext& ctx) {
-	//_sensitivity = j.value("sensitivity", _sensitivity);
-	_animationName = "";
-}
+void TCompPlayerAnimator::initializeAnimations() {
 
-void TCompPlayerAnimator::update(float dt)
-{
-	//TCompTransform* c_transform = get<TCompTransform>();
-	//VEC3 pos = c_transform->getPosition();
-	//VEC3 front = c_transform->getFront();
-	//float yaw, pitch;
-	//getYawPitchFromVector(front, &yaw, &pitch);
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::IDLE,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"idle",
+		"",
+		1.0f,
+		1.0f
+	);
 
-	//_time += dt;
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::WALK,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"walk2",
+		"",
+		1.0f,
+		1.0f
+	);
 
-	//if (_animationName == "idle")
-	//{
-	//	pos.y = 0.5f * sinf(_time);
-	//	yaw = 0.f;
-	//	pitch = 0.f;
-	//}
-	//else if (_animationName == "idleAction")
-	//{
-	//	yaw = M_2_PI * _time;
-	//}
-	//else if (_animationName == "fall")
-	//{
-	//	const float duration = 1.f;
-	//	float ratio = _time / duration;
-	//	pos.y = ratio * 5.f;
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::ATTACK,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"attack",
+		"",
+		1.0f,
+		1.0f
+	);
 
-	//	TMsgSetFSMVariable groundMsg;
-	//	groundMsg.variant.setName("onGround");
-	//	groundMsg.variant.setBool(ratio >= 1.f);
-	//	CEntity* e = CHandle(this).getOwner();
-	//	e->sendMsg(groundMsg);
-	//}
-	//else if (_animationName == "walk")
-	//{
-	//	const float speed = 5.f;
-	//	pos.x += speed * dt;
-	//	pos.y = 0.f;
-	//}
-
-	//// final values
-	//VEC3 newFront = getVectorFromYawPitch(yaw, pitch);
-	//c_transform->lookAt(pos, pos + newFront);
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::DEATH,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"death",
+		"",
+		1.0f,
+		1.0f
+	);
 }
 
 void TCompPlayerAnimator::registerMsgs() {
-
-	DECL_MSG(TCompPlayerAnimator, TMsgAnimation, onAnimation);
+	DECL_MSG(TCompPlayerAnimator, TMsgEntityCreated, onCreated);
+	DECL_MSG(TCompPlayerAnimator, TMsgExecuteAnimation, playMsgAnimation);
 }
 
-void TCompPlayerAnimator::onAnimation(const TMsgAnimation& msg)
-{
-	state = msg.animation_state;
-	_time = 0.f;
+void TCompPlayerAnimator::onCreated(const TMsgEntityCreated& msg) {
+
+	ownHandle = CHandle(this).getOwner();
+	CEntity *e = ownHandle;
+	TCompSkeleton * compSkeleton = e->get<TCompSkeleton>();
+	assert(compSkeleton);
+	initializeAnimations();
+	setFeetNumAndCalculate(2);
+}
+
+bool TCompPlayerAnimator::playAnimation(TCompPlayerAnimator::EAnimation animation, float speed) {
+
+	return playAnimationConverted((TCompAnimator::EAnimation)animation, speed);
+}
+
+void TCompPlayerAnimator::playMsgAnimation(const TMsgExecuteAnimation& msg) {
+
+	playAnimation(msg.animation,msg.speed);
 }

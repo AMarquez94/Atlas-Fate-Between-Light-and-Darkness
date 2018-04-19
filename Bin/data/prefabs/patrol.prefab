@@ -6,12 +6,118 @@
         "pos": "2 0 2",
         "lookat": "-1 0 -1"
       },
-      "render": {
-        "mesh": "data/meshes/bot211.mesh",
-        "materials": [
-          "data/materials/body.material"
-        ]
-      },
+      "render" : [
+          {
+          "mesh": "data/skeletons/crab/Ankle_low.mesh",
+          "materials":
+          [
+            "data/skeletons/paladin/paladin.material"
+          ]
+        },
+        {
+          "mesh": "data/skeletons/crab/Battery_low.mesh",
+          "materials":
+          [
+            "data/skeletons/paladin/paladin.material"
+          ]
+        },
+        {
+          "mesh": "data/skeletons/crab/Bulb_low.mesh",
+          "materials":
+          [
+            "data/skeletons/paladin/paladin.material"
+          ]
+        },
+        {
+          "mesh": "data/skeletons/crab/ExternalLantern_low.mesh",
+          "materials":
+          [
+            "data/skeletons/paladin/paladin.material"
+          ]
+        },
+        {
+          "mesh": "data/skeletons/crab/Eye_low.mesh",
+          "materials":
+          [
+            "data/skeletons/paladin/paladin.material"
+          ]
+        },
+        {
+          "mesh": "data/skeletons/crab/Foot_low.mesh",
+          "materials":
+          [
+            "data/skeletons/paladin/paladin.material"
+          ]
+        },
+        {
+          "mesh": "data/skeletons/crab/Handle_low.mesh",
+          "materials":
+          [
+            "data/skeletons/paladin/paladin.material"
+          ]
+        },
+        {
+          "mesh": "data/skeletons/crab/Head_low.mesh",
+          "materials":
+          [
+            "data/skeletons/paladin/paladin.material"
+          ]
+        },
+        {
+          "mesh": "data/skeletons/crab/Leg_low.mesh",
+          "materials":
+          [
+            "data/skeletons/paladin/paladin.material"
+          ]
+        },
+        {
+          "mesh": "data/skeletons/crab/LittleBattery_low.mesh",
+          "materials":
+          [
+            "data/skeletons/paladin/paladin.material"
+          ]
+        },
+        {
+          "mesh": "data/skeletons/crab/Pelvis_low.mesh",
+          "materials":
+          [
+            "data/skeletons/paladin/paladin.material"
+          ]
+        },
+        {
+          "mesh": "data/skeletons/crab/Spine00_low.mesh",
+          "materials":
+          [
+            "data/skeletons/paladin/paladin.material"
+          ]
+        },
+        {
+          "mesh": "data/skeletons/crab/Spine01_low.mesh",
+          "materials":
+          [
+            "data/skeletons/paladin/paladin.material"
+          ]
+        },
+        {
+          "mesh": "data/skeletons/crab/Spine02_low.mesh",
+          "materials":
+          [
+            "data/skeletons/paladin/paladin.material"
+          ]
+        },
+        {
+          "mesh": "data/skeletons/crab/SupportHead_low.mesh",
+          "materials":
+          [
+            "data/skeletons/paladin/paladin.material"
+          ]
+        }
+
+        ],
+        "skeleton": {
+          "skeleton": "data/skeletons/crab/crab.skeleton"
+        },
+        "patrol_animator": true,
       "tags": [ "enemy", "patrol" ],
       "ai_patrol": {
         "root": {

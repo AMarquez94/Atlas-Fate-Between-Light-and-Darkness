@@ -98,6 +98,7 @@
     <ClCompile Include="components\comp_aabb.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
     <ClCompile Include="components\comp_culling.cpp" />
+    <ClCompile Include="components\ia\comp_patrol_animator.cpp" />
     <ClCompile Include="components\object_controller\comp_noise_emitter.cpp" />
     <ClCompile Include="components\player_controller\comp_player_animator.cpp" />
     <ClCompile Include="components\comp_fsm.cpp" />
@@ -124,6 +125,7 @@
     <ClCompile Include="components\physics\comp_rigidbody.cpp" />
     <ClCompile Include="components\player_controller\comp_player_tempcontroller.cpp" />
     <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
+    <ClCompile Include="components\skeleton\comp_animator.cpp" />
     <ClCompile Include="components\skeleton\comp_bone_tracker.cpp" />
     <ClCompile Include="components\skeleton\comp_skeleton.cpp" />
     <ClCompile Include="components\skeleton\game_core_skeleton.cpp" />
@@ -243,6 +245,7 @@
     <ClInclude Include="components\comp_base.h" />
     <ClInclude Include="components\comp_camera.h" />
     <ClInclude Include="components\comp_culling.h" />
+    <ClInclude Include="components\ia\comp_patrol_animator.h" />
     <ClInclude Include="components\object_controller\comp_noise_emitter.h" />
     <ClInclude Include="components\player_controller\comp_player_animator.h" />
     <ClInclude Include="components\comp_fsm.h" />
@@ -271,6 +274,7 @@
     <ClInclude Include="components\player_controller\comp_player_tempcontroller.h" />
     <ClInclude Include="components\player_controller\comp_shadow_controller.h" />
     <ClInclude Include="components\skeleton\cal3d2engine.h" />
+    <ClInclude Include="components\skeleton\comp_animator.h" />
     <ClInclude Include="components\skeleton\comp_bone_tracker.h" />
     <ClInclude Include="components\skeleton\comp_skeleton.h" />
     <ClInclude Include="components\skeleton\game_core_skeleton.h" />
@@ -388,6 +392,7 @@
     <ClInclude Include="utils\data_provider.h" />
     <ClInclude Include="utils\data_saver.h" />
     <ClInclude Include="utils\directory_watcher.h" />
+    <ClInclude Include="utils\dirent.h" />
     <ClInclude Include="utils\json.hpp" />
     <ClInclude Include="utils\murmur3\murmur3.h" />
     <ClInclude Include="utils\timer.h" />

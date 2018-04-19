@@ -9,7 +9,7 @@ namespace FSM
 	
 	Noise * getNoise(const json& jData);
 
-	class AnimationState : public IState
+	class IdleState : public IState
 	{
 		virtual void onStart(CContext& ctx) const override;
 		virtual void onFinish(CContext& ctx) const override;

@@ -54,43 +54,86 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
   auto res_skel = Resources.get(skel_name)->as< CGameCoreSkeleton >();
   CalCoreModel* core_model = const_cast<CGameCoreSkeleton*>(res_skel);
   model = new CalModel(core_model);
-  
+
+  for (int i = 0; i < model->getCoreModel()->getCoreAnimationCount();i++) {
+
+	  auto core_anim = model->getCoreModel()->getCoreAnimation(i);
+	  if (core_anim)
+		stringAnimationIdMap[core_anim->getName()] = i;
+  }
+
   // Play the first animation, at weight 100%, now!
-  model->getMixer()->blendCycle(0, 1.0f, 0.f);
-  
+  actualCycleAnimId[0] = -1;
+  actualCycleAnimId[1] = -1;
+
+  actualCycleAnimId[0] = 0;
+  model->getMixer()->blendCycle(actualCycleAnimId[0], 1.f, 0.f);
+
   // Do a time zero update just to have the bones in a correct place
   model->update(0.f);
+  
 }
 
 void TCompSkeleton::update(float dt) {
   PROFILE_FUNCTION("updateSkel");
   assert(model);
+
+  if (actualCycleAnimId[1] != -1 && lastFrameCyclicAnimationWeight != cyclicAnimationWeight) {
+	  model->getMixer()->blendCycle(actualCycleAnimId[0], cyclicAnimationWeight, 0.f);
+	  model->getMixer()->blendCycle(actualCycleAnimId[1], 1.f - cyclicAnimationWeight, 0.f);
+  }
+
   TCompTransform* tmx = get<TCompTransform>();
   VEC3 pos = tmx->getPosition();
   QUAT rot = tmx->getRotation();
   model->getMixer()->setWorldTransform(DX2Cal(pos), DX2Cal(rot));
   model->update(dt);
+
+  lastFrameCyclicAnimationWeight = cyclicAnimationWeight;
 }
 
 void TCompSkeleton::debugInMenu() {
   static int anim_id = 0;
+  static float weight = 1.0f;
+  static float speed = 1.0f;
+  static float lastWeight = 1.0f;
   static float in_delay = 0.3f;
   static float out_delay = 0.3f;
   static bool auto_lock = false;
-
-  // Play aacton/cycle from the menu
+  
+  // Play action/cycle from the menu
   ImGui::DragInt("Anim Id", &anim_id, 0.1f, 0, model->getCoreModel()->getCoreAnimationCount()-1);
+  ImGui::DragFloat("Speed", &speed, 0.01f, 0, 5.f);
   auto core_anim = model->getCoreModel()->getCoreAnimation(anim_id);
+
+
   if(core_anim)
     ImGui::Text("%s", core_anim->getName().c_str());
   ImGui::DragFloat("In Delay", &in_delay, 0.01f, 0, 1.f);
   ImGui::DragFloat("Out Delay", &out_delay, 0.01f, 0, 1.f);
+  ImGui::DragFloat("Weight", &weight, 0.01f, 0, 1.f);
+  if (lastWeight != weight) {
+	  model->getMixer()->blendCycle(actualCycleAnimId[0], weight, 0.f);
+	  model->getMixer()->blendCycle(actualCycleAnimId[1], 1.f - weight, 0.f);
+  }
   ImGui::Checkbox("Auto lock", &auto_lock);
   if (ImGui::SmallButton("As Cycle")) {
-    model->getMixer()->blendCycle(anim_id, 1.0f, in_delay);
+	  this->changeCyclicAnimation(anim_id);
+	  
+	
   }
   if (ImGui::SmallButton("As Action")) {
-    model->getMixer()->executeAction(anim_id, in_delay, out_delay, 1.0f, auto_lock);
+	  executeActionAnimation(anim_id);
+	if (this->isExecutingActionAnimation(model->getCoreModel()->getCoreAnimation(anim_id)->getName())) dbg("\nexecuting\n");
+	else dbg("\nnot executing\n");
+  }
+  if (ImGui::SmallButton("Set Time Zero")) {
+	  model->getMixer()->setAnimationTime(0.f);
+  }
+
+  if (ImGui::SmallButton("IsExecuting")) {
+	  if (this->isExecutingCyclicAnimation(anim_id)) dbg("\nexecuting\n");
+	  else dbg("\nnot executing\n");
   }
 
   // Dump Mixer
@@ -135,6 +178,7 @@ void TCompSkeleton::debugInMenu() {
       core_skel->debugInMenu();
     ImGui::TreePop();
   }
+  lastWeight = weight;
 }
 
 void TCompSkeleton::updateCtesBones() {
@@ -182,4 +226,155 @@ void TCompSkeleton::renderDebug() {
   float scale = transform->getScale();
   for (int currLine = 0; currLine < nrLines; currLine++)
     renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale, VEC4(1, 1, 1, 1));
+}
+
+void TCompSkeleton::changeCyclicAnimation(int anim1Id, float speed, int anim2Id, float weight, float in_delay, float out_delay) {
+
+	model->getMixer()->clearCycle(actualCycleAnimId[0], out_delay);
+	if (actualCycleAnimId[1] != -1) {
+		model->getMixer()->clearCycle(actualCycleAnimId[1], out_delay);
+	}
+
+	model->getMixer()->blendCycle(anim1Id, weight, in_delay);
+	if (anim2Id != -1) {
+		model->getMixer()->blendCycle(anim2Id, 1.f - weight, in_delay);
+	}
+
+	actualCycleAnimId[0] = anim1Id;
+	actualCycleAnimId[1] = anim2Id;
+
+	model->getMixer()->setTimeFactor(speed);
+}
+
+void TCompSkeleton::executeActionAnimation(int animId, float speed, float in_delay, float out_delay) {
+
+	bool auto_lock = false;
+	for (auto a : model->getMixer()->getAnimationActionList()) {
+		a->remove(out_delay);
+	}
+	model->getMixer()->executeAction(animId, in_delay, out_delay, 1.0f, auto_lock);
+
+	if (speed != 1.0f) {
+		std::list<CalAnimationAction *>::iterator iteratorAnimationAction;
+		iteratorAnimationAction = model->getMixer()->getAnimationActionList().begin();
+		while (iteratorAnimationAction != model->getMixer()->getAnimationActionList().end())
+		{
+			(*iteratorAnimationAction)->setTimeFactor(speed);
+			iteratorAnimationAction++;
+		}
+	}
+}
+
+//Set the weight added to a combination of twi cyclic animations
+void TCompSkeleton::setCyclicAnimationWeight(float new_value) {
+
+	cyclicAnimationWeight = new_value;
+}
+
+//Get the weight added to a combination of twi cyclic animations
+float TCompSkeleton::getCyclicAnimationWeight() {
+
+	return cyclicAnimationWeight;
+}
+
+//Returns the id value of the animation in the skeleton component. If -1 is returned is because the animation name doesen't exists.
+int TCompSkeleton::getAnimationIdByName(std::string animName) {
+	
+	if (stringAnimationIdMap.find(animName) != stringAnimationIdMap.end()) {
+		return stringAnimationIdMap[animName];
+	}
+	return -1;
+}
+
+//Return if there is an animation of the type action executing
+bool TCompSkeleton::actionAnimationOnExecution() {
+
+	return model->getMixer()->getAnimationActionList().size() > 0;
+}
+
+//return if the specified animation is executing
+bool TCompSkeleton::isExecutingCyclicAnimation(int animId) {
+	
+	return model->getMixer()->getAnimationVector()[animId] != NULL;
+}
+
+
+bool TCompSkeleton::isExecutingActionAnimation(std::string animName) {
+
+	std::list<CalAnimationAction *>::iterator iteratorAnimationAction;
+	iteratorAnimationAction = model->getMixer()->getAnimationActionList().begin();
+	while (iteratorAnimationAction != model->getMixer()->getAnimationActionList().end())
+	{
+		if ((*iteratorAnimationAction)->getCoreAnimation()->getName().compare(animName)) {
+			return true;
+		}
+		iteratorAnimationAction++;
+	}
+	return false;
+}
+
+//Returns the n bones that are positioned lowest by the y axis.
+void TCompSkeleton::guessFeetBonesId(int feetNum) {
+
+	std::vector<int> bonesId;
+	std::vector<float> bonesHeight;
+	float minValue = 99999999.f;
+	
+	for (int i = 0; i < model->getSkeleton()->getVectorBone().size();i++) {
+
+		bonesId.emplace_back(i);
+		bonesHeight.emplace_back(model->getSkeleton()->getBone(i)->getTranslationAbsolute().y);
+	}
+
+	float heightAux = 0;
+	int idAux = 0;
+
+	for (int j = 0; j < bonesId.size(); j++) {
+		for (int k = 0; k < bonesId.size() - 1; k++) {
+			if (bonesHeight[k] > bonesHeight[k + 1]) {
+				heightAux = bonesHeight[k];
+				idAux = bonesId[k];
+
+				bonesHeight[k] = bonesHeight[k + 1];
+				bonesId[k] = bonesId[k + 1];
+
+				bonesHeight[k + 1] = heightAux;
+				bonesId[k + 1] = idAux;
+			}
+		}
+	}
+
+	std::vector<int> auxFeetBonesId;
+
+	for (int a = 0; a < feetNum; a++) {
+		auxFeetBonesId.emplace_back(bonesId[a]);
+	}
+
+	feetBonesId = auxFeetBonesId;
+}
+
+void TCompSkeleton::setFeetId(std::vector<int> feetId) {
+	feetBonesId = feetId;
+}
+
+std::vector<VEC3> TCompSkeleton::getFeetPositions() {
+
+	std::vector<VEC3> feetPositions;
+
+	for (int i = 0; i < feetBonesId.size(); i++) {
+		float x = model->getSkeleton()->getBone(feetBonesId[i])->getTranslationAbsolute().x;
+		float y = model->getSkeleton()->getBone(feetBonesId[i])->getTranslationAbsolute().y;
+		float z = model->getSkeleton()->getBone(feetBonesId[i])->getTranslationAbsolute().z;
+		feetPositions.push_back(VEC3(x,y,z));
+	}
+	dbg("");
+	return feetPositions;
+}
+
+float TCompSkeleton::getAnimationDuration(int animId) {
+
+	auto core_anim = model->getCoreModel()->getCoreAnimation(animId);
+	if (core_anim)
+		return core_anim->getDuration();
+	return -1.f;
 }
