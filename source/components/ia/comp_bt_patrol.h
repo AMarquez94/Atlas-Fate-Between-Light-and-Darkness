@@ -60,7 +60,7 @@ private:
 	bool isStunnedPatrolInFov(float fov, float maxChaseDistance);
 	bool isStunnedPatrolInPos(VEC3 lastPos);
 	CHandle getPatrolInPos(VEC3 lastPos);
-  void generateNavmesh(VEC3 initPos, VEC3 destPos);
+  void generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc = false);
   bool moveToPoint(float speed, float rotationSpeed, VEC3 destPoint, float dt);
 	
 	//load

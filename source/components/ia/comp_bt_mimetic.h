@@ -82,6 +82,7 @@ private:
 	void turnOffLight();
 	void setGravityToFaceWall();
 	EType parseStringMimeticType(const std::string& typeString);
+  void generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc = false);
   bool moveToPoint(float speed, float rotationSpeed, VEC3 objective, float dt);
 	
 	//load

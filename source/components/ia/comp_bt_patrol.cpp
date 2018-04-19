@@ -616,8 +616,7 @@ BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
 	}
 
   if (lastPlayerKnownPos != ppos->getPosition()) {
-    navmeshPath = EngineNavmeshes.findPath(mypos->getPosition(), ppos->getPosition());
-    navmeshPathPoint = 0;
+    generateNavmesh(mypos->getPosition(), ppos->getPosition());
   }
 
 	lastPlayerKnownPos = ppos->getPosition();
@@ -1140,11 +1139,11 @@ CHandle TCompAIPatrol::getPatrolInPos(VEC3 lastPos)
 	return h_stunnedPatrol;
 }
 
-void TCompAIPatrol::generateNavmesh(VEC3 initPos, VEC3 destPos)
+void TCompAIPatrol::generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc)
 {
   navmeshPath = EngineNavmeshes.findPath(initPos, destPos);
   navmeshPathPoint = 0;
-  recalculateNavmesh = false;
+  recalculateNavmesh = recalc;
 }
 
 bool TCompAIPatrol::moveToPoint(float speed, float rotationSpeed, VEC3 objective, float dt)
@@ -1179,9 +1178,7 @@ bool TCompAIPatrol::moveToPoint(float speed, float rotationSpeed, VEC3 objective
       actualSpeed = 0;
     }
     else if (!recalculateNavmesh) {
-      navmeshPath = EngineNavmeshes.findPath(vp, objective);
-      navmeshPathPoint = 0;
-      recalculateNavmesh = true;
+      generateNavmesh(vp, objective, true);
     }
     vp = vp + actualSpeed * dt * front;
     mypos->setPosition(vp);				//Move towards wpt
