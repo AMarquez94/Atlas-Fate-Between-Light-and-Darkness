@@ -7,7 +7,8 @@
 		"data/scenes/enemy.scene",
     	"data/scenes/camera.scene",
 		"data/scenes/bt_test.scene",
-		"data/scenes/skeleton_crab.scene"
+		"data/scenes/skeleton_crab.scene",
+		"data/scenes/skeleton_demo.scene"
 	],
 	"light_scenes_test" : [
 		"data/scenes/player_fsm.scene",

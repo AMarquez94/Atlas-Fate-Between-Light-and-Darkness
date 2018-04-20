@@ -113,6 +113,7 @@ namespace FSM
 		//e->sendMsg(TMsgAnimation{ "run" });
 
 		CEntity* e = ctx.getOwner();
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::RUN , 1.0f });
 		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, nullptr, _noise });
 	}
 
@@ -163,6 +164,7 @@ namespace FSM
 		//e->sendMsg(TMsgAnimation{ "crouch" });
 
 		CEntity* e = ctx.getOwner();
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::CROUCH_IDLE , 1.0f });
 		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, nullptr, _noise });
 	}
 

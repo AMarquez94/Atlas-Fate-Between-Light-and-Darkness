@@ -1,11 +1,11 @@
 #include "mcv_platform.h"
-#include "comp_player_animator.h"
 #include "components/comp_transform.h"
 #include "components/comp_fsm.h"
+#include "components/ia/comp_mimetic_animator.h"
 
-DECL_OBJ_MANAGER("player_animator", TCompPlayerAnimator);
+DECL_OBJ_MANAGER("mimetic_animator", TCompMimeticAnimator);
 
-void TCompPlayerAnimator::debugInMenu() {
+void TCompMimeticAnimator::debugInMenu() {
 
 	static float delta_movement = 0.0f;
 	static float speed = 1.0f;
@@ -22,16 +22,13 @@ void TCompPlayerAnimator::debugInMenu() {
 	if (ImGui::SmallButton("Death")) {
 		playAnimation(EAnimation::DEATH, speed);
 	}
-	if (ImGui::SmallButton("Crouch_walk")) {
-		playAnimation(EAnimation::CROUCH_WALK, speed);
-	}
 
 	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);
 	TCompSkeleton * compSkeleton = get<TCompSkeleton>();
 	compSkeleton->setCyclicAnimationWeight(delta_movement);
 }
 
-void TCompPlayerAnimator::initializeAnimations() {
+void TCompMimeticAnimator::initializeAnimations() {
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::IDLE,
@@ -47,16 +44,6 @@ void TCompPlayerAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::WALK,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"walk",
-		"",
-		1.0f,
-		1.0f
-	);
-
-	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::RUN,
-		EAnimationType::CYCLIC,
-		EAnimationSize::SINGLE,
 		"run",
 		"",
 		1.0f,
@@ -67,7 +54,7 @@ void TCompPlayerAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::ATTACK,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"attack",
+		"alert",
 		"",
 		1.0f,
 		1.0f
@@ -77,38 +64,19 @@ void TCompPlayerAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::DEATH,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"death",
+		"suspicious_start",
 		"",
 		1.0f,
 		1.0f
 	);
-	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::CROUCH_IDLE,
-		EAnimationType::CYCLIC,
-		EAnimationSize::SINGLE,
-		"crouch_walk",
-		"",
-		1.0f,
-		1.0f
-	);
-
-	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::CROUCH_WALK,
-		EAnimationType::CYCLIC,
-		EAnimationSize::DOUBLE,
-		"crouch_walk_slow",
-		"crouch_walk",
-		0.0f,
-		1.0f
-	);
 }
 
-void TCompPlayerAnimator::registerMsgs() {
-	DECL_MSG(TCompPlayerAnimator, TMsgEntityCreated, onCreated);
-	DECL_MSG(TCompPlayerAnimator, TMsgExecuteAnimation, playMsgAnimation);
+void TCompMimeticAnimator::registerMsgs() {
+	DECL_MSG(TCompMimeticAnimator, TMsgEntityCreated, onCreated);
+	DECL_MSG(TCompMimeticAnimator, TMsgExecuteAnimation, playMsgAnimation);
 }
 
-void TCompPlayerAnimator::onCreated(const TMsgEntityCreated& msg) {
+void TCompMimeticAnimator::onCreated(const TMsgEntityCreated& msg) {
 
 	ownHandle = CHandle(this).getOwner();
 	CEntity *e = ownHandle;
@@ -118,12 +86,12 @@ void TCompPlayerAnimator::onCreated(const TMsgEntityCreated& msg) {
 	setFeetNumAndCalculate(2);
 }
 
-bool TCompPlayerAnimator::playAnimation(TCompPlayerAnimator::EAnimation animation, float speed) {
+bool TCompMimeticAnimator::playAnimation(TCompMimeticAnimator::EAnimation animation, float speed) {
 
 	return playAnimationConverted((TCompAnimator::EAnimation)animation, speed);
 }
 
-void TCompPlayerAnimator::playMsgAnimation(const TMsgExecuteAnimation& msg) {
+void TCompMimeticAnimator::playMsgAnimation(const TMsgExecuteAnimation& msg) {
 
 	playAnimation(msg.animation,msg.speed);
 }

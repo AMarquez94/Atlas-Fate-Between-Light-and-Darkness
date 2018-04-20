@@ -305,7 +305,8 @@ bool TCompSkeleton::isExecutingActionAnimation(std::string animName) {
 	iteratorAnimationAction = model->getMixer()->getAnimationActionList().begin();
 	while (iteratorAnimationAction != model->getMixer()->getAnimationActionList().end())
 	{
-		if ((*iteratorAnimationAction)->getCoreAnimation()->getName().compare(animName)) {
+		std::string itName = (*iteratorAnimationAction)->getCoreAnimation()->getName();
+		if (itName.compare(animName) == 0) {
 			return true;
 		}
 		iteratorAnimationAction++;

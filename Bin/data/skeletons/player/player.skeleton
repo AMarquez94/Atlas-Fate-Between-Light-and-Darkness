@@ -3,8 +3,11 @@
 	"anims" : [
 		{ "name" : "idle"},
 		{ "name" : "walk"},
-		{ "name" : "walk2"},
+		{ "name" : "run"},
 		{ "name" : "attack"},
+		{ "name" : "crouch"},
+		{ "name" : "crouch_walk"},
+		{ "name" : "crouch_walk_slow"},
 		{ "name" : "death"}
 	]
 }

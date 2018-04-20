@@ -141,6 +141,7 @@
     <ClCompile Include="navmesh\navmesh.cpp" />
     <ClCompile Include="navmesh\navmesh_query.cpp" />
     <ClCompile Include="modules\module_navmeshes.cpp" />
+    <ClCompile Include="components\ia\comp_mimetic_animator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -310,6 +311,7 @@
     <ClInclude Include="navmesh\navmesh.h" />
     <ClInclude Include="navmesh\navmesh_query.h" />
     <ClInclude Include="modules\module_navmeshes.h" />
+    <ClInclude Include="components\ia\comp_mimetic_animator.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

@@ -116,7 +116,7 @@
         "skeleton": {
           "skeleton": "data/skeletons/crab/crab.skeleton"
         },
-        "patrol_animator": true,
+        "mimetic_animator": true,
 		"tags": [ "enemy", "mimetic" ]
     }
   },

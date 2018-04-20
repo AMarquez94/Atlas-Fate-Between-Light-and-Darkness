@@ -4,15 +4,15 @@
 #include "components/skeleton/comp_skeleton.h"
 #include "components/skeleton/comp_animator.h"
 
-class TCompPlayerAnimator;
+class TCompMimeticAnimator;
 
-class TCompPlayerAnimator : public TCompAnimator
+class TCompMimeticAnimator : public TCompAnimator
 {
 public:
-	enum EAnimation { IDLE = 0, WALK, ATTACK, DEATH, CROUCH_IDLE, CROUCH_WALK, RUN , HIT_FRONT, HIT_BACK};
+	enum EAnimation { IDLE = 0, WALK, ATTACK, DEATH };
 	struct TMsgExecuteAnimation {
 
-		TCompPlayerAnimator::EAnimation animation;
+		TCompMimeticAnimator::EAnimation animation;
 		float speed;
 		DECL_MSG_ID();
 	};
@@ -26,6 +26,6 @@ public:
 
 	
 	void initializeAnimations();
-	bool playAnimation(TCompPlayerAnimator::EAnimation animation, float speed = 1.0f);
+	bool playAnimation(TCompMimeticAnimator::EAnimation animation, float speed = 1.0f);
 };
 
