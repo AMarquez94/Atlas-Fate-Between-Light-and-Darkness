@@ -8,6 +8,7 @@
 		{ "name" : "crouch"},
 		{ "name" : "crouch_walk"},
 		{ "name" : "crouch_walk_slow"},
+		{ "name" : "fall"},
 		{ "name" : "death"}
 	]
 }

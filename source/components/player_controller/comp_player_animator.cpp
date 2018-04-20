@@ -93,6 +93,16 @@ void TCompPlayerAnimator::initializeAnimations() {
 	);
 
 	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::FALL,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"fall",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::CROUCH_WALK,
 		EAnimationType::CYCLIC,
 		EAnimationSize::DOUBLE,
