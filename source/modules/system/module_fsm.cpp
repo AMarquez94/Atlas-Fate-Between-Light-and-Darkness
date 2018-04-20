@@ -18,7 +18,7 @@ bool CModuleFSM::start()
 {
 	Resources.registerResourceClass(getResourceClassOf<FSM::CMachine>());
 
-	_factory.registerInstancer("AnimationState", new FSM::StateInstancer<FSM::AnimationState>());
+	_factory.registerInstancer("IdleState", new FSM::StateInstancer<FSM::IdleState>());
 	_factory.registerInstancer("WalkState", new FSM::StateInstancer<FSM::WalkState>());
 	_factory.registerInstancer("RunState", new FSM::StateInstancer<FSM::RunState>());
 	_factory.registerInstancer("FallState", new FSM::StateInstancer<FSM::FallState>());

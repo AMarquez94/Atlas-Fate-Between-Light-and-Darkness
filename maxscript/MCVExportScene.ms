@@ -202,8 +202,7 @@ struct TSceneExporter (
 			print ("Obj " + obj.name + " does NOT have a material")
 		)
 		if mat != undefined and not (isValidName mat.name) then (
-			throw ("Obj " + obj.name + " has a material with an invalid name " + mat.name )
-		)
+q		)
 		
 		fs.beginObj()
 		

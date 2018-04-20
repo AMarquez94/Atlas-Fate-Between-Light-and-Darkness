@@ -3,14 +3,14 @@
 	"states" : [
 		{
 			"name" : "idle",
-			"type" : "AnimationState",
+			"type" : "IdleState",
 			"animation" : "idle",
 			"speed" : 0,
 			"size" : 1
 		},
 		{
 			"name" : "idleAction",
-			"type" : "AnimationState",
+			"type" : "IdleState",
 			"animation" : "idleAction",
 			"size" : 1
 		},
@@ -18,7 +18,7 @@
 			"name" : "walk",
 			"type" : "WalkState",
 			"animation" : "walk",
-			"speed" : 4,
+			"speed" : 2.8,
 			"rotationSpeed": 10.0,
 			"size" : 1,
 			"noise" : {

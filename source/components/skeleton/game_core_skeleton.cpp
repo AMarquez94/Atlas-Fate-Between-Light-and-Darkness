@@ -4,6 +4,7 @@
 #include "utils/data_saver.h"
 #include "cal3d2engine.h"
 #include "ctes.h"
+#include "utils/dirent.h"
 
 #pragma comment(lib, "cal3d.lib" )
 
@@ -77,6 +78,10 @@ void CGameCoreSkeleton::debugInMenu() {
         ImGui::LabelText( "ID", "%d", bone_id );
         if (ImGui::SmallButton("Show Axis"))
           bone_ids_to_debug.push_back(bone_id);
+
+		CalVector pos = cb->getTranslationAbsolute();
+		ImGui::LabelText("Pos", "%f %f %f", pos.x, pos.y, pos.z);
+
         ImGui::TreePop();
       }
     }
@@ -235,18 +240,28 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
   if (!is_ok)
     return false;
 
-  // Check if there is already a .mesh
-  std::string cmf = root_path + name + ".cmf";
-  if (fileExists(cmf)) {
-    int mesh_id = loadCoreMesh(cmf);
-    if (mesh_id < 0)
-      return false;
-    std::string skin_mesh_file = root_path + name + ".mesh";
-    convertCalCoreMesh2RenderMesh(getCoreMesh(mesh_id), skin_mesh_file);
-    // Delete the cmf file
-    // std::remove(cmf.c_str());
-  }
+  DIR *dr;
+  std::string cmfpath = "data/skeletons/" + name;
+  dr = opendir(cmfpath.c_str());
 
+  struct dirent *drnt;
+  drnt = readdir(dr);
+  std::size_t found;
+  
+  do {
+	  std::string actual_file = drnt->d_name;
+	  found = actual_file.find(".cmf");
+	  if (found != std::string::npos) {
+		  int mesh_id = loadCoreMesh(cmfpath + "/" + actual_file);
+		  if (mesh_id < 0)
+			  return false;
+		  std::string skin_mesh_file = root_path + actual_file.replace(actual_file.find(".cmf"), actual_file.length(),"") + ".mesh";
+		  convertCalCoreMesh2RenderMesh(getCoreMesh(mesh_id), skin_mesh_file);
+		  std::remove(skin_mesh_file.replace(skin_mesh_file.find(".mesh"), skin_mesh_file.length(), ".cmf").c_str());
+	  }
+	  drnt = readdir(dr);
+  } while (drnt != NULL);
+  
   // Read all anims
   auto& anims = json["anims"];
   for (auto it = anims.begin(); it != anims.end(); ++it) {
@@ -269,5 +284,4 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
 
   return true;
 }
-
 

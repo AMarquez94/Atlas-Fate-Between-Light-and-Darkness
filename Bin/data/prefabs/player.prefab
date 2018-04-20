@@ -1,0 +1,28 @@
+[ {
+		"entity":
+	    {
+	      "name": "superplayer",
+	      "transform":
+	      {
+	        "pos": "0 0 0",
+	        "rotation": "0.0 0.0 0.0 1.0"
+	      },
+	      "skeleton": {
+	        "skeleton": "data/skeletons/player/player.skeleton"
+	      },
+	      "abs_aabb":true,
+	      "local_aabb":true,
+	      "player_animator":true,
+	      "render" : [
+	        {
+	          "mesh": "data/skeletons/player/body_.mesh"
+	          ,
+	          "materials":
+	          [
+	            "data/skeletons/paladin/paladin.material"
+	          ]
+	        }
+	      ]
+	    }
+	}
+]

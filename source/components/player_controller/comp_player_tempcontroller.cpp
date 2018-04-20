@@ -14,11 +14,11 @@
 #include "components/comp_name.h"
 #include "windows/app.h"
 #include "components/comp_group.h"
+#include "render/render_utils.h"
 
 DECL_OBJ_MANAGER("player_tempcontroller", TCompTempPlayerController);
 
 void TCompTempPlayerController::debugInMenu() {
-
 }
 
 void TCompTempPlayerController::renderDebug() {
@@ -157,11 +157,6 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg) {
 
 		state = msg.action_start;
 		currentSpeed = msg.speed;
-
-		/* Temp change of player mesh*/
-		TCompRender *c_my_render = get<TCompRender>();
-		c_my_render->meshes[0].mesh = mesh_states.find(msg.meshname)->second;
-		c_my_render->refreshMeshesInRenderManager();
 
 		TCompRigidbody * rigidbody = get<TCompRigidbody>();
 		TCompTransform * t_trans = get<TCompTransform>();
@@ -376,11 +371,11 @@ void TCompTempPlayerController::deadState(float dt)
 		enemy->sendMsg(newMsg);
 	}
 
-	TCompTransform *mypos = get<TCompTransform>();
+	/*TCompTransform *mypos = get<TCompTransform>();
 	float y, p, r;
 	mypos->getYawPitchRoll(&y, &p, &r);
 	p = p + deg2rad(89.9f);
-	mypos->setYawPitchRoll(y, p, r);
+	mypos->setYawPitchRoll(y, p, r);*/
 
 	state = (actionhandler)&TCompTempPlayerController::idleState;
 }

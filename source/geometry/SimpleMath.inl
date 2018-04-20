@@ -978,6 +978,18 @@ inline float Vector3::Distance( const Vector3& v1, const Vector3& v2 )
     return XMVectorGetX( X );
 }
 
+inline float Vector3::Distance2D(const Vector3& v1, const Vector3& v2)
+{
+  using namespace DirectX;
+  Vector3 v1y = Vector3(v1.x, 0, v1.z);
+  Vector3 v2y = Vector3(v2.x, 0, v2.z);
+  XMVECTOR x1 = XMLoadFloat3(&v1y);
+  XMVECTOR x2 = XMLoadFloat3(&v2y);
+  XMVECTOR V = XMVectorSubtract(x2, x1);
+  XMVECTOR X = XMVector3Length(V);
+  return XMVectorGetX(X);
+}
+
 inline float Vector3::DistanceSquared( const Vector3& v1, const Vector3& v2 )
 {
     using namespace DirectX;
