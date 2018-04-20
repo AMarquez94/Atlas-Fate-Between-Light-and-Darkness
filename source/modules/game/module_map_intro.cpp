@@ -17,32 +17,87 @@
 #include "input/devices/mouse.h"
 #include "input/enums.h"
 
+// CLASE A PUBLICAR
 
-/* TO INCLUDE LUA */
-//extern "C"
-//{
-//	#include "lua/lua.h"
-//	#include "lua/lualib.h"
-//	#include "lua/lauxlib.h"
-//}
+class LogicManager
+{
+  int playerlife;
+  float px, py, pz;
+
+public:
+  int numagents;
+
+  LogicManager();
+  void RespawnPlayer();
+  void TeleportPlayer(float, float, float);
+  float GetPlayerLife();
+  //   void GetPlayerPos(float &, float &, float &);
+};
+
+
+LogicManager::LogicManager()
+{
+  printf("constructor\n");
+  numagents = 37;
+}
+
+
+
+void LogicManager::RespawnPlayer()
+{
+  printf("Player Respawns \n");
+  playerlife = 100;
+  px = 0;
+  py = 0;
+  pz = 0;
+}
+
+
+void LogicManager::TeleportPlayer(float x, float y, float z)
+{
+  printf("Teleporting player to %f %f %f\n", x, y, z);
+  px = x;
+  py = y;
+  pz = z;
+}
+
+
+float LogicManager::GetPlayerLife()
+{
+  return playerlife;
+}
+
+
+/*void LogicManager::GetPlayerPos(float &x, float &y, float &z)
+{
+x = px;
+y = py;
+z = pz;
+}*/
+
+
+
+
+// ARRANQUE DE SLB
+
+void BootLuaSLB(SLB::Manager *m)
+{
+  SLB::Class< LogicManager >("LogicManager", m)
+    // a comment/documentation for the class [optional]
+    .comment("This is our wrapper of LogicManager class")
+    // empty constructor, we can also wrapper constructors
+    // with arguments using .constructor<TypeArg1,TypeArg2,..>()
+    .constructor()
+    // a method/function/value...
+    .set("RespawnPlayer", &LogicManager::RespawnPlayer)
+    .set("TeleportPlayer", &LogicManager::TeleportPlayer)
+    .set("GetPlayerLife", &LogicManager::GetPlayerLife)
+    //.set("GetPlayerPos", &LogicManager::GetPlayerPos)
+    .property("numagents", &LogicManager::numagents)
+    ;
+}
 
 CCamera camera;
-
-/* EXAMPLE LUA FUNCTION */
-//static int sum_lol(lua_State *L) {
-//	int n = lua_gettop(L);				//siempre hay que hacer control de errores en la funcion (en este caso, contar parametros entrantes y salientes)
-//	int sum = 0;
-//	for (int i = 1; i <= n; i++) {		//ojo, en lua las listas empiezan por 1 y no por 0
-//		dbg("%d", lua_tointeger(L, i));
-//		sum += lua_tointeger(L, i);
-//	}
-//	lua_pushnumber(L, sum);				//pushear resultados a la pila
-//	fatal("Sum %d", sum);
-//	return 1;							//devolver el num de resultados que hemos puesto en la pila
-//
-//	/* Siempre revisar que los parametros esten bien y que los resultados esten bien tambien */
-//}
-
 
 bool CModuleMapIntro::start()
 {
@@ -60,12 +115,6 @@ bool CModuleMapIntro::start()
 
 	camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
 	camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
-
-	/* EXAMPLE LUA EXECUTION */
-	//lua_State *ls = luaL_newstate();
-	//lua_register(ls, "hello", sum_lol);
-	//luaL_dofile(ls, "data/scripts/test.lua");
-	//lua_close(ls);
 
 	// -------------------------------------------
 	if (!cb_camera.create(CB_CAMERA))
@@ -98,6 +147,27 @@ bool CModuleMapIntro::start()
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 	mouse->setLockMouse(true);
 	ShowCursor(false);
+
+
+  SLB::Manager m;
+  BootLuaSLB(&m);
+
+  SLB::Script s(&m);
+
+  s.doFile("test.lua");
+  s.doString("OnPlayerKilled()");
+  // unprotected, do not use
+  //s.doString("Test()");
+
+  // protected
+  //lua_State* ls = s;
+  auto p1 = s.exists("Test");
+  auto p2 = s.exists("OnPlayerKilled");
+  //s.get()
+
+  s.doString("OnPlayerKilled()");
+
+  printf("Goodbye world\n");
 
 	return true;
 }
