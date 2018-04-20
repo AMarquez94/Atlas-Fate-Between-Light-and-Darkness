@@ -166,10 +166,37 @@ namespace FSM
 
 		CEntity* e = ctx.getOwner();
 		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::CROUCH_IDLE , 1.0f });
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, nullptr, _noise });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, nullptr, _noise });
 	}
 
 	void CrouchState::onFinish(CContext& ctx) const {
+
+	}
+
+	bool CrouchWalkState::load(const json& jData) {
+
+		_animationName = jData["animation"];
+		_speed = jData.value("speed", 3.f);
+		_size = jData.value("size", 1.f);
+		_radius = jData.value("radius", 0.3f);
+		_rotation_speed = jData.value("rotationSpeed", 10.f);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+		return true;
+	}
+
+	void CrouchWalkState::onStart(CContext& ctx) const {
+
+		// Send a message to the player controller
+		//CEntity* e = ctx.getOwner();
+		//e->sendMsg(TMsgAnimation{ "crouch" });
+
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::CROUCH_WALK , 1.0f });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, nullptr, _noise });
+	}
+
+	void CrouchWalkState::onFinish(CContext& ctx) const {
 
 	}
 

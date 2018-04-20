@@ -50,6 +50,14 @@
 			"rotationSpeed": 5.0,
 			"size" : 0.25
 		},
+    {
+      "name" : "crouchwalk",
+      "type" : "CrouchWalkState",
+      "animation" : "crouch_walk",
+      "speed" : 3,
+      "rotationSpeed": 5.0,
+      "size" : 0.25
+    },
 		{
 			"name" : "entermerge",
 			"type" : "EnterMergeState",
@@ -181,6 +189,27 @@
     },
     {
       "type": "VariableTransition",
+      "source": "crouch",
+      "target": "crouchwalk",
+      "variable": {
+        "name": "speed",
+        "type": "float",
+        "value": 1.0
+      },
+      "operation": "greater"
+    },
+    {
+      "type": "VariableTransition",
+      "source": "crouchwalk",
+      "target": "crouch",
+      "variable": {
+        "name": "speed",
+        "type": "float",
+        "value": 0.0
+      }
+    },
+    {
+      "type": "VariableTransition",
       "source": "walk",
       "target": "run",
       "variable": {
@@ -223,17 +252,6 @@
     },
     {
       "type": "VariableTransition",
-      "source": "walk",
-      "target": "crouch",
-      "variable": {
-        "name": "crouch",
-        "type": "bool",
-        "value": true
-      },
-      "operation": "equal"
-    },
-    {
-      "type": "VariableTransition",
       "source": "crouch",
       "target": "entermerge",
       "variable": {
@@ -245,21 +263,31 @@
     {
       "type": "VariableTransition",
       "source": "crouch",
-      "target": "run",
-      "variable": {
-        "name": "boost_speed",
-        "type": "float",
-        "value": 1.0
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "crouch",
       "target": "idle",
       "variable": {
         "name": "crouch",
         "type": "bool",
         "value": false
+      }
+    },
+    {
+      "type": "VariableTransition",
+      "source": "crouchwalk",
+      "target": "walk",
+      "variable": {
+        "name": "crouch",
+        "type": "bool",
+        "value": false
+      }
+    },
+    {
+      "type": "VariableTransition",
+      "source": "walk",
+      "target": "crouchwalk",
+      "variable": {
+        "name": "crouch",
+        "type": "bool",
+        "value": true
       }
     },
     {
@@ -285,6 +313,16 @@
     {
       "type": "VariableTransition",
       "source": "walk",
+      "target": "entermerge",
+      "variable": {
+        "name": "onmerge",
+        "type": "bool",
+        "value": true
+      }
+    },
+        {
+      "type": "VariableTransition",
+      "source": "crouchwalk",
       "target": "entermerge",
       "variable": {
         "name": "onmerge",
@@ -480,6 +518,16 @@
     {
       "type": "VariableTransition",
       "source": "crouch",
+      "target": "attack",
+      "variable": {
+        "name": "attack",
+        "type": "bool",
+        "value": true
+      }
+    },
+    {
+      "type": "VariableTransition",
+      "source": "crouchwalk",
       "target": "attack",
       "variable": {
         "name": "attack",

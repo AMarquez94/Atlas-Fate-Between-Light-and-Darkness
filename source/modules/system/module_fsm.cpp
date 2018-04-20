@@ -23,6 +23,7 @@ bool CModuleFSM::start()
 	_factory.registerInstancer("RunState", new FSM::StateInstancer<FSM::RunState>());
 	_factory.registerInstancer("FallState", new FSM::StateInstancer<FSM::FallState>());
 	_factory.registerInstancer("CrouchState", new FSM::StateInstancer<FSM::CrouchState>());
+	_factory.registerInstancer("CrouchWalkState", new FSM::StateInstancer<FSM::CrouchWalkState>());
 	_factory.registerInstancer("EnterMergeState", new FSM::StateInstancer<FSM::EnterMergeState>());
 	_factory.registerInstancer("MergeState", new FSM::StateInstancer<FSM::MergeState>());
 	_factory.registerInstancer("ExitMergeState", new FSM::StateInstancer<FSM::ExitMergeState>());

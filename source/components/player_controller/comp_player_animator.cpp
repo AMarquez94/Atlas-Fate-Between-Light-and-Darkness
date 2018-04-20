@@ -86,7 +86,7 @@ void TCompPlayerAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::CROUCH_IDLE,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"crouch_walk",
+		"crouch",
 		"",
 		1.0f,
 		1.0f
