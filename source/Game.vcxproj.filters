@@ -112,6 +112,7 @@
     <ClCompile Include="components\lighting\comp_light_point.cpp" />
     <ClCompile Include="components\lighting\comp_light_dir.cpp" />
     <ClCompile Include="components\lighting\comp_light_spot.cpp" />
+    <ClCompile Include="components\lighting\comp_emission_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -255,6 +256,7 @@
     <ClInclude Include="components\lighting\comp_light_point.h" />
     <ClInclude Include="components\lighting\comp_light_dir.h" />
     <ClInclude Include="components\lighting\comp_light_spot.h" />
+    <ClInclude Include="components\lighting\comp_emission_controller.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

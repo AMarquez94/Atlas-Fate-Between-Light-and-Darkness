@@ -59,6 +59,10 @@ bool CMaterial::create(const std::string& name) {
 			ts = TS_ROUGHNESS;
 		else if (slot == "emissive")
 			ts = TS_EMISSIVE;
+		else if (slot == "aocclusion")
+			ts = TS_AOCCLUSION;
+		else if (slot == "height")
+			ts = TS_HEIGHT;
 
 		assert(ts != TS_NUM_MATERIALS_SLOTS || fatal("Material %s has an invalid texture slot %s\n", name.c_str(), slot.c_str()));
 		textures[ts] = Resources.get(texture_name)->as<CTexture>();

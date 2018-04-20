@@ -24,7 +24,7 @@ void VS(
   oTangent.w = iTangent.w;
 
   // Simulate a normal perturbation
-  world_pos.xyz += oNormal * 0.05 * sin( 5 * global_world_time + world_pos.x + world_pos.z * 0.2);
+  world_pos.xyz += oNormal * 0.1 * sin( 5 * global_world_time + world_pos.x + world_pos.z * 0.2);
 
   oPos = mul(world_pos, camera_view_proj);
 
@@ -58,12 +58,12 @@ float4 PS(
   int3 ss_load_coords = uint3(iPosition.xy, 0);
 
   // Obtain a random value associated to each pos in the surface
-  float4 noise0 = txNoiseMap.Sample( samLinear, iTex0 * 2.0 + 0.4 * global_world_time * float2(.5,0)) * 2 - 1;      // -1..1
-  float4 noise1 = txNoiseMap.Sample( samLinear, iTex0 * 8.0 + 0.5 * global_world_time * float2(.5,0.1)) * 2 - 1;      // -1..1
-  float4 noise2 = txNoiseMap.Sample( samLinear, iTex0 * 16 + 0.5 * global_world_time * float2(.55,-0.123)) * 2 - 1;      // -1..1
+  float4 noise0 = txNoiseMap.Sample( samLinear, iTex0 * 1.0 + 0.4 * global_world_time * float2(.5,0)) * 2 - 1;      // -1..1
+  float4 noise1 = txNoiseMap.Sample( samLinear, iTex0 * 2.0 + 0.5 * global_world_time * float2(.5,0.1)) * 2 - 1;      // -1..1
+  float4 noise2 = txNoiseMap.Sample( samLinear, iTex0 * 4 + 0.5 * global_world_time * float2(.55,-0.123)) * 2 - 1;      // -1..1
 
   // Add 3 octaves to break pattern repetition
-  float2 noiseF = noise0.xy + noise1.xy * 0.5 + noise2.xy * .25;
+  float2 noiseF = noise0.xy * 0.15 + noise1.xy * 0.25 + noise2.xy * .125;
 
   // Modify the position where we take the sample
   float3 surface_pos = iWorldPos + noise0.xyz * .5;
@@ -110,5 +110,5 @@ float4 PS(
   float4 final_color = surface_color * amount + env_color * ( 1 - amount );
 
   // Add spec + final color
-  return final_color + spec_term * 0.75 * shadow_factor;
+  return final_color + spec_term * 0.25 * shadow_factor;
 }

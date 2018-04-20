@@ -4,13 +4,13 @@
     {
       "name": "water",
       "transform": {
-        "pos": "-6 -8 46",
+        "pos": "-6 -12 46",
         "rotation": "0.0 0.0 0.0 1.0"
       },
       "render":
       [
         {
-          "mesh": "data/meshes/water_plane.mesh"
+          "mesh": "data/meshes/water_radial.mesh"
           ,
           "materials":
           [

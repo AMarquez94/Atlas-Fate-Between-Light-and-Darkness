@@ -52,9 +52,16 @@ void PS_GBuffer(
 {
 	// Store in the Alpha channel of the albedo texture, the 'metallic' amount of
 	// the material
+	/*
+	float3x3 TBN = computeTBN(iNormal, iTangent);
+	float3 view_dir = normalize(mul(camera_pos, TBN) - mul(iWorldPos, TBN));
+	iTex0 = parallaxMapping(iTex0, view_dir);
+	*/
+
 	o_albedo = txAlbedo.Sample(samLinear, iTex0);
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
-	o_selfIllum = color_emission * txEmissive.Sample(samLinear, iTex0);
+	o_selfIllum =  txEmissive.Sample(samLinear, iTex0);
+	o_selfIllum.xyz *= color_emission;
 
 	// Save roughness in the alpha coord of the N render target
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
@@ -207,9 +214,10 @@ float4 PS_ambient(in float4 iPosition : SV_Position) : SV_Target
 
 	float g_ReflectionIntensity = 0.5;
 	float g_AmbientLightIntensity = 1.0;
-	float4 self_illum = scalar_emission * txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
+	float4 self_illum = txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
+	//self_illum.a *
 
-	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f) + self_illum;
+	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f) + float4(self_illum.xyz,1) * scalar_emission;
 
 	return final_color * global_ambient_adjustment;
 }
@@ -266,7 +274,7 @@ float4 shade(float4 iPosition, out float3 light_dir, bool use_shadows)
 	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.; // shadow factor
 
 	//return projectColor(wPos);
-	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor;
+	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor * projectColor(wPos).xyz;
 	return float4(final_color, 1);
 }
 
