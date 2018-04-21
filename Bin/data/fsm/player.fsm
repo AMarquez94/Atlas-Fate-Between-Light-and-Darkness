@@ -32,7 +32,7 @@
 			"name" : "run",
 			"type" : "RunState",
 			"animation" : "run",
-			"speed" : 3.5,
+			"speed" : 5.5,
 			"rotationSpeed": 10.0,
 			"size" : 1,
 			"noise" : {
@@ -163,7 +163,21 @@
 			"animation" : "removenhibitor",
 			"damage" : 10,
 			"size" : 1
-		}
+		},
+        {
+      "name" : "inhibitorRemoved",
+      "type" : "InhibitorRemoved",
+      "animation" : "inhibitorRemoved",
+      "damage" : 10,
+      "size" : 1
+    },
+    {
+      "name" : "inhibitorTryToRemove",
+      "type" : "InhibitorTryToRemove",
+      "animation" : "inhibitorRemoved",
+      "damage" : 10,
+      "size" : 1
+    }
 	],
   "transitions": [
     {
@@ -405,18 +419,44 @@
     {
       "type": "VariableTransition",
       "source": "removeInhibitor",
-      "target": "idle",
+      "target": "inhibitorRemoved",
       "variable": {
-        "name": "finished",
+        "name": "inhibitor_removed",
         "type": "bool",
         "value": true
       }
     },
     {
-      "type": "TimeTransition",
+      "type": "VariableTransition",
       "source": "removeInhibitor",
+      "target": "inhibitorTryToRemove",
+      "variable": {
+        "name": "inhibitor_try_to_remove",
+        "type": "bool",
+        "value": true
+      }
+    },
+        {
+      "type": "VariableTransition",
+      "source": "inhibitorTryToRemove",
+      "target": "removeInhibitor",
+      "variable": {
+        "name": "hitPoints",
+        "type": "bool",
+        "value": true
+      }
+    },
+    {
+      "type": "AnimationTransition",
+      "source": "inhibitorRemoved",
       "target": "idle",
-      "time": 0.01
+      "animation_name": "metralla_finish"
+    },
+    {
+      "type": "AnimationTransition",
+      "source": "inhibitorTryToRemove",
+      "target": "idle",
+      "animation_name": "metralla_middle"
     },
 	{
       "type": "VariableTransition",
@@ -663,6 +703,16 @@
 			"name" : "hitPoints",
 			"type" : "bool",
 			"value" : false
-		}
+		},
+    {
+      "name" : "inhibitor_removed",
+      "type" : "bool",
+      "value" : false
+    },
+    {
+      "name" : "inhibitor_try_to_remove",
+      "type" : "bool",
+      "value" : false
+    }
 	]
 }

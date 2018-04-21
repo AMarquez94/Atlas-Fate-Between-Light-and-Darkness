@@ -375,39 +375,43 @@ void TCompTempPlayerController::deadState(float dt)
 }
 
 void TCompTempPlayerController::removingInhibitorState(float dt) {
+
 	CEntity* player = CHandle(this).getOwner();
 
-	
-	if (initialPoints == timesRemoveInhibitorKeyPressed){
-		timeInhib = 0;
-	}
-	if (timesRemoveInhibitorKeyPressed > 0 && timeInhib <= timeToPressAgain) {
+	TMsgSetFSMVariable hitPoints;
+	hitPoints.variant.setName("hitPoints");
+	hitPoints.variant.setBool(false);
+	player->sendMsg(hitPoints);
+
+	TMsgSetFSMVariable finished;
+	finished.variant.setName("inhibitor_removed");
+	finished.variant.setBool(false);
+	player->sendMsg(finished);
+
+	TMsgSetFSMVariable inhibitor_try_to_remove;
+	inhibitor_try_to_remove.variant.setName("inhibitor_try_to_remove");
+	inhibitor_try_to_remove.variant.setBool(false);
+	player->sendMsg(inhibitor_try_to_remove);
+
+	if (timesRemoveInhibitorKeyPressed > 0) {
+
 		timesRemoveInhibitorKeyPressed--;
-		timeInhib = 0;
-		dbg("Im in removing inhib state \n %d Key strokes remaining \n \n", timesRemoveInhibitorKeyPressed);
 		if (timesRemoveInhibitorKeyPressed == 0) {
 			timesRemoveInhibitorKeyPressed = 0;
 			isInhibited = false;
+
+			TMsgSetFSMVariable finished;
+			finished.variant.setName("inhibitor_removed");
+			finished.variant.setBool(true);
+			player->sendMsg(finished);
+		}
+		else {
+			TMsgSetFSMVariable inhibitor_try_to_remove;
+			inhibitor_try_to_remove.variant.setName("inhibitor_try_to_remove");
+			inhibitor_try_to_remove.variant.setBool(true);
+			player->sendMsg(inhibitor_try_to_remove);
 		}
 	}
-	else {
-		timesRemoveInhibitorKeyPressed = initialPoints - 1;
-		timeInhib = 0;
-		dbg("Im in removing inhib state but I was too slow \n %d Key strokes remaining \n \n", timesRemoveInhibitorKeyPressed);
-
-	}
-	TMsgSetFSMVariable finished;
-	finished.variant.setName("finished");
-	finished.variant.setBool(true);
-	player->sendMsg(finished);
-	
-	TMsgSetFSMVariable keyPressed;
-	keyPressed.variant.setName("hitPoints");
-	keyPressed.variant.setBool(false);
-	player->sendMsg(keyPressed);
-
-	dbg("---------------------------------------------------------------------------- \n");
-
 
 }
 

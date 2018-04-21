@@ -146,6 +146,36 @@ void TCompPlayerAnimator::initializeAnimations() {
 		1.0f
 	);
 
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::METRALLA_START,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"metralla_start",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::METRALLA_MIDDLE,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"metralla_middle",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::METRALLA_FINISH,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"metralla_finish",
+		"",
+		1.0f,
+		1.0f
+	);
+
 }
 
 void TCompPlayerAnimator::registerMsgs() {

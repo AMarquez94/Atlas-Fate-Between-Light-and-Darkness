@@ -420,6 +420,52 @@ namespace FSM
 
 	}
 
+	bool InhibitorRemoved::load(const json& jData) {
+
+		_animationName = jData["animation"];
+		_speed = jData.value("speed", 2.f);
+		_size = jData.value("size", 1.f);
+		_radius = jData.value("radius", 0.3f);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+		return true;
+	}
+
+	void InhibitorRemoved::onStart(CContext& ctx) const {
+
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::METRALLA_FINISH , 1.0f });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _radius, _size, nullptr, _noise });
+
+	}
+
+	void InhibitorRemoved::onFinish(CContext& ctx) const {
+
+	}
+
+	bool InhibitorTryToRemove::load(const json& jData) {
+
+		_animationName = jData["animation"];
+		_speed = jData.value("speed", 2.f);
+		_size = jData.value("size", 1.f);
+		_radius = jData.value("radius", 0.3f);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+		return true;
+	}
+
+	void InhibitorTryToRemove::onStart(CContext& ctx) const {
+
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::METRALLA_MIDDLE , 1.0f });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _radius, _size, nullptr, _noise });
+
+	}
+
+	void InhibitorTryToRemove::onFinish(CContext& ctx) const {
+
+	}
+
 	bool DeadState::load(const json& jData) {
 
 		_animationName = jData["animation"];
