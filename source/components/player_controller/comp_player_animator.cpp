@@ -105,12 +105,33 @@ void TCompPlayerAnimator::initializeAnimations() {
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::CROUCH_WALK,
 		EAnimationType::CYCLIC,
-		EAnimationSize::DOUBLE,
-		"crouch_walk_slow",
+		EAnimationSize::SINGLE,
 		"crouch_walk",
-		0.0f,
+		"",
+		1.0f,
 		1.0f
 	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CROUCH_WALK_SLOW,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"crouch_walk_slow",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::LAND_SOFT,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"land_soft",
+		"",
+		1.0f,
+		1.0f
+	);
+
 }
 
 void TCompPlayerAnimator::registerMsgs() {

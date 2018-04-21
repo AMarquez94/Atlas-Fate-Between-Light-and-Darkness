@@ -113,4 +113,18 @@ namespace FSM
     _time = jData.value("time", 0.f);
     return true;
   }
+
+  bool AnimationTransition::checkCondition(CContext& ctx) const
+  {
+
+	  CEntity* e = ctx.getOwner();
+	  TCompPlayerAnimator *compAnimator = e->get<TCompPlayerAnimator>();
+	  return !compAnimator->isPlayingAnimation(compAnimator->getAnimationByName(anim_name));
+  }
+
+  bool AnimationTransition::load(const json& jData)
+  {
+	  anim_name = jData.value("animation_name", "");
+	  return true;
+  }
 }

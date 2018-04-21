@@ -117,5 +117,5 @@ struct  TSkeletonsExporter (
 
 gc()
 se = TSkeletonsExporter()
-se.exportSkelAndMeshes()
+--se.exportSkelAndMeshes()
 se.exportAnim()

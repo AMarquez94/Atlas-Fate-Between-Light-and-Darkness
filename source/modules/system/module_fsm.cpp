@@ -35,6 +35,7 @@ bool CModuleFSM::start()
 	_factory.registerInstancer("DeadState", new FSM::StateInstancer<FSM::DeadState>());
 	_factory.registerInstancer("VariableTransition", new FSM::TransitionInstancer<FSM::VariableTransition>());
 	_factory.registerInstancer("TimeTransition", new FSM::TransitionInstancer<FSM::TimeTransition>());
+	_factory.registerInstancer("AnimationTransition", new FSM::TransitionInstancer<FSM::AnimationTransition>());
 
 
 	//const FSM::CMachine* myFsm = Resources.get("data/fsm/character.fsm")->as<FSM::CMachine>();

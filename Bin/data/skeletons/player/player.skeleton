@@ -9,6 +9,12 @@
 		{ "name" : "crouch_walk"},
 		{ "name" : "crouch_walk_slow"},
 		{ "name" : "fall"},
+		{ "name" : "hit_back"},
+		{ "name" : "hit_front"},
+		{ "name" : "metralla_start"},
+		{ "name" : "metralla_middle"},
+		{ "name" : "metralla_finish"},
+		{ "name" : "land_soft"},
 		{ "name" : "death"}
 	]
 }

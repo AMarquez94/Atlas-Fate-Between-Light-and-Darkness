@@ -606,7 +606,7 @@ void TCompTempPlayerController::attackState(float dt) {
 		enemy.sendMsg(msg);
 	}
 
-	state = (actionhandler)&TCompTempPlayerController::walkState;
+	state = (actionhandler)&TCompTempPlayerController::idleState;
 }
 
 /* Attack state, kills the closest enemy if true*/

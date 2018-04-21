@@ -9,14 +9,14 @@ class TCompPlayerAnimator;
 class TCompPlayerAnimator : public TCompAnimator
 {
 public:
-	enum EAnimation { IDLE = 0, WALK, ATTACK, DEATH, DEAD, CROUCH_IDLE, CROUCH_WALK, RUN , HIT_FRONT, HIT_BACK, FALL, LAND_SOFT};
+	enum EAnimation { IDLE = 0, WALK, ATTACK, DEATH, DEAD, CROUCH_IDLE, CROUCH_WALK, CROUCH_WALK_SLOW, RUN, HIT_FRONT, HIT_BACK, FALL, LAND_SOFT};
 	struct TMsgExecuteAnimation {
 
 		TCompPlayerAnimator::EAnimation animation;
 		float speed;
 		DECL_MSG_ID();
 	};
-
+	
 	DECL_SIBLING_ACCESS();
 
 	void debugInMenu();

@@ -444,10 +444,10 @@
       }
     },
 	{
-      "type": "TimeTransition",
+      "type": "AnimationTransition",
       "source": "hardLand",
-      "target": "walk",
-      "time": 0.5
+      "target": "idle",
+      "animation_name": "land_soft"
     },
 	{
       "type": "VariableTransition",
@@ -460,14 +460,10 @@
       }
     },
 	{
-      "type": "VariableTransition",
+      "type": "AnimationTransition",
       "source": "softLand",
-      "target": "walk",
-      "variable": {
-        "name": "onGround",
-        "type": "bool",
-        "value": true
-      }
+      "target": "idle",
+      "animation_name": "land_soft"
     },
     {
       "type": "VariableTransition",
@@ -536,10 +532,10 @@
       }
     },
     {
-      "type": "TimeTransition",
+      "type": "AnimationTransition",
       "source": "attack",
       "target": "idle",
-      "time": 1.0
+      "animation_name": "attack"
     },
     {
       "type": "VariableTransition",

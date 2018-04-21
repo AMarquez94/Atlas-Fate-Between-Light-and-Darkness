@@ -32,7 +32,8 @@ public:
 	CHandle ownHandle;
 	AnimationSet actualCyclicAnimation;
 	std::map<EAnimation, AnimationSet> animationsMap;
-	std::string _animationName;
+	std::map<std::string, EAnimation> stringToAnimationsMap;
+
 	float _time = 0.f;
 
 	static void registerMsgs();
@@ -48,6 +49,7 @@ public:
 	EAnimation actualAnimation();
 	bool isPlayingAnimation(EAnimation animation);
 
+	EAnimation getAnimationByName(std::string animation_name);
 	float getAnimationDuration(EAnimation animation);
 
 	void setFeetIds(std::vector<int> feetBonesId);
