@@ -80,22 +80,22 @@ z = pz;
 
 // ARRANQUE DE SLB
 
-void BootLuaSLB(SLB::Manager *m)
-{
-  SLB::Class< LogicManager >("LogicManager", m)
-    // a comment/documentation for the class [optional]
-    .comment("This is our wrapper of LogicManager class")
-    // empty constructor, we can also wrapper constructors
-    // with arguments using .constructor<TypeArg1,TypeArg2,..>()
-    .constructor()
-    // a method/function/value...
-    .set("RespawnPlayer", &LogicManager::RespawnPlayer)
-    .set("TeleportPlayer", &LogicManager::TeleportPlayer)
-    .set("GetPlayerLife", &LogicManager::GetPlayerLife)
-    //.set("GetPlayerPos", &LogicManager::GetPlayerPos)
-    .property("numagents", &LogicManager::numagents)
-    ;
-}
+//void BootLuaSLB(SLB::Manager *m)
+//{
+//  SLB::Class< LogicManager >("LogicManager", m)
+//    // a comment/documentation for the class [optional]
+//    .comment("This is our wrapper of LogicManager class")
+//    // empty constructor, we can also wrapper constructors
+//    // with arguments using .constructor<TypeArg1,TypeArg2,..>()
+//    .constructor()
+//    // a method/function/value...
+//    .set("RespawnPlayer", &LogicManager::RespawnPlayer)
+//    .set("TeleportPlayer", &LogicManager::TeleportPlayer)
+//    .set("GetPlayerLife", &LogicManager::GetPlayerLife)
+//    //.set("GetPlayerPos", &LogicManager::GetPlayerPos)
+//    .property("numagents", &LogicManager::numagents)
+//    ;
+//}
 
 CCamera camera;
 
@@ -149,25 +149,25 @@ bool CModuleMapIntro::start()
 	ShowCursor(false);
 
 
-  SLB::Manager m;
-  BootLuaSLB(&m);
+  //SLB::Manager m;
+  //BootLuaSLB(&m);
 
-  SLB::Script s(&m);
+  //SLB::Script s(&m);
 
-  s.doFile("test.lua");
-  s.doString("OnPlayerKilled()");
-  // unprotected, do not use
-  //s.doString("Test()");
+  //s.doFile("test.lua");
+  //s.doString("OnPlayerKilled()");
+  //// unprotected, do not use
+  ////s.doString("Test()");
 
-  // protected
-  //lua_State* ls = s;
-  auto p1 = s.exists("Test");
-  auto p2 = s.exists("OnPlayerKilled");
-  //s.get()
+  //// protected
+  ////lua_State* ls = s;
+  //auto p1 = s.exists("Test");
+  //auto p2 = s.exists("OnPlayerKilled");
+  ////s.get()
 
-  s.doString("OnPlayerKilled()");
+  //s.doString("OnPlayerKilled()");
 
-  printf("Goodbye world\n");
+  //printf("Goodbye world\n");
 
 	return true;
 }

@@ -409,9 +409,6 @@
     <ProjectReference Include="Cal3D\Cal3D.vcxproj">
       <Project>{f13518a5-98d4-48a8-98ed-81b5e9d70bce}</Project>
     </ProjectReference>
-    <ProjectReference Include="SLB\SLB.vcxproj">
-      <Project>{5b017b60-5394-4171-82aa-0841becdf4b8}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
