@@ -25,6 +25,10 @@ void TCompPlayerAnimator::debugInMenu() {
 	if (ImGui::SmallButton("Crouch_walk")) {
 		playAnimation(EAnimation::CROUCH_WALK, speed);
 	}
+	if (ImGui::SmallButton("prova")) {
+		playAnimation(EAnimation::HIT_BACK, speed);
+	}
+
 
 	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);
 	TCompSkeleton * compSkeleton = get<TCompSkeleton>();
@@ -128,6 +132,16 @@ void TCompPlayerAnimator::initializeAnimations() {
 		EAnimationSize::SINGLE,
 		"land_soft",
 		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::HIT_BACK,
+		EAnimationType::CYCLIC,
+		EAnimationSize::DOUBLE,
+		"walk",
+		"run",
 		1.0f,
 		1.0f
 	);

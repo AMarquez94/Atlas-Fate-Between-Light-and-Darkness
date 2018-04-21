@@ -9,26 +9,51 @@ namespace FSM
     const CVariant* var = ctx.getVariable(_variable.getName());
     if (var && var->getType() == _variable.getType())
     {
-      if (var->getType() == CVariant::EType::BOOL)
-      {
-        return var->getBool() == _variable.getBool();
-      }
-      else if (var->getType() == CVariant::EType::INT)
-      {
-        return var->getInt() == _variable.getInt();
-      }
-      else if (var->getType() == CVariant::EType::FLOAT)
-      {
-        return var->getFloat() == _variable.getFloat();
-      }
-      else if (var->getType() == CVariant::EType::HANDLE)
-      {
-        return var->getHandle() == _variable.getHandle();
-      }
-      else if (var->getType() == CVariant::EType::STRING)
-      {
-        return var->getString() == _variable.getString();
-      }
+		if (_operation == EOperation::EQUAL) {
+			if (var->getType() == CVariant::EType::BOOL)
+			{
+				return var->getBool() == _variable.getBool();
+			}
+			else if (var->getType() == CVariant::EType::INT)
+			{
+				return var->getInt() == _variable.getInt();
+			}
+			else if (var->getType() == CVariant::EType::FLOAT)
+			{
+				return var->getFloat() == _variable.getFloat();
+			}
+			else if (var->getType() == CVariant::EType::HANDLE)
+			{
+				return var->getHandle() == _variable.getHandle();
+			}
+			else if (var->getType() == CVariant::EType::STRING)
+			{
+				return var->getString() == _variable.getString();
+			}
+		}
+
+		if (_operation == EOperation::GREATER) {
+
+			if (var->getType() == CVariant::EType::INT)
+			{
+				return var->getInt() > _variable.getInt();
+			}
+			else if (var->getType() == CVariant::EType::FLOAT)
+			{
+				return var->getFloat() > _variable.getFloat();
+			}
+		}
+		
+		if (_operation == EOperation::GREATER_EQUAL) {
+			if (var->getType() == CVariant::EType::INT)
+			{
+				return var->getInt() >= _variable.getInt();
+			}
+			else if (var->getType() == CVariant::EType::FLOAT)
+			{
+				return var->getFloat() >= _variable.getFloat();
+			}
+		}
     }
     return false;
   }

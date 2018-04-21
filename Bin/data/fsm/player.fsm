@@ -18,7 +18,7 @@
 			"name" : "walk",
 			"type" : "WalkState",
 			"animation" : "walk",
-			"speed" : 2.0,
+			"speed" : 1.75,
 			"rotationSpeed": 10.0,
 			"size" : 1,
 			"noise" : {
@@ -32,7 +32,7 @@
 			"name" : "run",
 			"type" : "RunState",
 			"animation" : "run",
-			"speed" : 5.5,
+			"speed" : 3.5,
 			"rotationSpeed": 10.0,
 			"size" : 1,
 			"noise" : {
@@ -175,7 +175,7 @@
         "type": "float",
         "value": 1.0
       },
-      "operation": "greater"
+      "operation": "greater_equal"
     },
     {
       "type": "VariableTransition",
@@ -196,7 +196,7 @@
         "type": "float",
         "value": 1.0
       },
-      "operation": "greater"
+      "operation": "greater_equal"
     },
     {
       "type": "VariableTransition",
