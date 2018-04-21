@@ -113,6 +113,9 @@
     <ClCompile Include="components\lighting\comp_light_dir.cpp" />
     <ClCompile Include="components\lighting\comp_light_spot.cpp" />
     <ClCompile Include="components\lighting\comp_emission_controller.cpp" />
+    <ClCompile Include="render\blur_step.cpp" />
+    <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
+    <ClCompile Include="components\postfx\comp_render_blur.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -257,6 +260,9 @@
     <ClInclude Include="components\lighting\comp_light_dir.h" />
     <ClInclude Include="components\lighting\comp_light_spot.h" />
     <ClInclude Include="components\lighting\comp_emission_controller.h" />
+    <ClInclude Include="render\blur_step.h" />
+    <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
+    <ClInclude Include="components\postfx\comp_render_blur.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

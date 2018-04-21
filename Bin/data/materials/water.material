@@ -5,7 +5,7 @@
   ,
   "textures":
   {
-    "albedo": "rt_main.dds"
+    "albedo": "acc_light.dds"
   },
 	"color" : "0.071 0.071 0.071 1.0"
 }

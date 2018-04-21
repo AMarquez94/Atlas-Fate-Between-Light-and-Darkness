@@ -181,5 +181,23 @@
     "ps_entry_point": "PS_skybox",
 		"z" : "test_equal",
     "category" : "pbr_skybox"
+  },
+	"blur": {
+    "vs_file": "data/shaders/blur.fx",
+    "ps_file": "data/shaders/blur.fx",
+    "vs_entry_point": "VS",
+		"ps_entry_point": "PS",
+    "vertex_type": "PosClr",
+    "category" : "fx",
+    "z" : "disable_all",
+    "rs" : "default",
+    "blend" : "default"
+  },
+	"blur_radial": {
+		"vs_file": "data/shaders/blur_radial.fx",
+		"ps_file": "data/shaders/blur_radial.fx",
+		"vertex_type": "PosClr",
+		"category": "fx",
+		"z": "disable_all"
   }
 }

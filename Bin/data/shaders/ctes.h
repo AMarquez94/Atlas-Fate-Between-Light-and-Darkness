@@ -7,6 +7,7 @@
 #define CB_LIGHT		3
 #define CB_GLOBALS      4
 #define CB_MATERIAL     5
+#define CB_BLUR         6
 
 // -------------------------------------------------
 // Texture Slots
@@ -128,6 +129,14 @@ CB_DEF(CCteMaterial, CB_MATERIAL)
 	float  scalar_emission;
 	VEC4   color_emission;
 	VEC4   color_material;
+};
+
+CB_DEF(CCteBlur, CB_BLUR)
+{
+	VEC4 blur_w;        // weights
+	VEC4 blur_d;        // distances
+	VEC2 blur_step;     // Extra modifier
+	VEC2 blur_center; // To keep aligned x4
 };
 
 CB_DEF(CCteSkinBones, CB_SKIN_BONES)

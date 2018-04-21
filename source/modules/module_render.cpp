@@ -18,6 +18,8 @@
 
 #include "geometry/geometry.h"
 #include "render/texture/render_to_texture.h"
+#include "components/postfx/comp_render_blur.h"
+#include "components/postfx/comp_render_blur_radial.h"
 
 //--------------------------------------------------------------------------------------
 
@@ -35,8 +37,10 @@ bool parseTechniques() {
 		json& tech_j = it.value();
 
 		CRenderTechnique* tech = new CRenderTechnique();
-		if (!tech->create(tech_name, tech_j))
+		if (!tech->create(tech_name, tech_j)) {
+			fatal("Failed to create tech '%s'\n", tech_name.c_str());
 			return false;
+		}
 		Resources.registerResource(tech);
 	}
 
@@ -100,6 +104,10 @@ bool CModuleRender::start()
 	if (!cb_globals.create(CB_GLOBALS))
 		return false;
 
+	// Post processing effects
+	if (!cb_blur.create(CB_BLUR))
+		return false;
+
 	cb_globals.global_exposure_adjustment = 0.4f;
 	cb_globals.global_ambient_adjustment = 0.270f;
 	cb_globals.global_world_time = 0.f;
@@ -111,6 +119,7 @@ bool CModuleRender::start()
 	cb_object.activate();
 	cb_camera.activate();
 	cb_globals.activate();
+	cb_blur.activate();
 
 	camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
 	camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
@@ -136,6 +145,7 @@ bool CModuleRender::stop()
 	cb_object.destroy();
 	cb_light.destroy();
 	cb_globals.destroy();
+	cb_blur.destroy();
 
 	return true;
 }
@@ -192,7 +202,7 @@ void CModuleRender::activateMainCamera() {
 
 	CCamera* cam = &camera;
 
-	CHandle h_e_camera = getEntityByName("main_camera");
+	h_e_camera = getEntityByName("main_camera");
 	if (h_e_camera.isValid()) {
 		CEntity* e_camera = h_e_camera;
 		TCompCamera* c_camera = e_camera->get< TCompCamera >();
@@ -229,10 +239,26 @@ void CModuleRender::generateFrame() {
 		cb_globals.updateGPU();
 		deferred.render(rt_main);
 
-		Render.startRenderInBackbuffer();
-		renderFullScreenQuad("dump_texture.tech", rt_main);
-
 		CRenderManager::get().renderCategory("distorsions");
+
+		// Apply postFX
+		CTexture * curr_rt = rt_main;
+		CHandle camera_render = Engine.getCameras().getCurrentCamera();
+		if (camera_render.isValid()) {
+
+			CEntity * e_cam = camera_render;
+			TCompRenderBlur * c_render_blur = e_cam->get< TCompRenderBlur >();
+			if (c_render_blur)
+				curr_rt = c_render_blur->apply(curr_rt);
+
+			// Check if we have a render_fx component
+			TCompRenderBlurRadial * c_render_blur_radial = e_cam->get< TCompRenderBlurRadial >();
+			if (c_render_blur_radial)
+				curr_rt = c_render_blur_radial->apply(curr_rt);
+		}
+
+		Render.startRenderInBackbuffer();
+		renderFullScreenQuad("dump_texture.tech", curr_rt);
 
 		// Debug render
 		{

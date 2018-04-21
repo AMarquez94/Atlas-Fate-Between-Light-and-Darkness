@@ -126,6 +126,8 @@
     <ClCompile Include="components\physics\comp_rigidbody.cpp" />
     <ClCompile Include="components\player_controller\comp_player_tempcontroller.cpp" />
     <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
+    <ClCompile Include="components\postfx\comp_render_blur.cpp" />
+    <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
     <ClCompile Include="components\skeleton\comp_bone_tracker.cpp" />
     <ClCompile Include="components\skeleton\comp_skeleton.cpp" />
     <ClCompile Include="components\skeleton\game_core_skeleton.cpp" />
@@ -179,6 +181,7 @@
     <ClCompile Include="physics\physics_filter.cpp" />
     <ClCompile Include="physics\physics_mesh.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
+    <ClCompile Include="render\blur_step.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
     <ClCompile Include="render\deferred_renderer.cpp" />
     <ClCompile Include="render\mesh\mesh.cpp" />
@@ -246,6 +249,8 @@
     <ClInclude Include="components\physics\comp_rigidbody.h" />
     <ClInclude Include="components\player_controller\comp_player_tempcontroller.h" />
     <ClInclude Include="components\player_controller\comp_shadow_controller.h" />
+    <ClInclude Include="components\postfx\comp_render_blur.h" />
+    <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
     <ClInclude Include="components\skeleton\cal3d2engine.h" />
     <ClInclude Include="components\skeleton\comp_bone_tracker.h" />
     <ClInclude Include="components\skeleton\comp_skeleton.h" />
@@ -315,6 +320,7 @@
     <ClInclude Include="physics\physics_filter.h" />
     <ClInclude Include="physics\physics_mesh.h" />
     <ClInclude Include="profiling\profiling.h" />
+    <ClInclude Include="render\blur_step.h" />
     <ClInclude Include="render\cte_buffer.h" />
     <ClInclude Include="render\deferred_renderer.h" />
     <ClInclude Include="render\gpu_trace.h" />
