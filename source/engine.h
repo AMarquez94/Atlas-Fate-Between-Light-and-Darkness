@@ -9,6 +9,7 @@
 #include "modules/system/module_cameras.h"
 #include "modules/system/module_fsm.h"
 #include "modules/module_navmeshes.h"
+#include "modules/system/module_logic.h"
 
 class CEngine
 {
@@ -30,6 +31,7 @@ public:
 	CModuleEntities& getEntities() { return _module_entities; }
   CModuleNavmesh& getNavmeshes() { return _module_navmesh; }
 	CModuleFSM& getFSM() { return _module_fsm; }
+  CModuleLogic& getLogic() { return _module_logic; }
 
 private:
 	CModuleManager  _modules;
@@ -41,6 +43,7 @@ private:
 	CModuleCameras  _module_cameras;
 	CModuleFSM      _module_fsm;
   CModuleNavmesh  _module_navmesh;
+  CModuleLogic    _module_logic;
 };
 
 #define Engine CEngine::get()
@@ -50,3 +53,4 @@ private:
 #define EnginePhysics CEngine::get().getPhysics()
 #define EngineEntities CEngine::get().getEntities()
 #define EngineNavmeshes CEngine::get().getNavmeshes()
+#define EngineLogic CEngine::get().getLogic()

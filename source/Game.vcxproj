@@ -175,6 +175,7 @@
     <ClCompile Include="modules\system\module_cameras.cpp" />
     <ClCompile Include="modules\system\module_fsm.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
+    <ClCompile Include="modules\system\module_logic.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
     <ClCompile Include="navmesh\navmesh.cpp" />
@@ -341,6 +342,7 @@
     <ClInclude Include="modules\system\module_cameras.h" />
     <ClInclude Include="modules\system\module_fsm.h" />
     <ClInclude Include="modules\system\module_input.h" />
+    <ClInclude Include="modules\system\module_logic.h" />
     <ClInclude Include="modules\system\module_physics.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
     <ClInclude Include="navmesh\navmesh.h" />

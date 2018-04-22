@@ -7,6 +7,7 @@
     "render",
 	"navmeshes",
 	"cameras",
+	"logic",
     "main_menu",
     "game_manager",
 	"game_console",
@@ -14,7 +15,7 @@
     "test_input",
     "map_intro",
 	"level_select",
-	"game_over"	
+	"game_over"
   ],
   "render": 
   [

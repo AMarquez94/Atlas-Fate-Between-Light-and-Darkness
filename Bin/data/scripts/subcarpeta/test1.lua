@@ -1,3 +1,3 @@
-function JUAS()
+function Test()
 	print("xdddd");
 end

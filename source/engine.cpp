@@ -9,7 +9,6 @@
 #include "modules/game/module_game_manager.h"
 #include "modules/game/module_game_console.h"
 #include "modules/test/module_test_input.h"
-#include "modules/module_navmeshes.h"
 
 //--------------------------------------------------------------------------------------
 CEngine& CEngine::get() {
@@ -27,6 +26,7 @@ CEngine::CEngine()
   , _module_cameras("cameras")
   , _module_fsm("fsm")
   , _module_navmesh("navmeshes")
+  , _module_logic("logic")
 {}
 
 bool CEngine::start() {
@@ -39,7 +39,6 @@ bool CEngine::start() {
 	static CModuleMapIntro module_map_intro("map_intro");
 	static CModuleLevelSelect module_level_select("level_select");
 	static CModuleTestInput module_test_input("test_input");
-  static CModuleNavmesh module_navmesh("navmeshes");
 
 	_modules.registerSystemModule(&_module_render);
 	_modules.registerSystemModule(&_module_entities);
@@ -48,7 +47,8 @@ bool CEngine::start() {
 	_modules.registerSystemModule(&_module_physics);
 	_modules.registerSystemModule(&_module_cameras);
 	_modules.registerSystemModule(&_module_fsm);
-  _modules.registerSystemModule(&module_navmesh);
+  _modules.registerSystemModule(&_module_navmesh);
+  _modules.registerSystemModule(&_module_logic);
 
 	_modules.registerGameModule(&module_splash);
 	_modules.registerGameModule(&module_game_manager);

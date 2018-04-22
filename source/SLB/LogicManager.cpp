@@ -36,16 +36,16 @@ void LogicManager::GetPlayerPos(float &x, float &y, float &z)
 /* Might take this out of here... */
 void LogicManager::BootLuaSLB(SLB::Manager *m)
 {
-	SLB::Class< LogicManager >("LogicManager", m)
-		// a comment/documentation for the class [optional]
-		.comment("This is our wrapper of LogicManager class")
-		// empty constructor, we can also wrapper constructors
-		// with arguments using .constructor<TypeArg1,TypeArg2,..>()
-		.constructor()
-		// a method/function/value...
-		.set("RespawnPlayer", &LogicManager::RespawnPlayer)
-		.set("TeleportPlayer", &LogicManager::TeleportPlayer)
-		.set("GetPlayerLife", &LogicManager::GetPlayerLife)
+  SLB::Class< LogicManager >("LogicManager", m)
+    // a comment/documentation for the class [optional]
+    .comment("This is our wrapper of LogicManager class")
+    // empty constructor, we can also wrapper constructors
+    // with arguments using .constructor<TypeArg1,TypeArg2,..>()
+    .constructor()
+    // a method/function/value..
+    .set("RespawnPlayer", &LogicManager::RespawnPlayer)
+    .set("TeleportPlayer", &LogicManager::TeleportPlayer)
+    .set("GetPlayerLife", &LogicManager::GetPlayerLife)
 		//.set("GetPlayerPos", &LogicManager::GetPlayerPos)
 		.property("numagents", &LogicManager::numagents)
 		;

@@ -4,29 +4,29 @@
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow) {
 
-	printf("Hello world\n");
+	//printf("Hello world\n");
 
-	SLB::Manager m;
-	LogicManager::BootLuaSLB(&m);
+	//SLB::Manager m;
+	//LogicManager::BootLuaSLB(&m);
 
-	SLB::Script s(&m);
+	//SLB::Script s(&m);
 
-	s.doFile("../scripts/test.lua");
-	s.doString("OnPlayerKilled()");
+	//s.doFile("data/scripts/test.lua");
+	//s.doString("OnPlayerKilled()");
 	// unprotected, do not use
 	//s.doString("Test()");
 
 	// protected
 	//lua_State* ls = s;
-	auto p1 = s.exists("Test");
-	auto p2 = s.exists("OnPlayerKilled");
-	//s.get()
+	//auto p1 = s.exists("Test");
+	//auto p2 = s.exists("OnPlayerKilled");
+	////s.get()
 
-	s.doString("OnPlayerKilled()");
+	//s.doString("OnPlayerKilled()");
 
-	printf("Goodbye world\n");
-	system("PAUSE");
-	/*
+	//printf("Goodbye world\n");
+	//system("PAUSE");
+	
   CApp app;
 
   if (!app.readConfig())
@@ -42,5 +42,5 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 
   app.stop();
 
-  return 0;*/
+  return 0;
 }

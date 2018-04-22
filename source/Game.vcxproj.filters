@@ -143,6 +143,7 @@
     <ClCompile Include="components\ia\comp_patrol_animator.cpp" />
     <ClCompile Include="modules\game\module_game_console.cpp" />
     <ClCompile Include="SLB\LogicManager.cpp" />
+    <ClCompile Include="modules\system\module_logic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -314,6 +315,7 @@
     <ClInclude Include="components\ia\comp_patrol_animator.h" />
     <ClInclude Include="modules\game\module_game_console.h" />
     <ClInclude Include="SLB\LogicManager.h" />
+    <ClInclude Include="modules\system\module_logic.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
