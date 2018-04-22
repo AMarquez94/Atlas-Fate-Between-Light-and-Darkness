@@ -212,7 +212,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position) : SV_Target
 	// How much the environment we see
 	float3 env_fresnel = Specular_F_Roughness(specular_color, 1. - roughness * roughness, N, view_dir);
 
-	float g_ReflectionIntensity = 0.5;
+	float g_ReflectionIntensity = 1.0;
 	float g_AmbientLightIntensity = 1.0;
 	float4 self_illum = txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
 	//self_illum.a *

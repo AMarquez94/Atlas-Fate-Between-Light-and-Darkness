@@ -20,7 +20,7 @@
 #include "render/texture/render_to_texture.h"
 #include "components/postfx/comp_render_blur.h"
 #include "components/postfx/comp_render_blur_radial.h"
-
+#include "components/postfx/comp_render_bloom.h"
 //--------------------------------------------------------------------------------------
 
 CModuleRender::CModuleRender(const std::string& name)
@@ -255,6 +255,10 @@ void CModuleRender::generateFrame() {
 			TCompRenderBlurRadial * c_render_blur_radial = e_cam->get< TCompRenderBlurRadial >();
 			if (c_render_blur_radial)
 				curr_rt = c_render_blur_radial->apply(curr_rt);
+
+			TCompRenderBloom * c_render_bloom = e_cam->get< TCompRenderBloom >();
+			if (c_render_bloom)
+				curr_rt = c_render_bloom->apply(curr_rt, deferred.rt_acc_light);
 		}
 
 		Render.startRenderInBackbuffer();

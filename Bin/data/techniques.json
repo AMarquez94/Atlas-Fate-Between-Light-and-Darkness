@@ -199,5 +199,12 @@
 		"vertex_type": "PosClr",
 		"category": "fx",
 		"z": "disable_all"
+  },
+	"bloom": {
+    "vs_file": "data/shaders/bloom.fx",
+    "ps_file": "data/shaders/bloom.fx",
+		"vertex_type": "PosClr",
+		"category": "fx",
+		"z": "disable_all"
   }
 }

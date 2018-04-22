@@ -9,15 +9,15 @@ class  CTexture;
 
 // ------------------------------------
 struct TCompRenderBlur : public TCompBase {
-  std::vector< CBlurStep* > steps;
-  VEC4  weights;
-  VEC4  distance_factors;     // 1 2 3 4
-  float global_distance;
-  int   nactive_steps;
-  bool enabled;
-  void load(const json& j, TEntityParseContext& ctx);
-  void debugInMenu();
-  CTexture* apply(CTexture* in_texture);
+	std::vector< CBlurStep* > steps;
+	VEC4  weights;
+	VEC4  distance_factors;     // 1 2 3 4
+	float global_distance;
+	int   nactive_steps;
+	bool enabled;
+	void load(const json& j, TEntityParseContext& ctx);
+	void debugInMenu();
+	CTexture* apply(CTexture* in_texture);
 
 };
 

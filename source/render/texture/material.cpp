@@ -79,7 +79,7 @@ bool CMaterial::create(const std::string& name) {
 	cb_material.scalar_roughness = -1.f;
 	cb_material.scalar_irradiance_vs_mipmaps = 0.f;
 	cb_material.color_emission = VEC4(1, 1, 1, 1);
-	cb_material.scalar_emission = j.value("emission", 20.0f);
+	cb_material.scalar_emission = j.value("emission", 10.0f);
 
 	if (j.count("self_color"))
 		cb_material.color_emission = loadVEC4(j["self_color"]);

@@ -60,6 +60,8 @@
 				"proj_type": "perspective",
         "range": 15,
         "angle": 75,
+				"inner_cut" : 70,
+				"outer_cut" : 75,
         "color": "0.3 1.0 1.0 1.0",
         "intensity": 10.0,
         "shadows": true,

@@ -34,6 +34,11 @@
 				"z_near": 0.01,
 				"z_far": 1000
 			},
+			"render_bloom" : {
+         "enabled" :  true,
+				 "gauss_filter" : true,
+				 "max_steps" : 1
+      },
 			"tags" : ["main_camera"],
 			"culling": true
 		}
@@ -130,12 +135,11 @@
 				"z_near": 0.01,
 				"z_far": 1000
 			},			
-			"render_blur" : {
-         "enabled" :  true
+			"render_bloom" : {
+         "enabled" :  true,				 
+				 "gauss_filter" : true,
+				 "max_steps" : 1
       },
-      "render_blur_radial" : {
-        "enabled" :  false
-			},
 			"culling": true
 		}
 	},

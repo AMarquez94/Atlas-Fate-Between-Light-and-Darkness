@@ -126,6 +126,7 @@
     <ClCompile Include="components\physics\comp_rigidbody.cpp" />
     <ClCompile Include="components\player_controller\comp_player_tempcontroller.cpp" />
     <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
+    <ClCompile Include="components\postfx\comp_render_bloom.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
     <ClCompile Include="components\skeleton\comp_bone_tracker.cpp" />
@@ -249,6 +250,7 @@
     <ClInclude Include="components\physics\comp_rigidbody.h" />
     <ClInclude Include="components\player_controller\comp_player_tempcontroller.h" />
     <ClInclude Include="components\player_controller\comp_shadow_controller.h" />
+    <ClInclude Include="components\postfx\comp_render_bloom.h" />
     <ClInclude Include="components\postfx\comp_render_blur.h" />
     <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
     <ClInclude Include="components\skeleton\cal3d2engine.h" />
