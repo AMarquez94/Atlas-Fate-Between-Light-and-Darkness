@@ -16,9 +16,6 @@ void TCompMimeticAnimator::debugInMenu() {
 	if (ImGui::SmallButton("Walk")) {
 		playAnimation(EAnimation::WALK, speed);
 	}
-	if (ImGui::SmallButton("Attack")) {
-		playAnimation(EAnimation::ATTACK, speed);
-	}
 	if (ImGui::SmallButton("Death")) {
 		playAnimation(EAnimation::DEATH, speed);
 	}
@@ -41,7 +38,7 @@ void TCompMimeticAnimator::initializeAnimations() {
 	);
 
 	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::WALK,
+		(TCompAnimator::EAnimation)EAnimation::RUN,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
 		"run",
@@ -51,7 +48,37 @@ void TCompMimeticAnimator::initializeAnimations() {
 	);
 
 	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::ATTACK,
+		(TCompAnimator::EAnimation)EAnimation::WALK,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"walk",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::DEATH,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"walk",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::DIE,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"walk",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::ALARM,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
 		"alert",
@@ -61,10 +88,70 @@ void TCompMimeticAnimator::initializeAnimations() {
 	);
 
 	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::DEATH,
+		(TCompAnimator::EAnimation)EAnimation::JUMP_TO_WALL,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"suspicious_start",
+		"walk",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::LOOKING_FOR_PLAYER,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"walk",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::PLAYER_FOUNDED,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"walk",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::QUIT_WALL,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"walk",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::TURN_LEFT,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"walk",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::TURN_RIGHT,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"walk",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::SUSPECTING,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"walk",
 		"",
 		1.0f,
 		1.0f

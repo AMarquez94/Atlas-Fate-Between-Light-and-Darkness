@@ -18,7 +18,7 @@
 			"name" : "walk",
 			"type" : "WalkState",
 			"animation" : "walk",
-			"speed" : 1.75,
+			"speed" : 3.6,
 			"rotationSpeed": 10.0,
 			"size" : 1,
 			"noise" : {

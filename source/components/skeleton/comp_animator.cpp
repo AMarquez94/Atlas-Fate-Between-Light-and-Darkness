@@ -64,6 +64,10 @@ bool TCompAnimator::playAnimationConverted(EAnimation animation, float speed) {
 	TCompSkeleton * compSkeleton = e->get<TCompSkeleton>();
 	AnimationSet animSet = animationsMap[animation];
 
+	if (animSet.animationType == TCompAnimator::EAnimationType::CYCLIC && this->isPlayingAnimation(animSet.animation)) {
+		return false;
+	}
+
 	int anim1id = animSet.animationId;
 	int anim2id = animSet.secondAnimationId;
 	float weight = animSet.weight;

@@ -176,6 +176,24 @@ void TCompPlayerAnimator::initializeAnimations() {
 		1.0f
 	);
 
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::SM_ENTER,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"sm_enter",
+		"",
+		1.0f,
+		1.0f
+	);
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::SM_POSE,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"sm_pose",
+		"",
+		1.0f,
+		1.0f
+	);
 }
 
 void TCompPlayerAnimator::registerMsgs() {
