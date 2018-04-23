@@ -103,20 +103,29 @@
       },
       "light_spot":
       {
-        "type": "spotlight",
-				"proj_type": "perspective",
-        "range": 29.2116,
-        "angle": 75,
-        "color": "1.0 1.0 1.0 1.0",
-        "intensity": 1.5,
-				"inner_cut" : 70,
-				"outer_cut" : 75,
-        "shadows": true,
-        "z_far" : 50,
-        "casts_shadows" : true,
-        "shadows_step" : 1.0,
-        "shadows_resolution" : 1024,
-        "shadows_fmt" : "R32_TYPELESS"
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 9.22092
+        ,
+        "angle": 66.2
+        ,
+        "inner_cut": 60.4
+        ,
+        "z_far": 9.22092
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
       }
       ,
       "collider":

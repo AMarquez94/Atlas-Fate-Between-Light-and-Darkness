@@ -52,6 +52,7 @@ void PS_GBuffer(
 {
 	// Store in the Alpha channel of the albedo texture, the 'metallic' amount of
 	// the material
+	
 	/*
 	float3x3 TBN = computeTBN(iNormal, iTangent);
 	float3 view_dir = normalize(mul(camera_pos, TBN) - mul(iWorldPos, TBN));
@@ -215,10 +216,8 @@ float4 PS_ambient(in float4 iPosition : SV_Position) : SV_Target
 	float g_ReflectionIntensity = 1.0;
 	float g_AmbientLightIntensity = 1.0;
 	float4 self_illum = txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
-	//self_illum.a *
 
-	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f) + float4(self_illum.xyz,1) * scalar_emission;
-
+	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * self_illum.a * irradiance * g_AmbientLightIntensity, 1.0f) + float4(self_illum.xyz,1) * scalar_emission;
 	return final_color * global_ambient_adjustment;
 }
 

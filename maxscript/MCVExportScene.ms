@@ -35,18 +35,37 @@ struct TMaterialExporter (
 		format "Exporting material % % %\n" mat_name mat (classof mat as string)
 		fs.begin (project_path + mat_name )
 		fs.beginObj()
-			fs.writeKeyValue "technique" "textured_bk.tech"
-			fs.writeComma()
 			fs.writeKeyValue "shadows" true
 			fs.writeComma()
 			fs.writeKey "textures" 
 			fs.beginObj()
 				
 			if classof mat == Standardmaterial then (
-				exportMap mat.diffusemap "albedo"
-				fs.writeComma()
-				exportMap mat.selfIllumMap "lightmap"
-				-- ... other maps..
+				exportMap mat.diffusemap "albedo"		
+				if mat.ambientMap != undefined then (
+					fs.writeComma()
+					exportMap mat.ambientMap "lightmap"
+				)			
+				if mat.specularMap != undefined then (
+					fs.writeComma()
+					exportMap mat.specularMap "metallic"
+				)			
+				if mat.glossinessMap != undefined then (
+					fs.writeComma()
+					exportMap mat.glossinessMap "roughness"
+				)	
+				if mat.bumpMap != undefined then (
+					fs.writeComma()
+					exportMap mat.bumpMap "normal"
+				)			
+				if mat.displacementMap != undefined then (
+					fs.writeComma()
+					exportMap mat.displacementMap "height"
+				)				
+				if mat.selfIllumMap != undefined then (
+					fs.writeComma()
+					exportMap mat.selfIllumMap "emissive"
+				)
 			)
 		
 			fs.endObj()
@@ -197,7 +216,26 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
-	
+	fn exportTransformLookAt obj = (
+		local target = getnodebyname (obj.name + ".Target")
+		if target == null then (return exportTransform obj)
+		
+		fs.writeKey "transform" 
+		
+		local max2mcv = rotateXMatrix -90
+		local mcv2max = rotateXMatrix 90
+		local mcv_position = obj.position * max2mcv
+		local mcv_target = target.position * max2mcv
+		
+		local mcv_final_position = checkPoint mcv_position
+		local mcv_final_target = checkPoint mcv_target
+		
+		fs.beginObj()
+			fs.writeKeyValue "pos" mcv_final_position
+			fs.writeComma()
+			fs.writeKeyValue "lookAt" mcv_final_target
+		fs.endObj()
+	),
 	-- ----------------------------------------------------------
 	fn exportRenderMesh obj = (
 		
@@ -269,7 +307,7 @@ struct TSceneExporter (
 				fs.writeKeyValue "name" (cols_path + obj.name + ".collider")
 			)
 			
-			exportColliderObject obj col_path
+			exportColliderObject obj col_path false
 		)
 		
 		writeColliderComponent obj
@@ -291,10 +329,16 @@ struct TSceneExporter (
 		local target = getnodebyname (obj.name + ".Target")
 		fs.writeKeyValue "type" "spotlight"
 		fs.writeComma()
+		fs.writeKeyValue "proj_type" "perspective"
+		fs.writeComma()
 		fs.writeKeyValue "range" (distance target.pos obj.pos)
 		fs.writeComma()
-		fs.writeKeyValue "angle" obj.hotspot
+		fs.writeKeyValue "angle" obj.falloff
 		fs.writeComma()
+		fs.writeKeyValue "inner_cut" obj.hotspot
+		fs.writeComma()
+		fs.writeKeyValue "z_far" (distance target.pos obj.pos)
+		fs.writeComma()	
 		)
 		else if classof obj == Omnilight   then (
 		fs.writeKeyValue "type" "pointlight"
@@ -307,11 +351,17 @@ struct TSceneExporter (
 		fs.writeComma()
 		)
 		
-		fs.writeKeyValue "color" [obj.rgb.r, obj.rgb.g, obj.rgb.b, obj.rgb.a]
+		fs.writeKeyValue "color" [obj.rgb.r/255, obj.rgb.g/255, obj.rgb.b/255, obj.rgb.a/255]
 		fs.writeComma()
 		fs.writeKeyValue "intensity" obj.multiplier 
 		fs.writeComma()
-		fs.writeKeyValue "shadows" obj.castShadows 
+		fs.writeKeyValue "casts_shadows" obj.castShadows 
+		fs.writeComma()
+		fs.writeKeyValue "shadows_step" 1.0
+		fs.writeComma()
+		fs.writeKeyValue "shadows_resolution" 512
+		fs.writeComma()
+		fs.writeKeyValue "shadows_fmt" "R32_TYPELESS"
 		fs.endObj()
 	),
 
@@ -361,7 +411,7 @@ struct TSceneExporter (
 			fs.endObj()
 			fs.writeComma()
 			
-			exportColliderObject collider col_path
+			exportColliderObject collider col_path true
 			delete collider
 		)
 		else if classof obj == omnilight then ( 
@@ -384,7 +434,7 @@ struct TSceneExporter (
 		if obj.parent != undefined then return false
 		exportName obj 
 		fs.writeComma()
-		exportTransform obj
+		exportTransformLookAt obj
 		fs.writeComma()
 		exportCompLight obj
 		fs.writeComma()
@@ -448,21 +498,25 @@ struct TSceneExporter (
 		-- Create the folders if they doesn't exist
 		doesFolderExist (project_path + base_path) create:true
 		doesFolderExist (project_path + scenes_path) create:true
+		doesFolderExist (project_path + prefabs_path) create:true
 		doesFolderExist (project_path + mesh_path) create:true
 		doesFolderExist (project_path + mats_path) create:true
 		doesFolderExist (project_path + cols_path) create:true
 		doesFolderExist (project_path + tex_path) create:true
 		
-		-- Decide output filename based on .max filename
-		--local full_path = project_path + prefabs_path + ofilename + ".prefab"
-		--if (is_scene == true) then ( 
-			local full_path = project_path + scenes_path + ofilename + ".scene"
-			exportRoot ofilename -- Export root
-		--)
-		
 		format "Exporting to %\n" full_path
-		fs.begin full_path
-		fs.beginArray()
+		
+		-- Decide output filename based on .max filename
+		local full_path = project_path + prefabs_path + ofilename + ".prefab"
+		if is_scene == true then ( 
+			local full_path = project_path + scenes_path + ofilename + ".scene"
+			fs.begin full_path
+			fs.beginArray()
+			exportRoot ofilename -- Export root
+		)else (
+			fs.begin full_path
+			fs.beginArray()
+		)
 		
 		local nitems = 0
 		local prg_step = 100 / (nodes.count + 1)

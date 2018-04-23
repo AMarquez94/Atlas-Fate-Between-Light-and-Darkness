@@ -41,6 +41,9 @@ bool CMaterial::create(const std::string& name) {
 	tech = Resources.get(technique_name)->as<CRenderTechnique>();
 	cast_shadows = j.value("shadows", true);
 
+	// Setting default textures
+	textures[TS_EMISSIVE] = Resources.get("data/textures/default_emissive.dds")->as<CTexture>();
+
 	auto& j_textures = j["textures"];
 	for (auto it = j_textures.begin(); it != j_textures.end(); ++it) {
 		std::string slot = it.key();

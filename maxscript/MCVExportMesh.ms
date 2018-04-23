@@ -229,7 +229,7 @@ function exportMeshObject given_obj outfilename = (
 )
 
 
-function exportColliderObject given_obj outfilename = (
+function exportColliderObject given_obj outfilename is_light = (
 
 	-- Convert the given object to triangular mesh
 	local obj = given_obj
@@ -246,6 +246,8 @@ function exportColliderObject given_obj outfilename = (
 		
 	local maxLocalToWorld = obj.transform
 	local maxToMCV = rotateXMatrix  -90
+	if is_light == true then (maxToMCV = rotateXMatrix  180 )
+	
 	local maxWorldToLocal = inverse obj.transform
 	local maxWorldToLocalMCV = maxWorldToLocal * maxToMCV
 	
