@@ -37,7 +37,7 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 		if (app_instance)
 			app_instance->has_focus = true;
 		break;
-	
+
 	case WM_KILLFOCUS:
 		if (app_instance)
 			app_instance->has_focus = false;
@@ -235,10 +235,20 @@ bool CApp::stop() {
 
 //--------------------------------------------------------------------------------------
 void CApp::doFrame() {
+
 	PROFILE_FRAME_BEGINS();
 	PROFILE_FUNCTION("App::doFrame");
 	float dt = time_since_last_render.elapsedAndReset();
 	CEngine::get().update(dt);
 	CEngine::get().render();
+
+	// Adding an fps counter
+	fps_counter.n_frames++;
+	fps_counter.elapsed_time += dt;
+	if (fps_counter.elapsed_time >= 1.0f) {
+		fps = fps_counter.n_frames;
+		fps_counter.elapsed_time = 0;
+		fps_counter.n_frames = 0;
+	}
 }
 

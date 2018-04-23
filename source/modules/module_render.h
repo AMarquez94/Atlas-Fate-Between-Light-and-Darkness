@@ -24,6 +24,7 @@ public:
 
 	void configure(int xres, int yres);
 	void setBackgroundColor(float r, float g, float b, float a);
+	void tempDebugDraw();
 
 	LRESULT OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) override;
 

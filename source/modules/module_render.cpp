@@ -216,6 +216,8 @@ void CModuleRender::activateMainCamera() {
 
 void CModuleRender::generateFrame() {
 
+	tempDebugDraw();
+
 	{
 		PROFILE_FUNCTION("CModuleRender::shadowsMapsGeneration");
 		CTraceScoped gpu_scope("shadowsMapsGeneration");
@@ -285,3 +287,30 @@ void CModuleRender::generateFrame() {
 	}
 }
 
+void CModuleRender::tempDebugDraw() {
+
+	//UI Window's Size
+	ImGui::SetNextWindowSize(ImVec2((float)CApp::get().xres, (float)CApp::get().yres), ImGuiCond_Always);
+	//UI Window's Position
+	ImGui::SetNextWindowPos(ImVec2(0, 0));
+	//Transparent background - ergo alpha = 0 (RGBA)
+	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
+	//Some style added
+	ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2);
+	ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1);
+	ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(255.0f, 255.0f, 255.0f, 1.0f));
+
+	ImGui::Begin("UI", NULL,
+		ImGuiWindowFlags_::ImGuiWindowFlags_NoMove |
+		ImGuiWindowFlags_::ImGuiWindowFlags_NoInputs |
+		ImGuiWindowFlags_::ImGuiWindowFlags_NoResize |
+		ImGuiWindowFlags_::ImGuiWindowFlags_NoTitleBar);
+	{
+		ImGui::SetCursorPos(ImVec2(CApp::get().xres - CApp::get().xres * 0.05f, CApp::get().yres * 0.01f));
+		ImGui::Text("FPS %d", (int)CApp::get().fps);
+	}
+
+	ImGui::End();
+	ImGui::PopStyleVar(2);
+	ImGui::PopStyleColor(2);
+}
