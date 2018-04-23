@@ -12,7 +12,7 @@
 #include "physics/physics_collider.h"
 #include "render/render_utils.h"
 #include "components/ia/comp_patrol_animator.h"
-
+#include "render/render_objects.h"
 
 DECL_OBJ_MANAGER("ai_patrol", TCompAIPatrol);
 

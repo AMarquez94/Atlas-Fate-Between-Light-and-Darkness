@@ -545,9 +545,9 @@ void CalModel::update(float deltaTime)
   m_pMixer->updateAnimation(deltaTime);
   m_pMixer->updateSkeleton();
   // m_pMorpher->update(...);
-  m_pMorphTargetMixer->update(deltaTime);
-  m_pPhysique->update();
-  m_pSpringSystem->update(deltaTime);
+  //m_pMorphTargetMixer->update(deltaTime);
+  //m_pPhysique->update();
+  //m_pSpringSystem->update(deltaTime);
 }
 
 /*****************************************************************************/

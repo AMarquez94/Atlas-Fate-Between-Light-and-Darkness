@@ -16,7 +16,6 @@
 		"shadow_controller",
 		"skeleton",
 		"bone_tracker",
-		"light",
 		"hierarchy",
 		"local_aabb",
 		"culling",

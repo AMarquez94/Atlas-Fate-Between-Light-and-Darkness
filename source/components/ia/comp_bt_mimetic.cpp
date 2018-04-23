@@ -12,7 +12,7 @@
 #include "components/physics/comp_collider.h"
 #include "physics/physics_collider.h"
 #include "render/render_utils.h"
-
+#include "render/render_objects.h"
 
 DECL_OBJ_MANAGER("ai_mimetic", TCompAIMimetic);
 

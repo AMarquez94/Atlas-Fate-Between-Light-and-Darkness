@@ -14,7 +14,6 @@ class CApp {
   // 
   CTimer time_since_last_render;
   CDirectoyWatcher resources_dir_watcher;
-  bool             has_focus = false;
 
   static CApp* app_instance;
 
@@ -22,8 +21,8 @@ public:
 	int xres = 0;
 	int yres = 0;
 	bool resetMouse = false;
-	bool hasFocus = true;
 	bool lostFocus = false;
+	bool             has_focus = false;
 
   static CApp& get() {
     assert(app_instance);

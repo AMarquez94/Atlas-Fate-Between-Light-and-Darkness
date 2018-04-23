@@ -7,7 +7,6 @@
 DXGI_FORMAT readFormat(const json& j, const std::string& label) {
 	std::string format = j.value(label, "");
 	assert(!format.empty());
-  }
 
 	if (format == "none")
 		return DXGI_FORMAT_UNKNOWN;
@@ -18,7 +17,6 @@ DXGI_FORMAT readFormat(const json& j, const std::string& label) {
 
 	return DXGI_FORMAT_UNKNOWN;
 }
-
 
 // ---------------------------------------
 struct CZConfigs {
