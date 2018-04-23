@@ -23,6 +23,7 @@ public:
 	void deleteAllCameras();
 
 	CHandle getOutputCamera();
+	CHandle getCurrentCamera();
 	VEC3 getResultPos() { return resultPos; };
 
 private:
@@ -54,6 +55,7 @@ private:
 	VMixedCameras _mixedCameras;
 	CHandle _defaultCamera;
 	CHandle _outputCamera;
+	CHandle _currentCamera;
 
 	VEC3 resultPos;
 };

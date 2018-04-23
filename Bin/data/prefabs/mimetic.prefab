@@ -6,9 +6,9 @@
 			"pos": "0 0 0"
 		},
 		"render": {
-			"mesh": "data/meshes/bot211.mesh",
+			"mesh": "data/meshes/enemy_crab.mesh",
 			"materials": [
-			  "data/materials/body.material"
+			  "data/materials/mtl_enemy_crab.material"
 			]
 		},
 		"tags": [ "enemy", "mimetic" ]

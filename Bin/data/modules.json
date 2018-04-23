@@ -19,10 +19,10 @@
   [
     "render",
 	"navmeshes",
+		"map_intro",
     "input",
     "main_menu",
     "game_manager",
-    "map_intro",
 	"level_select",
     "game_over",
     "entities",

@@ -1,12 +1,10 @@
 {
-  "technique": "textured_bk.tech"
-  ,
   "shadows": true
   ,
   "textures":
   {
-    "albedo": "data/textures/tx_df_desert.dds"
-    ,
-    "lightmap": "data/textures/tx_lm_housesCorner.dds"
+    "albedo": "data/textures/m2/tx_concrete-a.dds",
+		"normal": "data/textures/m2/tx_concrete-n.dds",
+    "roughness": "data/textures/m2/tx_concrete-r.dds"
   }
 }

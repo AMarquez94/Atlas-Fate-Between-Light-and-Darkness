@@ -6,9 +6,9 @@
 #include "entity/entity.h"
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
+#include "components/lighting/comp_light_dir.h"
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
-#include "components/comp_light.h"
 #include "render/render_manager.h"
 
 void CModuleEntities::loadListOfManagers(const json& j, std::vector< CHandleManager* > &managers) {
@@ -21,6 +21,7 @@ void CModuleEntities::loadListOfManagers(const json& j, std::vector< CHandleMana
 		managers.push_back(om);
 	}
 }
+
 bool CModuleEntities::start()
 {
   json j = loadJson("data/components.json");
@@ -84,8 +85,6 @@ void CModuleEntities::render()
 {
   Resources.debugInMenu();
 
-  ImGui::DragFloat("Time Factor",&time_scale_factor,0.01f,0.f,1.0f);
-
   if (ImGui::TreeNode("All Entities...")) {
 
 	  ImGui::SameLine();
@@ -118,19 +117,9 @@ void CModuleEntities::render()
 
   CTagsManager::get().debugInMenu();
 
-  // I just need to activate one light... but at this moment...	
-  getObjectManager<TCompLight>()->forEach([](TCompLight* c) {
-	c->activate();
-  });
-
-  CRenderManager::get().renderCategory("default");
   CRenderManager::get().debugInMenu();
 
-  // Change the technique to some debug solid
-  auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
-  solid->activate();
-  for (auto om : om_to_render_debug)
-	  om->renderDebugAll();
+  renderDebugOfComponents();
 }
 
 void CModuleEntities::renderDebugOfComponents() {

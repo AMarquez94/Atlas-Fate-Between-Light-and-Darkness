@@ -23,7 +23,7 @@ void CCteBuffer::destroy() {
 	SAFE_RELEASE(cb);
 }
 
-void CCteBuffer::activate() {
+void CCteBuffer::activate() const {
 	Render.ctx->VSSetConstantBuffers(slot, 1, &cb);
 	Render.ctx->PSSetConstantBuffers(slot, 1, &cb);
 }

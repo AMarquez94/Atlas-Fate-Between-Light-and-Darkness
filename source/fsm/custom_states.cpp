@@ -3,6 +3,8 @@
 #include "context.h"
 #include "components/player_controller/comp_player_animator.h"
 #include "components/physics/comp_rigidbody.h"
+#include "components/lighting/comp_light_dir.h"
+
 //class TCompTempPlayerController;
 //class TCompPlayerAnimator;
 //
@@ -190,6 +192,14 @@ namespace FSM
 		CEntity* e = ctx.getOwner();
 		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
 
+		//// Testing!
+		CHandle player_light = getEntityByName("LightPlayer");
+		if (player_light.isValid()) {
+			CEntity * entity_light = (CEntity*)player_light;
+			TCompLightDir * light = entity_light->get<TCompLightDir>();
+			light->isEnabled = true;
+		}
+
 		// Hardcoded for testing purposes, move this out of here in the future
 		//TCompTempPlayerController * t_comp = e->get<TCompTempPlayerController>();
 		//TCompTransform * t_trans = e->get<TCompTransform>();
@@ -241,6 +251,7 @@ namespace FSM
 		_radius = jData.value("radius", 0.3f);
 		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
 		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+
 		return true;
 	}
 
@@ -252,6 +263,14 @@ namespace FSM
 
 		CEntity* e = ctx.getOwner();
 		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+
+		// Testing!
+		CHandle player_light = getEntityByName("LightPlayer");
+		if (player_light.isValid()) {
+			CEntity * entity_light = (CEntity*)player_light;
+			TCompLightDir * light = entity_light->get<TCompLightDir>();
+			light->isEnabled = false;
+		}
 
 		// Disable the rigidbody so that we can handle our transition in air manually
 		// Hardcoded for testing purposes, move this out of here in the future
@@ -293,7 +312,15 @@ namespace FSM
 
 		CEntity* e = ctx.getOwner();
 		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState,_speed, _size, _radius, _target, _noise });
+	
+		CHandle player_light = getEntityByName("LightPlayer");
+		if (player_light.isValid()) {
+			CEntity * entity_light = (CEntity*)player_light;
+			TCompLightDir * light = entity_light->get<TCompLightDir>();
+			light->isEnabled = true;
+		}
 	}
+
 	void LandMergeState::onFinish(CContext& ctx) const {
 
 		CEntity* e = ctx.getOwner();
@@ -350,6 +377,7 @@ namespace FSM
 		_radius = jData.value("radius", 0.3f);
 		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
 		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+
 		return true;
 	}
 

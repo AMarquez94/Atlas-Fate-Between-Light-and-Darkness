@@ -1,7 +1,7 @@
 {
-	"sizes": {
-		"default": 512,
-		"transform": 512
+	"sizes" : {
+		"default" : 1024,
+		"transform" : 1024
 	},
 	"init_order": {
 		"entity": 100,
@@ -24,6 +24,9 @@
 		"rigidbody",
 		"collider",
 		"noise_emitter",
+		"light_dir",
+		"light_spot",
+		"light_point",
 		"camera_flyover",
 		"curve_controller",
 		"trigger_camera",

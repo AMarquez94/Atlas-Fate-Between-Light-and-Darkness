@@ -5,8 +5,6 @@
 #include "components/ia/ai_controller.h"
 #include "entity/common_msgs.h"
 
-class TCompLight;
-
 class TCompShadowController : public TCompBase {
 
 	void onSceneCreated(const TMsgSceneCreated& msg);

@@ -11,33 +11,41 @@
 		"vs_entry_point" : "VS_Objs",
 		"vertex_type" : "PosNUv",
 		"ps_file": "data/shaders/solid.fx",
-		"ps_entry_point" : "PS"
+		"ps_entry_point" : "PS",
+		"rs_config" : "wireframe"
 	},
 	"solid_objs_uv2" : {
 		"vs_file": "data/shaders/solid.fx",
 		"vs_entry_point" : "VS_Objs_uv2",
-		"vertex_type" : "PosNUvUv",
+		"vertex_type" : "PosNUvUvT",
 		"ps_file": "data/shaders/solid.fx",
-		"ps_entry_point" : "PS"
+		"ps_entry_point" : "PS",
+		"rs_config" : "wireframe"
 	},
 	"solid_objs_skin" : {
 		"vs_file": "data/shaders/solid.fx",
 		"vs_entry_point" : "VS_Objs_Skin",
-		"vertex_type" : "PosNUvTanSkin"
+		"vertex_type" : "PosNUvSkin",
+		"rs_config" : "wireframe"
 	},
 	"solid_normal" : {
-		"vs_file": "data/shaders/shader_master.fx",
-		"vs_entry_point" : "vs_Basic",
+		"vs_file": "data/shaders/solid.fx",
+		"vs_entry_point" : "VS_Objs",
 		"vertex_type" : "PosNUv",
-		"ps_file": "data/shaders/shader_master.fx",
-		"ps_entry_point" : "ps_BasicNormal"
+		"ps_file": "data/shaders/solid.fx",
+		"ps_entry_point" : "PS",
+		"rs_config" : "wireframe"
 	},
 	"textured" : {
 		"vs_file": "data/shaders/shader_master.fx",
 		"vs_entry_point" : "vs_Basic",
-		"vertex_type" : "PosNUv",
+		"vertex_type" : "PosNUvUvT",
 		"ps_file": "data/shaders/shader_master.fx",
-		"ps_entry_point" : "ps_Basic"
+		"ps_entry_point" : "ps_Basic",
+		"category" : "gbuffer",
+		"textures" : { 
+			"environment" : "data/textures/cubemaps/posx.dds" 
+		}
 	},
 	"textured_bk" : {
 		"vs_file": "data/shaders/shader_master.fx",
@@ -51,5 +59,152 @@
 		"vs_entry_point" : "VS_Skin",
 		"vertex_type" : "PosNUvSkin",
 		"uses_skin" : true
-	}
+	},
+	"shadows" : {
+		"vs_file": "data/shaders/shadows.fx",
+		"vs_entry_point" : "VS",
+		"vertex_type" : "PosNUv",
+		"ps_entry_point" : "",
+		"rs_config" : "shadows",
+		"category" : "shadows"
+	},
+	"shadows_skin" : {
+		"vs_file": "data/shaders/shadows.fx",
+		"vs_entry_point" : "VS_Skin",
+		"vertex_type" : "PosNUvSkin",
+		"ps_entry_point" : "",
+		"rs_config" : "shadows",
+		"category" : "shadows"
+	},
+	"dump_texture" : {
+    "vs_file": "data/shaders/screen_quad.fx",
+    "vertex_type" : "PosClr",
+    "z" : "disable_all",
+    "category" : "helper"
+  },
+	 "gbuffer_resolve" : {
+    "vs_file": "data/shaders/screen_quad.fx",
+    "vertex_type" : "PosClr",
+    "ps_file": "data/shaders/deferred.fx",
+    "z" : "disable_all",
+    "category" : "helper"
+  },
+  "pbr": {
+    "vs_file": "data/shaders/pbr.fx",
+    "ps_file": "data/shaders/pbr.fx",
+    "vs_entry_point": "VS_GBuffer",
+    "ps_entry_point": "PS_GBuffer",
+    "vertex_type": "PosNUvUvT",
+    "category" : "gbuffer",
+		"textures" : { 
+      "environment" : "data/textures/cubemaps/env.dds", 
+      "irradiance" : "data/textures/cubemaps/irradiance.dds" 
+    }
+  },
+	  "pbr_player": {
+    "vs_file": "data/shaders/pbr.fx",
+    "ps_file": "data/shaders/pbr.fx",
+    "vs_entry_point": "VS_GBuffer",
+    "ps_entry_point": "PS_GBuffer",
+    "vertex_type": "PosNUvUvT",
+    "category" : "gbuffer",
+		"rs_config" : "cull_none",
+		"textures" : { 
+      "environment" : "data/textures/cubemaps/env.dds", 
+      "irradiance" : "data/textures/cubemaps/irradiance.dds" 
+    }
+  },
+  "pbr_ambient": {
+    "vs_file": "data/shaders/screen_quad.fx",
+    "ps_file": "data/shaders/pbr.fx",
+    "ps_entry_point": "PS_ambient",
+    "vertex_type" : "PosClr",
+    "category" : "pbr_proc",
+    "z" : "disable_all"
+  },
+  "pbr_dir_lights": {
+    "vs_file": "data/shaders/pbr.fx",
+    "ps_file": "data/shaders/pbr.fx",
+    "vs_entry_point": "VS_pass",
+    "ps_entry_point": "PS_dir_lights",
+    "vertex_type" : "PosNUvUvT",
+    "category" : "pbr_proc",
+    "z" : "inverse_test_no_write",
+    "blend" : "additive"
+  },
+  "pbr_point_lights": {
+    "vs_file": "data/shaders/pbr.fx",
+    "ps_file": "data/shaders/pbr.fx",
+    "vs_entry_point": "VS_pass",
+    "ps_entry_point": "PS_point_lights",
+    "vertex_type" : "PosNUvUvT",
+    "category" : "pbr_proc",
+    "z" : "inverse_test_no_write",
+    "rs_config" : "reverse_culling",
+    "blend" : "additive"
+  },
+	  "pbr_spot_lights": {
+    "vs_file": "data/shaders/pbr.fx",
+    "ps_file": "data/shaders/pbr.fx",
+    "vs_entry_point": "VS_pass",
+    "ps_entry_point": "PS_spot_lights",
+    "vertex_type" : "PosNUvUvT",
+    "category" : "pbr_proc",
+    "z" : "inverse_test_no_write",
+		"rs_config" : "reverse_culling",
+    "blend" : "additive"
+  },
+	"pbr_projection": {
+    "vs_file": "data/shaders/pbr.fx",
+    "ps_file": "data/shaders/pbr.fx",
+    "vs_entry_point": "VS_pass",
+    "ps_entry_point": "PS_dir_lights",
+    "vertex_type" : "PosNUvUvT",
+		"category" : "projection"
+  },
+	"water": {
+		"vs_file": "data/shaders/water.fx",
+		"ps_file": "data/shaders/water.fx",
+		"vs_entry_point": "VS",
+		"ps_entry_point": "PS",
+		"vertex_type" : "PosNUvUvT",
+		"category" : "distorsions",
+		"textures" : { 
+			"noise" : "data/textures/noise_cloud3.dds" 
+		}
+	},
+	"pbr_skybox": {
+    "vs_file": "data/shaders/pbr.fx",
+    "vs_entry_point": "VS_skybox",
+		"vertex_type" : "PosClr",
+    "ps_file": "data/shaders/pbr.fx",
+    "ps_entry_point": "PS_skybox",
+		"z" : "test_equal",
+    "category" : "pbr_skybox"
+  },
+	"blur": {
+    "vs_file": "data/shaders/blur.fx",
+    "ps_file": "data/shaders/blur.fx",
+    "vs_entry_point": "VS",
+		"ps_entry_point": "PS",
+    "vertex_type": "PosClr",
+    "category" : "fx",
+    "z" : "disable_all",
+    "rs" : "default",
+    "blend" : "default"
+  },
+	"blur_radial": {
+		"vs_file": "data/shaders/blur_radial.fx",
+		"ps_file": "data/shaders/blur_radial.fx",
+		"vertex_type": "PosClr",
+		"category": "fx",
+		"z": "disable_all"
+  },
+	"bloom": {
+    "vs_file": "data/shaders/bloom.fx",
+    "ps_file": "data/shaders/bloom.fx",
+		"vertex_type": "PosClr",
+		"category": "fx",
+		"z": "disable_all"
+  }
 }

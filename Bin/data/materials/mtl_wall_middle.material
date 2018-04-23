@@ -1,12 +1,11 @@
 {
-  "technique": "textured_bk.tech"
-  ,
   "shadows": true
   ,
   "textures":
   {
-    "albedo": "data/textures/tx_df_wall03.dds"
-    ,
-    "lightmap": "data/textures/tx_lm_wallMiddle.dds"
+    "albedo": "data/textures/m2/tx_brick2-a.dds",
+		"normal": "data/textures/m2/tx_brick2-n.dds",
+    "metallic": "data/textures/m2/tx_brick2-m.dds",
+		"roughness": "data/textures/m2/tx_brick2-r.dds"
   }
 }

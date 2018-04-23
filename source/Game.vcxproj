@@ -100,11 +100,14 @@
     <ClCompile Include="components\comp_culling.cpp" />
     <ClCompile Include="components\ia\comp_patrol_animator.cpp" />
     <ClCompile Include="components\object_controller\comp_noise_emitter.cpp" />
+    <ClCompile Include="components\lighting\comp_emission_controller.cpp" />
+    <ClCompile Include="components\lighting\comp_light_point.cpp" />
+    <ClCompile Include="components\lighting\comp_light_spot.cpp" />
     <ClCompile Include="components\player_controller\comp_player_animator.cpp" />
     <ClCompile Include="components\comp_fsm.cpp" />
     <ClCompile Include="components\comp_group.cpp" />
     <ClCompile Include="components\comp_hierarchy.cpp" />
-    <ClCompile Include="components\comp_light.cpp" />
+    <ClCompile Include="components\lighting\comp_light_dir.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\player_controller\comp_player_input.cpp" />
     <ClCompile Include="components\comp_render.cpp" />
@@ -126,6 +129,9 @@
     <ClCompile Include="components\player_controller\comp_player_tempcontroller.cpp" />
     <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
     <ClCompile Include="components\skeleton\comp_animator.cpp" />
+    <ClCompile Include="components\postfx\comp_render_bloom.cpp" />
+    <ClCompile Include="components\postfx\comp_render_blur.cpp" />
+    <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
     <ClCompile Include="components\skeleton\comp_bone_tracker.cpp" />
     <ClCompile Include="components\skeleton\comp_skeleton.cpp" />
     <ClCompile Include="components\skeleton\game_core_skeleton.cpp" />
@@ -164,6 +170,7 @@
     <ClCompile Include="modules\game\module_level_select.cpp" />
     <ClCompile Include="modules\game\module_main_menu.cpp" />
     <ClCompile Include="modules\game\module_map_intro.cpp" />
+    <ClCompile Include="modules\game\module_map_test.cpp" />
     <ClCompile Include="modules\game\module_splash.cpp" />
     <ClCompile Include="modules\module_entities.cpp" />
     <ClCompile Include="modules\module_ia.cpp" />
@@ -209,7 +216,9 @@
     <ClCompile Include="physics\physics_filter.cpp" />
     <ClCompile Include="physics\physics_mesh.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
+    <ClCompile Include="render\blur_step.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
+    <ClCompile Include="render\deferred_renderer.cpp" />
     <ClCompile Include="render\mesh\mesh.cpp" />
     <ClCompile Include="render\mesh\mesh_loader.cpp" />
     <ClCompile Include="render\render.cpp" />
@@ -223,6 +232,7 @@
     <ClCompile Include="render\shaders\vertex_shader.cpp" />
     <ClCompile Include="render\texture\DDSTextureLoader.cpp" />
     <ClCompile Include="render\texture\material.cpp" />
+    <ClCompile Include="render\texture\render_to_texture.cpp" />
     <ClCompile Include="render\texture\texture.cpp" />
     <ClCompile Include="resources\json_resource.cpp" />
     <ClCompile Include="resources\resources_manager.cpp" />
@@ -247,11 +257,14 @@
     <ClInclude Include="components\comp_culling.h" />
     <ClInclude Include="components\ia\comp_patrol_animator.h" />
     <ClInclude Include="components\object_controller\comp_noise_emitter.h" />
+    <ClInclude Include="components\lighting\comp_emission_controller.h" />
+    <ClInclude Include="components\lighting\comp_light_point.h" />
+    <ClInclude Include="components\lighting\comp_light_spot.h" />
     <ClInclude Include="components\player_controller\comp_player_animator.h" />
     <ClInclude Include="components\comp_fsm.h" />
     <ClInclude Include="components\comp_group.h" />
     <ClInclude Include="components\comp_hierarchy.h" />
-    <ClInclude Include="components\comp_light.h" />
+    <ClInclude Include="components\lighting\comp_light_dir.h" />
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_player_controller.h" />
     <ClInclude Include="components\player_controller\comp_player_input.h" />
@@ -273,6 +286,9 @@
     <ClInclude Include="components\physics\comp_rigidbody.h" />
     <ClInclude Include="components\player_controller\comp_player_tempcontroller.h" />
     <ClInclude Include="components\player_controller\comp_shadow_controller.h" />
+    <ClInclude Include="components\postfx\comp_render_bloom.h" />
+    <ClInclude Include="components\postfx\comp_render_blur.h" />
+    <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
     <ClInclude Include="components\skeleton\cal3d2engine.h" />
     <ClInclude Include="components\skeleton\comp_animator.h" />
     <ClInclude Include="components\skeleton\comp_bone_tracker.h" />
@@ -327,6 +343,7 @@
     <ClInclude Include="modules\game\module_level_select.h" />
     <ClInclude Include="modules\game\module_main_menu.h" />
     <ClInclude Include="modules\game\module_map_intro.h" />
+    <ClInclude Include="modules\game\module_map_test.h" />
     <ClInclude Include="modules\game\module_splash.h" />
     <ClInclude Include="modules\module.h" />
     <ClInclude Include="modules\module_entities.h" />
@@ -369,7 +386,10 @@
     <ClInclude Include="physics\physics_filter.h" />
     <ClInclude Include="physics\physics_mesh.h" />
     <ClInclude Include="profiling\profiling.h" />
+    <ClInclude Include="render\blur_step.h" />
     <ClInclude Include="render\cte_buffer.h" />
+    <ClInclude Include="render\deferred_renderer.h" />
+    <ClInclude Include="render\gpu_trace.h" />
     <ClInclude Include="render\mesh\mesh.h" />
     <ClInclude Include="render\mesh\mesh_loader.h" />
     <ClInclude Include="render\mesh\mesh_subgroup.h" />
@@ -384,6 +404,7 @@
     <ClInclude Include="render\shaders\vertex_shader.h" />
     <ClInclude Include="render\texture\DDSTextureLoader.h" />
     <ClInclude Include="render\texture\material.h" />
+    <ClInclude Include="render\texture\render_to_texture.h" />
     <ClInclude Include="render\texture\texture.h" />
     <ClInclude Include="render\texture\texture_slots.h" />
     <ClInclude Include="resources\json_resource.h" />
