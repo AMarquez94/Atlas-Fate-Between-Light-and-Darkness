@@ -120,6 +120,11 @@ struct TSceneExporter (
 		fs.writeKeyValue "name" obj.name
 	),
 	
+	fn exportAABB obj = (
+		fs.writeKeyValue "abs_aabb" true
+		fs.writeComma()
+		fs.writeKeyValue "local_aabb" true
+	),
 	
 	fn isValidName aname = (
 		return findString aname " " == undefined 
@@ -385,6 +390,9 @@ struct TSceneExporter (
 				exportCompCollider child
 			)
 		)
+		
+		fs.writeComma()
+		exportAABB obj
 	),
 	
 	fn createLightCollider obj = (
