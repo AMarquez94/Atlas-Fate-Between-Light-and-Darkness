@@ -47,4 +47,7 @@ public:
 	void render() override;
 
 	int ConsoleBehaviourCallback(ImGuiTextEditCallbackData* data);
+
+  void expand();
+  void contract();
 };

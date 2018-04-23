@@ -30,6 +30,8 @@ public:
   bool stop() override;
   void update(float delta) override;
 
+  bool execScript(const std::string& script);
+
 private:
 
   SLB::Manager m;
@@ -38,5 +40,4 @@ private:
   void BootLuaSLB();
   void publishClasses();
   void loadScriptsInFolder(char * path);
-  void execScript(std::string script);
 };

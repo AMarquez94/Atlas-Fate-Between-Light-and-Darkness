@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "module_logic.h"
+#include "modules/game/module_game_console.h"
 #include <experimental/filesystem>
 
 
@@ -39,6 +40,7 @@ void CModuleLogic::loadScriptsInFolder(char * path)
         std::string fileName = iter->path().string();
         if (fileName.substr(fileName.find_last_of(".") + 1) == "lua" && 
           !std::experimental::filesystem::is_directory(iter->path())) {
+            dbg("File : %s loaded\n", fileName.c_str());
             s.doFile(fileName);
         }
         std::error_code ec;
@@ -56,17 +58,28 @@ void CModuleLogic::loadScriptsInFolder(char * path)
 
 /* Publish all the classes in LUA */
 void CModuleLogic::publishClasses() {
-
+  SLB::Class< CModuleGameConsole >("GameConsole", &m)
+    // a comment/documentation for the class [optional]
+    .comment("This is our wrapper of the console class")
+    // empty constructor, we can also wrapper constructors
+    // with arguments using .constructor<TypeArg1,TypeArg2,..>()
+    // a method/function/value...
+    .constructor<const std::string&>()
+    .set("expandConsole", &CModuleGameConsole::expand)
+    .set("contractConsole", &CModuleGameConsole::contract);
 }
 
-void CModuleLogic::execScript(std::string script) {
+bool CModuleLogic::execScript(const std::string& script) {
   std::string scriptLogged = script;
+  bool success = false;
   try {
     s.doString(script);
     scriptLogged = scriptLogged + " - Success";
+    success = true;
   }
   catch (std::exception e) {
     scriptLogged = scriptLogged + " - Failed";
   }
   log.push_back(scriptLogged);
+  return success;
 }

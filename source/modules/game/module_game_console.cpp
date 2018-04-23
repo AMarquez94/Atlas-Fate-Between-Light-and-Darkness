@@ -56,7 +56,7 @@ void CModuleGameConsole::update(float delta)
 
 		if (!consoleVisible) {
 			outputVisible = false;
-		}
+    }
 	}
 
 	if (outputVisible) {
@@ -109,7 +109,7 @@ void CModuleGameConsole::render()
 			std::string commandString = command;
 			if (commandString.size() > 0) {
 
-				if (commandString.compare("expand") == 0) {
+	/*			if (commandString.compare("expand") == 0) {
 					outputVisible = true;
 					*command = 0;
 				}
@@ -117,9 +117,9 @@ void CModuleGameConsole::render()
 					outputVisible = false;
 					*command = 0;
 				}
-				else {
+				else {*/
 					/* Ejecutar LUA */
-					dbg("%s\n", command);
+          bool result = Engine.getLogic().execScript(commandString);
 					historicCommands.push_back(commandString);
 					*command = 0;
 					historicCommandsPos = historicCommands.size();
@@ -130,10 +130,10 @@ void CModuleGameConsole::render()
 					outString.color = ImVec4(1, 1, 1, 1);
 					output.emplace_back(outString);
 
-					outString.text = "This will be the solution";
-					outString.color = ImVec4(1, 0, 0, 1);
+					outString.text = result ? "Success" : "False";
+					outString.color = result ? ImVec4(0, 1, 0, 1) : ImVec4(1, 0, 0, 1);
 					output.emplace_back(outString);
-				}
+				//}
 			}
 		}
 		ImGui::PopItemWidth();
@@ -228,8 +228,19 @@ int CModuleGameConsole::ConsoleBehaviourCallback(ImGuiTextEditCallbackData * dat
 	}
 }
 
+void CModuleGameConsole::expand()
+{
+  outputVisible = true;
+}
+
+void CModuleGameConsole::contract()
+{
+  outputVisible = false;
+}
+
 int CModuleGameConsole::ConsoleBehaviourCallbackStub(ImGuiTextEditCallbackData * data)
 {
 	CModuleGameConsole* console = (CModuleGameConsole*)data->UserData;
 	return console->ConsoleBehaviourCallback(data);
 }
+
