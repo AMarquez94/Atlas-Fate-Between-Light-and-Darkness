@@ -21,7 +21,7 @@ void CModuleLogic::update(float delta) {
 void CModuleLogic::BootLuaSLB()
 {
   //Publish all the functions
-
+  publishClasses();
   //Load all the scripts
   loadScriptsInFolder("data/scripts");
 }
@@ -52,4 +52,21 @@ void CModuleLogic::loadScriptsInFolder(char * path)
   catch (std::system_error & e) {
     fatal("Exception %s while loading scripts\n", e.what());
   }
+}
+
+/* Publish all the classes in LUA */
+void CModuleLogic::publishClasses() {
+
+}
+
+void CModuleLogic::execScript(std::string script) {
+  std::string scriptLogged = script;
+  try {
+    s.doString(script);
+    scriptLogged = scriptLogged + " - Success";
+  }
+  catch (std::exception e) {
+    scriptLogged = scriptLogged + " - Failed";
+  }
+  log.push_back(scriptLogged);
 }

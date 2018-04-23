@@ -22,6 +22,8 @@ public:
     NUM_EVENTS
   };
 
+  std::vector<std::string> log;
+
   CModuleLogic(const std::string& aname) : IModule(aname) { }
 
   bool start() override;
@@ -34,5 +36,7 @@ private:
   SLB::Script s{ &m };
 
   void BootLuaSLB();
+  void publishClasses();
   void loadScriptsInFolder(char * path);
+  void execScript(std::string script);
 };

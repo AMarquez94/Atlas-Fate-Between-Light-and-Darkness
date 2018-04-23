@@ -333,7 +333,7 @@ bool CNavmeshQuery::raycast( VEC3 start,VEC3 end, VEC3& hitPos ) {
 
 VEC3 CNavmeshQuery::closestNavmeshPoint(VEC3 currentPoint)
 {
-  int m_npolys, m_nsmoothPath = 0;
+  int m_nsmoothPath = 0;
   VEC3 closestPoint;
   dtPolyRef m_startRef;
   data->m_navQuery->findNearestPoly(&currentPoint.x, &nearestPolyExtents.x, &m_filter, &m_startRef, &closestPoint.x);
