@@ -42,7 +42,9 @@
         "pos": "-48.3861 0.0 98.2391"
         ,
         "rotation": "0.0 -1.50996e-07 0.0 -1.0"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "render":
       [
@@ -68,7 +70,9 @@
         "pos": "-10.7262 -1.01901 316.388"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "render":
       [
@@ -94,7 +98,9 @@
         "pos": "-10.7262 78.7087 313.857"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "render":
       [
@@ -120,7 +126,9 @@
         "pos": "7.79907 0.0 23.7455"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "render":
       [
@@ -146,7 +154,9 @@
         "pos": "-10.7136 0.789496 254.0"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "render":
       [
@@ -172,7 +182,9 @@
         "pos": "-10.2001 -66.1045 45.2303"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "render":
       [
@@ -198,7 +210,9 @@
         "pos": "11.5958 -0.0588121 67.336"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "render":
       [
@@ -224,7 +238,9 @@
         "pos": "-10.2001 -66.1045 45.2303"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "render":
       [
@@ -250,7 +266,9 @@
         "pos": "16.6139 0.0 121.676"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "render":
       [
@@ -276,7 +294,9 @@
         "pos": "2.55492 5.0 1.23688"
         ,
         "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "render":
       [
@@ -302,7 +322,9 @@
         "pos": "-10.9313 4.03536 -23.6423"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "render":
       [
@@ -328,7 +350,9 @@
         "pos": "-10.7261 4.97411 161.64"
         ,
         "rotation": "0.0 0.707107 -0.707107 0.0"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "render":
       [
@@ -354,7 +378,9 @@
         "pos": "-5.76454 1.20542 24.9609"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "render":
       [
@@ -380,7 +406,9 @@
         "pos": "-10.8861 -1.24295 122.818"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "render":
       [
@@ -406,7 +434,9 @@
         "pos": "-10.7261 0.848096 182.0"
         ,
         "rotation": "-0.707107 0.0 0.0 -0.707107"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "render":
       [
@@ -432,7 +462,9 @@
         "pos": "-3.38609 0.0 98.2375"
         ,
         "rotation": "0.0 -1.0 0.0 0.0"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "render":
       [
@@ -458,7 +490,9 @@
         "pos": "10.6823 6.5 -5.16312"
         ,
         "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "render":
       [
@@ -484,7 +518,9 @@
         "pos": "-10.9451 4.5 -26.1423"
         ,
         "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "render":
       [
@@ -509,7 +545,9 @@
         "pos": "-6.285 -8.0 -37.431"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "render":
       [

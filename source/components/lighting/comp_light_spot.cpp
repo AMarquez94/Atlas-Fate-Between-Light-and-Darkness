@@ -121,7 +121,6 @@ void TCompLightSpot::activate() {
 	cb_light.light_direction = VEC4(c->getFront().x, c->getFront().y, c->getFront().z, 1);
 	cb_light.light_inner_cut = cos(deg2rad(Clamp(inner_cut, 0.f, angle) * .5f));
 	cb_light.light_outer_cut = spot_angle;
-	cb_light.updateGPU();
 
 	// If we have a ZTexture, it's the time to activate it
 	if (shadows_rt) {
@@ -129,11 +128,13 @@ void TCompLightSpot::activate() {
 		cb_light.light_shadows_inverse_resolution = 1.0f / (float)shadows_rt->getWidth();
 		cb_light.light_shadows_step = shadows_step;
 		cb_light.light_shadows_step_with_inv_res = shadows_step / (float)shadows_rt->getWidth();
-		cb_light.light_radius = 0.f;
+		cb_light.light_radius = range;
 
 		assert(shadows_rt->getZTexture());
 		shadows_rt->getZTexture()->activate(TS_LIGHT_SHADOW_MAP);
 	}
+
+	cb_light.updateGPU();
 }
 
 // ------------------------------------------------------

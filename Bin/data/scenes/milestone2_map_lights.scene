@@ -47,7 +47,9 @@
         "shadows_step" : 1.5,
         "shadows_resolution" : 2048,
         "shadows_fmt" : "R32_TYPELESS"
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "tags":
       [
@@ -67,28 +69,17 @@
       },
       "light_spot":
       {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 9.22092
-        ,
-        "angle": 66.2
-        ,
-        "inner_cut": 60.4
-        ,
-        "z_far": 9.22092
-        ,
-        "color": "1.0 1.0 1.0 1.0"
-        ,
-        "intensity": 1.5
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 256
-        ,
+        "type": "spotlight",
+        "proj_type": "perspective",
+        "range": 9.22092,
+        "angle": 66.2,
+        "inner_cut": 60.4,
+        "z_far": 9.22092,
+        "color": "1.0 1.0 1.0 1.0",
+        "intensity": 1.5,
+        "casts_shadows": true,
+        "shadows_step": 0.0,
+        "shadows_resolution": 256,
         "shadows_fmt": "R32_TYPELESS"
       }
       ,
@@ -97,7 +88,9 @@
         "shape": "convex",
         "name": "data/colliders/Spot001.collider",
         "is_trigger": true
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "tags":
       [
@@ -125,8 +118,8 @@
         "angle": 75,
         "color": "1.0 1.0 1.0 1.0",
         "intensity": 1.5,
-		"inner_cut" : 70,
-		"outer_cut" : 75,
+				"inner_cut" : 70,
+				"outer_cut" : 75,
         "shadows": true,
         "z_far" : 50,
         "casts_shadows" : true,
@@ -142,7 +135,9 @@
         "name": "data/colliders/Spot002.collider"
         ,
         "is_trigger": true
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "tags":
       [
@@ -188,7 +183,9 @@
         "name": "data/colliders/Spot003.collider"
         ,
         "is_trigger": true
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "tags":
       [
@@ -234,7 +231,9 @@
         "name": "data/colliders/Spot004.collider"
         ,
         "is_trigger": true
-      }
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
       ,
       "tags":
       [
@@ -258,13 +257,13 @@
       "light_spot":
       {
         "type": "spotlight",
-		"proj_type": "perspective",
+				"proj_type": "perspective",
         "range": 29.2116,
         "angle": 75,
         "color": "1.0 1.0 1.0 1.0",
         "intensity": 1.5,
-		"inner_cut" : 70,
-		"outer_cut" : 75,
+				"inner_cut" : 70,
+				"outer_cut" : 75,
         "shadows": true,
         "z_far" : 50,
         "casts_shadows" : true,
@@ -280,8 +279,9 @@
         "name": "data/colliders/Spot005.collider"
         ,
         "is_trigger": true
-      }
-      ,
+      },      
+			"abs_aabb": true,
+      "local_aabb": true,
       "tags":
       [
         "light"

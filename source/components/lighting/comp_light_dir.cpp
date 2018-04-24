@@ -104,7 +104,6 @@ void TCompLightDir::activate() {
 	cb_light.light_view_proj_offset = getViewProjection() * mtx_offset;
 	cb_light.light_radius = getZFar();
 	cb_light.light_angle = 0;
-	cb_light.updateGPU();
 
 	// If we have a ZTexture, it's the time to activate it
 	if (shadows_rt) {
@@ -112,11 +111,13 @@ void TCompLightDir::activate() {
 		cb_light.light_shadows_inverse_resolution = 1.0f / (float)shadows_rt->getWidth();
 		cb_light.light_shadows_step = shadows_step;
 		cb_light.light_shadows_step_with_inv_res = shadows_step / (float)shadows_rt->getWidth();
-		cb_light.light_radius = 0.f;
+		//cb_light.light_radius = 0.f;
 
 		assert(shadows_rt->getZTexture());
 		shadows_rt->getZTexture()->activate(TS_LIGHT_SHADOW_MAP);
 	}
+
+	cb_light.updateGPU();
 }
 
 
