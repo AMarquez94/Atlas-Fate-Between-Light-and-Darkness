@@ -33,9 +33,7 @@ public:
   CModuleNavmesh& getNavmeshes() { return _module_navmesh; }
 	CModuleFSM& getFSM() { return _module_fsm; }
   CModuleLogic& getLogic() { return _module_logic; }
-  CModuleGameConsole& getGameConsole() { 
-    return _module_game_console; 
-  }
+  CModuleGameConsole& getGameConsole() { return _module_game_console; }
   CModuleGameConsole getGameConsoleBis() { return _module_game_console; }
 
 private:

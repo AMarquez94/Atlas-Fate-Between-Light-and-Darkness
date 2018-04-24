@@ -11,12 +11,19 @@ bool CModuleLogic::start() {
 }
 
 bool CModuleLogic::stop() {
-
+  delete(s);
+  delete(m);
   return true;
 }
 
 void CModuleLogic::update(float delta) {
-
+  for (unsigned int i = 0; i < delayedScripts.size(); i++) {
+    delayedScripts[i].remainingTime -= delta;
+    if (delayedScripts[i].remainingTime <= 0) {
+      execScript(delayedScripts[i].script);
+      delayedScripts.erase(delayedScripts.begin() + i);
+    }
+  }
 }
 
 /* Where we publish all functions that we want and load all the scripts in the scripts folder */
@@ -42,7 +49,7 @@ void CModuleLogic::loadScriptsInFolder(char * path)
         if (fileName.substr(fileName.find_last_of(".") + 1) == "lua" && 
           !std::experimental::filesystem::is_directory(iter->path())) {
             dbg("File : %s loaded\n", fileName.c_str());
-            s.doFile(fileName);
+            s->doFile(fileName);
         }
         std::error_code ec;
         iter.increment(ec);
@@ -62,19 +69,19 @@ void CModuleLogic::publishClasses() {
 
   /* Classes */
 
-  SLB::Class< CModuleGameConsole >("GameConsole", &m)
+  SLB::Class< CModuleGameConsole >("GameConsole", m)
     .comment("This is our wrapper of the console class")
     .set("addCommand", &CModuleGameConsole::addCommandToList);
 
-  SLB::Class< CModuleLogic >("Logic", &m)
+  SLB::Class< CModuleLogic >("Logic", m)
     .comment("This is our wrapper of the logic class")
     .set("printLog", &CModuleLogic::printLog);
 
 
   /* Global functions */
-
-  m.set("getConsole", SLB::FuncCall::create(&getConsole));
-  m.set("getLogic", SLB::FuncCall::create(&getLogic));
+  m->set("getConsole", SLB::FuncCall::create(&getConsole));
+  m->set("getLogic", SLB::FuncCall::create(&getLogic));
+  m->set("execDelayedScript", SLB::FuncCall::create(&execDelayedScript));
 }
 
 CModuleLogic::ConsoleResult CModuleLogic::execScript(const std::string& script) {
@@ -82,7 +89,7 @@ CModuleLogic::ConsoleResult CModuleLogic::execScript(const std::string& script) 
   std::string errMsg = "";
   bool success = false;
   try {
-    s.doString(script);
+    s->doString(script);
     scriptLogged = scriptLogged + " - Success";
     success = true;
   }
@@ -96,11 +103,23 @@ CModuleLogic::ConsoleResult CModuleLogic::execScript(const std::string& script) 
   return ConsoleResult{ success, errMsg };
 }
 
-bool CModuleLogic::execEvent(Events event, const std::string & params)
+bool CModuleLogic::execScriptDelayed(const std::string & script, float delay)
 {
+  delayedScripts.push_back(DelayedScript{ script, delay });
+  return true;
+}
+
+bool CModuleLogic::execEvent(Events event, const std::string & params, float delay)
+{
+  /* TODO: meter eventos */
   switch (event) {
   case Events::GAME_START:
-    execScript("onGameStart()");
+    if (delay > 0) {
+      return execScriptDelayed("onGameStart()", delay);
+    }
+    else {
+      return execScript("onGameStart()").success;
+    }
     break;
   case Events::GAME_END:
 
@@ -122,12 +141,13 @@ void CModuleLogic::printLog()
 }
 
 /* Auxiliar functions */
-CModuleGameConsole * getConsole()
+CModuleGameConsole * getConsole() { return EngineConsole.getPointer(); }
+
+CModuleLogic * getLogic() { return EngineLogic.getPointer(); }
+
+void execDelayedScript(const std::string& script, float delay)
 {
-  return EngineConsole.getPointer();
+  EngineLogic.execScriptDelayed(script, delay);
 }
 
-CModuleLogic * getLogic()
-{
-  return EngineLogic.getPointer();
-}
+

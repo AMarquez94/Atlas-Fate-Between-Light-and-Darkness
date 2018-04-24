@@ -15,6 +15,11 @@ public:
     std::string resultMsg;
   };
 
+  struct DelayedScript {
+    std::string script;
+    float remainingTime;
+  };
+
   /* Enum with event id. Add as many as necessary */
   enum Events {
     GAME_START,
@@ -38,13 +43,16 @@ public:
   CModuleLogic* getPointer() { return this; }
 
   ConsoleResult execScript(const std::string& script);
-  bool execEvent(Events event, const std::string& params = "");
+  bool execScriptDelayed(const std::string& script, float delay);
+  bool execEvent(Events event, const std::string& params = "", float delay = 0.f);
   void printLog();
 
 private:
 
-  SLB::Manager m;
-  SLB::Script s{ &m };
+  SLB::Manager* m = new SLB::Manager;
+  SLB::Script* s = new SLB::Script(m);
+
+  std::vector<DelayedScript> delayedScripts;
 
   void BootLuaSLB();
   void publishClasses();
@@ -54,3 +62,4 @@ private:
 /* Auxiliar functions */
 CModuleGameConsole* getConsole();
 CModuleLogic* getLogic();
+void execDelayedScript(const std::string& script, float delay);

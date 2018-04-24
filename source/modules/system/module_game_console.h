@@ -30,11 +30,9 @@ class CModuleGameConsole : public IModule
 	int historicCommandsPos = -1;
 
 	#define COMMAND_SIZE 128
-	//#define OUTPUT_SIZE 1024 * 16
 
 	char command[COMMAND_SIZE] = "";
 	std::vector<OutputString> output;
-	//char output[OUTPUT_SIZE] = "esto es una prueba\n de esta wea a ver\n si funciona carallo\n porque estoy rellenado mucho hueco\n y no se si funcionara\n eu que sei mon amour\n pues alguna frase\n mas me faltaba\n a ver si ahora si";
 
 	static int ConsoleBehaviourCallbackStub(ImGuiTextEditCallbackData* data);
 
