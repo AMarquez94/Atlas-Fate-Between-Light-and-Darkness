@@ -75,6 +75,7 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompSkeleton::update(float dt) {
+
   PROFILE_FUNCTION("updateSkel");
   assert(model);
 
@@ -84,11 +85,12 @@ void TCompSkeleton::update(float dt) {
   }
 
   TCompTransform* tmx = get<TCompTransform>();
-  VEC3 pos = tmx->getPosition();
-  QUAT rot = tmx->getRotation();
-  model->getMixer()->setWorldTransform(DX2Cal(pos), DX2Cal(rot));
-  model->update(dt);
-
+  if (tmx != NULL) {
+	  VEC3 pos = tmx->getPosition();
+	  QUAT rot = tmx->getRotation();
+	  model->getMixer()->setWorldTransform(DX2Cal(pos), DX2Cal(rot));
+	  model->update(dt);
+  }
   lastFrameCyclicAnimationWeight = cyclicAnimationWeight;
 }
 

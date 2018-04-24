@@ -567,15 +567,15 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 	if (!pController->isInhibited) {
 		//Animation To Change
 		TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-		float animDuration = myAnimator->getAnimationDuration((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::ATTACK);
-		if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::ATTACK)) {
-			myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::ATTACK);
+		float animDuration = myAnimator->getAnimationDuration((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR);
+		if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR)) {
+			myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR);
 		}
 		timeAnimating += dt;
 		if (timeAnimating < animDuration) {
 			return BTNode::ERes::STAY;
 		}
-		//myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+
 		timeAnimating = 0.0f;
 
 		TMsgInhibitorShot msg;

@@ -51,34 +51,15 @@ void TCompPatrolAnimator::initializeAnimations() {
 	);
 
 	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::RUN,
-		EAnimationType::CYCLIC,
+		(TCompAnimator::EAnimation)EAnimation::SHOOT_INHIBITOR,
+		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"run",
+		"idle",
 		"",
 		1.0f,
 		1.0f
 	);
 
-	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::ATTACK,
-		EAnimationType::ACTION,
-		EAnimationSize::SINGLE,
-		"alert",
-		"",
-		1.0f,
-		1.0f
-	);
-
-	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::DEATH,
-		EAnimationType::ACTION,
-		EAnimationSize::SINGLE,
-		"suspicious_start",
-		"",
-		1.0f,
-		1.0f
-	);
 }
 
 void TCompPatrolAnimator::registerMsgs() {
