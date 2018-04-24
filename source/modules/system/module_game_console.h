@@ -48,7 +48,6 @@ public:
 
 	int ConsoleBehaviourCallback(ImGuiTextEditCallbackData* data);
 
-  void expand();
-  void contract();
-  CModuleGameConsole* getPointer();
+  void addCommandToList(const std::string& command);
+  CModuleGameConsole* getPointer() { return this; }
 };

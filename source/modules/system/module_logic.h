@@ -10,6 +10,11 @@ class CModuleLogic : public IModule
 
 public:
 
+  struct ConsoleResult {
+    bool success;
+    std::string resultMsg;
+  };
+
   /* Enum with event id. Add as many as necessary */
   enum Events {
     GAME_START,
@@ -30,10 +35,11 @@ public:
   bool start() override;
   bool stop() override;
   void update(float delta) override;
+  CModuleLogic* getPointer() { return this; }
 
-  bool execScript(const std::string& script);
+  ConsoleResult execScript(const std::string& script);
   bool execEvent(Events event, const std::string& params = "");
-  CModuleGameConsole* getConsoleTest();
+  void printLog();
 
 private:
 
@@ -45,11 +51,6 @@ private:
   void loadScriptsInFolder(char * path);
 };
 
-class auxClass 
-{
-public:
-  auxClass();
-  CModuleGameConsole* getConsole();
-
-private:
-};
+/* Auxiliar functions */
+CModuleGameConsole* getConsole();
+CModuleLogic* getLogic();

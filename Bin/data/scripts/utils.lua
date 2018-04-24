@@ -1,9 +1,5 @@
 SLB.using(SLB)
 
-function expandConsole()
-	console:expand()
-end
-
-function contractConsole()
-	console:contract()
+function printLogicLog()
+	logic:printLog();
 end

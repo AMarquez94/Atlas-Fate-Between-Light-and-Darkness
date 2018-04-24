@@ -46,7 +46,7 @@ void CModuleGameConsole::update(float delta)
 	if (EngineInput["btConsole"].getsPressed()) {
 		consoleVisible = !consoleVisible;
 		*command = 0;
-		historicCommandsPos = historicCommands.size();
+		historicCommandsPos = (int)historicCommands.size();
 
 		CHandle hPlayer = getEntityByName("The Player");
     if (hPlayer.isValid()) {
@@ -74,7 +74,7 @@ void CModuleGameConsole::render()
 	VEC2 menu_position = VEC2(0,0);
 
 	if (outputVisible) {
-		ImGui::SetNextWindowSize(ImVec2(Render.width, output_height));
+		ImGui::SetNextWindowSize(ImVec2((float)Render.width, (float)output_height));
 		ImGui::Begin("Output", false, window_output_flags);
 		ImGui::CaptureMouseFromApp(false);
 		ImGui::SetWindowPos("Output", ImVec2(menu_position.x, menu_position.y));
@@ -102,7 +102,7 @@ void CModuleGameConsole::render()
 		ImGui::End();
 	}
 	if (consoleVisible) {
-		ImGui::SetNextWindowSize(ImVec2(Render.width,console_height));
+		ImGui::SetNextWindowSize(ImVec2((float)Render.width,(float)console_height));
 		ImGui::Begin("Console", false, window_console_flags);
 		ImGui::CaptureMouseFromApp(false);
 		ImGui::SetWindowPos("Console", ImVec2(menu_position.x, outputVisible ? menu_position.y + output_height : menu_position.y));
@@ -111,7 +111,7 @@ void CModuleGameConsole::render()
 			std::string commandString = command;
 			if (commandString.size() > 0) {
 
-	/*			if (commandString.compare("expand") == 0) {
+				if (commandString.compare("expand") == 0) {
 					outputVisible = true;
 					*command = 0;
 				}
@@ -119,12 +119,12 @@ void CModuleGameConsole::render()
 					outputVisible = false;
 					*command = 0;
 				}
-				else {*/
-					/* Ejecutar LUA */
-          bool result = Engine.getLogic().execScript(commandString);
+				else {
+					/* Ejecutar LUA - TODO: Filter reserved keywords */
+          CModuleLogic::ConsoleResult result = Engine.getLogic().execScript(commandString);
 					historicCommands.push_back(commandString);
 					*command = 0;
-					historicCommandsPos = historicCommands.size();
+					historicCommandsPos = (int)historicCommands.size();
 
 					OutputString outString;
 
@@ -132,10 +132,11 @@ void CModuleGameConsole::render()
 					outString.color = ImVec4(1, 1, 1, 1);
 					output.emplace_back(outString);
 
-					outString.text = result ? "Success" : "False";
-					outString.color = result ? ImVec4(0, 1, 0, 1) : ImVec4(1, 0, 0, 1);
+					outString.text = result.success ? "Success" : "Error";
+          outString.text = result.resultMsg.size() > 0 ? outString.text + "\n" + result.resultMsg : outString.text;
+          outString.color = result.success ? ImVec4(0, 1, 0, 1) : ImVec4(1, 0, 0, 1);;
 					output.emplace_back(outString);
-				//}
+				}
 			}
 		}
 		ImGui::PopItemWidth();
@@ -230,19 +231,9 @@ int CModuleGameConsole::ConsoleBehaviourCallback(ImGuiTextEditCallbackData * dat
 	}
 }
 
-void CModuleGameConsole::expand()
+void CModuleGameConsole::addCommandToList(const std::string& command)
 {
-  outputVisible = true;
-}
-
-void CModuleGameConsole::contract()
-{
-  outputVisible = false;
-}
-
-CModuleGameConsole* CModuleGameConsole::getPointer()
-{
-  return this;
+  allCommands.push_back(command);
 }
 
 int CModuleGameConsole::ConsoleBehaviourCallbackStub(ImGuiTextEditCallbackData * data)
@@ -250,4 +241,3 @@ int CModuleGameConsole::ConsoleBehaviourCallbackStub(ImGuiTextEditCallbackData *
 	CModuleGameConsole* console = (CModuleGameConsole*)data->UserData;
 	return console->ConsoleBehaviourCallback(data);
 }
-

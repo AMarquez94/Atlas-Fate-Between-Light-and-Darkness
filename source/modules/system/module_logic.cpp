@@ -1,6 +1,6 @@
 #include "mcv_platform.h"
 #include "module_logic.h"
-#include "modules/system/module_game_console.h"
+//#include "modules/system/module_game_console.h"
 #include <experimental/filesystem>
 
 
@@ -60,22 +60,26 @@ void CModuleLogic::loadScriptsInFolder(char * path)
 /* Publish all the classes in LUA */
 void CModuleLogic::publishClasses() {
 
+  /* Classes */
 
   SLB::Class< CModuleGameConsole >("GameConsole", &m)
-    // a comment/documentation for the class [optional]
     .comment("This is our wrapper of the console class")
-    // empty constructor, we can also wrapper constructors
-    // with arguments using .constructor<TypeArg1,TypeArg2,..>()
-    // a method/function/value...
-    .constructor<const std::string&>()
-    .set("expandConsole", &CModuleGameConsole::expand)
-    .set("contractConsole", &CModuleGameConsole::contract);
+    .set("addCommand", &CModuleGameConsole::addCommandToList);
 
-  m.set("getConsole", SLB::FuncCall::create(&CModuleGameConsole::getPointer));
+  SLB::Class< CModuleLogic >("Logic", &m)
+    .comment("This is our wrapper of the logic class")
+    .set("printLog", &CModuleLogic::printLog);
+
+
+  /* Global functions */
+
+  m.set("getConsole", SLB::FuncCall::create(&getConsole));
+  m.set("getLogic", SLB::FuncCall::create(&getLogic));
 }
 
-bool CModuleLogic::execScript(const std::string& script) {
+CModuleLogic::ConsoleResult CModuleLogic::execScript(const std::string& script) {
   std::string scriptLogged = script;
+  std::string errMsg = "";
   bool success = false;
   try {
     s.doString(script);
@@ -84,18 +88,19 @@ bool CModuleLogic::execScript(const std::string& script) {
   }
   catch (std::exception e) {
     scriptLogged = scriptLogged + " - Failed";
-    fatal("Exception %s while exe script\n", e.what());
+    scriptLogged = scriptLogged + "\n" + e.what();
+    errMsg = e.what();
   }
   dbg("Script %s\n", scriptLogged.c_str());
   log.push_back(scriptLogged);
-  return success;
+  return ConsoleResult{ success, errMsg };
 }
 
 bool CModuleLogic::execEvent(Events event, const std::string & params)
 {
   switch (event) {
   case Events::GAME_START:
-    execScript("getConsole()");
+    execScript("onGameStart()");
     break;
   case Events::GAME_END:
 
@@ -107,16 +112,22 @@ bool CModuleLogic::execEvent(Events event, const std::string & params)
   return false;
 }
 
-CModuleGameConsole * CModuleLogic::getConsoleTest()
+void CModuleLogic::printLog()
+{
+  dbg("Printing log\n");
+  for (int i = 0; i < log.size(); i++) {
+    dbg("%s\n", log[i].c_str());
+  }
+  dbg("End printing log\n");
+}
+
+/* Auxiliar functions */
+CModuleGameConsole * getConsole()
 {
   return EngineConsole.getPointer();
 }
 
-auxClass::auxClass()
+CModuleLogic * getLogic()
 {
-}
-
-CModuleGameConsole* auxClass::getConsole()
-{
-  return EngineConsole.getPointer();
+  return EngineLogic.getPointer();
 }
