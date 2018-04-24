@@ -1,11 +1,9 @@
 SLB.using(SLB)
 
-function expand()
-	lol = GameConsole("logic")
-	lol:expandConsole()
+function expandConsole()
+	console:expand()
 end
 
-function contract()
-	lol = GameConsole("logic")
-	lol:contractConsole()
+function contractConsole()
+	console:contract()
 end

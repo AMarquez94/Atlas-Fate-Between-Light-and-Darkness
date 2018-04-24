@@ -161,7 +161,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="modules\game\module_gameover.cpp" />
-    <ClCompile Include="modules\game\module_game_console.cpp" />
     <ClCompile Include="modules\game\module_game_manager.cpp" />
     <ClCompile Include="modules\game\module_level_select.cpp" />
     <ClCompile Include="modules\game\module_main_menu.cpp" />
@@ -174,6 +173,7 @@
     <ClCompile Include="modules\module_render.cpp" />
     <ClCompile Include="modules\system\module_cameras.cpp" />
     <ClCompile Include="modules\system\module_fsm.cpp" />
+    <ClCompile Include="modules\system\module_game_console.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
     <ClCompile Include="modules\system\module_logic.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
@@ -327,7 +327,6 @@
     <ClInclude Include="mcv_platform.h" />
     <ClInclude Include="modules\gamestate.h" />
     <ClInclude Include="modules\game\module_gameover.h" />
-    <ClInclude Include="modules\game\module_game_console.h" />
     <ClInclude Include="modules\game\module_game_manager.h" />
     <ClInclude Include="modules\game\module_level_select.h" />
     <ClInclude Include="modules\game\module_main_menu.h" />
@@ -341,6 +340,7 @@
     <ClInclude Include="modules\module_render.h" />
     <ClInclude Include="modules\system\module_cameras.h" />
     <ClInclude Include="modules\system\module_fsm.h" />
+    <ClInclude Include="modules\system\module_game_console.h" />
     <ClInclude Include="modules\system\module_input.h" />
     <ClInclude Include="modules\system\module_logic.h" />
     <ClInclude Include="modules\system\module_physics.h" />

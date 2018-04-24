@@ -1,11 +1,12 @@
 #include "mcv_platform.h"
 #include "module_logic.h"
-#include "modules/game/module_game_console.h"
+#include "modules/system/module_game_console.h"
 #include <experimental/filesystem>
 
 
 bool CModuleLogic::start() {
   BootLuaSLB();
+  execEvent(Events::GAME_START);
   return true;
 }
 
@@ -58,6 +59,8 @@ void CModuleLogic::loadScriptsInFolder(char * path)
 
 /* Publish all the classes in LUA */
 void CModuleLogic::publishClasses() {
+
+
   SLB::Class< CModuleGameConsole >("GameConsole", &m)
     // a comment/documentation for the class [optional]
     .comment("This is our wrapper of the console class")
@@ -67,6 +70,8 @@ void CModuleLogic::publishClasses() {
     .constructor<const std::string&>()
     .set("expandConsole", &CModuleGameConsole::expand)
     .set("contractConsole", &CModuleGameConsole::contract);
+
+  m.set("getConsole", SLB::FuncCall::create(&CModuleGameConsole::getPointer));
 }
 
 bool CModuleLogic::execScript(const std::string& script) {
@@ -79,7 +84,39 @@ bool CModuleLogic::execScript(const std::string& script) {
   }
   catch (std::exception e) {
     scriptLogged = scriptLogged + " - Failed";
+    fatal("Exception %s while exe script\n", e.what());
   }
+  dbg("Script %s\n", scriptLogged.c_str());
   log.push_back(scriptLogged);
   return success;
+}
+
+bool CModuleLogic::execEvent(Events event, const std::string & params)
+{
+  switch (event) {
+  case Events::GAME_START:
+    execScript("getConsole()");
+    break;
+  case Events::GAME_END:
+
+    break;
+  default:
+
+    break;
+  }
+  return false;
+}
+
+CModuleGameConsole * CModuleLogic::getConsoleTest()
+{
+  return EngineConsole.getPointer();
+}
+
+auxClass::auxClass()
+{
+}
+
+CModuleGameConsole* auxClass::getConsole()
+{
+  return EngineConsole.getPointer();
 }

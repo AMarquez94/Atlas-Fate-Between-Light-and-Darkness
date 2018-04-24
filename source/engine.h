@@ -10,6 +10,7 @@
 #include "modules/system/module_fsm.h"
 #include "modules/module_navmeshes.h"
 #include "modules/system/module_logic.h"
+#include "modules/system/module_game_console.h"
 
 class CEngine
 {
@@ -32,6 +33,10 @@ public:
   CModuleNavmesh& getNavmeshes() { return _module_navmesh; }
 	CModuleFSM& getFSM() { return _module_fsm; }
   CModuleLogic& getLogic() { return _module_logic; }
+  CModuleGameConsole& getGameConsole() { 
+    return _module_game_console; 
+  }
+  CModuleGameConsole getGameConsoleBis() { return _module_game_console; }
 
 private:
 	CModuleManager  _modules;
@@ -44,6 +49,7 @@ private:
 	CModuleFSM      _module_fsm;
   CModuleNavmesh  _module_navmesh;
   CModuleLogic    _module_logic;
+  CModuleGameConsole _module_game_console;
 };
 
 #define Engine CEngine::get()
@@ -54,3 +60,4 @@ private:
 #define EngineEntities CEngine::get().getEntities()
 #define EngineNavmeshes CEngine::get().getNavmeshes()
 #define EngineLogic CEngine::get().getLogic()
+#define EngineConsole CEngine::get().getGameConsole()

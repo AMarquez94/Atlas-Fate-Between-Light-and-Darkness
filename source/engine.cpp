@@ -7,7 +7,6 @@
 #include "modules/game/module_map_intro.h"
 #include "modules/game/module_level_select.h"
 #include "modules/game/module_game_manager.h"
-#include "modules/game/module_game_console.h"
 #include "modules/test/module_test_input.h"
 
 //--------------------------------------------------------------------------------------
@@ -27,13 +26,13 @@ CEngine::CEngine()
   , _module_fsm("fsm")
   , _module_navmesh("navmeshes")
   , _module_logic("logic")
+  , _module_game_console("console")
 {}
 
 bool CEngine::start() {
 
 	static CModuleSplash module_splash("splash");
 	static CModuleGameManager module_game_manager("game_manager");
-	static CModuleGameConsole module_game_console("game_console");
 	static CModuleMainMenu module_main_menu("main_menu");
 	static CModuleGameOver module_game_over("game_over");
 	static CModuleMapIntro module_map_intro("map_intro");
@@ -48,11 +47,11 @@ bool CEngine::start() {
 	_modules.registerSystemModule(&_module_cameras);
 	_modules.registerSystemModule(&_module_fsm);
   _modules.registerSystemModule(&_module_navmesh);
-  _modules.registerSystemModule(&_module_logic);
+  _modules.registerSystemModule(&_module_game_console);
+  _modules.registerSystemModule(&_module_logic);          //Always last to start the ongamestarted event from here
 
 	_modules.registerGameModule(&module_splash);
 	_modules.registerGameModule(&module_game_manager);
-	_modules.registerGameModule(&module_game_console);
 	_modules.registerGameModule(&module_main_menu);
 	_modules.registerGameModule(&module_game_over);
 	_modules.registerGameModule(&module_map_intro);

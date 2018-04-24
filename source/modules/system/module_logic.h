@@ -3,6 +3,7 @@
 #include "modules/module.h"
 #include "entity/entity.h"
 #include <SLB/SLB.hpp>
+#include "modules/system/module_game_console.h"
 
 class CModuleLogic : public IModule
 {
@@ -31,6 +32,8 @@ public:
   void update(float delta) override;
 
   bool execScript(const std::string& script);
+  bool execEvent(Events event, const std::string& params = "");
+  CModuleGameConsole* getConsoleTest();
 
 private:
 
@@ -40,4 +43,13 @@ private:
   void BootLuaSLB();
   void publishClasses();
   void loadScriptsInFolder(char * path);
+};
+
+class auxClass 
+{
+public:
+  auxClass();
+  CModuleGameConsole* getConsole();
+
+private:
 };
