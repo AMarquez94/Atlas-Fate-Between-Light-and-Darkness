@@ -58,7 +58,8 @@
 		"vs_file": "data/shaders/textured.fx",
 		"vs_entry_point" : "VS_Skin",
 		"vertex_type" : "PosNUvSkin",
-		"uses_skin" : true
+		"uses_skin" : true,
+		"category" : "skin_default"
 	},
 	"shadows" : {
 		"vs_file": "data/shaders/shadows.fx",
@@ -82,7 +83,7 @@
     "z" : "disable_all",
     "category" : "helper"
   },
-	 "gbuffer_resolve" : {
+   "gbuffer_resolve" : {
     "vs_file": "data/shaders/screen_quad.fx",
     "vertex_type" : "PosClr",
     "ps_file": "data/shaders/deferred.fx",
@@ -101,7 +102,19 @@
       "irradiance" : "data/textures/cubemaps/irradiance.dds" 
     }
   },
-	  "pbr_player": {
+  "pbr_skin": {
+    "vs_file": "data/shaders/textured.fx",
+    "ps_file": "data/shaders/pbr.fx",
+    "vs_entry_point": "VS_SKIN_GBuffer",
+    "ps_entry_point": "PS_GBuffer",
+    "vertex_type": "PosNUvUvT",
+    "category" : "gbuffer",
+		"textures" : { 
+      "environment" : "data/textures/cubemaps/env.dds", 
+      "irradiance" : "data/textures/cubemaps/irradiance.dds" 
+    }
+  },
+  "pbr_player": {
     "vs_file": "data/shaders/pbr.fx",
     "ps_file": "data/shaders/pbr.fx",
     "vs_entry_point": "VS_GBuffer",
@@ -143,7 +156,7 @@
     "rs_config" : "reverse_culling",
     "blend" : "additive"
   },
-	  "pbr_spot_lights": {
+  "pbr_spot_lights": {
     "vs_file": "data/shaders/pbr.fx",
     "ps_file": "data/shaders/pbr.fx",
     "vs_entry_point": "VS_pass",

@@ -1,7 +1,6 @@
 {
 	"intro_scenes" : [
 		"data/scenes/player_fsm.scene",
-		"data/scenes/enemy.scene",
 		"data/scenes/sp_dynamic_lights.scene",
 		"data/scenes/milestone2_map.scene",
 		"data/scenes/milestone2_map_lights.scene",
