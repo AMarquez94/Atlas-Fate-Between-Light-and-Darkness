@@ -53,11 +53,9 @@ void PS_GBuffer(
 	// Store in the Alpha channel of the albedo texture, the 'metallic' amount of
 	// the material
 	
-	/*
 	float3x3 TBN = computeTBN(iNormal, iTangent);
 	float3 view_dir = normalize(mul(camera_pos, TBN) - mul(iWorldPos, TBN));
 	iTex0 = parallaxMapping(iTex0, view_dir);
-	*/
 
 	o_albedo = txAlbedo.Sample(samLinear, iTex0);
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;

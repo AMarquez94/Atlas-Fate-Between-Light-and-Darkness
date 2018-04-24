@@ -306,6 +306,31 @@
     <ClInclude Include="components\skeleton\comp_animator.h" />
     <ClInclude Include="utils\dirent.h" />
     <ClInclude Include="components\ia\comp_patrol_animator.h" />
+    <ClInclude Include="components\object_controller\comp_noise_emitter.h" />
+    <ClInclude Include="components\lighting\comp_emission_controller.h" />
+    <ClInclude Include="components\lighting\comp_light_point.h" />
+    <ClInclude Include="components\lighting\comp_light_spot.h" />
+    <ClInclude Include="components\lighting\comp_light_dir.h" />
+    <ClInclude Include="components\postfx\comp_render_bloom.h" />
+    <ClInclude Include="components\postfx\comp_render_blur.h" />
+    <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
+    <ClInclude Include="modules\game\module_map_test.h" />
+    <ClInclude Include="navmesh\recast\DebugDraw.h" />
+    <ClInclude Include="navmesh\recast\DetourAlloc.h" />
+    <ClInclude Include="navmesh\recast\DetourAssert.h" />
+    <ClInclude Include="navmesh\recast\DetourCommon.h" />
+    <ClInclude Include="navmesh\recast\DetourCrowd.h" />
+    <ClInclude Include="navmesh\recast\DetourDebugDraw.h" />
+    <ClInclude Include="navmesh\recast\DetourLocalBoundary.h" />
+    <ClInclude Include="navmesh\recast\DetourMath.h" />
+    <ClInclude Include="navmesh\recast\DetourNavMesh.h" />
+    <ClInclude Include="navmesh\recast\DetourNavMeshBuilder.h" />
+    <ClInclude Include="navmesh\recast\DetourNavMeshQuery.h" />
+    <ClInclude Include="render\blur_step.h" />
+    <ClInclude Include="render\deferred_renderer.h" />
+    <ClInclude Include="render\gpu_trace.h" />
+    <ClInclude Include="render\texture\render_to_texture.h" />
+    <ClInclude Include="render\texture\texture_slots.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
