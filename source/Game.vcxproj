@@ -84,7 +84,11 @@
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)../libs/$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera\camera.cpp" />
@@ -299,6 +303,14 @@
     <ClInclude Include="entity\entity.h" />
     <ClInclude Include="entity\entity_parser.h" />
     <ClInclude Include="entity\msgs.h" />
+    <ClInclude Include="fmod\fmod.h" />
+    <ClInclude Include="fmod\fmod.hpp" />
+    <ClInclude Include="fmod\fmod_codec.h" />
+    <ClInclude Include="fmod\fmod_common.h" />
+    <ClInclude Include="fmod\fmod_dsp.h" />
+    <ClInclude Include="fmod\fmod_dsp_effects.h" />
+    <ClInclude Include="fmod\fmod_errors.h" />
+    <ClInclude Include="fmod\fmod_output.h" />
     <ClInclude Include="fsm\context.h" />
     <ClInclude Include="fsm\custom_states.h" />
     <ClInclude Include="fsm\custom_transitions.h" />
@@ -422,6 +434,8 @@
     <ClInclude Include="windows\app.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="fmod\fmod_dsp.cs" />
+    <None Include="fmod\fmod_errors.cs" />
     <None Include="geometry\SimpleMath.inl" />
   </ItemGroup>
   <ItemGroup>

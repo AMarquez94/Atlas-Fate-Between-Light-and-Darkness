@@ -45,7 +45,7 @@
 bool CModuleMapIntro::start()
 {
 	json jboot = loadJson("data/boot.json");
-	
+
 	// Auto load some scenes
 	std::vector< std::string > scenes_to_auto_load = jboot["intro_scenes"];
 	for (auto& scene_name : scenes_to_auto_load) {
@@ -54,17 +54,11 @@ bool CModuleMapIntro::start()
 		parseScene(scene_name, ctx);
 	}
 
-  Engine.getNavmeshes().buildNavmesh("data/navmeshes/test.bin");
+	Engine.getNavmeshes().buildNavmesh("data/navmeshes/test.bin");
 
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 	mouse->setLockMouse(true);
 	ShowCursor(false);
-	/* EXAMPLE LUA EXECUTION */
-	//lua_State *ls = luaL_newstate();
-	//lua_register(ls, "hello", sum_lol);
-	//luaL_dofile(ls, "data/scripts/test.lua");
-	//lua_close(ls);
-
 
 	CHandle h_camera = getEntityByName("TPCamera");
 	if (h_camera.isValid())
@@ -89,7 +83,7 @@ bool CModuleMapIntro::stop()
 	Engine.getEntities().destroyAllEntities();
 	Engine.getCameras().deleteAllCameras();
 	Engine.getIA().clearSharedBoards();
-  Engine.getNavmeshes().destroyNavmesh();
+	Engine.getNavmeshes().destroyNavmesh();
 
 	return true;
 }

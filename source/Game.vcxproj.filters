@@ -331,8 +331,18 @@
     <ClInclude Include="render\gpu_trace.h" />
     <ClInclude Include="render\texture\render_to_texture.h" />
     <ClInclude Include="render\texture\texture_slots.h" />
+    <ClInclude Include="fmod\fmod.h" />
+    <ClInclude Include="fmod\fmod.hpp" />
+    <ClInclude Include="fmod\fmod_codec.h" />
+    <ClInclude Include="fmod\fmod_common.h" />
+    <ClInclude Include="fmod\fmod_dsp.h" />
+    <ClInclude Include="fmod\fmod_dsp_effects.h" />
+    <ClInclude Include="fmod\fmod_errors.h" />
+    <ClInclude Include="fmod\fmod_output.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
+    <None Include="fmod\fmod_dsp.cs" />
+    <None Include="fmod\fmod_errors.cs" />
   </ItemGroup>
 </Project>
