@@ -290,15 +290,14 @@ void renderMesh(const CRenderMesh* mesh, MAT44 new_matrix, VEC4 color) {
 	assert(mesh);
 	auto vdecl = mesh->getVertexDecl();
 	assert(vdecl);
+
 	const char* tech_name = "solid.tech";
 	if (vdecl->name == "PosNUv")
 		tech_name = "textured.tech";
 	else if (vdecl->name == "PosNUvUvT")
 		tech_name = "solid_objs_uv2.tech";
-	else if (vdecl->name == "PosNUvSkin") {
-		tech_name = "solid_objs_skin.tech";
-		return;
-	}
+	else if (vdecl->name == "PosNUvSkin")
+		tech_name = "pbr_skin.tech";
 	else if (vdecl->name == "PosNUvTanSkin")
 		tech_name = "solid_objs_skin.tech";
 
@@ -313,6 +312,7 @@ void renderMesh(const CRenderMesh* mesh, MAT44 new_matrix, VEC4 color) {
 
 // ---------------------------------------------
 void renderWiredAABB(const AABB& aabb, MAT44 world, VEC4 color) {
+
 	// Accede a una mesh que esta centrada en el origen y
 	// tiene 0.5 de half size
 	auto mesh = Resources.get("wired_unit_cube.mesh")->as<CRenderMesh>();
@@ -324,6 +324,7 @@ void renderWiredAABB(const AABB& aabb, MAT44 world, VEC4 color) {
 
 // ---------------------------------------------
 void renderLine(VEC3 src, VEC3 dst, VEC4 color) {
+
 	MAT44 world = MAT44::CreateLookAt(src, dst, VEC3(0, 1, 0)).Invert();
 	float distance = VEC3::Distance(src, dst);
 	world = MAT44::CreateScale(1, 1, -distance) * world;
@@ -337,6 +338,7 @@ void renderLine(VEC3 src, VEC3 dst, VEC4 color) {
 
 // ---------------------------------------------
 void renderFullScreenQuad(const std::string& tech_name, const CTexture* texture) {
+
 	auto* tech = Resources.get(tech_name)->as<CRenderTechnique>();
 	assert(tech);
 	tech->activate();

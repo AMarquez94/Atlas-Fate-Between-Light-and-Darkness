@@ -36,6 +36,8 @@ struct TSkinVertex {
   VEC3 pos;
   VEC3 normal;
   VEC2 uv;
+  VEC4 tangent;
+
   //VEC4 tangent;
   uint8_t bone_ids[4];
   uint8_t bone_weights[4];    // 0.255   -> 0..1
@@ -143,6 +145,7 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
       // Pos & Normal
       skin_vtx.pos = Cal2DX(cal_vtx.position);
       skin_vtx.normal = Cal2DX(cal_vtx.normal);
+	  skin_vtx.tangent = VEC4(1,1,1,1); //Test, replace this with the call to the tangent space compute.
 
       // Texture coords
       skin_vtx.uv.x = cal_uvs0[vid].u;
@@ -208,7 +211,7 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
   header.num_indices = total_faces * 3;
   header.num_vertexs = total_vtxs;
   header.primitive_type = CRenderMesh::TRIANGLE_LIST;
-  strcpy(header.vertex_type_name, "PosNUvSkin");
+  strcpy(header.vertex_type_name, "PosNUvTanSkin");
 
   mesh_io.vtxs = mds_vtxs.buffer;
   mesh_io.idxs = mds_idxs.buffer;
@@ -285,3 +288,68 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
   return true;
 }
 
+void CalculateTangentArray(long vertexCount, const VEC3 *vertex, const VEC3 *normal, 
+							const VEC2 *texcoord, long triangleCount, const CalCoreSubmesh::Face *triangle, VEC4 *tangent)
+{
+	VEC3 *tan1 = new VEC3[vertexCount * 2];
+	VEC3 *tan2 = tan1 + vertexCount;
+	ZeroMemory(tan1, vertexCount * sizeof(VEC3) * 2);
+
+	for (long a = 0; a < triangleCount; a++)
+	{
+		long i1 = triangle->vertexId[0];
+		long i2 = triangle->vertexId[1];
+		long i3 = triangle->vertexId[2];
+
+		const VEC3& v1 = vertex[i1];
+		const VEC3& v2 = vertex[i2];
+		const VEC3& v3 = vertex[i3];
+
+		const VEC2& w1 = texcoord[i1];
+		const VEC2& w2 = texcoord[i2];
+		const VEC2& w3 = texcoord[i3];
+
+		float x1 = v2.x - v1.x;
+		float x2 = v3.x - v1.x;
+		float y1 = v2.y - v1.y;
+		float y2 = v3.y - v1.y;
+		float z1 = v2.z - v1.z;
+		float z2 = v3.z - v1.z;
+
+		float s1 = w2.x - w1.x;
+		float s2 = w3.x - w1.x;
+		float t1 = w2.y - w1.y;
+		float t2 = w3.y - w1.y;
+
+		float r = 1.0F / (s1 * t2 - s2 * t1);
+		VEC3 sdir((t2 * x1 - t1 * x2) * r, (t2 * y1 - t1 * y2) * r,
+			(t2 * z1 - t1 * z2) * r);
+		VEC3 tdir((s1 * x2 - s2 * x1) * r, (s1 * y2 - s2 * y1) * r,
+			(s1 * z2 - s2 * z1) * r);
+
+		tan1[i1] += sdir;
+		tan1[i2] += sdir;
+		tan1[i3] += sdir;
+
+		tan2[i1] += tdir;
+		tan2[i2] += tdir;
+		tan2[i3] += tdir;
+
+		triangle++;
+	}
+
+	for (long a = 0; a < vertexCount; a++)
+	{
+		const VEC3& n = normal[a];
+		const VEC3& t = tan1[a];
+
+		// Gram-Schmidt orthogonalize
+		VEC3 temp_vec = (t - n * n.Dot(t));
+		temp_vec.Normalize();
+		tangent[a] = VEC4(temp_vec.x, temp_vec.y, temp_vec.z, 0);
+		// Calculate handedness
+		tangent[a].w = (n.Cross(t).Dot(tan2[a]) < 0.0F) ? -1.0F : 1.0F;
+	}
+
+	delete[] tan1;
+}

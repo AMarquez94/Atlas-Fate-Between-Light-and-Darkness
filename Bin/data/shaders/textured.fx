@@ -53,18 +53,26 @@ VS_OUTPUT VS_Skin(
   return output;
 }
 
-float4 PS(VS_OUTPUT input) : SV_Target
+float4 PS(
+	float4 Pos : SV_POSITION
+	, float3 iNormal : NORMAL0
+	, float4 iTangent : NORMAL1
+	, float2 iTex0 : TEXCOORD0
+	, float2 iTex1 : TEXCOORD1
+	, float3 iWorldPos : TEXCOORD2
+) : SV_Target
 {
 return float4(1,1,1,1);
-  return txAlbedo.Sample(samLinear, input.UV);
+  //return txAlbedo.Sample(samLinear, input.UV);
 }
 
 void VS_SKIN_GBuffer(
-	in float4 iPos     : POSITION
-	, in float3 iNormal : NORMAL0
-	, in float2 iTex0 : TEXCOORD0
-	, in float2 iTex1 : TEXCOORD1
-	, in float4 iTangent : NORMAL1
+	float4 iPos : POSITION
+	, float3 iN : NORMAL
+	, float2 iUV : TEXCOORD0
+	, float4 iTangent: TANGENT
+	, int4   iBones : BONES
+	, float4 iWeights : WEIGHTS
 
 	, out float4 oPos : SV_POSITION
 	, out float3 oNormal : NORMAL0
@@ -74,16 +82,16 @@ void VS_SKIN_GBuffer(
 	, out float3 oWorldPos : TEXCOORD2
 )
 {
-	float4 world_pos = mul(iPos, obj_world);
-	oPos = mul(world_pos, camera_view_proj);
+	// Faking the verterx shader by now since we don't have tangents...
+	float4x4 skin_mtx = getSkinMtx(iBones, iWeights);
+	float4 skinned_Pos = mul(iPos, skin_mtx);
 
-	// Rotar la normal segun la transform del objeto
-	oNormal = mul(iNormal, (float3x3)obj_world);
-	oTangent.xyz = mul(iTangent.xyz, (float3x3)obj_world);
-	oTangent.w = iTangent.w;
+	oPos = mul(skinned_Pos, camera_view_proj); // Transform to viewproj, w_m inside skin_m
+	oNormal = mul(iN, (float3x3)obj_world); // Rotate the normal
+	oTangent.xyz = float3(1, 1, 1);// mul(iTangent.xyz, (float3x3)obj_world);
+	oTangent.w = 1;// iTangent.w;
 
-	// Las uv's se pasan directamente al ps
-	oTex0 = iTex0;
-	oTex1 = iTex1;
-	oWorldPos = world_pos.xyz;
+	oTex0 = iUV;
+	oTex1 = iUV;
+	oWorldPos = skinned_Pos.xyz;
 }
