@@ -1,6 +1,6 @@
 #include "mcv_platform.h"
 #include "module_logic.h"
-//#include "modules/system/module_game_console.h"
+#include "components/comp_tags.h"
 #include <experimental/filesystem>
 
 
@@ -68,7 +68,6 @@ void CModuleLogic::loadScriptsInFolder(char * path)
 void CModuleLogic::publishClasses() {
 
   /* Classes */
-
   SLB::Class< CModuleGameConsole >("GameConsole", m)
     .comment("This is our wrapper of the console class")
     .set("addCommand", &CModuleGameConsole::addCommandToList);
@@ -82,22 +81,35 @@ void CModuleLogic::publishClasses() {
   m->set("getConsole", SLB::FuncCall::create(&getConsole));
   m->set("getLogic", SLB::FuncCall::create(&getLogic));
   m->set("execDelayedScript", SLB::FuncCall::create(&execDelayedScript));
+  m->set("pauseGame", SLB::FuncCall::create(&pauseGame));
+  m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
+  m->set("blendInCamera", SLB::FuncCall::create(&blendInCamera));
+  m->set("blendOutCamera", SLB::FuncCall::create(&blendOutCamera));
+  m->set("setInfiniteStamine", SLB::FuncCall::create(&setInfiniteStamine));
 }
 
 CModuleLogic::ConsoleResult CModuleLogic::execScript(const std::string& script) {
   std::string scriptLogged = script;
   std::string errMsg = "";
   bool success = false;
-  try {
-    s->doString(script);
-    scriptLogged = scriptLogged + " - Success";
-    success = true;
-  }
-  catch (std::exception e) {
-    scriptLogged = scriptLogged + " - Failed";
-    scriptLogged = scriptLogged + "\n" + e.what();
-    errMsg = e.what();
-  }
+  //__try {
+    try {
+      s->doString(script);
+      scriptLogged = scriptLogged + " - Success";
+      success = true;
+    }
+    catch (std::exception e) {
+      scriptLogged = scriptLogged + " - Failed";
+      scriptLogged = scriptLogged + "\n" + e.what();
+      errMsg = e.what();
+    }
+  //}
+  //__except(GetExceptionCode() != 0) {
+  //  scriptLogged = scriptLogged + " - Failed";
+  //  errMsg = "Undefined Exception\n";
+  //  scriptLogged = scriptLogged + "\n" + errMsg;
+  //}
+  
   dbg("Script %s\n", scriptLogged.c_str());
   log.push_back(scriptLogged);
   return ConsoleResult{ success, errMsg };
@@ -150,4 +162,39 @@ void execDelayedScript(const std::string& script, float delay)
   EngineLogic.execScriptDelayed(script, delay);
 }
 
+void pauseEnemies(bool pause) {
+  std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+  TMsgScenePaused msg;
+  msg.isPaused = pause;
+  for (int i = 0; i < enemies.size(); i++) {
+    enemies[i].sendMsg(msg);
+  }
+}
 
+void pauseGame(bool pause)
+{
+  TMsgScenePaused msg;
+  msg.isPaused = pause;
+  EngineEntities.broadcastMsg(msg);
+}
+
+void setInfiniteStamine(bool set)
+{
+  //TODO: implement
+}
+
+void blendInCamera(const std::string & cameraName, float blendInTime)
+{
+  CHandle camera = getEntityByName(cameraName);
+  if (camera.isValid()) {
+    EngineCameras.blendInCamera(camera, blendInTime, CModuleCameras::EPriority::TEMPORARY);
+  }
+  //TODO: implement
+}
+
+void blendOutCamera(const std::string & cameraName, float blendOutTime) {
+  CHandle camera = getEntityByName(cameraName);
+  if (camera.isValid()) {
+    EngineCameras.blendOutCamera(camera, blendOutTime);
+  }
+}

@@ -8,3 +8,23 @@ end
 function execDelayedScript(script, delay)
 	SLB.execDelayedScript(script, delay)
 end
+
+function pauseGame(pause)
+	SLB.pauseGame(pause)
+end
+
+function pauseEnemies(pause)
+	SLB.pauseEnemies(pause)
+end
+
+function blendInCamera(cameraName, blendInTime)
+	SLB.blendInCamera(cameraName, blendInTime)
+end
+
+function blendOutCamera(cameraName, blendOutTime)
+	SLB.blendOutCamera(cameraName, blendOutTime)
+end
+
+function setInfiniteStamine(set)
+	SLB.setInfiniteStamine(set)
+end

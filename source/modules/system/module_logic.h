@@ -63,3 +63,8 @@ private:
 CModuleGameConsole* getConsole();
 CModuleLogic* getLogic();
 void execDelayedScript(const std::string& script, float delay);
+void pauseEnemies(bool pause);
+void pauseGame(bool pause);
+void setInfiniteStamine(bool set);
+void blendInCamera(const std::string& cameraName, float blendInTime);
+void blendOutCamera(const std::string& cameraName, float blendOutTime);

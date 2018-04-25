@@ -110,7 +110,6 @@ void CEntity::load(const json& j, TEntityParseContext& ctx) {
   // Send a msg to the entity components to let them know
   // the entity is fully loaded.
   sendMsg(TMsgEntityCreated());
-
 }
 
 void CEntity::renderDebug() {
