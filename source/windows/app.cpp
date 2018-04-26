@@ -40,6 +40,7 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 
 	case WM_KILLFOCUS:
 		if (app_instance)
+      app_instance->lostFocus = true;
 			app_instance->has_focus = false;
 		break;
 
