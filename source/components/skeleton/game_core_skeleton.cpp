@@ -36,7 +36,7 @@ struct TSkinVertex {
   VEC3 pos;
   VEC3 normal;
   VEC2 uv;
-  VEC4 tangent;
+  //VEC4 tangent;
 
   //VEC4 tangent;
   uint8_t bone_ids[4];
@@ -145,7 +145,7 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
       // Pos & Normal
       skin_vtx.pos = Cal2DX(cal_vtx.position);
       skin_vtx.normal = Cal2DX(cal_vtx.normal);
-	  skin_vtx.tangent = VEC4(1,1,1,1); //Test, replace this with the call to the tangent space compute.
+	  //skin_vtx.tangent = VEC4(1,1,1,1); //Test, replace this with the call to the tangent space compute.
 
       // Texture coords
       skin_vtx.uv.x = cal_uvs0[vid].u;
@@ -235,7 +235,7 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
   std::string name = json["name"];
   root_path = "data/skeletons/" + name + "/";
 
-  CalLoader::setLoadingMode(LOADER_ROTATE_X_AXIS | LOADER_INVERT_V_COORD);
+  CalLoader::setLoadingMode(LOADER_ROTATE_X_AXIS);
 
   // Read the core skeleton
   std::string csf = root_path + name + ".csf";

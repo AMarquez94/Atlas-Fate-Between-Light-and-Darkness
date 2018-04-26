@@ -107,7 +107,7 @@
     "ps_file": "data/shaders/pbr.fx",
     "vs_entry_point": "VS_SKIN_GBuffer",
     "ps_entry_point": "PS_GBuffer",
-    "vertex_type": "PosNUvTanSkin",
+    "vertex_type": "PosNUvSkin",
 		"uses_skin" : true,
     "category" : "gbuffer",
 				"textures" : { 

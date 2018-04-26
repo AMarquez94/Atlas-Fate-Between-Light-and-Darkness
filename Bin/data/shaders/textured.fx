@@ -70,7 +70,6 @@ void VS_SKIN_GBuffer(
 	float4 iPos : POSITION
 	, float3 iN : NORMAL
 	, float2 iUV : TEXCOORD0
-	, float4 iTangent: TANGENT
 	, int4   iBones : BONES
 	, float4 iWeights : WEIGHTS
 
