@@ -484,10 +484,14 @@ namespace Private {
     }
 
     // let the compiler do the conversion...
-    static const std::string get(lua_State *L, int p)
+    static const std::string get(lua_State *L, int p) throw (std::exception)
     {
       SLB_DEBUG_CALL; 
       const char* v = (const char*) lua_tostring(L,p);
+      if (v == nullptr) {
+        const char *s = lua_tostring(L, -1);
+        throw std::runtime_error(s);
+      }
       SLB_DEBUG(6,"Get std::string (pos %d) = %s",p,v);
       return std::string(v);
     }

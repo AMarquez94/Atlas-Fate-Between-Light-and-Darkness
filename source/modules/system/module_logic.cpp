@@ -92,23 +92,17 @@ CModuleLogic::ConsoleResult CModuleLogic::execScript(const std::string& script) 
   std::string scriptLogged = script;
   std::string errMsg = "";
   bool success = false;
-  //__try {
-    try {
-      s->doString(script);
-      scriptLogged = scriptLogged + " - Success";
-      success = true;
-    }
-    catch (std::exception e) {
-      scriptLogged = scriptLogged + " - Failed";
-      scriptLogged = scriptLogged + "\n" + e.what();
-      errMsg = e.what();
-    }
-  //}
-  //__except(GetExceptionCode() != 0) {
-  //  scriptLogged = scriptLogged + " - Failed";
-  //  errMsg = "Undefined Exception\n";
-  //  scriptLogged = scriptLogged + "\n" + errMsg;
-  //}
+
+  try {
+    s->doString(script);
+    scriptLogged = scriptLogged + " - Success";
+    success = true;
+  }
+  catch (std::exception e) {
+    scriptLogged = scriptLogged + " - Failed";
+    scriptLogged = scriptLogged + "\n" + e.what();
+    errMsg = e.what();
+  }
   
   dbg("Script %s\n", scriptLogged.c_str());
   log.push_back(scriptLogged);
