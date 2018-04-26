@@ -108,9 +108,10 @@
     "vs_entry_point": "VS_SKIN_GBuffer",
     "ps_entry_point": "PS_GBuffer",
     "vertex_type": "PosNUvSkin",
-		"uses_skin" : true,
+	"uses_skin" : true,
     "category" : "gbuffer",
-				"textures" : { 
+	"rs_config" : "cull_none",
+	"textures" : { 
       "environment" : "data/textures/cubemaps/env.dds", 
       "irradiance" : "data/textures/cubemaps/irradiance.dds" 
     }

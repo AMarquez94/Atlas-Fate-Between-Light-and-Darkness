@@ -293,7 +293,7 @@ BTNode::ERes TCompAIMimetic::actionObserveRight(float dt)
 	TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
 	myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::TURN_RIGHT);
 	if (isPlayerInFov()) {
-		return BTNode::ERes::LEAVE;file:///C:/Users/mcv16_alumne/Documents/EngineDP/Bin/data/textures/player.zip
+		return BTNode::ERes::LEAVE;
 	}
 	else {
 		VEC3 objective = rotateVectorAroundAxis(initialLookAt, VEC3(0, 1, 0), -maxAmountRotateObserving);
