@@ -102,12 +102,19 @@ void TCompSkeleton::debugInMenu() {
   static float in_delay = 0.3f;
   static float out_delay = 0.3f;
   static bool auto_lock = false;
-  
+  static float scale = 1.0f;
+
   // Play action/cycle from the menu
   ImGui::DragInt("Anim Id", &anim_id, 0.1f, 0, model->getCoreModel()->getCoreAnimationCount()-1);
   ImGui::DragFloat("Speed", &speed, 0.01f, 0, 5.f);
   auto core_anim = model->getCoreModel()->getCoreAnimation(anim_id);
 
+  ImGui::DragFloat("Scale", &scale, 0.01f, 0, 5.f);
+  if (ImGui::SmallButton("Scale Model")) {
+	  //model->getSkeleton()->getCoreSkeleton()->scale(scale);
+	  //model->getCoreModel()->scale(scale);
+
+  }
 
   if(core_anim)
     ImGui::Text("%s", core_anim->getName().c_str());
