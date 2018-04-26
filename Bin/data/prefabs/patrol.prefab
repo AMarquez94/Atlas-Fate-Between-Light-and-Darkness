@@ -6,7 +6,7 @@
         "pos": "2 0 2",
         "lookat": "-1 0 -1"
       },
-      "render" : [
+      "xrender" : [
         {
           "mesh": "data/skeletons/patrol/Mech_low.mesh",
           "materials":
