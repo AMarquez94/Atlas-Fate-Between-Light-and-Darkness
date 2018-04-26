@@ -44,7 +44,7 @@ public:
 
   // This method should be called only by the ResourceManager. All other classes
   // should have const IResource pointers which can't call this method
-  void setNameAndClass(const std::string& new_name, const CResourceClass* new_class) {
+  virtual void setNameAndClass(const std::string& new_name, const CResourceClass* new_class) {
     name = new_name;
     resource_class = new_class;
   }

@@ -3,7 +3,7 @@
 #include "components/comp_transform.h"
 #include "geometry/curve.h"
 #include "entity/common_msgs.h"
-#include "render/render_utils.h"
+#include "render/render_objects.h"
 
 DECL_OBJ_MANAGER("curve_controller", TCompCurve);
 

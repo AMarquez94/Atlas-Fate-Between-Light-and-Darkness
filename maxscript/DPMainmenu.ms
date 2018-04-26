@@ -154,7 +154,7 @@ rollout SBExport "Export Tools" width:474 height:469
 		local objs_selected = selection as array
 		local scene_exporter = TSceneExporter()
 		scene_exporter.project_path = asset_dir.text +"\\"
-		scene_exporter.exportAll objs_selected scene_name.text pb6
+		scene_exporter.exportAll objs_selected scene_name.text pb6 true
 	)
 		
 	on btn40 pressed do
@@ -169,10 +169,9 @@ rollout SBExport "Export Tools" width:474 height:469
 	(
 		pb6.value = 0
 		local objs_selected = selection as array
-		man_mexport.id = edt24.text
-		man_mexport.has_lod = chk2.state 
-		man_mexport.has_collider = chk1.state 
-		man_mexport.ExportMesh objs_selected asset_dir.text
+		local scene_exporter = TSceneExporter()
+		scene_exporter.project_path = asset_dir.text +"\\"
+		scene_exporter.exportAll objs_selected edt12.text pb6 false
 	)
 	
 	on btn28 pressed do

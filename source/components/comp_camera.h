@@ -6,6 +6,8 @@
 class TCompCamera : public CCamera, public TCompBase {
 
 public:
+	bool isEnabled;
+
 	void debugInMenu();
 	void renderDebug();
 	void load(const json& j, TEntityParseContext& ctx);

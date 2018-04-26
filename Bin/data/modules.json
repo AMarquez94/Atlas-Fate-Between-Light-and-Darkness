@@ -21,11 +21,11 @@
   [
     "render",
 	"navmeshes",
+		"map_intro",
     "input",
     "main_menu",
     "game_manager",
-	"console",
-    "map_intro",
+    "console",
 	"level_select",
     "game_over",
     "entities",

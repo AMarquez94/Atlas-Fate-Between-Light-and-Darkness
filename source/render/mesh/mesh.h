@@ -14,6 +14,7 @@ public:
     UNDEFINED = D3D_PRIMITIVE_TOPOLOGY_UNDEFINED,
     TRIANGLE_LIST = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST,
     LINE_LIST = D3D11_PRIMITIVE_TOPOLOGY_LINELIST,
+	TRIANGLE_STRIP = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP
   };
 
   bool create(
@@ -33,6 +34,7 @@ public:
   void activateAndRender() const;
 
   void debugInMenu();
+  void setNameAndClass(const std::string& new_name, const CResourceClass* new_class) override;
 
   const VMeshSubGroups& getSubGroups() const {
 	  return subgroups;

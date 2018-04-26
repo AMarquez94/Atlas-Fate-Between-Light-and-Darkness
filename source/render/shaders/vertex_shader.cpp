@@ -13,10 +13,7 @@ bool CVertexShader::create(const std::string& filename, const std::string& fn_en
   ID3DBlob* pVSBlob = NULL;
   hr = CompileShaderFromFile(filename.c_str(), fn_entry_name.c_str(), "vs_4_0", &pVSBlob);
   if (FAILED(hr))
-  {
-    fatal("Failed to compile vertex shader, function %s, at file %s.\n", filename.c_str(), fn_entry_name.c_str());
     return false;
-  }
 
   // Create the vertex shader in the GPU
   hr = Render.device->CreateVertexShader( pVSBlob->GetBufferPointer(), pVSBlob->GetBufferSize(), NULL, &vs);
@@ -43,6 +40,9 @@ bool CVertexShader::create(const std::string& filename, const std::string& fn_en
   pVSBlob->Release();
   if (FAILED(hr))
     return false;
+
+  setDXName(vertex_layout, vtx_decl_name.c_str());
+  setDXName(vs, (filename + ":" + fn_entry_name).c_str());
 
   return true;
 

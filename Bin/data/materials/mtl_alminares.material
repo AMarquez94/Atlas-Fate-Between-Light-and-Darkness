@@ -1,12 +1,11 @@
 {
-  "technique": "textured_bk.tech"
-  ,
   "shadows": true
   ,
   "textures":
   {
-    "albedo": "data/textures/tx_df_houses.dds"
-    ,
-    "lightmap": "data/textures/tx_lm_alminares.dds"
+    "albedo": "data/textures/m2/tx_concrete1-a.dds",
+		"normal": "data/textures/m2/tx_concrete1-n.dds",
+    "metallic": "data/textures/m2/tx_concrete1-r.dds",
+		"roughness": "data/textures/m2/tx_concrete1-r.dds"
   }
 }

@@ -1,0 +1,10 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/ovw/prop_metal_outerior.dds",
+		"normal": "data/textures/ovw/prop_metal_outerior_nml.dds",
+    "lightmap": "data/textures/default_texture.dds"
+  }
+}

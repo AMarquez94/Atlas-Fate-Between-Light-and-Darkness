@@ -93,13 +93,15 @@ void TCompCameraThirdPerson::update(float dt)
 		VEC3 vertical_offset = VEC3::Up * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)
 		VEC3 horizontal_offset = self_transform->getLeft() * _clipping_offset.x;
 		VEC3 target_position = target_transform->getPosition() + vertical_offset + horizontal_offset;
-
-		self_transform->setPosition(target_position);
 		self_transform->setYawPitchRoll(_current_euler.x, _current_euler.y, 0);
 
 		float z_distance = CameraClipping(target_position, -self_transform->getFront());
 		VEC3 new_pos = target_position + z_distance * -self_transform->getFront();
 		self_transform->setPosition(new_pos);
+
+		float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
+		float current_fov = 70 + inputSpeed * 30; // Just doing some testing with the fov and speed
+		setPerspective(deg2rad(current_fov), 0.1f, 1000.f);
 	}
 }
 

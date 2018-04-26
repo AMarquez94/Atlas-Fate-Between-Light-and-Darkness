@@ -6,7 +6,7 @@
 #include "components/comp_render.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
 #include "render/mesh/mesh_loader.h"
-#include "render/render_utils.h"
+#include "render/render_objects.h"
 
 DECL_OBJ_MANAGER("cone_of_light", TCompConeOfLightController);
 

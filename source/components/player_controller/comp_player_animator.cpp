@@ -22,6 +22,13 @@ void TCompPlayerAnimator::debugInMenu() {
 	if (ImGui::SmallButton("Death")) {
 		playAnimation(EAnimation::DEATH, speed);
 	}
+	if (ImGui::SmallButton("Crouch_walk")) {
+		playAnimation(EAnimation::CROUCH_WALK, speed);
+	}
+	if (ImGui::SmallButton("prova")) {
+		playAnimation(EAnimation::HIT_BACK, speed);
+	}
+
 
 	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);
 	TCompSkeleton * compSkeleton = get<TCompSkeleton>();
@@ -44,7 +51,17 @@ void TCompPlayerAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::WALK,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"walk2",
+		"walk",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::RUN,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"run",
 		"",
 		1.0f,
 		1.0f
@@ -65,6 +82,114 @@ void TCompPlayerAnimator::initializeAnimations() {
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
 		"death",
+		"",
+		1.0f,
+		1.0f
+	);
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CROUCH_IDLE,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"crouch",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::FALL,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"fall",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CROUCH_WALK,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"crouch_walk",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CROUCH_WALK_SLOW,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"crouch_walk_slow",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::LAND_SOFT,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"land_soft",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::HIT_BACK,
+		EAnimationType::CYCLIC,
+		EAnimationSize::DOUBLE,
+		"walk",
+		"run",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::METRALLA_START,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"metralla_start",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::METRALLA_MIDDLE,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"metralla_middle",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::METRALLA_FINISH,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"metralla_finish",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::SM_ENTER,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"sm_enter",
+		"",
+		1.0f,
+		1.0f
+	);
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::SM_POSE,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"sm_pose",
 		"",
 		1.0f,
 		1.0f

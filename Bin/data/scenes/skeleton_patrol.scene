@@ -13,7 +13,7 @@
 	      },
 	      "abs_aabb":true,
 	      "local_aabb":true,
-	      "render" : [
+	      "xrender" : [
 	        {
 	          "mesh": "data/skeletons/patrol/patrol.mesh"
 	          ,

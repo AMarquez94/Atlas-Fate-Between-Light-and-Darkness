@@ -3,7 +3,7 @@
 #include "game_core_skeleton.h"
 #include "cal3d/cal3d.h"
 #include "resources/resources_manager.h"
-#include "render/render_utils.h"
+#include "render/render_objects.h"
 #include "components/comp_transform.h"
 
 DECL_OBJ_MANAGER("skeleton", TCompSkeleton);
@@ -75,6 +75,7 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompSkeleton::update(float dt) {
+
   PROFILE_FUNCTION("updateSkel");
   assert(model);
 
@@ -84,11 +85,12 @@ void TCompSkeleton::update(float dt) {
   }
 
   TCompTransform* tmx = get<TCompTransform>();
-  VEC3 pos = tmx->getPosition();
-  QUAT rot = tmx->getRotation();
-  model->getMixer()->setWorldTransform(DX2Cal(pos), DX2Cal(rot));
-  model->update(dt);
-
+  if (tmx != NULL) {
+	  VEC3 pos = tmx->getPosition();
+	  QUAT rot = tmx->getRotation();
+	  model->getMixer()->setWorldTransform(DX2Cal(pos), DX2Cal(rot));
+	  model->update(dt);
+  }
   lastFrameCyclicAnimationWeight = cyclicAnimationWeight;
 }
 
@@ -100,12 +102,19 @@ void TCompSkeleton::debugInMenu() {
   static float in_delay = 0.3f;
   static float out_delay = 0.3f;
   static bool auto_lock = false;
-  
+  static float scale = 1.0f;
+
   // Play action/cycle from the menu
   ImGui::DragInt("Anim Id", &anim_id, 0.1f, 0, model->getCoreModel()->getCoreAnimationCount()-1);
   ImGui::DragFloat("Speed", &speed, 0.01f, 0, 5.f);
   auto core_anim = model->getCoreModel()->getCoreAnimation(anim_id);
 
+  ImGui::DragFloat("Scale", &scale, 0.01f, 0, 5.f);
+  if (ImGui::SmallButton("Scale Model")) {
+	  //model->getSkeleton()->getCoreSkeleton()->scale(scale);
+	  //model->getCoreModel()->scale(scale);
+
+  }
 
   if(core_anim)
     ImGui::Text("%s", core_anim->getName().c_str());
@@ -305,7 +314,8 @@ bool TCompSkeleton::isExecutingActionAnimation(std::string animName) {
 	iteratorAnimationAction = model->getMixer()->getAnimationActionList().begin();
 	while (iteratorAnimationAction != model->getMixer()->getAnimationActionList().end())
 	{
-		if ((*iteratorAnimationAction)->getCoreAnimation()->getName().compare(animName)) {
+		std::string itName = (*iteratorAnimationAction)->getCoreAnimation()->getName();
+		if (itName.compare(animName) == 0) {
 			return true;
 		}
 		iteratorAnimationAction++;

@@ -44,31 +44,22 @@ void TCompPatrolAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::WALK,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"run",
+		"walk",
 		"",
 		1.0f,
 		1.0f
 	);
 
 	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::ATTACK,
+		(TCompAnimator::EAnimation)EAnimation::SHOOT_INHIBITOR,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"alert",
+		"idle",
 		"",
 		1.0f,
 		1.0f
 	);
 
-	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::DEATH,
-		EAnimationType::ACTION,
-		EAnimationSize::SINGLE,
-		"suspicious_start",
-		"",
-		1.0f,
-		1.0f
-	);
 }
 
 void TCompPatrolAnimator::registerMsgs() {

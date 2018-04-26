@@ -70,6 +70,7 @@ void CModuleManager::render()
 		if (mod->isActive())
 		{
 			PROFILE_FUNCTION(mod->getName().c_str());
+			CTraceScoped gpu_scope(mod->getName().c_str());
 			mod->render();
 		}
 	}

@@ -12,7 +12,7 @@ protected:
 public:
 
 	void destroy();
-	void activate();
+	void activate() const;
 };
 // -----------------------------------------
 // I'm a join combination of the CPU struct (TPOD) and 
@@ -32,7 +32,7 @@ public:
 		return createData(sizeof(TPOD), name);
 	}
 
-	void updateGPU() {
+	void updateGPU() const {
 		const TPOD* pod = this;
 		Render.ctx->UpdateSubresource(cb, 0, NULL, pod, 0, 0);
 	}

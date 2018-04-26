@@ -1,46 +1,44 @@
 #include "mcv_platform.h"
 #include "windows/app.h"
-#include "SLB/LogicManager.h"
+/*
+#include "fmod/fmod.hpp"
+#include <iostream>
+
+#pragma comment(lib, "fmod64_vc.lib" )*/
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow) {
 
-	//printf("Hello world\n");
+	// Objeto sound puede ser de dos tipos
+	// Objeto stream o objeto sample
+	/*
+	FMOD::System *system;
+	FMOD::Sound *sound;
+	FMOD::Channel * channel = 0;
+	FMOD_RESULT result;
+	void *extradriverdata = 0;
 
-	//SLB::Manager m;
-	//LogicManager::BootLuaSLB(&m);
+	System_Create(&system);
+	system->init(32, FMOD_INIT_NORMAL, extradriverdata);
+	result = system->createStream("test.ogg", FMOD_LOOP_NORMAL | FMOD_2D, 0, &sound ); // Carga de disco, decodificarse
+	result = system->playSound(sound, 0, false, &channel);
 
-	//SLB::Script s(&m);
+	result = system->close();
+	result = system->release();*/
 
-	//s.doFile("data/scripts/test.lua");
-	//s.doString("OnPlayerKilled()");
-	// unprotected, do not use
-	//s.doString("Test()");
+	CApp app;
 
-	// protected
-	//lua_State* ls = s;
-	//auto p1 = s.exists("Test");
-	//auto p2 = s.exists("OnPlayerKilled");
-	////s.get()
+	if (!app.readConfig())
+		return -1;
 
-	//s.doString("OnPlayerKilled()");
+	if (!app.createWindow(hInstance, nCmdShow))
+		return -2;
 
-	//printf("Goodbye world\n");
-	//system("PAUSE");
-	
-  CApp app;
+	if (!app.start())
+		return -3;
 
-  if (!app.readConfig())
-	return -1;
+	app.mainLoop();
 
-  if (!app.createWindow(hInstance, nCmdShow))
-	return -2;
+	app.stop();
 
-  if (!app.start())
-	return -3;
-
-  app.mainLoop();
-
-  app.stop();
-
-  return 0;
+	return 0;
 }

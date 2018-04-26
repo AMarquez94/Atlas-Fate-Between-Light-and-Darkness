@@ -10,7 +10,10 @@
 #include "components/comp_camera.h"
 #include "components/physics/comp_collider.h"
 #include "components/comp_tags.h"
-#include "components/comp_light.h"
+
+#include "components/lighting/comp_light_dir.h"
+#include "components/lighting/comp_light_spot.h"
+#include "components/lighting/comp_light_point.h"
 #include "../comp_name.h"
 
 DECL_OBJ_MANAGER("shadow_controller", TCompShadowController);
@@ -29,28 +32,29 @@ void TCompShadowController::update(float dt) {
 	TCompTransform * c_my_transform = get<TCompTransform>();
 	VEC3 new_pos = c_my_transform->getPosition() + 0.1f * c_my_transform->getUp();
 	is_shadow = IsPointInShadows(new_pos);
-	//is_shadow == true ? dbg("i'm in shadow\n") : dbg("i'm in light\n");
  }
 
 void TCompShadowController::Init() {
 
 	is_shadow = false;
-	// Retrieve all scene lights
 }
 
 void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
 
+	// Retrieve all scene lights
 	auto& light_handles = CTagsManager::get().getAllEntitiesByTag(getID("light"));
 
 	for (auto h : light_handles) {
 		CEntity* current_light = h;
-		TCompLight * c_light = current_light->get<TCompLight>();
-		if (c_light == NULL) continue;
-		if (c_light->type == "directional") // by now we will only retrieve directional lights
+		TCompLightDir * c_light_dir = current_light->get<TCompLightDir>();
+		TCompLightSpot * c_light_spot = current_light->get<TCompLightSpot>();
+		TCompLightPoint* c_light_point = current_light->get<TCompLightPoint>();
+
+		if (c_light_dir) // by now we will only retrieve directional lights
 		{
 			static_lights.push_back(h);
 		}
-		else if (c_light->type == "spotlight" || c_light->type == "pointlight") // by now we will only retrieve directional lights
+		else if (c_light_spot || c_light_point) // by now we will only retrieve directional lights
 		{
 			TCompCollider * c_collider = current_light->get<TCompCollider>();
 			if (c_collider != NULL)
@@ -94,7 +98,7 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 		TCompTransform * c_trans = c_entity->get<TCompTransform>();
 
 		float distance = VEC3::Distance(c_trans->getPosition(), point);
-		if (!EnginePhysics.Raycast(point, c_trans->getUp(), distance, hit, physx::PxQueryFlag::eSTATIC, shadowDetectionFilter))
+		if (!EnginePhysics.Raycast(point, -c_trans->getFront(), distance, hit, physx::PxQueryFlag::eSTATIC, shadowDetectionFilter))
 			return false;
 	}
 

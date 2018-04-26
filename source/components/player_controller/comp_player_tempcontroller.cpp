@@ -62,7 +62,7 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	auto pj_walk = loadMesh("data/meshes/pj_walk.mesh");
 	auto pj_run = loadMesh("data/meshes/pj_run.mesh");
 	auto pj_crouch = loadMesh("data/meshes/pj_crouch.mesh");
-	auto pj_shadowmerge = loadMesh("data/meshes/pj_shadowmerge.mesh");
+	auto pj_shadowmerge = Resources.get("axis.mesh")->as<CRenderMesh>();
 
 	// Insert them in the map.
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_idle", (CRenderMesh*)pj_idle));
@@ -381,39 +381,43 @@ void TCompTempPlayerController::deadState(float dt)
 }
 
 void TCompTempPlayerController::removingInhibitorState(float dt) {
+
 	CEntity* player = CHandle(this).getOwner();
 
-	
-	if (initialPoints == timesRemoveInhibitorKeyPressed){
-		timeInhib = 0;
-	}
-	if (timesRemoveInhibitorKeyPressed > 0 && timeInhib <= timeToPressAgain) {
+	TMsgSetFSMVariable hitPoints;
+	hitPoints.variant.setName("hitPoints");
+	hitPoints.variant.setBool(false);
+	player->sendMsg(hitPoints);
+
+	TMsgSetFSMVariable finished;
+	finished.variant.setName("inhibitor_removed");
+	finished.variant.setBool(false);
+	player->sendMsg(finished);
+
+	TMsgSetFSMVariable inhibitor_try_to_remove;
+	inhibitor_try_to_remove.variant.setName("inhibitor_try_to_remove");
+	inhibitor_try_to_remove.variant.setBool(false);
+	player->sendMsg(inhibitor_try_to_remove);
+
+	if (timesRemoveInhibitorKeyPressed > 0) {
+
 		timesRemoveInhibitorKeyPressed--;
-		timeInhib = 0;
-		dbg("Im in removing inhib state \n %d Key strokes remaining \n \n", timesRemoveInhibitorKeyPressed);
 		if (timesRemoveInhibitorKeyPressed == 0) {
 			timesRemoveInhibitorKeyPressed = 0;
 			isInhibited = false;
+
+			TMsgSetFSMVariable finished;
+			finished.variant.setName("inhibitor_removed");
+			finished.variant.setBool(true);
+			player->sendMsg(finished);
+		}
+		else {
+			TMsgSetFSMVariable inhibitor_try_to_remove;
+			inhibitor_try_to_remove.variant.setName("inhibitor_try_to_remove");
+			inhibitor_try_to_remove.variant.setBool(true);
+			player->sendMsg(inhibitor_try_to_remove);
 		}
 	}
-	else {
-		timesRemoveInhibitorKeyPressed = initialPoints - 1;
-		timeInhib = 0;
-		dbg("Im in removing inhib state but I was too slow \n %d Key strokes remaining \n \n", timesRemoveInhibitorKeyPressed);
-
-	}
-	TMsgSetFSMVariable finished;
-	finished.variant.setName("finished");
-	finished.variant.setBool(true);
-	player->sendMsg(finished);
-	
-	TMsgSetFSMVariable keyPressed;
-	keyPressed.variant.setName("hitPoints");
-	keyPressed.variant.setBool(false);
-	player->sendMsg(keyPressed);
-
-	dbg("---------------------------------------------------------------------------- \n");
-
 
 }
 
@@ -612,7 +616,7 @@ void TCompTempPlayerController::attackState(float dt) {
 		enemy.sendMsg(msg);
 	}
 
-	state = (actionhandler)&TCompTempPlayerController::walkState;
+	state = (actionhandler)&TCompTempPlayerController::idleState;
 }
 
 /* Attack state, kills the closest enemy if true*/

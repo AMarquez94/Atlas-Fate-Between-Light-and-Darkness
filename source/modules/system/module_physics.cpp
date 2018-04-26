@@ -46,7 +46,7 @@ bool CModulePhysics::start()
 		fatal("PxCreatePhysics failed");
 
 	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
-	sceneDesc.gravity = PxVec3(gravity.x, -9.81f * gravity.y, gravity.z);
+	sceneDesc.gravity = PxVec3(gravity.x, 9.81f * gravity.y, gravity.z);
 	sceneDesc.cpuDispatcher = gDispatcher;
 	sceneDesc.filterShader = CustomFilterShader;
 	sceneDesc.flags = PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS | PxSceneFlag::eENABLE_ACTIVE_ACTORS;

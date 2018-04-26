@@ -40,6 +40,7 @@ void CModuleCameras::update(float delta)
 		CEntity* e = _defaultCamera;
 		TCompCamera* c_camera = e->get<TCompCamera>();
 		blendCameras(c_camera, c_camera, 1.f, &resultCamera);
+		_currentCamera = _defaultCamera;
 	}
 
 	for (int i = 0; i < NUM_PRIORITIES; ++i)
@@ -80,6 +81,7 @@ void CModuleCameras::update(float delta)
 				CEntity* e = mc.camera;
 				TCompCamera* c_camera = e->get<TCompCamera>();
 				blendCameras(&resultCamera, c_camera, ratio, &resultCamera);
+				_currentCamera = mc.camera;
 			}
 		}
 	}
@@ -161,6 +163,11 @@ void CModuleCameras::deleteAllCameras()
 CHandle CModuleCameras::getOutputCamera()
 {
 	return _outputCamera;
+}
+
+CHandle CModuleCameras::getCurrentCamera()
+{
+	return _currentCamera;
 }
 
 void CModuleCameras::blendOutCamera(CHandle camera, float blendTime)

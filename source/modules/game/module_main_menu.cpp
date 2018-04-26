@@ -2,10 +2,11 @@
 #include "module_main_menu.h"
 #include "windows/app.h"
 #include "input/devices/mouse.h"
+#include "render/render_objects.h"
 
 bool CModuleMainMenu::start()
 {
-	CEngine::get().getRender().setBackgroundColor(1.f, 0.f, 0.f, 1.f);
+	CEngine::get().getRender().setBackgroundColor(1.f, 1.f, 1.f, 1.f);
   
 	window_flags = 0;
 	window_flags |= ImGuiWindowFlags_NoMove;
@@ -19,6 +20,18 @@ bool CModuleMainMenu::start()
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 	mouse->setLockMouse(false);
 	ShowCursor(true);
+
+	CHandle h_camera = getEntityByName("TPCamera");
+	if (h_camera.isValid())
+		Engine.getCameras().setDefaultCamera(h_camera);
+
+	h_camera = getEntityByName("main_camera");
+	if (h_camera.isValid())
+		Engine.getCameras().setOutputCamera(h_camera);
+
+	//cb_light.activate();
+	//cb_object.activate();
+	//cb_camera.activate();
 
 	return true;
 }

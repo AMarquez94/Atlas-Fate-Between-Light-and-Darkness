@@ -68,6 +68,8 @@ struct TJsonFormatter (
 			format "\"%\": \"%\"\n" key_str val to:fs
 		) else if classof val == Point3 then (
 			format "\"%\": \"% % %\"\n" key_str val.x val.y val.z to:fs
+		) else if classof val == Point4 then (
+			format "\"%\": \"% % % %\"\n" key_str val.x val.y val.z val.w to:fs
 		) else if classof val == quat then (
 			-- Quats rotate in the opposite direction
 			format "\"%\": \"% % % %\"\n" key_str val.x val.y val.z -val.w to:fs

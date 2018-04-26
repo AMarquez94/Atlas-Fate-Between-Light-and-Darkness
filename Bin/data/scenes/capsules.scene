@@ -1,11 +1,10 @@
 [
-{
-	"entity": {
-		"name": "Capsules"
-	}
-},
-
-{
+	{
+		"entity": {
+			"name": "Capsules"
+		}
+	},
+	{
 		"entity": {
 			"prefab": "data/prefabs/capsule.prefab",
 			"name": "Capsule 1",

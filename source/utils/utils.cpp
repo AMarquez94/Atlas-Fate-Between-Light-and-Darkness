@@ -22,7 +22,7 @@ bool fatal(const char* format, ...) {
 }
 
 bool isPressed(int key) {
-	return CApp::get().hasFocus && (::GetAsyncKeyState(key) & 0x8000) == 0x8000;
+  return CApp::get().hasFocus() && (::GetAsyncKeyState(key) & 0x8000) == 0x8000;
 }
 
 bool isPressedWithOrWithoutFocus(int key) {

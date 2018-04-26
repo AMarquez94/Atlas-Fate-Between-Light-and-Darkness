@@ -28,7 +28,7 @@ void TCompPlayerInput::update(float dt)
 			walkMsg.variant.setName("speed");
 			float total_value = (EngineInput["btRight"].value + EngineInput["btLeft"].value
 				+ EngineInput["btUp"].value + EngineInput["btDown"].value);
-
+			dbg("total value: %f\n\n\n", total_value);
 			walkMsg.variant.setFloat(total_value);
 			e->sendMsg(walkMsg);
 		}

@@ -3,6 +3,8 @@
 #include "context.h"
 #include "components/player_controller/comp_player_animator.h"
 #include "components/physics/comp_rigidbody.h"
+#include "components/lighting/comp_light_dir.h"
+
 //class TCompTempPlayerController;
 //class TCompPlayerAnimator;
 //
@@ -113,6 +115,7 @@ namespace FSM
 		//e->sendMsg(TMsgAnimation{ "run" });
 
 		CEntity* e = ctx.getOwner();
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::RUN , 1.0f });
 		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, nullptr, _noise });
 	}
 
@@ -136,6 +139,7 @@ namespace FSM
 
 		// Send a message to the player controller
 		CEntity* e = ctx.getOwner();
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::FALL , 1.0f });
 		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, nullptr, _noise });
 	}
 
@@ -163,10 +167,38 @@ namespace FSM
 		//e->sendMsg(TMsgAnimation{ "crouch" });
 
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, nullptr, _noise });
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::CROUCH_IDLE , 1.0f });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, nullptr, _noise });
 	}
 
 	void CrouchState::onFinish(CContext& ctx) const {
+
+	}
+
+	bool CrouchWalkState::load(const json& jData) {
+
+		_animationName = jData["animation"];
+		_speed = jData.value("speed", 3.f);
+		_size = jData.value("size", 1.f);
+		_radius = jData.value("radius", 0.3f);
+		_rotation_speed = jData.value("rotationSpeed", 10.f);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+		return true;
+	}
+
+	void CrouchWalkState::onStart(CContext& ctx) const {
+
+		// Send a message to the player controller
+		//CEntity* e = ctx.getOwner();
+		//e->sendMsg(TMsgAnimation{ "crouch" });
+
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::CROUCH_WALK , 1.0f });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, nullptr, _noise });
+	}
+
+	void CrouchWalkState::onFinish(CContext& ctx) const {
 
 	}
 
@@ -188,7 +220,17 @@ namespace FSM
 		//e->sendMsg(TMsgAnimation{ "crouch" });
 
 		CEntity* e = ctx.getOwner();
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::SM_POSE , 1.0f });
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::SM_ENTER , 1.0f });
 		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+
+		//// Testing!
+		CHandle player_light = getEntityByName("LightPlayer");
+		if (player_light.isValid()) {
+			CEntity * entity_light = (CEntity*)player_light;
+			TCompLightDir * light = entity_light->get<TCompLightDir>();
+			light->isEnabled = true;
+		}
 
 		// Hardcoded for testing purposes, move this out of here in the future
 		//TCompTempPlayerController * t_comp = e->get<TCompTempPlayerController>();
@@ -241,6 +283,7 @@ namespace FSM
 		_radius = jData.value("radius", 0.3f);
 		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
 		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+
 		return true;
 	}
 
@@ -252,6 +295,14 @@ namespace FSM
 
 		CEntity* e = ctx.getOwner();
 		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+
+		// Testing!
+		CHandle player_light = getEntityByName("LightPlayer");
+		if (player_light.isValid()) {
+			CEntity * entity_light = (CEntity*)player_light;
+			TCompLightDir * light = entity_light->get<TCompLightDir>();
+			light->isEnabled = false;
+		}
 
 		// Disable the rigidbody so that we can handle our transition in air manually
 		// Hardcoded for testing purposes, move this out of here in the future
@@ -292,8 +343,17 @@ namespace FSM
 	void LandMergeState::onStart(CContext& ctx) const {
 
 		CEntity* e = ctx.getOwner();
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::LAND_SOFT , 1.0f });
 		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState,_speed, _size, _radius, _target, _noise });
+	
+		CHandle player_light = getEntityByName("LightPlayer");
+		if (player_light.isValid()) {
+			CEntity * entity_light = (CEntity*)player_light;
+			TCompLightDir * light = entity_light->get<TCompLightDir>();
+			light->isEnabled = true;
+		}
 	}
+
 	void LandMergeState::onFinish(CContext& ctx) const {
 
 		CEntity* e = ctx.getOwner();
@@ -315,6 +375,8 @@ namespace FSM
 	void SoftLandState::onStart(CContext& ctx) const {
 
 		CEntity* e = ctx.getOwner();
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::LAND_SOFT , 1.0f });
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
 		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
 	}
 	void SoftLandState::onFinish(CContext& ctx) const {
@@ -334,6 +396,8 @@ namespace FSM
 
 	void HardLandState::onStart(CContext& ctx) const {
 		CEntity* e = ctx.getOwner();
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::LAND_SOFT , 1.0f });
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
 		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
 	}
 
@@ -350,6 +414,7 @@ namespace FSM
 		_radius = jData.value("radius", 0.3f);
 		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
 		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+
 		return true;
 	}
 
@@ -382,6 +447,52 @@ namespace FSM
 	}
 
 	void RemoveInhibitor::onFinish(CContext& ctx) const {
+
+	}
+
+	bool InhibitorRemoved::load(const json& jData) {
+
+		_animationName = jData["animation"];
+		_speed = jData.value("speed", 2.f);
+		_size = jData.value("size", 1.f);
+		_radius = jData.value("radius", 0.3f);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+		return true;
+	}
+
+	void InhibitorRemoved::onStart(CContext& ctx) const {
+
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::METRALLA_FINISH , 1.0f });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _radius, _size, nullptr, _noise });
+
+	}
+
+	void InhibitorRemoved::onFinish(CContext& ctx) const {
+
+	}
+
+	bool InhibitorTryToRemove::load(const json& jData) {
+
+		_animationName = jData["animation"];
+		_speed = jData.value("speed", 2.f);
+		_size = jData.value("size", 1.f);
+		_radius = jData.value("radius", 0.3f);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+		if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+		return true;
+	}
+
+	void InhibitorTryToRemove::onStart(CContext& ctx) const {
+
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::METRALLA_MIDDLE , 1.0f });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _radius, _size, nullptr, _noise });
+
+	}
+
+	void InhibitorTryToRemove::onFinish(CContext& ctx) const {
 
 	}
 

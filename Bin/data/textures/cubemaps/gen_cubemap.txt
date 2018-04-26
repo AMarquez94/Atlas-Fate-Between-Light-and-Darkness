@@ -1,0 +1,12 @@
+../texassemble.exe -cube posx.jpg negx.jpg posy.jpg negy.jpg posz.jpg negz.jpg
+
+To compress
+../texconv.exe posx.dds -f BC3_UNORM -o .
+
+
+
+taken from http://www.humus.name/
+
+
+
+Tools generated from microsoft project at https://github.com/Microsoft/DirectXTex

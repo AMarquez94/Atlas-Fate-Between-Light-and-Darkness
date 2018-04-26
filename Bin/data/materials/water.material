@@ -1,0 +1,11 @@
+{
+  "technique": "water.tech"
+  ,
+  "shadows": false
+  ,
+  "textures":
+  {
+    "albedo": "acc_light.dds"
+  },
+	"color" : "0.071 0.071 0.071 1.0"
+}
