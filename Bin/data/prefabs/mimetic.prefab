@@ -5,7 +5,7 @@
 		"transform": {
 			"pos": "0 0 0"
 		},
-		"render" : [
+		"xrender" : [
           {
           "mesh": "data/skeletons/crab/Ankle_low.mesh",
           "materials":
