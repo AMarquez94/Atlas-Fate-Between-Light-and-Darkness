@@ -10,7 +10,6 @@ void TCompAnimator::debugInMenu() {
 }
 
 void TCompAnimator::load(const json& j, TEntityParseContext& ctx) {
-	_animationName = "";
 
 }
 
@@ -41,6 +40,8 @@ bool TCompAnimator::initializeAnimation(EAnimation animation, EAnimationType ani
 	}
 	auxAnimSet.weight = weight;
 	auxAnimSet.speed = speed;
+
+	stringToAnimationsMap[animationName] = animation;
 	animationsMap[animation] = auxAnimSet;
 	return false;
 }
@@ -62,6 +63,10 @@ bool TCompAnimator::playAnimationConverted(EAnimation animation, float speed) {
 	CEntity* e = ownHandle;
 	TCompSkeleton * compSkeleton = e->get<TCompSkeleton>();
 	AnimationSet animSet = animationsMap[animation];
+
+	if (animSet.animationType == TCompAnimator::EAnimationType::CYCLIC && this->isPlayingAnimation(animSet.animation)) {
+		return false;
+	}
 
 	int anim1id = animSet.animationId;
 	int anim2id = animSet.secondAnimationId;
@@ -159,4 +164,9 @@ bool TCompAnimator::isPlayingAnimation(EAnimation animation) {
 		toReturn = compSkeleton->isExecutingCyclicAnimation(animSet.animationId);
 	}
 	return toReturn;
+}
+
+TCompAnimator::EAnimation TCompAnimator::getAnimationByName(std::string animation_name) {
+
+	return stringToAnimationsMap[animation_name];
 }

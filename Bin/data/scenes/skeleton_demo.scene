@@ -12,7 +12,6 @@
 	        "skeleton": "data/skeletons/cally/cally.skeleton"
 	      },
 	      "abs_aabb":true,
-	      "player_animator":true,
 	      "local_aabb":true,
 	      "render" : [
 	        {

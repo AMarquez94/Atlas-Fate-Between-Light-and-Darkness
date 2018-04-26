@@ -542,23 +542,23 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTempPlayerController *pController = player->get<TCompTempPlayerController>();
 	TCompRender *cRender = get<TCompRender>();
-
-	//Animation To Change
-	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-	float animDuration = myAnimator->getAnimationDuration((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::ATTACK);
-	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::ATTACK)) {
-		dbg("\nquepaaaaaaa\n");
-		myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::ATTACK);
-	}
-	timeAnimating += dt;
-	if (timeAnimating < animDuration) {
-		return BTNode::ERes::STAY;
-	}
-	//myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
-	timeAnimating = 0.0f;
+	
 	cRender->color = VEC4(255, 0, 0, 1);
 
 	if (!pController->isInhibited) {
+		//Animation To Change
+		TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+		float animDuration = myAnimator->getAnimationDuration((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR);
+		if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR)) {
+			myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR);
+		}
+		timeAnimating += dt;
+		if (timeAnimating < animDuration) {
+			return BTNode::ERes::STAY;
+		}
+
+		timeAnimating = 0.0f;
+
 		TMsgInhibitorShot msg;
 		msg.h_sender = CHandle(this).getOwner();
 		player->sendMsg(msg);

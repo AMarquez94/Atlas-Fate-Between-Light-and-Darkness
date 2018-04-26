@@ -1,11 +1,11 @@
 #include "mcv_platform.h"
-#include "comp_player_animator.h"
 #include "components/comp_transform.h"
 #include "components/comp_fsm.h"
+#include "components/ia/comp_mimetic_animator.h"
 
-DECL_OBJ_MANAGER("player_animator", TCompPlayerAnimator);
+DECL_OBJ_MANAGER("mimetic_animator", TCompMimeticAnimator);
 
-void TCompPlayerAnimator::debugInMenu() {
+void TCompMimeticAnimator::debugInMenu() {
 
 	static float delta_movement = 0.0f;
 	static float speed = 1.0f;
@@ -16,42 +16,22 @@ void TCompPlayerAnimator::debugInMenu() {
 	if (ImGui::SmallButton("Walk")) {
 		playAnimation(EAnimation::WALK, speed);
 	}
-	if (ImGui::SmallButton("Attack")) {
-		playAnimation(EAnimation::ATTACK, speed);
-	}
 	if (ImGui::SmallButton("Death")) {
 		playAnimation(EAnimation::DEATH, speed);
 	}
-	if (ImGui::SmallButton("Crouch_walk")) {
-		playAnimation(EAnimation::CROUCH_WALK, speed);
-	}
-	if (ImGui::SmallButton("prova")) {
-		playAnimation(EAnimation::HIT_BACK, speed);
-	}
-
 
 	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);
 	TCompSkeleton * compSkeleton = get<TCompSkeleton>();
 	compSkeleton->setCyclicAnimationWeight(delta_movement);
 }
 
-void TCompPlayerAnimator::initializeAnimations() {
+void TCompMimeticAnimator::initializeAnimations() {
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::IDLE,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
 		"idle",
-		"",
-		1.0f,
-		1.0f
-	);
-
-	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::WALK,
-		EAnimationType::CYCLIC,
-		EAnimationSize::SINGLE,
-		"walk",
 		"",
 		1.0f,
 		1.0f
@@ -68,10 +48,10 @@ void TCompPlayerAnimator::initializeAnimations() {
 	);
 
 	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::ATTACK,
-		EAnimationType::ACTION,
+		(TCompAnimator::EAnimation)EAnimation::WALK,
+		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"attack",
+		"walk",
 		"",
 		1.0f,
 		1.0f
@@ -79,129 +59,111 @@ void TCompPlayerAnimator::initializeAnimations() {
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::DEATH,
-		EAnimationType::ACTION,
-		EAnimationSize::SINGLE,
-		"death",
-		"",
-		1.0f,
-		1.0f
-	);
-	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::CROUCH_IDLE,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"crouch",
-		"",
-		1.0f,
-		1.0f
-	);
-
-	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::FALL,
-		EAnimationType::CYCLIC,
-		EAnimationSize::SINGLE,
-		"fall",
-		"",
-		1.0f,
-		1.0f
-	);
-
-	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::CROUCH_WALK,
-		EAnimationType::CYCLIC,
-		EAnimationSize::SINGLE,
-		"crouch_walk",
-		"",
-		1.0f,
-		1.0f
-	);
-
-	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::CROUCH_WALK_SLOW,
-		EAnimationType::CYCLIC,
-		EAnimationSize::SINGLE,
-		"crouch_walk_slow",
-		"",
-		1.0f,
-		1.0f
-	);
-
-	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::LAND_SOFT,
-		EAnimationType::ACTION,
-		EAnimationSize::SINGLE,
-		"land_soft",
-		"",
-		1.0f,
-		1.0f
-	);
-
-	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::HIT_BACK,
-		EAnimationType::CYCLIC,
-		EAnimationSize::DOUBLE,
 		"walk",
-		"run",
-		1.0f,
-		1.0f
-	);
-
-	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::METRALLA_START,
-		EAnimationType::ACTION,
-		EAnimationSize::SINGLE,
-		"metralla_start",
 		"",
 		1.0f,
 		1.0f
 	);
 
 	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::METRALLA_MIDDLE,
+		(TCompAnimator::EAnimation)EAnimation::DIE,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"metralla_middle",
+		"walk",
 		"",
 		1.0f,
 		1.0f
 	);
 
 	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::METRALLA_FINISH,
+		(TCompAnimator::EAnimation)EAnimation::ALARM,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"metralla_finish",
+		"alert",
 		"",
 		1.0f,
 		1.0f
 	);
 
 	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::SM_ENTER,
+		(TCompAnimator::EAnimation)EAnimation::JUMP_TO_WALL,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"sm_enter",
+		"walk",
 		"",
 		1.0f,
 		1.0f
 	);
+
 	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::SM_POSE,
+		(TCompAnimator::EAnimation)EAnimation::LOOKING_FOR_PLAYER,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"walk",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::PLAYER_FOUNDED,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"walk",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::QUIT_WALL,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"walk",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::TURN_LEFT,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"sm_pose",
+		"walk",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::TURN_RIGHT,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"walk",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::SUSPECTING,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"walk",
 		"",
 		1.0f,
 		1.0f
 	);
 }
 
-void TCompPlayerAnimator::registerMsgs() {
-	DECL_MSG(TCompPlayerAnimator, TMsgEntityCreated, onCreated);
-	DECL_MSG(TCompPlayerAnimator, TMsgExecuteAnimation, playMsgAnimation);
+void TCompMimeticAnimator::registerMsgs() {
+	DECL_MSG(TCompMimeticAnimator, TMsgEntityCreated, onCreated);
+	DECL_MSG(TCompMimeticAnimator, TMsgExecuteAnimation, playMsgAnimation);
 }
 
-void TCompPlayerAnimator::onCreated(const TMsgEntityCreated& msg) {
+void TCompMimeticAnimator::onCreated(const TMsgEntityCreated& msg) {
 
 	ownHandle = CHandle(this).getOwner();
 	CEntity *e = ownHandle;
@@ -211,12 +173,12 @@ void TCompPlayerAnimator::onCreated(const TMsgEntityCreated& msg) {
 	setFeetNumAndCalculate(2);
 }
 
-bool TCompPlayerAnimator::playAnimation(TCompPlayerAnimator::EAnimation animation, float speed) {
+bool TCompMimeticAnimator::playAnimation(TCompMimeticAnimator::EAnimation animation, float speed) {
 
 	return playAnimationConverted((TCompAnimator::EAnimation)animation, speed);
 }
 
-void TCompPlayerAnimator::playMsgAnimation(const TMsgExecuteAnimation& msg) {
+void TCompMimeticAnimator::playMsgAnimation(const TMsgExecuteAnimation& msg) {
 
 	playAnimation(msg.animation,msg.speed);
 }

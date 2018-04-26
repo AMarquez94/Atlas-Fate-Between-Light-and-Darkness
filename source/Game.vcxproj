@@ -137,6 +137,7 @@
     <ClCompile Include="components\postfx\comp_render_blur.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
     <ClCompile Include="components\skeleton\comp_bone_tracker.cpp" />
+    <ClCompile Include="components\ia\comp_mimetic_animator.cpp" />
     <ClCompile Include="components\skeleton\comp_skeleton.cpp" />
     <ClCompile Include="components\skeleton\game_core_skeleton.cpp" />
     <ClCompile Include="engine.cpp" />
@@ -296,6 +297,7 @@
     <ClInclude Include="components\skeleton\cal3d2engine.h" />
     <ClInclude Include="components\skeleton\comp_animator.h" />
     <ClInclude Include="components\skeleton\comp_bone_tracker.h" />
+    <ClInclude Include="components\ia\comp_mimetic_animator.h" />
     <ClInclude Include="components\skeleton\comp_skeleton.h" />
     <ClInclude Include="components\skeleton\game_core_skeleton.h" />
     <ClInclude Include="engine.h" />
