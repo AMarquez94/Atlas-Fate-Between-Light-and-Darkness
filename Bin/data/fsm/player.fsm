@@ -487,7 +487,7 @@
       "type": "AnimationTransition",
       "source": "hardLand",
       "target": "idle",
-      "animation_name": "land_soft"
+      "animation_name": "crouch"
     },
 	{
       "type": "VariableTransition",

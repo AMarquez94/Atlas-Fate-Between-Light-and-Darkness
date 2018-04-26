@@ -136,6 +136,16 @@ void TCompPlayerAnimator::initializeAnimations() {
 		1.0f
 	);
 
+  initializeAnimation(
+    (TCompAnimator::EAnimation)EAnimation::LAND_HARD,
+    EAnimationType::ACTION,
+    EAnimationSize::SINGLE,
+    "crouch",
+    "",
+    1.0f,
+    1.0f
+  );
+
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::HIT_BACK,
 		EAnimationType::CYCLIC,
