@@ -6,12 +6,12 @@
         "pos": "2 0 2",
         "lookat": "-1 0 -1"
       },
-      "xrender" : [
+      "render" : [
         {
           "mesh": "data/skeletons/patrol/Mech_low.mesh",
           "materials":
           [
-            "data/skeletons/paladin/paladin.material"
+            "data/materials/characters/mtl_enemy_patrol.material"
           ]
         }
 

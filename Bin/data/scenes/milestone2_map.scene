@@ -556,7 +556,34 @@
           ,
           "materials":
           [
-            "data/materials/mtl_player_main.material"
+            "data/materials/mtl_wall_start.material"
+          ]
+        }
+      ]
+    }
+  },
+	{
+    "entity":
+    {
+      "name": "prop_banner1"
+      ,
+      "transform":
+      {
+        "pos": "-13.385 11 20.5"
+        ,
+        "rotation": "0.0 1.0 0.0 0.0"
+      },      
+			"abs_aabb": true,
+      "local_aabb": true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/props/prop_banner1.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/props/mtl_props_banner1.material"
           ]
         }
       ]

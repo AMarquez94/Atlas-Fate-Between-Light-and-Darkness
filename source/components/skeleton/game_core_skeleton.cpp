@@ -211,7 +211,7 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
   header.num_indices = total_faces * 3;
   header.num_vertexs = total_vtxs;
   header.primitive_type = CRenderMesh::TRIANGLE_LIST;
-  strcpy(header.vertex_type_name, "PosNUvTanSkin");
+  strcpy(header.vertex_type_name, "PosNUvSkin");
 
   mesh_io.vtxs = mds_vtxs.buffer;
   mesh_io.idxs = mds_idxs.buffer;

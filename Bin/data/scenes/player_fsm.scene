@@ -11,7 +11,7 @@
 		          ,
 		          "materials":
 		          [
-		            "data/skeletons/paladin/paladin.material"
+		            "data/materials/characters/mtl_player_main.material"
 		          ]
 		        },
 		        {
@@ -19,7 +19,7 @@
 		          ,
 		          "materials":
 		          [
-		            "data/skeletons/paladin/paladin.material"
+		            "data/materials/characters/mtl_player_main.material"
 		          ]
 		        },
 		        {
@@ -27,7 +27,7 @@
 		          ,
 		          "materials":
 		          [
-		            "data/skeletons/paladin/paladin.material"
+		            "data/materials/characters/mtl_player_main.material"
 		          ]
 		        },
 		        {
@@ -35,7 +35,7 @@
 		          ,
 		          "materials":
 		          [
-		            "data/skeletons/paladin/paladin.material"
+		            "data/materials/characters/mtl_player_main.material"
 		          ]
 		        },
 		        {
@@ -43,7 +43,7 @@
 		          ,
 		          "materials":
 		          [
-		            "data/skeletons/paladin/paladin.material"
+		            "data/materials/characters/mtl_player_main.material"
 		          ]
 		        },
 		        {
@@ -51,7 +51,7 @@
 		          ,
 		          "materials":
 		          [
-		            "data/skeletons/paladin/paladin.material"
+		            "data/materials/characters/mtl_player_main.material"
 		          ]
 		        },
 		        {
@@ -59,7 +59,7 @@
 		          ,
 		          "materials":
 		          [
-		            "data/skeletons/paladin/paladin.material"
+		            "data/materials/characters/mtl_player_main.material"
 		          ]
 		        },
 		        {
@@ -67,7 +67,7 @@
 		          ,
 		          "materials":
 		          [
-		            "data/skeletons/paladin/paladin.material"
+		            "data/materials/characters/mtl_player_main.material"
 		          ]
 		        },
 		        {
@@ -75,7 +75,7 @@
 		          ,
 		          "materials":
 		          [
-		            "data/skeletons/paladin/paladin.material"
+		            "data/materials/characters/mtl_player_main.material"
 		          ]
 		        },
 		        {
@@ -83,7 +83,7 @@
 		          ,
 		          "materials":
 		          [
-		            "data/skeletons/paladin/paladin.material"
+		            "data/materials/characters/mtl_player_main.material"
 		          ]
 		        },
 		        {
@@ -91,7 +91,7 @@
 		          ,
 		          "materials":
 		          [
-		            "data/skeletons/paladin/paladin.material"
+		            "data/materials/characters/mtl_player_main.material"
 		          ]
 		        },
 		        {
@@ -99,7 +99,7 @@
 		          ,
 		          "materials":
 		          [
-		            "data/skeletons/paladin/paladin.material"
+		            "data/materials/characters/mtl_player_main.material"
 		          ]
 		        },
 		        {
@@ -107,7 +107,7 @@
 		          ,
 		          "materials":
 		          [
-		            "data/skeletons/paladin/paladin.material"
+		            "data/materials/characters/mtl_player_main.material"
 		          ]
 		        },
 		        {
@@ -115,7 +115,7 @@
 		          ,
 		          "materials":
 		          [
-		            "data/skeletons/paladin/paladin.material"
+		            "data/materials/characters/mtl_player_main.material"
 		          ]
 		        }
 	    	]
