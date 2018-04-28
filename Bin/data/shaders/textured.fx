@@ -83,7 +83,7 @@ void VS_SKIN_GBuffer(
 {
 	// Faking the verterx shader by now since we don't have tangents...
 	float4x4 skin_mtx = getSkinMtx(iBones, iWeights);
-	float4 skinned_Pos = mul(iPos, skin_mtx);
+	float4 skinned_Pos = mul(float4(iPos.xyz * BonesScale, 1), skin_mtx);
 
 	oPos = mul(skinned_Pos, camera_view_proj); // Transform to viewproj, w_m inside skin_m
 	oNormal = mul(iN, (float3x3)obj_world); // Rotate the normal

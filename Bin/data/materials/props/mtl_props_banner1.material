@@ -7,5 +7,6 @@
 		"roughness": "data/textures/props/mtl_prop_banner1_roughness.dds",
 		"emissive": "data/textures/props/mtl_prop_banner1_emissive.dds"
   },
-	"self_color" : "1.0 0.0 1.0 1.0"
+	"self_color" : "1.0 0.0 1.0 1.0",
+	"emission" : 12
 }

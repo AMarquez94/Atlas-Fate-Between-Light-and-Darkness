@@ -15,11 +15,6 @@ void TCompEmissionController::debugInMenu() {
 
 }
 
-void TCompEmissionController::renderDebug() {
-
-
-}
-
 void TCompEmissionController::load(const json& j, TEntityParseContext& ctx) {
 
 
@@ -42,4 +37,10 @@ void TCompEmissionController::onCreate(const TMsgEntityCreated& msg) {
 
 void TCompEmissionController::onDestroy(const TMsgEntityDestroyed & msg) {
 
+}
+
+void TCompEmissionController::blendColors(VEC4 new_desired_color, float blendTime) {
+
+	blendInTime = blendTime;
+	desired_color = new_desired_color;
 }

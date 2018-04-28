@@ -38,7 +38,7 @@ void CDeferredRenderer::renderGBuffer() {
 	rt_albedos->clear(VEC4(1, 0, 0, 1));
 	rt_normals->clear(VEC4(0, 0, 1, 1));
 	rt_depth->clear(VEC4(1, 1, 1, 1));
-	rt_self_illum->clear(VEC4(1, 0, 0, 1));
+	rt_self_illum->clear(VEC4(0, 0, 0, 1));
 
 	// Clear ZBuffer with the value 1.0 (far)
 	Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
@@ -54,8 +54,8 @@ void CDeferredRenderer::renderGBuffer() {
 	// Activate the gbuffer textures to other shaders
 	rt_albedos->activate(TS_DEFERRED_ALBEDOS);
 	rt_normals->activate(TS_DEFERRED_NORMALS);
-	rt_depth->activate(TS_DEFERRED_LINEAR_DEPTH);
 	rt_self_illum->activate(TS_DEFERRED_SELF_ILLUMINATION);
+	rt_depth->activate(TS_DEFERRED_LINEAR_DEPTH);
 }
 
 // -----------------------------------------------------------------

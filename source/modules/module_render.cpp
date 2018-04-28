@@ -108,8 +108,8 @@ bool CModuleRender::start()
 	if (!cb_blur.create(CB_BLUR))
 		return false;
 
-	cb_globals.global_exposure_adjustment = 0.210f;
-	cb_globals.global_ambient_adjustment = 0.140f;
+	cb_globals.global_exposure_adjustment = 0.310f;
+	cb_globals.global_ambient_adjustment = 0.130f;
 	cb_globals.global_world_time = 0.f;
 	cb_globals.global_hdr_enabled = 1.f;
 	cb_globals.global_gamma_correction_enabled = 1.f;
@@ -260,7 +260,7 @@ void CModuleRender::generateFrame() {
 
 			TCompRenderBloom * c_render_bloom = e_cam->get< TCompRenderBloom >();
 			if (c_render_bloom)
-				curr_rt = c_render_bloom->apply(curr_rt, deferred.rt_acc_light);
+				curr_rt = c_render_bloom->apply(curr_rt, deferred.rt_acc_light, deferred.rt_self_illum);
 		}
 
 		Render.startRenderInBackbuffer();

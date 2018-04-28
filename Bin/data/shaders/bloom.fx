@@ -24,7 +24,9 @@ float4 PS(
 {
 	
 	float4 albedo = txAlbedo.Sample(samClampLinear, iTex0);
+	float4 acum_lights = txLightMap.Sample(samClampLinear, iTex0);
 	float4 self_illum = txEmissive.Sample(samClampLinear, iTex0);
-	
-  return albedo + self_illum;
+	//float grayscale = (acum_lights.x * 0.2126 + acum_lights.y * 0.7152 + acum_lights.z * 0.0722);
+
+	return albedo + acum_lights + self_illum;
 }

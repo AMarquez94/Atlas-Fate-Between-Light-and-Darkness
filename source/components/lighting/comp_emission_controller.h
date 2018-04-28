@@ -8,6 +8,10 @@ class CRenderToTexture;
 
 class TCompEmissionController : public TCompCamera {
 
+	VEC4 current_color;
+	VEC4 desired_color;
+	float blendInTime = 1.f;
+
 	void onCreate(const TMsgEntityCreated& msg);
 	void onDestroy(const TMsgEntityDestroyed& msg);
 
@@ -18,6 +22,8 @@ public:
 	void renderDebug();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
+
+	void blendColors(VEC4 new_desired_color, float blendTime);
 
 	static void registerMsgs();
 };

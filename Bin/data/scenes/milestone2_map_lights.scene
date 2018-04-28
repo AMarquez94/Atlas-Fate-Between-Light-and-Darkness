@@ -45,7 +45,7 @@
 				"z_near" : 3,
         "casts_shadows" : true,
         "shadows_step" : 1.5,
-        "shadows_resolution" : 2048,
+        "shadows_resolution" : 4096,
         "shadows_fmt" : "R32_TYPELESS"
       },      
 			"abs_aabb": true,
@@ -79,7 +79,7 @@
         "intensity": 1.5,
         "casts_shadows": true,
         "shadows_step": 0.0,
-        "shadows_resolution": 256,
+        "shadows_resolution": 512,
         "shadows_fmt": "R32_TYPELESS"
       }
       ,
@@ -114,7 +114,7 @@
       {
         "type": "spotlight",
 		"proj_type": "perspective",
-        "range": 29.2116,
+        "range": 9.2116,
         "angle": 75,
         "color": "1.0 1.0 1.0 1.0",
         "intensity": 1.5,
@@ -124,7 +124,7 @@
         "z_far" : 50,
         "casts_shadows" : true,
         "shadows_step" : 1.0,
-        "shadows_resolution" : 256,
+        "shadows_resolution" : 512,
         "shadows_fmt" : "R32_TYPELESS"
       }
       ,
@@ -162,7 +162,7 @@
       {
         "type": "spotlight",
 		"proj_type": "perspective",
-        "range": 29.2116,
+        "range": 9.2116,
         "angle": 75,
         "color": "1.0 1.0 1.0 1.0",
         "intensity": 1.5,
@@ -172,7 +172,7 @@
         "z_far" : 50,
         "casts_shadows" : true,
         "shadows_step" : 1.0,
-        "shadows_resolution" : 256,
+        "shadows_resolution" : 512,
         "shadows_fmt" : "R32_TYPELESS"
       }
       ,
