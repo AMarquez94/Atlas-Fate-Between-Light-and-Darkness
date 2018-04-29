@@ -25,6 +25,9 @@ function blendOutCamera(cameraName, blendOutTime)
 	SLB.blendOutCamera(cameraName, blendOutTime)
 end
 
-function setInfiniteStamine(set)
-	SLB.setInfiniteStamine(set)
+function toggleInfiniteStamine()
+	SLB.toggleInfiniteStamine()
+end
+function toggleFPS()
+	SLB.toggleFPS()
 end

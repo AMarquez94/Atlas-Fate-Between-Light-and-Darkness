@@ -85,7 +85,10 @@ void CModuleLogic::publishClasses() {
   m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
   m->set("blendInCamera", SLB::FuncCall::create(&blendInCamera));
   m->set("blendOutCamera", SLB::FuncCall::create(&blendOutCamera));
-  m->set("setInfiniteStamine", SLB::FuncCall::create(&setInfiniteStamine));
+  m->set("toggleInfiniteStamine", SLB::FuncCall::create(&toggleInfiniteStamine));
+  m->set("toggleFPS", SLB::FuncCall::create(&toggleFPS));
+  m->set("stateAltered", SLB::FuncCall::create(&stateAltered));
+
 }
 
 CModuleLogic::ConsoleResult CModuleLogic::execScript(const std::string& script) {
@@ -172,14 +175,16 @@ void pauseGame(bool pause)
   EngineEntities.broadcastMsg(msg);
 }
 
-void setInfiniteStamine(bool set)
+void toggleInfiniteStamine()
 {
-  //TODO: implement
 	TMsgInfiniteStamina msg;
-	msg.infinite = set;
 	CHandle h = getEntityByName("The Player");
 	h.sendMsg(msg);
 
+}
+
+void toggleFPS() {
+	EngineRender.showFPS = !EngineRender.showFPS;
 }
 
 void blendInCamera(const std::string & cameraName, float blendInTime)

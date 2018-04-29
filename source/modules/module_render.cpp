@@ -49,7 +49,6 @@ bool parseTechniques() {
 
 bool CModuleRender::start()
 {
-
 	if (!Render.createDevice(_xres, _yres))
 		return false;
 
@@ -173,7 +172,7 @@ void CModuleRender::render()
 		ImGui::DragFloat("Time Factor", &EngineEntities.time_scale_factor, 0.01f, 0.f, 1.0f);
 		ImGui::TreePop();
 	}
-		
+
 	if (ImGui::TreeNode("Render Control")) {
 		ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.1f, 32.f);
 		ImGui::DragFloat("Ambient Adjustment", &cb_globals.global_ambient_adjustment, 0.01f, 0.0f, 1.f);
@@ -215,8 +214,9 @@ void CModuleRender::activateMainCamera() {
 }
 
 void CModuleRender::generateFrame() {
-
-	tempDebugDraw();
+	if (showFPS) {
+		tempDebugDraw();
+	}
 
 	{
 		PROFILE_FUNCTION("CModuleRender::shadowsMapsGeneration");

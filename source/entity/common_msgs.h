@@ -156,7 +156,6 @@ struct TMsgMakeNoise {
 	DECL_MSG_ID();
 };
 struct TMsgInfiniteStamina {
-	bool infinite;
 	DECL_MSG_ID();
 };
 

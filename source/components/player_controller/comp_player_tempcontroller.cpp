@@ -246,7 +246,7 @@ void TCompTempPlayerController::onConsoleChanged(const TMsgConsoleOn & msg)
 }
 
 void TCompTempPlayerController::onInfiniteStamina(const TMsgInfiniteStamina& msg) {
-	infinite = msg.infinite;
+	infinite = !infinite;
 }
 
 /* Idle state method, no logic yet */
