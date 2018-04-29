@@ -65,7 +65,6 @@ CModuleLogic* getLogic();
 void execDelayedScript(const std::string& script, float delay);
 void pauseEnemies(bool pause);
 void pauseGame(bool pause);
-void toggleInfiniteStamine();
 void toggleFPS();
 void stateAltered(const std::string&);
 void blendInCamera(const std::string& cameraName, float blendInTime);

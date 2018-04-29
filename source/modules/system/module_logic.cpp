@@ -85,7 +85,6 @@ void CModuleLogic::publishClasses() {
   m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
   m->set("blendInCamera", SLB::FuncCall::create(&blendInCamera));
   m->set("blendOutCamera", SLB::FuncCall::create(&blendOutCamera));
-  m->set("toggleInfiniteStamine", SLB::FuncCall::create(&toggleInfiniteStamine));
   m->set("toggleFPS", SLB::FuncCall::create(&toggleFPS));
   m->set("stateAltered", SLB::FuncCall::create(&stateAltered));
 
@@ -175,14 +174,6 @@ void pauseGame(bool pause)
   EngineEntities.broadcastMsg(msg);
 }
 
-void toggleInfiniteStamine()
-{
-	TMsgInfiniteStamina msg;
-	CHandle h = getEntityByName("The Player");
-	h.sendMsg(msg);
-
-}
-
 void toggleFPS() {
 	EngineRender.showFPS = !EngineRender.showFPS;
 }
@@ -201,4 +192,16 @@ void blendOutCamera(const std::string & cameraName, float blendOutTime) {
   if (camera.isValid()) {
     EngineCameras.blendOutCamera(camera, blendOutTime);
   }
+}
+
+void stateAltered(const std::string& state) {
+	if (state == "infinite stamina") {
+		TMsgInfiniteStamina msg;
+		CHandle h = getEntityByName("The Player");
+		h.sendMsg(msg);
+	}
+	else if (state == "immortal") {
+		CHandle h = getEntityByName("The Player");
+		TMsgPlayerImmortal msg;
+	}
 }

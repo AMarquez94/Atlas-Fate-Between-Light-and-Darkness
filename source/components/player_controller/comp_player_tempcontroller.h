@@ -51,7 +51,8 @@ struct TMsgStateFinish {
 
 class TCompTempPlayerController : public TCompBase
 {
-
+	//Debug console message variables
+	bool infinite, immortal;
 	/* DEPRECATED */
 	std::map<std::string, CRenderMesh*> mesh_states;
 
@@ -72,9 +73,6 @@ class TCompTempPlayerController : public TCompBase
 	float maxFallingDistance;
 	float maxAttackDistance;
 	std::string auxCamera;
-
-	/* Stamina private variables */
-	bool infinite;
 
 	float stamina;
 	float minStamina;
@@ -100,6 +98,8 @@ class TCompTempPlayerController : public TCompBase
 	void onPlayerPaused(const TMsgScenePaused& msg);
 	void onConsoleChanged(const TMsgConsoleOn& msg);
 	void onInfiniteStamina(const TMsgInfiniteStamina& msg);
+	void onPlayerImmortal(const TMsgPlayerImmortal& msg);
+
 
 	DECL_SIBLING_ACCESS();
 

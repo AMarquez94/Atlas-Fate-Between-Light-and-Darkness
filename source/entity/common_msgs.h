@@ -158,6 +158,9 @@ struct TMsgMakeNoise {
 struct TMsgInfiniteStamina {
 	DECL_MSG_ID();
 };
+struct TMsgPlayerImmortal {
+	DECL_MSG_ID();
+};
 
 #endif
 

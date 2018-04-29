@@ -119,6 +119,7 @@ void TCompTempPlayerController::registerMsgs() {
 	DECL_MSG(TCompTempPlayerController, TMsgScenePaused, onPlayerPaused);
 	DECL_MSG(TCompTempPlayerController, TMsgConsoleOn, onConsoleChanged);
 	DECL_MSG(TCompTempPlayerController, TMsgInfiniteStamina, onInfiniteStamina);
+	DECL_MSG(TCompTempPlayerController, TMsgPlayerImmortal, onPlayerImmortal);
 
 }
 
@@ -249,6 +250,10 @@ void TCompTempPlayerController::onInfiniteStamina(const TMsgInfiniteStamina& msg
 	infinite = !infinite;
 }
 
+void TCompTempPlayerController::onPlayerImmortal(const TMsgPlayerImmortal& msg) {
+	immortal = !immortal;
+}
+
 /* Idle state method, no logic yet */
 void TCompTempPlayerController::idleState(float dt) {
 
@@ -369,21 +374,23 @@ void TCompTempPlayerController::exitMergeState(float dt)
 /* Player dead state */
 void TCompTempPlayerController::deadState(float dt)
 {
-	TMsgPlayerDead newMsg;
-	newMsg.h_sender = CHandle(this).getOwner();
-	auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
-	for (auto h : handles) {
-		CEntity* enemy = h;
-		enemy->sendMsg(newMsg);
+	if (!immortal) {
+		TMsgPlayerDead newMsg;
+		newMsg.h_sender = CHandle(this).getOwner();
+		auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+		for (auto h : handles) {
+			CEntity* enemy = h;
+			enemy->sendMsg(newMsg);
+		}
+
+		/*TCompTransform *mypos = get<TCompTransform>();
+		float y, p, r;
+		mypos->getYawPitchRoll(&y, &p, &r);
+		p = p + deg2rad(89.9f);
+		mypos->setYawPitchRoll(y, p, r);*/
+
+		state = (actionhandler)&TCompTempPlayerController::idleState;
 	}
-
-	/*TCompTransform *mypos = get<TCompTransform>();
-	float y, p, r;
-	mypos->getYawPitchRoll(&y, &p, &r);
-	p = p + deg2rad(89.9f);
-	mypos->setYawPitchRoll(y, p, r);*/
-
-	state = (actionhandler)&TCompTempPlayerController::idleState;
 }
 
 void TCompTempPlayerController::removingInhibitorState(float dt) {
