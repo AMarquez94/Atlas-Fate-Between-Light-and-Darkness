@@ -95,11 +95,6 @@
     "buttons":  ["f1"]
   },
   {
-    "name": "btDebugShadows",
-    "all": false,
-    "buttons":  ["f2"]
-  },
-  {
     "name": "btPause",
     "all": false,
     "buttons":  ["escape", "pad_start"]

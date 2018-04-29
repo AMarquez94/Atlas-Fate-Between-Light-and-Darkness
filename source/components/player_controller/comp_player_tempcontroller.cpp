@@ -82,7 +82,7 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	maxStamina = j.value("maxStamina", 100.f);
 	incrStamina = j.value("incrStamina", 15.f);
 	decrStaticStamina = j.value("decrStaticStamina", 0.75f),
-	decrStaminaHorizontal = j.value("decrStaminaHorizontal", 12.5f);
+		decrStaminaHorizontal = j.value("decrStaminaHorizontal", 12.5f);
 	decrStaminaVertical = j.value("decrStaminaVertical", 17.5f);
 	minStaminaChange = j.value("minStaminaChange", 15.f);
 	auxCamera = j.value("auxCamera", "");
@@ -118,6 +118,8 @@ void TCompTempPlayerController::registerMsgs() {
 	DECL_MSG(TCompTempPlayerController, TMsgPlayerIlluminated, onPlayerExposed);
 	DECL_MSG(TCompTempPlayerController, TMsgScenePaused, onPlayerPaused);
 	DECL_MSG(TCompTempPlayerController, TMsgConsoleOn, onConsoleChanged);
+	DECL_MSG(TCompTempPlayerController, TMsgInfiniteStamina, onInfiniteStamina);
+
 }
 
 void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
@@ -241,6 +243,10 @@ void TCompTempPlayerController::onPlayerPaused(const TMsgScenePaused& msg) {
 void TCompTempPlayerController::onConsoleChanged(const TMsgConsoleOn & msg)
 {
 	isConsoleOn = msg.isConsoleOn;
+}
+
+void TCompTempPlayerController::onInfiniteStamina(const TMsgInfiniteStamina& msg) {
+	infinite = msg.infinite;
 }
 
 /* Idle state method, no logic yet */
@@ -584,24 +590,25 @@ const bool TCompTempPlayerController::groundTest(float dt) {
 
 /* Sets the player current stamina depending on player status */
 void TCompTempPlayerController::updateStamina(float dt) {
+	if (!infinite) {
+		if (isMerged) {
 
-	if (isMerged && !dbgDisableStamina) {
+			// Determine stamina decreasing ratio multiplier depending on movement
+			TCompRigidbody *c_my_rigidbody = get<TCompRigidbody>();
+			TCompTransform *c_my_transform = get<TCompTransform>();
+			float staminaMultiplier = c_my_rigidbody->lastFramePosition == c_my_transform->getPosition() ? decrStaticStamina : 1;
 
-		// Determine stamina decreasing ratio multiplier depending on movement
-		TCompRigidbody *c_my_rigidbody = get<TCompRigidbody>();
-		TCompTransform *c_my_transform = get<TCompTransform>();
-		float staminaMultiplier = c_my_rigidbody->lastFramePosition == c_my_transform->getPosition() ? decrStaticStamina : 1;
-
-		// Determine stamina decreasing ratio depending on players up vector.
-		if (fabs(EnginePhysics.gravity.Dot(c_my_rigidbody->GetUpVector())) < mergeAngle) {
-			stamina = Clamp(stamina - (decrStaminaVertical * staminaMultiplier * dt), minStamina, maxStamina);
+			// Determine stamina decreasing ratio depending on players up vector.
+			if (fabs(EnginePhysics.gravity.Dot(c_my_rigidbody->GetUpVector())) < mergeAngle) {
+				stamina = Clamp(stamina - (decrStaminaVertical * staminaMultiplier * dt), minStamina, maxStamina);
+			}
+			else {
+				stamina = Clamp(stamina - (decrStaminaHorizontal * staminaMultiplier * dt), minStamina, maxStamina);
+			}
 		}
 		else {
-			stamina = Clamp(stamina - (decrStaminaHorizontal * staminaMultiplier * dt), minStamina, maxStamina);
+			stamina = Clamp(stamina + (incrStamina * dt), minStamina, maxStamina);
 		}
-	}
-	else {
-		stamina = Clamp(stamina + (incrStamina * dt), minStamina, maxStamina);
 	}
 }
 

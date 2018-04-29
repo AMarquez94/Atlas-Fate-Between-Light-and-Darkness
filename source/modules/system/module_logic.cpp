@@ -175,6 +175,11 @@ void pauseGame(bool pause)
 void setInfiniteStamine(bool set)
 {
   //TODO: implement
+	TMsgInfiniteStamina msg;
+	msg.infinite = set;
+	CHandle h = getEntityByName("The Player");
+	h.sendMsg(msg);
+
 }
 
 void blendInCamera(const std::string & cameraName, float blendInTime)

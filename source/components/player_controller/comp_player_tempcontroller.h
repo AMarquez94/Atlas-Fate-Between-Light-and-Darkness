@@ -74,6 +74,8 @@ class TCompTempPlayerController : public TCompBase
 	std::string auxCamera;
 
 	/* Stamina private variables */
+	bool infinite;
+
 	float stamina;
 	float minStamina;
 	float maxStamina;
@@ -97,6 +99,7 @@ class TCompTempPlayerController : public TCompBase
 	void onPlayerExposed(const TMsgPlayerIlluminated& msg);
 	void onPlayerPaused(const TMsgScenePaused& msg);
 	void onConsoleChanged(const TMsgConsoleOn& msg);
+	void onInfiniteStamina(const TMsgInfiniteStamina& msg);
 
 	DECL_SIBLING_ACCESS();
 
