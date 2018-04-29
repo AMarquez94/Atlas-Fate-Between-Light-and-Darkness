@@ -18,6 +18,9 @@
 				"skeleton": "data/skeletons/patrol/patrol.skeleton",
 				"scale": 1
 			},
+			"emission_controller": {
+				"initial": "0.0 1.0 1.0 1.0"
+			},
 			"patrol_animator": true,
 			"tags": ["enemy", "patrol"],
 			"ai_patrol": {

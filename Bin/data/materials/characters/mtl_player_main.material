@@ -9,5 +9,5 @@
 		"emissive": "data/textures/player/Shade_mtl_Emissive.dds"
 	},
 	"self_color": "0.0 1.0 1.0 1.0",
-	"emission" : 4
+	"emission" : 12
 }

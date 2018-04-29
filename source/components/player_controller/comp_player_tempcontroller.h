@@ -51,6 +51,13 @@ struct TMsgStateFinish {
 
 class TCompTempPlayerController : public TCompBase
 {
+	struct StateColors {
+		VEC4 colorIdle;
+		VEC4 colorMerge;
+		VEC4 colorDead;
+		VEC4 colorInhib;
+
+	}playerColor;
 
 	/* DEPRECATED */
 	std::map<std::string, CRenderMesh*> mesh_states;
@@ -97,6 +104,7 @@ class TCompTempPlayerController : public TCompBase
 	void onPlayerExposed(const TMsgPlayerIlluminated& msg);
 	void onPlayerPaused(const TMsgScenePaused& msg);
 	void onConsoleChanged(const TMsgConsoleOn& msg);
+	void onShadowChange(const TMsgShadowChange& msg);
 
 	DECL_SIBLING_ACCESS();
 

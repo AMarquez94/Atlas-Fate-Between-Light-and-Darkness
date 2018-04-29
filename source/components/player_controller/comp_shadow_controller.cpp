@@ -31,7 +31,17 @@ void TCompShadowController::update(float dt) {
 
 	TCompTransform * c_my_transform = get<TCompTransform>();
 	VEC3 new_pos = c_my_transform->getPosition() + 0.1f * c_my_transform->getUp();
-	is_shadow = IsPointInShadows(new_pos);
+	bool shadow_test = IsPointInShadows(new_pos);
+
+	// We have entered or left a shadow, notify this.
+	if (shadow_test != is_shadow) {
+		is_shadow = shadow_test;
+
+		TMsgShadowChange msgToSend;
+		msgToSend.is_shadowed = is_shadow;
+		CEntity* e = CHandle(this).getOwner();
+		e->sendMsg(msgToSend);
+	}
  }
 
 void TCompShadowController::Init() {
@@ -68,30 +78,14 @@ void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
 	shadowDetectionFilter.data = pxFilterData;
 }
 
-void TCompShadowController::onEnteredCapsuleShadow(const TMsgEnteredCapsuleShadow& msg) {
-
-	capsule_shadow = true;
-}
-
-void TCompShadowController::onExitedCapsuleShadow(const TMsgExitedCapsuleShadow& msg) {
-
-	capsule_shadow = false;
-}
-
 void TCompShadowController::registerMsgs() {
 
 	DECL_MSG(TCompShadowController, TMsgSceneCreated, onSceneCreated);
-	DECL_MSG(TCompShadowController, TMsgEnteredCapsuleShadow, onEnteredCapsuleShadow);
-	DECL_MSG(TCompShadowController, TMsgExitedCapsuleShadow, onExitedCapsuleShadow);
 }
 
 // We can also use this public method from outside this class.
 bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 {
-	if (capsule_shadow) {
-		return true;
-	}
-
 	physx::PxRaycastHit hit;
 	for (unsigned int i = 0; i < static_lights.size(); i++) {
 		CEntity * c_entity = static_lights[i];

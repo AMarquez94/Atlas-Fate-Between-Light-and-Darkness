@@ -9,6 +9,7 @@
 #include "components/physics/comp_rigidbody.h"
 #include "components/physics/comp_collider.h"
 #include "components/player_controller/comp_shadow_controller.h"
+#include "components/lighting/comp_emission_controller.h"
 #include "physics/physics_collider.h"
 #include "render/mesh/mesh_loader.h"
 #include "components/comp_name.h"
@@ -73,6 +74,11 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_crouch", (CRenderMesh*)pj_crouch));
 	mesh_states.insert(std::pair<std::string, CRenderMesh*>("pj_shadowmerge", (CRenderMesh*)pj_shadowmerge));
 
+	playerColor.colorIdle = j.count("colorIdle") ? loadVEC4(j["colorIdle"]) : VEC4(1, 1, 1, 1);
+	playerColor.colorDead = j.count("colorDead") ? loadVEC4(j["colorDead"]) : VEC4(0, 0, 0, 1);
+	playerColor.colorInhib = j.count("colorInhib") ? loadVEC4(j["colorInhib"]) : VEC4(1, 0, 1, 1);
+	playerColor.colorMerge = j.count("colorMerge") ? loadVEC4(j["colorMerge"]) : VEC4(0, 1, 1, 1);
+
 	mergeAngle = j.value("mergeAngle", 0.45f);
 	maxFallingTime = j.value("maxFallingTime", 0.8f);
 	hardFallingTime = j.value("hardFallingTime", 0.5f);
@@ -118,6 +124,15 @@ void TCompTempPlayerController::registerMsgs() {
 	DECL_MSG(TCompTempPlayerController, TMsgPlayerIlluminated, onPlayerExposed);
 	DECL_MSG(TCompTempPlayerController, TMsgScenePaused, onPlayerPaused);
 	DECL_MSG(TCompTempPlayerController, TMsgConsoleOn, onConsoleChanged);
+	DECL_MSG(TCompTempPlayerController, TMsgShadowChange, onShadowChange);
+}
+
+void TCompTempPlayerController::onShadowChange(const TMsgShadowChange& msg) {
+
+	VEC4 merged_color = msg.is_shadowed ? playerColor.colorMerge : playerColor.colorIdle;
+
+	TCompEmissionController * e_controller = get<TCompEmissionController>();
+	e_controller->blend(merged_color, .5);
 }
 
 void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
@@ -218,6 +233,9 @@ void TCompTempPlayerController::onPlayerInhibited(const TMsgInhibitorShot & msg)
 {
 	if (!isInhibited) {
 		isInhibited = true;
+
+		TCompEmissionController * e_controller = get<TCompEmissionController>();
+		e_controller->blend(playerColor.colorInhib, .1);
 	}
 	timesRemoveInhibitorKeyPressed = initialPoints;
 
@@ -371,11 +389,8 @@ void TCompTempPlayerController::deadState(float dt)
 		enemy->sendMsg(newMsg);
 	}
 
-	/*TCompTransform *mypos = get<TCompTransform>();
-	float y, p, r;
-	mypos->getYawPitchRoll(&y, &p, &r);
-	p = p + deg2rad(89.9f);
-	mypos->setYawPitchRoll(y, p, r);*/
+	TCompEmissionController * e_controller = get<TCompEmissionController>();
+	e_controller->blend(playerColor.colorDead, 3);
 
 	state = (actionhandler)&TCompTempPlayerController::idleState;
 }
@@ -522,6 +537,7 @@ const bool TCompTempPlayerController::onMergeTest(float dt) {
 
 	// If the mergetest changed since last frame, update the fsm
 	if (mergeTest != isMerged) {
+
 		TMsgSetFSMVariable groundMsg;
 		groundMsg.variant.setName("onmerge");
 		groundMsg.variant.setBool(mergeTest);

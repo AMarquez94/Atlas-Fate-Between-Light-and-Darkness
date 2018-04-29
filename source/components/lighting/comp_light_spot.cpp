@@ -66,6 +66,11 @@ void TCompLightSpot::load(const json& j, TEntityParseContext& ctx) {
 	shadows_enabled = casts_shadows;
 }
 
+void TCompLightSpot::setColor(const VEC4 & new_color) {
+
+	color = new_color;
+}
+
 MAT44 TCompLightSpot::getWorld() {
 
 	TCompTransform* c = get<TCompTransform>();

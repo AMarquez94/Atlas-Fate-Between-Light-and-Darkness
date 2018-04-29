@@ -1,7 +1,7 @@
 {
-	"sizes" : {
-		"default" : 1024,
-		"transform" : 1024
+	"sizes": {
+		"default": 1024,
+		"transform": 1024
 	},
 	"init_order": {
 		"entity": 100,
@@ -37,7 +37,8 @@
 		"camera",
 		"fsm",
 		"player_animator",
-		"player_input"
+		"player_input",
+		"emission_controller"
 	],
 	"render_debug": [
 		"player_tempcontroller",

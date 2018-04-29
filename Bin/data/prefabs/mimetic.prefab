@@ -101,6 +101,9 @@
 				"skeleton": "data/skeletons/crab/crab.skeleton",
 				"scale": 1.0
 			},
+			"emission_controller": {
+				"initial" : "0.0 1.0 1.0 1.0"
+			},
 			"mimetic_animator": true,
 			"tags": ["enemy", "mimetic"]
 		}

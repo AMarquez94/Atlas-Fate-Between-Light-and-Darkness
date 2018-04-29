@@ -5,12 +5,13 @@
 #include "geometry/transform.h"
 
 struct TMsgEntityCreated {
-  DECL_MSG_ID();
+	DECL_MSG_ID();
 };
 
 struct TMsgSceneCreated {
 	DECL_MSG_ID();
 };
+
 struct TMsgEnteredCapsuleShadow {
 	DECL_MSG_ID();
 };
@@ -24,14 +25,14 @@ struct TMsgEntityDestroyed {
 };
 
 struct TMsgAssignBulletOwner {
-  CHandle h_owner;
-  DECL_MSG_ID();
+	CHandle h_owner;
+	DECL_MSG_ID();
 };
 
 struct TMsgDamage {
-  CHandle h_sender;
-  CHandle h_bullet;
-  DECL_MSG_ID();
+	CHandle h_sender;
+	CHandle h_bullet;
+	DECL_MSG_ID();
 };
 
 // Sent to all entities from a parsed file once all the entities
@@ -113,21 +114,21 @@ struct TMsgCameraFullyActivated {
 };
 
 struct TMsgTimeOut {
-  DECL_MSG_ID();
+	DECL_MSG_ID();
 };
 
 struct TMsgSpawn {
-  DECL_MSG_ID();
+	DECL_MSG_ID();
 };
 
 struct TMsgDefineLocalAABB {
-  AABB* aabb;
-  DECL_MSG_ID();
+	AABB* aabb;
+	DECL_MSG_ID();
 };
 
 struct TMsgSpawnAt {
-  CTransform where;
-  DECL_MSG_ID();
+	CTransform where;
+	DECL_MSG_ID();
 };
 
 struct TMsgScenePaused {
@@ -153,6 +154,11 @@ struct TMsgMakeNoise {
 	float timeToRepeat;
 	bool isNoise;
 	bool isArtificial;
+	DECL_MSG_ID();
+};
+
+struct TMsgShadowChange {
+	bool is_shadowed;
 	DECL_MSG_ID();
 };
 
