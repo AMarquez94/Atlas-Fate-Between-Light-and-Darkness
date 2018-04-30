@@ -190,6 +190,16 @@ struct TSceneExporter (
 		)
 	),
 	
+	function writePrefabComponent obj = (
+				
+		c_values = retrieveComponent obj component_prefab
+						
+		if  c_values != undefined then (
+			fs.writeKeyValue "prefab" c_values.prefab
+			fs.writeComma()
+		)
+	),
+	
 	function writeGroupComponent obj = (
 		
 		if obj.parent != undefined then (
@@ -320,17 +330,19 @@ q		)
 	
 	-- ----------------------------------------------------------	
 	fn exportCompLight obj = (
-		
-		fs.writeKey "light" 
-		fs.beginObj()
+
 		
 		if classof obj == Directionallight then (
+		fs.writeKey "light_dir" 
+		fs.beginObj()
 		fs.writeKeyValue "type" "directional"
 		fs.writeComma()
 		)
 		else if classof obj == targetSpot or classof obj == freeSpot then ( 
 			
 		local target = getnodebyname (obj.name + ".Target")
+		fs.writeKey "light_spot" 
+		fs.beginObj()
 		fs.writeKeyValue "type" "spotlight"
 		fs.writeComma()
 		fs.writeKeyValue "proj_type" "perspective"
@@ -345,12 +357,16 @@ q		)
 		fs.writeComma()	
 		)
 		else if classof obj == Omnilight   then (
+		fs.writeKey "light_point" 
+		fs.beginObj()
 		fs.writeKeyValue "type" "pointlight"
 		fs.writeComma()
 		fs.writeKeyValue "range" obj.farAttenEnd 
 		fs.writeComma()
 		)
 		else if classof obj == skylight   then (
+		fs.writeKey "light_ambient" 
+		fs.beginObj()
 		fs.writeKeyValue "type" "ambient"
 		fs.writeComma()
 		)
@@ -471,6 +487,7 @@ q		)
 		fs.beginObj()
 		fs.writeKey "entity"
 			fs.beginObj()
+			writePrefabComponent obj
 			if isCollider obj then (exportEntityCollider obj )
 			else if isLight obj then ( exportEntityLight obj )
 			else exportEditableMesh obj
@@ -482,8 +499,13 @@ q		)
 	fn exportRoot filename = (
 		fs.beginObj()
 		fs.writeKey "entity"
-		fs.beginObj()
-		fs.writeKeyValue "name" filename
+			fs.beginObj()
+			fs.writeKeyValue "name" filename
+			fs.writeComma()
+			fs.writeKey "transform" 
+			fs.beginObj()
+			fs.writeKeyValue "pos" "0.0 0.0 0.0"
+			fs.endObj()
 		fs.endObj()
 		fs.endObj()
 		fs.writeComma()
@@ -517,13 +539,11 @@ q		)
 		local full_path = project_path + prefabs_path + ofilename + ".prefab"
 		if is_scene == true then ( 
 			local full_path = project_path + scenes_path + ofilename + ".scene"
-			fs.begin full_path
-			fs.beginArray()
-			exportRoot ofilename -- Export root
-		)else (
-			fs.begin full_path
-			fs.beginArray()
 		)
+		
+		fs.begin full_path
+		fs.beginArray()
+		exportRoot ofilename -- Export root
 		
 		local nitems = 0
 		local prg_step = 100 / (nodes.count + 1)

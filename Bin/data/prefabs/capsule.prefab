@@ -13,7 +13,18 @@
           ],
           "color": "0.5 0.5 1.0 1.0"
         }
-      ]
+      ],			
+			"rigidbody": {
+				"is_controller": false,
+				"is_gravity": false
+			},
+			"collider":
+			{
+				"shape": "sphere",
+				"is_trigger" : false,
+				"is_dynamic" : true,
+				"radius": 3
+			}
     }
   },
   {
