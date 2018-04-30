@@ -129,10 +129,10 @@ void TCompTempPlayerController::registerMsgs() {
 
 void TCompTempPlayerController::onShadowChange(const TMsgShadowChange& msg) {
 
-	VEC4 merged_color = msg.is_shadowed ? playerColor.colorMerge : playerColor.colorIdle;
+	//VEC4 merged_color = msg.is_shadowed ? playerColor.colorMerge : playerColor.colorIdle;
 
-	TCompEmissionController * e_controller = get<TCompEmissionController>();
-	e_controller->blend(merged_color, .5);
+	//TCompEmissionController * e_controller = get<TCompEmissionController>();
+	//e_controller->blend(merged_color, .5);
 }
 
 void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
@@ -234,8 +234,8 @@ void TCompTempPlayerController::onPlayerInhibited(const TMsgInhibitorShot & msg)
 	if (!isInhibited) {
 		isInhibited = true;
 
-		TCompEmissionController * e_controller = get<TCompEmissionController>();
-		e_controller->blend(playerColor.colorInhib, .1f);
+		//TCompEmissionController * e_controller = get<TCompEmissionController>();
+		//e_controller->blend(playerColor.colorInhib, .1f);
 	}
 	timesRemoveInhibitorKeyPressed = initialPoints;
 
@@ -389,8 +389,8 @@ void TCompTempPlayerController::deadState(float dt)
 		enemy->sendMsg(newMsg);
 	}
 
-	TCompEmissionController * e_controller = get<TCompEmissionController>();
-	e_controller->blend(playerColor.colorDead, 3);
+	//TCompEmissionController * e_controller = get<TCompEmissionController>();
+	//e_controller->blend(playerColor.colorDead, 3);
 
 	state = (actionhandler)&TCompTempPlayerController::idleState;
 }
@@ -741,17 +741,21 @@ CHandle TCompTempPlayerController::closestEnemyToStun() {
 void TCompTempPlayerController::updateShader(float dt) {
 
 	TCompRender *c_my_render = get<TCompRender>();
+  TCompEmissionController *e_controller = get<TCompEmissionController>();
 	TCompShadowController * shadow_oracle = get<TCompShadowController>();
 
-	if (isInhibited) {
-		c_my_render->color = VEC4(128, 0, 128, 1);
+	if (isDead()){
+    e_controller->blend(playerColor.colorDead, 1.f);
+  }
+	else if (isInhibited) {
+    e_controller->blend(playerColor.colorInhib, 0.1f);
 	}
 	else if (shadow_oracle->is_shadow) {
-		c_my_render->color = VEC4(0, .8f, 1, 1);
+    e_controller->blend(playerColor.colorMerge, 0.5f);
 	}
-	else {
-		c_my_render->color = VEC4(1, 1, 1, 1);
-	}
+  else {
+    e_controller->blend(playerColor.colorIdle, 0.5f);
+  }
 }
 
 VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & left) {
