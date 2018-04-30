@@ -52,7 +52,7 @@ struct TMsgStateFinish {
 class TCompTempPlayerController : public TCompBase
 {
 	//Debug console message variables
-	bool infinite, immortal;
+	bool infinite, immortal, hackShadows;
 	/* DEPRECATED */
 	std::map<std::string, CRenderMesh*> mesh_states;
 
@@ -96,9 +96,13 @@ class TCompTempPlayerController : public TCompBase
 	void onPlayerInhibited(const TMsgInhibitorShot& msg);
 	void onPlayerExposed(const TMsgPlayerIlluminated& msg);
 	void onPlayerPaused(const TMsgScenePaused& msg);
+	
+	//Console hacks
 	void onConsoleChanged(const TMsgConsoleOn& msg);
 	void onInfiniteStamina(const TMsgInfiniteStamina& msg);
 	void onPlayerImmortal(const TMsgPlayerImmortal& msg);
+	void onPlayerMove(const TMsgPlayerMove& msg);
+	void onPlayerInShadows(const TMsgPlayerInShadows& msg);
 
 
 	DECL_SIBLING_ACCESS();

@@ -32,3 +32,7 @@ end
 function systemToggle(system)
 	SLB.systemToggle(system)
 end
+
+function movePlayer(x,y,z)
+	SLB.movePlayer(x,y,z)
+end

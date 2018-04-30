@@ -120,6 +120,9 @@ void TCompTempPlayerController::registerMsgs() {
 	DECL_MSG(TCompTempPlayerController, TMsgConsoleOn, onConsoleChanged);
 	DECL_MSG(TCompTempPlayerController, TMsgInfiniteStamina, onInfiniteStamina);
 	DECL_MSG(TCompTempPlayerController, TMsgPlayerImmortal, onPlayerImmortal);
+	DECL_MSG(TCompTempPlayerController, TMsgPlayerMove, onPlayerMove);
+	DECL_MSG(TCompTempPlayerController, TMsgPlayerInShadows, onPlayerInShadows);
+
 
 }
 
@@ -241,6 +244,9 @@ void TCompTempPlayerController::onPlayerPaused(const TMsgScenePaused& msg) {
 	paused = msg.isPaused;
 }
 
+
+//------------------------------------------------------------------------------------------------
+//--------------------------------------CONSOLE HACKS---------------------------------------------
 void TCompTempPlayerController::onConsoleChanged(const TMsgConsoleOn & msg)
 {
 	isConsoleOn = msg.isConsoleOn;
@@ -253,6 +259,18 @@ void TCompTempPlayerController::onInfiniteStamina(const TMsgInfiniteStamina& msg
 void TCompTempPlayerController::onPlayerImmortal(const TMsgPlayerImmortal& msg) {
 	immortal = !immortal;
 }
+
+void TCompTempPlayerController::onPlayerMove(const TMsgPlayerMove& msg) {
+	TCompTransform* my_transform = get<TCompTransform>();
+	my_transform->setPosition(msg.pos);
+}
+
+void TCompTempPlayerController::onPlayerInShadows(const TMsgPlayerInShadows& msg) {
+	hackShadows = !hackShadows;
+}
+//------------------------------------------------------------------------------------------------
+//--------------------------------------END OF CONSOLE HACKS--------------------------------------
+
 
 /* Idle state method, no logic yet */
 void TCompTempPlayerController::idleState(float dt) {
@@ -513,7 +531,11 @@ const bool TCompTempPlayerController::onMergeTest(float dt) {
 	// Tests: inShadows + minStamina + grounded + button hold -> sent to fsm
 	bool mergeTest = true;
 	bool mergefall = fallingDistance > 0 && fallingDistance < maxFallingDistance;
-	mergeTest &= shadow_oracle->is_shadow;
+
+	//Console hack
+	if (!hackShadows) {
+		mergeTest &= shadow_oracle->is_shadow;
+	}	
 	mergeTest &= stamina > minStamina;
 	mergeTest &= !isInhibited;
 

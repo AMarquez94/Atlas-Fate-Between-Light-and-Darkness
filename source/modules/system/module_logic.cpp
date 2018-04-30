@@ -87,6 +87,7 @@ void CModuleLogic::publishClasses() {
 	m->set("fpsToggle", SLB::FuncCall::create(&fpsToggle));
 	m->set("stateAltered", SLB::FuncCall::create(&stateAltered));
 	m->set("systemToggle", SLB::FuncCall::create(&systemToggle));
+	m->set("movePlayer", SLB::FuncCall::create(&movePlayer));
 
 
 }
@@ -187,14 +188,18 @@ void blendOutCamera(const std::string & cameraName, float blendOutTime) {
 }
 
 void stateAltered(const std::string& state) {
+	CHandle h = getEntityByName("The Player");
 	if (state == "infinite stamina") {
 		TMsgInfiniteStamina msg;
-		CHandle h = getEntityByName("The Player");
 		h.sendMsg(msg);
 	}
 	else if (state == "immortal") {
-		CHandle h = getEntityByName("The Player");
 		TMsgPlayerImmortal msg;
+		h.sendMsg(msg);
+	}
+	else if (state == "in shadows") {
+		TMsgPlayerInShadows msg;
+		h.sendMsg(msg);
 	}
 }
 
@@ -206,4 +211,11 @@ void systemToggle(const std::string& system) {
 			enemies[i].sendMsg(msg);
 		}
 	}
+}
+
+void movePlayer(const float x, const float y, const float z) {
+	CHandle h = getEntityByName("The Player");
+	TMsgPlayerMove msg;
+	msg.pos = VEC3(x, y, z);
+	h.sendMsg(msg);
 }

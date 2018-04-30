@@ -161,6 +161,14 @@ struct TMsgInfiniteStamina {
 struct TMsgPlayerImmortal {
 	DECL_MSG_ID();
 };
+struct TMsgPlayerMove {
+	DECL_MSG_ID();
+	VEC3 pos;
+};
+
+struct TMsgPlayerInShadows {
+	DECL_MSG_ID();
+};
 
 #endif
 

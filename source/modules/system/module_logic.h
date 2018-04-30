@@ -67,5 +67,6 @@ void pauseGame(bool pause);
 void fpsToggle();
 void systemToggle(const std::string&);
 void stateAltered(const std::string&);
+void movePlayer(const float, const float, const float);
 void blendInCamera(const std::string& cameraName, float blendInTime);
 void blendOutCamera(const std::string& cameraName, float blendOutTime);
