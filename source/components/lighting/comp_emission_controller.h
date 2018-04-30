@@ -30,8 +30,8 @@ public:
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
 
-	void turnOn(void);
-	void turnOff(void);
+	//void turnOn(void);
+	//void turnOff(void);
 	void blend(VEC4 new_desired_color, float blendTime);
 
 	static void registerMsgs();

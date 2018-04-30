@@ -8,6 +8,13 @@ class TCompAIMimetic : public TCompIAController {
 
 private:
 
+  struct StateColors {
+    VEC4 colorNormal;
+    VEC4 colorSuspect;
+    VEC4 colorAlert;
+    VEC4 colorDead;
+  } mimeticColor;
+
 	/* Atributes */
 	std::vector<Waypoint> _waypoints;
 	int currentWaypoint;
@@ -78,8 +85,6 @@ private:
 	bool rotateTowardsVec(VEC3 objective, float rotationSpeed, float dt);
 	bool isPlayerInFov();
 	bool isEntityHidden(CHandle hEntity);
-	void turnOnLight();
-	void turnOffLight();
 	void setGravityToFaceWall();
 	EType parseStringMimeticType(const std::string& typeString);
   void generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc = false);

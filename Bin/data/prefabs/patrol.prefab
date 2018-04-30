@@ -2,7 +2,7 @@
 		"entity": {
 			"name": "The Enemy",
 			"transform": {
-				"pos": "2 0 2",
+				"pos": "0 0 0",
 				"lookat": "-1 0 -1"
 			},
 			"render": [{
@@ -696,22 +696,6 @@
 		}
 	}, {
 		"entity": {
-			"name": "Cone of Light",
-			"transform": {},
-			"render": {
-				"mesh": "cone_of_light.mesh"
-			},
-			"hierarchy": {
-				"parent": "The Enemy"
-			},
-			"cone_of_light": {
-				"fov": 35,
-				"dist": 20.0,
-				"target": "The Player"
-			}
-		}
-	}, {
-		"entity": {
 			"name": "FlashLight",
 			"transform": {
 				"pos": "0 1 0",
@@ -736,6 +720,11 @@
 				"parent": "The Enemy",
 				"pos": "0 1 0.75",
 				"lookat": "0 0 3"
+			},
+			"cone_of_light": {
+				"fov": 70,
+				"dist": 15,
+				"target": "The Player"
 			}
 		}
 	}

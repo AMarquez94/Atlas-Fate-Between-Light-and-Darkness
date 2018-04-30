@@ -119,7 +119,7 @@
 			}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "Cone of Light",
 			"transform": {},
 			"render": {

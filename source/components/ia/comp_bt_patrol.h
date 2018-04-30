@@ -8,6 +8,13 @@ class TCompAIPatrol : public TCompIAController {
 
 private:
 
+  struct StateColors {
+    VEC4 colorNormal;
+    VEC4 colorSuspect;
+    VEC4 colorAlert;
+    VEC4 colorDead;
+  } patrolColor;
+
 	/* Atributes */
 	std::vector<Waypoint> _waypoints;
 	int currentWaypoint;

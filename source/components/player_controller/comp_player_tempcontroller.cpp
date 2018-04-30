@@ -235,7 +235,7 @@ void TCompTempPlayerController::onPlayerInhibited(const TMsgInhibitorShot & msg)
 		isInhibited = true;
 
 		TCompEmissionController * e_controller = get<TCompEmissionController>();
-		e_controller->blend(playerColor.colorInhib, .1);
+		e_controller->blend(playerColor.colorInhib, .1f);
 	}
 	timesRemoveInhibitorKeyPressed = initialPoints;
 

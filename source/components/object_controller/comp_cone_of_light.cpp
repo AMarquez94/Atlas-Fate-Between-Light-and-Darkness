@@ -5,22 +5,19 @@
 #include "components/comp_tags.h"
 #include "components/comp_render.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
+#include "components/lighting/comp_light_spot.h"
 #include "render/mesh/mesh_loader.h"
 #include "render/render_objects.h"
 
 DECL_OBJ_MANAGER("cone_of_light", TCompConeOfLightController);
 
 void TCompConeOfLightController::debugInMenu() {
-
-	if (origin != VEC3::Zero && dest != VEC3::Zero) {
-		renderLine(origin, dest, VEC4(0, 1, 0, 1));
-	}
 }
 
 void TCompConeOfLightController::load(const json& j, TEntityParseContext& ctx) {
 	fov = deg2rad(j.value("fov", 30.f));
 	dist = j.value("dist", 10.f);
-	player = (CEntity*) getEntityByName(j.value("target", "The Player"));
+	player = getEntityByName(j.value("target", "The Player"));
 	turnedOn = j.value("turnedOn", false);
 }
 
@@ -30,8 +27,8 @@ void TCompConeOfLightController::registerMsgs() {
 
 void TCompConeOfLightController::onMsgEntityCreated(const TMsgEntityCreated& msg) {
 	if (!turnedOn) {
-		TCompRender* cRender = get < TCompRender>();
-		cRender->visible = false;
+    TCompLightSpot * spotlight = get<TCompLightSpot>();
+    spotlight->isEnabled = false;
 	}
 }
 
@@ -56,16 +53,16 @@ void TCompConeOfLightController::update(float dt) {
 
 void TCompConeOfLightController::turnOnLight() {
 	if (!turnedOn) {
-		TCompRender* cRender = get < TCompRender>();
-		cRender->visible = true;
+    TCompLightSpot * spotlight = get<TCompLightSpot>();
+    spotlight->isEnabled = true;
 		turnedOn = true;
 	}
 }
 
 void TCompConeOfLightController::turnOffLight() {
 	if (turnedOn) {
-		TCompRender* cRender = get < TCompRender>();
-		cRender->visible = false;
+    TCompLightSpot * spotlight = get<TCompLightSpot>();
+    spotlight->isEnabled = false;
 		turnedOn = false;
 	}
 }

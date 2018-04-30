@@ -82,13 +82,14 @@ MAT44 TCompLightSpot::getWorld() {
 }
 
 void TCompLightSpot::update(float dt) {
+  if (isEnabled) {
+	  TCompTransform * c = get<TCompTransform>();
+	  if (!c)
+		  return;
 
-	TCompTransform * c = get<TCompTransform>();
-	if (!c)
-		return;
-
-	this->lookAt(c->getPosition(), c->getPosition() + c->getFront(), c->getUp());
-	this->setPerspective(deg2rad(angle), 0.1f, range); // might change this znear in the future, hardcoded for clipping purposes.
+	  this->lookAt(c->getPosition(), c->getPosition() + c->getFront(), c->getUp());
+	  this->setPerspective(deg2rad(angle), 0.1f, range); // might change this znear in the future, hardcoded for clipping purposes.
+  }
 }
 
 void TCompLightSpot::registerMsgs() {

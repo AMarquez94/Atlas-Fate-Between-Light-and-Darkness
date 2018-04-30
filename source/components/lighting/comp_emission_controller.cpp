@@ -37,8 +37,8 @@ void TCompEmissionController::update(float dt) {
 		for (auto p : _temp_materials)
 			p->changeEmissionColor(_current_color);
 
-		for (auto p : _temp_lights)
-			p->setColor(_current_color);
+		//for (auto p : _temp_lights)
+		//	p->setColor(_current_color);
 	}
 }
 
