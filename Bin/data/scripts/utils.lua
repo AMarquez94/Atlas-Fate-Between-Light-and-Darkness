@@ -13,10 +13,6 @@ function pauseGame(pause)
 	SLB.pauseGame(pause)
 end
 
-function pauseEnemies(pause)
-	SLB.pauseEnemies(pause)
-end
-
 function blendInCamera(cameraName, blendInTime)
 	SLB.blendInCamera(cameraName, blendInTime)
 end
@@ -25,10 +21,14 @@ function blendOutCamera(cameraName, blendOutTime)
 	SLB.blendOutCamera(cameraName, blendOutTime)
 end
 
-function toggleFPS()
-	SLB.toggleFPS()
+function fpsToggle()
+	SLB.fpsToggle()
 end
 
-function alteredState()
-	SLB.alteredState()
+function stateAltered(state)
+	SLB.stateAltered(state)
+end
+
+function systemToggle(system)
+	SLB.systemToggle(system)
 end

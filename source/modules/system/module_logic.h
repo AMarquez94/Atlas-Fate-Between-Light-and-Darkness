@@ -63,9 +63,9 @@ private:
 CModuleGameConsole* getConsole();
 CModuleLogic* getLogic();
 void execDelayedScript(const std::string& script, float delay);
-void pauseEnemies(bool pause);
 void pauseGame(bool pause);
-void toggleFPS();
+void fpsToggle();
+void systemToggle(const std::string&);
 void stateAltered(const std::string&);
 void blendInCamera(const std::string& cameraName, float blendInTime);
 void blendOutCamera(const std::string& cameraName, float blendOutTime);

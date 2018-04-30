@@ -59,3 +59,4 @@ private:
 #define EngineNavmeshes CEngine::get().getNavmeshes()
 #define EngineLogic CEngine::get().getLogic()
 #define EngineConsole CEngine::get().getGameConsole()
+#define EngineAI CEngine::get().getIA();

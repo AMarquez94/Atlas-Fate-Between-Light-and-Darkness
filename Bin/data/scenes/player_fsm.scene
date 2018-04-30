@@ -3,7 +3,7 @@
 		"entity": {
 			"name": "The Player",
 			"transform": {
-        "pos": "-20 0 70"
+        "pos": "-20 0 -30"
 			},
 			"render": [
 				{
