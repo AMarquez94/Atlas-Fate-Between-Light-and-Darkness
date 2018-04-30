@@ -36,7 +36,7 @@ struct TSkinVertex {
   VEC3 pos;
   VEC3 normal;
   VEC2 uv;
-  //VEC4 tangent;
+  VEC4 tangent;
 
   //VEC4 tangent;
   uint8_t bone_ids[4];
@@ -134,6 +134,14 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
     }
     auto& cal_uvs0 = cal_all_uvs[0];
 
+	auto& call_all_tng = cal_sm->getVectorVectorTangentSpace();
+	if (call_all_tng.empty()) {
+
+		call_all_tng.resize(1);
+		call_all_tng[0].resize(num_vtxs);
+	}
+	auto& cal_tan0 = call_all_tng[0];
+	
     // Process the vtxs
     for (int vid = 0; vid < num_vtxs; ++vid) {
       CalCoreSubmesh::Vertex& cal_vtx = cal_vtxs[vid];
@@ -145,7 +153,10 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
       // Pos & Normal
       skin_vtx.pos = Cal2DX(cal_vtx.position);
       skin_vtx.normal = Cal2DX(cal_vtx.normal);
-	  //skin_vtx.tangent = VEC4(1,1,1,1); //Test, replace this with the call to the tangent space compute.
+	  skin_vtx.tangent.x = cal_tan0[vid].tangent.x;
+	  skin_vtx.tangent.y = cal_tan0[vid].tangent.y;
+	  skin_vtx.tangent.z = cal_tan0[vid].tangent.z;
+	  skin_vtx.tangent.w = cal_tan0[vid].crossFactor;
 
       // Texture coords
       skin_vtx.uv.x = cal_uvs0[vid].u;
