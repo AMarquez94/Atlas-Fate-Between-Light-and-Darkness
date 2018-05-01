@@ -47,20 +47,6 @@
 			"environment" : "data/textures/cubemaps/posx.dds" 
 		}
 	},
-	"textured_bk" : {
-		"vs_file": "data/shaders/shader_master.fx",
-		"vs_entry_point" : "vs_Lightmap",
-		"vertex_type" : "PosNUvUv",
-		"ps_file": "data/shaders/shader_master.fx",
-		"ps_entry_point" : "ps_Lightmap"
-	},
-	"textured_skin" : {
-		"vs_file": "data/shaders/textured.fx",
-		"vs_entry_point" : "VS_Skin",
-		"vertex_type" : "PosNUvSkin",
-		"uses_skin" : true,
-		"category" : "skin_default"
-	},
 	"shadows" : {
 		"vs_file": "data/shaders/shadows.fx",
 		"vs_entry_point" : "VS",

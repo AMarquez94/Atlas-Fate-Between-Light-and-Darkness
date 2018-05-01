@@ -32,6 +32,7 @@ bool CModuleMainMenu::start()
 	//cb_light.activate();
 	//cb_object.activate();
 	//cb_camera.activate();
+	//Engine.getSound().setAmbientSound("../sounds/test.ogg");
 
 	return true;
 }
