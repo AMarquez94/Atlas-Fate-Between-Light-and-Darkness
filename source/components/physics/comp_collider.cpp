@@ -147,3 +147,10 @@ bool TCompCollider::collisionDistance(const VEC3 & org, const VEC3 & dir, float 
 
 	return false;
 }
+
+void TCompCollider::setGlobalPose(VEC3 newPos, VEC4 newRotation, bool autowake)
+{
+  physx::PxTransform transform(physx::PxVec3(newPos.x, newPos.y, newPos.z), physx::PxQuat(newRotation.x, newRotation.y, newRotation.z, newRotation.w));
+  config->actor->setGlobalPose(transform, autowake);
+
+}

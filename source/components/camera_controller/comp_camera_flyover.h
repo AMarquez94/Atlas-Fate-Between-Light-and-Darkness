@@ -14,7 +14,6 @@ public:
 private:
 	const Input::TButton& btDebugPause = EngineInput["btDebugPause"];
 	const Input::TButton& btDebugGetPos = EngineInput["btAction"];
-	bool paused = false;
 	CHandle previousCamera;
 
 	float _speed = 10.f;

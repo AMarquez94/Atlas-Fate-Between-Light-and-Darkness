@@ -36,7 +36,6 @@ void TCompCameraShadowMerge::load(const json& j, TEntityParseContext& ctx)
 	_original_euler = VEC2(yaw, pitch + _starting_pitch);
 	_current_euler = _original_euler;
 
-	pause = false;
 	active = false;
 
 	physx::PxFilterData pxFilterData;
@@ -51,33 +50,11 @@ void TCompCameraShadowMerge::registerMsgs()
 	DECL_MSG(TCompCameraShadowMerge, TMsgCameraFullyActivated, onMsgCameraFullActive);
 	DECL_MSG(TCompCameraShadowMerge, TMsgCameraDeprecated, onMsgCameraDeprecated);
 	DECL_MSG(TCompCameraShadowMerge, TMsgSetCameraActive, onMsgActivateMyself);
+  DECL_MSG(TCompCameraShadowMerge, TMsgScenePaused, onMsgScenePaused);
 }
 
 void TCompCameraShadowMerge::onMsgCameraActive(const TMsgCameraActivated &msg)
 {
-	std::string mahName = ((TCompName*)get<TCompName>())->getName();
-	if (mahName.compare("SMCameraVer") == 0) {
-		
-		//TCompTransform* targetTrans = ((CEntity*)_h_target)->get<TCompTransform>();
-		//TCompCollider* targetCollider = ((CEntity*)_h_target)->get<TCompCollider>();
-		//TCompTransform* myTrans = get<TCompTransform>();
-
-
-		//VEC3 dist = myTrans->getPosition() - targetTrans->getPosition();
-
-		//dbg("Dist (%f, %f, %f)\n", dist.x, dist.y, dist.z);
-		//dbg("PPos (%f, %f, %f)\n", targetTrans->getPosition().x, targetTrans->getPosition().y, targetTrans->getPosition().z);
-		//myTrans->setPosition(myTrans->getPosition() - dist);
-		//dbg("New pos (%f, %f, %f)\n", myTrans->getPosition().x, myTrans->getPosition().y, myTrans->getPosition().z);
-		//float deltayaw = myTrans->getDeltaYawToAimTo(myTrans->getPosition() + targetCollider->normal_gravity);
-		//dbg("deltayaw %f\n", deltayaw);
-		//_current_euler.x = _current_euler.x + deltayaw;
-		//myTrans->setPosition(myTrans->getPosition() + dist);
-		//float y, p, r;
-		//myTrans->lookAt(myTrans->getPosition(), myTrans->getPosition() - targetCollider->normal_gravity);
-	}
-
-	//dbg("Camera active %s\n", ((TCompName*)get<TCompName>())->getName());
 }
 
 void TCompCameraShadowMerge::onMsgCameraFullActive(const TMsgCameraFullyActivated & msg)
@@ -104,9 +81,14 @@ void TCompCameraShadowMerge::onMsgActivateMyself(const TMsgSetCameraActive & msg
 	Engine.getCameras().blendInCamera(CHandle(this).getOwner(), .2f, CModuleCameras::EPriority::GAMEPLAY);
 }
 
+void TCompCameraShadowMerge::onMsgScenePaused(const TMsgScenePaused & msg)
+{
+  paused = msg.isPaused;
+}
+
 void TCompCameraShadowMerge::update(float dt)
 {
-	if (!pause) {
+	if (!paused) {
 		if (!_h_target.isValid())
 			return;
 
@@ -153,10 +135,6 @@ void TCompCameraShadowMerge::update(float dt)
 		float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
 		float current_fov = 70 + inputSpeed * 30; // Just doing some testing with the fov and speed
 		setPerspective(deg2rad(current_fov), 0.1f, 1000.f);
-	}
-
-	if (btDebugPause.getsPressed()) {
-		pause = !pause;
 	}
 }
 
