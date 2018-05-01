@@ -10,56 +10,58 @@
 DECL_OBJ_MANAGER("dynamic_capsules_manager", TCompDynamicCapsulesManager);
 
 void TCompDynamicCapsulesManager::debugInMenu() {
+
 }
 
 void TCompDynamicCapsulesManager::load(const json & j, TEntityParseContext & ctx)
 {
-  start_point = loadVEC3(j["start_point"]);
-  end_point = loadVEC3(j["end_point"]);
-  numberOfCapsules = j.value("number", 0);
-  speed = j.value("speed", 0.f);
 
-  if (numberOfCapsules > 0) {
+	start_point = loadVEC3(j["start_point"]);
+	end_point = loadVEC3(j["end_point"]);
+	numberOfCapsules = j.value("number", 0);
+	speed = j.value("speed", 0.f);
 
-    VEC3 offset = (end_point - start_point) / (float)(numberOfCapsules + 1);
+	if (numberOfCapsules > 0) {
 
-    /* Creates component group whose "head" is this entity */
-    CHandle h_group = getObjectManager<TCompGroup>()->createHandle();
-    CEntity * e = ctx.current_entity;
-    e->set(h_group.getType(), h_group);
-    TCompGroup *cGroup = h_group;
+		VEC3 offset = (end_point - start_point) / (float)(numberOfCapsules + 1);
 
-    VEC3 newPos;
+		/* Creates component group whose "head" is this entity */
+		CHandle h_group = getObjectManager<TCompGroup>()->createHandle();
+		CEntity * e = ctx.current_entity;
+		e->set(h_group.getType(), h_group);
+		TCompGroup *cGroup = h_group;
 
-    for (int i = 0; i < numberOfCapsules; i++) {
+		VEC3 newPos;
 
-      /* Create capsule */
-      TEntityParseContext ctxCapsules;
-      parseScene("data/prefabs/dynamic_capsule.prefab", ctxCapsules);
-      CEntity *eCapsule = ctxCapsules.entities_loaded[0];
+		for (int i = 0; i < numberOfCapsules; i++) {
 
-      /* Set name */
-      TCompName *capsuleName = eCapsule->get<TCompName>();
-      capsuleName->setName(("Capsule_" + std::to_string(i)).c_str());
+			/* Create capsule */
+			TEntityParseContext ctxCapsules;
+			parseScene("data/prefabs/dynamic_capsule.prefab", ctxCapsules);
+			CEntity *eCapsule = ctxCapsules.entities_loaded[0];
 
-      /* Set pos */
-      TCompTransform *capsuleTransform = eCapsule->get<TCompTransform>();
-      newPos = start_point + (float)i * offset;
-      capsuleTransform->setPosition(newPos);
-      cGroup->add(eCapsule);
+			/* Set name */
+			TCompName *capsuleName = eCapsule->get<TCompName>();
+			capsuleName->setName(("Capsule_" + std::to_string(i)).c_str());
 
-      /* Set dynamic capsule component */
-      TCompDynamicCapsule *cDynamicCapsule = eCapsule->get<TCompDynamicCapsule>();
-      cDynamicCapsule->setStartPoint(start_point);
-      cDynamicCapsule->setEndPoint(end_point);
-      cDynamicCapsule->setSpeed(speed);
+			/* Set pos */
+			TCompTransform *capsuleTransform = eCapsule->get<TCompTransform>();
+			newPos = start_point + (float)i * offset;
+			capsuleTransform->setPosition(newPos);
+			cGroup->add(eCapsule);
 
-      /* Set rigidbody pos */
-      TCompCollider *capsuleCollider = eCapsule->get<TCompCollider>();
-      QUAT quat = capsuleTransform->getRotation();
-      capsuleCollider->setGlobalPose(newPos, quat, false);
-    }
-  }
+			/* Set dynamic capsule component */
+			TCompDynamicCapsule *cDynamicCapsule = eCapsule->get<TCompDynamicCapsule>();
+			cDynamicCapsule->setStartPoint(start_point);
+			cDynamicCapsule->setEndPoint(end_point);
+			cDynamicCapsule->setSpeed(speed);
+
+			/* Set rigidbody pos */
+			TCompCollider *capsuleCollider = eCapsule->get<TCompCollider>();
+			QUAT quat = capsuleTransform->getRotation();
+			capsuleCollider->setGlobalPose(newPos, quat, false);
+		}
+	}
 }
 
 void TCompDynamicCapsulesManager::update(float dt) {
