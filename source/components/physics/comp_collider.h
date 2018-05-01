@@ -31,6 +31,7 @@ public:
 
 	/* Auxiliar methods */
 	bool collisionDistance(const VEC3 & org, const VEC3 & dir, float maxDistance);
+  void setGlobalPose(VEC3 newPos, VEC4 newRotation, bool autowake = false);
 
 	static void registerMsgs();
 };

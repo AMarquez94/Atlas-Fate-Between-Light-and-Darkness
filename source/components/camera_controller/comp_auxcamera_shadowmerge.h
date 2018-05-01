@@ -27,7 +27,6 @@ private:
 	const Input::TButton& btRVertical = EngineInput["MouseY"];
 	const Input::TButton& btDebugPause = EngineInput["btDebugPause"];
 
-	bool pause;
 	bool active;
 
 	void onMsgCameraActive(const TMsgCameraActivated &msg);
@@ -35,6 +34,7 @@ private:
 	void onMsgCameraDeprecated(const TMsgCameraDeprecated &msg);
 	void onMsgCameraSetActive(const TMsgSetCameraActive &msg);
 	void onMsgCameraSetCancelled(const TMsgSetCameraCancelled &msg);
+  void onMsgScenePaused(const TMsgScenePaused &msg);
 
 	physx::PxQueryFilterData cameraFilter;
 public:
