@@ -16,7 +16,7 @@
 #include "render/render_manager.h"
 #include "input/devices/mouse.h"
 #include "input/enums.h"
-
+#include "modules/system/module_sound.h"
 
 bool CModuleMapIntro::start()
 {
@@ -50,6 +50,8 @@ bool CModuleMapIntro::start()
 		CHandle h_e(e);
 		h_e.sendMsg(msg);
 	});
+	
+	Engine.getSound().setAmbientSound("../bin/data/sounds/ambiance.ogg");
 
 	return true;
 }

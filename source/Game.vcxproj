@@ -191,6 +191,7 @@
     <ClCompile Include="modules\system\module_input.cpp" />
     <ClCompile Include="modules\system\module_logic.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
+    <ClCompile Include="modules\system\module_sound.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
     <ClCompile Include="navmesh\navmesh.cpp" />
     <ClCompile Include="navmesh\navmesh_query.cpp" />
@@ -376,6 +377,7 @@
     <ClInclude Include="modules\system\module_input.h" />
     <ClInclude Include="modules\system\module_logic.h" />
     <ClInclude Include="modules\system\module_physics.h" />
+    <ClInclude Include="modules\system\module_sound.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
     <ClInclude Include="navmesh\navmesh.h" />
     <ClInclude Include="navmesh\navmesh_query.h" />
