@@ -122,7 +122,6 @@
     <ClCompile Include="components\comp_render.cpp" />
     <ClCompile Include="components\comp_tags.cpp" />
     <ClCompile Include="components\comp_transform.cpp" />
-    <ClCompile Include="components\ia\ai_controller.cpp" />
     <ClCompile Include="components\ia\btnode.cpp" />
     <ClCompile Include="components\ia\comp_bt.cpp" />
     <ClCompile Include="components\ia\comp_bt_mimetic.cpp" />
@@ -282,7 +281,6 @@
     <ClInclude Include="components\comp_render.h" />
     <ClInclude Include="components\comp_tags.h" />
     <ClInclude Include="components\comp_transform.h" />
-    <ClInclude Include="components\ia\ai_controller.h" />
     <ClInclude Include="components\ia\btnode.h" />
     <ClInclude Include="components\ia\comp_bt.h" />
     <ClInclude Include="components\ia\comp_bt_mimetic.h" />

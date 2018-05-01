@@ -77,6 +77,7 @@ struct TMsgPatrolFixed {
 
 struct TMsgPlayerIlluminated {
 	CHandle h_sender;
+  bool isIlluminated;
 	DECL_MSG_ID();
 };
 

@@ -2,7 +2,6 @@
 
 #include "components/comp_base.h"
 #include "geometry/transform.h"
-#include "components/ia/ai_controller.h"
 #include "entity/common_msgs.h"
 #include "components/player_controller/comp_player_animator.h"
 

@@ -243,12 +243,14 @@ void TCompTempPlayerController::onPlayerInhibited(const TMsgInhibitorShot & msg)
 
 void TCompTempPlayerController::onPlayerExposed(const TMsgPlayerIlluminated & msg)
 {
-	CEntity* e = CHandle(this).getOwner();
-	TMsgSetFSMVariable notMergeMsg;
-	notMergeMsg.variant.setName("onmerge");
-	notMergeMsg.variant.setBool(false); // & isGrounded
-	isMerged = false;
-	e->sendMsg(notMergeMsg);
+  if (isMerged && msg.isIlluminated) {
+	  CEntity* e = CHandle(this).getOwner();
+	  TMsgSetFSMVariable notMergeMsg;
+	  notMergeMsg.variant.setName("onmerge");
+	  notMergeMsg.variant.setBool(false); // & isGrounded
+	  isMerged = false;
+	  e->sendMsg(notMergeMsg);
+  }
 }
 
 void TCompTempPlayerController::onPlayerPaused(const TMsgScenePaused& msg) {
