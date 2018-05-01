@@ -72,7 +72,7 @@
 	"shadows_skin" : {
 		"vs_file": "data/shaders/shadows.fx",
 		"vs_entry_point" : "VS_Skin",
-		"vertex_type" : "PosNUvSkin",
+		"vertex_type" : "PosNUvTanSkin",
 		"ps_entry_point" : "",
 		"uses_skin" : true,
 		"rs_config" : "shadows",
@@ -104,11 +104,11 @@
     }
   },
   "pbr_skin": {
-    "vs_file": "data/shaders/textured.fx",
+    "vs_file": "data/shaders/pbr.fx",
     "ps_file": "data/shaders/pbr.fx",
     "vs_entry_point": "VS_SKIN_GBuffer",
     "ps_entry_point": "PS_GBuffer",
-    "vertex_type": "PosNUvSkin",
+    "vertex_type": "PosNUvTanSkin",
 		"uses_skin" : true,
     "category" : "gbuffer",
 		"rs_config" : "cull_none",

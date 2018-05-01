@@ -100,9 +100,8 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
   CMemoryDataSaver mds_idxs;
 
   auto nbones = this->getCoreSkeleton()->getVectorCoreBone().size();
-
   auto nsubmeshes = cal_mesh->getCoreSubmeshCount();
-
+ 
   // Compute total vertexs counting all materials
   int  total_vtxs = 0;
   int  total_faces = 0;
@@ -110,6 +109,7 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
     CalCoreSubmesh* cal_sm = cal_mesh->getCoreSubmesh(idx_sm);
     total_vtxs += cal_sm->getVertexCount();
     total_faces += cal_sm->getFaceCount();
+	cal_sm->enableTangents(idx_sm, true);
   }
 
   // For each submesh ( each material...);
@@ -120,7 +120,6 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
 
     // Copy The vertexs
     auto& cal_vtxs = cal_sm->getVectorVertex();
-
     auto num_vtxs = cal_sm->getVertexCount();
 
     // Access to the first texture coordinate set
@@ -134,13 +133,17 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
     }
     auto& cal_uvs0 = cal_all_uvs[0];
 
+	bool bal = cal_sm->isTangentsEnabled(0);
 	auto& call_all_tng = cal_sm->getVectorVectorTangentSpace();
-	if (call_all_tng.empty()) {
+
+	if (call_all_tng[0].empty() && call_all_tng[1].empty()) {
 
 		call_all_tng.resize(1);
 		call_all_tng[0].resize(num_vtxs);
 	}
+
 	auto& cal_tan0 = call_all_tng[0];
+	if (cal_tan0.empty()) cal_tan0 = call_all_tng[1];
 	
     // Process the vtxs
     for (int vid = 0; vid < num_vtxs; ++vid) {
@@ -222,7 +225,7 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
   header.num_indices = total_faces * 3;
   header.num_vertexs = total_vtxs;
   header.primitive_type = CRenderMesh::TRIANGLE_LIST;
-  strcpy(header.vertex_type_name, "PosNUvSkin");
+  strcpy(header.vertex_type_name, "PosNUvTanSkin");
 
   mesh_io.vtxs = mds_vtxs.buffer;
   mesh_io.idxs = mds_idxs.buffer;
