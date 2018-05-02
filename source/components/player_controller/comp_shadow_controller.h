@@ -2,14 +2,12 @@
 
 #include "components/comp_base.h"
 #include "geometry/transform.h"
-#include "components/ia/ai_controller.h"
 #include "entity/common_msgs.h"
 
 class TCompShadowController : public TCompBase {
 
 	void onSceneCreated(const TMsgSceneCreated& msg);
-	void onEnteredCapsuleShadow(const TMsgEnteredCapsuleShadow& msg);
-	void onExitedCapsuleShadow(const TMsgExitedCapsuleShadow& msg);
+  void onPlayerExposed(const TMsgPlayerIlluminated& msg);
 
 	DECL_SIBLING_ACCESS();
 public:
@@ -19,9 +17,9 @@ public:
 	physx::PxQueryFilterData shadowDetectionFilter;
 
 	bool is_shadow;
-	bool capsule_shadow;
 	std::vector<CHandle> static_lights;
 	std::vector<CHandle> dynamic_lights;
+  std::vector<CHandle> enemies_illuminating_me;
 
 	void Init();
 	void debugInMenu();

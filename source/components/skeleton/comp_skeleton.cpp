@@ -237,8 +237,8 @@ void TCompSkeleton::renderDebug() {
   int nrLines = model->getSkeleton()->getBoneLines(&lines[0][0].x);
   TCompTransform* transform = get<TCompTransform>();
   float scale = transform->getScale();
-  for (int currLine = 0; currLine < nrLines; currLine++)
-    renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale, VEC4(1, 1, 1, 1));
+ /* for (int currLine = 0; currLine < nrLines; currLine++)
+    renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale, VEC4(1, 1, 1, 1));*/
 }
 
 void TCompSkeleton::changeCyclicAnimation(int anim1Id, float speed, int anim2Id, float weight, float in_delay, float out_delay) {

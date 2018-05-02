@@ -6,6 +6,7 @@
 #include "components/comp_render.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
 #include "components/lighting/comp_light_spot.h"
+#include "components/comp_hierarchy.h"
 #include "render/mesh/mesh_loader.h"
 #include "render/render_objects.h"
 
@@ -15,7 +16,8 @@ void TCompConeOfLightController::debugInMenu() {
 }
 
 void TCompConeOfLightController::load(const json& j, TEntityParseContext& ctx) {
-	fov = deg2rad(j.value("fov", 30.f));
+	hor_fov = deg2rad(j.value("fov", 70.f));
+  ver_fov = deg2rad(j.value("fov", 45.f));
 	dist = j.value("dist", 10.f);
 	player = getEntityByName(j.value("target", "The Player"));
 	turnedOn = j.value("turnedOn", false);
@@ -33,22 +35,36 @@ void TCompConeOfLightController::onMsgEntityCreated(const TMsgEntityCreated& msg
 }
 
 void TCompConeOfLightController::update(float dt) {
+  bool isPlayerIlluminatedNow = false;
 	if (turnedOn) {
 		TCompTempPlayerController* pController = player->get<TCompTempPlayerController>();
-		if (pController->isMerged) {
-			TCompTransform* ppos = player->get<TCompTransform>();
-			TCompTransform* mypos = get<TCompTransform>();
-			bool inDist = VEC3::Distance(mypos->getPosition(), ppos->getPosition()) < dist;
-			if (VEC3::Distance(mypos->getPosition(), ppos->getPosition()) < dist 
-				&& mypos->isInFov(ppos->getPosition(), fov, deg2rad(45.f))) {
-				if (!isPlayerHiddenFromLight(player)) {
-					TMsgPlayerIlluminated msg;
-					msg.h_sender = CHandle(this).getOwner();
-					player->sendMsg(msg);
-				}
+		TCompTransform* ppos = player->get<TCompTransform>();
+		TCompTransform* mypos = get<TCompTransform>();
+		bool inDist = VEC3::Distance(mypos->getPosition(), ppos->getPosition()) < dist;
+		if (VEC3::Distance(mypos->getPosition(), ppos->getPosition()) < dist 
+			&& mypos->isInFov(ppos->getPosition(), hor_fov, ver_fov)) {
+			if (!isPlayerHiddenFromLight(player)) {
+        isPlayerIlluminatedNow = true;
+        if (!playerIlluminated) {
+          playerIlluminated = true;
+				  TMsgPlayerIlluminated msg;
+          TCompHierarchy *tHierarchy = get<TCompHierarchy>();
+          msg.h_sender = tHierarchy->h_parent;
+          msg.isIlluminated = true;
+				  player->sendMsg(msg);
+        }
 			}
 		}
 	}
+
+  if (playerIlluminated && !isPlayerIlluminatedNow) {
+    playerIlluminated = false;
+    TMsgPlayerIlluminated msg;
+    TCompHierarchy *tHierarchy = get<TCompHierarchy>();
+    msg.h_sender = tHierarchy->h_parent;
+    msg.isIlluminated = false;
+    player->sendMsg(msg);
+  }
 }
 
 void TCompConeOfLightController::turnOnLight() {

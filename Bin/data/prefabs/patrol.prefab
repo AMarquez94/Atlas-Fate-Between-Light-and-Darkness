@@ -722,7 +722,8 @@
 				"lookat": "0 0 3"
 			},
 			"cone_of_light": {
-				"fov": 70,
+				"hor_fov": 70,
+				"ver_fov": 45,
 				"dist": 15,
 				"target": "The Player"
 			}
