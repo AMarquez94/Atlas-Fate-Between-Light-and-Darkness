@@ -293,6 +293,9 @@ Bin/*.exe
 Bin/*.ipdb
 Bin/*.iobj
 Bin/*.exp
+Bin/Cal3D.lib
+Bin/SLB.dll
+Bin/SLB.lib
 Build
 .vs/Game/v15
 source/.vs/Game/v15
