@@ -35,10 +35,10 @@ void TCompPlayerInput::update(float dt)
 
 		/* Speed boost messages */
 		TMsgSetFSMVariable boostMsg;
-		boostMsg.variant.setName("boost_speed");
 
 		if (EngineInput["btRun"].hasChanged()) {
 
+      boostMsg.variant.setName("boost_speed");
 			crouchButton = false;
 			TMsgSetFSMVariable crouch;
 			crouch.variant.setName("crouch");
@@ -50,6 +50,7 @@ void TCompPlayerInput::update(float dt)
 		}
 
 		if (EngineInput["btSlow"].hasChanged()) {
+      boostMsg.variant.setName("slow_speed");
 			boostMsg.variant.setFloat(EngineInput["btSlow"].value);
 			e->sendMsg(boostMsg);
 		}

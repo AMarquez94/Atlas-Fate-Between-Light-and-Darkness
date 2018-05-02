@@ -97,6 +97,33 @@ namespace FSM
 
 	}
 
+  bool WalkSlowState::load(const json& jData) {
+
+    _animationName = jData["animation"];
+    _speed = jData.value("speed", 4.f);
+    _size = jData.value("size", 1.f);
+    _radius = jData.value("radius", 0.3f);
+    _rotation_speed = jData.value("rotationSpeed", 10.f);
+    _noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+    if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+    return true;
+  }
+
+  void WalkSlowState::onStart(CContext& ctx) const {
+
+    // Send a message to the player controller
+    //CEntity* e = ctx.getOwner();
+    //e->sendMsg(TMsgAnimation{ "walk" });
+
+    CEntity* e = ctx.getOwner();
+    e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::WALK_SLOW , 1.0f });
+    e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, nullptr, _noise });
+  }
+
+  void WalkSlowState::onFinish(CContext& ctx) const {
+
+  }
+
 	bool RunState::load(const json& jData) {
 
 		_animationName = jData["animation"];
@@ -202,6 +229,33 @@ namespace FSM
 	void CrouchWalkState::onFinish(CContext& ctx) const {
 
 	}
+
+  bool CrouchWalkSlowState::load(const json& jData) {
+
+    _animationName = jData["animation"];
+    _speed = jData.value("speed", 3.f);
+    _size = jData.value("size", 1.f);
+    _radius = jData.value("radius", 0.3f);
+    _rotation_speed = jData.value("rotationSpeed", 10.f);
+    _noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+    if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+    return true;
+  }
+
+  void CrouchWalkSlowState::onStart(CContext& ctx) const {
+
+    // Send a message to the player controller
+    //CEntity* e = ctx.getOwner();
+    //e->sendMsg(TMsgAnimation{ "crouch" });
+
+    CEntity* e = ctx.getOwner();
+    e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::CROUCH_WALK_SLOW , 1.0f });
+    e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, nullptr, _noise });
+  }
+
+  void CrouchWalkSlowState::onFinish(CContext& ctx) const {
+
+  }
 
 	bool EnterMergeState::load(const json& jData) {
 

@@ -57,6 +57,17 @@ void TCompPlayerAnimator::initializeAnimations() {
 		1.0f
 	);
 
+  /* TODO: Meter animación para andar despacio (ahora es la de andar pero a menos velocidad) */
+  initializeAnimation(
+    (TCompAnimator::EAnimation)EAnimation::WALK_SLOW,
+    EAnimationType::CYCLIC,
+    EAnimationSize::SINGLE,
+    "walk",
+    "",
+    1.0f,
+    0.5f
+  );
+
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::RUN,
 		EAnimationType::CYCLIC,
