@@ -5,6 +5,7 @@
 DECL_OBJ_MANAGER("dynamic_capsule", TCompDynamicCapsule);
 
 void TCompDynamicCapsule::debugInMenu() {
+
 }
 
 void TCompDynamicCapsule::load(const json& j, TEntityParseContext& ctx) {

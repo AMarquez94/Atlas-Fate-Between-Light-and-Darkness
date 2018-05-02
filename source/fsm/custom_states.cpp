@@ -4,6 +4,7 @@
 #include "components/player_controller/comp_player_animator.h"
 #include "components/physics/comp_rigidbody.h"
 #include "components/lighting/comp_light_dir.h"
+#include "components/comp_render.h"
 
 //class TCompTempPlayerController;
 //class TCompPlayerAnimator;
@@ -246,6 +247,9 @@ namespace FSM
 
 		CEntity* e = ctx.getOwner();
 		e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::mergeEnemy });
+
+		TCompRender * render = e->get<TCompRender>();
+		render->visible = false;
 	}
 
 	bool MergeState::load(const json& jData) {
@@ -318,6 +322,9 @@ namespace FSM
 		CEntity* e = ctx.getOwner();
 		e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::exitMergeState });
 		// Re enable rigidbody.
+
+		TCompRender * render = e->get<TCompRender>();
+		render->visible = true;
 
 		// Hardcoded for testing purposes, move this out of here in the future
 		//TCompTempPlayerController * t_comp = e->get<TCompTempPlayerController>();

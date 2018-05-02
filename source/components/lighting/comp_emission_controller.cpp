@@ -72,6 +72,7 @@ void TCompEmissionController::onSceneCreated(const TMsgSceneCreated& msg) {
 
 /* Used to blend between two colors at a given time */
 void TCompEmissionController::blend(VEC4 new_desired_color, float blendTime) {
+
 	_elapsed_time = 0.0f;
 	_blend_in_time = blendTime;
 

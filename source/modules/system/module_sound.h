@@ -4,8 +4,6 @@
 #include "entity/entity.h"
 #include "fmod/fmod.hpp"
  
-#pragma comment(lib, "fmod64_vc.lib" )
-
 // 3D Sound, use to play sounds on 3d scene at given point
 // DSP, For filters, like a sound shader
 

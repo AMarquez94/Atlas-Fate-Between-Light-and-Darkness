@@ -87,9 +87,9 @@ void PS_GBuffer(
 	// Store in the Alpha channel of the albedo texture, the 'metallic' amount of
 	// the material
 	
-	float3x3 TBN = computeTBN(iNormal, iTangent);
-	float3 view_dir = normalize(mul(camera_pos, TBN) - mul(iWorldPos, TBN));
-	iTex0 = parallaxMapping(iTex0, view_dir);
+	//float3x3 TBN = computeTBN(iNormal, iTangent);
+	//float3 view_dir = normalize(mul(camera_pos, TBN) - mul(iWorldPos, TBN));
+	//iTex0 = parallaxMapping(iTex0, view_dir);
 	
 	o_albedo = txAlbedo.Sample(samLinear, iTex0);
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
@@ -147,7 +147,7 @@ void decodeGBuffer(
 	roughness = N_rt.a;
 
 	// Apply gamma correction to albedo to bring it back to linear.
-	albedo.rgb = pow(albedo.rgb, 2.2f);
+	albedo.rgb = pow(albedo.rgb, 2.2f);// *projectColor(wPos).xyz;
 
 	// Lerp with metallic value to find the good diffuse and specular.
 	// If metallic = 0, albedo is the albedo, if metallic = 1, the

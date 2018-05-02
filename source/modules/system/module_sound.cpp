@@ -1,6 +1,8 @@
 #include "mcv_platform.h"
 #include "module_sound.h"
 
+#pragma comment(lib, "fmod64_vc.lib" )
+
 // Just adding an ambient sound to the game for milestone 2
 bool CModuleSound::start() {
 
