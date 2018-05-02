@@ -179,7 +179,7 @@
 			"camera": {
 				"target": "TPCameraCrouched",
 				"blendOut": 0.4,
-				"blendIn": 0.4
+				"blendIn": 0.2
 			}
 		}, {
 			"name": "fall",
