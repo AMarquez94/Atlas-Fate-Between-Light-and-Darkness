@@ -123,6 +123,9 @@ void CModuleCameras::setOutputCamera(CHandle camera)
 
 void CModuleCameras::blendInCamera(CHandle camera, float blendTime, EPriority priority, Interpolator::IInterpolator* interpolator)
 {
+  if (!camera.isValid())
+    return;
+
 	TMixedCamera* mc = getMixedCamera(camera);
 	if (!mc)
 	{

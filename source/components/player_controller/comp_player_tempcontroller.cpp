@@ -185,8 +185,11 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg) {
 
 		// Get the target camera and set it as our new camera.
 		if (msg.target_camera) {
-			Engine.getCameras().blendOutCamera(target_camera, msg.target_camera->blendOut);
-			target_camera = getEntityByName(msg.target_camera->name);
+      CHandle new_camera = getEntityByName(msg.target_camera->name);
+      if (new_camera != target_camera) {
+			  Engine.getCameras().blendOutCamera(target_camera, msg.target_camera->blendOut);
+      }
+      target_camera = new_camera;
 			Engine.getCameras().blendInCamera(target_camera, msg.target_camera->blendIn, CModuleCameras::EPriority::GAMEPLAY);
 		}
 		else {

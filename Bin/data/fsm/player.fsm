@@ -5,12 +5,22 @@
 			"type": "IdleState",
 			"animation": "idle",
 			"speed": 0,
-			"size": 1
+			"size": 1,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
 		}, {
 			"name": "idleAction",
 			"type": "IdleState",
 			"animation": "idleAction",
-			"size": 1
+			"size": 1,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
 		}, {
 			"name": "walk",
 			"type": "WalkState",
@@ -23,6 +33,11 @@
 				"radius": 2.0,
 				"time_to_repeat": 0.75,
 				"is_artificial": false
+			},
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
 			}
 		}, {
 			"name": "walkslow",
@@ -36,6 +51,11 @@
 				"radius": 1.0,
 				"time_to_repeat": 1,
 				"is_artificial": false
+			},
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
 			}
 		}, {
 			"name": "run",
@@ -49,6 +69,11 @@
 				"radius": 3.0,
 				"time_to_repeat": 0.5,
 				"is_artificial": false
+			},
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
 			}
 		}, {
 			"name": "crouch",
@@ -56,21 +81,36 @@
 			"animation": "crouch",
 			"speed": 3,
 			"rotationSpeed": 5.0,
-			"size": 0.25
+			"size": 0.25,
+			"camera": {
+				"target": "TPCameraCrouched",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
 		}, {
 			"name": "crouchwalk",
 			"type": "CrouchWalkState",
 			"animation": "crouch_walk",
 			"speed": 3,
 			"rotationSpeed": 5.0,
-			"size": 0.25
+			"size": 0.25,
+			"camera": {
+				"target": "TPCameraCrouched",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
 		}, {
 			"name": "crouchwalkslow",
 			"type": "CrouchWalkSlowState",
 			"animation": "crouch_walk_slow",
 			"speed": 1.5,
 			"rotationSpeed": 5.0,
-			"size": 0.25
+			"size": 0.25,
+			"camera": {
+				"target": "TPCameraCrouched",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
 		}, {
 			"name": "entermerge",
 			"type": "EnterMergeState",
@@ -135,6 +175,11 @@
 				"radius": 7.0,
 				"time_to_repeat": 0.5,
 				"is_artificial": true
+			},
+			"camera": {
+				"target": "TPCameraCrouched",
+				"blendOut": 0.4,
+				"blendIn": 0.4
 			}
 		}, {
 			"name": "fall",
@@ -142,7 +187,12 @@
 			"animation": "fall",
 			"speed": 2,
 			"force": 3,
-			"size": 1
+			"size": 1,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
 		}, {
 			"name": "attack",
 			"type": "AttackState",
@@ -154,31 +204,56 @@
 				"radius": 5.0,
 				"time_to_repeat": 0.5,
 				"is_artificial": true
+			},
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
 			}
 		}, {
 			"name": "dead",
 			"type": "DeadState",
 			"animation": "dead",
 			"damage": 10,
-			"size": 1
+			"size": 1,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
 		}, {
 			"name": "removeInhibitor",
 			"type": "RemoveInhibitor",
 			"animation": "removenhibitor",
 			"damage": 10,
-			"size": 1
+			"size": 1,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
 		}, {
 			"name": "inhibitorRemoved",
 			"type": "InhibitorRemoved",
 			"animation": "inhibitorRemoved",
 			"damage": 10,
-			"size": 1
+			"size": 1,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
 		}, {
 			"name": "inhibitorTryToRemove",
 			"type": "InhibitorTryToRemove",
 			"animation": "inhibitorRemoved",
 			"damage": 10,
-			"size": 1
+			"size": 1,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
 		}
 	],
 	"transitions": [{

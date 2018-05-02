@@ -45,6 +45,32 @@
 	},
 	{
 		"entity": {
+			"name": "TPCameraCrouched",
+			"transform": {
+				"pos": "0 3 3"
+			},
+			"camera_thirdperson" : {
+				"target": "The Player",
+				"clampangle" : "-40 80",
+				"offset": "0.15 0.8 2",
+				"speed" : 1.5
+			},
+			"camera" : {
+				"fov" : 80,
+				"z_near": 0.01,
+				"z_far": 1000
+			},
+			"render_bloom" : {
+         "enabled" :  true,
+				 "gauss_filter" : true,
+				 "max_steps" : 1
+      },
+			"tags" : ["main_camera"],
+			"culling": true
+		}
+	},
+	{
+		"entity": {
 			"name": "SMCameraHor",
 			"transform": {
 				"pos": "0 3 3"
