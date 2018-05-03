@@ -467,7 +467,12 @@ BTNode::ERes TCompAIPatrol::actionWaitInWpt(float dt)
 	else {
 		timerWaitingInWpt += dt;
 		TCompTransform *mypos = get<TCompTransform>();
-		rotateTowardsVec(mypos->getPosition() + getWaypoint().lookAt, dt, rotationSpeed);
+		if (rotateTowardsVec(mypos->getPosition() + getWaypoint().lookAt, dt, rotationSpeed)) {
+			myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+		}
+		else {
+			myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
+		}
 		return BTNode::ERes::STAY;
 	}
 }
@@ -667,7 +672,7 @@ BTNode::ERes TCompAIPatrol::actionRotateToNoiseSource(float dt)
 
 	//Animation To Change
 	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
 
 	TCompTransform *myPos = get<TCompTransform>();
 	bool isInObjective = rotateTowardsVec(noiseSource, rotationSpeed, dt);
@@ -998,6 +1003,7 @@ bool TCompAIPatrol::rotateTowardsVec(VEC3 objective, float rotationSpeed, float 
 	TCompTransform *mypos = get<TCompTransform>();
 	float y, r, p;
 	mypos->getYawPitchRoll(&y, &p, &r);
+
 	float deltaYaw = mypos->getDeltaYawToAimTo(objective);
 	if (fabsf(deltaYaw) <= rotationSpeed * dt) {
 		y += deltaYaw;
