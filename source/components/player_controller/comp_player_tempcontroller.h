@@ -55,10 +55,10 @@ class TCompTempPlayerController : public TCompBase
 		VEC4 colorMerge;
 		VEC4 colorDead;
 		VEC4 colorInhib;
+	}playerColor;
 
 	//Debug console message variables
 	bool infinite, immortal, hackShadows;
-	}playerColor;
 
 	/* DEPRECATED */
 	std::map<std::string, CRenderMesh*> mesh_states;
