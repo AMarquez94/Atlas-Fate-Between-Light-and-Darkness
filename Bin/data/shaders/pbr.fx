@@ -221,7 +221,7 @@ float3 Specular(float3 specularColor, float3 h, float3 v, float3 l, float a, flo
 
 //--------------------------------------------------------------------------------------
 // Ambient pass, to compute the ambient light of each pixel
-float4 PS_ambient(in float4 iPosition : SV_Position) : SV_Target
+float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) : SV_Target
 {
 	// Declare some float3 to store the values from the GBuffer
 	float  roughness;
@@ -248,7 +248,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position) : SV_Target
 	float g_ReflectionIntensity = 1.0;
 	float g_AmbientLightIntensity = 1.0;
 
-	float ao = txAO.Load(uint3(iPosition.xy, 0));
+	float ao = txAO.Sample(samLinear, iUV).x;
 	float4 self_illum = txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
 
 	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f) + float4(self_illum.xyz, 1) * scalar_emission;

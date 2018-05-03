@@ -13,6 +13,9 @@
 
 // --------------------------------------
 void CDeferredRenderer::renderAO(CHandle h_camera) const {
+
+	if (!h_camera.isValid()) return;
+
 	CEntity* e_camera = h_camera;
 	assert(e_camera);
 	TCompRenderAO* comp_ao = e_camera->get<TCompRenderAO>();

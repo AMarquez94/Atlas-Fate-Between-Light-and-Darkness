@@ -1,223 +1,213 @@
-[
-	{
+[{
 		"entity": {
 			"name": "Cameras"
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "main_camera",
 			"transform": {
 				"pos": "0 0 0",
-				"lookat" : "0 0 0"
+				"lookat": "0 0 0"
 			},
-			"camera" : {
-				"fov" : 80
-			},			
+			"camera": {
+				"fov": 80
+			},
+			"render_ao": {
+				"enabled": true
+			},
 			"culling": true
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "TPCamera",
 			"transform": {
 				"pos": "0 3 3"
 			},
-			"camera_thirdperson" : {
+			"camera_thirdperson": {
 				"target": "The Player",
-				"clampangle" : "-40 80",
+				"clampangle": "-40 80",
 				"offset": "0.15 1.4 2",
-				"speed" : 1.5
+				"speed": 1.5
 			},
-			"camera" : {
-				"fov" : 80,
+			"camera": {
+				"fov": 80,
 				"z_near": 0.01,
 				"z_far": 1000
 			},
-			"render_ao" : {
-				"enabled" :  true
-			}
-			"render_bloom" : {
-				"enabled" :  true,
-				"gauss_filter" : true,
-				"max_steps" : 1
+			"render_ao": {
+				"enabled": true
 			},
-			"tags" : ["main_camera"],
+			"render_bloom": {
+				"enabled": true,
+				"gauss_filter": true,
+				"max_steps": 1
+			},
+			"tags": ["main_camera"],
 			"culling": true
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "TPCameraCrouched",
 			"transform": {
 				"pos": "0 3 3"
 			},
-			"camera_thirdperson" : {
+			"camera_thirdperson": {
 				"target": "The Player",
-				"clampangle" : "-40 80",
+				"clampangle": "-40 80",
 				"offset": "0.15 0.8 2",
-				"speed" : 1.5
+				"speed": 1.5
 			},
-			"camera" : {
-				"fov" : 80,
+			"camera": {
+				"fov": 80,
 				"z_near": 0.01,
 				"z_far": 1000
 			},
-						"render_ao" : {
-				"enabled" :  true
-			}
-			"render_bloom" : {
-         "enabled" :  true,
-				 "gauss_filter" : true,
-				 "max_steps" : 1
-      },
-			"tags" : ["main_camera"],
+			"render_ao": {
+				"enabled": true
+			},
+			"render_bloom": {
+				"enabled": true,
+				"gauss_filter": true,
+				"max_steps": 1
+			},
+			"tags": ["main_camera"],
 			"culling": true
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "SMCameraHor",
 			"transform": {
 				"pos": "0 3 3"
 			},
-			"camera_shadowmerge" : {
+			"camera_shadowmerge": {
 				"target": "The Player",
-				"clampangle" : "10 80",
+				"clampangle": "10 80",
 				"offset": "0 0.5 2.7",
-				"speed" : 1.5,
+				"speed": 1.5,
 				"starting_pitch": -35
 			},
-			"camera" : {
-				"fov" : 90,
+			"camera": {
+				"fov": 90,
 				"z_near": 0.01,
 				"z_far": 1000
 			},
-			"render_ao" : {
-				"enabled" :  true
-			}			
-			"render_blur" : {
-         "enabled" :  false
-      },
-      "render_blur_radial" : {
-        "enabled" :  true
+			"render_ao": {
+				"enabled": true
 			},
-			"tags" : ["main_camera"],
-			"culling": true		
+			"render_blur": {
+				"enabled": false
+			},
+			"render_blur_radial": {
+				"enabled": true
+			},
+			"tags": ["main_camera"],
+			"culling": true
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "SMCameraVer",
 			"transform": {
 				"pos": "0 3 3"
 			},
-			"camera_shadowmerge" : {
+			"camera_shadowmerge": {
 				"target": "The Player",
-				"clampangle" : "-80 80",
+				"clampangle": "-80 80",
 				"offset": "0 0.5 2.7",
-				"speed" : 1.5,
+				"speed": 1.5,
 				"starting_pitch": 0
 			},
-			"render_blur" : {
-         "enabled" :  false
-      },
-	  	"render_ao" : {
-				"enabled" :  true
-		}
-      "render_blur_radial" : {
-        "enabled" :  true
+			"render_blur": {
+				"enabled": false
 			},
-			"camera" : {
-				"fov" : 90,
+			"render_ao": {
+				"enabled": true
+			},
+			"render_blur_radial": {
+				"enabled": true
+			},
+			"camera": {
+				"fov": 90,
 				"z_near": 0.01,
 				"z_far": 1000
 			},
-			"tags" : ["main_camera"],
+			"tags": ["main_camera"],
 			"culling": true
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "SMCameraAux",
 			"transform": {
 				"pos": "0 3 3"
 			},
-			"auxcamera_shadowmerge": {
-			},
-			"camera" : {
-				"fov" : 90,
+			"auxcamera_shadowmerge": {},
+			"camera": {
+				"fov": 90,
 				"z_near": 0.01,
 				"z_far": 1000
-			},			
-			"render_ao" : {
-				"enabled" :  true
-			}
-			"render_blur" : {
-         "enabled" :  false
-      },
-      "render_blur_radial" : {
-        "enabled" :  true
 			},
-			"tags" : ["aux_camera"],
+			"render_ao": {
+				"enabled": true
+			},
+			"render_blur": {
+				"enabled": false
+			},
+			"render_blur_radial": {
+				"enabled": true
+			},
+			"tags": ["aux_camera"],
 			"culling": true
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "test_camera_flyover",
 			"transform": {
 				"pos": "5 5 0",
-				"lookat" : "0 0 0"
+				"lookat": "0 0 0"
 			},
-			"camera_flyover" : {},
-			"camera" : {
-				"fov" : 80,
+			"camera_flyover": {},
+			"camera": {
+				"fov": 80,
 				"z_near": 0.01,
 				"z_far": 1000
-			},					
-			"render_ao" : {
-				"enabled" :  true
-			}	
-			"render_bloom" : {
-         "enabled" :  true,				 
-				 "gauss_filter" : true,
-				 "max_steps" : 1
-      },
+			},
+			"render_ao": {
+				"enabled": true
+			},
+			"render_bloom": {
+				"enabled": true,
+				"gauss_filter": true,
+				"max_steps": 1
+			},
 			"culling": true
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "test_camera_curve",
 			"transform": {
 				"pos": "-12 10 45",
 				"lookat": "9 0 31"
 			},
-			"camera" : {
-				"fov" : 60,
+			"camera": {
+				"fov": 60,
 				"z_near": 0.01,
 				"z_far": 1000
 			}
 		}
-	},
-	{
+	}, {
 		"xentity": {
 			"name": "trigger_camera_curve",
 			"transform": {
 				"pos": "-5 2 28",
 				"lookat": "0 0 0"
 			},
-			"trigger_camera" :
-			{
-				"target" : "test_camera_curve",
+			"trigger_camera": {
+				"target": "test_camera_curve",
 				"blend_in_time": 1.5,
 				"blend_out_time": 1.5
 			},
-			"collider":
-			{
+			"collider": {
 				"shape": "sphere",
-				"is_trigger" : true,
+				"is_trigger": true,
 				"radius": 5
 			}
 		}

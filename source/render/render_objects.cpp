@@ -252,6 +252,12 @@ void activateCamera(CCamera& camera, int width, int height) {
 	cb_camera.camera_front = camera.getFront();
 	cb_camera.camera_dummy2 = 0.f;
 
+	// To avoid converting the range -1..1 to 0..1 in the shader
+	// we concatenate the view_proj with a matrix to apply this offset
+	MAT44 mtx_offset = MAT44::CreateScale(VEC3(0.5f, -0.5f, 1.0f))
+		* MAT44::CreateTranslation(VEC3(0.5f, 0.5f, 0.0f));
+	cb_camera.camera_proj_with_offset = camera.getProjection() * mtx_offset;
+
 	cb_camera.camera_zfar = camera.getZFar();
 	cb_camera.camera_znear = camera.getZNear();
 	cb_camera.camera_tan_half_fov = tan(camera.getFov() * 0.5f);

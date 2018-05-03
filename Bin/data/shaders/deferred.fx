@@ -78,9 +78,9 @@ float4 PS(
 		float  zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
 		return float4(zlinear, zlinear, zlinear,1);
 	}
-	//else if (global_render_output == RO_AO) {
-	//	return txAO.Sample(samLinear, iUV);
-	//}
+	else if (global_render_output == RO_AO) {
+		return txAO.Sample(samLinear, iUV);
+	}
 
 	return float4(gammaCorrectedColor, 1);;
 }

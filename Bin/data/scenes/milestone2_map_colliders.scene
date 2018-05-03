@@ -1,2084 +1,1204 @@
-[  
-	{
-    "entity":
-    {
-      "name": "milestone2_map_colliders"
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "Box234"
-      ,
-      "transform":
-      {
-        "pos": "-10.9377 -8.9844 -26.0708"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "20.0 0.5 18.5247"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Box235"
-      ,
-      "transform":
-      {
-        "pos": "-10.9377 -9.98616 8.90776"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "20.0 5.0 16.6722"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Box236"
-      ,
-      "transform":
-      {
-        "pos": "-20.1162 -5.6983 -12.4665"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "4.35207 1.43788 4.18023"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Box237"
-      ,
-      "transform":
-      {
-        "pos": "-24.7531 0.0 32.2457"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.34427 9.62065 2.5495"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Box238"
-      ,
-      "transform":
-      {
-        "pos": "-29.3829 11.6064 -5.50835"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "4.25207 1.33788 4.08023"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_alminar"
-      ,
-      "transform":
-      {
-        "pos": "6.61451 16.9454 -42.1177"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "1.43647 4.84353 1.41464"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_alminar_quad"
-      ,
-      "transform":
-      {
-        "pos": "6.65922 13.0 -5.14232"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "1.5 5.0 1.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_alminar_quad2"
-      ,
-      "transform":
-      {
-        "pos": "-28.4581 13.0 -5.14232"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "1.5 5.0 1.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_alminar2"
-      ,
-      "transform":
-      {
-        "pos": "-28.4522 16.9454 -42.1177"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "1.43647 4.84353 1.41464"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_barana_apoyo2"
-      ,
-      "transform":
-      {
-        "pos": "-22.4451 5.0 -7.66311"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
+[{
+		"entity": {
+			"name": "milestone2_map_colliders"
+		}
+	}, {
+		"entity": {
+			"name": "Box234",
+			"transform": {
+				"pos": "-10.9377 -8.9844 -26.0708",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "20.0 0.5 18.5247"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Box235",
+			"transform": {
+				"pos": "-10.9377 -9.98616 8.90776",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "20.0 5.0 16.6722"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Box236",
+			"transform": {
+				"pos": "-20.1162 -5.6983 -12.4665",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "4.35207 1.43788 4.18023"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Box237",
+			"transform": {
+				"pos": "-24.7531 0.0 32.2457",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.34427 9.62065 2.5495"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Box238",
+			"transform": {
+				"pos": "-29.3829 11.6064 -5.50835",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "4.25207 1.33788 4.08023"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_alminar",
+			"transform": {
+				"pos": "6.61451 16.9454 -42.1177",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "1.43647 4.84353 1.41464"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_alminar_quad",
+			"transform": {
+				"pos": "6.65922 13.0 -5.14232",
+				"rotation": "0.0 -1.0 0.0 0.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "1.5 5.0 1.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_alminar_quad2",
+			"transform": {
+				"pos": "-28.4581 13.0 -5.14232",
+				"rotation": "0.0 -1.0 0.0 0.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "1.5 5.0 1.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_alminar2",
+			"transform": {
+				"pos": "-28.4522 16.9454 -42.1177",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "1.43647 4.84353 1.41464"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_barana_apoyo2",
+			"transform": {
+				"pos": "-22.4451 5.0 -7.66311",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
 				"group": "fence",
 				"mask": "scenario",
-        "size": "0.15 0.675 3.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_barana_apoyo003"
-      ,
-      "transform":
-      {
-        "pos": "-2.92868 5.0 -7.66311"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
+				"size": "0.15 0.675 3.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_barana_apoyo003",
+			"transform": {
+				"pos": "-2.92868 5.0 -7.66311",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
 				"group": "fence",
 				"mask": "scenario",
-        "size": "0.15 0.675 1.0164"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_barana_apoyo004"
-      ,
-      "transform":
-      {
-        "pos": "1.05492 10.0 -7.66312"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
+				"size": "0.15 0.675 1.0164"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_barana_apoyo004",
+			"transform": {
+				"pos": "1.05492 10.0 -7.66312",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
 				"group": "fence",
 				"mask": "scenario",
-        "size": "0.15 0.675 3.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_barana2"
-      ,
-      "transform":
-      {
-        "pos": "-19.0451 5.0 -1.76312"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
+				"size": "0.15 0.675 3.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_barana2",
+			"transform": {
+				"pos": "-19.0451 5.0 -1.76312",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
 				"group": "fence",
 				"mask": "scenario",
-        "size": "0.15 0.675 6.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_barana064"
-      ,
-      "transform":
-      {
-        "pos": "-15.4082 4.39237 28.7416"
-        ,
-        "rotation": "-0.126941 -0.695619 -0.695619 0.126941"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
+				"size": "0.15 0.675 6.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_barana064",
+			"transform": {
+				"pos": "-15.4082 4.39237 28.7416",
+				"rotation": "-0.126941 -0.695619 -0.695619 0.126941"
+			},
+			"collider": {
+				"shape": "box",
 				"group": "fence",
 				"mask": "scenario",
-        "size": "0.1 1.13643 3.88915"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_barana065"
-      ,
-      "transform":
-      {
-        "pos": "4.06109 4.07887 28.869"
-        ,
-        "rotation": "0.240617 -0.664908 -0.664909 -0.240617"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
+				"size": "0.1 1.13643 3.88915"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_barana065",
+			"transform": {
+				"pos": "4.06109 4.07887 28.869",
+				"rotation": "0.240617 -0.664908 -0.664909 -0.240617"
+			},
+			"collider": {
+				"shape": "box",
 				"group": "fence",
 				"mask": "scenario",
-        "size": "0.1 1.13643 4.23779"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_barana066"
-      ,
-      "transform":
-      {
-        "pos": "12.0668 3.07304 45.6132"
-        ,
-        "rotation": "0.581151 -0.402819 -0.402819 -0.581151"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
+				"size": "0.1 1.13643 4.23779"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_barana066",
+			"transform": {
+				"pos": "12.0668 3.07304 45.6132",
+				"rotation": "0.581151 -0.402819 -0.402819 -0.581151"
+			},
+			"collider": {
+				"shape": "box",
 				"group": "fence",
 				"mask": "scenario",
-        "size": "0.1 1.13643 2.16127"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_barandillas001"
-      ,
-      "transform":
-      {
-        "pos": "9.28041 10.0 30.3455"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
+				"size": "0.1 1.13643 2.16127"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_barandillas001",
+			"transform": {
+				"pos": "9.28041 10.0 30.3455",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
 				"group": "fence",
 				"mask": "scenario",
-        "size": "0.12 0.675 3.4143"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_barandillas002"
-      ,
-      "transform":
-      {
-        "pos": "4.79235 10.0 29.4311"
-        ,
-        "rotation": "0.0 -0.899214 0.0 0.437509"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
+				"size": "0.12 0.675 3.4143"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_barandillas002",
+			"transform": {
+				"pos": "4.79235 10.0 29.4311",
+				"rotation": "0.0 -0.899214 0.0 0.437509"
+			},
+			"collider": {
+				"shape": "box",
 				"group": "fence",
 				"mask": "scenario",
-        "size": "0.15 0.675 1.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_Box081"
-      ,
-      "transform":
-      {
-        "pos": "6.45492 -8.0 -26.1423"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.6 10.5 18.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_Box095"
-      ,
-      "transform":
-      {
-        "pos": "-28.3451 -8.0 -26.1423"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.6 10.5 18.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_Box098"
-      ,
-      "transform":
-      {
-        "pos": "-10.9178 -8.0 -42.0423"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.6 10.5 15.8901"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_Box112"
-      ,
-      "transform":
-      {
-        "pos": "6.55492 5.0 -42.1423"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.5 6.0 2.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_Box113"
-      ,
-      "transform":
-      {
-        "pos": "-28.4451 5.0 -42.1423"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.5 6.0 2.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_Box129"
-      ,
-      "transform":
-      {
-        "pos": "-36.0234 0.0 32.9366"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.6 10.5 40.5789"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_Box131"
-      ,
-      "transform":
-      {
-        "pos": "-36.4999 13.0 -5.26312"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.5 6.0 2.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_Box133"
-      ,
-      "transform":
-      {
-        "pos": "14.6097 13.0 -5.26312"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.5 6.0 2.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_Box140"
-      ,
-      "transform":
-      {
-        "pos": "14.6884 0.0 32.9366"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.6 11.5 40.5789"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_Box240"
-      ,
-      "transform":
-      {
-        "pos": "-5.76454 1.20542 24.9609"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_Box240.collider"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_casas_esquina"
-      ,
-      "transform":
-      {
-        "pos": "7.79907 0.0 23.7455"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_casas_esquina.collider"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_Cylinder014"
-      ,
-      "transform":
-      {
-        "pos": "-10.7261 0.848096 182.0"
-        ,
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_Cylinder014.collider"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_edificio_inicio_alto"
-      ,
-      "transform":
-      {
-        "pos": "-22.9175 -3.0 -35.1157"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "3.0 2.5 6.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_edificio_inicio_alto02"
-      ,
-      "transform":
-      {
-        "pos": "1.05492 -3.0 -13.6423"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "3.0 2.5 6.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_edificio_inicio_alto003"
-      ,
-      "transform":
-      {
-        "pos": "4.57122 0.0 11.9955"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "7.5 3.25 5.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_edificio_inicio_alto004"
-      ,
-      "transform":
-      {
-        "pos": "5.57122 6.5 11.9955"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "6.5 2.5 5.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_edificio_inicio_alto005"
-      ,
-      "transform":
-      {
-        "pos": "-26.4725 0.0 -1.76312"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "7.52739 2.5 6.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_edificio_inicio_alto007"
-      ,
-      "transform":
-      {
-        "pos": "-23.4999 0.0 11.2369"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "7.0 3.5 10.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_edificio_inicio_alto008"
-      ,
-      "transform":
-      {
-        "pos": "-25.9999 7.0 11.2609"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "5.0 2.25 8.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_edificio_inicio_alto012"
-      ,
-      "transform":
-      {
-        "pos": "-30.4999 0.0 37.7404"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "6.0 3.25 3.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_edificio_inicio_alto013"
-      ,
-      "transform":
-      {
-        "pos": "16.6139 0.0 98.1375"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "7.5 3.0 7.9"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_edificio_inicio_alto014"
-      ,
-      "transform":
-      {
-        "pos": "-37.3012 0.0 83.8655"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "6.0 3.25 3.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_edificio_inicio_alto015"
-      ,
-      "transform":
-      {
-        "pos": "16.6139 0.0 121.676"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "7.5 3.5 7.9"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_edificio_inicio_alto016"
-      ,
-      "transform":
-      {
-        "pos": "-40.8861 0.0 121.676"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "5.0 3.5 7.9"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_edificio_inicio_bajo"
-      ,
-      "transform":
-      {
-        "pos": "-21.9624 -8.0 -33.1423"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "4.047 2.5 6.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_edificio_inicio_bajo003"
-      ,
-      "transform":
-      {
-        "pos": "0.0549194 -8.0 -14.1423"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "4.0 2.5 6.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_edificio_inicio_bajo004"
-      ,
-      "transform":
-      {
-        "pos": "1.05492 -8.0 -35.1423"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "3.0 2.5 4.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_edificio_inicio_bajo006"
-      ,
-      "transform":
-      {
-        "pos": "4.06307 0.0 -1.26312"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "6.5 2.5 8.00815"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_edificio_inicio_bajo008"
-      ,
-      "transform":
-      {
-        "pos": "5.06307 5.0 -2.26312"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "5.5 2.5 7.00815"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_edificio_inicio_bajo009"
-      ,
-      "transform":
-      {
-        "pos": "-14.4698 -8.0 -35.5651"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "3.56136 2.5 3.91755"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_entrada_palacio"
-      ,
-      "transform":
-      {
-        "pos": "-10.8861 -1.24295 122.818"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_entrada_palacio.collider"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_muralla_interior"
-      ,
-      "transform":
-      {
-        "pos": "9.6139 0.0 88.7375"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "1.5 4.0 14.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_muralla_interior001"
-      ,
-      "transform":
-      {
-        "pos": "-31.3861 0.0 88.7375"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "1.5 4.0 14.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_muralla_interior002"
-      ,
-      "transform":
-      {
-        "pos": "-18.3861 0.0 98.2375"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "1.5 4.0 8.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_muralla_interior003"
-      ,
-      "transform":
-      {
-        "pos": "-3.38609 0.0 98.2375"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "1.5 4.0 8.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_muralla_interior006"
-      ,
-      "transform":
-      {
-        "pos": "22.6139 0.0 83.7375"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "1.5 4.0 3.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_muralla_interior006"
-      ,
-      "transform":
-      {
-        "pos": "-44.3861 0.0 83.7375"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "1.5 4.0 3.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_muralla3"
-      ,
-      "transform":
-      {
-        "pos": "-32.5942 0.0 -5.42615"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.7 6.5 6.72738"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_muralla4"
-      ,
-      "transform":
-      {
-        "pos": "10.4823 0.0 -5.16312"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.6 6.5 6.62738"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_muralla011"
-      ,
-      "transform":
-      {
-        "pos": "26.5139 0.0 107.776"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.6 10.5 38.582"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_muralla012"
-      ,
-      "transform":
-      {
-        "pos": "-48.2861 0.0 109.469"
-        ,
-        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.60001 10.5 36.8882"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_Object003"
-      ,
-      "transform":
-      {
-        "pos": "-36.3204 13.0 71.0155"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.5 6.0 2.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_saliente"
-      ,
-      "transform":
-      {
-        "pos": "-33.697 12.1392 35.4954"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.894611 1.21998 38.7002"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_saliente001"
-      ,
-      "transform":
-      {
-        "pos": "-45.9891 12.1392 108.171"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.894611 1.21998 34.6429"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_saliente002"
-      ,
-      "transform":
-      {
-        "pos": "23.7096 12.1392 107.577"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.894611 1.21998 35.2671"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_saliente003"
-      ,
-      "transform":
-      {
-        "pos": "11.8477 12.1392 11.2373"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.894611 1.21998 19.1151"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_saliente004"
-      ,
-      "transform":
-      {
-        "pos": "20.5062 12.1392 73.2613"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.894611 1.21998 8.77933"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_saliente005"
-      ,
-      "transform":
-      {
-        "pos": "-41.8803 12.1392 73.2771"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.894611 1.21998 8.77933"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_saliente006"
-      ,
-      "transform":
-      {
-        "pos": "-26.0761 4.13924 -24.201"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.894611 1.21998 16.6506"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_saliente007"
-      ,
-      "transform":
-      {
-        "pos": "4.17722 4.13924 -23.8143"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.894611 1.21998 16.6506"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_saliente008"
-      ,
-      "transform":
-      {
-        "pos": "-10.1296 4.13923 -39.5487"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.894611 1.21998 16.6506"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_saliente009"
-      ,
-      "transform":
-      {
-        "pos": "-35.6497 12.1392 143.159"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.894611 1.21998 9.92064"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_saliente010"
-      ,
-      "transform":
-      {
-        "pos": "13.8537 12.1392 143.159"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.894611 1.21998 9.92064"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_saliente011"
-      ,
-      "transform":
-      {
-        "pos": "11.9631 12.1392 55.1655"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.214707 1.21998 19.1151"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_st_fence"
-      ,
-      "transform":
-      {
-        "pos": "-10.1116 0.314422 67.3338"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
+				"size": "0.15 0.675 1.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_Box081",
+			"transform": {
+				"pos": "6.45492 -8.0 -26.1423",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.6 10.5 18.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_Box095",
+			"transform": {
+				"pos": "-28.3451 -8.0 -26.1423",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.6 10.5 18.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_Box098",
+			"transform": {
+				"pos": "-10.9178 -8.0 -42.0423",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.6 10.5 15.8901"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_Box112",
+			"transform": {
+				"pos": "6.55492 5.0 -42.1423",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.5 6.0 2.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_Box113",
+			"transform": {
+				"pos": "-28.4451 5.0 -42.1423",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.5 6.0 2.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_Box129",
+			"transform": {
+				"pos": "-36.0234 0.0 32.9366",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.6 10.5 40.5789"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_Box131",
+			"transform": {
+				"pos": "-36.4999 13.0 -5.26312",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.5 6.0 2.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_Box133",
+			"transform": {
+				"pos": "14.6097 13.0 -5.26312",
+				"rotation": "0.0 -1.0 0.0 0.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.5 6.0 2.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_Box140",
+			"transform": {
+				"pos": "14.6884 0.0 32.9366",
+				"rotation": "0.0 -1.0 0.0 0.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.6 11.5 40.5789"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_Box240",
+			"transform": {
+				"pos": "-5.76454 1.20542 24.9609",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/collider_Box240.collider"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_casas_esquina",
+			"transform": {
+				"pos": "7.79907 0.0 23.7455",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/collider_casas_esquina.collider"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_Cylinder014",
+			"transform": {
+				"pos": "-10.7261 0.848096 182.0",
+				"rotation": "-0.707107 0.0 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/collider_Cylinder014.collider"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_edificio_inicio_alto",
+			"transform": {
+				"pos": "-22.9175 -3.0 -35.1157",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "3.0 2.5 6.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_edificio_inicio_alto02",
+			"transform": {
+				"pos": "1.05492 -3.0 -13.6423",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "3.0 2.5 6.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_edificio_inicio_alto003",
+			"transform": {
+				"pos": "4.57122 0.0 11.9955",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "7.5 3.25 5.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_edificio_inicio_alto004",
+			"transform": {
+				"pos": "5.57122 6.5 11.9955",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "6.5 2.5 5.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_edificio_inicio_alto005",
+			"transform": {
+				"pos": "-26.4725 0.0 -1.76312",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "7.52739 2.5 6.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_edificio_inicio_alto007",
+			"transform": {
+				"pos": "-23.4999 0.0 11.2369",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "7.0 3.5 10.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_edificio_inicio_alto008",
+			"transform": {
+				"pos": "-25.9999 7.0 11.2609",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "5.0 2.25 8.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_edificio_inicio_alto012",
+			"transform": {
+				"pos": "-30.4999 0.0 37.7404",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "6.0 3.25 3.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_edificio_inicio_alto013",
+			"transform": {
+				"pos": "16.6139 0.0 98.1375",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "7.5 3.0 7.9"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_edificio_inicio_alto014",
+			"transform": {
+				"pos": "-37.3012 0.0 83.8655",
+				"rotation": "0.0 -1.0 0.0 0.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "6.0 3.25 3.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_edificio_inicio_alto015",
+			"transform": {
+				"pos": "16.6139 0.0 121.676",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "7.5 3.5 7.9"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_edificio_inicio_alto016",
+			"transform": {
+				"pos": "-40.8861 0.0 121.676",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "5.0 3.5 7.9"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_edificio_inicio_bajo",
+			"transform": {
+				"pos": "-21.9624 -8.0 -33.1423",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "4.047 2.5 6.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_edificio_inicio_bajo003",
+			"transform": {
+				"pos": "0.0549194 -8.0 -14.1423",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "4.0 2.5 6.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_edificio_inicio_bajo004",
+			"transform": {
+				"pos": "1.05492 -8.0 -35.1423",
+				"rotation": "0.0 -1.0 0.0 0.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "3.0 2.5 4.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_edificio_inicio_bajo006",
+			"transform": {
+				"pos": "4.06307 0.0 -1.26312",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "6.5 2.5 8.00815"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_edificio_inicio_bajo008",
+			"transform": {
+				"pos": "5.06307 5.0 -2.26312",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "5.5 2.5 7.00815"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_edificio_inicio_bajo009",
+			"transform": {
+				"pos": "-14.4698 -8.0 -35.5651",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "3.56136 2.5 3.91755"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_entrada_palacio",
+			"transform": {
+				"pos": "-10.8861 -1.24295 122.818",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/collider_entrada_palacio.collider"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_muralla_interior",
+			"transform": {
+				"pos": "9.6139 0.0 88.7375",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "1.5 4.0 14.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_muralla_interior001",
+			"transform": {
+				"pos": "-31.3861 0.0 88.7375",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "1.5 4.0 14.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_muralla_interior002",
+			"transform": {
+				"pos": "-18.3861 0.0 98.2375",
+				"rotation": "0.0 -1.0 0.0 0.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "1.5 4.0 8.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_muralla_interior003",
+			"transform": {
+				"pos": "-3.38609 0.0 98.2375",
+				"rotation": "0.0 -1.0 0.0 0.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "1.5 4.0 8.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_muralla_interior006",
+			"transform": {
+				"pos": "22.6139 0.0 83.7375",
+				"rotation": "0.0 -1.0 0.0 0.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "1.5 4.0 3.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_muralla_interior006",
+			"transform": {
+				"pos": "-44.3861 0.0 83.7375",
+				"rotation": "0.0 -1.0 0.0 0.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "1.5 4.0 3.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_muralla3",
+			"transform": {
+				"pos": "-32.5942 0.0 -5.42615",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.7 6.5 6.72738"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_muralla4",
+			"transform": {
+				"pos": "10.4823 0.0 -5.16312",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.6 6.5 6.62738"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_muralla011",
+			"transform": {
+				"pos": "26.5139 0.0 107.776",
+				"rotation": "0.0 -1.0 0.0 0.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.6 10.5 38.582"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_muralla012",
+			"transform": {
+				"pos": "-48.2861 0.0 109.469",
+				"rotation": "0.0 -1.50996e-07 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.60001 10.5 36.8882"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_Object003",
+			"transform": {
+				"pos": "-36.3204 13.0 71.0155",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.5 6.0 2.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_saliente",
+			"transform": {
+				"pos": "-33.697 12.1392 35.4954",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "0.894611 1.21998 38.7002"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_saliente001",
+			"transform": {
+				"pos": "-45.9891 12.1392 108.171",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "0.894611 1.21998 34.6429"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_saliente002",
+			"transform": {
+				"pos": "23.7096 12.1392 107.577",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "0.894611 1.21998 35.2671"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_saliente003",
+			"transform": {
+				"pos": "11.8477 12.1392 11.2373",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "0.894611 1.21998 19.1151"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_saliente004",
+			"transform": {
+				"pos": "20.5062 12.1392 73.2613",
+				"rotation": "0.0 -0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "0.894611 1.21998 8.77933"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_saliente005",
+			"transform": {
+				"pos": "-41.8803 12.1392 73.2771",
+				"rotation": "0.0 -0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "0.894611 1.21998 8.77933"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_saliente006",
+			"transform": {
+				"pos": "-26.0761 4.13924 -24.201",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "0.894611 1.21998 16.6506"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_saliente007",
+			"transform": {
+				"pos": "4.17722 4.13924 -23.8143",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "0.894611 1.21998 16.6506"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_saliente008",
+			"transform": {
+				"pos": "-10.1296 4.13923 -39.5487",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "0.894611 1.21998 16.6506"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_saliente009",
+			"transform": {
+				"pos": "-35.6497 12.1392 143.159",
+				"rotation": "0.0 -0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "0.894611 1.21998 9.92064"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_saliente010",
+			"transform": {
+				"pos": "13.8537 12.1392 143.159",
+				"rotation": "0.0 -0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "0.894611 1.21998 9.92064"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_saliente011",
+			"transform": {
+				"pos": "11.9631 12.1392 55.1655",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "0.214707 1.21998 19.1151"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_st_fence",
+			"transform": {
+				"pos": "-10.1116 0.314422 67.3338",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
 				"group": "wall",
 				"mask": "player",
-        "size": "30.0 1.68455 0.1"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_st_loft1"
-      ,
-      "transform":
-      {
-        "pos": "-10.7261 4.97411 161.64"
-        ,
-        "rotation": "0.0 0.707107 -0.707107 1.7702e-07"
-      }
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_st_loft1.collider"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_st_loft2"
-      ,
-      "transform":
-      {
-        "pos": "-10.7261 4.97411 180.729"
-        ,
-        "rotation": "0.0 0.707107 -0.707107 1.7702e-07"
-      }
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_st_loft2.collider"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_st_loft3"
-      ,
-      "transform":
-      {
-        "pos": "-10.7261 4.97409 199.817"
-        ,
-        "rotation": "0.0 0.707107 -0.707107 1.7702e-07"
-      }
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_st_loft3.collider"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_st_loft4"
-      ,
-      "transform":
-      {
-        "pos": "-10.7261 4.97409 218.906"
-        ,
-        "rotation": "0.0 0.707107 -0.707107 1.7702e-07"
-      }
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_st_loft4.collider"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_st_loft5"
-      ,
-      "transform":
-      {
-        "pos": "-10.7261 4.97409 237.995"
-        ,
-        "rotation": "0.0 0.707107 -0.707107 1.7702e-07"
-      }
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_st_loft5.collider"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_suelo"
-      ,
-      "transform":
-      {
-        "pos": "-10.9078 0.0 8.58285"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_suelo.collider"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_torre_01"
-      ,
-      "transform":
-      {
-        "pos": "14.4097 13.0 70.6579"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.5 6.0 2.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_torre_002"
-      ,
-      "transform":
-      {
-        "pos": "26.6532 -0.0565097 70.6579"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.5 12.5316 2.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_torre_003"
-      ,
-      "transform":
-      {
-        "pos": "26.2217 -0.0565065 145.236"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.5 12.5316 2.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_torre_004"
-      ,
-      "transform":
-      {
-        "pos": "-48.2915 -0.0565065 145.236"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.5 12.5316 2.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_torre_005"
-      ,
-      "transform":
-      {
-        "pos": "6.53996 12.9875 145.236"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.5 10.0 2.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_torre_006"
-      ,
-      "transform":
-      {
-        "pos": "-28.599 12.9875 145.236"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.5 10.0 2.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_torre_007"
-      ,
-      "transform":
-      {
-        "pos": "-48.2978 -0.0565097 70.7674"
-        ,
-        "rotation": "0.0 -0.703504 0.0 -0.710691"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.5 12.5316 2.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_torre_008"
-      ,
-      "transform":
-      {
-        "pos": "-36.0549 13.0 70.8918"
-        ,
-        "rotation": "0.0 -0.703504 0.0 -0.710691"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.5 6.0 2.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_tubo"
-      ,
-      "transform":
-      {
-        "pos": "-20.2021 -8.35074 -12.4987"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_tubo.collider"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Sphere001"
-      ,
-      "transform":
-      {
-        "pos": "-28.4804 29.0609 -42.1115"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "sphere"
-        ,
-        "radius": 1.1
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Sphere002"
-      ,
-      "transform":
-      {
-        "pos": "6.61945 29.0609 -42.1115"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "sphere"
-        ,
-        "radius": 1.1
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Sphere003"
-      ,
-      "transform":
-      {
-        "pos": "14.7964 30.573 -5.38537"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "sphere"
-        ,
-        "radius": 1.8
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Sphere004"
-      ,
-      "transform":
-      {
-        "pos": "-36.5147 30.573 -5.38537"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "sphere"
-        ,
-        "radius": 1.8
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "torre_009"
-      ,
-      "transform":
-      {
-        "pos": "20.305 -0.0565097 70.6579"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.5 10.5265 3.625"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "torre_010"
-      ,
-      "transform":
-      {
-        "pos": "16.1801 -0.0565065 145.364"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.5 10.5265 12.2768"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "torre_011"
-      ,
-      "transform":
-      {
-        "pos": "-36.2534 -0.0565065 145.364"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.5 10.5265 10.5009"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "torre_012"
-      ,
-      "transform":
-      {
-        "pos": "-42.1324 -0.0565097 70.6579"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.5 10.5265 3.625"
-      }
-    }
-  },
-	  {
-    "entity":
-    {
-      "name": "collider_edificio_inicio_bajo010"
-      ,
-      "transform":
-      {
-        "pos": "7.71338 12.0127 -5.00957"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "3.0 0.5 4.5"
-      }
-    }
-  },
-  {
-    "entity":
-    {
-      "name": "collider_victory"
-      ,
-      "transform":
-      {
-        "pos": "-11.0 0 252.24"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box",
-		"is_trigger" : true,
-        "size": "5 5 25"
-      },
-	  "tags" : ["victory_trigger"]
-    }
-  }
+				"size": "30.0 1.68455 0.1"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_st_loft1",
+			"transform": {
+				"pos": "-10.7261 4.97411 161.64",
+				"rotation": "0.0 0.707107 -0.707107 1.7702e-07"
+			},
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/collider_st_loft1.collider"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_st_loft2",
+			"transform": {
+				"pos": "-10.7261 4.97411 180.729",
+				"rotation": "0.0 0.707107 -0.707107 1.7702e-07"
+			},
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/collider_st_loft2.collider"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_st_loft3",
+			"transform": {
+				"pos": "-10.7261 4.97409 199.817",
+				"rotation": "0.0 0.707107 -0.707107 1.7702e-07"
+			},
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/collider_st_loft3.collider"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_st_loft4",
+			"transform": {
+				"pos": "-10.7261 4.97409 218.906",
+				"rotation": "0.0 0.707107 -0.707107 1.7702e-07"
+			},
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/collider_st_loft4.collider"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_st_loft5",
+			"transform": {
+				"pos": "-10.7261 4.97409 237.995",
+				"rotation": "0.0 0.707107 -0.707107 1.7702e-07"
+			},
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/collider_st_loft5.collider"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_suelo",
+			"transform": {
+				"pos": "-10.9078 0.0 8.58285",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/collider_suelo.collider"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_torre_01",
+			"transform": {
+				"pos": "14.4097 13.0 70.6579",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.5 6.0 2.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_torre_002",
+			"transform": {
+				"pos": "26.6532 -0.0565097 70.6579",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.5 12.5316 2.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_torre_003",
+			"transform": {
+				"pos": "26.2217 -0.0565065 145.236",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.5 12.5316 2.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_torre_004",
+			"transform": {
+				"pos": "-48.2915 -0.0565065 145.236",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.5 12.5316 2.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_torre_005",
+			"transform": {
+				"pos": "6.53996 12.9875 145.236",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.5 10.0 2.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_torre_006",
+			"transform": {
+				"pos": "-28.599 12.9875 145.236",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.5 10.0 2.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_torre_007",
+			"transform": {
+				"pos": "-48.2978 -0.0565097 70.7674",
+				"rotation": "0.0 -0.703504 0.0 -0.710691"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.5 12.5316 2.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_torre_008",
+			"transform": {
+				"pos": "-36.0549 13.0 70.8918",
+				"rotation": "0.0 -0.703504 0.0 -0.710691"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.5 6.0 2.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_tubo",
+			"transform": {
+				"pos": "-20.2021 -8.35074 -12.4987",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/collider_tubo.collider"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Sphere001",
+			"transform": {
+				"pos": "-28.4804 29.0609 -42.1115",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "sphere",
+				"radius": 1.1
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Sphere002",
+			"transform": {
+				"pos": "6.61945 29.0609 -42.1115",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "sphere",
+				"radius": 1.1
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Sphere003",
+			"transform": {
+				"pos": "14.7964 30.573 -5.38537",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "sphere",
+				"radius": 1.8
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Sphere004",
+			"transform": {
+				"pos": "-36.5147 30.573 -5.38537",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "sphere",
+				"radius": 1.8
+			}
+		}
+	}, {
+		"entity": {
+			"name": "torre_009",
+			"transform": {
+				"pos": "20.305 -0.0565097 70.6579",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.5 10.5265 3.625"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "torre_010",
+			"transform": {
+				"pos": "16.1801 -0.0565065 145.364",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.5 10.5265 12.2768"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "torre_011",
+			"transform": {
+				"pos": "-36.2534 -0.0565065 145.364",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.5 10.5265 10.5009"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "torre_012",
+			"transform": {
+				"pos": "-42.1324 -0.0565097 70.6579",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "2.5 10.5265 3.625"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_edificio_inicio_bajo010",
+			"transform": {
+				"pos": "7.71338 12.0127 -5.00957",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "3.0 0.5 4.5"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "collider_victory",
+			"transform": {
+				"pos": "-11.0 0 252.24",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"is_trigger": true,
+				"size": "5 5 25"
+			},
+			"tags": ["victory_trigger"]
+		}
+	}
 ]

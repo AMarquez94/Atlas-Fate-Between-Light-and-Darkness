@@ -45,6 +45,7 @@
 #define RO_METALLIC     4
 #define RO_WORLD_POS    5
 #define RO_DEPTH_LINEAR 6
+#define RO_AO			7
 
 // -------------------------------------------------
 #define MAX_SUPPORTED_BONES        128
@@ -74,6 +75,7 @@ CB_DEF(CCteCamera, CB_CAMERA)   // Generates the b0
 	MAT44 camera_proj;
 	MAT44 camera_view_proj;
 	MAT44 camera_screen_to_world;
+	MAT44 camera_proj_with_offset;      // Used by ao
 	VEC3  camera_pos;
 	float camera_dummy1;
 	VEC3  camera_front;

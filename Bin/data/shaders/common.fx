@@ -10,7 +10,6 @@ Texture2D    txRoughness      SLOT(TS_ROUGHNESS);
 Texture2D    txEmissive       SLOT(TS_EMISSIVE);
 Texture2D    txHeight         SLOT(TS_HEIGHT);
 Texture2D    txNoiseMap       SLOT(TS_NOISE_MAP);
-Texture2D    txAO             SLOT(TS_DEFERRED_AO);
 
 // from the light and env
 Texture2D    txLightProjector SLOT(TS_LIGHT_PROJECTOR);

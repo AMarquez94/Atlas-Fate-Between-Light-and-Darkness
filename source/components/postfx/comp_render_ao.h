@@ -18,9 +18,9 @@ class TCompRenderAO : public TCompBase {
 	const CRenderMesh*      mesh = nullptr;
 	bool                    enabled = true;
 	float                   amount = 1.f;
-	float                   radius = 6.f;
-	float                   zrange_discard = 0.02f;
-	float                   amount_spreading = 0.85f;
+	float                   radius = 0.09f;
+	float                   zrange_discard = 0.100f;
+	float                   amount_spreading = 0.96f;
 	int                     xres = 0;
 	int                     yres = 0;
 
