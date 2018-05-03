@@ -629,15 +629,21 @@ void TCompTempPlayerController::updateStamina(float dt) {
 /* Attack state, kills the closest enemy if true*/
 void TCompTempPlayerController::attackState(float dt) {
 
-	CHandle enemy = closestEnemyToStun();
+  if (attackTimer > 0.7f) {   //TODO: Remove this. Only a fix for milestone 2
+    CHandle enemy = closestEnemyToStun();
 
-	if (enemy.isValid()) {
-		TMsgEnemyStunned msg;
-		msg.h_sender = CHandle(this).getOwner();
-		enemy.sendMsg(msg);
-	}
+    if (enemy.isValid()) {
+      TMsgEnemyStunned msg;
+      msg.h_sender = CHandle(this).getOwner();
+      enemy.sendMsg(msg);
+    }
 
-	state = (actionhandler)&TCompTempPlayerController::idleState;
+    attackTimer = 0.f;
+    state = (actionhandler)&TCompTempPlayerController::idleState;
+  }
+  else {
+    attackTimer += dt;
+  }
 }
 
 /* Attack state, kills the closest enemy if true*/
