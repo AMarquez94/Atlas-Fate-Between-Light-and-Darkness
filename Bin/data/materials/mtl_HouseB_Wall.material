@@ -1,0 +1,16 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/New_Graph_basecolor.dds"
+    ,
+    "metallic": "data/textures/New_Graph_metallic.dds"
+    ,
+    "roughness": "data/textures/New_Graph_roughness.dds"
+    ,
+    "normal": "data/textures/New_Graph_normal.dds"
+    ,
+    "height": "data/textures/New_Graph_height.dds"
+  }
+}

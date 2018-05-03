@@ -1,0 +1,10 @@
+{
+	"shadows": true,
+	"textures": {
+		"albedo": "data/textures/Muro_base_basecolor.dds",
+		"roughness": "data/textures/Muro_base_roughness.dds",
+		"normal": "data/textures/Muro_base_normal.dds",
+		"metallic": "data/textures/Muro_base_metallic.dds",
+		"height": "data/textures/Muro_base_height.dds"
+	}
+}

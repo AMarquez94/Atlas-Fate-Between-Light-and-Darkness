@@ -87,7 +87,7 @@
 				"range": 9.2116,
 				"angle": 75,
 				"color": "1.0 1.0 1.0 1.0",
-				"intensity": -1,
+				"intensity": 1,
 				"inner_cut": 70,
 				"outer_cut": 75,
 				"shadows": true,
@@ -95,8 +95,7 @@
 				"casts_shadows": true,
 				"shadows_step": 1.0,
 				"shadows_resolution": 512,
-				"shadows_fmt": "R32_TYPELESS",
-				"projector" : "data/textures/light_cookie.dds"
+				"shadows_fmt": "R32_TYPELESS"
 			},
 			"collider": {
 				"shape": "convex",

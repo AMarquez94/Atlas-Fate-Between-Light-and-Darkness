@@ -77,7 +77,7 @@
 			]
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "st_corner_houses",
 			"transform": {
 				"pos": "7.79907 0.0 23.7455",
@@ -191,7 +191,7 @@
 			]
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "st_houses_middle",
 			"transform": {
 				"pos": "2.55492 5.0 1.23688",
@@ -205,25 +205,6 @@
 					"materials":
 					[
 						"data/materials/mtl_default_casas_medio.material"
-					]
-				}
-			]
-		}
-	}, {
-		"entity": {
-			"name": "st_houses_start",
-			"transform": {
-				"pos": "-10.9313 4.03536 -23.6423",
-				"rotation": "0.0 0.0 0.0 -1.0"
-			},
-			"abs_aabb": true,
-			"local_aabb": true,
-			"render":
-			[{
-					"mesh": "data/meshes/st_houses_start.mesh",
-					"materials":
-					[
-						"data/materials/mtl_houses_start.material"
 					]
 				}
 			]

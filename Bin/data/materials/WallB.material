@@ -1,0 +1,8 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/Muro_base_AO.dds"
+  }
+}
