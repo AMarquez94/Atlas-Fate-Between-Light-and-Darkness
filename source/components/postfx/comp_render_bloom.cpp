@@ -9,6 +9,15 @@ DECL_OBJ_MANAGER("render_bloom", TCompRenderBloom);
 // ---------------------
 void TCompRenderBloom::debugInMenu() {
 
+	ImGui::DragFloat("global_emissive_distance", &emissive_distance, 0.01f, 0.1f, 8.0f);
+	ImGui::InputFloat("Emissive Weights Center", &emissive_weights.x);
+	ImGui::InputFloat("Emissive Weights 1st", &emissive_weights.y);
+	ImGui::InputFloat("Emissive Weights 2nd", &emissive_weights.z);
+	ImGui::InputFloat("Emissive Weights 3rd", &emissive_weights.w);
+	ImGui::InputFloat("Emissive Distance 2nd Tap", &emissive_factors.x);
+	ImGui::InputFloat("Emissive Distance 3rd Tap", &emissive_factors.y);
+	ImGui::InputFloat("Emissive Distance 4th Tap", &emissive_factors.z);
+
 	TCompRenderBlur::debugInMenu();
 }
 
@@ -25,11 +34,30 @@ void TCompRenderBloom::load(const json& j, TEntityParseContext& ctx) {
 	bool is_ok = rt_output->createRT(rt_name, xres, yres, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
 	assert(is_ok);
 
+	int nsteps = j.value("max_steps", 1);
+	static int g_emissive_counter = 1;
+	for (int i = 0; i < nsteps; ++i) {
+		CBlurStep* s = new CBlurStep;
+
+		char blur_name[64];
+		sprintf(blur_name, "Emissive_Blur_%02d", g_emissive_counter);
+		g_emissive_counter++;
+
+		is_ok &= s->create(blur_name, xres, yres);
+		assert(is_ok);
+		emissive_steps.push_back(s);
+		xres /= 2;
+		yres /= 2;
+	}
+
+	emissive_distance = 1.5f;
+	emissive_weights = VEC4(4, 8, 16, 32);
+	emissive_factors = VEC4(1, 2, 3, 4);
 	tech = Resources.get("bloom.tech")->as<CRenderTechnique>();
 	mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 }
 
-CTexture* TCompRenderBloom::apply( CTexture* in_texture, CTexture* in_light_texture) {
+CTexture* TCompRenderBloom::apply( CTexture* in_texture, CTexture* in_light_texture, CTexture * emissive) {
 
   if (!enabled)
     return in_texture;
@@ -45,9 +73,16 @@ CTexture* TCompRenderBloom::apply( CTexture* in_texture, CTexture* in_light_text
 	  in_light_texture = output;
   }
 
+  CTexture* output2 = emissive;
+  for (auto s : emissive_steps) {
+	  output2 = s->apply(emissive, emissive_distance, emissive_factors, emissive_weights);
+	  emissive = output2;
+  }
+
   rt_output->activateRT();
   in_texture->activate(TS_ALBEDO);
-  output->activate(TS_EMISSIVE);
+  output->activate(TS_LIGHTMAP);
+  output2->activate(TS_EMISSIVE);
 
   tech->activate();
   mesh->activateAndRender();

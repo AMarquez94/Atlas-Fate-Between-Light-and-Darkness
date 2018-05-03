@@ -9,6 +9,7 @@
 #include "components/object_controller/comp_cone_of_light.h"
 #include "components/physics/comp_rigidbody.h"
 #include "components/physics/comp_collider.h"
+#include "components/lighting/comp_emission_controller.h"
 #include "physics/physics_collider.h"
 #include "render/render_utils.h"
 #include "components/ia/comp_patrol_animator.h"
@@ -64,7 +65,11 @@ void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 	}
 	startLightsOn = j.value("startLightsOn", false);
 	currentWaypoint = 0;
-	/* TODO: ¿Init node? */
+
+  patrolColor.colorNormal = j.count("colorNormal") ? loadVEC4(j["colorNormal"]) : VEC4(1, 1, 1, 1);
+  patrolColor.colorSuspect = j.count("colorSuspect") ? loadVEC4(j["colorSuspect"]) : VEC4(1, 1, 0, 1);
+  patrolColor.colorAlert = j.count("colorAlert") ? loadVEC4(j["colorAlert"]) : VEC4(1, 0, 0, 1);
+  patrolColor.colorDead = j.count("colorDead") ? loadVEC4(j["colorDead"]) : VEC4(0, 0, 0, 0);
 }
 
 void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
@@ -85,6 +90,9 @@ void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
 	if (startLightsOn) {
 		turnOnLight();
 	}
+
+  //TCompEmissionController *eController = get<TCompEmissionController>();
+  //eController->blend(patrolColor.colorNormal, 0.001f);
 }
 
 void TCompAIPatrol::onMsgPlayerDead(const TMsgPlayerDead& msg) {
@@ -101,8 +109,9 @@ void TCompAIPatrol::onMsgPatrolStunned(const TMsgEnemyStunned & msg)
 {
 	hasBeenStunned = true;
 
-	TCompRender *cRender = get<TCompRender>();
-	cRender->color = VEC4(1, 1, 1, 1);
+  TCompEmissionController * e_controller = get<TCompEmissionController>();
+  e_controller->blend(patrolColor.colorDead, 0.1f);
+
 	TCompTransform *mypos = get<TCompTransform>();
 	float y, p, r;
 	mypos->getYawPitchRoll(&y, &p, &r);
@@ -127,8 +136,8 @@ void TCompAIPatrol::onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged & msg)
 {
 	hasBeenShadowMerged = true;
 
-	TCompRender *cRender = get<TCompRender>();
-	cRender->color = VEC4(0, 0, 0, 0);
+  TCompEmissionController * e_controller = get<TCompEmissionController>();
+  e_controller->blend(patrolColor.colorDead, 0.1f);
 
 	/* Stop telling the other patrols that I am stunned */
 	bool found = false;
@@ -339,8 +348,8 @@ BTNode::ERes TCompAIPatrol::actionEndAlert(float dt)
 
 	turnOffLight();
 	suspectO_Meter = 0.f;
-	TCompRender *cRender = get<TCompRender>();
-	cRender->color = VEC4(1, 1, 1, 1);
+  TCompEmissionController * e_controller = get<TCompEmissionController>();
+  e_controller->blend(patrolColor.colorNormal, 0.1f);
 	lastPlayerKnownPos = VEC3::Zero;
 	alarmEnded = true;
 	return BTNode::ERes::LEAVE;
@@ -458,7 +467,12 @@ BTNode::ERes TCompAIPatrol::actionWaitInWpt(float dt)
 	else {
 		timerWaitingInWpt += dt;
 		TCompTransform *mypos = get<TCompTransform>();
-		rotateTowardsVec(mypos->getPosition() + getWaypoint().lookAt, dt, rotationSpeed);
+		if (rotateTowardsVec(mypos->getPosition() + getWaypoint().lookAt, dt, rotationSpeed)) {
+			myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+		}
+		else {
+			myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
+		}
 		return BTNode::ERes::STAY;
 	}
 }
@@ -490,8 +504,8 @@ BTNode::ERes TCompAIPatrol::actionSuspect(float dt)
 	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
 	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
 
-	TCompRender *cRender = get<TCompRender>();
-	cRender->color = VEC4(255, 255, 0, 1);
+  TCompEmissionController * e_controller = get<TCompEmissionController>();
+  e_controller->blend(patrolColor.colorSuspect, 0.1f);
 	// chase
 	TCompTransform *mypos = get<TCompTransform>();
 	CEntity *player = getEntityByName(entityToChase);
@@ -514,7 +528,7 @@ BTNode::ERes TCompAIPatrol::actionSuspect(float dt)
 
 	if (suspectO_Meter <= 0.f || suspectO_Meter >= 1.f) {
 		if (suspectO_Meter <= 0) {
-			cRender->color = VEC4(1, 1, 1, 1);
+      e_controller->blend(patrolColor.colorNormal, 0.1f);
 		}
 		return BTNode::ERes::LEAVE;
 	}
@@ -541,9 +555,9 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 	
 	CEntity *player = (CEntity *)getEntityByName(entityToChase);
 	TCompTempPlayerController *pController = player->get<TCompTempPlayerController>();
-	TCompRender *cRender = get<TCompRender>();
-	
-	cRender->color = VEC4(255, 0, 0, 1);
+ 
+  TCompEmissionController *eController = get<TCompEmissionController>();
+  eController->blend(patrolColor.colorAlert, 0.1f);
 
 	if (!pController->isInhibited) {
 		//Animation To Change
@@ -623,8 +637,8 @@ BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
 
 	float distToPlayer = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
 	if (!isPlayerInFov(entityToChase, fov, maxChaseDistance) || distToPlayer >= maxChaseDistance + 0.5f) {
-		TCompRender * cRender = get<TCompRender>();
-		cRender->color = VEC4(255, 255, 0, 1);
+    TCompEmissionController *eController = get<TCompEmissionController>();
+    eController->blend(patrolColor.colorSuspect, 0.1f);
 		return BTNode::ERes::LEAVE;
 	}
 	else if (distToPlayer < distToAttack) {
@@ -658,7 +672,7 @@ BTNode::ERes TCompAIPatrol::actionRotateToNoiseSource(float dt)
 
 	//Animation To Change
 	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
 
 	TCompTransform *myPos = get<TCompTransform>();
 	bool isInObjective = rotateTowardsVec(noiseSource, rotationSpeed, dt);
@@ -725,8 +739,9 @@ BTNode::ERes TCompAIPatrol::actionLookForPlayer(float dt)
 
 	if (amountRotated >= maxRotationSeekingPlayer * 3) {
 		suspectO_Meter = 0.f;
-		TCompRender * cRender = get<TCompRender>();
-		cRender->color = VEC4(1, 1, 1, 1);
+
+    TCompEmissionController *eController = get<TCompEmissionController>();
+    eController->blend(patrolColor.colorNormal, 0.1f);
 		amountRotated = 0.f;
 		return BTNode::ERes::LEAVE;
 	}
@@ -988,6 +1003,7 @@ bool TCompAIPatrol::rotateTowardsVec(VEC3 objective, float rotationSpeed, float 
 	TCompTransform *mypos = get<TCompTransform>();
 	float y, r, p;
 	mypos->getYawPitchRoll(&y, &p, &r);
+
 	float deltaYaw = mypos->getDeltaYawToAimTo(objective);
 	if (fabsf(deltaYaw) <= rotationSpeed * dt) {
 		y += deltaYaw;
@@ -1064,14 +1080,14 @@ bool TCompAIPatrol::isEntityHidden(CHandle hEntity)
 void TCompAIPatrol::turnOnLight()
 {
 	TCompGroup* cGroup = get<TCompGroup>();
-	CEntity* eCone = cGroup->getHandleByName("Cone of Light");
+	CEntity* eCone = cGroup->getHandleByName("FlashLight");
 	TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
 	cConeController->turnOnLight();
 }
 
 void TCompAIPatrol::turnOffLight() {
 	TCompGroup* cGroup = get<TCompGroup>();
-	CEntity* eCone = cGroup->getHandleByName("Cone of Light");
+	CEntity* eCone = cGroup->getHandleByName("FlashLight");
 	TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
 	cConeController->turnOffLight();
 }

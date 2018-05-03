@@ -13,6 +13,10 @@ class TCompRenderBloom : public TCompRenderBlur {
 	CRenderToTexture*       rt_output = nullptr;
 	const CRenderTechnique* tech = nullptr;
 	const CRenderMesh*      mesh = nullptr;
+	std::vector< CBlurStep* > emissive_steps;
+	VEC4 emissive_weights = VEC4(2, 4, 8, 16);
+	VEC4 emissive_factors = VEC4(1, 1, 1, 1);
+	float emissive_distance = 1.5f;
 
 	int                     xres = 0;
 	int                     yres = 0;
@@ -20,7 +24,7 @@ class TCompRenderBloom : public TCompRenderBlur {
 public:
 	void load(const json& j, TEntityParseContext& ctx);
 	void debugInMenu();
-	CTexture* apply(CTexture* in_texture, CTexture* in_light_texture);
+	CTexture* apply(CTexture* in_texture, CTexture* in_light_texture, CTexture * emissive);
 
 };
 

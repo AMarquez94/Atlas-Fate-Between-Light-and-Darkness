@@ -1,130 +1,101 @@
-[
-	{
+[{
 		"entity": {
 			"name": "The Player",
 			"transform": {
-        "pos": "-20 0 -30"
+				"pos": "14 0 84"
 			},
-			"render": [
-				{
-		          "mesh": "data/skeletons/player/body.mesh"
-		          ,
-		          "materials":
-		          [
-		            "data/skeletons/paladin/paladin.material"
-		          ]
-		        },
-		        {
-		          "mesh": "data/skeletons/player/bolsa_cinturon.mesh"
-		          ,
-		          "materials":
-		          [
-		            "data/skeletons/paladin/paladin.material"
-		          ]
-		        },
-		        {
-		          "mesh": "data/skeletons/player/buff_exterior.mesh"
-		          ,
-		          "materials":
-		          [
-		            "data/skeletons/paladin/paladin.material"
-		          ]
-		        },
-		        {
-		          "mesh": "data/skeletons/player/capsula_energia.mesh"
-		          ,
-		          "materials":
-		          [
-		            "data/skeletons/paladin/paladin.material"
-		          ]
-		        },
-		        {
-		          "mesh": "data/skeletons/player/cinturon_capsula1.mesh"
-		          ,
-		          "materials":
-		          [
-		            "data/skeletons/paladin/paladin.material"
-		          ]
-		        },
-		        {
-		          "mesh": "data/skeletons/player/cinturon_capsula2.mesh"
-		          ,
-		          "materials":
-		          [
-		            "data/skeletons/paladin/paladin.material"
-		          ]
-		        },
-		        {
-		          "mesh": "data/skeletons/player/cinturon_capsula3.mesh"
-		          ,
-		          "materials":
-		          [
-		            "data/skeletons/paladin/paladin.material"
-		          ]
-		        },
-		        {
-		          "mesh": "data/skeletons/player/cinturon_capsula4.mesh"
-		          ,
-		          "materials":
-		          [
-		            "data/skeletons/paladin/paladin.material"
-		          ]
-		        },
-		        {
-		          "mesh": "data/skeletons/player/cruzado_capsula1.mesh"
-		          ,
-		          "materials":
-		          [
-		            "data/skeletons/paladin/paladin.material"
-		          ]
-		        },
-		        {
-		          "mesh": "data/skeletons/player/cruzado_capsula2.mesh"
-		          ,
-		          "materials":
-		          [
-		            "data/skeletons/paladin/paladin.material"
-		          ]
-		        },
-		        {
-		          "mesh": "data/skeletons/player/cruzado_capsula3.mesh"
-		          ,
-		          "materials":
-		          [
-		            "data/skeletons/paladin/paladin.material"
-		          ]
-		        },
-		        {
-		          "mesh": "data/skeletons/player/hood.mesh"
-		          ,
-		          "materials":
-		          [
-		            "data/skeletons/paladin/paladin.material"
-		          ]
-		        },
-		        {
-		          "mesh": "data/skeletons/player/tira_L.mesh"
-		          ,
-		          "materials":
-		          [
-		            "data/skeletons/paladin/paladin.material"
-		          ]
-		        },
-		        {
-		          "mesh": "data/skeletons/player/tira_R.mesh"
-		          ,
-		          "materials":
-		          [
-		            "data/skeletons/paladin/paladin.material"
-		          ]
-		        }
-	    	]
-			,
+			"render": [{
+					"mesh": "data/skeletons/player/body.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/bolsa_cinturon.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/buff_exterior.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/capsula_energia.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula1.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula2.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula3.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula4.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cruzado_capsula1.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cruzado_capsula2.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cruzado_capsula3.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/hood.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/tira_L.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/tira_R.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}
+			],
 
-	      	"skeleton": {
-	        "skeleton": "data/skeletons/player/player.skeleton"
-	      	},
-	      	"player_animator":true,
+			"skeleton": {
+				"skeleton": "data/skeletons/player/player.skeleton",
+				"scale": 1.0
+			},
+			"player_animator": true,
 			"collider": {
 				"shape": "capsule",
 				"radius": 0.3,
@@ -141,46 +112,48 @@
 				"file": "data/fsm/player.fsm"
 			},
 			"player_input": {},
-      "player_tempcontroller": {
-        "mergeAngle": 0.45,
-        "maxFallingTime": 0.8,
-		"hardFallingTime" : 0.5,
-        "maxFallingDistance": 6,
-        "maxAttackDistance": 2,
-        "minStamina": 0,
-        "maxStamina": 100,
-        "incrStamina": 15,
-        "decrStaticStamina": 0.75,
-        "decrStaminaHorizontal": 12.5,
-        "decrStaminaVertical": 17.5,
-        "minStaminaChange": 15,
-        "auxCamera": "SMCameraAux",
-        "timesRemoveInhibitorKeyPressed": 5
-      },
+			"player_tempcontroller": {
+				"mergeAngle": 0.45,
+				"maxFallingTime": 0.8,
+				"hardFallingTime": 0.5,
+				"maxFallingDistance": 6,
+				"maxAttackDistance": 2,
+				"minStamina": 0,
+				"maxStamina": 100,
+				"incrStamina": 15,
+				"decrStaticStamina": 0.75,
+				"decrStaminaHorizontal": 12.5,
+				"decrStaminaVertical": 17.5,
+				"minStaminaChange": 15,
+				"auxCamera": "SMCameraAux",
+				"timesRemoveInhibitorKeyPressed": 5
+			},
+			"emission_controller": {
+				"initial" : "1.0 1.0 1.0 1.0"
+			},
 			"tags":
 			[
 				"player"
 			]
 		}
-	},
-  {
-    "entity": {
-      "name": "Noise Emitter",
-	  "hierarchy": {
-        "parent": "The Player"
-      },
-	  "transform": {},
-	  "collider": {
-		"shape": "sphere",
-		"radius": 0.01,
-		"is_trigger": true,
-		"group": "enemy"
-	  },
-		"rigidbody": {
-			"is_controller": false,
-			"is_gravity": false
-		},
-		"noise_emitter": {}
-    }
-  }
+	}, {
+		"entity": {
+			"name": "Noise Emitter",
+			"hierarchy": {
+				"parent": "The Player"
+			},
+			"transform": {},
+			"collider": {
+				"shape": "sphere",
+				"radius": 0.01,
+				"is_trigger": true,
+				"group": "enemy"
+			},
+			"rigidbody": {
+				"is_controller": false,
+				"is_gravity": false
+			},
+			"noise_emitter": {}
+		}
+	}
 ]

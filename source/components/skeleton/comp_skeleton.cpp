@@ -50,6 +50,8 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
   CalLoader::setLoadingMode(LOADER_ROTATE_X_AXIS | LOADER_INVERT_V_COORD);
 
   std::string skel_name= j.value("skeleton", "");
+  float scaleFactor = j.value("scale", 1.0f);
+
   assert(!skel_name.empty());
   auto res_skel = Resources.get(skel_name)->as< CGameCoreSkeleton >();
   CalCoreModel* core_model = const_cast<CGameCoreSkeleton*>(res_skel);
@@ -68,6 +70,9 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
 
   actualCycleAnimId[0] = 0;
   model->getMixer()->blendCycle(actualCycleAnimId[0], 1.f, 0.f);
+
+  cb_bones.BonesScale = scaleFactor;
+  model->getCoreModel()->scale(scaleFactor);
 
   // Do a time zero update just to have the bones in a correct place
   model->update(0.f);
@@ -111,9 +116,8 @@ void TCompSkeleton::debugInMenu() {
 
   ImGui::DragFloat("Scale", &scale, 0.01f, 0, 5.f);
   if (ImGui::SmallButton("Scale Model")) {
-	  //model->getSkeleton()->getCoreSkeleton()->scale(scale);
-	  //model->getCoreModel()->scale(scale);
-
+	  model->getSkeleton()->getCoreSkeleton()->scale(scale);
+	  model->getCoreModel()->scale(scale);
   }
 
   if(core_anim)
@@ -233,8 +237,8 @@ void TCompSkeleton::renderDebug() {
   int nrLines = model->getSkeleton()->getBoneLines(&lines[0][0].x);
   TCompTransform* transform = get<TCompTransform>();
   float scale = transform->getScale();
-  for (int currLine = 0; currLine < nrLines; currLine++)
-    renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale, VEC4(1, 1, 1, 1));
+ /* for (int currLine = 0; currLine < nrLines; currLine++)
+    renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale, VEC4(1, 1, 1, 1));*/
 }
 
 void TCompSkeleton::changeCyclicAnimation(int anim1Id, float speed, int anim2Id, float weight, float in_delay, float out_delay) {

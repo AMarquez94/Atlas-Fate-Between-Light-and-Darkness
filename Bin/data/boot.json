@@ -4,13 +4,12 @@
 		"data/scenes/enemy.scene",
 		"data/scenes/sp_dynamic_lights.scene",
 		"data/scenes/milestone2_map.scene",
+		"data/scenes/milestone2_map_houses_t1.scene",
 		"data/scenes/milestone2_map_lights.scene",
 		"data/scenes/milestone2_map_colliders.scene",
 		"data/scenes/capsules.scene",
 		"data/scenes/camera.scene",
-		"data/scenes/water_plane.scene",
-		"data/scenes/skeleton_patrol.scene",
-		"data/scenes/skeleton_demo.scene"
+		"data/scenes/water_plane.scene"
 	],
 	"light_scenes_test" : [
 		"data/scenes/player_fsm.scene",

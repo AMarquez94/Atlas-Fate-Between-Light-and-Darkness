@@ -22,15 +22,14 @@ private:
 	const Input::TButton& btVertical = EngineInput["Vertical"];
 	const Input::TButton& btRHorizontal = EngineInput["MouseX"];
 	const Input::TButton& btRVertical = EngineInput["MouseY"];
-	const Input::TButton& btDebugPause = EngineInput["btDebugPause"];
 
-	bool pause;
 	bool active;
 
 	void onMsgCameraActive(const TMsgCameraActivated &msg);
 	void onMsgCameraFullActive(const TMsgCameraFullyActivated &msg);
 	void onMsgCameraDeprecated(const TMsgCameraDeprecated &msg);
 	void onMsgActivateMyself(const TMsgSetCameraActive &msg);
+  void onMsgScenePaused(const TMsgScenePaused &msg);
 
 	void activateCamera();
 

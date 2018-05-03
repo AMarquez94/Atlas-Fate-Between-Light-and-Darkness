@@ -29,7 +29,10 @@ public:
 	void onFileChanged(const std::string& filename) override;
 
 	bool castsShadows() const { return cast_shadows; }
-	void changeEmissionColor(VEC4 new_color) { cb_material.color_emission = new_color; }
+	void changeEmissionColor(const VEC4 & new_color) { 
+		cb_material.color_emission = new_color;
+		cb_material.updateGPU();
+	}
 
 protected:
 

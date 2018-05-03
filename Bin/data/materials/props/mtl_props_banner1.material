@@ -1,0 +1,12 @@
+{
+  "textures":
+  {
+    "albedo": "data/textures/props/mtl_prop_banner1_basecolor.dds",
+		"normal": "data/textures/props/mtl_prop_banner1_normal.dds",
+    "metallic": "data/textures/props/mtl_prop_banner1_metallic.dds",
+		"roughness": "data/textures/props/mtl_prop_banner1_roughness.dds",
+		"emissive": "data/textures/props/mtl_prop_banner1_emissive.dds"
+  },
+	"self_color" : "1.0 0.0 1.0 1.0",
+	"emission" : 12
+}

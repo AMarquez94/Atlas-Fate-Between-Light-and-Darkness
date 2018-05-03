@@ -1,0 +1,18 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_CasaBProps_alb.dds"
+    ,
+    "metallic": "data/textures/tx_CasaBProps_met.dds"
+    ,
+    "roughness": "data/textures/tx_CasaBProps_rgh.dds"
+    ,
+    "normal": "data/textures/tx_CasaBProps_nml.dds"
+    ,
+    "height": "data/textures/tx_CasaBProps_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_CasaBProps_emi.dds"
+  }
+}

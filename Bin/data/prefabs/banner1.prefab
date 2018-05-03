@@ -1,0 +1,39 @@
+[{
+		"entity": {
+			"name": "banner_prefab",
+			"transform": {
+				"pos": "0 0 0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "prop_banner1_mesh",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"render":
+			[{
+					"mesh": "data/meshes/props/prop_banner1.mesh",
+					"materials":
+					[
+						"data/materials/props/mtl_props_banner1.material"
+					]
+				}
+			]
+		}
+	}, {
+		"entity": {
+			"name": "prop_banner1_light",
+			"transform": {
+				"pos": "0 1.7 1"
+			},
+			"light_point": {
+				"intensity": 1,
+				"color": "1.0 0.0 1.0 1.0",
+				"radius": 3
+			}
+		}
+	}
+]

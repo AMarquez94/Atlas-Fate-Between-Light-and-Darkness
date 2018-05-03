@@ -41,5 +41,7 @@ public:
 	void generateShadowMap();
 	MAT44 getWorld();
 
+	void setColor(const VEC4 & new_color);
+
 	static void registerMsgs();
 };

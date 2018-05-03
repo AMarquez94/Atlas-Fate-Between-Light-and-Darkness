@@ -22,7 +22,6 @@ void TCompAuxCameraShadowMerge::debugInMenu()
 
 void TCompAuxCameraShadowMerge::load(const json& j, TEntityParseContext& ctx)
 {
-	pause = false;
 	active = false;
 
 	physx::PxFilterData pxFilterData;
@@ -39,6 +38,7 @@ void TCompAuxCameraShadowMerge::registerMsgs()
 	DECL_MSG(TCompAuxCameraShadowMerge, TMsgCameraFullyActivated, onMsgCameraFullActive);
 	DECL_MSG(TCompAuxCameraShadowMerge, TMsgSetCameraActive, onMsgCameraSetActive);
 	DECL_MSG(TCompAuxCameraShadowMerge, TMsgSetCameraCancelled, onMsgCameraSetCancelled);
+  DECL_MSG(TCompAuxCameraShadowMerge, TMsgScenePaused, onMsgScenePaused);
 }
 
 void TCompAuxCameraShadowMerge::onMsgCameraActive(const TMsgCameraActivated &msg)
@@ -146,10 +146,15 @@ void TCompAuxCameraShadowMerge::onMsgCameraSetCancelled(const TMsgSetCameraCance
 	}
 }
 
+void TCompAuxCameraShadowMerge::onMsgScenePaused(const TMsgScenePaused & msg)
+{
+  paused = msg.isPaused;
+}
+
 void TCompAuxCameraShadowMerge::update(float dt)
 {
 
-	if (!pause && active) {
+	if (!paused && active) {
 		if (!_h_target.isValid())
 			return;
 
@@ -187,10 +192,6 @@ void TCompAuxCameraShadowMerge::update(float dt)
 		float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
 		float current_fov = 70 + inputSpeed * 30; // Just doing some testing with the fov and speed
 		setPerspective(deg2rad(current_fov), 0.1f, 1000.f);
-	}
-
-	if (btDebugPause.getsPressed()) {
-		pause = !pause;
 	}
 }
 

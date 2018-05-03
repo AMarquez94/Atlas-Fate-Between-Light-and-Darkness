@@ -8,6 +8,7 @@ Texture2D    txNormal         SLOT(TS_NORMAL);
 Texture2D    txMetallic       SLOT(TS_METALLIC);
 Texture2D    txRoughness      SLOT(TS_ROUGHNESS);
 Texture2D    txEmissive       SLOT(TS_EMISSIVE);
+Texture2D    txHeight         SLOT(TS_HEIGHT);
 Texture2D    txNoiseMap       SLOT(TS_NOISE_MAP);
 
 // from the light and env
@@ -187,7 +188,11 @@ float4 projectColor(float3 wPos) {
 	float3 pos_in_light_homo_space = pos_in_light_proj_space.xyz / pos_in_light_proj_space.w; // -1..1
 
 	// Use these coords to access the projector texture of the light dir
-	float4 light_projector_color = txLightProjector.Sample(samBorderLinear, pos_in_light_homo_space.xy);
+	float2 t_uv = pos_in_light_homo_space.xy;
+	float distortionOffset = -global_world_time * 0.25;
+
+	float2 distort_uv = float2(t_uv.x + sin((t_uv.y + distortionOffset) * 20) * 0.05, t_uv.y + sin((t_uv.x + distortionOffset) * 20) * 0.05);
+	float4 light_projector_color = txLightProjector.Sample(samBorderLinear, distort_uv);
 
 	//if (pos_in_light_proj_space.z < 0.)
 		//light_projector_color = float4(0, 0, 0, 0);

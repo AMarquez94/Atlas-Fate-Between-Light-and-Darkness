@@ -10,6 +10,7 @@
 #include "geometry/angular.h"
 #include "components/physics/comp_rigidbody.h"
 #include "components/physics/comp_collider.h"
+#include "components/lighting/comp_emission_controller.h"
 #include "physics/physics_collider.h"
 #include "render/render_utils.h"
 #include "components/ia/comp_mimetic_animator.h"
@@ -30,6 +31,10 @@ void TCompAIMimetic::debugInMenu() {
       renderLine(navmeshPath[i], navmeshPath[i+1], VEC4(1,0,0,1));
     }
   }
+
+  ImGui::Text("SuspectO'meter:");
+  ImGui::SameLine();
+  ImGui::ProgressBar(suspectO_Meter);
 
 	ImGui::Text("Current state: %s", validState.c_str());
 }
@@ -147,17 +152,17 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 	fov = deg2rad(fovDeg);
 	startLightsOn = j.value("startLightsOn", false);
 	currentWaypoint = 0;
-	/* TODO: ¿Init node? */
+
+  mimeticColor.colorNormal = j.count("colorNormal") ? loadVEC4(j["colorNormal"]) : VEC4(1, 1, 1, 1);
+  mimeticColor.colorSuspect = j.count("colorSuspect") ? loadVEC4(j["colorSuspect"]) : VEC4(1, 1, 0, 1);
+  mimeticColor.colorAlert = j.count("colorAlert") ? loadVEC4(j["colorAlert"]) : VEC4(1, 0, 0, 1);
+  mimeticColor.colorDead = j.count("colorDead") ? loadVEC4(j["colorDead"]) : VEC4(0, 0, 0, 0);
 }
 
 void TCompAIMimetic::onMsgEntityCreated(const TMsgEntityCreated & msg)
 {
 	TCompName *tName = get<TCompName>();
 	name = tName->getName();
-
-	if (startLightsOn) {
-		turnOnLight();
-	}
 
 	TCompTransform *tTransform = get<TCompTransform>();
 	initialLookAt = tTransform->getFront();
@@ -177,14 +182,13 @@ void TCompAIMimetic::onMsgMimeticStunned(const TMsgEnemyStunned & msg)
 {
 	hasBeenStunned = true;
 
-	TCompRender *cRender = get<TCompRender>();
-	cRender->color = VEC4(1, 1, 1, 1);
+  TCompEmissionController *eController = get<TCompEmissionController>();
+  eController->blend(mimeticColor.colorDead, 0.1f);
 	TCompTransform *mypos = get<TCompTransform>();
 	float y, p, r;
 	mypos->getYawPitchRoll(&y, &p, &r);
 	p = p + deg2rad(89.f);
 	mypos->setYawPitchRoll(y, p, r);
-	turnOffLight();
 
 	TCompGroup* cGroup = get<TCompGroup>();
 	CEntity* eCone = cGroup->getHandleByName("Cone of Vision");
@@ -421,8 +425,8 @@ BTNode::ERes TCompAIMimetic::actionSuspect(float dt)
 	//Animation To Change
 	TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
 	myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::SUSPECTING);
-	TCompRender *cRender = get<TCompRender>();
-	cRender->color = VEC4(255, 255, 0, 1);
+  TCompEmissionController *eController = get<TCompEmissionController>();
+  eController->blend(mimeticColor.colorSuspect, 0.1f);
 	// chase
 	TCompTransform *mypos = get<TCompTransform>();
 	CEntity *player = getEntityByName(entityToChase);
@@ -432,9 +436,9 @@ BTNode::ERes TCompAIMimetic::actionSuspect(float dt)
 	float distanceToPlayer = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
 
 	if (distanceToPlayer <= autoChaseDistance && isPlayerInFov()) {
-		suspectO_Meter = 1.f;
-		cRender->color = VEC4(255, 0, 0, 1);
+    eController->blend(mimeticColor.colorAlert, 0.1f);
 		rotateTowardsVec(ppos->getPosition(), rotationSpeedObservation, dt);
+    suspectO_Meter = 1.f;
 	}
 	else if (distanceToPlayer <= maxChaseDistance && isPlayerInFov()) {
 		suspectO_Meter = Clamp(suspectO_Meter + dt * incrBaseSuspectO_Meter, 0.f, 1.f);							//TODO: increment more depending distance and noise
@@ -447,10 +451,10 @@ BTNode::ERes TCompAIMimetic::actionSuspect(float dt)
 	if (suspectO_Meter <= 0.f || suspectO_Meter >= 1.f) {
 		if (suspectO_Meter <= 0) {
 			isActive = false;
-			cRender->color = VEC4(1, 1, 1, 1);
+      eController->blend(mimeticColor.colorNormal, 0.1f);
 		}
 		else {
-			cRender->color = VEC4(255, 0, 0, 1);
+      eController->blend(mimeticColor.colorAlert, 0.1f);
 		}
 		return BTNode::ERes::LEAVE;
 	}
@@ -513,12 +517,12 @@ BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
 	TCompTransform *mypos = get<TCompTransform>();
 	CEntity *player = getEntityByName(entityToChase);
 	TCompTransform *ppos = player->get<TCompTransform>();
-	TCompRender * cRender = get<TCompRender>();
 
   hasHeardArtificialNoise = false;
   hasHeardNaturalNoise = false;
 
-	cRender->color = VEC4(255, 0, 0, 1);
+  TCompEmissionController *eController = get<TCompEmissionController>();
+  eController->blend(mimeticColor.colorAlert, 0.1f);
 
 	if (lastPlayerKnownPos != VEC3::Zero) {
 
@@ -534,7 +538,8 @@ BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
 
 	float distToPlayer = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
 	if (!isPlayerInFov() || distToPlayer >= maxChaseDistance + 0.5f) {
-		cRender->color = VEC4(255, 255, 0, 1);
+    TCompEmissionController *eController = get<TCompEmissionController>();
+    eController->blend(mimeticColor.colorSuspect, 0.1f);
 		TMsgMakeNoise msg;
 		msg.isArtificial = true;
 		msg.isNoise = false;
@@ -548,7 +553,13 @@ BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
 		}
 		return BTNode::ERes::LEAVE;
 	}
-	else {
+  else if (distToPlayer <= 1.3f) {
+
+    /* TODO: This fix is temporary */
+    rotateTowardsVec(ppos->getPosition(), rotationSpeedChase, dt);
+    return BTNode::ERes::STAY;
+
+  } else {
 
     VEC3 nextPos = navmeshPath.size() > 0 && navmeshPathPoint < navmeshPath.size() ?
       navmeshPath[navmeshPathPoint] :
@@ -661,8 +672,8 @@ BTNode::ERes TCompAIMimetic::actionWaitInPlayerLastPos(float dt)
 
 BTNode::ERes TCompAIMimetic::actionSetGoInactive(float dt)
 {
-	TCompRender * cRender = get<TCompRender>();
-	cRender->color = VEC4(1, 1, 1, 1);
+  TCompEmissionController *eController = get<TCompEmissionController>();
+  eController->blend(mimeticColor.colorNormal, 0.1f);
 	goingInactive = true;
 	suspectO_Meter = 0.f;
 	lastPlayerKnownPos = VEC3::Zero;
@@ -860,7 +871,6 @@ bool TCompAIMimetic::rotateTowardsVec(VEC3 objective, float rotationSpeed, float
 }
 
 bool TCompAIMimetic::isPlayerInFov() {
-  //return false; //TODO: Borrar
 
 	TCompTransform *mypos = get<TCompTransform>();
 	CHandle hPlayer = getEntityByName(entityToChase);
@@ -913,21 +923,6 @@ bool TCompAIMimetic::isEntityHidden(CHandle hEntity)
 		i = i + (capsuleCollider->height / 2);
 	}
 	return isHidden;
-}
-
-void TCompAIMimetic::turnOnLight()
-{
-	TCompGroup* cGroup = get<TCompGroup>();
-	CEntity* eCone = cGroup->getHandleByName("Cone of Light");
-	TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
-	cConeController->turnOnLight();
-}
-
-void TCompAIMimetic::turnOffLight() {
-	TCompGroup* cGroup = get<TCompGroup>();
-	CEntity* eCone = cGroup->getHandleByName("Cone of Light");
-	TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
-	cConeController->turnOffLight();
 }
 
 void TCompAIMimetic::setGravityToFaceWall()

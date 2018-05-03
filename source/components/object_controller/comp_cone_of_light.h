@@ -7,9 +7,11 @@
 class TCompConeOfLightController : public TCompBase {
   
   CEntity* player;
-  float fov;
+  float hor_fov;
+  float ver_fov;
   float dist;
   bool turnedOn;
+  bool playerIlluminated = false;
 
   VEC3 origin = VEC3::Zero;
   VEC3 dest = VEC3::Zero;

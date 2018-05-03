@@ -42,12 +42,26 @@ component_tag = attributes component_tag
 	)
 )
 
+component_prefab = attributes component_prefab
+(
+	parameters cmp_prefab rollout:cmp_prefab
+	(
+		prefab type: #string ui:prefab default:""
+	)
+	
+	rollout cmp_prefab "Component Prefab" width:162 height:174
+	(
+		edittext 'prefab' "Source" width:130 height:20 align:#center
+	)
+)
+
 -- Methods to create/destroy components
 
 function getByType type = (
 
 	if type == "collider" then ( return component_collider )
 	if type == "tag" then ( return component_tag )
+	if type == "prefab" then ( return component_prefab )
 )
 
 function addComponent c_selection type = (

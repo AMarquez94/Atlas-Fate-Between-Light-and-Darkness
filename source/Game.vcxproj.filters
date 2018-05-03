@@ -6,7 +6,6 @@
     <ClCompile Include="components\comp_name.cpp" />
     <ClCompile Include="components\comp_render.cpp" />
     <ClCompile Include="components\comp_transform.cpp" />
-    <ClCompile Include="components\ia\ai_controller.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\entity_parser.cpp" />
@@ -60,7 +59,6 @@
     <ClCompile Include="utils\utils.cpp" />
     <ClCompile Include="windows\app.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
-    <ClCompile Include="components\object_controller\comp_bullet_controller.cpp" />
     <ClCompile Include="components\camera_controller\comp_camera_shadowmerge.cpp" />
     <ClCompile Include="components\camera_controller\comp_camera_thirdperson.cpp" />
     <ClCompile Include="components\camera_controller\comp_circular_controller.cpp" />
@@ -72,8 +70,6 @@
     <ClCompile Include="components\physics\comp_collider.cpp" />
     <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
     <ClCompile Include="components\camera_controller\comp_auxcamera_shadowmerge.cpp" />
-    <ClCompile Include="components\dynamic_objects\comp_dynamic_objects.cpp" />
-    <ClCompile Include="components\dynamic_objects\comp_capsule_shadow.cpp" />
     <ClCompile Include="render\render_manager.cpp" />
     <ClCompile Include="components\comp_aabb.cpp" />
     <ClCompile Include="components\comp_culling.cpp" />
@@ -151,9 +147,12 @@
     <ClCompile Include="modules\module_navmeshes.cpp" />
     <ClCompile Include="components\ia\comp_mimetic_animator.cpp" />
     <ClCompile Include="components\ia\comp_patrol_animator.cpp" />
-    <ClCompile Include="SLB\LogicManager.cpp" />
     <ClCompile Include="modules\system\module_logic.cpp" />
     <ClCompile Include="modules\system\module_game_console.cpp" />
+    <ClCompile Include="components\skeleton\comp_animator.cpp" />
+    <ClCompile Include="modules\system\module_sound.cpp" />
+    <ClCompile Include="components\dynamic_objects\comp_dynamic_capsules_manager.cpp" />
+    <ClCompile Include="components\dynamic_objects\comp_dynamic_capsule.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -163,7 +162,6 @@
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_render.h" />
     <ClInclude Include="components\comp_transform.h" />
-    <ClInclude Include="components\ia\ai_controller.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="entity\common_msgs.h" />
     <ClInclude Include="entity\entity.h" />
@@ -238,7 +236,6 @@
     <ClInclude Include="windows\app.h" />
     <ClInclude Include="components\comp_player_controller.h" />
     <ClInclude Include="modules\system\module_physics.h" />
-    <ClInclude Include="components\object_controller\comp_bullet_controller.h" />
     <ClInclude Include="components\camera_controller\comp_camera_shadowmerge.h" />
     <ClInclude Include="components\camera_controller\comp_camera_thirdperson.h" />
     <ClInclude Include="components\camera_controller\comp_circular_controller.h" />
@@ -251,8 +248,6 @@
     <ClInclude Include="components\physics\comp_collider.h" />
     <ClInclude Include="components\player_controller\comp_shadow_controller.h" />
     <ClInclude Include="components\camera_controller\comp_auxcamera_shadowmerge.h" />
-    <ClInclude Include="components\dynamic_objects\comp_dynamic_objects.h" />
-    <ClInclude Include="components\dynamic_objects\comp_capsule_shadow.h" />
     <ClInclude Include="render\mesh\mesh_subgroup.h" />
     <ClInclude Include="render\render_manager.h" />
     <ClInclude Include="components\comp_aabb.h" />
@@ -342,9 +337,11 @@
     <ClInclude Include="fmod\fmod_dsp_effects.h" />
     <ClInclude Include="fmod\fmod_errors.h" />
     <ClInclude Include="fmod\fmod_output.h" />
-    <ClInclude Include="SLB\LogicManager.h" />
     <ClInclude Include="modules\system\module_logic.h" />
     <ClInclude Include="modules\system\module_game_console.h" />
+    <ClInclude Include="components\ia\comp_mimetic_animator.h" />
+    <ClInclude Include="modules\system\module_sound.h" />
+    <ClInclude Include="components\dynamic_objects\comp_dynamic_capsule.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

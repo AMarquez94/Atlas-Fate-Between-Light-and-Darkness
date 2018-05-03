@@ -28,17 +28,17 @@ void TCompPlayerInput::update(float dt)
 			walkMsg.variant.setName("speed");
 			float total_value = (EngineInput["btRight"].value + EngineInput["btLeft"].value
 				+ EngineInput["btUp"].value + EngineInput["btDown"].value);
-			dbg("total value: %f\n\n\n", total_value);
+			//dbg("total value: %f\n\n\n", total_value);
 			walkMsg.variant.setFloat(total_value);
 			e->sendMsg(walkMsg);
 		}
 
 		/* Speed boost messages */
 		TMsgSetFSMVariable boostMsg;
-		boostMsg.variant.setName("boost_speed");
 
 		if (EngineInput["btRun"].hasChanged()) {
 
+      boostMsg.variant.setName("boost_speed");
 			crouchButton = false;
 			TMsgSetFSMVariable crouch;
 			crouch.variant.setName("crouch");
@@ -50,6 +50,7 @@ void TCompPlayerInput::update(float dt)
 		}
 
 		if (EngineInput["btSlow"].hasChanged()) {
+      boostMsg.variant.setName("slow_speed");
 			boostMsg.variant.setFloat(EngineInput["btSlow"].value);
 			e->sendMsg(boostMsg);
 		}

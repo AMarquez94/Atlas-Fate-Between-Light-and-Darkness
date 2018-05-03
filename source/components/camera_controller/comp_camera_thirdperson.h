@@ -16,7 +16,6 @@ private:
 	VEC3 _clipping_offset;
 
 	bool active;
-	bool pause;
 
 	const Input::TButton& btHorizontal = EngineInput["MouseX"];
 	const Input::TButton& btVertical = EngineInput["MouseY"];

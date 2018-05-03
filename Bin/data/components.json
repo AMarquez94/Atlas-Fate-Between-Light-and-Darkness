@@ -1,7 +1,7 @@
 {
-	"sizes" : {
-		"default" : 1024,
-		"transform" : 1024
+	"sizes": {
+		"default": 1024,
+		"transform": 1024
 	},
 	"init_order": {
 		"entity": 100,
@@ -12,7 +12,7 @@
 		"player_tempcontroller",
 		"ai_patrol",
 		"ai_mimetic",
-		"bullet_controller",
+		"dynamic_capsule",
 		"shadow_controller",
 		"skeleton",
 		"bone_tracker",
@@ -29,15 +29,14 @@
 		"camera_flyover",
 		"curve_controller",
 		"trigger_camera",
-		"dynamic_objects",
-		"capsule_shadow_controller",
 		"camera_thirdperson",
 		"camera_shadowmerge",
 		"auxcamera_shadowmerge",
 		"camera",
 		"fsm",
 		"player_animator",
-		"player_input"
+		"player_input",
+		"emission_controller"
 	],
 	"render_debug": [
 		"player_tempcontroller",

@@ -38,11 +38,14 @@ void TCompHierarchy::setParentEntity(CHandle new_h_parent) {
     h_parent_transform = e_parent->get<TCompTransform>();
     CEntity* e_my_owner = CHandle(this).getOwner();
     h_my_transform = e_my_owner->get<TCompTransform>();
+    parent_name = e_parent->getName();
+    h_parent = new_h_parent;
   }
   else {
     // Invalidate previous contents
     h_parent_transform = CHandle();
     h_my_transform = CHandle();
+    h_parent = CHandle();
   }
 }
 

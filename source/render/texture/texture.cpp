@@ -82,7 +82,7 @@ void CTexture::destroy() {
 }
 
 void CTexture::debugInMenu() {
-	ImGui::Text("Resolution is ..");
+	ImGui::Text("Resolution is .. %f %f", xres, yres);
 	ImGui::Image(shader_resource_view, ImVec2(128, 128));
 }
 

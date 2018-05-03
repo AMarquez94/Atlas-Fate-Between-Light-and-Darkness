@@ -10,16 +10,14 @@
 #include "components/comp_camera.h"
 #include "components/physics/comp_collider.h"
 #include "components/comp_tags.h"
-
 #include "components/lighting/comp_light_dir.h"
 #include "components/lighting/comp_light_spot.h"
 #include "components/lighting/comp_light_point.h"
-#include "../comp_name.h"
+#include "components/comp_name.h"
 
 DECL_OBJ_MANAGER("shadow_controller", TCompShadowController);
 
 void TCompShadowController::debugInMenu() {
-
 }
 
 void TCompShadowController::load(const json& j, TEntityParseContext& ctx) {
@@ -31,11 +29,20 @@ void TCompShadowController::update(float dt) {
 
 	TCompTransform * c_my_transform = get<TCompTransform>();
 	VEC3 new_pos = c_my_transform->getPosition() + 0.1f * c_my_transform->getUp();
-	is_shadow = IsPointInShadows(new_pos);
+	bool shadow_test = IsPointInShadows(new_pos) && enemies_illuminating_me.size() == 0;
+
+	// We have entered or left a shadow, notify this.
+	if (shadow_test != is_shadow) {
+		is_shadow = shadow_test;
+
+		TMsgShadowChange msgToSend;
+		msgToSend.is_shadowed = is_shadow;
+		CEntity* e = CHandle(this).getOwner();
+		e->sendMsg(msgToSend);
+	}
  }
 
 void TCompShadowController::Init() {
-
 	is_shadow = false;
 }
 
@@ -68,30 +75,32 @@ void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
 	shadowDetectionFilter.data = pxFilterData;
 }
 
-void TCompShadowController::onEnteredCapsuleShadow(const TMsgEnteredCapsuleShadow& msg) {
-
-	capsule_shadow = true;
-}
-
-void TCompShadowController::onExitedCapsuleShadow(const TMsgExitedCapsuleShadow& msg) {
-
-	capsule_shadow = false;
+void TCompShadowController::onPlayerExposed(const TMsgPlayerIlluminated& msg) {
+  if (msg.h_sender.isValid()) {
+    bool found = false;
+    for (int i = 0; i < enemies_illuminating_me.size() && !found; i++) {
+      if (enemies_illuminating_me[i] == msg.h_sender) {
+        found = true;
+      }
+    }
+    if (!found && msg.isIlluminated) {
+      enemies_illuminating_me.push_back(msg.h_sender);
+    }
+    else if (found && !msg.isIlluminated) {
+      enemies_illuminating_me.erase(std::remove(enemies_illuminating_me.begin(), enemies_illuminating_me.end(), msg.h_sender));
+    }
+  }
 }
 
 void TCompShadowController::registerMsgs() {
 
 	DECL_MSG(TCompShadowController, TMsgSceneCreated, onSceneCreated);
-	DECL_MSG(TCompShadowController, TMsgEnteredCapsuleShadow, onEnteredCapsuleShadow);
-	DECL_MSG(TCompShadowController, TMsgExitedCapsuleShadow, onExitedCapsuleShadow);
+  DECL_MSG(TCompShadowController, TMsgPlayerIlluminated, onPlayerExposed);
 }
 
 // We can also use this public method from outside this class.
 bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 {
-	if (capsule_shadow) {
-		return true;
-	}
-
 	physx::PxRaycastHit hit;
 	for (unsigned int i = 0; i < static_lights.size(); i++) {
 		CEntity * c_entity = static_lights[i];

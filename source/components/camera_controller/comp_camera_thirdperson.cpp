@@ -30,7 +30,6 @@ void TCompCameraThirdPerson::load(const json& j, TEntityParseContext& ctx)
 	target_transform->getYawPitchRoll(&yaw, &pitch, &roll);
 	_current_euler = VEC2(yaw, pitch);
 
-	pause = false;
 	active = false;
 }
 

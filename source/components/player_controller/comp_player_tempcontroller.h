@@ -2,7 +2,6 @@
 
 #include "components/comp_base.h"
 #include "geometry/transform.h"
-#include "components/ia/ai_controller.h"
 #include "entity/common_msgs.h"
 #include "components/player_controller/comp_player_animator.h"
 
@@ -51,8 +50,16 @@ struct TMsgStateFinish {
 
 class TCompTempPlayerController : public TCompBase
 {
+	struct StateColors {
+		VEC4 colorIdle;
+		VEC4 colorMerge;
+		VEC4 colorDead;
+		VEC4 colorInhib;
+
 	//Debug console message variables
 	bool infinite, immortal, hackShadows;
+	}playerColor;
+
 	/* DEPRECATED */
 	std::map<std::string, CRenderMesh*> mesh_states;
 
@@ -87,6 +94,8 @@ class TCompTempPlayerController : public TCompBase
 	float timeToPressAgain = 0.7f;
 	float timeInhib = 0.0f;
 
+  float attackTimer = 0.f;    //HARD FIX: TODO: Remove
+
 	void onCreate(const TMsgEntityCreated& msg);
 	void onStateStart(const TMsgStateStart& msg);
 	void onStateFinish(const TMsgStateFinish& msg);
@@ -104,6 +113,7 @@ class TCompTempPlayerController : public TCompBase
 	void onPlayerMove(const TMsgPlayerMove& msg);
 	void onPlayerInShadows(const TMsgPlayerInShadows& msg);
 
+	void onShadowChange(const TMsgShadowChange& msg);
 
 	DECL_SIBLING_ACCESS();
 
@@ -111,6 +121,8 @@ public:
 	/* Debug variables */
 	bool dbgDisableStamina;
 	std::string dbCameraState;
+  //VEC3 debugDir = VEC3::Zero;
+  //VEC3 debugMyFront = VEC3::Zero;
 
 	bool isMerged;
 	bool isGrounded;

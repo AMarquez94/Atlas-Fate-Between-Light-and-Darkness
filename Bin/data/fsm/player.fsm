@@ -1,718 +1,870 @@
 {
-	"initial_state" : "idle",
-	"states" : [
-		{
-			"name" : "idle",
-			"type" : "IdleState",
-			"animation" : "idle",
-			"speed" : 0,
-			"size" : 1
-		},
-		{
-			"name" : "idleAction",
-			"type" : "IdleState",
-			"animation" : "idleAction",
-			"size" : 1
-		},
-		{
-			"name" : "walk",
-			"type" : "WalkState",
-			"animation" : "walk",
-			"speed" : 3.6,
+	"initial_state": "idle",
+	"states": [{
+			"name": "idle",
+			"type": "IdleState",
+			"animation": "idle",
+			"speed": 0,
+			"size": 1,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
+		}, {
+			"name": "idleAction",
+			"type": "IdleState",
+			"animation": "idleAction",
+			"size": 1,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
+		}, {
+			"name": "walk",
+			"type": "WalkState",
+			"animation": "walk",
+			"speed": 3.6,
 			"rotationSpeed": 10.0,
-			"size" : 1,
-			"noise" : {
+			"size": 1,
+			"noise": {
 				"is_only_once": false,
 				"radius": 2.0,
 				"time_to_repeat": 0.75,
 				"is_artificial": false
+			},
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
 			}
-		},
-		{
-			"name" : "run",
-			"type" : "RunState",
-			"animation" : "run",
-			"speed" : 5.5,
+		}, {
+			"name": "walkslow",
+			"type": "WalkSlowState",
+			"animation": "walk",
+			"speed": 1.8,
 			"rotationSpeed": 10.0,
-			"size" : 1,
-			"noise" : {
+			"size": 1,
+			"noise": {
+				"is_only_once": false,
+				"radius": 1.0,
+				"time_to_repeat": 1,
+				"is_artificial": false
+			},
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
+		}, {
+			"name": "run",
+			"type": "RunState",
+			"animation": "run",
+			"speed": 5.5,
+			"rotationSpeed": 10.0,
+			"size": 1,
+			"noise": {
 				"is_only_once": false,
 				"radius": 3.0,
 				"time_to_repeat": 0.5,
 				"is_artificial": false
+			},
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
 			}
-		},
-		{
-			"name" : "crouch",
-			"type" : "CrouchState",
-			"animation" : "crouch",
-			"speed" : 3,
+		}, {
+			"name": "crouch",
+			"type": "CrouchState",
+			"animation": "crouch",
+			"speed": 3,
 			"rotationSpeed": 5.0,
-			"size" : 0.25
-		},
-    {
-      "name" : "crouchwalk",
-      "type" : "CrouchWalkState",
-      "animation" : "crouch_walk",
-      "speed" : 3,
-      "rotationSpeed": 5.0,
-      "size" : 0.25
-    },
-		{
-			"name" : "entermerge",
-			"type" : "EnterMergeState",
-			"animation" : "entermerge",
-			"speed" : 4,
-			"size" : 1,
-			"camera" : {
-				"target" : "SMCameraHor",
-				"blendOut" : 0.0,
-				"blendIn" : 0.2
+			"size": 0.25,
+			"camera": {
+				"target": "TPCameraCrouched",
+				"blendOut": 0.4,
+				"blendIn": 0.4
 			}
-		},
-		{
-			"name" : "merge",
-			"type" : "MergeState",
-			"animation" : "merge",
-			"speed" : 4,
-			"size" : 0.1,
-			"radius" : 0.01
-		},
-		{
-			"name" : "exitmerge",
-			"type" : "ExitMergeState",
-			"animation" : "exitmerge",
-			"speed" : 4,
-			"size" : 1,
-			"radius" : 0.3,
-			"camera" : {
-				"target" : "TPCamera",
-				"blendOut" : 0.4,
-				"blendIn" : 0.4
+		}, {
+			"name": "crouchwalk",
+			"type": "CrouchWalkState",
+			"animation": "crouch_walk",
+			"speed": 3,
+			"rotationSpeed": 5.0,
+			"size": 0.25,
+			"camera": {
+				"target": "TPCameraCrouched",
+				"blendOut": 0.4,
+				"blendIn": 0.4
 			}
-		},
-		{
-			"name" : "landmerge",
-			"type" : "LandMergeState",
-			"animation" : "exitmerge",
-			"speed" : 4,
-			"size" : 1,
-			"camera" : {
-				"target" : "SMCameraHor",
-				"blendOut" : 0.0,
-				"blendIn" : 0.5
+		}, {
+			"name": "crouchwalkslow",
+			"type": "CrouchWalkSlowState",
+			"animation": "crouch_walk_slow",
+			"speed": 1.5,
+			"rotationSpeed": 5.0,
+			"size": 0.25,
+			"camera": {
+				"target": "TPCameraCrouched",
+				"blendOut": 0.4,
+				"blendIn": 0.4
 			}
-		},
-		{
-			"name" : "softLand",
-			"type" : "SoftLandState",
-			"animation" : "idle",
-			"speed" : 0,
-			"size" : 1,
-			"noise" : {
+		}, {
+			"name": "entermerge",
+			"type": "EnterMergeState",
+			"animation": "entermerge",
+			"speed": 4,
+			"size": 1,
+			"camera": {
+				"target": "SMCameraHor",
+				"blendOut": 0.0,
+				"blendIn": 0.2
+			}
+		}, {
+			"name": "merge",
+			"type": "MergeState",
+			"animation": "merge",
+			"speed": 4,
+			"size": 0.1,
+			"radius": 0.01
+		}, {
+			"name": "exitmerge",
+			"type": "ExitMergeState",
+			"animation": "exitmerge",
+			"speed": 4,
+			"size": 1,
+			"radius": 0.3,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
+		}, {
+			"name": "landmerge",
+			"type": "LandMergeState",
+			"animation": "exitmerge",
+			"speed": 4,
+			"size": 1,
+			"camera": {
+				"target": "SMCameraHor",
+				"blendOut": 0.0,
+				"blendIn": 0.5
+			}
+		}, {
+			"name": "softLand",
+			"type": "SoftLandState",
+			"animation": "idle",
+			"speed": 0,
+			"size": 1,
+			"noise": {
 				"is_only_once": true,
 				"radius": 5.0,
 				"time_to_repeat": 0.5,
 				"is_artificial": true
 			}
-		},
-		{
-			"name" : "hardLand",
-			"type" : "HardLandState",
-			"animation" : "crouch",
-			"speed" : 0,
-			"size" : 0.25,
-			"noise" : {
+		}, {
+			"name": "hardLand",
+			"type": "HardLandState",
+			"animation": "crouch",
+			"speed": 0,
+			"size": 0.25,
+			"noise": {
 				"is_only_once": true,
 				"radius": 7.0,
 				"time_to_repeat": 0.5,
 				"is_artificial": true
+			},
+			"camera": {
+				"target": "TPCameraCrouched",
+				"blendOut": 0.4,
+				"blendIn": 0.2
 			}
-		},
-		{
-			"name" : "fall",
-			"type" : "FallState",
-			"animation" : "fall",
-			"speed" : 2,
-			"force" : 3,
-			"size" : 1
-		},
-		{
-			"name" : "attack",
-			"type" : "AttackState",
-			"animation" : "attack",
-			"damage" : 10,
-			"size" : 1,
-			"noise" : {
+		}, {
+			"name": "fall",
+			"type": "FallState",
+			"animation": "fall",
+			"speed": 2,
+			"force": 3,
+			"size": 1,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
+		}, {
+			"name": "attack",
+			"type": "AttackState",
+			"animation": "attack",
+			"damage": 10,
+			"size": 1,
+			"noise": {
 				"is_only_once": true,
 				"radius": 5.0,
 				"time_to_repeat": 0.5,
 				"is_artificial": true
+			},
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
 			}
-		},
-		{
-			"name" : "dead",
-			"type" : "DeadState",
-			"animation" : "dead",
-			"damage" : 10,
-			"size" : 1
-		},
-		{
-			"name" : "removeInhibitor",
-			"type" : "RemoveInhibitor",
-			"animation" : "removenhibitor",
-			"damage" : 10,
-			"size" : 1
-		},
-        {
-      "name" : "inhibitorRemoved",
-      "type" : "InhibitorRemoved",
-      "animation" : "inhibitorRemoved",
-      "damage" : 10,
-      "size" : 1
-    },
-    {
-      "name" : "inhibitorTryToRemove",
-      "type" : "InhibitorTryToRemove",
-      "animation" : "inhibitorRemoved",
-      "damage" : 10,
-      "size" : 1
-    }
+		}, {
+			"name": "dead",
+			"type": "DeadState",
+			"animation": "dead",
+			"damage": 10,
+			"size": 1,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
+		}, {
+			"name": "removeInhibitor",
+			"type": "RemoveInhibitor",
+			"animation": "removenhibitor",
+			"damage": 10,
+			"size": 1,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
+		}, {
+			"name": "inhibitorRemoved",
+			"type": "InhibitorRemoved",
+			"animation": "inhibitorRemoved",
+			"damage": 10,
+			"size": 1,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
+		}, {
+			"name": "inhibitorTryToRemove",
+			"type": "InhibitorTryToRemove",
+			"animation": "inhibitorRemoved",
+			"damage": 10,
+			"size": 1,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
+		}
 	],
-  "transitions": [
-    {
-      "type": "VariableTransition",
-      "source": "idle",
-      "target": "walk",
-      "variable": {
-        "name": "speed",
-        "type": "float",
-        "value": 1.0
-      },
-      "operation": "greater_equal"
-    },
-    {
-      "type": "VariableTransition",
-      "source": "walk",
-      "target": "idle",
-      "variable": {
-        "name": "speed",
-        "type": "float",
-        "value": 0.0
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "crouch",
-      "target": "crouchwalk",
-      "variable": {
-        "name": "speed",
-        "type": "float",
-        "value": 1.0
-      },
-      "operation": "greater_equal"
-    },
-    {
-      "type": "VariableTransition",
-      "source": "crouchwalk",
-      "target": "crouch",
-      "variable": {
-        "name": "speed",
-        "type": "float",
-        "value": 0.0
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "walk",
-      "target": "run",
-      "variable": {
-        "name": "boost_speed",
-        "type": "float",
-        "value": 1.0
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "run",
-      "target": "walk",
-      "variable": {
-        "name": "boost_speed",
-        "type": "float",
-        "value": 1.0
-      },
-      "negated": true
-    },
-    {
-      "type": "VariableTransition",
-      "source": "run",
-      "target": "idle",
-      "variable": {
-        "name": "speed",
-        "type": "float",
-        "value": 0.0
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "idle",
-      "target": "crouch",
-      "variable": {
-        "name": "crouch",
-        "type": "bool",
-        "value": true
-      },
-      "operation": "equal"
-    },
-    {
-      "type": "VariableTransition",
-      "source": "crouch",
-      "target": "entermerge",
-      "variable": {
-        "name": "onmerge",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "crouch",
-      "target": "idle",
-      "variable": {
-        "name": "crouch",
-        "type": "bool",
-        "value": false
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "crouchwalk",
-      "target": "walk",
-      "variable": {
-        "name": "crouch",
-        "type": "bool",
-        "value": false
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "walk",
-      "target": "crouchwalk",
-      "variable": {
-        "name": "crouch",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "crouch",
-      "target": "fall",
-      "variable": {
-        "name": "onGround",
-        "type": "bool",
-        "value": false
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "idle",
-      "target": "entermerge",
-      "variable": {
-        "name": "onmerge",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "walk",
-      "target": "entermerge",
-      "variable": {
-        "name": "onmerge",
-        "type": "bool",
-        "value": true
-      }
-    },
-        {
-      "type": "VariableTransition",
-      "source": "crouchwalk",
-      "target": "entermerge",
-      "variable": {
-        "name": "onmerge",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "run",
-      "target": "entermerge",
-      "variable": {
-        "name": "onmerge",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "TimeTransition",
-      "source": "entermerge",
-      "target": "merge",
-      "time": 0.1
-    },
-    {
-      "type": "VariableTransition",
-      "source": "merge",
-      "target": "exitmerge",
-      "variable": {
-        "name": "onmerge",
-        "type": "bool",
-        "value": false
-      }
-    },
-    {
-      "type": "TimeTransition",
-      "source": "exitmerge",
-      "target": "walk",
-      "time": 0.1
-    },
-    {
-      "type": "VariableTransition",
-      "source": "walk",
-      "target": "fall",
-      "variable": {
-        "name": "onGround",
-        "type": "bool",
-        "value": false
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "run",
-      "target": "fall",
-      "variable": {
-        "name": "onGround",
-        "type": "bool",
-        "value": false
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "idle",
-      "target": "fall",
-      "variable": {
-        "name": "onGround",
-        "type": "bool",
-        "value": false
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "idle",
-      "target": "removeInhibitor",
-      "variable": {
-        "name": "hitPoints",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "removeInhibitor",
-      "target": "inhibitorRemoved",
-      "variable": {
-        "name": "inhibitor_removed",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "removeInhibitor",
-      "target": "inhibitorTryToRemove",
-      "variable": {
-        "name": "inhibitor_try_to_remove",
-        "type": "bool",
-        "value": true
-      }
-    },
-        {
-      "type": "VariableTransition",
-      "source": "inhibitorTryToRemove",
-      "target": "removeInhibitor",
-      "variable": {
-        "name": "hitPoints",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "AnimationTransition",
-      "source": "inhibitorRemoved",
-      "target": "idle",
-      "animation_name": "metralla_finish"
-    },
-    {
-      "type": "AnimationTransition",
-      "source": "inhibitorTryToRemove",
-      "target": "idle",
-      "animation_name": "metralla_middle"
-    },
-	{
-      "type": "VariableTransition",
-      "source": "fall",
-      "target": "hardLand",
-      "variable": {
-        "name": "onHardLanded",
-        "type": "bool",
-        "value": true
-      },
-	  "variable": {
-		"name": "onGround",
-        "type": "bool",
-        "value": true
-	  }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "fall",
-      "target": "softLand",
-      "variable": {
-        "name": "onGround",
-        "type": "bool",
-        "value": true
-      }
-    },
-	{
-      "type": "AnimationTransition",
-      "source": "hardLand",
-      "target": "idle",
-      "animation_name": "land_soft"
-    },
-	{
-      "type": "VariableTransition",
-      "source": "softLand",
-      "target": "dead",
-      "variable": {
-        "name": "onFallDead",
-        "type": "bool",
-        "value": true
-      }
-    },
-	{
-      "type": "AnimationTransition",
-      "source": "softLand",
-      "target": "idle",
-      "animation_name": "land_soft"
-    },
-    {
-      "type": "VariableTransition",
-      "source": "fall",
-      "target": "landmerge",
-      "variable": {
-        "name": "onFallMerge",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "TimeTransition",
-      "source": "landmerge",
-      "target": "merge",
-      "time": 0.6
-    },
-    {
-      "type": "VariableTransition",
-      "source": "idle",
-      "target": "attack",
-      "variable": {
-        "name": "attack",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "walk",
-      "target": "attack",
-      "variable": {
-        "name": "attack",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "run",
-      "target": "attack",
-      "variable": {
-        "name": "attack",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "crouch",
-      "target": "attack",
-      "variable": {
-        "name": "attack",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "crouchwalk",
-      "target": "attack",
-      "variable": {
-        "name": "attack",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "AnimationTransition",
-      "source": "attack",
-      "target": "idle",
-      "animation_name": "attack"
-    },
-    {
-      "type": "VariableTransition",
-      "source": "idle",
-      "target": "dead",
-      "variable": {
-        "name": "onDead",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "walk",
-      "target": "dead",
-      "variable": {
-        "name": "onDead",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "run",
-      "target": "dead",
-      "variable": {
-        "name": "onDead",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "crouch",
-      "target": "dead",
-      "variable": {
-        "name": "onDead",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "fall",
-      "target": "dead",
-      "variable": {
-        "name": "onDead",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "entermerge",
-      "target": "dead",
-      "variable": {
-        "name": "onDead",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "exitmerge",
-      "target": "dead",
-      "variable": {
-        "name": "onDead",
-        "type": "bool",
-        "value": true
-      }
-    }
-  ],
-	"variables" : [
-		{
-			"name" : "speed",
-			"type" : "float",
-			"value" : 0.0
-		},
-		{
-			"name" : "boost_speed",
-			"type" : "float",
-			"value" : 0.0
-		},
-		{
-			"name" : "attack",
-			"type" : "float",
-			"value" : 0.0
-		},
-		{
-			"name" : "crouch",
-			"type" : "bool",
-			"value" : false
-		},
-		{
-			"name" : "onmerge",
-			"type" : "bool",
-			"value" : false
-		},
-		{
-			"name" : "onGround",
-			"type" : "bool",
-			"value" : true
-		},
-		{
-			"name" : "onFallMerge",
-			"type" : "bool",
-			"value" : false
-		},
-		{
-			"name" : "onHardLanded",
-			"type" : "bool",
-			"value" : false
-		},
-		{
-			"name" : "onFallDead",
-			"type" : "bool",
-			"value" : false
-		},
-		{
-			"name" : "onDead",
-			"type" : "bool",
-			"value" : false
-		},
-		{
-			"name" : "hitPoints",
-			"type" : "bool",
-			"value" : false
-		},
-    {
-      "name" : "inhibitor_removed",
-      "type" : "bool",
-      "value" : false
-    },
-    {
-      "name" : "inhibitor_try_to_remove",
-      "type" : "bool",
-      "value" : false
-    }
+	"transitions": [{
+			"type": "VariableTransition",
+			"source": "idle",
+			"target": "walk",
+			"variable": {
+				"name": "speed",
+				"type": "float",
+				"value": 1.0
+			},
+			"operation": "greater_equal"
+		}, {
+			"type": "VariableTransition",
+			"source": "walk",
+			"target": "idle",
+			"variable": {
+				"name": "speed",
+				"type": "float",
+				"value": 0.0
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "crouch",
+			"target": "crouchwalk",
+			"variable": {
+				"name": "speed",
+				"type": "float",
+				"value": 1.0
+			},
+			"operation": "greater_equal"
+		}, {
+			"type": "VariableTransition",
+			"source": "crouchwalk",
+			"target": "crouchwalkslow",
+			"variable": {
+				"name": "slow_speed",
+				"type": "float",
+				"value": 1.0
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "crouchwalkslow",
+			"target": "crouchwalk",
+			"variable": {
+				"name": "slow_speed",
+				"type": "float",
+				"value": 1.0
+			},
+			"negated": true
+		}, {
+			"type": "VariableTransition",
+			"source": "crouchwalkslow",
+			"target": "crouch",
+			"variable": {
+				"name": "speed",
+				"type": "float",
+				"value": 0.0
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "crouchwalk",
+			"target": "crouch",
+			"variable": {
+				"name": "speed",
+				"type": "float",
+				"value": 0.0
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "walk",
+			"target": "run",
+			"variable": {
+				"name": "boost_speed",
+				"type": "float",
+				"value": 1.0
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "walk",
+			"target": "walkslow",
+			"variable": {
+				"name": "slow_speed",
+				"type": "float",
+				"value": 1.0
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "run",
+			"target": "walk",
+			"variable": {
+				"name": "boost_speed",
+				"type": "float",
+				"value": 1.0
+			},
+			"negated": true
+		}, {
+			"type": "VariableTransition",
+			"source": "walkslow",
+			"target": "walk",
+			"variable": {
+				"name": "slow_speed",
+				"type": "float",
+				"value": 1.0
+			},
+			"negated": true
+		}, {
+			"type": "VariableTransition",
+			"source": "walkslow",
+			"target": "crouchwalkslow",
+			"variable": {
+				"name": "crouch",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "run",
+			"target": "idle",
+			"variable": {
+				"name": "speed",
+				"type": "float",
+				"value": 0.0
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "walkslow",
+			"target": "idle",
+			"variable": {
+				"name": "speed",
+				"type": "float",
+				"value": 0.0
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "idle",
+			"target": "crouch",
+			"variable": {
+				"name": "crouch",
+				"type": "bool",
+				"value": true
+			},
+			"operation": "equal"
+		}, {
+			"type": "VariableTransition",
+			"source": "crouch",
+			"target": "entermerge",
+			"variable": {
+				"name": "onmerge",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "crouch",
+			"target": "idle",
+			"variable": {
+				"name": "crouch",
+				"type": "bool",
+				"value": false
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "crouchwalk",
+			"target": "walk",
+			"variable": {
+				"name": "crouch",
+				"type": "bool",
+				"value": false
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "crouchwalkslow",
+			"target": "walkslow",
+			"variable": {
+				"name": "crouch",
+				"type": "bool",
+				"value": false
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "walk",
+			"target": "crouchwalk",
+			"variable": {
+				"name": "crouch",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "crouch",
+			"target": "fall",
+			"variable": {
+				"name": "onGround",
+				"type": "bool",
+				"value": false
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "idle",
+			"target": "entermerge",
+			"variable": {
+				"name": "onmerge",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "walk",
+			"target": "entermerge",
+			"variable": {
+				"name": "onmerge",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "crouchwalk",
+			"target": "entermerge",
+			"variable": {
+				"name": "onmerge",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "run",
+			"target": "entermerge",
+			"variable": {
+				"name": "onmerge",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "walkslow",
+			"target": "entermerge",
+			"variable": {
+				"name": "onmerge",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "crouchwalkslow",
+			"target": "entermerge",
+			"variable": {
+				"name": "onmerge",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "TimeTransition",
+			"source": "entermerge",
+			"target": "merge",
+			"time": 0.1
+		}, {
+			"type": "VariableTransition",
+			"source": "merge",
+			"target": "exitmerge",
+			"variable": {
+				"name": "onmerge",
+				"type": "bool",
+				"value": false
+			}
+		}, {
+			"type": "TimeTransition",
+			"source": "exitmerge",
+			"target": "walk",
+			"time": 0.1
+		}, {
+			"type": "VariableTransition",
+			"source": "walk",
+			"target": "fall",
+			"variable": {
+				"name": "onGround",
+				"type": "bool",
+				"value": false
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "run",
+			"target": "fall",
+			"variable": {
+				"name": "onGround",
+				"type": "bool",
+				"value": false
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "walkslow",
+			"target": "fall",
+			"variable": {
+				"name": "onGround",
+				"type": "bool",
+				"value": false
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "crouchwalkslow",
+			"target": "fall",
+			"variable": {
+				"name": "onGround",
+				"type": "bool",
+				"value": false
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "idle",
+			"target": "fall",
+			"variable": {
+				"name": "onGround",
+				"type": "bool",
+				"value": false
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "idle",
+			"target": "removeInhibitor",
+			"variable": {
+				"name": "hitPoints",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "removeInhibitor",
+			"target": "inhibitorRemoved",
+			"variable": {
+				"name": "inhibitor_removed",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "removeInhibitor",
+			"target": "inhibitorTryToRemove",
+			"variable": {
+				"name": "inhibitor_try_to_remove",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "inhibitorTryToRemove",
+			"target": "removeInhibitor",
+			"variable": {
+				"name": "hitPoints",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "AnimationTransition",
+			"source": "inhibitorRemoved",
+			"target": "idle",
+			"animation_name": "metralla_finish"
+		}, {
+			"type": "AnimationTransition",
+			"source": "inhibitorTryToRemove",
+			"target": "idle",
+			"animation_name": "metralla_middle"
+		}, {
+			"type": "VariableTransition",
+			"source": "fall",
+			"target": "hardLand",
+			"variable": {
+				"name": "onHardLanded",
+				"type": "bool",
+				"value": true
+			},
+			"variable": {
+				"name": "onGround",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "fall",
+			"target": "softLand",
+			"variable": {
+				"name": "onGround",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "AnimationTransition",
+			"source": "hardLand",
+			"target": "idle",
+			"animation_name": "crouch"
+		}, {
+			"type": "VariableTransition",
+			"source": "softLand",
+			"target": "dead",
+			"variable": {
+				"name": "onFallDead",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "AnimationTransition",
+			"source": "softLand",
+			"target": "idle",
+			"animation_name": "land_soft"
+		}, {
+			"type": "VariableTransition",
+			"source": "fall",
+			"target": "landmerge",
+			"variable": {
+				"name": "onFallMerge",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "TimeTransition",
+			"source": "landmerge",
+			"target": "merge",
+			"time": 0.6
+		}, {
+			"type": "VariableTransition",
+			"source": "idle",
+			"target": "attack",
+			"variable": {
+				"name": "attack",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "walk",
+			"target": "attack",
+			"variable": {
+				"name": "attack",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "run",
+			"target": "attack",
+			"variable": {
+				"name": "attack",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "walkslow",
+			"target": "attack",
+			"variable": {
+				"name": "attack",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "crouch",
+			"target": "attack",
+			"variable": {
+				"name": "attack",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "crouchwalk",
+			"target": "attack",
+			"variable": {
+				"name": "attack",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "crouchwalkslow",
+			"target": "attack",
+			"variable": {
+				"name": "attack",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "AnimationTransition",
+			"source": "attack",
+			"target": "idle",
+			"animation_name": "attack"
+		}, {
+			"type": "VariableTransition",
+			"source": "idle",
+			"target": "dead",
+			"variable": {
+				"name": "onDead",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "walk",
+			"target": "dead",
+			"variable": {
+				"name": "onDead",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "run",
+			"target": "dead",
+			"variable": {
+				"name": "onDead",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "walkslow",
+			"target": "dead",
+			"variable": {
+				"name": "onDead",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "crouch",
+			"target": "dead",
+			"variable": {
+				"name": "onDead",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "fall",
+			"target": "dead",
+			"variable": {
+				"name": "onDead",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "entermerge",
+			"target": "dead",
+			"variable": {
+				"name": "onDead",
+				"type": "bool",
+				"value": true
+			}
+		}, {
+			"type": "VariableTransition",
+			"source": "exitmerge",
+			"target": "dead",
+			"variable": {
+				"name": "onDead",
+				"type": "bool",
+				"value": true
+			}
+		}
+	],
+	"variables": [{
+			"name": "speed",
+			"type": "float",
+			"value": 0.0
+		}, {
+			"name": "boost_speed",
+			"type": "float",
+			"value": 0.0
+		}, {
+			"name": "attack",
+			"type": "float",
+			"value": 0.0
+		}, {
+			"name": "crouch",
+			"type": "bool",
+			"value": false
+		}, {
+			"name": "onmerge",
+			"type": "bool",
+			"value": false
+		}, {
+			"name": "onGround",
+			"type": "bool",
+			"value": true
+		}, {
+			"name": "onFallMerge",
+			"type": "bool",
+			"value": false
+		}, {
+			"name": "onHardLanded",
+			"type": "bool",
+			"value": false
+		}, {
+			"name": "onFallDead",
+			"type": "bool",
+			"value": false
+		}, {
+			"name": "onDead",
+			"type": "bool",
+			"value": false
+		}, {
+			"name": "hitPoints",
+			"type": "bool",
+			"value": false
+		}, {
+			"name": "inhibitor_removed",
+			"type": "bool",
+			"value": false
+		}, {
+			"name": "inhibitor_try_to_remove",
+			"type": "bool",
+			"value": false
+		}
 	]
 }

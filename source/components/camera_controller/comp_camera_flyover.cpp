@@ -39,8 +39,8 @@ void TCompCameraFlyover::update(float dt)
 
 		// movement
 		float deltaSpeed = _speed * dt;
-		if (EngineInput["turbo"].isPressed())
-			deltaSpeed *= 2.f;
+		if (EngineInput["btRun"].isPressed())
+			deltaSpeed *= 3.f;
 		VEC3 off;
 		off += front * EngineInput["btUp"].value * deltaSpeed;
 		off += -front * EngineInput["btDown"].value * deltaSpeed;

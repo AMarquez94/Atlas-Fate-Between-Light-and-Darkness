@@ -75,7 +75,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>.;../bin/data/shaders</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../bin/data/shaders;.\SLB\include;</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mcv_platform.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -105,6 +105,8 @@
     <ClCompile Include="components\comp_aabb.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
     <ClCompile Include="components\comp_culling.cpp" />
+    <ClCompile Include="components\dynamic_objects\comp_dynamic_capsule.cpp" />
+    <ClCompile Include="components\dynamic_objects\comp_dynamic_capsules_manager.cpp" />
     <ClCompile Include="components\ia\comp_patrol_animator.cpp" />
     <ClCompile Include="components\object_controller\comp_noise_emitter.cpp" />
     <ClCompile Include="components\lighting\comp_emission_controller.cpp" />
@@ -120,15 +122,11 @@
     <ClCompile Include="components\comp_render.cpp" />
     <ClCompile Include="components\comp_tags.cpp" />
     <ClCompile Include="components\comp_transform.cpp" />
-    <ClCompile Include="components\dynamic_objects\comp_capsule_shadow.cpp" />
-    <ClCompile Include="components\dynamic_objects\comp_dynamic_objects.cpp" />
-    <ClCompile Include="components\ia\ai_controller.cpp" />
     <ClCompile Include="components\ia\btnode.cpp" />
     <ClCompile Include="components\ia\comp_bt.cpp" />
     <ClCompile Include="components\ia\comp_bt_mimetic.cpp" />
     <ClCompile Include="components\ia\comp_bt_patrol.cpp" />
     <ClCompile Include="components\ia\comp_bt_test.cpp" />
-    <ClCompile Include="components\object_controller\comp_bullet_controller.cpp" />
     <ClCompile Include="components\object_controller\comp_cone_of_light.cpp" />
     <ClCompile Include="components\object_controller\comp_trigger_camera.cpp" />
     <ClCompile Include="components\physics\comp_collider.cpp" />
@@ -191,6 +189,7 @@
     <ClCompile Include="modules\system\module_input.cpp" />
     <ClCompile Include="modules\system\module_logic.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
+    <ClCompile Include="modules\system\module_sound.cpp" />
     <ClCompile Include="modules\test\module_test_input.cpp" />
     <ClCompile Include="navmesh\navmesh.cpp" />
     <ClCompile Include="navmesh\navmesh_query.cpp" />
@@ -246,7 +245,6 @@
     <ClCompile Include="render\texture\texture.cpp" />
     <ClCompile Include="resources\json_resource.cpp" />
     <ClCompile Include="resources\resources_manager.cpp" />
-    <ClCompile Include="SLB\LogicManager.cpp" />
     <ClCompile Include="utils\murmur3\murmur3.cpp" />
     <ClCompile Include="utils\utils.cpp" />
     <ClCompile Include="utils\variant.cpp" />
@@ -266,6 +264,8 @@
     <ClInclude Include="components\comp_base.h" />
     <ClInclude Include="components\comp_camera.h" />
     <ClInclude Include="components\comp_culling.h" />
+    <ClInclude Include="components\dynamic_objects\comp_dynamic_capsule.h" />
+    <ClInclude Include="components\dynamic_objects\comp_dynamic_capsules_manager.h" />
     <ClInclude Include="components\ia\comp_patrol_animator.h" />
     <ClInclude Include="components\object_controller\comp_noise_emitter.h" />
     <ClInclude Include="components\lighting\comp_emission_controller.h" />
@@ -282,15 +282,11 @@
     <ClInclude Include="components\comp_render.h" />
     <ClInclude Include="components\comp_tags.h" />
     <ClInclude Include="components\comp_transform.h" />
-    <ClInclude Include="components\dynamic_objects\comp_capsule_shadow.h" />
-    <ClInclude Include="components\dynamic_objects\comp_dynamic_objects.h" />
-    <ClInclude Include="components\ia\ai_controller.h" />
     <ClInclude Include="components\ia\btnode.h" />
     <ClInclude Include="components\ia\comp_bt.h" />
     <ClInclude Include="components\ia\comp_bt_mimetic.h" />
     <ClInclude Include="components\ia\comp_bt_patrol.h" />
     <ClInclude Include="components\ia\comp_bt_test.h" />
-    <ClInclude Include="components\object_controller\comp_bullet_controller.h" />
     <ClInclude Include="components\object_controller\comp_cone_of_light.h" />
     <ClInclude Include="components\object_controller\comp_trigger_camera.h" />
     <ClInclude Include="components\physics\comp_collider.h" />
@@ -377,6 +373,7 @@
     <ClInclude Include="modules\system\module_input.h" />
     <ClInclude Include="modules\system\module_logic.h" />
     <ClInclude Include="modules\system\module_physics.h" />
+    <ClInclude Include="modules\system\module_sound.h" />
     <ClInclude Include="modules\test\module_test_input.h" />
     <ClInclude Include="navmesh\navmesh.h" />
     <ClInclude Include="navmesh\navmesh_query.h" />
@@ -432,7 +429,6 @@
     <ClInclude Include="resources\json_resource.h" />
     <ClInclude Include="resources\resource.h" />
     <ClInclude Include="resources\resources_manager.h" />
-    <ClInclude Include="SLB\LogicManager.h" />
     <ClInclude Include="utils\data_provider.h" />
     <ClInclude Include="utils\data_saver.h" />
     <ClInclude Include="utils\directory_watcher.h" />

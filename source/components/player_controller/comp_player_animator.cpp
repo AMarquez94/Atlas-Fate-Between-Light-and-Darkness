@@ -57,6 +57,17 @@ void TCompPlayerAnimator::initializeAnimations() {
 		1.0f
 	);
 
+  /* TODO: Meter animación para andar despacio (ahora es la de andar pero a menos velocidad) */
+  initializeAnimation(
+    (TCompAnimator::EAnimation)EAnimation::WALK_SLOW,
+    EAnimationType::CYCLIC,
+    EAnimationSize::SINGLE,
+    "walk",
+    "",
+    1.0f,
+    0.5f
+  );
+
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::RUN,
 		EAnimationType::CYCLIC,
@@ -135,6 +146,16 @@ void TCompPlayerAnimator::initializeAnimations() {
 		1.0f,
 		1.0f
 	);
+
+  initializeAnimation(
+    (TCompAnimator::EAnimation)EAnimation::LAND_HARD,
+    EAnimationType::ACTION,
+    EAnimationSize::SINGLE,
+    "crouch",
+    "",
+    1.0f,
+    1.0f
+  );
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::HIT_BACK,

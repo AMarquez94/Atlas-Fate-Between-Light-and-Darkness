@@ -1,0 +1,10 @@
+{
+	"shadows": false,
+	"textures": {
+		"albedo": "data/textures/props/tx_neon_aragami_diff.dds",
+		"metallic": "data/textures/props/tx_neon_aragami_mtl.dds",
+		"roughness": "data/textures/props/tx_neon_aragami_rgh.dds",
+		"normal": "data/textures/props/tx_neon_aragami_nml.dds",
+		"emissive": "data/textures/props/tx_neon_aragami_emi.dds"
+	}
+}

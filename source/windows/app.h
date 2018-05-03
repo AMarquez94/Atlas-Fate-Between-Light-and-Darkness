@@ -26,7 +26,7 @@ class CApp {
 
 public:
 
-	float fps = 0.0f;
+	int fps = 0;
 
 	int  xres = 0;
 	int  yres = 0;

@@ -17,16 +17,17 @@ CEngine& CEngine::get() {
 }
 
 CEngine::CEngine()
-  : _module_render("render")
-  , _module_entities("entities")
-  , _module_ia("ia")
-  , _module_input("input")
-  , _module_physics("physics")
-  , _module_cameras("cameras")
-  , _module_fsm("fsm")
-  , _module_navmesh("navmeshes")
-  , _module_logic("logic")
-  , _module_game_console("console")
+	: _module_render("render")
+	, _module_entities("entities")
+	, _module_ia("ia")
+	, _module_input("input")
+	, _module_physics("physics")
+	, _module_cameras("cameras")
+	, _module_fsm("fsm")
+	, _module_sound("sound")
+	, _module_navmesh("navmeshes")
+	, _module_logic("logic")
+	, _module_game_console("console")
 {}
 
 bool CEngine::start() {
@@ -46,9 +47,10 @@ bool CEngine::start() {
 	_modules.registerSystemModule(&_module_physics);
 	_modules.registerSystemModule(&_module_cameras);
 	_modules.registerSystemModule(&_module_fsm);
-  _modules.registerSystemModule(&_module_navmesh);
-  _modules.registerSystemModule(&_module_game_console);
-  _modules.registerSystemModule(&_module_logic);          //Always last to start the ongamestarted event from here
+	_modules.registerSystemModule(&_module_sound);
+	_modules.registerSystemModule(&_module_navmesh);
+	_modules.registerSystemModule(&_module_game_console);
+	_modules.registerSystemModule(&_module_logic);          //Always last to start the ongamestarted event from here
 
 	_modules.registerGameModule(&module_splash);
 	_modules.registerGameModule(&module_game_manager);

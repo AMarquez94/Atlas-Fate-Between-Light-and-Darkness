@@ -2,6 +2,40 @@
 
 #define PI 3.14159265359f
 
+
+//--------------------------------------------------------------------------------------
+// GBuffer Skinned generation pass. Vertex
+//--------------------------------------------------------------------------------------
+void VS_SKIN_GBuffer(
+	float4 iPos : POSITION
+	, float3 iN : NORMAL
+	, float2 iUV : TEXCOORD
+	, float4 iTangent : TANGENT
+	, int4   iBones : BONES
+	, float4 iWeights : WEIGHTS
+
+	, out float4 oPos : SV_POSITION
+	, out float3 oNormal : NORMAL0
+	, out float4 oTangent : NORMAL1
+	, out float2 oTex0 : TEXCOORD0
+	, out float2 oTex1 : TEXCOORD1
+	, out float3 oWorldPos : TEXCOORD2
+)
+{
+	// Faking the verterx shader by now since we don't have tangents...
+	float4x4 skin_mtx = getSkinMtx(iBones, iWeights);
+	float4 skinned_Pos = mul(float4(iPos.xyz * BonesScale, 1), skin_mtx);
+
+	oPos = mul(skinned_Pos, camera_view_proj); // Transform to viewproj, w_m inside skin_m
+	oNormal = mul(iN, (float3x3)obj_world); // Rotate the normal
+	oTangent.xyz = mul(iTangent.xyz, (float3x3)obj_world);
+	oTangent.w = iTangent.w;
+
+	oTex0 = iUV;
+	oTex1 = iUV;
+	oWorldPos = skinned_Pos.xyz;
+}
+
 //--------------------------------------------------------------------------------------
 // GBuffer generation pass. Vertex
 //--------------------------------------------------------------------------------------
@@ -52,11 +86,11 @@ void PS_GBuffer(
 {
 	// Store in the Alpha channel of the albedo texture, the 'metallic' amount of
 	// the material
-	/*
-	float3x3 TBN = computeTBN(iNormal, iTangent);
-	float3 view_dir = normalize(mul(camera_pos, TBN) - mul(iWorldPos, TBN));
-	iTex0 = parallaxMapping(iTex0, view_dir);
-	*/
+	
+	//float3x3 TBN = computeTBN(iNormal, iTangent);
+	//float3 view_dir = normalize(mul(camera_pos, TBN) - mul(iWorldPos, TBN));
+	//iTex0 = parallaxMapping(iTex0, view_dir);
+	
 	o_albedo = txAlbedo.Sample(samLinear, iTex0);
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 	o_selfIllum =  txEmissive.Sample(samLinear, iTex0);
@@ -113,7 +147,7 @@ void decodeGBuffer(
 	roughness = N_rt.a;
 
 	// Apply gamma correction to albedo to bring it back to linear.
-	albedo.rgb = pow(albedo.rgb, 2.2f);
+	albedo.rgb = pow(albedo.rgb, 2.2f);// *projectColor(wPos).xyz;
 
 	// Lerp with metallic value to find the good diffuse and specular.
 	// If metallic = 0, albedo is the albedo, if metallic = 1, the
@@ -215,7 +249,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position) : SV_Target
 	float g_AmbientLightIntensity = 1.0;
 	float4 self_illum = txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
 
-	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * self_illum.a * irradiance * g_AmbientLightIntensity, 1.0f) + float4(self_illum.xyz,1) * scalar_emission;
+	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f) + float4(self_illum.xyz, 1) * scalar_emission;
 	return final_color * global_ambient_adjustment;
 }
 
@@ -271,7 +305,7 @@ float4 shade(float4 iPosition, out float3 light_dir, bool use_shadows)
 	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.; // shadow factor
 
 	//return projectColor(wPos);
-	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor * projectColor(wPos).xyz;
+	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor;
 	return float4(final_color, 1);
 }
 

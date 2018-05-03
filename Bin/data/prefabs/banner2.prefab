@@ -1,0 +1,50 @@
+[{
+		"entity": {
+			"name": "prefab2",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "neon_aragami",
+			"transform": {
+				"pos": "0.0 0.0 0.0",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/props/neon_aragami.mesh",
+					"materials":
+					[
+						"data/materials/props/mtl_neon_aragami.material"
+					]
+				}
+			],
+			"hierarchy": {
+				"parent": "prefab2",
+				"pos": "0 0 0"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
+			"name": "Omni001",
+			"transform": {
+				"pos": "0 0.0 0",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"light_point": {
+				"type": "pointlight",
+				"radius": 1.5,
+				"color": "1.0 0.0 1.0 1.0",
+				"intensity": 0.35
+			},
+			"hierarchy": {
+				"parent": "prefab2",
+				"pos": "0 1.5 0"
+			}
+		}
+	}
+]
