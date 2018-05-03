@@ -153,6 +153,7 @@
     <ClCompile Include="modules\system\module_sound.cpp" />
     <ClCompile Include="components\dynamic_objects\comp_dynamic_capsules_manager.cpp" />
     <ClCompile Include="components\dynamic_objects\comp_dynamic_capsule.cpp" />
+    <ClCompile Include="components\postfx\comp_render_ao.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -342,6 +343,8 @@
     <ClInclude Include="components\ia\comp_mimetic_animator.h" />
     <ClInclude Include="modules\system\module_sound.h" />
     <ClInclude Include="components\dynamic_objects\comp_dynamic_capsule.h" />
+    <ClInclude Include="components\dynamic_objects\comp_dynamic_capsules_manager.h" />
+    <ClInclude Include="components\postfx\comp_render_ao.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

@@ -230,7 +230,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position) : SV_Target
 
 	// if roughness = 0 -> I want to use the miplevel 0, the all-detailed image
 	// if roughness = 1 -> I will use the most blurred image, the 8-th mipmap, If image was 256x256 => 1x1
-	float mipIndex = roughness * roughness * 8.0f;
+	float mipIndex = roughness * roughness * 32.0f;
 	float3 env = txEnvironmentMap.SampleLevel(samLinear, reflected_dir, mipIndex).xyz;
 	env = pow(env, 2.2f);	// Convert the color to linear also.
 
@@ -247,10 +247,12 @@ float4 PS_ambient(in float4 iPosition : SV_Position) : SV_Target
 
 	float g_ReflectionIntensity = 1.0;
 	float g_AmbientLightIntensity = 1.0;
+
+	float ao = txAO.Load(uint3(iPosition.xy, 0));
 	float4 self_illum = txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
 
 	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f) + float4(self_illum.xyz, 1) * scalar_emission;
-	return final_color * global_ambient_adjustment;
+	return final_color * global_ambient_adjustment * ao;
 }
 
 //--------------------------------------------------------------------------------------

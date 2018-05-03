@@ -1,0 +1,18 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/alminar_low_1001_BaseColor.dds"
+    ,
+    "metallic": "data/textures/alminar_low_1001_Metallic.dds"
+    ,
+    "roughness": "data/textures/alminar_low_1001_Roughness.dds"
+    ,
+    "normal": "data/textures/alminar_low_1001_Normal.dds"
+    ,
+    "height": "data/textures/alminar_low_1001_Height.dds"
+    ,
+    "emissive": "data/textures/alminar_low_1001_Emissive.dds"
+  }
+}

@@ -10,6 +10,7 @@ Texture2D    txRoughness      SLOT(TS_ROUGHNESS);
 Texture2D    txEmissive       SLOT(TS_EMISSIVE);
 Texture2D    txHeight         SLOT(TS_HEIGHT);
 Texture2D    txNoiseMap       SLOT(TS_NOISE_MAP);
+Texture2D    txAO             SLOT(TS_DEFERRED_AO);
 
 // from the light and env
 Texture2D    txLightProjector SLOT(TS_LIGHT_PROJECTOR);
@@ -23,6 +24,7 @@ Texture2D    txGBufferNormals     SLOT(TS_DEFERRED_NORMALS);
 Texture2D    txGBufferLinearDepth SLOT(TS_DEFERRED_LINEAR_DEPTH);
 Texture2D    txAccLights          SLOT(TS_DEFERRED_ACC_LIGHTS);
 Texture2D    txSelfIllum          SLOT(TS_DEFERRED_SELF_ILLUMINATION);
+Texture2D    txAO                 SLOT(TS_DEFERRED_AO);
 
 //--------------------------------------------------------------------------------------
 SamplerState samLinear        : register(s0);
@@ -209,23 +211,23 @@ float2 parallaxMapping(float2 texCoords, float3 view_dir){
 	float numLayers = lerp(maxLayers, minLayers, abs(dot(float3(0.0, 0.0, 1.0), view_dir)));
 	float layerDepth = 1.0 / numLayers;
 	float currentLayerDepth = 0.0;
-	float2 P = view_dir.xy * 0.25;
+	float2 P = view_dir.xy * 0.1;
 	float2 deltaTexCoords = P / numLayers;
 
 	float2 currentTexCoords = texCoords;
-	float currentDepthMapValue = 1 - txEmissive.Sample(samLinear, currentTexCoords).a;
+	float currentDepthMapValue = 1 - txHeight.Sample(samLinear, currentTexCoords).a;
 
 	[unroll(30)]
 	while (currentLayerDepth < currentDepthMapValue)
 	{
 		currentTexCoords -= deltaTexCoords;
-		currentDepthMapValue = 1 - txEmissive.Sample(samLinear, currentTexCoords).a;
+		currentDepthMapValue = 1 - txHeight.Sample(samLinear, currentTexCoords).a;
 		currentLayerDepth += layerDepth;
 	}
 
 	float2 prevTexCoords = currentTexCoords + deltaTexCoords;
 	float afterDepth = currentDepthMapValue - currentLayerDepth;
-	float beforeDepth = (1 - txEmissive.Sample(samLinear, prevTexCoords).a) - currentLayerDepth + layerDepth;
+	float beforeDepth = (1 - txHeight.Sample(samLinear, prevTexCoords).a) - currentLayerDepth + layerDepth;
 	float weight = afterDepth / (afterDepth - beforeDepth);
 	float2 finalTexCoords = prevTexCoords * weight + currentTexCoords * (1.0 - weight);
 

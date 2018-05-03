@@ -3,7 +3,7 @@
 			"name": "milestone2_map"
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "st_alminares",
 			"transform": {
 				"pos": "6.61451 17.0 -42.1177",
@@ -324,7 +324,7 @@
 			]
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "st_wall_start",
 			"transform": {
 				"pos": "-10.9451 4.5 -26.1423",

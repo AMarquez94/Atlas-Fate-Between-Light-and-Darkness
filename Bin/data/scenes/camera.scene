@@ -34,11 +34,14 @@
 				"z_near": 0.01,
 				"z_far": 1000
 			},
+			"render_ao" : {
+				"enabled" :  true
+			}
 			"render_bloom" : {
-         "enabled" :  true,
-				 "gauss_filter" : true,
-				 "max_steps" : 1
-      },
+				"enabled" :  true,
+				"gauss_filter" : true,
+				"max_steps" : 1
+			},
 			"tags" : ["main_camera"],
 			"culling": true
 		}
@@ -60,6 +63,9 @@
 				"z_near": 0.01,
 				"z_far": 1000
 			},
+						"render_ao" : {
+				"enabled" :  true
+			}
 			"render_bloom" : {
          "enabled" :  true,
 				 "gauss_filter" : true,
@@ -86,7 +92,10 @@
 				"fov" : 90,
 				"z_near": 0.01,
 				"z_far": 1000
-			},			
+			},
+			"render_ao" : {
+				"enabled" :  true
+			}			
 			"render_blur" : {
          "enabled" :  false
       },
@@ -113,6 +122,9 @@
 			"render_blur" : {
          "enabled" :  false
       },
+	  	"render_ao" : {
+				"enabled" :  true
+		}
       "render_blur_radial" : {
         "enabled" :  true
 			},
@@ -137,7 +149,10 @@
 				"fov" : 90,
 				"z_near": 0.01,
 				"z_far": 1000
-			},
+			},			
+			"render_ao" : {
+				"enabled" :  true
+			}
 			"render_blur" : {
          "enabled" :  false
       },
@@ -160,7 +175,10 @@
 				"fov" : 80,
 				"z_near": 0.01,
 				"z_far": 1000
-			},			
+			},					
+			"render_ao" : {
+				"enabled" :  true
+			}	
 			"render_bloom" : {
          "enabled" :  true,				 
 				 "gauss_filter" : true,

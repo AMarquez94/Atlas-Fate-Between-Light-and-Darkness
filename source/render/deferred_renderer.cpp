@@ -7,8 +7,21 @@
 #include "components/lighting/comp_light_dir.h"
 #include "components/lighting/comp_light_point.h"
 #include "components/lighting/comp_light_spot.h"
+#include "components/postfx/comp_render_ao.h"
 #include "components/comp_transform.h"
 #include "ctes.h"
+
+// --------------------------------------
+void CDeferredRenderer::renderAO(CHandle h_camera) const {
+	CEntity* e_camera = h_camera;
+	assert(e_camera);
+	TCompRenderAO* comp_ao = e_camera->get<TCompRenderAO>();
+	if (!comp_ao)
+		return;
+	CTexture::setNullTexture(TS_DEFERRED_AO);
+	auto ao = comp_ao->compute(rt_depth);
+	ao->activate(TS_DEFERRED_AO);
+}
 
 void CDeferredRenderer::renderGBuffer() {
 	CTraceScoped gpu_scope("Deferred.GBuffer");
@@ -191,10 +204,11 @@ void CDeferredRenderer::renderSpotLights() {
 }
 
 // --------------------------------------
-void CDeferredRenderer::render(CRenderToTexture* rt_destination) {
+void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camera) {
 
 	assert(rt_destination);
 	renderGBuffer();
+	renderAO(h_camera);
 
 	// Do the same with the acc light
 	CTexture::setNullTexture(TS_DEFERRED_ACC_LIGHTS);

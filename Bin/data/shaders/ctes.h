@@ -36,6 +36,15 @@
 #define TS_DEFERRED_LINEAR_DEPTH      16
 #define TS_DEFERRED_ACC_LIGHTS        17
 #define TS_DEFERRED_SELF_ILLUMINATION 18
+#define TS_DEFERRED_AO                19
+// -------------------------------------------------
+#define RO_COMPLETE     0
+#define RO_ALBEDO       1
+#define RO_NORMAL       2
+#define RO_ROUGHNESS    3
+#define RO_METALLIC     4
+#define RO_WORLD_POS    5
+#define RO_DEPTH_LINEAR 6
 
 // -------------------------------------------------
 #define MAX_SUPPORTED_BONES        128
@@ -117,8 +126,13 @@ CB_DEF(CCteGlobals, CB_GLOBALS)   // Generates the b1
 	float global_hdr_enabled;
 	float global_gamma_correction_enabled;
 	float global_tone_mapping_mode;
-	float global_dummy1;
+	int   global_render_output;
 	float global_dummy2;
+
+	float global_shared_fx_amount;
+	float global_shared_fx_val1;
+	float global_shared_fx_val2;
+	float global_shared_fx_val3;
 };
 
 CB_DEF(CCteMaterial, CB_MATERIAL)
