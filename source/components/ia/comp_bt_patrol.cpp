@@ -195,6 +195,8 @@ void TCompAIPatrol::onMsgNoiseListened(const TMsgNoiseMade & msg)
 	bool isManagingNaturalNoise = isParentOfCurrent(current, "manageNaturalNoise");
 	bool isChasingPlayer = isParentOfCurrent(current, "manageChase");
 
+  std::chrono::steady_clock::time_point newNoiseTime;
+
 	if (!isChasingPlayer && !isManagingArtificialNoise) {
 		if (!isPlayerInFov("The Player", fov - deg2rad(1.f), autoChaseDistance - 1.f)) {
 			if (msg.isArtificialNoise) {
@@ -205,8 +207,16 @@ void TCompAIPatrol::onMsgNoiseListened(const TMsgNoiseMade & msg)
 			}
 		}
 	}
-  noiseSourceChanged = noiseSource != msg.noiseOrigin;
-	noiseSource = msg.noiseOrigin;
+
+  /* Noise management */
+  if (!hNoiseSource.isValid() || hNoiseSource == msg.hNoiseSource || std::chrono::duration_cast<std::chrono::seconds>(newNoiseTime - lastTimeNoiseWasHeard).count() > 1.5f) {
+
+    /* Different noise sources (different enemies) => only hear if 1.5 seconds (hardcoded (TODO: Change)) passed || Same noise source => update noise settings */
+    lastTimeNoiseWasHeard = newNoiseTime;
+    noiseSourceChanged = noiseSource != msg.noiseOrigin;
+    noiseSource = msg.noiseOrigin;
+    hNoiseSource = msg.hNoiseSource;
+  }
 }
 
 void TCompAIPatrol::registerMsgs()
@@ -391,6 +401,11 @@ BTNode::ERes TCompAIPatrol::actionGoToNoiseSource(float dt)
 	TCompTransform * ppos = get<TCompTransform>();
 	VEC3 pp = ppos->getPosition();
 
+  if (noiseSourceChanged) {
+    generateNavmesh(pp, noiseSource);
+    noiseSourceChanged = false;
+  }
+
 	if (isPlayerInFov(entityToChase, fov - deg2rad(1.f), autoChaseDistance - 1.f)) {
 		current = nullptr;
 		return BTNode::ERes::LEAVE;
@@ -542,7 +557,7 @@ BTNode::ERes TCompAIPatrol::actionMarkPlayerAsSeen(float dt)
 	assert(arguments.find("entityToChase_actionMarkPlayerAsSeen_markPlayerAsSeen") != arguments.end());
 	std::string entityToChase = arguments["entityToChase_actionMarkPlayerAsSeen_markPlayerAsSeen"].getString();
 	
-	CEntity *player = (CEntity *)getEntityByName(entityToChase);
+	CEntity *player = getEntityByName(entityToChase);
 	TCompTransform * ppos = player->get<TCompTransform>();
 	lastPlayerKnownPos = ppos->getPosition();
 	return BTNode::ERes::LEAVE;
@@ -553,7 +568,7 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 	assert(arguments.find("entityToChase_actionShootInhibitor_shootInhibitor") != arguments.end());
 	std::string entityToChase = arguments["entityToChase_actionShootInhibitor_shootInhibitor"].getString();
 	
-	CEntity *player = (CEntity *)getEntityByName(entityToChase);
+	CEntity *player = getEntityByName(entityToChase);
 	TCompTempPlayerController *pController = player->get<TCompTempPlayerController>();
  
   TCompEmissionController *eController = get<TCompEmissionController>();
@@ -561,15 +576,15 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 
 	if (!pController->isInhibited) {
 		//Animation To Change
-		TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-		float animDuration = myAnimator->getAnimationDuration((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR);
-		if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR)) {
-			myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR);
-		}
-		timeAnimating += dt;
-		if (timeAnimating < animDuration) {
-			return BTNode::ERes::STAY;
-		}
+		//TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+		//float animDuration = myAnimator->getAnimationDuration((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR);
+		//if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR)) {
+		//	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR);
+		//}
+		//timeAnimating += dt;
+		//if (timeAnimating < animDuration) {
+		//	return BTNode::ERes::STAY;
+		//}
 
 		timeAnimating = 0.0f;
 

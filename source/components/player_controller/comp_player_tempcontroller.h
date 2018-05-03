@@ -113,6 +113,8 @@ public:
 	/* Debug variables */
 	bool dbgDisableStamina;
 	std::string dbCameraState;
+  //VEC3 debugDir = VEC3::Zero;
+  //VEC3 debugMyFront = VEC3::Zero;
 
 	bool isMerged;
 	bool isGrounded;

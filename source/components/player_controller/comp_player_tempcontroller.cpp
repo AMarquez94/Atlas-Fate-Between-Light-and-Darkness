@@ -46,6 +46,9 @@ void TCompTempPlayerController::renderDebug() {
 		ImGui::SetCursorPos(ImVec2(CApp::get().xres * 0.05f + 25, CApp::get().yres * 0.05f));
 		ImGui::ProgressBar(stamina / maxStamina, ImVec2(CApp::get().xres / 5.f, CApp::get().yres / 30.f));
 		ImGui::Text("State: %s", dbCameraState.c_str());
+    //ImGui::Text("VECTOR DIR: (%f - %f - %f)", debugDir.x, debugDir.y, debugDir.z);
+    //ImGui::Text("VECTOR FRONT: (%f - %f - %f)", debugMyFront.x, debugMyFront.y, debugMyFront.z);
+
 	}
 
 	ImGui::End();
@@ -289,7 +292,9 @@ void TCompTempPlayerController::walkState(float dt) {
 	VEC3 proj = projectVector(up, normal_norm);
 	VEC3 dir = getMotionDir(proj, normal_norm.Cross(-proj));
 
+
 	if (dir == VEC3::Zero) dir = proj;
+
 	float dir_yaw = getYawFromVector(dir);
 	Quaternion my_rotation = c_my_transform->getRotation();
 	Quaternion new_rotation = Quaternion::CreateFromYawPitchRoll(dir_yaw, pitch, 0);
@@ -319,6 +324,9 @@ void TCompTempPlayerController::mergeState(float dt) {
 	VEC3 dir = getMotionDir(proj, normal_norm.Cross(proj));
 
 	if (dir == VEC3::Zero) dir = proj;
+
+  //debugDir = dir;
+
 	VEC3 new_pos = c_my_transform->getPosition() - dir;
 	Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), new_pos, c_my_transform->getUp()).Transpose();
 	Quaternion quat = Quaternion::CreateFromRotationMatrix(test);
@@ -327,23 +335,31 @@ void TCompTempPlayerController::mergeState(float dt) {
 
 	if (convexTest() || concaveTest()) {
 
-		angle_test = fabs(EnginePhysics.gravity.Dot(c_my_transform->getUp()));
+    VEC3 postUp = c_my_transform->getUp();
+
+		angle_test = fabs(EnginePhysics.gravity.Dot(prevUp));
+    float angle_amount = fabsf(acosf(prevUp.Dot(postUp)));
 		std::string target_name = angle_test < mergeAngle ? "SMCameraVer" : "SMCameraHor";
-		dbCameraState = target_name;
+		
+    CEntity* e_target_camera = target_camera;
+    if (angle_amount > deg2rad(30.f) || target_name.compare(dbCameraState) != 0) {
 
-		CHandle eCamera = getEntityByName("SMCameraAux");
-		TCompName * name = ((CEntity*)target_camera)->get<TCompName>();
-		VEC3 postUp = c_my_transform->getUp();
-		VEC3 dirToLookAt = -(prevUp + postUp);
-		dirToLookAt.Normalize();
+      /* Only "change" cameras when the amount of degrees turned is more than 30º */
+      CEntity* eCamera = getEntityByName("SMCameraAux");
+      TCompName * name = ((CEntity*)target_camera)->get<TCompName>();
+      VEC3 dirToLookAt = -(prevUp + postUp);
+      dirToLookAt.Normalize();
 
-		TMsgSetCameraActive msg;
-		msg.previousCamera = name->getName();
-		target_camera = getEntityByName(target_name);
-		msg.actualCamera = target_name;
-		msg.directionToLookAt = dirToLookAt;
-		((CEntity*)eCamera)->sendMsg(msg);
+      TMsgSetCameraActive msg;
+      msg.previousCamera = name->getName();
+      target_camera = getEntityByName(target_name);
+      msg.actualCamera = target_name;
+      msg.directionToLookAt = dirToLookAt;
+      eCamera->sendMsg(msg);
+    }
+    dbCameraState = target_name;
 	}
+  //debugMyFront = c_my_transform->getFront();
 }
 
 /* Resets the player to it's default state parameters */
