@@ -32,6 +32,10 @@ void TCompAIMimetic::debugInMenu() {
     }
   }
 
+  ImGui::Text("SuspectO'meter:");
+  ImGui::SameLine();
+  ImGui::ProgressBar(suspectO_Meter);
+
 	ImGui::Text("Current state: %s", validState.c_str());
 }
 
@@ -434,6 +438,7 @@ BTNode::ERes TCompAIMimetic::actionSuspect(float dt)
 	if (distanceToPlayer <= autoChaseDistance && isPlayerInFov()) {
     eController->blend(mimeticColor.colorAlert, 0.1f);
 		rotateTowardsVec(ppos->getPosition(), rotationSpeedObservation, dt);
+    suspectO_Meter = 1.f;
 	}
 	else if (distanceToPlayer <= maxChaseDistance && isPlayerInFov()) {
 		suspectO_Meter = Clamp(suspectO_Meter + dt * incrBaseSuspectO_Meter, 0.f, 1.f);							//TODO: increment more depending distance and noise
@@ -548,7 +553,13 @@ BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
 		}
 		return BTNode::ERes::LEAVE;
 	}
-	else {
+  else if (distToPlayer <= 1.3f) {
+
+    /* TODO: This fix is temporary */
+    rotateTowardsVec(ppos->getPosition(), rotationSpeedChase, dt);
+    return BTNode::ERes::STAY;
+
+  } else {
 
     VEC3 nextPos = navmeshPath.size() > 0 && navmeshPathPoint < navmeshPath.size() ?
       navmeshPath[navmeshPathPoint] :
@@ -860,7 +871,6 @@ bool TCompAIMimetic::rotateTowardsVec(VEC3 objective, float rotationSpeed, float
 }
 
 bool TCompAIMimetic::isPlayerInFov() {
-  //return false; //TODO: Borrar
 
 	TCompTransform *mypos = get<TCompTransform>();
 	CHandle hPlayer = getEntityByName(entityToChase);
