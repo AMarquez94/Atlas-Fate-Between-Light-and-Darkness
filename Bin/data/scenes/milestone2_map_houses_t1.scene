@@ -1,0 +1,4931 @@
+[
+  {
+    "entity":
+    {
+      "name": "milestone2_map_pre2"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "-27.3377 4.09266 -30.8204"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/Props.material"
+            ,
+            "data/materials/WallB.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_door"
+      ,
+      "transform":
+      {
+        "pos": "-2.87878 0.0 10.5207"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_door.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "-0.428783 6.00005 10.2455"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-21.4451 4.77227 -5.27387"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-18.9451 1.77274 -5.22342"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+            ,
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall"
+      ,
+      "transform":
+      {
+        "pos": "-21.6111 1.77269 -7.62432"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pipe_large"
+      ,
+      "transform":
+      {
+        "pos": "-18.9451 0.955344 -7.65312"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_pipe_large.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pipe_corner"
+      ,
+      "transform":
+      {
+        "pos": "-18.9451 4.54428 -7.80059"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_pipe_corner.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pipe_large"
+      ,
+      "transform":
+      {
+        "pos": "-18.9451 3.15534 -7.65312"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_pipe_large.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pipe_large"
+      ,
+      "transform":
+      {
+        "pos": "-18.9451 4.69549 -9.1855"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_pipe_large.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-21.4451 4.77227 -0.572967"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-18.9451 1.77274 -0.522519"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+            ,
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-26.4451 4.77227 -5.27387"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-26.4451 4.77227 -0.572967"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-31.4451 4.77227 -0.572967"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "-19.8451 5.31348 -7.44863"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing_corner"
+      ,
+      "transform":
+      {
+        "pos": "-19.352 5.32374 -7.24695"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing_corner.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall"
+      ,
+      "transform":
+      {
+        "pos": "-26.3093 1.77269 -7.62432"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "-21.5651 5.31348 -7.44863"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "-23.2851 5.31348 -7.44863"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "-25.0051 5.31348 -7.44863"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "-19.1208 5.31348 0.0158711"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "-19.1208 5.31348 -1.70413"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "-19.1208 5.31348 -3.42413"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "-19.1208 5.31348 -5.14413"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "-19.1208 5.31348 1.73587"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_door"
+      ,
+      "transform":
+      {
+        "pos": "-15.5999 0.0 2.02777"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_door.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+            ,
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-15.5999 5.99976 8.83003"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-13.0999 3.00023 8.88048"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+            ,
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-15.5999 5.99976 13.5324"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-13.0999 3.00023 13.5828"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+            ,
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-15.5999 5.99976 4.12623"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall"
+      ,
+      "transform":
+      {
+        "pos": "-20.6766 3.00039 1.77578"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall"
+      ,
+      "transform":
+      {
+        "pos": "-25.3748 3.00039 1.77578"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall"
+      ,
+      "transform":
+      {
+        "pos": "-30.073 3.00039 1.77578"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "-34.7711 3.00039 1.77578"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-20.5996 5.99976 8.83003"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-20.5996 5.99976 13.5324"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-20.5996 5.99976 4.12623"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-25.5993 5.99976 13.5324"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-25.5993 5.99976 4.12623"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-30.599 5.99976 13.5324"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-30.599 5.99976 4.12623"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-35.5987 5.99976 13.5324"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-35.5987 5.99976 4.12623"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_door"
+      ,
+      "transform":
+      {
+        "pos": "-19.5791 5.66765 8.81176"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_door.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+            ,
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-31.0796 11.6674 8.81177"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-31.0291 8.66789 6.31176"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+            ,
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall"
+      ,
+      "transform":
+      {
+        "pos": "-26.6955 8.66784 6.31176"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-26.4291 8.66789 11.3118"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+            ,
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall"
+      ,
+      "transform":
+      {
+        "pos": "-30.7628 8.66784 11.3118"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-26.3799 11.6674 8.81177"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "-21.6803 11.6674 8.81177"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall"
+      ,
+      "transform":
+      {
+        "pos": "-15.132 3.0004 15.8828"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall"
+      ,
+      "transform":
+      {
+        "pos": "-19.8317 3.0004 15.8828"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall"
+      ,
+      "transform":
+      {
+        "pos": "-24.5313 3.0004 15.8828"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall"
+      ,
+      "transform":
+      {
+        "pos": "-29.2309 3.0004 15.8828"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall"
+      ,
+      "transform":
+      {
+        "pos": "-33.9306 3.0004 15.8828"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "-13.9998 6.54091 1.95147"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "-15.7198 6.54091 1.95147"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "-13.2755 6.54091 4.25596"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing_corner"
+      ,
+      "transform":
+      {
+        "pos": "-13.5068 6.55117 2.15315"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing_corner.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "-17.4398 6.54091 1.95147"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "-19.1598 6.54091 1.95147"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "-20.8798 6.54091 1.95147"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "-31.8151 6.54091 1.95147"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "-33.4464 6.54091 15.7072"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "-31.7264 6.54091 15.7072"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-2.82878 3.0 14.7455"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "-0.428783 6.00005 14.7455"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-0.678782 3.0 16.8955"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "3.82122 3.0 16.8955"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "3.81878 3.0 8.09554"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "8.31878 3.0 8.09554"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_column"
+      ,
+      "transform":
+      {
+        "pos": "-2.83033 2.92173 16.8724"
+        ,
+        "rotation": "0.0 -0.130526 0.0 -0.991445"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_column.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-0.828784 9.0 14.7455"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-0.828784 9.0 10.2455"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "1.32122 9.0 16.8955"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "1.32122 9.0 8.09554"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "5.82122 9.0 8.09554"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "10.3212 9.0 8.09554"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "5.82122 9.0 16.8955"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "10.3212 9.0 16.8955"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "1.57122 12.0 10.2455"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "1.57122 12.0 14.7455"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "6.57121 12.0 10.2455"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "6.57121 12.0 14.7455"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "11.5712 12.0 10.2455"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "11.5712 12.0 14.7455"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall"
+      ,
+      "transform":
+      {
+        "pos": "4.49453 1.63802 29.3246"
+        ,
+        "rotation": "0.0 -0.906308 0.0 0.422618"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "4.79907 4.63759 25.7588"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall"
+      ,
+      "transform":
+      {
+        "pos": "2.29907 1.63802 26.077"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "4.79907 4.63759 21.0606"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall"
+      ,
+      "transform":
+      {
+        "pos": "2.29907 1.63802 21.3789"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "4.79907 4.63759 16.3624"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall"
+      ,
+      "transform":
+      {
+        "pos": "2.29907 1.63802 16.6807"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall"
+      ,
+      "transform":
+      {
+        "pos": "8.53211 1.63802 30.4955"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "6.29472 10.6373 26.4202"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "3.79472 7.63782 26.3698"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+            ,
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "6.29472 10.6373 21.7193"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "3.79472 7.63782 21.6689"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+            ,
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "6.29472 10.6375 17.0184"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall"
+      ,
+      "transform":
+      {
+        "pos": "3.79472 7.63789 17.3367"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "-1.69508 2.37329 -7.66312"
+        ,
+        "rotation": "0.0 2.38419e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall"
+      ,
+      "transform":
+      {
+        "pos": "8.53211 7.63771 30.3955"
+        ,
+        "rotation": "0.0 -0.906308 0.0 0.422618"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "5.68432 4.63759 27.6051"
+        ,
+        "rotation": "0.0 0.300706 0.0 -0.953717"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "8.16611 7.63782 30.3955"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+            ,
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "11.2947 10.6373 26.4202"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "11.2947 10.6373 21.7193"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "11.2947 10.6375 17.0184"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "6.29472 10.6373 31.1211"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseA_roof"
+      ,
+      "transform":
+      {
+        "pos": "11.2947 10.6373 31.1211"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseA_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "5.90601 11.1785 30.2194"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "7.62602 11.1785 30.2194"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "9.34602 11.1785 30.2194"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "11.066 11.1785 30.2194"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "5.97352 11.1785 30.2194"
+        ,
+        "rotation": "0.0 -0.943632 0.0 -0.330996"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "5.31753 11.1785 29.6946"
+        ,
+        "rotation": "0.0 -0.943632 0.0 -0.330996"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_railing"
+      ,
+      "transform":
+      {
+        "pos": "4.04269 11.1785 27.1382"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_railing.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+            ,
+            "data/materials/mtl_Muro_Base.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-12.8032 2.53217 27.6385"
+        ,
+        "rotation": "0.0 -0.984808 0.0 0.173648"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-12.8032 8.53216 27.6385"
+        ,
+        "rotation": "0.0 -0.984808 0.0 0.173648"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-16.6712 2.53217 29.8717"
+        ,
+        "rotation": "0.0 -0.939693 0.0 0.34202"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-16.6712 8.53216 29.8717"
+        ,
+        "rotation": "0.0 -0.939693 0.0 0.34202"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_door"
+      ,
+      "transform":
+      {
+        "pos": "-10.7047 -0.467839 20.4881"
+        ,
+        "rotation": "0.0 2.38419e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_door.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "-10.7547 2.53216 24.7129"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "-13.1547 11.5322 24.7129"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "-13.1547 11.5322 20.2129"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-10.7547 8.53216 20.2129"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-10.7547 8.53216 24.7129"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "-12.9047 8.53216 18.0629"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-17.4047 8.53216 18.0629"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-26.4047 8.53216 18.0629"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "-21.9047 8.53216 18.0629"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "-30.9047 8.53216 18.0629"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "-35.4047 8.53216 18.0629"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "-18.1547 11.5322 24.7129"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "-18.1547 11.5322 20.2129"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "-23.1547 11.5322 24.7129"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "-23.1547 11.5322 20.2129"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "-28.1547 11.5322 24.7129"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "-28.1547 11.5322 20.2129"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "-33.1547 11.5322 24.7129"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "-33.1547 11.5322 20.2129"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "-23.1547 11.5322 29.2129"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "-28.1547 11.5322 29.2129"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "-33.1547 11.5322 29.2129"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-17.4047 2.53216 18.0629"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall_window"
+      ,
+      "transform":
+      {
+        "pos": "-26.4047 2.53216 18.0629"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall_window.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+            ,
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "-21.9047 2.53216 18.0629"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "-30.9047 2.53216 18.0629"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "-35.4047 2.53216 18.0629"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "-20.5806 8.53216 31.3629"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "-20.5806 2.53216 31.3629"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "-25.0806 8.53216 31.3629"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "-25.0806 2.53216 31.3629"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "-29.5806 8.53216 31.3629"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "-29.5806 2.53216 31.3629"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "-34.0806 8.53216 31.3629"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_wall"
+      ,
+      "transform":
+      {
+        "pos": "-34.0806 2.53216 31.3629"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_wall.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_houseB_roof"
+      ,
+      "transform":
+      {
+        "pos": "-18.1547 11.5322 29.2129"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_houseB_roof.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Wall.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }	
+]

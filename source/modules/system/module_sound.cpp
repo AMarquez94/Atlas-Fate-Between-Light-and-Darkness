@@ -27,8 +27,8 @@ void CModuleSound::setAmbientSound(const std::string & path) {
 
 bool CModuleSound::stop() {
 
-	_ambiance->result = _system->close();
-	_ambiance->result = _system->release();
+	_system->close();
+	_system->release();
 
 	// Clear all the clips registered previously
 

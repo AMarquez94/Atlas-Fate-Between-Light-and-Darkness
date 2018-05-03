@@ -1,0 +1,16 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/HouseA_basecolor.dds"
+    ,
+    "metallic": "data/textures/HouseA_metallic.dds"
+    ,
+    "roughness": "data/textures/HouseA_roughness.dds"
+    ,
+    "normal": "data/textures/Muro_top_normal.dds"
+    ,
+    "height": "data/textures/HouseA_height.dds"
+  }
+}

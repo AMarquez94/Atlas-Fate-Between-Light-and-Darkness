@@ -50,9 +50,9 @@ void TCompRenderBloom::load(const json& j, TEntityParseContext& ctx) {
 		yres /= 2;
 	}
 
-	emissive_distance = 1.5f;
-	emissive_weights = VEC4(4, 8, 16, 32);
-	emissive_factors = VEC4(1, 2, 3, 4);
+	emissive_distance = 1.f;
+	emissive_weights = VEC4(2, 4, 8, 16);
+	emissive_factors = VEC4(1, 1, 1, 1);
 	tech = Resources.get("bloom.tech")->as<CRenderTechnique>();
 	mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 }

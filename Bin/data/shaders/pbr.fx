@@ -249,7 +249,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position) : SV_Target
 	float g_AmbientLightIntensity = 1.0;
 	float4 self_illum = txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
 
-	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f) + float4(self_illum.xyz,1) * scalar_emission;
+	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);// +float4(self_illum.xyz, 1) * scalar_emission;
 	return final_color * global_ambient_adjustment;
 }
 
