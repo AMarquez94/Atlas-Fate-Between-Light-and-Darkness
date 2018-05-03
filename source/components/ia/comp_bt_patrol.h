@@ -30,10 +30,13 @@ private:
 	bool hasBeenShadowMerged = false;
 	bool hasBeenFixed = false;
 
+  /* TODO: create struct for noises */
 	bool hasHeardNaturalNoise = false;
 	bool hasHeardArtificialNoise = false;
 	VEC3 noiseSource = VEC3::Zero;
   bool noiseSourceChanged = false;
+  CHandle hNoiseSource = CHandle();
+  std::chrono::steady_clock::time_point lastTimeNoiseWasHeard;
 
   float maxDistanceToNavmeshPoint = 3.f;
 
