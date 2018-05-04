@@ -68,6 +68,8 @@ class TCompTempPlayerController : public TCompBase
 	actionhandler state;
 	CHandle target_camera;
 
+	bool tempInverseVerticalMovementMerged = false;
+
 	float mergeAngle;
 	float currentSpeed;
 	float rotationSpeed;
@@ -149,6 +151,7 @@ public:
 	void mergeEnemy();
 	void resetMerge();
 	bool isDead();
+	void upButtonReselased();
 
 	VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
 	CHandle closeEnemy(const std::string & state = "undefined");

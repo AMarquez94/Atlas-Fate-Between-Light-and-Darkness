@@ -325,7 +325,7 @@ void TCompTempPlayerController::mergeState(float dt) {
 
 	if (dir == VEC3::Zero) dir = proj;
 
-  //debugDir = dir;
+	if (tempInverseVerticalMovementMerged) dir.y = abs(dir.y) * -1;
 
 	VEC3 new_pos = c_my_transform->getPosition() - dir;
 	Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), new_pos, c_my_transform->getUp()).Transpose();
@@ -511,6 +511,8 @@ const bool TCompTempPlayerController::convexTest(void) {
 		{
 			VEC3 new_forward = -hit_normal.Cross(c_my_transform->getLeft());
 			VEC3 target = hit_point + new_forward;
+
+			if (hit_normal.y < c_my_transform->getUp().y  && EngineInput["btUp"].value > 0) tempInverseVerticalMovementMerged = true;
 
 			rigidbody->SetUpVector(hit_normal);
 			rigidbody->normal_gravity = EnginePhysics.gravityMod * -hit_normal;
@@ -806,6 +808,10 @@ VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & le
 }
 
 /* Auxiliary functions */
+
+void TCompTempPlayerController::upButtonReselased() {
+	if (tempInverseVerticalMovementMerged) tempInverseVerticalMovementMerged = false;
+}
 
 bool TCompTempPlayerController::isDead()
 {
