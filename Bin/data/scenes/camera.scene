@@ -14,7 +14,12 @@
 			},
 			"render_ao": {
 				"enabled": true
-			},
+			},      
+			"render_bloom" : {
+        "enabled" :  true,
+        "max_steps" : 4,
+        "rt_name" : "Bloom"
+      },
 			"culling": true
 		}
 	}, {
@@ -37,11 +42,11 @@
 			"render_ao": {
 				"enabled": true
 			},
-			"render_bloom": {
-				"enabled": true,
-				"gauss_filter": true,
-				"max_steps": 1
-			},
+			"render_bloom" : {
+        "enabled" :  true,
+        "max_steps" : 4,
+        "rt_name" : "Bloom"
+      },
 			"tags": ["main_camera"],
 			"culling": true
 		}
@@ -65,11 +70,11 @@
 			"render_ao": {
 				"enabled": true
 			},
-			"render_bloom": {
-				"enabled": true,
-				"gauss_filter": true,
-				"max_steps": 1
-			},
+      "render_bloom" : {
+        "enabled" :  true,
+        "max_steps" : 4,
+        "rt_name" : "Bloom"
+      },
 			"tags": ["main_camera"],
 			"culling": true
 		}
@@ -173,11 +178,11 @@
 			"render_ao": {
 				"enabled": true
 			},
-			"render_bloom": {
-				"enabled": true,
-				"gauss_filter": true,
-				"max_steps": 1
-			},
+      "render_bloom" : {
+        "enabled" :  true,
+        "max_steps" : 4,
+        "rt_name" : "Bloom"
+      },
 			"culling": true
 		}
 	}, {

@@ -202,17 +202,27 @@
 		"category": "fx",
 		"z": "disable_all"
   },
-	"bloom": {
-    "vs_file": "data/shaders/bloom.fx",
-    "ps_file": "data/shaders/bloom.fx",
-		"vertex_type": "PosClr",
-		"category": "fx",
-		"z": "disable_all"
-  },
     "ao": {
     "vs_file": "data/shaders/ao.fx",
     "vertex_type": "PosClr",
     "category": "fx",
     "z": "disable_all"
+  },
+	  "bloom_filter": {
+    "vs_file": "data/shaders/screen_quad.fx",
+    "ps_file": "data/shaders/bloom.fx",
+    "ps_entry_point": "PS_filter",
+    "vertex_type": "PosClr",
+    "category" : "fx",
+    "z" : "disable_all"
+  },
+  "bloom_add": {
+    "vs_file": "data/shaders/screen_quad.fx",
+    "ps_file": "data/shaders/bloom.fx",
+    "ps_entry_point": "PS_add",
+    "vertex_type": "PosClr",
+    "category" : "fx",
+    "z" : "disable_all",
+    "blend" : "additive"
   }
 }

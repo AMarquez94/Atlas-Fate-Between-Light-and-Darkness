@@ -134,8 +134,8 @@
     <ClCompile Include="components\player_controller\comp_player_tempcontroller.cpp" />
     <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
     <ClCompile Include="components\postfx\comp_render_ao.cpp" />
-    <ClCompile Include="components\skeleton\comp_animator.cpp" />
     <ClCompile Include="components\postfx\comp_render_bloom.cpp" />
+    <ClCompile Include="components\skeleton\comp_animator.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
     <ClCompile Include="components\skeleton\comp_bone_tracker.cpp" />

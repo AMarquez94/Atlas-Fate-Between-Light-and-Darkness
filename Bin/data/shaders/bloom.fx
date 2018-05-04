@@ -1,32 +1,32 @@
 #include "common.fx"
 
 //--------------------------------------------------------------------------------------
-// This shader is expected to be used only with the mesh unitQuadXY.mesh
-// Where the iPos goes from 0,0..1,1
-
-void VS(
-    in float4 iPos : POSITION
-  , in float2 iColor : COLOR0
-  , out float4 oPos : SV_POSITION
-  , out float2 oTex0 : TEXCOORD0
-)
-{
-  // Passthrough of coords and UV's
-  oPos = float4(iPos.x * 2 - 1., 1 - iPos.y * 2, 0, 1);
-  oTex0 = iPos.xy;
-}
-
-//--------------------------------------------------------------------------------------
-float4 PS(
+float4 PS_filter(
     in float4 iPosition : SV_Position
   , in float2 iTex0 : TEXCOORD0
 ) : SV_Target
 {
-	
-	float4 albedo = txAlbedo.Sample(samClampLinear, iTex0);
-	float4 acum_lights = txLightMap.Sample(samClampLinear, iTex0);
-	float4 self_illum = txEmissive.Sample(samClampLinear, iTex0);
-	//float grayscale = (acum_lights.x * 0.2126 + acum_lights.y * 0.7152 + acum_lights.z * 0.0722);
+  float4 in_color = txAlbedo.Sample(samClampLinear, iTex0);
+  float lum = dot( in_color.xyz, float3( 0.2126, 0.7152, 0.0722 ) );
+  float amount = smoothstep( bloom_threshold_min, bloom_threshold_max, lum);
+  return float4( in_color.xyz * amount, 1 );
+}
 
-	return albedo + acum_lights + self_illum;
+//--------------------------------------------------------------------------------------
+float4 PS_add(
+    in float4 iPosition : SV_Position
+  , in float2 iTex0 : TEXCOORD0
+) : SV_Target
+{
+  float4 blurred_whites0 = txBloom0.Sample(samClampLinear, iTex0);
+  float4 blurred_whites1 = txBloom1.Sample(samClampLinear, iTex0);
+  float4 blurred_whites2 = txBloom2.Sample(samClampLinear, iTex0);
+  float4 blurred_whites3 = txBloom3.Sample(samClampLinear, iTex0);
+	
+  return 
+    blurred_whites0 * bloom_weights.x + 
+    blurred_whites1 * bloom_weights.y + 
+    blurred_whites2 * bloom_weights.z + 
+    blurred_whites3 * bloom_weights.w 
+  ;
 }

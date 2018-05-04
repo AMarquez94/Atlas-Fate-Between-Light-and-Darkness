@@ -11,21 +11,6 @@
 #include "components/comp_transform.h"
 #include "ctes.h"
 
-// --------------------------------------
-void CDeferredRenderer::renderAO(CHandle h_camera) const {
-
-	if (!h_camera.isValid()) return;
-
-	CEntity* e_camera = h_camera;
-	assert(e_camera);
-	TCompRenderAO* comp_ao = e_camera->get<TCompRenderAO>();
-	if (!comp_ao)
-		return;
-	CTexture::setNullTexture(TS_DEFERRED_AO);
-	auto ao = comp_ao->compute(rt_depth);
-	ao->activate(TS_DEFERRED_AO);
-}
-
 void CDeferredRenderer::renderGBuffer() {
 	CTraceScoped gpu_scope("Deferred.GBuffer");
 
@@ -204,6 +189,29 @@ void CDeferredRenderer::renderSpotLights() {
 		// puede iluminar esta luz.... El Frustum solido
 		mesh->render();
 	});
+}
+
+// --------------------------------------
+void CDeferredRenderer::renderAO(CHandle h_camera) const {
+
+	if (!h_camera.isValid()) return;
+
+	CEntity* e_camera = h_camera;
+	assert(e_camera);
+	TCompRenderAO* comp_ao = e_camera->get<TCompRenderAO>();
+	if (!comp_ao) {
+		// As there is no comp AO, use a white texture as substitute
+		const CTexture* white_texture = Resources.get("data/textures/white.dds")->as<CTexture>();
+		white_texture->activate(TS_DEFERRED_AO);
+		return;
+	}
+	// As we are going to update the RenderTarget AO
+	// it can NOT be active as a texture while updating it.
+	CTexture::setNullTexture(TS_DEFERRED_AO);
+	auto ao = comp_ao->compute(rt_depth);
+	// Activate the updated AO texture so everybody else can use it
+	// Like the AccLight (Ambient pass or the debugger)
+	ao->activate(TS_DEFERRED_AO);
 }
 
 // --------------------------------------

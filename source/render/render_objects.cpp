@@ -251,6 +251,12 @@ void activateCamera(CCamera& camera, int width, int height) {
 	cb_camera.camera_dummy1 = 1.f;
 	cb_camera.camera_front = camera.getFront();
 	cb_camera.camera_dummy2 = 0.f;
+	cb_camera.camera_front = camera.getFront();
+	cb_camera.camera_dummy2 = 0.f;
+	cb_camera.camera_left = camera.getLeft();
+	cb_camera.camera_dummy3 = 0.f;
+	cb_camera.camera_up = camera.getUp();
+	cb_camera.camera_dummy4 = 0.f;
 
 	// To avoid converting the range -1..1 to 0..1 in the shader
 	// we concatenate the view_proj with a matrix to apply this offset

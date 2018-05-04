@@ -251,17 +251,24 @@ void CModuleRender::generateFrame() {
 		PROFILE_FUNCTION("CModuleRender::generateFrame");
 
 		activateMainCamera();
-		CHandle camera_render = Engine.getCameras().getCurrentCamera();
-
 		cb_globals.updateGPU();
-		deferred.render(rt_main, camera_render);
+		deferred.render(rt_main, h_e_camera);
+
 		CRenderManager::get().renderCategory("distorsions");
 
 		// Apply postFX
 		CTexture * curr_rt = rt_main;
+		CHandle camera_render = Engine.getCameras().getCurrentCamera();
 		if (camera_render.isValid()) {
-
 			CEntity * e_cam = camera_render;
+
+			// The bloom blurs the given input
+			TCompRenderBloom* c_render_bloom = e_cam->get< TCompRenderBloom >();
+			if (c_render_bloom) {
+				c_render_bloom->generateHighlights(deferred.rt_acc_light);
+				c_render_bloom->addBloom();
+			}
+
 			TCompRenderBlur * c_render_blur = e_cam->get< TCompRenderBlur >();
 			if (c_render_blur)
 				curr_rt = c_render_blur->apply(curr_rt);
@@ -270,10 +277,6 @@ void CModuleRender::generateFrame() {
 			TCompRenderBlurRadial * c_render_blur_radial = e_cam->get< TCompRenderBlurRadial >();
 			if (c_render_blur_radial)
 				curr_rt = c_render_blur_radial->apply(curr_rt);
-
-			TCompRenderBloom * c_render_bloom = e_cam->get< TCompRenderBloom >();
-			if (c_render_bloom)
-				curr_rt = c_render_bloom->apply(curr_rt, deferred.rt_acc_light, deferred.rt_self_illum);
 		}
 
 		Render.startRenderInBackbuffer();

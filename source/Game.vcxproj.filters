@@ -123,7 +123,6 @@
     <ClCompile Include="render\blur_step.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur.cpp" />
-    <ClCompile Include="components\postfx\comp_render_bloom.cpp" />
     <ClCompile Include="navmesh\recast\DetourObstacleAvoidance.cpp" />
     <ClCompile Include="navmesh\recast\DetourPathCorridor.cpp" />
     <ClCompile Include="navmesh\recast\DetourPathQueue.cpp" />
@@ -154,6 +153,7 @@
     <ClCompile Include="components\dynamic_objects\comp_dynamic_capsules_manager.cpp" />
     <ClCompile Include="components\dynamic_objects\comp_dynamic_capsule.cpp" />
     <ClCompile Include="components\postfx\comp_render_ao.cpp" />
+    <ClCompile Include="components\postfx\comp_render_bloom.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -310,7 +310,6 @@
     <ClInclude Include="components\lighting\comp_light_point.h" />
     <ClInclude Include="components\lighting\comp_light_spot.h" />
     <ClInclude Include="components\lighting\comp_light_dir.h" />
-    <ClInclude Include="components\postfx\comp_render_bloom.h" />
     <ClInclude Include="components\postfx\comp_render_blur.h" />
     <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
     <ClInclude Include="modules\game\module_map_test.h" />
@@ -345,6 +344,7 @@
     <ClInclude Include="components\dynamic_objects\comp_dynamic_capsule.h" />
     <ClInclude Include="components\dynamic_objects\comp_dynamic_capsules_manager.h" />
     <ClInclude Include="components\postfx\comp_render_ao.h" />
+    <ClInclude Include="components\postfx\comp_render_bloom.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
