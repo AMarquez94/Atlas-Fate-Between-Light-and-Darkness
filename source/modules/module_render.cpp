@@ -109,7 +109,7 @@ bool CModuleRender::start()
 		return false;
 
 	cb_globals.global_exposure_adjustment = 2.010f;
-	cb_globals.global_ambient_adjustment = 0.220f;
+	cb_globals.global_ambient_adjustment = 0.150f;
 	cb_globals.global_world_time = 0.f;
 	cb_globals.global_hdr_enabled = 1.f;
 	cb_globals.global_gamma_correction_enabled = 1.f;
