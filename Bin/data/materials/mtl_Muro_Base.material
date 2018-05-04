@@ -3,14 +3,12 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/Muro_base_basecolor.dds"
+    "albedo": "data/textures/tx_muro_base_alb.dds"
     ,
-    "roughness": "data/textures/Muro_base_roughness.dds"
-    ,    
-	"metallic": "data/textures/Muro_base_metallic.dds"
+    "roughness": "data/textures/tx_muro_base_rgh.dds"
     ,
-    "normal": "data/textures/Muro_base_normal.dds"
+    "normal": "data/textures/tx_muro_base_nml.dds"
     ,
-    "height": "data/textures/Muro_base_height.dds"
+    "height": "data/textures/tx_muro_base_hgt.dds"
   }
 }

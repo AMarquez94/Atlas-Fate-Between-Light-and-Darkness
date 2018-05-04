@@ -1,0 +1,16 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_suelo_piedra_basecolor.dds"
+    ,
+    "metallic": "data/textures/tx_suelo_piedra_metallic.dds"
+    ,
+    "roughness": "data/textures/tx_suelo_piedra_roughness.dds"
+    ,
+    "normal": "data/textures/tx_suelo_piedra_normal.dds"
+    ,
+    "height": "data/textures/tx_suelo_piedra_height.dds"
+  }
+}

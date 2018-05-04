@@ -3,16 +3,16 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/alminar_low_1001_BaseColor.dds"
+    "albedo": "data/textures/tx_alminar_alb.dds"
     ,
-    "metallic": "data/textures/alminar_low_1001_Metallic.dds"
+    "metallic": "data/textures/tx_alminar_met.dds"
     ,
-    "roughness": "data/textures/alminar_low_1001_Roughness.dds"
+    "roughness": "data/textures/tx_alminar_rgh.dds"
     ,
-    "normal": "data/textures/alminar_low_1001_Normal.dds"
+    "normal": "data/textures/tx_alminar_nml.dds"
     ,
-    "height": "data/textures/alminar_low_1001_Height.dds"
+    "height": "data/textures/tx_alminar_hgt.dds"
     ,
-    "emissive": "data/textures/alminar_low_1001_Emissive.dds"
+    "emissive": "data/textures/tx_alminar_emi.dds"
   }
 }

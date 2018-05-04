@@ -1,0 +1,16 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/Tiera_Roca_basecolor.dds"
+    ,
+    "metallic": "data/textures/Tiera_Roca_metallic.dds"
+    ,
+    "roughness": "data/textures/Tiera_Roca_roughness.dds"
+    ,
+    "normal": "data/textures/Tiera_Roca_normal.dds"
+    ,
+    "height": "data/textures/Tiera_Roca_height.dds"
+  }
+}
