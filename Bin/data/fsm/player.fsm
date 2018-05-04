@@ -222,6 +222,17 @@
 				"blendIn": 0.4
 			}
 		}, {
+			"name": "die",
+			"type": "DieState",
+			"animation": "die",
+			"damage": 10,
+			"size": 1,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
+		},	{
 			"name": "removeInhibitor",
 			"type": "RemoveInhibitor",
 			"animation": "removenhibitor",
@@ -646,7 +657,7 @@
 		}, {
 			"type": "VariableTransition",
 			"source": "softLand",
-			"target": "dead",
+			"target": "die",
 			"variable": {
 				"name": "onFallDead",
 				"type": "bool",
@@ -740,9 +751,14 @@
 			"target": "idle",
 			"animation_name": "attack"
 		}, {
+			"type": "AnimationTransition",
+			"source": "die",
+			"target": "dead",
+			"animation_name": "die"
+		}, {
 			"type": "VariableTransition",
 			"source": "idle",
-			"target": "dead",
+			"target": "die",
 			"variable": {
 				"name": "onDead",
 				"type": "bool",
@@ -751,7 +767,7 @@
 		}, {
 			"type": "VariableTransition",
 			"source": "walk",
-			"target": "dead",
+			"target": "die",
 			"variable": {
 				"name": "onDead",
 				"type": "bool",
@@ -760,7 +776,7 @@
 		}, {
 			"type": "VariableTransition",
 			"source": "run",
-			"target": "dead",
+			"target": "die",
 			"variable": {
 				"name": "onDead",
 				"type": "bool",
@@ -769,7 +785,7 @@
 		}, {
 			"type": "VariableTransition",
 			"source": "walkslow",
-			"target": "dead",
+			"target": "die",
 			"variable": {
 				"name": "onDead",
 				"type": "bool",
@@ -778,7 +794,7 @@
 		}, {
 			"type": "VariableTransition",
 			"source": "crouch",
-			"target": "dead",
+			"target": "die",
 			"variable": {
 				"name": "onDead",
 				"type": "bool",
@@ -787,7 +803,7 @@
 		}, {
 			"type": "VariableTransition",
 			"source": "fall",
-			"target": "dead",
+			"target": "die",
 			"variable": {
 				"name": "onDead",
 				"type": "bool",
@@ -796,7 +812,7 @@
 		}, {
 			"type": "VariableTransition",
 			"source": "entermerge",
-			"target": "dead",
+			"target": "die",
 			"variable": {
 				"name": "onDead",
 				"type": "bool",
@@ -805,7 +821,7 @@
 		}, {
 			"type": "VariableTransition",
 			"source": "exitmerge",
-			"target": "dead",
+			"target": "die",
 			"variable": {
 				"name": "onDead",
 				"type": "bool",
