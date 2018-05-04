@@ -81,7 +81,7 @@ bool CMaterial::create(const std::string& name) {
 	// Load default values
 	cb_material.scalar_metallic = -1.f;
 	cb_material.scalar_roughness = -1.f;
-	cb_material.scalar_irradiance_vs_mipmaps = 0.f;
+	cb_material.scalar_irradiance_vs_mipmaps = 0.0f;
 	cb_material.color_emission = VEC4(1, 1, 1, 1);
 	cb_material.scalar_emission = j.value("emission", 10.0f);
 

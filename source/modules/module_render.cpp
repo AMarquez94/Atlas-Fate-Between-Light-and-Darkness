@@ -108,8 +108,8 @@ bool CModuleRender::start()
 	if (!cb_blur.create(CB_BLUR))
 		return false;
 
-	cb_globals.global_exposure_adjustment = 0.310f;
-	cb_globals.global_ambient_adjustment = 0.330f;
+	cb_globals.global_exposure_adjustment = 2.010f;
+	cb_globals.global_ambient_adjustment = 0.220f;
 	cb_globals.global_world_time = 0.f;
 	cb_globals.global_hdr_enabled = 1.f;
 	cb_globals.global_gamma_correction_enabled = 1.f;

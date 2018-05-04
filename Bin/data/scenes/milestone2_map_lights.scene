@@ -22,7 +22,7 @@
 				"proj_type": "ortographic",
 				"range": 29.2116,
 				"angle": 75,
-				"color": "0.094 0.243 0.407 1.0",
+				"color": "0.0 0.207 1.0 1.0",
 				"intensity": 1.5,
 				"ortosize": 400,
 				"shadows": true,

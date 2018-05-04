@@ -147,7 +147,7 @@ void decodeGBuffer(
 	roughness = N_rt.a;
 
 	// Apply gamma correction to albedo to bring it back to linear.
-	albedo.rgb = pow(albedo.rgb, 2.2f);// *projectColor(wPos).xyz;
+	albedo.rgb = pow(albedo.rgb, 2.2f) *projectColor(wPos).xyz;
 
 	// Lerp with metallic value to find the good diffuse and specular.
 	// If metallic = 0, albedo is the albedo, if metallic = 1, the
@@ -238,7 +238,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	// Here we are sampling using the cubemap-miplevel 4, and the already blurred txIrradiance texture
 	// and mixing it in base to the scalar_irradiance_vs_mipmaps which comes from the ImGui.
 	// Remove the interpolation in the final version!!!
-	float3 irradiance_mipmaps = txEnvironmentMap.SampleLevel(samLinear, N, 4).xyz;
+	float3 irradiance_mipmaps = txEnvironmentMap.SampleLevel(samLinear, N, 6).xyz;
 	float3 irradiance_texture = txIrradianceMap.Sample(samLinear, N).xyz;
 	float3 irradiance = irradiance_texture * scalar_irradiance_vs_mipmaps + irradiance_mipmaps * (1. - scalar_irradiance_vs_mipmaps);
 
@@ -346,5 +346,5 @@ float4 PS_skybox(in float4 iPosition : SV_Position) : SV_Target
 {
 	float3 view_dir = mul(float4(iPosition.xy, 1, 1), camera_screen_to_world).xyz;
 	float4 skybox_color = txEnvironmentMap.Sample(samLinear, view_dir);
-	return float4(skybox_color.xyz, 1);// *global_ambient_adjustment;
+  return float4(skybox_color.xyz, 1);// *global_ambient_adjustment * 1.5f;
 }
