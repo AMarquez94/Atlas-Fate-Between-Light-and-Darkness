@@ -163,6 +163,7 @@ void TCompLightSpot::generateShadowMap() {
 		// We are going to render the scene from the light position & orientation
 		activateCamera(*this, shadows_rt->getWidth(), shadows_rt->getHeight());
 	}
+
   CRenderManager::get().setEntityCamera(CHandle(this).getOwner());
 	CRenderManager::get().renderCategory("shadows");
 }
