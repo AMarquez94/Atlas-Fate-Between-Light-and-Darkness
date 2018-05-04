@@ -557,7 +557,7 @@ namespace FSM
 
   }
 
-  bool DeadState::load(const json& jData) {
+  bool DieState::load(const json& jData) {
 
     _animationName = jData["animation"];
     _speed = jData.value("speed", 2.f);
@@ -568,11 +568,33 @@ namespace FSM
     return true;
   }
 
-  void DeadState::onStart(CContext& ctx) const {
+  void DieState::onStart(CContext& ctx) const {
 
     CEntity* e = ctx.getOwner();
     e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::DEATH , 1.0f });
+	e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::DEAD , 1.0f });
     e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::deadState, _speed, _radius, _size, _target, _noise });
+  }
+  void DieState::onFinish(CContext& ctx) const {
+
+  }
+
+  bool DeadState::load(const json& jData) {
+
+	  _animationName = jData["animation"];
+	  _speed = jData.value("speed", 2.f);
+	  _size = jData.value("size", 1.f);
+	  _radius = jData.value("radius", 0.3f);
+	  _noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+	  _target = jData.count("camera") ? getTargetCamera(jData["camera"]) : nullptr;
+	  return true;
+  }
+
+  void DeadState::onStart(CContext& ctx) const {
+
+	  CEntity* e = ctx.getOwner();
+	  e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::DEAD , 1.0f });
+	  e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _radius, _size, _target, _noise });
   }
   void DeadState::onFinish(CContext& ctx) const {
 

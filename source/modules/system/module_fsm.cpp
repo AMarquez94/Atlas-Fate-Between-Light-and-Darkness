@@ -36,6 +36,7 @@ bool CModuleFSM::start()
 	_factory.registerInstancer("InhibitorRemoved", new FSM::StateInstancer<FSM::InhibitorRemoved>());
 	_factory.registerInstancer("RemoveInhibitor", new FSM::StateInstancer<FSM::RemoveInhibitor>());
 	_factory.registerInstancer("InhibitorTryToRemove", new FSM::StateInstancer<FSM::InhibitorTryToRemove>());
+	_factory.registerInstancer("DieState", new FSM::StateInstancer<FSM::DieState>());
 	_factory.registerInstancer("DeadState", new FSM::StateInstancer<FSM::DeadState>());
 	_factory.registerInstancer("VariableTransition", new FSM::TransitionInstancer<FSM::VariableTransition>());
 	_factory.registerInstancer("TimeTransition", new FSM::TransitionInstancer<FSM::TimeTransition>());
