@@ -79,6 +79,10 @@ private:
 	void onMsgMimeticStunned(const TMsgEnemyStunned& msg);
 	void onMsgNoiseListened(const TMsgNoiseMade& msg);
 
+	//Console debug hacks and variables
+	bool playerInvisible;
+	void onMsgPlayerInvisible(const TMsgPlayerInvisible& msg);
+
 	/* Aux functions */
 	const Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }
 	void addWaypoint(const Waypoint& wpt) { _waypoints.push_back(wpt); };

@@ -85,9 +85,17 @@ void CModuleLogic::publishClasses() {
 	m->set("blendInCamera", SLB::FuncCall::create(&blendInCamera));
 	m->set("blendOutCamera", SLB::FuncCall::create(&blendOutCamera));
 	m->set("fpsToggle", SLB::FuncCall::create(&fpsToggle));
-	m->set("stateAltered", SLB::FuncCall::create(&stateAltered));
 	m->set("systemToggle", SLB::FuncCall::create(&systemToggle));
 	m->set("movePlayer", SLB::FuncCall::create(&movePlayer));
+	m->set("staminaInfinite", SLB::FuncCall::create(&staminaInfinite));
+	m->set("immortal", SLB::FuncCall::create(&immortal));
+	m->set("inShadows", SLB::FuncCall::create(&inShadows));
+	m->set("speedBoost", SLB::FuncCall::create(&speedBoost));
+	m->set("playerInvisible", SLB::FuncCall::create(&playerInvisible));
+
+
+
+
 
 
 }
@@ -187,19 +195,38 @@ void blendOutCamera(const std::string & cameraName, float blendOutTime) {
 	}
 }
 
-void stateAltered(const std::string& state) {
+void staminaInfinite() {
 	CHandle h = getEntityByName("The Player");
-	if (state == "infinite stamina") {
-		TMsgInfiniteStamina msg;
-		h.sendMsg(msg);
-	}
-	else if (state == "immortal") {
-		TMsgPlayerImmortal msg;
-		h.sendMsg(msg);
-	}
-	else if (state == "in shadows") {
-		TMsgPlayerInShadows msg;
-		h.sendMsg(msg);
+	TMsgInfiniteStamina msg;
+	h.sendMsg(msg);
+}
+
+void immortal() {
+	CHandle h = getEntityByName("The Player");
+	TMsgPlayerImmortal msg;
+	h.sendMsg(msg);
+}
+
+void inShadows() {
+	CHandle h = getEntityByName("The Player");
+	TMsgPlayerInShadows msg;
+	h.sendMsg(msg);
+}
+
+void speedBoost(const float speed) {
+	CHandle h = getEntityByName("The Player");
+	TMsgSpeedBoost msg;
+	msg.speedBoost = speed;
+	h.sendMsg(msg);
+}
+
+void playerInvisible() {
+	CHandle h = getEntityByName("The Player");
+	TMsgPlayerInvisible msg;
+	h.sendMsg(msg);
+	std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+	for (int i = 0; i < enemies.size(); i++) {
+		enemies[i].sendMsg(msg);
 	}
 }
 

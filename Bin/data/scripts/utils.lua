@@ -36,3 +36,23 @@ end
 function movePlayer(x,y,z)
 	SLB.movePlayer(x,y,z)
 end
+
+function staminaInfinite()
+	SLB.staminaInfinite()
+end
+
+function immortal()
+	SLB.immortal()
+end
+
+function inShadows()
+	SLB.inShadows()
+end
+
+function speedBoost(speed)
+	SLB.speedBoost(speed)
+end
+
+function playerInvisible()
+	SLB.playerInvisible()
+end

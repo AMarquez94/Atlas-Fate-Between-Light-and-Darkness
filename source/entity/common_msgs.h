@@ -177,5 +177,14 @@ struct TMsgShadowChange {
 	DECL_MSG_ID();
 };
 
+struct TMsgSpeedBoost {
+	float speedBoost;
+	DECL_MSG_ID();
+};
+
+struct TMsgPlayerInvisible {
+	DECL_MSG_ID();
+};
+
 #endif
 

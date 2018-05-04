@@ -58,7 +58,8 @@ class TCompTempPlayerController : public TCompBase
 	}playerColor;
 
 	//Debug console message variables
-	bool infinite, immortal, hackShadows;
+	bool infinite, immortal, hackShadows, invisible;
+	float speedBoost = 1.0;
 
 	/* DEPRECATED */
 	std::map<std::string, CRenderMesh*> mesh_states;
@@ -112,6 +113,8 @@ class TCompTempPlayerController : public TCompBase
 	void onPlayerImmortal(const TMsgPlayerImmortal& msg);
 	void onPlayerMove(const TMsgPlayerMove& msg);
 	void onPlayerInShadows(const TMsgPlayerInShadows& msg);
+	void onSpeedBoost(const TMsgSpeedBoost& msg);
+	void onPlayerInvisible(const TMsgPlayerInvisible& msg);
 
 	void onShadowChange(const TMsgShadowChange& msg);
 

@@ -90,8 +90,8 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	minStamina = j.value("minStamina", 0.f);
 	maxStamina = j.value("maxStamina", 100.f);
 	incrStamina = j.value("incrStamina", 15.f);
-	decrStaticStamina = j.value("decrStaticStamina", 0.75f),
-		decrStaminaHorizontal = j.value("decrStaminaHorizontal", 12.5f);
+	decrStaticStamina = j.value("decrStaticStamina", 0.75f);
+	decrStaminaHorizontal = j.value("decrStaminaHorizontal", 12.5f);
 	decrStaminaVertical = j.value("decrStaminaVertical", 17.5f);
 	minStaminaChange = j.value("minStaminaChange", 15.f);
 	auxCamera = j.value("auxCamera", "");
@@ -125,13 +125,17 @@ void TCompTempPlayerController::registerMsgs() {
 	DECL_MSG(TCompTempPlayerController, TMsgPlayerDead, onPlayerKilled);
 	DECL_MSG(TCompTempPlayerController, TMsgInhibitorShot, onPlayerInhibited);
 	DECL_MSG(TCompTempPlayerController, TMsgPlayerIlluminated, onPlayerExposed);
+	DECL_MSG(TCompTempPlayerController, TMsgShadowChange, onShadowChange);
 	DECL_MSG(TCompTempPlayerController, TMsgScenePaused, onPlayerPaused);
 	DECL_MSG(TCompTempPlayerController, TMsgConsoleOn, onConsoleChanged);
 	DECL_MSG(TCompTempPlayerController, TMsgInfiniteStamina, onInfiniteStamina);
 	DECL_MSG(TCompTempPlayerController, TMsgPlayerImmortal, onPlayerImmortal);
 	DECL_MSG(TCompTempPlayerController, TMsgPlayerMove, onPlayerMove);
 	DECL_MSG(TCompTempPlayerController, TMsgPlayerInShadows, onPlayerInShadows);
-	DECL_MSG(TCompTempPlayerController, TMsgShadowChange, onShadowChange);
+	DECL_MSG(TCompTempPlayerController, TMsgSpeedBoost, onSpeedBoost);
+	DECL_MSG(TCompTempPlayerController, TMsgPlayerInvisible, onPlayerInvisible);
+
+
 
 
 }
@@ -165,9 +169,9 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 	hitPoints = 0;
 	stamina = 100.f;
 	fallingTime = 0.f;
-	currentSpeed = 4.f;
+	currentSpeed = 4.f * speedBoost;
 	initialPoints = 5;
-	rotationSpeed = 10.f;
+	rotationSpeed = 10.f * speedBoost;
 	fallingDistance = 0.f;
 	isInhibited = isGrounded = isMerged = false;
 	dbgDisableStamina = false;
@@ -180,7 +184,7 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg) {
 	if (msg.action_start != NULL) {
 
 		state = msg.action_start;
-		currentSpeed = msg.speed;
+		currentSpeed = msg.speed * speedBoost;
 
 		TCompRigidbody * rigidbody = get<TCompRigidbody>();
 		TCompTransform * t_trans = get<TCompTransform>();
@@ -205,15 +209,18 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg) {
 			target_camera = getEntityByName("TPCamera"); //replace this
 		}
 
-		TMsgMakeNoise msgToSend;
-		msgToSend.isOnlyOnce = msg.noise->isOnlyOnce;
-		msgToSend.noiseRadius = msg.noise->noiseRadius;
-		msgToSend.timeToRepeat = msg.noise->timeToRepeat;
-		msgToSend.isArtificial = msg.noise->isArtificial;
-		TCompGroup * tGroup = get<TCompGroup>();
-		if (tGroup) {
-			CEntity * eNoiseEmitter = tGroup->getHandleByName("Noise Emitter");
-			eNoiseEmitter->sendMsg(msgToSend);
+		if (!invisible) {
+			TMsgMakeNoise msgToSend;
+			msgToSend.isOnlyOnce = msg.noise->isOnlyOnce;
+			msgToSend.noiseRadius = msg.noise->noiseRadius;
+			msgToSend.timeToRepeat = msg.noise->timeToRepeat;
+			msgToSend.isArtificial = msg.noise->isArtificial;
+			TCompGroup * tGroup = get<TCompGroup>();
+			if (tGroup) {
+				CEntity * eNoiseEmitter = tGroup->getHandleByName("Noise Emitter");
+				eNoiseEmitter->sendMsg(msgToSend);
+			}
+
 		}
 	}
 }
@@ -298,6 +305,14 @@ void TCompTempPlayerController::onPlayerMove(const TMsgPlayerMove& msg) {
 
 void TCompTempPlayerController::onPlayerInShadows(const TMsgPlayerInShadows& msg) {
 	hackShadows = !hackShadows;
+}
+
+void TCompTempPlayerController::onSpeedBoost(const TMsgSpeedBoost& msg) {
+	speedBoost = msg.speedBoost;
+}
+
+void TCompTempPlayerController::onPlayerInvisible(const TMsgPlayerInvisible& msg) {
+	invisible = !invisible;
 }
 //------------------------------------------------------------------------------------------------
 //--------------------------------------END OF CONSOLE HACKS--------------------------------------
@@ -659,14 +674,14 @@ const bool TCompTempPlayerController::groundTest(float dt) {
 
 /* Sets the player current stamina depending on player status */
 void TCompTempPlayerController::updateStamina(float dt) {
-	if (!infinite) {
-		if (isMerged) {
+	if (isMerged) {
 
-			// Determine stamina decreasing ratio multiplier depending on movement
-			TCompRigidbody *c_my_rigidbody = get<TCompRigidbody>();
-			TCompTransform *c_my_transform = get<TCompTransform>();
-			float staminaMultiplier = c_my_rigidbody->lastFramePosition == c_my_transform->getPosition() ? decrStaticStamina : 1;
-
+		// Determine stamina decreasing ratio multiplier depending on movement
+		TCompRigidbody *c_my_rigidbody = get<TCompRigidbody>();
+		TCompTransform *c_my_transform = get<TCompTransform>();
+		float staminaMultiplier = c_my_rigidbody->lastFramePosition == c_my_transform->getPosition() ? decrStaticStamina : 1;
+		if (!infinite)
+		{
 			// Determine stamina decreasing ratio depending on players up vector.
 			if (fabs(EnginePhysics.gravity.Dot(c_my_rigidbody->GetUpVector())) < mergeAngle) {
 				stamina = Clamp(stamina - (decrStaminaVertical * staminaMultiplier * dt), minStamina, maxStamina);
@@ -675,9 +690,9 @@ void TCompTempPlayerController::updateStamina(float dt) {
 				stamina = Clamp(stamina - (decrStaminaHorizontal * staminaMultiplier * dt), minStamina, maxStamina);
 			}
 		}
-		else {
-			stamina = Clamp(stamina + (incrStamina * dt), minStamina, maxStamina);
-		}
+	}
+	else {
+		stamina = Clamp(stamina + (incrStamina * dt), minStamina, maxStamina);
 	}
 }
 
