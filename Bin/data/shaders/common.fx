@@ -209,6 +209,36 @@ float4 projectColor(float3 wPos) {
   return light_projector_color;
 }
 
+float2 parallaxMappingB(float2 texCoords, float3 view_dir) {
+
+  const float minLayers = 10.0;
+  const float maxLayers = 15.0;
+  float numLayers = lerp(maxLayers, minLayers, abs(dot(float3(0.0, 0.0, 1.0), view_dir)));
+  float layerDepth = 1.0 / numLayers;
+  float currentLayerDepth = 0.0;
+  float2 P = view_dir.xy * 0.075;
+  float2 deltaTexCoords = P / numLayers;
+
+  float2 currentTexCoords = texCoords;
+  float currentDepthMapValue = 1 - txHeight.Sample(samLinear, currentTexCoords).r;
+
+  [unroll(230)]
+  while (currentLayerDepth < currentDepthMapValue)
+  {
+    currentTexCoords -= deltaTexCoords;
+    currentDepthMapValue = 1 - txHeight.Sample(samLinear, currentTexCoords).r;
+    currentLayerDepth += layerDepth;
+  }
+
+  float2 prevTexCoords = currentTexCoords + deltaTexCoords;
+  float afterDepth = currentDepthMapValue - currentLayerDepth;
+  float beforeDepth = (1 - txHeight.Sample(samLinear, prevTexCoords).r) - currentLayerDepth + layerDepth;
+  float weight = afterDepth / (afterDepth - beforeDepth);
+  float2 finalTexCoords = prevTexCoords * weight + currentTexCoords * (1.0 - weight);
+
+  return finalTexCoords;
+}
+
 float2 parallaxMapping(float2 texCoords, float3 view_dir)
 {
   // determine optimal number of layers
@@ -219,11 +249,11 @@ float2 parallaxMapping(float2 texCoords, float3 view_dir)
   // height of each layer
   float layerHeight = 1.0 / numLayers;
   float curLayerHeight = 0.0;
-  float2 dtex = 0.1 * view_dir.xy / numLayers;
+  float2 dtex = 0.075 * view_dir.xy / numLayers;
 
   // current texture coordinates
   float2 currentTextureCoords = texCoords;
-  float heightFromTexture = txHeight.Sample(samLinear, currentTextureCoords).r;
+  float heightFromTexture = 1 - txHeight.Sample(samLinear, currentTextureCoords).r;
 
   // while point is above the surface
   [unroll(230)]
@@ -232,13 +262,13 @@ float2 parallaxMapping(float2 texCoords, float3 view_dir)
     // to the next layer
     curLayerHeight += layerHeight;
     currentTextureCoords -= dtex;
-    heightFromTexture = txHeight.Sample(samLinear, currentTextureCoords).r;
+    heightFromTexture = 1 - txHeight.Sample(samLinear, currentTextureCoords).r;
   }
 
   // previous texture coordinates
   float2 prevTCoords = currentTextureCoords + dtex;
   float nextH = heightFromTexture - curLayerHeight;
-  float prevH = txHeight.Sample(samLinear, prevTCoords).r - curLayerHeight + layerHeight;
+  float prevH = 1 - txHeight.Sample(samLinear, prevTCoords).r - curLayerHeight + layerHeight;
 
   float weight = nextH / (nextH - prevH);
   float2 finalTexCoords = prevTCoords * weight + currentTextureCoords * (1.0 - weight);

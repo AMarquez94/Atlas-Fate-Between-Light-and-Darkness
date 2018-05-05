@@ -131,7 +131,7 @@ void PS_GBuffer_Parallax(
   float3x3 TBN = computeTBN(iNormal, iTangent);
   TBN = transpose(TBN);
   float3 view_dir = normalize(mul(camera_pos, TBN) - mul(iWorldPos, TBN));
-  iTex0 = parallaxMapping(iTex0, -view_dir);
+  iTex0 = parallaxMappingB(iTex0, view_dir);
 
   o_albedo = txAlbedo.Sample(samLinear, iTex0);
   o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
