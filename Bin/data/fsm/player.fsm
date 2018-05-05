@@ -274,7 +274,7 @@
 			"variable": {
 				"name": "speed",
 				"type": "float",
-				"value": 0.30
+				"value": 0.20
 			},
 			"operation": "greater_equal"
 		}, {
@@ -284,7 +284,7 @@
 			"variable": {
 				"name": "speed",
 				"type": "float",
-				"value": 0.3
+				"value": 0.20
 			},
 			"operation": "lower_equal"
 		}, {

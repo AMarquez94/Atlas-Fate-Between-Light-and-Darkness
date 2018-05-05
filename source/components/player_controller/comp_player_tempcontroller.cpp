@@ -285,8 +285,8 @@ void TCompTempPlayerController::walkState(float dt) {
 	TCompTransform * trans_camera = player_camera->get<TCompTransform>();
 	c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
 
-	float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
-	float player_accel = inputSpeed * currentSpeed * dt;
+	//float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
+	float player_accel = currentSpeed * dt;
 
 	VEC3 up = trans_camera->getFront();
 	VEC3 normal_norm = c_my_transform->getUp();

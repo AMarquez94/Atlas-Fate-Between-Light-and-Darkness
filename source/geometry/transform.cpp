@@ -67,10 +67,13 @@ void CTransform::lookAt(VEC3 new_pos, VEC3 new_target) {
 
 bool CTransform::debugInMenu() {
   bool changed = false;
-
-  changed |= ImGui::DragFloat3("Pos", &pos.x, 0.025f, -50.f, 50.f);
+  float posfloat[] = { pos.x ,pos.y ,pos.z };
+  changed |= ImGui::DragFloat3("Pos", posfloat, 0.025f, -1000.f, 1000.f);
+  pos.x = posfloat[0];
+  pos.y = posfloat[1];
+  pos.z = posfloat[2];
   changed |= ImGui::DragFloat("Scale", &scale, 0.01f, -10.f, 10.f);
-
+  dbg("%f\n", pos.x);
   // Angulos
   float yaw, pitch, roll;
   getYawPitchRoll(&yaw, &pitch, &roll);
@@ -93,6 +96,7 @@ bool CTransform::debugInMenu() {
   ImGui::Text("Left: %f %f %f", left.x, left.y, left.z);
   ImGui::Text("Up: %f %f %f", up.x, up.y, up.z);
   ImGui::Text("Front: %f %f %f", front.x, front.y, front.z);
+  ImGui::Text("Quaternion: %f %f %f %f", getRotation().x, getRotation().y , getRotation().z, getRotation().w);
 
   return changed;
 }

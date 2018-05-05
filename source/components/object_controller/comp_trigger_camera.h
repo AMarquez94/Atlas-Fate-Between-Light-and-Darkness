@@ -16,10 +16,12 @@ public:
   static void registerMsgs();
 
 private:
-
+	float time = 0.0f;
+	bool onCamera = false;
   CHandle _targetCamera;
   std::string _targetName;
 
+  float _timeToExitCamera;
   float _blendInTime;
   float _blendOutTime;
   std::string _interpolator; //TODO
