@@ -43,7 +43,7 @@ bool CMaterial::create(const std::string& name) {
 
 	// Setting default textures
 	textures[TS_EMISSIVE] = Resources.get("data/textures/default_emissive.dds")->as<CTexture>();
-	textures[TS_HEIGHT] = Resources.get("data/textures/default_height.dds")->as<CTexture>();
+	textures[TS_HEIGHT] = Resources.get("data/textures/default_white.dds")->as<CTexture>();
 
 	auto& j_textures = j["textures"];
 	for (auto it = j_textures.begin(); it != j_textures.end(); ++it) {

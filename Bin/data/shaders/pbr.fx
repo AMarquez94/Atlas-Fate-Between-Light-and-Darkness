@@ -66,6 +66,11 @@ void VS_GBuffer(
 	oTex0 = iTex0;
 	oTex1 = iTex1;
 	oWorldPos = world_pos.xyz;
+
+  //float3 T = normalize(mul(model, aTangent));
+  //float3 B = normalize(mul(model * aBitangent));
+  //float3 N = normalize(mul(model * aNormal));
+  //mat3 TBN = transpose(mat3(T, B, N));
 }
 
 //--------------------------------------------------------------------------------------
@@ -78,6 +83,7 @@ void PS_GBuffer(
 	, float2 iTex0 : TEXCOORD0
 	, float2 iTex1 : TEXCOORD1
 	, float3 iWorldPos : TEXCOORD2
+  , float3 oCameraOut : TEXCOORD3
 	, out float4 o_albedo : SV_Target0
 	, out float4 o_normal : SV_Target1
 	, out float1 o_depth : SV_Target2
@@ -89,7 +95,7 @@ void PS_GBuffer(
 	
 	//float3x3 TBN = computeTBN(iNormal, iTangent);
 	//float3 view_dir = normalize(mul(camera_pos, TBN) - mul(iWorldPos, TBN));
-	//iTex0 = parallaxMapping(iTex0, view_dir);
+	//iTex0 = parallaxMapping(iTex0, -view_dir);
 	
 	o_albedo = txAlbedo.Sample(samLinear, iTex0);
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
