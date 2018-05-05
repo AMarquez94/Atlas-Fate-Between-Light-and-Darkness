@@ -816,7 +816,7 @@ void TCompTempPlayerController::upButtonReselased() {
 bool TCompTempPlayerController::isDead()
 {
 	TCompFSM *fsm = get<TCompFSM>();
-	return fsm->getStateName().compare("dead") == 0;
+	return fsm->getStateName().compare("dead") == 0 || fsm->getStateName().compare("die") == 0;
 }
 
 // Needed to avoid the isGround problem by now
