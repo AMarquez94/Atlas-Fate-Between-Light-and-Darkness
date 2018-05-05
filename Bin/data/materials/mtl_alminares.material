@@ -3,9 +3,16 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/m2/tx_concrete1-a.dds",
-		"normal": "data/textures/m2/tx_concrete1-n.dds",
-    "metallic": "data/textures/m2/tx_concrete1-r.dds",
-		"roughness": "data/textures/m2/tx_concrete1-r.dds"
+    "albedo": "data/textures/tx_alminar_alb.dds"
+    ,
+    "metallic": "data/textures/tx_alminar_met.dds"
+    ,
+    "roughness": "data/textures/tx_alminar_rgh.dds"
+    ,
+    "normal": "data/textures/tx_alminar_nml.dds"
+    ,
+    "height": "data/textures/tx_alminar_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_alminar_emi.dds"
   }
 }

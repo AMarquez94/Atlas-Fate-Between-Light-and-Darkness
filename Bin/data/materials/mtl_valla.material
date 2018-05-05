@@ -1,0 +1,16 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_valla_alb.dds"
+    ,
+    "metallic": "data/textures/tx_valla_met.dds"
+    ,
+    "roughness": "data/textures/tx_valla_rgh.dds"
+    ,
+    "normal": "data/textures/tx_valla_nml.dds"
+    ,
+    "height": "data/textures/tx_valla_hgt.dds"
+  }
+}
