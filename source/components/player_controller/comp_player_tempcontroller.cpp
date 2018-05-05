@@ -14,6 +14,7 @@
 #include "render/mesh/mesh_loader.h"
 #include "components/comp_name.h"
 #include "windows/app.h"
+#include "comp_player_input.h"
 #include "components/comp_group.h"
 #include "render/render_utils.h"
 
@@ -790,18 +791,12 @@ void TCompTempPlayerController::updateShader(float dt) {
 VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & left) {
 
 	VEC3 dir = VEC3::Zero;
-	if (EngineInput["btUp"].isPressed() && EngineInput["btUp"].value > 0) {
-		dir += fabs(EngineInput["btUp"].value) * front;
-	}
-	else if (EngineInput["btDown"].isPressed()) {
-		dir += fabs(EngineInput["btDown"].value) * -front;
-	}
-	if (EngineInput["btRight"].isPressed() && EngineInput["btRight"].value > 0) {
-		dir += fabs(EngineInput["btRight"].value) * left;
-	}
-	else if (EngineInput["btLeft"].isPressed()) {
-		dir += fabs(EngineInput["btLeft"].value) * -left;
-	}
+	TCompPlayerInput *player_input = get<TCompPlayerInput>();
+
+	dir += player_input->movementValue.y * front;
+
+	dir += player_input->movementValue.x * left;
+
 	dir.Normalize();
 
 	return dir;
@@ -816,7 +811,7 @@ void TCompTempPlayerController::upButtonReselased() {
 bool TCompTempPlayerController::isDead()
 {
 	TCompFSM *fsm = get<TCompFSM>();
-	return fsm->getStateName().compare("dead") == 0;
+	return fsm->getStateName().compare("dead") == 0 || fsm->getStateName().compare("die") == 0;
 }
 
 // Needed to avoid the isGround problem by now

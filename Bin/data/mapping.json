@@ -22,7 +22,7 @@
   {
     "name": "btDown",
     "all": false,
-    "buttons": [ "s", "pad_lanalogy" ]
+    "buttons": [ "s" ]
   },
   {
     "name": "btRight",
@@ -32,7 +32,7 @@
   {
     "name": "btLeft",
     "all": false,
-    "buttons": [ "a", "pad_lanalogx" ]
+    "buttons": [ "a" ]
   },
   {
     "name": "btShadowMerging",
