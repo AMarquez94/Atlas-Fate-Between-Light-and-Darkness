@@ -209,40 +209,6 @@ float4 projectColor(float3 wPos) {
   return light_projector_color;
 }
 
-/*
-float2 parallaxMapping(float2 texCoords, float3 view_dir){
-
-  const float minLayers = 8.0;
-  const float maxLayers = 32.0;
-  float numLayers = lerp(maxLayers, minLayers, abs(dot(float3(0.0, 0.0, 1.0), view_dir)));
-  float layerDepth = 1.0 / numLayers;
-  float currentLayerDepth = 0.0;
-  float2 P = view_dir.xy * 0.1;
-  float2 deltaTexCoords = P / numLayers;
-
-  float2 currentTexCoords = texCoords;
-  float currentDepthMapValue = 1 - txHeight.Sample(samLinear, currentTexCoords).a;
-
-  [unroll(30)]
-  while (currentLayerDepth < currentDepthMapValue)
-  {
-    currentTexCoords -= deltaTexCoords;
-    currentDepthMapValue = 1 - txHeight.Sample(samLinear, currentTexCoords).a;
-    currentLayerDepth += layerDepth;
-  }
-
-  float2 prevTexCoords = currentTexCoords + deltaTexCoords;
-  float afterDepth = currentDepthMapValue - currentLayerDepth;
-  float beforeDepth = (1 - txHeight.Sample(samLinear, prevTexCoords).a) - currentLayerDepth + layerDepth;
-  float weight = afterDepth / (afterDepth - beforeDepth);
-  float2 finalTexCoords = prevTexCoords * weight + currentTexCoords * (1.0 - weight);
-
-  return finalTexCoords;
-}
-
-*/
-
-
 float2 parallaxMapping(float2 texCoords, float3 view_dir)
 {
   // determine optimal number of layers

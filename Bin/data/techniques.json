@@ -89,6 +89,18 @@
       "irradiance" : "data/textures/cubemaps/irradiance.dds" 
     }
   },
+	  "pbr_parallax": {
+    "vs_file": "data/shaders/pbr.fx",
+    "ps_file": "data/shaders/pbr.fx",
+    "vs_entry_point": "VS_GBuffer",
+    "ps_entry_point": "PS_GBuffer_Parallax",
+    "vertex_type": "PosNUvUvT",
+    "category" : "gbuffer",
+		"textures" : { 
+      "environment" : "data/textures/cubemaps/env.dds", 
+      "irradiance" : "data/textures/cubemaps/irradiance.dds" 
+    }
+  },
   "pbr_skin": {
     "vs_file": "data/shaders/pbr.fx",
     "ps_file": "data/shaders/pbr.fx",
