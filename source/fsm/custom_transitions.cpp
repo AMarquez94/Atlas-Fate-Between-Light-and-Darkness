@@ -54,6 +54,28 @@ namespace FSM
 				return var->getFloat() >= _variable.getFloat();
 			}
 		}
+
+		if (_operation == EOperation::LOWER) {
+			if (var->getType() == CVariant::EType::INT)
+			{
+				return var->getInt() < _variable.getInt();
+			}
+			else if (var->getType() == CVariant::EType::FLOAT)
+			{
+				return var->getFloat() < _variable.getFloat();
+			}
+		}
+
+		if (_operation == EOperation::LOWER_EQUAL) {
+			if (var->getType() == CVariant::EType::INT)
+			{
+				return var->getInt() <= _variable.getInt();
+			}
+			else if (var->getType() == CVariant::EType::FLOAT)
+			{
+				return var->getFloat() <= _variable.getFloat();
+			}
+		}
     }
     return false;
   }
@@ -70,6 +92,14 @@ namespace FSM
     {
       _operation = EOperation::GREATER_EQUAL;
     }
+	else if (opType == "lower")
+	{
+		_operation = EOperation::LOWER;
+	}
+	else if (opType == "lower_equal")
+	{
+		_operation = EOperation::LOWER_EQUAL;
+	}
     else
     {
       _operation = EOperation::EQUAL;
