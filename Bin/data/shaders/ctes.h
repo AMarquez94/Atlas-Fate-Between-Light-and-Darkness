@@ -134,7 +134,7 @@ CB_DEF(CCteGlobals, CB_GLOBALS)   // Generates the b1
 	float global_gamma_correction_enabled;
 	float global_tone_mapping_mode;
 	int   global_render_output;
-	float global_dummy2;
+	float global_fog_density;
 
 	float global_shared_fx_amount;
 	float global_shared_fx_val1;

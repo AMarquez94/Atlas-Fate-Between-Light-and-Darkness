@@ -114,6 +114,7 @@ bool CModuleRender::start()
 	cb_globals.global_hdr_enabled = 1.f;
 	cb_globals.global_gamma_correction_enabled = 1.f;
 	cb_globals.global_tone_mapping_mode = 1.f;
+  cb_globals.global_fog_density = 0.01f;
 
 	cb_light.activate();
 	cb_object.activate();
@@ -180,6 +181,7 @@ void CModuleRender::render()
 		ImGui::DragFloat("HDR", &cb_globals.global_hdr_enabled, 0.01f, 0.0f, 1.f);
 		ImGui::DragFloat("Gamma Correction", &cb_globals.global_gamma_correction_enabled, 0.01f, 0.0f, 1.f);
 		ImGui::DragFloat("Reinhard vs Uncharted2", &cb_globals.global_tone_mapping_mode, 0.01f, 0.0f, 1.f);
+    ImGui::DragFloat("Fog density", &cb_globals.global_fog_density, 0.0001f, 0.0f, 1.f);
 
 		// Must be in the same order as the RO_* ctes
 		static const char* render_output_str =
