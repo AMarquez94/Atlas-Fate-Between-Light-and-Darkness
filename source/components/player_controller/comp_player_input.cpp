@@ -26,9 +26,12 @@ void TCompPlayerInput::update(float dt)
 
 			TMsgSetFSMVariable walkMsg;
 			walkMsg.variant.setName("speed");
-			float total_value = (EngineInput["btRight"].value + EngineInput["btLeft"].value
-				+ EngineInput["btUp"].value + EngineInput["btDown"].value);
-			//dbg("total value: %f\n\n\n", total_value);
+
+			movementValue.x = EngineInput["btRight"].value - EngineInput["btLeft"].value;
+			movementValue.y = EngineInput["btUp"].value - EngineInput["btDown"].value;
+
+			float total_value = movementValue.Length();
+
 			walkMsg.variant.setFloat(total_value);
 			e->sendMsg(walkMsg);
 		}
