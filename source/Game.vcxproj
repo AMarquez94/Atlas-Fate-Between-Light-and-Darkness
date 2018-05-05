@@ -108,6 +108,7 @@
     <ClCompile Include="components\dynamic_objects\comp_dynamic_capsule.cpp" />
     <ClCompile Include="components\dynamic_objects\comp_dynamic_capsules_manager.cpp" />
     <ClCompile Include="components\ia\comp_patrol_animator.cpp" />
+    <ClCompile Include="components\lighting\comp_projector.cpp" />
     <ClCompile Include="components\object_controller\comp_noise_emitter.cpp" />
     <ClCompile Include="components\lighting\comp_emission_controller.cpp" />
     <ClCompile Include="components\lighting\comp_light_point.cpp" />
@@ -268,6 +269,7 @@
     <ClInclude Include="components\dynamic_objects\comp_dynamic_capsule.h" />
     <ClInclude Include="components\dynamic_objects\comp_dynamic_capsules_manager.h" />
     <ClInclude Include="components\ia\comp_patrol_animator.h" />
+    <ClInclude Include="components\lighting\comp_projector.h" />
     <ClInclude Include="components\object_controller\comp_noise_emitter.h" />
     <ClInclude Include="components\lighting\comp_emission_controller.h" />
     <ClInclude Include="components\lighting\comp_light_point.h" />

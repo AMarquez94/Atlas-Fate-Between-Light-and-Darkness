@@ -194,10 +194,10 @@ void decodeGBuffer(
 	// Lerp with metallic value to find the good diffuse and specular.
 	// If metallic = 0, albedo is the albedo, if metallic = 1, the
 	// used albedo is almost black
-	real_albedo = albedo.rgb * (1. - metallic);
+  real_albedo = albedo.rgb * (1. - metallic);
 
 	// 0.03 default specular value for dielectric.
-	real_specular_color = lerp(0.03f, albedo.rgb, metallic);
+  real_specular_color = lerp(0.03f, albedo.rgb, metallic);
 
 	// Eye to object
 	float3 incident_dir = normalize(wPos - camera_pos.xyz);
@@ -356,7 +356,7 @@ float4 shade(float4 iPosition, out float3 light_dir, bool use_shadows)
 	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.; // shadow factor
   
 	//return projectColor(wPos);
-  float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor;// *projectColor(wPos);
+  float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor;
 	return float4(final_color, 1);
 }
 

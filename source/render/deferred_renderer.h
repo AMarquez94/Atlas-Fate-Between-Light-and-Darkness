@@ -20,6 +20,7 @@ public:
   void renderPointLights();
   void renderSpotLights();
   void renderSkyBox() const;
+  void renderProjectors();
   void renderAO(CHandle h_camera) const;
 
 public:

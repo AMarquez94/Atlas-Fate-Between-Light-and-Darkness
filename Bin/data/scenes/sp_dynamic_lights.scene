@@ -6,7 +6,7 @@
     }
   },
   {
-    "xentity":
+    "entity":
     {
       "name": "LightPlayer"
       ,
@@ -17,7 +17,7 @@
         "lookat": "-4.694 -16.782 -8.716"
       }
       ,
-      "light_dir":
+      "projector":
       {
         "type": "spotlight",
 				"proj_type": "ortographic",

@@ -168,13 +168,15 @@
 		"rs_config" : "reverse_culling",
     "blend" : "additive"
   },
-	"pbr_projection": {
-    "vs_file": "data/shaders/pbr.fx",
-    "ps_file": "data/shaders/pbr.fx",
+  "pbr_projection": {
+    "vs_file": "data/shaders/light_projection.fx",
+    "ps_file": "data/shaders/light_projection.fx",
     "vs_entry_point": "VS_pass",
-    "ps_entry_point": "PS_dir_lights",
-    "vertex_type" : "PosNUvUvT",
-		"category" : "projection"
+    "ps_entry_point": "PS_Projection",
+    "vertex_type": "PosNUvUvT",
+    "category": "pbr_proc",
+    "z": "inverse_test_no_write",
+    "blend": "combinative"
   },
 	"water": {
 		"vs_file": "data/shaders/water.fx",
