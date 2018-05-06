@@ -305,8 +305,9 @@ void TCompTempPlayerController::walkState(float dt) {
 		stepRight = !stepRight;
 		stepTimer = 0.0f;
 	}
+  //Destroy this shiat-----------------------------------------------------------------------
 
-	if (dir == VEC3::Zero) dir = proj;
+  if (dir == VEC3::Zero) dir = proj;
 
 	float dir_yaw = getYawFromVector(dir);
 	Quaternion my_rotation = c_my_transform->getRotation();
@@ -352,7 +353,7 @@ void TCompTempPlayerController::mergeState(float dt) {
 
 		angle_test = fabs(EnginePhysics.gravity.Dot(prevUp));
     float angle_amount = fabsf(acosf(prevUp.Dot(postUp)));
-		std::string target_name = angle_test > mergeAngle ? "SMCameraVer" : "SMCameraHor"; // Watch this if gives problems...  
+		std::string target_name = angle_test > mergeAngle ? "SMCameraVer" : "SMCameraHor"; // WARN: Watch this if gives problems...  
 		
     CEntity* e_target_camera = target_camera;
     if (angle_amount > deg2rad(30.f) || target_name.compare(dbCameraState) != 0) {

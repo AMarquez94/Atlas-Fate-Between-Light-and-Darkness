@@ -91,6 +91,14 @@ namespace FSM
     CEntity* e = ctx.getOwner();
     e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::WALK , 1.0f });
     e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, _target, _noise });
+
+    // Disable the players projector.
+    CHandle player_light = getEntityByName("LightPlayer");
+    if (player_light.isValid()) {
+      CEntity * entity_light = (CEntity*)player_light;
+      TCompProjector * light = entity_light->get<TCompProjector>();
+      light->isEnabled = false;
+    }
   }
 
   void WalkState::onFinish(CContext& ctx) const {
@@ -413,6 +421,9 @@ namespace FSM
       TCompProjector * light = entity_light->get<TCompProjector>();
       light->isEnabled = true;
     }
+
+    TCompRender * render = e->get<TCompRender>();
+    render->visible = false;
   }
 
   void LandMergeState::onFinish(CContext& ctx) const {

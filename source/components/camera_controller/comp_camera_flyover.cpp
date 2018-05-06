@@ -28,9 +28,16 @@ void TCompCameraFlyover::update(float dt)
 	if (btDebugPause.getsPressed()) {
 		paused = !paused;
 		if (paused) {
+      TMsgScenePaused msg;
+      msg.isPaused = true;
+      EngineEntities.broadcastMsg(msg);
 			Engine.getCameras().blendInCamera(CHandle(this).getOwner(), 1.f, CModuleCameras::EPriority::TEMPORARY);
+
 		}
 		else {
+      TMsgScenePaused msg;
+      msg.isPaused = false;
+      EngineEntities.broadcastMsg(msg);
 			Engine.getCameras().blendOutCamera(CHandle(this).getOwner(), 1.f);
 		}
 	}

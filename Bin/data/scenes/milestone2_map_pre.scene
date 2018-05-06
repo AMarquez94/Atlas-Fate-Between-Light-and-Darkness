@@ -362,23 +362,23 @@
   {
     "entity":
     {
-      "name": "mesh_neon_aragami001"
+      "name": "mesh_bigAntena006"
       ,
       "transform":
       {
-        "pos": "1.34382 0.370052 -17.3732"
+        "pos": "0.287659 11.215 -6.81207"
         ,
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "rotation": "0.0 -0.866025 0.0 -0.5"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_neon_aragami001.mesh"
+          "mesh": "data/meshes/mesh_bigAntena006.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_neon_aragami.material"
+            "data/materials/mtl_props.material"
           ]
         }
       ]
@@ -484,25 +484,23 @@
   {
     "entity":
     {
-      "name": "mesh_torre_salto"
+      "name": "mesh_props2_house3_start"
       ,
       "transform":
       {
-        "pos": "9.04194 10.6381 26.9044"
+        "pos": "2.06836 3.41547 -16.4142"
         ,
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "0.0 -0.866025 0.0 -0.5"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_torre_salto.mesh"
+          "mesh": "data/meshes/mesh_props2_house3_start.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_HouseA_Wall.material"
-            ,
-            "data/materials/mtl_arco_muralla.material"
+            "data/materials/mtl_props.material"
           ]
         }
       ]
@@ -1010,23 +1008,23 @@
   {
     "entity":
     {
-      "name": "mesh_caja002"
+      "name": "mesh_neon_aragami008"
       ,
       "transform":
       {
-        "pos": "-19.9765 -2.03388 -36.5649"
+        "pos": "3.29435 10.8634 -7.60459"
         ,
-        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+        "rotation": "-0.5 0.5 -0.5 -0.5"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_caja002.mesh"
+          "mesh": "data/meshes/mesh_neon_aragami008.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_caja.material"
+            "data/materials/mtl_neon_aragami.material"
           ]
         }
       ]
@@ -1166,277 +1164,7 @@
   {
     "entity":
     {
-      "name": "mesh_pipe_corner002"
-      ,
-      "transform":
-      {
-        "pos": "-23.6801 -2.23302 -24.0005"
-        ,
-        "rotation": "0.0 0.0 0.707107 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_pipe_corner002.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_HouseB_Props.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_pipe_large002"
-      ,
-      "transform":
-      {
-        "pos": "-24.9451 -2.22495 -23.8691"
-        ,
-        "rotation": "0.0 0.0 0.707107 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_pipe_large002.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_HouseB_Props.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_moderdonia"
-      ,
-      "transform":
-      {
-        "pos": "-18.7198 0.0 -33.7512"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_neon_moderdonia.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_neon_moderdonia.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_pipe_large003"
-      ,
-      "transform":
-      {
-        "pos": "-24.9451 -2.57346 -23.262"
-        ,
-        "rotation": "-0.5 0.5 -0.5 0.5"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_pipe_large003.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_HouseB_Props.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_pipe_large004"
-      ,
-      "transform":
-      {
-        "pos": "-24.9451 -2.57346 -21.262"
-        ,
-        "rotation": "-0.5 0.5 -0.5 0.5"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_pipe_large004.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_HouseB_Props.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_pipe_large005"
-      ,
-      "transform":
-      {
-        "pos": "-24.9451 -2.57346 -19.262"
-        ,
-        "rotation": "-0.5 0.5 -0.5 0.5"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_pipe_large005.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_HouseB_Props.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_pipe_large006"
-      ,
-      "transform":
-      {
-        "pos": "-24.9451 -2.57346 -17.262"
-        ,
-        "rotation": "-0.5 0.5 -0.5 0.5"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_pipe_large006.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_HouseB_Props.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_pipe_large007"
-      ,
-      "transform":
-      {
-        "pos": "-24.9451 -2.57346 -15.262"
-        ,
-        "rotation": "-0.5 0.5 -0.5 0.5"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_pipe_large007.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_HouseB_Props.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_pipe_large008"
-      ,
-      "transform":
-      {
-        "pos": "-24.9451 -2.57346 -13.262"
-        ,
-        "rotation": "-0.5 0.5 -0.5 0.5"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_pipe_large008.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_HouseB_Props.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_pipe_large009"
+      "name": "mesh_pipe1_start"
       ,
       "transform":
       {
@@ -1448,67 +1176,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_pipe_large009.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_HouseB_Props.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_pipe_large010"
-      ,
-      "transform":
-      {
-        "pos": "-24.9451 -2.57346 -9.26201"
-        ,
-        "rotation": "-0.5 0.5 -0.5 0.5"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_pipe_large010.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_HouseB_Props.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_pipe_large011"
-      ,
-      "transform":
-      {
-        "pos": "-24.9451 -2.57346 -7.26201"
-        ,
-        "rotation": "-0.5 0.5 -0.5 0.5"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_pipe_large011.mesh"
+          "mesh": "data/meshes/mesh_pipe1_start.mesh"
           ,
           "materials":
           [
@@ -1770,7 +1438,7 @@
   {
     "entity":
     {
-      "name": "mesh_neon_moderdonia001"
+      "name": "mesh_neones_moderdonia_start"
       ,
       "transform":
       {
@@ -1782,7 +1450,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_neon_moderdonia001.mesh"
+          "mesh": "data/meshes/mesh_neones_moderdonia_start.mesh"
           ,
           "materials":
           [
@@ -1800,41 +1468,11 @@
   {
     "entity":
     {
-      "name": "mesh_caja001"
-      ,
-      "transform":
-      {
-        "pos": "-24.1352 -2.03388 -26.8226"
-        ,
-        "rotation": "0.0 -0.258819 0.0 -0.965926"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_caja001.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_caja.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_foco_luz1_start"
       ,
       "transform":
       {
-        "pos": "0.0784765 0.0 -27.915"
+        "pos": "4.05492 0.106157 -24.452"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -1860,23 +1498,23 @@
   {
     "entity":
     {
-      "name": "mesh_suportAntena"
+      "name": "mesh_cajas_start"
       ,
       "transform":
       {
-        "pos": "-12.6504 -5.56712 -22.2322"
+        "pos": "-19.9765 -2.03388 -36.5649"
         ,
-        "rotation": "-0.707107 0.707107 0.0 -1.37679e-07"
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_suportAntena.mesh"
+          "mesh": "data/meshes/mesh_cajas_start.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_props.material"
+            "data/materials/mtl_caja.material"
           ]
         }
       ]
@@ -1890,46 +1528,11 @@
   {
     "entity":
     {
-      "name": "mesh_antena"
+      "name": "mesh_torre_salto"
       ,
       "transform":
       {
-        "pos": "-12.3138 -5.36944 -22.2322"
-        ,
-        "rotation": "2.38419e-07 -1.0 0.0 1.94707e-07"
-      }
-      ,
-      "hierarchy":
-      {
-        "parent": "mesh_suportAntena"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_antena.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_props.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_containerbox"
-      ,
-      "transform":
-      {
-        "pos": "-11.1978 -6.90601 -17.6322"
+        "pos": "9.04194 10.6381 26.9044"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -1937,106 +1540,13 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_containerbox.mesh"
+          "mesh": "data/meshes/mesh_torre_salto.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_props.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_container"
-      ,
-      "transform":
-      {
-        "pos": "-11.0978 -6.90601 -19.6322"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_container.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_props.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tapacontainer"
-      ,
-      "transform":
-      {
-        "pos": "-11.6908 -5.69186 -19.6322"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "hierarchy":
-      {
-        "parent": "mesh_container"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tapacontainer.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_props.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_bigAntena"
-      ,
-      "transform":
-      {
-        "pos": "-11.3984 -6.90601 -16.2322"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_bigAntena.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_props.material"
+            "data/materials/mtl_HouseA_Wall.material"
+            ,
+            "data/materials/mtl_arco_muralla.material"
           ]
         }
       ]
@@ -2067,6 +1577,516 @@
           "materials":
           [
             "data/materials/mtl_valla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_foco_luz2_start"
+      ,
+      "transform":
+      {
+        "pos": "-6.35723 0.106157 -37.7631"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_foco_luz2_start.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_foco_luz.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_foco_luz3_start"
+      ,
+      "transform":
+      {
+        "pos": "-25.9451 0.106158 -19.8896"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_foco_luz3_start.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_foco_luz.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_foco_luz1_valla"
+      ,
+      "transform":
+      {
+        "pos": "-34.0282 13.8318 68.4658"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_foco_luz1_valla.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_foco_luz.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pipe_corner006"
+      ,
+      "transform":
+      {
+        "pos": "-3.78377 -2.29675 -37.5407"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_pipe_corner006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_props2_house2_start"
+      ,
+      "transform":
+      {
+        "pos": "0.198242 -2.00079 -29.603"
+        ,
+        "rotation": "0.0 -0.939693 0.0 0.34202"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_props2_house2_start.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_props_house2_start"
+      ,
+      "transform":
+      {
+        "pos": "0.35594 0.999212 -32.7702"
+        ,
+        "rotation": "-1.0 0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_props_house2_start.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box240"
+      ,
+      "transform":
+      {
+        "pos": "-24.4021 8.10291 1.94638"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box240.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neones_aragami_start"
+      ,
+      "transform":
+      {
+        "pos": "-5.50867 -4.78956 -11.5591"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neones_aragami_start.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_props2_house1_start"
+      ,
+      "transform":
+      {
+        "pos": "-22.418 3.93132 -29.5727"
+        ,
+        "rotation": "0.0 0.382683 0.0 -0.92388"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_props2_house1_start.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_containerbox_big002"
+      ,
+      "transform":
+      {
+        "pos": "-11.2356 -7.78072 -36.2404"
+        ,
+        "rotation": "0.0 -0.173648 0.0 -0.984808"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_containerbox_big002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_containerbox_medium004"
+      ,
+      "transform":
+      {
+        "pos": "-10.2058 -7.64317 -37.3343"
+        ,
+        "rotation": "-0.690346 0.153046 -0.153046 -0.690346"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_containerbox_medium004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box241"
+      ,
+      "transform":
+      {
+        "pos": "-22.1131 2.3706 -10.6448"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box241.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_moderdonia002"
+      ,
+      "transform":
+      {
+        "pos": "-3.80697 8.0 12.7934"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_moderdonia002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_moderdonia.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box242"
+      ,
+      "transform":
+      {
+        "pos": "-6.67479 3.18921 -1.19663"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box242.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_aragami006"
+      ,
+      "transform":
+      {
+        "pos": "-12.4346 3.01659 2.57301"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_aragami007"
+      ,
+      "transform":
+      {
+        "pos": "-3.41119 3.01659 16.2172"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_props_house3_start"
+      ,
+      "transform":
+      {
+        "pos": "1.66251 2.64608 -17.7599"
+        ,
+        "rotation": "-0.5 -0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_props_house3_start.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseB_Props.material"
           ]
         }
       ]
