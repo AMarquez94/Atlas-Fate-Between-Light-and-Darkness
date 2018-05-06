@@ -115,6 +115,8 @@ public:
 	/* Debug variables */
 	bool dbgDisableStamina;
 	std::string dbCameraState;
+	float stepTimer = 0.0f; 
+	bool stepRight = true;
   //VEC3 debugDir = VEC3::Zero;
   //VEC3 debugMyFront = VEC3::Zero;
 
