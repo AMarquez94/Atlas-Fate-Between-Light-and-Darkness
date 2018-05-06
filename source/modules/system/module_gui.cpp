@@ -22,13 +22,12 @@ bool CModuleGUI::start()
 
 	CParser parser;
 	parser.parseFile("data/gui/test.json");
+
 	/*parser.parseFile("data/gui/main_menu.json");
 	parser.parseFile("data/gui/gameplay.json");
 	parser.parseFile("data/gui/game_over.json");*/
 
 	activateWidget("test");
-
-	_variables.setVariant("progress", 0.5f);
 
 	auto newGameCB = []() {
 		dbg("STARTING GAME\n");
@@ -39,14 +38,14 @@ bool CModuleGUI::start()
 	auto optionsCB = []() {
 		dbg("CONFIGURING\n");
 	};
-
+	
 	CMainMenuController* mmc = new CMainMenuController();
 	mmc->registerOption("new_game", newGameCB);
 	mmc->registerOption("continue", continueCB);
 	mmc->registerOption("options", optionsCB);
 	mmc->setCurrentOption(0);
 	registerController(mmc);
-
+	
 	return true;
 }
 

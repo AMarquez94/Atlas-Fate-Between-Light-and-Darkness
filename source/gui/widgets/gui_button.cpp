@@ -47,6 +47,7 @@ TTextParams* CButton::getTextParams()
 
 void CButton::setCurrentState(EState newState)
 {
+	this;
   _currentState = newState;
 }
 

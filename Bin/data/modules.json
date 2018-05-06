@@ -7,6 +7,7 @@
 		"render",
 		"navmeshes",
 		"cameras",
+		"gui",
 		"logic",
 		"sound",
 		"main_menu",
@@ -23,6 +24,7 @@
 	[
 		"render",
 		"navmeshes",
+		"gui",
 		"map_intro",
 		"input",
 		"main_menu",

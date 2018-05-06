@@ -38,7 +38,7 @@ public:
 	CModuleLogic& getLogic() { return _module_logic; }
 	CModuleGameConsole& getGameConsole() { return _module_game_console; }
 	CModuleGameConsole getGameConsoleBis() { return _module_game_console; }
-	CModuleGUI getGUI() { return _module_gui; }
+	CModuleGUI& getGUI() { return _module_gui; }
 
 private:
 	CModuleManager  _modules;

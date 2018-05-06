@@ -9,6 +9,7 @@
 #define CB_MATERIAL     5
 #define CB_BLUR         6
 #define CB_BLOOM        7
+#define CB_GUI		    8
 
 // -------------------------------------------------
 // Texture Slots

@@ -10,6 +10,7 @@ public:
 	bool stop();
 	void update(float delta);
 	void render();
+	void renderGUI();
 
 	void registerSystemModule(IModule* mod);
 	void registerGameModule(IModule* mod);

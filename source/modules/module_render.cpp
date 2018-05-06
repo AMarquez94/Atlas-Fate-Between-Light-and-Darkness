@@ -109,6 +109,9 @@ bool CModuleRender::start()
 	if (!cb_blur.create(CB_BLUR))
 		return false;
 
+	if (!cb_gui.create(CB_GUI))
+		return false;
+
 	cb_globals.global_exposure_adjustment = 2.010f;
 	cb_globals.global_ambient_adjustment = 0.150f;
 	cb_globals.global_world_time = 0.f;
@@ -122,6 +125,7 @@ bool CModuleRender::start()
 	cb_camera.activate();
 	cb_globals.activate();
 	cb_blur.activate();
+	cb_gui.activate();
 
 	camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
 	camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
@@ -297,6 +301,22 @@ void CModuleRender::generateFrame() {
 			CTraceScoped gpu_scope("Modules");
 			CEngine::get().getModules().render();
 		}
+	}
+
+	{
+		PROFILE_FUNCTION("GUI");
+		CTraceScoped gpu_scope("GUI");
+		
+		activateRSConfig(RSCFG_CULL_NONE);
+		activateZConfig(ZCFG_DISABLE_ALL);
+		activateBlendConfig(BLEND_CFG_COMBINATIVE);
+
+		activateCamera(CEngine::get().getGUI().getCamera(), Render.width, Render.height);
+		CEngine::get().getModules().renderGUI();
+
+		activateRSConfig(RSCFG_DEFAULT);
+		activateZConfig(ZCFG_DEFAULT);
+		activateBlendConfig(BLEND_CFG_DEFAULT);
 	}
 
 	{
