@@ -12,8 +12,8 @@ CModuleGUI::CModuleGUI(const std::string& name)
 
 bool CModuleGUI::start()
 {
-	const float width = 1920;
-	const float height = 1080;
+	const float width = 1080;
+	const float height = 640;
 	_orthoCamera.setOrthographicGUI(width, height);
 
 	_technique = Resources.get("gui.tech")->as<CRenderTechnique>();
@@ -38,11 +38,15 @@ bool CModuleGUI::start()
 	auto optionsCB = []() {
 		dbg("CONFIGURING\n");
 	};
+	auto exitCB = []() {
+		dbg("CONFIGURING\n");
+	};
 	
 	CMainMenuController* mmc = new CMainMenuController();
 	mmc->registerOption("new_game", newGameCB);
 	mmc->registerOption("continue", continueCB);
 	mmc->registerOption("options", optionsCB);
+	mmc->registerOption("exit", exitCB);
 	mmc->setCurrentOption(0);
 	registerController(mmc);
 	

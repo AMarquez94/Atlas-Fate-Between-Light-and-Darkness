@@ -15,8 +15,8 @@
 		"console",
 		"splash",
 		"test_input",
+		
 		"map_intro",
-		"gui",
 		"level_select",
 		"game_over"
 	],
@@ -24,12 +24,12 @@
 	[
 		"render",
 		"navmeshes",
-		"gui",
 		"map_intro",
 		"input",
 		"main_menu",
 		"game_manager",
 		"console",
+		"gui",
 		"level_select",
 		"game_over",
 		"entities",

@@ -27,6 +27,8 @@ class CCamera {
 	MAT44 proj;
 	MAT44 view_proj;
 
+	bool is_ortho = false;
+
 	void updateViewProj();
 
 	// viewport

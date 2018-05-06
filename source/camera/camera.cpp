@@ -36,7 +36,7 @@ void CCamera::lookAt(VEC3 new_pos, VEC3 new_target, VEC3 new_up_aux) {
 void CCamera::setPerspective(float new_fov_vertical, float new_z_near, float new_z_far) {
 
 	type = PERSPECTIVE;
-
+	is_ortho = false;
 	fov_vertical = new_fov_vertical;
 	z_near = new_z_near;
 	z_far = new_z_far;
@@ -59,6 +59,7 @@ void CCamera::setOrtographic(float ortosize, float new_z_near, float new_z_far) 
 
 void CCamera::setOrthographicGUI(float width, float height)
 {
+	is_ortho = true;
 
 	aspect_ratio = fabsf(width / height);
 	z_far = 1.f;
@@ -113,11 +114,15 @@ void CCamera::setViewport(int x0, int y0, int width, int height) {
 	viewport.height = height;
 
 	aspect_ratio = (float)width / (float)height;
+	
+	if (!is_ortho) 
+		setPerspective(fov_vertical, z_near, z_far);
+	
 
-	if (type == CType::PERSPECTIVE)
+	/*if (type == CType::PERSPECTIVE)
 		setPerspective(fov_vertical, z_near, z_far);
 	else
-		setOrtographic(orto_size, z_near, z_far);
+		setOrtographic(orto_size, z_near, z_far);*/
 }
 
 bool CCamera::getScreenCoordsOfWorldCoord(VEC3 world_pos, VEC3* result) const {
