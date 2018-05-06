@@ -74,110 +74,120 @@
 
 CB_DEF(CCteCamera, CB_CAMERA)   // Generates the b0
 {
-	MAT44 camera_view;
-	MAT44 camera_proj;
-	MAT44 camera_view_proj;
-	MAT44 camera_screen_to_world;
-	MAT44 camera_proj_with_offset;      // Used by ao
-	VEC3  camera_pos;
-	float camera_dummy1;
-	VEC3  camera_front;
-	float camera_dummy2;
-	VEC3  camera_left;
-	float camera_dummy3;
-	VEC3  camera_up;
-	float camera_dummy4;
+    MAT44 camera_view;
+    MAT44 camera_proj;
+    MAT44 camera_view_proj;
+    MAT44 camera_screen_to_world;
+    MAT44 camera_proj_with_offset;      // Used by ao
+    VEC3  camera_pos;
+    float camera_dummy1;
+    VEC3  camera_front;
+    float camera_dummy2;
+    VEC3  camera_left;
+    float camera_dummy3;
+    VEC3  camera_up;
+    float camera_dummy4;
 
-	float camera_zfar;
-	float camera_znear;
-	float camera_tan_half_fov;
-	float camera_aspect_ratio;
+    float camera_zfar;
+    float camera_znear;
+    float camera_tan_half_fov;
+    float camera_aspect_ratio;
 
-	VEC2  camera_inv_resolution;
-	float camera_dummy5;
-	float camera_dummy6;
+    VEC2  camera_inv_resolution;
+    float camera_dummy5;
+    float camera_dummy6;
 };
 
 CB_DEF(CCteObject, CB_OBJECT)   // Generates the b1
 {
-	MAT44 obj_world;
-	VEC4  obj_color;
+    MAT44 obj_world;
+    VEC4  obj_color;
+    VEC4   self_color;
+    float  self_intensity;
+    float  self_dummy1;
+    float  self_dummy2;
+    float  self_dummy3;
 };
 
 CB_DEF(CCteLight, CB_LIGHT)
 {
-	VEC4  light_color;
-	VEC4  light_direction;
-	VEC3  light_pos;
-	float light_intensity;
+    VEC4  light_color;
+    VEC4  light_direction;
+    VEC3  light_pos;
+    float light_intensity;
 
-	// Align x4
-	float light_shadows_step;
-	float light_shadows_inverse_resolution;     // 1.0f / 256.0
-	float light_shadows_step_with_inv_res;      // light_shadows_step * light_shadows_inverse_resolution
-	float light_radius;                         // Used by point lights
+    // Align x4
+    float light_shadows_step;
+    float light_shadows_inverse_resolution;     // 1.0f / 256.0
+    float light_shadows_step_with_inv_res;      // light_shadows_step * light_shadows_inverse_resolution
+    float light_radius;                         // Used by point lights
 
-	//Some spotlight related values.
-	float light_angle;
-	float light_inner_cut;
-	float light_outer_cut;
-	float dummy2;
+    //Some spotlight related values.
+    float light_angle;
+    float light_inner_cut;
+    float light_outer_cut;
+    float dummy2;
 
-	MAT44 light_view_proj_offset;
+    MAT44 light_view_proj_offset;
 
 };
 
 CB_DEF(CCteGlobals, CB_GLOBALS)   // Generates the b1
 {
-	float global_world_time;
-	float global_exposure_adjustment;
-	float global_ambient_adjustment;
-	float global_hdr_enabled;
-	float global_gamma_correction_enabled;
-	float global_tone_mapping_mode;
-	int   global_render_output;
-	float global_fog_density;
+    float global_world_time;
+    float global_exposure_adjustment;
+    float global_ambient_adjustment;
+    float global_hdr_enabled;
+    float global_gamma_correction_enabled;
+    float global_tone_mapping_mode;
+    int   global_render_output;
+    float global_fog_density;
 
-	float global_shared_fx_amount;
-	float global_shared_fx_val1;
-	float global_shared_fx_val2;
-	float global_shared_fx_val3;
+    float global_shared_fx_amount;
+    float global_shared_fx_val1;
+    float global_shared_fx_val2;
+    float global_shared_fx_val3;
+
+    float global_self_intensity;
+    float global_dummy2;
+    float global_dummy3;
+    float global_dummy4;
 };
 
 CB_DEF(CCteMaterial, CB_MATERIAL)
 {
-	float  scalar_roughness;
-	float  scalar_metallic;
-	float  scalar_irradiance_vs_mipmaps;
-	float  scalar_emission;
-	VEC4   color_emission;
-	VEC4   color_material;
+    float  scalar_roughness;
+    float  scalar_metallic;
+    float  scalar_irradiance_vs_mipmaps;
+    float  scalar_emission;
+    VEC4   color_emission;
+    VEC4   color_material;
 };
 
 CB_DEF(CCteBlur, CB_BLUR)
 {
-	VEC4 blur_w;        // weights
-	VEC4 blur_d;        // distances
-	VEC2 blur_step;     // Extra modifier
-	VEC2 blur_center; // To keep aligned x4
+    VEC4 blur_w;        // weights
+    VEC4 blur_d;        // distances
+    VEC2 blur_step;     // Extra modifier
+    VEC2 blur_center; // To keep aligned x4
 };
 
 CB_DEF(CCteSkinBones, CB_SKIN_BONES)
 {
-	MAT44 Bones[MAX_SUPPORTED_BONES];
-	float BonesScale;
-	float BonesDummy1;
-	float BonesDummy2;
-	float BonesDummy3;
+    MAT44 Bones[MAX_SUPPORTED_BONES];
+    float BonesScale;
+    float BonesDummy1;
+    float BonesDummy2;
+    float BonesDummy3;
 };
 
 CB_DEF(CCteBloom, CB_BLOOM)
 {
-	VEC4  bloom_weights;
-	float bloom_threshold_min;
-	float bloom_threshold_max;
-	float bloom_pad1;
-	float bloom_pad2;
+    VEC4  bloom_weights;
+    float bloom_threshold_min;
+    float bloom_threshold_max;
+    float bloom_pad1;
+    float bloom_pad2;
 };
 
 #endif

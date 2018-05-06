@@ -3,8 +3,8 @@
 		"entity": {
 			"name": "Capsules",
 			"dynamic_capsules_manager": {
-				"start_point": "-5 40 4",
-				"end_point": "-5 62 254",
+				"start_point": "-5 38.6 4",
+				"end_point": "-5 40 254",
 				"number": 20,
 				"speed": 4
 			}
