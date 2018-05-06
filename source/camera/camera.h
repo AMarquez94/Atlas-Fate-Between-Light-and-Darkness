@@ -78,6 +78,8 @@ public:
 	void lookAt(VEC3 new_pos, VEC3 new_target, VEC3 new_up_aux = VEC3(0, 1, 0));
 	void setPerspective(float new_fov_vertical, float new_z_near, float new_z_far);
 	void setOrtographic(float ortosize, float new_z_near, float new_z_far);
+	void setOrthographicGUI(float width, float height);
+	MAT44 loadOrtho(float x_min, float x_max, float y_min, float y_max, float z_min, float z_max);
 	void setViewport(int x0, int y0, int width, int height);
 
 	bool getScreenCoordsOfWorldCoord(VEC3 world_pos, VEC3 *screen_coords) const;

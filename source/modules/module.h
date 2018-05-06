@@ -11,6 +11,7 @@ public:
   virtual bool stop() { return true; }
   virtual void update(float delta) { (void)delta; }
   virtual void render() {}
+  virtual void renderGUI() {}
 
   const std::string& getName() const { return _name; }
 	bool isActive() const { return _active; }

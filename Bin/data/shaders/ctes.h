@@ -180,4 +180,11 @@ CB_DEF(CCteBloom, CB_BLOOM)
 	float bloom_pad2;
 };
 
+CB_DEF(CCteGUI, CB_GUI)
+{
+	VEC2 minUV;
+	VEC2 maxUV;
+	VEC4 tint_color;
+};
+
 #endif

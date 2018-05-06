@@ -15,6 +15,7 @@
 		"splash",
 		"test_input",
 		"map_intro",
+		"gui",
 		"level_select",
 		"game_over"
 	],
