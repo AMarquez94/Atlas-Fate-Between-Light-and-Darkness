@@ -46,7 +46,7 @@
         "enabled" :  true,
         "max_steps" : 4,
         "rt_name" : "Bloom"
-      },
+      },      
 			"tags": ["main_camera"],
 			"culling": true
 		}
@@ -105,6 +105,11 @@
 			"render_blur_radial": {
 				"enabled": true
 			},
+			"color_grading" : {
+        "enabled" :  true,
+				"amount" : 0.6,
+        "lut": "data/textures/lut/lut1.dds"
+      },
 			"tags": ["main_camera"],
 			"culling": true
 		}
@@ -130,6 +135,11 @@
 			"render_blur_radial": {
 				"enabled": true
 			},
+			"color_grading" : {
+        "enabled" :  true,
+				"amount" : 0.6,
+        "lut": "data/textures/lut/lut1.dds"
+      },
 			"camera": {
 				"fov": 90,
 				"z_near": 0.01,
@@ -159,6 +169,11 @@
 			"render_blur_radial": {
 				"enabled": true
 			},
+			"color_grading" : {
+        "enabled" :  true,
+				"amount" : 0.6,
+        "lut": "data/textures/lut/lut1.dds"
+      },
 			"tags": ["aux_camera"],
 			"culling": true
 		}

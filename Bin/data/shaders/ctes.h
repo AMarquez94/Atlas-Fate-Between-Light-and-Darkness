@@ -38,6 +38,8 @@
 #define TS_DEFERRED_ACC_LIGHTS        17
 #define TS_DEFERRED_SELF_ILLUMINATION 18
 #define TS_DEFERRED_AO                19
+#define TS_LUT_COLOR_GRADING          20
+
 // -------------------------------------------------
 #define RO_COMPLETE     0
 #define RO_ALBEDO       1

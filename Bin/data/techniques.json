@@ -238,5 +238,11 @@
     "category" : "fx",
     "z" : "disable_all",
     "blend" : "additive"
+  },
+	"color_grading": {
+    "vs_file": "data/shaders/color_grading.fx",
+    "vertex_type": "PosClr",
+    "category": "fx",
+    "z": "disable_all"
   }
 }

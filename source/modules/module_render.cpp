@@ -21,6 +21,7 @@
 #include "components/postfx/comp_render_blur.h"
 #include "components/postfx/comp_render_blur_radial.h"
 #include "components/postfx/comp_render_bloom.h"
+#include "components/postfx/comp_color_grading.h"
 //--------------------------------------------------------------------------------------
 
 CModuleRender::CModuleRender(const std::string& name)
@@ -279,7 +280,13 @@ void CModuleRender::generateFrame() {
 			TCompRenderBlurRadial * c_render_blur_radial = e_cam->get< TCompRenderBlurRadial >();
 			if (c_render_blur_radial)
 				curr_rt = c_render_blur_radial->apply(curr_rt);
+
+      // Check if we have a color grading component
+      TCompColorGrading* c_color_grading = e_cam->get< TCompColorGrading >();
+      if (c_color_grading)
+        curr_rt = c_color_grading->apply(curr_rt);
 		}
+
 
 		Render.startRenderInBackbuffer();
 		renderFullScreenQuad("dump_texture.tech", curr_rt);

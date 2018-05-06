@@ -155,6 +155,7 @@
     <ClCompile Include="components\postfx\comp_render_ao.cpp" />
     <ClCompile Include="components\postfx\comp_render_bloom.cpp" />
     <ClCompile Include="components\lighting\comp_projector.cpp" />
+    <ClCompile Include="components\postfx\comp_color_grading.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -347,6 +348,7 @@
     <ClInclude Include="components\postfx\comp_render_ao.h" />
     <ClInclude Include="components\postfx\comp_render_bloom.h" />
     <ClInclude Include="components\lighting\comp_projector.h" />
+    <ClInclude Include="components\postfx\comp_color_grading.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
