@@ -195,11 +195,11 @@ float4 projectColor(float3 wPos) {
   float3 pos_in_light_homo_space = pos_in_light_proj_space.xyz / pos_in_light_proj_space.w; // -1..1
 
   // Use these coords to access the projector texture of the light dir
-  float2 t_uv = pos_in_light_homo_space.xy;
-  float distortionOffset = -global_world_time * 0.25;
+  //float2 t_uv = pos_in_light_homo_space.xy;
+  //float distortionOffset = -global_world_time * 0.25;
 
-  float2 distort_uv = float2(t_uv.x + sin((t_uv.y + distortionOffset) * 20) * 0.05, t_uv.y + sin((t_uv.x + distortionOffset) * 20) * 0.05);
-  float4 light_projector_color = txLightProjector.Sample(samBorderLinear, distort_uv);
+  //float2 distort_uv = float2(t_uv.x + sin((t_uv.y + distortionOffset) * 20) * 0.05, t_uv.y + sin((t_uv.x + distortionOffset) * 20) * 0.05);
+  float4 light_projector_color = txLightProjector.Sample(samBorderLinear, pos_in_light_homo_space.xy);
 
   //if (pos_in_light_proj_space.z < 0.)
     //light_projector_color = float4(0, 0, 0, 0);
@@ -216,7 +216,7 @@ float2 parallaxMappingB(float2 texCoords, float3 view_dir) {
   float numLayers = lerp(maxLayers, minLayers, abs(dot(float3(0.0, 0.0, 1.0), view_dir)));
   float layerDepth = 1.0 / numLayers;
   float currentLayerDepth = 0.0;
-  float2 P = view_dir.xy * 0.075;
+  float2 P = view_dir.xy * 0.045;
   float2 deltaTexCoords = P / numLayers;
 
   float2 currentTexCoords = texCoords;

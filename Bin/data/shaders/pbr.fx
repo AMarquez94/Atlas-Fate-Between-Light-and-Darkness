@@ -89,7 +89,7 @@ void PS_GBuffer(
 	, out float4 o_selfIllum : SV_Target3
 )
 {
-	o_albedo = txAlbedo.Sample(samLinear, iTex0);
+  o_albedo = txAlbedo.Sample(samLinear, iTex0);
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 	o_selfIllum =  txEmissive.Sample(samLinear, iTex0);
 	o_selfIllum.xyz *= color_emission;
@@ -182,7 +182,7 @@ void decodeGBuffer(
 	N = normalize(N);
 
 	// Get other inputs from the GBuffer
-	float4 albedo = txGBufferAlbedos.Load(ss_load_coords);
+  float4 albedo = txGBufferAlbedos.Load(ss_load_coords);
 	// In the alpha of the albedo, we stored the metallic value
 	// and in the alpha of the normal, we stored the roughness
 	float  metallic = albedo.a;
@@ -194,10 +194,10 @@ void decodeGBuffer(
 	// Lerp with metallic value to find the good diffuse and specular.
 	// If metallic = 0, albedo is the albedo, if metallic = 1, the
 	// used albedo is almost black
-	real_albedo = albedo.rgb * (1. - metallic);
+  real_albedo = albedo.rgb * (1. - metallic);
 
 	// 0.03 default specular value for dielectric.
-	real_specular_color = lerp(0.03f, albedo.rgb, metallic);
+  real_specular_color = lerp(0.03f, albedo.rgb, metallic);
 
 	// Eye to object
 	float3 incident_dir = normalize(wPos - camera_pos.xyz);
@@ -356,7 +356,7 @@ float4 shade(float4 iPosition, out float3 light_dir, bool use_shadows)
 	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.; // shadow factor
   
 	//return projectColor(wPos);
-	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor;
+  float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor;
 	return float4(final_color, 1);
 }
 

@@ -26,6 +26,7 @@
 		"light_dir",
 		"light_spot",
 		"light_point",
+		"projector",
 		"camera_flyover",
 		"curve_controller",
 		"trigger_camera",

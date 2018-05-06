@@ -1,0 +1,18 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_foco_pared_alb.dds"
+    ,
+    "metallic": "data/textures/tx_foco_pared_met.dds"
+    ,
+    "roughness": "data/textures/tx_foco_pared_rgh.dds"
+    ,
+    "normal": "data/textures/tx_foco_pared_nml.dds"
+    ,
+    "height": "data/textures/tx_foco_pared_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_foco_pared_emi.dds"
+  }
+}
