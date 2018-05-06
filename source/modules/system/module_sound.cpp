@@ -22,7 +22,7 @@ void CModuleSound::setAmbientSound(const std::string & path) {
 	_ambiance = new SoundClip();
 	_ambiance->result = _system->createStream(path.c_str(), FMOD_LOOP_NORMAL | FMOD_2D, 0, &_ambiance->sound); // Carga de disco, decodificarse
 	_ambiance->result = _system->playSound(_ambiance->sound, 0, false, &_ambiance->channel);
-	_ambiance->channel->setVolume(0.1f);
+	_ambiance->channel->setVolume(0.5f);
 }
 
 bool CModuleSound::stop() {
@@ -65,4 +65,57 @@ void CModuleSound::registerClip3D(const std::string & tag, const std::string & s
 	clip->result = _system->createStream(source.c_str(), FMOD_3D, 0, &clip->sound); // Carga de disco, decodificarse
 
 	_clips.insert(std::pair<std::string, SoundClip*>(tag, clip));
+}
+
+//TO-DO: Borrar todo esto y implementarlo como lo haria una persona con dos dedos de frente
+void CModuleSound::exeStepSound() {
+
+	FMOD_RESULT       result;
+	void             *extradriverdata = 0;
+	FMOD::Sound      *sound;
+	FMOD::Channel * channel = 0;
+	
+	int index = ((float)rand() / RAND_MAX) * 7;
+	switch (index) {
+		case 0:
+			result = _system->createSound("../bin/data/sounds/step1.ogg", FMOD_LOOP_OFF | FMOD_2D | FMOD_CREATESAMPLE, 0, &sound);
+			result = _system->playSound(sound, 0, false, &channel);
+			break;
+
+		case 1:
+			result = _system->createSound("../bin/data/sounds/step2.ogg", FMOD_LOOP_OFF | FMOD_2D | FMOD_CREATESAMPLE, 0, &sound);
+			result = _system->playSound(sound, 0, false, &channel);
+			break;	
+
+		case 2:
+			result = _system->createSound("../bin/data/sounds/step3.ogg", FMOD_LOOP_OFF | FMOD_2D | FMOD_CREATESAMPLE, 0, &sound);
+			result = _system->playSound(sound, 0, false, &channel);
+			break;
+
+		case 3:
+			result = _system->createSound("../bin/data/sounds/step2.ogg", FMOD_LOOP_OFF | FMOD_2D | FMOD_CREATESAMPLE, 0, &sound);
+			result = _system->playSound(sound, 0, false, &channel);
+			break;
+
+		case 4:
+			result = _system->createSound("../bin/data/sounds/step5.ogg", FMOD_LOOP_OFF | FMOD_2D | FMOD_CREATESAMPLE, 0, &sound);
+			result = _system->playSound(sound, 0, false, &channel);
+			break;
+
+		case 5:
+			result = _system->createSound("../bin/data/sounds/step6.ogg", FMOD_LOOP_OFF | FMOD_2D | FMOD_CREATESAMPLE, 0, &sound);
+			result = _system->playSound(sound, 0, false, &channel);
+			break;
+
+		case 6:
+			result = _system->createSound("../bin/data/sounds/step7.ogg", FMOD_LOOP_OFF | FMOD_2D | FMOD_CREATESAMPLE, 0, &sound);
+			result = _system->playSound(sound, 0, false, &channel);
+			break;
+	}	
+	float volume = 0.75f;
+	if (EngineInput["btRun"].isPressed()) volume = 1.0f;
+	if (EngineInput["btCrouch"].isPressed()) volume = 0.5f;
+	channel->setVolume(volume);
+	
+
 }

@@ -79,7 +79,7 @@
 			"name": "crouch",
 			"type": "CrouchState",
 			"animation": "crouch",
-			"speed": 3,
+			"speed": 1.5,
 			"rotationSpeed": 5.0,
 			"size": 0.25,
 			"camera": {
@@ -91,7 +91,7 @@
 			"name": "crouchwalk",
 			"type": "CrouchWalkState",
 			"animation": "crouch_walk",
-			"speed": 3,
+			"speed": 1.75,
 			"rotationSpeed": 5.0,
 			"size": 0.25,
 			"camera": {

@@ -293,6 +293,18 @@ void TCompTempPlayerController::walkState(float dt) {
 	VEC3 proj = projectVector(up, normal_norm);
 	VEC3 dir = getMotionDir(proj, normal_norm.Cross(-proj));
 
+	//TODO: Destroy this shiat-----------------------------------------------------------------------
+	
+	float factor = 1.0f;
+	if (EngineInput["btRun"].isPressed()) factor = 0.95;
+	if (EngineInput["btCrouch"].isPressed()) factor = 1.3;
+	stepTimer += dt;
+	if (stepTimer > 0.33f * factor) {
+		
+		Engine.getSound().exeStepSound();
+		stepRight = !stepRight;
+		stepTimer = 0.0f;
+	}
 
 	if (dir == VEC3::Zero) dir = proj;
 

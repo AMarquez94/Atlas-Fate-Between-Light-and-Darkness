@@ -51,7 +51,7 @@ bool CModuleMapIntro::start()
 		h_e.sendMsg(msg);
 	});
 	
-	Engine.getSound().setAmbientSound("../bin/data/sounds/ambiance.ogg");
+	Engine.getSound().setAmbientSound("../bin/data/sounds/ambient.ogg");
 
 	return true;
 }
