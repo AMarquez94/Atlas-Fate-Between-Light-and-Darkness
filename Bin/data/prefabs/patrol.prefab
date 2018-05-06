@@ -16,7 +16,7 @@
 			],
 			"skeleton": {
 				"skeleton": "data/skeletons/patrol/patrol.skeleton",
-				"scale": 1
+				"scale": 1.0
 			},
 			"emission_controller": {
 				"initial": "0.0 1.0 1.0 1.0"

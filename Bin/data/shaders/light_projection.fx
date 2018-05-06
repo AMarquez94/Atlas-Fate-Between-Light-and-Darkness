@@ -84,7 +84,7 @@ float4 projectWavedShadow(float3 wPos) {
   float2 t_uv = pos_in_light_homo_space.xy;
   float distortionOffset = -global_world_time * 0.25;
 
-  float2 distort_uv = float2(t_uv.x + sin((t_uv.y + distortionOffset) * 20) * 0.05, t_uv.y + sin((t_uv.x + distortionOffset) * 20) * 0.05);
+  float2 distort_uv = float2(t_uv.x + sin((t_uv.y + distortionOffset) * 20) * 0.025, t_uv.y + sin((t_uv.x + distortionOffset) * 20) * 0.025);
   float4 light_projector_color = txLightProjector.Sample(samBorderLinear, distort_uv);
 
   //if (pos_in_light_proj_space.z < 0.)
@@ -106,6 +106,6 @@ float4 PS_Projection(in float4 iPosition : SV_Position) : SV_Target
 	float  distance_to_light = length(light_dir_full);
 	float light_dir = light_dir_full / distance_to_light;
 	
-	float  att = (1. - smoothstep(0.90, 0.98, distance_to_light / light_radius)); // Att, point light
+	float  att = (1. - smoothstep(0.40, 0.98, distance_to_light / light_radius)); // Att, point light
 	return float4(0,0,0,1) *projectWavedShadow(wPos);
 }
