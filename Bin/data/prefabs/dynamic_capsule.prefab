@@ -18,7 +18,6 @@
 				"shape": "convex",
 				"is_trigger": false,
 				"is_dynamic": true,
-				"size": "1 2 1",
         "name": "data/colliders/collider_capsula_low.collider"
 			},
 			"dynamic_capsule": {

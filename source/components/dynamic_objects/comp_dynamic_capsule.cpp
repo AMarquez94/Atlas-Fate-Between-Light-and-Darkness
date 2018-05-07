@@ -25,7 +25,7 @@ void TCompDynamicCapsule::update(float dt) {
 		myPos->setPosition(start_point);
 	}
 	TCompCollider *cCollider = get<TCompCollider>();
-	cCollider->setGlobalPose(myPos->getPosition(), myPos->getRotation(), false);
+	cCollider->setGlobalPose(myPos->getPosition() - offset, myPos->getRotation(), false);
 }
 
 void TCompDynamicCapsule::setSpeed(float newSpeed) {
@@ -41,4 +41,9 @@ void TCompDynamicCapsule::setStartPoint(VEC3 newStartPoint) {
 void TCompDynamicCapsule::setEndPoint(VEC3 newEndPoint) {
 
 	end_point = newEndPoint;
+}
+
+void TCompDynamicCapsule::setOffset(VEC3 newOffset)
+{
+  offset = newOffset;
 }
