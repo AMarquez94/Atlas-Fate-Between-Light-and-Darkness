@@ -70,6 +70,17 @@ void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
   patrolColor.colorSuspect = j.count("colorSuspect") ? loadVEC4(j["colorSuspect"]) : VEC4(1, 1, 0, 1);
   patrolColor.colorAlert = j.count("colorAlert") ? loadVEC4(j["colorAlert"]) : VEC4(1, 0, 0, 1);
   patrolColor.colorDead = j.count("colorDead") ? loadVEC4(j["colorDead"]) : VEC4(0, 0, 0, 0);
+
+  /* TEMP: TODO: borrar */
+  //trueLookAt = j.count("trueLookAt") > 0 ? loadVEC3(j["trueLookAt"]) : VEC3::Zero;
+  //if (j.count("trueLookAt") > 0) {
+  //  trueLookAt = loadVEC3(j["trueLookAt"]);
+  //  Waypoint wpt;
+  //  TCompTrans
+  //}
+  //else {
+  //  trueLookAt = VEC3::Zero;
+  //}
 }
 
 void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
@@ -82,7 +93,8 @@ void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
 		TCompTransform * tPos = get<TCompTransform>();
 		Waypoint wpt;
 		wpt.position =tPos->getPosition();
-		wpt.lookAt = tPos->getFront();
+    wpt.lookAt = tPos->getFront();
+		//wpt.lookAt = trueLookAt != VEC3::Zero ? trueLookAt : tPos->getFront();
 		wpt.minTime = 1.f;
 		addWaypoint(wpt);
 	}

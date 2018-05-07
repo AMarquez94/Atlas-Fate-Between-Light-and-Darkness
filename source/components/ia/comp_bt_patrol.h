@@ -19,6 +19,9 @@ private:
 	std::vector<Waypoint> _waypoints;
 	int currentWaypoint;
 
+  /* TEMPORAL */
+  VEC3 trueLookAt;
+
 	float suspectO_Meter = 0.f;
 	bool isLastPlayerKnownDirLeft = false;
 	float amountRotated = 0.f;
