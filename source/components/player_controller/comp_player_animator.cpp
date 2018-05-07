@@ -231,6 +231,11 @@ void TCompPlayerAnimator::initializeAnimations() {
 void TCompPlayerAnimator::registerMsgs() {
 	DECL_MSG(TCompPlayerAnimator, TMsgEntityCreated, onCreated);
 	DECL_MSG(TCompPlayerAnimator, TMsgExecuteAnimation, playMsgAnimation);
+	DECL_MSG(TCompPlayerAnimator, TMsgScenePaused, onSceneStop);
+}
+
+void TCompPlayerAnimator::onSceneStop(const TMsgScenePaused& msg) {
+	playAnimation(EAnimation::IDLE);
 }
 
 void TCompPlayerAnimator::onCreated(const TMsgEntityCreated& msg) {
