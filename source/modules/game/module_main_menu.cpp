@@ -39,6 +39,7 @@ bool CModuleMainMenu::start()
 
 void CModuleMainMenu::render()
 {
+	/*
 	float background_value = abs(sin(time)) * 0.3f + 0.3f;
 	CEngine::get().getRender().setBackgroundColor(background_value, background_value, background_value, 1.f);
 
@@ -88,7 +89,7 @@ void CModuleMainMenu::render()
 		exit(0);
 	}
 
-	ImGui::End();
+	ImGui::End();*/
 }
 
 void CModuleMainMenu::update(float delta)

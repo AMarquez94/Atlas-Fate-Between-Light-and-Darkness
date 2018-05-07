@@ -1,91 +1,107 @@
 #include "mcv_platform.h"
 #include "comp_render_bloom.h"
+#include "render/texture/render_to_texture.h"
 #include "resources/resources_manager.h"
+#include "render/render_utils.h"
 #include "render/blur_step.h"
-#include "render/render_objects.h"
 
 DECL_OBJ_MANAGER("render_bloom", TCompRenderBloom);
 
 // ---------------------
+TCompRenderBloom::TCompRenderBloom()
+	: cte_bloom("bloom")
+{
+	bool is_ok = cte_bloom.create(CB_BLOOM);
+	assert(is_ok);
+	// How we mix each downsampled scale
+	add_weights = VEC4(1.140f, 0.740, 0.500f, 0.3f);
+}
+
+TCompRenderBloom::~TCompRenderBloom() {
+	cte_bloom.destroy();
+}
+
 void TCompRenderBloom::debugInMenu() {
-
-	ImGui::DragFloat("global_emissive_distance", &emissive_distance, 0.01f, 0.1f, 8.0f);
-	ImGui::InputFloat("Emissive Weights Center", &emissive_weights.x);
-	ImGui::InputFloat("Emissive Weights 1st", &emissive_weights.y);
-	ImGui::InputFloat("Emissive Weights 2nd", &emissive_weights.z);
-	ImGui::InputFloat("Emissive Weights 3rd", &emissive_weights.w);
-	ImGui::InputFloat("Emissive Distance 2nd Tap", &emissive_factors.x);
-	ImGui::InputFloat("Emissive Distance 3rd Tap", &emissive_factors.y);
-	ImGui::InputFloat("Emissive Distance 4th Tap", &emissive_factors.z);
-
 	TCompRenderBlur::debugInMenu();
+	ImGui::DragFloat("Threshold Min", &threshold_min, 0.01f, 0.f, 1.f);
+	ImGui::DragFloat("Threshold Max", &threshold_max, 0.01f, 0.f, 2.f);
+	ImGui::DragFloat("Multiplier", &multiplier, 0.01f, 0.f, 3.f);
+	ImGui::DragFloat4("Add Weights", &add_weights.x, 0.02f, 0.f, 3.f);
 }
 
 void TCompRenderBloom::load(const json& j, TEntityParseContext& ctx) {
-
 	TCompRenderBlur::load(j, ctx);
-	
-	xres = Render.width;
-	yres = Render.height;
-	static int g_bloom_counter = 0;
-	rt_output = new CRenderToTexture();
+	if (j.count("weights"))
+		cte_bloom.bloom_weights = loadVEC4(j["weights"]);
+
+	threshold_min = j.value("threshold_min", threshold_min);
+	threshold_max = j.value("threshold_max", threshold_max);
+	multiplier = j.value("multiplier", multiplier);
+
+  weights.x = 1.320f;
+  weights.y = 1.0f;
+  weights.z = 0.560f;
+  weights.w = 0.300f;
+  global_distance = 2.0f;
+
+	rt_highlights = new CRenderToTexture();
 	char rt_name[64];
-	sprintf(rt_name, "Bloom_%02d", g_bloom_counter++);
-	bool is_ok = rt_output->createRT(rt_name, xres, yres, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
+	sprintf(rt_name, "BloomFiltered_%08x", CHandle(this).asUnsigned());
+	bool is_ok = rt_highlights->createRT(rt_name, Render.width, Render.height, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
 	assert(is_ok);
 
-	int nsteps = j.value("max_steps", 1);
-	static int g_emissive_counter = 1;
-	for (int i = 0; i < nsteps; ++i) {
-		CBlurStep* s = new CBlurStep;
-
-		char blur_name[64];
-		sprintf(blur_name, "Emissive_Blur_%02d", g_emissive_counter);
-		g_emissive_counter++;
-
-		is_ok &= s->create(blur_name, xres, yres);
-		assert(is_ok);
-		emissive_steps.push_back(s);
-		xres /= 2;
-		yres /= 2;
-	}
-
-	emissive_distance = 1.5f;
-	emissive_weights = VEC4(4, 8, 16, 32);
-	emissive_factors = VEC4(1, 2, 3, 4);
-	tech = Resources.get("bloom.tech")->as<CRenderTechnique>();
+	tech_filter = Resources.get("bloom_filter.tech")->as<CRenderTechnique>();
+	tech_add = Resources.get("bloom_add.tech")->as<CRenderTechnique>();
 	mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 }
 
-CTexture* TCompRenderBloom::apply( CTexture* in_texture, CTexture* in_light_texture, CTexture * emissive) {
 
-  if (!enabled)
-    return in_texture;
+void TCompRenderBloom::addBloom() {
 
-  CTraceScoped scope("CompBloom");
+	if (!enabled || nactive_steps == 0)
+		return;
 
-  CTexture* output = in_light_texture;
-  int nsteps_to_apply = nactive_steps;
-  for (auto s : steps) {
-	  if (--nsteps_to_apply < 0)
-		  break;
-	  output = s->apply(in_light_texture, global_distance, distance_factors, weights);
-	  in_light_texture = output;
-  }
+	cte_bloom.bloom_weights = add_weights * multiplier;
+	cte_bloom.bloom_threshold_min = threshold_min * threshold_max;    // So min is always below max
+	cte_bloom.bloom_threshold_max = threshold_max;
+	cte_bloom.updateGPU();
+	cte_bloom.activate();
 
-  CTexture* output2 = emissive;
-  for (auto s : emissive_steps) {
-	  output2 = s->apply(emissive, emissive_distance, emissive_factors, emissive_weights);
-	  emissive = output2;
-  }
+	assert(mesh);
+	assert(tech_add);
 
-  rt_output->activateRT();
-  in_texture->activate(TS_ALBEDO);
-  output->activate(TS_LIGHTMAP);
-  output2->activate(TS_EMISSIVE);
+	// Activate the slots in the range 0..N
+	// The slot0 gets the most blurred whites
+	int i = nactive_steps - 1;
+	int nslot = 0;
+	while (nslot < 4 && i >= 0) {
+		steps[i]->rt_output->activate(nslot);
+		++nslot;
+		--i;
+	}
 
-  tech->activate();
-  mesh->activateAndRender();
-
-  return rt_output;
+	tech_add->activate();
+	mesh->activateAndRender();
 }
+
+// ---------------------------------------
+void TCompRenderBloom::generateHighlights(CTexture* in_texture) {
+
+	if (!enabled)
+		return;
+
+	// Filter input image to gather only the highlights
+	auto prev_rt = rt_highlights->activateRT();
+	assert(prev_rt);
+
+	in_texture->activate(TS_ALBEDO);
+	tech_filter->activate();
+	mesh->activateAndRender();
+
+	// Blur the highlights
+	apply(rt_highlights);
+
+	// Restore the prev rt
+	prev_rt->activateRT();
+}
+

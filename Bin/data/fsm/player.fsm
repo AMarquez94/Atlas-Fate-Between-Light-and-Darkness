@@ -79,7 +79,7 @@
 			"name": "crouch",
 			"type": "CrouchState",
 			"animation": "crouch",
-			"speed": 3,
+			"speed": 1.5,
 			"rotationSpeed": 5.0,
 			"size": 0.25,
 			"camera": {
@@ -91,7 +91,7 @@
 			"name": "crouchwalk",
 			"type": "CrouchWalkState",
 			"animation": "crouch_walk",
-			"speed": 3,
+			"speed": 1.75,
 			"rotationSpeed": 5.0,
 			"size": 0.25,
 			"camera": {
@@ -222,6 +222,17 @@
 				"blendIn": 0.4
 			}
 		}, {
+			"name": "die",
+			"type": "DieState",
+			"animation": "die",
+			"damage": 10,
+			"size": 1,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
+			}
+		},	{
 			"name": "removeInhibitor",
 			"type": "RemoveInhibitor",
 			"animation": "removenhibitor",
@@ -263,7 +274,7 @@
 			"variable": {
 				"name": "speed",
 				"type": "float",
-				"value": 1.0
+				"value": 0.20
 			},
 			"operation": "greater_equal"
 		}, {
@@ -273,8 +284,9 @@
 			"variable": {
 				"name": "speed",
 				"type": "float",
-				"value": 0.0
-			}
+				"value": 0.20
+			},
+			"operation": "lower_equal"
 		}, {
 			"type": "VariableTransition",
 			"source": "crouch",
@@ -646,7 +658,7 @@
 		}, {
 			"type": "VariableTransition",
 			"source": "softLand",
-			"target": "dead",
+			"target": "die",
 			"variable": {
 				"name": "onFallDead",
 				"type": "bool",
@@ -740,9 +752,14 @@
 			"target": "idle",
 			"animation_name": "attack"
 		}, {
+			"type": "AnimationTransition",
+			"source": "die",
+			"target": "dead",
+			"animation_name": "die"
+		}, {
 			"type": "VariableTransition",
 			"source": "idle",
-			"target": "dead",
+			"target": "die",
 			"variable": {
 				"name": "onDead",
 				"type": "bool",
@@ -751,7 +768,7 @@
 		}, {
 			"type": "VariableTransition",
 			"source": "walk",
-			"target": "dead",
+			"target": "die",
 			"variable": {
 				"name": "onDead",
 				"type": "bool",
@@ -760,7 +777,7 @@
 		}, {
 			"type": "VariableTransition",
 			"source": "run",
-			"target": "dead",
+			"target": "die",
 			"variable": {
 				"name": "onDead",
 				"type": "bool",
@@ -769,7 +786,7 @@
 		}, {
 			"type": "VariableTransition",
 			"source": "walkslow",
-			"target": "dead",
+			"target": "die",
 			"variable": {
 				"name": "onDead",
 				"type": "bool",
@@ -778,7 +795,7 @@
 		}, {
 			"type": "VariableTransition",
 			"source": "crouch",
-			"target": "dead",
+			"target": "die",
 			"variable": {
 				"name": "onDead",
 				"type": "bool",
@@ -787,7 +804,7 @@
 		}, {
 			"type": "VariableTransition",
 			"source": "fall",
-			"target": "dead",
+			"target": "die",
 			"variable": {
 				"name": "onDead",
 				"type": "bool",
@@ -796,7 +813,7 @@
 		}, {
 			"type": "VariableTransition",
 			"source": "entermerge",
-			"target": "dead",
+			"target": "die",
 			"variable": {
 				"name": "onDead",
 				"type": "bool",
@@ -805,7 +822,7 @@
 		}, {
 			"type": "VariableTransition",
 			"source": "exitmerge",
-			"target": "dead",
+			"target": "die",
 			"variable": {
 				"name": "onDead",
 				"type": "bool",

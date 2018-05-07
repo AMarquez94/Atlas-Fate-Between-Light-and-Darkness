@@ -7,6 +7,7 @@
 		"render",
 		"navmeshes",
 		"cameras",
+		"gui",
 		"logic",
 		"sound",
 		"main_menu",
@@ -14,6 +15,7 @@
 		"console",
 		"splash",
 		"test_input",
+		
 		"map_intro",
 		"level_select",
 		"game_over"
@@ -27,6 +29,7 @@
 		"main_menu",
 		"game_manager",
 		"console",
+		"gui",
 		"level_select",
 		"game_over",
 		"entities",

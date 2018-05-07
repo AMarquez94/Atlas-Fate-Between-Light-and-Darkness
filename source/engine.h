@@ -12,6 +12,7 @@
 #include "modules/system/module_logic.h"
 #include "modules/system/module_sound.h"
 #include "modules/system/module_game_console.h"
+#include "modules/system/module_gui.h"
 
 class CEngine
 {
@@ -37,6 +38,7 @@ public:
 	CModuleLogic& getLogic() { return _module_logic; }
 	CModuleGameConsole& getGameConsole() { return _module_game_console; }
 	CModuleGameConsole getGameConsoleBis() { return _module_game_console; }
+	CModuleGUI& getGUI() { return _module_gui; }
 
 private:
 	CModuleManager  _modules;
@@ -51,6 +53,7 @@ private:
 	CModuleNavmesh  _module_navmesh;
 	CModuleLogic    _module_logic;
 	CModuleGameConsole _module_game_console;
+	CModuleGUI _module_gui;
 };
 
 #define Engine CEngine::get()
@@ -63,4 +66,5 @@ private:
 #define EngineLogic CEngine::get().getLogic()
 #define EngineConsole CEngine::get().getGameConsole()
 #define EngineSound CEngine::get().getSound()
+#define EngineGUI CEngine::get().getGUI()
 #define EngineAI CEngine::get().getIA()

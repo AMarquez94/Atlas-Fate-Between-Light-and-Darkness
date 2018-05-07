@@ -26,6 +26,7 @@
 		"light_dir",
 		"light_spot",
 		"light_point",
+		"projector",
 		"camera_flyover",
 		"curve_controller",
 		"trigger_camera",
@@ -36,7 +37,8 @@
 		"fsm",
 		"player_animator",
 		"player_input",
-		"emission_controller"
+		"emission_controller",
+		"rotator"
 	],
 	"render_debug": [
 		"player_tempcontroller",

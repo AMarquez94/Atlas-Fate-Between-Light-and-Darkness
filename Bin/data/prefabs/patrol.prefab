@@ -5,7 +5,8 @@
 				"pos": "0 0 0",
 				"lookat": "-1 0 -1"
 			},
-			"render": [{
+			"render": [
+				{
 					"mesh": "data/skeletons/patrol/Mech_low.mesh",
 					"materials":
 					[
@@ -16,7 +17,7 @@
 			],
 			"skeleton": {
 				"skeleton": "data/skeletons/patrol/patrol.skeleton",
-				"scale": 1
+				"scale": 1.0
 			},
 			"emission_controller": {
 				"initial": "0.0 1.0 1.0 1.0"
@@ -709,7 +710,7 @@
 				"inner_cut": 70,
 				"outer_cut": 75,
 				"color": "0.3 1.0 1.0 1.0",
-				"intensity": 10.0,
+				"intensity": 5.0,
 				"shadows": true,
 				"casts_shadows": true,
 				"shadows_step": 1.0,

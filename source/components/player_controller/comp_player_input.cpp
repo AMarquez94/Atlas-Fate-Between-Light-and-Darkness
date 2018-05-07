@@ -26,9 +26,12 @@ void TCompPlayerInput::update(float dt)
 
 			TMsgSetFSMVariable walkMsg;
 			walkMsg.variant.setName("speed");
-			float total_value = (EngineInput["btRight"].value + EngineInput["btLeft"].value
-				+ EngineInput["btUp"].value + EngineInput["btDown"].value);
-			//dbg("total value: %f\n\n\n", total_value);
+
+			movementValue.x = EngineInput["btRight"].value - EngineInput["btLeft"].value;
+			movementValue.y = EngineInput["btUp"].value - EngineInput["btDown"].value;
+
+			float total_value = movementValue.Length();
+
 			walkMsg.variant.setFloat(total_value);
 			e->sendMsg(walkMsg);
 		}
@@ -86,7 +89,7 @@ void TCompPlayerInput::update(float dt)
 			attackButtonJustPressed = false;
 		}
 
-		if (EngineInput["btCrouch"].getsPressed())
+		if (EngineInput["btCrouch"].hasChanged())
 		{
 			// Replace this with triggers contact.
 			/*CEntity * c_my_entity = CHandle(this).getOwner();
@@ -121,6 +124,12 @@ void TCompPlayerInput::update(float dt)
 				keyPressed.variant.setBool(true);
 				e->sendMsg(keyPressed);
 			}
+		}
+
+
+		if (EngineInput["btUp"].getsReleased()) {
+			TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
+			c_my_player->upButtonReselased();
 		}
 	}
 

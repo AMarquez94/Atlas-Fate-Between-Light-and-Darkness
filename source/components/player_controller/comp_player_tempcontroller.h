@@ -4,6 +4,7 @@
 #include "geometry/transform.h"
 #include "entity/common_msgs.h"
 #include "components/player_controller/comp_player_animator.h"
+#include "gui/gui_widget.h"
 
 class TCompTempPlayerController;
 
@@ -71,6 +72,9 @@ class TCompTempPlayerController : public TCompBase
 	actionhandler state;
 	CHandle target_camera;
 
+	bool tempInverseVerticalMovementMerged = false;
+	float *staminaBarValue;
+
 	float mergeAngle;
 	float currentSpeed;
 	float rotationSpeed;
@@ -95,7 +99,7 @@ class TCompTempPlayerController : public TCompBase
 	float timeToPressAgain = 0.7f;
 	float timeInhib = 0.0f;
 
-  float attackTimer = 0.f;    //HARD FIX: TODO: Remove
+    float attackTimer = 0.f;    //HARD FIX: TODO: Remove
 
 	void onCreate(const TMsgEntityCreated& msg);
 	void onStateStart(const TMsgStateStart& msg);
@@ -124,6 +128,8 @@ public:
 	/* Debug variables */
 	bool dbgDisableStamina;
 	std::string dbCameraState;
+	float stepTimer = 0.0f; 
+	bool stepRight = true;
   //VEC3 debugDir = VEC3::Zero;
   //VEC3 debugMyFront = VEC3::Zero;
 
@@ -160,6 +166,7 @@ public:
 	void mergeEnemy();
 	void resetMerge();
 	bool isDead();
+	void upButtonReselased();
 
 	VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
 	CHandle closeEnemy(const std::string & state = "undefined");

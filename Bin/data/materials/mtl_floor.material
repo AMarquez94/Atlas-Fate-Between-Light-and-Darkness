@@ -3,10 +3,10 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/m2/New_Graph_basecolor_2.dds",
-		"normal": "data/textures/m2/New_Graph_normal.dds",
-    "roughness": "data/textures/m2/New_Graph_roughness.dds",
-		"metallic": "data/textures/m2/New_Graph_metallic.dds",
-		"emissive": "data/textures/m2/New_Graph_emissive.dds"
+    "albedo": "data/textures/tx_suelo_bricks_basecolor.dds",
+	"normal": "data/textures/tx_suelo_bricks_normal.dds",
+    "roughness": "data/textures/tx_suelo_bricks_roughness.dds",
+	"metallic": "data/textures/suelo_bricks_metallic.dds",
+	"height": "data/textures/tx_suelo_bricks_height.dds"
   }
 }

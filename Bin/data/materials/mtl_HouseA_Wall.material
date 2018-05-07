@@ -3,14 +3,14 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/HouseA_basecolor.dds"
+    "albedo": "data/textures/tx_houseA_alb.dds"
     ,
-    "metallic": "data/textures/HouseA_metallic.dds"
+    "metallic": "data/textures/tx_houseA_met.dds"
     ,
-    "roughness": "data/textures/HouseA_roughness.dds"
+    "roughness": "data/textures/tx_houseA_rgh.dds"
     ,
-    "normal": "data/textures/Muro_top_normal.dds"
+    "normal": "data/textures/tx_houseA_nml.dds"
     ,
-    "height": "data/textures/HouseA_height.dds"
+    "height": "data/textures/tx_houseA_hgt.dds"
   }
 }

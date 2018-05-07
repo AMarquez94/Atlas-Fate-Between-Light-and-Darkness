@@ -19,6 +19,9 @@ private:
 	std::vector<Waypoint> _waypoints;
 	int currentWaypoint;
 
+  /* TEMPORAL */
+  VEC3 trueLookAt;
+
 	float suspectO_Meter = 0.f;
 	bool isLastPlayerKnownDirLeft = false;
 	float amountRotated = 0.f;
@@ -30,10 +33,13 @@ private:
 	bool hasBeenShadowMerged = false;
 	bool hasBeenFixed = false;
 
+  /* TODO: create struct for noises */
 	bool hasHeardNaturalNoise = false;
 	bool hasHeardArtificialNoise = false;
 	VEC3 noiseSource = VEC3::Zero;
   bool noiseSourceChanged = false;
+  CHandle hNoiseSource = CHandle();
+  std::chrono::steady_clock::time_point lastTimeNoiseWasHeard;
 
   float maxDistanceToNavmeshPoint = 3.f;
 

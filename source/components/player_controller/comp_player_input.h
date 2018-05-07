@@ -13,6 +13,9 @@ class TCompPlayerInput : public TCompBase
 	DECL_SIBLING_ACCESS();
 
 public:
+
+	VEC2 movementValue;
+
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);

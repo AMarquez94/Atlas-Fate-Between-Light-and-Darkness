@@ -1,0 +1,29 @@
+[
+	{
+		"name" : "ingame",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "test_bar",
+				"type" : "widget",
+				"position" : "50 10",
+				"children" : [
+					{
+						"name" : "background",
+						"type" : "image",
+						"size" : "320 64",
+						"texture" : "data/textures/gui/staminabar_empty.dds"
+					},
+					{
+						"name" : "stamina_bar",
+						"type" : "bar",
+						"size" : "320 64",
+						"texture" : "data/textures/gui/staminabar_full.dds",
+						"progress_bar" : 1
+					}
+				]
+			}
+		]
+	}
+]

@@ -3,14 +3,14 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/New_Graph_basecolor.dds"
+    "albedo": "data/textures/tx_houseB_alb.dds"
     ,
-    "metallic": "data/textures/New_Graph_metallic.dds"
+    "metallic": "data/textures/tx_houseB_met.dds"
     ,
-    "roughness": "data/textures/New_Graph_roughness.dds"
+    "roughness": "data/textures/tx_houseB_rgh.dds"
     ,
-    "normal": "data/textures/New_Graph_normal.dds"
+    "normal": "data/textures/tx_houseB_nml.dds"
     ,
-    "height": "data/textures/New_Graph_height.dds"
+    "height": "data/textures/tx_houseB_hgt.dds"
   }
 }

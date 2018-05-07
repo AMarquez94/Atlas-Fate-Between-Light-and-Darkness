@@ -28,6 +28,7 @@ CEngine::CEngine()
 	, _module_navmesh("navmeshes")
 	, _module_logic("logic")
 	, _module_game_console("console")
+	, _module_gui("gui")
 {}
 
 bool CEngine::start() {
@@ -50,6 +51,7 @@ bool CEngine::start() {
 	_modules.registerSystemModule(&_module_sound);
 	_modules.registerSystemModule(&_module_navmesh);
 	_modules.registerSystemModule(&_module_game_console);
+	_modules.registerSystemModule(&_module_gui);
 	_modules.registerSystemModule(&_module_logic);          //Always last to start the ongamestarted event from here
 
 	_modules.registerGameModule(&module_splash);

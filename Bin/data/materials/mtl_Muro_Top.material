@@ -1,10 +1,15 @@
 {
-	"shadows": true,
-	"textures": {
-		"albedo": "data/textures/Muro_top_basecolor.dds",
-		"roughness": "data/textures/Muro_top_roughness.dds",
-		"metallic": "data/textures/Muro_top_metallic.dds",
-		"normal": "data/textures/Muro_top_normal.dds",
-		"height": "data/textures/Muro_top_height.dds"
-	}
+"technique": "pbr_parallax.tech",
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_muro_top_alb.dds"
+    ,
+    "roughness": "data/textures/tx_muro_top_rgh.dds"
+    ,
+    "normal": "data/textures/tx_muro_top_nml.dds"
+    ,
+    "height": "data/textures/tx_muro_top_hgt.dds"
+  }
 }

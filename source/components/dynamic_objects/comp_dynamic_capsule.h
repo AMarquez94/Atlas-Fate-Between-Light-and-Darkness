@@ -9,6 +9,7 @@ class TCompDynamicCapsule : public TCompBase {
 	float speed;
 	VEC3 start_point;
 	VEC3 end_point;
+  VEC3 offset;
 
 public:
 
@@ -19,4 +20,5 @@ public:
 	void setSpeed(float newSpeed);
 	void setStartPoint(VEC3 newStartPoint);
 	void setEndPoint(VEC3 newEndPoint);
+  void setOffset(VEC3 newOffset);
 };

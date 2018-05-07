@@ -21,6 +21,7 @@
 #include "components/postfx/comp_render_blur.h"
 #include "components/postfx/comp_render_blur_radial.h"
 #include "components/postfx/comp_render_bloom.h"
+#include "components/postfx/comp_color_grading.h"
 //--------------------------------------------------------------------------------------
 
 CModuleRender::CModuleRender(const std::string& name)
@@ -107,18 +108,24 @@ bool CModuleRender::start()
 	if (!cb_blur.create(CB_BLUR))
 		return false;
 
-	cb_globals.global_exposure_adjustment = 0.310f;
-	cb_globals.global_ambient_adjustment = 0.330f;
+	if (!cb_gui.create(CB_GUI))
+		return false;
+
+	cb_globals.global_exposure_adjustment = 2.010f;
+	cb_globals.global_ambient_adjustment = 0.150f;
 	cb_globals.global_world_time = 0.f;
 	cb_globals.global_hdr_enabled = 1.f;
 	cb_globals.global_gamma_correction_enabled = 1.f;
 	cb_globals.global_tone_mapping_mode = 1.f;
+    cb_globals.global_fog_density = 0.017f;
+    cb_globals.global_self_intensity = 10.f;
 
 	cb_light.activate();
 	cb_object.activate();
 	cb_camera.activate();
 	cb_globals.activate();
 	cb_blur.activate();
+	cb_gui.activate();
 
 	camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
 	camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
@@ -179,6 +186,20 @@ void CModuleRender::render()
 		ImGui::DragFloat("HDR", &cb_globals.global_hdr_enabled, 0.01f, 0.0f, 1.f);
 		ImGui::DragFloat("Gamma Correction", &cb_globals.global_gamma_correction_enabled, 0.01f, 0.0f, 1.f);
 		ImGui::DragFloat("Reinhard vs Uncharted2", &cb_globals.global_tone_mapping_mode, 0.01f, 0.0f, 1.f);
+    ImGui::DragFloat("Fog density", &cb_globals.global_fog_density, 0.0001f, 0.0f, 1.f);
+
+		// Must be in the same order as the RO_* ctes
+		static const char* render_output_str =
+			"Complete\0"
+			"Albedo\0"
+			"Normal\0"
+			"Roughness\0"
+			"Metallic\0"
+			"World Pos\0"
+			"Depth Linear\0"
+			"AO\0"
+			"\0";
+		ImGui::Combo("Output", &cb_globals.global_render_output, render_output_str);
 		ImGui::TreePop();
 	}
 }
@@ -239,7 +260,7 @@ void CModuleRender::generateFrame() {
 
 		activateMainCamera();
 		cb_globals.updateGPU();
-		deferred.render(rt_main);
+		deferred.render(rt_main, h_e_camera);
 
 		CRenderManager::get().renderCategory("distorsions");
 
@@ -247,8 +268,15 @@ void CModuleRender::generateFrame() {
 		CTexture * curr_rt = rt_main;
 		CHandle camera_render = Engine.getCameras().getCurrentCamera();
 		if (camera_render.isValid()) {
-
 			CEntity * e_cam = camera_render;
+
+			// The bloom blurs the given input
+			TCompRenderBloom* c_render_bloom = e_cam->get< TCompRenderBloom >();
+			if (c_render_bloom) {
+				c_render_bloom->generateHighlights(deferred.rt_acc_light);
+				c_render_bloom->addBloom();
+			}
+
 			TCompRenderBlur * c_render_blur = e_cam->get< TCompRenderBlur >();
 			if (c_render_blur)
 				curr_rt = c_render_blur->apply(curr_rt);
@@ -258,10 +286,12 @@ void CModuleRender::generateFrame() {
 			if (c_render_blur_radial)
 				curr_rt = c_render_blur_radial->apply(curr_rt);
 
-			TCompRenderBloom * c_render_bloom = e_cam->get< TCompRenderBloom >();
-			if (c_render_bloom)
-				curr_rt = c_render_bloom->apply(curr_rt, deferred.rt_acc_light, deferred.rt_self_illum);
+      // Check if we have a color grading component
+      TCompColorGrading* c_color_grading = e_cam->get< TCompColorGrading >();
+      if (c_color_grading)
+        curr_rt = c_color_grading->apply(curr_rt);
 		}
+
 
 		Render.startRenderInBackbuffer();
 		renderFullScreenQuad("dump_texture.tech", curr_rt);
@@ -272,6 +302,22 @@ void CModuleRender::generateFrame() {
 			CTraceScoped gpu_scope("Modules");
 			CEngine::get().getModules().render();
 		}
+	}
+
+	{
+		PROFILE_FUNCTION("GUI");
+		CTraceScoped gpu_scope("GUI");
+		
+		activateRSConfig(RSCFG_CULL_NONE);
+		activateZConfig(ZCFG_DISABLE_ALL);
+		activateBlendConfig(BLEND_CFG_COMBINATIVE);
+
+		activateCamera(CEngine::get().getGUI().getCamera(), Render.width, Render.height);
+		CEngine::get().getModules().renderGUI();
+
+		activateRSConfig(RSCFG_DEFAULT);
+		activateZConfig(ZCFG_DEFAULT);
+		activateBlendConfig(BLEND_CFG_DEFAULT);
 	}
 
 	{

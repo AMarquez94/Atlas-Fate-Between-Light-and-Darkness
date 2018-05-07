@@ -50,8 +50,8 @@ bool CModuleMapIntro::start()
 		CHandle h_e(e);
 		h_e.sendMsg(msg);
 	});
-	
-	Engine.getSound().setAmbientSound("../bin/data/sounds/ambiance.ogg");
+	Engine.getGUI().activateWidget("ingame");
+	Engine.getSound().setAmbientSound("../bin/data/sounds/ambient.ogg");
 
 	return true;
 }

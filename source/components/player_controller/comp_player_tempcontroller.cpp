@@ -14,6 +14,7 @@
 #include "render/mesh/mesh_loader.h"
 #include "components/comp_name.h"
 #include "windows/app.h"
+#include "comp_player_input.h"
 #include "components/comp_group.h"
 #include "render/render_utils.h"
 
@@ -23,7 +24,7 @@ void TCompTempPlayerController::debugInMenu() {
 }
 
 void TCompTempPlayerController::renderDebug() {
-
+	/*
 	//UI Window's Size
 	ImGui::SetNextWindowSize(ImVec2((float)CApp::get().xres, (float)CApp::get().yres), ImGuiCond_Always);
 	//UI Window's Position
@@ -53,7 +54,7 @@ void TCompTempPlayerController::renderDebug() {
 
 	ImGui::End();
 	ImGui::PopStyleVar(2);
-	ImGui::PopStyleColor(2);
+	ImGui::PopStyleColor(2);*/
 }
 
 void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
@@ -113,6 +114,7 @@ void TCompTempPlayerController::update(float dt) {
 		updateStamina(dt);
 		updateShader(dt); // Move this to player render component...
 		timeInhib += dt;
+		*staminaBarValue = stamina / maxStamina;
 	}
 }
 
@@ -176,6 +178,8 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 	isInhibited = isGrounded = isMerged = false;
 	dbgDisableStamina = false;
 	paused = false;
+
+	staminaBarValue = &CEngine::get().getGUI().getWidget("stamina_bar", true)->getBarParams()->_processValue;
 }
 
 /* Call this function once the state has been changed */
@@ -333,16 +337,29 @@ void TCompTempPlayerController::walkState(float dt) {
 	TCompTransform * trans_camera = player_camera->get<TCompTransform>();
 	c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
 
-	float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
-	float player_accel = inputSpeed * currentSpeed * dt;
+	//float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
+	float player_accel = currentSpeed * dt;
 
 	VEC3 up = trans_camera->getFront();
 	VEC3 normal_norm = c_my_transform->getUp();
 	VEC3 proj = projectVector(up, normal_norm);
 	VEC3 dir = getMotionDir(proj, normal_norm.Cross(-proj));
 
+	//TODO: Destroy this shiat-----------------------------------------------------------------------
+	
+	float factor = 1.0f;
+	if (EngineInput["btRun"].isPressed()) factor = 0.95f;
+	if (EngineInput["btCrouch"].isPressed()) factor = 1.3f;
+	stepTimer += dt;
+	if (stepTimer > 0.33f * factor) {
+		
+		Engine.getSound().exeStepSound();
+		stepRight = !stepRight;
+		stepTimer = 0.0f;
+	}
+  //Destroy this shiat-----------------------------------------------------------------------
 
-	if (dir == VEC3::Zero) dir = proj;
+  if (dir == VEC3::Zero) dir = proj;
 
 	float dir_yaw = getYawFromVector(dir);
 	Quaternion my_rotation = c_my_transform->getRotation();
@@ -374,7 +391,7 @@ void TCompTempPlayerController::mergeState(float dt) {
 
 	if (dir == VEC3::Zero) dir = proj;
 
-	//debugDir = dir;
+	if (tempInverseVerticalMovementMerged) dir.y = abs(dir.y) * -1;
 
 	VEC3 new_pos = c_my_transform->getPosition() - dir;
 	Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), new_pos, c_my_transform->getUp()).Transpose();
@@ -387,11 +404,11 @@ void TCompTempPlayerController::mergeState(float dt) {
 		VEC3 postUp = c_my_transform->getUp();
 
 		angle_test = fabs(EnginePhysics.gravity.Dot(prevUp));
-		float angle_amount = fabsf(acosf(prevUp.Dot(postUp)));
-		std::string target_name = angle_test < mergeAngle ? "SMCameraVer" : "SMCameraHor";
-
-		CEntity* e_target_camera = target_camera;
-		if (angle_amount > deg2rad(30.f) || target_name.compare(dbCameraState) != 0) {
+    float angle_amount = fabsf(acosf(prevUp.Dot(postUp)));
+		std::string target_name = angle_test > mergeAngle ? "SMCameraVer" : "SMCameraHor"; // WARN: Watch this if gives problems...  
+		
+    CEntity* e_target_camera = target_camera;
+    if (angle_amount > deg2rad(30.f) || target_name.compare(dbCameraState) != 0) {
 
 			/* Only "change" cameras when the amount of degrees turned is more than 30º */
 			CEntity* eCamera = getEntityByName("SMCameraAux");
@@ -560,6 +577,8 @@ const bool TCompTempPlayerController::convexTest(void) {
 		{
 			VEC3 new_forward = -hit_normal.Cross(c_my_transform->getLeft());
 			VEC3 target = hit_point + new_forward;
+
+			if (hit_normal.y < c_my_transform->getUp().y  && EngineInput["btUp"].value > 0) tempInverseVerticalMovementMerged = true;
 
 			rigidbody->SetUpVector(hit_normal);
 			rigidbody->normal_gravity = EnginePhysics.gravityMod * -hit_normal;
@@ -842,18 +861,12 @@ void TCompTempPlayerController::updateShader(float dt) {
 VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & left) {
 
 	VEC3 dir = VEC3::Zero;
-	if (EngineInput["btUp"].isPressed() && EngineInput["btUp"].value > 0) {
-		dir += fabs(EngineInput["btUp"].value) * front;
-	}
-	else if (EngineInput["btDown"].isPressed()) {
-		dir += fabs(EngineInput["btDown"].value) * -front;
-	}
-	if (EngineInput["btRight"].isPressed() && EngineInput["btRight"].value > 0) {
-		dir += fabs(EngineInput["btRight"].value) * left;
-	}
-	else if (EngineInput["btLeft"].isPressed()) {
-		dir += fabs(EngineInput["btLeft"].value) * -left;
-	}
+	TCompPlayerInput *player_input = get<TCompPlayerInput>();
+
+	dir += player_input->movementValue.y * front;
+
+	dir += player_input->movementValue.x * left;
+
 	dir.Normalize();
 
 	return dir;
@@ -861,10 +874,14 @@ VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & le
 
 /* Auxiliary functions */
 
+void TCompTempPlayerController::upButtonReselased() {
+	if (tempInverseVerticalMovementMerged) tempInverseVerticalMovementMerged = false;
+}
+
 bool TCompTempPlayerController::isDead()
 {
 	TCompFSM *fsm = get<TCompFSM>();
-	return fsm->getStateName().compare("dead") == 0;
+	return fsm->getStateName().compare("dead") == 0 || fsm->getStateName().compare("die") == 0;
 }
 
 // Needed to avoid the isGround problem by now

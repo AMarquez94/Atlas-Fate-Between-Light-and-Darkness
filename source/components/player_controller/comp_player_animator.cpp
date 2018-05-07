@@ -92,11 +92,22 @@ void TCompPlayerAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::DEATH,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"death",
+		"die",
 		"",
 		1.0f,
 		1.0f
 	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::DEAD,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"dead",
+		"",
+		1.0f,
+		1.0f
+	);
+
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::CROUCH_IDLE,
 		EAnimationType::CYCLIC,

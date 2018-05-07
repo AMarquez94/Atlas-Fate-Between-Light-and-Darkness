@@ -3,7 +3,7 @@
 #include "context.h"
 #include "components/player_controller/comp_player_animator.h"
 #include "components/physics/comp_rigidbody.h"
-#include "components/lighting/comp_light_dir.h"
+#include "components/lighting/comp_projector.h"
 #include "components/comp_render.h"
 
 //class TCompTempPlayerController;
@@ -91,6 +91,14 @@ namespace FSM
     CEntity* e = ctx.getOwner();
     e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::WALK , 1.0f });
     e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, _target, _noise });
+
+    // Disable the players projector.
+    CHandle player_light = getEntityByName("LightPlayer");
+    if (player_light.isValid()) {
+      CEntity * entity_light = (CEntity*)player_light;
+      TCompProjector * light = entity_light->get<TCompProjector>();
+      light->isEnabled = false;
+    }
   }
 
   void WalkState::onFinish(CContext& ctx) const {
@@ -283,7 +291,7 @@ namespace FSM
     CHandle player_light = getEntityByName("LightPlayer");
     if (player_light.isValid()) {
       CEntity * entity_light = (CEntity*)player_light;
-      TCompLightDir * light = entity_light->get<TCompLightDir>();
+      TCompProjector * light = entity_light->get<TCompProjector>();
       light->isEnabled = true;
     }
 
@@ -358,7 +366,7 @@ namespace FSM
     CHandle player_light = getEntityByName("LightPlayer");
     if (player_light.isValid()) {
       CEntity * entity_light = (CEntity*)player_light;
-      TCompLightDir * light = entity_light->get<TCompLightDir>();
+      TCompProjector * light = entity_light->get<TCompProjector>();
       light->isEnabled = false;
     }
 
@@ -410,9 +418,12 @@ namespace FSM
     CHandle player_light = getEntityByName("LightPlayer");
     if (player_light.isValid()) {
       CEntity * entity_light = (CEntity*)player_light;
-      TCompLightDir * light = entity_light->get<TCompLightDir>();
+      TCompProjector * light = entity_light->get<TCompProjector>();
       light->isEnabled = true;
     }
+
+    TCompRender * render = e->get<TCompRender>();
+    render->visible = false;
   }
 
   void LandMergeState::onFinish(CContext& ctx) const {
@@ -483,6 +494,7 @@ namespace FSM
 
     CEntity* e = ctx.getOwner();
     e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::ATTACK , 1.0f });
+	e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
     e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::attackState, _speed, _radius, _size, _target, _noise });
   }
   void AttackState::onFinish(CContext& ctx) const {
@@ -557,7 +569,7 @@ namespace FSM
 
   }
 
-  bool DeadState::load(const json& jData) {
+  bool DieState::load(const json& jData) {
 
     _animationName = jData["animation"];
     _speed = jData.value("speed", 2.f);
@@ -568,11 +580,33 @@ namespace FSM
     return true;
   }
 
-  void DeadState::onStart(CContext& ctx) const {
+  void DieState::onStart(CContext& ctx) const {
 
     CEntity* e = ctx.getOwner();
     e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::DEATH , 1.0f });
+	e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::DEAD , 1.0f });
     e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::deadState, _speed, _radius, _size, _target, _noise });
+  }
+  void DieState::onFinish(CContext& ctx) const {
+
+  }
+
+  bool DeadState::load(const json& jData) {
+
+	  _animationName = jData["animation"];
+	  _speed = jData.value("speed", 2.f);
+	  _size = jData.value("size", 1.f);
+	  _radius = jData.value("radius", 0.3f);
+	  _noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+	  _target = jData.count("camera") ? getTargetCamera(jData["camera"]) : nullptr;
+	  return true;
+  }
+
+  void DeadState::onStart(CContext& ctx) const {
+
+	  CEntity* e = ctx.getOwner();
+	  e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::DEAD , 1.0f });
+	  e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _radius, _size, _target, _noise });
   }
   void DeadState::onFinish(CContext& ctx) const {
 

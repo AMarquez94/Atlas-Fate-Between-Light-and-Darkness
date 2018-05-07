@@ -2,7 +2,7 @@
 		"entity": {
 			"name": "The Player",
 			"transform": {
-				"pos": "14 0 84"
+				"pos": "-6 -8 -35"
 			},
 			"render": [{
 					"mesh": "data/skeletons/player/body.mesh",
@@ -123,13 +123,14 @@
 				"incrStamina": 15,
 				"decrStaticStamina": 0.75,
 				"decrStaminaHorizontal": 12.5,
-				"decrStaminaVertical": 17.5,
+				"decrStaminaVertical": 15,
 				"minStaminaChange": 15,
 				"auxCamera": "SMCameraAux",
 				"timesRemoveInhibitorKeyPressed": 5
 			},
 			"emission_controller": {
-				"initial" : "1.0 1.0 1.0 1.0"
+				"initial" : "1.0 1.0 1.0 1.0",
+				"intensity" : 1.25
 			},
 			"tags":
 			[

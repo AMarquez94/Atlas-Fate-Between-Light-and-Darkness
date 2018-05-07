@@ -43,7 +43,7 @@ bool CMaterial::create(const std::string& name) {
 
 	// Setting default textures
 	textures[TS_EMISSIVE] = Resources.get("data/textures/default_emissive.dds")->as<CTexture>();
-	textures[TS_HEIGHT] = Resources.get("data/textures/default_height.dds")->as<CTexture>();
+	textures[TS_HEIGHT] = Resources.get("data/textures/default_white.dds")->as<CTexture>();
 
 	auto& j_textures = j["textures"];
 	for (auto it = j_textures.begin(); it != j_textures.end(); ++it) {
@@ -81,7 +81,7 @@ bool CMaterial::create(const std::string& name) {
 	// Load default values
 	cb_material.scalar_metallic = -1.f;
 	cb_material.scalar_roughness = -1.f;
-	cb_material.scalar_irradiance_vs_mipmaps = 0.f;
+	cb_material.scalar_irradiance_vs_mipmaps = 0.0f;
 	cb_material.color_emission = VEC4(1, 1, 1, 1);
 	cb_material.scalar_emission = j.value("emission", 10.0f);
 

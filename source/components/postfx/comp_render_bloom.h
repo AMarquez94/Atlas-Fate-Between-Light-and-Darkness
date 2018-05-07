@@ -1,30 +1,30 @@
 #ifndef INC_COMPONENT_RENDER_BLOOM_H_
 #define INC_COMPONENT_RENDER_BLOOM_H_
 
-#include "components/comp_base.h"
 #include "comp_render_blur.h"
-
-struct CBlurStep;
-class  CTexture;
+#include "render/cte_buffer.h"
+#include "ctes.h"
 
 // ------------------------------------
-class TCompRenderBloom : public TCompRenderBlur {
+struct TCompRenderBloom : public TCompRenderBlur {
+  CRenderCte< CCteBloom >       cte_bloom;
+  CRenderToTexture*             rt_highlights = nullptr;
+  const CRenderTechnique*       tech_filter = nullptr;
+  const CRenderTechnique*       tech_add = nullptr;
+  const CRenderMesh*            mesh = nullptr;
+  VEC4                          add_weights;
+  float                         threshold_min = 0.210f;
+  float                         threshold_max = 1.410f;
+  float                         multiplier = 1.f;
+  TCompRenderBlur * renderblur;
 
-	CRenderToTexture*       rt_output = nullptr;
-	const CRenderTechnique* tech = nullptr;
-	const CRenderMesh*      mesh = nullptr;
-	std::vector< CBlurStep* > emissive_steps;
-	VEC4 emissive_weights = VEC4(2, 4, 8, 16);
-	VEC4 emissive_factors = VEC4(1, 1, 1, 1);
-	float emissive_distance = 1.5f;
+  TCompRenderBloom();
+  ~TCompRenderBloom();
 
-	int                     xres = 0;
-	int                     yres = 0;
-
-public:
-	void load(const json& j, TEntityParseContext& ctx);
-	void debugInMenu();
-	CTexture* apply(CTexture* in_texture, CTexture* in_light_texture, CTexture * emissive);
+  void generateHighlights(CTexture* in_texture);
+  void load(const json& j, TEntityParseContext& ctx);
+  void debugInMenu();
+  void addBloom();
 
 };
 

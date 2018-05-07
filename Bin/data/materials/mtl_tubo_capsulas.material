@@ -1,0 +1,18 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_bigpipe_alb.dds"
+    ,
+    "metallic": "data/textures/tx_bigpipe_met.dds"
+    ,
+    "roughness": "data/textures/tx_bigpipe_rgh.dds"
+    ,
+    "normal": "data/textures/tx_bigpipe_nml.dds"
+    ,
+    "height": "data/textures/tx_bigpipe_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_bigpipe_emi.dds"
+  }
+}

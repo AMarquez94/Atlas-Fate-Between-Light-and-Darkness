@@ -203,8 +203,8 @@ void TCompAIMimetic::onMsgMimeticStunned(const TMsgEnemyStunned & msg)
 void TCompAIMimetic::onMsgNoiseListened(const TMsgNoiseMade & msg)
 {
 	if (!msg.isArtificialNoise && !isPlayerInFov()) {
-		hasHeardNaturalNoise = true;
-		noiseSource = msg.noiseOrigin;
+		 hasHeardNaturalNoise = true;
+     noiseSource = msg.noiseOrigin;
 	}
 	else {
 		if (msg.isArtificialNoise) {
@@ -213,8 +213,8 @@ void TCompAIMimetic::onMsgNoiseListened(const TMsgNoiseMade & msg)
 		else {
 			hasHeardNaturalNoise = true;
 		}
-		noiseSourceChanged = noiseSource != msg.noiseOrigin;
-		noiseSource = msg.noiseOrigin;
+    noiseSourceChanged = noiseSource != msg.noiseOrigin;
+    noiseSource = msg.noiseOrigin;
 	}
 }
 
@@ -616,13 +616,14 @@ BTNode::ERes TCompAIMimetic::actionGoToNoiseSource(float dt)
 
 	if (VEC3::Distance(vp, pp) <= autoChaseDistance && isPlayerInFov()) {
 		return BTNode::ERes::LEAVE;
-	}
-	else {
-		if (noiseSourceChanged) {
-			generateNavmesh(mypos->getPosition(), noiseSource);
-		}
-		return moveToPoint(speed, rotationSpeedPatrolling, noiseSource, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
-	}
+  }
+  else {
+    if (noiseSourceChanged) {
+      generateNavmesh(mypos->getPosition(), noiseSource);
+      noiseSourceChanged = false;
+    }
+    return moveToPoint(speed, rotationSpeedPatrolling, noiseSource, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
+  }
 }
 
 BTNode::ERes TCompAIMimetic::actionWaitInNoiseSource(float dt)

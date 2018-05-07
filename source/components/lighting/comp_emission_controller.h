@@ -10,12 +10,13 @@ class TCompLightSpot;
 
 class TCompEmissionController : public TCompCamera {
 
-	std::vector<CMaterial*> _temp_materials;
+	//std::vector<CMaterial*> _temp_materials;
 	std::vector<TCompLightSpot*> _temp_lights;
 
 	VEC4 _original_color;
 	VEC4 _current_color;
 	VEC4 _desired_color;
+    float _intensity;
 
 	float _elapsed_time = 0.f;
 	float _blend_in_time = 0.1f;

@@ -65,21 +65,23 @@ void TCompRenderBlur::load(const json& j, TEntityParseContext& ctx) {
 	else if (j.value("gauss_filter", false))
 		weights = VEC4(70, 56, 28, 8);
 	/*
-				  1
-				1   1
-			  1   2   1
-			1   3   3   1
-		  1   4   6   4   1
-		1   5   10 10   5   1
-	  1   6   15  20  15  6   1
+	1
+	1   1
+	1   2   1
+	1   3   3   1
+	1   4   6   4   1
+	1   5   10 10   5   1
+	1   6   15  20  15  6   1
 	1   7   21  35  35  21  7   1
-  1   8   28  56  70  56  28  8   1   <-- Four taps, discard the last 1
-  */
+	1   8   28  56  70  56  28  8   1   <-- Four taps, discard the last 1
+	*/
 
 	bool is_ok = true;
 	int nsteps = j.value("max_steps", 2);
 	int xres = Render.width;
 	int yres = Render.height;
+
+	std::string rt_name = j.value("rt_name", "Blur");
 
 	// To generate unique names
 	static int g_blur_counter = 0;
@@ -87,7 +89,7 @@ void TCompRenderBlur::load(const json& j, TEntityParseContext& ctx) {
 		CBlurStep* s = new CBlurStep;
 
 		char blur_name[64];
-		sprintf(blur_name, "Blur_%02d", g_blur_counter);
+		sprintf(blur_name, "%s_%02d", rt_name.c_str(), g_blur_counter);
 		g_blur_counter++;
 
 		is_ok &= s->create(blur_name, xres, yres);
@@ -101,7 +103,6 @@ void TCompRenderBlur::load(const json& j, TEntityParseContext& ctx) {
 }
 
 CTexture* TCompRenderBlur::apply(CTexture* in_texture) {
-
 	if (!enabled)
 		return in_texture;
 	CTraceScoped scope("CompBlur");

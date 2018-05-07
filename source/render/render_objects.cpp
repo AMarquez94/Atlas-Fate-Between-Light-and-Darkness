@@ -7,6 +7,7 @@ CRenderCte<CCteObject>  cb_object("Object");
 CRenderCte<CCteLight>   cb_light("Light");
 CRenderCte<CCteGlobals> cb_globals("Globals");
 CRenderCte<CCteBlur>    cb_blur("Blur");
+CRenderCte<CCteGUI>     cb_gui("Gui");
 
 struct TVtxPosClr {
 	VEC3 pos;
@@ -251,6 +252,18 @@ void activateCamera(CCamera& camera, int width, int height) {
 	cb_camera.camera_dummy1 = 1.f;
 	cb_camera.camera_front = camera.getFront();
 	cb_camera.camera_dummy2 = 0.f;
+	cb_camera.camera_front = camera.getFront();
+	cb_camera.camera_dummy2 = 0.f;
+	cb_camera.camera_left = camera.getLeft();
+	cb_camera.camera_dummy3 = 0.f;
+	cb_camera.camera_up = camera.getUp();
+	cb_camera.camera_dummy4 = 0.f;
+
+	// To avoid converting the range -1..1 to 0..1 in the shader
+	// we concatenate the view_proj with a matrix to apply this offset
+	MAT44 mtx_offset = MAT44::CreateScale(VEC3(0.5f, -0.5f, 1.0f))
+		* MAT44::CreateTranslation(VEC3(0.5f, 0.5f, 0.0f));
+	cb_camera.camera_proj_with_offset = camera.getProjection() * mtx_offset;
 
 	cb_camera.camera_zfar = camera.getZFar();
 	cb_camera.camera_znear = camera.getZNear();

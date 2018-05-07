@@ -1,7 +1,7 @@
 #include "mcv_platform.h"
 #include "comp_rigidbody.h"
 #include "comp_collider.h"
-#include "../comp_transform.h"
+#include "components/comp_transform.h"
 #include "physics/physics_collider.h"
 
 DECL_OBJ_MANAGER("rigidbody", TCompRigidbody);

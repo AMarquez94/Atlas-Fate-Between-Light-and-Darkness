@@ -7,6 +7,8 @@
 #include "components/lighting/comp_light_dir.h"
 #include "components/lighting/comp_light_point.h"
 #include "components/lighting/comp_light_spot.h"
+#include "components/lighting/comp_projector.h"
+#include "components/postfx/comp_render_ao.h"
 #include "components/comp_transform.h"
 #include "ctes.h"
 
@@ -103,6 +105,7 @@ void CDeferredRenderer::renderAccLight() {
 	renderAmbientPass();
 	renderPointLights();
 	renderSpotLights();
+  renderProjectors();
 	renderDirectionalLights();
 	renderSkyBox();
 }
@@ -191,10 +194,53 @@ void CDeferredRenderer::renderSpotLights() {
 }
 
 // --------------------------------------
-void CDeferredRenderer::render(CRenderToTexture* rt_destination) {
+void CDeferredRenderer::renderAO(CHandle h_camera) const {
+
+	if (!h_camera.isValid()) return;
+
+	CEntity* e_camera = h_camera;
+	assert(e_camera);
+	TCompRenderAO* comp_ao = e_camera->get<TCompRenderAO>();
+	if (!comp_ao) {
+		// As there is no comp AO, use a white texture as substitute
+		const CTexture* white_texture = Resources.get("data/textures/white.dds")->as<CTexture>();
+		white_texture->activate(TS_DEFERRED_AO);
+		return;
+	}
+	// As we are going to update the RenderTarget AO
+	// it can NOT be active as a texture while updating it.
+	CTexture::setNullTexture(TS_DEFERRED_AO);
+	auto ao = comp_ao->compute(rt_depth);
+	// Activate the updated AO texture so everybody else can use it
+	// Like the AccLight (Ambient pass or the debugger)
+	ao->activate(TS_DEFERRED_AO);
+}
+
+// --------------------------------------
+void CDeferredRenderer::renderProjectors() {
+  // Activate tech for the light dir 
+  auto* tech = Resources.get("pbr_projection.tech")->as<CRenderTechnique>();
+  tech->activate();
+
+  // All light directional use the same mesh
+  auto* mesh = Resources.get("data/meshes/UnitFrustum.mesh")->as<CRenderMesh>();
+  mesh->activate();
+
+  // Para todas las luces... pintala
+  getObjectManager<TCompProjector>()->forEach([mesh](TCompProjector* c) {
+
+    c->activate();
+    setWorldTransform(c->getViewProjection().Invert());
+    mesh->render();
+  });
+}
+
+// --------------------------------------
+void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camera) {
 
 	assert(rt_destination);
 	renderGBuffer();
+	renderAO(h_camera);
 
 	// Do the same with the acc light
 	CTexture::setNullTexture(TS_DEFERRED_ACC_LIGHTS);

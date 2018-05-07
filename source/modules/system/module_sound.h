@@ -51,5 +51,6 @@ public:
 	void setAmbientSound(const std::string & path);
 	void registerClip(const std::string & tag, const std::string & source, FMOD_MODE mode);
 	void registerClip3D(const std::string & tag, const std::string & source);
+	void exeStepSound();
 	//void registerEvent(const std::string & tag, const std::string & source);
 };

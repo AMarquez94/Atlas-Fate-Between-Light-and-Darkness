@@ -142,6 +142,7 @@ void TCompLightDir::generateShadowMap() {
 		activateCamera(*this, shadows_rt->getWidth(), shadows_rt->getHeight());
 	}
 
+  CRenderManager::get().setEntityCamera(CHandle(this).getOwner());
 	CRenderManager::get().renderCategory("shadows");
 }
 
