@@ -48,7 +48,7 @@ void CModuleGameManager::update(float delta)
 	CEntity* e = player;
 	TCompTempPlayerController *playerCont = e->get<TCompTempPlayerController>();
 	if (playerCont->isDead()) {
-		ShowCursor(true);
+		ShowCursor(false);
 		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 		mouse->setLockMouse(false);
 		lostMenuVisible = true;
