@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "module_logic.h"
 #include "components/comp_tags.h"
+#include "components\lighting\comp_light_spot.h"
 #include <experimental/filesystem>
 
 
@@ -92,6 +93,8 @@ void CModuleLogic::publishClasses() {
 	m->set("inShadows", SLB::FuncCall::create(&inShadows));
 	m->set("speedBoost", SLB::FuncCall::create(&speedBoost));
 	m->set("playerInvisible", SLB::FuncCall::create(&playerInvisible));
+	m->set("spotlightsToggle", SLB::FuncCall::create(&spotlightsToggle));
+
 
 
 
@@ -227,6 +230,16 @@ void playerInvisible() {
 	std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
 	for (int i = 0; i < enemies.size(); i++) {
 		enemies[i].sendMsg(msg);
+	}
+}
+
+void spotlightsToggle() {
+	CHandle h = getEntityByName("The Player");
+	TMsgSpotlightsToggle msg;
+	h.sendMsg(msg);
+	std::vector<CHandle> spotlights = CTagsManager::get().getAllEntitiesByTag(getID("light"));
+	for (int i = 0; i < spotlights.size(); i++) {
+		spotlights[i].sendMsg(msg);
 	}
 }
 

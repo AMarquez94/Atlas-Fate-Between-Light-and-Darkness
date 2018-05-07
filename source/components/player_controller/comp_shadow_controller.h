@@ -7,7 +7,11 @@
 class TCompShadowController : public TCompBase {
 
 	void onSceneCreated(const TMsgSceneCreated& msg);
-  void onPlayerExposed(const TMsgPlayerIlluminated& msg);
+	void onPlayerExposed(const TMsgPlayerIlluminated& msg);
+
+	//Debug console hack
+	bool shutDown = false;
+	void onSpotlightsToggle(const TMsgSpotlightsToggle& msg);
 
 	DECL_SIBLING_ACCESS();
 public:
@@ -19,7 +23,7 @@ public:
 	bool is_shadow;
 	std::vector<CHandle> static_lights;
 	std::vector<CHandle> dynamic_lights;
-  std::vector<CHandle> enemies_illuminating_me;
+	std::vector<CHandle> enemies_illuminating_me;
 
 	void Init();
 	void debugInMenu();

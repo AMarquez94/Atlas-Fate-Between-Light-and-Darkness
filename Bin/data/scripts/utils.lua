@@ -56,3 +56,7 @@ end
 function playerInvisible()
 	SLB.playerInvisible()
 end
+
+function spotlightsToggle()
+	SLB.spotlightsToggle()
+end
