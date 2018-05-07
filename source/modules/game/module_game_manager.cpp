@@ -39,6 +39,9 @@ void CModuleGameManager::update(float delta)
 		TCompCollider * e = eCollider->get<TCompCollider>();
 		if (e->player_inside) {
 
+      TMsgScenePaused msg;
+      msg.isPaused = true;
+      EngineEntities.broadcastMsg(msg);
 			victoryMenuVisible = true;
 			found = true;
 			break;
