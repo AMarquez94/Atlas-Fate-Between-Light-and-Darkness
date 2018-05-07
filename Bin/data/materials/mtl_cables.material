@@ -3,8 +3,6 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/tx_cables_alb.dds" ,   
-		"metallic": "data/textures/tx_cables_alb.dds",
-    "roughness": "data/textures/tx_cables_alb.dds"
+    "albedo": "data/textures/tx_cables_alb.dds"
   }
 }
