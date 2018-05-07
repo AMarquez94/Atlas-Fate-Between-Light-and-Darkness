@@ -535,7 +535,14 @@ const bool TCompTempPlayerController::convexTest(void) {
 			VEC3 new_forward = -hit_normal.Cross(c_my_transform->getLeft());
 			VEC3 target = hit_point + new_forward;
 
-			if (hit_normal.y < c_my_transform->getUp().y  && EngineInput["btUp"].value > 0) tempInverseVerticalMovementMerged = true;
+			float ownVecY = c_my_transform->getUp().y;
+			float newVecY = c_my_transform->getUp().y;
+			if (ownVecY < 0.001f) ownVecY = 0.0f;
+			if (newVecY < 0.001f) newVecY = 0.0f;
+
+			if (newVecY < ownVecY && EngineInput["btUp"].value > 0) {
+				tempInverseVerticalMovementMerged = true;
+			}
 
 			rigidbody->SetUpVector(hit_normal);
 			rigidbody->normal_gravity = EnginePhysics.gravityMod * -hit_normal;
