@@ -398,9 +398,12 @@ void TCompTempPlayerController::resetState(float dt) {
 	if (dir == VEC3::Zero) dir = proj;
 
 	VEC3 new_pos = c_my_transform->getPosition() - dir;
+    float mod_angle = (1 - abs(-EnginePhysics.gravity.Dot(c_my_transform->getUp())));
+    VEC3 new_offset_pos = c_my_transform->getPosition() + mod_angle * c_my_transform->getUp();
 	Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), new_pos, -EnginePhysics.gravity).Transpose();
 	Quaternion quat = Quaternion::CreateFromRotationMatrix(test);
-	c_my_transform->setRotation(quat);
+    c_my_transform->setPosition(new_offset_pos);
+    c_my_transform->setRotation(quat);
 }
 
 void TCompTempPlayerController::exitMergeState(float dt)
