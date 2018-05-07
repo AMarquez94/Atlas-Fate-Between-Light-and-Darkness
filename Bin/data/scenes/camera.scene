@@ -14,12 +14,12 @@
 			},
 			"render_ao": {
 				"enabled": true
-			},      
-			"render_bloom" : {
-        "enabled" :  true,
-        "max_steps" : 4,
-        "rt_name" : "Bloom"
-      },
+			},
+			"render_bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"rt_name": "Bloom"
+			},
 			"culling": true
 		}
 	}, {
@@ -42,16 +42,16 @@
 			"render_ao": {
 				"enabled": true
 			},
-			"render_bloom" : {
-        "enabled" :  true,
-        "max_steps" : 4,
-        "rt_name" : "Bloom"
-      },      
-			"color_grading" : {
-        "enabled" :  true,
-				"amount" : 0.6,
-        "lut": "data/textures/lut/RGBTable16x1.dds"
-      },
+			"render_bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"rt_name": "Bloom"
+			},
+			"color_grading": {
+				"enabled": true,
+				"amount": 0.6,
+				"lut": "data/textures/lut/RGBTable16x1.dds"
+			},
 			"tags": ["main_camera"],
 			"culling": true
 		}
@@ -75,11 +75,16 @@
 			"render_ao": {
 				"enabled": true
 			},
-      "render_bloom" : {
-        "enabled" :  true,
-        "max_steps" : 4,
-        "rt_name" : "Bloom"
-      },
+			"render_bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"rt_name": "Bloom"
+			},
+			"color_grading": {
+				"enabled": true,
+				"amount": 0.6,
+				"lut": "data/textures/lut/RGBTable16x1.dds"
+			},
 			"tags": ["main_camera"],
 			"culling": true
 		}
@@ -110,11 +115,11 @@
 			"render_blur_radial": {
 				"enabled": true
 			},
-			"color_grading" : {
-        "enabled" :  true,
-				"amount" : 0.6,
-        "lut": "data/textures/lut/lut1.dds"
-      },
+			"color_grading": {
+				"enabled": true,
+				"amount": 0.6,
+				"lut": "data/textures/lut/lut1.dds"
+			},
 			"tags": ["main_camera"],
 			"culling": true
 		}
@@ -140,11 +145,11 @@
 			"render_blur_radial": {
 				"enabled": true
 			},
-			"color_grading" : {
-        "enabled" :  true,
-				"amount" : 0.6,
-        "lut": "data/textures/lut/lut1.dds"
-      },
+			"color_grading": {
+				"enabled": true,
+				"amount": 0.6,
+				"lut": "data/textures/lut/lut1.dds"
+			},
 			"camera": {
 				"fov": 90,
 				"z_near": 0.01,
@@ -174,11 +179,11 @@
 			"render_blur_radial": {
 				"enabled": true
 			},
-			"color_grading" : {
-        "enabled" :  true,
-				"amount" : 0.6,
-        "lut": "data/textures/lut/lut1.dds"
-      },
+			"color_grading": {
+				"enabled": true,
+				"amount": 0.6,
+				"lut": "data/textures/lut/lut1.dds"
+			},
 			"tags": ["aux_camera"],
 			"culling": true
 		}
@@ -198,11 +203,11 @@
 			"render_ao": {
 				"enabled": true
 			},
-      "render_bloom" : {
-        "enabled" :  true,
-        "max_steps" : 4,
-        "rt_name" : "Bloom"
-      },
+			"render_bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"rt_name": "Bloom"
+			},
 			"culling": true
 		}
 	}, {
@@ -214,7 +219,7 @@
 			},
 			"camera": {
 				"fov": 60,
-				"z_near": 0.01, 
+				"z_near": 0.01,
 				"z_far": 1000
 			}
 		}
