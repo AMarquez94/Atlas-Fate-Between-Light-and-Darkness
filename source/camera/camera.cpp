@@ -47,6 +47,7 @@ void CCamera::setPerspective(float new_fov_vertical, float new_z_near, float new
 
 void CCamera::setOrtographic(float ortosize, float new_z_near, float new_z_far) {
 
+	is_ortho = true;
 	type = ORTOGRAPHIC;
 
 	z_near = new_z_near;
