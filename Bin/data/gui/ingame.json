@@ -7,18 +7,18 @@
 			{
 				"name" : "test_bar",
 				"type" : "widget",
-				"position" : "50 50",
+				"position" : "50 10",
 				"children" : [
 					{
 						"name" : "background",
 						"type" : "image",
-						"size" : "400 80",
+						"size" : "320 64",
 						"texture" : "data/textures/gui/staminabar_empty.dds"
 					},
 					{
 						"name" : "stamina_bar",
 						"type" : "bar",
-						"size" : "400 80",
+						"size" : "320 64",
 						"texture" : "data/textures/gui/staminabar_full.dds",
 						"progress_bar" : 1
 					}

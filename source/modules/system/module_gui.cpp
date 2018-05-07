@@ -22,15 +22,15 @@ bool CModuleGUI::start()
 	_fontTexture = Resources.get("data/textures/gui/font.dds")->as<CTexture>();
 
 	CParser parser;
+	parser.parseFile("data/gui/test.json");
 	parser.parseFile("data/gui/main_menu.json");
 	parser.parseFile("data/gui/ingame.json");
+	
 	/*parser.parseFile("data/gui/main_menu.json");
 	parser.parseFile("data/gui/gameplay.json");
 	parser.parseFile("data/gui/game_over.json");*/
 
 	activateWidget("main_menu");
-	//activateWidget("ingame");
-	//deactivateWidget("ingame");
 	auto newGameCB = []() {
 		CEngine::get().getGUI().outOfMainMenu();
 	};
@@ -57,8 +57,7 @@ bool CModuleGUI::start()
 
 void CModuleGUI::outOfMainMenu() {
 	CEngine::get().getModules().changeGameState("map_intro");
-	activateWidget("ingame");
-	CEngine::get().getGUI().deactivateWidget("main_menu");
+	activateWidget("blackground");
 	_controllers.clear();
 }
 
@@ -127,6 +126,8 @@ void CModuleGUI::activateWidget(const std::string& name)
 	CWidget* wdgt = getWidget(name);
 	if (wdgt)
 	{
+		if(_activeWidgets.size() > 0)
+			_activeWidgets.pop_back();
 		_activeWidgets.push_back(wdgt);
 	}
 }

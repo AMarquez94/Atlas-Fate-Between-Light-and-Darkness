@@ -11,7 +11,7 @@
 						"name" : "background",
 						"type" : "image",
 						"size" : "1080 640",
-						"texture" : "data/textures/gui/background_mainmenu.dds",
+						"texture" : "data/textures/gui/background.dds",
 						"xeffects" : [
 							{
 								"type" : "animate_uv",
@@ -68,7 +68,7 @@
 			{
 				"name" : "test_buttons",
 				"type" : "widget",
-				"position" : "0 250",
+				"position" : "25 330",
 				"children" : [
 					{
 						"name" : "new_game",
