@@ -89,7 +89,7 @@ void TCompPlayerInput::update(float dt)
 			attackButtonJustPressed = false;
 		}
 
-		if (EngineInput["btCrouch"].hasChanged())
+		if (EngineInput["btCrouch"].getsPressed())
 		{
 			// Replace this with triggers contact.
 			/*CEntity * c_my_entity = CHandle(this).getOwner();

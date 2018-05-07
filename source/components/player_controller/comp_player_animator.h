@@ -23,7 +23,7 @@ public:
 	static void registerMsgs();
 	void onCreated(const TMsgEntityCreated& msg);
 	void playMsgAnimation(const TMsgExecuteAnimation& msg);
-
+	void onSceneStop(const TMsgScenePaused& msg);
 	
 	void initializeAnimations();
 	bool playAnimation(TCompPlayerAnimator::EAnimation animation, float speed = 1.0f);

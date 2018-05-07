@@ -30,7 +30,7 @@ bool CModuleMapIntro::start()
 		parseScene(scene_name, ctx);
 	}
 
-	Engine.getNavmeshes().buildNavmesh("data/navmeshes/test.bin");
+	Engine.getNavmeshes().buildNavmesh("data/navmeshes/milestone2_navmesh.bin");
 
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 	mouse->setLockMouse(true);

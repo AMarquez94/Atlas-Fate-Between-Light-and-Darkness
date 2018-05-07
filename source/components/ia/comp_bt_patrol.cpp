@@ -127,7 +127,7 @@ void TCompAIPatrol::onMsgPatrolStunned(const TMsgEnemyStunned & msg)
 	TCompTransform *mypos = get<TCompTransform>();
 	float y, p, r;
 	mypos->getYawPitchRoll(&y, &p, &r);
-	p = p + deg2rad(89.f);
+	p = p - deg2rad(89.f);
 	mypos->setYawPitchRoll(y, p, r);
 	turnOffLight();
 
@@ -173,7 +173,7 @@ void TCompAIPatrol::onMsgPatrolFixed(const TMsgPatrolFixed & msg)
 		TCompTransform *mypos = get<TCompTransform>();
 		float y, p, r;
 		mypos->getYawPitchRoll(&y, &p, &r);
-		p = p - deg2rad(89.f);
+		p = p + deg2rad(89.f);
 		mypos->setYawPitchRoll(y, p, r);
 		turnOnLight();
 
@@ -191,6 +191,9 @@ void TCompAIPatrol::onMsgPatrolFixed(const TMsgPatrolFixed & msg)
 				stunnedPatrols.erase(stunnedPatrols.begin() + i);
 			}
 		}
+
+    TCompEmissionController * e_controller = get<TCompEmissionController>();
+    e_controller->blend(patrolColor.colorNormal, 0.1f);
 
 		current = nullptr;
 	}
