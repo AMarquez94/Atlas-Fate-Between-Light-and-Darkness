@@ -300,7 +300,10 @@ void TCompTempPlayerController::walkState(float dt) {
 	
 	float factor = 1.0f;
 	if (EngineInput["btRun"].isPressed()) factor = 0.95f;
-	if (EngineInput["btCrouch"].isPressed()) factor = 1.3f;
+  
+  if (currentSpeed <= 1.8f) {
+    factor = 1.3f;
+  }
 	stepTimer += dt;
 	if (stepTimer > 0.33f * factor) {
 		
