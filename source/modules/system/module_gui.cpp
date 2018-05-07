@@ -3,6 +3,7 @@
 #include "render/render_objects.h"
 #include "gui/gui_parser.h"
 #include "gui/controllers/gui_main_menu_controller.h"
+#include "gui/widgets/gui_bar.h"
 
 using namespace GUI;
 
@@ -21,27 +22,28 @@ bool CModuleGUI::start()
 	_fontTexture = Resources.get("data/textures/gui/font.dds")->as<CTexture>();
 
 	CParser parser;
-	parser.parseFile("data/gui/test.json");
-
+	parser.parseFile("data/gui/main_menu.json");
+	parser.parseFile("data/gui/ingame.json");
 	/*parser.parseFile("data/gui/main_menu.json");
 	parser.parseFile("data/gui/gameplay.json");
 	parser.parseFile("data/gui/game_over.json");*/
 
-	activateWidget("test");
-
+	activateWidget("main_menu");
+	//activateWidget("ingame");
+	//deactivateWidget("ingame");
 	auto newGameCB = []() {
-		dbg("STARTING GAME\n");
+		CEngine::get().getGUI().outOfMainMenu();
 	};
 	auto continueCB = []() {
-		dbg("LOADING GAME\n");
+		CEngine::get().getGUI().outOfMainMenu();
 	};
 	auto optionsCB = []() {
-		dbg("CONFIGURING\n");
+		dbg("OPTIONS SELECTED\n");		
 	};
 	auto exitCB = []() {
-		dbg("CONFIGURING\n");
+		exit(0);
 	};
-	
+	//CEngine::get().getGUI().getWidget("stamina_bar", true)->getBarParams()->_processValue = 0.5f;
 	CMainMenuController* mmc = new CMainMenuController();
 	mmc->registerOption("new_game", newGameCB);
 	mmc->registerOption("continue", continueCB);
@@ -51,6 +53,17 @@ bool CModuleGUI::start()
 	registerController(mmc);
 	
 	return true;
+}
+
+void CModuleGUI::outOfMainMenu() {
+	CEngine::get().getModules().changeGameState("map_intro");
+	activateWidget("ingame");
+	CEngine::get().getGUI().deactivateWidget("main_menu");
+	_controllers.clear();
+}
+
+void CModuleGUI::enterMainMenu() {
+
 }
 
 bool CModuleGUI::stop()
@@ -115,6 +128,16 @@ void CModuleGUI::activateWidget(const std::string& name)
 	if (wdgt)
 	{
 		_activeWidgets.push_back(wdgt);
+	}
+}
+
+void CModuleGUI::deactivateWidget(const std::string& name)
+{
+	CWidget* wdgt = getWidget(name);
+	for (auto it = _activeWidgets.begin(); it != _activeWidgets.end();) {
+		if(*it == wdgt) _activeWidgets.erase(it);
+		it++;
+
 	}
 }
 

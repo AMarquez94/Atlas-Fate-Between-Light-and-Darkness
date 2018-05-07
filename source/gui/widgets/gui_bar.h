@@ -11,6 +11,7 @@ namespace GUI
     void render() override;
 	void update( float dt ) override;
     TImageParams* getImageParams() override;
+	TBarParams* CBar::getBarParams() override;
 
   private:
     TImageParams _imageParams;

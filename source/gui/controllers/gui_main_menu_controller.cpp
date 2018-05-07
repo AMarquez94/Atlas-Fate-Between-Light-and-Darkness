@@ -6,23 +6,23 @@ namespace GUI
 {
   void CMainMenuController::update(float delta)
   {
-    if (EngineInput[VK_DOWN].getsPressed())
-    {
-      setCurrentOption(_currentOption + 1);
-    }
-    if (EngineInput[VK_UP].getsPressed())
-    {
-      setCurrentOption(_currentOption - 1);
-    }
-    if (EngineInput[VK_SPACE].getsPressed())
-    {
-      _options[_currentOption].button->setCurrentState(CButton::EState::ST_Pressed);
-    }
-    if (EngineInput[VK_SPACE].getsReleased())
-    {
-      _options[_currentOption].button->setCurrentState(CButton::EState::ST_Selected);
-      _options[_currentOption].callback();
-    }
+		  if (EngineInput[VK_DOWN].getsPressed() || EngineInput["btDown"].getsPressed())
+		  {
+			  setCurrentOption(_currentOption + 1);
+		  }
+		  if (EngineInput[VK_UP].getsPressed() || EngineInput["btUp"].getsPressed())
+		  {
+			  setCurrentOption(_currentOption - 1);
+		  }
+		  if (EngineInput[VK_SPACE].getsPressed() || EngineInput["btMenuConfirm"].getsPressed())
+		  {
+			  _options[_currentOption].button->setCurrentState(CButton::EState::ST_Pressed);
+		  }
+		  if (EngineInput[VK_SPACE].getsReleased() || EngineInput["btMenuConfirm"].getsReleased())
+		  {
+			  _options[_currentOption].button->setCurrentState(CButton::EState::ST_Selected);
+			  _options[_currentOption].callback();
+		  }
   }
 
   void CMainMenuController::registerOption(const std::string& name, GUICallback cb)

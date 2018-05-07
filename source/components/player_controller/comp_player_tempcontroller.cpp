@@ -24,7 +24,7 @@ void TCompTempPlayerController::debugInMenu() {
 }
 
 void TCompTempPlayerController::renderDebug() {
-
+	/*
 	//UI Window's Size
 	ImGui::SetNextWindowSize(ImVec2((float)CApp::get().xres, (float)CApp::get().yres), ImGuiCond_Always);
 	//UI Window's Position
@@ -54,7 +54,7 @@ void TCompTempPlayerController::renderDebug() {
 
 	ImGui::End();
 	ImGui::PopStyleVar(2);
-	ImGui::PopStyleColor(2);
+	ImGui::PopStyleColor(2);*/
 }
 
 void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
@@ -114,6 +114,7 @@ void TCompTempPlayerController::update(float dt) {
 		updateStamina(dt);
 		updateShader(dt); // Move this to player render component...
 		timeInhib += dt;
+		*staminaBarValue = stamina / maxStamina;
 	}
 }
 
@@ -167,6 +168,8 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 	isInhibited = isGrounded = isMerged = false;
 	dbgDisableStamina = false;
 	paused = false;
+
+	staminaBarValue = &CEngine::get().getGUI().getWidget("stamina_bar", true)->getBarParams()->_processValue;
 }
 
 /* Call this function once the state has been changed */

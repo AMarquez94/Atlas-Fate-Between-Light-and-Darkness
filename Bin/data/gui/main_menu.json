@@ -1,6 +1,6 @@
 [
 	{
-		"name" : "test",
+		"name" : "main_menu",
 		"type" : "widget",
 		"size" : "1080 640",
 		"children" : [
@@ -123,18 +123,7 @@
 						}
 					}
 				]
-			},
-		    {
-		        "name" : "game_credits",
-		        "type" : "text",
-		        "position" : "1870 1030",
-		        "scale" : "0.5 1.0",
-		        "text" : "MCV 2017-2018",
-		        "font_color" : "0.5 0.5 0.5 1",
-		        "font_size" : 32,
-		        "halign" : "right",
-		        "valign" : "bottom"
-		    }
+			}
 		]
 	}
 ]

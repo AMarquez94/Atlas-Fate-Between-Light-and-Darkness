@@ -17,12 +17,12 @@
   {
     "name": "btUp",
     "all": false,
-    "buttons": [ "w", "pad_lanalogy" ]
+    "buttons": [ "w", "pad_lanalogy" , "pad_up"]
   },
   {
     "name": "btDown",
     "all": false,
-    "buttons": [ "s" ]
+    "buttons": [ "s", "pad_down" ]
   },
   {
     "name": "btRight",

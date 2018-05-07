@@ -18,6 +18,7 @@ namespace GUI
     CWidget* getChild(const std::string& name, bool recursive = false) const;
     const std::string& getName() const;
     virtual TImageParams* getImageParams() { return nullptr; }
+	virtual TBarParams* getBarParams() { return nullptr; }
     virtual TTextParams* getTextParams() { return nullptr; }
 
     void addEffect(CEffect* fx);

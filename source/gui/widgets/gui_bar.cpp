@@ -23,6 +23,11 @@ TImageParams* CBar::getImageParams()
   return &_imageParams;
 }
 
+TBarParams* CBar::getBarParams()
+{
+	return &_barParams;
+}
+
 void CBar::update(float dt)
 {
 
