@@ -353,7 +353,7 @@ void CModuleRender::tempDebugDraw() {
 		ImGuiWindowFlags_::ImGuiWindowFlags_NoTitleBar);
 	{
 		ImGui::SetCursorPos(ImVec2(CApp::get().xres - CApp::get().xres * 0.05f, CApp::get().yres * 0.01f));
-		ImGui::Text("FPS %d", (int)CApp::get().fps);
+		//ImGui::Text("FPS %d", (int)CApp::get().fps);
 	}
 
 	ImGui::End();

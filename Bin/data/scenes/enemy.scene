@@ -26,7 +26,7 @@
 			}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/patrol.prefab",
 			"name": "The Enemy 2",
 			"transform": {
