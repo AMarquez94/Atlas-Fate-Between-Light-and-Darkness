@@ -25,11 +25,14 @@ void TCompTriggerCamera::registerMsgs()
 
 void TCompTriggerCamera::onMsgTriggerEnter(const TMsgTriggerEnter & msg)
 {
-	Engine.getCameras().blendInCamera(_targetCamera, _blendInTime, CModuleCameras::EPriority::TEMPORARY);
-	TMsgScenePaused stopPlayer;
-	stopPlayer.isPaused = true;
-	EngineEntities.broadcastMsg(stopPlayer);
-	onCamera = true;
+	if (!used) {
+		Engine.getCameras().blendInCamera(_targetCamera, _blendInTime, CModuleCameras::EPriority::TEMPORARY);
+		TMsgScenePaused stopPlayer;
+		stopPlayer.isPaused = true;
+		EngineEntities.broadcastMsg(stopPlayer);
+		onCamera = true;
+		used = true;
+	}
 }
 
 void TCompTriggerCamera::onMsgTriggerExit(const TMsgTriggerExit & msg)
@@ -42,12 +45,17 @@ void TCompTriggerCamera::update(float dt)
 	if (onCamera) {
 		time += dt;
 		if (time >= _timeToExitCamera) {
-			Engine.getCameras().blendOutCamera(_targetCamera, _blendOutTime);
-			onCamera = false;
-			TMsgScenePaused stopPlayer;
-			stopPlayer.isPaused = false;
-			EngineEntities.broadcastMsg(stopPlayer);
-			time = 0.0f;
+			if (firstFrame) {
+				Engine.getCameras().blendOutCamera(_targetCamera, _blendOutTime);
+				firstFrame = false;
+			}
+			if (time >= _timeToExitCamera + _blendOutTime) {
+				onCamera = false;
+				TMsgScenePaused stopPlayer;
+				stopPlayer.isPaused = false;
+				EngineEntities.broadcastMsg(stopPlayer);
+				time = 0.0f;
+			}		
 		}
 	}
 }

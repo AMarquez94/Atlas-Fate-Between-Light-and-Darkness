@@ -401,9 +401,12 @@ void TCompTempPlayerController::resetState(float dt) {
 	if (dir == VEC3::Zero) dir = proj;
 
 	VEC3 new_pos = c_my_transform->getPosition() - dir;
+    float mod_angle = (1 - abs(-EnginePhysics.gravity.Dot(c_my_transform->getUp())));
+    VEC3 new_offset_pos = c_my_transform->getPosition() + mod_angle * c_my_transform->getUp();
 	Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), new_pos, -EnginePhysics.gravity).Transpose();
 	Quaternion quat = Quaternion::CreateFromRotationMatrix(test);
-	c_my_transform->setRotation(quat);
+    c_my_transform->setPosition(new_offset_pos);
+    c_my_transform->setRotation(quat);
 }
 
 void TCompTempPlayerController::exitMergeState(float dt)
@@ -532,7 +535,14 @@ const bool TCompTempPlayerController::convexTest(void) {
 			VEC3 new_forward = -hit_normal.Cross(c_my_transform->getLeft());
 			VEC3 target = hit_point + new_forward;
 
-			if (hit_normal.y < c_my_transform->getUp().y  && EngineInput["btUp"].value > 0) tempInverseVerticalMovementMerged = true;
+			float ownVecY = c_my_transform->getUp().y;
+			float newVecY = c_my_transform->getUp().y;
+			if (ownVecY < 0.001f) ownVecY = 0.0f;
+			if (newVecY < 0.001f) newVecY = 0.0f;
+
+			if (newVecY < ownVecY && EngineInput["btUp"].value > 0) {
+				tempInverseVerticalMovementMerged = true;
+			}
 
 			rigidbody->SetUpVector(hit_normal);
 			rigidbody->normal_gravity = EnginePhysics.gravityMod * -hit_normal;

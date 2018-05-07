@@ -18,6 +18,8 @@ public:
 private:
 	float time = 0.0f;
 	bool onCamera = false;
+	bool used = false;
+	bool firstFrame = true;
   CHandle _targetCamera;
   std::string _targetName;
 
