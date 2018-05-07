@@ -248,7 +248,7 @@ struct TSceneExporter (
 		fs.beginObj()
 			fs.writeKeyValue "pos" mcv_final_position
 			fs.writeComma()
-			fs.writeKeyValue "lookAt" mcv_final_target
+			fs.writeKeyValue "lookat" mcv_final_target
 		fs.endObj()
 	),
 	-- ----------------------------------------------------------
@@ -286,7 +286,7 @@ q		)
 		
 		fs.writeKey "collider" 
 		fs.beginObj()
-		
+					print "iceberg2"
 		if superclassof obj == light then ( -- to temp bypass light triggers
 			fs.writeKeyValue "shape" "sphere" 
 			fs.writeComma()
@@ -304,6 +304,8 @@ q		)
 			fs.writeKeyValue "size" [abs (obj.width * .5f), abs (obj.height * .5f), abs (obj.length * .5f)]
 		) else (
 			local col_path = project_path + cols_path + obj.name + ".collider"
+			
+			print "failed shit"
 			if obj.parent != undefined then (
 				if obj.mesh.verts.count == obj.parent.mesh.verts.count then (
 				-- We are facing, wether convex or mesh collider.
@@ -331,7 +333,6 @@ q		)
 	-- ----------------------------------------------------------	
 	fn exportCompLight obj = (
 
-		
 		if classof obj == Directionallight then (
 		fs.writeKey "light_dir" 
 		fs.beginObj()
@@ -454,7 +455,7 @@ q		)
 	fn exportEntityLight obj = (
 		
 		-- It will be exported as part of the parent. Ejemplo del cofre y su caja de colision.
-		if obj.parent != undefined then return false
+		--if obj.parent != undefined then return false
 		exportName obj 
 		fs.writeComma()
 		exportTransformLookAt obj
@@ -470,9 +471,8 @@ q		)
 	
 	-- ----------------------------------------------------------
 	fn exportEntityCollider obj = (
-		
 		-- It will be exported as part of the parent. Ejemplo del cofre y su caja de colision.
-		if obj.parent != undefined then return false
+		--if obj.parent != undefined then return false
 		exportName obj 
 		fs.writeComma()
 		exportTransform obj
@@ -533,8 +533,6 @@ q		)
 		doesFolderExist (project_path + cols_path) create:true
 		doesFolderExist (project_path + tex_path) create:true
 		
-		format "Exporting to %\n" full_path
-		
 		-- Decide output filename based on .max filename
 		local full_path = project_path + prefabs_path + ofilename + ".prefab"
 		if is_scene == true then ( 
@@ -544,6 +542,7 @@ q		)
 		fs.begin full_path
 		fs.beginArray()
 		exportRoot ofilename -- Export root
+		format "Exporting to %\n" full_path
 		
 		local nitems = 0
 		local prg_step = 100 / (nodes.count + 1)

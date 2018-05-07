@@ -2,21 +2,24 @@
 		"entity": {
 			"name": "capsule_prefab",
 			"transform": {
-				"pos": "0 0 0"
+				"pos": "0 0 0",
+				        "rotation": "0.0 -0.707107 -0.707107 0.0"
 			},
-			"render": [{
-					"mesh": "data/meshes/Capsule.mesh",
-					"materials": [
-						"data/materials/mat_default_orange.material"
-					],
-					"color": "0.5 0.5 1.0 1.0"
+			"render":
+			[{
+					"mesh": "data/meshes/capsula_low.mesh",
+					"materials":
+					[
+						"data/materials/Material #29.material"
+					]
 				}
 			],
 			"collider": {
-				"shape": "box",
+				"shape": "convex",
 				"is_trigger": false,
 				"is_dynamic": true,
-				"size": "1 2 1"
+				"size": "1 2 1",
+        "name": "data/colliders/collider_capsula_low.collider"
 			},
 			"dynamic_capsule": {
 				"speed": 0,
