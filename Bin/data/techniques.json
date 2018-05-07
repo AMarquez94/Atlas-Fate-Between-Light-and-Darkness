@@ -196,7 +196,11 @@
     "ps_file": "data/shaders/pbr.fx",
     "ps_entry_point": "PS_skybox",
 		"z" : "test_equal",
-    "category" : "pbr_skybox"
+    "category" : "pbr_skybox",
+		"textures" : { 
+      "environment" : "data/textures/cubemaps/skybox.dds", 
+      "irradiance" : "data/textures/cubemaps/irradiance.dds" 
+    }
   },
 	"blur": {
     "vs_file": "data/shaders/blur.fx",

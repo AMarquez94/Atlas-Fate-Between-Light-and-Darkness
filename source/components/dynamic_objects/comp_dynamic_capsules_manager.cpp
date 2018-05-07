@@ -20,6 +20,7 @@ void TCompDynamicCapsulesManager::load(const json & j, TEntityParseContext & ctx
 	end_point = loadVEC3(j["end_point"]);
 	numberOfCapsules = j.value("number", 0);
 	speed = j.value("speed", 0.f);
+  capsule_offset = loadVEC3(j["capsule_offset"]);
 
 	if (numberOfCapsules > 0) {
 
@@ -46,15 +47,16 @@ void TCompDynamicCapsulesManager::load(const json & j, TEntityParseContext & ctx
 
 			/* Set pos */
 			TCompTransform *capsuleTransform = eCapsule->get<TCompTransform>();
-			newPos = start_point + (float)i * offset;
+			newPos = start_point + capsule_offset + (float)i * offset;
 			capsuleTransform->setPosition(newPos);
 			cGroup->add(eCapsule);
 
 			/* Set dynamic capsule component */
 			TCompDynamicCapsule *cDynamicCapsule = eCapsule->get<TCompDynamicCapsule>();
-			cDynamicCapsule->setStartPoint(start_point);
-			cDynamicCapsule->setEndPoint(end_point);
+			cDynamicCapsule->setStartPoint(start_point + capsule_offset);
+			cDynamicCapsule->setEndPoint(end_point + capsule_offset);
 			cDynamicCapsule->setSpeed(speed);
+      cDynamicCapsule->setOffset(capsule_offset);
 
 			/* Set rigidbody pos */
 			TCompCollider *capsuleCollider = eCapsule->get<TCompCollider>();

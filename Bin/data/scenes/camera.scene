@@ -47,6 +47,11 @@
         "max_steps" : 4,
         "rt_name" : "Bloom"
       },      
+			"color_grading" : {
+        "enabled" :  true,
+				"amount" : 0.6,
+        "lut": "data/textures/lut/RGBTable16x1.dds"
+      },
 			"tags": ["main_camera"],
 			"culling": true
 		}

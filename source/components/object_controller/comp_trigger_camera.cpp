@@ -26,6 +26,9 @@ void TCompTriggerCamera::registerMsgs()
 void TCompTriggerCamera::onMsgTriggerEnter(const TMsgTriggerEnter & msg)
 {
 	Engine.getCameras().blendInCamera(_targetCamera, _blendInTime, CModuleCameras::EPriority::TEMPORARY);
+	TMsgScenePaused stopPlayer;
+	stopPlayer.isPaused = true;
+	EngineEntities.broadcastMsg(stopPlayer);
 	onCamera = true;
 }
 
@@ -41,6 +44,9 @@ void TCompTriggerCamera::update(float dt)
 		if (time >= _timeToExitCamera) {
 			Engine.getCameras().blendOutCamera(_targetCamera, _blendOutTime);
 			onCamera = false;
+			TMsgScenePaused stopPlayer;
+			stopPlayer.isPaused = false;
+			EngineEntities.broadcastMsg(stopPlayer);
 			time = 0.0f;
 		}
 	}

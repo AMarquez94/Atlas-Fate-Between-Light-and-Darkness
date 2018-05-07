@@ -22,6 +22,7 @@ void TCompEmissionController::load(const json& j, TEntityParseContext& ctx) {
 	if (j.count("initial"))
 		_current_color = loadVEC4(j["initial"]);
 
+    _intensity = j.value("intensity", 10.0f);
 	_desired_color = _current_color;
 	_original_color = _current_color;
 }
@@ -34,8 +35,12 @@ void TCompEmissionController::update(float dt) {
 		_elapsed_time += dt / _blend_in_time;
 		_current_color = VEC4::Lerp(_original_color, _desired_color, _elapsed_time);
 
-		for (auto p : _temp_materials)
-			p->changeEmissionColor(_current_color);
+        TCompRender * self_render = get<TCompRender>();
+        self_render->self_color = _current_color;
+
+        // Deprecated method, update this if color per mesh is needed.
+		//for (auto p : _temp_materials)
+		//	p->changeEmissionColor(_current_color);
 
 		//for (auto p : _temp_lights)
 		//	p->setColor(_current_color);
@@ -61,13 +66,13 @@ void TCompEmissionController::onSceneCreated(const TMsgSceneCreated& msg) {
 			_temp_lights.push_back(spotlight);
 	}
 
-	// Second, retrieve it's render component
-	TCompRender * self_render = get<TCompRender>();
-	assert(self_render);
-
-	for (auto p : self_render->meshes)
-		for (auto m : p.materials)
-			_temp_materials.push_back(const_cast<CMaterial*>(m));
+    TCompRender * self_render = get<TCompRender>();
+    assert(self_render);
+    self_render->self_color = _current_color;
+    self_render->self_intensity = _intensity;
+	//for (auto p : self_render->meshes)
+	//	for (auto m : p.materials)
+	//		_temp_materials.push_back(const_cast<CMaterial*>(m));
 }
 
 /* Used to blend between two colors at a given time */

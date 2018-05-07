@@ -8,6 +8,7 @@ class TCompDynamicCapsulesManager : public TCompBase {
 
 	VEC3 start_point;
 	VEC3 end_point;
+  VEC3 capsule_offset;
 	float speed;
 	int numberOfCapsules;
 

@@ -1,0 +1,10 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/default_texture.dds"
+    ,
+    "emissive": "data/textures/tx_emissive_fence_emi.dds"
+  }
+}

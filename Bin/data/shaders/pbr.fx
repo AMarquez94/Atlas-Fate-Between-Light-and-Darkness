@@ -66,11 +66,6 @@ void VS_GBuffer(
 	oTex0 = iTex0;
 	oTex1 = iTex1;
 	oWorldPos = world_pos.xyz;
-
-  //float3 T = normalize(mul(model, aTangent));
-  //float3 B = normalize(mul(model * aBitangent));
-  //float3 N = normalize(mul(model * aNormal));
-  //mat3 TBN = transpose(mat3(T, B, N));
 }
 
 //--------------------------------------------------------------------------------------
@@ -91,8 +86,8 @@ void PS_GBuffer(
 {
   o_albedo = txAlbedo.Sample(samLinear, iTex0);
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
-	o_selfIllum =  txEmissive.Sample(samLinear, iTex0);
-	o_selfIllum.xyz *= color_emission;
+	o_selfIllum =  txEmissive.Sample(samLinear, iTex0) * self_intensity;
+	o_selfIllum.xyz *= self_color;
 
 	// Save roughness in the alpha coord of the N render target
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
@@ -135,8 +130,8 @@ void PS_GBuffer_Parallax(
 
   o_albedo = txAlbedo.Sample(samLinear, iTex0);
   o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
-  o_selfIllum = txEmissive.Sample(samLinear, iTex0);
-  o_selfIllum.xyz *= color_emission;
+  o_selfIllum = txEmissive.Sample(samLinear, iTex0) * self_intensity;
+  o_selfIllum.xyz *= self_color;
 
   // Save roughness in the alpha coord of the N render target
   float roughness = txRoughness.Sample(samLinear, iTex0).r;
@@ -301,7 +296,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 
   float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
   final_color = final_color * global_ambient_adjustment * ao;
-  return lerp(float4(env, 1), final_color, visibility) + float4(self_illum.xyz, 1) * scalar_emission * global_ambient_adjustment;
+  return lerp(float4(env, 1), final_color, visibility) + float4(self_illum.xyz, 1) * global_ambient_adjustment * global_self_intensity;
 }
 
 //--------------------------------------------------------------------------------------
