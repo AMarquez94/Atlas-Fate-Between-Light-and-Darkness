@@ -36,7 +36,9 @@ void TCompEmissionController::update(float dt) {
 		_current_color = VEC4::Lerp(_original_color, _desired_color, _elapsed_time);
 
         TCompRender * self_render = get<TCompRender>();
-        self_render->self_color = _current_color;
+        if (self_render) {
+          self_render->self_color = _current_color;
+        }
 
         // Deprecated method, update this if color per mesh is needed.
 		//for (auto p : _temp_materials)

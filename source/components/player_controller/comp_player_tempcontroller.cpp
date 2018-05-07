@@ -299,8 +299,8 @@ void TCompTempPlayerController::walkState(float dt) {
 	//TODO: Destroy this shiat-----------------------------------------------------------------------
 	
 	float factor = 1.0f;
-	if (EngineInput["btRun"].isPressed()) factor = 0.95;
-	if (EngineInput["btCrouch"].isPressed()) factor = 1.3;
+	if (EngineInput["btRun"].isPressed()) factor = 0.95f;
+	if (EngineInput["btCrouch"].isPressed()) factor = 1.3f;
 	stepTimer += dt;
 	if (stepTimer > 0.33f * factor) {
 		

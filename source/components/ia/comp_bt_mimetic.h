@@ -27,7 +27,7 @@ private:
 	std::string entityToChase = "The Player";
 	float fovDeg = 120.f;
 	float fov;
-	float autoChaseDistance = 15.f;
+	float autoChaseDistance = 10.f;
 	float maxChaseDistance = 35.f;
 	float maxTimeSuspecting = 3.f;
 	float suspectO_Meter = 0.f;
