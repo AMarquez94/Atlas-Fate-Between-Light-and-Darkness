@@ -26,7 +26,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/ mesh_tubocapsula.mesh"
+          "mesh": "data/meshes/mesh_tubocapsula.mesh"
           ,
           "materials":
           [
