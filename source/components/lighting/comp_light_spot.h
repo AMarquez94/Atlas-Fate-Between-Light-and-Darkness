@@ -21,10 +21,6 @@ class TCompLightSpot : public TCompCamera {
 	void onCreate(const TMsgEntityCreated& msg);
 	void onDestroy(const TMsgEntityDestroyed& msg);
 
-	//Debug console hacks
-	bool shutDown = false;
-	void onSpotlightsToggle(const TMsgSpotlightsToggle& msg);
-
 	DECL_SIBLING_ACCESS();
 public:
 

@@ -2,6 +2,7 @@
 #include "module_logic.h"
 #include "components/comp_tags.h"
 #include "components\lighting\comp_light_spot.h"
+#include "components\ia\comp_bt_patrol.h"
 #include <experimental/filesystem>
 
 
@@ -234,13 +235,21 @@ void playerInvisible() {
 }
 
 void spotlightsToggle() {
-	CHandle h = getEntityByName("The Player");
-	TMsgSpotlightsToggle msg;
-	h.sendMsg(msg);
-	std::vector<CHandle> spotlights = CTagsManager::get().getAllEntitiesByTag(getID("light"));
-	for (int i = 0; i < spotlights.size(); i++) {
-		spotlights[i].sendMsg(msg);
+	//CHandle h = getEntityByName("The Player");
+	//TMsgSpotlightsToggle msg;
+	//h.sendMsg(msg);
+	//std::vector<CHandle> spotlights = CTagsManager::get().getAllEntitiesByTag(getID("light"));
+	//for (int i = 0; i < spotlights.size(); i++) {
+	//	spotlights[i].sendMsg(msg);
+	//}
+	getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
+		c->visible = false;
+	});
+	std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("patrol"));
+		for (int i = 0; i < enemies.size(); i++) {
+
 	}
+
 }
 
 void systemToggle(const std::string& system) {

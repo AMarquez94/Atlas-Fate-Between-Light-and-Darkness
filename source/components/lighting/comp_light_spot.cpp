@@ -96,7 +96,6 @@ void TCompLightSpot::registerMsgs() {
 
 	DECL_MSG(TCompLightSpot, TMsgEntityCreated, onCreate);
 	DECL_MSG(TCompLightSpot, TMsgEntityDestroyed, onDestroy);
-	DECL_MSG(TCompLightSpot, TMsgSpotlightsToggle, onSpotlightsToggle);
 
 }
 
@@ -108,14 +107,10 @@ void TCompLightSpot::onDestroy(const TMsgEntityDestroyed & msg) {
 
 }
 
-void TCompLightSpot::onSpotlightsToggle(const TMsgSpotlightsToggle& msg) {
-	shutDown = !shutDown;
-}
-
 void TCompLightSpot::activate() {
 	
 	TCompTransform* c = get<TCompTransform>();
-	if (!c || shutDown)
+	if (!c || !visible)
 		return;
 
 	projector->activate(TS_LIGHT_PROJECTOR);
@@ -152,7 +147,7 @@ void TCompLightSpot::activate() {
 // ------------------------------------------------------
 void TCompLightSpot::generateShadowMap() {
 
-	if (!shadows_rt || !shadows_enabled || shutDown)
+	if (!shadows_rt || !shadows_enabled || !visible)
 		return;
 
 	// In this slot is where we activate the render targets that we are going
