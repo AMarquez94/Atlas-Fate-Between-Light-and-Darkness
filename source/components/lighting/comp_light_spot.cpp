@@ -110,7 +110,6 @@ void TCompLightSpot::onDestroy(const TMsgEntityDestroyed & msg) {
 
 void TCompLightSpot::onSpotlightsToggle(const TMsgSpotlightsToggle& msg) {
 	shutDown = !shutDown;
-	//shadows_enabled = !shadows_enabled;
 }
 
 void TCompLightSpot::activate() {

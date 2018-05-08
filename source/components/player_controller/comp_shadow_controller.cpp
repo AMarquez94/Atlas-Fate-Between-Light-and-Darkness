@@ -108,27 +108,28 @@ void TCompShadowController::registerMsgs() {
 bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 {
 	physx::PxRaycastHit hit;
-		for (unsigned int i = 0; i < static_lights.size(); i++) {
-			CEntity * c_entity = static_lights[i];
-			TCompTransform * c_trans = c_entity->get<TCompTransform>();
+	for (unsigned int i = 0; i < static_lights.size(); i++) {
+		CEntity * c_entity = static_lights[i];
+		TCompTransform * c_trans = c_entity->get<TCompTransform>();
 
-			float distance = VEC3::Distance(c_trans->getPosition(), point);
-			if (!EnginePhysics.Raycast(point, -c_trans->getFront(), distance, hit, physx::PxQueryFlag::eSTATIC, shadowDetectionFilter))
-				return false;
-		}
-
-	for (unsigned int i = 0; i < dynamic_lights.size(); i++)
-	{
-		CEntity * c_entity = dynamic_lights[i];
-		TCompCollider * c_collider = c_entity->get<TCompCollider>();
-		TCompTransform * c_transform = c_entity->get<TCompTransform>();
-		if (c_collider->player_inside)
+		float distance = VEC3::Distance(c_trans->getPosition(), point);
+		if (!EnginePhysics.Raycast(point, -c_trans->getFront(), distance, hit, physx::PxQueryFlag::eSTATIC, shadowDetectionFilter))
+			return false;
+	}
+	if (!shutDown) {
+		for (unsigned int i = 0; i < dynamic_lights.size(); i++)
 		{
-			VEC3 dir = point - c_transform->getPosition();
-			dir.Normalize();
-			float distance = VEC3::Distance(c_transform->getPosition(), point);
-			if (!EnginePhysics.Raycast(c_transform->getPosition(), dir, distance - 0.2f, hit, physx::PxQueryFlag::eSTATIC, shadowDetectionFilter))
-				return false;
+			CEntity * c_entity = dynamic_lights[i];
+			TCompCollider * c_collider = c_entity->get<TCompCollider>();
+			TCompTransform * c_transform = c_entity->get<TCompTransform>();
+			if (c_collider->player_inside)
+			{
+				VEC3 dir = point - c_transform->getPosition();
+				dir.Normalize();
+				float distance = VEC3::Distance(c_transform->getPosition(), point);
+				if (!EnginePhysics.Raycast(c_transform->getPosition(), dir, distance - 0.2f, hit, physx::PxQueryFlag::eSTATIC, shadowDetectionFilter))
+					return false;
+			}
 		}
 	}
 
