@@ -92,15 +92,10 @@ void TCompShadowController::onPlayerExposed(const TMsgPlayerIlluminated& msg) {
 	}
 }
 
-void TCompShadowController::onSpotlightsToggle(const TMsgSpotlightsToggle& msg) {
-	shutDown = !shutDown;
-}
-
 void TCompShadowController::registerMsgs() {
 
 	DECL_MSG(TCompShadowController, TMsgSceneCreated, onSceneCreated);
 	DECL_MSG(TCompShadowController, TMsgPlayerIlluminated, onPlayerExposed);
-	DECL_MSG(TCompShadowController, TMsgSpotlightsToggle, onSpotlightsToggle);
 
 }
 

@@ -9,10 +9,6 @@ class TCompShadowController : public TCompBase {
 	void onSceneCreated(const TMsgSceneCreated& msg);
 	void onPlayerExposed(const TMsgPlayerIlluminated& msg);
 
-	//Debug console hack
-	bool shutDown = false;
-	void onSpotlightsToggle(const TMsgSpotlightsToggle& msg);
-
 	DECL_SIBLING_ACCESS();
 public:
 

@@ -66,21 +66,21 @@ void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 	startLightsOn = j.value("startLightsOn", false);
 	currentWaypoint = 0;
 
-  patrolColor.colorNormal = j.count("colorNormal") ? loadVEC4(j["colorNormal"]) : VEC4(1, 1, 1, 1);
-  patrolColor.colorSuspect = j.count("colorSuspect") ? loadVEC4(j["colorSuspect"]) : VEC4(1, 1, 0, 1);
-  patrolColor.colorAlert = j.count("colorAlert") ? loadVEC4(j["colorAlert"]) : VEC4(1, 0, 0, 1);
-  patrolColor.colorDead = j.count("colorDead") ? loadVEC4(j["colorDead"]) : VEC4(0, 0, 0, 0);
+	patrolColor.colorNormal = j.count("colorNormal") ? loadVEC4(j["colorNormal"]) : VEC4(1, 1, 1, 1);
+	patrolColor.colorSuspect = j.count("colorSuspect") ? loadVEC4(j["colorSuspect"]) : VEC4(1, 1, 0, 1);
+	patrolColor.colorAlert = j.count("colorAlert") ? loadVEC4(j["colorAlert"]) : VEC4(1, 0, 0, 1);
+	patrolColor.colorDead = j.count("colorDead") ? loadVEC4(j["colorDead"]) : VEC4(0, 0, 0, 0);
 
-  /* TEMP: TODO: borrar */
-  //trueLookAt = j.count("trueLookAt") > 0 ? loadVEC3(j["trueLookAt"]) : VEC3::Zero;
-  //if (j.count("trueLookAt") > 0) {
-  //  trueLookAt = loadVEC3(j["trueLookAt"]);
-  //  Waypoint wpt;
-  //  TCompTrans
-  //}
-  //else {
-  //  trueLookAt = VEC3::Zero;
-  //}
+	/* TEMP: TODO: borrar */
+	//trueLookAt = j.count("trueLookAt") > 0 ? loadVEC3(j["trueLookAt"]) : VEC3::Zero;
+	//if (j.count("trueLookAt") > 0) {
+	//  trueLookAt = loadVEC3(j["trueLookAt"]);
+	//  Waypoint wpt;
+	//  TCompTrans
+	//}
+	//else {
+	//  trueLookAt = VEC3::Zero;
+	//}
 }
 
 void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
@@ -92,8 +92,8 @@ void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
 
 		TCompTransform * tPos = get<TCompTransform>();
 		Waypoint wpt;
-		wpt.position =tPos->getPosition();
-    wpt.lookAt = tPos->getFront();
+		wpt.position = tPos->getPosition();
+		wpt.lookAt = tPos->getFront();
 		//wpt.lookAt = trueLookAt != VEC3::Zero ? trueLookAt : tPos->getFront();
 		wpt.minTime = 1.f;
 		addWaypoint(wpt);
@@ -125,10 +125,12 @@ void TCompAIPatrol::onMsgPatrolStunned(const TMsgEnemyStunned & msg)
 	e_controller->blend(patrolColor.colorDead, 0.1f);
 
 	TCompTransform *mypos = get<TCompTransform>();
+	TCompCollider* mycollider = get<TCompCollider>();
 	float y, p, r;
 	mypos->getYawPitchRoll(&y, &p, &r);
 	p = p - deg2rad(89.f);
 	mypos->setYawPitchRoll(y, p, r);
+	//mycollider->setGlobalPose(mypos->getPosition(), mypos->getRotation());
 	turnOffLight();
 
 	TCompGroup* cGroup = get<TCompGroup>();
@@ -192,8 +194,8 @@ void TCompAIPatrol::onMsgPatrolFixed(const TMsgPatrolFixed & msg)
 			}
 		}
 
-    TCompEmissionController * e_controller = get<TCompEmissionController>();
-    e_controller->blend(patrolColor.colorNormal, 0.1f);
+		TCompEmissionController * e_controller = get<TCompEmissionController>();
+		e_controller->blend(patrolColor.colorNormal, 0.1f);
 
 		current = nullptr;
 	}
@@ -210,7 +212,7 @@ void TCompAIPatrol::onMsgNoiseListened(const TMsgNoiseMade & msg)
 	bool isManagingNaturalNoise = isParentOfCurrent(current, "manageNaturalNoise");
 	bool isChasingPlayer = isParentOfCurrent(current, "manageChase");
 
-  std::chrono::steady_clock::time_point newNoiseTime;
+	std::chrono::steady_clock::time_point newNoiseTime;
 
 	if (!isChasingPlayer && !isManagingArtificialNoise) {
 		if (!isPlayerInFov("The Player", fov - deg2rad(1.f), autoChaseDistance - 1.f)) {
@@ -223,15 +225,15 @@ void TCompAIPatrol::onMsgNoiseListened(const TMsgNoiseMade & msg)
 		}
 	}
 
-  /* Noise management */
-  if (!hNoiseSource.isValid() || hNoiseSource == msg.hNoiseSource || std::chrono::duration_cast<std::chrono::seconds>(newNoiseTime - lastTimeNoiseWasHeard).count() > 1.5f) {
+	/* Noise management */
+	if (!hNoiseSource.isValid() || hNoiseSource == msg.hNoiseSource || std::chrono::duration_cast<std::chrono::seconds>(newNoiseTime - lastTimeNoiseWasHeard).count() > 1.5f) {
 
-    /* Different noise sources (different enemies) => only hear if 1.5 seconds (hardcoded (TODO: Change)) passed || Same noise source => update noise settings */
-    lastTimeNoiseWasHeard = newNoiseTime;
-    noiseSourceChanged = noiseSource != msg.noiseOrigin;
-    noiseSource = msg.noiseOrigin;
-    hNoiseSource = msg.hNoiseSource;
-  }
+		/* Different noise sources (different enemies) => only hear if 1.5 seconds (hardcoded (TODO: Change)) passed || Same noise source => update noise settings */
+		lastTimeNoiseWasHeard = newNoiseTime;
+		noiseSourceChanged = noiseSource != msg.noiseOrigin;
+		noiseSource = msg.noiseOrigin;
+		hNoiseSource = msg.hNoiseSource;
+	}
 }
 
 void TCompAIPatrol::onMsgPlayerInvisible(const TMsgPlayerInvisible& msg) {
@@ -422,10 +424,10 @@ BTNode::ERes TCompAIPatrol::actionGoToNoiseSource(float dt)
 	TCompTransform * ppos = get<TCompTransform>();
 	VEC3 pp = ppos->getPosition();
 
-  if (noiseSourceChanged) {
-    generateNavmesh(pp, noiseSource);
-    noiseSourceChanged = false;
-  }
+	if (noiseSourceChanged) {
+		generateNavmesh(pp, noiseSource);
+		noiseSourceChanged = false;
+	}
 
 	if (isPlayerInFov(entityToChase, fov - deg2rad(1.f), autoChaseDistance - 1.f)) {
 		current = nullptr;
@@ -577,7 +579,7 @@ BTNode::ERes TCompAIPatrol::actionMarkPlayerAsSeen(float dt)
 {
 	assert(arguments.find("entityToChase_actionMarkPlayerAsSeen_markPlayerAsSeen") != arguments.end());
 	std::string entityToChase = arguments["entityToChase_actionMarkPlayerAsSeen_markPlayerAsSeen"].getString();
-	
+
 	CEntity *player = getEntityByName(entityToChase);
 	TCompTransform * ppos = player->get<TCompTransform>();
 	lastPlayerKnownPos = ppos->getPosition();
@@ -588,7 +590,7 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 {
 	assert(arguments.find("entityToChase_actionShootInhibitor_shootInhibitor") != arguments.end());
 	std::string entityToChase = arguments["entityToChase_actionShootInhibitor_shootInhibitor"].getString();
-	
+
 	CEntity *player = getEntityByName(entityToChase);
 	TCompTempPlayerController *pController = player->get<TCompTempPlayerController>();
 
@@ -1122,14 +1124,18 @@ void TCompAIPatrol::turnOnLight()
 	TCompGroup* cGroup = get<TCompGroup>();
 	CEntity* eCone = cGroup->getHandleByName("FlashLight");
 	TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
-	cConeController->turnOnLight();
+	if (cConeController->visible) {
+		cConeController->turnOnLight();
+	}
 }
 
 void TCompAIPatrol::turnOffLight() {
 	TCompGroup* cGroup = get<TCompGroup>();
 	CEntity* eCone = cGroup->getHandleByName("FlashLight");
 	TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
-	cConeController->turnOffLight();
+	if (cConeController->visible) {
+		cConeController->turnOffLight();
+	}
 }
 
 bool TCompAIPatrol::isStunnedPatrolInFov(float fov, float maxChaseDistance)

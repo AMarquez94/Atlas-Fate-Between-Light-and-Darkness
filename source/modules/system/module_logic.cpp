@@ -3,6 +3,7 @@
 #include "components/comp_tags.h"
 #include "components\lighting\comp_light_spot.h"
 #include "components\ia\comp_bt_patrol.h"
+#include "components\comp_group.h"
 #include <experimental/filesystem>
 
 
@@ -95,6 +96,8 @@ void CModuleLogic::publishClasses() {
 	m->set("speedBoost", SLB::FuncCall::create(&speedBoost));
 	m->set("playerInvisible", SLB::FuncCall::create(&playerInvisible));
 	m->set("spotlightsToggle", SLB::FuncCall::create(&spotlightsToggle));
+	m->set("lanternToggle", SLB::FuncCall::create(&lanternToggle));
+
 
 
 
@@ -235,21 +238,38 @@ void playerInvisible() {
 }
 
 void spotlightsToggle() {
-	//CHandle h = getEntityByName("The Player");
-	//TMsgSpotlightsToggle msg;
-	//h.sendMsg(msg);
-	//std::vector<CHandle> spotlights = CTagsManager::get().getAllEntitiesByTag(getID("light"));
-	//for (int i = 0; i < spotlights.size(); i++) {
-	//	spotlights[i].sendMsg(msg);
-	//}
+	//For all spotlights, we change their status. This does not desactivate lanterns even though they are spotlights.
 	getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
-		c->visible = false;
+		c->visible = !c->visible;
 	});
+	//Now we reactivate lanterns in case it is needed.
 	std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("patrol"));
 		for (int i = 0; i < enemies.size(); i++) {
-
+			CEntity* e = enemies[i];
+			TCompGroup* group = e->get<TCompGroup>();
+			CHandle lantern = group->getHandleByName("FlashLight");
+			if (lantern.isValid()) {
+				CEntity* e = lantern;
+				TCompLightSpot* patrol_lantern = e->get<TCompLightSpot>();
+				if (patrol_lantern->visible) break; //If the spotlight is already active, nothing to do, we break the loop
+				patrol_lantern->visible = true;    //else, we activate the lanterns.
+			}
 	}
 
+}
+
+void lanternToggle() {
+	std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("patrol"));
+	for (int i = 0; i < enemies.size(); i++) {
+		CEntity* e = enemies[i];
+		TCompGroup* group = e->get<TCompGroup>();
+		CHandle lantern = group->getHandleByName("FlashLight");
+		if (lantern.isValid()) {
+			CEntity* e = lantern;
+			TCompLightSpot* patrol_lantern = e->get<TCompLightSpot>();
+			patrol_lantern->visible = !patrol_lantern->visible;
+		}
+	}
 }
 
 void systemToggle(const std::string& system) {

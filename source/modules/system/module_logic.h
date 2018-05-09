@@ -75,3 +75,4 @@ void inShadows();
 void speedBoost(const float);
 void playerInvisible();
 void spotlightsToggle();
+void lanternToggle();

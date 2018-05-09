@@ -60,3 +60,7 @@ end
 function spotlightsToggle()
 	SLB.spotlightsToggle()
 end
+
+function lanternToggle()
+	SLB.lanternToggle()
+end
