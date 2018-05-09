@@ -15,6 +15,7 @@ void TCompLightDir::debugInMenu() {
 	TCompCamera::debugInMenu();
 	ImGui::DragFloat("Intensity", &intensity, 0.01f, 0.f, 10.f);
 	ImGui::ColorEdit3("Color", &color.x);
+    ImGui::Checkbox("Enabled", &isEnabled);
 }
 
 void TCompLightDir::renderDebug() {

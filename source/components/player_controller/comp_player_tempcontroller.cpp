@@ -536,7 +536,7 @@ const bool TCompTempPlayerController::convexTest(void) {
 			VEC3 target = hit_point + new_forward;
 
 			float ownVecY = c_my_transform->getUp().y;
-			float newVecY = c_my_transform->getUp().y;
+			float newVecY = hit.normal.y;
 			if (ownVecY < 0.001f) ownVecY = 0.0f;
 			if (newVecY < 0.001f) newVecY = 0.0f;
 
