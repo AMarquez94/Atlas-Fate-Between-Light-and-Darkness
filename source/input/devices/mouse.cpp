@@ -22,7 +22,7 @@ namespace Input
 		data._buttons[MOUSE_RIGHT].update(delta, _buttons[MOUSE_RIGHT] ? 1.f : 0.f);
 
 		// position
-		data._position_delta = _position_delta;
+		data._position_delta = (_position_delta + data._position_delta) * .5f; 
 		data._position = data._position + data._position_delta;
 		_position_delta = VEC2::Zero;	//reset previous position
 
