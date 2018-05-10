@@ -286,10 +286,10 @@ void CModuleRender::generateFrame() {
 			if (c_render_blur_radial)
 				curr_rt = c_render_blur_radial->apply(curr_rt);
 
-      // Check if we have a color grading component
-      TCompColorGrading* c_color_grading = e_cam->get< TCompColorGrading >();
-      if (c_color_grading)
-        curr_rt = c_color_grading->apply(curr_rt);
+            // Check if we have a color grading component
+            TCompColorGrading* c_color_grading = e_cam->get< TCompColorGrading >();
+            if (c_color_grading)
+                curr_rt = c_color_grading->apply(curr_rt);
 		}
 
 
@@ -353,7 +353,7 @@ void CModuleRender::tempDebugDraw() {
 		ImGuiWindowFlags_::ImGuiWindowFlags_NoTitleBar);
 	{
 		ImGui::SetCursorPos(ImVec2(CApp::get().xres - CApp::get().xres * 0.05f, CApp::get().yres * 0.01f));
-		//ImGui::Text("FPS %d", (int)CApp::get().fps);
+		ImGui::Text("FPS %d", (int)CApp::get().fps);
 	}
 
 	ImGui::End();

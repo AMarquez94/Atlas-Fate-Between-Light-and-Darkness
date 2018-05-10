@@ -207,8 +207,8 @@ void CApp::mainLoop() {
 //--------------------------------------------------------------------------------------
 bool CApp::readConfig() {
 	// ...
-	xres = 1920;
-	yres = 1080;
+	xres = 1280;
+	yres = 720;
 
 	time_since_last_render.reset();
 	CEngine::get().getRender().configure(xres, yres);

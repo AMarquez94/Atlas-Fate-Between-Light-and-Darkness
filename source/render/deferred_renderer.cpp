@@ -105,7 +105,7 @@ void CDeferredRenderer::renderAccLight() {
 	renderAmbientPass();
 	renderPointLights();
 	renderSpotLights();
-  renderProjectors();
+    renderProjectors();
 	renderDirectionalLights();
 	renderSkyBox();
 }
