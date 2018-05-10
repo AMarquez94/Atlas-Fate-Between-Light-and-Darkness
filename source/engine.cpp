@@ -83,6 +83,6 @@ void CEngine::update(float delta)
 
 void CEngine::render()
 {
-	PROFILE_FUNCTION("CEngine::render");
-	_module_render.generateFrame();
+    PROFILE_FUNCTION("CEngine::render");
+    _module_render.generateFrame();
 }

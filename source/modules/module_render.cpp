@@ -136,6 +136,7 @@ bool CModuleRender::start()
 
 // Forward the OS msg to the IMGUI
 LRESULT CModuleRender::OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+
 	return ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam);
 }
 
@@ -169,6 +170,7 @@ void CModuleRender::update(float delta)
 void CModuleRender::render()
 {
 	if (ImGui::TreeNode("Miscellaneous")) {
+
 		static int nframes = 5;
 		ImGui::DragInt("NumFrames To Capture", &nframes, 0.1f, 1, 20);
 		if (ImGui::SmallButton("Start CPU Trace Capturing")) {
@@ -182,12 +184,13 @@ void CModuleRender::render()
 	}
 		
 	if (ImGui::TreeNode("Render Control")) {
+
 		ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.1f, 32.f);
 		ImGui::DragFloat("Ambient Adjustment", &cb_globals.global_ambient_adjustment, 0.01f, 0.0f, 1.f);
 		ImGui::DragFloat("HDR", &cb_globals.global_hdr_enabled, 0.01f, 0.0f, 1.f);
 		ImGui::DragFloat("Gamma Correction", &cb_globals.global_gamma_correction_enabled, 0.01f, 0.0f, 1.f);
 		ImGui::DragFloat("Reinhard vs Uncharted2", &cb_globals.global_tone_mapping_mode, 0.01f, 0.0f, 1.f);
-    ImGui::DragFloat("Fog density", &cb_globals.global_fog_density, 0.0001f, 0.0f, 1.f);
+        ImGui::DragFloat("Fog density", &cb_globals.global_fog_density, 0.0001f, 0.0f, 1.f);
 
 		// Must be in the same order as the RO_* ctes
 		static const char* render_output_str =
@@ -200,6 +203,7 @@ void CModuleRender::render()
 			"Depth Linear\0"
 			"AO\0"
 			"\0";
+
 		ImGui::Combo("Output", &cb_globals.global_render_output, render_output_str);
 		ImGui::TreePop();
 	}
@@ -297,11 +301,24 @@ void CModuleRender::generateFrame() {
 		renderFullScreenQuad("dump_texture.tech", curr_rt);
 
 		// Debug render
+
+        // Move this to and external file.
+        ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.5f, 0.5f, 0.5f, 0.6f));
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(255.0f, 255.0f, 255.0f, 255.0f));
+        ImGui::PushStyleColor(ImGuiCol_TitleBg, ImVec4(0.0, 0.0f, 0.0f, 0.7f));
+        ImGui::PushStyleColor(ImGuiCol_TitleBgActive , ImVec4(0.0, 0.0f, 0.0f, 0.7f));
+        ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 1);
+        ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1);
+
+        ImGui::Begin("Inspector", NULL);
 		{
 			PROFILE_FUNCTION("Modules");
 			CTraceScoped gpu_scope("Modules");
 			CEngine::get().getModules().render();
 		}
+        ImGui::End();
+        ImGui::PopStyleVar(2);
+        ImGui::PopStyleColor(2);
 	}
 
 	{
