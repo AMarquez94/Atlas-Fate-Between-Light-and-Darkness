@@ -86,6 +86,10 @@ void CModuleGameManager::update(float delta)
 	if (EngineInput["btDownAux"].getsPressed()){
 		menuPosition = (menuPosition + 1) % menuSize;
 	}
+
+    if (EngineInput["btDebugMode"].getsPressed()) {
+        EngineRender.setDebugMode(!EngineRender.debugmode);
+    }
 }
 
 void CModuleGameManager::render()

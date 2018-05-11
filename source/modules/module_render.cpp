@@ -169,7 +169,7 @@ void CModuleRender::update(float delta)
 
 void CModuleRender::render()
 {
-	if (ImGui::TreeNode("Miscellaneous")) {
+	if (ImGui::TreeNode("Profiler")) {
 
 		static int nframes = 5;
 		ImGui::DragInt("NumFrames To Capture", &nframes, 0.1f, 1, 20);
@@ -178,12 +178,11 @@ void CModuleRender::render()
 		}
 
 		// Edit the Background color
-		ImGui::ColorEdit4("Background Color", &_backgroundColor.x);
 		ImGui::DragFloat("Time Factor", &EngineEntities.time_scale_factor, 0.01f, 0.f, 1.0f);
 		ImGui::TreePop();
 	}
 		
-	if (ImGui::TreeNode("Render Control")) {
+	if (ImGui::TreeNode("Lighting")) {
 
 		ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.1f, 32.f);
 		ImGui::DragFloat("Ambient Adjustment", &cb_globals.global_ambient_adjustment, 0.01f, 0.0f, 1.f);
@@ -207,6 +206,8 @@ void CModuleRender::render()
 		ImGui::Combo("Output", &cb_globals.global_render_output, render_output_str);
 		ImGui::TreePop();
 	}
+
+    ImGui::Separator();
 }
 
 void CModuleRender::configure(int xres, int yres)
@@ -240,8 +241,6 @@ void CModuleRender::activateMainCamera() {
 }
 
 void CModuleRender::generateFrame() {
-
-	tempDebugDraw();
 
 	{
 		PROFILE_FUNCTION("CModuleRender::shadowsMapsGeneration");
@@ -296,29 +295,8 @@ void CModuleRender::generateFrame() {
                 curr_rt = c_color_grading->apply(curr_rt);
 		}
 
-
 		Render.startRenderInBackbuffer();
 		renderFullScreenQuad("dump_texture.tech", curr_rt);
-
-		// Debug render
-
-        // Move this to and external file.
-        ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.5f, 0.5f, 0.5f, 0.6f));
-        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(255.0f, 255.0f, 255.0f, 255.0f));
-        ImGui::PushStyleColor(ImGuiCol_TitleBg, ImVec4(0.0, 0.0f, 0.0f, 0.7f));
-        ImGui::PushStyleColor(ImGuiCol_TitleBgActive , ImVec4(0.0, 0.0f, 0.0f, 0.7f));
-        ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 1);
-        ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1);
-
-        ImGui::Begin("Inspector", NULL);
-		{
-			PROFILE_FUNCTION("Modules");
-			CTraceScoped gpu_scope("Modules");
-			CEngine::get().getModules().render();
-		}
-        ImGui::End();
-        ImGui::PopStyleVar(2);
-        ImGui::PopStyleColor(2);
 	}
 
 	{
@@ -337,11 +315,8 @@ void CModuleRender::generateFrame() {
 		activateBlendConfig(BLEND_CFG_DEFAULT);
 	}
 
-	{
-		PROFILE_FUNCTION("ImGui::Render");
-		CTraceScoped gpu_scope("ImGui");
-		ImGui::Render();
-	}
+    if(debugmode)
+        debugDraw();
 
 	// Present the information rendered to the back buffer to the front buffer (the screen)
 	{
@@ -350,30 +325,59 @@ void CModuleRender::generateFrame() {
 	}
 }
 
-void CModuleRender::tempDebugDraw() {
+void CModuleRender::debugDraw() {
 
-	//UI Window's Size
-	ImGui::SetNextWindowSize(ImVec2((float)CApp::get().xres, (float)CApp::get().yres), ImGuiCond_Always);
-	//UI Window's Position
-	ImGui::SetNextWindowPos(ImVec2(0, 0));
-	//Transparent background - ergo alpha = 0 (RGBA)
-	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
-	//Some style added
-	ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2);
-	ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1);
-	ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(255.0f, 255.0f, 255.0f, 1.0f));
+    // Main Inspector window
+    {
+        ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.149f, 0.1607f, 0.188f, 0.8f));
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(255.0f, 255.0f, 255.0f, 255.0f));
+        ImGui::PushStyleColor(ImGuiCol_TitleBg, ImVec4(0.0, 0.0f, 0.0f, 0.75f));
+        ImGui::PushStyleColor(ImGuiCol_TitleBgActive, ImVec4(0.0, 0.0f, 0.0f, 0.75f));
+        ImGui::PushStyleColor(ImGuiCol_TitleBgCollapsed, ImVec4(0.219, 0.349f, 0.501f, 0.75f));
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 4);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 1);
 
-	ImGui::Begin("UI", NULL,
-		ImGuiWindowFlags_::ImGuiWindowFlags_NoMove |
-		ImGuiWindowFlags_::ImGuiWindowFlags_NoInputs |
-		ImGuiWindowFlags_::ImGuiWindowFlags_NoResize |
-		ImGuiWindowFlags_::ImGuiWindowFlags_NoTitleBar);
-	{
-		ImGui::SetCursorPos(ImVec2(CApp::get().xres - CApp::get().xres * 0.05f, CApp::get().yres * 0.01f));
-		ImGui::Text("FPS %d", (int)CApp::get().fps);
-	}
+        // Render each render GUI explicit in order.
+        ImGui::Begin("Inspector", NULL);
+        {
+            PROFILE_FUNCTION("Modules");
+            CTraceScoped gpu_scope("Modules");
+            CEngine::get().getModules().render();
+        }
+        ImGui::End();
+        ImGui::PopStyleVar(2);
+        ImGui::PopStyleColor(2);
+    }
 
-	ImGui::End();
-	ImGui::PopStyleVar(2);
-	ImGui::PopStyleColor(2);
+    // Extra windows
+    {
+        //UI Window's Size
+        ImGui::SetNextWindowSize(ImVec2((float)CApp::get().xres, (float)CApp::get().yres), ImGuiCond_Always);
+        ImGui::SetNextWindowPos(ImVec2(0, 0));
+        ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
+        ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2);
+        ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1);
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(255.0f, 255.0f, 255.0f, 1.0f));
+
+        ImGui::Begin("UI", NULL,
+            ImGuiWindowFlags_::ImGuiWindowFlags_NoMove |
+            ImGuiWindowFlags_::ImGuiWindowFlags_NoInputs |
+            ImGuiWindowFlags_::ImGuiWindowFlags_NoResize |
+            ImGuiWindowFlags_::ImGuiWindowFlags_NoTitleBar);
+        {
+            ImGui::SetCursorPos(ImVec2(CApp::get().xres - CApp::get().xres * 0.05f, CApp::get().yres * 0.01f));
+            ImGui::Text("FPS %d", (int)CApp::get().fps);
+        }
+
+        ImGui::End();
+        ImGui::PopStyleVar(2);
+        ImGui::PopStyleColor(2);
+    }
+
+    // Finally render it
+    {
+        PROFILE_FUNCTION("ImGui::Render");
+        CTraceScoped gpu_scope("ImGui");
+        ImGui::Render();
+    }
 }

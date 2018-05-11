@@ -141,8 +141,3 @@ void TCompRender::refreshMeshesInRenderManager() {
         }
     }
 }
-
-//void TCompRender::setPropertyBlock(PropertyBlock & block) {
-//
-//  properties = block;
-//}
