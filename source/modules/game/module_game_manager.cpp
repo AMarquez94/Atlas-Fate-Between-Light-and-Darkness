@@ -20,64 +20,82 @@ bool CModuleGameManager::start()
 
 	isPaused = false;
 	victoryMenuVisible = false;
-	lostMenuVisible = false;
+  playerDiedMenuVisible = false;
 	menuVisible = false;
 
 	player = CTagsManager::get().getAllEntitiesByTag(getID("player"))[0];
+
+  Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+  mouse->setLockMouse(true);
 
 	return true;
 }
 
 void CModuleGameManager::update(float delta)
 {
-	bool found = false;
 	auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("victory_trigger"));
 
-	for (unsigned int i = 0; i < handles.size(); i++){
+	for (unsigned int i = 0; i < handles.size() && !victoryMenuVisible; i++){
 
 		CEntity* eCollider = handles[i];
 		TCompCollider * e = eCollider->get<TCompCollider>();
-		if (e->player_inside) {
+		if (e && e->player_inside) {
 
       TMsgScenePaused msg;
       msg.isPaused = true;
       EngineEntities.broadcastMsg(msg);
 			victoryMenuVisible = true;
-			found = true;
-			break;
 		}
 	}
 
 	CEntity* e = player;
 	TCompTempPlayerController *playerCont = e->get<TCompTempPlayerController>();
 	if (playerCont->isDead()) {
-		ShowCursor(false);
+
+    /* Player Dead */
+
 		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 		mouse->setLockMouse(false);
-		lostMenuVisible = true;
+		playerDiedMenuVisible = true;
 		TMsgScenePaused msg;
 		msg.isPaused = true;
 		EngineCameras.getCurrentCamera().sendMsg(msg);
-	}
+  }
+  else if (!isPaused && EngineInput["btPause"].getsPressed() || (!menuVisible && CApp::get().lostFocus)) {
 
-	if (!playerCont->isDead()) {
-		if (EngineInput["btPause"].getsPressed() || (!menuVisible && CApp::get().lostFocus)) {
+    /* Player not dead but game paused */
 
-			CApp::get().lostFocus = false;
+    isPaused = true;
+    CApp::get().lostFocus = false;
 
-			// Send pause message
-			TMsgScenePaused msg;
-			msg.isPaused = !menuVisible;
-			EngineEntities.broadcastMsg(msg);
+    // Send pause message
+    TMsgScenePaused msg;
+    msg.isPaused = isPaused;
+    EngineEntities.broadcastMsg(msg);
 
-			// Lock/Unlock the cursor
-			Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-			ShowCursor(!menuVisible);
-			mouse->setLockMouse(menuVisible);
+    // Lock/Unlock the cursor
+    Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+    mouse->setLockMouse(false);
 
-			menuVisible = !menuVisible;
-		}
-	}
+    menuVisible = true;
+  }
+  else if (isPaused && EngineInput["btPause"].getsPressed()) {
+
+    /* Player not dead and game unpaused */
+    isPaused = false;
+    CApp::get().lostFocus = false;
+
+    // Send pause message
+    TMsgScenePaused msg;
+    msg.isPaused = false;
+    EngineEntities.broadcastMsg(msg);
+
+    // Lock/Unlock the cursor
+    Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+    mouse->setLockMouse(true);
+
+    menuVisible = false;
+  }
 	
 	if (EngineInput["btUpAux"].getsPressed()){
 		menuPosition = (menuPosition - 1) % menuSize;
@@ -106,7 +124,8 @@ void CModuleGameManager::render()
 		ImGui::SetWindowPos("VICTORY!", ImVec2(menu_position.x, menu_position.y));
 		ImGui::Text("Enjoy your dopamine shot");
 		ImGui::End();
-	} else if (lostMenuVisible) {
+
+	} else if (playerDiedMenuVisible) {
 
 		ImGui::SetNextWindowSize(ImVec2((float)window_width * 1.2f, (float)window_height));
 		ImGui::Begin("YOU DIED! WHAT WOULD YOU DO?", false, window_flags);
@@ -115,7 +134,6 @@ void CModuleGameManager::render()
 		ImGui::Selectable("Restart game", menuPosition == 0);
 		if (ImGui::IsItemClicked() || (menuPosition == 0 && EngineInput["btMenuConfirm"].getsPressed()))
 		{
-			dbg("Restarting the game\n");
 			CEngine::get().getModules().changeGameState("map_intro");
 		}
 
@@ -136,7 +154,6 @@ void CModuleGameManager::render()
 		ImGui::Selectable("Restart game", menuPosition == 0);
 		if (ImGui::IsItemClicked() || (menuPosition == 0 && EngineInput["btMenuConfirm"].getsPressed()))
 		{
-			dbg("Restarting the game\n");
 			CEngine::get().getModules().changeGameState("map_intro");
 		}
 

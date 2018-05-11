@@ -17,7 +17,7 @@ class CModuleGameManager : public IModule
 	bool isPaused;
 	bool menuVisible;
 	bool victoryMenuVisible;
-	bool lostMenuVisible;
+	bool playerDiedMenuVisible;
 
 public:
 

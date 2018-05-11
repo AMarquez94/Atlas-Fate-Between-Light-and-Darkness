@@ -14,8 +14,6 @@ bool CModuleLevelSelect::start()
 	window_height = 150;
 
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-	//mouse->setLockMouse(true);
-	//ShowCursor(false);
 
 	return true;
 }
