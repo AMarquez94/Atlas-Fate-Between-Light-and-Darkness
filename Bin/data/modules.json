@@ -14,8 +14,6 @@
 		"game_manager",
 		"console",
 		"splash",
-		"test_input",
-		
 		"map_intro",
 		"level_select",
 		"game_over"

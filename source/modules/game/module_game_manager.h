@@ -21,9 +21,16 @@ class CModuleGameManager : public IModule
 
 public:
 
+    struct ConfigPublic {
+        bool drawfps = true;
+
+    }config;
+
 	CModuleGameManager(const std::string& name): IModule(name) {}
 
 	bool start() override;
 	void update(float delta) override;
 	void render() override;
+
+    void debugRender();
 };

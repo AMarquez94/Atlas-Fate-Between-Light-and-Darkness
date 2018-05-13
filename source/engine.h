@@ -14,6 +14,8 @@
 #include "modules/system/module_game_console.h"
 #include "modules/system/module_gui.h"
 
+class CModuleGameManager;
+
 class CEngine
 {
 public:
@@ -39,6 +41,8 @@ public:
 	CModuleGameConsole& getGameConsole() { return _module_game_console; }
 	CModuleGameConsole getGameConsoleBis() { return _module_game_console; }
 	CModuleGUI& getGUI() { return _module_gui; }
+
+    CModuleGameManager& getGameManager();
 
 private:
 	CModuleManager  _modules;

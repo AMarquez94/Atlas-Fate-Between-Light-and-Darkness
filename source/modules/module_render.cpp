@@ -346,32 +346,7 @@ void CModuleRender::debugDraw() {
         }
         ImGui::End();
         ImGui::PopStyleVar(2);
-        ImGui::PopStyleColor(2);
-    }
-
-    // Extra windows
-    {
-        //UI Window's Size
-        ImGui::SetNextWindowSize(ImVec2((float)CApp::get().xres, (float)CApp::get().yres), ImGuiCond_Always);
-        ImGui::SetNextWindowPos(ImVec2(0, 0));
-        ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
-        ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2);
-        ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1);
-        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(255.0f, 255.0f, 255.0f, 1.0f));
-
-        ImGui::Begin("UI", NULL,
-            ImGuiWindowFlags_::ImGuiWindowFlags_NoMove |
-            ImGuiWindowFlags_::ImGuiWindowFlags_NoInputs |
-            ImGuiWindowFlags_::ImGuiWindowFlags_NoResize |
-            ImGuiWindowFlags_::ImGuiWindowFlags_NoTitleBar);
-        {
-            ImGui::SetCursorPos(ImVec2(CApp::get().xres - CApp::get().xres * 0.05f, CApp::get().yres * 0.01f));
-            ImGui::Text("FPS %d", (int)CApp::get().fps);
-        }
-
-        ImGui::End();
-        ImGui::PopStyleVar(2);
-        ImGui::PopStyleColor(2);
+        ImGui::PopStyleColor(5);
     }
 
     // Finally render it

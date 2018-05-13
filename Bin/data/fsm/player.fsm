@@ -185,7 +185,7 @@
 			"name": "fall",
 			"type": "FallState",
 			"animation": "fall",
-			"speed": 2,
+			"speed": 3,
 			"force": 3,
 			"size": 1,
 			"camera": {
