@@ -166,6 +166,7 @@
     <ClCompile Include="gui\widgets\gui_image.cpp" />
     <ClCompile Include="gui\widgets\gui_text.cpp" />
     <ClCompile Include="components\object_controller\comp_rotator.cpp" />
+    <ClCompile Include="components\player_controller\comp_player_attack_cast.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -372,6 +373,7 @@
     <ClInclude Include="gui\widgets\gui_image.h" />
     <ClInclude Include="gui\widgets\gui_text.h" />
     <ClInclude Include="components\object_controller\comp_rotator.h" />
+    <ClInclude Include="components\player_controller\comp_player_attack_cast.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />
