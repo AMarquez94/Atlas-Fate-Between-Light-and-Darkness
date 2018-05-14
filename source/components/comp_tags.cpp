@@ -56,7 +56,7 @@ const std::string& CTagsManager::getTagName(uint32_t tag) const {
 }
 
 void CTagsManager::debugInMenu() {
-	if (ImGui::TreeNode("All Tags...")) {
+	if (ImGui::TreeNode("Tag Manager")) {
 		for (auto& it : tags_names) {
 			// Use the name for the tree node...
 			if (ImGui::TreeNode(it.second.c_str())) {

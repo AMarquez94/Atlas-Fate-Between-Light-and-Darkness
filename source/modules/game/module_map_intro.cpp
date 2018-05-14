@@ -34,7 +34,6 @@ bool CModuleMapIntro::start()
 
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 	mouse->setLockMouse(true);
-	ShowCursor(false);
 
 	CHandle h_camera = getEntityByName("TPCamera");
 	if (h_camera.isValid())

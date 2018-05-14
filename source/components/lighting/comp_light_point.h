@@ -5,13 +5,13 @@
 class TCompLightPoint : public TCompBase {
 
 	// Light params
-    bool isEnabled;
 	VEC4            color = VEC4(1, 1, 1, 1);
 	float           intensity = 1.0f;
 	float           radius = 1.0f;
 
 public:
 
+    bool isEnabled;
 	const CTexture* projector = nullptr;
 
 	void debugInMenu();

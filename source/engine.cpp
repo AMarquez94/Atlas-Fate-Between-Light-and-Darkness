@@ -7,7 +7,6 @@
 #include "modules/game/module_map_intro.h"
 #include "modules/game/module_level_select.h"
 #include "modules/game/module_game_manager.h"
-#include "modules/test/module_test_input.h"
 
 //--------------------------------------------------------------------------------------
 CEngine& CEngine::get() {
@@ -39,7 +38,6 @@ bool CEngine::start() {
 	static CModuleGameOver module_game_over("game_over");
 	static CModuleMapIntro module_map_intro("map_intro");
 	static CModuleLevelSelect module_level_select("level_select");
-	static CModuleTestInput module_test_input("test_input");
 
 	_modules.registerSystemModule(&_module_render);
 	_modules.registerSystemModule(&_module_entities);
@@ -59,7 +57,6 @@ bool CEngine::start() {
 	_modules.registerGameModule(&module_main_menu);
 	_modules.registerGameModule(&module_game_over);
 	_modules.registerGameModule(&module_map_intro);
-	_modules.registerGameModule(&module_test_input);
 	_modules.registerGameModule(&module_level_select);
 
 	_modules.loadModules("data/modules.json");
@@ -83,6 +80,10 @@ void CEngine::update(float delta)
 
 void CEngine::render()
 {
-	PROFILE_FUNCTION("CEngine::render");
-	_module_render.generateFrame();
+    PROFILE_FUNCTION("CEngine::render");
+    _module_render.generateFrame();
+}
+
+CModuleGameManager& CEngine::getGameManager() {
+    return *(CModuleGameManager*)_modules.getModule("game_manager");
 }

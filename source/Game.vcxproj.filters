@@ -35,7 +35,6 @@
     <ClCompile Include="modules\module_manager.cpp" />
     <ClCompile Include="modules\module_render.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
-    <ClCompile Include="modules\test\module_test_input.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
     <ClCompile Include="render\mesh\mesh.cpp" />
     <ClCompile Include="render\mesh\mesh_loader.cpp" />
@@ -220,7 +219,6 @@
     <ClInclude Include="modules\module_manager.h" />
     <ClInclude Include="modules\module_render.h" />
     <ClInclude Include="modules\system\module_input.h" />
-    <ClInclude Include="modules\test\module_test_input.h" />
     <ClInclude Include="render\cte_buffer.h" />
     <ClInclude Include="render\mesh\mesh.h" />
     <ClInclude Include="render\mesh\mesh_loader.h" />

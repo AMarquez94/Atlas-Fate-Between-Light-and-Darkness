@@ -39,9 +39,9 @@ LRESULT CModuleInput::OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			int xPosRelative = raw->data.mouse.lLastX;
 			int yPosRelative = raw->data.mouse.lLastY;
 
-			mouse->setPositionDelta((double)xPosRelative, (double)yPosRelative);
+			mouse->setPositionDelta((float)xPosRelative, (float)yPosRelative);
 
-			CApp::get().resetMouse = mouse->_lock_cursor;
+			CApp::get().resetMouse = mouse->isMouseLocked();
 		}
 	}
 
@@ -290,7 +290,7 @@ void CModuleInput::renderInMenu()
 				// mouse
 				if (ImGui::TreeNode("Mouse"))
 				{
-					auto& mouse = host.mouse();
+          auto& mouse = host.mouse();
 					ImGui::Text("Position");
 					ImGui::SameLine();
 					ImGui::Value("X", mouse._position.x);

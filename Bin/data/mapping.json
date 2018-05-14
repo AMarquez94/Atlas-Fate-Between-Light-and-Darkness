@@ -99,6 +99,11 @@
     "all": false,
     "buttons":  ["f2"]
   },
+	{
+    "name": "btDebugMode",
+    "all": false,
+    "buttons":  ["f3"]
+  },
   {
     "name": "btPause",
     "all": false,

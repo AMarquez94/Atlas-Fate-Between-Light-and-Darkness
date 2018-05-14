@@ -11,7 +11,7 @@ namespace Input
 		_buttons[MOUSE_RIGHT] = false;
 		_wheel_delta = 0.f;
 		_position = VEC2(0.5f, 0.5f);
-		_lock_cursor = true;
+    setLockMouse(true);
 	}
 
 	void CMouse::updateMouseData(float delta, TInterface_Mouse& data)
@@ -59,9 +59,15 @@ namespace Input
 		_position_delta = VEC2(deltaX, deltaY);
 	}
 
-	void CMouse::setLockMouse(bool state)
+	void CMouse::setLockMouse(bool locked)
 	{
-		_lock_cursor = state;
+    if (!locked) {
+      while (ShowCursor(true) <= 1);
+    }
+    else {
+      while (ShowCursor(false) >= 0);
+    }
+		_lock_cursor = locked;
 	}
 
 }
