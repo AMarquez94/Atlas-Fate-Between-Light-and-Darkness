@@ -33,7 +33,7 @@ public:
 
 	/* Ray casting & related methods*/
 	bool Raycast(const VEC3 & origin, const VEC3 & dir, float distance, physx::PxRaycastHit & hit, physx::PxQueryFlag::Enum flag = physx::PxQueryFlag::eSTATIC, physx::PxQueryFilterData filterdata = defaultFilter);
-	//bool SphereCast(const VEC3 & origin, const VEC3 & dir, float distance, RaycastHit & hit);
+  bool SphereCast(physx::PxGeometry& geometry, physx::PxTransform& transform, std::vector<physx::PxOverlapHit> & hits, physx::PxQueryFilterData filterdata);
 
 private:
 

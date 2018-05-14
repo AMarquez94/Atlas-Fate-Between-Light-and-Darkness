@@ -156,5 +156,23 @@
 			},
 			"noise_emitter": {}
 		}
+	}, {
+		"entity": {
+			"name": "Attack Sphere Cast",
+			"hierarchy": {
+				"parent": "The Player"
+			},
+			"transform": {},
+			"collider": {
+				"shape": "sphere",
+				"radius": 2,
+				"is_trigger": true
+			},
+			"rigidbody": {
+				"is_controller": false,
+				"is_gravity": false
+			},
+			"player_attack_cast": {}
+		}
 	}
 ]
