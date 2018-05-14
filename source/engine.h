@@ -13,6 +13,7 @@
 #include "modules/system/module_sound.h"
 #include "modules/system/module_game_console.h"
 #include "modules/system/module_gui.h"
+#include "modules/system/module_scene_manager.h"
 
 class CModuleGameManager;
 
@@ -41,7 +42,7 @@ public:
 	CModuleGameConsole& getGameConsole() { return _module_game_console; }
 	CModuleGameConsole getGameConsoleBis() { return _module_game_console; }
 	CModuleGUI& getGUI() { return _module_gui; }
-
+    CModuleSceneManager& getSceneManager() { return _module_scene_manager; }
     CModuleGameManager& getGameManager();
 
 private:
@@ -58,6 +59,7 @@ private:
 	CModuleLogic    _module_logic;
 	CModuleGameConsole _module_game_console;
 	CModuleGUI _module_gui;
+    CModuleSceneManager _module_scene_manager;
 };
 
 #define Engine CEngine::get()

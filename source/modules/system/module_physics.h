@@ -5,6 +5,11 @@
 #include "PxPhysicsAPI.h"
 #include "physics/physics_filter.h"
 
+#define VEC3_TO_PXVEC3(VEC3) physx::PxVec3(vec3.x, vec3.y, vec3.z);
+#define PXVEC3_TO_VEC3(PxVec3) VEC3(PxVec3.x, PxVec3.y, PxVec3.z);
+#define QUAT_TO_PXQUAT(QUAT) physx::PxQuat(QUAT.x, QUAT.y, QUAT.z, QUAT.w);
+#define PXQUAT_TO_QUAT(PxQuat) QUAT(PxQuat.x, PxQuat.y, PxQuat.z, PxQuat.w);
+
 class TCompTransform;
 
 class CModulePhysics : public IModule

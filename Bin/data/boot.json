@@ -1,16 +1,22 @@
 {
-	"intro_scenes" : [
-		"data/scenes/player_fsm.scene",
-		"data/scenes/enemy.scene",
-		"data/scenes/sp_dynamic_lights.scene",
-		"data/scenes/milestone2_map_pre.scene",
-		"data/scenes/milestone2_map_lights2.scene",
-		"data/scenes/milestone2_map_colliders.scene",
-		"data/scenes/capsules.scene",
-		"data/scenes/camera.scene",
-		"data/scenes/water_plane.scene"
+	"intro_scenes": [{
+			"static_data": {
+				"navmesh": "data/navmeshes/milestone2_navmesh.bin"
+			},
+			"sub_scenes": [
+				"data/scenes/player_fsm.scene",
+				"data/scenes/enemy.scene",
+				"data/scenes/sp_dynamic_lights.scene",
+				"data/scenes/milestone2_map_pre.scene",
+				"data/scenes/milestone2_map_lights2.scene",
+				"data/scenes/milestone2_map_colliders.scene",
+				"data/scenes/capsules.scene",
+				"data/scenes/camera.scene",
+				"data/scenes/water_plane.scene"
+			]
+		}
 	],
-	"light_scenes_test" : [
+	"light_scenes_test": [
 		"data/scenes/player_fsm.scene",
 		"data/scenes/enemy.scene",
 		"data/scenes/sp_dynamic_lights.scene",
@@ -19,8 +25,5 @@
 		"data/scenes/milestone2_map_colliders.scene",
 		"data/scenes/capsules.scene",
 		"data/scenes/camera.scene"
-	],
-  "unused_scenes" : [
-    "dummy"
-  ]
+	]
 }
