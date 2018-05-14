@@ -73,3 +73,4 @@ private:
 #define EngineConsole CEngine::get().getGameConsole()
 #define EngineSound CEngine::get().getSound()
 #define EngineGUI CEngine::get().getGUI()
+#define EngineScene CEngine::get().getSceneManager()

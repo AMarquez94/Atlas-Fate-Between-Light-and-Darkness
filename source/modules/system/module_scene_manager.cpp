@@ -19,13 +19,13 @@ void CModuleSceneManager::loadJsonScenes(const std::string filepath) {
    
         sceneCount++;
         std::string scene_name = it.key();
-        std::vector< std::string > groups_subscenes = jboot[scene_name]["sub_scenes"];
+        std::vector< std::string > groups_subscenes = jboot[scene_name]["scene_group"];
         
         // Create the scene and store it
         Scene * scene = createScene(scene_name);
         scene->groups_subscenes = groups_subscenes;
-        std::string crap = jboot[scene_name];
-        scene->navmesh = jboot[scene_name]["static_data"]["navmesh"].get<std::string>();
+        auto& data = jboot[scene_name]["static_data"];
+        scene->navmesh = data.value("navmesh", "data/navmeshes/milestone2_navmesh.bin");
 
         _scenes.insert(std::pair<std::string, Scene*>(scene_name, scene));
     }
@@ -38,7 +38,7 @@ bool CModuleSceneManager::start() {
     _persistentScene = createScene("Persistent_Scene");
     _persistentScene->isLoaded = true;
 
-    //loadJsonScenes("data/boot.json");
+    loadJsonScenes("data/boot.json");
 
     return true;
 }
@@ -73,6 +73,8 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
     {
         // Send a message to notify the scene loading.
         // Useful if we want to show a load splash menu
+
+        unLoadActiveScene();
 
         // Load the subscene
         Scene * current_scene = it->second;

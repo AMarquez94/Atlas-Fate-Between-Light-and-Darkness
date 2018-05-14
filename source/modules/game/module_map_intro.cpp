@@ -18,19 +18,9 @@
 #include "input/enums.h"
 #include "modules/system/module_sound.h"
 
-bool CModuleMapIntro::start()
-{
-	json jboot = loadJson("data/boot.json");
+bool CModuleMapIntro::start() {
 
-	// Auto load some scenes
-	std::vector< std::string > scenes_to_auto_load = jboot["intro_scenes"];
-	for (auto& scene_name : scenes_to_auto_load) {
-		dbg("Autoloading scene %s\n", scene_name.c_str());
-		TEntityParseContext ctx;
-		parseScene(scene_name, ctx);
-	}
-
-	Engine.getNavmeshes().buildNavmesh("data/navmeshes/milestone2_navmesh.bin");
+    EngineScene.loadScene("scene_alex");
 
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 	mouse->setLockMouse(true);
@@ -49,30 +39,25 @@ bool CModuleMapIntro::start()
 		CHandle h_e(e);
 		h_e.sendMsg(msg);
 	});
+
 	Engine.getGUI().activateWidget("ingame");
 	Engine.getSound().setAmbientSound("../bin/data/sounds/ambient.ogg");
 
 	return true;
 }
 
-bool CModuleMapIntro::stop()
-{
-	Engine.getEntities().destroyAllEntities();
-	Engine.getCameras().deleteAllCameras();
-	Engine.getIA().clearSharedBoards();
-	Engine.getNavmeshes().destroyNavmesh();
+bool CModuleMapIntro::stop() {
 
 	return true;
 }
 
-void CModuleMapIntro::update(float delta)
-{
-	VEC2 mouse = EngineInput.mouse()._position;
+void CModuleMapIntro::update(float delta) {
+
 
 }
 
-void CModuleMapIntro::render()
-{
+void CModuleMapIntro::render() {
+
 	// Render the grid
 	cb_object.obj_world = MAT44::Identity;
 	cb_object.obj_color = VEC4(1, 1, 1, 1);
