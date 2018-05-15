@@ -659,39 +659,9 @@ const bool TCompTempPlayerController::canAttackTest(float dt)
   bool canAttackNow = false;
   if (!isDead() && !isMerged && isGrounded) { 
     TCompPlayerAttackCast* comp_attack_cast = get<TCompPlayerAttackCast>();
-    std::vector<CHandle> enemies = comp_attack_cast->getEnemiesInRange();
-    canAttackNow = canAttackEnemiesGiven(enemies);
+    canAttackNow = comp_attack_cast->canAttackEnemiesInRange();
   }
   
-  return canAttackNow;
-}
-
-const bool TCompTempPlayerController::canAttackEnemiesGiven(const std::vector<CHandle>& enemies)
-{
-  bool canAttackNow = false;
-  TCompTransform * mypos = get<TCompTransform>();
-
-  for (int i = 0; i < enemies.size() && !canAttackNow; i++) {
-
-    CEntity * enemy = enemies[i];
-    TCompTransform *ePos = enemy->get<TCompTransform>();
-    TCompTags * eTag = enemy->get<TCompTags>();
-
-    if (eTag->hasTag(getID("patrol"))) {
-      TCompAIPatrol * cPatrol = enemy->get<TCompAIPatrol>();
-      if (mypos->isInHorizontalFov(ePos->getPosition(), deg2rad(120.f)) && 
-        !ePos->isInFront(mypos->getPosition()) &&
-        !cPatrol->isStunned()) {
-          canAttackNow = true;
-      }
-    }
-    else if (eTag->hasTag(getID("mimetic"))) {
-      TCompAIMimetic * cMimetic = enemy->get<TCompAIMimetic>();
-      if (mypos->isInHorizontalFov(ePos->getPosition(), deg2rad(120.f)) && !cMimetic->isStunned()) {
-        canAttackNow = true;
-      }
-    }
-  }
   return canAttackNow;
 }
 
@@ -722,12 +692,14 @@ void TCompTempPlayerController::updateStamina(float dt) {
 void TCompTempPlayerController::attackState(float dt) {
 
   if (attackTimer > 0.7f) {   //TODO: Remove this. Only a fix for milestone 2
-    CHandle enemy = closestEnemyToStun();
+    TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
+    CHandle closestEnemy;
+    bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
 
-    if (enemy.isValid()) {
+    if (enemyFound) {
       TMsgEnemyStunned msg;
       msg.h_sender = CHandle(this).getOwner();
-      enemy.sendMsg(msg);
+      closestEnemy.sendMsg(msg);
     }
 
     attackTimer = 0.f;
@@ -741,7 +713,8 @@ void TCompTempPlayerController::attackState(float dt) {
 /* Attack state, kills the closest enemy if true*/
 void TCompTempPlayerController::mergeEnemy() {
 
-	CHandle enemy = closeEnemy("stunned");
+  TCompPlayerAttackCast * tAttackCast = get<TCompPlayerAttackCast>();
+  CHandle enemy = tAttackCast->closestEnemyToMerge();
 
 	if (enemy.isValid()) {
 		TMsgPatrolShadowMerged msg;
@@ -749,95 +722,6 @@ void TCompTempPlayerController::mergeEnemy() {
 		msg.h_objective = enemy;
 		enemy.sendMsg(msg);
 	}
-}
-
-/* Replace this for spatial index method/ trigger volume */
-CHandle TCompTempPlayerController::closeEnemy(const std::string & state) {
-
-	TCompTransform * mypos = get<TCompTransform>();
-
-
-	/* Manage patrols */
-	auto& handlesPatrol = CTagsManager::get().getAllEntitiesByTag(getID("patrol"));
-
-	for (unsigned int i = 0; i < handlesPatrol.size(); i++) {
-		if (!handlesPatrol[i].isValid()) continue;
-
-		CEntity * eEnemy = handlesPatrol[i];
-		TCompTransform * epos = eEnemy->get<TCompTransform>();
-
-		if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < maxAttackDistance
-			&& !epos->isInFront(mypos->getPosition())) {
-
-			TCompAIPatrol * aipatrol = eEnemy->get<TCompAIPatrol>();
-			if (state.compare("undefined") != 0) return handlesPatrol[i];
-			if (!aipatrol->isStunned()) return handlesPatrol[i];
-		}
-	}
-
-	auto& handlesMimetic = CTagsManager::get().getAllEntitiesByTag(getID("mimetic"));
-
-	for (unsigned int i = 0; i < handlesMimetic.size(); i++) {
-		if (!handlesMimetic[i].isValid()) continue;
-
-		CEntity * eEnemy = handlesMimetic[i];
-		TCompTransform * epos = eEnemy->get<TCompTransform>();
-
-		if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < maxAttackDistance) {
-
-			TCompAIMimetic * aimimetic = eEnemy->get<TCompAIMimetic>();
-			if (state.compare("undefined") != 0) return handlesMimetic[i];
-			if (!aimimetic->isStunned()) return handlesMimetic[i];
-		}
-	}
-
-	return CHandle();
-}
-
-/* Replace this for spatial index method/ trigger volume */
-CHandle TCompTempPlayerController::closestEnemyToStun() {
-
-	TCompTransform * mypos = get<TCompTransform>();
-
-	/* Manage patrols */
-	auto& handlesPatrol = CTagsManager::get().getAllEntitiesByTag(getID("patrol"));
-
-	for (unsigned int i = 0; i < handlesPatrol.size(); i++) {
-		if (!handlesPatrol[i].isValid()) continue;
-
-		CEntity * eEnemy = handlesPatrol[i];
-		TCompTransform * epos = eEnemy->get<TCompTransform>();
-
-		if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < maxAttackDistance
-			&& !epos->isInFront(mypos->getPosition())
-			&& mypos->isInFront(epos->getPosition())) {
-
-			TCompAIPatrol * aipatrol = eEnemy->get<TCompAIPatrol>();
-			if (!aipatrol->isStunned()) {
-				return handlesPatrol[i];
-			}
-		}
-	}
-
-	auto& handlesMimetic = CTagsManager::get().getAllEntitiesByTag(getID("mimetic"));
-
-	for (unsigned int i = 0; i < handlesMimetic.size(); i++) {
-		if (!handlesMimetic[i].isValid()) continue;
-
-		CEntity * eEnemy = handlesMimetic[i];
-		TCompTransform * epos = eEnemy->get<TCompTransform>();
-
-		if (VEC3::Distance(mypos->getPosition(), epos->getPosition()) < maxAttackDistance
-			&& mypos->isInFront(epos->getPosition())) {
-
-			TCompAIMimetic * aimimetic = eEnemy->get<TCompAIMimetic>();
-			if (!aimimetic->isStunned()) {
-				return handlesMimetic[i];
-			}
-		}
-	}
-
-	return CHandle();
 }
 
 /* Temporal function to determine our player shadow color, set this to a shader change..*/

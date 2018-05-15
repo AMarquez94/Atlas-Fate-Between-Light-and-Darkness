@@ -151,8 +151,6 @@ public:
 	const bool groundTest(float dt);
   const bool canAttackTest(float dt);
 
-  const bool canAttackEnemiesGiven(const std::vector<CHandle>& enemies);
-
 	/* Auxiliar functions */
 	void updateStamina(float dt);
 	void updateShader(float dt);
@@ -162,8 +160,6 @@ public:
 	void upButtonReselased();
 
 	VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
-	CHandle closeEnemy(const std::string & state = "undefined");
-	CHandle closestEnemyToStun();
 
 	static void registerMsgs();
 };

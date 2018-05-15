@@ -75,11 +75,18 @@ void TCompPlayerInput::update(float dt)
 
 		if (EngineInput["btAttack"].getsPressed())
 		{
-			TMsgSetFSMVariable attack;
-			attack.variant.setName("attack");
-			attack.variant.setBool(true);
-			e->sendMsg(attack);
-			attackButtonJustPressed = true;
+      TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
+      if (c_my_player->canAttack) {
+        TMsgSetFSMVariable attack;
+        attack.variant.setName("attack");
+        attack.variant.setBool(true);
+        e->sendMsg(attack);
+			  attackButtonJustPressed = true;
+      }
+      else {
+        /* TODO: Sonda */
+      }
+
 		}
 		else if (attackButtonJustPressed) {
 			TMsgSetFSMVariable attack;
@@ -115,8 +122,7 @@ void TCompPlayerInput::update(float dt)
 		if (EngineInput["btSecAction"].getsPressed())
 		{
 			/* Move this from here.. */
-			CEntity * c_my_entity = CHandle(this).getOwner();
-			TCompTempPlayerController * c_my_player = c_my_entity->get<TCompTempPlayerController>();
+			TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
 
 			if (c_my_player->isInhibited) {
 				TMsgSetFSMVariable keyPressed;
