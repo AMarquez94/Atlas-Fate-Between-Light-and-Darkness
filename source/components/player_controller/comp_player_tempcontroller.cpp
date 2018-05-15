@@ -48,8 +48,8 @@ void TCompTempPlayerController::renderDebug() {
 		ImGui::SetCursorPos(ImVec2(CApp::get().xres * 0.05f + 25, CApp::get().yres * 0.05f));
 		ImGui::ProgressBar(stamina / maxStamina, ImVec2(CApp::get().xres / 5.f, CApp::get().yres / 30.f));
 		ImGui::Text("State: %s", dbCameraState.c_str());
-    //ImGui::Text("VECTOR DIR: (%f - %f - %f)", debugDir.x, debugDir.y, debugDir.z);
-    //ImGui::Text("VECTOR FRONT: (%f - %f - %f)", debugMyFront.x, debugMyFront.y, debugMyFront.z);
+	//ImGui::Text("VECTOR DIR: (%f - %f - %f)", debugDir.x, debugDir.y, debugDir.z);
+	//ImGui::Text("VECTOR FRONT: (%f - %f - %f)", debugMyFront.x, debugMyFront.y, debugMyFront.z);
 
 	}
 
@@ -93,14 +93,14 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	maxStamina = j.value("maxStamina", 100.f);
 	incrStamina = j.value("incrStamina", 15.f);
 	decrStaticStamina = j.value("decrStaticStamina", 0.75f),
-	decrStaminaHorizontal = j.value("decrStaminaHorizontal", 12.5f);
+		decrStaminaHorizontal = j.value("decrStaminaHorizontal", 12.5f);
 	decrStaminaVertical = j.value("decrStaminaVertical", 17.5f);
 	minStaminaChange = j.value("minStaminaChange", 15.f);
 	auxCamera = j.value("auxCamera", "");
 	timesRemoveInhibitorKeyPressed = j.value("timesRemoveInhibitorKeyPressed", -1);
 	initialPoints = j.value("timesRemoveInhibitorKeyPressed", -1);
 	paused = true;
-  canAttack = false;
+	canAttack = false;
 }
 
 /* Player controller main update */
@@ -116,7 +116,7 @@ void TCompTempPlayerController::update(float dt) {
 		updateStamina(dt);
 		updateShader(dt); // Move this to player render component...
 		timeInhib += dt;
-    canAttack = canAttackTest(dt);
+		canAttack = canAttackTest(dt);
 		*staminaBarValue = stamina / maxStamina;
 	}
 }
@@ -195,11 +195,11 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg) {
 
 		// Get the target camera and set it as our new camera.
 		if (msg.target_camera) {
-      CHandle new_camera = getEntityByName(msg.target_camera->name);
-      if (new_camera != target_camera) {
-			  Engine.getCameras().blendOutCamera(target_camera, msg.target_camera->blendOut);
-      }
-      target_camera = new_camera;
+			CHandle new_camera = getEntityByName(msg.target_camera->name);
+			if (new_camera != target_camera) {
+				Engine.getCameras().blendOutCamera(target_camera, msg.target_camera->blendOut);
+			}
+			target_camera = new_camera;
 			Engine.getCameras().blendInCamera(target_camera, msg.target_camera->blendIn, CModuleCameras::EPriority::GAMEPLAY);
 		}
 		else {
@@ -256,14 +256,14 @@ void TCompTempPlayerController::onPlayerInhibited(const TMsgInhibitorShot & msg)
 
 void TCompTempPlayerController::onPlayerExposed(const TMsgPlayerIlluminated & msg)
 {
-  if (isMerged && msg.isIlluminated) {
-	  CEntity* e = CHandle(this).getOwner();
-	  TMsgSetFSMVariable notMergeMsg;
-	  notMergeMsg.variant.setName("onmerge");
-	  notMergeMsg.variant.setBool(false); // & isGrounded
-	  isMerged = false;
-	  e->sendMsg(notMergeMsg);
-  }
+	if (isMerged && msg.isIlluminated) {
+		CEntity* e = CHandle(this).getOwner();
+		TMsgSetFSMVariable notMergeMsg;
+		notMergeMsg.variant.setName("onmerge");
+		notMergeMsg.variant.setBool(false); // & isGrounded
+		isMerged = false;
+		e->sendMsg(notMergeMsg);
+	}
 }
 
 void TCompTempPlayerController::onPlayerPaused(const TMsgScenePaused& msg) {
@@ -300,23 +300,23 @@ void TCompTempPlayerController::walkState(float dt) {
 	VEC3 dir = getMotionDir(proj, normal_norm.Cross(-proj));
 
 	//TODO: Destroy this shiat-----------------------------------------------------------------------
-	
+
 	float factor = 1.0f;
 	if (EngineInput["btRun"].isPressed()) factor = 0.95f;
-  
-  if (currentSpeed <= 1.8f) {
-    factor = 1.3f;
-  }
+
+	if (currentSpeed <= 1.8f) {
+		factor = 1.3f;
+	}
 	stepTimer += dt;
 	if (stepTimer > 0.33f * factor) {
-		
+
 		Engine.getSound().exeStepSound();
 		stepRight = !stepRight;
 		stepTimer = 0.0f;
 	}
-  //Destroy this shiat-----------------------------------------------------------------------
+	//Destroy this shiat-----------------------------------------------------------------------
 
-  if (dir == VEC3::Zero) dir = proj;
+	if (dir == VEC3::Zero) dir = proj;
 
 	float dir_yaw = getYawFromVector(dir);
 	Quaternion my_rotation = c_my_transform->getRotation();
@@ -358,31 +358,31 @@ void TCompTempPlayerController::mergeState(float dt) {
 
 	if (convexTest() || concaveTest()) {
 
-    VEC3 postUp = c_my_transform->getUp();
+		VEC3 postUp = c_my_transform->getUp();
 
 		angle_test = fabs(EnginePhysics.gravity.Dot(prevUp));
-    float angle_amount = fabsf(acosf(prevUp.Dot(postUp)));
+		float angle_amount = fabsf(acosf(prevUp.Dot(postUp)));
 		std::string target_name = angle_test > mergeAngle ? "SMCameraVer" : "SMCameraHor"; // WARN: Watch this if gives problems...  
-		
-    CEntity* e_target_camera = target_camera;
-    if (angle_amount > deg2rad(30.f) || target_name.compare(dbCameraState) != 0) {
 
-      /* Only "change" cameras when the amount of degrees turned is more than 30º */
-      CEntity* eCamera = getEntityByName("SMCameraAux");
-      TCompName * name = ((CEntity*)target_camera)->get<TCompName>();
-      VEC3 dirToLookAt = -(prevUp + postUp);
-      dirToLookAt.Normalize();
+		CEntity* e_target_camera = target_camera;
+		if (angle_amount > deg2rad(30.f) || target_name.compare(dbCameraState) != 0) {
 
-      TMsgSetCameraActive msg;
-      msg.previousCamera = name->getName();
-      target_camera = getEntityByName(target_name);
-      msg.actualCamera = target_name;
-      msg.directionToLookAt = dirToLookAt;
-      eCamera->sendMsg(msg);
-    }
-    dbCameraState = target_name;
+			/* Only "change" cameras when the amount of degrees turned is more than 30º */
+			CEntity* eCamera = getEntityByName("SMCameraAux");
+			TCompName * name = ((CEntity*)target_camera)->get<TCompName>();
+			VEC3 dirToLookAt = -(prevUp + postUp);
+			dirToLookAt.Normalize();
+
+			TMsgSetCameraActive msg;
+			msg.previousCamera = name->getName();
+			target_camera = getEntityByName(target_name);
+			msg.actualCamera = target_name;
+			msg.directionToLookAt = dirToLookAt;
+			eCamera->sendMsg(msg);
+		}
+		dbCameraState = target_name;
 	}
-  //debugMyFront = c_my_transform->getFront();
+	//debugMyFront = c_my_transform->getFront();
 }
 
 /* Resets the player to it's default state parameters */
@@ -404,12 +404,12 @@ void TCompTempPlayerController::resetState(float dt) {
 	if (dir == VEC3::Zero) dir = proj;
 
 	VEC3 new_pos = c_my_transform->getPosition() - dir;
-    float mod_angle = (1 - abs(-EnginePhysics.gravity.Dot(c_my_transform->getUp())));
-    VEC3 new_offset_pos = c_my_transform->getPosition() + mod_angle * c_my_transform->getUp();
+	float mod_angle = (1 - abs(-EnginePhysics.gravity.Dot(c_my_transform->getUp())));
+	VEC3 new_offset_pos = c_my_transform->getPosition() + mod_angle * c_my_transform->getUp();
 	Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), new_pos, -EnginePhysics.gravity).Transpose();
 	Quaternion quat = Quaternion::CreateFromRotationMatrix(test);
-    c_my_transform->setPosition(new_offset_pos);
-    c_my_transform->setRotation(quat);
+	c_my_transform->setPosition(new_offset_pos);
+	c_my_transform->setRotation(quat);
 }
 
 void TCompTempPlayerController::exitMergeState(float dt)
@@ -656,13 +656,13 @@ const bool TCompTempPlayerController::groundTest(float dt) {
 
 const bool TCompTempPlayerController::canAttackTest(float dt)
 {
-  bool canAttackNow = false;
-  if (!isDead() && !isMerged && isGrounded) { 
-    TCompPlayerAttackCast* comp_attack_cast = get<TCompPlayerAttackCast>();
-    canAttackNow = comp_attack_cast->canAttackEnemiesInRange();
-  }
-  
-  return canAttackNow;
+	bool canAttackNow = false;
+	if (!isDead() && !isMerged && isGrounded) {
+		TCompPlayerAttackCast* comp_attack_cast = get<TCompPlayerAttackCast>();
+		canAttackNow = comp_attack_cast->canAttackEnemiesInRange();
+	}
+
+	return canAttackNow;
 }
 
 /* Sets the player current stamina depending on player status */
@@ -691,36 +691,37 @@ void TCompTempPlayerController::updateStamina(float dt) {
 /* Attack state, kills the closest enemy if true*/
 void TCompTempPlayerController::attackState(float dt) {
 
-  if (attackTimer > 0.7f) {   //TODO: Remove this. Only a fix for milestone 2
-    TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
-    CHandle closestEnemy;
-    bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
+	if (attackTimer > 0.7f) {   //TODO: Remove this. Only a fix for milestone 2
+		TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
+		CHandle closestEnemy;
+		bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
 
-    if (enemyFound) {
-      TMsgEnemyStunned msg;
-      msg.h_sender = CHandle(this).getOwner();
-      closestEnemy.sendMsg(msg);
-    }
+		if (enemyFound) {
+			TMsgEnemyStunned msg;
+			msg.h_sender = CHandle(this).getOwner();
+			closestEnemy.sendMsg(msg);
+		}
 
-    attackTimer = 0.f;
-    state = (actionhandler)&TCompTempPlayerController::idleState;
-  }
-  else {
-    attackTimer += dt;
-  }
+		attackTimer = 0.f;
+		state = (actionhandler)&TCompTempPlayerController::idleState;
+	}
+	else {
+		attackTimer += dt;
+	}
 }
 
 /* Attack state, kills the closest enemy if true*/
 void TCompTempPlayerController::mergeEnemy() {
 
-  TCompPlayerAttackCast * tAttackCast = get<TCompPlayerAttackCast>();
-  CHandle enemy = tAttackCast->closestEnemyToMerge();
-
-	if (enemy.isValid()) {
-		TMsgPatrolShadowMerged msg;
-		msg.h_sender = CHandle(this).getOwner();
-		msg.h_objective = enemy;
-		enemy.sendMsg(msg);
+	TCompPlayerAttackCast * tAttackCast = get<TCompPlayerAttackCast>();
+	CHandle enemy = tAttackCast->closestEnemyToMerge();
+	if (isMerged) {
+		if (enemy.isValid()) {
+			TMsgPatrolShadowMerged msg;
+			msg.h_sender = CHandle(this).getOwner();
+			msg.h_objective = enemy;
+			enemy.sendMsg(msg);
+		}
 	}
 }
 
@@ -728,24 +729,24 @@ void TCompTempPlayerController::mergeEnemy() {
 void TCompTempPlayerController::updateShader(float dt) {
 
 	TCompRender *c_my_render = get<TCompRender>();
-  TCompEmissionController *e_controller = get<TCompEmissionController>();
+	TCompEmissionController *e_controller = get<TCompEmissionController>();
 	TCompShadowController * shadow_oracle = get<TCompShadowController>();
 
-	if (isDead()){
-    e_controller->blend(playerColor.colorDead, 1.f);
-  }
-  else if (canAttack) {       //TEMP: TODO: Delete
-    e_controller->blend(VEC4(1.f, 0.f, 0.f, 1.f), 0.1f);
-  }
+	if (isDead()) {
+		e_controller->blend(playerColor.colorDead, 1.f);
+	}
+	else if (canAttack) {       //TEMP: TODO: Delete
+		e_controller->blend(VEC4(1.f, 0.f, 0.f, 1.f), 0.1f);
+	}
 	else if (isInhibited) {
-    e_controller->blend(playerColor.colorInhib, 0.1f);
+		e_controller->blend(playerColor.colorInhib, 0.1f);
 	}
 	else if (shadow_oracle->is_shadow) {
-    e_controller->blend(playerColor.colorMerge, 0.5f);
+		e_controller->blend(playerColor.colorMerge, 0.5f);
 	}
-  else {
-    e_controller->blend(playerColor.colorIdle, 0.5f);
-  }
+	else {
+		e_controller->blend(playerColor.colorIdle, 0.5f);
+	}
 }
 
 VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & left) {

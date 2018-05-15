@@ -3,6 +3,7 @@
 #include "components/comp_fsm.h"
 #include "components/comp_transform.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
+#include "comp_player_attack_cast.h"
 
 DECL_OBJ_MANAGER("player_input", TCompPlayerInput);
 
@@ -41,7 +42,7 @@ void TCompPlayerInput::update(float dt)
 
 		if (EngineInput["btRun"].hasChanged()) {
 
-      boostMsg.variant.setName("boost_speed");
+			boostMsg.variant.setName("boost_speed");
 			crouchButton = false;
 			TMsgSetFSMVariable crouch;
 			crouch.variant.setName("crouch");
@@ -53,7 +54,7 @@ void TCompPlayerInput::update(float dt)
 		}
 
 		if (EngineInput["btSlow"].hasChanged()) {
-      boostMsg.variant.setName("slow_speed");
+			boostMsg.variant.setName("slow_speed");
 			boostMsg.variant.setFloat(EngineInput["btSlow"].value);
 			e->sendMsg(boostMsg);
 		}
@@ -75,17 +76,17 @@ void TCompPlayerInput::update(float dt)
 
 		if (EngineInput["btAttack"].getsPressed())
 		{
-      TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
-      if (c_my_player->canAttack) {
-        TMsgSetFSMVariable attack;
-        attack.variant.setName("attack");
-        attack.variant.setBool(true);
-        e->sendMsg(attack);
-			  attackButtonJustPressed = true;
-      }
-      else {
-        /* TODO: Sonda */
-      }
+			TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
+			if (c_my_player->canAttack) {
+				TMsgSetFSMVariable attack;
+				attack.variant.setName("attack");
+				attack.variant.setBool(true);
+				e->sendMsg(attack);
+				attackButtonJustPressed = true;
+			}
+			else {
+				/* TODO: Sonda */
+			}
 
 		}
 		else if (attackButtonJustPressed) {
@@ -118,6 +119,26 @@ void TCompPlayerInput::update(float dt)
 			action.variant.setBool(true);
 			e->sendMsg(action);
 		}
+		{
+			TCompPlayerAttackCast* player = e->get<TCompPlayerAttackCast>();
+			//GrabEnemy messages
+			if (EngineInput["btAction"].getsPressed() && player->closestEnemyToMerge().isValid()) {
+				_enemyStunned = true;
+				TMsgSetFSMVariable grabEnemy;
+				grabEnemy.variant.setName("grabEnemy");
+				grabEnemy.variant.setBool(true);
+				e->sendMsg(grabEnemy);
+
+
+			}
+			if (EngineInput["btAction"].getsReleased() || (_enemyStunned && !player->closestEnemyToMerge().isValid())) {
+				_enemyStunned = false;
+				TMsgSetFSMVariable grabEnemy;
+				grabEnemy.variant.setName("grabEnemy");
+				grabEnemy.variant.setBool(false);
+				e->sendMsg(grabEnemy);
+			}
+		}
 
 		if (EngineInput["btSecAction"].getsPressed())
 		{
@@ -131,7 +152,7 @@ void TCompPlayerInput::update(float dt)
 				e->sendMsg(keyPressed);
 			}
 		}
-		
+
 		if (EngineInput["btDebugShadows"].getsPressed()) {
 			TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
 			c_my_player->dbgDisableStamina = !c_my_player->dbgDisableStamina;
