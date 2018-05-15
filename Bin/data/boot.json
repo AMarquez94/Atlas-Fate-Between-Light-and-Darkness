@@ -21,6 +21,7 @@
 		},
 		"scene_group": [
 			"data/scenes/player_fsm.scene",
+			"data/scenes/camera.scene",
 			"data/scenes/sp_dynamic_lights.scene",
 			"data/scenes/milestone2_map_pre.scene",
 			"data/scenes/milestone2_map_lights2.scene",
