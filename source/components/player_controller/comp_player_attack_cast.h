@@ -13,15 +13,13 @@ public:
 
   static void registerMsgs();
 
+  const std::vector<CHandle> getEnemiesInRange();
+
 private:
 
-  CHandle _hSource;
-
   physx::PxQueryFilterData PxPlayerAttackQueryFilterData;
+  physx::PxSphereGeometry geometry;
 
-  void onMsgEntityCreated(const TMsgEntityCreated& msg);
   void onMsgScenePaused(const TMsgScenePaused & msg);
-
-  std::vector<CHandle> getEnemiesInRange();
 };
 

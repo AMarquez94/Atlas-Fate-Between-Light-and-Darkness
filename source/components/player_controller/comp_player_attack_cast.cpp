@@ -11,27 +11,21 @@
 DECL_OBJ_MANAGER("player_attack_cast", TCompPlayerAttackCast);
 
 void TCompPlayerAttackCast::debugInMenu() {
-
 }
 
 void TCompPlayerAttackCast::load(const json& j, TEntityParseContext& ctx) {
+  geometry.radius = j.value("radius", 2.f);
 
+  physx::PxFilterData pxFilterData;
+  pxFilterData.word0 = FilterGroup::Enemy;
+  //pxFilterData.word1 = FilterGroup::Enemy;
+  PxPlayerAttackQueryFilterData.data = pxFilterData;
+  PxPlayerAttackQueryFilterData.flags = physx::PxQueryFlag::eDYNAMIC;
 }
 
 void TCompPlayerAttackCast::registerMsgs()
 {
-	DECL_MSG(TCompPlayerAttackCast, TMsgEntityCreated, onMsgEntityCreated);
 	DECL_MSG(TCompPlayerAttackCast, TMsgScenePaused, onMsgScenePaused);
-}
-
-void TCompPlayerAttackCast::onMsgEntityCreated(const TMsgEntityCreated & msg)
-{
-	TCompHierarchy * tHierarchy = get<TCompHierarchy>();
-	_hSource = getEntityByName(tHierarchy->parent_name);
-
-  physx::PxFilterData pxFilterData;
-  pxFilterData.word1 = FilterGroup::Enemy;
-  PxPlayerAttackQueryFilterData.data = pxFilterData;
 }
 
 void TCompPlayerAttackCast::onMsgScenePaused(const TMsgScenePaused & msg)
@@ -39,18 +33,16 @@ void TCompPlayerAttackCast::onMsgScenePaused(const TMsgScenePaused & msg)
 	paused = !paused;
 }
 
-std::vector<CHandle> TCompPlayerAttackCast::getEnemiesInRange()
+const std::vector<CHandle> TCompPlayerAttackCast::getEnemiesInRange()
 {
   std::vector<CHandle> enemies_in_range;
 
-
   TCompTransform* tPos = get<TCompTransform>();
-  TCompCollider* cCollider = get<TCompCollider>();
-  physx::PxSphereGeometry geometry;
-  if (cCollider->config->shape->getSphereGeometry(geometry)) {
+  
+  if (geometry.isValid()) {
 
     std::vector<physx::PxOverlapHit> hits;
-    if (EnginePhysics.SphereCast(geometry, cCollider->config->actor->getGlobalPose(), hits, PxPlayerAttackQueryFilterData)) {
+    if (EnginePhysics.SphereCast(geometry, tPos->getPosition(), hits, PxPlayerAttackQueryFilterData)) {
       for (int i = 0; i < hits.size(); i++) {
         CHandle hitCollider;
         hitCollider.fromVoidPtr(hits[i].actor->userData);
