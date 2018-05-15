@@ -23,14 +23,16 @@ bool CModuleGUI::start()
 
 	CParser parser;
 	parser.parseFile("data/gui/test.json");
-	parser.parseFile("data/gui/main_menu.json");
+	parser.parseFile("data/gui/main_menu_background.json");
 	parser.parseFile("data/gui/ingame.json");
+	parser.parseFile("data/gui/main_menu_buttons.json");
 	
 	/*parser.parseFile("data/gui/main_menu.json");
 	parser.parseFile("data/gui/gameplay.json");
 	parser.parseFile("data/gui/game_over.json");*/
 
-	activateWidget("main_menu");
+	activateWidget("main_menu_background");
+	activateWidget("main_menu_buttons");
 	auto newGameCB = []() {
 		CEngine::get().getGUI().outOfMainMenu();
 	};
@@ -44,13 +46,13 @@ bool CModuleGUI::start()
 		exit(0);
 	};
 	//CEngine::get().getGUI().getWidget("stamina_bar", true)->getBarParams()->_processValue = 0.5f;
-	CMainMenuController* mmc = new CMainMenuController();
+	/*CMainMenuController* mmc = new CMainMenuController();
 	mmc->registerOption("new_game", newGameCB);
 	mmc->registerOption("continue", continueCB);
 	mmc->registerOption("options", optionsCB);
 	mmc->registerOption("exit", exitCB);
 	mmc->setCurrentOption(0);
-	registerController(mmc);
+	registerController(mmc);*/
 	
 	return true;
 }
@@ -126,8 +128,6 @@ void CModuleGUI::activateWidget(const std::string& name)
 	CWidget* wdgt = getWidget(name);
 	if (wdgt)
 	{
-		if(_activeWidgets.size() > 0)
-			_activeWidgets.pop_back();
 		_activeWidgets.push_back(wdgt);
 	}
 }

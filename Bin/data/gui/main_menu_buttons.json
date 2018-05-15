@@ -1,0 +1,68 @@
+[
+	{
+		"name" : "main_menu_buttons",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "test_buttons",
+				"type" : "widget",
+				"position" : "25 330",
+				"children" : [
+					{
+						"name" : "new_game",
+						"type" : "button",
+						"position" : "0 0",
+						"size" : "224 44",
+						"texture" : "data/textures/gui/new_game.dds",
+						"selected" : {
+							"texture" : "data/textures/gui/new_game_selected.dds"
+						},
+						"pressed" : {
+							"texture" : "data/textures/gui/new_game_pressed.dds"
+						}
+					},
+					{
+						"name" : "continue",
+						"type" : "button",
+						"position" : "0 30",
+						"size" : "224 44",
+						"texture" : "data/textures/gui/continue.dds",
+						"selected" : {
+							"texture" : "data/textures/gui/continue_selected.dds"
+						},
+						"pressed" : {
+							"texture" : "data/textures/gui/continue_pressed.dds"
+						}
+					},
+					{
+						"name" : "options",
+						"type" : "button",
+						"position" : "0 60",
+						"size" : "224 44",
+						"texture" : "data/textures/gui/options.dds",
+						"selected" : {
+							"texture" : "data/textures/gui/options_selected.dds"
+						},
+						"pressed" : {
+							"texture" : "data/textures/gui/options_pressed.dds"
+						}
+					},
+					{
+						"name" : "exit",
+						"type" : "button",
+						"position" : "0 90",
+						"size" : "224 44",
+						"texture" : "data/textures/gui/exit.dds",
+						"selected" : {
+							"texture" : "data/textures/gui/exit_selected.dds"
+						},
+						"pressed" : {
+							"texture" : "data/textures/gui/exit_pressed.dds"
+						}
+					}
+				]
+			}
+		]
+	}
+]

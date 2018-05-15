@@ -1,0 +1,50 @@
+[
+	{
+		"name" : "main_menu_background",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "background",
+				"children" : [
+					{
+						"name" : "background",
+						"type" : "image",
+						"size" : "1080 640",
+						"texture" : "data/textures/gui/background.dds",
+						"xeffects" : [
+							{
+								"type" : "animate_uv",
+								"speed" : "0.025 0"
+							}
+						]
+					},
+					{
+						"name" : "foreground",
+						"type" : "image",
+						"size" : "2160 640",
+						"texture" : "data/textures/gui/fog1.dds",
+						"effects" : [
+							{
+								"type" : "animate_uv",
+								"speed" : "0.005 0"
+							}
+						]
+					},
+					{
+						"name" : "foreground2",
+						"type" : "image",
+						"size" : "2160 640",
+						"texture" : "data/textures/gui/fog2.dds",
+						"effects" : [
+							{
+								"type" : "animate_uv",
+								"speed" : "0.02 0"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]
