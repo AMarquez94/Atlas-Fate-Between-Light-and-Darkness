@@ -19,6 +19,7 @@ class CModuleSceneManager : public IModule
 public:
 
     int sceneCount;
+    bool hasReloaded = false;
 
     CModuleSceneManager(const std::string& name);
 	bool start() override;

@@ -103,7 +103,7 @@ void CModuleLogic::publishClasses() {
     m->set("setInfiniteStamine", SLB::FuncCall::create(&setInfiniteStamine));
     m->set("spawn", SLB::FuncCall::create(&spawn));
     m->set("bind", SLB::FuncCall::create(&bind));
-    
+    m->set("loadscene", SLB::FuncCall::create(&loadscene));
     // Global toggles
     m->set("cg_drawfps", SLB::FuncCall::create(&cg_drawfps));
     m->set("cg_drawlights", SLB::FuncCall::create(&cg_drawlights));
@@ -238,9 +238,9 @@ void spawn(const std::string & name, const VEC3 & pos) {
 
 }
 
-void loadLevel(const std::string &level) {
+void loadscene(const std::string &level) {
 
-
+    EngineScene.loadScene(level);
 }
 
 void destroy() {

@@ -104,9 +104,9 @@ bool CModuleSceneManager::unLoadActiveScene() {
     if (_activeScene != nullptr) {
 
         Engine.getEntities().destroyAllEntities();
-        Engine.getCameras().deleteAllCameras();
-        Engine.getIA().clearSharedBoards();
-        Engine.getNavmeshes().destroyNavmesh();
+        //Engine.getCameras().deleteAllCameras();
+        //Engine.getIA().clearSharedBoards();
+        //Engine.getNavmeshes().destroyNavmesh();
 
         _activeScene->isLoaded = false;
         _activeScene = nullptr;
@@ -131,6 +131,6 @@ Scene* CModuleSceneManager::getSceneByName(const std::string& name) {
 
 void CModuleSceneManager::setActiveScene(Scene* scene) {
 
-    unLoadActiveScene();
+    //unLoadActiveScene();
     _activeScene = scene;
 }

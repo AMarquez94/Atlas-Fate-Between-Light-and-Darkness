@@ -1,7 +1,7 @@
 {
 	"sizes": {
-		"default": 1024,
-		"transform": 1024
+		"default": 2048,
+		"transform": 2048
 	},
 	"init_order": {
 		"entity": 100,
