@@ -88,6 +88,23 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
         // Renew the active scene
         current_scene->isLoaded = true;
         setActiveScene(current_scene);
+
+        // Move this to LUA.
+        CHandle h_camera = getEntityByName("TPCamera");
+        if (h_camera.isValid())
+            Engine.getCameras().setDefaultCamera(h_camera);
+
+        h_camera = getEntityByName("main_camera");
+        if (h_camera.isValid())
+            Engine.getCameras().setOutputCamera(h_camera);
+
+        auto om = getObjectManager<CEntity>();
+        om->forEach([](CEntity* e) {
+            TMsgSceneCreated msg;
+            CHandle h_e(e);
+            h_e.sendMsg(msg);
+        });
+
         return true;
     }
 
@@ -104,9 +121,9 @@ bool CModuleSceneManager::unLoadActiveScene() {
     if (_activeScene != nullptr) {
 
         Engine.getEntities().destroyAllEntities();
-        //Engine.getCameras().deleteAllCameras();
-        //Engine.getIA().clearSharedBoards();
-        //Engine.getNavmeshes().destroyNavmesh();
+        Engine.getCameras().deleteAllCameras();
+        Engine.getIA().clearSharedBoards();
+        Engine.getNavmeshes().destroyNavmesh();
 
         _activeScene->isLoaded = false;
         _activeScene = nullptr;

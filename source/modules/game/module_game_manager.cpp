@@ -62,7 +62,8 @@ void CModuleGameManager::update(float delta)
             EngineCameras.getCurrentCamera().sendMsg(msg);
         }
     }
-    else if (!isPaused && EngineInput["btPause"].getsPressed() || (!menuVisible && CApp::get().lostFocus)) {
+
+    if (!isPaused && EngineInput["btPause"].getsPressed() || (!menuVisible && CApp::get().lostFocus)) {
 
         /* Player not dead but game paused */
 
