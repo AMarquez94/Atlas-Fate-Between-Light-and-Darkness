@@ -8,6 +8,7 @@
 class CModuleGUI : public IModule
 {
 public:
+
 	CModuleGUI(const std::string& name);
 	bool start() override;
 	bool stop() override;
