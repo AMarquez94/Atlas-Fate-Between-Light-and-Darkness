@@ -2,7 +2,7 @@
 		"entity": {
 			"name": "The Player",
 			"transform": {
-				"pos": "-6 -8 -35"
+				"pos": "-6 0 68"
 			},
 			"render": [{
 					"mesh": "data/skeletons/player/body.mesh",
@@ -108,6 +108,9 @@
 				"is_gravity": true
 			},
 			"shadow_controller": {},
+			"player_attack_cast": {
+				"radius": 2
+			},
 			"fsm": {
 				"file": "data/fsm/player.fsm"
 			},
@@ -155,24 +158,6 @@
 				"is_gravity": false
 			},
 			"noise_emitter": {}
-		}
-	}, {
-		"entity": {
-			"name": "Attack Sphere Cast",
-			"hierarchy": {
-				"parent": "The Player"
-			},
-			"transform": {},
-			"collider": {
-				"shape": "sphere",
-				"radius": 2,
-				"is_trigger": true
-			},
-			"rigidbody": {
-				"is_controller": false,
-				"is_gravity": false
-			},
-			"player_attack_cast": {}
 		}
 	}
 ]

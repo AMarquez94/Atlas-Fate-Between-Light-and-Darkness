@@ -9,6 +9,7 @@
 #include "components/physics/comp_rigidbody.h"
 #include "components/physics/comp_collider.h"
 #include "components/player_controller/comp_shadow_controller.h"
+#include "components/player_controller/comp_player_attack_cast.h"
 #include "components/lighting/comp_emission_controller.h"
 #include "physics/physics_collider.h"
 #include "render/mesh/mesh_loader.h"
@@ -99,6 +100,7 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	timesRemoveInhibitorKeyPressed = j.value("timesRemoveInhibitorKeyPressed", -1);
 	initialPoints = j.value("timesRemoveInhibitorKeyPressed", -1);
 	paused = true;
+  canAttack = false;
 }
 
 /* Player controller main update */
@@ -114,6 +116,7 @@ void TCompTempPlayerController::update(float dt) {
 		updateStamina(dt);
 		updateShader(dt); // Move this to player render component...
 		timeInhib += dt;
+    canAttack = canAttackTest(dt);
 		*staminaBarValue = stamina / maxStamina;
 	}
 }
@@ -651,6 +654,47 @@ const bool TCompTempPlayerController::groundTest(float dt) {
 	return c_my_collider->is_grounded;
 }
 
+const bool TCompTempPlayerController::canAttackTest(float dt)
+{
+  bool canAttackNow = false;
+  if (!isDead() && !isMerged && isGrounded) { 
+    TCompPlayerAttackCast* comp_attack_cast = get<TCompPlayerAttackCast>();
+    std::vector<CHandle> enemies = comp_attack_cast->getEnemiesInRange();
+    canAttackNow = canAttackEnemiesGiven(enemies);
+  }
+  
+  return canAttackNow;
+}
+
+const bool TCompTempPlayerController::canAttackEnemiesGiven(const std::vector<CHandle>& enemies)
+{
+  bool canAttackNow = false;
+  TCompTransform * mypos = get<TCompTransform>();
+
+  for (int i = 0; i < enemies.size() && !canAttackNow; i++) {
+
+    CEntity * enemy = enemies[i];
+    TCompTransform *ePos = enemy->get<TCompTransform>();
+    TCompTags * eTag = enemy->get<TCompTags>();
+
+    if (eTag->hasTag(getID("patrol"))) {
+      TCompAIPatrol * cPatrol = enemy->get<TCompAIPatrol>();
+      if (mypos->isInHorizontalFov(ePos->getPosition(), deg2rad(120.f)) && 
+        !ePos->isInFront(mypos->getPosition()) &&
+        !cPatrol->isStunned()) {
+          canAttackNow = true;
+      }
+    }
+    else if (eTag->hasTag(getID("mimetic"))) {
+      TCompAIMimetic * cMimetic = enemy->get<TCompAIMimetic>();
+      if (mypos->isInHorizontalFov(ePos->getPosition(), deg2rad(120.f)) && !cMimetic->isStunned()) {
+        canAttackNow = true;
+      }
+    }
+  }
+  return canAttackNow;
+}
+
 /* Sets the player current stamina depending on player status */
 void TCompTempPlayerController::updateStamina(float dt) {
 
@@ -805,6 +849,9 @@ void TCompTempPlayerController::updateShader(float dt) {
 
 	if (isDead()){
     e_controller->blend(playerColor.colorDead, 1.f);
+  }
+  else if (canAttack) {       //TEMP: TODO: Delete
+    e_controller->blend(VEC4(1.f, 0.f, 0.f, 1.f), 0.1f);
   }
 	else if (isInhibited) {
     e_controller->blend(playerColor.colorInhib, 0.1f);

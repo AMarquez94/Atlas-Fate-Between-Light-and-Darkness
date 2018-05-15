@@ -198,14 +198,19 @@ bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distan
 }
 
 /* Returns true if there was some hit with the sphere cast. Hit will contain all hits */
-bool CModulePhysics::SphereCast(physx::PxGeometry& geometry, physx::PxTransform& transform, std::vector<physx::PxOverlapHit> & hit, physx::PxQueryFilterData filterdata)
+bool CModulePhysics::SphereCast(physx::PxGeometry& geometry, VEC3 pos, std::vector<physx::PxOverlapHit> & hit, physx::PxQueryFilterData filterdata)
 {
-  PxOverlapBuffer px_hit;
+  PxOverlapHit overlapHit[256];     //With 256 it is supossed to be enough
+  PxOverlapBuffer px_hit(overlapHit, 256);
   
+  physx::PxTransform transform(PxVec3(pos.x, pos.y, pos.z));
   bool status = gScene->overlap(geometry, transform, px_hit, filterdata);
 
-  for (PxU32 i = 0; i < px_hit.nbTouches; i++) {
-    hit.push_back(px_hit.touches[i]);
+  if (status) {
+    for (PxU32 i = 0; i < px_hit.nbTouches; i++) {
+      hit.push_back(px_hit.touches[i]);
+    }
   }
+  
   return status;
 }
