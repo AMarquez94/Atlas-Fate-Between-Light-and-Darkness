@@ -836,16 +836,16 @@
     }
   }
   ,
-  {
+{
     "entity":
     {
       "name": "Spot005"
       ,
       "transform":
       {
-        "pos": "-33.5931 10.3442 68.4138"
+        "pos": "-33.5931 11.2912 68.4138"
         ,
-        "lookat": "-32.6997 4.2853 68.6264"
+        "lookat": "-32.1796 -2.94615 68.6264"
       }
       ,
       "light_spot":
@@ -854,23 +854,23 @@
         ,
         "proj_type": "perspective"
         ,
-         "range": 15.16008
+        "range": 16.3001
         ,
         "angle": 37.4
         ,
         "inner_cut": 35.3
         ,
-        "z_far": 9.10537
+        "z_far": 16.3001
         ,
         "color": "1.0 1.0 1.0 1.0"
         ,
-        "intensity": 1.35
+        "intensity": 0.65
         ,
         "casts_shadows": true
         ,
         "shadows_step": 1.0
         ,
-        "shadows_resolution": 256
+        "shadows_resolution": 512
         ,
         "shadows_fmt": "R32_TYPELESS"
       }

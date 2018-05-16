@@ -8,15 +8,15 @@
 		"navmeshes",
 		"cameras",
 		"gui",
+		"logic",
 		"sound",
 		"main_menu",
 		"game_manager",
+		"console",
 		"splash",
 		"map_intro",
 		"level_select",
-		"game_over",
-		"console",
-		"logic"
+		"game_over"
 	],
 	"render":
 	[
@@ -26,11 +26,11 @@
 		"navmeshes",
 		"map_intro",
 		"main_menu",
+		"console",
 		"gui",
 		"level_select",
 		"game_over",
 		"cameras",
-		"input",
-		"console"
+		"input"
 	]
 }

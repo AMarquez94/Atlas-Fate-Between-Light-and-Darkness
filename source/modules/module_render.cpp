@@ -302,6 +302,13 @@ void CModuleRender::generateFrame() {
     if (debugmode)
         debugDraw();
 
+    // Finally render it
+    {
+        PROFILE_FUNCTION("ImGui::Render");
+        CTraceScoped gpu_scope("ImGui");
+        ImGui::Render();
+    }
+
 	{
 		PROFILE_FUNCTION("GUI");
 		CTraceScoped gpu_scope("GUI");
@@ -347,12 +354,5 @@ void CModuleRender::debugDraw() {
         ImGui::End();
         ImGui::PopStyleVar(2);
         ImGui::PopStyleColor(5);
-    }
-
-    // Finally render it
-    {
-        PROFILE_FUNCTION("ImGui::Render");
-        CTraceScoped gpu_scope("ImGui");
-        ImGui::Render();
     }
 }
