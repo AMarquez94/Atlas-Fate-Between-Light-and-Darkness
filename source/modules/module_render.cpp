@@ -299,6 +299,9 @@ void CModuleRender::generateFrame() {
 		renderFullScreenQuad("dump_texture.tech", curr_rt);
 	}
 
+    if (debugmode)
+        debugDraw();
+
 	{
 		PROFILE_FUNCTION("GUI");
 		CTraceScoped gpu_scope("GUI");
@@ -314,9 +317,6 @@ void CModuleRender::generateFrame() {
 		activateZConfig(ZCFG_DEFAULT);
 		activateBlendConfig(BLEND_CFG_DEFAULT);
 	}
-
-    if(debugmode)
-        debugDraw();
 
 	// Present the information rendered to the back buffer to the front buffer (the screen)
 	{
