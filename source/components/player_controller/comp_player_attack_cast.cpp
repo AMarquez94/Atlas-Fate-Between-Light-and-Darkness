@@ -111,9 +111,7 @@ CHandle TCompPlayerAttackCast::closestEnemyToMerge()
   
       if (eTag->hasTag(getID("patrol"))) {
         TCompAIPatrol * cPatrol = enemy->get<TCompAIPatrol>();
-        if (mypos->isInHorizontalFov(ePos->getPosition(), attack_fov) &&
-          !ePos->isInFront(mypos->getPosition()) &&
-          cPatrol->isStunned()) {
+        if (mypos->isInHorizontalFov(ePos->getPosition(), attack_fov) && cPatrol->isStunned()) {
           closestEnemy = enemies[i];
         }
       }
