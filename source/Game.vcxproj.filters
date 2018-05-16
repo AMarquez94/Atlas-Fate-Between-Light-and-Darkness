@@ -156,7 +156,6 @@
     <ClCompile Include="components\lighting\comp_projector.cpp" />
     <ClCompile Include="components\postfx\comp_color_grading.cpp" />
     <ClCompile Include="modules\system\module_gui.cpp" />
-    <ClCompile Include="gui\controllers\gui_main_menu_controller.cpp" />
     <ClCompile Include="gui\effects\gui_animate_uv.cpp" />
     <ClCompile Include="gui\gui_parser.cpp" />
     <ClCompile Include="gui\gui_widget.cpp" />
@@ -165,6 +164,7 @@
     <ClCompile Include="gui\widgets\gui_image.cpp" />
     <ClCompile Include="gui\widgets\gui_text.cpp" />
     <ClCompile Include="components\object_controller\comp_rotator.cpp" />
+    <ClCompile Include="gui\controllers\gui_menu_buttons_controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
@@ -358,7 +358,6 @@
     <ClInclude Include="components\lighting\comp_projector.h" />
     <ClInclude Include="components\postfx\comp_color_grading.h" />
     <ClInclude Include="modules\system\module_gui.h" />
-    <ClInclude Include="gui\controllers\gui_main_menu_controller.h" />
     <ClInclude Include="gui\effects\gui_animate_uv.h" />
     <ClInclude Include="gui\gui_controller.h" />
     <ClInclude Include="gui\gui_effect.h" />
@@ -370,6 +369,7 @@
     <ClInclude Include="gui\widgets\gui_image.h" />
     <ClInclude Include="gui\widgets\gui_text.h" />
     <ClInclude Include="components\object_controller\comp_rotator.h" />
+    <ClInclude Include="gui\controllers\gui_menu_buttons_controller.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="geometry\SimpleMath.inl" />

@@ -1,10 +1,10 @@
 #include "mcv_platform.h"
-#include "gui_main_menu_controller.h"
+#include "gui_menu_buttons_controller.h"
 #include "gui/widgets/gui_button.h"
 
 namespace GUI
 {
-  void CMainMenuController::update(float delta)
+  void CMenuButtonsController::update(float delta)
   {
 		  if (EngineInput[VK_DOWN].getsPressed() || EngineInput["btDown"].getsPressed())
 		  {
@@ -25,7 +25,7 @@ namespace GUI
 		  }
   }
 
-  void CMainMenuController::registerOption(const std::string& name, GUICallback cb)
+  void CMenuButtonsController::registerOption(const std::string& name, GUICallback cb)
   {
     CWidget* wdgt = Engine.getGUI().getWidget(name, true);
     CButton* bt = dynamic_cast<CButton*>(wdgt);
@@ -35,7 +35,7 @@ namespace GUI
     }
   }
 
-  void CMainMenuController::setCurrentOption(int newOption)
+  void CMenuButtonsController::setCurrentOption(int newOption)
   {
     for (auto& option : _options)
     {

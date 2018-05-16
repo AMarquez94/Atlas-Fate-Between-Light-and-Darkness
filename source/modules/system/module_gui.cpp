@@ -2,8 +2,9 @@
 #include "module_gui.h"
 #include "render/render_objects.h"
 #include "gui/gui_parser.h"
-#include "gui/controllers/gui_main_menu_controller.h"
+#include "gui/controllers/gui_menu_buttons_controller.h"
 #include "gui/widgets/gui_bar.h"
+#include "gui/gui_controller.h"
 
 using namespace GUI;
 
@@ -21,12 +22,22 @@ bool CModuleGUI::start()
 	_quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 	_fontTexture = Resources.get("data/textures/gui/font.dds")->as<CTexture>();
 
-	CParser parser;
+	initializeWidgetStructure();
+	
+	return true;
+}
+
+void CModuleGUI::initializeWidgetStructure() {
+
+	/*CParser parser;
 	parser.parseFile("data/gui/test.json");
 	parser.parseFile("data/gui/main_menu_background.json");
 	parser.parseFile("data/gui/ingame.json");
 	parser.parseFile("data/gui/main_menu_buttons.json");
-	
+	parser.parseFile("data/gui/main_menu_option_buttons.json");*/
+
+	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json");
+	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BUTTONS, "data/gui/main_menu_buttons.json");
 	/*parser.parseFile("data/gui/main_menu.json");
 	parser.parseFile("data/gui/gameplay.json");
 	parser.parseFile("data/gui/game_over.json");*/
@@ -40,21 +51,30 @@ bool CModuleGUI::start()
 		CEngine::get().getGUI().outOfMainMenu();
 	};
 	auto optionsCB = []() {
-		dbg("OPTIONS SELECTED\n");		
+		//activateWidget("main_menu_buttons");
+		//activateWidget("main_menu_buttons");
 	};
 	auto exitCB = []() {
 		exit(0);
 	};
 	//CEngine::get().getGUI().getWidget("stamina_bar", true)->getBarParams()->_processValue = 0.5f;
-	/*CMainMenuController* mmc = new CMainMenuController();
+	/*CMenuButtonsController* mmc = new CMenuButtonsController();
 	mmc->registerOption("new_game", newGameCB);
 	mmc->registerOption("continue", continueCB);
 	mmc->registerOption("options", optionsCB);
 	mmc->registerOption("exit", exitCB);
 	mmc->setCurrentOption(0);
 	registerController(mmc);*/
-	
-	return true;
+
+}
+
+void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController wdgt_controller) {
+
+	WidgetStructure wdgt_struct;
+	CParser parser;
+	wdgt_struct._widgetName = parser.parseFile(wdgt_path);
+	wdgt_struct._type = wdgt_type;
+	wdgt_struct._controller = wdgt_controller;
 }
 
 void CModuleGUI::outOfMainMenu() {
@@ -74,6 +94,16 @@ bool CModuleGUI::stop()
 
 void CModuleGUI::update(float delta)
 {
+	if (EngineInput[VK_DOWN].getsPressed())
+	{
+		deactivateWidget("main_menu_buttons");
+	}
+
+	if (EngineInput[VK_UP].getsPressed())
+	{
+		deactivateWidget("main_menu_background");
+	}
+
 	for (auto& wdgt : _activeWidgets)
 	{
 		wdgt->updateAll(delta);
@@ -136,9 +166,11 @@ void CModuleGUI::deactivateWidget(const std::string& name)
 {
 	CWidget* wdgt = getWidget(name);
 	for (auto it = _activeWidgets.begin(); it != _activeWidgets.end();) {
-		if(*it == wdgt) _activeWidgets.erase(it);
+		if (*it == wdgt) {
+			_activeWidgets.erase(it);
+			break;
+		}
 		it++;
-
 	}
 }
 

@@ -6,7 +6,7 @@ namespace GUI
 {
   class CButton;
 
-  class CMainMenuController : public CController
+  class CMenuButtonsController : public CController
   {
   public:
     virtual void update(float delta) override;

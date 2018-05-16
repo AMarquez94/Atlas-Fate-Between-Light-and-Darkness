@@ -8,14 +8,23 @@
 class CModuleGUI : public IModule
 {
 public:
+	enum EGUIWidgets{ MAIN_MENU_BACKGROUND = 0, MAIN_MENU_BUTTONS, MAIN_MENU_OPTIONS, INGAME_STAMINA_BAR, INGAME_MENU_PAUSE, INGAME_MENU_PAUSE_BUTTONS};
 
+	struct WidgetStructure {
+		EGUIWidgets _type;
+		std::string _widgetName;
+		GUI::CController _controller;
+	};
+	std::map<EGUIWidgets, WidgetStructure> _widgetStructureMap;
 	CModuleGUI(const std::string& name);
 	bool start() override;
 	bool stop() override;
 	void update(float delta) override;
 	void renderGUI() override;
+	void initializeWidgetStructure();
 
 	// widget management
+	void registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController wdgt_controller = {});
 	void registerWidget(GUI::CWidget* wdgt);
 	GUI::CWidget* getWidget(const std::string& name, bool recursive = false) const;
 	void activateWidget(const std::string& name);

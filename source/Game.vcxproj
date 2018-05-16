@@ -158,7 +158,7 @@
     <ClCompile Include="geometry\geometry.cpp" />
     <ClCompile Include="geometry\SimpleMath.cpp" />
     <ClCompile Include="geometry\transform.cpp" />
-    <ClCompile Include="gui\controllers\gui_main_menu_controller.cpp" />
+    <ClCompile Include="gui\controllers\gui_menu_buttons_controller.cpp" />
     <ClCompile Include="gui\effects\gui_animate_uv.cpp" />
     <ClCompile Include="gui\gui_parser.cpp" />
     <ClCompile Include="gui\gui_widget.cpp" />
@@ -344,7 +344,7 @@
     <ClInclude Include="geometry\interpolators.h" />
     <ClInclude Include="geometry\SimpleMath.h" />
     <ClInclude Include="geometry\transform.h" />
-    <ClInclude Include="gui\controllers\gui_main_menu_controller.h" />
+    <ClInclude Include="gui\controllers\gui_menu_buttons_controller.h" />
     <ClInclude Include="gui\effects\gui_animate_uv.h" />
     <ClInclude Include="gui\gui_controller.h" />
     <ClInclude Include="gui\gui_effect.h" />
