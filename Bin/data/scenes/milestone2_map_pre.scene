@@ -8936,31 +8936,31 @@
   }
   ,
   {
-    "entity":
-    {
-      "name": "mesh_caja016"
-      ,
-      "transform":
-      {
-        "pos": "-17.7197 -0.0336673 0.097084"
-        ,
+    "entity": {
+      "name": "mesh_caja016",
+      "transform": {
+        "pos": "-17.7197 -0.0336673 0.097084",
         "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
+      },
+      "tags": [ "movable" ],
+      "render": [
         {
-          "mesh": "data/meshes/mesh_caja016.mesh"
-          ,
-          "materials":
-          [
+          "mesh": "data/meshes/mesh_caja016.mesh",
+          "materials": [
             "data/materials/mtl_caja.material"
           ]
         }
-      ]
-      ,
-      "abs_aabb": true
-      ,
+      ],
+      "collider": {
+        "shape": "box",
+        "size": "0.5 1.5 0.5",
+        "group": "movable"
+      },
+      "rigidbody": {
+        "is_gravity": true,
+        "is_movable": true
+      },
+      "abs_aabb": true,
       "local_aabb": true
     }
   }

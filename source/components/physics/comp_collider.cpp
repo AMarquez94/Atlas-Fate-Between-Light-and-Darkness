@@ -71,6 +71,8 @@ void TCompCollider::registerMsgs() {
 	DECL_MSG(TCompCollider, TMsgTriggerEnter, onTriggerEnter);
 	DECL_MSG(TCompCollider, TMsgTriggerExit, onTriggerExit);
 	DECL_MSG(TCompCollider, TMsgEntityDestroyed, onDestroy);
+	DECL_MSG(TCompCollider, TMsgGrabObject, onMovingObject);
+
 }
 
 void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
@@ -132,6 +134,37 @@ void TCompCollider::onTriggerExit(const TMsgTriggerExit& msg) {
 		}
 	}
 }
+void TCompCollider::onMovingObject(const TMsgGrabObject& msg) {
+	if (msg.moving) {
+		CEntity* e = msg.object;
+		TCompCollider* collider = e->get<TCompCollider>();
+		collider->config->group = FilterGroup::IgnoreMovable;
+		physx::PxShape* shape = collider->config->shape;
+		physx::PxU32 group = collider->config->group;
+		physx::PxU32 mask = collider->config->mask;
+		collider->config->setupFiltering(shape, group, mask);
+		collider->config->shape = shape;
+		collider->config->group = group;
+		collider->config->mask = mask;
+
+		lastMovedObject = msg.object;
+	}
+	else {
+		if (lastMovedObject.isValid()) {
+			CEntity* e = lastMovedObject;
+			TCompCollider* collider = e->get<TCompCollider>();
+			collider->config->group = FilterGroup::Movable;
+			physx::PxShape* shape = collider->config->shape;
+			physx::PxU32 group = collider->config->group;
+			physx::PxU32 mask = collider->config->mask;
+			collider->config->setupFiltering(shape, group, mask);
+			collider->config->shape = shape;
+			collider->config->group = group;
+			collider->config->mask = mask;
+		}
+
+	}
+}
 
 void TCompCollider::update(float dt) {
 
@@ -152,4 +185,88 @@ void TCompCollider::setGlobalPose(VEC3 newPos, VEC4 newRotation, bool autowake)
 {
   physx::PxTransform transform(physx::PxVec3(newPos.x, newPos.y, newPos.z), physx::PxQuat(newRotation.x, newRotation.y, newRotation.z, newRotation.w));
   config->actor->setGlobalPose(transform, autowake);
+}
+
+TCompCollider::result TCompCollider::collisionSweep(VEC3 dir, float distance, physx::PxQueryFlags flags, physx::PxQueryFilterData queryFilterData, Controllers controller) {
+	physx::PxCapsuleGeometry* controller_geometry = &physx::PxCapsuleGeometry();
+	physx::PxBoxGeometry* my_geometry = &physx::PxBoxGeometry();
+	if (controller != Controllers::eReserved) {
+		if (controller == Controllers::ePlayer) {
+			//Controller calls
+			CEntity* player = getEntityByName("The Player");
+			TCompCollider* player_collider = player->get<TCompCollider>();
+			const physx::PxU32 numShapes = player_collider->config->actor->getNbShapes();
+			assert(numShapes == 1); //At the moment we are retrieving the shapes as if they were only one. If this has changed, we have to update this as well.
+
+									//Retrieving controller shape from the actor
+			std::vector<physx::PxShape*> shapes;
+			shapes.resize(numShapes);
+			player_collider->config->actor->getShapes(&shapes[0], numShapes);
+			physx::PxShape* player_shape = shapes[0];
+			assert(player_shape->getGeometryType() == PxGeometryType::eCAPSULE); //We also assume that the geometry is a capsule.
+			player_shape->getCapsuleGeometry(*controller_geometry);
+
+		}
+		else if (controller == Controllers::ePatrol) {
+			//Controller calls
+			CEntity* patrol = getEntityByName("The Enemy 1"); //Retrieving geometry from the first patrol
+			TCompCollider* patrol_collider = patrol->get<TCompCollider>();
+			const physx::PxU32 numShapes = patrol_collider->config->actor->getNbShapes();
+			assert(numShapes == 1); //At the moment we are retrieving the shapes as if they were only one. If this has changed, we have to update this as well.
+
+									//Retrieving controller shape from the actor
+			std::vector<physx::PxShape*> shapes;
+			shapes.resize(numShapes);
+			patrol_collider->config->actor->getShapes(&shapes[0], numShapes);
+			physx::PxShape* patrol_shape = shapes[0];
+			assert(patrol_shape->getGeometryType() == PxGeometryType::eCAPSULE); //We also assume that the geometry is a capsule.
+			patrol_shape->getCapsuleGeometry(*controller_geometry);
+		}
+		else if (controller == Controllers::eMimetic) {
+			//Controller calls
+			CEntity* mimetic = getEntityByName("Mimetic 1"); //Retrieving geometry from the first patrol
+			TCompCollider* mimetic_collider = mimetic->get<TCompCollider>();
+			const physx::PxU32 numShapes = mimetic_collider->config->actor->getNbShapes();
+			assert(numShapes == 1); //At the moment we are retrieving the shapes as if they were only one. If this has changed, we have to update this as well.
+
+									//Retrieving controller shape from the actor
+			std::vector<physx::PxShape*> shapes;
+			shapes.resize(numShapes);
+			mimetic_collider->config->actor->getShapes(&shapes[0], numShapes);
+			physx::PxShape* mimetic_shape = shapes[0];
+			assert(mimetic_shape->getGeometryType() == PxGeometryType::eCAPSULE); //We also assume that the geometry is a capsule.
+			mimetic_shape->getCapsuleGeometry(*controller_geometry);
+		}
+	}
+	else {
+		TCompCollider* my_collider = get<TCompCollider>();
+		physx::PxBoxGeometry box;
+		my_collider->config->shape->getBoxGeometry(box);
+		my_geometry = &box;
+	}
+
+	//this calls
+	CHandle my_handle = CHandle(this).getOwner();
+	CEntity* my_entity = my_handle;
+	TCompTransform* my_transform = my_entity->get<TCompTransform>();
+	VEC3 my_pos = my_transform->getPosition();
+
+	//Sweep data
+	physx::PxSweepBuffer hit_Buffer;
+	physx::PxTransform my_pxtransform(ToPxVec3(my_pos), ToPxQuat(my_transform->getRotation()));
+	queryFilterData.flags = flags;
+
+	result result;
+
+	if (controller != Controllers::eReserved) {
+		result.colision = EnginePhysics.Sweep(controller_geometry, my_pxtransform, ToPxVec3(dir), distance, hit_Buffer, queryFilterData);
+	}
+	else {
+		result.colision = EnginePhysics.Sweep(my_geometry, my_pxtransform, ToPxVec3(dir), distance, hit_Buffer, queryFilterData);
+	}
+	result.hit = hit_Buffer;
+	if (result.colision) {
+		result.handle.fromVoidPtr(hit_Buffer.getAnyHit(0).actor->userData);
+	}
+	return result;
 }

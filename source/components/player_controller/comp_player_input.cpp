@@ -138,6 +138,23 @@ void TCompPlayerInput::update(float dt)
 				grabEnemy.variant.setBool(false);
 				e->sendMsg(grabEnemy);
 			}
+			//Grab Object
+			if (EngineInput["btAction"].getsPressed() && player->closestObjectToMove().isValid()){
+				_enemyStunned = true;
+				TMsgSetFSMVariable grabEnemy;
+				grabEnemy.variant.setName("grabEnemy");
+				grabEnemy.variant.setBool(true);
+				e->sendMsg(grabEnemy);
+
+
+			}
+			if (EngineInput["btAction"].getsReleased() || (_enemyStunned && !player->closestObjectToMove().isValid())) {
+				_enemyStunned = false;
+				TMsgSetFSMVariable grabEnemy;
+				grabEnemy.variant.setName("grabEnemy");
+				grabEnemy.variant.setBool(false);
+				e->sendMsg(grabEnemy);
+			}
 		}
 
 		if (EngineInput["btSecAction"].getsPressed())

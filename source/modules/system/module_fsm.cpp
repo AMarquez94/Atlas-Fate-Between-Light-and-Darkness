@@ -42,6 +42,7 @@ bool CModuleFSM::start()
 	_factory.registerInstancer("TimeTransition", new FSM::TransitionInstancer<FSM::TimeTransition>());
 	_factory.registerInstancer("AnimationTransition", new FSM::TransitionInstancer<FSM::AnimationTransition>());
 	_factory.registerInstancer("grabEnemy", new FSM::StateInstancer<FSM::GrabEnemy>());
+	_factory.registerInstancer("grabObject", new FSM::StateInstancer<FSM::GrabObject>());
 
 
 	//const FSM::CMachine* myFsm = Resources.get("data/fsm/character.fsm")->as<FSM::CMachine>();

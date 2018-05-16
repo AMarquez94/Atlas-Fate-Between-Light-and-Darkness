@@ -14,14 +14,18 @@ public:
   static void registerMsgs();
 
   const std::vector<CHandle> getEnemiesInRange();
+  const std::vector<CHandle> getMovableObjectsInRange();
   const bool canAttackEnemiesInRange(CHandle& closestEnemyToAttack = CHandle());
   CHandle closestEnemyToMerge();
+  CHandle closestObjectToMove();
 
 private:
 
   physx::PxQueryFilterData PxPlayerAttackQueryFilterData;
+  physx::PxQueryFilterData PxPlayerMovableObjectsQueryFilterData;
+
   physx::PxSphereGeometry geometry;
-  float attack_fov;
+  float attack_fov, grabObject_fov;
 
   void onMsgScenePaused(const TMsgScenePaused & msg);
 };

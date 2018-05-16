@@ -1,0 +1,59 @@
+[
+  {
+    "entity": {
+      "name": "Movable objects"
+    }
+  },
+  {
+    "entity": {
+      "name": "movable box",
+      "transform": {
+        "pos": "-10 -8-20"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/movable/bbox.mesh",
+          "color": "0 0 0 1.0"
+        }
+      ],
+      "tags": [ "movable" ],
+      "collider": {
+        "shape": "box",
+        "size": "0.5 1.5 0.5",
+        "group": "movable"
+      },
+      "rigidbody": {
+        "is_gravity": true,
+        "is_movable": true
+      },
+      "abs_aabb": true,
+      "local_aabb": true
+    }
+  },
+  {
+    "entity": {
+      "name": "movable box 2",
+      "transform": {
+        "pos": "-15.0 -8 -20.0"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/movable/bbox2.mesh",
+          "color": "1.0 1.0 1.0 1.0"
+        }
+      ],
+      "tags": [ "movable" ],
+      "collider": {
+        "shape": "box",
+        "size": "1.0 0.45 1.0",
+        "group": "movable"
+      },
+      "rigidbody": {
+        "is_gravity": true,
+        "is_movable":  true
+      },
+      "abs_aabb": true,
+      "local_aabb": true
+    }
+  }
+]

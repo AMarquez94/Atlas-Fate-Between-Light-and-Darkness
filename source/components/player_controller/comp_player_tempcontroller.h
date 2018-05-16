@@ -143,6 +143,8 @@ public:
 	void resetState(float dt);
 	void exitMergeState(float dt);
 	void removingInhibitorState(float dt);
+	CHandle movable;
+	void moveObject(float dt);
 
 	/* Player condition tests */
 	const bool concaveTest(void);

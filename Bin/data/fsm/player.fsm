@@ -293,6 +293,13 @@
       "animation": "idleAction",
       "speed": 0,
       "size": 0.25
+    },
+    {
+      "name": "grabObject",
+      "type": "grabObject",
+      "animation": "idleAction",
+      "speed": 0,
+      "size": 0.25
     }
   ],
   "transitions": [
@@ -951,6 +958,26 @@
         "type": "bool",
         "value": true
       }
+    },
+    {
+      "type": "VariableTransition",
+      "source": "idle",
+      "target": "grabObject",
+      "variable": {
+        "name": "grabObject",
+        "type": "bool",
+        "value": true
+      }
+    },
+    {
+      "type": "VariableTransition",
+      "source": "grabObject",
+      "target": "idle",
+      "variable": {
+        "name": "grabObject",
+        "type": "bool",
+        "value": false
+      }
     }
   ],
   "variables": [
@@ -1021,6 +1048,11 @@
     },
     {
       "name": "grabEnemy",
+      "type": "bool",
+      "value": false
+    },
+    {
+      "name": "grabObject",
       "type": "bool",
       "value": false
     }
