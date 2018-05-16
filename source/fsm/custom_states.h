@@ -240,7 +240,7 @@ namespace FSM
 		std::string _animationName;
 	};
 
-	class InhibitorRemoved : public IState
+	class InhibitorRemovedState : public IState
 	{
 		virtual void onStart(CContext& ctx) const override;
 		virtual void onFinish(CContext& ctx) const override;
@@ -254,7 +254,7 @@ namespace FSM
 		std::string _animationName;
 	};
 
-	class InhibitorTryToRemove : public IState
+	class InhibitorTryToRemoveState : public IState
 	{
 		virtual void onStart(CContext& ctx) const override;
 		virtual void onFinish(CContext& ctx) const override;
@@ -268,7 +268,7 @@ namespace FSM
 		std::string _animationName;
 	};
 
-	class RemoveInhibitor : public IState
+	class RemoveInhibitorState : public IState
 	{
 		virtual void onStart(CContext& ctx) const override;
 		virtual void onFinish(CContext& ctx) const override;
@@ -309,7 +309,7 @@ namespace FSM
 		float _radius = 0.3f;
 		std::string _animationName;
 	};
-	class GrabEnemy : public IState
+	class GrabEnemyState : public IState
 	{
 		virtual void onStart(CContext& ctx) const override;
 		virtual void onFinish(CContext& ctx) const override;

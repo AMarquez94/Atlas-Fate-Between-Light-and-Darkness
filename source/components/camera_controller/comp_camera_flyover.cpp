@@ -32,7 +32,9 @@ void TCompCameraFlyover::update(float dt)
         if (paused) {
             TMsgScenePaused msg;
             msg.isPaused = true;
-            EngineEntities.broadcastMsg(msg);
+            //EngineEntities.broadcastMsg(msg);
+            CEntity * player = getEntityByName("The Player");
+            player->sendMsg(msg);
             Engine.getCameras().blendInCamera(CHandle(this).getOwner(), 1.f, CModuleCameras::EPriority::TEMPORARY);
 
         }

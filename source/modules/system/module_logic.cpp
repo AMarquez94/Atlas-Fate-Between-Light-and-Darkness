@@ -118,9 +118,9 @@ void CModuleLogic::execCvar(std::string& script) {
 
     // Little bit of dirty tricks to achieve same results with different string types.
     script.erase(0, 1);
-    int index = script.find_first_of(' ');
+    int index = (int)script.find_first_of(' ');
     script = index != -1 ? script.replace(script.find_first_of(' '), 1, "(") : script;
-    index = script.find_first_of(' ');
+    index = (int)script.find_first_of(' ');
     script = index != -1 ? script.replace(script.find_first_of(' '), 1, ",") : script;
     script.append(")");
 }

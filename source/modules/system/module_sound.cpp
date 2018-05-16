@@ -75,7 +75,7 @@ void CModuleSound::exeStepSound() {
 	FMOD::Sound      *sound;
 	FMOD::Channel * channel = 0;
 	
-	int index = ((float)rand() / RAND_MAX) * 7;
+	int index = (int)(((float)rand() / RAND_MAX) * 7);
 	switch (index) {
 		case 0:
 			result = _system->createSound("../bin/data/sounds/step1.ogg", FMOD_LOOP_OFF | FMOD_2D | FMOD_CREATESAMPLE, 0, &sound);

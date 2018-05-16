@@ -33,15 +33,15 @@ bool CModuleFSM::start()
 	_factory.registerInstancer("SoftLandState", new FSM::StateInstancer<FSM::SoftLandState>());
 	_factory.registerInstancer("HardLandState", new FSM::StateInstancer<FSM::HardLandState>());
 	_factory.registerInstancer("AttackState", new FSM::StateInstancer<FSM::AttackState>());
-	_factory.registerInstancer("InhibitorRemoved", new FSM::StateInstancer<FSM::InhibitorRemoved>());
-	_factory.registerInstancer("RemoveInhibitor", new FSM::StateInstancer<FSM::RemoveInhibitor>());
-	_factory.registerInstancer("InhibitorTryToRemove", new FSM::StateInstancer<FSM::InhibitorTryToRemove>());
+	_factory.registerInstancer("InhibitorRemovedState", new FSM::StateInstancer<FSM::InhibitorRemovedState>());
+	_factory.registerInstancer("RemoveInhibitorState", new FSM::StateInstancer<FSM::RemoveInhibitorState>());
+	_factory.registerInstancer("InhibitorTryToRemoveState", new FSM::StateInstancer<FSM::InhibitorTryToRemoveState>());
 	_factory.registerInstancer("DieState", new FSM::StateInstancer<FSM::DieState>());
 	_factory.registerInstancer("DeadState", new FSM::StateInstancer<FSM::DeadState>());
+	_factory.registerInstancer("GrabEnemyState", new FSM::StateInstancer<FSM::GrabEnemyState>());
 	_factory.registerInstancer("VariableTransition", new FSM::TransitionInstancer<FSM::VariableTransition>());
 	_factory.registerInstancer("TimeTransition", new FSM::TransitionInstancer<FSM::TimeTransition>());
 	_factory.registerInstancer("AnimationTransition", new FSM::TransitionInstancer<FSM::AnimationTransition>());
-	_factory.registerInstancer("grabEnemy", new FSM::StateInstancer<FSM::GrabEnemy>());
 
 
 	//const FSM::CMachine* myFsm = Resources.get("data/fsm/character.fsm")->as<FSM::CMachine>();

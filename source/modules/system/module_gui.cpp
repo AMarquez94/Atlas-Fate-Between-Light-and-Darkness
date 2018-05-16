@@ -207,7 +207,7 @@ void CModuleGUI::renderText(const MAT44& world, const std::string& text, const V
 
 		VEC2 minUV = VEC2(col * cellSize, row * cellSize);
 		VEC2 maxUV = minUV + VEC2(1, 1) * cellSize;
-		VEC2 gap = i * VEC2(1, 0);
+		VEC2 gap = (float)i * VEC2(1, 0);
 		MAT44 w = MAT44::CreateTranslation(gap.x, gap.y, 0.f) * world;
 
 		renderTexture(w, _fontTexture, minUV, maxUV, color);

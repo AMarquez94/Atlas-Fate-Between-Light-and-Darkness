@@ -253,7 +253,7 @@
     },
     {
       "name": "removeInhibitor",
-      "type": "RemoveInhibitor",
+      "type": "RemoveInhibitorState",
       "animation": "removenhibitor",
       "damage": 10,
       "size": 1,
@@ -265,7 +265,7 @@
     },
     {
       "name": "inhibitorRemoved",
-      "type": "InhibitorRemoved",
+      "type": "InhibitorRemovedState",
       "animation": "inhibitorRemoved",
       "damage": 10,
       "size": 1,
@@ -277,7 +277,7 @@
     },
     {
       "name": "inhibitorTryToRemove",
-      "type": "InhibitorTryToRemove",
+      "type": "InhibitorTryToRemoveState",
       "animation": "inhibitorRemoved",
       "damage": 10,
       "size": 1,
@@ -289,8 +289,8 @@
     },
     {
       "name": "grabEnemy",
-      "type": "grabEnemy",
-      "animation": "idleAction",
+      "type": "GrabEnemyState",
+      "animation": "idle",
       "speed": 0,
       "size": 0.25
     }
@@ -925,6 +925,66 @@
     {
       "type": "VariableTransition",
       "source": "idle",
+      "target": "grabEnemy",
+      "variable": {
+        "name": "grabEnemy",
+        "type": "bool",
+        "value": true
+      }
+    },
+    {
+      "type": "VariableTransition",
+      "source": "walk",
+      "target": "grabEnemy",
+      "variable": {
+        "name": "grabEnemy",
+        "type": "bool",
+        "value": true
+      }
+    },
+    {
+      "type": "VariableTransition",
+      "source": "run",
+      "target": "grabEnemy",
+      "variable": {
+        "name": "grabEnemy",
+        "type": "bool",
+        "value": true
+      }
+    },
+    {
+      "type": "VariableTransition",
+      "source": "crouchwalk",
+      "target": "grabEnemy",
+      "variable": {
+        "name": "grabEnemy",
+        "type": "bool",
+        "value": true
+      }
+    },
+    {
+      "type": "VariableTransition",
+      "source": "crouchwalkslow",
+      "target": "grabEnemy",
+      "variable": {
+        "name": "grabEnemy",
+        "type": "bool",
+        "value": true
+      }
+    },
+    {
+      "type": "VariableTransition",
+      "source": "walkslow",
+      "target": "grabEnemy",
+      "variable": {
+        "name": "grabEnemy",
+        "type": "bool",
+        "value": true
+      }
+    },
+    {
+      "type": "VariableTransition",
+      "source": "crouch",
       "target": "grabEnemy",
       "variable": {
         "name": "grabEnemy",

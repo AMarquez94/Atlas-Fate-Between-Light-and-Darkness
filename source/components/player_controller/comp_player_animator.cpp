@@ -217,6 +217,7 @@ void TCompPlayerAnimator::initializeAnimations() {
 		1.0f,
 		1.0f
 	);
+
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::SM_POSE,
 		EAnimationType::CYCLIC,

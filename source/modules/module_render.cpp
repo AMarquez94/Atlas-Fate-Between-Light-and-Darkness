@@ -333,7 +333,7 @@ void CModuleRender::debugDraw() {
         ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(255.0f, 255.0f, 255.0f, 255.0f));
         ImGui::PushStyleColor(ImGuiCol_TitleBg, ImVec4(0.0, 0.0f, 0.0f, 0.75f));
         ImGui::PushStyleColor(ImGuiCol_TitleBgActive, ImVec4(0.0, 0.0f, 0.0f, 0.75f));
-        ImGui::PushStyleColor(ImGuiCol_TitleBgCollapsed, ImVec4(0.219, 0.349f, 0.501f, 0.75f));
+        ImGui::PushStyleColor(ImGuiCol_TitleBgCollapsed, ImVec4(0.219f, 0.349f, 0.501f, 0.75f));
         ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 4);
         ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 1);
 

@@ -109,9 +109,9 @@ void CModulePhysics::update(float delta)
 				if (compRigibody->is_controller)
 				{
 					PxExtendedVec3 pxpos_ext = compRigibody->controller->getFootPosition();
-					pxpos.x = pxpos_ext.x;
-					pxpos.y = pxpos_ext.y;
-					pxpos.z = pxpos_ext.z;
+					pxpos.x = (float)pxpos_ext.x;
+					pxpos.y = (float)pxpos_ext.y;
+					pxpos.z = (float)pxpos_ext.z;
 				}
 				else
 				{

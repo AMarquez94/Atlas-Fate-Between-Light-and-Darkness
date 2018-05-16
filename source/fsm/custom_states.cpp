@@ -308,7 +308,6 @@ namespace FSM
   void EnterMergeState::onFinish(CContext& ctx) const {
 
     CEntity* e = ctx.getOwner();
-    e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::mergeEnemy });
 
     TCompRender * render = e->get<TCompRender>();
     render->visible = false;
@@ -501,7 +500,7 @@ namespace FSM
 
   }
 
-  bool RemoveInhibitor::load(const json& jData) {
+  bool RemoveInhibitorState::load(const json& jData) {
 
     _animationName = jData["animation"];
     _speed = jData.value("speed", 2.f);
@@ -512,18 +511,18 @@ namespace FSM
     return true;
   }
 
-  void RemoveInhibitor::onStart(CContext& ctx) const {
+  void RemoveInhibitorState::onStart(CContext& ctx) const {
 
     CEntity* e = ctx.getOwner();
     e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::removingInhibitorState, _speed, _radius, _size, _target, _noise });
 
   }
 
-  void RemoveInhibitor::onFinish(CContext& ctx) const {
+  void RemoveInhibitorState::onFinish(CContext& ctx) const {
 
   }
 
-  bool InhibitorRemoved::load(const json& jData) {
+  bool InhibitorRemovedState::load(const json& jData) {
 
     _animationName = jData["animation"];
     _speed = jData.value("speed", 2.f);
@@ -534,7 +533,7 @@ namespace FSM
     return true;
   }
 
-  void InhibitorRemoved::onStart(CContext& ctx) const {
+  void InhibitorRemovedState::onStart(CContext& ctx) const {
 
     CEntity* e = ctx.getOwner();
     e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::METRALLA_FINISH , 1.0f });
@@ -542,11 +541,11 @@ namespace FSM
 
   }
 
-  void InhibitorRemoved::onFinish(CContext& ctx) const {
+  void InhibitorRemovedState::onFinish(CContext& ctx) const {
 
   }
 
-  bool InhibitorTryToRemove::load(const json& jData) {
+  bool InhibitorTryToRemoveState::load(const json& jData) {
 
     _animationName = jData["animation"];
     _speed = jData.value("speed", 2.f);
@@ -557,7 +556,7 @@ namespace FSM
     return true;
   }
 
-  void InhibitorTryToRemove::onStart(CContext& ctx) const {
+  void InhibitorTryToRemoveState::onStart(CContext& ctx) const {
 
     CEntity* e = ctx.getOwner();
     e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::METRALLA_MIDDLE , 1.0f });
@@ -565,7 +564,7 @@ namespace FSM
 
   }
 
-  void InhibitorTryToRemove::onFinish(CContext& ctx) const {
+  void InhibitorTryToRemoveState::onFinish(CContext& ctx) const {
 
   }
 
@@ -611,7 +610,7 @@ namespace FSM
   void DeadState::onFinish(CContext& ctx) const {
 
   }
-  bool GrabEnemy::load(const json& jData) {
+  bool GrabEnemyState::load(const json& jData) {
 
 	  _animationName = jData["animation"];
 	  _speed = jData.value("speed", 2.f);
@@ -622,15 +621,15 @@ namespace FSM
 	  return true;
   }
 
-  void GrabEnemy::onStart(CContext& ctx) const {
+  void GrabEnemyState::onStart(CContext& ctx) const {
 
 	  CEntity* e = ctx.getOwner();
+    e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
 	  e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _radius, _size, nullptr, _noise });
-	  dbg("FSM grab enemy msg sent \n");
 
   }
 
-  void GrabEnemy::onFinish(CContext& ctx) const {
+  void GrabEnemyState::onFinish(CContext& ctx) const {
 	  CEntity* e = ctx.getOwner();
 	  e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::mergeEnemy });
   }
