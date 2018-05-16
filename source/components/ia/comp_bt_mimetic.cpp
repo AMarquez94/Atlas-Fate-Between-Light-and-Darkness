@@ -15,6 +15,7 @@
 #include "render/render_utils.h"
 #include "components/ia/comp_mimetic_animator.h"
 #include "render/render_objects.h"
+#include "components/object_controller/comp_noise_emitter.h"
 
 DECL_OBJ_MANAGER("ai_mimetic", TCompAIMimetic);
 
@@ -487,17 +488,9 @@ BTNode::ERes TCompAIMimetic::actionResetVariablesChase(float dt)
 	hasHeardArtificialNoise = false;
 	hasHeardNaturalNoise = false;
 
-	TMsgMakeNoise msg;
-	msg.isArtificial = true;
-	msg.isNoise = true;
-	msg.isOnlyOnce = false;
-	msg.timeToRepeat = .4f;
-	msg.noiseRadius = 20.f;
-	TCompGroup * tGroup = get<TCompGroup>();
-	if (tGroup) {
-		CEntity * eNoiseEmitter = tGroup->getHandleByName("Noise Emitter");
-		eNoiseEmitter->sendMsg(msg);
-	}
+  /* Noise emitter */
+  TCompNoiseEmitter * noiseEmitter = get<TCompNoiseEmitter>();
+  noiseEmitter->makeNoise(20.f, .4f, true, false, true);
 
   TCompTransform *tpos = get<TCompTransform>();
   CEntity *player = getEntityByName(entityToChase);
@@ -540,17 +533,11 @@ BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
 	if (!isPlayerInFov() || distToPlayer >= maxChaseDistance + 0.5f) {
     TCompEmissionController *eController = get<TCompEmissionController>();
     eController->blend(mimeticColor.colorSuspect, 0.1f);
-		TMsgMakeNoise msg;
-		msg.isArtificial = true;
-		msg.isNoise = false;
-		msg.isOnlyOnce = false;
-		msg.timeToRepeat = 10.f;
-		msg.noiseRadius = 0.01f;
-		TCompGroup * tGroup = get<TCompGroup>();
-		if (tGroup) {
-			CEntity * eNoiseEmitter = tGroup->getHandleByName("Noise Emitter");
-			eNoiseEmitter->sendMsg(msg);
-		}
+
+    /* Cancel noise emitter */
+    TCompNoiseEmitter * noiseEmitter = get<TCompNoiseEmitter>();
+    noiseEmitter->makeNoise(-1.f, 10.f, false, false, true);
+
 		return BTNode::ERes::LEAVE;
 	}
   else if (distToPlayer <= 1.3f) {

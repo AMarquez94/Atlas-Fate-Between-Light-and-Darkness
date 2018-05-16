@@ -18,6 +18,7 @@
 #include "comp_player_input.h"
 #include "components/comp_group.h"
 #include "render/render_utils.h"
+#include "components/object_controller/comp_noise_emitter.h"
 
 DECL_OBJ_MANAGER("player_tempcontroller", TCompTempPlayerController);
 
@@ -206,16 +207,9 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg) {
 			target_camera = getEntityByName("TPCamera"); //replace this
 		}
 
-		TMsgMakeNoise msgToSend;
-		msgToSend.isOnlyOnce = msg.noise->isOnlyOnce;
-		msgToSend.noiseRadius = msg.noise->noiseRadius;
-		msgToSend.timeToRepeat = msg.noise->timeToRepeat;
-		msgToSend.isArtificial = msg.noise->isArtificial;
-		TCompGroup * tGroup = get<TCompGroup>();
-		if (tGroup) {
-			CEntity * eNoiseEmitter = tGroup->getHandleByName("Noise Emitter");
-			eNoiseEmitter->sendMsg(msgToSend);
-		}
+    /* Noise emitter */
+    TCompNoiseEmitter * noiseEmitter = get<TCompNoiseEmitter>();
+    noiseEmitter->makeNoise(msg.noise->noiseRadius, msg.noise->timeToRepeat, msg.noise->isNoise, msg.noise->isOnlyOnce, msg.noise->isArtificial);
 	}
 }
 

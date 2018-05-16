@@ -45,7 +45,7 @@ const std::vector<CHandle> TCompPlayerAttackCast::getEnemiesInRange()
   if (geometry.isValid()) {
 
     std::vector<physx::PxOverlapHit> hits;
-    if (EnginePhysics.SphereCast(geometry, tPos->getPosition(), hits, PxPlayerAttackQueryFilterData)) {
+    if (EnginePhysics.Overlap(geometry, tPos->getPosition(), hits, PxPlayerAttackQueryFilterData)) {
       for (int i = 0; i < hits.size(); i++) {
         CHandle hitCollider;
         hitCollider.fromVoidPtr(hits[i].actor->userData);

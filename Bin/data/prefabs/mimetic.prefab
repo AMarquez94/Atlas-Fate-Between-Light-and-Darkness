@@ -104,6 +104,9 @@
 			"emission_controller": {
 				"initial": "0.0 1.0 1.0 1.0"
 			},
+			"noise_emitter": {
+				"radius": -1
+			},
 			"mimetic_animator": true,
 			"tags": ["enemy", "mimetic"]
 		}
@@ -133,25 +136,6 @@
 				"dist": 20.0,
 				"target": "The Player"
 			}
-		}
-	}, {
-		"entity": {
-			"name": "Noise Emitter",
-			"hierarchy": {
-				"parent": "Mimetic"
-			},
-			"transform": {},
-			"collider": {
-				"shape": "sphere",
-				"radius": 0.01,
-				"is_trigger": true,
-				"group": "enemy"
-			},
-			"rigidbody": {
-				"is_controller": false,
-				"is_gravity": false
-			},
-			"noise_emitter": {}
 		}
 	}
 ]

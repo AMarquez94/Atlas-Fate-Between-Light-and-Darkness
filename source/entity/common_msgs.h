@@ -149,15 +149,6 @@ struct TMsgNoiseMade {
 	DECL_MSG_ID();
 };
 
-struct TMsgMakeNoise {
-	float noiseRadius;
-	bool isOnlyOnce;
-	float timeToRepeat;
-	bool isNoise;
-	bool isArtificial;
-	DECL_MSG_ID();
-};
-
 struct TMsgShadowChange {
 	bool is_shadowed;
 	DECL_MSG_ID();

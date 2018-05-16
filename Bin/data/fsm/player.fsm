@@ -215,12 +215,6 @@
       "animation": "attack",
       "damage": 10,
       "size": 1,
-      "noise": {
-        "is_only_once": true,
-        "radius": 5.0,
-        "time_to_repeat": 0.5,
-        "is_artificial": true
-      },
       "camera": {
         "target": "TPCamera",
         "blendOut": 0.4,
@@ -592,7 +586,7 @@
     {
       "type": "TimeTransition",
       "source": "exitmerge",
-      "target": "walk",
+      "target": "idle",
       "time": 0.1
     },
     {

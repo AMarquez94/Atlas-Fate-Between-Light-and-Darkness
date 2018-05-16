@@ -198,7 +198,7 @@ bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distan
 }
 
 /* Returns true if there was some hit with the sphere cast. Hit will contain all hits */
-bool CModulePhysics::SphereCast(physx::PxGeometry& geometry, VEC3 pos, std::vector<physx::PxOverlapHit> & hit, physx::PxQueryFilterData filterdata)
+bool CModulePhysics::Overlap(physx::PxGeometry& geometry, VEC3 pos, std::vector<physx::PxOverlapHit> & hit, physx::PxQueryFilterData filterdata)
 {
   PxOverlapHit overlapHit[256];     //With 256 it is supossed to be enough
   PxOverlapBuffer px_hit(overlapHit, 256);

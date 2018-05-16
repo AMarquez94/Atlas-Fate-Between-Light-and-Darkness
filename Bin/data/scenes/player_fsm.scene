@@ -135,29 +135,13 @@
 				"initial" : "1.0 1.0 1.0 1.0",
 				"intensity" : 1.25
 			},
+			"noise_emitter": {
+				"radius": -1
+			},
 			"tags":
 			[
 				"player"
 			]
-		}
-	}, {
-		"entity": {
-			"name": "Noise Emitter",
-			"hierarchy": {
-				"parent": "The Player"
-			},
-			"transform": {},
-			"collider": {
-				"shape": "sphere",
-				"radius": 0.01,
-				"is_trigger": true,
-				"group": "enemy"
-			},
-			"rigidbody": {
-				"is_controller": false,
-				"is_gravity": false
-			},
-			"noise_emitter": {}
 		}
 	}
 ]
