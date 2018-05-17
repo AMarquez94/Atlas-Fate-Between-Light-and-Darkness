@@ -67,7 +67,7 @@ void CPhysicsCollider::createDynamic(physx::PxShape* actor_shape, TCompTransform
 	VEC3 pos = c_transform->getPosition();
 	QUAT quat = c_transform->getRotation();
 	physx::PxTransform transform(physx::PxVec3(pos.x, pos.y, pos.z), physx::PxQuat(quat.x, quat.y, quat.z, quat.w));
-	physx::PxRigidDynamic* rigid_actor = gPhysics->createRigidDynamic(transform);
+	rigid_actor = gPhysics->createRigidDynamic(transform);
 	physx::PxRigidBodyExt::updateMassAndInertia(*rigid_actor, 10.0f);
 	if (isMovable) {
 		rigid_actor->setRigidBodyFlag(physx::PxRigidBodyFlag::eKINEMATIC, true);

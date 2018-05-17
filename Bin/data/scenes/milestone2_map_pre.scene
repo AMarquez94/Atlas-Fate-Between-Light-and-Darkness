@@ -8906,31 +8906,32 @@
   }
   ,
   {
-    "entity":
-    {
-      "name": "mesh_caja015"
-      ,
-      "transform":
-      {
-        "pos": "-18.0244 -0.322258 -1.92534"
-        ,
+    "entity": {
+      "name": "mesh_caja015",
+      "transform": {
+        "pos": "-18.0244 -0.5 -1.92534",
         "rotation": "0.0 0.461749 0.0 -0.887011"
-      }
-      ,
-      "render":
-      [
+      },
+      "render": [
         {
-          "mesh": "data/meshes/mesh_caja015.mesh"
-          ,
-          "materials":
-          [
+          "mesh": "data/meshes/mesh_caja015.mesh",
+          "materials": [
             "data/materials/mtl_caja.material"
           ]
         }
-      ]
-      ,
-      "abs_aabb": true
-      ,
+      ],
+      "collider": {
+        "shape": "box",
+        "xsize": "0.482931 0.475179 0.630642",
+        "size": "0.482931 0.7 0.630642",
+        "group": "movable"
+      },
+      "rigidbody": {
+        "is_gravity": true,
+        "is_movable": true
+      },
+      "tags": [ "movable" ],
+      "abs_aabb": true,
       "local_aabb": true
     }
   }
@@ -8953,7 +8954,7 @@
       ],
       "collider": {
         "shape": "box",
-        "size": "0.5 1.5 0.5",
+        "size": "1.02751 0.778982 1.18989",
         "group": "movable"
       },
       "rigidbody": {

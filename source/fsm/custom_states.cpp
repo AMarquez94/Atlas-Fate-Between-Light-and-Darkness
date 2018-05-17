@@ -648,7 +648,7 @@ namespace FSM
   void GrabObject::onStart(CContext& ctx) const {
 
 	  CEntity* e = ctx.getOwner();
-	  e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::moveObject, "pj_idle", _speed, _radius, _size, nullptr, _noise });
+	  e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::moveObject,_speed, _radius, _size, nullptr, _noise });
 	  dbg("FSM grab object msg sent \n");
 
   }

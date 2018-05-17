@@ -203,7 +203,7 @@ TCompCollider::result TCompCollider::collisionSweep(VEC3 dir, float distance, ph
 			shapes.resize(numShapes);
 			player_collider->config->actor->getShapes(&shapes[0], numShapes);
 			physx::PxShape* player_shape = shapes[0];
-			assert(player_shape->getGeometryType() == PxGeometryType::eCAPSULE); //We also assume that the geometry is a capsule.
+			assert(player_shape->getGeometryType() == physx::PxGeometryType::eCAPSULE); //We also assume that the geometry is a capsule.
 			player_shape->getCapsuleGeometry(*controller_geometry);
 
 		}
@@ -219,7 +219,7 @@ TCompCollider::result TCompCollider::collisionSweep(VEC3 dir, float distance, ph
 			shapes.resize(numShapes);
 			patrol_collider->config->actor->getShapes(&shapes[0], numShapes);
 			physx::PxShape* patrol_shape = shapes[0];
-			assert(patrol_shape->getGeometryType() == PxGeometryType::eCAPSULE); //We also assume that the geometry is a capsule.
+			assert(patrol_shape->getGeometryType() == physx::PxGeometryType::eCAPSULE); //We also assume that the geometry is a capsule.
 			patrol_shape->getCapsuleGeometry(*controller_geometry);
 		}
 		else if (controller == Controllers::eMimetic) {
@@ -234,7 +234,7 @@ TCompCollider::result TCompCollider::collisionSweep(VEC3 dir, float distance, ph
 			shapes.resize(numShapes);
 			mimetic_collider->config->actor->getShapes(&shapes[0], numShapes);
 			physx::PxShape* mimetic_shape = shapes[0];
-			assert(mimetic_shape->getGeometryType() == PxGeometryType::eCAPSULE); //We also assume that the geometry is a capsule.
+			assert(mimetic_shape->getGeometryType() == physx::PxGeometryType::eCAPSULE); //We also assume that the geometry is a capsule.
 			mimetic_shape->getCapsuleGeometry(*controller_geometry);
 		}
 	}

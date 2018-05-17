@@ -97,6 +97,8 @@ class TCompTempPlayerController : public TCompBase
 	float timeToPressAgain = 0.7f;
 	float timeInhib = 0.0f;
 
+	float grabObjectFactor = 0.75f;
+
     float attackTimer = 0.f;    //HARD FIX: TODO: Remove
 
 	void onCreate(const TMsgEntityCreated& msg);

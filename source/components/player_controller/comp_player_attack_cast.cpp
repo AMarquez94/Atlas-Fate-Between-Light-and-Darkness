@@ -26,11 +26,16 @@ void TCompPlayerAttackCast::load(const json& j, TEntityParseContext& ctx) {
   PxPlayerAttackQueryFilterData.data = pxFilterData;
   PxPlayerAttackQueryFilterData.flags = physx::PxQueryFlag::eDYNAMIC;
 
-  //Movable objects
+  //Movable objects in range
   physx::PxFilterData pxFilterData2;
-  pxFilterData2.word0 = FilterGroup::Movable;
+  pxFilterData2.word0 = FilterGroup::Movable | FilterGroup::IgnoreMovable;
   PxPlayerMovableObjectsQueryFilterData.data = pxFilterData2;
   PxPlayerMovableObjectsQueryFilterData.flags = physx::PxQueryFlag::eDYNAMIC;
+
+  //Already moving objects
+  physx::PxFilterData pxCheckCollisionFilterData;
+  pxCheckCollisionFilterData.word0 = FilterGroup::Movable | FilterGroup::Enemy | FilterGroup::Wall;
+  PxMovingObjectQuery.data = pxCheckCollisionFilterData;
 }
 
 void TCompPlayerAttackCast::registerMsgs()
