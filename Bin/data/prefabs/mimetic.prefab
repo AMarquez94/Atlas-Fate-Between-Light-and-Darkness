@@ -107,6 +107,17 @@
 			"noise_emitter": {
 				"radius": -1
 			},
+			"collider": {
+				"shape": "capsule",
+				"radius": 0.65,
+				"height": 1.0,
+				"gravity": true,
+				"group": "enemy"
+			},
+			"rigidbody": {
+				"is_controller": true,
+				"is_gravity": true
+			},
 			"mimetic_animator": true,
 			"tags": ["enemy", "mimetic"]
 		}

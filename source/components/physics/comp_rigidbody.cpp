@@ -54,12 +54,18 @@ void TCompRigidbody::update(float dt) {
 			physx::PxControllerCollisionFlags col = controller->move(velocity * dt, 0.f, dt, filters);
 			is_grounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN);
 
-      /* We handle here the difference between the logical transform (our component transform) and the physx transform */
-      physx::PxExtendedVec3 new_pos_transform = controller->getFootPosition();
-      VEC3 new_trans_pos = VEC3(new_pos_transform.x, new_pos_transform.y, new_pos_transform.z);
-      transform->setPosition(new_trans_pos);
-      lastFramePosition = new_trans_pos;
+          /* We handle here the difference between the logical transform (our component transform) and the physx transform */
+          physx::PxExtendedVec3 new_pos_transform = controller->getFootPosition();
+          VEC3 new_trans_pos = VEC3(new_pos_transform.x, new_pos_transform.y, new_pos_transform.z);
+          transform->setPosition(new_trans_pos);
+          lastFramePosition = new_trans_pos;
 		}
+        else 
+        {
+            VEC3 pos = transform->getPosition() + PXVEC3_TO_VEC3(c_collider->config->center);
+            QUAT quat = transform->getRotation();
+            c_collider->setGlobalPose(pos, quat, false);
+        }
 	}
 }
 

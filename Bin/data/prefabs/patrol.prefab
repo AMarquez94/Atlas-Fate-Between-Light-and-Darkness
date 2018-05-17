@@ -21,6 +21,17 @@
 			"emission_controller": {
 				"initial": "0.0 1.0 1.0 1.0"
 			},
+			"rigidbody": {
+				"is_controller": true,
+				"is_gravity": true
+			},
+			"collider": {
+				"shape": "capsule",
+				"radius": 0.65,
+				"height": 1.0,
+				"gravity": true,
+				"group": "enemy"
+			},
 			"patrol_animator": true,
 			"tags": ["enemy", "patrol"],
 			"ai_patrol": {

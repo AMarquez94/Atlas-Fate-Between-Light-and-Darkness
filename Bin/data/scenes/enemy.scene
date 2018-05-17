@@ -10,17 +10,6 @@
 				"pos": "-25 0 73",
 				"lookat": "-24 0 74"
 			},
-			"collider": {
-				"shape": "capsule",
-				"radius": 0.65,
-				"height": 1.0,
-				"gravity": true,
-				"group": "enemy"
-			},
-			"rigidbody": {
-				"is_controller": true,
-				"is_gravity": true
-			},
 			"ai_patrol": {
 				"startLightsOn": false
 			}
@@ -44,17 +33,6 @@
 						"minTime": 10
 					}
 				]
-			},
-			"collider": {
-				"shape": "capsule",
-				"radius": 0.65,
-				"height": 1.0,
-				"gravity": true,
-				"group": "enemy"
-			},
-			"rigidbody": {
-				"is_controller": true,
-				"is_gravity": true
 			}
 		}
 	}, {
@@ -76,17 +54,6 @@
 						"minTime": 10
 					}
 				]
-			},
-			"collider": {
-				"shape": "capsule",
-				"radius": 0.65,
-				"height": 1.0,
-				"gravity": true,
-				"group": "enemy"
-			},
-			"rigidbody": {
-				"is_controller": true,
-				"is_gravity": true
 			}
 		}
 	}, {
@@ -99,17 +66,6 @@
 			},
 			"ai_patrol": {
 				"startLightsOn": false
-			},
-			"collider": {
-				"shape": "capsule",
-				"radius": 0.65,
-				"height": 1.0,
-				"gravity": true,
-				"group": "enemy"
-			},
-			"rigidbody": {
-				"is_controller": true,
-				"is_gravity": true
 			}
 		}
 	}, {
@@ -124,17 +80,6 @@
 				"startLightsOn": false,
 				"type": "wall",
 				"isSlept": false
-			},
-			"collider": {
-				"shape": "capsule",
-				"radius": 0.65,
-				"height": 1.0,
-				"gravity": true,
-				"group": "enemy"
-			},
-			"rigidbody": {
-				"is_controller": true,
-				"is_gravity": true
 			}
 		}
 	}

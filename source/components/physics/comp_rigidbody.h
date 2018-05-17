@@ -28,6 +28,7 @@ public:
 	bool is_controller;
 	bool is_grounded;
 
+    VEC3 offset;
 	VEC3 lastFramePosition;
 	VEC3 normal_gravity = VEC3(0, -9.8f, 0);
 

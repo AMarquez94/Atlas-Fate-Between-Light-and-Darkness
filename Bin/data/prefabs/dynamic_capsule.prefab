@@ -18,7 +18,13 @@
 				"shape": "convex",
 				"is_trigger": false,
 				"is_dynamic": true,
+				"is_gravity": false,
+				"center": "0 -3 0",
 				"name": "data/colliders/collider_capsula_low.collider"
+			},
+			"rigidbody": {
+				"is_controller": false,
+				"is_gravity": false
 			},
 			"dynamic_capsule": {
 				"speed": 0,

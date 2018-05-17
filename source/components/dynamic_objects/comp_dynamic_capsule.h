@@ -9,7 +9,8 @@ class TCompDynamicCapsule : public TCompBase {
 	float speed;
 	VEC3 start_point;
 	VEC3 end_point;
-  VEC3 offset;
+    VEC3 offset;
+    VEC3 director;
 
 public:
 

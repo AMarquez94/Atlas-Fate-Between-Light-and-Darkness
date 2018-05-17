@@ -6,6 +6,7 @@
 #include "components/comp_name.h"
 #include "components/physics/comp_collider.h"
 #include "entity/entity_parser.h"
+#include "components/physics/comp_collider.h"
 
 DECL_OBJ_MANAGER("dynamic_capsules_manager", TCompDynamicCapsulesManager);
 
@@ -20,7 +21,7 @@ void TCompDynamicCapsulesManager::load(const json & j, TEntityParseContext & ctx
 	end_point = loadVEC3(j["end_point"]);
 	numberOfCapsules = j.value("number", 0);
 	speed = j.value("speed", 0.f);
-  capsule_offset = loadVEC3(j["capsule_offset"]);
+    capsule_offset = loadVEC3(j["capsule_offset"]);
 
 	if (numberOfCapsules > 0) {
 
@@ -56,7 +57,7 @@ void TCompDynamicCapsulesManager::load(const json & j, TEntityParseContext & ctx
 			cDynamicCapsule->setStartPoint(start_point + capsule_offset);
 			cDynamicCapsule->setEndPoint(end_point + capsule_offset);
 			cDynamicCapsule->setSpeed(speed);
-      cDynamicCapsule->setOffset(capsule_offset);
+            cDynamicCapsule->setOffset(capsule_offset);
 
 			/* Set rigidbody pos */
 			TCompCollider *capsuleCollider = eCapsule->get<TCompCollider>();

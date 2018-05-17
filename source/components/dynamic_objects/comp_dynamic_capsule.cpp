@@ -13,19 +13,24 @@ void TCompDynamicCapsule::load(const json& j, TEntityParseContext& ctx) {
 	speed = j.value("speed", 0.f);
 	start_point = loadVEC3(j["start_point"]);
 	end_point = loadVEC3(j["end_point"]);
+
+    director = end_point - start_point;
+    director.Normalize();
 }
 
 void TCompDynamicCapsule::update(float dt) {
 
 	VEC3 dir = end_point - start_point;
 	dir.Normalize();
+
 	TCompTransform *myPos = get<TCompTransform>();
 	myPos->setPosition(myPos->getPosition() + dir * speed * dt);
-	if (VEC3::Distance(myPos->getPosition(), end_point) <= speed * dt) {
+
+    VEC3 facing_dir = (end_point - myPos->getPosition());
+    facing_dir.Normalize();
+
+	if (director.Dot(facing_dir) < 0)
 		myPos->setPosition(start_point);
-	}
-	TCompCollider *cCollider = get<TCompCollider>();
-	cCollider->setGlobalPose(myPos->getPosition() - offset, myPos->getRotation(), false);
 }
 
 void TCompDynamicCapsule::setSpeed(float newSpeed) {
