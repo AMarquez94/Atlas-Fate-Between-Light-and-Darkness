@@ -484,6 +484,9 @@ q		)
 	-- ----------------------------------------------------------
 	fn exportEntity obj = (
 		
+		-- Adding general discarding here
+		if isCollider obj then (exportEntityCollider obj )
+		
 		fs.beginObj()
 		fs.writeKey "entity"
 			fs.beginObj()

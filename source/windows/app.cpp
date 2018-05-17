@@ -233,6 +233,7 @@ void CApp::doFrame() {
 
 	PROFILE_FRAME_BEGINS();
 	PROFILE_FUNCTION("App::doFrame");
+
 	float dt = time_since_last_render.elapsedAndReset();
 	CEngine::get().update(dt);
 	CEngine::get().render();

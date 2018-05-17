@@ -20,7 +20,11 @@
 
 bool CModuleMapIntro::start() {
 
+#ifdef _DEBUG
+    EngineScene.loadScene("scene_brian");
+#else
     EngineScene.loadScene("scene_alex");
+#endif
 
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 	mouse->setLockMouse(true);
