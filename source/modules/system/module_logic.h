@@ -84,7 +84,7 @@ void playerInvisible();
 void spotlightsToggle();
 void lanternToggle();
 void debugToggle();
-
+void shadowsToggle();
 
 void spawn(const std::string & name, const VEC3 & pos);
 void bind(const std::string& key, const std::string& script);

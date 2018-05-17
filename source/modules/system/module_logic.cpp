@@ -11,6 +11,7 @@
 #include "components/lighting/comp_light_dir.h"
 #include "components/lighting/comp_light_spot.h"
 #include "components/lighting/comp_light_point.h"
+
 bool CModuleLogic::start() {
 	BootLuaSLB();
 	execEvent(Events::GAME_START);
@@ -36,10 +37,10 @@ void CModuleLogic::update(float delta) {
 /* Where we publish all functions that we want and load all the scripts in the scripts folder */
 void CModuleLogic::BootLuaSLB() {
 
-    //Publish all the functions
-    publishClasses();
-    //Load all the scripts
-    loadScriptsInFolder("data/scripts");
+	//Publish all the functions
+	publishClasses();
+	//Load all the scripts
+	loadScriptsInFolder("data/scripts");
 }
 
 /* Load all scripts.lua in given path and its subfolders */
@@ -74,39 +75,54 @@ void CModuleLogic::loadScriptsInFolder(char * path)
 /* Publish all the classes in LUA */
 void CModuleLogic::publishClasses() {
 
-    /* Classes */
-    SLB::Class< CModuleGameConsole >("GameConsole", m)
-        .comment("This is our wrapper of the console class")
-        .set("addCommand", &CModuleGameConsole::addCommandToList);
+	/* Classes */
+	SLB::Class< CModuleGameConsole >("GameConsole", m)
+		.comment("This is our wrapper of the console class")
+		.set("addCommand", &CModuleGameConsole::addCommandToList);
 
-    SLB::Class< CModuleLogic >("Logic", m)
-        .comment("This is our wrapper of the logic class")
-        .set("printLog", &CModuleLogic::printLog);
+	SLB::Class< CModuleLogic >("Logic", m)
+		.comment("This is our wrapper of the logic class")
+		.set("printLog", &CModuleLogic::printLog);
 
 
 	/* Global functions */
-	m->set("getConsole", SLB::FuncCall::create(&getConsole));
-	m->set("getLogic", SLB::FuncCall::create(&getLogic));
-	m->set("execDelayedScript", SLB::FuncCall::create(&execDelayedScript));
+
+	//game hacks
 	m->set("pauseGame", SLB::FuncCall::create(&pauseGame));
-	m->set("blendInCamera", SLB::FuncCall::create(&blendInCamera));
-	m->set("blendOutCamera", SLB::FuncCall::create(&blendOutCamera));
-	m->set("fpsToggle", SLB::FuncCall::create(&fpsToggle));
-	m->set("debugToggle", SLB::FuncCall::create(&debugToggle));
-	m->set("systemToggle", SLB::FuncCall::create(&systemToggle));
+	m->set("loadscene", SLB::FuncCall::create(&loadscene));
+
+	//player hacks
 	m->set("movePlayer", SLB::FuncCall::create(&movePlayer));
 	m->set("staminaInfinite", SLB::FuncCall::create(&staminaInfinite));
 	m->set("immortal", SLB::FuncCall::create(&immortal));
 	m->set("inShadows", SLB::FuncCall::create(&inShadows));
 	m->set("speedBoost", SLB::FuncCall::create(&speedBoost));
 	m->set("playerInvisible", SLB::FuncCall::create(&playerInvisible));
+
+	//light hacks
 	m->set("spotlightsToggle", SLB::FuncCall::create(&spotlightsToggle));
 	m->set("lanternToggle", SLB::FuncCall::create(&lanternToggle));
-	m->set("spawn", SLB::FuncCall::create(&spawn));
-	m->set("bind", SLB::FuncCall::create(&bind));
-	m->set("loadscene", SLB::FuncCall::create(&loadscene));
+	m->set("shadowsToggle", SLB::FuncCall::create(&shadowsToggle));
 	m->set("cg_drawlights", SLB::FuncCall::create(&cg_drawlights));
 
+	//camera hacks
+	m->set("blendInCamera", SLB::FuncCall::create(&blendInCamera));
+	m->set("blendOutCamera", SLB::FuncCall::create(&blendOutCamera));
+
+	//utilities
+	m->set("getConsole", SLB::FuncCall::create(&getConsole));
+	m->set("getLogic", SLB::FuncCall::create(&getLogic));
+	m->set("execDelayedScript", SLB::FuncCall::create(&execDelayedScript));
+
+	//debug hacks
+	m->set("fpsToggle", SLB::FuncCall::create(&fpsToggle));
+	m->set("debugToggle", SLB::FuncCall::create(&debugToggle));
+
+
+	//others
+	m->set("spawn", SLB::FuncCall::create(&spawn));
+	m->set("bind", SLB::FuncCall::create(&bind));
+	m->set("systemToggle", SLB::FuncCall::create(&systemToggle));
 
 }
 
@@ -154,33 +170,33 @@ bool CModuleLogic::execScriptDelayed(const std::string & script, float delay)
 
 bool CModuleLogic::execEvent(Events event, const std::string & params, float delay)
 {
-    /* TODO: meter eventos */
-    switch (event) {
-    case Events::GAME_START:
-        if (delay > 0) {
-            return execScriptDelayed("onGameStart()", delay);
-        }
-        else {
-            return execScript("onGameStart()").success;
-        }
-        break;
-    case Events::GAME_END:
+	/* TODO: meter eventos */
+	switch (event) {
+	case Events::GAME_START:
+		if (delay > 0) {
+			return execScriptDelayed("onGameStart()", delay);
+		}
+		else {
+			return execScript("onGameStart()").success;
+		}
+		break;
+	case Events::GAME_END:
 
-        break;
-    default:
+		break;
+	default:
 
-        break;
-    }
-    return false;
+		break;
+	}
+	return false;
 }
 
 void CModuleLogic::printLog()
 {
-    dbg("Printing log\n");
-    for (int i = 0; i < log.size(); i++) {
-        dbg("%s\n", log[i].c_str());
-    }
-    dbg("End printing log\n");
+	dbg("Printing log\n");
+	for (int i = 0; i < log.size(); i++) {
+		dbg("%s\n", log[i].c_str());
+	}
+	dbg("End printing log\n");
 }
 
 /* Auxiliar functions */
@@ -189,7 +205,7 @@ CModuleGameConsole * getConsole() { return EngineConsole.getPointer(); }
 
 void execDelayedScript(const std::string& script, float delay)
 {
-    EngineLogic.execScriptDelayed(script, delay);
+	EngineLogic.execScriptDelayed(script, delay);
 }
 
 void pauseGame(bool pause)
@@ -265,16 +281,16 @@ void spotlightsToggle() {
 	});
 	//Now we reactivate lanterns in case it is needed.
 	std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("patrol"));
-		for (int i = 0; i < enemies.size(); i++) {
-			CEntity* e = enemies[i];
-			TCompGroup* group = e->get<TCompGroup>();
-			CHandle lantern = group->getHandleByName("FlashLight");
-			if (lantern.isValid()) {
-				CEntity* e = lantern;
-				TCompLightSpot* patrol_lantern = e->get<TCompLightSpot>();
-				if (patrol_lantern->isEnabled) break; //If the spotlight is already active, nothing to do, we break the loop
-				patrol_lantern->isEnabled = true;    //else, we activate the lanterns.
-			}
+	for (int i = 0; i < enemies.size(); i++) {
+		CEntity* e = enemies[i];
+		TCompGroup* group = e->get<TCompGroup>();
+		CHandle lantern = group->getHandleByName("FlashLight");
+		if (lantern.isValid()) {
+			CEntity* e = lantern;
+			TCompLightSpot* patrol_lantern = e->get<TCompLightSpot>();
+			if (patrol_lantern->isEnabled) break; //If the spotlight is already active, nothing to do, we break the loop
+			patrol_lantern->isEnabled = true;    //else, we activate the lanterns.
+		}
 	}
 
 }
@@ -291,6 +307,10 @@ void lanternToggle() {
 			patrol_lantern->isEnabled = !patrol_lantern->isEnabled;
 		}
 	}
+}
+
+void shadowsToggle() {
+	// To-Do
 }
 
 void systemToggle(const std::string& system) {
