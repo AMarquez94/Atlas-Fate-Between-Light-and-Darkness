@@ -2,8 +2,8 @@
 	"update":
 	[
 		"input",
-		"physics",
 		"entities",
+		"physics",
 		"render",
 		"navmeshes",
 		"cameras",

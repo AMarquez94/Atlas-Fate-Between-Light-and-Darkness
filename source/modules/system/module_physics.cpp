@@ -106,20 +106,12 @@ void CModulePhysics::update(float delta)
 
 			if (compRigibody)
 			{
-				if (compRigibody->is_controller)
-				{
-					PxExtendedVec3 pxpos_ext = compRigibody->controller->getFootPosition();
-					pxpos.x = (float)pxpos_ext.x;
-					pxpos.y = (float)pxpos_ext.y;
-					pxpos.z = (float)pxpos_ext.z;
-				}
-				else
+				if (!compRigibody->is_controller)
 				{
 					compTransform->setRotation(QUAT(pxq.x, pxq.y, pxq.z, pxq.w));
-				}
-
-				compTransform->setPosition(VEC3(pxpos.x, pxpos.y, pxpos.z));
-				compRigibody->lastFramePosition = VEC3(pxpos.x, pxpos.y, pxpos.z);
+          compTransform->setPosition(VEC3(pxpos.x, pxpos.y, pxpos.z));
+          compRigibody->lastFramePosition = VEC3(pxpos.x, pxpos.y, pxpos.z);
+				}				
 			}
 		}
 	}

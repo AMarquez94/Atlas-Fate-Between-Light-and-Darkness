@@ -42,7 +42,6 @@ void TCompRigidbody::update(float dt) {
 		VEC3 new_pos = transform->getPosition();
 		VEC3 delta_movement = new_pos - lastFramePosition;
 		velocity = physx::PxVec3(delta_movement.x, delta_movement.y, delta_movement.z) / dt;
-		lastFramePosition = new_pos;
 
 		if (is_gravity) {
 			if (is_grounded) totalDownForce = physx::PxVec3(0, 0, 0);
@@ -54,12 +53,12 @@ void TCompRigidbody::update(float dt) {
 		if (is_controller){
 			physx::PxControllerCollisionFlags col = controller->move(velocity * dt, 0.f, dt, filters);
 			is_grounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN);
-		}
-		else {
-			TCompTransform *c_transform = get<TCompTransform>();
-			VEC3 pos = c_transform->getPosition();
-			QUAT quat = c_transform->getRotation();
-			c_collider->setGlobalPose(pos, quat);
+
+      /* We handle here the difference between the logical transform (our component transform) and the physx transform */
+      physx::PxExtendedVec3 new_pos_transform = controller->getFootPosition();
+      VEC3 new_trans_pos = VEC3(new_pos_transform.x, new_pos_transform.y, new_pos_transform.z);
+      transform->setPosition(new_trans_pos);
+      lastFramePosition = new_trans_pos;
 		}
 	}
 }
