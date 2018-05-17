@@ -71,11 +71,11 @@ void TCompRigidbody::registerMsgs() {
 void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
 
 	TCompCollider * c_collider = get<TCompCollider>();
+	TCompTransform * compTransform = get<TCompTransform>();
 
 	// Let the rigidbody handle the creation if it exists..
 	if (c_collider != nullptr)
 	{
-		TCompTransform * compTransform = get<TCompTransform>();
 
 		if (is_controller)
 		{
@@ -99,6 +99,8 @@ void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
 		//filters.mFilterCallback = &customQueryFilter;
 		filters.mFilterData = characterFilterData;
 	}
+
+  lastFramePosition = compTransform->getPosition();
 }
 
 void TCompRigidbody::Resize(float new_size)
