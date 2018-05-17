@@ -29,6 +29,8 @@ void TCompRigidbody::load(const json& j, TEntityParseContext& ctx) {
 	is_gravity = j.value("is_gravity", false);
 	is_kinematic = j.value("is_kinematic", false);
 	is_controller = j.value("is_controller", false);
+	is_movable = j.value("is_movable", false);
+
 }
 
 void TCompRigidbody::update(float dt) {
@@ -88,7 +90,7 @@ void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
 		{
 			// Create the shape, the actor and set the user data
 			physx::PxShape * shape = c_collider->config->createShape();
-			c_collider->config->createDynamic(shape, compTransform);
+			c_collider->config->createDynamic(shape, compTransform, is_movable);
 			c_collider->config->actor->userData = CHandle(c_collider).asVoidPtr();
 		}
 

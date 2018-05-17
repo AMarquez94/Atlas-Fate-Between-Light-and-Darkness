@@ -796,3 +796,63 @@ void TCompTempPlayerController::resetMerge() {
 	hardFallMsg.variant.setBool(false);
 	e->sendMsg(hardFallMsg);
 }
+void TCompTempPlayerController::moveObject(float dt) {
+
+	TCompPlayerAttackCast* player = get<TCompPlayerAttackCast>();
+	//Object calls
+	CEntity* object = player->movable;
+	std::string object_name = object->getName();
+	TCompTransform* object_transform = object->get<TCompTransform>();
+	VEC3 object_transform_pos = object_transform->getPosition();
+	QUAT quat_object = object_transform->getRotation();
+	TCompCollider* object_collider = object->get<TCompCollider>();
+
+	//Player calls
+	TCompTransform* my_pos_transform = get<TCompTransform>();
+	TCompCollider* my_collider = get<TCompCollider>();
+	VEC3 my_pos = my_pos_transform->getPosition();
+	VEC3 my_pos_aux = my_pos;
+
+	// Player movement
+	CEntity *player_camera = target_camera;
+	TCompTransform * trans_camera = player_camera->get<TCompTransform>();
+
+
+	float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
+	float player_accel = inputSpeed * grabObjectFactor *dt;
+
+	VEC3 up = trans_camera->getFront();
+	VEC3 normal_norm = my_pos_transform->getUp();
+	VEC3 proj = projectVector(up, normal_norm);
+	VEC3 dir = getMotionDir(proj, normal_norm.Cross(-proj));
+
+	if (dir != VEC3::Zero) {
+		TCompPlayerAttackCast* player = get<TCompPlayerAttackCast>();
+		//Sweep Calls + boolean
+		bool colision;
+		TCompCollider::result result_object = object_collider->collisionSweep(dir, 0.05, physx::PxQueryFlags(physx::PxQueryFlag::eDYNAMIC | physx::PxQueryFlag::eSTATIC), player->PxMovingObjectQuery);
+		TCompCollider::result result_player = my_collider->collisionSweep(dir, 0.05, physx::PxQueryFlags(physx::PxQueryFlag::eDYNAMIC | physx::PxQueryFlag::eSTATIC), player->PxMovingObjectQuery, TCompCollider::ePlayer);
+
+		if (!result_object.colision && !result_player.colision) {
+			
+			my_pos_transform->setPosition(my_pos + dir * player_accel);
+			object_collider->config->rigid_actor->setKinematicTarget(physx::PxTransform(ToPxVec3(object_transform_pos + dir * player_accel), ToPxQuat(quat_object)));
+		}
+		//else {
+		//	//debug
+		//	if (result_player.handle.isValid()) {
+
+		//		CEntity* e = result_player.handle.getOwner();
+		//		std::string name = e->getName();
+		//		dbg("Moving object. Player colliding with %s \n", name.c_str());
+		//	}
+		//	if (result_object.handle.isValid()) {
+
+		//		CEntity* e = result_object.handle.getOwner();
+		//		std::string name = e->getName();
+		//		dbg("Moving object. %s colliding with %s \n", object_name.c_str(), name.c_str());
+		//	}
+		//}
+	}
+
+}

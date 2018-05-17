@@ -9,6 +9,8 @@ enum FilterGroup {
 	Enemy = 1 << 3,
 	Ignore = 1 << 4,
 	Fence = 1 << 5,
+	Movable = 1 << 6,
+	IgnoreMovable = 1 << 7,
 	Scenario = Wall | Floor,
 	Characters = Player | Enemy,
 	All = -1

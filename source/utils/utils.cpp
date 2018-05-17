@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "windows/app.h"
+using namespace physx;
 
 void dbg(const char* format, ...) {
   va_list argptr;
@@ -128,4 +129,13 @@ int Strnicmp(const char * str1, const char * str2, int n)
 		str1++; str2++; n--; 
 	} 
 	return d;
+}
+
+physx::PxVec3 ToPxVec3(VEC3 vector) {
+	PxVec3 result = physx::PxVec3(vector.x, vector.y, vector.z);
+	return result;
+}
+physx::PxQuat ToPxQuat(QUAT quaternion) {
+	physx::PxQuat q = physx::PxQuat(quaternion.x, quaternion.y, quaternion.z, quaternion.w);
+	return q;
 }

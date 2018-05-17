@@ -46,5 +46,11 @@ FilterGroup getFilterByName(const std::string & name)
 	else if (strcmp("scenario", name.c_str()) == 0) {
 		return FilterGroup::Scenario;
 	}
+	else if (strcmp("movable", name.c_str()) == 0) {
+		return FilterGroup::Movable;
+	}
+	else if (strcmp("ignoreMovable", name.c_str()) == 0) {
+		return FilterGroup::IgnoreMovable;
+	}
 	return FilterGroup::All;
 }

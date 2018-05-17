@@ -58,7 +58,7 @@ void CPhysicsCollider::createStatic(physx::PxShape* actor_shape, TCompTransform 
 	gScene->addActor(*actor);
 }
 
-void CPhysicsCollider::createDynamic(physx::PxShape* actor_shape, TCompTransform * c_transform)
+void CPhysicsCollider::createDynamic(physx::PxShape* actor_shape, TCompTransform * c_transform, bool isMovable )
 {
 	shape = actor_shape;
 	physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
@@ -67,8 +67,11 @@ void CPhysicsCollider::createDynamic(physx::PxShape* actor_shape, TCompTransform
 	VEC3 pos = c_transform->getPosition();
 	QUAT quat = c_transform->getRotation();
 	physx::PxTransform transform(physx::PxVec3(pos.x, pos.y, pos.z), physx::PxQuat(quat.x, quat.y, quat.z, quat.w));
-	physx::PxRigidDynamic* rigid_actor = gPhysics->createRigidDynamic(transform);
+	rigid_actor = gPhysics->createRigidDynamic(transform);
 	physx::PxRigidBodyExt::updateMassAndInertia(*rigid_actor, 10.0f);
+	if (isMovable) {
+		rigid_actor->setRigidBodyFlag(physx::PxRigidBodyFlag::eKINEMATIC, true);
+	}
 	actor = rigid_actor;
 	actor->attachShape(*actor_shape);
 	actor_shape->release();
@@ -91,7 +94,7 @@ physx::PxShape* CPhysicsBox::createShape(){
 	material = default_material;
 	physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
 
-	physx::PxShape * actor_shape = gPhysics->createShape(physx::PxBoxGeometry(size.x, size.y, size.z), *material);
+	physx::PxShape * actor_shape = gPhysics->createShape(physx::PxBoxGeometry(size.x, size.y, size.z), *material, true);
 	actor_shape->setLocalPose(physx::PxTransform(physx::PxVec3(center.x, center.y + size.y, center.z)));
 	actor_shape->setContactOffset(contact_offset);
 	setupFiltering(actor_shape, group, mask);
@@ -140,7 +143,7 @@ physx::PxShape* CPhysicsPlane::createShape() {
 	material = default_material;
 	physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
 
-	physx::PxShape * actor_shape = gPhysics->createShape(physx::PxPlaneGeometry(), *material);
+	physx::PxShape * actor_shape = gPhysics->createShape(physx::PxPlaneGeometry(), *material, true);
 	actor_shape->setLocalPose(physx::PxTransform(physx::PxVec3(center.x, center.y, center.z)));
 	setupFiltering(actor_shape, group, mask);
 	setAsTrigger(actor_shape, is_trigger);
@@ -162,7 +165,7 @@ physx::PxShape* CPhysicsSphere::createShape(){
 	material = default_material;
 	physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
 
-	physx::PxShape * actor_shape = gPhysics->createShape(physx::PxSphereGeometry(radius), *material);
+	physx::PxShape * actor_shape = gPhysics->createShape(physx::PxSphereGeometry(radius), *material, true);
 	actor_shape->setLocalPose(physx::PxTransform(physx::PxVec3(center.x, center.y, center.z)));
 	actor_shape->setContactOffset(contact_offset);
 	setupFiltering(actor_shape, group, mask);
@@ -186,7 +189,7 @@ physx::PxShape* CPhysicsCapsule::createShape() {
 	material = default_material;
 	physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
 
-	physx::PxShape * actor_shape = gPhysics->createShape(physx::PxCapsuleGeometry(radius, height), *material);
+	physx::PxShape * actor_shape = gPhysics->createShape(physx::PxCapsuleGeometry(radius, height), *material, true);
 	actor_shape->setLocalPose(physx::PxTransform(physx::PxVec3(center.x, center.y, center.z)));
 	actor_shape->setContactOffset(contact_offset);
 	setupFiltering(actor_shape, group, mask);
@@ -257,7 +260,7 @@ physx::PxShape* CPhysicsConvex::createShape() {
 
 	physx::PxConvexMesh* convex = gCooking->createConvexMesh(desc, gPhysics->getPhysicsInsertionCallback());
 	physx::PxConvexMeshGeometry convex_geo = physx::PxConvexMeshGeometry(convex, physx::PxMeshScale(), physx::PxConvexMeshGeometryFlags());
-	physx::PxShape * actor_shape = gPhysics->createShape(convex_geo, *material);
+	physx::PxShape * actor_shape = gPhysics->createShape(convex_geo, *material, true);
 	setupFiltering(actor_shape, group, mask);
 	setAsTrigger(actor_shape, is_trigger);
 
@@ -296,7 +299,7 @@ physx::PxShape* CPhysicsTriangleMesh::createShape() {
 
 	physx::PxTriangleMesh * tri_mesh = gCooking->createTriangleMesh(meshDesc, gPhysics->getPhysicsInsertionCallback());
 	physx::PxTriangleMeshGeometry tri_geo = physx::PxTriangleMeshGeometry(tri_mesh, physx::PxMeshScale());
-	physx::PxShape * actor_shape = gPhysics->createShape(tri_geo, *material);
+	physx::PxShape * actor_shape = gPhysics->createShape(tri_geo, *material,true);
 	setupFiltering(actor_shape, group, mask);
 	setAsTrigger(actor_shape, is_trigger);
 

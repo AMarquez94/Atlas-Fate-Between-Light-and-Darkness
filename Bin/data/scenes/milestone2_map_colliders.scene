@@ -221,72 +221,6 @@
   {
     "entity":
     {
-      "name": "colider_fencebox007"
-      ,
-      "transform":
-      {
-        "pos": "-17.6994 -0.0330613 0.0978896"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "1.02751 0.778982 1.18989"
-        ,
-        "group": "fence"
-        ,
-        "mask": "player"
-        ,
-        "is_trigger": false
-        ,
-        "is_dynamic": false
-        ,
-        "is_controller": false
-        ,
-        "is_gravity": false
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "colider_fencebox008"
-      ,
-      "transform":
-      {
-        "pos": "-18.0055 -0.0330613 -1.9048"
-        ,
-        "rotation": "0.0 -0.300706 0.0 -0.953717"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.482931 0.475179 0.630642"
-        ,
-        "group": "fence"
-        ,
-        "mask": "player"
-        ,
-        "is_trigger": false
-        ,
-        "is_dynamic": false
-        ,
-        "is_controller": false
-        ,
-        "is_gravity": false
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "colider_fencebox009"
       ,
       "transform":
@@ -5118,7 +5052,8 @@
       {
         "shape": "mesh"
         ,
-        "name": "data/colliders/collider_mesh_floor_middle002.collider"
+        "name": "data/colliders/collider_mesh_floor_middle002.collider",
+        "group": "floor"
       }
     }
   }
@@ -6579,7 +6514,8 @@
       {
         "shape": "mesh"
         ,
-        "name": "data/colliders/collider_suelo.collider"
+        "name": "data/colliders/collider_suelo.collider",
+        "group": "floor"
       }
     }
   }

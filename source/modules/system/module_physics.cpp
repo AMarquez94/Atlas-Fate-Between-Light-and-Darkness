@@ -197,6 +197,21 @@ bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distan
 	return status;
 }
 
+bool CModulePhysics::Sweep(PxGeometry* geometry, const PxTransform& pose, const PxVec3& dir, const PxReal distance, physx::PxSweepBuffer & hit, PxQueryFilterData& filterData) {
+	PxGeometry* px_geometry = geometry;
+	PxTransform px_pose = pose;
+	PxVec3 px_dir = dir;
+	PxReal px_distance = distance;
+	const PxU32 bufferSize = 256;
+	PxSweepHit px_hit[bufferSize];
+	PxSweepBuffer px_buffer(px_hit, bufferSize);
+
+	bool status = gScene->sweep(*geometry, px_pose, px_dir, px_distance, px_buffer, PxHitFlag::eDEFAULT, filterData);
+	hit = px_buffer;
+
+	return status;
+}
+
 /* Returns true if there was some hit with the sphere cast. Hit will contain all hits */
 bool CModulePhysics::SphereCast(physx::PxGeometry& geometry, VEC3 pos, std::vector<physx::PxOverlapHit> & hit, physx::PxQueryFilterData filterdata)
 {

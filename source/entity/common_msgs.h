@@ -167,6 +167,12 @@ struct TMsgSceneLoaded {
     std::string scene_name;
     DECL_MSG_ID();
 };
+struct TMsgGrabObject {
+	bool moving;
+	CHandle object = CHandle();
+	DECL_MSG_ID();
+
+};
 
 #endif
 

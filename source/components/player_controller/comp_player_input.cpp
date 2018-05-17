@@ -121,22 +121,57 @@ void TCompPlayerInput::update(float dt)
 		}
 		{
 			TCompPlayerAttackCast* player = e->get<TCompPlayerAttackCast>();
-			//GrabEnemy messages
-			if (EngineInput["btAction"].getsPressed() && player->closestEnemyToMerge().isValid()) {
-				_enemyStunned = true;
-				TMsgSetFSMVariable grabEnemy;
-				grabEnemy.variant.setName("grabEnemy");
-				grabEnemy.variant.setBool(true);
-				e->sendMsg(grabEnemy);
 
+			//Grab Object + grab enemy stunned
+			//if we press the action button, we check our proximity
+			if (EngineInput["btAction"].getsPressed()) {
+				player->movable = player->closestObjectToMove();
+				player->stunnedEnemy = player->closestEnemyToMerge();
+				if (player->stunnedEnemy.isValid()) {
+					_enemyStunned = true;
+					TMsgSetFSMVariable grabEnemy;
+					grabEnemy.variant.setName("grabEnemy");
+					grabEnemy.variant.setBool(true);
+					e->sendMsg(grabEnemy);
+				}
+				else if (player->movable.isValid()) {
+					_moveObject = true;
+					TMsgSetFSMVariable grabObject;
+					grabObject.variant.setName("grabObject");
+					grabObject.variant.setBool(true);
+					e->sendMsg(grabObject);
 
+					TMsgGrabObject msg;
+					msg.object = player->movable;
+					msg.moving = true;
+					e->sendMsg(msg);
+				}
 			}
-			if (EngineInput["btAction"].getsReleased() || (_enemyStunned && !player->closestEnemyToMerge().isValid())) {
-				_enemyStunned = false;
-				TMsgSetFSMVariable grabEnemy;
-				grabEnemy.variant.setName("grabEnemy");
-				grabEnemy.variant.setBool(false);
-				e->sendMsg(grabEnemy);
+
+			//if we are grabbing an enemy, we check if we release the grab button or the stunned enemy becomes no longer available
+			if (_enemyStunned) {
+				if (EngineInput["btAction"].getsReleased() || !player->closestEnemyToMerge().isValid()) {
+					_enemyStunned = false;
+					TMsgSetFSMVariable grabEnemy;
+					grabEnemy.variant.setName("grabEnemy");
+					grabEnemy.variant.setBool(false);
+					e->sendMsg(grabEnemy);
+				}
+			}
+			//if we are moving an object, we check if we release the grab button or the object becomes no longer available
+			if (_moveObject) {
+				if (EngineInput["btAction"].getsReleased() || !player->closestObjectToMove().isValid()) {
+					_moveObject = false;
+					TMsgSetFSMVariable grabObject;
+					grabObject.variant.setName("grabObject");
+					grabObject.variant.setBool(false);
+					e->sendMsg(grabObject);
+
+					TMsgGrabObject msg;
+					msg.object = player->movable;
+					msg.moving = false;
+					e->sendMsg(msg);
+				}
 			}
 		}
 
