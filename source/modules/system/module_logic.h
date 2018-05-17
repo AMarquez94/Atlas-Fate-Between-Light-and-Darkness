@@ -89,3 +89,4 @@ void debugToggle();
 void spawn(const std::string & name, const VEC3 & pos);
 void bind(const std::string& key, const std::string& script);
 void loadscene(const std::string &level);
+void cg_drawlights(int type);

@@ -68,3 +68,14 @@ end
 function lanternToggle()
 	SLB.lanternToggle()
 end
+
+function loadscene(level)
+	SLB.loadscene(level)
+end
+
+function cg_drawlights(type)
+	SLB.cg_drawlights(type)
+end
+function spawn()
+	SLB.spawn()
+end

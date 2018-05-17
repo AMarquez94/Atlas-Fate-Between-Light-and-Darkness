@@ -102,9 +102,11 @@ void CModuleLogic::publishClasses() {
 	m->set("playerInvisible", SLB::FuncCall::create(&playerInvisible));
 	m->set("spotlightsToggle", SLB::FuncCall::create(&spotlightsToggle));
 	m->set("lanternToggle", SLB::FuncCall::create(&lanternToggle));
-	/*m->set("spawn", SLB::FuncCall::create(&spawn));
+	m->set("spawn", SLB::FuncCall::create(&spawn));
 	m->set("bind", SLB::FuncCall::create(&bind));
-	m->set("loadscene", SLB::FuncCall::create(&loadscene));*/
+	m->set("loadscene", SLB::FuncCall::create(&loadscene));
+	m->set("cg_drawlights", SLB::FuncCall::create(&cg_drawlights));
+
 
 }
 
@@ -322,4 +324,36 @@ void unbind(const std::string& key, const std::string& script) {
 	std::map<int, std::string>::iterator it;
 	it = EngineLogic._bindings.find(id);
 	EngineLogic._bindings.erase(it, EngineLogic._bindings.end());
+}
+void loadscene(const std::string &level) {
+
+	EngineScene.loadScene(level);
+}
+
+void cg_drawlights(int type) {
+
+	bool dir = false, spot = false, point = false;
+
+	switch (type) {
+	case 1: dir = spot = point = true; break;
+	case 2: dir = true; break;
+	case 3: spot = true; break;
+	case 4: point = true; break;
+	default: break;
+	}
+
+	getObjectManager<TCompLightDir>()->forEach([&](TCompLightDir* c) {
+		c->isEnabled = dir;
+	});
+
+	getObjectManager<TCompLightSpot>()->forEach([&](TCompLightSpot* c) {
+		c->isEnabled = spot;
+	});
+
+	getObjectManager<TCompLightPoint>()->forEach([&](TCompLightPoint* c) {
+		c->isEnabled = point;
+	});
+}
+void spawn(const std::string & name, const VEC3 & pos) {
+	//To-Do
 }
