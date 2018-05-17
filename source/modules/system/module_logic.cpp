@@ -109,6 +109,10 @@ void CModuleLogic::publishClasses() {
 	m->set("blendInCamera", SLB::FuncCall::create(&blendInCamera));
 	m->set("blendOutCamera", SLB::FuncCall::create(&blendOutCamera));
 
+	//system hacks
+	m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
+	m->set("deleteEnemies", SLB::FuncCall::create(&deleteEnemies));
+
 	//utilities
 	m->set("getConsole", SLB::FuncCall::create(&getConsole));
 	m->set("getLogic", SLB::FuncCall::create(&getLogic));
@@ -122,7 +126,6 @@ void CModuleLogic::publishClasses() {
 	//others
 	m->set("spawn", SLB::FuncCall::create(&spawn));
 	m->set("bind", SLB::FuncCall::create(&bind));
-	m->set("systemToggle", SLB::FuncCall::create(&systemToggle));
 
 }
 
@@ -220,7 +223,7 @@ void fpsToggle() {
 }
 
 void debugToggle() {
-	EngineRender.debugmode = !EngineRender.debugmode;
+	EngineRender.setDebugMode(!EngineRender.getDebugMode());
 }
 
 void blendInCamera(const std::string & cameraName, float blendInTime)
@@ -310,16 +313,23 @@ void lanternToggle() {
 }
 
 void shadowsToggle() {
-	// To-Do
+	EngineRender.setGenerateShadows(!EngineRender.getGenerateShadows());
 }
 
-void systemToggle(const std::string& system) {
-	if (system == "enemies") {
-		std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
-		TMsgScenePaused msg;
-		for (int i = 0; i < enemies.size(); i++) {
-			enemies[i].sendMsg(msg);
-		}
+void pauseEnemies() {
+	std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+	TMsgScenePaused msg;
+	for (int i = 0; i < enemies.size(); i++) {
+		enemies[i].sendMsg(msg);
+	}
+}
+
+void deleteEnemies() {
+	std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+	int i = 0;
+	while (i < enemies.size()) {
+		enemies[i].getOwner().destroy();
+		i++;
 	}
 }
 

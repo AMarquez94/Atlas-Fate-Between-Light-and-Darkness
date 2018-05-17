@@ -244,16 +244,17 @@ void CModuleRender::generateFrame() {
 	{
 		PROFILE_FUNCTION("CModuleRender::shadowsMapsGeneration");
 		CTraceScoped gpu_scope("shadowsMapsGeneration");
+		if (_generateShadows) {
+			// Generate the shadow map for each active light
+			getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
+				c->generateShadowMap();
+			});
 
-		// Generate the shadow map for each active light
-		getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
-			c->generateShadowMap();
-		});
-
-		// Generate the shadow map for each active light
-		getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
-			c->generateShadowMap();
-		});
+			// Generate the shadow map for each active light
+			getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
+				c->generateShadowMap();
+			});
+		}
 	}
 
 	{
@@ -293,7 +294,7 @@ void CModuleRender::generateFrame() {
 			if (c_color_grading)
 				curr_rt = c_color_grading->apply(curr_rt);
 		}
-		if (debugmode) {
+		if (_debugMode) {
 
 			debugDraw();
 		}

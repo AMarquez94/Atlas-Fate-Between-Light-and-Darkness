@@ -33,8 +33,12 @@ function stateAltered(state)
 	SLB.stateAltered(state)
 end
 
-function systemToggle(system)
-	SLB.systemToggle(system)
+function pauseEnemies()
+	SLB.pauseEnemies()
+end
+
+function deleteEnemies()
+	SLB.deleteEnemies()
 end
 
 function movePlayer(x,y,z)
