@@ -145,6 +145,7 @@ void CRenderManager::debugInMenu() {
 }
 
 void CRenderManager::setEntityCamera(CHandle h_new_entity_camera) {
+
     h_camera = h_new_entity_camera;
 }
 
@@ -168,9 +169,6 @@ void CRenderManager::renderCategory(const char* category_name) {
     if (e_camera)
         culling = e_camera->get<TCompCulling>();
     const TCompCulling::TCullingBits* culling_bits = culling ? &culling->bits : nullptr;
-
-    //cte_object.activate();
-    //cte_material.activate();
 
     bool using_skin = false;
 
@@ -208,8 +206,6 @@ void CRenderManager::renderCategory(const char* category_name) {
                 }
             }
         }
-
-        // Adding small hotfix to solve color missing.
 
         // World asociada a mi objeto
         const TCompTransform* c_transform = it->h_transform;

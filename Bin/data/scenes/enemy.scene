@@ -8,7 +8,7 @@
 			"name": "The Enemy 1",
 			"transform": {
 				"pos": "-25 0 73",
-				"lookat": "1 0 1"
+				"lookat": "-24 0 74"
 			},
 			"collider": {
 				"shape": "capsule",
@@ -26,12 +26,12 @@
 			}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/patrol.prefab",
 			"name": "The Enemy 2",
 			"transform": {
 				"pos": "-25 0 110",
-				"lookat": "1 0 0"
+				"lookat": "-24 0 110"
 			},
 			"ai_patrol": {
 				"waypoints": [{
@@ -63,7 +63,7 @@
 			"name": "The Enemy 3",
 			"transform": {
 				"pos": "0 0 105",
-				"lookat": "-1 0 0"
+				"lookat": "-1 0 105"
 			},
 			"ai_patrol": {
 				"waypoints": [{
@@ -95,15 +95,10 @@
 			"name": "The Enemy 4",
 			"transform": {
 				"pos": "-11 0 139",
-				"lookat": "0 0 0"
+				"lookat": "-11 0 138"
 			},
 			"ai_patrol": {
-				"startLightsOn": false,
-				"waypoints": [{
-						"position": "-11 0 139",
-						"lookAt": "0 0 -1"
-					}
-				]
+				"startLightsOn": false
 			},
 			"collider": {
 				"shape": "capsule",

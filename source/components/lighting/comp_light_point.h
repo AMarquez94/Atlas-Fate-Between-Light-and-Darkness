@@ -11,6 +11,7 @@ class TCompLightPoint : public TCompBase {
 
 public:
 
+    bool isEnabled;
 	const CTexture* projector = nullptr;
 
 	void debugInMenu();

@@ -108,6 +108,9 @@
 				"is_gravity": true
 			},
 			"shadow_controller": {},
+			"player_attack_cast": {
+				"radius": 2
+			},
 			"fsm": {
 				"file": "data/fsm/player.fsm"
 			},

@@ -63,8 +63,6 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 		if (mouse)
 		{
-			//ShowCursor(mouse->_lock_cursor);
-			//mouse->setLockMouse();
 			mouse->setButton(Input::MOUSE_MIDDLE, false);
 			ReleaseCapture();
 		}
@@ -168,7 +166,6 @@ bool CApp::createWindow(HINSTANCE new_hInstance, int nCmdShow) {
 		return false;
 
 	ShowWindow(hWnd, nCmdShow);
-	//ShowCursor(false);
 
 	return true;
 }
@@ -210,14 +207,11 @@ void CApp::mainLoop() {
 //--------------------------------------------------------------------------------------
 bool CApp::readConfig() {
 	// ...
-	xres = 1080;
-	yres = 640;
+	xres = 1280;
+	yres = 720;
 
 	time_since_last_render.reset();
-
 	CEngine::get().getRender().configure(xres, yres);
-
-	ShowCursor(false);
 
 	return true;
 }

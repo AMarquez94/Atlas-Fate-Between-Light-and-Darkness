@@ -22,5 +22,6 @@ public:
 
 private:
 	float _time;
+	bool _moveObject = false, _enemyStunned = false;
 };
 

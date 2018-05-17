@@ -19,6 +19,7 @@ public:
 	bool is_trigger = false;
 	bool is_controller = false;
 	physx::PxRigidActor* actor;
+	physx::PxRigidDynamic* rigid_actor;
 	physx::PxShape* shape;
 
 	physx::PxU32 group;
@@ -32,7 +33,7 @@ public:
 	virtual void debugInMenu() = 0;
 
 	void createStatic(physx::PxShape* actor_shape, TCompTransform * c_transform);
-	void createDynamic(physx::PxShape* actor_shape, TCompTransform * c_transform);
+	void createDynamic(physx::PxShape* actor_shape, TCompTransform * c_transform, bool isMovable = false);
 
 	void setupFiltering(physx::PxShape* shape, physx::PxU32 filterGroup, physx::PxU32 filterMask);
 	void setupFiltering(physx::PxRigidActor* actor, physx::PxU32 filterGroup, physx::PxU32 filterMask);

@@ -196,3 +196,36 @@ bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distan
 
 	return status;
 }
+
+bool CModulePhysics::Sweep(PxGeometry* geometry, const PxTransform& pose, const PxVec3& dir, const PxReal distance, physx::PxSweepBuffer & hit, PxQueryFilterData& filterData) {
+	PxGeometry* px_geometry = geometry;
+	PxTransform px_pose = pose;
+	PxVec3 px_dir = dir;
+	PxReal px_distance = distance;
+	const PxU32 bufferSize = 256;
+	PxSweepHit px_hit[bufferSize];
+	PxSweepBuffer px_buffer(px_hit, bufferSize);
+
+	bool status = gScene->sweep(*geometry, px_pose, px_dir, px_distance, px_buffer, PxHitFlag::eDEFAULT, filterData);
+	hit = px_buffer;
+
+	return status;
+}
+
+/* Returns true if there was some hit with the sphere cast. Hit will contain all hits */
+bool CModulePhysics::SphereCast(physx::PxGeometry& geometry, VEC3 pos, std::vector<physx::PxOverlapHit> & hit, physx::PxQueryFilterData filterdata)
+{
+  PxOverlapHit overlapHit[256];     //With 256 it is supossed to be enough
+  PxOverlapBuffer px_hit(overlapHit, 256);
+  
+  physx::PxTransform transform(PxVec3(pos.x, pos.y, pos.z));
+  bool status = gScene->overlap(geometry, transform, px_hit, filterdata);
+
+  if (status) {
+    for (PxU32 i = 0; i < px_hit.nbTouches; i++) {
+      hit.push_back(px_hit.touches[i]);
+    }
+  }
+  
+  return status;
+}

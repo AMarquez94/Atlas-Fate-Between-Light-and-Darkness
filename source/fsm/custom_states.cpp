@@ -611,4 +611,50 @@ namespace FSM
   void DeadState::onFinish(CContext& ctx) const {
 
   }
+  bool GrabEnemy::load(const json& jData) {
+
+	  _animationName = jData["animation"];
+	  _speed = jData.value("speed", 2.f);
+	  _size = jData.value("size", 1.f);
+	  _radius = jData.value("radius", 0.3f);
+	  _noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+	  if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+	  return true;
+  }
+
+  void GrabEnemy::onStart(CContext& ctx) const {
+
+	  CEntity* e = ctx.getOwner();
+	  e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _radius, _size, nullptr, _noise });
+	  dbg("FSM grab enemy msg sent \n");
+
+  }
+
+  void GrabEnemy::onFinish(CContext& ctx) const {
+	  CEntity* e = ctx.getOwner();
+	  e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::mergeEnemy });
+  }
+  bool GrabObject::load(const json& jData) {
+
+	  _animationName = jData["animation"];
+	  _speed = jData.value("speed", 2.f);
+	  _size = jData.value("size", 1.f);
+	  _radius = jData.value("radius", 0.3f);
+	  _noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+	  if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+	  return true;
+  }
+
+  void GrabObject::onStart(CContext& ctx) const {
+
+	  CEntity* e = ctx.getOwner();
+	  e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::moveObject,_speed, _radius, _size, nullptr, _noise });
+	  dbg("FSM grab object msg sent \n");
+
+  }
+
+  void GrabObject::onFinish(CContext& ctx) const {
+	  dbg("FSM grab object ended \n \n");
+
+  }
 }

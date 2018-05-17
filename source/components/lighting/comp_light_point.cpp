@@ -11,59 +11,66 @@ DXGI_FORMAT readFormat(const json& j, const std::string& label);
 
 // -------------------------------------------------
 void TCompLightPoint::debugInMenu() {
-	ImGui::DragFloat("Intensity", &intensity, 0.01f, 0.f, 10.f);
-	ImGui::ColorEdit3("Color", &color.x);
-	ImGui::DragFloat("Radius", &radius, 0.01f, 0.f, 100.f);
+
+    ImGui::DragFloat("Intensity", &intensity, 0.01f, 0.f, 10.f);
+    ImGui::ColorEdit3("Color", &color.x);
+    ImGui::DragFloat("Radius", &radius, 0.01f, 0.f, 100.f);
+    ImGui::Checkbox("Enabled", &isEnabled);
 }
 
 MAT44 TCompLightPoint::getWorld() {
-	TCompTransform* c = get<TCompTransform>();
-	if (!c)
-		return MAT44::Identity;
 
-	return MAT44::CreateScale(radius) * c->asMatrix();
+    TCompTransform* c = get<TCompTransform>();
+    if (!c)
+        return MAT44::Identity;
+
+    return MAT44::CreateScale(radius) * c->asMatrix();
 }
 
 // -------------------------------------------------
 void TCompLightPoint::renderDebug() {
-	// Render a wire sphere
-	auto mesh = Resources.get("data/meshes/UnitSphere.mesh")->as<CRenderMesh>();
-	renderMesh(mesh, getWorld(), VEC4(1, 1, 1, 1));
+
+    // Render a wire sphere
+    auto mesh = Resources.get("data/meshes/UnitSphere.mesh")->as<CRenderMesh>();
+    renderMesh(mesh, getWorld(), VEC4(1, 1, 1, 1));
 }
 
 // -------------------------------------------------
 void TCompLightPoint::load(const json& j, TEntityParseContext& ctx) {
-	if (j.count("color"))
-		color = loadVEC4(j["color"]);
-	intensity = j.value("intensity", intensity);
-	radius = j.value("radius", radius);
 
-	if (j.count("projector")) {
-		std::string projector_name = j.value("projector", "");
-		projector = Resources.get(projector_name)->as<CTexture>();
-	}
-	else {
-		projector = Resources.get("data/textures/default_white.dds")->as<CTexture>();
-	}
+    if (j.count("color"))
+        color = loadVEC4(j["color"]);
+    intensity = j.value("intensity", intensity);
+    radius = j.value("radius", radius);
+
+    if (j.count("projector")) {
+        std::string projector_name = j.value("projector", "");
+        projector = Resources.get(projector_name)->as<CTexture>();
+    }
+    else {
+        projector = Resources.get("data/textures/default_white.dds")->as<CTexture>();
+    }
+
+    isEnabled = true;
 }
 
 // -------------------------------------------------
 // Updates the Shader Cte Light with MY information
 void TCompLightPoint::activate() {
 
-	TCompTransform* c = get<TCompTransform>();
-	if (!c)
-		return;
+    TCompTransform* c = get<TCompTransform>();
+    if (!c || !isEnabled)
+        return;
 
-	projector->activate(TS_LIGHT_PROJECTOR);
+    projector->activate(TS_LIGHT_PROJECTOR);
 
-	cb_light.light_color = color;
-	cb_light.light_intensity = intensity;
-	cb_light.light_pos = c->getPosition();
-	cb_light.light_radius = radius * c->getScale();
-	cb_light.light_view_proj_offset = MAT44::Identity;
-	cb_light.light_angle = 0;
-	cb_light.updateGPU();
+    cb_light.light_color = color;
+    cb_light.light_intensity = intensity;
+    cb_light.light_pos = c->getPosition();
+    cb_light.light_radius = radius * c->getScale();
+    cb_light.light_view_proj_offset = MAT44::Identity;
+    cb_light.light_angle = 0;
+    cb_light.updateGPU();
 }
 
 

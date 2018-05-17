@@ -27,6 +27,8 @@ public:
 	bool is_kinematic;
 	bool is_controller;
 	bool is_grounded;
+	bool is_movable;
+
 
 	VEC3 lastFramePosition;
 	VEC3 normal_gravity = VEC3(0, -9.8f, 0);

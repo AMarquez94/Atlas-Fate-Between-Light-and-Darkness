@@ -10,135 +10,194 @@
 
 bool CModuleGameManager::start()
 {
-	window_flags = 0;
-	window_flags |= ImGuiWindowFlags_NoMove;
-	window_flags |= ImGuiWindowFlags_NoResize;
-	window_flags |= ImGuiWindowFlags_NoCollapse;
-	window_flags |= ImGuiWindowFlags_NoScrollbar;
-	window_width = 200;
-	window_height = 150;
+    window_flags = 0;
+    window_flags |= ImGuiWindowFlags_NoMove;
+    window_flags |= ImGuiWindowFlags_NoResize;
+    window_flags |= ImGuiWindowFlags_NoCollapse;
+    window_flags |= ImGuiWindowFlags_NoScrollbar;
+    window_width = 200;
+    window_height = 150;
 
-	isPaused = false;
-	victoryMenuVisible = false;
-	lostMenuVisible = false;
-	menuVisible = false;
+    isPaused = false;
+    victoryMenuVisible = false;
+    playerDiedMenuVisible = false;
+    menuVisible = false;
 
-	player = CTagsManager::get().getAllEntitiesByTag(getID("player"))[0];
+    player = CTagsManager::get().getAllEntitiesByTag(getID("player"))[0];
 
-	return true;
+    Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+    mouse->setLockMouse(true);
+
+    return true;
 }
 
 void CModuleGameManager::update(float delta)
 {
-	bool found = false;
-	auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("victory_trigger"));
+    auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("victory_trigger"));
 
-	for (unsigned int i = 0; i < handles.size(); i++){
+    for (unsigned int i = 0; i < handles.size() && !victoryMenuVisible; i++) {
 
-		CEntity* eCollider = handles[i];
-		TCompCollider * e = eCollider->get<TCompCollider>();
-		if (e->player_inside) {
+        CEntity* eCollider = handles[i];
+        TCompCollider * e = eCollider->get<TCompCollider>();
+        if (e && e->player_inside) {
 
-			victoryMenuVisible = true;
-			found = true;
-			break;
-		}
-	}
+            TMsgScenePaused msg;
+            msg.isPaused = true;
+            EngineEntities.broadcastMsg(msg);
+            victoryMenuVisible = true;
+        }
+    }
 
-	CEntity* e = player;
-	TCompTempPlayerController *playerCont = e->get<TCompTempPlayerController>();
-	if (playerCont->isDead()) {
-		ShowCursor(true);
-		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-		mouse->setLockMouse(false);
-		lostMenuVisible = true;
-		TMsgScenePaused msg;
-		msg.isPaused = true;
-		EngineCameras.getCurrentCamera().sendMsg(msg);
-	}
+    CEntity* e = player;
+    if (e) {
 
-	if (!playerCont->isDead()) {
-		if (EngineInput["btPause"].getsPressed() || (!menuVisible && CApp::get().lostFocus)) {
+        /* Player Dead */
+        TCompTempPlayerController *playerCont = e->get<TCompTempPlayerController>();
+        if (playerCont->isDead()) {
+            Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+            mouse->setLockMouse(false);
+            playerDiedMenuVisible = true;
+            TMsgScenePaused msg;
+            msg.isPaused = true;
+            EngineCameras.getCurrentCamera().sendMsg(msg);
+        }
+    }
 
-			CApp::get().lostFocus = false;
+    if (!isPaused && EngineInput["btPause"].getsPressed() || (!menuVisible && CApp::get().lostFocus)) {
 
-			// Send pause message
-			TMsgScenePaused msg;
-			msg.isPaused = !menuVisible;
-			EngineEntities.broadcastMsg(msg);
+        /* Player not dead but game paused */
 
-			// Lock/Unlock the cursor
-			Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-			ShowCursor(!menuVisible);
-			mouse->setLockMouse(menuVisible);
+        isPaused = true;
+        CApp::get().lostFocus = false;
 
-			menuVisible = !menuVisible;
-		}
-	}
-	
-	if (EngineInput["btUpAux"].getsPressed()){
-		menuPosition = (menuPosition - 1) % menuSize;
-	}
+        // Send pause message
+        TMsgScenePaused msg;
+        msg.isPaused = isPaused;
+        EngineEntities.broadcastMsg(msg);
 
-	if (EngineInput["btDownAux"].getsPressed()){
-		menuPosition = (menuPosition + 1) % menuSize;
-	}
+        // Lock/Unlock the cursor
+        Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+        mouse->setLockMouse(false);
+
+        menuVisible = true;
+    }
+    else if (isPaused && EngineInput["btPause"].getsPressed()) {
+
+        /* Player not dead and game unpaused */
+        isPaused = false;
+        CApp::get().lostFocus = false;
+
+        // Send pause message
+        TMsgScenePaused msg;
+        msg.isPaused = false;
+        EngineEntities.broadcastMsg(msg);
+
+        // Lock/Unlock the cursor
+        Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+        mouse->setLockMouse(true);
+
+        menuVisible = false;
+    }
+
+    if (EngineInput["btUpAux"].getsPressed()) {
+        menuPosition = (menuPosition - 1) % menuSize;
+    }
+
+    if (EngineInput["btDownAux"].getsPressed()) {
+        menuPosition = (menuPosition + 1) % menuSize;
+    }
+
+    if (EngineInput["btDebugMode"].getsPressed()) {
+        EngineRender.setDebugMode(!EngineRender.debugmode);
+    }
 }
 
 void CModuleGameManager::render()
 {
-	VEC2 menu_position = VEC2(CApp::get().xres * .5f - (window_width * .5f),
-		CApp::get().yres * .5f - (window_height * .5f));
+    VEC2 menu_position = VEC2(CApp::get().xres * .5f - (window_width * .5f),
+        CApp::get().yres * .5f - (window_height * .5f));
 
-	// Replace this with separated menus
-	if (victoryMenuVisible) {
+    // Replace this with separated menus
+    if (victoryMenuVisible) {
 
-		ImGui::SetNextWindowSize(ImVec2((float)window_width, (float)window_height));
-		ImGui::Begin("VICTORY!", false, window_flags);
-		ImGui::CaptureMouseFromApp(false);
-		ImGui::SetWindowPos("VICTORY!", ImVec2(menu_position.x, menu_position.y));
-		ImGui::Text("Enjoy your dopamine shot");
-		ImGui::End();
-	} else if (lostMenuVisible) {
+        ImGui::SetNextWindowSize(ImVec2((float)window_width, (float)window_height));
+        ImGui::Begin("VICTORY!", false, window_flags);
+        ImGui::CaptureMouseFromApp(false);
+        ImGui::SetWindowPos("VICTORY!", ImVec2(menu_position.x, menu_position.y));
+        ImGui::Text("Enjoy your dopamine shot");
+        ImGui::End();
 
-		ImGui::SetNextWindowSize(ImVec2((float)window_width * 1.2f, (float)window_height));
-		ImGui::Begin("YOU DIED! WHAT WOULD YOU DO?", false, window_flags);
-		ImGui::CaptureMouseFromApp(false);
-		ImGui::SetWindowPos("YOU DIED! WHAT WOULD YOU DO?", ImVec2(menu_position.x, menu_position.y));
-		ImGui::Selectable("Restart game", menuPosition == 0);
-		if (ImGui::IsItemClicked() || (menuPosition == 0 && EngineInput["btMenuConfirm"].getsPressed()))
-		{
-			dbg("Restarting the game\n");
-			CEngine::get().getModules().changeGameState("map_intro");
-		}
+    }
+    else if (playerDiedMenuVisible) {
 
-		ImGui::Selectable("Exit game", menuPosition == 1);
-		if (ImGui::IsItemClicked() || (menuPosition == 1 && EngineInput["btMenuConfirm"].getsPressed()))
-		{
-			exit(0);
-		}
+        ImGui::SetNextWindowSize(ImVec2((float)window_width * 1.2f, (float)window_height));
+        ImGui::Begin("YOU DIED! WHAT WOULD YOU DO?", false, window_flags);
+        ImGui::CaptureMouseFromApp(false);
+        ImGui::SetWindowPos("YOU DIED! WHAT WOULD YOU DO?", ImVec2(menu_position.x, menu_position.y));
+        ImGui::Selectable("Restart game", menuPosition == 0);
+        if (ImGui::IsItemClicked() || (menuPosition == 0 && EngineInput["btMenuConfirm"].getsPressed()))
+        {
+            CEngine::get().getModules().changeGameState("map_intro");
+        }
 
-		ImGui::End();
+        ImGui::Selectable("Exit game", menuPosition == 1);
+        if (ImGui::IsItemClicked() || (menuPosition == 1 && EngineInput["btMenuConfirm"].getsPressed()))
+        {
+            exit(0);
+        }
 
-	} else if (menuVisible) {
+        ImGui::End();
 
-		ImGui::SetNextWindowSize(ImVec2((float)window_width, (float)window_height));
-		ImGui::Begin("MENU", false, window_flags);
-		ImGui::CaptureMouseFromApp(false);
-		ImGui::SetWindowPos("MENU", ImVec2(menu_position.x, menu_position.y));
-		ImGui::Selectable("Restart game", menuPosition == 0);
-		if (ImGui::IsItemClicked() || (menuPosition == 0 && EngineInput["btMenuConfirm"].getsPressed()))
-		{
-			dbg("Restarting the game\n");
-			CEngine::get().getModules().changeGameState("map_intro");
-		}
+    }
+    else if (menuVisible) {
 
-		ImGui::Selectable("Exit game", menuPosition == 1);
-		if (ImGui::IsItemClicked() || (menuPosition == 1 && EngineInput["btMenuConfirm"].getsPressed()))
-		{
-			exit(0);
-		}
+        ImGui::SetNextWindowSize(ImVec2((float)window_width, (float)window_height));
+        ImGui::Begin("MENU", false, window_flags);
+        ImGui::CaptureMouseFromApp(false);
+        ImGui::SetWindowPos("MENU", ImVec2(menu_position.x, menu_position.y));
+        ImGui::Selectable("Restart game", menuPosition == 0);
+        if (ImGui::IsItemClicked() || (menuPosition == 0 && EngineInput["btMenuConfirm"].getsPressed()))
+        {
+            CEngine::get().getModules().changeGameState("map_intro");
+        }
 
-		ImGui::End();
-	}
+        ImGui::Selectable("Exit game", menuPosition == 1);
+        if (ImGui::IsItemClicked() || (menuPosition == 1 && EngineInput["btMenuConfirm"].getsPressed()))
+        {
+            exit(0);
+        }
+
+        ImGui::End();
+    }
+
+    debugRender();
+}
+
+void CModuleGameManager::debugRender() {
+
+    // Extra windows
+    {
+        //UI Window's Size
+        ImGui::SetNextWindowSize(ImVec2((float)CApp::get().xres, (float)CApp::get().yres), ImGuiCond_Always);
+        ImGui::SetNextWindowPos(ImVec2(0, 0));
+        ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 1.0f, 1.0f, 1.0f));
+        ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2);
+        ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1);
+
+        ImGui::Begin("UI", NULL,
+            ImGuiWindowFlags_::ImGuiWindowFlags_NoMove |
+            ImGuiWindowFlags_::ImGuiWindowFlags_NoInputs |
+            ImGuiWindowFlags_::ImGuiWindowFlags_NoResize |
+            ImGuiWindowFlags_::ImGuiWindowFlags_NoTitleBar);
+        {
+            ImGui::SetCursorPos(ImVec2(CApp::get().xres - CApp::get().xres * 0.05f, CApp::get().yres * 0.01f));
+
+            if (config.drawfps) ImGui::Text("FPS %d", (int)CApp::get().fps);
+        }
+
+        ImGui::End();
+        ImGui::PopStyleVar(2);
+        ImGui::PopStyleColor(2);
+    }
 }

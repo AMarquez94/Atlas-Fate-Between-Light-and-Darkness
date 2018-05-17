@@ -99,6 +99,8 @@ class TCompTempPlayerController : public TCompBase
 	float timeToPressAgain = 0.7f;
 	float timeInhib = 0.0f;
 
+	float grabObjectFactor = 0.75f;
+
     float attackTimer = 0.f;    //HARD FIX: TODO: Remove
 
 	void onCreate(const TMsgEntityCreated& msg);
@@ -136,6 +138,7 @@ public:
 	bool isMerged;
 	bool isGrounded;
 	bool isInhibited;
+  bool canAttack;
 	unsigned int initialPoints;
 	unsigned int hitPoints;
 
@@ -153,12 +156,15 @@ public:
 	void resetState(float dt);
 	void exitMergeState(float dt);
 	void removingInhibitorState(float dt);
+	CHandle movable;
+	void moveObject(float dt);
 
 	/* Player condition tests */
 	const bool concaveTest(void);
 	const bool convexTest(void);
 	const bool onMergeTest(float dt);
 	const bool groundTest(float dt);
+  const bool canAttackTest(float dt);
 
 	/* Auxiliar functions */
 	void updateStamina(float dt);
@@ -169,8 +175,6 @@ public:
 	void upButtonReselased();
 
 	VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
-	CHandle closeEnemy(const std::string & state = "undefined");
-	CHandle closestEnemyToStun();
 
 	static void registerMsgs();
 };

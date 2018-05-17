@@ -18,7 +18,7 @@
 				"shape": "convex",
 				"is_trigger": false,
 				"is_dynamic": true,
-        "name": "data/colliders/collider_capsula_low.collider"
+				"name": "data/colliders/collider_capsula_low.collider"
 			},
 			"dynamic_capsule": {
 				"speed": 0,

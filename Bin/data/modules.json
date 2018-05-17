@@ -8,31 +8,29 @@
 		"navmeshes",
 		"cameras",
 		"gui",
-		"logic",
 		"sound",
 		"main_menu",
 		"game_manager",
-		"console",
 		"splash",
-		"test_input",
-		
 		"map_intro",
 		"level_select",
-		"game_over"
+		"game_over",
+		"console",
+		"logic"
 	],
 	"render":
 	[
 		"render",
+		"game_manager",
+		"entities",
 		"navmeshes",
 		"map_intro",
-		"input",
 		"main_menu",
-		"game_manager",
-		"console",
 		"gui",
 		"level_select",
 		"game_over",
-		"entities",
-		"cameras"
+		"cameras",
+		"input",
+		"console"
 	]
 }

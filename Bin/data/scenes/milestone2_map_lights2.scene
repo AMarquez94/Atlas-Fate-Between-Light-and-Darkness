@@ -289,61 +289,6 @@
   {
     "entity":
     {
-      "name": "Spot037"
-      ,
-      "transform":
-      {
-        "pos": "-25.0105 6.43533 90.9138"
-        ,
-        "lookat": "-25.4034 -2.62686 92.1445"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 15.16008
-        ,
-        "angle": 50.1
-        ,
-        "inner_cut": 45.0
-        ,
-        "z_far": 9.15382
-        ,
-        "color": "1.0 1.0 1.0 1.0"
-        ,
-        "intensity": 1.35
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 256
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot037.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "Spot036"
       ,
       "transform":

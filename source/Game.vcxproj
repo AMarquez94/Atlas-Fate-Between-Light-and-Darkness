@@ -120,6 +120,7 @@
     <ClCompile Include="components\comp_hierarchy.cpp" />
     <ClCompile Include="components\lighting\comp_light_dir.cpp" />
     <ClCompile Include="components\comp_name.cpp" />
+    <ClCompile Include="components\player_controller\comp_player_attack_cast.cpp" />
     <ClCompile Include="components\player_controller\comp_player_input.cpp" />
     <ClCompile Include="components\comp_render.cpp" />
     <ClCompile Include="components\comp_tags.cpp" />
@@ -202,8 +203,8 @@
     <ClCompile Include="modules\system\module_input.cpp" />
     <ClCompile Include="modules\system\module_logic.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
+    <ClCompile Include="modules\system\module_scene_manager.cpp" />
     <ClCompile Include="modules\system\module_sound.cpp" />
-    <ClCompile Include="modules\test\module_test_input.cpp" />
     <ClCompile Include="navmesh\navmesh.cpp" />
     <ClCompile Include="navmesh\navmesh_query.cpp" />
     <ClCompile Include="navmesh\recast\DebugDraw.cpp" />
@@ -293,6 +294,7 @@
     <ClInclude Include="components\lighting\comp_light_dir.h" />
     <ClInclude Include="components\comp_name.h" />
     <ClInclude Include="components\comp_player_controller.h" />
+    <ClInclude Include="components\player_controller\comp_player_attack_cast.h" />
     <ClInclude Include="components\player_controller\comp_player_input.h" />
     <ClInclude Include="components\comp_render.h" />
     <ClInclude Include="components\comp_tags.h" />
@@ -402,8 +404,8 @@
     <ClInclude Include="modules\system\module_input.h" />
     <ClInclude Include="modules\system\module_logic.h" />
     <ClInclude Include="modules\system\module_physics.h" />
+    <ClInclude Include="modules\system\module_scene_manager.h" />
     <ClInclude Include="modules\system\module_sound.h" />
-    <ClInclude Include="modules\test\module_test_input.h" />
     <ClInclude Include="navmesh\navmesh.h" />
     <ClInclude Include="navmesh\navmesh_query.h" />
     <ClInclude Include="navmesh\recast\DebugDraw.h" />

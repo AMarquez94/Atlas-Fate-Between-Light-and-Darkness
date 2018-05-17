@@ -13,6 +13,9 @@ class CModuleRender : public IModule
 	CRenderToTexture* rt_main = nullptr;
 
 public:
+
+    bool debugmode = true;
+
 	CModuleRender(const std::string& name);
 	bool start() override;
 	bool stop() override;
@@ -24,7 +27,8 @@ public:
 
 	void configure(int xres, int yres);
 	void setBackgroundColor(float r, float g, float b, float a);
-	void tempDebugDraw();
+	void debugDraw();
+    void setDebugMode(bool val) { debugmode = val; }
 
 	LRESULT OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) override;
 

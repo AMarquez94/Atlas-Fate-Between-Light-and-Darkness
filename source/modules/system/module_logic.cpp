@@ -5,8 +5,12 @@
 #include "components\ia\comp_bt_patrol.h"
 #include "components\comp_group.h"
 #include <experimental/filesystem>
+#include "modules/game/module_game_manager.h"
+#include <iostream>
 
-
+#include "components/lighting/comp_light_dir.h"
+#include "components/lighting/comp_light_spot.h"
+#include "components/lighting/comp_light_point.h"
 bool CModuleLogic::start() {
 	BootLuaSLB();
 	execEvent(Events::GAME_START);
@@ -30,12 +34,12 @@ void CModuleLogic::update(float delta) {
 }
 
 /* Where we publish all functions that we want and load all the scripts in the scripts folder */
-void CModuleLogic::BootLuaSLB()
-{
-	//Publish all the functions
-	publishClasses();
-	//Load all the scripts
-	loadScriptsInFolder("data/scripts");
+void CModuleLogic::BootLuaSLB() {
+
+    //Publish all the functions
+    publishClasses();
+    //Load all the scripts
+    loadScriptsInFolder("data/scripts");
 }
 
 /* Load all scripts.lua in given path and its subfolders */
@@ -70,14 +74,14 @@ void CModuleLogic::loadScriptsInFolder(char * path)
 /* Publish all the classes in LUA */
 void CModuleLogic::publishClasses() {
 
-	/* Classes */
-	SLB::Class< CModuleGameConsole >("GameConsole", m)
-		.comment("This is our wrapper of the console class")
-		.set("addCommand", &CModuleGameConsole::addCommandToList);
+    /* Classes */
+    SLB::Class< CModuleGameConsole >("GameConsole", m)
+        .comment("This is our wrapper of the console class")
+        .set("addCommand", &CModuleGameConsole::addCommandToList);
 
-	SLB::Class< CModuleLogic >("Logic", m)
-		.comment("This is our wrapper of the logic class")
-		.set("printLog", &CModuleLogic::printLog);
+    SLB::Class< CModuleLogic >("Logic", m)
+        .comment("This is our wrapper of the logic class")
+        .set("printLog", &CModuleLogic::printLog);
 
 
 	/* Global functions */
@@ -97,8 +101,24 @@ void CModuleLogic::publishClasses() {
 	m->set("playerInvisible", SLB::FuncCall::create(&playerInvisible));
 	m->set("spotlightsToggle", SLB::FuncCall::create(&spotlightsToggle));
 	m->set("lanternToggle", SLB::FuncCall::create(&lanternToggle));
+	m->set("spawn", SLB::FuncCall::create(&spawn));
+	m->set("bind", SLB::FuncCall::create(&bind));
+	m->set("loadscene", SLB::FuncCall::create(&loadscene));
 
+	void CModuleLogic::execCvar(std::string& script) {
 
+		// Only backslash commands fetched.
+		if (script.find("/") != 0)
+			return;
+
+		// Little bit of dirty tricks to achieve same results with different string types.
+		script.erase(0, 1);
+		int index = script.find_first_of(' ');
+		script = index != -1 ? script.replace(script.find_first_of(' '), 1, "(") : script;
+		index = script.find_first_of(' ');
+		script = index != -1 ? script.replace(script.find_first_of(' '), 1, ",") : script;
+		script.append(")");
+	}
 
 
 
@@ -136,43 +156,42 @@ bool CModuleLogic::execScriptDelayed(const std::string & script, float delay)
 
 bool CModuleLogic::execEvent(Events event, const std::string & params, float delay)
 {
-	/* TODO: meter eventos */
-	switch (event) {
-	case Events::GAME_START:
-		if (delay > 0) {
-			return execScriptDelayed("onGameStart()", delay);
-		}
-		else {
-			return execScript("onGameStart()").success;
-		}
-		break;
-	case Events::GAME_END:
+    /* TODO: meter eventos */
+    switch (event) {
+    case Events::GAME_START:
+        if (delay > 0) {
+            return execScriptDelayed("onGameStart()", delay);
+        }
+        else {
+            return execScript("onGameStart()").success;
+        }
+        break;
+    case Events::GAME_END:
 
-		break;
-	default:
+        break;
+    default:
 
-		break;
-	}
-	return false;
+        break;
+    }
+    return false;
 }
 
 void CModuleLogic::printLog()
 {
-	dbg("Printing log\n");
-	for (int i = 0; i < log.size(); i++) {
-		dbg("%s\n", log[i].c_str());
-	}
-	dbg("End printing log\n");
+    dbg("Printing log\n");
+    for (int i = 0; i < log.size(); i++) {
+        dbg("%s\n", log[i].c_str());
+    }
+    dbg("End printing log\n");
 }
 
 /* Auxiliar functions */
-CModuleGameConsole * getConsole() { return EngineConsole.getPointer(); }
-
 CModuleLogic * getLogic() { return EngineLogic.getPointer(); }
+CModuleGameConsole * getConsole() { return EngineConsole.getPointer(); }
 
 void execDelayedScript(const std::string& script, float delay)
 {
-	EngineLogic.execScriptDelayed(script, delay);
+    EngineLogic.execScriptDelayed(script, delay);
 }
 
 void pauseGame(bool pause)
@@ -287,4 +306,20 @@ void movePlayer(const float x, const float y, const float z) {
 	TMsgPlayerMove msg;
 	msg.pos = VEC3(x, y, z);
 	h.sendMsg(msg);
+}
+void bind(const std::string& key, const std::string& script) {
+
+	int id = EngineInput.getButtonDefinition(key)->id;
+	//Input::TButton button = EngineInput.keyboard().key(id);
+	EngineLogic._bindings[id] = script;
+}
+
+void unbind(const std::string& key, const std::string& script) {
+
+	int id = EngineInput.getButtonDefinition(key)->id;
+	//Input::TButton button = EngineInput.keyboard().key(id);
+
+	std::map<int, std::string>::iterator it;
+	it = EngineLogic._bindings.find(id);
+	EngineLogic._bindings.erase(it, EngineLogic._bindings.end());
 }

@@ -3,6 +3,7 @@
 #include "components/comp_fsm.h"
 #include "components/comp_transform.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
+#include "comp_player_attack_cast.h"
 
 DECL_OBJ_MANAGER("player_input", TCompPlayerInput);
 
@@ -41,7 +42,7 @@ void TCompPlayerInput::update(float dt)
 
 		if (EngineInput["btRun"].hasChanged()) {
 
-      boostMsg.variant.setName("boost_speed");
+			boostMsg.variant.setName("boost_speed");
 			crouchButton = false;
 			TMsgSetFSMVariable crouch;
 			crouch.variant.setName("crouch");
@@ -53,7 +54,7 @@ void TCompPlayerInput::update(float dt)
 		}
 
 		if (EngineInput["btSlow"].hasChanged()) {
-      boostMsg.variant.setName("slow_speed");
+			boostMsg.variant.setName("slow_speed");
 			boostMsg.variant.setFloat(EngineInput["btSlow"].value);
 			e->sendMsg(boostMsg);
 		}
@@ -75,11 +76,18 @@ void TCompPlayerInput::update(float dt)
 
 		if (EngineInput["btAttack"].getsPressed())
 		{
-			TMsgSetFSMVariable attack;
-			attack.variant.setName("attack");
-			attack.variant.setBool(true);
-			e->sendMsg(attack);
-			attackButtonJustPressed = true;
+			TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
+			if (c_my_player->canAttack) {
+				TMsgSetFSMVariable attack;
+				attack.variant.setName("attack");
+				attack.variant.setBool(true);
+				e->sendMsg(attack);
+				attackButtonJustPressed = true;
+			}
+			else {
+				/* TODO: Sonda */
+			}
+
 		}
 		else if (attackButtonJustPressed) {
 			TMsgSetFSMVariable attack;
@@ -111,12 +119,66 @@ void TCompPlayerInput::update(float dt)
 			action.variant.setBool(true);
 			e->sendMsg(action);
 		}
+		{
+			TCompPlayerAttackCast* player = e->get<TCompPlayerAttackCast>();
+
+			//Grab Object + grab enemy stunned
+			//if we press the action button, we check our proximity
+			if (EngineInput["btAction"].getsPressed()) {
+				player->movable = player->closestObjectToMove();
+				player->stunnedEnemy = player->closestEnemyToMerge();
+				if (player->stunnedEnemy.isValid()) {
+					_enemyStunned = true;
+					TMsgSetFSMVariable grabEnemy;
+					grabEnemy.variant.setName("grabEnemy");
+					grabEnemy.variant.setBool(true);
+					e->sendMsg(grabEnemy);
+				}
+				else if (player->movable.isValid()) {
+					_moveObject = true;
+					TMsgSetFSMVariable grabObject;
+					grabObject.variant.setName("grabObject");
+					grabObject.variant.setBool(true);
+					e->sendMsg(grabObject);
+
+					TMsgGrabObject msg;
+					msg.object = player->movable;
+					msg.moving = true;
+					e->sendMsg(msg);
+				}
+			}
+
+			//if we are grabbing an enemy, we check if we release the grab button or the stunned enemy becomes no longer available
+			if (_enemyStunned) {
+				if (EngineInput["btAction"].getsReleased() || !player->closestEnemyToMerge().isValid()) {
+					_enemyStunned = false;
+					TMsgSetFSMVariable grabEnemy;
+					grabEnemy.variant.setName("grabEnemy");
+					grabEnemy.variant.setBool(false);
+					e->sendMsg(grabEnemy);
+				}
+			}
+			//if we are moving an object, we check if we release the grab button or the object becomes no longer available
+			if (_moveObject) {
+				if (EngineInput["btAction"].getsReleased() || !player->closestObjectToMove().isValid()) {
+					_moveObject = false;
+					TMsgSetFSMVariable grabObject;
+					grabObject.variant.setName("grabObject");
+					grabObject.variant.setBool(false);
+					e->sendMsg(grabObject);
+
+					TMsgGrabObject msg;
+					msg.object = player->movable;
+					msg.moving = false;
+					e->sendMsg(msg);
+				}
+			}
+		}
 
 		if (EngineInput["btSecAction"].getsPressed())
 		{
 			/* Move this from here.. */
-			CEntity * c_my_entity = CHandle(this).getOwner();
-			TCompTempPlayerController * c_my_player = c_my_entity->get<TCompTempPlayerController>();
+			TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
 
 			if (c_my_player->isInhibited) {
 				TMsgSetFSMVariable keyPressed;
