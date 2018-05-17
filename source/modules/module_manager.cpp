@@ -60,7 +60,6 @@ void CModuleManager::update(float delta)
 			PROFILE_FUNCTION(mod->getName().c_str());
 			mod->update(delta);
 		}
-        //dbg(mod->getName().c_str());
 	}
 }
 

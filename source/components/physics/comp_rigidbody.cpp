@@ -9,12 +9,12 @@ bool temp_ground = true;
 
 TCompRigidbody::~TCompRigidbody() {
 
-	// Delete the controller.
-	if (is_controller) {
-		controller->release();
-	}
+    // Delete the controller.
+    if (is_controller) {
+        controller->release();
+    }
 
-	// Rigidbody destruction here.
+    // Rigidbody destruction here.
 }
 
 void TCompRigidbody::debugInMenu() {
@@ -23,125 +23,125 @@ void TCompRigidbody::debugInMenu() {
 
 void TCompRigidbody::load(const json& j, TEntityParseContext& ctx) {
 
-	mass = j.value("mass", 10.f);
-	drag = j.value("mass", 0.f);
+    mass = j.value("mass", 10.f);
+    drag = j.value("mass", 0.f);
 
-	is_gravity = j.value("is_gravity", false);
-	is_kinematic = j.value("is_kinematic", false);
-	is_controller = j.value("is_controller", false);
+    is_gravity = j.value("is_gravity", false);
+    is_kinematic = j.value("is_kinematic", false);
+    is_controller = j.value("is_controller", false);
 }
 
 void TCompRigidbody::update(float dt) {
 
-	if (CHandle(this).getOwner().isValid()) {
+    if (CHandle(this).getOwner().isValid()) {
 
-		TCompCollider * c_collider = get<TCompCollider>();
-		velocity = physx::PxVec3(0,0,0);
+        TCompCollider * c_collider = get<TCompCollider>();
+        velocity = physx::PxVec3(0, 0, 0);
 
-		TCompTransform *transform = get<TCompTransform>();
-		VEC3 new_pos = transform->getPosition();
-		VEC3 delta_movement = new_pos - lastFramePosition;
-		velocity = physx::PxVec3(delta_movement.x, delta_movement.y, delta_movement.z) / dt;
+        TCompTransform *transform = get<TCompTransform>();
+        VEC3 new_pos = transform->getPosition();
+        VEC3 delta_movement = new_pos - lastFramePosition;
+        velocity = physx::PxVec3(delta_movement.x, delta_movement.y, delta_movement.z) / dt;
 
-		if (is_gravity) {
-			if (is_grounded) totalDownForce = physx::PxVec3(0, 0, 0);
-			physx::PxVec3 actualDownForce = physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z);
-			velocity += (actualDownForce + totalDownForce);
-			totalDownForce += 3.f * actualDownForce * dt;
-		}
+        if (is_gravity) {
+            if (is_grounded) totalDownForce = physx::PxVec3(0, 0, 0);
+            physx::PxVec3 actualDownForce = physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z);
+            velocity += (actualDownForce + totalDownForce);
+            totalDownForce += 3.f * actualDownForce * dt;
+        }
 
-		if (is_controller){
-			physx::PxControllerCollisionFlags col = controller->move(velocity * dt, 0.f, dt, filters);
-			is_grounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN);
+        if (is_controller) {
+            physx::PxControllerCollisionFlags col = controller->move(velocity * dt, 0.f, dt, filters);
+            is_grounded = col.isSet(physx::PxControllerCollisionFlag::eCOLLISION_DOWN);
 
-          /* We handle here the difference between the logical transform (our component transform) and the physx transform */
-          physx::PxExtendedVec3 new_pos_transform = controller->getFootPosition();
-          VEC3 new_trans_pos = VEC3(new_pos_transform.x, new_pos_transform.y, new_pos_transform.z);
-          transform->setPosition(new_trans_pos);
-          lastFramePosition = new_trans_pos;
-		}
-        else 
+            /* We handle here the difference between the logical transform (our component transform) and the physx transform */
+            physx::PxExtendedVec3 new_pos_transform = controller->getFootPosition();
+            VEC3 new_trans_pos = VEC3(new_pos_transform.x, new_pos_transform.y, new_pos_transform.z);
+            transform->setPosition(new_trans_pos);
+            lastFramePosition = new_trans_pos;
+        }
+        else
         {
             VEC3 pos = transform->getPosition() + PXVEC3_TO_VEC3(c_collider->config->center);
             QUAT quat = transform->getRotation();
             c_collider->setGlobalPose(pos, quat, false);
         }
-	}
+    }
 }
 
 /* Collider/Trigger messages */
 void TCompRigidbody::registerMsgs() {
-	DECL_MSG(TCompRigidbody, TMsgEntityCreated, onCreate);
+    DECL_MSG(TCompRigidbody, TMsgEntityCreated, onCreate);
 }
 
 void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
 
-	TCompCollider * c_collider = get<TCompCollider>();
-	TCompTransform * compTransform = get<TCompTransform>();
+    TCompCollider * c_collider = get<TCompCollider>();
+    TCompTransform * compTransform = get<TCompTransform>();
 
-	// Let the rigidbody handle the creation if it exists..
-	if (c_collider != nullptr)
-	{
+    // Let the rigidbody handle the creation if it exists..
+    if (c_collider != nullptr)
+    {
 
-		if (is_controller)
-		{
-			controller = c_collider->config->createController(compTransform);
-			c_collider->config->actor->userData = CHandle(c_collider).asVoidPtr();
-			c_collider->config->is_controller = true;
-		}
-		else
-		{
-			// Create the shape, the actor and set the user data
-			physx::PxShape * shape = c_collider->config->createShape();
-			c_collider->config->createDynamic(shape, compTransform);
-			c_collider->config->actor->userData = CHandle(c_collider).asVoidPtr();
-		}
+        if (is_controller)
+        {
+            controller = c_collider->config->createController(compTransform);
+            c_collider->config->actor->userData = CHandle(c_collider).asVoidPtr();
+            c_collider->config->is_controller = true;
+        }
+        else
+        {
+            // Create the shape, the actor and set the user data
+            physx::PxShape * shape = c_collider->config->createShape();
+            c_collider->config->createDynamic(shape, compTransform);
+            c_collider->config->actor->userData = CHandle(c_collider).asVoidPtr();
+        }
 
-		physx::PxFilterData * characterFilterData = new physx::PxFilterData();
-		characterFilterData->word0 = c_collider->config->group;
-		characterFilterData->word1 = c_collider->config->mask;
+        physx::PxFilterData * characterFilterData = new physx::PxFilterData();
+        characterFilterData->word0 = c_collider->config->group;
+        characterFilterData->word1 = c_collider->config->mask;
 
-		filters = physx::PxControllerFilters();
-		//filters.mFilterCallback = &customQueryFilter;
-		filters.mFilterData = characterFilterData;
-	}
+        filters = physx::PxControllerFilters();
+        //filters.mFilterCallback = &customQueryFilter;
+        filters.mFilterData = characterFilterData;
+    }
 
-  lastFramePosition = compTransform->getPosition();
+    lastFramePosition = compTransform->getPosition();
 }
 
 void TCompRigidbody::Resize(float new_size)
 {
-	// Cannot resize if no collider is present.
-	TCompCollider * c_collider = get<TCompCollider>();
+    // Cannot resize if no collider is present.
+    TCompCollider * c_collider = get<TCompCollider>();
 
-	if (!c_collider || !c_collider->config->actor) 
-		return;
+    if (!c_collider || !c_collider->config->actor)
+        return;
 
-	if(controller != NULL)
-		controller->resize((physx::PxReal)new_size);
+    if (controller != NULL)
+        controller->resize((physx::PxReal)new_size);
 }
 
 void TCompRigidbody::SetUpVector(VEC3 new_up)
 {
-	controller->setUpDirection(physx::PxVec3(new_up.x, new_up.y, new_up.z));
+    controller->setUpDirection(physx::PxVec3(new_up.x, new_up.y, new_up.z));
 }
 
 VEC3 TCompRigidbody::GetUpVector()
 {
-	physx::PxVec3 upDirection = controller->getUpDirection();
-	return VEC3(upDirection.x, upDirection.y, upDirection.z);
+    physx::PxVec3 upDirection = controller->getUpDirection();
+    return VEC3(upDirection.x, upDirection.y, upDirection.z);
 }
 
 void TCompRigidbody::Jump(VEC3 forceUp)
 {
-	if (is_grounded) {
-		totalDownForce = physx::PxVec3(forceUp.x, forceUp.y, forceUp.z);
-		is_grounded = false;
-	}
+    if (is_grounded) {
+        totalDownForce = physx::PxVec3(forceUp.x, forceUp.y, forceUp.z);
+        is_grounded = false;
+    }
 }
 
 void TCompRigidbody::setNormalGravity(VEC3 newGravity) {
 
-	normal_gravity = newGravity;
-	totalDownForce = physx::PxVec3(0, 0, 0);
+    normal_gravity = newGravity;
+    totalDownForce = physx::PxVec3(0, 0, 0);
 }

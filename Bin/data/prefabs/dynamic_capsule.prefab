@@ -19,7 +19,7 @@
 				"is_trigger": false,
 				"is_dynamic": true,
 				"is_gravity": false,
-				"center": "0 -3 0",
+				"center": "0 0 0",
 				"name": "data/colliders/collider_capsula_low.collider"
 			},
 			"rigidbody": {
