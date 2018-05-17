@@ -110,7 +110,7 @@ void TCompLightSpot::onDestroy(const TMsgEntityDestroyed & msg) {
 void TCompLightSpot::activate() {
 
 	TCompTransform* c = get<TCompTransform>();
-	if (!c || !isEnabled || !visible)
+	if (!c || !isEnabled)
 		return;
 
     projector->activate(TS_LIGHT_PROJECTOR);
@@ -147,7 +147,7 @@ void TCompLightSpot::activate() {
 // ------------------------------------------------------
 void TCompLightSpot::generateShadowMap() {
 
-	if (!shadows_rt || !shadows_enabled || !isEnabled || !visible)
+	if (!shadows_rt || !shadows_enabled || !isEnabled)
 		return;
 
     // In this slot is where we activate the render targets that we are going

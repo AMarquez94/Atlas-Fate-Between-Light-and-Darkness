@@ -25,6 +25,10 @@ function fpsToggle()
 	SLB.fpsToggle()
 end
 
+function debugToggle()
+	SLB.debugToggle()
+end
+
 function stateAltered(state)
 	SLB.stateAltered(state)
 end

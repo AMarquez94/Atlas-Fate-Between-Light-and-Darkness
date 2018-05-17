@@ -32,8 +32,6 @@ public:
 
 	LRESULT OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) override;
 
-	bool showFPS;
-
 private:
 	CHandle h_e_camera;
 	CCamera camera;

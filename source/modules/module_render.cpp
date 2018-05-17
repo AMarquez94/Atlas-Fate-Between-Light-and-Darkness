@@ -117,8 +117,8 @@ bool CModuleRender::start()
 	cb_globals.global_hdr_enabled = 1.f;
 	cb_globals.global_gamma_correction_enabled = 1.f;
 	cb_globals.global_tone_mapping_mode = 1.f;
-    cb_globals.global_fog_density = 0.017f;
-    cb_globals.global_self_intensity = 10.f;
+	cb_globals.global_fog_density = 0.017f;
+	cb_globals.global_self_intensity = 10.f;
 
 	cb_light.activate();
 	cb_object.activate();
@@ -180,7 +180,7 @@ void CModuleRender::render()
 		ImGui::DragFloat("Time Factor", &EngineEntities.time_scale_factor, 0.01f, 0.f, 1.0f);
 		ImGui::TreePop();
 	}
-		
+
 	if (ImGui::TreeNode("Lighting")) {
 
 		ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.1f, 32.f);
@@ -188,7 +188,7 @@ void CModuleRender::render()
 		ImGui::DragFloat("HDR", &cb_globals.global_hdr_enabled, 0.01f, 0.0f, 1.f);
 		ImGui::DragFloat("Gamma Correction", &cb_globals.global_gamma_correction_enabled, 0.01f, 0.0f, 1.f);
 		ImGui::DragFloat("Reinhard vs Uncharted2", &cb_globals.global_tone_mapping_mode, 0.01f, 0.0f, 1.f);
-        ImGui::DragFloat("Fog density", &cb_globals.global_fog_density, 0.0001f, 0.0f, 1.f);
+		ImGui::DragFloat("Fog density", &cb_globals.global_fog_density, 0.0001f, 0.0f, 1.f);
 
 		// Must be in the same order as the RO_* ctes
 		static const char* render_output_str =
@@ -206,7 +206,7 @@ void CModuleRender::render()
 		ImGui::TreePop();
 	}
 
-    ImGui::Separator();
+	ImGui::Separator();
 }
 
 void CModuleRender::configure(int xres, int yres)
@@ -240,9 +240,6 @@ void CModuleRender::activateMainCamera() {
 }
 
 void CModuleRender::generateFrame() {
-	if (showFPS) {
-		debugDraw();
-	}
 
 	{
 		PROFILE_FUNCTION("CModuleRender::shadowsMapsGeneration");
@@ -291,10 +288,14 @@ void CModuleRender::generateFrame() {
 			if (c_render_blur_radial)
 				curr_rt = c_render_blur_radial->apply(curr_rt);
 
-            // Check if we have a color grading component
-            TCompColorGrading* c_color_grading = e_cam->get< TCompColorGrading >();
-            if (c_color_grading)
-                curr_rt = c_color_grading->apply(curr_rt);
+			// Check if we have a color grading component
+			TCompColorGrading* c_color_grading = e_cam->get< TCompColorGrading >();
+			if (c_color_grading)
+				curr_rt = c_color_grading->apply(curr_rt);
+		}
+		if (debugmode) {
+
+			debugDraw();
 		}
 
 		Render.startRenderInBackbuffer();
@@ -304,7 +305,7 @@ void CModuleRender::generateFrame() {
 	{
 		PROFILE_FUNCTION("GUI");
 		CTraceScoped gpu_scope("GUI");
-		
+
 		activateRSConfig(RSCFG_CULL_NONE);
 		activateZConfig(ZCFG_DISABLE_ALL);
 		activateBlendConfig(BLEND_CFG_COMBINATIVE);
@@ -317,9 +318,6 @@ void CModuleRender::generateFrame() {
 		activateBlendConfig(BLEND_CFG_DEFAULT);
 	}
 
-    if(debugmode)
-        debugDraw();
-
 	// Present the information rendered to the back buffer to the front buffer (the screen)
 	{
 		PROFILE_FUNCTION("Render.swapChain");
@@ -329,32 +327,32 @@ void CModuleRender::generateFrame() {
 
 void CModuleRender::debugDraw() {
 
-    // Main Inspector window
-    {
-        ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.149f, 0.1607f, 0.188f, 0.8f));
-        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(255.0f, 255.0f, 255.0f, 255.0f));
-        ImGui::PushStyleColor(ImGuiCol_TitleBg, ImVec4(0.0, 0.0f, 0.0f, 0.75f));
-        ImGui::PushStyleColor(ImGuiCol_TitleBgActive, ImVec4(0.0, 0.0f, 0.0f, 0.75f));
-        ImGui::PushStyleColor(ImGuiCol_TitleBgCollapsed, ImVec4(0.219, 0.349f, 0.501f, 0.75f));
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 4);
-        ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 1);
+	// Main Inspector window
+	{
+		ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.149f, 0.1607f, 0.188f, 0.8f));
+		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(255.0f, 255.0f, 255.0f, 255.0f));
+		ImGui::PushStyleColor(ImGuiCol_TitleBg, ImVec4(0.0, 0.0f, 0.0f, 0.75f));
+		ImGui::PushStyleColor(ImGuiCol_TitleBgActive, ImVec4(0.0, 0.0f, 0.0f, 0.75f));
+		ImGui::PushStyleColor(ImGuiCol_TitleBgCollapsed, ImVec4(0.219, 0.349f, 0.501f, 0.75f));
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 4);
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 1);
 
-        // Render each render GUI explicit in order.
-        ImGui::Begin("Inspector", NULL);
-        {
-            PROFILE_FUNCTION("Modules");
-            CTraceScoped gpu_scope("Modules");
-            CEngine::get().getModules().render();
-        }
-        ImGui::End();
-        ImGui::PopStyleVar(2);
-        ImGui::PopStyleColor(5);
-    }
+		// Render each render GUI explicit in order.
+		ImGui::Begin("Inspector", NULL);
+		{
+			PROFILE_FUNCTION("Modules");
+			CTraceScoped gpu_scope("Modules");
+			CEngine::get().getModules().render();
+		}
+		ImGui::End();
+		ImGui::PopStyleVar(2);
+		ImGui::PopStyleColor(5);
+	}
 
-    // Finally render it
-    {
-        PROFILE_FUNCTION("ImGui::Render");
-        CTraceScoped gpu_scope("ImGui");
-        ImGui::Render();
-    }
+	// Finally render it
+	{
+		PROFILE_FUNCTION("ImGui::Render");
+		CTraceScoped gpu_scope("ImGui");
+		ImGui::Render();
+	}
 }

@@ -92,6 +92,7 @@ void CModuleLogic::publishClasses() {
 	m->set("blendInCamera", SLB::FuncCall::create(&blendInCamera));
 	m->set("blendOutCamera", SLB::FuncCall::create(&blendOutCamera));
 	m->set("fpsToggle", SLB::FuncCall::create(&fpsToggle));
+	m->set("debugToggle", SLB::FuncCall::create(&debugToggle));
 	m->set("systemToggle", SLB::FuncCall::create(&systemToggle));
 	m->set("movePlayer", SLB::FuncCall::create(&movePlayer));
 	m->set("staminaInfinite", SLB::FuncCall::create(&staminaInfinite));
@@ -101,30 +102,25 @@ void CModuleLogic::publishClasses() {
 	m->set("playerInvisible", SLB::FuncCall::create(&playerInvisible));
 	m->set("spotlightsToggle", SLB::FuncCall::create(&spotlightsToggle));
 	m->set("lanternToggle", SLB::FuncCall::create(&lanternToggle));
-	m->set("spawn", SLB::FuncCall::create(&spawn));
+	/*m->set("spawn", SLB::FuncCall::create(&spawn));
 	m->set("bind", SLB::FuncCall::create(&bind));
-	m->set("loadscene", SLB::FuncCall::create(&loadscene));
+	m->set("loadscene", SLB::FuncCall::create(&loadscene));*/
 
-	void CModuleLogic::execCvar(std::string& script) {
+}
 
-		// Only backslash commands fetched.
-		if (script.find("/") != 0)
-			return;
+void CModuleLogic::execCvar(std::string& script) {
 
-		// Little bit of dirty tricks to achieve same results with different string types.
-		script.erase(0, 1);
-		int index = script.find_first_of(' ');
-		script = index != -1 ? script.replace(script.find_first_of(' '), 1, "(") : script;
-		index = script.find_first_of(' ');
-		script = index != -1 ? script.replace(script.find_first_of(' '), 1, ",") : script;
-		script.append(")");
-	}
+	// Only backslash commands fetched.
+	if (script.find("/") != 0)
+		return;
 
-
-
-
-
-
+	// Little bit of dirty tricks to achieve same results with different string types.
+	script.erase(0, 1);
+	int index = script.find_first_of(' ');
+	script = index != -1 ? script.replace(script.find_first_of(' '), 1, "(") : script;
+	index = script.find_first_of(' ');
+	script = index != -1 ? script.replace(script.find_first_of(' '), 1, ",") : script;
+	script.append(")");
 }
 
 CModuleLogic::ConsoleResult CModuleLogic::execScript(const std::string& script) {
@@ -202,7 +198,11 @@ void pauseGame(bool pause)
 }
 
 void fpsToggle() {
-	EngineRender.showFPS = !EngineRender.showFPS;
+	Engine.getGameManager().config.drawfps = !Engine.getGameManager().config.drawfps;
+}
+
+void debugToggle() {
+	EngineRender.debugmode = !EngineRender.debugmode;
 }
 
 void blendInCamera(const std::string & cameraName, float blendInTime)
@@ -259,7 +259,7 @@ void playerInvisible() {
 void spotlightsToggle() {
 	//For all spotlights, we change their status. This does not desactivate lanterns even though they are spotlights.
 	getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
-		c->visible = !c->visible;
+		c->isEnabled = !c->isEnabled;
 	});
 	//Now we reactivate lanterns in case it is needed.
 	std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("patrol"));
@@ -270,8 +270,8 @@ void spotlightsToggle() {
 			if (lantern.isValid()) {
 				CEntity* e = lantern;
 				TCompLightSpot* patrol_lantern = e->get<TCompLightSpot>();
-				if (patrol_lantern->visible) break; //If the spotlight is already active, nothing to do, we break the loop
-				patrol_lantern->visible = true;    //else, we activate the lanterns.
+				if (patrol_lantern->isEnabled) break; //If the spotlight is already active, nothing to do, we break the loop
+				patrol_lantern->isEnabled = true;    //else, we activate the lanterns.
 			}
 	}
 
@@ -286,7 +286,7 @@ void lanternToggle() {
 		if (lantern.isValid()) {
 			CEntity* e = lantern;
 			TCompLightSpot* patrol_lantern = e->get<TCompLightSpot>();
-			patrol_lantern->visible = !patrol_lantern->visible;
+			patrol_lantern->isEnabled = !patrol_lantern->isEnabled;
 		}
 	}
 }
