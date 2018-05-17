@@ -36,7 +36,29 @@ void CModuleGUI::initializeWidgetStructure() {
 	parser.parseFile("data/gui/main_menu_buttons.json");
 	parser.parseFile("data/gui/main_menu_option_buttons.json");*/
 
-	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json");
+	auto newGameCB = []() {
+		CEngine::get().getGUI().outOfMainMenu();
+	};
+	auto continueCB = []() {
+		CEngine::get().getGUI().outOfMainMenu();
+	};
+	auto optionsCB = []() {
+		//activateWidget("main_menu_buttons");
+		//activateWidget("main_menu_buttons");
+	};
+	auto exitCB = []() {
+		exit(0);
+	};
+
+	CMenuButtonsController* mmc = new CMenuButtonsController();
+	mmc->registerOption("new_game", newGameCB);
+	mmc->registerOption("continue", continueCB);
+	mmc->registerOption("options", optionsCB);
+	mmc->registerOption("exit", exitCB);
+	mmc->setCurrentOption(0);
+	//registerController(mmc);
+
+	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json", (GUI::CController)*mmc);
 	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BUTTONS, "data/gui/main_menu_buttons.json");
 	/*parser.parseFile("data/gui/main_menu.json");
 	parser.parseFile("data/gui/gameplay.json");
@@ -75,6 +97,7 @@ void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_pa
 	wdgt_struct._widgetName = parser.parseFile(wdgt_path);
 	wdgt_struct._type = wdgt_type;
 	wdgt_struct._controller = wdgt_controller;
+	_widgetStructureMap[wdgt_type] = wdgt_struct;
 }
 
 void CModuleGUI::outOfMainMenu() {
@@ -153,16 +176,17 @@ CWidget* CModuleGUI::getWidget(const std::string& name, bool recursive) const
 	return nullptr;
 }
 
-void CModuleGUI::activateWidget(const std::string& name)
+void CModuleGUI::activateWidget(EGUIWidgets wdgt)
 {
-	CWidget* wdgt = getWidget(name);
+	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt];
+	CWidget* wdgt = getWidget(wdgt_struct._widgetName);
 	if (wdgt)
 	{
 		_activeWidgets.push_back(wdgt);
 	}
 }
 
-void CModuleGUI::deactivateWidget(const std::string& name)
+void CModuleGUI::deactivateWidget(EGUIWidgets wdgt)
 {
 	CWidget* wdgt = getWidget(name);
 	for (auto it = _activeWidgets.begin(); it != _activeWidgets.end();) {

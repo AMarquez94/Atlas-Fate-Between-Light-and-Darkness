@@ -27,8 +27,8 @@ public:
 	void registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController wdgt_controller = {});
 	void registerWidget(GUI::CWidget* wdgt);
 	GUI::CWidget* getWidget(const std::string& name, bool recursive = false) const;
-	void activateWidget(const std::string& name);
-	void deactivateWidget(const std::string& name);
+	void activateWidget(EGUIWidgets wdgt);
+	void deactivateWidget(EGUIWidgets wdgt);
 
 	// controller management
 	void registerController(GUI::CController* controller);
