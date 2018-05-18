@@ -191,13 +191,20 @@ struct TSceneExporter (
 	),
 	
 	function writePrefabComponent obj = (
-				
-		c_values = retrieveComponent obj component_prefab
-						
-		if  c_values != undefined then (
-			fs.writeKeyValue "prefab" c_values.prefab
+		
+		if classof obj == xrefobject then (
+			
+			local f_path = (filterString (prefabs_path + obj.filename) ".max")[1]
+			fs.writeKeyValue "prefab" f_path
 			fs.writeComma()
 		)
+		
+		--c_values = retrieveComponent obj component_prefab
+						
+		--if  c_values != undefined then (
+			--fs.writeKeyValue "prefab" c_values.prefab
+			--fs.writeComma()
+		--)
 	),
 	
 	function writeGroupComponent obj = (
@@ -371,7 +378,7 @@ q		)
 		fs.writeKeyValue "type" "ambient"
 		fs.writeComma()
 		)
-		
+
 		fs.writeKeyValue "color" [obj.rgb.r/255, obj.rgb.g/255, obj.rgb.b/255, obj.rgb.a/255]
 		fs.writeComma()
 		fs.writeKeyValue "intensity" obj.multiplier 
@@ -485,8 +492,9 @@ q		)
 	fn exportEntity obj = (
 		
 		-- Adding general discarding here
-		if isCollider obj then (exportEntityCollider obj )
+		if classof obj == Targetobject then (return false )
 		
+		fs.writeComma()
 		fs.beginObj()
 		fs.writeKey "entity"
 			fs.beginObj()
@@ -500,6 +508,7 @@ q		)
 	),
 	
 	fn exportRoot filename = (
+		
 		fs.beginObj()
 		fs.writeKey "entity"
 			fs.beginObj()
@@ -510,8 +519,6 @@ q		)
 			fs.writeKeyValue "pos" "0.0 0.0 0.0"
 			fs.endObj()
 		fs.endObj()
-		fs.endObj()
-		fs.writeComma()
 	),
 	
 	-- ----------------------------------------------------------
@@ -552,7 +559,6 @@ q		)
 		
 		for obj in nodes do (
 			
-			if nitems > 0 then  fs.writeComma()
 			exportEntity obj
 			nitems = nitems + 1
 			

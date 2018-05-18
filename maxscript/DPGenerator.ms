@@ -30,7 +30,7 @@ struct ColliderGenerator (
 		
 		local cloned_mesh = box width:bb_width length:bb_length height:bb_height
 		cloned_mesh.rotation = obj.rotation
-		cloned_mesh.pos = [new_pos.x, new_pos.y, new_pos.z  - (bb_height * .5f)] 
+		cloned_mesh.pos = [new_pos.x, new_pos.y, new_pos.z] 
 		if as_child == true then ( cloned_mesh.parent = obj )
 		cloned_mesh.name = "collider_" + obj.name
 		col_layer.addnode cloned_mesh
