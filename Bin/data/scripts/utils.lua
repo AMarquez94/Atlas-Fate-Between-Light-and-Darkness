@@ -29,10 +29,6 @@ function debugToggle()
 	SLB.debugToggle()
 end
 
-function stateAltered(state)
-	SLB.stateAltered(state)
-end
-
 function pauseEnemies()
 	SLB.pauseEnemies()
 end
