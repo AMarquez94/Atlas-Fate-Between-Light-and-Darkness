@@ -144,4 +144,6 @@ public:
 	bool isStunned() { return current && current->getName().compare("stunned") == 0; }
 
 	static void registerMsgs();
+
+	bool getStartLightsOn() { return startLightsOn; }
 };

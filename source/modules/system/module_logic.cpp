@@ -3,6 +3,9 @@
 #include "components/comp_tags.h"
 #include "components\lighting\comp_light_spot.h"
 #include "components\ia\comp_bt_patrol.h"
+#include "components\ia\comp_bt_test.h"
+#include "components\ia\comp_patrol_animator.h"
+#include "components\ia\comp_mimetic_animator.h"
 #include "components\comp_group.h"
 #include <experimental/filesystem>
 #include "modules/game/module_game_manager.h"
@@ -11,6 +14,7 @@
 #include "components/lighting/comp_light_dir.h"
 #include "components/lighting/comp_light_spot.h"
 #include "components/lighting/comp_light_point.h"
+
 
 bool CModuleLogic::start() {
 	BootLuaSLB();
@@ -286,13 +290,14 @@ void spotlightsToggle() {
 	std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("patrol"));
 	for (int i = 0; i < enemies.size(); i++) {
 		CEntity* e = enemies[i];
+		TCompAIPatrol* patrol = e->get<TCompAIPatrol>();
+		bool lights = patrol->getStartLightsOn();
 		TCompGroup* group = e->get<TCompGroup>();
 		CHandle lantern = group->getHandleByName("FlashLight");
 		if (lantern.isValid()) {
 			CEntity* e = lantern;
 			TCompLightSpot* patrol_lantern = e->get<TCompLightSpot>();
-			if (patrol_lantern->isEnabled) break; //If the spotlight is already active, nothing to do, we break the loop
-			patrol_lantern->isEnabled = true;    //else, we activate the lanterns.
+			patrol_lantern->isEnabled = lights;    //else, we activate the lanterns.
 		}
 	}
 
@@ -325,12 +330,9 @@ void pauseEnemies() {
 }
 
 void deleteEnemies() {
-	std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
-	int i = 0;
-	while (i < enemies.size()) {
-		enemies[i].getOwner().destroy();
-		i++;
-	}
+	//To-Do
+
+
 }
 
 void movePlayer(const float x, const float y, const float z) {
