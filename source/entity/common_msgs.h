@@ -157,9 +157,36 @@ struct TMsgMakeNoise {
 	bool isArtificial;
 	DECL_MSG_ID();
 };
+struct TMsgInfiniteStamina {
+	DECL_MSG_ID();
+};
+struct TMsgPlayerImmortal {
+	DECL_MSG_ID();
+};
+struct TMsgPlayerMove {
+	DECL_MSG_ID();
+	VEC3 pos;
+};
+
+struct TMsgPlayerInShadows {
+	DECL_MSG_ID();
+};
 
 struct TMsgShadowChange {
 	bool is_shadowed;
+	DECL_MSG_ID();
+};
+
+struct TMsgSpeedBoost {
+	float speedBoost;
+	DECL_MSG_ID();
+};
+
+struct TMsgPlayerInvisible {
+	DECL_MSG_ID();
+};
+
+struct TMsgSpotlightsToggle {
 	DECL_MSG_ID();
 };
 

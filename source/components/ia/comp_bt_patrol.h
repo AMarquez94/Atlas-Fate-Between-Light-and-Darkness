@@ -62,6 +62,10 @@ private:
 	void onMsgPatrolFixed(const TMsgPatrolFixed& msg);
 	void onMsgNoiseListened(const TMsgNoiseMade& msg);
 
+	//Hack debug messages and variables
+	bool playerInvisible;
+	void onMsgPlayerInvisible(const TMsgPlayerInvisible& msg);
+
 	/* Aux functions */
 	const Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }
 	void addWaypoint(const Waypoint& wpt) { _waypoints.push_back(wpt); };
@@ -140,4 +144,6 @@ public:
 	bool isStunned() { return current && current->getName().compare("stunned") == 0; }
 
 	static void registerMsgs();
+
+	bool getStartLightsOn() { return startLightsOn; }
 };

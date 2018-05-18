@@ -11,10 +11,11 @@ class CModuleRender : public IModule
 {
 	CDeferredRenderer deferred;
 	CRenderToTexture* rt_main = nullptr;
+	//console variables
+	bool _debugMode = true, _generateShadows = true;
 
 public:
 
-    bool debugmode = true;
 
 	CModuleRender(const std::string& name);
 	bool start() override;
@@ -28,7 +29,12 @@ public:
 	void configure(int xres, int yres);
 	void setBackgroundColor(float r, float g, float b, float a);
 	void debugDraw();
-    void setDebugMode(bool val) { debugmode = val; }
+
+	//get + set methods
+	bool const getDebugMode() { return _debugMode; }
+    void setDebugMode(bool val) { _debugMode = val; }
+	bool const getGenerateShadows() { return _generateShadows; }
+	void setGenerateShadows(bool val) { _generateShadows = val; }
 
 	LRESULT OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) override;
 
@@ -39,4 +45,5 @@ private:
 	int _xres;
 	int _yres;
 	VEC4 _backgroundColor;
+
 };

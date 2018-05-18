@@ -188,10 +188,6 @@ void TCompPlayerInput::update(float dt)
 			}
 		}
 
-		if (EngineInput["btDebugShadows"].getsPressed()) {
-			TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
-			c_my_player->dbgDisableStamina = !c_my_player->dbgDisableStamina;
-		}
 
 		if (EngineInput["btUp"].getsReleased()) {
 			TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();

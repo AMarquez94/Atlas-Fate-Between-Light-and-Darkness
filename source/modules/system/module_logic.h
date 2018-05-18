@@ -70,15 +70,24 @@ private:
 CModuleGameConsole* getConsole();
 CModuleLogic* getLogic();
 void execDelayedScript(const std::string& script, float delay);
-void pauseEnemies(bool pause);
 void pauseGame(bool pause);
-void setInfiniteStamine(bool set);
+void fpsToggle();
+void pauseEnemies();
+void deleteEnemies();
+void movePlayer(const float, const float, const float);
 void blendInCamera(const std::string& cameraName, float blendInTime);
 void blendOutCamera(const std::string& cameraName, float blendOutTime);
+void staminaInfinite();
+void immortal();
+void inShadows();
+void speedBoost(const float);
+void playerInvisible();
+void spotlightsToggle();
+void lanternToggle();
+void debugToggle();
+void shadowsToggle();
+
 void spawn(const std::string & name, const VEC3 & pos);
 void bind(const std::string& key, const std::string& script);
 void loadscene(const std::string &level);
-
-// Extra cvar commands
-void cg_drawfps(bool value);
 void cg_drawlights(int type);

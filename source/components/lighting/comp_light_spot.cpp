@@ -94,8 +94,9 @@ void TCompLightSpot::update(float dt) {
 
 void TCompLightSpot::registerMsgs() {
 
-    DECL_MSG(TCompLightSpot, TMsgEntityCreated, onCreate);
-    DECL_MSG(TCompLightSpot, TMsgEntityDestroyed, onDestroy);
+	DECL_MSG(TCompLightSpot, TMsgEntityCreated, onCreate);
+	DECL_MSG(TCompLightSpot, TMsgEntityDestroyed, onDestroy);
+
 }
 
 void TCompLightSpot::onCreate(const TMsgEntityCreated& msg) {
@@ -108,9 +109,9 @@ void TCompLightSpot::onDestroy(const TMsgEntityDestroyed & msg) {
 
 void TCompLightSpot::activate() {
 
-    TCompTransform* c = get<TCompTransform>();
-    if (!c || !isEnabled)
-        return;
+	TCompTransform* c = get<TCompTransform>();
+	if (!c || !isEnabled)
+		return;
 
     projector->activate(TS_LIGHT_PROJECTOR);
     // To avoid converting the range -1..1 to 0..1 in the shader
@@ -146,8 +147,8 @@ void TCompLightSpot::activate() {
 // ------------------------------------------------------
 void TCompLightSpot::generateShadowMap() {
 
-    if (!shadows_rt || !shadows_enabled || !isEnabled)
-        return;
+	if (!shadows_rt || !shadows_enabled || !isEnabled)
+		return;
 
     // In this slot is where we activate the render targets that we are going
     // to update now. You can't be active as texture and render target at the
