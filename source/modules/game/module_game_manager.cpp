@@ -118,7 +118,27 @@ void CModuleGameManager::render()
         CApp::get().yres * .5f - (window_height * .5f));
 
     // Replace this with separated menus
-    if (victoryMenuVisible) {
+    if (menuVisible) {
+
+        ImGui::SetNextWindowSize(ImVec2((float)window_width, (float)window_height));
+        ImGui::Begin("MENU", false, window_flags);
+        ImGui::CaptureMouseFromApp(false);
+        ImGui::SetWindowPos("MENU", ImVec2(menu_position.x, menu_position.y));
+        ImGui::Selectable("Restart game", menuPosition == 0);
+        if (ImGui::IsItemClicked() || (menuPosition == 0 && EngineInput["btMenuConfirm"].getsPressed()))
+        {
+            CEngine::get().getModules().changeGameState("map_intro");
+        }
+
+        ImGui::Selectable("Exit game", menuPosition == 1);
+        if (ImGui::IsItemClicked() || (menuPosition == 1 && EngineInput["btMenuConfirm"].getsPressed()))
+        {
+            exit(0);
+        }
+
+        ImGui::End();
+    }
+    else if (victoryMenuVisible) {
 
         ImGui::SetNextWindowSize(ImVec2((float)window_width, (float)window_height));
         ImGui::Begin("VICTORY!", false, window_flags);
@@ -148,26 +168,6 @@ void CModuleGameManager::render()
 
         ImGui::End();
 
-    }
-    else if (menuVisible) {
-
-        ImGui::SetNextWindowSize(ImVec2((float)window_width, (float)window_height));
-        ImGui::Begin("MENU", false, window_flags);
-        ImGui::CaptureMouseFromApp(false);
-        ImGui::SetWindowPos("MENU", ImVec2(menu_position.x, menu_position.y));
-        ImGui::Selectable("Restart game", menuPosition == 0);
-        if (ImGui::IsItemClicked() || (menuPosition == 0 && EngineInput["btMenuConfirm"].getsPressed()))
-        {
-            CEngine::get().getModules().changeGameState("map_intro");
-        }
-
-        ImGui::Selectable("Exit game", menuPosition == 1);
-        if (ImGui::IsItemClicked() || (menuPosition == 1 && EngineInput["btMenuConfirm"].getsPressed()))
-        {
-            exit(0);
-        }
-
-        ImGui::End();
     }
 
     debugRender();

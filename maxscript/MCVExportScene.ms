@@ -190,8 +190,8 @@ struct TSceneExporter (
 	function writePrefabComponent obj = (
 		
 		if classof obj == xrefobject then (
-			
-			local f_path = (prefabs_path + obj.objectname + ".prefab")--(filterString (prefabs_path + obj.filename) ".max")
+			local f_name = getFilenameFile obj.filename 
+			local f_path = (prefabs_path + local_path + f_name + ".prefab")--(filterString (prefabs_path + obj.filename) ".max")
 			fs.writeKeyValue "prefab" f_path
 			fs.writeComma()
 		)
