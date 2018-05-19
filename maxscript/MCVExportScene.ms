@@ -115,6 +115,7 @@ struct TSceneExporter (
 	mats_path = base_path + "materials/",
 	cols_path = base_path + "colliders/",
 	tex_path = base_path + "textures/",
+	local_path = "",
 	
 	fn exportName obj = (
 		fs.writeKeyValue "name" obj.name
@@ -124,10 +125,6 @@ struct TSceneExporter (
 		fs.writeKeyValue "abs_aabb" true
 		fs.writeComma()
 		fs.writeKeyValue "local_aabb" true
-	),
-	
-	fn isValidName aname = (
-		return findString aname " " == undefined 
 	),
 	
 	function writeComponents obj = (
@@ -194,17 +191,10 @@ struct TSceneExporter (
 		
 		if classof obj == xrefobject then (
 			
-			local f_path = (filterString (prefabs_path + obj.filename) ".max")[1]
+			local f_path = (prefabs_path + obj.objectname + ".prefab")--(filterString (prefabs_path + obj.filename) ".max")
 			fs.writeKeyValue "prefab" f_path
 			fs.writeComma()
 		)
-		
-		--c_values = retrieveComponent obj component_prefab
-						
-		--if  c_values != undefined then (
-			--fs.writeKeyValue "prefab" c_values.prefab
-			--fs.writeComma()
-		--)
 	),
 	
 	function writeGroupComponent obj = (
@@ -258,34 +248,40 @@ struct TSceneExporter (
 			fs.writeKeyValue "lookat" mcv_final_target
 		fs.endObj()
 	),
+	
 	-- ----------------------------------------------------------
 	fn exportRenderMesh obj = (
 		
-		local exported_materials = #(mats_path + "mtl_default.material")
+		local f_mats_path = mats_path + local_path
+		local exported_materials = #(f_mats_path + "mtl_default.material")
 		local mat = obj.material
+		
+		-- Do some material safe checks.
 		if mat == undefined then (
 			print ("Obj " + obj.name + " does NOT have a material")
 		)
 		if mat != undefined and not (isValidName mat.name) then (
-q		)
-		
-		fs.beginObj()
-		
-		-- Export Mesh
-		local mesh_name = mesh_path + obj.name + ".mesh"
-		fs.writeKeyValue "mesh" mesh_name
-		exportMeshObject obj (project_path + mesh_name )
-		fs.writeComma()
-	
-		if mat != undefined then (
-			local me = TMaterialExporter project_path:project_path base_path:base_path
-			exported_materials = me.exportMaterial mat mats_path obj
+			messageBox ("Wrong material name: " + mat.name) title:"Warning Message"
 		)
 		
-		fs.writeKey "materials"
-		fs.arrayOfStrings exported_materials
-	
-		fs.endObj()
+		fs.beginObj()
+		(
+			-- Export Mesh
+			local mesh_name = mesh_path + local_path + obj.name + ".mesh"
+			fs.writeKeyValue "mesh" mesh_name
+			exportMeshObject obj (project_path + mesh_name )
+			fs.writeComma()
+		
+			if mat != undefined then (
+				local me = TMaterialExporter project_path:project_path base_path:base_path
+				exported_materials = me.exportMaterial mat f_mats_path obj
+			)
+			
+			fs.writeKey "materials"
+			fs.arrayOfStrings exported_materials
+			
+		)
+		fs.endObj()	
 	),
 	
 	-- ----------------------------------------------------------
@@ -293,7 +289,7 @@ q		)
 		
 		fs.writeKey "collider" 
 		fs.beginObj()
-					print "iceberg2"
+
 		if superclassof obj == light then ( -- to temp bypass light triggers
 			fs.writeKeyValue "shape" "sphere" 
 			fs.writeComma()
@@ -310,15 +306,14 @@ q		)
 			fs.writeComma()
 			fs.writeKeyValue "size" [abs (obj.width * .5f), abs (obj.height * .5f), abs (obj.length * .5f)]
 		) else (
-			local col_path = project_path + cols_path + obj.name + ".collider"
+			local col_path = project_path + local_path + cols_path + obj.name + ".collider"
 			
-			print "failed shit"
 			if obj.parent != undefined then (
 				if obj.mesh.verts.count == obj.parent.mesh.verts.count then (
-				-- We are facing, wether convex or mesh collider.
-				fs.writeKeyValue "shape" "mesh" 
-				fs.writeComma()
-				fs.writeKeyValue "name" (cols_path + obj.name + ".collider")
+					-- We are facing, wether convex or mesh collider.
+					fs.writeKeyValue "shape" "mesh" 
+					fs.writeComma()
+					fs.writeKeyValue "name" (cols_path + obj.name + ".collider")
 				) else (
 					fs.writeKeyValue "shape" "convex" 
 					fs.writeComma()
@@ -341,42 +336,41 @@ q		)
 	fn exportCompLight obj = (
 
 		if classof obj == Directionallight then (
-		fs.writeKey "light_dir" 
-		fs.beginObj()
-		fs.writeKeyValue "type" "directional"
-		fs.writeComma()
+			fs.writeKey "light_dir" 
+			fs.beginObj()
+			fs.writeKeyValue "type" "directional"
+			fs.writeComma()
 		)
 		else if classof obj == targetSpot or classof obj == freeSpot then ( 
-			
-		local target = getnodebyname (obj.name + ".Target")
-		fs.writeKey "light_spot" 
-		fs.beginObj()
-		fs.writeKeyValue "type" "spotlight"
-		fs.writeComma()
-		fs.writeKeyValue "proj_type" "perspective"
-		fs.writeComma()
-		fs.writeKeyValue "range" (distance target.pos obj.pos)
-		fs.writeComma()
-		fs.writeKeyValue "angle" obj.falloff
-		fs.writeComma()
-		fs.writeKeyValue "inner_cut" obj.hotspot
-		fs.writeComma()
-		fs.writeKeyValue "z_far" (distance target.pos obj.pos)
-		fs.writeComma()	
+			local target = getnodebyname (obj.name + ".Target")
+			fs.writeKey "light_spot" 
+			fs.beginObj()
+			fs.writeKeyValue "type" "spotlight"
+			fs.writeComma()
+			fs.writeKeyValue "proj_type" "perspective"
+			fs.writeComma()
+			fs.writeKeyValue "range" (distance target.pos obj.pos)
+			fs.writeComma()
+			fs.writeKeyValue "angle" obj.falloff
+			fs.writeComma()
+			fs.writeKeyValue "inner_cut" obj.hotspot
+			fs.writeComma()
+			fs.writeKeyValue "z_far" (distance target.pos obj.pos)
+			fs.writeComma()	
 		)
 		else if classof obj == Omnilight   then (
-		fs.writeKey "light_point" 
-		fs.beginObj()
-		fs.writeKeyValue "type" "pointlight"
-		fs.writeComma()
-		fs.writeKeyValue "range" obj.farAttenEnd 
-		fs.writeComma()
+			fs.writeKey "light_point" 
+			fs.beginObj()
+			fs.writeKeyValue "type" "pointlight"
+			fs.writeComma()
+			fs.writeKeyValue "range" obj.farAttenEnd 
+			fs.writeComma()
 		)
 		else if classof obj == skylight   then (
-		fs.writeKey "light_ambient" 
-		fs.beginObj()
-		fs.writeKeyValue "type" "ambient"
-		fs.writeComma()
+			fs.writeKey "light_ambient" 
+			fs.beginObj()
+			fs.writeKeyValue "type" "ambient"
+			fs.writeComma()
 		)
 
 		fs.writeKeyValue "color" [obj.rgb.r/255, obj.rgb.g/255, obj.rgb.b/255, obj.rgb.a/255]
@@ -418,9 +412,10 @@ q		)
 		exportAABB obj
 	),
 	
+	-- Automatic light collider generation depending on light type
 	fn createLightCollider obj = (
 		
-		local col_path = project_path + cols_path + obj.name + ".collider"
+		local col_path = project_path + cols_path + local_path + obj.name + ".collider"
 		if classof obj == targetSpot or classof obj == freeSpot  then ( 
 			local dist = obj.targetDistance
 			if dist == undefined then ( dist = obj.baseObject.targetDistance )
@@ -459,6 +454,7 @@ q		)
 		
 	),
 	
+	-- Export a light entity
 	fn exportEntityLight obj = (
 		
 		-- It will be exported as part of the parent. Ejemplo del cofre y su caja de colision.
@@ -475,11 +471,11 @@ q		)
 		
 	),
 	
-	
-	-- ----------------------------------------------------------
+	-- Export an entity as a single individual collider
 	fn exportEntityCollider obj = (
+		
 		-- It will be exported as part of the parent. Ejemplo del cofre y su caja de colision.
-		--if obj.parent != undefined then return false
+		if obj.parent != undefined then return false
 		exportName obj 
 		fs.writeComma()
 		exportTransform obj
@@ -487,18 +483,35 @@ q		)
 		exportCompCollider obj
 	),
 	
+	-- Export an entity which is an xref object as a prefab
+	fn exportEntityPrefab obj = (
+		
+		-- We must ignore those which are 
+		if obj.parent != undefined then return false
+					
+		fs.writeComma()
+		fs.beginObj()
+		fs.writeKey "entity"
+			fs.beginObj()
+			exportName obj 
+			fs.writeComma()
+			writePrefabComponent obj
+			exportTransformLookAt obj
+			fs.endObj()
+		fs.endObj()
+	),
 	
 	-- ----------------------------------------------------------
 	fn exportEntity obj = (
 		
 		-- Adding general discarding here
 		if classof obj == Targetobject then (return false )
+		if classof obj == xrefobject then (return exportEntityPrefab obj)
 		
 		fs.writeComma()
 		fs.beginObj()
 		fs.writeKey "entity"
 			fs.beginObj()
-			writePrefabComponent obj
 			if isCollider obj then (exportEntityCollider obj )
 			else if isLight obj then ( exportEntityLight obj )
 			else exportEditableMesh obj
@@ -533,15 +546,15 @@ q		)
 			return false				
 		)
 		-------------------------------------------------------------------------
-		
+		local_path = getFilenamePath ofilename
 		-- Create the folders if they doesn't exist
 		doesFolderExist (project_path + base_path) create:true
-		doesFolderExist (project_path + scenes_path) create:true
-		doesFolderExist (project_path + prefabs_path) create:true
-		doesFolderExist (project_path + mesh_path) create:true
-		doesFolderExist (project_path + mats_path) create:true
-		doesFolderExist (project_path + cols_path) create:true
-		doesFolderExist (project_path + tex_path) create:true
+		doesFolderExist (project_path + scenes_path + local_path) create:true
+		doesFolderExist (project_path + prefabs_path + local_path) create:true
+		doesFolderExist (project_path + mesh_path + local_path) create:true
+		doesFolderExist (project_path + mats_path + local_path ) create:true
+		doesFolderExist (project_path + cols_path + local_path) create:true
+		doesFolderExist (project_path + tex_path + local_path) create:true
 		
 		-- Decide output filename based on .max filename
 		local full_path = project_path + prefabs_path + ofilename + ".prefab"
