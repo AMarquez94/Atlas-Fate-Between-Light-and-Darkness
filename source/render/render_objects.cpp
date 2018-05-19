@@ -304,15 +304,21 @@ void renderMesh(const CRenderMesh* mesh, MAT44 new_matrix, VEC4 color) {
 	auto vdecl = mesh->getVertexDecl();
 	assert(vdecl);
 
-	const char* tech_name = "solid.tech";
+	const char* tech_name = nullptr;
 	if (vdecl->name == "PosNUv")
-		tech_name = "textured.tech";
+		tech_name = "solid_objs.tech";
+    else if (vdecl->name == "PosClr")
+        tech_name = "solid.tech";
 	else if (vdecl->name == "PosNUvUvT")
 		tech_name = "solid_objs_uv2.tech";
 	else if (vdecl->name == "PosNUvSkin")
 		tech_name = "pbr_skin.tech";
 	else if (vdecl->name == "PosNUvTanSkin")
 		tech_name = "solid_objs_skin.tech";
+    else {
+        // Don't know how to render this type of vertex
+        return;
+    }
 
 	auto prev_tech = CRenderTechnique::current;
 	auto tech = Resources.get(tech_name)->as<CRenderTechnique>();
