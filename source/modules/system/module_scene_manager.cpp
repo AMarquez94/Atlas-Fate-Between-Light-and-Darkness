@@ -14,6 +14,8 @@ CModuleSceneManager::CModuleSceneManager(const std::string& name)
 /* Pre-load all the scenes from boot.json */
 void CModuleSceneManager::loadJsonScenes(const std::string filepath) {
 
+    sceneCount = 0;
+
     json jboot = loadJson(filepath);
     for (auto it = jboot.begin(); it != jboot.end(); ++it) {
    

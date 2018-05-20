@@ -84,8 +84,12 @@ void CRenderManager::addRenderKey(
     if (material->castsShadows()) {
 
         const CMaterial* shadow_mat = nullptr;
-        if (material->tech->usesSkin())
+        if (material->tech->usesSkin()) {
             shadow_mat = Resources.get("data/materials/shadows_skin.material")->as<CMaterial>();
+        }
+        else if (material->tech->usesInstancing()) {
+            shadow_mat = Resources.get("data/materials/shadows_instanced.material")->as<CMaterial>();
+        }
         else {
             //if(mesh->getVertexDecl()->name == "PosNUvCvTan" )
             //  shadow_mat = Resources.get("data/materials/shadows_mix.material")->as<CMaterial>();
