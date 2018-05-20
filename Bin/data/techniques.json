@@ -128,6 +128,14 @@
       "irradiance" : "data/textures/cubemaps/irradiance.dds" 
     }
   },
+  "pbr_instanced": {
+    "vs_file": "data/shaders/pbr_instanced.fx",
+    "vs_entry_point": "VS_GBufferInstanced",
+    "ps_file": "data/shaders/pbr.fx",
+    "ps_entry_point": "PS_GBuffer",
+    "vertex_type": "PosNUvUvT_x_Instance",
+    "category": "gbuffer"
+  },
   "pbr_ambient": {
     "vs_file": "data/shaders/screen_quad.fx",
     "ps_file": "data/shaders/pbr.fx",

@@ -44,6 +44,7 @@ public:
 	void destroy() override;
 	void onFileChanged(const std::string& filename) override;
 	bool usesSkin() const { return uses_skin; }
+    bool usesInstancing() const;
 
 	uint32_t getCategoryID() const { return category_id; }
 	const std::string& getCategory() const { return category; }

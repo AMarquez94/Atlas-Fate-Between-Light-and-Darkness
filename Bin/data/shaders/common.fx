@@ -38,6 +38,22 @@ SamplerState samBorderLinear  : register(s1);
 SamplerComparisonState samPCF : register(s2);
 SamplerState samClampLinear   : register(s3);
 
+
+//--------------------------------------------------------------------------------------
+// 
+//--------------------------------------------------------------------------------------
+struct TInstanceWorldData {
+  float4 InstanceWorld0 : TEXCOORD2;     // Stream 1
+  float4 InstanceWorld1 : TEXCOORD3;    // Stream 1
+  float4 InstanceWorld2 : TEXCOORD4;    // Stream 1
+  float4 InstanceWorld3 : TEXCOORD5;    // Stream 1
+};
+
+// Build a World matrix from the instance information
+float4x4 getWorldOfInstance( TInstanceWorldData d ) {
+  return float4x4(d.InstanceWorld0, d.InstanceWorld1, d.InstanceWorld2, d.InstanceWorld3 );  
+}
+
 //--------------------------------------------------------------------------------------
 float4x4 getSkinMtx(int4 iBones, float4 iWeights) {
   // This matrix will be reused for the position, Normal, Tangent, etc

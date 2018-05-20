@@ -4,19 +4,20 @@
 #include "render/shaders/render_technique.h"
 #include "render/shaders/vertex_shader.h"
 
+CRenderMesh* loadMeshInstanced(const std::string& name);
+
 // ----------------------------------------------
 class CRenderMeshResourceClass : public CResourceClass {
 public:
     CRenderMeshResourceClass() {
-
         class_name = "Meshes";
-        extensions = { ".mesh" };
+        extensions = { ".mesh", ".instanced_mesh" };
     }
     IResource* create(const std::string& name) const override {
-
+        if (name.find(".instanced_mesh") != std::string::npos)
+            return loadMeshInstanced(name);
         dbg("Creating mesh %s\n", name.c_str());
-        CRenderMesh* res = loadMesh(name.c_str());
-        return res;
+        return loadMesh(name.c_str());
     }
 };
 
@@ -24,13 +25,11 @@ public:
 // If someone class getResourceClassOf<CTexture>, use this function:
 template<>
 const CResourceClass* getResourceClassOf<CRenderMesh>() {
-
     static CRenderMeshResourceClass the_resource_class;
     return &the_resource_class;
 }
 
 void CRenderMesh::setNameAndClass(const std::string& new_name, const CResourceClass* new_class) {
-
     IResource::setNameAndClass(new_name, new_class);
     // Use the name to assign the same name to the DX objects
     setDXName(vb, new_name.c_str());
@@ -51,7 +50,8 @@ bool CRenderMesh::create(
 ) {
     HRESULT hr;
 
-    assert(vertex_data != nullptr);
+    // Dynamic meshes are allowed to NOT provide initial vertex data
+    assert(vertex_data != nullptr || new_is_dynamic);
     assert(num_bytes > 0);
     assert(new_topology != eTopology::UNDEFINED);
 
@@ -73,7 +73,7 @@ bool CRenderMesh::create(
         bd.Usage = D3D11_USAGE_DYNAMIC;
     }
 
-    // This is the initial data for the vertexs
+    // Check if we have initial data for the vertexs
     const D3D11_SUBRESOURCE_DATA* init_data_ptr = nullptr;
     D3D11_SUBRESOURCE_DATA InitData;
     if (vertex_data) {
@@ -81,6 +81,8 @@ bool CRenderMesh::create(
         InitData.pSysMem = vertex_data;
         init_data_ptr = &InitData;
     }
+
+    // Create the Vertex Buffer
     hr = Render.device->CreateBuffer(&bd, init_data_ptr, &vb);
     if (FAILED(hr))
         return false;
@@ -127,20 +129,16 @@ bool CRenderMesh::create(
             subgroups.push_back({ 0, num_vertexs, 0, 0 });
     }
 
+    // Recompute aabb
     if (!is_dynamic)
         AABB::CreateFromPoints(aabb, num_vertexs, (const VEC3*)vertex_data, vtx_decl->bytes_per_vertex);
 
     return true;
 }
 
-void CRenderMesh::renderSubMesh(uint32_t subgroup_idx) const {
+bool CRenderMesh::isValid() const {
 
-    assert(subgroup_idx < subgroups.size());
-    auto& g = subgroups[subgroup_idx];
-    if (ib)
-        Render.ctx->DrawIndexed(g.num_indices, g.first_idx, 0);
-    else
-        Render.ctx->Draw(g.num_indices, g.first_idx);
+    return vb != nullptr && vtx_decl != nullptr;
 }
 
 void CRenderMesh::destroy() {
@@ -162,8 +160,7 @@ void CRenderMesh::activate() const {
     // Set primitive topology
     Render.ctx->IASetPrimitiveTopology((D3D11_PRIMITIVE_TOPOLOGY)topology);
 
-    if (ib)
-        Render.ctx->IASetIndexBuffer(ib, index_fmt, 0);
+    activateIndexBuffer();
 }
 
 void CRenderMesh::render() const {
@@ -175,12 +172,23 @@ void CRenderMesh::render() const {
         || fatal("Current tech %s expect vertex decl %s, but this mesh uses %s\n"
             , CRenderTechnique::current->getName().c_str()
             , CRenderTechnique::current->vs->getVertexDecl()->name.c_str()
-            , vtx_decl->name.c_str()));
+            , vtx_decl->name.c_str()
+        ));
 
     if (ib)
         Render.ctx->DrawIndexed(num_indices, 0, 0);
     else
         Render.ctx->Draw(num_vertexs, 0);
+}
+
+void CRenderMesh::renderSubMesh(uint32_t subgroup_idx) const {
+
+    assert(subgroup_idx < subgroups.size());
+    auto& g = subgroups[subgroup_idx];
+    if (ib)
+        Render.ctx->DrawIndexed(g.num_indices, g.first_idx, 0);
+    else
+        Render.ctx->Draw(g.num_indices, g.first_idx);
 }
 
 void CRenderMesh::activateAndRender() const {
@@ -189,10 +197,20 @@ void CRenderMesh::activateAndRender() const {
     render();
 }
 
+void CRenderMesh::activateIndexBuffer() const {
+
+    if (ib)
+        Render.ctx->IASetIndexBuffer(ib, index_fmt, 0);
+}
+
 void CRenderMesh::debugInMenu() {
 
     ImGui::Text("%d vertexs", num_vertexs);
-    // ...
+    if (ib)
+        ImGui::Text("%d Indices", num_indices);
+    if (is_dynamic)
+        ImGui::Text("Dynamic");
+    ImGui::Text("Vtx Size %d : %s", vtx_decl->bytes_per_vertex, vtx_decl->name.c_str());
 }
 
 // --------------------------------------

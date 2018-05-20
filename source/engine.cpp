@@ -7,6 +7,7 @@
 #include "modules/game/module_map_intro.h"
 #include "modules/game/module_level_select.h"
 #include "modules/game/module_game_manager.h"
+#include "modules/test/module_test_instancing.h"
 
 //--------------------------------------------------------------------------------------
 CEngine& CEngine::get() {
@@ -39,6 +40,7 @@ bool CEngine::start() {
 	static CModuleGameOver module_game_over("game_over");
 	static CModuleMapIntro module_map_intro("map_intro");
 	static CModuleLevelSelect module_level_select("level_select");
+    static CModuleTestInstancing module_test_instancing("test_instancing");
 
 	_modules.registerSystemModule(&_module_render);
 	_modules.registerSystemModule(&_module_entities);
@@ -60,6 +62,7 @@ bool CEngine::start() {
 	_modules.registerGameModule(&module_game_over);
 	_modules.registerGameModule(&module_map_intro);
 	_modules.registerGameModule(&module_level_select);
+    _modules.registerGameModule(&module_test_instancing);
 
 	_modules.loadModules("data/modules.json");
 	_modules.loadGamestates("data/gamestates.json");

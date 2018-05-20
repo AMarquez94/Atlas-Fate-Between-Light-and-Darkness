@@ -16,11 +16,13 @@
 		"splash",
 		"map_intro",
 		"level_select",
-		"game_over"
+		"game_over",
+		"test_instancing"
 	],
 	"render":
 	[
 		"render",
+		"test_instancing",
 		"game_manager",
 		"entities",
 		"navmeshes",

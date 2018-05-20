@@ -148,6 +148,7 @@ void CRenderTechnique::activate() const {
 }
 
 void CRenderTechnique::debugInMenu() {
+
 	ImGui::LabelText("VS FX", "%s", vs_file.c_str());
 	ImGui::LabelText("VS", "%s", vs_entry_point.c_str());
 	ImGui::LabelText("PS FX", "%s", ps_file.c_str());
@@ -155,6 +156,11 @@ void CRenderTechnique::debugInMenu() {
 	::renderInMenu(z_config);
 	::renderInMenu(rs_config);
 	::renderInMenu(blend_config);
+}
+
+bool CRenderTechnique::usesInstancing() const {
+
+    return vs->getVertexDecl()->instancing;
 }
 
 void CRenderTechnique::onFileChanged(const std::string& filename) {

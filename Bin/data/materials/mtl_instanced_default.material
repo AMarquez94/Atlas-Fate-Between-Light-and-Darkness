@@ -1,0 +1,13 @@
+{
+  "technique": "pbr_instanced.tech"
+  ,
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/rustediron2/rustediron2_basecolor.dds",
+    "normal": "data/textures/rustediron2/rustediron2_normal.dds",
+    "metallic": "data/textures/rustediron2/rustediron2_metallic.dds",
+    "roughness": "data/textures/rustediron2/rustediron2_roughness.dds"
+  }
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "entity": {
+      "name": "Instanced Spheres",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/GeoSphere001.instanced_mesh",
+          "materials": [
+            "data/materials/mtl_instanced_default.material"
+          ]
+        }
+      ]
+    }
+  }
+]

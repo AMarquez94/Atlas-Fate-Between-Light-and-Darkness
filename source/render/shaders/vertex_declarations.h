@@ -24,7 +24,7 @@ class CVertexDeclManager {
         , UINT numElements
     );
 
-    const CVertexDecl* CVertexDeclManager::createInstancedVertexDecl(const std::string& name);
+    const CVertexDecl* createInstancedVertexDecl(const std::string& name);
 
 public:
 

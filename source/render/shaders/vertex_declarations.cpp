@@ -165,6 +165,7 @@ const CVertexDecl* CVertexDeclManager::createInstancedVertexDecl(const std::stri
         for (uint32_t i = 0; i < b->numElements; ++i) {
             layout_b[i].InputSlotClass = D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_INSTANCE_DATA;
             layout_b[i].InstanceDataStepRate = 1;
+            layout_b[i].InputSlot = 1;    // Comes from stream 1
         }
 
         auto decl = createNew(name, layout, num_elems);
