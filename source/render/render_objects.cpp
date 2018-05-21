@@ -178,6 +178,23 @@ CRenderMesh* createUnitQuadXY() {
 	return mesh;
 }
 
+// ----------------------------------
+// Full screen quad to dump textures in screen
+CRenderMesh* createUnitQuadPosXY() {
+    const std::vector<VEC3> vtxs = {
+        VEC3(0, 0, 0)
+        , VEC3(1, 0, 0)
+        , VEC3(0, 1, 0)
+        , VEC3(1, 1, 0)
+    };
+    CRenderMesh* mesh = new CRenderMesh;
+    if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(VEC3), "Pos"
+        , CRenderMesh::TRIANGLE_STRIP
+    ))
+        return nullptr;
+    return mesh;
+}
+
 CRenderMesh* createCone(float hor_fov, float ver_fov, float dist, int steps, VEC4 clr) {
 	CRenderMesh* mesh = new CRenderMesh;
 
@@ -223,6 +240,7 @@ void registerMesh(CRenderMesh* new_mesh, const char* name) {
 }
 
 bool createRenderObjects() {
+
 	registerMesh(createAxis(), "axis.mesh");
 	registerMesh(createGridXZ(20), "grid.mesh");
 	registerMesh(createLineZ(), "line.mesh");
@@ -233,6 +251,7 @@ bool createRenderObjects() {
 	registerMesh(createCone(deg2rad(35.f), deg2rad(45.f), 20.f, 10, VEC4(1.0f, 1.0f, 0.0f, 1.0f)), "cone_of_light.mesh");
 	registerMesh(createWiredUnitCube(), "wired_unit_cube.mesh");
 	registerMesh(createUnitQuadXY(), "unit_quad_xy.mesh");
+    registerMesh(createUnitQuadPosXY(), "unit_quad_pos_xy.mesh");
 
 	return true;
 }

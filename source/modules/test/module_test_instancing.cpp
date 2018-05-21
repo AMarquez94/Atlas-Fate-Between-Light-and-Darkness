@@ -23,11 +23,19 @@ bool CModuleTestInstancing::start() {
         auto rmesh = Resources.get("data/meshes/blood.instanced_mesh")->as<CRenderMesh>();
         blood_instances_mesh = (CRenderMeshInstanced*)rmesh;
     }
+    {
+        auto rmesh = Resources.get("data/meshes/particles.instanced_mesh")->as<CRenderMesh>();
+        particles_instances_mesh = (CRenderMeshInstanced*)rmesh;
+    }
 
     return true;
 }
 
 void CModuleTestInstancing::update(float delta) {
+
+    // Rotate the particles
+    for (auto& p : particles_instances)
+        p.angle += delta;
 
     // Move the instances in the cpu
     static float t = 0;
@@ -37,6 +45,7 @@ void CModuleTestInstancing::update(float delta) {
     instances_mesh->setInstancesData(instances.data(), instances.size(), sizeof(TInstance));
 
     blood_instances_mesh->setInstancesData(blood_instances.data(), blood_instances.size(), sizeof(TInstanceBlood));
+    particles_instances_mesh->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(TRenderParticle));
 }
 
 void CModuleTestInstancing::render() {
@@ -48,6 +57,31 @@ void CModuleTestInstancing::render() {
         static int num = 3;
         ImGui::DragFloat("Size", &sz, 0.01f, -50.f, 50.f);
         ImGui::DragInt("Num", &num, 0.1f, 1, 10);
+
+        // ----------------------------------------------
+        if (ImGui::TreeNode("Particles")) {
+            ImGui::Text("Num Instances: %ld / %ld. GPU:%d", particles_instances.size(), particles_instances.capacity(), particles_instances_mesh->getVertexsCount());
+
+            if (ImGui::Button("Add")) {
+                for (int i = 0; i < num; ++i) {
+                    TRenderParticle new_instance;
+                    new_instance.scale_x = randomFloat(1.f, 5.f);
+                    new_instance.scale_y = new_instance.scale_x;
+                    new_instance.pos = VEC3(randomFloat(-sz, sz), new_instance.scale_x, randomFloat(-sz, sz));
+                    new_instance.nframe = randomFloat(0.f, 16.f);
+                    new_instance.angle = deg2rad(randomFloat(0, 360));
+                    new_instance.color.x = unitRandom();
+                    new_instance.color.y = unitRandom();
+                    new_instance.color.z = 1 - new_instance.color.x - new_instance.color.y;
+                    new_instance.color.w = 1;
+                    particles_instances.push_back(new_instance);
+                }
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Del") && !particles_instances.empty())
+                particles_instances.pop_back();
+            ImGui::TreePop();
+        }
 
         // ----------------------------------------------
         if (ImGui::TreeNode("Spheres")) {

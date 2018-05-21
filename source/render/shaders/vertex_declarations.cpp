@@ -133,6 +133,16 @@ bool CVertexDeclManager::create() {
         createNew("InstanceColored", layout, ARRAYSIZE(layout));
     }
 
+    { // To render simple particles: TRenderParticle
+        static D3D11_INPUT_ELEMENT_DESC layout[] = {
+            // Pos.xyz + angle
+            { "TEXCOORD", 1, DXGI_FORMAT_R32G32B32A32_FLOAT, 0,  0, D3D11_INPUT_PER_VERTEX_DATA, 0 },    // world0
+            { "TEXCOORD", 2, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 16, D3D11_INPUT_PER_VERTEX_DATA, 0 },    // world1
+            { "TEXCOORD", 3, DXGI_FORMAT_R32G32B32_FLOAT, 0, 32, D3D11_INPUT_PER_VERTEX_DATA, 0 },    // world1
+        };
+        createNew("RenderParticle", layout, ARRAYSIZE(layout));
+    }
+
     return true;
 }
 

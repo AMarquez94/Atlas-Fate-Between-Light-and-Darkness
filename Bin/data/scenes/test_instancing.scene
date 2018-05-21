@@ -31,5 +31,21 @@
         }
       ]
     }
+  },
+  {
+    "entity": {
+      "name": "Instanced Particles",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/particles.instanced_mesh",
+          "materials": [
+            "data/materials/particles_fire_instanced.material"
+          ]
+        }
+      ]
+    }
   }
 ]

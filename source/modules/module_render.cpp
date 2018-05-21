@@ -265,6 +265,7 @@ void CModuleRender::generateFrame() {
 		cb_globals.updateGPU();
 		deferred.render(rt_main, h_e_camera);
 
+        CRenderManager::get().renderCategory("particles");
 		CRenderManager::get().renderCategory("distorsions");
 
 		// Apply postFX
