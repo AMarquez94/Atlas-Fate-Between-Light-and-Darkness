@@ -628,6 +628,7 @@
   {
     "entity":
     {
+      "prefab" : "data/prefabs/lod_house2_start.prefab",
       "name": "mesh_house2_start"
       ,
       "transform":
@@ -636,24 +637,6 @@
         ,
         "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_house2_start.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_HouseA_Wall.material"
-            ,
-            "data/materials/mtl_houseA_door.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
