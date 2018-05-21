@@ -1,0 +1,67 @@
+[
+  {
+    "entity":
+    {
+      "name": "mesh_house2_start_inside"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "local_aabb": null,
+      "abs_aabb": null,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_house2_start.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+            ,
+            "data/materials/mtl_houseA_door.material"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mesh_house2_start_out"
+      ,
+      "transform":
+      {
+        "pos": "0 0 0"
+        ,
+        "rotation": "0.0 0.0 0.0 1.0"
+      }
+      ,
+      "local_aabb": null,
+      "abs_aabb": null,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_caja015.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_HouseA_Wall.material"
+            ,
+            "data/materials/mtl_houseA_door.material"
+          ]
+        }
+      ]
+      ,
+      "lod" : {
+        "threshold" : 0.3,
+        "children" : [
+          "mesh_house2_start_inside"
+        ]
+      }
+    }
+  }
+]
