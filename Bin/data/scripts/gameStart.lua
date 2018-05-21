@@ -4,6 +4,7 @@ function onGameStart()
 	console = getConsole();
 	logic = getLogic();
 	addAllFunctionsToConsole();
+	shadowsToggle();
 end
 
 --Add all funtions to the console in order to have autocomplete. TODO: Only add custom functions
