@@ -235,11 +235,46 @@ void CDeferredRenderer::renderProjectors() {
   });
 }
 
+// --------------------------------------------------------------
+void CDeferredRenderer::renderGBufferDecals() {
+    CTraceScoped gpu_scope("Deferred.GBuffer.Decals");
+
+    // Disable the gbuffer textures as we are going to update them
+    // Can't render to those textures and have them active in some slot...
+    CTexture::setNullTexture(TS_DEFERRED_ALBEDOS);
+    CTexture::setNullTexture(TS_DEFERRED_NORMALS);
+
+    // Activate el multi-render-target MRT
+    const int nrender_targets = 2;
+    ID3D11RenderTargetView* rts[nrender_targets] = {
+        rt_albedos->getRenderTargetView(),
+        rt_normals->getRenderTargetView()
+        // No Z as we need to read to reconstruct the position
+    };
+
+    // We use our 3 rt's and the Zbuffer of the backbuffer
+    Render.ctx->OMSetRenderTargets(nrender_targets, rts, Render.depthStencilView);
+    rt_albedos->activateViewport();   // Any rt will do...
+
+                                      // Render blending layer on top of gbuffer before adding lights
+    CRenderManager::get().renderCategory("gbuffer_decals");
+
+    // Disable rendering to all render targets.
+    ID3D11RenderTargetView* rt_nulls[nrender_targets];
+    for (int i = 0; i < nrender_targets; ++i) rt_nulls[i] = nullptr;
+    Render.ctx->OMSetRenderTargets(nrender_targets, rt_nulls, nullptr);
+
+    // Activate the gbuffer textures to other shaders
+    rt_albedos->activate(TS_DEFERRED_ALBEDOS);
+    rt_normals->activate(TS_DEFERRED_NORMALS);
+}
+
 // --------------------------------------
 void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camera) {
 
 	assert(rt_destination);
 	renderGBuffer();
+    renderGBufferDecals();
 	renderAO(h_camera);
 
 	// Do the same with the acc light

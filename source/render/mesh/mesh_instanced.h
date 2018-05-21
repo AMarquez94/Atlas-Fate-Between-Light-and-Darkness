@@ -13,6 +13,13 @@ protected:
     const CRenderMesh* instanced_mesh = nullptr;    // This is the teapot, billboard, ..
     size_t             num_instances_allocated_in_gpu = 0;
 public:
+
+    //CRenderMeshInstanced() {
+    //    // This provides access to the bytes_per_vertex and whole vertex declaration
+    //    // of the instance
+    //    vtx_decl = CVertexDeclManager::get().getByName(TInstance::getDeclName());
+    //}
+
     void configure(const json& j);
     void renderSubMesh(uint32_t sub_group_idx) const override;
     void reserveGPUInstances(size_t new_max_instances);

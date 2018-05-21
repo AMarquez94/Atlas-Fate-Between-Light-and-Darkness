@@ -21,6 +21,7 @@ public:
   void renderSpotLights();
   void renderSkyBox() const;
   void renderProjectors();
+  void renderGBufferDecals();
   void renderAO(CHandle h_camera) const;
 
 public:

@@ -15,4 +15,21 @@
       ]
     }
   }
+  ,
+  {
+    "entity": {
+      "name": "Instanced Blood",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/blood.instanced_mesh",
+          "materials": [
+            "data/materials/blood_instanced.material"
+          ]
+        }
+      ]
+    }
+  }
 ]

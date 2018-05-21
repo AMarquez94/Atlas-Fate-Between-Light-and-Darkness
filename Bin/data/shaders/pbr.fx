@@ -184,7 +184,7 @@ void decodeGBuffer(
 	roughness = N_rt.a;
 
 	// Apply gamma correction to albedo to bring it back to linear.
-  albedo.rgb = pow(albedo.rgb, 2.2f);// *projectColor(wPos).xyz;
+  albedo.rgb = pow(abs(albedo.rgb), 2.2f);// *projectColor(wPos).xyz;
 
 	// Lerp with metallic value to find the good diffuse and specular.
 	// If metallic = 0, albedo is the albedo, if metallic = 1, the
@@ -269,7 +269,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	// if roughness = 1 -> I will use the most blurred image, the 8-th mipmap, If image was 256x256 => 1x1
 	float mipIndex = roughness * roughness * 32.0f;
 	float3 env = txEnvironmentMap.SampleLevel(samLinear, reflected_dir, mipIndex).xyz;
-	env = pow(env, 2.2f);	// Convert the color to linear also.
+	env = pow(abs(env), 2.2f);	// Convert the color to linear also.
 
 	// The irrandiance, is read using the N direction.
 	// Here we are sampling using the cubemap-miplevel 4, and the already blurred txIrradiance texture
