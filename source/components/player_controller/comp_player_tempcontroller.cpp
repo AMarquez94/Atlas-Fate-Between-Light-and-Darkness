@@ -757,20 +757,6 @@ VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & le
 	return dir;
 }
 
-void TCompTempPlayerController::manageSMDirection(VEC3 prevUp, VEC3 postUp, VEC3 prevPos, VEC3 postPos)
-{
-  if (prevPos.x < 0.001f) prevPos.x = 0;
-  if (prevPos.y < 0.001f) prevPos.y = 0;
-  if (prevPos.z < 0.001f) prevPos.z = 0;
-  if (postPos.x < 0.001f) postPos.x = 0;
-  if (postPos.y < 0.001f) postPos.y = 0;
-  if (postPos.z < 0.001f) postPos.z = 0;
-
-  //if()
-
-
-}
-
 /* Auxiliary functions */
 
 void TCompTempPlayerController::upButtonReselased() {
