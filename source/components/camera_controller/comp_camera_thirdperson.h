@@ -13,6 +13,7 @@ private:
 	float _speed;
 	VEC2 _clamp_angle;
 	VEC2 _current_euler;
+  VEC2 _original_euler;
 	VEC3 _clipping_offset;
 
 	bool active;

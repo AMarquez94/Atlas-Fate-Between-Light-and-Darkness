@@ -29,6 +29,7 @@ void TCompCameraThirdPerson::load(const json& j, TEntityParseContext& ctx)
 	float yaw, pitch, roll;
 	target_transform->getYawPitchRoll(&yaw, &pitch, &roll);
 	_current_euler = VEC2(yaw, pitch);
+  _original_euler = _current_euler;
 
 	active = false;
 }
@@ -44,7 +45,7 @@ void TCompCameraThirdPerson::registerMsgs()
 
 void TCompCameraThirdPerson::onMsgCameraActive(const TMsgCameraActivated & msg)
 {
-
+  _current_euler.y = _original_euler.y;
 }
 
 void TCompCameraThirdPerson::onMsgCameraFullActive(const TMsgCameraFullyActivated & msg)
@@ -85,8 +86,8 @@ void TCompCameraThirdPerson::update(float dt)
 
 		// Verbose code
 		_current_euler.x -= horizontal_delta * _speed * dt;
-		_current_euler.y += vertical_delta * _speed * dt;
-		_current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
+		  _current_euler.y += vertical_delta * _speed * dt;
+		  _current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
 
 		// EulerAngles method based on mcv class
 		VEC3 vertical_offset = VEC3::Up * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)
