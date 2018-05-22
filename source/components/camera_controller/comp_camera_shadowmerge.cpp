@@ -149,6 +149,6 @@ float TCompCameraShadowMerge::CameraClipping(const VEC3 & origin, const VEC3 & d
 
 void TCompCameraShadowMerge::setCurrentEuler(float x, float y)
 {
-	_current_euler.x = x;
-	_current_euler.y = y;
+  if (x != INFINITY) _current_euler.x = x;
+  if (y != INFINITY) _current_euler.y = y;
 }

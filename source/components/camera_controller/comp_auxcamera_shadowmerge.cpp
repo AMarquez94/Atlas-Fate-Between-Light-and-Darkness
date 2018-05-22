@@ -64,9 +64,17 @@ void TCompAuxCameraShadowMerge::onMsgCameraFullActive(const TMsgCameraFullyActiv
 void TCompAuxCameraShadowMerge::onMsgCameraDeprecated(const TMsgCameraDeprecated &msg)
 {
 	active = false;
-  CEntity * eTPCamera = getEntityByName("TPCamera");
-  TCompCameraThirdPerson* tpController = eTPCamera->get<TCompCameraThirdPerson>();
+  CEntity * eCamera = getEntityByName("TPCamera");
+  TCompCameraThirdPerson* tpController = eCamera->get<TCompCameraThirdPerson>();
   tpController->setCurrentEuler(_current_euler.x);
+
+  eCamera = getEntityByName("SMCameraHor");
+  TCompCameraShadowMerge* smController = eCamera->get<TCompCameraShadowMerge>();
+  smController->setCurrentEuler(_current_euler.x);
+
+  eCamera = getEntityByName("SMCameraVer");
+  smController = eCamera->get<TCompCameraShadowMerge>();
+  smController->setCurrentEuler(_current_euler.x);
 }
 
 void TCompAuxCameraShadowMerge::onMsgCameraSetActive(const TMsgSetCameraActive & msg)

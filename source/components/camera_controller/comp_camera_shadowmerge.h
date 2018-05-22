@@ -52,5 +52,5 @@ public:
   const CHandle getCameraTarget() { return _h_target; }
   const float getStartingPitch() { return _starting_pitch; };
 
-  void setCurrentEuler(float x, float y);
+  void setCurrentEuler(float x = INFINITY, float y = INFINITY);
 };
