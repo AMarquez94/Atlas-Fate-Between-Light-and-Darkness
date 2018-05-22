@@ -12,6 +12,7 @@
 		"player_tempcontroller",
 		"ai_patrol",
 		"ai_mimetic",
+		"instance",
 		"dynamic_capsule",
 		"shadow_controller",
 		"skeleton",

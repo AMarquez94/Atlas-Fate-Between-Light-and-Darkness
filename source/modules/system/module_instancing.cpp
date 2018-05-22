@@ -1,5 +1,5 @@
 #include "mcv_platform.h"
-#include "module_test_instancing.h"
+#include "module_instancing.h"
 #include "geometry/transform.h"
 
 float unitRandom() {
@@ -12,7 +12,7 @@ float randomFloat(float vmin, float vmax) {
     return vmin + (vmax - vmin) * unitRandom();
 }
 
-bool CModuleTestInstancing::start() {
+bool CModuleInstancing::start() {
 
     {
         auto rmesh = Resources.get("data/meshes/GeoSphere001.instanced_mesh")->as<CRenderMesh>();
@@ -31,7 +31,7 @@ bool CModuleTestInstancing::start() {
     return true;
 }
 
-void CModuleTestInstancing::update(float delta) {
+void CModuleInstancing::update(float delta) {
 
     // Rotate the particles
     for (auto& p : particles_instances)
@@ -40,17 +40,63 @@ void CModuleTestInstancing::update(float delta) {
     // Move the instances in the cpu
     static float t = 0;
     t += delta;
+
     for (auto& p : instances)
         p.world = p.world * MAT44::CreateTranslation(VEC3(0, 0.1f * sin(t), 0));
-    instances_mesh->setInstancesData(instances.data(), instances.size(), sizeof(TInstance));
 
-    blood_instances_mesh->setInstancesData(blood_instances.data(), blood_instances.size(), sizeof(TInstanceBlood));
-    particles_instances_mesh->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(TRenderParticle));
+    // Handle the dynamic instances
+    //for (auto p : _dynamic_instances)
+    //    for (auto q : p.second)
+    //            q->world = q->world * _dynamic_transform[q]->asMatrix();
 }
 
-void CModuleTestInstancing::render() {
+int CModuleInstancing::addInstance(const std::string & name, MAT44 w_matrix) {
 
-    if (ImGui::TreeNode("Instancing")) {
+    // Add the instance collector if it's not in our database
+    if (_global_instances.find(name) == _global_instances.end()) {
+
+        auto rmesh = (CRenderMeshInstanced*)Resources.get(name)->as<CRenderMesh>();
+        TInstanceCollector collector;
+        collector._instances_mesh = rmesh;
+        _global_instances.insert(std::pair<std::string, TInstanceCollector>(name, collector));
+
+        // Add the generic group entity into the scene dynamically?
+    }
+
+    // Create the new instance and add it to the set
+    TInstance static_instance;
+    static_instance.world = w_matrix;
+    _global_instances[name]._instances.push_back(static_instance);
+
+    return _global_instances[name]._instances.size() - 1;
+}
+
+void CModuleInstancing::removeInstance(TInstance* instance) {
+
+    // Loop through and remove instance from vector.
+}
+
+void CModuleInstancing::clearInstances() {
+
+    _global_instances.clear();
+}
+
+// Maybe we should refactor this with pointers..
+void CModuleInstancing::updateInstance(const std::string& name, int index, const MAT44& w_matrix) {
+
+    _global_instances[name]._instances[index].world = w_matrix;
+}
+
+void CModuleInstancing::render() {
+
+    for (auto p : _global_instances)
+        p.second._instances_mesh->setInstancesData(p.second._instances.data(), p.second._instances.size(), sizeof(TInstance));
+
+    instances_mesh->setInstancesData(instances.data(), instances.size(), sizeof(TInstance));
+    blood_instances_mesh->setInstancesData(blood_instances.data(), blood_instances.size(), sizeof(TInstanceBlood));
+    particles_instances_mesh->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(TRenderParticle));
+
+    if (ImGui::TreeNode("Instance Manager")) {
 
         // -- Creation params ----------------------
         static float sz = 50.f;

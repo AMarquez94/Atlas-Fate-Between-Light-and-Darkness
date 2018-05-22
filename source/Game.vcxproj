@@ -109,6 +109,7 @@
     <ClCompile Include="components\dynamic_objects\comp_dynamic_capsules_manager.cpp" />
     <ClCompile Include="components\ia\comp_patrol_animator.cpp" />
     <ClCompile Include="components\lighting\comp_projector.cpp" />
+    <ClCompile Include="components\object_controller\comp_instance.cpp" />
     <ClCompile Include="components\object_controller\comp_noise_emitter.cpp" />
     <ClCompile Include="components\lighting\comp_emission_controller.cpp" />
     <ClCompile Include="components\lighting\comp_light_point.cpp" />
@@ -201,11 +202,11 @@
     <ClCompile Include="modules\system\module_fsm.cpp" />
     <ClCompile Include="modules\system\module_game_console.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
+    <ClCompile Include="modules\system\module_instancing.cpp" />
     <ClCompile Include="modules\system\module_logic.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
     <ClCompile Include="modules\system\module_scene_manager.cpp" />
     <ClCompile Include="modules\system\module_sound.cpp" />
-    <ClCompile Include="modules\test\module_test_instancing.cpp" />
     <ClCompile Include="navmesh\navmesh.cpp" />
     <ClCompile Include="navmesh\navmesh_query.cpp" />
     <ClCompile Include="navmesh\recast\DebugDraw.cpp" />
@@ -284,6 +285,7 @@
     <ClInclude Include="components\dynamic_objects\comp_dynamic_capsules_manager.h" />
     <ClInclude Include="components\ia\comp_patrol_animator.h" />
     <ClInclude Include="components\lighting\comp_projector.h" />
+    <ClInclude Include="components\object_controller\comp_instance.h" />
     <ClInclude Include="components\object_controller\comp_noise_emitter.h" />
     <ClInclude Include="components\lighting\comp_emission_controller.h" />
     <ClInclude Include="components\lighting\comp_light_point.h" />
@@ -404,11 +406,11 @@
     <ClInclude Include="modules\system\module_fsm.h" />
     <ClInclude Include="modules\system\module_game_console.h" />
     <ClInclude Include="modules\system\module_input.h" />
+    <ClInclude Include="modules\system\module_instancing.h" />
     <ClInclude Include="modules\system\module_logic.h" />
     <ClInclude Include="modules\system\module_physics.h" />
     <ClInclude Include="modules\system\module_scene_manager.h" />
     <ClInclude Include="modules\system\module_sound.h" />
-    <ClInclude Include="modules\test\module_test_instancing.h" />
     <ClInclude Include="navmesh\navmesh.h" />
     <ClInclude Include="navmesh\navmesh_query.h" />
     <ClInclude Include="navmesh\recast\DebugDraw.h" />

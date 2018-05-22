@@ -14,6 +14,7 @@
 #include "modules/system/module_game_console.h"
 #include "modules/system/module_gui.h"
 #include "modules/system/module_scene_manager.h"
+#include "modules/system/module_instancing.h"
 
 class CModuleGameManager;
 
@@ -28,6 +29,7 @@ public:
 	void update(float delta);
 	void render();
 
+    // System modules
 	CModuleManager& getModules() { return _modules; }
 	CModuleRender& getRender() { return _module_render; }
 	CModuleIA& getIA() { return _module_ia; }
@@ -43,6 +45,9 @@ public:
 	CModuleGameConsole getGameConsoleBis() { return _module_game_console; }
 	CModuleGUI& getGUI() { return _module_gui; }
     CModuleSceneManager& getSceneManager() { return _module_scene_manager; }
+    CModuleInstancing& getInstancing() { return _module_instancing; }
+
+    // Game modules
     CModuleGameManager& getGameManager();
 
 private:
@@ -60,9 +65,11 @@ private:
 	CModuleGameConsole _module_game_console;
 	CModuleGUI _module_gui;
     CModuleSceneManager _module_scene_manager;
+    CModuleInstancing _module_instancing;
 };
 
 #define Engine CEngine::get()
+#define EngineIA CEngine::get().getIA()
 #define EngineInput CEngine::get().getInput()
 #define EngineRender CEngine::get().getRender()
 #define EngineCameras CEngine::get().getCameras()
@@ -74,3 +81,4 @@ private:
 #define EngineSound CEngine::get().getSound()
 #define EngineGUI CEngine::get().getGUI()
 #define EngineScene CEngine::get().getSceneManager()
+#define EngineInstancing CEngine::get().getInstancing()

@@ -3,11 +3,17 @@
 #include "modules/module.h"
 #include "render/mesh/mesh_instanced.h"
 
-class CModuleTestInstancing : public IModule {
+class TInstance;
+class TCompTransform;
+
+struct TInstance {
+    MAT44 world;
+};
+
+class CModuleInstancing : public IModule {
+
+    // Static instances, for testing purposes
     // -------------------------------------------------------------------
-    struct TInstance {
-        MAT44 world;
-    };
     CRenderMeshInstanced* instances_mesh = nullptr;
     std::vector< TInstance > instances;
 
@@ -17,7 +23,7 @@ class CModuleTestInstancing : public IModule {
         VEC4  color;
     };
     CRenderMeshInstanced* blood_instances_mesh = nullptr;
-    std::vector< TInstanceBlood > blood_instances;
+    std::vector<TInstanceBlood> blood_instances;
 
     // -------------------------------------------------------------------
     struct TRenderParticle {
@@ -29,13 +35,27 @@ class CModuleTestInstancing : public IModule {
         float nframe;
     };
     CRenderMeshInstanced* particles_instances_mesh = nullptr;
-    std::vector< TRenderParticle > particles_instances;
+    std::vector<TRenderParticle> particles_instances;
+
+    // Dynamic global instances, to be hold in the map.
+    // -------------------------------------------------------------------
+    struct TInstanceCollector {
+        std::vector<TInstance> _instances;
+        CRenderMeshInstanced* _instances_mesh;
+    };
+    
+    std::map<std::string, TInstanceCollector> _global_instances;
 
 public:
-    CModuleTestInstancing(const std::string& name)
-        : IModule(name)
-    {}
+
+    CModuleInstancing(const std::string& name) : IModule(name) {}
+
     bool start() override;
     void render() override;
     void update(float delta) override;
+
+    int addInstance(const std::string & name, MAT44 w_matrix);
+    void removeInstance(TInstance* instance);
+    void updateInstance(const std::string& name, int index, const MAT44& w_matrix);
+    void clearInstances();
 };

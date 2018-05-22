@@ -122,10 +122,11 @@ bool CModuleSceneManager::unLoadActiveScene() {
     // Warning: persistent data will need to avoid deletion
     if (_activeScene != nullptr) {
 
-        Engine.getEntities().destroyAllEntities();
-        Engine.getCameras().deleteAllCameras();
-        Engine.getIA().clearSharedBoards();
-        Engine.getNavmeshes().destroyNavmesh();
+        EngineEntities.destroyAllEntities();
+        EngineCameras.deleteAllCameras();
+        EngineIA.clearSharedBoards();
+        EngineNavmeshes.destroyNavmesh();
+        EngineInstancing.clearInstances();
 
         _activeScene->isLoaded = false;
         _activeScene = nullptr;

@@ -17,12 +17,12 @@
 		"map_intro",
 		"level_select",
 		"game_over",
-		"test_instancing"
+		"instancing"
 	],
 	"render":
 	[
 		"render",
-		"test_instancing",
+		"instancing",
 		"game_manager",
 		"entities",
 		"navmeshes",
