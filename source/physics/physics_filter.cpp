@@ -40,6 +40,9 @@ FilterGroup getFilterByName(const std::string & name)
 	else if (strcmp("floor", name.c_str()) == 0) {
 		return FilterGroup::Floor;
 	}
+    else if (strcmp("dynamic", name.c_str()) == 0) {
+        return FilterGroup::DItem;
+    }
 	else if (strcmp("ignore", name.c_str()) == 0) {
 		return FilterGroup::Ignore;
 	}

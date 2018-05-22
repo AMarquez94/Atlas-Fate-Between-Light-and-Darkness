@@ -174,7 +174,7 @@ void CModulePhysics::CustomSimulationEventCallback::onContact(const physx::PxCon
 
 /* Auxiliar physics methods */
 
-bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distance, physx::PxRaycastHit & hit, physx::PxQueryFlag::Enum flag, physx::PxQueryFilterData filterdata)
+bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distance, physx::PxRaycastHit & hit, physx::PxQueryFlags flag, physx::PxQueryFilterData filterdata)
 {
     PxVec3 px_origin = PxVec3(origin.x, origin.y, origin.z);
     PxVec3 px_dir = PxVec3(dir.x, dir.y, dir.z); // [in] Normalized ray direction
