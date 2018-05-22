@@ -114,6 +114,12 @@ float TCompCameraThirdPerson::CameraClipping(const VEC3	& origin, const VEC3 & d
 	return _clipping_offset.z;
 }
 
+void TCompCameraThirdPerson::setCurrentEuler(float euler_x, float euler_y)
+{
+  if (euler_x != INFINITY) _current_euler.x = euler_x;
+  if (euler_y != INFINITY) _current_euler.y = euler_y;
+}
+
 void TCompCameraThirdPerson::onPause(const TMsgScenePaused& msg) {
 
 	paused = msg.isPaused;

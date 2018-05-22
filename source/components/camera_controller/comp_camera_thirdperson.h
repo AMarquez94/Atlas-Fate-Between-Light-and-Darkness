@@ -38,6 +38,7 @@ public:
 
   const VEC2 getCurrentEuler() { return _current_euler; }
   float CameraClipping(const VEC3 & origin, const VEC3 & dir);
+  void setCurrentEuler(float euler_x = INFINITY, float euler_y = INFINITY);
 
   static void registerMsgs();
 };
