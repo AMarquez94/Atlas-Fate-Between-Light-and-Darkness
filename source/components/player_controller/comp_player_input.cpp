@@ -145,7 +145,7 @@ void TCompPlayerInput::update(float dt)
 			/* Move this from here.. */
 			TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
 
-			if (c_my_player->isInhibited) {
+			if (c_my_player->isInhibited && c_my_player->canRemoveInhibitor) {
 				TMsgSetFSMVariable keyPressed;
 				keyPressed.variant.setName("hitPoints");
 				keyPressed.variant.setBool(true);

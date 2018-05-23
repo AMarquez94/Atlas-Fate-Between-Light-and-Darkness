@@ -11,6 +11,7 @@ public:
 
     std::string name;
     std::string navmesh;
+    std::string initial_script_name;
     std::vector<std::string> groups_subscenes;
 };
 

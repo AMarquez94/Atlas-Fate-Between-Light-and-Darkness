@@ -28,3 +28,7 @@ end
 function setInfiniteStamine(set)
 	SLB.setInfiniteStamine(set)
 end
+
+function setPlayerInhibited(inhibited)
+	playerController.inhibited = inhibited;
+end

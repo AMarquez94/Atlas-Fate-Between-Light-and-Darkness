@@ -64,10 +64,14 @@ namespace FSM
     CEntity* e = ctx.getOwner();
     e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
     e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+    TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
+    playerController->canRemoveInhibitor = true;
   }
 
   void IdleState::onFinish(CContext& ctx) const {
-
+    CEntity* e = ctx.getOwner();
+    TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
+    playerController->canRemoveInhibitor = false;
   }
 
   bool WalkState::load(const json& jData) {
@@ -515,11 +519,14 @@ namespace FSM
 
     CEntity* e = ctx.getOwner();
     e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::removingInhibitorState, _speed, _radius, _size, _target, _noise });
-
+    TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
+    playerController->canRemoveInhibitor = true;
   }
 
   void RemoveInhibitorState::onFinish(CContext& ctx) const {
-
+    CEntity* e = ctx.getOwner();
+    TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
+    playerController->canRemoveInhibitor = true;
   }
 
   bool InhibitorRemovedState::load(const json& jData) {
@@ -561,11 +568,15 @@ namespace FSM
     CEntity* e = ctx.getOwner();
     e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::METRALLA_MIDDLE , 1.0f });
     e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _radius, _size, _target, _noise });
+    TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
+    playerController->canRemoveInhibitor = true;
 
   }
 
   void InhibitorTryToRemoveState::onFinish(CContext& ctx) const {
-
+    CEntity* e = ctx.getOwner();
+    TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
+    playerController->canRemoveInhibitor = true;
   }
 
   bool DieState::load(const json& jData) {

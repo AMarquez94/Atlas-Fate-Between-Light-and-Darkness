@@ -94,7 +94,7 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	maxStamina = j.value("maxStamina", 100.f);
 	incrStamina = j.value("incrStamina", 15.f);
 	decrStaticStamina = j.value("decrStaticStamina", 0.75f),
-		decrStaminaHorizontal = j.value("decrStaminaHorizontal", 12.5f);
+  decrStaminaHorizontal = j.value("decrStaminaHorizontal", 12.5f);
 	decrStaminaVertical = j.value("decrStaminaVertical", 17.5f);
 	minStaminaChange = j.value("minStaminaChange", 15.f);
 	auxCamera = j.value("auxCamera", "");
@@ -102,6 +102,7 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	initialPoints = j.value("timesRemoveInhibitorKeyPressed", -1);
 	paused = true;
 	canAttack = false;
+  canRemoveInhibitor = false;
 }
 
 /* Player controller main update */
