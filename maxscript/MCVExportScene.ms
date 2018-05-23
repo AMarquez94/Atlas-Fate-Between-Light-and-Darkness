@@ -30,11 +30,15 @@ struct TMaterialExporter (
 	),
 	
 	-- Exports a single std material to a json format
-	fn exportStdMaterial mat mat_name = (
+	fn exportStdMaterial mat mat_name tech = (
 		
 		format "Exporting material % % %\n" mat_name mat (classof mat as string)
 		fs.begin (project_path + mat_name )
 		fs.beginObj()
+			if tech != undefined then ( 
+				fs.writeKeyValue "technique" tech 
+				fs.writeComma()
+			)
 			fs.writeKeyValue "shadows" true
 			fs.writeComma()
 			fs.writeKey "textures" 
@@ -74,14 +78,14 @@ struct TMaterialExporter (
 	),
 	
 	-- Will return an array of all the materials names used by obj and exported by us
-	fn exportMaterial mat base_name obj = (
+	fn exportMaterial mat base_name obj tech = (
 		
 		local exported_materials = #()
 		
 		if classof mat == StandardMaterial then (
 			local mat_name = base_name + mat.name + ".material"
 			append exported_materials mat_name
-			exportStdMaterial mat mat_name
+			exportStdMaterial mat mat_name tech
 			
 		) else if classof mat == MultiMaterial then (
 			local multi_mat = mat
@@ -96,7 +100,7 @@ struct TMaterialExporter (
 				
 				local mat_name = base_name + mat_of_mesh.name + ".material"
 				append exported_materials mat_name
-				exportStdMaterial mat_of_mesh mat_name
+				exportStdMaterial mat_of_mesh mat_name tech
 			)
 		)
 		
@@ -116,6 +120,7 @@ struct TSceneExporter (
 	cols_path = base_path + "colliders/",
 	tex_path = base_path + "textures/",
 	local_path = "",
+	is_prefab = false,
 	
 	fn exportName obj = (
 		fs.writeKeyValue "name" obj.name
@@ -274,7 +279,7 @@ struct TSceneExporter (
 		
 			if mat != undefined then (
 				local me = TMaterialExporter project_path:project_path base_path:base_path
-				exported_materials = me.exportMaterial mat f_mats_path obj
+				exported_materials = me.exportMaterial mat f_mats_path obj undefined
 			)
 			
 			fs.writeKey "materials"
@@ -282,6 +287,51 @@ struct TSceneExporter (
 			
 		)
 		fs.endObj()	
+	),
+	
+	
+	function exportInstancedMesh mesh_path mesh_name = (
+			
+		local ifs = TJsonFormatter()
+		ifs.begin (project_path + mesh_path)
+		ifs.beginObj()
+			ifs.writeKeyValue "instanced_mesh" mesh_name
+			ifs.writeComma()
+			ifs.writeKeyValue "instances_type" "Instance"
+			ifs.writeComma()
+			ifs.writeKeyValue "num_instances_reserved" 8
+		ifs.endObj()
+		ifs.end()
+	),
+
+		-- ----------------------------------------------------------
+	fn exportRenderInstance obj = (
+		
+		local f_mats_path = mats_path + local_path
+		local exported_materials = #(f_mats_path + "mtl_instanced_default.material")
+		local mat = obj.material
+		
+		-- Do some material safe checks.
+		if mat == undefined then (
+			print ("Obj " + obj.name + " does NOT have a material")
+		)
+		if mat != undefined and not (isValidName mat.name) then (
+			messageBox ("Wrong material name: " + mat.name) title:"Warning Message"
+		)
+		
+		-- First, export the instanced mesh file
+		local mesh_name = mesh_path + local_path + obj.name + ".mesh"
+		local imesh_name = mesh_path + local_path + obj.name + ".instanced_mesh"
+		exportInstancedMesh imesh_name mesh_name
+		
+		-- Export instanced Mesh
+		fs.writeKeyValue "mesh" imesh_name
+		exportMeshObject obj (project_path + mesh_name )
+	
+		if mat != undefined then (
+			local me = TMaterialExporter project_path:project_path base_path:base_path
+			exported_materials = me.exportMaterial mat f_mats_path obj "pbr_instanced.tech"
+		)
 	),
 	
 	-- ----------------------------------------------------------
@@ -396,10 +446,19 @@ struct TSceneExporter (
 		fs.writeComma()
 		writeHierComponent obj
 		writeGroupComponent obj
-		fs.writeKey "render" 
-		fs.beginArray()
-		exportRenderMesh obj
-		fs.endArray()
+		
+		if is_prefab == true then (
+			fs.writeKey "instance" 
+			fs.beginObj()
+			exportRenderInstance obj
+			fs.endObj()
+		)
+		else (
+			fs.writeKey "render" 
+			fs.beginArray()
+			exportRenderMesh obj
+			fs.endArray()
+		)
 		
 		for child in obj.children do (
 			if isCollider child then (
@@ -532,12 +591,15 @@ struct TSceneExporter (
 			fs.writeKeyValue "pos" "0.0 0.0 0.0"
 			fs.endObj()
 		fs.endObj()
+		fs.endObj()
 	),
 	
 	-- ----------------------------------------------------------
 	-- ----------------------------------------------------------
 	
 	fn exportAll nodes ofilename prg is_scene = (
+		
+		is_prefab =  not is_scene;
 		
 		-------------------------------------------------------------------------
 		local req_path = findstring project_path "\bin"
