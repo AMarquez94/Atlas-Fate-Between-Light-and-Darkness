@@ -147,7 +147,7 @@ void TCompPlayerInput::update(float dt)
 
 			if (c_my_player->isInhibited && c_my_player->canRemoveInhibitor) {
 				TMsgSetFSMVariable keyPressed;
-				keyPressed.variant.setName("hitPoints");
+				keyPressed.variant.setName("inhibitorTryingToRemove");
 				keyPressed.variant.setBool(true);
 				e->sendMsg(keyPressed);
 			}

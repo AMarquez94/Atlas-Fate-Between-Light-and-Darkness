@@ -99,7 +99,6 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 	minStaminaChange = j.value("minStaminaChange", 15.f);
 	auxCamera = j.value("auxCamera", "");
 	timesRemoveInhibitorKeyPressed = j.value("timesRemoveInhibitorKeyPressed", -1);
-	initialPoints = j.value("timesRemoveInhibitorKeyPressed", -1);
 	paused = true;
 	canAttack = false;
   canRemoveInhibitor = false;
@@ -167,7 +166,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 	stamina = 100.f;
 	fallingTime = 0.f;
 	currentSpeed = 4.f;
-	initialPoints = 5;
+  initialTimesToPressInhibitorRemoveKey = 5;
 	rotationSpeed = 10.f;
 	fallingDistance = 0.f;
 	isInhibited = isGrounded = isMerged = false;
@@ -245,7 +244,7 @@ void TCompTempPlayerController::onPlayerInhibited(const TMsgInhibitorShot & msg)
 		//TCompEmissionController * e_controller = get<TCompEmissionController>();
 		//e_controller->blend(playerColor.colorInhib, .1f);
 	}
-	timesRemoveInhibitorKeyPressed = initialPoints;
+	timesRemoveInhibitorKeyPressed = initialTimesToPressInhibitorRemoveKey;
 
 }
 
@@ -441,20 +440,21 @@ void TCompTempPlayerController::removingInhibitorState(float dt) {
 
 	CEntity* player = CHandle(this).getOwner();
 
-	TMsgSetFSMVariable hitPoints;
-	hitPoints.variant.setName("hitPoints");
-	hitPoints.variant.setBool(false);
-	player->sendMsg(hitPoints);
+	TMsgSetFSMVariable inhibitorTryToRemove;
+  inhibitorTryToRemove.variant.setName("inhibitorTryToRemove");
+  inhibitorTryToRemove.variant.setBool(false);
+	player->sendMsg(inhibitorTryToRemove);
+
 
 	TMsgSetFSMVariable finished;
 	finished.variant.setName("inhibitor_removed");
 	finished.variant.setBool(false);
 	player->sendMsg(finished);
 
-	TMsgSetFSMVariable inhibitor_try_to_remove;
-	inhibitor_try_to_remove.variant.setName("inhibitor_try_to_remove");
-	inhibitor_try_to_remove.variant.setBool(false);
-	player->sendMsg(inhibitor_try_to_remove);
+	//TMsgSetFSMVariable inhibitor_try_to_remove;
+	//inhibitor_try_to_remove.variant.setName("inhibitor_try_to_remove");
+	//inhibitor_try_to_remove.variant.setBool(false);
+	//player->sendMsg(inhibitor_try_to_remove);
 
 	if (timesRemoveInhibitorKeyPressed > 0) {
 
@@ -468,14 +468,26 @@ void TCompTempPlayerController::removingInhibitorState(float dt) {
 			finished.variant.setBool(true);
 			player->sendMsg(finished);
 		}
-		else {
-			TMsgSetFSMVariable inhibitor_try_to_remove;
-			inhibitor_try_to_remove.variant.setName("inhibitor_try_to_remove");
-			inhibitor_try_to_remove.variant.setBool(true);
-			player->sendMsg(inhibitor_try_to_remove);
-		}
+		//else {
+		//	TMsgSetFSMVariable inhibitor_try_to_remove;
+		//	inhibitor_try_to_remove.variant.setName("inhibitor_try_to_remove");
+		//	inhibitor_try_to_remove.variant.setBool(true);
+		//	player->sendMsg(inhibitor_try_to_remove);
+		//}
 	}
 
+}
+
+void TCompTempPlayerController::resetRemoveInhibitor()
+{
+  canRemoveInhibitor = true;
+  timesRemoveInhibitorKeyPressed = initialTimesToPressInhibitorRemoveKey;
+
+  //CEntity* player = CHandle(this).getOwner();
+  //TMsgSetFSMVariable inhibitorTryToRemove;
+  //inhibitorTryToRemove.variant.setName("inhibitorTryToRemove");
+  //inhibitorTryToRemove.variant.setBool(false);
+  //player->sendMsg(inhibitorTryToRemove);
 }
 
 /* Concave test, this determines if there is a surface normal change on concave angles */

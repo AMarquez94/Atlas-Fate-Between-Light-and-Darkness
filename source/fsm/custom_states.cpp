@@ -65,7 +65,7 @@ namespace FSM
     e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
     e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
     TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
-    playerController->canRemoveInhibitor = true;
+    playerController->resetRemoveInhibitor();
   }
 
   void IdleState::onFinish(CContext& ctx) const {
@@ -567,7 +567,7 @@ namespace FSM
 
     CEntity* e = ctx.getOwner();
     e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::METRALLA_MIDDLE , 1.0f });
-    e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _radius, _size, _target, _noise });
+    e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::removingInhibitorState, _speed, _radius, _size, _target, _noise });
     TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
     playerController->canRemoveInhibitor = true;
 

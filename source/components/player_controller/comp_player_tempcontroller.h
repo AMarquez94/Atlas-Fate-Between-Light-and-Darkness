@@ -127,7 +127,7 @@ public:
 	bool isInhibited;
   bool canAttack;
   bool canRemoveInhibitor;
-	unsigned int initialPoints;
+	unsigned int initialTimesToPressInhibitorRemoveKey;
 	unsigned int hitPoints;
 
 	void debugInMenu();
@@ -144,6 +144,7 @@ public:
 	void resetState(float dt);
 	void exitMergeState(float dt);
 	void removingInhibitorState(float dt);
+  void resetRemoveInhibitor();
 
 	/* Player condition tests */
 	const bool concaveTest(void);
