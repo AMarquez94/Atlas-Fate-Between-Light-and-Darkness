@@ -45,13 +45,9 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_caja015.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_HouseA_Wall.material"
-            ,
-            "data/materials/mtl_houseA_door.material"
+          "mesh": "data/meshes/mesh_caja015.mesh",
+          "materials": [
+            "data/materials/mtl_caja.material"
           ]
         }
       ]
