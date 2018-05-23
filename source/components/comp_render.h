@@ -16,6 +16,7 @@ public:
     // Properties
     VEC4               color = VEC4(1, 1, 1, 1);
     AABB               aabb;
+	bool			   global_enabled = true;
     VEC4               self_color = VEC4(1, 1, 1, 1);
     float              self_intensity = 1.f;
 
@@ -33,7 +34,8 @@ public:
 
     void loadMesh(const json& j, TEntityParseContext& ctx);
     void onDefineLocalAABB(const TMsgDefineLocalAABB& msg);
-    void refreshMeshesInRenderManager();
+	void onSetVisible(const TMsgSetVisible& msg);
+    void refreshMeshesInRenderManager(bool delete_me_from_keys = true);
 
     static void registerMsgs();
 

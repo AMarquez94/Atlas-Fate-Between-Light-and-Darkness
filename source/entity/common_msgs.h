@@ -136,6 +136,10 @@ struct TMsgScenePaused {
 	bool isPaused;
 	DECL_MSG_ID();
 };
+struct TMsgSetVisible {
+	bool visible;
+	DECL_MSG_ID();
+};
 
 struct TMsgConsoleOn {
 	bool isConsoleOn;
