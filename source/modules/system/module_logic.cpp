@@ -36,6 +36,15 @@ void CModuleLogic::update(float delta) {
 			delayedScripts.erase(delayedScripts.begin() + i);
 		}
 	}
+
+	for (auto k : _bindings) {
+		Input::TButton button = EngineInput.keyboard().key(k.first);
+		if (button.getsPressed()) {
+			std::string current_value = k.second;
+			execCvar(current_value);
+			execScript(current_value);
+		}
+	}
 }
 
 /* Where we publish all functions that we want and load all the scripts in the scripts folder */
@@ -189,6 +198,22 @@ bool CModuleLogic::execEvent(Events event, const std::string & params, float del
 		break;
 	case Events::GAME_END:
 
+		break;
+	case Events::TRIGGER_ENTER:
+		if (delay > 0) {
+			return execScriptDelayed("onTriggerEnter_" + params + "()", delay);
+		}
+		else {
+			return execScript("onTriggerEnter_" + params + "()").success;
+		}
+		break;
+	case Events::TRIGGER_EXIT:
+		if (delay > 0) {
+			return execScriptDelayed("onTriggerExit_" + params + "()", delay);
+		}
+		else {
+			return execScript("onTriggerExit_" + params + "()").success;
+		}
 		break;
 	default:
 
