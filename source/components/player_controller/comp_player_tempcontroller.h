@@ -126,6 +126,7 @@ public:
 	bool isGrounded;
 	bool isInhibited;
   bool canAttack;
+  bool canRemoveInhibitor;
 	unsigned int initialPoints;
 	unsigned int hitPoints;
 

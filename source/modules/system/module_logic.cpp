@@ -8,6 +8,8 @@
 #include "components/lighting/comp_light_dir.h"
 #include "components/lighting/comp_light_spot.h"
 #include "components/lighting/comp_light_point.h"
+
+#include "components/player_controller/comp_player_tempcontroller.h"
 bool CModuleLogic::start() {
 
     BootLuaSLB();
@@ -92,9 +94,14 @@ void CModuleLogic::publishClasses() {
         .comment("This is our wrapper of the logic class")
         .set("printLog", &CModuleLogic::printLog);
 
+    SLB::Class< TCompTempPlayerController >("PlayerController", m)
+      .comment("This is our wrapper of the player controller component")
+      .property("inhibited", &TCompTempPlayerController::isInhibited);
+
     /* Global functions */
     m->set("getConsole", SLB::FuncCall::create(&getConsole));
     m->set("getLogic", SLB::FuncCall::create(&getLogic));
+    m->set("getPlayerController", SLB::FuncCall::create(&getPlayerController));
     m->set("execDelayedScript", SLB::FuncCall::create(&execDelayedScript));
     m->set("pauseGame", SLB::FuncCall::create(&pauseGame));
     m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
@@ -168,6 +175,22 @@ bool CModuleLogic::execEvent(Events event, const std::string & params, float del
     case Events::GAME_END:
 
         break;
+    case Events::SCENE_START:
+        if (delay > 0) {
+          return execScriptDelayed("onSceneStart_" + params + "()", delay);
+        }
+        else {
+          return execScript("onSceneStart_" + params + "()").success;
+        }
+        break;
+    case Events::SCENE_END:
+        if (delay > 0) {
+          return execScriptDelayed("onSceneEnd_" + params + "()", delay);
+        }
+        else {
+          return execScript("onSceneEnd_" + params + "()").success;
+        }
+        break;
     default:
 
         break;
@@ -186,6 +209,16 @@ void CModuleLogic::printLog()
 
 /* Auxiliar functions */
 CModuleLogic * getLogic() { return EngineLogic.getPointer(); }
+
+TCompTempPlayerController * getPlayerController()
+{
+  TCompTempPlayerController * playerController = nullptr;
+  CEntity* e = getEntityByName("The Player");
+  if (e) {
+    playerController = e->get<TCompTempPlayerController>();
+  }
+  return playerController;
+}
 CModuleGameConsole * getConsole() { return EngineConsole.getPointer(); }
 
 void execDelayedScript(const std::string& script, float delay)
