@@ -42,7 +42,7 @@ void TCompCulling::updateFromMatrix(MAT44 view_proj)
 }
 
 void TCompCulling::update(float dt) {
-	//PROFILE_FUNCTION("Updating culling");
+	PROFILE_FUNCTION("Updating culling");
 
 	// Conseguimos acceso al comp_camera de un sibling component
 	TCompCamera* c_camera = get<TCompCamera>();

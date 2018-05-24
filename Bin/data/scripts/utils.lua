@@ -84,3 +84,7 @@ end
 function spawn()
 	SLB.spawn()
 end
+
+function animationsToggle()
+	SLB.animationsToggle()
+end

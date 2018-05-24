@@ -125,6 +125,7 @@ void CModuleLogic::publishClasses() {
 	//system hacks
 	m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
 	m->set("deleteEnemies", SLB::FuncCall::create(&deleteEnemies));
+  m->set("animationsToggle", SLB::FuncCall::create(&animationsToggle));
 
 	//utilities
 	m->set("getConsole", SLB::FuncCall::create(&getConsole));
@@ -354,6 +355,11 @@ void pauseEnemies() {
 	}
 }
 
+void animationsToggle() {
+  EngineEntities.setAnimationsEnabled(!EngineEntities.getAnimationsEnabled());
+}
+
+
 void deleteEnemies() {
 	//To-Do
 
@@ -366,6 +372,7 @@ void movePlayer(const float x, const float y, const float z) {
 	msg.pos = VEC3(x, y, z);
 	h.sendMsg(msg);
 }
+
 void bind(const std::string& key, const std::string& script) {
 
 	int id = EngineInput.getButtonDefinition(key)->id;
