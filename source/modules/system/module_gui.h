@@ -28,14 +28,14 @@ public:
 	void registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController *wdgt_controller = nullptr);
 	void registerWidget(GUI::CWidget* wdgt);
 	GUI::CWidget* getWidget(const std::string& name, bool recursive = false) const;
-	GUI::CWidget* getWidget(EGUIWidgets wdgt_type);
-	GUI::CController* getWidgetController(EGUIWidgets wdgt_type);
+	GUI::CWidget* getWidget(EGUIWidgets wdgt_type);	
 	void activateWidget(EGUIWidgets wdgt);
 	void deactivateWidget(EGUIWidgets wdgt);
 
 	// controller management
 	void registerController(GUI::CController* controller);
 	void unregisterController(GUI::CController* controller);
+	GUI::CController* getWidgetController(EGUIWidgets wdgt_type);
 
 	CCamera& getCamera();
 	MVariants& getVariables();

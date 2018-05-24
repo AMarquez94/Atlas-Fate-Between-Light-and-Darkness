@@ -29,15 +29,14 @@ bool CModuleGUI::start()
 
 void CModuleGUI::initializeWidgetStructure() {
 
-
+	//Initializing all the functions for the buttons of GUI
 	auto newGameCB = []() {
-		CEngine::get().getGUI().outOfMainMenu();
+		//CEngine::get().getGameManager().outOfMainMenu();
 	};
 	auto continueCB = []() {
-		CEngine::get().getGUI().outOfMainMenu();
+		//CEngine::get().getGUI().outOfMainMenu();
 	};
 	auto optionsCB = []() {
-		//activateWidget("main_menu_buttons");
 		//activateWidget("main_menu_buttons");
 	};
 	auto exitCB = []() {
@@ -45,16 +44,10 @@ void CModuleGUI::initializeWidgetStructure() {
 	};
 	 
 	CMenuButtonsController* mmc = new CMenuButtonsController();
-	/*
-	mmc->registerOption("new_game", newGameCB);
-	mmc->registerOption("continue", continueCB);
-	mmc->registerOption("options", optionsCB);
-	mmc->registerOption("exit", exitCB);
-	mmc->setCurrentOption(0);*/
-	//registerController(mmc);
+
 	
-	//registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json", (GUI::CController)*mmc);
 	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json");
+
 	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BUTTONS, "data/gui/main_menu_buttons.json", mmc);
 	mmc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::MAIN_MENU_BUTTONS);
 	mmc->registerOption("new_game", newGameCB);
@@ -62,33 +55,10 @@ void CModuleGUI::initializeWidgetStructure() {
 	mmc->registerOption("options", optionsCB);
 	mmc->registerOption("exit", exitCB);
 	mmc->setCurrentOption(0);
-	/*parser.parseFile("data/gui/main_menu.json");
-	parser.parseFile("data/gui/gameplay.json");
-	parser.parseFile("data/gui/game_over.json");*/
+
 
 	activateWidget(EGUIWidgets::MAIN_MENU_BACKGROUND);
 	activateWidget(EGUIWidgets::MAIN_MENU_BUTTONS);
-	/*auto newGameCB = []() {
-		CEngine::get().getGUI().outOfMainMenu();
-	};
-	auto continueCB = []() {
-		CEngine::get().getGUI().outOfMainMenu();
-	};
-	auto optionsCB = []() {
-		//activateWidget("main_menu_buttons");
-		//activateWidget("main_menu_buttons");
-	};
-	auto exitCB = []() {
-		exit(0);
-	};*/
-	//CEngine::get().getGUI().getWidget("stamina_bar", true)->getBarParams()->_processValue = 0.5f;
-	/*CMenuButtonsController* mmc = new CMenuButtonsController();
-	mmc->registerOption("new_game", newGameCB);
-	mmc->registerOption("continue", continueCB);
-	mmc->registerOption("options", optionsCB);
-	mmc->registerOption("exit", exitCB);
-	mmc->setCurrentOption(0);
-	registerController(mmc);*/
 
 }
 
