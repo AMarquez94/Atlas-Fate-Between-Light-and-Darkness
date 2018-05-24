@@ -168,14 +168,13 @@
     "z" : "disable_all"
   },
   "pbr_dir_lights": {
-    "vs_file": "data/shaders/pbr.fx",
+    "vs_file": "data/shaders/screen_quad.fx",
+    "vertex_type": "PosClr",
     "ps_file": "data/shaders/pbr.fx",
-    "vs_entry_point": "VS_pass",
     "ps_entry_point": "PS_dir_lights",
-    "vertex_type" : "PosNUvUvT",
-    "category" : "pbr_proc",
-    "z" : "inverse_test_no_write",
-    "blend" : "additive"
+    "category": "pbr_proc",
+    "z": "disable_all",
+    "blend": "additive"
   },
   "pbr_point_lights": {
     "vs_file": "data/shaders/pbr.fx",

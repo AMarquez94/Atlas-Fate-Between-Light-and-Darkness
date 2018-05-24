@@ -148,7 +148,7 @@ void CDeferredRenderer::renderDirectionalLights() {
 	tech->activate();
 
 	// All light directional use the same mesh
-	auto* mesh = Resources.get("data/meshes/UnitFrustum.mesh")->as<CRenderMesh>();
+	auto* mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 	mesh->activate();
 
 	// Para todas las luces... pintala

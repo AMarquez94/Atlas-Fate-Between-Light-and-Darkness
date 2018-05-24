@@ -335,6 +335,27 @@ struct CSamplers {
 			return false;
 		setDXName(all_samplers[SAMPLER_PCF_SHADOWS], "PCF_SHADOWS");
 
+        {
+            // PCF sampling
+            D3D11_SAMPLER_DESC sampler_desc = {
+                D3D11_FILTER_COMPARISON_MIN_MAG_LINEAR_MIP_POINT,// D3D11_FILTER Filter;
+                D3D11_TEXTURE_ADDRESS_BORDER, //D3D11_TEXTURE_ADDRESS_MODE AddressU;
+                D3D11_TEXTURE_ADDRESS_BORDER, //D3D11_TEXTURE_ADDRESS_MODE AddressV;
+                D3D11_TEXTURE_ADDRESS_BORDER, //D3D11_TEXTURE_ADDRESS_MODE AddressW;
+                0,//FLOAT MipLODBias;
+                0,//UINT MaxAnisotropy;
+                D3D11_COMPARISON_LESS, //D3D11_COMPARISON_FUNC ComparisonFunc;
+                1.0, 1.0, 1.0, 1.0,//FLOAT BorderColor[ 4 ];
+                0,//FLOAT MinLOD;
+                0//FLOAT MaxLOD;
+            };
+            hr = Render.device->CreateSamplerState(
+                &sampler_desc, &all_samplers[SAMPLER_PCF_SHADOWS_WHITE]);
+            if (FAILED(hr))
+                return false;
+            setDXName(all_samplers[SAMPLER_PCF_SHADOWS_WHITE], "PCF_SHADOWS_WHITE");
+        }
+
 		ZeroMemory(&sampDesc, sizeof(sampDesc));
 		sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
 		sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;

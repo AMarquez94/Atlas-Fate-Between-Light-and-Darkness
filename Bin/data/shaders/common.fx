@@ -51,7 +51,7 @@ SamplerState samLinear        : register(s0);
 SamplerState samBorderLinear  : register(s1);
 SamplerComparisonState samPCF : register(s2);
 SamplerState samClampLinear   : register(s3);
-
+SamplerComparisonState samPCFWhite : register(s4);
 
 //--------------------------------------------------------------------------------------
 // 
@@ -82,7 +82,7 @@ float2 hash2(float n) { return frac(sin(float2(n, n + 1.0))*float2(43758.5453123
 
 // ----------------------------------------
 float shadowsTap(float2 homo_coord, float coord_z) {
-  return txLightShadowMap.SampleCmp(samPCF, homo_coord, coord_z, 0).x;
+  return txLightShadowMap.SampleCmp(samPCFWhite, homo_coord, coord_z, 0).x;
 }
 
 //--------------------------------------------------------------------------------------
@@ -253,8 +253,8 @@ float4 projectColor(float3 wPos) {
   //float2 distort_uv = float2(t_uv.x + sin((t_uv.y + distortionOffset) * 20) * 0.05, t_uv.y + sin((t_uv.x + distortionOffset) * 20) * 0.05);
   float4 light_projector_color = txLightProjector.Sample(samBorderLinear, pos_in_light_homo_space.xy);
 
-  //if (pos_in_light_proj_space.z < 0.)
-    //light_projector_color = float4(0, 0, 0, 0);
+  if (pos_in_light_proj_space.z < 0.)
+      return 1.f;
 
   // Fade to zero in the last 1% of the zbuffer of the light
   //light_projector_color *= smoothstep(1.0f, 0.15f, pos_in_light_homo_space.z);
