@@ -17,6 +17,7 @@ class CRenderTechnique : public IResource {
 
 	std::string category = "default";
 	uint32_t category_id = 0;
+    uint32_t priority = 0;
 
 	RSConfig rs_config = RSCFG_DEFAULT;
 	ZConfig z_config = ZCFG_DEFAULT;
@@ -45,8 +46,9 @@ public:
 	void onFileChanged(const std::string& filename) override;
 	bool usesSkin() const { return uses_skin; }
     bool usesInstancing() const;
-
-	uint32_t getCategoryID() const { return category_id; }
+    
+    uint32_t getPriority() const { return priority; }
+    uint32_t getCategoryID() const { return category_id; }
 	const std::string& getCategory() const { return category; }
 };
 

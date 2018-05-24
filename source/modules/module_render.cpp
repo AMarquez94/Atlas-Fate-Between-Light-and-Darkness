@@ -11,6 +11,7 @@
 #include "render/texture/texture.h"
 #include "resources/json_resource.h"
 #include "components/skeleton/game_core_skeleton.h"
+#include "components/postfx/comp_render_outlines.h"
 #include "physics/physics_mesh.h"
 #include "camera/camera.h"
 #include "geometry/curve.h"
@@ -294,6 +295,10 @@ void CModuleRender::generateFrame() {
             TCompColorGrading* c_color_grading = e_cam->get< TCompColorGrading >();
             if (c_color_grading)
                 curr_rt = c_color_grading->apply(curr_rt);
+
+            TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
+            if (c_render_outlines)
+                c_render_outlines->apply();
 		}
 
 		Render.startRenderInBackbuffer();

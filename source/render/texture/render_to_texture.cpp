@@ -109,5 +109,5 @@ void CRenderToTexture::clear(VEC4 clear_color) {
 void CRenderToTexture::clearZ() {
 
 	if (depth_stencil_view)
-		Render.ctx->ClearDepthStencilView(depth_stencil_view, D3D11_CLEAR_DEPTH, 1.0f, 0);
+        Render.ctx->ClearDepthStencilView(depth_stencil_view, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 }
