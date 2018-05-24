@@ -158,6 +158,8 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
   mimeticColor.colorSuspect = j.count("colorSuspect") ? loadVEC4(j["colorSuspect"]) : VEC4(1, 1, 0, 1);
   mimeticColor.colorAlert = j.count("colorAlert") ? loadVEC4(j["colorAlert"]) : VEC4(1, 0, 0, 1);
   mimeticColor.colorDead = j.count("colorDead") ? loadVEC4(j["colorDead"]) : VEC4(0, 0, 0, 0);
+
+	btType = BTType::MIMETIC;
 }
 
 void TCompAIMimetic::onMsgEntityCreated(const TMsgEntityCreated & msg)
@@ -216,6 +218,63 @@ void TCompAIMimetic::onMsgNoiseListened(const TMsgNoiseMade & msg)
 		}
     noiseSourceChanged = noiseSource != msg.noiseOrigin;
     noiseSource = msg.noiseOrigin;
+	}
+}
+
+
+/* TODO: REVISAR MUY MUCHO */
+const std::string TCompAIMimetic::getStateForCheckpoint()
+{
+	if (current) {
+		std::string currName = current->getName();
+		if (isParentOfCurrent(current, "manageInactiveTypeWall")) {
+			return "resetVariables";
+		}
+		else if (isParentOfCurrent(current, "manageInactiveTypeFloor")) {
+			if (isParentOfCurrent(current, "manageObserveTypeFloor")) {
+				return "resetVariables";
+			}
+			else {
+				return "generateNavmeshGoToWpt";
+			}
+		}
+		else {
+			if (type == EType::FLOOR) {
+				if (_waypoints.size() > 0) {
+					return "closestWptTypeWpts";
+				}
+				else {
+					return "generateNavmeshInitialPosTypeFloor";
+				}
+			}
+			else if (type == EType::WALL) {
+				TCompTransform * tPos = get<TCompTransform>();
+				if (tPos->getPosition() == initialPos) {
+					return "manageObserveTypeWall";
+				}
+				else {
+					return "generateNavmeshInitialPosTypeWall";
+				}
+			}
+		}
+	}
+	else {
+		/* TODO: Gestionar tambien SLEEP */
+		if (type == EType::FLOOR) {
+			return "nextWpt";
+		}
+		else if (type == EType::WALL) {
+			TCompTransform * tPos = get<TCompTransform>();
+			if (tPos->getPosition() == initialPos) {
+				return "manageObserveTypeWall";
+			}
+			else {
+				return "generateNavmeshInitialPosTypeWall";
+			}
+		}
+		else {
+			return "nextWpt";
+		}
 	}
 }
 

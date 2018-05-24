@@ -58,9 +58,13 @@ private:
 	BTNode *findNode(const std::string& name);
 
 	void printTree();
+
 public:
 
+	enum BTType { PATROL = 0, MIMETIC, NUM_ENEMIES };
+
 	std::string name;
+	BTType btType;
 	float timeAnimating = 0.0f;
 
 	void debugInMenu();

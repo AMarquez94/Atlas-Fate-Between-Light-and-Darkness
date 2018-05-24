@@ -135,6 +135,8 @@ bool CModuleSceneManager::unLoadActiveScene() {
         _activeScene->isLoaded = false;
         _activeScene = nullptr;
 
+				/* TODO: Delete checkpoint */
+
         return true;
     }
 

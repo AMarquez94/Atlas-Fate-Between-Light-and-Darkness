@@ -1,0 +1,74 @@
+#include "mcv_platform.h"
+#include "checkpoint.h"
+#include "components/comp_tags.h"
+#include "components/comp_transform.h"
+#include "components/ia/comp_bt_patrol.h"
+#include "components/ia/comp_bt_mimetic.h"
+
+CCheckpoint::CCheckpoint( ) {
+	saved = false;
+}
+
+bool CCheckpoint::saveCheckPoint(VEC3 playerPos, QUAT playerRotation)
+{
+	bool error = false;
+
+	player.playerPos = playerPos;
+	player.playerRot = playerRotation;
+	player.saved = true;
+
+	VHandles v_enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+	for (int i = 0; i < v_enemies.size(); i++) {
+		CEntity* e_enemy = v_enemies[i];
+
+		EnemyStatus enemy;
+
+		TCompTransform* enemyTransform = e_enemy->get<TCompTransform>();
+		assert(enemyTransform);
+		enemy.enemyPosition = enemyTransform->getPosition();
+		enemy.enemyRotation = enemyTransform->getRotation();
+
+		assert(e_enemy->getName());
+		enemy.enemyName = std::string(e_enemy->getName());
+
+		TCompAIPatrol * enemyPatrol = e_enemy->get<TCompAIPatrol>();
+		TCompAIMimetic * enemyMimetic = e_enemy->get<TCompAIMimetic>();
+		assert(enemyPatrol || enemyMimetic);
+		if (enemyPatrol != nullptr) {
+			enemy.enemyType = TCompIAController::BTType::PATROL;
+			enemy.enemyIAStateName = enemyPatrol->getStateForCheckpoint();
+		}
+		else if(enemyMimetic != nullptr) {
+			enemy.enemyType = TCompIAController::BTType::MIMETIC;
+			enemy.enemyIAStateName = enemyMimetic->getStateForCheckpoint();
+		}
+
+		enemy.saved = true;
+		enemies.push_back(enemy);
+	}
+
+	saved = true;
+
+	return !error;
+}
+
+bool CCheckpoint::loadCheckPoint()
+{
+	if (saved) {
+		
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool CCheckpoint::deleteCheckPoint()
+{
+	player.saved = false;
+	enemies.clear();
+	entities.clear();
+	saved = false;
+
+	return true;
+}
