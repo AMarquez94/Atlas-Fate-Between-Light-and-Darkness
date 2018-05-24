@@ -280,6 +280,13 @@
     "category": "fx",
     "z": "disable_all"
   },
+  "pbr_mix": {
+    "vs_file": "data/shaders/pbr.fx",
+    "vs_entry_point": "VS_GBuffer",
+    "ps_entry_point": "PS_GBufferMix",
+    "vertex_type": "PosNUvUvT",
+    "category" : "gbuffer"
+  },
   "gui" : {
     "vs_file": "data/shaders/gui.fx",
     "vs_entry_point": "VS_GUI",

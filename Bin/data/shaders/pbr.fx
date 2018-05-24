@@ -152,6 +152,49 @@ void PS_GBuffer_Parallax(
 }
 
 //--------------------------------------------------------------------------------------
+void PS_GBufferMix(
+  float4 Pos : SV_POSITION
+, float3 iNormal : NORMAL0
+, float4 iTangent : NORMAL1
+, float2 iTex0 : TEXCOORD0
+, float3 iWorldPos : TEXCOORD1
+, out float4 o_albedo : SV_Target0
+, out float4 o_normal : SV_Target1
+, out float1 o_depth : SV_Target2
+)
+{
+
+  // This is different -----------------------------------------
+  // iTex0 *= 4;
+  float4 albedoR = txAlbedo.Sample(samLinear, iTex0);
+  float4 albedoG = txAlbedo1.Sample(samLinear, iTex0);
+  float4 albedoB = txAlbedo2.Sample(samLinear, iTex0);
+
+  float w1, w2, w3;
+  computeBlendWeights( albedoR.a + mix_boost_r
+                     , albedoG.a + mix_boost_g
+                     , albedoB.a + mix_boost_b
+                     , w1, w2, w3 );
+  
+  float4 albedo = albedoR * w1 + albedoG * w2 + albedoB * w3;
+  o_albedo.xyz = albedo.xyz;
+
+  // This is the same -----------------------------------------
+  o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
+  float3 N = computeNormalMap( iNormal, iTangent, iTex0 );
+
+  // Save roughness in the alpha coord of the N render target
+  float roughness = txRoughness.Sample(samLinear, iTex0).r;
+  o_normal = encodeNormal( N, roughness );
+
+  // Compute the Z in linear space, and normalize it in the range 0...1
+  // In the range z=0 to z=zFar of the camera (not zNear)
+  float3 camera2wpos = iWorldPos - camera_pos;
+  o_depth = dot( camera_front.xyz, camera2wpos ) / camera_zfar;
+}
+
+
+//--------------------------------------------------------------------------------------
 void decodeGBuffer(
 	in float2 iPosition          // Screen coords
 	, out float3 wPos
@@ -285,7 +328,8 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	float g_ReflectionIntensity = 1.0;
 	float g_AmbientLightIntensity = 1.0;
 
-	float ao = txAO.Sample(samLinear, iUV).x;
+	int3 ss_load_coords = uint3(iPosition.xy, 0);
+	float ao = txAO.Load( ss_load_coords );
 	float4 self_illum = txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
 
   // Compute global fog on ambient.

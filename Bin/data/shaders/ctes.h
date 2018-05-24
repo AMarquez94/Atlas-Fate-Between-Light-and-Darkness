@@ -41,6 +41,15 @@
 #define TS_DEFERRED_AO                19
 #define TS_LUT_COLOR_GRADING          20
 
+#define TS_FIRST_SLOT_MATERIAL_0      TS_ALBEDO
+#define TS_FIRST_SLOT_MATERIAL_1      TS_ALBEDO1
+#define TS_FIRST_SLOT_MATERIAL_2      TS_ALBEDO2
+
+#define TS_ALBEDO1 21
+#define TS_NORMAL1 22
+#define TS_ALBEDO2 23
+#define TS_NORMAL2 24
+
 // -------------------------------------------------
 #define RO_COMPLETE     0
 #define RO_ALBEDO       1
@@ -163,6 +172,12 @@ CB_DEF(CCteMaterial, CB_MATERIAL)
     float  scalar_emission;
     VEC4   color_emission;
     VEC4   color_material;
+
+    float  mix_boost_r;
+    float  mix_boost_g;
+    float  mix_boost_b;
+    float  material_dummy2;
+
 };
 
 CB_DEF(CCteBlur, CB_BLUR)

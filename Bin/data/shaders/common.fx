@@ -26,6 +26,19 @@ Texture2D    txAccLights          SLOT(TS_DEFERRED_ACC_LIGHTS);
 Texture2D    txSelfIllum          SLOT(TS_DEFERRED_SELF_ILLUMINATION);
 Texture2D    txAO                 SLOT(TS_DEFERRED_AO);
 
+// 2nd material
+Texture2D    txAlbedo1         SLOT( TS_ALBEDO1 );
+Texture2D    txNormal1         SLOT( TS_NORMAL1 );
+//Texture2D    txMetallic1       SLOT( (TS_FIRST_SLOT_MATERIAL_1 + TS_METALLIC) );
+//Texture2D    txRoughness1      SLOT( (TS_FIRST_SLOT_MATERIAL_1 + TS_ROUGHNESS) );
+
+// 3rd material
+Texture2D    txAlbedo2         SLOT( TS_ALBEDO2 );
+Texture2D    txNormal2         SLOT( TS_NORMAL2 );
+//Texture2D    txMetallic2       SLOT( (TS_FIRST_SLOT_MATERIAL_2 + TS_METALLIC) );
+//Texture2D    txRoughness2      SLOT( (TS_FIRST_SLOT_MATERIAL_2 + TS_ROUGHNESS) );
+
+
 // Bloom
 Texture2D    txBloom0         SLOT(0);
 Texture2D    txBloom1         SLOT(1);
@@ -204,6 +217,25 @@ float4 encodeNormal(float3 n, float nw) {
 // Converts range 0..1 to -1..1
 float3 decodeNormal(float3 n) {
   return (n.xyz * 2. - 1.);
+}
+
+//--------------------------------------------------------------------------------------
+void computeBlendWeights( float t1_a
+                        , float t2_a
+                        , float t3_a
+                        , out float w1
+                        , out float w2 
+                        , out float w3 
+                        ) {
+  float depth = 0.05;
+  float ma = max( t1_a, max( t2_a, t3_a ) ) - depth;
+  float b1 = max( t1_a - ma, 0 );
+  float b2 = max( t2_a - ma, 0 );
+  float b3 = max( t3_a - ma, 0 );
+  float b_total = b1 + b2 + b3;
+  w1 = b1 / ( b_total );
+  w2 = b2 / ( b_total );
+  w3 = b3 / ( b_total );
 }
 
 // Projects pixel image on given world coordinate
