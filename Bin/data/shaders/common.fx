@@ -38,6 +38,7 @@ Texture2D    txNormal2         SLOT( TS_NORMAL2 );
 //Texture2D    txMetallic2       SLOT( (TS_FIRST_SLOT_MATERIAL_2 + TS_METALLIC) );
 //Texture2D    txRoughness2      SLOT( (TS_FIRST_SLOT_MATERIAL_2 + TS_ROUGHNESS) );
 
+Texture2D    txMixBlendWeights SLOT( TS_MIX_BLEND_WEIGHTS );
 
 // Bloom
 Texture2D    txBloom0         SLOT(0);

@@ -1,0 +1,13 @@
+{
+  "technique": "pbr_mix.tech",
+  "type": "mix",
+  "shadows": true,
+  "textures":
+  { },
+  "mats":[
+    "data/materials/mix_grass.material",
+    "data/materials/mix_sand.material",
+    "data/materials/mix_stones.material"
+],
+  "mix_blend_weights" : "data/textures/mix/mixing_blend.dds"
+}

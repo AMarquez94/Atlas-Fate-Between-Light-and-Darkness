@@ -188,6 +188,8 @@ void CMaterialMixing::activate() const {
     mats[0]->activateTextures(TS_FIRST_SLOT_MATERIAL_0);
     mats[1]->activateTextures(TS_FIRST_SLOT_MATERIAL_1);
     mats[2]->activateTextures(TS_FIRST_SLOT_MATERIAL_2);
+
+    mix_blend_weights->activate(TS_MIX_BLEND_WEIGHTS);
 }
 
 bool CMaterialMixing::create(const json& j) {
@@ -198,6 +200,10 @@ bool CMaterialMixing::create(const json& j) {
         mats[i] = Resources.get(mat_name)->as< CMaterial >();
         assert(mats[i]);
     }
+
+    mix_blend_weights = Resources.get(j.value("mix_blend_weights", "data/textures/black.dds"))->as<CTexture>();
+    assert(mix_blend_weights);
+
     return true;
 }
 

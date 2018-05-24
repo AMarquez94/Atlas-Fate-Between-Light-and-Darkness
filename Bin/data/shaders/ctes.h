@@ -50,6 +50,8 @@
 #define TS_ALBEDO2 23
 #define TS_NORMAL2 24
 
+#define TS_MIX_BLEND_WEIGHTS          25
+
 // -------------------------------------------------
 #define RO_COMPLETE     0
 #define RO_ALBEDO       1
