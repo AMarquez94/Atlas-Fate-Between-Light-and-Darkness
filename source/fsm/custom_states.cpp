@@ -504,31 +504,6 @@ namespace FSM
 
   }
 
-  bool RemoveInhibitorState::load(const json& jData) {
-
-    _animationName = jData["animation"];
-    _speed = jData.value("speed", 2.f);
-    _size = jData.value("size", 1.f);
-    _radius = jData.value("radius", 0.3f);
-    _noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
-    _target = jData.count("camera") ? getTargetCamera(jData["camera"]) : nullptr;
-    return true;
-  }
-
-  void RemoveInhibitorState::onStart(CContext& ctx) const {
-
-    CEntity* e = ctx.getOwner();
-    e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::removingInhibitorState, _speed, _radius, _size, _target, _noise });
-    TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
-    playerController->canRemoveInhibitor = true;
-  }
-
-  void RemoveInhibitorState::onFinish(CContext& ctx) const {
-    CEntity* e = ctx.getOwner();
-    TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
-    playerController->canRemoveInhibitor = true;
-  }
-
   bool InhibitorRemovedState::load(const json& jData) {
 
     _animationName = jData["animation"];
@@ -576,7 +551,7 @@ namespace FSM
   void InhibitorTryToRemoveState::onFinish(CContext& ctx) const {
     CEntity* e = ctx.getOwner();
     TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
-    playerController->canRemoveInhibitor = true;
+    //playerController->canRemoveInhibitor = true;
   }
 
   bool DieState::load(const json& jData) {

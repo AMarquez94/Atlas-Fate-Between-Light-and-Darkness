@@ -430,9 +430,6 @@ void TCompTempPlayerController::deadState(float dt)
 		enemy->sendMsg(newMsg);
 	}
 
-	//TCompEmissionController * e_controller = get<TCompEmissionController>();
-	//e_controller->blend(playerColor.colorDead, 3);
-
 	state = (actionhandler)&TCompTempPlayerController::idleState;
 }
 
@@ -445,22 +442,17 @@ void TCompTempPlayerController::removingInhibitorState(float dt) {
   inhibitorTryToRemove.variant.setBool(false);
 	player->sendMsg(inhibitorTryToRemove);
 
-
 	TMsgSetFSMVariable finished;
 	finished.variant.setName("inhibitor_removed");
 	finished.variant.setBool(false);
 	player->sendMsg(finished);
 
-	//TMsgSetFSMVariable inhibitor_try_to_remove;
-	//inhibitor_try_to_remove.variant.setName("inhibitor_try_to_remove");
-	//inhibitor_try_to_remove.variant.setBool(false);
-	//player->sendMsg(inhibitor_try_to_remove);
-
 	if (timesRemoveInhibitorKeyPressed > 0) {
 
 		timesRemoveInhibitorKeyPressed--;
-		if (timesRemoveInhibitorKeyPressed == 0) {
-			timesRemoveInhibitorKeyPressed = 0;
+		if (timesRemoveInhibitorKeyPressed <= 0) {
+
+			timesRemoveInhibitorKeyPressed = initialTimesToPressInhibitorRemoveKey;
 			isInhibited = false;
 
 			TMsgSetFSMVariable finished;
@@ -468,13 +460,9 @@ void TCompTempPlayerController::removingInhibitorState(float dt) {
 			finished.variant.setBool(true);
 			player->sendMsg(finished);
 		}
-		//else {
-		//	TMsgSetFSMVariable inhibitor_try_to_remove;
-		//	inhibitor_try_to_remove.variant.setName("inhibitor_try_to_remove");
-		//	inhibitor_try_to_remove.variant.setBool(true);
-		//	player->sendMsg(inhibitor_try_to_remove);
-		//}
 	}
+
+  state = (actionhandler)&TCompTempPlayerController::idleState;
 
 }
 

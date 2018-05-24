@@ -246,18 +246,6 @@
       }
     },
     {
-      "name": "removeInhibitor",
-      "type": "RemoveInhibitorState",
-      "animation": "removeinhibitor",
-      "damage": 10,
-      "size": 1,
-      "camera": {
-        "target": "TPCamera",
-        "blendOut": 0.4,
-        "blendIn": 0.4
-      }
-    },
-    {
       "name": "inhibitorRemoved",
       "type": "InhibitorRemovedState",
       "animation": "inhibitorRemoved",
@@ -644,7 +632,7 @@
       "source": "idle",
       "target": "inhibitorTryToRemove",
       "variable": {
-        "name": "inhibitorTryingToRemove",
+        "name": "inhibitorTryToRemove",
         "type": "bool",
         "value": true
       }
@@ -652,16 +640,6 @@
     {
       "type": "VariableTransition",
       "source": "inhibitorTryToRemove",
-      "target": "inhibitorTryToRemove",
-      "variable": {
-        "name": "inhibitorTryingToRemove",
-        "type": "bool",
-        "value": true
-      }
-    },
-    {
-      "type": "VariableTransition",
-      "source": "removeInhibitor",
       "target": "inhibitorRemoved",
       "variable": {
         "name": "inhibitor_removed",
@@ -671,10 +649,10 @@
     },
     {
       "type": "VariableTransition",
-      "source": "removeInhibitor",
+      "source": "inhibitorTryToRemove",
       "target": "inhibitorTryToRemove",
       "variable": {
-        "name": "inhibitor_try_to_remove",
+        "name": "inhibitorTryToRemove",
         "type": "bool",
         "value": true
       }

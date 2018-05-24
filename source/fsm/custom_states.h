@@ -268,20 +268,6 @@ namespace FSM
 		std::string _animationName;
 	};
 
-	class RemoveInhibitorState : public IState
-	{
-		virtual void onStart(CContext& ctx) const override;
-		virtual void onFinish(CContext& ctx) const override;
-		virtual bool load(const json& jData);
-	private:
-		TargetCamera * _target = nullptr;
-		Noise * _noise = nullptr;
-		float _size = 1.f;
-		float _speed = 2.f;
-		float _radius = 0.3f;
-		std::string _animationName;
-	};
-
 	class DieState : public IState
 	{
 		virtual void onStart(CContext& ctx) const override;

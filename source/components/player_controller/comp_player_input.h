@@ -21,7 +21,10 @@ public:
 	void update(float dt);
 
 private:
-	float _time;
-	bool _moveObject = false, _enemyStunned = false;
+	float _time = 0.f;
+  float _timerRemoveInhibitor = 0.f;
+  float _timeOffsetToRemoveInhibitor;
+  bool _moveObject = false;
+  bool _enemyStunned = false;
 };
 

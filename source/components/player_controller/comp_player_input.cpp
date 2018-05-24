@@ -11,6 +11,7 @@ void TCompPlayerInput::debugInMenu() {
 }
 
 void TCompPlayerInput::load(const json& j, TEntityParseContext& ctx) {
+  float _timeOffsetToRemoveInhibitor = 0.2f;
 }
 
 void TCompPlayerInput::update(float dt)
@@ -145,9 +146,10 @@ void TCompPlayerInput::update(float dt)
 			/* Move this from here.. */
 			TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
 
-			if (c_my_player->isInhibited && c_my_player->canRemoveInhibitor) {
-				TMsgSetFSMVariable keyPressed;
-				keyPressed.variant.setName("inhibitorTryingToRemove");
+			if (c_my_player->isInhibited && c_my_player->canRemoveInhibitor && _time >= _timerRemoveInhibitor + _timeOffsetToRemoveInhibitor) {
+        _timerRemoveInhibitor = _time;
+        TMsgSetFSMVariable keyPressed;
+				keyPressed.variant.setName("inhibitorTryToRemove");
 				keyPressed.variant.setBool(true);
 				e->sendMsg(keyPressed);
 			}
