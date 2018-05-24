@@ -13,6 +13,7 @@ public:
 	struct WidgetStructure {
 		EGUIWidgets _type;
 		std::string _widgetName;
+		GUI::CWidget* _widget;
 		GUI::CController _controller;
 	};
 	std::map<EGUIWidgets, WidgetStructure> _widgetStructureMap;

@@ -49,24 +49,25 @@ void CModuleGUI::initializeWidgetStructure() {
 	auto exitCB = []() {
 		exit(0);
 	};
-
+	/*
 	CMenuButtonsController* mmc = new CMenuButtonsController();
 	mmc->registerOption("new_game", newGameCB);
 	mmc->registerOption("continue", continueCB);
 	mmc->registerOption("options", optionsCB);
 	mmc->registerOption("exit", exitCB);
 	mmc->setCurrentOption(0);
-	//registerController(mmc);
-
-	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json", (GUI::CController)*mmc);
-	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BUTTONS, "data/gui/main_menu_buttons.json");
+	registerController(mmc);
+	*/
+	//registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json", (GUI::CController)*mmc);
+	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json");
+	//registerWigdetStruct(EGUIWidgets::MAIN_MENU_BUTTONS, "data/gui/main_menu_buttons.json");
 	/*parser.parseFile("data/gui/main_menu.json");
 	parser.parseFile("data/gui/gameplay.json");
 	parser.parseFile("data/gui/game_over.json");*/
 
-	activateWidget("main_menu_background");
-	activateWidget("main_menu_buttons");
-	auto newGameCB = []() {
+	activateWidget(EGUIWidgets::MAIN_MENU_BACKGROUND);
+	//activateWidget(EGUIWidgets::MAIN_MENU_BUTTONS);
+	/*auto newGameCB = []() {
 		CEngine::get().getGUI().outOfMainMenu();
 	};
 	auto continueCB = []() {
@@ -78,7 +79,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	};
 	auto exitCB = []() {
 		exit(0);
-	};
+	};*/
 	//CEngine::get().getGUI().getWidget("stamina_bar", true)->getBarParams()->_processValue = 0.5f;
 	/*CMenuButtonsController* mmc = new CMenuButtonsController();
 	mmc->registerOption("new_game", newGameCB);
@@ -102,7 +103,6 @@ void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_pa
 
 void CModuleGUI::outOfMainMenu() {
 	CEngine::get().getModules().changeGameState("map_intro");
-	activateWidget("blackground");
 	_controllers.clear();
 }
 
@@ -119,12 +119,12 @@ void CModuleGUI::update(float delta)
 {
 	if (EngineInput[VK_DOWN].getsPressed())
 	{
-		deactivateWidget("main_menu_buttons");
+		deactivateWidget(EGUIWidgets::MAIN_MENU_BUTTONS);
 	}
 
 	if (EngineInput[VK_UP].getsPressed())
 	{
-		deactivateWidget("main_menu_background");
+		//deactivateWidget(EGUIWidgets::MAIN_MENU_BACKGROUND);
 	}
 
 	for (auto& wdgt : _activeWidgets)
@@ -179,18 +179,21 @@ CWidget* CModuleGUI::getWidget(const std::string& name, bool recursive) const
 void CModuleGUI::activateWidget(EGUIWidgets wdgt)
 {
 	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt];
-	CWidget* wdgt = getWidget(wdgt_struct._widgetName);
+	CWidget* widgt = getWidget(wdgt_struct._widgetName);
+	dbg("");
 	if (wdgt)
 	{
-		_activeWidgets.push_back(wdgt);
+		_activeWidgets.push_back(widgt);
 	}
 }
 
 void CModuleGUI::deactivateWidget(EGUIWidgets wdgt)
 {
-	CWidget* wdgt = getWidget(name);
+	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt];
+	CWidget* widgt = getWidget(wdgt_struct._widgetName);
+	dbg("");
 	for (auto it = _activeWidgets.begin(); it != _activeWidgets.end();) {
-		if (*it == wdgt) {
+		if (*it == widgt) {
 			_activeWidgets.erase(it);
 			break;
 		}
