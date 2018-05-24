@@ -13,8 +13,8 @@ public:
 	struct WidgetStructure {
 		EGUIWidgets _type;
 		std::string _widgetName;
-		GUI::CWidget* _widget;
-		GUI::CController _controller;
+		GUI::CWidget *_widget;
+		GUI::CController *_controller;
 	};
 	std::map<EGUIWidgets, WidgetStructure> _widgetStructureMap;
 	CModuleGUI(const std::string& name);
@@ -25,9 +25,11 @@ public:
 	void initializeWidgetStructure();
 
 	// widget management
-	void registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController wdgt_controller = {});
+	void registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController *wdgt_controller = nullptr);
 	void registerWidget(GUI::CWidget* wdgt);
 	GUI::CWidget* getWidget(const std::string& name, bool recursive = false) const;
+	GUI::CWidget* getWidget(EGUIWidgets wdgt_type);
+	GUI::CController* getWidgetController(EGUIWidgets wdgt_type);
 	void activateWidget(EGUIWidgets wdgt);
 	void deactivateWidget(EGUIWidgets wdgt);
 

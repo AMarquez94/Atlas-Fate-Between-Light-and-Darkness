@@ -29,12 +29,6 @@ bool CModuleGUI::start()
 
 void CModuleGUI::initializeWidgetStructure() {
 
-	/*CParser parser;
-	parser.parseFile("data/gui/test.json");
-	parser.parseFile("data/gui/main_menu_background.json");
-	parser.parseFile("data/gui/ingame.json");
-	parser.parseFile("data/gui/main_menu_buttons.json");
-	parser.parseFile("data/gui/main_menu_option_buttons.json");*/
 
 	auto newGameCB = []() {
 		CEngine::get().getGUI().outOfMainMenu();
@@ -49,24 +43,31 @@ void CModuleGUI::initializeWidgetStructure() {
 	auto exitCB = []() {
 		exit(0);
 	};
-	/*
+	 
 	CMenuButtonsController* mmc = new CMenuButtonsController();
+	/*
+	mmc->registerOption("new_game", newGameCB);
+	mmc->registerOption("continue", continueCB);
+	mmc->registerOption("options", optionsCB);
+	mmc->registerOption("exit", exitCB);
+	mmc->setCurrentOption(0);*/
+	//registerController(mmc);
+	
+	//registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json", (GUI::CController)*mmc);
+	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json");
+	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BUTTONS, "data/gui/main_menu_buttons.json", mmc);
+	mmc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::MAIN_MENU_BUTTONS);
 	mmc->registerOption("new_game", newGameCB);
 	mmc->registerOption("continue", continueCB);
 	mmc->registerOption("options", optionsCB);
 	mmc->registerOption("exit", exitCB);
 	mmc->setCurrentOption(0);
-	registerController(mmc);
-	*/
-	//registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json", (GUI::CController)*mmc);
-	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json");
-	//registerWigdetStruct(EGUIWidgets::MAIN_MENU_BUTTONS, "data/gui/main_menu_buttons.json");
 	/*parser.parseFile("data/gui/main_menu.json");
 	parser.parseFile("data/gui/gameplay.json");
 	parser.parseFile("data/gui/game_over.json");*/
 
 	activateWidget(EGUIWidgets::MAIN_MENU_BACKGROUND);
-	//activateWidget(EGUIWidgets::MAIN_MENU_BUTTONS);
+	activateWidget(EGUIWidgets::MAIN_MENU_BUTTONS);
 	/*auto newGameCB = []() {
 		CEngine::get().getGUI().outOfMainMenu();
 	};
@@ -91,12 +92,13 @@ void CModuleGUI::initializeWidgetStructure() {
 
 }
 
-void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController wdgt_controller) {
+void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController *wdgt_controller) {
 
 	WidgetStructure wdgt_struct;
 	CParser parser;
 	wdgt_struct._widgetName = parser.parseFile(wdgt_path);
 	wdgt_struct._type = wdgt_type;
+	wdgt_struct._widget = getWidget(wdgt_struct._widgetName);
 	wdgt_struct._controller = wdgt_controller;
 	_widgetStructureMap[wdgt_type] = wdgt_struct;
 }
@@ -119,12 +121,12 @@ void CModuleGUI::update(float delta)
 {
 	if (EngineInput[VK_DOWN].getsPressed())
 	{
-		deactivateWidget(EGUIWidgets::MAIN_MENU_BUTTONS);
+		//deactivateWidget(EGUIWidgets::MAIN_MENU_BUTTONS);
 	}
-
+	dbg("%d\n", _activeWidgets.size());
 	if (EngineInput[VK_UP].getsPressed())
 	{
-		//deactivateWidget(EGUIWidgets::MAIN_MENU_BACKGROUND);
+		//activateWidget(EGUIWidgets::MAIN_MENU_BACKGROUND);
 	}
 
 	for (auto& wdgt : _activeWidgets)
@@ -176,14 +178,33 @@ CWidget* CModuleGUI::getWidget(const std::string& name, bool recursive) const
 	return nullptr;
 }
 
+CWidget* CModuleGUI::getWidget(EGUIWidgets wdgt_type) {
+	
+	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt_type];
+	CWidget* wdgt = wdgt_struct._widget;
+	if (wdgt != nullptr) {
+		return wdgt;
+	}
+	return nullptr;
+}
+
+GUI::CController* CModuleGUI::getWidgetController(EGUIWidgets wdgt_type) {
+
+	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt_type];
+	CController* controller = wdgt_struct._controller;
+	return controller;
+}
+
 void CModuleGUI::activateWidget(EGUIWidgets wdgt)
 {
 	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt];
 	CWidget* widgt = getWidget(wdgt_struct._widgetName);
-	dbg("");
-	if (wdgt)
+	if (widgt)
 	{
 		_activeWidgets.push_back(widgt);
+	}
+	if (wdgt_struct._controller != nullptr) {
+		registerController(wdgt_struct._controller);
 	}
 }
 
@@ -191,13 +212,16 @@ void CModuleGUI::deactivateWidget(EGUIWidgets wdgt)
 {
 	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt];
 	CWidget* widgt = getWidget(wdgt_struct._widgetName);
-	dbg("");
 	for (auto it = _activeWidgets.begin(); it != _activeWidgets.end();) {
 		if (*it == widgt) {
 			_activeWidgets.erase(it);
 			break;
 		}
 		it++;
+	}
+
+	if (wdgt_struct._controller != nullptr) {
+		unregisterController(wdgt_struct._controller);
 	}
 }
 
