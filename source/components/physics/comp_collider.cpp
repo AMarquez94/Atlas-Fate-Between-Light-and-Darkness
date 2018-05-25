@@ -123,12 +123,14 @@ void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {
 			if (tags->hasTag(getID("player"))) {
 				std::string params = "onTriggerEnter_" + name_trigger + "_" + name_collision;
 				dbg("Event launch: %s \n", params.c_str());
-				//EngineLogic.execEvent(CModuleLogic::Events::TRIGGER_ENTER, params);
+				params = name_trigger + "_" + name_collision;
+				EngineLogic.execEvent(CModuleLogic::Events::TRIGGER_ENTER, params);
 			}
 			else if (tags->hasTag(getID("enemy"))) {
 				std::string params = "onTriggerEnter_" + name_trigger + "_" + name_collision;
 				dbg("Event launch: %s \n", params.c_str());
-				//EngineLogic.execEvent(CModuleLogic::Events::TRIGGER_ENTER, params);
+				params = name_trigger + "_" + name_collision;
+				EngineLogic.execEvent(CModuleLogic::Events::TRIGGER_ENTER, params);
 			}
 		}
 	}

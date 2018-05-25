@@ -139,3 +139,9 @@ physx::PxQuat ToPxQuat(QUAT quaternion) {
 	physx::PxQuat q = physx::PxQuat(quaternion.x, quaternion.y, quaternion.z, quaternion.w);
 	return q;
 }
+
+void getFileNameFromPath(std::string& nameWithPath) {
+	size_t startPos = nameWithPath.find_last_of("/\\") + 1;
+	size_t endPos = nameWithPath.find_last_of(".");
+	nameWithPath = nameWithPath.substr(startPos, endPos - startPos);
+}

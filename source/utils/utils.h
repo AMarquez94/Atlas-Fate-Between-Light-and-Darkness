@@ -38,5 +38,7 @@ int Strnicmp(const char* str1, const char* str2, int n);
 physx::PxVec3 ToPxVec3(VEC3);
 physx::PxQuat ToPxQuat(QUAT);
 
+void getFileNameFromPath(std::string&);
+
 #endif
 

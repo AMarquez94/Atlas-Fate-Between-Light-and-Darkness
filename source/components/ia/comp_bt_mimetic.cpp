@@ -225,6 +225,7 @@ void TCompAIMimetic::onMsgPlayerInvisible(const TMsgPlayerInvisible& msg) {
 void TCompAIMimetic::registerMsgs()
 {
 	DECL_MSG(TCompAIMimetic, TMsgScenePaused, onMsgScenePaused);
+	DECL_MSG(TCompAIMimetic, TMsgAIPaused, onMsgAIPaused);
 	DECL_MSG(TCompAIMimetic, TMsgEntityCreated, onMsgEntityCreated);
 	DECL_MSG(TCompAIMimetic, TMsgPlayerDead, onMsgPlayerDead);
 	DECL_MSG(TCompAIMimetic, TMsgEnemyStunned, onMsgMimeticStunned);

@@ -36,6 +36,9 @@ protected:
 
 	void onMsgScenePaused(const TMsgScenePaused& msg);
 
+	bool pausedAI = false;
+	void onMsgAIPaused(const TMsgAIPaused& msg);
+
 	bool isParentOfCurrent(BTNode * son, const std::string& possibleParent);
 
 private:

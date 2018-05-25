@@ -3,6 +3,7 @@
 #include "components/comp_tags.h"
 #include "components\lighting\comp_light_spot.h"
 #include "components\ia\comp_bt_patrol.h"
+#include "components\ia\comp_bt_mimetic.h"
 #include "components\ia\comp_bt_test.h"
 #include "components\ia\comp_patrol_animator.h"
 #include "components\ia\comp_mimetic_animator.h"
@@ -130,7 +131,7 @@ void CModuleLogic::publishClasses() {
 	//system hacks
 	m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
 	m->set("deleteEnemies", SLB::FuncCall::create(&deleteEnemies));
-  m->set("animationsToggle", SLB::FuncCall::create(&animationsToggle));
+	m->set("animationsToggle", SLB::FuncCall::create(&animationsToggle));
 
 	//utilities
 	m->set("getConsole", SLB::FuncCall::create(&getConsole));
@@ -219,6 +220,22 @@ bool CModuleLogic::execEvent(Events event, const std::string & params, float del
 		}
 		else {
 			return execScript("onTriggerExit_" + params + "()").success;
+		}
+		break;
+	case Events::SCENE_START:
+		if (delay > 0) {
+			return execScriptDelayed("onSceneStart_" + params + "()", delay);
+		}
+		else {
+			return execScript("onSceneStart_" + params + "()").success;
+		}
+		break;
+	case Events::SCENE_END:
+		if (delay > 0) {
+			return execScriptDelayed("onSceneEnd_" + params + "()", delay);
+		}
+		else {
+			return execScript("onSceneEnd_" + params + "()").success;
 		}
 		break;
 	default:
@@ -364,14 +381,14 @@ void postFXToggle() {
 
 void pauseEnemies() {
 	std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
-	TMsgScenePaused msg;
+	TMsgAIPaused msg;
 	for (int i = 0; i < enemies.size(); i++) {
 		enemies[i].sendMsg(msg);
 	}
 }
 
 void animationsToggle() {
-  EngineEntities.setAnimationsEnabled(!EngineEntities.getAnimationsEnabled());
+	EngineEntities.setAnimationsEnabled(!EngineEntities.getAnimationsEnabled());
 }
 
 

@@ -7,23 +7,25 @@
 // ----------------------------------------------
 class CRenderMeshResourceClass : public CResourceClass {
 public:
-  CRenderMeshResourceClass() {
-    class_name = "Meshes";
-	extensions = { ".mesh" };
-  }
-  IResource* create(const std::string& name) const override {
-    dbg("Creating mesh %s\n", name.c_str());
-    CRenderMesh* res = loadMesh(name.c_str());
-    return res;
-  }
+	CRenderMeshResourceClass() {
+		class_name = "Meshes";
+		extensions = { ".mesh" };
+	}
+	IResource* create(const std::string& name) const override {
+		std::string name2 = name;
+		getFileNameFromPath(name2);
+		dbg("Creating mesh %s\n", name2.c_str());
+		CRenderMesh* res = loadMesh(name.c_str());
+		return res;
+	}
 };
 
 // A specialization of the template defined at the top of this file
 // If someone class getResourceClassOf<CTexture>, use this function:
 template<>
 const CResourceClass* getResourceClassOf<CRenderMesh>() {
-  static CRenderMeshResourceClass the_resource_class;
-  return &the_resource_class;
+	static CRenderMeshResourceClass the_resource_class;
+	return &the_resource_class;
 }
 
 void CRenderMesh::setNameAndClass(const std::string& new_name, const CResourceClass* new_class) {
@@ -35,12 +37,12 @@ void CRenderMesh::setNameAndClass(const std::string& new_name, const CResourceCl
 }
 
 bool CRenderMesh::create(
-  const void* vertex_data,
-  size_t      num_bytes,
-  const std::string& vtx_decl_name,
-  eTopology   new_topology,
-  const void* index_data,
-  size_t      num_index_bytes,
+	const void* vertex_data,
+	size_t      num_bytes,
+	const std::string& vtx_decl_name,
+	eTopology   new_topology,
+	const void* index_data,
+	size_t      num_index_bytes,
 	size_t      bytes_per_index,
 	VMeshSubGroups* new_subgroups
 ) {
@@ -126,24 +128,24 @@ void CRenderMesh::renderSubMesh(uint32_t subgroup_idx) const {
 }
 
 void CRenderMesh::destroy() {
-  SAFE_RELEASE(vb);
-  SAFE_RELEASE(ib);
+	SAFE_RELEASE(vb);
+	SAFE_RELEASE(ib);
 }
 
 void CRenderMesh::activate() const {
-  assert(vb);
-  assert(vtx_decl);
+	assert(vb);
+	assert(vtx_decl);
 
-  // Set vertex buffer based on my vertex type
-  UINT stride = vtx_decl->bytes_per_vertex;
-  UINT offset = 0;
-  Render.ctx->IASetVertexBuffers(0, 1, &vb, &stride, &offset);
+	// Set vertex buffer based on my vertex type
+	UINT stride = vtx_decl->bytes_per_vertex;
+	UINT offset = 0;
+	Render.ctx->IASetVertexBuffers(0, 1, &vb, &stride, &offset);
 
-  // Set primitive topology
-  Render.ctx->IASetPrimitiveTopology( (D3D11_PRIMITIVE_TOPOLOGY)topology );
+	// Set primitive topology
+	Render.ctx->IASetPrimitiveTopology((D3D11_PRIMITIVE_TOPOLOGY)topology);
 
-  if (ib) 
-    Render.ctx->IASetIndexBuffer(ib, index_fmt, 0);
+	if (ib)
+		Render.ctx->IASetIndexBuffer(ib, index_fmt, 0);
 
 }
 
@@ -153,24 +155,24 @@ void CRenderMesh::render() const {
 	assert(CRenderTechnique::current->vs);
 	assert(vtx_decl);
 	assert((CRenderTechnique::current->vs->getVertexDecl() == vtx_decl)
-	|| fatal("Current tech %s expect vs %s, but this mesh uses %s\n"
-		, CRenderTechnique::current->getName().c_str()
-		, CRenderTechnique::current->vs->getVertexDecl()->name.c_str()
-		, vtx_decl->name.c_str()));
+		|| fatal("Current tech %s expect vs %s, but this mesh uses %s\n"
+			, CRenderTechnique::current->getName().c_str()
+			, CRenderTechnique::current->vs->getVertexDecl()->name.c_str()
+			, vtx_decl->name.c_str()));
 
-  if (ib)
-    Render.ctx->DrawIndexed(num_indices, 0, 0);
-  else
-    Render.ctx->Draw(num_vertexs, 0);
+	if (ib)
+		Render.ctx->DrawIndexed(num_indices, 0, 0);
+	else
+		Render.ctx->Draw(num_vertexs, 0);
 }
 
 void CRenderMesh::activateAndRender() const {
-  activate();
-  render();
+	activate();
+	render();
 }
 
 void CRenderMesh::debugInMenu() {
-  ImGui::Text("%d vertexs", num_vertexs);
-  // ...
+	ImGui::Text("%d vertexs", num_vertexs);
+	// ...
 }
 
