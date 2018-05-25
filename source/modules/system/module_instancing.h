@@ -13,6 +13,14 @@ struct TInstance {
 class CModuleInstancing : public IModule {
 
     // Static instances, for testing purposes
+    
+    // -------------------------------------------------------------------
+    struct TGrassParticle {
+        VEC3  pos;
+    };
+    CRenderMeshInstanced* grass_instances_mesh = nullptr;
+    std::vector< TGrassParticle > grass_instances;
+
     // -------------------------------------------------------------------
     CRenderMeshInstanced* instances_mesh = nullptr;
     std::vector< TInstance > instances;

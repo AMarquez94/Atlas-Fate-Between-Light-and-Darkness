@@ -27,6 +27,10 @@ bool CModuleInstancing::start() {
         auto rmesh = Resources.get("data/meshes/particles.instanced_mesh")->as<CRenderMesh>();
         particles_instances_mesh = (CRenderMeshInstanced*)rmesh;
     }
+    {
+        auto rmesh = Resources.get("data/meshes/grass.instanced_mesh")->as<CRenderMesh>();
+        grass_instances_mesh = (CRenderMeshInstanced*)rmesh;
+    }
 
     return true;
 }
@@ -187,6 +191,34 @@ void CModuleInstancing::render() {
             }
             ImGui::TreePop();
         }
+
+        // ----------------------------------------------
+        if (ImGui::TreeNode("Grass")) {
+            bool changed = false;
+            ImGui::Text("Num Instances: %ld / %ld. GPU:%d", grass_instances.size(), grass_instances.capacity(), grass_instances_mesh->getVertexsCount());
+            int num_changed = num * 100;
+            if (ImGui::Button("Add 100")) {
+                for (int i = 0; i < num_changed; ++i) {
+                    TGrassParticle new_instance;
+                    new_instance.pos = VEC3(randomFloat(-sz, sz), 0, randomFloat(-sz, sz));
+                    grass_instances.push_back(new_instance);
+                }
+                changed = true;
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Del") && !instances.empty()) {
+                if (num_changed < instances.size())
+                    num_changed = instances.size();
+                instances.resize(instances.size() - num_changed);
+                changed = true;
+            }
+            ImGui::TreePop();
+
+            // Update GPU with the new CPU
+            if (changed)
+                grass_instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TGrassParticle));
+        }
+
         ImGui::TreePop();
     }
 }

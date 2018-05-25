@@ -28,6 +28,20 @@
 		}
 	}, {
 		"entity": {
+			"name": "Instanced Grass",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [{
+					"mesh": "data/meshes/grass.instanced_mesh",
+					"materials": [
+						"data/materials/grass_instanced.material"
+					]
+				}
+			]
+		}
+	}, {
+		"entity": {
 			"name": "Instanced Particles",
 			"transform": {
 				"pos": "0 0 0"

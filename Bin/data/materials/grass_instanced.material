@@ -1,0 +1,10 @@
+{
+  "technique": "grass.tech"
+  ,
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/grass/grass.dds"
+  }
+}
