@@ -29,7 +29,7 @@ public:
 private:
 
 	physx::PxSphereGeometry geometry;
-	float attack_fov, grabObject_fov;
+	float attack_fov, grabObject_fov, grabEnemyHorizontal_fov, grabEnemyVertical_fov;
 
 	void onMsgScenePaused(const TMsgScenePaused & msg);
 };

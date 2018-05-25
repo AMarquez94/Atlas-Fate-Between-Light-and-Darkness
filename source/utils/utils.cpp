@@ -135,7 +135,18 @@ physx::PxVec3 ToPxVec3(VEC3 vector) {
 	PxVec3 result = physx::PxVec3(vector.x, vector.y, vector.z);
 	return result;
 }
+
+VEC3 ToVec3(physx::PxVec3 vector) {
+	VEC3 result = VEC3(vector.x, vector.y, vector.z);
+	return result;
+}
+
 physx::PxQuat ToPxQuat(QUAT quaternion) {
 	physx::PxQuat q = physx::PxQuat(quaternion.x, quaternion.y, quaternion.z, quaternion.w);
 	return q;
+}
+
+QUAT ToQuat(physx::PxQuat quaternion) {
+	QUAT result = QUAT(quaternion.x, quaternion.y, quaternion.z, quaternion.w);
+	return result;
 }

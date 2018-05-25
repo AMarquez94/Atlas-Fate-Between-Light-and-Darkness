@@ -18,7 +18,9 @@ void TCompPlayerAttackCast::debugInMenu() {
 void TCompPlayerAttackCast::load(const json& j, TEntityParseContext& ctx) {
   geometry.radius = j.value("radius", 2.f);
   attack_fov = deg2rad(j.value("attack_fov", 120.f));
-  grabObject_fov = deg2rad(j.value("attack_fov", 40.f));
+  grabObject_fov = deg2rad(j.value("grabObject_fov", 40.f));
+  grabEnemyHorizontal_fov = deg2rad(j.value("grabEnemyHorizontal_fov", 90.f));
+  grabEnemyVertical_fov = deg2rad(j.value("grabEnemyVertical_fov", 90.f));
 
 
   physx::PxFilterData pxFilterData;
@@ -149,7 +151,8 @@ CHandle TCompPlayerAttackCast::closestEnemyToMerge()
   
       if (eTag->hasTag(getID("patrol"))) {
         TCompAIPatrol * cPatrol = enemy->get<TCompAIPatrol>();
-        if (mypos->isInHorizontalFov(ePos->getPosition(), attack_fov) && cPatrol->isStunned()) {
+		bool inFov = mypos->isInFov(ePos->getPosition(), grabEnemyHorizontal_fov, grabEnemyVertical_fov);
+        if (inFov && cPatrol->isStunned()) {
           closestEnemy = enemies[i];
         }
       }
