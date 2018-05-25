@@ -29,6 +29,9 @@ public:
 	void  load(const json& j, TEntityParseContext& ctx);
 	void  debugInMenu();
 	const CTexture* compute(CTexture* linear_depth_texture);
+
+	bool const getState() { return enabled; }
+	void setState(bool state) { enabled = state; }
 };
 
 #endif

@@ -7,6 +7,7 @@
 #include "components\ia\comp_patrol_animator.h"
 #include "components\ia\comp_mimetic_animator.h"
 #include "components\comp_group.h"
+#include "components\postfx\comp_render_ao.h"
 #include <experimental/filesystem>
 #include "modules/game/module_game_manager.h"
 #include <iostream>
@@ -117,6 +118,10 @@ void CModuleLogic::publishClasses() {
 	m->set("lanternToggle", SLB::FuncCall::create(&lanternToggle));
 	m->set("shadowsToggle", SLB::FuncCall::create(&shadowsToggle));
 	m->set("cg_drawlights", SLB::FuncCall::create(&cg_drawlights));
+
+	//postfx hacks
+	m->set("postFXToggle", SLB::FuncCall::create(&postFXToggle));
+
 
 	//camera hacks
 	m->set("blendInCamera", SLB::FuncCall::create(&blendInCamera));
@@ -345,6 +350,16 @@ void lanternToggle() {
 
 void shadowsToggle() {
 	EngineRender.setGenerateShadows(!EngineRender.getGenerateShadows());
+}
+
+void postFXToggle() {
+	//Deactivating AO
+	EngineRender.setGeneratePostFX(!EngineRender.getGeneratePostFX());
+
+	//Deactivating rest of postFX
+	getObjectManager<TCompRenderAO>()->forEach([&](TCompRenderAO* c) {
+		c->setState(!c->getState());
+	});
 }
 
 void pauseEnemies() {

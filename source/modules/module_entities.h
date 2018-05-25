@@ -9,7 +9,7 @@ class CModuleEntities : public IModule
 	std::vector< CHandleManager* > om_to_render_debug;
 	void loadListOfManagers(const json& j, std::vector< CHandleManager* > &managers);
 	void renderDebugOfComponents();
-  bool _animationsEnabled = true;
+	bool _animationsEnabled = true;
 
 public:
 	float time_scale_factor = 1.f;
@@ -21,8 +21,9 @@ public:
 	void render() override;
 	void destroyAllEntities();
 	float getTimeScale() { return time_scale_factor; }
-  bool const getAnimationsEnabled() { return _animationsEnabled; }
-  void setAnimationsEnabled(bool anims) { _animationsEnabled = anims; }
+	bool const getAnimationsEnabled() { return _animationsEnabled; }
+	void setAnimationsEnabled(bool anims) { _animationsEnabled = anims; }
+
 
 
 

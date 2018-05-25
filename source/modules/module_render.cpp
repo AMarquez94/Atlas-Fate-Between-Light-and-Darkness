@@ -270,7 +270,7 @@ void CModuleRender::generateFrame() {
 		// Apply postFX
 		CTexture * curr_rt = rt_main;
 		CHandle camera_render = Engine.getCameras().getCurrentCamera();
-		if (camera_render.isValid()) {
+		if (camera_render.isValid() && _generatePostFX) {
 			CEntity * e_cam = camera_render;
 
 			// The bloom blurs the given input
@@ -294,6 +294,7 @@ void CModuleRender::generateFrame() {
 			if (c_color_grading)
 				curr_rt = c_color_grading->apply(curr_rt);
 		}
+
 		if (_debugMode) {
 
 			debugDraw();
