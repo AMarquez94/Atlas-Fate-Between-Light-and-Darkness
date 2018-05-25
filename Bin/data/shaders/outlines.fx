@@ -53,7 +53,7 @@ float4 PS(
   // else, or we are inside ( stencil != 0 ) 
   if( s_cc != 0 ) {
     // Use different stencil values for different colors!
-    return float4( 0.5,0,0,0.5*a); 
+    return float4( 1,0,0,0.5*a); 
   }
 
   // or we are outside, all zeros.

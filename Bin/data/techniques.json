@@ -318,6 +318,32 @@
     "priority" : 160,
     "comment" : "This needs to go after the pbr_outline"
   },
+		"pbr_skin_outline": {
+    "vs_file": "data/shaders/pbr.fx",
+    "vs_entry_point": "VS_SKIN_GBuffer",
+    "ps_entry_point": "",
+    "vertex_type": "PosNUvTanSkin",
+    "category": "gbuffer",
+		"uses_skin" : true,
+    "z" : "test_no_writes_mark_stencil",
+    "priority" : 150,
+    "comment" : "This needs to go after the pbr's solids, but just before the object to render"
+  },
+  "pbr_skin_post_outline": {
+    "vs_file": "data/shaders/pbr.fx",
+		"ps_file": "data/shaders/pbr.fx",
+    "vs_entry_point": "VS_SKIN_GBuffer",
+    "ps_entry_point": "PS_GBuffer",
+    "vertex_type": "PosNUvTanSkin",
+		"uses_skin" : true,
+    "category": "gbuffer",
+    "textures": {
+      "environment": "data/textures/cubemaps/env.dds",
+      "irradiance": "data/textures/cubemaps/irradiance.dds"
+    },
+    "priority" : 160,
+    "comment" : "This needs to go after the pbr_outline"
+  },
   "gui" : {
     "vs_file": "data/shaders/gui.fx",
     "vs_entry_point": "VS_GUI",

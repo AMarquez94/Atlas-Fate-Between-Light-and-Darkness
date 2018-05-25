@@ -11,6 +11,13 @@
 					[
 						"data/materials/characters/mtl_enemy_patrol.material"
 					]
+				},
+				{
+					"mesh": "data/skeletons/patrol/Mech_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_patrol_post.material"
+					]
 				}
 
 			],
