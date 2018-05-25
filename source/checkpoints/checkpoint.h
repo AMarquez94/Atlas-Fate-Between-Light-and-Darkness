@@ -25,8 +25,9 @@ class CCheckpoint {
 
 public:
 
-  CCheckpoint( );
+	CCheckpoint();
 
+	//bool init();
 	bool saveCheckPoint(VEC3 playerPos, QUAT playerRotation);
 	bool loadCheckPoint();
 	bool deleteCheckPoint();

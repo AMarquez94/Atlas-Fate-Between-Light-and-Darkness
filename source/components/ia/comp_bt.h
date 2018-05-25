@@ -38,7 +38,7 @@ protected:
 
 	bool isParentOfCurrent(BTNode * son, const std::string& possibleParent);
 
-private:
+protected:
 
 	/* The nodes as map (so we have both map and tree for the same structure */
 	std::map<std::string, BTNode *> tree;
@@ -82,6 +82,8 @@ public:
 	bool testAssert(const std::string& assertName, float dt);
 	void setCurrent(BTNode *currentNode);
 	BTNode* getCurrent() { return current; };
+
+	void setCurrentByName(const std::string& stateName);
 
 	void update(float dt);
 };

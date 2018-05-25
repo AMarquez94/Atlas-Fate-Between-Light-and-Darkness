@@ -412,6 +412,11 @@ void TCompIAController::loadParameterVariables(const json & j,const std::string&
 	}
 }
 
+void TCompIAController::setCurrentByName(const std::string & stateName)
+{
+	current = findNode(stateName);
+}
+
 void TCompIAController::update(float dt) {
 	if (!paused) {
 		if (current == nullptr) {

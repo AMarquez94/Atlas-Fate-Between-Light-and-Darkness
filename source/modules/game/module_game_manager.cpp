@@ -28,6 +28,8 @@ bool CModuleGameManager::start()
     Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
     mouse->setLockMouse(true);
 
+		//lastCheckpoint.init();
+
     return true;
 }
 
@@ -171,6 +173,21 @@ void CModuleGameManager::render()
     }
 
     debugRender();
+}
+
+bool CModuleGameManager::saveCheckpoint(VEC3 playerPos, QUAT playerRot)
+{
+	return lastCheckpoint.saveCheckPoint(playerPos, playerRot);
+}
+
+bool CModuleGameManager::loadCheckpoint()
+{
+	return lastCheckpoint.loadCheckPoint();
+}
+
+bool CModuleGameManager::deleteCheckpoint()
+{
+	return lastCheckpoint.deleteCheckPoint();
 }
 
 void CModuleGameManager::debugRender() {
