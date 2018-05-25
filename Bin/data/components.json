@@ -40,7 +40,8 @@
 		"player_animator",
 		"player_input",
 		"emission_controller",
-		"rotator"
+		"rotator",
+		"lod"
 	],
 	"render_debug": [
 		"player_tempcontroller",

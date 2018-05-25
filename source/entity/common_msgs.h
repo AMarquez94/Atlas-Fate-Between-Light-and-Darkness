@@ -159,5 +159,10 @@ struct TMsgSceneLoaded {
     DECL_MSG_ID();
 };
 
+struct TMsgSetVisible {
+    bool visible;
+    DECL_MSG_ID();
+};
+
 #endif
 

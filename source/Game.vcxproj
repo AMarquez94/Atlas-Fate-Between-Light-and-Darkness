@@ -105,6 +105,7 @@
     <ClCompile Include="components\comp_aabb.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
     <ClCompile Include="components\comp_culling.cpp" />
+    <ClCompile Include="components\comp_lod.cpp" />
     <ClCompile Include="components\dynamic_objects\comp_dynamic_capsule.cpp" />
     <ClCompile Include="components\dynamic_objects\comp_dynamic_capsules_manager.cpp" />
     <ClCompile Include="components\ia\comp_patrol_animator.cpp" />
@@ -282,6 +283,7 @@
     <ClInclude Include="components\comp_base.h" />
     <ClInclude Include="components\comp_camera.h" />
     <ClInclude Include="components\comp_culling.h" />
+    <ClInclude Include="components\comp_lod.h" />
     <ClInclude Include="components\dynamic_objects\comp_dynamic_capsule.h" />
     <ClInclude Include="components\dynamic_objects\comp_dynamic_capsules_manager.h" />
     <ClInclude Include="components\ia\comp_patrol_animator.h" />

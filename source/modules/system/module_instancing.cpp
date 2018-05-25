@@ -30,6 +30,7 @@ bool CModuleInstancing::start() {
     {
         auto rmesh = Resources.get("data/meshes/grass.instanced_mesh")->as<CRenderMesh>();
         grass_instances_mesh = (CRenderMeshInstanced*)rmesh;
+        grass_instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TGrassParticle));
     }
 
     return true;
