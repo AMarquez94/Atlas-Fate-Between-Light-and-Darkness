@@ -30,16 +30,17 @@ bool CModuleGUI::start()
 void CModuleGUI::initializeWidgetStructure() {
 
 	//Initializing all the functions for the buttons of GUI
-	auto newGameCB = []() {
-		//CEngine::get().getGameManager().outOfMainMenu();
+	auto mm_newGameCB = []() {
+		CEngine::get().getGUI().deactivateWidget(EGUIWidgets::MAIN_MENU_BACKGROUND);
+		CEngine::get().getGUI().deactivateWidget(EGUIWidgets::MAIN_MENU_BUTTONS);
 	};
-	auto continueCB = []() {
+	auto mm_continueCB = []() {
 		//CEngine::get().getGUI().outOfMainMenu();
 	};
-	auto optionsCB = []() {
+	auto mm_optionsCB = []() {
 		//activateWidget("main_menu_buttons");
 	};
-	auto exitCB = []() {
+	auto mm_exitCB = []() {
 		exit(0);
 	};
 	 
@@ -50,10 +51,10 @@ void CModuleGUI::initializeWidgetStructure() {
 
 	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BUTTONS, "data/gui/main_menu_buttons.json", mmc);
 	mmc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::MAIN_MENU_BUTTONS);
-	mmc->registerOption("new_game", newGameCB);
-	mmc->registerOption("continue", continueCB);
-	mmc->registerOption("options", optionsCB);
-	mmc->registerOption("exit", exitCB);
+	mmc->registerOption("new_game", mm_newGameCB);
+	mmc->registerOption("continue", mm_continueCB);
+	mmc->registerOption("options", mm_optionsCB);
+	mmc->registerOption("exit", mm_exitCB);
 	mmc->setCurrentOption(0);
 
 
@@ -71,15 +72,6 @@ void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_pa
 	wdgt_struct._widget = getWidget(wdgt_struct._widgetName);
 	wdgt_struct._controller = wdgt_controller;
 	_widgetStructureMap[wdgt_type] = wdgt_struct;
-}
-
-void CModuleGUI::outOfMainMenu() {
-	CEngine::get().getModules().changeGameState("map_intro");
-	_controllers.clear();
-}
-
-void CModuleGUI::enterMainMenu() {
-
 }
 
 bool CModuleGUI::stop()
