@@ -1,0 +1,24 @@
+[
+	{
+		"entity": {
+			"name": "Checkpoints"
+		},
+		"entity": {
+			"name": "Checkpoint_Tower",
+			"transform": {
+				"pos": "9 20 27",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider":
+			{
+				"shape": "box",
+				"is_trigger" : true,
+				"size": "5 5 25"
+			},
+			"trigger_checkpoint": {
+
+			},
+			"tags" : ["checkpoint"]
+		}
+	}
+]

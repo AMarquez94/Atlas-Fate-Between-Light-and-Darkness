@@ -3,6 +3,7 @@
 #include "handle/handle.h"
 #include "entity/entity.h"
 #include "entity/entity_parser.h"
+#include "modules/game/module_game_manager.h"
 
 // for convenience
 using json = nlohmann::json;
@@ -109,6 +110,9 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
             h_e.sendMsg(msg);
         });
 
+				CModuleGameManager gameManager = CEngine::get().getGameManager();
+				/* TODO: Comprobar que se sigue en la misma escena */
+				gameManager.loadCheckpoint();
         Engine.getLogic().execEvent(EngineLogic.SCENE_START, current_scene->initial_script_name);
 
         return true;

@@ -22,6 +22,8 @@ class CModuleGameManager : public IModule
 	bool victoryMenuVisible;
 	bool playerDiedMenuVisible;
 
+	bool isStarted = false;
+
 public:
 
     struct ConfigPublic {

@@ -116,6 +116,7 @@
     <ClCompile Include="components\lighting\comp_light_point.cpp" />
     <ClCompile Include="components\lighting\comp_light_spot.cpp" />
     <ClCompile Include="components\object_controller\comp_rotator.cpp" />
+    <ClCompile Include="components\object_controller\comp_trigger_checkpoint.cpp" />
     <ClCompile Include="components\player_controller\comp_player_animator.cpp" />
     <ClCompile Include="components\comp_fsm.cpp" />
     <ClCompile Include="components\comp_group.cpp" />
@@ -293,6 +294,7 @@
     <ClInclude Include="components\lighting\comp_light_point.h" />
     <ClInclude Include="components\lighting\comp_light_spot.h" />
     <ClInclude Include="components\object_controller\comp_rotator.h" />
+    <ClInclude Include="components\object_controller\comp_trigger_checkpoint.h" />
     <ClInclude Include="components\player_controller\comp_player_animator.h" />
     <ClInclude Include="components\comp_fsm.h" />
     <ClInclude Include="components\comp_group.h" />
