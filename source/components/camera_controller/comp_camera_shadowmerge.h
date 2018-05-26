@@ -30,6 +30,7 @@ private:
 	void onMsgCameraDeprecated(const TMsgCameraDeprecated &msg);
 	void onMsgActivateMyself(const TMsgSetCameraActive &msg);
   void onMsgScenePaused(const TMsgScenePaused &msg);
+  void onMsgCameraReset(const TMsgCameraReset &msg);
 
 	void activateCamera();
 

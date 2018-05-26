@@ -4,6 +4,7 @@
 #include "components/comp_transform.h"
 #include "components/ia/comp_bt_patrol.h"
 #include "components/ia/comp_bt_mimetic.h"
+#include "entity/common_msgs.h"
 
 CCheckpoint::CCheckpoint() {
 	saved = false;
@@ -68,6 +69,14 @@ bool CCheckpoint::loadCheckPoint()
 			TCompTransform * playerTransform = e_player->get<TCompTransform>();
 			playerTransform->setPosition(player.playerPos);
 			playerTransform->setRotation(player.playerRot);
+
+      /* Player Cameras */
+      VHandles v_cameras = CTagsManager::get().getAllEntitiesByTag(getID("main_camera"));
+      for (int i = 0; i < v_cameras.size(); i++) {
+        CEntity* camera = v_cameras[i];
+        TMsgCameraReset msg;
+        camera->sendMsg(msg);
+      }
 		}
 
 		/* Enemies loading */
@@ -129,4 +138,27 @@ bool CCheckpoint::deleteCheckPoint()
 	saved = false;
 
 	return true;
+}
+
+void CCheckpoint::debugInMenu()
+{
+  if (ImGui::TreeNode("Checkpoint")) {
+
+    ImGui::Text("Saved: ");
+    ImGui::SameLine();
+    if (saved) {
+      ImGui::TextColored(ImVec4(0, 255, 0, 255), "TRUE");
+      if (ImGui::TreeNode("Player")) {
+        ImGui::Text("Position: (%f, %f, %f)", player.playerPos.x, player.playerPos.y, player.playerPos.z);
+        ImGui::Text("Rotation: (%f, %f, %f)", player.playerRot.x, player.playerRot.y, player.playerRot.z, player.playerRot.w);
+        ImGui::TreePop();
+      }
+    }
+    else {
+      ImGui::TextColored(ImVec4(0, 255, 0, 255), "FALSE");
+
+    }
+
+    ImGui::TreePop();
+  }
 }

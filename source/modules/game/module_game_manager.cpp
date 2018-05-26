@@ -30,6 +30,7 @@ bool CModuleGameManager::start()
 
 		isStarted = true;
 
+    lastCheckpoint = new CCheckpoint();
 		//lastCheckpoint.init();
 
     return true;
@@ -179,21 +180,31 @@ void CModuleGameManager::render()
 
 bool CModuleGameManager::saveCheckpoint(VEC3 playerPos, QUAT playerRot)
 {
-	return lastCheckpoint.saveCheckPoint(playerPos, playerRot);
+	return lastCheckpoint->saveCheckPoint(playerPos, playerRot);
 }
 
 bool CModuleGameManager::loadCheckpoint()
 {
-	return lastCheckpoint.loadCheckPoint();
+  if (lastCheckpoint) {
+  	return lastCheckpoint->loadCheckPoint();
+  }
+  else {
+    return false;
+  }
 }
 
 bool CModuleGameManager::deleteCheckpoint()
 {
-	return lastCheckpoint.deleteCheckPoint();
+  if (lastCheckpoint) {
+	  return lastCheckpoint->deleteCheckPoint();
+  }
 }
 
 void CModuleGameManager::debugRender() {
 
+    if (lastCheckpoint) {
+      lastCheckpoint->debugInMenu();
+    }
     // Extra windows
     {
         //UI Window's Size

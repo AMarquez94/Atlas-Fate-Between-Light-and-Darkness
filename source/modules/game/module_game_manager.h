@@ -15,7 +15,7 @@ class CModuleGameManager : public IModule
 	unsigned int menuPosition = 0;
 	const unsigned int menuSize = 2;
 
-	CCheckpoint lastCheckpoint;
+	CCheckpoint* lastCheckpoint;
 
 	bool isPaused;
 	bool menuVisible;

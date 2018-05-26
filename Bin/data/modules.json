@@ -23,8 +23,8 @@
 	[
 		"render",
 		"instancing",
+		"entities",		
 		"game_manager",
-		"entities",
 		"navmeshes",
 		"map_intro",
 		"main_menu",
