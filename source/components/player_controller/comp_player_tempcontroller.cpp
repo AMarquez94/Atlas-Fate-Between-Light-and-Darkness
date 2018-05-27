@@ -466,17 +466,19 @@ void TCompTempPlayerController::resetRemoveInhibitor()
 }
 
 /* Method used to determine control invert */
-void TCompTempPlayerController::invertAxis(bool type) {
+void TCompTempPlayerController::invertAxis(VEC3 old_up) {
 
     TCompTransform* p_transform = get<TCompTransform>();
-    float angle_test = fabs(EnginePhysics.gravity.Dot(p_transform->getUp()));
+    VEC3 temp_up = p_transform->getUp();
+    bool pre_test = fabs(EnginePhysics.gravity.Dot(old_up)) < mergeAngle ? true : false;
+    bool pos_test = fabs(EnginePhysics.gravity.Dot(temp_up)) < mergeAngle ? true : false;
 
-    // Convex test
-    if (type) {
+    temp_invert = ((pos_test && !pre_test) && EngineInput["btUp"].isPressed()) ? VEC3(-1, -1, -1) : VEC3::One;
 
-        temp_invert = ((angle_test < mergeAngle) && EngineInput["btUp"].isPressed()) ? VEC3(-1, -1, -1) : VEC3::One;
+    if (!EngineInput["btUp"].isPressed()) {
+
+
     }
-
 
 }
 
@@ -507,7 +509,7 @@ const bool TCompTempPlayerController::concaveTest(void) {
             VEC3 new_pos = hit_point;
             c_my_transform->setRotation(new_rotation);
             c_my_transform->setPosition(new_pos);
-            invertAxis(false);
+            //invertAxis(false);
 
             return true;
         }
@@ -522,8 +524,9 @@ const bool TCompTempPlayerController::convexTest(void) {
     physx::PxRaycastHit hit;
     TCompTransform *c_my_transform = get<TCompTransform>();
     TCompRigidbody *rigidbody = get<TCompRigidbody>();
-    VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * .01f;
-    VEC3 new_dir = c_my_transform->getUp() + c_my_transform->getFront();
+    VEC3 old_up = c_my_transform->getUp();
+    VEC3 upwards_offset = c_my_transform->getPosition() + old_up * .01f;
+    VEC3 new_dir = old_up + c_my_transform->getFront();
     new_dir.Normalize();
 
     if (EnginePhysics.Raycast(upwards_offset, -new_dir, 0.95f, hit, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery))
@@ -544,7 +547,7 @@ const bool TCompTempPlayerController::convexTest(void) {
             VEC3 new_pos = hit_point + 0.3f * new_forward;
             c_my_transform->setRotation(new_rotation);
             c_my_transform->setPosition(new_pos);
-            invertAxis(true);
+            invertAxis(old_up);
 
             return true;
         }

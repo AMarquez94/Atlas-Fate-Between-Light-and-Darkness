@@ -157,7 +157,7 @@ public:
     void resetMerge();
     bool isDead();
     void upButtonReselased();
-    void invertAxis(bool type);
+    void invertAxis(VEC3 old_up);
 
     VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
 
