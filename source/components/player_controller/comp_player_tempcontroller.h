@@ -67,6 +67,8 @@ class TCompTempPlayerController : public TCompBase
     CHandle target_camera;
 
     VEC3 temp_invert;
+    //MAT44 temp_invert;
+    float temp_deg;
     float *staminaBarValue;
 
     float mergeAngle;
@@ -157,7 +159,7 @@ public:
     void resetMerge();
     bool isDead();
     void upButtonReselased();
-    void invertAxis(VEC3 old_up);
+    void invertAxis(VEC3 old_up, bool type);
 
     VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
 

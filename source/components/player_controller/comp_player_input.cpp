@@ -154,7 +154,8 @@ void TCompPlayerInput::update(float dt)
 			c_my_player->dbgDisableStamina = !c_my_player->dbgDisableStamina;
 		}
 
-		if (EngineInput["btUp"].getsReleased() || EngineInput["btDown"].getsReleased()) {
+		if (EngineInput["btUp"].getsReleased() || EngineInput["btDown"].getsReleased() ||
+            EngineInput["btRight"].getsReleased() || EngineInput["btLeft"].getsReleased()) {
 			TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
 			c_my_player->upButtonReselased();
 		}

@@ -164,6 +164,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
     dbgDisableStamina = false;
     paused = false;
 
+    temp_deg = 0;
     temp_invert = VEC3::One;
     staminaBarValue = &CEngine::get().getGUI().getWidget("stamina_bar", true)->getBarParams()->_processValue;
 }
@@ -332,7 +333,10 @@ void TCompTempPlayerController::mergeState(float dt) {
     VEC3 normal_norm = rigidbody->normal_gravity;
     normal_norm.Normalize();
     VEC3 proj = projectVector(up, normal_norm);
-    VEC3 dir = getMotionDir(proj, normal_norm.Cross(proj)) * temp_invert;
+    VEC3 dir = getMotionDir(proj, normal_norm.Cross(proj));
+    MAT44 temp_rot = MAT44::CreateFromAxisAngle(p_transform->getUp(), deg2rad(temp_deg));
+    dir = VEC3::Transform(dir, temp_rot);
+    //dbg("values %f %f %f", temp_invert.x, temp_invert.y, temp_invert.z);
 
     VEC3 prevUp = p_transform->getUp();
     VEC3 new_pos = p_transform->getPosition() - dir;
@@ -466,20 +470,30 @@ void TCompTempPlayerController::resetRemoveInhibitor()
 }
 
 /* Method used to determine control invert */
-void TCompTempPlayerController::invertAxis(VEC3 old_up) {
+void TCompTempPlayerController::invertAxis(VEC3 old_up, bool type) {
 
     TCompTransform* p_transform = get<TCompTransform>();
     VEC3 temp_up = p_transform->getUp();
     bool pre_test = fabs(EnginePhysics.gravity.Dot(old_up)) < mergeAngle ? true : false;
     bool pos_test = fabs(EnginePhysics.gravity.Dot(temp_up)) < mergeAngle ? true : false;
 
-    temp_invert = ((pos_test && !pre_test) && EngineInput["btUp"].isPressed()) ? VEC3(-1, -1, -1) : VEC3::One;
+    // Hardcoded a little bit, fix in the future if it fully works..
+    if (type) {
 
-    if (!EngineInput["btUp"].isPressed()) {
-
-
+        if ((pos_test && !pre_test) && !EngineInput["btUp"].isPressed()) {
+            temp_deg += EngineInput["btLeft"].isPressed() ? -90 : 0;
+            temp_deg += EngineInput["btRight"].isPressed() ? 90 : 0;
+        }
     }
+    else {
 
+        temp_deg = ((pos_test && !pre_test) && !EngineInput["btDown"].isPressed()) ? 180 : 0;
+
+        if ((pos_test && !pre_test) && !EngineInput["btDown"].isPressed()) {
+            temp_deg += EngineInput["btLeft"].isPressed() ? -90 : 0;
+            temp_deg += EngineInput["btRight"].isPressed() ? 90 : 0;
+        }
+    }
 }
 
 /* Concave test, this determines if there is a surface normal change on concave angles */
@@ -488,6 +502,7 @@ const bool TCompTempPlayerController::concaveTest(void) {
     physx::PxRaycastHit hit;
     TCompRigidbody *rigidbody = get<TCompRigidbody>();
     TCompTransform *c_my_transform = get<TCompTransform>();
+    VEC3 old_up = c_my_transform->getUp();
     VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * .01f;
 
     if (EnginePhysics.Raycast(upwards_offset, c_my_transform->getFront(), 0.35f + .1f, hit, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery))
@@ -509,7 +524,7 @@ const bool TCompTempPlayerController::concaveTest(void) {
             VEC3 new_pos = hit_point;
             c_my_transform->setRotation(new_rotation);
             c_my_transform->setPosition(new_pos);
-            //invertAxis(false);
+            invertAxis(old_up, true);
 
             return true;
         }
@@ -547,7 +562,7 @@ const bool TCompTempPlayerController::convexTest(void) {
             VEC3 new_pos = hit_point + 0.3f * new_forward;
             c_my_transform->setRotation(new_rotation);
             c_my_transform->setPosition(new_pos);
-            invertAxis(old_up);
+            invertAxis(old_up, false);
 
             return true;
         }
@@ -761,6 +776,7 @@ VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & le
 
 void TCompTempPlayerController::upButtonReselased() {
 
+    temp_deg = 0;
     temp_invert = VEC3::One;
 }
 
