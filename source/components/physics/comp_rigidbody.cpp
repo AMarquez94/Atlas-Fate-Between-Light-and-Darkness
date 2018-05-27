@@ -145,3 +145,18 @@ void TCompRigidbody::setNormalGravity(VEC3 newGravity) {
     normal_gravity = newGravity;
     totalDownForce = physx::PxVec3(0, 0, 0);
 }
+
+void TCompRigidbody::setGlobalPose(VEC3 pos, QUAT rot)
+{
+  TCompCollider * c_collider = get<TCompCollider>();
+  if (is_controller) {
+    physx::PxExtendedVec3 pxPos = physx::PxExtendedVec3(pos.x, pos.y, pos.z);
+    controller->setFootPosition(pxPos);
+    lastFramePosition = pos;
+  }
+  else {
+    c_collider->setGlobalPose(pos, rot, false);
+  }
+}
+
+

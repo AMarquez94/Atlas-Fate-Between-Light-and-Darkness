@@ -174,6 +174,9 @@ void TCompAIMimetic::onMsgEntityCreated(const TMsgEntityCreated & msg)
 	if (type == EType::WALL) {
 		setGravityToFaceWall();
 	}
+
+  myHandle = CHandle(this);
+
 }
 
 void TCompAIMimetic::onMsgPlayerDead(const TMsgPlayerDead& msg) {

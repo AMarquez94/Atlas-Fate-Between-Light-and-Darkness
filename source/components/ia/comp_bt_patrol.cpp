@@ -105,6 +105,8 @@ void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
 		turnOnLight();
 	}
 
+  myHandle = CHandle(this);
+
   //TCompEmissionController *eController = get<TCompEmissionController>();
   //eController->blend(patrolColor.colorNormal, 0.001f);
 }

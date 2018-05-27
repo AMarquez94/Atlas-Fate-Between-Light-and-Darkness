@@ -418,7 +418,7 @@ void TCompIAController::setCurrentByName(const std::string & stateName)
 }
 
 void TCompIAController::update(float dt) {
-	if (!paused) {
+	if (!paused && myHandle.getOwner().isValid()) {
 		if (current == nullptr) {
 			root->update(dt, this);
 		}

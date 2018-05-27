@@ -44,6 +44,8 @@ public:
 	void Jump(VEC3 forceUp);
 	void setNormalGravity(VEC3 newGravity);
 
+  void setGlobalPose(VEC3 pos, QUAT rot);
+
 	static void registerMsgs();
 
 	//class CustomQueryFilterCallback : public physx::PxQueryFilterCallback {

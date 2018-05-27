@@ -38,6 +38,8 @@ protected:
 
 	bool isParentOfCurrent(BTNode * son, const std::string& possibleParent);
 
+  CHandle myHandle;
+
 protected:
 
 	/* The nodes as map (so we have both map and tree for the same structure */

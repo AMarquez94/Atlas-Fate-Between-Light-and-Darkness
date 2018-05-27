@@ -28,7 +28,7 @@ void TCompTriggerCheckpoint::onMsgTriggerEnter(const TMsgTriggerEnter & msg)
 			TCompTransform* tPlayerPos = e_player->get<TCompTransform>();
 			TCompTransform* myPos = get<TCompTransform>();
 			/* TODO: Que sea con la rotacion del player o la que especifiquemos nosotros */
-			gameManager.saveCheckpoint(VEC3(myPos->getPosition().x, tPlayerPos->getPosition().y + 0.5f, myPos->getPosition().z), tPlayerPos->getRotation());
+			gameManager.saveCheckpoint(VEC3(myPos->getPosition().x, tPlayerPos->getPosition().y, myPos->getPosition().z), tPlayerPos->getRotation());
 			used = true;
 		}
 	}

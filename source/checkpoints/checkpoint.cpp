@@ -5,6 +5,7 @@
 #include "components/ia/comp_bt_patrol.h"
 #include "components/ia/comp_bt_mimetic.h"
 #include "entity/common_msgs.h"
+#include "components/physics/comp_rigidbody.h"
 
 CCheckpoint::CCheckpoint() {
 	saved = false;
@@ -18,6 +19,8 @@ CCheckpoint::CCheckpoint() {
 bool CCheckpoint::saveCheckPoint(VEC3 playerPos, QUAT playerRotation)
 {
 	bool error = false;
+  enemies.clear();
+  entities.clear();
 
 	player.playerPos = playerPos;
 	player.playerRot = playerRotation;
@@ -69,6 +72,8 @@ bool CCheckpoint::loadCheckPoint()
 			TCompTransform * playerTransform = e_player->get<TCompTransform>();
 			playerTransform->setPosition(player.playerPos);
 			playerTransform->setRotation(player.playerRot);
+      TCompRigidbody * playerRigidbody = e_player->get<TCompRigidbody>();
+      playerRigidbody->setGlobalPose(player.playerPos, player.playerRot);
 
       /* Player Cameras */
       VHandles v_cameras = CTagsManager::get().getAllEntitiesByTag(getID("main_camera"));
@@ -101,6 +106,8 @@ bool CCheckpoint::loadCheckPoint()
 				TCompTransform * enemyTransform = e_enemy->get<TCompTransform>();
 				enemyTransform->setPosition(enemies[j].enemyPosition);
 				enemyTransform->setRotation(enemies[j].enemyRotation);
+        TCompRigidbody * enemyRigidbody = e_enemy->get<TCompRigidbody>();
+        enemyRigidbody->setGlobalPose(enemies[j].enemyPosition, enemies[j].enemyRotation);
 
 				switch (enemies[j].enemyType) {
 					case TCompAIMimetic::BTType::PATROL:
@@ -111,7 +118,7 @@ bool CCheckpoint::loadCheckPoint()
 					}
 					case TCompAIMimetic::BTType::MIMETIC:
 					{
-						TCompAIPatrol* enemyAI = e_enemy->get<TCompAIMimetic>();
+            TCompAIMimetic* enemyAI = e_enemy->get<TCompAIMimetic>();
 						enemyAI->setCurrentByName(enemies[j].enemyIAStateName);
 						break;
 					}
@@ -153,9 +160,32 @@ void CCheckpoint::debugInMenu()
         ImGui::Text("Rotation: (%f, %f, %f)", player.playerRot.x, player.playerRot.y, player.playerRot.z, player.playerRot.w);
         ImGui::TreePop();
       }
+
+      if (ImGui::TreeNode("Enemies")) {
+        for (int i = 0; i < enemies.size(); i++) {
+          if (ImGui::TreeNode(enemies[i].enemyName.c_str())) {
+            ImGui::Text("Position: (%f, %f, %f)", enemies[i].enemyPosition.x, enemies[i].enemyPosition.y, enemies[i].enemyPosition.z);
+            ImGui::Text("State: %s", enemies[i].enemyIAStateName);
+            switch (enemies[i].enemyType) {
+              case TCompAIMimetic::BTType::PATROL:
+              {
+                ImGui::Text("Type: Patrol");
+                break;
+              }
+              case TCompAIMimetic::BTType::MIMETIC:
+              {
+                ImGui::Text("Type: Mimetic");
+                break;
+              }
+            }
+            ImGui::TreePop();
+          }
+        }
+        ImGui::TreePop();
+      }
     }
     else {
-      ImGui::TextColored(ImVec4(0, 255, 0, 255), "FALSE");
+      ImGui::TextColored(ImVec4(255, 0, 0, 255), "FALSE");
 
     }
 

@@ -39,5 +39,23 @@
 			},
 			"tags" : ["checkpoint"]
 		}
+	},
+	{
+		"entity": {
+			"name": "Checkpoint_PostEnemies_test",
+			"transform": {
+				"pos": "-44 0 106",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider":
+			{
+				"shape": "box",
+				"is_trigger" : true,
+				"size": "5 1 2"
+			},
+			"trigger_checkpoint": {
+			},
+			"tags" : ["checkpoint"]
+		}
 	}
 ]
