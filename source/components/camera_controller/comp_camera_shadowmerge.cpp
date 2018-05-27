@@ -107,11 +107,6 @@ void TCompCameraShadowMerge::update(float dt)
 		if (btRHorizontal.isPressed()) horizontal_delta = btRHorizontal.value;
 		if (btRVertical.isPressed()) vertical_delta = btRVertical.value;
 
-		//VEC2 current_clamp = VEC2::Zero;
-		//float c_angle = rad2deg(cos(target_transform->getUp().Dot(-EnginePhysics.gravity)));
-		//if (target_transform->getFront().Dot(-EnginePhysics.gravity) > 0) current_clamp = VEC2(_clamp_angle.x - c_angle, _clamp_angle.y - c_angle);
-		//else current_clamp = VEC2(_clamp_angle.x + c_angle, _clamp_angle.y + c_angle);
-
 		// Verbose code
 		_current_euler.x -= horizontal_delta * _speed * dt;
 
