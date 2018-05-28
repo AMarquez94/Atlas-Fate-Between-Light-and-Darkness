@@ -42,7 +42,9 @@ private:
 	bool hasHeardArtificialNoise = false;
 	bool hasHeardNaturalNoise = false;
 	VEC3 noiseSource = VEC3::Zero;
+	CHandle hNoiseSource = CHandle();
   bool noiseSourceChanged = false;
+	std::chrono::steady_clock::time_point lastTimeNoiseWasHeard;
 
   std::vector<VEC3> navmeshPath;
   unsigned int navmeshPathPoint;
@@ -83,7 +85,7 @@ private:
 	const Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }
 	void addWaypoint(const Waypoint& wpt) { _waypoints.push_back(wpt); };
 	bool rotateTowardsVec(VEC3 objective, float rotationSpeed, float dt);
-	bool isPlayerInFov();
+	bool isPlayerInFov(const std::string& entityToChase, float fov, float maxChaseDistance);
 	bool isEntityHidden(CHandle hEntity);
 	void setGravityToFaceWall();
 	EType parseStringMimeticType(const std::string& typeString);

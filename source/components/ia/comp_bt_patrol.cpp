@@ -1071,7 +1071,7 @@ bool TCompAIPatrol::rotateTowardsVec(VEC3 objective, float rotationSpeed, float 
 	return isInObjective;
 }
 
-bool TCompAIPatrol::isPlayerInFov(std::string entityToChase, float fov, float maxChaseDistance) {
+bool TCompAIPatrol::isPlayerInFov(const std::string& entityToChase, float fov, float maxChaseDistance) {
 
 	TCompTransform *mypos = get<TCompTransform>();
 	CHandle hPlayer = getEntityByName(entityToChase);

@@ -66,7 +66,7 @@ private:
 	const Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }
 	void addWaypoint(const Waypoint& wpt) { _waypoints.push_back(wpt); };
 	bool rotateTowardsVec(VEC3 objective, float dt, float rotationSpeed);
-	bool isPlayerInFov(std::string entityToChase, float fov, float maxChaseDistance);
+	bool isPlayerInFov(const std::string& entityToChase, float fov, float maxChaseDistance);
 	bool isEntityHidden(CHandle hEntity);
 	void turnOnLight();
 	void turnOffLight();

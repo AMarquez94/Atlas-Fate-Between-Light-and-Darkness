@@ -10,7 +10,6 @@ void TCompTriggerCheckpoint::debugInMenu() {
 }
 
 void TCompTriggerCheckpoint::load(const json& j, TEntityParseContext& ctx) {
-	dbg("Trigger cargado\n");
 }
 
 void TCompTriggerCheckpoint::registerMsgs()

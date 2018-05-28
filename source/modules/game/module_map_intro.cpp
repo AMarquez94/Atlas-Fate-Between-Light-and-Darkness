@@ -29,21 +29,6 @@ bool CModuleMapIntro::start() {
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 	mouse->setLockMouse(true);
 
-	//CHandle h_camera = getEntityByName("TPCamera");
-	//if (h_camera.isValid())
-	//	Engine.getCameras().setDefaultCamera(h_camera);
-
-	//h_camera = getEntityByName("main_camera");
-	//if (h_camera.isValid())
-	//	Engine.getCameras().setOutputCamera(h_camera);
-
-	//auto om = getObjectManager<CEntity>();
-	//om->forEach([](CEntity* e) {
-	//	TMsgSceneCreated msg;
-	//	CHandle h_e(e);
-	//	h_e.sendMsg(msg);
-	//});
-
 	Engine.getGUI().activateWidget("ingame");
 	Engine.getSound().setAmbientSound("../bin/data/sounds/ambient.ogg");
 
