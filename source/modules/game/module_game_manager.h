@@ -13,7 +13,7 @@ class CModuleGameManager : public IModule
 	unsigned int window_width;
 	unsigned int window_height;
 	unsigned int menuPosition = 0;
-	const unsigned int menuSize = 2;
+	const unsigned int menuSize = 4;
 
 	CCheckpoint* lastCheckpoint;
 
@@ -40,6 +40,8 @@ public:
 	bool saveCheckpoint(VEC3 playerPos, QUAT playerRot);
 	bool loadCheckpoint();
 	bool deleteCheckpoint();
+
+  void unpauseGame();
 
   void debugRender();
 };
