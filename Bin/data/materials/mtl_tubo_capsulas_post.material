@@ -1,0 +1,19 @@
+{
+"technique": "pbr_post_outline.tech",
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_tubocapsula_alb.dds"
+    ,
+    "metallic": "data/textures/tx_tubocapsula_met.dds"
+    ,
+    "roughness": "data/textures/tx_tubocapsula_rgh.dds"
+    ,
+    "normal": "data/textures/tx_tubocapsula_nml.dds"
+    ,
+    "height": "data/textures/tx_tubocapsula_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_tubocapsula_emi.dds"
+  }
+}

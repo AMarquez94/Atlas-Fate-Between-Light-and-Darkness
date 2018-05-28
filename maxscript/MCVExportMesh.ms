@@ -376,4 +376,3 @@ function computeTangentSpace vertexs idxs = (
 	)
 
 )
-

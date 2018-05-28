@@ -5,6 +5,7 @@
 #include "components/comp_name.h"
 #include "components/comp_hierarchy.h"
 #include "components/camera_controller/comp_camera_shadowmerge.h"
+#include "components/camera_controller/comp_camera_thirdperson.h"
 #include "components/physics/comp_collider.h"
 
 DECL_OBJ_MANAGER("auxcamera_shadowmerge", TCompAuxCameraShadowMerge);
@@ -57,25 +58,31 @@ void TCompAuxCameraShadowMerge::onMsgCameraFullActive(const TMsgCameraFullyActiv
 	parentTrans->setRotation(myTrans->getRotation());
 	parentController->setCurrentEuler(_current_euler.x , _current_euler.y);
 
-	//dbg("Current euler: %f, %f\n", rad2deg(parentController->getCurrentEuler().x), rad2deg(parentController->getCurrentEuler().y));
-
 	Engine.getCameras().blendOutCamera(CHandle(this).getOwner(), .0f);
 }
 
 void TCompAuxCameraShadowMerge::onMsgCameraDeprecated(const TMsgCameraDeprecated &msg)
 {
 	active = false;
-	//_current_euler.y = _original_euler.y;
-	//dbg("Camera inactive %s\n", ((TCompName*)get<TCompName>())->getName());
+  CEntity * eCamera = getEntityByName("TPCamera");
+  TCompCameraThirdPerson* tpController = eCamera->get<TCompCameraThirdPerson>();
+  tpController->setCurrentEuler(_current_euler.x);
+
+  eCamera = getEntityByName("TPCameraCrouched");
+  tpController = eCamera->get<TCompCameraThirdPerson>();
+  tpController->setCurrentEuler(_current_euler.x);
+
+  eCamera = getEntityByName("SMCameraHor");
+  TCompCameraShadowMerge* smController = eCamera->get<TCompCameraShadowMerge>();
+  smController->setCurrentEuler(_current_euler.x);
+
+  eCamera = getEntityByName("SMCameraVer");
+  smController = eCamera->get<TCompCameraShadowMerge>();
+  smController->setCurrentEuler(_current_euler.x);
 }
 
 void TCompAuxCameraShadowMerge::onMsgCameraSetActive(const TMsgSetCameraActive & msg)
 {
-	//if (active && msg.actualCamera.compare(eCamera->getName()) != 0) {
-	//	dbg("Camera %s cancelled \n",eCamera->getName());
-	//	Engine.getCameras().cancelCamera(eCamera);
-	//}
-
 	/* Set the aux camera with the smcamera */
 	bool differentCameras = msg.actualCamera.compare(msg.previousCamera) != 0;
 

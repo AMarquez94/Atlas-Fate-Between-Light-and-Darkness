@@ -1,6 +1,7 @@
 #pragma once
 
 #include "modules/module.h"
+#include "checkpoints/checkpoint.h"
 
 class CModuleGameManager : public IModule
 {
@@ -12,12 +13,16 @@ class CModuleGameManager : public IModule
 	unsigned int window_width;
 	unsigned int window_height;
 	unsigned int menuPosition = 0;
-	const unsigned int menuSize = 2;
+	const unsigned int menuSize = 4;
+
+	CCheckpoint* lastCheckpoint;
 
 	bool isPaused;
 	bool menuVisible;
 	bool victoryMenuVisible;
 	bool playerDiedMenuVisible;
+
+	bool isStarted = false;
 
 public:
 
@@ -32,5 +37,11 @@ public:
 	void update(float delta) override;
 	void render() override;
 
-    void debugRender();
+	bool saveCheckpoint(VEC3 playerPos, QUAT playerRot);
+	bool loadCheckpoint();
+	bool deleteCheckpoint();
+
+  void unpauseGame();
+
+  void debugRender();
 };

@@ -32,6 +32,14 @@
           [
             "data/materials/mtl_tubo_capsulas.material"
           ]
+        },
+				{
+          "mesh": "data/meshes/mesh_tubocapsula.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_capsulas_post.material"
+          ]
         }
       ]
       ,

@@ -1,0 +1,12 @@
+{
+	"technique": "pbr_instanced.tech",
+	"shadows": true,
+	"textures": {
+		"albedo": "data/textures/tx_capsula_alb.dds",
+		"metallic": "data/textures/tx_capsula_met.dds",
+		"roughness": "data/textures/tx_capsula_rgh.dds",
+		"normal": "data/textures/tx_capsula_nml.dds",
+		"height": "data/textures/tx_capsula_hgt.dds",
+		"emissive": "data/textures/tx_capsula_emi.dds"
+	}
+}

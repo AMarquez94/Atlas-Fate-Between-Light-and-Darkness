@@ -121,6 +121,8 @@ public:
   void updateAll(float dt) override {
     assert(objs);
 
+    if (!num_objs_used)
+        return;
     /*
     if ( multithreaded && is_multithreaded_enabled ) {
       int nDefThreads = tbb::task_scheduler_init::default_num_threads();

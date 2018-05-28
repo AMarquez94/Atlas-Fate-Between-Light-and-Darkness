@@ -16,7 +16,7 @@
 		},
 		{
 			"name" : "map_intro",
-			"modules" : [ "map_intro", "game_manager" ]
+			"modules" : [ "map_intro", "game_manager"]
 		},
 		{
 			"name" : "level_select",

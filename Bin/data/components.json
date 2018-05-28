@@ -1,7 +1,7 @@
 {
 	"sizes": {
-		"default": 1024,
-		"transform": 1024
+		"default": 2048,
+		"transform": 2048
 	},
 	"init_order": {
 		"entity": 100,
@@ -12,6 +12,7 @@
 		"player_tempcontroller",
 		"ai_patrol",
 		"ai_mimetic",
+		"instance",
 		"dynamic_capsule",
 		"shadow_controller",
 		"skeleton",
@@ -23,6 +24,7 @@
 		"rigidbody",
 		"collider",
 		"noise_emitter",
+		"player_attack_cast",
 		"light_dir",
 		"light_spot",
 		"light_point",
@@ -30,6 +32,7 @@
 		"camera_flyover",
 		"curve_controller",
 		"trigger_camera",
+		"trigger_checkpoint",
 		"camera_thirdperson",
 		"camera_shadowmerge",
 		"auxcamera_shadowmerge",
@@ -38,7 +41,8 @@
 		"player_animator",
 		"player_input",
 		"emission_controller",
-		"rotator"
+		"rotator",
+		"lod"
 	],
 	"render_debug": [
 		"player_tempcontroller",

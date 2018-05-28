@@ -233,7 +233,14 @@ void CApp::doFrame() {
 
 	PROFILE_FRAME_BEGINS();
 	PROFILE_FUNCTION("App::doFrame");
+
 	float dt = time_since_last_render.elapsedAndReset();
+
+    // Avoid this frame if dt is very big
+    // This can happen when game is breakpoint stopped etc..
+    // Replace this with fixed time step..
+    if (dt > 1) return;
+
 	CEngine::get().update(dt);
 	CEngine::get().render();
 

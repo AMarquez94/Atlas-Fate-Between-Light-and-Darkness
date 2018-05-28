@@ -82,6 +82,54 @@ struct CZConfigs {
 		if (!add(desc, ZCFG_INVERSE_TEST_NO_WRITE, "inverse_test_no_write"))
 			return false;
 
+        // Default app, only pass those which are near than the previous samples
+        memset(&desc, 0x00, sizeof(desc));
+        desc.DepthEnable = TRUE;
+        desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO; // <<--
+        desc.DepthFunc = D3D11_COMPARISON_LESS;
+        // Stencil test parameters
+        desc.StencilEnable = true;
+        desc.StencilReadMask = 0xFF;
+        desc.StencilWriteMask = 0xFF;
+
+        // Stencil operations if pixel is front-facing
+        desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+        desc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_REPLACE;
+        desc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+        desc.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+
+        // Stencil operations if pixel is back-facing
+        desc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+        desc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;
+        desc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+        desc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+
+        if (!add(desc, ZCFG_TEST_NO_WRITES_MARK_STENCIL, "test_no_writes_mark_stencil"))
+            return false;
+
+        // Default app, only pass those which are near than the previous samples
+        memset(&desc, 0x00, sizeof(desc));
+        desc.DepthEnable = FALSE;
+        // Stencil test parameters
+        desc.StencilEnable = true;
+        desc.StencilReadMask = 0xFF;
+        desc.StencilWriteMask = 0xFF;
+
+        // Stencil operations if pixel is front-facing
+        desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+        desc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;
+        desc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+        desc.FrontFace.StencilFunc = D3D11_COMPARISON_EQUAL;
+
+        // Stencil operations if pixel is back-facing
+        desc.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+        desc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;
+        desc.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+        desc.BackFace.StencilFunc = D3D11_COMPARISON_EQUAL;
+
+        if (!add(desc, ZCFG_ON_NON_ZERO_STENCIL, "on_non_zero_stencil"))
+            return false;
+
 		return true;
 	}
 
@@ -232,6 +280,24 @@ struct CBlends {
 		desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
 		if (!add(desc, BLEND_CFG_ADDITIVE_BY_SRC_ALPHA, "additive_by_src_alpha"))
 			return false;
+
+        // Combinative blending
+        memset(&desc, 0x00, sizeof(desc));
+        desc.RenderTarget[0].BlendEnable = TRUE;
+        desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+        desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+        desc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+        desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+        desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+        desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
+        desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA;
+        // Blend also the 4 render tarngets
+        desc.RenderTarget[1] = desc.RenderTarget[0];
+        desc.RenderTarget[2] = desc.RenderTarget[0];
+        desc.RenderTarget[3] = desc.RenderTarget[0];
+        if (!add(desc, BLEND_CFG_COMBINATIVE_GBUFFER, "combinative_gbuffer"))
+            return false;
+
 		return true;
 	}
 
@@ -317,6 +383,27 @@ struct CSamplers {
 			return false;
 		setDXName(all_samplers[SAMPLER_PCF_SHADOWS], "PCF_SHADOWS");
 
+        {
+            // PCF sampling
+            D3D11_SAMPLER_DESC sampler_desc = {
+                D3D11_FILTER_COMPARISON_MIN_MAG_LINEAR_MIP_POINT,// D3D11_FILTER Filter;
+                D3D11_TEXTURE_ADDRESS_BORDER, //D3D11_TEXTURE_ADDRESS_MODE AddressU;
+                D3D11_TEXTURE_ADDRESS_BORDER, //D3D11_TEXTURE_ADDRESS_MODE AddressV;
+                D3D11_TEXTURE_ADDRESS_BORDER, //D3D11_TEXTURE_ADDRESS_MODE AddressW;
+                0,//FLOAT MipLODBias;
+                0,//UINT MaxAnisotropy;
+                D3D11_COMPARISON_LESS, //D3D11_COMPARISON_FUNC ComparisonFunc;
+                1.0, 1.0, 1.0, 1.0,//FLOAT BorderColor[ 4 ];
+                0,//FLOAT MinLOD;
+                0//FLOAT MaxLOD;
+            };
+            hr = Render.device->CreateSamplerState(
+                &sampler_desc, &all_samplers[SAMPLER_PCF_SHADOWS_WHITE]);
+            if (FAILED(hr))
+                return false;
+            setDXName(all_samplers[SAMPLER_PCF_SHADOWS_WHITE], "PCF_SHADOWS_WHITE");
+        }
+
 		ZeroMemory(&sampDesc, sizeof(sampDesc));
 		sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
 		sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
@@ -358,7 +445,7 @@ void activateAllSamplers() {
 
 void activateZConfig(enum ZConfig cfg) {
 	assert(zconfigs.z_cfgs[cfg] != nullptr);
-	Render.ctx->OMSetDepthStencilState(zconfigs.z_cfgs[cfg], 0);
+	Render.ctx->OMSetDepthStencilState(zconfigs.z_cfgs[cfg], 255);
 }
 
 void activateRSConfig(enum RSConfig cfg) {

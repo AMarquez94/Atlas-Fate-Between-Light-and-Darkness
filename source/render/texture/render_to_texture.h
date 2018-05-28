@@ -5,6 +5,7 @@
 #include <d3d11.h>
 
 class CRenderToTexture : public CTexture {
+
 	DXGI_FORMAT             color_format = DXGI_FORMAT_UNKNOWN;
 	DXGI_FORMAT             depth_format = DXGI_FORMAT_UNKNOWN;
 
@@ -37,6 +38,7 @@ public:
 		return render_target_view;
 	}
 	CTexture* getZTexture() { return ztexture; }
+    static CRenderToTexture* getCurrentRT() { return current_rt; }
 
 	void debugInMenu() override;
 };

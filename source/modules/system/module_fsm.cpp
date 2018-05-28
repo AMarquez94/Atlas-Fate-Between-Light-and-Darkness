@@ -20,12 +20,12 @@ bool CModuleFSM::start()
 
 	_factory.registerInstancer("IdleState", new FSM::StateInstancer<FSM::IdleState>());
 	_factory.registerInstancer("WalkState", new FSM::StateInstancer<FSM::WalkState>());
-  _factory.registerInstancer("WalkSlowState", new FSM::StateInstancer<FSM::WalkSlowState>());
+	_factory.registerInstancer("WalkSlowState", new FSM::StateInstancer<FSM::WalkSlowState>());
 	_factory.registerInstancer("RunState", new FSM::StateInstancer<FSM::RunState>());
 	_factory.registerInstancer("FallState", new FSM::StateInstancer<FSM::FallState>());
 	_factory.registerInstancer("CrouchState", new FSM::StateInstancer<FSM::CrouchState>());
 	_factory.registerInstancer("CrouchWalkState", new FSM::StateInstancer<FSM::CrouchWalkState>());
-  _factory.registerInstancer("CrouchWalkSlowState", new FSM::StateInstancer<FSM::CrouchWalkSlowState>());
+	_factory.registerInstancer("CrouchWalkSlowState", new FSM::StateInstancer<FSM::CrouchWalkSlowState>());
 	_factory.registerInstancer("EnterMergeState", new FSM::StateInstancer<FSM::EnterMergeState>());
 	_factory.registerInstancer("MergeState", new FSM::StateInstancer<FSM::MergeState>());
 	_factory.registerInstancer("ExitMergeState", new FSM::StateInstancer<FSM::ExitMergeState>());
@@ -33,11 +33,11 @@ bool CModuleFSM::start()
 	_factory.registerInstancer("SoftLandState", new FSM::StateInstancer<FSM::SoftLandState>());
 	_factory.registerInstancer("HardLandState", new FSM::StateInstancer<FSM::HardLandState>());
 	_factory.registerInstancer("AttackState", new FSM::StateInstancer<FSM::AttackState>());
-	_factory.registerInstancer("InhibitorRemoved", new FSM::StateInstancer<FSM::InhibitorRemoved>());
-	_factory.registerInstancer("RemoveInhibitor", new FSM::StateInstancer<FSM::RemoveInhibitor>());
-	_factory.registerInstancer("InhibitorTryToRemove", new FSM::StateInstancer<FSM::InhibitorTryToRemove>());
+	_factory.registerInstancer("InhibitorRemovedState", new FSM::StateInstancer<FSM::InhibitorRemovedState>());
+	_factory.registerInstancer("InhibitorTryToRemoveState", new FSM::StateInstancer<FSM::InhibitorTryToRemoveState>());
 	_factory.registerInstancer("DieState", new FSM::StateInstancer<FSM::DieState>());
 	_factory.registerInstancer("DeadState", new FSM::StateInstancer<FSM::DeadState>());
+	_factory.registerInstancer("GrabEnemyState", new FSM::StateInstancer<FSM::GrabEnemyState>());
 	_factory.registerInstancer("VariableTransition", new FSM::TransitionInstancer<FSM::VariableTransition>());
 	_factory.registerInstancer("TimeTransition", new FSM::TransitionInstancer<FSM::TimeTransition>());
 	_factory.registerInstancer("AnimationTransition", new FSM::TransitionInstancer<FSM::AnimationTransition>());

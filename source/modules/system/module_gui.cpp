@@ -31,8 +31,7 @@ void CModuleGUI::initializeWidgetStructure() {
 
 	//Initializing all the functions for the buttons of GUI
 	auto mm_newGameCB = []() {
-		CEngine::get().getGUI().deactivateWidget(EGUIWidgets::MAIN_MENU_BACKGROUND);
-		CEngine::get().getGUI().deactivateWidget(EGUIWidgets::MAIN_MENU_BUTTONS);
+		CEngine::get().getModules().changeGameState("map_intro");
 	};
 	auto mm_continueCB = []() {
 		//CEngine::get().getGUI().outOfMainMenu();
@@ -57,9 +56,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	mmc->registerOption("exit", mm_exitCB);
 	mmc->setCurrentOption(0);
 
-
-	activateWidget(EGUIWidgets::MAIN_MENU_BACKGROUND);
-	activateWidget(EGUIWidgets::MAIN_MENU_BUTTONS);
+	registerWigdetStruct(EGUIWidgets::INGAME_STAMINA_BAR, "data/gui/ingame.json");
 
 }
 
@@ -252,7 +249,7 @@ void CModuleGUI::renderText(const MAT44& world, const std::string& text, const V
 
 		VEC2 minUV = VEC2(col * cellSize, row * cellSize);
 		VEC2 maxUV = minUV + VEC2(1, 1) * cellSize;
-		VEC2 gap = i * VEC2(1, 0);
+		VEC2 gap = (float)i * VEC2(1, 0);
 		MAT44 w = MAT44::CreateTranslation(gap.x, gap.y, 0.f) * world;
 
 		renderTexture(w, _fontTexture, minUV, maxUV, color);

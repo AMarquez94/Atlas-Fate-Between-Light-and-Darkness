@@ -71,6 +71,8 @@ void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
   patrolColor.colorAlert = j.count("colorAlert") ? loadVEC4(j["colorAlert"]) : VEC4(1, 0, 0, 1);
   patrolColor.colorDead = j.count("colorDead") ? loadVEC4(j["colorDead"]) : VEC4(0, 0, 0, 0);
 
+	btType = BTType::PATROL;
+
   /* TEMP: TODO: borrar */
   //trueLookAt = j.count("trueLookAt") > 0 ? loadVEC3(j["trueLookAt"]) : VEC3::Zero;
   //if (j.count("trueLookAt") > 0) {
@@ -102,6 +104,8 @@ void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
 	if (startLightsOn) {
 		turnOnLight();
 	}
+
+  myHandle = CHandle(this);
 
   //TCompEmissionController *eController = get<TCompEmissionController>();
   //eController->blend(patrolColor.colorNormal, 0.001f);
@@ -232,6 +236,21 @@ void TCompAIPatrol::onMsgNoiseListened(const TMsgNoiseMade & msg)
     noiseSource = msg.noiseOrigin;
     hNoiseSource = msg.hNoiseSource;
   }
+}
+
+const std::string TCompAIPatrol::getStateForCheckpoint()
+{
+	if (current) {
+		if (current->getName().compare("stunned") == 0) {
+			return "stunned";
+		}
+		else {
+			return "nextWpt";
+		}
+	}
+	else {
+		return "nextWpt";
+	}
 }
 
 void TCompAIPatrol::registerMsgs()

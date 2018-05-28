@@ -11,6 +11,7 @@ public:
 
   ID3D11Texture2D*        depthTexture = nullptr;
   ID3D11DepthStencilView* depthStencilView = nullptr;
+  ID3D11ShaderResourceView* depth_shader_resource_view = nullptr;
 
   int width = 0;
   int height = 0;

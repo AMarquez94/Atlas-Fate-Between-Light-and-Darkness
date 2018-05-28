@@ -11,6 +11,7 @@
 #include "render/texture/texture.h"
 #include "resources/json_resource.h"
 #include "components/skeleton/game_core_skeleton.h"
+#include "components/postfx/comp_render_outlines.h"
 #include "physics/physics_mesh.h"
 #include "camera/camera.h"
 #include "geometry/curve.h"
@@ -265,6 +266,7 @@ void CModuleRender::generateFrame() {
 		cb_globals.updateGPU();
 		deferred.render(rt_main, h_e_camera);
 
+        CRenderManager::get().renderCategory("particles");
 		CRenderManager::get().renderCategory("distorsions");
 
 		// Apply postFX
@@ -293,11 +295,25 @@ void CModuleRender::generateFrame() {
             TCompColorGrading* c_color_grading = e_cam->get< TCompColorGrading >();
             if (c_color_grading)
                 curr_rt = c_color_grading->apply(curr_rt);
+
+            TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
+            if (c_render_outlines)
+                c_render_outlines->apply();
 		}
 
 		Render.startRenderInBackbuffer();
 		renderFullScreenQuad("dump_texture.tech", curr_rt);
 	}
+
+    if (debugmode)
+        debugDraw();
+
+    // Finally render it
+    {
+        PROFILE_FUNCTION("ImGui::Render");
+        CTraceScoped gpu_scope("ImGui");
+        ImGui::Render();
+    }
 
 	{
 		PROFILE_FUNCTION("GUI");
@@ -315,9 +331,6 @@ void CModuleRender::generateFrame() {
 		activateBlendConfig(BLEND_CFG_DEFAULT);
 	}
 
-    if(debugmode)
-        debugDraw();
-
 	// Present the information rendered to the back buffer to the front buffer (the screen)
 	{
 		PROFILE_FUNCTION("Render.swapChain");
@@ -333,7 +346,7 @@ void CModuleRender::debugDraw() {
         ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(255.0f, 255.0f, 255.0f, 255.0f));
         ImGui::PushStyleColor(ImGuiCol_TitleBg, ImVec4(0.0, 0.0f, 0.0f, 0.75f));
         ImGui::PushStyleColor(ImGuiCol_TitleBgActive, ImVec4(0.0, 0.0f, 0.0f, 0.75f));
-        ImGui::PushStyleColor(ImGuiCol_TitleBgCollapsed, ImVec4(0.219, 0.349f, 0.501f, 0.75f));
+        ImGui::PushStyleColor(ImGuiCol_TitleBgCollapsed, ImVec4(0.219f, 0.349f, 0.501f, 0.75f));
         ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 4);
         ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 1);
 
@@ -347,12 +360,5 @@ void CModuleRender::debugDraw() {
         ImGui::End();
         ImGui::PopStyleVar(2);
         ImGui::PopStyleColor(5);
-    }
-
-    // Finally render it
-    {
-        PROFILE_FUNCTION("ImGui::Render");
-        CTraceScoped gpu_scope("ImGui");
-        ImGui::Render();
     }
 }

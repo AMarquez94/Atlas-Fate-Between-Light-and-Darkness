@@ -23,106 +23,98 @@ physx::PxQueryFilterData CModulePhysics::defaultFilter;
 
 bool CModulePhysics::start()
 {
-	gFoundation = PxCreateFoundation(PX_FOUNDATION_VERSION, gDefaultAllocatorCallback, gDefaultErrorCallback);
-	assert(gFoundation != nullptr);
+    gFoundation = PxCreateFoundation(PX_FOUNDATION_VERSION, gDefaultAllocatorCallback, gDefaultErrorCallback);
+    assert(gFoundation != nullptr);
 
-	if (!gFoundation) {
-		return false;
-	}
+    if (!gFoundation) {
+        return false;
+    }
 
-	gPvd = PxCreatePvd(*gFoundation);
+    gPvd = PxCreatePvd(*gFoundation);
 
-	if (!gPvd) {
-		return false;
-	}
+    if (!gPvd) {
+        return false;
+    }
 
-	PxPvdTransport* transport = PxDefaultPvdSocketTransportCreate("127.0.0.1", 5425, 10);
-	bool  is_ok = gPvd->connect(*transport, PxPvdInstrumentationFlag::eALL);
-	gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true, gPvd);
-	gCooking = PxCreateCooking(PX_PHYSICS_VERSION, *gFoundation, PxCookingParams(PxTolerancesScale()));
-	gDispatcher = PxDefaultCpuDispatcherCreate(2);
+    PxPvdTransport* transport = PxDefaultPvdSocketTransportCreate("127.0.0.1", 5425, 10);
+    bool  is_ok = gPvd->connect(*transport, PxPvdInstrumentationFlag::eALL);
+    gPhysics = PxCreatePhysics(PX_PHYSICS_VERSION, *gFoundation, PxTolerancesScale(), true, gPvd);
+    gCooking = PxCreateCooking(PX_PHYSICS_VERSION, *gFoundation, PxCookingParams(PxTolerancesScale()));
+    gDispatcher = PxDefaultCpuDispatcherCreate(2);
 
-	if (!gPhysics)
-		fatal("PxCreatePhysics failed");
+    if (!gPhysics)
+        fatal("PxCreatePhysics failed");
 
-	PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
-	sceneDesc.gravity = PxVec3(gravity.x, 9.81f * gravity.y, gravity.z);
-	sceneDesc.cpuDispatcher = gDispatcher;
-	sceneDesc.filterShader = CustomFilterShader;
-	sceneDesc.flags = PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS | PxSceneFlag::eENABLE_ACTIVE_ACTORS;
-	gScene = gPhysics->createScene(sceneDesc);
+    PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
+    sceneDesc.gravity = PxVec3(0, 0, 0);
+    sceneDesc.cpuDispatcher = gDispatcher;
+    sceneDesc.filterShader = CustomFilterShader;
+    sceneDesc.flags = PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS | PxSceneFlag::eENABLE_ACTIVE_ACTORS;
+    gScene = gPhysics->createScene(sceneDesc);
 
-	PxPvdSceneClient* pvdClient = gScene->getScenePvdClient();
+    PxPvdSceneClient* pvdClient = gScene->getScenePvdClient();
 
-	if (pvdClient)
-	{
-		pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_CONSTRAINTS, true);
-		pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_CONTACTS, true);
-		pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_SCENEQUERIES, true);
-	}
+    if (pvdClient)
+    {
+        pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_CONSTRAINTS, true);
+        pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_CONTACTS, true);
+        pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_SCENEQUERIES, true);
+    }
 
-	CPhysicsCollider::default_material = gPhysics->createMaterial(0.5f, 0.5f, 0.6f);
-	mControllerManager = PxCreateControllerManager(*gScene);
-	gScene->setSimulationEventCallback(&customSimulationEventCallback);
-	PxInitExtensions(*gPhysics, gPvd);
+    CPhysicsCollider::default_material = gPhysics->createMaterial(0.5f, 0.5f, 0.6f);
+    mControllerManager = PxCreateControllerManager(*gScene);
+    gScene->setSimulationEventCallback(&customSimulationEventCallback);
+    PxInitExtensions(*gPhysics, gPvd);
 
-	// Set a default filter to do query checks
-	physx::PxFilterData pxFilterData;
-	pxFilterData.word0 = FilterGroup::Scenario;
-	defaultFilter.data = pxFilterData;
+    // Set a default filter to do query checks
+    physx::PxFilterData pxFilterData;
+    pxFilterData.word0 = FilterGroup::Scenario;
+    defaultFilter.data = pxFilterData;
 
-	return true;
+    return true;
 }
 
 void CModulePhysics::update(float delta)
 {
-	if (!gScene)
-		return;
+    if (!gScene)
+        return;
 
-	gScene->simulate(delta);
-	gScene->fetchResults(true);
+    gScene->simulate(delta);
+    gScene->fetchResults(true);
 
-	PxU32 nbActorsOut = 0;
-	PxActor**actors = gScene->getActiveActors(nbActorsOut);
+    PxU32 nbActorsOut = 0;
+    PxActor**actors = gScene->getActiveActors(nbActorsOut);
 
-	for (unsigned int i = 0; i < nbActorsOut; ++i) {
+    for (unsigned int i = 0; i < nbActorsOut; ++i) {
 
-		if (actors[i]->is<PxRigidActor>())
-		{
-			PxRigidActor* rigidActor = ((PxRigidActor*)actors[i]);
-			PxTransform PxTrans = rigidActor->getGlobalPose();
-			PxVec3 pxpos = PxTrans.p;
-			PxQuat pxq = PxTrans.q;
-			CHandle h_comp_collider;
-			h_comp_collider.fromVoidPtr(rigidActor->userData);
+        if (actors[i]->is<PxRigidActor>())
+        {
+            PxRigidActor* rigidActor = ((PxRigidActor*)actors[i]);
+            PxTransform PxTrans = rigidActor->getGlobalPose();
+            PxVec3 pxpos = PxTrans.p;
+            PxQuat pxq = PxTrans.q;
+            CHandle h_comp_collider;
+            h_comp_collider.fromVoidPtr(rigidActor->userData);
 
-			CEntity* e = h_comp_collider.getOwner();
-			TCompCollider* compCollider = h_comp_collider;
-			if (!h_comp_collider.isValid() || !h_comp_collider.getOwner().isValid()) {
-				continue;
-			}
-			TCompTransform * compTransform = e->get<TCompTransform>();
-			TCompRigidbody * compRigibody = e->get<TCompRigidbody>();
+            CEntity* e = h_comp_collider.getOwner();
+            TCompCollider* compCollider = h_comp_collider;
+            if (!h_comp_collider.isValid() || !h_comp_collider.getOwner().isValid()) {
+                continue;
+            }
+            TCompTransform * compTransform = e->get<TCompTransform>();
+            TCompRigidbody * compRigibody = e->get<TCompRigidbody>();
 
-			if (compRigibody)
-			{
-				if (compRigibody->is_controller)
-				{
-					PxExtendedVec3 pxpos_ext = compRigibody->controller->getFootPosition();
-					pxpos.x = pxpos_ext.x;
-					pxpos.y = pxpos_ext.y;
-					pxpos.z = pxpos_ext.z;
-				}
-				else
-				{
-					compTransform->setRotation(QUAT(pxq.x, pxq.y, pxq.z, pxq.w));
-				}
-
-				compTransform->setPosition(VEC3(pxpos.x, pxpos.y, pxpos.z));
-				compRigibody->lastFramePosition = VEC3(pxpos.x, pxpos.y, pxpos.z);
-			}
-		}
-	}
+            if (compRigibody)
+            {
+                if (!compRigibody->is_controller)
+                {
+                    compTransform->setRotation(QUAT(pxq.x, pxq.y, pxq.z, pxq.w));
+                    compTransform->setPosition(VEC3(pxpos.x, pxpos.y, pxpos.z));
+                    compRigibody->lastFramePosition = VEC3(pxpos.x, pxpos.y, pxpos.z);
+                }
+            }
+        }
+    }
 }
 
 void CModulePhysics::render()
@@ -132,67 +124,85 @@ void CModulePhysics::render()
 
 void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pairs, PxU32 count)
 {
-	for (PxU32 i = 0; i < count; ++i)
-	{
+    for (PxU32 i = 0; i < count; ++i)
+    {
 
-		CHandle h_trigger_comp_collider;
-		h_trigger_comp_collider.fromVoidPtr(pairs[i].triggerActor->userData);
+        CHandle h_trigger_comp_collider;
+        h_trigger_comp_collider.fromVoidPtr(pairs[i].triggerActor->userData);
 
-		CHandle h_other_comp_collider;
-		h_other_comp_collider.fromVoidPtr(pairs[i].otherActor->userData);
+        CHandle h_other_comp_collider;
+        h_other_comp_collider.fromVoidPtr(pairs[i].otherActor->userData);
 
-		if (!h_other_comp_collider.isValid() || !h_trigger_comp_collider.isValid() || !h_trigger_comp_collider.getOwner().isValid()) {
-			continue;
-		}
+        if (!h_other_comp_collider.isValid() || !h_trigger_comp_collider.isValid() || !h_trigger_comp_collider.getOwner().isValid()) {
+            continue;
+        }
 
-		CEntity* e_trigger = h_trigger_comp_collider.getOwner();
+        CEntity* e_trigger = h_trigger_comp_collider.getOwner();
 
-		if (pairs[i].flags & (PxTriggerPairFlag::eREMOVED_SHAPE_TRIGGER | PxTriggerPairFlag::eREMOVED_SHAPE_OTHER))
-		{
-			e_trigger->sendMsg(TMsgTriggerExit{ h_other_comp_collider.getOwner() });
-			TCompCollider * comp = (TCompCollider*)h_trigger_comp_collider;
-			TCompCollider * comp_enemy = (TCompCollider*)h_other_comp_collider;
-			continue;
-		}
+        if (pairs[i].flags & (PxTriggerPairFlag::eREMOVED_SHAPE_TRIGGER | PxTriggerPairFlag::eREMOVED_SHAPE_OTHER))
+        {
+            e_trigger->sendMsg(TMsgTriggerExit{ h_other_comp_collider.getOwner() });
+            TCompCollider * comp = (TCompCollider*)h_trigger_comp_collider;
+            TCompCollider * comp_enemy = (TCompCollider*)h_other_comp_collider;
+            continue;
+        }
 
-		//dbg("trigger touch\n");
-		if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_FOUND)
-		{
-			e_trigger->sendMsg(TMsgTriggerEnter{ h_other_comp_collider.getOwner() });
-			TCompCollider * comp = (TCompCollider*)h_trigger_comp_collider;
-			TCompCollider * comp_enemy = (TCompCollider*)h_other_comp_collider;
-		}
-		else if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_LOST)
-		{
-			e_trigger->sendMsg(TMsgTriggerExit{ h_other_comp_collider.getOwner() });
-			TCompCollider * comp = (TCompCollider*)h_trigger_comp_collider;
-			TCompCollider * comp_enemy = (TCompCollider*)h_other_comp_collider;
-		}
-	}
+        //dbg("trigger touch\n");
+        if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_FOUND)
+        {
+            e_trigger->sendMsg(TMsgTriggerEnter{ h_other_comp_collider.getOwner() });
+            TCompCollider * comp = (TCompCollider*)h_trigger_comp_collider;
+            TCompCollider * comp_enemy = (TCompCollider*)h_other_comp_collider;
+        }
+        else if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_LOST)
+        {
+            e_trigger->sendMsg(TMsgTriggerExit{ h_other_comp_collider.getOwner() });
+            TCompCollider * comp = (TCompCollider*)h_trigger_comp_collider;
+            TCompCollider * comp_enemy = (TCompCollider*)h_other_comp_collider;
+        }
+    }
 }
 
 void CModulePhysics::CustomSimulationEventCallback::onContact(const physx::PxContactPairHeader& pairHeader, const physx::PxContactPair* pairs, physx::PxU32 nbPairs)
 {
-	for (PxU32 i = 0; i < nbPairs; i++)
-	{
-		const PxContactPair& cp = pairs[i];
-		//dbg("contact found\n");
-	}
+    for (PxU32 i = 0; i < nbPairs; i++)
+    {
+        const PxContactPair& cp = pairs[i];
+        //dbg("contact found\n");
+    }
 }
 
 /* Auxiliar physics methods */
 
-bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distance, physx::PxRaycastHit & hit, physx::PxQueryFlag::Enum flag, physx::PxQueryFilterData filterdata)
+bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distance, physx::PxRaycastHit & hit, physx::PxQueryFlags flag, physx::PxQueryFilterData filterdata)
 {
-	PxVec3 px_origin = PxVec3(origin.x, origin.y, origin.z);
-	PxVec3 px_dir = PxVec3(dir.x, dir.y, dir.z); // [in] Normalized ray direction
-	PxReal px_distance = (PxReal)(distance); // [in] Raycast max distance
+    PxVec3 px_origin = PxVec3(origin.x, origin.y, origin.z);
+    PxVec3 px_dir = PxVec3(dir.x, dir.y, dir.z); // [in] Normalized ray direction
+    PxReal px_distance = (PxReal)(distance); // [in] Raycast max distance
 
-	PxRaycastBuffer px_hit; // [out] Raycast results
-	filterdata.flags = flag;
+    PxRaycastBuffer px_hit; // [out] Raycast results
+    filterdata.flags = flag;
 
-	bool status = gScene->raycast(px_origin, px_dir, px_distance, px_hit, PxHitFlags(PxHitFlag::eDEFAULT), filterdata); // Closest hit
-	hit = px_hit.block;
+    bool status = gScene->raycast(px_origin, px_dir, px_distance, px_hit, PxHitFlags(PxHitFlag::eDEFAULT), filterdata); // Closest hit
+    hit = px_hit.block;
 
-	return status;
+    return status;
+}
+
+/* Returns true if there was some hit with the sphere cast. Hit will contain all hits */
+bool CModulePhysics::Overlap(physx::PxGeometry& geometry, VEC3 pos, std::vector<physx::PxOverlapHit> & hit, physx::PxQueryFilterData filterdata)
+{
+    PxOverlapHit overlapHit[256];     //With 256 it is supossed to be enough
+    PxOverlapBuffer px_hit(overlapHit, 256);
+
+    physx::PxTransform transform(PxVec3(pos.x, pos.y, pos.z));
+    bool status = gScene->overlap(geometry, transform, px_hit, filterdata);
+
+    if (status) {
+        for (PxU32 i = 0; i < px_hit.nbTouches; i++) {
+            hit.push_back(px_hit.touches[i]);
+        }
+    }
+
+    return status;
 }

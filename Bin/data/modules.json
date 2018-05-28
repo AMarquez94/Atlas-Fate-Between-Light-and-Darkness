@@ -2,8 +2,8 @@
 	"update":
 	[
 		"input",
-		"physics",
 		"entities",
+		"physics",
 		"render",
 		"navmeshes",
 		"cameras",
@@ -16,13 +16,15 @@
 		"splash",
 		"map_intro",
 		"level_select",
-		"game_over"
+		"game_over",
+		"instancing"
 	],
 	"render":
 	[
 		"render",
+		"instancing",
+		"entities",		
 		"game_manager",
-		"entities",
 		"navmeshes",
 		"map_intro",
 		"main_menu",

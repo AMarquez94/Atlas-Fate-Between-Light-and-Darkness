@@ -29,6 +29,7 @@ void TCompCameraThirdPerson::load(const json& j, TEntityParseContext& ctx)
 	float yaw, pitch, roll;
 	target_transform->getYawPitchRoll(&yaw, &pitch, &roll);
 	_current_euler = VEC2(yaw, pitch);
+  _original_euler = _current_euler;
 
 	active = false;
 }
@@ -40,11 +41,12 @@ void TCompCameraThirdPerson::registerMsgs()
 	DECL_MSG(TCompCameraThirdPerson, TMsgCameraFullyActivated, onMsgCameraFullActive);
 	DECL_MSG(TCompCameraThirdPerson, TMsgSetCameraActive, onMsgCameraSetActive);
 	DECL_MSG(TCompCameraThirdPerson, TMsgScenePaused, onPause);
+  DECL_MSG(TCompCameraThirdPerson, TMsgCameraReset, onMsgCameraReset);
 }
 
 void TCompCameraThirdPerson::onMsgCameraActive(const TMsgCameraActivated & msg)
 {
-
+  _current_euler.y = _original_euler.y;
 }
 
 void TCompCameraThirdPerson::onMsgCameraFullActive(const TMsgCameraFullyActivated & msg)
@@ -66,6 +68,11 @@ void TCompCameraThirdPerson::onMsgCameraSetActive(const TMsgSetCameraActive & ms
 	Engine.getCameras().blendInCamera(CHandle(this).getOwner(), .2f, CModuleCameras::EPriority::GAMEPLAY);
 }
 
+void TCompCameraThirdPerson::onMsgCameraReset(const TMsgCameraReset & msg)
+{
+  _current_euler = _original_euler;
+}
+
 void TCompCameraThirdPerson::update(float dt)
 {
 	if (!paused) {
@@ -85,8 +92,8 @@ void TCompCameraThirdPerson::update(float dt)
 
 		// Verbose code
 		_current_euler.x -= horizontal_delta * _speed * dt;
-		_current_euler.y += vertical_delta * _speed * dt;
-		_current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
+		  _current_euler.y += vertical_delta * _speed * dt;
+		  _current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
 
 		// EulerAngles method based on mcv class
 		VEC3 vertical_offset = VEC3::Up * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)
@@ -111,6 +118,12 @@ float TCompCameraThirdPerson::CameraClipping(const VEC3	& origin, const VEC3 & d
 		return Clamp(hit.distance - 0.1f, 0.2f, _clipping_offset.z);
 
 	return _clipping_offset.z;
+}
+
+void TCompCameraThirdPerson::setCurrentEuler(float euler_x, float euler_y)
+{
+  if (euler_x != INFINITY) _current_euler.x = euler_x;
+  if (euler_y != INFINITY) _current_euler.y = euler_y;
 }
 
 void TCompCameraThirdPerson::onPause(const TMsgScenePaused& msg) {

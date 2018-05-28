@@ -3,6 +3,7 @@
 #include "components/comp_fsm.h"
 #include "components/comp_transform.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
+#include "comp_player_attack_cast.h"
 
 DECL_OBJ_MANAGER("player_input", TCompPlayerInput);
 
@@ -10,6 +11,7 @@ void TCompPlayerInput::debugInMenu() {
 }
 
 void TCompPlayerInput::load(const json& j, TEntityParseContext& ctx) {
+  float _timeOffsetToRemoveInhibitor = 0.2f;
 }
 
 void TCompPlayerInput::update(float dt)
@@ -41,7 +43,7 @@ void TCompPlayerInput::update(float dt)
 
 		if (EngineInput["btRun"].hasChanged()) {
 
-      boostMsg.variant.setName("boost_speed");
+			boostMsg.variant.setName("boost_speed");
 			crouchButton = false;
 			TMsgSetFSMVariable crouch;
 			crouch.variant.setName("crouch");
@@ -53,7 +55,7 @@ void TCompPlayerInput::update(float dt)
 		}
 
 		if (EngineInput["btSlow"].hasChanged()) {
-      boostMsg.variant.setName("slow_speed");
+			boostMsg.variant.setName("slow_speed");
 			boostMsg.variant.setFloat(EngineInput["btSlow"].value);
 			e->sendMsg(boostMsg);
 		}
@@ -75,11 +77,18 @@ void TCompPlayerInput::update(float dt)
 
 		if (EngineInput["btAttack"].getsPressed())
 		{
-			TMsgSetFSMVariable attack;
-			attack.variant.setName("attack");
-			attack.variant.setBool(true);
-			e->sendMsg(attack);
-			attackButtonJustPressed = true;
+			TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
+			if (c_my_player->canAttack) {
+				TMsgSetFSMVariable attack;
+				attack.variant.setName("attack");
+				attack.variant.setBool(true);
+				e->sendMsg(attack);
+				attackButtonJustPressed = true;
+			}
+			else {
+				/* TODO: Sonda */
+			}
+
 		}
 		else if (attackButtonJustPressed) {
 			TMsgSetFSMVariable attack;
@@ -111,21 +120,41 @@ void TCompPlayerInput::update(float dt)
 			action.variant.setBool(true);
 			e->sendMsg(action);
 		}
+		{
+			TCompPlayerAttackCast* player = e->get<TCompPlayerAttackCast>();
+			//GrabEnemy messages
+			if (EngineInput["btAction"].getsPressed() && player->closestEnemyToMerge().isValid()) {
+				_enemyStunned = true;
+				TMsgSetFSMVariable grabEnemy;
+				grabEnemy.variant.setName("grabEnemy");
+				grabEnemy.variant.setBool(true);
+				e->sendMsg(grabEnemy);
+
+
+			}
+			if (EngineInput["btAction"].getsReleased() || (_enemyStunned && !player->closestEnemyToMerge().isValid())) {
+				_enemyStunned = false;
+				TMsgSetFSMVariable grabEnemy;
+				grabEnemy.variant.setName("grabEnemy");
+				grabEnemy.variant.setBool(false);
+				e->sendMsg(grabEnemy);
+			}
+		}
 
 		if (EngineInput["btSecAction"].getsPressed())
 		{
 			/* Move this from here.. */
-			CEntity * c_my_entity = CHandle(this).getOwner();
-			TCompTempPlayerController * c_my_player = c_my_entity->get<TCompTempPlayerController>();
+			TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
 
-			if (c_my_player->isInhibited) {
-				TMsgSetFSMVariable keyPressed;
-				keyPressed.variant.setName("hitPoints");
+			if (c_my_player->isInhibited && c_my_player->canRemoveInhibitor && _time >= _timerRemoveInhibitor + _timeOffsetToRemoveInhibitor) {
+        _timerRemoveInhibitor = _time;
+        TMsgSetFSMVariable keyPressed;
+				keyPressed.variant.setName("inhibitorTryToRemove");
 				keyPressed.variant.setBool(true);
 				e->sendMsg(keyPressed);
 			}
 		}
-		
+
 		if (EngineInput["btDebugShadows"].getsPressed()) {
 			TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
 			c_my_player->dbgDisableStamina = !c_my_player->dbgDisableStamina;

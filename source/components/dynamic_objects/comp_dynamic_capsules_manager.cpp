@@ -6,6 +6,8 @@
 #include "components/comp_name.h"
 #include "components/physics/comp_collider.h"
 #include "entity/entity_parser.h"
+#include "components/physics/comp_collider.h"
+#include "physics/physics_collider.h"
 
 DECL_OBJ_MANAGER("dynamic_capsules_manager", TCompDynamicCapsulesManager);
 
@@ -20,11 +22,11 @@ void TCompDynamicCapsulesManager::load(const json & j, TEntityParseContext & ctx
 	end_point = loadVEC3(j["end_point"]);
 	numberOfCapsules = j.value("number", 0);
 	speed = j.value("speed", 0.f);
-  capsule_offset = loadVEC3(j["capsule_offset"]);
+    capsule_offset = loadVEC3(j["capsule_offset"]);
 
 	if (numberOfCapsules > 0) {
 
-		VEC3 offset = (end_point - start_point) / (float)(numberOfCapsules + 1);
+		VEC3 offset = (end_point - start_point) / (float)(numberOfCapsules);
 
 		/* Creates component group whose "head" is this entity */
 		CHandle h_group = getObjectManager<TCompGroup>()->createHandle();
@@ -46,22 +48,18 @@ void TCompDynamicCapsulesManager::load(const json & j, TEntityParseContext & ctx
 			capsuleName->setName(("Capsule_" + std::to_string(i)).c_str());
 
 			/* Set pos */
+            TCompCollider *capsuleCollider = eCapsule->get<TCompCollider>();
+            VEC3 temp_offset = PXVEC3_TO_VEC3(capsuleCollider->config->center);
 			TCompTransform *capsuleTransform = eCapsule->get<TCompTransform>();
-			newPos = start_point + capsule_offset + (float)i * offset;
-			capsuleTransform->setPosition(newPos);
+			newPos = start_point + (float)i * offset;
+			capsuleTransform->setPosition(newPos + temp_offset);
 			cGroup->add(eCapsule);
 
 			/* Set dynamic capsule component */
 			TCompDynamicCapsule *cDynamicCapsule = eCapsule->get<TCompDynamicCapsule>();
-			cDynamicCapsule->setStartPoint(start_point + capsule_offset);
-			cDynamicCapsule->setEndPoint(end_point + capsule_offset);
+			cDynamicCapsule->setStartPoint(start_point + temp_offset);
+			cDynamicCapsule->setEndPoint(end_point + temp_offset);
 			cDynamicCapsule->setSpeed(speed);
-      cDynamicCapsule->setOffset(capsule_offset);
-
-			/* Set rigidbody pos */
-			TCompCollider *capsuleCollider = eCapsule->get<TCompCollider>();
-			QUAT quat = capsuleTransform->getRotation();
-			capsuleCollider->setGlobalPose(newPos, quat, false);
 		}
 	}
 }

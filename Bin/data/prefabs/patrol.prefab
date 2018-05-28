@@ -11,6 +11,13 @@
 					[
 						"data/materials/characters/mtl_enemy_patrol.material"
 					]
+				},
+				{
+					"mesh": "data/skeletons/patrol/Mech_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_patrol_post.material"
+					]
 				}
 
 			],
@@ -20,6 +27,17 @@
 			},
 			"emission_controller": {
 				"initial": "0.0 1.0 1.0 1.0"
+			},
+			"rigidbody": {
+				"is_controller": true,
+				"is_gravity": true
+			},
+			"collider": {
+				"shape": "capsule",
+				"radius": 0.65,
+				"height": 1.0,
+				"gravity": true,
+				"group": "enemy"
 			},
 			"patrol_animator": true,
 			"tags": ["enemy", "patrol"],

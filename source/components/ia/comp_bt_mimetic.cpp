@@ -15,6 +15,7 @@
 #include "render/render_utils.h"
 #include "components/ia/comp_mimetic_animator.h"
 #include "render/render_objects.h"
+#include "components/object_controller/comp_noise_emitter.h"
 
 DECL_OBJ_MANAGER("ai_mimetic", TCompAIMimetic);
 
@@ -157,6 +158,8 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
   mimeticColor.colorSuspect = j.count("colorSuspect") ? loadVEC4(j["colorSuspect"]) : VEC4(1, 1, 0, 1);
   mimeticColor.colorAlert = j.count("colorAlert") ? loadVEC4(j["colorAlert"]) : VEC4(1, 0, 0, 1);
   mimeticColor.colorDead = j.count("colorDead") ? loadVEC4(j["colorDead"]) : VEC4(0, 0, 0, 0);
+
+	btType = BTType::MIMETIC;
 }
 
 void TCompAIMimetic::onMsgEntityCreated(const TMsgEntityCreated & msg)
@@ -171,6 +174,9 @@ void TCompAIMimetic::onMsgEntityCreated(const TMsgEntityCreated & msg)
 	if (type == EType::WALL) {
 		setGravityToFaceWall();
 	}
+
+  myHandle = CHandle(this);
+
 }
 
 void TCompAIMimetic::onMsgPlayerDead(const TMsgPlayerDead& msg) {
@@ -215,6 +221,63 @@ void TCompAIMimetic::onMsgNoiseListened(const TMsgNoiseMade & msg)
 		}
     noiseSourceChanged = noiseSource != msg.noiseOrigin;
     noiseSource = msg.noiseOrigin;
+	}
+}
+
+
+/* TODO: REVISAR MUY MUCHO */
+const std::string TCompAIMimetic::getStateForCheckpoint()
+{
+	if (current) {
+		std::string currName = current->getName();
+		if (isParentOfCurrent(current, "manageInactiveTypeWall")) {
+			return "resetVariables";
+		}
+		else if (isParentOfCurrent(current, "manageInactiveTypeFloor")) {
+			if (isParentOfCurrent(current, "manageObserveTypeFloor")) {
+				return "resetVariables";
+			}
+			else {
+				return "generateNavmeshGoToWpt";
+			}
+		}
+		else {
+			if (type == EType::FLOOR) {
+				if (_waypoints.size() > 0) {
+					return "closestWptTypeWpts";
+				}
+				else {
+					return "generateNavmeshInitialPosTypeFloor";
+				}
+			}
+			else if (type == EType::WALL) {
+				TCompTransform * tPos = get<TCompTransform>();
+				if (tPos->getPosition() == initialPos) {
+					return "manageObserveTypeWall";
+				}
+				else {
+					return "generateNavmeshInitialPosTypeWall";
+				}
+			}
+		}
+	}
+	else {
+		/* TODO: Gestionar tambien SLEEP */
+		if (type == EType::FLOOR) {
+			return "nextWpt";
+		}
+		else if (type == EType::WALL) {
+			TCompTransform * tPos = get<TCompTransform>();
+			if (tPos->getPosition() == initialPos) {
+				return "manageObserveTypeWall";
+			}
+			else {
+				return "generateNavmeshInitialPosTypeWall";
+			}
+		}
+		else {
+			return "nextWpt";
+		}
 	}
 }
 
@@ -487,17 +550,9 @@ BTNode::ERes TCompAIMimetic::actionResetVariablesChase(float dt)
 	hasHeardArtificialNoise = false;
 	hasHeardNaturalNoise = false;
 
-	TMsgMakeNoise msg;
-	msg.isArtificial = true;
-	msg.isNoise = true;
-	msg.isOnlyOnce = false;
-	msg.timeToRepeat = .4f;
-	msg.noiseRadius = 20.f;
-	TCompGroup * tGroup = get<TCompGroup>();
-	if (tGroup) {
-		CEntity * eNoiseEmitter = tGroup->getHandleByName("Noise Emitter");
-		eNoiseEmitter->sendMsg(msg);
-	}
+  /* Noise emitter */
+  TCompNoiseEmitter * noiseEmitter = get<TCompNoiseEmitter>();
+  noiseEmitter->makeNoise(20.f, .4f, true, false, true);
 
   TCompTransform *tpos = get<TCompTransform>();
   CEntity *player = getEntityByName(entityToChase);
@@ -540,17 +595,11 @@ BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
 	if (!isPlayerInFov() || distToPlayer >= maxChaseDistance + 0.5f) {
     TCompEmissionController *eController = get<TCompEmissionController>();
     eController->blend(mimeticColor.colorSuspect, 0.1f);
-		TMsgMakeNoise msg;
-		msg.isArtificial = true;
-		msg.isNoise = false;
-		msg.isOnlyOnce = false;
-		msg.timeToRepeat = 10.f;
-		msg.noiseRadius = 0.01f;
-		TCompGroup * tGroup = get<TCompGroup>();
-		if (tGroup) {
-			CEntity * eNoiseEmitter = tGroup->getHandleByName("Noise Emitter");
-			eNoiseEmitter->sendMsg(msg);
-		}
+
+    /* Cancel noise emitter */
+    TCompNoiseEmitter * noiseEmitter = get<TCompNoiseEmitter>();
+    noiseEmitter->makeNoise(-1.f, 10.f, false, false, true);
+
 		return BTNode::ERes::LEAVE;
 	}
   else if (distToPlayer <= 1.3f) {

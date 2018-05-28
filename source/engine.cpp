@@ -28,6 +28,8 @@ CEngine::CEngine()
 	, _module_logic("logic")
 	, _module_game_console("console")
 	, _module_gui("gui")
+    , _module_scene_manager("scene_manager")
+    , _module_instancing("instancing")
 {}
 
 bool CEngine::start() {
@@ -38,6 +40,7 @@ bool CEngine::start() {
 	static CModuleGameOver module_game_over("game_over");
 	static CModuleMapIntro module_map_intro("map_intro");
 	static CModuleLevelSelect module_level_select("level_select");
+    //static CModuleTestInstancing module_test_instancing("test_instancing");
 
 	_modules.registerSystemModule(&_module_render);
 	_modules.registerSystemModule(&_module_entities);
@@ -51,6 +54,8 @@ bool CEngine::start() {
 	_modules.registerSystemModule(&_module_game_console);
 	_modules.registerSystemModule(&_module_gui);
 	_modules.registerSystemModule(&_module_logic);          //Always last to start the ongamestarted event from here
+    _modules.registerSystemModule(&_module_scene_manager);
+    _modules.registerSystemModule(&_module_instancing);
 
 	_modules.registerGameModule(&module_splash);
 	_modules.registerGameModule(&module_game_manager);
@@ -58,6 +63,7 @@ bool CEngine::start() {
 	_modules.registerGameModule(&module_game_over);
 	_modules.registerGameModule(&module_map_intro);
 	_modules.registerGameModule(&module_level_select);
+    //_modules.registerGameModule(&module_test_instancing);
 
 	_modules.loadModules("data/modules.json");
 	_modules.loadGamestates("data/gamestates.json");

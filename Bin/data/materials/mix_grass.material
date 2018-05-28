@@ -1,0 +1,11 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/mix/Pebbles_01_COLOR.dds",
+    "normal": "data/textures/mix/Pebbles_01_NRM.dds",
+    "metallic": "data/textures/pbr/metallic.dds",
+    "roughness": "data/textures/pbr/roughness.dds"
+  }
+}

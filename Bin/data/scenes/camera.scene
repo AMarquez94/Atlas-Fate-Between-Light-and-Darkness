@@ -20,6 +20,9 @@
 				"max_steps": 4,
 				"rt_name": "Bloom"
 			},
+			"render_outlines" : {
+        "enabled" : true
+      },
 			"culling": true
 		}
 	}, {
@@ -52,8 +55,10 @@
 				"amount": 0.6,
 				"lut": "data/textures/lut/RGBTable16x1.dds"
 			},
-			"tags": ["main_camera"],
-			"culling": true
+						"render_outlines" : {
+        "enabled" : true
+      },
+			"tags": ["main_camera"]
 		}
 	}, {
 		"entity": {
@@ -85,8 +90,7 @@
 				"amount": 0.6,
 				"lut": "data/textures/lut/RGBTable16x1.dds"
 			},
-			"tags": ["main_camera"],
-			"culling": true
+			"tags": ["main_camera"]
 		}
 	}, {
 		"entity": {
@@ -120,8 +124,7 @@
 				"amount": 0.6,
 				"lut": "data/textures/lut/lut1.dds"
 			},
-			"tags": ["main_camera"],
-			"culling": true
+			"tags": ["main_camera"]
 		}
 	}, {
 		"entity": {
@@ -155,8 +158,7 @@
 				"z_near": 0.01,
 				"z_far": 1000
 			},
-			"tags": ["main_camera"],
-			"culling": true
+			"tags": ["main_camera"]
 		}
 	}, {
 		"entity": {
@@ -184,8 +186,7 @@
 				"amount": 0.6,
 				"lut": "data/textures/lut/lut1.dds"
 			},
-			"tags": ["aux_camera"],
-			"culling": true
+			"tags": ["aux_camera"]
 		}
 	}, {
 		"entity": {
@@ -207,8 +208,7 @@
 				"enabled": true,
 				"max_steps": 4,
 				"rt_name": "Bloom"
-			},
-			"culling": true
+			}
 		}
 	}, {
 		"entity": {

@@ -158,5 +158,7 @@ public:
 
 	bool isStunned() { return current && current->getName().compare("stunned") == 0; }
 
+	const std::string getStateForCheckpoint();
+
 	static void registerMsgs();
 };

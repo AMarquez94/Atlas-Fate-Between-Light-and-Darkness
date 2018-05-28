@@ -32,7 +32,9 @@ void TCompCameraFlyover::update(float dt)
         if (paused) {
             TMsgScenePaused msg;
             msg.isPaused = true;
-            EngineEntities.broadcastMsg(msg);
+            //EngineEntities.broadcastMsg(msg);
+            CEntity * player = getEntityByName("The Player");
+            player->sendMsg(msg);
             Engine.getCameras().blendInCamera(CHandle(this).getOwner(), 1.f, CModuleCameras::EPriority::TEMPORARY);
 
         }
@@ -80,7 +82,7 @@ void TCompCameraFlyover::update(float dt)
         c_transform->lookAt(newPos, newPos + newFront);
 
         if (btDebugGetPos.getsPressed()) {
-            dbg("Camera pos - (%f,%f,%f)\n", newPos.x, newPos.y, newPos.z);
+            dbg("Camera pos - \"%f %f %f)\"\n", newPos.x, newPos.y, newPos.z);
         }
     }
 }

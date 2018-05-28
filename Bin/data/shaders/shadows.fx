@@ -8,16 +8,27 @@ struct VS_OUTPUT
 
 // ----------------------------------------------
 VS_OUTPUT VS(
-  float4 iPos : POSITION,
-  float3 iN   : NORMAL,
-  float2 iUV  : TEXCOORD0
+  float4 iPos : POSITION
   )
 {
     VS_OUTPUT output = (VS_OUTPUT)0;
     float4 world_pos = mul( iPos, obj_world );
-    output.Pos = mul(world_pos, camera_view );
-    output.Pos = mul(output.Pos, camera_proj );
+    output.Pos = mul(world_pos, camera_view_proj);
     return output;
+}
+
+// ----------------------------------------------
+VS_OUTPUT VS_Instanced(
+    in float4 iPos : POSITION
+  , in TInstanceWorldData instance_data     // Stream 1
+)
+{
+  float4x4 instance_world = getWorldOfInstance(instance_data);
+
+  VS_OUTPUT output = (VS_OUTPUT)0;
+  float4 world_pos = mul(iPos, instance_world);
+  output.Pos = mul(world_pos, camera_view_proj);
+  return output;
 }
 
 // -----------------------------------------------------
@@ -36,7 +47,6 @@ VS_OUTPUT VS_Skin(
   // Skinned pos
   float4 world_pos = mul(iPos, skin_mtx);
   VS_OUTPUT output = (VS_OUTPUT)0;
-  output.Pos = mul(world_pos, camera_view );
-  output.Pos = mul(output.Pos, camera_proj );
+  output.Pos = mul(world_pos, camera_view_proj);
   return output;
 }

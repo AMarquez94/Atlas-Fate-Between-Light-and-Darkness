@@ -114,6 +114,10 @@ struct TMsgCameraFullyActivated {
 	DECL_MSG_ID();
 };
 
+struct TMsgCameraReset {
+  DECL_MSG_ID();
+};
+
 struct TMsgTimeOut {
 	DECL_MSG_ID();
 };
@@ -149,18 +153,19 @@ struct TMsgNoiseMade {
 	DECL_MSG_ID();
 };
 
-struct TMsgMakeNoise {
-	float noiseRadius;
-	bool isOnlyOnce;
-	float timeToRepeat;
-	bool isNoise;
-	bool isArtificial;
-	DECL_MSG_ID();
-};
-
 struct TMsgShadowChange {
 	bool is_shadowed;
 	DECL_MSG_ID();
+};
+
+struct TMsgSceneLoaded {
+    std::string scene_name;
+    DECL_MSG_ID();
+};
+
+struct TMsgSetVisible {
+    bool visible;
+    DECL_MSG_ID();
 };
 
 #endif

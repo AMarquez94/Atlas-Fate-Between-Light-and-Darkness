@@ -2,7 +2,7 @@
 		"entity": {
 			"name": "The Player",
 			"transform": {
-				"pos": "-6 -8 -35"
+				"pos": "-6 0 -18"
 			},
 			"render": [{
 					"mesh": "data/skeletons/player/body.mesh",
@@ -108,6 +108,9 @@
 				"is_gravity": true
 			},
 			"shadow_controller": {},
+			"player_attack_cast": {
+				"radius": 2
+			},
 			"fsm": {
 				"file": "data/fsm/player.fsm"
 			},
@@ -132,29 +135,13 @@
 				"initial" : "1.0 1.0 1.0 1.0",
 				"intensity" : 1.25
 			},
+			"noise_emitter": {
+				"radius": -1
+			},
 			"tags":
 			[
 				"player"
 			]
-		}
-	}, {
-		"entity": {
-			"name": "Noise Emitter",
-			"hierarchy": {
-				"parent": "The Player"
-			},
-			"transform": {},
-			"collider": {
-				"shape": "sphere",
-				"radius": 0.01,
-				"is_trigger": true,
-				"group": "enemy"
-			},
-			"rigidbody": {
-				"is_controller": false,
-				"is_gravity": false
-			},
-			"noise_emitter": {}
 		}
 	}
 ]

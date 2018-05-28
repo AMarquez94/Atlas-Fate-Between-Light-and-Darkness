@@ -13,6 +13,7 @@ private:
 	float _speed;
 	VEC2 _clamp_angle;
 	VEC2 _current_euler;
+  VEC2 _original_euler;
 	VEC3 _clipping_offset;
 
 	bool active;
@@ -28,6 +29,7 @@ private:
 	void onMsgCameraFullActive(const TMsgCameraFullyActivated &msg);
 	void onMsgCameraDeprecated(const TMsgCameraDeprecated &msg);
 	void onMsgCameraSetActive(const TMsgSetCameraActive &msg);
+  void onMsgCameraReset(const TMsgCameraReset &msg);
 
 
 public:
@@ -37,6 +39,7 @@ public:
 
   const VEC2 getCurrentEuler() { return _current_euler; }
   float CameraClipping(const VEC3 & origin, const VEC3 & dir);
+  void setCurrentEuler(float euler_x = INFINITY, float euler_y = INFINITY);
 
   static void registerMsgs();
 };

@@ -5,6 +5,7 @@
 #include <SLB/SLB.hpp>
 #include "modules/system/module_game_console.h"
 #include "input/button.h"
+#include "components/player_controller/comp_player_tempcontroller.h"
 
 class CModuleLogic : public IModule
 {
@@ -69,6 +70,7 @@ private:
 /* Auxiliar functions */
 CModuleGameConsole* getConsole();
 CModuleLogic* getLogic();
+TCompTempPlayerController* getPlayerController();
 void execDelayedScript(const std::string& script, float delay);
 void pauseEnemies(bool pause);
 void pauseGame(bool pause);
@@ -77,6 +79,8 @@ void blendInCamera(const std::string& cameraName, float blendInTime);
 void blendOutCamera(const std::string& cameraName, float blendOutTime);
 void spawn(const std::string & name, const VEC3 & pos);
 void bind(const std::string& key, const std::string& script);
+void loadscene(const std::string &level);
+void loadCheckpoint();
 
 // Extra cvar commands
 void cg_drawfps(bool value);

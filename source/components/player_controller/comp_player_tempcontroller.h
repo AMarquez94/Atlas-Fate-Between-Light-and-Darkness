@@ -125,7 +125,9 @@ public:
 	bool isMerged;
 	bool isGrounded;
 	bool isInhibited;
-	unsigned int initialPoints;
+  bool canAttack;
+  bool canRemoveInhibitor;
+	unsigned int initialTimesToPressInhibitorRemoveKey;
 	unsigned int hitPoints;
 
 	void debugInMenu();
@@ -142,12 +144,14 @@ public:
 	void resetState(float dt);
 	void exitMergeState(float dt);
 	void removingInhibitorState(float dt);
+  void resetRemoveInhibitor();
 
 	/* Player condition tests */
 	const bool concaveTest(void);
 	const bool convexTest(void);
 	const bool onMergeTest(float dt);
 	const bool groundTest(float dt);
+  const bool canAttackTest(float dt);
 
 	/* Auxiliar functions */
 	void updateStamina(float dt);
@@ -158,8 +162,6 @@ public:
 	void upButtonReselased();
 
 	VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
-	CHandle closeEnemy(const std::string & state = "undefined");
-	CHandle closestEnemyToStun();
 
 	static void registerMsgs();
 };

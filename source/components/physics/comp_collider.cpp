@@ -152,5 +152,4 @@ void TCompCollider::setGlobalPose(VEC3 newPos, VEC4 newRotation, bool autowake)
 {
   physx::PxTransform transform(physx::PxVec3(newPos.x, newPos.y, newPos.z), physx::PxQuat(newRotation.x, newRotation.y, newRotation.z, newRotation.w));
   config->actor->setGlobalPose(transform, autowake);
-
 }
