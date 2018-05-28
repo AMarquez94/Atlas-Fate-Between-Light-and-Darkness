@@ -657,4 +657,28 @@ namespace FSM
 	  dbg("FSM grab object ended \n \n");
 
   }
+
+  bool noClip::load(const json& jData) {
+
+	  _animationName = jData["animation"];
+	  _speed = jData.value("speed", 2.f);
+	  _size = jData.value("size", 1.f);
+	  _radius = jData.value("radius", 0.3f);
+	  _noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+	  if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+	  return true;
+  }
+
+  void noClip::onStart(CContext& ctx) const {
+
+	  CEntity* e = ctx.getOwner();
+	  e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::movePlayerNoClipMode,_speed, _radius, _size, nullptr, _noise });
+	  dbg("NoClip mode activaded \n");
+
+  }
+
+  void noClip::onFinish(CContext& ctx) const {
+	  dbg("NoClip mode deactivaded \n \n");
+
+  }
 }

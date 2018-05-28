@@ -92,3 +92,7 @@ end
 function animationsToggle()
 	SLB.animationsToggle()
 end
+
+function noClipToggle()
+	SLB.noClipToggle()
+end

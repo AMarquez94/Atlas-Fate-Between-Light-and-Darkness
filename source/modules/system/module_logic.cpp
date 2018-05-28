@@ -9,14 +9,18 @@
 #include "components\ia\comp_mimetic_animator.h"
 #include "components\comp_group.h"
 #include "components\postfx\comp_render_ao.h"
+#include "components\physics\comp_rigidbody.h"
+#include "components\comp_fsm.h"
 #include <experimental/filesystem>
 #include "modules/game/module_game_manager.h"
 #include <iostream>
+#include "physics\physics_collider.h"
 
 #include "components/lighting/comp_light_dir.h"
 #include "components/lighting/comp_light_spot.h"
 #include "components/lighting/comp_light_point.h"
 
+using namespace physx;
 
 bool CModuleLogic::start() {
 	BootLuaSLB();
@@ -132,6 +136,7 @@ void CModuleLogic::publishClasses() {
 	m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
 	m->set("deleteEnemies", SLB::FuncCall::create(&deleteEnemies));
 	m->set("animationsToggle", SLB::FuncCall::create(&animationsToggle));
+	m->set("noClipToggle", SLB::FuncCall::create(&noClipToggle));
 
 	//utilities
 	m->set("getConsole", SLB::FuncCall::create(&getConsole));
@@ -391,10 +396,35 @@ void animationsToggle() {
 	EngineEntities.setAnimationsEnabled(!EngineEntities.getAnimationsEnabled());
 }
 
+void noClipToggle() {
+	CHandle player_h = getEntityByName("The Player");
+	
+
+	CEntity* player = player_h;
+	TCompCollider* collider = player->get<TCompCollider>();
+	TCompFSM* fsm = player->get<TCompFSM>();
+	TMsgSetFSMVariable noClipMode;
+	noClipMode.variant.setName("noClipMode");
+
+	if (fsm->getStateName() == "noClip") {
+		noClipMode.variant.setBool(false);
+		EnginePhysics.getPhysxScene()->addActor(*collider->config->actor);
+		collider->config->actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, false);
+
+	}
+	else {
+		noClipMode.variant.setBool(true);
+		EnginePhysics.getPhysxScene()->removeActor(*collider->config->actor);
+		collider->config->actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
+
+	}
+
+	player->sendMsg(noClipMode);
+}
+
 
 void deleteEnemies() {
 	//To-Do
-
 
 }
 
