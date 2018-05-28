@@ -332,7 +332,6 @@ void TCompTempPlayerController::idleState(float dt) {
 
 /* Main thirdperson player motion movement handled here */
 void TCompTempPlayerController::walkState(float dt) {
-
 	// Player movement and rotation related method.
 	float yaw, pitch, roll;
 	CEntity *player_camera = target_camera;
@@ -373,6 +372,52 @@ void TCompTempPlayerController::walkState(float dt) {
 	Quaternion quat = Quaternion::Lerp(my_rotation, new_rotation, rotationSpeed * dt);
 	c_my_transform->setRotation(quat);
 	c_my_transform->setPosition(c_my_transform->getPosition() + dir * player_accel);
+}
+
+void TCompTempPlayerController::movePlayerNoClipMode(float dt) {
+	float _speed = 10.f, _sensitivityX = 0.04f, _sensitivityY = 0.02f, _maxPitch = (float)M_PI_2 - 1e-4f;
+
+	CEntity* my_camera = getEntityByName("TPCamera");
+	TCompTransform* c_transform = get<TCompTransform>();
+	//TCompTransform* c_transform = my_camera->get<TCompTransform>();
+	VEC3 pos = c_transform->getPosition();
+	VEC3 front = c_transform->getFront();
+	VEC3 left = c_transform->getLeft();
+	VEC3 up = VEC3::UnitY;
+
+	float deltaSpeed = _speed * dt;
+	if (EngineInput["btRun"].isPressed())
+		deltaSpeed *= 3.f;
+	VEC3 off;
+	off += front * EngineInput["btUp"].value * deltaSpeed;
+	off += -front * EngineInput["btDown"].value * deltaSpeed;
+	off += left * EngineInput["btLeft"].value * deltaSpeed;
+	off += -left * EngineInput["btRight"].value * deltaSpeed;
+	off += up * EngineInput["up"].value * deltaSpeed;
+	off += -up * EngineInput["down"].value * deltaSpeed;
+
+	// rotation
+	float yaw, pitch;
+	getYawPitchFromVector(front, &yaw, &pitch);
+
+	auto& mouse = EngineInput.mouse();
+	/*if (mouse.button(Input::MOUSE_RIGHT).isPressed())
+	{*/
+		VEC2 mOff = mouse._position_delta;
+		yaw += -mOff.x * _sensitivityX;
+		pitch += -mOff.y * _sensitivityY;
+		pitch = Clamp(pitch, -_maxPitch, _maxPitch);
+	//}
+
+	// final values
+	VEC3 newPos = pos + off;
+	VEC3 newFront = getVectorFromYawPitch(yaw, pitch);
+
+	c_transform->lookAt(newPos, newPos + newFront);
+
+	if (EngineInput["btAction"].getsPressed()) {
+		dbg("Camera pos - (%f,%f,%f)\n", newPos.x, newPos.y, newPos.z);
+	}
 }
 
 /* Player motion movement when is shadow merged, tests included */

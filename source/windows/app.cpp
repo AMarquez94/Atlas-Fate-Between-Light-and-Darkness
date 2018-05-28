@@ -207,7 +207,7 @@ void CApp::mainLoop() {
 //--------------------------------------------------------------------------------------
 bool CApp::readConfig() {
 	// ...
-	xres = 1280;
+	xres = 1080;
 	yres = 720;
 
 	time_since_last_render.reset();

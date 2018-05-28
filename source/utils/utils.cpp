@@ -150,3 +150,9 @@ QUAT ToQuat(physx::PxQuat quaternion) {
 	QUAT result = QUAT(quaternion.x, quaternion.y, quaternion.z, quaternion.w);
 	return result;
 }
+
+void getFileNameFromPath(std::string& nameWithPath) {
+	size_t startPos = nameWithPath.find_last_of("/\\") + 1;
+	size_t endPos = nameWithPath.find_last_of(".");
+	nameWithPath = nameWithPath.substr(startPos, endPos - startPos);
+}

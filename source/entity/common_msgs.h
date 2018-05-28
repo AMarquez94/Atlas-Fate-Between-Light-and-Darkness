@@ -141,6 +141,10 @@ struct TMsgSetVisible {
 	DECL_MSG_ID();
 };
 
+struct TMsgAIPaused {
+	DECL_MSG_ID();
+};
+
 struct TMsgConsoleOn {
 	bool isConsoleOn;
 	DECL_MSG_ID();

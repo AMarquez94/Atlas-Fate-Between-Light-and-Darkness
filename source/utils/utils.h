@@ -40,5 +40,7 @@ VEC3 ToVec3(physx::PxVec3);
 physx::PxQuat ToPxQuat(QUAT);
 QUAT ToQuat(physx::PxQuat);
 
+void getFileNameFromPath(std::string&);
+
 #endif
 

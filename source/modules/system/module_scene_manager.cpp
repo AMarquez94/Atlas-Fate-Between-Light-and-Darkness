@@ -80,9 +80,13 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
         Scene * current_scene = it->second;
         Engine.getNavmeshes().buildNavmesh(current_scene->navmesh);
         for (auto& scene_name : current_scene->groups_subscenes) {
-            dbg("Autoloading scene %s\n", scene_name.c_str());
+			std::string name2 = scene_name;
+			getFileNameFromPath(name2);
+            dbg("Autoloading scene %s\n", name2.c_str());
             TEntityParseContext ctx;
-            parseScene(scene_name, ctx);
+			if (parseScene(scene_name, ctx)) {
+				EngineLogic.execEvent(CModuleLogic::Events::SCENE_START, name2);
+			}
         }
 
         // Renew the active scene
@@ -104,6 +108,8 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
             CHandle h_e(e);
             h_e.sendMsg(msg);
         });
+
+		EngineLogic.execEvent(CModuleLogic::Events::SCENE_START, "start_scenes_loaded");
 
         return true;
     }

@@ -3,18 +3,24 @@
 #include "components/comp_tags.h"
 #include "components\lighting\comp_light_spot.h"
 #include "components\ia\comp_bt_patrol.h"
+#include "components\ia\comp_bt_mimetic.h"
 #include "components\ia\comp_bt_test.h"
 #include "components\ia\comp_patrol_animator.h"
 #include "components\ia\comp_mimetic_animator.h"
 #include "components\comp_group.h"
+#include "components\postfx\comp_render_ao.h"
+#include "components\physics\comp_rigidbody.h"
+#include "components\comp_fsm.h"
 #include <experimental/filesystem>
 #include "modules/game/module_game_manager.h"
 #include <iostream>
+#include "physics\physics_collider.h"
 
 #include "components/lighting/comp_light_dir.h"
 #include "components/lighting/comp_light_spot.h"
 #include "components/lighting/comp_light_point.h"
 
+using namespace physx;
 
 bool CModuleLogic::start() {
 	BootLuaSLB();
@@ -118,6 +124,10 @@ void CModuleLogic::publishClasses() {
 	m->set("shadowsToggle", SLB::FuncCall::create(&shadowsToggle));
 	m->set("cg_drawlights", SLB::FuncCall::create(&cg_drawlights));
 
+	//postfx hacks
+	m->set("postFXToggle", SLB::FuncCall::create(&postFXToggle));
+
+
 	//camera hacks
 	m->set("blendInCamera", SLB::FuncCall::create(&blendInCamera));
 	m->set("blendOutCamera", SLB::FuncCall::create(&blendOutCamera));
@@ -125,6 +135,8 @@ void CModuleLogic::publishClasses() {
 	//system hacks
 	m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
 	m->set("deleteEnemies", SLB::FuncCall::create(&deleteEnemies));
+	m->set("animationsToggle", SLB::FuncCall::create(&animationsToggle));
+	m->set("noClipToggle", SLB::FuncCall::create(&noClipToggle));
 
 	//utilities
 	m->set("getConsole", SLB::FuncCall::create(&getConsole));
@@ -198,6 +210,38 @@ bool CModuleLogic::execEvent(Events event, const std::string & params, float del
 		break;
 	case Events::GAME_END:
 
+		break;
+	case Events::TRIGGER_ENTER:
+		if (delay > 0) {
+			return execScriptDelayed("onTriggerEnter_" + params + "()", delay);
+		}
+		else {
+			return execScript("onTriggerEnter_" + params + "()").success;
+		}
+		break;
+	case Events::TRIGGER_EXIT:
+		if (delay > 0) {
+			return execScriptDelayed("onTriggerExit_" + params + "()", delay);
+		}
+		else {
+			return execScript("onTriggerExit_" + params + "()").success;
+		}
+		break;
+	case Events::SCENE_START:
+		if (delay > 0) {
+			return execScriptDelayed("onSceneStart_" + params + "()", delay);
+		}
+		else {
+			return execScript("onSceneStart_" + params + "()").success;
+		}
+		break;
+	case Events::SCENE_END:
+		if (delay > 0) {
+			return execScriptDelayed("onSceneEnd_" + params + "()", delay);
+		}
+		else {
+			return execScript("onSceneEnd_" + params + "()").success;
+		}
 		break;
 	default:
 
@@ -330,17 +374,57 @@ void shadowsToggle() {
 	EngineRender.setGenerateShadows(!EngineRender.getGenerateShadows());
 }
 
+void postFXToggle() {
+	//Deactivating AO
+	EngineRender.setGeneratePostFX(!EngineRender.getGeneratePostFX());
+
+	//Deactivating rest of postFX
+	getObjectManager<TCompRenderAO>()->forEach([&](TCompRenderAO* c) {
+		c->setState(!c->getState());
+	});
+}
+
 void pauseEnemies() {
 	std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
-	TMsgScenePaused msg;
+	TMsgAIPaused msg;
 	for (int i = 0; i < enemies.size(); i++) {
 		enemies[i].sendMsg(msg);
 	}
 }
 
+void animationsToggle() {
+	EngineEntities.setAnimationsEnabled(!EngineEntities.getAnimationsEnabled());
+}
+
+void noClipToggle() {
+	CHandle player_h = getEntityByName("The Player");
+	
+
+	CEntity* player = player_h;
+	TCompCollider* collider = player->get<TCompCollider>();
+	TCompFSM* fsm = player->get<TCompFSM>();
+	TMsgSetFSMVariable noClipMode;
+	noClipMode.variant.setName("noClipMode");
+
+	if (fsm->getStateName() == "noClip") {
+		noClipMode.variant.setBool(false);
+		EnginePhysics.getPhysxScene()->addActor(*collider->config->actor);
+		collider->config->actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, false);
+
+	}
+	else {
+		noClipMode.variant.setBool(true);
+		EnginePhysics.getPhysxScene()->removeActor(*collider->config->actor);
+		collider->config->actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true);
+
+	}
+
+	player->sendMsg(noClipMode);
+}
+
+
 void deleteEnemies() {
 	//To-Do
-
 
 }
 
@@ -350,6 +434,7 @@ void movePlayer(const float x, const float y, const float z) {
 	msg.pos = VEC3(x, y, z);
 	h.sendMsg(msg);
 }
+
 void bind(const std::string& key, const std::string& script) {
 
 	int id = EngineInput.getButtonDefinition(key)->id;

@@ -252,7 +252,7 @@ void TCompIAController::loadTree(const json & j)
 }
 
 void TCompIAController::loadParameters(const json& j) {
-	
+
 	std::string argCondName, argActName, aux;
 	CVariant::EType type;
 
@@ -362,7 +362,7 @@ void TCompIAController::loadParameters(const json& j) {
 	}
 }
 
-void TCompIAController::loadParameterVariables(const json & j,const std::string& type,const std::string& name)
+void TCompIAController::loadParameterVariables(const json & j, const std::string& type, const std::string& name)
 {
 	std::string variantName, variantType, variantOp;
 	for (auto ite = j.begin(); ite != j.end(); ++ite) {
@@ -413,7 +413,7 @@ void TCompIAController::loadParameterVariables(const json & j,const std::string&
 }
 
 void TCompIAController::update(float dt) {
-	if (!paused) {
+	if (!paused && !pausedAI) {
 		if (current == nullptr) {
 			root->update(dt, this);
 		}
@@ -430,7 +430,14 @@ void TCompIAController::printTree()
 
 void TCompIAController::onMsgScenePaused(const TMsgScenePaused & msg)
 {
-	paused = !paused;
+	paused = msg.isPaused;
+
+}
+
+void TCompIAController::onMsgAIPaused(const TMsgAIPaused & msg)
+{
+	pausedAI = !pausedAI;
+
 }
 
 bool TCompIAController::isParentOfCurrent(BTNode * son, const std::string& possibleParent)

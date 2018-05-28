@@ -243,6 +243,7 @@ void TCompAIPatrol::onMsgPlayerInvisible(const TMsgPlayerInvisible& msg) {
 void TCompAIPatrol::registerMsgs()
 {
 	DECL_MSG(TCompAIPatrol, TMsgScenePaused, onMsgScenePaused);
+	DECL_MSG(TCompAIPatrol, TMsgAIPaused, onMsgAIPaused);
 	DECL_MSG(TCompAIPatrol, TMsgEntityCreated, onMsgEntityCreated);
 	DECL_MSG(TCompAIPatrol, TMsgPlayerDead, onMsgPlayerDead);
 	DECL_MSG(TCompAIPatrol, TMsgEnemyStunned, onMsgPatrolStunned);

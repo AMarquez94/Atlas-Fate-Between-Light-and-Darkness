@@ -73,6 +73,10 @@ function shadowsToggle()
 	SLB.shadowsToggle()
 end
 
+function postFXToggle()
+	SLB.postFXToggle()
+end
+
 function loadscene(level)
 	SLB.loadscene(level)
 end
@@ -83,4 +87,12 @@ end
 
 function spawn()
 	SLB.spawn()
+end
+
+function animationsToggle()
+	SLB.animationsToggle()
+end
+
+function noClipToggle()
+	SLB.noClipToggle()
 end

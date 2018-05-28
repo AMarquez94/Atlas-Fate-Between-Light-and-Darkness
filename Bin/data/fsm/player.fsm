@@ -300,6 +300,13 @@
       "animation": "idleAction",
       "speed": 0,
       "size": 0.25
+    },
+    {
+      "name": "noClip",
+      "type": "noClip",
+      "animation": "idleAction",
+      "speed": 0,
+      "size": 0.25
     }
   ],
   "transitions": [
@@ -978,6 +985,26 @@
         "type": "bool",
         "value": false
       }
+    },
+    {
+      "type": "VariableTransition",
+      "source": "idle",
+      "target": "noClip",
+      "variable": {
+        "name": "noClipMode",
+        "type": "bool",
+        "value": true
+      }
+    },
+    {
+      "type": "VariableTransition",
+      "source": "noClip",
+      "target": "idle",
+      "variable": {
+        "name": "noClipMode",
+        "type": "bool",
+        "value": false
+      }
     }
   ],
   "variables": [
@@ -1053,6 +1080,11 @@
     },
     {
       "name": "grabObject",
+      "type": "bool",
+      "value": false
+    },
+    {
+      "name": "noClipMode",
       "type": "bool",
       "value": false
     }

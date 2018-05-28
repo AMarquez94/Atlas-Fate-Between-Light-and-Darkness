@@ -173,6 +173,7 @@ public:
 	void resetMerge();
 	bool isDead();
 	void upButtonReselased();
+	void movePlayerNoClipMode(float dt);
 
 	VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
 

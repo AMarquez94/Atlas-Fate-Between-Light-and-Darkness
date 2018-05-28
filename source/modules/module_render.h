@@ -12,7 +12,7 @@ class CModuleRender : public IModule
 	CDeferredRenderer deferred;
 	CRenderToTexture* rt_main = nullptr;
 	//console variables
-	bool _debugMode = true, _generateShadows = true;
+	bool _debugMode = true, _generateShadows = true, _generatePostFX = true;
 
 public:
 
@@ -35,6 +35,8 @@ public:
     void setDebugMode(bool val) { _debugMode = val; }
 	bool const getGenerateShadows() { return _generateShadows; }
 	void setGenerateShadows(bool val) { _generateShadows = val; }
+	bool const getGeneratePostFX() { return _generatePostFX; }
+	void setGeneratePostFX(bool val) { _generatePostFX = val; }
 
 	LRESULT OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) override;
 
