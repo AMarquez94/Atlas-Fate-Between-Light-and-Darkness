@@ -5,6 +5,7 @@
 		"vertex_type": "PosClr",
 		"ps_file": "data/shaders/solid.fx",
 		"ps_entry_point": "PS",
+				"z": "test_but_no_write",
 		"rs_config": "wireframe"
 	},
 	"solid_objs": {

@@ -45,6 +45,7 @@ void TCompRender::onSetVisible(const TMsgSetVisible& msg) {
 
 void TCompRender::registerMsgs() {
     DECL_MSG(TCompRender, TMsgDefineLocalAABB, onDefineLocalAABB);
+    DECL_MSG(TCompRender, TMsgSetVisible, onSetVisible);
 }
 
 void TCompRender::debugInMenu() {
@@ -67,8 +68,11 @@ void TCompRender::debugInMenu() {
     }
 
     // Notify the rendermanager that we should regenerate our contents
-    if (changed)
-        refreshMeshesInRenderManager(true);
+    if (changed) {
+        TMsgSetVisible msg = { false };
+        CHandle(this).getOwner().sendMsg(msg);
+    }
+        //refreshMeshesInRenderManager(true);
 }
 
 void TCompRender::renderDebug() {
