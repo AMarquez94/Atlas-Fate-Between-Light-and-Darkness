@@ -336,7 +336,6 @@ void TCompTempPlayerController::mergeState(float dt) {
     VEC3 dir = getMotionDir(proj, normal_norm.Cross(proj));
     MAT44 temp_rot = MAT44::CreateFromAxisAngle(p_transform->getUp(), deg2rad(temp_deg));
     dir = VEC3::Transform(dir, temp_rot);
-    //dbg("values %f %f %f", temp_invert.x, temp_invert.y, temp_invert.z);
 
     VEC3 prevUp = p_transform->getUp();
     VEC3 new_pos = p_transform->getPosition() - dir;
@@ -487,7 +486,7 @@ void TCompTempPlayerController::invertAxis(VEC3 old_up, bool type) {
     }
     else {
 
-        temp_deg = ((pos_test && !pre_test) && !EngineInput["btDown"].isPressed()) ? 180 : 0;
+        temp_deg = ((pos_test && !pre_test) && !EngineInput["btDown"].isPressed()) ? 180 : temp_deg;
 
         if ((pos_test && !pre_test) && !EngineInput["btDown"].isPressed()) {
             temp_deg += EngineInput["btLeft"].isPressed() ? -90 : 0;
