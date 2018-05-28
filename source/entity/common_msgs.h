@@ -114,6 +114,10 @@ struct TMsgCameraFullyActivated {
 	DECL_MSG_ID();
 };
 
+struct TMsgCameraReset {
+  DECL_MSG_ID();
+};
+
 struct TMsgTimeOut {
 	DECL_MSG_ID();
 };

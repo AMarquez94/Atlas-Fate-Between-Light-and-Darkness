@@ -32,3 +32,7 @@ end
 function setPlayerInhibited(inhibited)
 	playerController.inhibited = inhibited;
 end
+
+function loadCheckpoint()
+	SLB.loadCheckpoint();
+end

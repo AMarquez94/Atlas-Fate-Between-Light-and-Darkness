@@ -111,6 +111,7 @@ void CModuleLogic::publishClasses() {
     m->set("spawn", SLB::FuncCall::create(&spawn));
     m->set("bind", SLB::FuncCall::create(&bind));
     m->set("loadscene", SLB::FuncCall::create(&loadscene));
+    m->set("loadCheckpoint", SLB::FuncCall::create(&loadCheckpoint));
     // Global toggles
     m->set("cg_drawfps", SLB::FuncCall::create(&cg_drawfps));
     m->set("cg_drawlights", SLB::FuncCall::create(&cg_drawlights));
@@ -274,6 +275,12 @@ void spawn(const std::string & name, const VEC3 & pos) {
 void loadscene(const std::string &level) {
 
     EngineScene.loadScene(level);
+}
+
+void loadCheckpoint()
+{
+  CModuleGameManager gameManager = CEngine::get().getGameManager();
+  gameManager.loadCheckpoint();
 }
 
 void destroy() {

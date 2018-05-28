@@ -38,7 +38,9 @@ protected:
 
 	bool isParentOfCurrent(BTNode * son, const std::string& possibleParent);
 
-private:
+  CHandle myHandle;
+
+protected:
 
 	/* The nodes as map (so we have both map and tree for the same structure */
 	std::map<std::string, BTNode *> tree;
@@ -58,9 +60,13 @@ private:
 	BTNode *findNode(const std::string& name);
 
 	void printTree();
+
 public:
 
+	enum BTType { PATROL = 0, MIMETIC, NUM_ENEMIES };
+
 	std::string name;
+	BTType btType;
 	float timeAnimating = 0.0f;
 
 	void debugInMenu();
@@ -78,6 +84,8 @@ public:
 	bool testAssert(const std::string& assertName, float dt);
 	void setCurrent(BTNode *currentNode);
 	BTNode* getCurrent() { return current; };
+
+	void setCurrentByName(const std::string& stateName);
 
 	void update(float dt);
 };

@@ -95,6 +95,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera\camera.cpp" />
+    <ClCompile Include="checkpoints\checkpoint.cpp" />
     <ClCompile Include="components\camera_controller\comp_auxcamera_shadowmerge.cpp" />
     <ClCompile Include="components\camera_controller\comp_camera_flyover.cpp" />
     <ClCompile Include="components\camera_controller\comp_camera_orbit.cpp" />
@@ -116,6 +117,7 @@
     <ClCompile Include="components\lighting\comp_light_point.cpp" />
     <ClCompile Include="components\lighting\comp_light_spot.cpp" />
     <ClCompile Include="components\object_controller\comp_rotator.cpp" />
+    <ClCompile Include="components\object_controller\comp_trigger_checkpoint.cpp" />
     <ClCompile Include="components\player_controller\comp_player_animator.cpp" />
     <ClCompile Include="components\comp_fsm.cpp" />
     <ClCompile Include="components\comp_group.cpp" />
@@ -272,6 +274,7 @@
   <ItemGroup>
     <ClInclude Include="..\Bin\data\shaders\ctes.h" />
     <ClInclude Include="camera\camera.h" />
+    <ClInclude Include="checkpoints\checkpoint.h" />
     <ClInclude Include="components\camera_controller\comp_auxcamera_shadowmerge.h" />
     <ClInclude Include="components\camera_controller\comp_camera_flyover.h" />
     <ClInclude Include="components\camera_controller\comp_camera_orbit.h" />
@@ -294,6 +297,7 @@
     <ClInclude Include="components\lighting\comp_light_point.h" />
     <ClInclude Include="components\lighting\comp_light_spot.h" />
     <ClInclude Include="components\object_controller\comp_rotator.h" />
+    <ClInclude Include="components\object_controller\comp_trigger_checkpoint.h" />
     <ClInclude Include="components\player_controller\comp_player_animator.h" />
     <ClInclude Include="components\comp_fsm.h" />
     <ClInclude Include="components\comp_group.h" />

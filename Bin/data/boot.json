@@ -14,7 +14,8 @@
 			"data/scenes/test_instancing.scene",
 			"data/scenes/capsules.scene",
 			"data/scenes/camera.scene",
-			"data/scenes/water_plane.scene"
+			"data/scenes/water_plane.scene",
+			"data/scenes/checkpoints.scene"
 		]
 	},
 	"scene_juanlu": {
@@ -40,14 +41,15 @@
 		},
 		"scene_group": [
 			"data/scenes/player_fsm.scene",
+			"data/scenes/enemy.scene",
 			"data/scenes/milestone2_map_lights2_low.scene",
 			"data/scenes/milestone2_map_pre.scene",
 			"data/scenes/milestone2_map_colliders.scene",
-			"data/scenes/sp_dynamic_lights.scene",
 			"data/scenes/test_instancing.scene",
 			"data/scenes/capsules.scene",
 			"data/scenes/camera.scene",
-			"data/scenes/water_plane.scene"
+			"data/scenes/water_plane.scene",
+			"data/scenes/checkpoints.scene"
 		]
 	},
 	"scene_gpu": {

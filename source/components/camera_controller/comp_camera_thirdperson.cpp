@@ -41,6 +41,7 @@ void TCompCameraThirdPerson::registerMsgs()
 	DECL_MSG(TCompCameraThirdPerson, TMsgCameraFullyActivated, onMsgCameraFullActive);
 	DECL_MSG(TCompCameraThirdPerson, TMsgSetCameraActive, onMsgCameraSetActive);
 	DECL_MSG(TCompCameraThirdPerson, TMsgScenePaused, onPause);
+  DECL_MSG(TCompCameraThirdPerson, TMsgCameraReset, onMsgCameraReset);
 }
 
 void TCompCameraThirdPerson::onMsgCameraActive(const TMsgCameraActivated & msg)
@@ -65,6 +66,11 @@ void TCompCameraThirdPerson::onMsgCameraSetActive(const TMsgSetCameraActive & ms
 	}
 
 	Engine.getCameras().blendInCamera(CHandle(this).getOwner(), .2f, CModuleCameras::EPriority::GAMEPLAY);
+}
+
+void TCompCameraThirdPerson::onMsgCameraReset(const TMsgCameraReset & msg)
+{
+  _current_euler = _original_euler;
 }
 
 void TCompCameraThirdPerson::update(float dt)

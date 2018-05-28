@@ -29,6 +29,7 @@ private:
 	void onMsgCameraFullActive(const TMsgCameraFullyActivated &msg);
 	void onMsgCameraDeprecated(const TMsgCameraDeprecated &msg);
 	void onMsgCameraSetActive(const TMsgSetCameraActive &msg);
+  void onMsgCameraReset(const TMsgCameraReset &msg);
 
 
 public:

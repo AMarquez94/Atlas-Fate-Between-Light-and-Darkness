@@ -15,7 +15,7 @@ bool CModuleGameManager::start()
     window_flags |= ImGuiWindowFlags_NoResize;
     window_flags |= ImGuiWindowFlags_NoCollapse;
     window_flags |= ImGuiWindowFlags_NoScrollbar;
-    window_width = 200;
+    window_width = 250;
     window_height = 150;
 
     isPaused = false;
@@ -27,6 +27,11 @@ bool CModuleGameManager::start()
 
     Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
     mouse->setLockMouse(true);
+
+		isStarted = true;
+
+    lastCheckpoint = new CCheckpoint();
+		//lastCheckpoint.init();
 
     return true;
 }
@@ -84,19 +89,7 @@ void CModuleGameManager::update(float delta)
     else if (isPaused && EngineInput["btPause"].getsPressed()) {
 
         /* Player not dead and game unpaused */
-        isPaused = false;
-        CApp::get().lostFocus = false;
-
-        // Send pause message
-        TMsgScenePaused msg;
-        msg.isPaused = false;
-        EngineEntities.broadcastMsg(msg);
-
-        // Lock/Unlock the cursor
-        Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-        mouse->setLockMouse(true);
-
-        menuVisible = false;
+      unpauseGame();
     }
 
     if (EngineInput["btUpAux"].getsPressed()) {
@@ -124,14 +117,28 @@ void CModuleGameManager::render()
         ImGui::Begin("MENU", false, window_flags);
         ImGui::CaptureMouseFromApp(false);
         ImGui::SetWindowPos("MENU", ImVec2(menu_position.x, menu_position.y));
-        ImGui::Selectable("Restart game", menuPosition == 0);
+
+        ImGui::Selectable("Resume game", menuPosition == 0);
         if (ImGui::IsItemClicked() || (menuPosition == 0 && EngineInput["btMenuConfirm"].getsPressed()))
+        {
+          unpauseGame();
+        }
+
+        ImGui::Selectable("Restart from last checkpoint", menuPosition == 1);
+        if (ImGui::IsItemClicked() || (menuPosition == 1 && EngineInput["btMenuConfirm"].getsPressed()))
         {
             CEngine::get().getModules().changeGameState("map_intro");
         }
 
-        ImGui::Selectable("Exit game", menuPosition == 1);
-        if (ImGui::IsItemClicked() || (menuPosition == 1 && EngineInput["btMenuConfirm"].getsPressed()))
+        ImGui::Selectable("Restart level", menuPosition == 2);
+        if (ImGui::IsItemClicked() || (menuPosition == 2 && EngineInput["btMenuConfirm"].getsPressed()))
+        {
+          lastCheckpoint->deleteCheckPoint();
+          CEngine::get().getModules().changeGameState("map_intro");
+        }
+
+        ImGui::Selectable("Exit game", menuPosition == 3);
+        if (ImGui::IsItemClicked() || (menuPosition == 3 && EngineInput["btMenuConfirm"].getsPressed()))
         {
             exit(0);
         }
@@ -154,16 +161,24 @@ void CModuleGameManager::render()
         ImGui::Begin("YOU DIED! WHAT WOULD YOU DO?", false, window_flags);
         ImGui::CaptureMouseFromApp(false);
         ImGui::SetWindowPos("YOU DIED! WHAT WOULD YOU DO?", ImVec2(menu_position.x, menu_position.y));
-        ImGui::Selectable("Restart game", menuPosition == 0);
-        if (ImGui::IsItemClicked() || (menuPosition == 0 && EngineInput["btMenuConfirm"].getsPressed()))
-        {
-            CEngine::get().getModules().changeGameState("map_intro");
-        }
 
-        ImGui::Selectable("Exit game", menuPosition == 1);
+        ImGui::Selectable("Restart from last checkpoint", menuPosition == 1);
         if (ImGui::IsItemClicked() || (menuPosition == 1 && EngineInput["btMenuConfirm"].getsPressed()))
         {
-            exit(0);
+          CEngine::get().getModules().changeGameState("map_intro");
+        }
+
+        ImGui::Selectable("Restart level", menuPosition == 2);
+        if (ImGui::IsItemClicked() || (menuPosition == 2 && EngineInput["btMenuConfirm"].getsPressed()))
+        {
+          lastCheckpoint->deleteCheckPoint();
+          CEngine::get().getModules().changeGameState("map_intro");
+        }
+
+        ImGui::Selectable("Exit game", menuPosition == 3);
+        if (ImGui::IsItemClicked() || (menuPosition == 3 && EngineInput["btMenuConfirm"].getsPressed()))
+        {
+          exit(0);
         }
 
         ImGui::End();
@@ -173,8 +188,51 @@ void CModuleGameManager::render()
     debugRender();
 }
 
+bool CModuleGameManager::saveCheckpoint(VEC3 playerPos, QUAT playerRot)
+{
+	return lastCheckpoint->saveCheckPoint(playerPos, playerRot);
+}
+
+bool CModuleGameManager::loadCheckpoint()
+{
+  if (lastCheckpoint) {
+  	return lastCheckpoint->loadCheckPoint();
+  }
+  else {
+    return false;
+  }
+}
+
+bool CModuleGameManager::deleteCheckpoint()
+{
+  if (lastCheckpoint) {
+	  return lastCheckpoint->deleteCheckPoint();
+  }
+}
+
+void CModuleGameManager::unpauseGame()
+{
+  /* Player not dead and game unpaused */
+  isPaused = false;
+  CApp::get().lostFocus = false;
+
+  // Send pause message
+  TMsgScenePaused msg;
+  msg.isPaused = false;
+  EngineEntities.broadcastMsg(msg);
+
+  // Lock/Unlock the cursor
+  Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+  mouse->setLockMouse(true);
+
+  menuVisible = false;
+}
+
 void CModuleGameManager::debugRender() {
 
+    if (lastCheckpoint) {
+      lastCheckpoint->debugInMenu();
+    }
     // Extra windows
     {
         //UI Window's Size

@@ -51,6 +51,7 @@ void TCompCameraShadowMerge::registerMsgs()
 	DECL_MSG(TCompCameraShadowMerge, TMsgCameraDeprecated, onMsgCameraDeprecated);
 	DECL_MSG(TCompCameraShadowMerge, TMsgSetCameraActive, onMsgActivateMyself);
   DECL_MSG(TCompCameraShadowMerge, TMsgScenePaused, onMsgScenePaused);
+  DECL_MSG(TCompCameraShadowMerge, TMsgCameraReset, onMsgCameraReset);
 }
 
 void TCompCameraShadowMerge::onMsgCameraActive(const TMsgCameraActivated &msg)
@@ -84,6 +85,11 @@ void TCompCameraShadowMerge::onMsgActivateMyself(const TMsgSetCameraActive & msg
 void TCompCameraShadowMerge::onMsgScenePaused(const TMsgScenePaused & msg)
 {
   paused = msg.isPaused;
+}
+
+void TCompCameraShadowMerge::onMsgCameraReset(const TMsgCameraReset & msg)
+{
+  _current_euler = _original_euler;
 }
 
 void TCompCameraShadowMerge::update(float dt)
