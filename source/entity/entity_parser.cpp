@@ -65,6 +65,7 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 
 				// Parse the prefab, if any other child is created they will inherit our ctx transform
 				TEntityParseContext prefab_ctx(ctx, delta_transform);
+				prefab_ctx.is_prefab = true;
 				if (!parseScene(prefab_src, prefab_ctx))
 					return false;
 
@@ -85,6 +86,7 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 				j_entity_without_transform.erase("transform");
 
 				// Do the parse
+				prefab_ctx.is_prefab = false;
 				e->load(j_entity_without_transform, prefab_ctx);
 
 			}

@@ -30,6 +30,9 @@ struct TEntityParseContext {
 	// or search in the parent contexts, or search in the global dict
 	CHandle findEntityByName(const std::string& name) const;
 
+	// True if the entity is a prefab
+	bool is_prefab = false;
+
 	TEntityParseContext() = default;
 	TEntityParseContext(TEntityParseContext& another, const CTransform& delta_transform);
 };
