@@ -385,11 +385,33 @@ struct TSceneExporter (
 	-- ----------------------------------------------------------	
 	fn exportCompLight obj = (
 
-		if classof obj == Directionallight then (
+		if classof obj == TargetDirectionalLight then (
+			local target = getnodebyname (obj.name + ".Target")
 			fs.writeKey "light_dir" 
 			fs.beginObj()
 			fs.writeKeyValue "type" "directional"
 			fs.writeComma()
+			fs.writeKeyValue "color" [obj.rgb.r/255, obj.rgb.g/255, obj.rgb.b/255, obj.rgb.a/255]
+			fs.writeComma()
+			fs.writeKeyValue "intensity" obj.multiplier 
+			fs.writeComma()
+			fs.writeKeyValue "proj_type" "ortographic"
+			fs.writeComma()
+			fs.writeKeyValue "z_near" 0.01
+			fs.writeComma()	
+			fs.writeKeyValue "z_far" (distance target.pos obj.pos)
+			fs.writeComma()	
+			fs.writeKeyValue "ortosize" obj.falloff
+			fs.writeComma()
+			fs.writeKeyValue "casts_shadows" obj.castShadows 
+			fs.writeComma()
+			fs.writeKeyValue "shadows_step" 1.5
+			fs.writeComma()
+			fs.writeKeyValue "shadows_resolution" 4096
+			fs.writeComma()
+			fs.writeKeyValue "shadows_fmt" "R32_TYPELESS"
+			fs.endObj()			
+			return true
 		)
 		else if classof obj == targetSpot or classof obj == freeSpot then ( 
 			local target = getnodebyname (obj.name + ".Target")
