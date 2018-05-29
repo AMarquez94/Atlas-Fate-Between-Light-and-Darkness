@@ -204,6 +204,9 @@
 			"render_ao": {
 				"enabled": true
 			},
+						"render_outlines" : {
+        "enabled" : true
+      },
 			"render_bloom": {
 				"enabled": true,
 				"max_steps": 4,

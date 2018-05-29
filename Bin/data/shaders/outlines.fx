@@ -27,7 +27,7 @@ float4 PS(
   // stencil value is in the green channel
   uint s_cc = txBackBufferStencil.Load(ss_load_coords).g;
 
-  float a = global_shared_fx_amount;
+  float a = mat_alpha_outline;
 
   // In case we want just the pixels inside
   //if( s_cc != 0 ) return float4( 1,1,0,0.5 * a); 
