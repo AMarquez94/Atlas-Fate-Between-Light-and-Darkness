@@ -471,6 +471,7 @@ void TCompTempPlayerController::resetRemoveInhibitor()
 /* Method used to determine control invert */
 void TCompTempPlayerController::invertAxis(VEC3 old_up, bool type) {
 
+    // Refactor this with thew new player controller pad moves
     TCompTransform* p_transform = get<TCompTransform>();
     VEC3 temp_up = p_transform->getUp();
     bool pre_test = fabs(EnginePhysics.gravity.Dot(old_up)) < mergeAngle ? true : false;
@@ -479,10 +480,17 @@ void TCompTempPlayerController::invertAxis(VEC3 old_up, bool type) {
     // Hardcoded a little bit, fix in the future if it fully works..
     if (type) {
 
-        if ((pos_test && !pre_test) && !EngineInput["btUp"].isPressed()) {
-            temp_deg += EngineInput["btLeft"].isPressed() ? -90 : 0;
-            temp_deg += EngineInput["btRight"].isPressed() ? 90 : 0;
+        if ((pos_test && !pre_test)) {
+            TCompPlayerInput *player_input = get<TCompPlayerInput>();
+            temp_deg = player_input->movementValue.x * left;
+            //temp_deg += EngineInput["btLeft"].isPressed() ? -90 : 0;
+            //temp_deg += EngineInput["btRight"].isPressed() ? 90 : 0;
         }
+
+        //if ((pos_test && !pre_test) && !EngineInput["btUp"].isPressed()) {
+        //    temp_deg += EngineInput["btLeft"].isPressed() ? -90 : 0;
+        //    temp_deg += EngineInput["btRight"].isPressed() ? 90 : 0;
+        //}
     }
     else {
 
@@ -765,6 +773,8 @@ VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & le
     dir += player_input->movementValue.y * front;
     dir += player_input->movementValue.x * left;
     dir.Normalize();
+
+    dbg("pad values %f || %f\n", player_input->movementValue.x, player_input->movementValue.y);
 
     if (dir == VEC3::Zero) return front;
 
