@@ -400,6 +400,41 @@ namespace FSM
     //caps->setFootPosition(physx::PxExtendedVec3(t_trans->getPosition().x, t_trans->getPosition().y, t_trans->getPosition().z));
   }
 
+  bool ExitMergeCrouchedState::load(const json & jData)
+  {
+    _animationName = jData["animation"];
+    _speed = jData.value("speed", 3.f);
+    _size = jData.value("size", 1.f);
+    _radius = jData.value("radius", 0.3f);
+    _noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+    _target = jData.count("camera") ? getTargetCamera(jData["camera"]) : nullptr;
+
+    return true;
+  }
+
+  void ExitMergeCrouchedState::onStart(CContext & ctx) const
+  {
+    CEntity* e = ctx.getOwner();
+    e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+
+    // Testing!
+    CHandle player_light = getEntityByName("LightPlayer");
+    if (player_light.isValid()) {
+      CEntity * entity_light = (CEntity*)player_light;
+      TCompProjector * light = entity_light->get<TCompProjector>();
+      light->isEnabled = false;
+    }
+  }
+  void ExitMergeCrouchedState::onFinish(CContext & ctx) const
+  {
+    CEntity* e = ctx.getOwner();
+    e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::exitMergeState });
+    // Re enable rigidbody.
+
+    TCompRender * render = e->get<TCompRender>();
+    render->visible = true;
+  }
+
 
   bool LandMergeState::load(const json& jData) {
 

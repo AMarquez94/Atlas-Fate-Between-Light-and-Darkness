@@ -24,7 +24,7 @@ namespace FSM
 	  virtual bool load(const json& jData) override;
 
   private:
-	  enum class EOperation { EQUAL = 0, GREATER, GREATER_EQUAL };
+	  enum class EOperation { EQUAL = 0, GREATER, GREATER_EQUAL, LOWER, LOWER_EQUAL };
 	  std::vector<CVariant> _variables;
 	  std::vector<EOperation> _operations;
   };

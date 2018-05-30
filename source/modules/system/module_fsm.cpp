@@ -29,6 +29,7 @@ bool CModuleFSM::start()
 	_factory.registerInstancer("EnterMergeState", new FSM::StateInstancer<FSM::EnterMergeState>());
 	_factory.registerInstancer("MergeState", new FSM::StateInstancer<FSM::MergeState>());
 	_factory.registerInstancer("ExitMergeState", new FSM::StateInstancer<FSM::ExitMergeState>());
+  _factory.registerInstancer("ExitMergeCrouchedState", new FSM::StateInstancer<FSM::ExitMergeCrouchedState>());
 	_factory.registerInstancer("LandMergeState", new FSM::StateInstancer<FSM::LandMergeState>());
 	_factory.registerInstancer("SoftLandState", new FSM::StateInstancer<FSM::SoftLandState>());
 	_factory.registerInstancer("HardLandState", new FSM::StateInstancer<FSM::HardLandState>());
@@ -40,6 +41,7 @@ bool CModuleFSM::start()
 	_factory.registerInstancer("GrabEnemyState", new FSM::StateInstancer<FSM::GrabEnemyState>());
 	_factory.registerInstancer("VariableTransition", new FSM::TransitionInstancer<FSM::VariableTransition>());
 	_factory.registerInstancer("TimeTransition", new FSM::TransitionInstancer<FSM::TimeTransition>());
+  _factory.registerInstancer("MultipleVariableTransition", new FSM::TransitionInstancer<FSM::MultipleVariableTransition>());
 	_factory.registerInstancer("AnimationTransition", new FSM::TransitionInstancer<FSM::AnimationTransition>());
 
 

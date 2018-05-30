@@ -412,11 +412,11 @@ void TCompTempPlayerController::exitMergeState(float dt)
 	CEntity * eCamera = getEntityByName(auxCamera);
 	eCamera->sendMsg(msg);
 
-	CEntity *e = CHandle(this).getOwner();
-	TMsgSetFSMVariable crouch;
-	crouch.variant.setName("crouch");
-	crouch.variant.setBool(false);
-	e->sendMsg(crouch);
+	//CEntity *e = CHandle(this).getOwner();
+	//TMsgSetFSMVariable crouch;
+	//crouch.variant.setName("crouch");
+	//crouch.variant.setBool(false);
+	//e->sendMsg(crouch);
 }
 
 /* Player dead state */
