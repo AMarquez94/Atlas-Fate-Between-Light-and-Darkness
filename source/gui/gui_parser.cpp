@@ -212,6 +212,7 @@ void CParser::parseTextParams(TTextParams& params, const json& data)
 
 void CParser::parseBarParams(TBarParams& params, const json& data)
 {
+  params._variable = data.value("variable", "");
   params._processValue = data.value("progress_bar", 1.0f);
   const std::string direction = data.value("direction", "horizontal");
   params._direction = direction == "vertical" ? TBarParams::Vertical : TBarParams::Horizontal;

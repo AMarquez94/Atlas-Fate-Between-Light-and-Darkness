@@ -1055,6 +1055,11 @@
       "name": "grabEnemy",
       "type": "bool",
       "value": false
+    },
+    {
+      "name": "staminaBarFactor",
+      "type": "float",
+      "value": 1.0
     }
   ]
 }
