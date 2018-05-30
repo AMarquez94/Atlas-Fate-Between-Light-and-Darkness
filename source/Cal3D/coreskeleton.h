@@ -38,8 +38,10 @@ public:
   std::vector<CalCoreBone *>& getVectorCoreBone();
   void calculateBoundingBoxes(CalCoreModel * pCoreModel);
   void scale(float factor);
+  float getScale();
 
 private:
+  float coreScale = 0.0f;
   std::vector<CalCoreBone *> m_vectorCoreBone;
   std::map< std::string, int > m_mapCoreBoneNames;
   std::vector<int> m_vectorRootCoreBoneId;  
