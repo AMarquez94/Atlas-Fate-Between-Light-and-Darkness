@@ -70,7 +70,6 @@ class TCompTempPlayerController : public TCompBase
 	CHandle target_camera;
 
 	bool tempInverseVerticalMovementMerged = false;
-	float *staminaBarValue;
 
 	float mergeAngle;
 	float currentSpeed;

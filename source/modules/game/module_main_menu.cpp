@@ -20,6 +20,9 @@ bool CModuleMainMenu::start()
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 	mouse->setLockMouse(false);
 
+	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BACKGROUND);
+	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
+
 	CHandle h_camera = getEntityByName("TPCamera");
 	if (h_camera.isValid())
 		Engine.getCameras().setDefaultCamera(h_camera);
@@ -33,6 +36,14 @@ bool CModuleMainMenu::start()
 	//cb_camera.activate();
 	//Engine.getSound().setAmbientSound("../sounds/test.ogg");
 
+	return true;
+}
+
+bool CModuleMainMenu::stop() {
+
+	dbg("MODULE STOP\n");
+	CEngine::get().getGUI().deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BACKGROUND);
+	CEngine::get().getGUI().deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
 	return true;
 }
 

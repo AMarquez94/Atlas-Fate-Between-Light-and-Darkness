@@ -118,7 +118,7 @@ void TCompTempPlayerController::update(float dt) {
 		updateShader(dt); // Move this to player render component...
 		timeInhib += dt;
 		canAttack = canAttackTest(dt);
-		*staminaBarValue = stamina / maxStamina;
+		Engine.getGUI().getVariables().setVariant("staminaBarFactor", stamina / maxStamina);
 	}
 }
 
@@ -173,7 +173,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 	dbgDisableStamina = false;
 	paused = false;
 
-	staminaBarValue = &CEngine::get().getGUI().getWidget("stamina_bar", true)->getBarParams()->_processValue;
+	//staminaBarValue = &CEngine::get().getGUI().getWidget("stamina_bar", true)->getBarParams()->_processValue;
 }
 
 /* Call this function once the state has been changed */

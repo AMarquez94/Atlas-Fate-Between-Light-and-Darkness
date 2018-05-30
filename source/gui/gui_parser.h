@@ -10,7 +10,7 @@ namespace GUI
   class CParser
   {
   public:
-    void parseFile(const std::string& file);
+    std::string parseFile(const std::string& file);
     CWidget* parseWidget(const json& data, CWidget* parent);
 
     CWidget* parseWidget(const json& data);

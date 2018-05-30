@@ -20,7 +20,7 @@
 						"type" : "bar",
 						"size" : "320 64",
 						"texture" : "data/textures/gui/staminabar_full.dds",
-						"progress_bar" : 1
+						"variable" : "staminaBarFactor"
 					}
 				]
 			}

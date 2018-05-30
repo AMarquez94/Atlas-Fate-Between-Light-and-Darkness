@@ -26,6 +26,6 @@ float4 PS_GUI(
 {
   float2 finalUV = lerp(minUV, maxUV, input.UV);
   float4 oDiffuse = txAlbedo.Sample(samLinear, finalUV);
-  float4 oColor = float4(oDiffuse.rgb * tint_color.rgb, oDiffuse.a);
+  float4 oColor = float4(oDiffuse.rgb * tint_color.rgb, oDiffuse.a * tint_color.a);
   return oColor;
 }

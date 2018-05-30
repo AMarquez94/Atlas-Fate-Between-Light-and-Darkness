@@ -5,7 +5,8 @@ using namespace GUI;
 
 void CBar::render()
 {
-  float ratio = _barParams._processValue;
+  //float ratio = _barParams._processValue;
+  float ratio = Engine.getGUI().getVariables().getFloat(_barParams._variable);
   ratio = clamp(ratio, 0.f, 1.f);
   MAT44 sz = MAT44::CreateScale(_params._size.x, _params._size.y, 1.f);
   MAT44 w = MAT44::CreateScale(ratio, 1.f, 1.f) * sz * _absolute;
@@ -30,16 +31,5 @@ TBarParams* CBar::getBarParams()
 
 void CBar::update(float dt)
 {
-
-	float value = _barParams._processValue;
-	if (EngineInput[VK_LEFT].isPressed())
-	{
-		value = clamp(value - 0.5f * dt, 0.f, 1.f);
-	}
-	if (EngineInput[VK_RIGHT].isPressed())
-	{
-		value = clamp(value + 0.5f * dt, 0.f, 1.f);
-	}
-	_barParams._processValue = value;
 
 }
