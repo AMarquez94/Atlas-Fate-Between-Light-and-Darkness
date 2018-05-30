@@ -24,10 +24,10 @@ void TCompConeOfLightController::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompConeOfLightController::registerMsgs() {
-	DECL_MSG(TCompConeOfLightController, TMsgEntityCreated, onMsgEntityCreated);
+	DECL_MSG(TCompConeOfLightController, TMsgEntitiesGroupCreated, onMsgGroupCreated);
 }
 
-void TCompConeOfLightController::onMsgEntityCreated(const TMsgEntityCreated& msg) {
+void TCompConeOfLightController::onMsgGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	if (!turnedOn) {
     TCompLightSpot * spotlight = get<TCompLightSpot>();
     spotlight->isEnabled = false;
@@ -69,16 +69,16 @@ void TCompConeOfLightController::update(float dt) {
 
 void TCompConeOfLightController::turnOnLight() {
 	if (!turnedOn) {
-    TCompLightSpot * spotlight = get<TCompLightSpot>();
-    spotlight->isEnabled = true;
+		TCompLightSpot * spotlight = get<TCompLightSpot>();
+		spotlight->isEnabled = true;
 		turnedOn = true;
 	}
 }
 
 void TCompConeOfLightController::turnOffLight() {
 	if (turnedOn) {
-    TCompLightSpot * spotlight = get<TCompLightSpot>();
-    spotlight->isEnabled = false;
+		TCompLightSpot * spotlight = get<TCompLightSpot>();
+		spotlight->isEnabled = false;
 		turnedOn = false;
 	}
 }

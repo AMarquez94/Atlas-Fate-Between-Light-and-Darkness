@@ -128,7 +128,7 @@
       "size": 1,
       "camera": {
         "target": "SMCameraHor",
-        "blendOut": 0.0,
+        "blendOut": 0.2,
         "blendIn": 0.2
       }
     },

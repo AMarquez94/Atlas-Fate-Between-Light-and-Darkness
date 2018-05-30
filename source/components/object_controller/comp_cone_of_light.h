@@ -18,7 +18,7 @@ class TCompConeOfLightController : public TCompBase {
 
   DECL_SIBLING_ACCESS();
 
-  void onMsgEntityCreated(const TMsgEntityCreated& msg);
+  void onMsgGroupCreated(const TMsgEntitiesGroupCreated& msg);
 
 public:
   void debugInMenu();
