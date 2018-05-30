@@ -294,7 +294,10 @@
 		"category": "fx",
 		"ps_entry_point__if_stencil_test": "PS_Solid",
 		"z__if_stencil_test": "on_non_zero_stencil",
-		"blend": "combinative"
+		"blend": "additive",
+		"textures": {
+			"noise": "data/textures/gradient_sonar.dds"
+		}
 	},
 	"pbr_outline": {
 		"vs_file": "data/shaders/pbr.fx",

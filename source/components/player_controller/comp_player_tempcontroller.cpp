@@ -480,17 +480,15 @@ void TCompTempPlayerController::invertAxis(VEC3 old_up, bool type) {
     // Hardcoded a little bit, fix in the future if it fully works..
     if (type) {
 
-        if ((pos_test && !pre_test)) {
-            TCompPlayerInput *player_input = get<TCompPlayerInput>();
-            temp_deg = player_input->movementValue.x * left;
-            //temp_deg += EngineInput["btLeft"].isPressed() ? -90 : 0;
-            //temp_deg += EngineInput["btRight"].isPressed() ? 90 : 0;
-        }
-
-        //if ((pos_test && !pre_test) && !EngineInput["btUp"].isPressed()) {
+        //if ((pos_test && !pre_test)) {
         //    temp_deg += EngineInput["btLeft"].isPressed() ? -90 : 0;
         //    temp_deg += EngineInput["btRight"].isPressed() ? 90 : 0;
         //}
+
+        if ((pos_test && !pre_test) && !EngineInput["btUp"].isPressed()) {
+            temp_deg += EngineInput["btLeft"].isPressed() ? -90 : 0;
+            temp_deg += EngineInput["btRight"].isPressed() ? 90 : 0;
+        }
     }
     else {
 
