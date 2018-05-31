@@ -294,7 +294,7 @@
 		"category": "fx",
 		"ps_entry_point__if_stencil_test": "PS_Solid",
 		"z__if_stencil_test": "on_non_zero_stencil",
-		"blend": "additive",
+		"blend": "combinative",
 		"textures": {
 			"noise": "data/textures/gradient_sonar.dds"
 		}

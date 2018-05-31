@@ -80,6 +80,7 @@ private:
 	void onMsgPlayerDead(const TMsgPlayerDead& msg);
 	void onMsgMimeticStunned(const TMsgEnemyStunned& msg);
 	void onMsgNoiseListened(const TMsgNoiseMade& msg);
+	void onMsgPhysxContact(const TMsgPhysxContact& msg);
 
 	/* Aux functions */
 	const Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }

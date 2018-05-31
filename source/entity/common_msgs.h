@@ -91,6 +91,11 @@ struct TMsgTriggerExit {
 	DECL_MSG_ID();
 };
 
+struct TMsgPhysxContact {
+	CHandle other_entity;
+	DECL_MSG_ID();
+};
+
 struct TMsgSetCameraActive {
 	std::string previousCamera;
 	std::string actualCamera;

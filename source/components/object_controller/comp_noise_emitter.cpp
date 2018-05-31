@@ -47,7 +47,7 @@ void TCompNoiseEmitter::makeNoise(float noiseRadius, float timeToRepeat, bool is
 
 void TCompNoiseEmitter::update(float dt)
 {
-	if (!paused && emitter_sphere.isValid()) {
+	if (!paused && emitter_sphere.isValid() && CHandle(this).getOwner().isValid()) {
 
 		_timer += dt;
 

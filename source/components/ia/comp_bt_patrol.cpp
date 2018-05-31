@@ -38,6 +38,10 @@ void TCompAIPatrol::debugInMenu() {
 	ImGui::ProgressBar(suspectO_Meter);
 
 	ImGui::Text("Last player pos: %f, %f, %f", lastPlayerKnownPos.x, lastPlayerKnownPos.y, lastPlayerKnownPos.z);
+
+	TCompTransform *tpos = get<TCompTransform>();
+	ImGui::Text("My Pos: (%f, %f, %f)", tpos->getPosition().x, tpos->getPosition().y, tpos->getPosition().z);
+	ImGui::Text(" Noise: (%f, %f, %f)", noiseSource.x, noiseSource.y, noiseSource.z);
 }
 
 void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
@@ -440,12 +444,24 @@ BTNode::ERes TCompAIPatrol::actionGoToNoiseSource(float dt)
     noiseSourceChanged = false;
   }
 
+
+	dbg("Go To Noise Source ");
 	if (isPlayerInFov(entityToChase, fov - deg2rad(1.f), autoChaseDistance - 1.f)) {
 		current = nullptr;
+		dbg("LEAVE (player in fov)\n");
 		return BTNode::ERes::LEAVE;
 	}
 
-  return moveToPoint(speed, rotationSpeed, noiseSource, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
+	if (moveToPoint(speed, rotationSpeed, noiseSource, dt)) {
+		dbg("LEAVE (is in position) - ");
+		dbg("MyPos: (%f, %f, %f) - NoiseSource: (%f, %f, %f)\n", pp.x, pp.y, pp.z, noiseSource.x, noiseSource.y, noiseSource.z);
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		dbg("STAY (not arrived)\n");
+		return BTNode::ERes::STAY;
+	}
+	//return moveToPoint(speed, rotationSpeed, noiseSource, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIPatrol::actionWaitInNoiseSource(float dt)
@@ -1206,6 +1222,7 @@ CHandle TCompAIPatrol::getPatrolInPos(VEC3 lastPos)
 
 void TCompAIPatrol::generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc)
 {
+	//VEC3 startPoint = EngineNavmeshes.closestNavmeshPoint(initPos);
   navmeshPath = EngineNavmeshes.findPath(initPos, destPos);
   navmeshPathPoint = 0;
   recalculateNavmesh = recalc;
@@ -1232,7 +1249,7 @@ bool TCompAIPatrol::moveToPoint(float speed, float rotationSpeed, VEC3 objective
 
   VEC3 vp = mypos->getPosition();
 
-  if (VEC3::Distance(objective, vp) <= fabsf(left.Dot(finalDir)) * maxDistanceToNavmeshPoint + 0.1f) {
+  if (VEC3::Distance(objective, vp) <= speed * dt + 0.1/*fabsf(left.Dot(finalDir)) * maxDistanceToNavmeshPoint + 0.1f*/) {
     return true;
   }
   else {

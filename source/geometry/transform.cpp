@@ -73,7 +73,6 @@ bool CTransform::debugInMenu() {
     pos.y = posfloat[1];
     pos.z = posfloat[2];
     changed |= ImGui::DragFloat("Scale", &scale, 0.01f, -10.f, 10.f);
-    dbg("%f\n", pos.x);
     // Angulos
     float yaw, pitch, roll;
     getYawPitchRoll(&yaw, &pitch, &roll);

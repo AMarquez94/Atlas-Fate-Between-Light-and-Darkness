@@ -82,7 +82,6 @@ void CModuleGUI::update(float delta)
 	{
 		//deactivateWidget(EGUIWidgets::MAIN_MENU_BUTTONS);
 	}
-	dbg("%d\n", _activeWidgets.size());
 	if (EngineInput[VK_UP].getsPressed())
 	{
 		//activateWidget(EGUIWidgets::MAIN_MENU_BACKGROUND);

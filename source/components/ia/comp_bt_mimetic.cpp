@@ -16,6 +16,8 @@
 #include "components/ia/comp_mimetic_animator.h"
 #include "render/render_objects.h"
 #include "components/object_controller/comp_noise_emitter.h"
+#include "components/comp_tags.h"
+
 
 DECL_OBJ_MANAGER("ai_mimetic", TCompAIMimetic);
 
@@ -285,6 +287,21 @@ void TCompAIMimetic::onMsgNoiseListened(const TMsgNoiseMade & msg)
 	//}
 }
 
+void TCompAIMimetic::onMsgPhysxContact(const TMsgPhysxContact & msg)
+{
+	CEntity* other = msg.other_entity;
+	TCompTags * otherTags = other->get <TCompTags>();
+	if(otherTags->hasTag(getID("patrol"))) {
+
+		TCompTransform * otherTransform = other->get<TCompTransform>();
+		TCompTransform * myTransform = get<TCompTransform>();
+
+		VEC3 direction = myTransform->getPosition() - otherTransform->getPosition();
+		direction.Normalize();
+		myTransform->setPosition(myTransform->getPosition() + direction * 3.f);
+	}
+}
+
 
 /* TODO: REVISAR MUY MUCHO */
 const std::string TCompAIMimetic::getStateForCheckpoint()
@@ -349,6 +366,7 @@ void TCompAIMimetic::registerMsgs()
 	DECL_MSG(TCompAIMimetic, TMsgPlayerDead, onMsgPlayerDead);
 	DECL_MSG(TCompAIMimetic, TMsgEnemyStunned, onMsgMimeticStunned);
 	DECL_MSG(TCompAIMimetic, TMsgNoiseMade, onMsgNoiseListened);
+	DECL_MSG(TCompAIMimetic, TMsgPhysxContact, onMsgPhysxContact);
 }
 
 void TCompAIMimetic::loadActions() {
