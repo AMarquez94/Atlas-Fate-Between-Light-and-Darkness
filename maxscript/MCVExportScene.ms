@@ -332,6 +332,9 @@ struct TSceneExporter (
 			local me = TMaterialExporter project_path:project_path base_path:base_path
 			exported_materials = me.exportMaterial mat f_mats_path obj "pbr_instanced.tech"
 		)
+		
+		fs.writeKey "materials"
+		fs.arrayOfStrings exported_materials
 	),
 	
 	-- ----------------------------------------------------------

@@ -1,6 +1,8 @@
 #include "mcv_platform.h"
 #include "module_instancing.h"
 #include "geometry/transform.h"
+#include "entity/entity_parser.h"
+#include "components/comp_name.h"
 
 float unitRandom() {
 
@@ -31,6 +33,38 @@ bool CModuleInstancing::start() {
         auto rmesh = Resources.get("data/meshes/grass.instanced_mesh")->as<CRenderMesh>();
         grass_instances_mesh = (CRenderMeshInstanced*)rmesh;
         grass_instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TGrassParticle));
+    }
+
+    return true;
+}
+
+/* Load the global instance mesh in the scene */
+bool CModuleInstancing::parseInstance(const json& j, TEntityParseContext& ctx) {
+
+    std::string name = j.value("mesh", "data/meshes/GeoSphere001.instanced_mesh");
+    if (_global_instances.find(name) == _global_instances.end()) {
+
+        CHandle h_e;
+        h_e.create< CEntity >();
+        CEntity* e = h_e;
+
+        // Bind it to me
+        auto om = CHandleManager::getByName("render");
+        CHandle h_comp = om->createHandle();
+        h_comp.load(j, ctx);
+        e->set(om->getType(), h_comp);
+
+        om = CHandleManager::getByName("transform");
+        h_comp = om->createHandle();
+        e->set(om->getType(), h_comp);
+
+        om = CHandleManager::getByName("name");
+        h_comp = om->createHandle();
+        e->set(om->getType(), h_comp);
+
+        TCompName * c_name = e->get<TCompName>();
+        c_name->setName(name.c_str());
+        _global_names.insert(std::pair<std::string, std::string>(name, name));
     }
 
     return true;

@@ -493,8 +493,8 @@ void TCompTempPlayerController::invertAxis(VEC3 old_up, bool type) {
             if (temp_up.Dot(dir_cross) > 0) angle = -angle;
 
             temp_deg = rad2deg(angle);// (player_input->movementValue.x) * 90;
-            dbg("dot total value %f .. %f \n", dot_result, angle);
-            dbg("total temp_deg %f %f || %f %f \n", temp_deg, angle, player_input->movementValue.x, player_input->movementValue.y);
+            //dbg("dot total value %f .. %f \n", dot_result, angle);
+            //dbg("total temp_deg %f %f || %f %f \n", temp_deg, angle, player_input->movementValue.x, player_input->movementValue.y);
         }
     }
     else {
@@ -511,7 +511,7 @@ void TCompTempPlayerController::invertAxis(VEC3 old_up, bool type) {
             VEC3 dir_cross = dir1.Cross(temp_dir);
             if (temp_up.Dot(dir_cross) > 0) angle = -angle;
 
-            dbg("total temp_deg %f %f || %f %f \n", dot_result, angle, temp_dir.x, temp_dir.y);
+            //dbg("total temp_deg %f %f || %f %f \n", dot_result, angle, temp_dir.x, temp_dir.y);
             temp_deg = rad2deg(angle) + 180;// (player_input->movementValue.x) * 90;
         }
     }

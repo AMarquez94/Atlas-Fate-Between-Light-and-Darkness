@@ -13,6 +13,7 @@ DECL_OBJ_MANAGER("instance", TCompInstance);
 void TCompInstance::load(const json& j, TEntityParseContext& ctx) {
 
     _instance_mesh = j.value("mesh", "data/meshes/GeoSphere001.instanced_mesh");
+    EngineInstancing.parseInstance(j, ctx);
 }
 
 void TCompInstance::registerMsgs() {
