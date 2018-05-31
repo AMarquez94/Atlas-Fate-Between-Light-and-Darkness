@@ -43,6 +43,7 @@ struct CPhysicsBox : public CPhysicsCollider{
 
 public:
 	physx::PxVec3 size;
+  float step_offset;
 
 	physx::PxShape*  createShape() override;
 	physx::PxController* createController(TCompTransform * c_transform) override;
@@ -76,6 +77,7 @@ struct CPhysicsCapsule : public CPhysicsCollider{
 public:
 	float height;
 	float radius;
+  float step_offset;
 
 	physx::PxShape*  createShape() override;
 	physx::PxController* createController(TCompTransform * c_transform) override;

@@ -44,6 +44,14 @@ void TCompAIPatrol::debugInMenu() {
 	ImGui::Text(" Noise: (%f, %f, %f)", noiseSource.x, noiseSource.y, noiseSource.z);
 }
 
+void TCompAIPatrol::preUpdate(float dt)
+{
+}
+
+void TCompAIPatrol::postUpdate(float dt)
+{
+}
+
 void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 
 	loadActions();

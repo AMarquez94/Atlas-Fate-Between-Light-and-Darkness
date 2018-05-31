@@ -74,6 +74,9 @@ private:
 
 	float rotationSpeedNoise = deg2rad(120.f);
 
+  VEC3 pushedDirection = VEC3::Zero;
+  float pushedTime = 0.f;
+
 	DECL_SIBLING_ACCESS();
 
 	void onMsgEntityCreated(const TMsgEntityCreated& msg);
@@ -99,6 +102,8 @@ private:
 	void loadAsserts() override;
 
 public:
+  void preUpdate(float dt) override;
+  void postUpdate(float dt) override;
 	void load(const json& j, TEntityParseContext& ctx) override;
 	void debugInMenu();
 

@@ -52,6 +52,20 @@ void TCompAIMimetic::debugInMenu() {
 	ImGui::Text("Current state: %s", validState.c_str());
 }
 
+void TCompAIMimetic::preUpdate(float dt)
+{
+  TCompTransform* myPos = get<TCompTransform>();
+  myPos->setPosition(myPos->getPosition() + pushedDirection * 0.1f);
+  /* TODO: Avoid hardcodeadas */
+  pushedDirection = VEC3::Lerp(pushedDirection, VEC3::Zero, Clamp(pushedTime * 2.f, 0.f, 1.f));
+  pushedTime = pushedTime * 2.f + dt;
+}
+
+void TCompAIMimetic::postUpdate(float dt)
+{
+
+}
+
 void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 
 	loadActions();
@@ -296,9 +310,19 @@ void TCompAIMimetic::onMsgPhysxContact(const TMsgPhysxContact & msg)
 		TCompTransform * otherTransform = other->get<TCompTransform>();
 		TCompTransform * myTransform = get<TCompTransform>();
 
-		VEC3 direction = myTransform->getPosition() - otherTransform->getPosition();
-		direction.Normalize();
-		myTransform->setPosition(myTransform->getPosition() + direction * 3.f);
+    if (VEC3::Distance(myTransform->getPosition(), otherTransform->getPosition()) < 2) {
+      VEC3 direction = myTransform->getPosition() - otherTransform->getPosition();
+      direction.Normalize();
+
+      if (fabsf(direction.Dot(otherTransform->getFront())) > 0.8f) {
+        if (otherTransform->isInLeft(myTransform->getPosition())) {
+          direction = direction + myTransform->getLeft();
+          direction.Normalize();
+        }
+      }
+      pushedDirection = direction;
+      pushedTime = 0.f;
+    }
 	}
 }
 
@@ -336,7 +360,9 @@ const std::string TCompAIMimetic::getStateForCheckpoint()
 				else {
 					return "generateNavmeshInitialPosTypeWall";
 				}
-			}
+      } else{
+        return "nextWpt";
+      }
 		}
 	}
 	else {

@@ -82,6 +82,8 @@ private:
 	void loadAsserts() override;
 
 public:
+  void preUpdate(float dt) override;
+  void postUpdate(float dt) override;
 	void load(const json& j, TEntityParseContext& ctx) override;
 	void debugInMenu();
 

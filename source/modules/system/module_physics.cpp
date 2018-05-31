@@ -50,7 +50,7 @@ bool CModulePhysics::start()
     sceneDesc.gravity = PxVec3(0, 0, 0);
     sceneDesc.cpuDispatcher = gDispatcher;
     sceneDesc.filterShader = CustomFilterShader;
-    sceneDesc.flags = PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS | PxSceneFlag::eENABLE_ACTIVE_ACTORS;
+    sceneDesc.flags = PxSceneFlag::eENABLE_KINEMATIC_PAIRS | PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS | PxSceneFlag::eENABLE_ACTIVE_ACTORS;
     gScene = gPhysics->createScene(sceneDesc);
 
     PxPvdSceneClient* pvdClient = gScene->getScenePvdClient();
@@ -182,28 +182,16 @@ void CModulePhysics::CustomSimulationEventCallback::onContact(const physx::PxCon
 					CEntity* entity1 = h_actor_1.getOwner();
 					CEntity* entity2 = h_actor_2.getOwner();
 
-					std::string enemy1name = entity1->getName();
-					std::string enemy2name = entity2->getName();
-
-					dbg("CONTACT %s with %s\n", enemy1name.c_str(), enemy2name.c_str());
-
-					TCompTags* tags1 = entity1->get<TCompTags>();
-					TCompTags* tags2 = entity2->get<TCompTags>();
-
-					if (tags1 && tags2 && tags1->hasTag(getID("enemy") && tags2->hasTag(getID("enemy")))) {
-						dbg("Choque %s with %s\n", enemy1name.c_str(), enemy2name.c_str());
-					}
-
-					if (cp.flags & PxContactPairFlag::eACTOR_PAIR_HAS_FIRST_TOUCH) {
+					if (cp.events & (PxPairFlag::eNOTIFY_TOUCH_FOUND | PxPairFlag::eNOTIFY_TOUCH_PERSISTS)) {
 						TCompRigidbody * rigidbody1 = entity1->get<TCompRigidbody>();
 						TCompRigidbody * rigidbody2 = entity2->get<TCompRigidbody>();
 
 						if (rigidbody1 && rigidbody2) {
 							TMsgPhysxContact msg;
-							msg.other_entity = h_actor_2;
+							msg.other_entity = h_actor_2.getOwner();
 							entity1->sendMsg(msg);
 
-							msg.other_entity = h_actor_1;
+							msg.other_entity = h_actor_1.getOwner();
 							entity2->sendMsg(msg);
 						}
 					}

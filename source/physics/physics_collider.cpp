@@ -84,6 +84,7 @@ void CPhysicsBox::load(const json& j, TEntityParseContext& ctx){
 
 	VEC3 box_size = loadVEC3(j["size"]);
 	size = physx::PxVec3(box_size.x, box_size.y, box_size.z);
+  step_offset = j.value("step_offset", 0.2f);
 }
 
 physx::PxShape* CPhysicsBox::createShape(){
@@ -179,6 +180,7 @@ void CPhysicsCapsule::load(const json& j, TEntityParseContext& ctx) {
 
 	height = j.value("height", 0.f);
 	radius = j.value("radius", 0.f);
+  step_offset = j.value("step_offset", 0.2f);
 }
 
 physx::PxShape* CPhysicsCapsule::createShape() {
@@ -216,6 +218,7 @@ physx::PxController* CPhysicsCapsule::createController(TCompTransform * c_transf
 	QUAT quat = c_transform->getRotation();
 	ctrl->setFootPosition(physx::PxExtendedVec3(pos.x, pos.y, pos.z));
 	ctrl->setContactOffset(contact_offset);
+  ctrl->setStepOffset(step_offset);
 
 	actor = ctrl->getActor();
 	actor->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, true);

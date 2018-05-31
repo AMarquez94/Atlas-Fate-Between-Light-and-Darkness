@@ -88,4 +88,6 @@ public:
 	void setCurrentByName(const std::string& stateName);
 
 	void update(float dt);
+  virtual void preUpdate(float dt) = 0;
+  virtual void postUpdate(float dt) = 0;
 };

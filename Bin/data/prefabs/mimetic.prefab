@@ -109,8 +109,9 @@
 			},
 			"collider": {
 				"shape": "capsule",
-				"radius": 0.65,
-				"height": 1.0,
+				"radius": 0.4,
+				"height": 0.6,
+				"step_offset": 0.1,
 				"gravity": true,
 				"group": "enemy"
 			},
