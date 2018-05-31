@@ -468,6 +468,7 @@ void TCompTempPlayerController::resetRemoveInhibitor()
     //player->sendMsg(inhibitorTryToRemove);
 }
 
+
 /* Method used to determine control invert */
 void TCompTempPlayerController::invertAxis(VEC3 old_up, bool type) {
 
@@ -480,23 +481,38 @@ void TCompTempPlayerController::invertAxis(VEC3 old_up, bool type) {
     // Hardcoded a little bit, fix in the future if it fully works..
     if (type) {
 
-        //if ((pos_test && !pre_test)) {
-        //    temp_deg += EngineInput["btLeft"].isPressed() ? -90 : 0;
-        //    temp_deg += EngineInput["btRight"].isPressed() ? 90 : 0;
-        //}
+        TCompPlayerInput *player_input = get<TCompPlayerInput>();
+        if ((pos_test && !pre_test)) {
 
-        if ((pos_test && !pre_test) && !EngineInput["btUp"].isPressed()) {
-            temp_deg += EngineInput["btLeft"].isPressed() ? -90 : 0;
-            temp_deg += EngineInput["btRight"].isPressed() ? 90 : 0;
+            VEC2 dir1 = VEC2(0, 1);
+            VEC2 temp_dir = player_input->movementValue;
+            temp_dir.Normalize();
+            float dot_result = Clamp(dir1.Dot(temp_dir), -1.f, 1.f);
+            float angle = acos(dot_result);
+            VEC3 dir_cross = dir1.Cross(temp_dir);
+            if (temp_up.Dot(dir_cross) > 0) angle = -angle;
+
+            temp_deg = rad2deg(angle);// (player_input->movementValue.x) * 90;
+            dbg("dot total value %f .. %f \n", dot_result, angle);
+            dbg("total temp_deg %f %f || %f %f \n", temp_deg, angle, player_input->movementValue.x, player_input->movementValue.y);
         }
     }
     else {
 
-        temp_deg = ((pos_test && !pre_test) && !EngineInput["btDown"].isPressed()) ? 180 : temp_deg;
+        TCompPlayerInput *player_input = get<TCompPlayerInput>();
+        if ((pos_test && !pre_test)) {
 
-        if ((pos_test && !pre_test) && !EngineInput["btDown"].isPressed()) {
-            temp_deg += EngineInput["btLeft"].isPressed() ? -90 : 0;
-            temp_deg += EngineInput["btRight"].isPressed() ? 90 : 0;
+            VEC2 dir1 = VEC2(0, 1);
+            VEC2 temp_dir = player_input->movementValue;
+            temp_dir.Normalize();
+            float dot_result = Clamp(dir1.Dot(temp_dir), -1.f, 1.f);
+            float angle = acos(dot_result);
+
+            VEC3 dir_cross = dir1.Cross(temp_dir);
+            if (temp_up.Dot(dir_cross) > 0) angle = -angle;
+
+            dbg("total temp_deg %f %f || %f %f \n", dot_result, angle, temp_dir.x, temp_dir.y);
+            temp_deg = rad2deg(angle) + 180;// (player_input->movementValue.x) * 90;
         }
     }
 }
