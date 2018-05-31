@@ -4,7 +4,8 @@
 		"vs_entry_point": "VS",
 		"vertex_type": "PosClr",
 		"ps_file": "data/shaders/solid.fx",
-		"ps_entry_point": "PS"
+		"ps_entry_point": "PS",
+		"rs_config": "wireframe"
 	},
 	"solid_objs": {
 		"vs_file": "data/shaders/solid.fx",
@@ -293,7 +294,10 @@
 		"category": "fx",
 		"ps_entry_point__if_stencil_test": "PS_Solid",
 		"z__if_stencil_test": "on_non_zero_stencil",
-		"blend": "combinative"
+		"blend": "additive",
+		"textures": {
+			"noise": "data/textures/gradient_sonar.dds"
+		}
 	},
 	"pbr_outline": {
 		"vs_file": "data/shaders/pbr.fx",

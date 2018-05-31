@@ -1,8 +1,8 @@
 {
-  "shadows": true
-  ,
-  "textures":
-  {
-    "albedo": "data/textures/default_texture.dds"
-  }
+	"shadows": true,
+	"textures": {
+		"albedo": "data/textures/default_texture.dds",
+		"metallic": "data/textures/default_height.dds",
+		"roughness": "data/textures/default_white.dds"
+	}
 }

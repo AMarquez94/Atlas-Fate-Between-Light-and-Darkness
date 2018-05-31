@@ -102,6 +102,7 @@ bool CMaterial::create(const json& j) {
     cb_material.mix_boost_r = 0;
     cb_material.mix_boost_g = 0;
     cb_material.mix_boost_b = 0;
+    cb_material.mat_alpha_outline = 1;
 
 	if (j.count("self_color"))
 		cb_material.color_emission = loadVEC4(j["self_color"]);
@@ -170,6 +171,7 @@ void CMaterial::debugInMenu() {
 	ImGui::DragFloat("Emissive Intensity", &cb_material.scalar_emission, 0.01f, 0.f, 1000.f);
 	ImGui::ColorEdit3("Emissive Color", &cb_material.color_emission.x);
 	ImGui::DragFloat("irradiance_vs_mipmaps", &cb_material.scalar_irradiance_vs_mipmaps, 0.01f, 0.f, 1.f);
+    ImGui::DragFloat("outline_amount", &cb_material.mat_alpha_outline, 0.01f, 0.f, 1.f);
 
 	cb_material.updateGPU();
 }

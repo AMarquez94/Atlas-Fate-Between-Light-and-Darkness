@@ -86,7 +86,7 @@ struct CZConfigs {
         memset(&desc, 0x00, sizeof(desc));
         desc.DepthEnable = TRUE;
         desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO; // <<--
-        desc.DepthFunc = D3D11_COMPARISON_LESS;
+        desc.DepthFunc = D3D11_COMPARISON_NEVER;
         // Stencil test parameters
         desc.StencilEnable = true;
         desc.StencilReadMask = 0xFF;

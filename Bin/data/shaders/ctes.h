@@ -178,7 +178,7 @@ CB_DEF(CCteMaterial, CB_MATERIAL)
     float  mix_boost_r;
     float  mix_boost_g;
     float  mix_boost_b;
-    float  material_dummy2;
+    float  mat_alpha_outline;
 
 };
 

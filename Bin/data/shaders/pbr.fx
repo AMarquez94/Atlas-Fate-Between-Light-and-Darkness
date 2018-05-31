@@ -114,7 +114,6 @@ void PS_GBuffer_Parallax(
   , float2 iTex0 : TEXCOORD0
   , float2 iTex1 : TEXCOORD1
   , float3 iWorldPos : TEXCOORD2
-  , float3 oCameraOut : TEXCOORD3
   , out float4 o_albedo : SV_Target0
   , out float4 o_normal : SV_Target1
   , out float1 o_depth : SV_Target2

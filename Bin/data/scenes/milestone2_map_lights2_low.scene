@@ -92,8 +92,6 @@
 				"shadows_resolution": 4096,
 				"shadows_fmt": "R32_TYPELESS"
 			},
-			"abs_aabb": true,
-			"local_aabb": true,
 			"tags":
 			[
 				"light"

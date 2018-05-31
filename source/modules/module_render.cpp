@@ -305,6 +305,11 @@ void CModuleRender::generateFrame() {
 		renderFullScreenQuad("dump_texture.tech", curr_rt);
 	}
 
+    // Reset the technique, or we won't be able to render outside here...
+    auto* tech = Resources.get("solid.tech")->as<CRenderTechnique>();
+    assert(tech);
+    tech->activate();
+
     if (debugmode)
         debugDraw();
 

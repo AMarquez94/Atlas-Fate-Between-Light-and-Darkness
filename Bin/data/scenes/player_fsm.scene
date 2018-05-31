@@ -143,5 +143,20 @@
 				"player"
 			]
 		}
-	}
+	},
+  {
+    "entity":
+    {
+      "name": "PropPlayer"
+      ,
+			"hierarchy": {
+        "parent": "The Player",
+        "pos": "0 0 0"
+      },
+			      "transform": {},
+			"render" : {
+				"mesh" : "axis.mesh"
+			}
+    }
+  }
 ]

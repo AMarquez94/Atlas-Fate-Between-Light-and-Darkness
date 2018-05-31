@@ -100,12 +100,6 @@ void TCompPlayerInput::update(float dt)
 
 		if (EngineInput["btCrouch"].getsPressed())
 		{
-			// Replace this with triggers contact.
-			/*CEntity * c_my_entity = CHandle(this).getOwner();
-			TCompCollider * c_my_collider = c_my_entity->get<TCompCollider>();
-			TCompTransform * c_my_transform = c_my_entity->get<TCompTransform>();
-			if(!c_my_collider->collisionDistance(c_my_transform->getPosition(), -EnginePhysics.gravity, 1.f) && crouchButton)
-			*/
 			crouchButton = !crouchButton;
 			TMsgSetFSMVariable crouch;
 			crouch.variant.setName("crouch");
@@ -147,8 +141,8 @@ void TCompPlayerInput::update(float dt)
 			TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
 
 			if (c_my_player->isInhibited && c_my_player->canRemoveInhibitor && _time >= _timerRemoveInhibitor + _timeOffsetToRemoveInhibitor) {
-        _timerRemoveInhibitor = _time;
-        TMsgSetFSMVariable keyPressed;
+                _timerRemoveInhibitor = _time;
+                TMsgSetFSMVariable keyPressed;
 				keyPressed.variant.setName("inhibitorTryToRemove");
 				keyPressed.variant.setBool(true);
 				e->sendMsg(keyPressed);
@@ -160,7 +154,8 @@ void TCompPlayerInput::update(float dt)
 			c_my_player->dbgDisableStamina = !c_my_player->dbgDisableStamina;
 		}
 
-		if (EngineInput["btUp"].getsReleased()) {
+		if (EngineInput["btUp"].getsReleased() || EngineInput["btDown"].getsReleased() ||
+            EngineInput["btRight"].getsReleased() || EngineInput["btLeft"].getsReleased()) {
 			TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
 			c_my_player->upButtonReselased();
 		}
