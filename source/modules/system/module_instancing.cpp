@@ -3,6 +3,8 @@
 #include "geometry/transform.h"
 #include "entity/entity_parser.h"
 #include "components/comp_name.h"
+#include "components/comp_group.h"
+#include "components/comp_transform.h"
 
 float unitRandom() {
 
@@ -35,6 +37,21 @@ bool CModuleInstancing::start() {
         grass_instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TGrassParticle));
     }
 
+    scene_group.create< CEntity >();
+    CEntity* e = scene_group;
+
+    CHandle h_comp = getObjectManager<TCompTransform>()->createHandle();
+    e->set(h_comp.getType(), h_comp);
+
+    h_comp = getObjectManager<TCompName>()->createHandle();
+    e->set(h_comp.getType(), h_comp);
+
+    TCompName * c_name = e->get<TCompName>();
+    c_name->setName("Instanced Meshes");
+
+    CHandle h_group = getObjectManager<TCompGroup>()->createHandle();
+    e->set(h_group.getType(), h_group);
+
     return true;
 }
 
@@ -42,28 +59,37 @@ bool CModuleInstancing::start() {
 bool CModuleInstancing::parseInstance(const json& j, TEntityParseContext& ctx) {
 
     std::string name = j.value("mesh", "data/meshes/GeoSphere001.instanced_mesh");
+
     if (_global_instances.find(name) == _global_instances.end()) {
 
         CHandle h_e;
         h_e.create< CEntity >();
         CEntity* e = h_e;
 
+        TEntityParseContext ctx_temp;
+        ctx_temp.current_entity = e;
         // Bind it to me
         auto om = CHandleManager::getByName("render");
         CHandle h_comp = om->createHandle();
-        h_comp.load(j, ctx);
-        e->set(om->getType(), h_comp);
 
-        om = CHandleManager::getByName("transform");
-        h_comp = om->createHandle();
-        e->set(om->getType(), h_comp);
+        h_comp.load(j, ctx_temp);
+        e->set(h_comp.getType(), h_comp);
 
-        om = CHandleManager::getByName("name");
-        h_comp = om->createHandle();
-        e->set(om->getType(), h_comp);
+        h_comp = getObjectManager<TCompTransform>()->createHandle();
+        e->set(h_comp.getType(), h_comp);
 
+        h_comp = getObjectManager<TCompName>()->createHandle();
+        e->set(h_comp.getType(), h_comp);
+
+        std::size_t pos = name.find("meshes/") + 7;
+        std::string sub_name = name.substr(pos);
         TCompName * c_name = e->get<TCompName>();
-        c_name->setName(name.c_str());
+        c_name->setName(sub_name.c_str());
+
+        CEntity * t_group = scene_group;
+        TCompGroup* c_group = t_group->get<TCompGroup>();
+        c_group->add(h_e);
+
         _global_names.insert(std::pair<std::string, std::string>(name, name));
     }
 

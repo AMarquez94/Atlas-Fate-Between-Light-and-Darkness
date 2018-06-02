@@ -14,7 +14,8 @@ struct TInstance {
 class CModuleInstancing : public IModule {
 
     // Static instances, for testing purposes
-    
+    CHandle scene_group;
+
     // -------------------------------------------------------------------
     struct TGrassParticle {
         VEC3  pos;
