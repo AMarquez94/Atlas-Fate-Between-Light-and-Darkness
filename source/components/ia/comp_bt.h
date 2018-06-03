@@ -36,7 +36,8 @@ protected:
 
 	void onMsgScenePaused(const TMsgScenePaused& msg);
 
-	bool isParentOfCurrent(BTNode * son, const std::string& possibleParent);
+	bool isNodeSonOf(BTNode * son, const std::string& possibleParent);
+  bool isNodeName(BTNode * node, const std::string& possibleName);
 
   CHandle myHandle;
 

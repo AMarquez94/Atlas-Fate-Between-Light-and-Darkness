@@ -222,13 +222,14 @@ void TCompAIPatrol::onMsgNoiseListened(const TMsgNoiseMade & msg)
 	assert(arguments.find("autoChaseDistance_actionSuspect_suspect") != arguments.end());
 	float autoChaseDistance = arguments["autoChaseDistance_actionSuspect_suspect"].getFloat();
 
-	bool isManagingArtificialNoise = isParentOfCurrent(current, "goToArtificialNoiseSource");
-	bool isManagingNaturalNoise = isParentOfCurrent(current, "manageNaturalNoise");
-	bool isChasingPlayer = isParentOfCurrent(current, "manageChase");
+	bool isManagingArtificialNoise = isNodeSonOf(current, "goToArtificialNoiseSource");
+  bool isWaitingInNoiseSource = isNodeName(current, "waitInArtificialNoiseSource");
+	bool isManagingNaturalNoise = isNodeSonOf(current, "manageNaturalNoise");
+	bool isChasingPlayer = isNodeSonOf(current, "manageChase");
 
-  std::chrono::steady_clock::time_point newNoiseTime;
+  std::chrono::steady_clock::time_point newNoiseTime = std::chrono::steady_clock::now();
 
-	if (!isChasingPlayer && !isManagingArtificialNoise) {
+	if (!isChasingPlayer && (!isManagingArtificialNoise || isWaitingInNoiseSource)) {
 		if (!isPlayerInFov("The Player", fov - deg2rad(1.f), autoChaseDistance - 1.f)) {
 			if (msg.isArtificialNoise) {
 				hasHeardArtificialNoise = true;
@@ -240,7 +241,7 @@ void TCompAIPatrol::onMsgNoiseListened(const TMsgNoiseMade & msg)
 	}
 
   /* Noise management */
-  if (!hNoiseSource.isValid() || hNoiseSource == msg.hNoiseSource || std::chrono::duration_cast<std::chrono::seconds>(newNoiseTime - lastTimeNoiseWasHeard).count() > 1.5f) {
+  if (!hNoiseSource.isValid() || hNoiseSource == msg.hNoiseSource || isManagingNaturalNoise && msg.isArtificialNoise || std::chrono::duration_cast<std::chrono::seconds>(newNoiseTime - lastTimeNoiseWasHeard).count() > 1.5f) {
 
     /* Different noise sources (different enemies) => only hear if 1.5 seconds (hardcoded (TODO: Change)) passed || Same noise source => update noise settings */
     lastTimeNoiseWasHeard = newNoiseTime;
@@ -453,20 +454,20 @@ BTNode::ERes TCompAIPatrol::actionGoToNoiseSource(float dt)
   }
 
 
-	dbg("Go To Noise Source ");
+	//dbg("Go To Noise Source ");
 	if (isPlayerInFov(entityToChase, fov - deg2rad(1.f), autoChaseDistance - 1.f)) {
 		current = nullptr;
-		dbg("LEAVE (player in fov)\n");
+		//dbg("LEAVE (player in fov)\n");
 		return BTNode::ERes::LEAVE;
 	}
 
 	if (moveToPoint(speed, rotationSpeed, noiseSource, dt)) {
-		dbg("LEAVE (is in position) - ");
-		dbg("MyPos: (%f, %f, %f) - NoiseSource: (%f, %f, %f)\n", pp.x, pp.y, pp.z, noiseSource.x, noiseSource.y, noiseSource.z);
+		//dbg("LEAVE (is in position) - ");
+		//dbg("MyPos: (%f, %f, %f) - NoiseSource: (%f, %f, %f)\n", pp.x, pp.y, pp.z, noiseSource.x, noiseSource.y, noiseSource.z);
 		return BTNode::ERes::LEAVE;
 	}
 	else {
-		dbg("STAY (not arrived)\n");
+		//dbg("STAY (not arrived)\n");
 		return BTNode::ERes::STAY;
 	}
 	//return moveToPoint(speed, rotationSpeed, noiseSource, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;

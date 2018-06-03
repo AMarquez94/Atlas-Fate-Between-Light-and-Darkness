@@ -163,6 +163,7 @@ public:
 	/* ASSERTS */
 	bool assertNotPlayerInFovNorNoise(float dt);
 	bool assertNotPlayerInFov(float dt);
+  bool assertNotPlayerInFovNorArtificialNoise(float dt);
 
 	bool isStunned() { return current && current->getName().compare("stunned") == 0; }
 

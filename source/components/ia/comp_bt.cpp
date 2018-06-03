@@ -440,7 +440,12 @@ void TCompIAController::onMsgScenePaused(const TMsgScenePaused & msg)
 	paused = !paused;
 }
 
-bool TCompIAController::isParentOfCurrent(BTNode * son, const std::string& possibleParent)
+bool TCompIAController::isNodeName(BTNode * node, const std::string & possibleName)
+{
+  return node != nullptr && node->getName().compare(possibleName) == 0;
+}
+
+bool TCompIAController::isNodeSonOf(BTNode * son, const std::string& possibleParent)
 {
 	assert(findNode(possibleParent));
 	if (son == nullptr || son->isRoot()) {
@@ -451,7 +456,7 @@ bool TCompIAController::isParentOfCurrent(BTNode * son, const std::string& possi
 			return true;
 		}
 		else {
-			return isParentOfCurrent(son->getParent(), possibleParent);
+			return isNodeSonOf(son->getParent(), possibleParent);
 		}
 	}
 }

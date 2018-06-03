@@ -122,7 +122,7 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
 	addChild("manageArtificialNoise", "jumpFloorNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionJumpFloor, nullptr);
   addChild("manageArtificialNoise", "generateNavmeshNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGenerateNavmeshNoiseSource, nullptr/*(BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise*/);
 	addChild("manageArtificialNoise", "goToNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionGoToNoiseSource, nullptr/*(BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise*/);
-	addChild("manageArtificialNoise", "waitInNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitInNoiseSource, nullptr/*(BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise*/);
+	addChild("manageArtificialNoise", "waitInNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitInNoiseSource, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorArtificialNoise);
   addChild("manageArtificialNoise", "setGoInactiveArtificialNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetGoInactive, nullptr/*(BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise*/);
 
 	addChild("mimetic", "manageSuspect", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionNotSurePlayerInFov, nullptr, nullptr);
@@ -237,68 +237,33 @@ void TCompAIMimetic::onMsgNoiseListened(const TMsgNoiseMade & msg)
 
 
 	/* TODO: Continue when renderline working again */
-	//if (myHandle != msg.hNoiseSource) {
+  bool isManagingArtificialNoise = isNodeSonOf(current, "goToNoiseSource");
+  bool isWaitingInNoiseSource = isNodeName(current, "waitInNoiseSource");
+  bool isManagingNaturalNoise = isNodeSonOf(current, "manageNaturalNoise");
+  bool isChasingPlayer = isNodeSonOf(current, "manageChase");
 
-	//	/* Ignore my own noise */
-	//	bool isManagingArtificialNoise = isParentOfCurrent(current, "manageArtificialNoise");
-	//	bool isManagingNaturalNoise = isParentOfCurrent(current, "manageNaturalNoise");
-	//	bool isChasingPlayer = isParentOfCurrent(current, "manageChase");
+  std::chrono::steady_clock::time_point newNoiseTime = std::chrono::steady_clock::now();
 
-	//	std::chrono::steady_clock::time_point newNoiseTime;
+  if (!isChasingPlayer && (!isManagingArtificialNoise || isWaitingInNoiseSource)) {
+    if (!isPlayerInFov("The Player", fov - deg2rad(1.f), autoChaseDistance - 1.f)) {
+      if (msg.isArtificialNoise) {
+        hasHeardArtificialNoise = true;
+      }
+      else if (!isManagingNaturalNoise && !msg.isArtificialNoise) {
+        hasHeardNaturalNoise = true;
+      }
+    }
+  }
 
-	//	if (!isChasingPlayer && !isManagingArtificialNoise) {
-	//		if (!isPlayerInFov(entityToChase, fov - deg2rad(1.f), autoChaseDistance - 1.f)) {
-	//			if (msg.isArtificialNoise) {
-	//				hasHeardArtificialNoise = true;
-	//			}
-	//			else if (!isManagingNaturalNoise && !msg.isArtificialNoise) {
-	//				hasHeardNaturalNoise = true;
-	//			}
-	//		}
-	//	}
+  /* Noise management */
+  if (!hNoiseSource.isValid() || hNoiseSource == msg.hNoiseSource || isManagingNaturalNoise && msg.isArtificialNoise || std::chrono::duration_cast<std::chrono::seconds>(newNoiseTime - lastTimeNoiseWasHeard).count() > 1.5f) {
 
-	//	/* Noise management */
-	//	if (!hNoiseSource.isValid() || hNoiseSource == msg.hNoiseSource || std::chrono::duration_cast<std::chrono::seconds>(newNoiseTime - lastTimeNoiseWasHeard).count() > 2.f) {
-
-	//		/* Different noise sources (different enemies) => only hear if 1.5 seconds (hardcoded (TODO: Change)) passed || Same noise source => update noise settings */
-	//		lastTimeNoiseWasHeard = newNoiseTime;
-	//		noiseSourceChanged = noiseSource != msg.noiseOrigin;
-	//		noiseSource = msg.noiseOrigin;
-	//		hNoiseSource = msg.hNoiseSource;
-	//	}
-	//}
-
-	if (!msg.isArtificialNoise && !isPlayerInFov(entityToChase, fov - deg2rad(1.f), autoChaseDistance - 1.f)) {
-		hasHeardNaturalNoise = true;
-		noiseSource = msg.noiseOrigin;
-	}
-	else {
-		if (msg.isArtificialNoise) {
-			hasHeardArtificialNoise = true;
-		}
-		else {
-			hasHeardNaturalNoise = true;
-		}
-		noiseSourceChanged = noiseSource != msg.noiseOrigin;
-		noiseSource = msg.noiseOrigin;
-	}
-
-
-
-	//if (!msg.isArtificialNoise && !isPlayerInFov(entityToChase, fov, autoChaseDistance - 1.f)) {
-	//	 hasHeardNaturalNoise = true;
- //    noiseSource = msg.noiseOrigin;
-	//}
-	//else {
-	//	if (msg.isArtificialNoise) {
-	//		hasHeardArtificialNoise = true;
-	//	}
-	//	else {
-	//		hasHeardNaturalNoise = true;
-	//	}
- //   noiseSourceChanged = noiseSource != msg.noiseOrigin;
- //   noiseSource = msg.noiseOrigin;
-	//}
+    /* Different noise sources (different enemies) => only hear if 1.5 seconds (hardcoded (TODO: Change)) passed || Same noise source => update noise settings */
+    lastTimeNoiseWasHeard = newNoiseTime;
+    noiseSourceChanged = noiseSource != msg.noiseOrigin;
+    noiseSource = msg.noiseOrigin;
+    hNoiseSource = msg.hNoiseSource;
+  }
 }
 
 void TCompAIMimetic::onMsgPhysxContact(const TMsgPhysxContact & msg)
@@ -332,11 +297,11 @@ const std::string TCompAIMimetic::getStateForCheckpoint()
 {
 	if (current) {
 		std::string currName = current->getName();
-		if (isParentOfCurrent(current, "manageInactiveTypeWall")) {
+		if (isNodeSonOf(current, "manageInactiveTypeWall")) {
 			return "resetVariables";
 		}
-		else if (isParentOfCurrent(current, "manageInactiveTypeFloor")) {
-			if (isParentOfCurrent(current, "manageObserveTypeFloor")) {
+		else if (isNodeSonOf(current, "manageInactiveTypeFloor")) {
+			if (isNodeSonOf(current, "manageObserveTypeFloor")) {
 				return "resetVariables";
 			}
 			else {
@@ -754,22 +719,26 @@ BTNode::ERes TCompAIMimetic::actionGoToNoiseSource(float dt)
 	//Animation To Change
 	TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
 	myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::RUN);
-	TCompTransform *mypos = get<TCompTransform>();
-	VEC3 vp = mypos->getPosition();
 
-	CEntity * ePlayer = getEntityByName(entityToChase);
-	TCompTransform * ppos = get<TCompTransform>();
-	VEC3 pp = ppos->getPosition();
+  CEntity * ePlayer = getEntityByName(entityToChase);
+  TCompTransform * ppos = get<TCompTransform>();
+  VEC3 pp = ppos->getPosition();
 
-	if (VEC3::Distance(vp, pp) <= autoChaseDistance && isPlayerInFov(entityToChase, fov, maxChaseDistance)) {
-		return BTNode::ERes::LEAVE;
+  if (noiseSourceChanged) {
+    generateNavmesh(pp, noiseSource);
+    noiseSourceChanged = false;
+  }
+
+  if (isPlayerInFov(entityToChase, fov - deg2rad(1.f), autoChaseDistance - 1.f)) {
+    current = nullptr;
+    return BTNode::ERes::LEAVE;
+  }
+
+  if (moveToPoint(speed, rotationSpeedPatrolling, noiseSource, dt)) {
+    return BTNode::ERes::LEAVE;
   }
   else {
-    if (noiseSourceChanged) {
-      generateNavmesh(mypos->getPosition(), noiseSource);
-      noiseSourceChanged = false;
-    }
-    return moveToPoint(speed, rotationSpeedPatrolling, noiseSource, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
+    return BTNode::ERes::STAY;
   }
 }
 
@@ -784,7 +753,7 @@ BTNode::ERes TCompAIMimetic::actionWaitInNoiseSource(float dt)
 	TCompTransform * ppos = get<TCompTransform>();
 	VEC3 pp = ppos->getPosition();
 
-	if (VEC3::Distance(vp, pp) <= autoChaseDistance && isPlayerInFov(entityToChase, fov, maxChaseDistance)) {
+	if (entityToChase, fov - deg2rad(1.f), autoChaseDistance - 1.f) {
 		return BTNode::ERes::LEAVE;
 	}
 
@@ -1001,6 +970,11 @@ bool TCompAIMimetic::assertNotPlayerInFov(float dt)
 	return !isPlayerInFov(entityToChase, fov, maxChaseDistance);
 }
 
+bool TCompAIMimetic::assertNotPlayerInFovNorArtificialNoise(float dt)
+{
+  return !hasHeardArtificialNoise && !isPlayerInFov(entityToChase, fov, maxChaseDistance);
+}
+
 /* AUX FUNCTIONS */
 bool TCompAIMimetic::rotateTowardsVec(VEC3 objective, float rotationSpeed, float dt){
 	bool isInObjective = false;
@@ -1147,7 +1121,7 @@ bool TCompAIMimetic::moveToPoint(float speed, float rotationSpeed, VEC3 objectiv
 
   VEC3 vp = mypos->getPosition();
 
-  if (VEC3::Distance(objective, vp) <= fabsf(left.Dot(finalDir)) * maxDistanceToNavmeshPoint + 0.1f) {
+  if (VEC3::Distance(objective, vp) <= speed * dt + 0.1/*fabsf(left.Dot(finalDir)) * maxDistanceToNavmeshPoint + 0.1f*/) {
     return true;
   }
   else {
