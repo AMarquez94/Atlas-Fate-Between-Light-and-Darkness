@@ -1,57 +1,20 @@
 #pragma once
 
 #include "components/comp_base.h"
-#include "comp_bt.h"
+#include "comp_bt_enemy.h"
 #include "modules/module_ia.h"
 
-class TCompAIPatrol : public TCompIAController {
+class TCompAIPatrol : public TCompAIEnemy {
 
 private:
 
-  struct StateColors {
-    VEC4 colorNormal;
-    VEC4 colorSuspect;
-    VEC4 colorAlert;
-    VEC4 colorDead;
-  } patrolColor;
-
 	/* Atributes */
-	std::vector<Waypoint> _waypoints;
-	int currentWaypoint;
 
-  /* TEMPORAL */
-  VEC3 trueLookAt;
-
-	float suspectO_Meter = 0.f;
-	bool isLastPlayerKnownDirLeft = false;
 	float amountRotated = 0.f;
-	VEC3 lastPlayerKnownPos = VEC3::Zero;
 	VEC3 lastStunnedPatrolKnownPos = VEC3::Zero;
 	bool startLightsOn = false;
-	bool alarmEnded = true;
-	bool hasBeenStunned = false;
 	bool hasBeenShadowMerged = false;
 	bool hasBeenFixed = false;
-
-  /* TODO: create struct for noises */
-	bool hasHeardNaturalNoise = false;
-	bool hasHeardArtificialNoise = false;
-	VEC3 noiseSource = VEC3::Zero;
-  bool noiseSourceChanged = false;
-  CHandle hNoiseSource = CHandle();
-  std::chrono::steady_clock::time_point lastTimeNoiseWasHeard;
-
-  float maxDistanceToNavmeshPoint = 3.f;
-
-	std::string validState = "";
-
-  std::vector<VEC3> navmeshPath;
-  int navmeshPathPoint = 0;
-  bool recalculateNavmesh = false;
-
-	/* Timers */
-	float timerWaitingInWpt = 0.f;
-	float timerWaitingInNoise = 0.f;
 
 	DECL_SIBLING_ACCESS();
 
@@ -63,18 +26,11 @@ private:
 	void onMsgNoiseListened(const TMsgNoiseMade& msg);
 
 	/* Aux functions */
-	const Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }
-	void addWaypoint(const Waypoint& wpt) { _waypoints.push_back(wpt); };
-	bool rotateTowardsVec(VEC3 objective, float dt, float rotationSpeed);
-	bool isPlayerInFov(const std::string& entityToChase, float fov, float maxChaseDistance);
-	bool isEntityHidden(CHandle hEntity);
 	void turnOnLight();
 	void turnOffLight();
 	bool isStunnedPatrolInFov(float fov, float maxChaseDistance);
 	bool isStunnedPatrolInPos(VEC3 lastPos);
 	CHandle getPatrolInPos(VEC3 lastPos);
-  void generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc = false);
-  bool moveToPoint(float speed, float rotationSpeed, VEC3 destPoint, float dt);
 	
 	//load
 	void loadActions() override;
@@ -138,8 +94,6 @@ public:
 	bool assertNotPlayerInFovNorArtificialNoise(float dt);
 	bool assertPlayerNotInFovNorNoise(float dt);
 	bool assertPlayerAndPatrolNotInFovNotNoise(float dt);
-
-	bool isStunned() { return current && current->getName().compare("stunned") == 0; }
 
 	const std::string getStateForCheckpoint();
 
