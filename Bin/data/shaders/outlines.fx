@@ -18,34 +18,31 @@ float4 PS_Solid() : SV_Target
 
 //--------------------------------------------------------------------------------------
 float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
-{
-    // Convert screen position to uv coordinates
-    //float3 ss_test_coords = float3(iPosition.xy, 0);
-    float2 uv = iPosition.xy * camera_inv_resolution;
-    
+{    
     // Retrieve the linear depth on given pixel
     int3 ss_load_coords = uint3(iPosition.xy, 0);
     float depth = txGBufferLinearDepth.Load(ss_load_coords).x;
 
     float edge = 0;
-    float _EDGE = 1.0f;
-    float _PULSE = 0.2f;
+    float _EDGE = 2.0f;
+    float _PULSE = 0.1f;
 
-    if (depth > 0.99f)
-        discard;
+		float average = 0.125f * (
+					txGBufferLinearDepth.Load(ss_load_coords + int3(1,-1,0)).x
+				+ txGBufferLinearDepth.Load(ss_load_coords + int3(0,-1,0)).x
+				+ txGBufferLinearDepth.Load(ss_load_coords + int3(-1,-1,0)).x
+				+ txGBufferLinearDepth.Load(ss_load_coords + int3(1,0,0)).x	
+				+ txGBufferLinearDepth.Load(ss_load_coords + int3(-1,0,0)).x
+				+ txGBufferLinearDepth.Load(ss_load_coords + int3(1, 1,0)).x
+				+ txGBufferLinearDepth.Load(ss_load_coords + int3(0, 1,0)).x
+				+ txGBufferLinearDepth.Load(ss_load_coords + int3(-1, 1,0)).x);
 
-    if (_EDGE > 0.0f) {
-        float4 offset = float4(1, 1, -1, -1) * (camera_inv_resolution.xyxy);
-        
-        float average = 0.25f * (
-              txGBufferLinearDepth.Load(float3(uv,0) + float3(offset.xy, 0))
-            + txGBufferLinearDepth.Load(float3(uv,0) + float3(offset.zy, 0))
-            + txGBufferLinearDepth.Load(float3(uv,0) + float3(offset.xw, 0))
-            + txGBufferLinearDepth.Load(float3(uv,0) + float3(offset.zw, 0)));
-
-        edge = sqrt(abs(depth - average)) * _EDGE;
-    }
-
+		edge = sqrt(abs(depth - average)) * _EDGE;
+		
+		if(edge > 0.5)
+			discard;
+		
+		depth = saturate(2.0f * depth);
     depth = 1 - depth;
     depth *= depth;
     depth = 1 - depth;
@@ -74,6 +71,7 @@ float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
     uint s_nc = txBackBufferStencil.Load(ss_load_coords + int3(0,-1,0)).y;
     uint s_ne = txBackBufferStencil.Load(ss_load_coords + int3(-1,-1,0)).y;
     uint s_cw = txBackBufferStencil.Load(ss_load_coords + int3(1,0,0)).y;
+		
     //   s_cc
     uint s_ce = txBackBufferStencil.Load(ss_load_coords + int3(-1,0,0)).y;
     uint s_sw = txBackBufferStencil.Load(ss_load_coords + int3(1, 1,0)).y;
