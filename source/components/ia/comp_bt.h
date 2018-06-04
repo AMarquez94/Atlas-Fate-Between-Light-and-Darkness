@@ -28,7 +28,7 @@ protected:
 	virtual void loadConditions() {};
 	virtual void loadAsserts() {};
 
-	void loadTree(const json& j);
+	void loadTree(const json& json);
 	void loadParameters(const json& j);
 	void loadParameterVariables(const json& j, const std::string& type, const std::string& name);
 

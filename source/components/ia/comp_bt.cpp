@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "comp_bt.h"
+#include "resources/json_resource.h"
 
 void TCompIAController::debugInMenu() {
 
@@ -39,105 +40,112 @@ BTNode * TCompIAController::createRoot(const std::string& rootName, BTNode::ETyp
 		addAssert(rootName, btAssert);
 	}
 
-	current = nullptr;
-	return root;
+current = nullptr;
+return root;
 }
 
 BTNode * TCompIAController::addChild(const std::string& parentName, std::string childName, BTNode::EType type, BTCondition btCondition, BTAction btAction, BTAssert btAssert)
 {
-	BTNode *parent = findNode(parentName);
-	assert(parent);
-	BTNode *son = createNode(childName);
-	parent->addChild(son);
-	son->setParent(parent);
-	son->setType(type);
-	if (btCondition != nullptr) {
-		addCondition(childName, btCondition);
-	}
-	if (btAction != nullptr) {
-		addAction(childName, btAction);
-	}
-	if (btAssert != nullptr) {
-		addAssert(childName, btAssert);
-	}
-	return son;
+  BTNode *parent = findNode(parentName);
+  assert(parent);
+  BTNode *son = createNode(childName);
+  parent->addChild(son);
+  son->setParent(parent);
+  son->setType(type);
+  if (btCondition != nullptr) {
+    addCondition(childName, btCondition);
+  }
+  if (btAction != nullptr) {
+    addAction(childName, btAction);
+  }
+  if (btAssert != nullptr) {
+    addAssert(childName, btAssert);
+  }
+  return son;
 }
 
 void TCompIAController::addAction(const std::string& actionName, BTAction btAction)
 {
-	assert(actions.find(actionName) == actions.end());
-	actions[actionName] = btAction;	//TODO: mirar fallo
+  assert(actions.find(actionName) == actions.end());
+  actions[actionName] = btAction;	//TODO: mirar fallo
 }
 
 BTNode::ERes TCompIAController::execAction(const std::string& actionName, float dt)
 {
-	if (actions.find(actionName) == actions.end()) {
-		fatal("ERROR: Missing node action for action%s \n", actionName.c_str());
-		return BTNode::LEAVE;
-	}
-	return (this->*actions[actionName])(dt);
+  if (actions.find(actionName) == actions.end()) {
+    fatal("ERROR: Missing node action for action%s \n", actionName.c_str());
+    return BTNode::LEAVE;
+  }
+  return (this->*actions[actionName])(dt);
 }
 
 void TCompIAController::addCondition(const std::string& conditionName, BTCondition btCondition)
 {
-	assert(conditions.find(conditionName) == conditions.end());
-	conditions[conditionName] = btCondition;
+  assert(conditions.find(conditionName) == conditions.end());
+  conditions[conditionName] = btCondition;
 }
 
 bool TCompIAController::testCondition(const std::string& conditionName, float dt)
 {
-	if (conditions.find(conditionName) == conditions.end()) {
-		//No condition => we assume is true
-		return true;
-	}
-	else {
-		return (this->*conditions[conditionName])(dt);
-	}
+  if (conditions.find(conditionName) == conditions.end()) {
+    //No condition => we assume is true
+    return true;
+  }
+  else {
+    return (this->*conditions[conditionName])(dt);
+  }
 }
 
 void TCompIAController::addAssert(const std::string & assertName, BTAssert btAssert)
 {
-	assert(asserts.find(assertName) == asserts.end());
-	asserts[assertName] = btAssert;
+  assert(asserts.find(assertName) == asserts.end());
+  asserts[assertName] = btAssert;
 }
 
 bool TCompIAController::testAssert(const std::string & assertName, float dt)
 {
-	if (asserts.find(assertName) == asserts.end()) {
-		//No assert condition => we assume is true
-		return true;
-	}
-	else {
-		return (this->*asserts[assertName])(dt);
-	}
+  if (asserts.find(assertName) == asserts.end()) {
+    //No assert condition => we assume is true
+    return true;
+  }
+  else {
+    return (this->*asserts[assertName])(dt);
+  }
 }
 
 void TCompIAController::setCurrent(BTNode * currentNode)
 {
-	current = currentNode;
+  current = currentNode;
 }
 
 BTNode::EType TCompIAController::stringToNodeType(std::string& string) {
-	if (string.compare("RANDOM") == 0) {
-		return BTNode::EType::RANDOM;
-	}
-	else if (string.compare("SEQUENCE") == 0) {
-		return BTNode::EType::SEQUENCE;
-	}
-	else if (string.compare("PRIORITY") == 0) {
-		return BTNode::EType::PRIORITY;
-	}
-	else if (string.compare("ACTION") == 0) {
-		return BTNode::EType::ACTION;
-	}
-	else {
-		fatal("Node type %s not recognized \n", string.c_str());
-		return BTNode::EType::NUM_TYPES;
-	}
+  if (string.compare("RANDOM") == 0) {
+    return BTNode::EType::RANDOM;
+  }
+  else if (string.compare("SEQUENCE") == 0) {
+    return BTNode::EType::SEQUENCE;
+  }
+  else if (string.compare("PRIORITY") == 0) {
+    return BTNode::EType::PRIORITY;
+  }
+  else if (string.compare("ACTION") == 0) {
+    return BTNode::EType::ACTION;
+  }
+  else {
+    fatal("Node type %s not recognized \n", string.c_str());
+    return BTNode::EType::NUM_TYPES;
+  }
 }
 
-void TCompIAController::loadTree(const json & j)
+void TCompIAController::loadTree(const json & json_bt)
 {
+  if (json_bt.count("bt") <= 0){
+
+    /* Only load if there is a bt */
+    return;
+  }
+  const json& j = Resources.get(json_bt["bt"])->as<CJsonResource>()->getJson();
+
 	std::string rootName, childName, parentName, condition, action, assert, type;
 
 	BTNode::EType nodeType;
