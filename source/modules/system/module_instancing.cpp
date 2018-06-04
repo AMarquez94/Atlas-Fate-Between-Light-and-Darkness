@@ -18,6 +18,7 @@ float randomFloat(float vmin, float vmax) {
 
 bool CModuleInstancing::start() {
 
+    // Load static meshes
     {
         auto rmesh = Resources.get("data/meshes/GeoSphere001.instanced_mesh")->as<CRenderMesh>();
         // Remove cast and upcast to CRenderMeshInstanced
@@ -37,20 +38,23 @@ bool CModuleInstancing::start() {
         grass_instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TGrassParticle));
     }
 
-    scene_group.create< CEntity >();
-    CEntity* e = scene_group;
+    // Create a scene entity to hold all global instances.
+    {
+        scene_group.create< CEntity >();
+        CEntity* e = scene_group;
 
-    CHandle h_comp = getObjectManager<TCompTransform>()->createHandle();
-    e->set(h_comp.getType(), h_comp);
+        CHandle h_comp = getObjectManager<TCompTransform>()->createHandle();
+        e->set(h_comp.getType(), h_comp);
 
-    h_comp = getObjectManager<TCompName>()->createHandle();
-    e->set(h_comp.getType(), h_comp);
+        h_comp = getObjectManager<TCompName>()->createHandle();
+        e->set(h_comp.getType(), h_comp);
 
-    TCompName * c_name = e->get<TCompName>();
-    c_name->setName("Instanced Meshes");
+        TCompName * c_name = e->get<TCompName>();
+        c_name->setName("Instanced Meshes");
 
-    CHandle h_group = getObjectManager<TCompGroup>()->createHandle();
-    e->set(h_group.getType(), h_group);
+        CHandle h_group = getObjectManager<TCompGroup>()->createHandle();
+        e->set(h_group.getType(), h_group);
+    }
 
     return true;
 }
@@ -144,6 +148,7 @@ void CModuleInstancing::removeInstance(TInstance* instance) {
 void CModuleInstancing::clearInstances() {
 
     _global_instances.clear();
+    start();
 }
 
 // Maybe we should refactor this with pointers..

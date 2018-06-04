@@ -28,14 +28,14 @@ float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
     float _PULSE = 0.1f;
 
 		float average = 0.125f * (
-					txGBufferLinearDepth.Load(ss_load_coords + int3(1,-1,0)).x
-				+ txGBufferLinearDepth.Load(ss_load_coords + int3(0,-1,0)).x
-				+ txGBufferLinearDepth.Load(ss_load_coords + int3(-1,-1,0)).x
-				+ txGBufferLinearDepth.Load(ss_load_coords + int3(1,0,0)).x	
-				+ txGBufferLinearDepth.Load(ss_load_coords + int3(-1,0,0)).x
-				+ txGBufferLinearDepth.Load(ss_load_coords + int3(1, 1,0)).x
-				+ txGBufferLinearDepth.Load(ss_load_coords + int3(0, 1,0)).x
-				+ txGBufferLinearDepth.Load(ss_load_coords + int3(-1, 1,0)).x);
+				txGBufferLinearDepth.Load(ss_load_coords + int3(1,-1,0)).x
+			+ txGBufferLinearDepth.Load(ss_load_coords + int3(0,-1,0)).x
+			+ txGBufferLinearDepth.Load(ss_load_coords + int3(-1,-1,0)).x
+			+ txGBufferLinearDepth.Load(ss_load_coords + int3(1,0,0)).x	
+			+ txGBufferLinearDepth.Load(ss_load_coords + int3(-1,0,0)).x
+			+ txGBufferLinearDepth.Load(ss_load_coords + int3(1, 1,0)).x
+			+ txGBufferLinearDepth.Load(ss_load_coords + int3(0, 1,0)).x
+			+ txGBufferLinearDepth.Load(ss_load_coords + int3(-1, 1,0)).x);
 
 		edge = sqrt(abs(depth - average)) * _EDGE;
 		
@@ -52,9 +52,7 @@ float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
     
     float4 colour = txNoiseMap.Sample(samLinear, samplePos);
     colour *= (colour * (2.0f + edge * 30.0f) + edge * 5.0f);
-
-    return float4(colour.xyz, 0.5f);
-    /*
+    
     float  zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
 
     // Can't use sample because it's a texture of ints
@@ -83,7 +81,7 @@ float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
     uint diff = sum_stencils - s_cc * 9;
     // If not we are in the border
     if (diff != 0)
-    return float4(1,0,0,a);
+			return float4(1,0,0,a) * _PULSE * global_world_time;
 
     // else, or we are inside ( stencil != 0 ) 
     //if( s_cc != 0 ) {
@@ -92,5 +90,5 @@ float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
     //}
 
     // or we are outside, all zeros.
-    return float4(1,0,0,0);*/
+    return float4(colour.xyz, 0.5f);
 }
