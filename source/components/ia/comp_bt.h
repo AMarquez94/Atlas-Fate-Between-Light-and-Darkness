@@ -6,8 +6,18 @@
 
 class BTNode;
 
+struct HistoricalAction {
+  const char* action;
+  int number_of_times;
+};
+
 class TCompIAController : public TCompBase {
 
+
+private:
+
+  /* TODO: Temp - Borrar. Solo con motivo de debug */
+  std::vector<HistoricalAction> historic;
 
 protected:
 
@@ -91,4 +101,7 @@ public:
 	void update(float dt);
   virtual void preUpdate(float dt) = 0;
   virtual void postUpdate(float dt) = 0;
+
+  /* TODO: remove - solo para debug */
+  void addActionToHistoric(const std::string& action);
 };

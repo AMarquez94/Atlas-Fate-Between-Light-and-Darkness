@@ -9,6 +9,14 @@ void TCompIAController::debugInMenu() {
 		printTree();
 		ImGui::Separator();
 	}
+
+  if (ImGui::CollapsingHeader("Action Historic")) {
+    ImGui::Separator();
+    for (int i = 0; i < historic.size(); i++) {
+      ImGui::Text("Action: %s - %d", historic[i].action, historic[i].number_of_times);
+    }
+    ImGui::Separator();
+  }
 }
 
 BTNode * TCompIAController::createNode(const std::string& name)
@@ -467,4 +475,17 @@ bool TCompIAController::isNodeSonOf(BTNode * son, const std::string& possiblePar
 			return isNodeSonOf(son->getParent(), possibleParent);
 		}
 	}
+}
+
+void TCompIAController::addActionToHistoric(const std::string & action)
+{
+  if (historic.size() == 0 || std::strcmp(historic[historic.size() - 1].action, action.c_str()) != 0) {
+    HistoricalAction historicalAction;
+    historicalAction.action = action.c_str();
+    historicalAction.number_of_times = 1;
+    historic.push_back(historicalAction);
+  }
+  else {
+    historic[historic.size() - 1].number_of_times += 1;
+  }
 }

@@ -46,6 +46,7 @@ void BTNode::update(float dt, TCompIAController *bt) {
 
 			/* Calculate what's the next node to use in the next frame */
 			ERes res = bt->execAction(name, dt);
+      bt->addActionToHistoric(name);  //TODO: delete - only for debug
 			if (res == ERes::STAY) {
 				if (bt->testAssert(name, dt)) {
 
