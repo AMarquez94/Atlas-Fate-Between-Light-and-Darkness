@@ -1,0 +1,19 @@
+{
+  "lifetime" : 3,
+  "initial_speed" : 10.0,
+  "acceleration" : 0.0,
+  "initial_size" : 1,
+  "emission_time" : 1,
+  "emission_count" : 5,
+  "blending" : "additive",
+  "texture" : "data/textures/particles/glow.dds",
+  "colors" : [
+    [0.0, "1 0 0 1"],
+    [1.0, "1 1 0 1"]
+  ],
+  "sizes" : [
+    [0.0, 0.5],
+    [0.5, 1.0],
+    [1.0, 0.0]
+  ]
+}

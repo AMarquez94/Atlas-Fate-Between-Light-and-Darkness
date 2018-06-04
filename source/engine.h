@@ -15,6 +15,8 @@
 #include "modules/system/module_gui.h"
 #include "modules/system/module_scene_manager.h"
 #include "modules/system/module_instancing.h"
+#include "modules/system/module_particles.h"
+
 
 class CModuleGameManager;
 
@@ -46,6 +48,8 @@ public:
 	CModuleGUI& getGUI() { return _module_gui; }
     CModuleSceneManager& getSceneManager() { return _module_scene_manager; }
     CModuleInstancing& getInstancing() { return _module_instancing; }
+		CModuleParticles& getParticles() { return _module_particles; }
+
 
     // Game modules
     CModuleGameManager& getGameManager();
@@ -66,6 +70,7 @@ private:
 	CModuleGUI _module_gui;
     CModuleSceneManager _module_scene_manager;
     CModuleInstancing _module_instancing;
+		CModuleParticles  _module_particles;
 };
 
 #define Engine CEngine::get()

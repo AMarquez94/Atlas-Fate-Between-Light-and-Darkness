@@ -208,6 +208,7 @@
     <ClCompile Include="modules\system\module_input.cpp" />
     <ClCompile Include="modules\system\module_instancing.cpp" />
     <ClCompile Include="modules\system\module_logic.cpp" />
+    <ClCompile Include="modules\system\module_particles.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
     <ClCompile Include="modules\system\module_scene_manager.cpp" />
     <ClCompile Include="modules\system\module_sound.cpp" />
@@ -241,6 +242,8 @@
     <ClCompile Include="navmesh\recast\RecastMeshDetail.cpp" />
     <ClCompile Include="navmesh\recast\RecastRasterization.cpp" />
     <ClCompile Include="navmesh\recast\RecastRegion.cpp" />
+    <ClCompile Include="particles\particle_parser.cpp" />
+    <ClCompile Include="particles\particle_system.cpp" />
     <ClCompile Include="physics\physics_collider.cpp" />
     <ClCompile Include="physics\physics_filter.cpp" />
     <ClCompile Include="physics\physics_mesh.cpp" />
@@ -416,6 +419,7 @@
     <ClInclude Include="modules\system\module_input.h" />
     <ClInclude Include="modules\system\module_instancing.h" />
     <ClInclude Include="modules\system\module_logic.h" />
+    <ClInclude Include="modules\system\module_particles.h" />
     <ClInclude Include="modules\system\module_physics.h" />
     <ClInclude Include="modules\system\module_scene_manager.h" />
     <ClInclude Include="modules\system\module_sound.h" />
@@ -445,6 +449,9 @@
     <ClInclude Include="navmesh\recast\RecastAssert.h" />
     <ClInclude Include="navmesh\recast\RecastDebugDraw.h" />
     <ClInclude Include="navmesh\recast\RecastDump.h" />
+    <ClInclude Include="particles\particle.h" />
+    <ClInclude Include="particles\particle_parser.h" />
+    <ClInclude Include="particles\particle_system.h" />
     <ClInclude Include="physics\physics_collider.h" />
     <ClInclude Include="physics\physics_filter.h" />
     <ClInclude Include="physics\physics_mesh.h" />
@@ -481,6 +488,7 @@
     <ClInclude Include="utils\json.hpp" />
     <ClInclude Include="utils\murmur3\murmur3.h" />
     <ClInclude Include="utils\timer.h" />
+    <ClInclude Include="utils\track.h" />
     <ClInclude Include="utils\utils.h" />
     <ClInclude Include="utils\variant.h" />
     <ClInclude Include="windows\app.h" />
