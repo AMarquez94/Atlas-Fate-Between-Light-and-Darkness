@@ -1,0 +1,56 @@
+[
+  {
+    "entity":
+    {
+      "name": "whitebox_zone_light"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Direct002"
+      ,
+      "transform":
+      {
+        "pos": "-48.6658 90.6936 -180.262"
+        ,
+        "lookat": "-123.554 -40.4795 -68.8805"
+      }
+      ,
+      "light_dir":
+      {
+        "type": "directional"
+        ,
+		"proj_type" : "ortographic",
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "z_near": 0.01
+        ,
+        "z_far": 187.671
+        ,
+        "ortosize": 155.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.5
+        ,
+        "shadows_resolution": 4096
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+]

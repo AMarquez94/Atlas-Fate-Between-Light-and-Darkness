@@ -1,0 +1,73 @@
+[{
+		"entity": {
+			"name": "Instanced Spheres",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [{
+					"mesh": "data/meshes/GeoSphere001.instanced_mesh",
+					"materials": [
+						"data/materials/mtl_instanced_default.material"
+					]
+				}
+			]
+		}
+	}, {
+		"entity": {
+			"name": "Instanced Blood",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [{
+					"mesh": "data/meshes/blood.instanced_mesh",
+					"materials": [
+						"data/materials/blood_instanced.material"
+					]
+				}
+			]
+		}
+	}, {
+		"entity": {
+			"name": "Instanced Grass",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [{
+					"mesh": "data/meshes/grass.instanced_mesh",
+					"materials": [
+						"data/materials/grass_instanced.material"
+					]
+				}
+			]
+		}
+	}, {
+		"entity": {
+			"name": "Instanced Particles",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [{
+					"mesh": "data/meshes/particles.instanced_mesh",
+					"materials": [
+						"data/materials/particles_fire_instanced.material"
+					]
+				}
+			]
+		}
+	}, {
+		"entity": {
+			"name": "Instanced Capsules",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [{
+					"mesh": "data/meshes/capsule.instanced_mesh",
+					"materials":
+					[
+						"data/materials/mtl_instanced_capsule.material"
+					]
+				}
+			]
+		}
+	}
+]
