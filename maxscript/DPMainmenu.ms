@@ -48,7 +48,7 @@ rollout SBSelection "Selection Tools" width:477 height:252
 	label 'lbl1' "Layers:" pos:[35,87] width:39 height:14 align:#left
 	button 'btn13' "Button" pos:[248,36] width:2 height:181 align:#left
 	dropdownList 'sel_cat' "" pos:[73,118] width:149 height:21 align:#left
-	label 'lbl4' "Tag:" pos:[22,121] width:50 height:14 align:#left
+	label 'lbl4' "Tag:" pos:[35,121] width:39 height:14 align:#left
 	
 	local var1 = ""
 	local var2 = sel_layers.selected 
