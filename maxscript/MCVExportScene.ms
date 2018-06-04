@@ -127,6 +127,7 @@ struct TSceneExporter (
 	),
 	
 	fn exportAABB obj = (
+		fs.writeComma()
 		fs.writeKeyValue "abs_aabb" true
 		fs.writeComma()
 		fs.writeKeyValue "local_aabb" true
@@ -221,8 +222,8 @@ struct TSceneExporter (
 		
 		local max2mcv = rotateXMatrix -90
 		local mcv2max = rotateXMatrix 90
-		local mcv_position = obj.position * max2mcv
-		
+		local mcv_position = obj.pos * max2mcv
+		print obj.pos
 		local mcv_transform = mcv2max * obj.transform * max2mcv
 		local mcv_quat = mcv_transform.rotationPart as quat
 		local mcv_final_position = checkPoint mcv_position
@@ -230,6 +231,21 @@ struct TSceneExporter (
 			fs.writeKeyValue "pos" mcv_final_position
 			fs.writeComma()
 			fs.writeKeyValue "rotation" mcv_quat
+		fs.endObj()
+	),
+	
+		-- ----------------------------------------------------------
+	fn exportTransformPrefab obj = (
+		fs.writeKey "transform" 
+		
+		local max2mcv = rotateXMatrix -90
+		local mcv2max = rotateXMatrix 90
+		local mcv_position = obj.pos * max2mcv
+		local mcv_transform = mcv2max * obj.transform * max2mcv
+		local mcv_quat = mcv_transform.rotationPart as quat
+		local mcv_final_position = checkPoint mcv_position
+		fs.beginObj()
+			fs.writeKeyValue "pos" mcv_final_position
 		fs.endObj()
 	),
 	
@@ -289,7 +305,6 @@ struct TSceneExporter (
 		fs.endObj()	
 	),
 	
-	
 	function exportInstancedMesh mesh_path mesh_name = (
 			
 		local ifs = TJsonFormatter()
@@ -327,7 +342,8 @@ struct TSceneExporter (
 		-- Export instanced Mesh
 		fs.writeKeyValue "mesh" imesh_name
 		exportMeshObject obj (project_path + mesh_name )
-	
+		fs.writeComma()
+				
 		if mat != undefined then (
 			local me = TMaterialExporter project_path:project_path base_path:base_path
 			exported_materials = me.exportMaterial mat f_mats_path obj "pbr_instanced.tech"
@@ -467,18 +483,20 @@ struct TSceneExporter (
 		
 		exportName obj 
 		fs.writeComma()
-		exportTransform obj
-		fs.writeComma()
 		writeHierComponent obj
 		writeGroupComponent obj
 		
 		if is_prefab == true then (
+			exportTransformPrefab obj
+			fs.writeComma()
 			fs.writeKey "instance" 
 			fs.beginObj()
 			exportRenderInstance obj
 			fs.endObj()
 		)
 		else (
+			exportTransform obj
+			fs.writeComma()
 			fs.writeKey "render" 
 			fs.beginArray()
 			exportRenderMesh obj
@@ -491,9 +509,6 @@ struct TSceneExporter (
 				exportCompCollider child
 			)
 		)
-		
-		fs.writeComma()
-		exportAABB obj
 	),
 	
 	-- Automatic light collider generation depending on light type
@@ -572,7 +587,8 @@ struct TSceneExporter (
 		
 		-- We must ignore those which are 
 		if obj.parent != undefined then return false
-					
+		obj.transform.controller = prs()
+		
 		fs.writeComma()
 		fs.beginObj()
 		fs.writeKey "entity"
@@ -580,7 +596,7 @@ struct TSceneExporter (
 			exportName obj 
 			fs.writeComma()
 			writePrefabComponent obj
-			exportTransformLookAt obj
+			exportTransform obj
 			fs.endObj()
 		fs.endObj()
 	),
@@ -592,14 +608,14 @@ struct TSceneExporter (
 		if classof obj == Targetobject then (return false )
 		if classof obj == xrefobject then (return exportEntityPrefab obj)
 		
-		fs.writeComma()
 		fs.beginObj()
 		fs.writeKey "entity"
 			fs.beginObj()
-			if isCollider obj then (exportEntityCollider obj )
-			else if isLight obj then ( exportEntityLight obj )
+			if isCollider obj then (exportEntityCollider obj)
+			else if isLight obj then ( exportEntityLight obj)
 			else exportEditableMesh obj
 			writeTagComponent obj
+			exportAABB obj
 			fs.endObj()
 		fs.endObj()
 	),
@@ -649,10 +665,15 @@ struct TSceneExporter (
 			local full_path = project_path + scenes_path + ofilename + ".scene"
 		)
 		
+		-- Begin to write
 		fs.begin full_path
 		fs.beginArray()
-		exportRoot ofilename -- Export root
-		format "Exporting to %\n" full_path
+		
+		-- Write the root node if it is a prefab
+		if is_scene == true then (
+			exportRoot ofilename -- Export root
+			format "Exporting to %\n" full_path
+		)
 		
 		local nitems = 0
 		local prg_step = 100 / (nodes.count + 1)
