@@ -215,6 +215,31 @@ namespace FSM
 
     }
 
+    bool SonarState::load(const json& jData) {
+
+        _animationName = jData["animation"];
+        _speed = jData.value("speed", 3.f);
+        _size = jData.value("size", 1.f);
+        _radius = jData.value("radius", 0.3f);
+        _rotation_speed = jData.value("rotationSpeed", 10.f);
+        _noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+        _target = jData.count("camera") ? getTargetCamera(jData["camera"]) : nullptr;
+
+        return true;
+    }
+
+    void SonarState::onStart(CContext& ctx) const {
+
+        CEntity* e = ctx.getOwner();
+        e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::CROUCH_IDLE , 1.0f });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+    }
+
+    void SonarState::onFinish(CContext& ctx) const {
+
+
+    }
+
     bool CrouchWalkState::load(const json& jData) {
 
         _animationName = jData["animation"];
@@ -224,6 +249,7 @@ namespace FSM
         _rotation_speed = jData.value("rotationSpeed", 10.f);
         _noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
         _target = jData.count("camera") ? getTargetCamera(jData["camera"]) : nullptr;
+
         return true;
     }
 
@@ -273,14 +299,11 @@ namespace FSM
         _radius = jData.value("radius", 0.3f);
         _noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
         _target = jData.count("camera") ? getTargetCamera(jData["camera"]) : nullptr;
+
         return true;
     }
 
     void EnterMergeState::onStart(CContext& ctx) const {
-
-        // Send a message to the player controller
-        //CEntity* e = ctx.getOwner();
-        //e->sendMsg(TMsgAnimation{ "crouch" });
 
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::SM_POSE , 1.0f });
@@ -370,7 +393,6 @@ namespace FSM
         TCompRender * render = e->get<TCompRender>();
         render->visible = true;
     }
-
 
     bool LandMergeState::load(const json& jData) {
 

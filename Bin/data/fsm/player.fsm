@@ -269,12 +269,18 @@
         "blendIn": 0.4
       }
     },
-    {
+	{
       "name": "grabEnemy",
       "type": "GrabEnemyState",
       "animation": "idle",
       "speed": 0,
-      "size": 0.25
+      "size": 1
+    },
+	{
+      "name": "sonarEnemy",
+      "type": "SonarState",
+      "animation": "inhibitorRemoved",
+      "speed": 0,
     }
   ],
   "transitions": [
@@ -310,6 +316,23 @@
         "value": 1.0
       },
       "operation": "greater_equal"
+    },
+	{
+      "type": "VariableTransition",
+      "source": "crouch",
+      "target": "sonarEnemy",
+      "variable": {
+        "name": "sonar",
+        "type": "bool",
+        "value": true
+      },
+      "operation": "greater_equal"
+    },
+	{
+      "type": "TimeTransition",
+      "source": "sonarEnemy",
+      "target": "crouch",
+      "time": 1
     },
     {
       "type": "VariableTransition",
@@ -1003,6 +1026,11 @@
     },
     {
       "name": "crouch",
+      "type": "bool",
+      "value": false
+    },
+	{
+      "name": "sonar",
       "type": "bool",
       "value": false
     },

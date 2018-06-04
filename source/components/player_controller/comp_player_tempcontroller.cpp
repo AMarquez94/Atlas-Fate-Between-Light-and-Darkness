@@ -788,8 +788,6 @@ VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & le
     dir += player_input->movementValue.x * left;
     dir.Normalize();
 
-    //dbg("pad values %f || %f\n", player_input->movementValue.x, player_input->movementValue.y);
-
     if (dir == VEC3::Zero) return front;
 
     return dir;

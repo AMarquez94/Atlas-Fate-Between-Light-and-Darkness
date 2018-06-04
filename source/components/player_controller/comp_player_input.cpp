@@ -87,6 +87,10 @@ void TCompPlayerInput::update(float dt)
 			}
 			else {
 				/* TODO: Sonda */
+                TMsgSetFSMVariable sonar;
+                sonar.variant.setName("sonar");
+                sonar.variant.setBool(true);
+                e->sendMsg(sonar);
 			}
 
 		}

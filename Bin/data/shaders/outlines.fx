@@ -27,22 +27,22 @@ float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
     float _EDGE = 2.0f;
     float _PULSE = 0.1f;
 
-		float average = 0.125f * (
-				txGBufferLinearDepth.Load(ss_load_coords + int3(1,-1,0)).x
-			+ txGBufferLinearDepth.Load(ss_load_coords + int3(0,-1,0)).x
-			+ txGBufferLinearDepth.Load(ss_load_coords + int3(-1,-1,0)).x
-			+ txGBufferLinearDepth.Load(ss_load_coords + int3(1,0,0)).x	
-			+ txGBufferLinearDepth.Load(ss_load_coords + int3(-1,0,0)).x
-			+ txGBufferLinearDepth.Load(ss_load_coords + int3(1, 1,0)).x
-			+ txGBufferLinearDepth.Load(ss_load_coords + int3(0, 1,0)).x
-			+ txGBufferLinearDepth.Load(ss_load_coords + int3(-1, 1,0)).x);
+	float average = 0.125f * (
+		  txGBufferLinearDepth.Load(ss_load_coords + int3(1,-1,0)).x
+		+ txGBufferLinearDepth.Load(ss_load_coords + int3(0,-1,0)).x
+		+ txGBufferLinearDepth.Load(ss_load_coords + int3(-1,-1,0)).x
+		+ txGBufferLinearDepth.Load(ss_load_coords + int3(1,0,0)).x	
+		+ txGBufferLinearDepth.Load(ss_load_coords + int3(-1,0,0)).x
+		+ txGBufferLinearDepth.Load(ss_load_coords + int3(1, 1,0)).x
+		+ txGBufferLinearDepth.Load(ss_load_coords + int3(0, 1,0)).x
+		+ txGBufferLinearDepth.Load(ss_load_coords + int3(-1, 1,0)).x);
 
-		edge = sqrt(abs(depth - average)) * _EDGE;
+	edge = sqrt(abs(depth - average)) * _EDGE;
 		
-		if(edge > 0.5)
-			discard;
+	if(edge > 0.5)
+		discard;
 		
-		depth = saturate(2.0f * depth);
+	depth = saturate(2.0f * depth);
     depth = 1 - depth;
     depth *= depth;
     depth = 1 - depth;
@@ -53,16 +53,12 @@ float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
     float4 colour = txNoiseMap.Sample(samLinear, samplePos);
     colour *= (colour * (2.0f + edge * 30.0f) + edge * 5.0f);
     
-    float  zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
-
     // Can't use sample because it's a texture of ints
     // stencil value is in the green channel
+
+    float  zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
     uint s_cc = txBackBufferStencil.Load(ss_load_coords).g;
-
     float a = mat_alpha_outline;
-
-    // In case we want just the pixels inside
-    //if( s_cc != 0 ) return float4( 1,1,0,0.5 * a); 
 
     // n = north, s = south, e = east, w = west, c = center
     uint s_nw = txBackBufferStencil.Load(ss_load_coords + int3(1,-1,0)).y;
@@ -80,8 +76,9 @@ float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
     int sum_stencils = s_nw + s_nc + s_ne + s_cw + s_cc + s_ce + s_sw + s_sc + s_se;
     uint diff = sum_stencils - s_cc * 9;
     // If not we are in the border
+
     if (diff != 0)
-			return float4(1,0,0,a) * _PULSE * global_world_time;
+		return float4(1,0,0,a) * _PULSE * global_world_time;
 
     // else, or we are inside ( stencil != 0 ) 
     //if( s_cc != 0 ) {
