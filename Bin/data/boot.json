@@ -18,7 +18,7 @@
       "data/scenes/Map_Intro/checkpoints.scene"
     ]
 	},
-	"scene_zone_a": {
+	"scene_zone_b": {
 		"static_data": {
 			"initial_script": "scene_a",
 			"navmesh": "data/navmeshes/scene_2.bin"
