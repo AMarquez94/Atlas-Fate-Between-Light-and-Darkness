@@ -40,6 +40,7 @@
 		"fsm",
 		"player_animator",
 		"player_input",
+		"particles",
 		"emission_controller",
 		"rotator",
 		"lod"

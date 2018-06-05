@@ -4,24 +4,28 @@
 
 namespace Particles
 {
-	struct TCoreParticleSystem;
-	class CParticleSystem;
+  struct TCoreSystem;
+  class CSystem;
+  using TParticleHandle = int;
 }
 
 class CModuleParticles : public IModule
 {
 public:
-	CModuleParticles(const std::string& name);
-	bool start() override;
-	bool stop() override;
-	void update(float delta) override;
-	void render() override;
+  CModuleParticles(const std::string& name);
+  bool start() override;
+  bool stop() override;
+  void update(float delta) override;
+  void render() override;
 
-	void registerSystem(const std::string& name, const Particles::TCoreParticleSystem* cps);
-	const Particles::TCoreParticleSystem* getCoreSystem(const std::string& name);
-	void launchSystem(const std::string& name);
+  Particles::TParticleHandle launchSystem(const std::string& name, CHandle entity = CHandle());
+  Particles::TParticleHandle launchSystem(const Particles::TCoreSystem* cps, CHandle entity = CHandle());
+  void kill(Particles::TParticleHandle ph, float fade_out = 0.f);
+
+  const VEC3& getWindVelocity() const;
 
 private:
-	std::map<const std::string, const Particles::TCoreParticleSystem*> _coreSystems;
-	std::vector<const Particles::CParticleSystem*> _activeSystems;
+  std::vector<Particles::CSystem*> _activeSystems;
+  VEC3                             _windVelocity = VEC3::Zero;
+  Particles::TParticleHandle       _lastHandle;
 };

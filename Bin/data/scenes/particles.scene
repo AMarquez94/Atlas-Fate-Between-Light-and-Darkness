@@ -1,0 +1,46 @@
+[
+	{
+		"entity": {
+			"name": "particles_wildfire",
+			"transform": {
+				"pos": "5 0 0"
+			},
+			"particles" : {
+				"core" : "data/particles/wildfire.particles"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "particles_snow",
+			"transform": {
+				"pos": "-5 3 0"
+			},
+			"particles" : {
+				"core" : "data/particles/snow.particles"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "particles_animated_fire",
+			"transform": {
+				"pos": "0 0 5"
+			},
+			"particles" : {
+				"core" : "data/particles/animated_fire.particles"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "particles_sparks",
+			"transform": {
+				"pos": "0 0 -5"
+			},
+			"particles" : {
+				"core" : "data/particles/sparks.particles"
+			}
+		}
+	}
+]

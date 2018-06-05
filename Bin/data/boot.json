@@ -31,7 +31,8 @@
 			"data/scenes/milestone2_map_lights2.scene",
 			"data/scenes/milestone2_map_colliders.scene",
 			"data/scenes/capsules.scene",
-			"data/scenes/water_plane.scene"
+			"data/scenes/water_plane.scene",
+			"data/scenes/particles.scene"
 		]
 	},
 	"scene_brian": {
