@@ -19,7 +19,6 @@
 						"data/materials/characters/mtl_enemy_patrol_post.material"
 					]
 				}
-
 			],
 			"skeleton": {
 				"skeleton": "data/skeletons/patrol/patrol.skeleton",
@@ -91,5 +90,4 @@
 			}
 		}
 	}
-
 ]

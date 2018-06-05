@@ -121,6 +121,8 @@ struct TSceneExporter (
 	tex_path = base_path + "textures/",
 	local_path = "",
 	is_prefab = false,
+		is_scene = true,
+	nitems = 0,
 	
 	fn exportName obj = (
 		fs.writeKeyValue "name" obj.name
@@ -188,6 +190,21 @@ struct TSceneExporter (
 			fs.writeKey "hierarchy" 
 			fs.beginObj()
 			fs.writeKeyValue "parent" obj.parent.name
+			if obj.parent != undefined then (
+				tm = obj.transform * (inverse obj.parent.transform)
+				
+				local max2mcv = rotateXMatrix -90
+				local mcv2max = rotateXMatrix 90
+				local mcv_position = obj.pos * max2mcv
+
+				local mcv_transform = mcv2max * obj.transform * max2mcv
+				local mcv_quat = mcv_transform.rotationPart as quat
+				local mcv_final_position = checkPoint mcv_position
+				fs.writeComma()
+				fs.writeKeyValue "pos" mcv_final_position
+				fs.writeComma()
+				fs.writeKeyValue "rotation" mcv_quat
+			)
 			fs.endObj()
 			fs.writeComma()
 		)
@@ -589,7 +606,8 @@ struct TSceneExporter (
 		if obj.parent != undefined then return false
 		obj.transform.controller = prs()
 		
-		fs.writeComma()
+		if (nitems > 0 or is_scene == true) then fs.writeComma()
+				
 		fs.beginObj()
 		fs.writeKey "entity"
 			fs.beginObj()
@@ -608,6 +626,8 @@ struct TSceneExporter (
 		if classof obj == Targetobject then (return false )
 		if classof obj == xrefobject then (return exportEntityPrefab obj)
 		
+		if ((nitems > 0) or (is_scene == true)) then fs.writeComma()
+		
 		fs.beginObj()
 		fs.writeKey "entity"
 			fs.beginObj()
@@ -618,6 +638,7 @@ struct TSceneExporter (
 			exportAABB obj
 			fs.endObj()
 		fs.endObj()
+		
 	),
 	
 	fn exportRoot filename = (
@@ -638,8 +659,9 @@ struct TSceneExporter (
 	-- ----------------------------------------------------------
 	-- ----------------------------------------------------------
 	
-	fn exportAll nodes ofilename prg is_scene = (
+	fn exportAll nodes ofilename prg l_is_scene = (
 		
+		is_scene = l_is_scene;
 		is_prefab =  not is_scene;
 		
 		-------------------------------------------------------------------------
@@ -675,12 +697,11 @@ struct TSceneExporter (
 			format "Exporting to %\n" full_path
 		)
 		
-		local nitems = 0
+		nitems = 0
 		local prg_step = 100 / (nodes.count + 1)
 		
 		for obj in nodes do (
 			
-			if nitems > 0 then  fs.writeComma()
 			exportEntity obj
 			nitems = nitems + 1
 			
