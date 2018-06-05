@@ -85,6 +85,9 @@
 				"max_steps": 4,
 				"rt_name": "Bloom"
 			},
+			"render_outlines" : {
+        "enabled" : true
+      },
 			"color_grading": {
 				"enabled": true,
 				"amount": 0.6,

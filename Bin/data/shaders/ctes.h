@@ -10,6 +10,7 @@
 #define CB_BLUR         6
 #define CB_BLOOM        7
 #define CB_GUI		    8
+#define CB_OUTLINE      9
 
 // -------------------------------------------------
 // Texture Slots
@@ -213,6 +214,14 @@ CB_DEF(CCteGUI, CB_GUI)
 	VEC2 minUV;
 	VEC2 maxUV;
 	VEC4 tint_color;
+};
+
+CB_DEF(CCteOutline, CB_OUTLINE)
+{
+    float  linear_time;
+    float  outline_alpha;
+    float  outline_dummy1;
+    float  outline_dummy2;
 };
 
 #endif

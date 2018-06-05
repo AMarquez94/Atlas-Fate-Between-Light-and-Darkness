@@ -5,6 +5,7 @@
 
 class TInstance;
 class TCompTransform;
+class TEntityParseContext;
 
 struct TInstance {
     MAT44 world;
@@ -13,7 +14,8 @@ struct TInstance {
 class CModuleInstancing : public IModule {
 
     // Static instances, for testing purposes
-    
+    CHandle scene_group;
+
     // -------------------------------------------------------------------
     struct TGrassParticle {
         VEC3  pos;
@@ -52,6 +54,7 @@ class CModuleInstancing : public IModule {
         CRenderMeshInstanced* _instances_mesh;
     };
     
+    std::map<std::string, std::string> _global_names;
     std::map<std::string, TInstanceCollector> _global_instances;
 
 public:
@@ -66,4 +69,6 @@ public:
     void removeInstance(TInstance* instance);
     void updateInstance(const std::string& name, int index, const MAT44& w_matrix);
     void clearInstances();
+
+    bool parseInstance(const json& j, TEntityParseContext& ctx);
 };

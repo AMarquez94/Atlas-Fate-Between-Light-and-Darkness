@@ -54,20 +54,5 @@
 				}
 			]
 		}
-	}, {
-		"entity": {
-			"name": "Instanced Capsules",
-			"transform": {
-				"pos": "0 0 0"
-			},
-			"render": [{
-					"mesh": "data/meshes/capsule.instanced_mesh",
-					"materials":
-					[
-						"data/materials/mtl_instanced_capsule.material"
-					]
-				}
-			]
-		}
 	}
 ]

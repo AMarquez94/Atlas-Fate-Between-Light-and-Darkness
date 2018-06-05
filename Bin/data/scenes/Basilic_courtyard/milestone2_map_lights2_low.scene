@@ -97,29 +97,5 @@
 				"light"
 			]
 		}
-	},
-	  {
-    "entity": {
-      "name": "Instanced test1",
-      "transform": {
-        "pos": "0 0 0"
-      },
-      "instance" : 
-			{
-				"mesh": "data/meshes/capsule.instanced_mesh"
-			}
-    }
-  },
-	{
-    "entity": {
-      "name": "Instanced test2",
-      "transform": {
-        "pos": "0 10 0"
-      },
-      "instance" : 
-			{
-				"mesh": "data/meshes/capsule.instanced_mesh"
-			}
-    }
-  }
+	}
 ]

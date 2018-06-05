@@ -78,17 +78,20 @@ void TCompPlayerInput::update(float dt)
 		if (EngineInput["btAttack"].getsPressed())
 		{
 			TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
-			if (c_my_player->canAttack) {
-				TMsgSetFSMVariable attack;
-				attack.variant.setName("attack");
-				attack.variant.setBool(true);
-				e->sendMsg(attack);
-				attackButtonJustPressed = true;
-			}
-			else {
-				/* TODO: Sonda */
-			}
+            if (c_my_player->canAttack) {
+                TMsgSetFSMVariable attack;
+                attack.variant.setName("attack");
+                attack.variant.setBool(true);
+                e->sendMsg(attack);
+                attackButtonJustPressed = true;
+            }
+            else if(c_my_player->canSonarPunch()){
 
+                TMsgSetFSMVariable sonar;
+                sonar.variant.setName("sonar");
+                sonar.variant.setBool(true);
+                e->sendMsg(sonar);
+			}
 		}
 		else if (attackButtonJustPressed) {
 			TMsgSetFSMVariable attack;
