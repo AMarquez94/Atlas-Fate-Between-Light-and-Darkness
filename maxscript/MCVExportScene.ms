@@ -680,6 +680,7 @@ struct TSceneExporter (
 		
 		for obj in nodes do (
 			
+			if nitems > 0 then  fs.writeComma()
 			exportEntity obj
 			nitems = nitems + 1
 			
