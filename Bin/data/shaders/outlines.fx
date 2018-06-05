@@ -48,44 +48,40 @@ float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
     depth = 1 - depth;
 
     float samplePos = float4(1.0f * depth.xx, 0.0f, 0.0f);
-    samplePos.x -= _PULSE * global_world_time;
+    samplePos.x -= _PULSE * linear_time;
     
     float4 colour = txNoiseMap.Sample(samLinear, samplePos);
     colour *= (colour * (2.0f + edge * 30.0f) + edge * 5.0f);
     
     // Can't use sample because it's a texture of ints
     // stencil value is in the green channel
+    float zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
 
-    float  zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
-    uint s_cc = txBackBufferStencil.Load(ss_load_coords).g;
-    float a = mat_alpha_outline;
+    if (_PULSE * linear_time > zlinear)
+    {
+        uint s_cc = txBackBufferStencil.Load(ss_load_coords).g;
 
-    // n = north, s = south, e = east, w = west, c = center
-    uint s_nw = txBackBufferStencil.Load(ss_load_coords + int3(1,-1,0)).y;
-    uint s_nc = txBackBufferStencil.Load(ss_load_coords + int3(0,-1,0)).y;
-    uint s_ne = txBackBufferStencil.Load(ss_load_coords + int3(-1,-1,0)).y;
-    uint s_cw = txBackBufferStencil.Load(ss_load_coords + int3(1,0,0)).y;
-		
-    //   s_cc
-    uint s_ce = txBackBufferStencil.Load(ss_load_coords + int3(-1,0,0)).y;
-    uint s_sw = txBackBufferStencil.Load(ss_load_coords + int3(1, 1,0)).y;
-    uint s_sc = txBackBufferStencil.Load(ss_load_coords + int3(0, 1,0)).y;
-    uint s_se = txBackBufferStencil.Load(ss_load_coords + int3(-1, 1,0)).y;
+        // n = north, s = south, e = east, w = west, c = center
+        uint s_nw = txBackBufferStencil.Load(ss_load_coords + int3(1, -1, 0)).y;
+        uint s_nc = txBackBufferStencil.Load(ss_load_coords + int3(0, -1, 0)).y;
+        uint s_ne = txBackBufferStencil.Load(ss_load_coords + int3(-1, -1, 0)).y;
+        uint s_cw = txBackBufferStencil.Load(ss_load_coords + int3(1, 0, 0)).y;
 
-    // We expect all the 3x3 pixels to have the same value 
-    int sum_stencils = s_nw + s_nc + s_ne + s_cw + s_cc + s_ce + s_sw + s_sc + s_se;
-    uint diff = sum_stencils - s_cc * 9;
-    // If not we are in the border
+        //   s_cc
+        uint s_ce = txBackBufferStencil.Load(ss_load_coords + int3(-1, 0, 0)).y;
+        uint s_sw = txBackBufferStencil.Load(ss_load_coords + int3(1, 1, 0)).y;
+        uint s_sc = txBackBufferStencil.Load(ss_load_coords + int3(0, 1, 0)).y;
+        uint s_se = txBackBufferStencil.Load(ss_load_coords + int3(-1, 1, 0)).y;
 
-    if (diff != 0)
-		return float4(1,0,0,a) * _PULSE * global_world_time;
+        // We expect all the 3x3 pixels to have the same value 
+        int sum_stencils = s_nw + s_nc + s_ne + s_cw + s_cc + s_ce + s_sw + s_sc + s_se;
+        uint diff = sum_stencils - s_cc * 9;
+        // If not we are in the border
 
-    // else, or we are inside ( stencil != 0 ) 
-    //if( s_cc != 0 ) {
-    // Use different stencil values for different colors!
-    //return float4( 1,0,0,0.5*a); 
-    //}
+        if (diff != 0)
+            return float4(1, 0, 0, 1) * outline_alpha;
+    }
 
     // or we are outside, all zeros.
-    return float4(colour.xyz, 0.5f);
+    return float4(colour.xyz, 0.5) * outline_alpha;
 }

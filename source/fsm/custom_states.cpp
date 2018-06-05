@@ -233,10 +233,10 @@ namespace FSM
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::CROUCH_IDLE , 1.0f });
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+        e->sendMsg(TMsgSonarActive{ 1.f });
     }
 
     void SonarState::onFinish(CContext& ctx) const {
-
 
     }
 

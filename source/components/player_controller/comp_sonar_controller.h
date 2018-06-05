@@ -6,14 +6,17 @@
 
 class TCompSonarController : public TCompBase {
 
-    void onSceneCreated(const TMsgSceneCreated& msg);
-    void onPlayerExposed(const TMsgPlayerIlluminated& msg);
+    void onSonarActive(const TMsgSonarActive & msg);
+
+    CTimer time_controller;
+    std::string target_tag;
+    std::vector<CHandle> target_handles;
 
     DECL_SIBLING_ACCESS();
 public:
 
     float total_time;
-    float time_elapsed;
+    float alpha_value;
 
     void Init();
     void debugInMenu();

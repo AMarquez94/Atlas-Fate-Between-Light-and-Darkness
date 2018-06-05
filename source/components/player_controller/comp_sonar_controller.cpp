@@ -5,15 +5,12 @@
 #include "components/comp_render.h"
 #include "entity/common_msgs.h"
 #include "utils/utils.h"
-#include "render/mesh/mesh_loader.h"
-#include "render/render_objects.h"
-#include "components/comp_camera.h"
-#include "components/physics/comp_collider.h"
 #include "components/comp_tags.h"
-#include "components/lighting/comp_light_dir.h"
-#include "components/lighting/comp_light_spot.h"
-#include "components/lighting/comp_light_point.h"
 #include "components/comp_name.h"
+#include "render/texture/material.h"
+#include "render/render_objects.h"
+#include "render/render_utils.h"
+#include "components/comp_fsm.h"
 
 DECL_OBJ_MANAGER("sonar_controller", TCompSonarController);
 
@@ -22,17 +19,47 @@ void TCompSonarController::debugInMenu() {
 
 void TCompSonarController::load(const json& j, TEntityParseContext& ctx) {
 
+    target_tag = j.value("tags", "");
+    total_time = j.value("alive_time", 0);
+
+    alpha_value = 0;
+    cb_outline.outline_alpha = 0; // Move this from here
+    cb_outline.updateGPU();
 }
 
 void TCompSonarController::update(float dt) {
 
-    //CTimer timer = new timer();
-    //timer.
+    // Move this from here on refactor
+    cb_outline.linear_time += dt;
+    cb_outline.outline_alpha = cb_outline.linear_time >= total_time ? cb_outline.outline_alpha  - 0.5f * dt: alpha_value;
+    cb_outline.updateGPU();
 }
 
+void TCompSonarController::onSonarActive(const TMsgSonarActive & msg) {
+
+    CEntity* e = CHandle(this).getOwner();
+    target_handles = CTagsManager::get().getAllEntitiesByTag(getID(target_tag.c_str()));
+    cb_outline.linear_time = 0;
+    alpha_value = msg.value;
+
+    TMsgSetFSMVariable sonar;
+    sonar.variant.setName("sonar");
+    sonar.variant.setBool(false);
+    e->sendMsg(sonar);
+
+    /* Enable this in case we want to hold the alpha value by material
+    for (auto p : target_handles) {
+        CEntity * c_entity = p;
+        TCompRender * c_render = c_entity->get<TCompRender>();
+        for (auto m : c_render->meshes) {
+            for (auto mtl : m.materials) {
+                (const_cast<CMaterial*>(mtl))->setCBMaterial(msg.value);
+            }
+        }
+    }*/
+}
 
 void TCompSonarController::registerMsgs() {
 
-    //DECL_MSG(TCompSonarController, TMsgSceneCreated, onSceneCreated);
-    //DECL_MSG(TCompSonarController, TMsgPlayerIlluminated, onPlayerExposed);
+    DECL_MSG(TCompSonarController, TMsgSonarActive, onSonarActive);
 }

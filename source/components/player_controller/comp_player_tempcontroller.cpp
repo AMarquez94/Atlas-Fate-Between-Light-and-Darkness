@@ -695,6 +695,16 @@ const bool TCompTempPlayerController::canAttackTest(float dt)
     return canAttackNow;
 }
 
+const bool TCompTempPlayerController::canSonarPunch()
+{
+    if (!isDead() && !isMerged && isGrounded && !isInhibited) {
+        return true;
+    }
+
+    return false;
+}
+
+
 /* Sets the player current stamina depending on player status */
 void TCompTempPlayerController::updateStamina(float dt) {
 

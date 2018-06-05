@@ -81,6 +81,12 @@ struct TMsgPlayerIlluminated {
 	DECL_MSG_ID();
 };
 
+struct TMsgSonarActive {
+    float value;
+
+    DECL_MSG_ID();
+};
+
 struct TMsgTriggerEnter {
 	CHandle h_other_entity;
 	DECL_MSG_ID();

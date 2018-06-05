@@ -151,6 +151,7 @@ public:
     const bool onMergeTest(float dt);
     const bool groundTest(float dt);
     const bool canAttackTest(float dt);
+    const bool canSonarPunch();
 
     /* Auxiliar functions */
     void updateStamina(float dt);
