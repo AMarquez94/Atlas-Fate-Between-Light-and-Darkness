@@ -526,6 +526,9 @@ struct TSceneExporter (
 				exportCompCollider child
 			)
 		)
+		
+		writeTagComponent obj
+		exportAABB obj
 	),
 	
 	-- Automatic light collider generation depending on light type
@@ -624,6 +627,7 @@ struct TSceneExporter (
 		
 		-- Adding general discarding here
 		if classof obj == Targetobject then (return false )
+		if isCollider obj and  obj.parent != undefined then (return false )
 		if classof obj == xrefobject then (return exportEntityPrefab obj)
 		
 		if ((nitems > 0) or (is_scene == true)) then fs.writeComma()
@@ -631,11 +635,9 @@ struct TSceneExporter (
 		fs.beginObj()
 		fs.writeKey "entity"
 			fs.beginObj()
-			if isCollider obj then (exportEntityCollider obj)
+			if isCollider obj then ( exportEntityCollider obj)
 			else if isLight obj then ( exportEntityLight obj)
 			else exportEditableMesh obj
-			writeTagComponent obj
-			exportAABB obj
 			fs.endObj()
 		fs.endObj()
 		
