@@ -64,7 +64,7 @@ bool CModuleInstancing::parseInstance(const json& j, TEntityParseContext& ctx) {
 
     std::string name = j.value("mesh", "data/meshes/GeoSphere001.instanced_mesh");
 
-    if (_global_instances.find(name) == _global_instances.end()) {
+    if (_global_names.find(name) == _global_names.end()) {
 
         CHandle h_e;
         h_e.create< CEntity >();
