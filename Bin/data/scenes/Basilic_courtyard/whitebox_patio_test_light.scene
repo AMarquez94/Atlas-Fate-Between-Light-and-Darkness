@@ -1,0 +1,57 @@
+[
+  {
+    "entity":
+    {
+      "name": "whitebox_patio_test_light"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Direct002"
+      ,
+      "transform":
+      {
+        "pos": "51.2737 154.491 -463.005"
+        ,
+        "lookat": "0.747929 -27.172 -341.24"
+      }
+      ,
+      "light_dir":
+      {
+        "type": "directional"
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "proj_type": "ortographic"
+        ,
+        "z_near": 0.01
+        ,
+        "z_far": 224.457
+        ,
+        "ortosize": 95.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.5
+        ,
+        "shadows_resolution": 4096
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+]

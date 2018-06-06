@@ -330,7 +330,7 @@
       },
       "operation": "greater_equal"
     },
-		{
+	{
       "type": "VariableTransition",
       "source": "crouch",
       "target": "sonarEnemy",

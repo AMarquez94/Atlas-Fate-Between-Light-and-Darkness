@@ -114,6 +114,7 @@ struct TMsgSetCameraCancelled {
 };
 
 struct TMsgCameraActivated {
+    CHandle previousCamera;
 	DECL_MSG_ID();
 };
 

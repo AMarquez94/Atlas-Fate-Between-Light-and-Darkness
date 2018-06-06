@@ -1,0 +1,44 @@
+[
+  {
+    "entity":
+    {
+      "name": "sp_dynamic_lights"
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "LightPlayer"
+      ,
+      "transform":
+      {
+        "pos": "-4.62722 2.185 -19.9464"
+        ,
+        "lookat": "-4.694 -16.782 -8.716"
+      }
+      ,
+      "projector":
+      {
+        "type": "spotlight",
+				"proj_type": "ortographic",
+        "range": 29.2116,
+        "angle": 91.8,
+        "color": "1.0 1.0 1.0 1.0",
+				"projector" : "data/textures/light_cookie.dds",
+        "intensity": 1,
+				"ortosize" : 0.6,
+        "shadows": true,
+        "z_far" : 2,
+        "casts_shadows" : true,
+        "shadows_step" : 1.0,
+        "shadows_resolution" : 1024,
+        "shadows_fmt" : "R32_TYPELESS"
+      },      
+				"hierarchy": {
+        "parent": "The Player",
+        "pos": "0 1.1 0",
+				"lookat": "0.05 -0.96 0.0"
+      }
+    }
+  }
+]

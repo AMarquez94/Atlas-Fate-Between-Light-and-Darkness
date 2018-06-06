@@ -149,7 +149,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
     pxPlayerFilterData->word1 = FilterGroup::All;
 
     physx::PxFilterData pxFilterData;
-    pxFilterData.word1 = FilterGroup::Scenario;
+    pxFilterData.word0 = FilterGroup::Scenario;
     PxPlayerDiscardQuery.data = pxFilterData;
 
     /* Initial reset messages */
@@ -389,7 +389,7 @@ void TCompTempPlayerController::resetState(float dt) {
     
     VEC3 new_pos = c_my_transform->getPosition() - dir;
     float mod_angle = (1 - abs(-EnginePhysics.gravity.Dot(c_my_transform->getUp())));
-    VEC3 new_offset_pos = c_my_transform->getPosition() + c_capsule->getRadius() * mod_angle * c_my_transform->getUp();
+    VEC3 new_offset_pos = c_my_transform->getPosition() + 0.4f * mod_angle * c_my_transform->getUp();
     Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), new_pos, -EnginePhysics.gravity).Transpose();
     Quaternion quat = Quaternion::CreateFromRotationMatrix(test);
     c_my_transform->setPosition(new_offset_pos);

@@ -19,7 +19,7 @@ private:
 	float fovDeg = 120.f;
 	float fov;
 	float autoChaseDistance = 10.f;
-	float maxChaseDistance = 35.f;
+	float maxChaseDistance = 20.f;
 	float maxTimeSuspecting = 3.f;
 	float dcrSuspectO_Meter = .3f;
 	float incrBaseSuspectO_Meter = .5f;
