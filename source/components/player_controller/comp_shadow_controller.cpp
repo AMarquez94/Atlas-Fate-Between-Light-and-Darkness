@@ -28,7 +28,7 @@ void TCompShadowController::load(const json& j, TEntityParseContext& ctx) {
 void TCompShadowController::update(float dt) {
 
     TCompTransform * c_my_transform = get<TCompTransform>();
-    VEC3 new_pos = c_my_transform->getPosition() + 0.1f * c_my_transform->getUp();
+    VEC3 new_pos = c_my_transform->getPosition() + 0.2f * c_my_transform->getUp();
     bool shadow_test = IsPointInShadows(new_pos) && enemies_illuminating_me.size() == 0;
 
     // We have entered or left a shadow, notify this.
@@ -121,7 +121,7 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
         {
             VEC3 dir = point - c_transform->getPosition();
             dir.Normalize();
-            float distance = VEC3::Distance(c_transform->getPosition(), point);
+            float distance = Clamp(VEC3::Distance(c_transform->getPosition(), point), 0.21f, 10000.f);
             if (!EnginePhysics.Raycast(c_transform->getPosition(), dir, distance - 0.2f, hit, (physx::PxQueryFlag::eSTATIC | physx::PxQueryFlag::eDYNAMIC), shadowDetectionFilter))
                 return false;
         }

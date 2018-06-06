@@ -84,6 +84,8 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
         // Load the subscene
         Scene * current_scene = it->second;
         Engine.getNavmeshes().buildNavmesh(current_scene->navmesh);
+        Engine.getInstancing().start();
+
         for (auto& scene_name : current_scene->groups_subscenes) {
             dbg("Autoloading scene %s\n", scene_name.c_str());
             TEntityParseContext ctx;

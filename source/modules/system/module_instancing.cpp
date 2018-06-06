@@ -148,7 +148,6 @@ void CModuleInstancing::removeInstance(TInstance* instance) {
 void CModuleInstancing::clearInstances() {
 
     _global_instances.clear();
-    start();
 }
 
 // Maybe we should refactor this with pointers..
