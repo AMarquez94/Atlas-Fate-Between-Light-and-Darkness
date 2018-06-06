@@ -20,6 +20,7 @@
 		"hierarchy",
 		"local_aabb",
 		"culling",
+		"sonar_controller",
 		"cone_of_light",
 		"rigidbody",
 		"collider",

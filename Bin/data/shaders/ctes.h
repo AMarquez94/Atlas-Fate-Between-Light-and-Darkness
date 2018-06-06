@@ -11,6 +11,7 @@
 #define CB_BLOOM        7
 #define CB_GUI		    8
 #define CB_PARTICLE		9
+#define CB_OUTLINE      10
 
 // -------------------------------------------------
 // Texture Slots
@@ -218,9 +219,17 @@ CB_DEF(CCteGUI, CB_GUI)
 
 CB_DEF(CCteParticle, CB_PARTICLE)
 {
-  VEC2 particle_minUV;
-  VEC2 particle_maxUV;
-  VEC4 particle_color;
+    VEC2 particle_minUV;
+    VEC2 particle_maxUV;
+    VEC4 particle_color;
+};
+
+CB_DEF(CCteOutline, CB_OUTLINE)
+{
+    float  linear_time;
+    float  outline_alpha;
+    float  outline_dummy1;
+    float  outline_dummy2;
 };
 
 #endif

@@ -2,12 +2,13 @@
 #include "render_objects.h"
 #include "texture/texture.h"
 
-CRenderCte<CCteCamera>    cb_camera("Camera");
-CRenderCte<CCteObject>    cb_object("Object");
-CRenderCte<CCteLight>     cb_light("Light");
-CRenderCte<CCteGlobals>   cb_globals("Globals");
-CRenderCte<CCteBlur>      cb_blur("Blur");
-CRenderCte<CCteGUI>       cb_gui("Gui");
+CRenderCte<CCteCamera>  cb_camera("Camera");
+CRenderCte<CCteObject>  cb_object("Object");
+CRenderCte<CCteLight>   cb_light("Light");
+CRenderCte<CCteGlobals> cb_globals("Globals");
+CRenderCte<CCteBlur>    cb_blur("Blur");
+CRenderCte<CCteGUI>     cb_gui("Gui");
+CRenderCte<CCteOutline> cb_outline("Outline");
 CRenderCte<CCteParticle>  cb_particles("Particles");
 
 struct TVtxPosClr {

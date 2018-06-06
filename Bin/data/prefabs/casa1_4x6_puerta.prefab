@@ -1,0 +1,34 @@
+[
+  {
+    "entity":
+    {
+      "name": "mesh_casa1_4x6"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "instance":
+      {
+        "mesh": "data/meshes/mesh_casa1_4x6.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/mtl_instanced_default.material"
+        ]
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 3.0 3.0"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

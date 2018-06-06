@@ -13,6 +13,7 @@ extern CRenderCte<CCteGlobals> cb_globals;
 extern CRenderCte<CCteBlur>    cb_blur;
 extern CRenderCte<CCteGUI> cb_gui;
 extern CRenderCte<CCteParticle> cb_particles;
+extern CRenderCte<CCteOutline> cb_outline;
 
 class CTexture;
 

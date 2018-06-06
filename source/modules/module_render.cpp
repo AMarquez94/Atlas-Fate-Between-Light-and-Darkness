@@ -113,8 +113,11 @@ bool CModuleRender::start()
 	if (!cb_gui.create(CB_GUI))
 		return false;
 
-  if (!cb_particles.create(CB_PARTICLE))
-    return false;
+    if (!cb_particles.create(CB_PARTICLE))
+        return false;
+
+    if (!cb_outline.create(CB_OUTLINE))
+        return false;
 
 	cb_globals.global_exposure_adjustment = 2.010f;
 	cb_globals.global_ambient_adjustment = 0.150f;
@@ -131,7 +134,8 @@ bool CModuleRender::start()
 	cb_globals.activate();
 	cb_blur.activate();
 	cb_gui.activate();
-  cb_particles.activate();
+    cb_particles.activate();
+    cb_outline.activate();
 
 	camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
 	camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
@@ -159,8 +163,9 @@ bool CModuleRender::stop()
 	cb_light.destroy();
 	cb_globals.destroy();
 	cb_blur.destroy();
-  cb_gui.destroy();
-  cb_particles.destroy();
+    cb_gui.destroy();
+    cb_particles.destroy();
+    cb_outline.destroy();
 
 	return true;
 }

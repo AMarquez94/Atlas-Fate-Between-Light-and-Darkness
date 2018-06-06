@@ -16,6 +16,7 @@ public:
     void update(float dt);
 
     void onMsgEntityCreated(const TMsgEntityCreated& msg);
+    void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
     static void registerMsgs();
 
 };

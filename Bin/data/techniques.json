@@ -153,13 +153,6 @@
 		"rs_config": "reverse_culling",
 		"blend": "combinative_gbuffer"
 	},
-	"particles": {
-		"vs_file": "data/shaders/particles.fx",
-		"vertex_type": "Pos_x_RenderParticle",
-		"category": "particles",
-		"blend": "combinative",
-		"z": "test_but_no_write"
-	},
 	"pbr_ambient": {
 		"vs_file": "data/shaders/screen_quad.fx",
 		"ps_file": "data/shaders/pbr.fx",
