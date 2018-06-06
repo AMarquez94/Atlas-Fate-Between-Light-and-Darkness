@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "whitebox_mapa92_basilica34"
+      "name": "whitebox_patio_basilica"
       ,
       "transform":
       {
@@ -14,11 +14,11 @@
   {
     "entity":
     {
-      "name": "suelo_patio_basilica"
+      "name": "cemento004"
       ,
       "transform":
       {
-        "pos": "4.60642 -1.58123e-05 -361.744"
+        "pos": "15.2609 -1.50774e-05 -344.931"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -26,7 +26,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/suelo_patio_basilica.mesh"
+          "mesh": "data/meshes/cemento004.mesh"
           ,
           "materials":
           [
@@ -37,9 +37,9 @@
       ,
       "collider":
       {
-        "shape": "mesh"
+        "shape": "box"
         ,
-        "name": "data/colliders/collider_suelo_patio_basilica.collider"
+        "size": "1.0 0.45 0.25"
       }
       ,
       "abs_aabb": true
@@ -51,11 +51,11 @@
   {
     "entity":
     {
-      "name": "Box022"
+      "name": "cemento003"
       ,
       "transform":
       {
-        "pos": "37.6064 -1.58123e-05 -361.744"
+        "pos": "13.2609 -1.50774e-05 -344.931"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -63,7 +63,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/Box022.mesh"
+          "mesh": "data/meshes/cemento003.mesh"
           ,
           "materials":
           [
@@ -74,9 +74,9 @@
       ,
       "collider":
       {
-        "shape": "mesh"
+        "shape": "box"
         ,
-        "name": "data/colliders/collider_Box022.collider"
+        "size": "1.0 0.45 0.25"
       }
       ,
       "abs_aabb": true
@@ -125,19 +125,19 @@
   {
     "entity":
     {
-      "name": "Box024"
+      "name": "cemento002"
       ,
       "transform":
       {
-        "pos": "4.60643 -1.43698e-05 -328.744"
+        "pos": "11.2609 -1.50774e-05 -344.931"
         ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/Box024.mesh"
+          "mesh": "data/meshes/cemento002.mesh"
           ,
           "materials":
           [
@@ -148,9 +148,9 @@
       ,
       "collider":
       {
-        "shape": "mesh"
+        "shape": "box"
         ,
-        "name": "data/colliders/collider_Box024.collider"
+        "size": "1.0 0.45 0.25"
       }
       ,
       "abs_aabb": true
@@ -250,6 +250,13 @@
         }
       ]
       ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_basilica_planta002.collider"
+      }
+      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -279,6 +286,13 @@
           ]
         }
       ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Sphere001.collider"
+      }
       ,
       "abs_aabb": true
       ,
@@ -340,6 +354,13 @@
         }
       ]
       ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Sphere003.collider"
+      }
+      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -400,6 +421,13 @@
         }
       ]
       ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Sphere005.collider"
+      }
+      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -429,6 +457,13 @@
           ]
         }
       ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_cupula_pequena.collider"
+      }
       ,
       "abs_aabb": true
       ,
@@ -460,6 +495,13 @@
         }
       ]
       ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_basilica_planta003.collider"
+      }
+      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -489,6 +531,13 @@
           ]
         }
       ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_basilica_planta004.collider"
+      }
       ,
       "abs_aabb": true
       ,
@@ -520,6 +569,13 @@
         }
       ]
       ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_basilica_planta005.collider"
+      }
+      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -549,6 +605,13 @@
           ]
         }
       ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_basilica_planta006.collider"
+      }
       ,
       "abs_aabb": true
       ,
@@ -580,6 +643,13 @@
         }
       ]
       ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_cupula_pequena001.collider"
+      }
+      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -609,6 +679,13 @@
           ]
         }
       ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_basilica_planta007.collider"
+      }
       ,
       "abs_aabb": true
       ,
@@ -640,6 +717,13 @@
         }
       ]
       ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_basilica_planta008.collider"
+      }
+      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -649,11 +733,11 @@
   {
     "entity":
     {
-      "name": "Box026"
+      "name": "cemento001"
       ,
       "transform":
       {
-        "pos": "-23.3936 -1.69488e-05 -387.744"
+        "pos": "9.26088 -1.50774e-05 -344.931"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -661,7 +745,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/Box026.mesh"
+          "mesh": "data/meshes/cemento001.mesh"
           ,
           "materials":
           [
@@ -672,9 +756,9 @@
       ,
       "collider":
       {
-        "shape": "mesh"
+        "shape": "box"
         ,
-        "name": "data/colliders/collider_Box026.collider"
+        "size": "1.0 0.45 0.25"
       }
       ,
       "abs_aabb": true
@@ -723,11 +807,11 @@
   {
     "entity":
     {
-      "name": "Box028"
+      "name": "cemento"
       ,
       "transform":
       {
-        "pos": "-23.3936 -1.46758e-05 -335.744"
+        "pos": "7.26088 -1.50774e-05 -344.931"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -735,7 +819,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/Box028.mesh"
+          "mesh": "data/meshes/cemento.mesh"
           ,
           "materials":
           [
@@ -746,9 +830,9 @@
       ,
       "collider":
       {
-        "shape": "mesh"
+        "shape": "box"
         ,
-        "name": "data/colliders/collider_Box028.collider"
+        "size": "1.0 0.45 0.25"
       }
       ,
       "abs_aabb": true
@@ -760,11 +844,11 @@
   {
     "entity":
     {
-      "name": "Box029"
+      "name": "andamio179"
       ,
       "transform":
       {
-        "pos": "32.6064 -1.46758e-05 -335.744"
+        "pos": "33.643 14.0 -340.49"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -772,44 +856,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/Box029.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_Box029.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Box030"
-      ,
-      "transform":
-      {
-        "pos": "-23.3936 -2.02709e-05 -463.744"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box030.mesh"
+          "mesh": "data/meshes/andamio179.mesh"
           ,
           "materials":
           [
@@ -827,11 +874,11 @@
   {
     "entity":
     {
-      "name": "cemento004"
+      "name": "andamio178"
       ,
       "transform":
       {
-        "pos": "15.2609 -1.50774e-05 -344.931"
+        "pos": "31.643 14.0 -340.49"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -839,7 +886,67 @@
       "render":
       [
         {
-          "mesh": "data/meshes/cemento004.mesh"
+          "mesh": "data/meshes/andamio178.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "andamio177"
+      ,
+      "transform":
+      {
+        "pos": "33.643 12.0 -341.89"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/andamio177.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "andamio176"
+      ,
+      "transform":
+      {
+        "pos": "31.643 12.0 -341.89"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/andamio176.mesh"
           ,
           "materials":
           [
@@ -894,11 +1001,11 @@
   {
     "entity":
     {
-      "name": "alminar2"
+      "name": "andamio175"
       ,
       "transform":
       {
-        "pos": "-23.3936 18.0 -387.744"
+        "pos": "29.643 12.0 -341.89"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -906,7 +1013,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/alminar2.mesh"
+          "mesh": "data/meshes/andamio175.mesh"
           ,
           "materials":
           [
@@ -915,12 +1022,35 @@
         }
       ]
       ,
-      "collider":
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "andamio174"
+      ,
+      "transform":
       {
-        "shape": "mesh"
+        "pos": "33.643 12.0 -340.49"
         ,
-        "name": "data/colliders/collider_alminar2.collider"
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/andamio174.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
       ,
       "abs_aabb": true
       ,
@@ -961,11 +1091,11 @@
   {
     "entity":
     {
-      "name": "alminar004"
+      "name": "andamio173"
       ,
       "transform":
       {
-        "pos": "-23.3936 18.0 -463.892"
+        "pos": "31.643 12.0 -340.49"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -973,7 +1103,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/alminar004.mesh"
+          "mesh": "data/meshes/andamio173.mesh"
           ,
           "materials":
           [
@@ -991,11 +1121,11 @@
   {
     "entity":
     {
-      "name": "alminar005"
+      "name": "andamio172"
       ,
       "transform":
       {
-        "pos": "32.6064 18.0 -335.617"
+        "pos": "29.643 12.0 -340.49"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -1003,7 +1133,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/alminar005.mesh"
+          "mesh": "data/meshes/andamio172.mesh"
           ,
           "materials":
           [
@@ -1011,13 +1141,6 @@
           ]
         }
       ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_alminar005.collider"
-      }
       ,
       "abs_aabb": true
       ,
@@ -1028,19 +1151,19 @@
   {
     "entity":
     {
-      "name": "alminar006"
+      "name": "andamio171"
       ,
       "transform":
       {
-        "pos": "-23.3936 18.0 -335.617"
+        "pos": "27.9064 1.99999 -350.228"
         ,
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/alminar006.mesh"
+          "mesh": "data/meshes/andamio171.mesh"
           ,
           "materials":
           [
@@ -1049,12 +1172,65 @@
         }
       ]
       ,
-      "collider":
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "andamio170"
+      ,
+      "transform":
       {
-        "shape": "mesh"
+        "pos": "27.9064 -1.53089e-05 -350.228"
         ,
-        "name": "data/colliders/collider_alminar006.collider"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/andamio170.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "andamio169"
+      ,
+      "transform":
+      {
+        "pos": "27.9064 3.99999 -348.228"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/andamio169.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
       ,
       "abs_aabb": true
       ,
@@ -1086,6 +1262,13 @@
         }
       ]
       ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_basilica_planta009.collider"
+      }
+      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -1115,6 +1298,13 @@
           ]
         }
       ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_basilica_planta010.collider"
+      }
       ,
       "abs_aabb": true
       ,
@@ -1146,6 +1336,13 @@
         }
       ]
       ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Sphere006.collider"
+      }
+      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -1175,6 +1372,13 @@
           ]
         }
       ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_cupula_pequena002.collider"
+      }
       ,
       "abs_aabb": true
       ,
@@ -1206,6 +1410,13 @@
         }
       ]
       ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_cupula_pequena003.collider"
+      }
+      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -1236,6 +1447,13 @@
         }
       ]
       ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_cupula_pequena004.collider"
+      }
+      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -1265,6 +1483,13 @@
           ]
         }
       ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_cupula_pequena005.collider"
+      }
       ,
       "abs_aabb": true
       ,
@@ -1305,19 +1530,19 @@
   {
     "entity":
     {
-      "name": "puerta_basilica001"
+      "name": "andamio168"
       ,
       "transform":
       {
-        "pos": "4.60641 -1.45001e-05 -331.723"
+        "pos": "27.9064 1.99999 -348.228"
         ,
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/puerta_basilica001.mesh"
+          "mesh": "data/meshes/andamio168.mesh"
           ,
           "materials":
           [
@@ -1326,12 +1551,35 @@
         }
       ]
       ,
-      "collider":
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "andamio167"
+      ,
+      "transform":
       {
-        "shape": "mesh"
+        "pos": "27.9064 -1.52215e-05 -348.228"
         ,
-        "name": "data/colliders/collider_puerta_basilica001.collider"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/andamio167.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
       ,
       "abs_aabb": true
       ,
@@ -1439,19 +1687,19 @@
   {
     "entity":
     {
-      "name": "Box033"
+      "name": "andamio166"
       ,
       "transform":
       {
-        "pos": "-28.2927 -1.58123e-05 -361.744"
+        "pos": "27.9064 3.99999 -346.228"
         ,
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/Box033.mesh"
+          "mesh": "data/meshes/andamio166.mesh"
           ,
           "materials":
           [
@@ -1459,13 +1707,6 @@
           ]
         }
       ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_Box033.collider"
-      }
       ,
       "abs_aabb": true
       ,
@@ -1476,11 +1717,11 @@
   {
     "entity":
     {
-      "name": "Box034"
+      "name": "andamio165"
       ,
       "transform":
       {
-        "pos": "4.60643 11.0 -334.744"
+        "pos": "27.9064 1.99999 -346.228"
         ,
         "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
@@ -1488,7 +1729,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/Box034.mesh"
+          "mesh": "data/meshes/andamio165.mesh"
           ,
           "materials":
           [
@@ -1497,12 +1738,65 @@
         }
       ]
       ,
-      "collider":
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "andamio164"
+      ,
+      "transform":
       {
-        "shape": "mesh"
+        "pos": "27.9064 -1.51341e-05 -346.228"
         ,
-        "name": "data/colliders/collider_Box034.collider"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/andamio164.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "andamio163"
+      ,
+      "transform":
+      {
+        "pos": "22.2064 1.99999 -338.528"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/andamio163.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
       ,
       "abs_aabb": true
       ,
@@ -7285,11 +7579,11 @@
   {
     "entity":
     {
-      "name": "Box037"
+      "name": "andamio162"
       ,
       "transform":
       {
-        "pos": "-45.9597 -1.44854e-05 -331.386"
+        "pos": "22.2064 -1.47975e-05 -338.528"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -7297,266 +7591,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/Box037.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_Box016.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Box038"
-      ,
-      "transform":
-      {
-        "pos": "-37.6992 -1.73574e-05 -397.092"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box038.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_Box017.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big165"
-      ,
-      "transform":
-      {
-        "pos": "-48.8468 -0.455082 -338.646"
-        ,
-        "rotation": "0.0 1.50996e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big165.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big165.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big166"
-      ,
-      "transform":
-      {
-        "pos": "-50.6602 -1.76989e-05 -366.724"
-        ,
-        "rotation": "0.0 1.50996e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big166.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big166.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big167"
-      ,
-      "transform":
-      {
-        "pos": "-48.3854 -2.17324e-05 -388.092"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big167.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big167.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big168"
-      ,
-      "transform":
-      {
-        "pos": "-46.3854 5.99998 -388.996"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big168.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big168.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big169"
-      ,
-      "transform":
-      {
-        "pos": "-56.8318 6.22789 -383.143"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big169.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big169.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big170"
-      ,
-      "transform":
-      {
-        "pos": "-44.3951 -2.18158e-05 -346.365"
-        ,
-        "rotation": "0.0 1.19209e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big170.mesh"
+          "mesh": "data/meshes/andamio162.mesh"
           ,
           "materials":
           [
@@ -7565,13 +7600,6 @@
         }
       ]
       ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big170.collider"
-      }
-      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -7581,1047 +7609,11 @@
   {
     "entity":
     {
-      "name": "house_big171"
+      "name": "andamio161"
       ,
       "transform":
       {
-        "pos": "-44.3951 -2.22529e-05 -356.365"
-        ,
-        "rotation": "0.0 1.19209e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big171.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big171.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big172"
-      ,
-      "transform":
-      {
-        "pos": "-44.3951 -2.269e-05 -366.365"
-        ,
-        "rotation": "0.0 1.19209e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big172.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big172.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big173"
-      ,
-      "transform":
-      {
-        "pos": "-44.3951 -2.31271e-05 -376.365"
-        ,
-        "rotation": "0.0 1.19209e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big173.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big173.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big174"
-      ,
-      "transform":
-      {
-        "pos": "-46.8788 5.99998 -346.365"
-        ,
-        "rotation": "0.0 1.19209e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big174.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big174.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big175"
-      ,
-      "transform":
-      {
-        "pos": "-46.8788 5.99998 -356.365"
-        ,
-        "rotation": "0.0 1.19209e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big175.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big175.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big176"
-      ,
-      "transform":
-      {
-        "pos": "-44.3951 5.99998 -366.365"
-        ,
-        "rotation": "0.0 1.19209e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big176.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big176.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big177"
-      ,
-      "transform":
-      {
-        "pos": "-44.3951 5.99998 -376.365"
-        ,
-        "rotation": "0.0 1.19209e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big177.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big177.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little179"
-      ,
-      "transform":
-      {
-        "pos": "-61.5033 12.0 -356.724"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little179.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little179.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little180"
-      ,
-      "transform":
-      {
-        "pos": "-51.7067 -1.99242e-05 -346.724"
-        ,
-        "rotation": "0.0 2.38419e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little180.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little180.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little181"
-      ,
-      "transform":
-      {
-        "pos": "-52.7067 5.99998 -346.724"
-        ,
-        "rotation": "0.0 2.38419e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little181.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little181.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little182"
-      ,
-      "transform":
-      {
-        "pos": "-58.6602 12.0 -366.724"
-        ,
-        "rotation": "0.0 2.38419e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little182.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little182.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little183"
-      ,
-      "transform":
-      {
-        "pos": "-59.6602 18.0 -366.724"
-        ,
-        "rotation": "0.0 2.38419e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little183.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little183.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little184"
-      ,
-      "transform":
-      {
-        "pos": "-54.5033 -2.03613e-05 -356.724"
-        ,
-        "rotation": "0.0 2.38419e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little184.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little184.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little185"
-      ,
-      "transform":
-      {
-        "pos": "-55.5033 5.99998 -356.724"
-        ,
-        "rotation": "0.0 2.38419e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little185.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little185.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little186"
-      ,
-      "transform":
-      {
-        "pos": "-54.7901 12.0 -346.724"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little186.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little186.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little187"
-      ,
-      "transform":
-      {
-        "pos": "-56.8468 12.0 -338.646"
-        ,
-        "rotation": "0.0 2.38419e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little187.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little187.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little188"
-      ,
-      "transform":
-      {
-        "pos": "-68.7067 18.0 -338.685"
-        ,
-        "rotation": "0.0 2.38419e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little188.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little188.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little189"
-      ,
-      "transform":
-      {
-        "pos": "-52.6993 -2.21695e-05 -398.092"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little189.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little189.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little190"
-      ,
-      "transform":
-      {
-        "pos": "-52.6993 5.99998 -399.092"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little190.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little190.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little191"
-      ,
-      "transform":
-      {
-        "pos": "-52.6993 12.0 -406.092"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little191.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little191.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little192"
-      ,
-      "transform":
-      {
-        "pos": "-52.6993 18.0 -407.092"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little192.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little192.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little193"
-      ,
-      "transform":
-      {
-        "pos": "-64.7393 18.2279 -383.143"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little193.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little193.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little194"
-      ,
-      "transform":
-      {
-        "pos": "-60.5824 6.22788 -373.143"
-        ,
-        "rotation": "0.0 -1.78814e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little194.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little194.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little195"
-      ,
-      "transform":
-      {
-        "pos": "-51.7067 -1.93637e-05 -333.903"
-        ,
-        "rotation": "0.0 2.38419e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little195.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little195.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little196"
-      ,
-      "transform":
-      {
-        "pos": "-57.65 18.2279 -390.366"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little196.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little196.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Box039"
-      ,
-      "transform":
-      {
-        "pos": "52.0643 -1.68846e-05 -386.274"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box039.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_Box018.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big178"
-      ,
-      "transform":
-      {
-        "pos": "54.9514 -0.455084 -379.015"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big178.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big178.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big179"
-      ,
-      "transform":
-      {
-        "pos": "56.7648 -1.70088e-05 -350.936"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big179.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big179.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big180"
-      ,
-      "transform":
-      {
-        "pos": "54.49 -1.91743e-05 -329.568"
+        "pos": "27.9064 3.99999 -344.228"
         ,
         "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
@@ -8629,118 +7621,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/house_big180.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big180.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big181"
-      ,
-      "transform":
-      {
-        "pos": "52.49 5.99998 -328.664"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big181.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big181.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big182"
-      ,
-      "transform":
-      {
-        "pos": "62.9364 6.22789 -334.517"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big182.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big182.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big183"
-      ,
-      "transform":
-      {
-        "pos": "50.4997 -2.29056e-05 -371.296"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big183.mesh"
+          "mesh": "data/meshes/andamio161.mesh"
           ,
           "materials":
           [
@@ -8749,13 +7630,6 @@
         }
       ]
       ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big183.collider"
-      }
-      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -8765,19 +7639,19 @@
   {
     "entity":
     {
-      "name": "house_big184"
+      "name": "andamio160"
       ,
       "transform":
       {
-        "pos": "50.4997 -2.24684e-05 -361.296"
+        "pos": "27.9064 1.99999 -344.228"
         ,
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/house_big184.mesh"
+          "mesh": "data/meshes/andamio160.mesh"
           ,
           "materials":
           [
@@ -8786,13 +7660,6 @@
         }
       ]
       ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big184.collider"
-      }
-      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -8802,19 +7669,19 @@
   {
     "entity":
     {
-      "name": "house_big185"
+      "name": "andamio159"
       ,
       "transform":
       {
-        "pos": "50.4997 -2.20313e-05 -351.295"
+        "pos": "27.9064 -1.50467e-05 -344.228"
         ,
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/house_big185.mesh"
+          "mesh": "data/meshes/andamio159.mesh"
           ,
           "materials":
           [
@@ -8823,13 +7690,6 @@
         }
       ]
       ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big185.collider"
-      }
-      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -8839,19 +7699,19 @@
   {
     "entity":
     {
-      "name": "house_big186"
+      "name": "andamio158"
       ,
       "transform":
       {
-        "pos": "50.4997 -2.15942e-05 -341.295"
+        "pos": "27.9064 9.99999 -340.228"
         ,
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/house_big186.mesh"
+          "mesh": "data/meshes/andamio158.mesh"
           ,
           "materials":
           [
@@ -8860,13 +7720,6 @@
         }
       ]
       ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big186.collider"
-      }
-      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -8876,19 +7729,19 @@
   {
     "entity":
     {
-      "name": "house_big187"
+      "name": "andamio157"
       ,
       "transform":
       {
-        "pos": "52.9834 5.99998 -371.296"
+        "pos": "27.9064 9.99999 -342.228"
         ,
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/house_big187.mesh"
+          "mesh": "data/meshes/andamio157.mesh"
           ,
           "materials":
           [
@@ -8897,13 +7750,6 @@
         }
       ]
       ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big187.collider"
-      }
-      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -8913,19 +7759,19 @@
   {
     "entity":
     {
-      "name": "house_big188"
+      "name": "andamio156"
       ,
       "transform":
       {
-        "pos": "52.9834 5.99998 -361.296"
+        "pos": "27.9064 7.99999 -340.228"
         ,
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/house_big188.mesh"
+          "mesh": "data/meshes/andamio156.mesh"
           ,
           "materials":
           [
@@ -8934,13 +7780,6 @@
         }
       ]
       ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big188.collider"
-      }
-      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -8950,19 +7789,19 @@
   {
     "entity":
     {
-      "name": "house_big189"
+      "name": "andamio155"
       ,
       "transform":
       {
-        "pos": "50.4997 5.99998 -351.295"
+        "pos": "27.9064 7.99999 -342.228"
         ,
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/house_big189.mesh"
+          "mesh": "data/meshes/andamio155.mesh"
           ,
           "materials":
           [
@@ -8971,13 +7810,6 @@
         }
       ]
       ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big189.collider"
-      }
-      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -8987,19 +7819,19 @@
   {
     "entity":
     {
-      "name": "house_big190"
+      "name": "andamio154"
       ,
       "transform":
       {
-        "pos": "50.4997 5.99998 -341.295"
+        "pos": "27.9064 5.99999 -340.228"
         ,
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/house_big190.mesh"
+          "mesh": "data/meshes/andamio154.mesh"
           ,
           "materials":
           [
@@ -9008,13 +7840,6 @@
         }
       ]
       ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big190.collider"
-      }
-      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -9024,381 +7849,11 @@
   {
     "entity":
     {
-      "name": "house_little197"
+      "name": "andamio153"
       ,
       "transform":
       {
-        "pos": "67.6079 12.0 -360.936"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little197.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little197.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little198"
-      ,
-      "transform":
-      {
-        "pos": "57.8113 -2.09825e-05 -370.936"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little198.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little198.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little199"
-      ,
-      "transform":
-      {
-        "pos": "58.8113 5.99998 -370.936"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little199.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little199.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little200"
-      ,
-      "transform":
-      {
-        "pos": "64.7648 12.0 -350.936"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little200.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little200.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little201"
-      ,
-      "transform":
-      {
-        "pos": "65.7648 18.0 -350.936"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little201.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little201.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little202"
-      ,
-      "transform":
-      {
-        "pos": "60.6079 -2.05454e-05 -360.936"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little202.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little202.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little203"
-      ,
-      "transform":
-      {
-        "pos": "61.6079 5.99998 -360.936"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little203.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little203.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little204"
-      ,
-      "transform":
-      {
-        "pos": "60.8947 12.0 -370.936"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little204.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little204.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little205"
-      ,
-      "transform":
-      {
-        "pos": "62.9514 12.0 -379.015"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little205.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little205.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little206"
-      ,
-      "transform":
-      {
-        "pos": "74.8113 18.0 -378.976"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little206.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little206.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little207"
-      ,
-      "transform":
-      {
-        "pos": "58.8039 -1.87371e-05 -319.568"
+        "pos": "27.9064 5.99999 -342.228"
         ,
         "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
@@ -9406,377 +7861,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/house_little207.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little207.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little208"
-      ,
-      "transform":
-      {
-        "pos": "58.8039 5.99998 -318.568"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little208.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little208.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little209"
-      ,
-      "transform":
-      {
-        "pos": "58.8039 12.0 -311.568"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little209.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little209.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little210"
-      ,
-      "transform":
-      {
-        "pos": "58.8039 18.0 -310.568"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little210.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little210.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little211"
-      ,
-      "transform":
-      {
-        "pos": "70.8439 18.2279 -334.517"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little211.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little211.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little212"
-      ,
-      "transform":
-      {
-        "pos": "66.687 6.22789 -344.517"
-        ,
-        "rotation": "0.0 -1.0 0.0 3.13916e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little212.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little212.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little213"
-      ,
-      "transform":
-      {
-        "pos": "57.8113 -2.15429e-05 -383.757"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little213.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little213.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little214"
-      ,
-      "transform":
-      {
-        "pos": "63.7546 18.2279 -327.294"
-        ,
-        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little214.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little214.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Box040"
-      ,
-      "transform":
-      {
-        "pos": "44.3241 -1.84465e-05 -422.007"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box040.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_Box019.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big191"
-      ,
-      "transform":
-      {
-        "pos": "47.2111 -0.455086 -414.747"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big191.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big191.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big192"
-      ,
-      "transform":
-      {
-        "pos": "42.7594 -2.44675e-05 -407.028"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big192.mesh"
+          "mesh": "data/meshes/andamio153.mesh"
           ,
           "materials":
           [
@@ -9785,13 +7870,6 @@
         }
       ]
       ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big192.collider"
-      }
-      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -9801,19 +7879,19 @@
   {
     "entity":
     {
-      "name": "house_big193"
+      "name": "andamio152"
       ,
       "transform":
       {
-        "pos": "42.7594 -2.40304e-05 -397.028"
+        "pos": "27.9064 3.99999 -340.228"
         ,
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/house_big193.mesh"
+          "mesh": "data/meshes/andamio152.mesh"
           ,
           "materials":
           [
@@ -9822,13 +7900,6 @@
         }
       ]
       ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big193.collider"
-      }
-      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -9838,19 +7909,19 @@
   {
     "entity":
     {
-      "name": "house_big194"
+      "name": "andamio151"
       ,
       "transform":
       {
-        "pos": "45.2431 5.99998 -407.028"
+        "pos": "27.9064 3.99999 -342.228"
         ,
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/house_big194.mesh"
+          "mesh": "data/meshes/andamio151.mesh"
           ,
           "materials":
           [
@@ -9859,13 +7930,6 @@
         }
       ]
       ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big194.collider"
-      }
-      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -9875,19 +7939,19 @@
   {
     "entity":
     {
-      "name": "house_big195"
+      "name": "andamio150"
       ,
       "transform":
       {
-        "pos": "45.2431 5.99998 -397.028"
+        "pos": "27.9064 1.99999 -340.228"
         ,
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/house_big195.mesh"
+          "mesh": "data/meshes/andamio150.mesh"
           ,
           "materials":
           [
@@ -9896,13 +7960,6 @@
         }
       ]
       ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big195.collider"
-      }
-      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -9912,426 +7969,19 @@
   {
     "entity":
     {
-      "name": "house_little215"
+      "name": "andamio149"
       ,
       "transform":
       {
-        "pos": "59.8676 12.0 -396.669"
+        "pos": "27.9064 1.99999 -342.228"
         ,
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/house_little215.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little215.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little216"
-      ,
-      "transform":
-      {
-        "pos": "50.071 -2.25444e-05 -406.669"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little216.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little216.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little217"
-      ,
-      "transform":
-      {
-        "pos": "51.071 5.99998 -406.669"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little217.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little217.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little218"
-      ,
-      "transform":
-      {
-        "pos": "52.8676 -2.21073e-05 -396.669"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little218.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little218.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little219"
-      ,
-      "transform":
-      {
-        "pos": "53.8676 5.99998 -396.669"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little219.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little219.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little220"
-      ,
-      "transform":
-      {
-        "pos": "53.1544 12.0 -406.669"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little220.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little220.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little221"
-      ,
-      "transform":
-      {
-        "pos": "55.2111 12.0 -414.747"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little221.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little221.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little222"
-      ,
-      "transform":
-      {
-        "pos": "67.071 18.0 -414.709"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little222.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little222.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little223"
-      ,
-      "transform":
-      {
-        "pos": "50.071 -2.31049e-05 -419.49"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little223.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little223.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Box041"
-      ,
-      "transform":
-      {
-        "pos": "-48.6504 -1.9354e-05 -442.768"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box041.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_Box020.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big196"
-      ,
-      "transform":
-      {
-        "pos": "-45.7634 -0.455086 -435.509"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big196.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big196.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big197"
-      ,
-      "transform":
-      {
-        "pos": "-50.2151 -2.5375e-05 -427.79"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big197.mesh"
+          "mesh": "data/meshes/andamio149.mesh"
           ,
           "materials":
           [
@@ -10339,1752 +7989,6 @@
           ]
         }
       ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big197.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big198"
-      ,
-      "transform":
-      {
-        "pos": "-50.2151 -2.49379e-05 -417.79"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big198.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big198.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big199"
-      ,
-      "transform":
-      {
-        "pos": "-47.7314 5.99998 -427.79"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big199.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big199.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big200"
-      ,
-      "transform":
-      {
-        "pos": "-47.7314 5.99998 -417.79"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big200.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big200.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little224"
-      ,
-      "transform":
-      {
-        "pos": "-33.1069 12.0 -417.431"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little224.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little224.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little225"
-      ,
-      "transform":
-      {
-        "pos": "-42.9035 -2.3452e-05 -427.431"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little225.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little225.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little226"
-      ,
-      "transform":
-      {
-        "pos": "-41.9035 5.99998 -427.431"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little226.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little226.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little227"
-      ,
-      "transform":
-      {
-        "pos": "-40.1069 -2.30148e-05 -417.431"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little227.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little227.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little228"
-      ,
-      "transform":
-      {
-        "pos": "-39.1069 5.99998 -417.431"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little228.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little228.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little229"
-      ,
-      "transform":
-      {
-        "pos": "-39.8201 12.0 -427.431"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little229.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little229.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little230"
-      ,
-      "transform":
-      {
-        "pos": "-37.7634 12.0 -435.509"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little230.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little230.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little232"
-      ,
-      "transform":
-      {
-        "pos": "-42.9035 -2.40124e-05 -440.252"
-        ,
-        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little232.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little232.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Box042"
-      ,
-      "transform":
-      {
-        "pos": "41.7807 -1.38665e-05 -317.229"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box042.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_Box021.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big201"
-      ,
-      "transform":
-      {
-        "pos": "34.5214 -0.455081 -314.342"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big201.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big201.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big202"
-      ,
-      "transform":
-      {
-        "pos": "6.44302 -1.533e-05 -312.529"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big202.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big202.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big203"
-      ,
-      "transform":
-      {
-        "pos": "-14.9251 -1.85289e-05 -314.804"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big203.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big203.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big204"
-      ,
-      "transform":
-      {
-        "pos": "-15.8294 5.99998 -316.804"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big204.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big204.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big205"
-      ,
-      "transform":
-      {
-        "pos": "-9.97587 6.22789 -306.357"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big205.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big205.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big206"
-      ,
-      "transform":
-      {
-        "pos": "26.8023 -2.06106e-05 -318.794"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big206.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big206.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big207"
-      ,
-      "transform":
-      {
-        "pos": "16.8023 -2.06106e-05 -318.794"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big207.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big207.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big208"
-      ,
-      "transform":
-      {
-        "pos": "6.80224 -2.06106e-05 -318.794"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big208.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big208.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big209"
-      ,
-      "transform":
-      {
-        "pos": "-3.19779 -2.06106e-05 -318.794"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big209.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big209.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big210"
-      ,
-      "transform":
-      {
-        "pos": "26.8023 5.99999 -316.31"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big210.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big210.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big211"
-      ,
-      "transform":
-      {
-        "pos": "16.8023 5.99999 -316.31"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big211.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big211.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big212"
-      ,
-      "transform":
-      {
-        "pos": "6.80224 5.99998 -318.794"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big212.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big212.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big213"
-      ,
-      "transform":
-      {
-        "pos": "-3.19779 5.99998 -318.794"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big213.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big213.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big214"
-      ,
-      "transform":
-      {
-        "pos": "-44.623 -2.03562e-05 -312.974"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big214.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big214.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_big215"
-      ,
-      "transform":
-      {
-        "pos": "-44.623 5.99999 -315.458"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_big215.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_big215.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little233"
-      ,
-      "transform":
-      {
-        "pos": "16.443 12.0 -301.686"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little233.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little233.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little234"
-      ,
-      "transform":
-      {
-        "pos": "26.443 -1.83837e-05 -311.482"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little234.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little234.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little235"
-      ,
-      "transform":
-      {
-        "pos": "26.443 5.99999 -310.482"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little235.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little235.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little236"
-      ,
-      "transform":
-      {
-        "pos": "6.44302 12.0 -304.529"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little236.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little236.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little237"
-      ,
-      "transform":
-      {
-        "pos": "6.44302 18.0 -303.529"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little237.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little237.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little238"
-      ,
-      "transform":
-      {
-        "pos": "16.443 -1.82615e-05 -308.686"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little238.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little238.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little239"
-      ,
-      "transform":
-      {
-        "pos": "16.443 5.99999 -307.686"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little239.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little239.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little240"
-      ,
-      "transform":
-      {
-        "pos": "26.443 12.0 -308.399"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little240.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little240.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little241"
-      ,
-      "transform":
-      {
-        "pos": "34.5214 12.0 -306.342"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little241.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little241.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little242"
-      ,
-      "transform":
-      {
-        "pos": "34.4825 18.0 -294.482"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little242.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little242.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little243"
-      ,
-      "transform":
-      {
-        "pos": "-24.9251 -1.83403e-05 -310.49"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little243.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little243.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little244"
-      ,
-      "transform":
-      {
-        "pos": "-25.9251 5.99999 -310.49"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little244.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little244.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little245"
-      ,
-      "transform":
-      {
-        "pos": "-32.9251 12.0 -310.49"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little245.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little245.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little246"
-      ,
-      "transform":
-      {
-        "pos": "-33.9251 18.0 -310.49"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little246.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little246.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little247"
-      ,
-      "transform":
-      {
-        "pos": "-9.97587 18.2279 -298.45"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little247.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little247.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little248"
-      ,
-      "transform":
-      {
-        "pos": "0.0241318 6.22789 -302.607"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little248.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little248.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little249"
-      ,
-      "transform":
-      {
-        "pos": "39.2642 -1.83837e-05 -311.482"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little249.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little249.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little250"
-      ,
-      "transform":
-      {
-        "pos": "-17.1993 18.2279 -305.539"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little250.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little250.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little251"
-      ,
-      "transform":
-      {
-        "pos": "-44.2637 -1.88907e-05 -323.082"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little251.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little251.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "house_little252"
-      ,
-      "transform":
-      {
-        "pos": "-44.2637 5.99998 -324.082"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/house_little252.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_limite.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_house_little252.collider"
-      }
       ,
       "abs_aabb": true
       ,
@@ -12993,19 +8897,19 @@
   {
     "entity":
     {
-      "name": "andamio149"
+      "name": "house_big193"
       ,
       "transform":
       {
-        "pos": "27.9064 1.99999 -342.228"
+        "pos": "42.7594 -2.40304e-05 -397.028"
         ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
+        "rotation": "0.0 -1.0 0.0 0.0"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/andamio149.mesh"
+          "mesh": "data/meshes/house_big193.mesh"
           ,
           "materials":
           [
@@ -13013,6 +8917,13 @@
           ]
         }
       ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_house_big193.collider"
+      }
       ,
       "abs_aabb": true
       ,
@@ -13023,19 +8934,19 @@
   {
     "entity":
     {
-      "name": "andamio150"
+      "name": "house_big192"
       ,
       "transform":
       {
-        "pos": "27.9064 1.99999 -340.228"
+        "pos": "42.7594 -2.44675e-05 -407.028"
         ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
+        "rotation": "0.0 -1.0 0.0 0.0"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/andamio150.mesh"
+          "mesh": "data/meshes/house_big192.mesh"
           ,
           "materials":
           [
@@ -13043,6 +8954,13 @@
           ]
         }
       ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_house_big192.collider"
+      }
       ,
       "abs_aabb": true
       ,
@@ -13053,11 +8971,11 @@
   {
     "entity":
     {
-      "name": "andamio151"
+      "name": "Box034"
       ,
       "transform":
       {
-        "pos": "27.9064 3.99999 -342.228"
+        "pos": "4.60643 11.0 -334.744"
         ,
         "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
@@ -13065,7 +8983,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/andamio151.mesh"
+          "mesh": "data/meshes/Box034.mesh"
           ,
           "materials":
           [
@@ -13073,6 +8991,13 @@
           ]
         }
       ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box034.collider"
+      }
       ,
       "abs_aabb": true
       ,
@@ -13083,311 +9008,11 @@
   {
     "entity":
     {
-      "name": "andamio152"
+      "name": "Box033"
       ,
       "transform":
       {
-        "pos": "27.9064 3.99999 -340.228"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio152.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio153"
-      ,
-      "transform":
-      {
-        "pos": "27.9064 5.99999 -342.228"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio153.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio154"
-      ,
-      "transform":
-      {
-        "pos": "27.9064 5.99999 -340.228"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio154.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio155"
-      ,
-      "transform":
-      {
-        "pos": "27.9064 7.99999 -342.228"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio155.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio156"
-      ,
-      "transform":
-      {
-        "pos": "27.9064 7.99999 -340.228"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio156.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio157"
-      ,
-      "transform":
-      {
-        "pos": "27.9064 9.99999 -342.228"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio157.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio158"
-      ,
-      "transform":
-      {
-        "pos": "27.9064 9.99999 -340.228"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio158.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio159"
-      ,
-      "transform":
-      {
-        "pos": "27.9064 -1.50467e-05 -344.228"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio159.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio160"
-      ,
-      "transform":
-      {
-        "pos": "27.9064 1.99999 -344.228"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio160.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio161"
-      ,
-      "transform":
-      {
-        "pos": "27.9064 3.99999 -344.228"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio161.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio162"
-      ,
-      "transform":
-      {
-        "pos": "22.2064 -1.47975e-05 -338.528"
+        "pos": "-28.2927 -1.58123e-05 -361.744"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -13395,7 +9020,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/andamio162.mesh"
+          "mesh": "data/meshes/Box033.mesh"
           ,
           "materials":
           [
@@ -13403,6 +9028,13 @@
           ]
         }
       ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box033.collider"
+      }
       ,
       "abs_aabb": true
       ,
@@ -13413,11 +9045,11 @@
   {
     "entity":
     {
-      "name": "andamio163"
+      "name": "puerta_basilica001"
       ,
       "transform":
       {
-        "pos": "22.2064 1.99999 -338.528"
+        "pos": "4.60641 -1.45001e-05 -331.723"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -13425,7 +9057,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/andamio163.mesh"
+          "mesh": "data/meshes/puerta_basilica001.mesh"
           ,
           "materials":
           [
@@ -13434,36 +9066,13 @@
         }
       ]
       ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio164"
-      ,
-      "transform":
+      "collider":
       {
-        "pos": "27.9064 -1.51341e-05 -346.228"
+        "shape": "mesh"
         ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
+        "name": "data/colliders/collider_puerta_basilica001.collider"
       }
       ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio164.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -13473,221 +9082,11 @@
   {
     "entity":
     {
-      "name": "andamio165"
+      "name": "alminar006"
       ,
       "transform":
       {
-        "pos": "27.9064 1.99999 -346.228"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio165.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio166"
-      ,
-      "transform":
-      {
-        "pos": "27.9064 3.99999 -346.228"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio166.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio167"
-      ,
-      "transform":
-      {
-        "pos": "27.9064 -1.52215e-05 -348.228"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio167.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio168"
-      ,
-      "transform":
-      {
-        "pos": "27.9064 1.99999 -348.228"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio168.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio169"
-      ,
-      "transform":
-      {
-        "pos": "27.9064 3.99999 -348.228"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio169.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio170"
-      ,
-      "transform":
-      {
-        "pos": "27.9064 -1.53089e-05 -350.228"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio170.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio171"
-      ,
-      "transform":
-      {
-        "pos": "27.9064 1.99999 -350.228"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio171.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio172"
-      ,
-      "transform":
-      {
-        "pos": "29.643 12.0 -340.49"
+        "pos": "-23.3936 18.0 -335.617"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -13695,7 +9094,81 @@
       "render":
       [
         {
-          "mesh": "data/meshes/andamio172.mesh"
+          "mesh": "data/meshes/alminar006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_alminar006.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "alminar005"
+      ,
+      "transform":
+      {
+        "pos": "32.6064 18.0 -335.617"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/alminar005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_alminar005.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "alminar004"
+      ,
+      "transform":
+      {
+        "pos": "-23.3936 18.0 -463.892"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/alminar004.mesh"
           ,
           "materials":
           [
@@ -13713,11 +9186,11 @@
   {
     "entity":
     {
-      "name": "andamio173"
+      "name": "alminar2"
       ,
       "transform":
       {
-        "pos": "31.643 12.0 -340.49"
+        "pos": "-23.3936 18.0 -387.744"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -13725,7 +9198,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/andamio173.mesh"
+          "mesh": "data/meshes/alminar2.mesh"
           ,
           "materials":
           [
@@ -13734,335 +9207,12 @@
         }
       ]
       ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio174"
-      ,
-      "transform":
+      "collider":
       {
-        "pos": "33.643 12.0 -340.49"
+        "shape": "mesh"
         ,
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "name": "data/colliders/collider_alminar2.collider"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio174.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio175"
-      ,
-      "transform":
-      {
-        "pos": "29.643 12.0 -341.89"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio175.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio176"
-      ,
-      "transform":
-      {
-        "pos": "31.643 12.0 -341.89"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio176.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio177"
-      ,
-      "transform":
-      {
-        "pos": "33.643 12.0 -341.89"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio177.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio178"
-      ,
-      "transform":
-      {
-        "pos": "31.643 14.0 -340.49"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio178.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "andamio179"
-      ,
-      "transform":
-      {
-        "pos": "33.643 14.0 -340.49"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/andamio179.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "cemento"
-      ,
-      "transform":
-      {
-        "pos": "7.26088 -1.50774e-05 -344.931"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cemento.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "cemento001"
-      ,
-      "transform":
-      {
-        "pos": "9.26088 -1.50774e-05 -344.931"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cemento001.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "cemento002"
-      ,
-      "transform":
-      {
-        "pos": "11.2609 -1.50774e-05 -344.931"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cemento002.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "cemento003"
-      ,
-      "transform":
-      {
-        "pos": "13.2609 -1.50774e-05 -344.931"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cemento003.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Box048"
-      ,
-      "transform":
-      {
-        "pos": "17.2936 25.5538 -364.021"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box048.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
       ,
       "abs_aabb": true
       ,
@@ -14086,6 +9236,288 @@
       [
         {
           "mesh": "data/meshes/Box031.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box030"
+      ,
+      "transform":
+      {
+        "pos": "-23.3936 -2.02709e-05 -463.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box030.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box029"
+      ,
+      "transform":
+      {
+        "pos": "32.6064 -1.46758e-05 -335.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box029.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box029.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box028"
+      ,
+      "transform":
+      {
+        "pos": "-23.3936 -1.46758e-05 -335.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box028.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box028.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box026"
+      ,
+      "transform":
+      {
+        "pos": "-23.3936 -1.69488e-05 -387.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box026.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box026.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box024"
+      ,
+      "transform":
+      {
+        "pos": "4.60643 -1.43698e-05 -328.744"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box024.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box024.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box022"
+      ,
+      "transform":
+      {
+        "pos": "37.6064 -1.58123e-05 -361.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box022.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box022.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "suelo_patio_basilica"
+      ,
+      "transform":
+      {
+        "pos": "4.60642 -1.58123e-05 -361.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/suelo_patio_basilica.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_suelo_patio_basilica.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box048"
+      ,
+      "transform":
+      {
+        "pos": "17.2936 25.5538 -364.021"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box048.mesh"
           ,
           "materials":
           [
