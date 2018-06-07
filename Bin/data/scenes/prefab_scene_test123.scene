@@ -1,0 +1,45 @@
+[
+  {
+    "entity":
+    {
+      "name": "prefab_scene_test123"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "prefab_box001"
+      ,
+      "prefab": "data/prefabs/prefab_teapot.prefab"
+      ,
+      "transform":
+      {
+        "pos": "47.1887 0.0 0.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "prefab_box"
+      ,
+      "prefab": "data/prefabs/prefab_teapot.prefab"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+]
