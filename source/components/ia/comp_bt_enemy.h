@@ -40,10 +40,12 @@ protected:
   int navmeshPathPoint = 0;
   bool recalculateNavmesh = false;
   float maxDistanceToNavmeshPoint = 3.f;
+	bool canArriveToDestination = false;
 
 	/* Timers */
 	float timerWaitingInWpt = 0.f;
 	float timerWaitingInNoise = 0.f;
+	float timerWaitingInUnreachablePoint = 0.f;
 
 	/* Aux functions */
 	const Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }
@@ -55,10 +57,16 @@ protected:
   void generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc = false);
   bool moveToPoint(float speed, float rotationSpeed, VEC3 destPoint, float dt);
 
+
+	/* TODO: Delete */
+	float maxDiff = 0;
+	float maxYDiff = 0;
+
 public:
 	void debugInMenu();
 
 	bool isStunned() { return current && current->getName().compare("stunned") == 0; }
 
-  virtual const std::string getStateForCheckpoint() = 0;
+	virtual const std::string getStateForCheckpoint() = 0;
+	virtual void playAnimationByName(const std::string& animationName) = 0;
 };

@@ -661,7 +661,6 @@ BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
 		return BTNode::ERes::LEAVE;
 	}
 	else {
-
     return moveToPoint(speed, rotationSpeed, ppos->getPosition(), dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 	}
 }
@@ -1090,4 +1089,10 @@ CHandle TCompAIPatrol::getPatrolInPos(VEC3 lastPos)
 	}
 
 	return h_stunnedPatrol;
+}
+
+void TCompAIPatrol::playAnimationByName(const std::string & animationName)
+{
+	TCompPatrolAnimator * myAnimator = get<TCompPatrolAnimator>();
+	myAnimator->playAnimationConverted(myAnimator->getAnimationByName(animationName));
 }

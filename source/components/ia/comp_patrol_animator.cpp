@@ -54,7 +54,7 @@ void TCompPatrolAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::SHOOT_INHIBITOR,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"idle",
+		"walk",
 		"",
 		1.0f,
 		1.0f

@@ -98,4 +98,6 @@ public:
 	const std::string getStateForCheckpoint();
 
 	static void registerMsgs();
+
+	void playAnimationByName(const std::string & animationName) override;
 };

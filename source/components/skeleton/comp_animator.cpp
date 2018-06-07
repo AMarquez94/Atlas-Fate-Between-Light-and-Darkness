@@ -57,9 +57,7 @@ void TCompAnimator::registerMsgs() {
 
 bool TCompAnimator::playAnimationConverted(EAnimation animation, float speed) {
 
-	if (animationsMap.find(animation) == animationsMap.end()) {
-		return false;
-	}
+	assert(animationsMap.find(animation) != animationsMap.end());
 	CEntity* e = ownHandle;
 	TCompSkeleton * compSkeleton = e->get<TCompSkeleton>();
 	AnimationSet animSet = animationsMap[animation];

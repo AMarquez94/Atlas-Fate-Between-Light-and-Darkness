@@ -483,7 +483,10 @@ void TCompIAController::addActionToHistoric(const std::string & action)
     HistoricalAction historicalAction;
     historicalAction.action = action.c_str();
     historicalAction.number_of_times = 1;
-    historic.push_back(historicalAction);
+		historic.push_back(historicalAction);
+		if (historic.size() >= 500) {
+			historic.erase(historic.begin());
+		}
   }
   else {
     historic[historic.size() - 1].number_of_times += 1;

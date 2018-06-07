@@ -947,5 +947,10 @@ TCompAIMimetic::EType TCompAIMimetic::parseStringMimeticType(const std::string &
 		fatal("Mimetic type not recognized");
 		return EType::NUM_TYPES;
 	}
-	
+}
+
+void TCompAIMimetic::playAnimationByName(const std::string & animationName)
+{
+	TCompMimeticAnimator * myAnimator = get<TCompMimeticAnimator>();
+	myAnimator->playAnimationConverted(myAnimator->getAnimationByName(animationName));
 }

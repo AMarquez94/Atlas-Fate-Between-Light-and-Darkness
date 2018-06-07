@@ -41,6 +41,9 @@ void TCompAIEnemy::debugInMenu() {
 	TCompTransform *tpos = me->get<TCompTransform>();
 	ImGui::Text("My Pos: (%f, %f, %f)", tpos->getPosition().x, tpos->getPosition().y, tpos->getPosition().z);
 	ImGui::Text(" Noise: (%f, %f, %f)", noiseSource.x, noiseSource.y, noiseSource.z);
+
+	ImGui::Text("Time waited at unreachable point: %f", timerWaitingInUnreachablePoint);
+	ImGui::Text("Navmesh size: %d - My point %d", navmeshPath.size(), navmeshPathPoint);
 }
 
 void TCompAIEnemy::getClosestWpt()
@@ -149,6 +152,18 @@ void TCompAIEnemy::generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc)
   navmeshPath = EngineNavmeshes.findPath(initPos, destPos);
   navmeshPathPoint = 0;
   recalculateNavmesh = recalc;
+
+	/* Calculate navmesh generation */
+	if (navmeshPath.size() > 0) {
+		VEC3 lastNavmeshPoint = navmeshPath[navmeshPath.size() - 1];
+		float diff = VEC3::Distance(destPos, lastNavmeshPoint);
+		float diffY = fabsf(destPos.y - lastNavmeshPoint.y);
+		canArriveToDestination = diff < 2.f && diffY < 0.1f;
+	}
+	else {
+		canArriveToDestination = false;
+	}
+	timerWaitingInUnreachablePoint = 0;
 }
 
 bool TCompAIEnemy::moveToPoint(float speed, float rotationSpeed, VEC3 objective, float dt)
@@ -175,7 +190,23 @@ bool TCompAIEnemy::moveToPoint(float speed, float rotationSpeed, VEC3 objective,
 
   if (VEC3::Distance(objective, vp) <= speed * dt + 0.1f/*fabsf(left.Dot(finalDir)) * maxDistanceToNavmeshPoint + 0.1f*/) {
     return true;
-  }
+	}
+	else if (navmeshPath.size() == navmeshPathPoint
+		&& !canArriveToDestination) {
+
+
+		/* We are in the navmesh last point and cant reach it */
+		playAnimationByName("idle");
+		timerWaitingInUnreachablePoint += dt;
+		if (timerWaitingInUnreachablePoint > 3.f) {
+			TCompEmissionController * e_controller = me->get<TCompEmissionController>();
+			e_controller->blend(enemyColor.colorNormal, 0.1f);
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
   else {
     float actualSpeed = speed;
     VEC3 front = mypos->getFront();
