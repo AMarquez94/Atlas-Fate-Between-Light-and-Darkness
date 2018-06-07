@@ -28,10 +28,8 @@ T Clamp(const T& n, const T& lower, const T& upper) {
 	return std::max(lower, std::min(n, upper));
 }
 
-float urand(float loVal, float hiVal);
-
 void ToUpperCase(std::string&);
-
+float urand(float loVal, float hiVal);
 int Strnicmp(const char* str1, const char* str2, int n);
 
 #endif
