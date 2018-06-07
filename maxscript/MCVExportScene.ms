@@ -120,6 +120,7 @@ struct TSceneExporter (
 	cols_path = base_path + "colliders/",
 	tex_path = base_path + "textures/",
 	local_path = "",
+	use_instancing = false,
 	is_prefab = false,
 		is_scene = true,
 	nitems = 0,
@@ -505,20 +506,26 @@ struct TSceneExporter (
 		
 		if is_prefab == true then (
 			exportTransformPrefab obj
+		)
+		else (
+			exportTransform obj
+		)
+		
+	
+		if use_instancing == true then (
 			fs.writeComma()
 			fs.writeKey "instance" 
 			fs.beginObj()
 			exportRenderInstance obj
-			fs.endObj()
-		)
-		else (
-			exportTransform obj
+			fs.endObj()			
+		) else (
 			fs.writeComma()
 			fs.writeKey "render" 
 			fs.beginArray()
 			exportRenderMesh obj
 			fs.endArray()
 		)
+	
 		
 		for child in obj.children do (
 			if isCollider child then (

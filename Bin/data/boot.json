@@ -29,6 +29,7 @@
 			"data/scenes/ZoneA/camera.scene",
 			"data/scenes/ZoneA/sp_dynamic_lights.scene",
 			"data/scenes/ZoneA/whitebox_zone_test.scene",
+			"data/scenes/prefab_scene_test.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene"
 			
 		]
