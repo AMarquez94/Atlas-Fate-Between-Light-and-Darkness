@@ -91,6 +91,16 @@ void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {
   }
 }
 
+Particles::CSystem* CModuleParticles::getSystem(Particles::TParticleHandle ph) {
+
+    auto it = std::find_if(_activeSystems.begin(), _activeSystems.end(), [&ph](const Particles::CSystem* ps)
+    {
+        return ps->getHandle() == ph;
+    });
+
+    return nullptr;
+}
+
 const VEC3& CModuleParticles::getWindVelocity() const
 {
   return _windVelocity;

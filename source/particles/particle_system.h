@@ -80,6 +80,7 @@ namespace Particles
         bool update(float delta);
         void render();
         void launch();
+        void debugInMenu();
 
         void fadeOut(float duration);
         void setActive(bool active);

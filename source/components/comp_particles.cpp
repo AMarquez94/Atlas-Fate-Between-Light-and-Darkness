@@ -17,6 +17,7 @@ void TCompParticles::debugInMenu() {
     }
 
     ImGui::LabelText("Particles handle", "%d", _particles);
+    _system->debugInMenu();
 }
 
 void TCompParticles::load(const json& j, TEntityParseContext& ctx) {
@@ -31,6 +32,7 @@ void TCompParticles::onCreated(const TMsgEntityCreated&) {
 
     if (_core && !_particles) {
         _particles = Engine.getParticles().launchSystem(_core, CHandle(this).getOwner());
+        _system = Engine.getParticles().getSystem(_particles);
     }
 }
 

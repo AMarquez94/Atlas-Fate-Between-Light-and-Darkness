@@ -21,6 +21,7 @@ public:
   Particles::TParticleHandle launchSystem(const std::string& name, CHandle entity = CHandle());
   Particles::TParticleHandle launchSystem(const Particles::TCoreSystem* cps, CHandle entity = CHandle());
   void kill(Particles::TParticleHandle ph, float fade_out = 0.f);
+  Particles::CSystem* getSystem(Particles::TParticleHandle ph);
 
   const VEC3& getWindVelocity() const;
 

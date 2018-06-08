@@ -62,6 +62,24 @@ namespace Particles
         emit();
     }
 
+    void CSystem::debugInMenu() {
+
+        if (ImGui::CollapsingHeader("Entity Properties")) {
+            ImGui::Separator();
+            ImGui::Separator();
+        }
+
+        if (ImGui::CollapsingHeader("Emission")) {
+            ImGui::Separator();
+            ImGui::Separator();
+        }
+
+        if (ImGui::CollapsingHeader("Shape")) {
+            ImGui::Separator();
+            ImGui::Separator();
+        }
+    }
+
     bool CSystem::update(float delta)
     {
         if (!_enabled) return true;
