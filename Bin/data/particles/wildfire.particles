@@ -1,25 +1,4 @@
-{
-  "life" : {
-      "duration" : 0.25,
-      "duration_variation" : 0.25,
-      "max_particles" : 50,
-      "time_factor" : 1.0
-  },
-  "emission" : {
-      "type" : "sphere",
-      "size" : 0.1,
-      "interval" : 0.05,
-      "count" : 2,
-      "cyclic" : true
-  },
-  "movement" : {
-      "velocity" : 0.0,
-      "acceleration" : 0.0,
-      "spin" : 180.0,
-      "wind" : 0.0,
-      "gravity" : -0.6
-  },
-  "render" : {
+{"emission":{"count":2,"cyclic":true,"interval":0.0500000007450581,"size":0.100000001490116,"type":4},"life":{"duration":2.41000008583069,"duration_variation":0.25,"max_particles":50,"time_factor":1.0},"movement":{"acceleration":0.0,"gravity":-0.600000023841858,"spin":3.14159274101257,"velocity":0.0,"wind":0.0},"render":{"frame_speed":10.0,"initial_frame":0,"num_frames":16,"texture":"data/textures/particles/shadow_merge.dds 0.250000"}} {
       "texture" : "data/textures/particles/shadow_merge.dds",
       "frame_size" : "0.25 0.25",
       "initial_frame" : 0,

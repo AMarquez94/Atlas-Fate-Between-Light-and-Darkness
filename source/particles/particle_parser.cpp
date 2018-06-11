@@ -96,36 +96,52 @@ namespace Particles
         // Write life
         {
             jsonfile["life"]["duration"] = system->life.duration;
-            jsonfile["life"]["duration"] = system->life.duration;
-            jsonfile["life"]["duration"] = system->life.duration;
-            jsonfile["life"]["duration"] = system->life.duration;
+            jsonfile["life"]["duration_variation"] = system->life.durationVariation;
+            jsonfile["life"]["max_particles"] = system->life.maxParticles;
+            jsonfile["life"]["time_factor"] = system->life.timeFactor;
         }
 
         // Write emission
         {
-
+            jsonfile["emission"]["type"] = system->emission.type;
+            jsonfile["emission"]["size"] = system->emission.size;
+            jsonfile["emission"]["interval"] = system->emission.interval;
+            jsonfile["emission"]["count"] = system->emission.count;
+            jsonfile["emission"]["cyclic"] = system->emission.cyclic;
         }
 
         // Write movement
         {
-
+            jsonfile["movement"]["velocity"] = system->movement.velocity;
+            jsonfile["movement"]["acceleration"] = system->movement.acceleration;
+            jsonfile["movement"]["spin"] = system->movement.spin;
+            jsonfile["movement"]["wind"] = system->movement.wind;
+            jsonfile["movement"]["gravity"] = system->movement.gravity;
         }
 
         // Write render
         {
-
+            jsonfile["render"]["texture"] = system->render.texture->getName();
+            jsonfile["render"]["frame_size"] = std::to_string(system->render.frameSize.x) + " " + std::to_string(system->render.frameSize.y);
+            jsonfile["render"]["initial_frame"] = system->render.initialFrame;
+            jsonfile["render"]["num_frames"] = system->render.numFrames;
+            jsonfile["render"]["frame_speed"] = system->render.frameSpeed;
         }
 
-        // Write size
-        {
+        //// Write size
+        //{
+        //    jsonfile["size"]["scale"] = system->size.scale;
+        //    jsonfile["size"]["scale_variation"] = system->size.scale_variation;
+        //    jsonfile["size"]["sizes"] = system->size.sizes;
+        //}
 
-        }
+        //// Write color
+        //{
+        //    jsonfile["color"]["velocity"] = system->color.opacity;
+        //    jsonfile["color"]["acceleration"] = system->color.colors;
+        //}
 
-        // Write color
-        {
-
-        }
-
+        std::string finalname = system->getName() + ".tmp";
         std::fstream file(system->getName());
         file << jsonfile;
     }

@@ -129,6 +129,8 @@ namespace Particles
         if (ImGui::IsItemClicked(0))
         {
             // Save the resource to a new file.
+            Particles::CParser parser;
+            parser.writeFile(_core);
         }
 
         ImGui::Button("Reset to default");
