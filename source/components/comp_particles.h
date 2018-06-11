@@ -5,10 +5,6 @@
 
 struct TCompParticles : public TCompBase
 {
-private:
-    // Save this temp
-    Particles::CSystem* _system;
-
 public:
     Particles::TParticlesHandle   _particles = 0;
     const Particles::TCoreSystem* _core = nullptr;

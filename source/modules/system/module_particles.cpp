@@ -98,7 +98,7 @@ Particles::CSystem* CModuleParticles::getSystem(Particles::TParticleHandle ph) {
         return ps->getHandle() == ph;
     });
 
-    return nullptr;
+    return *it;
 }
 
 const VEC3& CModuleParticles::getWindVelocity() const

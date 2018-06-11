@@ -12,12 +12,9 @@ void TCompParticles::registerMsgs() {
 
 void TCompParticles::debugInMenu() {
 
-    if (_core) {
-        ImGui::Text("Core: %s", _core->getName().c_str());
-    }
-
-    ImGui::LabelText("Particles handle", "%d", _particles);
-    _system->debugInMenu();
+    ImGui::Text("Particles handle: %d", _particles);
+    if (_core) ImGui::Text("Core: %s", _core->getName().c_str());   
+    Engine.getParticles().getSystem(_particles)->debugInMenu();
 }
 
 void TCompParticles::load(const json& j, TEntityParseContext& ctx) {
@@ -32,7 +29,6 @@ void TCompParticles::onCreated(const TMsgEntityCreated&) {
 
     if (_core && !_particles) {
         _particles = Engine.getParticles().launchSystem(_core, CHandle(this).getOwner());
-        _system = Engine.getParticles().getSystem(_particles);
     }
 }
 

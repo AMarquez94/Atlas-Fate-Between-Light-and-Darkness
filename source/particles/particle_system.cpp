@@ -63,8 +63,26 @@ namespace Particles
     }
 
     void CSystem::debugInMenu() {
+    
+        ImGui::Checkbox("Enabled", &_enabled);
+        TCoreSystem * system = const_cast<TCoreSystem*>(_core);
+
+        // Replace this in the future.
+        TParticle tmp_particle;
+        tmp_particle.lifetime = _core->life.duration;
+        tmp_particle.color = _core->color.colors.get(0.f);
+        tmp_particle.size = _core->size.sizes.get(0.f);
+        tmp_particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
+        tmp_particle.max_lifetime = _core->life.duration + random(-_core->life.durationVariation, _core->life.durationVariation);
 
         if (ImGui::CollapsingHeader("Entity Properties")) {
+            ImGui::ColorEdit3("Color", &tmp_particle.color.x);
+            ImGui::DragFloat("Duration", &tmp_particle.lifetime, 0.01f, 0.f, 50.f);
+            ImGui::DragFloat("Maximum Duration", &tmp_particle.max_lifetime, 0.01f, 0.f, 500.f);
+            ImGui::DragFloat("Scale", &tmp_particle.scale, 0.01f, 0.f, 500.f);
+            ImGui::DragFloat("Size", &tmp_particle.size, 0.01f, 0.f, 500.f);
+            ImGui::DragFloat("Speed", &tmp_particle.velocity.x, 0.01f, 0.f, 500.f);
+            //ImGui::ColorPicker4("##dummypicker", &_core->color.colors.get().x);
             ImGui::Separator();
             ImGui::Separator();
         }
@@ -77,6 +95,16 @@ namespace Particles
         if (ImGui::CollapsingHeader("Shape")) {
             ImGui::Separator();
             ImGui::Separator();
+        }
+
+        for (auto p : _particles) {
+
+            p.color = tmp_particle.color;
+            p.velocity = tmp_particle.velocity;
+            p.size = tmp_particle.size;
+            p.scale = tmp_particle.scale;
+            p.lifetime = tmp_particle.lifetime;
+            p.max_lifetime = tmp_particle.max_lifetime;
         }
     }
 

@@ -1,6 +1,14 @@
 [
 	{
 		"entity": {
+			"name": "Scene Particles",
+			"transform": {
+				"pos": "0 0 0"
+			}
+		}
+	},
+	{
+		"entity": {
 			"name": "particles_wildfire",
 			"transform": {
 				"pos": "5 0 0"
