@@ -64,48 +64,88 @@ namespace Particles
 
     void CSystem::debugInMenu() {
     
-        ImGui::Checkbox("Enabled", &_enabled);
         TCoreSystem * system = const_cast<TCoreSystem*>(_core);
 
-        // Replace this in the future.
-        TParticle tmp_particle;
-        tmp_particle.lifetime = _core->life.duration;
-        tmp_particle.color = _core->color.colors.get(0.f);
-        tmp_particle.size = _core->size.sizes.get(0.f);
-        tmp_particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
-        tmp_particle.max_lifetime = _core->life.duration + random(-_core->life.durationVariation, _core->life.durationVariation);
+        ImGui::Checkbox("Enabled", &_enabled);
 
-        if (ImGui::CollapsingHeader("Entity Properties")) {
-            ImGui::ColorEdit3("Color", &tmp_particle.color.x);
-            ImGui::DragFloat("Duration", &tmp_particle.lifetime, 0.01f, 0.f, 50.f);
-            ImGui::DragFloat("Maximum Duration", &tmp_particle.max_lifetime, 0.01f, 0.f, 500.f);
-            ImGui::DragFloat("Scale", &tmp_particle.scale, 0.01f, 0.f, 500.f);
-            ImGui::DragFloat("Size", &tmp_particle.size, 0.01f, 0.f, 500.f);
-            ImGui::DragFloat("Speed", &tmp_particle.velocity.x, 0.01f, 0.f, 500.f);
+        if (ImGui::CollapsingHeader("Life")) {
+
+            ImGui::DragFloat("Duration", &system->life.duration, 0.01f, 0.f, 50.f);
+            ImGui::DragFloat("Duration Variation", &system->life.durationVariation, 0.01f, 0.f, 100.f);
+            ImGui::DragFloat("Time Factor", &system->life.timeFactor, 0.01f, 0, 100.f);
+            ImGui::DragInt("Max. Particles", &system->life.maxParticles, 1, 1, 100);
             //ImGui::ColorPicker4("##dummypicker", &_core->color.colors.get().x);
-            ImGui::Separator();
             ImGui::Separator();
         }
 
         if (ImGui::CollapsingHeader("Emission")) {
-            ImGui::Separator();
+
+            ImGui::Checkbox("Looping", &system->emission.cyclic);
+            ImGui::DragInt("Count", &system->emission.count, 1, 1, 500);
+            ImGui::DragFloat("Size", &system->emission.size, 0.1f, 0.f, 100.f);
+            ImGui::DragFloat("Angle", &system->emission.angle, 0.1f, 0.1f, 500.f);
+            ImGui::DragFloat("Interval", &system->emission.interval, 0.01f, 0.f, 100.f);
             ImGui::Separator();
         }
 
-        if (ImGui::CollapsingHeader("Shape")) {
-            ImGui::Separator();
+        if (ImGui::CollapsingHeader("Movement")) {
+
+            ImGui::DragFloat("Velocity", &system->movement.velocity, 0.1f, 0.f, 100.f);
+            ImGui::DragFloat("Acceleration", &system->movement.acceleration, 0.1f, 0.1f, 500.f);
+            ImGui::DragFloat("Spin", &system->movement.spin, 0.01f, 0.f, 100.f);
+            ImGui::DragFloat("Gravity", &system->movement.gravity, 0.01f, -100.f, 100.f);
+            ImGui::DragFloat("Wind", &system->movement.wind, 0.01f, 0.f, 100.f);
+            ImGui::Checkbox("Limit by ground", &system->movement.ground);
             ImGui::Separator();
         }
 
-        for (auto p : _particles) {
+        if (ImGui::CollapsingHeader("Render")) {
 
-            p.color = tmp_particle.color;
-            p.velocity = tmp_particle.velocity;
-            p.size = tmp_particle.size;
-            p.scale = tmp_particle.scale;
-            p.lifetime = tmp_particle.lifetime;
-            p.max_lifetime = tmp_particle.max_lifetime;
+            //((CTexture*)system->render.texture->debugInMenu();
+            ImGui::DragFloat2("Frame size", &system->render.frameSize.x, 0.025f, 0.1f, 100.f);
+            ImGui::DragInt("Frame num.", &system->render.numFrames, 1, 1, 500);
+            ImGui::DragInt("Frame init.", &system->render.initialFrame, 1, 1, 100);
+            ImGui::DragFloat("Frame speed", &system->render.frameSpeed, 0.01f, 0.f, 100.f);
+            ImGui::Separator();
         }
+
+        if (ImGui::CollapsingHeader("Size")) {
+
+            ImGui::DragFloat("Scale", &system->size.scale, 0.01f, 0.f, 100.f);
+            ImGui::DragFloat("Scale variation", &system->size.scale_variation, 0.01f, 0.f, 100.f);
+            //TTrack<float> sizes;            // track of sizes along the particle lifetime
+
+            ImGui::Separator();
+        }
+
+        if (ImGui::CollapsingHeader("Color")) {
+
+            //ImGui::ColorPicker4("Color", &system->color.colors.get(0.f).x);
+            ImGui::DragFloat("Opacity", &system->color.opacity, 0.01f, 0.f, 100.f);
+            ImGui::Separator();
+        }
+
+        ImGui::Button("Save Configuration");
+        if (ImGui::IsItemClicked(0))
+        {
+            // Save the resource to a new file.
+        }
+
+        ImGui::Button("Reset to default");
+        if (ImGui::IsItemClicked(0))
+        {
+            // Create a new brand resource and destroy the old one.
+            TCoreSystem * resource = (TCoreSystem *)_core->getClass()->create(_core->getName());
+            resource->setNameAndClass(_core->getName(), _core->getClass());
+            ((IResource*)_core)->destroy(); 
+
+            _core = resource;
+            system = resource;
+            
+            // Reset the resource to it's original values
+        }
+
+        _core = system;
     }
 
     bool CSystem::update(float delta)

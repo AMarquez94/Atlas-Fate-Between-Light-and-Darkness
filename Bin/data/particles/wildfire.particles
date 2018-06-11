@@ -1,6 +1,6 @@
 {
   "life" : {
-      "duration" : 1.0,
+      "duration" : 0.25,
       "duration_variation" : 0.25,
       "max_particles" : 50,
       "time_factor" : 1.0
@@ -15,16 +15,16 @@
   "movement" : {
       "velocity" : 0.0,
       "acceleration" : 0.0,
-      "spin" : 90.0,
+      "spin" : 180.0,
       "wind" : 0.0,
-      "gravity" : -0.2
+      "gravity" : -0.6
   },
   "render" : {
-      "texture" : "data/textures/particles/glow.dds",
-      "frame_size" : "1.0 1.0",
+      "texture" : "data/textures/particles/shadow_merge.dds",
+      "frame_size" : "0.25 0.25",
       "initial_frame" : 0,
-      "num_frames" : 1,
-      "frame_speed" : 0.0
+      "num_frames" : 16,
+      "frame_speed" : 10.0
   },
   "size" : {
     "scale" : 1.0,
@@ -38,9 +38,7 @@
   "color" : {
     "opacity" : 1.0,
     "colors" : [
-      [0.0, "1 0 0 1"],
-      [0.6, "0 1 0 1"],
-      [1.0, "0 0 1 0"]
+      [0.0, "1 0 0 1"]
     ] 
   }
 }
