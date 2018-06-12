@@ -131,6 +131,7 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 }
 
 /* Method used to generate local points, we will apply transform later on */
+// DEPRECATED.
 void TCompShadowController::GenerateSurroundingPoints(const VEC3 & point)
 {
     float radius = 0.35f;
