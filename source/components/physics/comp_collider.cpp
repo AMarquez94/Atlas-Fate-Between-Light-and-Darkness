@@ -3,6 +3,7 @@
 #include "comp_rigidbody.h"
 #include "components/comp_transform.h"
 #include "physics/physics_collider.h"
+#include "components/comp_name.h"
 
 DECL_OBJ_MANAGER("collider", TCompCollider);
 
@@ -83,6 +84,7 @@ void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
 	{
 		TCompTransform * compTransform = e->get<TCompTransform>();
 
+        TCompName * name = e->get<TCompName>();
 		// Create the shape, the actor and set the user data
 		physx::PxShape * shape = config->createShape();
 		config->createStatic(shape, compTransform);

@@ -184,8 +184,6 @@
 		"ps_entry_point": "PS_point_lights",
 		"vertex_type": "PosNUvUvT",
 		"category": "pbr_proc",
-		"z": "inverse_test_no_write",
-		"rs_config": "reverse_culling",
 		"blend": "additive"
 	},
 	"pbr_spot_lights": {
@@ -195,8 +193,6 @@
 		"ps_entry_point": "PS_spot_lights",
 		"vertex_type": "PosNUvUvT",
 		"category": "pbr_proc",
-		"z": "inverse_test_no_write",
-		"rs_config": "reverse_culling",
 		"blend": "additive"
 	},
 	"pbr_projection": {
