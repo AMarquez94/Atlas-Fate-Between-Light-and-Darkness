@@ -16,7 +16,7 @@
 #include "modules/system/module_scene_manager.h"
 #include "modules/system/module_instancing.h"
 #include "modules/system/module_particles.h"
-
+#include "modules/game/module_game_manager.h"
 
 class CModuleGameManager;
 

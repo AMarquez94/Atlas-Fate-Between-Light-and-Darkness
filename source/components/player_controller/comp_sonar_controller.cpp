@@ -21,6 +21,7 @@ void TCompSonarController::load(const json& j, TEntityParseContext& ctx) {
 
     target_tag = j.value("tags", "");
     total_time = j.value("alive_time", 0);
+    cooldown_time = j.value("cooldown_time", 0);
 
     alpha_value = 0;
     cb_outline.outline_alpha = 0; // Move this from here
@@ -57,6 +58,19 @@ void TCompSonarController::onSonarActive(const TMsgSonarActive & msg) {
             }
         }
     }*/
+}
+
+const bool TCompSonarController::canDeploySonar() {
+
+    CEntity* e = CHandle(this).getOwner();
+    TCompTempPlayerController * c_my_player = e->get<TCompTempPlayerController>();
+
+    if (!c_my_player->isDead() && !c_my_player->isMerged 
+        && c_my_player->isGrounded && !c_my_player->isInhibited 
+        && cb_outline.linear_time > cooldown_time && !Engine.getGameManager().menuVisible)
+        return true;
+
+    return false;
 }
 
 void TCompSonarController::registerMsgs() {

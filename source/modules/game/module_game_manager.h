@@ -18,13 +18,13 @@ class CModuleGameManager : public IModule
 	CCheckpoint* lastCheckpoint;
 
 	bool isPaused;
-	bool menuVisible;
 	bool victoryMenuVisible;
 	bool playerDiedMenuVisible;
 
 	bool isStarted = false;
 
 public:
+    bool menuVisible;
 
     struct ConfigPublic {
         bool drawfps = true;

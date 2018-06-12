@@ -28,8 +28,7 @@ bool CModuleGameManager::start()
     Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
     mouse->setLockMouse(true);
 
-		isStarted = true;
-
+    isStarted = true;
     lastCheckpoint = new CCheckpoint();
 		//lastCheckpoint.init();
 

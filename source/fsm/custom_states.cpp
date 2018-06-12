@@ -44,8 +44,6 @@ namespace FSM
         return noise;
     }
 
-
-
     bool IdleState::load(const json& jData) {
 
         _animationName = jData["animation"];
@@ -59,8 +57,6 @@ namespace FSM
 
     void IdleState::onStart(CContext& ctx) const {
 
-        //CEntity* e = ctx.getOwner();
-        //e->sendMsg(TMsgAnimation{ _animationName });
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
@@ -87,10 +83,6 @@ namespace FSM
     }
 
     void WalkState::onStart(CContext& ctx) const {
-
-        // Send a message to the player controller
-        //CEntity* e = ctx.getOwner();
-        //e->sendMsg(TMsgAnimation{ "walk" });
 
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::WALK , 1.0f });
@@ -123,10 +115,6 @@ namespace FSM
 
     void WalkSlowState::onStart(CContext& ctx) const {
 
-        // Send a message to the player controller
-        //CEntity* e = ctx.getOwner();
-        //e->sendMsg(TMsgAnimation{ "walk" });
-
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::WALK_SLOW , 1.0f });
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, _target, _noise });
@@ -149,10 +137,6 @@ namespace FSM
     }
 
     void RunState::onStart(CContext& ctx) const {
-
-        // Send a message to the player controller
-        //CEntity* e = ctx.getOwner();
-        //e->sendMsg(TMsgAnimation{ "run" });
 
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::RUN , 1.0f });
@@ -201,10 +185,6 @@ namespace FSM
     }
 
     void CrouchState::onStart(CContext& ctx) const {
-
-        // Send a message to the player controller
-        //CEntity* e = ctx.getOwner();
-        //e->sendMsg(TMsgAnimation{ "crouch" });
 
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::CROUCH_IDLE , 1.0f });
@@ -277,10 +257,6 @@ namespace FSM
     }
 
     void CrouchWalkSlowState::onStart(CContext& ctx) const {
-
-        // Send a message to the player controller
-        //CEntity* e = ctx.getOwner();
-        //e->sendMsg(TMsgAnimation{ "crouch" });
 
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::CROUCH_WALK_SLOW , 1.0f });

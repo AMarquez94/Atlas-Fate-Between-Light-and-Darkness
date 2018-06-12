@@ -332,6 +332,16 @@
     },
 	{
       "type": "VariableTransition",
+      "source": "walk",
+      "target": "sonarEnemy",
+      "variable": {
+        "name": "sonar",
+        "type": "bool",
+        "value": true
+      }
+    },
+	{
+      "type": "VariableTransition",
       "source": "crouch",
       "target": "sonarEnemy",
       "variable": {

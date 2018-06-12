@@ -17,11 +17,13 @@ public:
 
     float total_time;
     float alpha_value;
+    float cooldown_time;
 
-    void Init();
     void debugInMenu();
     void load(const json& j, TEntityParseContext& ctx);
     void update(float dt);
+
+    const bool canDeploySonar();
 
     static void registerMsgs();
 };

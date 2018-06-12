@@ -11,6 +11,8 @@
 #include "components/player_controller/comp_shadow_controller.h"
 #include "components/player_controller/comp_player_attack_cast.h"
 #include "components/lighting/comp_emission_controller.h"
+#include "components/player_controller/comp_sonar_controller.h"
+#include "components/object_controller/comp_noise_emitter.h"
 #include "physics/physics_collider.h"
 #include "render/mesh/mesh_loader.h"
 #include "components/comp_name.h"
@@ -18,7 +20,6 @@
 #include "comp_player_input.h"
 #include "components/comp_group.h"
 #include "render/render_utils.h"
-#include "components/object_controller/comp_noise_emitter.h"
 
 DECL_OBJ_MANAGER("player_tempcontroller", TCompTempPlayerController);
 
@@ -396,22 +397,14 @@ void TCompTempPlayerController::resetState(float dt) {
     c_my_transform->setRotation(quat);
 }
 
-void TCompTempPlayerController::exitMergeState(float dt)
-{
+void TCompTempPlayerController::exitMergeState(float dt) {
     TMsgSetCameraCancelled msg;
     CEntity * eCamera = getEntityByName(auxCamera);
     eCamera->sendMsg(msg);
-
-	//CEntity *e = CHandle(this).getOwner();
-	//TMsgSetFSMVariable crouch;
-	//crouch.variant.setName("crouch");
-	//crouch.variant.setBool(false);
-	//e->sendMsg(crouch);
 }
 
 /* Player dead state */
-void TCompTempPlayerController::deadState(float dt)
-{
+void TCompTempPlayerController::deadState(float dt) {
     TMsgPlayerDead newMsg;
     newMsg.h_sender = CHandle(this).getOwner();
     auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
@@ -460,12 +453,6 @@ void TCompTempPlayerController::resetRemoveInhibitor()
 {
     canRemoveInhibitor = true;
     timesRemoveInhibitorKeyPressed = initialTimesToPressInhibitorRemoveKey;
-
-    //CEntity* player = CHandle(this).getOwner();
-    //TMsgSetFSMVariable inhibitorTryToRemove;
-    //inhibitorTryToRemove.variant.setName("inhibitorTryToRemove");
-    //inhibitorTryToRemove.variant.setBool(false);
-    //player->sendMsg(inhibitorTryToRemove);
 }
 
 
@@ -493,8 +480,6 @@ void TCompTempPlayerController::invertAxis(VEC3 old_up, bool type) {
             if (temp_dir.x < 0) angle = -angle;
 
             temp_deg = rad2deg(angle);
-            //dbg("dot total value %f .. %f \n", dot_result, tdot);
-            //dbg("total temp_deg %f %f || %f %f \n", temp_deg, angle, player_input->movementValue.x, player_input->movementValue.y);
         }
     }
     else {
@@ -509,9 +494,6 @@ void TCompTempPlayerController::invertAxis(VEC3 old_up, bool type) {
             float angle = acos(dot_result);
             if (temp_dir.x < 0) angle = -angle;
             temp_deg = rad2deg(angle) - 180;
-            //if (temp_dir.y < 0) angle = -angle;
-            //dbg("total temp_deg %f %f || %f %f \n", dot_result, angle, temp_dir.x, temp_dir.y);
-            //dbg("total temp_deg %f\n", temp_deg);
         }
     }
 }
@@ -696,13 +678,9 @@ const bool TCompTempPlayerController::canAttackTest(float dt)
 
 const bool TCompTempPlayerController::canSonarPunch()
 {
-    if (!isDead() && !isMerged && isGrounded && !isInhibited) {
-        return true;
-    }
-
-    return false;
+    TCompSonarController * sonar = get < TCompSonarController>();
+    return sonar->canDeploySonar();
 }
-
 
 /* Sets the player current stamina depending on player status */
 void TCompTempPlayerController::updateStamina(float dt) {
