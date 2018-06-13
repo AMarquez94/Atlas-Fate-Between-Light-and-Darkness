@@ -9,6 +9,10 @@ class TCompTransform;
 
 class TCompCollider : public TCompBase {
 
+    std::string shapeName = "";
+    std::string groupName = "";
+    std::string maskName = "";
+
     void onCreate(const TMsgEntityCreated& msg);
     void onDestroy(const TMsgEntityDestroyed& msg);
     void onTriggerEnter(const TMsgTriggerEnter& msg);

@@ -22,39 +22,45 @@ TCompCollider::~TCompCollider(){
 void TCompCollider::debugInMenu() {
 
 	config->debugInMenu();
+  ImGui::Text("Collider shape: %s", shapeName.c_str());
+  ImGui::Text("Group %s", groupName.c_str());
+  ImGui::Text("Mask %s", maskName.c_str());
 }
 
 void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 
 	// Factory pattern inside the json loader.
-	std::string shape = j["shape"].get<std::string>();
-	if (strcmp("box", shape.c_str()) == 0)
+	shapeName = j["shape"].get<std::string>();
+	if (strcmp("box", shapeName.c_str()) == 0)
 	{
 		config = new CPhysicsBox();
 	}
-	else if (strcmp("sphere", shape.c_str()) == 0)
+	else if (strcmp("sphere", shapeName.c_str()) == 0)
 	{
 		config = new CPhysicsSphere();
 	}
-	else if (strcmp("plane", shape.c_str()) == 0)
+	else if (strcmp("plane", shapeName.c_str()) == 0)
 	{
 		config = new CPhysicsPlane();
 	}
-	else if (strcmp("capsule", shape.c_str()) == 0)
+	else if (strcmp("capsule", shapeName.c_str()) == 0)
 	{
 		config = new CPhysicsCapsule();
 	}
-	else if (strcmp("convex", shape.c_str()) == 0)
+	else if (strcmp("convex", shapeName.c_str()) == 0)
 	{
 		config = new CPhysicsConvex();
 	}
-	else if (strcmp("mesh", shape.c_str()) == 0)
+	else if (strcmp("mesh", shapeName.c_str()) == 0)
 	{
 		config = new CPhysicsTriangleMesh();
 	}
 
-	config->group = getFilterByName(j.value("group", "all"));
-	config->mask = getFilterByName(j.value("mask", "all"));
+  groupName = j.value("group", "all");
+  maskName = j.value("mask", "all");
+
+	config->group = getFilterByName(groupName);
+	config->mask = getFilterByName(maskName);
 	config->is_trigger = j.value("is_trigger", false);
 
 	if (j.count("center"))
