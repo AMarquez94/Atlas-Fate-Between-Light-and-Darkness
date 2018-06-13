@@ -82,7 +82,7 @@ namespace Particles
 
             ImGui::Checkbox("Looping", &system->emission.cyclic);
             ImGui::DragInt("Count", &system->emission.count, 1, 1, 500);
-            ImGui::DragFloat("Size", &system->emission.size, 0.1f, 0.f, 100.f);
+            ImGui::DragFloat3("Size", &system->emission.size.x, 0.1f, 0.f, 100.f);
             ImGui::DragFloat("Angle", &system->emission.angle, 0.1f, 0.1f, 500.f);
             ImGui::DragFloat("Interval", &system->emission.interval, 0.01f, 0.f, 100.f);
             ImGui::Separator();
@@ -214,6 +214,7 @@ namespace Particles
         return fadeRatio > 0.f && (!_particles.empty() || _core->emission.cyclic);
     }
 
+    // To update this with the compute shader.
     void CSystem::render()
     {
         if (!_enabled) return;
@@ -287,28 +288,28 @@ namespace Particles
 
     VEC3 CSystem::generatePosition() const
     {
-        const float& size = _core->emission.size;
+        const VEC3& size = _core->emission.size;
 
         switch (_core->emission.type)
         {
-        case TCoreSystem::TEmission::Point:
-            return VEC3::Zero;
+            case TCoreSystem::TEmission::Point:
+                return VEC3::Zero;
 
-        case TCoreSystem::TEmission::Line:
-            return VEC3(random(-size, size), 0.f, 0.f);
+            case TCoreSystem::TEmission::Line:
+                return VEC3(random(-size.x, size.x), 0.f, 0.f);
 
-        case TCoreSystem::TEmission::Square:
-            return VEC3(random(-size, size), 0.f, random(-size, size));
+            case TCoreSystem::TEmission::Square:
+                return VEC3(random(-size.x, size.x), 0.f, random(-size.z, size.z));
 
-        case TCoreSystem::TEmission::Box:
-            return VEC3(random(-size, size), random(-size, size), random(-size, size));
+            case TCoreSystem::TEmission::Box:
+                return VEC3(random(-size.x, size.x), random(-size.y, size.y), random(-size.z, size.z));
 
-        case TCoreSystem::TEmission::Sphere:
-        {
-            VEC3 dir(random(-1, 1), random(-1, 1), random(-1, 1));
-            dir.Normalize();
-            return dir * random(0, size);
-        }
+            case TCoreSystem::TEmission::Sphere:
+            {
+                VEC3 dir(random(-1, 1), random(-1, 1), random(-1, 1));
+                dir.Normalize();
+                return dir * random(0, size.x);
+            }
         }
 
         return VEC3::Zero;

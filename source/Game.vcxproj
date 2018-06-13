@@ -244,6 +244,7 @@
     <ClCompile Include="navmesh\recast\RecastMeshDetail.cpp" />
     <ClCompile Include="navmesh\recast\RecastRasterization.cpp" />
     <ClCompile Include="navmesh\recast\RecastRegion.cpp" />
+    <ClCompile Include="particles\particle_editor.cpp" />
     <ClCompile Include="particles\particle_parser.cpp" />
     <ClCompile Include="particles\particle_system.cpp" />
     <ClCompile Include="physics\physics_collider.cpp" />
@@ -454,6 +455,7 @@
     <ClInclude Include="navmesh\recast\RecastDebugDraw.h" />
     <ClInclude Include="navmesh\recast\RecastDump.h" />
     <ClInclude Include="particles\particle.h" />
+    <ClInclude Include="particles\particle_editor.h" />
     <ClInclude Include="particles\particle_parser.h" />
     <ClInclude Include="particles\particle_system.h" />
     <ClInclude Include="physics\physics_collider.h" />

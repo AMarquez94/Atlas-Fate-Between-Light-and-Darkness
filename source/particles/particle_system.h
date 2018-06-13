@@ -13,7 +13,7 @@ namespace Particles
     {
         struct TLife
         {
-            float duration = 1.f;             // expected particle life time
+            float duration = 1.f;            // expected particle life time
             float durationVariation = 0.f;   // lifetime variation
             int maxParticles = 1;            // maximum number of alive particles
             float timeFactor = 1.f;
@@ -23,12 +23,13 @@ namespace Particles
         {
             enum EType { Point = 0, Line, Square, Box, Sphere };
 
-            EType type = Point;       // type of emissor
-            float interval = 0.f;     // generation interval
-            int count = 1;            // number of particles each generation
-            bool cyclic = false;      // system re-emits after the interval time
-            float size = 0.f;         // emissor size
-            float angle = 0.f;        // emission angle
+            EType type = Point;             // type of emissor
+            float interval = 0.f;           // generation interval
+            int count = 1;                  // number of particles each generation
+            bool cyclic = false;            // system re-emits after the interval time
+            VEC3 size = VEC3(1, 1, 1);      // emissor size
+            //VEC3 offset = VEC3(0, 0, 0);    // emissor offset
+            float angle = 0.f;              // emission angle
         };
 
         struct TMovement
@@ -44,7 +45,7 @@ namespace Particles
         struct TRender
         {
             const CTexture* texture = nullptr; // particle texture
-            VEC2 frameSize = VEC2(1, 1);        // size of frame in the texture (in UV coords)
+            VEC2 frameSize = VEC2(1, 1);       // size of frame in the texture (in UV coords)
             int numFrames = 1;                 // number of animation frames
             int initialFrame = 0;              // initial frame
             float frameSpeed = 0.f;            // frame change speed

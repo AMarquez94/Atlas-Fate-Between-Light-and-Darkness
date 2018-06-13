@@ -21,8 +21,8 @@
 				"rt_name": "Bloom"
 			},
 			"render_outlines" : {
-        "enabled" : true
-      },
+			"enabled" : true
+		  },
 			"culling": true
 		}
 	}, {

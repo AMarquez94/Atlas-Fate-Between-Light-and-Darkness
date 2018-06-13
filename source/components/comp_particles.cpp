@@ -12,9 +12,9 @@ void TCompParticles::registerMsgs() {
 
 void TCompParticles::debugInMenu() {
 
-    ImGui::Text("Particles handle: %d", _particles);
-    if (_core) ImGui::Text("Core: %s", _core->getName().c_str());   
-    Engine.getParticles().getSystem(_particles)->debugInMenu();
+    //ImGui::Text("Particles handle: %d", _particles);
+    //if (_core) ImGui::Text("Core: %s", _core->getName().c_str());   
+    //Engine.getParticles().getSystem(_particles)->debugInMenu();
 }
 
 void TCompParticles::load(const json& j, TEntityParseContext& ctx) {

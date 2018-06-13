@@ -3,6 +3,8 @@
 
 // -----------------------------------------
 #include "murmur3/murmur3.h"
+#define E_ROUND(f) ceilf(f * 100) / 100
+
 uint32_t getID(const char* txt);
 uint32_t getID(const void* buff, size_t nbytes);
 

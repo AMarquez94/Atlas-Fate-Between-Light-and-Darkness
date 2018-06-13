@@ -15,7 +15,7 @@
 			},
 			"hierarchy": {
 				"parent": "The Player",
-				"pos": "0 0 0"
+				"pos": "0 0.9 0"
 			},
 			"particles" : {
 				"core" : "data/particles/wildfire.particles"

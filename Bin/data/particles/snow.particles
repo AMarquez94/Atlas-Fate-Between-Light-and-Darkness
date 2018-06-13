@@ -6,7 +6,7 @@
   },
   "emission" : {
       "type" : "square",
-      "size" : 10,
+      "size" : "10 10 10",
       "interval" : 0.1,
       "count" : 10,
       "cyclic" : true
