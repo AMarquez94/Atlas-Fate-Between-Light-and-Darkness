@@ -87,7 +87,7 @@
       "animation": "crouch",
       "speed": 1.5,
       "rotationSpeed": 5.0,
-      "size": 0.25,
+      "size": 0.15,
       "camera": {
         "target": "TPCameraCrouched",
         "blendOut": 0.4,
@@ -100,7 +100,7 @@
       "animation": "crouch_walk",
       "speed": 1.75,
       "rotationSpeed": 5.0,
-      "size": 0.25,
+      "size": 0.15,
       "camera": {
         "target": "TPCameraCrouched",
         "blendOut": 0.4,
@@ -113,7 +113,7 @@
       "animation": "crouch_walk_slow",
       "speed": 1.5,
       "rotationSpeed": 5.0,
-      "size": 0.25,
+      "size": 0.15,
       "camera": {
         "target": "TPCameraCrouched",
         "blendOut": 0.4,

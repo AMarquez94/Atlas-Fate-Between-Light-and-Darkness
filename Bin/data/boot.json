@@ -21,14 +21,14 @@
 	"scene_zone_a": {
 		"static_data": {
 			"initial_script": "scene_a",
-			"navmesh": "data/navmeshes/scene_2.bin"
+			"navmesh": "data/navmeshes/scene_a.bin"
 		},
 		"scene_group": [
 			"data/scenes/ZoneA/player2_fsm.scene",
 			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/ZoneA/camera.scene",
 			"data/scenes/ZoneA/sp_dynamic_lights.scene",
-			"data/scenes/ZoneA/whitebox_mapa92_zoneA28.scene",
+			"data/scenes/ZoneA/whitebox_zone_a_map.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene"
 			
 		]
