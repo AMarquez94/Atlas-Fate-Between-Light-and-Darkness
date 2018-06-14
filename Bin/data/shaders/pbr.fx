@@ -335,8 +335,12 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
   float3 pixel_depth = camera_pos.xyz - wPos;
   float distancet = length(pixel_depth);
   float visibility = exp(distancet *distancet * -global_fog_density * global_fog_density * 1.442695);
-  visibility = clamp(visibility, 0, 1);
+  visibility = saturate(visibility);
 
+	
+  //float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
+  //return ((final_color * ao) + (float4(self_illum.xyz, 1) * global_self_intensity)) * global_ambient_adjustment;
+	
   float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
   final_color = final_color * global_ambient_adjustment * ao;
   return lerp(float4(env, 1), final_color, visibility) + float4(self_illum.xyz, 1) * global_ambient_adjustment * global_self_intensity;

@@ -143,6 +143,7 @@
     <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
     <ClCompile Include="components\player_controller\comp_sonar_controller.cpp" />
     <ClCompile Include="components\postfx\comp_color_grading.cpp" />
+    <ClCompile Include="components\postfx\comp_fog.cpp" />
     <ClCompile Include="components\postfx\comp_render_ao.cpp" />
     <ClCompile Include="components\postfx\comp_render_bloom.cpp" />
     <ClCompile Include="components\postfx\comp_render_outlines.cpp" />
@@ -330,6 +331,7 @@
     <ClInclude Include="components\player_controller\comp_shadow_controller.h" />
     <ClInclude Include="components\player_controller\comp_sonar_controller.h" />
     <ClInclude Include="components\postfx\comp_color_grading.h" />
+    <ClInclude Include="components\postfx\comp_fog.h" />
     <ClInclude Include="components\postfx\comp_render_ao.h" />
     <ClInclude Include="components\postfx\comp_render_bloom.h" />
     <ClInclude Include="components\postfx\comp_render_blur.h" />

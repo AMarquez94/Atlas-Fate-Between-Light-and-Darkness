@@ -13,6 +13,7 @@
 #include "ctes.h"
 
 void CDeferredRenderer::renderGBuffer() {
+
 	CTraceScoped gpu_scope("Deferred.GBuffer");
 
 	// Disable the gbuffer textures as we are going to update them
@@ -88,17 +89,20 @@ bool CDeferredRenderer::create(int xres, int yres) {
 
 // -----------------------------------------------------------------
 void CDeferredRenderer::renderAmbientPass() {
+
 	CTraceScoped gpu_scope("renderAmbientPass");
 	renderFullScreenQuad("pbr_ambient.tech", nullptr);
 }
 
 void CDeferredRenderer::renderSkyBox() const {
+
 	CTraceScoped gpu_scope("renderSkyBox");
 	renderFullScreenQuad("pbr_skybox.tech", nullptr);
 }
 
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderAccLight() {
+
 	CTraceScoped gpu_scope("Deferred.AccLight");
 	rt_acc_light->activateRT();
 	rt_acc_light->clear(VEC4(0, 0, 0, 0));
@@ -113,6 +117,7 @@ void CDeferredRenderer::renderAccLight() {
 
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderPointLights() {
+
 	CTraceScoped gpu_scope("renderPointLights");
 
 	// Activate tech for the light dir 
@@ -141,6 +146,7 @@ void CDeferredRenderer::renderPointLights() {
 
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderDirectionalLights() {
+
 	CTraceScoped gpu_scope("renderDirectionalLights");
 
 	// Activate tech for the light dir 
@@ -168,6 +174,7 @@ void CDeferredRenderer::renderDirectionalLights() {
 
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderSpotLights() {
+
 	CTraceScoped gpu_scope("renderSpotLights");
 
 	// Activate tech for the light dir 

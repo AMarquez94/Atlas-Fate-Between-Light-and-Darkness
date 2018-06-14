@@ -188,8 +188,8 @@
 		"ps_entry_point": "PS_spot_lights",
 		"vertex_type" : "PosNUvUvT",
 		"category" : "pbr_proc",
-		"z" : "inverse_test_no_write",
-		"rs_config" : "reverse_culling",
+    "z" : "inverse_test_no_write",
+    "rs" : "default",
 		"blend" : "additive"
 	},
 	"pbr_projection": {
@@ -244,6 +244,14 @@
 		"category": "fx",
 		"z": "disable_all"
 	},
+		"postfx_fog": {
+		"vs_file": "data/shaders/screen_quad.fx",
+		"ps_file": "data/shaders/postfx.fx",
+		"ps_entry_point": "PS_PostFXFog",
+		"vertex_type": "PosClr",
+		"category": "fx",
+		"z" : "disable_all"
+  },
 	"ao": {
 		"vs_file": "data/shaders/ao.fx",
 		"vertex_type": "PosClr",

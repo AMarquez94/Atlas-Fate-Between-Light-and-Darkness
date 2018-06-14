@@ -156,6 +156,7 @@ CB_DEF(CCteGlobals, CB_GLOBALS)   // Generates the b1
     float global_tone_mapping_mode;
     int   global_render_output;
     float global_fog_density;
+    VEC3 global_fog_color;
 
     float global_shared_fx_amount;
     float global_shared_fx_val1;
@@ -163,9 +164,10 @@ CB_DEF(CCteGlobals, CB_GLOBALS)   // Generates the b1
     float global_shared_fx_val3;
 
     float global_self_intensity;
-    float global_dummy2;
-    float global_dummy3;
-    float global_dummy4;
+    float global_fog_start;
+    float global_fog_end;
+    float global_fog_end2;
+    float global_fog_end3;
 };
 
 CB_DEF(CCteMaterial, CB_MATERIAL)
@@ -181,7 +183,6 @@ CB_DEF(CCteMaterial, CB_MATERIAL)
     float  mix_boost_g;
     float  mix_boost_b;
     float  mat_alpha_outline;
-
 };
 
 CB_DEF(CCteBlur, CB_BLUR)

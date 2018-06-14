@@ -20,6 +20,9 @@
 				"max_steps": 4,
 				"rt_name": "Bloom"
 			},
+			"fog": {
+				"enabled": true
+			},
 			"culling": true
 		}
 	}, {
@@ -51,6 +54,9 @@
 				"enabled": true,
 				"amount": 0.6,
 				"lut": "data/textures/lut/RGBTable16x1.dds"
+			},
+						"fog": {
+				"enabled": true
 			},
 			"tags": ["main_camera"]
 		}

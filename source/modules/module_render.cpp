@@ -23,6 +23,8 @@
 #include "components/postfx/comp_render_blur_radial.h"
 #include "components/postfx/comp_render_bloom.h"
 #include "components/postfx/comp_color_grading.h"
+#include "components/postfx/comp_fog.h"
+
 //--------------------------------------------------------------------------------------
 
 CModuleRender::CModuleRender(const std::string& name)
@@ -126,6 +128,7 @@ bool CModuleRender::start()
 	cb_globals.global_gamma_correction_enabled = 1.f;
 	cb_globals.global_tone_mapping_mode = 1.f;
     cb_globals.global_fog_density = 0.017f;
+    cb_globals.global_fog_color = VEC3(0.3,0.3,0.7);
     cb_globals.global_self_intensity = 10.f;
 
 	cb_light.activate();
@@ -306,6 +309,11 @@ void CModuleRender::generateFrame() {
             TCompColorGrading* c_color_grading = e_cam->get< TCompColorGrading >();
             if (c_color_grading)
                 curr_rt = c_color_grading->apply(curr_rt);
+
+            // Check if we have a color grading component
+            TCompFog * c_render_fog = e_cam->get< TCompFog >();
+            if (c_render_fog)
+                curr_rt = c_render_fog->apply(curr_rt);
 
             TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
             if (c_render_outlines)

@@ -79,7 +79,7 @@ float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
         // If not we are in the border
 
         if (diff != 0)
-            return float4(1, 0, 0, 1) * outline_alpha;
+            return float4(0, 1, 1, 1) * outline_alpha;
     }
 
     // or we are outside, all zeros.
