@@ -283,6 +283,12 @@ void CModuleRender::generateFrame() {
         CRenderManager::get().renderCategory("particles");
 		CRenderManager::get().renderCategory("distorsions");
 
+
+        getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
+
+            c->generateVolume();
+        });
+
 		// Apply postFX
 		CTexture * curr_rt = rt_main;
 		CHandle camera_render = Engine.getCameras().getCurrentCamera();

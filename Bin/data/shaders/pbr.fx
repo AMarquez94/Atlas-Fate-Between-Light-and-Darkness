@@ -426,9 +426,19 @@ float4 PS_spot_lights(in float4 iPosition : SV_Position) : SV_Target
 	return light_color * clamp_spot;
 }
 
-void PS_VLight(in float4 iPosition : POSITION)
+float4 PS_VLight(in float4 iPosition : SV_Position) : SV_Target
 {
+	//float compositeNoise = 0.015f;
+	//float shadow = 0.1f;
 	
+	int3 ss_load_coords = uint3(iPosition.xy, 0);
+	float zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
+	float3 wPos = getWorldCoords(iPosition.xy, zlinear);
+	float shadow_factor = computeShadowFactor(wPos);
+	
+	//float atten = 0.25f + 20000.0f / dot();
+	
+	return float4(1,0,0,1) * shadow_factor;
 }
 
 // ----------------------------------------

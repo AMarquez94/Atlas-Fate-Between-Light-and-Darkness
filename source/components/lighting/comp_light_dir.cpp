@@ -123,22 +123,31 @@ void TCompLightDir::activate() {
 
 void TCompLightDir::generateVolume() {
 
-    const CRenderMesh* quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
+    const CRenderTechnique* technique = Resources.get("pbr_vol_lights.tech")->as<CRenderTechnique>();
+    const CRenderMesh* quadMesh = Resources.get("unit_quad_center.mesh")->as<CRenderMesh>();
     float p_distance = (getZFar() - getZNear()) / num_samples;
 
+    CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
+    assert(technique && quadMesh && eCurrentCamera);
+    TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
+    assert(camera);
+
+    const VEC3 cameraPos = camera->getPosition();
+    const VEC3 cameraUp = camera->getUp();
+
+    technique->activate();
     for (int i = 0; i < num_samples; i++) {
 
-        //TCompTransform * c_transform = get<TCompTransform>();
-        //VEC3 pos = c_transform->getPosition();      
-        //VEC3 plane_pos = pos + c_transform->getFront() * p_distance * i;
+        TCompTransform * c_transform = get<TCompTransform>();
+        VEC3 pos = c_transform->getPosition();      
+        VEC3 plane_pos = pos + c_transform->getFront() * p_distance * i;
 
-        //MAT44 bb = MAT44::CreateBillboard(plane_pos, pos, c_transform->getUp());
-        //MAT44 sc = MAT44::CreateScale(100.f);
-        //MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
+        MAT44 bb = MAT44::CreateWorld(plane_pos, -camera->getFront(), camera->getUp());
+        MAT44 sc = MAT44::CreateScale(300.f);
 
-        //cb_object.obj_world = rt * sc * bb;
-        //cb_object.obj_color = VEC4(1, 1, 1, 1);
-        //cb_object.updateGPU();
+        cb_object.obj_world = sc * bb;
+        cb_object.obj_color = VEC4(1, 1, 1, 1);
+        cb_object.updateGPU();
 
         quadMesh->activateAndRender();
     }

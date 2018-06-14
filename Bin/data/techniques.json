@@ -391,10 +391,9 @@
 		"ps_file": "data/shaders/pbr.fx",
 		"vs_entry_point": "VS_pass",
 		"ps_entry_point": "PS_VLight",
-		"vertex_type" : "PosClr",
+		"vertex_type" : "PosNUvUvT",
 		"category" : "pbr_proc",
 		"z" : "disable_all",
-		"rs" : "default",
-		"blend" : "additive"
+		"rs" : "default"
 	}
 }
