@@ -697,6 +697,36 @@
     },
     {
       "type": "VariableTransition",
+      "source": "crouch",
+      "target": "inhibitorTryToRemove",
+      "variable": {
+        "name": "inhibitorTryToRemove",
+        "type": "bool",
+        "value": true
+      }
+    },
+	{
+      "type": "VariableTransition",
+      "source": "inhibitorTryToRemove",
+      "target": "die",
+      "variable": {
+        "name": "onDead",
+        "type": "bool",
+        "value": true
+      }
+    },
+	{
+      "type": "VariableTransition",
+      "source": "inhibitorRemoved",
+      "target": "die",
+      "variable": {
+        "name": "onDead",
+        "type": "bool",
+        "value": true
+      }
+    },
+    {
+      "type": "VariableTransition",
       "source": "inhibitorTryToRemove",
       "target": "inhibitorRemoved",
       "variable": {
@@ -851,6 +881,16 @@
       "target": "attack",
       "variable": {
         "name": "attack",
+        "type": "bool",
+        "value": true
+      }
+    },
+	{
+      "type": "VariableTransition",
+      "source": "attack",
+      "target": "die",
+      "variable": {
+        "name": "onDead",
         "type": "bool",
         "value": true
       }

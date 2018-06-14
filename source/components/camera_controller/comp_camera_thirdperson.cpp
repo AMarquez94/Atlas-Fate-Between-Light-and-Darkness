@@ -56,7 +56,7 @@ void TCompCameraThirdPerson::onMsgCameraActive(const TMsgCameraActivated & msg)
         VHandles v_tp_cameras = CTagsManager::get().getAllEntitiesByTag(getID("tp_camera"));
         TMsgCameraReset msg;
         msg.both_angles = false;
-        msg.only_y = false;
+        msg.only_y = true;
         for (int i = 0; i < v_tp_cameras.size(); i++) {
           v_tp_cameras[i].sendMsg(msg);
         }

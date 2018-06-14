@@ -72,6 +72,7 @@ namespace FSM
         CEntity* e = ctx.getOwner();
         TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
         playerController->canRemoveInhibitor = false;
+
     }
 
     bool WalkState::load(const json& jData) {
@@ -209,10 +210,14 @@ namespace FSM
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::CROUCH_IDLE , 1.0f });
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+        TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
+        playerController->resetRemoveInhibitor();
     }
 
     void CrouchState::onFinish(CContext& ctx) const {
-
+        CEntity* e = ctx.getOwner();
+        TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
+        playerController->canRemoveInhibitor = false;
     }
 
     bool SonarState::load(const json& jData) {
