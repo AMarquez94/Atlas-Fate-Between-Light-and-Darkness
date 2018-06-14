@@ -20,13 +20,13 @@
 			"name": "Patrol 2",
 			"transform": {
 				"pos": "-87 0 -94.5",
-				"lookat": "-24 0 74"
+				"lookat": "-86 0 -63"
 			},
 			"ai_patrol": {
 				"startLightsOn": false,
 				"waypoints": [{
 						"position": "-87 0 -94.5",
-						"lookAt": "1 0 0",
+						"lookAt": "1 0 1",
 						"minTime": 5
 					}, {
 						"position": "-97.6 0 -111.5",
@@ -99,18 +99,18 @@
 			"prefab": "data/prefabs/patrol.prefab",
 			"name": "Patrol 7",
 			"transform": {
-				"pos": "-61 0 -111",
-				"lookat": "-59 0 -111"
+				"pos": "-61 0 -112",
+				"lookat": "-60 0 -112"
 			},
 			"ai_patrol": {
 				"startLightsOn": true,
 				"waypoints": [{
-						"position": "-45 0 -111",
-						"lookAt": "-1 0 0",
+						"position": "-61 0 -112",
+						"lookAt": "1 0 0",
 						"minTime": 5
 					}, {
-						"position": "-63 0 -111",
-						"lookAt": "1 0 0",
+						"position": "-61 0 -112",
+						"lookAt": "-1 0 0.01",
 						"minTime": 5
 					}
 				]
