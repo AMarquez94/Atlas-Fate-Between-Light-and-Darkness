@@ -89,7 +89,15 @@ void TCompCameraShadowMerge::onMsgScenePaused(const TMsgScenePaused & msg)
 
 void TCompCameraShadowMerge::onMsgCameraReset(const TMsgCameraReset & msg)
 {
-  _current_euler = _original_euler;
+  if (msg.both_angles) {
+    _current_euler = _original_euler;
+  }
+  else if (msg.only_y) {
+    _current_euler.y = _original_euler.y;
+  }
+  else {
+    _current_euler.x = _original_euler.x;
+  }
 }
 
 void TCompCameraShadowMerge::update(float dt)

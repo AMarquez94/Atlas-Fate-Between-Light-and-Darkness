@@ -127,6 +127,8 @@ struct TMsgCameraFullyActivated {
 };
 
 struct TMsgCameraReset {
+  bool both_angles;
+  bool only_y;
   DECL_MSG_ID();
 };
 
