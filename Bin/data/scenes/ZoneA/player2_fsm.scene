@@ -2,7 +2,8 @@
 		"entity": {
 			"name": "The Player",
 			"transform": {
-				"pos": "-40 1 -90"
+				"pos": "-40 1 -90",
+				"lookat": "-41 1 -90"
 			},
 			"render": [{
 					"mesh": "data/skeletons/player/body.mesh",
