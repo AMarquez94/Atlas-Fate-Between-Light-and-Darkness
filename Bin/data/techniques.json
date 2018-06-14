@@ -188,8 +188,8 @@
 		"ps_entry_point": "PS_spot_lights",
 		"vertex_type" : "PosNUvUvT",
 		"category" : "pbr_proc",
-    "z" : "inverse_test_no_write",
-    "rs" : "default",
+		"z" : "inverse_test_no_write",
+		"rs_config" : "reverse_culling",
 		"blend" : "additive"
 	},
 	"pbr_projection": {
@@ -385,5 +385,16 @@
 		"z" : "test_but_no_write",
 		"rs" : "cull_none",
 		"blend" : "additive_by_src_alpha"
+	},
+	"pbr_vol_lights": {
+		"vs_file": "data/shaders/pbr.fx",
+		"ps_file": "data/shaders/pbr.fx",
+		"vs_entry_point": "VS_pass",
+		"ps_entry_point": "PS_VLight",
+		"vertex_type" : "PosClr",
+		"category" : "pbr_proc",
+		"z" : "disable_all",
+		"rs" : "default",
+		"blend" : "additive"
 	}
 }

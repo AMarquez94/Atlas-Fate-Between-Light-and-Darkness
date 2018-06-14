@@ -426,6 +426,11 @@ float4 PS_spot_lights(in float4 iPosition : SV_Position) : SV_Target
 	return light_color * clamp_spot;
 }
 
+void PS_VLight(in float4 iPosition : POSITION)
+{
+	
+}
+
 // ----------------------------------------
 void VS_skybox(in float4 iPosition : POSITION, in float4 iColor : COLOR0, out float4 oPosition : SV_Position)
 {
