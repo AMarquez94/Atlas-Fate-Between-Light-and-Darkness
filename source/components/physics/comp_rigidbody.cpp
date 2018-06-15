@@ -72,6 +72,36 @@ void TCompRigidbody::update(float dt) {
 /* Collider/Trigger messages */
 void TCompRigidbody::registerMsgs() {
     DECL_MSG(TCompRigidbody, TMsgEntityCreated, onCreate);
+    DECL_MSG(TCompRigidbody, TMsgEntitiesGroupCreated, onGroupCreated);
+}
+
+void TCompRigidbody::createRigidbody()
+{
+  TCompCollider* c_collider = get<TCompCollider>();
+  TCompTransform* compTransform = get<TCompTransform>();
+
+  if (is_controller)
+  {
+    controller = c_collider->config->createController(compTransform);
+    c_collider->config->actor->userData = CHandle(c_collider).asVoidPtr();
+    c_collider->config->is_controller = true;
+  }
+  else
+  {
+    // Create the shape, the actor and set the user data
+    physx::PxShape * shape = c_collider->config->createShape();
+    c_collider->config->createDynamic(shape, compTransform);
+    c_collider->config->actor->userData = CHandle(c_collider).asVoidPtr();
+  }
+
+  physx::PxFilterData * characterFilterData = new physx::PxFilterData();
+  characterFilterData->word0 = c_collider->config->group;
+  characterFilterData->word1 = c_collider->config->mask;
+
+  filters = physx::PxControllerFilters();
+  //filters.mFilterCallback = &customQueryFilter;
+  filters.mFilterData = characterFilterData;
+  lastFramePosition = compTransform->getPosition();
 }
 
 void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
@@ -82,31 +112,19 @@ void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
     // Let the rigidbody handle the creation if it exists..
     if (c_collider != nullptr)
     {
-
-        if (is_controller)
-        {
-            controller = c_collider->config->createController(compTransform);
-            c_collider->config->actor->userData = CHandle(c_collider).asVoidPtr();
-            c_collider->config->is_controller = true;
-        }
-        else
-        {
-            // Create the shape, the actor and set the user data
-            physx::PxShape * shape = c_collider->config->createShape();
-            c_collider->config->createDynamic(shape, compTransform);
-            c_collider->config->actor->userData = CHandle(c_collider).asVoidPtr();
-        }
-
-        physx::PxFilterData * characterFilterData = new physx::PxFilterData();
-        characterFilterData->word0 = c_collider->config->group;
-        characterFilterData->word1 = c_collider->config->mask;
-
-        filters = physx::PxControllerFilters();
-        //filters.mFilterCallback = &customQueryFilter;
-        filters.mFilterData = characterFilterData;
+      createRigidbody();
     }
+}
 
-    lastFramePosition = compTransform->getPosition();
+void TCompRigidbody::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+  
+  TCompCollider * c_collider = get<TCompCollider>();
+
+  // Let the rigidbody handle the creation if it exists..
+  if (c_collider != nullptr && c_collider->config->actor == nullptr)
+  {
+    createRigidbody();
+  }
 }
 
 void TCompRigidbody::Resize(float new_size)

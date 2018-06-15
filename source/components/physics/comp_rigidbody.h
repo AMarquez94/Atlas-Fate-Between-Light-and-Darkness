@@ -9,7 +9,10 @@ class TCompRigidbody : public TCompBase {
 	physx::PxVec3 velocity = physx::PxVec3(0, 0, 0);
 	physx::PxVec3 totalDownForce = physx::PxVec3(0, 0, 0);
 
+  void createRigidbody();
+
 	void onCreate(const TMsgEntityCreated& msg);
+	void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 
 	DECL_SIBLING_ACCESS();
 

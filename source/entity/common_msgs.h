@@ -44,6 +44,11 @@ struct TMsgEntitiesGroupCreated {
 	DECL_MSG_ID();
 };
 
+struct TMsgHierarchyGroupCreated {
+  const TEntityParseContext& ctx;
+  DECL_MSG_ID();
+};
+
 struct TMsgPlayerDead {
 	CHandle h_sender;
 	DECL_MSG_ID();

@@ -15,10 +15,10 @@ void TCompHierarchy::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompHierarchy::registerMsgs() {
-  DECL_MSG(TCompHierarchy, TMsgEntitiesGroupCreated, onGroupCreated);
+  DECL_MSG(TCompHierarchy, TMsgHierarchyGroupCreated, onGroupCreated);
 }
 
-void TCompHierarchy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+void TCompHierarchy::onGroupCreated(const TMsgHierarchyGroupCreated& msg) {
   // I prefer to wait until the group is loaded to resolve my parent
   setParentEntity(msg.ctx.findEntityByName(parent_name));
 }

@@ -23,8 +23,10 @@ void TCompCollider::debugInMenu() {
 
 	config->debugInMenu();
   ImGui::Text("Collider shape: %s", shapeName.c_str());
-  ImGui::Text("Group %s", groupName.c_str());
-  ImGui::Text("Mask %s", maskName.c_str());
+  ImGui::Text("Group: %s", groupName.c_str());
+  ImGui::Text("Mask: %s", maskName.c_str());
+  physx::PxVec3 pos = config->actor->getGlobalPose().p;
+  ImGui::Text("Collider position: %f %f %f", (float)pos.x, (float)pos.y, (float)pos.z);
 }
 
 void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
@@ -75,27 +77,42 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 void TCompCollider::registerMsgs() {
 
 	DECL_MSG(TCompCollider, TMsgEntityCreated, onCreate);
+	DECL_MSG(TCompCollider, TMsgEntitiesGroupCreated, onGroupCreated);
 	DECL_MSG(TCompCollider, TMsgTriggerEnter, onTriggerEnter);
 	DECL_MSG(TCompCollider, TMsgTriggerExit, onTriggerExit);
 	DECL_MSG(TCompCollider, TMsgEntityDestroyed, onDestroy);
 }
 
+void TCompCollider::createCollider()
+{
+  TCompTransform * compTransform = get<TCompTransform>();
+
+  TCompName * name = get<TCompName>();
+  // Create the shape, the actor and set the user data
+  physx::PxShape * shape = config->createShape();
+  config->createStatic(shape, compTransform);
+  config->actor->userData = CHandle(this).asVoidPtr();
+}
+
 void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
 
-	CEntity* e = CHandle(this).getOwner();
-	TCompRigidbody * c_rigidbody = e->get<TCompRigidbody>();
+	TCompRigidbody * c_rigidbody = get<TCompRigidbody>();
 	
 	// Let the rigidbody handle the creation if it exists..
 	if (c_rigidbody == nullptr)
 	{
-		TCompTransform * compTransform = e->get<TCompTransform>();
-
-        TCompName * name = e->get<TCompName>();
-		// Create the shape, the actor and set the user data
-		physx::PxShape * shape = config->createShape();
-		config->createStatic(shape, compTransform);
-		config->actor->userData = CHandle(this).asVoidPtr();
+    createCollider();
 	}
+}
+
+void TCompCollider::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+  TCompRigidbody * c_rigidbody = get<TCompRigidbody>();
+
+  // Let the rigidbody handle the creation if it exists..
+  if (c_rigidbody == nullptr && config->actor == nullptr)
+  {
+    createCollider();
+  }
 }
 
 void TCompCollider::onDestroy(const TMsgEntityDestroyed & msg)

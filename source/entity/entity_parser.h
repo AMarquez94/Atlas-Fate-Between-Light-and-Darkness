@@ -39,3 +39,5 @@ struct TEntityParseContext {
 
 bool parseScene(const std::string& filename, TEntityParseContext& ctx);
 
+void sendMsgChildren(CHandle hEntity, TEntityParseContext& ctx);
+

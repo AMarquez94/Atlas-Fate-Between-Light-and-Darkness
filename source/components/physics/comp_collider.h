@@ -13,7 +13,10 @@ class TCompCollider : public TCompBase {
     std::string groupName = "";
     std::string maskName = "";
 
+    void createCollider();
+
     void onCreate(const TMsgEntityCreated& msg);
+    void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
     void onDestroy(const TMsgEntityDestroyed& msg);
     void onTriggerEnter(const TMsgTriggerEnter& msg);
     void onTriggerExit(const TMsgTriggerExit& msg);
