@@ -5,7 +5,7 @@
 #include "PxPhysicsAPI.h"
 #include "physics/physics_filter.h"
 
-#define VEC3_TO_PXVEC3(VEC3) physx::PxVec3(vec3.x, vec3.y, vec3.z);
+#define VEC3_TO_PXVEC3(VEC3) physx::PxVec3(VEC3.x, VEC3.y, VEC3.z);
 #define PXVEC3_TO_VEC3(PxVec3) VEC3(PxVec3.x, PxVec3.y, PxVec3.z);
 #define QUAT_TO_PXQUAT(QUAT) physx::PxQuat(QUAT.x, QUAT.y, QUAT.z, QUAT.w);
 #define PXQUAT_TO_QUAT(PxQuat) QUAT(PxQuat.x, PxQuat.y, PxQuat.z, PxQuat.w);
@@ -34,6 +34,11 @@ public:
     /* Ray casting & related methods*/
     bool Raycast(const VEC3 & origin, const VEC3 & dir, float distance, physx::PxRaycastHit & hit, physx::PxQueryFlags flag = physx::PxQueryFlag::eSTATIC, physx::PxQueryFilterData filterdata = defaultFilter);
     bool Overlap(physx::PxGeometry& geometry, VEC3 pos, std::vector<physx::PxOverlapHit> & hits, physx::PxQueryFilterData filterdata);
+
+    /* Other utilities */
+    physx::PxFixedJoint* CreateFixedJoint(physx::PxRigidActor* dynamicActor, const physx::PxTransform& dynamicActorTransform, physx::PxRigidActor* otherActor, const physx::PxTransform& otherActorTransform);
+    physx::PxDistanceJoint* CreateDistanceJoint(physx::PxRigidActor* dynamicActor, const physx::PxTransform& dynamicActorTransform, physx::PxRigidActor* otherActor, const physx::PxTransform& otherActorTransform);
+
 
 private:
 

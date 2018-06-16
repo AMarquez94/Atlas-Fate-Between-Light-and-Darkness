@@ -8,6 +8,9 @@ class TCompPlayerAnimator;
 
 class TCompPlayerAnimator : public TCompAnimator
 {
+
+private:
+    bool isInNoClipMode = false;
 public:
 	enum EAnimation { IDLE = 0, WALK, WALK_SLOW, ATTACK, DEATH, DEAD, CROUCH_IDLE, CROUCH_WALK, CROUCH_WALK_SLOW, RUN, HIT_FRONT, HIT_BACK, FALL, LAND_SOFT, LAND_HARD, METRALLA_START, METRALLA_MIDDLE, METRALLA_FINISH, SM_ENTER, SM_EXIT, SM_POSE};
 	struct TMsgExecuteAnimation {
@@ -24,6 +27,7 @@ public:
 	void onCreated(const TMsgEntityCreated& msg);
 	void playMsgAnimation(const TMsgExecuteAnimation& msg);
 	void onSceneStop(const TMsgScenePaused& msg);
+	void onMsgNoClipToggle(const TMsgNoClipToggle& msg);
 	
 	void initializeAnimations();
 	bool playAnimation(TCompPlayerAnimator::EAnimation animation, float speed = 1.0f);

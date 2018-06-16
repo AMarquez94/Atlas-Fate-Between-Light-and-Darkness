@@ -246,16 +246,17 @@ void CModuleRender::generateFrame() {
 	{
 		PROFILE_FUNCTION("CModuleRender::shadowsMapsGeneration");
 		CTraceScoped gpu_scope("shadowsMapsGeneration");
+        if (_generateShadows) {
+            // Generate the shadow map for each active light
+            getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
+                c->generateShadowMap();
+            });
 
-		// Generate the shadow map for each active light
-		getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
-			c->generateShadowMap();
-		});
-
-		// Generate the shadow map for each active light
-		getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
-			c->generateShadowMap();
-		});
+            // Generate the shadow map for each active light
+            getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
+                c->generateShadowMap();
+            });
+        }
 	}
 
 	{
@@ -272,7 +273,7 @@ void CModuleRender::generateFrame() {
 		// Apply postFX
 		CTexture * curr_rt = rt_main;
 		CHandle camera_render = Engine.getCameras().getCurrentCamera();
-		if (camera_render.isValid()) {
+		if (camera_render.isValid() && _generatePostFX) {
 			CEntity * e_cam = camera_render;
 
 			// The bloom blurs the given input
@@ -310,7 +311,7 @@ void CModuleRender::generateFrame() {
     assert(tech);
     tech->activate();
 
-    if (debugmode)
+    if (_debugMode)
         debugDraw();
 
     // Finally render it

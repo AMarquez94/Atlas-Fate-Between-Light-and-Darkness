@@ -71,7 +71,7 @@ void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
     }
 
     physx::PxFilterData pxFilterData;
-    pxFilterData.word0 = FilterGroup::Scenario | FilterGroup::DItem | FilterGroup::Enemy;
+    pxFilterData.word0 = FilterGroup::Scenario | FilterGroup::DItem | FilterGroup::Enemy | FilterGroup::MovableObject;
     shadowDetectionFilter.data = pxFilterData;
 }
 
@@ -105,6 +105,12 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
     physx::PxRaycastHit hit;
     for (unsigned int i = 0; i < static_lights.size(); i++) {
         CEntity * c_entity = static_lights[i];
+        TCompLightDir* c_light_dir = c_entity->get<TCompLightDir>();
+
+        if (!c_light_dir || (c_light_dir && !c_light_dir->isEnabled)) {
+            continue;
+        }
+
         TCompTransform * c_trans = c_entity->get<TCompTransform>();
 
         float distance = VEC3::Distance(c_trans->getPosition(), point);
@@ -115,6 +121,16 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
     for (unsigned int i = 0; i < dynamic_lights.size(); i++)
     {
         CEntity * c_entity = dynamic_lights[i];
+
+        //Checking for hacks regarding spotlights and pointlights activation
+        TCompLightSpot* c_light_spot = c_entity->get<TCompLightSpot>();
+        TCompLightPoint* c_light_point = c_entity->get<TCompLightPoint>();
+        if ((!c_light_spot && !c_light_point) ||
+            (c_light_spot && !c_light_spot->isEnabled) ||
+            (c_light_point && !c_light_point->isEnabled)) {
+            continue;
+        }
+
         TCompCollider * c_collider = c_entity->get<TCompCollider>();
         TCompTransform * c_transform = c_entity->get<TCompTransform>();
         if (c_collider->player_inside)

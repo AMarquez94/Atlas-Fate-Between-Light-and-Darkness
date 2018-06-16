@@ -13,6 +13,8 @@ public:
 
   void makeNoise(float noiseRadius, float timeToRepeat, bool isNoise, bool isOnlyOnce, bool isArtificial);
 
+  void changeNoiseRadius(float newRadius);
+
   static void registerMsgs();
 
 private:

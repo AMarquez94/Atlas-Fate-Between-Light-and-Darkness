@@ -241,7 +241,7 @@ void TCompAIMimetic::onMsgPhysxContact(const TMsgPhysxContact & msg)
 {
 	CEntity* other = msg.other_entity;
 	TCompTags * otherTags = other->get <TCompTags>();
-	if(otherTags->hasTag(getID("patrol"))) {
+	if(otherTags && otherTags->hasTag(getID("patrol"))) {
 
 		TCompTransform * otherTransform = other->get<TCompTransform>();
 		TCompTransform * myTransform = get<TCompTransform>();
@@ -324,6 +324,7 @@ const std::string TCompAIMimetic::getStateForCheckpoint()
 void TCompAIMimetic::registerMsgs()
 {
 	DECL_MSG(TCompAIMimetic, TMsgScenePaused, onMsgScenePaused);
+    DECL_MSG(TCompAIMimetic, TMsgAIPaused, onMsgAIPaused);
 	DECL_MSG(TCompAIMimetic, TMsgEntityCreated, onMsgEntityCreated);
 	DECL_MSG(TCompAIMimetic, TMsgPlayerDead, onMsgPlayerDead);
 	DECL_MSG(TCompAIMimetic, TMsgEnemyStunned, onMsgMimeticStunned);

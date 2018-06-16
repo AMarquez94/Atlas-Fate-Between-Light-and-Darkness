@@ -434,7 +434,7 @@ void TCompIAController::setCurrentByName(const std::string & stateName)
 }
 
 void TCompIAController::update(float dt) {
-	if (!paused && myHandle.getOwner().isValid()) {
+	if (!paused && !pausedAI && myHandle.getOwner().isValid()) {
     preUpdate(dt);
 		if (current == nullptr) {
 			root->update(dt, this);
@@ -454,6 +454,11 @@ void TCompIAController::printTree()
 void TCompIAController::onMsgScenePaused(const TMsgScenePaused & msg)
 {
 	paused = !paused;
+}
+
+void TCompIAController::onMsgAIPaused(const TMsgAIPaused & msg)
+{
+    pausedAI = !pausedAI;
 }
 
 bool TCompIAController::isNodeName(BTNode * node, const std::string & possibleName)

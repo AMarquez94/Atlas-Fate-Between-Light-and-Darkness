@@ -20,6 +20,7 @@ public:
 	void onCreate(const TMsgEntityCreated& msg);
 	void onVariableValue(const TMsgSetFSMVariable& msg);
 	void onConsoleChanged(const TMsgConsoleOn& msg);
+    void onMsgNoClipToggle(const TMsgNoClipToggle& msg);
 
 	static void registerMsgs();
 
@@ -27,6 +28,7 @@ public:
 
 private:
 
+    bool isInNoClipMode = false;
 	FSM::CContext _context;
 	DECL_SIBLING_ACCESS();
 };

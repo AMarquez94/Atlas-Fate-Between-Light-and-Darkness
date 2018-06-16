@@ -66,6 +66,11 @@ class TCompTempPlayerController : public TCompBase
     actionhandler state;
     CHandle target_camera;
 
+    CHandle movableObject = CHandle();
+    VEC3 directionMovableObject;
+    float movingObjectSpeed;
+    VEC3 movingObjectOffset;
+
     VEC3 temp_invert;
     //MAT44 temp_invert;
     float temp_deg;
@@ -109,12 +114,24 @@ class TCompTempPlayerController : public TCompBase
     void onPlayerPaused(const TMsgScenePaused& msg);
     void onConsoleChanged(const TMsgConsoleOn& msg);
     void onShadowChange(const TMsgShadowChange& msg);
+    void onInfiniteStamina(const TMsgInfiniteStamina& msg);
+    void onPlayerImmortal(const TMsgPlayerImmortal& msg);
+    void onPlayerInShadows(const TMsgPlayerInShadows& msg);
+    void onSpeedBoost(const TMsgSpeedBoost& msg);
+    void onPlayerInvisible(const TMsgPlayerInvisible& msg);
+    void onMsgNoClipToggle(const TMsgNoClipToggle& msg);
+
 
     DECL_SIBLING_ACCESS();
 
 public:
-    /* Debug variables */
-    bool dbgDisableStamina;
+    /* Debug and console variables */
+    bool infiniteStamina;
+    bool isImmortal;
+    bool isInvisible;
+    bool hackShadows;
+    bool isInNoClipMode = false;
+    float speedBoost = 1.0f;
     std::string dbCameraState;
     float stepTimer = 0.0f;
     bool stepRight = true;
@@ -143,7 +160,9 @@ public:
     void resetState(float dt);
     void exitMergeState(float dt);
     void removingInhibitorState(float dt);
+    void movingObjectState(float dt);
     void resetRemoveInhibitor();
+    void markObjectAsMoving(bool isBeingMoved, VEC3 newDirection = VEC3::Zero, float speed = 0);
 
     /* Player condition tests */
     const bool concaveTest(void);

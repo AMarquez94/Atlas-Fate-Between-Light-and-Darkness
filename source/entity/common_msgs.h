@@ -146,9 +146,22 @@ struct TMsgScenePaused {
 	DECL_MSG_ID();
 };
 
+struct TMsgAIPaused {
+    bool isPaused;
+    DECL_MSG_ID();
+};
+
 struct TMsgConsoleOn {
 	bool isConsoleOn;
 	DECL_MSG_ID();
+};
+
+struct TMsgSystemNoClipToggle {
+    DECL_MSG_ID();
+};
+
+struct TMsgNoClipToggle {
+    DECL_MSG_ID();
 };
 
 struct TMsgNoiseMade {
@@ -172,6 +185,44 @@ struct TMsgSetVisible {
     bool visible;
     DECL_MSG_ID();
 };
+
+struct TMsgObjectBeingMoved {
+  bool isBeingMoved;
+  CHandle hMovingObject;
+  VEC3 direction;
+  float speed;
+  DECL_MSG_ID();
+};
+
+struct TMsgInfiniteStamina {
+    DECL_MSG_ID();
+};
+
+struct TMsgSpeedBoost {
+    float speedBoost;
+    DECL_MSG_ID();
+};
+
+struct TMsgPlayerInvisible {
+    DECL_MSG_ID();
+};
+
+struct TMsgPlayerImmortal {
+    DECL_MSG_ID();
+};
+
+struct TMsgPlayerInShadows {
+    DECL_MSG_ID();
+};
+
+struct TMsgLanternsDisable {
+    bool disable;
+    DECL_MSG_ID();
+};
+
+//struct TMsgSpotlightsToggle {
+//    DECL_MSG_ID();
+//};
 
 #endif
 

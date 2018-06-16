@@ -102,7 +102,8 @@ bool TCompAIEnemy::isEntityInFov(const std::string& entityToChase, float fov, fl
 		/* Player inside cone of vision */
 		bool in_fov = mypos->isInFov(ppos->getPosition(), fov, deg2rad(89.f));
 
-		return in_fov && !pController->isMerged && !pController->isDead() && dist <= maxChaseDistance && !isEntityHidden(hPlayer);
+		return in_fov && !pController->isInvisible && !pController->isInNoClipMode &&
+            !pController->isMerged && !pController->isDead() && dist <= maxChaseDistance && !isEntityHidden(hPlayer);
 	}
 	else {
 		return false;

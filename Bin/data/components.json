@@ -10,6 +10,7 @@
 	"update": [
 		"circular_controller",
 		"player_tempcontroller",
+		"noclip_controller",
 		"ai_patrol",
 		"ai_mimetic",
 		"instance",
@@ -40,6 +41,7 @@
 		"fsm",
 		"player_animator",
 		"player_input",
+		"movable_object",
 		"emission_controller",
 		"rotator",
 		"lod"

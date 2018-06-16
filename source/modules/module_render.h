@@ -14,7 +14,7 @@ class CModuleRender : public IModule
 
 public:
 
-    bool debugmode = true;
+    bool _debugMode = true, _generateShadows = true, _generatePostFX = true;
 
 	CModuleRender(const std::string& name);
 	bool start() override;
@@ -28,7 +28,12 @@ public:
 	void configure(int xres, int yres);
 	void setBackgroundColor(float r, float g, float b, float a);
 	void debugDraw();
-    void setDebugMode(bool val) { debugmode = val; }
+    bool const getDebugMode() { return _debugMode; }
+    void setDebugMode(bool val) { _debugMode = val; }
+    bool const getGenerateShadows() { return _generateShadows; }
+    void setGenerateShadows(bool val) { _generateShadows = val; }
+    bool const getGeneratePostFX() { return _generatePostFX; }
+    void setGeneratePostFX(bool val) { _generatePostFX = val; }
 
 	LRESULT OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) override;
 

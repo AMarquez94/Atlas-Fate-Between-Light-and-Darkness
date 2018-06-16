@@ -101,7 +101,7 @@ void CModuleGameManager::update(float delta)
     }
 
     if (EngineInput["btDebugMode"].getsPressed()) {
-        EngineRender.setDebugMode(!EngineRender.debugmode);
+        EngineRender.setDebugMode(!EngineRender.getDebugMode());
     }
 }
 
@@ -207,6 +207,9 @@ bool CModuleGameManager::deleteCheckpoint()
 {
   if (lastCheckpoint) {
 	  return lastCheckpoint->deleteCheckPoint();
+  }
+  else {
+    return false;
   }
 }
 

@@ -504,7 +504,7 @@ namespace FSM
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::ATTACK , 1.0f });
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::attackState, _speed, _radius, _size, _target, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::attackState, _speed, _size, _radius, _target, _noise });
     }
     void AttackState::onFinish(CContext& ctx) const {
 
@@ -525,7 +525,7 @@ namespace FSM
 
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::METRALLA_FINISH , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _radius, _size, _target, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
 
     }
 
@@ -548,7 +548,7 @@ namespace FSM
 
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::METRALLA_MIDDLE , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::removingInhibitorState, _speed, _radius, _size, _target, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::removingInhibitorState, _speed, _size, _radius, _target, _noise });
         TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
         playerController->canRemoveInhibitor = true;
 
@@ -576,7 +576,7 @@ namespace FSM
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::DEATH , 1.0f });
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::DEAD , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::deadState, _speed, _radius, _size, _target, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::deadState, _speed, _size, _radius, _target, _noise });
     }
     void DieState::onFinish(CContext& ctx) const {
 
@@ -597,7 +597,7 @@ namespace FSM
 
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::DEAD , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _radius, _size, _target, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
     }
     void DeadState::onFinish(CContext& ctx) const {
 
@@ -617,12 +617,39 @@ namespace FSM
 
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _radius, _size, nullptr, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, nullptr, _noise });
 
     }
 
     void GrabEnemyState::onFinish(CContext& ctx) const {
         CEntity* e = ctx.getOwner();
         e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::mergeEnemy });
+    }
+
+    bool MovingObjectState::load(const json& jData) {
+
+      _animationName = jData["animation"];
+      _speed = jData.value("speed", 2.f);
+      _size = jData.value("size", 1.f);
+      _radius = jData.value("radius", 0.3f);
+      _noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+      if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+      return true;
+    }
+
+    void MovingObjectState::onStart(CContext& ctx) const {
+
+      CEntity* e = ctx.getOwner();
+      e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
+      TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
+      playerController->markObjectAsMoving(true);
+      e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::movingObjectState, _speed, _size, _radius, nullptr, _noise });
+    }
+
+    void MovingObjectState::onFinish(CContext& ctx) const {
+      CEntity* e = ctx.getOwner();
+      TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
+      playerController->markObjectAsMoving(false);
+      //e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::markObjectAsMoving });
     }
 }

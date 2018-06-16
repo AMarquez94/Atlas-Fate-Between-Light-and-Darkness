@@ -49,7 +49,8 @@
 			"data/scenes/capsules.scene",
 			"data/scenes/camera.scene",
 			"data/scenes/water_plane.scene",
-			"data/scenes/checkpoints.scene"
+			"data/scenes/checkpoints.scene",
+			"data/scenes/movable_objects.scene"
 		]
 	},
 	"scene_gpu": {
