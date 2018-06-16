@@ -398,7 +398,7 @@ float4 shade(float4 iPosition, out float3 light_dir, bool use_shadows)
 	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.; // shadow factor
   
 	//return projectColor(wPos);
-  float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor;
+    float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor;
 	return float4(final_color, 1);
 }
 
@@ -477,12 +477,21 @@ float4 PS_VLight(
     float shadow_factor = computeShadowFactor(iWorldPos);
     float val = 1 / (1 + (camera_dist * camera_dist));
 
-    return float4(1,1,1, val) * shadow_factor * projectColor(iWorldPos);
+    // From wPos to Light
+    float3 light_dir_full = light_pos.xyz - iWorldPos;
+    float  distance_to_light = length(light_dir_full);
+    float3 light_dir = light_dir_full / distance_to_light;
+    float4 noise0 = txNoiseMap.Sample(samLinear, iTex0 ) * 2 - 1;      // -1..1
+    float4 noise1 = txNoiseMap.Sample(samLinear, iTex0 + float2(5,5)) * 2 - 1;      // -1..1
 
+    float theta = dot(light_dir, -light_direction.xyz);
+    float att_spot = clamp((theta - light_outer_cut) / (light_inner_cut - light_outer_cut), 0, 1);
+    float clamp_spot = theta > light_angle ? 1.0 * att_spot : 0.0; // spot factor 
 
+    return float4(1,1,1, clamp_spot * val) * shadow_factor * projectColor(iWorldPos) * noise0 * noise1;
     /*
 
-    //Version 1 volumetric lights.
+    //Version 1 volumetric lights using mesh.
     float d = distance(iWorldPos, mul(float4(0,0,0,1), obj_world));
     float att = 1 - d / 10;
 

@@ -285,6 +285,11 @@ void CModuleRender::generateFrame() {
             c->generateVolume();
         });
 
+        getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
+
+            c->generateVolume();
+        });
+
         CRenderManager::get().renderCategory("particles");
 		CRenderManager::get().renderCategory("distorsions");
 

@@ -21,26 +21,34 @@
         "pos": "-25.7279 -0.359058 -19.8838"
         ,
         "lookat": "-24.0646 -9.42125 -20.2515"
+      }  ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 15.16008
+        ,
+        "angle": 66.1
+        ,
+        "inner_cut": 64.0
+        ,
+        "z_far": 9.22092
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,				        
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
       }
       ,
-			"light_dir": {
-				"type": "directional",
-				"proj_type": "ortographic",
-				"range": 29.2116,
-				        "projector" : "data/textures/batman.dds",
-				"angle": 75,
-				"color": "0.0 0.207 1.0 1.0",
-				"intensity": 1.5,
-				"ortosize": 15,
-				"shadows": true,
-				"fov": 15,
-				"z_far": 20,
-				"z_near": 0.1,
-				"casts_shadows": true,
-				"shadows_step": 1.25,
-				"shadows_resolution": 1024,
-				"shadows_fmt": "R32_TYPELESS"
-			},
       "tags":
       [
         "light"
