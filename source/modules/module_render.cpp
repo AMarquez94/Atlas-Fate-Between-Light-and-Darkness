@@ -280,14 +280,13 @@ void CModuleRender::generateFrame() {
 		cb_globals.updateGPU();
 		deferred.render(rt_main, h_e_camera);
 
-        CRenderManager::get().renderCategory("particles");
-		CRenderManager::get().renderCategory("distorsions");
-
-
         getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
 
             c->generateVolume();
         });
+
+        CRenderManager::get().renderCategory("particles");
+		CRenderManager::get().renderCategory("distorsions");
 
 		// Apply postFX
 		CTexture * curr_rt = rt_main;

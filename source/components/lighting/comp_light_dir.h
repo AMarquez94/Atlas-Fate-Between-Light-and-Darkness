@@ -10,7 +10,9 @@ class TCompLightDir : public TCompCamera {
 
 	VEC4			color = VEC4(1, 1, 1, 1);
 	float			intensity = 1.0f;
-    int  num_samples = 12;
+    
+    int  num_samples = 220;
+    CRenderMesh* quadmesh;
 
 	// Shadows params
 	bool              shadows_enabled = false;    // Dynamic

@@ -143,7 +143,11 @@ CB_DEF(CCteLight, CB_LIGHT)
     float dummy2;
 
     MAT44 light_view_proj_offset;
-
+    MAT44 light_view_proj;
+    VEC3 minbound;
+    VEC3 maxbound;
+    VEC3 max1;
+    VEC3 max2;
 };
 
 CB_DEF(CCteGlobals, CB_GLOBALS)   // Generates the b1

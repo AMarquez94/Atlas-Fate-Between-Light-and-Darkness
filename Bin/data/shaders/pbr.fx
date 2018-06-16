@@ -331,19 +331,19 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	float ao = txAO.Load( ss_load_coords );
 	float4 self_illum = txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
 
-  // Compute global fog on ambient.
-  float3 pixel_depth = camera_pos.xyz - wPos;
-  float distancet = length(pixel_depth);
-  float visibility = exp(distancet *distancet * -global_fog_density * global_fog_density * 1.442695);
-  visibility = saturate(visibility);
+    // Compute global fog on ambient.
+    float3 pixel_depth = camera_pos.xyz - wPos;
+    float distancet = length(pixel_depth);
+    float visibility = exp(distancet *distancet * -global_fog_density * global_fog_density * 1.442695);
+    visibility = saturate(visibility);
 
 	
-  //float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
-  //return ((final_color * ao) + (float4(self_illum.xyz, 1) * global_self_intensity)) * global_ambient_adjustment;
+    //float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
+    //return ((final_color * ao) + (float4(self_illum.xyz, 1) * global_self_intensity)) * global_ambient_adjustment;
 	
-  float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
-  final_color = final_color * global_ambient_adjustment * ao;
-  return lerp(float4(env, 1), final_color, visibility) + float4(self_illum.xyz, 1) * global_ambient_adjustment * global_self_intensity;
+    float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
+    final_color = final_color * global_ambient_adjustment * ao;
+    return lerp(float4(env, 1), final_color, visibility) + float4(self_illum.xyz, 1) * global_ambient_adjustment * global_self_intensity;
 }
 
 //--------------------------------------------------------------------------------------
@@ -426,19 +426,81 @@ float4 PS_spot_lights(in float4 iPosition : SV_Position) : SV_Target
 	return light_color * clamp_spot;
 }
 
-float4 PS_VLight(in float4 iPosition : SV_Position) : SV_Target
+// The geometry that approximates the light volume uses this shader
+void VS_VLight(
+    in float4 iPos     : POSITION
+    , in float3 iNormal : NORMAL0
+    , in float2 iTex0 : TEXCOORD0
+    , in float2 iTex1 : TEXCOORD1
+    , in float4 iTangent : NORMAL1
+
+    , out float4 oPos : SV_POSITION
+    , out float3 oNormal : NORMAL0
+    , out float4 oTangent : NORMAL1
+    , out float2 oTex0 : TEXCOORD0
+    , out float2 oTex1 : TEXCOORD1
+    , out float3 oWorldPos : TEXCOORD2
+)
 {
-	//float compositeNoise = 0.015f;
-	//float shadow = 0.1f;
-	
-	int3 ss_load_coords = uint3(iPosition.xy, 0);
-	float zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
-	float3 wPos = getWorldCoords(iPosition.xy, zlinear);
-	float shadow_factor = computeShadowFactor(wPos);
-	
-	//float atten = 0.25f + 20000.0f / dot();
-	
-	return float4(1,0,0,1) * shadow_factor;
+    float4 world_pos = mul(iPos, obj_world);
+    oPos = mul(world_pos, camera_view_proj);
+
+    // Rotar la normal segun la transform del objeto
+    oNormal = mul(iNormal, (float3x3)obj_world);
+    oTangent.xyz = mul(iTangent.xyz, (float3x3)obj_world);
+    oTangent.w = iTangent.w;
+
+    // Las uv's se pasan directamente al ps
+    oTex0 = iTex0;
+    oTex1 = iTex1;
+    oWorldPos = world_pos.xyz;
+}
+
+// ------------------------------------------------------
+float computeDepth(float3 iWorldPos : TEXCOORD1) {
+    float3 camerapos_worldpos = iWorldPos - camera_pos.xyz;
+    return dot(camera_front.xyz, camera_pos) / camera_zfar;
+}
+
+float4 PS_VLight( 
+    in float4 iPos : SV_POSITION
+    , float3 iNormal : NORMAL0
+    , float4 iTangent : NORMAL1
+    , float2 iTex0 : TEXCOORD0
+    , float2 iTex1 : TEXCOORD1
+    , float3 iWorldPos : TEXCOORD2
+) : SV_Target
+{
+
+    // Sampling planes volumetric lights based shader.
+    float camera_dist = length(iWorldPos - light_pos.xyz);
+    float shadow_factor = computeShadowFactor(iWorldPos);
+    float val = 1 / (1 + (camera_dist * camera_dist));
+
+    return float4(1,1,1, val) * shadow_factor * projectColor(iWorldPos);
+
+
+    /*
+
+    //Version 1 volumetric lights.
+    float d = distance(iWorldPos, mul(float4(0,0,0,1), obj_world));
+    float att = 1 - d / 10;
+
+    //bordes suaves: dot(cpos(fragmento de posicion normalizado) y cnorm(viewspace normal))
+    float3 view_vector = normalize(camera_pos.xyz - iWorldPos);
+    float  viewspace_normal = dot(view_vector, iNormal);
+    float  soft_edges_att = pow(abs(viewspace_normal), 1.2f);
+
+    float  fragment_depth = computeDepth(iWorldPos);
+    float  cone_depth = txGBufferLinearDepth.Load(uint3(iPos.xy, 0)).x;
+
+    float  radius = clamp((0.1 - camera_znear) / (camera_zfar - camera_znear), 0, 1);
+    float  soft_intersections_att = saturate(clamp(abs(fragment_depth - cone_depth) / radius, 0, 1));
+
+    float  c_radius = clamp((5 - camera_znear) / (camera_zfar - camera_znear), 0, 1);
+    float  camera_att = saturate(fragment_depth / c_radius);
+
+    return float4(1, 1, 1, 1);// att * soft_edges_att * soft_intersections_att * camera_att);*/
 }
 
 // ----------------------------------------
@@ -452,6 +514,6 @@ float4 PS_skybox(in float4 iPosition : SV_Position) : SV_Target
 {
 	float3 view_dir = mul(float4(iPosition.xy, 1, 1), camera_screen_to_world).xyz;
 	float4 skybox_color = txEnvironmentMap.Sample(samLinear, view_dir);
-  skybox_color = pow(skybox_color, float4(2.2,2.2,2.2, 2.2));
-  return float4(skybox_color.xyz, 1);// *global_ambient_adjustment;
+    skybox_color = pow(skybox_color, float4(2.2,2.2,2.2, 2.2));
+    return float4(skybox_color.xyz, 1);// *global_ambient_adjustment;
 }

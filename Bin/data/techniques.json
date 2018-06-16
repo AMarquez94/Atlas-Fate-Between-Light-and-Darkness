@@ -389,11 +389,12 @@
 	"pbr_vol_lights": {
 		"vs_file": "data/shaders/pbr.fx",
 		"ps_file": "data/shaders/pbr.fx",
-		"vs_entry_point": "VS_pass",
+		"vs_entry_point": "VS_VLight",
 		"ps_entry_point": "PS_VLight",
 		"vertex_type" : "PosNUvUvT",
-		"category" : "pbr_proc",
-		"z" : "disable_all",
-		"rs" : "default"
+    "z" : "test_but_no_write",
+		"category": "pbr_proc",
+		"blend" : "combinative",
+		"rs" : "cull_none"
 	}
 }

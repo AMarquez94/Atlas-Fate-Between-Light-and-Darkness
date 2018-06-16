@@ -11,6 +11,8 @@ class TCompLightSpot : public TCompCamera {
 	VEC4			color = VEC4(1, 1, 1, 1);
 	float			intensity = 1.0f;
 
+    CRenderMesh * spotcone;
+
 	// Shadows params
 	bool              shadows_enabled = false;    // Dynamic
 	bool              casts_shadows = false;      // Static
@@ -39,6 +41,7 @@ public:
 
 	void activate();
 	void generateShadowMap();
+    void generateVolume();
 	MAT44 getWorld();
 
 	void setColor(const VEC4 & new_color);

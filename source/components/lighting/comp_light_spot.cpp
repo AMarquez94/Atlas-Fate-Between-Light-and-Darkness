@@ -8,7 +8,7 @@
 #include "render/render_utils.h"
 #include "render/gpu_trace.h"
 #include "ctes.h"                     // texture slots
-
+#include "render/mesh/mesh_loader.h"
 DECL_OBJ_MANAGER("light_spot", TCompLightSpot);
 
 void TCompLightSpot::debugInMenu() {
@@ -64,6 +64,7 @@ void TCompLightSpot::load(const json& j, TEntityParseContext& ctx) {
         assert(is_ok);
     }
 
+    spotcone = loadMesh("data/meshes/conemesh123.mesh");
     shadows_enabled = casts_shadows;
 }
 
@@ -141,6 +142,23 @@ void TCompLightSpot::activate() {
     }
 
     cb_light.updateGPU();
+}
+
+
+
+void TCompLightSpot::generateVolume() {
+
+    activate();
+    const CRenderTechnique* technique = Resources.get("pbr_vol_lights.tech")->as<CRenderTechnique>();
+
+    TCompTransform * c_transform = get<TCompTransform>();
+
+    cb_object.obj_world = MAT44::CreateWorld(c_transform->getPosition(), c_transform->getUp(), -c_transform->getFront());
+    cb_object.obj_color = VEC4(1, 1, 1, 1);
+    cb_object.updateGPU();
+
+    technique->activate();
+    spotcone->activateAndRender();
 }
 
 // ------------------------------------------------------

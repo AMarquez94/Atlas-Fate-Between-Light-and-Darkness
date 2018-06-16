@@ -254,7 +254,7 @@ float4 projectColor(float3 wPos) {
   float4 light_projector_color = txLightProjector.Sample(samBorderLinear, pos_in_light_homo_space.xy);
 
   if (pos_in_light_proj_space.z < 0.)
-      return 1.f;
+      light_projector_color = float4(0, 0, 0, 0); //return 1.f;
 
   // Fade to zero in the last 1% of the zbuffer of the light
   //light_projector_color *= smoothstep(1.0f, 0.15f, pos_in_light_homo_space.z);
