@@ -44,9 +44,8 @@ void TCompLOD::load(const json& j, TEntityParseContext& ctx) {
     }
     // In case the children AABB are moving each frame
     children_dynamic = j.value("children_dynamic", false);
-    camera_name = j.value("camera", "test_camera_flyover");
     lod_threshold = j.value("threshold", lod_threshold);
-    h_camera = ctx.findEntityByName(camera_name);
+    h_camera = EngineCameras.getCurrentCamera();
 }
 
 void TCompLOD::updateAABBFromChildren() {

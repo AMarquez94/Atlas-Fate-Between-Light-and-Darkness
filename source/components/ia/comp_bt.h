@@ -21,6 +21,8 @@ private:
 
 protected:
 
+    bool pausedAI = false;
+
 	typedef BTNode::ERes(TCompIAController::*BTAction)(float dt);
 	typedef bool (TCompIAController::*BTCondition)(float dt);
 	typedef bool (TCompIAController::*BTAssert)(float dt);
@@ -45,6 +47,7 @@ protected:
 	BTNode *current;
 
 	void onMsgScenePaused(const TMsgScenePaused& msg);
+	void onMsgAIPaused(const TMsgAIPaused& msg);
 
 	bool isNodeSonOf(BTNode * son, const std::string& possibleParent);
   bool isNodeName(BTNode * node, const std::string& possibleName);

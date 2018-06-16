@@ -33,5 +33,7 @@ public:
     bool collisionDistance(const VEC3 & org, const VEC3 & dir, float maxDistance);
     void setGlobalPose(VEC3 newPos, VEC4 newRotation, bool autowake = false);
 
+    //void enableCollisionsAndQueries(bool disable);    /* To be tested (and understood :')) */
+
     static void registerMsgs();
 };

@@ -3,6 +3,7 @@
 #include "comp_rigidbody.h"
 #include "components/comp_transform.h"
 #include "physics/physics_collider.h"
+#include "components/comp_tags.h"
 
 DECL_OBJ_MANAGER("collider", TCompCollider);
 
@@ -97,12 +98,16 @@ void TCompCollider::onDestroy(const TMsgEntityDestroyed & msg)
 
 void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {
 
+    CEntity* e = CHandle(this).getOwner();
+    std::string trigger_name = e->getName();
 	std::map<uint32_t, TCompTransform*>::iterator it = handles.begin();
 	uint32_t ext_index = msg.h_other_entity.getExternalIndex();
 	if (handles.find(ext_index) == handles.end()){
 		CEntity * c_other = msg.h_other_entity;
 		TCompCollider * c_collider = c_other->get<TCompCollider>();
 		TCompTransform * c_transform = c_other->get<TCompTransform>();
+
+        TCompTags* tags = c_other->get<TCompTags>();
 		assert(c_transform);
 
 		handles[ext_index] = c_transform;
@@ -111,6 +116,18 @@ void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {
 		{
 			player_inside = true;
 		}
+
+        if (tags) {
+            if (tags->hasTag(getID("player"))) {
+                std::string params = trigger_name + "_player()";
+                EngineLogic.execEvent(CModuleLogic::Events::TRIGGER_ENTER, params);
+            }
+            else {
+                std::string other_name = c_other->getName();
+                std::string params = trigger_name + "_enemy(" + other_name + ")";
+                EngineLogic.execEvent(CModuleLogic::Events::TRIGGER_ENTER, params);
+            }
+        }
 	}
 
 	// Get all entities with given tag to test with
@@ -119,17 +136,33 @@ void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {
 
 void TCompCollider::onTriggerExit(const TMsgTriggerExit& msg) {
 
+    CEntity* e = CHandle(this).getOwner();
+    std::string trigger_name = e->getName();
+
 	auto it = handles.find(msg.h_other_entity.getExternalIndex());
 	if (it != handles.end())
 	{
 		handles.erase(it);
 		CEntity * c_other = msg.h_other_entity;
+        TCompTags* tags = c_other->get<TCompTags>();
 		TCompCollider * c_collider = c_other->get<TCompCollider>();
 
 		if (c_collider->config->group & FilterGroup::Player)
 		{
 			player_inside = false;
 		}
+
+        if (tags) {
+            if (tags->hasTag(getID("player"))) {
+                std::string params = trigger_name + "_player()";
+                EngineLogic.execEvent(CModuleLogic::Events::TRIGGER_EXIT, params);
+            }
+            else {
+                std::string other_name = c_other->getName();
+                std::string params = trigger_name + "_enemy(" + other_name + ")";
+                EngineLogic.execEvent(CModuleLogic::Events::TRIGGER_EXIT, params);
+            }
+        }
 	}
 }
 
@@ -153,3 +186,19 @@ void TCompCollider::setGlobalPose(VEC3 newPos, VEC4 newRotation, bool autowake)
   physx::PxTransform transform(physx::PxVec3(newPos.x, newPos.y, newPos.z), physx::PxQuat(newRotation.x, newRotation.y, newRotation.z, newRotation.w));
   config->actor->setGlobalPose(transform, autowake);
 }
+
+//void TCompCollider::enableCollisionsAndQueries(bool enable)
+//{
+//    /* Not working with player (probably because of the controller) / Not tested with other */
+//    const physx::PxU32 numShapes = config->actor->getNbShapes();
+//    std::vector<physx::PxShape*> shapes;
+//    shapes.resize(numShapes);
+//    config->actor->getShapes(&shapes[0], numShapes);
+//
+//    for (physx::PxU32 i = 0; i < numShapes; i++)
+//    {
+//        physx::PxShape* shape = shapes[i];
+//        shape->setFlag(physx::PxShapeFlag::eSIMULATION_SHAPE, enable);
+//        shape->setFlag(physx::PxShapeFlag::eSCENE_QUERY_SHAPE, enable);
+//    }   
+//}

@@ -16,14 +16,20 @@ void TCompPlayerAttackCast::debugInMenu() {
 }
 
 void TCompPlayerAttackCast::load(const json& j, TEntityParseContext& ctx) {
-  geometry.radius = j.value("radius", 2.f);
+  geometryAttack.radius = j.value("radiusAttack", 2.f);
+  geometryMoveObjects.radius = j.value("radiusMoveObject", 0.35f);
   attack_fov = deg2rad(j.value("attack_fov", 120.f));
+  moveObjects_fov = deg2rad(j.value("moveObjects_fov", 20.f));
 
   physx::PxFilterData pxFilterData;
+
   pxFilterData.word0 = FilterGroup::Enemy;
-  //pxFilterData.word1 = FilterGroup::Enemy;
   PxPlayerAttackQueryFilterData.data = pxFilterData;
   PxPlayerAttackQueryFilterData.flags = physx::PxQueryFlag::eDYNAMIC;
+
+  pxFilterData.word0 = FilterGroup::MovableObject;
+  PxPlayerMoveObjectsQueryFilterData.data = pxFilterData;
+  PxPlayerMoveObjectsQueryFilterData.flags = physx::PxQueryFlag::eDYNAMIC;
 }
 
 void TCompPlayerAttackCast::registerMsgs()
@@ -42,10 +48,10 @@ const std::vector<CHandle> TCompPlayerAttackCast::getEnemiesInRange()
 
   TCompTransform* tPos = get<TCompTransform>();
   
-  if (geometry.isValid()) {
+  if (geometryAttack.isValid()) {
 
     std::vector<physx::PxOverlapHit> hits;
-    if (EnginePhysics.Overlap(geometry, tPos->getPosition(), hits, PxPlayerAttackQueryFilterData)) {
+    if (EnginePhysics.Overlap(geometryAttack, tPos->getPosition(), hits, PxPlayerAttackQueryFilterData)) {
       for (int i = 0; i < hits.size(); i++) {
         CHandle hitCollider;
         hitCollider.fromVoidPtr(hits[i].actor->userData);
@@ -120,6 +126,53 @@ CHandle TCompPlayerAttackCast::closestEnemyToMerge()
     return closestEnemy;
 }
 
-void TCompPlayerAttackCast::update(float dt)
+const std::vector<CHandle> TCompPlayerAttackCast::getMovableObjectsInRange()
 {
+  std::vector<CHandle> movable_objects_in_range;
+
+  TCompTransform* tPos = get<TCompTransform>();
+
+  if (geometryMoveObjects.isValid()) {
+
+    std::vector<physx::PxOverlapHit> hits;
+    if (EnginePhysics.Overlap(geometryMoveObjects, tPos->getPosition(), hits, PxPlayerMoveObjectsQueryFilterData)) {
+      for (int i = 0; i < hits.size(); i++) {
+        CHandle hitCollider;
+        hitCollider.fromVoidPtr(hits[i].actor->userData);
+        if (hitCollider.isValid()) {
+          CHandle object = hitCollider.getOwner();
+          if (object.isValid()) {
+            movable_objects_in_range.push_back(object);
+          }
+        }
+      }
+    }
+  }
+
+  return movable_objects_in_range;
 }
+
+CHandle TCompPlayerAttackCast::getClosestMovableObjectInRange()
+{
+  bool found = false;
+  CHandle closestMovableObject = CHandle();
+  const std::vector<CHandle> movable_objects = getMovableObjectsInRange();
+
+  TCompTransform * mypos = get<TCompTransform>();
+
+  for (int i = 0; i < movable_objects.size() && !found; i++) {
+
+    CEntity * movable_object = movable_objects[i];
+    TCompTransform *ePos = movable_object->get<TCompTransform>();
+    TCompRigidbody *eRigidbody = movable_object->get<TCompRigidbody>();
+
+    if (mypos->isInHorizontalFov(ePos->getPosition(), moveObjects_fov) && eRigidbody->is_grounded) {
+      found = true;
+      closestMovableObject = movable_objects[i];
+    }
+  }
+  return closestMovableObject;
+}
+
+void TCompPlayerAttackCast::update(float dt)
+{}

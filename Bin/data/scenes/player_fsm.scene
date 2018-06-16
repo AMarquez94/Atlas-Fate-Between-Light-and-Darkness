@@ -2,7 +2,7 @@
 		"entity": {
 			"name": "The Player",
 			"transform": {
-				"pos": "-6 0 67"
+				"pos": "-8 0 65"
 			},
 			"render": [{
 					"mesh": "data/skeletons/player/body.mesh",
@@ -109,7 +109,9 @@
 			},
 			"shadow_controller": {},
 			"player_attack_cast": {
-				"radius": 2
+				"radiusAttack": 2,
+				"radiusMoveObject": 1,
+				"moveObjects_fov": 30
 			},
 			"fsm": {
 				"file": "data/fsm/player.fsm"
@@ -137,6 +139,9 @@
 			},
 			"noise_emitter": {
 				"radius": -1
+			},
+			"noclip_controller": {
+			
 			},
 			"tags":
 			[

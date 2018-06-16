@@ -89,7 +89,7 @@ void TCompCameraFlyover::update(float dt)
         c_transform->lookAt(newPos, newPos + newFront);
 
         if (btDebugGetPos.getsPressed()) {
-            dbg("Camera pos - \"%f %f %f)\"\n", newPos.x, newPos.y, newPos.z);
+            dbg("Camera pos - \"%f %f %f\"\n", newPos.x, newPos.y, newPos.z);
         }
     }
 

@@ -17,11 +17,17 @@ public:
   const bool canAttackEnemiesInRange(CHandle& closestEnemyToAttack = CHandle());
   CHandle closestEnemyToMerge();
 
+  const std::vector<CHandle> getMovableObjectsInRange();
+  CHandle getClosestMovableObjectInRange();
+
 private:
 
   physx::PxQueryFilterData PxPlayerAttackQueryFilterData;
-  physx::PxSphereGeometry geometry;
+  physx::PxQueryFilterData PxPlayerMoveObjectsQueryFilterData;
+  physx::PxSphereGeometry geometryAttack;
+  physx::PxSphereGeometry geometryMoveObjects;
   float attack_fov;
+  float moveObjects_fov;
 
   void onMsgScenePaused(const TMsgScenePaused & msg);
 };

@@ -98,7 +98,7 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 /* Player controller main update */
 void TCompTempPlayerController::update(float dt) {
 
-    if (!paused && !isConsoleOn) {
+    if (!paused && !isConsoleOn && !isInNoClipMode) {
 
         (this->*state)(dt);
 
@@ -125,6 +125,12 @@ void TCompTempPlayerController::registerMsgs() {
     DECL_MSG(TCompTempPlayerController, TMsgScenePaused, onPlayerPaused);
     DECL_MSG(TCompTempPlayerController, TMsgConsoleOn, onConsoleChanged);
     DECL_MSG(TCompTempPlayerController, TMsgShadowChange, onShadowChange);
+    DECL_MSG(TCompTempPlayerController, TMsgInfiniteStamina, onInfiniteStamina);
+    DECL_MSG(TCompTempPlayerController, TMsgPlayerImmortal, onPlayerImmortal);
+    DECL_MSG(TCompTempPlayerController, TMsgPlayerInShadows, onPlayerInShadows);
+    DECL_MSG(TCompTempPlayerController, TMsgSpeedBoost, onSpeedBoost);
+    DECL_MSG(TCompTempPlayerController, TMsgPlayerInvisible, onPlayerInvisible);
+    DECL_MSG(TCompTempPlayerController, TMsgNoClipToggle, onMsgNoClipToggle);
 }
 
 void TCompTempPlayerController::onShadowChange(const TMsgShadowChange& msg) {
@@ -133,6 +139,35 @@ void TCompTempPlayerController::onShadowChange(const TMsgShadowChange& msg) {
 
     //TCompEmissionController * e_controller = get<TCompEmissionController>();
     //e_controller->blend(merged_color, .5);
+}
+
+void TCompTempPlayerController::onInfiniteStamina(const TMsgInfiniteStamina & msg)
+{
+    infiniteStamina = !infiniteStamina;
+}
+
+void TCompTempPlayerController::onPlayerImmortal(const TMsgPlayerImmortal & msg)
+{
+    isImmortal = !isImmortal;
+}
+
+void TCompTempPlayerController::onPlayerInShadows(const TMsgPlayerInShadows & msg)
+{
+    hackShadows = !hackShadows;
+}
+
+void TCompTempPlayerController::onSpeedBoost(const TMsgSpeedBoost& msg) {
+    speedBoost = msg.speedBoost;
+}
+
+void TCompTempPlayerController::onPlayerInvisible(const TMsgPlayerInvisible & msg)
+{
+    isInvisible = !isInvisible;
+}
+
+void TCompTempPlayerController::onMsgNoClipToggle(const TMsgNoClipToggle & msg)
+{
+    isInNoClipMode = !isInNoClipMode;
 }
 
 void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
@@ -150,6 +185,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 
     physx::PxFilterData pxFilterData;
     pxFilterData.word1 = FilterGroup::Scenario;
+    //pxFilterData.word1 = FilterGroup::Scenario | FilterGroup::MovableObject/*  | FilterGroup::MovableObject | FilterGroup::DItem*/;
     PxPlayerDiscardQuery.data = pxFilterData;
 
     /* Initial reset messages */
@@ -161,7 +197,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
     rotationSpeed = 10.f;
     fallingDistance = 0.f;
     isInhibited = isGrounded = isMerged = false;
-    dbgDisableStamina = false;
+    infiniteStamina = false;
     paused = false;
 
     temp_deg = 0;
@@ -174,7 +210,7 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg) {
     if (msg.action_start != NULL) {
 
         state = msg.action_start;
-        currentSpeed = msg.speed;
+        currentSpeed = msg.speed * speedBoost;
 
         TCompRigidbody * rigidbody = get<TCompRigidbody>();
         TCompTransform * t_trans = get<TCompTransform>();
@@ -213,32 +249,32 @@ void TCompTempPlayerController::onStateFinish(const TMsgStateFinish& msg) {
 
 void TCompTempPlayerController::onPlayerHit(const TMsgPlayerHit & msg)
 {
-    CEntity* e = CHandle(this).getOwner();
-    TMsgSetFSMVariable groundMsg;
-    groundMsg.variant.setName("onDead");
-    groundMsg.variant.setBool(true);
-    e->sendMsg(groundMsg);
+    if (!isImmortal) {
+        CEntity* e = CHandle(this).getOwner();
+        TMsgSetFSMVariable groundMsg;
+        groundMsg.variant.setName("onDead");
+        groundMsg.variant.setBool(true);
+        e->sendMsg(groundMsg);
+    }
 }
 
 void TCompTempPlayerController::onPlayerKilled(const TMsgPlayerDead & msg)
 {
-    CEntity* e = CHandle(this).getOwner();
-    TMsgSetFSMVariable groundMsg;
-    groundMsg.variant.setName("onDead");
-    groundMsg.variant.setBool(true);
-    e->sendMsg(groundMsg);
+    if (!isImmortal) {
+        CEntity* e = CHandle(this).getOwner();
+        TMsgSetFSMVariable groundMsg;
+        groundMsg.variant.setName("onDead");
+        groundMsg.variant.setBool(true);
+        e->sendMsg(groundMsg);
+    }
 }
 
 void TCompTempPlayerController::onPlayerInhibited(const TMsgInhibitorShot & msg)
 {
     if (!isInhibited) {
         isInhibited = true;
-
-        //TCompEmissionController * e_controller = get<TCompEmissionController>();
-        //e_controller->blend(playerColor.colorInhib, .1f);
     }
     timesRemoveInhibitorKeyPressed = initialTimesToPressInhibitorRemoveKey;
-
 }
 
 void TCompTempPlayerController::onPlayerExposed(const TMsgPlayerIlluminated & msg)
@@ -455,16 +491,85 @@ void TCompTempPlayerController::removingInhibitorState(float dt) {
 
 }
 
+void TCompTempPlayerController::movingObjectState(float dt)
+{
+  float player_accel = currentSpeed * dt;
+
+  /* Set noise radius */
+  TCompNoiseEmitter * noiseEmitter = get<TCompNoiseEmitter>();
+  if (currentSpeed == 0) {
+    noiseEmitter->changeNoiseRadius(0);
+  }
+  else {
+    noiseEmitter->changeNoiseRadius(10);
+  }
+
+  TCompPlayerInput * player_input = get<TCompPlayerInput>();
+  TCompTransform * player_trans = get<TCompTransform>();
+
+  VEC3 front = player_trans->getFront();
+  VEC3 dir = player_input->movementValue.y * front;
+
+  markObjectAsMoving(true, dir, currentSpeed);
+
+  player_trans->setPosition(player_trans->getPosition() + dir * currentSpeed * dt);
+}
+
 void TCompTempPlayerController::resetRemoveInhibitor()
 {
     canRemoveInhibitor = true;
     timesRemoveInhibitorKeyPressed = initialTimesToPressInhibitorRemoveKey;
+}
 
-    //CEntity* player = CHandle(this).getOwner();
-    //TMsgSetFSMVariable inhibitorTryToRemove;
-    //inhibitorTryToRemove.variant.setName("inhibitorTryToRemove");
-    //inhibitorTryToRemove.variant.setBool(false);
-    //player->sendMsg(inhibitorTryToRemove);
+void TCompTempPlayerController::markObjectAsMoving(bool isBeingMoved, VEC3 newDirection, float newSpeed)
+{
+  TMsgObjectBeingMoved msg;
+  msg.hMovingObject = CHandle(this).getOwner();
+  if (isBeingMoved) {
+
+    TCompPlayerAttackCast * tCast = get<TCompPlayerAttackCast>();
+    CHandle newMovableObject = tCast->getClosestMovableObjectInRange();
+    if (newMovableObject.isValid()) {
+      TCompTransform* myPos = get<TCompTransform>();
+      CEntity* eNewMovableObject = newMovableObject;
+      TCompTransform *objectPos = eNewMovableObject->get<TCompTransform>();
+
+      VEC3 ppos = myPos->getPosition();
+      VEC3 opos = objectPos->getPosition();
+
+      VEC3 diffPos = opos - ppos;
+
+      if (fabsf(diffPos.x) > fabsf(diffPos.z)) {
+        /* Player has to be moved in z axis */
+        myPos->lookAt(myPos->getPosition() + VEC3(0, 0, diffPos.z), opos);
+      }
+      else {
+        /* Player has to be moved in x axis */
+        myPos->lookAt(myPos->getPosition() + VEC3(diffPos.x, 0, 0), opos);
+      }
+
+      movingObjectOffset = objectPos->getPosition() - myPos->getPosition();
+
+      if (movableObject != newMovableObject || newDirection != directionMovableObject || newSpeed != movingObjectSpeed) {
+        /* Object valid and some attributes changed */
+
+        directionMovableObject = newDirection;
+        movingObjectSpeed = newSpeed;
+        msg.isBeingMoved = true;
+        msg.direction = directionMovableObject;
+        msg.speed = movingObjectSpeed;
+        movableObject = newMovableObject;
+        movableObject.sendMsg(msg);
+      }
+    }
+  }
+  else {
+    msg.isBeingMoved = false;
+    movableObject.sendMsg(msg);
+    movableObject = CHandle();
+    directionMovableObject = VEC3::Zero;
+    movingObjectSpeed = 0;
+  }
 }
 
 
@@ -601,7 +706,10 @@ const bool TCompTempPlayerController::onMergeTest(float dt) {
     // Tests: inShadows + minStamina + grounded + button hold -> sent to fsm
     bool mergeTest = true;
     bool mergefall = fallingDistance > 0 && fallingDistance < maxFallingDistance;
-    mergeTest &= shadow_oracle->is_shadow;
+
+    if (!hackShadows) {
+        mergeTest &= shadow_oracle->is_shadow;
+    }
     mergeTest &= stamina > minStamina;
     mergeTest &= !isInhibited;
 
@@ -697,19 +805,21 @@ const bool TCompTempPlayerController::canAttackTest(float dt)
 /* Sets the player current stamina depending on player status */
 void TCompTempPlayerController::updateStamina(float dt) {
 
-    if (isMerged && !dbgDisableStamina) {
+    if (isMerged) {
 
         // Determine stamina decreasing ratio multiplier depending on movement
         TCompRigidbody *c_my_rigidbody = get<TCompRigidbody>();
         TCompTransform *c_my_transform = get<TCompTransform>();
         float staminaMultiplier = c_my_rigidbody->lastFramePosition == c_my_transform->getPosition() ? decrStaticStamina : 1;
 
-        // Determine stamina decreasing ratio depending on players up vector.
-        if (fabs(EnginePhysics.gravity.Dot(c_my_rigidbody->GetUpVector())) < mergeAngle) {
-            stamina = Clamp(stamina - (decrStaminaVertical * staminaMultiplier * dt), minStamina, maxStamina);
-        }
-        else {
-            stamina = Clamp(stamina - (decrStaminaHorizontal * staminaMultiplier * dt), minStamina, maxStamina);
+        if (!infiniteStamina) {
+            // Determine stamina decreasing ratio depending on players up vector.
+            if (fabs(EnginePhysics.gravity.Dot(c_my_rigidbody->GetUpVector())) < mergeAngle) {
+                stamina = Clamp(stamina - (decrStaminaVertical * staminaMultiplier * dt), minStamina, maxStamina);
+            }
+            else {
+                stamina = Clamp(stamina - (decrStaminaHorizontal * staminaMultiplier * dt), minStamina, maxStamina);
+            }
         }
     }
     else {

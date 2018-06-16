@@ -4,12 +4,12 @@
 #include <experimental/filesystem>
 #include "modules/game/module_game_manager.h"
 #include <iostream>
-
 #include "components/lighting/comp_light_dir.h"
 #include "components/lighting/comp_light_spot.h"
 #include "components/lighting/comp_light_point.h"
-
+#include "components/postfx/comp_render_ao.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
+
 bool CModuleLogic::start() {
 
     BootLuaSLB();
@@ -99,20 +99,39 @@ void CModuleLogic::publishClasses() {
       .property("inhibited", &TCompTempPlayerController::isInhibited);
 
     /* Global functions */
+
+    // Utilities
     m->set("getConsole", SLB::FuncCall::create(&getConsole));
     m->set("getLogic", SLB::FuncCall::create(&getLogic));
     m->set("getPlayerController", SLB::FuncCall::create(&getPlayerController));
     m->set("execDelayedScript", SLB::FuncCall::create(&execDelayedScript));
     m->set("pauseGame", SLB::FuncCall::create(&pauseGame));
     m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
+    m->set("deleteEnemies", SLB::FuncCall::create(&deleteEnemies));
+
+    // Camera
     m->set("blendInCamera", SLB::FuncCall::create(&blendInCamera));
     m->set("blendOutCamera", SLB::FuncCall::create(&blendOutCamera));
-    m->set("setInfiniteStamine", SLB::FuncCall::create(&setInfiniteStamine));
+
+    // Player hacks
+    m->set("infiniteStamineToggle", SLB::FuncCall::create(&infiniteStamineToggle));
+    m->set("immortal", SLB::FuncCall::create(&immortal));
+    m->set("inShadows", SLB::FuncCall::create(&inShadows));
+    m->set("speedBoost", SLB::FuncCall::create(&speedBoost));
+    m->set("playerInvisible", SLB::FuncCall::create(&playerInvisible));
+    m->set("noClipToggle", SLB::FuncCall::create(&noClipToggle));
+
+    // postfx hacks
+    m->set("postFXToggle", SLB::FuncCall::create(&postFXToggle));
+
+    // Other
+    m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
+    m->set("shadowsToggle", SLB::FuncCall::create(&shadowsToggle));
+    m->set("debugToggle", SLB::FuncCall::create(&debugToggle));
     m->set("spawn", SLB::FuncCall::create(&spawn));
     m->set("bind", SLB::FuncCall::create(&bind));
-    m->set("loadscene", SLB::FuncCall::create(&loadscene));
     m->set("loadCheckpoint", SLB::FuncCall::create(&loadCheckpoint));
-    // Global toggles
+    m->set("loadscene", SLB::FuncCall::create(&loadscene));
     m->set("cg_drawfps", SLB::FuncCall::create(&cg_drawfps));
     m->set("cg_drawlights", SLB::FuncCall::create(&cg_drawlights));
 }
@@ -192,6 +211,23 @@ bool CModuleLogic::execEvent(Events event, const std::string & params, float del
           return execScript("onSceneEnd_" + params + "()").success;
         }
         break;
+
+    case Events::TRIGGER_ENTER:
+        if (delay > 0) {
+            return execScriptDelayed("onTriggerEnter_" + params, delay);
+        }
+        else {
+            return execScript("onTriggerEnter_" + params).success;
+        }
+        break;
+    case Events::TRIGGER_EXIT:
+        if (delay > 0) {
+            return execScriptDelayed("onTriggerExit_" + params, delay);
+        }
+        else {
+            return execScript("onTriggerExit_" + params).success;
+        }
+        break;
     default:
 
         break;
@@ -230,10 +266,18 @@ void execDelayedScript(const std::string& script, float delay)
 void pauseEnemies(bool pause) {
 
     std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
-    TMsgScenePaused msg;
+    TMsgAIPaused msg;
     msg.isPaused = pause;
     for (int i = 0; i < enemies.size(); i++) {
         enemies[i].sendMsg(msg);
+    }
+}
+
+void deleteEnemies()
+{
+    VHandles enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+    for (auto h : enemies) {
+        h.destroy();
     }
 }
 
@@ -244,9 +288,50 @@ void pauseGame(bool pause){
     EngineEntities.broadcastMsg(msg);
 }
 
-void setInfiniteStamine(bool set){
+void infiniteStamineToggle(){
+    TMsgInfiniteStamina msg;
+    CHandle h = getEntityByName("The Player");
+    h.sendMsg(msg);
+}
 
-    //TODO: implement
+void immortal() {
+    CHandle h = getEntityByName("The Player");
+    TMsgPlayerImmortal msg;
+    h.sendMsg(msg);
+}
+
+void inShadows() {
+    CHandle h = getEntityByName("The Player");
+    TMsgPlayerInShadows msg;
+    h.sendMsg(msg);
+}
+
+void speedBoost(const float speed) {
+    CHandle h = getEntityByName("The Player");
+    TMsgSpeedBoost msg;
+    msg.speedBoost = speed;
+    h.sendMsg(msg);
+}
+
+void playerInvisible(){
+    CHandle h = getEntityByName("The Player");
+    TMsgPlayerInvisible msg;
+    h.sendMsg(msg);
+}
+
+void noClipToggle()
+{
+    CHandle h = getEntityByName("The Player");
+    TMsgSystemNoClipToggle msg;
+    h.sendMsg(msg);
+}
+
+void lanternsDisable(bool disable) {
+    VHandles patrols = CTagsManager::get().getAllEntitiesByTag(getID("patrol"));
+    TMsgLanternsDisable msg{ disable };
+    for (auto h : patrols) {
+        h.sendMsg(msg);
+    }
 }
 
 void blendInCamera(const std::string & cameraName, float blendInTime){
@@ -283,6 +368,26 @@ void loadCheckpoint()
   gameManager.loadCheckpoint();
 }
 
+void shadowsToggle()
+{
+    EngineRender.setGenerateShadows(!EngineRender.getGenerateShadows());
+}
+
+void postFXToggle() {
+    //Deactivating AO
+    EngineRender.setGeneratePostFX(!EngineRender.getGeneratePostFX());
+
+    //Deactivating rest of postFX
+    getObjectManager<TCompRenderAO>()->forEach([&](TCompRenderAO* c) {
+        c->setState(!c->getState());
+    });
+}
+
+void debugToggle()
+{
+    EngineRender.setDebugMode(!EngineRender.getDebugMode());
+}
+
 void destroy() {
 
 
@@ -307,7 +412,6 @@ void unbind(const std::string& key, const std::string& script) {
 
 // Toggle CVARS.
 void cg_drawfps(bool value) {
-
     CEngine::get().getGameManager().config.drawfps = value;
 }
 

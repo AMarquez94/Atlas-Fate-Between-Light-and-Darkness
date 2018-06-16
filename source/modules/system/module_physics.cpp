@@ -47,7 +47,7 @@ bool CModulePhysics::start()
         fatal("PxCreatePhysics failed");
 
     PxSceneDesc sceneDesc(gPhysics->getTolerancesScale());
-    sceneDesc.gravity = PxVec3(0, 0, 0);
+    sceneDesc.gravity = PxVec3(0, -9.8f, 0);
     sceneDesc.cpuDispatcher = gDispatcher;
     sceneDesc.filterShader = CustomFilterShader;
     sceneDesc.flags = PxSceneFlag::eENABLE_KINEMATIC_PAIRS | PxSceneFlag::eENABLE_KINEMATIC_STATIC_PAIRS | PxSceneFlag::eENABLE_ACTIVE_ACTORS;
@@ -62,7 +62,7 @@ bool CModulePhysics::start()
         pvdClient->setScenePvdFlag(PxPvdSceneFlag::eTRANSMIT_SCENEQUERIES, true);
     }
 
-    CPhysicsCollider::default_material = gPhysics->createMaterial(0.5f, 0.5f, 0.6f);
+    CPhysicsCollider::default_material = gPhysics->createMaterial(0.5f, 0.5f, 0.2f);
     mControllerManager = PxCreateControllerManager(*gScene);
     gScene->setSimulationEventCallback(&customSimulationEventCallback);
     PxInitExtensions(*gPhysics, gPvd);
@@ -236,4 +236,22 @@ bool CModulePhysics::Overlap(physx::PxGeometry& geometry, VEC3 pos, std::vector<
     }
 
     return status;
+}
+
+PxFixedJoint* CModulePhysics::CreateFixedJoint(physx::PxRigidActor * dynamicActor, const physx::PxTransform & dynamicActorTransform, physx::PxRigidActor * otherActor, const physx::PxTransform & otherActorTransform)
+{
+  /* TODO: not tested */
+  physx::PxPhysics* physxFactory = getPhysxFactory();
+  physx::PxFixedJoint* joint = physx::PxFixedJointCreate(*physxFactory, dynamicActor, dynamicActorTransform, otherActor, otherActorTransform);
+  joint->setConstraintFlag(PxConstraintFlag::eVISUALIZATION, true);
+  return joint;
+}
+
+physx::PxDistanceJoint * CModulePhysics::CreateDistanceJoint(physx::PxRigidActor * dynamicActor, const physx::PxTransform & dynamicActorTransform, physx::PxRigidActor * otherActor, const physx::PxTransform & otherActorTransform)
+{
+  /* TODO: not tested */
+  physx::PxPhysics* physxFactory = getPhysxFactory();
+  physx::PxDistanceJoint* joint = physx::PxDistanceJointCreate(*physxFactory, dynamicActor, dynamicActorTransform, otherActor, otherActorTransform);
+  joint->setConstraintFlag(PxConstraintFlag::eVISUALIZATION, true);
+  return joint;
 }

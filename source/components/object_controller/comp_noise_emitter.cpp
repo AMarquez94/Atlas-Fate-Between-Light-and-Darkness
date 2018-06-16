@@ -43,6 +43,11 @@ void TCompNoiseEmitter::makeNoise(float noiseRadius, float timeToRepeat, bool is
   _onceNoiseMade = false;
 }
 
+void TCompNoiseEmitter::changeNoiseRadius(float newRadius)
+{
+  emitter_sphere.radius = newRadius;
+}
+
 
 
 void TCompNoiseEmitter::update(float dt)
