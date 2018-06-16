@@ -14,7 +14,6 @@ struct TCompFog : public TCompBase {
   const CRenderTechnique*       tech = nullptr;
   const CRenderMesh*            mesh = nullptr;
   CRenderToTexture*             rt = nullptr;
-  const CTexture*               lut1 = nullptr;
 
   void load(const json& j, TEntityParseContext& ctx);
   void debugInMenu();

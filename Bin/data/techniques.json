@@ -395,6 +395,9 @@
     "z" : "test_but_no_write",
 		"category": "pbr_proc",
 		"blend" : "combinative",
-		"rs" : "cull_none"
+		"rs" : "cull_none",
+				"textures": {
+			"noise": "data/textures/noise_light.dds"
+		}
 	}
 }
