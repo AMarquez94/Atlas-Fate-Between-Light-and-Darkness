@@ -88,6 +88,11 @@ end
 function cg_drawlights(type)
 	SLB.cg_drawlights(type)
 end
+
 function spawn()
 	SLB.spawn()
+end
+
+function renderNavmeshToggle()
+	SLB.renderNavmeshToggle()
 end

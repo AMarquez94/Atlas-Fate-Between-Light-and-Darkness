@@ -215,6 +215,7 @@
     <ClCompile Include="modules\system\module_sound.cpp" />
     <ClCompile Include="navmesh\navmesh.cpp" />
     <ClCompile Include="navmesh\navmesh_query.cpp" />
+    <ClCompile Include="navmesh\navmesh_render.cpp" />
     <ClCompile Include="navmesh\recast\DebugDraw.cpp" />
     <ClCompile Include="navmesh\recast\DetourAlloc.cpp" />
     <ClCompile Include="navmesh\recast\DetourCommon.cpp" />
@@ -425,6 +426,7 @@
     <ClInclude Include="modules\system\module_sound.h" />
     <ClInclude Include="navmesh\navmesh.h" />
     <ClInclude Include="navmesh\navmesh_query.h" />
+    <ClInclude Include="navmesh\navmesh_render.h" />
     <ClInclude Include="navmesh\recast\DebugDraw.h" />
     <ClInclude Include="navmesh\recast\DetourAlloc.h" />
     <ClInclude Include="navmesh\recast\DetourAssert.h" />

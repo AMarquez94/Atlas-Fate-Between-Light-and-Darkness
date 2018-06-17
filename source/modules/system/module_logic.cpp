@@ -134,6 +134,7 @@ void CModuleLogic::publishClasses() {
     m->set("loadscene", SLB::FuncCall::create(&loadscene));
     m->set("cg_drawfps", SLB::FuncCall::create(&cg_drawfps));
     m->set("cg_drawlights", SLB::FuncCall::create(&cg_drawlights));
+    m->set("renderNavmeshToggle", SLB::FuncCall::create(&renderNavmeshToggle));
 }
 
 /* Check if it is a fast format command */
@@ -408,6 +409,10 @@ void unbind(const std::string& key, const std::string& script) {
     std::map<int, std::string>::iterator it;
     it = EngineLogic._bindings.find(id);
     EngineLogic._bindings.erase(it, EngineLogic._bindings.end());
+}
+
+void renderNavmeshToggle() {
+    EngineNavmeshes.renderNamvesh = !EngineNavmeshes.renderNamvesh;
 }
 
 // Toggle CVARS.

@@ -91,6 +91,7 @@ void loadCheckpoint();
 void shadowsToggle();
 void debugToggle();
 void postFXToggle();
+void renderNavmeshToggle();
 
 // Extra cvar commands
 void cg_drawfps(bool value);

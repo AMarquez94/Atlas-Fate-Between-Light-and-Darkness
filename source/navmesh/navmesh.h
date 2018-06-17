@@ -4,6 +4,7 @@
 #include "navmesh/recast/Recast.h"
 #include "navmesh/recast/DetourNavMesh.h"
 #include "navmesh/recast/DetourNavMeshQuery.h"
+#include "navmesh/navmesh_render.h"
 
 class CNavmesh {
 
@@ -28,11 +29,13 @@ public:
 
   dtNavMesh*            m_navMesh;
   dtNavMeshQuery*       m_navQuery;
+  DebugDrawGL*           m_draw;
 
   CNavmesh( );
   void loadAll(const char* path);
   void prepareQueries( );
   void destroy( );
+  void render();
 };
 
 #endif
