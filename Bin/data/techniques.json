@@ -190,7 +190,7 @@
 		"category" : "pbr_proc",
 		"z" : "inverse_test_no_write",
 		"rs_config" : "reverse_culling",
-		"blend" : "additive"
+		"blend": "additive"
 	},
 	"pbr_projection": {
 		"vs_file": "data/shaders/light_projection.fx",
@@ -234,7 +234,7 @@
 		"vertex_type": "PosClr",
 		"category": "fx",
 		"z": "disable_all",
-		"rs": "default",
+		"rs_config": "default",
 		"blend": "default"
 	},
 	"blur_radial": {
@@ -373,7 +373,7 @@
 		"vertex_type": "PosClr",
 		"category": "gui",
 		"z": "disable_all",
-		"rs": "cull_none",
+		"rs_config": "cull_none",
 		"blend": "combinative"
 	},
 	"particles" : {
@@ -383,7 +383,7 @@
 		"vertex_type" : "PosClr",
 		"category" : "particles",
 		"z" : "test_but_no_write",
-		"rs" : "cull_none",
+		"rs_config" : "cull_none",
 		"blend" : "additive_by_src_alpha"
 	},
 	"pbr_vol_lights": {
@@ -399,5 +399,13 @@
 				"textures": {
 			"noise": "data/textures/noise_light.dds"
 		}
+	},
+	"postfx_vol_lights": {
+		"vs_file": "data/shaders/screen_quad.fx",
+		"ps_file": "data/shaders/postfx.fx",
+		"ps_entry_point": "PS_VLight",
+		"vertex_type": "PosClr",
+		"category": "fx",
+		"z" : "disable_all"
 	}
 }

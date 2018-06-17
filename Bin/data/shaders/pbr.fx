@@ -415,7 +415,8 @@ float4 PS_dir_lights(in float4 iPosition : SV_Position) : SV_Target
 }
 
 float4 PS_spot_lights(in float4 iPosition : SV_Position) : SV_Target
-{ 
+{
+
 	float3 out_lightdir;
 	float4 light_color = shade(iPosition, out_lightdir, true);
 
@@ -471,27 +472,27 @@ float4 PS_VLight(
     , float3 iWorldPos : TEXCOORD2
 ) : SV_Target
 {
-
+   
     // Sampling planes volumetric lights based shader.
-    float camera_dist = length(iWorldPos - light_pos.xyz);
     float shadow_factor = computeShadowFactor(iWorldPos);
-    float val = 1 / (1 + (camera_dist * camera_dist));
+    float camera_dist = length(iWorldPos - light_pos.xyz);
+    float val =(1 / (1 + (camera_dist * camera_dist)));
 
     // From wPos to Light
     float3 light_dir_full = light_pos.xyz - iWorldPos;
     float  distance_to_light = length(light_dir_full);
     float3 light_dir = light_dir_full / distance_to_light;
-    float4 noise0 = txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.001 * global_world_time * float2(.5, 0));      // -1..1
-    float4 noise1 = txNoiseMap.Sample(samLinear, iTex0 * 2.0 + 0.041 * global_world_time * float2(.5, 0.1));      // -1..1
-    float4 noise2 = txNoiseMap.Sample(samLinear, iTex0 * 4 + 0.004 * global_world_time * float2(.55, -0.123));      // -1..1
+    float4 noise0 = txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.002 * global_world_time * float2(.5, 0));
+    float4 noise1 = txNoiseMap.Sample(samLinear, iTex0 * 2.0 + 0.081 * global_world_time * float2(.5, 0.1));
+    float4 noise2 = txNoiseMap.Sample(samLinear, iTex0 * 4 + 0.008 * global_world_time * float2(.55, -0.123));
 
     float theta = dot(light_dir, -light_direction.xyz);
-    float att_spot = clamp((theta - light_outer_cut) / (light_inner_cut - light_outer_cut), 0, 1);
-    float clamp_spot = theta > light_angle ? 1.0 * att_spot : 0.0; // spot factor 
-    float noise_clamp = 9 * (noise0.x * noise1.y * noise2.z);
+    float att_spot = clamp((theta - light_outer_cut) / 0.38, 0, 1);
+    float clamp_spot = theta > light_angle ? att_spot : 0.0; // spot factor 
+    float noise_clamp = 9 * (noise0.x * noise1.x * noise2.x);
 
-    //float4 final_color = float4(1, 1, 1, 1) * shadow_factor * projectColor(iWorldPos) *  noise0.r * noise1.g;
-    return float4(float3(1, 1, 1), clamp_spot * val * noise_clamp) *shadow_factor * projectColor(iWorldPos);
+    return float4(light_color.xyz, clamp_spot * val * noise_clamp) * shadow_factor * projectColor(iWorldPos);
+
     /*
 
     //Version 1 volumetric lights using mesh.

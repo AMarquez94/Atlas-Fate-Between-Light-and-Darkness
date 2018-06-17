@@ -24,6 +24,7 @@
 #include "components/postfx/comp_render_bloom.h"
 #include "components/postfx/comp_color_grading.h"
 #include "components/postfx/comp_fog.h"
+#include "components/postfx/comp_volume_light.h"
 
 //--------------------------------------------------------------------------------------
 
@@ -280,16 +281,6 @@ void CModuleRender::generateFrame() {
 		cb_globals.updateGPU();
 		deferred.render(rt_main, h_e_camera);
 
-        getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
-
-            c->generateVolume();
-        });
-
-        getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
-
-            c->generateVolume();
-        });
-
         CRenderManager::get().renderCategory("particles");
 		CRenderManager::get().renderCategory("distorsions");
 
@@ -324,6 +315,10 @@ void CModuleRender::generateFrame() {
             TCompFog * c_render_fog = e_cam->get< TCompFog >();
             if (c_render_fog)
                 curr_rt = c_render_fog->apply(curr_rt);
+
+            //TCompVolumeLight* c_volume_light = e_cam->get< TCompVolumeLight >();
+            //if (c_volume_light)
+            //    curr_rt = c_volume_light->apply(curr_rt);
 
             TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
             if (c_render_outlines)

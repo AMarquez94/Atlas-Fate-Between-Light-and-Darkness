@@ -25,3 +25,49 @@ float4 PS_PostFXFog(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOO
 }
 
 // Adaptative lighting methods
+
+float NUM_SAMPLES = 10;
+float Density = 1;
+
+float4 PS_VLight( in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
+{
+	/*float2 deltaTexCoord = (iTex0 - ScreenLightPos.xy);
+	deltaTexCoord *= 1.0f / NUM_SAMPLES * Density;
+
+	float3 color = txAlbedo.Sample(samClampLinear, iTex0.xy);
+	half illuminationDecay = 1.0f;
+	
+	for (int i = 0; i < NUM_SAMPLES; i++)
+  {
+    iTex0 -= deltaTexCoord;
+		half3 sample = txAlbedo.Sample(samClampLinear, iTex0.xy);
+		
+		sample *= illuminationDecay * Weight;
+    color += sample;
+    illuminationDecay *= Decay;
+  }
+  // Output final color with a further scale control factor.
+  return float4( color * Exposure, 1);
+	 
+
+  // Store initial sample.
+  // Set up illumination decay factor.
+  // Evaluate summation from Equation 3 NUM_SAMPLES iterations.
+   for (int i = 0; i < NUM_SAMPLES; i++)
+  {
+    // Step sample location along ray.
+    texCoord -= deltaTexCoord;
+    // Retrieve sample at new location.
+   half3 sample = tex2D(frameSampler, texCoord);
+    // Apply sample attenuation scale/decay factors.
+    sample *= illuminationDecay * Weight;
+    // Accumulate combined color.
+    color += sample;
+    // Update exponential decay factor.
+    illuminationDecay *= Decay;
+  }
+  // Output final color with a further scale control factor.
+   return float4( color * Exposure, 1);
+	 */
+	return float4(1,0,0,1);
+}

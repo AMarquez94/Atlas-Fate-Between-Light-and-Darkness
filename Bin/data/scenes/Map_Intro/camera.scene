@@ -23,6 +23,9 @@
 			"fog": {
 				"enabled": true
 			},
+			"volume_light": {
+				"enabled": true
+			},
 			"culling": true
 		}
 	}, {
@@ -56,6 +59,9 @@
 				"lut": "data/textures/lut/RGBTable16x1.dds"
 			},
 						"fog": {
+				"enabled": true
+			},
+						"volume_light": {
 				"enabled": true
 			},
 			"tags": ["main_camera"]
@@ -208,6 +214,9 @@
 				"enabled": true,
 				"max_steps": 4,
 				"rt_name": "Bloom"
+			},
+						"volume_light": {
+				"enabled": true
 			}
 		}
 	}, {

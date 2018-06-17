@@ -26,6 +26,7 @@
 			"data/scenes/ZoneA/camera.scene",
 			"data/scenes/ZoneA/sp_dynamic_lights.scene",
 			"data/scenes/ZoneA/map_zone_a.scene",
+			"data/scenes/ZoneA/enemy.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene"
 			
 		]

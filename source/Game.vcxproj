@@ -147,6 +147,7 @@
     <ClCompile Include="components\postfx\comp_render_ao.cpp" />
     <ClCompile Include="components\postfx\comp_render_bloom.cpp" />
     <ClCompile Include="components\postfx\comp_render_outlines.cpp" />
+    <ClCompile Include="components\postfx\comp_volume_light.cpp" />
     <ClCompile Include="components\skeleton\comp_animator.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
@@ -337,6 +338,7 @@
     <ClInclude Include="components\postfx\comp_render_blur.h" />
     <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
     <ClInclude Include="components\postfx\comp_render_outlines.h" />
+    <ClInclude Include="components\postfx\comp_volume_light.h" />
     <ClInclude Include="components\skeleton\cal3d2engine.h" />
     <ClInclude Include="components\skeleton\comp_animator.h" />
     <ClInclude Include="components\skeleton\comp_bone_tracker.h" />

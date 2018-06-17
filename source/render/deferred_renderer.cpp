@@ -200,6 +200,21 @@ void CDeferredRenderer::renderSpotLights() {
 	});
 }
 
+// -------------------------------------------------------------------------
+void CDeferredRenderer::renderVolumes() {
+
+    CTraceScoped gpu_scope("renderSpotLights");
+
+    // Activate tech for the light dir 
+    auto technique = Resources.get("pbr_vol_lights.tech")->as<CRenderTechnique>();
+    technique->activate();
+
+    getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
+
+        c->generateVolume();
+    });
+}
+
 // --------------------------------------
 void CDeferredRenderer::renderAO(CHandle h_camera) const {
 
@@ -287,6 +302,7 @@ void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camer
 	// Do the same with the acc light
 	CTexture::setNullTexture(TS_DEFERRED_ACC_LIGHTS);
 	renderAccLight();
+    renderVolumes();
 
 	// Now dump contents to the destination buffer.
 	rt_destination->activateRT();

@@ -151,27 +151,24 @@ void TCompLightSpot::activate() {
 void TCompLightSpot::generateVolume() {
 
     activate();
-    const CRenderTechnique* technique = Resources.get("pbr_vol_lights.tech")->as<CRenderTechnique>();
+    //const CRenderTechnique* technique = Resources.get("pbr_vol_lights.tech")->as<CRenderTechnique>();
     TCompTransform * c_transform = get<TCompTransform>();
 
     float p_distance = (getZFar() - getZNear()) / num_samples;
     VEC3 midpos = c_transform->getPosition() + c_transform->getFront() * (getZFar() - getZNear()) * .5f;
     CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
-    assert(technique && spotcone && eCurrentCamera);
     TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
-    assert(camera);
 
     const VEC3 cameraPos = camera->getPosition();
     const VEC3 cameraUp = camera->getUp();
-    VEC3 front = VEC3(1, 0, 0);
-    technique->activate();
+    //technique->activate();
+
     for (int i = 0; i < num_samples * .5f; i++) {
 
         VEC3 pos = c_transform->getPosition();
         VEC3 plane_pos = midpos + camera->getFront() * p_distance * i;
-        //VEC3 plane_pos = VEC3(0, 0, i * 0.1f);
         MAT44 bb = MAT44::CreateWorld(plane_pos, -camera->getUp(), -camera->getFront());
-        MAT44 sc = MAT44::CreateScale(50.f);
+        MAT44 sc = MAT44::CreateScale(40.f);
 
         cb_object.obj_world = sc * bb;
         cb_object.obj_color = VEC4(1, 1, 1, 1);
@@ -184,9 +181,8 @@ void TCompLightSpot::generateVolume() {
 
         VEC3 pos = c_transform->getPosition();
         VEC3 plane_pos = midpos + -camera->getFront() * p_distance * i;
-        //VEC3 plane_pos = VEC3(0, 0, i * 0.1f);
         MAT44 bb = MAT44::CreateWorld(plane_pos, -camera->getUp(), -camera->getFront());
-        MAT44 sc = MAT44::CreateScale(50.f);
+        MAT44 sc = MAT44::CreateScale(40.f);
 
         cb_object.obj_world = sc * bb;
         cb_object.obj_color = VEC4(1, 1, 1, 1);
