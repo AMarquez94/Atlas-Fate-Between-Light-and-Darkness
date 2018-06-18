@@ -133,5 +133,15 @@
 	"name": "btConsole",
 	"all": false,
 	"buttons": ["oem_4"]
+  },
+  {
+    "name": "btMouseRClick",
+    "all": false,
+    "buttons": [ "mouse_right" ]
+  },
+  {
+    "name": "btMouseLClick",
+    "all": false,
+    "buttons": [ "mouse_left" ]
   }
 ]

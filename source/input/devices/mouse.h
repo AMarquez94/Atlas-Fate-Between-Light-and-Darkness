@@ -13,6 +13,7 @@ namespace Input
 		virtual void updateMouseData(float delta, TInterface_Mouse& data) override;
 
 		void setButton(EMouseButton bt, bool pressed);
+        VEC2 getPosition() { return _position; };
 		void setPosition(float posX, float posY);
 		void setWheelDelta(float delta);
 

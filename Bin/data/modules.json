@@ -17,7 +17,8 @@
 		"map_intro",
 		"level_select",
 		"game_over",
-		"instancing"
+		"instancing",
+		"debug"
 	],
 	"render":
 	[
