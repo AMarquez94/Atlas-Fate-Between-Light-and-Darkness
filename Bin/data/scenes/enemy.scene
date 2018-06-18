@@ -82,5 +82,28 @@
 				"isSlept": false
 			}
 		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/drone.prefab",
+			"name": "Drone 1",
+			"transform": {
+				"pos": "-25 10 86",
+				"lookat": "-24 10 86"
+			},
+			"ai_drone": {
+				"startLightsOn": false,
+				"waypoints": [{
+						"position": "-25 10 86",
+						"lookAt": "1 0 0",
+						"minTime": 10
+					}, {
+						"position": "-27 10 90",
+						"lookAt": "-1 0 0",
+						"minTime": 10
+					}
+				]
+			}
+		}
 	}
 ]

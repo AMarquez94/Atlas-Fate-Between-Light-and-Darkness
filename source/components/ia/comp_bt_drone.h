@@ -10,7 +10,8 @@ private:
 
     /* Atributes */
 
-    float speed = 3.f;
+		float force = 10.f;
+    //float speed = 3.f;
     float rotationSpeedChaseDeg = 359.f;
     float rotationSpeedChase;
     std::string entityToChase = "The Player";
@@ -42,19 +43,12 @@ private:
 
     float rotationSpeedNoise = deg2rad(120.f);
 
-    VEC3 pushedDirection = VEC3::Zero;
-    float pushedTime = 0.f;
-
     DECL_SIBLING_ACCESS();
 
     void onMsgEntityCreated(const TMsgEntityCreated& msg);
     void onMsgPlayerDead(const TMsgPlayerDead& msg);
-    void onMsgMimeticStunned(const TMsgEnemyStunned& msg);
+    void onMsgDroneStunned(const TMsgEnemyStunned& msg);
     void onMsgNoiseListened(const TMsgNoiseMade& msg);
-    void onMsgPhysxContact(const TMsgPhysxContact& msg);
-
-    /* Aux functions */
-    void setGravityToFaceWall();
 
     //load
     void loadActions() override;
@@ -93,6 +87,7 @@ public:
     BTNode::ERes actionGoToWpt(float dt);
     BTNode::ERes actionResetTimer(float dt);
     BTNode::ERes actionWaitInWpt(float dt);
+    BTNode::ERes actionNextWpt(float dt);
 
     /* CONDITIONS */
     bool conditionHasBeenStunned(float dt);
@@ -115,5 +110,4 @@ public:
     static void registerMsgs();
 
     void playAnimationByName(const std::string & animationName) override;
-
 };

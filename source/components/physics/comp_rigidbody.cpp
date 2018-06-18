@@ -112,6 +112,14 @@ void TCompRigidbody::setLinearVelocity(VEC3 vel, bool autowake)
   }
 }
 
+void TCompRigidbody::addForce(VEC3 force)
+{
+	TCompCollider * c_collider = get<TCompCollider>();
+	physx::PxRigidBody * rigidbody = (physx::PxRigidBody*) c_collider->config->actor;
+	physx::PxVec3 pxforce = VEC3_TO_PXVEC3(force);
+	rigidbody->addForce(pxforce, physx::PxForceMode::eFORCE);
+}
+
 void TCompRigidbody::setKinematic(bool isKinematic)
 {
   if (!is_controller) {

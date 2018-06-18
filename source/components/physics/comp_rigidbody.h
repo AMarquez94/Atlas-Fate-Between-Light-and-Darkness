@@ -50,6 +50,7 @@ public:
 	static void registerMsgs();
 
   void setLinearVelocity(VEC3 vel, bool autowake = false);
+	void addForce(VEC3 force);
   void setKinematic(bool isKinematic);
 
   void createJoint(CHandle entityToJoin);

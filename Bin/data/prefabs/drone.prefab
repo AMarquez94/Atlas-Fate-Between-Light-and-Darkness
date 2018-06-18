@@ -1,0 +1,153 @@
+[{
+		"entity": {
+			"name": "Drone",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [{
+					"mesh": "data/skeletons/crab/Ankle_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab.material"
+					]
+				}, {
+					"mesh": "data/skeletons/crab/Battery_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab.material"
+					]
+				}, {
+					"mesh": "data/skeletons/crab/Bulb_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab.material"
+					]
+				}, {
+					"mesh": "data/skeletons/crab/ExternalLantern_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab.material"
+					]
+				}, {
+					"mesh": "data/skeletons/crab/Eye_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab.material"
+					]
+				}, {
+					"mesh": "data/skeletons/crab/Foot_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab.material"
+					]
+				}, {
+					"mesh": "data/skeletons/crab/Handle_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab.material"
+					]
+				}, {
+					"mesh": "data/skeletons/crab/Head_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab.material"
+					]
+				}, {
+					"mesh": "data/skeletons/crab/Leg_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab.material"
+					]
+				}, {
+					"mesh": "data/skeletons/crab/LittleBattery_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab.material"
+					]
+				}, {
+					"mesh": "data/skeletons/crab/Pelvis_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab.material"
+					]
+				}, {
+					"mesh": "data/skeletons/crab/Spine00_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab.material"
+					]
+				}, {
+					"mesh": "data/skeletons/crab/Spine01_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab.material"
+					]
+				}, {
+					"mesh": "data/skeletons/crab/Spine02_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab.material"
+					]
+				}, {
+					"mesh": "data/skeletons/crab/SupportHead_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab.material"
+					]
+				}
+
+			],
+			"skeleton": {
+				"skeleton": "data/skeletons/crab/crab.skeleton",
+				"scale": 1.0
+			},
+			"emission_controller": {
+				"initial": "0.0 1.0 1.0 1.0"
+			},
+			"noise_emitter": {
+				"radius": -1
+			},
+			"collider": {
+				"shape": "capsule",
+				"radius": 0.4,
+				"height": 0.6,
+				"step_offset": 0.1,
+				"gravity": true,
+				"group": "enemy"
+			},
+			"rigidbody": {
+				"is_controller": true,
+				"is_gravity": false
+			},
+			"mimetic_animator": true,
+			"tags": ["enemy", "drone"]
+		}
+	}, {
+		"entity": {
+			"name": "Cone of Vision",
+			"transform": {},
+			"render": {
+				"mesh": "cone_of_vision_mimetic.mesh"
+			},
+			"hierarchy": {
+				"parent": "Drone"
+			}
+		}
+	}, {
+		"xentity": {
+			"name": "Cone of Light",
+			"transform": {},
+			"render": {
+				"mesh": "cone_of_light.mesh"
+			},
+			"hierarchy": {
+				"parent": "Drone"
+			},
+			"cone_of_light": {
+				"fov": 35,
+				"dist": 20.0,
+				"target": "The Player"
+			}
+		}
+	}
+]

@@ -13,6 +13,7 @@
 		"noclip_controller",
 		"ai_patrol",
 		"ai_mimetic",
+		"ai_drone",
 		"instance",
 		"dynamic_capsule",
 		"shadow_controller",
