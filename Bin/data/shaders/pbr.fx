@@ -88,7 +88,8 @@ void PS_GBuffer(
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 	o_selfIllum =  txEmissive.Sample(samLinear, iTex0) * self_intensity;
 	o_selfIllum.xyz *= self_color;
-
+	o_selfIllum.a = 1;
+	
 	// Save roughness in the alpha coord of the N render target
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
 	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
@@ -105,6 +106,20 @@ void PS_GBuffer(
 	// In the range z=0 to z=zFar of the camera (not zNear)
 	float3 camera2wpos = iWorldPos - camera_pos;
 	o_depth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
+}
+
+float4 PS_Shade_GBuffer(
+	float4 Pos       : SV_POSITION
+	, float3 iNormal : NORMAL0
+	, float4 iTangent : NORMAL1
+	, float2 iTex0 : TEXCOORD0
+	, float2 iTex1 : TEXCOORD1
+	, float3 iWorldPos : TEXCOORD2
+) : SV_Target0
+{
+	float4 o_albedo = txAlbedo.Sample(samLinear, iTex0);
+  
+	return float4(o_albedo.xyz * (1 - player_fade),(1 - player_fade));
 }
 
 void PS_GBuffer_Parallax(
@@ -334,16 +349,16 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
     // Compute global fog on ambient.
     float3 pixel_depth = camera_pos.xyz - wPos;
     float distancet = length(pixel_depth);
-    float visibility = exp(distancet *distancet * -global_fog_density * global_fog_density * 1.442695);
+    float visibility = exp(distancet *distancet * -global_fog_density * global_fog_density * 1.242695);
     visibility = saturate(visibility);
 
-	
     //float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
     //return ((final_color * ao) + (float4(self_illum.xyz, 1) * global_self_intensity)) * global_ambient_adjustment;
 	
     float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
     final_color = final_color * global_ambient_adjustment * ao;
-    return lerp(float4(env, 1), final_color, visibility) + float4(self_illum.xyz, 1) * global_ambient_adjustment * global_self_intensity;
+    final_color = lerp(float4(env, 1), final_color, visibility) + float4(self_illum.xyz, 1) * global_ambient_adjustment * global_self_intensity;
+	return float4(final_color.xyz, 1);
 }
 
 //--------------------------------------------------------------------------------------
@@ -396,7 +411,7 @@ float4 shade(float4 iPosition, out float3 light_dir, bool use_shadows)
 
 	// Spotlight attenuation
 	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.; // shadow factor
-  
+
 	//return projectColor(wPos);
     float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor;
 	return float4(final_color, 1);

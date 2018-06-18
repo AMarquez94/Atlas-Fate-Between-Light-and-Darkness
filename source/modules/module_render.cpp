@@ -122,6 +122,9 @@ bool CModuleRender::start()
     if (!cb_outline.create(CB_OUTLINE))
         return false;
 
+    if (!cb_player.create(CB_PLAYER))
+        return false;
+
 	cb_globals.global_exposure_adjustment = 2.010f;
 	cb_globals.global_ambient_adjustment = 0.150f;
 	cb_globals.global_world_time = 0.f;
@@ -140,6 +143,7 @@ bool CModuleRender::start()
 	cb_gui.activate();
     cb_particles.activate();
     cb_outline.activate();
+    cb_player.activate();
 
 	camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
 	camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
@@ -170,6 +174,7 @@ bool CModuleRender::stop()
     cb_gui.destroy();
     cb_particles.destroy();
     cb_outline.destroy();
+    cb_player.destroy();
 
 	return true;
 }
@@ -283,6 +288,7 @@ void CModuleRender::generateFrame() {
 
         CRenderManager::get().renderCategory("particles");
 		CRenderManager::get().renderCategory("distorsions");
+        CRenderManager::get().renderCategory("shade_gbuffer");
 
 		// Apply postFX
 		CTexture * curr_rt = rt_main;

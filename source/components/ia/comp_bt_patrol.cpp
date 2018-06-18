@@ -131,8 +131,8 @@ void TCompAIPatrol::onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged & msg)
 {
 	hasBeenShadowMerged = true;
 
-  TCompEmissionController * e_controller = get<TCompEmissionController>();
-  e_controller->blend(enemyColor.colorDead, 0.1f);
+    TCompEmissionController * e_controller = get<TCompEmissionController>();
+    e_controller->blend(enemyColor.colorDead, 0.1f);
 
 	/* Stop telling the other patrols that I am stunned */
 	bool found = false;
@@ -315,6 +315,7 @@ BTNode::ERes TCompAIPatrol::actionShadowMerged(float dt)
 {
 	/* Destroy the entity */
 	CHandle(this).getOwner().destroy();
+
 	return BTNode::ERes::STAY;
 }
 

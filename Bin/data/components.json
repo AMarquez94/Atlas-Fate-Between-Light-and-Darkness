@@ -43,6 +43,7 @@
 		"player_input",
 		"particles",
 		"emission_controller",
+		"fade_controller",
 		"rotator",
 		"lod"
 	],

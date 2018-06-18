@@ -21,6 +21,7 @@ public:
 	const CTexture* textures[max_textures];
 	const CRenderTechnique* tech = nullptr;
 
+
 	CMaterial();
 
     virtual void activate() const;

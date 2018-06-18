@@ -10,6 +10,7 @@ CRenderCte<CCteBlur>    cb_blur("Blur");
 CRenderCte<CCteGUI>     cb_gui("Gui");
 CRenderCte<CCteOutline> cb_outline("Outline");
 CRenderCte<CCteParticle>  cb_particles("Particles");
+CRenderCte<CCtePlayer>  cb_player("Player");
 
 struct TVtxPosClr {
 	VEC3 pos;

@@ -259,6 +259,7 @@ void CDeferredRenderer::renderProjectors() {
 
 // --------------------------------------------------------------
 void CDeferredRenderer::renderGBufferDecals() {
+
     CTraceScoped gpu_scope("Deferred.GBuffer.Decals");
 
     // Disable the gbuffer textures as we are going to update them
@@ -276,9 +277,9 @@ void CDeferredRenderer::renderGBufferDecals() {
 
     // We use our 3 rt's and the Zbuffer of the backbuffer
     Render.ctx->OMSetRenderTargets(nrender_targets, rts, Render.depthStencilView);
-    rt_albedos->activateViewport();   // Any rt will do...
+    rt_albedos->activateViewport(); // Any rt will do...
 
-                                      // Render blending layer on top of gbuffer before adding lights
+    // Render blending layer on top of gbuffer before adding lights
     CRenderManager::get().renderCategory("gbuffer_decals");
 
     // Disable rendering to all render targets.

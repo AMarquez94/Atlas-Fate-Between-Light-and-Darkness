@@ -194,6 +194,7 @@ void TCompLightSpot::generateVolume() {
 // ------------------------------------------------------
 void TCompLightSpot::generateShadowMap() {
 
+
     if (!shadows_rt || !shadows_enabled || !isEnabled)
         return;
 

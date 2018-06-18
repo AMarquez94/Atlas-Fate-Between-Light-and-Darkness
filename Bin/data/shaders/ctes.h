@@ -12,6 +12,7 @@
 #define CB_GUI		    8
 #define CB_PARTICLE		9
 #define CB_OUTLINE      10
+#define CB_PLAYER       11
 
 // -------------------------------------------------
 // Texture Slots
@@ -144,10 +145,6 @@ CB_DEF(CCteLight, CB_LIGHT)
 
     MAT44 light_view_proj_offset;
     MAT44 light_view_proj;
-    VEC3 minbound;
-    VEC3 maxbound;
-    VEC3 max1;
-    VEC3 max2;
 };
 
 CB_DEF(CCteGlobals, CB_GLOBALS)   // Generates the b1
@@ -235,6 +232,14 @@ CB_DEF(CCteOutline, CB_OUTLINE)
     float  outline_alpha;
     float  outline_dummy1;
     float  outline_dummy2;
+};
+
+CB_DEF(CCtePlayer, CB_PLAYER)
+{
+    float  player_fade;
+    float  player_aberration;
+    float  player_dummy2;
+    float  player_dummy3;
 };
 
 #endif

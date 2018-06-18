@@ -124,6 +124,21 @@
 			"irradiance": "data/textures/cubemaps/irradiance.dds"
 		}
 	},
+	"pbr_shade_skin": {
+		"vs_file": "data/shaders/pbr.fx",
+		"ps_file": "data/shaders/pbr.fx",
+		"vs_entry_point": "VS_SKIN_GBuffer",
+		"ps_entry_point": "PS_Shade_GBuffer",
+		"vertex_type": "PosNUvTanSkin",
+		"uses_skin": true,
+		"category": "shade_gbuffer",
+		"rs_config": "cull_none",
+		"blend": "combinative_gbuffer",
+		"textures": {
+			"environment": "data/textures/cubemaps/env.dds",
+			"irradiance": "data/textures/cubemaps/irradiance.dds"
+		}
+	},
 	"pbr_player": {
 		"vs_file": "data/shaders/pbr.fx",
 		"ps_file": "data/shaders/pbr.fx",
@@ -131,6 +146,7 @@
 		"ps_entry_point": "PS_GBuffer",
 		"vertex_type": "PosNUvUvT",
 		"category": "gbuffer",
+		"uses_skin": true,
 		"rs_config": "cull_none",
 		"textures": {
 			"environment": "data/textures/cubemaps/env.dds",
@@ -392,11 +408,11 @@
 		"vs_entry_point": "VS_VLight",
 		"ps_entry_point": "PS_VLight",
 		"vertex_type" : "PosNUvUvT",
-    "z" : "test_but_no_write",
+		"z" : "test_but_no_write",
 		"category": "pbr_proc",
 		"blend" : "combinative",
-		"rs" : "cull_none",
-				"textures": {
+		"rs_config" : "cull_none",
+			"textures": {
 			"noise": "data/textures/noise_light.dds"
 		}
 	},
