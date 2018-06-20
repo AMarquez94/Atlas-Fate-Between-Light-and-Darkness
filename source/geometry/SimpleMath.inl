@@ -944,6 +944,17 @@ inline void Vector3::Normalize( Vector3& result ) const
     XMStoreFloat3( &result, X );
 }
 
+inline Vector3 Vector3::Normalized()
+{
+    using namespace DirectX;
+    XMVECTOR v1 = XMLoadFloat3(this);
+    XMVECTOR X = XMVector3Normalize(v1);
+
+    Vector3 result;
+    XMStoreFloat3(&result, X);
+    return result;
+}
+
 inline void Vector3::Clamp( const Vector3& vmin, const Vector3& vmax )
 {
     using namespace DirectX;

@@ -10,10 +10,14 @@ private:
 
     /* Atributes */
 
-    float maxSpeed = 3.f;
+    float maxSpeed = 5.f;
     float lerpValue = 0.06f;
     VEC3 prevDirection = VEC3::Zero;
     VEC3 currentDirection = VEC3::Zero;
+
+    VEC3 prevPos = VEC3::Zero;
+    VEC3 prevSpeed = VEC3::Zero;
+    VEC3 actualSpeed = VEC3::Zero;
     float maxDifferenceSpeed = 0;
 
 
