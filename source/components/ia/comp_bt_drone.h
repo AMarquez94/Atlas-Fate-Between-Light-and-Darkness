@@ -15,11 +15,6 @@ private:
     VEC3 prevDirection = VEC3::Zero;
     VEC3 currentDirection = VEC3::Zero;
 
-    VEC3 prevPos = VEC3::Zero;
-    VEC3 prevSpeed = VEC3::Zero;
-    VEC3 actualSpeed = VEC3::Zero;
-    float maxDifferenceSpeed = 0;
-
 
     float rotationSpeedChaseDeg = 359.f;
     float rotationSpeedChase;
