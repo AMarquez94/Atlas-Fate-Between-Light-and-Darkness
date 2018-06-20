@@ -7,9 +7,11 @@ class TCompFadeController : public TCompBase {
 
     bool _is_active;
 	VEC4 _fade_color;
+    std::string _material;
 
 	float _elapsed_time = 0.f;
-	float _fade_time = 2.f;
+	float _fade_time;
+    float _fall_speed;
 
 	DECL_SIBLING_ACCESS();
 

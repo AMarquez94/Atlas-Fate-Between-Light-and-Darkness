@@ -18,7 +18,7 @@ public:
 	physx::PxRigidBody* rigidbody = nullptr;
 	physx::PxController* controller = nullptr;
 	physx::PxControllerFilters filters;
-
+   
 	float mass;
 	float drag;
 	float angular_drag;
@@ -27,6 +27,7 @@ public:
 	bool is_kinematic;
 	bool is_controller;
 	bool is_grounded;
+    bool is_enabled;
 
     VEC3 offset;
 	VEC3 lastFramePosition;

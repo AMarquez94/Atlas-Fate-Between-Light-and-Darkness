@@ -299,12 +299,10 @@ void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camer
 	renderGBuffer();
     renderGBufferDecals();
 	renderAO(h_camera);
-
 	// Do the same with the acc light
 	CTexture::setNullTexture(TS_DEFERRED_ACC_LIGHTS);
 	renderAccLight();
     renderVolumes();
-
 	// Now dump contents to the destination buffer.
 	rt_destination->activateRT();
 	rt_acc_light->activate(TS_DEFERRED_ACC_LIGHTS);

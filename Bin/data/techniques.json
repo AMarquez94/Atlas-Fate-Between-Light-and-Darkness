@@ -131,9 +131,8 @@
 		"ps_entry_point": "PS_Shade_GBuffer",
 		"vertex_type": "PosNUvTanSkin",
 		"uses_skin": true,
-		"category": "shade_gbuffer",
+		"category": "gbuffer",
 		"rs_config": "cull_none",
-		"blend": "combinative_gbuffer",
 		"textures": {
 			"environment": "data/textures/cubemaps/env.dds",
 			"irradiance": "data/textures/cubemaps/irradiance.dds"

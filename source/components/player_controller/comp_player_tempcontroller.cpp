@@ -150,7 +150,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
     pxPlayerFilterData->word1 = FilterGroup::All;
 
     physx::PxFilterData pxFilterData;
-    pxFilterData.word0 = FilterGroup::Scenario;
+    pxFilterData.word1 = FilterGroup::Scenario;
     PxPlayerDiscardQuery.data = pxFilterData;
 
     /* Initial reset messages */

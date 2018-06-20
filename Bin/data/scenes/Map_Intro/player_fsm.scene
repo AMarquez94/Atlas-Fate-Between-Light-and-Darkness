@@ -100,10 +100,6 @@
 				"alive_time": 4.0,
 				"cooldown_time": 10.0
 			},
-			"fade_controller": {
-				"fade_color": "0.0 0.0 0.0",
-				"_fade_time": 2.0
-			},
 			"player_animator": true,
 			"collider": {
 				"shape": "capsule",

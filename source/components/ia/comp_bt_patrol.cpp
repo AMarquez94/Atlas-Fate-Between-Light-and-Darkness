@@ -14,6 +14,7 @@
 #include "render/render_utils.h"
 #include "components/ia/comp_patrol_animator.h"
 #include "render/render_objects.h"
+#include "components/lighting/comp_fade_controller.h"
 
 DECL_OBJ_MANAGER("ai_patrol", TCompAIPatrol);
 
@@ -315,6 +316,7 @@ BTNode::ERes TCompAIPatrol::actionShadowMerged(float dt)
 {
 	/* Destroy the entity */
 	CHandle(this).getOwner().destroy();
+    dbg("enemy shadow merged!!!\n\n");
 
 	return BTNode::ERes::STAY;
 }
@@ -324,6 +326,8 @@ BTNode::ERes TCompAIPatrol::actionStunned(float dt)
 	//Animation To Change
 	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
 	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+    TCompFadeController * fade_patrol = get<TCompFadeController>();
+    fade_patrol->launch();
 
 	return BTNode::ERes::STAY;
 }

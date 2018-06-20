@@ -151,17 +151,13 @@ void TCompLightSpot::activate() {
 void TCompLightSpot::generateVolume() {
 
     activate();
-    //const CRenderTechnique* technique = Resources.get("pbr_vol_lights.tech")->as<CRenderTechnique>();
     TCompTransform * c_transform = get<TCompTransform>();
+    if (c_transform == NULL) return;
 
     float p_distance = (getZFar() - getZNear()) / num_samples;
     VEC3 midpos = c_transform->getPosition() + c_transform->getFront() * (getZFar() - getZNear()) * .5f;
     CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
     TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
-
-    const VEC3 cameraPos = camera->getPosition();
-    const VEC3 cameraUp = camera->getUp();
-    //technique->activate();
 
     for (int i = 0; i < num_samples * .5f; i++) {
 

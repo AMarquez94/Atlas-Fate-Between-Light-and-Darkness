@@ -13,6 +13,7 @@
       "data/scenes/Map_Intro/test_instancing.scene",
       "data/scenes/Map_Intro/capsules.scene",
       "data/scenes/Map_Intro/camera.scene",
+      "data/scenes/Map_Intro/enemy.scene",
       "data/scenes/Map_Intro/checkpoints.scene"
     ]
 	},

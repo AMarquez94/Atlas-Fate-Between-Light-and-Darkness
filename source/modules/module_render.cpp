@@ -288,7 +288,6 @@ void CModuleRender::generateFrame() {
 
         CRenderManager::get().renderCategory("particles");
 		CRenderManager::get().renderCategory("distorsions");
-        CRenderManager::get().renderCategory("shade_gbuffer");
 
 		// Apply postFX
 		CTexture * curr_rt = rt_main;
