@@ -23,6 +23,10 @@ DECL_OBJ_MANAGER("ai_drone", TCompAIDrone);
 void TCompAIDrone::debugInMenu() {
 
     TCompAIEnemy::debugInMenu();
+    for (int i = 1; i < _waypoints.size(); i++) {
+        renderLine(_waypoints[i - 1].position, _waypoints[i].position, VEC4(0, 1, 0, 1));
+    }
+    ImGui::DragFloat("Lerp Value", &lerpValue, 0.05f, 0.f, 1.f);
 }
 
 void TCompAIDrone::preUpdate(float dt)
@@ -53,37 +57,37 @@ void TCompAIDrone::load(const json& j, TEntityParseContext& ctx) {
     addChild("manageChasePlayer", "generateNavmeshChase", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGenerateNavmeshChase, nullptr);
     addChild("manageChasePlayer", "chaseAndShoot", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionChaseAndShoot, nullptr);
 
-		addChild("manageDoPatrol", "manageArtificialNoise", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIDrone::conditionHasHeardArtificialNoise, nullptr, nullptr);
-		addChild("manageArtificialNoise", "markArtificialNoiseAsInactive", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionMarkNoiseAsInactive, nullptr);
-		addChild("manageArtificialNoise", "generateNavmeshArtificialNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGenerateNavmeshArtificialNoise, nullptr);
-		addChild("manageArtificialNoise", "goToNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGoToNoiseSource, (BTAssert)&TCompAIDrone::assertNotPlayerInFovForSure);
-		addChild("manageArtificialNoise", "waitInNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionWaitInNoiseSource, (BTAssert)&TCompAIDrone::assertNotPlayerInFovForSure);
-		addChild("manageArtificialNoise", "closestWptArtificialNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionClosestWpt, nullptr);
+    addChild("manageDoPatrol", "manageArtificialNoise", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIDrone::conditionHasHeardArtificialNoise, nullptr, nullptr);
+    addChild("manageArtificialNoise", "markArtificialNoiseAsInactive", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionMarkNoiseAsInactive, nullptr);
+    addChild("manageArtificialNoise", "generateNavmeshArtificialNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGenerateNavmeshArtificialNoise, nullptr);
+    addChild("manageArtificialNoise", "goToNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGoToNoiseSource, (BTAssert)&TCompAIDrone::assertNotPlayerInFovForSure);
+    addChild("manageArtificialNoise", "waitInNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionWaitInNoiseSource, (BTAssert)&TCompAIDrone::assertNotPlayerInFovForSure);
+    addChild("manageArtificialNoise", "closestWptArtificialNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionClosestWpt, nullptr);
 
-		addChild("manageDoPatrol", "manageEnemyOrder", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIDrone::conditionHasReceivedEnemyOrder, nullptr, nullptr);
-		addChild("manageEnemyOrder", "markOrderAsReceived", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionMarkOrderAsReceived, nullptr);
-		addChild("manageEnemyOrder", "generateNavmeshOrder", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGenerateNavmeshOrder, nullptr);
-		addChild("manageEnemyOrder", "goToOrderPosition", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGoToOrderPos, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorArtificialNoise);
-		addChild("manageEnemyOrder", "waitInOrderPosition", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionWaitInOrderPos, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorArtificialNoise);
-		addChild("manageEnemyOrder", "closestWptOrder", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionClosestWpt, nullptr);
+    addChild("manageDoPatrol", "manageEnemyOrder", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIDrone::conditionHasReceivedEnemyOrder, nullptr, nullptr);
+    addChild("manageEnemyOrder", "markOrderAsReceived", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionMarkOrderAsReceived, nullptr);
+    addChild("manageEnemyOrder", "generateNavmeshOrder", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGenerateNavmeshOrder, nullptr);
+    addChild("manageEnemyOrder", "goToOrderPosition", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGoToOrderPos, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorArtificialNoise);
+    addChild("manageEnemyOrder", "waitInOrderPosition", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionWaitInOrderPos, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorArtificialNoise);
+    addChild("manageEnemyOrder", "closestWptOrder", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionClosestWpt, nullptr);
 
-		addChild("manageDoPatrol", "managePlayerLost", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIDrone::conditionPlayerHasBeenLost, nullptr, nullptr);
-		addChild("managePlayerLost", "generateNavmeshPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGenerateNavmeshPlayerLost, nullptr);
-		addChild("managePlayerLost", "goToPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGoToPlayerLastPos, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorArtificialNoise);
-		addChild("managePlayerLost", "resetTimerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionResetTimer, nullptr);
-		addChild("managePlayerLost", "waitInPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionWaitInPlayerLastPos, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorArtificialNoise);
-		addChild("managePlayerLost", "closestWptLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::getClosestWpt, nullptr);
+    addChild("manageDoPatrol", "managePlayerLost", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIDrone::conditionPlayerHasBeenLost, nullptr, nullptr);
+    addChild("managePlayerLost", "generateNavmeshPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGenerateNavmeshPlayerLost, nullptr);
+    addChild("managePlayerLost", "goToPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGoToPlayerLastPos, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorArtificialNoise);
+    addChild("managePlayerLost", "resetTimerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionResetTimer, nullptr);
+    addChild("managePlayerLost", "waitInPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionWaitInPlayerLastPos, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorArtificialNoise);
+    addChild("managePlayerLost", "closestWptLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::getClosestWpt, nullptr);
 
-		addChild("manageDoPatrol", "manageSuspect", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIDrone::conditionHasHeardNaturalNoise, nullptr, nullptr);
-		addChild("manageSuspect", "generateNavmeshSuspect", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGenerateNavmeshSuspect, nullptr);
-		addChild("manageSuspect", "suspect", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionSuspect, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorArtificialNoise);
+    addChild("manageDoPatrol", "manageSuspect", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIDrone::conditionHasHeardNaturalNoise, nullptr, nullptr);
+    addChild("manageSuspect", "generateNavmeshSuspect", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGenerateNavmeshSuspect, nullptr);
+    addChild("manageSuspect", "suspect", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionSuspect, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorArtificialNoise);
 
-		addChild("manageDoPatrol", "managePatrol", BTNode::EType::SEQUENCE, nullptr, nullptr, nullptr);
-		addChild("managePatrol", "generateNavmeshPatrol", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGenerateNavmeshWpt, nullptr);
-		addChild("managePatrol", "goToWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGoToWpt, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorNoise);
-		addChild("managePatrol", "resetTimerPatrol", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionResetTimer, nullptr);
-		addChild("managePatrol", "waitInWptPatrol", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionWaitInWpt, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorNoise);
-		addChild("managePatrol", "nextWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionNextWpt, nullptr);
+    addChild("manageDoPatrol", "managePatrol", BTNode::EType::SEQUENCE, nullptr, nullptr, nullptr);
+    addChild("managePatrol", "generateNavmeshPatrol", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGenerateNavmeshWpt, nullptr);
+    addChild("managePatrol", "goToWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGoToWpt, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorNoise);
+    addChild("managePatrol", "resetTimerPatrol", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionResetTimer, nullptr);
+    addChild("managePatrol", "waitInWptPatrol", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionWaitInWpt, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorNoise);
+    addChild("managePatrol", "nextWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionNextWpt, nullptr);
 
     if (j.count("waypoints") > 0) {
         auto& j_waypoints = j["waypoints"];
@@ -118,8 +122,8 @@ void TCompAIDrone::onMsgEntityCreated(const TMsgEntityCreated & msg)
     TCompName *tName = get<TCompName>();
     name = tName->getName();
 
-		TCompRigidbody* tRigidbody = get<TCompRigidbody>();
-		tRigidbody->setNormalGravity(VEC3::Zero);
+    TCompRigidbody* tRigidbody = get<TCompRigidbody>();
+    tRigidbody->setNormalGravity(VEC3::Zero);
 
     myHandle = CHandle(this);
 
@@ -187,8 +191,8 @@ void TCompAIDrone::onMsgNoiseListened(const TMsgNoiseMade & msg)
 /* TODO: --- */
 const std::string TCompAIDrone::getStateForCheckpoint()
 {
-	/* TODO */
-	return "nextWpt";
+    /* TODO */
+    return "nextWpt";
 }
 
 void TCompAIDrone::registerMsgs()
@@ -231,207 +235,324 @@ BTNode::ERes TCompAIDrone::actionExplode(float dt)
 
 BTNode::ERes TCompAIDrone::actionEndAlert(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionMarkPlayerAsSeen(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionGenerateNavmeshChase(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionChaseAndShoot(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionMarkNoiseAsInactive(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionGenerateNavmeshArtificialNoise(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionGoToNoiseSource(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionWaitInNoiseSource(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionClosestWpt(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionMarkOrderAsReceived(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionGenerateNavmeshOrder(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionGoToOrderPos(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionWaitInOrderPos(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionGenerateNavmeshPlayerLost(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionGoToPlayerLastPos(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionWaitInPlayerLastPos(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionGenerateNavmeshSuspect(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionSuspect(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionRotateToNoiseSource(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionGenerateNavmeshWpt(float dt)
 {
-	currentWaypoint = (currentWaypoint + 1) % _waypoints.size();
-	return BTNode::ERes::LEAVE;
+    currentWaypoint = (currentWaypoint + 1) % _waypoints.size();
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionGoToWpt(float dt)
 {
-	//timerToExplode += dt;
-	//TCompRigidbody* rigidbody = get<TCompRigidbody>();
-	//TCompTransform* myTransform = get<TCompTransform>();
 
-	//VEC3 direction = getWaypoint().position - myTransform->getPosition();
-	//if (timerToExplode > 3) {
-	//	direction.x = -direction.x;
-	//}
-	//direction.Normalize();
-	//rigidbody->addForce(direction * force);
-	//dbg("Force added (%f, %f, %f)\n", (direction * force).x, (direction * force).y, (direction * force).z);
 
-	//if (timerToExplode > 6) {
-	//	timerToExplode = 0;
-	//}
+    TCompTransform* mypos = get<TCompTransform>();
+    if (VEC3::Distance(mypos->getPosition(), getWaypoint().position) < maxSpeed * dt) {
+        currentWaypoint = (currentWaypoint + 1) % _waypoints.size();
+    }
+    else {
 
-	return BTNode::ERes::STAY;
+        #pragma region Movement with all directions
+        /* MOVEMENT WITH ALL DIRECTIONS */
+        //float xSpeed = currentDirection.x;
+        //float zSpeed = currentDirection.z;
+
+        //VEC3 dir = getWaypoint().position - mypos->getPosition();
+        //dir.Normalize();
+        //VEC3 newSpeed = dir * maxSpeed;
+
+        //float xDirSpeed = newSpeed.x;
+        //float zDirSpeed = newSpeed.z;
+
+        //prevDirection = currentDirection;
+
+        //currentDirection = VEC3::Lerp(VEC3(xSpeed, 0, zSpeed), VEC3(xDirSpeed, 0, zDirSpeed), lerpValue );
+
+        //mypos->setPosition(mypos->getPosition() + currentDirection * dt);
+        /* END */
+        #pragma endregion
+
+        #pragma region Rotation with yaw pitch roll (1)
+
+            bool hasToPitch;
+            int rotationSign;
+            VEC3 newSpeed = VEC3::Zero;
+            float deltayaw = mypos->getDeltaYawToAimTo(getWaypoint().position);
+            if (fabsf(deltayaw) < deg2rad(22.5f) || fabsf(deltayaw) > deg2rad(112.5f)) {
+                hasToPitch = true;
+                if (fabsf(deltayaw) < deg2rad(22.5f)) {
+                    rotationSign = -1;
+                    newSpeed = mypos->getFront();
+
+                }
+                else {
+                    rotationSign = 1;
+                    newSpeed = -mypos->getFront();
+                }
+            }
+            else {
+                hasToPitch = false;
+                if (mypos->isInLeft(getWaypoint().position)) {
+                    rotationSign = -1;
+                    newSpeed = mypos->getLeft();
+                }
+                else {
+                    rotationSign = 1;
+                    newSpeed = -mypos->getLeft();
+                }
+            }
+
+        #pragma endregion
+
+        #pragma region Movement with 4 axis only
+
+            float xSpeed = currentDirection.x;
+            float zSpeed = currentDirection.z;
+            newSpeed *= maxSpeed;
+            float xDirSpeed = newSpeed.x;
+            float zDirSpeed = newSpeed.z;
+            prevDirection = currentDirection;
+            currentDirection = VEC3::Lerp(VEC3(xSpeed, 0, zSpeed), VEC3(xDirSpeed, 0, zDirSpeed), lerpValue);
+            mypos->setPosition(mypos->getPosition() + currentDirection * dt);
+
+        #pragma endregion
+
+        #pragma region Rotation with yaw pitch roll (2)
+
+            float maxAmountToRotate = 30.f;
+            float myActualSpeed = currentDirection.Length();
+            float prevSpeed = prevDirection.Length();
+            float diffSpeed = myActualSpeed - prevSpeed;
+
+            float diffx = fabsf(currentDirection.x) - fabsf(prevDirection.x);
+            float diffz = fabsf(currentDirection.z) - fabsf(prevDirection.z);
+
+            dbg("===========\n");
+            dbg("Diff velocidad %f\n", myActualSpeed - prevSpeed);
+            dbg("   x velocidad %f\n", diffx);
+            dbg("   z velocidad %f\n", diffz);
+            if (fabsf(diffSpeed) > fabsf(maxDifferenceSpeed)) {
+                maxDifferenceSpeed = diffSpeed;
+            }
+            dbg("Max Diff speed %f\n", maxDifferenceSpeed);
+            float rotationDown = maxAmountToRotate * (myActualSpeed / maxSpeed);
+
+            float yaw, pitch, roll;
+            mypos->getYawPitchRoll(&yaw, &pitch, &roll);
+            if (hasToPitch) {
+                yaw = lerp(yaw, yaw + deltayaw, lerpValue);
+                pitch = lerp(pitch, /*pitch + */deg2rad(rotationDown * rotationSign), lerpValue);
+                roll = lerp(roll, 0.f, lerpValue);
+            }
+            else {
+                yaw = lerp(yaw, yaw + deltayaw, lerpValue);
+                pitch = lerp(pitch, 0.f, lerpValue);
+                roll = lerp(roll, deg2rad(rotationDown * rotationSign), lerpValue);
+            }
+
+            //dbg("Has to %s\n", hasToPitch ? "pitch" : "roll");
+
+            mypos->setYawPitchRoll(yaw, pitch, roll);
+        #pragma endregion
+
+        #pragma region Rotation with quaternions
+        //VEC3 rotationDir = (getWaypoint().position - mypos->getPosition());
+        //rotationDir.Normalize();
+
+        //float maxRotationDown = 0.5f;
+        //float myActualSpeed = currentDirection.Length();
+        //float myPreviousSpeed = prevDirection.Length();
+        //float sign = 1;
+        //if (myActualSpeed < myPreviousSpeed) {
+        //    sign = -1;
+        //}
+        //float rotationDown = sign * maxRotationDown * (myActualSpeed / maxSpeed);
+        //dbg("myRotationDown: %f\n", rotationDown);
+        //    
+        //QUAT objective_rotation = createLookAt(mypos->getPosition(), mypos->getPosition() + rotationDir - VEC3(0, rotationDown, 0), VEC3(0,1,0));
+        ////mypos->setRotation(objective_rotation);
+        //QUAT my_rotation = mypos->getRotation();
+        //mypos->setRotation(QUAT::Slerp(my_rotation, objective_rotation, dt));
+        #pragma endregion
+
+    }
+
+    return BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIDrone::actionResetTimer(float dt)
 {
-	timerWaitingInWpt = 0;
-	timerWaitingInUnreachablePoint = 0;
-	timerWaitingInNoise = 0;
-	timerWaitingInObservation = 0;
-	return BTNode::ERes::LEAVE;
+    timerWaitingInWpt = 0;
+    timerWaitingInUnreachablePoint = 0;
+    timerWaitingInNoise = 0;
+    timerWaitingInObservation = 0;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionWaitInWpt(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionNextWpt(float dt)
 {
-	return BTNode::ERes::LEAVE;
+    return BTNode::ERes::LEAVE;
 }
 
 /* CONDITIONS */
 
 bool TCompAIDrone::conditionHasBeenStunned(float dt)
 {
-	return false;
+    return false;
 }
 
 bool TCompAIDrone::conditionIsPlayerDead(float dt)
 {
-	return false;
+    return false;
 }
 
 bool TCompAIDrone::conditionIsPlayerSeenForSure(float dt)
 {
-	return false;
+    return false;
 }
 
 bool TCompAIDrone::conditionHasHeardArtificialNoise(float dt)
 {
-	return false;
+    return false;
 }
 
 bool TCompAIDrone::conditionHasReceivedEnemyOrder(float dt)
 {
-	return false;
+    return false;
 }
 
 bool TCompAIDrone::conditionPlayerHasBeenLost(float dt)
 {
-	return false;
+    return false;
 }
 
 bool TCompAIDrone::conditionIsPlayerInFov(float dt)
 {
-	return false;
+    return false;
 }
 
 bool TCompAIDrone::conditionHasHeardNaturalNoise(float dt)
 {
-	return false;
+    return false;
 }
 
 /* ASSERTS */
 
 bool TCompAIDrone::assertNotPlayerInFovForSure(float dt)
 {
-	return true;
+    return true;
 }
 
 bool TCompAIDrone::assertNotPlayerInFovNorArtificialNoise(float dt)
 {
-	return true;
+    return true;
 }
 
 bool TCompAIDrone::assertNotHeardArtificialNoise(float dt)
 {
-	return true;
+    return true;
 }
 
 bool TCompAIDrone::assertNotPlayerInFovNorNoise(float dt)
 {
-	return true;
+    return true;
 }
 
 /* AUX FUNCTIONS */

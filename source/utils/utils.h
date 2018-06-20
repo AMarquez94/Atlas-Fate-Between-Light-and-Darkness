@@ -34,5 +34,7 @@ void ToUpperCase(std::string&);
 
 int Strnicmp(const char* str1, const char* str2, int n);
 
+//float lerpAngle(float a, float b, float t);
+
 #endif
 

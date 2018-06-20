@@ -97,8 +97,14 @@
 						"position": "-25 10 86",
 						"lookAt": "1 0 0",
 						"minTime": 10
-					}, {
+					}, 
+					{
 						"position": "-27 10 90",
+						"lookAt": "-1 0 0",
+						"minTime": 10
+					},
+					{
+						"position": "-15 10 80",
 						"lookAt": "-1 0 0",
 						"minTime": 10
 					}

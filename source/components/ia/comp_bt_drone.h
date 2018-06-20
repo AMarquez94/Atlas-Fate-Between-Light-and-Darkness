@@ -10,8 +10,13 @@ private:
 
     /* Atributes */
 
-		float force = 10.f;
-    //float speed = 3.f;
+    float maxSpeed = 3.f;
+    float lerpValue = 0.06f;
+    VEC3 prevDirection = VEC3::Zero;
+    VEC3 currentDirection = VEC3::Zero;
+    float maxDifferenceSpeed = 0;
+
+
     float rotationSpeedChaseDeg = 359.f;
     float rotationSpeedChase;
     std::string entityToChase = "The Player";

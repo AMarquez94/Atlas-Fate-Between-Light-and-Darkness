@@ -38,6 +38,7 @@
 		"camera_thirdperson",
 		"camera_shadowmerge",
 		"auxcamera_shadowmerge",
+		"camera_follow",
 		"camera",
 		"fsm",
 		"player_animator",
