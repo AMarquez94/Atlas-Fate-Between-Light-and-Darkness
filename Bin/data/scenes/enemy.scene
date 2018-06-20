@@ -99,12 +99,17 @@
 						"minTime": 10
 					}, 
 					{
-						"position": "-27 10 90",
+						"position": "-28 10 95",
 						"lookAt": "-1 0 0",
 						"minTime": 10
 					},
 					{
-						"position": "-15 10 80",
+						"position": "-26 10 90",
+						"lookAt": "-1 0 0",
+						"minTime": 10
+					},
+					{
+						"position": "-20 10 83",
 						"lookAt": "-1 0 0",
 						"minTime": 10
 					}

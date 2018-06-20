@@ -500,28 +500,49 @@ BTNode::ERes TCompAIDrone::actionGoToWpt(float dt)
             if (fabsf(diffSpeed) > fabsf(maxDifferenceSpeed)) {
                 maxDifferenceSpeed = diffSpeed;
             }
-           /* dbg("Max Diff speed %f\n", maxDifferenceSpeed);*/
+            dbg("Max Diff speed %f\n", maxDifferenceSpeed);
             float rotationDown = maxAmountToRotate * (myActualSpeed / maxSpeed);
 
-            float maxAmountToRotateInAFrame = deg2rad(5.f);
-            float amountToPitch = maxAmountToRotateInAFrame * (-diffz / 0.35f) * localCurrentDirection.Normalized().z;
-            float amountToRoll = maxAmountToRotateInAFrame * (diffx / 0.35f) * localCurrentDirection.Normalized().x;
+            float maxAmountToRotateInAFrame = maxAmountToRotate * dt;
+            float amountToPitch;
+            float amountToRoll;
+            if (hasToPitch && rotationSign == 1) {
+                /* Backwards => mas prioridad al cambio de velocidad */
+                amountToPitch = maxAmountToRotateInAFrame * ((myActualSpeed / maxSpeed) + (diffSpeed / 0.35f * 10)) * localCurrentDirection.Normalized().z;
+            }
+            else {
+                amountToPitch = maxAmountToRotateInAFrame * (myActualSpeed / maxSpeed) * localCurrentDirection.Normalized().z;
+            }
+            amountToRoll = maxAmountToRotateInAFrame * 2 * ((myActualSpeed / maxSpeed) + diffSpeed / 0.35f) * localCurrentDirection.Normalized().x;
 
             float yaw, pitch, roll;
             mypos->getYawPitchRoll(&yaw, &pitch, &roll);
-            //yaw = lerp(yaw, yaw + deltayaw, lerpValue);
-            //pitch = Clamp(pitch + amountToPitch, -maxAmountToRotate, maxAmountToRotate);
-            //roll = Clamp(roll + amountToRoll, -maxAmountToRotate, maxAmountToRotate);
-            if (hasToPitch) {
-                yaw = lerp(yaw, yaw + deltayaw, lerpValue);
-                pitch = lerp(pitch, /*pitch + */rotationDown * rotationSign, lerpValue);
-                roll = lerp(roll, 0.f, lerpValue);
+            yaw = lerp(yaw, yaw + deltayaw, lerpValue);
+            if (fabsf(localCurrentDirection.Normalized().z) < 0.3f) {
+                pitch = lerp(pitch, 0.f, dt);
             }
             else {
-                yaw = lerp(yaw, yaw + deltayaw, lerpValue);
-                pitch = lerp(pitch, 0.f, lerpValue);
-                roll = lerp(roll, rotationDown * rotationSign, lerpValue);
+                pitch = Clamp(pitch - amountToPitch, -maxAmountToRotate, maxAmountToRotate * 2);
             }
+
+            if (fabsf(localCurrentDirection.Normalized().x) < 0.3f) {
+                roll = lerp(roll, 0.f, dt);
+            }
+            else {
+                roll = Clamp(roll - amountToRoll, -maxAmountToRotate, maxAmountToRotate);
+            }
+            
+            
+            //if (hasToPitch) {
+            //    yaw = lerp(yaw, yaw + deltayaw, lerpValue);
+            //    pitch = lerp(pitch, /*pitch + */rotationDown * rotationSign, lerpValue);
+            //    roll = lerp(roll, 0.f, lerpValue);
+            //}
+            //else {
+            //    yaw = lerp(yaw, yaw + deltayaw, lerpValue);
+            //    pitch = lerp(pitch, 0.f, lerpValue);
+            //    roll = lerp(roll, rotationDown * rotationSign, lerpValue);
+            //}
 
             mypos->setYawPitchRoll(yaw, pitch, roll);
            
