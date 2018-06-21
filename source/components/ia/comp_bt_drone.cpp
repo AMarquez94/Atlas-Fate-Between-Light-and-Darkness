@@ -231,110 +231,117 @@ bool TCompAIDrone::moveToDestDrone(VEC3 dest, float dt)
 
     #pragma region Rotation with yaw pitch roll (1)
 
-        bool hasToPitch;
-        int rotationSign;
-        VEC3 newSpeed = VEC3::Zero;
-        float deltayaw = mypos->getDeltaYawToAimTo(dest);
-        if (fabsf(deltayaw) < deg2rad(22.5f) || fabsf(deltayaw) > deg2rad(112.5f)) {
-            hasToPitch = true;
-            if (fabsf(deltayaw) < deg2rad(22.5f)) {
-                rotationSign = -1;
-                newSpeed = mypos->getFront();
+            bool movingUpDown = false;
+
+            bool hasToPitch;
+            int rotationSign;
+            VEC3 newSpeed = VEC3::Zero;
+            float deltayaw = mypos->getDeltaYawToAimTo(dest);
+            if (fabsf(deltayaw) < deg2rad(22.5f) || fabsf(deltayaw) > deg2rad(112.5f)) {
+                hasToPitch = true;
+                if (fabsf(deltayaw) < deg2rad(22.5f)) {
+                    rotationSign = -1;
+                    newSpeed = mypos->getFront();
+                }
+                else {
+                    rotationSign = 1;
+                    newSpeed = -mypos->getFront();
+                }
             }
             else {
-                rotationSign = 1;
-                newSpeed = -mypos->getFront();
+                hasToPitch = false;
+                if (mypos->isInLeft(dest)) {
+                    rotationSign = -1;
+                    newSpeed = mypos->getLeft();
+                }
+                else {
+                    rotationSign = 1;
+                    newSpeed = -mypos->getLeft();
+                }
             }
-        }
-        else {
-            hasToPitch = false;
-            if (mypos->isInLeft(dest)) {
-                rotationSign = -1;
-                newSpeed = mypos->getLeft();
-            }
-            else {
-                rotationSign = 1;
-                newSpeed = -mypos->getLeft();
-            }
-        }
 
     #pragma endregion
 
     #pragma region Movement with 4 axis only
 
-        float xSpeed = currentDirection.x;
-        float zSpeed = currentDirection.z;
-        newSpeed *= maxSpeed;
-        float xDirSpeed = newSpeed.x;
-        float zDirSpeed = newSpeed.z;
-        prevDirection = currentDirection;
-        currentDirection = VEC3::Lerp(VEC3(xSpeed, 0, zSpeed), VEC3(xDirSpeed, 0, zDirSpeed), lerpValue);
+            float xSpeed = currentDirection.x;
+            float zSpeed = currentDirection.z;
+            newSpeed *= maxSpeed;
+            float xDirSpeed = newSpeed.x;
+            float zDirSpeed = newSpeed.z;
+            prevDirection = currentDirection;
+            currentDirection = VEC3::Lerp(VEC3(xSpeed, 0, zSpeed), VEC3(xDirSpeed, 0, zDirSpeed), lerpValue);
 
-        //if (fabsf(dest.y) - fabsf(mypos->getPosition().y) > upSpeed * dt) {
-        //    int upSign = 1;
-        //    if (dest.y < mypos->getPosition().y) {
-        //        upSign = -1;
-        //        dbg("BAJANDO\n");
-        //    }
-        //    else {
-        //        dbg("SUBIENDO\n");
-        //    }
-        //    mypos->setPosition(mypos->getPosition() + VEC3(0, upSpeed * upSign, 0) * dt);
-        //}
+            float upVel = 0;
+            if (fabsf(dest.y - mypos->getPosition().y) > upSpeed * dt) {
+                /* Adjust heigth (up / down) */
+                int upSign = 1;
+                if (dest.y < mypos->getPosition().y) {
+                    upSign = -1;
+                }
+                upVel = upSpeed * upSign;
+                mypos->setPosition(mypos->getPosition() + VEC3(0, upVel, 0) * dt);
+                movingUpDown = true;
+            }
+            else if (fabsf(dest.y - mypos->getPosition().y) != 0) {
+                /* Adjust heigth (with 100% precission) */
+                mypos->setPosition(VEC3(mypos->getPosition().x, dest.y, mypos->getPosition().z));
+            }
+            else {
+                /* Adjust heigth (with 100% precission) */
+                mypos->setPosition(mypos->getPosition() + (currentDirection) * dt);
+            }
 
-        //if (VEC3::Distance2D(mypos->getPosition(), dest) > maxSpeed * dt) {
-            mypos->setPosition(mypos->getPosition() + currentDirection * dt);
-        //    dbg("MOVIENDO\n");
-        //}
-        //else {
-        //    currentDirection = VEC3::Lerp(VEC3(currentDirection.x, 0, currentDirection.y), VEC3(0, 0, 0), lerpValue);
-        //    dbg("PARANDO\n");
-        //}
 
     #pragma endregion
 
     #pragma region Rotation Based on Vel
 
-        float maxAmountToRotate = deg2rad(30.f);
-        float myActualSpeed = currentDirection.Length();
-        float prevSpeed = prevDirection.Length();
-        float diffSpeed = currentDirection.Length() - prevSpeed;
+            float maxAmountToRotate = deg2rad(30.f);
+            float myActualSpeed = currentDirection.Length();
+            float prevSpeed = prevDirection.Length();
+            float diffSpeed = currentDirection.Length() - prevSpeed;
 
-        VEC3 localCurrentDirection = VEC3::TransformNormal(currentDirection, mypos->asMatrix().Invert());
-        localCurrentDirection = localCurrentDirection - VEC3(0, localCurrentDirection.y, 0);
-        localCurrentDirection.Normalize();
+            VEC3 localCurrentDirection = VEC3::TransformNormal(currentDirection, mypos->asMatrix().Invert());
+            localCurrentDirection = localCurrentDirection - VEC3(0, localCurrentDirection.y, 0);
+            localCurrentDirection.Normalize();
 
-        float maxAmountToRotateInAFrame = maxAmountToRotate * dt;
-        float amountToPitch;
-        float amountToRoll;
-        if (hasToPitch && rotationSign == 1) {
-            /* Backwards => mas prioridad al cambio de velocidad */
-            amountToPitch = maxAmountToRotateInAFrame * ((myActualSpeed / maxSpeed) + (diffSpeed / 0.35f * 10)) * localCurrentDirection.z;
-        }
-        else {
-            /* Forward */
-            amountToPitch = maxAmountToRotateInAFrame * (myActualSpeed / maxSpeed) * localCurrentDirection.z;
-        }
-        amountToRoll = maxAmountToRotateInAFrame * 2 * ((myActualSpeed / maxSpeed) + diffSpeed / 0.35f) * localCurrentDirection.x;
+            float maxAmountToRotateInAFrame = maxAmountToRotate * dt;
+            float amountToPitch;
+            float amountToRoll;
+            if (hasToPitch && rotationSign == 1) {
+                /* Backwards => mas prioridad al cambio de velocidad */
+                amountToPitch = maxAmountToRotateInAFrame * ((myActualSpeed / maxSpeed) + (diffSpeed / 0.35f * 10)) * localCurrentDirection.z;
+            }
+            else {
+                /* Forward */
+                amountToPitch = maxAmountToRotateInAFrame * (myActualSpeed / maxSpeed) * localCurrentDirection.z;
+            }
+            amountToRoll = maxAmountToRotateInAFrame * 2 * ((myActualSpeed / maxSpeed) + diffSpeed / 0.35f) * localCurrentDirection.x;
+               
+            float yaw, pitch, roll;
+            mypos->getYawPitchRoll(&yaw, &pitch, &roll);
+            yaw = lerp(yaw, yaw + deltayaw, lerpValue);
+            if (!movingUpDown) {
+                if (fabsf(localCurrentDirection.z) < 0.2f) {
+                    pitch = lerp(pitch, 0.f, dt);
+                }
+                else {
+                    pitch = Clamp(pitch - amountToPitch, -maxAmountToRotate, maxAmountToRotate * 2);
+                }
 
-        float yaw, pitch, roll;
-        mypos->getYawPitchRoll(&yaw, &pitch, &roll);
-        yaw = lerp(yaw, yaw + deltayaw, lerpValue);
-        if (fabsf(localCurrentDirection.z) < 0.2f) {
-            pitch = lerp(pitch, 0.f, dt);
-        }
-        else {
-            pitch = Clamp(pitch - amountToPitch, -maxAmountToRotate, maxAmountToRotate * 2);
-        }
-
-        if (fabsf(localCurrentDirection.x) < 0.2f) {
-            roll = lerp(roll, 0.f, dt);
-        }
-        else {
-            roll = Clamp(roll - amountToRoll, -maxAmountToRotate, maxAmountToRotate);
-        }
-
-        mypos->setYawPitchRoll(yaw, pitch, roll);
+                if (fabsf(localCurrentDirection.x) < 0.2f) {
+                    roll = lerp(roll, 0.f, dt);
+                }
+                else {
+                    roll = Clamp(roll - amountToRoll, -maxAmountToRotate, maxAmountToRotate);
+                }
+            }
+            else {
+                pitch = lerp(pitch, 0.f, dt);
+                roll = lerp(roll, 0.f, dt);
+            }
+            mypos->setYawPitchRoll(yaw, pitch, roll);
 
     #pragma endregion
 

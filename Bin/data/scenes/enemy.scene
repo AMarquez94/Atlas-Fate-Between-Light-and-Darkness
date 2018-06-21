@@ -96,17 +96,17 @@
 				"waypoints": [{
 						"position": "-25 10 86",
 						"lookAt": "1 0 0",
-						"minTime": 10
+						"minTime": 0
 					}, 
 					{
 						"position": "-28 10 95",
 						"lookAt": "1 0 0",
-						"minTime": 5
+						"minTime": 0
 					},
 					{
-						"position": "-26 10 90",
+						"position": "-26 20 90",
 						"lookAt": "1 0 0",
-						"minTime": 7
+						"minTime": 0
 					},
 					{
 						"position": "-20 10 90",
