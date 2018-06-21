@@ -3,32 +3,49 @@
 
 float2 ComputeParallax(float2 texCoords, float3 view_dir) {
 
-  const float minLayers = 15.0;
-  const float maxLayers = 30.0;
-  float numLayers = lerp(maxLayers, minLayers, abs(dot(float3(0.0, 0.0, 1.0), view_dir)));
-  float layerDepth = 1.0 / numLayers;
-  float currentLayerDepth = 0.0;
-  float2 P = view_dir.xy * 0.075;
-  float2 deltaTexCoords = P / numLayers;
+	const float minLayers = 15.0;
+	const float maxLayers = 30.0;
+	float numLayers = lerp(maxLayers, minLayers, abs(dot(float3(0.0, 0.0, 1.0), view_dir)));
+	float layerDepth = 1.0 / numLayers;
+	float currentLayerDepth = 0.0;
+	float2 P = view_dir.xy * 0.075;
+	float2 deltaTexCoords = P / numLayers;
 
-  float2 currentTexCoords = texCoords;
-  float currentDepthMapValue = 1 - txHeight.Sample(samLinear, currentTexCoords).r;
+	float2 currentTexCoords = texCoords;
+	float currentDepthMapValue = 1 - txHeight.Sample(samLinear, currentTexCoords).r;
 
-  [unroll(330)]
-  while (currentLayerDepth < currentDepthMapValue)
-  {
-    currentTexCoords -= deltaTexCoords;
-    currentDepthMapValue = 1 - txHeight.Sample(samLinear, currentTexCoords).r;
-    currentLayerDepth += layerDepth;
-  }
+	[unroll(130)]
+	while (currentLayerDepth < currentDepthMapValue)
+	{
+	currentTexCoords -= deltaTexCoords;
+	currentDepthMapValue = 1 - txHeight.Sample(samLinear, currentTexCoords).r;
+	currentLayerDepth += layerDepth;
+	}
 
-  float2 prevTexCoords = currentTexCoords + deltaTexCoords;
-  float afterDepth = currentDepthMapValue - currentLayerDepth;
-  float beforeDepth = (1 - txHeight.Sample(samLinear, prevTexCoords).r) - currentLayerDepth + layerDepth;
-  float weight = afterDepth / (afterDepth - beforeDepth);
-  float2 finalTexCoords = prevTexCoords * weight + currentTexCoords * (1.0 - weight);
+	float2 prevTexCoords = currentTexCoords + deltaTexCoords;
+	float afterDepth = currentDepthMapValue - currentLayerDepth;
+	float beforeDepth = (1 - txHeight.Sample(samLinear, prevTexCoords).r) - currentLayerDepth + layerDepth;
+	float weight = afterDepth / (afterDepth - beforeDepth);
+	float2 finalTexCoords = prevTexCoords * weight + currentTexCoords * (1.0 - weight);
 
-  return finalTexCoords;
+	return finalTexCoords;
+}
+
+float ComputeParallaxShadow(float2 texCoords, float3 light_dir, float init_height)
+{
+	float shadowMultiple = 1;
+	
+	if(dot(float3(0,0,1), light_dir) > 0){
+	
+		float numSamplesSurface = 0;
+		const float minLayers = 15.0;
+		const float maxLayers = 30.0;
+		float numLayers = lerp(maxLayers, minLayers, abs(dot(float3(0.0, 0.0, 1.0), view_dir)));
+		
+	
+	}
+	
+	return shadowMultiple;
 }
 
 //--------------------------------------------------------------------------------------
