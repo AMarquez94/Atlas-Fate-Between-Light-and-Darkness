@@ -268,7 +268,7 @@ float2 parallaxMappingB(float2 texCoords, float3 view_dir) {
   float numLayers = lerp(maxLayers, minLayers, abs(dot(float3(0.0, 0.0, 1.0), view_dir)));
   float layerDepth = 1.0 / numLayers;
   float currentLayerDepth = 0.0;
-  float2 P = view_dir.xy * 0.045;
+  float2 P = view_dir.xy * 0.175;
   float2 deltaTexCoords = P / numLayers;
 
   float2 currentTexCoords = texCoords;
