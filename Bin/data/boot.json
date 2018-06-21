@@ -28,7 +28,9 @@
 			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/ZoneA/camera.scene",
 			"data/scenes/ZoneA/sp_dynamic_lights.scene",
-			"data/scenes/prova_colliders_prefabs.scene",
+			"data/scenes/ZoneA/zone_a_aceras.scene",
+			"data/scenes/ZoneA/zone_a_suelo.scene",
+			"data/scenes/zone_a_casas3.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene"
 			
 		]
