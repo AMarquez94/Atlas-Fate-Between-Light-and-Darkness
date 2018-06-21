@@ -33,6 +33,10 @@ function blendOutCamera(cameraName, blendOutTime)
 	SLB.blendOutCamera(cameraName, blendOutTime)
 end
 
+function blendOutActiveCamera(blendOutTime)
+	SLB.blendOutActiveCamera(blendOutTime)
+end
+
 function setPlayerInhibited(inhibited)
 	playerController.inhibited = inhibited;
 end

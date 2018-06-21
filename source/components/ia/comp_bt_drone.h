@@ -11,6 +11,7 @@ private:
     /* Atributes */
 
     float maxSpeed = 3.f;
+    float upSpeed = 2.f;
     float lerpValue = 0.06f;
     VEC3 prevDirection = VEC3::Zero;
     VEC3 currentDirection = VEC3::Zero;
@@ -58,6 +59,11 @@ private:
     void loadActions() override;
     void loadConditions() override;
     void loadAsserts() override;
+
+    /* AUX */
+    bool moveToDestDrone(VEC3 dest, float dt);
+    void waitInPosDrone(VEC3 dest, float dt, float speed, float rotSpeed, VEC3 lookAt = VEC3::Zero);
+
 
 public:
     void preUpdate(float dt) override;

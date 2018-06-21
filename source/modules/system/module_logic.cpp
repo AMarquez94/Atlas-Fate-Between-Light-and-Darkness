@@ -112,6 +112,7 @@ void CModuleLogic::publishClasses() {
     // Camera
     m->set("blendInCamera", SLB::FuncCall::create(&blendInCamera));
     m->set("blendOutCamera", SLB::FuncCall::create(&blendOutCamera));
+    m->set("blendOutActiveCamera", SLB::FuncCall::create(&blendOutActiveCamera));
 
     // Player hacks
     m->set("infiniteStamineToggle", SLB::FuncCall::create(&infiniteStamineToggle));
@@ -350,6 +351,10 @@ void blendOutCamera(const std::string & cameraName, float blendOutTime) {
     if (camera.isValid()) {
         EngineCameras.blendOutCamera(camera, blendOutTime);
     }
+}
+
+void blendOutActiveCamera(float blendOutTime) {
+    EngineCameras.blendOutCamera(EngineCameras.getCurrentCamera(), blendOutTime);
 }
 
 /* Spawn item on given position */

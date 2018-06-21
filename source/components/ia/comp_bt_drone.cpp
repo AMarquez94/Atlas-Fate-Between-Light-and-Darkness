@@ -24,15 +24,14 @@ void TCompAIDrone::debugInMenu() {
 
     TCompAIEnemy::debugInMenu();
     for (int i = 1; i < _waypoints.size(); i++) {
-        renderLine(_waypoints[i - 1].position, _waypoints[i].position, VEC4(0, 1, 0, 1));
+        if (currentWaypoint == i) {
+            renderLine(_waypoints[i - 1].position, _waypoints[i].position, VEC4(1, 0, 0, 1));
+        }
+        else {
+            renderLine(_waypoints[i - 1].position, _waypoints[i].position, VEC4(0, 1, 0, 1));
+        }
     }
     ImGui::DragFloat("Lerp Value", &lerpValue, 0.05f, 0.f, 1.f);
-
-    TCompTransform * tpos = get<TCompTransform>();
-    renderLine(tpos->getPosition(), tpos->getPosition() + (currentDirection - prevDirection) * 10, VEC4(1, 0, 0, 1));
-
-    //VEC3 localCurrentDirection = VEC3::Transform(tpos->getFront(), tpos->asMatrix().Invert());
-    //renderLine(tpos->getPosition(), tpos->getPosition() + localCurrentDirection, VEC4(1, 0, 0, 1));
 }
 
 void TCompAIDrone::preUpdate(float dt)
@@ -226,6 +225,162 @@ void TCompAIDrone::loadAsserts() {
 
 }
 
+bool TCompAIDrone::moveToDestDrone(VEC3 dest, float dt)
+{
+    TCompTransform* mypos = get<TCompTransform>();
+
+    #pragma region Rotation with yaw pitch roll (1)
+
+        bool hasToPitch;
+        int rotationSign;
+        VEC3 newSpeed = VEC3::Zero;
+        float deltayaw = mypos->getDeltaYawToAimTo(dest);
+        if (fabsf(deltayaw) < deg2rad(22.5f) || fabsf(deltayaw) > deg2rad(112.5f)) {
+            hasToPitch = true;
+            if (fabsf(deltayaw) < deg2rad(22.5f)) {
+                rotationSign = -1;
+                newSpeed = mypos->getFront();
+            }
+            else {
+                rotationSign = 1;
+                newSpeed = -mypos->getFront();
+            }
+        }
+        else {
+            hasToPitch = false;
+            if (mypos->isInLeft(dest)) {
+                rotationSign = -1;
+                newSpeed = mypos->getLeft();
+            }
+            else {
+                rotationSign = 1;
+                newSpeed = -mypos->getLeft();
+            }
+        }
+
+    #pragma endregion
+
+    #pragma region Movement with 4 axis only
+
+        float xSpeed = currentDirection.x;
+        float zSpeed = currentDirection.z;
+        newSpeed *= maxSpeed;
+        float xDirSpeed = newSpeed.x;
+        float zDirSpeed = newSpeed.z;
+        prevDirection = currentDirection;
+        currentDirection = VEC3::Lerp(VEC3(xSpeed, 0, zSpeed), VEC3(xDirSpeed, 0, zDirSpeed), lerpValue);
+
+        //if (fabsf(dest.y) - fabsf(mypos->getPosition().y) > upSpeed * dt) {
+        //    int upSign = 1;
+        //    if (dest.y < mypos->getPosition().y) {
+        //        upSign = -1;
+        //        dbg("BAJANDO\n");
+        //    }
+        //    else {
+        //        dbg("SUBIENDO\n");
+        //    }
+        //    mypos->setPosition(mypos->getPosition() + VEC3(0, upSpeed * upSign, 0) * dt);
+        //}
+
+        //if (VEC3::Distance2D(mypos->getPosition(), dest) > maxSpeed * dt) {
+            mypos->setPosition(mypos->getPosition() + currentDirection * dt);
+        //    dbg("MOVIENDO\n");
+        //}
+        //else {
+        //    currentDirection = VEC3::Lerp(VEC3(currentDirection.x, 0, currentDirection.y), VEC3(0, 0, 0), lerpValue);
+        //    dbg("PARANDO\n");
+        //}
+
+    #pragma endregion
+
+    #pragma region Rotation Based on Vel
+
+        float maxAmountToRotate = deg2rad(30.f);
+        float myActualSpeed = currentDirection.Length();
+        float prevSpeed = prevDirection.Length();
+        float diffSpeed = currentDirection.Length() - prevSpeed;
+
+        VEC3 localCurrentDirection = VEC3::TransformNormal(currentDirection, mypos->asMatrix().Invert());
+        localCurrentDirection = localCurrentDirection - VEC3(0, localCurrentDirection.y, 0);
+        localCurrentDirection.Normalize();
+
+        float maxAmountToRotateInAFrame = maxAmountToRotate * dt;
+        float amountToPitch;
+        float amountToRoll;
+        if (hasToPitch && rotationSign == 1) {
+            /* Backwards => mas prioridad al cambio de velocidad */
+            amountToPitch = maxAmountToRotateInAFrame * ((myActualSpeed / maxSpeed) + (diffSpeed / 0.35f * 10)) * localCurrentDirection.z;
+        }
+        else {
+            /* Forward */
+            amountToPitch = maxAmountToRotateInAFrame * (myActualSpeed / maxSpeed) * localCurrentDirection.z;
+        }
+        amountToRoll = maxAmountToRotateInAFrame * 2 * ((myActualSpeed / maxSpeed) + diffSpeed / 0.35f) * localCurrentDirection.x;
+
+        float yaw, pitch, roll;
+        mypos->getYawPitchRoll(&yaw, &pitch, &roll);
+        yaw = lerp(yaw, yaw + deltayaw, lerpValue);
+        if (fabsf(localCurrentDirection.z) < 0.2f) {
+            pitch = lerp(pitch, 0.f, dt);
+        }
+        else {
+            pitch = Clamp(pitch - amountToPitch, -maxAmountToRotate, maxAmountToRotate * 2);
+        }
+
+        if (fabsf(localCurrentDirection.x) < 0.2f) {
+            roll = lerp(roll, 0.f, dt);
+        }
+        else {
+            roll = Clamp(roll - amountToRoll, -maxAmountToRotate, maxAmountToRotate);
+        }
+
+        mypos->setYawPitchRoll(yaw, pitch, roll);
+
+    #pragma endregion
+
+    return VEC3::Distance(mypos->getPosition(), dest) < maxSpeed * dt;
+}
+
+void TCompAIDrone::waitInPosDrone(VEC3 dest, float dt, float speed, float rotSpeed, VEC3 lookAt)
+{
+    TCompTransform* mypos = get<TCompTransform>();
+    float distance = VEC3::Distance(dest, mypos->getPosition());
+    if (distance != 0) {
+        /* 1º llegar a la posicion y estabilizar */
+        if (distance > speed * dt) {
+            moveToPoint(speed, rotSpeed, dest, dt);
+            currentDirection = VEC3::Zero;
+            dbg("NOS RECOLOCAMOS\n");
+        }
+        else {
+            mypos->setPosition(dest);
+            dbg("NOS RECOLOCAMOS TOTAL\n");
+        }
+    }
+    else {
+        float deltayaw = 0;
+        if (lookAt != VEC3::Zero) {
+            deltayaw = mypos->getDeltaYawToAimTo(dest + lookAt);
+        }
+        if (fabsf(deltayaw) > rotSpeed * dt)
+        {
+            /* 2º yaw a la rotacion del wpt */
+            rotateTowardsVec(dest + lookAt, dt, rotSpeed);
+            dbg("NOS ORIENTAMOS\n");
+        }
+        else {
+            /* 3º esperar */
+            dbg("ESPERAMOS\n");
+        }
+    }
+
+    float yaw, pitch, roll;
+    mypos->getYawPitchRoll(&yaw, &pitch, &roll);
+    pitch = lerp(pitch, 0.f, dt);
+    roll = lerp(roll, 0.f, dt);
+    mypos->setYawPitchRoll(yaw, pitch, roll);
+}
+
 /* ACTIONS */
 
 BTNode::ERes TCompAIDrone::actionFall(float dt)
@@ -336,111 +491,18 @@ BTNode::ERes TCompAIDrone::actionRotateToNoiseSource(float dt)
 
 BTNode::ERes TCompAIDrone::actionGenerateNavmeshWpt(float dt)
 {
-    currentWaypoint = (currentWaypoint + 1) % _waypoints.size();
     return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionGoToWpt(float dt)
 {
 
-
-    TCompTransform* mypos = get<TCompTransform>();
-    if (VEC3::Distance(mypos->getPosition(), getWaypoint().position) < maxSpeed * dt) {
-        currentWaypoint = (currentWaypoint + 1) % _waypoints.size();
+    if (moveToDestDrone(getWaypoint().position, dt)) {
+        return BTNode::ERes::LEAVE;
     }
     else {
-
-        #pragma region Rotation with yaw pitch roll (1)
-
-            bool hasToPitch;
-            int rotationSign;
-            VEC3 newSpeed = VEC3::Zero;
-            float deltayaw = mypos->getDeltaYawToAimTo(getWaypoint().position);
-            if (fabsf(deltayaw) < deg2rad(22.5f) || fabsf(deltayaw) > deg2rad(112.5f)) {
-                hasToPitch = true;
-                if (fabsf(deltayaw) < deg2rad(22.5f)) {
-                    rotationSign = -1;
-                    newSpeed = mypos->getFront();
-                }
-                else {
-                    rotationSign = 1;
-                    newSpeed = -mypos->getFront();
-                }
-            }
-            else {
-                hasToPitch = false;
-                if (mypos->isInLeft(getWaypoint().position)) {
-                    rotationSign = -1;
-                    newSpeed = mypos->getLeft();
-                }
-                else {
-                    rotationSign = 1;
-                    newSpeed = -mypos->getLeft();
-                }
-            }
-
-        #pragma endregion
-
-        #pragma region Movement with 4 axis only
-
-            float xSpeed = currentDirection.x;
-            float zSpeed = currentDirection.z;
-            newSpeed *= maxSpeed;
-            float xDirSpeed = newSpeed.x;
-            float zDirSpeed = newSpeed.z;
-            prevDirection = currentDirection;
-            currentDirection = VEC3::Lerp(VEC3(xSpeed, 0, zSpeed), VEC3(xDirSpeed, 0, zDirSpeed), lerpValue);
-
-            mypos->setPosition(mypos->getPosition() + currentDirection * dt);
-
-        #pragma endregion
-
-        #pragma region Rotation Based on Vel
-
-            float maxAmountToRotate = deg2rad(30.f);
-            float myActualSpeed = currentDirection.Length();
-            float prevSpeed = prevDirection.Length();
-            float diffSpeed = currentDirection.Length() - prevSpeed;
-
-            VEC3 localCurrentDirection = VEC3::TransformNormal(currentDirection, mypos->asMatrix().Invert());
-            localCurrentDirection = localCurrentDirection - VEC3(0, localCurrentDirection.y, 0);
-            localCurrentDirection.Normalize();
-
-            float maxAmountToRotateInAFrame = maxAmountToRotate * dt;
-            float amountToPitch;
-            float amountToRoll;
-            if (hasToPitch && rotationSign == 1) {
-                /* Backwards => mas prioridad al cambio de velocidad */
-                amountToPitch = maxAmountToRotateInAFrame * ((myActualSpeed / maxSpeed) + (diffSpeed / 0.35f * 10)) * localCurrentDirection.z;
-            }
-            else {
-                /* Forward */
-                amountToPitch = maxAmountToRotateInAFrame * (myActualSpeed / maxSpeed) * localCurrentDirection.z;
-            }
-            amountToRoll = maxAmountToRotateInAFrame * 2 * ((myActualSpeed / maxSpeed) + diffSpeed / 0.35f) * localCurrentDirection.x;
-
-            float yaw, pitch, roll;
-            mypos->getYawPitchRoll(&yaw, &pitch, &roll);
-            yaw = lerp(yaw, yaw + deltayaw, lerpValue);
-            if (fabsf(localCurrentDirection.z) < 0.2f) {
-                pitch = lerp(pitch, 0.f, dt);
-            }
-            else {
-                pitch = Clamp(pitch - amountToPitch, -maxAmountToRotate, maxAmountToRotate * 2);
-            }
-
-            if (fabsf(localCurrentDirection.x) < 0.2f) {
-                roll = lerp(roll, 0.f, dt);
-            }
-            else {
-                roll = Clamp(roll - amountToRoll, -maxAmountToRotate, maxAmountToRotate);
-            }
-
-            mypos->setYawPitchRoll(yaw, pitch, roll);
-           
-        #pragma endregion
+        return BTNode::ERes::STAY;
     }
-    return BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIDrone::actionResetTimer(float dt)
@@ -454,11 +516,21 @@ BTNode::ERes TCompAIDrone::actionResetTimer(float dt)
 
 BTNode::ERes TCompAIDrone::actionWaitInWpt(float dt)
 {
-    return BTNode::ERes::LEAVE;
+    timerWaitingInWpt += dt;
+    if (timerWaitingInWpt < getWaypoint().minTime) {
+        waitInPosDrone(getWaypoint().position, dt, maxSpeed, deg2rad(60.f), getWaypoint().lookAt);
+        return BTNode::ERes::STAY;
+    }
+    else {
+
+        return BTNode::ERes::LEAVE;
+    }
 }
 
 BTNode::ERes TCompAIDrone::actionNextWpt(float dt)
 {
+    timerWaitingInWpt = 0.f;
+    currentWaypoint = (currentWaypoint + 1) % _waypoints.size();
     return BTNode::ERes::LEAVE;
 }
 

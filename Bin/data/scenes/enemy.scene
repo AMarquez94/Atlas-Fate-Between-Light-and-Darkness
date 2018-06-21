@@ -100,18 +100,18 @@
 					}, 
 					{
 						"position": "-28 10 95",
-						"lookAt": "-1 0 0",
-						"minTime": 10
+						"lookAt": "1 0 0",
+						"minTime": 5
 					},
 					{
 						"position": "-26 10 90",
-						"lookAt": "-1 0 0",
-						"minTime": 10
+						"lookAt": "1 0 0",
+						"minTime": 7
 					},
 					{
 						"position": "-20 10 90",
-						"lookAt": "-1 0 0",
-						"minTime": 10
+						"lookAt": "1 0 0",
+						"minTime": 0
 					}
 				]
 			}
