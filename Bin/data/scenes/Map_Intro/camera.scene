@@ -23,7 +23,7 @@
 			"fog": {
 				"enabled": true
 			},
-			"volume_light": {
+			"antialiasing": {
 				"enabled": true
 			},
 			"chromatic_aberration": {
@@ -64,10 +64,10 @@
 			"chromatic_aberration": {
 				"enabled": true
 			},
-						"fog": {
+			"fog": {
 				"enabled": true
 			},
-						"volume_light": {
+			"antialiasing": {
 				"enabled": true
 			},
 			"tags": ["main_camera"]
@@ -102,6 +102,12 @@
 				"amount": 0.6,
 				"lut": "data/textures/lut/RGBTable16x1.dds"
 			},
+			"fog": {
+				"enabled": true
+			},
+			"antialiasing": {
+				"enabled": true
+			},
 			"tags": ["main_camera"]
 		}
 	}, {
@@ -135,6 +141,12 @@
 				"enabled": true,
 				"amount": 0.6,
 				"lut": "data/textures/lut/lut1.dds"
+			},
+			"fog": {
+				"enabled": true
+			},
+			"antialiasing": {
+				"enabled": true
 			},
 			"tags": ["main_camera"]
 		}

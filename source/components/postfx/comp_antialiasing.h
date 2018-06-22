@@ -8,7 +8,7 @@ class CTexture;
 class CRenderToTexture;
 
 // ------------------------------------
-struct TCompVolumeLight : public TCompBase {
+struct TCompAntiAliasing : public TCompBase {
   bool                          enabled = true;
   float                         amount = 1.f;
   const CRenderTechnique*       tech = nullptr;

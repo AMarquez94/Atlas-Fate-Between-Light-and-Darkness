@@ -10,7 +10,9 @@ DECL_OBJ_MANAGER("chromatic_aberration", TCompChromaticAberration);
 void TCompChromaticAberration::debugInMenu() {
 
     ImGui::Checkbox("Enabled", &enabled);
-    ImGui::DragFloat("Amount", &amount, 0.01f, 0.0f, 1.0f);
+    ImGui::DragFloat("Amount", &cb_postfx.postfx_ca_amount, 0.01f, 0.0f, 1.0f);
+    ImGui::DragFloat("Offset", &cb_postfx.postfx_ca_offset, 0.01f, 0.0f, 1.0f);
+    ImGui::DragFloat("Shifting", &cb_postfx.postfx_cs_offset, 0.01f, 0.0f, 1.0f);
 }
 
 void TCompChromaticAberration::load(const json& j, TEntityParseContext& ctx) {
@@ -31,9 +33,16 @@ void TCompChromaticAberration::load(const json& j, TEntityParseContext& ctx) {
 
     tech = Resources.get("postfx_chromatic_aberration.tech")->as<CRenderTechnique>();
     mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
+
+    cb_postfx.postfx_ca_amount = 0.05f;
+    cb_postfx.postfx_ca_offset = 0.05f;
+    cb_postfx.postfx_cs_offset = 0.5f;
+
 }
 
 CTexture* TCompChromaticAberration::apply(CTexture* in_texture) {
+
+    cb_postfx.updateGPU();
 
     if (!enabled)
         return in_texture;

@@ -245,9 +245,9 @@ CB_DEF(CCtePlayer, CB_PLAYER)
 
 CB_DEF(CCtePostFX, CB_POSTFX)
 {
-    float  postfx_dummy0;
-    float  postfx_dummy1;
-    float  postfx_dummy2;
+    float  postfx_ca_amount;
+    float  postfx_ca_offset;
+    float  postfx_cs_offset;
     float  postfx_dummy3;
 };
 

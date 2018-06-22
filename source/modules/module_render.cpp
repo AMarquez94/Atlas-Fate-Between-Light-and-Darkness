@@ -24,7 +24,7 @@
 #include "components/postfx/comp_render_bloom.h"
 #include "components/postfx/comp_color_grading.h"
 #include "components/postfx/comp_fog.h"
-#include "components/postfx/comp_volume_light.h"
+#include "components/postfx/comp_antialiasing.h"
 #include "components/postfx/comp_chrom_aberration.h"
 
 //--------------------------------------------------------------------------------------
@@ -335,9 +335,9 @@ void CModuleRender::generateFrame() {
             if (c_render_outlines)
                 c_render_outlines->apply();
 
-            TCompVolumeLight* c_volume_light = e_cam->get< TCompVolumeLight >();
-            if (c_volume_light)
-                curr_rt = c_volume_light->apply(curr_rt);
+            TCompAntiAliasing* c_antialiasing = e_cam->get< TCompAntiAliasing >();
+            if (c_antialiasing)
+                curr_rt = c_antialiasing->apply(curr_rt);
 		}
 
 		Render.startRenderInBackbuffer();

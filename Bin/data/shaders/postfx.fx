@@ -24,13 +24,13 @@ float4 PS_PostFXFog(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOO
 	return in_color + float4(global_fog_color,1) * (1 - insc);
 }
 
-float2 getDistorsion(float2 iTex0, float value, float shift) 
+float2 shiftChannel(float2 iTex0, float value, float shift) 
 {
-	float r2 = (iTex0.x - 0.5) * (iTex0.x - 0.5) + (iTex0.y - 0.5) * (iTex0.y - 0.5);
+	float r2 = (iTex0.x - postfx_cs_offset) * (iTex0.x - postfx_cs_offset) + (iTex0.y - postfx_cs_offset) * (iTex0.y - postfx_cs_offset);
 	float f = 1 + r2 * (value + shift * sqrt(r2));
 
-	float x = f*(iTex0.x - 0.5) + 0.5;
-	float y = f*(iTex0.y - 0.5) + 0.5;
+	float x = f*(iTex0.x - postfx_cs_offset) + postfx_cs_offset;
+	float y = f*(iTex0.y - postfx_cs_offset) + postfx_cs_offset;
 
 	return float2(x, y);
 }
@@ -38,10 +38,9 @@ float2 getDistorsion(float2 iTex0, float value, float shift)
 // PostFX Chromatic Aberration
 float4 PS_PostFX_CA(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
 {
-	float chromatic_amount = 0.05;
-	float2 bDist = getDistorsion(iTex0, -0.05, 0.05);
-	float2 gDist = getDistorsion(iTex0, -0.05 - chromatic_amount, 0.05 + chromatic_amount);
-	float2 rDist = getDistorsion(iTex0, -0.05 - chromatic_amount * 2, 0.05 + chromatic_amount * 2);
+	float2 bDist = shiftChannel(iTex0, -postfx_ca_offset, postfx_ca_offset);
+	float2 gDist = shiftChannel(iTex0, -postfx_ca_offset - postfx_ca_amount, postfx_ca_offset + postfx_ca_amount);
+	float2 rDist = shiftChannel(iTex0, -postfx_ca_offset - postfx_ca_amount * 2, postfx_ca_offset + postfx_ca_amount * 2);
   
 	float4 distorsion_r = txAlbedo.Sample(samClampLinear, rDist);
 	float4 distorsion_g = txAlbedo.Sample(samClampLinear, gDist);
