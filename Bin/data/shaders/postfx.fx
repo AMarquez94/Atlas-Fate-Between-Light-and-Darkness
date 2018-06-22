@@ -24,12 +24,38 @@ float4 PS_PostFXFog(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOO
 	return in_color + float4(global_fog_color,1) * (1 - insc);
 }
 
+float2 getDistorsion(float2 iTex0, float value, float shift) 
+{
+	float r2 = (iTex0.x - 0.5) * (iTex0.x - 0.5) + (iTex0.y - 0.5) * (iTex0.y - 0.5);
+	float f = 1 + r2 * (value + shift * sqrt(r2));
+
+	float x = f*(iTex0.x - 0.5) + 0.5;
+	float y = f*(iTex0.y - 0.5) + 0.5;
+
+	return float2(x, y);
+}
+
+// PostFX Chromatic Aberration
+float4 PS_PostFX_CA(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
+{
+	float chromatic_amount = 0.05;
+	float2 bDist = getDistorsion(iTex0, -0.05, 0.05);
+	float2 gDist = getDistorsion(iTex0, -0.05 - chromatic_amount, 0.05 + chromatic_amount);
+	float2 rDist = getDistorsion(iTex0, -0.05 - chromatic_amount * 2, 0.05 + chromatic_amount * 2);
+  
+	float4 distorsion_r = txAlbedo.Sample(samClampLinear, rDist);
+	float4 distorsion_g = txAlbedo.Sample(samClampLinear, gDist);
+	float4 distorsion_b = txAlbedo.Sample(samClampLinear, bDist);
+
+  return float4(distorsion_r.r, distorsion_g.g, distorsion_b.b, 1);
+}
+
 // Adaptative lighting methods
 
 float NUM_SAMPLES = 10;
 float Density = 1;
 
-float4 PS_VLight( in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
+float4 PS_PostFX_LScattering( in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
 {
 	/*float2 deltaTexCoord = (iTex0 - ScreenLightPos.xy);
 	deltaTexCoord *= 1.0f / NUM_SAMPLES * Density;

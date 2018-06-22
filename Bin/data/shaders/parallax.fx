@@ -1,7 +1,7 @@
 //--------------------------------------------------------------------------------------
 #include "common.fx"
 
-float2 ComputeParallax(float2 texCoords, float3 view_dir) {
+float2 ComputeParallax(float2 texCoords, float3 view_dir, out float p_height) {
 
 	const float minLayers = 15.0;
 	const float maxLayers = 30.0;
@@ -17,9 +17,9 @@ float2 ComputeParallax(float2 texCoords, float3 view_dir) {
 	[unroll(130)]
 	while (currentLayerDepth < currentDepthMapValue)
 	{
-	currentTexCoords -= deltaTexCoords;
-	currentDepthMapValue = 1 - txHeight.Sample(samLinear, currentTexCoords).r;
-	currentLayerDepth += layerDepth;
+		currentTexCoords -= deltaTexCoords;
+		currentDepthMapValue = 1 - txHeight.Sample(samLinear, currentTexCoords).r;
+		currentLayerDepth += layerDepth;
 	}
 
 	float2 prevTexCoords = currentTexCoords + deltaTexCoords;
@@ -28,24 +28,57 @@ float2 ComputeParallax(float2 texCoords, float3 view_dir) {
 	float weight = afterDepth / (afterDepth - beforeDepth);
 	float2 finalTexCoords = prevTexCoords * weight + currentTexCoords * (1.0 - weight);
 
+	p_height = currentLayerDepth + beforeDepth * weight + afterDepth * (1.0 - weight);
+	
 	return finalTexCoords;
 }
 
 float ComputeParallaxShadow(float2 texCoords, float3 light_dir, float init_height)
 {
-	float shadowMultiple = 1;
+	float shadowMultiplier = 1;
 	
 	if(dot(float3(0,0,1), light_dir) > 0){
 	
-		float numSamplesSurface = 0;
 		const float minLayers = 15.0;
 		const float maxLayers = 30.0;
-		float numLayers = lerp(maxLayers, minLayers, abs(dot(float3(0.0, 0.0, 1.0), view_dir)));
-		
-	
+		float numSamplesUnderSurface = 0;
+		float numLayers = lerp(maxLayers, minLayers, abs(dot(float3(0.0, 0.0, 1.0), light_dir)));
+		float layerHeight	= init_height / numLayers;
+		float2 texStep = 0.075 * light_dir.xy / numLayers;
+
+		float currentLayerHeight	= init_height - layerHeight;
+		float2 currentTextureCoords	= texCoords + texStep;
+		float heightFromTexture	= 1 - txHeight.Sample(samLinear, currentTextureCoords).r;
+		int stepIndex	= 1;
+
+		[unroll(130)]
+		while(currentLayerHeight > 0)
+		{
+			 // if point is under the surface
+			 if(heightFromTexture < currentLayerHeight)
+			 {
+					numSamplesUnderSurface	+= 1;
+					float newShadowMultiplier	= (currentLayerHeight - heightFromTexture) * (1.0 - stepIndex / numLayers);
+					shadowMultiplier	= max(shadowMultiplier, newShadowMultiplier);
+			 }
+			 
+			 stepIndex	+= 1;
+			 currentLayerHeight	-= layerHeight;
+			 currentTextureCoords	+= texStep;
+			 heightFromTexture	= 1 - txHeight.Sample(samLinear, currentTextureCoords).r;
+		}
+
+		if(numSamplesUnderSurface < 1)
+		{
+			 shadowMultiplier = 1;
+		}
+		else
+		{
+			 shadowMultiplier = 1.0 - shadowMultiplier;
+		}
 	}
 	
-	return shadowMultiple;
+	return shadowMultiplier;
 }
 
 //--------------------------------------------------------------------------------------
@@ -65,7 +98,8 @@ void VS_GBuffer(
 	, out float2 oTex1 : TEXCOORD1
 	, out float3 oWorldPos : TEXCOORD2
 	, out float3 oTanView : TEXCOORD3
-	, out float3 oTanFrag : TEXCOORD4
+	, out float3 oTanLight : TEXCOORD4
+	, out float3 oTanFrag : TEXCOORD5
 )
 {
 	float4 world_pos = mul(iPos, obj_world);
@@ -83,6 +117,7 @@ void VS_GBuffer(
 
 	float3x3 TBN = transpose(computeTBN(oNormal, oTangent));
 	oTanView = mul(camera_pos, TBN);
+	oTanLight = mul(light_pos, TBN);
 	oTanFrag = mul(oWorldPos, TBN);
 }
 
@@ -97,7 +132,8 @@ void PS_GBuffer_Parallax(
   , float2 iTex1 : TEXCOORD1
   , float3 iWorldPos : TEXCOORD2
   , float3 iTanView : TEXCOORD3
-  , float3 iTanFrag : TEXCOORD4
+	, float3 iTanLight : TEXCOORD4
+  , float3 iTanFrag : TEXCOORD5
 	
   , out float4 o_albedo : SV_Target0
   , out float4 o_normal : SV_Target1
@@ -107,13 +143,18 @@ void PS_GBuffer_Parallax(
 {
 	// Shift the uv's by the parallax effect
 	float3 view_dir = normalize(iTanView - iTanFrag);
-	iTex0 = ComputeParallax(iTex0, view_dir);
+	float3 view_light = normalize(iTanLight - iTanFrag);
+	
+	float p_height = 0;
+	iTex0 = ComputeParallax(iTex0, view_dir, p_height);
+  //float shadowMultiplier = ComputeParallaxShadow(iTex0, view_light, p_height - 0.05);
 	
 	o_albedo = txAlbedo.Sample(samLinear, iTex0);
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 	o_selfIllum = txEmissive.Sample(samLinear, iTex0) * self_intensity;
 	o_selfIllum.xyz *= self_color;
-
+	//o_selfIllum.a = pow(shadowMultiplier, 4);
+	
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
 	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
 	o_normal = encodeNormal(N, roughness);

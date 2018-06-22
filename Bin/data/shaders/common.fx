@@ -52,6 +52,9 @@ SamplerState samBorderLinear  : register(s1);
 SamplerComparisonState samPCF : register(s2);
 SamplerState samClampLinear   : register(s3);
 SamplerComparisonState samPCFWhite : register(s4);
+SamplerState samClampBilinear   : register(s5);
+SamplerState samClampPoint    : register(s6);
+SamplerState samCount   			: register(s7);
 
 //--------------------------------------------------------------------------------------
 // 

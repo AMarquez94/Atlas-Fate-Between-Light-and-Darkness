@@ -20,6 +20,9 @@
 				"max_steps": 4,
 				"rt_name": "Bloom"
 			},
+			"chromatic_aberration": {
+				"enabled": true
+			},
 			"render_outlines" : {
 			"enabled" : true
 		  },
@@ -49,6 +52,9 @@
 				"enabled": true,
 				"max_steps": 4,
 				"rt_name": "Bloom"
+			},
+			"chromatic_aberration": {
+				"enabled": true
 			},
 			"color_grading": {
 				"enabled": true,

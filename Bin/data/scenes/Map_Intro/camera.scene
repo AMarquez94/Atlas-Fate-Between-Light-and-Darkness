@@ -26,6 +26,9 @@
 			"volume_light": {
 				"enabled": true
 			},
+			"chromatic_aberration": {
+				"enabled": true
+			},
 			"culling": true
 		}
 	}, {
@@ -57,6 +60,9 @@
 				"enabled": true,
 				"amount": 0.6,
 				"lut": "data/textures/lut/RGBTable16x1.dds"
+			},
+			"chromatic_aberration": {
+				"enabled": true
 			},
 						"fog": {
 				"enabled": true

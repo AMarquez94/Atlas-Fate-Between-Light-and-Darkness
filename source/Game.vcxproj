@@ -143,6 +143,7 @@
     <ClCompile Include="components\player_controller\comp_player_tempcontroller.cpp" />
     <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
     <ClCompile Include="components\player_controller\comp_sonar_controller.cpp" />
+    <ClCompile Include="components\postfx\comp_chrom_aberration.cpp" />
     <ClCompile Include="components\postfx\comp_color_grading.cpp" />
     <ClCompile Include="components\postfx\comp_fog.cpp" />
     <ClCompile Include="components\postfx\comp_render_ao.cpp" />
@@ -333,6 +334,7 @@
     <ClInclude Include="components\player_controller\comp_player_tempcontroller.h" />
     <ClInclude Include="components\player_controller\comp_shadow_controller.h" />
     <ClInclude Include="components\player_controller\comp_sonar_controller.h" />
+    <ClInclude Include="components\postfx\comp_chrom_aberration.h" />
     <ClInclude Include="components\postfx\comp_color_grading.h" />
     <ClInclude Include="components\postfx\comp_fog.h" />
     <ClInclude Include="components\postfx\comp_render_ao.h" />

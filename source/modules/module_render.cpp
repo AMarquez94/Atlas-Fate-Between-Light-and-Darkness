@@ -25,6 +25,7 @@
 #include "components/postfx/comp_color_grading.h"
 #include "components/postfx/comp_fog.h"
 #include "components/postfx/comp_volume_light.h"
+#include "components/postfx/comp_chrom_aberration.h"
 
 //--------------------------------------------------------------------------------------
 
@@ -125,6 +126,9 @@ bool CModuleRender::start()
     if (!cb_player.create(CB_PLAYER))
         return false;
 
+    if (!cb_postfx.create(CB_POSTFX))
+        return false;
+
 	cb_globals.global_exposure_adjustment = 2.010f;
 	cb_globals.global_ambient_adjustment = 0.150f;
 	cb_globals.global_world_time = 0.f;
@@ -144,6 +148,7 @@ bool CModuleRender::start()
     cb_particles.activate();
     cb_outline.activate();
     cb_player.activate();
+    cb_postfx.activate();
 
 	camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
 	camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
@@ -175,6 +180,7 @@ bool CModuleRender::stop()
     cb_particles.destroy();
     cb_outline.destroy();
     cb_player.destroy();
+    cb_postfx.destroy();
 
 	return true;
 }
@@ -321,13 +327,17 @@ void CModuleRender::generateFrame() {
             if (c_render_fog)
                 curr_rt = c_render_fog->apply(curr_rt);
 
-            //TCompVolumeLight* c_volume_light = e_cam->get< TCompVolumeLight >();
-            //if (c_volume_light)
-            //    curr_rt = c_volume_light->apply(curr_rt);
+            TCompChromaticAberration* c_chroma_aberration = e_cam->get< TCompChromaticAberration >();
+            if (c_chroma_aberration)
+                curr_rt = c_chroma_aberration->apply(curr_rt);
 
             TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
             if (c_render_outlines)
                 c_render_outlines->apply();
+
+            TCompVolumeLight* c_volume_light = e_cam->get< TCompVolumeLight >();
+            if (c_volume_light)
+                curr_rt = c_volume_light->apply(curr_rt);
 		}
 
 		Render.startRenderInBackbuffer();

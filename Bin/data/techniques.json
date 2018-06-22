@@ -418,7 +418,23 @@
 	"postfx_vol_lights": {
 		"vs_file": "data/shaders/screen_quad.fx",
 		"ps_file": "data/shaders/postfx.fx",
-		"ps_entry_point": "PS_VLight",
+		"ps_entry_point": "PS_PostFX_LScattering",
+		"vertex_type": "PosClr",
+		"category": "fx",
+		"z" : "disable_all"
+	},
+	"postfx_chromatic_aberration": {
+		"vs_file": "data/shaders/screen_quad.fx",
+		"ps_file": "data/shaders/postfx.fx",
+		"ps_entry_point": "PS_PostFX_CA",
+		"vertex_type": "PosClr",
+		"category": "fx",
+		"z" : "disable_all"
+	},
+	"postfx_fxaa": {
+		"vs_file": "data/shaders/screen_quad.fx",
+		"ps_file": "data/shaders/fxaa.fx",
+		"ps_entry_point": "PS_FXAA",
 		"vertex_type": "PosClr",
 		"category": "fx",
 		"z" : "disable_all"

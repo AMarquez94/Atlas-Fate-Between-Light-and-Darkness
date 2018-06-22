@@ -13,6 +13,7 @@
 #define CB_PARTICLE		9
 #define CB_OUTLINE      10
 #define CB_PLAYER       11
+#define CB_POSTFX       12
 
 // -------------------------------------------------
 // Texture Slots
@@ -241,5 +242,14 @@ CB_DEF(CCtePlayer, CB_PLAYER)
     float  player_dummy2;
     float  player_dummy3;
 };
+
+CB_DEF(CCtePostFX, CB_POSTFX)
+{
+    float  postfx_dummy0;
+    float  postfx_dummy1;
+    float  postfx_dummy2;
+    float  postfx_dummy3;
+};
+
 
 #endif
