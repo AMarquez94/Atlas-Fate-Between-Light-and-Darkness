@@ -171,6 +171,12 @@ struct TMsgNoiseMade {
 	DECL_MSG_ID();
 };
 
+struct TMsgOrderReceived {
+	CHandle hOrderSource;
+	VEC3 position;
+	DECL_MSG_ID();
+};
+
 struct TMsgShadowChange {
 	bool is_shadowed;
 	DECL_MSG_ID();

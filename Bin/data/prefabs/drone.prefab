@@ -124,29 +124,37 @@
 		}
 	}, {
 		"entity": {
-			"name": "Cone of Vision",
-			"transform": {},
-			"render": {
-				"mesh": "cone_of_vision_mimetic.mesh"
+			"name": "Lantern Drone",
+			"transform": {
+				"pos": "0 0 0"
 			},
+			"render": [{
+					"mesh": "data/meshes/drone_linterna.mesh",
+					"materials": [
+						"data/materials/mtl_default.material"
+					]
+				}
+			],
 			"hierarchy": {
-				"parent": "Drone"
-			}
-		}
-	}, {
-		"xentity": {
-			"name": "Cone of Light",
-			"transform": {},
-			"render": {
-				"mesh": "cone_of_light.mesh"
+				"parent": "Drone",
+				"pos": "0 0 0",
+				"axis": "1 0 0",
+				"angle": 20
 			},
-			"hierarchy": {
-				"parent": "Drone"
-			},
-			"cone_of_light": {
-				"fov": 35,
-				"dist": 20.0,
-				"target": "The Player"
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 15,
+				"angle": 75,
+				"inner_cut": 70,
+				"outer_cut": 75,
+				"color": "0.3 1.0 1.0 1.0",
+				"intensity": 5.0,
+				"shadows": true,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 256,
+				"shadows_fmt": "R32_TYPELESS"
 			}
 		}
 	}, {

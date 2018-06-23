@@ -48,12 +48,23 @@ private:
 
     float rotationSpeedNoise = deg2rad(120.f);
 
+    /* Order */
+    bool hasReceivedOrder = false;
+    VEC3 orderPosition = VEC3::Zero;
+    float timerWaitingInOrderPos = 0;
+    float maxTimeWaitingInOrderPos = 4;
+
+    /* Lantern */
+    CHandle hLantern;
+    bool lanternPatrollingLeft = false;
+
     DECL_SIBLING_ACCESS();
 
     void onMsgEntityCreated(const TMsgEntityCreated& msg);
     void onMsgPlayerDead(const TMsgPlayerDead& msg);
     void onMsgDroneStunned(const TMsgEnemyStunned& msg);
     void onMsgNoiseListened(const TMsgNoiseMade& msg);
+    void onMsgOrderReceived(const TMsgOrderReceived& msg);
 
     //load
     void loadActions() override;
@@ -63,7 +74,7 @@ private:
     /* AUX */
     bool moveToDestDrone(VEC3 dest, float dt);
     void waitInPosDrone(VEC3 dest, float dt, float speed, float rotSpeed, VEC3 lookAt = VEC3::Zero);
-
+    void moveLanternPatrolling(float dt);
 
 public:
     void preUpdate(float dt) override;

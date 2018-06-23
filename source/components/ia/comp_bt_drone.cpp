@@ -17,6 +17,7 @@
 #include "render/render_objects.h"
 #include "components/object_controller/comp_noise_emitter.h"
 #include "components/comp_tags.h"
+#include "components/comp_hierarchy.h"
 
 DECL_OBJ_MANAGER("ai_drone", TCompAIDrone);
 
@@ -130,6 +131,12 @@ void TCompAIDrone::onMsgEntityCreated(const TMsgEntityCreated & msg)
     TCompRigidbody* tRigidbody = get<TCompRigidbody>();
     tRigidbody->setNormalGravity(VEC3::Zero);
 
+
+    TCompGroup* myGroup = get<TCompGroup>();
+    assert(myGroup != nullptr);
+    hLantern = myGroup->getHandleByName("Lantern Drone");
+    assert(hLantern.isValid());
+
     myHandle = CHandle(this);
 
 }
@@ -191,6 +198,14 @@ void TCompAIDrone::onMsgNoiseListened(const TMsgNoiseMade & msg)
     //    noiseSource = msg.noiseOrigin;
     //    hNoiseSource = msg.hNoiseSource;
     //}
+}
+
+void TCompAIDrone::onMsgOrderReceived(const TMsgOrderReceived & msg)
+{
+    /* Si no esta persiguiendo jugador etc etc */
+    hasReceivedOrder = true;
+    orderPosition = msg.position;
+
 }
 
 /* TODO: --- */
@@ -357,11 +372,9 @@ void TCompAIDrone::waitInPosDrone(VEC3 dest, float dt, float speed, float rotSpe
         if (distance > speed * dt) {
             moveToPoint(speed, rotSpeed, dest, dt);
             currentDirection = VEC3::Zero;
-            dbg("NOS RECOLOCAMOS\n");
         }
         else {
             mypos->setPosition(dest);
-            dbg("NOS RECOLOCAMOS TOTAL\n");
         }
     }
     else {
@@ -373,11 +386,9 @@ void TCompAIDrone::waitInPosDrone(VEC3 dest, float dt, float speed, float rotSpe
         {
             /* 2º yaw a la rotacion del wpt */
             rotateTowardsVec(dest + lookAt, dt, rotSpeed);
-            dbg("NOS ORIENTAMOS\n");
         }
         else {
             /* 3º esperar */
-            dbg("ESPERAMOS\n");
         }
     }
 
@@ -386,6 +397,33 @@ void TCompAIDrone::waitInPosDrone(VEC3 dest, float dt, float speed, float rotSpe
     pitch = lerp(pitch, 0.f, dt);
     roll = lerp(roll, 0.f, dt);
     mypos->setYawPitchRoll(yaw, pitch, roll);
+}
+
+void TCompAIDrone::moveLanternPatrolling(float dt)
+{
+    CEntity* eLantern = hLantern;
+    TCompHierarchy* lanternHierarchy = eLantern->get<TCompHierarchy>();
+    TCompTransform* lanternPos = eLantern->get<TCompTransform>();
+    TCompTransform* myPos = get<TCompTransform>();
+    float deltaYaw = lanternPos->getDeltaYawToAimTo(myPos->getPosition() + myPos->getFront());
+
+    dbg("Moving lantern with yaw %f\n", rad2deg(deltaYaw));
+
+    float yaw, pitch, roll, yaw_addition;
+    lanternHierarchy->getYawPitchRoll(&yaw, &pitch, &roll);
+    if (lanternPatrollingLeft) {
+        yaw_addition = rotationSpeedObservation * dt;
+    }
+    else {
+        yaw_addition = -rotationSpeedObservation * dt;
+    }
+
+    if (fabsf(yaw + yaw_addition) > deg2rad(30.f)) {
+        yaw_addition = 0;
+        lanternPatrollingLeft = !lanternPatrollingLeft;
+    }
+
+    lanternHierarchy->setYawPitchRoll(yaw + yaw_addition, pitch, roll);
 }
 
 /* ACTIONS */
@@ -423,6 +461,8 @@ BTNode::ERes TCompAIDrone::actionChaseAndShoot(float dt)
 
 BTNode::ERes TCompAIDrone::actionMarkNoiseAsInactive(float dt)
 {
+    hasHeardNaturalNoise = false;
+    hasHeardArtificialNoise = false;
     return BTNode::ERes::LEAVE;
 }
 
@@ -433,21 +473,30 @@ BTNode::ERes TCompAIDrone::actionGenerateNavmeshArtificialNoise(float dt)
 
 BTNode::ERes TCompAIDrone::actionGoToNoiseSource(float dt)
 {
-    return BTNode::ERes::LEAVE;
+    return moveToDestDrone(noiseSource, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIDrone::actionWaitInNoiseSource(float dt)
 {
-    return BTNode::ERes::LEAVE;
+    timerWaitingInNoise += dt;
+    if (timerWaitingInOrderPos < maxTimeWaitingInOrderPos) {
+        waitInPosDrone(noiseSource, dt, maxSpeed, deg2rad(60.f));
+        return BTNode::ERes::STAY;
+    }
+    else {
+        return BTNode::ERes::LEAVE;
+    }
 }
 
 BTNode::ERes TCompAIDrone::actionClosestWpt(float dt)
 {
+    getClosestWpt();
     return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionMarkOrderAsReceived(float dt)
 {
+    hasReceivedOrder = false;
     return BTNode::ERes::LEAVE;
 }
 
@@ -458,12 +507,19 @@ BTNode::ERes TCompAIDrone::actionGenerateNavmeshOrder(float dt)
 
 BTNode::ERes TCompAIDrone::actionGoToOrderPos(float dt)
 {
-    return BTNode::ERes::LEAVE;
+    return moveToDestDrone(orderPosition, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIDrone::actionWaitInOrderPos(float dt)
 {
-    return BTNode::ERes::LEAVE;
+    timerWaitingInOrderPos += dt;
+    if(timerWaitingInOrderPos < maxTimeWaitingInOrderPos){
+        waitInPosDrone(orderPosition, dt, maxSpeed, deg2rad(60.f));
+        return BTNode::ERes::STAY;
+    }
+    else {
+        return BTNode::ERes::LEAVE;
+    }
 }
 
 BTNode::ERes TCompAIDrone::actionGenerateNavmeshPlayerLost(float dt)
@@ -473,12 +529,19 @@ BTNode::ERes TCompAIDrone::actionGenerateNavmeshPlayerLost(float dt)
 
 BTNode::ERes TCompAIDrone::actionGoToPlayerLastPos(float dt)
 {
-    return BTNode::ERes::LEAVE;
+    return moveToDestDrone(lastPlayerKnownPos, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIDrone::actionWaitInPlayerLastPos(float dt)
 {
-    return BTNode::ERes::LEAVE;
+    timerWaitingInOrderPos += dt;
+    if (timerWaitingInOrderPos < maxTimeWaitingInOrderPos) {
+        waitInPosDrone(lastPlayerKnownPos, dt, maxSpeed, deg2rad(60.f));
+        return BTNode::ERes::STAY;
+    }
+    else {
+        return BTNode::ERes::LEAVE;
+    }
 }
 
 BTNode::ERes TCompAIDrone::actionGenerateNavmeshSuspect(float dt)
@@ -508,6 +571,7 @@ BTNode::ERes TCompAIDrone::actionGoToWpt(float dt)
         return BTNode::ERes::LEAVE;
     }
     else {
+        moveLanternPatrolling(dt);
         return BTNode::ERes::STAY;
     }
 }
@@ -518,6 +582,7 @@ BTNode::ERes TCompAIDrone::actionResetTimer(float dt)
     timerWaitingInUnreachablePoint = 0;
     timerWaitingInNoise = 0;
     timerWaitingInObservation = 0;
+    timerWaitingInOrderPos = 0;
     return BTNode::ERes::LEAVE;
 }
 
@@ -560,12 +625,12 @@ bool TCompAIDrone::conditionIsPlayerSeenForSure(float dt)
 
 bool TCompAIDrone::conditionHasHeardArtificialNoise(float dt)
 {
-    return false;
+    return hasHeardArtificialNoise;
 }
 
 bool TCompAIDrone::conditionHasReceivedEnemyOrder(float dt)
 {
-    return false;
+    return hasReceivedOrder;
 }
 
 bool TCompAIDrone::conditionPlayerHasBeenLost(float dt)
@@ -575,12 +640,12 @@ bool TCompAIDrone::conditionPlayerHasBeenLost(float dt)
 
 bool TCompAIDrone::conditionIsPlayerInFov(float dt)
 {
-    return false;
+    return lastPlayerKnownPos != VEC3::Zero;
 }
 
 bool TCompAIDrone::conditionHasHeardNaturalNoise(float dt)
 {
-    return false;
+    return hasHeardNaturalNoise;
 }
 
 /* ASSERTS */
