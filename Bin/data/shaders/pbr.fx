@@ -336,7 +336,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	// Compute global fog on ambient.
 	float3 pixel_depth = camera_pos.xyz - wPos;
 	float distancet = length(pixel_depth);
-	float visibility = exp(distancet *distancet * -global_fog_density * global_fog_density * 1.242695);
+	float visibility = exp(distancet * distancet * -global_fog_density * global_fog_density * 1.242695);
 	visibility = saturate(visibility);
 
 	//float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
@@ -395,7 +395,6 @@ float4 shade(float4 iPosition, out float3 light_dir, bool use_shadows)
 
 	float  att = (1. - smoothstep(0.90, 0.98, distance_to_light / light_radius)); // Att, point light
 	//att *= 1 / distance_to_light;
-	float4 self_illum = txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
 	
 	// Spotlight attenuation
 	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.; // shadow factor

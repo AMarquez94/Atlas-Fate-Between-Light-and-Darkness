@@ -87,8 +87,8 @@ float4 projectWavedShadow(float3 wPos) {
   float2 distort_uv = float2(t_uv.x + sin((t_uv.y + distortionOffset) * 20) * 0.025, t_uv.y + sin((t_uv.x + distortionOffset) * 20) * 0.025);
   float4 light_projector_color = txLightProjector.Sample(samBorderLinear, distort_uv);
 
-  //if (pos_in_light_proj_space.z < 0.)
-    //light_projector_color = float4(0, 0, 0, 0);
+  if (pos_in_light_proj_space.z < 0.)
+    light_projector_color = float4(0, 0, 0, 0);
 
   // Fade to zero in the last 1% of the zbuffer of the light
   light_projector_color *= smoothstep(1.0f, 0.15f, pos_in_light_homo_space.z);

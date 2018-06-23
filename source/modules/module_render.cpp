@@ -136,7 +136,7 @@ bool CModuleRender::start()
 	cb_globals.global_gamma_correction_enabled = 1.f;
 	cb_globals.global_tone_mapping_mode = 1.f;
     cb_globals.global_fog_density = 0.017f;
-    cb_globals.global_fog_color = VEC3(0.3,0.3,0.7);
+    cb_globals.global_fog_color = VEC3(0.18,0.5,0.7);
     cb_globals.global_self_intensity = 10.f;
 
 	cb_light.activate();
@@ -217,6 +217,7 @@ void CModuleRender::render()
 		ImGui::DragFloat("Gamma Correction", &cb_globals.global_gamma_correction_enabled, 0.01f, 0.0f, 1.f);
 		ImGui::DragFloat("Reinhard vs Uncharted2", &cb_globals.global_tone_mapping_mode, 0.01f, 0.0f, 1.f);
         ImGui::DragFloat("Fog density", &cb_globals.global_fog_density, 0.0001f, 0.0f, 1.f);
+        ImGui::ColorEdit4("Fog Color", &cb_globals.global_fog_color.x, 0.0001f);
 
 		// Must be in the same order as the RO_* ctes
 		static const char* render_output_str =

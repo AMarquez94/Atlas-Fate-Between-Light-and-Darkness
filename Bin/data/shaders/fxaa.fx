@@ -14,7 +14,7 @@ float4 PS_FXAA(
 ) : SV_TARGET
 {
   float2 rcp_frame = camera_inv_resolution;
-  FxaaTex InputFXAATex = { samClampPoint, txAlbedo };
+  FxaaTex InputFXAATex = { samClampLinear, txAlbedo };
   return FxaaPixelShader(
     texcoord.xy,             // FxaaFloat2 pos,
     FxaaFloat4(0.0f, 0.0f, 0.0f, 0.0f),   // FxaaFloat4 fxaaConsolePosPos,
