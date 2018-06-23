@@ -28,16 +28,18 @@
           ,
           "materials":
           [
-            "data/materials/mtl_casa2.material"
+            "data/materials/mtl_casa3.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
           ]
         }
       ]
       ,
       "collider":
       {
-        "shape": "box"
+        "shape": "convex"
         ,
-        "size": "5.0 3.0 3.0"
+        "name": "data/colliders/collider_casa1_6x10.collider"
       }
       ,
       "abs_aabb": true

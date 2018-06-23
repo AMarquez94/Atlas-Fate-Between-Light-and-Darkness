@@ -3470,22 +3470,6 @@
   {
     "entity":
     {
-      "name": "mesh_acera_esquina_grande001"
-      ,
-      "prefab": "data/prefabs/acera_esquina_grande.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-46.7071 0.0 -109.19"
-        ,
-        "rotation": "0.0 -0.92388 0.0 0.382683"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_acera_recto207"
       ,
       "prefab": "data/prefabs/acera_recto.prefab"
@@ -3575,22 +3559,6 @@
         "pos": "-59.7 0.0 -106.5"
         ,
         "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_acera_esquina_grande002"
-      ,
-      "prefab": "data/prefabs/acera_esquina_grande.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-60.2 0.0 -108.707"
-        ,
-        "rotation": "0.0 -0.923879 0.0 -0.382684"
       }
     }
   }
@@ -3943,22 +3911,6 @@
         "pos": "-43.5 0.0 -113.69"
         ,
         "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_acera_esquina_grande003"
-      ,
-      "prefab": "data/prefabs/acera_esquina_grande.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-53.0 0.0 -114.293"
-        ,
-        "rotation": "0.0 0.382684 0.0 -0.923879"
       }
     }
   }
@@ -4366,22 +4318,6 @@
   {
     "entity":
     {
-      "name": "mesh_acera_esquina_grande004"
-      ,
-      "prefab": "data/prefabs/acera_esquina_grande.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-102.725 0.0 -111.378"
-        ,
-        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_acera_recto259"
       ,
       "prefab": "data/prefabs/acera_recto.prefab"
@@ -4647,22 +4583,6 @@
         "pos": "-111.225 0.0 -119.171"
         ,
         "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_acera_esquina_grande005"
-      ,
-      "prefab": "data/prefabs/acera_esquina_grande.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-45.155 -0.0351991 -86.5642"
-        ,
-        "rotation": "0.0 -0.92388 0.0 -0.382684"
       }
     }
   }
@@ -5335,22 +5255,6 @@
         "pos": "-86.7001 0.0 -125.5"
         ,
         "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_acera_esquina_grande006"
-      ,
-      "prefab": "data/prefabs/acera_esquina_grande.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-85.9072 0.0 -127.0"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
@@ -6215,22 +6119,6 @@
         "pos": "-74.5 0.0 -142.5"
         ,
         "rotation": "0.0 -1.50996e-07 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_acera_esquina_grande007"
-      ,
-      "prefab": "data/prefabs/acera_esquina_grande.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-85.0 0.0 -143.293"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
@@ -7134,22 +7022,6 @@
   {
     "entity":
     {
-      "name": "mesh_acera_esquina_grande008"
-      ,
-      "prefab": "data/prefabs/acera_esquina_grande.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-53.0 0.0 -142.528"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_acera_recto411"
       ,
       "prefab": "data/prefabs/acera_recto.prefab"
@@ -7815,6 +7687,134 @@
         "pos": "-121.225 0.0 -122.171"
         ,
         "rotation": "0.0 -1.0 0.0 3.13916e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_acera_esquina_larga001"
+      ,
+      "prefab": "data/prefabs/acera_esquina_larga.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-45.0182 0.0 -86.4071"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_acera_esquina_larga002"
+      ,
+      "prefab": "data/prefabs/acera_esquina_larga.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-46.7071 0.0 -109.19"
+        ,
+        "rotation": "0.0 -1.0 0.0 -9.09963e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_acera_esquina_larga003"
+      ,
+      "prefab": "data/prefabs/acera_esquina_larga.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-60.2 0.0 -108.707"
+        ,
+        "rotation": "0.0 -0.707106 0.0 -0.707108"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_acera_esquina_larga004"
+      ,
+      "prefab": "data/prefabs/acera_esquina_larga.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-53.0 0.0 -114.293"
+        ,
+        "rotation": "0.0 0.707108 0.0 -0.707106"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_acera_esquina_larga005"
+      ,
+      "prefab": "data/prefabs/acera_esquina_larga.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-102.725 0.0 -111.378"
+        ,
+        "rotation": "0.0 -0.707106 0.0 -0.707108"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_acera_esquina_larga006"
+      ,
+      "prefab": "data/prefabs/acera_esquina_larga.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-85.0 0.0 -143.293"
+        ,
+        "rotation": "0.0 0.707108 0.0 -0.707106"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_acera_esquina_larga007"
+      ,
+      "prefab": "data/prefabs/acera_esquina_larga.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-53.0 0.0 -142.528"
+        ,
+        "rotation": "0.0 0.707108 0.0 -0.707106"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_acera_esquina_larga008"
+      ,
+      "prefab": "data/prefabs/acera_esquina_larga.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-85.9072 0.0 -127.0"
+        ,
+        "rotation": "0.0 -1.0 0.0 -9.09963e-07"
       }
     }
   }
