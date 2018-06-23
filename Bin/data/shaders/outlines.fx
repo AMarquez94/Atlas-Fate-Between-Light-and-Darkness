@@ -19,6 +19,22 @@ float4 PS_Solid() : SV_Target
 //--------------------------------------------------------------------------------------
 float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
 {    
+
+/*
+	float3 shockParams = float3(10, 0.8, 0.1);
+  float dist = distance(UV, float2(0,0));
+	
+  if ( (dist <= (linear_time + shockParams.z)) && 
+       (dist >= (linear_time - shockParams.z)) ) 
+  {
+    float diff = (dist - linear_time); 
+    float powDiff = 1.0 - pow(abs(diff*shockParams.x), 
+                                shockParams.y); 
+    float diffTime = diff  * powDiff; 
+    float2 diffUV = normalize(UV - float2(0,0)); 
+    iPosition = float4(UV + (diffUV * diffTime), iPosition.z, iPosition.w);
+  } 
+*/	
     // Retrieve the linear depth on given pixel
     int3 ss_load_coords = uint3(iPosition.xy, 0);
     float depth = txGBufferLinearDepth.Load(ss_load_coords).x;

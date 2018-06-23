@@ -36,23 +36,24 @@
 #define TS_ENVIRONMENT_MAP     11
 #define TS_IRRADIANCE_MAP      12
 #define TS_NOISE_MAP           13
+#define TS_NOISE_MAP2           15
 
-#define TS_DEFERRED_ALBEDOS           14
-#define TS_DEFERRED_NORMALS           15
-#define TS_DEFERRED_LINEAR_DEPTH      16
-#define TS_DEFERRED_ACC_LIGHTS        17
-#define TS_DEFERRED_SELF_ILLUMINATION 18
-#define TS_DEFERRED_AO                19
-#define TS_LUT_COLOR_GRADING          20
+#define TS_DEFERRED_ALBEDOS           16
+#define TS_DEFERRED_NORMALS           17
+#define TS_DEFERRED_LINEAR_DEPTH      18
+#define TS_DEFERRED_ACC_LIGHTS        19
+#define TS_DEFERRED_SELF_ILLUMINATION 20
+#define TS_DEFERRED_AO                21
+#define TS_LUT_COLOR_GRADING          22
 
 #define TS_FIRST_SLOT_MATERIAL_0      TS_ALBEDO
 #define TS_FIRST_SLOT_MATERIAL_1      TS_ALBEDO1
 #define TS_FIRST_SLOT_MATERIAL_2      TS_ALBEDO2
 
-#define TS_ALBEDO1 21
-#define TS_NORMAL1 22
-#define TS_ALBEDO2 23
-#define TS_NORMAL2 24
+#define TS_ALBEDO1 23
+#define TS_NORMAL1 24
+#define TS_ALBEDO2 25
+#define TS_NORMAL2 26
 
 #define TS_MIX_BLEND_WEIGHTS          25
 
@@ -168,7 +169,7 @@ CB_DEF(CCteGlobals, CB_GLOBALS)   // Generates the b1
     float global_self_intensity;
     float global_fog_start;
     float global_fog_end;
-    float global_fog_end2;
+    float global_player_speed;
     float global_fog_end3;
 };
 
@@ -237,10 +238,17 @@ CB_DEF(CCteOutline, CB_OUTLINE)
 
 CB_DEF(CCtePlayer, CB_PLAYER)
 {
+    VEC3  player_pos;
+    VEC3  player_next_pos;
+
     float  player_fade;
     float  player_aberration;
+
+    float  player_speed;
     float  player_dummy2;
     float  player_dummy3;
+
+    float  player_dummy4;
 };
 
 CB_DEF(CCtePostFX, CB_POSTFX)

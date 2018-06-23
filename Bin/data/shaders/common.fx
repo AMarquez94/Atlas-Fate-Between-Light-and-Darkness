@@ -10,6 +10,7 @@ Texture2D    txRoughness      SLOT(TS_ROUGHNESS);
 Texture2D    txEmissive       SLOT(TS_EMISSIVE);
 Texture2D    txHeight         SLOT(TS_HEIGHT);
 Texture2D    txNoiseMap       SLOT(TS_NOISE_MAP);
+Texture2D    txNoiseMap2       SLOT(TS_NOISE_MAP2);
 Texture3D    txLUT            SLOT(TS_LUT_COLOR_GRADING);
 
 // from the light and env

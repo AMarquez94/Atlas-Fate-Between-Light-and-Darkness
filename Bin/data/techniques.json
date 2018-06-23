@@ -215,7 +215,11 @@
 		"vertex_type": "PosNUvUvT",
 		"category": "pbr_proc",
 		"z": "inverse_test_no_write",
-		"blend": "combinative"
+		"blend": "combinative",
+		"textures": {
+			"noise": "data/textures/tx_noise_shadow.dds",
+			"noise2": "data/textures/tx_noise_shadow2.dds"
+		}
 	},
 	"water": {
 		"vs_file": "data/shaders/water.fx",

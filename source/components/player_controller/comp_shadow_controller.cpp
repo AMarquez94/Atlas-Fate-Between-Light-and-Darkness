@@ -40,6 +40,11 @@ void TCompShadowController::update(float dt) {
         CEntity* e = CHandle(this).getOwner();
         e->sendMsg(msgToSend);
     }
+
+    // Update shader constants
+    cb_player.player_pos = c_my_transform->getPosition();
+    cb_player.player_next_pos = c_my_transform->getPosition() + 0.35f * c_my_transform->getFront();
+    cb_player.updateGPU();
 }
 
 void TCompShadowController::Init() {

@@ -41,7 +41,7 @@ void TCompFadeController::update(float dt) {
         TCompTransform * transform = get<TCompTransform>();
         transform->setPosition(transform->getPosition() - VEC3(0, _fall_speed * dt, 0));
         cb_player.player_fade += (dt / _fade_time); // Tweak here due to noise intensity
-        cb_player.updateGPU();
+        //cb_player.updateGPU();
     }
 }
 

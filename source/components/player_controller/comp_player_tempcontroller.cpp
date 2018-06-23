@@ -21,6 +21,9 @@
 #include "components/comp_group.h"
 #include "render/render_utils.h"
 
+#include "render/render_objects.h"
+#include "render/render_utils.h"
+
 DECL_OBJ_MANAGER("player_tempcontroller", TCompTempPlayerController);
 
 void TCompTempPlayerController::debugInMenu() {
@@ -110,8 +113,13 @@ void TCompTempPlayerController::update(float dt) {
 		updateShader(dt); // Move this to player render component...
 		timeInhib += dt;
 		canAttack = canAttackTest(dt);
-		Engine.getGUI().getVariables().setVariant("staminaBarFactor", stamina / maxStamina);
-	}
+		Engine.getGUI().getVariables().setVariant("staminaBarFactor", stamina / maxStamina);	   
+    }
+
+    // Update player global speed into the shader.
+    float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
+    cb_globals.global_player_speed = (inputSpeed * currentSpeed) / 6.f; // Maximum speed, change this in the future. 
+    cb_globals.updateGPU();
 }
 
 void TCompTempPlayerController::registerMsgs() {
