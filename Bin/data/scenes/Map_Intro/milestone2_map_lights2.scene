@@ -58,7 +58,10 @@
         "name": "data/colliders/Spot042.collider"
         ,
         "is_trigger": true
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "tags":
       [
@@ -113,7 +116,10 @@
         "name": "data/colliders/Spot041.collider"
         ,
         "is_trigger": true
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "tags":
       [
@@ -159,7 +165,10 @@
         "shadows_resolution": 256
         ,
         "shadows_fmt": "R32_TYPELESS"
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "collider":
       {
@@ -214,7 +223,10 @@
         "shadows_resolution": 256
         ,
         "shadows_fmt": "R32_TYPELESS"
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "collider":
       {
@@ -269,7 +281,10 @@
         "shadows_resolution": 256
         ,
         "shadows_fmt": "R32_TYPELESS"
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "collider":
       {
@@ -324,7 +339,10 @@
         "shadows_resolution": 256
         ,
         "shadows_fmt": "R32_TYPELESS"
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "collider":
       {
@@ -379,7 +397,10 @@
         "shadows_resolution": 256
         ,
         "shadows_fmt": "R32_TYPELESS"
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "collider":
       {
@@ -434,7 +455,10 @@
         "shadows_resolution": 256
         ,
         "shadows_fmt": "R32_TYPELESS"
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "collider":
       {
@@ -489,7 +513,10 @@
         "shadows_resolution": 256
         ,
         "shadows_fmt": "R32_TYPELESS"
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "collider":
       {
@@ -544,7 +571,10 @@
         "shadows_resolution": 256
         ,
         "shadows_fmt": "R32_TYPELESS"
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "collider":
       {
@@ -599,7 +629,10 @@
         "shadows_resolution": 256
         ,
         "shadows_fmt": "R32_TYPELESS"
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "collider":
       {
@@ -654,7 +687,10 @@
         "shadows_resolution": 256
         ,
         "shadows_fmt": "R32_TYPELESS"
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "collider":
       {
@@ -709,7 +745,10 @@
         "shadows_resolution": 256
         ,
         "shadows_fmt": "R32_TYPELESS"
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "collider":
       {
@@ -764,7 +803,10 @@
         "shadows_resolution": 256
         ,
         "shadows_fmt": "R32_TYPELESS"
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "collider":
       {
@@ -819,7 +861,10 @@
         "shadows_resolution": 256
         ,
         "shadows_fmt": "R32_TYPELESS"
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "collider":
       {
@@ -874,7 +919,10 @@
         "shadows_resolution": 512
         ,
         "shadows_fmt": "R32_TYPELESS"
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "collider":
       {
@@ -938,7 +986,10 @@
         "name": "data/colliders/Spot004.collider"
         ,
         "is_trigger": true
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "tags":
       [
@@ -984,7 +1035,10 @@
         "shadows_resolution": 256
         ,
         "shadows_fmt": "R32_TYPELESS"
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "collider":
       {
@@ -1039,7 +1093,10 @@
         "shadows_resolution": 256
         ,
         "shadows_fmt": "R32_TYPELESS"
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "collider":
       {
@@ -1094,7 +1151,10 @@
         "shadows_resolution": 256
         ,
         "shadows_fmt": "R32_TYPELESS"
-      }
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
       ,
       "collider":
       {

@@ -29,6 +29,7 @@ public:
 	void setBackgroundColor(float r, float g, float b, float a);
 	void debugDraw();
     void setDebugMode(bool val) { debugmode = val; }
+    CHandle getMainCamera();
 
 	LRESULT OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) override;
 

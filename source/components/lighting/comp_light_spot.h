@@ -15,6 +15,7 @@ class TCompLightSpot : public TCompCamera {
     int  num_samples = 120;
 
 	// Shadows params
+    bool              cull_enabled = false;      // Dynamic
 	bool              shadows_enabled = false;    // Dynamic
 	bool              casts_shadows = false;      // Static
 	int               shadows_resolution = 256;
@@ -43,6 +44,8 @@ public:
 	void activate();
 	void generateShadowMap();
     void generateVolume();
+    void cullFrame();
+
 	MAT44 getWorld();
 
 	void setColor(const VEC4 & new_color);

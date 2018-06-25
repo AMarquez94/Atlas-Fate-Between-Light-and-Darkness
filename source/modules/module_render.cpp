@@ -162,6 +162,11 @@ LRESULT CModuleRender::OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
 	return ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam);
 }
 
+CHandle CModuleRender::getMainCamera() {
+
+    return h_e_camera;
+}
+
 bool CModuleRender::stop()
 {
 	ImGui_ImplDX11_Shutdown();
@@ -271,34 +276,40 @@ void CModuleRender::activateMainCamera() {
 void CModuleRender::generateFrame() {
 
 	{
+        // SHADOW GENERATION
+        activateMainCamera();
 		PROFILE_FUNCTION("CModuleRender::shadowsMapsGeneration");
 		CTraceScoped gpu_scope("shadowsMapsGeneration");
 
-		// Generate the shadow map for each active light
+        // Only directional and spotlights have shadows
 		getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
 			c->generateShadowMap();
 		});
 
-		// Generate the shadow map for each active light
 		getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
+            c->cullFrame();
 			c->generateShadowMap();
 		});
 	}
 
-	{
-		CTraceScoped gpu_scope("Frame");
-		PROFILE_FUNCTION("CModuleRender::generateFrame");
+    {
+        // MAIN FRAME RENDER
+        CTraceScoped gpu_scope("Frame");
+        PROFILE_FUNCTION("CModuleRender::generateFrame");
 
-		activateMainCamera();
-		cb_globals.updateGPU();
-		deferred.render(rt_main, h_e_camera);
+        activateMainCamera();
+        cb_globals.updateGPU();
+        deferred.render(rt_main, h_e_camera);
 
         CRenderManager::get().renderCategory("particles");
-		CRenderManager::get().renderCategory("distorsions");
+        CRenderManager::get().renderCategory("distorsions");
+    }
 
-		// Apply postFX
+    {
+		// POST PROCESSING STACK
 		CTexture * curr_rt = rt_main;
 		CHandle camera_render = Engine.getCameras().getCurrentCamera();
+
 		if (camera_render.isValid()) {
 			CEntity * e_cam = camera_render;
 
@@ -345,22 +356,25 @@ void CModuleRender::generateFrame() {
 		renderFullScreenQuad("dump_texture.tech", curr_rt);
 	}
 
-    // Reset the technique, or we won't be able to render outside here...
-    auto* tech = Resources.get("solid.tech")->as<CRenderTechnique>();
-    assert(tech);
-    tech->activate();
-
-    if (debugmode)
-        debugDraw();
-
-    // Finally render it
     {
+        // DEBUG DRAWING
+        auto* tech = Resources.get("solid.tech")->as<CRenderTechnique>();
+        assert(tech);
+        tech->activate();
+
+        if (debugmode)
+            debugDraw();
+    }
+
+    {
+        // RENDER IMGUI
         PROFILE_FUNCTION("ImGui::Render");
         CTraceScoped gpu_scope("ImGui");
         ImGui::Render();
     }
 
 	{
+        // RENDER UI
 		PROFILE_FUNCTION("GUI");
 		CTraceScoped gpu_scope("GUI");
 		
@@ -376,8 +390,8 @@ void CModuleRender::generateFrame() {
 		activateBlendConfig(BLEND_CFG_DEFAULT);
 	}
 
-	// Present the information rendered to the back buffer to the front buffer (the screen)
 	{
+        // BACKBUFFER SWAPPING
 		PROFILE_FUNCTION("Render.swapChain");
 		Render.swapChain->Present(0, 0);
 	}
