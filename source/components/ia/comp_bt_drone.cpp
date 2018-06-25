@@ -411,8 +411,6 @@ void TCompAIDrone::moveLanternPatrolling(float dt)
     TCompTransform* myPos = get<TCompTransform>();
     float deltaYaw = lanternPos->getDeltaYawToAimTo(myPos->getPosition() + myPos->getFront());
 
-    dbg("Moving lantern with yaw %f\n", rad2deg(deltaYaw));
-
     float yaw, pitch, roll, yaw_addition;
     lanternHierarchy->getYawPitchRoll(&yaw, &pitch, &roll);
     if (lanternPatrollingLeft) {
@@ -486,6 +484,8 @@ BTNode::ERes TCompAIDrone::actionEndAlert(float dt)
 
 BTNode::ERes TCompAIDrone::actionMarkPlayerAsSeen(float dt)
 {
+    TCompEmissionController* e_controller = get<TCompEmissionController>();
+    e_controller->blend(enemyColor.colorAlert, 0.1f);
     return BTNode::ERes::LEAVE;
 }
 
@@ -496,7 +496,29 @@ BTNode::ERes TCompAIDrone::actionGenerateNavmeshChase(float dt)
 
 BTNode::ERes TCompAIDrone::actionChaseAndShoot(float dt)
 {
-    return BTNode::ERes::LEAVE;
+    CEntity* ePlayer = getEntityByName(entityToChase);
+
+    if (isEntityInFovDrone(entityToChase)) {
+        TCompTransform* playerTransform = ePlayer->get<TCompTransform>();
+        VEC3 ppos = playerTransform->getPosition();
+
+        if (lastPlayerKnownPos != ppos) {
+            lastPlayerKnownPos = ppos;
+        }
+
+        moveToDestDrone(ppos + VEC3(0, 5, 0), dt);
+
+        /* Point lantern to player */
+        CEntity* eLantern = hLantern;
+        TCompHierarchy* lanternHierarchy = eLantern->get<TCompHierarchy>();
+        CEntity* ePlayer = getEntityByName(entityToChase);
+        TCompTransform* playerpos = ePlayer->get <TCompTransform>();
+        lanternHierarchy->relativeLookAt(playerpos->getPosition());
+        return BTNode::ERes::STAY;
+    }
+    else {
+        return BTNode::ERes::LEAVE;
+    }
 }
 
 BTNode::ERes TCompAIDrone::actionMarkNoiseAsInactive(float dt)
@@ -600,11 +622,11 @@ BTNode::ERes TCompAIDrone::actionSuspect(float dt)
 
     float distanceToPlayer = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
 
-  /*  if (distanceToPlayer <= autoChaseDistance && isEntityInFovDrone(entityToChase)) {
+    if (distanceToPlayer <= autoChaseDistance && isEntityInFovDrone(entityToChase)) {
         suspectO_Meter = 1.f;
         rotateTowardsVec(ppos->getPosition(), dt, rotationSpeedNoise);
     }
-    else */if (distanceToPlayer <= maxChaseDistance && isEntityInFovDrone(entityToChase)) {
+    else if (distanceToPlayer <= maxChaseDistance && isEntityInFovDrone(entityToChase)) {
         suspectO_Meter = Clamp(suspectO_Meter + dt * incrBaseSuspectO_Meter, 0.f, 1.f);							//TODO: increment more depending distance and noise
         rotateTowardsVec(ppos->getPosition(), dt, rotationSpeedNoise);
     }
@@ -612,7 +634,7 @@ BTNode::ERes TCompAIDrone::actionSuspect(float dt)
         suspectO_Meter = Clamp(suspectO_Meter - dt * dcrSuspectO_Meter, 0.f, 1.f);
     }
 
-    if (suspectO_Meter <= 0.f /*|| suspectO_Meter >= 1.f*/) {
+    if (suspectO_Meter <= 0.f || suspectO_Meter >= 1.f) {
         if (suspectO_Meter <= 0) {
             e_controller->blend(enemyColor.colorNormal, 0.1f);
         }
@@ -620,6 +642,12 @@ BTNode::ERes TCompAIDrone::actionSuspect(float dt)
     }
     else {
         stabilizeRotations(dt);
+        /* Point lantern to player */
+        CEntity* eLantern = hLantern;
+        TCompHierarchy* lanternHierarchy = eLantern->get<TCompHierarchy>();
+        CEntity* ePlayer = getEntityByName(entityToChase);
+        TCompTransform* playerpos = ePlayer->get <TCompTransform>();
+        lanternHierarchy->relativeLookAt(playerpos->getPosition());
         return BTNode::ERes::STAY;
     }
 }
@@ -689,7 +717,7 @@ bool TCompAIDrone::conditionIsPlayerDead(float dt)
 
 bool TCompAIDrone::conditionIsPlayerSeenForSure(float dt)
 {
-    return false;
+    return isEntityInFovDrone(entityToChase) && suspectO_Meter >= 1.f;
 }
 
 bool TCompAIDrone::conditionHasHeardArtificialNoise(float dt)
