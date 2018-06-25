@@ -155,6 +155,12 @@
 				"shadows_step": 1.0,
 				"shadows_resolution": 256,
 				"shadows_fmt": "R32_TYPELESS"
+			},
+			"cone_of_light": {
+				"hor_fov": 70,
+				"ver_fov": 70,
+				"dist": 15,
+				"target": "The Player"
 			}
 		}
 	}, {

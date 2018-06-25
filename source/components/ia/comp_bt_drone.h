@@ -75,6 +75,8 @@ private:
     bool moveToDestDrone(VEC3 dest, float dt);
     void waitInPosDrone(VEC3 dest, float dt, float speed, float rotSpeed, VEC3 lookAt = VEC3::Zero);
     void moveLanternPatrolling(float dt);
+    bool isEntityInFovDrone(const std::string& entityToChase);
+    void stabilizeRotations(float dt);
 
 public:
     void preUpdate(float dt) override;

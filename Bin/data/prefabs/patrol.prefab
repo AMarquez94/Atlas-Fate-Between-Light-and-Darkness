@@ -85,7 +85,7 @@
 			},
 			"cone_of_light": {
 				"hor_fov": 70,
-				"ver_fov": 45,
+				"ver_fov": 70,
 				"dist": 15,
 				"target": "The Player"
 			}

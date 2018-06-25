@@ -92,7 +92,6 @@
 				"lookat": "-24 10 86"
 			},
 			"ai_drone": {
-				"startLightsOn": false,
 				"waypoints": [{
 						"position": "-25 10 86",
 						"lookAt": "1 0 0",
