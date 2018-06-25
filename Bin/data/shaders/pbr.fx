@@ -122,12 +122,12 @@ void PS_Shade_GBuffer(
 )
 {
 	float4 noise0 = txNoiseMap.Sample(samLinear, iTex0);
-  o_albedo = txAlbedo.Sample(samLinear, iTex0)* (1 - player_fade * 2);
+  o_albedo = txAlbedo.Sample(samLinear, iTex0)* (1 - self_fade_value * 2);
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 	o_selfIllum =  txEmissive.Sample(samLinear, iTex0) * self_intensity;
-	o_selfIllum.xyz *= self_color* (1 - player_fade * 4);
+	o_selfIllum.xyz *= self_color* (1 - self_fade_value * 4);
 	o_selfIllum.a = 1;
-	if((noise0.x - player_fade) < 0.01f){
+	if((noise0.x - self_fade_value) < 0.01f){
 			o_albedo = float4(0,1,1,1);
 			o_selfIllum.xyz = float3(0,1,1);
 	}
@@ -149,7 +149,7 @@ void PS_Shade_GBuffer(
 	float3 camera2wpos = iWorldPos - camera_pos;
 	o_depth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
 	
-	clip(noise0.x - player_fade);
+	clip(noise0.x - self_fade_value);
 }
 
 //--------------------------------------------------------------------------------------

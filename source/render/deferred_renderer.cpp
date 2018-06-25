@@ -112,6 +112,8 @@ void CDeferredRenderer::renderAccLight() {
     renderProjectors();
 	renderDirectionalLights();
 	renderSkyBox();
+
+    CRenderManager::get().renderCategory("hologram");
 }
 
 

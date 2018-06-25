@@ -119,7 +119,7 @@ void TCompTempPlayerController::update(float dt) {
     // Update player global speed into the shader.
     float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
     cb_globals.global_player_speed = (inputSpeed * currentSpeed) / 6.f; // Maximum speed, change this in the future. 
-    cb_globals.updateGPU();
+    //cb_globals.updateGPU();
 }
 
 void TCompTempPlayerController::registerMsgs() {

@@ -326,8 +326,9 @@ BTNode::ERes TCompAIPatrol::actionStunned(float dt)
 	//Animation To Change
 	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
 	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
-    TCompFadeController * fade_patrol = get<TCompFadeController>();
-    fade_patrol->launch();
+
+    CEntity * patrol = CHandle(this).getOwner();
+    patrol->sendMsg(TMsgFadeBody{ true });
 
 	return BTNode::ERes::STAY;
 }

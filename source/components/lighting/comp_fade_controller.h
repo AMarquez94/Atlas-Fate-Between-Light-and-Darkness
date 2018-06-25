@@ -5,6 +5,7 @@
 
 class TCompFadeController : public TCompBase {
 
+    bool _is_drownable;
     bool _is_active;
 	VEC4 _fade_color;
     std::string _material;
@@ -12,6 +13,8 @@ class TCompFadeController : public TCompBase {
 	float _elapsed_time = 0.f;
 	float _fade_time;
     float _fall_speed;
+
+    int _invert_fade;
 
 	DECL_SIBLING_ACCESS();
 
@@ -21,6 +24,8 @@ public:
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
 
-	void launch(void);
+	void launch(const TMsgFadeBody& msg);
     void destroy(void);
+
+    static void registerMsgs();
 };

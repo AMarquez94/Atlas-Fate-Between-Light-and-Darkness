@@ -121,7 +121,7 @@ CB_DEF(CCteObject, CB_OBJECT)   // Generates the b1
     VEC4  obj_color;
     VEC4   self_color;
     float  self_intensity;
-    float  self_dummy1;
+    float  self_fade_value;
     float  self_dummy2;
     float  self_dummy3;
 };
@@ -238,17 +238,10 @@ CB_DEF(CCteOutline, CB_OUTLINE)
 
 CB_DEF(CCtePlayer, CB_PLAYER)
 {
-    VEC3  player_pos;
-    VEC3  player_next_pos;
-
     float  player_fade;
     float  player_aberration;
-
     float  player_speed;
     float  player_dummy2;
-    float  player_dummy3;
-
-    float  player_dummy4;
 };
 
 CB_DEF(CCtePostFX, CB_POSTFX)

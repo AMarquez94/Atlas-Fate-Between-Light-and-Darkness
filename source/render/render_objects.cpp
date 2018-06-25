@@ -10,7 +10,7 @@ CRenderCte<CCteBlur>    cb_blur("Blur");
 CRenderCte<CCteGUI>     cb_gui("Gui");
 CRenderCte<CCteOutline> cb_outline("Outline");
 CRenderCte<CCteParticle>  cb_particles("Particles");
-CRenderCte<CCtePlayer>  cb_player("Player");
+CRenderCte<CCtePlayer>  cb_player("PlayerCTE");
 CRenderCte<CCtePostFX>  cb_postfx("postfx");
 
 struct TVtxPosClr {
@@ -18,6 +18,7 @@ struct TVtxPosClr {
 	VEC4 color;
 	TVtxPosClr() {}
 	TVtxPosClr(VEC3 new_pos, VEC4 new_color) : pos(new_pos), color(new_color) {}
+
 };
 
 // ---------------------------------------------------

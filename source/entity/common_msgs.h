@@ -87,6 +87,12 @@ struct TMsgSonarActive {
     DECL_MSG_ID();
 };
 
+struct TMsgFadeBody {
+    bool is_exit;
+
+    DECL_MSG_ID();
+};
+
 struct TMsgTriggerEnter {
 	CHandle h_other_entity;
 	DECL_MSG_ID();

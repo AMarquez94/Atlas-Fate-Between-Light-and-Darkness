@@ -112,9 +112,6 @@ void TCompPlayerInput::update(float dt)
 			crouch.variant.setName("crouch");
 			crouch.variant.setBool(crouchButton);
 			e->sendMsg(crouch);
-
-            //TCompFadeController * fade_patrol = get<TCompFadeController>();
-            //fade_patrol->launch();
 		}
 
 		if (EngineInput["btAction"].hasChanged())
