@@ -1,0 +1,3853 @@
+[
+  {
+    "entity":
+    {
+      "name": "zona_a_barandillas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla004"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-51.2 12.0 -95.15"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar001"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-52.35 12.0 -95.15"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar002"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-50.35 12.0 -95.15"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla005"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-50.35 12.0 -96.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar003"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-50.35 12.0 -97.15"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla006"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-60.05 12.0 -96.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla007"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-59.2 12.0 -95.15"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar004"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-60.0499 12.0 -97.15"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar005"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-60.0499 12.0 -95.15"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar006"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-58.05 12.0 -95.15"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla008"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-50.35 12.0 -104.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla009"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-51.2 12.0 -104.85"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar007"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-50.35 12.0 -102.85"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar008"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-50.35 12.0 -104.85"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar009"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-52.35 12.0 -104.85"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla010"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-50.35 12.0 -101.705"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar010"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-50.35 12.0 -100.555"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla011"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-53.2 12.0 -104.85"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar011"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-54.05 12.0 -104.85"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla012"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-59.2 12.0 -104.851"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla013"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-60.05 12.0 -104.001"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla014"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-57.2 12.0 -104.851"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla015"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-60.05 12.0 -101.701"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar012"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-58.05 12.0 -104.851"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar013"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-60.05 12.0 -104.851"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar014"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-60.05 12.0 -102.851"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar015"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-56.35 12.0 -104.851"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar016"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-60.05 12.0 -100.551"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla016"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-54.9449 5.99999 -85.7036"
+        ,
+        "rotation": "0.0 -0.707109 0.0 -0.707105"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla017"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-54.9449 5.99999 -83.7036"
+        ,
+        "rotation": "0.0 -0.707109 0.0 -0.707105"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla018"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-54.9449 5.99999 -81.7036"
+        ,
+        "rotation": "0.0 -0.707109 0.0 -0.707105"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla019"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-54.9449 5.99999 -79.7036"
+        ,
+        "rotation": "0.0 -0.707109 0.0 -0.707105"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla021"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-60.2 6.0 -86.575"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar001"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-59.1 6.0 -86.575"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla022"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-59.125 6.0 -85.45"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla023"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-59.125 6.0 -83.45"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla024"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-62.2 6.0 -86.575"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla025"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-64.2 6.0 -86.575"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla026"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-74.875 6.0 -85.5"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla027"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-73.75 6.0 -86.575"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla028"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-74.875 6.0 -83.5"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar002"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-74.875 6.0 -86.6"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla029"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-69.0 12.0 -93.125"
+        ,
+        "rotation": "0.0 -1.0 0.0 1.94707e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla031"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-67.0 12.0 -93.125"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar003"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-70.1 12.0 -93.125"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar004"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-65.3 6.0 -86.575"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar005"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-59.1 6.0 -82.325"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar006"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-72.625 6.0 -86.6"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar007"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-74.875 6.0 -82.4"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla032"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-71.43 11.8995 -97.125"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar008"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-72.53 11.8995 -97.125"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar009"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-70.33 11.8995 -97.125"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla033"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-70.075 12.0 -94.25"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar010"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-70.075 12.0 -95.35"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar011"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-65.9 12.0 -93.125"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla034"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-76.1468 11.8995 -97.125"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar012"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-77.2468 11.8995 -97.125"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar013"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-75.0468 11.8995 -97.125"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla035"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-65.4 12.0 -100.875"
+        ,
+        "rotation": "0.0 -2.38419e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla036"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-67.4 12.0 -100.875"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla037"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-64.325 12.0 -99.75"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar014"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-64.3 12.0 -100.875"
+        ,
+        "rotation": "0.0 -2.38419e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar015"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-64.325 12.0 -98.65"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar016"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-68.5 12.0 -100.875"
+        ,
+        "rotation": "0.0 2.38419e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla038"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-70.35 11.9 -102.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla039"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-71.2 11.9 -102.85"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla041"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-73.2 11.9 -102.85"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar018"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-70.35 11.9 -100.85"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar019"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-70.35 11.9 -102.85"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla042"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-75.2 11.9 -102.85"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar020"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-76.0501 11.9 -102.85"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar021"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-82.2 11.8511 -97.2121"
+        ,
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla043"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-81.2 11.9 -97.15"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar022"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-80.05 11.8511 -97.15"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla044"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-82.801 11.8511 -97.8131"
+        ,
+        "rotation": "0.0 0.382683 0.0 -0.92388"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla045"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-84.2153 11.8511 -99.2274"
+        ,
+        "rotation": "0.0 0.382683 0.0 -0.92388"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar023"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-84.8163 11.8511 -99.8284"
+        ,
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla046"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-88.5584 11.8587 -103.571"
+        ,
+        "rotation": "0.0 0.382683 0.0 -0.92388"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla047"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-89.9727 11.8587 -104.985"
+        ,
+        "rotation": "0.0 0.382683 0.0 -0.92388"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar024"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-87.9574 11.8587 -102.969"
+        ,
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar025"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-90.5737 11.8587 -105.586"
+        ,
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla048"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-91.3868 11.8587 -106.399"
+        ,
+        "rotation": "0.0 0.382683 0.0 -0.92388"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar026"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-91.9878 11.8587 -106.99"
+        ,
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla049"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-92.0502 11.9 -107.99"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar027"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-92.0502 11.9 -108.84"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar028"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-89.2667 11.8587 -104.279"
+        ,
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla050"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-85.8854 11.8587 -106.239"
+        ,
+        "rotation": "0.0 0.38268 0.0 -0.923881"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla051"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-87.3005 11.8587 -107.654"
+        ,
+        "rotation": "0.0 0.38268 0.0 -0.923881"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar029"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-88.1766 11.8665 -108.413"
+        ,
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla052"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-88.2732 11.8587 -109.451"
+        ,
+        "rotation": "0.0 0.707103 0.0 -0.70711"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla054"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-88.2733 11.8587 -111.451"
+        ,
+        "rotation": "0.0 0.707103 0.0 -0.70711"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar030"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-88.3502 11.9 -112.606"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla055"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-80.127 11.9 -106.005"
+        ,
+        "rotation": "0.0 -0.707111 0.0 -0.707103"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla056"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-80.1269 11.9 -104.005"
+        ,
+        "rotation": "0.0 -0.707111 0.0 -0.707103"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla057"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-80.127 11.9 -110.005"
+        ,
+        "rotation": "0.0 -0.707111 0.0 -0.707103"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla058"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-80.1269 11.9 -108.005"
+        ,
+        "rotation": "0.0 -0.707111 0.0 -0.707102"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla059"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-80.127 11.9 -112.005"
+        ,
+        "rotation": "0.0 -0.707111 0.0 -0.707102"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar031"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-80.091 11.9 -113.137"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla060"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-81.232 11.9 -113.073"
+        ,
+        "rotation": "0.0 -1.0 0.0 7.22806e-06"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar032"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-82.2286 11.9 -113.137"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar033"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-80.091 11.9 -102.861"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla061"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-76.325 11.9 -110.153"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar017"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-76.325 11.9 -109.053"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar018"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-76.325 11.9 -111.253"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla062"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-76.325 11.9 -112.353"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla063"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-76.325 11.9 -114.553"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar019"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-76.325 11.9 -113.453"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar020"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-76.325 11.9 -115.653"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla064"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-90.7531 5.9 -91.5944"
+        ,
+        "rotation": "0.0 0.382679 0.0 -0.923881"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla065"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-92.1676 5.89999 -93.0083"
+        ,
+        "rotation": "0.0 0.382678 0.0 -0.923882"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla066"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-93.5821 5.89999 -94.4222"
+        ,
+        "rotation": "0.0 0.382678 0.0 -0.923882"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla067"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-94.9966 5.89999 -95.8362"
+        ,
+        "rotation": "0.0 0.382678 0.0 -0.923882"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla068"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-96.4101 5.89999 -97.2492"
+        ,
+        "rotation": "0.0 0.382678 0.0 -0.923882"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar034"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-89.9963 6.0 -90.7294"
+        ,
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar035"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-97.2795 6.0 -98.0126"
+        ,
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla069"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-41.7677 12.0 -99.2637"
+        ,
+        "rotation": "0.0 -1.0 0.0 8.06252e-06"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla070"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-39.7677 12.0 -99.2641"
+        ,
+        "rotation": "0.0 -1.0 0.0 8.30094e-06"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla071"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-37.7677 12.0 -99.2645"
+        ,
+        "rotation": "0.0 -1.0 0.0 8.53936e-06"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla072"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-35.7677 12.0 -99.2649"
+        ,
+        "rotation": "0.0 -1.0 0.0 8.77778e-06"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla073"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.8088 11.8577 -85.4727"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla074"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-39.6838 11.8577 -86.5477"
+        ,
+        "rotation": "0.0 -1.78814e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar021"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.8088 11.8577 -86.5726"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla075"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-37.6838 11.8577 -86.5477"
+        ,
+        "rotation": "0.0 -1.78814e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla076"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-35.6838 11.8577 -86.5477"
+        ,
+        "rotation": "0.0 -1.78814e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla077"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.8088 11.8577 -83.2727"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar022"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.8088 11.8577 -84.3727"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla078"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.8088 11.8577 -81.0727"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar023"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.8088 11.8577 -82.1727"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla079"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.8088 11.8577 -78.8727"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar024"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.8088 11.8577 -79.9727"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla080"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.8088 11.8577 -76.6727"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar025"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.8088 11.8577 -77.7727"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla081"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.8088 11.8577 -74.4727"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar026"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.8088 11.8577 -75.5727"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla082"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.8088 11.8577 -72.2727"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar027"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.8088 11.8577 -73.3727"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla083"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.8088 11.8577 -70.0727"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar028"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.8088 11.8577 -71.1727"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla084"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-35.6981 11.9 -115.118"
+        ,
+        "rotation": "0.0 -8.9407e-06 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla085"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-37.6981 11.9 -115.118"
+        ,
+        "rotation": "0.0 -9.05991e-06 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar036"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-38.8497 11.9 -115.081"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar037"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-38.8497 12.0 -107.04"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar038"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-42.8497 12.0 -107.04"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar039"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-42.8497 12.0 -99.3403"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla086"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-35.76 12.0 -107.118"
+        ,
+        "rotation": "0.0 -9.17912e-06 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla087"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-37.76 12.0 -107.118"
+        ,
+        "rotation": "0.0 -9.29833e-06 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla088"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-39.76 12.0 -107.117"
+        ,
+        "rotation": "0.0 -9.41754e-06 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla089"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-41.76 12.0 -107.117"
+        ,
+        "rotation": "0.0 -9.53675e-06 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla090"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-42.9265 12.0 -106.194"
+        ,
+        "rotation": "0.0 -0.707114 0.0 -0.7071"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla091"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-42.9261 12.0 -104.194"
+        ,
+        "rotation": "0.0 -0.707114 0.0 -0.7071"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla092"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-42.9257 12.0 -102.194"
+        ,
+        "rotation": "0.0 -0.707114 0.0 -0.7071"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla093"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-42.9253 12.0 -100.194"
+        ,
+        "rotation": "0.0 -0.707114 0.0 -0.7071"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla094"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-38.9265 11.9 -114.235"
+        ,
+        "rotation": "0.0 -0.707114 0.0 -0.7071"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla095"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-38.9261 11.9 -112.235"
+        ,
+        "rotation": "0.0 -0.707114 0.0 -0.707099"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla096"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-38.9257 11.9 -110.235"
+        ,
+        "rotation": "0.0 -0.707114 0.0 -0.707099"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla097"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-38.9253 11.9 -108.235"
+        ,
+        "rotation": "0.0 -0.707114 0.0 -0.707099"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla098"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-90.9268 5.89999 -152.005"
+        ,
+        "rotation": "0.0 -0.707109 0.0 -0.707105"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla099"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-90.9268 5.89999 -150.005"
+        ,
+        "rotation": "0.0 -0.707109 0.0 -0.707105"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla100"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-90.9268 5.89999 -148.005"
+        ,
+        "rotation": "0.0 -0.707109 0.0 -0.707105"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla101"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-89.8548 5.89999 -147.073"
+        ,
+        "rotation": "0.0 -1.0 0.0 2.90473e-06"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla102"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-87.8549 5.89999 -147.073"
+        ,
+        "rotation": "0.0 -1.0 0.0 2.90473e-06"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla103"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-85.8549 5.89999 -147.073"
+        ,
+        "rotation": "0.0 -1.0 0.0 3.02394e-06"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla104"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-87.8452 5.89999 -152.927"
+        ,
+        "rotation": "0.0 -2.98023e-06 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla105"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-89.8452 5.89999 -152.927"
+        ,
+        "rotation": "0.0 -2.98023e-06 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla106"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-84.0001 11.9 -148.15"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla107"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-82.0 11.9 -148.15"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla108"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-80.0 11.9 -148.15"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar040"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-84.85 11.9 -148.15"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar041"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-79.9565 11.9 -148.15"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla109"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-78.0001 11.9 -148.15"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla110"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-76.0001 11.9 -148.15"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar042"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-75.15 11.9 -148.15"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla111"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-75.15 11.9 -149.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla112"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-75.15 11.9 -151.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla113"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-75.15 11.9 -153.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar043"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-75.15 11.9 -153.85"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla114"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-84.85 11.9 -153.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla115"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-84.85 11.9 -151.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla116"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-84.85 11.9 -149.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar044"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-84.85 11.9 -153.85"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla117"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-76.0001 11.9 -153.85"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla118"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-78.0001 11.9 -153.85"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla119"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-80.0001 11.9 -153.85"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla120"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-82.0 11.9 -153.85"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla121"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-84.0 11.9 -153.85"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar045"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-79.9606 11.9 -153.85"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla122"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-66.3751 11.9 -123.75"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla123"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-65.3001 11.9 -124.875"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla124"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-63.1 11.9 -124.875"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar030"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-66.4001 11.9 -124.875"
+        ,
+        "rotation": "0.0 -1.0 0.0 -4.01339e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar031"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-64.2001 11.9 -124.875"
+        ,
+        "rotation": "0.0 -1.0 0.0 -4.01339e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar032"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-62.0001 11.9 -124.875"
+        ,
+        "rotation": "0.0 -1.0 0.0 -4.01339e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla125"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-60.9 11.9 -124.875"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla126"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-58.7001 11.9 -124.875"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla127"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-56.5 11.9 -124.875"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar033"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-59.8 11.9 -124.875"
+        ,
+        "rotation": "0.0 -1.0 0.0 -4.01339e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar034"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-57.6 11.9 -124.875"
+        ,
+        "rotation": "0.0 -1.0 0.0 -4.01339e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar035"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-55.4 11.9 -124.875"
+        ,
+        "rotation": "0.0 -1.0 0.0 -4.01339e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla128"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-54.3 11.9 -124.875"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar046"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-53.15 11.9 -124.85"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar047"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-66.3501 11.9 -122.6"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla129"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-53.125 11.9 -123.7"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla130"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-53.125 11.9 -121.7"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla131"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-60.9 11.9 -117.125"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla132"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-63.1001 11.9 -117.125"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla133"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-65.3001 11.9 -117.125"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar037"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-59.8 11.9 -117.125"
+        ,
+        "rotation": "0.0 3.25841e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar038"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-62.0001 11.9 -117.125"
+        ,
+        "rotation": "0.0 3.25841e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar039"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-64.2001 11.9 -117.125"
+        ,
+        "rotation": "0.0 3.25841e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar040"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-66.4001 11.9 -117.125"
+        ,
+        "rotation": "0.0 3.25841e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla134"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-66.3751 11.9 -118.25"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar048"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-66.3501 11.9 -119.4"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla135"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-84.9246 5.89999 -148.143"
+        ,
+        "rotation": "0.0 0.707105 0.0 -0.707109"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla136"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-53.125 11.9 -119.7"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla137"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-92.1268 5.99999 -122.005"
+        ,
+        "rotation": "0.0 -0.707109 0.0 -0.707105"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla138"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-92.1268 5.99999 -120.005"
+        ,
+        "rotation": "0.0 -0.707109 0.0 -0.707105"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla139"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-92.1268 5.99999 -118.005"
+        ,
+        "rotation": "0.0 -0.707109 0.0 -0.707105"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla140"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-87.1952 5.99999 -122.927"
+        ,
+        "rotation": "0.0 -2.86102e-06 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla141"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-89.1952 5.99999 -122.927"
+        ,
+        "rotation": "0.0 -2.86102e-06 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla142"
+      ,
+      "prefab": "data/prefabs/barandilla3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-91.1952 5.99999 -122.927"
+        ,
+        "rotation": "0.0 -2.86102e-06 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar049"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-92.05 6.0 -122.85"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar050"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-92.05 6.0 -117.15"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar051"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-86.05 6.0 -122.85"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla143"
+      ,
+      "prefab": "data/prefabs/barandilla2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-76.325 11.9 -116.753"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla2_pilar041"
+      ,
+      "prefab": "data/prefabs/barandilla2_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-76.325 11.9 -117.853"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla144"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-42.0001 12.0 -142.385"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla145"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.0001 12.0 -142.385"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla146"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-38.0 12.0 -142.385"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla147"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-42.85 12.0 -147.235"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla148"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-42.85 12.0 -145.235"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla149"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-42.85 12.0 -143.235"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar052"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-42.85 12.0 -142.385"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla150"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-36.0 12.0 -142.385"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla151"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-42.85 12.0 -149.235"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla152"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-35.97 12.0 -150.085"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla153"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-37.97 12.0 -150.085"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla154"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-39.97 12.0 -150.085"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla155"
+      ,
+      "prefab": "data/prefabs/barandilla1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-41.97 12.0 -150.085"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla1_pilar053"
+      ,
+      "prefab": "data/prefabs/barandilla1_pilar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-42.85 12.0 -150.085"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_esquina001"
+      ,
+      "prefab": "data/prefabs/barandilla_esquina.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-85.375 6.0 -126.175"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+]

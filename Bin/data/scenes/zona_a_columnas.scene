@@ -1,0 +1,125 @@
+[
+  {
+    "entity":
+    {
+      "name": "zona_a_columnas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columna006"
+      ,
+      "prefab": "data/prefabs/columna2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.8729 0.0 -86.5484"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columna007"
+      ,
+      "prefab": "data/prefabs/columna3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-59.2037 0.0 -78.5199"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columna008"
+      ,
+      "prefab": "data/prefabs/columna4.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-46.1245 0.0 -88.6382"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columna009"
+      ,
+      "prefab": "data/prefabs/columna1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-54.8386 0.0 -78.8837"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columna010"
+      ,
+      "prefab": "data/prefabs/columna1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-45.2009 0.0 -78.8837"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columna011"
+      ,
+      "prefab": "data/prefabs/columna2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.8729 6.01 -86.5484"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columna005"
+      ,
+      "prefab": "data/prefabs/columna1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-54.8386 0.0 -86.5158"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+]
