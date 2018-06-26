@@ -11,11 +11,14 @@ private:
     /* Atributes */
 
     float maxSpeed = 3.f;
+    float maxChaseSpeed = 5.f;
     float upSpeed = 4.f;
+    VEC3 upOffset = VEC3(0, 9.f, 0.f);
     float lerpValue = 0.06f;
     VEC3 prevDirection = VEC3::Zero;
     VEC3 currentDirection = VEC3::Zero;
 
+    VEC3 lastPlayerKnownPositionOffset = VEC3::Zero;
 
     float rotationSpeedChaseDeg = 359.f;
     float rotationSpeedChase;
@@ -38,7 +41,7 @@ private:
     bool goingInactive = false;
     VEC3 initialPos;
     VEC3 initialLookAt;
-    float rotationSpeedObservation = deg2rad(40.f);
+    float rotationSpeedObservation = deg2rad(30.f);
     float rotationSpeedPatrolling = deg2rad(80.f);
     float waitTimeInLasPlayerPos = 3.f;
     float chaseSpeed = 6.f;
@@ -57,6 +60,7 @@ private:
     /* Lantern */
     CHandle hLantern;
     bool lanternPatrollingLeft = false;
+    float startingPitch = 0;
 
     DECL_SIBLING_ACCESS();
 
@@ -72,9 +76,9 @@ private:
     void loadAsserts() override;
 
     /* AUX */
-    bool moveToDestDrone(VEC3 dest, float dt);
+    bool moveToDestDrone(VEC3 dest, float speed, float dt);
     void waitInPosDrone(VEC3 dest, float dt, float speed, float rotSpeed, VEC3 lookAt = VEC3::Zero);
-    void moveLanternPatrolling(float dt);
+    void moveLanternPatrolling(VEC3 objective, float dt, bool resetPitch = true);
     bool isEntityInFovDrone(const std::string& entityToChase);
     void stabilizeRotations(float dt);
 

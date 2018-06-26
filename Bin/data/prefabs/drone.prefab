@@ -144,10 +144,10 @@
 			"light_spot": {
 				"type": "spotlight",
 				"proj_type": "perspective",
-				"range": 15,
-				"angle": 75,
-				"inner_cut": 70,
-				"outer_cut": 75,
+				"range": 30,
+				"angle": 20,
+				"inner_cut": 15,
+				"outer_cut": 20,
 				"color": "0.3 1.0 1.0 1.0",
 				"intensity": 5.0,
 				"shadows": true,
@@ -157,9 +157,9 @@
 				"shadows_fmt": "R32_TYPELESS"
 			},
 			"cone_of_light": {
-				"hor_fov": 70,
-				"ver_fov": 70,
-				"dist": 15,
+				"hor_fov": 20,
+				"ver_fov": 20,
+				"dist": 30,
 				"target": "The Player"
 			}
 		}

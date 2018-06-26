@@ -40,7 +40,11 @@ void TCompHierarchy::relativeLookAt(VEC3 new_target)
 {
     TCompTransform* lanternPos = get<TCompTransform>();
     VEC3 objectivePos = lanternPos->getPosition();
-    QUAT objectiveRotation = lanternPos->getLookAt(objectivePos, new_target);
+    CEntity* eParent = h_parent;
+    TCompTransform* parentPos = eParent->get<TCompTransform>();
+    float yaw, pitch, roll;
+    parentPos->getYawPitchRoll(&yaw, &pitch, &roll);
+    QUAT objectiveRotation = lanternPos->getLookAt(objectivePos, new_target, roll);
 
     VEC3 resultPos;
     QUAT resultRot;

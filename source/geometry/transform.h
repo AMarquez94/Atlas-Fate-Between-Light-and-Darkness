@@ -94,7 +94,7 @@ public:
 
 
     /* AUX Methods */
-    QUAT getLookAt(VEC3 new_pos, VEC3 new_target);
+    QUAT getLookAt(VEC3 new_pos, VEC3 new_target, float customRoll = 0.f);
 };
 
 
