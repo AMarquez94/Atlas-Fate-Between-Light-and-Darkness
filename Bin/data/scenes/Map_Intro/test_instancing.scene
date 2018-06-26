@@ -80,7 +80,7 @@
 					"mesh": "data/meshes/quad_volume.instanced_mesh",
 					"materials":
 					[
-						"data/materials/grass_instanced.material"
+						"data/materials/volume_instanced.material"
 					]
 				}
 			]

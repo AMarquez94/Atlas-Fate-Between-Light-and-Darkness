@@ -183,6 +183,23 @@ CRenderMesh* createUnitQuadXY() {
 	return mesh;
 }
 
+// Full screen quad to dump textures in screen
+CRenderMesh* createUnitQuadCenterXY() {
+    const VEC4 white(1, 1, 1, 1);
+    const std::vector<TVtxPosClr> vtxs = {
+        { VEC3(-0.5, 0, -0.5), white }
+        ,{ VEC3(0.5, 0, -0.5), white }
+        ,{ VEC3(-0.5, 0, 0.5), white }
+        ,{ VEC3(0.5, 0, 0.5), white }
+    };
+    CRenderMesh* mesh = new CRenderMesh;
+    if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(TVtxPosClr), "PosClr"
+        , CRenderMesh::TRIANGLE_STRIP
+    ))
+        return nullptr;
+    return mesh;
+}
+
 // ----------------------------------
 // Full screen quad to dump textures in screen
 CRenderMesh* createUnitQuadPosXY() {
@@ -257,6 +274,7 @@ bool createRenderObjects() {
 	registerMesh(createWiredUnitCube(), "wired_unit_cube.mesh");
 	registerMesh(createUnitQuadXY(), "unit_quad_xy.mesh");
     registerMesh(createUnitQuadPosXY(), "unit_quad_pos_xy.mesh");
+    registerMesh(createUnitQuadCenterXY(), "unit_quad_center_xy.mesh");
 
 	return true;
 }

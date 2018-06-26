@@ -473,7 +473,6 @@ float4 PS_VLight(
     , float3 iWorldPos : TEXCOORD2
 ) : SV_Target
 {
-   
     // Sampling planes volumetric lights based shader.
     float shadow_factor = computeShadowFactor(iWorldPos);
     float camera_dist = length(iWorldPos - light_pos.xyz);

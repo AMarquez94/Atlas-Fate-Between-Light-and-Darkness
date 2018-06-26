@@ -47,7 +47,7 @@ void TCompLightSpot::load(const json& j, TEntityParseContext& ctx) {
     intensity = j.value("intensity", 1.0f);
     color = loadVEC4(j["color"]);
 
-    casts_shadows = j.value("volume", true);
+    volume_enabled = j.value("volume", true);
     casts_shadows = j.value("shadows", true);
     angle = j.value("angle", 45.f);
     range = j.value("range", 10.f);
@@ -204,30 +204,36 @@ void TCompLightSpot::generateVolume() {
 
     for (int i = 0; i < num_samples * .5f; i++) {
 
-        VEC3 pos = c_transform->getPosition();
         VEC3 plane_pos = midpos + camera->getFront() * p_distance * i;
         MAT44 bb = MAT44::CreateWorld(plane_pos, -camera->getUp(), -camera->getFront());
-        MAT44 sc = MAT44::CreateScale(40.f);
+        MAT44 sc = MAT44::CreateScale(20.f);
+        MAT44 res = sc * bb;
 
-        cb_object.obj_world = sc * bb;
-        cb_object.obj_color = VEC4(1, 1, 1, 1);
-        cb_object.updateGPU();
+        EngineInstancing.updateInstance("data/meshes/quad_volume.instanced_mesh", i, res);
 
-        spotcone->activateAndRender();
+        // OLD CPU VERSION
+        //cb_object.obj_world = sc * bb;
+        //cb_object.obj_color = VEC4(1, 1, 1, 1);
+        //cb_object.updateGPU();
+
+        //spotcone->activateAndRender();
     }
 
     for (int i = 0; i < num_samples * .5f; i++) {
 
-        VEC3 pos = c_transform->getPosition();
         VEC3 plane_pos = midpos + -camera->getFront() * p_distance * i;
         MAT44 bb = MAT44::CreateWorld(plane_pos, -camera->getUp(), -camera->getFront());
-        MAT44 sc = MAT44::CreateScale(40.f);
+        MAT44 sc = MAT44::CreateScale(20.f);
+        MAT44 res = sc * bb;
 
-        cb_object.obj_world = sc * bb;
-        cb_object.obj_color = VEC4(1, 1, 1, 1);
-        cb_object.updateGPU();
+        EngineInstancing.updateInstance("data/meshes/quad_volume.instanced_mesh", i * 2, res);
 
-        spotcone->activateAndRender();
+        // Old cpu version
+        //cb_object.obj_world = sc * bb;
+        //cb_object.obj_color = VEC4(1, 1, 1, 1);
+        //cb_object.updateGPU();
+
+        //spotcone->activateAndRender();
     }
 }
 

@@ -215,6 +215,12 @@ void CDeferredRenderer::renderVolumes() {
 
         c->generateVolume();
     });
+
+    // Activate tech for the light dir 
+    auto technique2 = Resources.get("pbr_instanced_volume.tech")->as<CRenderTechnique>();
+    technique2->activate();
+
+    CRenderManager::get().renderCategory("pbr_volume");
 }
 
 // --------------------------------------

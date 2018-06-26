@@ -162,14 +162,6 @@
 		"vertex_type": "PosNUvUvT_x_Instance",
 		"category": "gbuffer"
 	},
-	"pbr_instanced_volume": {
-		"vs_file": "data/shaders/pbr_instanced.fx",
-		"vs_entry_point": "VS_GBufferInstanced",
-		"ps_file": "data/shaders/pbr.fx",
-		"ps_entry_point": "PS_GBuffer",
-		"vertex_type": "PosNUvUvT_x_Instance",
-		"category": "gbuffer"
-	},
 	"pbr_decals": {
 		"vs_file": "data/shaders/pbr_decals.fx",
 		"vertex_type": "PosNUvUvT_x_InstanceColored",
@@ -414,6 +406,21 @@
 		"z" : "test_but_no_write",
 		"rs_config" : "cull_none",
 		"blend" : "additive_by_src_alpha"
+	},
+	"pbr_instanced_volume": {
+		"vs_file": "data/shaders/pbr_vol_instanced.fx",
+		"ps_file": "data/shaders/pbr_vol_instanced.fx",
+		"vs_entry_point": "VS_IVLight",
+		"ps_entry_point": "PS_IVLight",
+		"vertex_type" : "PosNUvUvT_x_Instance",
+		"z" : "test_but_no_write",
+		"category": "pbr_volume",
+		"blend" : "combinative",
+		"priority": 160,
+		"rs_config" : "cull_none",
+			"textures": {
+			"noise": "data/textures/noise_light.dds"
+		}
 	},
 	"pbr_vol_lights": {
 		"vs_file": "data/shaders/pbr.fx",
