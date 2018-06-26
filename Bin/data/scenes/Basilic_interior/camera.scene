@@ -1,0 +1,252 @@
+[{
+		"entity": {
+			"name": "Cameras"
+		}
+	}, {
+		"entity": {
+			"name": "main_camera",
+			"transform": {
+				"pos": "0 0 0",
+				"lookat": "0 0 0"
+			},
+			"camera": {
+				"fov": 80
+			},
+			"render_ao": {
+				"enabled": true
+			},
+			"render_bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"rt_name": "Bloom"
+			},
+			"render_outlines" : {
+        "enabled" : true
+      },
+			"culling": true
+		}
+	}, {
+		"entity": {
+			"name": "TPCamera",
+			"transform": {
+				"pos": "0 3 3"
+			},
+			"camera_thirdperson": {
+				"target": "The Player",
+				"clampangle": "-40 80",
+				"offset": "0.15 1.4 2",
+				"speed": 1.5
+			},
+			"camera": {
+				"fov": 80,
+				"z_near": 0.01,
+				"z_far": 1000
+			},
+			"render_ao": {
+				"enabled": true
+			},
+			"render_bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"rt_name": "Bloom"
+			},
+			"color_grading": {
+				"enabled": true,
+				"amount": 0.6,
+				"lut": "data/textures/lut/RGBTable16x1.dds"
+			},
+						"render_outlines" : {
+        "enabled" : true
+      },
+			"tags": ["main_camera"]
+		}
+	}, {
+		"entity": {
+			"name": "TPCameraCrouched",
+			"transform": {
+				"pos": "0 3 3"
+			},
+			"camera_thirdperson": {
+				"target": "The Player",
+				"clampangle": "-40 80",
+				"offset": "0.15 0.8 2",
+				"speed": 1.5
+			},
+			"camera": {
+				"fov": 80,
+				"z_near": 0.01,
+				"z_far": 1000
+			},
+			"render_ao": {
+				"enabled": true
+			},
+			"render_bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"rt_name": "Bloom"
+			},
+			"render_outlines" : {
+        "enabled" : true
+      },
+			"color_grading": {
+				"enabled": true,
+				"amount": 0.6,
+				"lut": "data/textures/lut/RGBTable16x1.dds"
+			},
+			"tags": ["main_camera"]
+		}
+	}, {
+		"entity": {
+			"name": "SMCameraHor",
+			"transform": {
+				"pos": "0 3 3"
+			},
+			"camera_shadowmerge": {
+				"target": "The Player",
+				"clampangle": "10 80",
+				"offset": "0 0.5 2.7",
+				"speed": 1.5,
+				"starting_pitch": -35
+			},
+			"camera": {
+				"fov": 90,
+				"z_near": 0.01,
+				"z_far": 1000
+			},
+			"render_ao": {
+				"enabled": true
+			},
+			"render_blur": {
+				"enabled": false
+			},
+			"render_blur_radial": {
+				"enabled": true
+			},
+			"color_grading": {
+				"enabled": true,
+				"amount": 0.6,
+				"lut": "data/textures/lut/lut1.dds"
+			},
+			"tags": ["main_camera"]
+		}
+	}, {
+		"entity": {
+			"name": "SMCameraVer",
+			"transform": {
+				"pos": "0 3 3"
+			},
+			"camera_shadowmerge": {
+				"target": "The Player",
+				"clampangle": "-80 80",
+				"offset": "0 0.5 2.7",
+				"speed": 1.5,
+				"starting_pitch": 0
+			},
+			"render_blur": {
+				"enabled": false
+			},
+			"render_ao": {
+				"enabled": true
+			},
+			"render_blur_radial": {
+				"enabled": true
+			},
+			"color_grading": {
+				"enabled": true,
+				"amount": 0.6,
+				"lut": "data/textures/lut/lut1.dds"
+			},
+			"camera": {
+				"fov": 90,
+				"z_near": 0.01,
+				"z_far": 1000
+			},
+			"tags": ["main_camera"]
+		}
+	}, {
+		"entity": {
+			"name": "SMCameraAux",
+			"transform": {
+				"pos": "0 3 3"
+			},
+			"auxcamera_shadowmerge": {},
+			"camera": {
+				"fov": 90,
+				"z_near": 0.01,
+				"z_far": 1000
+			},
+			"render_ao": {
+				"enabled": true
+			},
+			"render_blur": {
+				"enabled": false
+			},
+			"render_blur_radial": {
+				"enabled": true
+			},
+			"color_grading": {
+				"enabled": true,
+				"amount": 0.6,
+				"lut": "data/textures/lut/lut1.dds"
+			},
+			"tags": ["aux_camera"]
+		}
+	}, {
+		"entity": {
+			"name": "test_camera_flyover",
+			"transform": {
+				"pos": "5 5 0",
+				"lookat": "0 0 0"
+			},
+			"camera_flyover": {},
+			"camera": {
+				"fov": 80,
+				"z_near": 0.01,
+				"z_far": 1000
+			},
+			"render_ao": {
+				"enabled": true
+			},
+						"render_outlines" : {
+        "enabled" : true
+      },
+			"render_bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"rt_name": "Bloom"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "test_camera_curve",
+			"transform": {
+				"pos": "-6 5.2 62.5",
+				"rotation": "0.0 0.976105 0 0.2173"
+			},
+			"camera": {
+				"fov": 60,
+				"z_near": 0.01,
+				"z_far": 1000
+			}
+		}
+	}, {
+		"entity": {
+			"name": "trigger_camera_curve",
+			"transform": {
+				"pos": "-5 2 28",
+				"lookat": "0 0 0"
+			},
+			"trigger_camera": {
+				"target": "test_camera_curve",
+				"time_to_exit": 4,
+				"blend_in_time": 1.5,
+				"blend_out_time": 1.5
+			},
+			"collider": {
+				"shape": "sphere",
+				"is_trigger": true,
+				"radius": 5
+			}
+		}
+	}
+]
