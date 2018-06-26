@@ -57,10 +57,13 @@ class CModuleInstancing : public IModule {
     std::map<std::string, std::string> _global_names;
     std::map<std::string, TInstanceCollector> _global_instances;
 
+    void debugMenu();
+
 public:
 
     CModuleInstancing(const std::string& name) : IModule(name) {}
 
+    bool stop() override;
     bool start() override;
     void render() override;
     void update(float delta) override;

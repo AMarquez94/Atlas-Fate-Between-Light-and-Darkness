@@ -191,6 +191,12 @@
 				"z_near": 0.01,
 				"z_far": 1000
 			},
+			"fog": {
+				"enabled": true
+			},
+			"antialiasing": {
+				"enabled": true
+			},
 			"tags": ["main_camera"]
 		}
 	}, {
@@ -219,6 +225,12 @@
 				"amount": 0.6,
 				"lut": "data/textures/lut/lut1.dds"
 			},
+			"fog": {
+				"enabled": true
+			},
+			"antialiasing": {
+				"enabled": true
+			},
 			"tags": ["aux_camera"]
 		}
 	}, {
@@ -242,7 +254,7 @@
 				"max_steps": 4,
 				"rt_name": "Bloom"
 			},
-						"volume_light": {
+			"volume_light": {
 				"enabled": true
 			}
 		}

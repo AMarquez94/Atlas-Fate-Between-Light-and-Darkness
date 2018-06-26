@@ -84,7 +84,6 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
         // Load the subscene
         Scene * current_scene = it->second;
         Engine.getNavmeshes().buildNavmesh(current_scene->navmesh);
-        Engine.getInstancing().start();
 
         for (auto& scene_name : current_scene->groups_subscenes) {
             dbg("Autoloading scene %s\n", scene_name.c_str());
@@ -112,9 +111,9 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
             h_e.sendMsg(msg);
         });
 
-				CModuleGameManager gameManager = CEngine::get().getGameManager();
-				/* TODO: Comprobar que se sigue en la misma escena */
-				gameManager.loadCheckpoint();
+		CModuleGameManager gameManager = CEngine::get().getGameManager();
+		/* TODO: Comprobar que se sigue en la misma escena */
+		gameManager.loadCheckpoint();
         Engine.getLogic().execEvent(EngineLogic.SCENE_START, current_scene->initial_script_name);
 
         return true;
@@ -141,7 +140,7 @@ bool CModuleSceneManager::unLoadActiveScene() {
         _activeScene->isLoaded = false;
         _activeScene = nullptr;
 
-				/* TODO: Delete checkpoint */
+	    /* TODO: Delete checkpoint */
 
         return true;
     }

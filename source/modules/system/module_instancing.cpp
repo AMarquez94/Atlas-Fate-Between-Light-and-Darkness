@@ -16,6 +16,13 @@ float randomFloat(float vmin, float vmax) {
     return vmin + (vmax - vmin) * unitRandom();
 }
 
+bool CModuleInstancing::stop()
+{
+    scene_group.destroy();
+
+    return true;
+}
+
 bool CModuleInstancing::start() {
 
     // Load static meshes
@@ -164,6 +171,11 @@ void CModuleInstancing::render() {
     instances_mesh->setInstancesData(instances.data(), instances.size(), sizeof(TInstance));
     blood_instances_mesh->setInstancesData(blood_instances.data(), blood_instances.size(), sizeof(TInstanceBlood));
     particles_instances_mesh->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(TRenderParticle));
+
+    debugMenu();
+}
+
+void CModuleInstancing::debugMenu() {
 
     if (ImGui::TreeNode("Instance Manager")) {
 

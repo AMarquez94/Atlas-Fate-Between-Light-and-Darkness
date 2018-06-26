@@ -162,6 +162,14 @@
 		"vertex_type": "PosNUvUvT_x_Instance",
 		"category": "gbuffer"
 	},
+	"pbr_instanced_volume": {
+		"vs_file": "data/shaders/pbr_instanced.fx",
+		"vs_entry_point": "VS_GBufferInstanced",
+		"ps_file": "data/shaders/pbr.fx",
+		"ps_entry_point": "PS_GBuffer",
+		"vertex_type": "PosNUvUvT_x_Instance",
+		"category": "gbuffer"
+	},
 	"pbr_decals": {
 		"vs_file": "data/shaders/pbr_decals.fx",
 		"vertex_type": "PosNUvUvT_x_InstanceColored",

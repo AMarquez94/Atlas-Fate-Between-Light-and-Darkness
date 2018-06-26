@@ -47,6 +47,7 @@ void TCompLightSpot::load(const json& j, TEntityParseContext& ctx) {
     intensity = j.value("intensity", 1.0f);
     color = loadVEC4(j["color"]);
 
+    casts_shadows = j.value("volume", true);
     casts_shadows = j.value("shadows", true);
     angle = j.value("angle", 45.f);
     range = j.value("range", 10.f);
@@ -138,6 +139,10 @@ void TCompLightSpot::onCreate(const TMsgEntityCreated& msg) {
         c_my_aabb->Center = VEC3(0, 0, range * .5f);
         c_my_aabb_local->Center = VEC3(0, 0, range * .5f);
     }
+
+    for (int i = 0; i < num_samples; i++) {
+        EngineInstancing.addInstance("data/meshes/quad_volume.instanced_mesh", MAT44::Identity);
+    }
 }
 
 void TCompLightSpot::onDestroy(const TMsgEntityDestroyed & msg) {
@@ -181,23 +186,21 @@ void TCompLightSpot::activate() {
     cb_light.updateGPU();
 }
 
-
-
 // Dirty way of computing volumetric lights on CPU.
 // Update this in the future with a vertex shader improved version.
 void TCompLightSpot::generateVolume() {
 
-    if (!isEnabled || cull_enabled)
+    if (!isEnabled || cull_enabled || !volume_enabled)
         return;
 
     activate();
     TCompTransform * c_transform = get<TCompTransform>();
-    if (c_transform == NULL) return;
+
+    CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
+    TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
 
     float p_distance = (getZFar() - getZNear()) / num_samples;
     VEC3 midpos = c_transform->getPosition() + c_transform->getFront() * (getZFar() - getZNear()) * .5f;
-    CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
-    TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
 
     for (int i = 0; i < num_samples * .5f; i++) {
 
