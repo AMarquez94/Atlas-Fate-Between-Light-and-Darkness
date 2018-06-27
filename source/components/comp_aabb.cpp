@@ -89,7 +89,6 @@ void TCompLocalAABB::renderDebug() {
   renderWiredAABB(*this, in_tmx->asMatrix(), VEC4(1, 1, 0, 1));
 }
 
-
 void TCompLocalAABB::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
     updateFromSiblingsLocalAABBs(CHandle(this).getOwner());
 }
