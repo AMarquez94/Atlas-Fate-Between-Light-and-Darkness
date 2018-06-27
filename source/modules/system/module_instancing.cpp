@@ -157,6 +157,13 @@ void CModuleInstancing::clearInstances() {
     _global_instances.clear();
 }
 
+void CModuleInstancing::clearInstance(const std::string &name) {
+
+    if (_global_instances.find(name) != _global_instances.end()) {
+        _global_instances[name]._instances.clear();
+    }
+}
+
 // Maybe we should refactor this with pointers..
 void CModuleInstancing::updateInstance(const std::string& name, int index, const MAT44& w_matrix) {
 

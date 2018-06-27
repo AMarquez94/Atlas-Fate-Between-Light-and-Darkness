@@ -11,6 +11,12 @@ struct TInstance {
     MAT44 world;
 };
 
+struct TInstanceVolume {
+    MAT44 world;
+    VEC3 light_pos;
+};
+
+
 class CModuleInstancing : public IModule {
 
     // Static instances, for testing purposes
@@ -71,6 +77,7 @@ public:
     int addInstance(const std::string & name, MAT44 w_matrix);
     void removeInstance(TInstance* instance);
     void updateInstance(const std::string& name, int index, const MAT44& w_matrix);
+    void clearInstance(const std::string& name);
     void clearInstances();
 
     bool parseInstance(const json& j, TEntityParseContext& ctx);

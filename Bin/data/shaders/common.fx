@@ -148,6 +148,21 @@ float computeShadowFactor(float3 wPos) {
   return shadow_factor / 12.f;
 }
 
+//--------------------------------------------------------------------------------------
+float computeShadowFactorLight(float3 wPos) {
+
+  // Convert pixel position in world space to light space
+  float4 pos_in_light_proj_space = mul(float4(wPos, 1), light_view_proj_offset);
+  float3 homo_space = pos_in_light_proj_space.xyz / pos_in_light_proj_space.w; // -1..1
+
+  // Avoid the white band in the back side of the light
+  if (pos_in_light_proj_space.z < 0.)
+    return 0.f;
+
+  return shadowsTap(homo_space.xy, homo_space.z);
+}
+
+
 float3x3 computeTBN(float3 inputN, float4 inputT) {
 
   // Prepare a 3x3 matrix to convert from tangent space to world space

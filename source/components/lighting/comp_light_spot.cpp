@@ -23,6 +23,9 @@
 
 DECL_OBJ_MANAGER("light_spot", TCompLightSpot);
 
+CRenderMeshInstanced* TCompLightSpot::volume_instance = nullptr;
+std::vector<TInstanceLight>  TCompLightSpot::volume_instances;
+
 void TCompLightSpot::debugInMenu() {
     ImGui::ColorEdit3("Color", &color.x);
     ImGui::DragFloat("Intensity", &intensity, 0.01f, 0.f, 10.f);
@@ -140,9 +143,9 @@ void TCompLightSpot::onCreate(const TMsgEntityCreated& msg) {
         c_my_aabb_local->Center = VEC3(0, 0, range * .5f);
     }
 
-    for (int i = 0; i < num_samples; i++) {
-        EngineInstancing.addInstance("data/meshes/quad_volume.instanced_mesh", MAT44::Identity);
-    }
+    //for (int i = 0; i < num_samples; i++) {
+    //    EngineInstancing.addInstance("data/meshes/quad_volume.instanced_mesh", MAT44::Identity);
+    //}
 }
 
 void TCompLightSpot::onDestroy(const TMsgEntityDestroyed & msg) {
@@ -193,23 +196,29 @@ void TCompLightSpot::generateVolume() {
     if (!isEnabled || cull_enabled || !volume_enabled)
         return;
 
-    activate();
+    //activate();
     TCompTransform * c_transform = get<TCompTransform>();
-
+    VEC3 cpos = c_transform->getPosition();
     CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
     TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
 
     float p_distance = (getZFar() - getZNear()) / num_samples;
     VEC3 midpos = c_transform->getPosition() + c_transform->getFront() * (getZFar() - getZNear()) * .5f;
+    float spot_angle = cos(deg2rad(angle * .5f));
 
     for (int i = 0; i < num_samples * .5f; i++) {
 
         VEC3 plane_pos = midpos + camera->getFront() * p_distance * i;
         MAT44 bb = MAT44::CreateWorld(plane_pos, -camera->getUp(), -camera->getFront());
-        MAT44 sc = MAT44::CreateScale(20.f);
+        MAT44 sc = MAT44::CreateScale(range);
         MAT44 res = sc * bb;
 
-        EngineInstancing.updateInstance("data/meshes/quad_volume.instanced_mesh", i, res);
+        TInstanceLight t_struct = { res, VEC4(cpos.x, cpos.y, cpos.z, 1)                 
+                ,VEC4(c_transform->getFront().x, c_transform->getFront().y, c_transform->getFront().z, 1)
+                ,VEC4(spot_angle, cos(deg2rad(Clamp(inner_cut, 0.f, angle) * .5f)), spot_angle, 1) };
+        volume_instances.push_back(t_struct);
+
+        //EngineInstancing.updateInstance("data/meshes/quad_volume.instanced_mesh", amount, res);
 
         // OLD CPU VERSION
         //cb_object.obj_world = sc * bb;
@@ -223,12 +232,18 @@ void TCompLightSpot::generateVolume() {
 
         VEC3 plane_pos = midpos + -camera->getFront() * p_distance * i;
         MAT44 bb = MAT44::CreateWorld(plane_pos, -camera->getUp(), -camera->getFront());
-        MAT44 sc = MAT44::CreateScale(20.f);
+        MAT44 sc = MAT44::CreateScale(range);
         MAT44 res = sc * bb;
 
-        EngineInstancing.updateInstance("data/meshes/quad_volume.instanced_mesh", i * 2, res);
+        TInstanceLight t_struct = { res, VEC4(cpos.x, cpos.y, cpos.z, 1) 
+                ,VEC4(c_transform->getFront().x, c_transform->getFront().y, c_transform->getFront().z, 1)
+                ,VEC4(spot_angle, cos(deg2rad(Clamp(inner_cut, 0.f, angle) * .5f)), spot_angle, 1)
+        };
+        volume_instances.push_back(t_struct);
 
-        // Old cpu version
+        //EngineInstancing.updateInstance("data/meshes/quad_volume.instanced_mesh", amount, res);
+
+        // Old CPU version
         //cb_object.obj_world = sc * bb;
         //cb_object.obj_color = VEC4(1, 1, 1, 1);
         //cb_object.updateGPU();

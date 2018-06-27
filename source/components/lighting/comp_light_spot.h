@@ -6,6 +6,13 @@
 class CTexture;
 class CRenderToTexture;
 
+struct TInstanceLight {
+    MAT44 world;
+    VEC4 light_pos;
+    VEC4 light_dir;
+    VEC4 light_values;
+};
+
 class TCompLightSpot : public TCompCamera {
 
 	VEC4			color = VEC4(1, 1, 1, 1);
@@ -13,6 +20,7 @@ class TCompLightSpot : public TCompCamera {
 
     CRenderMesh * spotcone;
     int  num_samples = 120;
+
 
 	// Shadows params
     bool              cull_enabled = false;      // Dynamic
@@ -29,6 +37,9 @@ class TCompLightSpot : public TCompCamera {
 
 	DECL_SIBLING_ACCESS();
 public:
+
+    static CRenderMeshInstanced* volume_instance;
+    static std::vector<TInstanceLight> volume_instances;
 
 	const CTexture* projector = nullptr;
 

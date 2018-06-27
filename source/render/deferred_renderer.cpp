@@ -205,7 +205,12 @@ void CDeferredRenderer::renderSpotLights() {
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderVolumes() {
 
+    //EngineInstancing.clearInstance("data/meshes/quad_volume.instanced_mesh");
     CTraceScoped gpu_scope("renderSpotLights");
+    TCompLightSpot::volume_instances.clear();
+    auto rmesh = Resources.get("data/meshes/quad_volume.instanced_mesh")->as<CRenderMesh>();
+    TCompLightSpot::volume_instance = (CRenderMeshInstanced*)rmesh;
+    TCompLightSpot::volume_instance->vtx_decl = CVertexDeclManager::get().getByName("InstanceLight");
 
     // Activate tech for the light dir 
     auto technique = Resources.get("pbr_vol_lights.tech")->as<CRenderTechnique>();
@@ -216,6 +221,7 @@ void CDeferredRenderer::renderVolumes() {
         c->generateVolume();
     });
 
+    TCompLightSpot::volume_instance->setInstancesData(TCompLightSpot::volume_instances.data(), TCompLightSpot::volume_instances.size(), sizeof(TInstanceLight));
     // Activate tech for the light dir 
     auto technique2 = Resources.get("pbr_instanced_volume.tech")->as<CRenderTechnique>();
     technique2->activate();

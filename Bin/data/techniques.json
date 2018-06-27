@@ -412,7 +412,7 @@
 		"ps_file": "data/shaders/pbr_vol_instanced.fx",
 		"vs_entry_point": "VS_IVLight",
 		"ps_entry_point": "PS_IVLight",
-		"vertex_type" : "PosNUvUvT_x_Instance",
+		"vertex_type" : "PosNUvUvT_x_InstanceLight",
 		"z" : "test_but_no_write",
 		"category": "pbr_volume",
 		"blend" : "combinative",
