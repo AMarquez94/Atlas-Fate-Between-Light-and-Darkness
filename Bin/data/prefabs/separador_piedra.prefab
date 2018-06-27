@@ -1,0 +1,41 @@
+[
+  {
+    "entity":
+    {
+      "name": "separador_piedra"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_piedra"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_separador_piedra.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

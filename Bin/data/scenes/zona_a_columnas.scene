@@ -14,6 +14,22 @@
   {
     "entity":
     {
+      "name": "mesh_columna005"
+      ,
+      "prefab": "data/prefabs/columna1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-54.8386 0.0 -86.5158"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_columna006"
       ,
       "prefab": "data/prefabs/columna2.prefab"
@@ -36,7 +52,7 @@
       ,
       "transform":
       {
-        "pos": "-59.2037 0.0 -78.5199"
+        "pos": "-59.2037 -0.0834995 -78.5199"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -52,7 +68,7 @@
       ,
       "transform":
       {
-        "pos": "-46.1245 0.0 -88.6382"
+        "pos": "-40.9716 -0.0388225 -95.3941"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -110,13 +126,285 @@
   {
     "entity":
     {
-      "name": "mesh_columna005"
+      "name": "mesh_columna012"
+      ,
+      "prefab": "data/prefabs/columna4.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-45.2445 6.0 -84.4687"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columna013"
+      ,
+      "prefab": "data/prefabs/columna4.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-52.82 6.0 -84.4687"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columna014"
+      ,
+      "prefab": "data/prefabs/columna4.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-45.2445 6.0 -78.9169"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columna015"
+      ,
+      "prefab": "data/prefabs/columna4.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-52.82 6.0 -78.9169"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera001"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-46.9952 -0.0576205 -74.6337"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "separador_piedra_low001"
+      ,
+      "prefab": "data/prefabs/separador_piedra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.9595 0.0 -78.7004"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera002"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-51.0011 -0.0576205 -74.6337"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera003"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.9636 6.0 -78.697"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "separador_piedra_low002"
+      ,
+      "prefab": "data/prefabs/separador_piedra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-40.9595 0.0 -82.3613"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera004"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-51.036 6.0 -72.7779"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "separador_piedra_low003"
+      ,
+      "prefab": "data/prefabs/separador_piedra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-46.9136 6.0 -72.8035"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "separador_piedra_low004"
+      ,
+      "prefab": "data/prefabs/separador_piedra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-59.0903 6.0 -76.6153"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera005"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-65.0216 6.0 -79.5059"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera006"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-65.0216 6.0 -83.4899"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera007"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-70.9782 6.0 -83.4899"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columna016"
+      ,
+      "prefab": "data/prefabs/columna3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-50.382 -0.0835002 -93.1691"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "separador_piedra_low005"
+      ,
+      "prefab": "data/prefabs/separador_piedra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-46.9703 0.0 -95.2259"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columna017"
       ,
       "prefab": "data/prefabs/columna1.prefab"
       ,
       "transform":
       {
-        "pos": "-54.8386 0.0 -86.5158"
+        "pos": "-60.027 6.0 -95.1648"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
