@@ -11,6 +11,8 @@
 #include "components/postfx/comp_render_ao.h"
 #include "components/comp_transform.h"
 #include "ctes.h"
+#include "components/comp_aabb.h" 
+#include "components/comp_culling.h" 
 
 void CDeferredRenderer::renderGBuffer() {
 	CTraceScoped gpu_scope("Deferred.GBuffer");
@@ -170,6 +172,13 @@ void CDeferredRenderer::renderDirectionalLights() {
 void CDeferredRenderer::renderSpotLights() {
 	CTraceScoped gpu_scope("renderSpotLights");
 
+	//Get the culling bits from the main camera 
+	CEntity* e_camera = getEntityByName("main_camera");
+	const TCompCulling* culling = nullptr;
+	if (e_camera)
+		culling = e_camera->get<TCompCulling>();
+	const TCompCulling::TCullingBits* culling_bits = culling ? &culling->bits : nullptr;
+
 	// Activate tech for the light dir 
 	auto* tech = Resources.get("pbr_spot_lights.tech")->as<CRenderTechnique>();
 	tech->activate();
@@ -179,17 +188,36 @@ void CDeferredRenderer::renderSpotLights() {
 	mesh->activate();
 
 	// Para todas las luces... pintala
-	getObjectManager<TCompLightSpot>()->forEach([mesh](TCompLightSpot* c) {
+	getObjectManager<TCompLightSpot>()->forEach([&](TCompLightSpot* c) {
 
-		// subir las contantes de la posicion/dir
-		// activar el shadow map...
-		c->activate();
 
-		setWorldTransform(c->getWorld());
+		// Do the culling 
+		if (culling_bits) {
+			CHandle h = c;
+			CEntity* e = h.getOwner();
+			std::string name = e->getName();
+			TCompAbsAABB* aabb = e->get<TCompAbsAABB>();
 
-		// mandar a pintar una geometria que refleje los pixeles que potencialmente
-		// puede iluminar esta luz.... El Frustum solido
-		mesh->render();
+			if (aabb) {
+				CHandle h = aabb;
+				auto idx = h.getExternalIndex();
+				if (!culling_bits->test(idx)) {
+					//Doing the culling, not painting the lights 
+					//dbg("Not painting the light %s \n \n", name.c_str()); 
+				}
+				else {
+					// subir las contantes de la posicion/dir 
+					// activar el shadow map... 
+					c->activate();
+
+					setWorldTransform(c->getWorld());
+
+					// mandar a pintar una geometria que refleje los pixeles que potencialmente 
+					// puede iluminar esta luz.... El Frustum solido 
+					mesh->render();
+				}
+			}
+		}
 	});
 }
 

@@ -215,14 +215,10 @@ struct TMsgPlayerInShadows {
     DECL_MSG_ID();
 };
 
-struct TMsgLanternsDisable {
-    bool disable;
-    DECL_MSG_ID();
+struct TMsgPlayerMove {
+	VEC3 pos;
+	DECL_MSG_ID();
 };
-
-//struct TMsgSpotlightsToggle {
-//    DECL_MSG_ID();
-//};
 
 #endif
 

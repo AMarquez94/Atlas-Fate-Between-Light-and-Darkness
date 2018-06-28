@@ -14,7 +14,6 @@ private:
     bool startLightsOn = false;
     bool hasBeenShadowMerged = false;
     bool hasBeenFixed = false;
-    bool disabledLanterns = false;
 
     DECL_SIBLING_ACCESS();
 
@@ -24,7 +23,10 @@ private:
     void onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged& msg);
     void onMsgPatrolFixed(const TMsgPatrolFixed& msg);
     void onMsgNoiseListened(const TMsgNoiseMade& msg);
-    void onMsgLanternsDisable(const TMsgLanternsDisable& msg);
+
+	//Hack debug messages and variables
+	bool playerInvisible = false;
+	void onMsgPlayerInvisible(const TMsgPlayerInvisible& msg);
 
     /* Aux functions */
     void turnOnLight();
@@ -43,6 +45,9 @@ public:
     void postUpdate(float dt) override;
     void load(const json& j, TEntityParseContext& ctx) override;
     void debugInMenu();
+
+	//Get + Set Methods
+	bool getStartLightsOn() { return startLightsOn; }
 
     BTNode::ERes actionShadowMerged(float dt);
     BTNode::ERes actionStunned(float dt);

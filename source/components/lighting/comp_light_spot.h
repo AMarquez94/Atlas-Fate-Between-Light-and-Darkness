@@ -17,8 +17,9 @@ class TCompLightSpot : public TCompCamera {
 	int               shadows_resolution = 256;
 	float             shadows_step = 1.f;
 	CRenderToTexture* shadows_rt = nullptr;
+	AABB			  aabb;
 
-	void onCreate(const TMsgEntityCreated& msg);
+	void onCreate(const TMsgSceneCreated& msg);
 	void onDestroy(const TMsgEntityDestroyed& msg);
 
 	DECL_SIBLING_ACCESS();
@@ -31,6 +32,7 @@ public:
 	float angle;
 	float inner_cut;
 	float outer_cut;
+	bool is_moving;
 
 	void debugInMenu();
 	void renderDebug();
@@ -40,6 +42,7 @@ public:
 	void activate();
 	void generateShadowMap();
 	MAT44 getWorld();
+	void createAABB();
 
 	void setColor(const VEC4 & new_color);
 

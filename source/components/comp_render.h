@@ -37,6 +37,8 @@ public:
     void onSetVisible(const TMsgSetVisible& msg);
     void refreshMeshesInRenderManager(bool delete_me_from_keys = true);
 
+	void renderMeshes();
+
     static void registerMsgs();
 
     DECL_SIBLING_ACCESS();

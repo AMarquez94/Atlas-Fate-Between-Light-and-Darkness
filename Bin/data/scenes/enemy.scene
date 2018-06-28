@@ -15,25 +15,28 @@
 			}
 		}
 	}, {
-		"xentity": {
+		"entity": {
 			"prefab": "data/prefabs/patrol.prefab",
 			"name": "The Enemy 2",
 			"transform": {
 				"pos": "-25 0 110",
 				"lookat": "-24 0 110"
 			},
-			"ai_patrol": {
-				"waypoints": [{
-						"position": "-25 0 110",
-						"lookAt": "1 0 0",
-						"minTime": 10
-					}, {
-						"position": "0 0 110",
-						"lookAt": "-1 0 0",
-						"minTime": 10
-					}
-				]
-			}
+      "ai_patrol": {
+        "waypoints": [
+          {
+            "position": "-25 0 110",
+            "lookAt": "1 0 0",
+            "minTime": 10
+          },
+          {
+            "position": "0 0 110",
+            "lookAt": "-1 0 0",
+            "minTime": 10
+          }
+        ],
+        "startLightsOn": true
+      }
 		}
 	}, {
 		"xentity": {

@@ -119,7 +119,9 @@ class TCompTempPlayerController : public TCompBase
     void onPlayerInShadows(const TMsgPlayerInShadows& msg);
     void onSpeedBoost(const TMsgSpeedBoost& msg);
     void onPlayerInvisible(const TMsgPlayerInvisible& msg);
-    void onMsgNoClipToggle(const TMsgNoClipToggle& msg);
+    void onNoClipToggle(const TMsgNoClipToggle& msg);
+	void onPlayerMove(const TMsgPlayerMove& msg);
+
 
 
     DECL_SIBLING_ACCESS();

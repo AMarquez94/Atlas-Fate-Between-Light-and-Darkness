@@ -3,6 +3,8 @@
 
 // -----------------------------------------
 #include "murmur3/murmur3.h"
+#include "PxPhysicsAPI.h"
+
 uint32_t getID(const char* txt);
 uint32_t getID(const void* buff, size_t nbytes);
 
@@ -33,6 +35,13 @@ float urand(float loVal, float hiVal);
 void ToUpperCase(std::string&);
 
 int Strnicmp(const char* str1, const char* str2, int n);
+
+physx::PxVec3 ToPxVec3(VEC3);
+VEC3 ToVec3(physx::PxVec3);
+physx::PxQuat ToPxQuat(QUAT);
+QUAT ToQuat(physx::PxQuat);
+
+void getFileNameFromPath(std::string&);
 
 #endif
 

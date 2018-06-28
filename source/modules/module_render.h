@@ -12,9 +12,11 @@ class CModuleRender : public IModule
 	CDeferredRenderer deferred;
 	CRenderToTexture* rt_main = nullptr;
 
+	//console variables
+	bool _debugMode = true, _generateShadows = true, _generatePostFX = true, _showWireframe = false, _hideBackground = false, _showAllColliders = false, _showDynamicColliders = false;
+	//bool show_flat_shading = false;
 public:
 
-    bool _debugMode = true, _generateShadows = true, _generatePostFX = true;
 
 	CModuleRender(const std::string& name);
 	bool start() override;
@@ -24,16 +26,26 @@ public:
 
 	void generateFrame();
 	void activateMainCamera();
+	void renderWireframeLayer(bool onTop);
+	void renderCollidersLayer(bool onlyDynamics);
 
 	void configure(int xres, int yres);
 	void setBackgroundColor(float r, float g, float b, float a);
 	void debugDraw();
-    bool const getDebugMode() { return _debugMode; }
-    void setDebugMode(bool val) { _debugMode = val; }
-    bool const getGenerateShadows() { return _generateShadows; }
-    void setGenerateShadows(bool val) { _generateShadows = val; }
-    bool const getGeneratePostFX() { return _generatePostFX; }
-    void setGeneratePostFX(bool val) { _generatePostFX = val; }
+
+	//get + set methods
+	bool const getDebugMode() { return _debugMode; }
+	void setDebugMode(bool val) { _debugMode = val; }
+	bool const getGenerateShadows() { return _generateShadows; }
+	void setGenerateShadows(bool val) { _generateShadows = val; }
+	bool const getGeneratePostFX() { return _generatePostFX; }
+	void setGeneratePostFX(bool val) { _generatePostFX = val; }
+	bool const getShowWireframe() { return _showWireframe; }
+	void setShowWireframe(bool val) { _showWireframe = val; }
+	bool const getShowAllColliders() { return _showAllColliders; }
+	void setShowAllColliders(bool val) { _showAllColliders = val; }
+	bool const getShowDynamicColliders() { return _showDynamicColliders; }
+	void setShowDynamicColliders(bool val) { _showDynamicColliders = val; }
 
 	LRESULT OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) override;
 

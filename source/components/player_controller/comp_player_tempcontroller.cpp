@@ -130,7 +130,9 @@ void TCompTempPlayerController::registerMsgs() {
     DECL_MSG(TCompTempPlayerController, TMsgPlayerInShadows, onPlayerInShadows);
     DECL_MSG(TCompTempPlayerController, TMsgSpeedBoost, onSpeedBoost);
     DECL_MSG(TCompTempPlayerController, TMsgPlayerInvisible, onPlayerInvisible);
-    DECL_MSG(TCompTempPlayerController, TMsgNoClipToggle, onMsgNoClipToggle);
+    DECL_MSG(TCompTempPlayerController, TMsgNoClipToggle, onNoClipToggle);
+	DECL_MSG(TCompTempPlayerController, TMsgPlayerMove, onPlayerMove);
+
 }
 
 void TCompTempPlayerController::onShadowChange(const TMsgShadowChange& msg) {
@@ -165,9 +167,14 @@ void TCompTempPlayerController::onPlayerInvisible(const TMsgPlayerInvisible & ms
     isInvisible = !isInvisible;
 }
 
-void TCompTempPlayerController::onMsgNoClipToggle(const TMsgNoClipToggle & msg)
+void TCompTempPlayerController::onNoClipToggle(const TMsgNoClipToggle & msg)
 {
     isInNoClipMode = !isInNoClipMode;
+}
+
+void TCompTempPlayerController::onPlayerMove(const TMsgPlayerMove& msg) {
+	TCompTransform* my_transform = get<TCompTransform>();
+	my_transform->setPosition(msg.pos);
 }
 
 void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {

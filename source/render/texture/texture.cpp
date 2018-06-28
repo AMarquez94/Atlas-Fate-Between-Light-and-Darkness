@@ -10,7 +10,9 @@ public:
 		extensions = { ".dds" };
 	}
 	IResource* create(const std::string& name) const override {
-		dbg("Creating texture %s\n", name.c_str());
+		std::string name2 = name;
+		getFileNameFromPath(name2);
+		dbg("Creating texture %s\n", name2.c_str());
 		CTexture* res = new CTexture();
 		bool is_ok = res->create(name);
 		assert(is_ok);

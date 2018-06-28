@@ -9,7 +9,9 @@ public:
 		extensions = { ".json", ".scene", ".prefab", ".bt" };
 	}
 	IResource* create(const std::string& name) const override {
-		dbg("Creating json resource %s\n", name.c_str());
+		std::string name2 = name;
+		getFileNameFromPath(name2);
+		dbg("Creating json resource %s\n", name2.c_str());
 		CJsonResource* res = new CJsonResource();
 		bool is_ok = res->create(name);
 		assert(is_ok);

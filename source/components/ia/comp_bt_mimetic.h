@@ -36,7 +36,7 @@ private:
 	VEC3 initialPos;
 	VEC3 initialLookAt;
 	float rotationSpeedObservation = deg2rad(40.f);
-  float rotationSpeedPatrolling = deg2rad(80.f);
+	float rotationSpeedPatrolling = deg2rad(80.f);
 	float waitTimeInLasPlayerPos = 3.f;
 	float chaseSpeed = 6.f;
 
@@ -45,8 +45,8 @@ private:
 
 	float rotationSpeedNoise = deg2rad(120.f);
 
-  VEC3 pushedDirection = VEC3::Zero;
-  float pushedTime = 0.f;
+	VEC3 pushedDirection = VEC3::Zero;
+	float pushedTime = 0.f;
 
 	DECL_SIBLING_ACCESS();
 
@@ -56,18 +56,22 @@ private:
 	void onMsgNoiseListened(const TMsgNoiseMade& msg);
 	void onMsgPhysxContact(const TMsgPhysxContact& msg);
 
+	//Console hack and variables
+	bool playerInvisible = false;
+	void onMsgPlayerInvisible(const TMsgPlayerInvisible& msg);
+
 	/* Aux functions */
 	void setGravityToFaceWall();
 	EType parseStringMimeticType(const std::string& typeString);
-	
+
 	//load
 	void loadActions() override;
 	void loadConditions() override;
 	void loadAsserts() override;
 
 public:
-  void preUpdate(float dt) override;
-  void postUpdate(float dt) override;
+	void preUpdate(float dt) override;
+	void postUpdate(float dt) override;
 	void load(const json& j, TEntityParseContext& ctx) override;
 	void debugInMenu();
 
@@ -79,7 +83,7 @@ public:
 	BTNode::ERes actionObserveRight(float dt);
 	BTNode::ERes actionWaitObserving(float dt);
 	BTNode::ERes actionSetActive(float dt);
-  BTNode::ERes actionGenerateNavmeshWpt(float dt);
+	BTNode::ERes actionGenerateNavmeshWpt(float dt);
 	BTNode::ERes actionGoToWpt(float dt);
 	BTNode::ERes actionResetTimerWaiting(float dt);
 	BTNode::ERes actionWaitInWpt(float dt);
@@ -90,29 +94,29 @@ public:
 	BTNode::ERes actionResetVariablesChase(float dt);
 	BTNode::ERes actionChasePlayerWithNoise(float dt);
 	BTNode::ERes actionMarkNoiseAsInactive(float dt);
-  BTNode::ERes actionGenerateNavmeshNoiseSource(float dt);
+	BTNode::ERes actionGenerateNavmeshNoiseSource(float dt);
 	BTNode::ERes actionGoToNoiseSource(float dt);
 	BTNode::ERes actionWaitInNoiseSource(float dt);
 	BTNode::ERes actionSuspect(float dt);
 	BTNode::ERes actionRotateToNoiseSource(float dt);
-  BTNode::ERes actionGenerateNavmeshPlayerLastPos(float dt);
+	BTNode::ERes actionGenerateNavmeshPlayerLastPos(float dt);
 	BTNode::ERes actionGoToPlayerLastPos(float dt);
 	BTNode::ERes actionWaitInPlayerLastPos(float dt);
 	BTNode::ERes actionSetGoInactive(float dt);
-  BTNode::ERes actionGenerateNavmeshInitialPos(float dt);
+	BTNode::ERes actionGenerateNavmeshInitialPos(float dt);
 	BTNode::ERes actionGoToInitialPos(float dt);
 	BTNode::ERes actionRotateToInitialPos(float dt);
 	BTNode::ERes actionJumpWall(float dt);
 	BTNode::ERes actionHoldOnWall(float dt);
 	BTNode::ERes actionSetInactive(float dt);
-  BTNode::ERes actionClosestWpt(float dt);
+	BTNode::ERes actionClosestWpt(float dt);
 
 	/* CONDITIONS */
 	bool conditionHasBeenStunned(float dt);
 	bool conditionIsTypeWall(float dt);
 	bool conditionIsNotPlayerInFovAndNotNoise(float dt);
 	bool conditionIsNotActive(float dt);
-  bool conditionHasWpts(float dt);
+	bool conditionHasWpts(float dt);
 	bool conditionIsTypeFloor(float dt);
 	bool conditionIsSlept(float dt);
 	bool conditionHasNotWaypoints(float dt);
@@ -127,7 +131,7 @@ public:
 	/* ASSERTS */
 	bool assertNotPlayerInFovNorNoise(float dt);
 	bool assertNotPlayerInFov(float dt);
-  bool assertNotPlayerInFovNorArtificialNoise(float dt);
+	bool assertNotPlayerInFovNorArtificialNoise(float dt);
 
 	const std::string getStateForCheckpoint();
 

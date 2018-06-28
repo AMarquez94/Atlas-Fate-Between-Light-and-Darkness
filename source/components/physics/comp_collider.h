@@ -26,6 +26,8 @@ public:
 
     ~TCompCollider();
     void debugInMenu();
+	void renderDebug(bool onlyDynamics = false);
+	void renderColliders(bool onlyDynamics);
     void load(const json& j, TEntityParseContext& ctx);
     void update(float dt);
 

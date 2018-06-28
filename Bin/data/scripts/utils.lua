@@ -13,18 +13,6 @@ function pauseGame(pause)
 	SLB.pauseGame(pause)
 end
 
-function pauseEnemies(pause)
-	SLB.pauseEnemies(pause)
-end
-
-function deleteEnemies()
-	SLB.deleteEnemies()
-end
-
-function postFXToggle()
-	SLB.postFXToggle()
-end
-
 function blendInCamera(cameraName, blendInTime)
 	SLB.blendInCamera(cameraName, blendInTime)
 end
@@ -33,16 +21,32 @@ function blendOutCamera(cameraName, blendOutTime)
 	SLB.blendOutCamera(cameraName, blendOutTime)
 end
 
-function setPlayerInhibited(inhibited)
-	playerController.inhibited = inhibited;
+function fpsToggle()
+	SLB.fpsToggle()
+end
+
+function debugToggle()
+	SLB.debugToggle()
+end
+
+function pauseEnemies()
+	SLB.pauseEnemies()
+end
+
+function deleteEnemies()
+	SLB.deleteEnemies()
+end
+
+function movePlayer(pos)
+	SLB.movePlayer(pos)
 end
 
 function loadCheckpoint()
 	SLB.loadCheckpoint();
 end
 
-function infiniteStamineToggle()
-	SLB.infiniteStamineToggle()
+function staminaInfinite()
+	SLB.staminaInfinite()
 end
 
 function immortal()
@@ -61,24 +65,20 @@ function playerInvisible()
 	SLB.playerInvisible()
 end
 
-function noClipToggle()
-	SLB.noClipToggle()
-end
-
 function spotlightsToggle()
 	SLB.spotlightsToggle()
 end
 
-function lanternsDisable(disable)
-	SLB.lanternsDisable(disable)
+function lanternToggle()
+	SLB.lanternToggle()
 end
 
 function shadowsToggle()
 	SLB.shadowsToggle()
 end
 
-function debugToggle()
-	SLB.debugToggle()
+function postFXToggle()
+	SLB.postFXToggle()
 end
 
 function loadscene(level)
@@ -88,6 +88,31 @@ end
 function cg_drawlights(type)
 	SLB.cg_drawlights(type)
 end
-function spawn()
-	SLB.spawn()
+
+function spawn(type, pos, lookAt)
+	SLB.spawn(type, pos, lookAt)
+end
+
+function animationsToggle()
+	SLB.animationsToggle()
+end
+
+function noClipToggle()
+	SLB.noClipToggle()
+end
+
+function move(name, pos, lookAt)
+	SLB.move(name, pos, lookAt)
+end
+
+function wireframeToggle()
+	SLB.wireframeToggle()
+end
+
+function collidersToggle(onlyDynamics)
+	SLB.collidersToggle(onlyDynamics)
+end
+
+function setPlayerInhibited(inhibited)
+	PlayerController.inhibited = inhibited;
 end
