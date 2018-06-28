@@ -30,6 +30,7 @@ class TCompLightSpot : public TCompCamera {
 
 	int               shadows_resolution = 256;
 	float             shadows_step = 1.f;
+    CRenderToTexture* shadows_rt = nullptr;
 
 	void onCreate(const TMsgEntityCreated& msg);
 	void onDestroy(const TMsgEntityDestroyed& msg);
@@ -37,13 +38,7 @@ class TCompLightSpot : public TCompCamera {
 	DECL_SIBLING_ACCESS();
 public:
 
-    int id;
-    static int counter;
-    CRenderToTexture* shadows_rt = nullptr;
-
     static CRenderMeshInstanced* volume_instance;
-    static std::vector<TInstanceLight> volume_instances;
-
 	const CTexture* projector = nullptr;
 
 	/* spotlight parameters */

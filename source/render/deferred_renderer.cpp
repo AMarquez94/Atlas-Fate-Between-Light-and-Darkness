@@ -208,13 +208,14 @@ void CDeferredRenderer::renderVolumes() {
 
     //EngineInstancing.clearInstance("data/meshes/quad_volume.instanced_mesh");
     CTraceScoped gpu_scope("renderSpotLights");
-    TCompLightSpot::volume_instances.clear();
+
     auto rmesh = Resources.get("data/meshes/quad_volume.instanced_mesh")->as<CRenderMesh>();
     TCompLightSpot::volume_instance = (CRenderMeshInstanced*)rmesh;
     TCompLightSpot::volume_instance->vtx_decl = CVertexDeclManager::get().getByName("InstanceLight");
 
     getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
 
+        c->activate();
         c->generateVolume();
     });
 

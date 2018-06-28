@@ -24,7 +24,6 @@
 DECL_OBJ_MANAGER("light_spot", TCompLightSpot);
 
 CRenderMeshInstanced* TCompLightSpot::volume_instance = nullptr;
-std::vector<TInstanceLight>  TCompLightSpot::volume_instances;
 
 void TCompLightSpot::debugInMenu() {
     ImGui::ColorEdit3("Color", &color.x);
@@ -200,7 +199,6 @@ void TCompLightSpot::generateVolume() {
     auto technique = Resources.get("pbr_vol_lights.tech")->as<CRenderTechnique>();
     technique->activate();
     
-    activate();
     CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
     TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
 
@@ -216,6 +214,9 @@ void TCompLightSpot::generateVolume() {
 
     MAT44 mtx_offset = MAT44::CreateScale(VEC3(0.5f, -0.5f, 1.0f)) * MAT44::CreateTranslation(VEC3(0.5f, 0.5f, 0.0f));
     MAT44 mtx_viewproj_offset = getViewProjection() * mtx_offset;
+    
+    std::vector<TInstanceLight> volume_instances;
+    volume_instances.reserve(num_samples);
 
     for (int i = 0; i < num_samples; i++) {
 
@@ -225,18 +226,17 @@ void TCompLightSpot::generateVolume() {
         MAT44 res = sc * bb;
 
         TInstanceLight t_struct = { res, VEC4(cpos.x, cpos.y, cpos.z, 1)
-            ,VEC4(c_transform->getFront().x, c_transform->getFront().y, c_transform->getFront().z, id)
+            ,VEC4(c_transform->getFront().x, c_transform->getFront().y, c_transform->getFront().z, 0)
             ,VEC4(spot_angle, cos(deg2rad(Clamp(inner_cut, 0.f, angle) * .5f)), spot_angle, 1), mtx_viewproj_offset };
         volume_instances.push_back(t_struct);
     }
 
-    TCompLightSpot::volume_instance->setInstancesData(TCompLightSpot::volume_instances.data(), TCompLightSpot::volume_instances.size(), sizeof(TInstanceLight));
+    TCompLightSpot::volume_instance->setInstancesData(volume_instances.data(), volume_instances.size(), sizeof(TInstanceLight));
     // Activate tech for the light dir 
     auto technique2 = Resources.get("pbr_instanced_volume.tech")->as<CRenderTechnique>();
     technique2->activate();
 
     CRenderManager::get().renderCategory("pbr_volume");
-    volume_instances.clear();
 }
 
 void TCompLightSpot::cullFrame() {
