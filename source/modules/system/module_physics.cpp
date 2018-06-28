@@ -220,8 +220,29 @@ bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distan
     return status;
 }
 
+/* Returns true if there was some hit with the sweep cast. Hit will contain all hits */
+bool CModulePhysics::Sweep(physx::PxGeometry& geometry, const VEC3 & position, const QUAT & rotation, const VEC3 & direction, float distance, std::vector<physx::PxSweepHit>& hits, physx::PxQueryFlags flag, physx::PxQueryFilterData filterdata)
+{
+    PxSweepHit sweepHit[256];     //With 256 it is supossed to be enough
+    PxSweepBuffer px_hit(sweepHit, 256);
+    filterdata.flags = flag;
+    PxVec3 px_dir = PxVec3(direction.x, direction.y, direction.z); // [in] Normalized sweep direction
+
+
+    physx::PxTransform transform(PxVec3(position.x, position.y, position.z), PxQuat(rotation.x, rotation.y, rotation.z, rotation.w));
+    bool status = gScene->sweep(geometry, transform, px_dir, distance, px_hit, PxHitFlags(PxHitFlag::eDEFAULT), filterdata);
+
+    if (status) {
+        for (PxU32 i = 0; i < px_hit.nbTouches; i++) {
+            hits.push_back(px_hit.touches[i]);
+        }
+    }
+
+    return status;
+}
+
 /* Returns true if there was some hit with the sphere cast. Hit will contain all hits */
-bool CModulePhysics::Overlap(physx::PxGeometry& geometry, VEC3 pos, std::vector<physx::PxOverlapHit> & hit, physx::PxQueryFilterData filterdata)
+bool CModulePhysics::Overlap(physx::PxGeometry& geometry, VEC3 pos, std::vector<physx::PxOverlapHit> & hits, physx::PxQueryFilterData filterdata)
 {
     PxOverlapHit overlapHit[256];     //With 256 it is supossed to be enough
     PxOverlapBuffer px_hit(overlapHit, 256);
@@ -231,7 +252,7 @@ bool CModulePhysics::Overlap(physx::PxGeometry& geometry, VEC3 pos, std::vector<
 
     if (status) {
         for (PxU32 i = 0; i < px_hit.nbTouches; i++) {
-            hit.push_back(px_hit.touches[i]);
+            hits.push_back(px_hit.touches[i]);
         }
     }
 

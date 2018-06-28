@@ -98,17 +98,22 @@
 						"minTime": 0
 					}, 
 					{
-						"position": "-28 10 95",
+						"position": "-26.729107 4.007836 96.603668",
 						"lookAt": "1 0 0",
 						"minTime": 0
 					},
 					{
-						"position": "-26 20 90",
+						"position": "-16.146208 3.849235 95.749023",
 						"lookAt": "1 0 0",
 						"minTime": 0
 					},
 					{
-						"position": "-20 10 90",
+						"position": "-5.641430 14.994699 94.341660",
+						"lookAt": "1 0 0",
+						"minTime": 0
+					},
+					{
+						"position": "5.915430 4.604274 95.082504",
 						"lookAt": "1 0 0",
 						"minTime": 0
 					}

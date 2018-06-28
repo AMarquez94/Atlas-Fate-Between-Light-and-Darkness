@@ -13,10 +13,13 @@ private:
     float maxSpeed = 3.f;
     float maxChaseSpeed = 5.f;
     float upSpeed = 4.f;
-    VEC3 upOffset = VEC3(0, 9.f, 0.f);
+    VEC3 upOffset = VEC3(0, 5.f, 0.f);
     float lerpValue = 0.06f;
     VEC3 prevDirection = VEC3::Zero;
     VEC3 currentDirection = VEC3::Zero;
+    float flyingUpOffset = 1.f;   //Offset for up/down flight
+    float flyingDownOffset = 3.f;   //Offset for up/down flight
+    physx::PxCapsuleGeometry geometrySweep;
 
     VEC3 lastPlayerKnownPositionOffset = VEC3::Zero;
 
@@ -62,6 +65,11 @@ private:
     bool lanternPatrollingLeft = false;
     float startingPitch = 0;
 
+    /* Lantern rotation lerping */
+    QUAT lerpingStartingRotation = VEC3::Zero;
+    float timeToLerpLanternRot = 1.f;
+    float timeLerpingLanternRot = 0.f;
+
     DECL_SIBLING_ACCESS();
 
     void onMsgEntityCreated(const TMsgEntityCreated& msg);
@@ -81,6 +89,8 @@ private:
     void moveLanternPatrolling(VEC3 objective, float dt, bool resetPitch = true);
     bool isEntityInFovDrone(const std::string& entityToChase);
     void stabilizeRotations(float dt);
+    bool isRespectingVerticalOffset(VEC3 position, float dt);
+    bool isRespectingHorizontalOffset(VEC3 position, float dt);
 
 public:
     void preUpdate(float dt) override;

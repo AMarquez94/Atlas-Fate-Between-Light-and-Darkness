@@ -36,7 +36,7 @@ void TCompHierarchy::convertTotalTransformToRelative(VEC3 objPosition, QUAT objR
     resultRotation = objRotation / c_parent_transform->getRotation();
 }
 
-void TCompHierarchy::relativeLookAt(VEC3 new_target)
+QUAT TCompHierarchy::getRelativeLookAt(VEC3 new_target)
 {
     TCompTransform* lanternPos = get<TCompTransform>();
     VEC3 objectivePos = lanternPos->getPosition();
@@ -51,7 +51,7 @@ void TCompHierarchy::relativeLookAt(VEC3 new_target)
     float resultScale;
 
     convertTotalTransformToRelative(objectivePos, objectiveRotation, 1.f, resultPos, resultRot, resultScale);
-    setRotation(resultRot);
+    return resultRot;
 }
 
 void TCompHierarchy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {

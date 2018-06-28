@@ -147,6 +147,11 @@ void TCompAIDrone::onMsgEntityCreated(const TMsgEntityCreated & msg)
     startingPitch = pitch;
     cone_of_light->turnOnLight();
 
+    TCompCollider* myCollider = get<TCompCollider>();
+    CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
+    geometrySweep.radius = capsuleCollider->radius + 0.1f;
+    geometrySweep.halfHeight = capsuleCollider->height / 2 + 0.1f;
+
     myHandle = CHandle(this);
 
 }
@@ -297,24 +302,39 @@ bool TCompAIDrone::moveToDestDrone(VEC3 dest, float speed, float dt)
             prevDirection = currentDirection;
             currentDirection = VEC3::Lerp(VEC3(xSpeed, 0, zSpeed), VEC3(xDirSpeed, 0, zDirSpeed), lerpValue);
 
+            bool inVerticalOffset = isRespectingVerticalOffset(mypos->getPosition(), dt);
+            bool inHorizontalOffset = isRespectingHorizontalOffset(mypos->getPosition(), dt);
+
             float upVel = 0;
-            if (fabsf(dest.y - mypos->getPosition().y) > upSpeed * dt) {
+            int upSign = 0;
+            if ((inVerticalOffset && fabsf(dest.y - mypos->getPosition().y) > upSpeed * dt) || !inHorizontalOffset ) {
                 /* Adjust heigth (up / down) */
                 int upSign = 1;
-                if (dest.y < mypos->getPosition().y) {
+                if (dest.y < mypos->getPosition().y && inHorizontalOffset) {
                     upSign = -1;
                 }
                 upVel = upSpeed * upSign;
-                mypos->setPosition(mypos->getPosition() + VEC3(0, upVel, 0) * dt);
                 movingUpDown = true;
             }
-            else if (fabsf(dest.y - mypos->getPosition().y) != 0) {
+            else if ((inVerticalOffset && fabsf(dest.y - mypos->getPosition().y) != 0 )|| !inHorizontalOffset) {
                 /* Adjust heigth (with 100% precission) */
+                movingUpDown = true;
+            }
+
+            if (movingUpDown && (upVel > 0 || (upVel < 0 && isRespectingHorizontalOffset(VEC3(mypos->getPosition().x ,dest.y, mypos->getPosition().z), dt)))) {
+
+                /* Move vertically */
+                mypos->setPosition(mypos->getPosition() + VEC3(0, upVel, 0) * dt);
+            }
+            else if (movingUpDown && upVel == 0) {
+
+                /* Move vertically 100% adjusted */
                 mypos->setPosition(VEC3(mypos->getPosition().x, dest.y, mypos->getPosition().z));
             }
             else {
-                /* Adjust heigth (with 100% precission) */
-                mypos->setPosition(mypos->getPosition() + (currentDirection) * dt);
+
+                /* Move horizontally */
+                mypos->setPosition(mypos->getPosition() + (currentDirection)* dt);
             }
 
 
@@ -468,6 +488,32 @@ void TCompAIDrone::stabilizeRotations(float dt)
     mypos->setYawPitchRoll(yaw, pitch, roll);
 }
 
+bool TCompAIDrone::isRespectingVerticalOffset(VEC3 position, float dt)
+{
+    TCompCollider* myCollider = get<TCompCollider>();
+
+    std::vector<physx::PxSweepHit> hits;
+    bool downSweep = EnginePhysics.Sweep(geometrySweep, position, QUAT(0,0,0,1), VEC3(0, -1, 0), flyingDownOffset, hits);
+    bool upSweep = EnginePhysics.Sweep(geometrySweep, position + VEC3(0, geometrySweep.halfHeight * 2, 0), QUAT(0, 0, 0, 1), VEC3(0, 1, 0), flyingUpOffset, hits);
+    
+    return !downSweep && !upSweep;
+}
+
+bool TCompAIDrone::isRespectingHorizontalOffset(VEC3 position, float dt)
+{
+    TCompTransform* myTransform = get<TCompTransform>();
+    TCompCollider* myCollider = get<TCompCollider>();
+
+    std::vector<physx::PxSweepHit> hits;
+    VEC3 normalFront = myTransform->getFront();
+    normalFront = normalFront - VEC3(0, normalFront.y, 0);
+    normalFront.Normalize();
+
+    bool frontSweep = EnginePhysics.Sweep(geometrySweep, position, QUAT(0, 0, 0, 1), normalFront, flyingDownOffset, hits);
+
+    return !frontSweep;
+}
+
 /* ACTIONS */
 
 BTNode::ERes TCompAIDrone::actionFall(float dt)
@@ -507,6 +553,10 @@ BTNode::ERes TCompAIDrone::actionMarkPlayerAsSeen(float dt)
 
 BTNode::ERes TCompAIDrone::actionGenerateNavmeshChase(float dt)
 {
+    CEntity* eLantern = hLantern;
+    TCompHierarchy* lantern_hierarchy = eLantern->get<TCompHierarchy>();
+    lerpingStartingRotation = lantern_hierarchy->getRotation();
+    timeLerpingLanternRot = 0.f;
     return BTNode::ERes::LEAVE;
 }
 
@@ -534,7 +584,9 @@ BTNode::ERes TCompAIDrone::actionChaseAndShoot(float dt)
         /* Point lantern to player */
         CEntity* eLantern = hLantern;
         TCompHierarchy* lanternHierarchy = eLantern->get<TCompHierarchy>();
-        lanternHierarchy->relativeLookAt(ppos); //TODO: LERP con cierta velocidad
+        QUAT lanternRotationObjective = lanternHierarchy->getRelativeLookAt(ppos);
+        lanternHierarchy->setRotation(QUAT::Slerp(lerpingStartingRotation, lanternRotationObjective, timeLerpingLanternRot / timeToLerpLanternRot));
+        timeLerpingLanternRot = Clamp(timeLerpingLanternRot + dt, 0.f, timeToLerpLanternRot);
         return BTNode::ERes::STAY;
     }
     else {
@@ -642,6 +694,10 @@ BTNode::ERes TCompAIDrone::actionWaitInPlayerLastPos(float dt)
 
 BTNode::ERes TCompAIDrone::actionGenerateNavmeshSuspect(float dt)
 {
+    CEntity* eLantern = hLantern;
+    TCompHierarchy* lantern_hierarchy = eLantern->get<TCompHierarchy>();
+    lerpingStartingRotation = lantern_hierarchy->getRotation();
+    timeLerpingLanternRot = 0.f;
     return BTNode::ERes::LEAVE;
 }
 
@@ -681,7 +737,9 @@ BTNode::ERes TCompAIDrone::actionSuspect(float dt)
         TCompHierarchy* lanternHierarchy = eLantern->get<TCompHierarchy>();
         CEntity* ePlayer = getEntityByName(entityToChase);
         TCompTransform* playerpos = ePlayer->get <TCompTransform>();
-        lanternHierarchy->relativeLookAt(playerpos->getPosition());
+        QUAT lanternRotationObjective = lanternHierarchy->getRelativeLookAt(playerpos->getPosition());
+        lanternHierarchy->setRotation(QUAT::Slerp(lerpingStartingRotation, lanternRotationObjective, timeLerpingLanternRot / timeToLerpLanternRot));
+        timeLerpingLanternRot = Clamp(timeLerpingLanternRot + dt, 0.f, timeToLerpLanternRot);
         return BTNode::ERes::STAY;
     }
 }
