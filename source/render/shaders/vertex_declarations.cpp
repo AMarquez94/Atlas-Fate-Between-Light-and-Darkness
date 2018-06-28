@@ -143,6 +143,10 @@ bool CVertexDeclManager::create() {
         { "TEXCOORD", 6, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 64, D3D11_INPUT_PER_VERTEX_DATA, 1 },    // life, time_blending_out
         { "TEXCOORD", 7, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 80, D3D11_INPUT_PER_VERTEX_DATA, 1 },    // life, time_blending_out
         { "TEXCOORD", 8, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 96, D3D11_INPUT_PER_VERTEX_DATA, 1 },    // life, time_blending_out
+        { "TEXCOORD", 9, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 112, D3D11_INPUT_PER_VERTEX_DATA, 1 },    // world0
+        { "TEXCOORD", 10, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 128, D3D11_INPUT_PER_VERTEX_DATA, 1 },    // world1
+        { "TEXCOORD", 11, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 144, D3D11_INPUT_PER_VERTEX_DATA, 1 },    // world2
+        { "TEXCOORD", 12, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 160, D3D11_INPUT_PER_VERTEX_DATA, 1 },    // world3
         };
         createNew("InstanceLight", layout, ARRAYSIZE(layout));
     }

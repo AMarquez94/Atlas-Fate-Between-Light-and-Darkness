@@ -33,10 +33,11 @@
 // Here goes the slots not associated to a material
 #define TS_LIGHT_PROJECTOR     9
 #define TS_LIGHT_SHADOW_MAP    10 
-#define TS_ENVIRONMENT_MAP     11
-#define TS_IRRADIANCE_MAP      12
-#define TS_NOISE_MAP           13
-#define TS_NOISE_MAP2           15
+#define TS_LIGHT_VOLUME_MAP    11 
+#define TS_ENVIRONMENT_MAP     12
+#define TS_IRRADIANCE_MAP      13
+#define TS_NOISE_MAP           14
+#define TS_NOISE_MAP2          15
 
 #define TS_DEFERRED_ALBEDOS           16
 #define TS_DEFERRED_NORMALS           17

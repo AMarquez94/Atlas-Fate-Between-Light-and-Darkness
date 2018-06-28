@@ -11,7 +11,7 @@ bool CVertexShader::create(const std::string& filename, const std::string& fn_en
 
   // Compile the vertex shader, convert the txt to some byte code
   ID3DBlob* pVSBlob = NULL;
-  hr = CompileShaderFromFile(filename.c_str(), fn_entry_name.c_str(), "vs_4_0", &pVSBlob);
+  hr = CompileShaderFromFile(filename.c_str(), fn_entry_name.c_str(), "vs_5_0", &pVSBlob);
   if (FAILED(hr))
     return false;
 

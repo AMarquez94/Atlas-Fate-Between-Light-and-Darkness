@@ -28,6 +28,10 @@ public:
 		return shader_resource_view;
 	}
 
+    ID3D11ShaderResourceView* getShaderResourceViewNonConst() {
+        return shader_resource_view;
+    }
+
 	// Create a new texture from params
 	enum TCreateOptions {
 		CREATE_STATIC

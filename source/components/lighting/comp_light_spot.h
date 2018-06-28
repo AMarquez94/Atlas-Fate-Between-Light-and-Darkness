@@ -11,6 +11,7 @@ struct TInstanceLight {
     VEC4 light_pos;
     VEC4 light_dir;
     VEC4 light_values;
+    MAT44 project_offset;
 };
 
 class TCompLightSpot : public TCompCamera {
@@ -18,9 +19,8 @@ class TCompLightSpot : public TCompCamera {
 	VEC4			color = VEC4(1, 1, 1, 1);
 	float			intensity = 1.0f;
 
-    CRenderMesh * spotcone;
-    int  num_samples = 120;
-
+    //CRenderMesh * spotcone;
+    int  num_samples = 80;
 
 	// Shadows params
     bool              cull_enabled = false;      // Dynamic
@@ -30,13 +30,16 @@ class TCompLightSpot : public TCompCamera {
 
 	int               shadows_resolution = 256;
 	float             shadows_step = 1.f;
-	CRenderToTexture* shadows_rt = nullptr;
 
 	void onCreate(const TMsgEntityCreated& msg);
 	void onDestroy(const TMsgEntityDestroyed& msg);
 
 	DECL_SIBLING_ACCESS();
 public:
+
+    int id;
+    static int counter;
+    CRenderToTexture* shadows_rt = nullptr;
 
     static CRenderMeshInstanced* volume_instance;
     static std::vector<TInstanceLight> volume_instances;
@@ -56,7 +59,7 @@ public:
 
 	void activate();
 	void generateShadowMap();
-    void generateVolume();
+    void generateVolume(int id);
     void cullFrame();
 
 	MAT44 getWorld();

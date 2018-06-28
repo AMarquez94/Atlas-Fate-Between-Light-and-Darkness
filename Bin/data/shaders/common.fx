@@ -16,6 +16,7 @@ Texture3D    txLUT            SLOT(TS_LUT_COLOR_GRADING);
 // from the light and env
 Texture2D    txLightProjector SLOT(TS_LIGHT_PROJECTOR);
 Texture2D    txLightShadowMap SLOT(TS_LIGHT_SHADOW_MAP);
+Texture1DArray    txLightVolumeMap SLOT(TS_LIGHT_VOLUME_MAP);
 TextureCube  txEnvironmentMap SLOT(TS_ENVIRONMENT_MAP);
 TextureCube  txIrradianceMap  SLOT(TS_IRRADIANCE_MAP);
 

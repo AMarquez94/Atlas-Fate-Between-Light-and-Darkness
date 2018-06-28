@@ -19,9 +19,7 @@ void VS_GBuffer_Hologram(
 	, out float3 oWorldPos : TEXCOORD2
 )
 {
-	float _GlitchIntensity = 0.5;
-	float _GlitchSpeed = 4;
-	iPos.x += _GlitchIntensity * (step(0.5, sin(global_world_time * 2.0 + iPos.y * 1.0)) * step(0.99, sin(global_world_time *_GlitchSpeed * 0.5)));
+	iPos.x += 0.5 * (step(0.5, sin(global_world_time * 2.0 + iPos.y * 1.0)) * step(0.99, sin(global_world_time *4 * 0.5)));
 	
 	float4 world_pos = mul(iPos, obj_world);
 	oPos = mul(world_pos, camera_view_proj);
@@ -52,7 +50,7 @@ float4 PS_GBuffer_Hologram(
 
 	// Retrieve main colors.
 	float4 albedo = txAlbedo.Sample(samLinear, iTex0);
-	float4 flicker = txNoiseMap.Sample(samLinear, iTex0);
+	float4 flicker = txNoiseMap.Sample(samLinear, iTex0 );
 		
 	float4 rim_base_color = float4(0,1,1,1);
 		
@@ -70,6 +68,6 @@ float4 PS_GBuffer_Hologram(
 	
 	// Compute the final result
 	float4 final_color = rim_base_color * albedo + (glow * 0.35 * albedo) + rim_color;
-	final_color.a = color_material.a * ( scan + rim + glow ) * 0.35 * flicker;
+	final_color.a = color_material.a * ( scan + rim + glow ) * 0.35;
 	return final_color;
 }

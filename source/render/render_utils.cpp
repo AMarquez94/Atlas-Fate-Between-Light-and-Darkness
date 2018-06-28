@@ -398,8 +398,7 @@ struct CSamplers {
                 0,//FLOAT MinLOD;
                 0//FLOAT MaxLOD;
             };
-            hr = Render.device->CreateSamplerState(
-                &sampler_desc, &all_samplers[SAMPLER_PCF_SHADOWS_WHITE]);
+            hr = Render.device->CreateSamplerState(&sampler_desc, &all_samplers[SAMPLER_PCF_SHADOWS_WHITE]);
             if (FAILED(hr))
                 return false;
             setDXName(all_samplers[SAMPLER_PCF_SHADOWS_WHITE], "PCF_SHADOWS_WHITE");

@@ -80,7 +80,7 @@ void TCompLightSpot::load(const json& j, TEntityParseContext& ctx) {
         assert(is_ok);
     }
 
-    spotcone = loadMesh("data/meshes/unit_quad_center2.mesh");
+    //spotcone = loadMesh("data/meshes/unit_quad_center2.mesh");
     shadows_enabled = casts_shadows;
 }
 
@@ -191,64 +191,38 @@ void TCompLightSpot::activate() {
 
 // Dirty way of computing volumetric lights on CPU.
 // Update this in the future with a vertex shader improved version.
-void TCompLightSpot::generateVolume() {
+void TCompLightSpot::generateVolume(int id) {
 
     if (!isEnabled || cull_enabled || !volume_enabled)
         return;
 
-    //activate();
-    TCompTransform * c_transform = get<TCompTransform>();
-    VEC3 cpos = c_transform->getPosition();
     CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
     TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
 
-    float p_distance = (getZFar() - getZNear()) / num_samples;
-    VEC3 midpos = c_transform->getPosition() + c_transform->getFront() * (getZFar() - getZNear()) * .5f;
+    TCompTransform * c_transform = get<TCompTransform>();
+    VEC3 cpos = c_transform->getPosition();
+
+    //num_samples = (int)(range / 0.2f);
     float spot_angle = cos(deg2rad(angle * .5f));
+    float spot_extent = (getZFar() - getZNear()) * .5f;
+    float spot_offset = (getZFar() - getZNear()) / num_samples;
+    VEC3 midpos = c_transform->getPosition() + c_transform->getFront() * (getZFar() - getZNear()) * .5f;
+    VEC3 endpos = midpos + spot_extent * camera->getFront();
 
-    for (int i = 0; i < num_samples * .5f; i++) {
+    MAT44 mtx_offset = MAT44::CreateScale(VEC3(0.5f, -0.5f, 1.0f)) * MAT44::CreateTranslation(VEC3(0.5f, 0.5f, 0.0f));
+    MAT44 mtx_viewproj_offset = getViewProjection() * mtx_offset;
 
-        VEC3 plane_pos = midpos + camera->getFront() * p_distance * i;
+    for (int i = 0; i < num_samples; i++) {
+
+        VEC3 plane_pos = endpos - camera->getFront() * spot_offset * i;
         MAT44 bb = MAT44::CreateWorld(plane_pos, -camera->getUp(), -camera->getFront());
-        MAT44 sc = MAT44::CreateScale(range);
+        MAT44 sc = MAT44::CreateScale(range, range, range*2);
         MAT44 res = sc * bb;
 
-        TInstanceLight t_struct = { res, VEC4(cpos.x, cpos.y, cpos.z, 1)                 
-                ,VEC4(c_transform->getFront().x, c_transform->getFront().y, c_transform->getFront().z, 1)
-                ,VEC4(spot_angle, cos(deg2rad(Clamp(inner_cut, 0.f, angle) * .5f)), spot_angle, 1) };
+        TInstanceLight t_struct = { res, VEC4(cpos.x, cpos.y, cpos.z, 1)
+            ,VEC4(c_transform->getFront().x, c_transform->getFront().y, c_transform->getFront().z, id)
+            ,VEC4(spot_angle, cos(deg2rad(Clamp(inner_cut, 0.f, angle) * .5f)), spot_angle, 1), mtx_viewproj_offset };
         volume_instances.push_back(t_struct);
-
-        //EngineInstancing.updateInstance("data/meshes/quad_volume.instanced_mesh", amount, res);
-
-        // OLD CPU VERSION
-        //cb_object.obj_world = sc * bb;
-        //cb_object.obj_color = VEC4(1, 1, 1, 1);
-        //cb_object.updateGPU();
-
-        //spotcone->activateAndRender();
-    }
-
-    for (int i = 0; i < num_samples * .5f; i++) {
-
-        VEC3 plane_pos = midpos + -camera->getFront() * p_distance * i;
-        MAT44 bb = MAT44::CreateWorld(plane_pos, -camera->getUp(), -camera->getFront());
-        MAT44 sc = MAT44::CreateScale(range);
-        MAT44 res = sc * bb;
-
-        TInstanceLight t_struct = { res, VEC4(cpos.x, cpos.y, cpos.z, 1) 
-                ,VEC4(c_transform->getFront().x, c_transform->getFront().y, c_transform->getFront().z, 1)
-                ,VEC4(spot_angle, cos(deg2rad(Clamp(inner_cut, 0.f, angle) * .5f)), spot_angle, 1)
-        };
-        volume_instances.push_back(t_struct);
-
-        //EngineInstancing.updateInstance("data/meshes/quad_volume.instanced_mesh", amount, res);
-
-        // Old CPU version
-        //cb_object.obj_world = sc * bb;
-        //cb_object.obj_color = VEC4(1, 1, 1, 1);
-        //cb_object.updateGPU();
-
-        //spotcone->activateAndRender();
     }
 }
 
