@@ -213,32 +213,17 @@ void CDeferredRenderer::renderVolumes() {
     TCompLightSpot::volume_instance = (CRenderMeshInstanced*)rmesh;
     TCompLightSpot::volume_instance->vtx_decl = CVertexDeclManager::get().getByName("InstanceLight");
 
-    // Activate tech for the light dir 
-    auto technique = Resources.get("pbr_vol_lights.tech")->as<CRenderTechnique>();
-    technique->activate();
+    getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
 
-    int id = 0;
-    ID3D11ShaderResourceView * res[40];
-    getObjectManager<TCompLightSpot>()->forEach([&id, &res](TCompLightSpot* c) {
-
-        c->generateVolume(id);
-        CTexture * tex = c->shadows_rt->getZTexture();
-        ID3D11ShaderResourceView * res1 = tex->getShaderResourceViewNonConst();
-        res[id] = res1;
-        id++;
+        c->generateVolume();
     });
 
-    //CTexture * tex = shadows_rt->getZTexture();
-    //ID3D11ShaderResourceView * res1 = tex->getShaderResourceViewNonConst();
-    //ID3D11ShaderResourceView * res[] = { res1, res1, res1, res1, res1, res1, res1, res1, res1, res1, res1, res1, res1, res1, res1, res1, res1, res1, res1, res1 };
-    Render.ctx->PSSetShaderResources(TS_LIGHT_VOLUME_MAP, id, res);
+    //TCompLightSpot::volume_instance->setInstancesData(TCompLightSpot::volume_instances.data(), TCompLightSpot::volume_instances.size(), sizeof(TInstanceLight));
+    //// Activate tech for the light dir 
+    //auto technique2 = Resources.get("pbr_instanced_volume.tech")->as<CRenderTechnique>();
+    //technique2->activate();
 
-    TCompLightSpot::volume_instance->setInstancesData(TCompLightSpot::volume_instances.data(), TCompLightSpot::volume_instances.size(), sizeof(TInstanceLight));
-    // Activate tech for the light dir 
-    auto technique2 = Resources.get("pbr_instanced_volume.tech")->as<CRenderTechnique>();
-    technique2->activate();
-
-    CRenderManager::get().renderCategory("pbr_volume");
+    //CRenderManager::get().renderCategory("pbr_volume");
 }
 
 // --------------------------------------

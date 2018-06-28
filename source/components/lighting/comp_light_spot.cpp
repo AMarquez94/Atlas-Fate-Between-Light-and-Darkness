@@ -191,11 +191,16 @@ void TCompLightSpot::activate() {
 
 // Dirty way of computing volumetric lights on CPU.
 // Update this in the future with a vertex shader improved version.
-void TCompLightSpot::generateVolume(int id) {
+void TCompLightSpot::generateVolume() {
 
     if (!isEnabled || cull_enabled || !volume_enabled)
         return;
 
+    // Activate tech for the light dir 
+    auto technique = Resources.get("pbr_vol_lights.tech")->as<CRenderTechnique>();
+    technique->activate();
+    
+    activate();
     CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
     TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
 
@@ -224,6 +229,14 @@ void TCompLightSpot::generateVolume(int id) {
             ,VEC4(spot_angle, cos(deg2rad(Clamp(inner_cut, 0.f, angle) * .5f)), spot_angle, 1), mtx_viewproj_offset };
         volume_instances.push_back(t_struct);
     }
+
+    TCompLightSpot::volume_instance->setInstancesData(TCompLightSpot::volume_instances.data(), TCompLightSpot::volume_instances.size(), sizeof(TInstanceLight));
+    // Activate tech for the light dir 
+    auto technique2 = Resources.get("pbr_instanced_volume.tech")->as<CRenderTechnique>();
+    technique2->activate();
+
+    CRenderManager::get().renderCategory("pbr_volume");
+    volume_instances.clear();
 }
 
 void TCompLightSpot::cullFrame() {

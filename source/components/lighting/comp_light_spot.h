@@ -59,7 +59,7 @@ public:
 
 	void activate();
 	void generateShadowMap();
-    void generateVolume(int id);
+    void generateVolume();
     void cullFrame();
 
 	MAT44 getWorld();
