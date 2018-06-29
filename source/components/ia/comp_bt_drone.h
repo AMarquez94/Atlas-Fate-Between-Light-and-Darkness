@@ -10,7 +10,7 @@ private:
 
     /* Atributes */
 
-    float maxSpeed = 3.f;
+    float maxSpeed = 2.f;
     float maxChaseSpeed = 5.f;
     float upSpeed = 4.f;
     VEC3 upOffset = VEC3(0, 5.f, 0.f);
@@ -47,7 +47,7 @@ private:
     float rotationSpeedObservation = deg2rad(30.f);
     float rotationSpeedPatrolling = deg2rad(80.f);
     float waitTimeInLasPlayerPos = 3.f;
-    float chaseSpeed = 6.f;
+    float chaseSpeed = 3.5f;
 
     float amountRotatedObserving = 0.f;
     float maxAmountRotateObserving = deg2rad(45.f);

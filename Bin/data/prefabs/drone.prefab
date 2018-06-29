@@ -161,6 +161,12 @@
 				"ver_fov": 20,
 				"dist": 30,
 				"target": "The Player"
+			},
+			"shooter": {
+				"precission": 0.8,
+				"firing_rate_cooldown": 1.0,
+				"bullet_damage": 10,
+				"bullet_speed": 10
 			}
 		}
 	}, {

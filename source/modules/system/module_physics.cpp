@@ -170,7 +170,6 @@ void CModulePhysics::CustomSimulationEventCallback::onContact(const physx::PxCon
     {
         const PxContactPair& cp = pairs[i];
 
-				/* Only manages contact between rigidbodies */
 				CHandle h_actor_1;
 				h_actor_1.fromVoidPtr(pairHeader.actors[0]->userData);
 
@@ -183,6 +182,8 @@ void CModulePhysics::CustomSimulationEventCallback::onContact(const physx::PxCon
 					CEntity* entity2 = h_actor_2.getOwner();
 
 					if (cp.events & (PxPairFlag::eNOTIFY_TOUCH_FOUND | PxPairFlag::eNOTIFY_TOUCH_PERSISTS)) {
+
+                        /* Only manages contact between rigidbodies */
 						TCompRigidbody * rigidbody1 = entity1->get<TCompRigidbody>();
 						TCompRigidbody * rigidbody2 = entity2->get<TCompRigidbody>();
 

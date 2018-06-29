@@ -18,6 +18,7 @@
 #include "components/object_controller/comp_noise_emitter.h"
 #include "components/comp_tags.h"
 #include "components/comp_hierarchy.h"
+#include "components/object_controller/comp_shooter.h"
 
 DECL_OBJ_MANAGER("ai_drone", TCompAIDrone);
 
@@ -557,6 +558,10 @@ BTNode::ERes TCompAIDrone::actionGenerateNavmeshChase(float dt)
     TCompHierarchy* lantern_hierarchy = eLantern->get<TCompHierarchy>();
     lerpingStartingRotation = lantern_hierarchy->getRotation();
     timeLerpingLanternRot = 0.f;
+
+    /* Shoot */
+    TCompShooter* shooter = eLantern->get<TCompShooter>();
+    shooter->setIsFiring(true, getEntityByName(entityToChase));
     return BTNode::ERes::LEAVE;
 }
 
@@ -587,9 +592,17 @@ BTNode::ERes TCompAIDrone::actionChaseAndShoot(float dt)
         QUAT lanternRotationObjective = lanternHierarchy->getRelativeLookAt(ppos);
         lanternHierarchy->setRotation(QUAT::Slerp(lerpingStartingRotation, lanternRotationObjective, timeLerpingLanternRot / timeToLerpLanternRot));
         timeLerpingLanternRot = Clamp(timeLerpingLanternRot + dt, 0.f, timeToLerpLanternRot);
+
         return BTNode::ERes::STAY;
     }
     else {
+        /* Stop shooting */
+        TCompEmissionController* e_controller = get<TCompEmissionController>();
+        e_controller->blend(enemyColor.colorSuspect, 0.1f);
+
+        CEntity* eLantern = hLantern;
+        TCompShooter* shooter = eLantern->get<TCompShooter>();
+        shooter->setIsFiring(false, CHandle(ePlayer));
         return BTNode::ERes::LEAVE;
     }
 }
