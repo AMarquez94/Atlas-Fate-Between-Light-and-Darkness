@@ -6,15 +6,13 @@
 				"scale": 3
 			},
 			"render":
-			[
-				{
-		          "mesh": "data/meshes/Drone.mesh"
-		          ,
-		          "materials":
-		          [
-		            "data/materials/mtl_default.material"
-		          ]
-		        }
+			[{
+					"mesh": "data/meshes/Drone.mesh",
+					"materials":
+					[
+						"data/materials/mtl_drone.material"
+					]
+				}
 			],
 			"emission_controller": {
 				"initial": "0.0 1.0 1.0 1.0"
@@ -38,15 +36,14 @@
 			"transform": {
 				"pos": "0 0 0"
 			},
-			"render": [
-		        {
-		          "mesh": "data/meshes/Drone_Lantern.mesh"
-		          ,
-		          "materials":
-		          [
-		            "data/materials/mtl_default.material"
-		          ]
-		        }
+			"render":
+			[{
+					"mesh": "data/meshes/Drone_Lantern.mesh",
+					"materials":
+					[
+						"data/materials/mtl_drone.material"
+					]
+				}
 			],
 			"hierarchy": {
 				"parent": "Drone",
@@ -55,16 +52,13 @@
 				"angle": 20
 			}
 		}
-	}, 
-	{
+	}, {
 		"entity": {
 			"name": "Lantern Drone Light",
 			"transform": {
 				"pos": "0 0 0"
 			},
-			"render": [
-		        {
-		        }
+			"render": [{}
 			],
 			"hierarchy": {
 				"parent": "Lantern Drone",
@@ -98,8 +92,7 @@
 				"bullet_speed": 10
 			}
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "Camera Follow Drone",
 			"transform": {

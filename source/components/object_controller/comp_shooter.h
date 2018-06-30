@@ -18,6 +18,9 @@ class TCompShooter : public TCompBase {
     float firing_rate_cooldown;
     float bullet_damage;
     float bullet_speed;
+    float bullet_range;
+
+    physx::PxQueryFilterData pxQueryFilterData;
 
     float firing_timer = 0.f;
 
