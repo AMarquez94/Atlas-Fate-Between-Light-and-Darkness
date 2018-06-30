@@ -114,5 +114,5 @@ function collidersToggle(onlyDynamics)
 end
 
 function setPlayerInhibited(inhibited)
-	PlayerController.inhibited = inhibited;
+	playerController.inhibited = inhibited;
 end

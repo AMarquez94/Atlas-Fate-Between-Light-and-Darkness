@@ -130,6 +130,7 @@ void CModuleLogic::publishClasses() {
 
 
 	//player hacks
+	m->set("getPlayerController", SLB::FuncCall::create(&getPlayerController));
 	m->set("movePlayer", SLB::FuncCall::create(&movePlayer));
 	m->set("staminaInfinite", SLB::FuncCall::create(&staminaInfinite));
 	m->set("immortal", SLB::FuncCall::create(&immortal));

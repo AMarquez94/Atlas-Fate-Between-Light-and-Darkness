@@ -22,7 +22,7 @@
 bool CModuleMapIntro::start() {
 
 #ifdef _DEBUG
-    EngineScene.loadScene("scene_brian");
+    EngineScene.loadScene("scene_alex");
 #else
     EngineScene.loadScene("scene_alex");
 #endif
