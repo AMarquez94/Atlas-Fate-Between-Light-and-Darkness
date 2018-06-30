@@ -218,13 +218,6 @@ void CDeferredRenderer::renderVolumes() {
         c->activate();
         c->generateVolume();
     });
-
-    //TCompLightSpot::volume_instance->setInstancesData(TCompLightSpot::volume_instances.data(), TCompLightSpot::volume_instances.size(), sizeof(TInstanceLight));
-    //// Activate tech for the light dir 
-    //auto technique2 = Resources.get("pbr_instanced_volume.tech")->as<CRenderTechnique>();
-    //technique2->activate();
-
-    //CRenderManager::get().renderCategory("pbr_volume");
 }
 
 // --------------------------------------

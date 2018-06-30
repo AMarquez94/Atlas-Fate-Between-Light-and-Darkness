@@ -106,6 +106,12 @@ namespace Particles
             cps->n_noise.octaves = noise.value("frame_speed", cps->n_noise.octaves);
         }
 
+        // collision
+        const json& collision = data["collision"];
+        {
+            cps->n_collision.collision = system.value("collision", cps->n_collision.collision);
+        }
+
         // color
         const json& color = data["color"];
         {

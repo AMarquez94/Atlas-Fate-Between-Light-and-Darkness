@@ -158,6 +158,7 @@ void ParticlesEditor::debugShape() {
         ImGui::DragFloat3("Size", &_main_system->n_shape.size.x, 0.01f, 0.f);
         ImGui::DragFloat("Angle", &_main_system->n_shape.angle, 0.01f, 0.f, 50.f);
 
+        // Render the mesh by type
     }
 }
 

@@ -29,13 +29,17 @@ namespace Particles
             float gravity = 0.f;
             float simulation_speed = 1.f;
             int   max_particles = 1; 
+
+            float wind = 0.f;
+
         };
 
         struct TNEmission
         {
             float rate_time = 10.f;
             float rate_distance = 0.f;
-
+            float variation = 0.1f;
+            float interval = 0.f;
             // Add Bursts in the future.
         };
 
@@ -75,6 +79,11 @@ namespace Particles
             float scroll_speed = 0.f;
             bool damping = true;
             int octaves = 1;
+        };
+
+        struct TNCollision
+        {
+            bool collision = true;
         };
 
         struct TNRenderer
@@ -150,6 +159,7 @@ namespace Particles
         TNColor         n_color; 
         TNSize          n_size;
         TNoise          n_noise;
+        TNCollision     n_collision;
         TNRenderer      n_renderer;
 
         TLife           life;
