@@ -11,6 +11,85 @@ namespace Particles
 
     struct TCoreSystem : public IResource
     {
+        struct TNSystem 
+        {
+            float duration = 1.f;  
+            bool  looping = false; 
+            float start_delay = 0.f;
+            float start_lifetime = 0.f;
+            float start_speed = 0.f;
+
+            VEC3  d_start_size;
+            float start_size = 1.f;
+            VEC3  d_start_rotation;
+            float start_rotation = 0.f;
+            float random_rotation = 0.f;
+            VEC4  start_color;
+
+            float gravity = 0.f;
+            float simulation_speed = 1.f;
+            int   max_particles = 1; 
+        };
+
+        struct TNEmission
+        {
+            float rate_time = 10.f;
+            float rate_distance = 0.f;
+
+            // Add Bursts in the future.
+        };
+
+        struct TNShape {
+
+            enum EType { Point = 0, Line, Square, Box, Sphere, Circle, Cone };
+            EType type = Point;             // type of emissor
+            VEC3 size = VEC3(1, 1, 1);      // emissor size
+            float angle = 0.f;              // emission angle
+        };
+
+        struct TNVelocity {
+
+            enum EType { LOCAL = 0, WORLD };
+            VEC3 constant_velocity = VEC3::Zero;
+            float angular = 0.f;
+        };
+
+        struct TNColor {
+
+            TTrack<VEC4> colors;            // track of colors along the particle lifetime
+            float opacity = 1.f;            // opacity factor
+        };
+
+        struct TNSize
+        {
+            TTrack<float> sizes;            // track of sizes along the particle lifetime
+            float scale = 1.f;              // scale factor
+            float scale_variation = 0.f;    // variation of scale at generation
+        };
+
+        struct TNoise
+        {       
+            const CTexture* texture = nullptr; // particle texture
+            float strength = 1.f;
+            float frequency = 0.5f;
+            float scroll_speed = 0.f;
+            bool damping = true;
+            int octaves = 1;
+        };
+
+        struct TNRenderer
+        {
+            enum EMODE { BILLBOARD = 0, HORIZONTAL, VERTICAL };
+            EMODE mode;
+
+            const CTexture* texture = nullptr; // particle texture
+            VEC2 frameSize = VEC2(1, 1);       // size of frame in the texture (in UV coords)
+            int numFrames = 1;                 // number of animation frames
+            int initialFrame = 0;              // initial frame
+            float frameSpeed = 0.f;            // frame change speed
+        };
+
+        //-----------------------------------------------------------------
         struct TLife
         {
             float duration = 1.f;            // expected particle life time
@@ -64,12 +143,21 @@ namespace Particles
             float opacity = 1.f;            // opacity factor
         };
 
-        TLife         life;
-        TEmission     emission;
-        TMovement     movement;
-        TRender       render;
-        TSize         size;
-        TColor        color;
+        TNSystem        n_system;
+        TNEmission      n_emission;
+        TNShape         n_shape;
+        TNVelocity      n_velocity;
+        TNColor         n_color; 
+        TNSize          n_size;
+        TNoise          n_noise;
+        TNRenderer      n_renderer;
+
+        TLife           life;
+        TEmission       emission;
+        TMovement       movement;
+        TRender         render;
+        TSize           size;
+        TColor          color;
     };
 
     class CSystem

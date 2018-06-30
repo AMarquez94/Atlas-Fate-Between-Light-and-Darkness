@@ -30,8 +30,113 @@ namespace Particles
     {
         TCoreSystem* cps = new TCoreSystem();
 
+        const json& system = data["system"];
+        {
+            cps->n_system.duration = system.value("duration", cps->n_system.duration);
+            cps->n_system.looping = system.value("looping", cps->n_system.looping);
+            cps->n_system.start_delay = system.value("start_delay", cps->n_system.start_delay);
+            cps->n_system.start_lifetime = system.value("start_lifetime", cps->n_system.start_lifetime);
+            cps->n_system.start_speed = system.value("start_speed", cps->n_system.start_speed);
+            cps->n_system.d_start_size = loadVEC3(system.value("d_start_size", "1 1 1"));
+            cps->n_system.start_size = system.value("start_size", cps->n_system.start_size);
+            cps->n_system.d_start_rotation = loadVEC3(system.value("d_start_rotation", "0 0 0"));
+            cps->n_system.start_rotation = system.value("start_rotation", cps->n_system.start_rotation);
+            cps->n_system.random_rotation = system.value("random_rotation", cps->n_system.random_rotation);
+            cps->n_system.start_color = loadVEC4(system.value("start_color", "1 1 1 1"));
+            cps->n_system.gravity = system.value("gravity", cps->n_system.gravity);
+            cps->n_system.simulation_speed = system.value("simulation_speed", cps->n_system.simulation_speed);
+            cps->n_system.max_particles = system.value("max_particles", cps->n_system.max_particles);
+        }
+        
+        // emission
+        const json& emission = data["emission"];
+        {
+            cps->n_emission.rate_time = emission.value("rate_time", cps->n_emission.rate_time);
+            cps->n_emission.rate_distance = emission.value("rate_distance", cps->n_emission.rate_distance);
+            // Add bursts support
+        }
+        
+        // shape
+        const json& shape = data["shape"];
+        {
+            const std::string emitterType = shape.value("type", "point");
+            if (emitterType == "line")        cps->n_shape.type = TCoreSystem::TNShape::Line;
+            else if (emitterType == "square") cps->n_shape.type = TCoreSystem::TNShape::Square;
+            else if (emitterType == "box")    cps->n_shape.type = TCoreSystem::TNShape::Box;
+            else if (emitterType == "sphere") cps->n_shape.type = TCoreSystem::TNShape::Sphere;
+            else if (emitterType == "cone") cps->n_shape.type = TCoreSystem::TNShape::Cone;
+            else if (emitterType == "circle") cps->n_shape.type = TCoreSystem::TNShape::Circle;
+            else                              cps->n_shape.type = TCoreSystem::TNShape::Point;
+
+            cps->n_shape.size = loadVEC3(shape.value("size", "1 1 1"));
+            cps->n_shape.angle = deg2rad(shape.value("angle", rad2deg(cps->n_shape.angle)));
+        }
+        
+        // velocity
+        const json& velocity = data["emission"];
+        {
+            cps->n_velocity.constant_velocity = loadVEC3(velocity.value("velocity", "1 1 1"));
+            //cps->n_velocity.acceleration = velocity.value("acceleration", cps->movement.acceleration);
+            //cps->n_velocity.spin = deg2rad(velocity.value("spin", rad2deg(cps->movement.spin)));
+            //cps->n_velocity.wind = velocity.value("wind", cps->movement.wind);
+        }
+
+        // render
+        const json& render = data["renderer"];
+        {
+            const std::string renderMode = render.value("mode", "billboard");
+            if (renderMode == "billboard")        cps->n_renderer.mode = TCoreSystem::TNRenderer::BILLBOARD;
+
+            cps->n_renderer.initialFrame = render.value("initial_frame", cps->n_renderer.initialFrame);
+            cps->n_renderer.frameSize = loadVEC2(render.value("frame_size", "1 1"));
+            cps->n_renderer.numFrames = render.value("num_frames", cps->n_renderer.numFrames);
+            cps->n_renderer.frameSpeed = render.value("frame_speed", cps->n_renderer.frameSpeed);
+            cps->n_renderer.texture = Resources.get(render.value("texture", ""))->as<CTexture>();
+        }
+
+        // noise
+        const json& noise = data["noise"];
+        {
+            cps->n_noise.texture = Resources.get(render.value("texture", ""))->as<CTexture>();
+
+            cps->n_noise.strength = noise.value("strength", cps->n_noise.strength);
+            cps->n_noise.frequency = noise.value("strength", cps->n_noise.frequency);
+            cps->n_noise.scroll_speed = noise.value("num_frames", cps->n_noise.scroll_speed);
+            cps->n_noise.damping = noise.value("num_frames", cps->n_noise.damping);
+            cps->n_noise.octaves = noise.value("frame_speed", cps->n_noise.octaves);
+        }
+
+        // color
+        const json& color = data["color"];
+        {
+            cps->n_color.opacity = color.value("opacity", cps->n_color.opacity);
+            for (auto& clr : color["colors"])
+            {
+                float time = clr[0];
+                VEC4 value = loadVEC4(clr[1]);
+                cps->n_color.colors.set(time, value);
+            }
+            cps->n_color.colors.sort();
+        }
+
+        // size
+        const json& size = data["size"];
+        {
+            cps->n_size.scale = size.value("scale", cps->n_size.scale);
+            cps->n_size.scale_variation = size.value("scale_variation", cps->n_size.scale_variation);
+            for (auto& sz : size["sizes"])
+            {
+                float time = sz[0];
+                float value = sz[1];
+                cps->n_size.sizes.set(time, value);
+            }
+            cps->n_size.sizes.sort();
+        }
+
+        return cps;
+
         // life
-        const json& life = data["life"];
+        /*const json& life = data["life"];
         {
             cps->life.duration = life.value("duration", cps->life.duration);
             cps->life.durationVariation = life.value("duration_variation", cps->life.durationVariation);
@@ -104,7 +209,7 @@ namespace Particles
             cps->size.sizes.sort();
         }
 
-        return cps;
+        return cps;*/
     }
 
     void CParser::writeFile(const TCoreSystem * system) {

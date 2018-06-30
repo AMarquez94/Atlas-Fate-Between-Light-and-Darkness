@@ -399,8 +399,8 @@ void CModuleRender::generateFrame() {
 
 void CModuleRender::debugDraw() {
 
-    // Main Inspector window
     {
+        // Main Inspector window
         ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.149f, 0.1607f, 0.188f, 0.8f));
         ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(255.0f, 255.0f, 255.0f, 255.0f));
         ImGui::PushStyleColor(ImGuiCol_TitleBg, ImVec4(0.0, 0.0f, 0.0f, 0.75f));
@@ -419,5 +419,10 @@ void CModuleRender::debugDraw() {
         ImGui::End();
         ImGui::PopStyleVar(2);
         ImGui::PopStyleColor(5);
+    }
+
+    {
+        //Particle editor
+
     }
 }

@@ -2,6 +2,7 @@
 #include "module_particles.h"
 #include "particles/particle_system.h"
 #include "particles/particle_parser.h"
+#include "particles/particle_editor.h"
 
 CModuleParticles::CModuleParticles(const std::string& name)
     : IModule(name)
@@ -19,6 +20,9 @@ bool CModuleParticles::start()
     launchSystem(fire);*/
 
     _windVelocity = VEC3(1, 0, 0);
+
+    p_editor = new ParticlesEditor();
+    p_editor->Init();
 
     return true;
 }
@@ -53,6 +57,8 @@ void CModuleParticles::render()
     {
         ps->render();
     };
+
+    p_editor->debugMenu();
 }
 
 Particles::TParticleHandle CModuleParticles::launchSystem(const std::string& name, CHandle entity)

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "modules/module.h"
+class ParticlesEditor;
 
 namespace Particles
 {
@@ -24,6 +25,7 @@ public:
     Particles::CSystem* getSystem(Particles::TParticleHandle ph);
 
     const VEC3& getWindVelocity() const;
+    ParticlesEditor * p_editor;
 
 private:
     std::vector<Particles::CSystem*> _activeSystems;
