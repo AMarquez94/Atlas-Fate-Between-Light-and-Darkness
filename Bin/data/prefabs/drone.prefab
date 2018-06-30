@@ -2,124 +2,34 @@
 		"entity": {
 			"name": "Drone",
 			"transform": {
-				"pos": "0 0 0"
+				"pos": "0 0 0",
+				"scale": 3
 			},
-			"render": [{
-					"mesh": "data/skeletons/crab/Ankle_low.mesh",
-					"materials":
-					[
-						"data/materials/characters/mtl_enemy_crab.material"
-					]
-				}, {
-					"mesh": "data/skeletons/crab/Battery_low.mesh",
-					"materials":
-					[
-						"data/materials/characters/mtl_enemy_crab.material"
-					]
-				}, {
-					"mesh": "data/skeletons/crab/Bulb_low.mesh",
-					"materials":
-					[
-						"data/materials/characters/mtl_enemy_crab.material"
-					]
-				}, {
-					"mesh": "data/skeletons/crab/ExternalLantern_low.mesh",
-					"materials":
-					[
-						"data/materials/characters/mtl_enemy_crab.material"
-					]
-				}, {
-					"mesh": "data/skeletons/crab/Eye_low.mesh",
-					"materials":
-					[
-						"data/materials/characters/mtl_enemy_crab.material"
-					]
-				}, {
-					"mesh": "data/skeletons/crab/Foot_low.mesh",
-					"materials":
-					[
-						"data/materials/characters/mtl_enemy_crab.material"
-					]
-				}, {
-					"mesh": "data/skeletons/crab/Handle_low.mesh",
-					"materials":
-					[
-						"data/materials/characters/mtl_enemy_crab.material"
-					]
-				}, {
-					"mesh": "data/skeletons/crab/Head_low.mesh",
-					"materials":
-					[
-						"data/materials/characters/mtl_enemy_crab.material"
-					]
-				}, {
-					"mesh": "data/skeletons/crab/Leg_low.mesh",
-					"materials":
-					[
-						"data/materials/characters/mtl_enemy_crab.material"
-					]
-				}, {
-					"mesh": "data/skeletons/crab/LittleBattery_low.mesh",
-					"materials":
-					[
-						"data/materials/characters/mtl_enemy_crab.material"
-					]
-				}, {
-					"mesh": "data/skeletons/crab/Pelvis_low.mesh",
-					"materials":
-					[
-						"data/materials/characters/mtl_enemy_crab.material"
-					]
-				}, {
-					"mesh": "data/skeletons/crab/Spine00_low.mesh",
-					"materials":
-					[
-						"data/materials/characters/mtl_enemy_crab.material"
-					]
-				}, {
-					"mesh": "data/skeletons/crab/Spine01_low.mesh",
-					"materials":
-					[
-						"data/materials/characters/mtl_enemy_crab.material"
-					]
-				}, {
-					"mesh": "data/skeletons/crab/Spine02_low.mesh",
-					"materials":
-					[
-						"data/materials/characters/mtl_enemy_crab.material"
-					]
-				}, {
-					"mesh": "data/skeletons/crab/SupportHead_low.mesh",
-					"materials":
-					[
-						"data/materials/characters/mtl_enemy_crab.material"
-					]
-				}
-
+			"render":
+			[
+				{
+		          "mesh": "data/meshes/Drone.mesh"
+		          ,
+		          "materials":
+		          [
+		            "data/materials/mtl_default.material"
+		          ]
+		        }
 			],
-			"skeleton": {
-				"skeleton": "data/skeletons/crab/crab.skeleton",
-				"scale": 1.0
-			},
 			"emission_controller": {
 				"initial": "0.0 1.0 1.0 1.0"
 			},
-			"noise_emitter": {
-				"radius": -1
-			},
 			"collider": {
-				"shape": "capsule",
-				"radius": 0.4,
-				"height": 0.6,
+				"shape": "box",
+				"size": "1 1 1",
 				"step_offset": 0.1,
-				"gravity": true,
+				"gravity": false,
 				"group": "enemy"
 			},
 			"rigidbody": {
 				"is_controller": true,
 				"is_gravity": false
 			},
-			"mimetic_animator": true,
 			"tags": ["enemy", "drone"]
 		}
 	}, {
@@ -128,18 +38,37 @@
 			"transform": {
 				"pos": "0 0 0"
 			},
-			"render": [{
-					"mesh": "data/meshes/drone_linterna.mesh",
-					"materials": [
-						"data/materials/mtl_default.material"
-					]
-				}
+			"render": [
+		        {
+		          "mesh": "data/meshes/Drone_Lantern.mesh"
+		          ,
+		          "materials":
+		          [
+		            "data/materials/mtl_default.material"
+		          ]
+		        }
 			],
 			"hierarchy": {
 				"parent": "Drone",
-				"pos": "0 0 0",
+				"pos": "0 0 0.06",
 				"axis": "1 0 0",
 				"angle": 20
+			}
+		}
+	}, 
+	{
+		"entity": {
+			"name": "Lantern Drone Light",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [
+		        {
+		        }
+			],
+			"hierarchy": {
+				"parent": "Lantern Drone",
+				"pos": "0 0 0.1"
 			},
 			"light_spot": {
 				"type": "spotlight",
@@ -169,7 +98,8 @@
 				"bullet_speed": 10
 			}
 		}
-	}, {
+	},
+	{
 		"entity": {
 			"name": "Camera Follow Drone",
 			"transform": {

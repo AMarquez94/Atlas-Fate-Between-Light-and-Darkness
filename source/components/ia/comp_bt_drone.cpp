@@ -141,7 +141,12 @@ void TCompAIDrone::onMsgEntityCreated(const TMsgEntityCreated & msg)
     hLantern = myGroup->getHandleByName("Lantern Drone");
     assert(hLantern.isValid());
     CEntity* lantern = hLantern;
-    TCompConeOfLightController* cone_of_light = lantern->get<TCompConeOfLightController>();
+    //TCompGroup* lanternGroup = lantern->get<TCompGroup>();
+    //assert(lanternGroup != nullptr);
+    hLanternLight = myGroup->getHandleByName("Lantern Drone Light");
+    assert(hLanternLight.isValid());
+    CEntity* lanternLight = hLanternLight;
+    TCompConeOfLightController* cone_of_light = lanternLight->get<TCompConeOfLightController>();
     TCompHierarchy* lantern_hierarchy = lantern->get<TCompHierarchy>();
     float yaw, pitch;
     lantern_hierarchy->getYawPitchRoll(&yaw, &pitch);
@@ -467,8 +472,8 @@ void TCompAIDrone::moveLanternPatrolling(VEC3 objective, float dt, bool resetPit
 
 bool TCompAIDrone::isEntityInFovDrone(const std::string& entityToChase)
 {
-    CEntity* lantern = hLantern;
-    TCompConeOfLightController* cone_controller = lantern->get<TCompConeOfLightController>();
+    CEntity* lanternLight = hLanternLight;
+    TCompConeOfLightController* cone_controller = lanternLight->get<TCompConeOfLightController>();
 
     CHandle hPlayer = getEntityByName(entityToChase);
     CEntity* ePlayer = hPlayer;
@@ -494,9 +499,25 @@ bool TCompAIDrone::isRespectingVerticalOffset(VEC3 position, float dt)
     TCompCollider* myCollider = get<TCompCollider>();
 
     std::vector<physx::PxSweepHit> hits;
-    bool downSweep = EnginePhysics.Sweep(geometrySweep, position, QUAT(0,0,0,1), VEC3(0, -1, 0), flyingDownOffset, hits);
-    bool upSweep = EnginePhysics.Sweep(geometrySweep, position + VEC3(0, geometrySweep.halfHeight * 2, 0), QUAT(0, 0, 0, 1), VEC3(0, 1, 0), flyingUpOffset, hits);
-    
+    bool downSweep = EnginePhysics.Sweep(geometrySweep, position, QUAT(0,0,0,1), VEC3(0, -1, 0), flyingDownOffset + addedOffset, hits);
+    if (downSweep) {
+        bool isHit = true;
+        for (int i = 0; i < hits.size(); i++) {
+            if (isHit) {
+                isHit = hits[i].distance <= flyingDownOffset;
+            }
+        }
+        downSweep = isHit;
+    }
+    bool upSweep = EnginePhysics.Sweep(geometrySweep, position + VEC3(0, geometrySweep.halfHeight * 2, 0), QUAT(0, 0, 0, 1), VEC3(0, 1, 0), flyingUpOffset + addedOffset, hits);
+    if (upSweep) {
+        bool isHit = true;
+        for (int i = 0; i < hits.size(); i++) {
+            isHit = hits[i].distance <= flyingUpOffset;
+        }
+        upSweep = isHit;
+    }
+
     return !downSweep && !upSweep;
 }
 
@@ -510,7 +531,16 @@ bool TCompAIDrone::isRespectingHorizontalOffset(VEC3 position, float dt)
     normalFront = normalFront - VEC3(0, normalFront.y, 0);
     normalFront.Normalize();
 
-    bool frontSweep = EnginePhysics.Sweep(geometrySweep, position, QUAT(0, 0, 0, 1), normalFront, flyingDownOffset, hits);
+    bool frontSweep = EnginePhysics.Sweep(geometrySweep, position, QUAT(0, 0, 0, 1), normalFront, flyingDownOffset + addedOffset, hits);
+    if (frontSweep) {
+        bool isHit = true;
+        for (int i = 0; i < hits.size(); i++) {
+            if (isHit) {
+                isHit = hits[i].distance <= flyingDownOffset;
+            }
+        }
+        frontSweep = isHit;
+    }
 
     return !frontSweep;
 }
@@ -560,7 +590,8 @@ BTNode::ERes TCompAIDrone::actionGenerateNavmeshChase(float dt)
     timeLerpingLanternRot = 0.f;
 
     /* Shoot */
-    TCompShooter* shooter = eLantern->get<TCompShooter>();
+    CEntity* eLanternLight = hLanternLight;
+    TCompShooter* shooter = eLanternLight->get<TCompShooter>();
     shooter->setIsFiring(true, getEntityByName(entityToChase));
     return BTNode::ERes::LEAVE;
 }
@@ -600,8 +631,8 @@ BTNode::ERes TCompAIDrone::actionChaseAndShoot(float dt)
         TCompEmissionController* e_controller = get<TCompEmissionController>();
         e_controller->blend(enemyColor.colorSuspect, 0.1f);
 
-        CEntity* eLantern = hLantern;
-        TCompShooter* shooter = eLantern->get<TCompShooter>();
+        CEntity* eLanternLight = hLanternLight;
+        TCompShooter* shooter = eLanternLight->get<TCompShooter>();
         shooter->setIsFiring(false, CHandle(ePlayer));
         return BTNode::ERes::LEAVE;
     }
@@ -882,6 +913,5 @@ bool TCompAIDrone::assertNotPlayerInFovNorNoise(float dt)
 
 void TCompAIDrone::playAnimationByName(const std::string & animationName)
 {
-    TCompMimeticAnimator * myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimationConverted(myAnimator->getAnimationByName(animationName));
+    //  
 }

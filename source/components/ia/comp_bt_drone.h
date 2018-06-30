@@ -18,7 +18,8 @@ private:
     VEC3 prevDirection = VEC3::Zero;
     VEC3 currentDirection = VEC3::Zero;
     float flyingUpOffset = 1.f;   //Offset for up/down flight
-    float flyingDownOffset = 3.f;   //Offset for up/down flight
+    float flyingDownOffset = 2.f;   //Offset for up/down flight
+    float addedOffset = 0.5f;
     physx::PxCapsuleGeometry geometrySweep;
 
     VEC3 lastPlayerKnownPositionOffset = VEC3::Zero;
@@ -62,6 +63,7 @@ private:
 
     /* Lantern */
     CHandle hLantern;
+    CHandle hLanternLight;
     bool lanternPatrollingLeft = false;
     float startingPitch = 0;
 

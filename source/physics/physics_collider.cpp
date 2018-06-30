@@ -132,8 +132,15 @@ physx::PxController* CPhysicsBox::createController(TCompTransform * c_transform)
     QUAT quat = c_transform->getRotation();
     ctrl->setFootPosition(physx::PxExtendedVec3(pos.x, pos.y, pos.z));
     ctrl->setContactOffset(contact_offset);
+    ctrl->setStepOffset(step_offset);
+
     actor = ctrl->getActor();
-    //actor->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, true);
+    const physx::PxU32 numShapes = actor->getNbShapes();
+    std::vector<physx::PxShape*> shapes;
+    shapes.resize(numShapes);
+    actor->getShapes(&shapes[0], numShapes);
+    shape = shapes[0];
+    actor->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, true);
     setupFiltering(actor, group, mask);
     return ctrl;
 }
