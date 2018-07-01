@@ -59,6 +59,12 @@ struct TMsgPlayerHit {
 	DECL_MSG_ID();
 };
 
+struct TMsgBulletHit {
+    CHandle h_sender;
+    float damage;
+    DECL_MSG_ID();
+};
+
 struct TMsgInhibitorShot {
 	CHandle h_sender;
 	DECL_MSG_ID();

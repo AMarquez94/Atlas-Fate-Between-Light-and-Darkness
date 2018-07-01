@@ -119,3 +119,17 @@ void CModuleSound::exeStepSound() {
 	
 
 }
+
+void CModuleSound::exeShootSound()
+{
+    FMOD_RESULT       result;
+    void             *extradriverdata = 0;
+    FMOD::Sound      *sound;
+    FMOD::Channel * channel = 0;
+
+    result = _system->createSound("../bin/data/sounds/drone_shoot.ogg", FMOD_LOOP_OFF | FMOD_2D | FMOD_CREATESAMPLE, 0, &sound);
+    result = _system->playSound(sound, 0, false, &channel);
+
+    float volume = 1.f;
+    channel->setVolume(volume);
+}

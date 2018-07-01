@@ -97,6 +97,12 @@ class TCompTempPlayerController : public TCompBase
     float decrStaminaVertical;
     float minStaminaChange;
 
+    float maxLife = 100.f;
+    float life = 100.f;
+    float lifeIncr = 5.f;
+    float timerSinceLastDamage = 0.f;
+    float timeToStartRecoverFromDamage = 5.f;
+
     int timesRemoveInhibitorKeyPressed = 0;
     float timeToPressAgain = 0.7f;
     float timeInhib = 0.0f;
@@ -120,6 +126,7 @@ class TCompTempPlayerController : public TCompBase
     void onSpeedBoost(const TMsgSpeedBoost& msg);
     void onPlayerInvisible(const TMsgPlayerInvisible& msg);
     void onMsgNoClipToggle(const TMsgNoClipToggle& msg);
+    void onMsgBulletHit(const TMsgBulletHit& msg);
 
 
     DECL_SIBLING_ACCESS();
@@ -174,6 +181,7 @@ public:
     /* Auxiliar functions */
     void updateStamina(float dt);
     void updateShader(float dt);
+    void updateLife(float dt);
     void mergeEnemy();
     void resetMerge();
     bool isDead();

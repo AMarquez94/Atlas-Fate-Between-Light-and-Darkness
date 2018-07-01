@@ -52,5 +52,6 @@ public:
 	void registerClip(const std::string & tag, const std::string & source, FMOD_MODE mode);
 	void registerClip3D(const std::string & tag, const std::string & source);
 	void exeStepSound();
+    void exeShootSound();
 	//void registerEvent(const std::string & tag, const std::string & source);
 };

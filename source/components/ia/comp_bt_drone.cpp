@@ -56,7 +56,7 @@ void TCompAIDrone::load(const json& j, TEntityParseContext& ctx) {
     addChild("manageStun", "falling", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionFall, nullptr);
     addChild("manageStun", "explode", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionExplode, nullptr);
 
-    addChild("drone", "endAlert", BTNode::EType::ACTION, (BTCondition)&TCompAIDrone::conditionIsPlayerDead, nullptr, nullptr);
+    addChild("drone", "endAlert", BTNode::EType::ACTION, (BTCondition)&TCompAIDrone::conditionIsPlayerDead, (BTAction)&TCompAIDrone::actionEndAlert, nullptr);
 
     addChild("drone", "manageDoPatrol", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
     addChild("manageDoPatrol", "manageChasePlayer", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIDrone::conditionIsPlayerSeenForSure, nullptr, nullptr);

@@ -27,6 +27,7 @@ class TCompShooter : public TCompBase {
     DECL_SIBLING_ACCESS();
 
     void shoot();
+    void onScenePaused(const TMsgScenePaused& msg);
 
 public:
 

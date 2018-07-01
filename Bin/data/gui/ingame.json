@@ -5,7 +5,7 @@
 		"size" : "1080 640",
 		"children" : [
 			{
-				"name" : "test_bar",
+				"name" : "stamina_bar_general",
 				"type" : "widget",
 				"position" : "50 10",
 				"children" : [
@@ -21,6 +21,26 @@
 						"size" : "320 64",
 						"texture" : "data/textures/gui/staminabar_full.dds",
 						"variable" : "staminaBarFactor"
+					}
+				]
+			},
+			{
+				"name" : "life_bar",
+				"type" : "widget",
+				"position" : "50 40",
+				"children" : [
+					{
+						"name" : "blackground",
+						"type" : "image",
+						"size" : "320 64",
+						"texture" : "data/textures/gui/staminabar_empty.dds"
+					},
+					{
+						"name" : "life_bar",
+						"type" : "bar",
+						"size" : "320 64",
+						"texture" : "data/textures/gui/staminabar_full.dds",
+						"variable" : "lifeBarFactor"
 					}
 				]
 			}

@@ -106,10 +106,13 @@ void TCompTempPlayerController::update(float dt) {
 		isGrounded = groundTest(dt);
 		isMerged = onMergeTest(dt);
 		updateStamina(dt);
+        updateLife(dt);
 		updateShader(dt); // Move this to player render component...
 		timeInhib += dt;
 		canAttack = canAttackTest(dt);
+        
 		Engine.getGUI().getVariables().setVariant("staminaBarFactor", stamina / maxStamina);
+        Engine.getGUI().getVariables().setVariant("lifeBarFactor", life / maxLife);
 	}
 }
 
@@ -131,6 +134,7 @@ void TCompTempPlayerController::registerMsgs() {
     DECL_MSG(TCompTempPlayerController, TMsgSpeedBoost, onSpeedBoost);
     DECL_MSG(TCompTempPlayerController, TMsgPlayerInvisible, onPlayerInvisible);
     DECL_MSG(TCompTempPlayerController, TMsgNoClipToggle, onMsgNoClipToggle);
+    DECL_MSG(TCompTempPlayerController, TMsgBulletHit, onMsgBulletHit);
 }
 
 void TCompTempPlayerController::onShadowChange(const TMsgShadowChange& msg) {
@@ -168,6 +172,22 @@ void TCompTempPlayerController::onPlayerInvisible(const TMsgPlayerInvisible & ms
 void TCompTempPlayerController::onMsgNoClipToggle(const TMsgNoClipToggle & msg)
 {
     isInNoClipMode = !isInNoClipMode;
+}
+
+void TCompTempPlayerController::onMsgBulletHit(const TMsgBulletHit & msg)
+{
+    if (!isImmortal) {
+        life = Clamp(life - msg.damage, 0.f, maxLife);
+        timerSinceLastDamage = 0.f;
+
+        if (life <= 0.f) {
+            CEntity* e = CHandle(this).getOwner();
+            TMsgSetFSMVariable groundMsg;
+            groundMsg.variant.setName("onDead");
+            groundMsg.variant.setBool(true);
+            e->sendMsg(groundMsg);
+        }
+    }
 }
 
 void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
@@ -885,6 +905,14 @@ void TCompTempPlayerController::updateShader(float dt) {
     }
     else {
         e_controller->blend(playerColor.colorIdle, 0.5f);
+    }
+}
+
+void TCompTempPlayerController::updateLife(float dt)
+{
+    timerSinceLastDamage = Clamp(timerSinceLastDamage + dt, 0.f, timeToStartRecoverFromDamage);
+    if (timerSinceLastDamage >= timeToStartRecoverFromDamage && !isDead()) {
+        life = Clamp(life + lifeIncr * dt, 0.f, maxLife);
     }
 }
 
