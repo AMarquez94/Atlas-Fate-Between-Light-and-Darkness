@@ -26,6 +26,7 @@ public:
 
     const VEC3& getWindVelocity() const;
     ParticlesEditor * p_editor;
+    bool particles_enabled = false;
 
 private:
     std::vector<Particles::CSystem*> _activeSystems;

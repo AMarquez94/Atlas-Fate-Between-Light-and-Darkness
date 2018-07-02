@@ -58,7 +58,8 @@ void CModuleParticles::render()
         ps->render();
     };
 
-    p_editor->debugMenu();
+    if(particles_enabled)
+        p_editor->debugMenu();
 }
 
 Particles::TParticleHandle CModuleParticles::launchSystem(const std::string& name, CHandle entity)

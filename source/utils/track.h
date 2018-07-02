@@ -5,7 +5,9 @@
 
 template <typename VAL>
 struct TTrack {
-private:
+
+public:
+
     struct TKeyframe {
         float time;
         VAL   value;
@@ -13,7 +15,6 @@ private:
 
     bool                    sorted;
 
-public:
     std::vector<TKeyframe>  keyframes;
     TTrack() : sorted(false) { }
 

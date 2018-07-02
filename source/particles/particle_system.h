@@ -19,19 +19,14 @@ namespace Particles
             float start_lifetime = 0.f;
             float start_speed = 0.f;
 
-            VEC3  d_start_size;
-            float start_size = 1.f;
-            VEC3  d_start_rotation;
-            float start_rotation = 0.f;
+            VEC3  start_size;
+            VEC3  start_rotation;
             float random_rotation = 0.f;
             VEC4  start_color;
 
-            float gravity = 0.f;
+            float gravity = 0.2f;
             float simulation_speed = 1.f;
             int   max_particles = 1; 
-
-            float wind = 0.f;
-
         };
 
         struct TNEmission
@@ -45,7 +40,7 @@ namespace Particles
 
         struct TNShape {
 
-            enum EType { Point = 0, Line, Square, Box, Sphere, Circle, Cone };
+            enum EType { Point, Line, Square, Box, Sphere, Circle, Cone };
             EType type = Point;             // type of emissor
             VEC3 size = VEC3(1, 1, 1);      // emissor size
             float angle = 0.f;              // emission angle
@@ -55,7 +50,11 @@ namespace Particles
 
             enum EType { LOCAL = 0, WORLD };
             VEC3 constant_velocity = VEC3::Zero;
+            TTrack<VEC3> velocity;
+
             float angular = 0.f;
+            float acceleration = 0.f;
+            float wind = 0.f;
         };
 
         struct TNColor {
@@ -66,7 +65,7 @@ namespace Particles
 
         struct TNSize
         {
-            TTrack<float> sizes;            // track of sizes along the particle lifetime
+            TTrack<VEC3> sizes;            // track of sizes along the particle lifetime
             float scale = 1.f;              // scale factor
             float scale_variation = 0.f;    // variation of scale at generation
         };
@@ -188,8 +187,11 @@ namespace Particles
     private:
 
         void emit();
+        void emit(int amount);
+
         VEC3 generatePosition() const;
         VEC3 generateVelocity() const;
+        VEC3 generateDirection() const;
 
         CHandle             _entity;
         TParticlesHandle    _handle;
@@ -197,9 +199,13 @@ namespace Particles
         const TCoreSystem*  _core = nullptr;
 
         float               _time = 0.f;
+        float               _deploy_time = 0.f;
         float               _fadeDuration = 0.f;
         float               _fadeTime = 0.f;
         bool                _enabled;
+
+        float _deploy_distance;
+        VEC3 _lastSystemPosition;
 
         static TParticlesHandle _lastHandle;
     };

@@ -36,6 +36,20 @@ CRenderMesh* createLineZ() {
 	return mesh;
 }
 
+
+CRenderMesh* createLineCenter() {
+    CRenderMesh* mesh = new CRenderMesh;
+    // Axis aligned X,Y,Z of sizes 1,2,3
+    float vertices[] =
+    {
+        -0.f, 0.f,-0.5f,  1, 1, 1, 1,
+         0.f, 0.f, 0.5f,  1, 1, 1, 1,
+    };
+    if (!mesh->create(vertices, sizeof(vertices), "PosClr", CRenderMesh::LINE_LIST))
+        return nullptr;
+    return mesh;
+}
+
 // ---------------------------------------------------
 CRenderMesh* createAxis() {
 	CRenderMesh* mesh = new CRenderMesh;
@@ -73,6 +87,39 @@ CRenderMesh* createUnitCircleXZ(int nsamples) {
 	if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(TVtxPosClr), "PosClr", CRenderMesh::LINE_LIST))
 		return nullptr;
 	return mesh;
+}
+
+// ---------------------------------------------------
+CRenderMesh* createUnitSphere(int nsamples) {
+    CRenderMesh* mesh = new CRenderMesh;
+
+    std::vector< TVtxPosClr > vtxs;
+    vtxs.resize(nsamples * 6);
+    auto* v = vtxs.data();
+    VEC4 clr(1, 1, 1, 1);
+    float du = 2.0f * (float)(M_PI) / (float)(nsamples);
+    VEC3 p = getVectorFromYaw(0.0f);
+    for (int i = 1; i <= nsamples; ++i) {
+        *v++ = TVtxPosClr(VEC3(p.x, 0.0f, p.z), clr);
+        p = getVectorFromYaw(i * du);
+        *v++ = TVtxPosClr(VEC3(p.x, 0.0f, p.z), clr);
+    }
+
+    for (int i = 1; i <= nsamples; ++i) {
+        *v++ = TVtxPosClr(VEC3(0.0f, p.x, p.z), clr);
+        p = getVectorFromYaw(i * du);
+        *v++ = TVtxPosClr(VEC3(0.0f, p.x, p.z), clr);
+    }
+
+    for (int i = 1; i <= nsamples; ++i) {
+        *v++ = TVtxPosClr(VEC3(p.x, p.z, 0.0f), clr);
+        p = getVectorFromYaw(i * du);
+        *v++ = TVtxPosClr(VEC3(p.x, p.z, 0.0f), clr);
+    }
+    assert(v == vtxs.data() + vtxs.size());
+    if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(TVtxPosClr), "PosClr", CRenderMesh::LINE_LIST))
+        return nullptr;
+    return mesh;
 }
 
 CRenderMesh* createGridXZ(int nsteps) {
@@ -266,7 +313,9 @@ bool createRenderObjects() {
 	registerMesh(createAxis(), "axis.mesh");
 	registerMesh(createGridXZ(20), "grid.mesh");
 	registerMesh(createLineZ(), "line.mesh");
+    registerMesh(createLineCenter(), "line_center.mesh");
 	registerMesh(createUnitCircleXZ(32), "circle_xz.mesh");
+    registerMesh(createUnitSphere(32), "sphere.mesh");
 	registerMesh(createCameraFrustum(), "unit_frustum.mesh");
 	registerMesh(createCone(deg2rad(120.f), deg2rad(89.f), 35.f, 10, VEC4(1.0f, 1.0f, 1.0f, 1.0f)), "cone_of_vision_mimetic.mesh");
 	registerMesh(createCone(deg2rad(120.f), deg2rad(89.f), 35.f, 10, VEC4(1.0f, 1.0f, 1.0f, 1.0f)), "cone_of_vision_patrol.mesh");

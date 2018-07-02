@@ -34,6 +34,8 @@ void ToUpperCase(std::string&);
 float urand(float loVal, float hiVal);
 int Strnicmp(const char* str1, const char* str2, int n);
 const char *convert(const std::string & s);
+std::string stringify(VEC3 pos);
+std::string stringify(VEC4 pos);
 
 #endif
 
