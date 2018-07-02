@@ -910,9 +910,12 @@ void TCompTempPlayerController::updateShader(float dt) {
 
 void TCompTempPlayerController::updateLife(float dt)
 {
-    timerSinceLastDamage = Clamp(timerSinceLastDamage + dt, 0.f, timeToStartRecoverFromDamage);
-    if (timerSinceLastDamage >= timeToStartRecoverFromDamage && !isDead()) {
-        life = Clamp(life + lifeIncr * dt, 0.f, maxLife);
+    TCompShadowController *shadow_oracle = get<TCompShadowController>();
+    if (shadow_oracle->is_shadow) {
+        timerSinceLastDamage = Clamp(timerSinceLastDamage + dt, 0.f, timeToStartRecoverFromDamage);
+        if (timerSinceLastDamage >= timeToStartRecoverFromDamage && !isDead()) {
+            life = Clamp(life + lifeIncr * dt, 0.f, maxLife);
+        }
     }
 }
 

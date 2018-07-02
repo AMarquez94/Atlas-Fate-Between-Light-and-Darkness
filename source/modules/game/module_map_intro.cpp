@@ -33,7 +33,7 @@ bool CModuleMapIntro::start() {
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::INGAME_STAMINA_BAR);
 
 	//Engine.getGUI().activateWidget("ingame");
-	Engine.getSound().setAmbientSound("../bin/data/sounds/ambient.ogg");
+	Engine.getSound().setAmbientSound("../bin/data/sounds/music/ambient.ogg");
 
 	return true;
 }

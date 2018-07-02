@@ -34,6 +34,7 @@
 		"level_select",
 		"game_over",
 		"cameras",
-		"input"
+		"input",
+		"sound"
 	]
 }

@@ -64,7 +64,7 @@ void CModuleLogic::loadScriptsInFolder(char * path)
 
             while (iter != end) {
                 std::string fileName = iter->path().string();
-                if (fileName.substr(fileName.find_last_of(".") + 1) == "lua" &&
+                if (iter->path().extension().string() == ".lua" &&
                     !std::experimental::filesystem::is_directory(iter->path())) {
                     dbg("File : %s loaded\n", fileName.c_str());
                     s->doFile(fileName);
