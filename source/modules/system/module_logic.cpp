@@ -123,7 +123,8 @@ void CModuleLogic::publishClasses() {
 
 	//game hacks
 	m->set("pauseGame", SLB::FuncCall::create(&pauseGame));
-	m->set("loadscene", SLB::FuncCall::create(&loadscene));
+	m->set("loadScene", SLB::FuncCall::create(&loadScene));
+	m->set("unloadScene", SLB::FuncCall::create(&unloadScene));
 	m->set("loadCheckpoint", SLB::FuncCall::create(&loadCheckpoint));
 	m->set("move", SLB::FuncCall::create(&move));
 	m->set("spawn", SLB::FuncCall::create(&spawn));
@@ -524,9 +525,14 @@ void unbind(const std::string& key, const std::string& script) {
 	it = EngineLogic._bindings.find(id);
 	EngineLogic._bindings.erase(it, EngineLogic._bindings.end());
 }
-void loadscene(const std::string &level) {
+void loadScene(const std::string &level) {
 
 	EngineScene.loadScene(level);
+}
+
+void unloadScene() {
+
+	EngineScene.unLoadActiveScene();
 }
 
 void loadCheckpoint()

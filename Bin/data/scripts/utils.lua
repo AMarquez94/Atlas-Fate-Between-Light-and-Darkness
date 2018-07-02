@@ -81,8 +81,12 @@ function postFXToggle()
 	SLB.postFXToggle()
 end
 
-function loadscene(level)
-	SLB.loadscene(level)
+function loadScene(level)
+	SLB.loadScene(level)
+end
+
+function unloadScene()
+	SLB.unloadScene()
 end
 
 function cg_drawlights(type)

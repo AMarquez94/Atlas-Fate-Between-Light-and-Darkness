@@ -101,5 +101,6 @@ void collidersToggle(bool onlyDynamics = false);
 
 void bind(const std::string& key, const std::string& script);
 void cg_drawlights(int type);
-void loadscene(const std::string &level);
+void loadScene(const std::string &level);
+void unloadScene();
 void loadCheckpoint();

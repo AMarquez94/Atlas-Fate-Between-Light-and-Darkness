@@ -38,20 +38,21 @@ bool CModuleGameManager::start()
 
 void CModuleGameManager::update(float delta)
 {
-    auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("victory_trigger"));
+    //auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("victory_trigger"));
 
-    for (unsigned int i = 0; i < handles.size() && !victoryMenuVisible; i++) {
+    //for (unsigned int i = 0; i < handles.size() && !victoryMenuVisible; i++) {
 
-        CEntity* eCollider = handles[i];
-        TCompCollider * e = eCollider->get<TCompCollider>();
-        if (e && e->player_inside) {
+    //    CEntity* eCollider = handles[i];
+    //    CEntity* eCollider = handles[i];
+    //    TCompCollider * e = eCollider->get<TCompCollider>();
+    //    if (e && e->player_inside) {
 
-            TMsgScenePaused msg;
-            msg.isPaused = true;
-            EngineEntities.broadcastMsg(msg);
-            victoryMenuVisible = true;
-        }
-    }
+    //        TMsgScenePaused msg;
+    //        msg.isPaused = true;
+    //        EngineEntities.broadcastMsg(msg);
+    //        victoryMenuVisible = true;
+    //    }
+    //}
 
     CEntity* e = player;
     if (e) {
