@@ -93,6 +93,11 @@ void shadowsToggle();
 void debugToggle();
 void postFXToggle();
 void renderNavmeshToggle();
+void playSound2D(const std::string& soundName);
+void exeShootImpactSound();
+
+/* DEBUG - TODO: Delete */
+void sendOrderToDrone(const std::string& droneName, VEC3 position);
 
 // Extra cvar commands
 void cg_drawfps(bool value);

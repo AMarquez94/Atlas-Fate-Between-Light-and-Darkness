@@ -132,66 +132,17 @@ void CModuleSound::playSound2D(const std::string & tag)
 
 //TO-DO: Borrar todo esto y implementarlo como lo haria una persona con dos dedos de frente
 void CModuleSound::exeStepSound() {
-
-	FMOD_RESULT       result;
-	void             *extradriverdata = 0;
-	FMOD::Sound      *sound;
-	FMOD::Channel * channel = 0;
 	
-	int index = (int)(((float)rand() / RAND_MAX) * 7);
-	switch (index) {
-		case 0:
-			result = _system->createSound("../bin/data/sounds/soundclips/step1.ogg", FMOD_LOOP_OFF | FMOD_2D | FMOD_CREATESAMPLE, 0, &sound);
-			result = _system->playSound(sound, 0, false, &channel);
-			break;
-
-		case 1:
-			result = _system->createSound("../bin/data/sounds/soundclips/step2.ogg", FMOD_LOOP_OFF | FMOD_2D | FMOD_CREATESAMPLE, 0, &sound);
-			result = _system->playSound(sound, 0, false, &channel);
-			break;	
-
-		case 2:
-			result = _system->createSound("../bin/data/sounds/soundclips/step3.ogg", FMOD_LOOP_OFF | FMOD_2D | FMOD_CREATESAMPLE, 0, &sound);
-			result = _system->playSound(sound, 0, false, &channel);
-			break;
-
-		case 3:
-			result = _system->createSound("../bin/data/sounds/soundclips/step4.ogg", FMOD_LOOP_OFF | FMOD_2D | FMOD_CREATESAMPLE, 0, &sound);
-			result = _system->playSound(sound, 0, false, &channel);
-			break;
-
-		case 4:
-			result = _system->createSound("../bin/data/sounds/soundclips/step5.ogg", FMOD_LOOP_OFF | FMOD_2D | FMOD_CREATESAMPLE, 0, &sound);
-			result = _system->playSound(sound, 0, false, &channel);
-			break;
-
-		case 5:
-			result = _system->createSound("../bin/data/sounds/soundclips/step6.ogg", FMOD_LOOP_OFF | FMOD_2D | FMOD_CREATESAMPLE, 0, &sound);
-			result = _system->playSound(sound, 0, false, &channel);
-			break;
-
-		case 6:
-			result = _system->createSound("../bin/data/sounds/soundclips/step7.ogg", FMOD_LOOP_OFF | FMOD_2D | FMOD_CREATESAMPLE, 0, &sound);
-			result = _system->playSound(sound, 0, false, &channel);
-			break;
-	}	
+	int index = (int)(((float)rand() / RAND_MAX) * 7) + 1;
+    playSound2D("step" + std::to_string(index));
 	float volume = 0.75f;
 	if (EngineInput["btRun"].isPressed()) volume = 1.0f;
 	if (EngineInput["btCrouch"].isPressed()) volume = 0.5f;
-	channel->setVolume(volume);
-	
-
+	_clips["step" + std::to_string(index)]->channel->setVolume(volume);
 }
 
-void CModuleSound::exeShootSound()
+void CModuleSound::exeShootImpactSound()
 {
-//    FMOD_RESULT       result;
-//    void             *extradriverdata = 0;
-//    FMOD::Sound      *sound;
-//    FMOD::Channel * channel = 0;
-//    result = _system->createSound("../bin/data/sounds/droneShot.wav", FMOD_LOOP_OFF | FMOD_2D | FMOD_CREATESAMPLE | FMOD_UNIQUE, 0, &sound);
-//    result = _system->playSound(sound, 0, false, &channel);
-//
-//    float volume = 1.f;
-//    channel->setVolume(volume);
+    int index = (int)(((float)rand() / RAND_MAX) * 2) + 1;
+    playSound2D("bullet_impact" + std::to_string(index));
 }

@@ -57,9 +57,12 @@ private:
 
     /* Order */
     bool hasReceivedOrder = false;
+    CHandle hOrderSource = CHandle();
     VEC3 orderPosition = VEC3::Zero;
     float timerWaitingInOrderPos = 0;
     float maxTimeWaitingInOrderPos = 4;
+    std::chrono::steady_clock::time_point lastTimeOrderReceived;
+
 
     /* Lantern */
     CHandle hLantern;
@@ -143,6 +146,10 @@ public:
     bool assertNotPlayerInFovNorArtificialNoise(float dt);
     bool assertNotHeardArtificialNoise(float dt);
     bool assertNotPlayerInFovNorNoise(float dt);
+    bool assertNotPlayerInFovForSureNorOrder(float dt);
+    bool assertNotPlayerInFovNorArtificialNoiseNorOrder(float dt);
+    bool assertNotPlayerInFovNorNoiseNorOrder(float dt);
+
 
     const std::string getStateForCheckpoint();
 

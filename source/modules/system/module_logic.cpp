@@ -94,9 +94,20 @@ void CModuleLogic::publishClasses() {
         .comment("This is our wrapper of the logic class")
         .set("printLog", &CModuleLogic::printLog);
 
+    SLB::Class< VEC3 >("VEC3", m)
+        .constructor<float, float, float>()
+        .comment("This is our wrapper of the VEC3 class")
+        .property("x", &VEC3::x)
+        .property("y", &VEC3::y)
+        .property("z", &VEC3::z);
+
     SLB::Class< TCompTempPlayerController >("PlayerController", m)
       .comment("This is our wrapper of the player controller component")
       .property("inhibited", &TCompTempPlayerController::isInhibited);
+
+    //SLB::Class < CHandle >("CHandle", m)
+    //    .comment("test")
+    //    .set("sendMsg", &CHandle::sendMsg);
 
     /* Global functions */
 
@@ -136,6 +147,12 @@ void CModuleLogic::publishClasses() {
     m->set("cg_drawfps", SLB::FuncCall::create(&cg_drawfps));
     m->set("cg_drawlights", SLB::FuncCall::create(&cg_drawlights));
     m->set("renderNavmeshToggle", SLB::FuncCall::create(&renderNavmeshToggle));
+    m->set("playSound2D", SLB::FuncCall::create(&playSound2D));
+    m->set("exeShootImpactSound", SLB::FuncCall::create(&exeShootImpactSound));
+
+
+    /* Only for debug */
+    m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
 }
 
 /* Check if it is a fast format command */
@@ -448,4 +465,21 @@ void cg_drawlights(int type) {
     getObjectManager<TCompLightPoint>()->forEach([&](TCompLightPoint* c) {
         c->isEnabled = point;
     });
+}
+
+void playSound2D(const std::string& soundName) {
+    EngineSound.playSound2D(soundName);
+}
+
+void exeShootImpactSound() {
+    EngineSound.exeShootImpactSound();
+}
+
+void sendOrderToDrone(const std::string & droneName, VEC3 position)
+{
+    CEntity* drone = getEntityByName(droneName);
+    TMsgOrderReceived msg;
+    msg.position = position;
+    msg.hOrderSource = getEntityByName("The Player");
+    drone->sendMsg(msg);
 }

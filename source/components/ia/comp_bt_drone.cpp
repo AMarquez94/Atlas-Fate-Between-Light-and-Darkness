@@ -59,30 +59,30 @@ void TCompAIDrone::load(const json& j, TEntityParseContext& ctx) {
     addChild("drone", "endAlert", BTNode::EType::ACTION, (BTCondition)&TCompAIDrone::conditionIsPlayerDead, (BTAction)&TCompAIDrone::actionEndAlert, nullptr);
 
     addChild("drone", "manageDoPatrol", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
-    addChild("manageDoPatrol", "manageChasePlayer", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIDrone::conditionIsPlayerSeenForSure, nullptr, nullptr);
-    addChild("manageChasePlayer", "markPlayerAsSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionMarkPlayerAsSeen, nullptr);
-    addChild("manageChasePlayer", "generateNavmeshChase", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGenerateNavmeshChase, nullptr);
-    addChild("manageChasePlayer", "chaseAndShoot", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionChaseAndShoot, nullptr);
+    addChild("manageDoPatrol", "manageChase", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIDrone::conditionIsPlayerSeenForSure, nullptr, nullptr);
+    addChild("manageChase", "markPlayerAsSeen", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionMarkPlayerAsSeen, nullptr);
+    addChild("manageChase", "generateNavmeshChase", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGenerateNavmeshChase, nullptr);
+    addChild("manageChase", "chaseAndShoot", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionChaseAndShoot, nullptr);
 
     addChild("manageDoPatrol", "manageArtificialNoise", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIDrone::conditionHasHeardArtificialNoise, nullptr, nullptr);
     addChild("manageArtificialNoise", "markArtificialNoiseAsInactive", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionMarkNoiseAsInactive, nullptr);
     addChild("manageArtificialNoise", "generateNavmeshArtificialNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGenerateNavmeshArtificialNoise, nullptr);
-    addChild("manageArtificialNoise", "goToNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGoToNoiseSource, (BTAssert)&TCompAIDrone::assertNotPlayerInFovForSure);
-    addChild("manageArtificialNoise", "waitInNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionWaitInNoiseSource, (BTAssert)&TCompAIDrone::assertNotPlayerInFovForSure);
+    addChild("manageArtificialNoise", "goToArtificialNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGoToNoiseSource, (BTAssert)&TCompAIDrone::assertNotPlayerInFovForSure);
+    addChild("manageArtificialNoise", "waitInNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionWaitInNoiseSource, (BTAssert)&TCompAIDrone::assertNotPlayerInFovForSureNorOrder);
     addChild("manageArtificialNoise", "closestWptArtificialNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionClosestWpt, nullptr);
 
     addChild("manageDoPatrol", "manageEnemyOrder", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIDrone::conditionHasReceivedEnemyOrder, nullptr, nullptr);
     addChild("manageEnemyOrder", "markOrderAsReceived", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionMarkOrderAsReceived, nullptr);
     addChild("manageEnemyOrder", "generateNavmeshOrder", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGenerateNavmeshOrder, nullptr);
     addChild("manageEnemyOrder", "goToOrderPosition", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGoToOrderPos, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorArtificialNoise);
-    addChild("manageEnemyOrder", "waitInOrderPosition", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionWaitInOrderPos, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorArtificialNoise);
+    addChild("manageEnemyOrder", "waitInOrderPosition", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionWaitInOrderPos, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorArtificialNoiseNorOrder);
     addChild("manageEnemyOrder", "closestWptOrder", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionClosestWpt, nullptr);
 
     addChild("manageDoPatrol", "managePlayerLost", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIDrone::conditionPlayerHasBeenLost, nullptr, nullptr);
     addChild("managePlayerLost", "generateNavmeshPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGenerateNavmeshPlayerLost, nullptr);
     addChild("managePlayerLost", "goToPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGoToPlayerLastPos, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorArtificialNoise);
     addChild("managePlayerLost", "resetTimerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionResetTimer, nullptr);
-    addChild("managePlayerLost", "waitInPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionWaitInPlayerLastPos, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorArtificialNoise);
+    addChild("managePlayerLost", "waitInPlayerLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionWaitInPlayerLastPos, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorNoiseNorOrder);
     addChild("managePlayerLost", "closestWptLastPos", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionClosestWpt, nullptr);
 
     addChild("manageDoPatrol", "manageSuspect", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIDrone::conditionIsPlayerInFov, nullptr, nullptr);
@@ -91,13 +91,13 @@ void TCompAIDrone::load(const json& j, TEntityParseContext& ctx) {
 
     addChild("manageDoPatrol", "manageNaturalNoise", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIDrone::conditionHasHeardNaturalNoise, nullptr, nullptr);
     addChild("manageNaturalNoise", "markNaturalNoiseAsInactive", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionMarkNoiseAsInactive, nullptr);
-    addChild("manageNaturalNoise", "rotateToNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionRotateToNoiseSource, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorArtificialNoise);
+    addChild("manageNaturalNoise", "rotateToNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionRotateToNoiseSource, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorArtificialNoiseNorOrder);
 
     addChild("manageDoPatrol", "managePatrol", BTNode::EType::SEQUENCE, nullptr, nullptr, nullptr);
     addChild("managePatrol", "generateNavmeshPatrol", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGenerateNavmeshWpt, nullptr);
-    addChild("managePatrol", "goToWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGoToWpt, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorNoise);
+    addChild("managePatrol", "goToWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGoToWpt, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorNoiseNorOrder);
     addChild("managePatrol", "resetTimerPatrol", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionResetTimer, nullptr);
-    addChild("managePatrol", "waitInWptPatrol", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionWaitInWpt, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorNoise);
+    addChild("managePatrol", "waitInWptPatrol", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionWaitInWpt, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorNoiseNorOrder);
     addChild("managePatrol", "nextWpt", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionNextWpt, nullptr);
 
     if (j.count("waypoints") > 0) {
@@ -223,10 +223,28 @@ void TCompAIDrone::onMsgNoiseListened(const TMsgNoiseMade & msg)
 
 void TCompAIDrone::onMsgOrderReceived(const TMsgOrderReceived & msg)
 {
-    /* Si no esta persiguiendo jugador etc etc */
-    hasReceivedOrder = true;
-    orderPosition = msg.position;
 
+    bool isManagingArtificialNoise = isNodeSonOf(current, "goToArtificialNoiseSource");
+    bool isChasingPlayer = isNodeSonOf(current, "manageChase");
+    bool isManagingOrder = isNodeSonOf(current, "goToOrderPosition");
+    bool isManagingSuspect = isNodeSonOf(current, "manageSuspect");
+
+    std::chrono::steady_clock::time_point newOrderTime = std::chrono::steady_clock::now();
+
+    if (!isChasingPlayer && !isManagingArtificialNoise && !isManagingOrder) {
+        if (!isEntityInFovDrone(entityToChase)) {
+            hasReceivedOrder = true;
+        }
+    }
+
+    /* Noise management */
+    if (!hOrderSource.isValid() || hNoiseSource == msg.hOrderSource || std::chrono::duration_cast<std::chrono::seconds>(newOrderTime - lastTimeOrderReceived).count() > 1.5f) {
+
+        /* Different noise sources (different enemies) => only hear if 1.5 seconds (hardcoded (TODO: Change)) passed || Same noise source => update noise settings */
+        lastTimeOrderReceived = newOrderTime;
+        orderPosition = msg.position;
+        hOrderSource = msg.hOrderSource;
+    }
 }
 
 /* TODO: --- */
@@ -244,6 +262,7 @@ void TCompAIDrone::registerMsgs()
     DECL_MSG(TCompAIDrone, TMsgPlayerDead, onMsgPlayerDead);
     DECL_MSG(TCompAIDrone, TMsgEnemyStunned, onMsgDroneStunned);
     DECL_MSG(TCompAIDrone, TMsgNoiseMade, onMsgNoiseListened);
+    DECL_MSG(TCompAIDrone, TMsgOrderReceived, onMsgOrderReceived);
 }
 
 void TCompAIDrone::loadActions() {
@@ -688,7 +707,7 @@ BTNode::ERes TCompAIDrone::actionGenerateNavmeshOrder(float dt)
 BTNode::ERes TCompAIDrone::actionGoToOrderPos(float dt)
 {
     moveLanternPatrolling(orderPosition, dt);
-    return moveToDestDrone(orderPosition, maxSpeed, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
+    return moveToDestDrone(orderPosition + upOffset, maxSpeed, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIDrone::actionWaitInOrderPos(float dt)
@@ -907,6 +926,25 @@ bool TCompAIDrone::assertNotHeardArtificialNoise(float dt)
 bool TCompAIDrone::assertNotPlayerInFovNorNoise(float dt)
 {
     return !hasHeardArtificialNoise && !hasHeardNaturalNoise && !isEntityInFovDrone(entityToChase);
+}
+
+bool TCompAIDrone::assertNotPlayerInFovForSureNorOrder(float dt)
+{
+    TCompTransform* mypos = get<TCompTransform>();
+    CEntity* ePlayer = getEntityByName(entityToChase);
+    TCompTransform* playerPos = ePlayer->get<TCompTransform>();
+
+    return VEC3::Distance(mypos->getPosition(), playerPos->getPosition()) > autoChaseDistance && !isEntityInFovDrone(entityToChase) && !hasReceivedOrder;
+}
+
+bool TCompAIDrone::assertNotPlayerInFovNorArtificialNoiseNorOrder(float dt)
+{
+    return !hasHeardArtificialNoise && !isEntityInFovDrone(entityToChase) && !hasReceivedOrder;
+}
+
+bool TCompAIDrone::assertNotPlayerInFovNorNoiseNorOrder(float dt)
+{
+    return !hasHeardArtificialNoise && !hasHeardNaturalNoise && !isEntityInFovDrone(entityToChase) && !hasReceivedOrder;
 }
 
 /* AUX FUNCTIONS */

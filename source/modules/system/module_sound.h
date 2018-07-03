@@ -51,13 +51,11 @@ public:
     virtual void render() override;
 	virtual bool stop() override;
 
-
-
 	void setAmbientSound(const std::string & path);
 	void registerClip(const std::string & tag, const std::string & source, FMOD_MODE mode);
 	void registerClip3D(const std::string & tag, const std::string & source);
     void playSound2D(const std::string& tag);
 	void exeStepSound();
-    void exeShootSound();
+    void exeShootImpactSound();
 	//void registerEvent(const std::string & tag, const std::string & source);
 };

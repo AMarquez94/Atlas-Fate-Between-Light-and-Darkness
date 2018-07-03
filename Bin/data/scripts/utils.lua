@@ -100,3 +100,11 @@ end
 function renderNavmeshToggle()
 	SLB.renderNavmeshToggle()
 end
+
+function playSound2D(soundName)
+	SLB.playSound2D(soundName)
+end
+
+function exeShootImpactSound()
+	SLB.exeShootImpactSound()
+end
