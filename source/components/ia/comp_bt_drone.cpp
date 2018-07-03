@@ -293,7 +293,7 @@ void TCompAIDrone::loadAsserts() {
 
 }
 
-bool TCompAIDrone::moveToDestDrone(VEC3 dest, float speed, float dt)
+bool TCompAIDrone::moveToDestDrone(VEC3 dest, float speed, float dt, bool alsoHeight)
 {
     TCompTransform* mypos = get<TCompTransform>();
 
@@ -430,7 +430,12 @@ bool TCompAIDrone::moveToDestDrone(VEC3 dest, float speed, float dt)
 
     #pragma endregion
 
-    return VEC3::Distance(mypos->getPosition(), dest) < speed * dt;
+    if (alsoHeight) {
+        return VEC3::Distance(mypos->getPosition(), dest) < speed * dt;
+    }
+    else {
+        return VEC3::Distance2D(mypos->getPosition(), dest) < speed * dt;
+    }
 }
 
 void TCompAIDrone::waitInPosDrone(VEC3 dest, float dt, float speed, float rotSpeed, VEC3 lookAt)
@@ -476,26 +481,31 @@ void TCompAIDrone::moveLanternPatrolling(VEC3 objective, float dt, bool resetPit
     float yaw, pitch, roll, yaw_addition;
     lanternHierarchy->getYawPitchRoll(&yaw, &pitch, &roll);
     if (lanternPatrollingLeft) {
-        yaw_addition = rotationSpeedObservation * dt;
+        yaw_addition = rotationSpeedLantern * dt;
     }
     else {
-        yaw_addition = -rotationSpeedObservation * dt;
+        yaw_addition = -rotationSpeedLantern * dt;
     }
 
     if (resetPitch) {
-        if (pitch < startingPitch - rotationSpeedObservation * dt) {
-            pitch += rotationSpeedObservation * dt;
+        if (pitch < startingPitch - rotationSpeedLantern * dt) {
+            pitch += rotationSpeedLantern * dt;
         }
-        else if (pitch > startingPitch + rotationSpeedObservation * dt) {
-            pitch -= rotationSpeedObservation * dt;
+        else if (pitch > startingPitch + rotationSpeedLantern * dt) {
+            pitch -= rotationSpeedLantern * dt;
         }
         else {
             pitch = startingPitch;
         }
     }
 
-    if (fabsf(yaw + yaw_addition) > deg2rad(30.f)) {
+
+    if (fabsf(yaw) <= deg2rad(30.f) && fabsf(yaw + yaw_addition) > deg2rad(30.f)) {
         yaw_addition = 0;
+        lanternPatrollingLeft = !lanternPatrollingLeft;
+    }
+    else if (fabsf(yaw) > deg2rad(30.f) && fabsf(yaw + yaw_addition) > fabsf(yaw)) {
+        yaw_addition = -yaw_addition;
         lanternPatrollingLeft = !lanternPatrollingLeft;
     }
 
@@ -684,6 +694,7 @@ BTNode::ERes TCompAIDrone::actionGenerateNavmeshArtificialNoise(float dt)
     TCompHierarchy* lantern_hierarchy = eLantern->get<TCompHierarchy>();
     lerpingStartingRotation = lantern_hierarchy->getRotation();
     timeLerpingLanternRot = 0.f;
+    timerWaitingInNoise = 0.f;
     return BTNode::ERes::LEAVE;
 }
 
@@ -699,14 +710,16 @@ BTNode::ERes TCompAIDrone::actionGoToNoiseSource(float dt)
     
     timeLerpingLanternRot = Clamp(timeLerpingLanternRot + dt, 0.f, timeToLerpLanternRot);
 
-    return moveToDestDrone(noiseSource + upOffset, maxSpeed, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
+    return moveToDestDrone(noiseSource + upOffset, maxSpeed, dt, false) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIDrone::actionWaitInNoiseSource(float dt)
 {
+    moveLanternPatrolling(noiseSource, dt);
     timerWaitingInNoise += dt;
-    if (timerWaitingInOrderPos < maxTimeWaitingInOrderPos) {
-        waitInPosDrone(noiseSource + upOffset, dt, maxSpeed, deg2rad(30.f));
+    if (timerWaitingInNoise < maxTimeWaitingInOrderPos) {
+        TCompTransform* mypos = get<TCompTransform>();
+        waitInPosDrone(mypos->getPosition(), dt, maxSpeed, deg2rad(30.f));
         return BTNode::ERes::STAY;
     }
     else {
@@ -728,6 +741,7 @@ BTNode::ERes TCompAIDrone::actionMarkOrderAsReceived(float dt)
 
 BTNode::ERes TCompAIDrone::actionGenerateNavmeshOrder(float dt)
 {
+    timerWaitingInOrderPos = 0.f;
     return BTNode::ERes::LEAVE;
 }
 
@@ -739,6 +753,7 @@ BTNode::ERes TCompAIDrone::actionGoToOrderPos(float dt)
 
 BTNode::ERes TCompAIDrone::actionWaitInOrderPos(float dt)
 {
+    moveLanternPatrolling(orderPosition, dt);
     timerWaitingInOrderPos += dt;
     if(timerWaitingInOrderPos < maxTimeWaitingInOrderPos){
         waitInPosDrone(orderPosition, dt, maxSpeed, deg2rad(60.f));
@@ -751,6 +766,7 @@ BTNode::ERes TCompAIDrone::actionWaitInOrderPos(float dt)
 
 BTNode::ERes TCompAIDrone::actionGenerateNavmeshPlayerLost(float dt)
 {
+    timerWaitingInOrderPos += dt;
     TCompTransform* mypos = get<TCompTransform>();
     VEC3 dir = lastPlayerKnownPos - mypos->getPosition();
     dir = dir - VEC3(0, dir.y, 0);

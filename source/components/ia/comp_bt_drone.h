@@ -69,6 +69,7 @@ private:
     CHandle hLanternLight;
     bool lanternPatrollingLeft = false;
     float startingPitch = 0;
+    float rotationSpeedLantern = deg2rad(20.f);
 
     /* Lantern rotation lerping */
     QUAT lerpingStartingRotation = VEC3::Zero;
@@ -89,7 +90,7 @@ private:
     void loadAsserts() override;
 
     /* AUX */
-    bool moveToDestDrone(VEC3 dest, float speed, float dt);
+    bool moveToDestDrone(VEC3 dest, float speed, float dt, bool alsoHeight = true);
     void waitInPosDrone(VEC3 dest, float dt, float speed, float rotSpeed, VEC3 lookAt = VEC3::Zero);
     void moveLanternPatrolling(VEC3 objective, float dt, bool resetPitch = true);
     bool isEntityInFovDrone(const std::string& entityToChase);
