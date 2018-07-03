@@ -1,0 +1,16 @@
+[{
+		"entity": {
+			"name": "Laser",
+			"transform": {
+				"pos": "-38.952583 10.006322 88.931366"
+			},
+			"render": [{
+				"mesh": "data/meshes/laser.mesh",
+				"materials":
+				[
+					"data/materials/mtl_tubo_capsulas.material"
+				]
+			}]
+		}
+	}
+]
