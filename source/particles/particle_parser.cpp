@@ -37,13 +37,14 @@ namespace Particles
             cps->n_system.start_delay = system.value("start_delay", cps->n_system.start_delay);
             cps->n_system.start_lifetime = system.value("start_lifetime", cps->n_system.start_lifetime);
             cps->n_system.start_speed = system.value("start_speed", cps->n_system.start_speed);
-            cps->n_system.start_size = loadVEC3(system.value("d_start_size", "1 1 1"));
-            cps->n_system.start_rotation = loadVEC3(system.value("d_start_rotation", "0 0 0"));
+            cps->n_system.start_size = loadVEC3(system.value("start_size", "1 1 1"));
+            cps->n_system.start_rotation = loadVEC3(system.value("start_rotation", "0 0 0"));
             cps->n_system.random_rotation = system.value("random_rotation", cps->n_system.random_rotation);
             cps->n_system.start_color = loadVEC4(system.value("start_color", "1 1 1 1"));
             cps->n_system.gravity = system.value("gravity", cps->n_system.gravity);
             cps->n_system.simulation_speed = system.value("simulation_speed", cps->n_system.simulation_speed);
             cps->n_system.max_particles = system.value("max_particles", cps->n_system.max_particles);
+            cps->n_system.start_rotation = VEC3(deg2rad(cps->n_system.start_rotation.x), cps->n_system.start_rotation.y, cps->n_system.start_rotation.z);
         }
         
         // emission
@@ -82,7 +83,15 @@ namespace Particles
                 VEC3 value = loadVEC3(vlt[1]);
                 cps->n_velocity.velocity.set(time, value);
             }
-            cps->n_velocity.velocity.sort();
+
+            for (auto& rot : velocity["rotation"])
+            {
+                float time = rot[0];
+                VEC3 value = loadVEC3(rot[1]);
+                cps->n_velocity.rotation.set(time, value);
+            }
+            cps->n_velocity.rotation.sort();
+
             cps->n_velocity.acceleration = velocity.value("acceleration", cps->n_velocity.acceleration);
             cps->n_velocity.wind = velocity.value("wind", cps->n_velocity.wind);
         }
@@ -92,6 +101,8 @@ namespace Particles
         {
             const std::string renderMode = render.value("mode", "billboard");
             if (renderMode == "billboard")        cps->n_renderer.mode = TCoreSystem::TNRenderer::BILLBOARD;
+            if (renderMode == "horizontal")        cps->n_renderer.mode = TCoreSystem::TNRenderer::HORIZONTAL;
+            if (renderMode == "vertical")        cps->n_renderer.mode = TCoreSystem::TNRenderer::VERTICAL;
 
             cps->n_renderer.initialFrame = render.value("initial_frame", cps->n_renderer.initialFrame);
             cps->n_renderer.frameSize = loadVEC2(render.value("frame_size", "1 1"));
@@ -115,7 +126,7 @@ namespace Particles
         // collision
         const json& collision = data["collision"];
         {
-            cps->n_collision.collision = system.value("collision", cps->n_collision.collision);
+            cps->n_collision.collision = collision.value("collision", cps->n_collision.collision);
         }
 
         // color
@@ -160,10 +171,10 @@ namespace Particles
             jsonfile["system"]["start_delay"] = system->n_system.start_delay;
             jsonfile["system"]["start_lifetime"] = E_ROUND(system->n_system.start_lifetime);
             jsonfile["system"]["start_speed"] = E_ROUND(system->n_system.start_speed);
-            jsonfile["system"]["start_size"] = std::to_string(E_ROUND(system->n_system.start_size.x)) + " " + std::to_string(E_ROUND(system->n_system.start_size.y)) + " " + std::to_string(E_ROUND(system->n_system.start_size.z));
-            jsonfile["system"]["start_rotation"] = std::to_string(E_ROUND(system->n_system.start_rotation.x)) + " " + std::to_string(E_ROUND(system->n_system.start_rotation.y)) + " " + std::to_string(E_ROUND(system->n_system.start_rotation.z));
+            jsonfile["system"]["start_size"] = stringify(system->n_system.start_size); 
+            jsonfile["system"]["start_rotation"] = stringify(system->n_system.start_rotation);
             jsonfile["system"]["random_rotation"] = E_ROUND(system->n_system.random_rotation);
-            jsonfile["system"]["start_color"] = std::to_string(E_ROUND(system->n_system.start_color.x)) + " " + std::to_string(E_ROUND(system->n_system.start_color.y)) + " " + std::to_string(E_ROUND(system->n_system.start_color.z));
+            jsonfile["system"]["start_color"] = stringify(system->n_system.start_color);
             jsonfile["system"]["gravity"] = E_ROUND(system->n_system.gravity);
             jsonfile["system"]["simulation_speed"] = E_ROUND(system->n_system.simulation_speed);
             jsonfile["system"]["max_particles"] =system->n_system.max_particles;
@@ -180,13 +191,13 @@ namespace Particles
         // Write shape
         {
             jsonfile["shape"]["type"] = std::to_string(system->n_shape.type);
-            jsonfile["shape"]["size"] = std::to_string(E_ROUND(system->n_shape.size.x)) + " " + std::to_string(E_ROUND(system->n_shape.size.y)) + " " + std::to_string(E_ROUND(system->n_shape.size.z));
+            jsonfile["shape"]["size"] = stringify(system->n_shape.size);
             jsonfile["shape"]["angle"] = system->n_shape.angle;
         }
         
         // Write velocity
         {
-            jsonfile["velocity"]["constant_velocity"] = std::to_string(E_ROUND(system->n_velocity.constant_velocity.x)) + " " + std::to_string(E_ROUND(system->n_velocity.constant_velocity.y)) + " " + std::to_string(E_ROUND(system->n_velocity.constant_velocity.z));
+            jsonfile["velocity"]["constant_velocity"] = stringify(system->n_velocity.constant_velocity);
             json j_objects = json::array();
             for (int i = 0; i < system->n_velocity.velocity.keyframes.size(); i++) {
                 j_objects.push_back(stringify(system->n_velocity.velocity.keyframes[i].value));
@@ -215,7 +226,7 @@ namespace Particles
         {
             jsonfile["renderer"]["mode"] = system->n_renderer.mode;
             jsonfile["renderer"]["texture"] = system->n_renderer.texture->getName();
-            jsonfile["renderer"]["frame_size"] = std::to_string(E_ROUND(system->n_renderer.frameSize.x)) + " " + std::to_string(E_ROUND(system->n_renderer.frameSize.y));
+            jsonfile["renderer"]["frame_size"] = stringify(system->n_renderer.frameSize);
             jsonfile["renderer"]["initial_frame"] = system->n_renderer.initialFrame;
             jsonfile["renderer"]["num_frames"] = system->n_renderer.numFrames;
             jsonfile["renderer"]["frame_speed"] = E_ROUND(system->n_renderer.frameSpeed);
@@ -248,9 +259,9 @@ namespace Particles
         }
 
         std::string finalname = system->getName() + ".tmp";
-        std::fstream file(system->getName());
-        file << jsonfile;
-
+        std::ofstream out(finalname);
+        out << jsonfile.dump();
+        out.close();
         /*
         // Write life
         {

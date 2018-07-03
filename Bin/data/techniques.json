@@ -405,7 +405,7 @@
 		"category" : "particles",
 		"z" : "test_but_no_write",
 		"rs_config" : "cull_none",
-		"blend" : "additive_by_src_alpha"
+		"blend" : "combinative"
 	},
 	"pbr_instanced_volume": {
 		"vs_file": "data/shaders/pbr_vol_instanced.fx",

@@ -184,22 +184,26 @@ namespace Particles
             }
             else
             {
+                CEntity * ent = _entity;
+                TCompTransform * c_ent_transform = ent->get<TCompTransform>();
+
                 float life_ratio = p.max_lifetime > 0.f ? clamp(p.lifetime / p.max_lifetime, 0.f, 1.f) : 1.f;
 
                 VEC3 dir = p.velocity;
                 dir.Normalize();
                 p.velocity += dir * _core->n_velocity.acceleration * delta * _core->n_velocity.velocity.get(life_ratio); //Velocity over lifetime
                 p.velocity += kGravity * _core->n_system.gravity * delta;
+                p.velocity += AddNoiseOnAngle(-180, 180) * _core->n_noise.strength;
                 p.position += p.velocity * delta;
                 p.position += kWindVelocity * _core->n_velocity.wind * delta;
-                p.rotation += _core->n_system.start_rotation * delta;
+                p.rotation += delta * _core->n_velocity.rotation.get(life_ratio);
 
                 if (_core->n_collision.collision)
                     p.position.y = std::max(0.f, p.position.y);
 
-                p.color = _core->n_system.start_color * _core->n_color.colors.get(life_ratio) * fadeRatio;
-                p.color.z *= _core->n_color.opacity;
-                p.size = _core->n_system.start_size * _core->n_size.sizes.get(life_ratio);
+                p.color = _core->n_color.colors.get(life_ratio) * fadeRatio;
+                p.color.w *= _core->n_color.opacity;
+                p.size = _core->n_size.sizes.get(life_ratio);
 
                 int frame_idx = (int)(p.lifetime * _core->n_renderer.frameSpeed);
                 p.frame = _core->n_renderer.initialFrame + (frame_idx % _core->n_renderer.numFrames);
@@ -223,7 +227,7 @@ namespace Particles
             CEntity * ent = _entity;
             TCompTransform * c_ent_transform = ent->get<TCompTransform>();
             _deploy_distance += (_lastSystemPosition - c_ent_transform->getPosition()).Length();
-            if (_deploy_distance > 1)
+            if (_deploy_distance > 0.1)
             {
                 _deploy_distance = 0;
                 emit(_core->n_emission.rate_distance);
@@ -233,56 +237,6 @@ namespace Particles
         }
 
         return fadeRatio > 0.f && (!_particles.empty() || _core->n_system.looping);
-        /*
-        delta *= _core->life.timeFactor;
-
-        auto it = _particles.begin();
-        while (it != _particles.end())
-        {
-            TParticle& p = *it;
-
-            p.lifetime += delta;
-
-            if (p.max_lifetime > 0.f && p.lifetime >= p.max_lifetime)
-            {
-                it = _particles.erase(it);
-            }
-            else
-            {
-                VEC3 dir = p.velocity;
-                dir.Normalize();
-                p.velocity += dir * _core->movement.acceleration * delta;
-                p.velocity += kGravity * _core->movement.gravity * delta;
-                p.position += p.velocity * delta;
-                p.position += kWindVelocity * _core->movement.wind * delta;
-                p.rotation += _core->movement.spin * delta;
-                if (_core->movement.ground)
-                {
-                    p.position.y = std::max(0.f, p.position.y);
-                }
-
-                float life_ratio = p.max_lifetime > 0.f ? clamp(p.lifetime / p.max_lifetime, 0.f, 1.f) : 1.f;
-                p.color = _core->color.colors.get(life_ratio) * fadeRatio;
-                p.color.z *= _core->color.opacity;
-                p.size = _core->size.sizes.get(life_ratio);
-
-                int frame_idx = (int)(p.lifetime * _core->render.frameSpeed);
-                p.frame = _core->render.initialFrame + (frame_idx % _core->render.numFrames);
-
-                ++it;
-            }
-        }
-
-        // check if a new batch of particles needs to be generated
-        if (_core->emission.cyclic && _core->emission.interval > 0.f) {
-            _time += delta;
-            if (_time > _core->emission.interval) {
-                emit();
-                _time -= _core->emission.interval;
-            }
-        }
-
-        return fadeRatio > 0.f && (!_particles.empty() || _core->emission.cyclic);*/
     }
 
     // To update this with the compute shader.
@@ -297,8 +251,16 @@ namespace Particles
         assert(technique && quadMesh && eCurrentCamera);
         TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
         assert(camera);
-        const VEC3 cameraPos = camera->getPosition();
-        const VEC3 cameraUp = camera->getUp();
+        VEC3 cameraPos = camera->getPosition();
+        VEC3 cameraUp = camera->getUp();
+
+        //Hardcoded, move it from here.
+        CEntity * ent = _entity;
+        TCompTransform * c_ent_transform = ent->get<TCompTransform>();
+        if (_core->n_renderer.mode == TCoreSystem::TNRenderer::EMODE::HORIZONTAL) {
+            cameraPos = c_ent_transform->getPosition() + c_ent_transform->getUp();
+            cameraUp = c_ent_transform->getFront();
+        }
 
         const int frameCols = static_cast<int>(_core->n_renderer.frameSize.x);
 
@@ -307,7 +269,8 @@ namespace Particles
 
         for (auto& p : _particles)
         {
-            MAT44 bb = MAT44::CreateBillboard(p.position, cameraPos, cameraUp);
+            VEC3 pos = p.is_update ? c_ent_transform->getPosition() + p.position : p.position;
+            MAT44 bb = MAT44::CreateBillboard(pos, cameraPos, cameraUp);
             MAT44 sc = MAT44::CreateScale(p.size * p.scale);
             MAT44 rt = MAT44::CreateFromYawPitchRoll(p.rotation.x, p.rotation.y, p.rotation.z);
 
@@ -382,13 +345,13 @@ namespace Particles
         for (int i = 0; i < _core->n_emission.rate_time && _particles.size() < _core->n_system.max_particles; ++i)
         {
             TParticle particle;
-            particle.position = VEC3::Transform(generatePosition(), world);
+            particle.position = generatePosition();
             particle.velocity = generateVelocity();
             particle.color = _core->n_color.colors.get(0.f);
-            particle.size = _core->n_size.sizes.get(0.f);
+            particle.size = _core->n_system.start_size;
             particle.scale = _core->n_size.scale + random(-_core->n_size.scale_variation, _core->n_size.scale_variation);
             particle.frame = _core->n_renderer.initialFrame;
-            particle.rotation = _core->n_system.random_rotation * M_PI * _core->n_system.start_rotation;
+            particle.rotation = (1 - _core->n_system.random_rotation) * M_PI * VEC3(deg2rad(_core->n_system.start_rotation.x), deg2rad(_core->n_system.start_rotation.y), deg2rad(_core->n_system.start_rotation.z));
             particle.lifetime = 0.f;
             particle.max_lifetime = _core->n_system.duration + random(-_core->n_emission.variation, _core->n_emission.variation);
 
@@ -439,6 +402,7 @@ namespace Particles
             particle.rotation = _core->n_system.random_rotation * M_PI * _core->n_system.start_rotation;
             particle.lifetime = 0.f;
             particle.max_lifetime = _core->n_system.duration + random(-_core->n_emission.variation, _core->n_emission.variation);
+            particle.is_update = false;
 
             _particles.push_back(particle);
         }
@@ -562,5 +526,20 @@ namespace Particles
     {
         _fadeDuration = duration;
         _fadeTime = 0.f;
+    }
+
+    VEC3 CSystem::AddNoiseOnAngle(float min, float max) {
+
+        float xNoise = random(min, max);
+        float yNoise = random(min, max);
+        float zNoise = random(min, max);
+
+        // Convert Angle to Vector3
+        VEC3 noise = VEC3(
+            sin(2 * M_PI * xNoise / 360),
+            sin(2 * M_PI * yNoise / 360),
+            sin(2 * M_PI * zNoise / 360)
+        );
+        return noise;
     }
 }

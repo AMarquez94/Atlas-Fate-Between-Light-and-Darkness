@@ -163,5 +163,19 @@
 				"mesh" : "axis.mesh"
 			}
     }
+  },
+	{
+    "entity":
+    {
+      "name": "ShadowMergeGround"
+      ,
+			"hierarchy": {
+        "parent": "The Player",
+        "pos": "0 0 0"
+      },
+			"particles" : {
+				"core" : "data/particles/sm_ground.particles"
+			}
+    }
   }
 ]

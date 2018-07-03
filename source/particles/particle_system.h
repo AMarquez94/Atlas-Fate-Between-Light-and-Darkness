@@ -51,6 +51,7 @@ namespace Particles
             enum EType { LOCAL = 0, WORLD };
             VEC3 constant_velocity = VEC3::Zero;
             TTrack<VEC3> velocity;
+            TTrack<VEC3> rotation;
 
             float angular = 0.f;
             float acceleration = 0.f;
@@ -192,6 +193,7 @@ namespace Particles
         VEC3 generatePosition() const;
         VEC3 generateVelocity() const;
         VEC3 generateDirection() const;
+        VEC3 AddNoiseOnAngle(float min, float max);
 
         CHandle             _entity;
         TParticlesHandle    _handle;

@@ -168,5 +168,100 @@
 				"mesh" : "axis.mesh"
 			}
     }
+  },
+	  {
+    "entity":
+    {
+      "name": "PropPlayer"
+      ,
+
+			"hierarchy": {
+        "parent": "The Player",
+        "pos": "0 0.001 0"
+      },
+			      "transform": {},
+			"render" : {
+				"mesh" : "axis.mesh"
+			},
+						"particles" : {
+				"core" : "data/particles/sm_ground.particles"
+			}
+    }
+  },
+		  {
+    "entity":
+    {
+      "name": "PropPlayer"
+      ,
+
+			"hierarchy": {
+        "parent": "The Player",
+        "pos": "0 0 0"
+      },
+			      "transform": {},
+			"render" : {
+				"mesh" : "axis.mesh"
+			},
+						"particles" : {
+				"core" : "data/particles/sm_top.particles"
+			}
+    }
+  },
+			  {
+    "entity":
+    {
+      "name": "PropPlayer"
+      ,
+
+			"hierarchy": {
+        "parent": "The Player",
+        "pos": "0 0 0"
+      },
+			      "transform": {},
+			"render" : {
+				"mesh" : "axis.mesh"
+			},
+						"particles" : {
+				"core" : "data/particles/sm_whisps.particles"
+			}
+    }
+  },
+				  {
+    "entity":
+    {
+      "name": "PropPlayer"
+      ,
+
+			"hierarchy": {
+        "parent": "The Player",
+        "pos": "0 0 0"
+      },
+			      "transform": {},
+			"render" : {
+				"mesh" : "axis.mesh"
+			},
+						"particles" : {
+				"core" : "data/particles/sm_whisps2.particles"
+			}
+    }
+  },
+					  {
+    "entity":
+    {
+      "name": "PropPlayer"
+      ,
+
+			"hierarchy": {
+        "parent": "The Player",
+        "pos": "0 0 0"
+      },
+			      "transform": {},
+			"render" : {
+				"mesh" : "axis.mesh"
+			},
+						"particles" : {
+				"core" : "data/particles/sm_top_trail.particles"
+			}
+    }
   }
 ]

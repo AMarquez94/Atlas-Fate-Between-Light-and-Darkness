@@ -154,7 +154,7 @@ void ParticlesEditor::debugSystem() {
         ImGui::DragFloat3("Start Rotation", &_main_system->n_system.start_rotation.x, 0.01f, 0, 100.f);
         ImGui::DragFloat("Randomize Rotation", &_main_system->n_system.random_rotation, 0.01f, 0.f, 1.f);
         ImGui::ColorEdit4("Start Color", &_main_system->n_system.start_color.x, 0.01f);
-        ImGui::DragFloat("Gravity Modifier", &_main_system->n_system.gravity, 0.01f, 0, 100.f);
+        ImGui::DragFloat("Gravity Modifier", &_main_system->n_system.gravity, 0.01f, -100, 100.f);
         ImGui::DragFloat("Simulation Speed", &_main_system->n_system.simulation_speed, 1, 1, 100);
         ImGui::Checkbox("Collision on Ground", &_main_system->n_collision.collision);
         ImGui::DragInt("Max. Particles", &_main_system->n_system.max_particles, 1, 1, 100);
@@ -240,16 +240,15 @@ void ParticlesEditor::debugSize() {
         }
     }
 
-    /*
-    if (ImGui::CollapsingHeader("Rotation over Lifetime")) {
+    //if (ImGui::CollapsingHeader("Rotation over Lifetime")) {
 
-        if (ImGui::Curve("Range [0,1]", ImVec2(600, 200), 10, foo))
-        {
-            // curve changed
-            dbg("test");
-        }
-        ImGui::DragFloat("Angular velocity", &_main_system->n_velocity.angular, 0.01f, 0.f, 50.f);
-    }*/
+    //    if (ImGui::Curve("Range [0,1]", ImVec2(600, 200), 10, foo))
+    //    {
+    //        // curve changed
+    //        dbg("test");
+    //    }
+    //    ImGui::DragFloat("Angular velocity", &_main_system->n_velocity.angular, 0.01f, 0.f, 50.f);
+    //}
 }
 
 void ParticlesEditor::debugNoise() {
@@ -333,6 +332,14 @@ void ParticlesEditor::debugRender() {
 
 void ParticlesEditor::saveParticleSystem() {
 
+    if (_main_debug.isValid()) {
+
+        CEntity * e_main = _main_debug;
+        TCompParticles * particles = e_main->get<TCompParticles>();
+
+        Particles::CParser parser = Particles::CParser();
+        parser.writeFile(particles->_core);
+    }
 }
 
 void ParticlesEditor::LoadParticleSystem() {
@@ -359,6 +366,9 @@ void ParticlesEditor::LoadParticleSystem() {
     c_e_particles->_core = Resources.get("data/particles/" + _particles_files[_internal_index])->as<Particles::TCoreSystem>();
     _main_system = const_cast<Particles::TCoreSystem*>(c_e_particles->_core);
     e->sendMsg(TMsgEntityCreated{});
+
+    TCompTransform * c_e_transform = e->get<TCompTransform>();
+    c_e_transform->setPosition(VEC3(0, 1, 0));
 
     std::vector<TTrack<VEC3>::TKeyframe> sizes = _main_system->n_size.sizes.getKeyframes();
     for (unsigned int i = 0; i < sizes.size(); i++)

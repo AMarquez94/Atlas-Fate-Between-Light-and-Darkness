@@ -135,6 +135,13 @@ const char *convert(const std::string & s)
     return s.c_str();
 }
 
+std::string stringify(VEC2 pos) {
+
+    return std::to_string(E_ROUND(pos.x)) + " " +
+    std::to_string(E_ROUND(pos.y));
+}
+
+
 std::string stringify(VEC3 pos) {
 
     return std::to_string(E_ROUND(pos.x)) + " " +
