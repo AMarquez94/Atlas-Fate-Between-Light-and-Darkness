@@ -1,0 +1,50 @@
+[
+  {
+    "entity":
+    {
+      "name": "valla_torre"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_torre"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_valla_torre.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muro_ladrillo.material"
+            ,
+            "data/materials/mtl_valla_torre.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 1.4 0.2"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

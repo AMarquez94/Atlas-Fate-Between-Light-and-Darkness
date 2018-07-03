@@ -35,9 +35,11 @@
 			"data/scenes/ZoneA/zone_a_puentes_arcos.scene",
 			"data/scenes/zona_a_barandillas.scene",
 			"data/scenes/zona_a_columnas.scene",
-			"data/scenes/zona_a_salientes.scene",
+			
 			"data/scenes/zona_a_muralla.scene",
 			"data/scenes/zona_a_valla_torre.scene",
+			"data/scenes/zona_a_coberturas.scene",
+			"data/scenes/colliders_prova.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene"
 			
 		]

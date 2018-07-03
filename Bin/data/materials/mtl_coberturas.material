@@ -1,0 +1,18 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_coberturas_alb.dds"
+    ,
+    "metallic": "data/textures/tx_coberturas_met.dds"
+    ,
+    "roughness": "data/textures/tx_coberturas_rgh.dds"
+    ,
+    "normal": "data/textures/tx_coberturas_nml.dds"
+    ,
+    "height": "data/textures/tx_coberturas_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_coberturas_emi.dds"
+  }
+}

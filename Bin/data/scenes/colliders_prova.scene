@@ -1,0 +1,76 @@
+[
+  {
+    "entity":
+    {
+      "name": "colliders_prova"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_004"
+      ,
+      "transform":
+      {
+        "pos": "-39.185 11.657 -99.0053"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.185 0.195 0.185"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_005"
+      ,
+      "transform":
+      {
+        "pos": "-43.185 11.657 -103.19"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.195 0.31"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_006"
+      ,
+      "transform":
+      {
+        "pos": "-40.97 11.657 -107.375"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.4 0.195 0.185"
+      }
+    }
+  }
+]
