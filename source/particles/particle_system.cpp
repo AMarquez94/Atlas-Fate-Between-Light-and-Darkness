@@ -227,7 +227,7 @@ namespace Particles
             CEntity * ent = _entity;
             TCompTransform * c_ent_transform = ent->get<TCompTransform>();
             _deploy_distance += (_lastSystemPosition - c_ent_transform->getPosition()).Length();
-            if (_deploy_distance > 0.1)
+            if (_deploy_distance > 0.05)
             {
                 _deploy_distance = 0;
                 emit(_core->n_emission.rate_distance);

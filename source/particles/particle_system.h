@@ -74,7 +74,7 @@ namespace Particles
         struct TNoise
         {       
             const CTexture* texture = nullptr; // particle texture
-            float strength = 1.f;
+            float strength = 0.f;
             float frequency = 0.5f;
             float scroll_speed = 0.f;
             bool damping = true;
