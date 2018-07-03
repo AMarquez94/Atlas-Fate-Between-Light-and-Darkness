@@ -149,6 +149,8 @@ public:
     bool assertNotPlayerInFovForSureNorOrder(float dt);
     bool assertNotPlayerInFovNorArtificialNoiseNorOrder(float dt);
     bool assertNotPlayerInFovNorNoiseNorOrder(float dt);
+    bool assertNotPlayerInFovNorOrder(float dt);
+    bool assertNotPlayerInFovForSureNorNextToNoise(float dt);
 
 
     const std::string getStateForCheckpoint();

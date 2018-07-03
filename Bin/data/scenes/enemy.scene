@@ -69,7 +69,7 @@
 			}
 		}
 	}, {
-		"xentity": {
+		"entity": {
 			"prefab": "data/prefabs/mimetic.prefab",
 			"name": "Mimetic 1",
 			"transform": {

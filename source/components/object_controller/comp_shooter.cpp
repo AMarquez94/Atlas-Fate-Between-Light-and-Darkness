@@ -73,7 +73,7 @@ void TCompShooter::update(float dt) {
                 shootingDir.Normalize();
                 EngineSound.playSound2D("drone_shot");
                 physx::PxRaycastHit hit;
-                dbg("SHOOT\n");
+                //dbg("SHOOT\n");
                 if (EnginePhysics.Raycast(mypos->getPosition(), shootingDir, bullet_range, hit, (physx::PxQueryFlag::eSTATIC | physx::PxQueryFlag::eDYNAMIC), pxQueryFilterData)) {
                     CHandle hitCollider;
                     hitCollider.fromVoidPtr(hit.actor->userData);
@@ -88,7 +88,7 @@ void TCompShooter::update(float dt) {
                                 /* Player has been shooted */
                                 entityShooted->sendMsg(msg);
                                 EngineLogic.execScriptDelayed("playSound2D(\"hitmarker\")", 0.4f);
-                                dbg("Auch\n");
+                                //dbg("Auch\n");
                             }
                             else {
                                 /* TODO: to complete */
@@ -100,7 +100,7 @@ void TCompShooter::update(float dt) {
                             EngineLogic.execScriptDelayed("exeShootImpactSound()", 0.1f);
                         }
                         TCompName* myName = entityShooted->get<TCompName>();
-                        dbg("HIT entity %s\n", myName->getName());
+                        //dbg("HIT entity %s\n", myName->getName());
                     }
                 }
                 else {
