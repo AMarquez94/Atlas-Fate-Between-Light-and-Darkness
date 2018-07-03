@@ -6,7 +6,7 @@
 class CTransform {
     QUAT rot;
     VEC3 pos;
-    float scale = 1.0f;
+    VEC3 scale = VEC3(1.f, 1.f, 1.f);
 
 public:
 
@@ -20,8 +20,8 @@ public:
     QUAT getRotation() const { return rot; }
     void setRotation(QUAT new_rot) { rot = new_rot; }
 
-    float getScale() const { return scale; }
-    void  setScale(float new_scale) { scale = new_scale; }
+    VEC3 getScale() const { return scale; }
+    void  setScale(VEC3 new_scale) { scale = new_scale; }
     // -------------------------------------------
     MAT44 asMatrix() const {
         return MAT44::CreateScale(scale)

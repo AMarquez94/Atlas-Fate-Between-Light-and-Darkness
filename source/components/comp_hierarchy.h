@@ -22,7 +22,7 @@ struct TCompHierarchy : public CTransform, public TCompBase {
   void update(float dt);
   void debugInMenu();
   static void registerMsgs();
-  void convertTotalTransformToRelative(VEC3 objPosition, QUAT objRotation, float objScale, VEC3& resultPosition, QUAT& resultRotation, float& resultScale);
+  void convertTotalTransformToRelative(VEC3 objPosition, QUAT objRotation, VEC3 objScale, VEC3& resultPosition, QUAT& resultRotation, VEC3& resultScale);
   QUAT getRelativeLookAt(VEC3 new_target);
   DECL_SIBLING_ACCESS();
 };
