@@ -20,7 +20,7 @@ private:
     float flyingUpOffset = 1.f;   //Offset for up/down flight
     float flyingDownOffset = 2.f;   //Offset for up/down flight
     float addedOffset = 0.5f;
-    physx::PxCapsuleGeometry geometrySweep;
+    physx::PxBoxGeometry geometrySweep;
 
     VEC3 lastPlayerKnownPositionOffset = VEC3::Zero;
 

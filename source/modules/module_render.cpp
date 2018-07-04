@@ -275,11 +275,11 @@ void CModuleRender::activateMainCamera() {
 
 void CModuleRender::generateFrame() {
 
-	{
+    {
         // SHADOW GENERATION
         activateMainCamera();
-		PROFILE_FUNCTION("CModuleRender::shadowsMapsGeneration");
-		CTraceScoped gpu_scope("shadowsMapsGeneration");
+        PROFILE_FUNCTION("CModuleRender::shadowsMapsGeneration");
+        CTraceScoped gpu_scope("shadowsMapsGeneration");
         if (_generateShadows) {
             // Generate the shadow map for each active light
             getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
@@ -292,7 +292,7 @@ void CModuleRender::generateFrame() {
                 c->generateShadowMap();
             });
         }
-	}
+    }
 
     {
         // MAIN FRAME RENDER
@@ -308,28 +308,28 @@ void CModuleRender::generateFrame() {
     }
 
     {
-		// POST PROCESSING STACK
-		CTexture * curr_rt = rt_main;
-		CHandle camera_render = Engine.getCameras().getCurrentCamera();
+        // POST PROCESSING STACK
+        CTexture * curr_rt = rt_main;
+        CHandle camera_render = Engine.getCameras().getCurrentCamera();
 
-		if (camera_render.isValid() && _generatePostFX) {
-			CEntity * e_cam = camera_render;
+        if (camera_render.isValid() && _generatePostFX) {
+            CEntity * e_cam = camera_render;
 
-			// The bloom blurs the given input
-			TCompRenderBloom* c_render_bloom = e_cam->get< TCompRenderBloom >();
-			if (c_render_bloom) {
-				c_render_bloom->generateHighlights(deferred.rt_acc_light);
-				c_render_bloom->addBloom();
-			}
+            // The bloom blurs the given input
+            TCompRenderBloom* c_render_bloom = e_cam->get< TCompRenderBloom >();
+            if (c_render_bloom) {
+                c_render_bloom->generateHighlights(deferred.rt_acc_light);
+                c_render_bloom->addBloom();
+            }
 
-			TCompRenderBlur * c_render_blur = e_cam->get< TCompRenderBlur >();
-			if (c_render_blur)
-				curr_rt = c_render_blur->apply(curr_rt);
+            TCompRenderBlur * c_render_blur = e_cam->get< TCompRenderBlur >();
+            if (c_render_blur)
+                curr_rt = c_render_blur->apply(curr_rt);
 
-			// Check if we have a render_fx component
-			TCompRenderBlurRadial * c_render_blur_radial = e_cam->get< TCompRenderBlurRadial >();
-			if (c_render_blur_radial)
-				curr_rt = c_render_blur_radial->apply(curr_rt);
+            // Check if we have a render_fx component
+            TCompRenderBlurRadial * c_render_blur_radial = e_cam->get< TCompRenderBlurRadial >();
+            if (c_render_blur_radial)
+                curr_rt = c_render_blur_radial->apply(curr_rt);
 
             // Check if we have a color grading component
             TCompColorGrading* c_color_grading = e_cam->get< TCompColorGrading >();
@@ -352,11 +352,11 @@ void CModuleRender::generateFrame() {
             TCompAntiAliasing* c_antialiasing = e_cam->get< TCompAntiAliasing >();
             if (c_antialiasing)
                 curr_rt = c_antialiasing->apply(curr_rt);
-		}
+        }
 
-		Render.startRenderInBackbuffer();
-		renderFullScreenQuad("dump_texture.tech", curr_rt);
-	}
+        Render.startRenderInBackbuffer();
+        renderFullScreenQuad("dump_texture.tech", curr_rt);
+    }
 
     {
         // DEBUG DRAWING
@@ -364,38 +364,39 @@ void CModuleRender::generateFrame() {
         assert(tech);
         tech->activate();
 
-    if (_debugMode)
-        debugDraw();
+        if (_debugMode)
+            debugDraw();
 
-    {
-        // RENDER IMGUI
-        PROFILE_FUNCTION("ImGui::Render");
-        CTraceScoped gpu_scope("ImGui");
-        ImGui::Render();
+        {
+            // RENDER IMGUI
+            PROFILE_FUNCTION("ImGui::Render");
+            CTraceScoped gpu_scope("ImGui");
+            ImGui::Render();
+        }
+
+        {
+            // RENDER UI
+            PROFILE_FUNCTION("GUI");
+            CTraceScoped gpu_scope("GUI");
+
+            activateRSConfig(RSCFG_CULL_NONE);
+            activateZConfig(ZCFG_DISABLE_ALL);
+            activateBlendConfig(BLEND_CFG_COMBINATIVE);
+
+            activateCamera(CEngine::get().getGUI().getCamera(), Render.width, Render.height);
+            CEngine::get().getModules().renderGUI();
+
+            activateRSConfig(RSCFG_DEFAULT);
+            activateZConfig(ZCFG_DEFAULT);
+            activateBlendConfig(BLEND_CFG_DEFAULT);
+        }
+
+        {
+            // BACKBUFFER SWAPPING
+            PROFILE_FUNCTION("Render.swapChain");
+            Render.swapChain->Present(0, 0);
+        }
     }
-
-	{
-        // RENDER UI
-		PROFILE_FUNCTION("GUI");
-		CTraceScoped gpu_scope("GUI");
-		
-		activateRSConfig(RSCFG_CULL_NONE);
-		activateZConfig(ZCFG_DISABLE_ALL);
-		activateBlendConfig(BLEND_CFG_COMBINATIVE);
-
-		activateCamera(CEngine::get().getGUI().getCamera(), Render.width, Render.height);
-		CEngine::get().getModules().renderGUI();
-
-		activateRSConfig(RSCFG_DEFAULT);
-		activateZConfig(ZCFG_DEFAULT);
-		activateBlendConfig(BLEND_CFG_DEFAULT);
-	}
-
-	{
-        // BACKBUFFER SWAPPING
-		PROFILE_FUNCTION("Render.swapChain");
-		Render.swapChain->Present(0, 0);
-	}
 }
 
 void CModuleRender::debugDraw() {

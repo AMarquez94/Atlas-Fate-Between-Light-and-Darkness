@@ -154,12 +154,10 @@ void TCompAIDrone::onMsgEntityCreated(const TMsgEntityCreated & msg)
     cone_of_light->turnOnLight();
 
     TCompCollider* myCollider = get<TCompCollider>();
-    CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
-    geometrySweep.radius = capsuleCollider->radius + 0.1f;
-    geometrySweep.halfHeight = capsuleCollider->height / 2 + 0.1f;
+    CPhysicsBox * boxCollider = (CPhysicsBox *)myCollider->config;
+    geometrySweep.halfExtents = boxCollider->size;
 
     myHandle = CHandle(this);
-
 }
 
 void TCompAIDrone::onMsgPlayerDead(const TMsgPlayerDead& msg) {
@@ -551,7 +549,7 @@ bool TCompAIDrone::isRespectingVerticalOffset(VEC3 position, float dt)
         }
         downSweep = isHit;
     }
-    bool upSweep = EnginePhysics.Sweep(geometrySweep, position + VEC3(0, geometrySweep.halfHeight * 2, 0), QUAT(0, 0, 0, 1), VEC3(0, 1, 0), flyingUpOffset + addedOffset, hits);
+    bool upSweep = EnginePhysics.Sweep(geometrySweep, position + VEC3(0, geometrySweep.halfExtents.y * 2, 0), QUAT(0, 0, 0, 1), VEC3(0, 1, 0), flyingUpOffset + addedOffset, hits);
     if (upSweep) {
         bool isHit = true;
         for (int i = 0; i < hits.size(); i++) {

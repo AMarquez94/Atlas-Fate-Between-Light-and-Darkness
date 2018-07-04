@@ -119,7 +119,9 @@
 			},
 			"shadow_controller": {},
 			"player_attack_cast": {
-				"radius": 2
+				"radiusAttack": 2,
+				"radiusMoveObject": 1,
+				"moveObjects_fov": 30
 			},
 			"fsm": {
 				"file": "data/fsm/player.fsm"
@@ -141,6 +143,7 @@
 				"auxCamera": "SMCameraAux",
 				"timesRemoveInhibitorKeyPressed": 5
 			},
+			"noclip_controller": {},
 			"emission_controller": {
 				"initial" : "1.0 1.0 1.0 1.0",
 				"intensity" : 1.25

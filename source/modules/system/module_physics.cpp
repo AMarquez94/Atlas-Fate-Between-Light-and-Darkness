@@ -249,6 +249,7 @@ bool CModulePhysics::Overlap(physx::PxGeometry& geometry, VEC3 pos, std::vector<
     PxOverlapBuffer px_hit(overlapHit, 256);
 
     physx::PxTransform transform(PxVec3(pos.x, pos.y, pos.z));
+
     bool status = gScene->overlap(geometry, transform, px_hit, filterdata);
 
     if (status) {

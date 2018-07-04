@@ -1,11 +1,12 @@
 {
-	"scene_map_intro": {
-		"static_data": {
-			"initial_script": "map_intro",
-			"navmesh": "data/navmeshes/milestone2_navmesh.bin"
-		},
+  "scene_map_intro": {
+    "static_data": {
+      "initial_script": "map_intro",
+      "navmesh": "data/navmeshes/milestone2_navmesh.bin"
+    },
     "scene_group": [
       "data/scenes/Map_Intro/player_fsm.scene",
+      "data/scenes/Map_Intro/enemy.scene",
       "data/scenes/Map_Intro/sp_dynamic_lights.scene",
       "data/scenes/Map_Intro/milestone2_map_pre.scene",
       "data/scenes/Map_Intro/milestone2_map_lights2.scene",
@@ -13,38 +14,39 @@
       "data/scenes/Map_Intro/test_instancing.scene",
       "data/scenes/Map_Intro/capsules.scene",
       "data/scenes/Map_Intro/camera.scene",
-      "data/scenes/Map_Intro/checkpoints.scene"
+      "data/scenes/Map_Intro/checkpoints.scene",
+      "data/scenes/Map_Intro/movable_objects.scene"
     ]
-	},
-	"scene_zone_a": {
-		"static_data": {
-			"initial_script": "scene_a",
-			"navmesh": "data/navmeshes/scene_a.bin"
-		},
-		"scene_group": [
-			"data/scenes/ZoneA/player2_fsm.scene",
-			"data/scenes/ZoneA/camera.scene",
-			"data/scenes/ZoneA/sp_dynamic_lights.scene",
-			"data/scenes/ZoneA/map_zone_a.scene",
-			"data/scenes/ZoneA/enemy.scene",
-			"data/scenes/ZoneA/whitebox_zone_light.scene"
-			
-		]
-	},
-	"scene_basilic_courtyard": {
-		"static_data": {
-			"initial_script": "basilic_courtyard",
-			"navmesh": "data/navmeshes/milestone2_navmesh.bin"
-		},
-		"scene_group": [
-			"data/scenes/Basilic_courtyard/player.scene",
-			"data/scenes/ZoneA/sp_dynamic_lights.scene",
-			"data/scenes/Basilic_courtyard/whitebox_patio_basilica.scene",
-			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
-			"data/scenes/Basilic_courtyard/test_instancing.scene",
-			"data/scenes/Basilic_courtyard/capsules.scene",
-			"data/scenes/Basilic_courtyard/camera.scene"
-			
-		]
-	}
+  },
+  "scene_zone_a": {
+    "static_data": {
+      "initial_script": "scene_a",
+      "navmesh": "data/navmeshes/scene_a.bin"
+    },
+    "scene_group": [
+      "data/scenes/ZoneA/player2_fsm.scene",
+      "data/scenes/ZoneA/camera.scene",
+      "data/scenes/ZoneA/sp_dynamic_lights.scene",
+      "data/scenes/ZoneA/map_zone_a.scene",
+      "data/scenes/ZoneA/enemy.scene",
+      "data/scenes/ZoneA/whitebox_zone_light.scene"
+
+    ]
+  },
+  "scene_basilic_courtyard": {
+    "static_data": {
+      "initial_script": "basilic_courtyard",
+      "navmesh": "data/navmeshes/milestone2_navmesh.bin"
+    },
+    "scene_group": [
+      "data/scenes/Basilic_courtyard/player.scene",
+      "data/scenes/ZoneA/sp_dynamic_lights.scene",
+      "data/scenes/Basilic_courtyard/whitebox_patio_basilica.scene",
+      "data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
+      "data/scenes/Basilic_courtyard/test_instancing.scene",
+      "data/scenes/Basilic_courtyard/capsules.scene",
+      "data/scenes/Basilic_courtyard/camera.scene"
+
+    ]
+  }
 }

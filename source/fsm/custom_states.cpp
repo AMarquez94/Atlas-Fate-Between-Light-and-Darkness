@@ -328,7 +328,6 @@ namespace FSM
 
         CEntity* e = ctx.getOwner();
         e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::resetState });
-        dbg("reset stated\n");
     }
 
     bool ExitMergeState::load(const json& jData) {
