@@ -207,7 +207,7 @@ void TCompRigidbody::destroyDynamicRigidbody() {
   c_collider->config->actor = nullptr;
 }
 
-void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
+void TCompRigidbody::createRigidbody() {
 
     TCompCollider * c_collider = get<TCompCollider>();
     TCompTransform * compTransform = get<TCompTransform>();
@@ -218,21 +218,22 @@ void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
 
         if (is_controller)
         {
-          createController();
+            createController();
         }
         else
         {
-          createDynamicRigidbody();
+            createDynamicRigidbody();
         }
 
-  physx::PxFilterData * characterFilterData = new physx::PxFilterData();
-  characterFilterData->word0 = c_collider->config->group;
-  characterFilterData->word1 = c_collider->config->mask;
+        physx::PxFilterData * characterFilterData = new physx::PxFilterData();
+        characterFilterData->word0 = c_collider->config->group;
+        characterFilterData->word1 = c_collider->config->mask;
 
-  filters = physx::PxControllerFilters();
-  //filters.mFilterCallback = &customQueryFilter;
-  filters.mFilterData = characterFilterData;
-  lastFramePosition = compTransform->getPosition();
+        filters = physx::PxControllerFilters();
+        //filters.mFilterCallback = &customQueryFilter;
+        filters.mFilterData = characterFilterData;
+        lastFramePosition = compTransform->getPosition();
+    }
 }
 
 void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {

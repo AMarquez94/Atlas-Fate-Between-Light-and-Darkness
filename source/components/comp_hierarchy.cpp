@@ -54,7 +54,7 @@ QUAT TCompHierarchy::getRelativeLookAt(VEC3 new_target)
     return resultRot;
 }
 
-void TCompHierarchy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+void TCompHierarchy::onGroupCreated(const TMsgHierarchyGroupCreated& msg) {
   // I prefer to wait until the group is loaded to resolve my parent
   setParentEntity(msg.ctx.findEntityByName(parent_name));
 }
