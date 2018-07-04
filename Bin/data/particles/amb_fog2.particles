@@ -1,0 +1,70 @@
+{
+	"collision": {
+		"collision": false
+	},
+  "color" : {
+    "opacity" : 0.2,
+    "colors" : [
+      [0.0, "1 1 1 0.0"],
+			[0.1, "1 1 1 0.2"],
+			[0.2, "1 1 1 0.2"],
+      [0.5, "1 1 1 0.15"],
+      [1.0, "1 1 1 0.15"]
+    ] 
+  }
+	"emission": {
+		"interval": 9.89999961853027,
+		"rate_distance": 0.0,
+		"rate_time": 140.0,
+		"variation": 0.0
+	},
+	"noise": {
+		"damping": 1,
+		"frequency": 0.0,
+		"octaves": 1,
+		"scroll_speed": 0.0,
+		"strength": 0.0,
+		"texture": "data/textures/particles/amb_smoke2.dds"
+	},
+	"renderer": {
+		"frame_size": "8.000000 8.000000",
+		"frame_speed": 0.0,
+		"initial_frame": 0,
+		"mode": 0,
+		"num_frames": 64,
+		"texture": "data/textures/particles/amb_smoke2.dds"
+	},
+	"shape": {
+		"angle": 0.0,
+		"size": "5.000000 1.000000 5.000000",
+		"type": "3"
+	},
+  "size" : {
+    "scale" : 1.0,
+    "scale_variation" : 0.65,
+    "sizes" : [
+			[0.0, "2 2 2"],
+      [1.0, "2 2 2"]
+    ]
+  },
+	"system": {
+		"duration": 10.0,
+		"gravity": 0.0,
+		"looping": true,
+		"max_particles": 300,
+		"random_rotation": 360.0,
+		"simulation_speed": 1.39999997615814,
+		"start_color": "1.000000 1.000000 1.000000 0.000000",
+		"start_delay": 0.0,
+		"start_lifetime": 8.0,
+		"start_rotation": "0.000000 35.720001 21.570002",
+		"start_size": "2.000000 2.000000 2.000000",
+		"start_speed": 0.5
+	},
+	"velocity": {
+		"acceleration": 1.0,
+		"constant_velocity": "0.800000 0.010000 0.800000",
+		"velocity": [],
+		"wind": 0.0310000013560057
+	}
+}

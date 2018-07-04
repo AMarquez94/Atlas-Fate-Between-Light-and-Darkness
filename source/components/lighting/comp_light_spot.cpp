@@ -104,6 +104,11 @@ void TCompLightSpot::update(float dt) {
     if (!c)
         return;
 
+    MAT44 view_proj = getViewProjection();
+    //e_owner->sendMsg(TMsgGetCullingViewProj{ &view_proj });
+    TCompCulling * c_culling = get<TCompCulling>();
+    c_culling->updateFromMatrix(view_proj);
+
     this->lookAt(c->getPosition(), c->getPosition() + c->getFront(), c->getUp());
     this->setPerspective(deg2rad(angle), 0.1f, range); // might change this znear in the future, hardcoded for clipping purposes.
 }
