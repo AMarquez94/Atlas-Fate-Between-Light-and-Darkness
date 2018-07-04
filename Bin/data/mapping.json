@@ -104,6 +104,11 @@
     "all": false,
     "buttons":  ["f3"]
   },
+	{
+    "name": "btDebugParticles",
+    "all": false,
+    "buttons":  ["f4"]
+  },
   {
     "name": "btPause",
     "all": false,

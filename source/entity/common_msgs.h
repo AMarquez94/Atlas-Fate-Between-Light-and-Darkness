@@ -87,6 +87,18 @@ struct TMsgPlayerIlluminated {
 	DECL_MSG_ID();
 };
 
+struct TMsgSonarActive {
+    float value;
+
+    DECL_MSG_ID();
+};
+
+struct TMsgFadeBody {
+    bool is_exit;
+
+    DECL_MSG_ID();
+};
+
 struct TMsgTriggerEnter {
 	CHandle h_other_entity;
 	DECL_MSG_ID();
@@ -114,6 +126,7 @@ struct TMsgSetCameraCancelled {
 };
 
 struct TMsgCameraActivated {
+    CHandle previousCamera;
 	DECL_MSG_ID();
 };
 

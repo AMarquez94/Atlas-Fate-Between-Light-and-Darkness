@@ -19,8 +19,12 @@
 						"data/materials/characters/mtl_enemy_patrol_post.material"
 					]
 				}
-
 			],
+			"fade_controller": {
+				"fade_color": "0.0 0.0 0.0 1.0",
+				"fade_time": 4.0,
+				"material": "data/materials/characters/mtl_enemy_patrol_shade.material"
+			},
 			"skeleton": {
 				"skeleton": "data/skeletons/patrol/patrol.skeleton",
 				"scale": 1.4
@@ -91,5 +95,4 @@
 			}
 		}
 	}
-
 ]

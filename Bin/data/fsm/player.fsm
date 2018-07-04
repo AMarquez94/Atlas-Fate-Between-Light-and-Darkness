@@ -289,6 +289,12 @@
 			"size": 1
 		},
 		{
+			"name": "sonarEnemy",
+			"type": "SonarState",
+			"animation": "inhibitorRemoved",
+			"speed": 0
+		},
+		{
 			"name": "movingObject",
 			"type": "MovingObjectState",
 			"animation": "idle",
@@ -508,6 +514,32 @@
 				"type": "bool",
 				"value": true
 			}
+		},
+		{
+		  "type": "VariableTransition",
+		  "source": "walk",
+		  "target": "sonarEnemy",
+		  "variable": {
+			"name": "sonar",
+			"type": "bool",
+			"value": true
+		  }
+		},
+		{
+			"type": "VariableTransition",
+			"source": "crouch",
+			"target": "sonarEnemy",
+			"variable": {
+			"name": "sonar",
+			"type": "bool",
+			"value": true
+			}
+		},
+		{
+			"type": "TimeTransition",
+			"source": "sonarEnemy",
+			"target": "crouch",
+			"time": 1
 		},
 		{
 			"type": "VariableTransition",

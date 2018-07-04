@@ -10,6 +10,9 @@ class TCompLightDir : public TCompCamera {
 
 	VEC4			color = VEC4(1, 1, 1, 1);
 	float			intensity = 1.0f;
+    
+    int  num_samples = 220;
+    CRenderMesh* quadmesh;
 
 	// Shadows params
 	bool              shadows_enabled = false;    // Dynamic
@@ -34,6 +37,7 @@ public:
 	void renderDebug();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
+    void generateVolume();
 
 	void activate();
 	void generateShadowMap();

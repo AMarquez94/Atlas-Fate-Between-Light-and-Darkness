@@ -3,7 +3,11 @@
 #include "components/comp_fsm.h"
 #include "components/comp_transform.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
+#include "components/comp_render.h"
+#include "render/render_objects.h"
+#include "render/render_utils.h"
 #include "comp_player_attack_cast.h"
+#include "components/lighting/comp_fade_controller.h"
 
 DECL_OBJ_MANAGER("player_input", TCompPlayerInput);
 
@@ -86,8 +90,12 @@ void TCompPlayerInput::update(float dt)
                     e->sendMsg(attack);
                     attackButtonJustPressed = true;
                 }
-                else {
-                    /* TODO: Sonda */
+                else if (c_my_player->canSonarPunch()) {
+
+                    TMsgSetFSMVariable sonar;
+                    sonar.variant.setName("sonar");
+                    sonar.variant.setBool(true);
+                    e->sendMsg(sonar);
                 }
 
             }

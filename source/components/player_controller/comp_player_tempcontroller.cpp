@@ -11,6 +11,8 @@
 #include "components/player_controller/comp_shadow_controller.h"
 #include "components/player_controller/comp_player_attack_cast.h"
 #include "components/lighting/comp_emission_controller.h"
+#include "components/player_controller/comp_sonar_controller.h"
+#include "components/object_controller/comp_noise_emitter.h"
 #include "physics/physics_collider.h"
 #include "render/mesh/mesh_loader.h"
 #include "components/comp_name.h"
@@ -18,7 +20,9 @@
 #include "comp_player_input.h"
 #include "components/comp_group.h"
 #include "render/render_utils.h"
-#include "components/object_controller/comp_noise_emitter.h"
+
+#include "render/render_objects.h"
+#include "render/render_utils.h"
 
 DECL_OBJ_MANAGER("player_tempcontroller", TCompTempPlayerController);
 
@@ -110,10 +114,14 @@ void TCompTempPlayerController::update(float dt) {
 		updateShader(dt); // Move this to player render component...
 		timeInhib += dt;
 		canAttack = canAttackTest(dt);
-        
-		Engine.getGUI().getVariables().setVariant("staminaBarFactor", stamina / maxStamina);
+		Engine.getGUI().getVariables().setVariant("staminaBarFactor", stamina / maxStamina);	 
         Engine.getGUI().getVariables().setVariant("lifeBarFactor", life / maxLife);
-	}
+    }
+
+    // Update player global speed into the shader.
+    float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
+    cb_globals.global_player_speed = (inputSpeed * currentSpeed) / 6.f; // Maximum speed, change this in the future. 
+    //cb_globals.updateGPU();
 }
 
 void TCompTempPlayerController::registerMsgs() {
@@ -433,6 +441,7 @@ void TCompTempPlayerController::resetState(float dt) {
     TCompRigidbody *rigidbody = get<TCompRigidbody>();
     TCompTransform *c_my_transform = get<TCompTransform>();
     TCompTransform * trans_camera = player_camera->get<TCompTransform>();
+    physx::PxCapsuleController* c_capsule = (physx::PxCapsuleController*)rigidbody->controller;
 
     VEC3 up = trans_camera->getFront();
     VEC3 proj = projectVector(up, -EnginePhysics.gravity);
@@ -441,32 +450,24 @@ void TCompTempPlayerController::resetState(float dt) {
     // Set collider gravity settings
     rigidbody->SetUpVector(-EnginePhysics.gravity);
     rigidbody->normal_gravity = EnginePhysics.gravityMod * EnginePhysics.gravity;
-
+    
     VEC3 new_pos = c_my_transform->getPosition() - dir;
     float mod_angle = (1 - abs(-EnginePhysics.gravity.Dot(c_my_transform->getUp())));
-    VEC3 new_offset_pos = c_my_transform->getPosition() + mod_angle * c_my_transform->getUp();
+    VEC3 new_offset_pos = c_my_transform->getPosition() + 0.4f * mod_angle * c_my_transform->getUp();
     Matrix test = Matrix::CreateLookAt(c_my_transform->getPosition(), new_pos, -EnginePhysics.gravity).Transpose();
     Quaternion quat = Quaternion::CreateFromRotationMatrix(test);
     c_my_transform->setPosition(new_offset_pos);
     c_my_transform->setRotation(quat);
 }
 
-void TCompTempPlayerController::exitMergeState(float dt)
-{
+void TCompTempPlayerController::exitMergeState(float dt) {
     TMsgSetCameraCancelled msg;
     CEntity * eCamera = getEntityByName(auxCamera);
     eCamera->sendMsg(msg);
-
-	//CEntity *e = CHandle(this).getOwner();
-	//TMsgSetFSMVariable crouch;
-	//crouch.variant.setName("crouch");
-	//crouch.variant.setBool(false);
-	//e->sendMsg(crouch);
 }
 
 /* Player dead state */
-void TCompTempPlayerController::deadState(float dt)
-{
+void TCompTempPlayerController::deadState(float dt) {
     TMsgPlayerDead newMsg;
     newMsg.h_sender = CHandle(this).getOwner();
     auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
@@ -610,15 +611,13 @@ void TCompTempPlayerController::invertAxis(VEC3 old_up, bool type) {
 
             VEC2 dir1 = VEC2(0, 1);
             VEC2 temp_dir = player_input->movementValue;
-            temp_dir.Normalize();
+            //temp_dir.Normalize();
+            float tdot = dir1.Dot(temp_dir);
             float dot_result = Clamp(dir1.Dot(temp_dir), -1.f, 1.f);
             float angle = acos(dot_result);
-            VEC3 dir_cross = dir1.Cross(temp_dir);
-            if (temp_up.Dot(dir_cross) > 0) angle = -angle;
+            if (temp_dir.x < 0) angle = -angle;
 
-            temp_deg = rad2deg(angle);// (player_input->movementValue.x) * 90;
-            dbg("dot total value %f .. %f \n", dot_result, angle);
-            dbg("total temp_deg %f %f || %f %f \n", temp_deg, angle, player_input->movementValue.x, player_input->movementValue.y);
+            temp_deg = rad2deg(angle);
         }
     }
     else {
@@ -628,15 +627,11 @@ void TCompTempPlayerController::invertAxis(VEC3 old_up, bool type) {
 
             VEC2 dir1 = VEC2(0, 1);
             VEC2 temp_dir = player_input->movementValue;
-            temp_dir.Normalize();
+            //temp_dir.Normalize();
             float dot_result = Clamp(dir1.Dot(temp_dir), -1.f, 1.f);
             float angle = acos(dot_result);
-
-            VEC3 dir_cross = dir1.Cross(temp_dir);
-            if (temp_up.Dot(dir_cross) > 0) angle = -angle;
-
-            dbg("total temp_deg %f %f || %f %f \n", dot_result, angle, temp_dir.x, temp_dir.y);
-            temp_deg = rad2deg(angle) + 180;// (player_input->movementValue.x) * 90;
+            if (temp_dir.x < 0) angle = -angle;
+            temp_deg = rad2deg(angle) - 180;
         }
     }
 }
@@ -822,6 +817,12 @@ const bool TCompTempPlayerController::canAttackTest(float dt)
     return canAttackNow;
 }
 
+const bool TCompTempPlayerController::canSonarPunch()
+{
+    TCompSonarController * sonar = get < TCompSonarController>();
+    return sonar->canDeploySonar();
+}
+
 /* Sets the player current stamina depending on player status */
 void TCompTempPlayerController::updateStamina(float dt) {
 
@@ -927,8 +928,6 @@ VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & le
     dir += player_input->movementValue.y * front;
     dir += player_input->movementValue.x * left;
     dir.Normalize();
-
-    //dbg("pad values %f || %f\n", player_input->movementValue.x, player_input->movementValue.y);
 
     if (dir == VEC3::Zero) return front;
 

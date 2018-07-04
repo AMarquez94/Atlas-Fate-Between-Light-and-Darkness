@@ -1,0 +1,132 @@
+[
+  {
+    "entity":
+    {
+      "name": "prefab"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "instance":
+      {
+        "mesh": "data/meshes/prefab.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/mtl_instanced_default.material"
+        ]
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "prefab4"
+      ,
+      "hierarchy":
+      {
+        "parent": "prefab"
+        ,
+        "pos": "7.69705 0.0 1.03633"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "transform":
+      {
+        "pos": "7.69705 0.0 1.03633"
+      }
+      ,
+      "instance":
+      {
+        "mesh": "data/meshes/prefab4.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/mtl_instanced_default.material"
+        ]
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "prefab3"
+      ,
+      "hierarchy":
+      {
+        "parent": "prefab"
+        ,
+        "pos": "-2.29982 0.0 6.6046"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "transform":
+      {
+        "pos": "-2.29982 0.0 6.6046"
+      }
+      ,
+      "instance":
+      {
+        "mesh": "data/meshes/prefab3.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/mtl_instanced_default.material"
+        ]
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "prefab2"
+      ,
+      "hierarchy":
+      {
+        "parent": "prefab"
+        ,
+        "pos": "-3.9149 0.0 0.568829"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "transform":
+      {
+        "pos": "-3.9149 0.0 0.568829"
+      }
+      ,
+      "instance":
+      {
+        "mesh": "data/meshes/prefab2.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/mtl_instanced_default.material"
+        ]
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

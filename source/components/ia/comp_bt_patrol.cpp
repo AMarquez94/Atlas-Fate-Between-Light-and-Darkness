@@ -14,6 +14,7 @@
 #include "render/render_utils.h"
 #include "components/ia/comp_patrol_animator.h"
 #include "render/render_objects.h"
+#include "components/lighting/comp_fade_controller.h"
 
 DECL_OBJ_MANAGER("ai_patrol", TCompAIPatrol);
 
@@ -334,7 +335,10 @@ BTNode::ERes TCompAIPatrol::actionStunned(float dt)
     TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
     myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
 
-    return BTNode::ERes::STAY;
+    CEntity * patrol = CHandle(this).getOwner();
+    patrol->sendMsg(TMsgFadeBody{ true });
+
+	return BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIPatrol::actionFixed(float dt)
@@ -1047,18 +1051,24 @@ bool TCompAIPatrol::isStunnedPatrolInFov(float fov, float maxChaseDistance)
 
     bool found = false;
 
-    if (stunnedPatrols.size() > 0) {
-        TCompTransform *mypos = get<TCompTransform>();
-        for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
-            TCompTransform* stunnedPatrol = ((CEntity*)stunnedPatrols[i])->get<TCompTransform>();
-            if (mypos->isInFov(stunnedPatrol->getPosition(), fov, deg2rad(89.f))
-                && VEC3::Distance(mypos->getPosition(), stunnedPatrol->getPosition()) < maxChaseDistance
-                && !isEntityHidden(stunnedPatrols[i])) {
-                found = true;
-                lastStunnedPatrolKnownPos = stunnedPatrol->getPosition();
-            }
-        }
-    }
+	if (stunnedPatrols.size() > 0) {
+		TCompTransform *mypos = get<TCompTransform>();
+		TCompCollider * myCollider = get<TCompCollider>();
+		CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
+		float myY = mypos->getPosition().y;
+		for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
+			CEntity* ePatrol = stunnedPatrols[i];
+			TCompTransform* stunnedPatrol = ePatrol->get<TCompTransform>();
+			float enemyY = stunnedPatrol->getPosition().y;
+			if (mypos->isInFov(stunnedPatrol->getPosition(), fov, deg2rad(45.f))
+				&& VEC3::Distance(mypos->getPosition(), stunnedPatrol->getPosition()) < maxChaseDistance
+				&& !isEntityHidden(stunnedPatrols[i])
+				&& fabsf(myY - enemyY) <= 2 * capsuleCollider->height) {
+				found = true;
+				lastStunnedPatrolKnownPos = stunnedPatrol->getPosition();
+			}
+		}
+	}
 
     return found;
 }

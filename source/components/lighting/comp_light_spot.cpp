@@ -8,8 +8,22 @@
 #include "render/render_utils.h"
 #include "render/gpu_trace.h"
 #include "ctes.h"                     // texture slots
+#include "render/mesh/mesh_loader.h"
+#include "components/comp_aabb.h"
+#include "components/physics/comp_collider.h"
+#include "physics/physics_collider.h"
+
+#include "render/render_objects.h"
+#include "render/texture/texture.h"
+#include "render/texture/material.h"
+#include "render/render_utils.h"
+#include "render/render_manager.h"
+#include "entity/entity_parser.h"
+#include "components/comp_culling.h"
 
 DECL_OBJ_MANAGER("light_spot", TCompLightSpot);
+
+CRenderMeshInstanced* TCompLightSpot::volume_instance = nullptr;
 
 void TCompLightSpot::debugInMenu() {
     ImGui::ColorEdit3("Color", &color.x);
@@ -35,6 +49,7 @@ void TCompLightSpot::load(const json& j, TEntityParseContext& ctx) {
     intensity = j.value("intensity", 1.0f);
     color = loadVEC4(j["color"]);
 
+    volume_enabled = j.value("volume", true);
     casts_shadows = j.value("shadows", true);
     angle = j.value("angle", 45.f);
     range = j.value("range", 10.f);
@@ -64,6 +79,7 @@ void TCompLightSpot::load(const json& j, TEntityParseContext& ctx) {
         assert(is_ok);
     }
 
+    //spotcone = loadMesh("data/meshes/unit_quad_center2.mesh");
     shadows_enabled = casts_shadows;
 }
 
@@ -98,8 +114,37 @@ void TCompLightSpot::registerMsgs() {
     DECL_MSG(TCompLightSpot, TMsgEntityDestroyed, onDestroy);
 }
 
+// Generate the AABB for the spotlight
 void TCompLightSpot::onCreate(const TMsgEntityCreated& msg) {
 
+    TCompAbsAABB * c_my_aabb = get<TCompAbsAABB>();
+    TCompLocalAABB * c_my_aabb_local = get<TCompLocalAABB>();
+    TCompCollider * c_my_collider = get<TCompCollider>();
+
+    if (c_my_collider->config->shape) {
+        physx::PxConvexMeshGeometry colliderMesh;
+        c_my_collider->config->shape->getConvexMeshGeometry(colliderMesh);
+        physx::PxBounds3 bounds = colliderMesh.convexMesh->getLocalBounds();
+        VEC3 extents = PXVEC3_TO_VEC3(bounds.getExtents());
+
+        c_my_aabb->Center = VEC3::Zero;
+        c_my_aabb->Extents = extents;
+    }
+    else if (c_my_aabb && c_my_aabb_local) {
+
+        TCompTransform* c_my_transform = get<TCompTransform>();
+        VEC3 c_my_center = c_my_transform->getPosition() + range * .5f * c_my_transform->getFront();
+
+        c_my_aabb->Extents = VEC3(tan(deg2rad(angle / 2)) * range, tan(deg2rad(angle / 2)) * range, range *.5f );
+        c_my_aabb_local->Extents = VEC3(tan(deg2rad(angle / 2)) * range, tan(deg2rad(angle / 2)) * range, range *.5f);
+
+        c_my_aabb->Center = VEC3(0, 0, range * .5f);
+        c_my_aabb_local->Center = VEC3(0, 0, range * .5f);
+    }
+
+    //for (int i = 0; i < num_samples; i++) {
+    //    EngineInstancing.addInstance("data/meshes/quad_volume.instanced_mesh", MAT44::Identity);
+    //}
 }
 
 void TCompLightSpot::onDestroy(const TMsgEntityDestroyed & msg) {
@@ -109,7 +154,7 @@ void TCompLightSpot::onDestroy(const TMsgEntityDestroyed & msg) {
 void TCompLightSpot::activate() {
 
     TCompTransform* c = get<TCompTransform>();
-    if (!c || !isEnabled)
+    if (!c || !isEnabled || cull_enabled)
         return;
 
     projector->activate(TS_LIGHT_PROJECTOR);
@@ -143,10 +188,87 @@ void TCompLightSpot::activate() {
     cb_light.updateGPU();
 }
 
+// Dirty way of computing volumetric lights on CPU.
+// Update this in the future with a vertex shader improved version.
+void TCompLightSpot::generateVolume() {
+
+    if (!isEnabled || cull_enabled || !volume_enabled)
+        return;
+
+    // Activate tech for the light dir 
+    auto technique = Resources.get("pbr_vol_lights.tech")->as<CRenderTechnique>();
+    technique->activate();
+    
+    CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
+    TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
+
+    TCompTransform * c_transform = get<TCompTransform>();
+    VEC3 cpos = c_transform->getPosition();
+
+    //num_samples = (int)(range / 0.2f);
+    float spot_angle = cos(deg2rad(angle * .5f));
+    float spot_extent = (getZFar() - getZNear()) * .5f;
+    float spot_offset = (getZFar() - getZNear()) / num_samples;
+    VEC3 midpos = c_transform->getPosition() + c_transform->getFront() * (getZFar() - getZNear()) * .5f;
+    VEC3 endpos = midpos + spot_extent * camera->getFront();
+
+    MAT44 mtx_offset = MAT44::CreateScale(VEC3(0.5f, -0.5f, 1.0f)) * MAT44::CreateTranslation(VEC3(0.5f, 0.5f, 0.0f));
+    MAT44 mtx_viewproj_offset = getViewProjection() * mtx_offset;
+    
+    std::vector<TInstanceLight> volume_instances;
+    volume_instances.reserve(num_samples);
+
+    for (int i = 0; i < num_samples; i++) {
+
+        VEC3 plane_pos = endpos - camera->getFront() * spot_offset * i;
+        MAT44 bb = MAT44::CreateWorld(plane_pos, -camera->getUp(), -camera->getFront());
+        MAT44 sc = MAT44::CreateScale(range, range, range*2);
+        MAT44 res = sc * bb;
+
+        TInstanceLight t_struct = { res, VEC4(cpos.x, cpos.y, cpos.z, 1)
+            ,VEC4(c_transform->getFront().x, c_transform->getFront().y, c_transform->getFront().z, 0)
+            ,VEC4(spot_angle, cos(deg2rad(Clamp(inner_cut, 0.f, angle) * .5f)), spot_angle, 1), mtx_viewproj_offset };
+        volume_instances.push_back(t_struct);
+    }
+
+    TCompLightSpot::volume_instance->setInstancesData(volume_instances.data(), volume_instances.size(), sizeof(TInstanceLight));
+    // Activate tech for the light dir 
+    auto technique2 = Resources.get("pbr_instanced_volume.tech")->as<CRenderTechnique>();
+    technique2->activate();
+
+    CRenderManager::get().renderCategory("pbr_volume");
+}
+
+void TCompLightSpot::cullFrame() {
+
+    CEntity* e_camera = EngineRender.getMainCamera();
+    assert(e_camera);
+
+    const TCompCulling* culling = e_camera->get<TCompCulling>();
+    const TCompCulling::TCullingBits* culling_bits = culling ? &culling->bits : nullptr;
+
+    // Do the culling
+    if (culling_bits) {
+        TCompAbsAABB* aabb = get<TCompAbsAABB>();
+        if (aabb) {
+            CHandle h = aabb;
+            auto idx = h.getExternalIndex();
+            if (!culling_bits->test(idx)) {
+                CEntity* e = CHandle(this).getOwner();
+                cull_enabled = true;
+                return;
+            }
+        }
+    }
+
+    cull_enabled = false;
+}
+
 // ------------------------------------------------------
 void TCompLightSpot::generateShadowMap() {
 
-    if (!shadows_rt || !shadows_enabled || !isEnabled)
+
+    if (cull_enabled || !shadows_rt || !shadows_enabled || !isEnabled)
         return;
 
     // In this slot is where we activate the render targets that we are going

@@ -36,51 +36,52 @@ struct CZConfigs {
 	}
 
 	bool create() {
-		D3D11_DEPTH_STENCIL_DESC desc;
-		memset(&desc, 0x00, sizeof(desc));
-		desc.DepthEnable = FALSE;
-		desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
-		desc.DepthFunc = D3D11_COMPARISON_ALWAYS;
-		desc.StencilEnable = FALSE;
-		if (!add(desc, ZCFG_DISABLE_ALL, "disable_all"))
-			return false;
+		
+        D3D11_DEPTH_STENCIL_DESC desc;
+        memset(&desc, 0x00, sizeof(desc));
+        desc.DepthEnable = FALSE;
+        desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
+        desc.DepthFunc = D3D11_COMPARISON_ALWAYS;
+        desc.StencilEnable = FALSE;
+        if (!add(desc, ZCFG_DISABLE_ALL, "disable_all"))
+            return false;
 
-		// Default app, only pass those which are near than the previous samples
-		memset(&desc, 0x00, sizeof(desc));
-		desc.DepthEnable = TRUE;
-		desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
-		desc.DepthFunc = D3D11_COMPARISON_LESS;
-		desc.StencilEnable = FALSE;
-		if (!add(desc, ZCFG_DEFAULT, "default"))
-			return false;
+        // Default app, only pass those which are near than the previous samples
+        memset(&desc, 0x00, sizeof(desc));
+        desc.DepthEnable = TRUE;
+        desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+        desc.DepthFunc = D3D11_COMPARISON_LESS;
+        desc.StencilEnable = FALSE;
+        if (!add(desc, ZCFG_DEFAULT, "default"))
+            return false;
 
-		// test but don't write. Used while rendering particles for example
-		memset(&desc, 0x00, sizeof(desc));
-		desc.DepthEnable = true;
-		desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;    // don't write
-		desc.DepthFunc = D3D11_COMPARISON_LESS;               // only near z
-		desc.StencilEnable = false;
-		if (!add(desc, ZCFG_TEST_BUT_NO_WRITE, "test_but_no_write"))
-			return false;
+        // test but don't write. Used while rendering particles for example
+        memset(&desc, 0x00, sizeof(desc));
+        desc.DepthEnable = true;
+        desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;    // don't write
+        desc.DepthFunc = D3D11_COMPARISON_LESS;               // only near z
+        desc.StencilEnable = false;
+        if (!add(desc, ZCFG_TEST_BUT_NO_WRITE, "test_but_no_write"))
+            return false;
 
-		// test for equal but don't write. Used to render on those pixels where
-		// we have render previously like wireframes
-		memset(&desc, 0x00, sizeof(desc));
-		desc.DepthEnable = true;
-		desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;    // don't write
-		desc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
-		desc.StencilEnable = false;
-		if (!add(desc, ZCFG_TEST_EQUAL, "test_equal"))
-			return false;
+        // test for equal but don't write. Used to render on those pixels where
+        // we have render previously like wireframes
+        memset(&desc, 0x00, sizeof(desc));
+        desc.DepthEnable = true;
+        desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;    // don't write
+        desc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
+        desc.StencilEnable = false;
+        if (!add(desc, ZCFG_TEST_EQUAL, "test_equal"))
+            return false;
 
-		// Inverse Z Test, don't write. Used while rendering the lights
-		memset(&desc, 0x00, sizeof(desc));
-		desc.DepthEnable = true;
-		desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
-		desc.DepthFunc = D3D11_COMPARISON_GREATER;
-		desc.StencilEnable = false;
-		if (!add(desc, ZCFG_INVERSE_TEST_NO_WRITE, "inverse_test_no_write"))
-			return false;
+        // Inverse Z Test, don't write. Used while rendering the lights
+        memset(&desc, 0x00, sizeof(desc));
+        desc.DepthEnable = true;
+        desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
+        desc.DepthFunc = D3D11_COMPARISON_GREATER;
+        desc.StencilEnable = false;
+        if (!add(desc, ZCFG_INVERSE_TEST_NO_WRITE, "inverse_test_no_write"))
+            return false;
 
         // Default app, only pass those which are near than the previous samples
         memset(&desc, 0x00, sizeof(desc));
@@ -160,52 +161,52 @@ struct CRasterizers {
 
 	bool create() {
 
-		rasterize_states[RSCFG_DEFAULT] = nullptr;
-		names[RSCFG_DEFAULT] = "default";
+        rasterize_states[RSCFG_DEFAULT] = nullptr;
+        names[RSCFG_DEFAULT] = "default";
 
-		// Depth bias options when rendering the shadows
-		D3D11_RASTERIZER_DESC sdesc = {
-			D3D11_FILL_SOLID, // D3D11_FILL_MODE FillMode;
-			D3D11_CULL_BACK,  // D3D11_CULL_MODE CullMode;
-			FALSE,            // BOOL FrontCounterClockwise;
-			13,               // INT DepthBias;
-			0.0f,             // FLOAT DepthBiasClamp;
-			2.0f,             // FLOAT SlopeScaledDepthBias;
-			TRUE,             // BOOL DepthClipEnable;
-			FALSE,            // BOOL ScissorEnable;
-			FALSE,            // BOOL MultisampleEnable;
-			FALSE,            // BOOL AntialiasedLineEnable;
-		};
-		if (!add(sdesc, RSCFG_SHADOWS, "shadows"))
-			return false;
+        // Depth bias options when rendering the shadows
+        D3D11_RASTERIZER_DESC sdesc = {
+            D3D11_FILL_SOLID, // D3D11_FILL_MODE FillMode;
+            D3D11_CULL_BACK,  // D3D11_CULL_MODE CullMode;
+            FALSE,            // BOOL FrontCounterClockwise;
+            13,               // INT DepthBias;
+            0.0f,             // FLOAT DepthBiasClamp;
+            2.0f,             // FLOAT SlopeScaledDepthBias;
+            TRUE,             // BOOL DepthClipEnable;
+            FALSE,            // BOOL ScissorEnable;
+            FALSE,            // BOOL MultisampleEnable;
+            FALSE,            // BOOL AntialiasedLineEnable;
+        };
+        if (!add(sdesc, RSCFG_SHADOWS, "shadows"))
+            return false;
 
-		// --------------------------------------------------
-		// No culling at all
-		D3D11_RASTERIZER_DESC desc = {
-			D3D11_FILL_SOLID, // D3D11_FILL_MODE FillMode;
-			D3D11_CULL_NONE,  // D3D11_CULL_MODE CullMode;
-			FALSE,            // BOOL FrontCounterClockwise;
-			0,                // INT DepthBias;
-			0.0f,             // FLOAT DepthBiasClamp;
-			0.0,              // FLOAT SlopeScaledDepthBias;
-			TRUE,             // BOOL DepthClipEnable;
-			FALSE,            // BOOL ScissorEnable;
-			FALSE,            // BOOL MultisampleEnable;
-			FALSE,            // BOOL AntialiasedLineEnable;
-		};
-		if (!add(desc, RSCFG_CULL_NONE, "cull_none"))
-			return false;
+        // --------------------------------------------------
+        // No culling at all
+        D3D11_RASTERIZER_DESC desc = {
+            D3D11_FILL_SOLID, // D3D11_FILL_MODE FillMode;
+            D3D11_CULL_NONE,  // D3D11_CULL_MODE CullMode;
+            FALSE,            // BOOL FrontCounterClockwise;
+            0,                // INT DepthBias;
+            0.0f,             // FLOAT DepthBiasClamp;
+            0.0,              // FLOAT SlopeScaledDepthBias;
+            TRUE,             // BOOL DepthClipEnable;
+            FALSE,            // BOOL ScissorEnable;
+            FALSE,            // BOOL MultisampleEnable;
+            FALSE,            // BOOL AntialiasedLineEnable;
+        };
+        if (!add(desc, RSCFG_CULL_NONE, "cull_none"))
+            return false;
 
-		// Culling is reversed. Used when rendering the light volumes
-		desc.CullMode = D3D11_CULL_FRONT;
-		if (!add(desc, RSCFG_REVERSE_CULLING, "reverse_culling"))
-			return false;
+        // Culling is reversed. Used when rendering the light volumes
+        desc.CullMode = D3D11_CULL_FRONT;
+        if (!add(desc, RSCFG_REVERSE_CULLING, "reverse_culling"))
+            return false;
 
-		// Wireframe and default culling back
-		desc.FillMode = D3D11_FILL_WIREFRAME;
-		desc.CullMode = D3D11_CULL_BACK;
-		if (!add(desc, RSCFG_WIREFRAME, "wireframe"))
-			return false;
+        // Wireframe and default culling back
+        desc.FillMode = D3D11_FILL_WIREFRAME;
+        desc.CullMode = D3D11_CULL_BACK;
+        if (!add(desc, RSCFG_WIREFRAME, "wireframe"))
+            return false;
 
 		return true;
 	}
@@ -240,46 +241,46 @@ struct CBlends {
 		blend_states[BLEND_CFG_DEFAULT] = nullptr;
 		names[BLEND_CFG_DEFAULT] = "default";
 
-		D3D11_BLEND_DESC desc;
+        D3D11_BLEND_DESC desc;
 
-		// Combinative blending
-		memset(&desc, 0x00, sizeof(desc));
-		desc.RenderTarget[0].BlendEnable = TRUE;
-		desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
-		desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
-		desc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
-		desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
-		desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
-		desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
-		desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA;
-		if (!add(desc, BLEND_CFG_COMBINATIVE, "combinative"))
-			return false;
+        // Combinative blending
+        memset(&desc, 0x00, sizeof(desc));
+        desc.RenderTarget[0].BlendEnable = TRUE;
+        desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+        desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+        desc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+        desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+        desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+        desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
+        desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA;
+        if (!add(desc, BLEND_CFG_COMBINATIVE, "combinative"))
+            return false;
 
-		// Additive blending
-		memset(&desc, 0x00, sizeof(desc));
-		desc.RenderTarget[0].BlendEnable = TRUE;
-		desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
-		desc.RenderTarget[0].SrcBlend = D3D11_BLEND_ONE;      // Color must come premultiplied
-		desc.RenderTarget[0].DestBlend = D3D11_BLEND_ONE;
-		desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
-		desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
-		desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
-		desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
-		if (!add(desc, BLEND_CFG_ADDITIVE, "additive"))
-			return false;
+        // Additive blending
+        memset(&desc, 0x00, sizeof(desc));
+        desc.RenderTarget[0].BlendEnable = TRUE;
+        desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+        desc.RenderTarget[0].SrcBlend = D3D11_BLEND_ONE;      // Color must come premultiplied
+        desc.RenderTarget[0].DestBlend = D3D11_BLEND_ONE;
+        desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+        desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+        desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+        desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
+        if (!add(desc, BLEND_CFG_ADDITIVE, "additive"))
+            return false;
 
-		// Additive blending controlled by src alpha
-		memset(&desc, 0x00, sizeof(desc));
-		desc.RenderTarget[0].BlendEnable = TRUE;
-		desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
-		desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
-		desc.RenderTarget[0].DestBlend = D3D11_BLEND_ONE;
-		desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
-		desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
-		desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
-		desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
-		if (!add(desc, BLEND_CFG_ADDITIVE_BY_SRC_ALPHA, "additive_by_src_alpha"))
-			return false;
+        // Additive blending controlled by src alpha
+        memset(&desc, 0x00, sizeof(desc));
+        desc.RenderTarget[0].BlendEnable = TRUE;
+        desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+        desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+        desc.RenderTarget[0].DestBlend = D3D11_BLEND_ONE;
+        desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+        desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+        desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
+        desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
+        if (!add(desc, BLEND_CFG_ADDITIVE_BY_SRC_ALPHA, "additive_by_src_alpha"))
+            return false;
 
         // Combinative blending
         memset(&desc, 0x00, sizeof(desc));
@@ -397,8 +398,7 @@ struct CSamplers {
                 0,//FLOAT MinLOD;
                 0//FLOAT MaxLOD;
             };
-            hr = Render.device->CreateSamplerState(
-                &sampler_desc, &all_samplers[SAMPLER_PCF_SHADOWS_WHITE]);
+            hr = Render.device->CreateSamplerState(&sampler_desc, &all_samplers[SAMPLER_PCF_SHADOWS_WHITE]);
             if (FAILED(hr))
                 return false;
             setDXName(all_samplers[SAMPLER_PCF_SHADOWS_WHITE], "PCF_SHADOWS_WHITE");

@@ -26,6 +26,7 @@ void TCompRigidbody::load(const json& j, TEntityParseContext& ctx) {
     mass = j.value("mass", 10.f);
     drag = j.value("mass", 0.f);
 
+    is_enabled = true;
     is_gravity = j.value("is_gravity", false);
     is_kinematic = j.value("is_kinematic", false);
     is_controller = j.value("is_controller", false);
@@ -33,7 +34,7 @@ void TCompRigidbody::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompRigidbody::update(float dt) {
 
-    if (CHandle(this).getOwner().isValid()) {
+    if (CHandle(this).getOwner().isValid() && is_enabled) {
 
         TCompCollider * c_collider = get<TCompCollider>();
         velocity = physx::PxVec3(0, 0, 0);

@@ -28,6 +28,7 @@ public:
 	bool is_kinematic;
 	bool is_controller;
 	bool is_grounded;
+    bool is_enabled;
 
     VEC3 offset;
 	VEC3 lastFramePosition;

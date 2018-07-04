@@ -34,6 +34,7 @@ public:
     void setGenerateShadows(bool val) { _generateShadows = val; }
     bool const getGeneratePostFX() { return _generatePostFX; }
     void setGeneratePostFX(bool val) { _generatePostFX = val; }
+    CHandle getMainCamera();
 
 	LRESULT OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) override;
 

@@ -22,6 +22,7 @@ public:
   void renderSkyBox() const;
   void renderProjectors();
   void renderGBufferDecals();
+  void renderVolumes();
   void renderAO(CHandle h_camera) const;
 
 public:

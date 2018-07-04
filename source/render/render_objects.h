@@ -12,6 +12,10 @@ extern CRenderCte<CCteLight>  cb_light;
 extern CRenderCte<CCteGlobals> cb_globals;
 extern CRenderCte<CCteBlur>    cb_blur;
 extern CRenderCte<CCteGUI> cb_gui;
+extern CRenderCte<CCteParticle> cb_particles;
+extern CRenderCte<CCteOutline> cb_outline;
+extern CRenderCte<CCtePlayer> cb_player;
+extern CRenderCte<CCtePostFX> cb_postfx;
 
 class CTexture;
 

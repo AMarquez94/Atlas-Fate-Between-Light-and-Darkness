@@ -46,7 +46,14 @@ void TCompCameraThirdPerson::registerMsgs()
 
 void TCompCameraThirdPerson::onMsgCameraActive(const TMsgCameraActivated & msg)
 {
-  _current_euler.y = _original_euler.y;
+    
+    CEntity * eCamera = msg.previousCamera;
+    std::string cameraName = eCamera->getName();
+    dbg("CAMARA ANTERIOR %s\n", cameraName.c_str());
+    TCompCameraThirdPerson * c_camera = eCamera->get<TCompCameraThirdPerson>();
+
+    if(c_camera == nullptr)
+        _current_euler.y = _original_euler.y;
 }
 
 void TCompCameraThirdPerson::onMsgCameraFullActive(const TMsgCameraFullyActivated & msg)

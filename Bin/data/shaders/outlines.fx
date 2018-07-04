@@ -18,81 +18,86 @@ float4 PS_Solid() : SV_Target
 
 //--------------------------------------------------------------------------------------
 float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
-{
-    // Convert screen position to uv coordinates
-    //float3 ss_test_coords = float3(iPosition.xy, 0);
-    float2 uv = iPosition.xy * camera_inv_resolution;
-    
+{    
+
+/*
+	float3 shockParams = float3(10, 0.8, 0.1);
+  float dist = distance(UV, float2(0,0));
+	
+  if ( (dist <= (linear_time + shockParams.z)) && 
+       (dist >= (linear_time - shockParams.z)) ) 
+  {
+    float diff = (dist - linear_time); 
+    float powDiff = 1.0 - pow(abs(diff*shockParams.x), 
+                                shockParams.y); 
+    float diffTime = diff  * powDiff; 
+    float2 diffUV = normalize(UV - float2(0,0)); 
+    iPosition = float4(UV + (diffUV * diffTime), iPosition.z, iPosition.w);
+  } 
+*/	
     // Retrieve the linear depth on given pixel
     int3 ss_load_coords = uint3(iPosition.xy, 0);
     float depth = txGBufferLinearDepth.Load(ss_load_coords).x;
 
     float edge = 0;
-    float _EDGE = 1.0f;
-    float _PULSE = 0.2f;
+    float _EDGE = 2.0f;
+    float _PULSE = 0.1f;
 
-    if (depth > 0.99f)
-        discard;
+	float average = 0.125f * (
+		  txGBufferLinearDepth.Load(ss_load_coords + int3(1,-1,0)).x
+		+ txGBufferLinearDepth.Load(ss_load_coords + int3(0,-1,0)).x
+		+ txGBufferLinearDepth.Load(ss_load_coords + int3(-1,-1,0)).x
+		+ txGBufferLinearDepth.Load(ss_load_coords + int3(1,0,0)).x	
+		+ txGBufferLinearDepth.Load(ss_load_coords + int3(-1,0,0)).x
+		+ txGBufferLinearDepth.Load(ss_load_coords + int3(1, 1,0)).x
+		+ txGBufferLinearDepth.Load(ss_load_coords + int3(0, 1,0)).x
+		+ txGBufferLinearDepth.Load(ss_load_coords + int3(-1, 1,0)).x);
 
-    if (_EDGE > 0.0f) {
-        float4 offset = float4(1, 1, -1, -1) * (camera_inv_resolution.xyxy);
-        
-        float average = 0.25f * (
-              txGBufferLinearDepth.Load(float3(uv,0) + float3(offset.xy, 0))
-            + txGBufferLinearDepth.Load(float3(uv,0) + float3(offset.zy, 0))
-            + txGBufferLinearDepth.Load(float3(uv,0) + float3(offset.xw, 0))
-            + txGBufferLinearDepth.Load(float3(uv,0) + float3(offset.zw, 0)));
-
-        edge = sqrt(abs(depth - average)) * _EDGE;
-    }
-
+	edge = sqrt(abs(depth - average)) * _EDGE;
+		
+	if(edge > 0.5)
+		discard;
+		
+	depth = saturate(2.0f * depth);
     depth = 1 - depth;
     depth *= depth;
     depth = 1 - depth;
 
     float samplePos = float4(1.0f * depth.xx, 0.0f, 0.0f);
-    samplePos.x -= _PULSE * global_world_time;
+    samplePos.x -= _PULSE * linear_time;
     
     float4 colour = txNoiseMap.Sample(samLinear, samplePos);
     colour *= (colour * (2.0f + edge * 30.0f) + edge * 5.0f);
-
-    return float4(colour.xyz, 0.5f);
-    /*
-    float  zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
-
+    
     // Can't use sample because it's a texture of ints
     // stencil value is in the green channel
-    uint s_cc = txBackBufferStencil.Load(ss_load_coords).g;
+    float zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
 
-    float a = mat_alpha_outline;
+    if (_PULSE * linear_time > zlinear)
+    {
+        uint s_cc = txBackBufferStencil.Load(ss_load_coords).g;
 
-    // In case we want just the pixels inside
-    //if( s_cc != 0 ) return float4( 1,1,0,0.5 * a); 
+        // n = north, s = south, e = east, w = west, c = center
+        uint s_nw = txBackBufferStencil.Load(ss_load_coords + int3(1, -1, 0)).y;
+        uint s_nc = txBackBufferStencil.Load(ss_load_coords + int3(0, -1, 0)).y;
+        uint s_ne = txBackBufferStencil.Load(ss_load_coords + int3(-1, -1, 0)).y;
+        uint s_cw = txBackBufferStencil.Load(ss_load_coords + int3(1, 0, 0)).y;
 
-    // n = north, s = south, e = east, w = west, c = center
-    uint s_nw = txBackBufferStencil.Load(ss_load_coords + int3(1,-1,0)).y;
-    uint s_nc = txBackBufferStencil.Load(ss_load_coords + int3(0,-1,0)).y;
-    uint s_ne = txBackBufferStencil.Load(ss_load_coords + int3(-1,-1,0)).y;
-    uint s_cw = txBackBufferStencil.Load(ss_load_coords + int3(1,0,0)).y;
-    //   s_cc
-    uint s_ce = txBackBufferStencil.Load(ss_load_coords + int3(-1,0,0)).y;
-    uint s_sw = txBackBufferStencil.Load(ss_load_coords + int3(1, 1,0)).y;
-    uint s_sc = txBackBufferStencil.Load(ss_load_coords + int3(0, 1,0)).y;
-    uint s_se = txBackBufferStencil.Load(ss_load_coords + int3(-1, 1,0)).y;
+        //   s_cc
+        uint s_ce = txBackBufferStencil.Load(ss_load_coords + int3(-1, 0, 0)).y;
+        uint s_sw = txBackBufferStencil.Load(ss_load_coords + int3(1, 1, 0)).y;
+        uint s_sc = txBackBufferStencil.Load(ss_load_coords + int3(0, 1, 0)).y;
+        uint s_se = txBackBufferStencil.Load(ss_load_coords + int3(-1, 1, 0)).y;
 
-    // We expect all the 3x3 pixels to have the same value 
-    int sum_stencils = s_nw + s_nc + s_ne + s_cw + s_cc + s_ce + s_sw + s_sc + s_se;
-    uint diff = sum_stencils - s_cc * 9;
-    // If not we are in the border
-    if (diff != 0)
-    return float4(1,0,0,a);
+        // We expect all the 3x3 pixels to have the same value 
+        int sum_stencils = s_nw + s_nc + s_ne + s_cw + s_cc + s_ce + s_sw + s_sc + s_se;
+        uint diff = sum_stencils - s_cc * 9;
+        // If not we are in the border
 
-    // else, or we are inside ( stencil != 0 ) 
-    //if( s_cc != 0 ) {
-    // Use different stencil values for different colors!
-    //return float4( 1,0,0,0.5*a); 
-    //}
+        if (diff != 0)
+            return float4(0, 1, 1, 1) * outline_alpha;
+    }
 
     // or we are outside, all zeros.
-    return float4(1,0,0,0);*/
+    return float4(colour.xyz, 0.5) * outline_alpha;
 }

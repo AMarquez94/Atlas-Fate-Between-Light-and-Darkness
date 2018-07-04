@@ -1,0 +1,49 @@
+[
+  {
+    "entity":
+    {
+      "name": "Box002"
+      ,
+      "prefab": "data/prefabs/prefab_test.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.77232 0.0 50.4212"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box003"
+      ,
+      "prefab": "data/prefabs/prefab_test.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.77232 0.0 114.133"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box001"
+      ,
+      "prefab": "data/prefabs/prefab_test.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.77232 0.0 -8.43396"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+]

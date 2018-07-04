@@ -23,6 +23,7 @@
 		"hierarchy",
 		"local_aabb",
 		"culling",
+		"sonar_controller",
 		"cone_of_light",
 		"rigidbody",
 		"collider",
@@ -45,7 +46,9 @@
 		"player_animator",
 		"player_input",
 		"movable_object",
+		"particles",
 		"emission_controller",
+		"fade_controller",
 		"rotator",
 		"lod"
 	],

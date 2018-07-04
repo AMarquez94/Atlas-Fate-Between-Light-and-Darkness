@@ -1,0 +1,14 @@
+[
+	{
+		"entity": {
+			"name": "Capsules",
+			"dynamic_capsules_manager": {
+				"start_point": "-4.4 42.1 1.5",
+				"end_point": "-4.4 42.1 254",
+				"capsule_offset": "0 0 0",
+				"number": 20,
+				"speed": 4
+			}
+		}
+	}
+]

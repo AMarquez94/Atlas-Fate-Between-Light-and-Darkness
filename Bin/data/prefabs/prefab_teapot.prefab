@@ -1,0 +1,115 @@
+[
+  {
+    "entity":
+    {
+      "name": "prefab_teapot"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "prefab_box"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/prefab_box.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_test_prefab.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Sphere001"
+      ,
+      "hierarchy":
+      {
+        "parent": "prefab_box"
+        ,
+        "pos": "10.1089 0.0 -4.32775"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "transform":
+      {
+        "pos": "10.1089 0.0 -4.32775"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Sphere001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_test_prefab.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Teapot001"
+      ,
+      "hierarchy":
+      {
+        "parent": "prefab_box"
+        ,
+        "pos": "-16.6584 0.0 -20.8125"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "transform":
+      {
+        "pos": "-16.6584 0.0 -20.8125"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Teapot001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_test_prefab.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

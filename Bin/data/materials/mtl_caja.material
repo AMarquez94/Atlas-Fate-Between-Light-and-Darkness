@@ -1,4 +1,6 @@
-{
+{  
+	"technique": "pbr_hologram.tech"
+  ,
   "shadows": true
   ,
   "textures":
@@ -14,5 +16,6 @@
     "height": "data/textures/tx_box_hgt.dds"
     ,
     "emissive": "data/textures/tx_box_emi.dds"
-  }
+  },
+	"color": "0.0 1.0 1.0 1.0"
 }

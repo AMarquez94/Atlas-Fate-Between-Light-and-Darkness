@@ -9,7 +9,7 @@ bool CPixelShader::create(const std::string& filename, const std::string& fn_ent
 
   // Compile the pixel shader, convert the txt to some byte code
   ID3DBlob* pPSBlob = NULL;
-  hr = CompileShaderFromFile(filename.c_str(), fn_entry_name.c_str(), "ps_4_0", &pPSBlob);
+  hr = CompileShaderFromFile(filename.c_str(), fn_entry_name.c_str(), "ps_5_0", &pPSBlob);
   if (FAILED(hr))
     return false;
 
