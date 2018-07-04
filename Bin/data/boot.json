@@ -40,7 +40,9 @@
 			"data/scenes/zona_a_valla_torre.scene",
 			"data/scenes/zona_a_coberturas.scene",
 			"data/scenes/zona_a_chimeneas.scene",
-
+			"data/scenes/zona_a_andamios.scene",
+			"data/scenes/zona_a_conductos.scene",
+			"data/scenes/zona_a_tubos.scene",
 			"data/scenes/colliders_prova.scene",
 			"data/scenes/zona_a_proves.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene"
