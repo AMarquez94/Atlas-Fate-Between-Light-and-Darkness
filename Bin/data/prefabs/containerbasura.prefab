@@ -1,0 +1,48 @@
+[
+  {
+    "entity":
+    {
+      "name": "containerbasura"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_containerbasura"
+      ,
+      "transform":
+      {
+        "pos": "0.0294418 0.0 -0.0237207"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_containerbasura.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_coberturas.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_containerbasura.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

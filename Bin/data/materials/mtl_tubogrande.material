@@ -1,0 +1,16 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_tubogrande_alb.dds"
+    ,
+    "metallic": "data/textures/tx_tubogrande_met.dds"
+    ,
+    "roughness": "data/textures/tx_tubogrande_rgh.dds"
+    ,
+    "normal": "data/textures/tx_tubogrande_nml.dds"
+    ,
+    "height": "data/textures/tx_tubogrande_hgt.dds"
+  }
+}

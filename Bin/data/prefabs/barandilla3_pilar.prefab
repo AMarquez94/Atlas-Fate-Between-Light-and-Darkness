@@ -1,0 +1,41 @@
+[
+  {
+    "entity":
+    {
+      "name": "barandilla3_pilar"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla3_pilar"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla3_pilar.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

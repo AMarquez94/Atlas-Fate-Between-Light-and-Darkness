@@ -17,6 +17,7 @@ struct TCompAABB : public AABB, public TCompBase {
 // This is required to use the culling system
 struct TCompAbsAABB : public TCompAABB {
   void onCreate(const TMsgEntityCreated&);
+  void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
   static void registerMsgs();
   DECL_SIBLING_ACCESS();
 };
@@ -28,6 +29,7 @@ struct TCompLocalAABB : public TCompAABB {
   void update(float dt);
   void renderDebug();
   void onCreate(const TMsgEntityCreated&);
+  void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
   static void registerMsgs();
   DECL_SIBLING_ACCESS();
 };

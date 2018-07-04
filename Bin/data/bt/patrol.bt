@@ -195,7 +195,7 @@
 			"actionArg": [{
 					"variable_name": "rotationSpeed",
 					"variable_type": "float",
-					"variable_value": 90.0,
+					"variable_value": 300.0,
 					"variable_op": ""
 				}
 			],
@@ -425,7 +425,7 @@
 				}, {
 					"variable_name": "rotationSpeed",
 					"variable_type": "float",
-					"variable_value": 90.0,
+					"variable_value": 300.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "fov",

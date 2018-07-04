@@ -86,6 +86,7 @@ bool CCheckpoint::loadCheckPoint()
       for (int i = 0; i < v_cameras.size(); i++) {
         CEntity* camera = v_cameras[i];
         TMsgCameraReset msg;
+        msg.both_angles = true;
         camera->sendMsg(msg);
       }
 		}

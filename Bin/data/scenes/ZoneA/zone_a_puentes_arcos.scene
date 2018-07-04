@@ -1,0 +1,77 @@
+[
+  {
+    "entity":
+    {
+      "name": "zone_a_puentes_arcos"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puente_arcos002"
+      ,
+      "prefab": "data/prefabs/puente_arcos.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-77.8898 -0.100006 -132.997"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puente_arcos003"
+      ,
+      "prefab": "data/prefabs/puente_arcos.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-77.8898 -0.100006 -136.997"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puente_arcos004"
+      ,
+      "prefab": "data/prefabs/puente_arcos.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-77.8898 -0.100006 -140.997"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puente_arcos001"
+      ,
+      "prefab": "data/prefabs/puente_arcos.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-77.8898 -0.100006 -128.997"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+]

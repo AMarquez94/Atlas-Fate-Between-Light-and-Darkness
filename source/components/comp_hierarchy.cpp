@@ -15,7 +15,7 @@ void TCompHierarchy::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompHierarchy::registerMsgs() {
-  DECL_MSG(TCompHierarchy, TMsgEntitiesGroupCreated, onGroupCreated);
+  DECL_MSG(TCompHierarchy, TMsgHierarchyGroupCreated, onGroupCreated);
 }
 
 void TCompHierarchy::convertTotalTransformToRelative(VEC3 objPosition, QUAT objRotation, float objScale, VEC3 & resultPosition, QUAT & resultRotation, float & resultScale)

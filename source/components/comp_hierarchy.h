@@ -17,7 +17,7 @@ struct TCompHierarchy : public CTransform, public TCompBase {
 
   void setParentEntity(CHandle new_h_parent);
 
-  void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
+  void onGroupCreated(const TMsgHierarchyGroupCreated& msg);
   void load(const json& j, TEntityParseContext& ctx);
   void update(float dt);
   void debugInMenu();

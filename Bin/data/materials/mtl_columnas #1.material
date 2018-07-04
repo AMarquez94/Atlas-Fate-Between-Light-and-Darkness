@@ -1,0 +1,16 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_columnas_alb.dds"
+    ,
+    "metallic": "data/textures/tx_columnas_met.dds"
+    ,
+    "roughness": "data/textures/tx_columnas_rgh.dds"
+    ,
+    "normal": "data/textures/tx_columnas_nml.dds"
+    ,
+    "height": "data/textures/tx_columnas_hgt.dds"
+  }
+}

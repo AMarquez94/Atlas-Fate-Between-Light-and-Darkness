@@ -1,18 +1,5 @@
-{ 
- "shadows": true
+{
+  "shadows": true
   ,
   "textures":
   {
-    "albedo": "data/textures/tx_box_alb.dds"
-    ,
-    "metallic": "data/textures/tx_box_met.dds"
-    ,
-    "roughness": "data/textures/tx_box_rgh.dds"
-    ,
-    "normal": "data/textures/tx_box_nml.dds"
-    ,
-    "height": "data/textures/tx_box_hgt.dds"
-    ,
-    "emissive": "data/textures/tx_box_emi.dds"
-  }
-}

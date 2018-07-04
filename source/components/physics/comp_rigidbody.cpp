@@ -98,6 +98,7 @@ void TCompRigidbody::update(float dt) {
 /* Collider/Trigger messages */
 void TCompRigidbody::registerMsgs() {
     DECL_MSG(TCompRigidbody, TMsgEntityCreated, onCreate);
+    DECL_MSG(TCompRigidbody, TMsgEntitiesGroupCreated, onGroupCreated);
 }
 
 void TCompRigidbody::setLinearVelocity(VEC3 vel, bool autowake)
@@ -224,16 +225,37 @@ void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
           createDynamicRigidbody();
         }
 
-        physx::PxFilterData * characterFilterData = new physx::PxFilterData();
-        characterFilterData->word0 = c_collider->config->group;
-        characterFilterData->word1 = c_collider->config->mask;
+  physx::PxFilterData * characterFilterData = new physx::PxFilterData();
+  characterFilterData->word0 = c_collider->config->group;
+  characterFilterData->word1 = c_collider->config->mask;
 
-        filters = physx::PxControllerFilters();
-        //filters.mFilterCallback = &customQueryFilter;
-        filters.mFilterData = characterFilterData;
+  filters = physx::PxControllerFilters();
+  //filters.mFilterCallback = &customQueryFilter;
+  filters.mFilterData = characterFilterData;
+  lastFramePosition = compTransform->getPosition();
+}
+
+void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
+
+    TCompCollider * c_collider = get<TCompCollider>();
+    TCompTransform * compTransform = get<TCompTransform>();
+
+    // Let the rigidbody handle the creation if it exists..
+    if (c_collider != nullptr)
+    {
+      createRigidbody();
     }
+}
 
-    lastFramePosition = compTransform->getPosition();
+void TCompRigidbody::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+  
+  TCompCollider * c_collider = get<TCompCollider>();
+
+  // Let the rigidbody handle the creation if it exists..
+  if (c_collider != nullptr && c_collider->config->actor == nullptr)
+  {
+    createRigidbody();
+  }
 }
 
 void TCompRigidbody::Resize(float new_size)

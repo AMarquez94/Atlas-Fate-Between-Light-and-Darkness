@@ -1,0 +1,16 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_suelo_adoquines_alb.dds"
+    ,
+    "metallic": "data/textures/tx_suelo_adoquines_met.dds"
+    ,
+    "roughness": "data/textures/tx_suelo_adoquines_rgh.dds"
+    ,
+    "normal": "data/textures/tx_suelo_adoquines_nml.dds"
+    ,
+    "height": "data/textures/tx_suelo_adoquines_hgt.dds"
+  }
+}

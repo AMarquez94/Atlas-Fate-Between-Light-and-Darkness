@@ -1,0 +1,43 @@
+[
+  {
+    "entity":
+    {
+      "name": "zona_a_salientes"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente279"
+      ,
+      "transform":
+      {
+        "pos": "-52.9936 11.2302 -83.698"
+        ,
+        "rotation": "0.0 0.707113 0.0 -0.707101"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_saliente279.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

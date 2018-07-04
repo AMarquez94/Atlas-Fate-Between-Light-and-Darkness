@@ -61,10 +61,10 @@
 				"amount": 0.6,
 				"lut": "data/textures/lut/RGBTable16x1.dds"
 			},
-			"render_outlines" : {
-        "enabled" : true
-      },
-			"tags": ["main_camera"]
+			"render_outlines": {
+				"enabled": true
+			},
+			"tags": ["main_camera", "tp_camera"]
 		}
 	}, {
 		"entity": {
@@ -96,10 +96,10 @@
 				"amount": 0.6,
 				"lut": "data/textures/lut/RGBTable16x1.dds"
 			},
-			"render_outlines" : {
-        "enabled" : true
-      },
-			"tags": ["main_camera"]
+			"render_outlines": {
+				"enabled": true
+			},
+			"tags": ["main_camera", "tp_camera"]
 		}
 	}, {
 		"entity": {
@@ -133,7 +133,7 @@
 				"amount": 0.6,
 				"lut": "data/textures/lut/lut1.dds"
 			},
-			"tags": ["main_camera"]
+			"tags": ["main_camera", "sm_camera"]
 		}
 	}, {
 		"entity": {
@@ -167,7 +167,7 @@
 				"z_near": 0.01,
 				"z_far": 1000
 			},
-			"tags": ["main_camera"]
+			"tags": ["main_camera", "sm_camera"]
 		}
 	}, {
 		"entity": {

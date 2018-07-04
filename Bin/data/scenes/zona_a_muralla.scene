@@ -1,0 +1,1963 @@
+[
+  {
+    "entity":
+    {
+      "name": "zona_a_muralla"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande002"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -100.729"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande003"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -90.729"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande004"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -80.729"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande005"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -70.729"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande006"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -60.729"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande007"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -50.729"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande008"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -40.7289"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande008.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande009"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -30.7289"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande010"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -20.7289"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande011"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -10.7289"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande012"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -0.728928"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande012.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande013"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -110.729"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande013.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande014"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -120.729"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande014.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande015"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -130.729"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande015.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande016"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -140.729"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande016.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande017"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -150.729"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande017.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande018"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -160.729"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande018.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande019"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -170.729"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande019.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande020"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -180.729"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande020.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande021"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -190.729"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande021.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande022"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -200.729"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande022.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande023"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -210.729"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande023.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_grande024"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -220.729"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_grande024.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla001"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -78.229"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla002"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -83.229"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla003"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -88.2291"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla004"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -93.2291"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla005"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -98.2292"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla006"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -103.229"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla007"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -108.229"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla008"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -113.229"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla008.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla009"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -118.229"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla010"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -123.229"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla011"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -128.229"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla012"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -133.229"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla012.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla013"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -138.229"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla013.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla014"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -143.229"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla014.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla015"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -148.23"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla015.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla016"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -153.23"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla016.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla017"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -158.23"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla017.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla018"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -73.229"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla018.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla019"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -68.2289"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla019.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla020"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -63.2289"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla020.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla021"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -58.2289"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla021.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla022"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -53.2289"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla022.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla023"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -48.2288"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla023.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla024"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -43.2288"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla024.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla025"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -163.23"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla025.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla026"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -168.23"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla026.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla027"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -173.23"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla027.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla028"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -178.23"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla028.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla029"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -183.23"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla029.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla030"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -188.23"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla030.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla031"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -193.23"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla031.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla032"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -198.23"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla032.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla033"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -203.23"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla033.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla034"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -208.23"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla034.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla035"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -38.2288"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla035.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla036"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -33.2287"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla036.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla037"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -28.2287"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla037.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla038"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -23.2287"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla038.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla039"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -18.2287"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla039.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla040"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -13.2286"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla040.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla041"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -8.2286"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla041.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla042"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -3.22858"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla042.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

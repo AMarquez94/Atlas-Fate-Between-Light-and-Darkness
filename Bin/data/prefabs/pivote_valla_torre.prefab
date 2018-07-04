@@ -1,0 +1,48 @@
+[
+  {
+    "entity":
+    {
+      "name": "pivote_valla_torre"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pivote_valla_torre"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_pivote_valla_torre.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_valla_torre.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.225 1.655 0.225"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

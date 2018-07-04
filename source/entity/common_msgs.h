@@ -44,6 +44,11 @@ struct TMsgEntitiesGroupCreated {
 	DECL_MSG_ID();
 };
 
+struct TMsgHierarchyGroupCreated {
+  const TEntityParseContext& ctx;
+  DECL_MSG_ID();
+};
+
 struct TMsgPlayerDead {
 	CHandle h_sender;
 	DECL_MSG_ID();
@@ -139,6 +144,8 @@ struct TMsgCameraFullyActivated {
 };
 
 struct TMsgCameraReset {
+  bool both_angles;
+  bool only_y;
   DECL_MSG_ID();
 };
 

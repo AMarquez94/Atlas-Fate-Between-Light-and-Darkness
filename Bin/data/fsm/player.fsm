@@ -86,7 +86,7 @@
 			"animation": "crouch",
 			"speed": 1.5,
 			"rotationSpeed": 5.0,
-			"size": 0.25,
+			"size": 0.15,
 			"camera": {
 				"target": "TPCameraCrouched",
 				"blendOut": 0.4,
@@ -99,7 +99,7 @@
 			"animation": "crouch_walk",
 			"speed": 1.75,
 			"rotationSpeed": 5.0,
-			"size": 0.25,
+			"size": 0.15,
 			"camera": {
 				"target": "TPCameraCrouched",
 				"blendOut": 0.4,
@@ -112,7 +112,7 @@
 			"animation": "crouch_walk_slow",
 			"speed": 1.5,
 			"rotationSpeed": 5.0,
-			"size": 0.25,
+			"size": 0.15,
 			"camera": {
 				"target": "TPCameraCrouched",
 				"blendOut": 0.4,
@@ -717,6 +717,36 @@
 		},
 		{
 			"type": "VariableTransition",
+			"source": "crouch",
+			"target": "inhibitorTryToRemove",
+			"variable": {
+				"name": "inhibitorTryToRemove",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "inhibitorTryToRemove",
+			"target": "die",
+			"variable": {
+				"name": "onDead",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "inhibitorRemoved",
+			"target": "die",
+			"variable": {
+				"name": "onDead",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
 			"source": "inhibitorTryToRemove",
 			"target": "inhibitorRemoved",
 			"variable": {
@@ -871,6 +901,16 @@
 			"target": "attack",
 			"variable": {
 				"name": "attack",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "attack",
+			"target": "die",
+			"variable": {
+				"name": "onDead",
 				"type": "bool",
 				"value": true
 			}
@@ -1155,6 +1195,11 @@
 		},
 		{
 			"name": "crouch",
+			"type": "bool",
+			"value": false
+		},
+		{
+			"name": "sonar",
 			"type": "bool",
 			"value": false
 		},
