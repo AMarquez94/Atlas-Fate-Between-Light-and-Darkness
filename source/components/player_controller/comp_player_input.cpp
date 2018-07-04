@@ -96,6 +96,7 @@ void TCompPlayerInput::update(float dt)
                     sonar.variant.setName("sonar");
                     sonar.variant.setBool(true);
                     e->sendMsg(sonar);
+                    attackButtonJustPressed = true;
                 }
 
             }
@@ -104,10 +105,16 @@ void TCompPlayerInput::update(float dt)
                 attack.variant.setName("attack");
                 attack.variant.setBool(false);
                 e->sendMsg(attack);
+
+                TMsgSetFSMVariable sonar;
+                sonar.variant.setName("sonar");
+                sonar.variant.setBool(false);
+                e->sendMsg(sonar);
+
                 attackButtonJustPressed = false;
             }
 
-            if (EngineInput["btCrouch"].getsPressed())
+            if (EngineInput["btCrouch"].getsPressed() && !EngineInput["btRun"].isPressed())
             {
                 crouchButton = !crouchButton;
                 TMsgSetFSMVariable crouch;

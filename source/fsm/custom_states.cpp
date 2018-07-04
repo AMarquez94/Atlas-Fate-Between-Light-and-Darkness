@@ -335,6 +335,32 @@ namespace FSM
         e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::resetState });
     }
 
+    bool ExitMergeInterruptedState::load(const json& jData) {
+
+        _animationName = jData["animation"];
+        _speed = jData.value("speed", 3.f);
+        _size = jData.value("size", 1.f);
+        _radius = jData.value("radius", 0.3f);
+        _noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+        _target = jData.count("camera") ? getTargetCamera(jData["camera"]) : nullptr;
+        return true;
+    }
+
+    void ExitMergeInterruptedState::onStart(CContext& ctx) const {
+
+        // Send a message to the player controller
+        CEntity* e = ctx.getOwner();
+        //e->sendMsg(TMsgAnimation{ "crouch" });
+
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::mergeState, _speed, _size, _radius, _target, _noise });
+    }
+
+    void ExitMergeInterruptedState::onFinish(CContext& ctx) const {
+
+        CEntity* e = ctx.getOwner();
+        e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::resetState });
+    }
+
     bool ExitMergeState::load(const json& jData) {
 
         _animationName = jData["animation"];
@@ -354,7 +380,7 @@ namespace FSM
         //e->sendMsg(TMsgAnimation{ "crouch" });
 
         CEntity* e = ctx.getOwner();
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, _target, _noise });
         e->sendMsg(TMsgFadeBody{ true });
 
         // Testing!
@@ -391,7 +417,7 @@ namespace FSM
 	void ExitMergeCrouchedState::onStart(CContext & ctx) const
 	{
 		CEntity* e = ctx.getOwner();
-		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, _target, _noise });
         e->sendMsg(TMsgFadeBody{ true });
 
 		// Testing!
