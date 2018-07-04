@@ -168,7 +168,7 @@ void TCompPlayerInput::update(float dt)
                 /* Move this from here.. */
                 TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
 				TCompPlayerAttackCast* playerCast = e->get<TCompPlayerAttackCast>();
-
+				CHandle button = playerCast->getClosestButtonInRange();
                 if (c_my_player->isInhibited && c_my_player->canRemoveInhibitor && _time >= _timerRemoveInhibitor + _timeOffsetToRemoveInhibitor) {
                     _timerRemoveInhibitor = _time;
                     TMsgSetFSMVariable keyPressed;
@@ -176,8 +176,14 @@ void TCompPlayerInput::update(float dt)
                     keyPressed.variant.setBool(true);
                     e->sendMsg(keyPressed);
 				}
-				else if (playerCast->getClosestButtonInRange().isValid()) {
+				else if (button.isValid()) {
 					_buttonPressed = true;
+					TMsgButtonActivated msg;
+					CEntity * b = button.getOwner();
+					//b->sendMsg(msg);
+					button.sendMsg(msg);
+
+					
 					TMsgSetFSMVariable activatingButton;
 					activatingButton.variant.setName("buttonPressed");
 					activatingButton.variant.setBool(true);
