@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "zona_a_columnas"
+      "name": "conductorecto"
       ,
       "transform":
       {
@@ -14,26 +14,31 @@
   {
     "entity":
     {
-      "name": "mesh_columnas_attach"
+      "name": "mesh_conductorecto"
       ,
       "transform":
       {
-        "pos": "-74.8612 0.0 -86.5484"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "0.0 0.0 0.0"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_columnas_attach.mesh"
+          "mesh": "data/meshes/mesh_conductorecto.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_columnas.material"
+            "data/materials/mtl_conductogrande.material"
           ]
         }
       ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_conductorecto.collider"
+      }
       ,
       "abs_aabb": true
       ,
