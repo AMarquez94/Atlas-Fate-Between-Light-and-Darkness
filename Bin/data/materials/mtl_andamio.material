@@ -1,0 +1,16 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tex_andamio_alb.dds"
+    ,
+    "metallic": "data/textures/tx_andamio_met.dds"
+    ,
+    "roughness": "data/textures/tx_andamio_rgh.dds"
+    ,
+    "normal": "data/textures/tx_andamio_nml.dds"
+    ,
+    "height": "data/textures/tx_andamio_hgt.dds"
+  }
+}

@@ -1,0 +1,48 @@
+[
+  {
+    "entity":
+    {
+      "name": "tubogrande_curvocierre"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_curvocierre"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubogrande_curvocierre.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubogrande.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_tubogrande_curvocierre.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

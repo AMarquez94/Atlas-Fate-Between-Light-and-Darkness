@@ -18,7 +18,7 @@
       ,
       "transform":
       {
-        "pos": "0.0 0.09 0.0"
+        "pos": "0.0 0.0 0.0"
       }
       ,
       "render":
@@ -28,7 +28,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_acera_esquina_grande.material"
+            "data/materials/mtl_acera.material"
           ]
         }
       ]
