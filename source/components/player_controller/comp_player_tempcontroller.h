@@ -56,8 +56,7 @@ class TCompTempPlayerController : public TCompBase
         VEC4 colorMerge;
         VEC4 colorDead;
         VEC4 colorInhib;
-
-    }playerColor;
+    } playerColor;
 
     physx::PxFilterData * pxPlayerFilterData;
     physx::PxFilterData * pxShadowFilterData;

@@ -3,7 +3,7 @@
 		"prefab": "data/prefabs/player.prefab",
 		"name": "The Player",
 		"transform": {
-				"pos": "-6 0 65",
+				"pos": "-6 0 65"
 		}
 	}
 }]

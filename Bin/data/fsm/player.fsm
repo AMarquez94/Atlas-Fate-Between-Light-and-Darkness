@@ -615,7 +615,7 @@
 			"type": "TimeTransition",
 			"source": "entermerge",
 			"target": "merge",
-			"time": 0.1
+			"time": 0.5
 		},
 		{
 			"type": "MultipleVariableTransition",

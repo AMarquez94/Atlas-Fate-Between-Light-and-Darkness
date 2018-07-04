@@ -289,7 +289,7 @@ namespace FSM
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::SM_POSE , 1.0f });
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::SM_ENTER , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::mergeState, _speed, _size, _radius, _target, _noise });
         e->sendMsg(TMsgFadeBody{ false });
 
         //// Testing!
@@ -392,6 +392,7 @@ namespace FSM
 	{
 		CEntity* e = ctx.getOwner();
 		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+        e->sendMsg(TMsgFadeBody{ true });
 
 		// Testing!
 		CHandle player_light = getEntityByName("LightPlayer");

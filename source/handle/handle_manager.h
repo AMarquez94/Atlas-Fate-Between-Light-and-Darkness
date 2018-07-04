@@ -84,7 +84,7 @@ public:
   // ---------------------------------------
   virtual void init(uint32_t max_objects, bool is_multithreaded = false) {
     // Comprobar los limites de handle por el numero de bits que hemos asignado
-    assert(max_objects < max_total_objects_allowed);
+    assert(max_objects <= max_total_objects_allowed);
     assert(max_objects > 0);
 
     // Register this as the manager that will handle

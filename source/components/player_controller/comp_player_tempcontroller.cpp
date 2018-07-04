@@ -407,7 +407,7 @@ void TCompTempPlayerController::mergeState(float dt) {
     p_transform->setRotation(quat);
     p_transform->setPosition(p_transform->getPosition() + dir * player_accel);
 
-    if (convexTest() || concaveTest()) {
+    if (/*player_accel != 0 && */(convexTest() || concaveTest())) {
 
         VEC3 postUp = p_transform->getUp();
         angle_test = fabs(EnginePhysics.gravity.Dot(prevUp));
