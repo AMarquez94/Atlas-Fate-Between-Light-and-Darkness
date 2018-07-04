@@ -1,0 +1,28 @@
+[
+  {
+    "entity": {
+      "name": "Buttons"
+    }
+  },
+  {
+    "entity": {
+      "name": "Button 1",
+      "transform": {
+        "pos": "-10.2 1.0 142.250",
+        "rotation": "-0.707107 0 0 0.707107"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/Buttons/Button.mesh",
+          "materials": [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ],
+      "button": {
+        "script": "inShadows"
+      },
+      "tags": [ "button" ]
+    }
+  }
+]

@@ -220,5 +220,9 @@ struct TMsgPlayerMove {
 	DECL_MSG_ID();
 };
 
+struct TMsgButtonActivated {
+	DECL_MSG_ID();
+};
+
 #endif
 

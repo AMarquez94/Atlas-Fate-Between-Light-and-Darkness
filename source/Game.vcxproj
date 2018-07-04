@@ -112,6 +112,7 @@
     <ClCompile Include="components\ia\comp_bt_enemy.cpp" />
     <ClCompile Include="components\ia\comp_patrol_animator.cpp" />
     <ClCompile Include="components\lighting\comp_projector.cpp" />
+    <ClCompile Include="components\object_controller\comp_button.cpp" />
     <ClCompile Include="components\object_controller\comp_instance.cpp" />
     <ClCompile Include="components\object_controller\comp_movable_object.cpp" />
     <ClCompile Include="components\object_controller\comp_noise_emitter.cpp" />
@@ -294,6 +295,7 @@
     <ClInclude Include="components\ia\comp_bt_enemy.h" />
     <ClInclude Include="components\ia\comp_patrol_animator.h" />
     <ClInclude Include="components\lighting\comp_projector.h" />
+    <ClInclude Include="components\object_controller\comp_button.h" />
     <ClInclude Include="components\object_controller\comp_instance.h" />
     <ClInclude Include="components\object_controller\comp_movable_object.h" />
     <ClInclude Include="components\object_controller\comp_noise_emitter.h" />

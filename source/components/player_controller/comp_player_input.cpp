@@ -167,6 +167,7 @@ void TCompPlayerInput::update(float dt)
             {
                 /* Move this from here.. */
                 TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
+				TCompPlayerAttackCast* playerCast = e->get<TCompPlayerAttackCast>();
 
                 if (c_my_player->isInhibited && c_my_player->canRemoveInhibitor && _time >= _timerRemoveInhibitor + _timeOffsetToRemoveInhibitor) {
                     _timerRemoveInhibitor = _time;
@@ -174,12 +175,11 @@ void TCompPlayerInput::update(float dt)
                     keyPressed.variant.setName("inhibitorTryToRemove");
                     keyPressed.variant.setBool(true);
                     e->sendMsg(keyPressed);
-                }
-            }
+				}
+				//else if (playerCast->getClosestButtonInRange().isValid()) {
+				//	TMsgSetFSMVariable 
+				//}
 
-            if (EngineInput["btDebugShadows"].getsPressed()) {
-                TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
-                c_my_player->infiniteStamina = !c_my_player->infiniteStamina;
             }
 
             if (EngineInput["btUp"].getsReleased() || EngineInput["btDown"].getsReleased() ||
