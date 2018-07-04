@@ -142,6 +142,12 @@ void TCompLightSpot::onCreate(const TMsgEntityCreated& msg) {
         c_my_aabb_local->Center = VEC3(0, 0, range * .5f);
     }
 
+    CEntity* e = CHandle(this).getOwner();
+
+    // Add a particle component
+    CHandle h_comp = getObjectManager<TCompCulling>()->createHandle();
+    e->set(h_comp.getType(), h_comp);
+
     //for (int i = 0; i < num_samples; i++) {
     //    EngineInstancing.addInstance("data/meshes/quad_volume.instanced_mesh", MAT44::Identity);
     //}

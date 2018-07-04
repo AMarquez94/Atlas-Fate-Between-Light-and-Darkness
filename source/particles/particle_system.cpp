@@ -290,44 +290,6 @@ namespace Particles
 
             quadMesh->activateAndRender();
         }
-
-        /*
-        const CRenderTechnique* technique = Resources.get("particles.tech")->as<CRenderTechnique>();
-        const CRenderMesh* quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
-        CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
-        assert(technique && quadMesh && eCurrentCamera);
-        TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
-        assert(camera);
-        const VEC3 cameraPos = camera->getPosition();
-        const VEC3 cameraUp = camera->getUp();
-
-        const int frameCols = static_cast<int>(1.f / _core->render.frameSize.x);
-
-        technique->activate();
-        _core->render.texture->activate(TS_ALBEDO);
-
-        for (auto& p : _particles)
-        {
-            MAT44 bb = MAT44::CreateBillboard(p.position, cameraPos, cameraUp);
-            MAT44 sc = MAT44::CreateScale(p.size * p.scale);
-            MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
-
-            int row = p.frame / frameCols;
-            int col = p.frame % frameCols;
-            VEC2 minUV = VEC2(col * _core->render.frameSize.x, row * _core->render.frameSize.y);
-            VEC2 maxUV = minUV + _core->render.frameSize;
-
-            cb_object.obj_world = rt * sc * bb;
-            cb_object.obj_color = VEC4(1, 1, 1, 1);
-            cb_object.updateGPU();
-
-            cb_particles.particle_minUV = minUV;
-            cb_particles.particle_maxUV = maxUV;
-            cb_particles.particle_color = p.color;
-            cb_particles.updateGPU();
-
-            quadMesh->activateAndRender();
-        }*/
     }
 
     void CSystem::emit()
@@ -357,24 +319,6 @@ namespace Particles
 
             _particles.push_back(particle);
         }
-
-        /*
-        
-        for (int i = 0; i < _core->emission.count && _particles.size() < _core->life.maxParticles; ++i)
-        {
-            TParticle particle;
-            particle.position = VEC3::Transform(generatePosition(), world);
-            particle.velocity = generateVelocity();
-            particle.color = _core->color.colors.get(0.f);
-            particle.size = _core->size.sizes.get(0.f);
-            particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
-            particle.frame = _core->render.initialFrame;
-            particle.rotation = 0.f;
-            particle.lifetime = 0.f;
-            particle.max_lifetime = _core->life.duration + random(-_core->life.durationVariation, _core->life.durationVariation);
-
-            _particles.push_back(particle);
-        }*/
     }
 
     // Emit given a concrete amount
@@ -483,11 +427,11 @@ namespace Particles
 
             case TCoreSystem::TNShape::Cone:
             {                
-                return VEC3::Up;
-                //float angle = 1 - (rad2deg(_core->n_shape.angle) / 90);
-                //VEC3 dir(random(angle, 1), 1, random(angle, 1));
-                //dir.Normalize();
-                //return dir;
+                //return VEC3::Up;
+                float angle = 1 - (rad2deg(_core->n_shape.angle) / 90);
+                VEC3 dir(random(angle, 1), 1, random(angle, 1));
+                dir.Normalize();
+                return dir;
             }
         }
 

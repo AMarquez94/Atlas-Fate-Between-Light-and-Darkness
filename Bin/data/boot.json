@@ -6,7 +6,6 @@
 		},
     "scene_group": [
       "data/scenes/Map_Intro/player_fsm.scene",
-      "data/scenes/Map_Intro/sp_dynamic_lights.scene",
       "data/scenes/Map_Intro/milestone2_map_pre.scene",
       "data/scenes/Map_Intro/milestone2_map_lights2.scene",
       "data/scenes/Map_Intro/milestone2_map_colliders.scene",

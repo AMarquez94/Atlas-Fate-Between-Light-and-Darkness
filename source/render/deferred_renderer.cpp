@@ -207,7 +207,7 @@ void CDeferredRenderer::renderSpotLights() {
 void CDeferredRenderer::renderVolumes() {
 
     //EngineInstancing.clearInstance("data/meshes/quad_volume.instanced_mesh");
-    CTraceScoped gpu_scope("renderSpotLights");
+    CTraceScoped gpu_scope("renderVolumes");
 
     auto rmesh = Resources.get("data/meshes/quad_volume.instanced_mesh")->as<CRenderMesh>();
     TCompLightSpot::volume_instance = (CRenderMeshInstanced*)rmesh;
