@@ -6,6 +6,7 @@
 DECL_OBJ_MANAGER("button", TCompButton);
 
 void TCompButton::debugInMenu() {
+	ImGui::Text("Script: %s", _scriptName.c_str());
 }
 
 void TCompButton::load(const json& j, TEntityParseContext& ctx) {

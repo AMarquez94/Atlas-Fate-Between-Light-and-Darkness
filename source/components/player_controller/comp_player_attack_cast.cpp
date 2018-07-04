@@ -5,10 +5,12 @@
 #include "components/physics/comp_rigidbody.h"
 #include "entity/common_msgs.h"
 #include "physics/physics_collider.h"
+#include "physics/physics_filter.h"
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
 #include "components/ia/comp_bt_patrol.h"
 #include "components/ia/comp_bt_mimetic.h"
+#include "components/object_controller/comp_button.h"
 
 DECL_OBJ_MANAGER("player_attack_cast", TCompPlayerAttackCast);
 
@@ -18,7 +20,7 @@ void TCompPlayerAttackCast::debugInMenu() {
 void TCompPlayerAttackCast::load(const json& j, TEntityParseContext& ctx) {
 	geometryAttack.radius = j.value("radiusAttack", 2.f);
 	geometryMoveObjects.radius = j.value("radiusMoveObject", 0.35f);
-	geometryButtons.radius = j.value("radiusPressButton", 0.75f);
+	geometryButtons.radius = j.value("radiusPressButton", 1.0f);
 	attack_fov = deg2rad(j.value("attack_fov", 120.f));
 	moveObjects_fov = deg2rad(j.value("moveObjects_fov", 20.f));
 	button_fov = deg2rad(j.value("button_fov", 60.f));
@@ -34,8 +36,8 @@ void TCompPlayerAttackCast::load(const json& j, TEntityParseContext& ctx) {
 	PxPlayerMoveObjectsQueryFilterData.flags = physx::PxQueryFlag::eDYNAMIC;
 
 	pxFilterData.word0 = FilterGroup::Button;
-	PxPlayerMoveObjectsQueryFilterData.data = pxFilterData;
-	PxPlayerMoveObjectsQueryFilterData.flags = physx::PxQueryFlag::eSTATIC;
+	PxPlayerButtonInteractQueryFilterData.data = pxFilterData;
+	PxPlayerButtonInteractQueryFilterData.flags = physx::PxQueryFlag::eSTATIC;
 }
 
 void TCompPlayerAttackCast::registerMsgs()
@@ -194,7 +196,12 @@ const std::vector<CHandle> TCompPlayerAttackCast::getButtonsInRange() {
 				hitCollider.fromVoidPtr(hits[i].actor->userData);
 				if (hitCollider.isValid()) {
 					CHandle button = hitCollider.getOwner();
-					if (button.isValid()) {
+					CEntity* e = button;
+					//std::string name = e->getName();
+					TCompCollider* collider_button = e->get<TCompCollider>();
+
+					if (button.isValid() && collider_button->config->group == FilterGroup::Button) {
+						//dbg("Name of the hit nº %d : %s \n", i, name.c_str());
 						buttons_in_range.push_back(button);
 					}
 				}
@@ -217,7 +224,6 @@ CHandle TCompPlayerAttackCast::getClosestButtonInRange() {
 
 		CEntity * button = buttons[i];
 		TCompTransform *ePos = button->get<TCompTransform>();
-		TCompRigidbody *eRigidbody = button->get<TCompRigidbody>();
 
 		if (mypos->isInHorizontalFov(ePos->getPosition(), button_fov)) {
 			found = true;

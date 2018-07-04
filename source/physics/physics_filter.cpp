@@ -60,3 +60,45 @@ FilterGroup getFilterByName(const std::string & name)
 	}
 	return FilterGroup::All;
 }
+
+std::string getNameByFilter(physx::PxU32 group) {
+	if (group == FilterGroup::Button) {
+		return "button";
+	}
+	else if (group == FilterGroup::Characters) {
+		return "characters";
+	}
+	else if (group == FilterGroup::DItem) {
+		return "DItem";
+	}
+	else if (group == FilterGroup::Enemy) {
+		return "enemy";
+	}
+	else if (group == FilterGroup::Fence) {
+		return "fence";
+	}
+	else if (group == FilterGroup::Floor) {
+		return "floor";
+	}
+	else if (group == FilterGroup::Ignore) {
+		return "ignore";
+	}
+	else if (group == FilterGroup::MovableObject) {
+		return "Movable Object";
+	}
+	else if (group == FilterGroup::Player) {
+		return "player";
+	}
+	else if (group == FilterGroup::Scenario) {
+		return "scenario";
+	}
+	else if (group == FilterGroup::Wall) {
+		return "wall";
+	}
+	else if (group == FilterGroup::All) {
+		return "all";
+	}
+	else {
+		return "Error, filter group not recognized.";
+	}
+}

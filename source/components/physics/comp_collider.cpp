@@ -3,6 +3,7 @@
 #include "comp_rigidbody.h"
 #include "components/comp_transform.h"
 #include "physics/physics_collider.h"
+#include "physics/physics_filter.h"
 #include "components/comp_tags.h"
 #include "render/texture/material.h" 
 #include "components\comp_render.h"
@@ -26,6 +27,9 @@ TCompCollider::~TCompCollider(){
 void TCompCollider::debugInMenu() {
 
 	config->debugInMenu();
+	std::string group = getNameByFilter(config->group);
+	//ImGui::LabelText("Group", "%s", group.c_str());
+	ImGui::Text("Group: %s", group.c_str());
 }
 
 void TCompCollider::renderDebug(bool onlyDynamics) {

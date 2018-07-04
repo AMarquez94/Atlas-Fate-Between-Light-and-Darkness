@@ -176,11 +176,25 @@ void TCompPlayerInput::update(float dt)
                     keyPressed.variant.setBool(true);
                     e->sendMsg(keyPressed);
 				}
-				//else if (playerCast->getClosestButtonInRange().isValid()) {
-				//	TMsgSetFSMVariable 
-				//}
+				else if (playerCast->getClosestButtonInRange().isValid()) {
+					_buttonPressed = true;
+					TMsgSetFSMVariable activatingButton;
+					activatingButton.variant.setName("buttonPressed");
+					activatingButton.variant.setBool(true);
+					e->sendMsg(activatingButton);
+				}
 
             }
+
+			if (EngineInput["btSecAction"].getsReleased())
+			{
+				if (_buttonPressed) {
+					TMsgSetFSMVariable activatingButton;
+					activatingButton.variant.setName("buttonPressed");
+					activatingButton.variant.setBool(false);
+					e->sendMsg(activatingButton);
+				}
+			}
 
             if (EngineInput["btUp"].getsReleased() || EngineInput["btDown"].getsReleased() ||
                 EngineInput["btRight"].getsReleased() || EngineInput["btLeft"].getsReleased()) {

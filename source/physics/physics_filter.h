@@ -24,3 +24,4 @@ physx::PxFilterFlags CustomFilterShader(
 );
 
 FilterGroup getFilterByName(const std::string & name);
+std::string getNameByFilter(const physx::PxU32);

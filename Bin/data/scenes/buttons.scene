@@ -8,7 +8,7 @@
     "entity": {
       "name": "Button 1",
       "transform": {
-        "pos": "-10.2 1.0 142.250",
+        "pos": "-10.2 1.0 140.250",
         "rotation": "-0.707107 0 0 0.707107"
       },
       "render": [
@@ -19,6 +19,11 @@
           ]
         }
       ],
+      "collider": {
+        "shape": "box",
+        "size": "0.3 0.3 0.3",
+        "group": "button"
+      },
       "button": {
         "script": "inShadows"
       },

@@ -40,6 +40,9 @@ bool CModuleFSM::start()
 	_factory.registerInstancer("DeadState", new FSM::StateInstancer<FSM::DeadState>());
 	_factory.registerInstancer("GrabEnemyState", new FSM::StateInstancer<FSM::GrabEnemyState>());
 	_factory.registerInstancer("MovingObjectState", new FSM::StateInstancer<FSM::MovingObjectState>());
+	_factory.registerInstancer("PressingButtonState", new FSM::StateInstancer<FSM::PressingButtonState>());
+
+
 	_factory.registerInstancer("VariableTransition", new FSM::TransitionInstancer<FSM::VariableTransition>());
 	_factory.registerInstancer("TimeTransition", new FSM::TransitionInstancer<FSM::TimeTransition>());
 	_factory.registerInstancer("MultipleVariableTransition", new FSM::TransitionInstancer<FSM::MultipleVariableTransition>());
