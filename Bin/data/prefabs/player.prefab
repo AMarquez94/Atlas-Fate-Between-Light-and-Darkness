@@ -1,28 +1,242 @@
-[ {
-		"entity":
-	    {
-	      "name": "superplayer",
-	      "transform":
-	      {
-	        "pos": "0 0 0",
-	        "rotation": "0.0 0.0 0.0 1.0"
-	      },
-	      "skeleton": {
-	        "skeleton": "data/skeletons/player/player.skeleton"
-	      },
-	      "abs_aabb":true,
-	      "local_aabb":true,
-	      "player_animator":true,
-	      "render" : [
-	        {
-	          "mesh": "data/skeletons/player/body_.mesh"
-	          ,
-	          "materials":
-	          [
-	            "data/skeletons/paladin/paladin.material"
-	          ]
-	        }
-	      ]
-	    }
+[{
+		"entity": {
+			"name": "The Player",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [{
+				"mesh": "data/skeletons/player/body.mesh",
+				"materials": [
+					"data/materials/characters/mtl_player_main.material"
+				]
+			}, {
+				"mesh": "data/skeletons/player/bolsa_cinturon.mesh",
+				"materials": [
+					"data/materials/characters/mtl_player_main.material"
+				]
+			}, {
+				"mesh": "data/skeletons/player/buff_exterior.mesh",
+				"materials": [
+					"data/materials/characters/mtl_player_main.material"
+				]
+			}, {
+				"mesh": "data/skeletons/player/capsula_energia.mesh",
+				"materials": [
+					"data/materials/characters/mtl_player_main.material"
+				]
+			}, {
+				"mesh": "data/skeletons/player/cinturon_capsula1.mesh",
+				"materials": [
+					"data/materials/characters/mtl_player_main.material"
+				]
+			}, {
+				"mesh": "data/skeletons/player/cinturon_capsula2.mesh",
+				"materials": [
+					"data/materials/characters/mtl_player_main.material"
+				]
+			}, {
+				"mesh": "data/skeletons/player/cinturon_capsula3.mesh",
+				"materials": [
+					"data/materials/characters/mtl_player_main.material"
+				]
+			}, {
+				"mesh": "data/skeletons/player/cinturon_capsula4.mesh",
+				"materials": [
+					"data/materials/characters/mtl_player_main.material"
+				]
+			}, {
+				"mesh": "data/skeletons/player/cruzado_capsula1.mesh",
+				"materials": [
+					"data/materials/characters/mtl_player_main.material"
+				]
+			}, {
+				"mesh": "data/skeletons/player/cruzado_capsula2.mesh",
+				"materials": [
+					"data/materials/characters/mtl_player_main.material"
+				]
+			}, {
+				"mesh": "data/skeletons/player/cruzado_capsula3.mesh",
+				"materials": [
+					"data/materials/characters/mtl_player_main.material"
+				]
+			}, {
+				"mesh": "data/skeletons/player/hood.mesh",
+				"materials": [
+					"data/materials/characters/mtl_player_main.material"
+				]
+			}, {
+				"mesh": "data/skeletons/player/tira_L.mesh",
+				"materials": [
+					"data/materials/characters/mtl_player_main.material"
+				]
+			}, {
+				"mesh": "data/skeletons/player/tira_R.mesh",
+				"materials": [
+					"data/materials/characters/mtl_player_main.material"
+				]
+			}],
+			"fade_controller": {
+				"fade_color": "0.0 0.0 0.0 1.0",
+				"fade_time": 0.6,
+				"material": "data/materials/characters/mtl_player_main_shade.material",
+				"destroy": false
+			},
+			"skeleton": {
+				"skeleton": "data/skeletons/player/player.skeleton",
+				"scale": 1.0
+			},
+			"sonar_controller": {
+				"tags": "enemy",
+				"alive_time": 1.0,
+				"cooldown_time": 10.0
+			},
+			"player_animator": true,
+			"collider": {
+				"shape": "capsule",
+				"radius": 0.3,
+				"height": 1.0,
+				"group": "player",
+				"mask": "All"
+			},
+			"rigidbody": {
+				"is_controller": true,
+				"is_gravity": true
+			},
+			"shadow_controller": {},
+			"player_attack_cast": {
+				"radiusAttack": 2,
+				"radiusMoveObject": 1,
+				"moveObjects_fov": 30
+			},
+			"fsm": {
+				"file": "data/fsm/player.fsm"
+			},
+			"player_input": {},
+			"player_tempcontroller": {
+				"mergeAngle": 0.45,
+				"maxFallingTime": 0.8,
+				"hardFallingTime": 0.5,
+				"maxFallingDistance": 6,
+				"maxAttackDistance": 2,
+				"minStamina": 0,
+				"maxStamina": 100,
+				"incrStamina": 15,
+				"decrStaticStamina": 0.75,
+				"decrStaminaHorizontal": 12.5,
+				"decrStaminaVertical": 15,
+				"minStaminaChange": 15,
+				"auxCamera": "SMCameraAux",
+				"timesRemoveInhibitorKeyPressed": 5
+			},
+			"noclip_controller": {},
+			"emission_controller": {
+				"initial": "1.0 1.0 1.0 1.0",
+				"intensity": 1.25
+			},
+			"noise_emitter": {
+				"radius": -1
+			},
+			"tags": [
+				"player"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "PropPlayer",
+			"hierarchy": {
+				"parent": "The Player",
+				"pos": "0 0 0"
+			},
+			"transform": {},
+			"render": {
+				"mesh": "axis.mesh"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "PropPlayer",
+
+			"hierarchy": {
+				"parent": "The Player",
+				"pos": "0 0.001 0"
+			},
+			"transform": {},
+			"render": {
+				"mesh": "axis.mesh"
+			},
+			"particles": {
+				"core": "data/particles/sm_ground.particles"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "PropPlayer",
+
+			"hierarchy": {
+				"parent": "The Player",
+				"pos": "0 0 0"
+			},
+			"transform": {},
+			"render": {
+				"mesh": "axis.mesh"
+			},
+			"particles": {
+				"core": "data/particles/sm_top.particles"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "PropPlayer",
+
+			"hierarchy": {
+				"parent": "The Player",
+				"pos": "0 0 0"
+			},
+			"transform": {},
+			"render": {
+				"mesh": "axis.mesh"
+			},
+			"particles": {
+				"core": "data/particles/sm_whisps.particles"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "PropPlayer",
+
+			"hierarchy": {
+				"parent": "The Player",
+				"pos": "0 0 0"
+			},
+			"transform": {},
+			"render": {
+				"mesh": "axis.mesh"
+			},
+			"particles": {
+				"core": "data/particles/sm_whisps2.particles"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "PropPlayer",
+
+			"hierarchy": {
+				"parent": "The Player",
+				"pos": "0 0 0"
+			},
+			"transform": {},
+			"render": {
+				"mesh": "axis.mesh"
+			},
+			"particles": {
+				"core": "data/particles/sm_top_trail.particles"
+			}
+		}
 	}
 ]

@@ -7,6 +7,7 @@ DECL_OBJ_MANAGER("particles", TCompParticles);
 void TCompParticles::registerMsgs() {
 
     DECL_MSG(TCompParticles, TMsgEntityCreated, onCreated);
+    DECL_MSG(TCompParticles, TMsgEntitiesGroupCreated, onGroupCreated);
     DECL_MSG(TCompParticles, TMsgEntityDestroyed, onDestroyed);
 }
 
@@ -31,6 +32,13 @@ void TCompParticles::onCreated(const TMsgEntityCreated&) {
         _particles = Engine.getParticles().launchSystem(_core, CHandle(this).getOwner());
     }
 }
+
+void TCompParticles::onGroupCreated(const TMsgEntitiesGroupCreated&) {
+    if (_core && !_particles) {
+        _particles = Engine.getParticles().launchSystem(_core, CHandle(this).getOwner());
+    }
+}
+
 
 void TCompParticles::onDestroyed(const TMsgEntityDestroyed&) {
 

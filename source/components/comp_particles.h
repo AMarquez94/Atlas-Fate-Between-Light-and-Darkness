@@ -17,6 +17,7 @@ public:
 
     void load(const json& j, TEntityParseContext& ctx);
     void onCreated(const TMsgEntityCreated&);
+    void onGroupCreated(const TMsgEntitiesGroupCreated&);
     void onDestroyed(const TMsgEntityDestroyed&);
     void debugInMenu();
 };

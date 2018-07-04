@@ -97,9 +97,11 @@ bool CModuleInstancing::parseInstance(const json& j, TEntityParseContext& ctx) {
         TCompName * c_name = e->get<TCompName>();
         c_name->setName(sub_name.c_str());
 
-        CEntity * t_group = scene_group;
-        TCompGroup* c_group = t_group->get<TCompGroup>();
-        c_group->add(h_e);
+        if (scene_group.isValid()) {
+            CEntity * t_group = scene_group;
+            TCompGroup* c_group = t_group->get<TCompGroup>();
+            c_group->add(h_e);
+        }
 
         _global_names.insert(std::pair<std::string, std::string>(name, name));
     }
