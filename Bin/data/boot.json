@@ -46,7 +46,9 @@
 			"data/scenes/zona_a_tubos.scene",
 			"data/scenes/colliders_prova.scene",
 			"data/scenes/zona_a_proves.scene",
-			"data/scenes/ZoneA/whitebox_zone_light.scene"
+			"data/scenes/ZoneA/whitebox_zone_light.scene",
+			"data/scenes/ZoneA/test_instancing.scene",
+						"data/scenes/ZoneA/enemy2.scene"
 			
 		]
 	},
