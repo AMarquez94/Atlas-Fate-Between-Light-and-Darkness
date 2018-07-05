@@ -7,7 +7,6 @@
     "scene_group": [
       "data/scenes/Map_Intro/player_fsm.scene",
       "data/scenes/Map_Intro/enemy.scene",
-      "data/scenes/Map_Intro/sp_dynamic_lights.scene",
       "data/scenes/Map_Intro/milestone2_map_pre.scene",
       "data/scenes/Map_Intro/milestone2_map_lights2.scene",
       "data/scenes/Map_Intro/milestone2_map_colliders.scene",
@@ -27,7 +26,6 @@
 		"scene_group": [
 			"data/scenes/ZoneA/player2_fsm.scene",
 			"data/scenes/ZoneA/camera.scene",
-			"data/scenes/ZoneA/sp_dynamic_lights.scene",
 			"data/scenes/ZoneA/zone_a_aceras.scene",
 			"data/scenes/ZoneA/zone_a_suelo.scene",
 			"data/scenes/ZoneA/zone_a_casas.scene",
@@ -48,7 +46,7 @@
 			"data/scenes/zona_a_proves.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene",
 			"data/scenes/ZoneA/test_instancing.scene",
-						"data/scenes/ZoneA/enemy2.scene"
+			"data/scenes/ZoneA/enemy2.scene"
 			
 		]
 	},
