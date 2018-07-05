@@ -77,7 +77,7 @@ protected:
 
 public:
 
-	enum BTType { PATROL = 0, MIMETIC, NUM_ENEMIES };
+	enum BTType { PATROL = 0, MIMETIC, DRONE, NUM_ENEMIES };
 
 	std::string name;
 	BTType btType;

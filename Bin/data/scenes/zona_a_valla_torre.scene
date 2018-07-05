@@ -1,0 +1,397 @@
+[
+  {
+    "entity":
+    {
+      "name": "zona_a_valla_torre"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pivote_valla_torre001"
+      ,
+      "prefab": "data/prefabs/pivote_valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-105.043 -0.100006 -126.971"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_torre001"
+      ,
+      "prefab": "data/prefabs/valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-98.0 -0.100006 -126.961"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_torre002"
+      ,
+      "prefab": "data/prefabs/valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-107.841 -0.100006 -126.961"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_torre003"
+      ,
+      "prefab": "data/prefabs/valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-113.841 -0.100006 -126.961"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_torre004"
+      ,
+      "prefab": "data/prefabs/valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-119.841 -0.100006 -126.961"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_torre005"
+      ,
+      "prefab": "data/prefabs/valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-95.2 -0.100006 -129.761"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_torre006"
+      ,
+      "prefab": "data/prefabs/valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-95.2 -0.100006 -141.657"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_torre007"
+      ,
+      "prefab": "data/prefabs/valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-95.2 -0.100006 -147.657"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_torre008"
+      ,
+      "prefab": "data/prefabs/valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-117.6 -0.100006 -129.761"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_torre009"
+      ,
+      "prefab": "data/prefabs/valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-117.6 -0.100006 -135.761"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_torre010"
+      ,
+      "prefab": "data/prefabs/valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-117.6 -0.100006 -141.761"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_torre011"
+      ,
+      "prefab": "data/prefabs/valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-117.6 -0.100006 -147.761"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_torre012"
+      ,
+      "prefab": "data/prefabs/valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-96.8001 -0.100007 -150.561"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_torre013"
+      ,
+      "prefab": "data/prefabs/valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-102.8 -0.100007 -150.561"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_torre014"
+      ,
+      "prefab": "data/prefabs/valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-108.8 -0.100007 -150.561"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_torre015"
+      ,
+      "prefab": "data/prefabs/valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-114.8 -0.100007 -150.561"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_torre016"
+      ,
+      "prefab": "data/prefabs/valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-90.8001 -0.100007 -150.561"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pivote_valla_torre002"
+      ,
+      "prefab": "data/prefabs/pivote_valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-100.823 -0.100006 -126.971"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pivote_valla_torre003"
+      ,
+      "prefab": "data/prefabs/pivote_valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-95.1902 -0.100006 -132.708"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pivote_valla_torre004"
+      ,
+      "prefab": "data/prefabs/pivote_valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-95.1902 -0.100006 -138.824"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pivote_valla_torre005"
+      ,
+      "prefab": "data/prefabs/pivote_valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-117.609 -0.100006 -126.937"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pivote_valla_torre006"
+      ,
+      "prefab": "data/prefabs/pivote_valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-95.2043 -0.100007 -150.558"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pivote_valla_torre007"
+      ,
+      "prefab": "data/prefabs/pivote_valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-95.1581 -0.100006 -126.965"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pivote_valla_torre008"
+      ,
+      "prefab": "data/prefabs/pivote_valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-117.599 -0.100007 -150.576"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+]

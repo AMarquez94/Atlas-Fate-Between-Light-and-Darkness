@@ -18,6 +18,9 @@ void CModuleNavmesh::update(float delta) {
 }
 
 void CModuleNavmesh::render() {
+    if (renderNamvesh) {
+        navmesh.render();
+    }
 }
 
 void CModuleNavmesh::buildNavmesh(const std::string& path) {

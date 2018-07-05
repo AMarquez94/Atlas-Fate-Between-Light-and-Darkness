@@ -1,7 +1,8 @@
 #include "mcv_platform.h"
 #include "entity/entity_parser.h"
 #include "comp_camera_thirdperson.h"
-#include "../comp_transform.h"
+#include "components/comp_transform.h"
+#include "components/comp_tags.h"
 
 DECL_OBJ_MANAGER("camera_thirdperson", TCompCameraThirdPerson);
 const Input::TInterface_Mouse& mouse = EngineInput.mouse();
@@ -46,7 +47,20 @@ void TCompCameraThirdPerson::registerMsgs()
 
 void TCompCameraThirdPerson::onMsgCameraActive(const TMsgCameraActivated & msg)
 {
-  _current_euler.y = _original_euler.y;
+    CEntity * eCamera = msg.previousCamera;
+    std::string cameraName = eCamera->getName();
+    TCompCameraThirdPerson * c_camera = eCamera->get<TCompCameraThirdPerson>();
+
+    if (c_camera == nullptr) {
+        /* Reset y angle in all tp_cameras */
+        VHandles v_tp_cameras = CTagsManager::get().getAllEntitiesByTag(getID("tp_camera"));
+        TMsgCameraReset msg;
+        msg.both_angles = false;
+        msg.only_y = true;
+        for (int i = 0; i < v_tp_cameras.size(); i++) {
+          v_tp_cameras[i].sendMsg(msg);
+        }
+    }
 }
 
 void TCompCameraThirdPerson::onMsgCameraFullActive(const TMsgCameraFullyActivated & msg)
@@ -70,7 +84,15 @@ void TCompCameraThirdPerson::onMsgCameraSetActive(const TMsgSetCameraActive & ms
 
 void TCompCameraThirdPerson::onMsgCameraReset(const TMsgCameraReset & msg)
 {
-  _current_euler = _original_euler;
+  if (msg.both_angles) {
+    _current_euler = _original_euler;
+  }
+  else if (msg.only_y) {
+    _current_euler.y = _original_euler.y;
+  }
+  else {
+    _current_euler.x = _original_euler.x;
+  }
 }
 
 void TCompCameraThirdPerson::update(float dt)

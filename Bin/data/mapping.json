@@ -104,6 +104,11 @@
     "all": false,
     "buttons":  ["f3"]
   },
+	{
+    "name": "btDebugParticles",
+    "all": false,
+    "buttons":  ["f4"]
+  },
   {
     "name": "btPause",
     "all": false,
@@ -133,5 +138,15 @@
 	"name": "btConsole",
 	"all": false,
 	"buttons": ["oem_4"]
+  },
+  {
+    "name": "btMouseRClick",
+    "all": false,
+    "buttons": [ "mouse_right" ]
+  },
+  {
+    "name": "btMouseLClick",
+    "all": false,
+    "buttons": [ "mouse_left" ]
   }
 ]

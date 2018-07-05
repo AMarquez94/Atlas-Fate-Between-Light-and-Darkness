@@ -23,6 +23,7 @@ public:
   float wallDistance(VEC3 pos);
   bool raycast(VEC3 start, VEC3 end, VEC3& hitPos);
   VEC3 closestNavmeshPoint(VEC3 start);
+  bool renderNamvesh = false;
 
 private:
 

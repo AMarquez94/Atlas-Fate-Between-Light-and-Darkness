@@ -157,6 +157,8 @@ void CModuleLogic::publishClasses() {
 	//camera hacks
 	m->set("blendInCamera", SLB::FuncCall::create(&blendInCamera));
 	m->set("blendOutCamera", SLB::FuncCall::create(&blendOutCamera));
+	m->set("blendOutActiveCamera", SLB::FuncCall::create(&blendOutActiveCamera));
+
 
 	//system hacks
 	m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
@@ -173,9 +175,14 @@ void CModuleLogic::publishClasses() {
 	m->set("fpsToggle", SLB::FuncCall::create(&fpsToggle));
 	m->set("debugToggle", SLB::FuncCall::create(&debugToggle));
 
+	/* Only for debug */
+	m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
 
 	//others
 	m->set("bind", SLB::FuncCall::create(&bind));
+	m->set("renderNavmeshToggle", SLB::FuncCall::create(&renderNavmeshToggle));
+	m->set("playSound2D", SLB::FuncCall::create(&playSound2D));
+	m->set("exeShootImpactSound", SLB::FuncCall::create(&exeShootImpactSound));
 
 }
 
@@ -333,6 +340,10 @@ void blendOutCamera(const std::string & cameraName, float blendOutTime) {
 	if (camera.isValid()) {
 		EngineCameras.blendOutCamera(camera, blendOutTime);
 	}
+}
+
+void blendOutActiveCamera(float blendOutTime) {
+	EngineCameras.blendOutCamera(EngineCameras.getCurrentCamera(), blendOutTime);
 }
 
 void staminaInfinite() {
@@ -564,4 +575,25 @@ void cg_drawlights(int type) {
 	getObjectManager<TCompLightPoint>()->forEach([&](TCompLightPoint* c) {
 		c->isEnabled = point;
 	});
+}
+
+void playSound2D(const std::string& soundName) {
+	EngineSound.playSound2D(soundName);
+}
+
+void exeShootImpactSound() {
+	EngineSound.exeShootImpactSound();
+}
+
+void sendOrderToDrone(const std::string & droneName, VEC3 position)
+{
+	CEntity* drone = getEntityByName(droneName);
+	TMsgOrderReceived msg;
+	msg.position = position;
+	msg.hOrderSource = getEntityByName("The Player");
+	drone->sendMsg(msg);
+}
+
+void renderNavmeshToggle() {
+	EngineNavmeshes.renderNamvesh = !EngineNavmeshes.renderNamvesh;
 }

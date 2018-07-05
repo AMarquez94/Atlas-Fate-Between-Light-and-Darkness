@@ -11,8 +11,8 @@ class CMaterial : public IResource {
 
 protected:
 	static const int max_textures = TS_NUM_MATERIALS_SLOTS;
-	CRenderCte<CCteMaterial> cb_material;
-	
+    CRenderCte<CCteMaterial> cb_material;
+
 	VEC4 color;
 	bool  cast_shadows = true;
 
@@ -20,6 +20,7 @@ public:
 
 	const CTexture* textures[max_textures];
 	const CRenderTechnique* tech = nullptr;
+
 
 	CMaterial();
 
@@ -30,7 +31,7 @@ public:
 	void debugInMenu() override;
 	void onFileChanged(const std::string& filename) override;
     void activateTextures(int slot) const;
-
+    void setCBMaterial(float alpha_outline);
 	bool castsShadows() const { return cast_shadows; }
 
 protected:

@@ -1,0 +1,9 @@
+[{
+	"entity": {
+		"prefab": "data/prefabs/player.prefab",
+		"name": "The Player",
+		"transform": {
+				"pos": "-10 5 -344"
+		}
+	}
+}]

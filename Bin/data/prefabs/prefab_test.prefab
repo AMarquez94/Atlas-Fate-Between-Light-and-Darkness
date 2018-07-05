@@ -1,0 +1,31 @@
+[
+  {
+    "entity":
+    {
+      "name": "Box001"
+      ,
+      "transform":
+      {
+        "pos": "-5.77232 0.0 -8.43396"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_prefab1.material"
+            ,
+            "data/materials/mtl_prefab2.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

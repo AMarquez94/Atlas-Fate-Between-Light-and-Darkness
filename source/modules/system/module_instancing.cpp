@@ -1,6 +1,10 @@
 #include "mcv_platform.h"
 #include "module_instancing.h"
 #include "geometry/transform.h"
+#include "entity/entity_parser.h"
+#include "components/comp_name.h"
+#include "components/comp_group.h"
+#include "components/comp_transform.h"
 
 float unitRandom() {
 
@@ -12,8 +16,16 @@ float randomFloat(float vmin, float vmax) {
     return vmin + (vmax - vmin) * unitRandom();
 }
 
+bool CModuleInstancing::stop()
+{
+    scene_group.destroy();
+
+    return true;
+}
+
 bool CModuleInstancing::start() {
 
+    // Load static meshes
     {
         auto rmesh = Resources.get("data/meshes/GeoSphere001.instanced_mesh")->as<CRenderMesh>();
         // Remove cast and upcast to CRenderMeshInstanced
@@ -31,6 +43,67 @@ bool CModuleInstancing::start() {
         auto rmesh = Resources.get("data/meshes/grass.instanced_mesh")->as<CRenderMesh>();
         grass_instances_mesh = (CRenderMeshInstanced*)rmesh;
         grass_instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TGrassParticle));
+    }
+
+    // Create a scene entity to hold all global instances.
+    {
+        scene_group.create< CEntity >();
+        CEntity* e = scene_group;
+
+        CHandle h_comp = getObjectManager<TCompTransform>()->createHandle();
+        e->set(h_comp.getType(), h_comp);
+
+        h_comp = getObjectManager<TCompName>()->createHandle();
+        e->set(h_comp.getType(), h_comp);
+
+        TCompName * c_name = e->get<TCompName>();
+        c_name->setName("Instanced Meshes");
+
+        CHandle h_group = getObjectManager<TCompGroup>()->createHandle();
+        e->set(h_group.getType(), h_group);
+    }
+
+    return true;
+}
+
+/* Load the global instance mesh in the scene */
+bool CModuleInstancing::parseInstance(const json& j, TEntityParseContext& ctx) {
+
+    std::string name = j.value("mesh", "data/meshes/GeoSphere001.instanced_mesh");
+
+    if (_global_names.find(name) == _global_names.end()) {
+
+        CHandle h_e;
+        h_e.create< CEntity >();
+        CEntity* e = h_e;
+
+        TEntityParseContext ctx_temp;
+        ctx_temp.current_entity = e;
+        // Bind it to me
+        auto om = CHandleManager::getByName("render");
+        CHandle h_comp = om->createHandle();
+
+        h_comp.load(j, ctx_temp);
+        e->set(h_comp.getType(), h_comp);
+
+        h_comp = getObjectManager<TCompTransform>()->createHandle();
+        e->set(h_comp.getType(), h_comp);
+
+        h_comp = getObjectManager<TCompName>()->createHandle();
+        e->set(h_comp.getType(), h_comp);
+
+        std::size_t pos = name.find("meshes/") + 7;
+        std::string sub_name = name.substr(pos);
+        TCompName * c_name = e->get<TCompName>();
+        c_name->setName(sub_name.c_str());
+
+        if (scene_group.isValid()) {
+            CEntity * t_group = scene_group;
+            TCompGroup* c_group = t_group->get<TCompGroup>();
+            c_group->add(h_e);
+        }
+
+        _global_names.insert(std::pair<std::string, std::string>(name, name));
     }
 
     return true;
@@ -86,6 +159,13 @@ void CModuleInstancing::clearInstances() {
     _global_instances.clear();
 }
 
+void CModuleInstancing::clearInstance(const std::string &name) {
+
+    if (_global_instances.find(name) != _global_instances.end()) {
+        _global_instances[name]._instances.clear();
+    }
+}
+
 // Maybe we should refactor this with pointers..
 void CModuleInstancing::updateInstance(const std::string& name, int index, const MAT44& w_matrix) {
 
@@ -100,6 +180,11 @@ void CModuleInstancing::render() {
     instances_mesh->setInstancesData(instances.data(), instances.size(), sizeof(TInstance));
     blood_instances_mesh->setInstancesData(blood_instances.data(), blood_instances.size(), sizeof(TInstanceBlood));
     particles_instances_mesh->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(TRenderParticle));
+
+    debugMenu();
+}
+
+void CModuleInstancing::debugMenu() {
 
     if (ImGui::TreeNode("Instance Manager")) {
 

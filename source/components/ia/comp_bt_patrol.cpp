@@ -14,6 +14,7 @@
 #include "render/render_utils.h"
 #include "components/ia/comp_patrol_animator.h"
 #include "render/render_objects.h"
+#include "components/lighting/comp_fade_controller.h"
 
 DECL_OBJ_MANAGER("ai_patrol", TCompAIPatrol);
 
@@ -32,99 +33,99 @@ void TCompAIPatrol::postUpdate(float dt)
 
 void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
 
-	loadActions();
-	loadConditions();
-	loadAsserts();
-	TCompAIEnemy::loadTree(j);
-	TCompAIEnemy::loadParameters(j);
+    loadActions();
+    loadConditions();
+    loadAsserts();
+    TCompIAController::loadTree(j);
+    TCompIAController::loadParameters(j);
 
-	if (j.count("waypoints") > 0) {
-		auto& j_waypoints = j["waypoints"];
-		_waypoints.clear();
-		for (auto it = j_waypoints.begin(); it != j_waypoints.end(); ++it) {
+    if (j.count("waypoints") > 0) {
+        auto& j_waypoints = j["waypoints"];
+        _waypoints.clear();
+        for (auto it = j_waypoints.begin(); it != j_waypoints.end(); ++it) {
 
-			Waypoint wpt;
-			assert(it.value().count("position") == 1);
-			assert(it.value().count("lookAt") == 1);
+            Waypoint wpt;
+            assert(it.value().count("position") == 1);
+            assert(it.value().count("lookAt") == 1);
 
-			wpt.position = loadVEC3(it.value()["position"]);
-			wpt.lookAt = loadVEC3(it.value()["lookAt"]);
-			wpt.minTime = it.value().value("minTime", 5.f);
-			addWaypoint(wpt);
-		}
-	}
-	startLightsOn = j.value("startLightsOn", false);
-	currentWaypoint = 0;
+            wpt.position = loadVEC3(it.value()["position"]);
+            wpt.lookAt = loadVEC3(it.value()["lookAt"]);
+            wpt.minTime = it.value().value("minTime", 5.f);
+            addWaypoint(wpt);
+        }
+    }
+    startLightsOn = j.value("startLightsOn", false);
+    currentWaypoint = 0;
 
-	enemyColor.colorNormal = j.count("colorNormal") ? loadVEC4(j["colorNormal"]) : VEC4(1, 1, 1, 1);
-	enemyColor.colorSuspect = j.count("colorSuspect") ? loadVEC4(j["colorSuspect"]) : VEC4(1, 1, 0, 1);
-	enemyColor.colorAlert = j.count("colorAlert") ? loadVEC4(j["colorAlert"]) : VEC4(1, 0, 0, 1);
-	enemyColor.colorDead = j.count("colorDead") ? loadVEC4(j["colorDead"]) : VEC4(0, 0, 0, 0);
+    enemyColor.colorNormal = j.count("colorNormal") ? loadVEC4(j["colorNormal"]) : VEC4(1, 1, 1, 1);
+    enemyColor.colorSuspect = j.count("colorSuspect") ? loadVEC4(j["colorSuspect"]) : VEC4(1, 1, 0, 1);
+    enemyColor.colorAlert = j.count("colorAlert") ? loadVEC4(j["colorAlert"]) : VEC4(1, 0, 0, 1);
+    enemyColor.colorDead = j.count("colorDead") ? loadVEC4(j["colorDead"]) : VEC4(0, 0, 0, 0);
 
-	btType = BTType::PATROL;
+    btType = BTType::PATROL;
 }
 
 void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
 {
-	TCompName *tName = get<TCompName>();
-	name = tName->getName();
+    TCompName *tName = get<TCompName>();
+    name = tName->getName();
 
-	if (_waypoints.size() == 0) {
+    if (_waypoints.size() == 0) {
 
-		TCompTransform * tPos = get<TCompTransform>();
-		Waypoint wpt;
-		wpt.position = tPos->getPosition();
-		wpt.lookAt = tPos->getFront();
-		//wpt.lookAt = trueLookAt != VEC3::Zero ? trueLookAt : tPos->getFront();
-		wpt.minTime = 1.f;
-		addWaypoint(wpt);
-	}
+        TCompTransform * tPos = get<TCompTransform>();
+        Waypoint wpt;
+        wpt.position = tPos->getPosition();
+        wpt.lookAt = tPos->getFront();
+        //wpt.lookAt = trueLookAt != VEC3::Zero ? trueLookAt : tPos->getFront();
+        wpt.minTime = 1.f;
+        addWaypoint(wpt);
+    }
 
-	if (startLightsOn) {
-		turnOnLight();
-	}
+    if (startLightsOn) {
+        turnOnLight();
+    }
 
-	myHandle = CHandle(this);
+    myHandle = CHandle(this);
 
-	//TCompEmissionController *eController = get<TCompEmissionController>();
-	//eController->blend(patrolColor.colorNormal, 0.001f);
+    //TCompEmissionController *eController = get<TCompEmissionController>();
+    //eController->blend(patrolColor.colorNormal, 0.001f);
 }
 
 void TCompAIPatrol::onMsgPlayerDead(const TMsgPlayerDead& msg) {
 
-	alarmEnded = false;
-	if (!isStunned()) {
+    alarmEnded = false;
+    if (!isStunned()) {
 
-		/* We reset the timer if we are not stunned*/
-		current = nullptr;
-	}
+        /* We reset the timer if we are not stunned*/
+        current = nullptr;
+    }
 }
 
 void TCompAIPatrol::onMsgPatrolStunned(const TMsgEnemyStunned & msg)
 {
-	hasBeenStunned = true;
+    hasBeenStunned = true;
 
-	TCompEmissionController * e_controller = get<TCompEmissionController>();
-	e_controller->blend(enemyColor.colorDead, 0.1f);
+    TCompEmissionController * e_controller = get<TCompEmissionController>();
+    e_controller->blend(enemyColor.colorDead, 0.1f);
 
-	TCompTransform *mypos = get<TCompTransform>();
-	float y, p, r;
-	mypos->getYawPitchRoll(&y, &p, &r);
-	p = p - deg2rad(89.f);
-	mypos->setYawPitchRoll(y, p, r);
-	turnOffLight();
+    TCompTransform *mypos = get<TCompTransform>();
+    float y, p, r;
+    mypos->getYawPitchRoll(&y, &p, &r);
+    p = p - deg2rad(89.f);
+    mypos->setYawPitchRoll(y, p, r);
+    turnOffLight();
 
-	TCompGroup* cGroup = get<TCompGroup>();
-	CEntity* eCone = cGroup->getHandleByName("Cone of Vision");
-	TCompRender * coneRender = eCone->get<TCompRender>();
-	coneRender->visible = false;
+    TCompGroup* cGroup = get<TCompGroup>();
+    CEntity* eCone = cGroup->getHandleByName("Cone of Vision");
+    TCompRender * coneRender = eCone->get<TCompRender>();
+    coneRender->visible = false;
 
-	lastPlayerKnownPos = VEC3::Zero;
+    lastPlayerKnownPos = VEC3::Zero;
 
-	/* Tell the other patrols I am stunned */
-	CEngine::get().getIA().patrolSB.stunnedPatrols.emplace_back(CHandle(this).getOwner());
+    /* Tell the other patrols I am stunned */
+    CEngine::get().getIA().patrolSB.stunnedPatrols.emplace_back(CHandle(this).getOwner());
 
-	current = nullptr;
+    current = nullptr;
 }
 
 void TCompAIPatrol::onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged & msg)
@@ -254,66 +255,66 @@ void TCompAIPatrol::registerMsgs()
 void TCompAIPatrol::loadActions() {
 	actions_initializer.clear();
 
-	actions_initializer["actionShadowMerged"] = (BTAction)&TCompAIPatrol::actionShadowMerged;
-	actions_initializer["actionStunned"] = (BTAction)&TCompAIPatrol::actionStunned;
-	actions_initializer["actionFixed"] = (BTAction)&TCompAIPatrol::actionFixed;
-	actions_initializer["actionBeginAlert"] = (BTAction)&TCompAIPatrol::actionBeginAlert;
-	actions_initializer["actionClosestWpt"] = (BTAction)&TCompAIPatrol::actionClosestWpt;
-	actions_initializer["actionEndAlert"] = (BTAction)&TCompAIPatrol::actionEndAlert;
-	actions_initializer["actionMarkNoiseAsInactive"] = (BTAction)&TCompAIPatrol::actionMarkNoiseAsInactive;
-	actions_initializer["actionGenerateNavmeshNoise"] = (BTAction)&TCompAIPatrol::actionGenerateNavmeshNoise;
-	actions_initializer["actionGoToNoiseSource"] = (BTAction)&TCompAIPatrol::actionGoToNoiseSource;
-	actions_initializer["actionWaitInNoiseSource"] = (BTAction)&TCompAIPatrol::actionWaitInNoiseSource;
-	actions_initializer["actionGenerateNavmeshWpt"] = (BTAction)&TCompAIPatrol::actionGenerateNavmeshWpt;
-	actions_initializer["actionGoToWpt"] = (BTAction)&TCompAIPatrol::actionGoToWpt;
-	actions_initializer["actionWaitInWpt"] = (BTAction)&TCompAIPatrol::actionWaitInWpt;
-	actions_initializer["actionNextWpt"] = (BTAction)&TCompAIPatrol::actionNextWpt;
-	actions_initializer["actionSuspect"] = (BTAction)&TCompAIPatrol::actionSuspect;
-	actions_initializer["actionMarkPlayerAsSeen"] = (BTAction)&TCompAIPatrol::actionMarkPlayerAsSeen;
-	actions_initializer["actionShootInhibitor"] = (BTAction)&TCompAIPatrol::actionShootInhibitor;
-	actions_initializer["actionGenerateNavmeshChase"] = (BTAction)&TCompAIPatrol::actionGenerateNavmeshChase;
-	actions_initializer["actionChasePlayer"] = (BTAction)&TCompAIPatrol::actionChasePlayer;
-	actions_initializer["actionAttack"] = (BTAction)&TCompAIPatrol::actionAttack;
-	actions_initializer["actionRotateToNoiseSource"] = (BTAction)&TCompAIPatrol::actionRotateToNoiseSource;
-	actions_initializer["actionResetPlayerWasSeenVariables"] = (BTAction)&TCompAIPatrol::actionResetPlayerWasSeenVariables;
-	actions_initializer["actionGoToPlayerLastPos"] = (BTAction)&TCompAIPatrol::actionGoToPlayerLastPos;
-	actions_initializer["actionLookForPlayer"] = (BTAction)&TCompAIPatrol::actionLookForPlayer;
-	actions_initializer["actionGenerateNavmeshGoToPatrol"] = (BTAction)&TCompAIPatrol::actionGenerateNavmeshGoToPatrol;
-	actions_initializer["actionGoToPatrol"] = (BTAction)&TCompAIPatrol::actionGoToPatrol;
-	actions_initializer["actionFixPatrol"] = (BTAction)&TCompAIPatrol::actionFixPatrol;
-	actions_initializer["actionMarkPatrolAsLost"] = (BTAction)&TCompAIPatrol::actionMarkPatrolAsLost;
+    actions_initializer["actionShadowMerged"] = (BTAction)&TCompAIPatrol::actionShadowMerged;
+    actions_initializer["actionStunned"] = (BTAction)&TCompAIPatrol::actionStunned;
+    actions_initializer["actionFixed"] = (BTAction)&TCompAIPatrol::actionFixed;
+    actions_initializer["actionBeginAlert"] = (BTAction)&TCompAIPatrol::actionBeginAlert;
+    actions_initializer["actionClosestWpt"] = (BTAction)&TCompAIPatrol::actionClosestWpt;
+    actions_initializer["actionEndAlert"] = (BTAction)&TCompAIPatrol::actionEndAlert;
+    actions_initializer["actionMarkNoiseAsInactive"] = (BTAction)&TCompAIPatrol::actionMarkNoiseAsInactive;
+    actions_initializer["actionGenerateNavmeshNoise"] = (BTAction)&TCompAIPatrol::actionGenerateNavmeshNoise;
+    actions_initializer["actionGoToNoiseSource"] = (BTAction)&TCompAIPatrol::actionGoToNoiseSource;
+    actions_initializer["actionWaitInNoiseSource"] = (BTAction)&TCompAIPatrol::actionWaitInNoiseSource;
+    actions_initializer["actionGenerateNavmeshWpt"] = (BTAction)&TCompAIPatrol::actionGenerateNavmeshWpt;
+    actions_initializer["actionGoToWpt"] = (BTAction)&TCompAIPatrol::actionGoToWpt;
+    actions_initializer["actionWaitInWpt"] = (BTAction)&TCompAIPatrol::actionWaitInWpt;
+    actions_initializer["actionNextWpt"] = (BTAction)&TCompAIPatrol::actionNextWpt;
+    actions_initializer["actionSuspect"] = (BTAction)&TCompAIPatrol::actionSuspect;
+    actions_initializer["actionMarkPlayerAsSeen"] = (BTAction)&TCompAIPatrol::actionMarkPlayerAsSeen;
+    actions_initializer["actionShootInhibitor"] = (BTAction)&TCompAIPatrol::actionShootInhibitor;
+    actions_initializer["actionGenerateNavmeshChase"] = (BTAction)&TCompAIPatrol::actionGenerateNavmeshChase;
+    actions_initializer["actionChasePlayer"] = (BTAction)&TCompAIPatrol::actionChasePlayer;
+    actions_initializer["actionAttack"] = (BTAction)&TCompAIPatrol::actionAttack;
+    actions_initializer["actionRotateToNoiseSource"] = (BTAction)&TCompAIPatrol::actionRotateToNoiseSource;
+    actions_initializer["actionResetPlayerWasSeenVariables"] = (BTAction)&TCompAIPatrol::actionResetPlayerWasSeenVariables;
+    actions_initializer["actionGoToPlayerLastPos"] = (BTAction)&TCompAIPatrol::actionGoToPlayerLastPos;
+    actions_initializer["actionLookForPlayer"] = (BTAction)&TCompAIPatrol::actionLookForPlayer;
+    actions_initializer["actionGenerateNavmeshGoToPatrol"] = (BTAction)&TCompAIPatrol::actionGenerateNavmeshGoToPatrol;
+    actions_initializer["actionGoToPatrol"] = (BTAction)&TCompAIPatrol::actionGoToPatrol;
+    actions_initializer["actionFixPatrol"] = (BTAction)&TCompAIPatrol::actionFixPatrol;
+    actions_initializer["actionMarkPatrolAsLost"] = (BTAction)&TCompAIPatrol::actionMarkPatrolAsLost;
 
 }
 
 void TCompAIPatrol::loadConditions() {
-	conditions_initializer.clear();
+    conditions_initializer.clear();
 
-	conditions_initializer["conditionManageStun"] = (BTCondition)&TCompAIPatrol::conditionManageStun;
-	conditions_initializer["conditionEndAlert"] = (BTCondition)&TCompAIPatrol::conditionEndAlert;
-	conditions_initializer["conditionShadowMerged"] = (BTCondition)&TCompAIPatrol::conditionShadowMerged;
-	conditions_initializer["conditionFixed"] = (BTCondition)&TCompAIPatrol::conditionFixed;
-	conditions_initializer["conditionIsArtificialNoise"] = (BTCondition)&TCompAIPatrol::conditionIsArtificialNoise;
-	conditions_initializer["conditionIsNaturalNoise"] = (BTCondition)&TCompAIPatrol::conditionIsNaturalNoise;
-	conditions_initializer["conditionPlayerSeen"] = (BTCondition)&TCompAIPatrol::conditionPlayerSeen;
-	conditions_initializer["conditionPlayerWasSeen"] = (BTCondition)&TCompAIPatrol::conditionPlayerWasSeen;
-	conditions_initializer["conditionPatrolSeen"] = (BTCondition)&TCompAIPatrol::conditionPatrolSeen;
-	conditions_initializer["conditionFixPatrol"] = (BTCondition)&TCompAIPatrol::conditionFixPatrol;
-	conditions_initializer["conditionGoToWpt"] = (BTCondition)&TCompAIPatrol::conditionGoToWpt;
-	conditions_initializer["conditionWaitInWpt"] = (BTCondition)&TCompAIPatrol::conditionWaitInWpt;
-	conditions_initializer["conditionChase"] = (BTCondition)&TCompAIPatrol::conditionChase;
-	conditions_initializer["conditionPlayerAttacked"] = (BTCondition)&TCompAIPatrol::conditionPlayerAttacked;
+    conditions_initializer["conditionManageStun"] = (BTCondition)&TCompAIPatrol::conditionManageStun;
+    conditions_initializer["conditionEndAlert"] = (BTCondition)&TCompAIPatrol::conditionEndAlert;
+    conditions_initializer["conditionShadowMerged"] = (BTCondition)&TCompAIPatrol::conditionShadowMerged;
+    conditions_initializer["conditionFixed"] = (BTCondition)&TCompAIPatrol::conditionFixed;
+    conditions_initializer["conditionIsArtificialNoise"] = (BTCondition)&TCompAIPatrol::conditionIsArtificialNoise;
+    conditions_initializer["conditionIsNaturalNoise"] = (BTCondition)&TCompAIPatrol::conditionIsNaturalNoise;
+    conditions_initializer["conditionPlayerSeen"] = (BTCondition)&TCompAIPatrol::conditionPlayerSeen;
+    conditions_initializer["conditionPlayerWasSeen"] = (BTCondition)&TCompAIPatrol::conditionPlayerWasSeen;
+    conditions_initializer["conditionPatrolSeen"] = (BTCondition)&TCompAIPatrol::conditionPatrolSeen;
+    conditions_initializer["conditionFixPatrol"] = (BTCondition)&TCompAIPatrol::conditionFixPatrol;
+    conditions_initializer["conditionGoToWpt"] = (BTCondition)&TCompAIPatrol::conditionGoToWpt;
+    conditions_initializer["conditionWaitInWpt"] = (BTCondition)&TCompAIPatrol::conditionWaitInWpt;
+    conditions_initializer["conditionChase"] = (BTCondition)&TCompAIPatrol::conditionChase;
+    conditions_initializer["conditionPlayerAttacked"] = (BTCondition)&TCompAIPatrol::conditionPlayerAttacked;
 }
 
 void TCompAIPatrol::loadAsserts() {
-	asserts_initializer.clear();
+    asserts_initializer.clear();
 
-	asserts_initializer["assertPlayerInFov"] = (BTCondition)&TCompAIPatrol::assertPlayerInFov;
-	asserts_initializer["assertPlayerNotInFov"] = (BTCondition)&TCompAIPatrol::assertPlayerNotInFov;
-	asserts_initializer["assertPlayerAndPatrolNotInFov"] = (BTCondition)&TCompAIPatrol::assertPlayerAndPatrolNotInFov;
-	asserts_initializer["assertNotHeardArtificialNoise"] = (BTCondition)&TCompAIPatrol::assertNotHeardArtificialNoise;
-	asserts_initializer["assertNotPlayerInFovNorArtificialNoise"] = (BTCondition)&TCompAIPatrol::assertNotPlayerInFovNorArtificialNoise;
-	asserts_initializer["assertPlayerNotInFovNorNoise"] = (BTCondition)&TCompAIPatrol::assertPlayerNotInFovNorNoise;
-	asserts_initializer["assertPlayerAndPatrolNotInFovNotNoise"] = (BTCondition)&TCompAIPatrol::assertPlayerAndPatrolNotInFovNotNoise;
+    asserts_initializer["assertPlayerInFov"] = (BTCondition)&TCompAIPatrol::assertPlayerInFov;
+    asserts_initializer["assertPlayerNotInFov"] = (BTCondition)&TCompAIPatrol::assertPlayerNotInFov;
+    asserts_initializer["assertPlayerAndPatrolNotInFov"] = (BTCondition)&TCompAIPatrol::assertPlayerAndPatrolNotInFov;
+    asserts_initializer["assertNotHeardArtificialNoise"] = (BTCondition)&TCompAIPatrol::assertNotHeardArtificialNoise;
+    asserts_initializer["assertNotPlayerInFovNorArtificialNoise"] = (BTCondition)&TCompAIPatrol::assertNotPlayerInFovNorArtificialNoise;
+    asserts_initializer["assertPlayerNotInFovNorNoise"] = (BTCondition)&TCompAIPatrol::assertPlayerNotInFovNorNoise;
+    asserts_initializer["assertPlayerAndPatrolNotInFovNotNoise"] = (BTCondition)&TCompAIPatrol::assertPlayerAndPatrolNotInFovNotNoise;
 }
 
 /* ACTIONS */
@@ -330,6 +331,9 @@ BTNode::ERes TCompAIPatrol::actionStunned(float dt)
 	//Animation To Change
 	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
 	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+
+    CEntity * patrol = CHandle(this).getOwner();
+    patrol->sendMsg(TMsgFadeBody{ true });
 
 	return BTNode::ERes::STAY;
 }
@@ -1048,11 +1052,17 @@ bool TCompAIPatrol::isStunnedPatrolInFov(float fov, float maxChaseDistance)
 
 	if (stunnedPatrols.size() > 0) {
 		TCompTransform *mypos = get<TCompTransform>();
+		TCompCollider * myCollider = get<TCompCollider>();
+		CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
+		float myY = mypos->getPosition().y;
 		for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
-			TCompTransform* stunnedPatrol = ((CEntity*)stunnedPatrols[i])->get<TCompTransform>();
-			if (mypos->isInFov(stunnedPatrol->getPosition(), fov, deg2rad(89.f))
+			CEntity* ePatrol = stunnedPatrols[i];
+			TCompTransform* stunnedPatrol = ePatrol->get<TCompTransform>();
+			float enemyY = stunnedPatrol->getPosition().y;
+			if (mypos->isInFov(stunnedPatrol->getPosition(), fov, deg2rad(45.f))
 				&& VEC3::Distance(mypos->getPosition(), stunnedPatrol->getPosition()) < maxChaseDistance
-				&& !isEntityHidden(stunnedPatrols[i])) {
+				&& !isEntityHidden(stunnedPatrols[i])
+				&& fabsf(myY - enemyY) <= 2 * capsuleCollider->height) {
 				found = true;
 				lastStunnedPatrolKnownPos = stunnedPatrol->getPosition();
 			}

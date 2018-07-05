@@ -82,6 +82,7 @@ void deleteEnemies();
 void movePlayer(VEC3);
 void blendInCamera(const std::string& cameraName, float blendInTime);
 void blendOutCamera(const std::string& cameraName, float blendOutTime);
+void blendOutActiveCamera(float blendOutTime);
 void staminaInfinite();
 void immortal();
 void inShadows();
@@ -104,3 +105,9 @@ void cg_drawlights(int type);
 void loadScene(const std::string &level);
 void unloadScene();
 void loadCheckpoint();
+void renderNavmeshToggle();
+void playSound2D(const std::string& soundName);
+void exeShootImpactSound();
+
+/* DEBUG - TODO: Delete */
+void sendOrderToDrone(const std::string& droneName, VEC3 position);

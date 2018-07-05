@@ -21,6 +21,10 @@ function blendOutCamera(cameraName, blendOutTime)
 	SLB.blendOutCamera(cameraName, blendOutTime)
 end
 
+function blendOutActiveCamera(blendOutTime)
+	SLB.blendOutActiveCamera(blendOutTime)
+end
+
 function fpsToggle()
 	SLB.fpsToggle()
 end
@@ -119,4 +123,16 @@ end
 
 function setPlayerInhibited(inhibited)
 	playerController.inhibited = inhibited;
+end
+
+function renderNavmeshToggle()
+	SLB.renderNavmeshToggle()
+end
+
+function playSound2D(soundName)
+	SLB.playSound2D(soundName)
+end
+
+function exeShootImpactSound()
+	SLB.exeShootImpactSound()
 end

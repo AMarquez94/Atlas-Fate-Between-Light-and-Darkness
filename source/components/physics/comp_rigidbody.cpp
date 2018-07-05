@@ -26,6 +26,7 @@ void TCompRigidbody::load(const json& j, TEntityParseContext& ctx) {
     mass = j.value("mass", 10.f);
     drag = j.value("mass", 0.f);
 
+    is_enabled = true;
     is_gravity = j.value("is_gravity", false);
     is_kinematic = j.value("is_kinematic", false);
     is_controller = j.value("is_controller", false);
@@ -33,7 +34,7 @@ void TCompRigidbody::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompRigidbody::update(float dt) {
 
-    if (CHandle(this).getOwner().isValid()) {
+    if (CHandle(this).getOwner().isValid() && is_enabled) {
 
         TCompCollider * c_collider = get<TCompCollider>();
         velocity = physx::PxVec3(0, 0, 0);
@@ -97,6 +98,7 @@ void TCompRigidbody::update(float dt) {
 /* Collider/Trigger messages */
 void TCompRigidbody::registerMsgs() {
     DECL_MSG(TCompRigidbody, TMsgEntityCreated, onCreate);
+    DECL_MSG(TCompRigidbody, TMsgEntitiesGroupCreated, onGroupCreated);
 }
 
 void TCompRigidbody::setLinearVelocity(VEC3 vel, bool autowake)
@@ -110,6 +112,14 @@ void TCompRigidbody::setLinearVelocity(VEC3 vel, bool autowake)
     const physx::PxVec3 pxVel = VEC3_TO_PXVEC3(vel);
     rigidbody->setLinearVelocity(pxVel, autowake);
   }
+}
+
+void TCompRigidbody::addForce(VEC3 force)
+{
+	TCompCollider * c_collider = get<TCompCollider>();
+	physx::PxRigidBody * rigidbody = (physx::PxRigidBody*) c_collider->config->actor;
+	physx::PxVec3 pxforce = VEC3_TO_PXVEC3(force);
+	rigidbody->addForce(pxforce, physx::PxForceMode::eFORCE);
 }
 
 void TCompRigidbody::setKinematic(bool isKinematic)
@@ -197,7 +207,7 @@ void TCompRigidbody::destroyDynamicRigidbody() {
   c_collider->config->actor = nullptr;
 }
 
-void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
+void TCompRigidbody::createRigidbody() {
 
     TCompCollider * c_collider = get<TCompCollider>();
     TCompTransform * compTransform = get<TCompTransform>();
@@ -208,11 +218,11 @@ void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
 
         if (is_controller)
         {
-          createController();
+            createController();
         }
         else
         {
-          createDynamicRigidbody();
+            createDynamicRigidbody();
         }
 
         physx::PxFilterData * characterFilterData = new physx::PxFilterData();
@@ -222,9 +232,31 @@ void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
         filters = physx::PxControllerFilters();
         //filters.mFilterCallback = &customQueryFilter;
         filters.mFilterData = characterFilterData;
+        lastFramePosition = compTransform->getPosition();
     }
+}
 
-    lastFramePosition = compTransform->getPosition();
+void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
+
+    TCompCollider * c_collider = get<TCompCollider>();
+    TCompTransform * compTransform = get<TCompTransform>();
+
+    // Let the rigidbody handle the creation if it exists..
+    if (c_collider != nullptr)
+    {
+      createRigidbody();
+    }
+}
+
+void TCompRigidbody::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+  
+  TCompCollider * c_collider = get<TCompCollider>();
+
+  // Let the rigidbody handle the creation if it exists..
+  if (c_collider != nullptr && c_collider->config->actor == nullptr)
+  {
+    createRigidbody();
+  }
 }
 
 void TCompRigidbody::Resize(float new_size)

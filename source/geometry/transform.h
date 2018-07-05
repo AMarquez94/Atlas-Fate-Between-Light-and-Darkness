@@ -92,6 +92,9 @@ public:
     bool load(const json& j);
     bool debugInMenu();
 
+
+    /* AUX Methods */
+    QUAT getLookAt(VEC3 new_pos, VEC3 new_target, float customRoll = 0.f);
 };
 
 

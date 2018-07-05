@@ -99,8 +99,8 @@
 		}
 	},
 	"pbr_parallax": {
-		"vs_file": "data/shaders/pbr.fx",
-		"ps_file": "data/shaders/pbr.fx",
+		"vs_file": "data/shaders/parallax.fx",
+		"ps_file": "data/shaders/parallax.fx",
 		"vs_entry_point": "VS_GBuffer",
 		"ps_entry_point": "PS_GBuffer_Parallax",
 		"vertex_type": "PosNUvUvT",
@@ -124,6 +124,21 @@
 			"irradiance": "data/textures/cubemaps/irradiance.dds"
 		}
 	},
+	"pbr_shade_skin": {
+		"vs_file": "data/shaders/pbr.fx",
+		"ps_file": "data/shaders/pbr.fx",
+		"vs_entry_point": "VS_SKIN_GBuffer",
+		"ps_entry_point": "PS_Shade_GBuffer",
+		"vertex_type": "PosNUvTanSkin",
+		"uses_skin": true,
+		"category": "gbuffer",
+		"rs_config": "cull_none",
+		"textures": {
+			"noise": "data/textures/noise_cloud3.dds",
+			"environment": "data/textures/cubemaps/env.dds",
+			"irradiance": "data/textures/cubemaps/irradiance.dds"
+		}
+	},
 	"pbr_player": {
 		"vs_file": "data/shaders/pbr.fx",
 		"ps_file": "data/shaders/pbr.fx",
@@ -131,8 +146,10 @@
 		"ps_entry_point": "PS_GBuffer",
 		"vertex_type": "PosNUvUvT",
 		"category": "gbuffer",
+		"uses_skin": true,
 		"rs_config": "cull_none",
 		"textures": {
+			"noise": "data/textures/noise_cloud3.dds",
 			"environment": "data/textures/cubemaps/env.dds",
 			"irradiance": "data/textures/cubemaps/irradiance.dds"
 		}
@@ -152,13 +169,6 @@
 		"z": "inverse_test_no_write",
 		"rs_config": "reverse_culling",
 		"blend": "combinative_gbuffer"
-	},
-	"particles": {
-		"vs_file": "data/shaders/particles.fx",
-		"vertex_type": "Pos_x_RenderParticle",
-		"category": "particles",
-		"blend": "combinative",
-		"z": "test_but_no_write"
 	},
 	"pbr_ambient": {
 		"vs_file": "data/shaders/screen_quad.fx",
@@ -184,8 +194,8 @@
 		"ps_entry_point": "PS_point_lights",
 		"vertex_type": "PosNUvUvT",
 		"category": "pbr_proc",
-		"z": "inverse_test_no_write",
-		"rs_config": "reverse_culling",
+		"z" : "inverse_test_no_write",
+		"rs_config" : "reverse_culling",
 		"blend": "additive"
 	},
 	"pbr_spot_lights": {
@@ -193,10 +203,10 @@
 		"ps_file": "data/shaders/pbr.fx",
 		"vs_entry_point": "VS_pass",
 		"ps_entry_point": "PS_spot_lights",
-		"vertex_type": "PosNUvUvT",
-		"category": "pbr_proc",
-		"z": "inverse_test_no_write",
-		"rs_config": "reverse_culling",
+		"vertex_type" : "PosNUvUvT",
+		"category" : "pbr_proc",
+		"z" : "inverse_test_no_write",
+		"rs_config" : "reverse_culling",
 		"blend": "additive"
 	},
 	"pbr_projection": {
@@ -207,7 +217,11 @@
 		"vertex_type": "PosNUvUvT",
 		"category": "pbr_proc",
 		"z": "inverse_test_no_write",
-		"blend": "combinative"
+		"blend": "combinative",
+		"textures": {
+			"noise": "data/textures/tx_noise_shadow.dds",
+			"noise2": "data/textures/tx_noise_shadow2.dds"
+		}
 	},
 	"water": {
 		"vs_file": "data/shaders/water.fx",
@@ -241,7 +255,7 @@
 		"vertex_type": "PosClr",
 		"category": "fx",
 		"z": "disable_all",
-		"rs": "default",
+		"rs_config": "default",
 		"blend": "default"
 	},
 	"blur_radial": {
@@ -251,6 +265,14 @@
 		"category": "fx",
 		"z": "disable_all"
 	},
+		"postfx_fog": {
+		"vs_file": "data/shaders/screen_quad.fx",
+		"ps_file": "data/shaders/postfx.fx",
+		"ps_entry_point": "PS_PostFXFog",
+		"vertex_type": "PosClr",
+		"category": "fx",
+		"z" : "disable_all"
+  },
 	"ao": {
 		"vs_file": "data/shaders/ao.fx",
 		"vertex_type": "PosClr",
@@ -372,7 +394,83 @@
 		"vertex_type": "PosClr",
 		"category": "gui",
 		"z": "disable_all",
-		"rs": "cull_none",
+		"rs_config": "cull_none",
 		"blend": "combinative"
+	},
+	"particles" : {
+		"vs_file": "data/shaders/particles.fx",
+		"vs_entry_point": "VS_Particles",
+		"ps_entry_point": "PS_Particles",
+		"vertex_type" : "PosClr",
+		"category" : "particles",
+		"z" : "test_but_no_write",
+		"rs_config" : "cull_none",
+		"blend" : "combinative"
+	},
+	"pbr_instanced_volume": {
+		"vs_file": "data/shaders/pbr_vol_instanced.fx",
+		"ps_file": "data/shaders/pbr_vol_instanced.fx",
+		"vs_entry_point": "VS_IVLight",
+		"ps_entry_point": "PS_IVLight",
+		"vertex_type" : "PosNUvUvT_x_InstanceLight",
+		"z" : "test_but_no_write",
+		"category": "pbr_volume",
+		"blend" : "combinative",
+		"priority": 160,
+		"rs_config" : "cull_none",
+			"textures": {
+			"noise": "data/textures/noise_light.dds"
+		}
+	},
+	"pbr_vol_lights": {
+		"vs_file": "data/shaders/pbr.fx",
+		"ps_file": "data/shaders/pbr.fx",
+		"vs_entry_point": "VS_VLight",
+		"ps_entry_point": "PS_VLight",
+		"vertex_type" : "PosNUvUvT",
+		"z" : "test_but_no_write",
+		"category": "pbr_proc",
+		"blend" : "combinative",
+		"rs_config" : "cull_none",
+			"textures": {
+			"noise": "data/textures/noise_light.dds"
+		}
+	},
+	"postfx_vol_lights": {
+		"vs_file": "data/shaders/screen_quad.fx",
+		"ps_file": "data/shaders/postfx.fx",
+		"ps_entry_point": "PS_PostFX_LScattering",
+		"vertex_type": "PosClr",
+		"category": "fx",
+		"z" : "disable_all"
+	},
+	"postfx_chromatic_aberration": {
+		"vs_file": "data/shaders/screen_quad.fx",
+		"ps_file": "data/shaders/postfx.fx",
+		"ps_entry_point": "PS_PostFX_CA",
+		"vertex_type": "PosClr",
+		"category": "fx",
+		"z" : "disable_all"
+	},
+	"postfx_fxaa": {
+		"vs_file": "data/shaders/screen_quad.fx",
+		"ps_file": "data/shaders/fxaa.fx",
+		"ps_entry_point": "PS_FXAA",
+		"vertex_type": "PosClr",
+		"category": "fx",
+		"z" : "disable_all"
+	},
+	"pbr_hologram": {
+		"vs_file": "data/shaders/hologram.fx",
+		"ps_file": "data/shaders/hologram.fx",
+		"vs_entry_point": "VS_GBuffer_Hologram",
+		"ps_entry_point": "PS_GBuffer_Hologram",
+		"vertex_type": "PosNUvUvT",
+		"category": "hologram",
+		"blend" : "additive_by_src_alpha",
+		"textures": {
+			"noise": "data/textures/tx_flicker_hard.dds",
+			"irradiance": "data/textures/cubemaps/irradiance.dds"
+		}
 	}
 }

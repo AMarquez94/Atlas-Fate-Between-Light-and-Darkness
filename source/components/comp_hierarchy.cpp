@@ -15,10 +15,46 @@ void TCompHierarchy::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompHierarchy::registerMsgs() {
-  DECL_MSG(TCompHierarchy, TMsgEntitiesGroupCreated, onGroupCreated);
+  DECL_MSG(TCompHierarchy, TMsgHierarchyGroupCreated, onGroupCreated);
 }
 
-void TCompHierarchy::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+void TCompHierarchy::convertTotalTransformToRelative(VEC3 objPosition, QUAT objRotation, float objScale, VEC3 & resultPosition, QUAT & resultRotation, float & resultScale)
+{
+    TCompTransform* c_parent_transform = h_parent_transform;
+    TCompTransform* my_transform = h_my_transform;
+
+    MAT44 myMatrix = c_parent_transform->asMatrix();
+
+    resultScale = objScale / c_parent_transform->getScale();
+
+    VEC3 delta_pos_rotated = (objPosition - c_parent_transform->getPosition()) / c_parent_transform->getScale();
+    QUAT parentRotation = c_parent_transform->getRotation();
+    QUAT parentRotationInverse;
+    parentRotation.Inverse(parentRotationInverse);
+    resultPosition = VEC3::Transform(delta_pos_rotated, parentRotationInverse);
+
+    resultRotation = objRotation / c_parent_transform->getRotation();
+}
+
+QUAT TCompHierarchy::getRelativeLookAt(VEC3 new_target)
+{
+    TCompTransform* lanternPos = get<TCompTransform>();
+    VEC3 objectivePos = lanternPos->getPosition();
+    CEntity* eParent = h_parent;
+    TCompTransform* parentPos = eParent->get<TCompTransform>();
+    float yaw, pitch, roll;
+    parentPos->getYawPitchRoll(&yaw, &pitch, &roll);
+    QUAT objectiveRotation = lanternPos->getLookAt(objectivePos, new_target, roll);
+
+    VEC3 resultPos;
+    QUAT resultRot;
+    float resultScale;
+
+    convertTotalTransformToRelative(objectivePos, objectiveRotation, 1.f, resultPos, resultRot, resultScale);
+    return resultRot;
+}
+
+void TCompHierarchy::onGroupCreated(const TMsgHierarchyGroupCreated& msg) {
   // I prefer to wait until the group is loaded to resolve my parent
   setParentEntity(msg.ctx.findEntityByName(parent_name));
 }

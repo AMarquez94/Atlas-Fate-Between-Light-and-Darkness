@@ -1,0 +1,126 @@
+[{
+		"entity": {
+			"name": "Drone",
+			"transform": {
+				"pos": "0 0 0",
+				"scale": 3
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/Drone.mesh",
+					"materials":
+					[
+						"data/materials/mtl_drone.material"
+					]
+				}
+			],
+			"emission_controller": {
+				"initial": "0.0 1.0 1.0 1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "1 1 1",
+				"step_offset": 0.1,
+				"gravity": false,
+				"group": "enemy"
+			},
+			"rigidbody": {
+				"is_controller": true,
+				"is_gravity": false
+			},
+			"tags": ["enemy", "drone"]
+		}
+	}, {
+		"entity": {
+			"name": "Lantern Drone",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/Drone_Lantern.mesh",
+					"materials":
+					[
+						"data/materials/mtl_drone.material"
+					]
+				}
+			],
+			"hierarchy": {
+				"parent": "Drone",
+				"pos": "0 0 0.06",
+				"axis": "1 0 0",
+				"angle": 20
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Lantern Drone Light",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [{}
+			],
+			"hierarchy": {
+				"parent": "Lantern Drone",
+				"pos": "0 0 0.1"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 30,
+				"angle": 20,
+				"inner_cut": 15,
+				"outer_cut": 20,
+				"color": "0.3 1.0 1.0 1.0",
+				"intensity": 5.0,
+				"shadows": true,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 256,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"cone_of_light": {
+				"hor_fov": 20,
+				"ver_fov": 20,
+				"dist": 30,
+				"target": "The Player"
+			},
+			"shooter": {
+				"precission": 0.5,
+				"firing_rate_cooldown": 1.0,
+				"bullet_damage": 10,
+				"bullet_speed": 10
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Camera Follow Drone",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"camera_follow": {
+				"target": "Drone",
+				"offset": "0 2 0"
+			},
+			"camera": {
+				"fov": 80,
+				"z_near": 0.01,
+				"z_far": 1000
+			},
+			"render_ao": {
+				"enabled": true
+			},
+			"render_bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"rt_name": "Bloom"
+			},
+			"color_grading": {
+				"enabled": true,
+				"amount": 0.6,
+				"lut": "data/textures/lut/RGBTable16x1.dds"
+			},
+			"tags": ["follow_camera"]
+		}
+	}
+]

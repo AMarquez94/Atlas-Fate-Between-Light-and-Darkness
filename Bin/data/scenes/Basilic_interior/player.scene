@@ -1,0 +1,8 @@
+[{
+	"entity": {
+		"prefab": "data/prefabs/player.prefab",
+		"transform": {
+			"pos": "142.384979 16.489212 -394.966888"
+		}
+	}
+}]

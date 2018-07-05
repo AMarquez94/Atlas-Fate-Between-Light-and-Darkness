@@ -1,0 +1,134 @@
+[{
+		"entity": {
+			"name": "Enemies"
+		}
+	}, {
+		"entity": {
+			"prefab": "data/prefabs/patrol.prefab",
+			"name": "Patrol 1",
+			"transform": {
+				"pos": "-77 0 -86.25",
+				"lookat": "-77 0 -87"
+			},
+			"ai_patrol": {
+				"startLightsOn": true
+			}
+		}
+	}, {
+		"entity": {
+			"prefab": "data/prefabs/patrol.prefab",
+			"name": "Patrol 2",
+			"transform": {
+				"pos": "-87 0 -94.5",
+				"lookat": "-86 0 -63"
+			},
+			"ai_patrol": {
+				"startLightsOn": false,
+				"waypoints": [{
+						"position": "-87 0 -94.5",
+						"lookAt": "1 0 1",
+						"minTime": 5
+					}, {
+						"position": "-97.6 0 -111.5",
+						"lookAt": "0 0 1",
+						"minTime": 5
+					}
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"prefab": "data/prefabs/patrol.prefab",
+			"name": "Patrol 3",
+			"transform": {
+				"pos": "-93.6 0 -132.7",
+				"lookat": "-92 0 -132.7"
+			},
+			"ai_patrol": {
+				"startLightsOn": false
+			}
+		}
+	},  {
+		"entity": {
+			"prefab": "data/prefabs/patrol.prefab",
+			"name": "Patrol 4",
+			"transform": {
+				"pos": "-92 0 -140",
+				"lookat": "-91 0 -140"
+			},
+			"ai_patrol": {
+				"startLightsOn": false
+			}
+		}
+	},  {
+		"entity": {
+			"prefab": "data/prefabs/patrol.prefab",
+			"name": "Patrol 5",
+			"transform": {
+				"pos": "-98.7 0 -136",
+				"lookat": "-24 0 74"
+			},
+			"ai_patrol": {
+				"startLightsOn": false,
+				"waypoints": [{
+						"position": "-98.7 0 -136",
+						"lookAt": "1 0 0",
+						"minTime": 5
+					}, {
+						"position": "-83.5 0 -136",
+						"lookAt": "-1 0 0",
+						"minTime": 7
+					}
+				]
+			}
+		}
+	},  {
+		"entity": {
+			"prefab": "data/prefabs/patrol.prefab",
+			"name": "Patrol 6",
+			"transform": {
+				"pos": "-44.6 0 -138",
+				"lookat": "-45 0 -138"
+			},
+			"ai_patrol": {
+				"startLightsOn": false
+			}
+		}
+	},  {
+		"entity": {
+			"prefab": "data/prefabs/patrol.prefab",
+			"name": "Patrol 7",
+			"transform": {
+				"pos": "-61 0 -112",
+				"lookat": "-60 0 -112"
+			},
+			"ai_patrol": {
+				"startLightsOn": true,
+				"waypoints": [{
+						"position": "-61 0 -112",
+						"lookAt": "1 0 0",
+						"minTime": 5
+					}, {
+						"position": "-61 0 -112",
+						"lookAt": "-1 0 0.01",
+						"minTime": 5
+					}
+				]
+			}
+		}
+	},  {
+		"entity": {
+			"prefab": "data/prefabs/mimetic.prefab",
+			"name": "Mimetic 1",
+			"transform": {
+				"pos": "-98 1 -127",
+				"lookat": "-24 3.2 86"
+			},
+			"ai_mimetic": {
+				"startLightsOn": false,
+				"type": "wall",
+				"isSlept": false
+			}
+		}
+	}
+]

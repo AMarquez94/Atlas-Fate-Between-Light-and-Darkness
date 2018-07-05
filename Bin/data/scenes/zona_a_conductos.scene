@@ -1,0 +1,125 @@
+[
+  {
+    "entity":
+    {
+      "name": "zona_a_conductos"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductofinal_pequeno001"
+      ,
+      "prefab": "data/prefabs/conductofinal_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-101.207 0.700678 -117.199"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductofinal001"
+      ,
+      "prefab": "data/prefabs/conductofinal.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-103.127 0.700678 -119.108"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductocurvo001"
+      ,
+      "prefab": "data/prefabs/conductocurvo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-104.524 0.700678 -116.695"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductocurvo_pequeno001"
+      ,
+      "prefab": "data/prefabs/conductocurvo_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-104.806 0.700678 -119.259"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductorecto_pequeno001"
+      ,
+      "prefab": "data/prefabs/conductorecto_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-104.942 0.700678 -121.351"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductorecto001"
+      ,
+      "prefab": "data/prefabs/conductorecto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-107.32 0.700678 -121.19"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductoconector001"
+      ,
+      "prefab": "data/prefabs/conductoconector.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-106.806 0.700678 -117.874"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+]

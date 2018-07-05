@@ -19,8 +19,12 @@
 						"data/materials/characters/mtl_enemy_patrol_post.material"
 					]
 				}
-
 			],
+			"fade_controller": {
+				"fade_color": "0.0 0.0 0.0 1.0",
+				"fade_time": 4.0,
+				"material": "data/materials/characters/mtl_enemy_patrol_shade.material"
+			},
 			"skeleton": {
 				"skeleton": "data/skeletons/patrol/patrol.skeleton",
 				"scale": 1.4
@@ -76,8 +80,7 @@
         "casts_shadows": true,
         "shadows_step": 1.0,
         "shadows_resolution": 256,
-        "shadows_fmt": "R32_TYPELESS",
-        "is_moving": true
+        "shadows_fmt": "R32_TYPELESS"
       },
       "hierarchy": {
         "parent": "The Enemy",
@@ -94,5 +97,4 @@
       "local_aabb": true
     }
 	}
-
 ]

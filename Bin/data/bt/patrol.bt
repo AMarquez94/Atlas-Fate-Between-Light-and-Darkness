@@ -166,7 +166,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 35.0,
+					"variable_value": 20.0,
 					"variable_op": ""
 				}
 			],
@@ -195,7 +195,7 @@
 			"actionArg": [{
 					"variable_name": "rotationSpeed",
 					"variable_type": "float",
-					"variable_value": 90.0,
+					"variable_value": 300.0,
 					"variable_op": ""
 				}
 			],
@@ -208,7 +208,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 34.0,
+					"variable_value": 19.0,
 					"variable_op": ""
 				}
 			]
@@ -232,7 +232,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 35.0,
+					"variable_value": 20.0,
 					"variable_op": ""
 				}
 			],
@@ -323,7 +323,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 35.0,
+					"variable_value": 20.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "dcrSuspectO_Meter",
@@ -425,7 +425,7 @@
 				}, {
 					"variable_name": "rotationSpeed",
 					"variable_type": "float",
-					"variable_value": 90.0,
+					"variable_value": 300.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "fov",
@@ -435,7 +435,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 35.0,
+					"variable_value": 20.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "distToAttack",

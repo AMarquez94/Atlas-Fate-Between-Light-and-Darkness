@@ -10,6 +10,10 @@
 #define CB_BLUR         6
 #define CB_BLOOM        7
 #define CB_GUI		    8
+#define CB_PARTICLE		9
+#define CB_OUTLINE      10
+#define CB_PLAYER       11
+#define CB_POSTFX       12
 
 // -------------------------------------------------
 // Texture Slots
@@ -29,26 +33,28 @@
 // Here goes the slots not associated to a material
 #define TS_LIGHT_PROJECTOR     9
 #define TS_LIGHT_SHADOW_MAP    10 
-#define TS_ENVIRONMENT_MAP     11
-#define TS_IRRADIANCE_MAP      12
-#define TS_NOISE_MAP           13
+#define TS_LIGHT_VOLUME_MAP    11 
+#define TS_ENVIRONMENT_MAP     12
+#define TS_IRRADIANCE_MAP      13
+#define TS_NOISE_MAP           14
+#define TS_NOISE_MAP2          15
 
-#define TS_DEFERRED_ALBEDOS           14
-#define TS_DEFERRED_NORMALS           15
-#define TS_DEFERRED_LINEAR_DEPTH      16
-#define TS_DEFERRED_ACC_LIGHTS        17
-#define TS_DEFERRED_SELF_ILLUMINATION 18
-#define TS_DEFERRED_AO                19
-#define TS_LUT_COLOR_GRADING          20
+#define TS_DEFERRED_ALBEDOS           16
+#define TS_DEFERRED_NORMALS           17
+#define TS_DEFERRED_LINEAR_DEPTH      18
+#define TS_DEFERRED_ACC_LIGHTS        19
+#define TS_DEFERRED_SELF_ILLUMINATION 20
+#define TS_DEFERRED_AO                21
+#define TS_LUT_COLOR_GRADING          22
 
 #define TS_FIRST_SLOT_MATERIAL_0      TS_ALBEDO
 #define TS_FIRST_SLOT_MATERIAL_1      TS_ALBEDO1
 #define TS_FIRST_SLOT_MATERIAL_2      TS_ALBEDO2
 
-#define TS_ALBEDO1 21
-#define TS_NORMAL1 22
-#define TS_ALBEDO2 23
-#define TS_NORMAL2 24
+#define TS_ALBEDO1 23
+#define TS_NORMAL1 24
+#define TS_ALBEDO2 25
+#define TS_NORMAL2 26
 
 #define TS_MIX_BLEND_WEIGHTS          25
 
@@ -116,7 +122,7 @@ CB_DEF(CCteObject, CB_OBJECT)   // Generates the b1
     VEC4  obj_color;
     VEC4   self_color;
     float  self_intensity;
-    float  self_dummy1;
+    float  self_fade_value;
     float  self_dummy2;
     float  self_dummy3;
 };
@@ -141,7 +147,7 @@ CB_DEF(CCteLight, CB_LIGHT)
     float dummy2;
 
     MAT44 light_view_proj_offset;
-
+    MAT44 light_view_proj;
 };
 
 CB_DEF(CCteGlobals, CB_GLOBALS)   // Generates the b1
@@ -154,6 +160,7 @@ CB_DEF(CCteGlobals, CB_GLOBALS)   // Generates the b1
     float global_tone_mapping_mode;
     int   global_render_output;
     float global_fog_density;
+    VEC3 global_fog_color;
 
     float global_shared_fx_amount;
     float global_shared_fx_val1;
@@ -161,9 +168,10 @@ CB_DEF(CCteGlobals, CB_GLOBALS)   // Generates the b1
     float global_shared_fx_val3;
 
     float global_self_intensity;
-    float global_dummy2;
-    float global_dummy3;
-    float global_dummy4;
+    float global_fog_start;
+    float global_fog_end;
+    float global_player_speed;
+    float global_fog_end3;
 };
 
 CB_DEF(CCteMaterial, CB_MATERIAL)
@@ -179,7 +187,6 @@ CB_DEF(CCteMaterial, CB_MATERIAL)
     float  mix_boost_g;
     float  mix_boost_b;
     float  mat_alpha_outline;
-
 };
 
 CB_DEF(CCteBlur, CB_BLUR)
@@ -214,5 +221,37 @@ CB_DEF(CCteGUI, CB_GUI)
 	VEC2 maxUV;
 	VEC4 tint_color;
 };
+
+CB_DEF(CCteParticle, CB_PARTICLE)
+{
+    VEC2 particle_minUV;
+    VEC2 particle_maxUV;
+    VEC4 particle_color;
+};
+
+CB_DEF(CCteOutline, CB_OUTLINE)
+{
+    float  linear_time;
+    float  outline_alpha;
+    float  outline_dummy1;
+    float  outline_dummy2;
+};
+
+CB_DEF(CCtePlayer, CB_PLAYER)
+{
+    float  player_fade;
+    float  player_aberration;
+    float  player_speed;
+    float  player_dummy2;
+};
+
+CB_DEF(CCtePostFX, CB_POSTFX)
+{
+    float  postfx_ca_amount;
+    float  postfx_ca_offset;
+    float  postfx_cs_offset;
+    float  postfx_dummy3;
+};
+
 
 #endif

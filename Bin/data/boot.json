@@ -1,71 +1,82 @@
 {
-	"scene_alex": {
-		"static_data": {
-			"initial_script": "map_intro",
-			"navmesh": "data/navmeshes/milestone2_navmesh.bin"
-		},
+  "scene_map_intro": {
+    "static_data": {
+      "initial_script": "map_intro",
+      "navmesh": "data/navmeshes/milestone2_navmesh.bin"
+    },
     "scene_group": [
-      "data/scenes/player_fsm.scene",
-      "data/scenes/enemy.scene",
-      "data/scenes/sp_dynamic_lights.scene",
-      "data/scenes/milestone2_map_pre.scene",
-      "data/scenes/milestone2_map_lights2.scene",
-      "data/scenes/milestone2_map_colliders.scene",
-      "data/scenes/test_instancing.scene",
-      "data/scenes/capsules.scene",
-      "data/scenes/camera.scene",
-      "data/scenes/water_plane.scene",
-      "data/scenes/checkpoints.scene",
+      "data/scenes/Map_Intro/player_fsm.scene",
+      "data/scenes/Map_Intro/enemy.scene",
+      "data/scenes/Map_Intro/sp_dynamic_lights.scene",
+      "data/scenes/Map_Intro/milestone2_map_pre.scene",
+      "data/scenes/Map_Intro/milestone2_map_lights2.scene",
+      "data/scenes/Map_Intro/milestone2_map_colliders.scene",
+      "data/scenes/Map_Intro/test_instancing.scene",
+      "data/scenes/Map_Intro/capsules.scene",
+      "data/scenes/Map_Intro/camera.scene",
+      "data/scenes/Map_Intro/checkpoints.scene",
+      "data/scenes/Map_Intro/movable_objects.scene",
       "data/scenes/buttons.scene"
     ]
 	},
-	"scene_juanlu": {
+	"scene_zone_a": {
 		"static_data": {
-			"initial_script": "map_intro",
-			"navmesh": "data/navmeshes/milestone2_navmesh.bin"
+			"initial_script": "scene_a",
+			"navmesh": "data/navmeshes/scene_a.bin"
 		},
 		"scene_group": [
-			"data/scenes/player_fsm.scene",
-			"data/scenes/camera.scene",
-			"data/scenes/sp_dynamic_lights.scene",
-			"data/scenes/milestone2_map_pre.scene",
-			"data/scenes/milestone2_map_lights2.scene",
-			"data/scenes/milestone2_map_colliders.scene",
-			"data/scenes/capsules.scene",
-			"data/scenes/water_plane.scene"
+			"data/scenes/ZoneA/player2_fsm.scene",
+			"data/scenes/ZoneA/camera.scene",
+			"data/scenes/ZoneA/sp_dynamic_lights.scene",
+			"data/scenes/ZoneA/zone_a_aceras.scene",
+			"data/scenes/ZoneA/zone_a_suelo.scene",
+			"data/scenes/ZoneA/zone_a_casas.scene",
+			"data/scenes/ZoneA/zone_a_puertas.scene",
+			"data/scenes/ZoneA/zone_a_puentes_chapa.scene",
+			"data/scenes/ZoneA/zone_a_puentes_arcos.scene",
+			"data/scenes/zona_a_barandillas.scene",
+			"data/scenes/zona_a_columnas.scene",
+			"data/scenes/zona_a_salientes.scene",
+			"data/scenes/zona_a_muralla.scene",
+			"data/scenes/zona_a_valla_torre.scene",
+			"data/scenes/zona_a_coberturas.scene",
+			"data/scenes/zona_a_chimeneas.scene",
+			"data/scenes/zona_a_andamios.scene",
+			"data/scenes/zona_a_conductos.scene",
+			"data/scenes/zona_a_tubos.scene",
+			"data/scenes/colliders_prova.scene",
+			"data/scenes/zona_a_proves.scene",
+			"data/scenes/ZoneA/whitebox_zone_light.scene"
+			
 		]
 	},
-	"scene_brian": {
+	"scene_basilic_courtyard": {
 		"static_data": {
-			"initial_script": "map_intro",
+			"initial_script": "basilic_courtyard",
 			"navmesh": "data/navmeshes/milestone2_navmesh.bin"
 		},
 		"scene_group": [
-			"data/scenes/player_fsm.scene",
-			"data/scenes/enemy.scene",
-			"data/scenes/milestone2_map_lights2_low.scene",
-			"data/scenes/milestone2_map_pre.scene",
-			"data/scenes/milestone2_map_colliders.scene",
-			"data/scenes/test_instancing.scene",
-			"data/scenes/capsules.scene",
-			"data/scenes/camera.scene",
-			"data/scenes/water_plane.scene",
-			"data/scenes/checkpoints.scene",
-			"data/scenes/movable_objects.scene"
+			"data/scenes/Basilic_courtyard/player.scene",
+			"data/scenes/ZoneA/sp_dynamic_lights.scene",
+			"data/scenes/Basilic_courtyard/whitebox_patio_basilica.scene",
+			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
+			"data/scenes/Basilic_courtyard/test_instancing.scene",
+			"data/scenes/Basilic_courtyard/capsules.scene",
+			"data/scenes/Basilic_courtyard/camera.scene"
+			
 		]
 	},
-	"scene_gpu": {
+	"scene_basilic_interior": {
 		"static_data": {
-			"initial_script": "map_intro",
+			"initial_script": "basilic_interior",
 			"navmesh": "data/navmeshes/milestone2_navmesh.bin"
 		},
 		"scene_group": [
-			"data/scenes/player_fsm.scene",
-			"data/scenes/camera.scene",
-			"data/scenes/milestone2_map_lights2_low.scene",
-			"data/scenes/milestone2_map_colliders.scene",
-			"data/scenes/sp_dynamic_lights.scene",
-			"data/scenes/test_instancing.scene"
+			"data/scenes/Basilic_interior/player.scene",
+			"data/scenes/Basilic_interior/test_instancing.scene",
+			"data/scenes/Basilic_interior/camera.scene",
+			"data/scenes/Basilic_interior/map_basilic_interior.scene",
+			"data/scenes/Basilic_interior/map_basilic_interior_lights.scene"
 		]
 	}
 }

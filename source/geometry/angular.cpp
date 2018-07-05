@@ -1,5 +1,5 @@
 #include "mcv_platform.h"
-
+#include "utils\utils.h"
 VEC3 getVectorFromYaw(float yaw) {
 	return VEC3(sinf(yaw), 0.f, cosf(yaw));
 }

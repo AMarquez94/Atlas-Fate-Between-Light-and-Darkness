@@ -4,6 +4,7 @@
 #include "components/comp_transform.h"
 #include "physics/physics_collider.h"
 #include "physics/physics_filter.h"
+#include "components/comp_name.h"
 #include "components/comp_tags.h"
 #include "render/texture/material.h" 
 #include "components\comp_render.h"
@@ -30,6 +31,11 @@ void TCompCollider::debugInMenu() {
 	std::string group = getNameByFilter(config->group);
 	//ImGui::LabelText("Group", "%s", group.c_str());
 	ImGui::Text("Group: %s", group.c_str());
+	ImGui::Text("Collider shape: %s", shapeName.c_str());
+	ImGui::Text("Group: %s", groupName.c_str());
+	ImGui::Text("Mask: %s", maskName.c_str());
+	physx::PxVec3 pos = config->actor->getGlobalPose().p;
+	ImGui::Text("Collider position: %f %f %f", (float)pos.x, (float)pos.y, (float)pos.z);
 }
 
 void TCompCollider::renderDebug(bool onlyDynamics) {
@@ -112,34 +118,37 @@ void TCompCollider::renderColliders(bool onlyDynamics) {
 void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 
 	// Factory pattern inside the json loader.
-	std::string shape = j["shape"].get<std::string>();
-	if (strcmp("box", shape.c_str()) == 0)
+	shapeName = j["shape"].get<std::string>();
+	if (strcmp("box", shapeName.c_str()) == 0)
 	{
 		config = new CPhysicsBox();
 	}
-	else if (strcmp("sphere", shape.c_str()) == 0)
+	else if (strcmp("sphere", shapeName.c_str()) == 0)
 	{
 		config = new CPhysicsSphere();
 	}
-	else if (strcmp("plane", shape.c_str()) == 0)
+	else if (strcmp("plane", shapeName.c_str()) == 0)
 	{
 		config = new CPhysicsPlane();
 	}
-	else if (strcmp("capsule", shape.c_str()) == 0)
+	else if (strcmp("capsule", shapeName.c_str()) == 0)
 	{
 		config = new CPhysicsCapsule();
 	}
-	else if (strcmp("convex", shape.c_str()) == 0)
+	else if (strcmp("convex", shapeName.c_str()) == 0)
 	{
 		config = new CPhysicsConvex();
 	}
-	else if (strcmp("mesh", shape.c_str()) == 0)
+	else if (strcmp("mesh", shapeName.c_str()) == 0)
 	{
 		config = new CPhysicsTriangleMesh();
 	}
 
-	config->group = getFilterByName(j.value("group", "all"));
-	config->mask = getFilterByName(j.value("mask", "all"));
+  groupName = j.value("group", "all");
+  maskName = j.value("mask", "all");
+
+	config->group = getFilterByName(groupName);
+	config->mask = getFilterByName(maskName);
 	config->is_trigger = j.value("is_trigger", false);
 
 	if (j.count("center"))
@@ -154,26 +163,42 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 void TCompCollider::registerMsgs() {
 
 	DECL_MSG(TCompCollider, TMsgEntityCreated, onCreate);
+	DECL_MSG(TCompCollider, TMsgEntitiesGroupCreated, onGroupCreated);
 	DECL_MSG(TCompCollider, TMsgTriggerEnter, onTriggerEnter);
 	DECL_MSG(TCompCollider, TMsgTriggerExit, onTriggerExit);
 	DECL_MSG(TCompCollider, TMsgEntityDestroyed, onDestroy);
 }
 
+void TCompCollider::createCollider()
+{
+  TCompTransform * compTransform = get<TCompTransform>();
+
+  TCompName * name = get<TCompName>();
+  // Create the shape, the actor and set the user data
+  physx::PxShape * shape = config->createShape();
+  config->createStatic(shape, compTransform);
+  config->actor->userData = CHandle(this).asVoidPtr();
+}
+
 void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
 
-	CEntity* e = CHandle(this).getOwner();
-	TCompRigidbody * c_rigidbody = e->get<TCompRigidbody>();
+	TCompRigidbody * c_rigidbody = get<TCompRigidbody>();
 	
 	// Let the rigidbody handle the creation if it exists..
 	if (c_rigidbody == nullptr)
 	{
-		TCompTransform * compTransform = e->get<TCompTransform>();
-
-		// Create the shape, the actor and set the user data
-		physx::PxShape * shape = config->createShape();
-		config->createStatic(shape, compTransform);
-		config->actor->userData = CHandle(this).asVoidPtr();
+    createCollider();
 	}
+}
+
+void TCompCollider::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+  TCompRigidbody * c_rigidbody = get<TCompRigidbody>();
+
+  // Let the rigidbody handle the creation if it exists..
+  if (c_rigidbody == nullptr && config->actor == nullptr)
+  {
+    createCollider();
+  }
 }
 
 void TCompCollider::onDestroy(const TMsgEntityDestroyed & msg)

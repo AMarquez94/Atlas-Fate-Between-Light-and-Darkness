@@ -15,6 +15,7 @@
 #include "components/comp_culling.h" 
 
 void CDeferredRenderer::renderGBuffer() {
+
 	CTraceScoped gpu_scope("Deferred.GBuffer");
 
 	// Disable the gbuffer textures as we are going to update them
@@ -90,17 +91,20 @@ bool CDeferredRenderer::create(int xres, int yres) {
 
 // -----------------------------------------------------------------
 void CDeferredRenderer::renderAmbientPass() {
+
 	CTraceScoped gpu_scope("renderAmbientPass");
 	renderFullScreenQuad("pbr_ambient.tech", nullptr);
 }
 
 void CDeferredRenderer::renderSkyBox() const {
+
 	CTraceScoped gpu_scope("renderSkyBox");
 	renderFullScreenQuad("pbr_skybox.tech", nullptr);
 }
 
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderAccLight() {
+
 	CTraceScoped gpu_scope("Deferred.AccLight");
 	rt_acc_light->activateRT();
 	rt_acc_light->clear(VEC4(0, 0, 0, 0));
@@ -110,11 +114,14 @@ void CDeferredRenderer::renderAccLight() {
     renderProjectors();
 	renderDirectionalLights();
 	renderSkyBox();
+
+    CRenderManager::get().renderCategory("hologram");
 }
 
 
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderPointLights() {
+
 	CTraceScoped gpu_scope("renderPointLights");
 
 	// Activate tech for the light dir 
@@ -143,6 +150,7 @@ void CDeferredRenderer::renderPointLights() {
 
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderDirectionalLights() {
+
 	CTraceScoped gpu_scope("renderDirectionalLights");
 
 	// Activate tech for the light dir 
@@ -170,6 +178,7 @@ void CDeferredRenderer::renderDirectionalLights() {
 
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderSpotLights() {
+
 	CTraceScoped gpu_scope("renderSpotLights");
 
 	//Get the culling bits from the main camera 
@@ -221,6 +230,24 @@ void CDeferredRenderer::renderSpotLights() {
 	});
 }
 
+// Optimize this in the next milestone, use CS
+// -------------------------------------------------------------------------
+void CDeferredRenderer::renderVolumes() {
+
+    //EngineInstancing.clearInstance("data/meshes/quad_volume.instanced_mesh");
+    CTraceScoped gpu_scope("renderSpotLights");
+
+    auto rmesh = Resources.get("data/meshes/quad_volume.instanced_mesh")->as<CRenderMesh>();
+    TCompLightSpot::volume_instance = (CRenderMeshInstanced*)rmesh;
+    TCompLightSpot::volume_instance->vtx_decl = CVertexDeclManager::get().getByName("InstanceLight");
+
+    getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
+
+        c->activate();
+        c->generateVolume();
+    });
+}
+
 // --------------------------------------
 void CDeferredRenderer::renderAO(CHandle h_camera) const {
 
@@ -265,6 +292,7 @@ void CDeferredRenderer::renderProjectors() {
 
 // --------------------------------------------------------------
 void CDeferredRenderer::renderGBufferDecals() {
+
     CTraceScoped gpu_scope("Deferred.GBuffer.Decals");
 
     // Disable the gbuffer textures as we are going to update them
@@ -282,9 +310,9 @@ void CDeferredRenderer::renderGBufferDecals() {
 
     // We use our 3 rt's and the Zbuffer of the backbuffer
     Render.ctx->OMSetRenderTargets(nrender_targets, rts, Render.depthStencilView);
-    rt_albedos->activateViewport();   // Any rt will do...
+    rt_albedos->activateViewport(); // Any rt will do...
 
-                                      // Render blending layer on top of gbuffer before adding lights
+    // Render blending layer on top of gbuffer before adding lights
     CRenderManager::get().renderCategory("gbuffer_decals");
 
     // Disable rendering to all render targets.
@@ -308,6 +336,7 @@ void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camer
 	// Do the same with the acc light
 	CTexture::setNullTexture(TS_DEFERRED_ACC_LIGHTS);
 	renderAccLight();
+    renderVolumes();
 
 	// Now dump contents to the destination buffer.
 	rt_destination->activateRT();

@@ -1,0 +1,48 @@
+[
+  {
+    "entity":
+    {
+      "name": "cubobasura_tapa"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cubobasura_tapa"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_cubobasura_tapa.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_coberturas.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_cubobasura_tapa.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

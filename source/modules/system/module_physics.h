@@ -33,6 +33,7 @@ public:
 
     /* Ray casting & related methods*/
     bool Raycast(const VEC3 & origin, const VEC3 & dir, float distance, physx::PxRaycastHit & hit, physx::PxQueryFlags flag = physx::PxQueryFlag::eSTATIC, physx::PxQueryFilterData filterdata = defaultFilter);
+    bool Sweep(physx::PxGeometry& geometry, const VEC3& position, const QUAT& rotation, const VEC3& direction, float distance, std::vector<physx::PxSweepHit>& hits, physx::PxQueryFlags flag = physx::PxQueryFlag::eSTATIC, physx::PxQueryFilterData filterdata = defaultFilter);
     bool Overlap(physx::PxGeometry& geometry, VEC3 pos, std::vector<physx::PxOverlapHit> & hits, physx::PxQueryFilterData filterdata);
 
     /* Other utilities */

@@ -131,6 +131,33 @@ int Strnicmp(const char * str1, const char * str2, int n)
 	return d;
 }
 
+const char *convert(const std::string & s)
+{
+    return s.c_str();
+}
+
+std::string stringify(VEC2 pos) {
+
+    return std::to_string(E_ROUND(pos.x)) + " " +
+    std::to_string(E_ROUND(pos.y));
+}
+
+
+std::string stringify(VEC3 pos) {
+
+    return std::to_string(E_ROUND(pos.x)) + " " +
+    std::to_string(E_ROUND(pos.y)) + " " +
+    std::to_string(E_ROUND(pos.z));
+}
+
+std::string stringify(VEC4 pos) {
+
+    return std::to_string(E_ROUND(pos.x)) + " " +
+    std::to_string(E_ROUND(pos.y)) + " " +
+    std::to_string(E_ROUND(pos.z)) + " " + 
+    std::to_string(E_ROUND(pos.w));
+}
+
 PxVec3 ToPxVec3(VEC3 vector) {
 	PxVec3 result = PxVec3(vector.x, vector.y, vector.z);
 	return result;

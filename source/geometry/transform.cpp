@@ -100,3 +100,11 @@ bool CTransform::debugInMenu() {
     return changed;
 }
 
+QUAT CTransform::getLookAt(VEC3 new_pos, VEC3 new_target, float customRoll)
+{
+    VEC3 front = new_target - new_pos;
+    float yaw, pitch;
+    getYawPitchFromVector(front, &yaw, &pitch);
+    return QUAT::CreateFromYawPitchRoll(yaw, -pitch, customRoll);
+}
+

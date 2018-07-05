@@ -10,11 +10,13 @@ Texture2D    txRoughness      SLOT(TS_ROUGHNESS);
 Texture2D    txEmissive       SLOT(TS_EMISSIVE);
 Texture2D    txHeight         SLOT(TS_HEIGHT);
 Texture2D    txNoiseMap       SLOT(TS_NOISE_MAP);
+Texture2D    txNoiseMap2       SLOT(TS_NOISE_MAP2);
 Texture3D    txLUT            SLOT(TS_LUT_COLOR_GRADING);
 
 // from the light and env
 Texture2D    txLightProjector SLOT(TS_LIGHT_PROJECTOR);
 Texture2D    txLightShadowMap SLOT(TS_LIGHT_SHADOW_MAP);
+Texture1DArray    txLightVolumeMap SLOT(TS_LIGHT_VOLUME_MAP);
 TextureCube  txEnvironmentMap SLOT(TS_ENVIRONMENT_MAP);
 TextureCube  txIrradianceMap  SLOT(TS_IRRADIANCE_MAP);
 
@@ -52,6 +54,9 @@ SamplerState samBorderLinear  : register(s1);
 SamplerComparisonState samPCF : register(s2);
 SamplerState samClampLinear   : register(s3);
 SamplerComparisonState samPCFWhite : register(s4);
+SamplerState samClampBilinear   : register(s5);
+SamplerState samClampPoint    : register(s6);
+SamplerState samCount   			: register(s7);
 
 //--------------------------------------------------------------------------------------
 // 
@@ -143,6 +148,21 @@ float computeShadowFactor(float3 wPos) {
   // Divide by the number of taps
   return shadow_factor / 12.f;
 }
+
+//--------------------------------------------------------------------------------------
+float computeShadowFactorLight(float3 wPos) {
+
+  // Convert pixel position in world space to light space
+  float4 pos_in_light_proj_space = mul(float4(wPos, 1), light_view_proj_offset);
+  float3 homo_space = pos_in_light_proj_space.xyz / pos_in_light_proj_space.w; // -1..1
+
+  // Avoid the white band in the back side of the light
+  if (pos_in_light_proj_space.z < 0.)
+    return 0.f;
+
+  return shadowsTap(homo_space.xy, homo_space.z);
+}
+
 
 float3x3 computeTBN(float3 inputN, float4 inputT) {
 
@@ -254,7 +274,7 @@ float4 projectColor(float3 wPos) {
   float4 light_projector_color = txLightProjector.Sample(samBorderLinear, pos_in_light_homo_space.xy);
 
   if (pos_in_light_proj_space.z < 0.)
-      return 1.f;
+      light_projector_color = float4(0, 0, 0, 0); //return 1.f;
 
   // Fade to zero in the last 1% of the zbuffer of the light
   //light_projector_color *= smoothstep(1.0f, 0.15f, pos_in_light_homo_space.z);
@@ -268,7 +288,7 @@ float2 parallaxMappingB(float2 texCoords, float3 view_dir) {
   float numLayers = lerp(maxLayers, minLayers, abs(dot(float3(0.0, 0.0, 1.0), view_dir)));
   float layerDepth = 1.0 / numLayers;
   float currentLayerDepth = 0.0;
-  float2 P = view_dir.xy * 0.045;
+  float2 P = view_dir.xy * 0.175;
   float2 deltaTexCoords = P / numLayers;
 
   float2 currentTexCoords = texCoords;

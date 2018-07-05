@@ -12,16 +12,5 @@
         "speed": 4.0
       }
     }
-  },
-  {
-    "entity": {
-      "name": "to_right",
-      "transform": {},
-      "render": {},
-      "hierarchy": {
-        "parent": "bullet",
-        "pos": "-1 0 0"
-      }
-    }
   }
 ]

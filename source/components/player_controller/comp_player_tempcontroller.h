@@ -97,6 +97,12 @@ class TCompTempPlayerController : public TCompBase
     float decrStaminaVertical;
     float minStaminaChange;
 
+    float maxLife = 100.f;
+    float life = 100.f;
+    float lifeIncr = 5.f;
+    float timerSinceLastDamage = 0.f;
+    float timeToStartRecoverFromDamage = 5.f;
+
     int timesRemoveInhibitorKeyPressed = 0;
     float timeToPressAgain = 0.7f;
     float timeInhib = 0.0f;
@@ -119,9 +125,9 @@ class TCompTempPlayerController : public TCompBase
     void onPlayerInShadows(const TMsgPlayerInShadows& msg);
     void onSpeedBoost(const TMsgSpeedBoost& msg);
     void onPlayerInvisible(const TMsgPlayerInvisible& msg);
-    void onNoClipToggle(const TMsgNoClipToggle& msg);
 	void onPlayerMove(const TMsgPlayerMove& msg);
-
+    void onMsgNoClipToggle(const TMsgNoClipToggle& msg);
+    void onMsgBulletHit(const TMsgBulletHit& msg);
 
 
     DECL_SIBLING_ACCESS();
@@ -135,18 +141,18 @@ public:
     bool isInNoClipMode = false;
     float speedBoost = 1.0f;
     std::string dbCameraState;
+
     float stepTimer = 0.0f;
     bool stepRight = true;
-    //VEC3 debugDir = VEC3::Zero;
-    //VEC3 debugMyFront = VEC3::Zero;
 
     bool isMerged;
     bool isGrounded;
     bool isInhibited;
     bool canAttack;
     bool canRemoveInhibitor;
-    unsigned int initialTimesToPressInhibitorRemoveKey;
+
     unsigned int hitPoints;
+    unsigned int initialTimesToPressInhibitorRemoveKey;
 
     void debugInMenu();
     void renderDebug();
@@ -172,10 +178,12 @@ public:
     const bool onMergeTest(float dt);
     const bool groundTest(float dt);
     const bool canAttackTest(float dt);
+    const bool canSonarPunch();
 
     /* Auxiliar functions */
     void updateStamina(float dt);
     void updateShader(float dt);
+    void updateLife(float dt);
     void mergeEnemy();
     void resetMerge();
     bool isDead();

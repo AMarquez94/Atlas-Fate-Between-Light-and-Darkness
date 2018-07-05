@@ -7,6 +7,7 @@
 		"render",
 		"navmeshes",
 		"cameras",
+		"particles",
 		"gui",
 		"logic",
 		"sound",
@@ -17,7 +18,8 @@
 		"map_intro",
 		"level_select",
 		"game_over",
-		"instancing"
+		"instancing",
+		"debug"
 	],
 	"render":
 	[
@@ -28,11 +30,13 @@
 		"navmeshes",
 		"map_intro",
 		"main_menu",
-		"console",
+		"particles",
 		"gui",
 		"level_select",
 		"game_over",
+		"console",
 		"cameras",
-		"input"
+		"input",
+		"sound"
 	]
 }

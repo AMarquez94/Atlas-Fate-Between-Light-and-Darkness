@@ -104,7 +104,7 @@ bool CMaterial::create(const json& j) {
     cb_material.mix_boost_r = 0;
     cb_material.mix_boost_g = 0;
     cb_material.mix_boost_b = 0;
-    cb_material.mat_alpha_outline = 1;
+    cb_material.mat_alpha_outline = 0;
 
 	if (j.count("self_color"))
 		cb_material.color_emission = loadVEC4(j["self_color"]);
@@ -146,6 +146,12 @@ void CMaterial::activateTextures(int slot0) const {
     Render.ctx->PSSetShaderResources(slot0, max_textures, (ID3D11ShaderResourceView**)srvs);
 }
 
+void CMaterial::setCBMaterial(float alpha_outline) {
+
+    cb_material.mat_alpha_outline = alpha_outline;
+    
+    // Add the rest of the values.
+}
 
 void CMaterial::debugInMenu() {
 

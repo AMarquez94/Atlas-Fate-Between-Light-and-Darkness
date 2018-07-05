@@ -1,0 +1,82 @@
+[
+  {
+    "entity":
+    {
+      "name": "mapa_prefabs243"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casa1_4x007"
+      ,
+      "prefab": "data/prefabs/casa1_4x4.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-58.2 0.0 -95.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casa1_4x009"
+      ,
+      "prefab": "data/prefabs/casa1_4x4.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-49.0 0.0 -72.7"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box016"
+      ,
+      "transform":
+      {
+        "pos": "-81.2475 -7.3713 -123.782"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box016.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "50.8176 3.63564 48.8429"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

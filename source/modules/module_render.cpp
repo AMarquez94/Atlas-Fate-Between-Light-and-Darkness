@@ -23,6 +23,9 @@
 #include "components/postfx/comp_render_blur_radial.h"
 #include "components/postfx/comp_render_bloom.h"
 #include "components/postfx/comp_color_grading.h"
+#include "components/postfx/comp_fog.h"
+#include "components/postfx/comp_antialiasing.h"
+#include "components/postfx/comp_chrom_aberration.h"
 #include "components\comp_render.h"
 //--------------------------------------------------------------------------------------
 
@@ -114,14 +117,27 @@ bool CModuleRender::start()
 	if (!cb_gui.create(CB_GUI))
 		return false;
 
+    if (!cb_particles.create(CB_PARTICLE))
+        return false;
+
+    if (!cb_outline.create(CB_OUTLINE))
+        return false;
+
+    if (!cb_player.create(CB_PLAYER))
+        return false;
+
+    if (!cb_postfx.create(CB_POSTFX))
+        return false;
+
 	cb_globals.global_exposure_adjustment = 2.010f;
 	cb_globals.global_ambient_adjustment = 0.150f;
 	cb_globals.global_world_time = 0.f;
 	cb_globals.global_hdr_enabled = 1.f;
 	cb_globals.global_gamma_correction_enabled = 1.f;
 	cb_globals.global_tone_mapping_mode = 1.f;
-	cb_globals.global_fog_density = 0.017f;
-	cb_globals.global_self_intensity = 10.f;
+    cb_globals.global_fog_density = 0.017f;
+    cb_globals.global_fog_color = VEC3(0.18,0.5,0.7);
+    cb_globals.global_self_intensity = 10.f;
 
 	cb_light.activate();
 	cb_object.activate();
@@ -129,6 +145,10 @@ bool CModuleRender::start()
 	cb_globals.activate();
 	cb_blur.activate();
 	cb_gui.activate();
+    cb_particles.activate();
+    cb_outline.activate();
+    cb_player.activate();
+    cb_postfx.activate();
 
 	camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
 	camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
@@ -140,6 +160,11 @@ bool CModuleRender::start()
 LRESULT CModuleRender::OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
 	return ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam);
+}
+
+CHandle CModuleRender::getMainCamera() {
+
+    return h_e_camera;
 }
 
 bool CModuleRender::stop()
@@ -156,6 +181,11 @@ bool CModuleRender::stop()
 	cb_light.destroy();
 	cb_globals.destroy();
 	cb_blur.destroy();
+    cb_gui.destroy();
+    cb_particles.destroy();
+    cb_outline.destroy();
+    cb_player.destroy();
+    cb_postfx.destroy();
 
 	return true;
 }
@@ -191,7 +221,8 @@ void CModuleRender::render()
 		ImGui::DragFloat("HDR", &cb_globals.global_hdr_enabled, 0.01f, 0.0f, 1.f);
 		ImGui::DragFloat("Gamma Correction", &cb_globals.global_gamma_correction_enabled, 0.01f, 0.0f, 1.f);
 		ImGui::DragFloat("Reinhard vs Uncharted2", &cb_globals.global_tone_mapping_mode, 0.01f, 0.0f, 1.f);
-		ImGui::DragFloat("Fog density", &cb_globals.global_fog_density, 0.0001f, 0.0f, 1.f);
+        ImGui::DragFloat("Fog density", &cb_globals.global_fog_density, 0.0001f, 0.0f, 1.f);
+        ImGui::ColorEdit4("Fog Color", &cb_globals.global_fog_color.x, 0.0001f);
 
 		// Must be in the same order as the RO_* ctes
 		static const char* render_output_str =
@@ -268,73 +299,94 @@ void CModuleRender::renderCollidersLayer(bool onlyDynamics) {
 
 void CModuleRender::generateFrame() {
 
-	{
-		PROFILE_FUNCTION("CModuleRender::shadowsMapsGeneration");
-		CTraceScoped gpu_scope("shadowsMapsGeneration");
-		if (_generateShadows) {
-			// Generate the shadow map for each active light
-			getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
-				c->generateShadowMap();
-			});
+    {
+        // SHADOW GENERATION
+        activateMainCamera();
+        PROFILE_FUNCTION("CModuleRender::shadowsMapsGeneration");
+        CTraceScoped gpu_scope("shadowsMapsGeneration");
+        if (_generateShadows) {
+            // Generate the shadow map for each active light
+            getObjectManager<TCompLightDir>()->forEach([](TCompLightDir* c) {
+                c->generateShadowMap();
+            });
 
-			// Generate the shadow map for each active light
-			getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
-				c->generateShadowMap();
-			});
-		}
-	}
+            // Generate the shadow map for each active light
+            getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
+                c->cullFrame();
+                c->generateShadowMap();
+            });
+        }
+    }
 
-	{
-		CTraceScoped gpu_scope("Frame");
-		PROFILE_FUNCTION("CModuleRender::generateFrame");
+    {
+        // MAIN FRAME RENDER
+        CTraceScoped gpu_scope("Frame");
+        PROFILE_FUNCTION("CModuleRender::generateFrame");
 
-		activateMainCamera();
-		cb_globals.updateGPU();
-		deferred.render(rt_main, h_e_camera);
+        activateMainCamera();
+        cb_globals.updateGPU();
+        deferred.render(rt_main, h_e_camera);
 
-		CRenderManager::get().renderCategory("particles");
-		CRenderManager::get().renderCategory("distorsions");
+        CRenderManager::get().renderCategory("particles");
+        CRenderManager::get().renderCategory("distorsions");
+    }
 
-		// Apply postFX
-		CTexture * curr_rt = rt_main;
-		CHandle camera_render = Engine.getCameras().getCurrentCamera();
-		if (camera_render.isValid() && _generatePostFX) {
-			CEntity * e_cam = camera_render;
+    {
+        // POST PROCESSING STACK
+        CTexture * curr_rt = rt_main;
+        CHandle camera_render = Engine.getCameras().getCurrentCamera();
 
-			// The bloom blurs the given input
-			TCompRenderBloom* c_render_bloom = e_cam->get< TCompRenderBloom >();
-			if (c_render_bloom) {
-				c_render_bloom->generateHighlights(deferred.rt_acc_light);
-				c_render_bloom->addBloom();
-			}
+        if (camera_render.isValid() && _generatePostFX) {
+            CEntity * e_cam = camera_render;
 
-			TCompRenderBlur * c_render_blur = e_cam->get< TCompRenderBlur >();
-			if (c_render_blur)
-				curr_rt = c_render_blur->apply(curr_rt);
+            // The bloom blurs the given input
+            TCompRenderBloom* c_render_bloom = e_cam->get< TCompRenderBloom >();
+            if (c_render_bloom) {
+                c_render_bloom->generateHighlights(deferred.rt_acc_light);
+                c_render_bloom->addBloom();
+            }
 
-			// Check if we have a render_fx component
-			TCompRenderBlurRadial * c_render_blur_radial = e_cam->get< TCompRenderBlurRadial >();
-			if (c_render_blur_radial)
-				curr_rt = c_render_blur_radial->apply(curr_rt);
+            TCompRenderBlur * c_render_blur = e_cam->get< TCompRenderBlur >();
+            if (c_render_blur)
+                curr_rt = c_render_blur->apply(curr_rt);
+
+            // Check if we have a render_fx component
+            TCompRenderBlurRadial * c_render_blur_radial = e_cam->get< TCompRenderBlurRadial >();
+            if (c_render_blur_radial)
+                curr_rt = c_render_blur_radial->apply(curr_rt);
 
 			// Check if we have a color grading component
 			TCompColorGrading* c_color_grading = e_cam->get< TCompColorGrading >();
 			if (c_color_grading)
 				curr_rt = c_color_grading->apply(curr_rt);
 
-			TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
-			if (c_render_outlines)
-				c_render_outlines->apply();
-		}
+            // Check if we have a color grading component
+            TCompFog * c_render_fog = e_cam->get< TCompFog >();
+            if (c_render_fog)
+                curr_rt = c_render_fog->apply(curr_rt);
 
-		Render.startRenderInBackbuffer();
-		renderFullScreenQuad("dump_texture.tech", curr_rt);
-	}
+            TCompChromaticAberration* c_chroma_aberration = e_cam->get< TCompChromaticAberration >();
+            if (c_chroma_aberration)
+                curr_rt = c_chroma_aberration->apply(curr_rt);
 
-	// Reset the technique, or we won't be able to render outside here...
-	auto* tech = Resources.get("solid.tech")->as<CRenderTechnique>();
-	assert(tech);
-	tech->activate();
+            TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
+            if (c_render_outlines)
+                c_render_outlines->apply();
+
+            TCompAntiAliasing* c_antialiasing = e_cam->get< TCompAntiAliasing >();
+            if (c_antialiasing)
+                curr_rt = c_antialiasing->apply(curr_rt);
+        }
+
+        Render.startRenderInBackbuffer();
+        renderFullScreenQuad("dump_texture.tech", curr_rt);
+    }
+
+    {
+        // DEBUG DRAWING
+        auto* tech = Resources.get("solid.tech")->as<CRenderTechnique>();
+        assert(tech);
+        tech->activate();
 
 	if (_debugMode)
 		debugDraw();
@@ -358,50 +410,57 @@ void CModuleRender::generateFrame() {
 		ImGui::Render();
 	}
 
-	{
-		PROFILE_FUNCTION("GUI");
-		CTraceScoped gpu_scope("GUI");
+        {
+            // RENDER UI
+            PROFILE_FUNCTION("GUI");
+            CTraceScoped gpu_scope("GUI");
 
-		activateRSConfig(RSCFG_CULL_NONE);
-		activateZConfig(ZCFG_DISABLE_ALL);
-		activateBlendConfig(BLEND_CFG_COMBINATIVE);
+            activateRSConfig(RSCFG_CULL_NONE);
+            activateZConfig(ZCFG_DISABLE_ALL);
+            activateBlendConfig(BLEND_CFG_COMBINATIVE);
 
-		activateCamera(CEngine::get().getGUI().getCamera(), Render.width, Render.height);
-		CEngine::get().getModules().renderGUI();
+            activateCamera(CEngine::get().getGUI().getCamera(), Render.width, Render.height);
+            CEngine::get().getModules().renderGUI();
 
-		activateRSConfig(RSCFG_DEFAULT);
-		activateZConfig(ZCFG_DEFAULT);
-		activateBlendConfig(BLEND_CFG_DEFAULT);
-	}
+            activateRSConfig(RSCFG_DEFAULT);
+            activateZConfig(ZCFG_DEFAULT);
+            activateBlendConfig(BLEND_CFG_DEFAULT);
+        }
 
-	// Present the information rendered to the back buffer to the front buffer (the screen)
-	{
-		PROFILE_FUNCTION("Render.swapChain");
-		Render.swapChain->Present(0, 0);
-	}
+        {
+            // BACKBUFFER SWAPPING
+            PROFILE_FUNCTION("Render.swapChain");
+            Render.swapChain->Present(0, 0);
+        }
+    }
 }
 
 void CModuleRender::debugDraw() {
 
-	// Main Inspector window
-	{
-		ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.149f, 0.1607f, 0.188f, 0.8f));
-		ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(255.0f, 255.0f, 255.0f, 255.0f));
-		ImGui::PushStyleColor(ImGuiCol_TitleBg, ImVec4(0.0, 0.0f, 0.0f, 0.75f));
-		ImGui::PushStyleColor(ImGuiCol_TitleBgActive, ImVec4(0.0, 0.0f, 0.0f, 0.75f));
-		ImGui::PushStyleColor(ImGuiCol_TitleBgCollapsed, ImVec4(0.219f, 0.349f, 0.501f, 0.75f));
-		ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 4);
-		ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 1);
+    {
+        // Main Inspector window
+        ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.149f, 0.1607f, 0.188f, 0.8f));
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(255.0f, 255.0f, 255.0f, 255.0f));
+        ImGui::PushStyleColor(ImGuiCol_TitleBg, ImVec4(0.0, 0.0f, 0.0f, 0.75f));
+        ImGui::PushStyleColor(ImGuiCol_TitleBgActive, ImVec4(0.0, 0.0f, 0.0f, 0.75f));
+        ImGui::PushStyleColor(ImGuiCol_TitleBgCollapsed, ImVec4(0.219f, 0.349f, 0.501f, 0.75f));
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 4);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 1);
 
-		// Render each render GUI explicit in order.
-		ImGui::Begin("Inspector", NULL);
-		{
-			PROFILE_FUNCTION("Modules");
-			CTraceScoped gpu_scope("Modules");
-			CEngine::get().getModules().render();
-		}
-		ImGui::End();
-		ImGui::PopStyleVar(2);
-		ImGui::PopStyleColor(5);
-	}
+        // Render each render GUI explicit in order.
+        ImGui::Begin("Inspector", NULL);
+        {
+            PROFILE_FUNCTION("Modules");
+            CTraceScoped gpu_scope("Modules");
+            CEngine::get().getModules().render();
+        }
+        ImGui::End();
+        ImGui::PopStyleVar(2);
+        ImGui::PopStyleColor(5);
+    }
+
+    {
+        //Particle editor
+
+    }
 }

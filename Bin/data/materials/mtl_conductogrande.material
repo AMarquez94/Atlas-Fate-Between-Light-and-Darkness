@@ -1,0 +1,16 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_conductogrande_alb.dds"
+    ,
+    "metallic": "data/textures/tx_conductogrande_met.dds"
+    ,
+    "roughness": "data/textures/tx_conductogrande_rgh.dds"
+    ,
+    "normal": "data/textures/tx_conductogrande_nml.dds"
+    ,
+    "height": "data/textures/tx_conductogrande_hgt.dds"
+  }
+}

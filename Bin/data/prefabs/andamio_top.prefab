@@ -1,0 +1,48 @@
+[
+  {
+    "entity":
+    {
+      "name": "andamio_top"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_top"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_andamio_top.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_andamio.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_andamio_top.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

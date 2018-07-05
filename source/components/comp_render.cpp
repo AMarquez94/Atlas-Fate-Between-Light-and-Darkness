@@ -190,3 +190,23 @@ void TCompRender::refreshMeshesInRenderManager(bool delete_me_from_keys) {
         }
     }
 }
+
+// Only allow us to change one material per mesh, multimaterial won't work.
+// In case of multimaterial needed, load from file.
+void TCompRender::setMaterial(const std::string &name) {
+
+    CMaterial * material = (CMaterial*)Resources.get(name)->as<CMaterial>();
+
+    // The house and the trees..
+    for (auto& mwm : meshes) {
+
+        // Do not register disabled meshes
+        if (!mwm.enabled || !global_enabled)
+            continue;
+
+        mwm.materials.clear();
+        mwm.materials.push_back(material);
+    }
+
+    refreshMeshesInRenderManager(true);
+}

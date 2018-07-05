@@ -36,6 +36,7 @@ public:
     void onDefineLocalAABB(const TMsgDefineLocalAABB& msg);
     void onSetVisible(const TMsgSetVisible& msg);
     void refreshMeshesInRenderManager(bool delete_me_from_keys = true);
+    void setMaterial(const std::string &name);
 
 	void renderMeshes();
 

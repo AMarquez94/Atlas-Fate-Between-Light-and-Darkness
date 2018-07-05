@@ -1,0 +1,7 @@
+{
+  "instanced_mesh": "data/meshes/prefab3.mesh"
+  ,
+  "instances_type": "Instance"
+  ,
+  "num_instances_reserved": 8
+}

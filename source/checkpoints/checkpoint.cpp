@@ -4,6 +4,7 @@
 #include "components/comp_transform.h"
 #include "components/ia/comp_bt_patrol.h"
 #include "components/ia/comp_bt_mimetic.h"
+#include "components/ia/comp_bt_drone.h"
 #include "entity/common_msgs.h"
 #include "components/physics/comp_rigidbody.h"
 
@@ -42,7 +43,8 @@ bool CCheckpoint::saveCheckPoint(VEC3 playerPos, QUAT playerRotation)
 
 		TCompAIPatrol * enemyPatrol = e_enemy->get<TCompAIPatrol>();
 		TCompAIMimetic * enemyMimetic = e_enemy->get<TCompAIMimetic>();
-		assert(enemyPatrol || enemyMimetic);
+		TCompAIDrone * enemyDrone = e_enemy->get<TCompAIDrone>();
+		assert(enemyPatrol || enemyMimetic || enemyDrone);
 		if (enemyPatrol != nullptr) {
 			enemy.enemyType = TCompIAController::BTType::PATROL;
 			enemy.enemyIAStateName = enemyPatrol->getStateForCheckpoint();
@@ -50,6 +52,10 @@ bool CCheckpoint::saveCheckPoint(VEC3 playerPos, QUAT playerRotation)
 		else if(enemyMimetic != nullptr) {
 			enemy.enemyType = TCompIAController::BTType::MIMETIC;
 			enemy.enemyIAStateName = enemyMimetic->getStateForCheckpoint();
+		}
+		else if (enemyDrone != nullptr) {
+			enemy.enemyType = TCompIAController::BTType::DRONE;
+			enemy.enemyIAStateName = enemyDrone->getStateForCheckpoint();
 		}
 
 		enemy.saved = true;
@@ -80,6 +86,7 @@ bool CCheckpoint::loadCheckPoint()
       for (int i = 0; i < v_cameras.size(); i++) {
         CEntity* camera = v_cameras[i];
         TMsgCameraReset msg;
+        msg.both_angles = true;
         camera->sendMsg(msg);
       }
 		}
@@ -119,6 +126,12 @@ bool CCheckpoint::loadCheckPoint()
 					case TCompAIMimetic::BTType::MIMETIC:
 					{
             TCompAIMimetic* enemyAI = e_enemy->get<TCompAIMimetic>();
+						enemyAI->setCurrentByName(enemies[j].enemyIAStateName);
+						break;
+					}
+					case TCompAIDrone::BTType::DRONE:
+					{
+						TCompAIDrone* enemyAI = e_enemy->get<TCompAIDrone>();
 						enemyAI->setCurrentByName(enemies[j].enemyIAStateName);
 						break;
 					}
@@ -177,6 +190,11 @@ void CCheckpoint::debugInMenu()
                 ImGui::Text("Type: Mimetic");
                 break;
               }
+							case TCompAIMimetic::BTType::DRONE:
+							{
+								ImGui::Text("Type: Drone");
+								break;
+							}
             }
             ImGui::TreePop();
           }

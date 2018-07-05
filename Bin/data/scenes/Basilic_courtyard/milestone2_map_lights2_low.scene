@@ -1,0 +1,101 @@
+[{
+		"entity": {
+			"name": "milestone2_map_lights2",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Spot037",
+			"transform": {
+				"pos": "-25.0105 5.99979 90.5559",
+				"lookat": "-25.4034 -2.62686 92.1445"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 8.78049,
+				"angle": 66.1,
+				"inner_cut": 64.0,
+				"z_far": 8.78049,
+				"z_near" : 0.1,
+				"color": "1.0 1.0 1.0 1.0",
+				"intensity": 0.65,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/Spot037.collider",
+				"is_trigger": true
+			},
+			"tags":
+			[
+				"light"
+			]
+		}
+	}, {
+		"entity": {
+			"name": "Spot005",
+			"transform": {
+				"pos": "-33.5931 13.3442 68.4138",
+				"lookat": "-32.6997 -6.17808 68.6264"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 19.5439,
+				"angle": 37.4,
+				"inner_cut": 35.3,
+				"z_far": 19.5439,
+				"color": "1.0 1.0 1.0 1.0",
+				"intensity": 0.65,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/Spot005.collider",
+				"is_trigger": true
+			},
+			"tags":
+			[
+				"light"
+			]
+		}
+	}, {
+		"entity": {
+			"name": "FDirect001",
+			"transform": {
+				"pos": "-108.621 211.253 -112.052",
+				"lookat": "6.875 7.401 58.464"
+			},
+			"light_dir": {
+				"type": "directional",
+				"proj_type": "ortographic",
+				"range": 29.2116,
+				"angle": 75,
+				"color": "0.0 0.207 1.0 1.0",
+				"intensity": 1.5,
+				"ortosize": 168,
+				"shadows": true,
+				"fov": 15,
+				"z_far": 400,
+				"z_near": 3,
+				"casts_shadows": true,
+				"shadows_step": 1.25,
+				"shadows_resolution": 4096,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"tags":
+			[
+				"light"
+			]
+		}
+	}
+]

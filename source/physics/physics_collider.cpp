@@ -42,6 +42,7 @@ void CPhysicsCollider::setAsTrigger(physx::PxShape * shape, bool state)
 
 void CPhysicsCollider::createStatic(physx::PxShape* actor_shape, TCompTransform * c_transform)
 {
+    shape = actor_shape;
     physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
     physx::PxScene * gScene = EnginePhysics.getPhysxScene();
 
@@ -131,9 +132,15 @@ physx::PxController* CPhysicsBox::createController(TCompTransform * c_transform)
     QUAT quat = c_transform->getRotation();
     ctrl->setFootPosition(physx::PxExtendedVec3(pos.x, pos.y, pos.z));
     ctrl->setContactOffset(contact_offset);
+    ctrl->setStepOffset(step_offset);
 
     actor = ctrl->getActor();
-    //actor->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, true);
+    const physx::PxU32 numShapes = actor->getNbShapes();
+    std::vector<physx::PxShape*> shapes;
+    shapes.resize(numShapes);
+    actor->getShapes(&shapes[0], numShapes);
+    shape = shapes[0];
+    actor->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, true);
     setupFiltering(actor, group, mask);
     return ctrl;
 }
@@ -232,6 +239,11 @@ physx::PxController* CPhysicsCapsule::createController(TCompTransform * c_transf
     ctrl->setStepOffset(step_offset);
 
     actor = ctrl->getActor();
+    const physx::PxU32 numShapes = actor->getNbShapes();
+    std::vector<physx::PxShape*> shapes;
+    shapes.resize(numShapes);
+    actor->getShapes(&shapes[0], numShapes);
+    shape = shapes[0];
     actor->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, true);
     setupFiltering(actor, group, mask);
 

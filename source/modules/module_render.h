@@ -46,6 +46,8 @@ public:
 	void setShowAllColliders(bool val) { _showAllColliders = val; }
 	bool const getShowDynamicColliders() { return _showDynamicColliders; }
 	void setShowDynamicColliders(bool val) { _showDynamicColliders = val; }
+	CHandle getMainCamera();
+
 
 	LRESULT OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) override;
 

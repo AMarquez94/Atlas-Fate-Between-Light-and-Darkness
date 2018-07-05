@@ -28,8 +28,10 @@ CEngine::CEngine()
 	, _module_logic("logic")
 	, _module_game_console("console")
 	, _module_gui("gui")
-    , _module_scene_manager("scene_manager")
-    , _module_instancing("instancing")
+	, _module_scene_manager("scene_manager")
+	, _module_instancing("instancing")
+	, _module_debug("debug")
+    , _module_particles("particles")
 {}
 
 bool CEngine::start() {
@@ -56,6 +58,8 @@ bool CEngine::start() {
 	_modules.registerSystemModule(&_module_logic);          //Always last to start the ongamestarted event from here
     _modules.registerSystemModule(&_module_scene_manager);
     _modules.registerSystemModule(&_module_instancing);
+    _modules.registerSystemModule(&_module_debug);
+    _modules.registerSystemModule(&_module_particles);
 
 	_modules.registerGameModule(&module_splash);
 	_modules.registerGameModule(&module_game_manager);

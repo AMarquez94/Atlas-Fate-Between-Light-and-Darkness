@@ -1,0 +1,48 @@
+[
+  {
+    "entity":
+    {
+      "name": "barandilla3"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla3"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla3.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.0 0.65 0.075"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]
