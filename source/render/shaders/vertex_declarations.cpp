@@ -168,6 +168,14 @@ bool CVertexDeclManager::create() {
         createNew("InstancedPos", layout, ARRAYSIZE(layout));
     }
 
+    { // To render gpu particles: TGpuParticleInstance
+        static D3D11_INPUT_ELEMENT_DESC layout[] = {
+            // Pos.xyz + time
+            { "TEXCOORD", 1, DXGI_FORMAT_R32G32B32A32_FLOAT, 0,  0, D3D11_INPUT_PER_VERTEX_DATA, 0 },    // world0
+        };
+        createNew("GpuParticleInstance", layout, ARRAYSIZE(layout));
+    }
+
     return true;
 }
 

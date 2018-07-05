@@ -445,9 +445,13 @@ namespace FSM
             light->isEnabled = true;
         }
 
+        // Move all of this to LUA
         Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", ctx.getOwner());
         Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash.particles", ctx.getOwner());
         Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", ctx.getOwner());
+
+        TCompParticles * c_e_particle = e->get<TCompParticles>();
+        c_e_particle->setSystemState(true);
 
         TCompRender * render = e->get<TCompRender>();
         render->visible = false;

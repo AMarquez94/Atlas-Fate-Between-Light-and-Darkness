@@ -247,10 +247,12 @@ namespace Particles
 
         const CRenderTechnique* technique = Resources.get("particles.tech")->as<CRenderTechnique>();
         const CRenderMesh* quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
+
         CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
         assert(technique && quadMesh && eCurrentCamera);
         TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
         assert(camera);
+
         VEC3 cameraPos = camera->getPosition();
         VEC3 cameraUp = camera->getUp();
 
