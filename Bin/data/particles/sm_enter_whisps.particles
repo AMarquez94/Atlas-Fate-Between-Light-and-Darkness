@@ -1,11 +1,11 @@
 {
 	"system": {
 		"duration": 1.0,
-		"looping": true,
+		"looping": false,
 		"start_delay": 0.0,
 		"start_lifetime": 5.0,
 		"start_speed": 0.5,
-		"start_size": "0.4 0.4 0.4",
+		"start_size": "0.1 0.1 0.1",
 		"start_rotation": "0 0 0",
 		"random_rotation": 0.0,
 		"start_color": "1 0 0 1",
@@ -62,8 +62,10 @@
 		"scale": 1.0,
 		"scale_variation": 0.2,
 		"sizes": [
-			[0.0, "0.4 0.4 0.4"],
-			[0.0, "0.4 0.4 0.4"]
+			[0.0, "0.0 0.0 0.0"],
+			[0.1, "0.1 0.1 0.1"],		
+			[0.9, "0.1 0.1 0.1"],
+			[1.0, "0.0 0.0 0.0"]
 		]
 	},
 	"color": {

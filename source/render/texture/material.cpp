@@ -119,6 +119,8 @@ bool CMaterial::create(const json& j) {
 void CMaterial::onFileChanged(const std::string& filename) {
 	if (filename == getName()) {
 		create(filename);
+        auto j = loadJson(filename);
+        create(j);
 	}
 	else {
 		// Maybe a texture has been updated, get the new shader resource view

@@ -407,6 +407,16 @@
 		"rs_config" : "cull_none",
 		"blend" : "combinative"
 	},
+	"Instanced_particles" : {
+		"vs_file": "data/shaders/particles_instanced.fx",
+		"vs_entry_point": "VS_Particles",
+		"ps_entry_point": "PS_Particles",
+		"vertex_type" : "PosClr_x_CpuParticleInstance",
+		"category" : "particles_volume",
+		"z" : "test_but_no_write",
+		"rs_config" : "cull_none",
+		"blend" : "combinative"
+	},
 	"pbr_instanced_volume": {
 		"vs_file": "data/shaders/pbr_vol_instanced.fx",
 		"ps_file": "data/shaders/pbr_vol_instanced.fx",

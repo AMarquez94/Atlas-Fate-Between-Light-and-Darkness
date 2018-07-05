@@ -107,6 +107,7 @@
     <ClCompile Include="components\comp_aabb.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
     <ClCompile Include="components\comp_culling.cpp" />
+    <ClCompile Include="components\comp_gpu_particles.cpp" />
     <ClCompile Include="components\comp_lod.cpp" />
     <ClCompile Include="components\comp_particles.cpp" />
     <ClCompile Include="components\dynamic_objects\comp_dynamic_capsule.cpp" />
@@ -263,6 +264,10 @@
     <ClCompile Include="physics\physics_mesh.cpp" />
     <ClCompile Include="profiling\profiling.cpp" />
     <ClCompile Include="render\blur_step.cpp" />
+    <ClCompile Include="render\compute\compute_shader.cpp" />
+    <ClCompile Include="render\compute\compute_task.cpp" />
+    <ClCompile Include="render\compute\gpu_buffer.cpp" />
+    <ClCompile Include="render\compute\particles.cpp" />
     <ClCompile Include="render\cte_buffer.cpp" />
     <ClCompile Include="render\deferred_renderer.cpp" />
     <ClCompile Include="render\mesh\mesh.cpp" />
@@ -304,6 +309,7 @@
     <ClInclude Include="components\comp_base.h" />
     <ClInclude Include="components\comp_camera.h" />
     <ClInclude Include="components\comp_culling.h" />
+    <ClInclude Include="components\comp_gpu_particles.h" />
     <ClInclude Include="components\comp_lod.h" />
     <ClInclude Include="components\comp_particles.h" />
     <ClInclude Include="components\dynamic_objects\comp_dynamic_capsule.h" />
@@ -486,6 +492,10 @@
     <ClInclude Include="physics\physics_mesh.h" />
     <ClInclude Include="profiling\profiling.h" />
     <ClInclude Include="render\blur_step.h" />
+    <ClInclude Include="render\compute\compute_shader.h" />
+    <ClInclude Include="render\compute\compute_task.h" />
+    <ClInclude Include="render\compute\gpu_buffer.h" />
+    <ClInclude Include="render\compute\particles.h" />
     <ClInclude Include="render\cte_buffer.h" />
     <ClInclude Include="render\deferred_renderer.h" />
     <ClInclude Include="render\gpu_trace.h" />

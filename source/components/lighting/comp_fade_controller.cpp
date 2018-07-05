@@ -57,6 +57,7 @@ void TCompFadeController::update(float dt) {
         }
 
         cb_object.self_fade_value += (dt / _fade_time) * _invert_fade; // Tweak here due to noise intensity
+        dbg("object fade %f\n", cb_object.self_fade_value);
     }
 }
 

@@ -104,6 +104,11 @@ void TCompLightSpot::update(float dt) {
     if (!c)
         return;
 
+    MAT44 view_proj = getViewProjection();
+    //e_owner->sendMsg(TMsgGetCullingViewProj{ &view_proj });
+    TCompCulling * c_culling = get<TCompCulling>();
+    c_culling->updateFromMatrix(view_proj);
+
     this->lookAt(c->getPosition(), c->getPosition() + c->getFront(), c->getUp());
     this->setPerspective(deg2rad(angle), 0.1f, range); // might change this znear in the future, hardcoded for clipping purposes.
 }
@@ -141,6 +146,12 @@ void TCompLightSpot::onCreate(const TMsgEntityCreated& msg) {
         c_my_aabb->Center = VEC3(0, 0, range * .5f);
         c_my_aabb_local->Center = VEC3(0, 0, range * .5f);
     }
+
+    CEntity* e = CHandle(this).getOwner();
+
+    // Add a particle component
+    CHandle h_comp = getObjectManager<TCompCulling>()->createHandle();
+    e->set(h_comp.getType(), h_comp);
 
     //for (int i = 0; i < num_samples; i++) {
     //    EngineInstancing.addInstance("data/meshes/quad_volume.instanced_mesh", MAT44::Identity);
@@ -194,10 +205,6 @@ void TCompLightSpot::generateVolume() {
 
     if (!isEnabled || cull_enabled || !volume_enabled)
         return;
-
-    // Activate tech for the light dir 
-    auto technique = Resources.get("pbr_vol_lights.tech")->as<CRenderTechnique>();
-    technique->activate();
     
     CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
     TCompCamera* camera = eCurrentCamera->get< TCompCamera >();

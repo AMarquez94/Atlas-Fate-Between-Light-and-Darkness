@@ -51,12 +51,20 @@ void CModuleParticles::update(float delta)
     }
 }
 
-void CModuleParticles::render()
+void CModuleParticles::renderDeferred()
 {
     for (auto& ps : _activeSystems)
     {
         ps->render();
     };
+}
+
+void CModuleParticles::render()
+{
+    //for (auto& ps : _activeSystems)
+    //{
+    //    ps->render();
+    //};
 
     if(particles_enabled)
         p_editor->debugMenu();
@@ -67,6 +75,15 @@ Particles::TParticleHandle CModuleParticles::launchSystem(const std::string& nam
     const Particles::TCoreSystem* cps = Resources.get(name)->as<Particles::TCoreSystem>();
     return launchSystem(cps, entity);
 }
+
+//Particles::TParticleHandle CModuleParticles::launchSystem(const std::string& name, CHandle entity, const VEC3 offset)
+//{
+//    const Particles::TCoreSystem* cps = Resources.get(name)->as<Particles::TCoreSystem>();
+//    cps->n_system.offset = offset;
+//
+//    return launchSystem(cps, entity);
+//}
+
 
 Particles::TParticleHandle CModuleParticles::launchSystem(const Particles::TCoreSystem* cps, CHandle entity)
 {
@@ -112,4 +129,3 @@ const VEC3& CModuleParticles::getWindVelocity() const
 {
     return _windVelocity;
 }
-

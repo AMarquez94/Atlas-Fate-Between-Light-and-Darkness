@@ -1,0 +1,12 @@
+{
+  "name": "kernel_bw.compute",
+  "cs_file": "data/shaders/compute.fx",
+  "cs_entry_point": "kernel_bw",
+  "textures": [ "data/textures/piedras_c.dds", "output_bw.dds" ],
+  "sx" : 256,
+  "sy" : 256,
+  "sz" : 1,
+  "gx" : 16,
+  "gy" : 16,
+  "gz" : 1
+}

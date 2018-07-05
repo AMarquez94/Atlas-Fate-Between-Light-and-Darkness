@@ -5,6 +5,7 @@
 #include "components/physics/comp_rigidbody.h"
 #include "components/lighting/comp_projector.h"
 #include "components/comp_render.h"
+#include "components/comp_particles.h"
 
 //class TCompTempPlayerController;
 //class TCompPlayerAnimator;
@@ -299,6 +300,15 @@ namespace FSM
             TCompProjector * light = entity_light->get<TCompProjector>();
             light->isEnabled = true;
         }
+
+        // Move this to LUA in the future.
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", ctx.getOwner());
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash2.particles", ctx.getOwner());
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", ctx.getOwner());
+
+        TCompParticles * c_e_particle = e->get<TCompParticles>();
+        c_e_particle->setSystemState(true);
+
     }
 
     void EnterMergeState::onFinish(CContext& ctx) const {
@@ -375,10 +385,6 @@ namespace FSM
 
     void ExitMergeState::onStart(CContext& ctx) const {
 
-        // Send a message to the player controller
-        //CEntity* e = ctx.getOwner();
-        //e->sendMsg(TMsgAnimation{ "crouch" });
-
         CEntity* e = ctx.getOwner();
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, _target, _noise });
         e->sendMsg(TMsgFadeBody{ true });
@@ -390,6 +396,13 @@ namespace FSM
             TCompProjector * light = entity_light->get<TCompProjector>();
             light->isEnabled = false;
         }
+
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", ctx.getOwner());
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash.particles", ctx.getOwner());
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", ctx.getOwner());
+
+        TCompParticles * c_e_particle = e->get<TCompParticles>();
+        c_e_particle->setSystemState(false);
     }
 
     void ExitMergeState::onFinish(CContext& ctx) const {
@@ -462,6 +475,14 @@ namespace FSM
             TCompProjector * light = entity_light->get<TCompProjector>();
             light->isEnabled = true;
         }
+
+        // Move all of this to LUA
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", ctx.getOwner());
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash.particles", ctx.getOwner());
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", ctx.getOwner());
+
+        TCompParticles * c_e_particle = e->get<TCompParticles>();
+        c_e_particle->setSystemState(true);
 
         TCompRender * render = e->get<TCompRender>();
         render->visible = false;

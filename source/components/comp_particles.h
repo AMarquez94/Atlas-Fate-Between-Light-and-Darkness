@@ -8,9 +8,11 @@ struct TCompParticles : public TCompBase
 public:
     Particles::TParticlesHandle   _particles = 0;
     const Particles::TCoreSystem* _core = nullptr;
+    std::map<const Particles::TCoreSystem*, Particles::TParticlesHandle> _cores;
 
+    bool                          _on_start = false;
     bool                          _launched = false;
-    float                         _fadeOut = 0.f;
+    float                         _fadeout = 0.f;
 
     TCompParticles() = default;
     static void registerMsgs();
@@ -20,5 +22,8 @@ public:
     void onGroupCreated(const TMsgEntitiesGroupCreated&);
     void onDestroyed(const TMsgEntityDestroyed&);
     void debugInMenu();
+
+    void playSystem();
+    void setSystemState(bool state);
 };
 

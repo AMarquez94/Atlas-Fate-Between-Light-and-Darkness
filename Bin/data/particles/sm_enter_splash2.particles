@@ -7,11 +7,12 @@
 		"start_speed": 4,
 		"start_size": "4 12 4",
 		"start_rotation": "0 0 0",
-		"random_rotation": 0.0,
+		"random_rotation": 360.0,
 		"start_color": "1 1 1 1",
-		"gravity": -0.9,
+		"gravity": 2.8,
 		"simulation_speed": 1,
-		"max_particles": 1
+		"max_particles": 1,
+		"offset": "0 0.75 0"
 	},
 	"emission": {
 		"rate_time": 5.0,

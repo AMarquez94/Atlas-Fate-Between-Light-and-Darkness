@@ -5,7 +5,7 @@
 #include "components/comp_camera.h"
 #include "components/comp_transform.h"
 #include <random>
-
+#include "render/render_manager.h"
 // ----------------------------------------------
 class CParticleResourceClass : public CResourceClass {
 public:
@@ -206,7 +206,7 @@ namespace Particles
                 p.size = _core->n_size.sizes.get(life_ratio);
 
                 int frame_idx = (int)(p.lifetime * _core->n_renderer.frameSpeed);
-                p.frame = _core->n_renderer.initialFrame + (frame_idx % _core->n_renderer.numFrames);
+                p.frame = p.init_frame + _core->n_renderer.initialFrame + (frame_idx % _core->n_renderer.numFrames);
 
                 ++it;
             }
@@ -245,12 +245,11 @@ namespace Particles
         if (!_enabled) return;
         if (_deploy_time < _core->n_system.start_delay) return;
 
-        const CRenderTechnique* technique = Resources.get("particles.tech")->as<CRenderTechnique>();
-        const CRenderMesh* quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
         CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
-        assert(technique && quadMesh && eCurrentCamera);
-        TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
+        assert(eCurrentCamera);
+        TCompCamera* camera = eCurrentCamera->get<TCompCamera>();
         assert(camera);
+
         VEC3 cameraPos = camera->getPosition();
         VEC3 cameraUp = camera->getUp();
 
@@ -264,8 +263,12 @@ namespace Particles
 
         const int frameCols = static_cast<int>(_core->n_renderer.frameSize.x);
 
-        technique->activate();
-        _core->n_renderer.texture->activate(TS_ALBEDO);
+        auto rmesh = Resources.get("data/meshes/quad_volume_particles.instanced_mesh")->as<CRenderMesh>();
+        CRenderMeshInstanced* instanced_particle = (CRenderMeshInstanced*)rmesh;
+        instanced_particle->vtx_decl = CVertexDeclManager::get().getByName("CpuParticleInstance");
+
+        std::vector<Particles::TIParticle> particles_instances;
+        particles_instances.reserve(_particles.size());
 
         for (auto& p : _particles)
         {
@@ -279,55 +282,17 @@ namespace Particles
             VEC2 minUV = VEC2(col * (1/_core->n_renderer.frameSize.x), row * (1 / _core->n_renderer.frameSize.y));
             VEC2 maxUV = minUV + VEC2(1/_core->n_renderer.frameSize.x, 1/ _core->n_renderer.frameSize.y);
 
-            cb_object.obj_world = rt * sc * bb;
-            cb_object.obj_color = VEC4(1, 1, 1, 1);
-            cb_object.updateGPU();
-
-            cb_particles.particle_minUV = minUV;
-            cb_particles.particle_maxUV = maxUV;
-            cb_particles.particle_color = p.color;
-            cb_particles.updateGPU();
-
-            quadMesh->activateAndRender();
+            Particles::TIParticle t_struct = { rt * sc * bb, minUV, maxUV, p.color };
+            particles_instances.push_back(t_struct);
         }
 
-        /*
-        const CRenderTechnique* technique = Resources.get("particles.tech")->as<CRenderTechnique>();
-        const CRenderMesh* quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
-        CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
-        assert(technique && quadMesh && eCurrentCamera);
-        TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
-        assert(camera);
-        const VEC3 cameraPos = camera->getPosition();
-        const VEC3 cameraUp = camera->getUp();
+        instanced_particle->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(Particles::TIParticle));
+        
+        auto technique2 = Resources.get("Instanced_particles.tech")->as<CRenderTechnique>();
+        technique2->activate();
 
-        const int frameCols = static_cast<int>(1.f / _core->render.frameSize.x);
-
-        technique->activate();
-        _core->render.texture->activate(TS_ALBEDO);
-
-        for (auto& p : _particles)
-        {
-            MAT44 bb = MAT44::CreateBillboard(p.position, cameraPos, cameraUp);
-            MAT44 sc = MAT44::CreateScale(p.size * p.scale);
-            MAT44 rt = MAT44::CreateFromYawPitchRoll(0.f, 0.f, p.rotation);
-
-            int row = p.frame / frameCols;
-            int col = p.frame % frameCols;
-            VEC2 minUV = VEC2(col * _core->render.frameSize.x, row * _core->render.frameSize.y);
-            VEC2 maxUV = minUV + _core->render.frameSize;
-
-            cb_object.obj_world = rt * sc * bb;
-            cb_object.obj_color = VEC4(1, 1, 1, 1);
-            cb_object.updateGPU();
-
-            cb_particles.particle_minUV = minUV;
-            cb_particles.particle_maxUV = maxUV;
-            cb_particles.particle_color = p.color;
-            cb_particles.updateGPU();
-
-            quadMesh->activateAndRender();
-        }*/
+        _core->n_renderer.texture->activate(TS_ALBEDO1);
+        CRenderManager::get().renderCategory("particles_volume");
     }
 
     void CSystem::emit()
@@ -345,7 +310,7 @@ namespace Particles
         for (int i = 0; i < _core->n_emission.rate_time && _particles.size() < _core->n_system.max_particles; ++i)
         {
             TParticle particle;
-            particle.position = generatePosition();
+            particle.position = generatePosition() + _core->n_system.offset;
             particle.velocity = generateVelocity();
             particle.color = _core->n_color.colors.get(0.f);
             particle.size = _core->n_system.start_size;
@@ -354,27 +319,9 @@ namespace Particles
             particle.rotation = (1 - _core->n_system.random_rotation) * M_PI * VEC3(deg2rad(_core->n_system.start_rotation.x), deg2rad(_core->n_system.start_rotation.y), deg2rad(_core->n_system.start_rotation.z));
             particle.lifetime = 0.f;
             particle.max_lifetime = _core->n_system.duration + random(-_core->n_emission.variation, _core->n_emission.variation);
-
+            particle.init_frame = random(0, _core->n_renderer.numFrames);
             _particles.push_back(particle);
         }
-
-        /*
-        
-        for (int i = 0; i < _core->emission.count && _particles.size() < _core->life.maxParticles; ++i)
-        {
-            TParticle particle;
-            particle.position = VEC3::Transform(generatePosition(), world);
-            particle.velocity = generateVelocity();
-            particle.color = _core->color.colors.get(0.f);
-            particle.size = _core->size.sizes.get(0.f);
-            particle.scale = _core->size.scale + random(-_core->size.scale_variation, _core->size.scale_variation);
-            particle.frame = _core->render.initialFrame;
-            particle.rotation = 0.f;
-            particle.lifetime = 0.f;
-            particle.max_lifetime = _core->life.duration + random(-_core->life.durationVariation, _core->life.durationVariation);
-
-            _particles.push_back(particle);
-        }*/
     }
 
     // Emit given a concrete amount
@@ -393,7 +340,7 @@ namespace Particles
         for (int i = 0; i < amount && _particles.size() < _core->n_system.max_particles; ++i)
         {
             TParticle particle;
-            particle.position = VEC3::Transform(generatePosition(), world);
+            particle.position = VEC3::Transform(generatePosition(), world) + _core->n_system.offset;
             particle.velocity = generateVelocity();
             particle.color = _core->n_color.colors.get(0.f);
             particle.size = _core->n_size.sizes.get(0.f);
@@ -483,11 +430,11 @@ namespace Particles
 
             case TCoreSystem::TNShape::Cone:
             {                
-                return VEC3::Up;
-                //float angle = 1 - (rad2deg(_core->n_shape.angle) / 90);
-                //VEC3 dir(random(angle, 1), 1, random(angle, 1));
-                //dir.Normalize();
-                //return dir;
+                //return VEC3::Up;
+                float angle = 1 - (rad2deg(_core->n_shape.angle) / 90);
+                VEC3 dir(random(angle, 1), 1, random(angle, 1));
+                dir.Normalize();
+                return dir;
             }
         }
 
