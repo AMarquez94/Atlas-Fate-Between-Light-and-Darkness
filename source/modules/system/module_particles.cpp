@@ -51,12 +51,20 @@ void CModuleParticles::update(float delta)
     }
 }
 
-void CModuleParticles::render()
+void CModuleParticles::renderDeferred()
 {
     for (auto& ps : _activeSystems)
     {
         ps->render();
     };
+}
+
+void CModuleParticles::render()
+{
+    //for (auto& ps : _activeSystems)
+    //{
+    //    ps->render();
+    //};
 
     if(particles_enabled)
         p_editor->debugMenu();

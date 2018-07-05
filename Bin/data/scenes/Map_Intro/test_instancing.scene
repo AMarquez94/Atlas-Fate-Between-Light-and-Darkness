@@ -85,5 +85,21 @@
 				}
 			]
 		}
+	},
+		{
+		"entity": {
+			"name": "Instanced Particles",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [{
+					"mesh": "data/meshes/quad_volume_particles.instanced_mesh",
+					"materials":
+					[
+						"data/materials/volume_particles_instanced.material"
+					]
+				}
+			]
+		}
 	}
 ]

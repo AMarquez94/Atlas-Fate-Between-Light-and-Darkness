@@ -205,10 +205,6 @@ void TCompLightSpot::generateVolume() {
 
     if (!isEnabled || cull_enabled || !volume_enabled)
         return;
-
-    // Activate tech for the light dir 
-    auto technique = Resources.get("pbr_vol_lights.tech")->as<CRenderTechnique>();
-    technique->activate();
     
     CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
     TCompCamera* camera = eCurrentCamera->get< TCompCamera >();

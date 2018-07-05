@@ -5,7 +5,7 @@
 #include "components/comp_camera.h"
 #include "components/comp_transform.h"
 #include <random>
-
+#include "render/render_manager.h"
 // ----------------------------------------------
 class CParticleResourceClass : public CResourceClass {
 public:
@@ -245,12 +245,9 @@ namespace Particles
         if (!_enabled) return;
         if (_deploy_time < _core->n_system.start_delay) return;
 
-        const CRenderTechnique* technique = Resources.get("particles.tech")->as<CRenderTechnique>();
-        const CRenderMesh* quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
-
         CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
-        assert(technique && quadMesh && eCurrentCamera);
-        TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
+        assert(eCurrentCamera);
+        TCompCamera* camera = eCurrentCamera->get<TCompCamera>();
         assert(camera);
 
         VEC3 cameraPos = camera->getPosition();
@@ -266,8 +263,12 @@ namespace Particles
 
         const int frameCols = static_cast<int>(_core->n_renderer.frameSize.x);
 
-        technique->activate();
-        _core->n_renderer.texture->activate(TS_ALBEDO);
+        auto rmesh = Resources.get("data/meshes/quad_volume_particles.instanced_mesh")->as<CRenderMesh>();
+        CRenderMeshInstanced* instanced_particle = (CRenderMeshInstanced*)rmesh;
+        instanced_particle->vtx_decl = CVertexDeclManager::get().getByName("CpuParticleInstance");
+
+        std::vector<Particles::TIParticle> particles_instances;
+        particles_instances.reserve(_particles.size());
 
         for (auto& p : _particles)
         {
@@ -281,17 +282,17 @@ namespace Particles
             VEC2 minUV = VEC2(col * (1/_core->n_renderer.frameSize.x), row * (1 / _core->n_renderer.frameSize.y));
             VEC2 maxUV = minUV + VEC2(1/_core->n_renderer.frameSize.x, 1/ _core->n_renderer.frameSize.y);
 
-            cb_object.obj_world = rt * sc * bb;
-            cb_object.obj_color = VEC4(1, 1, 1, 1);
-            cb_object.updateGPU();
-
-            cb_particles.particle_minUV = minUV;
-            cb_particles.particle_maxUV = maxUV;
-            cb_particles.particle_color = p.color;
-            cb_particles.updateGPU();
-
-            quadMesh->activateAndRender();
+            Particles::TIParticle t_struct = { rt * sc * bb, minUV, maxUV, p.color };
+            particles_instances.push_back(t_struct);
         }
+
+        instanced_particle->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(Particles::TIParticle));
+        
+        auto technique2 = Resources.get("Instanced_particles.tech")->as<CRenderTechnique>();
+        technique2->activate();
+
+        _core->n_renderer.texture->activate(TS_ALBEDO1);
+        CRenderManager::get().renderCategory("particles_volume");
     }
 
     void CSystem::emit()

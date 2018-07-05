@@ -18,4 +18,12 @@ namespace Particles
         int init_frame = 0;
         bool is_update = true;
     };
+
+    struct TIParticle
+    {
+        MAT44 world;
+        VEC2 particle_minUV;
+        VEC2 particle_maxUV;
+        VEC4 particle_color;
+    };
 }

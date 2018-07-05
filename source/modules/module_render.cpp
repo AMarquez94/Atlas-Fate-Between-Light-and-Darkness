@@ -301,6 +301,7 @@ void CModuleRender::generateFrame() {
         cb_globals.updateGPU();
         deferred.render(rt_main, h_e_camera);
 
+        Engine.get().getParticles().renderDeferred();
         CRenderManager::get().renderCategory("distorsions");
     }
 
