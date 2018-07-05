@@ -187,6 +187,7 @@ public:
     bool isDead();
     void upButtonReselased();
     void invertAxis(VEC3 old_up, bool type);
+    void getDamage(float dmg);
 
     VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
 

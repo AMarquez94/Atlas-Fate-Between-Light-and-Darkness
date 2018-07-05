@@ -184,18 +184,7 @@ void TCompTempPlayerController::onMsgNoClipToggle(const TMsgNoClipToggle & msg)
 
 void TCompTempPlayerController::onMsgBulletHit(const TMsgBulletHit & msg)
 {
-    if (!isImmortal) {
-        life = Clamp(life - msg.damage, 0.f, maxLife);
-        timerSinceLastDamage = 0.f;
-
-        if (life <= 0.f) {
-            CEntity* e = CHandle(this).getOwner();
-            TMsgSetFSMVariable groundMsg;
-            groundMsg.variant.setName("onDead");
-            groundMsg.variant.setBool(true);
-            e->sendMsg(groundMsg);
-        }
-    }
+    getDamage(msg.damage);
 }
 
 void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
@@ -636,6 +625,23 @@ void TCompTempPlayerController::invertAxis(VEC3 old_up, bool type) {
     }
 }
 
+void TCompTempPlayerController::getDamage(float dmg)
+{
+
+    if (!isImmortal) {
+        life = Clamp(life - dmg, 0.f, maxLife);
+        timerSinceLastDamage = 0.f;
+
+        if (life <= 0.f) {
+            CEntity* e = CHandle(this).getOwner();
+            TMsgSetFSMVariable groundMsg;
+            groundMsg.variant.setName("onDead");
+            groundMsg.variant.setBool(true);
+            e->sendMsg(groundMsg);
+        }
+    }
+}
+
 /* Concave test, this determines if there is a surface normal change on concave angles */
 const bool TCompTempPlayerController::concaveTest(void) {
 
@@ -743,6 +749,7 @@ const bool TCompTempPlayerController::onMergeTest(float dt) {
 
     mergeTest &= EngineInput["btShadowMerging"].isPressed();
     mergeTest &= isGrounded;
+    mergeTest &= !isDead();
 
     // If the mergetest changed since last frame, update the fsm
     if (mergeTest != isMerged) {
@@ -779,6 +786,9 @@ const bool TCompTempPlayerController::groundTest(float dt) {
         TMsgSetFSMVariable hardLanded;
         hardLanded.variant.setName("onHardLanded");
         hardLanded.variant.setBool(c_my_collider->is_grounded & (fallingTime > hardFallingTime && fallingTime < maxFallingTime) & !isMerged);
+        if (hardLanded.variant.getBool()) {
+            getDamage(30.f);
+        }
         e->sendMsg(hardLanded);
 
         TMsgSetFSMVariable crouch;

@@ -79,6 +79,12 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
         // Send a message to notify the scene loading.
         // Useful if we want to show a load splash menu
 
+        if (_activeScene != nullptr && _activeScene->name != name) {
+            /* If the new scene is different from the actual one => delete checkpoint */
+            CModuleGameManager gameManager = CEngine::get().getGameManager();
+            gameManager.deleteCheckpoint();
+        }
+
         unLoadActiveScene();
 
         // Load the subscene

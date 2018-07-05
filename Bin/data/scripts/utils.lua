@@ -5,6 +5,10 @@ function printLogicLog()
 	logic:printLog()
 end
 
+function printAllScripts()
+	console:printAllScripts()
+end
+
 function execDelayedScript(script, delay)
 	SLB.execDelayedScript(script, delay)
 end
