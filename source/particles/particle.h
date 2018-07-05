@@ -15,6 +15,7 @@ namespace Particles
         float max_lifetime = 0.f;
         float scale = 1.f;
         int frame = 0;
+        int init_frame = 0;
         bool is_update = true;
     };
 }

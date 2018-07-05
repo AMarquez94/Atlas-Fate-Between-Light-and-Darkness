@@ -10,34 +10,34 @@
 		"random_rotation": 360.0,
 		"start_color": "1 1 1 0.0",
 		"gravity": 0,
-		"simulation_speed": 1.4,
+		"simulation_speed": 1.6,
 		"max_particles": 2400
 	},
 	"emission": {
-		"rate_time": 2320.0,
+		"rate_time": 1320.0,
 		"rate_distance": 0.0,
 		"variation" : 0.0,
 		"interval" : 10
 	},
 	"shape": {
 		"type": "box",
-		"size": "20 1 20",
+		"size": "30 2.5 30",
 		"angle": 0.0
 		
 	},
 	"velocity": {
-		"constant_velocity": "0.8 0.01 0.8",
+		"constant_velocity": "0.8 0.00 0.8",
 		"velocity" : [
 			[0.0, "0.0 0.0 0.0"],
 			[0.5, "2.5 0.0 2.5"],
-			[1.0, "1.0 0.0 1.0"]
+			[1.0, "1.0 0.0 2.0"]
     ],
 		"rotation" : [
-		  [0.0, "0.0 0.0 0.0"],
-      [1.0, "0.1 0.0 0.1"]
+		  [0.0, "0.0 0.0 0.3"],
+      [1.0, "0.0 0.0 0.3"]
     ],
-		"acceleration": 1.0,
-		"wind": 0.05
+		"acceleration": 0.0,
+		"wind": 0.001
 	},
 	"noise": {
 		"texture": "data/textures/particles/fx_smoke1.dds",
@@ -67,7 +67,7 @@
     ]
   },
   "color" : {
-    "opacity" : 0.1,
+    "opacity" : 0.075,
     "colors" : [
       [0.0, "1 1 1 0.2"],
 			[0.2, "1 1 1 0.2"],

@@ -45,6 +45,7 @@ namespace Particles
             cps->n_system.simulation_speed = system.value("simulation_speed", cps->n_system.simulation_speed);
             cps->n_system.max_particles = system.value("max_particles", cps->n_system.max_particles);
             cps->n_system.start_rotation = VEC3(deg2rad(cps->n_system.start_rotation.x), cps->n_system.start_rotation.y, cps->n_system.start_rotation.z);
+            cps->n_system.offset = loadVEC3(system.value("offset", "0 0 0"));
         }
         
         // emission
@@ -178,6 +179,7 @@ namespace Particles
             jsonfile["system"]["gravity"] = E_ROUND(system->n_system.gravity);
             jsonfile["system"]["simulation_speed"] = E_ROUND(system->n_system.simulation_speed);
             jsonfile["system"]["max_particles"] =system->n_system.max_particles;
+            jsonfile["system"]["offset"] = stringify(system->n_system.offset);
         }
 
         // Write emission

@@ -27,6 +27,8 @@ namespace Particles
             float gravity = 0.2f;
             float simulation_speed = 1.f;
             int   max_particles = 1; 
+
+            VEC3 offset;
         };
 
         struct TNEmission

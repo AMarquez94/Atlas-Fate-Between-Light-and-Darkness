@@ -1,7 +1,7 @@
 {
 	"system": {
 		"duration": 1.0,
-		"looping": true,
+		"looping": false,
 		"start_delay": 0.0,
 		"start_lifetime": 5.0,
 		"start_speed": 0.5,

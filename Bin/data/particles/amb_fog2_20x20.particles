@@ -26,7 +26,7 @@
 		
 	},
 	"velocity": {
-		"constant_velocity": "0.8 0.01 0.8",
+		"constant_velocity": "0.8 0.00 0.8",
 		"velocity" : [
 			[0.0, "0.0 0.0 0.0"],
 			[0.5, "2.5 0.0 2.5"],
@@ -67,7 +67,7 @@
     ]
   },
   "color" : {
-    "opacity" : 0.1,
+    "opacity" : 0.075,
     "colors" : [
       [0.0, "1 1 1 0.2"],
 			[0.2, "1 1 1 0.2"],

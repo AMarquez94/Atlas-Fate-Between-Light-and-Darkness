@@ -13,6 +13,7 @@
 #include "components/lighting/comp_emission_controller.h"
 #include "components/player_controller/comp_sonar_controller.h"
 #include "components/object_controller/comp_noise_emitter.h"
+#include "components/comp_particles.h"
 #include "physics/physics_collider.h"
 #include "render/mesh/mesh_loader.h"
 #include "components/comp_name.h"
@@ -175,6 +176,10 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 
     temp_deg = 0;
     temp_invert = VEC3::One;
+
+    TCompParticles * c_e_particle = get<TCompParticles>();
+    assert(c_e_particle);
+    c_e_particle->setSystemState(false);
 }
 
 /* Call this function once the state has been changed */

@@ -206,7 +206,7 @@ namespace Particles
                 p.size = _core->n_size.sizes.get(life_ratio);
 
                 int frame_idx = (int)(p.lifetime * _core->n_renderer.frameSpeed);
-                p.frame = _core->n_renderer.initialFrame + (frame_idx % _core->n_renderer.numFrames);
+                p.frame = p.init_frame + _core->n_renderer.initialFrame + (frame_idx % _core->n_renderer.numFrames);
 
                 ++it;
             }
@@ -307,7 +307,7 @@ namespace Particles
         for (int i = 0; i < _core->n_emission.rate_time && _particles.size() < _core->n_system.max_particles; ++i)
         {
             TParticle particle;
-            particle.position = generatePosition();
+            particle.position = generatePosition() + _core->n_system.offset;
             particle.velocity = generateVelocity();
             particle.color = _core->n_color.colors.get(0.f);
             particle.size = _core->n_system.start_size;
@@ -316,7 +316,7 @@ namespace Particles
             particle.rotation = (1 - _core->n_system.random_rotation) * M_PI * VEC3(deg2rad(_core->n_system.start_rotation.x), deg2rad(_core->n_system.start_rotation.y), deg2rad(_core->n_system.start_rotation.z));
             particle.lifetime = 0.f;
             particle.max_lifetime = _core->n_system.duration + random(-_core->n_emission.variation, _core->n_emission.variation);
-
+            particle.init_frame = random(0, _core->n_renderer.numFrames);
             _particles.push_back(particle);
         }
     }
@@ -337,7 +337,7 @@ namespace Particles
         for (int i = 0; i < amount && _particles.size() < _core->n_system.max_particles; ++i)
         {
             TParticle particle;
-            particle.position = VEC3::Transform(generatePosition(), world);
+            particle.position = VEC3::Transform(generatePosition(), world) + _core->n_system.offset;
             particle.velocity = generateVelocity();
             particle.color = _core->n_color.colors.get(0.f);
             particle.size = _core->n_size.sizes.get(0.f);
