@@ -19,7 +19,7 @@ void TCompPlayerAttackCast::debugInMenu() {
 
 void TCompPlayerAttackCast::load(const json& j, TEntityParseContext& ctx) {
 	geometryAttack.radius = j.value("radiusAttack", 2.f);
-	geometryMoveObjects.radius = j.value("radiusMoveObject", 0.35f);
+	geometryMoveObjects.radius = j.value("radiusMoveObject", 1.0f);
 	geometryButtons.radius = j.value("radiusPressButton", 1.0f);
 	attack_fov = deg2rad(j.value("attack_fov", 120.f));
 	moveObjects_fov = deg2rad(j.value("moveObjects_fov", 20.f));
