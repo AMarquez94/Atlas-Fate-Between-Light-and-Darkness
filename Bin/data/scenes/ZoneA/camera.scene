@@ -20,11 +20,17 @@
 				"max_steps": 4,
 				"rt_name": "Bloom"
 			},
+			"fog": {
+				"enabled": true
+			},
+			"antialiasing": {
+				"enabled": true
+			},
 			"chromatic_aberration": {
 				"enabled": true
 			},
 			"render_outlines" : {
-			"enabled" : true
+				"enabled" : true
 		  },
 			"culling": true
 		}
@@ -41,30 +47,41 @@
 				"speed": 1.5
 			},
 			"camera": {
-				"fov": 80,
+				"fov": 75,
 				"z_near": 0.01,
 				"z_far": 1000
 			},
 			"render_ao": {
 				"enabled": true
 			},
+			"render_blur": {
+				"enabled": false,
+				"global_distance": 0.1,
+				"gauss_filter": true
+			},
 			"render_bloom": {
 				"enabled": true,
 				"max_steps": 4,
 				"rt_name": "Bloom"
-			},
-			"chromatic_aberration": {
-				"enabled": true
 			},
 			"color_grading": {
 				"enabled": true,
 				"amount": 0.6,
 				"lut": "data/textures/lut/RGBTable16x1.dds"
 			},
-			"render_outlines": {
+			"chromatic_aberration": {
 				"enabled": true
 			},
-			"tags": ["main_camera", "tp_camera"]
+			"fog": {
+				"enabled": true
+			},
+			"antialiasing": {
+				"enabled": true
+			},
+			"render_outlines" : {
+				"enabled" : true
+		  },
+			"tags": ["main_camera","tp_camera"]
 		}
 	}, {
 		"entity": {
@@ -96,10 +113,16 @@
 				"amount": 0.6,
 				"lut": "data/textures/lut/RGBTable16x1.dds"
 			},
-			"render_outlines": {
+			"fog": {
 				"enabled": true
 			},
-			"tags": ["main_camera", "tp_camera"]
+			"antialiasing": {
+				"enabled": true
+			},
+			"render_outlines" : {
+				"enabled" : true
+		  },
+			"tags": ["main_camera"]
 		}
 	}, {
 		"entity": {
@@ -133,7 +156,13 @@
 				"amount": 0.6,
 				"lut": "data/textures/lut/lut1.dds"
 			},
-			"tags": ["main_camera", "sm_camera"]
+			"fog": {
+				"enabled": true
+			},
+			"antialiasing": {
+				"enabled": true
+			},
+			"tags": ["main_camera"]
 		}
 	}, {
 		"entity": {
@@ -167,7 +196,13 @@
 				"z_near": 0.01,
 				"z_far": 1000
 			},
-			"tags": ["main_camera", "sm_camera"]
+			"fog": {
+				"enabled": true
+			},
+			"antialiasing": {
+				"enabled": true
+			},
+			"tags": ["main_camera"]
 		}
 	}, {
 		"entity": {
@@ -195,6 +230,12 @@
 				"amount": 0.6,
 				"lut": "data/textures/lut/lut1.dds"
 			},
+			"fog": {
+				"enabled": true
+			},
+			"antialiasing": {
+				"enabled": true
+			},
 			"tags": ["aux_camera"]
 		}
 	}, {
@@ -217,6 +258,9 @@
 				"enabled": true,
 				"max_steps": 4,
 				"rt_name": "Bloom"
+			},
+			"volume_light": {
+				"enabled": true
 			}
 		}
 	}, {

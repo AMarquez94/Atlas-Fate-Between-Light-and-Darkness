@@ -81,7 +81,7 @@
 			"render_outlines" : {
 				"enabled" : true
 		  },
-			"tags": ["main_camera"]
+			"tags": ["main_camera","tp_camera"]
 		}
 	}, {
 		"entity": {

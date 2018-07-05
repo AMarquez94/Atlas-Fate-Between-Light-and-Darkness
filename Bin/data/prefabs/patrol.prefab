@@ -64,7 +64,7 @@
 		"entity": {
 			"name": "FlashLight",
 			"transform": {
-				"pos": "0 1 0",
+				"pos": "0 1.5 0",
 				"rotation": "0 0 0 0"
 			},
 			"light_spot": {
@@ -75,7 +75,7 @@
 				"inner_cut": 70,
 				"outer_cut": 75,
 				"color": "0.3 1.0 1.0 1.0",
-				"intensity": 5.0,
+				"intensity": 2.5,
 				"shadows": true,
 				"casts_shadows": true,
 				"shadows_step": 1.0,
@@ -84,7 +84,7 @@
 			},
 			"hierarchy": {
 				"parent": "The Enemy",
-				"pos": "0 1 0.75",
+				"pos": "0 1.75 0.85",
 				"lookat": "0 0 3"
 			},
 			"cone_of_light": {
@@ -92,7 +92,10 @@
 				"ver_fov": 70,
 				"dist": 15,
 				"target": "The Player"
-			}
+			},
+			"abs_aabb": true
+			  ,
+			  "local_aabb": true
 		}
 	}
 ]

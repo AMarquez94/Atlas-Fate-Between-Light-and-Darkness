@@ -32,7 +32,7 @@
         ,
         "intensity": 1.0
         ,
-        "z_near": 0.01
+        "z_near": 3
         ,
         "z_far": 187.671
         ,
