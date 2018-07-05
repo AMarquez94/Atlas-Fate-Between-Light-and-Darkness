@@ -34,6 +34,7 @@ class TCompLightSpot : public TCompCamera {
 
 	void onCreate(const TMsgEntityCreated& msg);
 	void onDestroy(const TMsgEntityDestroyed& msg);
+    void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 
 	DECL_SIBLING_ACCESS();
 public:

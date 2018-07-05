@@ -117,6 +117,7 @@ void TCompLightSpot::registerMsgs() {
 
     DECL_MSG(TCompLightSpot, TMsgEntityCreated, onCreate);
     DECL_MSG(TCompLightSpot, TMsgEntityDestroyed, onDestroy);
+    DECL_MSG(TCompLightSpot, TMsgEntitiesGroupCreated, onGroupCreated);
 }
 
 // Generate the AABB for the spotlight
@@ -126,7 +127,7 @@ void TCompLightSpot::onCreate(const TMsgEntityCreated& msg) {
     TCompLocalAABB * c_my_aabb_local = get<TCompLocalAABB>();
     TCompCollider * c_my_collider = get<TCompCollider>();
 
-    if (c_my_collider->config->shape) {
+    if (c_my_collider && c_my_collider->config->shape) {
         physx::PxConvexMeshGeometry colliderMesh;
         c_my_collider->config->shape->getConvexMeshGeometry(colliderMesh);
         physx::PxBounds3 bounds = colliderMesh.convexMesh->getLocalBounds();
@@ -160,6 +161,43 @@ void TCompLightSpot::onCreate(const TMsgEntityCreated& msg) {
 
 void TCompLightSpot::onDestroy(const TMsgEntityDestroyed & msg) {
 
+}
+
+void TCompLightSpot::onGroupCreated(const TMsgEntitiesGroupCreated & msg)
+{
+    TCompCulling* myCulling = get<TCompCulling>();
+    if (myCulling == nullptr) {
+        TCompAbsAABB * c_my_aabb = get<TCompAbsAABB>();
+        TCompLocalAABB * c_my_aabb_local = get<TCompLocalAABB>();
+        TCompCollider * c_my_collider = get<TCompCollider>();
+
+        if (c_my_collider && c_my_collider->config->shape) {
+            physx::PxConvexMeshGeometry colliderMesh;
+            c_my_collider->config->shape->getConvexMeshGeometry(colliderMesh);
+            physx::PxBounds3 bounds = colliderMesh.convexMesh->getLocalBounds();
+            VEC3 extents = PXVEC3_TO_VEC3(bounds.getExtents());
+
+            c_my_aabb->Center = VEC3::Zero;
+            c_my_aabb->Extents = extents;
+        }
+        else if (c_my_aabb && c_my_aabb_local) {
+
+            TCompTransform* c_my_transform = get<TCompTransform>();
+            VEC3 c_my_center = c_my_transform->getPosition() + range * .5f * c_my_transform->getFront();
+
+            c_my_aabb->Extents = VEC3(tan(deg2rad(angle / 2)) * range, tan(deg2rad(angle / 2)) * range, range *.5f);
+            c_my_aabb_local->Extents = VEC3(tan(deg2rad(angle / 2)) * range, tan(deg2rad(angle / 2)) * range, range *.5f);
+
+            c_my_aabb->Center = VEC3(0, 0, range * .5f);
+            c_my_aabb_local->Center = VEC3(0, 0, range * .5f);
+        }
+
+        CEntity* e = CHandle(this).getOwner();
+
+        // Add a particle component
+        CHandle h_comp = getObjectManager<TCompCulling>()->createHandle();
+        e->set(h_comp.getType(), h_comp);
+    }
 }
 
 void TCompLightSpot::activate() {

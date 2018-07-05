@@ -138,104 +138,30 @@
 			},
 			"tags": [
 				"player"
-			]
-		}
-	},
-	{
-		"entity": {
-			"name": "PropPlayer",
-			"hierarchy": {
-				"parent": "The Player",
-				"pos": "0 0 0"
-			},
-			"transform": {},
-			"render": {
-				"mesh": "axis.mesh"
+			],
+			"particles" : {
+				"cores":
+				[
+					"data/particles/sm_ground.particles",
+					"data/particles/sm_top.particles",
+					"data/particles/sm_whisps.particles",
+					"data/particles/sm_whisps2.particles",
+					"data/particles/sm_top_trail.particles"
+				]
 			}
 		}
 	},
 	{
-		"entity": {
-			"name": "PropPlayer",
-
+		"entity":
+		{
+	  		"name": "PropPlayer",
 			"hierarchy": {
-				"parent": "The Player",
-				"pos": "0 0.001 0"
+		    	"parent": "The Player",
+		    	"pos": "0 0 0"
 			},
 			"transform": {},
-			"render": {
-				"mesh": "axis.mesh"
-			},
-			"particles": {
-				"core": "data/particles/sm_ground.particles"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "PropPlayer",
-
-			"hierarchy": {
-				"parent": "The Player",
-				"pos": "0 0 0"
-			},
-			"transform": {},
-			"render": {
-				"mesh": "axis.mesh"
-			},
-			"particles": {
-				"core": "data/particles/sm_top.particles"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "PropPlayer",
-
-			"hierarchy": {
-				"parent": "The Player",
-				"pos": "0 0 0"
-			},
-			"transform": {},
-			"render": {
-				"mesh": "axis.mesh"
-			},
-			"particles": {
-				"core": "data/particles/sm_whisps.particles"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "PropPlayer",
-
-			"hierarchy": {
-				"parent": "The Player",
-				"pos": "0 0 0"
-			},
-			"transform": {},
-			"render": {
-				"mesh": "axis.mesh"
-			},
-			"particles": {
-				"core": "data/particles/sm_whisps2.particles"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "PropPlayer",
-
-			"hierarchy": {
-				"parent": "The Player",
-				"pos": "0 0 0"
-			},
-			"transform": {},
-			"render": {
-				"mesh": "axis.mesh"
-			},
-			"particles": {
-				"core": "data/particles/sm_top_trail.particles"
+			"render" : {
+				"mesh" : "axis.mesh"
 			}
 		}
 	}
