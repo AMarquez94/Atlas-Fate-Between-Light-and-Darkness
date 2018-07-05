@@ -14,7 +14,7 @@ class CModuleRender : public IModule
 
 	//console variables
 	bool _debugMode = true, _generateShadows = true, _generatePostFX = true, _showWireframe = false, _hideBackground = false, _showAllColliders = false, _showDynamicColliders = false;
-	//bool show_flat_shading = false;
+
 public:
 
 

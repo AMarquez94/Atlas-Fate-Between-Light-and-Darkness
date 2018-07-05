@@ -13,6 +13,10 @@ function pauseGame(pause)
 	SLB.pauseGame(pause)
 end
 
+function pausePlayerToggle()
+	SLB.pausePlayerToggle()
+end
+
 function blendInCamera(cameraName, blendInTime)
 	SLB.blendInCamera(cameraName, blendInTime)
 end
@@ -135,4 +139,12 @@ end
 
 function exeShootImpactSound()
 	SLB.exeShootImpactSound()
+end
+
+function sendOrderToDrone(name, position)
+	SLB.sendOrderToDrone(name, position)
+end
+
+function probando(level)
+	SLB.probando(level)
 end

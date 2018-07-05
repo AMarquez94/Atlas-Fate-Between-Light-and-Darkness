@@ -12,11 +12,19 @@ void TCompButton::debugInMenu() {
 void TCompButton::load(const json& j, TEntityParseContext& ctx) {
 
 	_scriptName = j.value("script", "");
+	_delay = j.value("delay", 0.0);
 
 }
 
 void TCompButton::onMsgButtonActivated(const TMsgButtonActivated& msg) {
-	EngineLogic.execScript(_scriptName);
+
+	if (_delay > 0.0) {
+		EngineLogic.execScriptDelayed(_scriptName, _delay);
+	}
+	else {
+		EngineLogic.execScript(_scriptName);
+	}
+	
 }
 
 void TCompButton::registerMsgs()

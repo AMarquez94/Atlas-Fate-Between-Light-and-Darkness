@@ -18,6 +18,7 @@ public:
 
 private:
 	string _scriptName;
+	float _delay;
 
 	void onMsgButtonActivated(const TMsgButtonActivated& msg);
 

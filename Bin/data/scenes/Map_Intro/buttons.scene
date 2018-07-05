@@ -25,7 +25,8 @@
         "group": "button"
       },
       "button": {
-        "script": "onTriggerEnter_collider_victory_player()"
+        "script": "onSceneEnd_map_intro()",
+        "delay": 1.0
       },
       "tags": [ "button" ]
     }

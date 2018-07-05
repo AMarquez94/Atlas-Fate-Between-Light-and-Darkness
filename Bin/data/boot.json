@@ -16,7 +16,7 @@
       "data/scenes/Map_Intro/camera.scene",
       "data/scenes/Map_Intro/checkpoints.scene",
       "data/scenes/Map_Intro/movable_objects.scene",
-      "data/scenes/buttons.scene"
+      "data/scenes/Map_Intro/buttons.scene"
     ]
 	},
 	"scene_zone_a": {

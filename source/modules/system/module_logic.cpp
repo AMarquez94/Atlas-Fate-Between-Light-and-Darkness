@@ -23,6 +23,7 @@
 #include "components/lighting/comp_light_point.h"
 #include "components/postfx/comp_render_ao.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
+#include <thread>
 
 using namespace physx;
 
@@ -131,6 +132,7 @@ void CModuleLogic::publishClasses() {
 
 
 	//player hacks
+	m->set("pausePlayerToggle", SLB::FuncCall::create(&pausePlayerToggle));
 	m->set("getPlayerController", SLB::FuncCall::create(&getPlayerController));
 	m->set("movePlayer", SLB::FuncCall::create(&movePlayer));
 	m->set("staminaInfinite", SLB::FuncCall::create(&staminaInfinite));
@@ -159,7 +161,6 @@ void CModuleLogic::publishClasses() {
 	m->set("blendOutCamera", SLB::FuncCall::create(&blendOutCamera));
 	m->set("blendOutActiveCamera", SLB::FuncCall::create(&blendOutActiveCamera));
 
-
 	//system hacks
 	m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
 	m->set("deleteEnemies", SLB::FuncCall::create(&deleteEnemies));
@@ -174,8 +175,6 @@ void CModuleLogic::publishClasses() {
 	//debug hacks
 	m->set("fpsToggle", SLB::FuncCall::create(&fpsToggle));
 	m->set("debugToggle", SLB::FuncCall::create(&debugToggle));
-
-	/* Only for debug */
 	m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
 
 	//others
@@ -183,6 +182,9 @@ void CModuleLogic::publishClasses() {
 	m->set("renderNavmeshToggle", SLB::FuncCall::create(&renderNavmeshToggle));
 	m->set("playSound2D", SLB::FuncCall::create(&playSound2D));
 	m->set("exeShootImpactSound", SLB::FuncCall::create(&exeShootImpactSound));
+	m->set("sleep", SLB::FuncCall::create(&sleep));
+	m->set("probando", SLB::FuncCall::create(&probando));
+
 
 }
 
@@ -316,6 +318,15 @@ void pauseGame(bool pause)
 	TMsgScenePaused msg;
 	msg.isPaused = pause;
 	EngineEntities.broadcastMsg(msg);
+}
+
+void pausePlayerToggle() {
+	CEntity* p = getEntityByName("The Player");	
+	TCompTempPlayerController* player = p->get<TCompTempPlayerController>();
+
+	TMsgScenePaused stopPlayer;
+	stopPlayer.isPaused = !player->paused;
+	EngineEntities.broadcastMsg(stopPlayer);
 }
 
 void fpsToggle() {
@@ -544,6 +555,22 @@ void loadScene(const std::string &level) {
 void unloadScene() {
 
 	EngineScene.unLoadActiveScene();
+}
+
+void sleep(float time) {
+	Sleep(time);
+}
+
+void probando(const std::string &level) {
+	//std::thread newScene(SceneManager.loadScene);
+	//newScene.join();
+	/*EngineScene.prepareToLoadScene(level);
+	EngineScene.unLoadActiveScene();
+	EngineScene.setActiveScene(EngineScene.getSceneByName(level));*/
+}
+
+void activateScene(const std::string& scene) {
+	//EngineScene.setActiveScene()
 }
 
 void loadCheckpoint()

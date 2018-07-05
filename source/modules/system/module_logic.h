@@ -76,6 +76,7 @@ CModuleLogic* getLogic();
 TCompTempPlayerController* getPlayerController();
 void execDelayedScript(const std::string& script, float delay);
 void pauseGame(bool pause);
+void pausePlayerToggle();
 void fpsToggle();
 void pauseEnemies();
 void deleteEnemies();
@@ -99,7 +100,6 @@ void move(const std::string& entityName, VEC3 pos, VEC3 lookat = VEC3::Zero);
 void spawn(const std::string& type, VEC3 pos, VEC3 lookat = VEC3::Zero);
 void wireframeToggle();
 void collidersToggle(bool onlyDynamics = false);
-
 void bind(const std::string& key, const std::string& script);
 void cg_drawlights(int type);
 void loadScene(const std::string &level);
@@ -108,6 +108,7 @@ void loadCheckpoint();
 void renderNavmeshToggle();
 void playSound2D(const std::string& soundName);
 void exeShootImpactSound();
-
-/* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);
+
+void sleep(float time);
+void probando(const std::string &level);
