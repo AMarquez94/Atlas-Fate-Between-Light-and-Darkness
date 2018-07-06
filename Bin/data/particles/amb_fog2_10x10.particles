@@ -11,10 +11,10 @@
 		"start_color": "1 1 1 0.0",
 		"gravity": 0,
 		"simulation_speed": 1.6,
-		"max_particles": 2400
+		"max_particles": 600
 	},
 	"emission": {
-		"rate_time": 1320.0,
+		"rate_time": 520.0,
 		"rate_distance": 0.0,
 		"variation" : 0.0,
 		"interval" : 10
@@ -67,7 +67,7 @@
     ]
   },
   "color" : {
-    "opacity" : 0.125,
+    "opacity" : 0.145,
     "colors" : [
       [0.0, "1 1 1 0.2"],
 			[0.2, "1 1 1 0.2"],

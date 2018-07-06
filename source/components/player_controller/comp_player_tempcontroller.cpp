@@ -656,7 +656,7 @@ const bool TCompTempPlayerController::concaveTest(void) {
     VEC3 old_up = c_my_transform->getUp();
     VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * .01f;
 
-    if (EnginePhysics.Raycast(upwards_offset, c_my_transform->getFront(), 0.35f + .1f, hit, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery))
+    if (EnginePhysics.Raycast(upwards_offset, c_my_transform->getFront(), 0.35f, hit, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery))
     {
         VEC3 hit_normal = VEC3(hit.normal.x, hit.normal.y, hit.normal.z);
         VEC3 hit_point = VEC3(hit.position.x, hit.position.y, hit.position.z);
@@ -710,7 +710,7 @@ const bool TCompTempPlayerController::convexTest(void) {
             rigidbody->normal_gravity = EnginePhysics.gravityMod * -hit_normal;
 
             QUAT new_rotation = createLookAt(hit_point, target, hit_normal);
-            VEC3 new_pos = hit_point + 0.3f * new_forward;
+            VEC3 new_pos = hit_point + 0.1f * new_forward; // Adding little offset
             c_my_transform->setRotation(new_rotation);
             c_my_transform->setPosition(new_pos);
             invertAxis(old_up, false);

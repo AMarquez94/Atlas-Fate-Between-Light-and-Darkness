@@ -22,10 +22,10 @@
 		"entity": {
 			"name": "particles_firefly",
 			"transform": {
-				"pos": "-30 2 67"
+				"pos": "-61 1.2 -101"
 			},
 			"particles" : {
-				"core" : "data/particles/amb_firefly.particles"
+				"core" : "data/particles/amb_fly.particles"
 			}
 		}
 	},
