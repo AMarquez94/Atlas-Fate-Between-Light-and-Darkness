@@ -1,16 +1,11 @@
-{  
-"technique": "pbr_parallax.tech"
-  ,
-  "shadows": true
-  ,
-  "textures":
-  {
-    "albedo": "data/textures/tx_suelo_bricks_alb.dds"
-    ,
-    "roughness": "data/textures/tx_suelo_bricks_rgh.dds"
-    ,
-    "normal": "data/textures/tx_suelo_bricks_nml.dds"
-    ,
-    "height": "data/textures/tx_suelo_bricks_hgt.dds"
-  }
+{
+	"technique": "pbr_parallax.tech",
+	"shadows": true,
+	"textures": {
+		"albedo": "data/textures/tx_suelo_bricks_alb.dds",
+		"roughness": "data/textures/tx_suelo_bricks_rgh.dds",
+		"normal": "data/textures/tx_suelo_bricks_nml.dds",
+		"height": "data/textures/tx_suelo_bricks_hgt.dds",
+		"aocclusion": "data/textures/tx_suelo_bricks_ao.dds"
+	}
 }

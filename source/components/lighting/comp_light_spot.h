@@ -20,7 +20,7 @@ class TCompLightSpot : public TCompCamera {
 	float			intensity = 1.0f;
 
     //CRenderMesh * spotcone;
-    int  num_samples = 80;
+    int  num_samples;
 
 	// Shadows params
     bool              cull_enabled = false;      // Dynamic

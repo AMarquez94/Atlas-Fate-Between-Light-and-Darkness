@@ -259,6 +259,12 @@
 				"max_steps": 4,
 				"rt_name": "Bloom"
 			},
+			"antialiasing": {
+				"enabled": true
+			},
+			"fog": {
+				"enabled": true
+			},
 			"volume_light": {
 				"enabled": true
 			}

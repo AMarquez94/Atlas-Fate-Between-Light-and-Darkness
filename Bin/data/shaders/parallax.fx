@@ -153,7 +153,7 @@ void PS_GBuffer_Parallax(
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 	o_selfIllum = txEmissive.Sample(samLinear, iTex0) * self_intensity;
 	o_selfIllum.xyz *= self_color;
-	//o_selfIllum.a = pow(shadowMultiplier, 4);
+	o_selfIllum.a = txAOcclusion.Sample(samLinear, iTex0).r;
 	
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
 	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
