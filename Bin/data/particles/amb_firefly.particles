@@ -10,7 +10,7 @@
 		"random_rotation": 0.0,
 		"start_color": "1 0 0 1",
 		"gravity": 0.0,
-		"simulation_speed": 0.005,
+		"simulation_speed": 0.01,
 		"max_particles": 12
 	},
 	"emission": {
