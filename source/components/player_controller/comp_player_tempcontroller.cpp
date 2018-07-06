@@ -455,9 +455,23 @@ void TCompTempPlayerController::resetState(float dt) {
 }
 
 void TCompTempPlayerController::exitMergeState(float dt) {
+
     TMsgSetCameraCancelled msg;
     CEntity * eCamera = getEntityByName(auxCamera);
     eCamera->sendMsg(msg);
+
+    // Check if we will have a collision, with the ceiling
+    // In this case, we move the player half it's bounding box.
+    std::vector<physx::PxSweepHit> hits;
+    physx::PxBoxGeometry geometrySweep;
+    TCompTransform * t_trans = get<TCompTransform>();
+    geometrySweep.halfExtents = physx::PxVec3(0.35f, 1.7f, 0.35f); // Change this hardcoded values for other ones.
+    VEC3 current_pos = t_trans->getPosition();
+
+    //if (EnginePhysics.Sweep(geometrySweep, current_pos, QUAT(0, 0, 0, 1), VEC3(0, 1, 0), 1.7f, hits)) {
+    //    t_trans->setPosition(current_pos + VEC3(0, -0.85f, 0));
+    //    dbg("sweep done!!!\n");
+    //}
 }
 
 /* Player dead state */
