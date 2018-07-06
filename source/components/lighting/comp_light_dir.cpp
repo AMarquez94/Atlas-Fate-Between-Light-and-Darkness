@@ -14,9 +14,10 @@ DECL_OBJ_MANAGER("light_dir", TCompLightDir);
 
 void TCompLightDir::debugInMenu() {
     TCompCamera::debugInMenu();
-    ImGui::DragFloat("Intensity", &intensity, 0.01f, 0.f, 10.f);
-    ImGui::ColorEdit3("Color", &color.x);
     ImGui::Checkbox("Enabled", &isEnabled);
+    ImGui::ColorEdit3("Color", &color.x);
+    ImGui::DragFloat("Intensity", &intensity, 0.01f, 0.f, 10.f);
+    ImGui::DragFloat("Shadow step", &shadows_step, 0.01f, 0.f, 10.f);
 }
 
 void TCompLightDir::renderDebug() {

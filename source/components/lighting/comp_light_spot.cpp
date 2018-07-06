@@ -26,12 +26,13 @@ DECL_OBJ_MANAGER("light_spot", TCompLightSpot);
 CRenderMeshInstanced* TCompLightSpot::volume_instance = nullptr;
 
 void TCompLightSpot::debugInMenu() {
+    ImGui::Checkbox("Enabled", &isEnabled);
     ImGui::ColorEdit3("Color", &color.x);
     ImGui::DragFloat("Intensity", &intensity, 0.01f, 0.f, 10.f);
     ImGui::DragFloat("Angle", &angle, 0.5f, 1.f, 160.f);
     ImGui::DragFloat("Cut Out", &inner_cut, 0.5f, 1.f, angle);
     ImGui::DragFloat("Range", &range, 0.5f, 1.f, 120.f);
-    ImGui::Checkbox("Enabled", &isEnabled);
+    ImGui::DragFloat("Shadow step", &shadows_step, 0.01f, 0.f, 10.f);
 }
 
 void TCompLightSpot::renderDebug() {
