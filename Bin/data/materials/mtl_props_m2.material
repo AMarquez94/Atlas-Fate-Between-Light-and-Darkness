@@ -1,0 +1,18 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_props_alb.dds"
+    ,
+    "metallic": "data/textures/tx_props_met.dds"
+    ,
+    "roughness": "data/textures/tx_props_rgh.dds"
+    ,
+    "normal": "data/textures/tx_props_nml.dds"
+    ,
+    "height": "data/textures/tx_props_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_props_emi.dds"
+  }
+}
