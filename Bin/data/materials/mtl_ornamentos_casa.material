@@ -3,6 +3,16 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/default_texture.dds"
+    "albedo": "data/textures/tx_ornamentos_alb.dds"
+    ,
+    "metallic": "data/textures/tx_ornamentos_met.dds"
+    ,
+    "roughness": "data/textures/tx_ornamentos_rgh.dds"
+    ,
+    "normal": "data/textures/tx_ornamentos_nml.dds"
+    ,
+    "height": "data/textures/tx_ornamentos_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_ornamentos_emi.dds"
   }
 }

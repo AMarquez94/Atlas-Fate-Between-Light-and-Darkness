@@ -1,0 +1,48 @@
+[
+  {
+    "entity":
+    {
+      "name": "caja_juanlu"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_caja_juanlu"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_caja_juanlu.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_caja_juanlu.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.19 0.75 1.02"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

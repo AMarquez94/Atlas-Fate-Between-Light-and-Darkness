@@ -12,5 +12,7 @@
     "normal": "data/textures/tx_columnas_nml.dds"
     ,
     "height": "data/textures/tx_columnas_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_columnas_emi.dds"
   }
 }

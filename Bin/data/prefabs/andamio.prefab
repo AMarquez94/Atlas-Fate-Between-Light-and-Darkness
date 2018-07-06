@@ -35,9 +35,21 @@
       ,
       "collider":
       {
-        "shape": "convex"
+        "shape": "box"
         ,
-        "name": "data/colliders/collider_andamio.collider"
+        "size": "1.0 1.0 0.5"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
       }
       ,
       "abs_aabb": true
