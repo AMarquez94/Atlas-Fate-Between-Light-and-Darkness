@@ -401,7 +401,7 @@ void TCompTempPlayerController::mergeState(float dt) {
     p_transform->setRotation(quat);
     p_transform->setPosition(p_transform->getPosition() + dir * player_accel);
 
-    if (/*player_accel != 0 && */(convexTest() || concaveTest())) {
+    if (convexTest() || concaveTest()) {
 
         VEC3 postUp = p_transform->getUp();
         angle_test = fabs(EnginePhysics.gravity.Dot(prevUp));
@@ -656,7 +656,7 @@ const bool TCompTempPlayerController::concaveTest(void) {
     VEC3 old_up = c_my_transform->getUp();
     VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * .01f;
 
-    if (EnginePhysics.Raycast(upwards_offset, c_my_transform->getFront(), 0.35f, hit, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery))
+    if (EnginePhysics.Raycast(upwards_offset, c_my_transform->getFront(), 0.15f, hit, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery))
     {
         VEC3 hit_normal = VEC3(hit.normal.x, hit.normal.y, hit.normal.z);
         VEC3 hit_point = VEC3(hit.position.x, hit.position.y, hit.position.z);
