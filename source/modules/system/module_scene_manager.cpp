@@ -118,8 +118,6 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
 		/* TODO: Comprobar que se sigue en la misma escena */
 		gameManager.loadCheckpoint();
 		EngineLogic.execEvent(EngineLogic.SCENE_START, current_scene->initial_script_name);
-		//Just for debug, we will eliminate this one.
-		EngineLogic.execEvent(CModuleLogic::Events::SCENE_START, "start_scenes_loaded");
 
 		return true;
 	}

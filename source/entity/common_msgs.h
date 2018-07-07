@@ -256,5 +256,9 @@ struct TMsgButtonActivated {
 	DECL_MSG_ID();
 };
 
+struct TMsgPlayerAIEnabled {
+	DECL_MSG_ID();
+};
+
 #endif
 

@@ -8,6 +8,7 @@
 #include "render/render_utils.h"
 #include "comp_player_attack_cast.h"
 #include "components/lighting/comp_fade_controller.h"
+#include "components/ia/comp_bt_player.h"
 
 DECL_OBJ_MANAGER("player_input", TCompPlayerInput);
 
@@ -20,7 +21,8 @@ void TCompPlayerInput::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompPlayerInput::update(float dt)
 {
-	if (!paused && !isConsoleOn && !isInNoClipMode) {
+	TCompAIPlayer* playerAI = get<TCompAIPlayer>();
+	if (!paused && !isConsoleOn && !isInNoClipMode && !playerAI->enabledPlayerAI) {
 		CEntity* e = CHandle(this).getOwner();
 		_time += dt;
 

@@ -23,7 +23,7 @@
 #include "components/lighting/comp_light_point.h"
 #include "components/postfx/comp_render_ao.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
-#include <thread>
+#include <future>
 
 using namespace physx;
 
@@ -183,7 +183,8 @@ void CModuleLogic::publishClasses() {
 	m->set("playSound2D", SLB::FuncCall::create(&playSound2D));
 	m->set("exeShootImpactSound", SLB::FuncCall::create(&exeShootImpactSound));
 	m->set("sleep", SLB::FuncCall::create(&sleep));
-	m->set("probando", SLB::FuncCall::create(&probando));
+	m->set("cinematicIntroToMapA", SLB::FuncCall::create(&cinematicIntroToMapA));
+
 
 
 }
@@ -561,12 +562,12 @@ void sleep(float time) {
 	Sleep(time);
 }
 
-void probando(const std::string &level) {
-	//std::thread newScene(SceneManager.loadScene);
-	//newScene.join();
-	/*EngineScene.prepareToLoadScene(level);
-	EngineScene.unLoadActiveScene();
-	EngineScene.setActiveScene(EngineScene.getSceneByName(level));*/
+void cinematicIntroToMapA() {
+
+	TMsgPlayerAIEnabled msg;
+	CHandle h = getEntityByName("The Player");
+	h.sendMsg(msg);
+
 }
 
 void activateScene(const std::string& scene) {

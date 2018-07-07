@@ -111,4 +111,4 @@ void exeShootImpactSound();
 void sendOrderToDrone(const std::string& droneName, VEC3 position);
 
 void sleep(float time);
-void probando(const std::string &level);
+void cinematicIntroToMapA();

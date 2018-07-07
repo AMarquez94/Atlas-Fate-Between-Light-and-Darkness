@@ -145,6 +145,6 @@ function sendOrderToDrone(name, position)
 	SLB.sendOrderToDrone(name, position)
 end
 
-function probando(level)
-	SLB.probando(level)
+function cinematicIntroToMapA()
+	SLB.cinematicIntroToMapA()
 end
