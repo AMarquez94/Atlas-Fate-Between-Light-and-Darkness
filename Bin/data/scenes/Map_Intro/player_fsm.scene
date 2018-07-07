@@ -5,22 +5,22 @@
 		"transform": {
 				"pos": "-10 0 135"
 		},
-		"ai_player": {
-        "enabled": false,
-        "speed": 2.5,
-        "rotationSpeed": 4.0,
-        "waypoints": [
-          {
-            "position": "-10 0 138",
-            "lookAt": "0 0 1",
-            "minTime": 10
-          },
-          {
-            "position": "-10 0 140.4",
-            "lookAt": "0 0 1",
-            "minTime": 10
-          }
-        ]
-      }
+    "ai_player": {
+      "enabled": false,
+      "speed": 4.0,
+      "rotationSpeed": 4.0,
+      "waypoints": [
+        {
+          "position": "-10 0 138",
+          "lookAt": "0 0 1",
+          "minTime": 10
+        },
+        {
+          "position": "-10 0 140.4",
+          "lookAt": "0 0 1",
+          "minTime": 10
+        }
+      ]
+    }
 	}
 }]

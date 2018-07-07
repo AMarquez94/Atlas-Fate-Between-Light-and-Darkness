@@ -6,9 +6,9 @@
   },
   {
     "entity": {
-      "name": "Button 1",
+      "name": "Button End Scene",
       "transform": {
-        "pos": "-2.0 1.0 139.225",
+        "pos": "-38.6 1 -133",
         "rotation": "-0.707107 0 0 0.707107"
       },
       "render": [
@@ -27,12 +27,12 @@
       "button": {
         "scripts": [
           {
-            "script": "onSceneEnd_map_intro()",
+            "script": "onSceneEnd_zoneA()",
             "delay": 2.0
           },
           {
-            "script": "onSceneEnd_map_intro_to_ZoneA()",
-            "delay": 5.0
+            "script": "onSceneEnd_zoneA_to_basilisc_courtyard()",
+            "delay": 4
           }
         ]
       },

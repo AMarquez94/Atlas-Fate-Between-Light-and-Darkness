@@ -1,0 +1,69 @@
+[
+  {
+    "entity": {
+      "name": "Buttons"
+    }
+  },
+  {
+    "entity": {
+      "name": "Button End Scene Left",
+      "transform": {
+        "pos": "-14.6 13 -389.6",
+        "rotation": "0 0 0.7"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/Buttons/Button.mesh",
+          "materials": [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ],
+      "collider": {
+        "shape": "box",
+        "size": "0.3 0.3 0.3",
+        "group": "button"
+      },
+      "button": {
+        "scripts": [
+          {
+            "script": "onSceneEnd_basilisc_courtyard_To_Interior()",
+            "delay": 2
+          }
+        ]
+      },
+      "tags": [ "button" ]
+    }
+  },
+  {
+    "entity": {
+      "name": "Button End Scene Right",
+      "transform": {
+        "pos": "22.4 13 -389.6",
+        "rotation": "0 0 0.7"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/Buttons/Button.mesh",
+          "materials": [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ],
+      "collider": {
+        "shape": "box",
+        "size": "0.3 0.3 0.3",
+        "group": "button"
+      },
+      "button": {
+        "scripts": [
+          {
+            "script": "onSceneEnd_basilisc_courtyard_To_Interior()",
+            "delay": 2
+          }
+        ]
+      },
+      "tags": [ "button" ]
+    }
+  }
+]
