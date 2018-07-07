@@ -73,6 +73,8 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
 		}
 	}
 
+	_currentWaypoint = 0;
+
 }
 
 void TCompAIPlayer::onMsgPlayerAIEnabled(const TMsgPlayerAIEnabled& msg) {
@@ -115,7 +117,11 @@ void TCompAIPlayer::loadAsserts() {
 
 BTNode::ERes TCompAIPlayer::actionGoToWpt(float dt)
 {
+
+	CEntity* e = CHandle(this).getOwner();
+	e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::WALK, 1.0 });
 	return move(dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
+
 }
 
 /* CONDITIONS */
@@ -130,19 +136,37 @@ bool TCompAIPlayer::conditionHasBeenEnabled(float dt) {
 /* AUX FUNCTIONS */
 bool TCompAIPlayer::move(float dt) {
 	TCompTransform* mypos = get<TCompTransform>();
-	VEC3 dir = VEC3(_waypoints[0].position.x - mypos->getPosition().x, _waypoints[0].position.y - mypos->getPosition().y, _waypoints[0].position.z - mypos->getPosition().z);
-	VEC3 newPos = mypos->getPosition() + (dir * dt);
-	CEntity* e = CHandle(this).getOwner();
-	e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::WALK , _speed });
+	float yaw, pitch, roll;
+	VEC3 dir = VEC3(_waypoints[_currentWaypoint].position.x - mypos->getPosition().x, _waypoints[_currentWaypoint].position.y - mypos->getPosition().y, _waypoints[_currentWaypoint].position.z - mypos->getPosition().z);
+	dir.Normalize();
+	VEC3 newPos = mypos->getPosition() + (dir * dt * _speed);
 	float amountMoved = VEC3::Distance(newPos, mypos->getPosition());
-	if (VEC3::Distance(mypos->getPosition(), _waypoints[0].position) > VEC3::Distance(newPos, _waypoints[0].position)) {
-		//mypos->setPosition(newPos);
-		mypos->lookAt(newPos, _waypoints[0].position);
+
+	if (VEC3::Distance(mypos->getPosition(), _waypoints[_currentWaypoint].position) > VEC3::Distance(newPos, _waypoints[_currentWaypoint].position)) {
+		mypos->getYawPitchRoll(&yaw, &pitch, &roll);
+
+		float dir_yaw = getYawFromVector(dir);
+		Quaternion my_rotation = mypos->getRotation();
+		Quaternion new_rotation = Quaternion::CreateFromYawPitchRoll(dir_yaw, pitch, 0);
+		Quaternion quat = Quaternion::Lerp(my_rotation, new_rotation, _rotationSpeed * dt);
+		mypos->setRotation(quat);
+		mypos->setPosition(newPos);
+
 		return false;
 	}
 	else {
-		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , _speed });
-		mypos->setPosition(_waypoints[0].position);
-		return true;
+		CEntity* e = CHandle(this).getOwner();
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE, 1.0 });
+		mypos->setPosition(_waypoints[_currentWaypoint].position);
+		_currentWaypoint++;
+
+		if (_currentWaypoint < _waypoints.size()) {
+			return false;
+		}
+		else {
+			enabledPlayerAI = false;
+			return true;
+
+		}
 	}
 }

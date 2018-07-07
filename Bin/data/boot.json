@@ -21,7 +21,7 @@
 	},
 	"scene_zone_a": {
 		"static_data": {
-			"initial_script": "scene_a",
+			"initial_script": "zoneA",
 			"navmesh": "data/navmeshes/scene_a.bin"
 		},
 		"scene_group": [

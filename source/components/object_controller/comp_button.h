@@ -5,6 +5,11 @@
 class CCurve;
 using namespace std;
 
+struct script {
+	std::string name;
+	float delay;
+};
+
 class TCompButton : public TCompBase
 {
 	DECL_SIBLING_ACCESS();
@@ -17,7 +22,7 @@ public:
 	static void registerMsgs();
 
 private:
-	string _scriptName;
+	vector <script> _scripts;
 	float _delay;
 
 	void onMsgButtonActivated(const TMsgButtonActivated& msg);

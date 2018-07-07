@@ -10,7 +10,7 @@ private:
 
 	float _speed, _rotationSpeed;
 	std::vector<Waypoint> _waypoints;
-	Waypoint _currentWaypoint;
+	int _currentWaypoint;
 
 
 
@@ -39,5 +39,7 @@ public:
 
 	bool conditionHasBeenEnabled(float dt);
 
+
+	//Auxiliar
 	bool move(float dt);
 };

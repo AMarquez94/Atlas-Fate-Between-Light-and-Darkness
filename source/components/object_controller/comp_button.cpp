@@ -6,25 +6,46 @@
 DECL_OBJ_MANAGER("button", TCompButton);
 
 void TCompButton::debugInMenu() {
-	ImGui::Text("Script: %s", _scriptName.c_str());
+
+	for (int i = 0; i < _scripts.size(); i++) {
+
+		ImGui::Text("Script %i: Name: %s Delay: %f", i, _scripts[i].name.c_str(), _scripts[i].delay);
+
+	}
 }
 
 void TCompButton::load(const json& j, TEntityParseContext& ctx) {
 
-	_scriptName = j.value("script", "");
-	_delay = j.value("delay", 0.0);
+	if (j.count("scripts") > 0) {
+		auto& j_scripts = j["scripts"];
+		_scripts.clear();
+		script s;
+		for (auto it = j_scripts.begin(); it != j_scripts.end(); ++it) {
+
+			assert(it.value().count("script") == 1);
+
+			s.name = it.value().value("script", "");
+			s.delay = it.value().value("delay", 0.0f);
+
+			_scripts.push_back(s);
+
+		}
+	}
 
 }
 
 void TCompButton::onMsgButtonActivated(const TMsgButtonActivated& msg) {
 
-	if (_delay > 0.0) {
-		EngineLogic.execScriptDelayed(_scriptName, _delay);
+	for (int i = 0; i < _scripts.size(); i++) {
+		if (_scripts[i].delay > 0.0) {
+			EngineLogic.execScriptDelayed(_scripts[i].name, _scripts[i].delay);
+		}
+		else {
+			EngineLogic.execScript(_scripts[i].name);
+		}
+
 	}
-	else {
-		EngineLogic.execScript(_scriptName);
-	}
-	
+
 }
 
 void TCompButton::registerMsgs()

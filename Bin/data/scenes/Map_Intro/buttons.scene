@@ -8,7 +8,7 @@
     "entity": {
       "name": "Button 1",
       "transform": {
-        "pos": "-10.2 1.0 140.250",
+        "pos": "-2.0 1.0 139.225",
         "rotation": "-0.707107 0 0 0.707107"
       },
       "render": [
@@ -25,8 +25,16 @@
         "group": "button"
       },
       "button": {
-        "script": "onSceneEnd_map_intro()",
-        "delay": 2.0
+        "scripts": [
+          {
+            "script": "onSceneEnd_map_intro()",
+            "delay": 2.0
+          },
+          {
+            "script": "onSceneEnd_map_intro_to_ZoneA()",
+            "delay": 6.5
+          }
+        ]
       },
       "tags": [ "button" ]
     }
