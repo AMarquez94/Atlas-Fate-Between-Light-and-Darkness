@@ -3,6 +3,7 @@
 #include "components/comp_tags.h"
 #include <experimental/filesystem>
 #include "modules/game/module_game_manager.h"
+#include "modules/system/module_particles.h"
 #include <iostream>
 #include "components/lighting/comp_light_dir.h"
 #include "components/lighting/comp_light_spot.h"
@@ -94,6 +95,10 @@ void CModuleLogic::publishClasses() {
         .comment("This is our wrapper of the logic class")
         .set("printLog", &CModuleLogic::printLog);
 
+    SLB::Class< CModuleParticles >("Particles", m)
+        .comment("This is our wrapper of the particles class")
+        .set("killAll", &CModuleParticles::killAll);
+
     SLB::Class< VEC3 >("VEC3", m)
         .constructor<float, float, float>()
         .comment("This is our wrapper of the VEC3 class")
@@ -115,6 +120,7 @@ void CModuleLogic::publishClasses() {
     // Utilities
     m->set("getConsole", SLB::FuncCall::create(&getConsole));
     m->set("getLogic", SLB::FuncCall::create(&getLogic));
+    m->set("getParticles", SLB::FuncCall::create(&getParticles));
     m->set("getPlayerController", SLB::FuncCall::create(&getPlayerController));
     m->set("execDelayedScript", SLB::FuncCall::create(&execDelayedScript));
     m->set("pauseGame", SLB::FuncCall::create(&pauseGame));
@@ -266,6 +272,8 @@ void CModuleLogic::printLog()
 
 /* Auxiliar functions */
 CModuleLogic * getLogic() { return EngineLogic.getPointer(); }
+
+CModuleParticles * getParticles() { return EngineParticles.getPointer(); }
 
 TCompTempPlayerController * getPlayerController()
 {

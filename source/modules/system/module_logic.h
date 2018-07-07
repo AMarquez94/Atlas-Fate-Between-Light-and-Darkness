@@ -4,6 +4,7 @@
 #include "entity/entity.h"
 #include <SLB/SLB.hpp>
 #include "modules/system/module_game_console.h"
+#include "modules/system/module_particles.h"
 #include "input/button.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
 
@@ -70,6 +71,7 @@ private:
 /* Auxiliar functions */
 CModuleGameConsole* getConsole();
 CModuleLogic* getLogic();
+CModuleParticles* getParticles();
 TCompTempPlayerController* getPlayerController();
 void execDelayedScript(const std::string& script, float delay);
 void pauseEnemies(bool pause);

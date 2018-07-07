@@ -49,7 +49,7 @@ public:
     CModuleGUI& getGUI() { return _module_gui; }
     CModuleSceneManager& getSceneManager() { return _module_scene_manager; }
     CModuleInstancing& getInstancing() { return _module_instancing; }
-		CModuleParticles& getParticles() { return _module_particles; }
+    CModuleParticles& getParticles() { return _module_particles; }
 
     CModuleDebug& getDebug() { return _module_debug; }
 
@@ -72,7 +72,7 @@ private:
     CModuleGUI _module_gui;
     CModuleSceneManager _module_scene_manager;
     CModuleInstancing _module_instancing;
-		CModuleParticles  _module_particles;
+    CModuleParticles  _module_particles;
     CModuleDebug _module_debug;
 };
 
@@ -85,6 +85,7 @@ private:
 #define EngineEntities CEngine::get().getEntities()
 #define EngineNavmeshes CEngine::get().getNavmeshes()
 #define EngineLogic CEngine::get().getLogic()
+#define EngineParticles CEngine::get().getParticles()
 #define EngineConsole CEngine::get().getGameConsole()
 #define EngineSound CEngine::get().getSound()
 #define EngineGUI CEngine::get().getGUI()
