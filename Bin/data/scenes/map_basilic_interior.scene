@@ -14,80 +14,6 @@
   {
     "entity":
     {
-      "name": "pasarela_inicio"
-      ,
-      "transform":
-      {
-        "pos": "150.409 11.95 -406.735"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/pasarela_inicio.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_basilica_interior.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_pasarela_inicio.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Cylinder007"
-      ,
-      "transform":
-      {
-        "pos": "134.602 -1.78383e-05 -408.092"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Cylinder007.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_basilica_interior.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_Cylinder007.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "Box050"
       ,
       "transform":
@@ -114,43 +40,6 @@
         "shape": "mesh"
         ,
         "name": "data/colliders/collider_Box050.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Box051"
-      ,
-      "transform":
-      {
-        "pos": "150.409 -1.72329e-05 -394.244"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box051.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_basilica_interior.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_Box051.collider"
       }
       ,
       "abs_aabb": true
@@ -199,302 +88,6 @@
   {
     "entity":
     {
-      "name": "Box059"
-      ,
-      "transform":
-      {
-        "pos": "176.409 -1.86098e-05 -425.744"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box059.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_basilica_interior.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_Box059.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Box060"
-      ,
-      "transform":
-      {
-        "pos": "124.409 -1.86098e-05 -425.744"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box060.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_basilica_interior.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_Box060.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Box061"
-      ,
-      "transform":
-      {
-        "pos": "176.409 12.0 -425.744"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box061.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_basilica_interior.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_Box061.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Box062"
-      ,
-      "transform":
-      {
-        "pos": "124.409 12.0 -425.744"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box062.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_basilica_interior.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_Box062.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Cylinder008"
-      ,
-      "transform":
-      {
-        "pos": "150.409 -1.86098e-05 -425.744"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Cylinder008.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_basilica_interior.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_Cylinder008.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "pasarela_redonda"
-      ,
-      "transform":
-      {
-        "pos": "150.409 11.9 -425.744"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/pasarela_redonda.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_basilica_interior.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_pasarela_redonda.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "pasarela_redonda001"
-      ,
-      "transform":
-      {
-        "pos": "150.409 20.9196 -425.744"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/pasarela_redonda001.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_basilica_interior.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_pasarela_redonda001.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "pasarela_redonda002"
-      ,
-      "transform":
-      {
-        "pos": "150.409 33.3977 -425.744"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/pasarela_redonda002.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_basilica_interior.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_pasarela_redonda002.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "Box064"
       ,
       "transform":
@@ -521,43 +114,6 @@
         "shape": "mesh"
         ,
         "name": "data/colliders/collider_Box064.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "puerta"
-      ,
-      "transform":
-      {
-        "pos": "157.117 33.2473 -425.873"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/puerta.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_basilica_interior.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_puerta.collider"
       }
       ,
       "abs_aabb": true
@@ -669,80 +225,6 @@
         "shape": "mesh"
         ,
         "name": "data/colliders/collider_Box067.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Box068"
-      ,
-      "transform":
-      {
-        "pos": "150.454 20.9787 -428.033"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box068.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_basilica_interior.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_Box068.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Box069"
-      ,
-      "transform":
-      {
-        "pos": "150.454 12.1413 -428.033"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Box069.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_basilica_interior.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_Box069.collider"
       }
       ,
       "abs_aabb": true
@@ -939,6 +421,524 @@
   {
     "entity":
     {
+      "name": "pasarela_inicio"
+      ,
+      "transform":
+      {
+        "pos": "150.409 11.95 -406.735"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pasarela_inicio.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_pasarela_inicio.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box051"
+      ,
+      "transform":
+      {
+        "pos": "150.409 -1.72329e-05 -394.244"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box051.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box051.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box059"
+      ,
+      "transform":
+      {
+        "pos": "176.409 -1.86098e-05 -425.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box059.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box059.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box060"
+      ,
+      "transform":
+      {
+        "pos": "124.409 -1.86098e-05 -425.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box060.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box060.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box061"
+      ,
+      "transform":
+      {
+        "pos": "176.409 12.0 -425.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box061.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box061.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box062"
+      ,
+      "transform":
+      {
+        "pos": "124.409 12.0 -425.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box062.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box062.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box068"
+      ,
+      "transform":
+      {
+        "pos": "150.454 20.9787 -428.033"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box068.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box068.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box069"
+      ,
+      "transform":
+      {
+        "pos": "150.454 12.1413 -428.033"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box069.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box069.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Cylinder007"
+      ,
+      "transform":
+      {
+        "pos": "134.602 -1.78383e-05 -408.092"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Cylinder007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Cylinder007.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Cylinder008"
+      ,
+      "transform":
+      {
+        "pos": "150.409 -1.86098e-05 -425.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Cylinder008.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Cylinder008.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "pasarela_redonda"
+      ,
+      "transform":
+      {
+        "pos": "150.409 11.9 -425.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pasarela_redonda.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_pasarela_redonda.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "pasarela_redonda001"
+      ,
+      "transform":
+      {
+        "pos": "150.409 20.9196 -425.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pasarela_redonda001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_pasarela_redonda001.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "pasarela_redonda002"
+      ,
+      "transform":
+      {
+        "pos": "150.409 33.3977 -425.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pasarela_redonda002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_pasarela_redonda002.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "puerta"
+      ,
+      "transform":
+      {
+        "pos": "157.117 33.2473 -425.873"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/puerta.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_puerta.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "cobertura"
       ,
       "transform":
@@ -952,3 +952,1245 @@
       [
         {
           "mesh": "data/meshes/cobertura.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.97222 2.16187 1.26954"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cobertura001"
+      ,
+      "transform":
+      {
+        "pos": "128.212 16.3237 -425.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cobertura001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.97222 2.16187 1.26954"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cobertura002"
+      ,
+      "transform":
+      {
+        "pos": "133.499 12.0 -425.744"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cobertura002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.89361 2.16836 0.466839"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cobertura003"
+      ,
+      "transform":
+      {
+        "pos": "133.499 15.6752 -423.128"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cobertura003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.356667 5.85603 0.406253"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cobertura004"
+      ,
+      "transform":
+      {
+        "pos": "133.499 15.6752 -426.46"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cobertura004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.356667 5.85603 0.406253"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cobertura005"
+      ,
+      "transform":
+      {
+        "pos": "138.756 23.9666 -424.751"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cobertura005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.35667 0.468482 5.66265"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cobertura006"
+      ,
+      "transform":
+      {
+        "pos": "160.817 25.1421 -439.722"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cobertura006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.97222 2.16187 1.26954"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cobertura008"
+      ,
+      "transform":
+      {
+        "pos": "156.442 25.1421 -441.454"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cobertura008.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.89361 2.16836 0.466839"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cobertura009"
+      ,
+      "transform":
+      {
+        "pos": "153.826 28.8173 -441.454"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cobertura009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.356667 5.85603 0.406253"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cobertura010"
+      ,
+      "transform":
+      {
+        "pos": "157.158 28.8173 -441.454"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cobertura010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.356667 5.85603 0.406253"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cobertura011"
+      ,
+      "transform":
+      {
+        "pos": "154.789 37.976 -433.566"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cobertura011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.35667 0.468482 8.55061"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cobertura012"
+      ,
+      "transform":
+      {
+        "pos": "152.904 20.2591 -446.213"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cobertura012.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.89361 2.16836 0.466839"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cobertura013"
+      ,
+      "transform":
+      {
+        "pos": "153.017 23.9343 -446.213"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cobertura013.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.356667 5.85603 0.406253"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cobertura014"
+      ,
+      "transform":
+      {
+        "pos": "156.349 23.9343 -446.213"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cobertura014.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.356667 5.85603 0.406253"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cobertura015"
+      ,
+      "transform":
+      {
+        "pos": "154.858 34.5088 -443.642"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cobertura015.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.35667 0.468482 3.33474"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cobertura016"
+      ,
+      "transform":
+      {
+        "pos": "138.879 12.0 -419.928"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cobertura016.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.6012 0.522115 0.292157"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cobertura017"
+      ,
+      "transform":
+      {
+        "pos": "138.879 12.0 -434.635"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cobertura017.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.64306 0.522113 0.292157"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cobertura018"
+      ,
+      "transform":
+      {
+        "pos": "138.879 12.0 -428.761"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cobertura018.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.59122 0.522114 0.292157"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cobertura019"
+      ,
+      "transform":
+      {
+        "pos": "133.498 12.0 -415.619"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cobertura019.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.08862 0.522116 0.292157"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cobertura020"
+      ,
+      "transform":
+      {
+        "pos": "133.498 12.0 -435.986"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cobertura020.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_basilica_interior.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.08862 0.522112 0.292157"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box078"
+      ,
+      "transform":
+      {
+        "pos": "150.409 -3.74917 -425.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box078.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box078.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box079"
+      ,
+      "transform":
+      {
+        "pos": "182.517 -1.86098e-05 -425.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box079.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box079.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box080"
+      ,
+      "transform":
+      {
+        "pos": "118.302 -1.86098e-05 -425.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box080.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box080.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box081"
+      ,
+      "transform":
+      {
+        "pos": "150.409 -1.70315e-05 -389.636"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box081.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box081.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box082"
+      ,
+      "transform":
+      {
+        "pos": "150.409 -2.01882e-05 -461.851"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box082.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box082.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box083"
+      ,
+      "transform":
+      {
+        "pos": "182.517 22.0 -425.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box083.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box083.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box084"
+      ,
+      "transform":
+      {
+        "pos": "118.302 22.0 -425.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box084.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box084.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box085"
+      ,
+      "transform":
+      {
+        "pos": "150.409 22.0 -389.636"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box085.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box085.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box086"
+      ,
+      "transform":
+      {
+        "pos": "150.409 22.0 -461.851"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box086.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box086.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box087"
+      ,
+      "transform":
+      {
+        "pos": "173.45 -1.73664e-05 -397.297"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box087.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box087.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box088"
+      ,
+      "transform":
+      {
+        "pos": "126.913 -1.73664e-05 -397.297"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box088.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box088.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box089"
+      ,
+      "transform":
+      {
+        "pos": "173.45 -1.98707e-05 -454.589"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box089.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box089.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box090"
+      ,
+      "transform":
+      {
+        "pos": "126.913 -1.98707e-05 -454.589"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box090.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box090.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box091"
+      ,
+      "transform":
+      {
+        "pos": "150.409 47.1721 -425.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box091.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box091.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

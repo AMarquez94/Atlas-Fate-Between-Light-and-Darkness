@@ -102,8 +102,9 @@ void CModuleLogic::publishClasses() {
         .property("z", &VEC3::z);
 
     SLB::Class< TCompTempPlayerController >("PlayerController", m)
-      .comment("This is our wrapper of the player controller component")
-      .property("inhibited", &TCompTempPlayerController::isInhibited);
+        .comment("This is our wrapper of the player controller component")
+        .property("inhibited", &TCompTempPlayerController::isInhibited)
+        .set("die", &TCompTempPlayerController::die);
 
     //SLB::Class < CHandle >("CHandle", m)
     //    .comment("test")
@@ -216,18 +217,18 @@ bool CModuleLogic::execEvent(Events event, const std::string & params, float del
         break;
     case Events::SCENE_START:
         if (delay > 0) {
-          return execScriptDelayed("onSceneStart_" + params + "()", delay);
+            return execScriptDelayed("onSceneStart()", delay) && execScriptDelayed("onSceneStart_" + params + "()", delay);
         }
         else {
-          return execScript("onSceneStart_" + params + "()").success;
+            return execScript("onSceneStart()").success && execScript("onSceneStart_" + params + "()").success;
         }
         break;
     case Events::SCENE_END:
         if (delay > 0) {
-          return execScriptDelayed("onSceneEnd_" + params + "()", delay);
+            return execScriptDelayed("onSceneEnd()", delay) && execScriptDelayed("onSceneEnd_" + params + "()", delay);
         }
         else {
-          return execScript("onSceneEnd_" + params + "()").success;
+            return execScript("onSceneEnd()").success && execScript("onSceneEnd_" + params + "()").success;
         }
         break;
 
@@ -268,12 +269,12 @@ CModuleLogic * getLogic() { return EngineLogic.getPointer(); }
 
 TCompTempPlayerController * getPlayerController()
 {
-  TCompTempPlayerController * playerController = nullptr;
-  CEntity* e = getEntityByName("The Player");
-  if (e) {
-    playerController = e->get<TCompTempPlayerController>();
-  }
-  return playerController;
+    TCompTempPlayerController * playerController = nullptr;
+    CEntity* e = getEntityByName("The Player");
+    if (e) {
+        playerController = e->get<TCompTempPlayerController>();
+    }
+    return playerController;
 }
 CModuleGameConsole * getConsole() { return EngineConsole.getPointer(); }
 
@@ -300,14 +301,14 @@ void deleteEnemies()
     }
 }
 
-void pauseGame(bool pause){
+void pauseGame(bool pause) {
 
     TMsgScenePaused msg;
     msg.isPaused = pause;
     EngineEntities.broadcastMsg(msg);
 }
 
-void infiniteStamineToggle(){
+void infiniteStamineToggle() {
     TMsgInfiniteStamina msg;
     CHandle h = getEntityByName("The Player");
     h.sendMsg(msg);
@@ -332,7 +333,7 @@ void speedBoost(const float speed) {
     h.sendMsg(msg);
 }
 
-void playerInvisible(){
+void playerInvisible() {
     CHandle h = getEntityByName("The Player");
     TMsgPlayerInvisible msg;
     h.sendMsg(msg);
@@ -353,7 +354,7 @@ void lanternsDisable(bool disable) {
     }
 }
 
-void blendInCamera(const std::string & cameraName, float blendInTime){
+void blendInCamera(const std::string & cameraName, float blendInTime) {
 
     CHandle camera = getEntityByName(cameraName);
     if (camera.isValid()) {
@@ -387,8 +388,8 @@ void loadscene(const std::string &level) {
 
 void loadCheckpoint()
 {
-  CModuleGameManager gameManager = CEngine::get().getGameManager();
-  gameManager.loadCheckpoint();
+    CModuleGameManager gameManager = CEngine::get().getGameManager();
+    gameManager.loadCheckpoint();
 }
 
 void shadowsToggle()
@@ -415,7 +416,7 @@ void destroy() {
 
 
 }
- 
+
 void bind(const std::string& key, const std::string& script) {
 
     int id = EngineInput.getButtonDefinition(key)->id;
@@ -446,12 +447,12 @@ void cg_drawlights(int type) {
 
     bool dir = false, spot = false, point = false;
 
-    switch (type){
-        case 1: dir = spot = point = true; break;
-        case 2: dir = true; break;
-        case 3: spot = true; break;
-        case 4: point = true; break;
-        default: break;
+    switch (type) {
+    case 1: dir = spot = point = true; break;
+    case 2: dir = true; break;
+    case 3: spot = true; break;
+    case 4: point = true; break;
+    default: break;
     }
 
     getObjectManager<TCompLightDir>()->forEach([&](TCompLightDir* c) {
