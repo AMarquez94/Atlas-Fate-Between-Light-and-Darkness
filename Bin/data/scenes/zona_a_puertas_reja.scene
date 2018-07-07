@@ -14,11 +14,11 @@
   {
     "entity":
     {
-      "name": "mesh_puerta_reja_puequena"
+      "name": "mesh_puerta_reja_grande"
       ,
       "transform":
       {
-        "pos": "-75.1826 0.0649372 -97.1861"
+        "pos": "-48.5814 0.0649371 -98.4649"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -26,11 +26,11 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_puerta_reja_puequena.mesh"
+          "mesh": "data/meshes/mesh_puerta_reja_grande.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_puerta_reja.material"
           ]
         }
       ]
@@ -39,7 +39,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/collider_puerta_reja_pequena.collider"
+        "name": "data/colliders/collider_puerta_reja_grande.collider"
         ,
         "group": "wall"
         ,
@@ -63,11 +63,11 @@
   {
     "entity":
     {
-      "name": "mesh_puerta_reja_grande"
+      "name": "mesh_puerta_reja_puequena"
       ,
       "transform":
       {
-        "pos": "-48.5814 0.0649371 -98.4649"
+        "pos": "-75.1826 0.0649372 -97.1861"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -75,11 +75,11 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_puerta_reja_grande.mesh"
+          "mesh": "data/meshes/mesh_puerta_reja_puequena.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_puerta_reja.material"
           ]
         }
       ]
@@ -88,7 +88,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/collider_puerta_reja_grande.collider"
+        "name": "data/colliders/collider_puerta_reja_pequena.collider"
         ,
         "group": "wall"
         ,

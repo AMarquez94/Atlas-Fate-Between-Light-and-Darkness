@@ -2320,4 +2320,37 @@
       }
     }
   }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_muralla_saliente"
+      ,
+      "transform":
+      {
+        "pos": "-35.1981 10.5406 -116.656"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.198142 0.441907 51.0826"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
 ]
