@@ -53,6 +53,25 @@
 			
 		]
 	},
+	"scene_coliseo": {
+		"static_data": {
+			"initial_script": "coliseo",
+			"navmesh": "data/navmeshes/milestone2_navmesh.bin"
+		},
+		"scene_group": [
+			"data/scenes/Coliseo/player2_fsm.scene",
+			"data/scenes/ZoneA/sp_dynamic_lights.scene",
+			"data/scenes/coliseo_suelo.scene",
+			"data/scenes/coliseo_arcos.scene",
+			"data/scenes/ZoneA/whitebox_zone_light.scene",
+
+			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
+			"data/scenes/Basilic_courtyard/test_instancing.scene",
+			"data/scenes/Basilic_courtyard/capsules.scene",
+			"data/scenes/Basilic_courtyard/camera.scene"
+			
+		]
+	},
 	"scene_basilic_courtyard": {
 		"static_data": {
 			"initial_script": "basilic_courtyard",

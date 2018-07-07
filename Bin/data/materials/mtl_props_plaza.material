@@ -1,0 +1,18 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_props_plaza_alb.dds"
+    ,
+    "metallic": "data/textures/tx_props_plaza_met.dds"
+    ,
+    "roughness": "data/textures/tx_props_plaza_rgh.dds"
+    ,
+    "height": "data/textures/tx_props_plaza_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_props_plaza_emi.dds"
+    ,
+    "aocclusion": "data/textures/tx_props_plaza_ao.dds"
+  }
+}
