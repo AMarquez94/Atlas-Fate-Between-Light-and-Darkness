@@ -115,6 +115,11 @@ void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {
     }
 }
 
+void CModuleParticles::killAll()
+{
+    _activeSystems.clear();
+}
+
 Particles::CSystem* CModuleParticles::getSystem(Particles::TParticleHandle ph) {
 
     auto it = std::find_if(_activeSystems.begin(), _activeSystems.end(), [&ph](const Particles::CSystem* ps)

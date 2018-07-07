@@ -142,6 +142,9 @@ bool CModuleSceneManager::unLoadActiveScene() {
         EngineIA.clearSharedBoards();
         EngineNavmeshes.destroyNavmesh();
         EngineInstancing.clearInstances();
+        EngineParticles.killAll();
+
+        Engine.getLogic().execEvent(EngineLogic.SCENE_END, _activeScene->name);
 
         _activeScene->isLoaded = false;
         _activeScene = nullptr;

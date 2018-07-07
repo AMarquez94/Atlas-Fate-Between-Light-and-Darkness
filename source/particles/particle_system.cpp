@@ -154,7 +154,7 @@ namespace Particles
 
     bool CSystem::update(float delta)
     {
-        if (!_enabled) return true;
+        if (!_enabled && !_entity.isValid()) return true;
         
         // Handle start delay
         _deploy_time += delta;

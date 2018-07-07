@@ -3,6 +3,7 @@
 #include "components/comp_tags.h"
 #include <experimental/filesystem>
 #include "modules/game/module_game_manager.h"
+#include "modules/system/module_particles.h"
 #include <iostream>
 #include "components/lighting/comp_light_dir.h"
 #include "components/lighting/comp_light_spot.h"
@@ -94,6 +95,10 @@ void CModuleLogic::publishClasses() {
         .comment("This is our wrapper of the logic class")
         .set("printLog", &CModuleLogic::printLog);
 
+    SLB::Class< CModuleParticles >("Particles", m)
+        .comment("This is our wrapper of the particles class")
+        .set("killAll", &CModuleParticles::killAll);
+
     SLB::Class< VEC3 >("VEC3", m)
         .constructor<float, float, float>()
         .comment("This is our wrapper of the VEC3 class")
@@ -102,8 +107,9 @@ void CModuleLogic::publishClasses() {
         .property("z", &VEC3::z);
 
     SLB::Class< TCompTempPlayerController >("PlayerController", m)
-      .comment("This is our wrapper of the player controller component")
-      .property("inhibited", &TCompTempPlayerController::isInhibited);
+        .comment("This is our wrapper of the player controller component")
+        .property("inhibited", &TCompTempPlayerController::isInhibited)
+        .set("die", &TCompTempPlayerController::die);
 
     //SLB::Class < CHandle >("CHandle", m)
     //    .comment("test")
@@ -114,6 +120,7 @@ void CModuleLogic::publishClasses() {
     // Utilities
     m->set("getConsole", SLB::FuncCall::create(&getConsole));
     m->set("getLogic", SLB::FuncCall::create(&getLogic));
+    m->set("getParticles", SLB::FuncCall::create(&getParticles));
     m->set("getPlayerController", SLB::FuncCall::create(&getPlayerController));
     m->set("execDelayedScript", SLB::FuncCall::create(&execDelayedScript));
     m->set("pauseGame", SLB::FuncCall::create(&pauseGame));
@@ -216,18 +223,18 @@ bool CModuleLogic::execEvent(Events event, const std::string & params, float del
         break;
     case Events::SCENE_START:
         if (delay > 0) {
-          return execScriptDelayed("onSceneStart_" + params + "()", delay);
+            return execScriptDelayed("onSceneStart()", delay) && execScriptDelayed("onSceneStart_" + params + "()", delay);
         }
         else {
-          return execScript("onSceneStart_" + params + "()").success;
+            return execScript("onSceneStart()").success && execScript("onSceneStart_" + params + "()").success;
         }
         break;
     case Events::SCENE_END:
         if (delay > 0) {
-          return execScriptDelayed("onSceneEnd_" + params + "()", delay);
+            return execScriptDelayed("onSceneEnd()", delay) && execScriptDelayed("onSceneEnd_" + params + "()", delay);
         }
         else {
-          return execScript("onSceneEnd_" + params + "()").success;
+            return execScript("onSceneEnd()").success && execScript("onSceneEnd_" + params + "()").success;
         }
         break;
 
@@ -266,14 +273,16 @@ void CModuleLogic::printLog()
 /* Auxiliar functions */
 CModuleLogic * getLogic() { return EngineLogic.getPointer(); }
 
+CModuleParticles * getParticles() { return EngineParticles.getPointer(); }
+
 TCompTempPlayerController * getPlayerController()
 {
-  TCompTempPlayerController * playerController = nullptr;
-  CEntity* e = getEntityByName("The Player");
-  if (e) {
-    playerController = e->get<TCompTempPlayerController>();
-  }
-  return playerController;
+    TCompTempPlayerController * playerController = nullptr;
+    CEntity* e = getEntityByName("The Player");
+    if (e) {
+        playerController = e->get<TCompTempPlayerController>();
+    }
+    return playerController;
 }
 CModuleGameConsole * getConsole() { return EngineConsole.getPointer(); }
 
@@ -300,14 +309,14 @@ void deleteEnemies()
     }
 }
 
-void pauseGame(bool pause){
+void pauseGame(bool pause) {
 
     TMsgScenePaused msg;
     msg.isPaused = pause;
     EngineEntities.broadcastMsg(msg);
 }
 
-void infiniteStamineToggle(){
+void infiniteStamineToggle() {
     TMsgInfiniteStamina msg;
     CHandle h = getEntityByName("The Player");
     h.sendMsg(msg);
@@ -332,7 +341,7 @@ void speedBoost(const float speed) {
     h.sendMsg(msg);
 }
 
-void playerInvisible(){
+void playerInvisible() {
     CHandle h = getEntityByName("The Player");
     TMsgPlayerInvisible msg;
     h.sendMsg(msg);
@@ -353,7 +362,7 @@ void lanternsDisable(bool disable) {
     }
 }
 
-void blendInCamera(const std::string & cameraName, float blendInTime){
+void blendInCamera(const std::string & cameraName, float blendInTime) {
 
     CHandle camera = getEntityByName(cameraName);
     if (camera.isValid()) {
@@ -387,8 +396,8 @@ void loadscene(const std::string &level) {
 
 void loadCheckpoint()
 {
-  CModuleGameManager gameManager = CEngine::get().getGameManager();
-  gameManager.loadCheckpoint();
+    CModuleGameManager gameManager = CEngine::get().getGameManager();
+    gameManager.loadCheckpoint();
 }
 
 void shadowsToggle()
@@ -415,7 +424,7 @@ void destroy() {
 
 
 }
- 
+
 void bind(const std::string& key, const std::string& script) {
 
     int id = EngineInput.getButtonDefinition(key)->id;
@@ -446,12 +455,12 @@ void cg_drawlights(int type) {
 
     bool dir = false, spot = false, point = false;
 
-    switch (type){
-        case 1: dir = spot = point = true; break;
-        case 2: dir = true; break;
-        case 3: spot = true; break;
-        case 4: point = true; break;
-        default: break;
+    switch (type) {
+    case 1: dir = spot = point = true; break;
+    case 2: dir = true; break;
+    case 3: spot = true; break;
+    case 4: point = true; break;
+    default: break;
     }
 
     getObjectManager<TCompLightDir>()->forEach([&](TCompLightDir* c) {

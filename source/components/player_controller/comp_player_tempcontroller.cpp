@@ -271,24 +271,12 @@ void TCompTempPlayerController::onStateFinish(const TMsgStateFinish& msg) {
 
 void TCompTempPlayerController::onPlayerHit(const TMsgPlayerHit & msg)
 {
-    if (!isImmortal) {
-        CEntity* e = CHandle(this).getOwner();
-        TMsgSetFSMVariable groundMsg;
-        groundMsg.variant.setName("onDead");
-        groundMsg.variant.setBool(true);
-        e->sendMsg(groundMsg);
-    }
+    die();
 }
 
 void TCompTempPlayerController::onPlayerKilled(const TMsgPlayerDead & msg)
 {
-    if (!isImmortal) {
-        CEntity* e = CHandle(this).getOwner();
-        TMsgSetFSMVariable groundMsg;
-        groundMsg.variant.setName("onDead");
-        groundMsg.variant.setBool(true);
-        e->sendMsg(groundMsg);
-    }
+    die();
 }
 
 void TCompTempPlayerController::onPlayerInhibited(const TMsgInhibitorShot & msg)
@@ -633,17 +621,25 @@ void TCompTempPlayerController::invertAxis(VEC3 old_up, bool type) {
 void TCompTempPlayerController::getDamage(float dmg)
 {
 
-    if (!isImmortal) {
+    if (!isImmortal && !isDead()) {
         life = Clamp(life - dmg, 0.f, maxLife);
         timerSinceLastDamage = 0.f;
 
         if (life <= 0.f) {
-            CEntity* e = CHandle(this).getOwner();
-            TMsgSetFSMVariable groundMsg;
-            groundMsg.variant.setName("onDead");
-            groundMsg.variant.setBool(true);
-            e->sendMsg(groundMsg);
+            die();
         }
+    }
+}
+
+void TCompTempPlayerController::die()
+{
+    if (!isImmortal && !isDead()) {
+        CEntity* e = CHandle(this).getOwner();
+        TMsgSetFSMVariable groundMsg;
+        groundMsg.variant.setName("onDead");
+        groundMsg.variant.setBool(true);
+        e->sendMsg(groundMsg);
+        life = 0;
     }
 }
 
@@ -866,12 +862,24 @@ void TCompTempPlayerController::updateStamina(float dt) {
 /* Attack state, kills the closest enemy if true*/
 void TCompTempPlayerController::attackState(float dt) {
 
+    if (attackTimer == 0) {
+        TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
+        CHandle closestEnemy;
+        bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
+        
+        TMsgAIPaused msg;
+        closestEnemy.sendMsg(msg);
+    }
+
     if (attackTimer > 0.7f) {   //TODO: Remove this. Only a fix for milestone 2
         TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
         CHandle closestEnemy;
         bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
 
         if (enemyFound) {
+            TMsgAIPaused msgPaused;
+            closestEnemy.sendMsg(msgPaused);
+
             TMsgEnemyStunned msg;
             msg.h_sender = CHandle(this).getOwner();
             closestEnemy.sendMsg(msg);

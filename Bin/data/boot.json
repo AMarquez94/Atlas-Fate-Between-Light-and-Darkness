@@ -72,14 +72,16 @@
 	"scene_basilic_interior": {
 		"static_data": {
 			"initial_script": "basilic_interior",
-			"navmesh": "data/navmeshes/milestone2_navmesh.bin"
+			"navmesh": "data/navmeshes/basilic_interior_navmesh.bin"
 		},
 		"scene_group": [
 			"data/scenes/Basilic_interior/player.scene",
+			"data/scenes/Basilic_interior/enemy.scene",
 			"data/scenes/Basilic_interior/test_instancing.scene",
 			"data/scenes/Basilic_interior/camera.scene",
 			"data/scenes/Basilic_interior/map_basilic_interior.scene",
-			"data/scenes/Basilic_interior/map_basilic_interior_lights.scene"
+			"data/scenes/Basilic_interior/map_basilic_interior_lights.scene",
+			"data/scenes/Basilic_interior/objects.scene"
 		]
 	}
 }

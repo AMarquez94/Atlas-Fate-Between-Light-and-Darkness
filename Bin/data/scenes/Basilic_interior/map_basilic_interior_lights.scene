@@ -38,7 +38,7 @@
     }
   },
   {
-    "xentity": {
+    "entity": {
       "name": "Spot002",
       "transform": {
         "pos": "134.124 44.4275 -439.499",
