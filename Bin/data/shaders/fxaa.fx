@@ -5,7 +5,7 @@ float4 PS_FXAA(
   float2 texcoord : TEXCOORD0
 ) : SV_TARGET
 {
-		//return txAlbedo.Sample(samClampLinear,texcoord);
+				
     float FXAA_SPAN_MAX = 8.0;
     float FXAA_REDUCE_MUL = 1.0/64.0;
     float FXAA_REDUCE_MIN = 1.0/128.0;
@@ -49,9 +49,24 @@ float4 PS_FXAA(
         txAlbedo.Sample(samClampLinear, texcoord.xy + dir * (3.0/3.0 - 0.5)).xyz);
     float lumaB = dot(rgbB, luma);
 
+		float4 final_color;
     if((lumaB < lumaMin) || (lumaB > lumaMax)){
-        return float4(rgbA,1);
+        final_color = float4(rgbA,1);
     }else{
-        return float4(rgbB,1);
+        final_color = float4(rgbB,1);
 				}
+		return final_color;
+		
+		float4 color = final_color;
+		const float3 LumCoeff = float3(0.2125, 0.7154, 0.0721);
+
+		float3 AvgLumin = float3(0.5, 0.5, 0.5);
+		float dotval = dot(color.xyz, LumCoeff);
+		float3 intensity = float3(dotval, dotval, dotval);
+
+		// could substitute a uniform for this 1. and have variable saturation
+		float3 satColor = lerp(intensity, color.xyz, 1.);
+		float3 conColor = lerp(AvgLumin, satColor, 1.05);
+
+		return float4(conColor, 1);
 }

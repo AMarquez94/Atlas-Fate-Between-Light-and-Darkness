@@ -66,8 +66,8 @@
 			},
 			"color_grading": {
 				"enabled": true,
-				"amount": 0.6,
-				"lut": "data/textures/lut/RGBTable16x1.dds"
+				"amount": 0.25,
+				"lut": "data/textures/lut/lut5.dds"
 			},
 			"chromatic_aberration": {
 				"enabled": true

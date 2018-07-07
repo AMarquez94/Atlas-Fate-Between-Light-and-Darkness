@@ -109,6 +109,8 @@ void TCompLightDir::activate() {
     cb_light.light_view_proj = getViewProjection();
     cb_light.light_radius = getZFar();
     cb_light.light_angle = 0;
+    cb_light.far_atten = 0.98f;
+    cb_light.inner_atten = 0.9f;
 
     // If we have a ZTexture, it's the time to activate it
     if (shadows_rt) {

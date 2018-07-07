@@ -7,19 +7,11 @@
 #include "render/render_manager.h" 
 #include "render/render_utils.h"
 #include "render/gpu_trace.h"
-#include "ctes.h"                     // texture slots
-#include "render/mesh/mesh_loader.h"
-#include "components/comp_aabb.h"
-#include "components/physics/comp_collider.h"
 #include "physics/physics_collider.h"
 
-#include "render/render_objects.h"
-#include "render/texture/texture.h"
-#include "render/texture/material.h"
-#include "render/render_utils.h"
-#include "render/render_manager.h"
-#include "entity/entity_parser.h"
+#include "components/comp_aabb.h"
 #include "components/comp_culling.h"
+#include "components/physics/comp_collider.h"
 
 DECL_OBJ_MANAGER("light_spot", TCompLightSpot);
 
@@ -48,6 +40,7 @@ void TCompLightSpot::load(const json& j, TEntityParseContext& ctx) {
     TCompCamera::load(j, ctx);
 
     intensity = j.value("intensity", 1.0f);
+    volume_intensity = j.value("volume_intensity", 1.0f);
     color = loadVEC4(j["color"]);
 
     volume_enabled = j.value("volume", true);
@@ -223,6 +216,8 @@ void TCompLightSpot::activate() {
     cb_light.light_direction = VEC4(c->getFront().x, c->getFront().y, c->getFront().z, 1);
     cb_light.light_inner_cut = cos(deg2rad(Clamp(inner_cut, 0.f, angle) * .5f));
     cb_light.light_outer_cut = spot_angle;
+    cb_light.far_atten = 0.98f;
+    cb_light.inner_atten = 0.9f;
 
     // If we have a ZTexture, it's the time to activate it
     if (shadows_rt) {
@@ -273,8 +268,8 @@ void TCompLightSpot::generateVolume() {
         MAT44 res = sc * bb;
 
         TInstanceLight t_struct = { res, VEC4(cpos.x, cpos.y, cpos.z, 1)
-            ,VEC4(c_transform->getFront().x, c_transform->getFront().y, c_transform->getFront().z, 0)
-            ,VEC4(spot_angle, cos(deg2rad(Clamp(inner_cut, 0.f, angle) * .5f)), spot_angle, 1), mtx_viewproj_offset };
+            ,VEC4(c_transform->getFront().x, c_transform->getFront().y, c_transform->getFront().z, 1)
+            ,VEC4(spot_angle, cos(deg2rad(Clamp(inner_cut, 0.f, angle) * .5f)), spot_angle, volume_intensity), mtx_viewproj_offset };
         volume_instances.push_back(t_struct);
     }
 
@@ -337,4 +332,7 @@ void TCompLightSpot::generateShadowMap() {
     CRenderManager::get().renderCategory("shadows");
 }
 
+bool TCompLightSpot::isCulled() const {
 
+    return cull_enabled;
+}
