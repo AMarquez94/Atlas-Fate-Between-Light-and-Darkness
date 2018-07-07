@@ -32,7 +32,8 @@
 			"data/scenes/ZoneA/zone_a_puertas.scene",
 			"data/scenes/ZoneA/zone_a_puentes_chapa.scene",
 			"data/scenes/ZoneA/zone_a_puentes_arcos.scene",
-			"data/scenes/zona_a_barandillas.scene",
+			"data/scenes/ZoneA/zone_a_colliders_salientes.scene",
+			"data/scenes/zone_a_barandillas.scene",
 			"data/scenes/zona_a_columnas.scene",
 			"data/scenes/zona_a_salientes.scene",
 			"data/scenes/zona_a_muralla.scene",
@@ -43,12 +44,12 @@
 			"data/scenes/zona_a_conductos.scene",
 			"data/scenes/zona_a_puertas_reja.scene",
 			"data/scenes/zona_a_tubos.scene",
-			"data/scenes/colliders_prova.scene",
+			"data/scenes/zona_a_colliders_barandillas.scene",
 			"data/scenes/zona_a_proves.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene",
 			"data/scenes/ZoneA/test_instancing.scene",
-			"data/scenes/ZoneA/zone_a_particles.scene",
-			"data/scenes/ZoneA/enemy2.scene"
+			"data/scenes/ZoneA/zone_a_particles.scene"
+			
 			
 		]
 	},
