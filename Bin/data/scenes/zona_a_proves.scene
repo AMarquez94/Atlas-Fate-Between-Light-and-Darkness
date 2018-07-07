@@ -14,64 +14,450 @@
   {
     "entity":
     {
-      "name": "collider_parabolica_m003"
-      ,
-      "prefab": "data/prefabs/parabolica_m2.prefab"
+      "name": "Cylinder009"
       ,
       "transform":
       {
-        "pos": "-78.7316 0.0 -93.9957"
+        "pos": "-76.5641 11.8874 -99.4209"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Cylinder009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "mesh_antena_m003"
-      ,
-      "prefab": "data/prefabs/antena_m2.prefab"
+      "name": "Cylinder010"
       ,
       "transform":
       {
-        "pos": "-78.964 0.0 -83.9322"
+        "pos": "-78.6641 11.8874 -99.4209"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Cylinder010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "mesh_caja_m003"
-      ,
-      "prefab": "data/prefabs/caja_m2.prefab"
+      "name": "Cylinder011"
       ,
       "transform":
       {
-        "pos": "-76.12 0.0 -92.4852"
+        "pos": "-78.6641 11.8874 -101.521"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Cylinder011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "mesh_parabolica_m003"
-      ,
-      "prefab": "data/prefabs/parabolica_m2.prefab"
+      "name": "pasarela_cupula002"
       ,
       "transform":
       {
-        "pos": "-78.7316 0.0 -93.9957"
+        "pos": "-77.6141 14.2874 -100.471"
         ,
-        "rotation": "2.8213e-07 -1.0 0.0 1.94707e-07"
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pasarela_cupula002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "pata_pasarela002"
+      ,
+      "transform":
+      {
+        "pos": "-76.5641 11.8874 -101.521"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pata_pasarela002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Cylinder007"
+      ,
+      "transform":
+      {
+        "pos": "-76.4705 11.8874 -99.4209"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Cylinder007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Cylinder008"
+      ,
+      "transform":
+      {
+        "pos": "-76.4705 11.8874 -101.521"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Cylinder008.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "pasarela_cupula001"
+      ,
+      "transform":
+      {
+        "pos": "-75.4205 14.2874 -100.471"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pasarela_cupula001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Cylinder006"
+      ,
+      "transform":
+      {
+        "pos": "-74.3705 11.8874 -99.4209"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Cylinder006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Cylinder004"
+      ,
+      "transform":
+      {
+        "pos": "-74.2768 11.8874 -99.4209"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Cylinder004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "pata_pasarela001"
+      ,
+      "transform":
+      {
+        "pos": "-74.3705 11.8874 -101.521"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pata_pasarela001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Cylinder005"
+      ,
+      "transform":
+      {
+        "pos": "-74.2768 11.8874 -101.521"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Cylinder005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "pasarela_cupula"
+      ,
+      "transform":
+      {
+        "pos": "-73.2268 14.2874 -100.471"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pasarela_cupula.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Cylinder001"
+      ,
+      "transform":
+      {
+        "pos": "-72.1768 11.8874 -99.4209"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Cylinder001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "pata_pasarela"
+      ,
+      "transform":
+      {
+        "pos": "-72.1768 11.8874 -101.521"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pata_pasarela.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
     }
   }
 ]
