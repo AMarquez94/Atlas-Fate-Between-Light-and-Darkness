@@ -862,12 +862,24 @@ void TCompTempPlayerController::updateStamina(float dt) {
 /* Attack state, kills the closest enemy if true*/
 void TCompTempPlayerController::attackState(float dt) {
 
+    if (attackTimer == 0) {
+        TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
+        CHandle closestEnemy;
+        bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
+        
+        TMsgAIPaused msg;
+        closestEnemy.sendMsg(msg);
+    }
+
     if (attackTimer > 0.7f) {   //TODO: Remove this. Only a fix for milestone 2
         TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
         CHandle closestEnemy;
         bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
 
         if (enemyFound) {
+            TMsgAIPaused msgPaused;
+            closestEnemy.sendMsg(msgPaused);
+
             TMsgEnemyStunned msg;
             msg.h_sender = CHandle(this).getOwner();
             closestEnemy.sendMsg(msg);
