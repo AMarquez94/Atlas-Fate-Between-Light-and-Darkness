@@ -15,6 +15,15 @@ namespace Particles
         float max_lifetime = 0.f;
         float scale = 1.f;
         int frame = 0;
+        int init_frame = 0;
         bool is_update = true;
+    };
+
+    struct TIParticle
+    {
+        MAT44 world;
+        VEC2 particle_minUV;
+        VEC2 particle_maxUV;
+        VEC4 particle_color;
     };
 }

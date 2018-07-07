@@ -1,0 +1,1207 @@
+
+[
+  {
+    "entity":
+    {
+      "name": "milestone2_map_lights2"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot042"
+      ,
+      "transform":
+      {
+        "pos": "-32.9015 6.43533 121.407"
+        ,
+        "lookat": "-33.4202 -2.62686 122.638"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 15.16008
+        ,
+        "angle": 66.1
+        ,
+        "inner_cut": 64.0
+        ,
+        "z_far": 9.16008
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot042.collider"
+        ,
+        "is_trigger": true
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot041"
+      ,
+      "transform":
+      {
+        "pos": "-16.5013 6.43533 121.407"
+        ,
+        "lookat": "-16.7573 -2.62686 122.638"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 15.16008
+        ,
+        "angle": 66.1
+        ,
+        "inner_cut": 64.0
+        ,
+        "z_far": 9.14896
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot041.collider"
+        ,
+        "is_trigger": true
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot040"
+      ,
+      "transform":
+      {
+        "pos": "-5.14276 6.43533 121.407"
+        ,
+        "lookat": "-5.74322 -2.62686 122.638"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 15.16008
+        ,
+        "angle": 66.1
+        ,
+        "inner_cut": 64.0
+        ,
+        "z_far": 9.16507
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot040.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot039"
+      ,
+      "transform":
+      {
+        "pos": "10.487 6.43533 121.407"
+        ,
+        "lookat": "10.1304 -2.62686 122.638"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 15.16008
+        ,
+        "angle": 66.1
+        ,
+        "inner_cut": 64.0
+        ,
+        "z_far": 9.15233
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot039.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot038"
+      ,
+      "transform":
+      {
+        "pos": "2.97148 6.43533 90.6816"
+        ,
+        "lookat": "2.82157 -2.62686 91.9123"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 15.16008
+        ,
+        "angle": 66.1
+        ,
+        "inner_cut": 64.0
+        ,
+        "z_far": 9.14661
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot038.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot036"
+      ,
+      "transform":
+      {
+        "pos": "-33.6778 6.43534 138.863"
+        ,
+        "lookat": "-33.2826 -2.62686 137.321"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 15.16008
+        ,
+        "angle": 66.1
+        ,
+        "inner_cut": 64.0
+        ,
+        "z_far": 9.20098
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot036.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot035"
+      ,
+      "transform":
+      {
+        "pos": "-20.4742 6.43534 138.863"
+        ,
+        "lookat": "-20.0791 -2.62686 137.321"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 15.16008
+        ,
+        "angle": 66.1
+        ,
+        "inner_cut": 64.0
+        ,
+        "z_far": 9.20098
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot035.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot034"
+      ,
+      "transform":
+      {
+        "pos": "-1.41725 6.43534 138.863"
+        ,
+        "lookat": "-1.02209 -2.62686 137.321"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 15.16008
+        ,
+        "angle": 66.1
+        ,
+        "inner_cut": 64.0
+        ,
+        "z_far": 9.20098
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot034.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot033"
+      ,
+      "transform":
+      {
+        "pos": "10.3116 6.43534 138.863"
+        ,
+        "lookat": "10.7068 -2.62686 137.321"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+         "range": 15.16008
+        ,
+        "angle": 66.1
+        ,
+        "inner_cut": 64.0
+        ,
+        "z_far": 9.20098
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot033.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot032"
+      ,
+      "transform":
+      {
+        "pos": "-5.21092 6.43533 117.427"
+        ,
+        "lookat": "-4.81577 -2.62686 115.885"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 15.16008
+        ,
+        "angle": 66.1
+        ,
+        "inner_cut": 64.0
+        ,
+        "z_far": 9.20097
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot032.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot031"
+      ,
+      "transform":
+      {
+        "pos": "-16.5634 6.43533 117.427"
+        ,
+        "lookat": "-16.1683 -2.62686 115.885"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 15.16008
+        ,
+        "angle": 66.1
+        ,
+        "inner_cut": 64.0
+        ,
+        "z_far": 9.20097
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot031.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot030"
+      ,
+      "transform":
+      {
+        "pos": "-20.5699 6.43533 86.6329"
+        ,
+        "lookat": "-20.4185 -2.62686 85.0906"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 15.16008
+        ,
+        "angle": 50.1
+        ,
+        "inner_cut": 45.0
+        ,
+        "z_far": 9.19373
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot030.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot029"
+      ,
+      "transform":
+      {
+        "pos": "-1.15839 6.43533 86.6491"
+        ,
+        "lookat": "-0.557928 -2.62686 85.4184"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 15.16008
+        ,
+        "angle": 50.1
+        ,
+        "inner_cut": 45.0
+        ,
+        "z_far": 9.16507
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot029.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot028"
+      ,
+      "transform":
+      {
+        "pos": "11.4011 13.2968 68.4138"
+        ,
+        "lookat": "9.74273 4.2853 68.6264"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 30.16008
+        ,
+        "angle": 37.4
+        ,
+        "inner_cut": 35.3
+        ,
+        "z_far": 9.16525
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot028.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot027"
+      ,
+      "transform":
+      {
+        "pos": "4.41203 10.3333 30.3386"
+        ,
+        "lookat": "3.93497 1.82704 30.8401"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 15.16008
+        ,
+        "angle": 37.4
+        ,
+        "inner_cut": 35.3
+        ,
+        "z_far": 8.5344
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot027.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+{
+    "entity":
+    {
+      "name": "Spot005"
+      ,
+      "transform":
+      {
+        "pos": "-33.5931 11.2912 68.4138"
+        ,
+        "lookat": "-32.1796 -2.94615 68.6264"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 16.3001
+        ,
+        "angle": 37.4
+        ,
+        "inner_cut": 35.3
+        ,
+        "z_far": 16.3001
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.65
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot005.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot004"
+      ,
+      "transform":
+      {
+        "pos": "-13.6789 10.019 29.2864"
+        ,
+        "lookat": "-13.0053 3.07558 27.5038"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 15.16008
+        ,
+        "angle": 37.4
+        ,
+        "inner_cut": 35.3
+        ,
+        "z_far": 7.08143
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot004.collider"
+        ,
+        "is_trigger": true
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot003"
+      ,
+      "transform":
+      {
+        "pos": "3.8736 -0.359059 -24.5081"
+        ,
+        "lookat": "2.64287 -9.42125 -23.7298"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 15.16008
+        ,
+        "angle": 66.1
+        ,
+        "inner_cut": 64.0
+        ,
+        "z_far": 9.17844
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot003.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot002"
+      ,
+      "transform":
+      {
+        "pos": "-6.35864 -0.359059 -37.5924"
+        ,
+        "lookat": "-6.28513 -9.42125 -35.5522"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 15.16008
+        ,
+        "angle": 66.1
+        ,
+        "inner_cut": 64.0
+        ,
+        "z_far": 9.28929
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot002.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot001"
+      ,
+      "transform":
+      {
+        "pos": "-25.7279 -0.359058 -19.8838"
+        ,
+        "lookat": "-24.0646 -9.42125 -20.2515"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 15.16008
+        ,
+        "angle": 66.1
+        ,
+        "inner_cut": 64.0
+        ,
+        "z_far": 9.22092
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.35
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 256
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot001.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+ {
+		"entity": {
+			"name": "FDirect001",
+			"transform": {
+				"pos": "-108.621 211.253 -112.052",
+				"lookat": "6.875 7.401 58.464"
+			},
+			"light_dir": {
+				"type": "directional",
+				"proj_type": "ortographic",
+				"range": 29.2116,
+				"angle": 75,
+				"color": "0.0 0.207 1.0 1.0",
+				"intensity": 1.5,
+				"ortosize": 168,
+				"shadows": true,
+				"fov": 15,
+				"z_far": 400,
+				"z_near": 3,
+				"casts_shadows": true,
+				"shadows_step": 1.25,
+				"shadows_resolution": 4096,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"tags":
+			[
+				"light"
+			]
+		}
+	}
+]

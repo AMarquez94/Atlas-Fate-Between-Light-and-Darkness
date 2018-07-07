@@ -3,7 +3,7 @@
 	"textures": {
 		"albedo": "data/textures/default_orange.dds",
 		"metallic": "data/textures/default_height.dds",
-		"roughness": "data/textures/default_white.dds",
+		"roughness": "data/textures/default_height.dds",
 		"normal": "data/textures/tx_gloryhole_nml.dds"
 	}
 }

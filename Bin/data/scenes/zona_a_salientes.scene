@@ -30,37 +30,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_muralla.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_saliente_attach_2"
-      ,
-      "transform":
-      {
-        "pos": "-35.9995 11.657 -99.1903"
-        ,
-        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_saliente_attach_2.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_muralla.material"
+            "data/materials/mtl_ornamentos_casa.material"
           ]
         }
       ]
@@ -90,37 +60,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_muralla.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_saliente_attach_5"
-      ,
-      "transform":
-      {
-        "pos": "-104.0 11.5563 -157.185"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_saliente_attach_5.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_muralla.material"
+            "data/materials/mtl_ornamentos_casa.material"
           ]
         }
       ]
@@ -150,7 +90,67 @@
           ,
           "materials":
           [
-            "data/materials/mtl_muralla.material"
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente_attach_5"
+      ,
+      "transform":
+      {
+        "pos": "-104.0 11.5563 -157.185"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_saliente_attach_5.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente_attach_2"
+      ,
+      "transform":
+      {
+        "pos": "-35.9995 11.657 -99.1903"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_saliente_attach_2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
           ]
         }
       ]
@@ -180,7 +180,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_muralla.material"
+            "data/materials/mtl_ornamentos_casa.material"
           ]
         }
       ]

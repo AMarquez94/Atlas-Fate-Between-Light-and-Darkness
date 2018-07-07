@@ -58,6 +58,8 @@ bool CMaterial::create(const json& j) {
 	// Setting default textures
 	textures[TS_EMISSIVE] = Resources.get("data/textures/default_emissive.dds")->as<CTexture>();
 	textures[TS_HEIGHT] = Resources.get("data/textures/default_white.dds")->as<CTexture>();
+    textures[TS_AOCCLUSION] = Resources.get("data/textures/default_white.dds")->as<CTexture>();
+    srvs[TS_AOCCLUSION] = textures[TS_AOCCLUSION]->getShaderResourceView();
 
     if (j.count("textures")) {
         auto& j_textures = j["textures"];
@@ -120,7 +122,8 @@ bool CMaterial::create(const json& j) {
 
 void CMaterial::onFileChanged(const std::string& filename) {
 	if (filename == getName()) {
-		create(filename);
+        auto j = loadJson(filename);
+        create(j);
 	}
 	else {
 		// Maybe a texture has been updated, get the new shader resource view

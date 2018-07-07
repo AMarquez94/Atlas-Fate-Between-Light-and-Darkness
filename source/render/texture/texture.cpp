@@ -84,7 +84,10 @@ void CTexture::destroy() {
 }
 
 void CTexture::debugInMenu() {
-	ImGui::Text("Resolution is .. %d %d", xres, yres);
+    ID3D11Texture2D * t = (ID3D11Texture2D*)texture;
+    D3D11_TEXTURE2D_DESC desc;
+    t->GetDesc(&desc);
+    ImGui::Text("Resolution is %dx%d", desc.Width, desc.Height);
 	ImGui::Image(shader_resource_view, ImVec2(128, 128));
 }
 
@@ -121,6 +124,9 @@ bool CTexture::create(
 	else if (options == CREATE_RENDER_TARGET) {
 		desc.BindFlags |= D3D11_BIND_RENDER_TARGET;
 	}
+    else if (options == CREATE_COMPUTE_OUTPUT) {
+        desc.BindFlags |= D3D11_BIND_UNORDERED_ACCESS;
+    }
 	else {
 		assert(options == CREATE_STATIC);
 	}
@@ -131,6 +137,18 @@ bool CTexture::create(
 		return false;
 	texture = tex2d;
 	setDXName(texture, getName().c_str());
+
+    if (options == CREATE_COMPUTE_OUTPUT) {
+        D3D11_UNORDERED_ACCESS_VIEW_DESC uav_desc;
+        ZeroMemory(&uav_desc, sizeof(uav_desc));
+        uav_desc.ViewDimension = D3D11_UAV_DIMENSION_TEXTURE2D;
+        uav_desc.Texture2D.MipSlice = 0;
+        uav_desc.Format = DXGI_FORMAT_UNKNOWN;
+        //uav_desc.Buffer.NumElements = num_elems;
+        hr = Render.device->CreateUnorderedAccessView(texture, &uav_desc, &uav);
+        if (FAILED(hr))
+            return false;
+    }
 
 	// -----------------------------------------
 	// Create a resource view so we can use the data in a shader

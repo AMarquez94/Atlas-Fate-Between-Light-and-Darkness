@@ -12,5 +12,7 @@
     "normal": "data/textures/tx_conductogrande_nml.dds"
     ,
     "height": "data/textures/tx_conductogrande_hgt.dds"
+    ,
+    "aocclusion": "data/textures/tx_conductogrande_ao.dds"
   }
 }

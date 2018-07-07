@@ -155,7 +155,7 @@ void ParticlesEditor::debugSystem() {
         ImGui::DragFloat("Randomize Rotation", &_main_system->n_system.random_rotation, 0.01f, 0.f, 1.f);
         ImGui::ColorEdit4("Start Color", &_main_system->n_system.start_color.x, 0.01f);
         ImGui::DragFloat("Gravity Modifier", &_main_system->n_system.gravity, 0.01f, -100, 100.f);
-        ImGui::DragFloat("Simulation Speed", &_main_system->n_system.simulation_speed, 1, 1, 100);
+        ImGui::DragFloat("Simulation Speed", &_main_system->n_system.simulation_speed, 0.1f, 0, 100);
         ImGui::Checkbox("Collision on Ground", &_main_system->n_collision.collision);
         ImGui::DragInt("Max. Particles", &_main_system->n_system.max_particles, 1, 1, 100);
     }
@@ -270,7 +270,7 @@ void ParticlesEditor::debugRenderer() {
         ImGui::DragFloat2("Tiles", &_main_system->n_renderer.frameSize.x, 1.f, 1.f, 100.f);
         ImGui::DragFloat("Frame over Time", &_main_system->n_renderer.frameSpeed, 0.01, 0.f, 100.f);
         ImGui::DragInt("Start frame", &_main_system->n_renderer.initialFrame, 1, 0, 100);
-        ImGui::DragInt("Cycles", &_main_system->n_renderer.numFrames, 1, 0, 100);
+        ImGui::DragInt("Cycles", &_main_system->n_renderer.numFrames, 1, 1, 100);
     }
 }
 

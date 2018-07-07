@@ -11,8 +11,6 @@
 #include "components/postfx/comp_render_ao.h"
 #include "components/comp_transform.h"
 #include "ctes.h"
-#include "components/comp_aabb.h" 
-#include "components/comp_culling.h" 
 
 void CDeferredRenderer::renderGBuffer() {
 
@@ -181,13 +179,6 @@ void CDeferredRenderer::renderSpotLights() {
 
 	CTraceScoped gpu_scope("renderSpotLights");
 
-	//Get the culling bits from the main camera 
-	CEntity* e_camera = getEntityByName("main_camera");
-	const TCompCulling* culling = nullptr;
-	if (e_camera)
-		culling = e_camera->get<TCompCulling>();
-	const TCompCulling::TCullingBits* culling_bits = culling ? &culling->bits : nullptr;
-
 	// Activate tech for the light dir 
 	auto* tech = Resources.get("pbr_spot_lights.tech")->as<CRenderTechnique>();
 	tech->activate();
@@ -197,36 +188,17 @@ void CDeferredRenderer::renderSpotLights() {
 	mesh->activate();
 
 	// Para todas las luces... pintala
-	getObjectManager<TCompLightSpot>()->forEach([&](TCompLightSpot* c) {
+	getObjectManager<TCompLightSpot>()->forEach([mesh](TCompLightSpot* c) {
 
+		// subir las contantes de la posicion/dir
+		// activar el shadow map...
+		c->activate();
 
-		// Do the culling 
-		if (culling_bits) {
-			CHandle h = c;
-			CEntity* e = h.getOwner();
-			std::string name = e->getName();
-			TCompAbsAABB* aabb = e->get<TCompAbsAABB>();
+		setWorldTransform(c->getWorld());
 
-			if (aabb) {
-				CHandle h = aabb;
-				auto idx = h.getExternalIndex();
-				if (!culling_bits->test(idx)) {
-					//Doing the culling, not painting the lights 
-					//dbg("Not painting the light %s \n \n", name.c_str()); 
-				}
-				else {
-					// subir las contantes de la posicion/dir 
-					// activar el shadow map... 
-					c->activate();
-
-					setWorldTransform(c->getWorld());
-
-					// mandar a pintar una geometria que refleje los pixeles que potencialmente 
-					// puede iluminar esta luz.... El Frustum solido 
-					mesh->render();
-				}
-			}
-		}
+		// mandar a pintar una geometria que refleje los pixeles que potencialmente
+		// puede iluminar esta luz.... El Frustum solido
+		mesh->render();
 	});
 }
 
@@ -235,7 +207,7 @@ void CDeferredRenderer::renderSpotLights() {
 void CDeferredRenderer::renderVolumes() {
 
     //EngineInstancing.clearInstance("data/meshes/quad_volume.instanced_mesh");
-    CTraceScoped gpu_scope("renderSpotLights");
+    CTraceScoped gpu_scope("renderVolumes");
 
     auto rmesh = Resources.get("data/meshes/quad_volume.instanced_mesh")->as<CRenderMesh>();
     TCompLightSpot::volume_instance = (CRenderMeshInstanced*)rmesh;
@@ -336,7 +308,7 @@ void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camer
 	// Do the same with the acc light
 	CTexture::setNullTexture(TS_DEFERRED_ACC_LIGHTS);
 	renderAccLight();
-    //renderVolumes();
+    renderVolumes();
 
 	// Now dump contents to the destination buffer.
 	rt_destination->activateRT();

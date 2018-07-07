@@ -701,9 +701,16 @@ BTNode::ERes TCompAIDrone::actionGoToNoiseSource(float dt)
     /* Point lantern to player */
     CEntity* eLantern = hLantern;
     TCompHierarchy* lanternHierarchy = eLantern->get<TCompHierarchy>();
-    CEntity* eNoiseSource = hNoiseSource;
-    TCompTransform * noiseSourcePos = eNoiseSource->get<TCompTransform>();
-    QUAT lanternRotationObjective = lanternHierarchy->getRelativeLookAt(noiseSourcePos->getPosition());
+    VEC3 lanternObjective = VEC3::Zero;
+    if (hNoiseSource.isValid()) {
+        CEntity* eNoiseSource = hNoiseSource;
+        TCompTransform * noiseSourcePos = eNoiseSource->get<TCompTransform>();
+        lanternObjective = noiseSourcePos->getPosition();
+    }
+    else {
+        lanternObjective = noiseSource;
+    }
+    QUAT lanternRotationObjective = lanternHierarchy->getRelativeLookAt(lanternObjective);
     lanternHierarchy->setRotation(QUAT::Slerp(lerpingStartingRotation, lanternRotationObjective, timeLerpingLanternRot / timeToLerpLanternRot));
     
     timeLerpingLanternRot = Clamp(timeLerpingLanternRot + dt, 0.f, timeToLerpLanternRot);
@@ -999,16 +1006,18 @@ bool TCompAIDrone::assertNotPlayerInFovForSureNorNextToNoise(float dt)
     CEntity* ePlayer = getEntityByName(entityToChase);
     TCompTransform* playerPos = ePlayer->get<TCompTransform>();
 
-    CEntity* eNoiseSource = hNoiseSource;
-    TCompTransform* sourcePos = eNoiseSource->get<TCompTransform>();
-
-    float lele = VEC3::Distance(playerPos->getPosition(), noiseSource);
+    VEC3 sourcePosition = VEC3::Zero;
+    if (hNoiseSource.isValid()) {
+        CEntity* eNoiseSource = hNoiseSource;
+        TCompTransform* sourcePos = eNoiseSource->get<TCompTransform>();
+        sourcePosition = sourcePos->getPosition();
+    }
 
     bool isPlayerInFov = isEntityInFovDrone(entityToChase);
 
-    bool result = !((isPlayerInFov && VEC3::Distance(mypos->getPosition(), playerPos->getPosition()) < autoChaseDistance) || (isPlayerInFov && VEC3::Distance(playerPos->getPosition(), sourcePos->getPosition()) < 4));
+    //bool result = !((isPlayerInFov && VEC3::Distance(mypos->getPosition(), playerPos->getPosition()) < autoChaseDistance) || (isPlayerInFov && VEC3::Distance(playerPos->getPosition(), sourcePosition) < 4));
     //dbg("ASSERT RESULT %s with distance %f\n", result ? "TRUE" : "FALSE", lele);
-    return !((isPlayerInFov && VEC3::Distance(mypos->getPosition(), playerPos->getPosition()) < autoChaseDistance) || (isPlayerInFov && VEC3::Distance(playerPos->getPosition(), sourcePos->getPosition()) < 4));
+    return !((isPlayerInFov && VEC3::Distance(mypos->getPosition(), playerPos->getPosition()) < autoChaseDistance) || (hNoiseSource.isValid() && isPlayerInFov && VEC3::Distance(playerPos->getPosition(), sourcePosition) < 4));
     //isEntityInFov && isAutoChaseDistance || isEntityInFov && nextToWpt => false
 
    /* bool result = !(VEC3::Distance(mypos->getPosition(), playerPos->getPosition()) < autoChaseDistance && isEntityInFovDrone(entityToChase) && VEC3::Distance(playerPos->getPosition(), sourcePos->getPosition()) < 4);

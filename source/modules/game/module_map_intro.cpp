@@ -26,9 +26,10 @@ bool CModuleMapIntro::start() {
 #else
     EngineScene.loadScene("scene_map_intro");
 #endif
+
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 	mouse->setLockMouse(true);
-	dbg("MODULE MAP INTRO START \n");
+	dbg("MODULE MAP START\n");
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::INGAME_STAMINA_BAR);
 
 	//Engine.getGUI().activateWidget("ingame");

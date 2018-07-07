@@ -140,10 +140,19 @@
 			"radius": 0.01
 		},
 		{
+			"name": "exitmergeinterrupted",
+			"type": "ExitMergeInterruptedState",
+			"animation": "exitmerge",
+			"speed": 4,
+			"size": 0.1,
+			"radius": 0.01
+		},
+		{
 			"name": "exitmerge",
 			"type": "ExitMergeState",
 			"animation": "exitmerge",
-			"speed": 4,
+			"speed": 3.6,
+			"rotationSpeed": 10.0,
 			"size": 1,
 			"radius": 0.3,
 			"camera": {
@@ -156,8 +165,9 @@
 			"name": "exitmergecrouched",
 			"type": "ExitMergeCrouchedState",
 			"animation": "exitmergecrouched",
-			"speed": 4,
-			"size": 1,
+			"speed": 1.5,
+			"rotationSpeed": 5.0,
+			"size": 0.15,
 			"radius": 0.3,
 			"camera": {
 				"target": "TPCameraCrouched",
@@ -292,7 +302,13 @@
 			"name": "sonarEnemy",
 			"type": "SonarState",
 			"animation": "inhibitorRemoved",
-			"speed": 0
+			"speed": 0,
+			"noise": {
+				"is_only_once": true,
+				"radius": 10.0,
+				"time_to_repeat": 0.5,
+				"is_artificial": true
+			}
 		},
 		{
 			"name": "movingObject",
@@ -524,7 +540,7 @@
 		},
 		{
 		  "type": "VariableTransition",
-		  "source": "walk",
+		  "source": "idle",
 		  "target": "sonarEnemy",
 		  "variable": {
 			"name": "sonar",
@@ -619,10 +635,40 @@
 			}
 		},
 		{
+			"type": "VariableTransition",
+			"source": "entermerge",
+			"target": "exitmergeinterrupted",
+			"variable": {
+				"name": "onmerge",
+				"type": "bool",
+				"value": false
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "exitmergeinterrupted",
+			"target": "exitmergecrouched",
+			"variable": {
+				"name": "crouch",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "exitmergeinterrupted",
+			"target": "exitmerge",
+			"variable": {
+				"name": "crouch",
+				"type": "bool",
+				"value": false
+			}
+		},
+		{
 			"type": "TimeTransition",
 			"source": "entermerge",
 			"target": "merge",
-			"time": 0.1
+			"time": 0.5
 		},
 		{
 			"type": "MultipleVariableTransition",

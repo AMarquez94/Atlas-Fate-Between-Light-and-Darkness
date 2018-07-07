@@ -70,6 +70,10 @@ struct TMaterialExporter (
 					fs.writeComma()
 					exportMap mat.selfIllumMap "emissive"
 				)
+				if mat.refractionMap != undefined then (
+					fs.writeComma()
+					exportMap mat.refractionMap "aocclusion"
+				)
 			)
 		
 			fs.endObj()

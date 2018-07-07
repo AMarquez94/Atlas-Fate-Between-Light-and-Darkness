@@ -8,6 +8,7 @@ Texture2D    txNormal         SLOT(TS_NORMAL);
 Texture2D    txMetallic       SLOT(TS_METALLIC);
 Texture2D    txRoughness      SLOT(TS_ROUGHNESS);
 Texture2D    txEmissive       SLOT(TS_EMISSIVE);
+Texture2D    txAOcclusion     SLOT(TS_AOCCLUSION);
 Texture2D    txHeight         SLOT(TS_HEIGHT);
 Texture2D    txNoiseMap       SLOT(TS_NOISE_MAP);
 Texture2D    txNoiseMap2       SLOT(TS_NOISE_MAP2);

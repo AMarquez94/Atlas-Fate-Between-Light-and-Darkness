@@ -12,5 +12,7 @@
     "normal": "data/textures/tx_acera_nml.dds"
     ,
     "height": "data/textures/tx_acera_hgt.dds"
+    ,
+    "aocclusion": "data/textures/tx_acera_ao.dds"
   }
 }

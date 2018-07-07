@@ -1,12 +1,11 @@
 {
-  "shadows": true
-  ,
-  "textures":
-  {
-    "albedo": "data/textures/tx_suelo_bricks_basecolor.dds",
-	"normal": "data/textures/tx_suelo_bricks_normal.dds",
-    "roughness": "data/textures/tx_suelo_bricks_roughness.dds",
-	"metallic": "data/textures/suelo_bricks_metallic.dds",
-	"height": "data/textures/tx_suelo_bricks_height.dds"
-  }
+	"shadows": true,
+	"textures": {
+		"albedo": "data/textures/tx_suelo_bricks_basecolor.dds",
+		"normal": "data/textures/tx_suelo_bricks_normal.dds",
+		"roughness": "data/textures/tx_suelo_bricks_roughness.dds",
+		"metallic": "data/textures/suelo_bricks_metallic.dds",
+		"height": "data/textures/tx_suelo_bricks_height.dds",
+		"aocclusion": "data/textures/tx_suelo_bricks_ao.dds"
+	}
 }

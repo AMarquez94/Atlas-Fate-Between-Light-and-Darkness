@@ -9,6 +9,7 @@
 #include "comp_player_attack_cast.h"
 #include "components/lighting/comp_fade_controller.h"
 #include "components/ia/comp_bt_player.h"
+#include "components/lighting/comp_fade_controller.h"
 
 DECL_OBJ_MANAGER("player_input", TCompPlayerInput);
 
@@ -82,41 +83,48 @@ void TCompPlayerInput::update(float dt)
 		/* Player/User interaction messages */
 		{
 
-			if (EngineInput["btAttack"].getsPressed())
-			{
-				TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
-				if (c_my_player->canAttack) {
-					TMsgSetFSMVariable attack;
-					attack.variant.setName("attack");
-					attack.variant.setBool(true);
-					e->sendMsg(attack);
-					attackButtonJustPressed = true;
-				}
-				else if (c_my_player->canSonarPunch()) {
+            if (EngineInput["btAttack"].getsPressed())
+            {
+                TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
+                if (c_my_player->canAttack) {
+                    TMsgSetFSMVariable attack;
+                    attack.variant.setName("attack");
+                    attack.variant.setBool(true);
+                    e->sendMsg(attack);
+                    attackButtonJustPressed = true;
+                }
+                else if (c_my_player->canSonarPunch()) {
 
-					TMsgSetFSMVariable sonar;
-					sonar.variant.setName("sonar");
-					sonar.variant.setBool(true);
-					e->sendMsg(sonar);
-				}
+                    TMsgSetFSMVariable sonar;
+                    sonar.variant.setName("sonar");
+                    sonar.variant.setBool(true);
+                    e->sendMsg(sonar);
+                    attackButtonJustPressed = true;
+                }
 
-			}
-			else if (attackButtonJustPressed) {
-				TMsgSetFSMVariable attack;
-				attack.variant.setName("attack");
-				attack.variant.setBool(false);
-				e->sendMsg(attack);
-				attackButtonJustPressed = false;
-			}
+            }
+            else if (attackButtonJustPressed) {
+                TMsgSetFSMVariable attack;
+                attack.variant.setName("attack");
+                attack.variant.setBool(false);
+                e->sendMsg(attack);
 
-			if (EngineInput["btCrouch"].getsPressed())
-			{
-				crouchButton = !crouchButton;
-				TMsgSetFSMVariable crouch;
-				crouch.variant.setName("crouch");
-				crouch.variant.setBool(crouchButton);
-				e->sendMsg(crouch);
-			}
+                TMsgSetFSMVariable sonar;
+                sonar.variant.setName("sonar");
+                sonar.variant.setBool(false);
+                e->sendMsg(sonar);
+
+                attackButtonJustPressed = false;
+            }
+
+            if (EngineInput["btCrouch"].getsPressed() && !EngineInput["btRun"].isPressed())
+            {
+                crouchButton = !crouchButton;
+                TMsgSetFSMVariable crouch;
+                crouch.variant.setName("crouch");
+                crouch.variant.setBool(crouchButton);
+                e->sendMsg(crouch);
+            }
 
 			if (EngineInput["btAction"].hasChanged())
 			{

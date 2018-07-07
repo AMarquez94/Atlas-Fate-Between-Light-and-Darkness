@@ -18,6 +18,7 @@ public:
     bool stop() override;
     void update(float delta) override;
     void render() override;
+    void renderDeferred();
 
     Particles::TParticleHandle launchSystem(const std::string& name, CHandle entity = CHandle());
     Particles::TParticleHandle launchSystem(const Particles::TCoreSystem* cps, CHandle entity = CHandle());

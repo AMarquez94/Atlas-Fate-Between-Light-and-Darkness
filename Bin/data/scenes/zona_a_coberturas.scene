@@ -14,6 +14,198 @@
   {
     "entity":
     {
+      "name": "mesh_barril001"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-77.9742 0.0 -89.8191"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_containerbasura001"
+      ,
+      "prefab": "data/prefabs/containerbasura.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-75.3703 -0.0467824 -114.946"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_containerbasura002"
+      ,
+      "prefab": "data/prefabs/containerbasura.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-114.935 -0.0467827 -122.488"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_containerbasura003"
+      ,
+      "prefab": "data/prefabs/containerbasura.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-117.118 -0.0467827 -122.488"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_containerbasura004"
+      ,
+      "prefab": "data/prefabs/containerbasura.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-54.0985 -0.0467842 -156.121"
+        ,
+        "rotation": "0.0 -1.19209e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_containerbasura005"
+      ,
+      "prefab": "data/prefabs/containerbasura.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-84.9274 -0.0467823 -112.216"
+        ,
+        "rotation": "0.0 -1.19209e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_containerbasura006"
+      ,
+      "prefab": "data/prefabs/containerbasura.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-87.1112 -0.0467823 -112.216"
+        ,
+        "rotation": "0.0 -1.19209e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_containerbasura007"
+      ,
+      "prefab": "data/prefabs/containerbasura.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-69.6957 -0.0467828 -125.889"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_containerbasura008"
+      ,
+      "prefab": "data/prefabs/containerbasura.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-71.8786 -0.0467829 -125.96"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cubobasura_tapa001"
+      ,
+      "prefab": "data/prefabs/cubobasura_tapa.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-75.3792 0.153357 -113.674"
+        ,
+        "rotation": "-0.127084 0.272532 0.403058 -0.864361"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cubobasura_tapa002"
+      ,
+      "prefab": "data/prefabs/cubobasura_tapa.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-113.01 0.796359 -121.998"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cubobasura_tapa003"
+      ,
+      "prefab": "data/prefabs/cubobasura_tapa.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-118.435 0.796359 -121.991"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_cubobasura001"
       ,
       "prefab": "data/prefabs/cubobasura.prefab"
@@ -30,15 +222,79 @@
   {
     "entity":
     {
-      "name": "mesh_cubobasura_tapa001"
+      "name": "mesh_cubobasura002"
       ,
-      "prefab": "data/prefabs/cubobasura_tapa.prefab"
+      "prefab": "data/prefabs/cubobasura.prefab"
       ,
       "transform":
       {
-        "pos": "-75.3792 0.114294 -113.674"
+        "pos": "-75.8251 -0.0221241 -113.528"
         ,
-        "rotation": "-0.127084 0.272532 0.403058 -0.864361"
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cubobasura003"
+      ,
+      "prefab": "data/prefabs/cubobasura.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-113.577 0.0014351 -121.998"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cubobasura004"
+      ,
+      "prefab": "data/prefabs/cubobasura.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-113.013 0.0014351 -121.998"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cubobasura005"
+      ,
+      "prefab": "data/prefabs/cubobasura.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-118.438 0.0014351 -121.991"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cubobasura006"
+      ,
+      "prefab": "data/prefabs/cubobasura.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-87.8809 -0.022124 -111.063"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
@@ -94,15 +350,15 @@
   {
     "entity":
     {
-      "name": "mesh_cubobasura002"
+      "name": "mesh_piezaconcreto004"
       ,
-      "prefab": "data/prefabs/cubobasura.prefab"
+      "prefab": "data/prefabs/piezaconcreto.prefab"
       ,
       "transform":
       {
-        "pos": "-75.8251 -0.100005 -113.528"
+        "pos": "-72.6957 -0.100006 -127.982"
         ,
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "0.0 0.0871557 0.0 -0.996195"
       }
     }
   }
@@ -110,15 +366,79 @@
   {
     "entity":
     {
-      "name": "mesh_containerbasura001"
+      "name": "mesh_piezaconcreto005"
       ,
-      "prefab": "data/prefabs/containerbasura.prefab"
+      "prefab": "data/prefabs/piezaconcreto.prefab"
       ,
       "transform":
       {
-        "pos": "-75.3703 -0.100005 -114.946"
+        "pos": "-73.4499 -0.100006 -129.388"
         ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
+        "rotation": "0.0 -0.0871558 0.0 -0.996195"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto006"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-93.5255 -0.100007 -143.175"
+        ,
+        "rotation": "0.0 -0.887011 0.0 -0.461749"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto007"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-92.2484 -0.100007 -144.361"
+        ,
+        "rotation": "0.0 -0.793353 0.0 -0.608761"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto008"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-58.7239 -0.100004 -88.5444"
+        ,
+        "rotation": "0.0 -0.422618 0.0 -0.906308"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto009"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-63.1526 -0.100004 -90.9588"
+        ,
+        "rotation": "0.0 0.21644 0.0 -0.976296"
       }
     }
   }

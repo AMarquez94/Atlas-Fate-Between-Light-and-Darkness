@@ -7,7 +7,6 @@
     "scene_group": [
       "data/scenes/Map_Intro/player_fsm.scene",
       "data/scenes/Map_Intro/enemy.scene",
-      "data/scenes/Map_Intro/sp_dynamic_lights.scene",
       "data/scenes/Map_Intro/milestone2_map_pre.scene",
       "data/scenes/Map_Intro/milestone2_map_lights2.scene",
       "data/scenes/Map_Intro/milestone2_map_colliders.scene",
@@ -16,18 +15,18 @@
       "data/scenes/Map_Intro/camera.scene",
       "data/scenes/Map_Intro/checkpoints.scene",
       "data/scenes/Map_Intro/movable_objects.scene",
+      "data/scenes/Map_Intro/milestone2_map_particles.scene",
       "data/scenes/Map_Intro/buttons.scene"
     ]
 	},
 	"scene_zone_a": {
-		"static_data": {
-			"initial_script": "zoneA",
+    "static_data": {
+			"initial_script": "scene_a",
 			"navmesh": "data/navmeshes/scene_a.bin"
-		},
+    },
 		"scene_group": [
 			"data/scenes/ZoneA/player2_fsm.scene",
 			"data/scenes/ZoneA/camera.scene",
-			"data/scenes/ZoneA/sp_dynamic_lights.scene",
 			"data/scenes/ZoneA/zone_a_aceras.scene",
 			"data/scenes/ZoneA/zone_a_suelo.scene",
 			"data/scenes/ZoneA/zone_a_casas.scene",
@@ -43,10 +42,14 @@
 			"data/scenes/zona_a_chimeneas.scene",
 			"data/scenes/zona_a_andamios.scene",
 			"data/scenes/zona_a_conductos.scene",
+			"data/scenes/zona_a_puertas_reja.scene",
 			"data/scenes/zona_a_tubos.scene",
 			"data/scenes/colliders_prova.scene",
 			"data/scenes/zona_a_proves.scene",
-			"data/scenes/ZoneA/whitebox_zone_light.scene"
+			"data/scenes/ZoneA/whitebox_zone_light.scene",
+			"data/scenes/ZoneA/test_instancing.scene",
+			"data/scenes/ZoneA/zone_a_particles.scene",
+			"data/scenes/ZoneA/enemy2.scene"
 			
 		]
 	},
@@ -69,14 +72,16 @@
 	"scene_basilic_interior": {
 		"static_data": {
 			"initial_script": "basilic_interior",
-			"navmesh": "data/navmeshes/milestone2_navmesh.bin"
+			"navmesh": "data/navmeshes/basilic_interior_navmesh.bin"
 		},
 		"scene_group": [
 			"data/scenes/Basilic_interior/player.scene",
+			"data/scenes/Basilic_interior/enemy.scene",
 			"data/scenes/Basilic_interior/test_instancing.scene",
 			"data/scenes/Basilic_interior/camera.scene",
 			"data/scenes/Basilic_interior/map_basilic_interior.scene",
-			"data/scenes/Basilic_interior/map_basilic_interior_lights.scene"
+			"data/scenes/Basilic_interior/map_basilic_interior_lights.scene",
+			"data/scenes/Basilic_interior/objects.scene"
 		]
 	}
 }

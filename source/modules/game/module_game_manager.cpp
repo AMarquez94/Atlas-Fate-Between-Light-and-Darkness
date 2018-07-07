@@ -52,7 +52,7 @@ void CModuleGameManager::update(float delta)
 		}
 	}
 
-    CEntity* e = player;
+	CEntity* e = getEntityByName("The Player");
     if (e) {
 
         /* Player Dead */

@@ -9,7 +9,7 @@ function onSceneEnd_map_intro()
 
 		blendInCamera("scene_transition", 1.0);
 		pausePlayerToggle();
-		cinematicIntroToMapA();
+		cinematicMode();
 
 end
 

@@ -21,6 +21,17 @@ struct TVtxPosClr {
 
 };
 
+struct TVtxPosNUvUvT {
+    VEC3 pos;
+    VEC3 normal;
+    VEC2 tex0;
+    VEC2 tex1;
+    VEC4 tangent;
+    TVtxPosNUvUvT() {}
+    TVtxPosNUvUvT(VEC3 new_pos, VEC3 new_color) : pos(new_pos) , normal(new_pos) {}
+
+};
+
 // ---------------------------------------------------
 
 CRenderMesh* createLineZ() {
@@ -233,14 +244,14 @@ CRenderMesh* createUnitQuadXY() {
 // Full screen quad to dump textures in screen
 CRenderMesh* createUnitQuadCenterXY() {
     const VEC4 white(1, 1, 1, 1);
-    const std::vector<TVtxPosClr> vtxs = {
-        { VEC3(-0.5, 0, -0.5), white }
-        ,{ VEC3(0.5, 0, -0.5), white }
-        ,{ VEC3(-0.5, 0, 0.5), white }
-        ,{ VEC3(0.5, 0, 0.5), white }
+    const std::vector<TVtxPosNUvUvT> vtxs = {
+        { VEC3(-0.5, 0, -0.5), VEC3() }
+        ,{ VEC3(0.5, 0, -0.5), VEC3() }
+        ,{ VEC3(-0.5, 0, 0.5), VEC3() }
+        ,{ VEC3(0.5, 0, 0.5), VEC3() }
     };
     CRenderMesh* mesh = new CRenderMesh;
-    if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(TVtxPosClr), "PosClr"
+    if (!mesh->create(vtxs.data(), vtxs.size() * sizeof(TVtxPosNUvUvT), "PosNUvUvT"
         , CRenderMesh::TRIANGLE_STRIP
     ))
         return nullptr;

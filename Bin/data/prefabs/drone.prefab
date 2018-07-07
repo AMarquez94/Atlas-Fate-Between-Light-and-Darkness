@@ -90,7 +90,10 @@
 				"firing_rate_cooldown": 1.0,
 				"bullet_damage": 10,
 				"bullet_speed": 10
-			}
+			},
+			"abs_aabb": true
+			,
+			"local_aabb": true
 		}
 	}, {
 		"entity": {

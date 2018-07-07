@@ -76,24 +76,24 @@ void CModuleLogic::loadScriptsInFolder(char * path)
 			std::experimental::filesystem::recursive_directory_iterator iter(path);
 			std::experimental::filesystem::recursive_directory_iterator end;
 
-			while (iter != end) {
-				std::string fileName = iter->path().string();
-				if (fileName.substr(fileName.find_last_of(".") + 1) == "lua" &&
-					!std::experimental::filesystem::is_directory(iter->path())) {
-					dbg("File : %s loaded\n", fileName.c_str());
-					s->doFile(fileName);
-				}
-				std::error_code ec;
-				iter.increment(ec);
-				if (ec) {
-					fatal("Error while accessing %s: %s\n", iter->path().string().c_str(), ec.message().c_str());
-				}
-			}
-		}
-	}
-	catch (std::system_error & e) {
-		fatal("Exception %s while loading scripts\n", e.what());
-	}
+            while (iter != end) {
+                std::string fileName = iter->path().string();
+                if (iter->path().extension().string() == ".lua" &&
+                    !std::experimental::filesystem::is_directory(iter->path())) {
+                    dbg("File : %s loaded\n", fileName.c_str());
+                    s->doFile(fileName);
+                }
+                std::error_code ec;
+                iter.increment(ec);
+                if (ec) {
+                    fatal("Error while accessing %s: %s\n", iter->path().string().c_str(), ec.message().c_str());
+                }
+            }
+        }
+    }
+    catch (std::system_error & e) {
+        fatal("Exception %s while loading scripts\n", e.what());
+    }
 }
 
 /* Publish all the classes in LUA */
@@ -108,19 +108,23 @@ void CModuleLogic::publishClasses() {
 		.comment("This is our wrapper of the logic class")
 		.set("printLog", &CModuleLogic::printLog);
 
-	SLB::Class< VEC3 >("VEC3", m)
-		.constructor<float, float, float>()
-		.comment("This is our wrapper of the VEC3 class")
-		.property("x", &VEC3::x)
-		.property("y", &VEC3::y)
-		.property("z", &VEC3::z);
+    SLB::Class< VEC3 >("VEC3", m)
+        .constructor<float, float, float>()
+        .comment("This is our wrapper of the VEC3 class")
+        .property("x", &VEC3::x)
+        .property("y", &VEC3::y)
+        .property("z", &VEC3::z);
 
-	SLB::Class< TCompTempPlayerController >("PlayerController", m)
-		.comment("This is our wrapper of the player controller component")
-		.property("inhibited", &TCompTempPlayerController::isInhibited);
+    SLB::Class< TCompTempPlayerController >("PlayerController", m)
+        .comment("This is our wrapper of the player controller component")
+        .property("inhibited", &TCompTempPlayerController::isInhibited)
+        .set("die", &TCompTempPlayerController::die);
 
+    //SLB::Class < CHandle >("CHandle", m)
+    //    .comment("test")
+    //    .set("sendMsg", &CHandle::sendMsg);
 
-	/* Global functions */
+    /* Global functions */
 
 	//game hacks
 	m->set("pauseGame", SLB::FuncCall::create(&pauseGame));
@@ -183,7 +187,7 @@ void CModuleLogic::publishClasses() {
 	m->set("playSound2D", SLB::FuncCall::create(&playSound2D));
 	m->set("exeShootImpactSound", SLB::FuncCall::create(&exeShootImpactSound));
 	m->set("sleep", SLB::FuncCall::create(&sleep));
-	m->set("cinematicIntroToMapA", SLB::FuncCall::create(&cinematicIntroToMapA));
+	m->set("cinematicMode", SLB::FuncCall::create(&cinematicMode));
 
 
 
@@ -196,13 +200,13 @@ void CModuleLogic::execCvar(std::string& script) {
 	if (script.find("/") != 0)
 		return;
 
-	// Little bit of dirty tricks to achieve same results with different string types.
-	script.erase(0, 1);
-	int index = script.find_first_of(' ');
-	script = index != -1 ? script.replace(script.find_first_of(' '), 1, "(") : script;
-	index = script.find_first_of(' ');
-	script = index != -1 ? script.replace(script.find_first_of(' '), 1, ",") : script;
-	script.append(")");
+    // Little bit of dirty tricks to achieve same results with different string types.
+    script.erase(0, 1);
+    int index = (int)script.find_first_of(' ');
+    script = index != -1 ? script.replace(script.find_first_of(' '), 1, "(") : script;
+    index = (int)script.find_first_of(' ');
+    script = index != -1 ? script.replace(script.find_first_of(' '), 1, ",") : script;
+    script.append(")");
 }
 
 CModuleLogic::ConsoleResult CModuleLogic::execScript(const std::string& script) {
@@ -562,7 +566,7 @@ void sleep(float time) {
 	Sleep(time);
 }
 
-void cinematicIntroToMapA() {
+void cinematicMode() {
 
 	TMsgPlayerAIEnabled msg;
 	CHandle h = getEntityByName("The Player");

@@ -88,7 +88,7 @@ void PS_GBuffer(
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 	o_selfIllum =  txEmissive.Sample(samLinear, iTex0) * self_intensity;
 	o_selfIllum.xyz *= self_color;
-	o_selfIllum.a = 1;
+	o_selfIllum.a = txAOcclusion.Sample(samLinear, iTex0).r;
 	
 	// Save roughness in the alpha coord of the N render target
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
@@ -315,11 +315,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	float3 env = txEnvironmentMap.SampleLevel(samLinear, reflected_dir, mipIndex).xyz;
 	env = pow(abs(env), 2.2f);	// Convert the color to linear also.
 
-	// The irrandiance, is read using the N direction.
-	// Here we are sampling using the cubemap-miplevel 4, and the already blurred txIrradiance texture
-	// and mixing it in base to the scalar_irradiance_vs_mipmaps which comes from the ImGui.
-	// Remove the interpolation in the final version!!!
-	float3 irradiance_mipmaps = txEnvironmentMap.SampleLevel(samLinear, N, 6).xyz;
+	float3 irradiance_mipmaps = txEnvironmentMap.SampleLevel(samLinear, N, 8).xyz;
 	float3 irradiance_texture = txIrradianceMap.Sample(samLinear, N).xyz;
 	float3 irradiance = irradiance_texture * scalar_irradiance_vs_mipmaps + irradiance_mipmaps * (1. - scalar_irradiance_vs_mipmaps);
 
@@ -343,7 +339,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	//return ((final_color * ao) + (float4(self_illum.xyz, 1) * global_self_intensity)) * global_ambient_adjustment;
 
 	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
-	final_color = final_color * global_ambient_adjustment * ao;
+	final_color = final_color * global_ambient_adjustment * ao * self_illum.a;
 	final_color = lerp(float4(env, 1), final_color, visibility) + float4(self_illum.xyz, 1) * global_ambient_adjustment * global_self_intensity;
 	return float4(final_color.xyz, 1);
 }

@@ -1,0 +1,48 @@
+[
+  {
+    "entity":
+    {
+      "name": "porcho_cupula"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_porcho_cupula"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_porcho_cupula.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_porcho_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_porcho_cupula_low.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

@@ -20,7 +20,7 @@ class TCompLightSpot : public TCompCamera {
 	float			intensity = 1.0f;
 
     //CRenderMesh * spotcone;
-    int  num_samples = 80;
+    int  num_samples;
 
 	// Shadows params
     bool              cull_enabled = false;      // Dynamic
@@ -34,6 +34,7 @@ class TCompLightSpot : public TCompCamera {
 
 	void onCreate(const TMsgEntityCreated& msg);
 	void onDestroy(const TMsgEntityDestroyed& msg);
+    void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 
 	DECL_SIBLING_ACCESS();
 public:
@@ -46,7 +47,6 @@ public:
 	float angle;
 	float inner_cut;
 	float outer_cut;
-	bool is_moving;
 
 	void debugInMenu();
 	void renderDebug();
@@ -59,7 +59,6 @@ public:
     void cullFrame();
 
 	MAT44 getWorld();
-	void createAABB();
 
 	void setColor(const VEC4 & new_color);
 

@@ -5,7 +5,7 @@
 		"start_delay": 0.0,
 		"start_lifetime": 5.0,
 		"start_speed": 0.0,
-		"start_size": "0.75 0.75 0.75",
+		"start_size": "0.45 0.45 0.45",
 		"start_rotation": "0 0 2",
 		"random_rotation": 0.0,
 		"start_color": "1 1 1 1",
@@ -62,7 +62,7 @@
     "scale" : 1.0,
     "scale_variation" : 0.3,
     "sizes" : [
-      [1.0, "0.75 0.75 0.75"]
+      [1.0, "0.45 0.45 0.45"]
     ]
   },
   "color" : {

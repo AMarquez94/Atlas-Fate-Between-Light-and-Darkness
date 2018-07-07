@@ -1,0 +1,48 @@
+[
+  {
+    "entity":
+    {
+      "name": "antena_m2"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_antena_m2"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_antena_m2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_m2.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.0465 1.20658 0.0462831"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

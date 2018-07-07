@@ -35,7 +35,7 @@ private:
     bool goingInactive = false;
     VEC3 initialPos;
     VEC3 initialLookAt;
-    float rotationSpeedObservation = deg2rad(40.f);
+    float rotationSpeedObservation = deg2rad(50.f);
     float rotationSpeedPatrolling = deg2rad(80.f);
     float waitTimeInLasPlayerPos = 3.f;
     float chaseSpeed = 6.f;
