@@ -7,12 +7,7 @@
 #include "components/comp_render.h"
 #include "components/comp_particles.h"
 
-//class TCompTempPlayerController;
-//class TCompPlayerAnimator;
-//
-//typedef void (TCompTempPlayerController::*actionhandler)(float);
-//typedef void (TCompPlayerAnimator::*animatonhandler)(float);
-
+// Refactor this after Milestone3, move everything unnecessary to player class
 namespace FSM
 {
     TargetCamera * getTargetCamera(const json& jData) {
@@ -397,6 +392,8 @@ namespace FSM
             light->isEnabled = false;
         }
 
+        // TO REFACTOR
+        // Sets particles and calls the finishing state.
         Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", ctx.getOwner());
         Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash.particles", ctx.getOwner());
         Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", ctx.getOwner());
@@ -409,7 +406,6 @@ namespace FSM
 
         CEntity* e = ctx.getOwner();
         e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::exitMergeState });
-        // Re enable rigidbody.
 
         TCompRender * render = e->get<TCompRender>();
         render->visible = true;

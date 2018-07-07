@@ -404,9 +404,9 @@ void TCompTempPlayerController::mergeState(float dt) {
     if (convexTest() || concaveTest()) {
 
         VEC3 postUp = p_transform->getUp();
-        angle_test = fabs(EnginePhysics.gravity.Dot(prevUp));
+        angle_test = fabs(EnginePhysics.gravity.Dot(postUp));
         float angle_amount = fabsf(acosf(prevUp.Dot(postUp)));
-        std::string target_name = angle_test > mergeAngle ? "SMCameraVer" : "SMCameraHor"; // WARN: Watch this if gives problems...  
+        std::string target_name = angle_test > mergeAngle ? "SMCameraHor" : "SMCameraVer"; // WARN: Watch this if gives problems...  
 
         if (angle_amount > deg2rad(30.f) || target_name.compare(dbCameraState) != 0) {
 
@@ -437,6 +437,15 @@ void TCompTempPlayerController::resetState(float dt) {
     TCompTransform * trans_camera = player_camera->get<TCompTransform>();
     physx::PxCapsuleController* c_capsule = (physx::PxCapsuleController*)rigidbody->controller;
 
+    // Check for ceiling collision!
+    if (fabs(EnginePhysics.gravity.Dot(c_my_transform->getUp())) < mergeAngle) {
+        physx::PxRaycastHit hit;
+        float offset_distance = 1.1f;
+        VEC3 desired_pos = c_my_transform->getPosition() + .1f * c_my_transform->getUp();
+        if (EnginePhysics.Raycast(desired_pos, VEC3::Up, offset_distance, hit, physx::PxQueryFlag::eSTATIC))
+            c_my_transform->setPosition(c_my_transform->getPosition() + VEC3(0, -(offset_distance - hit.distance), 0));
+    }
+
     VEC3 up = trans_camera->getFront();
     VEC3 proj = projectVector(up, -EnginePhysics.gravity);
     VEC3 dir = getMotionDir(proj, EnginePhysics.gravity.Cross(proj));
@@ -459,19 +468,6 @@ void TCompTempPlayerController::exitMergeState(float dt) {
     TMsgSetCameraCancelled msg;
     CEntity * eCamera = getEntityByName(auxCamera);
     eCamera->sendMsg(msg);
-
-    // Check if we will have a collision, with the ceiling
-    // In this case, we move the player half it's bounding box.
-    std::vector<physx::PxSweepHit> hits;
-    physx::PxBoxGeometry geometrySweep;
-    TCompTransform * t_trans = get<TCompTransform>();
-    geometrySweep.halfExtents = physx::PxVec3(0.35f, 1.7f, 0.35f); // Change this hardcoded values for other ones.
-    VEC3 current_pos = t_trans->getPosition();
-
-    //if (EnginePhysics.Sweep(geometrySweep, current_pos, QUAT(0, 0, 0, 1), VEC3(0, 1, 0), 1.7f, hits)) {
-    //    t_trans->setPosition(current_pos + VEC3(0, -0.85f, 0));
-    //    dbg("sweep done!!!\n");
-    //}
 }
 
 /* Player dead state */
@@ -670,7 +666,7 @@ const bool TCompTempPlayerController::concaveTest(void) {
     VEC3 old_up = c_my_transform->getUp();
     VEC3 upwards_offset = c_my_transform->getPosition() + c_my_transform->getUp() * .01f;
 
-    if (EnginePhysics.Raycast(upwards_offset, c_my_transform->getFront(), 0.15f, hit, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery))
+    if (EnginePhysics.Raycast(upwards_offset, c_my_transform->getFront(), 0.175f, hit, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery))
     {
         VEC3 hit_normal = VEC3(hit.normal.x, hit.normal.y, hit.normal.z);
         VEC3 hit_point = VEC3(hit.position.x, hit.position.y, hit.position.z);
@@ -724,7 +720,7 @@ const bool TCompTempPlayerController::convexTest(void) {
             rigidbody->normal_gravity = EnginePhysics.gravityMod * -hit_normal;
 
             QUAT new_rotation = createLookAt(hit_point, target, hit_normal);
-            VEC3 new_pos = hit_point + 0.1f * new_forward; // Adding little offset
+            VEC3 new_pos = hit_point + .1f * new_forward; // Adding little offset
             c_my_transform->setRotation(new_rotation);
             c_my_transform->setPosition(new_pos);
             invertAxis(old_up, false);
