@@ -14,5 +14,7 @@
     "height": "data/textures/tx_ornamentos_hgt.dds"
     ,
     "emissive": "data/textures/tx_ornamentos_emi.dds"
+    ,
+    "aocclusion": "data/textures/tx_ornamentos_ao.dds"
   }
 }
