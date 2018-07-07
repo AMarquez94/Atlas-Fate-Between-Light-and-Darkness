@@ -12,5 +12,7 @@
     "normal": "data/textures/tx_muro_ladrillo_nml.dds"
     ,
     "height": "data/textures/tx_muro_ladrillo_hgt.dds"
+    ,
+    "aocclusion": "data/textures/tx_muro_ladrillo_ao.dds"
   }
 }
