@@ -4,3 +4,8 @@ function transition_zone_a_to_basilic_courtyard()
 	execScriptDelayed("cinematicModeToggle()", 2);
 	execScriptDelayed("loadScene(\"scene_basilic_courtyard\")", 4);
 end
+
+function enable_button_exit()
+	toggleButtonCanBePressed("Button Open Exit", false);
+	toggleButtonCanBePressed("Button End Scene", true);
+end
