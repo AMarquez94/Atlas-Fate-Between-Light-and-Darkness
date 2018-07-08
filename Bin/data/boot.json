@@ -67,7 +67,6 @@
     },
     "scene_group": [
       "data/scenes/Coliseo/player2_fsm.scene",
-      "data/scenes/ZoneA/sp_dynamic_lights.scene",
       "data/scenes/Coliseo/coliseo_suelo.scene",
       "data/scenes/Coliseo/coliseo_arcos.scene",
       "data/scenes/Coliseo/coliseo_pared.scene",
@@ -91,7 +90,6 @@
     },
     "scene_group": [
       "data/scenes/Coliseo/player2_fsm2.scene",
-      "data/scenes/ZoneA/sp_dynamic_lights.scene",
       "data/scenes/Coliseo/coliseo_suelo.scene",
       "data/scenes/Coliseo/coliseo_arcos.scene",
       "data/scenes/Coliseo/coliseo_pared.scene",
@@ -113,7 +111,6 @@
     "scene_group": [
       "data/scenes/Basilic_courtyard/player.scene",
       "data/scenes/Basilic_courtyard/enemy.scene",
-      "data/scenes/ZoneA/sp_dynamic_lights.scene",
       "data/scenes/Basilic_courtyard/map_basilic_courtyard.scene",
       "data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
       "data/scenes/Basilic_courtyard/test_instancing.scene",
