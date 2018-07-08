@@ -9,7 +9,7 @@ class TCompPatrolAnimator;
 class TCompPatrolAnimator : public TCompAnimator
 {
 public:
-	enum EAnimation { IDLE = 0, WALK, ATTACK, DEATH, RUN, SHOOT_INHIBITOR, REPAIR_PATROL, DIE, TURN_LEFT, TURN_RIGHT, SUSPECTING, PLAYER_FOUNDED, LOOKING_FOR_PLAYER, BEING_REPARED };
+	enum EAnimation { IDLE = 0, WALK, ATTACK, DEAD, RUN, SHOOT_INHIBITOR, REPAIR_PATROL, DIE, TURN_LEFT, TURN_RIGHT, SUSPECTING, PLAYER_FOUNDED, LOOKING_FOR_PLAYER, BEING_REPARED };
 	struct TMsgExecuteAnimation {
 
 		TCompPatrolAnimator::EAnimation animation;

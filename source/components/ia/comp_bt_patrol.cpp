@@ -123,11 +123,14 @@ void TCompAIPatrol::onMsgPatrolStunned(const TMsgEnemyStunned & msg)
     TCompEmissionController * e_controller = get<TCompEmissionController>();
     e_controller->blend(enemyColor.colorDead, 0.1f);
 
-    TCompTransform *mypos = get<TCompTransform>();
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)(TCompPatrolAnimator::EAnimation::DIE)))
+		myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::DIE);
+    /*TCompTransform *mypos = get<TCompTransform>();
     float y, p, r;
     mypos->getYawPitchRoll(&y, &p, &r);
     p = p - deg2rad(89.f);
-    mypos->setYawPitchRoll(y, p, r);
+    mypos->setYawPitchRoll(y, p, r);*/
     turnOffLight();
 
     TCompGroup* cGroup = get<TCompGroup>();
@@ -180,11 +183,11 @@ void TCompAIPatrol::onMsgPatrolFixed(const TMsgPatrolFixed & msg)
 
         hasBeenFixed = true;
 
-        TCompTransform *mypos = get<TCompTransform>();
+        /*TCompTransform *mypos = get<TCompTransform>();
         float y, p, r;
         mypos->getYawPitchRoll(&y, &p, &r);
         p = p + deg2rad(89.f);
-        mypos->setYawPitchRoll(y, p, r);
+        mypos->setYawPitchRoll(y, p, r);*/
         turnOnLight();
 
         TCompGroup* cGroup = get<TCompGroup>();
@@ -359,8 +362,7 @@ BTNode::ERes TCompAIPatrol::actionStunned(float dt)
 {
     //Animation To Change
     TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
-
+	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::DEAD);
     //CEntity * patrol = CHandle(this).getOwner();
     //patrol->sendMsg(TMsgFadeBody{ true });
 
