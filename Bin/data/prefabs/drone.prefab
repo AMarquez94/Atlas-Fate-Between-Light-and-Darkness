@@ -75,7 +75,7 @@
 			"light_spot": {
 				"type": "spotlight",
 				"proj_type": "perspective",
-				"range": 30,
+				"range": 20,
 				"angle": 20,
 				"inner_cut": 15,
 				"outer_cut": 20,
@@ -92,7 +92,7 @@
 			"cone_of_light": {
 				"hor_fov": 20,
 				"ver_fov": 20,
-				"dist": 30,
+				"dist": 20,
 				"target": "The Player"
 			},
 			"shooter": {

@@ -117,7 +117,7 @@
 			}
 		}
 	},  {
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/mimetic.prefab",
 			"name": "Mimetic 1",
 			"transform": {
@@ -128,6 +128,43 @@
 				"startLightsOn": false,
 				"type": "wall",
 				"isSlept": false
+			}
+		}
+	},{
+		"entity": {
+			"prefab": "data/prefabs/drone.prefab",
+			"name": "Drone 1",
+			"transform": {
+				"pos": "-80.0 25.0 -115.0",
+				"lookat": "1 0 0"
+			},
+			"ai_drone": {
+				"waypoints": [{
+						"position": "-80.0 25.0 -115.0",
+						"lookAt": "1 0 0",
+						"minTime": 0
+					},
+					{
+						"position": "-65.0 25.0 -125.0",
+						"lookAt": "1 0 0",
+						"minTime": 0
+					},
+					{
+						"position": "-45.0 25.0 -115.0",
+						"lookAt": "1 0 0",
+						"minTime": 0
+					},
+					{
+						"position": "-50.0 25.0 -100.0",
+						"lookAt": "1 0 0",
+						"minTime": 0
+					},
+					{
+						"position": "-70.0 25.0 -95.0",
+						"lookAt": "1 0 0",
+						"minTime": 0
+					}
+				]
 			}
 		}
 	}
