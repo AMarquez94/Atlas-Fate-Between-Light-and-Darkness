@@ -9,6 +9,8 @@
     ,
     "roughness": "data/textures/tx_props_plaza_rgh.dds"
     ,
+    "normal": "data/textures/tx_props_plaza_nml.dds"
+    ,
     "height": "data/textures/tx_props_plaza_hgt.dds"
     ,
     "emissive": "data/textures/tx_props_plaza_emi.dds"
