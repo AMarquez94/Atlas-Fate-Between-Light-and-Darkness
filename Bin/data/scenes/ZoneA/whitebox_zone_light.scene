@@ -17,11 +17,11 @@
 				"proj_type": "ortographic",
 				"color": "0.0 0.207 1.0 1.0",
 				"intensity": 1.5,
-				"z_near": 3,
+				"z_near": 0.1,
 				"z_far": 187.671,
 				"ortosize": 155.0,
 				"casts_shadows": true,
-				"shadows_step": 1.5,
+				"shadows_step": 1.0,
 				"shadows_resolution": 4096,
 				"shadows_fmt": "R32_TYPELESS"
 			},

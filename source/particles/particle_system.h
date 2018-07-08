@@ -11,6 +11,8 @@ namespace Particles
 
     struct TCoreSystem : public IResource
     {
+        void onFileChanged(const std::string& filename) override;
+
         struct TNSystem 
         {
             float duration = 1.f;  
