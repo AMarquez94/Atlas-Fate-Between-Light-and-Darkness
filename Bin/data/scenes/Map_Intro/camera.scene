@@ -66,8 +66,8 @@
 			},
 			"color_grading": {
 				"enabled": true,
-				"amount": 0.6,
-				"lut": "data/textures/lut/RGBTable16x1.dds"
+				"amount": 0.25,
+				"lut": "data/textures/lut/lut5.dds"
 			},
 			"chromatic_aberration": {
 				"enabled": true
@@ -96,12 +96,17 @@
 				"speed": 1.5
 			},
 			"camera": {
-				"fov": 80,
+				"fov": 75,
 				"z_near": 0.01,
 				"z_far": 1000
 			},
 			"render_ao": {
 				"enabled": true
+			},
+			"render_blur": {
+				"enabled": false,
+				"global_distance": 0.1,
+				"gauss_filter": true
 			},
 			"render_bloom": {
 				"enabled": true,
@@ -110,8 +115,11 @@
 			},
 			"color_grading": {
 				"enabled": true,
-				"amount": 0.6,
-				"lut": "data/textures/lut/RGBTable16x1.dds"
+				"amount": 0.25,
+				"lut": "data/textures/lut/lut5.dds"
+			},
+			"chromatic_aberration": {
+				"enabled": true
 			},
 			"fog": {
 				"enabled": true
@@ -254,14 +262,33 @@
 			"render_ao": {
 				"enabled": true
 			},
+			"render_blur": {
+				"enabled": false,
+				"global_distance": 0.1,
+				"gauss_filter": true
+			},
 			"render_bloom": {
 				"enabled": true,
 				"max_steps": 4,
 				"rt_name": "Bloom"
 			},
-			"volume_light": {
+			"color_grading": {
+				"enabled": true,
+				"amount": 0.25,
+				"lut": "data/textures/lut/lut5.dds"
+			},
+			"chromatic_aberration": {
 				"enabled": true
-			}
+			},
+			"fog": {
+				"enabled": true
+			},
+			"antialiasing": {
+				"enabled": true
+			},
+			"render_outlines" : {
+				"enabled" : true
+		  }
 		}
 	}, {
 		"entity": {
@@ -274,7 +301,37 @@
 				"fov": 60,
 				"z_near": 0.01,
 				"z_far": 1000
-			}
+			},
+						"render_ao": {
+				"enabled": true
+			},
+			"render_blur": {
+				"enabled": false,
+				"global_distance": 0.1,
+				"gauss_filter": true
+			},
+			"render_bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"rt_name": "Bloom"
+			},
+			"color_grading": {
+				"enabled": true,
+				"amount": 0.25,
+				"lut": "data/textures/lut/lut5.dds"
+			},
+			"chromatic_aberration": {
+				"enabled": true
+			},
+			"fog": {
+				"enabled": true
+			},
+			"antialiasing": {
+				"enabled": true
+			},
+			"render_outlines" : {
+				"enabled" : true
+		  }
 		}
 	}, {
 		"entity": {
@@ -293,7 +350,37 @@
 				"shape": "sphere",
 				"is_trigger": true,
 				"radius": 5
-			}
+			},
+						"render_ao": {
+				"enabled": true
+			},
+			"render_blur": {
+				"enabled": false,
+				"global_distance": 0.1,
+				"gauss_filter": true
+			},
+			"render_bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"rt_name": "Bloom"
+			},
+			"color_grading": {
+				"enabled": true,
+				"amount": 0.25,
+				"lut": "data/textures/lut/lut5.dds"
+			},
+			"chromatic_aberration": {
+				"enabled": true
+			},
+			"fog": {
+				"enabled": true
+			},
+			"antialiasing": {
+				"enabled": true
+			},
+			"render_outlines" : {
+				"enabled" : true
+		  }
 		}
 	},
 	{
@@ -306,27 +393,36 @@
 		  "camera": {
 			"fov": 80
 		  },
-		  "render_ao": {
-			"enabled": true
-		  },
-		  "render_bloom": {
-			"enabled": true,
-			"max_steps": 4,
-			"rt_name": "Bloom"
-		  },
-		  "fog": {
-			"enabled": true
-		  },
-		  "antialiasing": {
-			"enabled": true
-		  },
-		  "chromatic_aberration": {
-			"enabled": true
-		  },
-		  "render_outlines": {
-			"enabled": true
-		  },
-		  "culling": true
+			"render_ao": {
+				"enabled": true
+			},
+			"render_blur": {
+				"enabled": false,
+				"global_distance": 0.1,
+				"gauss_filter": true
+			},
+			"render_bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"rt_name": "Bloom"
+			},
+			"color_grading": {
+				"enabled": true,
+				"amount": 0.25,
+				"lut": "data/textures/lut/lut5.dds"
+			},
+			"chromatic_aberration": {
+				"enabled": true
+			},
+			"fog": {
+				"enabled": true
+			},
+			"antialiasing": {
+				"enabled": true
+			},
+			"render_outlines" : {
+				"enabled" : true
+		  }
 		}
 	}
 ]

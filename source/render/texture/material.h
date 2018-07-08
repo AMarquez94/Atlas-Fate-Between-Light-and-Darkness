@@ -32,6 +32,8 @@ public:
 	void onFileChanged(const std::string& filename) override;
     void activateTextures(int slot) const;
     void setCBMaterial(float alpha_outline);
+    void setSelfColor(VEC4 self_color);
+
 	bool castsShadows() const { return cast_shadows; }
 
 protected:
