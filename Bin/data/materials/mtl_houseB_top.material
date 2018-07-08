@@ -12,7 +12,5 @@
     "normal": "data/textures/tx_houseB_top_nml.dds"
     ,
     "height": "data/textures/tx_houseB_top_hgt.dds"
-				,
-    "aocclusion": "data/textures/tx_houseB_top_ao.dds"
   }
 }

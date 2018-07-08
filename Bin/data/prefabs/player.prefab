@@ -1,6 +1,6 @@
 [{
 		"entity": {
-			"name": "Player Prefab",
+			"name": "The Player",
 			"transform": {
 				"pos": "0 0 0"
 			},
