@@ -95,13 +95,6 @@ void PS_GBuffer(
 	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
 	o_normal = encodeNormal(N, roughness);
 
-	// Si el material lo pide, sobreescribir los valores de la textura
-	// por unos escalares uniformes. Only to playtesting...
-	if (scalar_metallic >= 0.f)
-		o_albedo.a = scalar_metallic;
-	if (scalar_roughness >= 0.f)
-		o_normal.a = scalar_roughness;
-
 	// Compute the Z in linear space, and normalize it in the range 0...1
 	// In the range z=0 to z=zFar of the camera (not zNear)
 	float3 camera2wpos = iWorldPos - camera_pos;
@@ -136,13 +129,6 @@ void PS_Shade_GBuffer(
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
 	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
 	o_normal = encodeNormal(N, roughness);
-
-	// Si el material lo pide, sobreescribir los valores de la textura
-	// por unos escalares uniformes. Only to playtesting...
-	if (scalar_metallic >= 0.f)
-		o_albedo.a = scalar_metallic;
-	if (scalar_roughness >= 0.f)
-		o_normal.a = scalar_roughness;
 
 	// Compute the Z in linear space, and normalize it in the range 0...1
 	// In the range z=0 to z=zFar of the camera (not zNear)
@@ -317,7 +303,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 
 	float3 irradiance_mipmaps = txEnvironmentMap.SampleLevel(samLinear, N, 8).xyz;
 	float3 irradiance_texture = txIrradianceMap.Sample(samLinear, N).xyz;
-	float3 irradiance = irradiance_texture * scalar_irradiance_vs_mipmaps + irradiance_mipmaps * (1. - scalar_irradiance_vs_mipmaps);
+	float3 irradiance = irradiance_mipmaps;//irradiance_texture * scalar_irradiance_vs_mipmaps + irradiance_mipmaps * (1. - scalar_irradiance_vs_mipmaps);
 
 	// How much the environment we see
 	float3 env_fresnel = Specular_F_Roughness(specular_color, 1. - roughness * roughness, N, view_dir);
@@ -335,8 +321,8 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	float visibility = exp(distancet * distancet * -global_fog_density * global_fog_density * 1.442695);
 	visibility = saturate(visibility);
 
-	//float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
-	//return ((final_color * ao) + (float4(self_illum.xyz, 1) * global_self_intensity)) * global_ambient_adjustment;
+	//float4 final_color2 = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
+	//return ((final_color2 * ao) + (float4(self_illum.xyz, 1) * global_self_intensity)) * global_ambient_adjustment;
 
 	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
 	final_color = final_color * global_ambient_adjustment * ao * self_illum.a;
@@ -389,7 +375,7 @@ float4 shade(float4 iPosition, out float3 light_dir, bool use_shadows)
 	float3 cDiff = Diffuse(albedo);
 	float3 cSpec = Specular(specular_color, h, view_dir, light_dir, a, NdL, NdV, NdH, VdH, LdV);
 
-	float  att = (1. - smoothstep(0.90, 0.98, distance_to_light / light_radius)); // Att, point light
+	float  att = (1. - smoothstep(inner_atten, far_atten, distance_to_light / light_radius)); // Att, point light
 	//att *= 1 / distance_to_light;
 	
 	// Spotlight attenuation
@@ -401,8 +387,33 @@ float4 shade(float4 iPosition, out float3 light_dir, bool use_shadows)
 
 float4 PS_point_lights(in float4 iPosition : SV_Position) : SV_Target
 {
-	float3 out_lightdir;
-	return shade(iPosition, out_lightdir, false);
+		// Decode GBuffer information
+	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
+	float  roughness;
+	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir);
+	N = normalize(N);
+
+	// From wPos to Light
+	float3 light_dir_full = light_pos.xyz - wPos;
+	float  distance_to_light = length(light_dir_full);
+	float3 light_dir = light_dir_full / distance_to_light;
+
+	float  NdL = saturate(dot(N, light_dir));
+	float  NdV = saturate(dot(N, view_dir));
+	float3 h = normalize(light_dir + view_dir); // half vector
+
+	float  NdH = saturate(dot(N, h));
+	float  VdH = saturate(dot(view_dir, h));
+	float  LdV = saturate(dot(light_dir, view_dir));
+	float  a = max(0.001f, roughness * roughness);
+	float3 cDiff = Diffuse(albedo);
+	float3 cSpec = Specular(specular_color, h, view_dir, light_dir, a, NdL, NdV, NdH, VdH, LdV);
+
+	float  att = (1. - smoothstep(inner_atten, far_atten, distance_to_light / light_radius)); // Att, point light
+	att *= 1 / distance_to_light;
+	
+	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att;
+	return float4(final_color, 1);
 }
 
 float4 PS_dir_lights(in float4 iPosition : SV_Position) : SV_Target

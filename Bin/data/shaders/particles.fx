@@ -25,6 +25,7 @@ float4 PS_Particles(
   VS_FULL_OUTPUT input
   ) : SV_Target
 {
+return float4(1,1,1,1);
   float2 finalUV = lerp(particle_minUV, particle_maxUV, input.UV);
   float4 oDiffuse = txAlbedo.Sample(samLinear, finalUV);
   float4 finalColor = float4(oDiffuse.rgb * particle_color.rgb, oDiffuse.a * particle_color.a);

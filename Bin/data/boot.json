@@ -52,7 +52,11 @@
 			"data/scenes/ZoneA/whitebox_zone_light.scene",
 			"data/scenes/ZoneA/test_instancing.scene",
 			"data/scenes/ZoneA/zone_a_particles.scene",
-			"data/scenes/ZoneA/buttons.scene"
+			"data/scenes/ZoneA/buttons.scene",
+			"data/scenes/ZoneA/luces.scene",
+			"data/scenes/ZoneA/neones.scene",
+			"data/scenes/ZoneA/carteles.scene",
+			"data/scenes/ZoneA/enemy2.scene"
 		]
 	},
 	"scene_coliseo": {
@@ -66,19 +70,15 @@
 			"data/scenes/Coliseo/coliseo_suelo.scene",
 			"data/scenes/Coliseo/coliseo_arcos.scene",
 			"data/scenes/Coliseo/coliseo_pared.scene",
-			
 			"data/scenes/Coliseo/coliseo_generador.scene",
 			"data/scenes/Coliseo/coliseo_maquinas.scene",
 			"data/scenes/Coliseo/coliseo_props.scene",
 			"data/scenes/Coliseo/coliseo_conductos.scene",
-
-
 			"data/scenes/ZoneA/whitebox_zone_light.scene",
 			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
 			"data/scenes/Basilic_courtyard/test_instancing.scene",
 			"data/scenes/Basilic_courtyard/capsules.scene",
 			"data/scenes/Basilic_courtyard/camera.scene"
-			
 		]
 	},
 	"scene_basilic_courtyard": {

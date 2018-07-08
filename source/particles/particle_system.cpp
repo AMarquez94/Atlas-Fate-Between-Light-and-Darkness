@@ -47,6 +47,15 @@ namespace Particles
 {
     TParticleHandle CSystem::_lastHandle = 0;
 
+    void Particles::TCoreSystem::onFileChanged(const std::string& filename) {
+        if (filename != getName())
+            return;
+
+        destroy();
+        Particles::CParser parser;
+        Particles::TCoreSystem* res = parser.parseParticlesFile(filename);
+    }
+
     CSystem::CSystem(const TCoreSystem* core, CHandle entity)
         : _core(core)
         , _entity(entity)
@@ -154,7 +163,7 @@ namespace Particles
 
     bool CSystem::update(float delta)
     {
-        if (!_enabled && !_entity.isValid()) return true;
+        if (!_enabled || !_entity.isValid()) return true;
         
         // Handle start delay
         _deploy_time += delta;
@@ -242,7 +251,7 @@ namespace Particles
     // To update this with the compute shader.
     void CSystem::render()
     {
-        if (!_enabled) return;
+        if (!_enabled || !_entity.isValid()) return;
         if (_deploy_time < _core->n_system.start_delay) return;
 
         CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
@@ -310,7 +319,7 @@ namespace Particles
         for (int i = 0; i < _core->n_emission.rate_time && _particles.size() < _core->n_system.max_particles; ++i)
         {
             TParticle particle;
-            particle.position = generatePosition() + _core->n_system.offset;
+            particle.position = VEC3::Transform(generatePosition() + _core->n_system.offset, rotation);
             particle.velocity = generateVelocity();
             particle.color = _core->n_color.colors.get(0.f);
             particle.size = _core->n_system.start_size;
@@ -340,7 +349,7 @@ namespace Particles
         for (int i = 0; i < amount && _particles.size() < _core->n_system.max_particles; ++i)
         {
             TParticle particle;
-            particle.position = VEC3::Transform(generatePosition(), world) + _core->n_system.offset;
+            particle.position = VEC3::Transform(generatePosition() + _core->n_system.offset, world);
             particle.velocity = generateVelocity();
             particle.color = _core->n_color.colors.get(0.f);
             particle.size = _core->n_size.sizes.get(0.f);

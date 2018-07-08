@@ -476,7 +476,9 @@ struct TSceneExporter (
 			fs.beginObj()
 			fs.writeKeyValue "type" "pointlight"
 			fs.writeComma()
-			fs.writeKeyValue "range" obj.farAttenEnd 
+			fs.writeKeyValue "inner_cut" obj.farAttenStart
+			fs.writeComma()
+			fs.writeKeyValue "outer_cut" obj.farAttenEnd 
 			fs.writeComma()
 		)
 		else if classof obj == skylight   then (
@@ -575,7 +577,7 @@ struct TSceneExporter (
 			fs.beginObj()
 			fs.writeKeyValue "shape" "sphere" 
 			fs.writeComma()
-			fs.writeKeyValue "radius" obj.farAttenEnd 
+			fs.writeKeyValue "radius" ((obj.farAttenEnd - obj.farAttenStart) * .5 + obj.farAttenStart) 
 			fs.writeComma()
 			fs.writeKeyValue "is_trigger" true
 			fs.endObj()
@@ -594,6 +596,7 @@ struct TSceneExporter (
 		exportTransformLookAt obj
 		fs.writeComma()
 		exportCompLight obj
+		exportAABB obj
 		fs.writeComma()
 		createLightCollider obj
 		fs.writeKey "tags"
