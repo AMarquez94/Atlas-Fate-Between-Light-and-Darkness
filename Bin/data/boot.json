@@ -61,14 +61,14 @@
 		"scene_group": [
 			"data/scenes/Coliseo/player2_fsm.scene",
 			"data/scenes/ZoneA/sp_dynamic_lights.scene",
-			"data/scenes/coliseo_suelo.scene",
-			"data/scenes/coliseo_arcos.scene",
-			"data/scenes/coliseo_pared.scene",
+			"data/scenes/Coliseo/coliseo_suelo.scene",
+			"data/scenes/Coliseo/coliseo_arcos.scene",
+			"data/scenes/Coliseo/coliseo_pared.scene",
 			
-			"data/scenes/coliseo_generador.scene",
-			"data/scenes/coliseo_maquinas.scene",
-			"data/scenes/coliseo_props.scene",
-			"data/scenes/coliseo_conductos.scene",
+			"data/scenes/Coliseo/coliseo_generador.scene",
+			"data/scenes/Coliseo/coliseo_maquinas.scene",
+			"data/scenes/Coliseo/coliseo_props.scene",
+			"data/scenes/Coliseo/coliseo_conductos.scene",
 
 
 			"data/scenes/ZoneA/whitebox_zone_light.scene",

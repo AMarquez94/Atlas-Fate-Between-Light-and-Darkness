@@ -1,0 +1,717 @@
+[
+  {
+    "entity":
+    {
+      "name": "coliseo_maquinas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_maquina_tubo"
+      ,
+      "transform":
+      {
+        "pos": "13.4047 2.08 -4.02323"
+        ,
+        "rotation": "0.0 0.573576 0.0 -0.819152"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_maquina_tubo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_maquina_tubos.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_maquina_tubo.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_maquina_tubo001"
+      ,
+      "transform":
+      {
+        "pos": "-11.6376 2.08 -8.13347"
+        ,
+        "rotation": "0.0 -0.461749 0.0 -0.887011"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_maquina_tubo001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_maquina_tubos.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_maquina_tubo002.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_maquina_tubo002"
+      ,
+      "transform":
+      {
+        "pos": "-5.67882 2.08 4.88197"
+        ,
+        "rotation": "0.0 -0.906308 0.0 -0.422618"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_maquina_tubo002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_maquina_tubos.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_maquina_tubo003.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_maquina_tubo003"
+      ,
+      "transform":
+      {
+        "pos": "0.80654 2.08 -7.79165"
+        ,
+        "rotation": "0.0 0.0871557 0.0 -0.996195"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_maquina_tubo003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_maquina_tubos.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_maquina_tubo001.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubocurvo"
+      ,
+      "transform":
+      {
+        "pos": "14.4157 4.06631 -3.73793"
+        ,
+        "rotation": "0.0 0.573576 0.0 -0.819152"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubocurvo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_mesh_tubocurvo001.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubocurvo"
+      ,
+      "transform":
+      {
+        "pos": "13.99 4.06631 -4.90765"
+        ,
+        "rotation": "0.0 0.573576 0.0 -0.819152"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubocurvo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_mesh_tubocurvo002.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubocurvo001"
+      ,
+      "transform":
+      {
+        "pos": "-11.9838 4.06631 -9.1253"
+        ,
+        "rotation": "0.0 -0.461749 0.0 -0.887011"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubocurvo001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_mesh_tubocurvo005.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubocurvo002"
+      ,
+      "transform":
+      {
+        "pos": "-12.6978 4.06631 -8.10563"
+        ,
+        "rotation": "0.0 -0.461749 0.0 -0.887011"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubocurvo002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_mesh_tubocurvo006.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubocurvo003"
+      ,
+      "transform":
+      {
+        "pos": "-6.72646 4.06631 4.95968"
+        ,
+        "rotation": "0.0 -0.906308 0.0 -0.422618"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubocurvo003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_mesh_tubocurvo007.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubocurvo004"
+      ,
+      "transform":
+      {
+        "pos": "-5.92632 4.06631 5.91325"
+        ,
+        "rotation": "0.0 -0.906308 0.0 -0.422618"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubocurvo004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_mesh_tubocurvo008.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubocurvo005"
+      ,
+      "transform":
+      {
+        "pos": "1.55913 4.06631 -8.52459"
+        ,
+        "rotation": "0.0 0.0871557 0.0 -0.996195"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubocurvo005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_mesh_tubocurvo003.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubocurvo006"
+      ,
+      "transform":
+      {
+        "pos": "0.333251 4.06631 -8.74074"
+        ,
+        "rotation": "0.0 0.0871557 0.0 -0.996195"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubocurvo006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_mesh_tubocurvo004.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubohorizontal"
+      ,
+      "transform":
+      {
+        "pos": "11.7207 3.34617 -3.41031"
+        ,
+        "rotation": "0.0 0.573577 0.0 -0.819152"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubohorizontal.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_tubo_horizontal.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubohorizontal001"
+      ,
+      "transform":
+      {
+        "pos": "-10.1697 3.34617 -7.10559"
+        ,
+        "rotation": "0.0 -0.461749 0.0 -0.887011"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubohorizontal001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_tubo_horizontal002.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubohorizontal002"
+      ,
+      "transform":
+      {
+        "pos": "-4.30602 3.34617 3.73006"
+        ,
+        "rotation": "0.0 -0.906308 0.0 -0.422618"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubohorizontal002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_tubo_horizontal003.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubohorizontal003"
+      ,
+      "transform":
+      {
+        "pos": "0.495353 3.34617 -6.02682"
+        ,
+        "rotation": "0.0 0.0871558 0.0 -0.996195"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubohorizontal003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_tubo_horizontal001.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_maquina003"
+      ,
+      "prefab": "data/prefabs/maquina2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "13.2867 2.08 -1.3595"
+        ,
+        "rotation": "0.0 -0.984808 0.0 0.173648"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_maquina004"
+      ,
+      "prefab": "data/prefabs/maquina1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "3.0708 2.08 2.17896"
+        ,
+        "rotation": "0.0 -0.461749 0.0 -0.887011"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_maquina005"
+      ,
+      "prefab": "data/prefabs/maquina1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-10.889 2.08 -10.6456"
+        ,
+        "rotation": "0.0 -0.953717 0.0 -0.300706"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_maquina006"
+      ,
+      "prefab": "data/prefabs/maquina1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-8.04353 2.08 6.80507"
+        ,
+        "rotation": "0.0 0.422618 0.0 -0.906308"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_maquina007"
+      ,
+      "prefab": "data/prefabs/maquina2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-14.3695 2.08 0.647583"
+        ,
+        "rotation": "0.0 -0.996195 0.0 0.0871558"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_maquina008"
+      ,
+      "prefab": "data/prefabs/maquina2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-9.74992 2.08 -9.86224"
+        ,
+        "rotation": "0.0 0.300706 0.0 -0.953717"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_maquina009"
+      ,
+      "prefab": "data/prefabs/maquina2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "14.3434 0.0 17.9191"
+        ,
+        "rotation": "0.0 -0.965926 0.0 -0.258819"
+      }
+    }
+  }
+]
