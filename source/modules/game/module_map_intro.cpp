@@ -22,9 +22,9 @@
 bool CModuleMapIntro::start() {
 
 #ifdef _DEBUG
-    EngineScene.loadScene("scene_zone_a");
+    EngineScene.loadScene("scene_basilic_interior");
 #else
-    EngineScene.loadScene("scene_zone_a");
+    EngineScene.loadScene("scene_basilic_interior");
 #endif
 
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));

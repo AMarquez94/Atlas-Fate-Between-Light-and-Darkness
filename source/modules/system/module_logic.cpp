@@ -111,9 +111,13 @@ void CModuleLogic::publishClasses() {
         .property("inhibited", &TCompTempPlayerController::isInhibited)
         .set("die", &TCompTempPlayerController::die);
 
+    SLB::Class<TCompLightSpot>("SpotLight", m)
+        .comment("This is our wrapper of the spotlight controller")
+        .property("isEnabled", &TCompLightSpot::isEnabled);
+
     //SLB::Class < CHandle >("CHandle", m)
-    //    .comment("test")
-    //    .set("sendMsg", &CHandle::sendMsg);
+    //    .comment("CHandle wrapper")
+    //    .set("getLight", &CHandle::sendMsg);
 
     /* Global functions */
 
@@ -163,6 +167,7 @@ void CModuleLogic::publishClasses() {
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
+    m->set("toggle_spotlight", SLB::FuncCall::create(&toggle_spotlight));
 }
 
 /* Check if it is a fast format command */
@@ -520,4 +525,15 @@ void sendOrderToDrone(const std::string & droneName, VEC3 position)
     msg.position = position;
     msg.hOrderSource = getEntityByName("The Player");
     drone->sendMsg(msg);
+}
+
+void toggle_spotlight(const std::string & lightName)
+{
+    CHandle hLight = getEntityByName(lightName);
+    if (!hLight.isValid()) {
+        return;
+    }
+    CEntity* light = hLight;
+    TCompLightSpot* spotlight = light->get<TCompLightSpot>();
+    spotlight->isEnabled = !spotlight->isEnabled;
 }

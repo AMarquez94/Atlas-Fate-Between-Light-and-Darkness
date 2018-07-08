@@ -104,6 +104,7 @@ void cinematicModeToggle();
 
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);
+void toggle_spotlight(const std::string& lightName);
 
 // Extra cvar commands
 void cg_drawfps(bool value);

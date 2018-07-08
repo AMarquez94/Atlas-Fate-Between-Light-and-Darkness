@@ -109,7 +109,8 @@
 			"data/scenes/Basilic_interior/camera.scene",
 			"data/scenes/Basilic_interior/map_basilic_interior.scene",
 			"data/scenes/Basilic_interior/map_basilic_interior_lights.scene",
-			"data/scenes/Basilic_interior/objects.scene"
+			"data/scenes/Basilic_interior/objects.scene",
+			"data/scenes/Basilic_interior/buttons.scene"
 		]
 	}
 }
