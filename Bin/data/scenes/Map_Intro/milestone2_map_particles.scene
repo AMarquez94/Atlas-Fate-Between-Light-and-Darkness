@@ -36,7 +36,7 @@
 				"pos": "-30 2 67"
 			},
 			"particles" : {
-				"core" : "data/particles/amb_firefly.particles"
+				"core" : "data/particles/amb_dust.particles"
 			}
 		}
 	},
@@ -47,7 +47,7 @@
 				"pos": "-10 3 -2"
 			},
 			"particles" : {
-				"core" : "data/particles/amb_firefly.particles"
+				"core" : "data/particles/amb_dust.particles"
 			}
 		}
 	},	{
@@ -57,7 +57,7 @@
 				"pos": "-12 -5 -20"
 			},
 			"particles" : {
-				"core" : "data/particles/amb_firefly.particles"
+				"core" : "data/particles/amb_dust.particles"
 			}
 		}
 	}

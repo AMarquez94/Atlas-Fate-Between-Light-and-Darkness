@@ -15,7 +15,7 @@ struct TCompRenderBloom : public TCompRenderBlur {
   VEC4                          add_weights;
   float                         threshold_min = 0.210f;
   float                         threshold_max = 1.410f;
-  float                         multiplier = 1.f;
+  float                         multiplier = 0.75f;
   TCompRenderBlur * renderblur;
 
   TCompRenderBloom();

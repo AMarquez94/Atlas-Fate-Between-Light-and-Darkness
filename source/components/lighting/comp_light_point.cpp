@@ -15,8 +15,8 @@ void TCompLightPoint::debugInMenu() {
 
     ImGui::DragFloat("Intensity", &intensity, 0.01f, 0.f, 10.f);
     ImGui::ColorEdit3("Color", &color.x);
-    ImGui::DragFloat("Outer Cut", &outer_cut, 0.01f, 0.f, 100.f);
     ImGui::DragFloat("Inner Cut", &inner_cut, 0.01f, 0.f, 100.f);
+    ImGui::DragFloat("Outer Cut", &outer_cut, 0.01f, 0.f, 100.f);
     ImGui::Checkbox("Enabled", &isEnabled);
 }
 
