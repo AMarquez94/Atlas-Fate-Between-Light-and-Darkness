@@ -16574,13 +16574,6 @@
         }
       ]
       ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.18902 2.0 0.200001"
-      }
-      ,
       "abs_aabb": true
       ,
       "local_aabb": true

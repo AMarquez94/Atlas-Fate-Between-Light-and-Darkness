@@ -17,5 +17,5 @@
     ,
     "emissive": "data/textures/tx_box_emi.dds"
   },
-	"color": "0.0 1.0 1.0 1.0"
+	"color": "1.0 1.0 1.0 1.0"
 }

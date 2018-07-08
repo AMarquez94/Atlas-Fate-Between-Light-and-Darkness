@@ -34,7 +34,7 @@
           ]
         }
       ]
-      ,
+      ,	  "rotator": {},
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -64,7 +64,7 @@
           ]
         }
       ]
-      ,
+      ,	  "rotator": {},
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -94,7 +94,7 @@
           ]
         }
       ]
-      ,
+      ,	  "rotator": {},
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -124,7 +124,7 @@
           ]
         }
       ]
-      ,
+      ,	  "rotator": {},
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -154,7 +154,7 @@
           ]
         }
       ]
-      ,
+      ,	  "rotator": {},
       "abs_aabb": true
       ,
       "local_aabb": true
