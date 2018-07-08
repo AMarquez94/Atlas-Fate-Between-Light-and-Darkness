@@ -14,7 +14,7 @@
   {
     "entity":
     {
-      "name": "mesh_farola_1"
+      "name": "mesh_farola_zonea_0"
       ,
       "transform":
       {
@@ -26,7 +26,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_farola_1.mesh"
+          "mesh": "data/meshes/mesh_farola_zonea_0.mesh"
           ,
           "materials":
           [
@@ -44,7 +44,7 @@
   {
     "entity":
     {
-      "name": "mesh_farola"
+      "name": "mesh_farola_zonea_1"
       ,
       "transform":
       {
@@ -56,7 +56,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_farola.mesh"
+          "mesh": "data/meshes/mesh_farola_zonea_1.mesh"
           ,
           "materials":
           [
@@ -74,7 +74,7 @@
   {
     "entity":
     {
-      "name": "mesh_farola_2"
+      "name": "mesh_farola_zonea_2"
       ,
       "transform":
       {
@@ -86,7 +86,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_farola_2.mesh"
+          "mesh": "data/meshes/mesh_farola_zonea_2.mesh"
           ,
           "materials":
           [
