@@ -47,6 +47,9 @@
       "data/scenes/zone_a_puertas_reja.scene",
       "data/scenes/zona_a_tubos.scene",
       "data/scenes/zone_a_tubitos.scene",
+      "data/scenes/zone_a_cables.scene",
+      "data/scenes/zone_a_farolas.scene",
+      
       "data/scenes/zona_a_colliders_barandillas.scene",
       "data/scenes/zone_a_colliders_valla_luz.scene",
 
@@ -75,11 +78,10 @@
       "data/scenes/Coliseo/coliseo_props.scene",
       "data/scenes/Coliseo/coliseo_conductos.scene",
       "data/scenes/Coliseo/test_instancing.scene",
-      "data/scenes/Coliseo/capsules.scene",
       "data/scenes/Coliseo/camera.scene",
-			"data/scenes/Coliseo/coliseo_particles.scene",
-			"data/scenes/Coliseo/coliseo_farolas.scene",
-			"data/scenes/Coliseo/coliseo_luces.scene",
+      "data/scenes/Coliseo/coliseo_particles.scene",
+      "data/scenes/Coliseo/coliseo_farolas.scene",
+      "data/scenes/Coliseo/coliseo_luces.scene",
       "data/scenes/Coliseo/buttons.scene"
     ]
   },
@@ -98,8 +100,10 @@
       "data/scenes/Coliseo/coliseo_props.scene",
       "data/scenes/Coliseo/coliseo_conductos.scene",
       "data/scenes/Coliseo/test_instancing.scene",
-      "data/scenes/Coliseo/capsules.scene",
       "data/scenes/Coliseo/camera.scene",
+      "data/scenes/Coliseo/coliseo_particles.scene",
+      "data/scenes/Coliseo/coliseo_farolas.scene",
+      "data/scenes/Coliseo/coliseo_luces.scene",
       "data/scenes/Coliseo/buttons2.scene"
     ]
   },
@@ -114,10 +118,8 @@
       "data/scenes/Basilic_courtyard/map_basilic_courtyard.scene",
       "data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
       "data/scenes/Basilic_courtyard/test_instancing.scene",
-      "data/scenes/Basilic_courtyard/capsules.scene",
       "data/scenes/Basilic_courtyard/camera.scene",
       "data/scenes/Basilic_courtyard/buttons.scene"
-
     ]
   },
   "scene_basilic_interior": {

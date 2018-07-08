@@ -3,8 +3,8 @@
 		"prefab": "data/prefabs/player.prefab",
 		"name": "The Player",
 		"transform": {
-				"pos": "20 1 0",
-				"lookat": "-41 1 -90"
+				"pos": "8 0 32",
+				"lookat": "8 0 28"
 		},
 		"ai_player": {
 		}
