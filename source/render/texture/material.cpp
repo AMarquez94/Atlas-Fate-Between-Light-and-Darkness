@@ -154,6 +154,11 @@ void CMaterial::setCBMaterial(float alpha_outline) {
     // Add the rest of the values.
 }
 
+void CMaterial::setSelfColor(VEC4 self_color) {
+
+    cb_material.color_emission = self_color;
+}
+
 void CMaterial::debugInMenu() {
 
 	((CRenderTechnique*)tech)->debugInMenu();
