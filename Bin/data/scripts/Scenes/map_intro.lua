@@ -3,7 +3,7 @@ function onSceneStart_map_intro()
 	--blendInCamera("Camera Follow Drone", 0);
 end
 
-function transition_map_intro_to_zone_a()
+function transition_map_intro_to_coliseum()
 	execScriptDelayed("blendInCamera(\"scene_transition\", 1.0)", 2);
 	execScriptDelayed("pausePlayerToggle()", 2);
 	execScriptDelayed("cinematicModeToggle()", 2);

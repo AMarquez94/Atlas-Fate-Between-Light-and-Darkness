@@ -25,7 +25,7 @@
         "group": "button"
       },
       "button": {
-        "script": "transition_map_intro_to_zone_a()"
+        "script": "transition_map_intro_to_coliseum()"
       },
       "tags": [ "button" ]
     }
