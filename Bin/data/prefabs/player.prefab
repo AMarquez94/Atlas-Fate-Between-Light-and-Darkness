@@ -1,6 +1,6 @@
 [{
 		"entity": {
-			"name": "The Player",
+			"name": "Player Prefab",
 			"transform": {
 				"pos": "0 0 0"
 			},
@@ -136,7 +136,6 @@
 			"noise_emitter": {
 				"radius": -1
 			},
-			"ai_player": {},
 			"tags": [
 				"player"
 			],

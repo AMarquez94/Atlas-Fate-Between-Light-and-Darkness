@@ -121,6 +121,6 @@ function exeShootImpactSound()
 	SLB.exeShootImpactSound()
 end
 
-function cinematicIntroToMapA()
-	SLB.cinematicIntroToMapA()
+function cinematicModeToggle()
+	SLB.cinematicModeToggle()
 end
