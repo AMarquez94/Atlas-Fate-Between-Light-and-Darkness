@@ -30,7 +30,7 @@ bool CModuleGameManager::start()
 
     isStarted = true;
     lastCheckpoint = new CCheckpoint();
-		//lastCheckpoint.init();
+    //lastCheckpoint.init();
 
     return true;
 }
@@ -52,7 +52,7 @@ void CModuleGameManager::update(float delta)
         }
     }
 
-    CEntity* e = player;
+    CEntity* e = getEntityByName("The Player");
     if (e) {
 
         /* Player Dead */
@@ -98,7 +98,7 @@ void CModuleGameManager::update(float delta)
     else if (isPaused && EngineInput["btPause"].getsPressed()) {
 
         /* Player not dead and game unpaused */
-      unpauseGame();
+        unpauseGame();
     }
 
     if (EngineInput["btUpAux"].getsPressed()) {
@@ -130,20 +130,40 @@ void CModuleGameManager::render()
         ImGui::Selectable("Resume game", menuPosition == 0);
         if (ImGui::IsItemClicked() || (menuPosition == 0 && EngineInput["btMenuConfirm"].getsPressed()))
         {
-          unpauseGame();
+            unpauseGame();
         }
 
         ImGui::Selectable("Restart from last checkpoint", menuPosition == 1);
         if (ImGui::IsItemClicked() || (menuPosition == 1 && EngineInput["btMenuConfirm"].getsPressed()))
         {
-            CEngine::get().getModules().changeGameState("map_intro");
+            CEntity* e = getEntityByName("The Player");
+            if (!e) {
+                return;
+            }
+            TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
+            if (playerCont->isDead()) {
+                Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+                mouse->setLockMouse(true);
+                playerDiedMenuVisible = false;
+            }
+            EngineScene.loadScene(EngineScene.getActiveScene()->name);
         }
 
         ImGui::Selectable("Restart level", menuPosition == 2);
         if (ImGui::IsItemClicked() || (menuPosition == 2 && EngineInput["btMenuConfirm"].getsPressed()))
         {
-          lastCheckpoint->deleteCheckPoint();
-          CEngine::get().getModules().changeGameState("map_intro");
+            CEntity* e = getEntityByName("The Player");
+            if (!e) {
+                return;
+            }
+            TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
+            if (playerCont->isDead()) {
+                Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+                mouse->setLockMouse(true);
+                playerDiedMenuVisible = false;
+            }
+            lastCheckpoint->deleteCheckPoint();
+            EngineScene.loadScene(EngineScene.getActiveScene()->name);
         }
 
         ImGui::Selectable("Exit game", menuPosition == 3);
@@ -174,20 +194,40 @@ void CModuleGameManager::render()
         ImGui::Selectable("Restart from last checkpoint", menuPosition == 1);
         if (ImGui::IsItemClicked() || (menuPosition == 1 && EngineInput["btMenuConfirm"].getsPressed()))
         {
-          CEngine::get().getModules().changeGameState("map_intro");
+            CEntity* e = getEntityByName("The Player");
+            if (!e) {
+                return;
+            }
+            TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
+            if (playerCont->isDead()) {
+                Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+                mouse->setLockMouse(true);
+                playerDiedMenuVisible = false;
+            }
+            EngineScene.loadScene(EngineScene.getActiveScene()->name);
         }
 
         ImGui::Selectable("Restart level", menuPosition == 2);
         if (ImGui::IsItemClicked() || (menuPosition == 2 && EngineInput["btMenuConfirm"].getsPressed()))
         {
-          lastCheckpoint->deleteCheckPoint();
-          CEngine::get().getModules().changeGameState("map_intro");
+            CEntity* e = getEntityByName("The Player");
+            if (!e) {
+                return;
+            }
+            TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
+            if (playerCont->isDead()) {
+                Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+                mouse->setLockMouse(true);
+                playerDiedMenuVisible = false;
+            }
+            lastCheckpoint->deleteCheckPoint();
+            EngineScene.loadScene(EngineScene.getActiveScene()->name);
         }
 
         ImGui::Selectable("Exit game", menuPosition == 3);
         if (ImGui::IsItemClicked() || (menuPosition == 3 && EngineInput["btMenuConfirm"].getsPressed()))
         {
-          exit(0);
+            exit(0);
         }
 
         ImGui::End();
@@ -199,27 +239,27 @@ void CModuleGameManager::render()
 
 bool CModuleGameManager::saveCheckpoint(VEC3 playerPos, QUAT playerRot)
 {
-	return lastCheckpoint->saveCheckPoint(playerPos, playerRot);
+    return lastCheckpoint->saveCheckPoint(playerPos, playerRot);
 }
 
 bool CModuleGameManager::loadCheckpoint()
 {
     if (lastCheckpoint) {
-    return lastCheckpoint->loadCheckPoint();
+        return lastCheckpoint->loadCheckPoint();
     }
     else {
-    return false;
+        return false;
     }
 }
 
 bool CModuleGameManager::deleteCheckpoint()
 {
-  if (lastCheckpoint) {
-	  return lastCheckpoint->deleteCheckPoint();
-  }
-  else {
-    return false;
-  }
+    if (lastCheckpoint) {
+        return lastCheckpoint->deleteCheckPoint();
+    }
+    else {
+        return false;
+    }
 }
 
 void CModuleGameManager::unpauseGame()
@@ -243,7 +283,7 @@ void CModuleGameManager::unpauseGame()
 void CModuleGameManager::debugRender() {
 
     if (lastCheckpoint) {
-      lastCheckpoint->debugInMenu();
+        lastCheckpoint->debugInMenu();
     }
     // Extra windows
     {
