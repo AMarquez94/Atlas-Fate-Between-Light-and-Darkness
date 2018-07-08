@@ -115,7 +115,6 @@
     "scene_group": [
       "data/scenes/Basilic_courtyard/player.scene",
       "data/scenes/Basilic_courtyard/enemy.scene",
-      "data/scenes/ZoneA/sp_dynamic_lights.scene",
       "data/scenes/Basilic_courtyard/map_basilic_courtyard.scene",
       "data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
       "data/scenes/Basilic_courtyard/test_instancing.scene",
