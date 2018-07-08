@@ -2,6 +2,9 @@
 	"name":"patrol",
 	"anims" : [
 		{ "name" : "idle" },
-		{ "name" : "walk" }
+		{ "name" : "walk" },
+		{ "name" : "die" },
+		{ "name" : "dead" },
+		{ "name" : "attack" }
 	]
 }
