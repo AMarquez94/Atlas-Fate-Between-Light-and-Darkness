@@ -32,7 +32,7 @@
 			"data/scenes/ZoneA/zone_a_casas.scene",
 			"data/scenes/ZoneA/zone_a_puertas.scene",
 			"data/scenes/ZoneA/zone_a_puentes.scene",
-			
+			"data/scenes/ZoneA/zone_a_tejados.scene",
 			"data/scenes/ZoneA/zone_a_colliders_salientes.scene",
 			"data/scenes/zone_a_barandillas.scene",
 			"data/scenes/zona_a_columnas.scene",
@@ -40,7 +40,8 @@
 			"data/scenes/zona_a_muralla.scene",
 			"data/scenes/zona_a_valla_torre.scene",
 			"data/scenes/zona_a_coberturas.scene",
-			"data/scenes/zone_a_tejados.scene",
+			
+			"data/scenes/zone_a_props.scene",
 			"data/scenes/zona_a_andamios.scene",
 			"data/scenes/zone_a_conductos.scene",
 			"data/scenes/zone_a_puertas_reja.scene",
