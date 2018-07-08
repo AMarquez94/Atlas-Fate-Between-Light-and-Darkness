@@ -861,6 +861,16 @@
 			}
 		},
 		{
+			"type": "VariableTransition",
+			"source": "hardLand",
+			"target": "die",
+			"variable": {
+				"name": "onDead",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
 			"type": "AnimationTransition",
 			"source": "hardLand",
 			"target": "idle",

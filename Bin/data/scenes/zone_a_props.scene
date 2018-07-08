@@ -382,38 +382,6 @@
   {
     "entity":
     {
-      "name": "mesh_caja_juanlu006"
-      ,
-      "prefab": "data/prefabs/caja_juanlu.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-88.7549 11.8405 -116.944"
-        ,
-        "rotation": "0.0 0.573577 0.0 -0.819152"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_caja_m004"
-      ,
-      "prefab": "data/prefabs/caja_m2.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-89.7533 11.8567 -115.113"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_caja_m005"
       ,
       "prefab": "data/prefabs/caja_m2.prefab"
@@ -423,22 +391,6 @@
         "pos": "-85.2475 11.8567 -115.124"
         ,
         "rotation": "0.0 -0.21644 0.0 -0.976296"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_caja_m006"
-      ,
-      "prefab": "data/prefabs/caja_m2.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-89.6527 11.8567 -113.974"
-        ,
-        "rotation": "0.0 -0.422618 0.0 -0.906308"
       }
     }
   }
@@ -974,15 +926,15 @@
   {
     "entity":
     {
-      "name": "mesh_caja_juanlu019"
+      "name": "mesh_caja_m019"
       ,
-      "prefab": "data/prefabs/caja_juanlu.prefab"
+      "prefab": "data/prefabs/caja_m2.prefab"
       ,
       "transform":
       {
-        "pos": "-125.865 13.3409 -143.784"
+        "pos": "-96.1317 -0.028326 -129.58"
         ,
-        "rotation": "0.0 0.573577 0.0 -0.819152"
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
       }
     }
   }
@@ -1166,15 +1118,15 @@
   {
     "entity":
     {
-      "name": "mesh_barril012"
+      "name": "mesh_caja_juanlu024"
       ,
-      "prefab": "data/prefabs/barril.prefab"
+      "prefab": "data/prefabs/caja_juanlu.prefab"
       ,
       "transform":
       {
-        "pos": "-89.1295 5.84484 -147.925"
+        "pos": "-116.309 0.0 -142.031"
         ,
-        "rotation": "0.0 -0.984808 0.0 -0.173648"
+        "rotation": "0.0 0.707107 0.0 -0.707107"
       }
     }
   }
@@ -1182,15 +1134,15 @@
   {
     "entity":
     {
-      "name": "mesh_barril007"
+      "name": "mesh_caja_juanlu025"
       ,
-      "prefab": "data/prefabs/barril.prefab"
+      "prefab": "data/prefabs/caja_juanlu.prefab"
       ,
       "transform":
       {
-        "pos": "-88.9715 5.84484 -152.032"
+        "pos": "-116.309 0.0 -139.471"
         ,
-        "rotation": "0.0 -0.953717 0.0 -0.300706"
+        "rotation": "0.0 0.707107 0.0 -0.707107"
       }
     }
   }
@@ -1198,15 +1150,15 @@
   {
     "entity":
     {
-      "name": "mesh_barril015"
+      "name": "mesh_caja_juanlu026"
       ,
-      "prefab": "data/prefabs/barril.prefab"
+      "prefab": "data/prefabs/caja_juanlu.prefab"
       ,
       "transform":
       {
-        "pos": "-88.1626 5.84484 -149.239"
+        "pos": "-116.309 0.0 -136.865"
         ,
-        "rotation": "0.0 -0.999048 0.0 0.0436193"
+        "rotation": "0.0 0.707107 0.0 -0.707107"
       }
     }
   }
@@ -1214,15 +1166,15 @@
   {
     "entity":
     {
-      "name": "mesh_barril014"
+      "name": "mesh_caja_juanlu027"
       ,
-      "prefab": "data/prefabs/barril.prefab"
+      "prefab": "data/prefabs/caja_juanlu.prefab"
       ,
       "transform":
       {
-        "pos": "-90.0963 5.84484 -147.681"
+        "pos": "-116.309 0.0 -144.578"
         ,
-        "rotation": "0.0 -0.991445 0.0 0.130526"
+        "rotation": "0.0 0.707107 0.0 -0.707107"
       }
     }
   }
@@ -1230,15 +1182,15 @@
   {
     "entity":
     {
-      "name": "mesh_barril010"
+      "name": "mesh_caja_juanlu028"
       ,
-      "prefab": "data/prefabs/barril.prefab"
+      "prefab": "data/prefabs/caja_juanlu.prefab"
       ,
       "transform":
       {
-        "pos": "-88.5395 5.84484 -152.563"
+        "pos": "-116.309 1.50042 -142.031"
         ,
-        "rotation": "0.0 -0.766044 0.0 -0.642788"
+        "rotation": "0.0 0.707107 0.0 -0.707107"
       }
     }
   }
@@ -1246,15 +1198,15 @@
   {
     "entity":
     {
-      "name": "mesh_barril016"
+      "name": "mesh_caja_juanlu029"
       ,
-      "prefab": "data/prefabs/barril.prefab"
+      "prefab": "data/prefabs/caja_juanlu.prefab"
       ,
       "transform":
       {
-        "pos": "-89.2549 6.17761 -151.189"
+        "pos": "-116.309 1.50042 -139.471"
         ,
-        "rotation": "0.0616285 -0.541675 -0.704416 -0.454519"
+        "rotation": "0.0 0.707107 0.0 -0.707107"
       }
     }
   }
@@ -1262,15 +1214,15 @@
   {
     "entity":
     {
-      "name": "mesh_barril013"
+      "name": "mesh_caja_juanlu030"
       ,
-      "prefab": "data/prefabs/barril.prefab"
+      "prefab": "data/prefabs/caja_juanlu.prefab"
       ,
       "transform":
       {
-        "pos": "-89.9012 5.84484 -149.526"
+        "pos": "-114.25 0.0 -142.031"
         ,
-        "rotation": "0.0 -0.766044 0.0 -0.642788"
+        "rotation": "0.0 0.707107 0.0 -0.707107"
       }
     }
   }
@@ -1278,61 +1230,13 @@
   {
     "entity":
     {
-      "name": "mesh_barril009"
+      "name": "mesh_caja_juanlu031"
       ,
-      "prefab": "data/prefabs/barril.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-90.3303 5.84484 -151.437"
-        ,
-        "rotation": "0.0 0.0871558 0.0 -0.996195"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_barril008"
-      ,
-      "prefab": "data/prefabs/barril.prefab"
+      "prefab": "data/prefabs/caja_juanlu.prefab"
       ,
       "transform":
       {
-        "pos": "-90.3373 5.84484 -150.25"
-        ,
-        "rotation": "0.0 -0.382683 0.0 -0.92388"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_barril011"
-      ,
-      "prefab": "data/prefabs/barril.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-90.4865 5.84484 -152.469"
-        ,
-        "rotation": "0.0 -0.766044 0.0 -0.642788"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_barril006"
-      ,
-      "prefab": "data/prefabs/barril.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-89.8031 5.84484 -152.305"
+        "pos": "-108.901 0.0 -128.279"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -1342,15 +1246,287 @@
   {
     "entity":
     {
-      "name": "mesh_barril017"
+      "name": "mesh_caja_juanlu032"
+      ,
+      "prefab": "data/prefabs/caja_juanlu.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-111.499 0.0 -128.279"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_caja_juanlu033"
+      ,
+      "prefab": "data/prefabs/caja_juanlu.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-108.901 1.50042 -128.279"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_caja_juanlu034"
+      ,
+      "prefab": "data/prefabs/caja_juanlu.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-116.122 0.0 -128.279"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_caja_juanlu035"
+      ,
+      "prefab": "data/prefabs/caja_juanlu.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-96.6581 0.0 -149.346"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_caja_juanlu036"
+      ,
+      "prefab": "data/prefabs/caja_juanlu.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-99.2568 0.0 -149.346"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_caja_juanlu037"
+      ,
+      "prefab": "data/prefabs/caja_juanlu.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-96.6581 1.50042 -149.346"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_caja_juanlu038"
+      ,
+      "prefab": "data/prefabs/caja_juanlu.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-96.4015 0.0 -147.028"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_container_m019"
+      ,
+      "prefab": "data/prefabs/container_m2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-96.0661 -0.0847224 -128.017"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_caja_m017"
+      ,
+      "prefab": "data/prefabs/caja_m2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-99.4409 -0.0283268 -147.401"
+        ,
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_caja_m018"
+      ,
+      "prefab": "data/prefabs/caja_m2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-101.433 -0.0283269 -149.733"
+        ,
+        "rotation": "0.0 0.0871557 0.0 -0.996195"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_caja_m020"
+      ,
+      "prefab": "data/prefabs/caja_m2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-97.2297 -0.028326 -129.3"
+        ,
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_caja_juanlu019"
+      ,
+      "prefab": "data/prefabs/caja_juanlu.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-125.865 13.3409 -143.784"
+        ,
+        "rotation": "0.0 0.573577 0.0 -0.819152"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril026"
       ,
       "prefab": "data/prefabs/barril.prefab"
       ,
       "transform":
       {
-        "pos": "-86.7123 6.16198 -147.53"
+        "pos": "-97.982 -0.0387019 -128.616"
         ,
-        "rotation": "0.67438 -0.701057 0.212631 -0.092296"
+        "rotation": "0.0 -0.996195 0.0 -0.0871558"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril027"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-98.9578 -0.0387019 -127.942"
+        ,
+        "rotation": "0.0 -0.843391 0.0 -0.5373"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril029"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-99.372 0.294062 -128.964"
+        ,
+        "rotation": "-0.596368 -0.653281 -0.379928 0.270598"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril028"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-97.5716 -0.0387019 -127.508"
+        ,
+        "rotation": "0.0 0.422618 0.0 -0.906308"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril025"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-99.9714 -0.0387019 -127.876"
+        ,
+        "rotation": "0.0 -0.887011 0.0 -0.461749"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril005"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-79.7638 11.9755 -114.31"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
@@ -1365,22 +1541,6 @@
       "transform":
       {
         "pos": "-51.5712 11.9755 -104.354"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_barril003"
-      ,
-      "prefab": "data/prefabs/barril.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-39.5273 11.9755 -106.008"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -1406,13 +1566,13 @@
   {
     "entity":
     {
-      "name": "mesh_barril005"
+      "name": "mesh_barril003"
       ,
       "prefab": "data/prefabs/barril.prefab"
       ,
       "transform":
       {
-        "pos": "-79.7638 11.9755 -114.31"
+        "pos": "-39.5273 11.9755 -106.008"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -1422,15 +1582,303 @@
   {
     "entity":
     {
-      "name": "mesh_barril004"
+      "name": "mesh_barril006"
       ,
       "prefab": "data/prefabs/barril.prefab"
       ,
       "transform":
       {
-        "pos": "-68.0764 11.9755 -100.327"
+        "pos": "-89.8031 5.84484 -152.305"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril007"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-88.9715 5.84484 -152.032"
+        ,
+        "rotation": "0.0 -0.953717 0.0 -0.300706"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril008"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-90.3373 5.84484 -150.25"
+        ,
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril009"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-90.3303 5.84484 -151.437"
+        ,
+        "rotation": "0.0 0.0871558 0.0 -0.996195"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril010"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-88.5395 5.84484 -152.563"
+        ,
+        "rotation": "0.0 -0.766044 0.0 -0.642788"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril011"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-90.4865 5.84484 -152.469"
+        ,
+        "rotation": "0.0 -0.766044 0.0 -0.642788"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril012"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-89.1295 5.84484 -147.925"
+        ,
+        "rotation": "0.0 -0.984808 0.0 -0.173648"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril013"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-89.9012 5.84484 -149.526"
+        ,
+        "rotation": "0.0 -0.766044 0.0 -0.642788"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril016"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-89.2549 6.17761 -151.189"
+        ,
+        "rotation": "0.0616285 -0.541675 -0.704416 -0.454519"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril015"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-88.1626 5.84484 -149.239"
+        ,
+        "rotation": "0.0 -0.999048 0.0 0.0436193"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril017"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-86.7123 6.16198 -147.53"
+        ,
+        "rotation": "0.67438 -0.701057 0.212631 -0.092296"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril014"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-90.0963 5.84484 -147.681"
+        ,
+        "rotation": "0.0 -0.991445 0.0 0.130526"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril020"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-96.2108 -0.0387025 -142.919"
+        ,
+        "rotation": "0.0 -0.984808 0.0 -0.173648"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril021"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-96.2363 -0.0387025 -141.875"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril024"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-97.227 0.294061 -143.349"
+        ,
+        "rotation": "-0.696364 -0.5 -0.122788 0.5"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril018"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-96.8808 -0.0387025 -142.156"
+        ,
+        "rotation": "0.0 -0.996195 0.0 -0.0871558"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril022"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-96.3016 -0.0387026 -144.875"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril023"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-97.9639 -0.0387026 -145.46"
+        ,
+        "rotation": "0.0 0.0436195 0.0 -0.999048"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barril019"
+      ,
+      "prefab": "data/prefabs/barril.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-95.9979 -0.0387026 -144.086"
+        ,
+        "rotation": "0.0 -0.953717 0.0 0.300706"
       }
     }
   }

@@ -3,10 +3,9 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/tx_whitebox_alb.dds"
-    ,
-    "metallic": "data/textures/tx_whitebox_met.dds"
-    ,
-    "roughness": "data/textures/tx_whitebox_alb.dds"
-  }
+		"albedo": "data/textures/tx_whitebox_alb.dds",
+		"metallic": "data/textures/default_height.dds",
+		"roughness": "data/textures/default_height.dds",
+		"normal": "data/textures/tx_gloryhole_nml.dds"
+	}
 }
