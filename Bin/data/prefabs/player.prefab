@@ -1,7 +1,7 @@
 [
   {
     "entity": {
-      "name": "The Player",
+      "name": "Player Prefab",
       "transform": {
         "pos": "0 0 0"
       },
@@ -144,7 +144,7 @@
         "auxCamera": "SMCameraAux",
         "timesRemoveInhibitorKeyPressed": 5
       },
-      "ai_player": {},
+      "xai_player": {},
       "noclip_controller": {},
       "emission_controller": {
         "initial": "1.0 1.0 1.0 1.0",

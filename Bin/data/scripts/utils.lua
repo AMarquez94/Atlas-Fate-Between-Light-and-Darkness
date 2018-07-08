@@ -145,6 +145,6 @@ function sendOrderToDrone(name, position)
 	SLB.sendOrderToDrone(name, position)
 end
 
-function cinematicIntroToMapA()
-	SLB.cinematicIntroToMapA()
+function cinematicMode()
+	SLB.cinematicMode()
 end

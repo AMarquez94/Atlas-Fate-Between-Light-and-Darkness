@@ -5,6 +5,9 @@
       "name": "The Player",
       "transform": {
         "pos": "-10 5 -344"
+      },
+      "ai_player": {
+        "enabled": false
       }
     }
   }

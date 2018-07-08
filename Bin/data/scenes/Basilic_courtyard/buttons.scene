@@ -9,7 +9,7 @@
       "name": "Button End Scene Left",
       "transform": {
         "pos": "-14.6 13 -389.6",
-        "rotation": "0 0 0.7"
+        "rotation": "0 0 0.707107 0.707107"
       },
       "render": [
         {
@@ -40,7 +40,7 @@
       "name": "Button End Scene Right",
       "transform": {
         "pos": "22.4 13 -389.6",
-        "rotation": "0 0 0.7"
+        "rotation": "0 0 -0.707107 0.707107"
       },
       "render": [
         {
