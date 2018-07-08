@@ -15,12 +15,13 @@
       "data/scenes/Map_Intro/camera.scene",
       "data/scenes/Map_Intro/checkpoints.scene",
       "data/scenes/Map_Intro/movable_objects.scene",
-      "data/scenes/Map_Intro/milestone2_map_particles.scene"
+      "data/scenes/Map_Intro/milestone2_map_particles.scene",
+      "data/scenes/Map_Intro/buttons.scene"
     ]
 	},
 	"scene_zone_a": {
 		"static_data": {
-			"initial_script": "scene_a",
+			"initial_script": "zone_a",
 			"navmesh": "data/navmeshes/scene_a.bin"
 		},
 		"scene_group": [
@@ -48,9 +49,8 @@
 			"data/scenes/zona_a_proves.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene",
 			"data/scenes/ZoneA/test_instancing.scene",
-			"data/scenes/ZoneA/zone_a_particles.scene"
-			
-			
+			"data/scenes/ZoneA/zone_a_particles.scene",
+			"data/scenes/ZoneA/buttons.scene"
 		]
 	},
 	"scene_coliseo": {
@@ -72,7 +72,6 @@
 
 
 			"data/scenes/ZoneA/whitebox_zone_light.scene",
-
 			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
 			"data/scenes/Basilic_courtyard/test_instancing.scene",
 			"data/scenes/Basilic_courtyard/capsules.scene",
@@ -83,16 +82,18 @@
 	"scene_basilic_courtyard": {
 		"static_data": {
 			"initial_script": "basilic_courtyard",
-			"navmesh": "data/navmeshes/milestone2_navmesh.bin"
+			"navmesh": "data/navmeshes/basilic_courtyard_navmesh.bin"
 		},
 		"scene_group": [
 			"data/scenes/Basilic_courtyard/player.scene",
+			"data/scenes/Basilic_courtyard/enemy.scene",
 			"data/scenes/ZoneA/sp_dynamic_lights.scene",
-			"data/scenes/Basilic_courtyard/whitebox_patio_basilica.scene",
+			"data/scenes/Basilic_courtyard/map_basilic_courtyard.scene",
 			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
 			"data/scenes/Basilic_courtyard/test_instancing.scene",
 			"data/scenes/Basilic_courtyard/capsules.scene",
-			"data/scenes/Basilic_courtyard/camera.scene"
+			"data/scenes/Basilic_courtyard/camera.scene",
+			"data/scenes/Basilic_courtyard/buttons.scene"
 			
 		]
 	},

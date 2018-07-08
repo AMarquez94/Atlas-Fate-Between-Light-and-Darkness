@@ -31,6 +31,7 @@ public:
     Scene* createScene(const std::string& name);
     Scene* getSceneByName(const std::string& name);
     Scene* getActiveScene();
+    bool unLoadActiveScene();
 
 private:
     Scene * _activeScene;
@@ -39,5 +40,4 @@ private:
 
     void loadJsonScenes(const std::string filepath);
     void setActiveScene(Scene* scene);
-    bool unLoadActiveScene();
 };

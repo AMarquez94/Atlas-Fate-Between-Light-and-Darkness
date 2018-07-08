@@ -1,0 +1,33 @@
+[
+  {
+    "entity": {
+      "name": "Buttons"
+    }
+  },
+  {
+    "entity": {
+      "name": "Button 1",
+      "transform": {
+        "pos": "-2.0 1.0 139.225",
+        "rotation": "-0.707107 0 0 0.707107"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/Buttons/Button.mesh",
+          "materials": [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ],
+      "collider": {
+        "shape": "box",
+        "size": "0.3 0.3 0.3",
+        "group": "button"
+      },
+      "button": {
+        "script": "transition_map_intro_to_zone_a()"
+      },
+      "tags": [ "button" ]
+    }
+  }
+]

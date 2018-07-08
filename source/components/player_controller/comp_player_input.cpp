@@ -8,6 +8,7 @@
 #include "render/render_utils.h"
 #include "comp_player_attack_cast.h"
 #include "components/lighting/comp_fade_controller.h"
+#include "components/ia/comp_bt_player.h"
 
 DECL_OBJ_MANAGER("player_input", TCompPlayerInput);
 
@@ -20,7 +21,8 @@ void TCompPlayerInput::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompPlayerInput::update(float dt)
 {
-    if (!paused && !isConsoleOn && !isInNoClipMode) {
+    TCompAIPlayer* playerAI = get<TCompAIPlayer>();
+    if (!paused && !isConsoleOn && !isInNoClipMode && !playerAI->enabledPlayerAI) {
         CEntity* e = CHandle(this).getOwner();
         _time += dt;
 
@@ -132,6 +134,7 @@ void TCompPlayerInput::update(float dt)
             }
             {
                 TCompPlayerAttackCast* playerCast = e->get<TCompPlayerAttackCast>();
+                CHandle button = playerCast->getClosestButtonInRange();
                 //GrabEnemy messages
                 if (EngineInput["btAction"].getsPressed() && playerCast->closestEnemyToMerge().isValid()) {
                     _enemyStunned = true;
@@ -147,6 +150,18 @@ void TCompPlayerInput::update(float dt)
                     moveObject.variant.setBool(true);
                     e->sendMsg(moveObject);
                 }
+                else if (EngineInput["btAction"].getsPressed() && button.isValid()) {
+                    _buttonPressed = true;
+                    //Entering into ButtonPressedState
+                    TMsgSetFSMVariable activatingButton;
+                    activatingButton.variant.setName("buttonPressed");
+                    activatingButton.variant.setBool(true);
+                    e->sendMsg(activatingButton);
+
+                    TMsgButtonActivated msg;
+                    CEntity * b = button.getOwner();
+                    button.sendMsg(msg);
+                }
 
                 if (EngineInput["btAction"].getsReleased()) {
                     _enemyStunned = false;
@@ -159,6 +174,13 @@ void TCompPlayerInput::update(float dt)
                     buttonReleased.variant.setName("movingObject");
                     buttonReleased.variant.setBool(false);
                     e->sendMsg(buttonReleased);
+
+                    if (_buttonPressed) {
+                        TMsgSetFSMVariable activatingButton;
+                        activatingButton.variant.setName("buttonPressed");
+                        activatingButton.variant.setBool(false);
+                        e->sendMsg(activatingButton);
+                    }
                 }
 
                 if (_enemyStunned && !playerCast->closestEnemyToMerge().isValid()) {

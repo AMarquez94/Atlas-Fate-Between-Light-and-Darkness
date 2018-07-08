@@ -9,12 +9,16 @@ function printAllScripts()
 	console:printAllScripts()
 end
 
-function execDelayedScript(script, delay)
-	SLB.execDelayedScript(script, delay)
+function execScriptDelayed(script, delay)
+	SLB.execScriptDelayed(script, delay)
 end
 
 function pauseGame(pause)
 	SLB.pauseGame(pause)
+end
+
+function pausePlayerToggle()
+	SLB.pausePlayerToggle()
 end
 
 function pauseEnemies(pause)
@@ -89,8 +93,12 @@ function debugToggle()
 	SLB.debugToggle()
 end
 
-function loadscene(level)
-	SLB.loadscene(level)
+function loadScene(level)
+	SLB.loadScene(level)
+end
+
+function unloadScene()
+	SLB.unloadScene()
 end
 
 function cg_drawlights(type)
@@ -111,4 +119,8 @@ end
 
 function exeShootImpactSound()
 	SLB.exeShootImpactSound()
+end
+
+function cinematicIntroToMapA()
+	SLB.cinematicIntroToMapA()
 end

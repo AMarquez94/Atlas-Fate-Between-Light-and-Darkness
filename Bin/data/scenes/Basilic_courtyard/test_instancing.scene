@@ -54,5 +54,52 @@
 				}
 			]
 		}
+	}, {
+		"entity": {
+			"name": "Instanced Capsules",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [{
+					"mesh": "data/meshes/capsule.instanced_mesh",
+					"materials":
+					[
+						"data/materials/mtl_instanced_capsule.material"
+					]
+				}
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "Instanced Volumes",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [{
+					"mesh": "data/meshes/quad_volume.instanced_mesh",
+					"materials":
+					[
+						"data/materials/volume_instanced.material"
+					]
+				}
+			]
+		}
+	},
+		{
+		"entity": {
+			"name": "Instanced Particles",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [{
+					"mesh": "data/meshes/quad_volume_particles.instanced_mesh",
+					"materials":
+					[
+						"data/materials/volume_particles_instanced.material"
+					]
+				}
+			]
+		}
 	}
 ]

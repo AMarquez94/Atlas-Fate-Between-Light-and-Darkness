@@ -30,6 +30,7 @@ private:
   float _timeOffsetToRemoveInhibitor;
   bool _moveObject = false;
   bool _enemyStunned = false;
+  bool _buttonPressed = false;
 
   void onMsgNoClipToggle(const TMsgNoClipToggle& msg);
 };

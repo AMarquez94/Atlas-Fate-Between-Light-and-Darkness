@@ -23,7 +23,7 @@ bool CModuleGameManager::start()
     playerDiedMenuVisible = false;
     menuVisible = false;
 
-    player = CTagsManager::get().getAllEntitiesByTag(getID("player"))[0];
+    player = getEntityByName("The Player");
 
     Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
     mouse->setLockMouse(true);

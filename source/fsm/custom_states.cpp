@@ -705,4 +705,27 @@ namespace FSM
       playerController->markObjectAsMoving(false);
       //e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::markObjectAsMoving });
     }
+
+    bool PressingButtonState::load(const json& jData) {
+
+        _animationName = jData["animation"];
+        _speed = jData.value("speed", 2.f);
+        _size = jData.value("size", 1.f);
+        _radius = jData.value("radius", 0.3f);
+        _noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+        if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+        return true;
+    }
+
+    void PressingButtonState::onStart(CContext& ctx) const {
+
+        CEntity* e = ctx.getOwner();
+        e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::METRALLA_FINISH , 1.0f });
+        //e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
+        //e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+    }
+
+    void PressingButtonState::onFinish(CContext& ctx) const {
+
+    }
 }

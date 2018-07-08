@@ -1,10 +1,29 @@
-[{
-	"entity": {
-		"prefab": "data/prefabs/player.prefab",
-		"name": "The Player",
-		"transform": {
-				"pos": "-40 1 -90",
-				"lookat": "-41 1 -90"
-		}
-	}
-}]
+[
+  {
+    "entity": {
+      "prefab": "data/prefabs/player.prefab",
+      "name": "The Player",
+      "transform": {
+        "pos": "-40 0 -90",
+        "lookat": "-41 0 -90"
+      },
+      "ai_player": {
+        "enabled": false,
+        "speed": 4.0,
+        "rotationSpeed": 4.0,
+        "waypoints": [
+          {
+            "position": "-38.5 0 -138",
+            "lookAt": "0 0 1",
+            "minTime": 10
+          },
+          {
+            "position": "-36 0 -138",
+            "lookAt": "0 0 1",
+            "minTime": 10
+          }
+        ]
+      }
+    }
+  }
+]

@@ -14,6 +14,7 @@
 		"ai_patrol",
 		"ai_mimetic",
 		"ai_drone",
+		"ai_player",
 		"shooter",
 		"instance",
 		"dynamic_capsule",

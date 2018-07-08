@@ -20,14 +20,20 @@ public:
   const std::vector<CHandle> getMovableObjectsInRange();
   CHandle getClosestMovableObjectInRange();
 
+  const std::vector<CHandle> getButtonsInRange();
+  CHandle getClosestButtonInRange();
+
 private:
 
   physx::PxQueryFilterData PxPlayerAttackQueryFilterData;
   physx::PxQueryFilterData PxPlayerMoveObjectsQueryFilterData;
+  physx::PxQueryFilterData PxPlayerButtonInteractQueryFilterData;
   physx::PxSphereGeometry geometryAttack;
   physx::PxSphereGeometry geometryMoveObjects;
+  physx::PxSphereGeometry geometryButtons;
   float attack_fov;
   float moveObjects_fov;
+  float button_fov;
 
   void onMsgScenePaused(const TMsgScenePaused & msg);
 };
