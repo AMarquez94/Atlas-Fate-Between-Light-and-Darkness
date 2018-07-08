@@ -1,6 +1,6 @@
 {
 	"system": {
-		"duration": 10.0,
+		"duration": 20.0,
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
@@ -59,7 +59,7 @@
       "frame_speed" : 0.0
 	},
   "size" : {
-    "scale" : 0.2,
+    "scale" : 0.15,
     "scale_variation" : 0.1,
     "sizes" : [
 		  [0.0, "1 1 1"]
