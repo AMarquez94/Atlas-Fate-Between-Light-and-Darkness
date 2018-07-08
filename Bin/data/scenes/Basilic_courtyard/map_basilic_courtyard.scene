@@ -30,7 +30,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -60,7 +60,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -90,7 +90,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -120,7 +120,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -150,7 +150,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -180,7 +180,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -210,7 +210,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -247,7 +247,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -284,7 +284,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -321,7 +321,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -358,7 +358,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -395,7 +395,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -432,7 +432,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -462,7 +462,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -492,7 +492,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -522,7 +522,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -552,7 +552,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -582,7 +582,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -612,7 +612,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -642,7 +642,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -672,7 +672,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -702,7 +702,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -732,7 +732,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -762,7 +762,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -792,7 +792,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -822,7 +822,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -852,7 +852,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -882,7 +882,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -912,7 +912,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -942,7 +942,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -972,7 +972,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1002,7 +1002,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1032,7 +1032,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1062,7 +1062,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1092,7 +1092,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1122,7 +1122,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1152,7 +1152,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1182,7 +1182,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1212,7 +1212,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1242,7 +1242,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1272,7 +1272,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1302,7 +1302,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1332,7 +1332,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1362,7 +1362,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1392,7 +1392,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1422,7 +1422,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1452,7 +1452,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1482,7 +1482,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1512,7 +1512,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1542,7 +1542,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1572,7 +1572,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1602,7 +1602,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1632,7 +1632,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1662,7 +1662,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1692,7 +1692,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1722,7 +1722,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1752,7 +1752,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1782,7 +1782,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1812,7 +1812,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1842,7 +1842,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1872,7 +1872,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1902,7 +1902,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1932,7 +1932,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1962,7 +1962,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -1992,7 +1992,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2022,7 +2022,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2052,7 +2052,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2082,7 +2082,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2112,7 +2112,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2142,7 +2142,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2172,7 +2172,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2202,7 +2202,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2232,7 +2232,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2262,7 +2262,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2292,7 +2292,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2322,7 +2322,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2352,7 +2352,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2382,7 +2382,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2412,7 +2412,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2442,7 +2442,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2472,7 +2472,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2502,7 +2502,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2532,7 +2532,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2562,7 +2562,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2592,7 +2592,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2622,7 +2622,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2652,7 +2652,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2682,7 +2682,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2712,7 +2712,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2742,7 +2742,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2772,7 +2772,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2802,7 +2802,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2832,7 +2832,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2862,7 +2862,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2892,7 +2892,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2922,7 +2922,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2952,7 +2952,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -2982,7 +2982,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3012,7 +3012,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3042,7 +3042,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3072,7 +3072,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3102,7 +3102,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3132,7 +3132,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3162,7 +3162,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3192,7 +3192,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3222,7 +3222,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3252,7 +3252,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3282,7 +3282,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3312,7 +3312,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3342,7 +3342,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3372,7 +3372,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3402,7 +3402,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3432,7 +3432,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3462,7 +3462,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3492,7 +3492,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3522,7 +3522,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3552,7 +3552,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3582,7 +3582,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3612,7 +3612,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3642,7 +3642,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3672,7 +3672,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3702,7 +3702,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3732,7 +3732,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3762,7 +3762,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3792,7 +3792,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3822,7 +3822,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3852,7 +3852,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3882,7 +3882,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3912,7 +3912,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3942,7 +3942,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -3972,7 +3972,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4002,7 +4002,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4032,7 +4032,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4062,7 +4062,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4092,7 +4092,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4122,7 +4122,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4152,7 +4152,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4189,7 +4189,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4226,7 +4226,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4256,7 +4256,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4286,7 +4286,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4323,7 +4323,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4360,7 +4360,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4397,7 +4397,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4434,7 +4434,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4471,7 +4471,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4508,7 +4508,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4545,7 +4545,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4582,7 +4582,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4619,7 +4619,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4656,7 +4656,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4693,7 +4693,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4730,7 +4730,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4767,7 +4767,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4804,7 +4804,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4841,7 +4841,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4878,7 +4878,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4915,7 +4915,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4952,7 +4952,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -4989,7 +4989,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5026,7 +5026,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5063,7 +5063,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5100,7 +5100,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5137,7 +5137,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5174,7 +5174,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5211,7 +5211,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5248,7 +5248,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5285,7 +5285,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5322,7 +5322,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5359,7 +5359,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5396,7 +5396,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5433,7 +5433,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5470,7 +5470,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5507,7 +5507,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5544,7 +5544,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5581,7 +5581,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5618,7 +5618,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5655,7 +5655,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5692,7 +5692,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5729,7 +5729,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5766,7 +5766,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5803,7 +5803,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5840,7 +5840,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5877,7 +5877,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5914,7 +5914,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5951,7 +5951,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -5988,7 +5988,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6025,7 +6025,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6062,7 +6062,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6099,7 +6099,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6136,7 +6136,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6173,7 +6173,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6210,7 +6210,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6247,7 +6247,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6284,7 +6284,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6321,7 +6321,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6358,7 +6358,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6395,7 +6395,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6432,7 +6432,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6469,7 +6469,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6506,7 +6506,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6543,7 +6543,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6580,7 +6580,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6617,7 +6617,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6654,7 +6654,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6691,7 +6691,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6728,7 +6728,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6765,7 +6765,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6802,7 +6802,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6839,7 +6839,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6876,7 +6876,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6913,7 +6913,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6950,7 +6950,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -6987,7 +6987,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7024,7 +7024,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7061,7 +7061,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7098,7 +7098,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7135,7 +7135,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7172,7 +7172,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7209,7 +7209,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7246,7 +7246,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7283,7 +7283,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7320,7 +7320,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7357,7 +7357,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7394,7 +7394,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7431,7 +7431,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7468,7 +7468,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7505,7 +7505,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7542,7 +7542,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7579,7 +7579,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7616,7 +7616,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7653,7 +7653,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7690,7 +7690,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7727,7 +7727,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7764,7 +7764,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7801,7 +7801,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7838,7 +7838,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7875,7 +7875,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7912,7 +7912,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7949,7 +7949,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -7986,7 +7986,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8023,7 +8023,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8060,7 +8060,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8097,7 +8097,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8134,7 +8134,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8171,7 +8171,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8208,7 +8208,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8245,7 +8245,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8282,7 +8282,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8319,7 +8319,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8349,7 +8349,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8379,7 +8379,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8409,7 +8409,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8439,7 +8439,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8469,7 +8469,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8499,7 +8499,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8529,7 +8529,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8559,7 +8559,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8589,7 +8589,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8619,7 +8619,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8649,7 +8649,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8679,7 +8679,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8709,7 +8709,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8739,7 +8739,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8769,7 +8769,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8799,7 +8799,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8829,7 +8829,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8859,7 +8859,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8889,7 +8889,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8919,7 +8919,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8949,7 +8949,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -8979,7 +8979,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9009,7 +9009,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9039,7 +9039,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9069,7 +9069,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9099,7 +9099,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9129,7 +9129,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9159,7 +9159,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9189,7 +9189,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9219,7 +9219,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9249,7 +9249,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9279,7 +9279,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9309,7 +9309,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9339,7 +9339,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9369,7 +9369,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9399,7 +9399,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9429,7 +9429,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9459,7 +9459,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9489,7 +9489,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9519,7 +9519,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9549,7 +9549,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9579,7 +9579,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9609,7 +9609,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9639,7 +9639,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9669,7 +9669,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9699,7 +9699,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9729,7 +9729,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9759,7 +9759,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9796,7 +9796,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9833,7 +9833,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9870,7 +9870,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9907,7 +9907,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9944,7 +9944,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -9981,7 +9981,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10018,7 +10018,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10055,7 +10055,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10092,7 +10092,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10129,7 +10129,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10166,7 +10166,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10203,7 +10203,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10240,7 +10240,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10270,7 +10270,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10307,7 +10307,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10344,7 +10344,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10381,7 +10381,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10418,7 +10418,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10448,7 +10448,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10478,7 +10478,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10515,7 +10515,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10552,7 +10552,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10589,7 +10589,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10626,7 +10626,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10663,7 +10663,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10700,7 +10700,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10737,7 +10737,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10774,7 +10774,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10811,7 +10811,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10841,7 +10841,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_limite.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10878,7 +10878,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10915,7 +10915,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10952,7 +10952,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -10989,7 +10989,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11026,7 +11026,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11063,7 +11063,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11100,7 +11100,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11137,7 +11137,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11174,7 +11174,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11211,7 +11211,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11248,7 +11248,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11285,7 +11285,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11322,7 +11322,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11359,7 +11359,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11396,7 +11396,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11433,7 +11433,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11470,7 +11470,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11507,7 +11507,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11544,7 +11544,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11581,7 +11581,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11618,7 +11618,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11655,7 +11655,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11692,7 +11692,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11729,7 +11729,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11766,7 +11766,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11803,7 +11803,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11840,7 +11840,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11877,7 +11877,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11914,7 +11914,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11951,7 +11951,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -11988,7 +11988,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12025,7 +12025,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12062,7 +12062,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12099,7 +12099,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12136,7 +12136,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12173,7 +12173,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12210,7 +12210,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12247,7 +12247,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12284,7 +12284,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12321,7 +12321,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12358,7 +12358,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12395,7 +12395,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12432,7 +12432,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12469,7 +12469,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12506,7 +12506,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12543,7 +12543,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12580,7 +12580,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12617,7 +12617,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12654,7 +12654,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12691,7 +12691,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12728,7 +12728,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12765,7 +12765,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12802,7 +12802,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12839,7 +12839,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12876,7 +12876,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12913,7 +12913,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12950,7 +12950,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -12987,7 +12987,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -13024,7 +13024,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -13061,7 +13061,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -13098,7 +13098,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -13135,7 +13135,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -13172,7 +13172,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -13209,7 +13209,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -13239,7 +13239,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -13269,7 +13269,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -13299,7 +13299,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -13336,7 +13336,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -13373,7 +13373,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -13403,7 +13403,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -13440,7 +13440,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -13470,7 +13470,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -13507,7 +13507,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]
@@ -13544,7 +13544,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_whitebox.material"
           ]
         }
       ]

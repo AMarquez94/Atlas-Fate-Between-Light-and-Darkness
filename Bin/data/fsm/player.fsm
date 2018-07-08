@@ -851,6 +851,26 @@
 			}
 		},
 		{
+			"type": "VariableTransition",
+			"source": "hardLand",
+			"target": "die",
+			"variable": {
+				"name": "onFallDead",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "hardLand",
+			"target": "die",
+			"variable": {
+				"name": "onDead",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
 			"type": "AnimationTransition",
 			"source": "hardLand",
 			"target": "idle",

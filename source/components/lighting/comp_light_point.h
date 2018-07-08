@@ -30,6 +30,8 @@ public:
     bool isCulled() const;
 
 	MAT44 getWorld();
+    VEC4 getColor() const;
+    void setColor(VEC4 new_color);
 
     static void registerMsgs();
 };

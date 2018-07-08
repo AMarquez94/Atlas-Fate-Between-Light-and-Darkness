@@ -154,3 +154,12 @@ bool TCompLightPoint::isCulled() const {
 }
 
 
+VEC4 TCompLightPoint::getColor() const {
+
+    return color;
+}
+
+void TCompLightPoint::setColor(VEC4 new_color) {
+
+    color = new_color;
+}
