@@ -85,17 +85,21 @@ void TCompLightPoint::onGroupCreated(const TMsgEntitiesGroupCreated & msg)
 {
     TCompAbsAABB * c_my_aabb = get<TCompAbsAABB>();
     TCompLocalAABB * c_my_aabb_local = get<TCompLocalAABB>();
+    TCompCulling * culling = get<TCompCulling>();
 
-    float half_radius = outer_cut * .5f;
-    c_my_aabb->Extents = VEC3(half_radius, half_radius, half_radius);
-    c_my_aabb_local->Extents = VEC3(half_radius, half_radius, half_radius);
+    if (culling == nullptr) {
 
-    c_my_aabb->Center = VEC3(0, 0, 0);
-    c_my_aabb_local->Center = VEC3(0, 0, 0);
+        float half_radius = outer_cut * .5f;
+        c_my_aabb->Extents = VEC3(half_radius, half_radius, half_radius);
+        c_my_aabb_local->Extents = VEC3(half_radius, half_radius, half_radius);
 
-    CEntity* e = CHandle(this).getOwner();
-    CHandle h_comp = getObjectManager<TCompCulling>()->createHandle();
-    e->set(h_comp.getType(), h_comp);
+        c_my_aabb->Center = VEC3(0, 0, 0);
+        c_my_aabb_local->Center = VEC3(0, 0, 0);
+
+        CEntity* e = CHandle(this).getOwner();
+        CHandle h_comp = getObjectManager<TCompCulling>()->createHandle();
+        e->set(h_comp.getType(), h_comp);
+    }
 }
 
 void TCompLightPoint::cullFrame() {

@@ -577,7 +577,7 @@ struct TSceneExporter (
 			fs.beginObj()
 			fs.writeKeyValue "shape" "sphere" 
 			fs.writeComma()
-			fs.writeKeyValue "radius" obj.farAttenEnd 
+			fs.writeKeyValue "radius" ((obj.farAttenEnd - obj.farAttenStart) * .5 + obj.farAttenStart) 
 			fs.writeComma()
 			fs.writeKeyValue "is_trigger" true
 			fs.endObj()

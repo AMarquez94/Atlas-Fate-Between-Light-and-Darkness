@@ -26,6 +26,7 @@ class TCompCollider : public TCompBase {
 public:
 
     bool player_inside;
+    bool player_full_inside;
     std::map<uint32_t, TCompTransform*> handles;
 
     // Collider parameter description

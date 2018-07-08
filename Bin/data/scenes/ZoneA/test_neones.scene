@@ -1,0 +1,703 @@
+[
+  {
+    "entity":
+    {
+      "name": "test_neones"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami001"
+      ,
+      "transform":
+      {
+        "pos": "-62.2638 5.33662 -89.0437"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami002"
+      ,
+      "transform":
+      {
+        "pos": "-55.2649 1.53033 -75.3579"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami003"
+      ,
+      "transform":
+      {
+        "pos": "-71.4021 5.25091 -112.185"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami004"
+      ,
+      "transform":
+      {
+        "pos": "-85.2913 4.37798 -112.334"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami005"
+      ,
+      "transform":
+      {
+        "pos": "-47.7607 1.53033 -105.076"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami006"
+      ,
+      "transform":
+      {
+        "pos": "-50.3983 5.33662 -138.01"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami007"
+      ,
+      "transform":
+      {
+        "pos": "-55.9967 6.78688 -116.65"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami008"
+      ,
+      "transform":
+      {
+        "pos": "-67.3903 7.9955 -92.3121"
+        ,
+        "rotation": "0.0 -1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami009"
+      ,
+      "transform":
+      {
+        "pos": "-94.0659 1.77645 -95.9052"
+        ,
+        "rotation": "0.0 -0.92388 0.0 -0.382683"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami010"
+      ,
+      "transform":
+      {
+        "pos": "-56.4328 5.92067 -153.087"
+        ,
+        "rotation": "-0.707107 0.0 -0.707107 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami011"
+      ,
+      "transform":
+      {
+        "pos": "-44.4208 4.23454 -78.9794"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami012"
+      ,
+      "transform":
+      {
+        "pos": "-66.0591 7.32481 -142.426"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami013"
+      ,
+      "transform":
+      {
+        "pos": "-53.9955 7.9955 -94.3433"
+        ,
+        "rotation": "0.0 -1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami014"
+      ,
+      "transform":
+      {
+        "pos": "-84.7291 1.77645 -86.5624"
+        ,
+        "rotation": "0.0 -0.92388 0.0 -0.382683"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami015"
+      ,
+      "transform":
+      {
+        "pos": "-86.513 8.93186 -88.5087"
+        ,
+        "rotation": "0.0 -0.92388 0.0 -0.382683"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami016"
+      ,
+      "transform":
+      {
+        "pos": "-79.7245 1.30224 -96.4256"
+        ,
+        "rotation": "0.0 -1.2666e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami017"
+      ,
+      "transform":
+      {
+        "pos": "-80.8318 2.10165 -106.129"
+        ,
+        "rotation": "0.0 0.737277 0.0 -0.67559"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami018"
+      ,
+      "transform":
+      {
+        "pos": "-77.7463 10.4456 -147.365"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami019"
+      ,
+      "transform":
+      {
+        "pos": "-87.1642 11.3956 -150.988"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami020"
+      ,
+      "transform":
+      {
+        "pos": "-118.756 11.3956 -149.573"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami021"
+      ,
+      "transform":
+      {
+        "pos": "-109.646 5.31643 -114.387"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami022"
+      ,
+      "transform":
+      {
+        "pos": "-69.6352 10.8012 -122.375"
+        ,
+        "rotation": "0.707107 0.0 -0.707107 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_aragami023"
+      ,
+      "transform":
+      {
+        "pos": "-46.7164 1.53033 -94.5468"
+        ,
+        "rotation": "0.0 -1.3411e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_aragami010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_aragami.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

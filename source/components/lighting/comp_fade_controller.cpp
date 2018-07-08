@@ -50,7 +50,7 @@ void TCompFadeController::update(float dt) {
         }
 
         // Moves the body downwards
-        if (_is_drownable) {
+        if (_is_drownable && _is_active) {
 
             TCompTransform * transform = get<TCompTransform>();
             transform->setPosition(transform->getPosition() - VEC3(0, _fall_speed * dt, 0));

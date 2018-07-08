@@ -145,7 +145,7 @@ void TCompAIPatrol::onMsgPatrolStunned(const TMsgEnemyStunned & msg)
 
 void TCompAIPatrol::onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged & msg)
 {
-    hasBeenShadowMerged = true;
+    //hasBeenShadowMerged = true;
 
     TCompEmissionController * e_controller = get<TCompEmissionController>();
     e_controller->blend(enemyColor.colorDead, 0.1f);
@@ -159,6 +159,17 @@ void TCompAIPatrol::onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged & msg)
             stunnedPatrols.erase(stunnedPatrols.begin() + i);
         }
     }
+
+    TCompFadeController * fade_patrol = get<TCompFadeController>();
+    fade_patrol->launch(TMsgFadeBody{false});
+
+    // TO REFACTOR
+    // Sets particles and calls the finishing state.
+    CHandle patrol = CHandle(this).getOwner();
+
+    Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand_enemy.particles", patrol);
+    Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash.particles", patrol);
+    Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", patrol);
 
     current = nullptr;
 }

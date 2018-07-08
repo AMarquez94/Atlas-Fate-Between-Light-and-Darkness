@@ -297,7 +297,7 @@ namespace FSM
         }
 
         // Move this to LUA in the future.
-        Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", ctx.getOwner());
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand_enemy.particles", ctx.getOwner());
         Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash2.particles", ctx.getOwner());
         Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", ctx.getOwner());
 

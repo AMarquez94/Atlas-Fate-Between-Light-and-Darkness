@@ -47,6 +47,16 @@ namespace Particles
 {
     TParticleHandle CSystem::_lastHandle = 0;
 
+    void Particles::TCoreSystem::onFileChanged(const std::string& filename) {
+        if (filename != getName())
+            return;
+
+        destroy();
+        Particles::CParser parser;
+        Particles::TCoreSystem* res = parser.parseParticlesFile(filename);
+    }
+
+
     CSystem::CSystem(const TCoreSystem* core, CHandle entity)
         : _core(core)
         , _entity(entity)
@@ -154,7 +164,7 @@ namespace Particles
 
     bool CSystem::update(float delta)
     {
-        if (!_enabled) return true;
+        if (!_enabled || !_entity.isValid()) return true;
         
         // Handle start delay
         _deploy_time += delta;
@@ -242,7 +252,7 @@ namespace Particles
     // To update this with the compute shader.
     void CSystem::render()
     {
-        if (!_enabled) return;
+        if (!_enabled || !_entity.isValid()) return;
         if (_deploy_time < _core->n_system.start_delay) return;
 
         CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
