@@ -1,0 +1,45 @@
+[
+  {
+    "entity":
+    {
+      "name": "coliseo_valla_central"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pivote_valla_torre001"
+      ,
+      "prefab": "data/prefabs/pivote_valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-6.52252 0.0 0.1875"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_torre001"
+      ,
+      "prefab": "data/prefabs/valla_torre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-2.27454 0.0 10.272"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+]

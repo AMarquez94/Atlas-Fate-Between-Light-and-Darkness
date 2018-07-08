@@ -63,6 +63,14 @@
 			"data/scenes/ZoneA/sp_dynamic_lights.scene",
 			"data/scenes/coliseo_suelo.scene",
 			"data/scenes/coliseo_arcos.scene",
+			"data/scenes/coliseo_pared.scene",
+			
+			"data/scenes/coliseo_generador.scene",
+			"data/scenes/coliseo_maquinas.scene",
+			"data/scenes/coliseo_props.scene",
+			"data/scenes/coliseo_conductos.scene",
+
+
 			"data/scenes/ZoneA/whitebox_zone_light.scene",
 
 			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
