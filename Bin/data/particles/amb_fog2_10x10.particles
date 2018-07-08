@@ -11,17 +11,17 @@
 		"start_color": "1 1 1 0.0",
 		"gravity": 0,
 		"simulation_speed": 1.6,
-		"max_particles": 600
+		"max_particles": 201
 	},
 	"emission": {
-		"rate_time": 520.0,
+		"rate_time": 100.0,
 		"rate_distance": 0.0,
 		"variation" : 0.0,
-		"interval" : 10
+		"interval" : 0.1
 	},
 	"shape": {
 		"type": "box",
-		"size": "30 2.5 30",
+		"size": "8 2.5 8",
 		"angle": 0.0
 		
 	},
@@ -33,8 +33,8 @@
 			[1.0, "1.0 0.0 2.0"]
     ],
 		"rotation" : [
-		  [0.0, "0.0 0.0 0.3"],
-      [1.0, "0.0 0.0 0.3"]
+		  [0.0, "0.0 0.0 0.1"],
+      [1.0, "0.0 0.0 0.1"]
     ],
 		"acceleration": 0.0,
 		"wind": 0.001

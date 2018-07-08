@@ -12,7 +12,5 @@
     "normal": "data/textures/tx_tubogrande_nml.dds"
     ,
     "height": "data/textures/tx_tubogrande_hgt.dds"
-    ,
-    "aocclusion": "data/textures/tx_tubogrande_ao.dds"
-  }
+		}
 }

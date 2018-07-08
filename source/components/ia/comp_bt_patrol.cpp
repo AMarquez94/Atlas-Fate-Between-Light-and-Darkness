@@ -2,6 +2,7 @@
 #include "comp_bt_patrol.h"
 #include "btnode.h"
 #include "components/comp_name.h"
+#include "components/comp_hierarchy.h"
 #include "components/comp_transform.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
 #include "components/comp_render.h"
@@ -9,6 +10,7 @@
 #include "components/object_controller/comp_cone_of_light.h"
 #include "components/physics/comp_rigidbody.h"
 #include "components/physics/comp_collider.h"
+#include "components/skeleton/comp_skeleton.h"
 #include "components/lighting/comp_emission_controller.h"
 #include "physics/physics_collider.h"
 #include "render/render_utils.h"
@@ -25,10 +27,23 @@ void TCompAIPatrol::debugInMenu() {
 
 void TCompAIPatrol::preUpdate(float dt)
 {
+    // Dirty and nasty way of doing this.
+    TCompSkeleton * skeleton = get<TCompSkeleton>();
+    VEC3 pos = skeleton->getBonePosition("Bip001 Laser");
+    TCompTransform * my_trans = get<TCompTransform>();
+
+    CEntity * parent = CHandle(this).getOwner();
+    TCompGroup * group = parent->get<TCompGroup>();
+    CEntity * light = group->handles[1];
+    TCompHierarchy * t_hier = light->get<TCompHierarchy>();
+    MAT44 parent_pos = my_trans->asMatrix().Invert();
+    VEC3 new_pos = VEC3::Transform(pos, parent_pos);
+    t_hier->setPosition(new_pos);
 }
 
 void TCompAIPatrol::postUpdate(float dt)
 {
+
 }
 
 void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
@@ -130,7 +145,7 @@ void TCompAIPatrol::onMsgPatrolStunned(const TMsgEnemyStunned & msg)
 
 void TCompAIPatrol::onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged & msg)
 {
-    hasBeenShadowMerged = true;
+    //hasBeenShadowMerged = true;
 
     TCompEmissionController * e_controller = get<TCompEmissionController>();
     e_controller->blend(enemyColor.colorDead, 0.1f);
@@ -144,6 +159,17 @@ void TCompAIPatrol::onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged & msg)
             stunnedPatrols.erase(stunnedPatrols.begin() + i);
         }
     }
+
+    TCompFadeController * fade_patrol = get<TCompFadeController>();
+    fade_patrol->launch(TMsgFadeBody{false});
+
+    // TO REFACTOR
+    // Sets particles and calls the finishing state.
+    CHandle patrol = CHandle(this).getOwner();
+
+    Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand_enemy.particles", patrol);
+    Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash.particles", patrol);
+    Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", patrol);
 
     current = nullptr;
 }

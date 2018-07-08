@@ -133,15 +133,12 @@ void CDeferredRenderer::renderPointLights() {
 	// Para todas las luces... pintala
 	getObjectManager<TCompLightPoint>()->forEach([mesh](TCompLightPoint* c) {
 
-		// subir las contantes de la posicion/dir
-		// activar el shadow map...
-		c->activate();
-
-		setWorldTransform(c->getWorld());
-
-		// mandar a pintar una geometria que refleje los pixeles que potencialmente
-		// puede iluminar esta luz.... El Frustum solido
-		mesh->render();
+        c->cullFrame();
+        if (c->isEnabled && !c->isCulled()) {
+            c->activate();
+            setWorldTransform(c->getWorld());
+            mesh->render();
+        }
 	});
 }
 
@@ -190,15 +187,11 @@ void CDeferredRenderer::renderSpotLights() {
 	// Para todas las luces... pintala
 	getObjectManager<TCompLightSpot>()->forEach([mesh](TCompLightSpot* c) {
 
-		// subir las contantes de la posicion/dir
-		// activar el shadow map...
-		c->activate();
-
-		setWorldTransform(c->getWorld());
-
-		// mandar a pintar una geometria que refleje los pixeles que potencialmente
-		// puede iluminar esta luz.... El Frustum solido
-		mesh->render();
+        if (c->isEnabled && !c->isCulled()) {
+            c->activate();
+            setWorldTransform(c->getWorld());
+            mesh->render();
+        }
 	});
 }
 
