@@ -50,4 +50,40 @@
 			}
 		}
 	}
+	,
+			{
+		"entity": {
+			"name": "particles_dust",
+			"transform": {
+				"pos": "-49 2 -90"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_dust.particles"
+			}
+		}
+	}
+		,
+			{
+		"entity": {
+			"name": "particles_dust",
+			"transform": {
+				"pos": "-69 2 -90"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_dust.particles"
+			}
+		}
+	}
+			,
+			{
+		"entity": {
+			"name": "particles_dust",
+			"transform": {
+				"pos": "-65 2 -105"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_dust.particles"
+			}
+		}
+	}
 ]
