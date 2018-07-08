@@ -10,6 +10,7 @@
 #include "components/lighting/comp_light_point.h"
 #include "components/postfx/comp_render_ao.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
+#include "components/object_controller/comp_button.h"
 
 bool CModuleLogic::start() {
 
@@ -26,7 +27,6 @@ bool CModuleLogic::stop() {
 }
 
 void CModuleLogic::update(float delta) {
-
     for (unsigned int i = 0; i < delayedScripts.size(); i++) {
         delayedScripts[i].remainingTime -= delta;
         if (delayedScripts[i].remainingTime <= 0) {
@@ -115,6 +115,10 @@ void CModuleLogic::publishClasses() {
         .comment("This is our wrapper of the spotlight controller")
         .property("isEnabled", &TCompLightSpot::isEnabled);
 
+    SLB::Class<TCompButton>("Button", m)
+        .comment("This is our wrapper of the button controller")
+        .property("canBePressed", &TCompButton::canBePressed);
+
     //SLB::Class < CHandle >("CHandle", m)
     //    .comment("CHandle wrapper")
     //    .set("getLight", &CHandle::sendMsg);
@@ -168,6 +172,7 @@ void CModuleLogic::publishClasses() {
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
     m->set("toggle_spotlight", SLB::FuncCall::create(&toggle_spotlight));
+    m->set("toggleButtonCanBePressed", SLB::FuncCall::create(&toggleButtonCanBePressed));
 }
 
 /* Check if it is a fast format command */
@@ -536,4 +541,15 @@ void toggle_spotlight(const std::string & lightName)
     CEntity* light = hLight;
     TCompLightSpot* spotlight = light->get<TCompLightSpot>();
     spotlight->isEnabled = !spotlight->isEnabled;
+}
+
+void toggleButtonCanBePressed(const std::string & buttonName, bool canBePressed)
+{
+    CHandle hButton = getEntityByName(buttonName);
+    if (!hButton.isValid()) {
+        return;
+    }
+    CEntity* button = hButton;
+    TCompButton* comp_button = button->get<TCompButton>();
+    comp_button->canBePressed = canBePressed;
 }

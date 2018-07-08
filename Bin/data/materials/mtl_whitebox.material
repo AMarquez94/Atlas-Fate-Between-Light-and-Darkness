@@ -1,0 +1,12 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_whitebox_alb.dds"
+    ,
+    "metallic": "data/textures/tx_whitebox_met.dds"
+    ,
+    "roughness": "data/textures/tx_whitebox_alb.dds"
+  }
+}
