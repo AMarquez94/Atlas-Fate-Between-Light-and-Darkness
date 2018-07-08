@@ -25,6 +25,9 @@
 #include "render/render_objects.h"
 #include "render/render_utils.h"
 
+#include "components/ia/comp_bt_player.h"
+
+
 DECL_OBJ_MANAGER("player_tempcontroller", TCompTempPlayerController);
 
 void TCompTempPlayerController::debugInMenu() {
@@ -103,7 +106,8 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 /* Player controller main update */
 void TCompTempPlayerController::update(float dt) {
 
-    if (!paused && !isConsoleOn && !isInNoClipMode) {
+    TCompAIPlayer* playerAI = get<TCompAIPlayer>();
+    if (!paused && !isConsoleOn && !isInNoClipMode && !playerAI->enabledPlayerAI) {
 
         (this->*state)(dt);
 

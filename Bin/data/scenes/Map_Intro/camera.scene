@@ -295,5 +295,38 @@
 				"radius": 5
 			}
 		}
+	},
+	{
+		"entity": {
+		  "name": "scene_transition",
+		  "transform": {
+			"pos": "-10 10 130",
+			"lookat": "-10 0 145"
+		  },
+		  "camera": {
+			"fov": 80
+		  },
+		  "render_ao": {
+			"enabled": true
+		  },
+		  "render_bloom": {
+			"enabled": true,
+			"max_steps": 4,
+			"rt_name": "Bloom"
+		  },
+		  "fog": {
+			"enabled": true
+		  },
+		  "antialiasing": {
+			"enabled": true
+		  },
+		  "chromatic_aberration": {
+			"enabled": true
+		  },
+		  "render_outlines": {
+			"enabled": true
+		  },
+		  "culling": true
+		}
 	}
 ]

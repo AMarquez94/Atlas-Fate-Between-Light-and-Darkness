@@ -322,6 +322,13 @@
 				"time_to_repeat": 0.75,
 				"is_artificial": true
 			}
+		},
+		{
+		  "name": "pressingButton",
+		  "type": "PressingButtonState",
+		  "animation": "idle",
+		  "speed": 0,
+		  "size": 1
 		}
 	],
 	"transitions": [{
@@ -1222,6 +1229,22 @@
 				"type": "bool",
 				"value": true
 			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "idle",
+			"target": "pressingButton",
+			"variable": {
+			"name": "buttonPressed",
+			"type": "bool",
+			"value": true
+			}
+		},
+		{
+			"type": "AnimationTransition",
+			"source": "pressingButton",
+			"target": "idle",
+			"animation_name": "metralla_finish"
 		}
 	],
 	"variables": [{
@@ -1308,6 +1331,11 @@
 			"name": "staminaBarFactor",
 			"type": "float",
 			"value": 1.0
+		},
+		{
+			"name": "buttonPressed",
+			"type": "bool",
+			"value": false
 		}
 	]
 }

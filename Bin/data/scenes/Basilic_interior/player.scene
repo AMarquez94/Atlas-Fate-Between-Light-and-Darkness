@@ -2,7 +2,7 @@
 	"entity": {
 		"prefab": "data/prefabs/player.prefab",
 		"transform": {
-			"pos": "142.384979 16.489212 -394.966888"
+			"pos": "142.384979 12 -394.966888"
 		}
 	}
 }]

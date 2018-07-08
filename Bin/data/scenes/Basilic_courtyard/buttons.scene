@@ -1,0 +1,59 @@
+[
+  {
+    "entity": {
+      "name": "Buttons"
+    }
+  },
+  {
+    "entity": {
+      "name": "Button End Scene Left",
+      "transform": {
+        "pos": "-14.6 13 -389.6",
+        "lookat": "-14 13 -389.6"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/Buttons/Button.mesh",
+          "materials": [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ],
+      "collider": {
+        "shape": "box",
+        "size": "0.3 0.3 0.3",
+        "group": "button"
+      },
+      "button": {
+        "script": "transition_basilic_courtyard_to_interior()"
+      },
+      "tags": [ "button" ]
+    }
+  },
+  {
+    "entity": {
+      "name": "Button End Scene Right",
+      "transform": {
+        "pos": "22.4 13 -389.6",
+        "lookat": "23 13 -389.6"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/Buttons/Button.mesh",
+          "materials": [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ],
+      "collider": {
+        "shape": "box",
+        "size": "0.3 0.3 0.3",
+        "group": "button"
+      },
+      "button": {
+        "script": "transition_basilic_courtyard_to_interior()"
+      },
+      "tags": [ "button" ]
+    }
+  }
+]

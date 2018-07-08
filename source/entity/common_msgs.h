@@ -252,6 +252,14 @@ struct TMsgLanternsDisable {
     DECL_MSG_ID();
 };
 
+struct TMsgButtonActivated {
+    DECL_MSG_ID();
+};
+
+struct TMsgPlayerAIEnabled {
+    DECL_MSG_ID();
+};
+
 //struct TMsgSpotlightsToggle {
 //    DECL_MSG_ID();
 //};

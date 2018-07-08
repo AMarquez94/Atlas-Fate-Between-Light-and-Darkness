@@ -122,7 +122,7 @@ void CModuleLogic::publishClasses() {
     m->set("getLogic", SLB::FuncCall::create(&getLogic));
     m->set("getParticles", SLB::FuncCall::create(&getParticles));
     m->set("getPlayerController", SLB::FuncCall::create(&getPlayerController));
-    m->set("execDelayedScript", SLB::FuncCall::create(&execDelayedScript));
+    m->set("execScriptDelayed", SLB::FuncCall::create(&execDelayedScript));
     m->set("pauseGame", SLB::FuncCall::create(&pauseGame));
     m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
     m->set("deleteEnemies", SLB::FuncCall::create(&deleteEnemies));
@@ -133,6 +133,7 @@ void CModuleLogic::publishClasses() {
     m->set("blendOutActiveCamera", SLB::FuncCall::create(&blendOutActiveCamera));
 
     // Player hacks
+    m->set("pausePlayerToggle", SLB::FuncCall::create(&pausePlayerToggle));
     m->set("infiniteStamineToggle", SLB::FuncCall::create(&infiniteStamineToggle));
     m->set("immortal", SLB::FuncCall::create(&immortal));
     m->set("inShadows", SLB::FuncCall::create(&inShadows));
@@ -150,13 +151,15 @@ void CModuleLogic::publishClasses() {
     m->set("spawn", SLB::FuncCall::create(&spawn));
     m->set("bind", SLB::FuncCall::create(&bind));
     m->set("loadCheckpoint", SLB::FuncCall::create(&loadCheckpoint));
-    m->set("loadscene", SLB::FuncCall::create(&loadscene));
+    m->set("loadScene", SLB::FuncCall::create(&loadScene));
+    m->set("unloadScene", SLB::FuncCall::create(&unloadScene));
     m->set("cg_drawfps", SLB::FuncCall::create(&cg_drawfps));
     m->set("cg_drawlights", SLB::FuncCall::create(&cg_drawlights));
     m->set("renderNavmeshToggle", SLB::FuncCall::create(&renderNavmeshToggle));
     m->set("playSound2D", SLB::FuncCall::create(&playSound2D));
     m->set("exeShootImpactSound", SLB::FuncCall::create(&exeShootImpactSound));
-
+    m->set("sleep", SLB::FuncCall::create(&sleep));
+    m->set("cinematicModeToggle", SLB::FuncCall::create(&cinematicModeToggle));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -389,9 +392,26 @@ void spawn(const std::string & name, const VEC3 & pos) {
 
 }
 
-void loadscene(const std::string &level) {
-
+void loadScene(const std::string &level) {
     EngineScene.loadScene(level);
+}
+
+void unloadScene() {
+    EngineScene.unLoadActiveScene();
+}
+
+void sleep(float time) {
+    Sleep(time);
+}
+
+void cinematicModeToggle() {
+    TMsgPlayerAIEnabled msg;
+    CHandle h = getEntityByName("The Player");
+    h.sendMsg(msg);
+}
+
+void activateScene(const std::string& scene) {
+    //EngineScene.setActiveScene()
 }
 
 void loadCheckpoint()
@@ -413,6 +433,15 @@ void postFXToggle() {
     getObjectManager<TCompRenderAO>()->forEach([&](TCompRenderAO* c) {
         c->setState(!c->getState());
     });
+}
+
+void pausePlayerToggle() {
+    CEntity* p = getEntityByName("The Player");
+    TCompTempPlayerController* player = p->get<TCompTempPlayerController>();
+
+    TMsgScenePaused stopPlayer;
+    stopPlayer.isPaused = !player->paused;
+    EngineEntities.broadcastMsg(stopPlayer);
 }
 
 void debugToggle()

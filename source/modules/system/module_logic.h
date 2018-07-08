@@ -77,6 +77,7 @@ void execDelayedScript(const std::string& script, float delay);
 void pauseEnemies(bool pause);
 void deleteEnemies();
 void pauseGame(bool pause);
+void pausePlayerToggle();
 void infiniteStamineToggle();
 void immortal();
 void inShadows();
@@ -89,7 +90,8 @@ void blendOutCamera(const std::string& cameraName, float blendOutTime);
 void blendOutActiveCamera(float blendOutTime);
 void spawn(const std::string & name, const VEC3 & pos);
 void bind(const std::string& key, const std::string& script);
-void loadscene(const std::string &level);
+void loadScene(const std::string &level);
+void unloadScene();
 void loadCheckpoint();
 void shadowsToggle();
 void debugToggle();
@@ -97,6 +99,8 @@ void postFXToggle();
 void renderNavmeshToggle();
 void playSound2D(const std::string& soundName);
 void exeShootImpactSound();
+void sleep(float time);
+void cinematicModeToggle();
 
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);

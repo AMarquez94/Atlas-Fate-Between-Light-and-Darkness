@@ -6708,26 +6708,5 @@
         "size": "62.6036 17.8668 188.295"
       }
     }
-  },
-  {
-  "entity":
-    {
-      "name": "collider_victory"
-      ,
-      "transform":
-      {
-        "pos": " -10.2 0 138"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box",
-		"is_trigger" : true,
-        "size": "5 5 25"
-      },
-	  "tags" : ["victory_trigger"]
-    }
   }
 ]
