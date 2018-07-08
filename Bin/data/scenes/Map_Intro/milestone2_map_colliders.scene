@@ -2669,27 +2669,6 @@
   {
     "entity":
     {
-      "name": "collider_box023"
-      ,
-      "transform":
-      {
-        "pos": "23.8766 -0.0300835 133.609"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_box023.collider"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "collider_box024"
       ,
       "transform":
@@ -2746,27 +2725,6 @@
         "shape": "box"
         ,
         "size": "0.425064 0.478093 0.435401"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "collider_box027"
-      ,
-      "transform":
-      {
-        "pos": "20.8696 -0.0300858 81.5725"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_box027.collider"
       }
     }
   }
