@@ -136,6 +136,7 @@ void CModuleGameManager::render()
         ImGui::Selectable("Restart from last checkpoint", menuPosition == 1);
         if (ImGui::IsItemClicked() || (menuPosition == 1 && EngineInput["btMenuConfirm"].getsPressed()))
         {
+            unpauseGame();
             CEntity* e = getEntityByName("The Player");
             if (!e) {
                 return;
@@ -152,6 +153,7 @@ void CModuleGameManager::render()
         ImGui::Selectable("Restart level", menuPosition == 2);
         if (ImGui::IsItemClicked() || (menuPosition == 2 && EngineInput["btMenuConfirm"].getsPressed()))
         {
+            unpauseGame();
             CEntity* e = getEntityByName("The Player");
             if (!e) {
                 return;

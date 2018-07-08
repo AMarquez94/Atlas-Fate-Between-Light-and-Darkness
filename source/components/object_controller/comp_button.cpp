@@ -12,10 +12,13 @@ void TCompButton::debugInMenu() {
 
 void TCompButton::load(const json& j, TEntityParseContext& ctx) {
     _script = j.value("script", "");
+    canBePressed = j.value("canBePressed", true);
 }
 
 void TCompButton::onMsgButtonActivated(const TMsgButtonActivated& msg) {
-    EngineLogic.execScript(_script);
+    if (canBePressed) {
+        EngineLogic.execScript(_script);
+    }
 }
 
 void TCompButton::registerMsgs()

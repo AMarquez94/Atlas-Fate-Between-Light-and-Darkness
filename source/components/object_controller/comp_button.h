@@ -17,6 +17,7 @@ public:
     void update(float dt);
 
     static void registerMsgs();
+    bool canBePressed;
 
 private:
     std::string _script;
