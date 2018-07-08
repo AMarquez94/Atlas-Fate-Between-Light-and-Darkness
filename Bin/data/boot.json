@@ -75,11 +75,11 @@
 			"data/scenes/Coliseo/coliseo_maquinas.scene",
 			"data/scenes/Coliseo/coliseo_props.scene",
 			"data/scenes/Coliseo/coliseo_conductos.scene",
-			"data/scenes/ZoneA/whitebox_zone_light.scene",
-			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
 			"data/scenes/Basilic_courtyard/test_instancing.scene",
 			"data/scenes/Basilic_courtyard/capsules.scene",
 			"data/scenes/Coliseo/coliseo_particles.scene",
+			"data/scenes/Coliseo/coliseo_farolas.scene",
+			"data/scenes/Coliseo/coliseo_luces.scene",
 			"data/scenes/Basilic_courtyard/camera.scene"
 		]
 	},
