@@ -72,6 +72,8 @@ void TCompShooter::update(float dt) {
                 shootingDir.z += urand(-precission, precission);
                 shootingDir.Normalize();
                 EngineSound.playSound2D("drone_shot");
+                Engine.get().getParticles().launchSystem("data/particles/muzzleflash.particles", CHandle(this).getOwner());
+                Engine.get().getParticles().launchSystem("data/particles/muzzleflash_glow.particles", CHandle(this).getOwner());
                 physx::PxRaycastHit hit;
                 //dbg("SHOOT\n");
                 if (EnginePhysics.Raycast(mypos->getPosition(), shootingDir, bullet_range, hit, (physx::PxQueryFlag::eSTATIC | physx::PxQueryFlag::eDYNAMIC), pxQueryFilterData)) {
