@@ -20,7 +20,7 @@ void TCompPatrolAnimator::debugInMenu() {
 		playAnimation(EAnimation::ATTACK, speed);
 	}
 	if (ImGui::SmallButton("Death")) {
-		playAnimation(EAnimation::DEATH, speed);
+		playAnimation(EAnimation::DEAD, speed);
 	}
 	if (ImGui::SmallButton("Die")) {
 		playAnimation(EAnimation::DIE, speed);
@@ -77,7 +77,7 @@ void TCompPatrolAnimator::initializeAnimations() {
 	);
 
 	initializeAnimation(
-		(TCompAnimator::EAnimation)EAnimation::DEATH,
+		(TCompAnimator::EAnimation)EAnimation::DEAD,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
 		"dead",
