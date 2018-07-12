@@ -42,6 +42,7 @@ void TCompFSM::registerMsgs() {
   DECL_MSG(TCompFSM, TMsgSetFSMVariable, onVariableValue);
   DECL_MSG(TCompFSM, TMsgScenePaused, onPaused); 
   DECL_MSG(TCompFSM, TMsgConsoleOn, onConsoleChanged);
+  DECL_MSG(TCompFSM, TMsgNoClipToggle, onMsgNoClipToggle);
 }
 
 const std::string TCompFSM::getStateName()
@@ -60,7 +61,7 @@ void TCompFSM::load(const json& j, TEntityParseContext& ctx)
 
 void TCompFSM::update(float dt) 
 {
-	if (!paused && !isConsoleOn) {
+	if (!paused && !isConsoleOn && !isInNoClipMode) {
 		_context.update(dt);
 	}
 }
@@ -83,4 +84,9 @@ void TCompFSM::onVariableValue(const TMsgSetFSMVariable& msg)
 void TCompFSM::onConsoleChanged(const TMsgConsoleOn & msg)
 {
 	isConsoleOn = msg.isConsoleOn;
+}
+
+void TCompFSM::onMsgNoClipToggle(const TMsgNoClipToggle & msg)
+{
+    isInNoClipMode = !isInNoClipMode;
 }

@@ -1,0 +1,85 @@
+[
+  {
+    "entity": {
+      "name": "Buttons"
+    }
+  },
+  {
+    "entity": {
+      "name": "Button Turn Off Light",
+      "transform": {
+        "pos": "124 13 -421.5",
+        "rotation": "-0.707107 0 0 0.707107"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/Buttons/Button.mesh",
+          "materials": [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ],
+      "collider": {
+        "shape": "box",
+        "size": "0.3 0.3 0.3",
+        "group": "button"
+      },
+      "button": {
+        "script": "turn_off_and_on_light_interior()"
+      },
+      "tags": [ "button" ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "OmniB1"
+      ,
+      "transform":
+      {
+        "pos": "124 13 -421.5"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+	  "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1
+        ,
+        "outer_cut": 1.5
+        ,
+        "color": "0 1 0 1.0"
+        ,
+        "intensity": 4
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 3.19533
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+]

@@ -23,8 +23,29 @@ void TCompRender::onDefineLocalAABB(const TMsgDefineLocalAABB& msg) {
     AABB::CreateMerged(*msg.aabb, *msg.aabb, aabb);
 }
 
+// --------------------------------------------
+void TCompRender::onSetVisible(const TMsgSetVisible& msg) {
+
+    // If the flag has not changed, nothing to change
+    if (global_enabled == msg.visible)
+        return;
+
+    // Now keep the new value
+    global_enabled = msg.visible;
+
+    // This means we were visible, so we only need to remove my self
+    if (!global_enabled) {
+        CRenderManager::get().delRenderKeys(CHandle(this));
+    }
+    else {
+        // We come from being invisible, so just add my render keys
+        refreshMeshesInRenderManager(false);
+    }
+}
+
 void TCompRender::registerMsgs() {
     DECL_MSG(TCompRender, TMsgDefineLocalAABB, onDefineLocalAABB);
+    DECL_MSG(TCompRender, TMsgSetVisible, onSetVisible);
 }
 
 void TCompRender::debugInMenu() {
@@ -32,6 +53,26 @@ void TCompRender::debugInMenu() {
     ImGui::ColorEdit4("Color", &color.x);
     ImGui::ColorEdit4("Self Color", &self_color.x);
     ImGui::DragFloat("Self Intensity", &self_intensity, 0.01f, 0.f, 50.f);
+
+    bool changed = false;
+    for (auto& mwm : meshes) {
+        ImGui::PushID(&mwm);
+        // if the users changed the 'enabled' flag, save it
+        changed |= ImGui::Checkbox("Enabled", &mwm.enabled);
+        ImGui::LabelText("Mesh", "%s", mwm.mesh->getName().c_str());
+        for (auto &m : mwm.materials) {
+            if (m)
+                ((CMaterial*)m)->debugInMenu();
+        }
+        ImGui::PopID();
+    }
+
+    // Notify the rendermanager that we should regenerate our contents
+    if (changed) {
+        TMsgSetVisible msg = { false };
+        CHandle(this).getOwner().sendMsg(msg);
+    }
+        //refreshMeshesInRenderManager(true);
 }
 
 void TCompRender::renderDebug() {
@@ -106,7 +147,7 @@ void TCompRender::load(const json& j, TEntityParseContext& ctx) {
         loadMesh(j, ctx);
     }
 
-    refreshMeshesInRenderManager();
+    refreshMeshesInRenderManager(true);
 
     if (j.count("COLOR"))
         color = loadVEC4(j["color"]);
@@ -114,7 +155,7 @@ void TCompRender::load(const json& j, TEntityParseContext& ctx) {
     self_color = j.count("self_color") ? loadVEC4(j["self_color"]) : VEC4(1, 1, 1, 1);
 }
 
-void TCompRender::refreshMeshesInRenderManager() {
+void TCompRender::refreshMeshesInRenderManager(bool delete_me_from_keys) {
     CHandle h_me = CHandle(this);
     CRenderManager::get().delRenderKeys(h_me);
 
@@ -122,7 +163,7 @@ void TCompRender::refreshMeshesInRenderManager() {
     for (auto& mwm : meshes) {
 
         // Do not register disabled meshes
-        if (!mwm.enabled)
+        if (!mwm.enabled || !global_enabled)
             continue;
 
         // All materials of the house...
@@ -142,7 +183,22 @@ void TCompRender::refreshMeshesInRenderManager() {
     }
 }
 
-//void TCompRender::setPropertyBlock(PropertyBlock & block) {
-//
-//  properties = block;
-//}
+// Only allow us to change one material per mesh, multimaterial won't work.
+// In case of multimaterial needed, load from file.
+void TCompRender::setMaterial(const std::string &name) {
+
+    CMaterial * material = (CMaterial*)Resources.get(name)->as<CMaterial>();
+
+    // The house and the trees..
+    for (auto& mwm : meshes) {
+
+        // Do not register disabled meshes
+        if (!mwm.enabled || !global_enabled)
+            continue;
+
+        mwm.materials.clear();
+        mwm.materials.push_back(material);
+    }
+
+    refreshMeshesInRenderManager(true);
+}

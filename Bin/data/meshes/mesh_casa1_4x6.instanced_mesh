@@ -1,0 +1,7 @@
+{
+  "instanced_mesh": "data/meshes/mesh_casa1_4x6.mesh"
+  ,
+  "instances_type": "Instance"
+  ,
+  "num_instances_reserved": 8
+}

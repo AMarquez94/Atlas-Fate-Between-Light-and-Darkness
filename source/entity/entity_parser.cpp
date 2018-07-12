@@ -65,6 +65,7 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 
 				// Parse the prefab, if any other child is created they will inherit our ctx transform
 				TEntityParseContext prefab_ctx(ctx, delta_transform);
+				prefab_ctx.is_prefab = true;
 				if (!parseScene(prefab_src, prefab_ctx))
 					return false;
 
@@ -85,6 +86,7 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 				j_entity_without_transform.erase("transform");
 
 				// Do the parse
+				prefab_ctx.is_prefab = false;
 				e->load(j_entity_without_transform, prefab_ctx);
 
 			}
@@ -121,11 +123,31 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 			c_group->add(ctx.entities_loaded[i]);
 	}
 
+  /* Just for hierarchies - Notifies its parent */
+  TMsgHierarchyGroupCreated msgHierarchy = { ctx };
+  for (auto h : ctx.entities_loaded) {
+    h.sendMsg(msgHierarchy);
+  }
+
 	// Notify each entity created that we have finished
 	// processing this file
-	TMsgEntitiesGroupCreated msg = { ctx };
-	for (auto h : ctx.entities_loaded)
-		h.sendMsg(msg);
+  if (!ctx.is_prefab && ctx.entities_loaded.size() > 0) {
+    sendMsgChildren(ctx.entities_loaded[0], ctx);
+  }
+
 
 	return true;
+}
+
+void sendMsgChildren(CHandle hEntity, TEntityParseContext& ctx)
+{
+  TMsgEntitiesGroupCreated msg = { ctx };
+  CEntity* eEntity = hEntity;
+  eEntity->sendMsg(msg);
+  TCompGroup* group = eEntity->get<TCompGroup>();
+  if (group) {
+    for (auto h : group->handles) {
+      sendMsgChildren(h, ctx);
+    }
+  }
 }

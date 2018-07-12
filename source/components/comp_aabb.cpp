@@ -57,8 +57,15 @@ void TCompAbsAABB::onCreate(const TMsgEntityCreated&) {
   AABB::Transform(*this, c_trans->asMatrix());
 }
 
+void TCompAbsAABB::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+    updateFromSiblingsLocalAABBs(CHandle(this).getOwner());
+    TCompTransform* c_trans = get<TCompTransform>();
+    AABB::Transform(*this, c_trans->asMatrix());
+}
+
 void TCompAbsAABB::registerMsgs() {
   DECL_MSG(TCompAbsAABB, TMsgEntityCreated, onCreate);
+  DECL_MSG(TCompAbsAABB, TMsgEntitiesGroupCreated, onGroupCreated);
 }
 
 // ------------------------------------------------------
@@ -82,6 +89,12 @@ void TCompLocalAABB::renderDebug() {
   renderWiredAABB(*this, in_tmx->asMatrix(), VEC4(1, 1, 0, 1));
 }
 
+void TCompLocalAABB::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
+    updateFromSiblingsLocalAABBs(CHandle(this).getOwner());
+}
+
+
 void TCompLocalAABB::registerMsgs() {
   DECL_MSG(TCompLocalAABB, TMsgEntityCreated, onCreate);
+  DECL_MSG(TCompLocalAABB, TMsgEntitiesGroupCreated, onGroupCreated);
 }

@@ -1,0 +1,12 @@
+[{
+	"entity": {
+		"prefab": "data/prefabs/player.prefab",
+		"name": "The Player",
+		"transform": {
+				"pos": "-33 0 -2",
+				"lookat": "-30 0 -2"
+		},
+		"ai_player": {
+		}
+	}
+}]

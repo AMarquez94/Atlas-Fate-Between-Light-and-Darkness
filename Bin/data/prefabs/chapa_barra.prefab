@@ -1,0 +1,41 @@
+[
+  {
+    "entity":
+    {
+      "name": "chapa_barra"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_chapa_barra.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_valla_torre.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

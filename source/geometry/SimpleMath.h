@@ -250,6 +250,7 @@ struct Vector3 : public XMFLOAT3
 
     void Normalize();
     void Normalize( Vector3& result ) const;
+    Vector3 Normalized();
 
     void Clamp( const Vector3& vmin, const Vector3& vmax );
     void Clamp( const Vector3& vmin, const Vector3& vmax, Vector3& result ) const;

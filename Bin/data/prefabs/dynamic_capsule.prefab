@@ -5,20 +5,24 @@
 				"pos": "0 0 0",
 				        "rotation": "0.0 -0.707107 -0.707107 0.0"
 			},
-			"render":
-			[{
-					"mesh": "data/meshes/capsula_low.mesh",
-					"materials":
-					[
-						"data/materials/Material #29.material"
-					]
-				}
-			],
+      "instance" : 
+			{
+				"mesh": "data/meshes/capsule.instanced_mesh",
+				"materials": [
+					"data/materials/mtl_instanced_capsule.material"
+				]
+			},
 			"collider": {
 				"shape": "convex",
 				"is_trigger": false,
 				"is_dynamic": true,
-        "name": "data/colliders/collider_capsula_low.collider"
+				"is_gravity": false,
+				"group": "dynamic",
+				"name": "data/colliders/collider_capsula_low.collider"
+			},
+			"rigidbody": {
+				"is_controller": false,
+				"is_gravity": false
 			},
 			"dynamic_capsule": {
 				"speed": 0,

@@ -11,25 +11,24 @@ public:
   void load(const json& j, TEntityParseContext& ctx);
   void update(float dt);
 
+  void makeNoise(float noiseRadius, float timeToRepeat, bool isNoise, bool isOnlyOnce, bool isArtificial);
+
+  void changeNoiseRadius(float newRadius);
+
   static void registerMsgs();
 
 private:
 
-  CHandle _hSource;
   float _timeToRepeatNoise;
   float _timer = 0.f;
   bool _once = false;
   bool _onceNoiseMade = false;
   bool _isNoise = false;
   bool _artificial = false;
-  std::vector<CHandle> hEntitiesInNoiseRadius;
+  physx::PxSphereGeometry emitter_sphere;
+  physx::PxQueryFilterData PxNoiseEmitterFilterData;
 
-  void onMsgEntityCreated(const TMsgEntityCreated& msg);
   void onMsgScenePaused(const TMsgScenePaused & msg);
-  void onMsgTriggerEnter(const TMsgTriggerEnter& msg);
-  void onMsgTriggerExit(const TMsgTriggerExit& msg);
-  void onMsgMakeNoise(const TMsgMakeNoise& msg);
 
-  void resizeEmitter(float radius);
 };
 

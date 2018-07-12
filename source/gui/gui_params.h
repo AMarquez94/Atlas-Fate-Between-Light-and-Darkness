@@ -37,6 +37,7 @@ namespace GUI
     enum EDirection { Horizontal, Vertical };
     EDirection _direction;
     float _processValue;
+	std::string _variable;
   };
 
   struct TButtonParams

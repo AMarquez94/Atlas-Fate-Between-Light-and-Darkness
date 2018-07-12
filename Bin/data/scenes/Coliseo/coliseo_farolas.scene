@@ -1,0 +1,457 @@
+[
+  {
+    "entity":
+    {
+      "name": "coliseo_farolas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_farola"
+      ,
+      "transform":
+      {
+        "pos": "19.3 0.0 -19.3638"
+        ,
+        "rotation": "0.0 -0.92388 0.0 0.382683"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_farola.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_farola.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_farola002"
+      ,
+      "transform":
+      {
+        "pos": "-26.9863 0.0 4.87588"
+        ,
+        "rotation": "0.0 -0.130526 0.0 -0.991445"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_farola002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_farola002.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_farola003"
+      ,
+      "transform":
+      {
+        "pos": "-12.5014 0.0 24.435"
+        ,
+        "rotation": "0.0 -0.5373 0.0 -0.843391"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_farola003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_farola003.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_farola005"
+      ,
+      "transform":
+      {
+        "pos": "27.253 0.0 4.33563"
+        ,
+        "rotation": "0.0 -0.996195 0.0 -0.0871558"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_farola005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_farola005.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_farola006"
+      ,
+      "transform":
+      {
+        "pos": "-0.0809631 0.0 27.5246"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_farola006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_farola006.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_farola007"
+      ,
+      "transform":
+      {
+        "pos": "12.7119 0.0 24.227"
+        ,
+        "rotation": "0.0 -0.866025 0.0 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_farola007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_farola007.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_farola008"
+      ,
+      "transform":
+      {
+        "pos": "-26.0431 0.0 -8.56745"
+        ,
+        "rotation": "0.0 0.130526 0.0 -0.991445"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_farola008.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_farola008.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_farola009"
+      ,
+      "transform":
+      {
+        "pos": "-19.1679 0.0 -19.4865"
+        ,
+        "rotation": "0.0 0.382683 0.0 -0.92388"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_farola009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_farola009.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_farola010"
+      ,
+      "transform":
+      {
+        "pos": "-6.46771 0.0 -26.6718"
+        ,
+        "rotation": "0.0 0.608761 0.0 -0.793353"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_farola010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_farola010.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_farola011"
+      ,
+      "transform":
+      {
+        "pos": "9.40136 0.0 -25.5663"
+        ,
+        "rotation": "0.0 0.819152 0.0 -0.573576"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_farola011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_farola011.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_farola012"
+      ,
+      "transform":
+      {
+        "pos": "26.2607 0.0 -8.47197"
+        ,
+        "rotation": "0.0 -0.984808 0.0 0.173648"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_farola012.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_farola012.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_farola013"
+      ,
+      "transform":
+      {
+        "pos": "22.0829 0.0 16.2039"
+        ,
+        "rotation": "0.0 -0.953717 0.0 -0.300706"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_farola013.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_farola013.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

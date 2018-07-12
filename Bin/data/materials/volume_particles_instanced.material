@@ -1,0 +1,10 @@
+{
+  "technique": "Instanced_particles.tech"
+  ,
+  "shadows": false
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/grass/grass.dds"
+  }
+}

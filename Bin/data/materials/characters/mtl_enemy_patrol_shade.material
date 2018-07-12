@@ -1,0 +1,12 @@
+{
+	"technique": "pbr_shade_skin.tech",
+	"shadows": true,
+	"textures": {
+		"albedo": "data/textures/enemy/Mech_low_1001_BaseColor.dds",
+		"normal": "data/textures/enemy/Mech_low_1001_Normal.dds",
+		"metallic": "data/textures/enemy/Mech_low_1001_Metallic.dds",
+		"roughness": "data/textures/enemy/Mech_low_1001_Roughness.dds",
+		"emissive": "data/textures/enemy/Mech_low_1001_Emissive.dds"
+	},
+	"self_color": "0.0 1.0 1.0 1.0"
+}

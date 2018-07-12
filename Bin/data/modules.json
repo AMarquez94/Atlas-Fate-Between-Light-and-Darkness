@@ -2,11 +2,12 @@
 	"update":
 	[
 		"input",
-		"physics",
 		"entities",
+		"physics",
 		"render",
 		"navmeshes",
 		"cameras",
+		"particles",
 		"gui",
 		"logic",
 		"sound",
@@ -14,25 +15,28 @@
 		"game_manager",
 		"console",
 		"splash",
-		"test_input",
-		
 		"map_intro",
 		"level_select",
-		"game_over"
+		"game_over",
+		"instancing",
+		"debug"
 	],
 	"render":
 	[
 		"render",
+		"instancing",
+		"entities",		
+		"game_manager",
 		"navmeshes",
 		"map_intro",
-		"input",
 		"main_menu",
-		"game_manager",
-		"console",
+		"particles",
 		"gui",
 		"level_select",
 		"game_over",
-		"entities",
-		"cameras"
+		"console",
+		"cameras",
+		"input",
+		"sound"
 	]
 }

@@ -10,6 +10,8 @@ class TCompPlayerInput : public TCompBase
 	bool crouchButton = false;
 	bool attackButtonJustPressed = false;
 
+    bool isInNoClipMode = false;
+
 	DECL_SIBLING_ACCESS();
 
 public:
@@ -20,7 +22,16 @@ public:
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
 
+    static void registerMsgs();
+
 private:
-	float _time;
+	float _time = 0.f;
+  float _timerRemoveInhibitor = 0.f;
+  float _timeOffsetToRemoveInhibitor;
+  bool _moveObject = false;
+  bool _enemyStunned = false;
+  bool _buttonPressed = false;
+
+  void onMsgNoClipToggle(const TMsgNoClipToggle& msg);
 };
 

@@ -3,6 +3,7 @@ SLB.using(SLB)
 function onGameStart()
 	console = getConsole();
 	logic = getLogic();
+	particles = getParticles();
 	addAllFunctionsToConsole();
 end
 

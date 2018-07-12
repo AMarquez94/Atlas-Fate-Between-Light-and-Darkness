@@ -11,8 +11,22 @@ public:
 	}
 	IResource* create(const std::string& name) const override {
 		dbg("Creating material %s\n", name.c_str());
-		CMaterial* res = new CMaterial();
-		bool is_ok = res->create(name);
+
+        auto j = loadJson(name);
+        std::string mat_type = j.value("type", "std");
+
+        CMaterial* res = nullptr;
+        if (mat_type == "std") {
+            res = new CMaterial();
+        }
+        else if (mat_type == "mix") {
+            res = new CMaterialMixing();
+        }
+        else {
+            fatal("Invalid material type %s", mat_type.c_str());
+        }
+
+		bool is_ok = res->create(j);
 		assert(is_ok);
 		return res;
 	}
@@ -29,14 +43,12 @@ const CResourceClass* getResourceClassOf<CMaterial>() {
 CMaterial::CMaterial() : cb_material("Material") {}
 
 // ----------------------------------------------------------
-bool CMaterial::create(const std::string& name) {
-
-	auto j = loadJson(name);
+bool CMaterial::create(const json& j) {
 
 	// If nothing is set, use 'pbr.tech'
 	std::string technique_name = "pbr.tech";
 	if (j.count("technique"))
-		technique_name = j["technique"];
+		technique_name = j.value("technique", "");
 
 	tech = Resources.get(technique_name)->as<CRenderTechnique>();
 	cast_shadows = j.value("shadows", true);
@@ -44,36 +56,40 @@ bool CMaterial::create(const std::string& name) {
 	// Setting default textures
 	textures[TS_EMISSIVE] = Resources.get("data/textures/default_emissive.dds")->as<CTexture>();
 	textures[TS_HEIGHT] = Resources.get("data/textures/default_white.dds")->as<CTexture>();
+    textures[TS_AOCCLUSION] = Resources.get("data/textures/default_white.dds")->as<CTexture>();
+    srvs[TS_AOCCLUSION] = textures[TS_AOCCLUSION]->getShaderResourceView();
 
-	auto& j_textures = j["textures"];
-	for (auto it = j_textures.begin(); it != j_textures.end(); ++it) {
-		std::string slot = it.key();
-		std::string texture_name = it.value();
+    if (j.count("textures")) {
+        auto& j_textures = j["textures"];
+        for (auto it = j_textures.begin(); it != j_textures.end(); ++it) {
+            std::string slot = it.key();
+            std::string texture_name = it.value();
 
-		int ts = TS_NUM_MATERIALS_SLOTS;
-		if (slot == "albedo")
-			ts = TS_ALBEDO;
-		else if (slot == "normal")
-			ts = TS_NORMAL;
-		else if (slot == "lightmap")
-			ts = TS_LIGHTMAP;
-		else if (slot == "metallic")
-			ts = TS_METALLIC;
-		else if (slot == "roughness")
-			ts = TS_ROUGHNESS;
-		else if (slot == "emissive")
-			ts = TS_EMISSIVE;
-		else if (slot == "aocclusion")
-			ts = TS_AOCCLUSION;
-		else if (slot == "height")
-			ts = TS_HEIGHT;
+            int ts = TS_NUM_MATERIALS_SLOTS;
+            if (slot == "albedo")
+                ts = TS_ALBEDO;
+            else if (slot == "normal")
+                ts = TS_NORMAL;
+            else if (slot == "lightmap")
+                ts = TS_LIGHTMAP;
+            else if (slot == "metallic")
+                ts = TS_METALLIC;
+            else if (slot == "roughness")
+                ts = TS_ROUGHNESS;
+            else if (slot == "emissive")
+                ts = TS_EMISSIVE;
+            else if (slot == "aocclusion")
+                ts = TS_AOCCLUSION;
+            else if (slot == "height")
+                ts = TS_HEIGHT;
 
-		assert(ts != TS_NUM_MATERIALS_SLOTS || fatal("Material %s has an invalid texture slot %s\n", name.c_str(), slot.c_str()));
-		textures[ts] = Resources.get(texture_name)->as<CTexture>();
+            assert(ts != TS_NUM_MATERIALS_SLOTS || fatal("Material %s has an invalid texture slot %s\n", name.c_str(), slot.c_str()));
+            textures[ts] = Resources.get(texture_name)->as<CTexture>();
 
-		// To update all textures in a single DX call
-		srvs[ts] = textures[ts]->getShaderResourceView();
-	}
+            // To update all textures in a single DX call
+            srvs[ts] = textures[ts]->getShaderResourceView();
+        }
+    }
 
 	if (!cb_material.create(CB_MATERIAL))
 		return false;
@@ -84,6 +100,11 @@ bool CMaterial::create(const std::string& name) {
 	cb_material.scalar_irradiance_vs_mipmaps = 0.0f;
 	cb_material.color_emission = VEC4(1, 1, 1, 1);
 	cb_material.scalar_emission = j.value("emission", 10.0f);
+
+    cb_material.mix_boost_r = 0;
+    cb_material.mix_boost_g = 0;
+    cb_material.mix_boost_b = 0;
+    cb_material.mat_alpha_outline = 0;
 
 	if (j.count("self_color"))
 		cb_material.color_emission = loadVEC4(j["self_color"]);
@@ -99,7 +120,8 @@ bool CMaterial::create(const std::string& name) {
 
 void CMaterial::onFileChanged(const std::string& filename) {
 	if (filename == getName()) {
-		create(filename);
+        auto j = loadJson(filename);
+        create(j);
 	}
 	else {
 		// Maybe a texture has been updated, get the new shader resource view
@@ -117,7 +139,24 @@ void CMaterial::activate() const {
 
 	cb_material.activate();
 	tech->activate();
-	Render.ctx->PSSetShaderResources(0, max_textures, (ID3D11ShaderResourceView**)srvs);
+    activateTextures(TS_ALBEDO);
+}
+
+void CMaterial::activateTextures(int slot0) const {
+
+    Render.ctx->PSSetShaderResources(slot0, max_textures, (ID3D11ShaderResourceView**)srvs);
+}
+
+void CMaterial::setCBMaterial(float alpha_outline) {
+
+    cb_material.mat_alpha_outline = alpha_outline;
+    
+    // Add the rest of the values.
+}
+
+void CMaterial::setSelfColor(VEC4 self_color) {
+
+    cb_material.color_emission = self_color;
 }
 
 void CMaterial::debugInMenu() {
@@ -146,6 +185,50 @@ void CMaterial::debugInMenu() {
 	ImGui::DragFloat("Emissive Intensity", &cb_material.scalar_emission, 0.01f, 0.f, 1000.f);
 	ImGui::ColorEdit3("Emissive Color", &cb_material.color_emission.x);
 	ImGui::DragFloat("irradiance_vs_mipmaps", &cb_material.scalar_irradiance_vs_mipmaps, 0.01f, 0.f, 1.f);
+    ImGui::DragFloat("outline_amount", &cb_material.mat_alpha_outline, 0.01f, 0.f, 1.f);
 
 	cb_material.updateGPU();
+}
+
+
+// ---------------------------------------------------------
+void CMaterialMixing::activate() const {
+
+    // Upload ctes
+    cb_material.activate();
+
+    // Tech
+    tech->activate();
+
+    // 3 materials sets
+    mats[0]->activateTextures(TS_FIRST_SLOT_MATERIAL_0);
+    mats[1]->activateTextures(TS_FIRST_SLOT_MATERIAL_1);
+    mats[2]->activateTextures(TS_FIRST_SLOT_MATERIAL_2);
+
+    mix_blend_weights->activate(TS_MIX_BLEND_WEIGHTS);
+}
+
+bool CMaterialMixing::create(const json& j) {
+    if (!CMaterial::create(j))
+        return false;
+    for (int i = 0; i < 3; ++i) {
+        std::string mat_name = j["mats"][i];
+        mats[i] = Resources.get(mat_name)->as< CMaterial >();
+        assert(mats[i]);
+    }
+
+    mix_blend_weights = Resources.get(j.value("mix_blend_weights", "data/textures/black.dds"))->as<CTexture>();
+    assert(mix_blend_weights);
+
+    return true;
+}
+
+void CMaterialMixing::debugInMenu() {
+    ((CRenderTechnique*)tech)->debugInMenu();
+    ImGui::DragFloat("Boost R", &cb_material.mix_boost_r, 0.01f, 0.f, 1.f);
+    ImGui::DragFloat("Boost G", &cb_material.mix_boost_g, 0.01f, 0.f, 1.f);
+    ImGui::DragFloat("Boost B", &cb_material.mix_boost_b, 0.01f, 0.f, 1.f);
+    for (int i = 0; i < 3; ++i)
+        ((CMaterial*)mats[i])->debugInMenu();
+    cb_material.updateGPU();
 }

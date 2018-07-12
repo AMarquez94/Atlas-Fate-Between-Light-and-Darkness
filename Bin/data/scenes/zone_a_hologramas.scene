@@ -1,0 +1,163 @@
+[
+  {
+    "entity":
+    {
+      "name": "zone_a_hologramas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea_holograma001"
+      ,
+      "transform":
+      {
+        "pos": "-52.4723 15.4283 -97.2506"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_chimenea_holograma001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_holograma_chimenea.material"
+          ]
+        }
+      ]
+      ,	  "rotator": {},
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea_holograma002"
+      ,
+      "transform":
+      {
+        "pos": "-57.8369 15.4283 -97.2506"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_chimenea_holograma002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_holograma_chimenea.material"
+          ]
+        }
+      ]
+      ,	  "rotator": {},
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea_holograma003"
+      ,
+      "transform":
+      {
+        "pos": "-113.96 15.4283 -116.008"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_chimenea_holograma003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_holograma_chimenea.material"
+          ]
+        }
+      ]
+      ,	  "rotator": {},
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea_holograma004"
+      ,
+      "transform":
+      {
+        "pos": "-73.5591 15.4283 -163.5"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_chimenea_holograma004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_holograma_chimenea.material"
+          ]
+        }
+      ]
+      ,	  "rotator": {},
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea_holograma005"
+      ,
+      "transform":
+      {
+        "pos": "-66.3945 15.4283 -163.472"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_chimenea_holograma005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_holograma_chimenea.material"
+          ]
+        }
+      ]
+      ,	  "rotator": {},
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

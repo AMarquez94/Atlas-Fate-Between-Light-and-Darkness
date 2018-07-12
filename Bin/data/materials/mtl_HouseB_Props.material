@@ -14,5 +14,6 @@
     "height": "data/textures/tx_CasaBProps_hgt.dds"
     ,
     "emissive": "data/textures/tx_CasaBProps_emi.dds"
+		
   }
 }

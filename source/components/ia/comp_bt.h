@@ -6,10 +6,22 @@
 
 class BTNode;
 
+struct HistoricalAction {
+  const char* action;
+  int number_of_times;
+};
+
 class TCompIAController : public TCompBase {
 
 
+private:
+
+  /* TODO: Temp - Borrar. Solo con motivo de debug */
+  std::vector<HistoricalAction> historic;
+
 protected:
+
+    bool pausedAI = false;
 
 	typedef BTNode::ERes(TCompIAController::*BTAction)(float dt);
 	typedef bool (TCompIAController::*BTCondition)(float dt);
@@ -28,17 +40,21 @@ protected:
 	virtual void loadConditions() {};
 	virtual void loadAsserts() {};
 
-	void loadTree(const json& j);
+	void loadTree(const json& json);
 	void loadParameters(const json& j);
 	void loadParameterVariables(const json& j, const std::string& type, const std::string& name);
 
 	BTNode *current;
 
 	void onMsgScenePaused(const TMsgScenePaused& msg);
+	void onMsgAIPaused(const TMsgAIPaused& msg);
 
-	bool isParentOfCurrent(BTNode * son, const std::string& possibleParent);
+	bool isNodeSonOf(BTNode * son, const std::string& possibleParent);
+  bool isNodeName(BTNode * node, const std::string& possibleName);
 
-private:
+  CHandle myHandle;
+
+protected:
 
 	/* The nodes as map (so we have both map and tree for the same structure */
 	std::map<std::string, BTNode *> tree;
@@ -58,9 +74,13 @@ private:
 	BTNode *findNode(const std::string& name);
 
 	void printTree();
+
 public:
 
+	enum BTType { PATROL = 0, MIMETIC, DRONE, NUM_ENEMIES };
+
 	std::string name;
+	BTType btType;
 	float timeAnimating = 0.0f;
 
 	void debugInMenu();
@@ -79,5 +99,12 @@ public:
 	void setCurrent(BTNode *currentNode);
 	BTNode* getCurrent() { return current; };
 
+	void setCurrentByName(const std::string& stateName);
+
 	void update(float dt);
+  virtual void preUpdate(float dt) = 0;
+  virtual void postUpdate(float dt) = 0;
+
+  /* TODO: remove - solo para debug */
+  void addActionToHistoric(const std::string& action);
 };

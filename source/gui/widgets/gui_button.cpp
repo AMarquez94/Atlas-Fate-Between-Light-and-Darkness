@@ -8,6 +8,7 @@ void CButton::render()
   CModuleGUI& gui = Engine.get().getGUI();
 
   TButtonParams& btParams = _states[_currentState];
+  //btParams._imageParams._color.w = 0.3f;
 
   // render image
   MAT44 sz = MAT44::CreateScale(_params._size.x, _params._size.y, 1.f);

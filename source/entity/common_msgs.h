@@ -44,6 +44,11 @@ struct TMsgEntitiesGroupCreated {
 	DECL_MSG_ID();
 };
 
+struct TMsgHierarchyGroupCreated {
+  const TEntityParseContext& ctx;
+  DECL_MSG_ID();
+};
+
 struct TMsgPlayerDead {
 	CHandle h_sender;
 	DECL_MSG_ID();
@@ -57,6 +62,12 @@ struct TMsgEnemyStunned {
 struct TMsgPlayerHit {
 	CHandle h_sender;
 	DECL_MSG_ID();
+};
+
+struct TMsgBulletHit {
+    CHandle h_sender;
+    float damage;
+    DECL_MSG_ID();
 };
 
 struct TMsgInhibitorShot {
@@ -81,6 +92,18 @@ struct TMsgPlayerIlluminated {
 	DECL_MSG_ID();
 };
 
+struct TMsgSonarActive {
+    float value;
+
+    DECL_MSG_ID();
+};
+
+struct TMsgFadeBody {
+    bool is_exit;
+
+    DECL_MSG_ID();
+};
+
 struct TMsgTriggerEnter {
 	CHandle h_other_entity;
 	DECL_MSG_ID();
@@ -88,6 +111,11 @@ struct TMsgTriggerEnter {
 
 struct TMsgTriggerExit {
 	CHandle h_other_entity;
+	DECL_MSG_ID();
+};
+
+struct TMsgPhysxContact {
+	CHandle other_entity;
 	DECL_MSG_ID();
 };
 
@@ -103,6 +131,7 @@ struct TMsgSetCameraCancelled {
 };
 
 struct TMsgCameraActivated {
+    CHandle previousCamera;
 	DECL_MSG_ID();
 };
 
@@ -112,6 +141,12 @@ struct TMsgCameraDeprecated {
 
 struct TMsgCameraFullyActivated {
 	DECL_MSG_ID();
+};
+
+struct TMsgCameraReset {
+  bool both_angles;
+  bool only_y;
+  DECL_MSG_ID();
 };
 
 struct TMsgTimeOut {
@@ -137,9 +172,22 @@ struct TMsgScenePaused {
 	DECL_MSG_ID();
 };
 
+struct TMsgAIPaused {
+    bool isPaused;
+    DECL_MSG_ID();
+};
+
 struct TMsgConsoleOn {
 	bool isConsoleOn;
 	DECL_MSG_ID();
+};
+
+struct TMsgSystemNoClipToggle {
+    DECL_MSG_ID();
+};
+
+struct TMsgNoClipToggle {
+    DECL_MSG_ID();
 };
 
 struct TMsgNoiseMade {
@@ -149,12 +197,9 @@ struct TMsgNoiseMade {
 	DECL_MSG_ID();
 };
 
-struct TMsgMakeNoise {
-	float noiseRadius;
-	bool isOnlyOnce;
-	float timeToRepeat;
-	bool isNoise;
-	bool isArtificial;
+struct TMsgOrderReceived {
+	CHandle hOrderSource;
+	VEC3 position;
 	DECL_MSG_ID();
 };
 
@@ -162,6 +207,62 @@ struct TMsgShadowChange {
 	bool is_shadowed;
 	DECL_MSG_ID();
 };
+
+struct TMsgSceneLoaded {
+    std::string scene_name;
+    DECL_MSG_ID();
+};
+
+struct TMsgSetVisible {
+    bool visible;
+    DECL_MSG_ID();
+};
+
+struct TMsgObjectBeingMoved {
+  bool isBeingMoved;
+  CHandle hMovingObject;
+  VEC3 direction;
+  float speed;
+  DECL_MSG_ID();
+};
+
+struct TMsgInfiniteStamina {
+    DECL_MSG_ID();
+};
+
+struct TMsgSpeedBoost {
+    float speedBoost;
+    DECL_MSG_ID();
+};
+
+struct TMsgPlayerInvisible {
+    DECL_MSG_ID();
+};
+
+struct TMsgPlayerImmortal {
+    DECL_MSG_ID();
+};
+
+struct TMsgPlayerInShadows {
+    DECL_MSG_ID();
+};
+
+struct TMsgLanternsDisable {
+    bool disable;
+    DECL_MSG_ID();
+};
+
+struct TMsgButtonActivated {
+    DECL_MSG_ID();
+};
+
+struct TMsgPlayerAIEnabled {
+    DECL_MSG_ID();
+};
+
+//struct TMsgSpotlightsToggle {
+//    DECL_MSG_ID();
+//};
 
 #endif
 

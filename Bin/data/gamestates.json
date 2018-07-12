@@ -16,15 +16,11 @@
 		},
 		{
 			"name" : "map_intro",
-			"modules" : [ "map_intro", "game_manager" ]
+			"modules" : [ "map_intro", "game_manager"]
 		},
 		{
 			"name" : "level_select",
 			"modules" : [ "level_select" ]
-		},
-		{
-			"name" : "test_input",
-			"modules" : [ "test_input" ]
 		}
 	]
 }

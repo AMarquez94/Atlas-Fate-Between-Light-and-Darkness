@@ -85,4 +85,6 @@ public:
 	void setViewport(int x0, int y0, int width, int height);
 
 	bool getScreenCoordsOfWorldCoord(VEC3 world_pos, VEC3 *screen_coords) const;
+
+	bool getWorldCoordOfScreenCoords(VEC3 pos, VEC3 *screen_coords) const;
 };

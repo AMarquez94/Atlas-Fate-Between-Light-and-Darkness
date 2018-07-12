@@ -1,0 +1,95 @@
+[{
+		"entity": {
+			"name": "Enemies"
+		}
+	}, {
+		"entity": {
+			"prefab": "data/prefabs/mimetic.prefab",
+			"name": "Mimetic 1",
+			"transform": {
+				"pos": "124 12 -420",
+				"lookat": "124 12 -417"
+			},
+			"ai_mimetic": {
+				"type": "floor",
+				"waypoints": [{
+						"position": "124 12 -420",
+						"lookAt": "1 0 0",
+						"minTime": 8
+					}, {
+						"position": "124 12 -410",
+						"lookAt": "0 0 -1",
+						"minTime": 8
+					}
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"prefab": "data/prefabs/patrol.prefab",
+			"name": "Patrol 1",
+			"transform": {
+				"pos": "124 12 -432",
+				"lookat": "124 12 -434"
+			},
+			"ai_patrol": {
+				"startLightsOn": false,
+				"waypoints": [{
+						"position": "124 12 -432",
+						"lookAt": "1 0 0",
+						"minTime": 8
+					}, {
+						"position": "124 12 -442",
+						"lookAt": "0 0 1",
+						"minTime": 8
+					}
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"prefab": "data/prefabs/patrol.prefab",
+			"name": "Patrol 2",
+			"transform": {
+				"pos": "148 21.020 -442",
+				"lookat": "149 21.020 -441"
+			},
+			"ai_patrol": {
+				"startLightsOn": true,
+				"waypoints": [{
+						"position": "148 21.020 -442",
+						"lookAt": "1 0 1",
+						"minTime": 6
+					}, {
+						"position": "148 21.020 -442",
+						"lookAt": "0 0 -1",
+						"minTime": 6
+					}
+				]
+			}
+		}
+	},  {
+		"entity": {
+			"prefab": "data/prefabs/drone.prefab",
+			"name": "Drone 1",
+			"transform": {
+				"pos": "160 42 -400",
+				"lookat": "160 42 -401"
+			},
+			"ai_drone": {
+				"startLightsOn": false, 
+				"waypoints": [{
+						"position": "160 42 -400",
+						"lookAt": "0 0 -1",
+						"minTime": 0
+					},
+					{
+						"position": "160 42 -444",
+						"lookAt": "0 0 1",
+						"minTime": 0
+					}
+				]
+			}
+		}
+	}
+]

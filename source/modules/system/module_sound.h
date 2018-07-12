@@ -40,17 +40,22 @@ class CModuleSound : public IModule
 	FMOD::System *_system;
 	void *_extradriverdata = 0;
 
+    void registerAllSoundClipsInPath(char* path);
+
 public:
 
 	CModuleSound(const std::string& aname) : IModule(aname) { }
 
 	virtual bool start() override;
 	virtual void update(float delta) override;
+    virtual void render() override;
 	virtual bool stop() override;
 
 	void setAmbientSound(const std::string & path);
 	void registerClip(const std::string & tag, const std::string & source, FMOD_MODE mode);
 	void registerClip3D(const std::string & tag, const std::string & source);
+    void playSound2D(const std::string& tag);
 	void exeStepSound();
+    void exeShootImpactSound();
 	//void registerEvent(const std::string & tag, const std::string & source);
 };

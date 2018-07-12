@@ -22,126 +22,149 @@ void TCompShadowController::debugInMenu() {
 
 void TCompShadowController::load(const json& j, TEntityParseContext& ctx) {
 
-	Init();
+    Init();
 }
 
 void TCompShadowController::update(float dt) {
 
-	TCompTransform * c_my_transform = get<TCompTransform>();
-	VEC3 new_pos = c_my_transform->getPosition() + 0.1f * c_my_transform->getUp();
-	bool shadow_test = IsPointInShadows(new_pos) && enemies_illuminating_me.size() == 0;
+    TCompTransform * c_my_transform = get<TCompTransform>();
+    VEC3 new_pos = c_my_transform->getPosition() + 0.2f * c_my_transform->getUp();
+    bool shadow_test = IsPointInShadows(new_pos) && enemies_illuminating_me.size() == 0;
 
-	// We have entered or left a shadow, notify this.
-	if (shadow_test != is_shadow) {
-		is_shadow = shadow_test;
+    // We have entered or left a shadow, notify this.
+    if (shadow_test != is_shadow) {
+        is_shadow = shadow_test;
 
-		TMsgShadowChange msgToSend;
-		msgToSend.is_shadowed = is_shadow;
-		CEntity* e = CHandle(this).getOwner();
-		e->sendMsg(msgToSend);
-	}
- }
+        TMsgShadowChange msgToSend;
+        msgToSend.is_shadowed = is_shadow;
+        CEntity* e = CHandle(this).getOwner();
+        e->sendMsg(msgToSend);
+    }
+
+    // Update shader constants
+    //cb_player.player_pos = c_my_transform->getPosition();
+    //cb_player.player_next_pos = c_my_transform->getPosition() + 0.35f * c_my_transform->getFront();
+    //cb_player.updateGPU();
+}
 
 void TCompShadowController::Init() {
-	is_shadow = false;
+
+    is_shadow = false;
 }
 
 void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
 
-	// Retrieve all scene lights
-	auto& light_handles = CTagsManager::get().getAllEntitiesByTag(getID("light"));
+    // Retrieve all scene lights
+    auto& light_handles = CTagsManager::get().getAllEntitiesByTag(getID("light"));
 
-	for (auto h : light_handles) {
-		CEntity* current_light = h;
-		TCompLightDir * c_light_dir = current_light->get<TCompLightDir>();
-		TCompLightSpot * c_light_spot = current_light->get<TCompLightSpot>();
-		TCompLightPoint* c_light_point = current_light->get<TCompLightPoint>();
+    for (auto h : light_handles) {
+        CEntity* current_light = h;
+        TCompLightDir * c_light_dir = current_light->get<TCompLightDir>();
+        TCompLightSpot * c_light_spot = current_light->get<TCompLightSpot>();
+        TCompLightPoint* c_light_point = current_light->get<TCompLightPoint>();
 
-		if (c_light_dir) // by now we will only retrieve directional lights
-		{
-			static_lights.push_back(h);
-		}
-		else if (c_light_spot || c_light_point) // by now we will only retrieve directional lights
-		{
-			TCompCollider * c_collider = current_light->get<TCompCollider>();
-			if (c_collider != NULL)
-				dynamic_lights.push_back(h);
-		}
-	}
+        if (c_light_dir) // by now we will only retrieve directional lights
+        {
+            static_lights.push_back(h);
+        }
+        else if (c_light_spot || c_light_point) // by now we will only retrieve directional lights
+        {
+            TCompCollider * c_collider = current_light->get<TCompCollider>();
+            if (c_collider != NULL)
+                dynamic_lights.push_back(h);
+        }
+    }
 
-	physx::PxFilterData pxFilterData;
-	//pxFilterData.word0 = EnginePhysics.FilterGroup::Scenario;
-	pxFilterData.word1 = FilterGroup::Fence;
-	shadowDetectionFilter.data = pxFilterData;
+    physx::PxFilterData pxFilterData;
+    pxFilterData.word0 = FilterGroup::Scenario | FilterGroup::DItem | FilterGroup::Enemy | FilterGroup::MovableObject;
+    shadowDetectionFilter.data = pxFilterData;
 }
 
 void TCompShadowController::onPlayerExposed(const TMsgPlayerIlluminated& msg) {
-  if (msg.h_sender.isValid()) {
-    bool found = false;
-    for (int i = 0; i < enemies_illuminating_me.size() && !found; i++) {
-      if (enemies_illuminating_me[i] == msg.h_sender) {
-        found = true;
-      }
+
+    if (msg.h_sender.isValid()) {
+        bool found = false;
+        for (int i = 0; i < enemies_illuminating_me.size() && !found; i++) {
+            if (enemies_illuminating_me[i] == msg.h_sender) {
+                found = true;
+            }
+        }
+        if (!found && msg.isIlluminated) {
+            enemies_illuminating_me.push_back(msg.h_sender);
+        }
+        else if (found && !msg.isIlluminated) {
+            enemies_illuminating_me.erase(std::remove(enemies_illuminating_me.begin(), enemies_illuminating_me.end(), msg.h_sender));
+        }
     }
-    if (!found && msg.isIlluminated) {
-      enemies_illuminating_me.push_back(msg.h_sender);
-    }
-    else if (found && !msg.isIlluminated) {
-      enemies_illuminating_me.erase(std::remove(enemies_illuminating_me.begin(), enemies_illuminating_me.end(), msg.h_sender));
-    }
-  }
 }
 
 void TCompShadowController::registerMsgs() {
 
-	DECL_MSG(TCompShadowController, TMsgSceneCreated, onSceneCreated);
-  DECL_MSG(TCompShadowController, TMsgPlayerIlluminated, onPlayerExposed);
+    DECL_MSG(TCompShadowController, TMsgSceneCreated, onSceneCreated);
+    DECL_MSG(TCompShadowController, TMsgPlayerIlluminated, onPlayerExposed);
 }
 
 // We can also use this public method from outside this class.
 bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 {
-	physx::PxRaycastHit hit;
-	for (unsigned int i = 0; i < static_lights.size(); i++) {
-		CEntity * c_entity = static_lights[i];
-		TCompTransform * c_trans = c_entity->get<TCompTransform>();
+    physx::PxRaycastHit hit;
+    for (unsigned int i = 0; i < static_lights.size(); i++) {
+        CEntity * c_entity = static_lights[i];
+        TCompLightDir* c_light_dir = c_entity->get<TCompLightDir>();
 
-		float distance = VEC3::Distance(c_trans->getPosition(), point);
-		if (!EnginePhysics.Raycast(point, -c_trans->getFront(), distance, hit, physx::PxQueryFlag::eSTATIC, shadowDetectionFilter))
-			return false;
-	}
+        if (!c_light_dir || (c_light_dir && !c_light_dir->isEnabled)) {
+            continue;
+        }
 
-	for (unsigned int i = 0; i < dynamic_lights.size(); i++)
-	{
-		CEntity * c_entity = dynamic_lights[i];
-		TCompCollider * c_collider = c_entity->get<TCompCollider>();
-		TCompTransform * c_transform = c_entity->get<TCompTransform>();
-		if (c_collider->player_inside)
-		{
-			VEC3 dir = point - c_transform->getPosition();
-			dir.Normalize();
-			float distance = VEC3::Distance(c_transform->getPosition(), point);
-			if (!EnginePhysics.Raycast(c_transform->getPosition(), dir, distance - 0.2f, hit, physx::PxQueryFlag::eSTATIC, shadowDetectionFilter))
-				return false;
-		}
-	}
+        TCompTransform * c_trans = c_entity->get<TCompTransform>();
 
-	return true;
+        float distance = VEC3::Distance(c_trans->getPosition(), point);
+        if (!EnginePhysics.Raycast(point, -c_trans->getFront(), distance, hit, (physx::PxQueryFlag::eSTATIC | physx::PxQueryFlag::eDYNAMIC), shadowDetectionFilter))
+            return false;
+    }
+
+    for (unsigned int i = 0; i < dynamic_lights.size(); i++)
+    {
+        CEntity * c_entity = dynamic_lights[i];
+
+        //Checking for hacks regarding spotlights and pointlights activation
+        TCompLightSpot* c_light_spot = c_entity->get<TCompLightSpot>();
+        TCompLightPoint* c_light_point = c_entity->get<TCompLightPoint>();
+        if ((!c_light_spot && !c_light_point) ||
+            (c_light_spot && !c_light_spot->isEnabled) ||
+            (c_light_point && !c_light_point->isEnabled)) {
+            continue;
+        }
+
+        TCompCollider * c_collider = c_entity->get<TCompCollider>();
+        TCompTransform * c_transform = c_entity->get<TCompTransform>();
+        if (c_collider->player_inside)
+        {
+            VEC3 dir = point - c_transform->getPosition();
+            dir.Normalize();
+            float distance = Clamp(VEC3::Distance(c_transform->getPosition(), point), 0.21f, 10000.f);
+            if (!EnginePhysics.Raycast(c_transform->getPosition(), dir, distance - 0.2f, hit, (physx::PxQueryFlag::eSTATIC | physx::PxQueryFlag::eDYNAMIC), shadowDetectionFilter))
+                return false;
+        }
+    }
+
+    return true;
 }
 
 /* Method used to generate local points, we will apply transform later on */
+// DEPRECATED.
 void TCompShadowController::GenerateSurroundingPoints(const VEC3 & point)
 {
-	float radius = 0.35f;
-	float nradius = (2 * (radius - 0.02f)); // Hardcoded for colliding purposes
-	for (int x = 0; x < test_levels; x++)
-	{
-		for (int y = 0; y < test_amount; y++)
-		{
-			float lRadius = nradius / (x + 1);
-			float t = y / (float)test_amount;
-			float h = .5f * lRadius * cosf(t * 2.f * (float)M_PI) + point.x;
-			float v = .5f * lRadius * sinf(t * 2.f * (float)M_PI) + point.z;
-		}
-	}
+    float radius = 0.35f;
+    float nradius = (2 * (radius - 0.02f)); // Hardcoded for colliding purposes
+    for (int x = 0; x < test_levels; x++)
+    {
+        for (int y = 0; y < test_amount; y++)
+        {
+            float lRadius = nradius / (x + 1);
+            float t = y / (float)test_amount;
+            float h = .5f * lRadius * cosf(t * 2.f * (float)M_PI) + point.x;
+            float v = .5f * lRadius * sinf(t * 2.f * (float)M_PI) + point.z;
+        }
+    }
 }

@@ -1,0 +1,5 @@
+{
+  "instanced_mesh" : "unit_quad_pos_xy.mesh",
+  "instances_type" : "InstancedPos",
+  "num_instances_reserved" : 1000
+}

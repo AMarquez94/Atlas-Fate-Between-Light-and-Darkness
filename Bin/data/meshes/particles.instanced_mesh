@@ -1,0 +1,5 @@
+{
+  "instanced_mesh" : "unit_quad_pos_xy.mesh",
+  "instances_type" : "RenderParticle",
+  "num_instances_reserved" : 8
+}

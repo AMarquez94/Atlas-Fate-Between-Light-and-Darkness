@@ -13,12 +13,13 @@ namespace Input
 		virtual void updateMouseData(float delta, TInterface_Mouse& data) override;
 
 		void setButton(EMouseButton bt, bool pressed);
+        VEC2 getPosition() { return _position; };
 		void setPosition(float posX, float posY);
 		void setWheelDelta(float delta);
 
 		void setPreviousPosition(float posX, float posY);
 		void setPositionDelta(float deltaX, float deltaY);
-		void setLockMouse(bool state);
+		void setLockMouse(bool locked);
 		bool isMouseLocked() { return _lock_cursor; };
 
 	private:

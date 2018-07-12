@@ -48,7 +48,7 @@ rollout SBSelection "Selection Tools" width:477 height:252
 	label 'lbl1' "Layers:" pos:[35,87] width:39 height:14 align:#left
 	button 'btn13' "Button" pos:[248,36] width:2 height:181 align:#left
 	dropdownList 'sel_cat' "" pos:[73,118] width:149 height:21 align:#left
-	label 'lbl4' "Tag:" pos:[22,121] width:50 height:14 align:#left
+	label 'lbl4' "Tag:" pos:[35,121] width:39 height:14 align:#left
 	
 	local var1 = ""
 	local var2 = sel_layers.selected 
@@ -114,7 +114,7 @@ rollout SBExport "Export Tools" width:474 height:469
 	edittext 'edt12' "Name" pos:[193,186] width:234 height:19 align:#left
 	button 'btn27' "Export Selection" pos:[194,224] width:173 height:22 align:#left
 	button 'btn28' "All" pos:[376,224] width:51 height:22 align:#left
-	checkbox 'chk24' "Generate Collider" pos:[29,214] width:102 height:14 align:#left
+	checkbox 'chk24' "Use Instancing" pos:[29,214] width:102 height:14 align:#left
 	checkbox 'chk25' "Generate LOD" pos:[29,189] width:88 height:14 align:#left
 	button 'btn29' "Button" pos:[160,182] width:2 height:70 align:#left
 	
@@ -170,6 +170,7 @@ rollout SBExport "Export Tools" width:474 height:469
 		pb6.value = 0
 		local objs_selected = selection as array
 		local scene_exporter = TSceneExporter()
+		scene_exporter.use_instancing = chk24.state
 		scene_exporter.project_path = asset_dir.text +"\\"
 		scene_exporter.exportAll objs_selected edt12.text pb6 false
 	)

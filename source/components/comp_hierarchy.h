@@ -17,11 +17,13 @@ struct TCompHierarchy : public CTransform, public TCompBase {
 
   void setParentEntity(CHandle new_h_parent);
 
-  void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
+  void onGroupCreated(const TMsgHierarchyGroupCreated& msg);
   void load(const json& j, TEntityParseContext& ctx);
   void update(float dt);
   void debugInMenu();
   static void registerMsgs();
+  void convertTotalTransformToRelative(VEC3 objPosition, QUAT objRotation, float objScale, VEC3& resultPosition, QUAT& resultRotation, float& resultScale);
+  QUAT getRelativeLookAt(VEC3 new_target);
   DECL_SIBLING_ACCESS();
 };
 

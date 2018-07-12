@@ -235,10 +235,25 @@ void CalCoreSkeleton::calculateBoundingBoxes(CalCoreModel * pCoreModel)
 
 void CalCoreSkeleton::scale(float factor)
 {
+  coreScale = factor;
   std::vector<int>::iterator iteratorRootCoreBoneId;
   for(iteratorRootCoreBoneId = m_vectorRootCoreBoneId.begin(); iteratorRootCoreBoneId != m_vectorRootCoreBoneId.end(); ++iteratorRootCoreBoneId)
   {
     m_vectorCoreBone[*iteratorRootCoreBoneId]->scale(factor);
   }
+
+}
+
+/*****************************************************************************/
+/** Get the scale of the core skeleton.
+*
+* @return A float with the scale factor
+*
+*****************************************************************************/
+
+
+float CalCoreSkeleton::getScale()
+{
+	return coreScale;
 
 }

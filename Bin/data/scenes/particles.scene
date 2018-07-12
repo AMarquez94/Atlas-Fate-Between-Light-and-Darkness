@@ -1,0 +1,58 @@
+[
+	{
+		"entity": {
+			"name": "Scene Particles",
+			"transform": {
+				"pos": "0 0 0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "particles_shadowmerge",
+			"transform": {
+				"pos": "5 0 0"
+			},
+			"hierarchy": {
+				"parent": "The Player",
+				"pos": "0 0.9 0"
+			},
+			"particles" : {
+				"core" : "data/particles/wildfire.particles"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "particles_snow",
+			"transform": {
+				"pos": "-5 3 0"
+			},
+			"particles" : {
+				"core" : "data/particles/snow.particles"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "particles_animated_fire",
+			"transform": {
+				"pos": "0 0 5"
+			},
+			"particles" : {
+				"core" : "data/particles/animated_fire.particles"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "particles_sparks",
+			"transform": {
+				"pos": "0 0 -5"
+			},
+			"particles" : {
+				"core" : "data/particles/sparks.particles"
+			}
+		}
+	}
+]

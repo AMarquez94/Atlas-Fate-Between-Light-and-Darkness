@@ -1,0 +1,60 @@
+[
+  {
+    "entity": {
+      "name": "Buttons"
+    }
+  },
+  {
+    "entity": {
+      "name": "Button End Scene",
+      "transform": {
+        "pos": "-38.6 1 -133",
+        "rotation": "-0.707107 0 0 0.707107"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/Buttons/Button.mesh",
+          "materials": [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ],
+      "collider": {
+        "shape": "box",
+        "size": "0.3 0.3 0.3",
+        "group": "button"
+      },
+      "button": {
+        "script": "transition_zone_a_to_coliseum()",
+		"canBePressed": false
+      },
+      "tags": [ "button" ]
+    }
+  },
+  {
+    "entity": {
+      "name": "Button Open Exit",
+      "transform": {
+        "pos": "-106 1.1 -133.5",
+        "rotation": "-0.707107 0 0 0.707107"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/Buttons/Button.mesh",
+          "materials": [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ],
+      "collider": {
+        "shape": "box",
+        "size": "0.3 0.3 0.3",
+        "group": "button"
+      },
+      "button": {
+        "script": "enable_button_exit()"
+      },
+      "tags": [ "button" ]
+    }
+  }
+]

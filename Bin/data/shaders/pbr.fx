@@ -88,18 +88,12 @@ void PS_GBuffer(
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 	o_selfIllum =  txEmissive.Sample(samLinear, iTex0) * self_intensity;
 	o_selfIllum.xyz *= self_color;
-
+	o_selfIllum.a = txAOcclusion.Sample(samLinear, iTex0).r;
+	
 	// Save roughness in the alpha coord of the N render target
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
 	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
 	o_normal = encodeNormal(N, roughness);
-
-	// Si el material lo pide, sobreescribir los valores de la textura
-	// por unos escalares uniformes. Only to playtesting...
-	if (scalar_metallic >= 0.f)
-		o_albedo.a = scalar_metallic;
-	if (scalar_roughness >= 0.f)
-		o_normal.a = scalar_roughness;
 
 	// Compute the Z in linear space, and normalize it in the range 0...1
 	// In the range z=0 to z=zFar of the camera (not zNear)
@@ -107,49 +101,85 @@ void PS_GBuffer(
 	o_depth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
 }
 
-void PS_GBuffer_Parallax(
-  float4 Pos       : SV_POSITION
-  , float3 iNormal : NORMAL0
-  , float4 iTangent : NORMAL1
-  , float2 iTex0 : TEXCOORD0
-  , float2 iTex1 : TEXCOORD1
-  , float3 iWorldPos : TEXCOORD2
-  , float3 oCameraOut : TEXCOORD3
-  , out float4 o_albedo : SV_Target0
-  , out float4 o_normal : SV_Target1
-  , out float1 o_depth : SV_Target2
-  , out float4 o_selfIllum : SV_Target3
+void PS_Shade_GBuffer(
+	float4 Pos       : SV_POSITION
+	, float3 iNormal : NORMAL0
+	, float4 iTangent : NORMAL1
+	, float2 iTex0 : TEXCOORD0
+	, float2 iTex1 : TEXCOORD1
+	, float3 iWorldPos : TEXCOORD2
+		, out float4 o_albedo : SV_Target0
+	, out float4 o_normal : SV_Target1
+	, out float1 o_depth : SV_Target2
+	, out float4 o_selfIllum : SV_Target3
 )
 {
-  // Store in the Alpha channel of the albedo texture, the 'metallic' amount of
-  // the material
-  float3x3 TBN = computeTBN(iNormal, iTangent);
-  TBN = transpose(TBN);
-  float3 view_dir = normalize(mul(camera_pos, TBN) - mul(iWorldPos, TBN));
-  iTex0 = parallaxMappingB(iTex0, view_dir);
+	float4 noise0 = txNoiseMap.Sample(samLinear, iTex0);
+  o_albedo = txAlbedo.Sample(samLinear, iTex0)* (1 - self_fade_value * 2);
+	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
+	o_selfIllum =  txEmissive.Sample(samLinear, iTex0) * self_intensity;
+	o_selfIllum.xyz *= self_color* (1 - self_fade_value * 4);
+	o_selfIllum.a = 1;
+	if((noise0.x - self_fade_value) < 0.01f){
+			o_albedo = float4(0,1,1,1);
+			o_selfIllum.xyz = float3(0,1,1);
+	}
+	
+	// Save roughness in the alpha coord of the N render target
+	float roughness = txRoughness.Sample(samLinear, iTex0).r;
+	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
+	o_normal = encodeNormal(N, roughness);
 
-  o_albedo = txAlbedo.Sample(samLinear, iTex0);
+	// Compute the Z in linear space, and normalize it in the range 0...1
+	// In the range z=0 to z=zFar of the camera (not zNear)
+	float3 camera2wpos = iWorldPos - camera_pos;
+	o_depth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
+	
+	clip(noise0.x - self_fade_value);
+}
+
+//--------------------------------------------------------------------------------------
+void PS_GBufferMix(
+  float4 Pos : SV_POSITION
+, float3 iNormal : NORMAL0
+, float4 iTangent : NORMAL1
+, float2 iTex0 : TEXCOORD0
+, float3 iWorldPos : TEXCOORD1
+, out float4 o_albedo : SV_Target0
+, out float4 o_normal : SV_Target1
+, out float1 o_depth : SV_Target2
+)
+{
+
+  // This is different -----------------------------------------
+  // iTex0 *= 4;
+  float4 albedoR = txAlbedo.Sample(samLinear, iTex0);
+  float4 albedoG = txAlbedo1.Sample(samLinear, iTex0);
+  float4 albedoB = txAlbedo2.Sample(samLinear, iTex0);
+
+  float w1, w2, w3;
+  computeBlendWeights( albedoR.a + mix_boost_r
+                     , albedoG.a + mix_boost_g
+                     , albedoB.a + mix_boost_b
+                     , w1, w2, w3 );
+  
+  float4 albedo = albedoR * w1 + albedoG * w2 + albedoB * w3;
+  o_albedo.xyz = albedo.xyz;
+
+  // This is the same -----------------------------------------
   o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
-  o_selfIllum = txEmissive.Sample(samLinear, iTex0) * self_intensity;
-  o_selfIllum.xyz *= self_color;
+  float3 N = computeNormalMap( iNormal, iTangent, iTex0 );
 
   // Save roughness in the alpha coord of the N render target
   float roughness = txRoughness.Sample(samLinear, iTex0).r;
-  float3 N = computeNormalMap(iNormal, iTangent, iTex0);
-  o_normal = encodeNormal(N, roughness);
-
-  // Si el material lo pide, sobreescribir los valores de la textura
-  // por unos escalares uniformes. Only to playtesting...
-  if (scalar_metallic >= 0.f)
-    o_albedo.a = scalar_metallic;
-  if (scalar_roughness >= 0.f)
-    o_normal.a = scalar_roughness;
+  o_normal = encodeNormal( N, roughness );
 
   // Compute the Z in linear space, and normalize it in the range 0...1
   // In the range z=0 to z=zFar of the camera (not zNear)
   float3 camera2wpos = iWorldPos - camera_pos;
-  o_depth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
+  o_depth = dot( camera_front.xyz, camera2wpos ) / camera_zfar;
 }
+
 
 //--------------------------------------------------------------------------------------
 void decodeGBuffer(
@@ -184,7 +214,7 @@ void decodeGBuffer(
 	roughness = N_rt.a;
 
 	// Apply gamma correction to albedo to bring it back to linear.
-  albedo.rgb = pow(albedo.rgb, 2.2f);// *projectColor(wPos).xyz;
+  albedo.rgb = pow(abs(albedo.rgb), 2.2f);// *projectColor(wPos).xyz;
 
 	// Lerp with metallic value to find the good diffuse and specular.
 	// If metallic = 0, albedo is the albedo, if metallic = 1, the
@@ -269,15 +299,11 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	// if roughness = 1 -> I will use the most blurred image, the 8-th mipmap, If image was 256x256 => 1x1
 	float mipIndex = roughness * roughness * 32.0f;
 	float3 env = txEnvironmentMap.SampleLevel(samLinear, reflected_dir, mipIndex).xyz;
-	env = pow(env, 2.2f);	// Convert the color to linear also.
+	env = pow(abs(env), 2.2f);	// Convert the color to linear also.
 
-	// The irrandiance, is read using the N direction.
-	// Here we are sampling using the cubemap-miplevel 4, and the already blurred txIrradiance texture
-	// and mixing it in base to the scalar_irradiance_vs_mipmaps which comes from the ImGui.
-	// Remove the interpolation in the final version!!!
-	float3 irradiance_mipmaps = txEnvironmentMap.SampleLevel(samLinear, N, 6).xyz;
+	float3 irradiance_mipmaps = txEnvironmentMap.SampleLevel(samLinear, N, 8).xyz;
 	float3 irradiance_texture = txIrradianceMap.Sample(samLinear, N).xyz;
-	float3 irradiance = irradiance_texture * scalar_irradiance_vs_mipmaps + irradiance_mipmaps * (1. - scalar_irradiance_vs_mipmaps);
+	float3 irradiance = irradiance_mipmaps;//irradiance_texture * scalar_irradiance_vs_mipmaps + irradiance_mipmaps * (1. - scalar_irradiance_vs_mipmaps);
 
 	// How much the environment we see
 	float3 env_fresnel = Specular_F_Roughness(specular_color, 1. - roughness * roughness, N, view_dir);
@@ -285,18 +311,23 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	float g_ReflectionIntensity = 1.0;
 	float g_AmbientLightIntensity = 1.0;
 
-	float ao = txAO.Sample(samLinear, iUV).x;
+	int3 ss_load_coords = uint3(iPosition.xy, 0);
+	float ao = txAO.Load( ss_load_coords );
 	float4 self_illum = txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
 
-  // Compute global fog on ambient.
-  float3 pixel_depth = camera_pos.xyz - wPos;
-  float distancet = length(pixel_depth);
-  float visibility = exp(distancet *distancet * -global_fog_density * global_fog_density * 1.442695);
-  visibility = clamp(visibility, 0, 1);
+	// Compute global fog on ambient.
+	float3 pixel_depth = camera_pos.xyz - wPos;
+	float distancet = length(pixel_depth);
+	float visibility = exp(distancet * distancet * -global_fog_density * global_fog_density * 1.442695);
+	visibility = saturate(visibility);
 
-  float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
-  final_color = final_color * global_ambient_adjustment * ao;
-  return lerp(float4(env, 1), final_color, visibility) + float4(self_illum.xyz, 1) * global_ambient_adjustment * global_self_intensity;
+	//float4 final_color2 = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
+	//return ((final_color2 * ao) + (float4(self_illum.xyz, 1) * global_self_intensity)) * global_ambient_adjustment;
+
+	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
+	final_color = final_color * global_ambient_adjustment * ao * self_illum.a;
+	final_color = lerp(float4(env, 1), final_color, visibility) + float4(self_illum.xyz, 1) * global_ambient_adjustment * global_self_intensity;
+	return float4(final_color.xyz, 1);
 }
 
 //--------------------------------------------------------------------------------------
@@ -344,21 +375,45 @@ float4 shade(float4 iPosition, out float3 light_dir, bool use_shadows)
 	float3 cDiff = Diffuse(albedo);
 	float3 cSpec = Specular(specular_color, h, view_dir, light_dir, a, NdL, NdV, NdH, VdH, LdV);
 
-	float  att = (1. - smoothstep(0.90, 0.98, distance_to_light / light_radius)); // Att, point light
+	float  att = (1. - smoothstep(inner_atten, far_atten, distance_to_light / light_radius)); // Att, point light
 	//att *= 1 / distance_to_light;
-
+	
 	// Spotlight attenuation
 	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.; // shadow factor
-  
-	//return projectColor(wPos);
-  float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor;
+
+	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor;
 	return float4(final_color, 1);
 }
 
 float4 PS_point_lights(in float4 iPosition : SV_Position) : SV_Target
 {
-	float3 out_lightdir;
-	return shade(iPosition, out_lightdir, false);
+		// Decode GBuffer information
+	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
+	float  roughness;
+	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir);
+	N = normalize(N);
+
+	// From wPos to Light
+	float3 light_dir_full = light_pos.xyz - wPos;
+	float  distance_to_light = length(light_dir_full);
+	float3 light_dir = light_dir_full / distance_to_light;
+
+	float  NdL = saturate(dot(N, light_dir));
+	float  NdV = saturate(dot(N, view_dir));
+	float3 h = normalize(light_dir + view_dir); // half vector
+
+	float  NdH = saturate(dot(N, h));
+	float  VdH = saturate(dot(view_dir, h));
+	float  LdV = saturate(dot(light_dir, view_dir));
+	float  a = max(0.001f, roughness * roughness);
+	float3 cDiff = Diffuse(albedo);
+	float3 cSpec = Specular(specular_color, h, view_dir, light_dir, a, NdL, NdV, NdH, VdH, LdV);
+
+	float  att = (1. - smoothstep(inner_atten, far_atten, distance_to_light / light_radius)); // Att, point light
+	att *= 1 / distance_to_light;
+	
+	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att;
+	return float4(final_color, 1);
 }
 
 float4 PS_dir_lights(in float4 iPosition : SV_Position) : SV_Target
@@ -368,7 +423,8 @@ float4 PS_dir_lights(in float4 iPosition : SV_Position) : SV_Target
 }
 
 float4 PS_spot_lights(in float4 iPosition : SV_Position) : SV_Target
-{ 
+{
+
 	float3 out_lightdir;
 	float4 light_color = shade(iPosition, out_lightdir, true);
 
@@ -377,6 +433,92 @@ float4 PS_spot_lights(in float4 iPosition : SV_Position) : SV_Target
 	float clamp_spot = theta > light_angle ? 1.0 * att_spot : 0.0; // spot factor 
 	
 	return light_color * clamp_spot;
+}
+
+// The geometry that approximates the light volume uses this shader
+void VS_VLight(
+    in float4 iPos     : POSITION
+    , in float3 iNormal : NORMAL0
+    , in float2 iTex0 : TEXCOORD0
+    , in float2 iTex1 : TEXCOORD1
+    , in float4 iTangent : NORMAL1
+
+    , out float4 oPos : SV_POSITION
+    , out float3 oNormal : NORMAL0
+    , out float4 oTangent : NORMAL1
+    , out float2 oTex0 : TEXCOORD0
+    , out float2 oTex1 : TEXCOORD1
+    , out float3 oWorldPos : TEXCOORD2
+)
+{
+    float4 world_pos = mul(iPos, obj_world);
+    oPos = mul(world_pos, camera_view_proj);
+
+    // Rotar la normal segun la transform del objeto
+    oNormal = mul(iNormal, (float3x3)obj_world);
+    oTangent.xyz = mul(iTangent.xyz, (float3x3)obj_world);
+    oTangent.w = iTangent.w;
+
+    // Las uv's se pasan directamente al ps
+    oTex0 = iTex0;
+    oTex1 = iTex1;
+    oWorldPos = world_pos.xyz;
+}
+
+// ------------------------------------------------------
+float computeDepth(float3 iWorldPos : TEXCOORD1) {
+    float3 camerapos_worldpos = iWorldPos - camera_pos.xyz;
+    return dot(camera_front.xyz, camera_pos) / camera_zfar;
+}
+
+float4 PS_VLight( 
+    in float4 iPos : SV_POSITION
+    , float3 iNormal : NORMAL0
+    , float4 iTangent : NORMAL1
+    , float2 iTex0 : TEXCOORD0
+    , float2 iTex1 : TEXCOORD1
+    , float3 iWorldPos : TEXCOORD2
+) : SV_Target
+{
+    // Sampling planes volumetric lights based shader.
+    float shadow_factor = computeShadowFactor(iWorldPos);
+    float camera_dist = length(iWorldPos - light_pos.xyz);
+    float val = 1 / (1 + (camera_dist * camera_dist));
+
+    // From wPos to Light
+    float3 light_dir_full = light_pos.xyz - iWorldPos;
+    float  distance_to_light = length(light_dir_full);
+    float3 light_dir = light_dir_full / distance_to_light;
+    float4 noise0 = txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.002 * global_world_time * float2(.5, 0));
+    float4 noise1 = txNoiseMap.Sample(samLinear, iTex0 * 2.0 + 0.081 * global_world_time * float2(.5, 0.1));
+    float4 noise2 = txNoiseMap.Sample(samLinear, iTex0 * 4 + 0.008 * global_world_time * float2(.55, -0.123));
+
+    float theta = dot(light_dir, -light_direction.xyz);
+    float att_spot = clamp((theta - light_outer_cut) / 0.38, 0, 1);
+    float clamp_spot = theta > light_angle ? att_spot : 0.0; // spot factor 
+    float noise_clamp = 9 * (noise0.x * noise1.x * noise2.x);
+
+    return float4(light_color.xyz, clamp_spot * val * noise_clamp) * shadow_factor * projectColor(iWorldPos);
+
+    /*
+
+    float d = distance(iWorldPos, mul(float4(0,0,0,1), obj_world));
+    float att = 1 - d / 10;
+
+    float3 view_vector = normalize(camera_pos.xyz - iWorldPos);
+    float  viewspace_normal = dot(view_vector, iNormal);
+    float  soft_edges_att = pow(abs(viewspace_normal), 1.2f);
+
+    float  fragment_depth = computeDepth(iWorldPos);
+    float  cone_depth = txGBufferLinearDepth.Load(uint3(iPos.xy, 0)).x;
+
+    float  radius = clamp((0.1 - camera_znear) / (camera_zfar - camera_znear), 0, 1);
+    float  soft_intersections_att = saturate(clamp(abs(fragment_depth - cone_depth) / radius, 0, 1));
+
+    float  c_radius = clamp((5 - camera_znear) / (camera_zfar - camera_znear), 0, 1);
+    float  camera_att = saturate(fragment_depth / c_radius);
+
+    return float4(1, 1, 1, 1);// att * soft_edges_att * soft_intersections_att * camera_att);*/
 }
 
 // ----------------------------------------
@@ -390,6 +532,6 @@ float4 PS_skybox(in float4 iPosition : SV_Position) : SV_Target
 {
 	float3 view_dir = mul(float4(iPosition.xy, 1, 1), camera_screen_to_world).xyz;
 	float4 skybox_color = txEnvironmentMap.Sample(samLinear, view_dir);
-  skybox_color = pow(skybox_color, float4(2.2,2.2,2.2, 2.2));
-  return float4(skybox_color.xyz, 1);// *global_ambient_adjustment;
+    skybox_color = pow(skybox_color, float4(2.2,2.2,2.2, 2.2));
+    return float4(skybox_color.xyz, 1);// *global_ambient_adjustment;
 }

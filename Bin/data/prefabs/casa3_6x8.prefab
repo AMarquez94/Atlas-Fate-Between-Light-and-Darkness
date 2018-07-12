@@ -1,0 +1,52 @@
+[
+  {
+    "entity":
+    {
+      "name": "casa3_6x8"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casa3_6x8"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_casa3_6x8.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa2.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 3.0 3.0"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

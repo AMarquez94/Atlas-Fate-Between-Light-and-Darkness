@@ -6,21 +6,22 @@
 
 class TCompConeOfLightController : public TCompBase {
   
-  CEntity* player;
+  CHandle h_player;
   float hor_fov;
   float ver_fov;
   float dist;
   bool turnedOn;
-  bool playerIlluminated = false;
 
   VEC3 origin = VEC3::Zero;
   VEC3 dest = VEC3::Zero;
 
   DECL_SIBLING_ACCESS();
 
-  void onMsgEntityCreated(const TMsgEntityCreated& msg);
+  void onMsgGroupCreated(const TMsgEntitiesGroupCreated& msg);
 
 public:
+  bool playerIlluminated = false;
+
   void debugInMenu();
   void load(const json& j, TEntityParseContext& ctx);
   void update(float dt);
@@ -29,6 +30,6 @@ public:
   void turnOnLight();
   void turnOffLight();
 
-  bool isPlayerHiddenFromLight(CEntity* player);
+  bool isPlayerHiddenFromLight();
 
 };

@@ -25,11 +25,13 @@ namespace
 
 using namespace GUI;
 
-void CParser::parseFile(const std::string& filename)
+std::string CParser::parseFile(const std::string& filename)
 {
   std::ifstream file_json(filename);
   json json_data;
   file_json >> json_data;
+  bool first_wdgt = true;
+  std::string main_name;
 
   for (auto& j_element : json_data)
   {
@@ -40,7 +42,13 @@ void CParser::parseFile(const std::string& filename)
 
     // register the widget within the manager
     Engine.getGUI().registerWidget(wdgt);
+	if (first_wdgt) {
+		main_name = wdgt->getName();
+		first_wdgt = false;
+	}
   }
+
+  return main_name;
 }
 
 CWidget* CParser::parseWidget(const json& data, CWidget* parent)
@@ -204,6 +212,7 @@ void CParser::parseTextParams(TTextParams& params, const json& data)
 
 void CParser::parseBarParams(TBarParams& params, const json& data)
 {
+  params._variable = data.value("variable", "");
   params._processValue = data.value("progress_bar", 1.0f);
   const std::string direction = data.value("direction", "horizontal");
   params._direction = direction == "vertical" ? TBarParams::Vertical : TBarParams::Horizontal;

@@ -57,21 +57,21 @@ void TCompEmissionController::registerMsgs() {
 /* Used to retrieve the total materials from our render component */
 void TCompEmissionController::onSceneCreated(const TMsgSceneCreated& msg) {
 
-	// First, retrieve all possible spotlights from the owner
-	TCompGroup * self_group = get<TCompGroup>();
-	assert(self_group);
+	// First, retrieve all possible spotlights from the owner  -- deactivated because we are not changing the lights
+	//TCompGroup * self_group = get<TCompGroup>();
+	//assert(self_group);
 
-	for (auto p : self_group->handles) {
-		CEntity * ent = (CEntity*)p;
-		TCompLightSpot * spotlight = ent->get<TCompLightSpot>();
-		if (spotlight)
-			_temp_lights.push_back(spotlight);
-	}
+	//for (auto p : self_group->handles) {
+	//	CEntity * ent = (CEntity*)p;
+	//	TCompLightSpot * spotlight = ent->get<TCompLightSpot>();
+	//	if (spotlight)
+	//		_temp_lights.push_back(spotlight);
+	//}
 
-    TCompRender * self_render = get<TCompRender>();
-    assert(self_render);
-    self_render->self_color = _current_color;
-    self_render->self_intensity = _intensity;
+  TCompRender * self_render = get<TCompRender>();
+  assert(self_render);
+  self_render->self_color = _current_color;
+  self_render->self_intensity = _intensity;
 	//for (auto p : self_render->meshes)
 	//	for (auto m : p.materials)
 	//		_temp_materials.push_back(const_cast<CMaterial*>(m));

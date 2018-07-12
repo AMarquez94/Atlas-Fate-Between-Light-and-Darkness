@@ -148,3 +148,15 @@ bool CCamera::getScreenCoordsOfWorldCoord(VEC3 world_pos, VEC3* result) const {
 		;
 }
 
+bool CCamera::getWorldCoordOfScreenCoords(VEC3 pos, VEC3 * screen_coords) const
+{
+    //using namespace DirectX;
+    //XMVECTOR v = XMLoadFloat3(&pos);
+    //XMMATRIX projection = XMLoadFloat4x4(&proj);
+    //v = XMVector3Unproject(v, x , y, width, height, minDepth, maxDepth, projection, view, world);
+    //Vector3 result;
+    //XMStoreFloat3(&result, v);
+    //return result;
+    return false;
+}
+

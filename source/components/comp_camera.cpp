@@ -31,8 +31,9 @@ void TCompCamera::debugInMenu() {
 }
 
 void TCompCamera::renderDebug() {
+
 	MAT44 inv_view_proj = getViewProjection().Invert();
-	
+
 	auto mesh = Resources.get("unit_frustum.mesh")->as<CRenderMesh>();
 	mesh->activate();
 	

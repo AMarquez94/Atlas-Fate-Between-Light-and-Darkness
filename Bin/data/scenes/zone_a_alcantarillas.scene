@@ -1,0 +1,673 @@
+[
+  {
+    "entity":
+    {
+      "name": "zone_a_alcantarillas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla1"
+      ,
+      "transform":
+      {
+        "pos": "-23.3538 0.0 -86.2947"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla1.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla2"
+      ,
+      "transform":
+      {
+        "pos": "-22.7098 0.0 -93.5349"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla003"
+      ,
+      "transform":
+      {
+        "pos": "-36.8969 0.0 -88.716"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla004"
+      ,
+      "transform":
+      {
+        "pos": "-42.1565 0.0 -80.6182"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla005"
+      ,
+      "transform":
+      {
+        "pos": "-57.3376 0.0 -76.3583"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla006"
+      ,
+      "transform":
+      {
+        "pos": "-50.551 0.0 -106.95"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla007"
+      ,
+      "transform":
+      {
+        "pos": "-64.4548 0.0 -91.3157"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla008"
+      ,
+      "transform":
+      {
+        "pos": "-76.7763 0.0 -80.6981"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla008.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla009"
+      ,
+      "transform":
+      {
+        "pos": "-76.7763 0.0 -81.5313"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla010"
+      ,
+      "transform":
+      {
+        "pos": "-63.7381 0.0 -118.807"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla011"
+      ,
+      "transform":
+      {
+        "pos": "-80.943 0.0 -104.111"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla012"
+      ,
+      "transform":
+      {
+        "pos": "-101.445 0.0 -106.028"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla012.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla013"
+      ,
+      "transform":
+      {
+        "pos": "-108.038 0.0 -114.022"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla013.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla014"
+      ,
+      "transform":
+      {
+        "pos": "-89.656 0.0 -132.656"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla014.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla015"
+      ,
+      "transform":
+      {
+        "pos": "-94.3744 0.0 -150.312"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla015.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla016"
+      ,
+      "transform":
+      {
+        "pos": "-77.7976 0.0 -128.282"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla016.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla017"
+      ,
+      "transform":
+      {
+        "pos": "-67.4434 0.0 -141.278"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla017.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla018"
+      ,
+      "transform":
+      {
+        "pos": "-42.5472 0.0 -122.478"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla018.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla019"
+      ,
+      "transform":
+      {
+        "pos": "-39.8429 0.0 -134.071"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla019.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla020"
+      ,
+      "transform":
+      {
+        "pos": "-58.3387 0.0 -128.166"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla020.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla021"
+      ,
+      "transform":
+      {
+        "pos": "-84.642 0.0 -156.791"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla021.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_alcantarilla022"
+      ,
+      "transform":
+      {
+        "pos": "-55.6736 0.0 -155.641"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_alcantarilla022.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

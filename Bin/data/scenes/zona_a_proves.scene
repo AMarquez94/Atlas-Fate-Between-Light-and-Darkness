@@ -1,0 +1,43 @@
+[
+  {
+    "entity":
+    {
+      "name": "zona_a_proves"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_4"
+      ,
+      "transform":
+      {
+        "pos": "-83.0763 11.9116 -74.8715"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_4.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

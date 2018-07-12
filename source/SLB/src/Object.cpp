@@ -99,7 +99,7 @@ namespace SLB {
     {
       lua_pop(L, 1); // remove nil
 
-      int objpos = lua_gettop(L) + 1; // position of the user pushImplementation
+      int objpos = lua_gettop(L) + 1; // position of the user pushImplementationAS
       pushImplementation(L); // value (0)
       SLB_DEBUG(5, "\t-new object");
 

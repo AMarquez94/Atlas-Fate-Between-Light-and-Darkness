@@ -2,6 +2,7 @@
 #include "render_technique.h"
 #include "pixel_shader.h"
 #include "vertex_shader.h"
+#include "render/render_manager.h"    // forceDirty
 #include "render/texture/texture.h"
 #include "ctes.h"              // TS_CUBEMAP...
 
@@ -82,6 +83,7 @@ bool CRenderTechnique::create(const std::string& name, json& j) {
 	category = j.value("category", "default");
 	category_id = getID(category.c_str());
 	uses_skin = j.value("uses_skin", false);
+    priority = j.value("priority", 100);
 
 	rs_config = RSConfigFromString(j.value("rs_config", "default"));
 	z_config = ZConfigFromString(j.value("z", "default"));
@@ -99,6 +101,8 @@ bool CRenderTechnique::create(const std::string& name, json& j) {
 				s.slot = TS_IRRADIANCE_MAP;
 			else if (it.key() == "noise")
 				s.slot = TS_NOISE_MAP;
+            else if (it.key() == "noise2")
+                s.slot = TS_NOISE_MAP2;
 			else {
 				fatal("Invalid key '%s' in textures for technique %s\n", it.key().c_str(), name.c_str());
 				continue;
@@ -148,6 +152,7 @@ void CRenderTechnique::activate() const {
 }
 
 void CRenderTechnique::debugInMenu() {
+
 	ImGui::LabelText("VS FX", "%s", vs_file.c_str());
 	ImGui::LabelText("VS", "%s", vs_entry_point.c_str());
 	ImGui::LabelText("PS FX", "%s", ps_file.c_str());
@@ -155,6 +160,13 @@ void CRenderTechnique::debugInMenu() {
 	::renderInMenu(z_config);
 	::renderInMenu(rs_config);
 	::renderInMenu(blend_config);
+    if (ImGui::DragInt("Priority", (int*)&priority, 1, 0, 1000))
+        CRenderManager::get().forceDirty();
+}
+
+bool CRenderTechnique::usesInstancing() const {
+
+    return vs->getVertexDecl()->instancing;
 }
 
 void CRenderTechnique::onFileChanged(const std::string& filename) {

@@ -1,0 +1,571 @@
+{
+  "root": {
+    "rootName": "mimetic",
+    "type": "priority",
+    "condition": "nullptr",
+    "action": "",
+    "assert": ""
+  },
+  "children": [
+    {
+      "parent": "mimetic",
+      "name": "manageStun",
+      "type": "sequence",
+      "condition": "conditionHasBeenStunned",
+      "action": "",
+      "assert": ""
+    },
+    {
+      "parent": "manageStun",
+      "name": "stunned",
+      "type": "action",
+      "condition": "",
+      "action": "actionStunned",
+      "assert": ""
+    },
+    {
+      "parent": "manageStun",
+      "name": "exploded",
+      "type": "action",
+      "condition": "",
+      "action": "actionExplode",
+      "assert": ""
+    },
+    {
+      "parent": "mimetic",
+      "name": "manageInactive",
+      "type": "priority",
+      "condition": "conditionIsNotActive",
+      "action": "",
+      "assert": ""
+    },
+    {
+      "parent": "manageInactive",
+      "name": "manageInactiveTypeSleep",
+      "type": "priority",
+      "condition": "conditionIsSlept",
+      "action": "",
+      "assert": ""
+    },
+    {
+      "parent": "manageInactive",
+      "name": "manageInactiveTypeWall",
+      "type": "priority",
+      "condition": "conditionIsTypeWall",
+      "action": "",
+      "assert": ""
+    },
+    {
+      "parent": "manageInactive",
+      "name": "manageInactiveTypeFloor",
+      "type": "priority",
+      "condition": "conditionIsTypeFloor",
+      "action": "",
+      "assert": ""
+    },
+    {
+      "parent": "manageInactiveTypeSleep",
+      "name": "sleep",
+      "type": "action",
+      "condition": "conditionNotListenedNoise",
+      "action": "actionSleep",
+      "assert": ""
+    },
+    {
+      "parent": "manageInactiveTypeSleep",
+      "name": "wakeUp",
+      "type": "action",
+      "condition": "",
+      "action": "actionWakeUp",
+      "assert": ""
+    },
+    {
+      "parent": "manageInactiveTypeWall",
+      "name": "manageObserveTypeWall",
+      "type": "sequence",
+      "condition": "conditionIsNotPlayerInFovAndNotNoise",
+      "action": "",
+      "assert": ""
+    },
+    {
+      "parent": "manageInactiveTypeWall",
+      "name": "setActiveTypewall",
+      "type": "action",
+      "condition": "",
+      "action": "actionSetActive",
+      "assert": ""
+    },
+    {
+      "parent": "manageObserveTypeWall",
+      "name": "resetVariablesObserveTypeWall",
+      "type": "action",
+      "condition": "",
+      "action": "actionResetObserveVariables",
+      "assert": ""
+    },
+    {
+      "parent": "manageObserveTypeWall",
+      "name": "turnLeftObserveTypeWall",
+      "type": "action",
+      "condition": "",
+      "action": "actionObserveLeft",
+      "assert": "assertNotPlayerInFovNorNoise"
+    },
+    {
+      "parent": "manageObserveTypeWall",
+      "name": "waitLeftObserveTypeWall",
+      "type": "action",
+      "condition": "",
+      "action": "actionWaitObserving",
+      "assert": "assertNotPlayerInFovNorNoise"
+    },
+    {
+      "parent": "manageObserveTypeWall",
+      "name": "turnRightObserveTypeWall",
+      "type": "action",
+      "condition": "",
+      "action": "actionObserveRight",
+      "assert": "assertNotPlayerInFovNorNoise"
+    },
+    {
+      "parent": "manageObserveTypeWall",
+      "name": "waitRightObserveTypeWall",
+      "type": "action",
+      "condition": "",
+      "action": "actionWaitObserving",
+      "assert": "assertNotPlayerInFovNorNoise"
+    },
+    {
+      "parent": "manageInactiveTypeFloor",
+      "name": "manageInactiveBehaviour",
+      "type": "priority",
+      "condition": "conditionIsNotPlayerInFovAndNotNoise",
+      "action": "",
+      "assert": ""
+    },
+    {
+      "parent": "manageInactiveTypeFloor",
+      "name": "setActiveTypeFloor",
+      "type": "action",
+      "condition": "",
+      "action": "actionSetActive",
+      "assert": ""
+    },
+    {
+      "parent": "manageInactiveBehaviour",
+      "name": "manageObserveTypeFloor",
+      "type": "sequence",
+      "condition": "conditionHasNotWaypoints",
+      "action": "",
+      "assert": ""
+    },
+    {
+      "parent": "manageInactiveBehaviour",
+      "name": "managePatrol",
+      "type": "sequence",
+      "condition": "",
+      "action": "",
+      "assert": ""
+    },
+    {
+      "parent": "manageObserveTypeFloor",
+      "name": "resetVariablesObserveTypeFloor",
+      "type": "action",
+      "condition": "",
+      "action": "actionResetObserveVariables",
+      "assert": ""
+    },
+    {
+      "parent": "manageObserveTypeFloor",
+      "name": "turnLeftObserveTypeFloor",
+      "type": "action",
+      "condition": "",
+      "action": "actionObserveLeft",
+      "assert": "assertNotPlayerInFovNorNoise"
+    },
+    {
+      "parent": "manageObserveTypeFloor",
+      "name": "waitLeftObserveTypeFloor",
+      "type": "action",
+      "condition": "",
+      "action": "actionWaitObserving",
+      "assert": "assertNotPlayerInFovNorNoise"
+    },
+    {
+      "parent": "manageObserveTypeFloor",
+      "name": "turnRightObserveTypeFloor",
+      "type": "action",
+      "condition": "",
+      "action": "actionObserveRight",
+      "assert": "assertNotPlayerInFovNorNoise"
+    },
+    {
+      "parent": "manageObserveTypeFloor",
+      "name": "waitRightObserveTypeFloor",
+      "type": "action",
+      "condition": "",
+      "action": "actionWaitObserving",
+      "assert": "assertNotPlayerInFovNorNoise"
+    },
+    {
+      "parent": "managePatrol",
+      "name": "generateNavmeshGoToWpt",
+      "type": "action",
+      "condition": "",
+      "action": "actionGenerateNavmeshWpt",
+      "assert": ""
+    },
+    {
+      "parent": "managePatrol",
+      "name": "goToWpt",
+      "type": "action",
+      "condition": "",
+      "action": "actionGoToWpt",
+      "assert": "assertNotPlayerInFovNorNoise"
+    },
+    {
+      "parent": "managePatrol",
+      "name": "resetTimerWaitInWpt",
+      "type": "action",
+      "condition": "",
+      "action": "actionResetTimerWaiting",
+      "assert": ""
+    },
+    {
+      "parent": "managePatrol",
+      "name": "waitInWpt",
+      "type": "action",
+      "condition": "",
+      "action": "actionWaitInWpt",
+      "assert": "assertNotPlayerInFovNorNoise"
+    },
+    {
+      "parent": "managePatrol",
+      "name": "nextWpt",
+      "type": "action",
+      "condition": "",
+      "action": "actionNextWpt",
+      "assert": ""
+    },
+    {
+      "parent": "mimetic",
+      "name": "manageChase",
+      "type": "sequence",
+      "condition": "conditionPlayerSeenForSure",
+      "action": "",
+      "assert": ""
+    },
+    {
+      "parent": "manageChase",
+      "name": "jumpFloor",
+      "type": "action",
+      "condition": "",
+      "action": "actionJumpFloor",
+      "assert": ""
+    },
+    {
+      "parent": "manageChase",
+      "name": "resetVariablesChase",
+      "type": "action",
+      "condition": "",
+      "action": "actionResetVariablesChase",
+      "assert": ""
+    },
+    {
+      "parent": "manageChase",
+      "name": "chasePlayerWithNoise",
+      "type": "action",
+      "condition": "",
+      "action": "actionChasePlayerWithNoise",
+      "assert": ""
+    },
+    {
+      "parent": "mimetic",
+      "name": "manageArtificialNoise",
+      "type": "sequence",
+      "condition": "conditionHasHeardArtificialNoise",
+      "action": "",
+      "assert": ""
+    },
+    {
+      "parent": "manageArtificialNoise",
+      "name": "markArtificialNoiseAsInactive",
+      "type": "action",
+      "condition": "",
+      "action": "actionMarkNoiseAsInactive",
+      "assert": ""
+    },
+    {
+      "parent": "manageArtificialNoise",
+      "name": "jumpFloorNoise",
+      "type": "action",
+      "condition": "",
+      "action": "actionJumpFloor",
+      "assert": ""
+    },
+    {
+      "parent": "manageArtificialNoise",
+      "name": "generateNavmeshNoiseSource",
+      "type": "action",
+      "condition": "",
+      "action": "actionGenerateNavmeshNoiseSource",
+      "assert": ""
+    },
+    {
+      "parent": "manageArtificialNoise",
+      "name": "goToNoiseSource",
+      "type": "action",
+      "condition": "",
+      "action": "actionGoToNoiseSource",
+      "assert": ""
+    },
+    {
+      "parent": "manageArtificialNoise",
+      "name": "waitInNoiseSource",
+      "type": "action",
+      "condition": "",
+      "action": "actionWaitInNoiseSource",
+      "assert": ""
+    },
+    {
+      "parent": "manageArtificialNoise",
+      "name": "setGoInactiveArtificialNoise",
+      "type": "action",
+      "condition": "",
+      "action": "actionSetGoInactive",
+      "assert": ""
+    },
+    {
+      "parent": "mimetic",
+      "name": "manageSuspect",
+      "type": "sequence",
+      "condition": "conditionNotSurePlayerInFov",
+      "action": "",
+      "assert": ""
+    },
+    {
+      "parent": "manageSuspect",
+      "name": "suspect",
+      "type": "action",
+      "condition": "",
+      "action": "actionSuspect",
+      "assert": ""
+    },
+    {
+      "parent": "manageSuspect",
+      "name": "rotateToInitialPosSuspect",
+      "type": "action",
+      "condition": "",
+      "action": "actionRotateToInitialPos",
+      "assert": "assertNotPlayerInFovNorNoise"
+    },
+    {
+      "parent": "mimetic",
+      "name": "manageNaturalNoise",
+      "type": "sequence",
+      "condition": "conditionHasHeardNaturalNoise",
+      "action": "",
+      "assert": ""
+    },
+    {
+      "parent": "manageNaturalNoise",
+      "name": "markNaturalNoiseAsInactive",
+      "type": "action",
+      "condition": "",
+      "action": "actionMarkNoiseAsInactive",
+      "assert": ""
+    },
+    {
+      "parent": "manageNaturalNoise",
+      "name": "rotateToNoiseSource",
+      "type": "action",
+      "condition": "",
+      "action": "actionRotateToNoiseSource",
+      "assert": "assertNotPlayerInFovNorNoise"
+    },
+    {
+      "parent": "manageNaturalNoise",
+      "name": "setGoInactiveAfterNoise",
+      "type": "action",
+      "condition": "",
+      "action": "actionSetGoInactive",
+      "assert": ""
+    },
+    {
+      "parent": "mimetic",
+      "name": "managePlayerLost",
+      "type": "sequence",
+      "condition": "conditionNotGoingInactive",
+      "action": "",
+      "assert": ""
+    },
+    {
+      "parent": "managePlayerLost",
+      "name": "generateNavmeshPlayerLastPos",
+      "type": "action",
+      "condition": "",
+      "action": "actionGenerateNavmeshPlayerLastPos",
+      "assert": ""
+    },
+    {
+      "parent": "managePlayerLost",
+      "name": "goToPlayerLastPos",
+      "type": "action",
+      "condition": "",
+      "action": "actionGoToPlayerLastPos",
+      "assert": "assertNotPlayerInFovNorNoise"
+    },
+    {
+      "parent": "managePlayerLost",
+      "name": "resetTimerWaitInPlayerLastPos",
+      "type": "action",
+      "condition": "",
+      "action": "actionResetTimerWaiting",
+      "assert": ""
+    },
+    {
+      "parent": "managePlayerLost",
+      "name": "waitInPlayerLastPos",
+      "type": "action",
+      "condition": "",
+      "action": "actionWaitInPlayerLastPos",
+      "assert": "assertNotPlayerInFovNorNoise"
+    },
+    {
+      "parent": "managePlayerLost",
+      "name": "setGoInactive",
+      "type": "action",
+      "condition": "",
+      "action": "actionSetGoInactive",
+      "assert": ""
+    },
+    {
+      "parent": "mimetic",
+      "name": "manageGoingInactive",
+      "type": "priority",
+      "condition": "",
+      "action": "",
+      "assert": ""
+    },
+    {
+      "parent": "manageGoingInactive",
+      "name": "manageGoingInactiveTypeWall",
+      "type": "sequence",
+      "condition": "conditionIsTypeWall",
+      "action": "",
+      "assert": ""
+    },
+    {
+      "parent": "manageGoingInactiveTypeWall",
+      "name": "goToInitialPosTypeWall",
+      "type": "action",
+      "condition": "",
+      "action": "actionGoToInitialPos",
+      "assert": "assertNotPlayerInFovNorNoise"
+    },
+    {
+      "parent": "manageGoingInactiveTypeWall",
+      "name": "generateNavmeshInitialPosTypeWall",
+      "type": "action",
+      "condition": "",
+      "action": "actionGenerateNavmeshInitialPos",
+      "assert": ""
+    },
+    {
+      "parent": "manageGoingInactiveTypeWall",
+      "name": "rotateToInitialPosTypeWall",
+      "type": "action",
+      "condition": "",
+      "action": "actionRotateToInitialPos",
+      "assert": "assertNotPlayerInFovNorNoise"
+    },
+    {
+      "parent": "manageGoingInactiveTypeWall",
+      "name": "jumpWall",
+      "type": "action",
+      "condition": "",
+      "action": "actionJumpWall",
+      "assert": ""
+    },
+    {
+      "parent": "manageGoingInactiveTypeWall",
+      "name": "holdOnWall",
+      "type": "action",
+      "condition": "",
+      "action": "actionHoldOnWall",
+      "assert": ""
+    },
+    {
+      "parent": "manageGoingInactiveTypeWall",
+      "name": "setInactiveTypeWall",
+      "type": "action",
+      "condition": "",
+      "action": "actionSetInactive",
+      "assert": ""
+    },
+    {
+      "parent": "manageGoingInactive",
+      "name": "manageGoingInactiveTypeWpts",
+      "type": "sequence",
+      "condition": "conditionHasWpts",
+      "action": "",
+      "assert": ""
+    },
+    {
+      "parent": "manageGoingInactiveTypeWpts",
+      "name": "closestWptTypeWpts",
+      "type": "action",
+      "condition": "",
+      "action": "actionClosestWpt",
+      "assert": ""
+    },
+    {
+      "parent": "manageGoingInactiveTypeWpts",
+      "name": "setInactiveTypeWpts",
+      "type": "action",
+      "condition": "",
+      "action": "actionSetInactive",
+      "assert": ""
+    },
+    {
+      "parent": "manageGoingInactive",
+      "name": "manageGoingInactiveTypeFloor",
+      "type": "sequence",
+      "condition": "conditionIsTypeFloor",
+      "action": "",
+      "assert": ""
+    },
+    {
+      "parent": "manageGoingInactiveTypeFloor",
+      "name": "generateNavmeshInitialPosTypeFloor",
+      "type": "action",
+      "condition": "",
+      "action": "actionGenerateNavmeshInitialPos",
+      "assert": ""
+    },
+    {
+      "parent": "manageGoingInactiveTypeFloor",
+      "name": "goToInitialPosTypeFloor",
+      "type": "action",
+      "condition": "",
+      "action": "actionGoToInitialPos",
+      "assert": "assertNotPlayerInFovNorNoise"
+    },
+    {
+      "parent": "manageGoingInactiveTypeFloor",
+      "name": "rotateToInitialPosTypeFloor",
+      "type": "action",
+      "condition": "",
+      "action": "actionRotateToInitialPos",
+      "assert": "assertNotPlayerInFovNorNoise"
+    },
+    {
+      "parent": "manageGoingInactiveTypeFloor",
+      "name": "setInactiveTypeFloor",
+      "type": "action",
+      "condition": "",
+      "action": "actionSetInactive",
+      "assert": ""
+    }
+  ]
+}

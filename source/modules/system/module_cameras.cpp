@@ -129,14 +129,16 @@ void CModuleCameras::blendInCamera(CHandle camera, float blendTime, EPriority pr
 	TMixedCamera* mc = getMixedCamera(camera);
 	if (!mc)
 	{
+
+		TMsgCameraActivated msg;
+        msg.previousCamera = getCurrentCamera();
+
 		TMixedCamera new_mc;
 		new_mc.camera = camera;
 		new_mc.type = priority;
 		new_mc.interpolator = interpolator;
 		new_mc.blendIn(blendTime);
 
-
-		TMsgCameraActivated msg;
 		camera.sendMsg(msg);
 
 		if (blendTime == 0.f) {

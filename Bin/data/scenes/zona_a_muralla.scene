@@ -1,0 +1,124 @@
+[
+  {
+    "entity":
+    {
+      "name": "zona_a_muralla"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arco_muralla042"
+      ,
+      "transform":
+      {
+        "pos": "-32.5164 16.0 -3.22858"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arco_muralla042.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_arco_muralla042.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_muralla_grande"
+      ,
+      "transform":
+      {
+        "pos": "-32.5 0.0 -110.729"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_muralla_grande.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.5 8.0 115.0"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_muralla_interior"
+      ,
+      "transform":
+      {
+        "pos": "-45.1568 -1.05383e-05 -132.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_muralla_interior.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "15.0 6.0 1.0"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

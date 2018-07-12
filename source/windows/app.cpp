@@ -39,9 +39,10 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 		break;
 
 	case WM_KILLFOCUS:
-		if (app_instance)
-      app_instance->lostFocus = true;
-			app_instance->has_focus = false;
+        if (app_instance) {
+            app_instance->lostFocus = true;
+            app_instance->has_focus = false;
+        }
 		break;
 
 	case WM_DESTROY:
@@ -63,8 +64,6 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 		Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 		if (mouse)
 		{
-			//ShowCursor(mouse->_lock_cursor);
-			//mouse->setLockMouse();
 			mouse->setButton(Input::MOUSE_MIDDLE, false);
 			ReleaseCapture();
 		}
@@ -154,21 +153,21 @@ bool CApp::createWindow(HINSTANCE new_hInstance, int nCmdShow) {
 	wcex.lpszMenuName = NULL;
 	wcex.lpszClassName = "MCVWindowsClass";
 	wcex.hIconSm = NULL;
+
 	if (!RegisterClassEx(&wcex))
 		return false;
 
 	// Create window
 	RECT rc = { 0, 0, xres, yres };
 	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
-	hWnd = CreateWindow("MCVWindowsClass", "Project Deep Shadows",
-		WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, hInstance,
-		NULL);
+	hWnd = CreateWindow("MCVWindowsClass", "Project Atlas' Fate",
+		   WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 
+           rc.right - rc.left, rc.bottom - rc.top, NULL, NULL, hInstance, NULL);
+
 	if (!hWnd)
 		return false;
 
 	ShowWindow(hWnd, nCmdShow);
-	//ShowCursor(false);
 
 	return true;
 }
@@ -192,11 +191,9 @@ void CApp::mainLoop() {
 			if (resetMouse)
 			{
 				POINT pt;
-
-				pt.x = xres / 2;
-				pt.y = yres / 2;
+				pt.x = xres * .5f;
+				pt.y = yres * .5f;
 				ClientToScreen(hWnd, &pt);
-
 				SetCursorPos(pt.x, pt.y);
 				resetMouse = false;
 			}
@@ -210,14 +207,11 @@ void CApp::mainLoop() {
 //--------------------------------------------------------------------------------------
 bool CApp::readConfig() {
 	// ...
-	xres = 1920;
-	yres = 1080;
+	xres = 1280;
+	yres = 720;
 
 	time_since_last_render.reset();
-
 	CEngine::get().getRender().configure(xres, yres);
-
-	ShowCursor(false);
 
 	return true;
 }
@@ -231,6 +225,7 @@ bool CApp::start() {
 
 //--------------------------------------------------------------------------------------
 bool CApp::stop() {
+
 	return CEngine::get().stop();
 }
 
@@ -239,7 +234,14 @@ void CApp::doFrame() {
 
 	PROFILE_FRAME_BEGINS();
 	PROFILE_FUNCTION("App::doFrame");
+
 	float dt = time_since_last_render.elapsedAndReset();
+
+    // Avoid this frame if dt is very big
+    // This can happen when game is breakpoint stopped etc..
+    // Replace this with fixed time step..
+    if (dt > 1) return;
+
 	CEngine::get().update(dt);
 	CEngine::get().render();
 

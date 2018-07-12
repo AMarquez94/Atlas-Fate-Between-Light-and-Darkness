@@ -1,0 +1,343 @@
+[
+  {
+    "entity":
+    {
+      "name": "carteles"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cartel"
+      ,
+      "transform":
+      {
+        "pos": "-61.4366 12.0378 -76.3759"
+        ,
+        "rotation": "0.0 -0.999048 0.0 -0.0436193"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cartel.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_moderdonia.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cartel001"
+      ,
+      "transform":
+      {
+        "pos": "6.85243 2.40606 -1.45577"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cartel.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cartel001"
+      ,
+      "transform":
+      {
+        "pos": "0.056254 1.13706 0.36307"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cartel.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cartel001"
+      ,
+      "transform":
+      {
+        "pos": "6.85243 2.40606 -1.45577"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cartel.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cartel001"
+      ,
+      "transform":
+      {
+        "pos": "6.85243 2.40606 -1.45577"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cartel.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cartel002"
+      ,
+      "transform":
+      {
+        "pos": "-96.2042 12.0378 -92.7844"
+        ,
+        "rotation": "0.0 -0.92388 0.0 -0.382683"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cartel.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_moderdonia.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cartel003"
+      ,
+      "transform":
+      {
+        "pos": "-107.627 12.0378 -153.496"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cartel.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_moderdonia.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cartel004"
+      ,
+      "transform":
+      {
+        "pos": "-122.062 12.0378 -125.083"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cartel.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_moderdonia.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cartel005"
+      ,
+      "transform":
+      {
+        "pos": "-57.0822 12.0378 -132.433"
+        ,
+        "rotation": "0.0 -0.996195 0.0 0.0871557"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cartel.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_moderdonia.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cartel006"
+      ,
+      "transform":
+      {
+        "pos": "-46.4699 12.0378 -114.444"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cartel.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_moderdonia.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cartel007"
+      ,
+      "transform":
+      {
+        "pos": "-89.321 12.0378 -115.652"
+        ,
+        "rotation": "0.0 -0.906308 0.0 0.422618"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cartel.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neon_moderdonia.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

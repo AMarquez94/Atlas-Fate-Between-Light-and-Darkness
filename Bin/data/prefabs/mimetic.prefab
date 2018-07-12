@@ -4,95 +4,215 @@
 			"transform": {
 				"pos": "0 0 0"
 			},
-			"render": [{
+			"render": [
+				{
 					"mesh": "data/skeletons/crab/Ankle_low.mesh",
 					"materials":
 					[
 						"data/materials/characters/mtl_enemy_crab.material"
 					]
-				}, {
+				},
+				{
+					"mesh": "data/skeletons/crab/Ankle_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab_post.material"
+					]
+				},
+				{
 					"mesh": "data/skeletons/crab/Battery_low.mesh",
 					"materials":
 					[
 						"data/materials/characters/mtl_enemy_crab.material"
 					]
-				}, {
+				},
+								{
+					"mesh": "data/skeletons/crab/Battery_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab_post.material"
+					]
+				},
+				{
 					"mesh": "data/skeletons/crab/Bulb_low.mesh",
 					"materials":
 					[
 						"data/materials/characters/mtl_enemy_crab.material"
 					]
-				}, {
+				},
+								{
+					"mesh": "data/skeletons/crab/Bulb_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab_post.material"
+					]
+				},
+				{
 					"mesh": "data/skeletons/crab/ExternalLantern_low.mesh",
 					"materials":
 					[
 						"data/materials/characters/mtl_enemy_crab.material"
 					]
-				}, {
+				},
+				{
+					"mesh": "data/skeletons/crab/ExternalLantern_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab_post.material"
+					]
+				},
+				{
 					"mesh": "data/skeletons/crab/Eye_low.mesh",
 					"materials":
 					[
 						"data/materials/characters/mtl_enemy_crab.material"
 					]
-				}, {
+				},
+				{
+					"mesh": "data/skeletons/crab/Eye_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab_post.material"
+					]
+				},
+				{
 					"mesh": "data/skeletons/crab/Foot_low.mesh",
 					"materials":
 					[
 						"data/materials/characters/mtl_enemy_crab.material"
 					]
-				}, {
+				},
+				{
+					"mesh": "data/skeletons/crab/Foot_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab_post.material"
+					]
+				},
+				{
 					"mesh": "data/skeletons/crab/Handle_low.mesh",
 					"materials":
 					[
 						"data/materials/characters/mtl_enemy_crab.material"
 					]
-				}, {
+				},
+				{
+					"mesh": "data/skeletons/crab/Handle_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab_post.material"
+					]
+				},
+				{
 					"mesh": "data/skeletons/crab/Head_low.mesh",
 					"materials":
 					[
 						"data/materials/characters/mtl_enemy_crab.material"
 					]
-				}, {
+				},
+				{
+					"mesh": "data/skeletons/crab/Head_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab_post.material"
+					]
+				},
+				{
 					"mesh": "data/skeletons/crab/Leg_low.mesh",
 					"materials":
 					[
 						"data/materials/characters/mtl_enemy_crab.material"
 					]
-				}, {
+				},
+								{
+					"mesh": "data/skeletons/crab/Leg_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab_post.material"
+					]
+				},
+				{
 					"mesh": "data/skeletons/crab/LittleBattery_low.mesh",
 					"materials":
 					[
 						"data/materials/characters/mtl_enemy_crab.material"
 					]
-				}, {
+				}, 
+				{
+					"mesh": "data/skeletons/crab/LittleBattery_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab_post.material"
+					]
+				}, 
+				{
 					"mesh": "data/skeletons/crab/Pelvis_low.mesh",
 					"materials":
 					[
 						"data/materials/characters/mtl_enemy_crab.material"
 					]
-				}, {
+				},
+								{
+					"mesh": "data/skeletons/crab/Pelvis_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab_post.material"
+					]
+				},
+				{
 					"mesh": "data/skeletons/crab/Spine00_low.mesh",
 					"materials":
 					[
 						"data/materials/characters/mtl_enemy_crab.material"
 					]
-				}, {
+				},
+								{
+					"mesh": "data/skeletons/crab/Spine00_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab_post.material"
+					]
+				},
+				{
 					"mesh": "data/skeletons/crab/Spine01_low.mesh",
 					"materials":
 					[
 						"data/materials/characters/mtl_enemy_crab.material"
 					]
-				}, {
+				},
+								{
+					"mesh": "data/skeletons/crab/Spine01_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab_post.material"
+					]
+				},
+				{
 					"mesh": "data/skeletons/crab/Spine02_low.mesh",
 					"materials":
 					[
 						"data/materials/characters/mtl_enemy_crab.material"
 					]
-				}, {
+				},
+								{
+					"mesh": "data/skeletons/crab/Spine02_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab_post.material"
+					]
+				},
+				{
 					"mesh": "data/skeletons/crab/SupportHead_low.mesh",
 					"materials":
 					[
 						"data/materials/characters/mtl_enemy_crab.material"
+					]
+				},
+								{
+					"mesh": "data/skeletons/crab/SupportHead_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_enemy_crab_post.material"
 					]
 				}
 
@@ -103,6 +223,21 @@
 			},
 			"emission_controller": {
 				"initial": "0.0 1.0 1.0 1.0"
+			},
+			"noise_emitter": {
+				"radius": -1
+			},
+			"collider": {
+				"shape": "capsule",
+				"radius": 0.4,
+				"height": 0.6,
+				"step_offset": 0.1,
+				"gravity": true,
+				"group": "enemy"
+			},
+			"rigidbody": {
+				"is_controller": true,
+				"is_gravity": true
 			},
 			"mimetic_animator": true,
 			"tags": ["enemy", "mimetic"]
@@ -133,25 +268,6 @@
 				"dist": 20.0,
 				"target": "The Player"
 			}
-		}
-	}, {
-		"entity": {
-			"name": "Noise Emitter",
-			"hierarchy": {
-				"parent": "Mimetic"
-			},
-			"transform": {},
-			"collider": {
-				"shape": "sphere",
-				"radius": 0.01,
-				"is_trigger": true,
-				"group": "enemy"
-			},
-			"rigidbody": {
-				"is_controller": false,
-				"is_gravity": false
-			},
-			"noise_emitter": {}
 		}
 	}
 ]

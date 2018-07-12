@@ -1,0 +1,10 @@
+{
+  "technique": "particles.tech"
+  ,
+  "shadows": false
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/fire.dds"
+  }
+}

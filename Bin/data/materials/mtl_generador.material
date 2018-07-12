@@ -1,0 +1,20 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_generador_alb.dds"
+    ,
+    "metallic": "data/textures/tx_generador_met.dds"
+    ,
+    "roughness": "data/textures/tx_generador_rgh.dds"
+    ,
+    "normal": "data/textures/tx_generador_nml.dds"
+    ,
+    "height": "data/textures/tx_generador_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_generador_emi.dds"
+    ,
+    "aocclusion": "data/textures/tx_generador_ao.dds"
+  }
+}

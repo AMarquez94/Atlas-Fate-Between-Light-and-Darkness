@@ -6,7 +6,7 @@ class CJsonResourceClass : public CResourceClass {
 public:
 	CJsonResourceClass() {
 		class_name = "Json";
-		extensions = { ".json", ".scene", ".prefab" };
+		extensions = { ".json", ".scene", ".prefab", ".bt" };
 	}
 	IResource* create(const std::string& name) const override {
 		dbg("Creating json resource %s\n", name.c_str());

@@ -1,0 +1,2356 @@
+[
+  {
+    "entity":
+    {
+      "name": "zone_a_colliders_salientes"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_001"
+      ,
+      "transform":
+      {
+        "pos": "-37.7416 11.6739 -86.7988"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_003"
+      ,
+      "transform":
+      {
+        "pos": "-58.8793 11.6434 -73.3205"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.62216 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_004"
+      ,
+      "transform":
+      {
+        "pos": "-62.6214 11.6434 -76.8226"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.62216 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_005"
+      ,
+      "transform":
+      {
+        "pos": "-111.605 5.70788 -114.671"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_006"
+      ,
+      "transform":
+      {
+        "pos": "-116.0 11.5238 -153.048"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.0 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_007"
+      ,
+      "transform":
+      {
+        "pos": "-98.8741 11.5881 -157.065"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "6.12 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_008"
+      ,
+      "transform":
+      {
+        "pos": "-92.8741 11.5881 -157.736"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.5508 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_009"
+      ,
+      "transform":
+      {
+        "pos": "-85.1201 11.478 -150.88"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.12 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_010"
+      ,
+      "transform":
+      {
+        "pos": "-80.0001 11.478 -147.88"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.0 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_011"
+      ,
+      "transform":
+      {
+        "pos": "-80.12 11.478 -154.12"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.12 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_012"
+      ,
+      "transform":
+      {
+        "pos": "-74.8801 11.478 -152.294"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.9456 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_013"
+      ,
+      "transform":
+      {
+        "pos": "-58.949 11.557 -156.88"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "6.05 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_014"
+      ,
+      "transform":
+      {
+        "pos": "-39.12 11.5532 -115.19"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "8.0 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_015"
+      ,
+      "transform":
+      {
+        "pos": "-34.28 11.5532 -123.31"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.96 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_016"
+      ,
+      "transform":
+      {
+        "pos": "-50.5182 5.50548 -86.82"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.5 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_017"
+      ,
+      "transform":
+      {
+        "pos": "-45.4551 5.50548 -86.2431"
+        ,
+        "rotation": "0.0 0.382683 0.0 -0.92388"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.931786 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_018"
+      ,
+      "transform":
+      {
+        "pos": "-44.8982 5.50548 -82.2"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.5 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_019"
+      ,
+      "transform":
+      {
+        "pos": "-79.0 11.6532 -78.82"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_020"
+      ,
+      "transform":
+      {
+        "pos": "-47.12 5.50549 -104.69"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.5 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_021"
+      ,
+      "transform":
+      {
+        "pos": "-46.5431 5.50549 -108.732"
+        ,
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.931786 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_022"
+      ,
+      "transform":
+      {
+        "pos": "-42.5 5.50549 -109.289"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.5 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente1_023"
+      ,
+      "transform":
+      {
+        "pos": "-41.12 11.6434 -78.924"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "7.38 0.175 0.12"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_001"
+      ,
+      "transform":
+      {
+        "pos": "-37.6201 5.99279 -86.885"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_002"
+      ,
+      "transform":
+      {
+        "pos": "-43.185 11.657 -103.19"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_003"
+      ,
+      "transform":
+      {
+        "pos": "-40.97 11.657 -107.375"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.4 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_004"
+      ,
+      "transform":
+      {
+        "pos": "-50.015 11.657 -100.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.0 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_005"
+      ,
+      "transform":
+      {
+        "pos": "-58.815 5.54895 -80.7"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "6.0 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_006"
+      ,
+      "transform":
+      {
+        "pos": "-39.185 11.657 -99.0053"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.185 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_007"
+      ,
+      "transform":
+      {
+        "pos": "-94.3569 11.5813 -92.3256"
+        ,
+        "rotation": "0.0 -0.92388 0.0 -0.382683"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "6.0 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_008"
+      ,
+      "transform":
+      {
+        "pos": "-111.54 11.6571 -114.957"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.185 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_009"
+      ,
+      "transform":
+      {
+        "pos": "-116.725 11.6571 -117.957"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.0 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_010"
+      ,
+      "transform":
+      {
+        "pos": "-120.815 5.44922 -136.671"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.0 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_011"
+      ,
+      "transform":
+      {
+        "pos": "-120.815 5.44922 -151.045"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.8 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_012"
+      ,
+      "transform":
+      {
+        "pos": "-107.815 11.557 -152.983"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.185 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_013"
+      ,
+      "transform":
+      {
+        "pos": "-104.815 11.557 -155.589"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.4206 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_014"
+      ,
+      "transform":
+      {
+        "pos": "-74.185 11.5563 -156.815"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "9.185 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_015"
+      ,
+      "transform":
+      {
+        "pos": "-83.185 11.5563 -158.561"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.56145 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_016"
+      ,
+      "transform":
+      {
+        "pos": "-61.1858 11.557 -154.185"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.185 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_017"
+      ,
+      "transform":
+      {
+        "pos": "-65.1858 11.557 -152.242"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.7577 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_018"
+      ,
+      "transform":
+      {
+        "pos": "-61.185 11.557 -147.815"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.185 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_019"
+      ,
+      "transform":
+      {
+        "pos": "-47.1847 11.5472 -148.187"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.05065 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_020"
+      ,
+      "transform":
+      {
+        "pos": "-45.1847 11.5472 -145.952"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.185 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_021"
+      ,
+      "transform":
+      {
+        "pos": "-38.0 11.2637 -126.815"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_022"
+      ,
+      "transform":
+      {
+        "pos": "-57.2 5.54895 -105.185"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_023"
+      ,
+      "transform":
+      {
+        "pos": "-67.2077 11.657 -101.185"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente2_024"
+      ,
+      "transform":
+      {
+        "pos": "-76.015 5.44922 -113.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.195 0.185"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_001"
+      ,
+      "transform":
+      {
+        "pos": "-49.0 11.2302 -72.3287"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_002"
+      ,
+      "transform":
+      {
+        "pos": "-49.2661 11.2302 -84.948"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.25 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_003"
+      ,
+      "transform":
+      {
+        "pos": "-53.2661 11.2302 -81.448"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.25 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_004"
+      ,
+      "transform":
+      {
+        "pos": "-48.7661 11.2302 -78.448"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.25 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_005"
+      ,
+      "transform":
+      {
+        "pos": "-44.7661 11.2302 -81.948"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.25 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_006"
+      ,
+      "transform":
+      {
+        "pos": "-64.7524 11.3773 -80.4482"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.58055 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_007"
+      ,
+      "transform":
+      {
+        "pos": "-68.2524 11.3773 -83.7788"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.25 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_008"
+      ,
+      "transform":
+      {
+        "pos": "-71.2524 11.3773 -80.2788"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.25 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_009"
+      ,
+      "transform":
+      {
+        "pos": "-101.872 11.207 -96.0411"
+        ,
+        "rotation": "0.0 0.382683 0.0 -0.92388"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_010"
+      ,
+      "transform":
+      {
+        "pos": "-106.725 11.3072 -109.92"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_011"
+      ,
+      "transform":
+      {
+        "pos": "-119.725 5.263 -121.931"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_012"
+      ,
+      "transform":
+      {
+        "pos": "-122.066 11.0848 -142.521"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.25 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_013"
+      ,
+      "transform":
+      {
+        "pos": "-123.746 11.0848 -139.521"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.43 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_014"
+      ,
+      "transform":
+      {
+        "pos": "-87.9511 11.2072 -157.753"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.0 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_015"
+      ,
+      "transform":
+      {
+        "pos": "-70.0 11.322 -142.75"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.0 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_016"
+      ,
+      "transform":
+      {
+        "pos": "-70.0 11.322 -151.224"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.0 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_017"
+      ,
+      "transform":
+      {
+        "pos": "-53.2477 11.2072 -153.555"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.0 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_018"
+      ,
+      "transform":
+      {
+        "pos": "-50.05 11.2072 -148.805"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.94768 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_019"
+      ,
+      "transform":
+      {
+        "pos": "-44.25 11.0857 -126.758"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.25 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_020"
+      ,
+      "transform":
+      {
+        "pos": "-47.25 11.0857 -129.008"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_021"
+      ,
+      "transform":
+      {
+        "pos": "-49.9501 5.15656 -102.266"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.25 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_022"
+      ,
+      "transform":
+      {
+        "pos": "-52.2001 5.15656 -105.266"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_023"
+      ,
+      "transform":
+      {
+        "pos": "-76.08 5.15657 -106.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_saliente3_024"
+      ,
+      "transform":
+      {
+        "pos": "-76.08 11.2072 -115.018"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "6.0 0.37 0.25"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_muralla_saliente"
+      ,
+      "transform":
+      {
+        "pos": "-35.1981 10.5406 -116.656"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.198142 0.441907 51.0826"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+]

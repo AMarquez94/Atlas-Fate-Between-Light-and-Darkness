@@ -217,6 +217,7 @@ void TCompPlayerAnimator::initializeAnimations() {
 		1.0f,
 		1.0f
 	);
+
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::SM_POSE,
 		EAnimationType::CYCLIC,
@@ -232,10 +233,16 @@ void TCompPlayerAnimator::registerMsgs() {
 	DECL_MSG(TCompPlayerAnimator, TMsgEntityCreated, onCreated);
 	DECL_MSG(TCompPlayerAnimator, TMsgExecuteAnimation, playMsgAnimation);
 	DECL_MSG(TCompPlayerAnimator, TMsgScenePaused, onSceneStop);
+	DECL_MSG(TCompPlayerAnimator, TMsgNoClipToggle, onMsgNoClipToggle);
 }
 
 void TCompPlayerAnimator::onSceneStop(const TMsgScenePaused& msg) {
 	playAnimation(EAnimation::IDLE);
+}
+
+void TCompPlayerAnimator::onMsgNoClipToggle(const TMsgNoClipToggle & msg)
+{
+    isInNoClipMode = !isInNoClipMode;
 }
 
 void TCompPlayerAnimator::onCreated(const TMsgEntityCreated& msg) {
@@ -249,7 +256,6 @@ void TCompPlayerAnimator::onCreated(const TMsgEntityCreated& msg) {
 }
 
 bool TCompPlayerAnimator::playAnimation(TCompPlayerAnimator::EAnimation animation, float speed) {
-
 	return playAnimationConverted((TCompAnimator::EAnimation)animation, speed);
 }
 

@@ -1,0 +1,50 @@
+[
+  {
+    "entity":
+    {
+      "name": "zone_a_suelo"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_suelo"
+      ,
+      "transform":
+      {
+        "pos": "-81.0 -0.520005 -116.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_suelo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "50.0 0.26 50.0"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

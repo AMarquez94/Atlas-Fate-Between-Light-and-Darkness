@@ -14,9 +14,8 @@ uint32_t getNextUniqueMsgID() {
 }
 
 CEntity::~CEntity() {
+	sendMsg(TMsgEntityDestroyed());
   // Comp 0 is not valid
-	TMsgEntityDestroyed msg;
-	this->sendMsg(msg);
   for (uint32_t i = 1; i < CHandleManager::getNumDefinedTypes(); ++i) {
     CHandle h = comps[i];
     if (comps[i].isValid())
@@ -109,7 +108,9 @@ void CEntity::load(const json& j, TEntityParseContext& ctx) {
 
   // Send a msg to the entity components to let them know
   // the entity is fully loaded.
-  sendMsg(TMsgEntityCreated());
+	if (!ctx.is_prefab) {
+		sendMsg(TMsgEntityCreated());
+	}
 }
 
 void CEntity::renderDebug() {

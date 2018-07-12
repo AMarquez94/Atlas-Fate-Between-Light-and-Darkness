@@ -106,9 +106,13 @@ fn isLight obj = (
 	return true
 )	
 
+fn isValidName aname = (
+	return findString aname " " == undefined 
+)
+	
 
-fn doesFolderExist f create:false =
-(
+fn doesFolderExist f create:false = (
+	
 	local val = if (doesFileExist f) and (getfileattribute f #directory) then true else false
 	if not val and create then
 	(
@@ -133,10 +137,6 @@ function createLayer layerName = (
 	)		
 	
 	return LayerManager.getLayerFromName layerName
-)
-
-function checkDirectories outpath = (
-	
 )
 
 fn clamp minVal maxVal val =

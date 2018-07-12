@@ -2,8 +2,9 @@
 #include "module_gui.h"
 #include "render/render_objects.h"
 #include "gui/gui_parser.h"
-#include "gui/controllers/gui_main_menu_controller.h"
+#include "gui/controllers/gui_menu_buttons_controller.h"
 #include "gui/widgets/gui_bar.h"
+#include "gui/gui_controller.h"
 
 using namespace GUI;
 
@@ -21,48 +22,53 @@ bool CModuleGUI::start()
 	_quadMesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 	_fontTexture = Resources.get("data/textures/gui/font.dds")->as<CTexture>();
 
-	CParser parser;
-	parser.parseFile("data/gui/test.json");
-	parser.parseFile("data/gui/main_menu.json");
-	parser.parseFile("data/gui/ingame.json");
-	
-	/*parser.parseFile("data/gui/main_menu.json");
-	parser.parseFile("data/gui/gameplay.json");
-	parser.parseFile("data/gui/game_over.json");*/
-
-	activateWidget("main_menu");
-	auto newGameCB = []() {
-		CEngine::get().getGUI().outOfMainMenu();
-	};
-	auto continueCB = []() {
-		CEngine::get().getGUI().outOfMainMenu();
-	};
-	auto optionsCB = []() {
-		dbg("OPTIONS SELECTED\n");		
-	};
-	auto exitCB = []() {
-		exit(0);
-	};
-	//CEngine::get().getGUI().getWidget("stamina_bar", true)->getBarParams()->_processValue = 0.5f;
-	CMainMenuController* mmc = new CMainMenuController();
-	mmc->registerOption("new_game", newGameCB);
-	mmc->registerOption("continue", continueCB);
-	mmc->registerOption("options", optionsCB);
-	mmc->registerOption("exit", exitCB);
-	mmc->setCurrentOption(0);
-	registerController(mmc);
+	initializeWidgetStructure();
 	
 	return true;
 }
 
-void CModuleGUI::outOfMainMenu() {
-	CEngine::get().getModules().changeGameState("map_intro");
-	activateWidget("blackground");
-	_controllers.clear();
+void CModuleGUI::initializeWidgetStructure() {
+
+	//Initializing all the functions for the buttons of GUI
+	auto mm_newGameCB = []() {
+		CEngine::get().getModules().changeGameState("map_intro");
+	};
+	auto mm_continueCB = []() {
+		//CEngine::get().getGUI().outOfMainMenu();
+	};
+	auto mm_optionsCB = []() {
+		//activateWidget("main_menu_buttons");
+	};
+	auto mm_exitCB = []() {
+		exit(0);
+	};
+	 
+	CMenuButtonsController* mmc = new CMenuButtonsController();
+
+	
+	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json");
+
+	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BUTTONS, "data/gui/main_menu_buttons.json", mmc);
+	mmc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::MAIN_MENU_BUTTONS);
+	mmc->registerOption("new_game", mm_newGameCB);
+	mmc->registerOption("continue", mm_continueCB);
+	mmc->registerOption("options", mm_optionsCB);
+	mmc->registerOption("exit", mm_exitCB);
+	mmc->setCurrentOption(0);
+
+	registerWigdetStruct(EGUIWidgets::INGAME_STAMINA_BAR, "data/gui/ingame.json");
+
 }
 
-void CModuleGUI::enterMainMenu() {
+void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController *wdgt_controller) {
 
+	WidgetStructure wdgt_struct;
+	CParser parser;
+	wdgt_struct._widgetName = parser.parseFile(wdgt_path);
+	wdgt_struct._type = wdgt_type;
+	wdgt_struct._widget = getWidget(wdgt_struct._widgetName);
+	wdgt_struct._controller = wdgt_controller;
+	_widgetStructureMap[wdgt_type] = wdgt_struct;
 }
 
 bool CModuleGUI::stop()
@@ -72,6 +78,15 @@ bool CModuleGUI::stop()
 
 void CModuleGUI::update(float delta)
 {
+	if (EngineInput[VK_DOWN].getsPressed())
+	{
+		//deactivateWidget(EGUIWidgets::MAIN_MENU_BUTTONS);
+	}
+	if (EngineInput[VK_UP].getsPressed())
+	{
+		//activateWidget(EGUIWidgets::MAIN_MENU_BACKGROUND);
+	}
+
 	for (auto& wdgt : _activeWidgets)
 	{
 		wdgt->updateAll(delta);
@@ -121,24 +136,50 @@ CWidget* CModuleGUI::getWidget(const std::string& name, bool recursive) const
 	return nullptr;
 }
 
-void CModuleGUI::activateWidget(const std::string& name)
+CWidget* CModuleGUI::getWidget(EGUIWidgets wdgt_type) {
+	
+	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt_type];
+	CWidget* wdgt = wdgt_struct._widget;
+	if (wdgt != nullptr) {
+		return wdgt;
+	}
+	return nullptr;
+}
+
+GUI::CController* CModuleGUI::getWidgetController(EGUIWidgets wdgt_type) {
+
+	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt_type];
+	CController* controller = wdgt_struct._controller;
+	return controller;
+}
+
+void CModuleGUI::activateWidget(EGUIWidgets wdgt)
 {
-	CWidget* wdgt = getWidget(name);
-	if (wdgt)
+	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt];
+	CWidget* widgt = getWidget(wdgt_struct._widgetName);
+	if (widgt)
 	{
-		if(_activeWidgets.size() > 0)
-			_activeWidgets.pop_back();
-		_activeWidgets.push_back(wdgt);
+		_activeWidgets.push_back(widgt);
+	}
+	if (wdgt_struct._controller != nullptr) {
+		registerController(wdgt_struct._controller);
 	}
 }
 
-void CModuleGUI::deactivateWidget(const std::string& name)
+void CModuleGUI::deactivateWidget(EGUIWidgets wdgt)
 {
-	CWidget* wdgt = getWidget(name);
+	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt];
+	CWidget* widgt = getWidget(wdgt_struct._widgetName);
 	for (auto it = _activeWidgets.begin(); it != _activeWidgets.end();) {
-		if(*it == wdgt) _activeWidgets.erase(it);
+		if (*it == widgt) {
+			_activeWidgets.erase(it);
+			break;
+		}
 		it++;
+	}
 
+	if (wdgt_struct._controller != nullptr) {
+		unregisterController(wdgt_struct._controller);
 	}
 }
 
@@ -207,7 +248,7 @@ void CModuleGUI::renderText(const MAT44& world, const std::string& text, const V
 
 		VEC2 minUV = VEC2(col * cellSize, row * cellSize);
 		VEC2 maxUV = minUV + VEC2(1, 1) * cellSize;
-		VEC2 gap = i * VEC2(1, 0);
+		VEC2 gap = (float)i * VEC2(1, 0);
 		MAT44 w = MAT44::CreateTranslation(gap.x, gap.y, 0.f) * world;
 
 		renderTexture(w, _fontTexture, minUV, maxUV, color);
