@@ -1,0 +1,26 @@
+[{
+	"entity": {
+		"prefab": "data/prefabs/player.prefab",
+		"name": "The Player",
+		"transform": {
+				"pos": "-7 1 15"
+		},
+		"ai_player": {
+			"enabled": false,
+			"speed": 4.0,
+			"rotationSpeed": 4.0,
+			"waypoints": [
+			  {
+				"position": "-10 0 138",
+				"lookAt": "0 0 1",
+				"minTime": 10
+			  },
+			  {
+				"position": "-10 0 140.4",
+				"lookAt": "0 0 1",
+				"minTime": 10
+			  }
+			]
+		}
+	}
+}]

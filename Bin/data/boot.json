@@ -1,4 +1,28 @@
 {
+    "scene_intro": {
+    "static_data": {
+      "initial_script": "intro",
+      "navmesh": "data/navmeshes/milestone2_navmesh.bin"
+    },
+    "scene_group": [
+      "data/scenes/Intro/player_intro_fsm.scene",
+    
+     
+      
+      
+      "data/scenes/Map_Intro/test_instancing.scene",
+      "data/scenes/Map_Intro/capsules.scene",
+      "data/scenes/Map_Intro/camera.scene",
+      "data/scenes/Map_Intro/checkpoints.scene",
+      "data/scenes/Map_Intro/movable_objects.scene",
+      "data/scenes/Map_Intro/milestone2_map_particles.scene",
+
+      "data/scenes/intro_casas.scene",
+      "data/scenes/intro_light.scene",
+      "data/scenes/Intro/intro_suelo.scene"
+     
+    ]
+  },
   "scene_map_intro": {
     "static_data": {
       "initial_script": "map_intro",

@@ -1,0 +1,343 @@
+[
+  {
+    "entity":
+    {
+      "name": "prova_intro"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box023"
+      ,
+      "transform":
+      {
+        "pos": "-18.2235 0.0 23.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box023.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box024"
+      ,
+      "transform":
+      {
+        "pos": "-20.2235 0.0 16.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box024.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box025"
+      ,
+      "transform":
+      {
+        "pos": "-19.2235 0.0 33.5041"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box025.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box026"
+      ,
+      "transform":
+      {
+        "pos": "-11.2235 0.0 35.5041"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box026.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box027"
+      ,
+      "transform":
+      {
+        "pos": "15.8965 0.0 16.3099"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box027.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box028"
+      ,
+      "transform":
+      {
+        "pos": "15.8965 0.0 22.3099"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box028.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box029"
+      ,
+      "transform":
+      {
+        "pos": "15.8965 0.0 27.3099"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box029.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box030"
+      ,
+      "transform":
+      {
+        "pos": "13.8965 0.0 35.3099"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box030.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box031"
+      ,
+      "transform":
+      {
+        "pos": "-2.22466 0.0 35.3965"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box031.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box032"
+      ,
+      "transform":
+      {
+        "pos": "2.77534 0.0 35.3965"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box032.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box033"
+      ,
+      "transform":
+      {
+        "pos": "3.0 0.0 9.5"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box033.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

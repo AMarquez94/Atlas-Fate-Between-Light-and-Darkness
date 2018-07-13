@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "zone_a_suelo"
+      "name": "suelo_intro"
       ,
       "transform":
       {
@@ -14,11 +14,11 @@
   {
     "entity":
     {
-      "name": "mesh_suelo_zone_a"
+      "name": "mesh_suelo"
       ,
       "transform":
       {
-        "pos": "-81.0 -0.520005 -116.0"
+        "pos": "-6.57272 -1.0 -1.90552"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -26,11 +26,11 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_suelo_zone_a.mesh"
+          "mesh": "data/meshes/mesh_suelo.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_suelo.material"
+            "data/materials/mtl_default.material"
           ]
         }
       ]
@@ -39,7 +39,7 @@
       {
         "shape": "box"
         ,
-        "size": "50.0 0.26 50.0"
+        "size": "45.0 0.5 70.0"
       }
       ,
       "abs_aabb": true
