@@ -33,9 +33,10 @@
       "data/scenes/ZoneA/zone_a_puertas.scene",
       "data/scenes/ZoneA/zone_a_puentes.scene",
       "data/scenes/ZoneA/zone_a_tejados.scene",
+      "data/scenes/ZoneA/zone_a_columnas.scene",
       "data/scenes/ZoneA/zone_a_colliders_salientes.scene",
       "data/scenes/zone_a_barandillas.scene",
-      "data/scenes/zona_a_columnas.scene",
+      
       "data/scenes/zona_a_salientes.scene",
       "data/scenes/zona_a_muralla.scene",
       "data/scenes/zona_a_valla_torre.scene",
@@ -59,8 +60,8 @@
       "data/scenes/ZoneA/buttons.scene",
       "data/scenes/ZoneA/luces.scene",
       "data/scenes/ZoneA/neones.scene",
-      "data/scenes/ZoneA/carteles.scene",
-      "data/scenes/ZoneA/enemy2.scene"
+      "data/scenes/ZoneA/carteles.scene"
+     
     ]
   },
   "scene_coliseo": {

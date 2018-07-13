@@ -1,6 +1,4 @@
 {
-  "technique": "pbr_parallax.tech"
-  , 
   "shadows": true
   ,
   "textures":
@@ -14,7 +12,5 @@
     "normal": "data/textures/tx_suelo_adoquines_nml.dds"
     ,
     "height": "data/textures/tx_suelo_adoquines_hgt.dds"
-		,
-    "aocclusion": "data/textures/tx_suelo_adoquines_ao.dds"
   }
 }
