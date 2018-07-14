@@ -1,0 +1,269 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_puertas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta1_intro006"
+      ,
+      "prefab": "data/prefabs/puerta1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "15.0497 6.0 23.9849"
+        ,
+        "rotation": "0.0 -1.78814e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta1_intro002"
+      ,
+      "prefab": "data/prefabs/puerta1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.4957 6.0 14.5302"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta2_intro007"
+      ,
+      "prefab": "data/prefabs/puerta2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "13.0581 6.0 33.9782"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta1_intro003"
+      ,
+      "prefab": "data/prefabs/puerta1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-10.2261 6.0 37.945"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta2_intro003"
+      ,
+      "prefab": "data/prefabs/puerta2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-15.6561 6.0 37.8866"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta2_intro002"
+      ,
+      "prefab": "data/prefabs/puerta2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.8308 0.0 29.9056"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta3_intro001"
+      ,
+      "prefab": "data/prefabs/puerta3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-9.99005 0.0331166 33.7815"
+        ,
+        "rotation": "0.0 -1.0 0.0 3.13916e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta2_intro001"
+      ,
+      "prefab": "data/prefabs/puerta2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.2374 0.0 18.0035"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta2_intro004"
+      ,
+      "prefab": "data/prefabs/puerta2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.78658 0.0 32.0426"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta2_intro005"
+      ,
+      "prefab": "data/prefabs/puerta2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.28252 0.0 39.3262"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta3_intro002"
+      ,
+      "prefab": "data/prefabs/puerta3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "8.68793 0.0331166 34.0447"
+        ,
+        "rotation": "0.0 0.707106 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta2_intro006"
+      ,
+      "prefab": "data/prefabs/puerta2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.843 0.0 21.4494"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta1_intro005"
+      ,
+      "prefab": "data/prefabs/puerta1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.9164 0.0 27.0071"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta3_intro003"
+      ,
+      "prefab": "data/prefabs/puerta3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.6933 0.0331158 13.9929"
+        ,
+        "rotation": "0.0 0.707106 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta1_intro004"
+      ,
+      "prefab": "data/prefabs/puerta1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-3.73462 0.0 31.945"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta1_intro001"
+      ,
+      "prefab": "data/prefabs/puerta1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.22 0.0 22.9741"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+]

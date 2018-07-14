@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_zone_a",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -13,9 +13,13 @@
 			"data/scenes/Map_Intro/checkpoints.scene",
 			"data/scenes/Map_Intro/movable_objects.scene",
 			"data/scenes/Map_Intro/milestone2_map_particles.scene",
+
 			"data/scenes/intro_casas.scene",
 			"data/scenes/intro_light.scene",
 			"data/scenes/intro_columnas.scene",
+			"data/scenes/intro_puertas.scene",
+			"data/scenes/intro_barandillas.scene",
+			"data/scenes/intro_salientes.scene",
 			"data/scenes/prova_intro.scene",
 			"data/scenes/Intro/intro_suelo.scene"
 		]
@@ -74,6 +78,7 @@
 			"data/scenes/zone_a_hologramas.scene",
 			"data/scenes/zona_a_colliders_barandillas.scene",
 			"data/scenes/zone_a_colliders_valla_luz.scene",
+
 			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene",
 			"data/scenes/ZoneA/test_instancing.scene",
@@ -82,7 +87,6 @@
 			"data/scenes/ZoneA/luces.scene",
 			"data/scenes/ZoneA/neones.scene",
 			"data/scenes/ZoneA/carteles.scene"
-
 		]
 	},
 	"scene_coliseo": {
