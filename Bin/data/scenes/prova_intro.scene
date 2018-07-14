@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "zone_a_suelo"
+      "name": "prova_intro"
       ,
       "transform":
       {
@@ -14,11 +14,11 @@
   {
     "entity":
     {
-      "name": "mesh_suelo_zone_a"
+      "name": "Box001"
       ,
       "transform":
       {
-        "pos": "-81.0 -0.520005 -116.0"
+        "pos": "3.0 0.0 9.5"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -26,21 +26,14 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_suelo_zone_a.mesh"
+          "mesh": "data/meshes/Box001.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_suelo.material"
+            "data/materials/mtl_default.material"
           ]
         }
       ]
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "50.0 0.26 50.0"
-      }
       ,
       "abs_aabb": true
       ,

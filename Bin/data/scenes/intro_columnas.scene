@@ -1,0 +1,541 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_columnas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera_intro001"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "0.729248 6.0 32.033"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera_intro018"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.9467 6.0 21.1406"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera_intro002"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-2.25919 6.0 32.033"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_piedra_intro002"
+      ,
+      "prefab": "data/prefabs/separador_piedra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.16858 6.0 32.0562"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_piedra_intro003"
+      ,
+      "prefab": "data/prefabs/separador_piedra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.18506 6.0 38.0747"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera_intro003"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.20133 6.0 35.1823"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera_intro017"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.9381 6.0 18.0071"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_piedra_intro005"
+      ,
+      "prefab": "data/prefabs/separador_piedra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "4.71606 5.93053 34.8975"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_piedra_intro012"
+      ,
+      "prefab": "data/prefabs/separador_piedra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.952 6.01 23.9664"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera_intro014"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "17.1357 6.0 26.9406"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_piedra_intro010"
+      ,
+      "prefab": "data/prefabs/separador_piedra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "14.9585 6.0 30.0643"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera_intro013"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "8.9639 6.0 34.0626"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera_intro010"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-21.3673 5.86719 30.0607"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera_intro006"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.6 6.0 19.9401"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera_intro007"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.6 6.0 15.9832"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_piedra_intro007"
+      ,
+      "prefab": "data/prefabs/separador_piedra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-21.0205 6.0 25.9328"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera_intro008"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.1022 5.86719 30.0607"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_piedra_intro008"
+      ,
+      "prefab": "data/prefabs/separador_piedra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-12.2548 6.0 38.0435"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_piedra_intro009"
+      ,
+      "prefab": "data/prefabs/separador_piedra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.4066 6.0 38.0435"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera_intro009"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-8.29328 6.0 38.0695"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera_intro005"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.2849 -0.0617667 19.9718"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera_intro011"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.188 0.0 38.062"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera_intro012"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "8.96276 0.0 30.0535"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera_intro004"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-8.29194 0.0 34.0621"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_piedra_intro006"
+      ,
+      "prefab": "data/prefabs/separador_piedra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.2834 0.0 25.9328"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columna2_intro001"
+      ,
+      "prefab": "data/prefabs/columna2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-14.4223 0.0 30.2018"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_piedra_intro011"
+      ,
+      "prefab": "data/prefabs/separador_piedra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.952 0.0 23.9664"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columna4_intro001"
+      ,
+      "prefab": "data/prefabs/columna4.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.04218 0.0 32.1768"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera_intro015"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-20.4399 0.0 30.0518"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_madera_intro016"
+      ,
+      "prefab": "data/prefabs/separador_madera.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-17.1862 -0.0759264 30.0518"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_piedra_intro004"
+      ,
+      "prefab": "data/prefabs/separador_piedra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "4.71606 0.0 32.0259"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_piedra_intro001"
+      ,
+      "prefab": "data/prefabs/separador_piedra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "0.72876 0.0 32.0259"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_separador_piedra_intro013"
+      ,
+      "prefab": "data/prefabs/separador_piedra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.952 0.0 15.9898"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+]
