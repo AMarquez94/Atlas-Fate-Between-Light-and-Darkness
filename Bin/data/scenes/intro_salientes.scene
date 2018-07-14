@@ -1,0 +1,1581 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_salientes"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente_esquina_intro001"
+      ,
+      "prefab": "data/prefabs/saliente1_esquina.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-20.9703 11.6508 25.9948"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente_esquina_intro002"
+      ,
+      "prefab": "data/prefabs/saliente1_esquina.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-8.22872 11.6508 38.0"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente_esquina_intro003"
+      ,
+      "prefab": "data/prefabs/saliente1_esquina.prefab"
+      ,
+      "transform":
+      {
+        "pos": "8.8965 11.6508 34.0052"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro001"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-21.9703 11.6532 26.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro002"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-23.9703 11.6532 26.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro003"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-20.9703 11.6532 23.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro004"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-20.9703 11.6532 25.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro005"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-20.9703 11.6532 21.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro006"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-8.22348 11.6532 39.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro007"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-8.22348 11.6532 41.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro008"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-11.2235 11.6532 38.0"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro009"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-9.22347 11.6532 38.0"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro010"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-8.22348 11.6532 43.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro011"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.22466 11.6532 43.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro012"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.22466 11.6532 41.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro013"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.22466 11.6532 39.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro014"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-21.2235 11.4826 30.0"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro015"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-19.2235 11.4826 30.0"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro016"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-23.2235 11.4826 30.0"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro017"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "5.8965 11.5321 38.0"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro018"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "7.8965 11.5321 38.0"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro019"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "9.8965 11.6532 34.0"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro020"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "11.8965 11.6532 34.0"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro021"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "8.8965 11.6532 37.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro022"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "8.8965 11.6532 35.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro023"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "13.8965 11.6532 34.0"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro024"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.8965 11.6532 17.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro025"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.8965 11.6532 15.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro026"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.8965 11.6532 13.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro027"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "17.1089 11.6532 29.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro028"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "17.1089 11.6532 27.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente1_intro029"
+      ,
+      "prefab": "data/prefabs/saliente1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "17.1089 11.6532 25.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_esquina_intro001"
+      ,
+      "prefab": "data/prefabs/saliente2_esquina.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.5492 11.6571 20.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_esquina_intro002"
+      ,
+      "prefab": "data/prefabs/saliente2_esquina.prefab"
+      ,
+      "transform":
+      {
+        "pos": "4.77535 11.5777 34.8697"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_esquina_intro003"
+      ,
+      "prefab": "data/prefabs/saliente2_esquina.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.8965 11.6571 24.0"
+        ,
+        "rotation": "0.0 1.50996e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro001"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.5507 11.657 18.9998"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro002"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.5507 11.657 16.9998"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro003"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.5507 11.657 14.9998"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro004"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.5507 11.657 12.9998"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro005"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-19.5509 11.657 20.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro006"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-21.5512 11.657 20.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro007"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-24.2235 11.657 28.9998"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro008"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-24.2235 11.657 26.9998"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro009"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-13.2136 11.667 37.985"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro010"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-15.2136 11.667 37.985"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro011"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-17.2136 11.667 37.985"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro012"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.69146 11.667 44.0"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro013"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-7.69146 11.667 44.0"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro014"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.22465 5.657 33.0001"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro015"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.22465 5.657 35.0001"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro016"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.22465 5.657 37.0001"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro017"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "3.77517 11.5775 34.8712"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro018"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "1.77517 11.5775 34.8712"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro019"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "4.77535 11.5775 35.8714"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro020"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "4.77535 11.5775 37.8717"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro021"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "13.8967 11.657 24.0"
+        ,
+        "rotation": "0.0 1.50996e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro022"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.8965 11.657 22.9998"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro023"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.8965 11.657 20.9995"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro024"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.8965 11.657 18.9991"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro025"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "15.897 11.657 24.0"
+        ,
+        "rotation": "0.0 1.50996e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro026"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.8965 5.65701 29.0008"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro027"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.8965 5.657 27.0005"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro028"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.8965 5.657 25.0002"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_esquina_intro001"
+      ,
+      "prefab": "data/prefabs/saliente3_esquina.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.22068 11.422 31.9999"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707106"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_esquina_intro002"
+      ,
+      "prefab": "data/prefabs/saliente3_esquina.prefab"
+      ,
+      "transform":
+      {
+        "pos": "0.767229 11.422 31.9959"
+        ,
+        "rotation": "0.0 -1.0 0.0 -6.71544e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_esquina_intro003"
+      ,
+      "prefab": "data/prefabs/saliente3_esquina.prefab"
+      ,
+      "transform":
+      {
+        "pos": "14.9005 11.422 29.9999"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707106"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro001"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.2258 5.30719 19.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro002"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.2258 5.30719 17.0041"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro003"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.2258 5.30719 15.0081"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro004"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.2258 5.30719 13.0122"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro005"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.2258 11.1366 36.9878"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro006"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.2258 11.1366 34.9919"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro007"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.2258 11.1366 32.9959"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro008"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.2258 11.1366 31.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro009"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.22232 11.3072 33.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro010"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.22232 11.3072 34.9959"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro011"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.22232 11.3072 36.9919"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro012"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-0.232767 11.3072 32.0023"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro013"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-2.22872 11.3072 32.0023"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro014"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-4.22466 11.3072 32.0023"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro015"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "0.764835 11.3072 34.9879"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro016"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "0.764835 11.3072 32.9919"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro017"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-15.2235 5.30719 30.0023"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro018"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-17.2194 5.30719 30.0023"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro019"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-19.2154 5.30719 30.0023"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro020"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-21.2113 5.30719 30.0023"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro021"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-23.2073 5.30719 30.0023"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro022"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "14.8988 11.3072 31.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro023"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "14.8988 11.3072 32.996"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro024"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "15.8965 11.3072 30.0023"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro025"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "17.8965 11.3072 30.0023"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro026"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.8989 5.30719 17.0122"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro027"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.8989 5.30719 19.0081"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro028"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.8989 5.30719 21.004"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro029"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.8989 5.30719 23.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro030"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "7.77129 5.3072 38.0023"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro031"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "5.77534 5.3072 38.0023"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro032"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "9.76724 5.3072 38.0023"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+]
