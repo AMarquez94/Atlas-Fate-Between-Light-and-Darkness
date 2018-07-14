@@ -14,11 +14,14 @@ public:
     ~TCompRender();
 
     // Properties
+    bool               global_enabled = true;
+
     VEC4               color = VEC4(1, 1, 1, 1);
     AABB               aabb;
-    bool               global_enabled = true;
-    VEC4               self_color = VEC4(1, 1, 1, 1);
+
+    float              self_opacity = 1.f;
     float              self_intensity = 1.f;
+    VEC4               self_color = VEC4(1, 1, 1, 1);
 
     // This represents a single object mesh with several materials. Not multiples meshes
     struct CMeshWithMaterials {
