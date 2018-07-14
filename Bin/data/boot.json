@@ -1,162 +1,163 @@
 {
-    "scene_intro": {
-    "static_data": {
-      "initial_script": "intro",
-      "navmesh": "data/navmeshes/milestone2_navmesh.bin"
-    },
-    "scene_group": [
-      "data/scenes/Intro/player_intro_fsm.scene",
-      "data/scenes/Map_Intro/test_instancing.scene",
-      "data/scenes/Map_Intro/capsules.scene",
-      "data/scenes/Map_Intro/camera.scene",
-      "data/scenes/Map_Intro/checkpoints.scene",
-      "data/scenes/Map_Intro/movable_objects.scene",
-      "data/scenes/Map_Intro/milestone2_map_particles.scene",
-      "data/scenes/intro_casas.scene",
-      "data/scenes/intro_light.scene",
-      "data/scenes/intro_columnas.scene",
-      "data/scenes/prova_intro.scene",
-      "data/scenes/Intro/intro_suelo.scene"    
-    ]
-  },
-  "scene_map_intro": {
-    "static_data": {
-      "initial_script": "map_intro",
-      "navmesh": "data/navmeshes/milestone2_navmesh.bin"
-    },
-    "scene_group": [
-      "data/scenes/Map_Intro/player_fsm.scene",
-      "data/scenes/Map_Intro/enemy.scene",
-      "data/scenes/Map_Intro/milestone2_map_pre.scene",
-      "data/scenes/Map_Intro/milestone2_map_lights2.scene",
-      "data/scenes/Map_Intro/milestone2_map_colliders.scene",
-      "data/scenes/Map_Intro/test_instancing.scene",
-      "data/scenes/Map_Intro/capsules.scene",
-      "data/scenes/Map_Intro/camera.scene",
-      "data/scenes/Map_Intro/checkpoints.scene",
-      "data/scenes/Map_Intro/movable_objects.scene",
-      "data/scenes/Map_Intro/milestone2_map_particles.scene",
-      "data/scenes/Map_Intro/buttons.scene"
-    ]
-  },
-  "scene_zone_a": {
-    "static_data": {
-      "initial_script": "zone_a",
-      "navmesh": "data/navmeshes/scene_a.bin"
-    },
-    "scene_group": [
-      "data/scenes/ZoneA/player2_fsm.scene",
-      "data/scenes/ZoneA/camera.scene",
-      "data/scenes/ZoneA/zone_a_aceras.scene",
-      "data/scenes/ZoneA/zone_a_suelo.scene",
-      "data/scenes/ZoneA/zone_a_casas.scene",
-      "data/scenes/ZoneA/zone_a_puertas.scene",
-      "data/scenes/ZoneA/zone_a_puentes.scene",
-      "data/scenes/ZoneA/zone_a_tejados.scene",
-      "data/scenes/ZoneA/zone_a_columnas.scene",
-      "data/scenes/ZoneA/zone_a_colliders_salientes.scene",
-      "data/scenes/zone_a_barandillas.scene",
-      
-      "data/scenes/zona_a_salientes.scene",
-      "data/scenes/zona_a_muralla.scene",
-      "data/scenes/zona_a_valla_torre.scene",
-      "data/scenes/zone_a_coberturas.scene",
-      "data/scenes/zone_a_maquinas.scene",
-      "data/scenes/zone_a_props.scene",
-      "data/scenes/zona_a_andamios.scene",
-      "data/scenes/zone_a_conductos.scene",
-      "data/scenes/zone_a_puertas_reja.scene",
-      "data/scenes/zona_a_tubos.scene",
-      "data/scenes/zone_a_tubitos.scene",
-      "data/scenes/zone_a_cables.scene",
-      "data/scenes/zone_a_farolas.scene",
-      "data/scenes/zone_a_hologramas.scene",
-      "data/scenes/zona_a_colliders_barandillas.scene",
-      "data/scenes/zone_a_colliders_valla_luz.scene",
-      "data/scenes/ZoneA/enemy2.scene",
-      "data/scenes/ZoneA/whitebox_zone_light.scene",
-      "data/scenes/ZoneA/test_instancing.scene",
-      "data/scenes/ZoneA/zone_a_particles.scene",
-      "data/scenes/ZoneA/buttons.scene",
-      "data/scenes/ZoneA/luces.scene",
-      "data/scenes/ZoneA/neones.scene",
-      "data/scenes/ZoneA/carteles.scene"
-     
-    ]
-  },
-  "scene_coliseo": {
-    "static_data": {
-      "initial_script": "coliseo",
-      "navmesh": "data/navmeshes/milestone2_navmesh.bin"
-    },
-    "scene_group": [
-      "data/scenes/Coliseo/player2_fsm.scene",
-      "data/scenes/Coliseo/coliseo_suelo.scene",
-      "data/scenes/Coliseo/coliseo_arcos.scene",
-      "data/scenes/Coliseo/coliseo_pared.scene",
-      "data/scenes/Coliseo/coliseo_generador.scene",
-      "data/scenes/Coliseo/coliseo_maquinas.scene",
-      "data/scenes/Coliseo/coliseo_props.scene",
-      "data/scenes/Coliseo/coliseo_conductos.scene",
-      "data/scenes/Coliseo/test_instancing.scene",
-      "data/scenes/Coliseo/camera.scene",
-      "data/scenes/Coliseo/coliseo_particles.scene",
-      "data/scenes/Coliseo/coliseo_farolas.scene",
-      "data/scenes/Coliseo/coliseo_luces.scene",
-      "data/scenes/Coliseo/buttons.scene"
-    ]
-  },
-  "scene_coliseo_2": {
-    "static_data": {
-      "initial_script": "coliseo2",
-      "navmesh": "data/navmeshes/milestone2_navmesh.bin"
-    },
-    "scene_group": [
-      "data/scenes/Coliseo/player2_fsm2.scene",
-      "data/scenes/Coliseo/coliseo_suelo.scene",
-      "data/scenes/Coliseo/coliseo_arcos.scene",
-      "data/scenes/Coliseo/coliseo_pared.scene",
-      "data/scenes/Coliseo/coliseo_generador.scene",
-      "data/scenes/Coliseo/coliseo_maquinas.scene",
-      "data/scenes/Coliseo/coliseo_props.scene",
-      "data/scenes/Coliseo/coliseo_conductos.scene",
-      "data/scenes/Coliseo/test_instancing.scene",
-      "data/scenes/Coliseo/camera.scene",
-      "data/scenes/Coliseo/coliseo_particles.scene",
-      "data/scenes/Coliseo/coliseo_farolas.scene",
-      "data/scenes/Coliseo/coliseo_luces.scene",
-      "data/scenes/Coliseo/buttons2.scene"
-    ]
-  },
-  "scene_basilic_courtyard": {
-    "static_data": {
-      "initial_script": "basilic_courtyard",
-      "navmesh": "data/navmeshes/basilic_courtyard_navmesh.bin"
-    },
-    "scene_group": [
-      "data/scenes/Basilic_courtyard/player.scene",
-      "data/scenes/Basilic_courtyard/enemy.scene",
-      "data/scenes/Basilic_courtyard/map_basilic_courtyard.scene",
-      "data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
-      "data/scenes/Basilic_courtyard/test_instancing.scene",
-      "data/scenes/Basilic_courtyard/camera.scene",
-      "data/scenes/Basilic_courtyard/buttons.scene"
-    ]
-  },
-  "scene_basilic_interior": {
-    "static_data": {
-      "initial_script": "basilic_interior",
-      "navmesh": "data/navmeshes/basilic_interior_navmesh.bin"
-    },
-    "scene_group": [
-      "data/scenes/Basilic_interior/player.scene",
-      "data/scenes/Basilic_interior/enemy.scene",
-      "data/scenes/Basilic_interior/test_instancing.scene",
-      "data/scenes/Basilic_interior/camera.scene",
-      "data/scenes/Basilic_interior/map_basilic_interior.scene",
-      "data/scenes/Basilic_interior/map_basilic_interior_lights.scene",
-      "data/scenes/Basilic_interior/objects.scene",
-      "data/scenes/Basilic_interior/buttons.scene"
-    ]
-  }
+	"default_scene": "scene_zone_a",
+	"scene_intro": {
+		"static_data": {
+			"initial_script": "intro",
+			"navmesh": "data/navmeshes/milestone2_navmesh.bin"
+		},
+		"scene_group": [
+			"data/scenes/Intro/player_intro_fsm.scene",
+			"data/scenes/Map_Intro/test_instancing.scene",
+			"data/scenes/Map_Intro/capsules.scene",
+			"data/scenes/Map_Intro/camera.scene",
+			"data/scenes/Map_Intro/checkpoints.scene",
+			"data/scenes/Map_Intro/movable_objects.scene",
+			"data/scenes/Map_Intro/milestone2_map_particles.scene",
+			"data/scenes/intro_casas.scene",
+			"data/scenes/intro_light.scene",
+			"data/scenes/intro_columnas.scene",
+			"data/scenes/prova_intro.scene",
+			"data/scenes/Intro/intro_suelo.scene"
+		]
+	},
+	"scene_map_intro": {
+		"static_data": {
+			"initial_script": "map_intro",
+			"navmesh": "data/navmeshes/milestone2_navmesh.bin"
+		},
+		"scene_group": [
+			"data/scenes/Map_Intro/player_fsm.scene",
+			"data/scenes/Map_Intro/enemy.scene",
+			"data/scenes/Map_Intro/milestone2_map_pre.scene",
+			"data/scenes/Map_Intro/milestone2_map_lights2.scene",
+			"data/scenes/Map_Intro/milestone2_map_colliders.scene",
+			"data/scenes/Map_Intro/test_instancing.scene",
+			"data/scenes/Map_Intro/capsules.scene",
+			"data/scenes/Map_Intro/camera.scene",
+			"data/scenes/Map_Intro/checkpoints.scene",
+			"data/scenes/Map_Intro/movable_objects.scene",
+			"data/scenes/Map_Intro/milestone2_map_particles.scene",
+			"data/scenes/Map_Intro/buttons.scene"
+		]
+	},
+	"scene_zone_a": {
+		"static_data": {
+			"initial_script": "zone_a",
+			"navmesh": "data/navmeshes/scene_a.bin"
+		},
+		"scene_group": [
+			"data/scenes/ZoneA/player2_fsm.scene",
+			"data/scenes/ZoneA/camera.scene",
+			"data/scenes/ZoneA/zone_a_aceras.scene",
+			"data/scenes/ZoneA/zone_a_suelo.scene",
+			"data/scenes/ZoneA/zone_a_casas.scene",
+			"data/scenes/ZoneA/zone_a_puertas.scene",
+			"data/scenes/ZoneA/zone_a_puentes.scene",
+			"data/scenes/ZoneA/zone_a_tejados.scene",
+			"data/scenes/ZoneA/zone_a_columnas.scene",
+			"data/scenes/ZoneA/zone_a_colliders_salientes.scene",
+			"data/scenes/zone_a_barandillas.scene",
+
+			"data/scenes/zona_a_salientes.scene",
+			"data/scenes/zona_a_muralla.scene",
+			"data/scenes/zona_a_valla_torre.scene",
+			"data/scenes/zone_a_coberturas.scene",
+			"data/scenes/zone_a_maquinas.scene",
+			"data/scenes/zone_a_props.scene",
+			"data/scenes/zona_a_andamios.scene",
+			"data/scenes/zone_a_conductos.scene",
+			"data/scenes/zone_a_puertas_reja.scene",
+			"data/scenes/zona_a_tubos.scene",
+			"data/scenes/zone_a_tubitos.scene",
+			"data/scenes/zone_a_cables.scene",
+			"data/scenes/zone_a_farolas.scene",
+			"data/scenes/zone_a_hologramas.scene",
+			"data/scenes/zona_a_colliders_barandillas.scene",
+			"data/scenes/zone_a_colliders_valla_luz.scene",
+			"data/scenes/ZoneA/enemy2.scene",
+			"data/scenes/ZoneA/whitebox_zone_light.scene",
+			"data/scenes/ZoneA/test_instancing.scene",
+			"data/scenes/ZoneA/zone_a_particles.scene",
+			"data/scenes/ZoneA/buttons.scene",
+			"data/scenes/ZoneA/luces.scene",
+			"data/scenes/ZoneA/neones.scene",
+			"data/scenes/ZoneA/carteles.scene"
+
+		]
+	},
+	"scene_coliseo": {
+		"static_data": {
+			"initial_script": "coliseo",
+			"navmesh": "data/navmeshes/milestone2_navmesh.bin"
+		},
+		"scene_group": [
+			"data/scenes/Coliseo/player2_fsm.scene",
+			"data/scenes/Coliseo/coliseo_suelo.scene",
+			"data/scenes/Coliseo/coliseo_arcos.scene",
+			"data/scenes/Coliseo/coliseo_pared.scene",
+			"data/scenes/Coliseo/coliseo_generador.scene",
+			"data/scenes/Coliseo/coliseo_maquinas.scene",
+			"data/scenes/Coliseo/coliseo_props.scene",
+			"data/scenes/Coliseo/coliseo_conductos.scene",
+			"data/scenes/Coliseo/test_instancing.scene",
+			"data/scenes/Coliseo/camera.scene",
+			"data/scenes/Coliseo/coliseo_particles.scene",
+			"data/scenes/Coliseo/coliseo_farolas.scene",
+			"data/scenes/Coliseo/coliseo_luces.scene",
+			"data/scenes/Coliseo/buttons.scene"
+		]
+	},
+	"scene_coliseo_2": {
+		"static_data": {
+			"initial_script": "coliseo2",
+			"navmesh": "data/navmeshes/milestone2_navmesh.bin"
+		},
+		"scene_group": [
+			"data/scenes/Coliseo/player2_fsm2.scene",
+			"data/scenes/Coliseo/coliseo_suelo.scene",
+			"data/scenes/Coliseo/coliseo_arcos.scene",
+			"data/scenes/Coliseo/coliseo_pared.scene",
+			"data/scenes/Coliseo/coliseo_generador.scene",
+			"data/scenes/Coliseo/coliseo_maquinas.scene",
+			"data/scenes/Coliseo/coliseo_props.scene",
+			"data/scenes/Coliseo/coliseo_conductos.scene",
+			"data/scenes/Coliseo/test_instancing.scene",
+			"data/scenes/Coliseo/camera.scene",
+			"data/scenes/Coliseo/coliseo_particles.scene",
+			"data/scenes/Coliseo/coliseo_farolas.scene",
+			"data/scenes/Coliseo/coliseo_luces.scene",
+			"data/scenes/Coliseo/buttons2.scene"
+		]
+	},
+	"scene_basilic_courtyard": {
+		"static_data": {
+			"initial_script": "basilic_courtyard",
+			"navmesh": "data/navmeshes/basilic_courtyard_navmesh.bin"
+		},
+		"scene_group": [
+			"data/scenes/Basilic_courtyard/player.scene",
+			"data/scenes/Basilic_courtyard/enemy.scene",
+			"data/scenes/Basilic_courtyard/map_basilic_courtyard.scene",
+			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
+			"data/scenes/Basilic_courtyard/test_instancing.scene",
+			"data/scenes/Basilic_courtyard/camera.scene",
+			"data/scenes/Basilic_courtyard/buttons.scene"
+		]
+	},
+	"scene_basilic_interior": {
+		"static_data": {
+			"initial_script": "basilic_interior",
+			"navmesh": "data/navmeshes/basilic_interior_navmesh.bin"
+		},
+		"scene_group": [
+			"data/scenes/Basilic_interior/player.scene",
+			"data/scenes/Basilic_interior/enemy.scene",
+			"data/scenes/Basilic_interior/test_instancing.scene",
+			"data/scenes/Basilic_interior/camera.scene",
+			"data/scenes/Basilic_interior/map_basilic_interior.scene",
+			"data/scenes/Basilic_interior/map_basilic_interior_lights.scene",
+			"data/scenes/Basilic_interior/objects.scene",
+			"data/scenes/Basilic_interior/buttons.scene"
+		]
+	}
 }

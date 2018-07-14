@@ -21,15 +21,12 @@
 
 bool CModuleMapIntro::start() {
 
-#ifdef _DEBUG
-    EngineScene.loadScene("scene_map_intro");
-#else
-    EngineScene.loadScene("scene_zone_a");
-#endif
+    dbg("MODULE MAP START\n");
+    EngineScene.loadScene(EngineScene.getDefaultSceneName());
 
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 	mouse->setLockMouse(true);
-	dbg("MODULE MAP START\n");
+
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::INGAME_STAMINA_BAR);
 
 	//Engine.getGUI().activateWidget("ingame");

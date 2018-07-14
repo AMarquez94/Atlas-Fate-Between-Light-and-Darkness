@@ -287,6 +287,7 @@ void CModuleGameManager::debugRender() {
     if (lastCheckpoint) {
         lastCheckpoint->debugInMenu();
     }
+
     // Extra windows
     {
         //UI Window's Size
