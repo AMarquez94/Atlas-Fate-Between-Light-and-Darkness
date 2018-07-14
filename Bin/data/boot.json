@@ -19,6 +19,9 @@
 
       "data/scenes/intro_casas.scene",
       "data/scenes/intro_light.scene",
+      "data/scenes/intro_columnas.scene",
+      "data/scenes/prova_intro.scene",
+
       "data/scenes/Intro/intro_suelo.scene"
      
     ]
