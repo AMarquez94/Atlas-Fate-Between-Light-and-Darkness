@@ -60,7 +60,7 @@ float4 PS_FXAA(
 		float4 color = final_color;
 		const float3 LumCoeff = float3(0.2125, 0.7154, 0.0721);
 
-		float3 AvgLumin = float3(0.5, 0.5, 0.5);
+		float3 AvgLumin = float3(1, 1, 1);
 		float dotval = dot(color.xyz, LumCoeff);
 		float3 intensity = float3(dotval, dotval, dotval);
 

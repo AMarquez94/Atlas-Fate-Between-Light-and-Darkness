@@ -341,9 +341,9 @@ void CModuleRender::generateFrame() {
             if (c_render_fog)
                 curr_rt = c_render_fog->apply(curr_rt);
 
-            TCompChromaticAberration* c_chroma_aberration = e_cam->get< TCompChromaticAberration >();
-            if (c_chroma_aberration)
-                curr_rt = c_chroma_aberration->apply(curr_rt);
+            //TCompChromaticAberration* c_chroma_aberration = e_cam->get< TCompChromaticAberration >();
+            //if (c_chroma_aberration)
+            //    curr_rt = c_chroma_aberration->apply(curr_rt);
 
             TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
             if (c_render_outlines)
