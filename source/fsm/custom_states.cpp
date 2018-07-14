@@ -436,6 +436,15 @@ namespace FSM
 			TCompProjector * light = entity_light->get<TCompProjector>();
 			light->isEnabled = false;
 		}
+
+        // TO REFACTOR
+        // Sets particles and calls the finishing state.
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", ctx.getOwner());
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash.particles", ctx.getOwner());
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", ctx.getOwner());
+
+        TCompParticles * c_e_particle = e->get<TCompParticles>();
+        c_e_particle->setSystemState(false);
 	}
 
 	void ExitMergeCrouchedState::onFinish(CContext & ctx) const

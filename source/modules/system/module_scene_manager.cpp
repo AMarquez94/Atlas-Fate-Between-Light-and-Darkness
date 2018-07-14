@@ -156,6 +156,7 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
                         VEC4 neon_color = point_light->getColor();
                         TCompRender * l_render = neon->get<TCompRender>();
                         l_render->self_color = neon_color;
+                        l_render->self_intensity = 10.f;
                         /*for (auto p : l_render->meshes) {
                             for (auto t : p.materials) {
                                 CMaterial * mat = const_cast<CMaterial*>(t);

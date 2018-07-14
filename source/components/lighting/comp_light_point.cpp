@@ -69,7 +69,7 @@ void TCompLightPoint::onCreate(const TMsgEntityCreated& msg) {
     TCompAbsAABB * c_my_aabb = get<TCompAbsAABB>();
     TCompLocalAABB * c_my_aabb_local = get<TCompLocalAABB>();
 
-    float half_radius = outer_cut * .5f;
+    float half_radius = outer_cut;
     c_my_aabb->Extents = VEC3(half_radius, half_radius, half_radius);
     c_my_aabb_local->Extents = VEC3(half_radius, half_radius, half_radius);
 
@@ -89,7 +89,7 @@ void TCompLightPoint::onGroupCreated(const TMsgEntitiesGroupCreated & msg)
 
     if (culling == nullptr) {
 
-        float half_radius = outer_cut * .5f;
+        float half_radius = outer_cut;
         c_my_aabb->Extents = VEC3(half_radius, half_radius, half_radius);
         c_my_aabb_local->Extents = VEC3(half_radius, half_radius, half_radius);
 
