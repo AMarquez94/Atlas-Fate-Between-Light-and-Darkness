@@ -14,43 +14,6 @@
   {
     "entity":
     {
-      "name": "muralla_saliente2_intro"
-      ,
-      "transform":
-      {
-        "pos": "4.95702 0.0 11.8017"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/muralla_saliente2_intro.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.5 10.0 2.5"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "muralla_saliente_intro"
       ,
       "transform":
@@ -76,7 +39,44 @@
       {
         "shape": "box"
         ,
-        "size": "2.5 10.0 2.5"
+        "size": "2.5 10.0 4.36763"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "muralla_saliente2_intro"
+      ,
+      "transform":
+      {
+        "pos": "4.95702 0.0 11.8017"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_saliente2_intro.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.5 10.0 4.5229"
       }
       ,
       "abs_aabb": true
@@ -115,6 +115,73 @@
         ,
         "size": "30.0 8.0 2.5"
       }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box004"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 -63.3069"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_Box004.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "valla_inicio"
+      ,
+      "transform":
+      {
+        "pos": "-12.6642 0.985526 -41.3882"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/valla_inicio.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
       ,
       "abs_aabb": true
       ,
