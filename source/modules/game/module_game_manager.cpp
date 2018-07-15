@@ -52,8 +52,7 @@ void CModuleGameManager::setPauseState(PauseState pause) {
         e_player->sendMsg(msg);
     }
 
-    if (pause != PauseState::default) 
-        switchState(pause);
+    switchState(pause);
 }
 
 void CModuleGameManager::switchState(PauseState pause) {
@@ -104,7 +103,7 @@ void CModuleGameManager::update(float delta) {
 
         // F1 button, flyover, special case
         if (EngineInput["btDebugPause"].getsPressed()) {
-            //setPauseState(PauseState::fly);
+
             CEntity * e_camera = _fly_camera;
             TCompCameraFlyover * flyover = e_camera->get<TCompCameraFlyover>();
             flyover->setStatus(!flyover->paused);
