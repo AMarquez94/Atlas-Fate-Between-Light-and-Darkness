@@ -59,7 +59,7 @@ void CModuleParticles::renderDeferred()
     };
 }
 
-void CModuleParticles::render()
+void CModuleParticles::renderMain()
 {
     //for (auto& ps : _activeSystems)
     //{

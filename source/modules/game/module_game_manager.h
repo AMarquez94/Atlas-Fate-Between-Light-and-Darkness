@@ -5,8 +5,13 @@
 
 class CModuleGameManager : public IModule
 {
+    enum PauseState { default, none, main, win, defeat, editor1, editor2 };
+    PauseState _currentstate;
+
     /* Mantain a handle of the player */
-    CHandle player;
+    CHandle _player;
+    CHandle _fly_camera;
+    CCheckpoint* lastCheckpoint;
 
     // Menu window related variables.
     ImGuiWindowFlags window_flags;
@@ -15,16 +20,13 @@ class CModuleGameManager : public IModule
     unsigned int menuPosition = 0;
     const unsigned int menuSize = 4;
 
-    CCheckpoint* lastCheckpoint;
-
-    bool isPaused;
-    bool victoryMenuVisible;
-    bool playerDiedMenuVisible;
-
-    bool isStarted = false;
+    void resetState();
+    void debugRender();
+    void updateGameCondition();
+    void setPauseState(PauseState pause);
+    void switchState(PauseState pause);
 
 public:
-    bool menuVisible;
 
     struct ConfigPublic {
         bool drawfps = true;
@@ -35,12 +37,12 @@ public:
 
     bool start() override;
     void update(float delta) override;
-    void render() override;
+    void renderMain();
 
     bool saveCheckpoint(VEC3 playerPos, QUAT playerRot);
     bool loadCheckpoint();
     bool deleteCheckpoint();
+    bool isPaused() const;
 
-    void unpauseGame();
-    void debugRender();
+    PauseState getCurrentState();
 };

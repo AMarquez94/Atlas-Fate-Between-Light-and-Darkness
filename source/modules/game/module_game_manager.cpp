@@ -7,9 +7,10 @@
 #include "modules/module_entities.h"
 #include "windows/app.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
+#include "components/camera_controller/comp_camera_flyover.h"
 
-bool CModuleGameManager::start()
-{
+bool CModuleGameManager::start() {
+
     window_flags = 0;
     window_flags |= ImGuiWindowFlags_NoMove;
     window_flags |= ImGuiWindowFlags_NoResize;
@@ -18,109 +19,157 @@ bool CModuleGameManager::start()
     window_width = 250;
     window_height = 150;
 
-    isPaused = false;
-    victoryMenuVisible = false;
-    playerDiedMenuVisible = false;
-    menuVisible = false;
+    _player = getEntityByName("The Player");
+    _fly_camera = getEntityByName("test_camera_flyover");
 
-    player = getEntityByName("The Player");
-
-    Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-    mouse->setLockMouse(true);
-
-    isStarted = true;
     lastCheckpoint = new CCheckpoint();
-    //lastCheckpoint.init();
+    setPauseState(PauseState::none);
 
     return true;
 }
 
-void CModuleGameManager::update(float delta)
-{
+void CModuleGameManager::setPauseState(PauseState pause) {
+
+    // We are exiting the current state, disabling pause
+    if (_currentstate == pause)
+        pause = PauseState::none;
+
+    {
+        _player = getEntityByName("The Player");
+        _fly_camera = getEntityByName("test_camera_flyover");
+
+        // Determine if whole scene is paused
+        TMsgScenePaused msg;
+        msg.isPaused = pause != PauseState::none && pause != PauseState::default ? true : false;
+        EngineEntities.broadcastMsg(msg);
+        EngineCameras.getCurrentCamera().sendMsg(msg);
+
+        // Determine if player is paused
+        CEntity * e_player = _player;
+        CEntity * e_camera = _fly_camera;
+        TCompCameraFlyover * flyover = e_camera->get<TCompCameraFlyover>();
+        msg.isPaused = (!msg.isPaused && flyover->paused) ? false : true;
+        e_player->sendMsg(msg);
+    }
+
+    if (pause != PauseState::default) 
+        switchState(pause);
+}
+
+void CModuleGameManager::switchState(PauseState pause) {
+
+    // We set the new values for the given pause state
+    // Send all the necessary messages too
+    // Use this switch in case new logic is needed
+
+    resetState();
+    Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+
+    switch (pause) {
+    case PauseState::none: {
+        mouse->setLockMouse(true);
+        CApp::get().lostFocus = false;
+    }break;
+    case PauseState::main: {
+        mouse->setLockMouse(false);
+    }break;
+    case PauseState::win: {
+        mouse->setLockMouse(false);
+    }break;
+    case PauseState::defeat: {
+        mouse->setLockMouse(false);
+    }break;
+    case PauseState::editor1: {
+        mouse->setLockMouse(false);
+        EngineRender.setDebugMode(true);
+    }break;
+    case PauseState::editor2: {
+
+        mouse->setLockMouse(false);
+        Engine.get().getParticles().particles_enabled = true;
+
+    }break;
+    }
+
+    _currentstate = pause;
+}
+
+void CModuleGameManager::update(float delta) {
+
+    {
+        // Escape button
+        if (EngineInput["btPause"].getsPressed()) {
+            setPauseState(PauseState::main);
+        }
+
+        // F1 button, flyover, special case
+        if (EngineInput["btDebugPause"].getsPressed()) {
+            //setPauseState(PauseState::fly);
+            CEntity * e_camera = _fly_camera;
+            TCompCameraFlyover * flyover = e_camera->get<TCompCameraFlyover>();
+            flyover->setStatus(!flyover->paused);
+
+            CEntity * e_player = _player;
+            TMsgScenePaused msg;
+            msg.isPaused = (_currentstate == PauseState::none && flyover->paused) ? false : true;
+            e_player->sendMsg(msg);
+        }
+
+        // F3 button, inspector
+        if (EngineInput["btDebugMode"].getsPressed()) {
+            setPauseState(PauseState::editor1);
+        }
+
+        // F4 button, particles
+        if (EngineInput["btDebugParticles"].getsPressed()) {
+            setPauseState(PauseState::editor2);
+        }
+    }
+
+    {
+        if (EngineInput["btUpAux"].getsPressed()) {
+            menuPosition = (menuPosition - 1) % menuSize;
+        }
+
+        if (EngineInput["btDownAux"].getsPressed()) {
+            menuPosition = (menuPosition + 1) % menuSize;
+        }
+    }
+
+    updateGameCondition();
+}
+
+void CModuleGameManager::updateGameCondition() {
+
+
     auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("victory_trigger"));
 
-    for (unsigned int i = 0; i < handles.size() && !victoryMenuVisible; i++) {
+    for (unsigned int i = 0; i < handles.size() && _currentstate != PauseState::win; i++) {
 
         CEntity* eCollider = handles[i];
         TCompCollider * e = eCollider->get<TCompCollider>();
         if (e && e->player_inside) {
-
-            TMsgScenePaused msg;
-            msg.isPaused = true;
-            EngineEntities.broadcastMsg(msg);
-            victoryMenuVisible = true;
+            setPauseState(PauseState::win);
         }
     }
 
-    CEntity* e = getEntityByName("The Player");
-    if (e) {
+    if (_player.isValid()) {
 
-        /* Player Dead */
+        CEntity* e = _player;
         TCompTempPlayerController *playerCont = e->get<TCompTempPlayerController>();
         if (playerCont->isDead()) {
-            Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-            mouse->setLockMouse(false);
-            playerDiedMenuVisible = true;
-            TMsgScenePaused msg;
-            msg.isPaused = true;
-            EngineCameras.getCurrentCamera().sendMsg(msg);
+            setPauseState(PauseState::defeat);
         }
-    }
-
-    if (EngineInput["btDebugParticles"].getsPressed()) {
-
-        Engine.get().getParticles().particles_enabled = !Engine.get().getParticles().particles_enabled;
-        Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-        mouse->setLockMouse(!Engine.get().getParticles().particles_enabled);
-
-        TMsgScenePaused msg;
-        msg.isPaused = Engine.get().getParticles().particles_enabled;
-        EngineEntities.broadcastMsg(msg);
-    }
-    else if (!isPaused && EngineInput["btPause"].getsPressed() || (!menuVisible && CApp::get().lostFocus)) {
-
-        /* Player not dead but game paused */
-
-        isPaused = true;
-        CApp::get().lostFocus = false;
-
-        // Send pause message
-        TMsgScenePaused msg;
-        msg.isPaused = isPaused;
-        EngineEntities.broadcastMsg(msg);
-
-        // Lock/Unlock the cursor
-        Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-        mouse->setLockMouse(false);
-
-        menuVisible = true;
-    }
-    else if (isPaused && EngineInput["btPause"].getsPressed()) {
-
-        /* Player not dead and game unpaused */
-        unpauseGame();
-    }
-
-    if (EngineInput["btUpAux"].getsPressed()) {
-        menuPosition = (menuPosition - 1) % menuSize;
-    }
-
-    if (EngineInput["btDownAux"].getsPressed()) {
-        menuPosition = (menuPosition + 1) % menuSize;
-    }
-
-    if (EngineInput["btDebugMode"].getsPressed()) {
-        EngineRender.setDebugMode(!EngineRender.getDebugMode());
     }
 }
 
-void CModuleGameManager::render()
-{
+void CModuleGameManager::renderMain() {
+
     VEC2 menu_position = VEC2(CApp::get().xres * .5f - (window_width * .5f),
-        CApp::get().yres * .5f - (window_height * .5f));
+         CApp::get().yres * .5f - (window_height * .5f));
 
     // Replace this with separated menus
-    if (menuVisible) {
+    if (_currentstate == PauseState::main) {
 
         ImGui::SetNextWindowSize(ImVec2((float)window_width, (float)window_height));
         ImGui::Begin("MENU", false, window_flags);
@@ -130,40 +179,36 @@ void CModuleGameManager::render()
         ImGui::Selectable("Resume game", menuPosition == 0);
         if (ImGui::IsItemClicked() || (menuPosition == 0 && EngineInput["btMenuConfirm"].getsPressed()))
         {
-            unpauseGame();
+            resetState();
         }
 
         ImGui::Selectable("Restart from last checkpoint", menuPosition == 1);
         if (ImGui::IsItemClicked() || (menuPosition == 1 && EngineInput["btMenuConfirm"].getsPressed()))
         {
-            unpauseGame();
+            resetState();
             CEntity* e = getEntityByName("The Player");
             if (!e) {
                 return;
             }
             TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
-            if (playerCont->isDead()) {
-                Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-                mouse->setLockMouse(true);
-                playerDiedMenuVisible = false;
-            }
+            if (playerCont->isDead())
+                setPauseState(PauseState::none);
+
             EngineScene.loadScene(EngineScene.getActiveScene()->name);
         }
 
         ImGui::Selectable("Restart level", menuPosition == 2);
         if (ImGui::IsItemClicked() || (menuPosition == 2 && EngineInput["btMenuConfirm"].getsPressed()))
         {
-            unpauseGame();
+            resetState();
             CEntity* e = getEntityByName("The Player");
             if (!e) {
                 return;
             }
             TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
-            if (playerCont->isDead()) {
-                Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-                mouse->setLockMouse(true);
-                playerDiedMenuVisible = false;
-            }
+            if (playerCont->isDead())
+                setPauseState(PauseState::none);
+
             lastCheckpoint->deleteCheckPoint();
             EngineScene.loadScene(EngineScene.getActiveScene()->name);
         }
@@ -176,7 +221,7 @@ void CModuleGameManager::render()
 
         ImGui::End();
     }
-    else if (victoryMenuVisible) {
+    else if (_currentstate == PauseState::win) {
 
         ImGui::SetNextWindowSize(ImVec2((float)window_width, (float)window_height));
         ImGui::Begin("VICTORY!", false, window_flags);
@@ -186,7 +231,7 @@ void CModuleGameManager::render()
         ImGui::End();
 
     }
-    else if (playerDiedMenuVisible) {
+    else if (_currentstate == PauseState::defeat) {
 
         ImGui::SetNextWindowSize(ImVec2((float)window_width * 1.2f, (float)window_height));
         ImGui::Begin("YOU DIED! WHAT WOULD YOU DO?", false, window_flags);
@@ -201,11 +246,9 @@ void CModuleGameManager::render()
                 return;
             }
             TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
-            if (playerCont->isDead()) {
-                Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-                mouse->setLockMouse(true);
-                playerDiedMenuVisible = false;
-            }
+            if (playerCont->isDead())
+                setPauseState(PauseState::none);
+
             EngineScene.loadScene(EngineScene.getActiveScene()->name);
         }
 
@@ -217,11 +260,9 @@ void CModuleGameManager::render()
                 return;
             }
             TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
-            if (playerCont->isDead()) {
-                Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-                mouse->setLockMouse(true);
-                playerDiedMenuVisible = false;
-            }
+            if (playerCont->isDead())
+                setPauseState(PauseState::none);
+
             lastCheckpoint->deleteCheckPoint();
             EngineScene.loadScene(EngineScene.getActiveScene()->name);
         }
@@ -239,13 +280,13 @@ void CModuleGameManager::render()
     debugRender();
 }
 
-bool CModuleGameManager::saveCheckpoint(VEC3 playerPos, QUAT playerRot)
-{
+bool CModuleGameManager::saveCheckpoint(VEC3 playerPos, QUAT playerRot) {
+
     return lastCheckpoint->saveCheckPoint(playerPos, playerRot);
 }
 
-bool CModuleGameManager::loadCheckpoint()
-{
+bool CModuleGameManager::loadCheckpoint() {
+
     if (lastCheckpoint) {
         return lastCheckpoint->loadCheckPoint();
     }
@@ -254,8 +295,8 @@ bool CModuleGameManager::loadCheckpoint()
     }
 }
 
-bool CModuleGameManager::deleteCheckpoint()
-{
+bool CModuleGameManager::deleteCheckpoint() {
+
     if (lastCheckpoint) {
         return lastCheckpoint->deleteCheckPoint();
     }
@@ -264,29 +305,32 @@ bool CModuleGameManager::deleteCheckpoint()
     }
 }
 
-void CModuleGameManager::unpauseGame()
-{
-    /* Player not dead and game unpaused */
-    isPaused = false;
-    CApp::get().lostFocus = false;
+bool CModuleGameManager::isPaused() const {
 
-    // Send pause message
-    TMsgScenePaused msg;
-    msg.isPaused = false;
-    EngineEntities.broadcastMsg(msg);
+    return _currentstate == PauseState::none ? false : true;
+}
+
+CModuleGameManager::PauseState CModuleGameManager::getCurrentState() {
+
+    return _currentstate;
+}
+
+void CModuleGameManager::resetState() {
+
+    /* Player not dead and game unpaused */
+    CApp::get().lostFocus = false;
+    EngineRender.setDebugMode(false);
+    EngineParticles.particles_enabled = false;
 
     // Lock/Unlock the cursor
     Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
     mouse->setLockMouse(true);
-
-    menuVisible = false;
 }
 
 void CModuleGameManager::debugRender() {
 
-    if (lastCheckpoint) {
-        lastCheckpoint->debugInMenu();
-    }
+    //if (lastCheckpoint)
+    //    lastCheckpoint->debugInMenu();
 
     // Extra windows
     {

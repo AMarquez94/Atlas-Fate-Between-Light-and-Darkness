@@ -364,8 +364,11 @@ void CModuleRender::generateFrame() {
         assert(tech);
         tech->activate();
 
-        if (_debugMode)
-            debugDraw();
+        Engine.get().getParticles().renderMain();
+        Engine.get().getInstancing().renderMain();
+        Engine.get().getGameManager().renderMain();
+
+        if (_debugMode) debugDraw();
 
         {
             // RENDER IMGUI
