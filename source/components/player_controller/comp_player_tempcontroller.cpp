@@ -148,6 +148,8 @@ void TCompTempPlayerController::registerMsgs() {
     DECL_MSG(TCompTempPlayerController, TMsgPlayerInvisible, onPlayerInvisible);
     DECL_MSG(TCompTempPlayerController, TMsgNoClipToggle, onMsgNoClipToggle);
     DECL_MSG(TCompTempPlayerController, TMsgBulletHit, onMsgBulletHit);
+    DECL_MSG(TCompTempPlayerController, TMsgPlayerMove, onMsgPlayerMove);
+
 }
 
 void TCompTempPlayerController::onShadowChange(const TMsgShadowChange& msg) {
@@ -190,6 +192,11 @@ void TCompTempPlayerController::onMsgNoClipToggle(const TMsgNoClipToggle & msg)
 void TCompTempPlayerController::onMsgBulletHit(const TMsgBulletHit & msg)
 {
     getDamage(msg.damage);
+}
+
+void TCompTempPlayerController::onMsgPlayerMove(const TMsgPlayerMove& msg) {
+  TCompTransform* my_transform = get<TCompTransform>();
+  my_transform->setPosition(msg.pos);
 }
 
 void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
