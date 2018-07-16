@@ -126,6 +126,7 @@ class TCompTempPlayerController : public TCompBase
     void onPlayerInvisible(const TMsgPlayerInvisible& msg);
     void onMsgNoClipToggle(const TMsgNoClipToggle& msg);
     void onMsgBulletHit(const TMsgBulletHit& msg);
+    void onMsgPlayerMove(const TMsgPlayerMove& msg);
 
 
     DECL_SIBLING_ACCESS();
