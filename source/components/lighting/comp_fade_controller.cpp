@@ -42,8 +42,10 @@ void TCompFadeController::update(float dt) {
 
     if (_is_active) {
 
+        TCompRender * c_my_render = get<TCompRender>();
+
         // Notify it has finished
-        if (cb_object.self_fade_value > 1 || cb_object.self_fade_value < 0) {
+        if (c_my_render->self_opacity > 1 || c_my_render->self_opacity < 0) {
 
             _is_active = false;
             if (_is_drownable) destroy();
@@ -56,19 +58,22 @@ void TCompFadeController::update(float dt) {
             transform->setPosition(transform->getPosition() - VEC3(0, _fall_speed * dt, 0));
         }
 
-        cb_object.self_fade_value += (dt / _fade_time) * _invert_fade; // Tweak here due to noise intensity
+        c_my_render->self_opacity += (dt / _fade_time) * _invert_fade; // Tweak here due to noise intensity
     }
 }
 
 /* Used to blend between two colors at a given time */
 void TCompFadeController::launch(const TMsgFadeBody& msg) {
     
+    TCompRender * c_my_render = get<TCompRender>();
+    assert(c_my_render);
+
     _is_active = true;
     _elapsed_time = 0.f;
     _invert_fade = msg.is_exit ? -1 : 1;
 
-    cb_object.self_fade_value = msg.is_exit ? 1 : 0;
-    cb_object.updateGPU();
+    c_my_render->color = _fade_color;
+    c_my_render->self_opacity = msg.is_exit ? 1 : 0;
 
     if (_is_drownable) {
 
@@ -77,8 +82,6 @@ void TCompFadeController::launch(const TMsgFadeBody& msg) {
         c_my_rigid->is_enabled = false;
     }
 
-    TCompRender * c_my_render = get<TCompRender>();
-    assert(c_my_render);
     c_my_render->setMaterial(_material);
 }
 

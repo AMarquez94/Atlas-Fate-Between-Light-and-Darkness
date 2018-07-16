@@ -67,7 +67,7 @@ const bool TCompSonarController::canDeploySonar() {
 
     if (!c_my_player->isDead() && !c_my_player->isMerged 
         && c_my_player->isGrounded && !c_my_player->isInhibited 
-        && cb_outline.linear_time > cooldown_time && !Engine.getGameManager().menuVisible)
+        && cb_outline.linear_time > cooldown_time && !Engine.getGameManager().isPaused())
         return true;
 
     return false;

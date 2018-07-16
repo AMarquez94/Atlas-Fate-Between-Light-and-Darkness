@@ -5,43 +5,44 @@
 
 class CModuleGameManager : public IModule
 {
-	/* Mantain a handle of the player */
-	CHandle player;
+    enum PauseState { default, none, main, win, defeat, editor1, editor2 };
+    PauseState _currentstate;
 
-	// Menu window related variables.
-	ImGuiWindowFlags window_flags;
-	unsigned int window_width;
-	unsigned int window_height;
-	unsigned int menuPosition = 0;
-	const unsigned int menuSize = 4;
+    /* Mantain a handle of the player */
+    CHandle _player;
+    CHandle _fly_camera;
+    CCheckpoint* lastCheckpoint;
 
-	CCheckpoint* lastCheckpoint;
+    // Menu window related variables.
+    ImGuiWindowFlags window_flags;
+    unsigned int window_width;
+    unsigned int window_height;
+    unsigned int menuPosition = 0;
+    const unsigned int menuSize = 4;
 
-	bool isPaused;
-	bool victoryMenuVisible;
-	bool playerDiedMenuVisible;
-
-	bool isStarted = false;
+    void resetState();
+    void debugRender();
+    void updateGameCondition();
+    void setPauseState(PauseState pause);
+    void switchState(PauseState pause);
 
 public:
-    bool menuVisible;
 
     struct ConfigPublic {
         bool drawfps = true;
 
     }config;
 
-	CModuleGameManager(const std::string& name): IModule(name) {}
+    CModuleGameManager(const std::string& name) : IModule(name) {}
 
-	bool start() override;
-	void update(float delta) override;
-	void render() override;
+    bool start() override;
+    void update(float delta) override;
+    void renderMain();
 
-	bool saveCheckpoint(VEC3 playerPos, QUAT playerRot);
-	bool loadCheckpoint();
-	bool deleteCheckpoint();
+    bool saveCheckpoint(VEC3 playerPos, QUAT playerRot);
+    bool loadCheckpoint();
+    bool deleteCheckpoint();
+    bool isPaused() const;
 
-  void unpauseGame();
-
-  void debugRender();
+    PauseState getCurrentState();
 };

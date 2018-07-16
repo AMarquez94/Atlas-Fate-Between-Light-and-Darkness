@@ -197,7 +197,7 @@ void CModuleInstancing::updateInstance(const std::string& name, int index, const
     _global_instances[name]._instances[index].world = w_matrix;
 }
 
-void CModuleInstancing::render() {
+void CModuleInstancing::renderMain() {
 
     for (auto p : _global_instances)
         p.second._instances_mesh->setInstancesData(p.second._instances.data(), p.second._instances.size(), sizeof(TInstance));
@@ -208,11 +208,9 @@ void CModuleInstancing::render() {
 
     //compute_task.debugInMenu();
     //compute_task.run();
-
-    debugMenu();
 }
 
-void CModuleInstancing::debugMenu() {
+void CModuleInstancing::render() {
 
     if (ImGui::TreeNode("Instance Manager")) {
 

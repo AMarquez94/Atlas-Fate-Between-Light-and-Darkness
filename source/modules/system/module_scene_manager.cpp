@@ -23,7 +23,9 @@ void CModuleSceneManager::loadJsonScenes(const std::string filepath) {
     sceneCount = 0;
 
     json jboot = loadJson(filepath);
-    for (auto it = jboot.begin(); it != jboot.end(); ++it) {
+    _default_scene = jboot.value("default_scene","scene_intro");
+
+    for (auto it = std::next(jboot.begin(),1); it != jboot.end(); ++it) {
    
         sceneCount++;
         std::string scene_name = it.key();
@@ -220,4 +222,9 @@ void CModuleSceneManager::setActiveScene(Scene* scene) {
 
     //unLoadActiveScene();
     _activeScene = scene;
+}
+
+std::string CModuleSceneManager::getDefaultSceneName() {
+
+    return _default_scene;
 }
