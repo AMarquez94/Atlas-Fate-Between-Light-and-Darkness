@@ -2350,6 +2350,54 @@
   {
     "entity":
     {
+      "name": "mesh_saliente2_intro073"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-17.2235 5.657 -32.0009"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro074"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-17.2235 5.657 -30.0005"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente2_intro075"
+      ,
+      "prefab": "data/prefabs/saliente2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-17.2235 5.657 -28.0002"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_saliente3_esquina_intro001"
       ,
       "prefab": "data/prefabs/saliente3_esquina.prefab"
@@ -3719,6 +3767,54 @@
         "pos": "-4.22114 5.30817 -38.0122"
         ,
         "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro080"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-15.0023 5.30719 -14.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro081"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-15.0023 5.30719 -15.996"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente3_intro082"
+      ,
+      "prefab": "data/prefabs/saliente3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-15.0023 5.30719 -17.9919"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
     }
   }

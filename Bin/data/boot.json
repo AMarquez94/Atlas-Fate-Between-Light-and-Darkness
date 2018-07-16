@@ -25,6 +25,8 @@
       "data/scenes/intro_salientes.scene",
       "data/scenes/prova_intro.scene",
 
+      "data/scenes/intro_colliders_barandillas.scene",
+
       "data/scenes/Intro/intro_suelo.scene"
      
     ]
