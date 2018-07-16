@@ -364,10 +364,15 @@ void CModuleRender::generateFrame() {
         assert(tech);
         tech->activate();
 
-        Engine.get().getParticles().renderMain();
-        Engine.get().getInstancing().renderMain();
-        Engine.get().getGameManager().renderMain();
+        {
+            // Debug render other modules
+            Engine.get().getParticles().renderMain(); // particle editor
+            Engine.get().getInstancing().renderMain(); // instancing
+            Engine.get().getGameManager().renderMain(); // manager editor
+            Engine.get().getGameConsole().renderMain(); // console
+        }
 
+        // Debug render main modules
         if (_debugMode) debugDraw();
 
         {

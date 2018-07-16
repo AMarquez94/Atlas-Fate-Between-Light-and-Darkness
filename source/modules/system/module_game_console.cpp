@@ -69,7 +69,7 @@ void CModuleGameConsole::update(float delta)
     }
 }
 
-void CModuleGameConsole::render()
+void CModuleGameConsole::renderMain()
 {
     VEC2 menu_position = VEC2(0, 0);
 
