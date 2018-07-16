@@ -149,5 +149,21 @@
 				"target": "The Player"
 			}
 		}
+	}, {
+		"entity": {
+			"name": "Mimetic Laser",
+			"transform": {},
+			"render": {
+				"mesh": "data/meshes/laser.mesh",
+				"materials":
+					[
+						"data/materials/baldosas.material"
+					]
+			},
+			"bone_tracker" : {
+        		"parent" : "Mimetic",
+        		"bone":"Eye"
+      		}
+		}
 	}
 ]
