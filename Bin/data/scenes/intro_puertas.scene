@@ -638,22 +638,6 @@
   {
     "entity":
     {
-      "name": "mesh_puerta3_intro005"
-      ,
-      "prefab": "data/prefabs/puerta3.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-19.9904 6.0 -29.1187"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_puerta3_intro006"
       ,
       "prefab": "data/prefabs/puerta3.prefab"
