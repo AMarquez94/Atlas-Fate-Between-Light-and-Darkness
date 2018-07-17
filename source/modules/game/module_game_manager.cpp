@@ -95,6 +95,9 @@ void CModuleGameManager::switchState(PauseState pause) {
 
 void CModuleGameManager::update(float delta) {
 
+
+    updateGameCondition();
+
     {
         // Escape button
         if (EngineInput["btPause"].getsPressed()) {
@@ -134,25 +137,24 @@ void CModuleGameManager::update(float delta) {
             menuPosition = (menuPosition + 1) % menuSize;
         }
     }
-
-    updateGameCondition();
 }
 
 void CModuleGameManager::updateGameCondition() {
 
-
+    _player = getEntityByName("The Player");
+    _fly_camera = getEntityByName("test_camera_flyover");
     auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("victory_trigger"));
 
     for (unsigned int i = 0; i < handles.size() && _currentstate != PauseState::win; i++) {
 
         CEntity* eCollider = handles[i];
         TCompCollider * e = eCollider->get<TCompCollider>();
-        if (e && e->player_inside) {
+        if (e && e->player_inside  && _currentstate != PauseState::win) {
             setPauseState(PauseState::win);
         }
     }
 
-    if (_player.isValid()) {
+    if (_player.isValid() && _currentstate != PauseState::defeat) {
 
         CEntity* e = _player;
         TCompTempPlayerController *playerCont = e->get<TCompTempPlayerController>();

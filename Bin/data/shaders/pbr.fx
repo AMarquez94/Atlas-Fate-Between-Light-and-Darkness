@@ -311,8 +311,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	float g_ReflectionIntensity = 1.0;
 	float g_AmbientLightIntensity = 1.0;
 
-	int3 ss_load_coords = uint3(iPosition.xy, 0);
-	float ao = txAO.Load( ss_load_coords );
+	float ao = txAO.Sample( samLinear, iUV).x;
 	float4 self_illum = txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
 
 	// Compute global fog on ambient.

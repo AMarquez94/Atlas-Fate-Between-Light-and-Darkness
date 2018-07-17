@@ -101,7 +101,9 @@
 				"z_far": 1000
 			},
 			"render_ao": {
-				"enabled": true
+				"enabled": true,
+				"max_steps": 1,
+				"gauss_filter": true
 			},
 			"render_bloom": {
 				"enabled": true,

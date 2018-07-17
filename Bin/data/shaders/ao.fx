@@ -3,11 +3,6 @@
 // AO based on http://john-chapman-graphics.blogspot.com.es/2013/01/ssao-tutorial.html
 
 // ----------------------------------------
-float randNoise2D(float2 c){
-  return frac(sin(dot(c.xy,float2(12.9898,78.233))) * 43758.5453);
-}
-
-// ----------------------------------------
 void VS(
   in  float3 iPos   : POSITION     // x:0..1, y:0..1, z:0
 , in  float4 iColor : COLOR0
@@ -49,18 +44,22 @@ float4 PS(
 
   // Poisson distribution random points around a circle
   const float2 offsets[] = {
-    float2(0,0),
-    float2(-0.3700152, 0.575369),
-    float2(0.5462944, 0.5835142),
-    float2(-0.4171277, -0.2965972),
-    float2(-0.8671125, 0.4483297),
-    float2(0.183309, 0.1595028),
-    float2(0.6757001, -0.4031624),
-    float2(0.8230421, 0.1482845),
-    float2(0.1492012, 0.9389217),
-    float2(-0.2219742, -0.7762423),
-    float2(-0.9708459, -0.1171268),
-    float2(0.2790326, -0.8920202)
+		float2(-0.94201624, -0.39906216),
+		float2(0.94558609, -0.76890725),
+		float2(-0.094184101, -0.92938870),
+		float2(0.34495938, 0.29387760),
+		float2(-0.91588581, 0.45771432),
+		float2(-0.81544232, -0.87912464),
+		float2(-0.38277543, 0.27676845),
+		float2(0.97484398, 0.75648379),
+		float2(0.44323325, -0.97511554),
+		float2(0.53742981, -0.47373420),
+		float2(-0.26496911, -0.41893023),
+		float2(0.79197514, 0.19090188),
+		float2(-0.24188840, 0.99706507),
+		float2(-0.81409955, 0.91437590),
+		float2(0.19984126, 0.78641367),
+		float2(0.14383161, -0.14100790)
   };
 
   // Find a random rotation angle based on the world coords
@@ -74,8 +73,10 @@ float4 PS(
   const float zrange_discard = global_shared_fx_val2;
   const float amount_normal_z = global_shared_fx_val3;
 
+	  float OccRadiusNorm = clamp((zrange_discard - camera_znear) / (camera_zfar - camera_znear), 0, 1);
+		
   float occlusion = 0.0;
-  for (int i = 0; i < 12; ++i) {
+  for (int i = 0; i < 16; ++i) {
 
     // Get the random offset
     float2 coords = offsets[i];
@@ -85,22 +86,15 @@ float4 PS(
                               coords.x * cos_angle - coords.y * sin_angle,
                               coords.y * cos_angle + coords.x * sin_angle 
                               );
-
-    //rotated_coord = coords;
-
+															
     // Generate an offset in Tangent space and bring it to view space
     float3 offset_tbn = float3( rotated_coord, amount_normal_z );
     offset_tbn = normalize( offset_tbn );
     float3 delta_view_space = mul( offset_tbn, TBN );
-    //return dot( delta_tbn_space, float3(0,0,1));
-
-    // Move along the noised N in view space 
     float3 sample_view_pos = vPos + delta_view_space * amount_displaced;
 
     // Obtain the linear Z of the new sample in view space
     float sample_linear_depth = -sample_view_pos.z;
-
-    // Project in homo space including offset to get values in the range 0..1
     float4 sample_proj = mul( float4( sample_view_pos, 1), camera_proj_with_offset );
     sample_proj.xy /= sample_proj.w;
 
@@ -108,11 +102,11 @@ float4 PS(
     float prevDepthAtSampleCoords = txGBufferLinearDepth.Sample(samClampLinear, sample_proj.xy).r;
 
     // This is to prevent large Z range to generate occlusion... will remove black halos in the character head
-    float rangeCheck = smoothstep( zrange_discard, 0, abs(zlinear - prevDepthAtSampleCoords) );
+    float rangeCheck = smoothstep(zrange_discard, 1.0,  OccRadiusNorm / abs(zlinear - prevDepthAtSampleCoords));
     occlusion += ( prevDepthAtSampleCoords <= sample_linear_depth ? 1.0 : 0.0) * rangeCheck;
-    //occlusion += ( smoothstep( 0.002, 0.0, prevDepthAtSampleCoords - sample_linear_depth )) * rangeCheck;
   }
 
+	//return (1 - occlusion / 16 );
   // Module the amount of occlusion
-  return ( 1 - global_shared_fx_amount ) + (1 - occlusion / 12 ) * global_shared_fx_amount;
+  return ( 1 - global_shared_fx_amount ) + (1 - occlusion / 16 ) * global_shared_fx_amount;
 }

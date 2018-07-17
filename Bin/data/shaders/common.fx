@@ -282,6 +282,12 @@ float4 projectColor(float3 wPos) {
   return light_projector_color;
 }
 
+
+// ----------------------------------------
+float randNoise2D(float2 c){
+  return frac(sin(dot(c.xy,float2(12.9898,78.233))) * 43758.5453);
+}
+
 float2 parallaxMappingB(float2 texCoords, float3 view_dir) {
 
   const float minLayers = 10.0;

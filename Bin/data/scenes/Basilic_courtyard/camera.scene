@@ -13,7 +13,9 @@
 			"fov": 80
 		},
 		"render_ao": {
-			"enabled": true
+			"enabled": true,
+				"active_steps": 1,
+			"gauss_filter": true
 		},
 		"render_bloom": {
 			"enabled": true,
