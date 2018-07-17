@@ -14,13 +14,18 @@
 			"data/scenes/Map_Intro/movable_objects.scene",
 			"data/scenes/Map_Intro/milestone2_map_particles.scene",
 
-      "data/scenes/intro_casas.scene",
+			"data/scenes/Intro/intro_casas.scene",
+			"data/scenes/Intro/intro_barandillas.scene",
+			"data/scenes/Intro/intro_colliders_barandillas.scene",
+      
       "data/scenes/intro_light.scene",
       "data/scenes/intro_columnas.scene",
       "data/scenes/intro_puertas.scene",
-      "data/scenes/intro_barandillas.scene",
+      
       "data/scenes/intro_salientes.scene",
       "data/scenes/prova_intro.scene",
+
+      
 
       "data/scenes/Intro/intro_suelo.scene"
      

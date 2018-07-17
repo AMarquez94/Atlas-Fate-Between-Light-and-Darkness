@@ -320,7 +320,7 @@ void CModuleGameManager::resetState() {
 
     /* Player not dead and game unpaused */
     CApp::get().lostFocus = false;
-    EngineRender.setDebugMode(false);
+    //EngineRender.setDebugMode(false);
     EngineParticles.particles_enabled = false;
 
     // Lock/Unlock the cursor
