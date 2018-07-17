@@ -53,8 +53,8 @@ function loadCheckpoint()
 	SLB.loadCheckpoint();
 end
 
-function staminaInfinite()
-	SLB.staminaInfinite()
+function infiniteStamineToggle()
+	SLB.infiniteStamineToggle()
 end
 
 function immortal()
@@ -71,10 +71,6 @@ end
 
 function playerInvisible()
 	SLB.playerInvisible()
-end
-
-function spotlightsToggle()
-	SLB.spotlightsToggle()
 end
 
 function noClipToggle()
@@ -109,28 +105,8 @@ function cg_drawlights(type)
 	SLB.cg_drawlights(type)
 end
 
-function spawn(type, pos, lookAt)
-	SLB.spawn(type, pos, lookAt)
-end
-
-function animationsToggle()
-	SLB.animationsToggle()
-end
-
-function move(name, pos, lookAt)
-	SLB.move(name, pos, lookAt)
-end
-
-function wireframeToggle()
-	SLB.wireframeToggle()
-end
-
-function collidersToggle(onlyDynamics)
-	SLB.collidersToggle(onlyDynamics)
-end
-
-function movePlayer(pos)
-	SLB.movePlayer(pos)
+function spawn()
+	SLB.spawn()
 end
 
 function renderNavmeshToggle()
@@ -147,8 +123,4 @@ end
 
 function cinematicModeToggle()
 	SLB.cinematicModeToggle()
-end
-
-function fpsToggle(bool)
-	SLB.fpsToggle(bool)
 end

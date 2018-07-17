@@ -44,9 +44,6 @@ public:
     void load(const json& j, TEntityParseContext& ctx) override;
     void debugInMenu();
 
-    //Auxiliar functions
-    bool getStartLightsOn() { return startLightsOn; }
-
     BTNode::ERes actionShadowMerged(float dt);
     BTNode::ERes actionStunned(float dt);
     BTNode::ERes actionFixed(float dt);

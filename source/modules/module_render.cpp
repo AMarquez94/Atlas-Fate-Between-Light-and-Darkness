@@ -26,7 +26,6 @@
 #include "components/postfx/comp_fog.h"
 #include "components/postfx/comp_antialiasing.h"
 #include "components/postfx/comp_chrom_aberration.h"
-#include "components/comp_render.h"
 
 //--------------------------------------------------------------------------------------
 
@@ -274,29 +273,6 @@ void CModuleRender::activateMainCamera() {
 	activateCamera(*cam, Render.width, Render.height);
 }
 
-void CModuleRender::renderWireframeLayer(bool hideBackground) {
-  CTraceScoped gpu_scope("renderWireframeLayer");
-  PROFILE_FUNCTION("renderWireframeLayer");
-  if (hideBackground) {
-    /*Render.ctx->ClearRenderTargetView(Render.renderTargetView, &_backgroundColor.x);
-    Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);*/
-  }
-  auto solid = Resources.get("data/materials/solid.material")->as<CMaterial>();
-  solid->activate();
-  getObjectManager<TCompRender>()->forEach([](TCompRender* c) {
-    c->renderDebug();
-  });
-
-}
-
-void CModuleRender::renderCollidersLayer(bool onlyDynamics) {
-  CTraceScoped gpu_scope("renderColliderLayer");
-  PROFILE_FUNCTION("renderColliderLayer");
-  getObjectManager<TCompCollider>()->forEach([onlyDynamics](TCompCollider* c) {
-    c->renderDebug(onlyDynamics);
-  });
-}
-
 void CModuleRender::generateFrame() {
 
     {
@@ -398,17 +374,6 @@ void CModuleRender::generateFrame() {
 
         // Debug render main modules
         if (_debugMode) debugDraw();
-
-        if (_showWireframe) renderWireframeLayer(_hideBackground);
-
-        if (_showAllColliders) {
-
-          renderCollidersLayer(false);
-        }
-        else if (_showDynamicColliders) {
-
-          renderCollidersLayer(true);
-        }
 
         {
             // RENDER IMGUI

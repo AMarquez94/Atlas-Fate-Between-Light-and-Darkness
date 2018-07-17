@@ -27,9 +27,6 @@ public:
         void* variable;
     };
 
-    int spawnedPatrols = 0, spawnedMimetics = 0, spawnedSpotlights = 0;
-
-
     /* Enum with event id. Add as many as necessary */
     enum Events {
         GAME_START,
@@ -81,7 +78,7 @@ void pauseEnemies(bool pause);
 void deleteEnemies();
 void pauseGame(bool pause);
 void pausePlayerToggle();
-void staminaInfinite();
+void infiniteStamineToggle();
 void immortal();
 void inShadows();
 void speedBoost(const float speed);
@@ -91,9 +88,7 @@ void lanternsDisable(bool disable);
 void blendInCamera(const std::string& cameraName, float blendInTime);
 void blendOutCamera(const std::string& cameraName, float blendOutTime);
 void blendOutActiveCamera(float blendOutTime);
-void move(const std::string& entityName, VEC3 pos, VEC3 lookat = VEC3::Zero);
-void movePlayer(VEC3);
-void spawn(const std::string& type, VEC3 pos, VEC3 lookat = VEC3::Zero);
+void spawn(const std::string & name, const VEC3 & pos);
 void bind(const std::string& key, const std::string& script);
 void loadScene(const std::string &level);
 void unloadScene();
@@ -106,11 +101,6 @@ void playSound2D(const std::string& soundName);
 void exeShootImpactSound();
 void sleep(float time);
 void cinematicModeToggle();
-void spotlightsToggle();
-void animationsToggle();
-void wireframeToggle();
-void collidersToggle(bool onlyDynamics = false);
-
 
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);
@@ -118,5 +108,5 @@ void toggle_spotlight(const std::string& lightName);
 void toggleButtonCanBePressed(const std::string& buttonName, bool canBePressed);
 
 // Extra cvar commands
-void fpsToggle(bool value);
+void cg_drawfps(bool value);
 void cg_drawlights(int type);

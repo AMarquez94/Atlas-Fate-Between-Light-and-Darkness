@@ -41,9 +41,6 @@ public:
     void refreshMeshesInRenderManager(bool delete_me_from_keys = true);
     void setMaterial(const std::string &name);
 
-    void renderMeshes();
-
-
     static void registerMsgs();
 
     DECL_SIBLING_ACCESS();
