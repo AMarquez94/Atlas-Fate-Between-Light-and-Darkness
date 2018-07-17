@@ -93,12 +93,12 @@ function debugToggle()
 	SLB.debugToggle()
 end
 
-function loadScene(level)
-	SLB.loadScene(level)
+function loadscene(level)
+	SLB.loadscene(level)
 end
 
-function unloadScene()
-	SLB.unloadScene()
+function unloadscene()
+	SLB.unloadscene()
 end
 
 function cg_drawlights(type)

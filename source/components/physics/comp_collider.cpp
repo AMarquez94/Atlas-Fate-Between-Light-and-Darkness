@@ -22,12 +22,19 @@ TCompCollider::~TCompCollider(){
 
 void TCompCollider::debugInMenu() {
 
-	config->debugInMenu();
-  ImGui::Text("Collider shape: %s", shapeName.c_str());
-  ImGui::Text("Group: %s", groupName.c_str());
-  ImGui::Text("Mask: %s", maskName.c_str());
-  physx::PxVec3 pos = config->actor->getGlobalPose().p;
-  ImGui::Text("Collider position: %f %f %f", (float)pos.x, (float)pos.y, (float)pos.z);
+    config->debugInMenu();
+    ImGui::Text("Collider shape: %s", shapeName.c_str());
+    ImGui::Text("Group: %s", groupName.c_str());
+    ImGui::Text("Mask: %s", maskName.c_str());
+    physx::PxVec3 pos = config->actor->getGlobalPose().p;
+    ImGui::Text("Collider position: %f %f %f", (float)pos.x, (float)pos.y, (float)pos.z);
+}
+
+void TCompCollider::renderDebug() {
+
+    activateRSConfig(RSCFG_WIREFRAME);
+    //renderColliders(onlyDynamics);
+    activateRSConfig(RSCFG_DEFAULT);
 }
 
 void TCompCollider::load(const json& j, TEntityParseContext& ctx) {

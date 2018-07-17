@@ -159,8 +159,8 @@ void CModuleLogic::publishClasses() {
     m->set("spawn", SLB::FuncCall::create(&spawn));
     m->set("bind", SLB::FuncCall::create(&bind));
     m->set("loadCheckpoint", SLB::FuncCall::create(&loadCheckpoint));
-    m->set("loadScene", SLB::FuncCall::create(&loadScene));
-    m->set("unloadScene", SLB::FuncCall::create(&unloadScene));
+    m->set("loadScene", SLB::FuncCall::create(&loadscene));
+    m->set("unloadScene", SLB::FuncCall::create(&unloadscene));
     m->set("cg_drawfps", SLB::FuncCall::create(&cg_drawfps));
     m->set("cg_drawlights", SLB::FuncCall::create(&cg_drawlights));
     m->set("renderNavmeshToggle", SLB::FuncCall::create(&renderNavmeshToggle));
@@ -402,11 +402,11 @@ void spawn(const std::string & name, const VEC3 & pos) {
 
 }
 
-void loadScene(const std::string &level) {
+void loadscene(const std::string &level) {
     EngineScene.loadScene(level);
 }
 
-void unloadScene() {
+void unloadscene() {
     EngineScene.unLoadActiveScene();
 }
 

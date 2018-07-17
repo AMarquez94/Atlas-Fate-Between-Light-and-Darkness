@@ -366,6 +366,7 @@ void CModuleRender::generateFrame() {
 
         {
             // Debug render other modules
+            Engine.get().getPhysics().renderMain(); // instancing
             Engine.get().getParticles().renderMain(); // particle editor
             Engine.get().getInstancing().renderMain(); // instancing
             Engine.get().getGameManager().renderMain(); // manager editor

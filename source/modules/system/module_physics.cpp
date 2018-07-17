@@ -118,9 +118,13 @@ void CModulePhysics::update(float delta)
     }
 }
 
-void CModulePhysics::render()
+void CModulePhysics::renderMain()
 {
-
+    CTraceScoped gpu_scope("renderColliderLayer");
+    PROFILE_FUNCTION("renderColliderLayer");
+    getObjectManager<TCompCollider>()->forEach([](TCompCollider* c) {
+        c->renderDebug();
+    });
 }
 
 void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pairs, PxU32 count)

@@ -23,7 +23,7 @@ public:
     CModulePhysics(const std::string& aname) : IModule(aname) { }
     virtual bool start() override;
     virtual void update(float delta) override;
-    virtual void render() override;
+    virtual void renderMain();
 
     // Physx module getters
     physx::PxScene* getPhysxScene() { return gScene; }

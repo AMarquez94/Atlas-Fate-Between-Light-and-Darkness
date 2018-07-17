@@ -36,6 +36,7 @@ public:
     void debugInMenu();
     void load(const json& j, TEntityParseContext& ctx);
     void update(float dt);
+    void renderDebug();
 
     /* Auxiliar methods */
     bool collisionDistance(const VEC3 & org, const VEC3 & dir, float maxDistance);
