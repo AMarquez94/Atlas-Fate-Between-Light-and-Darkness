@@ -23,6 +23,7 @@
       "data/scenes/intro_puertas.scene",
       
       "data/scenes/intro_salientes.scene",
+      "data/scenes/intro_colliders_salientes.scene",
       "data/scenes/prova_intro.scene",
 
       
