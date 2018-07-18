@@ -2881,4 +2881,37 @@
       }
     }
   }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla3_intro033"
+      ,
+      "transform":
+      {
+        "pos": "12.9715 6.0 26.9975"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.65 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
 ]
