@@ -14,5 +14,7 @@
     "height": "data/textures/tx_columnas_hgt.dds"
     ,
     "emissive": "data/textures/tx_columnas_emi.dds"
+    ,
+    "aocclusion": "data/textures/tx_columnas_ao.dds"
   }
 }
