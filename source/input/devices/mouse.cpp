@@ -61,13 +61,14 @@ namespace Input
 
 	void CMouse::setLockMouse(bool locked)
 	{
-    if (!locked) {
-      while (ShowCursor(true) <= 1);
-    }
-    else {
-      while (ShowCursor(false) >= 0);
-    }
-		_lock_cursor = locked;
+        if (!locked) {
+          while (ShowCursor(true) <= 1);
+        }
+        else {
+          while (ShowCursor(false) >= 0);
+        }
+		
+        _lock_cursor = locked;
 	}
 
 }
