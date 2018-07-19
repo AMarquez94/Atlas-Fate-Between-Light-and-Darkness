@@ -102,8 +102,8 @@ void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
 
     myHandle = CHandle(this);
 
-    //TCompEmissionController *eController = get<TCompEmissionController>();
-    //eController->blend(patrolColor.colorNormal, 0.001f);
+    TCompEmissionController *eController = get<TCompEmissionController>();
+    eController->blend(enemyColor.colorNormal, 0.001f);
 }
 
 void TCompAIPatrol::onMsgPlayerDead(const TMsgPlayerDead& msg) {
