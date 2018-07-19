@@ -453,7 +453,7 @@ void TCompIAController::printTree()
 
 void TCompIAController::onMsgScenePaused(const TMsgScenePaused & msg)
 {
-	paused = !paused;
+	paused = msg.isPaused;
 }
 
 void TCompIAController::onMsgAIPaused(const TMsgAIPaused & msg)

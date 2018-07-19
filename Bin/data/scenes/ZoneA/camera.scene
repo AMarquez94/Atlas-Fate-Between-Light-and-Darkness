@@ -17,7 +17,7 @@
 			},
 			"render_bloom": {
 				"enabled": true,
-				"max_steps": 4,
+				"active_steps": 1,
 				"rt_name": "Bloom"
 			},
 			"fog": {

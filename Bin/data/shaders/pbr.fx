@@ -320,9 +320,6 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	float visibility = exp(distancet * distancet * -global_fog_density * global_fog_density * 1.442695);
 	visibility = saturate(visibility);
 
-	//float4 final_color2 = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
-	//return ((final_color2 * ao) + (float4(self_illum.xyz, 1) * global_self_intensity)) * global_ambient_adjustment;
-
 	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
 	final_color = final_color * global_ambient_adjustment * ao * self_illum.a;
 	final_color = lerp(float4(env, 1), final_color, visibility) + float4(self_illum.xyz, 1) * global_ambient_adjustment * global_self_intensity;
@@ -531,6 +528,6 @@ float4 PS_skybox(in float4 iPosition : SV_Position) : SV_Target
 {
 	float3 view_dir = mul(float4(iPosition.xy, 1, 1), camera_screen_to_world).xyz;
 	float4 skybox_color = txEnvironmentMap.Sample(samLinear, view_dir);
-    skybox_color = pow(skybox_color, float4(2.2,2.2,2.2, 2.2));
+		skybox_color = pow(skybox_color, float4(2.2,2.2,2.2, 1));
     return float4(skybox_color.xyz, 1);// *global_ambient_adjustment;
 }

@@ -21,7 +21,7 @@ void TCompShooter::shoot()
 
 void TCompShooter::onScenePaused(const TMsgScenePaused & msg)
 {
-    paused = !paused;
+    paused = msg.isPaused;
 }
 
 void TCompShooter::debugInMenu() {

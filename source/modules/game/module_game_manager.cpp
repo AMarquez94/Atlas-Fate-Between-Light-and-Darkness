@@ -23,8 +23,7 @@ bool CModuleGameManager::start() {
     _fly_camera = getEntityByName("test_camera_flyover");
 
     lastCheckpoint = new CCheckpoint();
-    setPauseState(PauseState::none);
-
+    _currentstate = PauseState::none;
     return true;
 }
 
@@ -40,7 +39,7 @@ void CModuleGameManager::setPauseState(PauseState pause) {
 
         // Determine if whole scene is paused
         TMsgScenePaused msg;
-        msg.isPaused = pause != PauseState::none && pause != PauseState::default ? true : false;
+        msg.isPaused = pause != PauseState::none ? true : false;
         EngineEntities.broadcastMsg(msg);
         EngineCameras.getCurrentCamera().sendMsg(msg);
 
@@ -48,10 +47,11 @@ void CModuleGameManager::setPauseState(PauseState pause) {
         CEntity * e_player = _player;
         CEntity * e_camera = _fly_camera;
         TCompCameraFlyover * flyover = e_camera->get<TCompCameraFlyover>();
-        msg.isPaused = (!msg.isPaused && flyover->paused) ? false : true;
-        e_player->sendMsg(msg);
+        TMsgScenePaused msg2;
+        msg2.isPaused = (!msg.isPaused && flyover->paused) ? false : true;
+        e_player->sendMsg(msg2);
+        dbg("current state %d and message %d\n", _currentstate, msg.isPaused);
     }
-
     switchState(pause);
 }
 
@@ -94,7 +94,6 @@ void CModuleGameManager::switchState(PauseState pause) {
 }
 
 void CModuleGameManager::update(float delta) {
-
 
     updateGameCondition();
 
