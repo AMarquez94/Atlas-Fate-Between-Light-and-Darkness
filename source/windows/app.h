@@ -30,6 +30,7 @@ public:
 
 	int  xres = 0;
 	int  yres = 0;
+    bool fullscreen = false;
 	bool resetMouse = false;
 	bool lostFocus = false;
 	bool has_focus = false;

@@ -38,6 +38,8 @@ std::string stringify(VEC2 pos);
 std::string stringify(VEC3 pos);
 std::string stringify(VEC4 pos);
 
+float mapInRange(float result_from, float result_to, float current_from, float current_to, float value);
+
 //float lerpAngle(float a, float b, float t);
 
 #endif

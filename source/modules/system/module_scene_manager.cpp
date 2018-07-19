@@ -35,7 +35,7 @@ void CModuleSceneManager::loadJsonScenes(const std::string filepath) {
         Scene * scene = createScene(scene_name);
         scene->groups_subscenes = groups_subscenes;
         auto& data = jboot[scene_name]["static_data"];
-        scene->navmesh = data.value("navmesh", "data/navmeshes/milestone2_navmesh.bin");
+        scene->navmesh = data.value("navmesh", "");
         scene->initial_script_name = data.value("initial_script", "");
 
         _scenes.insert(std::pair<std::string, Scene*>(scene_name, scene));
@@ -96,7 +96,9 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
 
         // Load the subscene
         Scene * current_scene = it->second;
-        Engine.getNavmeshes().buildNavmesh(current_scene->navmesh);
+        if (current_scene->navmesh.compare("") != 0) {
+            Engine.getNavmeshes().buildNavmesh(current_scene->navmesh);
+        }
 
         for (auto& scene_name : current_scene->groups_subscenes) {
             dbg("Autoloading scene %s\n", scene_name.c_str());

@@ -148,5 +148,15 @@
     "name": "btMouseLClick",
     "all": false,
     "buttons": [ "mouse_left" ]
+  },
+  {
+    "name": "btR_btMouseRClick",
+    "all": true,
+    "buttons": [ "r", "mouse_right" ]
+  },
+  {
+    "name": "btR_btMouseLClick",
+    "all": true,
+    "buttons": [ "r", "mouse_left" ]
   }
 ]

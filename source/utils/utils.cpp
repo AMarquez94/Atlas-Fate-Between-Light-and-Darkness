@@ -156,3 +156,7 @@ std::string stringify(VEC4 pos) {
     std::to_string(E_ROUND(pos.z)) + " " + 
     std::to_string(E_ROUND(pos.w));
 }
+
+float mapInRange(float result_from, float result_to, float current_from, float current_to, float value) {
+    return (result_to - result_from) * ((value - current_from) / (current_to - current_from)) + result_from;
+}
