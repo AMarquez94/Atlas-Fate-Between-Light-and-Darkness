@@ -1,0 +1,461 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_andamios"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro001"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-23.7235 0.0 27.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro002"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-23.7235 0.0 29.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro003"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-23.7235 2.0 27.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro004"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-23.7235 2.0 29.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro005"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-23.7235 4.0 27.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro006"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-23.7235 4.0 29.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro007"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-23.7235 6.0 27.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro008"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-23.7235 8.0 27.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro009"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-20.4703 6.0 24.0615"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro010"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-20.4703 6.0 22.0615"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro011"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-20.4703 8.0 22.0615"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro012"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-19.939 6.0 20.5615"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro013"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-19.939 8.0 20.5615"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro014"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "5.77534 0.0 37.5"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro015"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "5.77534 2.0 37.5"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro016"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "5.77534 4.0 37.5"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro017"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "5.77534 6.0 37.5"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro018"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "5.77534 8.0 37.5"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro019"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "5.27534 0.0 36.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro020"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "5.27534 2.0 36.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_intro021"
+      ,
+      "prefab": "data/prefabs/andamio.prefab"
+      ,
+      "transform":
+      {
+        "pos": "5.27534 4.0 36.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_top_intro001"
+      ,
+      "prefab": "data/prefabs/andamio_top.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-23.7235 6.0 29.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_top_intro002"
+      ,
+      "prefab": "data/prefabs/andamio_top.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-23.7235 10.0 27.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_top_intro003"
+      ,
+      "prefab": "data/prefabs/andamio_top.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-20.4703 8.0 24.0615"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_top_intro004"
+      ,
+      "prefab": "data/prefabs/andamio_top.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-20.4703 10.0 22.0615"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_top_intro005"
+      ,
+      "prefab": "data/prefabs/andamio_top.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-19.939 10.0 20.5615"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_top_intro006"
+      ,
+      "prefab": "data/prefabs/andamio_top.prefab"
+      ,
+      "transform":
+      {
+        "pos": "5.77534 10.0 37.5"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_andamio_top_intro007"
+      ,
+      "prefab": "data/prefabs/andamio_top.prefab"
+      ,
+      "transform":
+      {
+        "pos": "5.27534 6.0 36.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+]
