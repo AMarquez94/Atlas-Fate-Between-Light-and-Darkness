@@ -158,6 +158,7 @@
     <ClCompile Include="components\postfx\comp_render_bloom.cpp" />
     <ClCompile Include="components\postfx\comp_render_outlines.cpp" />
     <ClCompile Include="components\postfx\comp_antialiasing.cpp" />
+    <ClCompile Include="components\postfx\comp_vignette.cpp" />
     <ClCompile Include="components\skeleton\comp_animator.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
@@ -365,6 +366,7 @@
     <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
     <ClInclude Include="components\postfx\comp_render_outlines.h" />
     <ClInclude Include="components\postfx\comp_antialiasing.h" />
+    <ClInclude Include="components\postfx\comp_vignette.h" />
     <ClInclude Include="components\skeleton\cal3d2engine.h" />
     <ClInclude Include="components\skeleton\comp_animator.h" />
     <ClInclude Include="components\skeleton\comp_bone_tracker.h" />

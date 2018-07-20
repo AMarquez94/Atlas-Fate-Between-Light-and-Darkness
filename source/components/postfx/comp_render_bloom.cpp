@@ -14,7 +14,7 @@ TCompRenderBloom::TCompRenderBloom()
 	bool is_ok = cte_bloom.create(CB_BLOOM);
 	assert(is_ok);
 	// How we mix each downsampled scale
-	add_weights = VEC4(1.340f, 1.5f, 1.50f, 1.08f);
+	add_weights = VEC4(1.060f, 1.260f, 1.280f, 1.100f);
 }
 
 TCompRenderBloom::~TCompRenderBloom() {
@@ -42,7 +42,7 @@ void TCompRenderBloom::load(const json& j, TEntityParseContext& ctx) {
   weights.y = 1.5f;
   weights.z = 1.50f;
   weights.w = 1.08f;
-  global_distance = 2.0f;
+  global_distance = 0.820f;
 
 	rt_highlights = new CRenderToTexture();
 	char rt_name[64];

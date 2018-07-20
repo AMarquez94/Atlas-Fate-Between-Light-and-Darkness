@@ -26,6 +26,7 @@
 #include "components/postfx/comp_fog.h"
 #include "components/postfx/comp_antialiasing.h"
 #include "components/postfx/comp_chrom_aberration.h"
+#include "components/postfx/comp_vignette.h"
 
 //--------------------------------------------------------------------------------------
 
@@ -352,6 +353,10 @@ void CModuleRender::generateFrame() {
             TCompAntiAliasing* c_antialiasing = e_cam->get< TCompAntiAliasing >();
             if (c_antialiasing)
                 curr_rt = c_antialiasing->apply(curr_rt);
+
+            TCompVignette* c_vignette = e_cam->get< TCompVignette >();
+            if (c_vignette)
+                curr_rt = c_vignette->apply(curr_rt);
         }
 
         Render.startRenderInBackbuffer();

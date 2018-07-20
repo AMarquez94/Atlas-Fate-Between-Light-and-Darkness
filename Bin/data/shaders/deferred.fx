@@ -55,7 +55,6 @@ float4 PS(
 
   float3 gammaCorrectedColor = gammaCorrect( tmColor );
   gammaCorrectedColor = lerp( tmColor, gammaCorrectedColor.xyz, global_gamma_correction_enabled );
-
 	
   if( global_render_output == RO_COMPLETE )
     return float4( gammaCorrectedColor, 1);
@@ -68,8 +67,6 @@ float4 PS(
   else if( global_render_output == RO_METALLIC )
     return float4( oAlbedo.aaa, 1 );
   else if( global_render_output == RO_WORLD_POS ) {
-    // Debug generated world coords
-    // Recuperar la posicion de mundo para ese pixel
     float  zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
     float3 wPos = getWorldCoords(iPosition.xy, zlinear);
     return abs(wPos.x - (int)wPos.x) * abs(wPos.z - (int)wPos.z);

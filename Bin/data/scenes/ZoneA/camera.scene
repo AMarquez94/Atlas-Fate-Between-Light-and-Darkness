@@ -52,7 +52,9 @@
 				"z_far": 1000
 			},
 			"render_ao": {
-				"enabled": true
+				"enabled": true,
+				"max_steps": 1,
+				"gauss_filter": true
 			},
 			"render_blur": {
 				"enabled": false,
@@ -78,6 +80,9 @@
 			"antialiasing": {
 				"enabled": true
 			},
+			"vignette" : {
+				"enabled" : true
+		  },
 			"render_outlines" : {
 				"enabled" : true
 		  },
@@ -110,11 +115,6 @@
 				"max_steps": 4,
 				"rt_name": "Bloom"
 			},
-			"color_grading": {
-				"enabled": true,
-				"amount": 0.6,
-				"lut": "data/textures/lut/RGBTable16x1.dds"
-			},
 			"render_bloom": {
 				"enabled": true,
 				"max_steps": 4,
@@ -134,6 +134,9 @@
 			"antialiasing": {
 				"enabled": true
 			},
+			"vignette" : {
+				"enabled" : true
+		  },
 			"render_outlines" : {
 				"enabled" : true
 		  },
@@ -174,6 +177,9 @@
 			"fog": {
 				"enabled": true
 			},
+			"vignette" : {
+				"enabled" : true
+		  },
 			"antialiasing": {
 				"enabled": true
 			},
@@ -214,6 +220,9 @@
 			"fog": {
 				"enabled": true
 			},
+			"vignette" : {
+				"enabled" : true
+		  },
 			"antialiasing": {
 				"enabled": true
 			},
@@ -248,6 +257,9 @@
 			"fog": {
 				"enabled": true
 			},
+			"vignette" : {
+				"enabled" : true
+		  },
 			"antialiasing": {
 				"enabled": true
 			},
@@ -290,6 +302,9 @@
 			"fog": {
 				"enabled": true
 			},
+			"vignette" : {
+				"enabled" : true
+		  },
 			"antialiasing": {
 				"enabled": true
 			}

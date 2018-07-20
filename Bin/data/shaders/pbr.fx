@@ -95,6 +95,12 @@ void PS_GBuffer(
 	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
 	o_normal = encodeNormal(N, roughness);
 
+	if (scalar_metallic >= 0.f)
+		o_albedo.a = scalar_metallic;
+		
+	if (scalar_roughness >= 0.f)
+		o_normal.a = scalar_roughness;
+		
 	// Compute the Z in linear space, and normalize it in the range 0...1
 	// In the range z=0 to z=zFar of the camera (not zNear)
 	float3 camera2wpos = iWorldPos - camera_pos;

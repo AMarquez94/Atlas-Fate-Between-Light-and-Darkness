@@ -13,9 +13,9 @@ struct TCompRenderBloom : public TCompRenderBlur {
   const CRenderTechnique*       tech_add = nullptr;
   const CRenderMesh*            mesh = nullptr;
   VEC4                          add_weights;
-  float                         threshold_min = 0.210f;
-  float                         threshold_max = 1.410f;
-  float                         multiplier = 0.75f;
+  float                         threshold_min = 0.700;
+  float                         threshold_max = 0.920f;
+  float                         multiplier = 1.430f;
   TCompRenderBlur * renderblur;
 
   TCompRenderBloom();

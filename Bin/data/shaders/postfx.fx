@@ -15,7 +15,7 @@ float4 postfx_contrast(float4 color)
 	return float4(con_color, 1);
 }
 
-float4 postfx_vignette(float4 iPosition, float2 iTex0)
+float4 PS_PostFX_Vignette(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
 {
 	float4 color = txAlbedo.Sample(samClampLinear, iTex0); 
   float2 position = (iPosition.xy * camera_inv_resolution) - float2(0.5f,0.5f);
@@ -23,11 +23,10 @@ float4 postfx_vignette(float4 iPosition, float2 iTex0)
 
   float len = length(position);
 	float vignette = smoothstep(0.95, 0.95 - 0.65, len);
-  color.rgb = lerp(color.rgb, color.rgb * vignette, 1);
+  color.rgb = lerp(color.rgb, color.rgb * vignette, 0.75);
 
 	return color;
 }
-
 
 // PostFX Exponential distance fog.
 float4 PS_PostFX_ExpFog(float4 iPosition, float2 iTex0, float4 in_color)
