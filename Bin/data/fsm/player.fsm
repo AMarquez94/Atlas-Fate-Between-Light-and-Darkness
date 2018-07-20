@@ -123,8 +123,8 @@
 			"name": "entermerge",
 			"type": "EnterMergeState",
 			"animation": "entermerge",
-			"speed": 4,
-			"size": 1,
+			"size": 0.1,
+			"radius": 0.01,
 			"camera": {
 				"target": "SMCameraHor",
 				"blendOut": 0.2,

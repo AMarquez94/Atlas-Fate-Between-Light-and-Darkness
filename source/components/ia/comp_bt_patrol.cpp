@@ -148,7 +148,7 @@ void TCompAIPatrol::onMsgPatrolStunned(const TMsgEnemyStunned & msg)
 
 void TCompAIPatrol::onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged & msg)
 {
-    //hasBeenShadowMerged = true;
+    hasBeenShadowMerged = true;
 
     TCompEmissionController * e_controller = get<TCompEmissionController>();
     e_controller->blend(enemyColor.colorDead, 0.1f);
@@ -173,6 +173,11 @@ void TCompAIPatrol::onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged & msg)
     Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand_enemy.particles", patrol);
     Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash.particles", patrol);
     Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", patrol);
+
+    CHandle my_rigidbody = get<TCompRigidbody>();
+    CHandle my_collider = get<TCompCollider>();
+    my_rigidbody.destroy();
+    my_collider.destroy();
 
     current = nullptr;
 }
@@ -353,8 +358,7 @@ void TCompAIPatrol::loadAsserts() {
 
 BTNode::ERes TCompAIPatrol::actionShadowMerged(float dt)
 {
-    /* Destroy the entity */
-    CHandle(this).getOwner().destroy();
+    /* The entity will eventually be destroyed by the fade controller */
     return BTNode::ERes::STAY;
 }
 
