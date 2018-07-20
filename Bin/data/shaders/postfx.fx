@@ -87,14 +87,18 @@ float2 shiftChannel(float2 iTex0, float value, float shift)
 // PostFX Chromatic Aberration
 float4 PS_PostFX_CA(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
 {
+
+	float distortion = txNoiseMap.Sample( samLinear, iTex0 * 0.0001).r;  
+		
 	float2 bDist = shiftChannel(iTex0, -postfx_ca_offset, postfx_ca_offset);
 	float2 gDist = shiftChannel(iTex0, -postfx_ca_offset - postfx_ca_amount, postfx_ca_offset + postfx_ca_amount);
 	float2 rDist = shiftChannel(iTex0, -postfx_ca_offset - postfx_ca_amount * 2, postfx_ca_offset + postfx_ca_amount * 2);
   
-	float4 distorsion_r = txAlbedo.Sample(samClampLinear, rDist);
-	float4 distorsion_g = txAlbedo.Sample(samClampLinear, gDist);
-	float4 distorsion_b = txAlbedo.Sample(samClampLinear, bDist);
+	float4 distorsion_r = txAlbedo.Sample(samClampLinear, iTex0 + distortion);
+	float4 distorsion_g = txAlbedo.Sample(samClampLinear, iTex0 + distortion);
+	float4 distorsion_b = txAlbedo.Sample(samClampLinear, iTex0 + distortion);
 
+	return txAlbedo.Sample(samClampLinear, iTex0);
   return float4(distorsion_r.r, distorsion_g.g, distorsion_b.b, 1);
 }
 
@@ -102,6 +106,31 @@ float4 PS_PostFX_CA(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOO
 
 float NUM_SAMPLES = 10;
 float Density = 1;
+
+float4 PS_PostFX_Sharpen(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
+{
+	const float kernel[9] = { -1, -1, -1,
+				-1, 9, -1,
+				-1, -1, -1 };
+				
+	const float step_w = camera_inv_resolution.x;
+	const float step_h = camera_inv_resolution.y;
+
+	const float2 offset[9] = { float2(-step_w, -step_h), float2(0.0, -step_h), float2(step_w, -step_h), 
+				float2(-step_w, 0.0), float2(0.0, 0.0), float2(step_w, 0.0), 
+				float2(-step_w, step_h), float2(0.0, step_h), float2(step_w, step_h) };
+
+	int i = 0;
+  float4 sum = float4(0, 0, 0, 0);
+   
+	for( i=0; i<9; i++ )
+	{
+		float4 tmp = txAlbedo.Sample(samLinear, iTex0.xy + offset[i] * .1);
+		sum += tmp * kernel[i];
+	}
+  
+  return sum;
+}
 
 float4 PS_PostFX_LScattering( in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
 {
