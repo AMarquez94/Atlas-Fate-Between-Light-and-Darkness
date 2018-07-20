@@ -1,5 +1,55 @@
 #include "common.fx"
 
+// PostFX contrast
+float4 postfx_contrast(float4 color)
+{
+	const float3 lum_coeff = float3(0.2125, 0.7154, 0.0721);
+
+	float3 avg_lum = float3(1, 1, 1);
+	float dotval = dot(color.xyz, lum_coeff);
+	float3 intensity = float3(dotval, dotval, dotval);
+
+	float3 sat_color = lerp(intensity, color.xyz, 1.);
+	float3 con_color = lerp(avg_lum, sat_color, 1.05);
+
+	return float4(con_color, 1);
+}
+
+float4 postfx_vignette(float4 iPosition, float2 iTex0)
+{
+	float4 color = txAlbedo.Sample(samClampLinear, iTex0); 
+  float2 position = (iPosition.xy * camera_inv_resolution) - float2(0.5f,0.5f);
+  //position.x *= camera_aspect_ratio;
+
+  float len = length(position);
+	float vignette = smoothstep(0.95, 0.95 - 0.65, len);
+  color.rgb = lerp(color.rgb, color.rgb * vignette, 1);
+
+	return color;
+}
+
+
+// PostFX Exponential distance fog.
+float4 PS_PostFX_ExpFog(float4 iPosition, float2 iTex0, float4 in_color)
+{
+	int3 ss_load_coords = uint3(iPosition.xy, 0);
+	float depth = txGBufferLinearDepth.Load(ss_load_coords).x;
+	float3 wPos = getWorldCoords(iPosition.xy, depth);
+  //float4 in_color = txAlbedo.Sample(samClampLinear, iTex0.xy);
+	
+	float3 frag_dir = (wPos - camera_pos.xyz);
+	float dist = abs(length(frag_dir));
+	float3 tmp_color = float3(0.188, 0.266, 0.717);
+
+	float fog_factor = exp( (dist * -global_fog_density * .75)* (dist* global_fog_density * .75));	
+	//fog_factor = fog_factor * (1 - smoothstep(0.98, 1.1, depth));
+	if(depth > 0.99) fog_factor = 0.95;
+	
+	float4 final_color = lerp(float4(tmp_color,1), in_color, fog_factor);
+		
+	return float4(final_color);
+}
+
 // PostFX Exponential ground distance fog.
 float4 PS_PostFXFog(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
 {
@@ -13,31 +63,15 @@ float4 PS_PostFXFog(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOO
 
 	//You have to tweak this values
 	float be = 0.0045 * smoothstep(0.0, 2.0, 10.0 - wPos.y);
-	float be2 = 0.0045 * smoothstep(0.0, 6.0, 16.0 - wPos.y);
 	float bi = 0.375* smoothstep(0.0, 80, 10.0 - wPos.y);
 	 
 	float ext = exp(-dist * be);
-  float ext2 = exp(-dist * be2);
 	float insc = exp(-dist * bi);
-
+	float4 final_color = in_color + ext * float4(global_fog_color,1) * (1 - insc);
+	
+	return PS_PostFX_ExpFog(iPosition, iTex0, final_color);
+	
 	return in_color + ext * float4(global_fog_color,1) * (1 - insc);
-}
-
-// PostFX Exponential distance fog.
-float4 PS_PostFX_ExpFog(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
-{
-	int3 ss_load_coords = uint3(iPosition.xy, 0);
-	float depth = txGBufferLinearDepth.Load(ss_load_coords).x;
-	float3 wPos = getWorldCoords(iPosition.xy, depth);
-  float4 in_color = txAlbedo.Sample(samClampLinear, iTex0.xy);
-	
-	float3 frag_dir = (wPos - camera_pos.xyz);
-	float dist = abs(length(frag_dir));
-			
-	float fog_factor = 1.0 /exp( (dist * global_fog_density)* (dist * global_fog_density));	
-	float4 final_color = lerp(float4(global_fog_color,1), in_color, saturate(fog_factor));
-	
-	return in_color + float4(final_color);
 }
 
 float2 shiftChannel(float2 iTex0, float value, float shift) 

@@ -56,7 +56,7 @@ void TCompNoClipController::onMsgNoClipToggle(const TMsgSystemNoClipToggle & msg
 
 void TCompNoClipController::onMsgScenePaused(const TMsgScenePaused & msg)
 {
-    paused = !paused;
+    paused = msg.isPaused;
 }
 
 void TCompNoClipController::update(float dt)

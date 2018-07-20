@@ -45,7 +45,7 @@ void TCompPlayerAttackCast::registerMsgs()
 
 void TCompPlayerAttackCast::onMsgScenePaused(const TMsgScenePaused & msg)
 {
-	paused = !paused;
+	paused = msg.isPaused;
 }
 
 const std::vector<CHandle> TCompPlayerAttackCast::getEnemiesInRange()

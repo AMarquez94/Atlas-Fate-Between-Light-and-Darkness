@@ -20,15 +20,16 @@
 			"data/scenes/Intro/intro_barandillas.scene",
 			"data/scenes/Intro/intro_colliders_barandillas.scene",
 			"data/scenes/Intro/intro_salientes.scene",
-			"data/scenes/Intro/intro_colliders_salientes.scene",
-
-			"data/scenes/intro_light.scene",
-			"data/scenes/intro_puentes_chapa.scene",
-
-
-
-
-			"data/scenes/prova_intro.scene",
+      		"data/scenes/Intro/intro_colliders_salientes.scene",
+      
+      "data/scenes/intro_light.scene",
+      
+      "data/scenes/intro_puentes_chapa.scene",
+      
+      "data/scenes/intro_andamios.scene",
+      "data/scenes/intro_tejados.scene",
+      
+      "data/scenes/prova_intro.scene",
 
 
 

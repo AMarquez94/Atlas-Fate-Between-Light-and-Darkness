@@ -33,17 +33,27 @@ LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
         EndPaint(hWnd, &ps);
         break;
 
-    case WM_SETFOCUS:
-        if (app_instance)
-            app_instance->has_focus = true;
-        break;
-
-    case WM_KILLFOCUS:
+	case WM_SETFOCUS:
+    {
+        Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
         if (app_instance) {
+            //if(mouse) mouse->setLockMouse(true);
+            app_instance->lostFocus = false;
+            app_instance->has_focus = true;
+        }
+    }
+    break;
+
+	case WM_KILLFOCUS:
+    {
+        Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+        if (app_instance) {
+            //if (mouse) mouse->setLockMouse(false);
             app_instance->lostFocus = true;
             app_instance->has_focus = false;
         }
-        break;
+    }   
+    break;
 
     case WM_DESTROY:
         PostQuitMessage(0);
