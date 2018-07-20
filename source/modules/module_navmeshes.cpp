@@ -21,6 +21,7 @@ void CModuleNavmesh::render() {
     if (renderNamvesh) {
         navmesh.render();
     }
+    //ImGui::DragFloat2("Nearest Poly Extents", &navmeshQuery.nearestPolyExtents.x, 0.5f, 0.0f, 100.f);
 }
 
 void CModuleNavmesh::buildNavmesh(const std::string& path) {

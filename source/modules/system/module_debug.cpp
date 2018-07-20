@@ -32,8 +32,8 @@ void CModuleDebug::update(float delta) {
         VEC3 origin = VEC3(mouse_pos.x, mouse_pos.y, 0);
         VEC3 dest = VEC3(mouse_pos.x, mouse_pos.y, 1);
 
-        VEC3 raycast_origin;
-        VEC3 raycast_dest;
+        //VEC3 raycast_origin;
+        //VEC3 raycast_dest;
 
         CEntity* eCurrentCamera = EngineCameras.getCurrentCamera();
         TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
@@ -57,9 +57,19 @@ void CModuleDebug::update(float delta) {
         
         if (EngineInput["btR_btMouseLClick"].getsPressed()) {
             p1 = pos;
+            CEntity* start_entity = getEntityByName("Navmesh_Start");
+            if (start_entity) {
+                TCompTransform* start_pos = start_entity->get<TCompTransform>();
+                start_pos->setPosition(p1);
+            }
         }
         else {
             p2 = pos;
+            CEntity* end_entity = getEntityByName("Navmesh_End");
+            if (end_entity) {
+                TCompTransform* end_pos = end_entity->get<TCompTransform>();
+                end_pos->setPosition(p2);
+            }
         }
     }
 
@@ -69,6 +79,11 @@ void CModuleDebug::update(float delta) {
 }
 
 void CModuleDebug::render() {
+
+    if (raycast_origin != VEC3::Zero && raycast_dest != VEC3::Zero) {
+        renderLine(raycast_origin, raycast_dest, VEC4(1, 0, 0, 1));
+    }
+
     if (p1 != VEC3::Zero && p2 != VEC3::Zero && navmeshPath.size() > 0) {
         for(int i = 0; i <  navmeshPath.size() - 1; i++){
             renderLine(navmeshPath[i], navmeshPath[i + 1], VEC4(1, 1, 0, 1));

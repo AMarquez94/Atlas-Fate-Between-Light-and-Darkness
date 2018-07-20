@@ -150,8 +150,7 @@ bool CCamera::getScreenCoordsOfWorldCoord(VEC3 world_pos, VEC3* result) const {
 
 bool CCamera::getWorldCoordOfScreenCoords(VEC3 pos, VEC3 * screen_coords) const
 {
-    MAT44 xd = view * proj;
-    MAT44 inverse_view_proj = xd.Invert();
+    MAT44 inverse_view_proj = view_proj.Invert();
     *screen_coords = VEC3::Transform(pos, inverse_view_proj);
     return true;
 }

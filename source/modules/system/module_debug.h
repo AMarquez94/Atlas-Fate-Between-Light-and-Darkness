@@ -18,6 +18,10 @@ public:
     void render() override;
 
 private:
+
+    VEC3 raycast_origin = VEC3::Zero;
+    VEC3 raycast_dest = VEC3::Zero;
+
     VEC3 p1 = VEC3::Zero;
     VEC3 p2 = VEC3::Zero;
     std::vector<VEC3> navmeshPath;

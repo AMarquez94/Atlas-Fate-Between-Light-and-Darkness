@@ -66,6 +66,8 @@ private:
     void BootLuaSLB();
     void publishClasses();
     void loadScriptsInFolder(char * path);
+
+    bool started = false;
 };
 
 /* Auxiliar functions */

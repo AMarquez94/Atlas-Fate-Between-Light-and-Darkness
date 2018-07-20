@@ -19,6 +19,7 @@ public:
   bool raycast( VEC3 start, VEC3 end, VEC3& hitPos );
   VEC3 closestNavmeshPoint(VEC3 currentPoint);
 
+
 private:
 
   // the dt data
@@ -28,7 +29,7 @@ private:
   static const int MAX_SMOOTH = 2048;
 
   /* Default extent. To change if needed */
-  VEC2 nearestPolyExtents = VEC2(10.f, 10.f);
+  VEC3 nearestPolyExtents = VEC3(1.f, 1.f, 1.f);
 };
 
 #endif

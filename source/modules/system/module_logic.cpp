@@ -23,6 +23,7 @@ bool CModuleLogic::stop() {
 
     delete(s);
     delete(m);
+    started = false;
     return true;
 }
 
@@ -52,6 +53,8 @@ void CModuleLogic::BootLuaSLB() {
     publishClasses();
     //Load all the scripts
     loadScriptsInFolder("data/scripts");
+    //Mark LUA as started
+    started = true;
 }
 
 /* Load all scripts.lua in given path and its subfolders */
@@ -192,6 +195,8 @@ void CModuleLogic::execCvar(std::string& script) {
 }
 
 CModuleLogic::ConsoleResult CModuleLogic::execScript(const std::string& script) {
+    if (!started)
+        return ConsoleResult{ false, "" };
 
     std::string scriptLogged = script;
     std::string errMsg = "";
