@@ -34,8 +34,8 @@ void TCompChromaticAberration::load(const json& j, TEntityParseContext& ctx) {
     tech = Resources.get("postfx_chromatic_aberration.tech")->as<CRenderTechnique>();
     mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 
-    cb_postfx.postfx_ca_amount = 0.05f;
-    cb_postfx.postfx_ca_offset = 0.05f;
+    cb_postfx.postfx_ca_amount = 0.09f;
+    cb_postfx.postfx_ca_offset = 0.09f;
     cb_postfx.postfx_cs_offset = 0.5f;
 
 }

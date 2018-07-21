@@ -87,18 +87,16 @@ float2 shiftChannel(float2 iTex0, float value, float shift)
 // PostFX Chromatic Aberration
 float4 PS_PostFX_CA(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
 {
-
-	float distortion = txNoiseMap.Sample( samLinear, iTex0 * 0.0001).r;  
+	float distortion = txNoiseMap.Sample( samLinear, iTex0).r;  
 		
-	float2 bDist = shiftChannel(iTex0, -postfx_ca_offset, postfx_ca_offset);
-	float2 gDist = shiftChannel(iTex0, -postfx_ca_offset - postfx_ca_amount, postfx_ca_offset + postfx_ca_amount);
-	float2 rDist = shiftChannel(iTex0, -postfx_ca_offset - postfx_ca_amount * 2, postfx_ca_offset + postfx_ca_amount * 2);
+	//float2 bDist = shiftChannel(iTex0, -postfx_ca_offset, postfx_ca_offset);
+	//float2 gDist = shiftChannel(iTex0, -postfx_ca_offset - postfx_ca_amount, postfx_ca_offset + postfx_ca_amount);
+	//float2 rDist = shiftChannel(iTex0, -postfx_ca_offset - postfx_ca_amount * 2, postfx_ca_offset + postfx_ca_amount * 2);
   
-	float4 distorsion_r = txAlbedo.Sample(samClampLinear, iTex0 + distortion);
-	float4 distorsion_g = txAlbedo.Sample(samClampLinear, iTex0 + distortion);
-	float4 distorsion_b = txAlbedo.Sample(samClampLinear, iTex0 + distortion);
+	float4 distorsion_r = txAlbedo.Sample(samClampLinear, iTex0 + postfx_ca_amount * 0.01 * distortion);
+	float4 distorsion_g = txAlbedo.Sample(samClampLinear, iTex0 - postfx_ca_amount * 0.01 * distortion);
+	float4 distorsion_b = txAlbedo.Sample(samClampLinear, iTex0 + postfx_ca_amount * 0.01 * distortion);
 
-	return txAlbedo.Sample(samClampLinear, iTex0);
   return float4(distorsion_r.r, distorsion_g.g, distorsion_b.b, 1);
 }
 

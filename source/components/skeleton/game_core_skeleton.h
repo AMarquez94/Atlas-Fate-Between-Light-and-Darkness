@@ -20,6 +20,7 @@ public:
   float              bone_ids_debug_scale = 1.f;
   std::vector< int > bone_ids_to_debug;
 
+  std::vector<VEC4> computeTangent(CalCoreSubmesh* cal_sm);
 };
 
 #endif
