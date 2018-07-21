@@ -86,6 +86,9 @@
 			"render_outlines" : {
 				"enabled" : true
 		  },
+			"render_focus": {
+        "enabled": false
+      },
 			"tags": ["main_camera","tp_camera"]
 		}
 	}, {

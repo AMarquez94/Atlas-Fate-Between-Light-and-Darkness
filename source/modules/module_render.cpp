@@ -27,6 +27,7 @@
 #include "components/postfx/comp_antialiasing.h"
 #include "components/postfx/comp_chrom_aberration.h"
 #include "components/postfx/comp_vignette.h"
+#include "components/postfx/comp_render_focus.h"
 
 //--------------------------------------------------------------------------------------
 
@@ -327,6 +328,11 @@ void CModuleRender::generateFrame() {
             if (c_render_blur)
                 curr_rt = c_render_blur->apply(curr_rt);
 
+            // Requires the blur to be active
+            TCompRenderFocus* c_render_focus = e_cam->get< TCompRenderFocus >();
+            if (c_render_focus)
+                curr_rt = c_render_focus->apply(rt_main, curr_rt);
+
             // Check if we have a render_fx component
             TCompRenderBlurRadial * c_render_blur_radial = e_cam->get< TCompRenderBlurRadial >();
             if (c_render_blur_radial)
@@ -350,13 +356,14 @@ void CModuleRender::generateFrame() {
             if (c_render_outlines)
                 c_render_outlines->apply();
 
+            TCompVignette* c_vignette = e_cam->get< TCompVignette >();
+            if (c_vignette)
+                curr_rt = c_vignette->apply(curr_rt);
+
             TCompAntiAliasing* c_antialiasing = e_cam->get< TCompAntiAliasing >();
             if (c_antialiasing)
                 curr_rt = c_antialiasing->apply(curr_rt);
 
-            TCompVignette* c_vignette = e_cam->get< TCompVignette >();
-            if (c_vignette)
-                curr_rt = c_vignette->apply(curr_rt);
         }
 
         Render.startRenderInBackbuffer();

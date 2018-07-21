@@ -446,6 +446,15 @@
 			"noise": "data/textures/noise_light.dds"
 		}
 	},
+	"focus": {
+    "vs_file": "data/shaders/postfx.fx",
+		"ps_file": "data/shaders/postfx.fx",
+		"vs_entry_point": "VS_PostFX_Focus",
+		"ps_entry_point": "PS_PostFX_Focus",
+    "vertex_type": "PosClr",
+    "category" : "fx",
+    "z" : "disable_all"
+  },
 	"postfx_vol_lights": {
 		"vs_file": "data/shaders/screen_quad.fx",
 		"ps_file": "data/shaders/postfx.fx",

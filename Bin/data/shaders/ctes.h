@@ -14,6 +14,7 @@
 #define CB_OUTLINE      10
 #define CB_PLAYER       11
 #define CB_POSTFX       12
+#define CB_FOCUS        13
 
 // -------------------------------------------------
 // Texture Slots
@@ -258,5 +259,12 @@ CB_DEF(CCtePostFX, CB_POSTFX)
     float  postfx_dummy3;
 };
 
+CB_DEF(CCteFocus, CB_FOCUS)
+{
+    float focus_z_center_in_focus;
+    float focus_z_margin_in_focus;
+    float focus_transition_distance;
+    float focus_modifier;
+};
 
 #endif

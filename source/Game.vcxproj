@@ -156,6 +156,7 @@
     <ClCompile Include="components\postfx\comp_fog.cpp" />
     <ClCompile Include="components\postfx\comp_render_ao.cpp" />
     <ClCompile Include="components\postfx\comp_render_bloom.cpp" />
+    <ClCompile Include="components\postfx\comp_render_focus.cpp" />
     <ClCompile Include="components\postfx\comp_render_outlines.cpp" />
     <ClCompile Include="components\postfx\comp_antialiasing.cpp" />
     <ClCompile Include="components\postfx\comp_vignette.cpp" />
@@ -364,6 +365,7 @@
     <ClInclude Include="components\postfx\comp_render_bloom.h" />
     <ClInclude Include="components\postfx\comp_render_blur.h" />
     <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
+    <ClInclude Include="components\postfx\comp_render_focus.h" />
     <ClInclude Include="components\postfx\comp_render_outlines.h" />
     <ClInclude Include="components\postfx\comp_antialiasing.h" />
     <ClInclude Include="components\postfx\comp_vignette.h" />
