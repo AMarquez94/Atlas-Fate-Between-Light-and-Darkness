@@ -28,7 +28,7 @@
 #include "components/postfx/comp_chrom_aberration.h"
 #include "components/postfx/comp_vignette.h"
 #include "components/postfx/comp_render_focus.h"
-
+#include "components/postfx/comp_render_motion_blur.h"
 //--------------------------------------------------------------------------------------
 
 CModuleRender::CModuleRender(const std::string& name)
@@ -360,10 +360,17 @@ void CModuleRender::generateFrame() {
             if (c_vignette)
                 curr_rt = c_vignette->apply(curr_rt);
 
+            TCompRenderMotionBlur * c_render_motion_blur = e_cam->get< TCompRenderMotionBlur >();
+            if (c_render_motion_blur)
+                curr_rt = c_render_motion_blur->apply(curr_rt);
+
             TCompAntiAliasing* c_antialiasing = e_cam->get< TCompAntiAliasing >();
             if (c_antialiasing)
                 curr_rt = c_antialiasing->apply(curr_rt);
 
+            CEntity* e_camera = h_e_camera;
+            TCompCamera * t_cam = e_camera->get<TCompCamera>();
+            cb_camera.prev_camera_view_proj = t_cam->getViewProjection();
         }
 
         Render.startRenderInBackbuffer();
@@ -442,10 +449,5 @@ void CModuleRender::debugDraw() {
         ImGui::End();
         ImGui::PopStyleVar(2);
         ImGui::PopStyleColor(5);
-    }
-
-    {
-        //Particle editor
-
     }
 }

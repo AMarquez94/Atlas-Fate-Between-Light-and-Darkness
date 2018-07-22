@@ -265,7 +265,15 @@
 		"category": "fx",
 		"z": "disable_all"
 	},
-		"postfx_fog": {
+	"postfx_motion_blur": {
+		"vs_file": "data/shaders/screen_quad.fx",
+		"ps_file": "data/shaders/blur.fx",
+		"ps_entry_point": "PS_MOTION",
+		"vertex_type": "PosClr",
+		"category": "fx",
+		"z": "disable_all"
+	},
+	"postfx_fog": {
 		"vs_file": "data/shaders/screen_quad.fx",
 		"ps_file": "data/shaders/postfx.fx",
 		"ps_entry_point": "PS_PostFXFog",

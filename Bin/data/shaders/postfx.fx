@@ -31,8 +31,7 @@ float4 PS_PostFX_Vignette(in float4 iPosition : SV_POSITION , in float2 iTex0 : 
 // PostFX Exponential distance fog.
 float4 PS_PostFX_ExpFog(float4 iPosition, float2 iTex0, float4 in_color)
 {
-	int3 ss_load_coords = uint3(iPosition.xy, 0);
-	float depth = txGBufferLinearDepth.Load(ss_load_coords).x;
+	float depth = txGBufferLinearDepth.Load(uint3(iPosition.xy, 0)).x;
 	float3 wPos = getWorldCoords(iPosition.xy, depth);
   //float4 in_color = txAlbedo.Sample(samClampLinear, iTex0.xy);
 	

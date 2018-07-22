@@ -96,6 +96,7 @@ CB_DEF(CCteCamera, CB_CAMERA)   // Generates the b0
     MAT44 camera_view;
     MAT44 camera_proj;
     MAT44 camera_view_proj;
+    MAT44 prev_camera_view_proj;
     MAT44 camera_screen_to_world;
     MAT44 camera_proj_with_offset;      // Used by ao
     VEC3  camera_pos;
@@ -201,6 +202,11 @@ CB_DEF(CCteBlur, CB_BLUR)
     VEC4 blur_d;        // distances
     VEC2 blur_step;     // Extra modifier
     VEC2 blur_center; // To keep aligned x4
+
+    float mblur_blur_samples;
+    float mblur_blur_speed;
+    float mblur_samples;
+    float mblur_dummy1;
 };
 
 CB_DEF(CCteSkinBones, CB_SKIN_BONES)

@@ -61,6 +61,9 @@
 				"global_distance": 0.1,
 				"gauss_filter": true
 			},
+			"motion_blur" : {
+				"enabled" : true
+		  },
 			"render_bloom": {
 				"enabled": true,
 				"max_steps": 4,
@@ -138,6 +141,9 @@
 				"enabled": true
 			},
 			"vignette" : {
+				"enabled" : true
+		  },
+			"motion_blur" : {
 				"enabled" : true
 		  },
 			"render_outlines" : {
