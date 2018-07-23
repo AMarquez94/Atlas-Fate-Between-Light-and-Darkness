@@ -4,6 +4,7 @@
 #include "../comp_base.h"
 #include "render/cte_buffer.h"
 #include "ctes.h"
+#include "cal3d/animcallback.h"
 
 class CalModel;
 
@@ -17,6 +18,15 @@ struct TCompSkeleton : public TCompBase {
 	CRenderCte<CCteSkinBones> cb_bones;
 	CalModel* model = nullptr;
 
+	struct AnimationCallback : public CalAnimationCallback {
+
+		CHandle * ownHandle;
+		std::string luaFunction;
+
+		void AnimationUpdate(float anim_time, CalModel *model);
+		void AnimationComplete(CalModel *model);
+	};
+	AnimationCallback* hola;
 	TCompSkeleton();
 	~TCompSkeleton();
 	void load(const json& j, TEntityParseContext& ctx);

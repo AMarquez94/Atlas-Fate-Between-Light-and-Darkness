@@ -5,6 +5,7 @@
 #include "resources/resources_manager.h"
 #include "render/render_objects.h"
 #include "components/comp_transform.h"
+#include "cal3d/animcallback.h"
 
 DECL_OBJ_MANAGER("skeleton", TCompSkeleton);
 
@@ -27,6 +28,14 @@ MAT44 Cal2DX(CalVector trans, CalQuaternion rot) {
         MAT44::CreateFromQuaternion(Cal2DX(rot))
         * MAT44::CreateTranslation(Cal2DX(trans))
         ;
+}
+
+void TCompSkeleton::AnimationCallback::AnimationUpdate(float anim_time, CalModel *model) {
+	dbg("eeeeeeeeeeeeeeeei\n");
+}
+
+void TCompSkeleton::AnimationCallback::AnimationComplete(CalModel *model) {
+
 }
 
 // --------------------------------------------------------------------
@@ -75,7 +84,7 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
   if (model->getSkeleton()->getCoreSkeleton()->getScale() != scaleFactor) {
 	  model->getCoreModel()->scale(scaleFactor);
   }
-
+  model->getCoreModel()->getCoreAnimation(0)->registerCallback(hola, 0.4f);
     // Do a time zero update just to have the bones in a correct place
     model->update(0.f);
 
