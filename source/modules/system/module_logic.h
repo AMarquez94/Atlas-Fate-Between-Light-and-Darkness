@@ -115,6 +115,6 @@ void toggleButtonCanBePressed(const std::string& buttonName, bool canBePressed);
 void cg_drawfps(bool value);
 void cg_drawlights(int type);
 
-//CEntity* toEntity(CHandle h) { CEntity* e = h; return e; };
-//TCompTransform* toTransform(CHandle h) { TCompTransform* t = h; return t; };
-//TCompAIPatrol* toAIPatrol(CHandle h) { TCompAIPatrol* t = h; return t; };
+CEntity* toEntity(CHandle h);
+TCompTransform* toTransform(CHandle h);
+TCompAIPatrol* toAIPatrol(CHandle h);

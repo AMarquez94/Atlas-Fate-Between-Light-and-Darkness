@@ -1173,7 +1173,7 @@ float TCompAIPatrol::getMaxChaseDistance()
 
 void TCompAIPatrol::launchInhibitor()
 {
-    dbg("PIIIIIIM\n");
+
 }
 
 void TCompAIPatrol::playAnimationByName(const std::string & animationName)

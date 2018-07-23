@@ -128,7 +128,9 @@ void CModuleLogic::publishClasses() {
         .set("launchInhibitor", &TCompAIPatrol::launchInhibitor);
 
     SLB::Class <CHandle>("CHandle", m)
-        .comment("CHandle wrapper");
+        .comment("CHandle wrapper")
+        .constructor()
+        .set("fromUnsigned", &CHandle::fromUnsigned);
 
     SLB::Class <CEntity>("CEntity", m)
         .comment("CEntity wrapper")
@@ -186,10 +188,12 @@ void CModuleLogic::publishClasses() {
     m->set("toggleButtonCanBePressed", SLB::FuncCall::create(&toggleButtonCanBePressed));
     m->set("getEntityByName", SLB::FuncCall::create(&getEntityByName));
 
+    m->set("testing", SLB::FuncCall::create(&testing));
+
     /* Handle converters */
-    //m->set("toEntity", SLB::FuncCall::create(&toEntity));
-    //m->set("toTransform", SLB::FuncCall::create(&toTransform));
-    //m->set("toAIPatrol", SLB::FuncCall::create(&toAIPatrol));
+    m->set("toEntity", SLB::FuncCall::create(&toEntity));
+    m->set("toTransform", SLB::FuncCall::create(&toTransform));
+    m->set("toAIPatrol", SLB::FuncCall::create(&toAIPatrol));
 }
 
 /* Check if it is a fast format command */
@@ -316,6 +320,7 @@ TCompTempPlayerController * getPlayerController()
     }
     return playerController;
 }
+
 CModuleGameConsole * getConsole() { return EngineConsole.getPointer(); }
 
 void execDelayedScript(const std::string& script, float delay)
@@ -532,6 +537,24 @@ void cg_drawlights(int type) {
     getObjectManager<TCompLightPoint>()->forEach([&](TCompLightPoint* c) {
         c->isEnabled = point;
     });
+}
+
+CEntity* toEntity(CHandle h)
+{
+    CEntity* e = h;
+    return e;
+}
+
+TCompTransform* toTransform(CHandle h)
+{
+    TCompTransform* t = h;
+    return t;
+}
+
+TCompAIPatrol* toAIPatrol(CHandle h)
+{
+    TCompAIPatrol* t = h;
+    return t;
 }
 
 void playSound2D(const std::string& soundName) {
