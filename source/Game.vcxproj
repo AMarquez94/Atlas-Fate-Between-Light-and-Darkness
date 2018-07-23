@@ -119,6 +119,7 @@
     <ClCompile Include="components\lighting\comp_fade_controller.cpp" />
     <ClCompile Include="components\lighting\comp_projector.cpp" />
     <ClCompile Include="components\object_controller\comp_button.cpp" />
+    <ClCompile Include="components\object_controller\comp_inhibitor.cpp" />
     <ClCompile Include="components\object_controller\comp_instance.cpp" />
     <ClCompile Include="components\object_controller\comp_movable_object.cpp" />
     <ClCompile Include="components\object_controller\comp_noise_emitter.cpp" />
@@ -323,6 +324,7 @@
     <ClInclude Include="components\lighting\comp_fade_controller.h" />
     <ClInclude Include="components\lighting\comp_projector.h" />
     <ClInclude Include="components\object_controller\comp_button.h" />
+    <ClInclude Include="components\object_controller\comp_inhibitor.h" />
     <ClInclude Include="components\object_controller\comp_instance.h" />
     <ClInclude Include="components\object_controller\comp_movable_object.h" />
     <ClInclude Include="components\object_controller\comp_noise_emitter.h" />

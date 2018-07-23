@@ -17,6 +17,7 @@
 #include "components/ia/comp_patrol_animator.h"
 #include "render/render_objects.h"
 #include "components/lighting/comp_fade_controller.h"
+#include "entity/entity_parser.h"
 
 DECL_OBJ_MANAGER("ai_patrol", TCompAIPatrol);
 
@@ -639,6 +640,22 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
         msg.h_sender = CHandle(this).getOwner();
         player->sendMsg(msg);
     }
+
+    TEntityParseContext ctxInhibitor;
+    ctxInhibitor.entity_starting_the_parse = CHandle(this).getOwner();
+    parseScene("data/prefabs/inhibitor.prefab", ctxInhibitor);
+    TCompGroup* myGroup = get<TCompGroup>();
+    myGroup->add(ctxInhibitor.entities_loaded[0]);
+
+    /* TODO: cambiar a paso por mensajes */
+  /*  CEntity* eInhibitor = inhibitor;
+    TCompGroup* myPos = get<TCompTransform>();
+    TCompTransform* inhibitorPos = eInhibitor->get<TCompTransform>();
+    inhibitorPos->setPosition(myPos->getPosition() + VEC3(0, 2, 0));
+    float delta_yaw = inhibitorPos->getDeltaYawToAimTo(myPos->getPosition() + myPos->getFront());
+    float yaw, pitch;
+    inhibitorPos->getYawPitchRoll(&yaw, &pitch);
+    inhibitorPos->setYawPitchRoll(yaw + delta_yaw, pitch);*/
     return BTNode::ERes::LEAVE;
 }
 
@@ -1143,6 +1160,13 @@ CHandle TCompAIPatrol::getPatrolInPos(VEC3 lastPos)
     }
 
 	return h_stunnedPatrol;
+}
+
+float TCompAIPatrol::getMaxChaseDistance()
+{
+    float maxChaseDistance = arguments["maxChaseDistance_actionSuspect_suspect"].getFloat();
+    assert(arguments.find("dcrSuspectO_Meter_actionSuspect_suspect") != arguments.end());
+    return maxChaseDistance;
 }
 
 void TCompAIPatrol::playAnimationByName(const std::string & animationName)

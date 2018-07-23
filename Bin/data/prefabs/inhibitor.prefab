@@ -1,0 +1,22 @@
+[{
+	"entity": {
+		"name": "Inhibitor",
+		"transform": {
+			"pos": "0 0 0",
+			"rotation": "0.0 0.0 0.0 -1.0",
+			"scale": 4
+		},
+		"render": [{
+			"mesh": "data/meshes/Drone_Lantern.mesh",
+			"materials": [
+				"data/materials/mtl_whitebox.material"
+			]
+		}],
+		"inhibitor": {
+			"min_speed": 2.0,
+			"time_range": "0.5 2"
+		},
+		"abs_aabb": true,
+		"local_aabb": true
+	}
+}]
