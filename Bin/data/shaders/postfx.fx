@@ -15,6 +15,19 @@ float4 postfx_contrast(float4 color)
 	return float4(con_color, 1);
 }
 
+float4 PS_PostFX_Flares(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
+{
+	float4 color = txAlbedo.Sample(samClampLinear, iTex0); 
+  float2 position = (iPosition.xy * camera_inv_resolution) - float2(0.5f,0.5f);
+  //position.x *= camera_aspect_ratio;
+
+  float len = length(position);
+	float vignette = smoothstep(0.95, 0.95 - 0.65, len);
+  color.rgb = lerp(color.rgb, color.rgb * vignette, 0.75);
+
+	return color;
+}
+
 float4 PS_PostFX_Vignette(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
 {
 	float4 color = txAlbedo.Sample(samClampLinear, iTex0); 
@@ -95,8 +108,8 @@ float4 PS_PostFX_CA(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOO
 	float4 distorsion_r = txAlbedo.Sample(samClampLinear, iTex0 + postfx_ca_amount * 0.01 * distortion);
 	float4 distorsion_g = txAlbedo.Sample(samClampLinear, iTex0 - postfx_ca_amount * 0.01 * distortion);
 	float4 distorsion_b = txAlbedo.Sample(samClampLinear, iTex0 + postfx_ca_amount * 0.01 * distortion);
-
-  return float4(distorsion_r.r, distorsion_g.g, distorsion_b.b, 1);
+	
+	return float4(distorsion_r.r, distorsion_g.g, distorsion_b.b, 1);
 }
 
 void VS_PostFX_Focus(in float4 iPos : POSITION, out float4 oPos : SV_POSITION, out float2 oTex0 : TEXCOORD0)

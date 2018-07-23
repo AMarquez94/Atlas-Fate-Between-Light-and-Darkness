@@ -29,6 +29,8 @@
 #include "components/postfx/comp_vignette.h"
 #include "components/postfx/comp_render_focus.h"
 #include "components/postfx/comp_render_motion_blur.h"
+#include "components/postfx/comp_render_flares.h"
+
 //--------------------------------------------------------------------------------------
 
 CModuleRender::CModuleRender(const std::string& name)
@@ -363,6 +365,10 @@ void CModuleRender::generateFrame() {
             TCompRenderMotionBlur * c_render_motion_blur = e_cam->get< TCompRenderMotionBlur >();
             if (c_render_motion_blur)
                 curr_rt = c_render_motion_blur->apply(curr_rt);
+
+            TCompRenderFlares* c_render_flares = e_cam->get< TCompRenderFlares >();
+            if (c_render_flares)
+                curr_rt = c_render_flares->apply(curr_rt, c_render_bloom->rt_highlights);
 
             TCompAntiAliasing* c_antialiasing = e_cam->get< TCompAntiAliasing >();
             if (c_antialiasing)
