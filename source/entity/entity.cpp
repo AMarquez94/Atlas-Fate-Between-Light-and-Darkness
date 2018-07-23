@@ -23,6 +23,17 @@ CEntity::~CEntity() {
   }
 }
 
+CHandle CEntity::getCompByName(const char * comp_name)
+{
+    auto om = CHandleManager::getByName(comp_name);
+    if (!om) {
+        return CHandle();
+    }
+    else {
+        return get(om->getType());
+    }
+}
+
 
 void CEntity::set(uint32_t comp_type, CHandle new_comp) {
   assert(comp_type < CHandle::max_types);

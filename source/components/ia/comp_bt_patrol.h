@@ -101,5 +101,8 @@ public:
 
 	static void registerMsgs();
 
+    /* LUA functions */
+    void launchInhibitor();
+
 	void playAnimationByName(const std::string & animationName) override;
 };

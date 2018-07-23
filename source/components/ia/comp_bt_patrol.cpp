@@ -623,6 +623,8 @@ BTNode::ERes TCompAIPatrol::actionMarkPlayerAsSeen(float dt)
 
 BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 {
+    //play animation shoot inhibitor
+    //
     assert(arguments.find("entityToChase_actionShootInhibitor_shootInhibitor") != arguments.end());
     std::string entityToChase = arguments["entityToChase_actionShootInhibitor_shootInhibitor"].getString();
 
@@ -1167,6 +1169,11 @@ float TCompAIPatrol::getMaxChaseDistance()
     float maxChaseDistance = arguments["maxChaseDistance_actionSuspect_suspect"].getFloat();
     assert(arguments.find("dcrSuspectO_Meter_actionSuspect_suspect") != arguments.end());
     return maxChaseDistance;
+}
+
+void TCompAIPatrol::launchInhibitor()
+{
+    dbg("PIIIIIIM\n");
 }
 
 void TCompAIPatrol::playAnimationByName(const std::string & animationName)
