@@ -159,7 +159,7 @@ void CalAnimation::checkCallbacks(float animationTime,CalModel *model)
 	if (m_lastCallbackTimes.size() <= i)                // need these two lines to allow dynamic adding of callbacks. 
 		m_lastCallbackTimes.push_back(animationTime);
 
-    list[i].callback->AnimationUpdate(animationTime, model);
+    //list[i].callback->AnimationUpdate(animationTime, model);
     if (animationTime > 0 && animationTime < m_lastCallbackTimes[i])  // looped
         m_lastCallbackTimes[i] -= m_pCoreAnimation->getDuration();
     else if (animationTime < 0 && animationTime > m_lastCallbackTimes[i])     // reverse-looped  

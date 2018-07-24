@@ -20,7 +20,7 @@ struct TCompSkeleton : public TCompBase {
 
 	struct AnimationCallback : public CalAnimationCallback {
 
-		CHandle * ownHandle;
+		CHandle ownHandle;
 		std::string luaFunction;
 
 		void AnimationUpdate(float anim_time, CalModel *model);
