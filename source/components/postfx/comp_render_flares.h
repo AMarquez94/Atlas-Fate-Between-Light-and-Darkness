@@ -14,10 +14,9 @@ class CTexture;
 class TCompRenderFlares : public TCompRenderBlur {
 
 	CRenderToTexture*       rt_output = nullptr;
+    CRenderToTexture*       rt_output2 = nullptr;
 	const CRenderTechnique* tech = nullptr;
 	const CRenderMesh*      mesh = nullptr;
-	float                   amount = 1.f;
-	float                   radius = 0.110f;
 	int                     xres = 0;
 	int                     yres = 0;
 

@@ -534,6 +534,6 @@ float4 PS_skybox(in float4 iPosition : SV_Position) : SV_Target
 {
 	float3 view_dir = mul(float4(iPosition.xy, 1, 1), camera_screen_to_world).xyz;
 	float4 skybox_color = txEnvironmentMap.Sample(samLinear, view_dir);
-		skybox_color = pow(skybox_color, float4(2.2,2.2,2.2, 1));
-    return float4(skybox_color.xyz, 1);// *global_ambient_adjustment;
+	//skybox_color = pow(skybox_color, float4(2.2,2.2,2.2, 1));
+   return float4(skybox_color.xyz, 1) *global_ambient_adjustment;
 }

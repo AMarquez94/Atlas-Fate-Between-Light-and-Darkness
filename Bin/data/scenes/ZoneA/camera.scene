@@ -86,6 +86,10 @@
 			"vignette" : {
 				"enabled" : true
 		  },
+			"render_flares" : {
+				"enabled" : true,
+				"max_steps": 4
+		  },
 			"render_outlines" : {
 				"enabled" : true
 		  },

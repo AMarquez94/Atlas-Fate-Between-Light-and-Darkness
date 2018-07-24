@@ -11,18 +11,19 @@ class CRenderToTexture;
 
 // ------------------------------------
 struct TCompRenderFocus : public TCompBase {
-  bool                    enabled;
-  CRenderCte< CCteFocus > cte_focus;
-  CRenderToTexture*       rt = nullptr;
-  const CRenderTechnique* tech = nullptr;
-  const CRenderMesh*      mesh = nullptr;
 
-  TCompRenderFocus();
-  ~TCompRenderFocus();
+    bool                    enabled;
+    CRenderCte< CCteFocus > cte_focus;
+    CRenderToTexture*       rt = nullptr;
+    const CRenderTechnique* tech = nullptr;
+    const CRenderMesh*      mesh = nullptr;
 
-  void load(const json& j, TEntityParseContext& ctx);
-  void debugInMenu();
-  CTexture* apply(CTexture* focus_texture, CTexture* blur_texture);
+    TCompRenderFocus();
+    ~TCompRenderFocus();
+
+    void load(const json& j, TEntityParseContext& ctx);
+    void debugInMenu();
+    CTexture* apply(CTexture* focus_texture, CTexture* blur_texture);
 };
 
 #endif

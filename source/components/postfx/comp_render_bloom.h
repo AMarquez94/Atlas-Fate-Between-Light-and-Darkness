@@ -7,24 +7,25 @@
 
 // ------------------------------------
 struct TCompRenderBloom : public TCompRenderBlur {
-  CRenderCte< CCteBloom >       cte_bloom;
-  CRenderToTexture*             rt_highlights = nullptr;
-  const CRenderTechnique*       tech_filter = nullptr;
-  const CRenderTechnique*       tech_add = nullptr;
-  const CRenderMesh*            mesh = nullptr;
-  VEC4                          add_weights;
-  float                         threshold_min = 0.700;
-  float                         threshold_max = 0.920f;
-  float                         multiplier = 1.430f;
-  TCompRenderBlur * renderblur;
 
-  TCompRenderBloom();
-  ~TCompRenderBloom();
+    CRenderCte< CCteBloom >       cte_bloom;
+    CRenderToTexture*             rt_highlights = nullptr;
+    const CRenderTechnique*       tech_filter = nullptr;
+    const CRenderTechnique*       tech_add = nullptr;
+    const CRenderMesh*            mesh = nullptr;
+    VEC4                          add_weights;
+    float                         threshold_min = 0.700;
+    float                         threshold_max = 0.920f;
+    float                         multiplier = 1.430f;
+    TCompRenderBlur * renderblur;
 
-  void generateHighlights(CTexture* in_texture);
-  void load(const json& j, TEntityParseContext& ctx);
-  void debugInMenu();
-  void addBloom();
+    TCompRenderBloom();
+    ~TCompRenderBloom();
+
+    void generateHighlights(CTexture* in_texture);
+    void load(const json& j, TEntityParseContext& ctx);
+    void debugInMenu();
+    void addBloom();
 
 };
 

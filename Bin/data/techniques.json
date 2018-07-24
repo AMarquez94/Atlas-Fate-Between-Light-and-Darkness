@@ -265,6 +265,14 @@
 		"category": "fx",
 		"z": "disable_all"
 	},
+	"postfx_blur_upsampler": {
+		"vs_file": "data/shaders/screen_quad.fx",
+		"ps_file": "data/shaders/blur.fx",
+		"ps_entry_point": "PS_PostBlur",
+		"vertex_type": "PosClr",
+		"category": "fx",
+		"z": "disable_all"
+	},
 	"postfx_motion_blur": {
 		"vs_file": "data/shaders/screen_quad.fx",
 		"ps_file": "data/shaders/blur.fx",
@@ -490,7 +498,7 @@
 	"postfx_flare": {
 		"vs_file": "data/shaders/screen_quad.fx",
 		"ps_file": "data/shaders/postfx.fx",
-		"ps_entry_point": "PS_PostFX_Vignette",
+		"ps_entry_point": "PS_PostFX_Flares",
 		"vertex_type": "PosClr",
 		"category": "fx",
 		"z" : "disable_all"

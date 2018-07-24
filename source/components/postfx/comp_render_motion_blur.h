@@ -11,17 +11,18 @@ class CRenderToTexture;
 
 // ------------------------------------
 struct TCompRenderMotionBlur : public TCompBase {
-  bool                    enabled;
-  CRenderToTexture*       rt = nullptr;
-  const CRenderTechnique* tech = nullptr;
-  const CRenderMesh*      mesh = nullptr;
 
-  TCompRenderMotionBlur();
-  ~TCompRenderMotionBlur();
+    bool                    enabled;
+    CRenderToTexture*       rt = nullptr;
+    const CRenderTechnique* tech = nullptr;
+    const CRenderMesh*      mesh = nullptr;
 
-  void load(const json& j, TEntityParseContext& ctx);
-  void debugInMenu();
-  CTexture* apply(CTexture* in_texture);
+    TCompRenderMotionBlur();
+    ~TCompRenderMotionBlur();
+
+    void load(const json& j, TEntityParseContext& ctx);
+    void debugInMenu();
+    CTexture* apply(CTexture* in_texture);
 };
 
 #endif

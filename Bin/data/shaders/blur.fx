@@ -55,6 +55,18 @@ float4 PS(
   return cfinal;
 }
 
+float4 PS_PostBlur(in float4 iPosition : SV_POSITION, in float2 iTex0 : TEXCOORD0) : SV_Target
+{
+	float3 c0 = txAlbedo.Sample(samClampLinear, iTex0) / 4;
+	float3 c1 = txAlbedo.Sample(samClampLinear, iTex0) / 2;
+	float3 c2 = txAlbedo.Sample(samClampLinear, iTex0) / 4;
+	float3 c3 = txAlbedo.Sample(samClampLinear, iTex0);
+	float3 cf = (c0 + c1 + c2) * .4;
+
+	return float4(cf + c3, 1);
+}
+
+
 float4 PS_MOTION(in float4 iPosition : SV_POSITION, in float2 iTex0 : TEXCOORD0) : SV_Target
 {
   float4 color = txAlbedo.Sample(samClampLinear, iTex0); 

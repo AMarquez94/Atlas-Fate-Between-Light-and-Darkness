@@ -17,15 +17,79 @@ float4 postfx_contrast(float4 color)
 
 float4 PS_PostFX_Flares(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
 {
-	float4 color = txAlbedo.Sample(samClampLinear, iTex0); 
-  float2 position = (iPosition.xy * camera_inv_resolution) - float2(0.5f,0.5f);
-  //position.x *= camera_aspect_ratio;
+	float3 c0 = txEmissive.Sample(samClampLinear, iTex0) / 4;
+	float3 c1 = txEmissive.Sample(samClampLinear, iTex0) / 2;
+	float3 c2 = txEmissive.Sample(samClampLinear, iTex0) / 4;
+	float3 c3 = txEmissive.Sample(samClampLinear, iTex0);
+	float4 color = txAlbedo.Sample(samClampLinear, iTex0);
+	float3 cf = (c0 + c1 + c2) * 4;
+		
+	return color + float4(c3, 1);
+		
+    float4 em = txEmissive.Sample(samClampLinear, iTex0);
+		return color + em;//color + float4(cf + c3, 1);
+	/*
+    float hscale = 1.25;
+    float dx = (1/1024) * hscale;
 
-  float len = length(position);
-	float vignette = smoothstep(0.95, 0.95 - 0.65, len);
-  color.rgb = lerp(color.rgb, color.rgb * vignette, 0.75);
+    float u0 = iTex0.x - dx * 5;
+    float u1 = iTex0.x - dx * 3;
+    float u2 = iTex0.x - dx * 1;
+    float u3 = iTex0.x + dx * 1;
+    float u4 = iTex0.x + dx * 3;
+    float u5 = iTex0.x + dx * 5;
 
-	return color;
+    float3 c0 = txEmissive.Sample(samClampLinear, float2(u0, iTex0.y));
+    float3 c1 = txEmissive.Sample(samClampLinear, float2(u1, iTex0.y));
+    float3 c2 = txEmissive.Sample(samClampLinear, float2(u2, iTex0.y));
+    float3 c3 = txEmissive.Sample(samClampLinear, float2(u3, iTex0.y));
+    float3 c4 = txEmissive.Sample(samClampLinear, float2(u4, iTex0.y));
+    float3 c5 = txEmissive.Sample(samClampLinear, float2(u5, iTex0.y));
+
+    // Simple box filter
+    float3 c = (c0 + c1 + c2 + c3 + c4 + c5) / 6;
+
+    return float4(c, 1);
+
+  int uGhosts = 4; // number of ghost samples
+  float uGhostDispersal = 1; // dispersion factor
+	 
+	float2 light_iTex0 = -iTex0 + float2(1, 1);
+	float4 color = txAlbedo.Sample(samClampLinear, iTex0);
+	float4 light_beam = txEmissive.Sample(samClampLinear, iTex0);
+	
+	float2 texelSize = camera_inv_resolution;
+	float2 vghost = (float2(0.5, 0.5) - light_iTex0) * uGhostDispersal;
+ 
+	float4 result = float4(0, 0, 0, 0);
+	for (int i = 0; i < uGhosts; ++i) { 
+	
+		float2 offset = frac(light_iTex0 + vghost * float(i));
+		result += txEmissive.Sample(samClampLinear, offset);
+	}
+	
+	
+	// Actually this should be 1, but we assume you need more blur...
+	float vscale = 1.5;
+	float dy = (1/512) * vscale / 2;
+
+	float3 c0 = txEmissive.Sample(samClampLinear, float2(iTex0.x, iTex0.y - dy));
+	float3 c1 = txEmissive.Sample(samClampLinear, float2(iTex0.x, iTex0.y + dy));
+	float3 c = (c0 + c1) / 2;
+
+	float br = max(c.r, max(c.y, c.z));
+	//c *= max(0, br - 1) / max(br, 0.00001);
+
+	return float4(c * br, 1);
+		
+	float3 c0 = txEmissive.Sample(samClampLinear, iTex0) / 4;
+  float3 c1 = txEmissive.Sample(samClampLinear, iTex0) / 2;
+  float3 c2 = txEmissive.Sample(samClampLinear, iTex0) / 4;
+  float3 c3 = txEmissive.Sample(samClampLinear, iTex0);
+  float3 cf = (c0 + c1 + c2) * 1 * 5;
+	return float4(cf + c3, 1);
+		
+	//return color + light_beam;*/
 }
 
 float4 PS_PostFX_Vignette(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
