@@ -637,27 +637,10 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
     if (!pController->isInhibited) {
 
         timeAnimating = 0.0f;
-
-        TMsgInhibitorShot msg;
-        msg.h_sender = CHandle(this).getOwner();
-        player->sendMsg(msg);
+        EngineLogic.execScript("animation_LaunchInhibitor(" + std::to_string(CHandle(this).getOwner().asUnsigned()) + ")");
     }
 
-    TEntityParseContext ctxInhibitor;
-    ctxInhibitor.entity_starting_the_parse = CHandle(this).getOwner();
-    parseScene("data/prefabs/inhibitor.prefab", ctxInhibitor);
-    TCompGroup* myGroup = get<TCompGroup>();
-    myGroup->add(ctxInhibitor.entities_loaded[0]);
 
-    /* TODO: cambiar a paso por mensajes */
-  /*  CEntity* eInhibitor = inhibitor;
-    TCompGroup* myPos = get<TCompTransform>();
-    TCompTransform* inhibitorPos = eInhibitor->get<TCompTransform>();
-    inhibitorPos->setPosition(myPos->getPosition() + VEC3(0, 2, 0));
-    float delta_yaw = inhibitorPos->getDeltaYawToAimTo(myPos->getPosition() + myPos->getFront());
-    float yaw, pitch;
-    inhibitorPos->getYawPitchRoll(&yaw, &pitch);
-    inhibitorPos->setYawPitchRoll(yaw + delta_yaw, pitch);*/
     return BTNode::ERes::LEAVE;
 }
 
@@ -1173,7 +1156,11 @@ float TCompAIPatrol::getMaxChaseDistance()
 
 void TCompAIPatrol::launchInhibitor()
 {
-
+    TEntityParseContext ctxInhibitor;
+    ctxInhibitor.entity_starting_the_parse = CHandle(this).getOwner();
+    parseScene("data/prefabs/inhibitor.prefab", ctxInhibitor);
+    TCompGroup* myGroup = get<TCompGroup>();
+    myGroup->add(ctxInhibitor.entities_loaded[0]);
 }
 
 void TCompAIPatrol::playAnimationByName(const std::string & animationName)

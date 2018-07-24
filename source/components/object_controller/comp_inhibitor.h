@@ -8,15 +8,11 @@ class TCompInhibitor : public TCompBase {
     DECL_SIBLING_ACCESS();
 
     CHandle h_parent;
-    float min_x_speed;
-    VEC2 time_range;
-    float time;
-    VEC3 dest;
     float speed;
-    float currentTime;
+    VEC3 dest;
+    bool exploding = false;
 
     void onMsgEntityCreated(const TMsgEntityCreated& msg);
-    void onMsgLaunchInhibitor(const TMsgLaunchInhibitor& msg);
 
 public:
     void debugInMenu();

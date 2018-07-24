@@ -13,8 +13,7 @@
 			]
 		}],
 		"inhibitor": {
-			"min_speed": 2.0,
-			"time_range": "0.5 2"
+			"speed": 15.0
 		},
 		"abs_aabb": true,
 		"local_aabb": true

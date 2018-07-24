@@ -1,4 +1,4 @@
-function animation_launchinhibitor(sender)
+function animation_LaunchInhibitor(sender)
 	h = CHandle();
 	h:fromUnsigned(sender);
 	e_patrol = toEntity(h);

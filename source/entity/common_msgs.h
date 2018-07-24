@@ -260,11 +260,6 @@ struct TMsgPlayerAIEnabled {
     DECL_MSG_ID();
 };
 
-struct TMsgLaunchInhibitor {
-    float maxDistance;
-    DECL_MSG_ID();
-};
-
 //struct TMsgSpotlightsToggle {
 //    DECL_MSG_ID();
 //};

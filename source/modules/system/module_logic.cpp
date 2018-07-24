@@ -188,8 +188,6 @@ void CModuleLogic::publishClasses() {
     m->set("toggleButtonCanBePressed", SLB::FuncCall::create(&toggleButtonCanBePressed));
     m->set("getEntityByName", SLB::FuncCall::create(&getEntityByName));
 
-    m->set("testing", SLB::FuncCall::create(&testing));
-
     /* Handle converters */
     m->set("toEntity", SLB::FuncCall::create(&toEntity));
     m->set("toTransform", SLB::FuncCall::create(&toTransform));
