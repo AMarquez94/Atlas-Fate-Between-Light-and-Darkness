@@ -66,7 +66,9 @@ public:
     }
 
     uint32_t asUnsigned() const { return *(uint32_t*)this; }
+    std::string asString() const { return std::to_string(asUnsigned()); };
     void fromUnsigned(uint32_t data) { *(uint32_t*)this = data; }
+    //TODO: fromString?
     // When we want to store/retrieve the handle in a void* 
     // void* is not the addr of the real object, just the handle 
     void* asVoidPtr() const { return (uintptr_t*)(size_t)asUnsigned(); }

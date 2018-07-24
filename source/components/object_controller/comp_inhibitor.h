@@ -12,6 +12,11 @@ class TCompInhibitor : public TCompBase {
     VEC3 dest;
     bool exploding = false;
 
+    bool playerWasInhibited = false;
+    /* TODO: bool playerWasInhibited = false;
+    float explosionSpeed;
+    float explosionRange;*/
+
     void onMsgEntityCreated(const TMsgEntityCreated& msg);
 
 public:

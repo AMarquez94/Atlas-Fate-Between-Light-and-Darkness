@@ -40,15 +40,28 @@ void TCompInhibitor::update(float dt) {
         mypos->setPosition(mypos->getPosition() + mypos->getFront() * speed * dt);
         if (VEC3::Distance(mypos->getPosition(), dest) < speed * dt) {
             exploding = true;
+        }
+    }
+    else {
+        /* manageExplosion */
+        /* TODO: in each update, test if the player is inside the explosion range or the explosion has reached it's maximum. 
+        Destroy the entity after this. */
+
+        /* if(!playerInhibited && distance(playerpos, mypos) < actualRange) => setPlayerInhibited 
+           if(actualRange >= maxRange) => destroy() */
+
+
+        if (!playerWasInhibited) {
             CHandle player = getEntityByName("The Player");
             if (player.isValid()) {
                 TMsgInhibitorShot msg;
                 msg.h_sender = CHandle(this).getOwner();
                 player.sendMsg(msg);
             }
+            playerWasInhibited = true;
         }
-    }
-    else {
-        /* manageExplosion */
+        else {
+            CHandle(this).getOwner().destroy();
+        }
     }
 }

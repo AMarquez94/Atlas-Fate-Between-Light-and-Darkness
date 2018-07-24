@@ -625,6 +625,8 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 {
     //play animation shoot inhibitor
     //
+
+    //TODO: if !animationBeingPlayed and PlayerInhibited => LEAVE; else => normal
     assert(arguments.find("entityToChase_actionShootInhibitor_shootInhibitor") != arguments.end());
     std::string entityToChase = arguments["entityToChase_actionShootInhibitor_shootInhibitor"].getString();
 
@@ -637,7 +639,7 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
     if (!pController->isInhibited) {
 
         timeAnimating = 0.0f;
-        EngineLogic.execScript("animation_LaunchInhibitor(" + std::to_string(CHandle(this).getOwner().asUnsigned()) + ")");
+        EngineLogic.execScript("animation_LaunchInhibitor(" + CHandle(this).getOwner().asString() + ")");
     }
 
 
