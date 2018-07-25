@@ -36,7 +36,7 @@ void TCompRenderFlares::load(const json& j, TEntityParseContext& ctx) {
     distance_factors = VEC4(10, 2, 0, 0);
 
     static int g_blur_counter = 0;
-    for (int i = 0; i < 6; ++i) {
+    for (int i = 0; i < 2; ++i) {
         CBlurStep* s = new CBlurStep;
 
         char blur_name[64];
@@ -59,19 +59,19 @@ CTexture* TCompRenderFlares::apply(CTexture* in_color, CTexture * in_lights) {
 	CTraceScoped scope("TCompFlares");
 
     CTexture* output = in_lights;
-    //for (auto s : steps) {
+    for (auto s : steps) {
 
-    //    output = s->applyHalf(in_lights, global_distance, distance_factors, weights);
+        output = s->apply(in_lights, global_distance, distance_factors, weights);
+        in_lights = output;
+        //rt_output->activateRT();
+        //output->activate(TS_ALBEDO);
 
-    //    rt_output->activateRT();
-    //    output->activate(TS_ALBEDO);
+        //const CRenderTechnique * n_tech = Resources.get("postfx_blur_upsampler.tech")->as<CRenderTechnique>();
+        //n_tech->activate();
+        //mesh->activateAndRender();
 
-    //    const CRenderTechnique * n_tech = Resources.get("postfx_blur_upsampler.tech")->as<CRenderTechnique>();
-    //    n_tech->activate();
-    //    mesh->activateAndRender();
-
-    //    in_lights = rt_output;
-    //}
+        //in_lights = rt_output;
+    }
 
     rt_output2->activateRT();
     in_color->activate(TS_ALBEDO);

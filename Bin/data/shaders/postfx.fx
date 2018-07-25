@@ -15,8 +15,38 @@ float4 postfx_contrast(float4 color)
 	return float4(con_color, 1);
 }
 
+float3 ApplyThreshold(in float3 _rgb, in float _threshold)
+{
+	return max(_rgb - float3(_threshold,_threshold,_threshold), float3(0,0,0));
+}
+
 float4 PS_PostFX_Flares(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
 {
+  int uGhosts = 4; // number of ghost samples
+  float uGhostDispersal = .1; // dispersion factor
+	 
+	float2 light_iTex0 = -iTex0 + float2(1,1);// + float2(512, 256);
+	float4 color = txAlbedo.Sample(samClampLinear, iTex0);
+	//float4 light_beam = txEmissive.Sample(samClampLinear, iTex0);
+	
+	float2 texelSize = camera_inv_resolution;
+	float2 position = (iPosition.xy * camera_inv_resolution) - float2(0.5f,0.5f);
+	float2 vghost = (position - light_iTex0) * uGhostDispersal;
+	
+	float3 result = float3(0, 0, 0);
+	for (int i = 0; i < uGhosts; ++i) { 
+	
+		float2 offset = frac(light_iTex0 + vghost * float(i));
+		float d = distance(offset, float2(0.5, 0.5));
+		float weight = 1.0 - smoothstep(0.0, 0.75, d); 
+		float3 s = txEmissive.Sample(samClampLinear, offset);
+		s = ApplyThreshold(s, .1);
+		result += s * weight;
+	}
+	
+	return color + 5 * float4(result, 1);
+	
+/*
 	float hscale = 0.25;
 	float dx = hscale;
 
@@ -39,30 +69,6 @@ float4 PS_PostFX_Flares(in float4 iPosition : SV_POSITION , in float2 iTex0 : TE
 
 	float4 color = txAlbedo.Sample(samClampLinear, iTex0);
 		
-	return color;// + float4(c, 1);
-		
-    float4 em = txEmissive.Sample(samClampLinear, iTex0);
-		return color + em;//color + float4(cf + c3, 1);
-	/*
-
-  int uGhosts = 4; // number of ghost samples
-  float uGhostDispersal = 1; // dispersion factor
-	 
-	float2 light_iTex0 = -iTex0 + float2(1, 1);
-	float4 color = txAlbedo.Sample(samClampLinear, iTex0);
-	float4 light_beam = txEmissive.Sample(samClampLinear, iTex0);
-	
-	float2 texelSize = camera_inv_resolution;
-	float2 vghost = (float2(0.5, 0.5) - light_iTex0) * uGhostDispersal;
- 
-	float4 result = float4(0, 0, 0, 0);
-	for (int i = 0; i < uGhosts; ++i) { 
-	
-		float2 offset = frac(light_iTex0 + vghost * float(i));
-		result += txEmissive.Sample(samClampLinear, offset);
-	}
-	
-	
 	// Actually this should be 1, but we assume you need more blur...
 	float vscale = 1.5;
 	float dy = (1/512) * vscale / 2;
@@ -157,6 +163,19 @@ float2 shiftChannel(float2 iTex0, float value, float shift)
 // PostFX Chromatic Aberration
 float4 PS_PostFX_CA(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
 {
+	float jitter = nrand(iTex0.y, global_world_time/20) * .2 - .1;
+	jitter *= step(postfx_scan_jitter.y, abs(jitter)) * postfx_scan_jitter.x;
+	
+	//float jump = lerp(iTex0.y, frac(iTex0.y + _VerticalJump.y), _VerticalJump.x);
+	//float scan_shake = (nrand(global_world_time.x, 2) - 0.5) * _HorizontalShake;
+	float scan_drift = sin(iTex0.y + postfx_scan_drift.y) * postfx_scan_drift.x;
+
+	float4 src1 = txAlbedo.Sample(samClampLinear, frac(float2(iTex0.x + jitter, iTex0.y)));
+	float4 src2 = txAlbedo.Sample(samClampLinear, frac(float2(iTex0.x + jitter + scan_drift * postfx_scan_amount, iTex0.y)));
+
+	return float4(src1.x, src2.y, src1.z, 1);
+	
+/*
 	float distortion = txNoiseMap.Sample( samLinear, iTex0).r;  
 		
 	//float2 bDist = shiftChannel(iTex0, -postfx_ca_offset, postfx_ca_offset);
@@ -167,7 +186,7 @@ float4 PS_PostFX_CA(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOO
 	float4 distorsion_g = txAlbedo.Sample(samClampLinear, iTex0 - postfx_ca_amount * 0.01 * distortion);
 	float4 distorsion_b = txAlbedo.Sample(samClampLinear, iTex0 + postfx_ca_amount * 0.01 * distortion);
 	
-	return float4(distorsion_r.r, distorsion_g.g, distorsion_b.b, 1);
+	return float4(distorsion_r.r, distorsion_g.g, distorsion_b.b, 1);*/
 }
 
 void VS_PostFX_Focus(in float4 iPos : POSITION, out float4 oPos : SV_POSITION, out float2 oTex0 : TEXCOORD0)

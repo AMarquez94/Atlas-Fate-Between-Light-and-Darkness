@@ -262,7 +262,9 @@ CB_DEF(CCtePostFX, CB_POSTFX)
     float  postfx_ca_amount;
     float  postfx_ca_offset;
     float  postfx_cs_offset;
-    float  postfx_dummy3;
+    float  postfx_scan_amount;
+    VEC2   postfx_scan_drift;
+    VEC2   postfx_scan_jitter;
 };
 
 CB_DEF(CCteFocus, CB_FOCUS)

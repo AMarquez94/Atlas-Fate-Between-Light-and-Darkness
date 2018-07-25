@@ -86,6 +86,11 @@ float4x4 getSkinMtx(int4 iBones, float4 iWeights) {
 //--------------------------------------------------------------------------------------
 float2 hash2(float n) { return frac(sin(float2(n, n + 1.0))*float2(43758.5453123, 22578.1459123)); }
 
+float nrand(float x, float y) {
+
+	return frac(sin(dot(float2(x, y), float2(12.9898, 78.233))) * 43758.5453);
+}
+		
 // ----------------------------------------
 float shadowsTap(float2 homo_coord, float coord_z) {
   return txLightShadowMap.SampleCmp(samPCFWhite, homo_coord, coord_z, 0).x;
