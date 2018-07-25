@@ -21,7 +21,7 @@ struct TCompSkeleton : public TCompBase {
 	struct AnimationCallback : public CalAnimationCallback {
 
 		CHandle ownHandle;
-		std::string luaFunction;
+		const char* luaFunction;
 
 		void AnimationUpdate(float anim_time, CalModel *model);
 		void AnimationComplete(CalModel *model);
@@ -29,11 +29,16 @@ struct TCompSkeleton : public TCompBase {
 	AnimationCallback* hola;
 	TCompSkeleton();
 	~TCompSkeleton();
+
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
 	void debugInMenu();
 	void renderDebug();
 	void updateCtesBones();
+	static void registerMsgs();
+
+
+	void onMsgEntityCreated(const TMsgEntityCreated& msg);
 
 	void changeCyclicAnimation(int anim1Id, float speed = 1.0f, int anim2Id = -1, float weight = 1.0f, float in_delay = 0.15f, float out_delay = 0.15f);
 	void executeActionAnimation(int animId, float speed = 1.0f, float in_delay = 0.15f, float out_delay = 0.15f);
@@ -49,6 +54,9 @@ struct TCompSkeleton : public TCompBase {
 	void setFeetId(std::vector<int> feetId);
 	std::vector<VEC3> getFeetPositions();
     VEC3 getBonePosition(const std::string & name);
+
+
+	
 
 	DECL_SIBLING_ACCESS();
 };

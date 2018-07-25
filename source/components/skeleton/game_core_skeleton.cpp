@@ -290,9 +290,7 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
     int anim_id = loadCoreAnimation(caf, anim_name);
     if (anim_id < 0)
       return false;
-	if (anim.count("callback") > 0) {
-		float num = anim["callback"];
-	}
+
 
     // read other metadata associated to the anim
     // ...

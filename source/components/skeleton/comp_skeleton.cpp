@@ -31,8 +31,13 @@ MAT44 Cal2DX(CalVector trans, CalQuaternion rot) {
         ;
 }
 
+void TCompSkeleton::registerMsgs()
+{
+	DECL_MSG(TCompSkeleton, TMsgEntityCreated, onMsgEntityCreated);
+}
+
 void TCompSkeleton::AnimationCallback::AnimationUpdate(float anim_time, CalModel *model) {
-	dbg("update\n");
+	dbg("%s\n", luaFunction);
 	
 }
 
@@ -61,8 +66,16 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
     CalLoader::setLoadingMode(LOADER_ROTATE_X_AXIS | LOADER_INVERT_V_COORD);
 
     std::string skel_name = j.value("skeleton", "");
+
     float scaleFactor = j.value("scale", 1.0f);
 
+	if (j.count("callbacks")) {
+		auto& j_callbacks = j["callbacks"];
+		for (auto it = j_callbacks.begin(); it != j_callbacks.end(); ++it) {
+			std::string eis = it.value().value("animation","");
+			float timeToCall = it.value().value("time_to_call", 0.0f);
+		}
+	}
     assert(!skel_name.empty());
     auto res_skel = Resources.get(skel_name)->as< CGameCoreSkeleton >();
     CalCoreModel* core_model = const_cast<CGameCoreSkeleton*>(res_skel);
@@ -82,19 +95,12 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
     actualCycleAnimId[0] = 0;
     model->getMixer()->blendCycle(actualCycleAnimId[0], 1.f, 0.f);
 
-  cb_bones.BonesScale = scaleFactor;
-  if (model->getSkeleton()->getCoreSkeleton()->getScale() != scaleFactor) {
-	  model->getCoreModel()->scale(scaleFactor);
-  }
+    cb_bones.BonesScale = scaleFactor;
+    if (model->getSkeleton()->getCoreSkeleton()->getScale() != scaleFactor) {
+	    model->getCoreModel()->scale(scaleFactor);
+    }
 
-  hola = new AnimationCallback();
-  //hola->ownHandle = CHandle(this).getOwner();
 
-  /*TCompName* nom = get<TCompName>();
-
-  std::string nombre = nom->getName();
-  dbg("%s\n", nombre.c_str());*/
-  model->getCoreModel()->getCoreAnimation(0)->registerCallback(hola, 1.0f);
     // Do a time zero update just to have the bones in a correct place
     model->update(0.f);
 
@@ -419,4 +425,14 @@ float TCompSkeleton::getAnimationDuration(int animId) {
     if (core_anim)
         return core_anim->getDuration();
     return -1.f;
+}
+
+void TCompSkeleton::onMsgEntityCreated(const TMsgEntityCreated& msg) {
+	hola = new AnimationCallback();
+	//hola->ownHandle = CHandle(this).getOwner();
+
+	TCompName* nom = get<TCompName>();
+
+	hola->luaFunction = nom->getName();
+	model->getCoreModel()->getCoreAnimation(1)->registerCallback(hola, 1.0f);
 }

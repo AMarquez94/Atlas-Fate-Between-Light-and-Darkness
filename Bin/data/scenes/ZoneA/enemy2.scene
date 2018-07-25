@@ -61,7 +61,7 @@
 			}
 		}
 	},  {
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/patrol.prefab",
 			"name": "Patrol 5",
 			"transform": {
@@ -95,7 +95,7 @@
 			}
 		}
 	},  {
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/patrol.prefab",
 			"name": "Patrol 7",
 			"transform": {
@@ -131,7 +131,7 @@
 			}
 		}
 	},{
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/drone.prefab",
 			"name": "Drone 1",
 			"transform": {

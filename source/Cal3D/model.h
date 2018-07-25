@@ -53,6 +53,7 @@ public:
   void setUserData(Cal::UserData userData);
   void update(float deltaTime);
   void disableInternalData();
+  void setOwnerName(std::string name);
 
 private:
   CalCoreModel *m_pCoreModel;
@@ -65,6 +66,7 @@ private:
   Cal::UserData m_userData;
   std::vector<CalMesh *> m_vectorMesh;
   CalBoundingBox m_boundingBox;
+  std::string owner_name;
 };
 
 #endif
