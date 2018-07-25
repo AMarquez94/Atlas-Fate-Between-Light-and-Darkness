@@ -59,19 +59,19 @@ CTexture* TCompRenderFlares::apply(CTexture* in_color, CTexture * in_lights) {
 	CTraceScoped scope("TCompFlares");
 
     CTexture* output = in_lights;
-    for (auto s : steps) {
+    //for (auto s : steps) {
 
-        output = s->applyHalf(in_lights, global_distance, distance_factors, weights);
+    //    output = s->applyHalf(in_lights, global_distance, distance_factors, weights);
 
-        rt_output->activateRT();
-        output->activate(TS_ALBEDO);
+    //    rt_output->activateRT();
+    //    output->activate(TS_ALBEDO);
 
-        const CRenderTechnique * n_tech = Resources.get("postfx_blur_upsampler.tech")->as<CRenderTechnique>();
-        n_tech->activate();
-        mesh->activateAndRender();
+    //    const CRenderTechnique * n_tech = Resources.get("postfx_blur_upsampler.tech")->as<CRenderTechnique>();
+    //    n_tech->activate();
+    //    mesh->activateAndRender();
 
-        in_lights = rt_output;
-    }
+    //    in_lights = rt_output;
+    //}
 
     rt_output2->activateRT();
     in_color->activate(TS_ALBEDO);

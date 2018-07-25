@@ -17,39 +17,33 @@ float4 postfx_contrast(float4 color)
 
 float4 PS_PostFX_Flares(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
 {
-	float3 c0 = txEmissive.Sample(samClampLinear, iTex0) / 4;
-	float3 c1 = txEmissive.Sample(samClampLinear, iTex0) / 2;
-	float3 c2 = txEmissive.Sample(samClampLinear, iTex0) / 4;
-	float3 c3 = txEmissive.Sample(samClampLinear, iTex0);
+	float hscale = 0.25;
+	float dx = hscale;
+
+	float u0 = iTex0.x - dx * 5;
+	float u1 = iTex0.x - dx * 3;
+	float u2 = iTex0.x - dx * 1;
+	float u3 = iTex0.x + dx * 1;
+	float u4 = iTex0.x + dx * 3;
+	float u5 = iTex0.x + dx * 5;
+
+	float3 c0 = txEmissive.Sample(samClampLinear, float2(u0, iTex0.y));
+	float3 c1 = txEmissive.Sample(samClampLinear, float2(u1, iTex0.y));
+	float3 c2 = txEmissive.Sample(samClampLinear, float2(u2, iTex0.y));
+	float3 c3 = txEmissive.Sample(samClampLinear, float2(u3, iTex0.y));
+	float3 c4 = txEmissive.Sample(samClampLinear, float2(u4, iTex0.y));
+	float3 c5 = txEmissive.Sample(samClampLinear, float2(u5, iTex0.y));
+
+	// Simple box filter
+	float3 c = (c0 + c1 + c2 + c3 + c4 + c5) / 6;
+
 	float4 color = txAlbedo.Sample(samClampLinear, iTex0);
-	float3 cf = (c0 + c1 + c2) * 4;
 		
-	return color + float4(c3, 1);
+	return color;// + float4(c, 1);
 		
     float4 em = txEmissive.Sample(samClampLinear, iTex0);
 		return color + em;//color + float4(cf + c3, 1);
 	/*
-    float hscale = 1.25;
-    float dx = (1/1024) * hscale;
-
-    float u0 = iTex0.x - dx * 5;
-    float u1 = iTex0.x - dx * 3;
-    float u2 = iTex0.x - dx * 1;
-    float u3 = iTex0.x + dx * 1;
-    float u4 = iTex0.x + dx * 3;
-    float u5 = iTex0.x + dx * 5;
-
-    float3 c0 = txEmissive.Sample(samClampLinear, float2(u0, iTex0.y));
-    float3 c1 = txEmissive.Sample(samClampLinear, float2(u1, iTex0.y));
-    float3 c2 = txEmissive.Sample(samClampLinear, float2(u2, iTex0.y));
-    float3 c3 = txEmissive.Sample(samClampLinear, float2(u3, iTex0.y));
-    float3 c4 = txEmissive.Sample(samClampLinear, float2(u4, iTex0.y));
-    float3 c5 = txEmissive.Sample(samClampLinear, float2(u5, iTex0.y));
-
-    // Simple box filter
-    float3 c = (c0 + c1 + c2 + c3 + c4 + c5) / 6;
-
-    return float4(c, 1);
 
   int uGhosts = 4; // number of ghost samples
   float uGhostDispersal = 1; // dispersion factor

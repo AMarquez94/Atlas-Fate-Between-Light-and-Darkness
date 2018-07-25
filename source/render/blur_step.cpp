@@ -100,12 +100,8 @@ CTexture* CBlurStep::applyHalf(
     cb_blur.blur_d.z = distances.z;
     cb_blur.blur_d.w = distances.w;  // Not used
 
-    rt_half_y->activateRT();
-    input->activate(TS_ALBEDO);
-    applyBlur(0, global_distance);
-
     rt_output->activateRT();
-    rt_half_y->activate(TS_ALBEDO);
+    input->activate(TS_ALBEDO);
     applyBlur(global_distance, 0);
 
     return rt_output;
