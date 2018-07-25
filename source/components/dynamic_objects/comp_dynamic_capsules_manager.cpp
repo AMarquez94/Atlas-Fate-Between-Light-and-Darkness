@@ -53,6 +53,10 @@ void TCompDynamicCapsulesManager::load(const json & j, TEntityParseContext & ctx
 			TCompTransform *capsuleTransform = eCapsule->get<TCompTransform>();
 			newPos = start_point + (float)i * offset;
 			capsuleTransform->setPosition(newPos + temp_offset);
+   //         float delta_yaw = capsuleTransform->getDeltaYawToAimTo(end_point);
+   //         float yaw, pitch;
+   //         capsuleTransform->getYawPitchRoll(&yaw, &pitch);
+   //         capsuleTransform->setYawPitchRoll(yaw + delta_yaw, pitch);
 			cGroup->add(eCapsule);
 
 			/* Set dynamic capsule component */

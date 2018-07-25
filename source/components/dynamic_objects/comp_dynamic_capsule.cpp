@@ -4,6 +4,11 @@
 
 DECL_OBJ_MANAGER("dynamic_capsule", TCompDynamicCapsule);
 
+void TCompDynamicCapsule::onMsgScenePaused(const TMsgScenePaused & msg)
+{
+    paused = msg.isPaused;
+}
+
 void TCompDynamicCapsule::debugInMenu() {
 
 }
@@ -20,17 +25,17 @@ void TCompDynamicCapsule::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompDynamicCapsule::update(float dt) {
 
-	VEC3 dir = end_point - start_point;
-	dir.Normalize();
+    if (!paused) {
+        VEC3 dir = end_point - start_point;
+        dir.Normalize();
 
-	TCompTransform *myPos = get<TCompTransform>();
-	myPos->setPosition(myPos->getPosition() + dir * speed * dt);
+        TCompTransform *myPos = get<TCompTransform>();
+        myPos->setPosition(myPos->getPosition() + dir * speed * dt);
 
-    VEC3 facing_dir = (end_point - myPos->getPosition());
-    facing_dir.Normalize();
-
-	if (director.Dot(facing_dir) < 0)
-		myPos->setPosition(start_point);
+        if (VEC3::Distance(myPos->getPosition(), end_point) < speed * dt) {
+            myPos->setPosition(start_point);
+        }
+    }
 }
 
 void TCompDynamicCapsule::setSpeed(float newSpeed) {
@@ -51,4 +56,9 @@ void TCompDynamicCapsule::setEndPoint(VEC3 newEndPoint) {
 void TCompDynamicCapsule::setOffset(VEC3 newOffset)
 {
   offset = newOffset;
+}
+
+void TCompDynamicCapsule::registerMsgs()
+{
+    DECL_MSG(TCompDynamicCapsule, TMsgScenePaused, onMsgScenePaused);
 }
