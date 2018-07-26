@@ -63,6 +63,11 @@ public:
     BTNode::ERes actionMarkPlayerAsSeen(float dt);
     BTNode::ERes actionShootInhibitor(float dt);
     BTNode::ERes actionGenerateNavmeshChase(float dt);
+
+    BTNode::ERes actionWarnClosestDrone(float dt);
+    BTNode::ERes actionGoToUnreachablePoint(float dt);
+    BTNode::ERes actionResetUnreachableTimers(float dt);
+
     BTNode::ERes actionChasePlayer(float dt);
     BTNode::ERes actionAttack(float dt);
     BTNode::ERes actionRotateToNoiseSource(float dt);
@@ -96,6 +101,7 @@ public:
     bool assertNotPlayerInFovNorArtificialNoise(float dt);
     bool assertPlayerNotInFovNorNoise(float dt);
     bool assertPlayerAndPatrolNotInFovNotNoise(float dt);
+    bool assertCantReachPlayer(float dt);
 
     const std::string getStateForCheckpoint();
 
