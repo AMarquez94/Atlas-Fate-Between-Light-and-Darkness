@@ -87,7 +87,7 @@ void TCompRender::renderDebug() {
     //	skel->updateCtesBones();
     //	skel->cb_bones.activate();
     //}
-
+     
     //for (auto& mwm : meshes)
     //	renderMesh(mwm.mesh, transform->asMatrix(), color);
     activateRSConfig(RSCFG_DEFAULT);

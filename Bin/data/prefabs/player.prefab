@@ -129,6 +129,7 @@
 				"timesRemoveInhibitorKeyPressed": 5
 			},
 			"noclip_controller": {},
+			"glitch_controller": {},
 			"emission_controller": {
 				"initial": "1.0 1.0 1.0 1.0",
 				"intensity": 1.25

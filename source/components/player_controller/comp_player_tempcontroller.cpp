@@ -287,6 +287,11 @@ void TCompTempPlayerController::onPlayerInhibited(const TMsgInhibitorShot & msg)
 {
     if (!isInhibited) {
         isInhibited = true;
+
+        CEntity* player = CHandle(this).getOwner();
+        TMsgGlitchController msg;
+        msg.revert = true;
+        player->sendMsg(msg);
     }
     timesRemoveInhibitorKeyPressed = initialTimesToPressInhibitorRemoveKey;
 }
@@ -496,6 +501,10 @@ void TCompTempPlayerController::removingInhibitorState(float dt) {
 
             timesRemoveInhibitorKeyPressed = initialTimesToPressInhibitorRemoveKey;
             isInhibited = false;
+
+            TMsgGlitchController msg;
+            msg.revert = false;
+            player->sendMsg(msg);
 
             TMsgSetFSMVariable finished;
             finished.variant.setName("inhibitor_removed");
