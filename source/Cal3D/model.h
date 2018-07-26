@@ -14,7 +14,6 @@
 
 #include "cal3d/global.h"
 #include "cal3d/vector.h"
-#include "mcv_platform.h"
 
 class CalCoreModel;
 class CalSkeleton;
@@ -26,14 +25,12 @@ class CalSpringSystem;
 class CalRenderer;
 class CalMesh;
 
-
 class CAL3D_API CalModel : cal3d::noncopyable
 {
 public: 
   CalModel(CalCoreModel* pCoreModel);
   ~CalModel();
 
-  CHandle ownerHandler;
   bool attachMesh(int coreMeshId);
   bool detachMesh(int coreMeshId);
   CalCoreModel *getCoreModel() const;

@@ -5,6 +5,7 @@
 #include "cal3d2engine.h"
 #include "ctes.h"
 #include "utils/dirent.h"
+#include "cal3d/cal3d.h"
 
 #pragma comment(lib, "cal3d.lib" )
 
@@ -296,7 +297,6 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
 		for (auto it = j_callbacks.begin(); it != j_callbacks.end(); ++it) {
 			float timeToCall = it.value().value("time_to_call", 0.0f);
 			std::string eis = it.value().value("function_to_call", "");
-			dbg("");
 		}
 	}
     // read other metadata associated to the anim
