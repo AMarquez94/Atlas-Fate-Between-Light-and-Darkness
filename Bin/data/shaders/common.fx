@@ -90,7 +90,7 @@ float nrand(float x, float y) {
 
 	return frac(sin(dot(float2(x, y), float2(12.9898, 78.233))) * 43758.5453);
 }
-		
+
 // ----------------------------------------
 float shadowsTap(float2 homo_coord, float coord_z) {
   return txLightShadowMap.SampleCmp(samPCFWhite, homo_coord, coord_z, 0).x;

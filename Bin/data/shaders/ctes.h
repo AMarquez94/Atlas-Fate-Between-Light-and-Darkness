@@ -260,8 +260,8 @@ CB_DEF(CCtePlayer, CB_PLAYER)
 CB_DEF(CCtePostFX, CB_POSTFX)
 {
     float  postfx_ca_amount;
-    float  postfx_ca_offset;
-    float  postfx_cs_offset;
+    float  postfx_block_random;
+    float  postfx_block_amount;
     float  postfx_scan_amount;
     VEC2   postfx_scan_drift;
     VEC2   postfx_scan_jitter;

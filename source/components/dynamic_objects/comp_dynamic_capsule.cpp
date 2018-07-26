@@ -29,7 +29,7 @@ void TCompDynamicCapsule::update(float dt) {
     VEC3 facing_dir = (end_point - myPos->getPosition());
     facing_dir.Normalize();
 
-	if (director.Dot(facing_dir) < 0)
+	if (dir.Dot(facing_dir) < 0)
 		myPos->setPosition(start_point);
 }
 

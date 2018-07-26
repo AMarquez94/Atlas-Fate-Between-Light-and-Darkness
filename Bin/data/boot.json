@@ -158,6 +158,7 @@
 			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
 			"data/scenes/Basilic_courtyard/test_instancing.scene",
 			"data/scenes/Basilic_courtyard/camera.scene",
+			"data/scenes/Basilic_courtyard/capsules.scene",
 			"data/scenes/Basilic_courtyard/buttons.scene"
 		]
 	},

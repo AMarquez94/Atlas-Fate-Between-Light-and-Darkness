@@ -149,6 +149,7 @@ float4 PS_PostFXFog(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOO
 	return in_color + ext * float4(global_fog_color,1) * (1 - insc);
 }
 
+/*
 float2 shiftChannel(float2 iTex0, float value, float shift) 
 {
 	float r2 = (iTex0.x - postfx_cs_offset) * (iTex0.x - postfx_cs_offset) + (iTex0.y - postfx_cs_offset) * (iTex0.y - postfx_cs_offset);
@@ -159,10 +160,18 @@ float2 shiftChannel(float2 iTex0, float value, float shift)
 
 	return float2(x, y);
 }
+*/
 
 // PostFX Chromatic Aberration
 float4 PS_PostFX_CA(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
-{
+{	
+  float3 glitch = txNoiseMap.Sample(samClampPoint, iTex0).xyz;	
+
+  float r = nrand(glitch.r, postfx_block_random * 0.025);
+  float block_scan = max(0.0, ceil(postfx_scan_amount * postfx_block_amount - r));
+  float2 shift_uv = (glitch.yz * 2.0 - 1.0) * block_scan;
+
+	iTex0 = frac(iTex0 + shift_uv);
 	float jitter = nrand(iTex0.y, global_world_time/20) * .2 - .1;
 	jitter *= step(postfx_scan_jitter.y, abs(jitter)) * postfx_scan_jitter.x;
 	
@@ -170,11 +179,12 @@ float4 PS_PostFX_CA(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOO
 	//float scan_shake = (nrand(global_world_time.x, 2) - 0.5) * _HorizontalShake;
 	float scan_drift = sin(iTex0.y + postfx_scan_drift.y) * postfx_scan_drift.x;
 
-	float4 src1 = txAlbedo.Sample(samClampLinear, frac(float2(iTex0.x + jitter, iTex0.y)));
-	float4 src2 = txAlbedo.Sample(samClampLinear, frac(float2(iTex0.x + jitter + scan_drift * postfx_scan_amount, iTex0.y)));
+	float4 src1 = txAlbedo.Sample(samClampLinear, frac(float2(iTex0.x + jitter* postfx_scan_amount, iTex0.y)));
+	float4 src2 = txAlbedo.Sample(samClampLinear, frac(float2(iTex0.x + (jitter + scan_drift) * postfx_scan_amount, iTex0.y)));
 
 	return float4(src1.x, src2.y, src1.z, 1);
 	
+	// Old deprecated chromatic aberration
 /*
 	float distortion = txNoiseMap.Sample( samLinear, iTex0).r;  
 		
@@ -186,7 +196,8 @@ float4 PS_PostFX_CA(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOO
 	float4 distorsion_g = txAlbedo.Sample(samClampLinear, iTex0 - postfx_ca_amount * 0.01 * distortion);
 	float4 distorsion_b = txAlbedo.Sample(samClampLinear, iTex0 + postfx_ca_amount * 0.01 * distortion);
 	
-	return float4(distorsion_r.r, distorsion_g.g, distorsion_b.b, 1);*/
+	return float4(distorsion_r.r, distorsion_g.g, distorsion_b.b, 1);
+	*/
 }
 
 void VS_PostFX_Focus(in float4 iPos : POSITION, out float4 oPos : SV_POSITION, out float2 oTex0 : TEXCOORD0)

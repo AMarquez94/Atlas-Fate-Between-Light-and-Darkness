@@ -11,6 +11,7 @@ void TCompChromaticAberration::debugInMenu() {
 
     ImGui::Checkbox("Enabled", &enabled);
     ImGui::DragFloat("Amount", &amount, 0.01f, 0.0f, 4.0f);
+    ImGui::DragFloat("Block Amount", &block_amount, 0.01f, 0.0f, 4.0f);
     ImGui::DragFloat("Scan Jitter", &scanline_jitter, 0.01f, 0.0f, 4.0f);
     ImGui::DragFloat("Scan Drift", &scanline_drift, 0.01f, 0.0f, 4.0f);
 }
@@ -19,8 +20,9 @@ void TCompChromaticAberration::load(const json& j, TEntityParseContext& ctx) {
 
     enabled = j.value("enabled", true);
     amount = j.value("amount", 1.0f);
-    scanline_jitter = j.value("amount", 0.9f);
-    scanline_drift = j.value("amount", 0.160f);
+    scanline_jitter = j.value("jitter", 0.9f);
+    scanline_drift = j.value("drift", 0.160f);
+    block_amount = j.value("block", 0.01f);
 
     int xres = Render.width;
     int yres = Render.height;
@@ -38,8 +40,6 @@ void TCompChromaticAberration::load(const json& j, TEntityParseContext& ctx) {
     mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 
     cb_postfx.postfx_ca_amount = 0.09f;
-    cb_postfx.postfx_ca_offset = 0.09f;
-    cb_postfx.postfx_cs_offset = 0.5f;
 
 }
 
@@ -47,6 +47,8 @@ CTexture* TCompChromaticAberration::apply(CTexture* in_texture) {
 
     float threshold = Clamp(1.0f - scanline_jitter * 1.2f, 0.f, 1.f);
     float disperssion = pow(scanline_jitter, 3) * 0.05f;
+    cb_postfx.postfx_block_random = urand(-1, 1);
+    cb_postfx.postfx_block_amount = block_amount;
     cb_postfx.postfx_scan_amount = amount;
     cb_postfx.postfx_scan_drift = VEC2(scanline_drift * 0.04f, cb_globals.global_world_time * 600);
     cb_postfx.postfx_scan_jitter = VEC2(disperssion, threshold);
