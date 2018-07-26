@@ -107,7 +107,10 @@ bool TCompAIEnemy::isEntityInFov(const std::string& entityToChase, float fov, fl
         TCompTempPlayerController *pController = ePlayer->get<TCompTempPlayerController>();
 
         /* Player inside cone of vision */
-        bool in_fov = mypos->isInFov(ppos->getPosition(), fov, deg2rad(45.f)) && fabsf(myY - playerY) <= 2 * capsuleCollider->height; //in fov and not too high
+        bool in_fov = mypos->isInFov(ppos->getPosition(), fov, deg2rad(45.f))/* && fabsf(myY - playerY) <= 2 * capsuleCollider->height*/; //in fov and not too high
+
+        //bool in_horizontal_fov = mypos->isInHorizontalFov(ppos->getPosition(), fov);
+        //bool in_vertical_fov = mypos->isInVerticalFov(ppos->getPosition(), deg2rad(45.f));
 
         return in_fov && !pController->isInvisible && !pController->isInNoClipMode &&
             !pController->isMerged && !pController->isDead() && dist <= maxChaseDistance && !isEntityHidden(hPlayer);
@@ -157,6 +160,8 @@ void TCompAIEnemy::generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc)
     navmeshPath = EngineNavmeshes.findPath(initPos, destPos);
     navmeshPathPoint = 0;
     recalculateNavmesh = recalc;
+
+    isDestinationCloseEnough = EngineNavmeshes.navmeshLong(navmeshPath) < maxNavmeshDistance;
 
     /* Calculate navmesh generation */
     if (navmeshPath.size() > 0) {

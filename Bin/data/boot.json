@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_map_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -51,7 +51,6 @@
 			"data/scenes/Map_Intro/movable_objects.scene",
 			"data/scenes/Map_Intro/milestone2_map_particles.scene",
 			"data/scenes/Map_Intro/buttons.scene",
-
 			"data/scenes/ZoneA/debug_navmeshes.scene"
 		]
 	},

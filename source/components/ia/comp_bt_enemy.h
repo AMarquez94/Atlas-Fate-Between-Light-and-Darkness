@@ -41,6 +41,8 @@ protected:
     bool recalculateNavmesh = false;
     float maxDistanceToNavmeshPoint = 3.f;
     bool canArriveToDestination = false;
+    float maxNavmeshDistance = 60.f;    //TODO: Probar distintos atributos
+    bool isDestinationCloseEnough = false;
 
     /* Timers */
     float timerWaitingInWpt = 0.f;
