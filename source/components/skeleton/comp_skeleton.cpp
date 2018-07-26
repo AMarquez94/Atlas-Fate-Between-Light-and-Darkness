@@ -419,11 +419,5 @@ float TCompSkeleton::getAnimationDuration(int animId) {
 }
 
 void TCompSkeleton::onMsgEntityCreated(const TMsgEntityCreated& msg) {
-	hola = new AnimationCallback();
-	//hola->ownHandle = CHandle(this).getOwner();
 
-	TCompName* nom = get<TCompName>();
-
-	hola->luaFunction = nom->getName();
-	model->getCoreModel()->getCoreAnimation(1)->registerCallback(hola, 1.0f);
 }
