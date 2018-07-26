@@ -291,7 +291,14 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
     if (anim_id < 0)
       return false;
 
-
+	if (anim.count("callbacks")) {
+		auto& j_callbacks = anim["callbacks"];
+		for (auto it = j_callbacks.begin(); it != j_callbacks.end(); ++it) {
+			float timeToCall = it.value().value("time_to_call", 0.0f);
+			std::string eis = it.value().value("function_to_call", "");
+			
+		}
+	}
     // read other metadata associated to the anim
     // ...
   }
@@ -367,4 +374,12 @@ void CalculateTangentArray(long vertexCount, const VEC3 *vertex, const VEC3 *nor
 	}
 
 	delete[] tan1;
+}
+
+void CGameCoreSkeleton::AnimationCallback::AnimationUpdate(float anim_time, CalModel *model) {
+	//model->ownerHandler.sendMsg();
+}
+
+void CGameCoreSkeleton::AnimationCallback::AnimationComplete(CalModel *model) {
+
 }

@@ -18,15 +18,6 @@ struct TCompSkeleton : public TCompBase {
 	CRenderCte<CCteSkinBones> cb_bones;
 	CalModel* model = nullptr;
 
-	struct AnimationCallback : public CalAnimationCallback {
-
-		CHandle ownHandle;
-		const char* luaFunction;
-
-		void AnimationUpdate(float anim_time, CalModel *model);
-		void AnimationComplete(CalModel *model);
-	};
-	AnimationCallback* hola;
 	TCompSkeleton();
 	~TCompSkeleton();
 

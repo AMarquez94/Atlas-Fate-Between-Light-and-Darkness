@@ -83,17 +83,7 @@
 			},
 			"skeleton": {
 				"skeleton": "data/skeletons/player/player.skeleton",
-				"scale": 1.0,
-				"callbacks":[
-					{
-					"animation" : "idle",
-					"time_to_call" : 0.5
-					},
-					{
-					"animation" : "walk",
-					"time_to_call" : 0.7
-					}
-				]
+				"scale": 1.0
 			},
 			"sonar_controller": {
 				"tags": "enemy",

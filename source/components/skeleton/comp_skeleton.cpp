@@ -36,15 +36,6 @@ void TCompSkeleton::registerMsgs()
 	DECL_MSG(TCompSkeleton, TMsgEntityCreated, onMsgEntityCreated);
 }
 
-void TCompSkeleton::AnimationCallback::AnimationUpdate(float anim_time, CalModel *model) {
-	dbg("%s\n", luaFunction);
-	
-}
-
-void TCompSkeleton::AnimationCallback::AnimationComplete(CalModel *model) {
-	
-}
-
 // --------------------------------------------------------------------
 TCompSkeleton::TCompSkeleton()
     : cb_bones("Bones")

@@ -14,7 +14,7 @@
 
 #include "cal3d/global.h"
 #include "cal3d/vector.h"
-
+#include "mcv_platform.h"
 
 class CalCoreModel;
 class CalSkeleton;
@@ -33,6 +33,7 @@ public:
   CalModel(CalCoreModel* pCoreModel);
   ~CalModel();
 
+  CHandle ownerHandler;
   bool attachMesh(int coreMeshId);
   bool detachMesh(int coreMeshId);
   CalCoreModel *getCoreModel() const;
