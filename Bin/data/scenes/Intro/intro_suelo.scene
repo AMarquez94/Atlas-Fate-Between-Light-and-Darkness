@@ -14,19 +14,19 @@
   {
     "entity":
     {
-      "name": "mesh_suelo_intro"
+      "name": "mesh_suelo_intro3"
       ,
       "transform":
       {
-        "pos": "-6.57272 -1.0 -1.90552"
+        "pos": "-11.8643 -1.0 -55.4532"
         ,
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "0.0 -1.0 0.0 0.0"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_suelo_intro.mesh"
+          "mesh": "data/meshes/mesh_suelo_intro3.mesh"
           ,
           "materials":
           [
@@ -37,9 +37,46 @@
       ,
       "collider":
       {
-        "shape": "box"
+        "shape": "mesh"
         ,
-        "size": "45.0 0.5 70.0"
+        "name": "data/colliders/collider_mesh_suelo_intro3.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_suelo_intro2"
+      ,
+      "transform":
+      {
+        "pos": "-4.58266 -1.0 9.19252"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_suelo_intro2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_suelo_intro2.collider"
       }
       ,
       "abs_aabb": true
