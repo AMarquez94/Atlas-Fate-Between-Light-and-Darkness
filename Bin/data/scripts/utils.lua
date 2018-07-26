@@ -124,3 +124,7 @@ end
 function cinematicModeToggle()
 	SLB.cinematicModeToggle()
 end
+
+function getEntityByName(entity_name)
+	SLB.getEntityByName(entity_name);
+end

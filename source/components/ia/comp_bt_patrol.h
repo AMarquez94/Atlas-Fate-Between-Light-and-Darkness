@@ -32,6 +32,7 @@ private:
     bool isStunnedPatrolInFov(float fov, float maxChaseDistance);
     bool isStunnedPatrolInPos(VEC3 lastPos);
     CHandle getPatrolInPos(VEC3 lastPos);
+    float getMaxChaseDistance();
 
     //load
     void loadActions() override;
@@ -99,6 +100,9 @@ public:
     const std::string getStateForCheckpoint();
 
 	static void registerMsgs();
+
+    /* LUA functions */
+    void launchInhibitor();
 
 	void playAnimationByName(const std::string & animationName) override;
 };

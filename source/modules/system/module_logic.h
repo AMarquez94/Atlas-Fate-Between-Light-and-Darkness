@@ -7,6 +7,8 @@
 #include "modules/system/module_particles.h"
 #include "input/button.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
+#include "components/ia/comp_bt_patrol.h"
+#include "components/comp_transform.h"
 
 class CModuleLogic : public IModule
 {
@@ -112,3 +114,7 @@ void toggleButtonCanBePressed(const std::string& buttonName, bool canBePressed);
 // Extra cvar commands
 void cg_drawfps(bool value);
 void cg_drawlights(int type);
+
+CEntity* toEntity(CHandle h);
+TCompTransform* toTransform(CHandle h);
+TCompAIPatrol* toAIPatrol(CHandle h);

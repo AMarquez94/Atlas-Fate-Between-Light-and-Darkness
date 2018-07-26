@@ -509,7 +509,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 35.0,
+					"variable_value": 20.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "entityToChase",
@@ -543,7 +543,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 35.0,
+					"variable_value": 20.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "entityToChase",

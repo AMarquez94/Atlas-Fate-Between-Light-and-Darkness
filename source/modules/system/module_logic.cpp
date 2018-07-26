@@ -11,6 +11,7 @@
 #include "components/postfx/comp_render_ao.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
 #include "components/object_controller/comp_button.h"
+#include "components/ia/comp_bt_patrol.h"
 
 bool CModuleLogic::start() {
 
@@ -122,9 +123,18 @@ void CModuleLogic::publishClasses() {
         .comment("This is our wrapper of the button controller")
         .property("canBePressed", &TCompButton::canBePressed);
 
-    //SLB::Class < CHandle >("CHandle", m)
-    //    .comment("CHandle wrapper")
-    //    .set("getLight", &CHandle::sendMsg);
+    SLB::Class<TCompAIPatrol>("AIPatrol", m)
+        .comment("This is our wrapper of the patrol controller")
+        .set("launchInhibitor", &TCompAIPatrol::launchInhibitor);
+
+    SLB::Class <CHandle>("CHandle", m)
+        .comment("CHandle wrapper")
+        .constructor()
+        .set("fromUnsigned", &CHandle::fromUnsigned);
+
+    SLB::Class <CEntity>("CEntity", m)
+        .comment("CEntity wrapper")
+        .set("getCompByName", &CEntity::getCompByName);
 
     /* Global functions */
 
@@ -176,6 +186,12 @@ void CModuleLogic::publishClasses() {
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
     m->set("toggle_spotlight", SLB::FuncCall::create(&toggle_spotlight));
     m->set("toggleButtonCanBePressed", SLB::FuncCall::create(&toggleButtonCanBePressed));
+    m->set("getEntityByName", SLB::FuncCall::create(&getEntityByName));
+
+    /* Handle converters */
+    m->set("toEntity", SLB::FuncCall::create(&toEntity));
+    m->set("toTransform", SLB::FuncCall::create(&toTransform));
+    m->set("toAIPatrol", SLB::FuncCall::create(&toAIPatrol));
 }
 
 /* Check if it is a fast format command */
@@ -302,6 +318,7 @@ TCompTempPlayerController * getPlayerController()
     }
     return playerController;
 }
+
 CModuleGameConsole * getConsole() { return EngineConsole.getPointer(); }
 
 void execDelayedScript(const std::string& script, float delay)
@@ -518,6 +535,24 @@ void cg_drawlights(int type) {
     getObjectManager<TCompLightPoint>()->forEach([&](TCompLightPoint* c) {
         c->isEnabled = point;
     });
+}
+
+CEntity* toEntity(CHandle h)
+{
+    CEntity* e = h;
+    return e;
+}
+
+TCompTransform* toTransform(CHandle h)
+{
+    TCompTransform* t = h;
+    return t;
+}
+
+TCompAIPatrol* toAIPatrol(CHandle h)
+{
+    TCompAIPatrol* t = h;
+    return t;
 }
 
 void playSound2D(const std::string& soundName) {

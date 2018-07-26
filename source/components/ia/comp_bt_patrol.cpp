@@ -17,6 +17,7 @@
 #include "components/ia/comp_patrol_animator.h"
 #include "render/render_objects.h"
 #include "components/lighting/comp_fade_controller.h"
+#include "entity/entity_parser.h"
 
 DECL_OBJ_MANAGER("ai_patrol", TCompAIPatrol);
 
@@ -622,6 +623,10 @@ BTNode::ERes TCompAIPatrol::actionMarkPlayerAsSeen(float dt)
 
 BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 {
+    //play animation shoot inhibitor
+    //
+
+    //TODO: if !animationBeingPlayed and PlayerInhibited => LEAVE; else => normal
     assert(arguments.find("entityToChase_actionShootInhibitor_shootInhibitor") != arguments.end());
     std::string entityToChase = arguments["entityToChase_actionShootInhibitor_shootInhibitor"].getString();
 
@@ -634,11 +639,10 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
     if (!pController->isInhibited) {
 
         timeAnimating = 0.0f;
-
-        TMsgInhibitorShot msg;
-        msg.h_sender = CHandle(this).getOwner();
-        player->sendMsg(msg);
+        EngineLogic.execScript("animation_LaunchInhibitor(" + CHandle(this).getOwner().asString() + ")");
     }
+
+
     return BTNode::ERes::LEAVE;
 }
 
@@ -1143,6 +1147,22 @@ CHandle TCompAIPatrol::getPatrolInPos(VEC3 lastPos)
     }
 
 	return h_stunnedPatrol;
+}
+
+float TCompAIPatrol::getMaxChaseDistance()
+{
+    float maxChaseDistance = arguments["maxChaseDistance_actionSuspect_suspect"].getFloat();
+    assert(arguments.find("dcrSuspectO_Meter_actionSuspect_suspect") != arguments.end());
+    return maxChaseDistance;
+}
+
+void TCompAIPatrol::launchInhibitor()
+{
+    TEntityParseContext ctxInhibitor;
+    ctxInhibitor.entity_starting_the_parse = CHandle(this).getOwner();
+    parseScene("data/prefabs/inhibitor.prefab", ctxInhibitor);
+    TCompGroup* myGroup = get<TCompGroup>();
+    myGroup->add(ctxInhibitor.entities_loaded[0]);
 }
 
 void TCompAIPatrol::playAnimationByName(const std::string & animationName)
