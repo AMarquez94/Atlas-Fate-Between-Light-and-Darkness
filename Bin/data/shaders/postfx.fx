@@ -165,19 +165,19 @@ float2 shiftChannel(float2 iTex0, float value, float shift)
 // PostFX Chromatic Aberration
 float4 PS_PostFX_CA(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
 {	
-  float3 glitch = txNoiseMap.Sample(samClampPoint, iTex0).xyz;	
+	float3 glitch = txNoiseMap2.Sample(samClampPoint, iTex0).xyz;	
 
-  float r = nrand(glitch.r, postfx_block_random * 0.025);
-  float block_scan = max(0.0, ceil(postfx_scan_amount * postfx_block_amount - r));
-  float2 shift_uv = (glitch.yz * 2.0 - 1.0) * block_scan;
+	float r = nrand(glitch.r, postfx_block_random * 0.025);
+	float block_scan = max(0.0, ceil(postfx_scan_amount * postfx_block_amount - r));
+	float2 shift_uv = (glitch.yz * 2.0 - 1.0) * block_scan;
 
 	iTex0 = frac(iTex0 + shift_uv);
 	float jitter = nrand(iTex0.y, global_world_time/20) * .2 - .1;
 	jitter *= step(postfx_scan_jitter.y, abs(jitter)) * postfx_scan_jitter.x;
-	
+
 	//float jump = lerp(iTex0.y, frac(iTex0.y + _VerticalJump.y), _VerticalJump.x);
 	//float scan_shake = (nrand(global_world_time.x, 2) - 0.5) * _HorizontalShake;
-	float scan_drift = sin(iTex0.y + postfx_scan_drift.y) * postfx_scan_drift.x;
+	float scan_drift = 0.25 * sin(iTex0.y + postfx_scan_drift.y * .035) * postfx_scan_drift.x;
 
 	float4 src1 = txAlbedo.Sample(samClampLinear, frac(float2(iTex0.x + jitter* postfx_scan_amount, iTex0.y)));
 	float4 src2 = txAlbedo.Sample(samClampLinear, frac(float2(iTex0.x + (jitter + scan_drift) * postfx_scan_amount, iTex0.y)));

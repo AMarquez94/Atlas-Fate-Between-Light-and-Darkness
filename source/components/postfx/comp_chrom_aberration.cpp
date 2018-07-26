@@ -49,7 +49,7 @@ CTexture* TCompChromaticAberration::apply(CTexture* in_texture) {
     float disperssion = pow(scanline_jitter, 3) * 0.05f;
     cb_postfx.postfx_block_random = urand(-1, 1);
     cb_postfx.postfx_block_amount = block_amount;
-    cb_postfx.postfx_scan_amount = amount;
+    //cb_postfx.postfx_scan_amount = amount;
     cb_postfx.postfx_scan_drift = VEC2(scanline_drift * 0.04f, cb_globals.global_world_time * 600);
     cb_postfx.postfx_scan_jitter = VEC2(disperssion, threshold);
     cb_postfx.updateGPU();

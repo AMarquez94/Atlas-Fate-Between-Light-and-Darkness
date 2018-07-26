@@ -488,7 +488,7 @@
 		"z": "disable_all",
 		"textures": {
 			"noise": "data/textures/noise_block_gray.dds",
-			"noise2": "data/textures/noise_block_color.dds"
+			"noise2": "data/textures/noise_block_pattern.dds"
 		}
 	},
 	"postfx_vignette": {

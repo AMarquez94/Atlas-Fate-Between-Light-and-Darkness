@@ -78,18 +78,18 @@ void TCompRender::debugInMenu() {
 void TCompRender::renderDebug() {
 
     activateRSConfig(RSCFG_WIREFRAME);
-    TCompTransform * transform = get<TCompTransform>();
-    assert(transform);
-    
-    //If we have an skeleton, make sure the required bones are actived and updated
-    TCompSkeleton* skel = get<TCompSkeleton>();
-    if (skel) {
-    	skel->updateCtesBones();
-    	skel->cb_bones.activate();
-    }
+    //TCompTransform * transform = get<TCompTransform>();
+    //assert(transform);
+    //
+    ////If we have an skeleton, make sure the required bones are actived and updated
+    //TCompSkeleton* skel = get<TCompSkeleton>();
+    //if (skel) {
+    //	skel->updateCtesBones();
+    //	skel->cb_bones.activate();
+    //}
 
-    for (auto& mwm : meshes)
-    	renderMesh(mwm.mesh, transform->asMatrix(), color);
+    //for (auto& mwm : meshes)
+    //	renderMesh(mwm.mesh, transform->asMatrix(), color);
     activateRSConfig(RSCFG_DEFAULT);
 }
 
