@@ -366,9 +366,9 @@ void CModuleRender::generateFrame() {
             if (c_render_motion_blur)
                 curr_rt = c_render_motion_blur->apply(curr_rt);
 
-            //TCompRenderFlares* c_render_flares = e_cam->get< TCompRenderFlares >();
-            //if (c_render_flares)
-            //    curr_rt = c_render_flares->apply(curr_rt, c_render_bloom->rt_highlights);
+            TCompRenderFlares* c_render_flares = e_cam->get< TCompRenderFlares >();
+            if (c_render_flares)
+                curr_rt = c_render_flares->apply(curr_rt, c_render_bloom->rt_highlights);
 
             TCompAntiAliasing* c_antialiasing = e_cam->get< TCompAntiAliasing >();
             if (c_antialiasing)

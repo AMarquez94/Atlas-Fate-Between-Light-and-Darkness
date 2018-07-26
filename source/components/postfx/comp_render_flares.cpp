@@ -36,7 +36,7 @@ void TCompRenderFlares::load(const json& j, TEntityParseContext& ctx) {
     distance_factors = VEC4(10, 2, 0, 0);
 
     static int g_blur_counter = 0;
-    for (int i = 0; i < 2; ++i) {
+    for (int i = 0; i < 6; ++i) {
         CBlurStep* s = new CBlurStep;
 
         char blur_name[64];
