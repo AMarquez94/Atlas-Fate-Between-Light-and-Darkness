@@ -375,11 +375,3 @@ void CalculateTangentArray(long vertexCount, const VEC3 *vertex, const VEC3 *nor
 
 	delete[] tan1;
 }
-
-void CGameCoreSkeleton::AnimationCallback::AnimationUpdate(float anim_time, CalModel *model) {
-	//model->ownerHandler.sendMsg();
-}
-
-void CGameCoreSkeleton::AnimationCallback::AnimationComplete(CalModel *model) {
-
-}

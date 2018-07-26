@@ -12,18 +12,13 @@ class CGameCoreSkeleton : public IResource, public CalCoreModel {
 
   bool convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, const std::string& ofilename);
 
-  struct AnimationCallback : public CalAnimationCallback {
-
-	  const char* luaFunction;
-
-	  void AnimationUpdate(float anim_time, CalModel *model);
-	  void AnimationComplete(CalModel *model);
-  };
+  
   // ---------------------------------------------------
 public:
   CGameCoreSkeleton( const std::string& aname ) : CalCoreModel(aname) {}
   bool create(const std::string& res_name);
   void debugInMenu() override;
+
   float              bone_ids_debug_scale = 1.f;
   std::vector< int > bone_ids_to_debug;
 
