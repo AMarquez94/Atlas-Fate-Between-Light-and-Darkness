@@ -222,6 +222,22 @@
   {
     "entity":
     {
+      "name": "mesh_casa1_6x6_intro008"
+      ,
+      "prefab": "data/prefabs/casa1_6x6.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-3.01109 6.0 -64.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_casa1_6x8_intro001"
       ,
       "prefab": "data/prefabs/casa1_6x8.prefab"
@@ -318,6 +334,22 @@
   {
     "entity":
     {
+      "name": "mesh_casa1_6x8_intro008"
+      ,
+      "prefab": "data/prefabs/casa1_6x8.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-31.5507 5.99999 -71.0"
+        ,
+        "rotation": "0.0 -1.19209e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_casa1_6x10_esquina2_intro001"
       ,
       "prefab": "data/prefabs/casa1_6x10_esquina2.prefab"
@@ -389,6 +421,22 @@
       "transform":
       {
         "pos": "13.7765 6.0 -17.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casa1_8x8_intro004"
+      ,
+      "prefab": "data/prefabs/casa1_8x8.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-6.22348 0.0 -71.0"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -718,6 +766,22 @@
   {
     "entity":
     {
+      "name": "mesh_casa2_6x6_intro006"
+      ,
+      "prefab": "data/prefabs/casa2_6x6.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-7.22348 0.0 -64.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_casa2_6x8_intro001"
       ,
       "prefab": "data/prefabs/casa2_6x8.prefab"
@@ -942,6 +1006,54 @@
   {
     "entity":
     {
+      "name": "mesh_casa2_6x10_intro008"
+      ,
+      "prefab": "data/prefabs/casa2_6x10.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.22348 6.0 -70.0"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casa2_6x10_intro009"
+      ,
+      "prefab": "data/prefabs/casa2_6x10.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-7.22348 6.0 -78.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casa2_6x10_intro010"
+      ,
+      "prefab": "data/prefabs/casa2_6x10.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-31.2234 0.0 -64.0"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_casa2_8x8_intro001"
       ,
       "prefab": "data/prefabs/casa2_8x8.prefab"
@@ -1031,6 +1143,22 @@
         "pos": "-24.2235 6.0 -17.0"
         ,
         "rotation": "1.68587e-07 -0.707107 -1.37679e-07 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casa2_8x8_intro007"
+      ,
+      "prefab": "data/prefabs/casa2_8x8.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-30.2235 0.0 -71.0"
+        ,
+        "rotation": "0.0 -1.0 -1.94707e-07 -3.13916e-07"
       }
     }
   }
@@ -1157,6 +1285,22 @@
       "transform":
       {
         "pos": "-1.22348 0.0 -50.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casa3_6x6_intro005"
+      ,
+      "prefab": "data/prefabs/casa3_6x6.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-33.9703 6.0 -63.9999"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }

@@ -280,4 +280,64 @@
       "local_aabb": true
     }
   }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente_intro_attach_009"
+      ,
+      "transform":
+      {
+        "pos": "-10.2235 11.6532 -78.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_saliente_intro_attach_009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_saliente_intro_attach_010"
+      ,
+      "transform":
+      {
+        "pos": "-23.2136 11.667 -49.015"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_saliente_intro_attach_010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
 ]

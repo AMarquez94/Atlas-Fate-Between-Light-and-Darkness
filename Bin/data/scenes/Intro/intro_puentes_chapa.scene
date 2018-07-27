@@ -14,6 +14,22 @@
   {
     "entity":
     {
+      "name": "mesh_chapa_barra_intro"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "112.819 0.0 -113.421"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_chapa_barra_intro001"
       ,
       "prefab": "data/prefabs/chapa_barra.prefab"
@@ -2494,6 +2510,742 @@
   {
     "entity":
     {
+      "name": "mesh_chapa_barra_intro156"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-10.0496 10.725 -67.4091"
+        ,
+        "rotation": "0.0 0.0 -0.382683 -0.92388"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro157"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-9.67309 11.1125 -68.6887"
+        ,
+        "rotation": "-0.0652631 -0.113039 -0.495722 -0.858616"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro158"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-9.67309 11.1648 -67.0881"
+        ,
+        "rotation": "0.10822 0.187442 -0.488148 -0.845497"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro159"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-9.89673 12.0639 -65.4092"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro160"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-7.89673 12.0639 -65.4092"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro161"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.89673 12.0639 -65.4092"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro162"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-9.89673 12.0639 -63.831"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro163"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-7.89673 12.0639 -63.831"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro164"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.89673 12.0639 -63.831"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro165"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-9.97339 10.7458 -67.062"
+        ,
+        "rotation": "-0.191342 -0.46194 -0.331414 -0.800103"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro166"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-9.31598 11.9773 -65.326"
+        ,
+        "rotation": "0.5 0.5 -0.5 -0.5"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro167"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-9.31598 11.9773 -63.326"
+        ,
+        "rotation": "0.5 0.5 -0.5 -0.5"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro168"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-9.31598 11.9773 -61.326"
+        ,
+        "rotation": "0.5 0.5 -0.5 -0.5"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro169"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-8.91479 12.0139 -63.0076"
+        ,
+        "rotation": "0.270598 0.270598 -0.653282 -0.653281"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro170"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-9.47665 11.0109 -67.0679"
+        ,
+        "rotation": "-0.0778283 -0.24684 -0.446015 -0.856787"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro171"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "3.01515 4.58737 -25.2616"
+        ,
+        "rotation": "-0.914326 -0.375719 0.150891 0.00861603"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro172"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "1.64623 6.02241 -25.0033"
+        ,
+        "rotation": "-0.914326 -0.375719 0.150891 0.00861603"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro173"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.58166 6.04414 -27.3608"
+        ,
+        "rotation": "-0.914326 -0.375719 0.150891 0.00861603"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro174"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.58166 6.04414 -28.3503"
+        ,
+        "rotation": "-0.886809 -0.37138 0.268944 0.0575835"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro175"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.45702 5.98408 -25.4192"
+        ,
+        "rotation": "-0.59298 -0.663011 0.40008 0.220743"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro176"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.45702 5.93233 -21.3714"
+        ,
+        "rotation": "-0.713576 -0.684556 0.0499898 -0.140337"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro177"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.45702 5.93233 -23.3709"
+        ,
+        "rotation": "-0.713576 -0.684556 0.0499898 -0.140337"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro178"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "3.01515 4.93417 -19.3851"
+        ,
+        "rotation": "-0.857463 -0.491848 0.150725 -0.0111529"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro179"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "1.32146 5.96602 -19.1269"
+        ,
+        "rotation": "-0.857463 -0.491848 0.150725 -0.0111529"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro180"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.58166 6.04414 -22.2441"
+        ,
+        "rotation": "-0.914326 -0.375719 0.150891 0.00861603"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro181"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.58166 6.04414 -23.2336"
+        ,
+        "rotation": "-0.886809 -0.37138 0.268944 0.0575835"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro182"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.69799 5.92476 -28.7448"
+        ,
+        "rotation": "-0.653444 -0.69127 0.291032 0.102259"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro183"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.45702 5.93233 -19.0365"
+        ,
+        "rotation": "-0.713996 -0.660381 -0.0435782 -0.228488"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro184"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.45702 5.93233 -19.6082"
+        ,
+        "rotation": "-0.713576 -0.684556 0.0499898 -0.140337"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro185"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-26.0742 10.725 -56.9758"
+        ,
+        "rotation": "-0.382683 -0.92388 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro186"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-26.4507 11.1125 -55.6962"
+        ,
+        "rotation": "-0.495722 -0.858616 0.0652632 0.113039"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro187"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-26.4507 11.1648 -57.2968"
+        ,
+        "rotation": "-0.488148 -0.845497 -0.10822 -0.187442"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro188"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-26.227 12.0639 -58.9757"
+        ,
+        "rotation": "-0.707107 -0.707107 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro189"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-28.227 12.0639 -58.9757"
+        ,
+        "rotation": "-0.707107 -0.707107 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro190"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-26.227 12.0639 -60.5539"
+        ,
+        "rotation": "-0.707107 -0.707107 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro191"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-28.227 12.0639 -60.5539"
+        ,
+        "rotation": "-0.707107 -0.707107 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro192"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-26.2762 10.7676 -58.6418"
+        ,
+        "rotation": "-0.331414 -0.800103 0.191342 0.46194"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro193"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-27.209 12.0139 -61.3773"
+        ,
+        "rotation": "-0.653282 -0.653282 -0.270598 -0.270598"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro194"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-26.6471 11.0109 -57.317"
+        ,
+        "rotation": "-0.446015 -0.856787 0.0778284 0.24684"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro195"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-29.7073 10.831 -60.8657"
+        ,
+        "rotation": "0.270598 0.653281 -0.270598 -0.653282"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro196"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-28.4277 11.2184 -60.4892"
+        ,
+        "rotation": "0.304381 0.527203 -0.396677 -0.687064"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro197"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-26.9832 10.831 -60.8657"
+        ,
+        "rotation": "0.270598 0.653281 -0.270598 -0.653282"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro198"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-31.3154 11.1648 -63.407"
+        ,
+        "rotation": "-0.488148 -0.845497 -0.10822 -0.187442"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro199"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.9187 10.725 -61.3491"
+        ,
+        "rotation": "0.0 0.0 -0.382683 -0.92388"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_barra_intro200"
+      ,
+      "prefab": "data/prefabs/chapa_barra.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.9187 11.3186 -61.8555"
+        ,
+        "rotation": "0.0 0.0 -0.5373 -0.843391"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_entrada_intro"
+      ,
+      "prefab": "data/prefabs/chapa_entrada.prefab"
+      ,
+      "transform":
+      {
+        "pos": "107.232 0.0 -111.727"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_chapa_entrada_intro001"
       ,
       "prefab": "data/prefabs/chapa_entrada.prefab"
@@ -2679,6 +3431,22 @@
         "pos": "4.82067 12.0823 -32.7806"
         ,
         "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_esquina_intro"
+      ,
+      "prefab": "data/prefabs/chapa_esquina.prefab"
+      ,
+      "transform":
+      {
+        "pos": "105.463 0.0 -107.78"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
@@ -2999,6 +3767,118 @@
         "pos": "-19.9662 12.084 -5.05407"
         ,
         "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_esquina_intro021"
+      ,
+      "prefab": "data/prefabs/chapa_esquina.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-10.186 12.084 -67.083"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_esquina_intro022"
+      ,
+      "prefab": "data/prefabs/chapa_esquina.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-10.186 12.084 -63.0813"
+        ,
+        "rotation": "0.0 -1.0 0.0 1.62921e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_esquina_intro023"
+      ,
+      "prefab": "data/prefabs/chapa_esquina.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-8.21556 12.084 -61.0894"
+        ,
+        "rotation": "0.0 -2.38419e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_esquina_intro024"
+      ,
+      "prefab": "data/prefabs/chapa_esquina.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.86166 5.99414 -26.8406"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_esquina_intro025"
+      ,
+      "prefab": "data/prefabs/chapa_esquina.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-25.9378 12.084 -57.3019"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_esquina_intro026"
+      ,
+      "prefab": "data/prefabs/chapa_esquina.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-25.9378 12.084 -61.3036"
+        ,
+        "rotation": "0.0 -2.38419e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_recto_intro"
+      ,
+      "prefab": "data/prefabs/chapa_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "100.85 0.0 -109.26"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
@@ -3511,6 +4391,214 @@
         "pos": "-21.9662 12.0927 -3.05078"
         ,
         "rotation": "0.0 -1.19209e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_recto_intro034"
+      ,
+      "prefab": "data/prefabs/chapa_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-10.1819 12.0927 -67.0813"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_recto_intro035"
+      ,
+      "prefab": "data/prefabs/chapa_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-10.1819 12.0927 -65.0813"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_recto_intro036"
+      ,
+      "prefab": "data/prefabs/chapa_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-10.1842 12.0927 -63.0853"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_recto_intro037"
+      ,
+      "prefab": "data/prefabs/chapa_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.86572 6.00281 -22.8406"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_recto_intro038"
+      ,
+      "prefab": "data/prefabs/chapa_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.86571 6.00281 -20.8406"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_recto_intro039"
+      ,
+      "prefab": "data/prefabs/chapa_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.86344 6.00281 -28.8406"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_recto_intro040"
+      ,
+      "prefab": "data/prefabs/chapa_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.86572 6.00281 -26.8406"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_recto_intro041"
+      ,
+      "prefab": "data/prefabs/chapa_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.86571 6.00281 -24.8406"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_recto_intro042"
+      ,
+      "prefab": "data/prefabs/chapa_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-25.9418 12.0927 -57.3036"
+        ,
+        "rotation": "0.0 -1.19209e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_recto_intro043"
+      ,
+      "prefab": "data/prefabs/chapa_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-25.9418 12.0927 -59.3036"
+        ,
+        "rotation": "0.0 -1.19209e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_recto_intro044"
+      ,
+      "prefab": "data/prefabs/chapa_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-25.9395 12.0927 -61.2996"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_recto_intro045"
+      ,
+      "prefab": "data/prefabs/chapa_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-27.9325 12.0927 -61.2996"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chapa_recto_intro046"
+      ,
+      "prefab": "data/prefabs/chapa_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-29.9254 12.0927 -61.2996"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
     }
   }
