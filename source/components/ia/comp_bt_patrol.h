@@ -65,6 +65,7 @@ public:
     BTNode::ERes actionGenerateNavmeshChase(float dt);
 
     BTNode::ERes actionWarnClosestDrone(float dt);
+    BTNode::ERes actionRotateTowardsUnreachablePlayer(float dt);
     BTNode::ERes actionGoToUnreachablePoint(float dt);
     BTNode::ERes actionResetUnreachableTimers(float dt);
 
@@ -93,6 +94,7 @@ public:
     bool conditionWaitInWpt(float dt);
     bool conditionChase(float dt);
     bool conditionPlayerAttacked(float dt);
+    bool conditionIsDestUnreachable(float dt);
 
     bool assertPlayerInFov(float dt);
     bool assertPlayerNotInFov(float dt);

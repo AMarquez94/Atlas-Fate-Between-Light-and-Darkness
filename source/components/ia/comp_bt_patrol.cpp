@@ -18,6 +18,7 @@
 #include "render/render_objects.h"
 #include "components/lighting/comp_fade_controller.h"
 #include "entity/entity_parser.h"
+#include "components/comp_tags.h"
 
 DECL_OBJ_MANAGER("ai_patrol", TCompAIPatrol);
 
@@ -321,6 +322,8 @@ void TCompAIPatrol::loadActions() {
     actions_initializer["actionGoToPatrol"] = (BTAction)&TCompAIPatrol::actionGoToPatrol;
     actions_initializer["actionFixPatrol"] = (BTAction)&TCompAIPatrol::actionFixPatrol;
     actions_initializer["actionMarkPatrolAsLost"] = (BTAction)&TCompAIPatrol::actionMarkPatrolAsLost;
+    actions_initializer["actionWarnClosestDrone"] = (BTAction)&TCompAIPatrol::actionWarnClosestDrone;
+    actions_initializer["actionRotateTowardsUnreachablePlayer"] = (BTAction)&TCompAIPatrol::actionRotateTowardsUnreachablePlayer;
 
 }
 
@@ -341,6 +344,7 @@ void TCompAIPatrol::loadConditions() {
     conditions_initializer["conditionWaitInWpt"] = (BTCondition)&TCompAIPatrol::conditionWaitInWpt;
     conditions_initializer["conditionChase"] = (BTCondition)&TCompAIPatrol::conditionChase;
     conditions_initializer["conditionPlayerAttacked"] = (BTCondition)&TCompAIPatrol::conditionPlayerAttacked;
+    conditions_initializer["conditionIsDestUnreachable"] = (BTCondition)&TCompAIPatrol::conditionIsDestUnreachable;
 }
 
 void TCompAIPatrol::loadAsserts() {
@@ -353,6 +357,7 @@ void TCompAIPatrol::loadAsserts() {
     asserts_initializer["assertNotPlayerInFovNorArtificialNoise"] = (BTCondition)&TCompAIPatrol::assertNotPlayerInFovNorArtificialNoise;
     asserts_initializer["assertPlayerNotInFovNorNoise"] = (BTCondition)&TCompAIPatrol::assertPlayerNotInFovNorNoise;
     asserts_initializer["assertPlayerAndPatrolNotInFovNotNoise"] = (BTCondition)&TCompAIPatrol::assertPlayerAndPatrolNotInFovNotNoise;
+    asserts_initializer["assertCantReachPlayer"] = (BTCondition)&TCompAIPatrol::assertCantReachPlayer;
 }
 
 /* ACTIONS */
@@ -660,6 +665,73 @@ BTNode::ERes TCompAIPatrol::actionGenerateNavmeshChase(float dt)
     navmeshPathPoint = 0;
     recalculateNavmesh = false;
     return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPatrol::actionWarnClosestDrone(float dt)
+{
+    assert(arguments.find("entityToChase_actionWarnClosestDrone_warnClosestDrone") != arguments.end());
+    std::string entityToChase = arguments["entityToChase_actionWarnClosestDrone_warnClosestDrone"].getString();
+
+    /* Prepare msg */
+    CEntity* player = getEntityByName(entityToChase);
+    TCompTransform* ppos = player->get<TCompTransform>();
+    TMsgOrderReceived msg;
+    msg.hOrderSource = CHandle(this).getOwner();
+    msg.position = ppos->getPosition();
+
+    /* Get closest drone (if any) to warn it */
+    VHandles v_drones = CTagsManager::get().getAllEntitiesByTag(getID("drone"));
+    float min_dist = INFINITY;
+    int min_index = 0;
+    bool found = false;
+    for (int i = 0; i < v_drones.size(); i++) {
+        CEntity* drone = v_drones[i];
+        TCompTransform* dpos = drone->get<TCompTransform>();
+        float distance = VEC3::Distance(ppos->getPosition(), dpos->getPosition());
+        if (distance < min_dist) {
+            min_dist = distance;
+            min_index = i;
+            found = true;
+        }
+    }
+
+    if (found) {
+        v_drones[min_index].sendMsg(msg);
+    }
+
+    return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPatrol::actionRotateTowardsUnreachablePlayer(float dt)
+{
+    assert(arguments.find("entityToChase_actionRotateTowardsUnreachablePlayer_rotateTowardsUnreachablePlayer") != arguments.end());
+    std::string entityToChase = arguments["entityToChase_actionRotateTowardsUnreachablePlayer_rotateTowardsUnreachablePlayer"].getString();
+    assert(arguments.find("fov_actionRotateTowardsUnreachablePlayer_rotateTowardsUnreachablePlayer") != arguments.end());
+    float fov = deg2rad(arguments["fov_actionRotateTowardsUnreachablePlayer_rotateTowardsUnreachablePlayer"].getFloat());
+    assert(arguments.find("maxChaseDistance_actionRotateTowardsUnreachablePlayer_rotateTowardsUnreachablePlayer") != arguments.end());
+    float maxChaseDistance = arguments["maxChaseDistance_actionRotateTowardsUnreachablePlayer_rotateTowardsUnreachablePlayer"].getFloat();
+    assert(arguments.find("rotationSpeed_actionRotateTowardsUnreachablePlayer_rotateTowardsUnreachablePlayer") != arguments.end());
+    float rotationSpeed = deg2rad(arguments["rotationSpeed_actionRotateTowardsUnreachablePlayer_rotateTowardsUnreachablePlayer"].getFloat());
+
+    bool keepAlert;
+    if (isEntityInFov(entityToChase, fov, maxChaseDistance)) {
+        CEntity* player = getEntityByName(entityToChase);
+        TCompTransform* ppos = player->get<TCompTransform>();
+        rotateTowardsVec(ppos->getPosition(), dt, rotationSpeed);
+        TCompTransform* mypos = get<TCompTransform>();
+        if (lastPlayerKnownPos != ppos->getPosition()) {
+            generateNavmesh(mypos->getPosition(), ppos->getPosition());
+        }
+        lastPlayerKnownPos = ppos->getPosition();
+        return BTNode::ERes::STAY;
+    }
+    else {
+        //TODO: Testear a ver si va bene. Idea, no marcamos la posicion del player puesto que hemos salido del nodo sin poder alcanzarle
+        TCompEmissionController * e_controller = get<TCompEmissionController>();
+        e_controller->blend(enemyColor.colorNormal, 0.1f);
+        lastPlayerKnownPos = VEC3::Zero;
+        return BTNode::ERes::LEAVE;
+    }
 }
 
 BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
@@ -993,6 +1065,11 @@ bool TCompAIPatrol::conditionPlayerAttacked(float dt)
     return distToPlayer < distToAttack;
 }
 
+bool TCompAIPatrol::conditionIsDestUnreachable(float dt)
+{
+    return !canArriveToDestination || !isDestinationCloseEnough;
+}
+
 /* ASSERTS */
 
 bool TCompAIPatrol::assertPlayerInFov(float dt)
@@ -1060,6 +1137,11 @@ bool TCompAIPatrol::assertPlayerAndPatrolNotInFovNotNoise(float dt)
     /* return */ bool result = !isEntityInFov("The Player", fov, maxChaseDistance) && !isStunnedPatrolInFov(fov, maxChaseDistance) && !hasHeardArtificialNoise && !hasHeardNaturalNoise;
     //dbg("Player and patrol not in fov nor noise %s\n", result ? "true" : "false");
     return result;
+}
+
+bool TCompAIPatrol::assertCantReachPlayer(float dt)
+{
+    return !canArriveToDestination || !isDestinationCloseEnough;
 }
 
 /* AUX FUNCTIONS */
