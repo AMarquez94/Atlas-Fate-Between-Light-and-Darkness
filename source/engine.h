@@ -18,6 +18,7 @@
 #include "modules/system/module_particles.h"
 #include "modules/game/module_game_manager.h"
 #include "modules/system/module_debug.h"
+#include "modules/module_animations.h"
 
 class CModuleGameManager;
 
@@ -36,6 +37,7 @@ public:
     CModuleManager& getModules() { return _modules; }
     CModuleRender& getRender() { return _module_render; }
     CModuleIA& getIA() { return _module_ia; }
+	CModuleAnimations& getAnimations() { return _module_animations; }
     CModuleInput& getInput() { return _module_input; }
     CModulePhysics& getPhysics() { return _module_physics; }
     CModuleCameras& getCameras() { return _module_cameras; }
@@ -62,6 +64,7 @@ private:
     CModuleEntities _module_entities;
     CModulePhysics _module_physics;
     CModuleIA       _module_ia;
+	CModuleAnimations       _module_animations;
     CModuleInput    _module_input;
     CModuleCameras  _module_cameras;
     CModuleFSM      _module_fsm;
@@ -92,3 +95,4 @@ private:
 #define EngineScene CEngine::get().getSceneManager()
 #define EngineInstancing CEngine::get().getInstancing()
 #define EngineDebug CEngine::get().getDebug()
+#define EngineAnimations CEngine::get().getAnimations()

@@ -210,6 +210,7 @@
     <ClCompile Include="modules\game\module_map_intro.cpp" />
     <ClCompile Include="modules\game\module_map_test.cpp" />
     <ClCompile Include="modules\game\module_splash.cpp" />
+    <ClCompile Include="modules\module_animations.cpp" />
     <ClCompile Include="modules\module_entities.cpp" />
     <ClCompile Include="modules\system\module_debug.cpp" />
     <ClCompile Include="modules\system\module_gui.cpp" />
@@ -443,6 +444,7 @@
     <ClInclude Include="modules\game\module_map_test.h" />
     <ClInclude Include="modules\game\module_splash.h" />
     <ClInclude Include="modules\module.h" />
+    <ClInclude Include="modules\module_animations.h" />
     <ClInclude Include="modules\module_entities.h" />
     <ClInclude Include="modules\system\module_debug.h" />
     <ClInclude Include="modules\system\module_gui.h" />

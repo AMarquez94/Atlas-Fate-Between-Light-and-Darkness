@@ -71,7 +71,7 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
     auto res_skel = Resources.get(skel_name)->as< CGameCoreSkeleton >();
     CalCoreModel* core_model = const_cast<CGameCoreSkeleton*>(res_skel);
     model = new CalModel(core_model);
-
+	
     for (int i = 0; i < model->getCoreModel()->getCoreAnimationCount(); i++) {
 
         auto core_anim = model->getCoreModel()->getCoreAnimation(i);
@@ -134,8 +134,9 @@ void TCompSkeleton::debugInMenu() {
 
     ImGui::DragFloat("Scale", &scale, 0.01f, 0, 5.f);
     if (ImGui::SmallButton("Scale Model")) {
-        model->getSkeleton()->getCoreSkeleton()->scale(scale);
-        model->getCoreModel()->scale(scale);
+        //model->getSkeleton()->getCoreSkeleton()->scale(scale);
+        //model->getCoreModel()->scale(scale);
+		
     }
 
     if (core_anim)
@@ -419,5 +420,5 @@ float TCompSkeleton::getAnimationDuration(int animId) {
 }
 
 void TCompSkeleton::onMsgEntityCreated(const TMsgEntityCreated& msg) {
-
+	EngineAnimations.registerModelToHandle(this->model, CHandle(this).getOwner());
 }
