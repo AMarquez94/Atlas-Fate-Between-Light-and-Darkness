@@ -1,0 +1,133 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_valla"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_intro001"
+      ,
+      "transform":
+      {
+        "pos": "-22.4312 -0.106447 -44.3174"
+        ,
+        "rotation": "-0.706434 -0.0308436 0.0308436 -0.706434"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_valla_intro001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_valla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_intro002"
+      ,
+      "transform":
+      {
+        "pos": "-14.4617 -0.106447 -45.0147"
+        ,
+        "rotation": "-0.706434 -0.0308436 0.0308436 -0.706434"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_valla_intro002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_valla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_intro"
+      ,
+      "transform":
+      {
+        "pos": "-30.4008 -0.106447 -43.6202"
+        ,
+        "rotation": "-0.706434 -0.0308436 0.0308436 -0.706434"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_valla_intro.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_valla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_valla_intro003"
+      ,
+      "transform":
+      {
+        "pos": "-6.49211 -0.106447 -45.7119"
+        ,
+        "rotation": "-0.706434 -0.0308436 0.0308436 -0.706434"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_valla_intro003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_valla.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

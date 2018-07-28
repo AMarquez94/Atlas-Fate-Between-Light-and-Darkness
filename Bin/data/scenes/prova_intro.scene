@@ -14,6 +14,156 @@
   {
     "entity":
     {
+      "name": "Cylinder005"
+      ,
+      "transform":
+      {
+        "pos": "-2.5099 -21.1782 -22.5237"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Cylinder005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Cylinder007"
+      ,
+      "transform":
+      {
+        "pos": "-12.7302 31.743 -22.5237"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Cylinder007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Cylinder002"
+      ,
+      "transform":
+      {
+        "pos": "-7.82375 20.0013 22.3898"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Cylinder002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Cylinder004"
+      ,
+      "transform":
+      {
+        "pos": "-7.82375 19.3253 22.3898"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Cylinder004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Cylinder003"
+      ,
+      "transform":
+      {
+        "pos": "-7.86132 26.3959 23.7394"
+        ,
+        "rotation": "0.67559 0.0 0.0 -0.737277"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Cylinder003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "muralla_saliente_intro"
       ,
       "transform":
@@ -40,43 +190,6 @@
         "shape": "box"
         ,
         "size": "2.5 10.0 4.36763"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "muralla_saliente2_intro"
-      ,
-      "transform":
-      {
-        "pos": "4.95702 0.0 11.8017"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/muralla_saliente2_intro.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "2.5 10.0 4.5229"
       }
       ,
       "abs_aabb": true
@@ -125,11 +238,48 @@
   {
     "entity":
     {
+      "name": "muralla_saliente2_intro"
+      ,
+      "transform":
+      {
+        "pos": "4.95702 0.0 11.8017"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/muralla_saliente2_intro.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.5 10.0 4.5229"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "Box004"
       ,
       "transform":
       {
-        "pos": "0.0 0.0 -63.3069"
+        "pos": "-9.53963 0.0 -77.5"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -152,36 +302,6 @@
         ,
         "name": "data/colliders/collider_Box004.collider"
       }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "valla_inicio"
-      ,
-      "transform":
-      {
-        "pos": "-12.6642 0.985526 -41.3882"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/valla_inicio.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
       ,
       "abs_aabb": true
       ,
