@@ -61,7 +61,7 @@ CTexture* TCompRenderFlares::apply(CTexture* in_color, CTexture * in_lights) {
     CTexture* output = in_lights;
     for (auto s : steps) {
 
-        output = s->applyHalf(in_lights, global_distance, distance_factors, weights);
+        output = s->apply(in_lights, global_distance, distance_factors, weights);
         in_lights = output;
         //rt_output->activateRT();
         //output->activate(TS_ALBEDO);

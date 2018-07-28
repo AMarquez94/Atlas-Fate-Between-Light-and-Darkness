@@ -1,6 +1,7 @@
 #include "common.fx"
 
-float3 gammaCorrect( float3 linear_color ) {
+float3 gammaCorrect( float3 linear_color ) 
+{
   return pow( abs(linear_color), 1. / 2.2 ); 
 }
 
@@ -9,14 +10,33 @@ float CalculateLuminance(float3 color)
   return max(dot(color, float3(0.2126, 0.7152, 0.0722)), 0.05f);
 }
 
+// Retrieves the log-average lumanaince from the texture
+float CalculateAvgLuminance(float2 iTex0)
+{
+	// This is what we should do on a separate pass
+  //float3 color = txAccLights.Load(ss_load_coords).xyz;
+	//float luminance = log(max(CalculateLuminance(color), 0.00001f));
+	
+  return txLuminance.Sample(samLinear, iTex0).x;
+}
+
 float3 CalculateExposedColor(float3 color, float avg_luminance, float thresh, float exposure)
 {
 	float t_luminance = max(avg_luminance, 0.001f);
-	float linear_exposure = (HdrKeyValue / t_luminance);
+	float linear_exposure = (global_exposure_adjustment / t_luminance);
 	float t_exposure = log2(max(linear_exposure, 0.0001f));
-	t_exposure -= threshold;
+	t_exposure -= thresh;
 	
 	return exp2(t_exposure) * color;
+}
+
+// Applies the filmic curve from John Hable's presentation
+float3 toneMapFilmicALU(float3 color)
+{
+  color = max(0, color - 0.004f);
+  color = (color * (6.2f * color + 0.5f)) / (color * (6.2f * color + 1.7f)+ 0.06f);
+
+  return color;
 }
 
 float3 toneMappingReinhard(float3 hdr, float k = 1.0)
@@ -45,6 +65,20 @@ float3 toneMappingUncharted2(float3 x) {
 }
 
 // ----------------------------------------
+float4 PS_Luminance(
+  in float4 iPosition : SV_Position        // Screen coord, 0...800, 0..600
+, in float2 iUV : TEXCOORD0
+  ) : SV_Target
+{
+  int3 ss_load_coords = uint3(iPosition.xy, 0);
+	
+	// calculate the luminance using a weighted average
+	float3 color = txAccLights.Load(ss_load_coords).xyz;
+  float luminance = log(max(CalculateLuminance(color), 0.00001f));
+  return float4(luminance, 1.0f, 1.0f, 1.0f);
+}
+
+// ----------------------------------------
 float4 PS(
   in float4 iPosition : SV_Position        // Screen coord, 0...800, 0..600
 , in float2 iUV : TEXCOORD0
@@ -65,7 +99,11 @@ float4 PS(
 
 	// Preparing the eye adaption
 	float3 prev_lum = txLuminance.Load(ss_load_coords).xyz;
-	hdrColor = prev_lum + (hdrColor - prev_lum) * (1 - exp(-0.25 * 1.5));
+	//hdrColor = prev_lum + (hdrColor - prev_lum) * (1 - exp(-0.25 * 1.5));
+	
+	float pixelLuminance = CalculateLuminance(hdrColor);
+  //hdrColor = CalculateExposedColor(hdrColor, avg_lum, 0, 0);	
+	//float3 tmColor = toneMapFilmicALU(hdrColor);
 	
 	// Somet one mapping.
   float3 tmColorUC2 = toneMappingUncharted2( hdrColor );
