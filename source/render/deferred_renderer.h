@@ -13,7 +13,7 @@ public:
   CRenderToTexture* rt_acc_light = nullptr;
   CRenderToTexture* rt_self_illum = nullptr;
 
-  CRenderToTexture* rt_PREV_acc_light = nullptr;
+  CRenderToTexture* rt_prev_acc_light = nullptr;
 
   void renderGBuffer();
   void renderAccLight();

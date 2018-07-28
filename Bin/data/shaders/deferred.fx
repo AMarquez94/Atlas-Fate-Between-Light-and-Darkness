@@ -1,17 +1,27 @@
 #include "common.fx"
 
-float3 toneMappingReinhard(float3 hdr, float k = 1.0)
-{
-  return hdr / (hdr + k);
-}
-
 float3 gammaCorrect( float3 linear_color ) {
   return pow( abs(linear_color), 1. / 2.2 ); 
 }
 
 float CalculateLuminance(float3 color)
 {
-    return max(dot(color, float3(0.2126, 0.7152, 0.0722)), 0.05f);
+  return max(dot(color, float3(0.2126, 0.7152, 0.0722)), 0.05f);
+}
+
+float3 CalculateExposedColor(float3 color, float avg_luminance, float thresh, float exposure)
+{
+	float t_luminance = max(avg_luminance, 0.001f);
+	float linear_exposure = (HdrKeyValue / t_luminance);
+	float t_exposure = log2(max(linear_exposure, 0.0001f));
+	t_exposure -= threshold;
+	
+	return exp2(t_exposure) * color;
+}
+
+float3 toneMappingReinhard(float3 hdr, float k = 1.0)
+{
+  return hdr / (hdr + k);
 }
 
 float3 Uncharted2Tonemap(float3 x)
@@ -50,13 +60,18 @@ float4 PS(
   hdrColor *= global_exposure_adjustment;
 
   // In Low Dynamic Range we could not go beyond the value 1
-  float3 ldrColor = min(hdrColor,float3(1,1,1));
-  hdrColor = lerp( ldrColor, hdrColor, global_hdr_enabled  );
+  //float3 ldrColor = min(hdrColor,float3(1,1,1));
+  //hdrColor = lerp( ldrColor, hdrColor, global_hdr_enabled  );
 
+	// Preparing the eye adaption
+	float3 prev_lum = txLuminance.Load(ss_load_coords).xyz;
+	hdrColor = prev_lum + (hdrColor - prev_lum) * (1 - exp(-0.25 * 1.5));
+	
+	// Somet one mapping.
   float3 tmColorUC2 = toneMappingUncharted2( hdrColor );
   float3 tmColorReinhard = toneMappingReinhard( hdrColor );
   float3 tmColor = lerp( tmColorReinhard, tmColorUC2, global_tone_mapping_mode );
-
+	
   float3 gammaCorrectedColor = gammaCorrect( tmColor );
   gammaCorrectedColor = lerp( tmColor, gammaCorrectedColor.xyz, global_gamma_correction_enabled );
 	

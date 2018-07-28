@@ -84,6 +84,10 @@ bool CDeferredRenderer::create(int xres, int yres) {
 	if (!rt_acc_light->createRT("acc_light.dds", xres, yres, DXGI_FORMAT_R16G16B16A16_FLOAT, DXGI_FORMAT_UNKNOWN, true))
 		return false;
 
+    rt_prev_acc_light = new CRenderToTexture;
+    if (!rt_prev_acc_light->createRT("prev_acc_light.dds", xres, yres, DXGI_FORMAT_R16G16B16A16_FLOAT, DXGI_FORMAT_UNKNOWN, true))
+        return false;
+
 	return true;
 }
 
@@ -310,5 +314,5 @@ void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camer
 
 	// Combine the results
 	renderFullScreenQuad("gbuffer_resolve.tech", nullptr);
-    rt_prev_acc_light = rt_destination;
+    rt_prev_acc_light = rt_acc_light;
 }
