@@ -34,6 +34,7 @@ MAT44 Cal2DX(CalVector trans, CalQuaternion rot) {
 void TCompSkeleton::registerMsgs()
 {
 	DECL_MSG(TCompSkeleton, TMsgEntityCreated, onMsgEntityCreated);
+	DECL_MSG(TCompSkeleton, TMsgAnimationCallback, onMsgAnimationCallback);
 }
 
 // --------------------------------------------------------------------
@@ -421,4 +422,9 @@ float TCompSkeleton::getAnimationDuration(int animId) {
 
 void TCompSkeleton::onMsgEntityCreated(const TMsgEntityCreated& msg) {
 	EngineAnimations.registerModelToHandle(this->model, CHandle(this).getOwner());
+}
+
+void TCompSkeleton::onMsgAnimationCallback(const TMsgAnimationCallback& msg) {
+	//Call the LUA function for the callback
+	//EngineLogic.execScript(msg.function_to_call);
 }

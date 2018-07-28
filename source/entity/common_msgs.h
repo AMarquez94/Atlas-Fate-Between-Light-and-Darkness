@@ -149,6 +149,11 @@ struct TMsgCameraReset {
   DECL_MSG_ID();
 };
 
+struct TMsgAnimationCallback {
+	std::string function_to_call;
+	DECL_MSG_ID();
+};
+
 struct TMsgTimeOut {
 	DECL_MSG_ID();
 };

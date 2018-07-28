@@ -2,7 +2,13 @@
 	"name":"patrol",
 	"anims" : [
 		{ "name" : "idle" },
-		{ "name" : "walk" },
+		{ "name" : "walk",
+		"callbacks":[
+		  {
+		  	"time_to_call" : 0.5,
+		  	"function_to_call" : "potato"
+		  }
+		] },
 		{ "name" : "die" },
 		{ "name" : "dead" },
 		{ "name" : "attack" }

@@ -2,7 +2,7 @@
 	"name":"player",
 	"anims" : [
 		{ "name" : "idle",
-		  "callbacks":[
+		  "xcallbacks":[
 		  {
 		  	"time_to_call" : 0.5,
 		  	"function_to_call" : "potato"
