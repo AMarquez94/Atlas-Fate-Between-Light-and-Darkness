@@ -25,7 +25,7 @@ void AnimationCallback::AnimationUpdate(float anim_time, CalModel *model) {
 	TMsgAnimationCallback msg;
 	msg.function_to_call = this->luaFunction;
 	e->sendMsg(msg);
-	dbg("module:     %s      name: %s\n",this->luaFunction.c_str() , e->getName());
+	dbg("module:     %f\n", anim_time);
 }
 
 void AnimationCallback::AnimationComplete(CalModel *model) {

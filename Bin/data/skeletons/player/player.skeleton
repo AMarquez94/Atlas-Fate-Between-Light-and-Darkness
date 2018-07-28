@@ -2,14 +2,10 @@
 	"name":"player",
 	"anims" : [
 		{ "name" : "idle",
-		  "xcallbacks":[
+		  "callbacks":[
 		  {
 		  	"time_to_call" : 0.5,
 		  	"function_to_call" : "potato"
-		  },
-		  {
-		  	"time_to_call" : 0.7,
-		  	"function_to_call" : "tomato"
 		  }
 		]},
 		{ "name" : "walk"},
