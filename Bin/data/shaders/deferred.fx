@@ -2,13 +2,17 @@
 
 float3 toneMappingReinhard(float3 hdr, float k = 1.0)
 {
-    return hdr / (hdr + k);
+  return hdr / (hdr + k);
 }
 
 float3 gammaCorrect( float3 linear_color ) {
   return pow( abs(linear_color), 1. / 2.2 ); 
 }
 
+float CalculateLuminance(float3 color)
+{
+    return max(dot(color, float3(0.2126, 0.7152, 0.0722)), 0.05f);
+}
 
 float3 Uncharted2Tonemap(float3 x)
 {

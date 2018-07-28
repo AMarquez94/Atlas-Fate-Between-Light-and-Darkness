@@ -27,8 +27,9 @@ float4 PS_PostFX_Flares(in float4 iPosition : SV_POSITION , in float2 iTex0 : TE
 	 
 	float2 light_iTex0 = iTex0;// + float2(512, 256);
 	float4 color = txAlbedo.Sample(samClampLinear, iTex0);
-	//float4 light_beam = txEmissive.Sample(samClampLinear, iTex0);
-
+	float4 light_beam = txEmissive.Sample(samClampLinear, iTex0);
+	return color;
+	
 	float2 vghost = (- light_iTex0) * uGhostDispersal;
 	
 	float3 result = float3(0, 0, 0);

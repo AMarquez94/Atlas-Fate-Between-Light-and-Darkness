@@ -368,7 +368,7 @@ void CModuleRender::generateFrame() {
 
             TCompRenderFlares* c_render_flares = e_cam->get< TCompRenderFlares >();
             if (c_render_flares)
-                curr_rt = c_render_flares->apply(curr_rt, c_render_bloom->rt_highlights);
+                curr_rt = c_render_flares->apply(curr_rt, deferred.rt_acc_light);
 
             TCompAntiAliasing* c_antialiasing = e_cam->get< TCompAntiAliasing >();
             if (c_antialiasing)

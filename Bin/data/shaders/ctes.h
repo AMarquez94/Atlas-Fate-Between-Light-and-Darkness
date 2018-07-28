@@ -47,6 +47,7 @@
 #define TS_DEFERRED_SELF_ILLUMINATION 20
 #define TS_DEFERRED_AO                21
 #define TS_LUT_COLOR_GRADING          22
+#define TS_LUMINANCE                  23
 
 #define TS_FIRST_SLOT_MATERIAL_0      TS_ALBEDO
 #define TS_FIRST_SLOT_MATERIAL_1      TS_ALBEDO1

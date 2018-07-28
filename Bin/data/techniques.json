@@ -498,6 +498,14 @@
 		"vertex_type": "PosClr",
 		"category": "fx",
 		"z": "disable_all"
+	},	
+	"postfx_eye_adaption": {
+		"vs_file": "data/shaders/screen_quad.fx",
+		"ps_file": "data/shaders/deferred.fx",
+		"ps_entry_point": "PS",
+		"vertex_type": "PosClr",
+		"category": "fx",
+		"z": "disable_all"
 	},
 	"postfx_flare": {
 		"vs_file": "data/shaders/screen_quad.fx",
