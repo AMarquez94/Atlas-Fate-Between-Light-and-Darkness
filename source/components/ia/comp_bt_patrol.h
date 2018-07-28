@@ -15,6 +15,7 @@ private:
     bool hasBeenShadowMerged = false;
     bool hasBeenFixed = false;
     bool disabledLanterns = false;
+    std::vector<CHandle> ignoredPatrols;
 
     DECL_SIBLING_ACCESS();
 
@@ -103,7 +104,7 @@ public:
     bool assertNotPlayerInFovNorArtificialNoise(float dt);
     bool assertPlayerNotInFovNorNoise(float dt);
     bool assertPlayerAndPatrolNotInFovNotNoise(float dt);
-    bool assertCantReachPlayer(float dt);
+    bool assertCantReachDest(float dt);
 
     const std::string getStateForCheckpoint();
 

@@ -58,6 +58,7 @@ protected:
     bool isEntityHidden(CHandle hEntity);
     void generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc = false);
     bool moveToPoint(float speed, float rotationSpeed, VEC3 destPoint, float dt);
+    bool isCurrentDestinationReachable();
 
 
     /* TODO: Delete */

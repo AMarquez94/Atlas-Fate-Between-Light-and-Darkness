@@ -506,7 +506,7 @@
 					"variable_op": ""
 				}
 			],
-			"assert": "assertCantReachPlayer"
+			"assert": "assertCantReachDest"
 		}, {
 			"parent": "managePlayerAttacked",
 			"name": "attack",
@@ -626,6 +626,34 @@
 			"assert": ""
 		}, {
 			"parent": "managePatrolSeen",
+			"name": "manageGoToPatrol",
+			"type": "priority",
+			"condition": "",
+			"action": "",
+			"assert": ""
+		}, {
+			"parent": "manageGoToPatrol",
+			"name": "manageUnreachableGoToPatrol",
+			"type": "sequence",
+			"condition": "conditionIsDestUnreachable",
+			"action": "",
+			"assert": ""
+		}, {
+			"parent": "manageUnreachableGoToPatrol",
+			"name": "closestWptUnreachableGoToPatrol",
+			"type": "sequence",
+			"condition": "",
+			"action": "closestWpt",
+			"assert": ""
+		}, {
+			"parent": "manageGoToPatrol",
+			"name": "manageReachableGoToPatrol",
+			"type": "sequence",
+			"condition": "",
+			"action": "",
+			"assert": ""
+		}, {
+			"parent": "manageReachableGoToPatrol",
 			"name": "goToPatrol",
 			"type": "action",
 			"condition": "",
@@ -649,7 +677,7 @@
 			],
 			"assert": "assertPlayerNotInFov"
 		}, {
-			"parent": "managePatrolSeen",
+			"parent": "manageReachableGoToPatrol",
 			"name": "manageInPatrolPos",
 			"type": "priority",
 			"condition": "",

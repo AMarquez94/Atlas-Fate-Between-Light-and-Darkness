@@ -201,22 +201,22 @@ bool TCompAIEnemy::moveToPoint(float speed, float rotationSpeed, VEC3 objective,
     if (VEC3::Distance(objective, vp) <= speed * dt + 0.1f/*fabsf(left.Dot(finalDir)) * maxDistanceToNavmeshPoint + 0.1f*/) {
         return true;
     }
-    else if (navmeshPath.size() == navmeshPathPoint
-        && !canArriveToDestination) {
+    //else if (navmeshPath.size() == navmeshPathPoint
+    //    && !canArriveToDestination) {
 
 
-        /* We are in the navmesh last point and cant reach it */
-        playAnimationByName("idle");
-        timerWaitingInUnreachablePoint += dt;
-        if (timerWaitingInUnreachablePoint > 3.f) {
-            TCompEmissionController * e_controller = me->get<TCompEmissionController>();
-            e_controller->blend(enemyColor.colorNormal, 0.1f);
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+    //    /* We are in the navmesh last point and cant reach it */
+    //    playAnimationByName("idle");
+    //    timerWaitingInUnreachablePoint += dt;
+    //    if (timerWaitingInUnreachablePoint > 3.f) {
+    //        TCompEmissionController * e_controller = me->get<TCompEmissionController>();
+    //        e_controller->blend(enemyColor.colorNormal, 0.1f);
+    //        return true;
+    //    }
+    //    else {
+    //        return false;
+    //    }
+    //}
     else {
         float actualSpeed = speed;
         VEC3 front = mypos->getFront();
@@ -235,4 +235,9 @@ bool TCompAIEnemy::moveToPoint(float speed, float rotationSpeed, VEC3 objective,
         }
         return false;
     }
+}
+
+bool TCompAIEnemy::isCurrentDestinationReachable()
+{
+    return canArriveToDestination && isDestinationCloseEnough;
 }

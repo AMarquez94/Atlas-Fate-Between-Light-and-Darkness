@@ -357,7 +357,7 @@ void TCompAIPatrol::loadAsserts() {
     asserts_initializer["assertNotPlayerInFovNorArtificialNoise"] = (BTCondition)&TCompAIPatrol::assertNotPlayerInFovNorArtificialNoise;
     asserts_initializer["assertPlayerNotInFovNorNoise"] = (BTCondition)&TCompAIPatrol::assertPlayerNotInFovNorNoise;
     asserts_initializer["assertPlayerAndPatrolNotInFovNotNoise"] = (BTCondition)&TCompAIPatrol::assertPlayerAndPatrolNotInFovNotNoise;
-    asserts_initializer["assertCantReachPlayer"] = (BTCondition)&TCompAIPatrol::assertCantReachPlayer;
+    asserts_initializer["assertCantReachDest"] = (BTCondition)&TCompAIPatrol::assertCantReachDest;
 }
 
 /* ACTIONS */
@@ -466,7 +466,9 @@ BTNode::ERes TCompAIPatrol::actionGoToNoiseSource(float dt)
         return BTNode::ERes::LEAVE;
     }
 
-    if (moveToPoint(speed, rotationSpeed, noiseSource, dt)) {
+    VEC3 destination = isCurrentDestinationReachable() ? noiseSource : navmeshPath[navmeshPath.size() - 1];   //TODO: Posible bug si el size de la navmesh es 0? testear
+
+    if (moveToPoint(speed, rotationSpeed, destination, dt)) {
         //dbg("LEAVE (is in position) - ");
         //dbg("MyPos: (%f, %f, %f) - NoiseSource: (%f, %f, %f)\n", pp.x, pp.y, pp.z, noiseSource.x, noiseSource.y, noiseSource.z);
         return BTNode::ERes::LEAVE;
@@ -519,6 +521,10 @@ BTNode::ERes TCompAIPatrol::actionGenerateNavmeshWpt(float dt)
 
 BTNode::ERes TCompAIPatrol::actionGoToWpt(float dt)
 {
+
+    if (!isCurrentDestinationReachable())
+        return BTNode::ERes::LEAVE;
+
     assert(arguments.find("speed_actionGoToWpt_goToWpt") != arguments.end());
     float speed = arguments["speed_actionGoToWpt_goToWpt"].getFloat();
     assert(arguments.find("rotationSpeed_actionGoToWpt_goToWpt") != arguments.end());
@@ -533,6 +539,9 @@ BTNode::ERes TCompAIPatrol::actionGoToWpt(float dt)
 
 BTNode::ERes TCompAIPatrol::actionWaitInWpt(float dt)
 {
+    if (!isCurrentDestinationReachable())
+        return BTNode::ERes::LEAVE;
+
     assert(arguments.find("rotationSpeed_actionWaitInWpt_waitInWpt") != arguments.end());
     float rotationSpeed = deg2rad(arguments["rotationSpeed_actionWaitInWpt_waitInWpt"].getFloat());
 
@@ -713,7 +722,6 @@ BTNode::ERes TCompAIPatrol::actionRotateTowardsUnreachablePlayer(float dt)
     assert(arguments.find("rotationSpeed_actionRotateTowardsUnreachablePlayer_rotateTowardsUnreachablePlayer") != arguments.end());
     float rotationSpeed = deg2rad(arguments["rotationSpeed_actionRotateTowardsUnreachablePlayer_rotateTowardsUnreachablePlayer"].getFloat());
 
-    bool keepAlert;
     if (isEntityInFov(entityToChase, fov, maxChaseDistance)) {
         CEntity* player = getEntityByName(entityToChase);
         TCompTransform* ppos = player->get<TCompTransform>();
@@ -821,6 +829,9 @@ BTNode::ERes TCompAIPatrol::actionResetPlayerWasSeenVariables(float dt)
     amountRotated = 0.f;
     TCompTransform *tpos = get <TCompTransform>();
     generateNavmesh(tpos->getPosition(), lastPlayerKnownPos);
+
+    lastPlayerKnownPos = isCurrentDestinationReachable() && navmeshPath.size() > 0 ? lastPlayerKnownPos : navmeshPath[navmeshPath.size() - 1];
+
     return BTNode::ERes::LEAVE;
 }
 
@@ -919,6 +930,11 @@ BTNode::ERes TCompAIPatrol::actionGenerateNavmeshGoToPatrol(float dt)
 {
     TCompTransform *tTransform = get<TCompTransform>();
     generateNavmesh(tTransform->getPosition(), lastStunnedPatrolKnownPos);
+    if (!isCurrentDestinationReachable()) {
+        CHandle patrolToIgnore = getPatrolInPos(lastStunnedPatrolKnownPos);
+        ignoredPatrols.push_back(patrolToIgnore);
+        lastStunnedPatrolKnownPos = VEC3::Zero;
+    }
     return BTNode::ERes::LEAVE;
 }
 
@@ -1067,7 +1083,7 @@ bool TCompAIPatrol::conditionPlayerAttacked(float dt)
 
 bool TCompAIPatrol::conditionIsDestUnreachable(float dt)
 {
-    return !canArriveToDestination || !isDestinationCloseEnough;
+    return !isCurrentDestinationReachable();
 }
 
 /* ASSERTS */
@@ -1139,9 +1155,9 @@ bool TCompAIPatrol::assertPlayerAndPatrolNotInFovNotNoise(float dt)
     return result;
 }
 
-bool TCompAIPatrol::assertCantReachPlayer(float dt)
+bool TCompAIPatrol::assertCantReachDest(float dt)
 {
-    return !canArriveToDestination || !isDestinationCloseEnough;
+    return !isCurrentDestinationReachable();
 }
 
 /* AUX FUNCTIONS */
@@ -1181,7 +1197,8 @@ bool TCompAIPatrol::isStunnedPatrolInFov(float fov, float maxChaseDistance)
 			if (mypos->isInFov(stunnedPatrol->getPosition(), fov, deg2rad(45.f))
 				&& VEC3::Distance(mypos->getPosition(), stunnedPatrol->getPosition()) < maxChaseDistance
 				&& !isEntityHidden(stunnedPatrols[i])
-				&& fabsf(myY - enemyY) <= 2 * capsuleCollider->height) {
+				&& fabsf(myY - enemyY) <= 2 * capsuleCollider->height
+                && std::find(ignoredPatrols.begin(), ignoredPatrols.end(), stunnedPatrols[i]) == ignoredPatrols.end()) {
 				found = true;
 				lastStunnedPatrolKnownPos = stunnedPatrol->getPosition();
 			}
