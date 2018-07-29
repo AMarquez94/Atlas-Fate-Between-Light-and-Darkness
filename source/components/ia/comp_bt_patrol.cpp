@@ -17,6 +17,8 @@
 #include "components/ia/comp_patrol_animator.h"
 #include "render/render_objects.h"
 #include "components/lighting/comp_fade_controller.h"
+#include "entity/entity_parser.h"
+#include "components/comp_tags.h"
 
 DECL_OBJ_MANAGER("ai_patrol", TCompAIPatrol);
 
@@ -320,6 +322,8 @@ void TCompAIPatrol::loadActions() {
     actions_initializer["actionGoToPatrol"] = (BTAction)&TCompAIPatrol::actionGoToPatrol;
     actions_initializer["actionFixPatrol"] = (BTAction)&TCompAIPatrol::actionFixPatrol;
     actions_initializer["actionMarkPatrolAsLost"] = (BTAction)&TCompAIPatrol::actionMarkPatrolAsLost;
+    actions_initializer["actionWarnClosestDrone"] = (BTAction)&TCompAIPatrol::actionWarnClosestDrone;
+    actions_initializer["actionRotateTowardsUnreachablePlayer"] = (BTAction)&TCompAIPatrol::actionRotateTowardsUnreachablePlayer;
 
 }
 
@@ -340,6 +344,7 @@ void TCompAIPatrol::loadConditions() {
     conditions_initializer["conditionWaitInWpt"] = (BTCondition)&TCompAIPatrol::conditionWaitInWpt;
     conditions_initializer["conditionChase"] = (BTCondition)&TCompAIPatrol::conditionChase;
     conditions_initializer["conditionPlayerAttacked"] = (BTCondition)&TCompAIPatrol::conditionPlayerAttacked;
+    conditions_initializer["conditionIsDestUnreachable"] = (BTCondition)&TCompAIPatrol::conditionIsDestUnreachable;
 }
 
 void TCompAIPatrol::loadAsserts() {
@@ -352,6 +357,7 @@ void TCompAIPatrol::loadAsserts() {
     asserts_initializer["assertNotPlayerInFovNorArtificialNoise"] = (BTCondition)&TCompAIPatrol::assertNotPlayerInFovNorArtificialNoise;
     asserts_initializer["assertPlayerNotInFovNorNoise"] = (BTCondition)&TCompAIPatrol::assertPlayerNotInFovNorNoise;
     asserts_initializer["assertPlayerAndPatrolNotInFovNotNoise"] = (BTCondition)&TCompAIPatrol::assertPlayerAndPatrolNotInFovNotNoise;
+    asserts_initializer["assertCantReachDest"] = (BTCondition)&TCompAIPatrol::assertCantReachDest;
 }
 
 /* ACTIONS */
@@ -460,7 +466,9 @@ BTNode::ERes TCompAIPatrol::actionGoToNoiseSource(float dt)
         return BTNode::ERes::LEAVE;
     }
 
-    if (moveToPoint(speed, rotationSpeed, noiseSource, dt)) {
+    VEC3 destination = isCurrentDestinationReachable() ? noiseSource : navmeshPath[navmeshPath.size() - 1];   //TODO: Posible bug si el size de la navmesh es 0? testear
+
+    if (moveToPoint(speed, rotationSpeed, destination, dt)) {
         //dbg("LEAVE (is in position) - ");
         //dbg("MyPos: (%f, %f, %f) - NoiseSource: (%f, %f, %f)\n", pp.x, pp.y, pp.z, noiseSource.x, noiseSource.y, noiseSource.z);
         return BTNode::ERes::LEAVE;
@@ -513,6 +521,10 @@ BTNode::ERes TCompAIPatrol::actionGenerateNavmeshWpt(float dt)
 
 BTNode::ERes TCompAIPatrol::actionGoToWpt(float dt)
 {
+
+    if (!isCurrentDestinationReachable())
+        return BTNode::ERes::LEAVE;
+
     assert(arguments.find("speed_actionGoToWpt_goToWpt") != arguments.end());
     float speed = arguments["speed_actionGoToWpt_goToWpt"].getFloat();
     assert(arguments.find("rotationSpeed_actionGoToWpt_goToWpt") != arguments.end());
@@ -527,6 +539,9 @@ BTNode::ERes TCompAIPatrol::actionGoToWpt(float dt)
 
 BTNode::ERes TCompAIPatrol::actionWaitInWpt(float dt)
 {
+    if (!isCurrentDestinationReachable())
+        return BTNode::ERes::LEAVE;
+
     assert(arguments.find("rotationSpeed_actionWaitInWpt_waitInWpt") != arguments.end());
     float rotationSpeed = deg2rad(arguments["rotationSpeed_actionWaitInWpt_waitInWpt"].getFloat());
 
@@ -622,6 +637,10 @@ BTNode::ERes TCompAIPatrol::actionMarkPlayerAsSeen(float dt)
 
 BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 {
+    //play animation shoot inhibitor
+    //
+
+    //TODO: if !animationBeingPlayed and PlayerInhibited => LEAVE; else => normal
     assert(arguments.find("entityToChase_actionShootInhibitor_shootInhibitor") != arguments.end());
     std::string entityToChase = arguments["entityToChase_actionShootInhibitor_shootInhibitor"].getString();
 
@@ -634,11 +653,10 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
     if (!pController->isInhibited) {
 
         timeAnimating = 0.0f;
-
-        TMsgInhibitorShot msg;
-        msg.h_sender = CHandle(this).getOwner();
-        player->sendMsg(msg);
+        EngineLogic.execScript("animation_LaunchInhibitor(" + CHandle(this).getOwner().asString() + ")");
     }
+
+
     return BTNode::ERes::LEAVE;
 }
 
@@ -656,6 +674,72 @@ BTNode::ERes TCompAIPatrol::actionGenerateNavmeshChase(float dt)
     navmeshPathPoint = 0;
     recalculateNavmesh = false;
     return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPatrol::actionWarnClosestDrone(float dt)
+{
+    assert(arguments.find("entityToChase_actionWarnClosestDrone_warnClosestDrone") != arguments.end());
+    std::string entityToChase = arguments["entityToChase_actionWarnClosestDrone_warnClosestDrone"].getString();
+
+    /* Prepare msg */
+    CEntity* player = getEntityByName(entityToChase);
+    TCompTransform* ppos = player->get<TCompTransform>();
+    TMsgOrderReceived msg;
+    msg.hOrderSource = CHandle(this).getOwner();
+    msg.position = ppos->getPosition();
+
+    /* Get closest drone (if any) to warn it */
+    VHandles v_drones = CTagsManager::get().getAllEntitiesByTag(getID("drone"));
+    float min_dist = INFINITY;
+    int min_index = 0;
+    bool found = false;
+    for (int i = 0; i < v_drones.size(); i++) {
+        CEntity* drone = v_drones[i];
+        TCompTransform* dpos = drone->get<TCompTransform>();
+        float distance = VEC3::Distance(ppos->getPosition(), dpos->getPosition());
+        if (distance < min_dist) {
+            min_dist = distance;
+            min_index = i;
+            found = true;
+        }
+    }
+
+    if (found) {
+        v_drones[min_index].sendMsg(msg);
+    }
+
+    return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPatrol::actionRotateTowardsUnreachablePlayer(float dt)
+{
+    assert(arguments.find("entityToChase_actionRotateTowardsUnreachablePlayer_rotateTowardsUnreachablePlayer") != arguments.end());
+    std::string entityToChase = arguments["entityToChase_actionRotateTowardsUnreachablePlayer_rotateTowardsUnreachablePlayer"].getString();
+    assert(arguments.find("fov_actionRotateTowardsUnreachablePlayer_rotateTowardsUnreachablePlayer") != arguments.end());
+    float fov = deg2rad(arguments["fov_actionRotateTowardsUnreachablePlayer_rotateTowardsUnreachablePlayer"].getFloat());
+    assert(arguments.find("maxChaseDistance_actionRotateTowardsUnreachablePlayer_rotateTowardsUnreachablePlayer") != arguments.end());
+    float maxChaseDistance = arguments["maxChaseDistance_actionRotateTowardsUnreachablePlayer_rotateTowardsUnreachablePlayer"].getFloat();
+    assert(arguments.find("rotationSpeed_actionRotateTowardsUnreachablePlayer_rotateTowardsUnreachablePlayer") != arguments.end());
+    float rotationSpeed = deg2rad(arguments["rotationSpeed_actionRotateTowardsUnreachablePlayer_rotateTowardsUnreachablePlayer"].getFloat());
+
+    if (isEntityInFov(entityToChase, fov, maxChaseDistance)) {
+        CEntity* player = getEntityByName(entityToChase);
+        TCompTransform* ppos = player->get<TCompTransform>();
+        rotateTowardsVec(ppos->getPosition(), dt, rotationSpeed);
+        TCompTransform* mypos = get<TCompTransform>();
+        if (lastPlayerKnownPos != ppos->getPosition()) {
+            generateNavmesh(mypos->getPosition(), ppos->getPosition());
+        }
+        lastPlayerKnownPos = ppos->getPosition();
+        return BTNode::ERes::STAY;
+    }
+    else {
+        //TODO: Testear a ver si va bene. Idea, no marcamos la posicion del player puesto que hemos salido del nodo sin poder alcanzarle
+        TCompEmissionController * e_controller = get<TCompEmissionController>();
+        e_controller->blend(enemyColor.colorNormal, 0.1f);
+        lastPlayerKnownPos = VEC3::Zero;
+        return BTNode::ERes::LEAVE;
+    }
 }
 
 BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
@@ -745,6 +829,9 @@ BTNode::ERes TCompAIPatrol::actionResetPlayerWasSeenVariables(float dt)
     amountRotated = 0.f;
     TCompTransform *tpos = get <TCompTransform>();
     generateNavmesh(tpos->getPosition(), lastPlayerKnownPos);
+
+    lastPlayerKnownPos = isCurrentDestinationReachable() && navmeshPath.size() > 0 ? lastPlayerKnownPos : navmeshPath[navmeshPath.size() - 1];
+
     return BTNode::ERes::LEAVE;
 }
 
@@ -843,6 +930,11 @@ BTNode::ERes TCompAIPatrol::actionGenerateNavmeshGoToPatrol(float dt)
 {
     TCompTransform *tTransform = get<TCompTransform>();
     generateNavmesh(tTransform->getPosition(), lastStunnedPatrolKnownPos);
+    if (!isCurrentDestinationReachable()) {
+        CHandle patrolToIgnore = getPatrolInPos(lastStunnedPatrolKnownPos);
+        ignoredPatrols.push_back(patrolToIgnore);
+        lastStunnedPatrolKnownPos = VEC3::Zero;
+    }
     return BTNode::ERes::LEAVE;
 }
 
@@ -989,6 +1081,11 @@ bool TCompAIPatrol::conditionPlayerAttacked(float dt)
     return distToPlayer < distToAttack;
 }
 
+bool TCompAIPatrol::conditionIsDestUnreachable(float dt)
+{
+    return !isCurrentDestinationReachable();
+}
+
 /* ASSERTS */
 
 bool TCompAIPatrol::assertPlayerInFov(float dt)
@@ -1058,6 +1155,11 @@ bool TCompAIPatrol::assertPlayerAndPatrolNotInFovNotNoise(float dt)
     return result;
 }
 
+bool TCompAIPatrol::assertCantReachDest(float dt)
+{
+    return !isCurrentDestinationReachable();
+}
+
 /* AUX FUNCTIONS */
 
 void TCompAIPatrol::turnOnLight()
@@ -1095,7 +1197,8 @@ bool TCompAIPatrol::isStunnedPatrolInFov(float fov, float maxChaseDistance)
 			if (mypos->isInFov(stunnedPatrol->getPosition(), fov, deg2rad(45.f))
 				&& VEC3::Distance(mypos->getPosition(), stunnedPatrol->getPosition()) < maxChaseDistance
 				&& !isEntityHidden(stunnedPatrols[i])
-				&& fabsf(myY - enemyY) <= 2 * capsuleCollider->height) {
+				&& fabsf(myY - enemyY) <= 2 * capsuleCollider->height
+                && std::find(ignoredPatrols.begin(), ignoredPatrols.end(), stunnedPatrols[i]) == ignoredPatrols.end()) {
 				found = true;
 				lastStunnedPatrolKnownPos = stunnedPatrol->getPosition();
 			}
@@ -1143,6 +1246,22 @@ CHandle TCompAIPatrol::getPatrolInPos(VEC3 lastPos)
     }
 
 	return h_stunnedPatrol;
+}
+
+float TCompAIPatrol::getMaxChaseDistance()
+{
+    float maxChaseDistance = arguments["maxChaseDistance_actionSuspect_suspect"].getFloat();
+    assert(arguments.find("dcrSuspectO_Meter_actionSuspect_suspect") != arguments.end());
+    return maxChaseDistance;
+}
+
+void TCompAIPatrol::launchInhibitor()
+{
+    TEntityParseContext ctxInhibitor;
+    ctxInhibitor.entity_starting_the_parse = CHandle(this).getOwner();
+    parseScene("data/prefabs/inhibitor.prefab", ctxInhibitor);
+    TCompGroup* myGroup = get<TCompGroup>();
+    myGroup->add(ctxInhibitor.entities_loaded[0]);
 }
 
 void TCompAIPatrol::playAnimationByName(const std::string & animationName)

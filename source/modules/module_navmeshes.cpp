@@ -76,3 +76,14 @@ VEC3 CModuleNavmesh::closestNavmeshPoint(VEC3 start) {
         return VEC3(-FLT_MAX, -FLT_MAX, -FLT_MAX);
     }
 }
+
+float CModuleNavmesh::navmeshLong(const std::vector<VEC3> navmeshPath)
+{
+    float navmeshLong = 0.f;
+    if (navmeshPath.size() > 1) {
+        for (int i = 1; i < navmeshPath.size(); i++) {
+            navmeshLong += VEC3::Distance2D(navmeshPath[i], navmeshPath[i - 1]);
+        }
+    }
+    return navmeshLong;
+}

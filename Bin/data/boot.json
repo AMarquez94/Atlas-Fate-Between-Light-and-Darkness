@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_map_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -7,32 +7,28 @@
 		},
 		"scene_group": [
 			"data/scenes/Intro/player_intro_fsm.scene",
-			"data/scenes/Map_Intro/test_instancing.scene",
-			"data/scenes/Map_Intro/capsules.scene",
-			"data/scenes/Map_Intro/camera.scene",
+			"data/scenes/Intro/intro_test_instancing.scene",
+
 			"data/scenes/Map_Intro/checkpoints.scene",
 			"data/scenes/Map_Intro/movable_objects.scene",
 			"data/scenes/Map_Intro/milestone2_map_particles.scene",
-
+			
+			"data/scenes/Intro/intro_camera.scene",
 			"data/scenes/Intro/intro_columnas.scene",
 			"data/scenes/Intro/intro_puertas.scene",
 			"data/scenes/Intro/intro_casas.scene",
 			"data/scenes/Intro/intro_barandillas.scene",
 			"data/scenes/Intro/intro_colliders_barandillas.scene",
 			"data/scenes/Intro/intro_salientes.scene",
-      		"data/scenes/Intro/intro_colliders_salientes.scene",
-      
-      "data/scenes/intro_light.scene",
-      
-      "data/scenes/intro_puentes_chapa.scene",
-      
-      "data/scenes/intro_andamios.scene",
-      "data/scenes/intro_tejados.scene",
-      
-      "data/scenes/prova_intro.scene",
-
-
-
+			"data/scenes/Intro/intro_colliders_salientes.scene",
+			"data/scenes/Intro/intro_capsules.scene",
+			"data/scenes/intro_light.scene",
+			"data/scenes/intro_puentes_chapa.scene",
+			"data/scenes/intro_andamios.scene",
+			"data/scenes/intro_tejados.scene",
+			"data/scenes/prova_intro.scene",
+			"data/scenes/intro_pozo_prova.scene",
+			"data/scenes/intro_barra_capsulas.scene",
 			"data/scenes/Intro/intro_suelo.scene"
 
 		]
@@ -55,7 +51,6 @@
 			"data/scenes/Map_Intro/movable_objects.scene",
 			"data/scenes/Map_Intro/milestone2_map_particles.scene",
 			"data/scenes/Map_Intro/buttons.scene",
-			
 			"data/scenes/ZoneA/debug_navmeshes.scene"
 		]
 	},
@@ -102,7 +97,7 @@
 			"data/scenes/ZoneA/luces.scene",
 			"data/scenes/ZoneA/neones.scene",
 			"data/scenes/ZoneA/carteles.scene",
-			
+
 			"data/scenes/ZoneA/debug_navmeshes.scene"
 		]
 	},
@@ -160,7 +155,8 @@
 			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
 			"data/scenes/Basilic_courtyard/test_instancing.scene",
 			"data/scenes/Basilic_courtyard/camera.scene",
-			"data/scenes/Basilic_courtyard/buttons.scene"
+			"data/scenes/Basilic_courtyard/buttons.scene",
+			"data/scenes/Basilic_courtyard/capsules.scene"
 		]
 	},
 	"scene_basilic_interior": {

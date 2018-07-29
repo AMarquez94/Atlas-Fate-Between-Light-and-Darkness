@@ -253,21 +253,5 @@
 				"parent": "Mimetic"
 			}
 		}
-	}, {
-		"xentity": {
-			"name": "Cone of Light",
-			"transform": {},
-			"render": {
-				"mesh": "cone_of_light.mesh"
-			},
-			"hierarchy": {
-				"parent": "Mimetic"
-			},
-			"cone_of_light": {
-				"fov": 35,
-				"dist": 20.0,
-				"target": "The Player"
-			}
-		}
 	}
 ]

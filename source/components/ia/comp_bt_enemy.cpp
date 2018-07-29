@@ -107,7 +107,10 @@ bool TCompAIEnemy::isEntityInFov(const std::string& entityToChase, float fov, fl
         TCompTempPlayerController *pController = ePlayer->get<TCompTempPlayerController>();
 
         /* Player inside cone of vision */
-        bool in_fov = mypos->isInFov(ppos->getPosition(), fov, deg2rad(45.f)) && fabsf(myY - playerY) <= 2 * capsuleCollider->height; //in fov and not too high
+        bool in_fov = mypos->isInFov(ppos->getPosition(), fov, deg2rad(45.f))/* && fabsf(myY - playerY) <= 2 * capsuleCollider->height*/; //in fov and not too high
+
+        //bool in_horizontal_fov = mypos->isInHorizontalFov(ppos->getPosition(), fov);
+        //bool in_vertical_fov = mypos->isInVerticalFov(ppos->getPosition(), deg2rad(45.f));
 
         return in_fov && !pController->isInvisible && !pController->isInNoClipMode &&
             !pController->isMerged && !pController->isDead() && dist <= maxChaseDistance && !isEntityHidden(hPlayer);
@@ -158,6 +161,8 @@ void TCompAIEnemy::generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc)
     navmeshPathPoint = 0;
     recalculateNavmesh = recalc;
 
+    isDestinationCloseEnough = EngineNavmeshes.navmeshLong(navmeshPath) < maxNavmeshDistance;
+
     /* Calculate navmesh generation */
     if (navmeshPath.size() > 0) {
         VEC3 lastNavmeshPoint = navmeshPath[navmeshPath.size() - 1];
@@ -196,22 +201,22 @@ bool TCompAIEnemy::moveToPoint(float speed, float rotationSpeed, VEC3 objective,
     if (VEC3::Distance(objective, vp) <= speed * dt + 0.1f/*fabsf(left.Dot(finalDir)) * maxDistanceToNavmeshPoint + 0.1f*/) {
         return true;
     }
-    else if (navmeshPath.size() == navmeshPathPoint
-        && !canArriveToDestination) {
+    //else if (navmeshPath.size() == navmeshPathPoint
+    //    && !canArriveToDestination) {
 
 
-        /* We are in the navmesh last point and cant reach it */
-        playAnimationByName("idle");
-        timerWaitingInUnreachablePoint += dt;
-        if (timerWaitingInUnreachablePoint > 3.f) {
-            TCompEmissionController * e_controller = me->get<TCompEmissionController>();
-            e_controller->blend(enemyColor.colorNormal, 0.1f);
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+    //    /* We are in the navmesh last point and cant reach it */
+    //    playAnimationByName("idle");
+    //    timerWaitingInUnreachablePoint += dt;
+    //    if (timerWaitingInUnreachablePoint > 3.f) {
+    //        TCompEmissionController * e_controller = me->get<TCompEmissionController>();
+    //        e_controller->blend(enemyColor.colorNormal, 0.1f);
+    //        return true;
+    //    }
+    //    else {
+    //        return false;
+    //    }
+    //}
     else {
         float actualSpeed = speed;
         VEC3 front = mypos->getFront();
@@ -230,4 +235,9 @@ bool TCompAIEnemy::moveToPoint(float speed, float rotationSpeed, VEC3 objective,
         }
         return false;
     }
+}
+
+bool TCompAIEnemy::isCurrentDestinationReachable()
+{
+    return canArriveToDestination && isDestinationCloseEnough;
 }

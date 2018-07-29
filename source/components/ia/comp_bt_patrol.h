@@ -15,6 +15,7 @@ private:
     bool hasBeenShadowMerged = false;
     bool hasBeenFixed = false;
     bool disabledLanterns = false;
+    std::vector<CHandle> ignoredPatrols;
 
     DECL_SIBLING_ACCESS();
 
@@ -32,6 +33,7 @@ private:
     bool isStunnedPatrolInFov(float fov, float maxChaseDistance);
     bool isStunnedPatrolInPos(VEC3 lastPos);
     CHandle getPatrolInPos(VEC3 lastPos);
+    float getMaxChaseDistance();
 
     //load
     void loadActions() override;
@@ -62,6 +64,12 @@ public:
     BTNode::ERes actionMarkPlayerAsSeen(float dt);
     BTNode::ERes actionShootInhibitor(float dt);
     BTNode::ERes actionGenerateNavmeshChase(float dt);
+
+    BTNode::ERes actionWarnClosestDrone(float dt);
+    BTNode::ERes actionRotateTowardsUnreachablePlayer(float dt);
+    BTNode::ERes actionGoToUnreachablePoint(float dt);
+    BTNode::ERes actionResetUnreachableTimers(float dt);
+
     BTNode::ERes actionChasePlayer(float dt);
     BTNode::ERes actionAttack(float dt);
     BTNode::ERes actionRotateToNoiseSource(float dt);
@@ -87,6 +95,7 @@ public:
     bool conditionWaitInWpt(float dt);
     bool conditionChase(float dt);
     bool conditionPlayerAttacked(float dt);
+    bool conditionIsDestUnreachable(float dt);
 
     bool assertPlayerInFov(float dt);
     bool assertPlayerNotInFov(float dt);
@@ -95,10 +104,14 @@ public:
     bool assertNotPlayerInFovNorArtificialNoise(float dt);
     bool assertPlayerNotInFovNorNoise(float dt);
     bool assertPlayerAndPatrolNotInFovNotNoise(float dt);
+    bool assertCantReachDest(float dt);
 
     const std::string getStateForCheckpoint();
 
 	static void registerMsgs();
+
+    /* LUA functions */
+    void launchInhibitor();
 
 	void playAnimationByName(const std::string & animationName) override;
 };
