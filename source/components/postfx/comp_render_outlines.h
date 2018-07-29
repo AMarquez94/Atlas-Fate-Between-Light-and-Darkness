@@ -17,7 +17,7 @@ struct TCompRenderOutlines : public TCompBase {
 
     void load(const json& j, TEntityParseContext& ctx);
     void debugInMenu();
-    void apply();
+    void apply(CTexture* in_texture);
 };
 
 #endif

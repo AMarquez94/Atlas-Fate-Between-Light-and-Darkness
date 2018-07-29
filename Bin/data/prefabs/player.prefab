@@ -87,8 +87,8 @@
 			},
 			"sonar_controller": {
 				"tags": "enemy",
-				"alive_time": 1.0,
-				"cooldown_time": 10.0
+				"alive_time": 3.0,
+				"cooldown_time": 4.0
 			},
 			"player_animator": true,
 			"collider": {

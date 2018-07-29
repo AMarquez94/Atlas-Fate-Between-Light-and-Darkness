@@ -23,7 +23,7 @@ void TCompRenderOutlines::load(const json& j, TEntityParseContext& ctx) {
     mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 }
 
-void TCompRenderOutlines::apply() {
+void TCompRenderOutlines::apply(CTexture* in_texture) {
 
     if (!enabled)
         return;
@@ -41,6 +41,7 @@ void TCompRenderOutlines::apply() {
 
     // Activate the depth stencil buffer as texture 0
     Render.ctx->PSSetShaderResources(TS_ALBEDO, 1, &Render.depth_shader_resource_view);
+    in_texture->activate(TS_ALBEDO2);
 
     tech->activate();
     mesh->activateAndRender();

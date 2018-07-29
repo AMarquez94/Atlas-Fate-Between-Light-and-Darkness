@@ -22,14 +22,15 @@ float3 ApplyThreshold(in float3 _rgb, in float _threshold)
 
 float4 PS_PostFX_Flares(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
 {
-	int uGhosts = 4; // number of ghost samples
+	int uGhosts = 1; // number of ghost samples
 	float uGhostDispersal = .4; // dispersion factor
-	 
-	float2 light_iTex0 = -iTex0 + float2(1,1);// + float2(512, 256);
+
+	float2 light_iTex0 =iTex0;// -iTex0 + float2(1,1);// + float2(512, 256);
 	float4 color = txAlbedo.Sample(samClampLinear, iTex0);
 	float4 light_beam = txEmissive.Sample(samClampLinear, iTex0);
-	float2 vghost = (- light_iTex0) * uGhostDispersal;
+	float2 vghost = (float2(0.5, 0.5) - light_iTex0) * uGhostDispersal;
 	
+	return color;// + light_beam;
 	float3 result = float3(0, 0, 0);
 	for (int i = 0; i < uGhosts; ++i) { 
 	
@@ -41,7 +42,7 @@ float4 PS_PostFX_Flares(in float4 iPosition : SV_POSITION , in float2 iTex0 : TE
 		result += s * weight;
 	}
 	
-	return color + 2 * float4(result, 1);
+	return float4(result, 1);
 	
 /*
 	float hscale = 0.25;

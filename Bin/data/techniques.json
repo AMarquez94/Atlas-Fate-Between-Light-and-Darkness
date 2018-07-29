@@ -334,7 +334,8 @@
 		"z__if_stencil_test": "on_non_zero_stencil",
 		"blend": "combinative",
 		"textures": {
-			"noise": "data/textures/gradient_sonar.dds"
+			"noise": "data/textures/gradient_sonar.dds",
+			"noise2": "data/textures/noise_cloud3.dds"
 		}
 	},
 	"pbr_outline": {
@@ -530,6 +531,7 @@
 		"ps_entry_point": "PS_GBuffer_Hologram",
 		"vertex_type": "PosNUvUvT",
 		"category": "hologram",
+		"rs_config": "cull_none",
 		"blend": "additive_by_src_alpha",
 		"textures": {
 			"noise": "data/textures/tx_flicker_hard.dds",

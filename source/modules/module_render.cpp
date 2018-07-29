@@ -356,7 +356,7 @@ void CModuleRender::generateFrame() {
 
             TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
             if (c_render_outlines)
-                c_render_outlines->apply();
+                c_render_outlines->apply(curr_rt);
 
             TCompVignette* c_vignette = e_cam->get< TCompVignette >();
             if (c_vignette)
@@ -373,7 +373,7 @@ void CModuleRender::generateFrame() {
             TCompAntiAliasing* c_antialiasing = e_cam->get< TCompAntiAliasing >();
             if (c_antialiasing)
                 curr_rt = c_antialiasing->apply(curr_rt);
-
+                
             CEntity* e_camera = h_e_camera;
             TCompCamera * t_cam = e_camera->get<TCompCamera>();
             cb_camera.prev_camera_view_proj = t_cam->getViewProjection();

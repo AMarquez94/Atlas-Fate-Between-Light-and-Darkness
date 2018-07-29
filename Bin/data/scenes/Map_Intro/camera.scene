@@ -83,6 +83,10 @@
 			"render_outlines" : {
 				"enabled" : true
 		  },
+			"render_flares" : {
+				"enabled" : true,
+				"max_steps": 4
+		  },
 			"tags": ["main_camera", "tp_camera"]
 		}
 	}, {
