@@ -125,9 +125,9 @@ void TCompAIPatrol::onMsgPatrolStunned(const TMsgEnemyStunned & msg)
     TCompEmissionController * e_controller = get<TCompEmissionController>();
     e_controller->blend(enemyColor.colorDead, 0.1f);
 
-	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)(TCompPatrolAnimator::EAnimation::DIE)))
-		myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::DIE);
+    TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+    if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)(TCompPatrolAnimator::EAnimation::DIE)))
+        myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::DIE);
     /*TCompTransform *mypos = get<TCompTransform>();
     float y, p, r;
     mypos->getYawPitchRoll(&y, &p, &r);
@@ -166,7 +166,7 @@ void TCompAIPatrol::onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged & msg)
     }
 
     TCompFadeController * fade_patrol = get<TCompFadeController>();
-    fade_patrol->launch(TMsgFadeBody{false});
+    fade_patrol->launch(TMsgFadeBody{ false });
 
     // TO REFACTOR
     // Sets particles and calls the finishing state.
@@ -372,11 +372,11 @@ BTNode::ERes TCompAIPatrol::actionStunned(float dt)
 {
     //Animation To Change
     TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-	myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::DEAD);
+    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::DEAD);
     //CEntity * patrol = CHandle(this).getOwner();
     //patrol->sendMsg(TMsgFadeBody{ true });
 
-	return BTNode::ERes::STAY;
+    return BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIPatrol::actionFixed(float dt)
@@ -781,18 +781,16 @@ BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
 
     lastPlayerKnownPos = ppos->getPosition();
 
-	float distToPlayer = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
-	if (!isEntityInFov(entityToChase, fov, maxChaseDistance) || distToPlayer >= maxChaseDistance + 0.5f) {
-    TCompEmissionController *eController = get<TCompEmissionController>();
-    eController->blend(enemyColor.colorSuspect, 0.1f);
-		return BTNode::ERes::LEAVE;
-	}
-	else if (distToPlayer < distToAttack) {
-		return BTNode::ERes::LEAVE;
-	}
-	else {
-    return moveToPoint(speed, rotationSpeed, ppos->getPosition(), dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
-	}
+    float distToPlayer = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
+    if (!isEntityInFov(entityToChase, fov, maxChaseDistance) || distToPlayer >= maxChaseDistance + 0.5f) {
+        return BTNode::ERes::LEAVE;
+    }
+    else if (distToPlayer < distToAttack) {
+        return BTNode::ERes::LEAVE;
+    }
+    else {
+        return moveToPoint(speed, rotationSpeed, ppos->getPosition(), dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
+    }
 }
 
 BTNode::ERes TCompAIPatrol::actionAttack(float dt)
@@ -855,6 +853,9 @@ BTNode::ERes TCompAIPatrol::actionGoToPlayerLastPos(float dt)
     isStunnedPatrolInFov(fov, maxChaseDistance);
 
     if (moveToPoint(speed, rotationSpeed, lastPlayerKnownPos, dt)) {
+
+        TCompEmissionController *eController = get<TCompEmissionController>();
+        eController->blend(enemyColor.colorSuspect, 0.1f);
         lastPlayerKnownPos = VEC3::Zero;
         return BTNode::ERes::LEAVE;
     }
@@ -1185,25 +1186,25 @@ bool TCompAIPatrol::isStunnedPatrolInFov(float fov, float maxChaseDistance)
 
     bool found = false;
 
-	if (stunnedPatrols.size() > 0) {
-		TCompTransform *mypos = get<TCompTransform>();
-		TCompCollider * myCollider = get<TCompCollider>();
-		CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
-		float myY = mypos->getPosition().y;
-		for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
-			CEntity* ePatrol = stunnedPatrols[i];
-			TCompTransform* stunnedPatrol = ePatrol->get<TCompTransform>();
-			float enemyY = stunnedPatrol->getPosition().y;
-			if (mypos->isInFov(stunnedPatrol->getPosition(), fov, deg2rad(45.f))
-				&& VEC3::Distance(mypos->getPosition(), stunnedPatrol->getPosition()) < maxChaseDistance
-				&& !isEntityHidden(stunnedPatrols[i])
-				&& fabsf(myY - enemyY) <= 2 * capsuleCollider->height
+    if (stunnedPatrols.size() > 0) {
+        TCompTransform *mypos = get<TCompTransform>();
+        TCompCollider * myCollider = get<TCompCollider>();
+        CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
+        float myY = mypos->getPosition().y;
+        for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
+            CEntity* ePatrol = stunnedPatrols[i];
+            TCompTransform* stunnedPatrol = ePatrol->get<TCompTransform>();
+            float enemyY = stunnedPatrol->getPosition().y;
+            if (mypos->isInFov(stunnedPatrol->getPosition(), fov, deg2rad(45.f))
+                && VEC3::Distance(mypos->getPosition(), stunnedPatrol->getPosition()) < maxChaseDistance
+                && !isEntityHidden(stunnedPatrols[i])
+                && fabsf(myY - enemyY) <= 2 * capsuleCollider->height
                 && std::find(ignoredPatrols.begin(), ignoredPatrols.end(), stunnedPatrols[i]) == ignoredPatrols.end()) {
-				found = true;
-				lastStunnedPatrolKnownPos = stunnedPatrol->getPosition();
-			}
-		}
-	}
+                found = true;
+                lastStunnedPatrolKnownPos = stunnedPatrol->getPosition();
+            }
+        }
+    }
 
     return found;
 }
@@ -1245,7 +1246,7 @@ CHandle TCompAIPatrol::getPatrolInPos(VEC3 lastPos)
         }
     }
 
-	return h_stunnedPatrol;
+    return h_stunnedPatrol;
 }
 
 float TCompAIPatrol::getMaxChaseDistance()
@@ -1266,6 +1267,6 @@ void TCompAIPatrol::launchInhibitor()
 
 void TCompAIPatrol::playAnimationByName(const std::string & animationName)
 {
-	TCompPatrolAnimator * myAnimator = get<TCompPatrolAnimator>();
-	myAnimator->playAnimationConverted(myAnimator->getAnimationByName(animationName));
+    TCompPatrolAnimator * myAnimator = get<TCompPatrolAnimator>();
+    myAnimator->playAnimationConverted(myAnimator->getAnimationByName(animationName));
 }

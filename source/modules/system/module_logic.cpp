@@ -147,6 +147,7 @@ void CModuleLogic::publishClasses() {
     m->set("pauseGame", SLB::FuncCall::create(&pauseGame));
     m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
     m->set("deleteEnemies", SLB::FuncCall::create(&deleteEnemies));
+    m->set("isDebug", SLB::FuncCall::create(&isDebug));
 
     // Camera
     m->set("blendInCamera", SLB::FuncCall::create(&blendInCamera));
@@ -342,6 +343,15 @@ void deleteEnemies()
     for (auto h : enemies) {
         h.destroy();
     }
+}
+
+bool isDebug()
+{
+    #ifdef NDEBUG
+        return false;
+    #else
+        return true;
+    #endif
 }
 
 void pauseGame(bool pause) {

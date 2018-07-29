@@ -128,3 +128,7 @@ end
 function getEntityByName(entity_name)
 	SLB.getEntityByName(entity_name);
 end
+
+function isDebug()
+	SLB.isDebug();
+end
