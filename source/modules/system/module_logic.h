@@ -80,6 +80,7 @@ TCompTempPlayerController* getPlayerController();
 void execDelayedScript(const std::string& script, float delay);
 void pauseEnemies(bool pause);
 void deleteEnemies();
+bool isDebug();
 void pauseGame(bool pause);
 void pausePlayerToggle();
 void infiniteStamineToggle();

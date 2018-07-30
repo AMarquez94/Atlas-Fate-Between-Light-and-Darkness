@@ -12,7 +12,8 @@
 DECL_OBJ_MANAGER("emission_controller", TCompEmissionController);
 
 void TCompEmissionController::debugInMenu() {
-
+    ImGui::ColorEdit4("Current color: ", &_current_color.x);
+    ImGui::ColorEdit4("Desired color: ", &_desired_color.x);
 }
 
 void TCompEmissionController::load(const json& j, TEntityParseContext& ctx) {

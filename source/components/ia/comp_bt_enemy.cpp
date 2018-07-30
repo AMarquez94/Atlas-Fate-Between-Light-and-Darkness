@@ -171,7 +171,9 @@ void TCompAIEnemy::generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc)
         canArriveToDestination = diff < 2.f && diffY < 0.1f;
     }
     else {
-        canArriveToDestination = false;
+        float diff = VEC3::Distance(initPos, destPos);
+        float diffY = fabsf(initPos.y - destPos.y);
+        canArriveToDestination = diff < 2.f && diffY < 0.1f;
     }
     timerWaitingInUnreachablePoint = 0;
 }
