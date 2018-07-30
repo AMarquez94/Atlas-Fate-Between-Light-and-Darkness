@@ -18,6 +18,7 @@ class CRenderTechnique : public IResource {
 	std::string category = "default";
 	uint32_t category_id = 0;
     uint32_t priority = 0;
+    UINT     color_mask = 255;
 
 	RSConfig rs_config = RSCFG_DEFAULT;
 	ZConfig z_config = ZCFG_DEFAULT;

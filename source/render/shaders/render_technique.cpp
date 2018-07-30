@@ -74,6 +74,7 @@ bool CRenderTechnique::create(const std::string& name, json& j) {
 	vertex_type = j.value("vertex_type", "");
 	ps_file = j.value("ps_file", vs_file);
 	ps_entry_point = j.value("ps_entry_point", "PS");
+    color_mask = j.value("color_mask", 255);
 
 	if (!reloadVS())
 		return false;
@@ -140,7 +141,7 @@ void CRenderTechnique::activate() const {
 		Render.ctx->PSSetShader(nullptr, nullptr, 0);
 	
 	activateRSConfig(rs_config);
-	activateZConfig(z_config);
+	activateZConfig(z_config, color_mask);
 	activateBlendConfig(blend_config);
 
 	// Activate the textures associated to this technique

@@ -1,5 +1,5 @@
 {
-	"technique": "pbr_outline.tech",
+	"technique": "pbr_outline_drone.tech",
 	"shadows": true,
 	"textures": {
 		"albedo": "data/textures/tx_drone_alb.dds",

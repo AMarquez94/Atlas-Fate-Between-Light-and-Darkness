@@ -355,7 +355,7 @@ void CModuleRender::generateFrame() {
                 curr_rt = c_chroma_aberration->apply(curr_rt);
 
             TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
-            if (c_render_outlines)
+            if (c_render_outlines && cb_outline.outline_alpha > 0)
                 c_render_outlines->apply(curr_rt);
 
             TCompVignette* c_vignette = e_cam->get< TCompVignette >();

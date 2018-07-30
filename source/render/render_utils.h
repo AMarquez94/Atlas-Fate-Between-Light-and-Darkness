@@ -14,7 +14,7 @@ enum ZConfig {
     , ZCFG_ON_NON_ZERO_STENCIL
 	, ZCFG_COUNT
 };
-void activateZConfig(ZConfig cfg);
+void activateZConfig(ZConfig cfg, UINT color_mask = 255);
 
 // ---------------------------------------
 enum RSConfig {

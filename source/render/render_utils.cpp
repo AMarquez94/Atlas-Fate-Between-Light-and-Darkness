@@ -443,9 +443,9 @@ void activateAllSamplers() {
 	Render.ctx->PSSetSamplers(0, SAMPLERS_COUNT, samplers.all_samplers);
 }
 
-void activateZConfig(enum ZConfig cfg) {
+void activateZConfig(enum ZConfig cfg, UINT color_mask) {
 	assert(zconfigs.z_cfgs[cfg] != nullptr);
-	Render.ctx->OMSetDepthStencilState(zconfigs.z_cfgs[cfg], 255);
+	Render.ctx->OMSetDepthStencilState(zconfigs.z_cfgs[cfg], color_mask);
 }
 
 void activateRSConfig(enum RSConfig cfg) {
