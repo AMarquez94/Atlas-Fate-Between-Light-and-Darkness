@@ -426,5 +426,5 @@ void TCompSkeleton::onMsgEntityCreated(const TMsgEntityCreated& msg) {
 
 void TCompSkeleton::onMsgAnimationCallback(const TMsgAnimationCallback& msg) {
 	//Call the LUA function for the callback
-	//EngineLogic.execScript(msg.function_to_call + "(" + CHandle(this).getOwner().asString() + ")");
+	EngineLogic.execScript(msg.function_to_call + "(" + CHandle(this).getOwner().asString() + ")");
 }
