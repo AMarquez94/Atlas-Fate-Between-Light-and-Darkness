@@ -709,6 +709,7 @@ BTNode::ERes TCompAIMimetic::actionGenerateNavmeshNoiseSource(float dt)
     TCompTransform *tpos = get<TCompTransform>();
     noiseSourceChanged = false;
     generateNavmesh(tpos->getPosition(), noiseSource);
+    noiseSource = isCurrentDestinationReachable() ? noiseSource : navmeshPath[navmeshPath.size() - 1];
     return BTNode::ERes::LEAVE;
 }
 
@@ -725,6 +726,7 @@ BTNode::ERes TCompAIMimetic::actionGoToNoiseSource(float dt)
     if (noiseSourceChanged) {
         generateNavmesh(pp, noiseSource);
         noiseSourceChanged = false;
+        noiseSource = isCurrentDestinationReachable() ? noiseSource : navmeshPath[navmeshPath.size() - 1];
     }
 
     if (isEntityInFov(entityToChase, fov - deg2rad(1.f), autoChaseDistance - 1.f)) {
@@ -732,9 +734,9 @@ BTNode::ERes TCompAIMimetic::actionGoToNoiseSource(float dt)
         return BTNode::ERes::LEAVE;
     }
 
-    VEC3 destination = isCurrentDestinationReachable() ? noiseSource : navmeshPath[navmeshPath.size() - 1];   //TODO: Posible bug si el size de la navmesh es 0? testear
+    //VEC3 destination = isCurrentDestinationReachable() ? noiseSource : navmeshPath[navmeshPath.size() - 1];   //TODO: Posible bug si el size de la navmesh es 0? testear
 
-    if (moveToPoint(speed, rotationSpeedPatrolling, destination, dt)) {
+    if (moveToPoint(speed, rotationSpeedPatrolling, noiseSource, dt)) {
         return BTNode::ERes::LEAVE;
     }
     else {
@@ -1036,15 +1038,4 @@ void TCompAIMimetic::playAnimationByName(const std::string & animationName)
 {
     TCompMimeticAnimator * myAnimator = get<TCompMimeticAnimator>();
     myAnimator->playAnimationConverted(myAnimator->getAnimationByName(animationName));
-}
-
-physx::PxGeometry TCompAIMimetic::getGeometry()
-{
-    TCompCollider * myCollider = get<TCompCollider>();
-    CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
-    physx::PxCapsuleGeometry myGeometry;
-    myGeometry.halfHeight = capsuleCollider->height / 2.f;
-    myGeometry.radius = capsuleCollider->radius;
-    bool valid = myGeometry.isValid();
-    return myGeometry;
 }

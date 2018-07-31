@@ -461,7 +461,6 @@ BTNode::ERes TCompAIPatrol::actionGoToNoiseSource(float dt)
         generateNavmesh(pp, noiseSource);
         noiseSourceChanged = false;
         noiseSource = isCurrentDestinationReachable() ? noiseSource : navmeshPath[navmeshPath.size() - 1];   //TODO: Posible bug si el size de la navmesh es 0? testear
-
     }
 
     //dbg("Go To Noise Source ");
@@ -1281,14 +1280,4 @@ void TCompAIPatrol::playAnimationByName(const std::string & animationName)
 {
     TCompPatrolAnimator * myAnimator = get<TCompPatrolAnimator>();
     myAnimator->playAnimationConverted(myAnimator->getAnimationByName(animationName));
-}
-
-physx::PxGeometry TCompAIPatrol::getGeometry()
-{
-    TCompCollider * myCollider = get<TCompCollider>();
-    CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
-    physx::PxCapsuleGeometry myGeometry;
-    myGeometry.halfHeight = capsuleCollider->height / 2.f;
-    myGeometry.radius = capsuleCollider->radius;
-    return myGeometry;
 }

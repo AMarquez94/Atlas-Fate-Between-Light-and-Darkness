@@ -159,5 +159,4 @@ public:
     static void registerMsgs();
 
     void playAnimationByName(const std::string & animationName) override;
-    physx::PxGeometry getGeometry() override;
 };

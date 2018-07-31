@@ -72,5 +72,4 @@ public:
 
     virtual const std::string getStateForCheckpoint() = 0;
     virtual void playAnimationByName(const std::string& animationName) = 0;
-    virtual physx::PxGeometry getGeometry() = 0;
 };

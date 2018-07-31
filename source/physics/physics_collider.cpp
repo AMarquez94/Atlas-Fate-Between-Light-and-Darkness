@@ -40,6 +40,15 @@ void CPhysicsCollider::setAsTrigger(physx::PxShape * shape, bool state)
     shape->setFlag(physx::PxShapeFlag::eTRIGGER_SHAPE, state);
 }
 
+physx::PxGeometryHolder CPhysicsCollider::getGeometry()
+{
+    const physx::PxU32 numShapes = actor->getNbShapes();
+    std::vector<physx::PxShape*> shapes;
+    shapes.resize(numShapes);
+    actor->getShapes(&shapes[0], numShapes);
+    return shapes[0]->getGeometry();
+}
+
 void CPhysicsCollider::createStatic(physx::PxShape* actor_shape, TCompTransform * c_transform)
 {
     shape = actor_shape;
