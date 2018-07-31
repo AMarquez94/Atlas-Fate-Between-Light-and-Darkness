@@ -22,14 +22,16 @@ void CDeferredRenderer::renderGBuffer() {
 	CTexture::setNullTexture(TS_DEFERRED_NORMALS);
 	CTexture::setNullTexture(TS_DEFERRED_LINEAR_DEPTH);
 	CTexture::setNullTexture(TS_DEFERRED_SELF_ILLUMINATION);
+    CTexture::setNullTexture(TS_DEFERRED_OUTLINE);
 
 	// Activate el multi-render-target MRT
-	const int nrender_targets = 4;
+	const int nrender_targets = 5;
 	ID3D11RenderTargetView* rts[nrender_targets] = {
 	  rt_albedos->getRenderTargetView(),
 	  rt_normals->getRenderTargetView(),
 	  rt_depth->getRenderTargetView(),
 	  rt_self_illum->getRenderTargetView(),
+      rt_outline->getRenderTargetView(),
 	};
 
 	// We use our 3 rt's and the Zbuffer of the backbuffer
@@ -42,6 +44,7 @@ void CDeferredRenderer::renderGBuffer() {
 	rt_normals->clear(VEC4(0, 0, 1, 1));
 	rt_depth->clear(VEC4(1, 1, 1, 1));
 	rt_self_illum->clear(VEC4(0, 0, 0, 1));
+    rt_outline->clear(VEC4(0, 0, 0, 1));
 
 	// Clear ZBuffer with the value 1.0 (far)
     Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
@@ -59,6 +62,7 @@ void CDeferredRenderer::renderGBuffer() {
 	rt_normals->activate(TS_DEFERRED_NORMALS);
 	rt_self_illum->activate(TS_DEFERRED_SELF_ILLUMINATION);
 	rt_depth->activate(TS_DEFERRED_LINEAR_DEPTH);
+    rt_outline->activate(TS_DEFERRED_OUTLINE);
 }
 
 // -----------------------------------------------------------------
@@ -86,6 +90,10 @@ bool CDeferredRenderer::create(int xres, int yres) {
 
     rt_prev_acc_light = new CRenderToTexture;
     if (!rt_prev_acc_light->createRT("prev_acc_light.dds", xres, yres, DXGI_FORMAT_R16G16B16A16_FLOAT, DXGI_FORMAT_UNKNOWN, true))
+        return false;
+
+    rt_outline = new CRenderToTexture;
+    if (!rt_outline->createRT("rt_outline.dds", xres, yres, DXGI_FORMAT_R8G8B8A8_UNORM))
         return false;
 
 	return true;

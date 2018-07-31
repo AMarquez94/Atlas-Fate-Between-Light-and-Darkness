@@ -36,7 +36,6 @@ void TCompGlitchController::update(float dt) {
     cb_postfx.postfx_scan_amount += (dt / fade_time) * fade_multiplier;
     cb_postfx.postfx_scan_amount = Clamp(cb_postfx.postfx_scan_amount, 0.f, 1.f);
     cb_outline.updateGPU();
-    dbg("Total value %f\n", cb_postfx.postfx_scan_amount);
 }
 
 void TCompGlitchController::onGlitchDeploy(const TMsgGlitchController & msg) {

@@ -40,8 +40,8 @@ float2 ComputeScreenShock(float2 iTex0)
 
 float4 ComputeBitMap(uint s_cc)
 {
-	if(s_cc == 244) return float4(1,0,0,1);
-	if(s_cc == 255) return float4(1,0,0,1);
+	if(s_cc == 0xF4) return float4(1,0,0,1);
+	if(s_cc == 0xFF) return float4(1,0,0,1);
 	
 	return float4(0,0,0,0);
 }
@@ -86,8 +86,8 @@ float4 ComputeOutline(float4 color, int3 ss_load_coords, float depth)
 
 float4 PS_PostFX_Wave(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
 {
+	//return txEmissive.Sample(samLinear, UV);
 	UV = ComputeScreenShock(UV);
-	
 	return txAlbedo.Sample(samLinear, UV);
 }
 

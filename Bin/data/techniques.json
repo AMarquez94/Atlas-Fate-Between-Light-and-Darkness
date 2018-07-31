@@ -338,25 +338,13 @@
 			"noise2": "data/textures/noise_block_pattern.dds"
 		}
 	},
-	"outlines": {
-		"vs_file": "data/shaders/screen_quad.fx",
-		"ps_file": "data/shaders/outlines.fx",
-		"vertex_type": "PosClr",
-		"category": "fx",
-		"ps_entry_point__if_stencil_test": "PS_Solid",
-		"z__if_stencil_test": "on_non_zero_stencil",
-		"blend": "combinative",
-		"textures": {
-			"noise": "data/textures/gradient_sonar.dds",
-			"noise2": "data/textures/noise_block_pattern.dds"
-		}
-	},
 	"pbr_outline": {
 		"vs_file": "data/shaders/pbr.fx",
+		"ps_file": "data/shaders/outlines.fx",
 		"vs_entry_point": "VS_GBuffer",
 		"ps_entry_point": "",
 		"vertex_type": "PosNUvUvT",
-		"category": "gbuffer",
+		"category": "outlines",
 		"z": "test_no_writes_mark_stencil",
 		"priority": 150,
 		"comment": "This needs to go after the pbr's solids, but just before the object to render"
@@ -388,7 +376,7 @@
 	"pbr_skin_outline": {
 		"vs_file": "data/shaders/pbr.fx",
 		"vs_entry_point": "VS_SKIN_GBuffer",
-		"ps_entry_point": "",
+		"ps_entry_point": "PS_GBuffer",
 		"vertex_type": "PosNUvTanSkin",
 		"category": "gbuffer",
 		"uses_skin": true,

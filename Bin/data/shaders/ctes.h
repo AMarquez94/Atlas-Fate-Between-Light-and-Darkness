@@ -48,15 +48,16 @@
 #define TS_DEFERRED_AO                21
 #define TS_LUT_COLOR_GRADING          22
 #define TS_LUMINANCE                  23
+#define TS_DEFERRED_OUTLINE           24
 
 #define TS_FIRST_SLOT_MATERIAL_0      TS_ALBEDO
 #define TS_FIRST_SLOT_MATERIAL_1      TS_ALBEDO1
 #define TS_FIRST_SLOT_MATERIAL_2      TS_ALBEDO2
 
-#define TS_ALBEDO1 23
-#define TS_NORMAL1 24
-#define TS_ALBEDO2 25
-#define TS_NORMAL2 26
+#define TS_ALBEDO1 25
+#define TS_NORMAL1 26
+#define TS_ALBEDO2 27
+#define TS_NORMAL2 28
 
 #define TS_MIX_BLEND_WEIGHTS          25
 

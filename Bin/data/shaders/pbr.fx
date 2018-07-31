@@ -82,9 +82,10 @@ void PS_GBuffer(
 	, out float4 o_normal : SV_Target1
 	, out float1 o_depth : SV_Target2
 	, out float4 o_selfIllum : SV_Target3
+	, out float4 o_outlines : SV_Target4
 )
 {
-  o_albedo = txAlbedo.Sample(samLinear, iTex0);
+	o_albedo = txAlbedo.Sample(samLinear, iTex0);
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 	o_selfIllum =  txEmissive.Sample(samLinear, iTex0) * self_intensity;
 	o_selfIllum.xyz *= self_color;
@@ -94,6 +95,7 @@ void PS_GBuffer(
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
 	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
 	o_normal = encodeNormal(N, roughness);
+	o_outlines = float4(0,1,0,1);
 	
 	if (scalar_metallic >= 0.f)
 		o_albedo.a = scalar_metallic;
@@ -114,21 +116,21 @@ void PS_Shade_GBuffer(
 	, float2 iTex0 : TEXCOORD0
 	, float2 iTex1 : TEXCOORD1
 	, float3 iWorldPos : TEXCOORD2
-		, out float4 o_albedo : SV_Target0
+	, out float4 o_albedo : SV_Target0
 	, out float4 o_normal : SV_Target1
 	, out float1 o_depth : SV_Target2
 	, out float4 o_selfIllum : SV_Target3
 )
 {
 	float4 noise0 = txNoiseMap.Sample(samLinear, iTex0);
-  o_albedo = txAlbedo.Sample(samLinear, iTex0)* (1 - self_opacity * 2);
+	o_albedo = txAlbedo.Sample(samLinear, iTex0)* (1 - self_opacity * 2);
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 	o_selfIllum =  txEmissive.Sample(samLinear, iTex0) * self_intensity;
 	o_selfIllum.xyz *= self_color* (1 - self_opacity * 4);
 	o_selfIllum.a = 1;
 	if((noise0.x - self_opacity) < 0.01f){
-			o_albedo = obj_color;
-			o_selfIllum.xyz = obj_color.xyz * .7; //tune this given the bloom amount
+		o_albedo = obj_color;
+		o_selfIllum.xyz = obj_color.xyz * .7; //tune this given the bloom amount
 	}
 	
 	// Save roughness in the alpha coord of the N render target

@@ -12,6 +12,7 @@ public:
   CRenderToTexture* rt_depth = nullptr;
   CRenderToTexture* rt_acc_light = nullptr;
   CRenderToTexture* rt_self_illum = nullptr;
+  CRenderToTexture* rt_outline = nullptr;
 
   CRenderToTexture* rt_prev_acc_light = nullptr;
 
