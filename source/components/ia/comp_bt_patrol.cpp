@@ -1177,10 +1177,13 @@ bool TCompAIPatrol::assertCanReachDest(float dt)
 void TCompAIPatrol::turnOnLight()
 {
     if (!disabledLanterns) {
-        TCompGroup* cGroup = get<TCompGroup>();
-        CEntity* eCone = cGroup->getHandleByName("FlashLight");
-        TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
-        cConeController->turnOnLight();
+        if (EngineIA.patrolSB.patrolsWithLight.size() < 4) {
+            TCompGroup* cGroup = get<TCompGroup>();
+            CEntity* eCone = cGroup->getHandleByName("FlashLight");
+            TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
+            cConeController->turnOnLight();
+            EngineIA.patrolSB.patrolsWithLight.push_back(CHandle(this).getOwner());
+        }
     }
 }
 
@@ -1189,6 +1192,9 @@ void TCompAIPatrol::turnOffLight() {
     CEntity* eCone = cGroup->getHandleByName("FlashLight");
     TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
     cConeController->turnOffLight();
+    if (auto it = std::find(EngineIA.patrolSB.patrolsWithLight.begin(), EngineIA.patrolSB.patrolsWithLight.end(), CHandle(this).getOwner()) != EngineIA.patrolSB.patrolsWithLight.end()) {
+        EngineIA.patrolSB.patrolsWithLight.erase(EngineIA.patrolSB.patrolsWithLight.begin() + it);
+    }
 }
 
 bool TCompAIPatrol::isStunnedPatrolInFov(float fov, float maxChaseDistance)
