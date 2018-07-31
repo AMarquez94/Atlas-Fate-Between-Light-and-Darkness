@@ -228,7 +228,7 @@ void TCompAIEnemy::generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc)
             }
         }
 
-        canArriveToDestination = diff < 3.f && !realHit && diffY < 0.2f;
+        canArriveToDestination = diff < 2.f && !realHit && diffY < 0.2f;
         if (!canArriveToDestination) {
             navmeshPath.push_back(initPos);
         }
