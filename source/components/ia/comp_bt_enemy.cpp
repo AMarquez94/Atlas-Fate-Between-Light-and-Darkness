@@ -164,17 +164,72 @@ void TCompAIEnemy::generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc)
     isDestinationCloseEnough = EngineNavmeshes.navmeshLong(navmeshPath) < maxNavmeshDistance;
 
     /* Calculate navmesh generation */
-    if (navmeshPath.size() > 0) {
+    //
+    //if (navmeshPath.size() == 0) {
+    //    navmeshPath.push_back(initPos);
+    //}
+
+    if (navmeshPath.size() > 1) {
         VEC3 lastNavmeshPoint = navmeshPath[navmeshPath.size() - 1];
         float diff = VEC3::Distance(destPos, lastNavmeshPoint);
         float diffY = fabsf(destPos.y - lastNavmeshPoint.y);
-        canArriveToDestination = diff < 2.f && diffY < 0.1f;
+        dbg("Can arrive to destination by its long %s\n", diff < 1.5f ? "YES" : "NO");
+        dbg("Can arrive to destination by its height %s\n", diffY < 0.2f ? "YES" : "NO");
+        canArriveToDestination = diff < 1.5f && diffY < 0.2f;
     }
     else {
         float diff = VEC3::Distance(initPos, destPos);
         float diffY = fabsf(initPos.y - destPos.y);
-        canArriveToDestination = diff < 2.f && diffY < 0.1f;
+
+        //canArriveToDestination = diff < 3.f && diffY < 0.2f;
+        std::vector<physx::PxSweepHit> hits;
+        CEntity * me = myHandle.getOwner();
+        TCompTransform *mypos = me->get<TCompTransform>();
+
+        physx::PxGeometry myGeom = getGeometry();
+        //switch (myGeom.getType()) {
+        //case physx::PxGeometryType::eCAPSULE:
+        //    physx::PxCapsuleGeometry* hola = (&myGeom)->is<physx::PxCapsuleGeometry>();
+        //    break;
+        //case physx::PxGeometryType::eBOX:
+
+        //    break;
+        //default:
+
+        //    break;
+        //}
+
+        bool sweephit = EnginePhysics.Sweep(myGeom, initPos, mypos->getRotation(), (destPos - initPos).Normalized(), diff, hits);
+        dbg("Can arrive to destination by its sweep - Zero navmesh %s\n", !sweephit ? "YES" : "NO");
+        dbg("Can arrive to destination by its height - Zero navmesh %s\n", diffY < 0.2f ? "YES" : "NO");
+
+        if (sweephit) {
+            for (int i = 0; i < hits.size(); i++) {
+                CHandle h;
+                h.fromVoidPtr(hits[i].actor->userData);
+                h = h.getOwner();
+                CEntity* e = h;
+                dbg("Hit with %s\n", e->getName());
+            }
+        }
+        canArriveToDestination = diff < 3.f && !sweephit && diffY < 0.2f;
+        if (!canArriveToDestination) {
+            navmeshPath.push_back(initPos);
+        }
+        else {
+            navmeshPath.push_back(destPos);
+        }
     }
+    //else {
+    //    float diff = 
+    //    canArriveToDestination = false;
+    //}
+    //else {
+    //    canArriveToDestination
+    //    //float diff = VEC3::Distance(initPos, destPos);
+    //    //float diffY = fabsf(initPos.y - destPos.y);
+    //    //canArriveToDestination = diff < 2.f && diffY < 0.1f;
+    //}
     timerWaitingInUnreachablePoint = 0;
 }
 

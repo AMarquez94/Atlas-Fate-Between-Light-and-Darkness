@@ -463,7 +463,7 @@
 					"variable_op": ""
 				}
 			],
-			"assert": ""
+			"assert": "canReachDest"
 		}, {
 			"parent": "manageUnreachableChase",
 			"name": "warnClosestDrone",

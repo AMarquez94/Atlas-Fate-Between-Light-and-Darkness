@@ -88,6 +88,7 @@ public:
     BTNode::ERes actionWakeUp(float dt);
     BTNode::ERes actionJumpFloor(float dt);
     BTNode::ERes actionResetVariablesChase(float dt);
+    BTNode::ERes actionRotateTowardsPlayerWithNoise(float dt);
     BTNode::ERes actionChasePlayerWithNoise(float dt);
     BTNode::ERes actionMarkNoiseAsInactive(float dt);
     BTNode::ERes actionGenerateNavmeshNoiseSource(float dt);
@@ -123,16 +124,20 @@ public:
     bool conditionHasHeardNaturalNoise(float dt);
     bool conditionIsPlayerInFov(float dt);
     bool conditionNotGoingInactive(float dt);
+    bool conditionIsDestUnreachable(float dt);
 
     /* ASSERTS */
     bool assertNotPlayerInFovNorNoise(float dt);
     bool assertNotPlayerInFov(float dt);
     bool assertNotPlayerInFovNorArtificialNoise(float dt);
+    bool assertCantReachDest(float dt);
+    bool assertCanReachDest(float dt);
 
     const std::string getStateForCheckpoint();
 
     static void registerMsgs();
 
     void playAnimationByName(const std::string & animationName) override;
+    physx::PxGeometry getGeometry() override;
 
 };

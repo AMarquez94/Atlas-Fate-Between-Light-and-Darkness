@@ -358,6 +358,7 @@ void TCompAIPatrol::loadAsserts() {
     asserts_initializer["assertPlayerNotInFovNorNoise"] = (BTCondition)&TCompAIPatrol::assertPlayerNotInFovNorNoise;
     asserts_initializer["assertPlayerAndPatrolNotInFovNotNoise"] = (BTCondition)&TCompAIPatrol::assertPlayerAndPatrolNotInFovNotNoise;
     asserts_initializer["assertCantReachDest"] = (BTCondition)&TCompAIPatrol::assertCantReachDest;
+    asserts_initializer["assertCanReachDest"] = (BTCondition)&TCompAIPatrol::assertCanReachDest;
 }
 
 /* ACTIONS */
@@ -431,6 +432,8 @@ BTNode::ERes TCompAIPatrol::actionGenerateNavmeshNoise(float dt)
     TCompTransform *tpos = get<TCompTransform>();
     generateNavmesh(tpos->getPosition(), noiseSource);
     noiseSourceChanged = false;
+    noiseSource = isCurrentDestinationReachable() ? noiseSource : navmeshPath[navmeshPath.size() - 1];   //TODO: Posible bug si el size de la navmesh es 0? testear
+
     return BTNode::ERes::LEAVE;
 }
 
@@ -457,6 +460,8 @@ BTNode::ERes TCompAIPatrol::actionGoToNoiseSource(float dt)
     if (noiseSourceChanged) {
         generateNavmesh(pp, noiseSource);
         noiseSourceChanged = false;
+        noiseSource = isCurrentDestinationReachable() ? noiseSource : navmeshPath[navmeshPath.size() - 1];   //TODO: Posible bug si el size de la navmesh es 0? testear
+
     }
 
     //dbg("Go To Noise Source ");
@@ -466,9 +471,11 @@ BTNode::ERes TCompAIPatrol::actionGoToNoiseSource(float dt)
         return BTNode::ERes::LEAVE;
     }
 
-    VEC3 destination = isCurrentDestinationReachable() ? noiseSource : navmeshPath[navmeshPath.size() - 1];   //TODO: Posible bug si el size de la navmesh es 0? testear
+    bool lol = isCurrentDestinationReachable();
 
-    if (moveToPoint(speed, rotationSpeed, destination, dt)) {
+    //VEC3 destination = isCurrentDestinationReachable() ? noiseSource : navmeshPath[navmeshPath.size() - 1];   //TODO: Posible bug si el size de la navmesh es 0? testear
+
+    if (moveToPoint(speed, rotationSpeed, noiseSource, dt)) {
         //dbg("LEAVE (is in position) - ");
         //dbg("MyPos: (%f, %f, %f) - NoiseSource: (%f, %f, %f)\n", pp.x, pp.y, pp.z, noiseSource.x, noiseSource.y, noiseSource.z);
         return BTNode::ERes::LEAVE;
@@ -522,7 +529,7 @@ BTNode::ERes TCompAIPatrol::actionGenerateNavmeshWpt(float dt)
 BTNode::ERes TCompAIPatrol::actionGoToWpt(float dt)
 {
 
-    if (!isCurrentDestinationReachable())
+    if (!isCurrentDestinationReachable() && _waypoints.size() > 1)
         return BTNode::ERes::LEAVE;
 
     assert(arguments.find("speed_actionGoToWpt_goToWpt") != arguments.end());
@@ -539,7 +546,7 @@ BTNode::ERes TCompAIPatrol::actionGoToWpt(float dt)
 
 BTNode::ERes TCompAIPatrol::actionWaitInWpt(float dt)
 {
-    if (!isCurrentDestinationReachable())
+    if (!isCurrentDestinationReachable() && _waypoints.size() > 1)
         return BTNode::ERes::LEAVE;
 
     assert(arguments.find("rotationSpeed_actionWaitInWpt_waitInWpt") != arguments.end());
@@ -828,7 +835,7 @@ BTNode::ERes TCompAIPatrol::actionResetPlayerWasSeenVariables(float dt)
     TCompTransform *tpos = get <TCompTransform>();
     generateNavmesh(tpos->getPosition(), lastPlayerKnownPos);
 
-    lastPlayerKnownPos = isCurrentDestinationReachable() && navmeshPath.size() > 0 ? lastPlayerKnownPos : navmeshPath[navmeshPath.size() - 1];
+    lastPlayerKnownPos = isCurrentDestinationReachable() ? lastPlayerKnownPos : navmeshPath[navmeshPath.size() - 1];
 
     return BTNode::ERes::LEAVE;
 }
@@ -1161,6 +1168,11 @@ bool TCompAIPatrol::assertCantReachDest(float dt)
     return !isCurrentDestinationReachable();
 }
 
+bool TCompAIPatrol::assertCanReachDest(float dt)
+{
+    return isCurrentDestinationReachable();
+}
+
 /* AUX FUNCTIONS */
 
 void TCompAIPatrol::turnOnLight()
@@ -1269,4 +1281,14 @@ void TCompAIPatrol::playAnimationByName(const std::string & animationName)
 {
     TCompPatrolAnimator * myAnimator = get<TCompPatrolAnimator>();
     myAnimator->playAnimationConverted(myAnimator->getAnimationByName(animationName));
+}
+
+physx::PxGeometry TCompAIPatrol::getGeometry()
+{
+    TCompCollider * myCollider = get<TCompCollider>();
+    CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
+    physx::PxCapsuleGeometry myGeometry;
+    myGeometry.halfHeight = capsuleCollider->height / 2.f;
+    myGeometry.radius = capsuleCollider->radius;
+    return myGeometry;
 }

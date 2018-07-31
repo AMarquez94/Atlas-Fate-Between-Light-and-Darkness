@@ -155,7 +155,7 @@ void TCompAIDrone::onMsgEntityCreated(const TMsgEntityCreated & msg)
 
     TCompCollider* myCollider = get<TCompCollider>();
     CPhysicsBox * boxCollider = (CPhysicsBox *)myCollider->config;
-    geometrySweep.halfExtents = boxCollider->size;
+    geometrySweep.halfExtents = boxCollider->size / 2.f;    //TODO: Test
 
     myHandle = CHandle(this);
 }
@@ -1031,4 +1031,12 @@ bool TCompAIDrone::assertNotPlayerInFovForSureNorNextToNoise(float dt)
 void TCompAIDrone::playAnimationByName(const std::string & animationName)
 {
     //  
+}
+
+physx::PxGeometry TCompAIDrone::getGeometry() {
+    TCompCollider * myCollider = get<TCompCollider>();
+    CPhysicsBox * boxCollider = (CPhysicsBox *)myCollider->config;
+    physx::PxBoxGeometry myGeometry;
+    myGeometry.halfExtents = boxCollider->size / 2.f;
+    return myGeometry;
 }

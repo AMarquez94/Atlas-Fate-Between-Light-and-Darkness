@@ -1,13 +1,7 @@
 {
 	"name":"player",
 	"anims" : [
-		{ "name" : "idle",
-		  "callbacks":[
-		  {
-		  	"time_to_call" : 0.5,
-		  	"function_to_call" : "potato"
-		  }
-		]},
+		{ "name" : "idle"},
 		{ "name" : "walk"},
 		{ "name" : "run"},
 		{ "name" : "attack"},

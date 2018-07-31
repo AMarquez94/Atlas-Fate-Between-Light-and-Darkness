@@ -151,6 +151,7 @@ static bool getSteerTarget( dtNavMeshQuery* navQuery, const float* startPos, con
 const std::vector<VEC3> CNavmeshQuery::findPath( VEC3 start, VEC3 end ) {
 
   std::vector<VEC3> path;
+  //path.push_back(start);
   int m_npolys, m_nsmoothPath = 0;
   dtPolyRef m_startRef, m_endRef;
   VEC3 m_smoothPath[MAX_SMOOTH];

@@ -30,7 +30,7 @@ bool CModuleGameManager::start() {
 void CModuleGameManager::setPauseState(PauseState pause) {
 
     // We are exiting the current state, disabling pause
-    if (_currentstate == pause)
+    if (_currentstate == pause && CApp::get().hasFocus())
         pause = PauseState::none;
 
     {
@@ -67,7 +67,6 @@ void CModuleGameManager::switchState(PauseState pause) {
     switch (pause) {
     case PauseState::none: {
         mouse->setLockMouse(true);
-        CApp::get().lostFocus = false;
     }break;
     case PauseState::main: {
         mouse->setLockMouse(false);
@@ -100,6 +99,12 @@ void CModuleGameManager::update(float delta) {
     {
         // Escape button
         if (EngineInput["btPause"].getsPressed()) {
+            setPauseState(PauseState::main);
+        }
+
+        // Lost focus
+        if (CApp::get().lostFocus) {
+            CApp::get().lostFocus = false;  
             setPauseState(PauseState::main);
         }
 

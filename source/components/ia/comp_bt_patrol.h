@@ -105,6 +105,7 @@ public:
     bool assertPlayerNotInFovNorNoise(float dt);
     bool assertPlayerAndPatrolNotInFovNotNoise(float dt);
     bool assertCantReachDest(float dt);
+    bool assertCanReachDest(float dt);
 
     const std::string getStateForCheckpoint();
 
@@ -114,4 +115,6 @@ public:
     void launchInhibitor();
 
 	void playAnimationByName(const std::string & animationName) override;
+
+    physx::PxGeometry TCompAIPatrol::getGeometry() override;
 };
