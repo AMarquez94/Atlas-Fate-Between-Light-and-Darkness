@@ -20,9 +20,9 @@ void TCompChromaticAberration::load(const json& j, TEntityParseContext& ctx) {
 
     enabled = j.value("enabled", true);
     amount = j.value("amount", 1.0f);
-    scanline_jitter = j.value("jitter", 0.9f);
-    scanline_drift = j.value("drift", 0.160f);
-    block_amount = j.value("block", 0.01f);
+    scanline_jitter = j.value("jitter", 1.190f);
+    scanline_drift = j.value("drift", 0.520f);
+    block_amount = j.value("block", 0.04f);
 
     int xres = Render.width;
     int yres = Render.height;

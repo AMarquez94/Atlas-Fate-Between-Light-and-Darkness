@@ -356,7 +356,7 @@ void CModuleRender::generateFrame() {
 
             TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
             if (c_render_outlines && cb_outline.outline_alpha > 0)
-                c_render_outlines->apply(curr_rt);
+                curr_rt = c_render_outlines->apply(curr_rt);
 
             TCompVignette* c_vignette = e_cam->get< TCompVignette >();
             if (c_vignette)

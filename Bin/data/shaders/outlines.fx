@@ -18,31 +18,39 @@ float4 PS_Solid() : SV_Target
 
 float4 ComputeBars(float2 iTex0){
 
-	return 1 - saturate(round(abs(frac(iTex0.y * 100) * 2)));
+	return 1 - saturate(round(abs(frac(iTex0.x * 100) * 2)));
 }
 
 float2 ComputeScreenShock(float2 iTex0)
 {
-	
-	float3 shockParams = float3(10, 0.8, 0.1);
+	float3 shock_params = float3(10, 0.8, 0.1);
 	float dist = distance(iTex0, float2(0.5,0.5));
 
-	//if ( (dist <= (linear_time + shockParams.z)) && (dist >= (linear_time - shockParams.z)) ) 
-	//{
-		float diff = (dist - linear_time * 5); 
-		float powDiff = 1.0 - pow(abs(diff*shockParams.x), shockParams.y); 
-		float diffTime = diff  * powDiff; 
-		float2 diffUV = normalize(iTex0 - float2(0,0)); 
-		return iTex0 + (diffUV * diffTime);
-	//} 
+	if ((dist <= (linear_time + shock_params.z)) && (dist >= (linear_time - shock_params.z))) 
+	{
+		float diff = (dist - linear_time);
+		float pow_diff = 1.0 - pow(abs(diff * shock_params.x), shock_params.y); 
+		float diff_time = diff  * pow_diff; 
+		float2 diff_uv = normalize(iTex0 - float2(0.5,0.5)); 
+		return iTex0 + (diff_uv * diff_time);
+	} 
 	
 	return iTex0;
+}
+
+float4 ComputeBitMap(uint s_cc)
+{
+	if(s_cc == 244) return float4(1,0,0,1);
+	if(s_cc == 255) return float4(1,0,0,1);
+	
+	return float4(0,0,0,0);
 }
 
 float4 ComputeOutline(float4 color, int3 ss_load_coords, float depth)
 {
 	uint s_cc = txBackBufferStencil.Load(ss_load_coords).g;
-
+	float4 s_color = ComputeBitMap(s_cc);
+	
 	// n = north, s = south, e = east, w = west, c = center
 	uint s_nw = txBackBufferStencil.Load(ss_load_coords + int3(1, -1, 0)).y;
 	uint s_nc = txBackBufferStencil.Load(ss_load_coords + int3(0, -1, 0)).y;
@@ -65,14 +73,22 @@ float4 ComputeOutline(float4 color, int3 ss_load_coords, float depth)
 		return float4(0, 1, 1, 0.75) * outline_alpha;
 	}
 		
-	if(s_cc != 0){
+	if(s_cc != 0)
+	{
 		//float4 in_color = txAlbedo2.Sample(samLinear, iTex0.xy);
 		//float2 newpos = float2(iTex0.y, nrand(iTex0.x, iTex0.y));
 		float4 glitch = txNoiseMap2.Sample(samClampPoint, depth.xx);	
-		return float4(0, 1, 1, 0.5) * outline_alpha;
+		return s_color * float4(1, 1, 1, 0.5) * outline_alpha;
 	}
 		
 	return float4(color.xyz, 0.5) * outline_alpha;
+}
+
+float4 PS_PostFX_Wave(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
+{
+	UV = ComputeScreenShock(UV);
+	
+	return txAlbedo.Sample(samLinear, UV);
 }
 
 //--------------------------------------------------------------------------------------
@@ -111,8 +127,8 @@ float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
 	samplePos.x -= pulse_strength * linear_time;
 
 	float4 band = txNoiseMap.Sample(samLinear, samplePos);
+	//band *= ComputeBars(samplePos) * edge;
 	band *= (band * (2.0f + edge * 30.0f) + edge * 5.0f);
-	//band += ComputeBars(UV) * edge;
 	
 	// Enemies outline
 	float zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
