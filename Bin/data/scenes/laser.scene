@@ -10,7 +10,8 @@
 				[
 					"data/materials/mtl_tubo_capsulas.material"
 				]
-			}]
+			}],
+			"laser":true
 		}
 	}
 ]
