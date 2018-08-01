@@ -248,7 +248,7 @@ CB_DEF(CCteOutline, CB_OUTLINE)
 {
     float  linear_time;
     float  outline_alpha;
-    float  outline_dummy1;
+    float  alive_time;
     float  outline_dummy2;
 };
 

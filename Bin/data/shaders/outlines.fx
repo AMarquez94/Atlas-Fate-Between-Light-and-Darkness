@@ -41,7 +41,7 @@ float2 ComputeScreenShock(float2 iTex0)
 float4 ComputeBitMap(uint s_cc)
 {
 	if(s_cc == 0xF4) return float4(1,0,0,1);
-	if(s_cc == 0xFF) return float4(1,0,0,1);
+	if(s_cc == 0xFF) return float4(0,1,1,1);
 	
 	return float4(0,0,0,0);
 }
@@ -88,9 +88,7 @@ float4 ComputeOutline(float4 color, int3 ss_load_coords, float depth)
 float4 PS_PostFX_Wave(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
 {
 	int3 ss_load_coords = uint3(iPosition.xy, 0);
-	//float4 outline_color = txOutlines.Load(ss_load_coords);
-	
-	//return outline_color;
+
 	UV = ComputeScreenShock(UV);
 	return txAlbedo.Sample(samLinear, UV);
 }
@@ -98,16 +96,15 @@ float4 PS_PostFX_Wave(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : S
 //--------------------------------------------------------------------------------------
 float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
 { 
-	//UV = ComputeScreenShock(UV);
 	float edge_strength = 4.f;
 	float pulse_strength = 0.1f;
    
 	// Retrieve the linear depth on given pixel
 	int3 ss_load_coords = uint3(iPosition.xy, 0);
 	float depth = txGBufferLinearDepth.Load(ss_load_coords).x;
-	float3 wPos = getWorldCoords(iPosition.xy, depth);
 	float4 outline_color = txOutlines.Load(ss_load_coords);
-	
+	//float3 wPos = getWorldCoords(iPosition.xy, depth);
+		
 	float average = 0.125f * (
 	txGBufferLinearDepth.Load(ss_load_coords + int3(1,-1,0)).x
 	+ txGBufferLinearDepth.Load(ss_load_coords + int3(0,-1,0)).x
@@ -121,23 +118,22 @@ float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
 	// To resolve a problem with depth values (remove if not needed)
 	float edge = sqrt(abs(depth - average)) * edge_strength;
 	if(edge > 0.5) discard;
+	//edge = clamp(edge, 0, 0.5);
 
 	depth = saturate(2.0f * depth);
 	depth = 1 - depth;
 	depth *= depth;
 	depth = 1 - depth;
 
-	float tPos = length(wPos - camera_pos) / (camera_zfar);
+	//float tPos = length(wPos - camera_pos) / (camera_zfar);
 	float2 samplePos = float4(1.0f * depth.xx, 0.0f, 0.0f);
 	samplePos.x -= pulse_strength * linear_time;
 
 	float4 band = txNoiseMap.Sample(samLinear, samplePos);
-	//band *= ComputeBars(samplePos) * edge;
+	//band *= ComputeBars(samplePos) * band;
 	band *= (band * (2.0f + edge * 30.0f) + edge * 5.0f);
 	
-	// Enemies outline
-	float zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
-	if (pulse_strength * (linear_time/3) > outline_color.a)
+	if (pulse_strength * (linear_time/alive_time) > (outline_color.a))
 		return ComputeOutline(band, ss_load_coords, depth);
 	
 	// or we are outside, all zeros.
