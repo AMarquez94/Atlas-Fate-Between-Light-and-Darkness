@@ -87,7 +87,8 @@ struct CZConfigs {
         memset(&desc, 0x00, sizeof(desc));
         desc.DepthEnable = TRUE;
         desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO; // <<--
-        desc.DepthFunc = D3D11_COMPARISON_NEVER;
+        desc.DepthFunc = D3D11_COMPARISON_ALWAYS;
+
         // Stencil test parameters
         desc.StencilEnable = true;
         desc.StencilReadMask = 0xFF;
@@ -95,8 +96,8 @@ struct CZConfigs {
 
         // Stencil operations if pixel is front-facing
         desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
-        desc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_REPLACE;
-        desc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+        desc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;
+        desc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_REPLACE;
         desc.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
 
         // Stencil operations if pixel is back-facing

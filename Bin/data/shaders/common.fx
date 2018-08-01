@@ -28,6 +28,7 @@ Texture2D    txGBufferNormals     SLOT(TS_DEFERRED_NORMALS);
 Texture2D    txGBufferLinearDepth SLOT(TS_DEFERRED_LINEAR_DEPTH);
 Texture2D    txAccLights          SLOT(TS_DEFERRED_ACC_LIGHTS);
 Texture2D    txSelfIllum          SLOT(TS_DEFERRED_SELF_ILLUMINATION);
+Texture2D    txOutlines           SLOT(TS_DEFERRED_OUTLINE);
 Texture2D    txAO                 SLOT(TS_DEFERRED_AO);
 
 // 2nd material

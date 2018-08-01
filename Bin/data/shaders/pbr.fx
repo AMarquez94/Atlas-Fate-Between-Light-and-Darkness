@@ -82,7 +82,6 @@ void PS_GBuffer(
 	, out float4 o_normal : SV_Target1
 	, out float1 o_depth : SV_Target2
 	, out float4 o_selfIllum : SV_Target3
-	, out float4 o_outlines : SV_Target4
 )
 {
 	o_albedo = txAlbedo.Sample(samLinear, iTex0);
@@ -95,7 +94,6 @@ void PS_GBuffer(
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
 	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
 	o_normal = encodeNormal(N, roughness);
-	o_outlines = float4(0,1,0,1);
 	
 	if (scalar_metallic >= 0.f)
 		o_albedo.a = scalar_metallic;
@@ -109,6 +107,26 @@ void PS_GBuffer(
 	o_depth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
 }
 
+void PS_Outline_GBuffer(
+	float4 Pos       : SV_POSITION
+	, float3 iNormal : NORMAL0
+	, float4 iTangent : NORMAL1
+	, float2 iTex0 : TEXCOORD0
+	, float2 iTex1 : TEXCOORD1
+	, float3 iWorldPos : TEXCOORD2
+	, out float4 o_albedo : SV_Target0
+	, out float4 o_normal : SV_Target1
+	, out float1 o_depth : SV_Target2
+	, out float4 o_selfIllum : SV_Target3
+	, out float4 o_outlines : SV_Target4
+)
+{
+	float3 camera2wpos = iWorldPos - camera_pos;
+	float depth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
+	o_outlines = txAlbedo.Sample(samLinear, iTex0);
+	o_outlines.a = depth;
+}
+
 void PS_Shade_GBuffer(
 	float4 Pos       : SV_POSITION
 	, float3 iNormal : NORMAL0
@@ -120,6 +138,7 @@ void PS_Shade_GBuffer(
 	, out float4 o_normal : SV_Target1
 	, out float1 o_depth : SV_Target2
 	, out float4 o_selfIllum : SV_Target3
+	, out float4 o_outlines : SV_Target4
 )
 {
 	float4 noise0 = txNoiseMap.Sample(samLinear, iTex0);
@@ -137,7 +156,8 @@ void PS_Shade_GBuffer(
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
 	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
 	o_normal = encodeNormal(N, roughness);
-
+	o_outlines = float4(1,1,1,1);
+	
 	// Compute the Z in linear space, and normalize it in the range 0...1
 	// In the range z=0 to z=zFar of the camera (not zNear)
 	float3 camera2wpos = iWorldPos - camera_pos;

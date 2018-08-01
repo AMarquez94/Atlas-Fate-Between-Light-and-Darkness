@@ -36,7 +36,7 @@ void TCompRenderOutlines::load(const json& j, TEntityParseContext& ctx) {
     mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 }
 
-CTexture* TCompRenderOutlines::apply(CTexture* in_texture, CTexture* in_outline_albedo) {
+CTexture* TCompRenderOutlines::apply(CTexture* in_texture) {
 
     if (!enabled)
         return in_texture;
@@ -64,7 +64,7 @@ CTexture* TCompRenderOutlines::apply(CTexture* in_texture, CTexture* in_outline_
     // Compute the fullscreen post process shockwave
     post_rt->activateRT();
     in_texture->activate(TS_ALBEDO);
-    in_outline_albedo->activate(TS_EMISSIVE);
+    //in_outline_albedo->activate(TS_EMISSIVE);
 
     post_tech->activate();
     mesh->activateAndRender();

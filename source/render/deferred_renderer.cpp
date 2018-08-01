@@ -44,7 +44,7 @@ void CDeferredRenderer::renderGBuffer() {
 	rt_normals->clear(VEC4(0, 0, 1, 1));
 	rt_depth->clear(VEC4(1, 1, 1, 1));
 	rt_self_illum->clear(VEC4(0, 0, 0, 1));
-    rt_outline->clear(VEC4(0, 0, 0, 1));
+    rt_outline->clear(VEC4(1, 1, 1, 1));
 
 	// Clear ZBuffer with the value 1.0 (far)
     Render.ctx->ClearDepthStencilView(Render.depthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);

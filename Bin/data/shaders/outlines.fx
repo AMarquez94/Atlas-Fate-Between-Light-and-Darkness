@@ -49,6 +49,7 @@ float4 ComputeBitMap(uint s_cc)
 float4 ComputeOutline(float4 color, int3 ss_load_coords, float depth)
 {
 	uint s_cc = txBackBufferStencil.Load(ss_load_coords).g;
+	float4 outline_color = txOutlines.Load(ss_load_coords);
 	float4 s_color = ComputeBitMap(s_cc);
 	
 	// n = north, s = south, e = east, w = west, c = center
@@ -78,7 +79,7 @@ float4 ComputeOutline(float4 color, int3 ss_load_coords, float depth)
 		//float4 in_color = txAlbedo2.Sample(samLinear, iTex0.xy);
 		//float2 newpos = float2(iTex0.y, nrand(iTex0.x, iTex0.y));
 		float4 glitch = txNoiseMap2.Sample(samClampPoint, depth.xx);	
-		return s_color * float4(1, 1, 1, 0.5) * outline_alpha;
+		return s_color * float4(1, 1, 1, 0.5) * outline_alpha * float4(outline_color.xyz,1);
 	}
 		
 	return float4(color.xyz, 0.5) * outline_alpha;
@@ -86,7 +87,10 @@ float4 ComputeOutline(float4 color, int3 ss_load_coords, float depth)
 
 float4 PS_PostFX_Wave(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
 {
-	//return txEmissive.Sample(samLinear, UV);
+	int3 ss_load_coords = uint3(iPosition.xy, 0);
+	//float4 outline_color = txOutlines.Load(ss_load_coords);
+	
+	//return outline_color;
 	UV = ComputeScreenShock(UV);
 	return txAlbedo.Sample(samLinear, UV);
 }
@@ -102,6 +106,7 @@ float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
 	int3 ss_load_coords = uint3(iPosition.xy, 0);
 	float depth = txGBufferLinearDepth.Load(ss_load_coords).x;
 	float3 wPos = getWorldCoords(iPosition.xy, depth);
+	float4 outline_color = txOutlines.Load(ss_load_coords);
 	
 	float average = 0.125f * (
 	txGBufferLinearDepth.Load(ss_load_coords + int3(1,-1,0)).x
@@ -132,7 +137,7 @@ float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
 	
 	// Enemies outline
 	float zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
-	if (pulse_strength * linear_time > zlinear)
+	if (pulse_strength * (linear_time/3) > outline_color.a)
 		return ComputeOutline(band, ss_load_coords, depth);
 	
 	// or we are outside, all zeros.

@@ -191,6 +191,7 @@ CB_DEF(CCteMaterial, CB_MATERIAL)
     float  scalar_emission;
     VEC4   color_emission;
     VEC4   color_material;
+    VEC4   color_mask;
 
     float  mix_boost_r;
     float  mix_boost_g;

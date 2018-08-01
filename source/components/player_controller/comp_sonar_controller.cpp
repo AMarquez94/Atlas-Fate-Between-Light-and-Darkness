@@ -26,6 +26,7 @@ void TCompSonarController::load(const json& j, TEntityParseContext& ctx) {
     alpha_value = 0;
     cb_outline.outline_alpha = 0; // Move this from here
     cb_outline.updateGPU();
+    cb_outline.linear_time = cooldown_time;
 }
 
 void TCompSonarController::update(float dt) {
