@@ -57,6 +57,11 @@ float4 PS(
 
 float4 PS_PostBlur(in float4 iPosition : SV_POSITION, in float2 iTex0 : TEXCOORD0) : SV_Target
 {
+	//return  txAlbedo.Sample(samClampLinear, iTex0);
+float uBias = 0.15;
+float uScale = 0.4;
+	return max(float4(0,0,0,0), txAlbedo.Sample(samClampLinear, iTex0) + uBias) * uScale;
+
 	float3 c0 = txAlbedo.Sample(samClampLinear, iTex0) / 4;
 	float3 c1 = txAlbedo.Sample(samClampLinear, iTex0) / 2;
 	float3 c2 = txAlbedo.Sample(samClampLinear, iTex0) / 4;
