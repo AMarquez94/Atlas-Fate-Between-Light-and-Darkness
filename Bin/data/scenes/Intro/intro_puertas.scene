@@ -190,4 +190,64 @@
       "local_aabb": true
     }
   }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta_intro_attach_006"
+      ,
+      "transform":
+      {
+        "pos": "-10.4267 0.0 -77.0071"
+        ,
+        "rotation": "0.0 0.707106 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_puerta_intro_attach_006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta_intro_attach_007"
+      ,
+      "transform":
+      {
+        "pos": "-13.7346 0.0 -55.055"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_puerta_intro_attach_007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
 ]

@@ -1,0 +1,16 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_tubos_pozo_alb.dds"
+    ,
+    "metallic": "data/textures/tx_tubos_pozo_met.dds"
+    ,
+    "roughness": "data/textures/tx_tubos_pozo_rgh.dds"
+    ,
+    "normal": "data/textures/tx_tubos_pozo_nml.dds"
+    ,
+    "height": "data/textures/tx_tubos_pozo_hgt.dds"
+  }
+}
