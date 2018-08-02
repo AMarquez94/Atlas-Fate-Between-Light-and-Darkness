@@ -114,7 +114,7 @@
 				}, {
 					"variable_name": "autoChaseDistance",
 					"variable_type": "float",
-					"variable_value": 15.0,
+					"variable_value": 10.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "fov",
@@ -138,7 +138,7 @@
 				}, {
 					"variable_name": "autoChaseDistance",
 					"variable_type": "float",
-					"variable_value": 15.0,
+					"variable_value": 10.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "fov",
@@ -166,7 +166,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 20.0,
+					"variable_value": 25.0,
 					"variable_op": ""
 				}
 			],
@@ -208,7 +208,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 19.0,
+					"variable_value": 24.0,
 					"variable_op": ""
 				}
 			]
@@ -232,7 +232,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 20.0,
+					"variable_value": 25.0,
 					"variable_op": ""
 				}
 			],
@@ -318,12 +318,12 @@
 				}, {
 					"variable_name": "autoChaseDistance",
 					"variable_type": "float",
-					"variable_value": 15.0,
+					"variable_value": 10.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 20.0,
+					"variable_value": 25.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "dcrSuspectO_Meter",
@@ -333,7 +333,7 @@
 				}, {
 					"variable_name": "incrBaseSuspectO_Meter",
 					"variable_type": "float",
-					"variable_value": 0.5,
+					"variable_value": 0.4,
 					"variable_op": ""
 				}, {
 					"variable_name": "entityToChase",
@@ -449,7 +449,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 20.0,
+					"variable_value": 25.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "distToAttack",
@@ -492,7 +492,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 20.0,
+					"variable_value": 25.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "rotationSpeed",
@@ -566,7 +566,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 20.0,
+					"variable_value": 25.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "entityToChase",
@@ -600,7 +600,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 20.0,
+					"variable_value": 25.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "entityToChase",
