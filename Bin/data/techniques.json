@@ -526,7 +526,12 @@
 		"ps_entry_point": "PS_PostFX_Flares",
 		"vertex_type": "PosClr",
 		"category": "fx",
-		"z": "disable_all"
+		"z": "disable_all",
+		"blend": "additive",
+		"textures": {
+			"noise": "data/textures/tx_lens_dirt.dds",
+			"noise2": "data/textures/tx_starbust.dds"
+		}
 	},
 	"postfx_scanner": {
 		"vs_file": "data/shaders/screen_quad.fx",

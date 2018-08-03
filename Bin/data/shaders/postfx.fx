@@ -20,6 +20,20 @@ float3 ComputeThreshold(float3 color, float thresh)
 	return max(color - float3(thresh,thresh,thresh), float3(0,0,0));
 }
 
+float4 ComputeColorCA(float2 iTex0)
+{
+	// Move this as cte parameters
+	float down_intensity = 0.003;
+	float down_sampling = 2;
+	
+	float2 offset = normalize(float2(0.5, 0.5) - iTex0) * down_intensity;
+	float r = txEmissive.Sample(samClampLinear, iTex0 + offset, down_sampling).r;
+	float g = txEmissive.Sample(samClampLinear, iTex0, down_sampling).g;
+	float b = txEmissive.Sample(samClampLinear, iTex0 - offset, down_sampling).b;
+		
+	return float4(r, g, b, 1);
+}
+
 float4 ComputeGhosts(float2 iTex0) 
 {
 	// Move this as cte parameters
@@ -34,7 +48,7 @@ float4 ComputeGhosts(float2 iTex0)
 		float2 offset = frac(iTex0 + vghost * float(i));
 		float d = distance(offset, float2(0.5, 0.5));
 		float weight = 1.0 - smoothstep(0.0, 0.75, d); 
-		float3 s = txEmissive.Sample(samClampLinear, offset);
+		float3 s = ComputeColorCA(offset);
 		s = ComputeThreshold(s, .2);
 		result += s * weight;
 	}
@@ -45,34 +59,51 @@ float4 ComputeGhosts(float2 iTex0)
 float4 ComputeHalo(float2 iTex0)
 {
 	// Move this as cte parameters
-	float uHaloRadius = 0.3;
-	float uHaloThickness = 0.3;
+	float halo_radius = 0.25;
+	float halo_thickness = 0.2;
 
 	float2 vhalo = float2(0.5, 0.5) - iTex0;
 	vhalo.x /= camera_aspect_ratio;
 	vhalo = normalize(vhalo);
 	vhalo.x *= camera_aspect_ratio;
 	
-	float2 wuv = (iTex0 - float2(0.5, 0.0)) / float2(camera_aspect_ratio, 1.0) + float2(0.5, 0.0);
-	float d = distance(wuv, float2(0.5, 0.5));
-	float haloWeight = window_cubic(d, uHaloRadius, uHaloThickness); 
-	vhalo *= uHaloRadius;
+	float2 c_offset = float2(0.5, 0.0);
+	float2 shift_uv = (iTex0 - c_offset) / float2(camera_aspect_ratio, 1.0) + c_offset;
+	float d = distance(shift_uv, float2(0.5, 0.5));
 	
-	float4 light_beam = txEmissive.Sample(samClampLinear, iTex0 + vhalo);
-	float3 result = ComputeThreshold(light_beam.xyz, .2) * haloWeight;
+	vhalo *= halo_radius;
+	float halo_weight = window_cubic(d, halo_radius, halo_thickness); 
+	
+	float4 light_beam = ComputeColorCA(iTex0 + vhalo);
+	float3 result = ComputeThreshold(light_beam.xyz, .2) * halo_weight;
 	return float4(result.xyz, 1);
+}
+
+float4 ComputeStarbust(float2 iTex0)
+{
+	float2 vcenter = iTex0 - float2(0.5, 0.5);
+	float d = length(vcenter);
+	float radial = acos(vcenter.x / d);
+	float star_offset = dot(camera_left, float3(0,0,1)) + dot(camera_front, float3(0,1,0));
+	
+	float mask = txNoiseMap2.Sample(samClampLinear, float2(radial + star_offset * 1.0, 0.0)).r
+							* txNoiseMap2.Sample(samClampLinear, float2(radial - star_offset * 0.5, 0.0)).r;
+		
+	return saturate(mask + (1.0 - smoothstep(0.0, 0.3, d)));
 }
 
 float4 PS_PostFX_Flares(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
 {
 	float2 n_iTex0 = float2(1,1) - iTex0;
 	float4 color = txAlbedo.Sample(samClampLinear, iTex0);
-	float4 light_beam = txEmissive.Sample(samClampLinear, iTex0);
+	
+	float4 lens_dirt = txNoiseMap.Sample(samClampLinear, iTex0);
+	lens_dirt += ComputeStarbust(iTex0);
 	
 	float4 result = ComputeGhosts(n_iTex0);
 	result += ComputeHalo(n_iTex0);
 	
-	return color + float4(result.xyz, 1);
+	return float4(result.xyz, 1) * lens_dirt;
 }
 
 float4 PS_PostFX_Vignette(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target

@@ -47,7 +47,6 @@ float4 PS_GBuffer_Hologram(
   , float3 iWorldPos : TEXCOORD2
 ): SV_Target0
 {
-
 	// Retrieve main colors.
 	float4 albedo = txAlbedo.Sample(samLinear, iTex0);
 	float4 flicker = txNoiseMap.Sample(samLinear, iTex0 );
