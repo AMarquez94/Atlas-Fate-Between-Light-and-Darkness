@@ -15,78 +15,64 @@ float4 postfx_contrast(float4 color)
 	return float4(con_color, 1);
 }
 
-float3 ApplyThreshold(in float3 _rgb, in float _threshold)
+float3 ComputeThreshold(float3 color, float thresh)
 {
-	return max(_rgb - float3(_threshold,_threshold,_threshold), float3(0,0,0));
+	return max(color - float3(thresh,thresh,thresh), float3(0,0,0));
+}
+
+float4 ComputeGhosts(float2 iTex0) 
+{
+	// Move this as cte parameters
+	int ghost_number = 4; // number of ghost samples
+	float ghost_dispersion = .3; // dispersion factor
+	
+	float3 result = float3(0, 0, 0);
+	float2 vghost = (float2(0.5, 0.5) - iTex0) * ghost_dispersion;
+	
+	for (int i = 0; i < ghost_number; ++i) { 
+	
+		float2 offset = frac(iTex0 + vghost * float(i));
+		float d = distance(offset, float2(0.5, 0.5));
+		float weight = 1.0 - smoothstep(0.0, 0.75, d); 
+		float3 s = txEmissive.Sample(samClampLinear, offset);
+		s = ComputeThreshold(s, .2);
+		result += s * weight;
+	}
+	
+	return float4(result.xyz, 1);
+}
+
+float4 ComputeHalo(float2 iTex0)
+{
+	// Move this as cte parameters
+	float uHaloRadius = 0.3;
+	float uHaloThickness = 0.3;
+
+	float2 vhalo = float2(0.5, 0.5) - iTex0;
+	vhalo.x /= camera_aspect_ratio;
+	vhalo = normalize(vhalo);
+	vhalo.x *= camera_aspect_ratio;
+	
+	float2 wuv = (iTex0 - float2(0.5, 0.0)) / float2(camera_aspect_ratio, 1.0) + float2(0.5, 0.0);
+	float d = distance(wuv, float2(0.5, 0.5));
+	float haloWeight = window_cubic(d, uHaloRadius, uHaloThickness); 
+	vhalo *= uHaloRadius;
+	
+	float4 light_beam = txEmissive.Sample(samClampLinear, iTex0 + vhalo);
+	float3 result = ComputeThreshold(light_beam.xyz, .2) * haloWeight;
+	return float4(result.xyz, 1);
 }
 
 float4 PS_PostFX_Flares(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
 {
-	int uGhosts = 4; // number of ghost samples
-	float uGhostDispersal = .3; // dispersion factor
-
-	float2 light_iTex0 =-iTex0 + float2(1,1);// + float2(512, 256);
+	float2 n_iTex0 = float2(1,1) - iTex0;
 	float4 color = txAlbedo.Sample(samClampLinear, iTex0);
 	float4 light_beam = txEmissive.Sample(samClampLinear, iTex0);
-	float2 vghost = (float2(0.5, 0.5) - light_iTex0) * uGhostDispersal;
-
-	float3 result = float3(0, 0, 0);
-	for (int i = 0; i < uGhosts; ++i) { 
 	
-		float2 offset = frac(light_iTex0 + vghost * float(i));
-		float d = distance(offset, float2(0.5, 0.5));
-		float weight = 1.0 - smoothstep(0.0, 0.75, d); 
-		float3 s = txEmissive.Sample(samClampLinear, offset);
-		s = ApplyThreshold(s, .1);
-		result += s * weight;
-	}
+	float4 result = ComputeGhosts(n_iTex0);
+	result += ComputeHalo(n_iTex0);
 	
-	return color  + float4(result, 1);
-	
-/*
-	float hscale = 0.25;
-	float dx = hscale;
-
-	float u0 = iTex0.x - dx * 5;
-	float u1 = iTex0.x - dx * 3;
-	float u2 = iTex0.x - dx * 1;
-	float u3 = iTex0.x + dx * 1;
-	float u4 = iTex0.x + dx * 3;
-	float u5 = iTex0.x + dx * 5;
-
-	float3 c0 = txEmissive.Sample(samClampLinear, float2(u0, iTex0.y));
-	float3 c1 = txEmissive.Sample(samClampLinear, float2(u1, iTex0.y));
-	float3 c2 = txEmissive.Sample(samClampLinear, float2(u2, iTex0.y));
-	float3 c3 = txEmissive.Sample(samClampLinear, float2(u3, iTex0.y));
-	float3 c4 = txEmissive.Sample(samClampLinear, float2(u4, iTex0.y));
-	float3 c5 = txEmissive.Sample(samClampLinear, float2(u5, iTex0.y));
-
-	// Simple box filter
-	float3 c = (c0 + c1 + c2 + c3 + c4 + c5) / 6;
-
-	float4 color = txAlbedo.Sample(samClampLinear, iTex0);
-		
-	// Actually this should be 1, but we assume you need more blur...
-	float vscale = 1.5;
-	float dy = (1/512) * vscale / 2;
-
-	float3 c0 = txEmissive.Sample(samClampLinear, float2(iTex0.x, iTex0.y - dy));
-	float3 c1 = txEmissive.Sample(samClampLinear, float2(iTex0.x, iTex0.y + dy));
-	float3 c = (c0 + c1) / 2;
-
-	float br = max(c.r, max(c.y, c.z));
-	//c *= max(0, br - 1) / max(br, 0.00001);
-
-	return float4(c * br, 1);
-		
-	float3 c0 = txEmissive.Sample(samClampLinear, iTex0) / 4;
-  float3 c1 = txEmissive.Sample(samClampLinear, iTex0) / 2;
-  float3 c2 = txEmissive.Sample(samClampLinear, iTex0) / 4;
-  float3 c3 = txEmissive.Sample(samClampLinear, iTex0);
-  float3 cf = (c0 + c1 + c2) * 1 * 5;
-	return float4(cf + c3, 1);
-		
-	//return color + light_beam;*/
+	return color + float4(result.xyz, 1);
 }
 
 float4 PS_PostFX_Vignette(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target

@@ -58,8 +58,8 @@ float4 PS(
 float4 PS_PostBlur(in float4 iPosition : SV_POSITION, in float2 iTex0 : TEXCOORD0) : SV_Target
 {
 	//return  txAlbedo.Sample(samClampLinear, iTex0);
-float uBias = 0.15;
-float uScale = 0.4;
+	float uBias = 0.05;
+	float uScale = 1;
 	return max(float4(0,0,0,0), txAlbedo.Sample(samClampLinear, iTex0) + uBias) * uScale;
 
 	float3 c0 = txAlbedo.Sample(samClampLinear, iTex0) / 4;
@@ -78,7 +78,7 @@ float4 PS_MOTION(in float4 iPosition : SV_POSITION, in float2 iTex0 : TEXCOORD0)
   float depth = txGBufferLinearDepth.Load(uint3(iPosition.xy, 0)).x;
   float3 wPos = getWorldCoords(iPosition.xy , depth);
 
-	float4 currentPos = float4(iTex0.x * 2 - 1, (1 - iTex0.y) * 2 - 1, depth, 1);
+  float4 currentPos = float4(iTex0.x * 2 - 1, (1 - iTex0.y) * 2 - 1, depth, 1);
   float4 previousPos = mul(float4(wPos,1), prev_camera_view_proj); 
   previousPos /= previousPos.w;  
 

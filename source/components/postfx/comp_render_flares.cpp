@@ -28,12 +28,12 @@ void TCompRenderFlares::load(const json& j, TEntityParseContext& ctx) {
 	assert(is_ok);
 
     rt_output2 = new CRenderToTexture();
-    is_ok = rt_output2->createRT("Flares_RTarget", xres * .5, yres * .5, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
+    is_ok = rt_output2->createRT("Flares_RTarget", xres, yres, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
     assert(is_ok);
 
 	tech = Resources.get("postfx_flare.tech")->as<CRenderTechnique>();
 	mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
-    distance_factors = VEC4(10, 2, 0, 0);
+    distance_factors = VEC4(1, 1, 1, 1);
 
     static int g_blur_counter = 0;
     for (int i = 0; i < 6; ++i) {
@@ -74,16 +74,16 @@ CTexture* TCompRenderFlares::apply(CTexture* in_color, CTexture * in_lights) {
         //in_lights = rt_output;
     }
 
-    rt_output->activateRT();
-    in_lights->activate(TS_ALBEDO);
+    //rt_output->activateRT();
+    //in_lights->activate(TS_ALBEDO);
 
-    const CRenderTechnique * n_tech = Resources.get("postfx_blur_upsampler.tech")->as<CRenderTechnique>();
-    n_tech->activate();
-    mesh->activateAndRender();
+    //const CRenderTechnique * n_tech = Resources.get("postfx_blur_upsampler.tech")->as<CRenderTechnique>();
+    //n_tech->activate();
+    //mesh->activateAndRender();
 
     rt_output2->activateRT();
     in_color->activate(TS_ALBEDO);
-    rt_output->activate(TS_EMISSIVE);
+    in_lights->activate(TS_EMISSIVE);
 
 	tech->activate();
 	mesh->activateAndRender();

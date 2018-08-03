@@ -325,7 +325,7 @@ void CModuleRender::generateFrame() {
                 c_render_bloom->generateHighlights(deferred.rt_acc_light);
                 c_render_bloom->addBloom();
             }
-
+            
             TCompRenderBlur * c_render_blur = e_cam->get< TCompRenderBlur >();
             if (c_render_blur)
                 curr_rt = c_render_blur->apply(curr_rt);

@@ -291,8 +291,15 @@ float4 projectColor(float3 wPos) {
 
 
 // ----------------------------------------
-float randNoise2D(float2 c){
+float randNoise2D(float2 c)
+{
   return frac(sin(dot(c.xy,float2(12.9898,78.233))) * 43758.5453);
+}
+
+float window_cubic(float x, float c, float r)
+{
+	x = min(abs(x - c) / r, 1.0);
+	return 1.0 - x * x * (3.0 - 2.0 * x);
 }
 
 float2 parallaxMappingB(float2 texCoords, float3 view_dir) {
