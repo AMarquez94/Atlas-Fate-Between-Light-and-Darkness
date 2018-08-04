@@ -66,13 +66,6 @@ CTexture* TCompRenderFlares::apply(CTexture* in_color, CTexture * in_lights) {
         in_lights = output;
     }
 
-    //rt_output->activateRT();
-    //in_lights->activate(TS_ALBEDO);
-
-    //const CRenderTechnique * n_tech = Resources.get("postfx_blur_upsampler.tech")->as<CRenderTechnique>();
-    //n_tech->activate();
-    //mesh->activateAndRender();
-    //CRenderToTexture* rt = CRenderToTexture::getCurrentRT();
     rt->activateRT();
 
     in_color->activate(TS_ALBEDO);

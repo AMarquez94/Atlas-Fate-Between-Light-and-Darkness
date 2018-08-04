@@ -1,0 +1,41 @@
+[
+  {
+    "entity":
+    {
+      "name": "hologram1"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "hologram_halo"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/hologram_halo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_hologram_sw.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

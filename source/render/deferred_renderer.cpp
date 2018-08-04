@@ -126,6 +126,7 @@ void CDeferredRenderer::renderAccLight() {
 	renderSkyBox();
 
     CRenderManager::get().renderCategory("hologram");
+    CRenderManager::get().renderCategory("hologram_sw");
 }
 
 
