@@ -105,6 +105,7 @@
     <ClCompile Include="components\camera_controller\comp_circular_controller.cpp" />
     <ClCompile Include="components\camera_controller\comp_curve_controller.cpp" />
     <ClCompile Include="components\comp_aabb.cpp" />
+    <ClCompile Include="components\comp_audio.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
     <ClCompile Include="components\comp_culling.cpp" />
     <ClCompile Include="components\comp_gpu_particles.cpp" />
@@ -292,6 +293,7 @@
     <ClCompile Include="render\texture\texture.cpp" />
     <ClCompile Include="resources\json_resource.cpp" />
     <ClCompile Include="resources\resources_manager.cpp" />
+    <ClCompile Include="sound\soundEvent.cpp" />
     <ClCompile Include="utils\murmur3\murmur3.cpp" />
     <ClCompile Include="utils\utils.cpp" />
     <ClCompile Include="utils\variant.cpp" />
@@ -310,6 +312,7 @@
     <ClInclude Include="components\camera_controller\comp_circular_controller.h" />
     <ClInclude Include="components\camera_controller\comp_curve_controller.h" />
     <ClInclude Include="components\comp_aabb.h" />
+    <ClInclude Include="components\comp_audio.h" />
     <ClInclude Include="components\comp_base.h" />
     <ClInclude Include="components\comp_camera.h" />
     <ClInclude Include="components\comp_culling.h" />
@@ -379,14 +382,19 @@
     <ClInclude Include="entity\entity.h" />
     <ClInclude Include="entity\entity_parser.h" />
     <ClInclude Include="entity\msgs.h" />
-    <ClInclude Include="fmod\fmod.h" />
-    <ClInclude Include="fmod\fmod.hpp" />
-    <ClInclude Include="fmod\fmod_codec.h" />
-    <ClInclude Include="fmod\fmod_common.h" />
-    <ClInclude Include="fmod\fmod_dsp.h" />
-    <ClInclude Include="fmod\fmod_dsp_effects.h" />
-    <ClInclude Include="fmod\fmod_errors.h" />
-    <ClInclude Include="fmod\fmod_output.h" />
+    <ClInclude Include="fmod\fsbank\fsbank.h" />
+    <ClInclude Include="fmod\fsbank\fsbank_errors.h" />
+    <ClInclude Include="fmod\lowlevel\fmod.h" />
+    <ClInclude Include="fmod\lowlevel\fmod.hpp" />
+    <ClInclude Include="fmod\lowlevel\fmod_codec.h" />
+    <ClInclude Include="fmod\lowlevel\fmod_common.h" />
+    <ClInclude Include="fmod\lowlevel\fmod_dsp.h" />
+    <ClInclude Include="fmod\lowlevel\fmod_dsp_effects.h" />
+    <ClInclude Include="fmod\lowlevel\fmod_errors.h" />
+    <ClInclude Include="fmod\lowlevel\fmod_output.h" />
+    <ClInclude Include="fmod\studio\fmod_studio.h" />
+    <ClInclude Include="fmod\studio\fmod_studio.hpp" />
+    <ClInclude Include="fmod\studio\fmod_studio_common.h" />
     <ClInclude Include="fsm\context.h" />
     <ClInclude Include="fsm\custom_states.h" />
     <ClInclude Include="fsm\custom_transitions.h" />
@@ -528,6 +536,20 @@
     <ClInclude Include="resources\json_resource.h" />
     <ClInclude Include="resources\resource.h" />
     <ClInclude Include="resources\resources_manager.h" />
+    <ClInclude Include="sound\fmod\fmod.h" />
+    <ClInclude Include="sound\fmod\fmod.hpp" />
+    <ClInclude Include="sound\fmod\fmod_codec.h" />
+    <ClInclude Include="sound\fmod\fmod_common.h" />
+    <ClInclude Include="sound\fmod\fmod_dsp.h" />
+    <ClInclude Include="sound\fmod\fmod_dsp_effects.h" />
+    <ClInclude Include="sound\fmod\fmod_errors.h" />
+    <ClInclude Include="sound\fmod\fmod_output.h" />
+    <ClInclude Include="sound\fmod\fmod_studio.h" />
+    <ClInclude Include="sound\fmod\fmod_studio.hpp" />
+    <ClInclude Include="sound\fmod\fmod_studio_common.h" />
+    <ClInclude Include="sound\fmod\fsbank.h" />
+    <ClInclude Include="sound\fmod\fsbank_errors.h" />
+    <ClInclude Include="sound\soundEvent.h" />
     <ClInclude Include="utils\data_provider.h" />
     <ClInclude Include="utils\data_saver.h" />
     <ClInclude Include="utils\directory_watcher.h" />
@@ -541,9 +563,15 @@
     <ClInclude Include="windows\app.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="fmod\fmod_dsp.cs" />
-    <None Include="fmod\fmod_errors.cs" />
+    <None Include="fmod\lowlevel\fmod.cs" />
+    <None Include="fmod\lowlevel\fmod_dsp.cs" />
+    <None Include="fmod\lowlevel\fmod_errors.cs" />
+    <None Include="fmod\studio\fmod_studio.cs" />
     <None Include="geometry\SimpleMath.inl" />
+    <None Include="sound\fmod\fmod.cs" />
+    <None Include="sound\fmod\fmod_dsp.cs" />
+    <None Include="sound\fmod\fmod_errors.cs" />
+    <None Include="sound\fmod\fmod_studio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Cal3D\Cal3D.vcxproj">

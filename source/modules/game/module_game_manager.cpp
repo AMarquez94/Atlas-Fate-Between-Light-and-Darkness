@@ -21,6 +21,7 @@ bool CModuleGameManager::start() {
 
     _player = getEntityByName("The Player");
     _fly_camera = getEntityByName("test_camera_flyover");
+    ambient = EngineSound.playEvent("event:/Ambiance/Intro_Ambiance");
 
     lastCheckpoint = new CCheckpoint();
     _currentstate = PauseState::none;
@@ -275,6 +276,7 @@ void CModuleGameManager::renderMain() {
         ImGui::Selectable("Exit game", menuPosition == 3);
         if (ImGui::IsItemClicked() || (menuPosition == 3 && EngineInput["btMenuConfirm"].getsPressed()))
         {
+            ambient.stop();
             exit(0);
         }
 

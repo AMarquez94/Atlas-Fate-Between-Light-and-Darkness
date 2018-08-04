@@ -301,3 +301,8 @@ Build
 source/.vs/Game/v15
 /Bin/imgui.ini
 
+#FMOD things
+.cache
+.user
+.unsaved
+

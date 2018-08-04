@@ -13,6 +13,9 @@ class CModuleGameManager : public IModule
     CHandle _fly_camera;
     CCheckpoint* lastCheckpoint;
 
+    /* Maintain the sound for ambient sound */
+    SoundEvent ambient;
+
     // Menu window related variables.
     ImGuiWindowFlags window_flags;
     unsigned int window_width;

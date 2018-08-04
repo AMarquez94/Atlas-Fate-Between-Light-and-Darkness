@@ -1,8 +1,10 @@
 #include "mcv_platform.h"
 #include "module_sound.h"
 #include <experimental/filesystem>
+#include "sound/fmod/fmod_errors.h"
 
 #pragma comment(lib, "fmod64_vc.lib" )
+#pragma comment(lib, "fmodstudio64_vc.lib")
 
 /* Load all sounds in given path and its subfolders */
 void CModuleSound::registerAllSoundClipsInPath(char * path)
@@ -36,113 +38,372 @@ void CModuleSound::registerAllSoundClipsInPath(char * path)
         fatal("Exception %s while loading scripts\n", e.what());
     }
 }
+
+unsigned int CModuleSound::sNextID = 0;
+
 // Just adding an ambient sound to the game for milestone 2
 bool CModuleSound::start() {
 
-	System_Create(&_system);
-	_system->init(32, FMOD_INIT_NORMAL, _extradriverdata);
+    FMOD_RESULT result;
 
-    registerAllSoundClipsInPath("data/sounds/soundclips");
+    result = FMOD::Studio::System::create(&_system);
+    assert(result == FMOD_OK);
+    result = _system->initialize(1024, FMOD_STUDIO_INIT_NORMAL, FMOD_INIT_NORMAL, _extradriverdata);
+    assert(result == FMOD_OK);
+    if (result != FMOD_OK) {
+        fatal("Failed to initialize FMOD system %s\n", FMOD_ErrorString(result));
+        return false;
+    }
+    result = _system->getLowLevelSystem(&_lowlevelsystem);
 
-	return true;
+    loadBank("data/fmod/Banks/Master Bank.strings.bank");
+    loadBank("data/fmod/Banks/Master Bank.bank");
+
+    return true;
 }
 
-// To be replaced, hardcoded by now
-void CModuleSound::setAmbientSound(const std::string & path) {
-
-	if (_ambiance != nullptr) {
-		_ambiance->sound->release();
-	}
-
-	_ambiance = new SoundClip();
-	_ambiance->result = _system->createStream(path.c_str(), FMOD_LOOP_NORMAL | FMOD_2D, 0, &_ambiance->sound); // Carga de disco, decodificarse
-	_ambiance->result = _system->playSound(_ambiance->sound, 0, false, &_ambiance->channel);
-	_ambiance->channel->setVolume(0.5f);
-}
 
 bool CModuleSound::stop() {
 
-	_system->close();
-	_system->release();
+    unloadAllBanks();
 
-	// Clear all the clips registered previously
+    if (_system) {
+        _system->release();
+    }
 
-	return true;
+    return true;
 }
 
 void CModuleSound::update(float delta) {
 
-	// Update here with player data.
-	//_system->set3DListenerAttributes(0, &listenerpos, &vel, &forward, &up);
+    /* Look for finished event instances */
+    std::vector<unsigned int> done;
+    for (auto& iter : myEventInstances) {
+        FMOD::Studio::EventInstance * e = iter.second;
+        FMOD_STUDIO_PLAYBACK_STATE state;
+        e->getPlaybackState(&state);
+        if (state == FMOD_STUDIO_PLAYBACK_STOPPED) {
+            e->release();
+            done.emplace_back(iter.first);
+        }
+    }
 
-	// Update all the 3d sounds with it's new positions
-	// Maybe we can mark those static ones to not be updating...
-	//for (auto p : _clips3d) {
-	//  //Use userdata to retrieve it's new transforms...
-	//	p->channel->set3DAttributes(&pos, &vel); //move this somewhere else
-	//}
+    for (auto id : done) {
+        myEventInstances.erase(id);
+    }
 
-	//_system->update();
+    /* Update FMOD */
+    _system->update();
 }
 
 void CModuleSound::render()
 {
     if (ImGui::TreeNode("Sound")) {
-        for (auto& clip : _clips) {
-            ImGui::Text(clip.first.c_str());
-            ImGui::SameLine();
-            if (ImGui::Button(("Play " + clip.first).c_str())) {
-                playSound2D(clip.first);
+        if (ImGui::TreeNode("Banks")) {
+            for (auto bank : myBanks) {
+                char path[512];
+                bank.second->getPath(path, 512, nullptr);
+                ImGui::Text(path);
             }
+            ImGui::TreePop();
         }
-        for (auto& clip : _clips3d) {
-            ImGui::Text(clip.first.c_str());
-            ImGui::SameLine();
-            if (ImGui::Button(("Play " + clip.first).c_str())) {
 
+        if (ImGui::TreeNode("Event Descriptions")) {
+            int index = 0;
+            for (auto ed : myEvents) {
+                char path[512];
+                ed.second->getPath(path, 512, nullptr);
+                ImGui::Text(path);
+                ImGui::SameLine();
+                if (ImGui::Button(("Play " + std::to_string(index)).c_str())) {
+                    playEvent(path);
+                }
+                index++;
             }
+            ImGui::TreePop();
         }
         ImGui::TreePop();
     }
 }
 
+void CModuleSound::loadBank(const std::string & name)
+{
+    // Avoid loading a bank twice
+    if (myBanks.find(name) != myBanks.end()) {
+        return;
+    }
+
+    // Load bank
+    FMOD::Studio::Bank* bank = nullptr;
+    FMOD_RESULT result = _system->loadBankFile(name.c_str(), FMOD_STUDIO_LOAD_BANK_NORMAL, &bank);
+    assert(result == FMOD_OK);
+
+    const int maxPathLength = 512;
+    if (result == FMOD_OK) {
+
+        // Add bank to mybanks
+        myBanks.emplace(name, bank);
+        // Load non-streaming data
+        bank->loadSampleData();
+        // Get number of events in this bank
+        int numEvents = 0;
+        bank->getEventCount(&numEvents);
+
+        if (numEvents > 0) {
+
+            // Get list of event descriptions in this bank
+            std::vector<FMOD::Studio::EventDescription*> events(numEvents);
+            bank->getEventList(events.data(), numEvents, &numEvents);
+            char eventName[maxPathLength];
+            for (int i = 0; i < numEvents; i++) {
+                FMOD::Studio::EventDescription* e = events[i];
+                //get path of the event
+                e->getPath(eventName, maxPathLength, nullptr);
+                myEvents.emplace(eventName, e);
+            }
+        }
+
+        // Get the number of buses in this bank
+        int numBuses = 0;
+        bank->getBusCount(&numBuses);
+        if (numBuses > 0) {
+            
+            // Get list of buses in this bank
+            std::vector<FMOD::Studio::Bus*> buses(numBuses);
+            bank->getBusList(buses.data(), numBuses, &numBuses);
+            char busName[maxPathLength];
+            for (int i = 0; i < numBuses; i++) {
+                FMOD::Studio::Bus* bus = buses[i];
+                bus->getPath(busName, maxPathLength, nullptr);
+                myBuses.emplace(busName, bus);
+            }
+        }
+    }
+}
+
+void CModuleSound::unloadBank(const std::string & name)
+{
+    // Avoid unloading a no loaded bank
+    auto iter = myBanks.find(name);
+    if (iter == myBanks.end()) {
+        return;
+    }
+
+    // First: Remove all events from this bank
+    FMOD::Studio::Bank* bank = iter->second;
+    int numEvents = 0;
+    bank->getEventCount(&numEvents);
+    const int maxPathLength = 512;
+
+    if (numEvents > 0) {
+
+        // Get event descriptions for this bank
+        std::vector <FMOD::Studio::EventDescription*> events(numEvents);
+
+        // Get list of events
+        bank->getEventList(events.data(), numEvents, &numEvents);
+        char eventName[maxPathLength];
+        for (int i = 0; i < numEvents; i++) {
+            FMOD::Studio::EventDescription* e = events[i];
+            e->getPath(eventName, maxPathLength, nullptr);
+            auto i_event = myEvents.find(eventName);
+            if (i_event != myEvents.end()) {
+
+                // Remove event
+                myEvents.erase(i_event);
+            }
+        }
+    }
+
+    // Get the number of buses in this bank
+    int numBuses = 0;
+    bank->getBusCount(&numBuses);
+    if (numBuses > 0) {
+
+        // Get list of buses in this bank
+        std::vector<FMOD::Studio::Bus*> buses(numBuses);
+        bank->getBusList(buses.data(), numBuses, &numBuses);
+        char busName[maxPathLength];
+        for (int i = 0; i < numBuses; i++) {
+            FMOD::Studio::Bus* bus = buses[i];
+            bus->getPath(busName, maxPathLength, nullptr);
+            auto i_bus = myBuses.find(busName);
+            if (i_bus != myBuses.end()) {
+                myBuses.erase(i_bus);
+            }
+        }
+    }
+
+    // Unload sample data and bank
+    bank->unloadSampleData();
+    bank->unload();
+
+    // Remove from banks map
+    myBanks.erase(iter);
+}
+
+void CModuleSound::unloadAllBanks()
+{
+    for (auto& iter : myBanks) {
+        iter.second->unloadSampleData();
+        iter.second->unload();
+    }
+
+    myBanks.clear();
+    myEvents.clear();
+}
+
+SoundEvent CModuleSound::playEvent(const std::string & name)
+{
+    unsigned int retID = 0;
+    auto iter = myEvents.find(name);
+    if (iter != myEvents.end()) {
+
+        /* Create instance of an event */
+        FMOD::Studio::EventInstance* event = nullptr;
+        iter->second->createInstance(&event);
+        if (event) {
+
+            /* Start the event instance */
+            event->start();
+
+            /* Get the next id and add it to map */
+            sNextID++;
+            retID = sNextID;
+            myEventInstances.emplace(retID, event);
+        }
+    }
+    return SoundEvent(retID);
+}
+
+void CModuleSound::setListener(const CTransform & transform)
+{
+    FMOD_3D_ATTRIBUTES attr;
+    attr.position = VEC3_TO_FMOD(transform.getPosition());
+    attr.forward = VEC3_TO_FMOD(transform.getFront());
+    attr.up = VEC3_TO_FMOD(transform.getUp());
+    attr.velocity = VEC3_TO_FMOD(VEC3::Zero);
+    _system->setListenerAttributes(0, &attr);
+}
+
+float CModuleSound::getBusVolume(const std::string & name) const
+{
+    float volume = 0.f;
+    const auto iter = myBuses.find(name);
+    if (iter != myBuses.end()) {
+        iter->second->getVolume(&volume);
+    }
+    return volume;
+}
+
+bool CModuleSound::getBusPaused(const std::string & name) const
+{
+    bool paused = false;
+    const auto iter = myBuses.find(name);
+    if (iter != myBuses.end()) {
+        iter->second->getPaused(&paused);
+    }
+    return paused;
+}
+
+void CModuleSound::setBusVolume(const std::string & name, float volume)
+{
+    const auto iter = myBuses.find(name);
+    if (iter != myBuses.end()) {
+        iter->second->setVolume(volume);
+    }
+}
+
+void CModuleSound::setBusPaused(const std::string & name, bool pause)
+{
+    const auto iter = myBuses.find(name);
+    if (iter != myBuses.end()) {
+        iter->second->setPaused(pause);
+    }
+}
+
+
+FMOD::Studio::EventInstance * CModuleSound::getEventInstance(unsigned int id)
+{
+    FMOD::Studio::EventInstance* event = nullptr;
+    auto iter = myEventInstances.find(id);
+    if (iter != myEventInstances.end())
+    {
+        event = iter->second;
+    }
+    return event;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//TODO: DELETE
+
+// To be replaced, hardcoded by now
+void CModuleSound::setAmbientSound(const std::string & path) {
+
+    //if (_ambiance != nullptr) {
+    //	_ambiance->sound->release();
+    //}
+
+    //_ambiance = new SoundClip();
+    //_ambiance->result = _system->createStream(path.c_str(), FMOD_LOOP_NORMAL | FMOD_2D, 0, &_ambiance->sound); // Carga de disco, decodificarse
+    //_ambiance->result = _system->playSound(_ambiance->sound, 0, false, &_ambiance->channel);
+    //_ambiance->channel->setVolume(0.5f);
+}
+
 void CModuleSound::registerClip(const std::string & tag, const std::string & source, FMOD_MODE mode = 0) {
 
-	SoundClip * clip = new SoundClip();
-	clip->result = _system->createStream(source.c_str(), mode, 0, &clip->sound); // Carga de disco, decodificarse
-	clip->tag = tag;
+    //SoundClip * clip = new SoundClip();
+    //clip->result = _system->createStream(source.c_str(), mode, 0, &clip->sound); // Carga de disco, decodificarse
+    //clip->tag = tag;
 
-	_clips.insert(std::pair<std::string, SoundClip*>(tag, clip));
+    //_clips.insert(std::pair<std::string, SoundClip*>(tag, clip));
 }
 
 void CModuleSound::registerClip3D(const std::string & tag, const std::string & source) {
 
-	SoundClip3D * clip = new SoundClip3D();
-	clip->result = _system->createStream(source.c_str(), FMOD_3D, 0, &clip->sound); // Carga de disco, decodificarse
-    clip->tag = tag;
+    //SoundClip3D * clip = new SoundClip3D();
+    //clip->result = _system->createStream(source.c_str(), FMOD_3D, 0, &clip->sound); // Carga de disco, decodificarse
+    //clip->tag = tag;
 
-	_clips.insert(std::pair<std::string, SoundClip*>(tag, clip));
+    //_clips.insert(std::pair<std::string, SoundClip*>(tag, clip));
 }
 
 void CModuleSound::playSound2D(const std::string & tag)
 {
-    assert(_clips.find(tag) != _clips.end());
-    _system->playSound(_clips[tag]->sound, 0, false, &_clips[tag]->channel);
+    //assert(_clips.find(tag) != _clips.end());
+    //_system->playSound(_clips[tag]->sound, 0, false, &_clips[tag]->channel);
 }
 
 //TO-DO: Borrar todo esto y implementarlo como lo haria una persona con dos dedos de frente
 void CModuleSound::exeStepSound() {
-	
-	int index = (int)(((float)rand() / RAND_MAX) * 7) + 1;
+
+    /*int index = (int)(((float)rand() / RAND_MAX) * 7) + 1;
     playSound2D("step" + std::to_string(index));
-	float volume = 0.75f;
-	if (EngineInput["btRun"].isPressed()) volume = 1.0f;
-	if (EngineInput["btCrouch"].isPressed()) volume = 0.5f;
-	_clips["step" + std::to_string(index)]->channel->setVolume(volume);
+    float volume = 0.75f;
+    if (EngineInput["btRun"].isPressed()) volume = 1.0f;
+    if (EngineInput["btCrouch"].isPressed()) volume = 0.5f;
+    _clips["step" + std::to_string(index)]->channel->setVolume(volume);*/
 }
 
 void CModuleSound::exeShootImpactSound()
 {
-    int index = (int)(((float)rand() / RAND_MAX) * 2) + 1;
-    playSound2D("bullet_impact" + std::to_string(index));
+  /*  int index = (int)(((float)rand() / RAND_MAX) * 2) + 1;
+    playSound2D("bullet_impact" + std::to_string(index));*/
 }
+
+
