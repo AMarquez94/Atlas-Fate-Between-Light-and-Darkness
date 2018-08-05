@@ -48,7 +48,7 @@ bool CModuleSound::start() {
 
     result = FMOD::Studio::System::create(&_system);
     assert(result == FMOD_OK);
-    result = _system->initialize(1024, FMOD_STUDIO_INIT_NORMAL, FMOD_INIT_NORMAL, _extradriverdata);
+    result = _system->initialize(1024, FMOD_STUDIO_INIT_NORMAL, FMOD_INIT_3D_RIGHTHANDED, _extradriverdata);
     assert(result == FMOD_OK);
     if (result != FMOD_OK) {
         fatal("Failed to initialize FMOD system %s\n", FMOD_ErrorString(result));
@@ -92,6 +92,12 @@ void CModuleSound::update(float delta) {
         myEventInstances.erase(id);
     }
 
+    /* Set listener according to active camera */
+    CHandle candidate_h_listener = EngineCameras.getCurrentCamera();
+    if (candidate_h_listener.isValid()) {
+        setListener(candidate_h_listener);
+    }
+
     /* Update FMOD */
     _system->update();
 }
@@ -122,6 +128,45 @@ void CModuleSound::render()
             }
             ImGui::TreePop();
         }
+
+        if (ImGui::TreeNode("Event instances")) {
+            int index = 0;
+            for (auto ei : myEventInstances) {
+                char path[512];
+                FMOD::Studio::EventDescription *mydes;
+                ei.second->getDescription(&mydes);
+                mydes->getPath(path, 512, nullptr);
+                ImGui::Text(path);
+                ImGui::SameLine();
+                if (ImGui::Button(("Stop " + std::to_string(index)).c_str())) {
+                    SoundEvent* test;   //TODO: Not working atm
+                    FMOD_RESULT result = ei.second->getUserData((void**)&test);
+                    test->stop();
+                    //playEvent(path);
+                }
+                index++;
+            }
+            ImGui::TreePop();
+        }
+
+        if (ImGui::TreeNode("Buses")) {
+            /* TODO: Not working as they should */
+            int index = 0;
+            for (auto bus : myBuses) {
+                char path[512];
+                bus.second->getPath(path, 512, nullptr);
+                float busVol = 0.f;
+                bool busPaused = false;
+                bus.second->getVolume(&busVol);
+                bus.second->getPaused(&busPaused);
+                ImGui::Text(path);
+                ImGui::SameLine();
+                ImGui::Text("Vol: %f - Paused: %s", busVol, busPaused ? "Y" : "N");
+                index++;
+            }
+            ImGui::TreePop();
+        }
+
         ImGui::TreePop();
     }
 }
@@ -257,6 +302,7 @@ SoundEvent CModuleSound::playEvent(const std::string & name)
 {
     unsigned int retID = 0;
     auto iter = myEvents.find(name);
+    SoundEvent soundEvent;
     if (iter != myEvents.end()) {
 
         /* Create instance of an event */
@@ -272,16 +318,26 @@ SoundEvent CModuleSound::playEvent(const std::string & name)
             retID = sNextID;
             myEventInstances.emplace(retID, event);
         }
+
+        soundEvent = SoundEvent(retID);
+        event->setUserData(&soundEvent);
     }
-    return SoundEvent(retID);
+    else {
+        soundEvent = SoundEvent(retID);
+    }
+    return soundEvent;
 }
 
-void CModuleSound::setListener(const CTransform & transform)
+void CModuleSound::setListener(CHandle h_listener /*const CTransform & transform*/)
 {
     FMOD_3D_ATTRIBUTES attr;
-    attr.position = VEC3_TO_FMOD(transform.getPosition());
-    attr.forward = VEC3_TO_FMOD(transform.getFront());
-    attr.up = VEC3_TO_FMOD(transform.getUp());
+    
+    this->h_listener = h_listener;
+    CEntity* e_listener = h_listener;
+    TCompTransform* listener_pos = e_listener->get<TCompTransform>();
+    attr.position = VEC3_TO_FMOD(listener_pos->getPosition());
+    attr.forward = VEC3_TO_FMOD(listener_pos->getFront());
+    attr.up = VEC3_TO_FMOD(listener_pos->getUp());
     attr.velocity = VEC3_TO_FMOD(VEC3::Zero);
     _system->setListenerAttributes(0, &attr);
 }

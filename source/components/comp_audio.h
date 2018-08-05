@@ -19,7 +19,8 @@ public:
     void update(float dt);
     static void registerMsgs();
 
-    SoundEvent playEvent(const std::string& name);
+    SoundEvent playEvent(const std::string& name, bool relativeToPlayer = true);
     void stopAllEvents();
 
+    CTransform getVirtual3DAttributes();
 };

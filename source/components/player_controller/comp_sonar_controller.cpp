@@ -20,8 +20,8 @@ void TCompSonarController::debugInMenu() {
 void TCompSonarController::load(const json& j, TEntityParseContext& ctx) {
 
     target_tag = j.value("tags", "");
-    total_time = j.value("alive_time", 0);
-    cooldown_time = j.value("cooldown_time", 0);
+    total_time = j.value("alive_time", 0.f);
+    cooldown_time = j.value("cooldown_time", 0.f);
 
     alpha_value = 0;
     cb_outline.outline_alpha = 0; // Move this from here

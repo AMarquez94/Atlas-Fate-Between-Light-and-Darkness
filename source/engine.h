@@ -44,10 +44,9 @@ public:
     CModuleEntities& getEntities() { return _module_entities; }
     CModuleNavmesh& getNavmeshes() { return _module_navmesh; }
     CModuleFSM& getFSM() { return _module_fsm; }
-    CModuleSound getSound() { return _module_sound; }
+    CModuleSound& getSound() { return _module_sound; }
     CModuleLogic& getLogic() { return _module_logic; }
     CModuleGameConsole& getGameConsole() { return _module_game_console; }
-    CModuleGameConsole getGameConsoleBis() { return _module_game_console; }
     CModuleGUI& getGUI() { return _module_gui; }
     CModuleSceneManager& getSceneManager() { return _module_scene_manager; }
     CModuleInstancing& getInstancing() { return _module_instancing; }

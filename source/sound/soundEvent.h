@@ -5,6 +5,7 @@ class SoundEvent {
 private:
 
     unsigned int myID;
+    bool relativeToCameraOnly = false;
 
 protected:
 
@@ -26,6 +27,7 @@ public:
     void setPitch(float pitch);
     void setParameter(const std::string& name, float value);
 
+
     bool getPaused() const;
     float getVolume() const;
     float getPitch() const;
@@ -33,4 +35,8 @@ public:
 
     bool is3D() const;
     void set3DAttributes(const CTransform& transform);
+    CTransform get3DAttributes();
+
+    bool isRelativeToCameraOnly() const;
+    void setIsRelativeToCameraOnly(bool relativeToCameraOnly);
 };

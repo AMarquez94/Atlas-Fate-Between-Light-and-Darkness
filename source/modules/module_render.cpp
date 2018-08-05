@@ -136,7 +136,7 @@ bool CModuleRender::start()
 	cb_globals.global_gamma_correction_enabled = 1.f;
 	cb_globals.global_tone_mapping_mode = 1.f;
     cb_globals.global_fog_density = 0.017f;
-    cb_globals.global_fog_color = VEC3(0.18,0.5,0.7);
+    cb_globals.global_fog_color = VEC3(0.18f,0.5f,0.7f);
     cb_globals.global_self_intensity = 10.f;
 
 	cb_light.activate();

@@ -148,7 +148,8 @@
 					"data/particles/sm_whisps2.particles",
 					"data/particles/sm_top_trail.particles"
 				]
-			}
+			},
+			"audio": {}
 		}
 	},
 	{

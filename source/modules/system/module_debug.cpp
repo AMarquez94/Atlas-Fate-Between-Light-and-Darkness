@@ -24,10 +24,10 @@ void CModuleDebug::update(float delta) {
         POINT mouse_loc;
         GetCursorPos(&mouse_loc);
         ScreenToClient(CApp::get().getWnd(), &mouse_loc);
-        VEC2 mouse_pos = VEC2(Clamp((int)mouse_loc.x, 0, CApp::get().xres), Clamp((int)mouse_loc.y, 0, CApp::get().yres));
+        VEC2 mouse_pos = VEC2((float)Clamp((int)mouse_loc.x, 0, CApp::get().xres), (float)Clamp((int)mouse_loc.y, 0, CApp::get().yres));
 
-        mouse_pos.x = mapInRange(-1, 1, 0, CApp::get().xres, mouse_pos.x);
-        mouse_pos.y = -mapInRange(-1, 1, 0, CApp::get().yres, mouse_pos.y);
+        mouse_pos.x = (float)mapInRange(-1, 1, 0, CApp::get().xres, mouse_pos.x);
+        mouse_pos.y = (float)-mapInRange(-1, 1, 0, CApp::get().yres, mouse_pos.y);
        
         VEC3 origin = VEC3(mouse_pos.x, mouse_pos.y, 0);
         VEC3 dest = VEC3(mouse_pos.x, mouse_pos.y, 1);
@@ -44,7 +44,7 @@ void CModuleDebug::update(float delta) {
         VEC3 pos = VEC3::Zero;
         VEC3 dir = (raycast_dest - raycast_origin).Normalized();
         physx::PxRaycastHit hit;
-        if (EnginePhysics.Raycast(raycast_origin, dir, INFINITE, hit)) {
+        if (EnginePhysics.Raycast(raycast_origin, dir, INFINITY, hit)) {
             pos = PXVEC3_TO_VEC3(hit.position);
             //CHandle hitCollider;
             //hitCollider.fromVoidPtr(hit.actor->userData);

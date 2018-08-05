@@ -73,7 +73,7 @@ void TCompFadeController::launch(const TMsgFadeBody& msg) {
     _invert_fade = msg.is_exit ? -1 : 1;
 
     c_my_render->color = _fade_color;
-    c_my_render->self_opacity = msg.is_exit ? 1 : 0;
+    c_my_render->self_opacity = msg.is_exit ? 1.f : 0.f;
 
     if (_is_drownable) {
 

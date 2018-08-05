@@ -53,8 +53,8 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
 	addChild("player", "goToWpt", BTNode::EType::ACTION, (BTCondition)&TCompAIPlayer::conditionHasBeenEnabled, (BTAction)&TCompAIPlayer::actionGoToWpt, nullptr);
 
 	enabledPlayerAI = j.value("enabled", false);
-	_speed = j.value("speed", 1.0);
-	_rotationSpeed = j.value("rotationSpeed", 1.0);
+	_speed = j.value("speed", 1.0f);
+	_rotationSpeed = j.value("rotationSpeed", 1.0f);
 
 
 	if (j.count("waypoints") > 0) {

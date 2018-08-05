@@ -268,7 +268,7 @@ void ParticlesEditor::debugRenderer() {
         }
         ((CTexture*)(_main_system->n_renderer.texture))->debugInMenu();
         ImGui::DragFloat2("Tiles", &_main_system->n_renderer.frameSize.x, 1.f, 1.f, 100.f);
-        ImGui::DragFloat("Frame over Time", &_main_system->n_renderer.frameSpeed, 0.01, 0.f, 100.f);
+        ImGui::DragFloat("Frame over Time", &_main_system->n_renderer.frameSpeed, 0.01f, 0.f, 100.f);
         ImGui::DragInt("Start frame", &_main_system->n_renderer.initialFrame, 1, 0, 100);
         ImGui::DragInt("Cycles", &_main_system->n_renderer.numFrames, 1, 1, 100);
     }

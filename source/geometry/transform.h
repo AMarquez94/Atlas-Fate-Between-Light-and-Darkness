@@ -30,6 +30,10 @@ public:
             ;
     }
 
+    MAT44 asWorldMatrix() const {
+        return MAT44::CreateWorld(pos, getFront(), getUp());
+    }
+
     // -------------------------------------------
     void setYawPitchRoll(float new_yaw, float new_pitch, float new_roll = 0.f);
     void getYawPitchRoll(float* yaw, float* pitch, float* roll = nullptr) const;

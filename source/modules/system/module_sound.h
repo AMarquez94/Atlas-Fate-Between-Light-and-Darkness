@@ -30,6 +30,8 @@ class CModuleSound : public IModule
     /* ID for event instances (always incremental) */
     static unsigned int sNextID;
 
+    CHandle h_listener;
+
     void registerAllSoundClipsInPath(char* path);
 
 
@@ -52,7 +54,8 @@ public:
 
     SoundEvent playEvent(const std::string& name);
 
-    void setListener(const CTransform& transform);
+    CHandle getListener() { return h_listener; };
+    void setListener(CHandle h_listener /*const CTransform& transform*/);
 
     float getBusVolume(const std::string& name) const;
     bool getBusPaused(const std::string& name) const;

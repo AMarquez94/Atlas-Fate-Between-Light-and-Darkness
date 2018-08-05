@@ -43,7 +43,7 @@ void TCompLightPoint::load(const json& j, TEntityParseContext& ctx) {
     if (j.count("color"))
         color = loadVEC4(j["color"]);
     intensity = j.value("intensity", intensity);
-    inner_cut = j.value("inner_cut", inner_cut) + 0.01;
+    inner_cut = j.value("inner_cut", inner_cut) + 0.01f;
     outer_cut = j.value("outer_cut", outer_cut);
 
     if (j.count("projector")) {

@@ -109,6 +109,11 @@
     "all": false,
     "buttons":  ["f4"]
   },
+	{
+    "name": "btDebugModeUnpaused",
+    "all": false,
+    "buttons":  ["f5"]
+  },
   {
     "name": "btPause",
     "all": false,

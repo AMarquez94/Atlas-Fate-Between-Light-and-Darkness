@@ -26,6 +26,7 @@
 #include "render/render_utils.h"
 
 #include "components/ia/comp_bt_player.h"
+#include "components/comp_audio.h"
 
 
 DECL_OBJ_MANAGER("player_tempcontroller", TCompTempPlayerController);
@@ -347,7 +348,8 @@ void TCompTempPlayerController::walkState(float dt) {
     stepTimer += dt;
     if (stepTimer > 0.33f * factor) {
 
-        Engine.getSound().exeStepSound();
+        TCompAudio* audio = get<TCompAudio>();
+        audio->playEvent("event:/Sounds/Player/Steps/NormalSteps", false);
         stepRight = !stepRight;
         stepTimer = 0.0f;
     }

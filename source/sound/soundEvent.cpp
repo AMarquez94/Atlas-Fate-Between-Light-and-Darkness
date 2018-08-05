@@ -2,6 +2,7 @@
 #include "soundEvent.h"
 #include "sound/fmod/fmod.hpp"
 #include "sound/fmod/fmod_studio.h"
+#include "components/comp_tags.h"
 
 SoundEvent::SoundEvent() {
     myID = 0;
@@ -105,7 +106,7 @@ bool SoundEvent::is3D() const {
         FMOD::Studio::EventDescription* ed = nullptr;
         event->getDescription(&ed);
         if (ed) {
-            ed->is3D(&value);
+            FMOD_RESULT result = ed->is3D(&value);
         }
     }
     return value;
@@ -121,4 +122,28 @@ void SoundEvent::set3DAttributes(const CTransform& worldTrans) {
         attr.velocity = VEC3_TO_FMOD(VEC3::Zero);
         event->set3DAttributes(&attr);
     }
+}
+
+CTransform SoundEvent::get3DAttributes()
+{
+    CTransform t;
+    auto event = EngineSound.getEventInstance(myID);
+    if (event) {
+        FMOD_3D_ATTRIBUTES attr;
+        event->get3DAttributes(&attr);
+        VEC3 pos = FMOD_TO_VEC3(attr.position);
+        t.setPosition(pos);
+        /* TODO: do the same with rotation and scale */
+    }
+    return t;
+}
+
+bool SoundEvent::isRelativeToCameraOnly() const
+{
+    return relativeToCameraOnly;
+}
+
+void SoundEvent::setIsRelativeToCameraOnly(bool relativeToCamera)
+{
+    relativeToCameraOnly = relativeToCamera;
 }
