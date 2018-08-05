@@ -89,17 +89,17 @@ void VS_GBuffer_SWHologram(
 	, out float2 oTex1 : TEXCOORD1
 	, out float3 oWorldPos : TEXCOORD2
 	, out float3 oModelPos : TEXCOORD3
+	, out float max_height : TEXCOORD4
 )
 {
-
-	float int_height = 1;
-	float int_width = 0.5;
-	float4 flicker = txNoiseMap.SampleLevel(samLinear, float2(iTex0.x, iTex0.y + global_world_time * 4), 0);
-	
 	// Displacement control
-	iPos.y *= int_height;
+	float prev_height = iPos.y;
+	max_height = abs(sin(global_world_time));
+	float int_width = 0.5;//abs(sin(global_world_time)) * 0.5;
+
+	iPos.y *= max_height;
 	float3 disp_center = float3(0, iPos.y, 0);
-	float3 disp_dir = disp_center + (iPos - disp_center) * (1 + int_width * iPos.y);
+	float3 disp_dir = disp_center + (iPos - disp_center) * (1 * int_width + int_width * prev_height);
 	iPos = float4(disp_dir,1);
 	
 	// Regular transforms
@@ -125,6 +125,7 @@ float4 PS_GBuffer_SWHologram(
   , float2 iTex1 : TEXCOORD1
   , float3 iWorldPos : TEXCOORD2
 	, float3 iModelPos : TEXCOORD3
+	, float  iMaxHeight : TEXCOORD4
 ): SV_Target0
 {
 	// Retrieve main colors.
@@ -132,15 +133,28 @@ float4 PS_GBuffer_SWHologram(
 	
 	// Compute the scanline
 	float vertex_sift = (dot(iWorldPos, normalize(float4(float3(0,-1,0), 1.0))) + 1) * .5;
-	float scan = frac(vertex_sift * 30 + global_world_time * 50) * 0.96;
-		
+	float scan = frac(vertex_sift * 35 + global_world_time * 70) * 0.96;
+	
+	float3 mid_point = float3(iModelPos.x, iWorldPos.y, iModelPos.z);
+	float3 cam_point = float3(camera_pos.x, iWorldPos.y, camera_pos.z);
+	float3 mid_dir = normalize(mid_point - cam_point);
+	float3 side_dir = normalize(iWorldPos - cam_point);
+	
+	float d_part = dot(mid_dir, side_dir);
+	//d_part = pow(d_part, -4.7);
+	
 	// Compute the glow factor
 	float glow = frac(-vertex_sift * 1 - global_world_time * 0.7);
 	
-	float att = 1 - distance(iModelPos, iWorldPos.xyz) / 2.5;
-	//float radius = clamp((theta - light_outer_cut) / (light_inner_cut - light_outer_cut), 0, 1);
+	float3 dir = normalize(iWorldPos.xyz - iModelPos);
+	float theta = dot(dir, float3(0,1,0));
 	
+	float att = 1 - distance(iModelPos, iWorldPos.xyz) / (2*iMaxHeight + 0.3);
+	float att2 = 1/distance(float3(iModelPos.x, iWorldPos.y, iModelPos.z), iWorldPos.xyz) * .75;
+	float radius = clamp((theta - 0.45) / (0.15 - 0.45), 0, 1);
+	float clamp_spot = d_part > 0.92 ? 1.0: d_part; // spot factor 
+		
 	float4 flicker = txNoiseMap.Sample(samLinear, float2(iTex0.x, iTex0.y + global_world_time * 4));
 	
-	return scan * float4(0,0.15,1,1) * att;
+	return scan * float4(0,0.15,1,1) * att * att2; 
 }

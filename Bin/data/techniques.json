@@ -570,7 +570,7 @@
 		"ps_entry_point": "PS_GBuffer_SWHologram",
 		"vertex_type": "PosNUvUvT",
 		"category": "hologram_sw",
-		"blend": "combinative",
+		"blend": "additive_by_src_alpha",
 		"z": "test_but_no_write",
 		"textures": {
 			"noise": "data/textures/tx_random_scan.dds"

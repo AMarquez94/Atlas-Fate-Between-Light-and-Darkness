@@ -158,5 +158,5 @@ float4 PS_IVLight(
     float att_spot = clamp((theta - iLightValues.z) / 0.18, 0, 1);
     float clamp_spot = theta > iLightValues.x ? att_spot : 0.0; // spot factor 
 		
-    return float4(1,1,1, clamp_spot * val  * noise0.x) * shadow_factor;// * projectColor(iWorldPos);
+    return float4(light_color.xyz, clamp_spot * val  * noise0.x) * shadow_factor;// * projectColor(iWorldPos);
 }
