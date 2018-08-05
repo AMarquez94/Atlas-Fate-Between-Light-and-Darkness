@@ -44,6 +44,11 @@ struct TMsgEntitiesGroupCreated {
 	DECL_MSG_ID();
 };
 
+struct TMsgHierarchyGroupCreated {
+  const TEntityParseContext& ctx;
+  DECL_MSG_ID();
+};
+
 struct TMsgPlayerDead {
 	CHandle h_sender;
 	DECL_MSG_ID();
@@ -87,6 +92,18 @@ struct TMsgPlayerIlluminated {
 	DECL_MSG_ID();
 };
 
+struct TMsgSonarActive {
+    float value;
+
+    DECL_MSG_ID();
+};
+
+struct TMsgFadeBody {
+    bool is_exit;
+
+    DECL_MSG_ID();
+};
+
 struct TMsgTriggerEnter {
 	CHandle h_other_entity;
 	DECL_MSG_ID();
@@ -114,6 +131,7 @@ struct TMsgSetCameraCancelled {
 };
 
 struct TMsgCameraActivated {
+    CHandle previousCamera;
 	DECL_MSG_ID();
 };
 
@@ -126,7 +144,14 @@ struct TMsgCameraFullyActivated {
 };
 
 struct TMsgCameraReset {
+  bool both_angles;
+  bool only_y;
   DECL_MSG_ID();
+};
+
+struct TMsgAnimationCallback {
+	std::string function_to_call;
+	DECL_MSG_ID();
 };
 
 struct TMsgTimeOut {
@@ -229,6 +254,14 @@ struct TMsgPlayerInShadows {
 
 struct TMsgLanternsDisable {
     bool disable;
+    DECL_MSG_ID();
+};
+
+struct TMsgButtonActivated {
+    DECL_MSG_ID();
+};
+
+struct TMsgPlayerAIEnabled {
     DECL_MSG_ID();
 };
 

@@ -1,0 +1,11 @@
+{
+	"technique": "pbr_hologram.tech"
+  ,
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_chimenea_holograma_alb.dds"
+  },
+	"color": "0.0 1.0 1.0 1.0"
+}

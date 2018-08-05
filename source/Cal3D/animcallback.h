@@ -13,15 +13,15 @@
 
 
 #include "cal3d/global.h"
-
+#include "cal3d/model.h"
 
 class CalAnimation;
 
 struct CalAnimationCallback
 {
     virtual ~CalAnimationCallback() {}
-    virtual void AnimationUpdate(float anim_time,CalModel *model, void * userData) = 0;
-    virtual void AnimationComplete(CalModel *model, void * userData) = 0;
+    virtual void AnimationUpdate(float anim_time,CalModel *model) = 0;
+    virtual void AnimationComplete(CalModel *model) = 0;
 };
 
 

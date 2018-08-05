@@ -77,20 +77,20 @@ void TCompRender::debugInMenu() {
 
 void TCompRender::renderDebug() {
 
-    //activateRSConfig(RSCFG_WIREFRAME);
-    //TCompTransform * transform = get<TCompTransform>();
-    //assert(transform);
-    //
-    ////If we have an skeleton, make sure the required bones are actived and updated
-    //TCompSkeleton* skel = get<TCompSkeleton>();
-    //if (skel) {
-    //	skel->updateCtesBones();
-    //	skel->cb_bones.activate();
-    //}
+    activateRSConfig(RSCFG_WIREFRAME);
+    TCompTransform * transform = get<TCompTransform>();
+    assert(transform);
+    
+    //If we have an skeleton, make sure the required bones are actived and updated
+    TCompSkeleton* skel = get<TCompSkeleton>();
+    if (skel) {
+    	skel->updateCtesBones();
+    	skel->cb_bones.activate();
+    }
 
-    //for (auto& mwm : meshes)
-    //	renderMesh(mwm.mesh, transform->asMatrix(), color);
-    //activateRSConfig(RSCFG_DEFAULT);
+    for (auto& mwm : meshes)
+    	renderMesh(mwm.mesh, transform->asMatrix(), color);
+    activateRSConfig(RSCFG_DEFAULT);
 }
 
 void TCompRender::loadMesh(const json& j, TEntityParseContext& ctx) {
@@ -181,4 +181,24 @@ void TCompRender::refreshMeshesInRenderManager(bool delete_me_from_keys) {
             ++idx;
         }
     }
+}
+
+// Only allow us to change one material per mesh, multimaterial won't work.
+// In case of multimaterial needed, load from file.
+void TCompRender::setMaterial(const std::string &name) {
+
+    CMaterial * material = (CMaterial*)Resources.get(name)->as<CMaterial>();
+
+    // The house and the trees..
+    for (auto& mwm : meshes) {
+
+        // Do not register disabled meshes
+        if (!mwm.enabled || !global_enabled)
+            continue;
+
+        mwm.materials.clear();
+        mwm.materials.push_back(material);
+    }
+
+    refreshMeshesInRenderManager(true);
 }

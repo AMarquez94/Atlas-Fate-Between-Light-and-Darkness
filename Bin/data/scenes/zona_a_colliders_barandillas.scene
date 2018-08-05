@@ -1,0 +1,4237 @@
+[
+  {
+    "entity":
+    {
+      "name": "zona_a_colliders_barandillas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_"
+      ,
+      "transform":
+      {
+        "pos": "-38.0 12.0 -86.575"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_010"
+      ,
+      "transform":
+      {
+        "pos": "-40.875 12.0 -78.6081"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "8.0919 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_011"
+      ,
+      "transform":
+      {
+        "pos": "-44.0 12.0 -72.7318"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_012"
+      ,
+      "transform":
+      {
+        "pos": "-44.0 12.0 -67.0318"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_013"
+      ,
+      "transform":
+      {
+        "pos": "-41.15 12.0 -69.8818"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_014"
+      ,
+      "transform":
+      {
+        "pos": "-46.85 12.0 -71.8818"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_015"
+      ,
+      "transform":
+      {
+        "pos": "-46.85 12.0 -67.8818"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_016"
+      ,
+      "transform":
+      {
+        "pos": "-49.0 11.668 -71.9514"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_017"
+      ,
+      "transform":
+      {
+        "pos": "-49.0 11.668 -66.6078"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_018"
+      ,
+      "transform":
+      {
+        "pos": "-55.0 12.0 -72.725"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_019"
+      ,
+      "transform":
+      {
+        "pos": "-55.0 12.0 -66.875"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_020"
+      ,
+      "transform":
+      {
+        "pos": "-58.9263 12.0 -69.7988"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_021"
+      ,
+      "transform":
+      {
+        "pos": "-51.075 12.0 -71.7988"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_022"
+      ,
+      "transform":
+      {
+        "pos": "-60.0 12.0 -68.8468"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_023"
+      ,
+      "transform":
+      {
+        "pos": "-64.85 12.0 -72.6968"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_024"
+      ,
+      "transform":
+      {
+        "pos": "-63.9818 12.0 -68.8468"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_025"
+      ,
+      "transform":
+      {
+        "pos": "-65.075 12.0 -79.5181"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_026"
+      ,
+      "transform":
+      {
+        "pos": "-70.925 12.0 -81.5181"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_027"
+      ,
+      "transform":
+      {
+        "pos": "-72.0013 12.0 -79.4427"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_028"
+      ,
+      "transform":
+      {
+        "pos": "-70.059 12.0 -73.5764"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_029"
+      ,
+      "transform":
+      {
+        "pos": "-74.9264 12.0 -78.5177"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_030"
+      ,
+      "transform":
+      {
+        "pos": "-83.0764 11.9085 -78.8716"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_031"
+      ,
+      "transform":
+      {
+        "pos": "-85.8609 11.9085 -86.5939"
+        ,
+        "rotation": "0.0 -0.92388 0.0 -0.382684"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_032"
+      ,
+      "transform":
+      {
+        "pos": "-89.8914 11.9085 -88.0081"
+        ,
+        "rotation": "0.0 -0.92388 0.0 0.382683"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_033"
+      ,
+      "transform":
+      {
+        "pos": "-101.494 12.0 -93.4856"
+        ,
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_034"
+      ,
+      "transform":
+      {
+        "pos": "-102.927 11.945 -97.9889"
+        ,
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.16 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_035"
+      ,
+      "transform":
+      {
+        "pos": "-101.473 11.945 -102.241"
+        ,
+        "rotation": "0.0 0.382683 0.0 -0.92388"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.10358 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_036"
+      ,
+      "transform":
+      {
+        "pos": "-107.99 12.0 -108.676"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_037"
+      ,
+      "transform":
+      {
+        "pos": "-110.8 12.0 -110.673"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_038"
+      ,
+      "transform":
+      {
+        "pos": "-112.725 12.0 -111.598"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_039"
+      ,
+      "transform":
+      {
+        "pos": "-111.875 12.0 -114.671"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_040"
+      ,
+      "transform":
+      {
+        "pos": "-116.725 12.0 -117.521"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_041"
+      ,
+      "transform":
+      {
+        "pos": "-121.85 12.0 -118.671"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_042"
+      ,
+      "transform":
+      {
+        "pos": "-126.725 12.0 -121.546"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.0 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_043"
+      ,
+      "transform":
+      {
+        "pos": "-125.792 11.9 -123.671"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_044"
+      ,
+      "transform":
+      {
+        "pos": "-125.792 11.9 -129.572"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_045"
+      ,
+      "transform":
+      {
+        "pos": "-128.501 11.9 -131.745"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_046"
+      ,
+      "transform":
+      {
+        "pos": "-124.576 11.9 -135.671"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_047"
+      ,
+      "transform":
+      {
+        "pos": "-127.313 11.9 -139.746"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_048"
+      ,
+      "transform":
+      {
+        "pos": "-125.312 11.9 -145.598"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_049"
+      ,
+      "transform":
+      {
+        "pos": "-125.0 11.9 -145.791"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_050"
+      ,
+      "transform":
+      {
+        "pos": "-121.125 11.9 -150.666"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.0 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_051"
+      ,
+      "transform":
+      {
+        "pos": "-118.895 11.9 -155.241"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.08121 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_052"
+      ,
+      "transform":
+      {
+        "pos": "-109.224 11.9 -155.241"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.22444 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_053"
+      ,
+      "transform":
+      {
+        "pos": "-101.16 11.9 -159.185"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_054"
+      ,
+      "transform":
+      {
+        "pos": "-96.9905 11.9 -157.255"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_055"
+      ,
+      "transform":
+      {
+        "pos": "-93.0655 11.9 -160.18"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_056"
+      ,
+      "transform":
+      {
+        "pos": "-82.8891 11.9 -160.066"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.07492 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_057"
+      ,
+      "transform":
+      {
+        "pos": "-79.0141 11.9 -157.116"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_058"
+      ,
+      "transform":
+      {
+        "pos": "-74.8891 11.9 -157.991"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.0 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_059"
+      ,
+      "transform":
+      {
+        "pos": "-62.0055 11.9 -160.865"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_060"
+      ,
+      "transform":
+      {
+        "pos": "-58.1738 11.9 -160.865"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_061"
+      ,
+      "transform":
+      {
+        "pos": "-54.875 11.9 -160.984"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_062"
+      ,
+      "transform":
+      {
+        "pos": "-51.0 11.9 -157.109"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_063"
+      ,
+      "transform":
+      {
+        "pos": "-47.125 11.9 -152.984"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_064"
+      ,
+      "transform":
+      {
+        "pos": "-46.925 11.9 -149.235"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_065"
+      ,
+      "transform":
+      {
+        "pos": "-45.0 11.9 -146.31"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_066"
+      ,
+      "transform":
+      {
+        "pos": "-42.85 11.9 -146.235"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_067"
+      ,
+      "transform":
+      {
+        "pos": "-39.0 11.9 -142.385"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_068"
+      ,
+      "transform":
+      {
+        "pos": "-54.9432 5.99998 -82.6987"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_069"
+      ,
+      "transform":
+      {
+        "pos": "-54.0182 5.99998 -86.625"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_070"
+      ,
+      "transform":
+      {
+        "pos": "-59.125 6.0 -84.45"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.25 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_071"
+      ,
+      "transform":
+      {
+        "pos": "-62.2 6.0 -86.575"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.2 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_072"
+      ,
+      "transform":
+      {
+        "pos": "-73.75 6.0 -86.575"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.25 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_073"
+      ,
+      "transform":
+      {
+        "pos": "-74.875 6.0 -84.5"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.2 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_074"
+      ,
+      "transform":
+      {
+        "pos": "-93.5849 5.98924 -94.424"
+        ,
+        "rotation": "0.0 0.382683 0.0 -0.92388"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.3 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_075"
+      ,
+      "transform":
+      {
+        "pos": "-119.724 5.99999 -121.596"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_076"
+      ,
+      "transform":
+      {
+        "pos": "-46.925 11.9 -128.999"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_077"
+      ,
+      "transform":
+      {
+        "pos": "-41.0722 11.9 -128.999"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_078"
+      ,
+      "transform":
+      {
+        "pos": "-44.0102 11.9 -130.931"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_079"
+      ,
+      "transform":
+      {
+        "pos": "-38.0 11.7342 -130.885"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_080"
+      ,
+      "transform":
+      {
+        "pos": "-35.1059 11.7342 -129.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_081"
+      ,
+      "transform":
+      {
+        "pos": "-36.0 11.9 -123.04"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_082"
+      ,
+      "transform":
+      {
+        "pos": "-38.85 11.9 -121.906"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.02999 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_083"
+      ,
+      "transform":
+      {
+        "pos": "-37.0 11.9 -115.115"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_084"
+      ,
+      "transform":
+      {
+        "pos": "-38.925 11.9 -111.19"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_085"
+      ,
+      "transform":
+      {
+        "pos": "-39.0 12.0 -107.115"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_086"
+      ,
+      "transform":
+      {
+        "pos": "-39.0 12.0 -99.2653"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_087"
+      ,
+      "transform":
+      {
+        "pos": "-42.925 12.0 -103.19"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_088"
+      ,
+      "transform":
+      {
+        "pos": "-51.3609 12.0 -95.15"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.16097 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_089"
+      ,
+      "transform":
+      {
+        "pos": "-50.35 12.0 -96.161"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.16097 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_090"
+      ,
+      "transform":
+      {
+        "pos": "-60.05 12.0 -96.161"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.16097 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_091"
+      ,
+      "transform":
+      {
+        "pos": "-59.039 12.0 -95.15"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.16097 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_092"
+      ,
+      "transform":
+      {
+        "pos": "-50.35 12.0 -102.7"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.3 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_093"
+      ,
+      "transform":
+      {
+        "pos": "-52.2 12.0 -104.85"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.7 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_095"
+      ,
+      "transform":
+      {
+        "pos": "-60.05 12.0 -102.7"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.3 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_096"
+      ,
+      "transform":
+      {
+        "pos": "-58.2 12.0 -104.85"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.7 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_097"
+      ,
+      "transform":
+      {
+        "pos": "-64.325 12.0 -99.775"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.225 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_098"
+      ,
+      "transform":
+      {
+        "pos": "-66.41 12.0 -100.875"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.21 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_099"
+      ,
+      "transform":
+      {
+        "pos": "-70.075 12.0 -94.215"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.225 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_100"
+      ,
+      "transform":
+      {
+        "pos": "-67.99 12.0 -93.115"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.21 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_101"
+      ,
+      "transform":
+      {
+        "pos": "-72.41 11.9 -97.125"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.21 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_102"
+      ,
+      "transform":
+      {
+        "pos": "-70.35 11.9 -101.839"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.16097 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_103"
+      ,
+      "transform":
+      {
+        "pos": "-73.21 11.9 -102.85"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.01 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_104"
+      ,
+      "transform":
+      {
+        "pos": "-81.046 11.9 -97.1393"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.16097 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_105"
+      ,
+      "transform":
+      {
+        "pos": "-83.5081 11.8207 -98.5203"
+        ,
+        "rotation": "0.0 0.382683 0.0 -0.92388"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.005 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_106"
+      ,
+      "transform":
+      {
+        "pos": "-89.9126 11.8207 -104.925"
+        ,
+        "rotation": "0.0 0.382683 0.0 -0.92388"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.93 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_107"
+      ,
+      "transform":
+      {
+        "pos": "-92.05 11.9 -107.991"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.01451 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_108"
+      ,
+      "transform":
+      {
+        "pos": "-80.125 11.8357 -108.03"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_109"
+      ,
+      "transform":
+      {
+        "pos": "-88.2752 11.9 -110.584"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.17186 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_110"
+      ,
+      "transform":
+      {
+        "pos": "-86.7177 11.8565 -107.068"
+        ,
+        "rotation": "0.0 0.382684 0.0 -0.923879"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.17186 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_111"
+      ,
+      "transform":
+      {
+        "pos": "-81.1641 11.8357 -113.103"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.22227 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_112"
+      ,
+      "transform":
+      {
+        "pos": "-76.3251 11.9 -113.453"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.5 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_113"
+      ,
+      "transform":
+      {
+        "pos": "-92.1251 5.99999 -119.985"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.015 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_114"
+      ,
+      "transform":
+      {
+        "pos": "-89.185 5.99999 -122.925"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.015 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_115"
+      ,
+      "transform":
+      {
+        "pos": "-86.05 6.0 -124.341"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.65855 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_116"
+      ,
+      "transform":
+      {
+        "pos": "-82.69 5.99999 -126.85"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.51 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_117"
+      ,
+      "transform":
+      {
+        "pos": "-85.5947 6.0 -126.393"
+        ,
+        "rotation": "0.0 -0.382683 0.0 -0.92388"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.706021 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_118"
+      ,
+      "transform":
+      {
+        "pos": "-59.745 11.9 -124.875"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "6.745 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_119"
+      ,
+      "transform":
+      {
+        "pos": "-66.365 11.9 -123.72"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.28 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_120"
+      ,
+      "transform":
+      {
+        "pos": "-66.365 11.9 -118.28"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.28 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_121"
+      ,
+      "transform":
+      {
+        "pos": "-63.0852 11.9 -117.125"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.4048 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_122"
+      ,
+      "transform":
+      {
+        "pos": "-53.125 11.9 -121.859"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.14113 0.65 0.125"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_123"
+      ,
+      "transform":
+      {
+        "pos": "-88.0 5.9 -147.075"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_124"
+      ,
+      "transform":
+      {
+        "pos": "-90.925 5.9 -150.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_125"
+      ,
+      "transform":
+      {
+        "pos": "-85.075 5.9 -150.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_126"
+      ,
+      "transform":
+      {
+        "pos": "-88.85 5.9 -152.925"
+        ,
+        "rotation": "0.0 -3.01992e-07 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_127"
+      ,
+      "transform":
+      {
+        "pos": "-80.0001 11.9 -148.15"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_128"
+      ,
+      "transform":
+      {
+        "pos": "-80.0001 11.9 -153.85"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_129"
+      ,
+      "transform":
+      {
+        "pos": "-84.8501 11.9 -151.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_130"
+      ,
+      "transform":
+      {
+        "pos": "-61.0 11.9 -148.15"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.62 0.15"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_131"
+      ,
+      "transform":
+      {
+        "pos": "-74.925 11.9 -147.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_132"
+      ,
+      "transform":
+      {
+        "pos": "-65.075 11.9 -147.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_133"
+      ,
+      "transform":
+      {
+        "pos": "-70.0 11.9 -150.925"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_134"
+      ,
+      "transform":
+      {
+        "pos": "-66.0 11.9 -143.075"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_135"
+      ,
+      "transform":
+      {
+        "pos": "-74.0 11.9 -143.075"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_136"
+      ,
+      "transform":
+      {
+        "pos": "-73.075 11.9 -145.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_barandilla_attach_137"
+      ,
+      "transform":
+      {
+        "pos": "-66.925 11.9 -145.0"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.0 0.66 0.075"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+]

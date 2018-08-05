@@ -1,0 +1,703 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_barandillas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_0"
+      ,
+      "transform":
+      {
+        "pos": "-18.3485 11.8294 41.25"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_0.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_1"
+      ,
+      "transform":
+      {
+        "pos": "-14.1876 12.0 45.8499"
+        ,
+        "rotation": "0.0 -1.0 0.0 5.37197e-05"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_1.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_2"
+      ,
+      "transform":
+      {
+        "pos": "3.78666 11.8789 45.875"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_3"
+      ,
+      "transform":
+      {
+        "pos": "15.8965 12.0 37.85"
+        ,
+        "rotation": "0.0 -1.0 0.0 5.24084e-05"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_3.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_4"
+      ,
+      "transform":
+      {
+        "pos": "22.9459 12.0 28.9926"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_4.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_5"
+      ,
+      "transform":
+      {
+        "pos": "-15.2235 6.0 30.125"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_5.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_6"
+      ,
+      "transform":
+      {
+        "pos": "-21.1204 12.0 25.0"
+        ,
+        "rotation": "0.0 -0.707147 0.0 -0.707067"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_6.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_7"
+      ,
+      "transform":
+      {
+        "pos": "20.2531 12.0 0.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_7.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_8"
+      ,
+      "transform":
+      {
+        "pos": "9.92661 12.0 6.0"
+        ,
+        "rotation": "0.0 0.707076 0.0 -0.707137"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_8.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_9"
+      ,
+      "transform":
+      {
+        "pos": "9.90153 12.0 -14.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_9.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_10"
+      ,
+      "transform":
+      {
+        "pos": "4.77656 12.0 -26.5249"
+        ,
+        "rotation": "0.0 -4.04437e-05 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_10.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_11"
+      ,
+      "transform":
+      {
+        "pos": "9.58248 12.0 -34.9781"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_11.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_12"
+      ,
+      "transform":
+      {
+        "pos": "-20.3485 12.0 5.8"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_12.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_13"
+      ,
+      "transform":
+      {
+        "pos": "-28.8499 12.0 -3.99998"
+        ,
+        "rotation": "0.0 -0.707147 0.0 -0.707067"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_13.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_14"
+      ,
+      "transform":
+      {
+        "pos": "-21.3179 12.0 -13.9964"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_14.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_15"
+      ,
+      "transform":
+      {
+        "pos": "-21.4583 12.0 -21.1653"
+        ,
+        "rotation": "0.0 -5.63264e-05 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_15.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_16"
+      ,
+      "transform":
+      {
+        "pos": "-31.2319 12.0 -25.0746"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_16.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_17"
+      ,
+      "transform":
+      {
+        "pos": "-30.3503 12.0 -41.1358"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_17.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_18"
+      ,
+      "transform":
+      {
+        "pos": "17.6266 12.0 -18.0"
+        ,
+        "rotation": "0.0 0.707078 0.0 -0.707135"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_18.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_019"
+      ,
+      "transform":
+      {
+        "pos": "-7.2235 12.0 -53.15"
+        ,
+        "rotation": "0.0 -1.0 0.0 5.24084e-05"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_019.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_020"
+      ,
+      "transform":
+      {
+        "pos": "-0.17405 12.0 -62.0074"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_020.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_021"
+      ,
+      "transform":
+      {
+        "pos": "-25.2235 6.0 -56.875"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_021.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_barandilla_attach_intro_022"
+      ,
+      "transform":
+      {
+        "pos": "-31.1204 12.0 -61.9999"
+        ,
+        "rotation": "0.0 -0.707147 0.0 -0.707067"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_barandilla_attach_intro_022.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

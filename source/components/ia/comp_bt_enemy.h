@@ -40,7 +40,9 @@ protected:
     int navmeshPathPoint = 0;
     bool recalculateNavmesh = false;
     float maxDistanceToNavmeshPoint = 3.f;
-    bool canArriveToDestination = false;
+    bool canArriveToDestination = true;
+    float maxNavmeshDistance = 60.f;    //TODO: Probar distintos atributos
+    bool isDestinationCloseEnough = true;
 
     /* Timers */
     float timerWaitingInWpt = 0.f;
@@ -56,6 +58,7 @@ protected:
     bool isEntityHidden(CHandle hEntity);
     void generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc = false);
     bool moveToPoint(float speed, float rotationSpeed, VEC3 destPoint, float dt);
+    bool isCurrentDestinationReachable();
 
 
     /* TODO: Delete */

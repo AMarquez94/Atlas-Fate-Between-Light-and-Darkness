@@ -118,9 +118,13 @@ void CModulePhysics::update(float delta)
     }
 }
 
-void CModulePhysics::render()
+void CModulePhysics::renderMain()
 {
-
+    CTraceScoped gpu_scope("renderColliderLayer");
+    PROFILE_FUNCTION("renderColliderLayer");
+    getObjectManager<TCompCollider>()->forEach([](TCompCollider* c) {
+        c->renderDebug();
+    });
 }
 
 void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pairs, PxU32 count)
@@ -249,6 +253,7 @@ bool CModulePhysics::Overlap(physx::PxGeometry& geometry, VEC3 pos, std::vector<
     PxOverlapBuffer px_hit(overlapHit, 256);
 
     physx::PxTransform transform(PxVec3(pos.x, pos.y, pos.z));
+
     bool status = gScene->overlap(geometry, transform, px_hit, filterdata);
 
     if (status) {

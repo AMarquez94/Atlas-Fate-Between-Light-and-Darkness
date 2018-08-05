@@ -1,0 +1,161 @@
+[
+  {
+    "entity":
+    {
+      "name": "coliseo_maquina"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_maquina_tubo"
+      ,
+      "transform":
+      {
+        "pos": "7.25771 0.166488 -4.82936"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_maquina_tubo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_maquina_tubos.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_maquina_tubo.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubocurvo"
+      ,
+      "transform":
+      {
+        "pos": "6.62681 2.15279 -5.68185"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubocurvo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_mesh_tubocurvo002.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubocurvo"
+      ,
+      "transform":
+      {
+        "pos": "7.87159 2.15279 -5.68185"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubocurvo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_mesh_tubocurvo001.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubohorizontal"
+      ,
+      "transform":
+      {
+        "pos": "7.25771 1.43266 -3.0373"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubohorizontal.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_tubo_horizontal.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

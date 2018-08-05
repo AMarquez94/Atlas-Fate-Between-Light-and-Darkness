@@ -1,0 +1,146 @@
+[
+  {
+    "entity":
+    {
+      "name": "zone_a_maquinas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_generador"
+      ,
+      "transform":
+      {
+        "pos": "-106.22 0.0 -137.987"
+        ,
+        "rotation": "0.0 -0.573576 0.0 -0.819152"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_generador.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_generador.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_generador.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_maquina005"
+      ,
+      "prefab": "data/prefabs/maquina1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-105.968 0.0 -134.332"
+        ,
+        "rotation": "0.0 2.6226e-06 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_maquina007"
+      ,
+      "prefab": "data/prefabs/maquina2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-104.495 0.0 -145.674"
+        ,
+        "rotation": "0.0 0.737278 0.0 -0.675589"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_maquina006"
+      ,
+      "prefab": "data/prefabs/maquina2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-104.408 0.0 -146.636"
+        ,
+        "rotation": "0.0 0.737279 0.0 -0.675589"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_maquina003"
+      ,
+      "prefab": "data/prefabs/maquina1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-105.252 0.0 -147.585"
+        ,
+        "rotation": "0.0 -0.999048 0.0 -0.0436224"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_maquina004"
+      ,
+      "prefab": "data/prefabs/maquina1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-109.662 0.0 -139.578"
+        ,
+        "rotation": "0.0 0.843393 0.0 -0.537297"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_maquina002"
+      ,
+      "prefab": "data/prefabs/maquina1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-114.291 0.0 -132.412"
+        ,
+        "rotation": "0.0 0.461751 0.0 -0.88701"
+      }
+    }
+  }
+]

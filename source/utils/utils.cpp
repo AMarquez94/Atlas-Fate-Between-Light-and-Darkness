@@ -130,4 +130,33 @@ int Strnicmp(const char * str1, const char * str2, int n)
 	return d;
 }
 
+const char *convert(const std::string & s)
+{
+    return s.c_str();
+}
 
+std::string stringify(VEC2 pos) {
+
+    return std::to_string(E_ROUND(pos.x)) + " " +
+    std::to_string(E_ROUND(pos.y));
+}
+
+
+std::string stringify(VEC3 pos) {
+
+    return std::to_string(E_ROUND(pos.x)) + " " +
+    std::to_string(E_ROUND(pos.y)) + " " +
+    std::to_string(E_ROUND(pos.z));
+}
+
+std::string stringify(VEC4 pos) {
+
+    return std::to_string(E_ROUND(pos.x)) + " " +
+    std::to_string(E_ROUND(pos.y)) + " " +
+    std::to_string(E_ROUND(pos.z)) + " " + 
+    std::to_string(E_ROUND(pos.w));
+}
+
+float mapInRange(float result_from, float result_to, float current_from, float current_to, float value) {
+    return (result_to - result_from) * ((value - current_from) / (current_to - current_from)) + result_from;
+}

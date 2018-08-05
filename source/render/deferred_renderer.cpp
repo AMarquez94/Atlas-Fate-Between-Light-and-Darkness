@@ -13,6 +13,7 @@
 #include "ctes.h"
 
 void CDeferredRenderer::renderGBuffer() {
+
 	CTraceScoped gpu_scope("Deferred.GBuffer");
 
 	// Disable the gbuffer textures as we are going to update them
@@ -88,17 +89,20 @@ bool CDeferredRenderer::create(int xres, int yres) {
 
 // -----------------------------------------------------------------
 void CDeferredRenderer::renderAmbientPass() {
+
 	CTraceScoped gpu_scope("renderAmbientPass");
 	renderFullScreenQuad("pbr_ambient.tech", nullptr);
 }
 
 void CDeferredRenderer::renderSkyBox() const {
+
 	CTraceScoped gpu_scope("renderSkyBox");
 	renderFullScreenQuad("pbr_skybox.tech", nullptr);
 }
 
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderAccLight() {
+
 	CTraceScoped gpu_scope("Deferred.AccLight");
 	rt_acc_light->activateRT();
 	rt_acc_light->clear(VEC4(0, 0, 0, 0));
@@ -108,11 +112,14 @@ void CDeferredRenderer::renderAccLight() {
     renderProjectors();
 	renderDirectionalLights();
 	renderSkyBox();
+
+    CRenderManager::get().renderCategory("hologram");
 }
 
 
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderPointLights() {
+
 	CTraceScoped gpu_scope("renderPointLights");
 
 	// Activate tech for the light dir 
@@ -126,21 +133,19 @@ void CDeferredRenderer::renderPointLights() {
 	// Para todas las luces... pintala
 	getObjectManager<TCompLightPoint>()->forEach([mesh](TCompLightPoint* c) {
 
-		// subir las contantes de la posicion/dir
-		// activar el shadow map...
-		c->activate();
-
-		setWorldTransform(c->getWorld());
-
-		// mandar a pintar una geometria que refleje los pixeles que potencialmente
-		// puede iluminar esta luz.... El Frustum solido
-		mesh->render();
+        c->cullFrame();
+        if (c->isEnabled && !c->isCulled()) {
+            c->activate();
+            setWorldTransform(c->getWorld());
+            mesh->render();
+        }
 	});
 }
 
 
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderDirectionalLights() {
+
 	CTraceScoped gpu_scope("renderDirectionalLights");
 
 	// Activate tech for the light dir 
@@ -168,6 +173,7 @@ void CDeferredRenderer::renderDirectionalLights() {
 
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderSpotLights() {
+
 	CTraceScoped gpu_scope("renderSpotLights");
 
 	// Activate tech for the light dir 
@@ -181,16 +187,30 @@ void CDeferredRenderer::renderSpotLights() {
 	// Para todas las luces... pintala
 	getObjectManager<TCompLightSpot>()->forEach([mesh](TCompLightSpot* c) {
 
-		// subir las contantes de la posicion/dir
-		// activar el shadow map...
-		c->activate();
-
-		setWorldTransform(c->getWorld());
-
-		// mandar a pintar una geometria que refleje los pixeles que potencialmente
-		// puede iluminar esta luz.... El Frustum solido
-		mesh->render();
+        if (c->isEnabled && !c->isCulled()) {
+            c->activate();
+            setWorldTransform(c->getWorld());
+            mesh->render();
+        }
 	});
+}
+
+// Optimize this in the next milestone, use CS
+// -------------------------------------------------------------------------
+void CDeferredRenderer::renderVolumes() {
+
+    //EngineInstancing.clearInstance("data/meshes/quad_volume.instanced_mesh");
+    CTraceScoped gpu_scope("renderVolumes");
+
+    auto rmesh = Resources.get("data/meshes/quad_volume.instanced_mesh")->as<CRenderMesh>();
+    TCompLightSpot::volume_instance = (CRenderMeshInstanced*)rmesh;
+    TCompLightSpot::volume_instance->vtx_decl = CVertexDeclManager::get().getByName("InstanceLight");
+
+    getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
+
+        c->activate();
+        c->generateVolume();
+    });
 }
 
 // --------------------------------------
@@ -237,6 +257,7 @@ void CDeferredRenderer::renderProjectors() {
 
 // --------------------------------------------------------------
 void CDeferredRenderer::renderGBufferDecals() {
+
     CTraceScoped gpu_scope("Deferred.GBuffer.Decals");
 
     // Disable the gbuffer textures as we are going to update them
@@ -254,9 +275,9 @@ void CDeferredRenderer::renderGBufferDecals() {
 
     // We use our 3 rt's and the Zbuffer of the backbuffer
     Render.ctx->OMSetRenderTargets(nrender_targets, rts, Render.depthStencilView);
-    rt_albedos->activateViewport();   // Any rt will do...
+    rt_albedos->activateViewport(); // Any rt will do...
 
-                                      // Render blending layer on top of gbuffer before adding lights
+    // Render blending layer on top of gbuffer before adding lights
     CRenderManager::get().renderCategory("gbuffer_decals");
 
     // Disable rendering to all render targets.
@@ -280,6 +301,7 @@ void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camer
 	// Do the same with the acc light
 	CTexture::setNullTexture(TS_DEFERRED_ACC_LIGHTS);
 	renderAccLight();
+    renderVolumes();
 
 	// Now dump contents to the destination buffer.
 	rt_destination->activateRT();

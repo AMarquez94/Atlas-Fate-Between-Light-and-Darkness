@@ -11,5 +11,7 @@
     "normal": "data/textures/tx_muro_top_nml.dds"
     ,
     "height": "data/textures/tx_muro_top_hgt.dds"
+		,
+    "aocclusion": "data/textures/tx_muro_top_ao.dds"
   }
 }

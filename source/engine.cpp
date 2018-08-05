@@ -19,6 +19,7 @@ CEngine::CEngine()
 	: _module_render("render")
 	, _module_entities("entities")
 	, _module_ia("ia")
+	, _module_animations("animations")
 	, _module_input("input")
 	, _module_physics("physics")
 	, _module_cameras("cameras")
@@ -31,6 +32,7 @@ CEngine::CEngine()
 	, _module_scene_manager("scene_manager")
 	, _module_instancing("instancing")
 	, _module_debug("debug")
+    , _module_particles("particles")
 {}
 
 bool CEngine::start() {
@@ -46,6 +48,7 @@ bool CEngine::start() {
 	_modules.registerSystemModule(&_module_render);
 	_modules.registerSystemModule(&_module_entities);
 	_modules.registerSystemModule(&_module_ia);
+	_modules.registerSystemModule(&_module_animations);
 	_modules.registerSystemModule(&_module_input);
 	_modules.registerSystemModule(&_module_physics);
 	_modules.registerSystemModule(&_module_cameras);
@@ -58,6 +61,7 @@ bool CEngine::start() {
     _modules.registerSystemModule(&_module_scene_manager);
     _modules.registerSystemModule(&_module_instancing);
     _modules.registerSystemModule(&_module_debug);
+    _modules.registerSystemModule(&_module_particles);
 
 	_modules.registerGameModule(&module_splash);
 	_modules.registerGameModule(&module_game_manager);

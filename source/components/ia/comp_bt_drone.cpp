@@ -67,8 +67,8 @@ void TCompAIDrone::load(const json& j, TEntityParseContext& ctx) {
     addChild("manageDoPatrol", "manageArtificialNoise", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIDrone::conditionHasHeardArtificialNoise, nullptr, nullptr);
     addChild("manageArtificialNoise", "markArtificialNoiseAsInactive", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionMarkNoiseAsInactive, nullptr);
     addChild("manageArtificialNoise", "generateNavmeshArtificialNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGenerateNavmeshArtificialNoise, nullptr);
-    addChild("manageArtificialNoise", "goToArtificialNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGoToNoiseSource, (BTAssert)&TCompAIDrone::assertNotPlayerInFovForSure);
-    addChild("manageArtificialNoise", "waitInNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionWaitInNoiseSource, (BTAssert)&TCompAIDrone::assertNotPlayerInFovForSureNorOrder);
+    addChild("manageArtificialNoise", "goToArtificialNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionGoToNoiseSource, (BTAssert)&TCompAIDrone::assertNotPlayerInFovForSureNorNextToNoise);
+    addChild("manageArtificialNoise", "waitInNoiseSource", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionWaitInNoiseSource, (BTAssert)&TCompAIDrone::assertNotPlayerInFovNorOrder);
     addChild("manageArtificialNoise", "closestWptArtificialNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIDrone::actionClosestWpt, nullptr);
 
     addChild("manageDoPatrol", "manageEnemyOrder", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIDrone::conditionHasReceivedEnemyOrder, nullptr, nullptr);
@@ -154,12 +154,10 @@ void TCompAIDrone::onMsgEntityCreated(const TMsgEntityCreated & msg)
     cone_of_light->turnOnLight();
 
     TCompCollider* myCollider = get<TCompCollider>();
-    CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
-    geometrySweep.radius = capsuleCollider->radius + 0.1f;
-    geometrySweep.halfHeight = capsuleCollider->height / 2 + 0.1f;
+    CPhysicsBox * boxCollider = (CPhysicsBox *)myCollider->config;
+    geometrySweep.halfExtents = boxCollider->size;
 
     myHandle = CHandle(this);
-
 }
 
 void TCompAIDrone::onMsgPlayerDead(const TMsgPlayerDead& msg) {
@@ -192,33 +190,46 @@ void TCompAIDrone::onMsgDroneStunned(const TMsgEnemyStunned & msg)
 void TCompAIDrone::onMsgNoiseListened(const TMsgNoiseMade & msg)
 {
     ///* TODO: code in parent */
-    //bool isManagingArtificialNoise = isNodeSonOf(current, "goToArtificialNoiseSource");
-    //bool isWaitingInNoiseSource = isNodeName(current, "waitInArtificialNoiseSource");
-    //bool isManagingNaturalNoise = isNodeSonOf(current, "manageNaturalNoise");
-    //bool isChasingPlayer = isNodeSonOf(current, "manageChase");
+    bool isManagingArtificialNoise = isNodeSonOf(current, "goToArtificialNoiseSource");
+    bool isWaitingInNoiseSource = isNodeName(current, "waitInArtificialNoiseSource");
+    bool isManagingNaturalNoise = isNodeSonOf(current, "manageNaturalNoise");
+    bool isChasingPlayer = isNodeSonOf(current, "manageChase");
+    bool isManagingOrder = isNodeSonOf(current, "goToOrderPosition");
 
-    //std::chrono::steady_clock::time_point newNoiseTime = std::chrono::steady_clock::now();
+    bool isEntityInFov = isEntityInFovDrone(entityToChase);
 
-    //if (!isChasingPlayer && (!isManagingArtificialNoise || isWaitingInNoiseSource)) {
-    //    if (!isEntityInFov(entityToChase, fov - deg2rad(1.f), autoChaseDistance - 1.f)) {
-    //        if (msg.isArtificialNoise) {
-    //            hasHeardArtificialNoise = true;
-    //        }
-    //        else if (!isManagingNaturalNoise && !msg.isArtificialNoise) {
-    //            hasHeardNaturalNoise = true;
-    //        }
-    //    }
-    //}
+    std::chrono::steady_clock::time_point newNoiseTime = std::chrono::steady_clock::now();
 
-    ///* Noise management */
-    //if (!hNoiseSource.isValid() || hNoiseSource == msg.hNoiseSource || isManagingNaturalNoise && msg.isArtificialNoise || std::chrono::duration_cast<std::chrono::seconds>(newNoiseTime - lastTimeNoiseWasHeard).count() > 1.5f) {
+    if (!isChasingPlayer && (!isManagingArtificialNoise || isWaitingInNoiseSource)) {
 
-    //    /* Different noise sources (different enemies) => only hear if 1.5 seconds (hardcoded (TODO: Change)) passed || Same noise source => update noise settings */
-    //    lastTimeNoiseWasHeard = newNoiseTime;
-    //    noiseSourceChanged = noiseSource != msg.noiseOrigin;
-    //    noiseSource = msg.noiseOrigin;
-    //    hNoiseSource = msg.hNoiseSource;
-    //}
+        TCompTransform* mypos = get<TCompTransform>();
+        CEntity* ePlayer = getEntityByName(entityToChase);
+        TCompTransform* playerPos = ePlayer->get<TCompTransform>();
+        if (!(VEC3::Distance(mypos->getPosition(), playerPos->getPosition()) < autoChaseDistance && isEntityInFov)) {
+            if (!isManagingOrder && msg.isArtificialNoise) {
+                CEntity* ePlayer = getEntityByName(entityToChase);
+                TCompTransform* ppos = ePlayer->get<TCompTransform>();
+                float jajaja = VEC3::Distance(noiseSource, ppos->getPosition());
+                if (VEC3::Distance(noiseSource, ppos->getPosition()) > 4.f || !isEntityInFov) {
+                    //dbg("NOISE LISTENED MOTHAFUCKA %f\n", jajaja);
+                    hasHeardArtificialNoise = true;
+                }
+            }
+            else if (!isManagingNaturalNoise && !msg.isArtificialNoise) {
+                hasHeardNaturalNoise = true;
+            }
+        }
+    }
+
+    /* Noise management */
+    if (!hNoiseSource.isValid() || hNoiseSource == msg.hNoiseSource || isManagingNaturalNoise && msg.isArtificialNoise || std::chrono::duration_cast<std::chrono::seconds>(newNoiseTime - lastTimeNoiseWasHeard).count() > 1.5f) {
+
+        /* Different noise sources (different enemies) => only hear if 1.5 seconds (hardcoded (TODO: Change)) passed || Same noise source => update noise settings */
+        lastTimeNoiseWasHeard = newNoiseTime;
+        noiseSourceChanged = noiseSource != msg.noiseOrigin;
+        noiseSource = msg.noiseOrigin;
+        hNoiseSource = msg.hNoiseSource;
+    }
 }
 
 void TCompAIDrone::onMsgOrderReceived(const TMsgOrderReceived & msg)
@@ -280,7 +291,7 @@ void TCompAIDrone::loadAsserts() {
 
 }
 
-bool TCompAIDrone::moveToDestDrone(VEC3 dest, float speed, float dt)
+bool TCompAIDrone::moveToDestDrone(VEC3 dest, float speed, float dt, bool alsoHeight)
 {
     TCompTransform* mypos = get<TCompTransform>();
 
@@ -417,7 +428,12 @@ bool TCompAIDrone::moveToDestDrone(VEC3 dest, float speed, float dt)
 
     #pragma endregion
 
-    return VEC3::Distance(mypos->getPosition(), dest) < speed * dt;
+    if (alsoHeight) {
+        return VEC3::Distance(mypos->getPosition(), dest) < speed * dt;
+    }
+    else {
+        return VEC3::Distance2D(mypos->getPosition(), dest) < speed * dt;
+    }
 }
 
 void TCompAIDrone::waitInPosDrone(VEC3 dest, float dt, float speed, float rotSpeed, VEC3 lookAt)
@@ -463,26 +479,31 @@ void TCompAIDrone::moveLanternPatrolling(VEC3 objective, float dt, bool resetPit
     float yaw, pitch, roll, yaw_addition;
     lanternHierarchy->getYawPitchRoll(&yaw, &pitch, &roll);
     if (lanternPatrollingLeft) {
-        yaw_addition = rotationSpeedObservation * dt;
+        yaw_addition = rotationSpeedLantern * dt;
     }
     else {
-        yaw_addition = -rotationSpeedObservation * dt;
+        yaw_addition = -rotationSpeedLantern * dt;
     }
 
     if (resetPitch) {
-        if (pitch < startingPitch - rotationSpeedObservation * dt) {
-            pitch += rotationSpeedObservation * dt;
+        if (pitch < startingPitch - rotationSpeedLantern * dt) {
+            pitch += rotationSpeedLantern * dt;
         }
-        else if (pitch > startingPitch + rotationSpeedObservation * dt) {
-            pitch -= rotationSpeedObservation * dt;
+        else if (pitch > startingPitch + rotationSpeedLantern * dt) {
+            pitch -= rotationSpeedLantern * dt;
         }
         else {
             pitch = startingPitch;
         }
     }
 
-    if (fabsf(yaw + yaw_addition) > deg2rad(30.f)) {
+
+    if (fabsf(yaw) <= deg2rad(30.f) && fabsf(yaw + yaw_addition) > deg2rad(30.f)) {
         yaw_addition = 0;
+        lanternPatrollingLeft = !lanternPatrollingLeft;
+    }
+    else if (fabsf(yaw) > deg2rad(30.f) && fabsf(yaw + yaw_addition) > fabsf(yaw)) {
+        yaw_addition = -yaw_addition;
         lanternPatrollingLeft = !lanternPatrollingLeft;
     }
 
@@ -528,7 +549,7 @@ bool TCompAIDrone::isRespectingVerticalOffset(VEC3 position, float dt)
         }
         downSweep = isHit;
     }
-    bool upSweep = EnginePhysics.Sweep(geometrySweep, position + VEC3(0, geometrySweep.halfHeight * 2, 0), QUAT(0, 0, 0, 1), VEC3(0, 1, 0), flyingUpOffset + addedOffset, hits);
+    bool upSweep = EnginePhysics.Sweep(geometrySweep, position + VEC3(0, geometrySweep.halfExtents.y * 2, 0), QUAT(0, 0, 0, 1), VEC3(0, 1, 0), flyingUpOffset + addedOffset, hits);
     if (upSweep) {
         bool isHit = true;
         for (int i = 0; i < hits.size(); i++) {
@@ -661,25 +682,49 @@ BTNode::ERes TCompAIDrone::actionMarkNoiseAsInactive(float dt)
 {
     hasHeardNaturalNoise = false;
     hasHeardArtificialNoise = false;
+    timerWaitingInNoise = 0;
     return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionGenerateNavmeshArtificialNoise(float dt)
 {
+    CEntity* eLantern = hLantern;
+    TCompHierarchy* lantern_hierarchy = eLantern->get<TCompHierarchy>();
+    lerpingStartingRotation = lantern_hierarchy->getRotation();
+    timeLerpingLanternRot = 0.f;
+    timerWaitingInNoise = 0.f;
     return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIDrone::actionGoToNoiseSource(float dt)
 {
-    moveLanternPatrolling(noiseSource, dt);
-    return moveToDestDrone(noiseSource, maxSpeed, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
+    /* Point lantern to player */
+    CEntity* eLantern = hLantern;
+    TCompHierarchy* lanternHierarchy = eLantern->get<TCompHierarchy>();
+    VEC3 lanternObjective = VEC3::Zero;
+    if (hNoiseSource.isValid()) {
+        CEntity* eNoiseSource = hNoiseSource;
+        TCompTransform * noiseSourcePos = eNoiseSource->get<TCompTransform>();
+        lanternObjective = noiseSourcePos->getPosition();
+    }
+    else {
+        lanternObjective = noiseSource;
+    }
+    QUAT lanternRotationObjective = lanternHierarchy->getRelativeLookAt(lanternObjective);
+    lanternHierarchy->setRotation(QUAT::Slerp(lerpingStartingRotation, lanternRotationObjective, timeLerpingLanternRot / timeToLerpLanternRot));
+    
+    timeLerpingLanternRot = Clamp(timeLerpingLanternRot + dt, 0.f, timeToLerpLanternRot);
+
+    return moveToDestDrone(noiseSource + upOffset, maxSpeed, dt, false) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIDrone::actionWaitInNoiseSource(float dt)
 {
+    moveLanternPatrolling(noiseSource, dt);
     timerWaitingInNoise += dt;
-    if (timerWaitingInOrderPos < maxTimeWaitingInOrderPos) {
-        waitInPosDrone(noiseSource, dt, maxSpeed, deg2rad(30.f));
+    if (timerWaitingInNoise < maxTimeWaitingInOrderPos) {
+        TCompTransform* mypos = get<TCompTransform>();
+        waitInPosDrone(mypos->getPosition(), dt, maxSpeed, deg2rad(30.f));
         return BTNode::ERes::STAY;
     }
     else {
@@ -701,6 +746,7 @@ BTNode::ERes TCompAIDrone::actionMarkOrderAsReceived(float dt)
 
 BTNode::ERes TCompAIDrone::actionGenerateNavmeshOrder(float dt)
 {
+    timerWaitingInOrderPos = 0.f;
     return BTNode::ERes::LEAVE;
 }
 
@@ -712,6 +758,7 @@ BTNode::ERes TCompAIDrone::actionGoToOrderPos(float dt)
 
 BTNode::ERes TCompAIDrone::actionWaitInOrderPos(float dt)
 {
+    moveLanternPatrolling(orderPosition, dt);
     timerWaitingInOrderPos += dt;
     if(timerWaitingInOrderPos < maxTimeWaitingInOrderPos){
         waitInPosDrone(orderPosition, dt, maxSpeed, deg2rad(60.f));
@@ -724,6 +771,7 @@ BTNode::ERes TCompAIDrone::actionWaitInOrderPos(float dt)
 
 BTNode::ERes TCompAIDrone::actionGenerateNavmeshPlayerLost(float dt)
 {
+    timerWaitingInOrderPos += dt;
     TCompTransform* mypos = get<TCompTransform>();
     VEC3 dir = lastPlayerKnownPos - mypos->getPosition();
     dir = dir - VEC3(0, dir.y, 0);
@@ -810,7 +858,7 @@ BTNode::ERes TCompAIDrone::actionSuspect(float dt)
 BTNode::ERes TCompAIDrone::actionRotateToNoiseSource(float dt)
 {
     stabilizeRotations(dt);
-    return rotateTowardsVec(lastPlayerKnownPos, dt, rotationSpeedNoise) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
+    return rotateTowardsVec(noiseSource, dt, rotationSpeedNoise) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIDrone::actionGenerateNavmeshWpt(float dt)
@@ -910,7 +958,7 @@ bool TCompAIDrone::assertNotPlayerInFovForSure(float dt)
     CEntity* ePlayer = getEntityByName(entityToChase);
     TCompTransform* playerPos = ePlayer->get<TCompTransform>();
 
-    return VEC3::Distance(mypos->getPosition(), playerPos->getPosition()) > autoChaseDistance && !isEntityInFovDrone(entityToChase);
+    return !(VEC3::Distance(mypos->getPosition(), playerPos->getPosition()) < autoChaseDistance && isEntityInFovDrone(entityToChase));
 }
 
 bool TCompAIDrone::assertNotPlayerInFovNorArtificialNoise(float dt)
@@ -945,6 +993,37 @@ bool TCompAIDrone::assertNotPlayerInFovNorArtificialNoiseNorOrder(float dt)
 bool TCompAIDrone::assertNotPlayerInFovNorNoiseNorOrder(float dt)
 {
     return !hasHeardArtificialNoise && !hasHeardNaturalNoise && !isEntityInFovDrone(entityToChase) && !hasReceivedOrder;
+}
+
+bool TCompAIDrone::assertNotPlayerInFovNorOrder(float dt)
+{
+    return !isEntityInFovDrone(entityToChase) && !hasReceivedOrder;
+}
+
+bool TCompAIDrone::assertNotPlayerInFovForSureNorNextToNoise(float dt)
+{
+    TCompTransform* mypos = get<TCompTransform>();
+    CEntity* ePlayer = getEntityByName(entityToChase);
+    TCompTransform* playerPos = ePlayer->get<TCompTransform>();
+
+    VEC3 sourcePosition = VEC3::Zero;
+    if (hNoiseSource.isValid()) {
+        CEntity* eNoiseSource = hNoiseSource;
+        TCompTransform* sourcePos = eNoiseSource->get<TCompTransform>();
+        sourcePosition = sourcePos->getPosition();
+    }
+
+    bool isPlayerInFov = isEntityInFovDrone(entityToChase);
+
+    //bool result = !((isPlayerInFov && VEC3::Distance(mypos->getPosition(), playerPos->getPosition()) < autoChaseDistance) || (isPlayerInFov && VEC3::Distance(playerPos->getPosition(), sourcePosition) < 4));
+    //dbg("ASSERT RESULT %s with distance %f\n", result ? "TRUE" : "FALSE", lele);
+    return !((isPlayerInFov && VEC3::Distance(mypos->getPosition(), playerPos->getPosition()) < autoChaseDistance) || (hNoiseSource.isValid() && isPlayerInFov && VEC3::Distance(playerPos->getPosition(), sourcePosition) < 4));
+    //isEntityInFov && isAutoChaseDistance || isEntityInFov && nextToWpt => false
+
+   /* bool result = !(VEC3::Distance(mypos->getPosition(), playerPos->getPosition()) < autoChaseDistance && isEntityInFovDrone(entityToChase) && VEC3::Distance(playerPos->getPosition(), sourcePos->getPosition()) < 4);
+    dbg("ASSERT RESULT %s with distance %f\n", result ? "TRUE" : "FALSE", lele);
+
+    return !(VEC3::Distance(mypos->getPosition(), playerPos->getPosition()) < autoChaseDistance && isEntityInFovDrone(entityToChase) && VEC3::Distance(playerPos->getPosition(), sourcePos->getPosition()) < 4);*/
 }
 
 /* AUX FUNCTIONS */

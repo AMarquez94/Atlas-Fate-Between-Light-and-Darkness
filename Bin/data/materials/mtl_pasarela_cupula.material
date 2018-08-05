@@ -1,0 +1,18 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_pasarela_cupula_alb.dds"
+    ,
+    "metallic": "data/textures/tx_pasarela_cupula_met.dds"
+    ,
+    "roughness": "data/textures/tx_pasarela_cupula_rgh.dds"
+    ,
+    "normal": "data/textures/tx_pasarela_cupula_nml.dds"
+    ,
+    "height": "data/textures/tx_pasarela_cupula_hgt.dds"
+    ,
+    "aocclusion": "data/textures/tx_pasarela_cupula_ao.dds"
+  }
+}

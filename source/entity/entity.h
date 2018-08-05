@@ -15,6 +15,8 @@ public:
     return comps[comp_type];
   }
 
+  CHandle getCompByName(const char * comp_name);
+
   template< typename TComp >
   CHandle get() const {
     auto om = getObjectManager<TComp>();

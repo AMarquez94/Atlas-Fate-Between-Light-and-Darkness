@@ -17,9 +17,11 @@ void TCompPlayerAttackCast::debugInMenu() {
 
 void TCompPlayerAttackCast::load(const json& j, TEntityParseContext& ctx) {
   geometryAttack.radius = j.value("radiusAttack", 2.f);
-  geometryMoveObjects.radius = j.value("radiusMoveObject", 0.35f);
+  geometryMoveObjects.radius = j.value("radiusMoveObject", 1.f);
+  geometryButtons.radius = j.value("radiusPressButton", 1.0f);
   attack_fov = deg2rad(j.value("attack_fov", 120.f));
   moveObjects_fov = deg2rad(j.value("moveObjects_fov", 20.f));
+  button_fov = deg2rad(j.value("button_fov", 60.f));
 
   physx::PxFilterData pxFilterData;
 
@@ -30,6 +32,10 @@ void TCompPlayerAttackCast::load(const json& j, TEntityParseContext& ctx) {
   pxFilterData.word0 = FilterGroup::MovableObject;
   PxPlayerMoveObjectsQueryFilterData.data = pxFilterData;
   PxPlayerMoveObjectsQueryFilterData.flags = physx::PxQueryFlag::eDYNAMIC;
+
+  pxFilterData.word0 = FilterGroup::Button;
+  PxPlayerButtonInteractQueryFilterData.data = pxFilterData;
+  PxPlayerButtonInteractQueryFilterData.flags = physx::PxQueryFlag::eSTATIC;
 }
 
 void TCompPlayerAttackCast::registerMsgs()
@@ -39,7 +45,7 @@ void TCompPlayerAttackCast::registerMsgs()
 
 void TCompPlayerAttackCast::onMsgScenePaused(const TMsgScenePaused & msg)
 {
-	paused = !paused;
+	paused = msg.isPaused;
 }
 
 const std::vector<CHandle> TCompPlayerAttackCast::getEnemiesInRange()
@@ -172,6 +178,57 @@ CHandle TCompPlayerAttackCast::getClosestMovableObjectInRange()
     }
   }
   return closestMovableObject;
+}
+
+const std::vector<CHandle> TCompPlayerAttackCast::getButtonsInRange() {
+    std::vector<CHandle> buttons_in_range;
+
+    TCompTransform* tPos = get<TCompTransform>();
+
+    if (geometryButtons.isValid()) {
+
+        std::vector<physx::PxOverlapHit> hits;
+        if (EnginePhysics.Overlap(geometryButtons, tPos->getPosition(), hits, PxPlayerButtonInteractQueryFilterData)) {
+            for (int i = 0; i < hits.size(); i++) {
+                CHandle hitCollider;
+                hitCollider.fromVoidPtr(hits[i].actor->userData);
+                if (hitCollider.isValid()) {
+                    CHandle button = hitCollider.getOwner();
+                    CEntity* e = button;
+                    //std::string name = e->getName();
+                    TCompCollider* collider_button = e->get<TCompCollider>();
+
+                    if (button.isValid() && collider_button->config->group == FilterGroup::Button) {
+                        //dbg("Name of the hit nº %d : %s \n", i, name.c_str());
+                        buttons_in_range.push_back(button);
+                    }
+                }
+            }
+        }
+    }
+
+    return buttons_in_range;
+}
+
+CHandle TCompPlayerAttackCast::getClosestButtonInRange() {
+
+    bool found = false;
+    CHandle closestButton = CHandle();
+    const std::vector<CHandle> buttons = getButtonsInRange();
+
+    TCompTransform * mypos = get<TCompTransform>();
+
+    for (int i = 0; i < buttons.size() && !found; i++) {
+
+        CEntity * button = buttons[i];
+        TCompTransform *ePos = button->get<TCompTransform>();
+
+        if (mypos->isInHorizontalFov(ePos->getPosition(), button_fov)) {
+            found = true;
+            closestButton = buttons[i];
+        }
+    }
+    return closestButton;
 }
 
 void TCompPlayerAttackCast::update(float dt)

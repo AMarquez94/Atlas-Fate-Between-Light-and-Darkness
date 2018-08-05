@@ -1,0 +1,47 @@
+{
+  "life" : {
+      "duration" : 0.75,
+      "duration_variation" : 0.25,
+      "max_particles" : 100,
+      "time_factor" : 1.0
+  },
+  "emission" : {
+      "type" : "box",
+      "size" : "0.2 0.6 0.2",
+      "interval" : 0.15,
+      "count" : 100,
+      "cyclic" : true
+  },
+  "movement" : {
+      "velocity" : 0.1,
+      "acceleration" : 0.0,
+      "spin" : 16.0,
+      "wind" : 0.0,
+      "gravity" : -0.002
+  },
+  "render" : {
+      "texture" : "data/textures/particles/fx_smoke1.dds",
+      "frame_size" : "0.125 0.25",
+      "initial_frame" : 0,
+      "num_frames" : 16,
+      "frame_speed" : 122.0
+  },
+  "size" : {
+    "scale" : 0.3,
+    "scale_variation" : 0.3,
+    "sizes" : [
+      [0.0, 0.5],
+      [0.4, 0.7],
+	  [0.6, 1.0],
+      [0.75, 1.0]
+    ]
+  },
+  "color" : {
+    "opacity" : 1.0,
+    "colors" : [
+      [0.0, "1 1 1 1"],
+      [0.6, "1 1 1 1"],
+      [1.0, "1 1 1 0"]
+    ] 
+  }
+}

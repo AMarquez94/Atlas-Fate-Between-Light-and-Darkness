@@ -1,0 +1,51 @@
+[
+	{
+		"xentity": {
+			"name": "Debug Navmeshes"
+		}
+	},
+	{
+		"xentity": {
+			"name": "Navmesh_Start",
+			"transform": {
+				"pos": "0 0 0",
+				"rotation": "0.0 0.0 0.0 -1.0",
+				"scale": 0.3
+			},
+			"render":
+			[
+				{
+				  "mesh": "data/meshes/mesh_caja016.mesh"
+				  ,
+				  "materials":
+				  [
+					"data/materials/mtl_whitebox.material"
+				  ]
+				}
+			],
+			"tags" : ["navmesh_start"]
+		}
+	},
+	{
+		"xentity": {
+			"name": "Navmesh_End",
+			"transform": {
+				"pos": "0 0 0",
+				"rotation": "0.0 0.0 0.0 -1.0",
+				"scale": 0.3
+			},
+			"render":
+			[
+				{
+				  "mesh": "data/meshes/mesh_caja016.mesh"
+				  ,
+				  "materials":
+				  [
+					"data/materials/mtl_caja.material"
+				  ]
+				}
+			],
+			"tags" : ["navmesh_end"]
+		}
+	}
+]

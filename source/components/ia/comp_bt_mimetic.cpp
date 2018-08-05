@@ -89,7 +89,12 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
     addChild("mimetic", "manageChase", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionPlayerSeenForSure, nullptr, nullptr);
     addChild("manageChase", "jumpFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionJumpFloor, nullptr);
     addChild("manageChase", "resetVariablesChase", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionResetVariablesChase, nullptr);
-    addChild("manageChase", "chasePlayerWithNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionChasePlayerWithNoise, nullptr);
+    addChild("manageChase", "manageChasePlayer", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
+
+    addChild("manageChasePlayer", "manageUnreachableChase", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionIsDestUnreachable, nullptr, nullptr);
+    addChild("manageUnreachableChase", "rotateToUnreachablePlayer", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionRotateTowardsPlayerWithNoise, (BTAssert)&TCompAIMimetic::assertCantReachDest);
+    addChild("manageChasePlayer", "manageReachableChase", BTNode::EType::SEQUENCE, nullptr, nullptr, nullptr);
+    addChild("manageReachableChase", "chasePlayerWithNoise", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionChasePlayerWithNoise, (BTAssert)&TCompAIMimetic::assertCanReachDest);
 
     addChild("mimetic", "manageArtificialNoise", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionHasHeardArtificialNoise, nullptr, nullptr);
     addChild("manageArtificialNoise", "markArtificialNoiseAsInactive", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionMarkNoiseAsInactive, nullptr);
@@ -444,7 +449,15 @@ BTNode::ERes TCompAIMimetic::actionJumpFloor(float dt)
     TCompRigidbody *tCollider = get<TCompRigidbody>();
 
     tCollider->setNormalGravity(VEC3(0, -9.8f, 0));
-    return BTNode::ERes::LEAVE;
+
+    if (tCollider->is_grounded) {
+        return BTNode::ERes::LEAVE;
+    }
+    else {
+        return BTNode::ERes::STAY;
+    }
+    
+    
 }
 
 BTNode::ERes TCompAIMimetic::actionGenerateNavmeshWpt(float dt)
@@ -456,6 +469,9 @@ BTNode::ERes TCompAIMimetic::actionGenerateNavmeshWpt(float dt)
 
 BTNode::ERes TCompAIMimetic::actionGoToWpt(float dt)
 {
+
+    if (!isCurrentDestinationReachable() && _waypoints.size() > 1)
+        return BTNode::ERes::LEAVE;
 
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
     myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::WALK);
@@ -470,6 +486,8 @@ BTNode::ERes TCompAIMimetic::actionResetTimerWaiting(float dt)
 
 BTNode::ERes TCompAIMimetic::actionWaitInWpt(float dt)
 {
+    if (!isCurrentDestinationReachable() && _waypoints.size() > 1)
+        return BTNode::ERes::LEAVE;
 
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
     myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
@@ -559,6 +577,9 @@ BTNode::ERes TCompAIMimetic::actionGenerateNavmeshPlayerLastPos(float dt)
 {
     TCompTransform *tpos = get<TCompTransform>();
     generateNavmesh(tpos->getPosition(), lastPlayerKnownPos);
+
+    lastPlayerKnownPos = isCurrentDestinationReachable() ? lastPlayerKnownPos : navmeshPath[navmeshPath.size() - 1];
+
     return BTNode::ERes::LEAVE;
 }
 
@@ -580,6 +601,33 @@ BTNode::ERes TCompAIMimetic::actionResetVariablesChase(float dt)
     generateNavmesh(tpos->getPosition(), ppos->getPosition());
 
     return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIMimetic::actionRotateTowardsPlayerWithNoise(float dt)
+{
+    if (isEntityInFov(entityToChase, fov, maxChaseDistance)) {
+        CEntity* player = getEntityByName(entityToChase);
+        TCompTransform* ppos = player->get<TCompTransform>();
+        rotateTowardsVec(ppos->getPosition(), dt, rotationSpeedChase);
+        TCompTransform* mypos = get<TCompTransform>();
+        if (lastPlayerKnownPos != ppos->getPosition()) {
+            generateNavmesh(mypos->getPosition(), ppos->getPosition());
+            lastPlayerKnownPos = ppos->getPosition();
+        }
+        return BTNode::ERes::STAY;
+    }
+    else {
+        //TODO: Testear a ver si va bene. Idea, no marcamos la posicion del player puesto que hemos salido del nodo sin poder alcanzarle
+
+        /* Cancel noise emitter */
+        TCompNoiseEmitter * noiseEmitter = get<TCompNoiseEmitter>();
+        noiseEmitter->makeNoise(-1.f, 10.f, false, false, true);
+
+        TCompEmissionController * e_controller = get<TCompEmissionController>();
+        e_controller->blend(enemyColor.colorNormal, 0.1f);
+        lastPlayerKnownPos = VEC3::Zero;
+        return BTNode::ERes::LEAVE;
+    }
 }
 
 BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
@@ -621,7 +669,7 @@ BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
 
         return BTNode::ERes::LEAVE;
     }
-    else if (distToPlayer <= 1.3f) {
+    else if (distToPlayer < 1.3f) {
 
         /* TODO: This fix is temporary */
         rotateTowardsVec(ppos->getPosition(), rotationSpeedChase, dt);
@@ -661,6 +709,7 @@ BTNode::ERes TCompAIMimetic::actionGenerateNavmeshNoiseSource(float dt)
     TCompTransform *tpos = get<TCompTransform>();
     noiseSourceChanged = false;
     generateNavmesh(tpos->getPosition(), noiseSource);
+    noiseSource = isCurrentDestinationReachable() ? noiseSource : navmeshPath[navmeshPath.size() - 1];
     return BTNode::ERes::LEAVE;
 }
 
@@ -677,12 +726,15 @@ BTNode::ERes TCompAIMimetic::actionGoToNoiseSource(float dt)
     if (noiseSourceChanged) {
         generateNavmesh(pp, noiseSource);
         noiseSourceChanged = false;
+        noiseSource = isCurrentDestinationReachable() ? noiseSource : navmeshPath[navmeshPath.size() - 1];
     }
 
     if (isEntityInFov(entityToChase, fov - deg2rad(1.f), autoChaseDistance - 1.f)) {
         current = nullptr;
         return BTNode::ERes::LEAVE;
     }
+
+    //VEC3 destination = isCurrentDestinationReachable() ? noiseSource : navmeshPath[navmeshPath.size() - 1];   //TODO: Posible bug si el size de la navmesh es 0? testear
 
     if (moveToPoint(speed, rotationSpeedPatrolling, noiseSource, dt)) {
         return BTNode::ERes::LEAVE;
@@ -718,11 +770,14 @@ BTNode::ERes TCompAIMimetic::actionWaitInNoiseSource(float dt)
 
 BTNode::ERes TCompAIMimetic::actionGoToPlayerLastPos(float dt)
 {
+    if (lastPlayerKnownPos == VEC3::Zero) {
+        return BTNode::ERes::LEAVE;
+    }
+
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
     myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::RUN);
     if (moveToPoint(speed, rotationSpeedChase, lastPlayerKnownPos, dt)) {
-        lastPlayerKnownPos = VEC3::Zero;
         return BTNode::ERes::LEAVE;
     }
     else {
@@ -732,6 +787,9 @@ BTNode::ERes TCompAIMimetic::actionGoToPlayerLastPos(float dt)
 
 BTNode::ERes TCompAIMimetic::actionWaitInPlayerLastPos(float dt)
 {
+    if (lastPlayerKnownPos == VEC3::Zero) {
+        return BTNode::ERes::LEAVE;
+    }
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
     myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
@@ -757,7 +815,14 @@ BTNode::ERes TCompAIMimetic::actionSetGoInactive(float dt)
 BTNode::ERes TCompAIMimetic::actionGenerateNavmeshInitialPos(float dt)
 {
     TCompTransform *tTransform = get<TCompTransform>();
-    generateNavmesh(tTransform->getPosition(), initialPos);
+    VEC3 initialPosWithMyY = VEC3(initialPos.x, tTransform->getPosition().y, initialPos.z);
+    generateNavmesh(tTransform->getPosition(), initialPosWithMyY);
+
+    initialPos = isCurrentDestinationReachable() ? initialPos : navmeshPath[navmeshPath.size() - 1];
+    if (!isCurrentDestinationReachable()) {
+        type = EType::FLOOR;    //TODO: Test
+    }
+
     return BTNode::ERes::LEAVE;
 }
 
@@ -895,6 +960,11 @@ bool TCompAIMimetic::conditionNotGoingInactive(float dt)
     return !goingInactive;
 }
 
+bool TCompAIMimetic::conditionIsDestUnreachable(float dt)
+{
+    return !isCurrentDestinationReachable();
+}
+
 /* ASSERTS */
 
 bool TCompAIMimetic::assertNotPlayerInFovNorNoise(float dt)
@@ -910,6 +980,18 @@ bool TCompAIMimetic::assertNotPlayerInFov(float dt)
 bool TCompAIMimetic::assertNotPlayerInFovNorArtificialNoise(float dt)
 {
     return !hasHeardArtificialNoise && !isEntityInFov(entityToChase, fov, maxChaseDistance);
+}
+
+bool TCompAIMimetic::assertCantReachDest(float dt)
+{
+    dbg("Assert CANT REACH %s\n", !isCurrentDestinationReachable() ? "TRUE" : "FALSE");
+    return !isCurrentDestinationReachable();
+}
+
+bool TCompAIMimetic::assertCanReachDest(float dt)
+{
+    dbg("Assert CAN REACH %s\n", isCurrentDestinationReachable() ? "TRUE" : "FALSE");
+    return isCurrentDestinationReachable();
 }
 
 /* AUX FUNCTIONS */

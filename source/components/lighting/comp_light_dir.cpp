@@ -8,14 +8,16 @@
 #include "render/render_manager.h" 
 #include "render/render_utils.h"
 #include "render/gpu_trace.h"
+#include "render/mesh/mesh_loader.h"
 
 DECL_OBJ_MANAGER("light_dir", TCompLightDir);
 
 void TCompLightDir::debugInMenu() {
     TCompCamera::debugInMenu();
-    ImGui::DragFloat("Intensity", &intensity, 0.01f, 0.f, 10.f);
-    ImGui::ColorEdit3("Color", &color.x);
     ImGui::Checkbox("Enabled", &isEnabled);
+    ImGui::ColorEdit3("Color", &color.x);
+    ImGui::DragFloat("Intensity", &intensity, 0.01f, 0.f, 10.f);
+    ImGui::DragFloat("Shadow step", &shadows_step, 0.01f, 0.f, 10.f);
 }
 
 void TCompLightDir::renderDebug() {
@@ -42,6 +44,7 @@ void TCompLightDir::load(const json& j, TEntityParseContext& ctx) {
     else {
         projector = Resources.get("data/textures/default_white.dds")->as<CTexture>();
     }
+    quadmesh = loadMesh("data/meshes/unit_quad_center2.mesh");
 
     // Check if we need to allocate a shadow map
     casts_shadows = j.value("casts_shadows", false);
@@ -102,9 +105,12 @@ void TCompLightDir::activate() {
     cb_light.light_color = color;
     cb_light.light_intensity = intensity;
     cb_light.light_pos = c->getPosition();
-    cb_light.light_view_proj_offset = getViewProjection() * mtx_offset;
+    cb_light.light_view_proj_offset = getViewProjection() *mtx_offset;
+    cb_light.light_view_proj = getViewProjection();
     cb_light.light_radius = getZFar();
     cb_light.light_angle = 0;
+    cb_light.far_atten = 0.98f;
+    cb_light.inner_atten = 0.9f;
 
     // If we have a ZTexture, it's the time to activate it
     if (shadows_rt) {
@@ -119,6 +125,57 @@ void TCompLightDir::activate() {
     }
 
     cb_light.updateGPU();
+}
+
+
+// Dirty way of computing volumetric lights on CPU.
+// Update this in the future with a vertex shader improved version.
+void TCompLightDir::generateVolume() {
+
+    activate();
+    const CRenderTechnique* technique = Resources.get("pbr_vol_lights.tech")->as<CRenderTechnique>();
+    TCompTransform * c_transform = get<TCompTransform>();
+
+    float p_distance = (getZFar() - getZNear()) / num_samples;
+    VEC3 midpos = c_transform->getPosition() + c_transform->getFront() * (getZFar() - getZNear()) * .5f;
+    CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
+    assert(technique && quadmesh && eCurrentCamera);
+    TCompCamera* camera = eCurrentCamera->get< TCompCamera >();
+    assert(camera);
+
+    const VEC3 cameraPos = camera->getPosition();
+    const VEC3 cameraUp = camera->getUp();
+    VEC3 front = VEC3(1, 0, 0);
+    technique->activate();
+    for (int i = 0; i < num_samples * .5f; i++) {
+
+        VEC3 pos = c_transform->getPosition();      
+        VEC3 plane_pos = midpos + camera->getFront() * p_distance * i;
+        //VEC3 plane_pos = VEC3(0, 0, i * 0.1f);
+        MAT44 bb = MAT44::CreateWorld(plane_pos, -camera->getUp(), -camera->getFront());
+        MAT44 sc = MAT44::CreateScale(50.f);
+
+        cb_object.obj_world = sc * bb;
+        cb_object.obj_color = VEC4(1, 1, 1, 1);
+        cb_object.updateGPU();
+
+        quadmesh->activateAndRender();
+    }
+
+    for (int i = 0; i < num_samples * .5f; i++) {
+
+        VEC3 pos = c_transform->getPosition();
+        VEC3 plane_pos = midpos + -camera->getFront() * p_distance * i;
+        //VEC3 plane_pos = VEC3(0, 0, i * 0.1f);
+        MAT44 bb = MAT44::CreateWorld(plane_pos, -camera->getUp(), -camera->getFront());
+        MAT44 sc = MAT44::CreateScale(50.f);
+
+        cb_object.obj_world = sc * bb;
+        cb_object.obj_color = VEC4(1, 1, 1, 1);
+        cb_object.updateGPU();
+
+        quadmesh->activateAndRender();
+    }
 }
 
 

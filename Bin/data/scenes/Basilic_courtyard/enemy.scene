@@ -1,0 +1,98 @@
+[{
+		"entity": {
+			"name": "Enemies"
+		}
+	}, {
+		"entity": {
+			"prefab": "data/prefabs/patrol.prefab",
+			"name": "The Enemy 1",
+			"transform": {
+				"pos": "-4.7 0 -370",
+				"lookat": "100 0 74"
+			},
+			"ai_patrol": {
+				"startLightsOn": false,
+				"waypoints": [{
+						"position": "-4.7 0 -370",
+						"lookAt": "0 0 1",
+						"minTime": 3
+					}, {
+						"position": "-4.7 0 -357",
+						"lookAt": "0.78 0 0.62",
+						"minTime": 3
+					}, {
+						"position": "0 0 -352",
+						"lookAt": "1 0 0",
+						"minTime": 3
+					}, {
+						"position": "4.7 0 -352",
+						"lookAt": "1 0 0",
+						"minTime": 3
+					}, {
+						"position": "4.7 0 -352",
+						"lookAt": "-1 0 0",
+						"minTime": 3
+					}, {
+						"position": "0 0 -352",
+						"lookAt": "-1 0 0",
+						"minTime": 3
+					}, {
+						"position": "-4.7 0 -357",
+						"lookAt": "-0.78 0 -0.62",
+						"minTime": 3
+					},{
+						"position": "-4.7 0 -370",
+						"lookAt": "0 0 -1",
+						"minTime": 3
+					}
+				]
+			}
+		}
+	},{
+		"entity": {
+			"prefab": "data/prefabs/patrol.prefab",
+			"name": "The Enemy 1",
+			"transform": {
+				"pos": "4.7 0 -352",
+				"lookat": "100 0 74"
+			},
+			"ai_patrol": {
+				"startLightsOn": false,
+				"waypoints": [{
+						"position": "4.7 0 -352",
+						"lookAt": "1 0 0",
+						"minTime": 3
+					}, {
+						"position": "9.4 0 -352",
+						"lookAt": "1 0 0",
+						"minTime": 3
+					}, {
+						"position": "14.1 0 -357",
+						"lookAt": "0.78 0 -0.62",
+						"minTime": 3
+					}, {
+						"position": "14.1 0 -370",
+						"lookAt": "-1 0 0",
+						"minTime": 3
+					}, {
+						"position": "14.1 0 -370",
+						"lookAt": "1 0 0",
+						"minTime": 3
+					}, {
+						"position": "14.1 0 -357",
+						"lookAt": "-0.78 0 0.62",
+						"minTime": 3
+					}, {
+						"position": "9.4 0 -352",
+						"lookAt": "-1 0 0",
+						"minTime": 3
+					}, {
+						"position": "4.7 0 -352",
+						"lookAt": "-1 0 0",
+						"minTime": 3
+					}
+				]
+			}
+		}
+	}
+]

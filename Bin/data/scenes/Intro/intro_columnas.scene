@@ -1,0 +1,253 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_columnas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columnas_intro_attach_0"
+      ,
+      "transform":
+      {
+        "pos": "12.952 0.0 15.9898"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_columnas_intro_attach_0.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columnas_intro_attach_1"
+      ,
+      "transform":
+      {
+        "pos": "-5.04218 0.0 32.1768"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_columnas_intro_attach_1.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columnas_intro_attach_2"
+      ,
+      "transform":
+      {
+        "pos": "9.83447 0.0 -0.937347"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_columnas_intro_attach_2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columnas_intro_attach_3"
+      ,
+      "transform":
+      {
+        "pos": "3.81845 6.0 -32.7311"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_columnas_intro_attach_3.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columnas_intro_attach_4"
+      ,
+      "transform":
+      {
+        "pos": "-20.2248 6.0 4.20274"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_columnas_intro_attach_4.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columnas_intro_attach_5"
+      ,
+      "transform":
+      {
+        "pos": "-20.2865 5.99158 -32.9397"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_columnas_intro_attach_5.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columnas_intro_attach_006"
+      ,
+      "transform":
+      {
+        "pos": "-10.168 0.0 -75.0102"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_columnas_intro_attach_006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columnas_intro_attach_007"
+      ,
+      "transform":
+      {
+        "pos": "-15.0422 0.0 -54.8232"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_columnas_intro_attach_007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

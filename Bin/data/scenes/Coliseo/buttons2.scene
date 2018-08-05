@@ -1,0 +1,167 @@
+[
+  {
+    "entity": {
+      "name": "Buttons"
+    }
+  },
+  {
+    "entity": {
+      "name": "Button Open ZoneA",
+      "transform": {
+        "pos": "-21 1.1 27",
+        "rotation": "-0.659639 -0.254704 -0.254704 0.659642"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/Buttons/Button.mesh",
+          "materials": [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ],
+      "collider": {
+        "shape": "box",
+        "size": "0.3 0.3 0.3",
+        "group": "button"
+      },
+      "button": {
+        "script": "transition_coliseum_to_zone_a()",
+		"canBePressed": false
+      },
+      "tags": [ "button" ]
+    }
+  },
+  {
+    "entity": {
+      "name": "Button Open Courtyard",
+      "transform": {
+        "pos": "-7.471 1.0 -33.220",
+        "rotation": "-0.7 0.1 0.1 0.7"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/Buttons/Button.mesh",
+          "materials": [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ],
+      "collider": {
+        "shape": "box",
+        "size": "0.3 0.3 0.3",
+        "group": "button"
+      },
+      "button": {
+        "script": "transition_coliseum_to_courtyard()",
+		"canBePressed": true
+      },
+      "tags": [ "button" ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "OmniB1"
+      ,
+      "transform":
+      {
+        "pos": "-20.850 1.1 26.875"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+       "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1
+        ,
+        "outer_cut": 1.5
+        ,
+        "color": "1 0 0 1.0"
+        ,
+        "intensity": 4
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 3.19533
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "OmniB2"
+      ,
+      "transform":
+      {
+        "pos": "-7.471 1.0 -33.220"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+       "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1
+        ,
+        "outer_cut": 1.5
+        ,
+        "color": "0 1 0 1.0"
+        ,
+        "intensity": 4
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 3.19533
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+]

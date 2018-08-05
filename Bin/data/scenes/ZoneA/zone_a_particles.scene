@@ -1,0 +1,144 @@
+[
+	{
+		"entity": {
+			"name": "Particles_Master",
+			"transform": {
+				"pos": "0 0 0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "particles_fog",
+			"transform": {
+				"pos": "-61 1.2 -101"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_fog2_30x30.particles"
+			}
+		}
+	},
+		{
+		"entity": {
+			"name": "particles_fog",
+			"transform": {
+				"pos": "-68 1.2 -142"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_fog2_30x30.particles"
+			}
+		}
+	},
+			{
+		"entity": {
+			"name": "particles_fog",
+			"transform": {
+				"pos": "-106 1.2 -140"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_fog2_30x30.particles"
+			}
+		}
+	},
+				{
+		"entity": {
+			"name": "particles_single_fog",
+			"transform": {
+				"pos": "-84 0.3 -109"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_fog2_10x10.particles"
+			}
+		}
+	},
+			{
+		"entity": {
+			"name": "particles_single_fog",
+			"transform": {
+				"pos": "-46 0.3 -90"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_fog2_10x10.particles"
+			}
+		}
+	},
+				{
+		"entity": {
+			"name": "particles_dust",
+			"transform": {
+				"pos": "-46 1 -90"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_dust.particles"
+			}
+		}
+	},
+			{
+		"entity": {
+			"name": "particles_dust",
+			"transform": {
+				"pos": "-49 1 -90"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_dust.particles"
+			}
+		}
+	},
+				{
+		"entity": {
+			"name": "particles_dust",
+			"transform": {
+				"pos": "-56 1 -155"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_dust.particles"
+			}
+		}
+	},
+					{
+		"entity": {
+			"name": "particles_dust",
+			"transform": {
+				"pos": "-56 1 -139"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_dust.particles"
+			}
+		}
+	},
+						{
+		"entity": {
+			"name": "particles_dust",
+			"transform": {
+				"pos": "-73 1 -135"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_dust.particles"
+			}
+		}
+	}
+		,
+			{
+		"entity": {
+			"name": "particles_dust",
+			"transform": {
+				"pos": "-69 1 -90"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_dust.particles"
+			}
+		}
+	}
+			,
+			{
+		"entity": {
+			"name": "particles_dust",
+			"transform": {
+				"pos": "-67 1 -112"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_dust.particles"
+			}
+		}
+	}
+]

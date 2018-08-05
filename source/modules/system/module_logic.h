@@ -4,8 +4,11 @@
 #include "entity/entity.h"
 #include <SLB/SLB.hpp>
 #include "modules/system/module_game_console.h"
+#include "modules/system/module_particles.h"
 #include "input/button.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
+#include "components/ia/comp_bt_patrol.h"
+#include "components/comp_transform.h"
 
 class CModuleLogic : public IModule
 {
@@ -65,16 +68,21 @@ private:
     void BootLuaSLB();
     void publishClasses();
     void loadScriptsInFolder(char * path);
+
+    bool started = false;
 };
 
 /* Auxiliar functions */
 CModuleGameConsole* getConsole();
 CModuleLogic* getLogic();
+CModuleParticles* getParticles();
 TCompTempPlayerController* getPlayerController();
 void execDelayedScript(const std::string& script, float delay);
 void pauseEnemies(bool pause);
 void deleteEnemies();
+bool isDebug();
 void pauseGame(bool pause);
+void pausePlayerToggle();
 void infiniteStamineToggle();
 void immortal();
 void inShadows();
@@ -88,6 +96,7 @@ void blendOutActiveCamera(float blendOutTime);
 void spawn(const std::string & name, const VEC3 & pos);
 void bind(const std::string& key, const std::string& script);
 void loadscene(const std::string &level);
+void unloadscene();
 void loadCheckpoint();
 void shadowsToggle();
 void debugToggle();
@@ -95,10 +104,18 @@ void postFXToggle();
 void renderNavmeshToggle();
 void playSound2D(const std::string& soundName);
 void exeShootImpactSound();
+void sleep(float time);
+void cinematicModeToggle();
 
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);
+void toggle_spotlight(const std::string& lightName);
+void toggleButtonCanBePressed(const std::string& buttonName, bool canBePressed);
 
 // Extra cvar commands
 void cg_drawfps(bool value);
 void cg_drawlights(int type);
+
+CEntity* toEntity(CHandle h);
+TCompTransform* toTransform(CHandle h);
+TCompAIPatrol* toAIPatrol(CHandle h);

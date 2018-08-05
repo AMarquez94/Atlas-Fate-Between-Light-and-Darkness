@@ -1,0 +1,5 @@
+{
+  "instanced_mesh" : "unit_quad_center_xy.mesh",
+  "instances_type" : "Instance",
+  "num_instances_reserved" : 8
+}

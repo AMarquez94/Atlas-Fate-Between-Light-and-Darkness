@@ -1,7 +1,7 @@
 {
 	"sizes": {
-		"default": 2048,
-		"transform": 2048
+		"default": 4096,
+		"transform": 4096
 	},
 	"init_order": {
 		"entity": 100,
@@ -14,6 +14,8 @@
 		"ai_patrol",
 		"ai_mimetic",
 		"ai_drone",
+		"ai_player",
+		"inhibitor",
 		"shooter",
 		"instance",
 		"dynamic_capsule",
@@ -23,6 +25,7 @@
 		"hierarchy",
 		"local_aabb",
 		"culling",
+		"sonar_controller",
 		"cone_of_light",
 		"rigidbody",
 		"collider",
@@ -46,7 +49,9 @@
 		"player_animator",
 		"player_input",
 		"movable_object",
+		"particles",
 		"emission_controller",
+		"fade_controller",
 		"rotator",
 		"lod"
 	],

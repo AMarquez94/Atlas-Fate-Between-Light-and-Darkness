@@ -1,0 +1,48 @@
+[
+  {
+    "entity":
+    {
+      "name": "pasarela_cupula"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "pasarela_cupula_low"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pasarela_cupula_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_pasarela_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_pasarela_cupula_low.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

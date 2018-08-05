@@ -35,7 +35,7 @@ private:
     bool goingInactive = false;
     VEC3 initialPos;
     VEC3 initialLookAt;
-    float rotationSpeedObservation = deg2rad(40.f);
+    float rotationSpeedObservation = deg2rad(50.f);
     float rotationSpeedPatrolling = deg2rad(80.f);
     float waitTimeInLasPlayerPos = 3.f;
     float chaseSpeed = 6.f;
@@ -88,6 +88,7 @@ public:
     BTNode::ERes actionWakeUp(float dt);
     BTNode::ERes actionJumpFloor(float dt);
     BTNode::ERes actionResetVariablesChase(float dt);
+    BTNode::ERes actionRotateTowardsPlayerWithNoise(float dt);
     BTNode::ERes actionChasePlayerWithNoise(float dt);
     BTNode::ERes actionMarkNoiseAsInactive(float dt);
     BTNode::ERes actionGenerateNavmeshNoiseSource(float dt);
@@ -123,11 +124,14 @@ public:
     bool conditionHasHeardNaturalNoise(float dt);
     bool conditionIsPlayerInFov(float dt);
     bool conditionNotGoingInactive(float dt);
+    bool conditionIsDestUnreachable(float dt);
 
     /* ASSERTS */
     bool assertNotPlayerInFovNorNoise(float dt);
     bool assertNotPlayerInFov(float dt);
     bool assertNotPlayerInFovNorArtificialNoise(float dt);
+    bool assertCantReachDest(float dt);
+    bool assertCanReachDest(float dt);
 
     const std::string getStateForCheckpoint();
 

@@ -18,7 +18,10 @@ struct PlayerStatus {
 };
 
 struct EntityStatus {
-
+    std::string entityName;
+    VEC3 entityPos;
+    QUAT entityRot;
+    bool saved = true;
 };
 
 class CCheckpoint {

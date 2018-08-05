@@ -1,0 +1,10 @@
+{
+  "technique": "pbr_instanced_volume.tech"
+  ,
+  "shadows": false
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/grass/grass.dds"
+  }
+}

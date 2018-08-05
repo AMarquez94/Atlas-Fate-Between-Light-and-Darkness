@@ -5,6 +5,8 @@
 #include "resources/resources_manager.h"
 #include "render/render_objects.h"
 #include "components/comp_transform.h"
+#include "cal3d/animcallback.h"
+#include "components/comp_name.h"
 
 DECL_OBJ_MANAGER("skeleton", TCompSkeleton);
 
@@ -29,6 +31,12 @@ MAT44 Cal2DX(CalVector trans, CalQuaternion rot) {
         ;
 }
 
+void TCompSkeleton::registerMsgs()
+{
+	DECL_MSG(TCompSkeleton, TMsgEntityCreated, onMsgEntityCreated);
+	DECL_MSG(TCompSkeleton, TMsgAnimationCallback, onMsgAnimationCallback);
+}
+
 // --------------------------------------------------------------------
 TCompSkeleton::TCompSkeleton()
     : cb_bones("Bones")
@@ -50,13 +58,21 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
     CalLoader::setLoadingMode(LOADER_ROTATE_X_AXIS | LOADER_INVERT_V_COORD);
 
     std::string skel_name = j.value("skeleton", "");
+
     float scaleFactor = j.value("scale", 1.0f);
 
+	if (j.count("callbacks")) {
+		auto& j_callbacks = j["callbacks"];
+		for (auto it = j_callbacks.begin(); it != j_callbacks.end(); ++it) {
+			std::string eis = it.value().value("animation","");
+			float timeToCall = it.value().value("time_to_call", 0.0f);
+		}
+	}
     assert(!skel_name.empty());
     auto res_skel = Resources.get(skel_name)->as< CGameCoreSkeleton >();
     CalCoreModel* core_model = const_cast<CGameCoreSkeleton*>(res_skel);
     model = new CalModel(core_model);
-
+	
     for (int i = 0; i < model->getCoreModel()->getCoreAnimationCount(); i++) {
 
         auto core_anim = model->getCoreModel()->getCoreAnimation(i);
@@ -71,10 +87,11 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
     actualCycleAnimId[0] = 0;
     model->getMixer()->blendCycle(actualCycleAnimId[0], 1.f, 0.f);
 
-  cb_bones.BonesScale = scaleFactor;
-  if (model->getSkeleton()->getCoreSkeleton()->getScale() != scaleFactor) {
-	  model->getCoreModel()->scale(scaleFactor);
-  }
+    cb_bones.BonesScale = scaleFactor;
+    if (model->getSkeleton()->getCoreSkeleton()->getScale() != scaleFactor) {
+	    model->getCoreModel()->scale(scaleFactor);
+    }
+
 
     // Do a time zero update just to have the bones in a correct place
     model->update(0.f);
@@ -118,8 +135,9 @@ void TCompSkeleton::debugInMenu() {
 
     ImGui::DragFloat("Scale", &scale, 0.01f, 0, 5.f);
     if (ImGui::SmallButton("Scale Model")) {
-        model->getSkeleton()->getCoreSkeleton()->scale(scale);
-        model->getCoreModel()->scale(scale);
+        //model->getSkeleton()->getCoreSkeleton()->scale(scale);
+        //model->getCoreModel()->scale(scale);
+		
     }
 
     if (core_anim)
@@ -387,10 +405,26 @@ std::vector<VEC3> TCompSkeleton::getFeetPositions() {
     return feetPositions;
 }
 
+VEC3 TCompSkeleton::getBonePosition(const std::string & name) {
+
+    VEC3 bonePos;
+    int bone_id = model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(name);
+    return Cal2DX(model->getSkeleton()->getBone(bone_id)->getTranslationAbsolute());
+}
+
 float TCompSkeleton::getAnimationDuration(int animId) {
 
     auto core_anim = model->getCoreModel()->getCoreAnimation(animId);
     if (core_anim)
         return core_anim->getDuration();
     return -1.f;
+}
+
+void TCompSkeleton::onMsgEntityCreated(const TMsgEntityCreated& msg) {
+	EngineAnimations.registerModelToHandle(this->model, CHandle(this).getOwner());
+}
+
+void TCompSkeleton::onMsgAnimationCallback(const TMsgAnimationCallback& msg) {
+	//Call the LUA function for the callback
+	EngineLogic.execScript(msg.function_to_call + "(" + CHandle(this).getOwner().asString() + ")");
 }

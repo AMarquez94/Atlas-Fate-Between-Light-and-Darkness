@@ -2,6 +2,7 @@
 #define INC_COMPONENT_RENDER_AO_H_
 
 #include "components/comp_base.h"
+#include "comp_render_blur.h"
 #include <vector>
 
 class CRenderToTexture;
@@ -10,7 +11,7 @@ class CRenderMesh;
 class CTexture;
 
 // ------------------------------------
-class TCompRenderAO : public TCompBase {
+class TCompRenderAO : public TCompRenderBlur {
 
 	CRenderToTexture*       rt_output = nullptr;
 	const CTexture*         white = nullptr;
@@ -18,9 +19,9 @@ class TCompRenderAO : public TCompBase {
 	const CRenderMesh*      mesh = nullptr;
 	bool                    enabled = true;
 	float                   amount = 1.f;
-	float                   radius = 0.09f;
+	float                   radius = 0.110f;
 	float                   zrange_discard = 0.100f;
-	float                   amount_spreading = 0.96f;
+	float                   amount_spreading = 0.960f;
 	int                     xres = 0;
 	int                     yres = 0;
 

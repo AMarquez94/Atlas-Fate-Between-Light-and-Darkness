@@ -1,0 +1,333 @@
+[
+  {
+    "entity":
+    {
+      "name": "zona_a_tubos"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_curvo001"
+      ,
+      "prefab": "data/prefabs/tubogrande_curvo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-78.7558 16.915 -96.4944"
+        ,
+        "rotation": "1.85446e-06 0.707107 1.48638e-06 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_curvo002"
+      ,
+      "prefab": "data/prefabs/tubogrande_curvo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-74.8853 17.0768 -96.6567"
+        ,
+        "rotation": "1.68587e-06 -1.65497e-06 0.707107 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_curvo003"
+      ,
+      "prefab": "data/prefabs/tubogrande_curvo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-74.5618 17.0768 -98.5278"
+        ,
+        "rotation": "0.707107 -0.707107 -2.01883e-06 2.10313e-06"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_curvo004"
+      ,
+      "prefab": "data/prefabs/tubogrande_curvo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-72.692 17.0768 -98.8526"
+        ,
+        "rotation": "2.02305e-06 -1.99214e-06 0.707107 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_curvo005"
+      ,
+      "prefab": "data/prefabs/tubogrande_curvo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-72.5302 16.9144 -104.723"
+        ,
+        "rotation": "0.707109 1.68588e-07 -1.68587e-07 -0.707105"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_curvo006"
+      ,
+      "prefab": "data/prefabs/tubogrande_curvo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-72.5302 11.0439 -104.723"
+        ,
+        "rotation": "-1.0 -2.38419e-07 0.0 -3.05573e-06"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_recto001"
+      ,
+      "prefab": "data/prefabs/tubogrande_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-78.9182 1.98001 -96.4944"
+        ,
+        "rotation": "3.09944e-06 -3.25841e-07 -2.3842e-07 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_recto002"
+      ,
+      "prefab": "data/prefabs/tubogrande_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-78.9182 3.98003 -96.4944"
+        ,
+        "rotation": "3.09944e-06 -3.25841e-07 -2.3842e-07 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_recto003"
+      ,
+      "prefab": "data/prefabs/tubogrande_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-78.9182 5.98004 -96.4944"
+        ,
+        "rotation": "3.09944e-06 -3.25841e-07 -2.3842e-07 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_recto004"
+      ,
+      "prefab": "data/prefabs/tubogrande_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-78.9182 7.98005 -96.4944"
+        ,
+        "rotation": "3.09944e-06 -3.25841e-07 -2.3842e-07 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_recto005"
+      ,
+      "prefab": "data/prefabs/tubogrande_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-78.9182 9.98007 -96.4944"
+        ,
+        "rotation": "3.09944e-06 -3.25841e-07 -2.3842e-07 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_recto006"
+      ,
+      "prefab": "data/prefabs/tubogrande_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-78.9182 11.9801 -96.4944"
+        ,
+        "rotation": "3.09944e-06 -3.25841e-07 -2.3842e-07 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_recto007"
+      ,
+      "prefab": "data/prefabs/tubogrande_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-78.9182 13.9801 -96.4944"
+        ,
+        "rotation": "3.09944e-06 -3.25841e-07 -2.3842e-07 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_recto008"
+      ,
+      "prefab": "data/prefabs/tubogrande_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-77.8203 17.0768 -96.4944"
+        ,
+        "rotation": "2.44452e-06 -2.41361e-06 0.707106 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_recto009"
+      ,
+      "prefab": "data/prefabs/tubogrande_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-72.5302 17.0768 -101.788"
+        ,
+        "rotation": "-0.499998 0.499998 0.500001 -0.500002"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_recto010"
+      ,
+      "prefab": "data/prefabs/tubogrande_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-72.5302 17.0768 -103.788"
+        ,
+        "rotation": "-0.499998 0.499998 0.500002 -0.500002"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_recto011"
+      ,
+      "prefab": "data/prefabs/tubogrande_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-72.5302 15.9788 -104.885"
+        ,
+        "rotation": "-0.707107 -2.63558e-06 0.707107 -3.00367e-06"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_recto012"
+      ,
+      "prefab": "data/prefabs/tubogrande_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-72.5302 13.9788 -104.885"
+        ,
+        "rotation": "-0.707107 -2.71987e-06 0.707107 -3.08796e-06"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_recto013"
+      ,
+      "prefab": "data/prefabs/tubogrande_recto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-72.5302 10.8822 -103.788"
+        ,
+        "rotation": "-0.499998 0.499998 0.500002 -0.500002"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubogrande_rectocierre001"
+      ,
+      "prefab": "data/prefabs/tubogrande_rectocierre.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-78.9182 -0.0200042 -96.4944"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+]

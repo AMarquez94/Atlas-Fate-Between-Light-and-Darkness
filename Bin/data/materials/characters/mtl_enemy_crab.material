@@ -1,5 +1,5 @@
 {
-  "technique": "pbr_skin.tech"
+  "technique": "pbr_skin_outline.tech"
   ,
   "shadows": true
   ,

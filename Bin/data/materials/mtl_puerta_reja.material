@@ -1,0 +1,16 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_puerta_reja_alb.dds"
+    ,
+    "metallic": "data/textures/tx_puerta_reja_met.dds"
+    ,
+    "roughness": "data/textures/tx_puerta_reja_rgh.dds"
+    ,
+    "normal": "data/textures/tx_puerta_reja_nml.dds"
+    ,
+    "height": "data/textures/tx_puerta_reja_hgt.dds"
+  }
+}

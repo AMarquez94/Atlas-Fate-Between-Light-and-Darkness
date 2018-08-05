@@ -5,6 +5,7 @@
 #include "cal3d2engine.h"
 #include "ctes.h"
 #include "utils/dirent.h"
+#include "cal3d/cal3d.h"
 
 #pragma comment(lib, "cal3d.lib" )
 
@@ -291,8 +292,21 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
     if (anim_id < 0)
       return false;
 
-    // read other metadata associated to the anim
-    // ...
+	// read other metadata associated to the anim
+	if (anim.count("callbacks")) {
+		auto& j_callbacks = anim["callbacks"];
+		for (auto it = j_callbacks.begin(); it != j_callbacks.end(); ++it) {
+			AnimationCallback *new_callback = new AnimationCallback();
+			float timeToCall = it.value().value("time_to_call", 0.0f);
+			std::string function_to_call = it.value().value("function_to_call", "");
+			new_callback->luaFunction = function_to_call;
+			CalCoreAnimation *core_anim = getCoreAnimation(anim_id);
+			core_anim->registerCallback(new_callback, timeToCall);
+			
+		}
+	}
+	
+
   }
 
   // Array of bone ids to debug (auto conversion from array of json to array of ints)

@@ -28,7 +28,7 @@ void TCompNoiseEmitter::registerMsgs()
 
 void TCompNoiseEmitter::onMsgScenePaused(const TMsgScenePaused & msg)
 {
-	paused = !paused;
+	paused = msg.isPaused;
 }
 
 void TCompNoiseEmitter::makeNoise(float noiseRadius, float timeToRepeat, bool isNoise, bool isOnlyOnce, bool isArtificial)

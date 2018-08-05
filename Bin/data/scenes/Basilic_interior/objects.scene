@@ -1,0 +1,56 @@
+[{
+		"entity": {
+			"name": "Objects and Triggers"
+		}
+	},
+  {
+    "entity":
+    {
+      "name": "BI_TriggerKill"
+      ,
+      "transform":
+      {
+        "pos": "150.409 0 -425.744"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider":
+      {
+        "shape": "box",
+		"size": "100 1 100",
+		"is_trigger" : true
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+	  ,
+	  "tags" : ["trigger_kill"]
+    }
+  },
+  {
+  "entity":
+    {
+      "name": "BI_ColliderVictory"
+      ,
+      "transform":
+      {
+        "pos": "158 34 -426.094238"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box",
+		"is_trigger" : true,
+        "size": "2 1 1"
+      },
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+	  ,
+	  "tags" : ["victory_trigger"]
+    }
+  }
+]

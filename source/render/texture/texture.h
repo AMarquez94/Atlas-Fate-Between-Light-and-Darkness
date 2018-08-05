@@ -28,15 +28,20 @@ public:
 		return shader_resource_view;
 	}
 
+    ID3D11ShaderResourceView* getShaderResourceViewNonConst() {
+        return shader_resource_view;
+    }
+
 	// Create a new texture from params
 	enum TCreateOptions {
 		CREATE_STATIC
 		, CREATE_DYNAMIC
 		, CREATE_RENDER_TARGET
+        , CREATE_COMPUTE_OUTPUT
 	};
 	bool create(int new_xres, int new_yres, DXGI_FORMAT new_color_format, TCreateOptions create_options = CREATE_STATIC);
 	void setDXParams(int new_xres, int new_yres, ID3D11Texture2D* new_texture, ID3D11ShaderResourceView* new_srv);
 
-
+    ID3D11UnorderedAccessView* uav = nullptr;
 };
 

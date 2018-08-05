@@ -31,13 +31,16 @@ public:
     Scene* createScene(const std::string& name);
     Scene* getSceneByName(const std::string& name);
     Scene* getActiveScene();
+    bool unLoadActiveScene();
+
+    std::string getDefaultSceneName();
 
 private:
     Scene * _activeScene;
     Scene * _persistentScene;
+    std::string _default_scene;
     std::map<std::string, Scene*> _scenes;
 
     void loadJsonScenes(const std::string filepath);
     void setActiveScene(Scene* scene);
-    bool unLoadActiveScene();
 };

@@ -1,0 +1,64 @@
+[
+	{
+		"entity": {
+			"name": "Particles_Master",
+			"transform": {
+				"pos": "5 0 0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "particles_fog",
+			"transform": {
+				"pos": "-14 1 8"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_fog2_30x30.particles"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "particles_fog",
+			"transform": {
+				"pos": "-11 1 110"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_fog2_30x30.particles"
+			}
+		}
+	},
+		{
+		"entity": {
+			"name": "particles_firefly",
+			"transform": {
+				"pos": "-30 2 67"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_dust.particles"
+			}
+		}
+	},
+		{
+		"entity": {
+			"name": "particles_firefly",
+			"transform": {
+				"pos": "-10 3 -2"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_dust.particles"
+			}
+		}
+	},	{
+		"entity": {
+			"name": "particles_firefly",
+			"transform": {
+				"pos": "-12 -5 -20"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_dust.particles"
+			}
+		}
+	}
+]

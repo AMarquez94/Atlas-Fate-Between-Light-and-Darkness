@@ -104,6 +104,22 @@ namespace FSM
 		std::string _animationName;
 	};
 
+    class SonarState : public IState
+    {
+        virtual void onStart(CContext& ctx) const override;
+        virtual void onFinish(CContext& ctx) const override;
+        virtual bool load(const json& jData);
+
+    private:
+        TargetCamera * _target = nullptr;
+        Noise * _noise = nullptr;
+        float _size = 1.f;
+        float _speed = 1.f;
+        float _radius = 0.3f;
+        float _rotation_speed = 1.f;
+        std::string _animationName;
+    };
+
 	class CrouchWalkState : public IState
 	{
 		virtual void onStart(CContext& ctx) const override;
@@ -165,6 +181,21 @@ namespace FSM
 		float _radius = 0.3f;
 		std::string _animationName;
 	};
+
+    class ExitMergeInterruptedState : public IState
+    {
+        virtual void onStart(CContext& ctx) const override;
+        virtual void onFinish(CContext& ctx) const override;
+        virtual bool load(const json& jData);
+
+    private:
+        TargetCamera * _target = nullptr;
+        Noise * _noise = nullptr;
+        float _size = 1.f;
+        float _speed = 1.f;
+        float _radius = 0.3f;
+        std::string _animationName;
+    };
 
 	class ExitMergeState : public IState
 	{
@@ -335,5 +366,19 @@ namespace FSM
     float _speed = 2.f;
     float _radius = 0.3f;
     std::string _animationName;
+  };
+
+  class PressingButtonState : public IState
+  {
+      virtual void onStart(CContext& ctx) const override;
+      virtual void onFinish(CContext& ctx) const override;
+      virtual bool load(const json& jData);
+  private:
+      TargetCamera * _target = nullptr;
+      Noise * _noise = nullptr;
+      float _size = 1.f;
+      float _speed = 2.f;
+      float _radius = 0.3f;
+      std::string _animationName;
   };
 }

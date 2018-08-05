@@ -14,14 +14,24 @@ uint32_t getNextUniqueMsgID() {
 }
 
 CEntity::~CEntity() {
+	sendMsg(TMsgEntityDestroyed());
   // Comp 0 is not valid
-	TMsgEntityDestroyed msg;
-	this->sendMsg(msg);
   for (uint32_t i = 1; i < CHandleManager::getNumDefinedTypes(); ++i) {
     CHandle h = comps[i];
     if (comps[i].isValid())
       comps[i].destroy();
   }
+}
+
+CHandle CEntity::getCompByName(const char * comp_name)
+{
+    auto om = CHandleManager::getByName(comp_name);
+    if (!om) {
+        return CHandle();
+    }
+    else {
+        return get(om->getType());
+    }
 }
 
 

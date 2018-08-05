@@ -83,15 +83,22 @@ float4 projectWavedShadow(float3 wPos) {
   // Use these coords to access the projector texture of the light dir
   float2 t_uv = pos_in_light_homo_space.xy;
   float distortionOffset = -global_world_time * 0.25;
-
-  float2 distort_uv = float2(t_uv.x + sin((t_uv.y + distortionOffset) * 20) * 0.025, t_uv.y + sin((t_uv.x + distortionOffset) * 20) * 0.025);
+	//float dist = pow(distance(wPos, player_next_pos), 0.3);
+	
+	float2 distort_uv = float2(t_uv.x + sin((t_uv.x - distortionOffset) * 20) * 0.025, t_uv.y 
+										+ 6 * sin((3 * t_uv.x - 46 * distortionOffset)) * 0.0035 * 6 * global_player_speed);
+		
+  //float2 distort_uv = float2(t_uv.x + sin((t_uv.y + distortionOffset) * 20) * 0.025, t_uv.y + sin((t_uv.x - distortionOffset * 2) * 20) * 0.025);
+	float4 noise0 = txNoiseMap.Sample(samBorderLinear, distort_uv).r; 
+	float4 noise1 = txNoiseMap2.Sample(samBorderLinear, distort_uv).r * 1.5; 
+	float4 value = lerp(noise0, noise1, global_player_speed);
+	
   float4 light_projector_color = txLightProjector.Sample(samBorderLinear, distort_uv);
+  //light_projector_color *= (txNoiseMap.Sample(samBorderLinear, distort_uv).r); 
+	light_projector_color *=  noise1; 
 
-  //if (pos_in_light_proj_space.z < 0.)
-    //light_projector_color = float4(0, 0, 0, 0);
-
-  // Fade to zero in the last 1% of the zbuffer of the light
-  light_projector_color *= smoothstep(1.0f, 0.15f, pos_in_light_homo_space.z);
+	// Fade to zero in the last 1% of the zbuffer of the light
+  light_projector_color *= smoothstep(1.f, 0.09f, pos_in_light_homo_space.z);
   return light_projector_color;
 }
 
@@ -107,5 +114,7 @@ float4 PS_Projection(in float4 iPosition : SV_Position) : SV_Target
 	float light_dir = light_dir_full / distance_to_light;
 	
 	float  att = (1. - smoothstep(0.40, 0.98, distance_to_light / light_radius)); // Att, point light
+
+	
 	return float4(0,0,0,1) *projectWavedShadow(wPos);
 }

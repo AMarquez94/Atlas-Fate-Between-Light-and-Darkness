@@ -1,0 +1,111 @@
+[
+  {
+    "entity":
+    {
+      "name": "zona_a_puertas_reja"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta_reja_grande"
+      ,
+      "transform":
+      {
+        "pos": "-48.5814 0.0649371 -98.4649"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_puerta_reja_grande.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puerta_reja.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_puerta_reja_grande.collider"
+        ,
+        "group": "wall"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_puerta_reja_puequena"
+      ,
+      "transform":
+      {
+        "pos": "-75.1826 0.0649372 -97.1861"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_puerta_reja_puequena.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puerta_reja.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_puerta_reja_pequena.collider"
+        ,
+        "group": "wall"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

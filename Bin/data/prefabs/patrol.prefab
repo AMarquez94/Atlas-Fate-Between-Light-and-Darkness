@@ -19,8 +19,13 @@
 						"data/materials/characters/mtl_enemy_patrol_post.material"
 					]
 				}
-
 			],
+			"fade_controller": {
+				"fade_color": "0.0 1.0 1.0 1.0",
+				"fade_time": 4.0,
+				"fall_speed": 0.3,
+				"material": "data/materials/characters/mtl_enemy_patrol_shade.material"
+			},
 			"skeleton": {
 				"skeleton": "data/skeletons/patrol/patrol.skeleton",
 				"scale": 1.4
@@ -60,7 +65,7 @@
 		"entity": {
 			"name": "FlashLight",
 			"transform": {
-				"pos": "0 1 0",
+				"pos": "0 0 0",
 				"rotation": "0 0 0 0"
 			},
 			"light_spot": {
@@ -71,7 +76,7 @@
 				"inner_cut": 70,
 				"outer_cut": 75,
 				"color": "0.3 1.0 1.0 1.0",
-				"intensity": 5.0,
+				"intensity": 2.5,
 				"shadows": true,
 				"casts_shadows": true,
 				"shadows_step": 1.0,
@@ -80,7 +85,7 @@
 			},
 			"hierarchy": {
 				"parent": "The Enemy",
-				"pos": "0 1 0.75",
+				"pos": "0 1.75 0.85",
 				"lookat": "0 0 3"
 			},
 			"cone_of_light": {
@@ -88,8 +93,10 @@
 				"ver_fov": 70,
 				"dist": 15,
 				"target": "The Player"
-			}
+			},
+			"abs_aabb": true
+			  ,
+			  "local_aabb": true
 		}
 	}
-
 ]

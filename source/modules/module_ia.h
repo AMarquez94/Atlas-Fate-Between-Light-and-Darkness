@@ -7,6 +7,7 @@ class IAIController;
 
 struct PatrolSharedBoard {
 	std::vector<CHandle> stunnedPatrols;
+    std::vector<CHandle> patrolsWithLight;
 };
 
 struct Waypoint {

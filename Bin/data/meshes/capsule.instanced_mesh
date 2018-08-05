@@ -1,5 +1,5 @@
 {
-  "instanced_mesh" : "data/meshes/capsula_low.mesh",
+  "instanced_mesh" : "data/meshes/capsule.mesh",
   "instances_type" : "Instance",
-  "num_instances_reserved" : 8
+  "num_instances_reserved" : 20
 }

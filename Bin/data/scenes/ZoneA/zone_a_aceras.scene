@@ -1,0 +1,163 @@
+[
+  {
+    "entity":
+    {
+      "name": "zone_a_aceras"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_acera_attach_2"
+      ,
+      "transform":
+      {
+        "pos": "-35.5 0.0 -94.6902"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_acera_attach_2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_acera.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_acera_attach"
+      ,
+      "transform":
+      {
+        "pos": "-35.5 0.0 -94.6902"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_acera_attach.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_acera.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_acera_attach_3"
+      ,
+      "transform":
+      {
+        "pos": "-35.5 0.0 -94.6902"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_acera_attach_3.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_acera.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_acera_attach_4"
+      ,
+      "transform":
+      {
+        "pos": "-35.5 0.0 -94.6902"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_acera_attach_4.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_acera.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_acera_attach_1"
+      ,
+      "transform":
+      {
+        "pos": "-35.5 0.0 -94.6902"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_acera_attach_1.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_acera.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

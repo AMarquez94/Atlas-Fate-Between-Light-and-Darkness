@@ -114,7 +114,7 @@
 				}, {
 					"variable_name": "autoChaseDistance",
 					"variable_type": "float",
-					"variable_value": 15.0,
+					"variable_value": 10.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "fov",
@@ -138,7 +138,7 @@
 				}, {
 					"variable_name": "autoChaseDistance",
 					"variable_type": "float",
-					"variable_value": 15.0,
+					"variable_value": 10.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "fov",
@@ -166,7 +166,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 35.0,
+					"variable_value": 25.0,
 					"variable_op": ""
 				}
 			],
@@ -195,7 +195,7 @@
 			"actionArg": [{
 					"variable_name": "rotationSpeed",
 					"variable_type": "float",
-					"variable_value": 90.0,
+					"variable_value": 300.0,
 					"variable_op": ""
 				}
 			],
@@ -208,7 +208,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 34.0,
+					"variable_value": 24.0,
 					"variable_op": ""
 				}
 			]
@@ -232,7 +232,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 35.0,
+					"variable_value": 25.0,
 					"variable_op": ""
 				}
 			],
@@ -318,12 +318,12 @@
 				}, {
 					"variable_name": "autoChaseDistance",
 					"variable_type": "float",
-					"variable_value": 15.0,
+					"variable_value": 10.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 35.0,
+					"variable_value": 25.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "dcrSuspectO_Meter",
@@ -333,7 +333,7 @@
 				}, {
 					"variable_name": "incrBaseSuspectO_Meter",
 					"variable_type": "float",
-					"variable_value": 0.5,
+					"variable_value": 0.4,
 					"variable_op": ""
 				}, {
 					"variable_name": "entityToChase",
@@ -413,6 +413,20 @@
 			"assert": ""
 		}, {
 			"parent": "manageGoingToAttack",
+			"name": "manageChasePlayer",
+			"type": "priority",
+			"condition": "",
+			"action": "",
+			"assert": ""
+		}, {
+			"parent": "manageChasePlayer",
+			"name": "manageUnreachableChase",
+			"type": "sequence",
+			"condition": "conditionIsDestUnreachable",
+			"action": "",
+			"assert": ""
+		}, {
+			"parent": "manageChasePlayer",
 			"name": "ChasePlayer",
 			"type": "action",
 			"condition": "",
@@ -425,7 +439,7 @@
 				}, {
 					"variable_name": "rotationSpeed",
 					"variable_type": "float",
-					"variable_value": 90.0,
+					"variable_value": 300.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "fov",
@@ -435,7 +449,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 35.0,
+					"variable_value": 25.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "distToAttack",
@@ -449,7 +463,50 @@
 					"variable_op": ""
 				}
 			],
+			"assert": "canReachDest"
+		}, {
+			"parent": "manageUnreachableChase",
+			"name": "warnClosestDrone",
+			"type": "action",
+			"condition": "",
+			"action": "actionWarnClosestDrone",
+			"actionArg": [{
+					"variable_name": "entityToChase",
+					"variable_type": "string",
+					"variable_value": "The Player",
+					"variable_op": ""
+				}
+			],
 			"assert": ""
+		}, {
+			"parent": "manageUnreachableChase",
+			"name": "rotateTowardsUnreachablePlayer",
+			"type": "action",
+			"condition": "",
+			"action": "actionRotateTowardsUnreachablePlayer",
+			"actionArg": [{
+					"variable_name": "fov",
+					"variable_type": "float",
+					"variable_value": 120.0,
+					"variable_op": ""
+				}, {
+					"variable_name": "maxChaseDistance",
+					"variable_type": "float",
+					"variable_value": 25.0,
+					"variable_op": ""
+				}, {
+					"variable_name": "rotationSpeed",
+					"variable_type": "float",
+					"variable_value": 300.0,
+					"variable_op": ""
+				}, {
+					"variable_name": "entityToChase",
+					"variable_type": "string",
+					"variable_value": "The Player",
+					"variable_op": ""
+				}
+			],
+			"assert": "assertCantReachDest"
 		}, {
 			"parent": "managePlayerAttacked",
 			"name": "attack",
@@ -509,7 +566,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 35.0,
+					"variable_value": 25.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "entityToChase",
@@ -543,7 +600,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 35.0,
+					"variable_value": 25.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "entityToChase",
@@ -569,6 +626,34 @@
 			"assert": ""
 		}, {
 			"parent": "managePatrolSeen",
+			"name": "manageGoToPatrol",
+			"type": "priority",
+			"condition": "",
+			"action": "",
+			"assert": ""
+		}, {
+			"parent": "manageGoToPatrol",
+			"name": "manageUnreachableGoToPatrol",
+			"type": "sequence",
+			"condition": "conditionIsDestUnreachable",
+			"action": "",
+			"assert": ""
+		}, {
+			"parent": "manageUnreachableGoToPatrol",
+			"name": "closestWptUnreachableGoToPatrol",
+			"type": "sequence",
+			"condition": "",
+			"action": "closestWpt",
+			"assert": ""
+		}, {
+			"parent": "manageGoToPatrol",
+			"name": "manageReachableGoToPatrol",
+			"type": "sequence",
+			"condition": "",
+			"action": "",
+			"assert": ""
+		}, {
+			"parent": "manageReachableGoToPatrol",
 			"name": "goToPatrol",
 			"type": "action",
 			"condition": "",
@@ -592,7 +677,7 @@
 			],
 			"assert": "assertPlayerNotInFov"
 		}, {
-			"parent": "managePatrolSeen",
+			"parent": "manageReachableGoToPatrol",
 			"name": "manageInPatrolPos",
 			"type": "priority",
 			"condition": "",

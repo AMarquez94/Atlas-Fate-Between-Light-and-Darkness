@@ -5,12 +5,20 @@ function printLogicLog()
 	logic:printLog()
 end
 
-function execDelayedScript(script, delay)
-	SLB.execDelayedScript(script, delay)
+function printAllScripts()
+	console:printAllScripts()
+end
+
+function execScriptDelayed(script, delay)
+	SLB.execScriptDelayed(script, delay)
 end
 
 function pauseGame(pause)
 	SLB.pauseGame(pause)
+end
+
+function pausePlayerToggle()
+	SLB.pausePlayerToggle()
 end
 
 function pauseEnemies(pause)
@@ -89,6 +97,10 @@ function loadscene(level)
 	SLB.loadscene(level)
 end
 
+function unloadscene()
+	SLB.unloadscene()
+end
+
 function cg_drawlights(type)
 	SLB.cg_drawlights(type)
 end
@@ -107,4 +119,16 @@ end
 
 function exeShootImpactSound()
 	SLB.exeShootImpactSound()
+end
+
+function cinematicModeToggle()
+	SLB.cinematicModeToggle()
+end
+
+function getEntityByName(entity_name)
+	SLB.getEntityByName(entity_name);
+end
+
+function isDebug()
+	SLB.isDebug();
 end

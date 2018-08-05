@@ -56,8 +56,7 @@ class TCompTempPlayerController : public TCompBase
         VEC4 colorMerge;
         VEC4 colorDead;
         VEC4 colorInhib;
-
-    }playerColor;
+    } playerColor;
 
     physx::PxFilterData * pxPlayerFilterData;
     physx::PxFilterData * pxShadowFilterData;
@@ -140,18 +139,18 @@ public:
     bool isInNoClipMode = false;
     float speedBoost = 1.0f;
     std::string dbCameraState;
+
     float stepTimer = 0.0f;
     bool stepRight = true;
-    //VEC3 debugDir = VEC3::Zero;
-    //VEC3 debugMyFront = VEC3::Zero;
 
     bool isMerged;
     bool isGrounded;
     bool isInhibited;
     bool canAttack;
     bool canRemoveInhibitor;
-    unsigned int initialTimesToPressInhibitorRemoveKey;
+
     unsigned int hitPoints;
+    unsigned int initialTimesToPressInhibitorRemoveKey;
 
     void debugInMenu();
     void renderDebug();
@@ -177,6 +176,7 @@ public:
     const bool onMergeTest(float dt);
     const bool groundTest(float dt);
     const bool canAttackTest(float dt);
+    const bool canSonarPunch();
 
     /* Auxiliar functions */
     void updateStamina(float dt);
@@ -187,6 +187,8 @@ public:
     bool isDead();
     void upButtonReselased();
     void invertAxis(VEC3 old_up, bool type);
+    void getDamage(float dmg);
+    void die();
 
     VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
 

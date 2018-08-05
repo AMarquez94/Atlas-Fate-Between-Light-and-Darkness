@@ -1,0 +1,111 @@
+[
+  {
+    "entity": {
+      "name": "Buttons"
+    }
+  },
+  {
+    "entity": {
+      "name": "Button End Scene Left",
+      "transform": {
+        "pos": "-14.6 13 -389.6",
+        "rotation": "0 0 0.707107 0.707107"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/Buttons/Button.mesh",
+          "materials": [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ],
+      "collider": {
+        "shape": "box",
+        "size": "0.3 0.3 0.3",
+        "group": "button"
+      },
+      "button": {
+        "script": "transition_basilic_courtyard_to_interior()"
+      },
+      "tags": [ "button" ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "OmniB1"
+      ,
+      "transform":
+      {
+        "pos": "-14.6 13 -389.6"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+       "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1
+        ,
+        "outer_cut": 1.5
+        ,
+        "color": "0 1 0 1.0"
+        ,
+        "intensity": 4
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 3.19533
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  },
+  {
+    "entity": {
+      "name": "Button End Scene Right",
+      "transform": {
+        "pos": "22.4 13 -389.6",
+        "rotation": "0 0 -0.707107 0.707107"
+      },
+      "render": [
+        {
+          "mesh": "data/meshes/Buttons/Button.mesh",
+          "materials": [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ],
+      "collider": {
+        "shape": "box",
+        "size": "0.3 0.3 0.3",
+        "group": "button"
+      },
+      "button": {
+        "script": "transition_basilic_courtyard_to_interior()"
+      },
+      "tags": [ "button" ]
+    }
+  }
+]

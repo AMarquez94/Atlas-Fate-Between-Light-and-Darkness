@@ -1,0 +1,32 @@
+[
+	{
+		"entity": {
+			"name": "Particles_Master",
+			"transform": {
+				"pos": "0 0 0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "particles_fog",
+			"transform": {
+				"pos": "0 1 0"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_fog2_80x80.particles"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "particles_fog",
+			"transform": {
+				"pos": "0 1 0"
+			},
+			"particles" : {
+				"core" : "data/particles/amb_dust_80x80.particles"
+			}
+		}
+	}
+]

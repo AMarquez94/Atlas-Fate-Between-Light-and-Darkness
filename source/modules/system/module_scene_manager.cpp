@@ -4,6 +4,11 @@
 #include "entity/entity.h"
 #include "entity/entity_parser.h"
 #include "modules/game/module_game_manager.h"
+#include "components/comp_group.h"
+#include "components/lighting/comp_light_point.h"
+#include "components/comp_render.h"
+#include "components/comp_transform.h"
+#include "render/texture/material.h"
 
 // for convenience
 using json = nlohmann::json;
@@ -18,7 +23,9 @@ void CModuleSceneManager::loadJsonScenes(const std::string filepath) {
     sceneCount = 0;
 
     json jboot = loadJson(filepath);
-    for (auto it = jboot.begin(); it != jboot.end(); ++it) {
+    _default_scene = jboot.value("default_scene","scene_intro");
+
+    for (auto it = std::next(jboot.begin(),1); it != jboot.end(); ++it) {
    
         sceneCount++;
         std::string scene_name = it.key();
@@ -28,7 +35,7 @@ void CModuleSceneManager::loadJsonScenes(const std::string filepath) {
         Scene * scene = createScene(scene_name);
         scene->groups_subscenes = groups_subscenes;
         auto& data = jboot[scene_name]["static_data"];
-        scene->navmesh = data.value("navmesh", "data/navmeshes/milestone2_navmesh.bin");
+        scene->navmesh = data.value("navmesh", "");
         scene->initial_script_name = data.value("initial_script", "");
 
         _scenes.insert(std::pair<std::string, Scene*>(scene_name, scene));
@@ -79,11 +86,20 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
         // Send a message to notify the scene loading.
         // Useful if we want to show a load splash menu
 
+        if (_activeScene != nullptr && _activeScene->name != name) {
+            /* If the new scene is different from the actual one => delete checkpoint */
+            CModuleGameManager gameManager = CEngine::get().getGameManager();
+            gameManager.deleteCheckpoint();
+        }
+
         unLoadActiveScene();
 
         // Load the subscene
         Scene * current_scene = it->second;
-        Engine.getNavmeshes().buildNavmesh(current_scene->navmesh);
+        if (current_scene->navmesh.compare("") != 0) {
+            Engine.getNavmeshes().buildNavmesh(current_scene->navmesh);
+        }
+
         for (auto& scene_name : current_scene->groups_subscenes) {
             dbg("Autoloading scene %s\n", scene_name.c_str());
             TEntityParseContext ctx;
@@ -110,10 +126,52 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
             h_e.sendMsg(msg);
         });
 
-				CModuleGameManager gameManager = CEngine::get().getGameManager();
-				/* TODO: Comprobar que se sigue en la misma escena */
-				gameManager.loadCheckpoint();
+		CModuleGameManager gameManager = CEngine::get().getGameManager();
+		/* TODO: Comprobar que se sigue en la misma escena */
+		gameManager.loadCheckpoint();
         Engine.getLogic().execEvent(EngineLogic.SCENE_START, current_scene->initial_script_name);
+
+        // TO REMOVE.
+        // Guarrada maxima color neones
+        {
+            CHandle p_group = getEntityByName("neones");
+            CEntity * parent_group = p_group;
+            if (p_group.isValid()) {
+                TCompGroup * neon_group = parent_group->get<TCompGroup>();
+                for (auto p : neon_group->handles) {
+                    CEntity * neon = p;
+                    TCompTransform * t_trans = neon->get<TCompTransform>();
+                    VEC3 pos = t_trans->getPosition();
+                    CEntity * to_catch = nullptr;
+                    float maxDistance = 9999999;
+                    getObjectManager<TCompLightPoint>()->forEach([pos, &to_catch, &maxDistance](TCompLightPoint* c) {
+                        CEntity * ent = CHandle(c).getOwner();
+                        TCompTransform * c_trans = ent->get<TCompTransform>();
+                        float t_distance = VEC3::Distance(pos, c_trans->getPosition());
+
+                        if (t_distance < maxDistance) {
+                            to_catch = ent;
+                            maxDistance = t_distance;
+                        }
+                    });
+
+                    if (to_catch != nullptr) {
+                        TCompLightPoint * point_light = to_catch->get<TCompLightPoint>();
+                        VEC4 neon_color = point_light->getColor();
+                        TCompRender * l_render = neon->get<TCompRender>();
+                        l_render->self_color = neon_color;
+                        l_render->self_intensity = 10.f;
+                        /*for (auto p : l_render->meshes) {
+                            for (auto t : p.materials) {
+                                CMaterial * mat = const_cast<CMaterial*>(t);
+                                mat->setSelfColor(VEC4(1,0,0,1));
+                                dbg("changed color");
+                            }
+                        }*/
+                    }
+                }
+            }
+        }
 
         return true;
     }
@@ -130,16 +188,19 @@ bool CModuleSceneManager::unLoadActiveScene() {
     // Warning: persistent data will need to avoid deletion
     if (_activeScene != nullptr) {
 
+        Engine.getLogic().execEvent(EngineLogic.SCENE_END, _activeScene->name);
+
         EngineEntities.destroyAllEntities();
         EngineCameras.deleteAllCameras();
         EngineIA.clearSharedBoards();
         EngineNavmeshes.destroyNavmesh();
         EngineInstancing.clearInstances();
+        EngineParticles.killAll();
 
         _activeScene->isLoaded = false;
         _activeScene = nullptr;
 
-				/* TODO: Delete checkpoint */
+	    /* TODO: Delete checkpoint */
 
         return true;
     }
@@ -163,4 +224,9 @@ void CModuleSceneManager::setActiveScene(Scene* scene) {
 
     //unLoadActiveScene();
     _activeScene = scene;
+}
+
+std::string CModuleSceneManager::getDefaultSceneName() {
+
+    return _default_scene;
 }

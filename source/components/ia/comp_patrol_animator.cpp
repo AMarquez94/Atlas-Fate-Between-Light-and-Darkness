@@ -20,7 +20,13 @@ void TCompPatrolAnimator::debugInMenu() {
 		playAnimation(EAnimation::ATTACK, speed);
 	}
 	if (ImGui::SmallButton("Death")) {
-		playAnimation(EAnimation::DEATH, speed);
+		playAnimation(EAnimation::DEAD, speed);
+	}
+	if (ImGui::SmallButton("Die")) {
+		playAnimation(EAnimation::DIE, speed);
+	}
+	if (ImGui::SmallButton("Attack")) {
+		playAnimation(EAnimation::ATTACK, speed);
 	}
 
 	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);
@@ -55,6 +61,36 @@ void TCompPatrolAnimator::initializeAnimations() {
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
 		"walk",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::DIE ,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"die",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::DEAD,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"dead",
+		"",
+		1.0f,
+		1.0f
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::ATTACK,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"attack",
 		"",
 		1.0f,
 		1.0f

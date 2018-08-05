@@ -3,12 +3,15 @@
 #include "components/comp_tags.h"
 #include <experimental/filesystem>
 #include "modules/game/module_game_manager.h"
+#include "modules/system/module_particles.h"
 #include <iostream>
 #include "components/lighting/comp_light_dir.h"
 #include "components/lighting/comp_light_spot.h"
 #include "components/lighting/comp_light_point.h"
 #include "components/postfx/comp_render_ao.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
+#include "components/object_controller/comp_button.h"
+#include "components/ia/comp_bt_patrol.h"
 
 bool CModuleLogic::start() {
 
@@ -21,11 +24,11 @@ bool CModuleLogic::stop() {
 
     delete(s);
     delete(m);
+    started = false;
     return true;
 }
 
 void CModuleLogic::update(float delta) {
-
     for (unsigned int i = 0; i < delayedScripts.size(); i++) {
         delayedScripts[i].remainingTime -= delta;
         if (delayedScripts[i].remainingTime <= 0) {
@@ -51,6 +54,8 @@ void CModuleLogic::BootLuaSLB() {
     publishClasses();
     //Load all the scripts
     loadScriptsInFolder("data/scripts");
+    //Mark LUA as started
+    started = true;
 }
 
 /* Load all scripts.lua in given path and its subfolders */
@@ -94,6 +99,10 @@ void CModuleLogic::publishClasses() {
         .comment("This is our wrapper of the logic class")
         .set("printLog", &CModuleLogic::printLog);
 
+    SLB::Class< CModuleParticles >("Particles", m)
+        .comment("This is our wrapper of the particles class")
+        .set("killAll", &CModuleParticles::killAll);
+
     SLB::Class< VEC3 >("VEC3", m)
         .constructor<float, float, float>()
         .comment("This is our wrapper of the VEC3 class")
@@ -102,23 +111,43 @@ void CModuleLogic::publishClasses() {
         .property("z", &VEC3::z);
 
     SLB::Class< TCompTempPlayerController >("PlayerController", m)
-      .comment("This is our wrapper of the player controller component")
-      .property("inhibited", &TCompTempPlayerController::isInhibited);
+        .comment("This is our wrapper of the player controller component")
+        .property("inhibited", &TCompTempPlayerController::isInhibited)
+        .set("die", &TCompTempPlayerController::die);
 
-    //SLB::Class < CHandle >("CHandle", m)
-    //    .comment("test")
-    //    .set("sendMsg", &CHandle::sendMsg);
+    SLB::Class<TCompLightSpot>("SpotLight", m)
+        .comment("This is our wrapper of the spotlight controller")
+        .property("isEnabled", &TCompLightSpot::isEnabled);
+
+    SLB::Class<TCompButton>("Button", m)
+        .comment("This is our wrapper of the button controller")
+        .property("canBePressed", &TCompButton::canBePressed);
+
+    SLB::Class<TCompAIPatrol>("AIPatrol", m)
+        .comment("This is our wrapper of the patrol controller")
+        .set("launchInhibitor", &TCompAIPatrol::launchInhibitor);
+
+    SLB::Class <CHandle>("CHandle", m)
+        .comment("CHandle wrapper")
+        .constructor()
+        .set("fromUnsigned", &CHandle::fromUnsigned);
+
+    SLB::Class <CEntity>("CEntity", m)
+        .comment("CEntity wrapper")
+        .set("getCompByName", &CEntity::getCompByName);
 
     /* Global functions */
 
     // Utilities
     m->set("getConsole", SLB::FuncCall::create(&getConsole));
     m->set("getLogic", SLB::FuncCall::create(&getLogic));
+    m->set("getParticles", SLB::FuncCall::create(&getParticles));
     m->set("getPlayerController", SLB::FuncCall::create(&getPlayerController));
-    m->set("execDelayedScript", SLB::FuncCall::create(&execDelayedScript));
+    m->set("execScriptDelayed", SLB::FuncCall::create(&execDelayedScript));
     m->set("pauseGame", SLB::FuncCall::create(&pauseGame));
     m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
     m->set("deleteEnemies", SLB::FuncCall::create(&deleteEnemies));
+    m->set("isDebug", SLB::FuncCall::create(&isDebug));
 
     // Camera
     m->set("blendInCamera", SLB::FuncCall::create(&blendInCamera));
@@ -126,6 +155,7 @@ void CModuleLogic::publishClasses() {
     m->set("blendOutActiveCamera", SLB::FuncCall::create(&blendOutActiveCamera));
 
     // Player hacks
+    m->set("pausePlayerToggle", SLB::FuncCall::create(&pausePlayerToggle));
     m->set("infiniteStamineToggle", SLB::FuncCall::create(&infiniteStamineToggle));
     m->set("immortal", SLB::FuncCall::create(&immortal));
     m->set("inShadows", SLB::FuncCall::create(&inShadows));
@@ -143,16 +173,26 @@ void CModuleLogic::publishClasses() {
     m->set("spawn", SLB::FuncCall::create(&spawn));
     m->set("bind", SLB::FuncCall::create(&bind));
     m->set("loadCheckpoint", SLB::FuncCall::create(&loadCheckpoint));
-    m->set("loadscene", SLB::FuncCall::create(&loadscene));
+    m->set("loadScene", SLB::FuncCall::create(&loadscene));
+    m->set("unloadScene", SLB::FuncCall::create(&unloadscene));
     m->set("cg_drawfps", SLB::FuncCall::create(&cg_drawfps));
     m->set("cg_drawlights", SLB::FuncCall::create(&cg_drawlights));
     m->set("renderNavmeshToggle", SLB::FuncCall::create(&renderNavmeshToggle));
     m->set("playSound2D", SLB::FuncCall::create(&playSound2D));
     m->set("exeShootImpactSound", SLB::FuncCall::create(&exeShootImpactSound));
-
+    m->set("sleep", SLB::FuncCall::create(&sleep));
+    m->set("cinematicModeToggle", SLB::FuncCall::create(&cinematicModeToggle));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
+    m->set("toggle_spotlight", SLB::FuncCall::create(&toggle_spotlight));
+    m->set("toggleButtonCanBePressed", SLB::FuncCall::create(&toggleButtonCanBePressed));
+    m->set("getEntityByName", SLB::FuncCall::create(&getEntityByName));
+
+    /* Handle converters */
+    m->set("toEntity", SLB::FuncCall::create(&toEntity));
+    m->set("toTransform", SLB::FuncCall::create(&toTransform));
+    m->set("toAIPatrol", SLB::FuncCall::create(&toAIPatrol));
 }
 
 /* Check if it is a fast format command */
@@ -172,6 +212,8 @@ void CModuleLogic::execCvar(std::string& script) {
 }
 
 CModuleLogic::ConsoleResult CModuleLogic::execScript(const std::string& script) {
+    if (!started)
+        return ConsoleResult{ false, "" };
 
     std::string scriptLogged = script;
     std::string errMsg = "";
@@ -216,18 +258,18 @@ bool CModuleLogic::execEvent(Events event, const std::string & params, float del
         break;
     case Events::SCENE_START:
         if (delay > 0) {
-          return execScriptDelayed("onSceneStart_" + params + "()", delay);
+            return execScriptDelayed("onSceneStart()", delay) && execScriptDelayed("onSceneStart_" + params + "()", delay);
         }
         else {
-          return execScript("onSceneStart_" + params + "()").success;
+            return execScript("onSceneStart()").success && execScript("onSceneStart_" + params + "()").success;
         }
         break;
     case Events::SCENE_END:
         if (delay > 0) {
-          return execScriptDelayed("onSceneEnd_" + params + "()", delay);
+            return execScriptDelayed("onSceneEnd()", delay) && execScriptDelayed("onSceneEnd_" + params + "()", delay);
         }
         else {
-          return execScript("onSceneEnd_" + params + "()").success;
+            return execScript("onSceneEnd()").success && execScript("onSceneEnd_" + params + "()").success;
         }
         break;
 
@@ -266,15 +308,18 @@ void CModuleLogic::printLog()
 /* Auxiliar functions */
 CModuleLogic * getLogic() { return EngineLogic.getPointer(); }
 
+CModuleParticles * getParticles() { return EngineParticles.getPointer(); }
+
 TCompTempPlayerController * getPlayerController()
 {
-  TCompTempPlayerController * playerController = nullptr;
-  CEntity* e = getEntityByName("The Player");
-  if (e) {
-    playerController = e->get<TCompTempPlayerController>();
-  }
-  return playerController;
+    TCompTempPlayerController * playerController = nullptr;
+    CEntity* e = getEntityByName("The Player");
+    if (e) {
+        playerController = e->get<TCompTempPlayerController>();
+    }
+    return playerController;
 }
+
 CModuleGameConsole * getConsole() { return EngineConsole.getPointer(); }
 
 void execDelayedScript(const std::string& script, float delay)
@@ -300,14 +345,23 @@ void deleteEnemies()
     }
 }
 
-void pauseGame(bool pause){
+bool isDebug()
+{
+    #ifdef NDEBUG
+        return false;
+    #else
+        return true;
+    #endif
+}
+
+void pauseGame(bool pause) {
 
     TMsgScenePaused msg;
     msg.isPaused = pause;
     EngineEntities.broadcastMsg(msg);
 }
 
-void infiniteStamineToggle(){
+void infiniteStamineToggle() {
     TMsgInfiniteStamina msg;
     CHandle h = getEntityByName("The Player");
     h.sendMsg(msg);
@@ -332,7 +386,7 @@ void speedBoost(const float speed) {
     h.sendMsg(msg);
 }
 
-void playerInvisible(){
+void playerInvisible() {
     CHandle h = getEntityByName("The Player");
     TMsgPlayerInvisible msg;
     h.sendMsg(msg);
@@ -353,7 +407,7 @@ void lanternsDisable(bool disable) {
     }
 }
 
-void blendInCamera(const std::string & cameraName, float blendInTime){
+void blendInCamera(const std::string & cameraName, float blendInTime) {
 
     CHandle camera = getEntityByName(cameraName);
     if (camera.isValid()) {
@@ -381,14 +435,31 @@ void spawn(const std::string & name, const VEC3 & pos) {
 }
 
 void loadscene(const std::string &level) {
-
     EngineScene.loadScene(level);
+}
+
+void unloadscene() {
+    EngineScene.unLoadActiveScene();
+}
+
+void sleep(float time) {
+    Sleep(time);
+}
+
+void cinematicModeToggle() {
+    TMsgPlayerAIEnabled msg;
+    CHandle h = getEntityByName("The Player");
+    h.sendMsg(msg);
+}
+
+void activateScene(const std::string& scene) {
+    //EngineScene.setActiveScene()
 }
 
 void loadCheckpoint()
 {
-  CModuleGameManager gameManager = CEngine::get().getGameManager();
-  gameManager.loadCheckpoint();
+    CModuleGameManager gameManager = CEngine::get().getGameManager();
+    gameManager.loadCheckpoint();
 }
 
 void shadowsToggle()
@@ -406,6 +477,15 @@ void postFXToggle() {
     });
 }
 
+void pausePlayerToggle() {
+    CEntity* p = getEntityByName("The Player");
+    TCompTempPlayerController* player = p->get<TCompTempPlayerController>();
+
+    TMsgScenePaused stopPlayer;
+    stopPlayer.isPaused = !player->paused;
+    EngineEntities.broadcastMsg(stopPlayer);
+}
+
 void debugToggle()
 {
     EngineRender.setDebugMode(!EngineRender.getDebugMode());
@@ -415,7 +495,7 @@ void destroy() {
 
 
 }
- 
+
 void bind(const std::string& key, const std::string& script) {
 
     int id = EngineInput.getButtonDefinition(key)->id;
@@ -446,12 +526,12 @@ void cg_drawlights(int type) {
 
     bool dir = false, spot = false, point = false;
 
-    switch (type){
-        case 1: dir = spot = point = true; break;
-        case 2: dir = true; break;
-        case 3: spot = true; break;
-        case 4: point = true; break;
-        default: break;
+    switch (type) {
+    case 1: dir = spot = point = true; break;
+    case 2: dir = true; break;
+    case 3: spot = true; break;
+    case 4: point = true; break;
+    default: break;
     }
 
     getObjectManager<TCompLightDir>()->forEach([&](TCompLightDir* c) {
@@ -465,6 +545,24 @@ void cg_drawlights(int type) {
     getObjectManager<TCompLightPoint>()->forEach([&](TCompLightPoint* c) {
         c->isEnabled = point;
     });
+}
+
+CEntity* toEntity(CHandle h)
+{
+    CEntity* e = h;
+    return e;
+}
+
+TCompTransform* toTransform(CHandle h)
+{
+    TCompTransform* t = h;
+    return t;
+}
+
+TCompAIPatrol* toAIPatrol(CHandle h)
+{
+    TCompAIPatrol* t = h;
+    return t;
 }
 
 void playSound2D(const std::string& soundName) {
@@ -482,4 +580,26 @@ void sendOrderToDrone(const std::string & droneName, VEC3 position)
     msg.position = position;
     msg.hOrderSource = getEntityByName("The Player");
     drone->sendMsg(msg);
+}
+
+void toggle_spotlight(const std::string & lightName)
+{
+    CHandle hLight = getEntityByName(lightName);
+    if (!hLight.isValid()) {
+        return;
+    }
+    CEntity* light = hLight;
+    TCompLightSpot* spotlight = light->get<TCompLightSpot>();
+    spotlight->isEnabled = !spotlight->isEnabled;
+}
+
+void toggleButtonCanBePressed(const std::string & buttonName, bool canBePressed)
+{
+    CHandle hButton = getEntityByName(buttonName);
+    if (!hButton.isValid()) {
+        return;
+    }
+    CEntity* button = hButton;
+    TCompButton* comp_button = button->get<TCompButton>();
+    comp_button->canBePressed = canBePressed;
 }

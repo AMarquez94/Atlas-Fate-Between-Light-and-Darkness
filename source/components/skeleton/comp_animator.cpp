@@ -74,15 +74,18 @@ bool TCompAnimator::playAnimationConverted(EAnimation animation, float speed) {
 
 	switch (animSet.animationType)
 	{
-	case EAnimationType::CYCLIC:
-		compSkeleton->changeCyclicAnimation(anim1id, aux_speed, anim2id, weight);
-		break;
-
-	case EAnimationType::ACTION:
-		compSkeleton->executeActionAnimation(anim1id, aux_speed);
-		break;
+	    case EAnimationType::CYCLIC:
+		    compSkeleton->changeCyclicAnimation(anim1id, aux_speed, anim2id, weight);
+            return true;
+		    break;
+	    case EAnimationType::ACTION:
+		    compSkeleton->executeActionAnimation(anim1id, aux_speed);
+            return true;
+		    break;
+        default:
+            return false;
+            break;
 	}
-
 }
 
 bool  TCompAnimator::isCyclic(EAnimation animation) {

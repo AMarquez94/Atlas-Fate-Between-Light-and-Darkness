@@ -10,8 +10,9 @@ public:
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
-	static void registerMsgs();
+    void setStatus(bool status);
 
+	static void registerMsgs();
 
 private:
 	const Input::TButton& btDebugPause = EngineInput["btDebugPause"];

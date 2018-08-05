@@ -3,7 +3,12 @@
 #include "components/comp_fsm.h"
 #include "components/comp_transform.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
+#include "components/comp_render.h"
+#include "render/render_objects.h"
+#include "render/render_utils.h"
 #include "comp_player_attack_cast.h"
+#include "components/lighting/comp_fade_controller.h"
+#include "components/ia/comp_bt_player.h"
 
 DECL_OBJ_MANAGER("player_input", TCompPlayerInput);
 
@@ -16,7 +21,8 @@ void TCompPlayerInput::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompPlayerInput::update(float dt)
 {
-    if (!paused && !isConsoleOn && !isInNoClipMode) {
+    TCompAIPlayer* playerAI = get<TCompAIPlayer>();
+    if (!paused && !isConsoleOn && !isInNoClipMode && !playerAI->enabledPlayerAI) {
         CEntity* e = CHandle(this).getOwner();
         _time += dt;
 
@@ -86,8 +92,13 @@ void TCompPlayerInput::update(float dt)
                     e->sendMsg(attack);
                     attackButtonJustPressed = true;
                 }
-                else {
-                    /* TODO: Sonda */
+                else if (c_my_player->canSonarPunch()) {
+
+                    TMsgSetFSMVariable sonar;
+                    sonar.variant.setName("sonar");
+                    sonar.variant.setBool(true);
+                    e->sendMsg(sonar);
+                    attackButtonJustPressed = true;
                 }
 
             }
@@ -96,10 +107,16 @@ void TCompPlayerInput::update(float dt)
                 attack.variant.setName("attack");
                 attack.variant.setBool(false);
                 e->sendMsg(attack);
+
+                TMsgSetFSMVariable sonar;
+                sonar.variant.setName("sonar");
+                sonar.variant.setBool(false);
+                e->sendMsg(sonar);
+
                 attackButtonJustPressed = false;
             }
 
-            if (EngineInput["btCrouch"].getsPressed())
+            if (EngineInput["btCrouch"].getsPressed() && !EngineInput["btRun"].isPressed())
             {
                 crouchButton = !crouchButton;
                 TMsgSetFSMVariable crouch;
@@ -117,6 +134,7 @@ void TCompPlayerInput::update(float dt)
             }
             {
                 TCompPlayerAttackCast* playerCast = e->get<TCompPlayerAttackCast>();
+                CHandle button = playerCast->getClosestButtonInRange();
                 //GrabEnemy messages
                 if (EngineInput["btAction"].getsPressed() && playerCast->closestEnemyToMerge().isValid()) {
                     _enemyStunned = true;
@@ -132,6 +150,18 @@ void TCompPlayerInput::update(float dt)
                     moveObject.variant.setBool(true);
                     e->sendMsg(moveObject);
                 }
+                else if (EngineInput["btAction"].getsPressed() && button.isValid()) {
+                    _buttonPressed = true;
+                    //Entering into ButtonPressedState
+                    TMsgSetFSMVariable activatingButton;
+                    activatingButton.variant.setName("buttonPressed");
+                    activatingButton.variant.setBool(true);
+                    e->sendMsg(activatingButton);
+
+                    TMsgButtonActivated msg;
+                    CEntity * b = button.getOwner();
+                    button.sendMsg(msg);
+                }
 
                 if (EngineInput["btAction"].getsReleased()) {
                     _enemyStunned = false;
@@ -144,6 +174,13 @@ void TCompPlayerInput::update(float dt)
                     buttonReleased.variant.setName("movingObject");
                     buttonReleased.variant.setBool(false);
                     e->sendMsg(buttonReleased);
+
+                    if (_buttonPressed) {
+                        TMsgSetFSMVariable activatingButton;
+                        activatingButton.variant.setName("buttonPressed");
+                        activatingButton.variant.setBool(false);
+                        e->sendMsg(activatingButton);
+                    }
                 }
 
                 if (_enemyStunned && !playerCast->closestEnemyToMerge().isValid()) {
