@@ -18,7 +18,7 @@ void TCompAnimator::initializeAnimations() {
 	
 }
 
-bool TCompAnimator::initializeAnimation(EAnimation animation, EAnimationType animationType, EAnimationSize animationSize, std::string animationName, std::string secondAnimationName, float weight, float speed) {
+bool TCompAnimator::initializeAnimation(EAnimation animation, EAnimationType animationType, EAnimationSize animationSize, std::string animationName, std::string secondAnimationName, float weight, float speed, bool rootMovement) {
 	
 	CEntity* e = ownHandle;
 	TCompSkeleton * compSkeleton = e->get<TCompSkeleton>();
@@ -40,6 +40,7 @@ bool TCompAnimator::initializeAnimation(EAnimation animation, EAnimationType ani
 	}
 	auxAnimSet.weight = weight;
 	auxAnimSet.speed = speed;
+	auxAnimSet.rootMovement = rootMovement;
 
 	stringToAnimationsMap[animationName] = animation;
 	animationsMap[animation] = auxAnimSet;
