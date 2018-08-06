@@ -71,7 +71,7 @@ void TCompShooter::update(float dt) {
                 shootingDir.y += urand(-precission, precission);
                 shootingDir.z += urand(-precission, precission);
                 shootingDir.Normalize();
-                EngineSound.playSound2D("drone_shot");
+                //EngineSound.playSound2D("drone_shot");    //TODO: shoot
                 Engine.get().getParticles().launchSystem("data/particles/muzzleflash.particles", CHandle(this).getOwner());
                 Engine.get().getParticles().launchSystem("data/particles/muzzleflash_glow.particles", CHandle(this).getOwner());
                 physx::PxRaycastHit hit;

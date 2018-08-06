@@ -62,24 +62,6 @@ public:
     void setBusVolume(const std::string& name, float volume);
     void setBusPaused(const std::string& name, bool pause);
 
-
-
-
-
-
-
-
-
-
-
-
-
-    //TODO: Delete
-    void setAmbientSound(const std::string & path);
-    void registerClip(const std::string & tag, const std::string & source, FMOD_MODE mode);
-    void registerClip3D(const std::string & tag, const std::string & source);
-    void playSound2D(const std::string& tag);
-    void exeStepSound();
-    void exeShootImpactSound();
-    //void registerEvent(const std::string & tag, const std::string & source);
+    CTransform getVirtual3DAttributes(const CTransform& soundTransform, CHandle reference = getEntityByName("The Player"));
+    //CTransform getVirtual3DAttributes(const VEC3& soundPos, const QUAT& soundRot, CHandle reference = getEntityByName("The Player"));
 };

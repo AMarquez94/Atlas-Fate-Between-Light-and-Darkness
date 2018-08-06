@@ -21,7 +21,7 @@ bool CModuleGameManager::start() {
 
     _player = getEntityByName("The Player");
     _fly_camera = getEntityByName("test_camera_flyover");
-    ambient = EngineSound.playEvent("event:/Ambiance/Intro_Ambiance");
+    //ambient = EngineSound.playEvent("event:/Ambiance/Intro_Ambiance");
 
     lastCheckpoint = new CCheckpoint();
     _currentstate = PauseState::none;

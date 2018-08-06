@@ -4,6 +4,7 @@
 #include <experimental/filesystem>
 #include "modules/game/module_game_manager.h"
 #include "modules/system/module_particles.h"
+#include "sound/soundEvent.h"
 #include <iostream>
 #include "components/lighting/comp_light_dir.h"
 #include "components/lighting/comp_light_spot.h"
@@ -12,6 +13,7 @@
 #include "components/player_controller/comp_player_tempcontroller.h"
 #include "components/object_controller/comp_button.h"
 #include "components/ia/comp_bt_patrol.h"
+#include "components/comp_audio.h"
 
 bool CModuleLogic::start() {
 
@@ -110,6 +112,14 @@ void CModuleLogic::publishClasses() {
         .property("y", &VEC3::y)
         .property("z", &VEC3::z);
 
+    SLB::Class< QUAT >("QUAT", m)
+        .constructor<float, float, float, float>()
+        .comment("This is our wrapper of the QUAT class")
+        .property("x", &QUAT::x)
+        .property("y", &QUAT::y)
+        .property("z", &QUAT::z)
+        .property("w", &QUAT::w);
+
     SLB::Class< TCompTempPlayerController >("PlayerController", m)
         .comment("This is our wrapper of the player controller component")
         .property("inhibited", &TCompTempPlayerController::isInhibited)
@@ -135,6 +145,28 @@ void CModuleLogic::publishClasses() {
     SLB::Class <CEntity>("CEntity", m)
         .comment("CEntity wrapper")
         .set("getCompByName", &CEntity::getCompByName);
+
+    SLB::Class <SoundEvent>("SoundEvent", m)
+        .comment("SoundEvent wrapper")
+        .set("isValid", &SoundEvent::isValid)
+        .set("restart", &SoundEvent::restart)
+        .set("stop", &SoundEvent::stop)
+        .set("setPaused", &SoundEvent::setPaused)
+        .set("setVolume", &SoundEvent::setVolume)
+        .set("setPitch", &SoundEvent::setPitch)
+        .set("setParameter", &SoundEvent::setParameter)
+        .set("getPaused", &SoundEvent::getPaused)
+        .set("getVolume", &SoundEvent::getVolume)
+        .set("getPitch", &SoundEvent::getPitch)
+        .set("getParameter", &SoundEvent::getParameter)
+        .set("is3D", &SoundEvent::is3D)
+        .set("isRelativeToCameraOnly", &SoundEvent::isRelativeToCameraOnly)
+        .set("setIsRelativeToCameraOnly", &SoundEvent::setIsRelativeToCameraOnly);
+
+    SLB::Class<TCompAudio>("Audio", m)
+        .comment("This is our wrapper of the audio controller")
+        .set("playEvent", &TCompAudio::playEvent);
+
 
     /* Global functions */
 
@@ -166,6 +198,10 @@ void CModuleLogic::publishClasses() {
     // postfx hacks
     m->set("postFXToggle", SLB::FuncCall::create(&postFXToggle));
 
+    // sounds
+    m->set("playEvent", SLB::FuncCall::create(&playEvent));
+    m->set("stopAllAudioComponents", SLB::FuncCall::create(&stopAllAudioComponents));
+
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
     m->set("shadowsToggle", SLB::FuncCall::create(&shadowsToggle));
@@ -178,8 +214,6 @@ void CModuleLogic::publishClasses() {
     m->set("cg_drawfps", SLB::FuncCall::create(&cg_drawfps));
     m->set("cg_drawlights", SLB::FuncCall::create(&cg_drawlights));
     m->set("renderNavmeshToggle", SLB::FuncCall::create(&renderNavmeshToggle));
-    m->set("playSound2D", SLB::FuncCall::create(&playSound2D));
-    m->set("exeShootImpactSound", SLB::FuncCall::create(&exeShootImpactSound));
     m->set("sleep", SLB::FuncCall::create(&sleep));
     m->set("cinematicModeToggle", SLB::FuncCall::create(&cinematicModeToggle));
 
@@ -193,6 +227,7 @@ void CModuleLogic::publishClasses() {
     m->set("toEntity", SLB::FuncCall::create(&toEntity));
     m->set("toTransform", SLB::FuncCall::create(&toTransform));
     m->set("toAIPatrol", SLB::FuncCall::create(&toAIPatrol));
+    m->set("toAudio", SLB::FuncCall::create(&toAudio));
 }
 
 /* Check if it is a fast format command */
@@ -452,6 +487,17 @@ void cinematicModeToggle() {
     h.sendMsg(msg);
 }
 
+SoundEvent playEvent(const std::string & name)
+{
+    return EngineSound.playEvent(name);
+}
+
+void stopAllAudioComponents()
+{
+    TMsgStopAudioComponent msg;
+    EngineEntities.broadcastMsg(msg);
+}
+
 void activateScene(const std::string& scene) {
     //EngineScene.setActiveScene()
 }
@@ -565,12 +611,10 @@ TCompAIPatrol* toAIPatrol(CHandle h)
     return t;
 }
 
-void playSound2D(const std::string& soundName) {
-    EngineSound.playSound2D(soundName);
-}
-
-void exeShootImpactSound() {
-    EngineSound.exeShootImpactSound();
+TCompAudio* toAudio(CHandle h)
+{
+    TCompAudio* t = h;
+    return t;
 }
 
 void sendOrderToDrone(const std::string & droneName, VEC3 position)

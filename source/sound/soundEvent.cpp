@@ -112,14 +112,19 @@ bool SoundEvent::is3D() const {
     return value;
 }
 
-void SoundEvent::set3DAttributes(const CTransform& worldTrans) {
+void SoundEvent::set3DAttributes(const CTransform& worldTrans, const VEC3& vel) {
+    set3DAttributes(worldTrans.getPosition(), worldTrans.getFront(), worldTrans.getUp(), vel);
+}
+
+void SoundEvent::set3DAttributes(const VEC3 & pos, const VEC3 & front, const VEC3 & up, const VEC3 & vel)
+{
     auto event = EngineSound.getEventInstance(myID);
     if (event) {
         FMOD_3D_ATTRIBUTES attr;
-        attr.position = VEC3_TO_FMOD(worldTrans.getPosition());
-        attr.forward = VEC3_TO_FMOD(worldTrans.getFront());
-        attr.up = VEC3_TO_FMOD(worldTrans.getUp());
-        attr.velocity = VEC3_TO_FMOD(VEC3::Zero);
+        attr.position = VEC3_TO_FMOD(pos);
+        attr.forward = VEC3_TO_FMOD(front);
+        attr.up = VEC3_TO_FMOD(up);
+        attr.velocity = VEC3_TO_FMOD(vel);
         event->set3DAttributes(&attr);
     }
 }

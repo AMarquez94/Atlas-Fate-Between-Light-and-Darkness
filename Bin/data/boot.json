@@ -30,7 +30,15 @@
 			"data/scenes/prova_intro.scene",
 			"data/scenes/intro_pozo.scene",
 			"data/scenes/intro_barra_capsulas.scene",
-			"data/scenes/Intro/intro_suelo.scene"
+			"data/scenes/Intro/intro_suelo.scene",
+			
+			
+			
+			
+			"data/scenes/Intro/debug_speaker.scene"
+			
+			
+			
 
 		]
 	},

@@ -2,6 +2,7 @@
 #include "module_sound.h"
 #include <experimental/filesystem>
 #include "sound/fmod/fmod_errors.h"
+#include "components/comp_tags.h"
 
 #pragma comment(lib, "fmod64_vc.lib" )
 #pragma comment(lib, "fmodstudio64_vc.lib")
@@ -9,34 +10,37 @@
 /* Load all sounds in given path and its subfolders */
 void CModuleSound::registerAllSoundClipsInPath(char * path)
 {
-    try {
-        if (std::experimental::filesystem::exists(path) && std::experimental::filesystem::is_directory(path)) {
 
-            std::experimental::filesystem::recursive_directory_iterator iter(path);
-            std::experimental::filesystem::recursive_directory_iterator end;
+    //TODO: Register all banks?
+    
+    //try {
+    //    if (std::experimental::filesystem::exists(path) && std::experimental::filesystem::is_directory(path)) {
 
-            while (iter != end) {
-                std::string filePath = iter->path().string();
-                std::string extension = iter->path().extension().string();
-                if ((extension == ".wav" || extension == ".ogg") &&
-                    !std::experimental::filesystem::is_directory(iter->path())) {
-                    std::string fileName = iter->path().filename().string();
-                    size_t lastindex = fileName.find_last_of(".");
-                    std::string filenameWithoutExtension = fileName.substr(0, lastindex);
-                    dbg("File : %s loaded\n", filePath.c_str());
-                    registerClip(filenameWithoutExtension, filePath, FMOD_LOOP_OFF | FMOD_2D | FMOD_CREATESAMPLE);   //TODO: Move to 3D instead of 2D
-                }
-                std::error_code ec;
-                iter.increment(ec);
-                if (ec) {
-                    fatal("Error while accessing %s: %s\n", iter->path().string().c_str(), ec.message().c_str());
-                }
-            }
-        }
-    }
-    catch (std::system_error & e) {
-        fatal("Exception %s while loading scripts\n", e.what());
-    }
+    //        std::experimental::filesystem::recursive_directory_iterator iter(path);
+    //        std::experimental::filesystem::recursive_directory_iterator end;
+
+    //        while (iter != end) {
+    //            std::string filePath = iter->path().string();
+    //            std::string extension = iter->path().extension().string();
+    //            if ((extension == ".wav" || extension == ".ogg") &&
+    //                !std::experimental::filesystem::is_directory(iter->path())) {
+    //                std::string fileName = iter->path().filename().string();
+    //                size_t lastindex = fileName.find_last_of(".");
+    //                std::string filenameWithoutExtension = fileName.substr(0, lastindex);
+    //                dbg("File : %s loaded\n", filePath.c_str());
+    //                registerClip(filenameWithoutExtension, filePath, FMOD_LOOP_OFF | FMOD_2D | FMOD_CREATESAMPLE);   //TODO: Move to 3D instead of 2D
+    //            }
+    //            std::error_code ec;
+    //            iter.increment(ec);
+    //            if (ec) {
+    //                fatal("Error while accessing %s: %s\n", iter->path().string().c_str(), ec.message().c_str());
+    //            }
+    //        }
+    //    }
+    //}
+    //catch (std::system_error & e) {
+    //    fatal("Exception %s while loading scripts\n", e.what());
+    //}
 }
 
 unsigned int CModuleSound::sNextID = 0;
@@ -328,6 +332,8 @@ SoundEvent CModuleSound::playEvent(const std::string & name)
     return soundEvent;
 }
 
+
+
 void CModuleSound::setListener(CHandle h_listener /*const CTransform & transform*/)
 {
     FMOD_3D_ATTRIBUTES attr;
@@ -379,6 +385,43 @@ void CModuleSound::setBusPaused(const std::string & name, bool pause)
 }
 
 
+CTransform CModuleSound::getVirtual3DAttributes(const CTransform& soundTransform, CHandle reference)
+{
+    if (h_listener.isValid()) {
+        CEntity* e_listener = EngineSound.getListener();
+        TCompTags* listener_tags = e_listener->get<TCompTags>();
+
+        if (listener_tags && listener_tags->hasTag(getID("main_camera"))) {
+            CEntity* e_reference = reference;
+            TCompTransform* ppos = e_reference->get<TCompTransform>();
+            TCompTransform* listenerPos = e_listener->get<TCompTransform>();
+
+            float distance = VEC3::Distance(ppos->getPosition(), soundTransform.getPosition());
+            VEC3 direction = (soundTransform.getPosition() - listenerPos->getPosition()).Normalized();
+            VEC3 virtualPos = listenerPos->getPosition() + direction * distance;
+
+            CTransform newTransform;
+            newTransform.setPosition(virtualPos);
+            newTransform.setRotation(soundTransform.getRotation());
+            return newTransform;
+        }
+        else {
+            return soundTransform;
+        }
+    }
+    else {
+        return soundTransform;
+    }
+}
+
+//CTransform CModuleSound::getVirtual3DAttributes(const VEC3 & soundPos, const QUAT & soundRot, CHandle reference)
+//{
+//    CTransform newT;
+//    newT.setPosition(soundPos);
+//    newT.setRotation(soundRot);
+//    return getVirtual3DAttributes(newT, reference);
+//}
+
 FMOD::Studio::EventInstance * CModuleSound::getEventInstance(unsigned int id)
 {
     FMOD::Studio::EventInstance* event = nullptr;
@@ -389,77 +432,3 @@ FMOD::Studio::EventInstance * CModuleSound::getEventInstance(unsigned int id)
     }
     return event;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//TODO: DELETE
-
-// To be replaced, hardcoded by now
-void CModuleSound::setAmbientSound(const std::string & path) {
-
-    //if (_ambiance != nullptr) {
-    //	_ambiance->sound->release();
-    //}
-
-    //_ambiance = new SoundClip();
-    //_ambiance->result = _system->createStream(path.c_str(), FMOD_LOOP_NORMAL | FMOD_2D, 0, &_ambiance->sound); // Carga de disco, decodificarse
-    //_ambiance->result = _system->playSound(_ambiance->sound, 0, false, &_ambiance->channel);
-    //_ambiance->channel->setVolume(0.5f);
-}
-
-void CModuleSound::registerClip(const std::string & tag, const std::string & source, FMOD_MODE mode = 0) {
-
-    //SoundClip * clip = new SoundClip();
-    //clip->result = _system->createStream(source.c_str(), mode, 0, &clip->sound); // Carga de disco, decodificarse
-    //clip->tag = tag;
-
-    //_clips.insert(std::pair<std::string, SoundClip*>(tag, clip));
-}
-
-void CModuleSound::registerClip3D(const std::string & tag, const std::string & source) {
-
-    //SoundClip3D * clip = new SoundClip3D();
-    //clip->result = _system->createStream(source.c_str(), FMOD_3D, 0, &clip->sound); // Carga de disco, decodificarse
-    //clip->tag = tag;
-
-    //_clips.insert(std::pair<std::string, SoundClip*>(tag, clip));
-}
-
-void CModuleSound::playSound2D(const std::string & tag)
-{
-    //assert(_clips.find(tag) != _clips.end());
-    //_system->playSound(_clips[tag]->sound, 0, false, &_clips[tag]->channel);
-}
-
-//TO-DO: Borrar todo esto y implementarlo como lo haria una persona con dos dedos de frente
-void CModuleSound::exeStepSound() {
-
-    /*int index = (int)(((float)rand() / RAND_MAX) * 7) + 1;
-    playSound2D("step" + std::to_string(index));
-    float volume = 0.75f;
-    if (EngineInput["btRun"].isPressed()) volume = 1.0f;
-    if (EngineInput["btCrouch"].isPressed()) volume = 0.5f;
-    _clips["step" + std::to_string(index)]->channel->setVolume(volume);*/
-}
-
-void CModuleSound::exeShootImpactSound()
-{
-  /*  int index = (int)(((float)rand() / RAND_MAX) * 2) + 1;
-    playSound2D("bullet_impact" + std::to_string(index));*/
-}
-
-

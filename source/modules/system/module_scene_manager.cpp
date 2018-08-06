@@ -129,7 +129,7 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
 		CModuleGameManager gameManager = CEngine::get().getGameManager();
 		/* TODO: Comprobar que se sigue en la misma escena */
 		gameManager.loadCheckpoint();
-        Engine.getLogic().execEvent(EngineLogic.SCENE_START, current_scene->initial_script_name);
+        Engine.getLogic().execEvent(EngineLogic.SCENE_START, current_scene->name);
 
         // TO REMOVE.
         // Guarrada maxima color neones

@@ -12,6 +12,8 @@ private:
     std::vector<SoundEvent> my2DEvents;
     std::vector<SoundEvent> my3DEvents;
 
+    void onStopAudioComponent(const TMsgStopAudioComponent& msg);
+
 public:
 
     void debugInMenu();
@@ -21,6 +23,4 @@ public:
 
     SoundEvent playEvent(const std::string& name, bool relativeToPlayer = true);
     void stopAllEvents();
-
-    CTransform getVirtual3DAttributes();
 };

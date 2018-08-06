@@ -4,6 +4,21 @@
 
 DECL_OBJ_MANAGER("audio", TCompAudio);
 
+void TCompAudio::onStopAudioComponent(const TMsgStopAudioComponent & msg)
+{
+    for (auto audio : my2DEvents) {
+        if (audio.isValid()) {
+            audio.stop(true);
+        }
+    }
+
+    for (auto audio : my3DEvents) {
+        if (audio.isValid()) {
+            audio.stop(true);
+        }
+    }
+}
+
 void TCompAudio::debugInMenu()
 {
     for (auto audio : my3DEvents) {
@@ -51,7 +66,7 @@ void TCompAudio::update(float dt)
                 event.set3DAttributes(*mypos);
             }
             else {
-                event.set3DAttributes(getVirtual3DAttributes());
+                event.set3DAttributes(EngineSound.getVirtual3DAttributes(*mypos));
             }
         }
     }
@@ -59,6 +74,7 @@ void TCompAudio::update(float dt)
 
 void TCompAudio::registerMsgs()
 {
+    DECL_MSG(TCompAudio, TMsgStopAudioComponent, onStopAudioComponent);
 }
 
 SoundEvent TCompAudio::playEvent(const std::string & name, bool relativeToPlayer)
@@ -68,7 +84,7 @@ SoundEvent TCompAudio::playEvent(const std::string & name, bool relativeToPlayer
         TCompTransform* mypos = get<TCompTransform>();
         e.setIsRelativeToCameraOnly(!relativeToPlayer);
         if (relativeToPlayer) {
-            e.set3DAttributes(getVirtual3DAttributes());
+            e.set3DAttributes(EngineSound.getVirtual3DAttributes(*mypos));
         }
         else {
             e.set3DAttributes(*mypos);
@@ -92,37 +108,4 @@ void TCompAudio::stopAllEvents()
 
     my2DEvents.clear();
     my3DEvents.clear();
-}
-
-CTransform TCompAudio::getVirtual3DAttributes()
-{
-    TCompTransform* mypos = get<TCompTransform>();
-
-    CHandle h_listener = EngineSound.getListener();
-    if (h_listener.isValid()) {
-        CEntity* e_listener = EngineSound.getListener();
-        TCompTags* listener_tags = e_listener->get<TCompTags>();
-
-        if (listener_tags && listener_tags->hasTag(getID("main_camera"))) {
-            CEntity* player = getEntityByName("The Player");
-            TCompTransform* ppos = player->get<TCompTransform>();
-            TCompTransform* listenerPos = e_listener->get<TCompTransform>();
-
-            float distance = VEC3::Distance(ppos->getPosition(), mypos->getPosition());
-            VEC3 direction = (mypos->getPosition() - listenerPos->getPosition()).Normalized();
-            VEC3 virtualPos = listenerPos->getPosition() + direction * distance;
-
-            CTransform newTransform;
-            newTransform.setPosition(virtualPos);
-            newTransform.setRotation(mypos->getRotation());
-            newTransform.setScale(mypos->getScale());
-            return newTransform;
-        }
-        else {
-            return *mypos;
-        }
-    }
-    else {
-        return *mypos;
-    }
 }

@@ -34,7 +34,8 @@ public:
     float getParameter(const std::string& name);
 
     bool is3D() const;
-    void set3DAttributes(const CTransform& transform);
+    void set3DAttributes(const CTransform& transform, const VEC3& vel = VEC3::Zero);
+    void set3DAttributes(const VEC3& pos, const VEC3& front, const VEC3& up, const VEC3& vel = VEC3::Zero);
     CTransform get3DAttributes();
 
     bool isRelativeToCameraOnly() const;

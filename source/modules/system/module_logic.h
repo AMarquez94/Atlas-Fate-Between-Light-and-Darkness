@@ -9,6 +9,7 @@
 #include "components/player_controller/comp_player_tempcontroller.h"
 #include "components/ia/comp_bt_patrol.h"
 #include "components/comp_transform.h"
+#include "components/comp_audio.h"
 
 class CModuleLogic : public IModule
 {
@@ -102,10 +103,12 @@ void shadowsToggle();
 void debugToggle();
 void postFXToggle();
 void renderNavmeshToggle();
-void playSound2D(const std::string& soundName);
-void exeShootImpactSound();
 void sleep(float time);
 void cinematicModeToggle();
+
+/* Sounds */
+SoundEvent playEvent(const std::string& name);
+void stopAllAudioComponents();
 
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);
@@ -119,3 +122,4 @@ void cg_drawlights(int type);
 CEntity* toEntity(CHandle h);
 TCompTransform* toTransform(CHandle h);
 TCompAIPatrol* toAIPatrol(CHandle h);
+TCompAudio* toAudio(CHandle h);

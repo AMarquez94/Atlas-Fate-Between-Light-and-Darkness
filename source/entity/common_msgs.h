@@ -265,6 +265,10 @@ struct TMsgPlayerAIEnabled {
     DECL_MSG_ID();
 };
 
+struct TMsgStopAudioComponent {
+    DECL_MSG_ID();
+};
+
 //struct TMsgSpotlightsToggle {
 //    DECL_MSG_ID();
 //};
