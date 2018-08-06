@@ -573,7 +573,20 @@
 		"blend": "additive_by_src_alpha",
 		"z": "test_but_no_write",
 		"textures": {
-			"noise": "data/textures/tx_random_scan.dds"
+			"noise": "data/textures/default_white.dds"
+		}
+	},
+	"pbr_hologram_sw_model": {
+		"vs_file": "data/shaders/hologram.fx",
+		"ps_file": "data/shaders/hologram.fx",
+		"vs_entry_point": "VS_GBuffer_SWHologram_Model",
+		"ps_entry_point": "PS_GBuffer_SWHologram_Model",
+		"vertex_type": "PosNUvUvT",
+		"category": "hologram",
+		"blend": "additive_by_src_alpha",
+		"z": "test_but_no_write",
+		"textures": {
+			"noise": "data/textures/tx_flicker_soft.dds"
 		}
 	}
 }
