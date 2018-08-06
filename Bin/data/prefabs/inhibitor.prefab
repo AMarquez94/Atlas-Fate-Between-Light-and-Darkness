@@ -4,7 +4,7 @@
 		"transform": {
 			"pos": "0 0 0",
 			"rotation": "0.0 0.0 0.0 -1.0",
-			"scale": 4
+			"scale": "4 4 4"
 		},
 		"render": [{
 			"mesh": "data/meshes/Drone_Lantern.mesh",

@@ -3,7 +3,7 @@
 		"name": "Drone",
 		"transform": {
 			"pos": "0 0 0",
-			"scale": 3
+			"scale": "3 3 3"
 		},
 		"render": [{
 				"mesh": "data/meshes/Drone.mesh",
