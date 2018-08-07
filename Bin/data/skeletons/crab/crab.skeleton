@@ -1,12 +1,7 @@
 {
 	"name":"crab",
 	"anims" : [
-		{"name": "idle"},
-		{"name": "walk"},
-		{"name": "run"},
-		{"name": "alert"},
-		{"name": "eject"},
-		{"name": "suspicious_checking"},
-		{"name": "suspicious_start"}
+		{"name": "root"}
+
 	]
 }

@@ -43,7 +43,8 @@ void TCompPatrolAnimator::initializeAnimations() {
 		"idle",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
@@ -53,7 +54,8 @@ void TCompPatrolAnimator::initializeAnimations() {
 		"walk",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
@@ -63,7 +65,8 @@ void TCompPatrolAnimator::initializeAnimations() {
 		"walk",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
@@ -73,7 +76,8 @@ void TCompPatrolAnimator::initializeAnimations() {
 		"die",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
@@ -83,7 +87,8 @@ void TCompPatrolAnimator::initializeAnimations() {
 		"dead",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
@@ -93,7 +98,8 @@ void TCompPatrolAnimator::initializeAnimations() {
 		"attack",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 }
