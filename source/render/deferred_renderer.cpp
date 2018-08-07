@@ -127,6 +127,7 @@ void CDeferredRenderer::renderAccLight() {
 
     CRenderManager::get().renderCategory("hologram");
     CRenderManager::get().renderCategory("hologram_sw");
+    CRenderManager::get().renderCategory("volume_shafts");
 }
 
 

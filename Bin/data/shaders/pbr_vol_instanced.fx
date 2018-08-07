@@ -168,19 +168,29 @@ float4 PS_GBuffer_Shafts(
   , float2 iTex0 : TEXCOORD0
   , float2 iTex1 : TEXCOORD1
   , float3 iWorldPos : TEXCOORD2
-	, float3 iModelPos : TEXCOORD3
-	, float  iMaxHeight : TEXCOORD4
 ): SV_Target0
 {
+	// Fresnel component
 	float3 dir_to_eye = normalize(camera_pos.xyz - iWorldPos.xyz);
 	float3 N = normalize(iNormal.xyz);
 	float fresnel = dot(N, dir_to_eye);
 
 	float4 color = float4(0.8, 0.8, 0.8, 1);	
 	color.a = txAlbedo.Sample(samLinear, iTex0);
-	//color.a += txEmissive.Sample(samLinear, iTex0);
+	color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.02 * global_world_time * float2(.5, 0));
+	//color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 - 0.04 * global_world_time * float2(.5, 0));
+	
+	// Compute smooth intersections
+	int3 ss_load_coords = uint3(Pos.xy, 0);
+	float linear_depth = txGBufferLinearDepth.Load(ss_load_coords).x;
+	float fragment_depth = dot(iWorldPos - camera_pos, camera_front) / camera_zfar;
+	
+	float delta_c = abs(camera_pos - iWorldPos);
+	float delta_z = abs(linear_depth - fragment_depth);
+	color.a *= saturate(delta_z * camera_zfar);
+	color.a *= 1 - saturate(1/(delta_c * delta_c)) * 0.88;
 		
-	color.a *= pow(fresnel, 2) * 0.25;
+	color.a *= pow(abs(fresnel), 4) * 0.8;
 	return color;
 }
 
@@ -191,12 +201,12 @@ float4 PS_GBuffer_Beam(
   , float2 iTex0 : TEXCOORD0
   , float2 iTex1 : TEXCOORD1
   , float3 iWorldPos : TEXCOORD2
-	, float3 iModelPos : TEXCOORD3
-	, float  iMaxHeight : TEXCOORD4
 ): SV_Target0
 {
 	float4 color = float4(0.8, 0.8, 0.8, 1);	
 	color.a = txAlbedo.Sample(samLinear, iTex0);
-
-	return color * 0.75;
+	color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.1 * global_world_time * float2(.5, 0));
+	color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 - 0.1 * global_world_time * float2(.5, 0));
+	
+	return color * (0.65 + sin(global_world_time) * .15);
 }

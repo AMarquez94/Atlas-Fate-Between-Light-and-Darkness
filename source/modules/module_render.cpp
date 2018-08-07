@@ -309,7 +309,6 @@ void CModuleRender::generateFrame() {
 
         Engine.get().getParticles().renderDeferred();
         CRenderManager::get().renderCategory("distorsions");
-        CRenderManager::get().renderCategory("volume_shafts");
     }
 
     {

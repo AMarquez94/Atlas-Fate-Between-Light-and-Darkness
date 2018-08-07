@@ -600,7 +600,7 @@
 		"rs_config": "cull_none",
 		"z": "test_but_no_write",
 		"textures": {
-			"noise": "data/textures/tx_flicker_soft.dds"
+			"noise": "data/textures/noise_light.dds"
 		}
 	},
 	"pbr_beam_spotlight": {
@@ -614,7 +614,7 @@
 		"rs_config": "cull_none",
 		"z": "test_but_no_write",
 		"textures": {
-			"noise": "data/textures/tx_flicker_soft.dds"
+			"noise": "data/textures/noise_light.dds"
 		}
 	}
 }
