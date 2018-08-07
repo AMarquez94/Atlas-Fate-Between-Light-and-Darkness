@@ -99,5 +99,34 @@
       ,
       "local_aabb": true
     }
+  },
+  {
+    "entity":
+    {
+      "name": "SpotlightBeam"
+      ,
+      "transform":
+      {
+        "pos": "-49.331 5.625 -90.285"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Spotlight_Beam2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_shaft_flare.material"
+            ,
+            "data/materials/mtl_shaft_beams.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
   }
 ]

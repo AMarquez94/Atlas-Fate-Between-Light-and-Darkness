@@ -588,5 +588,33 @@
 		"textures": {
 			"noise": "data/textures/tx_flicker_soft.dds"
 		}
+	},
+	"pbr_shaft_spotlight": {
+		"vs_file": "data/shaders/pbr.fx",
+		"ps_file": "data/shaders/pbr_vol_instanced.fx",
+		"vs_entry_point": "VS_GBuffer",
+		"ps_entry_point": "PS_GBuffer_Shafts",
+		"vertex_type": "PosNUvUvT",
+		"category": "volume_shafts",
+		"blend": "additive_by_src_alpha",
+		"rs_config": "cull_none",
+		"z": "test_but_no_write",
+		"textures": {
+			"noise": "data/textures/tx_flicker_soft.dds"
+		}
+	},
+	"pbr_beam_spotlight": {
+		"vs_file": "data/shaders/pbr.fx",
+		"ps_file": "data/shaders/pbr_vol_instanced.fx",
+		"vs_entry_point": "VS_GBuffer",
+		"ps_entry_point": "PS_GBuffer_Beam",
+		"vertex_type": "PosNUvUvT",
+		"category": "volume_shafts",
+		"blend": "additive_by_src_alpha",
+		"rs_config": "cull_none",
+		"z": "test_but_no_write",
+		"textures": {
+			"noise": "data/textures/tx_flicker_soft.dds"
+		}
 	}
 }

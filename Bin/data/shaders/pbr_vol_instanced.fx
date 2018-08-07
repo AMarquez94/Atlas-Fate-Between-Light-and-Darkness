@@ -75,9 +75,9 @@ float computeVolumeShadowFactorLight(float4x4 mat, float3 wPos) {
   if (pos_in_light_proj_space.z < 0.)
     return 0.f;
 		
-		return txLightShadowMap.SampleCmp(samPCFWhite, homo_space.xy, homo_space.z, 0).x;
+	return txLightShadowMap.SampleCmp(samPCFWhite, homo_space.xy, homo_space.z, 0).x;
 		
-		  // Poisson distribution random points around a circle
+	// Poisson distribution random points around a circle
   const float2 offsets[] = {
     float2(0,0),
     float2(-0.3700152, 0.575369),
@@ -158,5 +158,45 @@ float4 PS_IVLight(
     float att_spot = clamp((theta - iLightValues.z) / 0.18, 0, 1);
     float clamp_spot = theta > iLightValues.x ? att_spot : 0.0; // spot factor 
 		
-    return float4(light_color.xyz, clamp_spot * val  * noise0.x) * shadow_factor;// * projectColor(iWorldPos);
+    return float4(light_color.xyz, clamp_spot * val * noise0.x) * shadow_factor;// * projectColor(iWorldPos);
+}
+
+float4 PS_GBuffer_Shafts(
+  float4 Pos       : SV_POSITION
+  , float3 iNormal : NORMAL0
+  , float4 iTangent : NORMAL1
+  , float2 iTex0 : TEXCOORD0
+  , float2 iTex1 : TEXCOORD1
+  , float3 iWorldPos : TEXCOORD2
+	, float3 iModelPos : TEXCOORD3
+	, float  iMaxHeight : TEXCOORD4
+): SV_Target0
+{
+	float3 dir_to_eye = normalize(camera_pos.xyz - iWorldPos.xyz);
+	float3 N = normalize(iNormal.xyz);
+	float fresnel = dot(N, dir_to_eye);
+
+	float4 color = float4(0.8, 0.8, 0.8, 1);	
+	color.a = txAlbedo.Sample(samLinear, iTex0);
+	//color.a += txEmissive.Sample(samLinear, iTex0);
+		
+	color.a *= pow(fresnel, 2) * 0.25;
+	return color;
+}
+
+float4 PS_GBuffer_Beam(
+  float4 Pos       : SV_POSITION
+  , float3 iNormal : NORMAL0
+  , float4 iTangent : NORMAL1
+  , float2 iTex0 : TEXCOORD0
+  , float2 iTex1 : TEXCOORD1
+  , float3 iWorldPos : TEXCOORD2
+	, float3 iModelPos : TEXCOORD3
+	, float  iMaxHeight : TEXCOORD4
+): SV_Target0
+{
+	float4 color = float4(0.8, 0.8, 0.8, 1);	
+	color.a = txAlbedo.Sample(samLinear, iTex0);
+
+	return color * 0.75;
 }
