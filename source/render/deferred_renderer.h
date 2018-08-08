@@ -3,6 +3,8 @@
 
 #include "render/texture/render_to_texture.h"
 
+class CRenderToCube;
+
 class CDeferredRenderer {
 
 public:
@@ -30,9 +32,9 @@ public:
 
 public:
 
-  bool create( int xres, int yres );
+  bool create( int xres, int yres, const char* prefix);
   void render( CRenderToTexture* rt_destination, CHandle h_e_camera );
-
+  void renderToCubeFace(CRenderToCube* rt_destination, int face_idx);
 };
 
 

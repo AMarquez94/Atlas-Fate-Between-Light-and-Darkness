@@ -19,6 +19,8 @@
 
 #include "geometry/geometry.h"
 #include "render/texture/render_to_texture.h"
+
+#include "components/comp_render_cube.h"
 #include "components/postfx/comp_render_blur.h"
 #include "components/postfx/comp_render_blur_radial.h"
 #include "components/postfx/comp_render_bloom.h"
@@ -96,7 +98,7 @@ bool CModuleRender::start()
 	if (!rt_main->createRT("rt_main.dds", Render.width, Render.height, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN, true))
 		return false;
 
-	if (!deferred.create(Render.width, Render.height))
+	if (!deferred.create(Render.width, Render.height, "g"))
 		return false;
 
 	setBackgroundColor(0.0f, 0.125f, 0.3f, 1.f);
@@ -296,6 +298,14 @@ void CModuleRender::generateFrame() {
                 c->generateShadowMap();
             });
         }
+    }
+
+    {
+        PROFILE_FUNCTION("CModuleRender::cubeMapsGeneration");
+        CTraceScoped gpu_scope("cubeMapsGeneration");
+        getObjectManager<TCompRenderCube>()->forEach([this](TCompRenderCube* c) {
+            c->generate(deferred);
+        });
     }
 
     {

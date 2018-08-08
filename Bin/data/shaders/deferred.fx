@@ -79,10 +79,7 @@ float4 PS_Luminance(
 }
 
 // ----------------------------------------
-float4 PS(
-  in float4 iPosition : SV_Position        // Screen coord, 0...800, 0..600
-, in float2 iUV : TEXCOORD0
-  ) : SV_Target
+float4 compute(float4 iPosition, float2 iUV)
 {
   int3 ss_load_coords = uint3(iPosition.xy, 0);
   float4 oAlbedo = txGBufferAlbedos.Load(ss_load_coords);
@@ -138,3 +135,26 @@ float4 PS(
   
   return float4( gammaCorrectedColor, 1);
 }
+
+// ----------------------------------------
+float4 PS_face(
+  in float4 iPosition : SV_Position        // Screen coord, 0...800, 0..600
+, in float2 iUV : TEXCOORD0
+  ) : SV_Target
+{
+
+  float4 swapPosition = iPosition;
+  swapPosition.x = 511 - swapPosition.x;
+
+  return compute( swapPosition, iUV );
+}
+
+// ----------------------------------------
+float4 PS(
+  in float4 iPosition : SV_Position        // Screen coord, 0...800, 0..600
+, in float2 iUV : TEXCOORD0
+  ) : SV_Target
+{
+  return compute( iPosition, iUV );
+}
+
