@@ -44,6 +44,7 @@
 		"auxcamera_shadowmerge",
 		"camera_follow",
 		"camera",
+		"laser",
 		"fsm",
 		"player_animator",
 		"player_input",

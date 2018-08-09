@@ -256,7 +256,7 @@ void TCompSkeleton::renderDebug() {
     VEC3 lines[MAX_SUPPORTED_BONES][2];
     int nrLines = model->getSkeleton()->getBoneLines(&lines[0][0].x);
     TCompTransform* transform = get<TCompTransform>();
-    float scale = transform->getScale();
+    //VEC scale = transform->getScale();
     //for (int currLine = 0; currLine < nrLines; currLine++)
     //    renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale, VEC4(1, 1, 1, 1));
 }
