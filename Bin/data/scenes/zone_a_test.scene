@@ -1,0 +1,35 @@
+[{
+		"entity": {
+			"name": "zone_a_test",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "SpotlightBeam",
+			"prefab": "data/prefabs/spotbeam.prefab",
+			"transform": {
+				"pos": "-49.306 5.625 -90.335"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "test_camera_curve",
+			"transform": {
+				"pos": "5 25 0",
+				"lookat": "0 0 0"
+			},
+			"curve_controller": {
+				"curve": "data/curves/test_curve.curve",
+				"speed": 0.25,
+				"loop": true,
+				"target": "The Player"
+			},
+			"render": {},
+			"camera": {
+				"fov": 60
+			}
+		}
+	}
+]

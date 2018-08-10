@@ -1,5 +1,6 @@
 filein "DPUtils.ms"
 filein "MCVExportMesh.ms"
+filein "MCVExportEntity.ms"
 
 -- To replace
 struct ExportSceneManager (
@@ -37,10 +38,31 @@ struct ExportMeshManager (
 	has_lod,
 	base_path = "data/",
 	mesh_path = base_path + "meshes/",
+	curve_path = base_path + "curves/",
+	
+	function ExportItem obj out_path = (
+
+		local meshes_folder = out_path + "/" + mesh_path 
+		local curves_folder = out_path + "/" + curve_path 
+		doesFolderExist meshes_folder create:true
+		doesFolderExist curves_folder create:true		
+		--------------------------------------------------------------------------------
+
+		-- Check if it is an spline
+		if classof obj == Line then (
+			local str_path = curves_folder + id + ".curve"
+			exportCurve obj str_path
+			messageBox ("Curve SUCCESFULLY exported at location: \n\n" + str_path)
+		) 
+		else (
+			local str_path = meshes_folder + id + ".mesh"
+			exportMeshObject obj str_path
+			messageBox ("Mesh SUCCESFULLY exported at location: \n\n" + str_path)
+		)	
+	),
 	
 	function ExportMesh out_group out_path = (
 	
-		print out_group
 		-- Check for path requirements 
 		local req_path = findstring out_path "bin"
 		
@@ -49,26 +71,15 @@ struct ExportMeshManager (
 			messageBox "Path is not located at /bin.\nPlease, provide a correct path."
 			return false				
 		)
-	
-		local meshes_folder = out_path + "/" + mesh_path 
-		doesFolderExist meshes_folder create:true
-		--------------------------------------------------------------------------------
-		if out_group.count == 1 and id != "" then  (
-			local str_path = meshes_folder + id + ".mesh"
-			exportMeshObject out_group[1] str_path
-		)
-		else if out_group.count == 1 then (
-			local str_path = meshes_folder+ out_group[1].Name + ".mesh"
-			exportMeshObject out_group[1] str_path
+		
+		if out_group.count == 1 then (
+			ExportItem out_group[1] out_path
 		)
 		else (
 			for i in out_group do (
-				local str_path = meshes_folder + i.Name + "_" + id + ".mesh"
-				exportMeshObject i str_path
+				ExportItem i out_path
 			)
 		)
-		
-		messageBox ("Mesh SUCCESFULLY exported at location: \n\n" + meshes_folder)
 	)	
 )
 

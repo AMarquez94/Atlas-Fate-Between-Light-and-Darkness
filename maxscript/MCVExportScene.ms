@@ -123,6 +123,7 @@ struct TSceneExporter (
 	mats_path = base_path + "materials/",
 	cols_path = base_path + "colliders/",
 	tex_path = base_path + "textures/",
+	curve_path = base_path + "curves/",
 	local_path = "",
 	use_instancing = false,
 	is_prefab = false,
@@ -697,6 +698,7 @@ struct TSceneExporter (
 		doesFolderExist (project_path + mats_path + local_path ) create:true
 		doesFolderExist (project_path + cols_path + local_path) create:true
 		doesFolderExist (project_path + tex_path + local_path) create:true
+		doesFolderExist (project_path + curve_path + local_path) create:true
 		
 		-- Decide output filename based on .max filename
 		local full_path = project_path + prefabs_path + ofilename + ".prefab"

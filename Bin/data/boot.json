@@ -91,7 +91,8 @@
       "data/scenes/zone_a_hologramas.scene",
       "data/scenes/zona_a_colliders_barandillas.scene",
       "data/scenes/zone_a_colliders_valla_luz.scene",
-
+			"data/scenes/zone_a_test.scene",
+			
 			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene",
 			"data/scenes/ZoneA/test_instancing.scene",

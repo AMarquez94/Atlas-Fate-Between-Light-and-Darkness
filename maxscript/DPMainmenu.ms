@@ -91,7 +91,7 @@ rollout SBExport "Export Tools" width:474 height:469
 	edittext 'asset_dir' "Asset dir:" pos:[18,17] width:389 height:20 fieldwidth:340 labelOnTop:false align:#left
 	button 'btn_test' "..." pos:[420,17] width:25 height:21 toolTip:"This is a tooltip" align:#left
 	
-	GroupBox 'grp1' "Export Mesh" pos:[10,54] width:450 height:101 align:#left
+	GroupBox 'grp1' "Export Item" pos:[10,54] width:450 height:101 align:#left
 	GroupBox 'grp2' "Export Scene" pos:[10,270] width:450 height:153 align:#left
 	progressBar 'pb6' "ProgressBar" pos:[11,434] width:449 height:21 color:(color 0 255 0) align:#left
 	edittext 'edt24' "Name" pos:[193,79] width:234 height:19 align:#left

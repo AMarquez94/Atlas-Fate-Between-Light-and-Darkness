@@ -99,18 +99,5 @@
       ,
       "local_aabb": true
     }
-  },
-  {
-    "entity":
-    {
-      "name": "SpotlightBeam"
-      ,
-			"prefab": "data/prefabs/spotbeam.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-49.306 5.625 -90.335"
-      }
-    }
   }
 ]
