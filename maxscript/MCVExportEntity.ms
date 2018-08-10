@@ -21,6 +21,7 @@ function exportCurve obj str_path = (
 		for k = 1 to (numknots obj s) do 
 		(
 			local p_point = getKnotPoint obj s k
+			p_point = p_point * maxWorldToLocalMCV
 			append total_points (p_point[1] as string + " " + p_point[2] as string + " " + p_point[3] as string)
 		)
 	)
