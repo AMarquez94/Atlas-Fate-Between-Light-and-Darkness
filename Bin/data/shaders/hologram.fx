@@ -54,7 +54,7 @@ float4 PS_GBuffer_Hologram(
 	float4 rim_base_color = float4(0,1,1,1);
 		
 	// Compute the scanline
-	float vertex_sift = (dot(iWorldPos, normalize(float4(float3(0,-1,0), 1.0))) + 1) / 2;
+	float vertex_sift = (dot(iWorldPos, normalize(float3(0,-1,0))) + 1) / 2;
 	float scan = step(frac(vertex_sift * 22 + global_world_time * 4), 0.5) * 0.65;
 		
 	// Compute the glow factor
@@ -100,7 +100,7 @@ void VS_GBuffer_SWHologram(
 
 	iPos.y *= max_height;
 	float3 disp_center = float3(0, iPos.y, 0);
-	float3 disp_dir = disp_center + (iPos - disp_center) * (1 * int_width + int_width * prev_height);
+	float3 disp_dir = disp_center + (iPos.xyz - disp_center) * (1 * int_width + int_width * prev_height);
 	iPos = float4(disp_dir,1);
 	
 	// Regular transforms
@@ -134,7 +134,7 @@ float4 PS_GBuffer_SWHologram(
 ): SV_Target0
 {
 	// Compute the scanline
-	float vertex_sift = (dot(iWorldPos, normalize(float4(float3(0,-1,0), 1.0))) + 1) * .5;
+	float vertex_sift = (dot(iWorldPos, normalize(float3(0,-1,0))) + 1) * .5;
 	float scan = frac(vertex_sift * 35 + global_world_time * 70) * 0.96;
 
 	// Compute the glow factor
@@ -164,7 +164,6 @@ void VS_GBuffer_SWHologram_Model(
 	, out float2 oTex1 : TEXCOORD1
 	, out float3 oWorldPos : TEXCOORD2
 	, out float3 oModelPos : TEXCOORD3
-	, out float max_height : TEXCOORD4
 )
 {
 	// Regular transforms
@@ -200,7 +199,7 @@ float4 PS_GBuffer_SWHologram_Model(
 ): SV_Target0
 {
 	// Compute the scanline
-	float vertex_sift = (dot(iWorldPos, normalize(float4(float3(0,-1,0), 1.0))) + 1) * .5;
+	float vertex_sift = (dot(iWorldPos, normalize(float3(0,-1,0))) + 1) * .5;
 	float scan = frac(vertex_sift * 80) * 0.86;
 	
 	float3 dir = normalize(iWorldPos.xyz - camera_pos);

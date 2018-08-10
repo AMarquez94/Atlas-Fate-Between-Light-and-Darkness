@@ -126,7 +126,7 @@ float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
 	depth = 1 - depth;
 
 	//float tPos = length(wPos - camera_pos) / (camera_zfar);
-	float2 samplePos = float4(1.0f * depth.xx, 0.0f, 0.0f);
+	float2 samplePos = float2(1.0f * depth.xx);
 	samplePos.x -= pulse_strength * linear_time;
 
 	float4 band = txNoiseMap.Sample(samLinear, samplePos);

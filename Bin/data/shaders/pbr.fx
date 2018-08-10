@@ -87,7 +87,7 @@ void PS_GBuffer(
 	o_albedo = txAlbedo.Sample(samLinear, iTex0);
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 	o_selfIllum =  txEmissive.Sample(samLinear, iTex0) * self_intensity;
-	o_selfIllum.xyz *= self_color;
+	o_selfIllum.xyz *= self_color.xyz;
 	o_selfIllum.a = txAOcclusion.Sample(samLinear, iTex0).r;
 	
 	// Save roughness in the alpha coord of the N render target
@@ -114,10 +114,6 @@ void PS_Outline_GBuffer(
 	, float2 iTex0 : TEXCOORD0
 	, float2 iTex1 : TEXCOORD1
 	, float3 iWorldPos : TEXCOORD2
-	, out float4 o_albedo : SV_Target0
-	, out float4 o_normal : SV_Target1
-	, out float1 o_depth : SV_Target2
-	, out float4 o_selfIllum : SV_Target3
 	, out float4 o_outlines : SV_Target4
 )
 {
@@ -145,7 +141,7 @@ void PS_Shade_GBuffer(
 	o_albedo = txAlbedo.Sample(samLinear, iTex0)* (1 - self_opacity * 2);
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 	o_selfIllum =  txEmissive.Sample(samLinear, iTex0) * self_intensity;
-	o_selfIllum.xyz *= self_color* (1 - self_opacity * 4);
+	o_selfIllum.xyz *= self_color.xyz * (1 - self_opacity * 4);
 	o_selfIllum.a = 1;
 	if((noise0.x - self_opacity) < 0.01f){
 		o_albedo = obj_color;

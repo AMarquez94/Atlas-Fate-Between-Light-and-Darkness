@@ -176,8 +176,8 @@ float4 PS_GBuffer_Shafts(
 	float fresnel = dot(N, dir_to_eye);
 
 	float4 color = float4(0.8, 0.8, 0.8, 1);	
-	color.a = txAlbedo.Sample(samLinear, iTex0);
-	color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.02 * global_world_time * float2(.5, 0));
+	color.a = txAlbedo.Sample(samLinear, iTex0).r;
+	color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.02 * global_world_time * float2(.5, 0)).r;
 	//color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 - 0.04 * global_world_time * float2(.5, 0));
 	
 	// Compute smooth intersections
@@ -185,7 +185,7 @@ float4 PS_GBuffer_Shafts(
 	float linear_depth = txGBufferLinearDepth.Load(ss_load_coords).x;
 	float fragment_depth = dot(iWorldPos - camera_pos, camera_front) / camera_zfar;
 	
-	float delta_c = abs(camera_pos - iWorldPos);
+	float delta_c = length(camera_pos - iWorldPos);
 	float delta_z = abs(linear_depth - fragment_depth);
 	color.a *= saturate(delta_z * camera_zfar);
 	color.a *= 1 - saturate(1/(delta_c * delta_c)) * 0.88;
@@ -204,9 +204,9 @@ float4 PS_GBuffer_Beam(
 ): SV_Target0
 {
 	float4 color = float4(0.8, 0.8, 0.8, 1);	
-	color.a = txAlbedo.Sample(samLinear, iTex0);
-	color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.1 * global_world_time * float2(.5, 0));
-	color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 - 0.1 * global_world_time * float2(.5, 0));
+	color.a = txAlbedo.Sample(samLinear, iTex0).r;
+	color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.1 * global_world_time * float2(.5, 0)).r;
+	color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 - 0.1 * global_world_time * float2(.5, 0)).r;
 	
 	return color * (0.65 + sin(global_world_time) * .15);
 }

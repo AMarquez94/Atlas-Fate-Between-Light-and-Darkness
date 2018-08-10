@@ -146,7 +146,7 @@ float4 PS_face(
   float4 swapPosition = iPosition;
   swapPosition.x = 511 - swapPosition.x;
 
-  return compute( swapPosition, iUV );
+  return (compute( swapPosition, iUV ));
 }
 
 // ----------------------------------------
@@ -155,6 +155,6 @@ float4 PS(
 , in float2 iUV : TEXCOORD0
   ) : SV_Target
 {
-  return compute( iPosition, iUV );
+  return (compute( iPosition, iUV ));
 }
 

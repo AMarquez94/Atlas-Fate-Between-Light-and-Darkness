@@ -48,8 +48,8 @@ float4 ComputeGhosts(float2 iTex0)
 		float2 offset = frac(iTex0 + vghost * float(i));
 		float d = distance(offset, float2(0.5, 0.5));
 		float weight = 1.0 - smoothstep(0.0, 0.75, d); 
-		float3 s = ComputeColorCA(offset);
-		s = ComputeThreshold(s, .2);
+		float3 s = ComputeColorCA(offset).xyz;
+		s = ComputeThreshold(s, .2).xyz;
 		result += s * weight;
 	}
 	
