@@ -35,7 +35,7 @@ void TCompMimeticAnimator::initializeAnimations() {
 		"",
 		1.0f,
 		1.0f,
-		false
+		true
 
 	);
 
@@ -47,7 +47,7 @@ void TCompMimeticAnimator::initializeAnimations() {
 		"",
 		1.0f,
 		1.0f,
-		false
+		true
 	);
 
 	initializeAnimation(
@@ -58,7 +58,7 @@ void TCompMimeticAnimator::initializeAnimations() {
 		"",
 		1.0f,
 		1.0f,
-		false
+		true
 	);
 
 	initializeAnimation(
@@ -69,7 +69,7 @@ void TCompMimeticAnimator::initializeAnimations() {
 		"",
 		1.0f,
 		1.0f,
-		false
+		true
 	);
 
 	initializeAnimation(
@@ -80,7 +80,7 @@ void TCompMimeticAnimator::initializeAnimations() {
 		"",
 		1.0f,
 		1.0f,
-		false
+		true
 	);
 
 	initializeAnimation(
@@ -91,7 +91,7 @@ void TCompMimeticAnimator::initializeAnimations() {
 		"",
 		1.0f,
 		1.0f,
-		false
+		true
 	);
 
 	initializeAnimation(
@@ -102,7 +102,7 @@ void TCompMimeticAnimator::initializeAnimations() {
 		"",
 		1.0f,
 		1.0f,
-		false
+		true
 	);
 
 	initializeAnimation(
@@ -113,7 +113,7 @@ void TCompMimeticAnimator::initializeAnimations() {
 		"",
 		1.0f,
 		1.0f,
-		false
+		true
 	);
 
 	initializeAnimation(
@@ -124,7 +124,7 @@ void TCompMimeticAnimator::initializeAnimations() {
 		"",
 		1.0f,
 		1.0f,
-		false
+		true
 	);
 
 	initializeAnimation(
@@ -135,7 +135,7 @@ void TCompMimeticAnimator::initializeAnimations() {
 		"",
 		1.0f,
 		1.0f,
-		false
+		true
 	);
 
 	initializeAnimation(
@@ -146,7 +146,7 @@ void TCompMimeticAnimator::initializeAnimations() {
 		"",
 		1.0f,
 		1.0f,
-		false
+		true
 	);
 
 	initializeAnimation(
@@ -157,7 +157,7 @@ void TCompMimeticAnimator::initializeAnimations() {
 		"",
 		1.0f,
 		1.0f,
-		false
+		true
 	);
 
 	initializeAnimation(
@@ -168,7 +168,7 @@ void TCompMimeticAnimator::initializeAnimations() {
 		"",
 		1.0f,
 		1.0f,
-		false
+		true
 	);
 }
 
