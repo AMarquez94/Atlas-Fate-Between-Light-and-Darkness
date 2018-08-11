@@ -830,7 +830,7 @@ BTNode::ERes TCompAIMimetic::actionGoToInitialPos(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE;
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
     TCompTransform *mypos = get<TCompTransform>();
     VEC3 initialPosWithMyY = VEC3(initialPos.x, mypos->getPosition().y, initialPos.z);
 

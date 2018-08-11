@@ -3,7 +3,7 @@
 			"name": "Enemies"
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/patrol.prefab",
 			"name": "The Enemy 1",
 			"transform": {
@@ -49,7 +49,7 @@
 			}
 		}
 	},{
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/patrol.prefab",
 			"name": "The Enemy 1",
 			"transform": {
@@ -92,6 +92,19 @@
 						"minTime": 3
 					}
 				]
+			}
+		}
+	},{
+		"entity": {
+			"prefab": "data/prefabs/mimetic.prefab",
+			"name": "The Mimetic",
+			"transform": {
+				"pos": "4.7 0 -352",
+				"lookat": "100 0 74"
+			},
+			"ai_mimetic": {
+				"type": "floor"
+				
 			}
 		}
 	}
