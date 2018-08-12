@@ -108,13 +108,17 @@ void TCompSkeleton::update(float dt) {
         model->getMixer()->blendCycle(actualCycleAnimId[1], 1.f - cyclicAnimationWeight, 0.f);
     }
 
+	VEC3 posti = this->getBonePositionById(0);
+	dbg("%f	 %f	 %f\n", posti.x, posti.y, posti.z);
     TCompTransform* tmx = get<TCompTransform>();
     if (tmx != NULL) {
         VEC3 pos = tmx->getPosition();
         QUAT rot = tmx->getRotation();
         model->getMixer()->setWorldTransform(DX2Cal(pos), DX2Cal(rot));
+		
         model->update(dt);
     }
+	
     lastFrameCyclicAnimationWeight = cyclicAnimationWeight;
 }
 
@@ -410,6 +414,15 @@ VEC3 TCompSkeleton::getBonePosition(const std::string & name) {
     VEC3 bonePos;
     int bone_id = model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(name);
     return Cal2DX(model->getSkeleton()->getBone(bone_id)->getTranslationAbsolute());
+}
+
+VEC3 TCompSkeleton::getBonePositionById(int id) {
+	VEC3 pos = Cal2DX( model->getSkeleton()->getBone(id)->getTranslationBoneSpace() );
+	return pos;
+}
+
+void TCompSkeleton::setBonePositionById(int id, VEC3 position) {
+	model->getSkeleton()->getBone(id)->setTranslation(DX2Cal(position));
 }
 
 float TCompSkeleton::getAnimationDuration(int animId) {
