@@ -66,6 +66,15 @@ struct CZConfigs {
         if (!add(desc, ZCFG_TEST_BUT_NO_WRITE, "test_but_no_write"))
             return false;
 
+        memset(&desc, 0x00, sizeof(desc));
+        desc.DepthEnable = true;
+        desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;    // don't write
+        desc.DepthFunc = D3D11_COMPARISON_ALWAYS;               // only near z
+        desc.StencilEnable = false;
+
+        if (!add(desc, ZCFG_TEST_RAYMARCH, "test_raymarch"))
+            return false;
+
         // test for equal but don't write. Used to render on those pixels where
         // we have render previously like wireframes
         memset(&desc, 0x00, sizeof(desc));

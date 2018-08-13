@@ -31,5 +31,31 @@
 				"fov": 60
 			}
 		}
-	}
+	},  {
+    "entity":
+    {
+      "name": "Ray Shaft"
+      ,
+      "transform":
+      {
+        "pos": "-49.306 5.625 -90.335"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/volume_test_shaft.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ray_shaft.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
 ]

@@ -140,6 +140,7 @@ void CDeferredRenderer::renderAccLight() {
     CRenderManager::get().renderCategory("hologram");
     CRenderManager::get().renderCategory("hologram_sw");
     CRenderManager::get().renderCategory("volume_shafts");
+    CRenderManager::get().renderCategory("volume_ray_shafts");
 }
 
 
@@ -225,9 +226,27 @@ void CDeferredRenderer::renderSpotLights() {
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderVolumes() {
 
-    //EngineInstancing.clearInstance("data/meshes/quad_volume.instanced_mesh");
     CTraceScoped gpu_scope("renderVolumes");
+    /*
+    // Activate tech for the light dir 
+    auto* tech = Resources.get("pbr_ray_shafts.tech")->as<CRenderTechnique>();
+    tech->activate();
 
+    // All light directional use the same mesh
+    auto* mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
+    mesh->activate();
+
+    // Para todas las luces... pintala
+    getObjectManager<TCompLightSpot>()->forEach([mesh](TCompLightSpot* c) {
+
+        if (c->isEnabled && !c->isCulled()) {
+            c->activate();
+		    setWorldTransform(c->getViewProjection().Invert());
+            mesh->render();
+        }
+    });*/
+
+    
     auto rmesh = Resources.get("data/meshes/quad_volume.instanced_mesh")->as<CRenderMesh>();
     TCompLightSpot::volume_instance = (CRenderMeshInstanced*)rmesh;
     TCompLightSpot::volume_instance->vtx_decl = CVertexDeclManager::get().getByName("InstanceLight");

@@ -649,5 +649,17 @@
 		"textures": {
 			"noise": "data/textures/noise_light.dds"
 		}
+	},
+	"pbr_ray_shafts": {
+		"vs_file": "data/shaders/screen_quad.fx",
+		"ps_file": "data/shaders/pbr_vol_instanced.fx",
+		"ps_entry_point": "PS_GBuffer_RayShafts",
+		"vertex_type": "PosClr",
+		"blend": "additive",
+		"rs_config": "cull_none",
+		"z": "disable_all",
+		"textures": {
+			"noise": "data/textures/noise_light.dds"
+		}
 	}
 }

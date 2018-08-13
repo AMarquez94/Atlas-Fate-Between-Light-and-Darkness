@@ -161,6 +161,59 @@ float4 PS_IVLight(
     return float4(light_color.xyz, clamp_spot * val * noise0.x) * shadow_factor;// * projectColor(iWorldPos);
 }
 
+#define NUM_SAMPLES 25//128
+#define NUM_SAMPLES_RCP 0.04//0.0078125f
+#define FACTOR_TAU 0.000001f
+#define FACTOR_PHI 1000000.0f
+#define PI_RCP 0.318309388618379067153776752674503f
+
+float4 PS_GBuffer_RayShafts(
+  float4 Pos       : SV_POSITION
+  , float3 iNormal : NORMAL0
+  , float4 iTangent : NORMAL1
+  , float2 iTex0 : TEXCOORD0
+  , float2 iTex1 : TEXCOORD1
+  , float3 iWorldPos : TEXCOORD2
+): SV_Target0
+{
+	float NB_STEPS = 30;
+  float TAU = FACTOR_TAU * 1.1;
+  float PHI = FACTOR_PHI * 2.5;
+	
+	// Clamped world position to closest fragment
+	int3 ss_load_coords = uint3(Pos.xy, 0);
+  float  zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
+  float  depth = zlinear > Pos.z ? Pos.z : zlinear;
+  float3 wPos = getWorldCoords(Pos.xy, depth);
+	
+  float3 rayVector = camera_pos - wPos;
+	float rayLength = length(rayVector);
+	float3 rayDirection = rayVector / rayLength;
+
+	float stepLength = rayLength / NB_STEPS;
+	float3 step = rayDirection * stepLength;
+	
+	float3 currentPosition = wPos;
+	float accumFog = 0.0f;
+	float4 color = float4(1, 1, 1, 1);
+	float l = rayLength;
+			
+	for (int i = 0; i < NB_STEPS; i++)
+	{
+		float shadowTerm = computeShadowFactor(currentPosition);
+    float d = length(currentPosition - light_pos);
+    float dRCP = rcp(d);
+    float amount = TAU*(shadowTerm*(PHI*0.25f*PI_RCP)*dRCP*dRCP)*exp(-d*TAU)*exp(-l*TAU)*stepLength;
+		
+		l-=stepLength;
+    accumFog += amount;
+		currentPosition += step;
+	}
+	//accumFog /= NB_STEPS;
+	float shadowt = computeShadowFactor(wPos);
+	return float4(color.xyz * accumFog, 1);
+}
+
 float4 PS_GBuffer_Shafts(
   float4 Pos       : SV_POSITION
   , float3 iNormal : NORMAL0
