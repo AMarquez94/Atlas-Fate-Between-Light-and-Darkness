@@ -125,7 +125,10 @@ void TCompRender::loadMesh(const json& j, TEntityParseContext& ctx) {
     if (j.count("color"))
         color = loadVEC4(j["color"]);
 
-    //self_intensity = j.value("self_intensity", 1.0f);
+    if (j.count("self_color"))
+        self_color = loadVEC4(j["self_color"]);
+
+    self_intensity = j.value("self_intensity", 1.0f);
     AABB::CreateMerged(aabb, aabb, mwm.mesh->getAABB());
 
     meshes.push_back(mwm);
@@ -151,8 +154,6 @@ void TCompRender::load(const json& j, TEntityParseContext& ctx) {
 
     if (j.count("COLOR"))
         color = loadVEC4(j["color"]);
-
-    self_color = j.count("self_color") ? loadVEC4(j["self_color"]) : VEC4(1, 1, 1, 1);
 }
 
 void TCompRender::refreshMeshesInRenderManager(bool delete_me_from_keys) {

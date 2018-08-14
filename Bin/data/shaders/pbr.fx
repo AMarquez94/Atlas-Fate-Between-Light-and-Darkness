@@ -176,10 +176,10 @@ void PS_WeaponPlate_GBuffer(
 )
 {
 	float4 noise0 = txNoiseMap.Sample(samLinear, -iTex0);
-	o_albedo = txAlbedo.Sample(samLinear, 0.5 * -iTex0 + clamp(0.5, 0, 0.5));
+	o_albedo = txAlbedo.Sample(samLinear, 0.5 * (-iTex0 + player_disk_radius));
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
-	o_selfIllum =  txEmissive.Sample(samLinear, iTex0) * self_intensity * 0.65;
-	o_selfIllum.xyz *= self_color.xyz * float3(0,1,1);
+	o_selfIllum =  txEmissive.Sample(samLinear, iTex0) * self_intensity;
+	o_selfIllum.xyz *= self_color.xyz;
 
 	// Save roughness in the alpha coord of the N render target
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
