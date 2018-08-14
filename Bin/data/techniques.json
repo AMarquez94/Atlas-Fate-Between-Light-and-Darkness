@@ -106,6 +106,18 @@
 			"irradiance": "data/textures/cubemaps/irradiance.dds"
 		}
 	},
+	"pbr_disk": {
+		"vs_file": "data/shaders/pbr.fx",
+		"ps_file": "data/shaders/pbr.fx",
+		"vs_entry_point": "VS_GBuffer",
+		"ps_entry_point": "PS_WeaponPlate_GBuffer",
+		"vertex_type": "PosNUvUvT",
+		"category": "gbuffer",
+		"textures": {
+			"environment": "data/textures/cubemaps/env.dds",
+			"irradiance": "data/textures/cubemaps/irradiance.dds"
+		}
+	},
 	"pbr_parallax": {
 		"vs_file": "data/shaders/parallax.fx",
 		"ps_file": "data/shaders/parallax.fx",

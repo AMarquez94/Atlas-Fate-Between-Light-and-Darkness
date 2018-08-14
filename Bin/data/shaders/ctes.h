@@ -257,7 +257,7 @@ CB_DEF(CCtePlayer, CB_PLAYER)
     float  player_fade;
     float  player_aberration;
     float  player_speed;
-    float  player_dummy2;
+    float  player_disk_radius;
 };
 
 CB_DEF(CCtePostFX, CB_POSTFX)

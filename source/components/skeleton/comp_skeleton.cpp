@@ -389,9 +389,14 @@ std::vector<VEC3> TCompSkeleton::getFeetPositions() {
 
 VEC3 TCompSkeleton::getBonePosition(const std::string & name) {
 
-    VEC3 bonePos;
     int bone_id = model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(name);
     return Cal2DX(model->getSkeleton()->getBone(bone_id)->getTranslationAbsolute());
+}
+
+QUAT TCompSkeleton::getBoneRotation(const std::string & name) {
+
+    int bone_id = model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(name);
+    return Cal2DX(model->getSkeleton()->getBone(bone_id)->getRotationAbsolute());
 }
 
 float TCompSkeleton::getAnimationDuration(int animId) {
