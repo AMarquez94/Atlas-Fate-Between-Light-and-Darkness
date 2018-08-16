@@ -1,0 +1,61 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_containers_puerto"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_container_puerto_puerta_r002"
+      ,
+      "prefab": "data/prefabs/container_puerto_puerta_r1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-3.46887 0.0 -9.43579"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_container_puerto_puerta_l002"
+      ,
+      "prefab": "data/prefabs/container_puerto_puerta_l1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-6.05475 0.0 -9.08041"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_container_puerto1"
+      ,
+      "prefab": "data/prefabs/container_puerto_1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.17493 0.0 -6.27734"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+]
