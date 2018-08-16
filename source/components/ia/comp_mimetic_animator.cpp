@@ -19,6 +19,9 @@ void TCompMimeticAnimator::debugInMenu() {
 	if (ImGui::SmallButton("Death")) {
 		playAnimation(EAnimation::DEATH, speed);
 	}
+	if (ImGui::SmallButton("Die")) {
+		playAnimation(EAnimation::DIE, speed);
+	}
 
 	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);
 	TCompSkeleton * compSkeleton = get<TCompSkeleton>();
