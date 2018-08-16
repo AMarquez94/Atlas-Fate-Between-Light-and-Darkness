@@ -33,7 +33,7 @@ struct TCompSkeleton : public TCompBase {
 	void onMsgAnimationCallback(const TMsgAnimationCallback& msg);
 
 	void changeCyclicAnimation(int anim1Id, float speed = 1.0f, int anim2Id = -1, float weight = 1.0f, float in_delay = 0.15f, float out_delay = 0.15f);
-	void executeActionAnimation(int animId, float speed = 1.0f, float in_delay = 0.15f, float out_delay = 0.15f);
+	void executeActionAnimation(int animId, float speed = 1.0f, bool rootMovement = false, float in_delay = 0.15f, float out_delay = 0.15f);
 
 	void setCyclicAnimationWeight(float new_value);
 	float getCyclicAnimationWeight();

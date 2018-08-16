@@ -283,7 +283,7 @@ void TCompSkeleton::changeCyclicAnimation(int anim1Id, float speed, int anim2Id,
     model->getMixer()->setTimeFactor(speed);
 }
 
-void TCompSkeleton::executeActionAnimation(int animId, float speed, float in_delay, float out_delay) {
+void TCompSkeleton::executeActionAnimation(int animId, float speed, bool rootMovement, float in_delay, float out_delay) {
 
     bool auto_lock = false;
     for (auto a : model->getMixer()->getAnimationActionList()) {
@@ -417,7 +417,7 @@ VEC3 TCompSkeleton::getBonePosition(const std::string & name) {
 }
 
 VEC3 TCompSkeleton::getBonePositionById(int id) {
-	VEC3 pos = Cal2DX( model->getSkeleton()->getBone(id)->getTranslationBoneSpace() );
+	VEC3 pos = Cal2DX( model->getSkeleton()->getBone(id)->getTranslationAbsolute() );
 	return pos;
 }
 

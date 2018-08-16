@@ -31,11 +31,11 @@ void TCompMimeticAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::IDLE,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"root",
+		"idle",
 		"",
 		1.0f,
 		1.0f,
-		true
+		false
 
 	);
 
@@ -43,33 +43,33 @@ void TCompMimeticAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::RUN,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"root",
+		"idle",
 		"",
 		1.0f,
 		1.0f,
-		true
+		false
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::WALK,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"root",
+		"idle",
 		"",
 		1.0f,
 		1.0f,
-		true
+		false
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::DEATH,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"root",
+		"idle",
 		"",
 		1.0f,
 		1.0f,
-		true
+		false
 	);
 
 	initializeAnimation(
@@ -87,88 +87,88 @@ void TCompMimeticAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::ALARM,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"root",
+		"idle",
 		"",
 		1.0f,
 		1.0f,
-		true
+		false
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::JUMP_TO_WALL,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"root",
+		"idle",
 		"",
 		1.0f,
 		1.0f,
-		true
+		false
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::LOOKING_FOR_PLAYER,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"root",
+		"idle",
 		"",
 		1.0f,
 		1.0f,
-		true
+		false
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::PLAYER_FOUNDED,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"root",
+		"idle",
 		"",
 		1.0f,
 		1.0f,
-		true
+		false
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::QUIT_WALL,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"root",
+		"idle",
 		"",
 		1.0f,
 		1.0f,
-		true
+		false
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::TURN_LEFT,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"root",
+		"idle",
 		"",
 		1.0f,
 		1.0f,
-		true
+		false
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::TURN_RIGHT,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"root",
+		"idle",
 		"",
 		1.0f,
 		1.0f,
-		true
+		false
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::SUSPECTING,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"root",
+		"idle",
 		"",
 		1.0f,
 		1.0f,
-		true
+		false
 	);
 }
 
