@@ -129,6 +129,8 @@ void TCompRender::loadMesh(const json& j, TEntityParseContext& ctx) {
         self_color = loadVEC4(j["self_color"]);
 
     self_intensity = j.value("self_intensity", 1.0f);
+    self_opacity = 0;
+
     AABB::CreateMerged(aabb, aabb, mwm.mesh->getAABB());
 
     meshes.push_back(mwm);

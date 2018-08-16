@@ -32,6 +32,9 @@
 			"render_outlines" : {
 				"enabled" : true
 		  },
+			"render_environment" : {
+				"enabled" : true
+		  },
 			"culling": true
 		}
 	}, {
@@ -91,6 +94,9 @@
 				"max_steps": 4
 		  },
 			"render_outlines" : {
+				"enabled" : true
+		  },
+			"render_environment" : {
 				"enabled" : true
 		  },
 			"render_focus": {

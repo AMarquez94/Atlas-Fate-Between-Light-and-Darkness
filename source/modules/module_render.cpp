@@ -32,6 +32,7 @@
 #include "components/postfx/comp_render_focus.h"
 #include "components/postfx/comp_render_motion_blur.h"
 #include "components/postfx/comp_render_flares.h"
+#include "components/postfx/comp_render_environment.h"
 
 //--------------------------------------------------------------------------------------
 
@@ -363,6 +364,10 @@ void CModuleRender::generateFrame() {
             TCompChromaticAberration* c_chroma_aberration = e_cam->get< TCompChromaticAberration >();
             if (c_chroma_aberration)
                 curr_rt = c_chroma_aberration->apply(curr_rt);
+
+            TCompRenderEnvironment * c_render_enviornment = e_cam->get< TCompRenderEnvironment >();
+            if (c_render_enviornment)
+                curr_rt = c_render_enviornment->apply(curr_rt);
 
             TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
             if (c_render_outlines && cb_outline.outline_alpha > 0)

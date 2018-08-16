@@ -197,6 +197,18 @@ float3 computeNormalMap(float3 inputN, float4 inputT, float2 inUV) {
   return wN;
 }
 
+float3 computeNormalDistortion(float3 inputN, float4 inputT, float2 noise) {
+
+  // You might want to normalize input.N and input.T.xyz
+  float3x3 TBN = computeTBN(inputN, inputT);
+
+  // Add some noise to the calculus
+  float3 normal_color = float3( noise.xy, 1.5 );
+  float3 wN = mul(normal_color, TBN);
+  wN = normalize(wN);
+
+  return wN;
+}
 
 // ------------------------------------------------------
 // screen_coords va entre 0..1024

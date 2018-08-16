@@ -153,6 +153,8 @@ void TCompTempPlayerController::registerMsgs() {
 
 void TCompTempPlayerController::onShadowChange(const TMsgShadowChange& msg) {
 
+    cb_player.player_shadowed = msg.is_shadowed;
+    cb_player.updateGPU();
     //VEC4 merged_color = msg.is_shadowed ? playerColor.colorMerge : playerColor.colorIdle;
 
     //TCompEmissionController * e_controller = get<TCompEmissionController>();

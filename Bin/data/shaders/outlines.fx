@@ -139,3 +139,22 @@ float4 PS(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
 	// or we are outside, all zeros.
 	return float4(band.xyz, 0.5) * outline_alpha;
 }
+
+float4 PS_Environment(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target
+{
+	int3 ss_load_coords = uint3(iPosition.xy, 0);
+ 	uint s_cc = txBackBufferStencil.Load(ss_load_coords).g;
+	float4 color = txEmissive.Sample(samClampLinear, UV);
+		
+	float4 noise0 = txNoiseMap.Sample( samLinear, UV * 1.0 + 0.4 * global_world_time/3 * float2(.5,0)) * 2 - 1;      // -1..1
+  float4 noise1 = txNoiseMap.Sample( samLinear, UV * 2.0 + 0.5 * global_world_time/3 * float2(.5,0.1)) * 2 - 1;      // -1..1
+  float4 noise2 = txNoiseMap.Sample( samLinear, UV * 4 + 0.5 * global_world_time/3 * float2(.55,-0.123)) * 2 - 1;      // -1..1
+	float4 noiset = txNoiseMap2.Sample( samLinear, UV * 1.0 + 0.4 * global_world_time/10 * float2(0,1)) * 2 - 1; 
+	float4 noiset2 = txNoiseMap2.Sample( samLinear, UV * 1.0 + 0.4 * global_world_time/10 * float2(0,1)) * 2 - 1; 
+	float2 noiseF = noise0.xy * 0.35 + noise1.xy * 0.25 + noise2.xy * .125;
+	float2 final_uv = UV + (noiseF * 0.01 * noiset * 2.35 * noiset2) * player_shadowed;
+	
+	if(s_cc == 240) return txEmissive.Sample( samClampLinear, final_uv);
+	
+	return color;
+}

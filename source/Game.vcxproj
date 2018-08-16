@@ -159,6 +159,7 @@
     <ClCompile Include="components\postfx\comp_fog.cpp" />
     <ClCompile Include="components\postfx\comp_render_ao.cpp" />
     <ClCompile Include="components\postfx\comp_render_bloom.cpp" />
+    <ClCompile Include="components\postfx\comp_render_environment.cpp" />
     <ClCompile Include="components\postfx\comp_render_flares.cpp" />
     <ClCompile Include="components\postfx\comp_render_focus.cpp" />
     <ClCompile Include="components\postfx\comp_render_motion_blur.cpp" />
@@ -374,6 +375,7 @@
     <ClInclude Include="components\postfx\comp_render_bloom.h" />
     <ClInclude Include="components\postfx\comp_render_blur.h" />
     <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
+    <ClInclude Include="components\postfx\comp_render_environment.h" />
     <ClInclude Include="components\postfx\comp_render_flares.h" />
     <ClInclude Include="components\postfx\comp_render_focus.h" />
     <ClInclude Include="components\postfx\comp_render_motion_blur.h" />

@@ -258,6 +258,11 @@ CB_DEF(CCtePlayer, CB_PLAYER)
     float  player_aberration;
     float  player_speed;
     float  player_disk_radius;
+
+    float  player_shadowed;
+    float  player_dummy1;
+    float  player_dummy2;
+    float  player_dummy3;
 };
 
 CB_DEF(CCtePostFX, CB_POSTFX)

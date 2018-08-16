@@ -28,7 +28,7 @@ void TCompFadeController::load(const json& j, TEntityParseContext& ctx) {
     _fall_speed = j.value("fall_speed", 0.1f);
     _material = j.value("material", "data/materials/characters/mtl_player_main_shade.material");
 
-    _invert_fade = 1;
+    _invert_fade = -1;
     _is_active = false;
 }
 
@@ -82,7 +82,7 @@ void TCompFadeController::launch(const TMsgFadeBody& msg) {
         c_my_rigid->is_enabled = false;
     }
 
-    c_my_render->setMaterial(_material);
+    //c_my_render->setMaterial(_material);
 }
 
 void TCompFadeController::destroy() {
