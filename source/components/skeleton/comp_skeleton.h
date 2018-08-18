@@ -18,6 +18,10 @@ struct TCompSkeleton : public TCompBase {
 	CRenderCte<CCteSkinBones> cb_bones;
 	CalModel* model = nullptr;
 
+	//Variables to root movement
+	std::string animationToRootName = "";
+	bool movingRoot = false;
+
 	TCompSkeleton();
 	~TCompSkeleton();
 
