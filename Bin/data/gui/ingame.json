@@ -7,19 +7,20 @@
 			{
 				"name" : "stamina_bar_general",
 				"type" : "widget",
-				"position" : "50 10",
+				"position" : "480 200",
 				"children" : [
 					{
 						"name" : "background",
 						"type" : "image",
-						"size" : "320 64",
-						"texture" : "data/textures/gui/staminabar_empty.dds"
+						"size" : "40 40",
+						"texture" : "data/textures/gui/hud_stamina_background.dds"
 					},
 					{
-						"name" : "stamina_bar",
+						"name" : "staminar_bar",
 						"type" : "bar",
-						"size" : "320 64",
-						"texture" : "data/textures/gui/staminabar_full.dds",
+						"size" : "40 40",
+						"color" : "0.05 1 0.25 1",
+						"texture" : "data/textures/gui/hud_stamina_bar.dds",
 						"variable" : "staminaBarFactor"
 					}
 				]

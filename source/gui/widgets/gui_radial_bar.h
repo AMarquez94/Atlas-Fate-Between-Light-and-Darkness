@@ -4,14 +4,14 @@
 #include "geometry/geometry.h"
 namespace GUI
 {
-    class CBar : public CWidget
+    class CRadialBar : public CWidget
     {
     public:
-        CBar() = default;
+        CRadialBar() = default;
         void render() override;
         void update(float dt) override;
         TImageParams* getImageParams() override;
-        TBarParams* CBar::getBarParams() override;
+        TBarParams* CRadialBar::getBarParams() override;
 
     private:
         TImageParams _imageParams;

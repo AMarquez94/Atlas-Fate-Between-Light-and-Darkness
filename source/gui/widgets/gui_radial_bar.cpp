@@ -1,10 +1,10 @@
 #include "mcv_platform.h"
-#include "gui_bar.h"
+#include "gui_radial_bar.h"
 
 using namespace GUI;
 
-void CBar::render() {
-
+void CRadialBar::render()
+{
     //float ratio = _barParams._processValue;
     float ratio = Engine.getGUI().getVariables().getFloat(_barParams._variable);
     ratio = clamp(ratio, 0.f, 1.f);
@@ -14,20 +14,22 @@ void CBar::render() {
     maxUV.x *= ratio;
     Engine.get().getGUI().renderTexture(w,
         _imageParams._texture,
-        _imageParams._minUV, maxUV,
+        _imageParams._minUV,
+        maxUV,
         _imageParams._color);
 }
 
-TImageParams* CBar::getImageParams() {
-
+TImageParams* CRadialBar::getImageParams()
+{
     return &_imageParams;
 }
 
-TBarParams* CBar::getBarParams() {
-
+TBarParams* CRadialBar::getBarParams()
+{
     return &_barParams;
 }
 
-void CBar::update(float dt) {
+void CRadialBar::update(float dt)
+{
 
 }

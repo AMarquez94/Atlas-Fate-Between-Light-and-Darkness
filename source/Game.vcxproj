@@ -193,6 +193,7 @@
     <ClCompile Include="gui\widgets\gui_bar.cpp" />
     <ClCompile Include="gui\widgets\gui_button.cpp" />
     <ClCompile Include="gui\widgets\gui_image.cpp" />
+    <ClCompile Include="gui\widgets\gui_radial_bar.cpp" />
     <ClCompile Include="gui\widgets\gui_text.cpp" />
     <ClCompile Include="handle\handle_def.cpp" />
     <ClCompile Include="handle\handle_manager.cpp" />
@@ -424,6 +425,7 @@
     <ClInclude Include="gui\widgets\gui_bar.h" />
     <ClInclude Include="gui\widgets\gui_button.h" />
     <ClInclude Include="gui\widgets\gui_image.h" />
+    <ClInclude Include="gui\widgets\gui_radial_bar.h" />
     <ClInclude Include="gui\widgets\gui_text.h" />
     <ClInclude Include="handle\handle.h" />
     <ClInclude Include="handle\handle_def.h" />
