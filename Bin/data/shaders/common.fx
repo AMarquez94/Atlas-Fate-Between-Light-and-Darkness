@@ -61,6 +61,8 @@ SamplerState samClampBilinear   : register(s5);
 SamplerState samClampPoint    : register(s6);
 SamplerState samCount   			: register(s7);
 
+static const float PI = 3.14159265f;
+
 //--------------------------------------------------------------------------------------
 // 
 //--------------------------------------------------------------------------------------

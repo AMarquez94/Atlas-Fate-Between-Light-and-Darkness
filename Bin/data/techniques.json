@@ -488,6 +488,16 @@
 		"rs_config": "cull_none",
 		"blend": "combinative"
 	},
+	"gui_radial": {
+		"vs_file": "data/shaders/gui.fx",
+		"vs_entry_point": "VS_GUI",
+		"ps_entry_point": "PS_GUI_RADIAL",
+		"vertex_type": "PosClr",
+		"category": "gui",
+		"z": "disable_all",
+		"rs_config": "cull_none",
+		"blend": "combinative"
+	},
 	"particles": {
 		"vs_file": "data/shaders/particles.fx",
 		"vs_entry_point": "VS_Particles",

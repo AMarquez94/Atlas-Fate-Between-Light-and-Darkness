@@ -9,14 +9,15 @@ void CRadialBar::render()
     float ratio = Engine.getGUI().getVariables().getFloat(_barParams._variable);
     ratio = clamp(ratio, 0.f, 1.f);
     MAT44 sz = MAT44::CreateScale(_params._size.x, _params._size.y, 1.f);
-    MAT44 w = MAT44::CreateScale(ratio, 1.f, 1.f) * sz * _absolute;
-    VEC2 maxUV = _imageParams._maxUV;
-    maxUV.x *= ratio;
-    Engine.get().getGUI().renderTexture(w,
-        _imageParams._texture,
-        _imageParams._minUV,
-        maxUV,
-        _imageParams._color);
+    MAT44 w = sz * _absolute;
+
+    ConfigParams c_params = ConfigParams();
+    c_params.color = _imageParams._color;
+    c_params.minUV = _imageParams._minUV;
+    c_params.maxUV = _imageParams._maxUV;
+    c_params.var = ratio;
+
+    Engine.get().getGUI().renderCustomTexture("gui_radial.tech", w, _imageParams._texture, c_params );
 }
 
 TImageParams* CRadialBar::getImageParams()

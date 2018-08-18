@@ -16,6 +16,7 @@ public:
 		GUI::CWidget *_widget;
 		GUI::CController *_controller;
 	};
+
 	std::map<EGUIWidgets, WidgetStructure> _widgetStructureMap;
 	CModuleGUI(const std::string& name);
 	bool start() override;
@@ -41,6 +42,7 @@ public:
 	MVariants& getVariables();
 
 	void renderTexture(const MAT44& world, const CTexture* texture, const VEC2& minUV, const VEC2& maxUV, const VEC4& color);
+    void renderCustomTexture(const std::string & tech, const MAT44& world, const CTexture* texture, const GUI::ConfigParams & params);
 	void renderText(const MAT44& world, const std::string& text, const VEC4& color);
 
 private:

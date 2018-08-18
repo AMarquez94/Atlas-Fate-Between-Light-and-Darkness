@@ -17,7 +17,7 @@
 					},
 					{
 						"name" : "staminar_bar",
-						"type" : "bar",
+						"type" : "radialbar",
 						"size" : "40 40",
 						"color" : "0.05 1 0.25 1",
 						"texture" : "data/textures/gui/hud_stamina_bar.dds",
