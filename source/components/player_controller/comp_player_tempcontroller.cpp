@@ -101,6 +101,9 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
     paused = true;
     canAttack = false;
     canRemoveInhibitor = false;
+
+    // Move the stamina string to the json
+    EngineGUI.enableWidget("stamina_bar_general", false);
 }
 
 /* Player controller main update */
@@ -786,6 +789,8 @@ const bool TCompTempPlayerController::onMergeTest(float dt) {
         groundMsg.variant.setBool(mergeTest);
         e->sendMsg(groundMsg);
         c_my_rigidbody->filters.mFilterData = isMerged == true ? pxPlayerFilterData : pxShadowFilterData;
+
+        EngineGUI.enableWidget("stamina_bar_general", mergeTest);
     }
 
     return mergeTest;

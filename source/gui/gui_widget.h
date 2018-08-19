@@ -35,6 +35,7 @@ namespace GUI {
 
         void updateAll(float delta);
         void renderAll();
+        void enable(bool status = true);
 
         virtual void update(float delta);
         virtual void render();

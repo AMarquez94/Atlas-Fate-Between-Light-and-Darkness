@@ -32,6 +32,7 @@ public:
 	GUI::CWidget* getWidget(EGUIWidgets wdgt_type);	
 	void activateWidget(EGUIWidgets wdgt);
 	void deactivateWidget(EGUIWidgets wdgt);
+    void enableWidget(const std::string& name, bool status = true);
 
 	// controller management
 	void registerController(GUI::CController* controller);

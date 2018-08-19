@@ -183,6 +183,17 @@ void CModuleGUI::deactivateWidget(EGUIWidgets wdgt)
 	}
 }
 
+void CModuleGUI::enableWidget(const std::string& name, bool status)
+{
+    dbg("enabling the widget\n");
+
+    // Maybe we should replace this with the deactivateWidget 
+    CWidget* widgt = getWidget(name, true);
+
+    if(widgt)
+        widgt->enable(status); 
+}
+
 void CModuleGUI::registerController(GUI::CController* controller)
 {
 	auto it = std::find(_controllers.begin(), _controllers.end(), controller);
