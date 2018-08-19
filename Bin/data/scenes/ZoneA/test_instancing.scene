@@ -21,7 +21,7 @@
 			"render": [{
 					"mesh": "data/meshes/blood.instanced_mesh",
 					"materials": [
-						"data/materials/blood_instanced.material"
+						"data/materials/mtl_instanced_decal.material"
 					]
 				}
 			]

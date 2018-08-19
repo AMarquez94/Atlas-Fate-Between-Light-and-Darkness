@@ -57,5 +57,30 @@
       ,
       "local_aabb": true
     }
+  },
+  {
+    "entity":
+    {
+      "name": "Box001"
+      ,
+      "transform":
+      {
+        "pos": "-51.431 2.375 -86.635"
+      }
+      ,
+      "instance":
+      {
+        "mesh": "data/meshes/blood.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/mtl_instanced_decal.material"
+        ]
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
   }
 ]

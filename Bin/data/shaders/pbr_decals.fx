@@ -123,7 +123,7 @@ float4 PS(
 
   //o_normal = float4(1,1,0,1);
   //o_self_illum = float4(1,1,0,1);
-
+	
   return o_albedo;
 }
 

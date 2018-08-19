@@ -127,6 +127,5 @@ void CWidget::render()
 
 void CWidget::enable(bool status) 
 {
-    dbg("test widget");
     enabled = status;
 }

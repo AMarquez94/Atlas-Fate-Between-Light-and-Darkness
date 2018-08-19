@@ -185,8 +185,6 @@ void CModuleGUI::deactivateWidget(EGUIWidgets wdgt)
 
 void CModuleGUI::enableWidget(const std::string& name, bool status)
 {
-    dbg("enabling the widget\n");
-
     // Maybe we should replace this with the deactivateWidget 
     CWidget* widgt = getWidget(name, true);
 
