@@ -75,7 +75,6 @@ float4 PS(
   in VS_TEXTURED_OUTPUT input
   ) : SV_Target0
 {
-
   //o_albedo = txAlbedo.Sample(samLinear, input.uv);
 
   float2 iPosition = input.Pos.xy;
@@ -106,7 +105,7 @@ float4 PS(
   //o_albedo.a *= input.opacity;
   float4 o_albedo;
 
-  o_albedo.xyz = input.color.xyz;
+  o_albedo.xyz = float3(1,0,0);//input.color.xyz;
   o_albedo.a = decal_color.a;
   //o_normal.a = decal_color.a;
 
