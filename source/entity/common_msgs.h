@@ -154,6 +154,12 @@ struct TMsgAnimationCallback {
 	DECL_MSG_ID();
 };
 
+struct TMsgAnimationAudioCallback {
+    std::string audioName;
+    bool isRelativeToPlayer;
+    DECL_MSG_ID();
+};
+
 struct TMsgTimeOut {
 	DECL_MSG_ID();
 };

@@ -4,6 +4,11 @@
 
 DECL_OBJ_MANAGER("audio", TCompAudio);
 
+void TCompAudio::onAnimationAudioCallback(const TMsgAnimationAudioCallback & msg)
+{
+    playEvent(msg.audioName, msg.isRelativeToPlayer);
+}
+
 void TCompAudio::onStopAudioComponent(const TMsgStopAudioComponent & msg)
 {
     for (auto audio : my2DEvents) {
@@ -46,7 +51,6 @@ void TCompAudio::update(float dt)
         }
     }
 
-
     // Remove invalid 3D events
     iter = my3DEvents.begin();
     while (iter != my3DEvents.end()) {
@@ -74,6 +78,7 @@ void TCompAudio::update(float dt)
 
 void TCompAudio::registerMsgs()
 {
+    DECL_MSG(TCompAudio, TMsgAnimationAudioCallback, onAnimationAudioCallback);
     DECL_MSG(TCompAudio, TMsgStopAudioComponent, onStopAudioComponent);
 }
 

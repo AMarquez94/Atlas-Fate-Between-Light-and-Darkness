@@ -302,11 +302,21 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
 			new_callback->luaFunction = function_to_call;
 			CalCoreAnimation *core_anim = getCoreAnimation(anim_id);
 			core_anim->registerCallback(new_callback, timeToCall);
-			
 		}
 	}
-	
 
+    if (anim.count("audio_callbacks")) {
+        auto& j_audio_callbacks = anim["audio_callbacks"];
+        for (auto it = j_audio_callbacks.begin(); it != j_audio_callbacks.end(); it++) {
+            AnimationAudioCallback *new_audio_callback = new AnimationAudioCallback();
+            float timeToCall = it.value().value("time_to_call", 0.0f);
+            std::string audio_name = it.value().value("audio_name", "");
+            bool relative_to_player = it.value().value("relative_to_player", true);
+            new_audio_callback->audioName = audio_name;
+            CalCoreAnimation *core_anim = getCoreAnimation(anim_id);
+            core_anim->registerCallback(new_audio_callback, timeToCall);
+        }
+    }
   }
 
   // Array of bone ids to debug (auto conversion from array of json to array of ints)

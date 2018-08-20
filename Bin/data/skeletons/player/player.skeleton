@@ -2,7 +2,19 @@
 	"name":"player",
 	"anims" : [
 		{ "name" : "idle"},
-		{ "name" : "walk"},
+		{ "name" : "walk", 
+			"audio_callbacks":[
+			{
+				"time_to_call" : 0.2,
+				"audio_name" : "event:/Sounds/Player/Steps/NormalSteps",
+				"relative_to_player" : false
+			},
+			{
+				"time_to_call" : 0.4,
+				"audio_name" : "event:/Sounds/Player/Steps/NormalSteps",
+				"relative_to_player" : false
+			}]
+		},
 		{ "name" : "run"},
 		{ "name" : "attack"},
 		{ "name" : "crouch"},

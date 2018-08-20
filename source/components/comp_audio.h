@@ -12,6 +12,7 @@ private:
     std::vector<SoundEvent> my2DEvents;
     std::vector<SoundEvent> my3DEvents;
 
+    void onAnimationAudioCallback(const TMsgAnimationAudioCallback& msg);
     void onStopAudioComponent(const TMsgStopAudioComponent& msg);
 
 public:

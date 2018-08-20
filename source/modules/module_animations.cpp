@@ -31,3 +31,17 @@ void AnimationCallback::AnimationUpdate(float anim_time, CalModel *model) {
 void AnimationCallback::AnimationComplete(CalModel *model) {
 
 }
+
+void AnimationAudioCallback::AnimationUpdate(float anim_time, CalModel * model)
+{
+    CHandle owner = EngineAnimations.mapModelToHandle[model];
+    TMsgAnimationAudioCallback msg;
+    msg.audioName = this->audioName;
+    msg.isRelativeToPlayer = this->relativeToPlayer;
+    owner.sendMsg(msg);
+    dbg("Audio:     %f\n", anim_time);
+}
+
+void AnimationAudioCallback::AnimationComplete(CalModel * model)
+{
+}

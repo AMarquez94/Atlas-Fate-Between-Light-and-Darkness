@@ -4,10 +4,16 @@
 #include "entity/entity.h"
 
 struct AnimationCallback : public CalAnimationCallback {
-
 	std::string luaFunction;
 	void AnimationUpdate(float anim_time, CalModel *model);
 	void AnimationComplete(CalModel *model);
+};
+
+struct AnimationAudioCallback : public CalAnimationCallback {
+    std::string audioName;
+    bool relativeToPlayer = true;
+    void AnimationUpdate(float anim_time, CalModel *model);
+    void AnimationComplete(CalModel *model);
 };
 
 class CModuleAnimations : public IModule

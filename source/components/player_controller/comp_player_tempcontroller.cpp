@@ -349,7 +349,7 @@ void TCompTempPlayerController::walkState(float dt) {
     if (stepTimer > 0.33f * factor) {
 
         TCompAudio* audio = get<TCompAudio>();
-        audio->playEvent("event:/Sounds/Player/Steps/NormalSteps", false);
+        //audio->playEvent("event:/Sounds/Player/Steps/NormalSteps", false);
         stepRight = !stepRight;
         stepTimer = 0.0f;
     }
