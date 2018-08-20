@@ -1,6 +1,4 @@
 {
-  "technique": "pbr.tech"
-  ,
   "shadows": true
   ,
   "textures":

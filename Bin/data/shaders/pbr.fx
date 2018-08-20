@@ -256,7 +256,7 @@ void PS_GBufferMix(
   float4 albedoR = txAlbedo.Sample(samLinear, iTex0);
   float4 albedoG = txAlbedo1.Sample(samLinear, iTex0);
   float4 albedoB = txAlbedo2.Sample(samLinear, iTex0);
-
+	
   float w1, w2, w3;
   computeBlendWeights( albedoR.a + mix_boost_r
                      , albedoG.a + mix_boost_g

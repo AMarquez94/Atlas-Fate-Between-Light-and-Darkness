@@ -19,7 +19,7 @@ struct TMaterialExporter (
 		local base_name = getFilenameFile map_filename
 		local json_filename = "data/textures/" + base_name + ".dds"
 		local ofull_path = project_path + json_filename
-		print ofull_path
+
 		-- Check if ofull_path exists
 		if not doesFileExist ofull_path then (
 			format "We should copy from % to %\n" map_filename ofull_path
@@ -29,16 +29,50 @@ struct TMaterialExporter (
 		fs.writeKeyValue alias json_filename
 	),
 	
-	-- Exports a single std material to a json format
-	fn exportStdMaterial mat mat_name tech = (
+		-- Exports a single std material to a json format
+	fn exportMixMaterial mat mat_name base_name tech = (
 		
-		format "Exporting material % % %\n" mat_name mat (classof mat as string)
+		exported_materials = #()
+		local mat_name1 = base_name + mat.map1.name + ".material"
+		local mat_name2 = base_name + mat.map2.name + ".material"
+		append exported_materials mat_name1
+		append exported_materials mat_name2
+		
+		format "Exporting mixed material % % %\n" mat_name mat (classof mat as string)
 		fs.begin (project_path + mat_name )
 		fs.beginObj()
 			if tech != undefined then ( 
 				fs.writeKeyValue "technique" tech 
 				fs.writeComma()
 			)
+			
+			fs.writeKeyValue "shadows" true
+			fs.writeComma()
+			fs.writeKey "textures" 
+			fs.beginObj()
+			fs.endObj()
+			fs.writeComma()
+			fs.writeKey "mats"
+			fs.arrayOfStrings exported_materials
+			fs.writeComma()
+			exportMap mat.mask "mix_blend_weights"
+			
+		fs.endObj()
+		fs.end()
+	),
+	
+	-- Exports a single std material to a json format
+	fn exportStdMaterial mat mat_name tech = (
+		
+		format "Exporting mixing material % % %\n" mat_name mat (classof mat as string)
+		fs.begin (project_path + mat_name )
+		fs.beginObj()
+			if tech != undefined then ( 
+				fs.writeKeyValue "technique" tech 
+				fs.writeComma()
+			)
+			fs.writeKeyValue "shadows" true
+			fs.writeComma()
 			fs.writeKeyValue "shadows" true
 			fs.writeComma()
 			fs.writeKey "textures" 
@@ -106,6 +140,14 @@ struct TMaterialExporter (
 				append exported_materials mat_name
 				exportStdMaterial mat_of_mesh mat_name tech
 			)
+		) else if classof mat == Blend then (
+			local mat_name = base_name + mat.name + ".material"
+			local mat_name1 = base_name + mat.map1.name + ".material"
+			local mat_name2 = base_name + mat.map2.name + ".material"
+			append exported_materials mat_name
+			exportStdMaterial mat.map1 mat_name1 tech
+			exportStdMaterial mat.map2 mat_name2 tech
+			exportMixMaterial mat mat_name base_name "pbr_mix.tech"
 		)
 		
 		return exported_materials
