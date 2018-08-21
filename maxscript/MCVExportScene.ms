@@ -30,7 +30,7 @@ struct TMaterialExporter (
 	),
 	
 		-- Exports a single std material to a json format
-	fn exportMixMaterial mat mat_name base_name tech = (
+	fn exportMixMaterial mat mat_name base_name tech sdw = (
 		
 		exported_materials = #()
 		local mat_name1 = base_name + mat.map1.name + ".material"
@@ -46,7 +46,7 @@ struct TMaterialExporter (
 				fs.writeComma()
 			)
 			
-			fs.writeKeyValue "shadows" true
+			fs.writeKeyValue "shadows" sdw
 			fs.writeComma()
 			fs.writeKey "textures" 
 			fs.beginObj()
@@ -62,7 +62,7 @@ struct TMaterialExporter (
 	),
 	
 	-- Exports a single std material to a json format
-	fn exportStdMaterial mat mat_name tech = (
+	fn exportStdMaterial mat mat_name tech sdw = (
 		
 		format "Exporting mixing material % % %\n" mat_name mat (classof mat as string)
 		fs.begin (project_path + mat_name )
@@ -71,9 +71,7 @@ struct TMaterialExporter (
 				fs.writeKeyValue "technique" tech 
 				fs.writeComma()
 			)
-			fs.writeKeyValue "shadows" true
-			fs.writeComma()
-			fs.writeKeyValue "shadows" true
+			fs.writeKeyValue "shadows" sdw
 			fs.writeComma()
 			fs.writeKey "textures" 
 			fs.beginObj()
@@ -92,10 +90,16 @@ struct TMaterialExporter (
 					fs.writeComma()
 					exportMap mat.glossinessMap "roughness"
 				)	
+				
 				if mat.bumpMap != undefined then (
 					fs.writeComma()
 					exportMap mat.bumpMap "normal"
-				)			
+				)
+				else (
+					fs.writeComma()
+					exportMap mat.bumpMap "normal"
+				)
+				
 				if mat.displacementMap != undefined then (
 					fs.writeComma()
 					exportMap mat.displacementMap "height"
@@ -116,14 +120,14 @@ struct TMaterialExporter (
 	),
 	
 	-- Will return an array of all the materials names used by obj and exported by us
-	fn exportMaterial mat base_name obj tech = (
+	fn exportMaterial mat base_name obj tech sdw = (
 		
 		local exported_materials = #()
 		
 		if classof mat == StandardMaterial then (
 			local mat_name = base_name + mat.name + ".material"
 			append exported_materials mat_name
-			exportStdMaterial mat mat_name tech
+			exportStdMaterial mat mat_name tech sdw
 			
 		) else if classof mat == MultiMaterial then (
 			local multi_mat = mat
@@ -138,15 +142,15 @@ struct TMaterialExporter (
 				
 				local mat_name = base_name + mat_of_mesh.name + ".material"
 				append exported_materials mat_name
-				exportStdMaterial mat_of_mesh mat_name tech
+				exportStdMaterial mat_of_mesh mat_name tech sdw
 			)
 		) else if classof mat == Blend then (
 			local mat_name = base_name + mat.name + ".material"
 			local mat_name1 = base_name + mat.map1.name + ".material"
 			local mat_name2 = base_name + mat.map2.name + ".material"
 			append exported_materials mat_name
-			exportStdMaterial mat.map1 mat_name1 tech
-			exportStdMaterial mat.map2 mat_name2 tech
+			exportStdMaterial mat.map1 mat_name1 tech sdw
+			exportStdMaterial mat.map2 mat_name2 tech sdw
 			exportMixMaterial mat mat_name base_name "pbr_mix.tech"
 		)
 		
@@ -299,6 +303,25 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
+	fn exportTransformDecal obj = (
+		fs.writeKey "transform" 
+		
+		local max2mcv = rotateXMatrix -90
+		local mcv2max = rotateXMatrix 90
+		local mcv_position = obj.pos * max2mcv
+		print obj.pos
+		local mcv_transform = mcv2max * obj.transform * max2mcv
+		local mcv_quat = mcv_transform.rotationPart as quat
+		local mcv_final_position = checkPoint mcv_position
+		fs.beginObj()
+			fs.writeKeyValue "pos" mcv_final_position
+			fs.writeComma()
+			fs.writeKeyValue "rotation" mcv_quat
+			fs.writeComma()
+			fs.writeKeyValue "vscale" [obj.length, 0.1, obj.width]
+		fs.endObj()
+	),
+	
 		-- ----------------------------------------------------------
 	fn exportTransformPrefab obj = (
 		fs.writeKey "transform" 
@@ -360,7 +383,7 @@ struct TSceneExporter (
 		
 			if mat != undefined then (
 				local me = TMaterialExporter project_path:project_path base_path:base_path
-				exported_materials = me.exportMaterial mat f_mats_path obj undefined
+				exported_materials = me.exportMaterial mat f_mats_path obj undefined true
 			)
 			
 			fs.writeKey "materials"
@@ -411,11 +434,45 @@ struct TSceneExporter (
 				
 		if mat != undefined then (
 			local me = TMaterialExporter project_path:project_path base_path:base_path
-			exported_materials = me.exportMaterial mat f_mats_path obj "pbr_instanced.tech"
+			exported_materials = me.exportMaterial mat f_mats_path obj "pbr_instanced.tech" true
 		)
 		
 		fs.writeKey "materials"
 		fs.arrayOfStrings exported_materials
+		fs.endObj()
+	),
+	
+	fn exportDecalInstance obj = (
+		
+		local decal_name = "instanced_default"
+		local f_mats_path = mats_path + local_path
+		local exported_materials = #(f_mats_path + "mtl_instanced_default.material")
+		local mat = obj.material
+		
+		-- Do some material safe checks.
+		if mat != undefined then (
+			decal_name = substituteString mat.name "mtl_" ""
+		)
+		
+		-- First, export the instanced mesh file
+		local mesh_name = "data/meshes/UnitBox.mesh"
+		local imesh_name = mesh_path + local_path + decal_name + ".instanced_mesh"
+		exportInstancedMesh imesh_name mesh_name
+		
+		-- Export instanced Mesh
+		fs.writeKey "instance" 
+		fs.beginObj()
+		fs.writeKeyValue "mesh" imesh_name
+		fs.writeComma()
+				
+		if mat != undefined then (
+			local me = TMaterialExporter project_path:project_path base_path:base_path
+			exported_materials = me.exportMaterial mat f_mats_path obj "pbr_decals.tech" false
+		)
+		
+		fs.writeKey "materials"
+		fs.arrayOfStrings exported_materials
+		fs.endObj()
 	),
 	
 	-- ----------------------------------------------------------
@@ -679,12 +736,31 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
+	-- Export an entity which is an xref object as a prefab
+	fn exportEntityDecal obj = (
+		
+		-- We must ignore those which are 
+		if (nitems > 0) then fs.writeComma()
+				
+		fs.beginObj()
+		fs.writeKey "entity"
+			fs.beginObj()
+			fs.writeComma()
+			exportName obj 
+			exportTransformDecal obj
+			fs.writeComma()
+			exportDecalInstance obj
+			fs.endObj()
+		fs.endObj()
+	),
+	
 	-- ----------------------------------------------------------
 	fn exportEntity obj = (
 		
 		-- Adding general discarding here
 		if classof obj == Targetobject then (return false )
 		if isCollider obj and  obj.parent != undefined then (return false )
+		if classof obj == QuadPatch then (return exportEntityDecal obj)
 		if classof obj == xrefobject then (return exportEntityPrefab obj)
 		
 		if (nitems > 0) then fs.writeComma()
