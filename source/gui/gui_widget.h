@@ -20,6 +20,7 @@ namespace GUI
     virtual TImageParams* getImageParams() { return nullptr; }
 	virtual TBarParams* getBarParams() { return nullptr; }
     virtual TTextParams* getTextParams() { return nullptr; }
+    virtual TParams* getTParams() { return nullptr; }
 
     void addEffect(CEffect* fx);
 
@@ -31,6 +32,8 @@ namespace GUI
 
     virtual void update(float delta);
     virtual void render();
+
+    MAT44 getAbsolute() { return _absolute; };
 
   protected:
     std::string _name;

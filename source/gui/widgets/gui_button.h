@@ -13,7 +13,9 @@ namespace GUI
     void render() override;
     TImageParams* getImageParams() override;
     TTextParams* getTextParams() override;
+    TParams* getTParams() override;
     void setCurrentState(EState newState);
+    EState getCurrentState();
 
   private:
     TButtonParams _states[NUM_STATES];

@@ -21,13 +21,7 @@ void CModuleDebug::update(float delta) {
 
     if (EngineInput["btR_btMouseRClick"].getsPressed() || EngineInput["btR_btMouseLClick"].getsPressed()) {
 
-        POINT mouse_loc;
-        GetCursorPos(&mouse_loc);
-        ScreenToClient(CApp::get().getWnd(), &mouse_loc);
-        VEC2 mouse_pos = VEC2((float)Clamp((int)mouse_loc.x, 0, CApp::get().xres), (float)Clamp((int)mouse_loc.y, 0, CApp::get().yres));
-
-        mouse_pos.x = (float)mapInRange(-1, 1, 0, CApp::get().xres, mouse_pos.x);
-        mouse_pos.y = (float)-mapInRange(-1, 1, 0, CApp::get().yres, mouse_pos.y);
+        VEC2 mouse_pos = getMouseInRange(-1, 1, 1, -1);
        
         VEC3 origin = VEC3(mouse_pos.x, mouse_pos.y, 0);
         VEC3 dest = VEC3(mouse_pos.x, mouse_pos.y, 1);

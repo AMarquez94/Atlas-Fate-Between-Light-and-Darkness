@@ -16,6 +16,10 @@ public:
 		GUI::CWidget *_widget;
 		GUI::CController *_controller;
 	};
+
+    const float width = 1080;
+    const float height = 640;
+
 	std::map<EGUIWidgets, WidgetStructure> _widgetStructureMap;
 	CModuleGUI(const std::string& name);
 	bool start() override;

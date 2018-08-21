@@ -14,8 +14,6 @@ CModuleGUI::CModuleGUI(const std::string& name)
 
 bool CModuleGUI::start()
 {
-	const float width = 1080;
-	const float height = 640;
 	_orthoCamera.setOrthographicGUI(width, height);
 
 	_technique = Resources.get("gui.tech")->as<CRenderTechnique>();
