@@ -25,8 +25,10 @@ void TCompInstance::registerMsgs() {
 void TCompInstance::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
     TCompTransform * self_transform = get<TCompTransform>();
-    MAT44 w_matrix = self_transform->asMatrix();
-    _index = EngineInstancing.addInstance(_instance_mesh, w_matrix);
+    MAT44 new_rot = MAT44::CreateFromQuaternion(self_transform->getRotation());
+    MAT44 new_trans = MAT44::CreateTranslation(self_transform->asMatrix().Translation());
+    MAT44 posz = MAT44::CreateScale(VEC3(4, 1, 2)) * new_rot * new_trans;
+    _index = EngineInstancing.addInstance(_instance_mesh, posz);
 }
 
 void TCompInstance::onMsgEntityCreated(const TMsgEntityCreated& msg) {
@@ -42,5 +44,9 @@ void TCompInstance::update(float dt) {
 
     TCompTransform * self_transform = get<TCompTransform>();
     //_instance->world = self_transform->asMatrix();
-    EngineInstancing.updateInstance(_instance_mesh, _index, self_transform->asMatrix());
+    
+    MAT44 new_rot = MAT44::CreateFromQuaternion(self_transform->getRotation());
+    MAT44 new_trans = MAT44::CreateTranslation(self_transform->asMatrix().Translation());
+    MAT44 posz = MAT44::CreateScale(VEC3(4,1,2)) * new_rot * new_trans;
+    EngineInstancing.updateInstance(_instance_mesh, _index, posz);
 }

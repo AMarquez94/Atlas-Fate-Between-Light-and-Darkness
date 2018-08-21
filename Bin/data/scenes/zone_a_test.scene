@@ -61,12 +61,12 @@
   {
     "entity":
     {
-      "name": "Box001"
+      "name": "Decal_Test"
       ,
       "transform":
       {
-        "pos": "-51.431 1.375 -86.635",
-        "rotation": "0.5 0.0 0.0 -1.0"
+        "pos": "-51.431 1.375 -86.635"        ,
+        "rotation": "0.5 0.0 0.0 1.0"
       }
       ,
       "instance":

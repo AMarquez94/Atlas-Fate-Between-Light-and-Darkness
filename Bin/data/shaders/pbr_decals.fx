@@ -48,13 +48,17 @@ VS_TEXTURED_OUTPUT VS(
   // From the world matrix, extract the main axis x & z, and the center
   float3 center  = float3( instance_world[3][0], instance_world[3][1], instance_world[3][2] );
   float3 decal_x = float3( instance_world[0][0], instance_world[0][1], instance_world[0][2] );
+	float3 decal_y = float3( instance_world[1][0], instance_world[1][1], instance_world[1][2] );
   float3 decal_z = float3( instance_world[2][0], instance_world[2][1], instance_world[2][2] );
-
+		
   // Precompute in the vs the axis to compute the local coords from world coords 
   output.decal_top_left = center - decal_x * 0.5 - decal_z * 0.5;
   float decal_inv_size = 1 / ( dot( decal_x, decal_x ) );
-  output.decal_axis_x = decal_x * decal_inv_size;
-  output.decal_axis_z = decal_z * decal_inv_size;
+	float decal_inv_size_x = 1 / (length(decal_x) * length(decal_x));
+	float decal_inv_size_z = 1 / (length(decal_z) * length(decal_z));
+	
+  output.decal_axis_x = decal_x * decal_inv_size_x;
+  output.decal_axis_z = decal_z * decal_inv_size_z;
 
   // Blendout in the last TimeBlendingOut secs of TimeToLife
   //float TimeToLife = InstanceXtras.x;
@@ -113,7 +117,7 @@ float4 PS(
   //o_albedo = float4( amount_of_x, amount_of_z, 0, 1 );
 
   // Change to true 'see' the boxes
-  if( false ) {
+  if( true ) {
     o_albedo.a += 0.3;
    
     if( (input.uv.x < 0.01 || input.uv.x > 0.99 ) || (input.uv.y < 0.01 || input.uv.y > 0.99 ) )
