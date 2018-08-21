@@ -294,7 +294,7 @@ void CModuleInstancing::render() {
                     CTransform tmx;
                     tmx.setRotation(rot);
                     tmx.setPosition(trans);
-                    tmx.setScale(scale.x);
+                    tmx.setScale(scale);
                     if (tmx.debugInMenu())
                         p.world = tmx.asMatrix();
                     ImGui::ColorEdit4("Color", &p.color.x);

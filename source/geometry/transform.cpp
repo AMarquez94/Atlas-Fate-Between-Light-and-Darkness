@@ -18,8 +18,14 @@ bool CTransform::load(const json& j) {
         float angle_rad = deg2rad(angle_deg);
         setRotation(QUAT::CreateFromAxisAngle(axis, angle_rad));
     }
-    if (j.count("scale"))
-        scale = j.value("scale", 1.0f);
+    if (j.count("scale")) {
+        float t_scale = j.value("scale", 1.0f);
+        scale = VEC3(t_scale, t_scale, t_scale);
+    }
+    else if (j.count("vscale")) {
+        scale = loadVEC3(j["vscale"]);
+    }
+
     return true;
 }
 
@@ -72,7 +78,7 @@ bool CTransform::debugInMenu() {
     pos.x = posfloat[0];
     pos.y = posfloat[1];
     pos.z = posfloat[2];
-    changed |= ImGui::DragFloat("Scale", &scale, 0.01f, -10.f, 10.f);
+    changed |= ImGui::DragFloat3("Scale", &scale.x, 0.01f, -10.f, 10.f);
     // Angulos
     float yaw, pitch, roll;
     getYawPitchRoll(&yaw, &pitch, &roll);

@@ -210,7 +210,7 @@ void TCompLightSpot::activate() {
     cb_light.light_color = color;
     cb_light.light_intensity = intensity;
     cb_light.light_pos = c->getPosition();
-    cb_light.light_radius = range * c->getScale();
+    cb_light.light_radius = range * c->getScale().x;
     cb_light.light_view_proj_offset = getViewProjection() * mtx_offset;
     cb_light.light_angle = spot_angle;
     cb_light.light_direction = VEC4(c->getFront().x, c->getFront().y, c->getFront().z, 1);

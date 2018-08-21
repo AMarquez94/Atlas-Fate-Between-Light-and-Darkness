@@ -140,7 +140,7 @@ void TCompLightPoint::activate() {
     cb_light.light_color = color;
     cb_light.light_intensity = intensity;
     cb_light.light_pos = c->getPosition();
-    cb_light.light_radius = outer_cut *c->getScale();
+    cb_light.light_radius = outer_cut *c->getScale().x;
     cb_light.far_atten = 1.f;
     cb_light.inner_atten = inner_cut / outer_cut;
     cb_light.light_view_proj_offset = MAT44::Identity;
