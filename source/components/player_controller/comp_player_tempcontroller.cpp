@@ -337,24 +337,6 @@ void TCompTempPlayerController::walkState(float dt) {
     VEC3 proj = projectVector(up, normal_norm);
     VEC3 dir = getMotionDir(proj, normal_norm.Cross(-proj));
 
-    //TODO: Destroy this shiat-----------------------------------------------------------------------
-
-    float factor = 1.0f;
-    if (EngineInput["btRun"].isPressed()) factor = 0.95f;
-
-    if (currentSpeed <= 1.8f) {
-        factor = 1.3f;
-    }
-    stepTimer += dt;
-    if (stepTimer > 0.33f * factor) {
-
-        TCompAudio* audio = get<TCompAudio>();
-        //audio->playEvent("event:/Sounds/Player/Steps/NormalSteps", false);
-        stepRight = !stepRight;
-        stepTimer = 0.0f;
-    }
-    //Destroy this shiat-----------------------------------------------------------------------
-
     if (dir == VEC3::Zero) dir = proj;
 
     float dir_yaw = getYawFromVector(dir);
