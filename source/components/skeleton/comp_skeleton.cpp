@@ -272,7 +272,7 @@ void TCompSkeleton::changeCyclicAnimation(int anim1Id, float speed, int anim2Id,
     if (anim2Id != -1) {
         model->getMixer()->blendCycle(anim2Id, 1.f - weight, in_delay);
     }
-
+	model->getMixer()->setAnimationTime(0.0f);
     actualCycleAnimId[0] = anim1Id;
     actualCycleAnimId[1] = anim2Id;
 
