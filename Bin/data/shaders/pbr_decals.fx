@@ -12,6 +12,9 @@ struct VS_TEXTURED_OUTPUT
   float  opacity: TEXCOORD3;
   float2 uv:      TEXCOORD4;
   float4 color:   TEXCOORD5;
+	
+	float3 normal:   NORMAL0;
+	float4 tangent:   NORMAL1;
 };
 
 //--------------------------------------------------------------------------------------
@@ -67,6 +70,9 @@ VS_TEXTURED_OUTPUT VS(
   output.opacity = 1;
   output.color = InstanceColor;
 
+	output.normal = mul(iNormal, (float3x3)instance_world);
+	output.tangent.xyz = mul(iTangent.xyz, (float3x3)instance_world);
+	output.tangent.w = iTangent.w;
   output.uv = iTex0;
 
   return output;
@@ -75,14 +81,13 @@ VS_TEXTURED_OUTPUT VS(
 //--------------------------------------------------------------------------------------
 // Pixel Shader
 //--------------------------------------------------------------------------------------
-float4 PS(
-  in VS_TEXTURED_OUTPUT input
-  ) : SV_Target0
+void PS(
+		in VS_TEXTURED_OUTPUT input
+	, out float4 o_albedo : SV_Target0
+	, out float4 o_normal : SV_Target1
+  )
 {
-  //o_albedo = txAlbedo.Sample(samLinear, input.uv);
-
   float2 iPosition = input.Pos.xy;
-
   int3 ss_load_coords = uint3(iPosition, 0);
 
   // Recuperar la posicion de mundo para ese pixel
@@ -94,22 +99,12 @@ float4 PS(
   float amount_of_x = dot( decal_top_left_to_wPos, input.decal_axis_x); 
   float amount_of_z = dot( decal_top_left_to_wPos, input.decal_axis_z); 
 
-  //float distance_to_decal_center = length( decal_top_left_to_wPos );
-
-  //o_albedo = float4( distance_to_decal_center,distance_to_decal_center,distance_to_decal_center,1);
-
   float4 decal_color = txAlbedo.Sample(samBorderLinear, float2(amount_of_x,amount_of_z));
-  //float4 decal_normal = txNormal.Sample(samLinear, float2(amount_of_x,amount_of_z)) * 2.0 - 1.0;
-  //o_normal = decal_normal;
-  //o_albedo = decal_color;
-  //o_albedo.xyz = abs(wPos.x - (int)wPos.x) * abs(wPos.z - (int)wPos.z); o_albedo.w = 1;
-  //o_albedo = float4(decal_color.xyz,1 );
-
-  //o_albedo = decal_color;
-  //o_albedo.a *= input.opacity;
-  float4 o_albedo;
-
-  o_albedo.xyz = float3(1,0,0);//input.color.xyz;
+	float3 N = computeNormalMap(input.normal, input.tangent, float2(amount_of_x,amount_of_z));
+	o_normal.xyz = encodeNormal(N, 1);
+	//o_normal.a = decal_color.a;
+	
+  o_albedo.xyz = decal_color.xyz;
   o_albedo.a = decal_color.a;
   //o_normal.a = decal_color.a;
 
@@ -117,7 +112,7 @@ float4 PS(
   //o_albedo = float4( amount_of_x, amount_of_z, 0, 1 );
 
   // Change to true 'see' the boxes
-  if( true ) {
+  if( false ) {
     o_albedo.a += 0.3;
    
     if( (input.uv.x < 0.01 || input.uv.x > 0.99 ) || (input.uv.y < 0.01 || input.uv.y > 0.99 ) )
@@ -127,6 +122,6 @@ float4 PS(
   //o_normal = float4(1,1,0,1);
   //o_self_illum = float4(1,1,0,1);
 	
-  return o_albedo;
+  //return o_albedo;
 }
 

@@ -57,59 +57,5 @@
       ,
       "local_aabb": true
     }
-  },
-  {
-    "entity":
-    {
-      "name": "Decal_Test"
-      ,
-      "transform":
-      {
-        "pos": "-51.431 1.375 -86.635"        ,
-        "rotation": "0.5 0.0 0.0 1.0",
-				"vscale": "2 0.1 2"
-      }
-      ,
-      "instance":
-      {
-        "mesh": "data/meshes/blood.instanced_mesh"
-        ,
-        "materials":
-        [
-          "data/materials/mtl_instanced_decal.material"
-        ]
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  },
-	{
-    "entity":
-    {
-      "name": "Decal_Test2"
-      ,
-      "transform":
-      {
-        "pos": "-51.431 2.375 -87.835"        ,
-        "rotation": "0.5 0.0 0.0 1.0",
-				"vscale": "2 0.1 4"
-      }
-      ,
-      "instance":
-      {
-        "mesh": "data/meshes/blood.instanced_mesh"
-        ,
-        "materials":
-        [
-          "data/materials/mtl_instanced_decal.material"
-        ]
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
   }
 ]

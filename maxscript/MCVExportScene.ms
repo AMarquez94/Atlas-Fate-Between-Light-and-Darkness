@@ -97,7 +97,7 @@ struct TMaterialExporter (
 				)
 				else (
 					fs.writeComma()
-					exportMap mat.bumpMap "normal"
+					fs.writeKeyValue "normal" "data/textures/null_normal.dds"
 				)
 				
 				if mat.displacementMap != undefined then (
@@ -750,6 +750,7 @@ struct TSceneExporter (
 			exportTransformDecal obj
 			fs.writeComma()
 			exportDecalInstance obj
+			exportAABB obj
 			fs.endObj()
 		fs.endObj()
 	),
