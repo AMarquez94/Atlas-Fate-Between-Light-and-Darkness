@@ -21,6 +21,7 @@ struct TCompSkeleton : public TCompBase {
 	//Variables to root movement
 	std::string animationToRootName = "";
 	bool movingRoot = false;
+	VEC3 rootPosition;
 
 	TCompSkeleton();
 	~TCompSkeleton();

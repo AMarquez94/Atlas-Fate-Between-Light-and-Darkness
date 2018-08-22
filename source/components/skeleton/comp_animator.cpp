@@ -71,6 +71,7 @@ bool TCompAnimator::playAnimationConverted(EAnimation animation, float speed) {
 	int anim2id = animSet.secondAnimationId;
 	float weight = animSet.weight;
 	float aux_speed = animSet.speed;
+	bool rootMov = animSet.rootMovement;
 	if (speed != 1.0f) aux_speed = speed;
 
 	switch (animSet.animationType)
@@ -80,7 +81,7 @@ bool TCompAnimator::playAnimationConverted(EAnimation animation, float speed) {
             return true;
 		    break;
 	    case EAnimationType::ACTION:
-		    compSkeleton->executeActionAnimation(anim1id, aux_speed);
+		    compSkeleton->executeActionAnimation(anim1id, aux_speed, rootMov);
             return true;
 		    break;
         default:
