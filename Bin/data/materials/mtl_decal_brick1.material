@@ -1,0 +1,12 @@
+{
+  "technique": "pbr_decals.tech"
+  ,
+  "shadows": false
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/decals/tx_decal_bricks1.dds"
+    ,
+    "normal": "data/textures/decals/tx_decal_bricks1_nml.dds"
+  }
+}

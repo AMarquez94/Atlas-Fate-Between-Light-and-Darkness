@@ -181,6 +181,9 @@ CB_DEF(CCteGlobals, CB_GLOBALS)   // Generates the b1
     float global_fog_end;
     float global_player_speed;
     float global_fog_end3;
+
+    VEC3 global_fog_env_color;
+    float global_dummy_value1;
 };
 
 CB_DEF(CCteMaterial, CB_MATERIAL)

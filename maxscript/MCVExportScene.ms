@@ -318,7 +318,7 @@ struct TSceneExporter (
 			fs.writeComma()
 			fs.writeKeyValue "rotation" mcv_quat
 			fs.writeComma()
-			fs.writeKeyValue "vscale" [obj.length, 0.1, obj.width]
+			fs.writeKeyValue "vscale" [obj.width, 0.1, obj.length]
 		fs.endObj()
 	),
 	
@@ -745,8 +745,8 @@ struct TSceneExporter (
 		fs.beginObj()
 		fs.writeKey "entity"
 			fs.beginObj()
-			fs.writeComma()
 			exportName obj 
+			fs.writeComma()
 			exportTransformDecal obj
 			fs.writeComma()
 			exportDecalInstance obj

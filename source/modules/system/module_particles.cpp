@@ -96,6 +96,7 @@ Particles::TParticleHandle CModuleParticles::launchSystem(const Particles::TCore
 }
 
 void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {
+
     auto it = std::find_if(_activeSystems.begin(), _activeSystems.end(), [&ph](const Particles::CSystem* ps)
     {
         return ps->getHandle() == ph;

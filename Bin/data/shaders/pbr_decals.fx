@@ -100,28 +100,18 @@ void PS(
   float amount_of_z = dot( decal_top_left_to_wPos, input.decal_axis_z); 
 
   float4 decal_color = txAlbedo.Sample(samBorderLinear, float2(amount_of_x,amount_of_z));
+	float roughness = txRoughness.Sample(samLinear, float2(amount_of_x,amount_of_z)).r;	
 	float3 N = computeNormalMap(input.normal, input.tangent, float2(amount_of_x,amount_of_z));
-	o_normal.xyz = encodeNormal(N, 1);
-	//o_normal.a = decal_color.a;
-	
+	o_normal = encodeNormal(N, roughness * decal_color.a);
   o_albedo.xyz = decal_color.xyz;
-  o_albedo.a = decal_color.a;
-  //o_normal.a = decal_color.a;
-
-  //o_albedo.a = distance_to_decal_center;
-  //o_albedo = float4( amount_of_x, amount_of_z, 0, 1 );
-
-  // Change to true 'see' the boxes
+  o_albedo.a = decal_color.a;//txMetallic.Sample(samLinear, float2(amount_of_x,amount_of_z)).r;
+ 
+  // Change to true 'see' the boxes 
   if( false ) {
     o_albedo.a += 0.3;
    
     if( (input.uv.x < 0.01 || input.uv.x > 0.99 ) || (input.uv.y < 0.01 || input.uv.y > 0.99 ) )
       o_albedo.a = 1.0;
   }
-
-  //o_normal = float4(1,1,0,1);
-  //o_self_illum = float4(1,1,0,1);
-	
-  //return o_albedo;
 }
 
