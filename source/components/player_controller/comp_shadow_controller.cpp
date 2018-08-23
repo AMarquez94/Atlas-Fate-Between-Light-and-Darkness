@@ -98,15 +98,25 @@ void TCompShadowController::onPlayerExposed(const TMsgPlayerIlluminated& msg) {
     }
 }
 
+void TCompShadowController::onPlayerInShadows(const TMsgPlayerInShadows & msg)
+{
+    hackShadows = !hackShadows;
+}
+
 void TCompShadowController::registerMsgs() {
 
     DECL_MSG(TCompShadowController, TMsgSceneCreated, onSceneCreated);
     DECL_MSG(TCompShadowController, TMsgPlayerIlluminated, onPlayerExposed);
+    DECL_MSG(TCompShadowController, TMsgPlayerInShadows, onPlayerInShadows);
 }
 
 // We can also use this public method from outside this class.
 bool TCompShadowController::IsPointInShadows(const VEC3 & point)
 {
+    if (hackShadows) {
+        return true;
+    }
+
     physx::PxRaycastHit hit;
     for (unsigned int i = 0; i < static_lights.size(); i++) {
         CEntity * c_entity = static_lights[i];

@@ -182,9 +182,9 @@
 			"speed": 4,
 			"size": 1,
 			"camera": {
-				"target": "SMCameraHor",
-				"blendOut": 0.0,
-				"blendIn": 0.5
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4
 			}
 		},
 		{
@@ -843,6 +843,16 @@
 		{
 			"type": "VariableTransition",
 			"source": "fall",
+			"target": "landmerge",
+			"variable": {
+				"name": "onFallMerge",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "fall",
 			"target": "hardLand",
 			"variable": {
 				"name": "onHardLanded",
@@ -904,19 +914,13 @@
 		},
 		{
 			"type": "VariableTransition",
-			"source": "fall",
-			"target": "landmerge",
+			"source": "landmerge",
+			"target": "entermerge",
 			"variable": {
-				"name": "onFallMerge",
+				"name": "onGround",
 				"type": "bool",
 				"value": true
 			}
-		},
-		{
-			"type": "TimeTransition",
-			"source": "landmerge",
-			"target": "merge",
-			"time": 0.6
 		},
 		{
 			"type": "VariableTransition",

@@ -165,5 +165,28 @@
 				"mesh" : "axis.mesh"
 			}
 		}
+	},
+	{
+		"entity":
+		{
+			"name": "Player_landing",
+			"transform": "0 0 0",
+			"render": {
+				"mesh": "axis.mesh"
+			},
+			"landing": {
+				"parent": "The Player"
+			},
+			"particles" : {
+				"cores":
+				[
+					"data/particles/sm_ground.particles",
+					"data/particles/sm_top.particles",
+					"data/particles/sm_whisps.particles",
+					"data/particles/sm_whisps2.particles",
+					"data/particles/sm_top_trail.particles"
+				]
+			}
+		}
 	}
 ]

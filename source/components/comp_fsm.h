@@ -30,5 +30,10 @@ private:
 
     bool isInNoClipMode = false;
 	FSM::CContext _context;
+
+    /* TODO: Temp - Borrar. Solo con motivo de debug */
+    std::vector<HistoricalAction> historic;
+    void addActionToHistoric(const std::string & action);
+
 	DECL_SIBLING_ACCESS();
 };

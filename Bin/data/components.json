@@ -31,6 +31,7 @@
 		"collider",
 		"noise_emitter",
 		"player_attack_cast",
+		"landing",
 		"light_dir",
 		"light_spot",
 		"light_point",

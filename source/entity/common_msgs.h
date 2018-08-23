@@ -275,6 +275,11 @@ struct TMsgStopAudioComponent {
     DECL_MSG_ID();
 };
 
+struct TMsgEntityCanLandSM {
+    bool canSM;
+    DECL_MSG_ID();
+};
+
 //struct TMsgSpotlightsToggle {
 //    DECL_MSG_ID();
 //};

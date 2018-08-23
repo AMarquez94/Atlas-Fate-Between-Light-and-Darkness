@@ -470,33 +470,38 @@ namespace FSM
 
     void LandMergeState::onStart(CContext& ctx) const {
 
+        // Send a message to the player controller
         CEntity* e = ctx.getOwner();
-        e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::LAND_SOFT , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState,_speed, _size, _radius, _target, _noise });
+        e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::FALL , 1.0f });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, _target, _noise });
 
-        CHandle player_light = getEntityByName("LightPlayer");
-        if (player_light.isValid()) {
-            CEntity * entity_light = (CEntity*)player_light;
-            TCompProjector * light = entity_light->get<TCompProjector>();
-            light->isEnabled = true;
-        }
+        //CEntity* e = ctx.getOwner();
+        //e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::LAND_SOFT , 1.0f });
+        //e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState,_speed, _size, _radius, _target, _noise });
 
-        // Move all of this to LUA
-        Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", ctx.getOwner());
-        Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash.particles", ctx.getOwner());
-        Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", ctx.getOwner());
+        //CHandle player_light = getEntityByName("LightPlayer");
+        //if (player_light.isValid()) {
+        //    CEntity * entity_light = (CEntity*)player_light;
+        //    TCompProjector * light = entity_light->get<TCompProjector>();
+        //    light->isEnabled = true;
+        //}
 
-        TCompParticles * c_e_particle = e->get<TCompParticles>();
-        c_e_particle->setSystemState(true);
+        //// Move all of this to LUA
+        //Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", ctx.getOwner());
+        //Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash.particles", ctx.getOwner());
+        //Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", ctx.getOwner());
 
-        TCompRender * render = e->get<TCompRender>();
-        render->visible = false;
+        //TCompParticles * c_e_particle = e->get<TCompParticles>();
+        //c_e_particle->setSystemState(true);
+
+        //TCompRender * render = e->get<TCompRender>();
+        //render->visible = false;
     }
 
     void LandMergeState::onFinish(CContext& ctx) const {
 
-        CEntity* e = ctx.getOwner();
-        e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::resetMerge });
+        //CEntity* e = ctx.getOwner();
+        //e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::resetMerge });
     }
 
 
@@ -539,6 +544,8 @@ namespace FSM
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::LAND_HARD , 1.0f });
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+        TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
+        playerController->getDamage(30.f);
     }
 
     void HardLandState::onFinish(CContext& ctx) const {
