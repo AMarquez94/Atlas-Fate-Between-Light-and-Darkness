@@ -10,7 +10,6 @@ void TCompLanding::onMsgGroupCreated(const TMsgEntitiesGroupCreated & msg)
     h_parent = getEntityByName(parentName);
     TCompParticles * c_e_particle = get<TCompParticles>();
     c_e_particle->setSystemState(false);
-    c_e_particle->playSystem();
 }
 
 void TCompLanding::onMsgEntityCanLandSM(const TMsgEntityCanLandSM & msg)
