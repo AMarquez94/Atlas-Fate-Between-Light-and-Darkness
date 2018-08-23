@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "container_puerto_puerta_r2"
+      "name": "container_puerto_puerta_r4"
       ,
       "transform":
       {
@@ -14,7 +14,7 @@
   {
     "entity":
     {
-      "name": "mesh_container_puerto_puerta_r2"
+      "name": "mesh_container_puerto_puerta_r4"
       ,
       "transform":
       {
@@ -24,11 +24,11 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_container_puerto_puerta_r2.mesh"
+          "mesh": "data/meshes/mesh_container_puerto_puerta_r4.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_containers_puerto.material"
+            "data/materials/mtl_low.material"
           ]
         }
       ]
@@ -37,7 +37,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/collider_container_puerto_puerta_r2.collider"
+        "name": "data/colliders/collider_container_puerto_puerta_r4.collider"
       }
       ,
       "abs_aabb": true
