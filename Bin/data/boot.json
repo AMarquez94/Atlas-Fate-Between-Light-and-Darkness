@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_basilic_courtyard",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -160,13 +160,12 @@
 		"scene_group": [
 			"data/scenes/Basilic_courtyard/player.scene",
 			"data/scenes/Basilic_courtyard/enemy.scene",
-			"data/scenes/Basilic_courtyard/testing.scene",
 			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
 			"data/scenes/Basilic_courtyard/test_instancing.scene",
 			"data/scenes/Basilic_courtyard/camera.scene",
 			"data/scenes/Basilic_courtyard/buttons.scene",
 			"data/scenes/Basilic_courtyard/capsules.scene",
-			"data/scenes/Basilic_courtyard/containers.scene"
+			"data/scenes/Basilic_courtyard_whitebox10.scene"
 		]
 	},
 	"scene_basilic_interior": {

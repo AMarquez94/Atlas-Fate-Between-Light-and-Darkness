@@ -1,0 +1,61 @@
+[
+  {
+    "entity":
+    {
+      "name": "Basilic_courtyard_light"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Direct002"
+      ,
+      "transform":
+      {
+        "pos": "157.187 256.645 -142.316"
+        ,
+        "lookat": "-59.9969 -2.59015 -398.205"
+      }
+      ,
+      "light_dir":
+      {
+        "type": "directional"
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "proj_type": "ortographic"
+        ,
+        "z_near": 0.01
+        ,
+        "z_far": 424.088
+        ,
+        "ortosize": 95.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.5
+        ,
+        "shadows_resolution": 4096
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+]
