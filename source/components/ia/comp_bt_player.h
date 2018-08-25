@@ -36,6 +36,7 @@ public:
 	static void registerMsgs();
 
 	BTNode::ERes actionGoToWpt(float dt);
+    BTNode::ERes actionDefault(float dt);
 
 	bool conditionHasBeenEnabled(float dt);
 

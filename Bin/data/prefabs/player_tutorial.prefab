@@ -1,0 +1,240 @@
+[{
+	"entity": {
+		"name": "Tutorial Player",
+		"transform": {
+			"pos": "0 0 0"
+		},
+		"render": [{
+					"mesh": "data/skeletons/player/body.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/body.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/bolsa_cinturon.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/bolsa_cinturon.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/buff_exterior.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/buff_exterior.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/capsula_energia.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/capsula_energia.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula1.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula1.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula2.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula2.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula3.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula3.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula4.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula4.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cruzado_capsula1.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cruzado_capsula1.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cruzado_capsula2.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cruzado_capsula2.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cruzado_capsula3.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cruzado_capsula3.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/hood.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/hood.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/tira_L.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/tira_L.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/tira_R.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/tira_R.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}
+			],
+		"skeleton": {
+			"skeleton": "data/skeletons/player/player.skeleton",
+			"scale": 1.0
+		},
+      "ai_player": {
+        "enabled": false,
+        "speed": 4.0,
+        "rotationSpeed": 4.0,
+        "waypoints": [
+          {
+            "position": "-38.5 0 -138",
+            "lookAt": "0 0 1",
+            "minTime": 10
+          },
+          {
+            "position": "-36 0 -138",
+            "lookAt": "0 0 1",
+            "minTime": 10
+          }
+        ]
+      },
+		"player_animator": true,
+		"tags": [
+			"player_tutorial"
+		],
+		"particles": {
+			"cores": [
+				"data/particles/sm_ground.particles",
+				"data/particles/sm_top.particles",
+				"data/particles/sm_whisps.particles",
+				"data/particles/sm_whisps2.particles",
+				"data/particles/sm_top_trail.particles"
+			]
+		}
+	}
+}, {
+	"entity": {
+		"name": "PropPlayer",
+		"hierarchy": {
+			"parent": "Tutorial Player",
+			"pos": "0 0 0"
+		},
+		"transform": {},
+		"render": {
+			"mesh": "axis.mesh"
+		}
+	}
+}, {
+	"entity": {
+		"name": "weapon_disc_left",
+		"transform": {
+			"pos": "0 0 0",
+			"lookat": "0 0 0"
+		},
+		"bone_tracker": {
+			"bone": "Bip001 L Hand",
+			"parent": "Tutorial Player"
+		},
+		"render": [{
+			"self_intensity": 0.65,
+			"self_color": "0 1 1 1",
+			"mesh": "data/meshes/weapon_disc.mesh",
+			"materials": [
+				"data/materials/mtl_hologram_sw_model.material"
+			]
+		}],
+		"abs_aabb": true,
+		"local_aabb": true
+	}
+}, {
+	"entity": {
+		"name": "weapon_disc_right",
+		"transform": {
+			"pos": "0 0 0",
+			"lookat": "0 0 0"
+		},
+		"bone_tracker": {
+			"bone": "Bip001 R Hand",
+			"parent": "Tutorial Player"
+		},
+		"render": [{
+			"self_intensity": 0.65,
+			"self_color": "0 1 1 1",
+			"mesh": "data/meshes/weapon_disc.mesh",
+			"materials": [
+				"data/materials/mtl_hologram_sw_model.material"
+			]
+		}],
+		"abs_aabb": true,
+		"local_aabb": true
+	}
+}]

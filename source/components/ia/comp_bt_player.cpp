@@ -12,9 +12,8 @@
 #include "components/lighting/comp_emission_controller.h"
 #include "physics/physics_collider.h"
 #include "render/render_utils.h"
-#include "components/ia/comp_patrol_animator.h"
 #include "render/render_objects.h"
-#include "components/lighting/comp_fade_controller.h"
+#include "components/player_controller/comp_player_animator.h"
 
 DECL_OBJ_MANAGER("ai_player", TCompAIPlayer);
 
@@ -51,6 +50,7 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
 
 	createRoot("player", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
 	addChild("player", "goToWpt", BTNode::EType::ACTION, (BTCondition)&TCompAIPlayer::conditionHasBeenEnabled, (BTAction)&TCompAIPlayer::actionGoToWpt, nullptr);
+    addChild("player", "default", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionDefault, nullptr);
 
 	enabledPlayerAI = j.value("enabled", false);
 	_speed = j.value("speed", 1.0f);
@@ -122,6 +122,13 @@ BTNode::ERes TCompAIPlayer::actionGoToWpt(float dt)
 	e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::WALK, 1.0 });
 	return move(dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 
+}
+
+BTNode::ERes TCompAIPlayer::actionDefault(float dt)
+{
+    TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+    my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CROUCH_WALK);
+    return BTNode::ERes::STAY;
 }
 
 /* CONDITIONS */

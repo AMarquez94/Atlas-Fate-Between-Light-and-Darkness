@@ -158,7 +158,7 @@ std::string stringify(VEC4 pos) {
 }
 
 float mapInRange(float result_from, float result_to, float current_from, float current_to, float value) {
-    float factor = result_from <= result_to ? 1 : -1;
+    float factor = result_from <= result_to ? 1.f : -1.f;
     return factor * ((result_to - result_from) * ((value - current_from) / (current_to - current_from)) + result_from);
 }
 
