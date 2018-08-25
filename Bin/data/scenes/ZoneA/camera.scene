@@ -454,5 +454,25 @@
 			}
     },
     "tags": [ "button" ]
-  }
+  },
+	{
+		"entity": {
+			"name": "test_camera_hologram",
+			"transform": {
+				"pos": "-37.6 5.6 -91.7",
+				"lookat": "-45 0 -90"
+			},
+			"camera": {
+				"fov": 80,
+				"z_near": 0.01,
+				"z_far": 1000
+			},      
+			"rt_camera": {
+        "resolution": "256 256",
+        "color_fmt": "R8G8B8A8_UNORM",
+        "depth_fmt": "none",
+        "name": "rt_camera_hologram.dds"
+      }
+		}
+	}
 ]

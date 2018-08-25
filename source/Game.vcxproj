@@ -111,6 +111,7 @@
     <ClCompile Include="components\comp_lod.cpp" />
     <ClCompile Include="components\comp_particles.cpp" />
     <ClCompile Include="components\comp_render_cube.cpp" />
+    <ClCompile Include="components\comp_rt_camera.cpp" />
     <ClCompile Include="components\dynamic_objects\comp_dynamic_capsule.cpp" />
     <ClCompile Include="components\dynamic_objects\comp_dynamic_capsules_manager.cpp" />
     <ClCompile Include="components\ia\comp_bt_drone.cpp" />
@@ -325,6 +326,7 @@
     <ClInclude Include="components\comp_lod.h" />
     <ClInclude Include="components\comp_particles.h" />
     <ClInclude Include="components\comp_render_cube.h" />
+    <ClInclude Include="components\comp_rt_camera.h" />
     <ClInclude Include="components\dynamic_objects\comp_dynamic_capsule.h" />
     <ClInclude Include="components\dynamic_objects\comp_dynamic_capsules_manager.h" />
     <ClInclude Include="components\ia\comp_bt_drone.h" />

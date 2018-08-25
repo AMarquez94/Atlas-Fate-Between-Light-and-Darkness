@@ -28,6 +28,8 @@ public:
 	void configure(int xres, int yres);
 	void setBackgroundColor(float r, float g, float b, float a);
 	void debugDraw();
+    void postProcessingStack();
+
     bool const getDebugMode() { return _debugMode; }
     void setDebugMode(bool val) { _debugMode = val; }
     bool const getGenerateShadows() { return _generateShadows; }

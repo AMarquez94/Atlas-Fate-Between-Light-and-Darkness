@@ -20,6 +20,8 @@
 #include "geometry/geometry.h"
 #include "render/texture/render_to_texture.h"
 
+#include "components/comp_tags.h"
+#include "components/comp_rt_camera.h"
 #include "components/comp_render_cube.h"
 #include "components/postfx/comp_render_blur.h"
 #include "components/postfx/comp_render_blur_radial.h"
@@ -284,9 +286,14 @@ void CModuleRender::activateMainCamera() {
 
 void CModuleRender::generateFrame() {
 
+    // PRE CONFIGURATION
+    {
+        activateMainCamera();
+        cb_globals.updateGPU();
+    }
+
     {
         // SHADOW GENERATION
-        activateMainCamera();
         PROFILE_FUNCTION("CModuleRender::shadowsMapsGeneration");
         CTraceScoped gpu_scope("shadowsMapsGeneration");
         if (_generateShadows) {
@@ -311,93 +318,23 @@ void CModuleRender::generateFrame() {
         });
     }
 
+    // RENDER TO TEXTURE FRAME RENDER
+    {
+        PROFILE_FUNCTION("CModuleRender::RTCamera");
+        CTraceScoped gpu_scope("renderToTextureCamera");
+        getObjectManager<TCompRTCamera>()->forEach([this](TCompRTCamera* c) {
+            c->generate(deferred);
+        });
+    }
+
     {
         // MAIN FRAME RENDER
         CTraceScoped gpu_scope("Frame");
         PROFILE_FUNCTION("CModuleRender::generateFrame");
 
         activateMainCamera();
-        cb_globals.updateGPU();
         deferred.render(rt_main, h_e_camera);
-
-        Engine.get().getParticles().renderDeferred();
-        CRenderManager::get().renderCategory("distorsions");
-    }
-
-    {
-        // POST PROCESSING STACK
-        CTexture * curr_rt = rt_main;
-        CHandle camera_render = Engine.getCameras().getCurrentCamera();
-
-        if (camera_render.isValid() && _generatePostFX) {
-            CEntity * e_cam = camera_render;
-
-            // The bloom blurs the given input
-            TCompRenderBloom* c_render_bloom = e_cam->get< TCompRenderBloom >();
-            if (c_render_bloom) {
-                c_render_bloom->generateHighlights(deferred.rt_acc_light);
-                c_render_bloom->addBloom();
-            }
-            
-            TCompRenderBlur * c_render_blur = e_cam->get< TCompRenderBlur >();
-            if (c_render_blur)
-                curr_rt = c_render_blur->apply(curr_rt);
-
-            // Requires the blur to be active
-            TCompRenderFocus* c_render_focus = e_cam->get< TCompRenderFocus >();
-            if (c_render_focus)
-                curr_rt = c_render_focus->apply(rt_main, curr_rt);
-
-            // Check if we have a render_fx component
-            TCompRenderBlurRadial * c_render_blur_radial = e_cam->get< TCompRenderBlurRadial >();
-            if (c_render_blur_radial)
-                curr_rt = c_render_blur_radial->apply(curr_rt);
-
-            // Check if we have a color grading component
-            TCompColorGrading* c_color_grading = e_cam->get< TCompColorGrading >();
-            if (c_color_grading)
-                curr_rt = c_color_grading->apply(curr_rt);
-
-            // Check if we have a color grading component
-            TCompFog * c_render_fog = e_cam->get< TCompFog >();
-            if (c_render_fog)
-                curr_rt = c_render_fog->apply(curr_rt);
-
-            TCompChromaticAberration* c_chroma_aberration = e_cam->get< TCompChromaticAberration >();
-            if (c_chroma_aberration)
-                curr_rt = c_chroma_aberration->apply(curr_rt);
-
-            TCompRenderEnvironment * c_render_enviornment = e_cam->get< TCompRenderEnvironment >();
-            if (c_render_enviornment)
-                curr_rt = c_render_enviornment->apply(curr_rt);
-
-            TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
-            if (c_render_outlines && cb_outline.outline_alpha > 0)
-                curr_rt = c_render_outlines->apply(curr_rt);
-
-            TCompVignette* c_vignette = e_cam->get< TCompVignette >();
-            if (c_vignette)
-                curr_rt = c_vignette->apply(curr_rt);
-
-            TCompRenderMotionBlur * c_render_motion_blur = e_cam->get< TCompRenderMotionBlur >();
-            if (c_render_motion_blur)
-                curr_rt = c_render_motion_blur->apply(curr_rt);
-
-            TCompRenderFlares* c_render_flares = e_cam->get< TCompRenderFlares >();
-            if (c_render_flares)
-                curr_rt = c_render_flares->apply(curr_rt, deferred.rt_acc_light);
-
-            TCompAntiAliasing* c_antialiasing = e_cam->get< TCompAntiAliasing >();
-            if (c_antialiasing)
-                curr_rt = c_antialiasing->apply(curr_rt);
-                
-            CEntity* e_camera = h_e_camera;
-            TCompCamera * t_cam = e_camera->get<TCompCamera>();
-            cb_camera.prev_camera_view_proj = t_cam->getViewProjection();
-        }
-
-        Render.startRenderInBackbuffer();
-        renderFullScreenQuad("dump_texture.tech", curr_rt);
+        postProcessingStack();
     }
 
     {
@@ -408,15 +345,15 @@ void CModuleRender::generateFrame() {
 
         {
             // Debug render other modules
-            Engine.get().getPhysics().renderMain(); // instancing
-            Engine.get().getParticles().renderMain(); // particle editor
-            Engine.get().getInstancing().renderMain(); // instancing
+            EnginePhysics.renderMain();
+            EngineParticles.renderMain();
+            EngineInstancing.renderMain();
             Engine.get().getGameManager().renderMain(); // manager editor
             Engine.get().getGameConsole().renderMain(); // console
         }
 
         // Debug render main modules
-        if (_debugMode) debugDraw();
+        debugDraw();
 
         {
             // RENDER IMGUI
@@ -430,16 +367,8 @@ void CModuleRender::generateFrame() {
             PROFILE_FUNCTION("GUI");
             CTraceScoped gpu_scope("GUI");
 
-            activateRSConfig(RSCFG_CULL_NONE);
-            activateZConfig(ZCFG_DISABLE_ALL);
-            activateBlendConfig(BLEND_CFG_COMBINATIVE);
-
-            activateCamera(CEngine::get().getGUI().getCamera(), Render.width, Render.height);
+            activateCamera(EngineGUI.getCamera(), Render.width, Render.height);
             CEngine::get().getModules().renderGUI();
-
-            activateRSConfig(RSCFG_DEFAULT);
-            activateZConfig(ZCFG_DEFAULT);
-            activateBlendConfig(BLEND_CFG_DEFAULT);
         }
 
         {
@@ -450,7 +379,86 @@ void CModuleRender::generateFrame() {
     }
 }
 
+void CModuleRender::postProcessingStack() {
+
+    // POST PROCESSING STACK
+    CTexture * curr_rt = rt_main;
+    CHandle camera_render = Engine.getCameras().getCurrentCamera();
+
+    if (camera_render.isValid() && _generatePostFX) {
+        CEntity * e_cam = camera_render;
+
+        // The bloom blurs the given input
+        TCompRenderBloom* c_render_bloom = e_cam->get< TCompRenderBloom >();
+        if (c_render_bloom) {
+            c_render_bloom->generateHighlights(deferred.rt_acc_light);
+            c_render_bloom->addBloom();
+        }
+
+        TCompRenderBlur * c_render_blur = e_cam->get< TCompRenderBlur >();
+        if (c_render_blur)
+            curr_rt = c_render_blur->apply(curr_rt);
+
+        // Requires the blur to be active
+        TCompRenderFocus* c_render_focus = e_cam->get< TCompRenderFocus >();
+        if (c_render_focus)
+            curr_rt = c_render_focus->apply(rt_main, curr_rt);
+
+        // Check if we have a render_fx component
+        TCompRenderBlurRadial * c_render_blur_radial = e_cam->get< TCompRenderBlurRadial >();
+        if (c_render_blur_radial)
+            curr_rt = c_render_blur_radial->apply(curr_rt);
+
+        // Check if we have a color grading component
+        TCompColorGrading* c_color_grading = e_cam->get< TCompColorGrading >();
+        if (c_color_grading)
+            curr_rt = c_color_grading->apply(curr_rt);
+
+        // Check if we have a color grading component
+        TCompFog * c_render_fog = e_cam->get< TCompFog >();
+        if (c_render_fog)
+            curr_rt = c_render_fog->apply(curr_rt);
+
+        TCompChromaticAberration* c_chroma_aberration = e_cam->get< TCompChromaticAberration >();
+        if (c_chroma_aberration)
+            curr_rt = c_chroma_aberration->apply(curr_rt);
+
+        TCompRenderEnvironment * c_render_enviornment = e_cam->get< TCompRenderEnvironment >();
+        if (c_render_enviornment)
+            curr_rt = c_render_enviornment->apply(curr_rt);
+
+        TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
+        if (c_render_outlines && cb_outline.outline_alpha > 0)
+            curr_rt = c_render_outlines->apply(curr_rt);
+
+        TCompVignette* c_vignette = e_cam->get< TCompVignette >();
+        if (c_vignette)
+            curr_rt = c_vignette->apply(curr_rt);
+
+        TCompRenderMotionBlur * c_render_motion_blur = e_cam->get< TCompRenderMotionBlur >();
+        if (c_render_motion_blur)
+            curr_rt = c_render_motion_blur->apply(curr_rt);
+
+        TCompRenderFlares* c_render_flares = e_cam->get< TCompRenderFlares >();
+        if (c_render_flares)
+            curr_rt = c_render_flares->apply(curr_rt, deferred.rt_acc_light);
+
+        TCompAntiAliasing* c_antialiasing = e_cam->get< TCompAntiAliasing >();
+        if (c_antialiasing)
+            curr_rt = c_antialiasing->apply(curr_rt);
+
+        CEntity* e_camera = h_e_camera;
+        TCompCamera * t_cam = e_camera->get<TCompCamera>();
+        cb_camera.prev_camera_view_proj = t_cam->getViewProjection();
+    }
+
+    Render.startRenderInBackbuffer();
+    renderFullScreenQuad("dump_texture.tech", curr_rt);
+}
+
 void CModuleRender::debugDraw() {
+
+    if (!_debugMode) return;
 
     {
         // Main Inspector window

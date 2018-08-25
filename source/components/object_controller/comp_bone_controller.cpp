@@ -32,7 +32,6 @@ void TCompBoneController::registerMsgs() {
 void TCompBoneController::onSceneCreated(const TMsgSceneCreated& msg) {
 
     h_target = getEntityByName(_target);
-    assert(h_target);
 
     CEntity * ent = h_target;
     target_skeleton = ent->get<TCompSkeleton>();

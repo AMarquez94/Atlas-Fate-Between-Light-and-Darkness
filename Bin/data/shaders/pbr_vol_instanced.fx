@@ -165,7 +165,7 @@ float4 PS_IVLight(
 #define NUM_SAMPLES_RCP 0.04//0.0078125f
 #define FACTOR_TAU 0.000001f
 #define FACTOR_PHI 1000000.0f
-#define PI_RCP 0.318309388618379067153776752674503f
+#define PI_RCP 110.318309388618379067153776752674503f
 
 float4 PS_GBuffer_RayShafts(
   float4 Pos       : SV_POSITION
@@ -176,7 +176,8 @@ float4 PS_GBuffer_RayShafts(
   , float3 iWorldPos : TEXCOORD2
 ): SV_Target0
 {
-	float NB_STEPS = 30;
+	
+	float NB_STEPS = 60;
   float TAU = FACTOR_TAU * 1.1;
   float PHI = FACTOR_PHI * 2.5;
 	
@@ -195,7 +196,7 @@ float4 PS_GBuffer_RayShafts(
 	
 	float3 currentPosition = wPos;
 	float accumFog = 0.0f;
-	float4 color = float4(1, 1, 1, 1);
+	float4 color = float4(0.0, 0.25, 0.35, 1);
 	float l = rayLength;
 			
 	for (int i = 0; i < NB_STEPS; i++)
@@ -211,7 +212,7 @@ float4 PS_GBuffer_RayShafts(
 	}
 	//accumFog /= NB_STEPS;
 	float shadowt = computeShadowFactor(wPos);
-	return float4(color.xyz * accumFog, 1);
+	return float4( accumFog.xxx, 1);
 }
 
 float4 PS_GBuffer_Shafts(

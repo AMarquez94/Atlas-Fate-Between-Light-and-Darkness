@@ -172,15 +172,32 @@ void CDeferredRenderer::renderPointLights() {
 
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderDirectionalLights() {
+    /*
+    auto* tech = Resources.get("pbr_ray_shafts.tech")->as<CRenderTechnique>();
+    tech->activate();
+
+    // All light directional use the same mesh
+    auto* mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
+    mesh->activate();
+
+    // Para todas las luces... pintala
+    getObjectManager<TCompLightDir>()->forEach([mesh](TCompLightDir* c) {
+
+        if (c->isEnabled) {
+            c->activate();
+            setWorldTransform(c->getViewProjection().Invert());
+            mesh->render();
+        }
+    });*/
 
 	CTraceScoped gpu_scope("renderDirectionalLights");
 
 	// Activate tech for the light dir 
-	auto* tech = Resources.get("pbr_dir_lights.tech")->as<CRenderTechnique>();
+    auto* tech = Resources.get("pbr_dir_lights.tech")->as<CRenderTechnique>();
 	tech->activate();
 
 	// All light directional use the same mesh
-	auto* mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
+    auto* mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 	mesh->activate();
 
 	// Para todas las luces... pintala
@@ -340,7 +357,8 @@ void CDeferredRenderer::renderGBufferDecals() {
 void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camera) {
 
 	assert(rt_destination);
-	renderGBuffer();
+
+    renderGBuffer();
     renderGBufferDecals();
 	renderAO(h_camera);
 
@@ -357,6 +375,10 @@ void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camer
 	// Combine the results
 	renderFullScreenQuad("gbuffer_resolve.tech", nullptr);
     rt_prev_acc_light = rt_acc_light;
+
+    // Move this out of here when needed.
+    Engine.get().getParticles().renderDeferred();
+    CRenderManager::get().renderCategory("distorsions");
 }
 
 // --------------------------------------
