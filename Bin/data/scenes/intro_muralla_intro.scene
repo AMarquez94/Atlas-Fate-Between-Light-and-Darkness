@@ -14,11 +14,11 @@
   {
     "entity":
     {
-      "name": "mesh_muralla_intro_pared_puerta"
+      "name": "mesh_muralla_intro_muro_1"
       ,
       "transform":
       {
-        "pos": "-3.15039 0.0 9.5"
+        "pos": "52.8496 0.0 9.5"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -26,7 +26,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_muralla_intro_pared_puerta.mesh"
+          "mesh": "data/meshes/mesh_muralla_intro_muro_1.mesh"
           ,
           "materials":
           [
@@ -39,141 +39,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/collider_muralla_intro_pared_puerta.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_muralla_intro_ventanas"
-      ,
-      "transform":
-      {
-        "pos": "2.79961 17.8211 13.3442"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_muralla_intro_ventanas.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_ornamentos_casa.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_muralla_intro_ornamentos"
-      ,
-      "transform":
-      {
-        "pos": "-3.15039 0.0 11.75"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_muralla_intro_ornamentos.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_muralla_intro.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_muralla_intro_troncho_2"
-      ,
-      "transform":
-      {
-        "pos": "5.34961 0.0 9.5"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_muralla_intro_troncho_2.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_muralla.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/collider_muralla_intro_troncho004.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_muralla_intro_troncho"
-      ,
-      "transform":
-      {
-        "pos": "-11.6504 0.0 9.5"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_muralla_intro_troncho.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_muralla.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/collider_muralla_intro_troncho003.collider"
+        "name": "data/colliders/collider_muralla_intro_muro1.collider"
       }
       ,
       "abs_aabb": true
@@ -222,11 +88,11 @@
   {
     "entity":
     {
-      "name": "mesh_muralla_intro_muro_1"
+      "name": "mesh_muralla_intro_ornamentos"
       ,
       "transform":
       {
-        "pos": "52.8496 0.0 9.5"
+        "pos": "-3.15039 0.0 11.75"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -234,7 +100,37 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_muralla_intro_muro_1.mesh"
+          "mesh": "data/meshes/mesh_muralla_intro_ornamentos.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla_intro.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_muralla_intro_pared_puerta"
+      ,
+      "transform":
+      {
+        "pos": "-3.15039 0.0 9.5"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_muralla_intro_pared_puerta.mesh"
           ,
           "materials":
           [
@@ -247,7 +143,44 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/collider_muralla_intro_muro1.collider"
+        "name": "data/colliders/collider_muralla_intro_pared_puerta.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_muralla_intro_pinchos"
+      ,
+      "transform":
+      {
+        "pos": "-3.15039 0.0 11.75"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_muralla_intro_pinchos.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla_intro.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_muralla_intro_pinchos_attach.collider"
       }
       ,
       "abs_aabb": true
@@ -296,11 +229,48 @@
   {
     "entity":
     {
-      "name": "mesh_muralla_intro_pinchos"
+      "name": "mesh_muralla_intro_troncho"
       ,
       "transform":
       {
-        "pos": "-3.15039 0.0 11.75"
+        "pos": "-11.6504 0.0 9.5"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_muralla_intro_troncho.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_muralla_intro_troncho003.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_muralla_intro_troncho_2"
+      ,
+      "transform":
+      {
+        "pos": "5.34961 0.0 9.5"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -308,21 +278,51 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_muralla_intro_pinchos.mesh"
+          "mesh": "data/meshes/mesh_muralla_intro_troncho_2.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_muralla_intro.material"
+            "data/materials/mtl_muralla.material"
           ]
         }
       ]
       ,
       "collider":
       {
-        "shape": "mesh"
+        "shape": "convex"
         ,
-        "name": "data/colliders/collider_muralla_intro_pinchos_attach.collider"
+        "name": "data/colliders/collider_muralla_intro_troncho004.collider"
       }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_muralla_intro_ventanas"
+      ,
+      "transform":
+      {
+        "pos": "2.79961 17.8211 13.3442"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_muralla_intro_ventanas.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
       ,
       "abs_aabb": true
       ,
