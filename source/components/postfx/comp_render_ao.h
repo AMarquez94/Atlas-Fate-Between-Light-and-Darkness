@@ -17,7 +17,6 @@ class TCompRenderAO : public TCompRenderBlur {
 	const CTexture*         white = nullptr;
 	const CRenderTechnique* tech = nullptr;
 	const CRenderMesh*      mesh = nullptr;
-	bool                    enabled = true;
 	float                   amount = 1.f;
 	float                   radius = 0.110f;
 	float                   zrange_discard = 0.100f;

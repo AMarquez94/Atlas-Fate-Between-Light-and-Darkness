@@ -12,6 +12,9 @@ struct VS_TEXTURED_OUTPUT
   float  opacity: TEXCOORD3;
   float2 uv:      TEXCOORD4;
   float4 color:   TEXCOORD5;
+	
+	float3 normal:   NORMAL0;
+	float4 tangent:   NORMAL1;
 };
 
 //--------------------------------------------------------------------------------------
@@ -48,13 +51,17 @@ VS_TEXTURED_OUTPUT VS(
   // From the world matrix, extract the main axis x & z, and the center
   float3 center  = float3( instance_world[3][0], instance_world[3][1], instance_world[3][2] );
   float3 decal_x = float3( instance_world[0][0], instance_world[0][1], instance_world[0][2] );
+	float3 decal_y = float3( instance_world[1][0], instance_world[1][1], instance_world[1][2] );
   float3 decal_z = float3( instance_world[2][0], instance_world[2][1], instance_world[2][2] );
-
+		
   // Precompute in the vs the axis to compute the local coords from world coords 
   output.decal_top_left = center - decal_x * 0.5 - decal_z * 0.5;
   float decal_inv_size = 1 / ( dot( decal_x, decal_x ) );
-  output.decal_axis_x = decal_x * decal_inv_size;
-  output.decal_axis_z = decal_z * decal_inv_size;
+	float decal_inv_size_x = 1 / (length(decal_x) * length(decal_x));
+	float decal_inv_size_z = 1 / (length(decal_z) * length(decal_z));
+	
+  output.decal_axis_x = decal_x * decal_inv_size_x;
+  output.decal_axis_z = decal_z * decal_inv_size_z;
 
   // Blendout in the last TimeBlendingOut secs of TimeToLife
   //float TimeToLife = InstanceXtras.x;
@@ -63,6 +70,9 @@ VS_TEXTURED_OUTPUT VS(
   output.opacity = 1;
   output.color = InstanceColor;
 
+	output.normal = mul(iNormal, (float3x3)instance_world);
+	output.tangent.xyz = mul(iTangent.xyz, (float3x3)instance_world);
+	output.tangent.w = iTangent.w;
   output.uv = iTex0;
 
   return output;
@@ -71,15 +81,13 @@ VS_TEXTURED_OUTPUT VS(
 //--------------------------------------------------------------------------------------
 // Pixel Shader
 //--------------------------------------------------------------------------------------
-float4 PS(
-  in VS_TEXTURED_OUTPUT input
-  ) : SV_Target0
+void PS(
+		in VS_TEXTURED_OUTPUT input
+	, out float4 o_albedo : SV_Target0
+	, out float4 o_normal : SV_Target1
+  )
 {
-
-  //o_albedo = txAlbedo.Sample(samLinear, input.uv);
-
   float2 iPosition = input.Pos.xy;
-
   int3 ss_load_coords = uint3(iPosition, 0);
 
   // Recuperar la posicion de mundo para ese pixel
@@ -91,39 +99,19 @@ float4 PS(
   float amount_of_x = dot( decal_top_left_to_wPos, input.decal_axis_x); 
   float amount_of_z = dot( decal_top_left_to_wPos, input.decal_axis_z); 
 
-  //float distance_to_decal_center = length( decal_top_left_to_wPos );
-
-  //o_albedo = float4( distance_to_decal_center,distance_to_decal_center,distance_to_decal_center,1);
-
   float4 decal_color = txAlbedo.Sample(samBorderLinear, float2(amount_of_x,amount_of_z));
-  //float4 decal_normal = txNormal.Sample(samLinear, float2(amount_of_x,amount_of_z)) * 2.0 - 1.0;
-  //o_normal = decal_normal;
-  //o_albedo = decal_color;
-  //o_albedo.xyz = abs(wPos.x - (int)wPos.x) * abs(wPos.z - (int)wPos.z); o_albedo.w = 1;
-  //o_albedo = float4(decal_color.xyz,1 );
-
-  //o_albedo = decal_color;
-  //o_albedo.a *= input.opacity;
-  float4 o_albedo;
-
-  o_albedo.xyz = input.color.xyz;
-  o_albedo.a = decal_color.a;
-  //o_normal.a = decal_color.a;
-
-  //o_albedo.a = distance_to_decal_center;
-  //o_albedo = float4( amount_of_x, amount_of_z, 0, 1 );
-
-  // Change to true 'see' the boxes
+	float roughness = txRoughness.Sample(samLinear, float2(amount_of_x,amount_of_z)).r;	
+	float3 N = computeNormalMap(input.normal, input.tangent, float2(amount_of_x,amount_of_z));
+	o_normal = encodeNormal(N, roughness * decal_color.a);
+  o_albedo.xyz = decal_color.xyz;
+  o_albedo.a = decal_color.a;//txMetallic.Sample(samLinear, float2(amount_of_x,amount_of_z)).r;
+ 
+  // Change to true 'see' the boxes 
   if( false ) {
     o_albedo.a += 0.3;
    
     if( (input.uv.x < 0.01 || input.uv.x > 0.99 ) || (input.uv.y < 0.01 || input.uv.y > 0.99 ) )
       o_albedo.a = 1.0;
   }
-
-  //o_normal = float4(1,1,0,1);
-  //o_self_illum = float4(1,1,0,1);
-
-  return o_albedo;
 }
 

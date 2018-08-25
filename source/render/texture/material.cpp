@@ -57,6 +57,8 @@ bool CMaterial::create(const json& j) {
 	textures[TS_EMISSIVE] = Resources.get("data/textures/default_emissive.dds")->as<CTexture>();
 	textures[TS_HEIGHT] = Resources.get("data/textures/default_white.dds")->as<CTexture>();
     textures[TS_AOCCLUSION] = Resources.get("data/textures/default_white.dds")->as<CTexture>();
+    textures[TS_ROUGHNESS] = Resources.get("data/textures/default_white.dds")->as<CTexture>();
+    textures[TS_METALLIC] = Resources.get("data/textures/default_white.dds")->as<CTexture>();
     srvs[TS_AOCCLUSION] = textures[TS_AOCCLUSION]->getShaderResourceView();
 
     if (j.count("textures")) {

@@ -45,11 +45,11 @@
 			"camera_thirdperson": {
 				"target": "The Player",
 				"clampangle": "-40 80",
-				"offset": "0.15 1.4 2",
+				"offset": "0.15 1.3 2",
 				"speed": 1.5
 			},
 			"camera": {
-				"fov": 75,
+				"fov": 70,
 				"z_near": 0.01,
 				"z_far": 1000
 			},
@@ -82,6 +82,10 @@
 			},
 			"render_outlines" : {
 				"enabled" : true
+		  },
+			"render_flares" : {
+				"enabled" : true,
+				"max_steps": 4
 		  },
 			"tags": ["main_camera", "tp_camera"]
 		}

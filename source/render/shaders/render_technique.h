@@ -5,6 +5,18 @@ class CVertexShader;
 class CPixelShader;
 class CTexture;
 
+// ----------------------------------------------------------
+struct TTextureSlots {
+    struct TSlot {
+        int             slot = -1;
+        const CTexture* texture;
+    };
+    // Textures associated to this technique
+    std::vector< TSlot > textures;
+    void load(const std::string& name, const json& j);
+    void activate() const;
+};
+
 class CRenderTechnique : public IResource {
 
 	std::string vs_file;
@@ -18,6 +30,7 @@ class CRenderTechnique : public IResource {
 	std::string category = "default";
 	uint32_t category_id = 0;
     uint32_t priority = 0;
+    UINT     color_mask = 255;
 
 	RSConfig rs_config = RSCFG_DEFAULT;
 	ZConfig z_config = ZCFG_DEFAULT;
@@ -26,13 +39,7 @@ class CRenderTechnique : public IResource {
 	bool reloadVS();
 	bool reloadPS();
 
-	struct TSlot {
-		int             slot;
-		const CTexture* texture;
-	};
-
-	// Textures associated to this technique
-	std::vector< TSlot > textures;
+    TTextureSlots texture_slots;
 
 public:
 	CVertexShader * vs = nullptr;

@@ -39,7 +39,6 @@ struct TSkinVertex {
   VEC2 uv;
   VEC4 tangent;
 
-  //VEC4 tangent;
   uint8_t bone_ids[4];
   uint8_t bone_weights[4];    // 0.255   -> 0..1
 };
@@ -146,6 +145,7 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
 	auto& cal_tan0 = call_all_tng[0];
 	if (cal_tan0.empty()) cal_tan0 = call_all_tng[1];
 	
+    std::vector<VEC4> tangents = computeTangent(cal_sm);
     // Process the vtxs
     for (int vid = 0; vid < num_vtxs; ++vid) {
       CalCoreSubmesh::Vertex& cal_vtx = cal_vtxs[vid];
@@ -157,10 +157,10 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
       // Pos & Normal
       skin_vtx.pos = Cal2DX(cal_vtx.position);
       skin_vtx.normal = Cal2DX(cal_vtx.normal);
-	  skin_vtx.tangent.x = cal_tan0[vid].tangent.x;
-	  skin_vtx.tangent.y = cal_tan0[vid].tangent.y;
-	  skin_vtx.tangent.z = cal_tan0[vid].tangent.z;
-	  skin_vtx.tangent.w = cal_tan0[vid].crossFactor;
+      skin_vtx.tangent.x = tangents[vid].x;// cal_tan0[vid].tangent.x;
+	  skin_vtx.tangent.y = tangents[vid].y;//cal_tan0[vid].tangent.y;
+	  skin_vtx.tangent.z = tangents[vid].z;//cal_tan0[vid].tangent.z;
+      skin_vtx.tangent.w = tangents[vid].w;//cal_tan0[vid].crossFactor;
 
       // Texture coords
       skin_vtx.uv.x = cal_uvs0[vid].u;
@@ -239,6 +239,83 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
   mesh_io.save(fds);
 
   return true;
+}
+
+std::vector<VEC4> CGameCoreSkeleton::computeTangent(CalCoreSubmesh* cal_sm) {
+
+    auto num_vtxs = cal_sm->getVertexCount();
+    auto& cal_vtxs = cal_sm->getVectorVertex();
+
+    const auto& cal_faces = cal_sm->getVectorFace();
+    auto& cal_all_uvs = cal_sm->getVectorVectorTextureCoordinate();
+
+    std::vector<VEC3> tan1;
+    tan1.resize(num_vtxs);
+
+    std::vector<VEC3> tan2;
+    tan2.resize(num_vtxs);
+
+    std::vector<VEC4> tangent;
+    tangent.resize(num_vtxs);
+
+    for (auto& face : cal_faces) {
+
+        uint32_t i1 = face.vertexId[0];
+        uint32_t i2 = face.vertexId[1];
+        uint32_t i3 = face.vertexId[2];
+
+        CalCoreSubmesh::Vertex& v1 = cal_vtxs[i1];
+        CalCoreSubmesh::Vertex& v2 = cal_vtxs[i2];
+        CalCoreSubmesh::Vertex& v3 = cal_vtxs[i3];
+
+        CalCoreSubmesh::TextureCoordinate& w1 = cal_all_uvs[0][i1];
+        CalCoreSubmesh::TextureCoordinate& w2 = cal_all_uvs[0][i2];
+        CalCoreSubmesh::TextureCoordinate& w3 = cal_all_uvs[0][i3];
+
+        float x1 = v2.position.x - v1.position.x;
+        float x2 = v3.position.x - v1.position.x;
+        float y1 = v2.position.y - v1.position.y;
+        float y2 = v3.position.y - v1.position.y;
+        float z1 = v2.position.z - v1.position.z;
+        float z2 = v3.position.z - v1.position.z;
+
+        float s1 = w2.u - w1.u;
+        float s2 = w3.u - w1.u;
+        float t1 = w2.v - w1.v;
+        float t2 = w3.v - w1.v;
+
+        float r = 1.0F / (s1 * t2 - s2 * t1);
+        VEC3 sdir((t2 * x1 - t1 * x2) * r, (t2 * y1 - t1 * y2) * r,
+            (t2 * z1 - t1 * z2) * r);
+        VEC3 tdir((s1 * x2 - s2 * x1) * r, (s1 * y2 - s2 * y1) * r,
+            (s1 * z2 - s2 * z1) * r);
+
+        tan1[i1] += sdir;
+        tan1[i2] += sdir;
+        tan1[i3] += sdir;
+
+        tan2[i1] += tdir;
+        tan2[i2] += tdir;
+        tan2[i3] += tdir;
+    }
+
+    for (long a = 0; a < num_vtxs; a++)
+    {
+        CalCoreSubmesh::Vertex& v1 = cal_vtxs[a];
+        const VEC3 n = VEC3(v1.normal.x, v1.normal.y, v1.normal.z);
+        const VEC3 t = tan1[a];
+
+        // Gram-Schmidt orthogonalize
+        VEC3 xyz = t - n * n.Dot(t);
+        xyz.Normalize();
+
+        // Calculate handedness
+        VEC3 t_comp = n.Cross(t);
+        float w = (t_comp.Dot(tan2[a]) < 0.0F) ? -1.0F : 1.0F;
+        tangent[a] = VEC4(xyz.x, xyz.y, xyz.z, w);
+    }
+
+    return tangent;
 }
 
 // ------------------------------------------------------------

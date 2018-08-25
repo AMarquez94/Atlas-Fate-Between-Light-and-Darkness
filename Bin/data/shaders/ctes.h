@@ -14,6 +14,7 @@
 #define CB_OUTLINE      10
 #define CB_PLAYER       11
 #define CB_POSTFX       12
+#define CB_FOCUS        13
 
 // -------------------------------------------------
 // Texture Slots
@@ -46,17 +47,19 @@
 #define TS_DEFERRED_SELF_ILLUMINATION 20
 #define TS_DEFERRED_AO                21
 #define TS_LUT_COLOR_GRADING          22
+#define TS_LUMINANCE                  23
+#define TS_DEFERRED_OUTLINE           24
 
 #define TS_FIRST_SLOT_MATERIAL_0      TS_ALBEDO
 #define TS_FIRST_SLOT_MATERIAL_1      TS_ALBEDO1
 #define TS_FIRST_SLOT_MATERIAL_2      TS_ALBEDO2
 
-#define TS_ALBEDO1 23
-#define TS_NORMAL1 24
-#define TS_ALBEDO2 25
-#define TS_NORMAL2 26
+#define TS_ALBEDO1 25
+#define TS_NORMAL1 26
+#define TS_ALBEDO2 27
+#define TS_NORMAL2 28
 
-#define TS_MIX_BLEND_WEIGHTS          25
+#define TS_MIX_BLEND_WEIGHTS          29
 
 // -------------------------------------------------
 #define RO_COMPLETE     0
@@ -95,6 +98,7 @@ CB_DEF(CCteCamera, CB_CAMERA)   // Generates the b0
     MAT44 camera_view;
     MAT44 camera_proj;
     MAT44 camera_view_proj;
+    MAT44 prev_camera_view_proj;
     MAT44 camera_screen_to_world;
     MAT44 camera_proj_with_offset;      // Used by ao
     VEC3  camera_pos;
@@ -177,6 +181,9 @@ CB_DEF(CCteGlobals, CB_GLOBALS)   // Generates the b1
     float global_fog_end;
     float global_player_speed;
     float global_fog_end3;
+
+    VEC3 global_fog_env_color;
+    float global_dummy_value1;
 };
 
 CB_DEF(CCteMaterial, CB_MATERIAL)
@@ -187,6 +194,7 @@ CB_DEF(CCteMaterial, CB_MATERIAL)
     float  scalar_emission;
     VEC4   color_emission;
     VEC4   color_material;
+    VEC4   color_mask;
 
     float  mix_boost_r;
     float  mix_boost_g;
@@ -200,6 +208,11 @@ CB_DEF(CCteBlur, CB_BLUR)
     VEC4 blur_d;        // distances
     VEC2 blur_step;     // Extra modifier
     VEC2 blur_center; // To keep aligned x4
+
+    float mblur_blur_samples;
+    float mblur_blur_speed;
+    float mblur_samples;
+    float mblur_dummy1;
 };
 
 CB_DEF(CCteSkinBones, CB_SKIN_BONES)
@@ -225,6 +238,11 @@ CB_DEF(CCteGUI, CB_GUI)
 	VEC2 minUV;
 	VEC2 maxUV;
 	VEC4 tint_color;
+
+    float gui_var1;
+    float gui_var2;
+    float gui_var3;
+    float gui_var4;
 };
 
 CB_DEF(CCteParticle, CB_PARTICLE)
@@ -238,7 +256,7 @@ CB_DEF(CCteOutline, CB_OUTLINE)
 {
     float  linear_time;
     float  outline_alpha;
-    float  outline_dummy1;
+    float  alive_time;
     float  outline_dummy2;
 };
 
@@ -247,16 +265,30 @@ CB_DEF(CCtePlayer, CB_PLAYER)
     float  player_fade;
     float  player_aberration;
     float  player_speed;
+    float  player_disk_radius;
+
+    float  player_shadowed;
+    float  player_dummy1;
     float  player_dummy2;
+    float  player_dummy3;
 };
 
 CB_DEF(CCtePostFX, CB_POSTFX)
 {
     float  postfx_ca_amount;
-    float  postfx_ca_offset;
-    float  postfx_cs_offset;
-    float  postfx_dummy3;
+    float  postfx_block_random;
+    float  postfx_block_amount;
+    float  postfx_scan_amount;
+    VEC2   postfx_scan_drift;
+    VEC2   postfx_scan_jitter;
 };
 
+CB_DEF(CCteFocus, CB_FOCUS)
+{
+    float focus_z_center_in_focus;
+    float focus_z_margin_in_focus;
+    float focus_transition_distance;
+    float focus_modifier;
+};
 
 #endif

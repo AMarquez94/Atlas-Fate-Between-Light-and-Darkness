@@ -35,6 +35,7 @@ public:
 	GUI::CWidget* getWidget(EGUIWidgets wdgt_type);	
 	void activateWidget(EGUIWidgets wdgt);
 	void deactivateWidget(EGUIWidgets wdgt);
+    void enableWidget(const std::string& name, bool status = true);
 
 	// controller management
 	void registerController(GUI::CController* controller);
@@ -45,6 +46,7 @@ public:
 	MVariants& getVariables();
 
 	void renderTexture(const MAT44& world, const CTexture* texture, const VEC2& minUV, const VEC2& maxUV, const VEC4& color);
+    void renderCustomTexture(const std::string & tech, const MAT44& world, const CTexture* texture, const GUI::ConfigParams & params);
 	void renderText(const MAT44& world, const std::string& text, const VEC4& color);
 
 private:

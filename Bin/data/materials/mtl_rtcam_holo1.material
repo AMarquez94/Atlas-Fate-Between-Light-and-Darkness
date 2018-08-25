@@ -1,0 +1,7 @@
+{
+	"technique": "hologram_dump.tech",
+	"shadows": false,
+	"textures": {
+		"albedo": "rt_camera_hologram.dds"
+	}
+}

@@ -38,12 +38,10 @@ function saveMeshToFile outfilename obj vtxs idxs vtxType subgroups = (
 	local magicEoF = 0x55558888		-- .. Chunk CollisionData
 	local triangle_list = 4
 	
-	print outfilename
 	-- Create file
 	local fs = fopen outfilename "wb"
 	if fs == undefined then throw ( "Can't create file " + outfilename )
 	
-	print out
 	local bytes_per_vtx = vtxs[1].count * 4	-- each float is 4 bytes
 	local bytes_per_idx = 2
 	if vtxs.count >= 65535 then bytes_per_idx = 4

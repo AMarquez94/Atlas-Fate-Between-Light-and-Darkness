@@ -1,0 +1,29 @@
+[{
+		"entity": {
+			"name": "Hologram_scene",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "hologram_mesh",
+			"transform": {
+				"pos": "-40.306 1.125 -90.335",
+				"scale": "1.7 1.7 1.7"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/main_player.mesh",
+					"materials":
+					[
+						"data/materials/mtl_hologram_sw_model.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
+]

@@ -203,7 +203,8 @@ void CModuleInstancing::renderMain() {
         p.second._instances_mesh->setInstancesData(p.second._instances.data(), p.second._instances.size(), sizeof(TInstance));
 
     instances_mesh->setInstancesData(instances.data(), instances.size(), sizeof(TInstance));
-    blood_instances_mesh->setInstancesData(blood_instances.data(), blood_instances.size(), sizeof(TInstanceBlood));
+    //blood_instances_mesh->setInstancesData(blood_instances.data(), blood_instances.size(), sizeof(TInstanceBlood));
+
     particles_instances_mesh->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(TRenderParticle));
 
     //compute_task.debugInMenu();

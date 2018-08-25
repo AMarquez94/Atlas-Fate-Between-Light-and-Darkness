@@ -11,6 +11,9 @@ class CRenderToTexture;
 struct TCompChromaticAberration : public TCompBase {
     bool                          enabled = true;
     float                         amount = 1.f;
+    float                         block_amount;
+    float                         scanline_drift;
+    float                         scanline_jitter;
     const CRenderTechnique*       tech = nullptr;
     const CRenderMesh*            mesh = nullptr;
     CRenderToTexture*             rt = nullptr;

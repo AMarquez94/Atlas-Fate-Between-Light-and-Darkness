@@ -101,6 +101,9 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
     paused = true;
     canAttack = false;
     canRemoveInhibitor = false;
+
+    // Move the stamina string to the json
+    EngineGUI.enableWidget("stamina_bar_general", false);
 }
 
 /* Player controller main update */
@@ -126,7 +129,8 @@ void TCompTempPlayerController::update(float dt) {
     // Update player global speed into the shader.
     float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
     cb_globals.global_player_speed = (inputSpeed * currentSpeed) / 6.f; // Maximum speed, change this in the future. 
-    //cb_globals.updateGPU();
+    cb_player.player_disk_radius = clamp(1, 0, 1); // Replace this with a lerp when we have the animation
+    cb_player.updateGPU();
 }
 
 void TCompTempPlayerController::registerMsgs() {
@@ -151,6 +155,8 @@ void TCompTempPlayerController::registerMsgs() {
 
 void TCompTempPlayerController::onShadowChange(const TMsgShadowChange& msg) {
 
+    cb_player.player_shadowed = msg.is_shadowed;
+    cb_player.updateGPU();
     //VEC4 merged_color = msg.is_shadowed ? playerColor.colorMerge : playerColor.colorIdle;
 
     //TCompEmissionController * e_controller = get<TCompEmissionController>();
@@ -281,6 +287,11 @@ void TCompTempPlayerController::onPlayerInhibited(const TMsgInhibitorShot & msg)
 {
     if (!isInhibited) {
         isInhibited = true;
+
+        CEntity* player = CHandle(this).getOwner();
+        TMsgGlitchController msg;
+        msg.revert = true;
+        player->sendMsg(msg);
     }
     timesRemoveInhibitorKeyPressed = initialTimesToPressInhibitorRemoveKey;
 }
@@ -473,6 +484,10 @@ void TCompTempPlayerController::removingInhibitorState(float dt) {
 
             timesRemoveInhibitorKeyPressed = initialTimesToPressInhibitorRemoveKey;
             isInhibited = false;
+
+            TMsgGlitchController msg;
+            msg.revert = false;
+            player->sendMsg(msg);
 
             TMsgSetFSMVariable finished;
             finished.variant.setName("inhibitor_removed");
@@ -768,6 +783,8 @@ const bool TCompTempPlayerController::onMergeTest(float dt) {
         groundMsg.variant.setBool(mergeTest);
         e->sendMsg(groundMsg);
         c_my_rigidbody->filters.mFilterData = isMerged == true ? pxPlayerFilterData : pxShadowFilterData;
+
+        EngineGUI.enableWidget("stamina_bar_general", mergeTest);
     }
 
     return mergeTest;

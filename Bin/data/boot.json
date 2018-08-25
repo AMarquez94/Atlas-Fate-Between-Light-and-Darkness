@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_basilic_courtyard",
+	"default_scene": "scene_zone_a",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -12,7 +12,7 @@
 			"data/scenes/Map_Intro/checkpoints.scene",
 			"data/scenes/Map_Intro/movable_objects.scene",
 			"data/scenes/Map_Intro/milestone2_map_particles.scene",
-			
+
 			"data/scenes/Intro/intro_camera.scene",
 			"data/scenes/Intro/intro_columnas.scene",
 			"data/scenes/Intro/intro_puertas.scene",
@@ -31,15 +31,8 @@
 			"data/scenes/intro_pozo.scene",
 			"data/scenes/intro_barra_capsulas.scene",
 			"data/scenes/Intro/intro_suelo.scene",
-			
-			
-			
-			
-			"data/scenes/Intro/debug_speaker.scene"
-			
-			
-			
 
+			"data/scenes/Intro/debug_speaker.scene"
 		]
 	},
 	"scene_map_intro": {
@@ -97,6 +90,7 @@
 			"data/scenes/zone_a_hologramas.scene",
 			"data/scenes/zona_a_colliders_barandillas.scene",
 			"data/scenes/zone_a_colliders_valla_luz.scene",
+			"data/scenes/zone_a_test.scene",
 
 			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene",
@@ -106,8 +100,8 @@
 			"data/scenes/ZoneA/luces.scene",
 			"data/scenes/ZoneA/neones.scene",
 			"data/scenes/ZoneA/carteles.scene",
-
-			"data/scenes/ZoneA/debug_navmeshes.scene"
+			"data/scenes/mapa_decals.scene",
+			"data/scenes/zone_a_hologram_scenes.scene"
 		]
 	},
 	"scene_coliseo": {

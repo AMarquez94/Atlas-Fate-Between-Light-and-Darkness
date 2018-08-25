@@ -25,6 +25,7 @@ void TCompLightSpot::debugInMenu() {
     ImGui::DragFloat("Cut Out", &inner_cut, 0.5f, 1.f, angle);
     ImGui::DragFloat("Range", &range, 0.5f, 1.f, 120.f);
     ImGui::DragFloat("Shadow step", &shadows_step, 0.01f, 0.f, 10.f);
+    ImGui::DragInt("Num Samples", &num_samples, 1, 0, 250);
 }
 
 void TCompLightSpot::renderDebug() {

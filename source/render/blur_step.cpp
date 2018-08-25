@@ -76,3 +76,33 @@ CTexture* CBlurStep::apply(
 
   return rt_output;
 }
+
+CTexture* CBlurStep::applyHalf(
+    CTexture* input,
+    float global_distance,
+    VEC4 distances,
+    VEC4 weights
+) {
+
+    // Sum( Weights ) = 1 to not loose energy. +2 is to account for left and right taps
+    float normalization_factor =
+        1 * weights.x
+        + 2 * weights.y
+        + 2 * weights.z
+        + 2 * weights.w
+        ;
+    cb_blur.blur_w.x = weights.x / normalization_factor;
+    cb_blur.blur_w.y = weights.y / normalization_factor;
+    cb_blur.blur_w.z = weights.z / normalization_factor;
+    cb_blur.blur_w.w = weights.w / normalization_factor;
+    cb_blur.blur_d.x = distances.x;
+    cb_blur.blur_d.y = distances.y;
+    cb_blur.blur_d.z = distances.z;
+    cb_blur.blur_d.w = distances.w;  // Not used
+
+    rt_output->activateRT();
+    input->activate(TS_ALBEDO);
+    applyBlur(global_distance, 0);
+
+    return rt_output;
+}

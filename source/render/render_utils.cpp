@@ -14,6 +14,8 @@ DXGI_FORMAT readFormat(const json& j, const std::string& label) {
 		return DXGI_FORMAT_R8G8B8A8_UNORM;
 	if (format == "R32_TYPELESS")
 		return DXGI_FORMAT_R32_TYPELESS;
+    if (format == "R16_FLOAT")
+        return DXGI_FORMAT_R16_FLOAT;
 
 	return DXGI_FORMAT_UNKNOWN;
 }
@@ -64,6 +66,15 @@ struct CZConfigs {
         if (!add(desc, ZCFG_TEST_BUT_NO_WRITE, "test_but_no_write"))
             return false;
 
+        memset(&desc, 0x00, sizeof(desc));
+        desc.DepthEnable = true;
+        desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;    // don't write
+        desc.DepthFunc = D3D11_COMPARISON_ALWAYS;               // only near z
+        desc.StencilEnable = false;
+
+        if (!add(desc, ZCFG_TEST_RAYMARCH, "test_raymarch"))
+            return false;
+
         // test for equal but don't write. Used to render on those pixels where
         // we have render previously like wireframes
         memset(&desc, 0x00, sizeof(desc));
@@ -87,7 +98,8 @@ struct CZConfigs {
         memset(&desc, 0x00, sizeof(desc));
         desc.DepthEnable = TRUE;
         desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO; // <<--
-        desc.DepthFunc = D3D11_COMPARISON_NEVER;
+        desc.DepthFunc = D3D11_COMPARISON_ALWAYS;
+
         // Stencil test parameters
         desc.StencilEnable = true;
         desc.StencilReadMask = 0xFF;
@@ -95,8 +107,8 @@ struct CZConfigs {
 
         // Stencil operations if pixel is front-facing
         desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
-        desc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_REPLACE;
-        desc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+        desc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;
+        desc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_REPLACE;
         desc.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
 
         // Stencil operations if pixel is back-facing
@@ -443,9 +455,9 @@ void activateAllSamplers() {
 	Render.ctx->PSSetSamplers(0, SAMPLERS_COUNT, samplers.all_samplers);
 }
 
-void activateZConfig(enum ZConfig cfg) {
+void activateZConfig(enum ZConfig cfg, UINT color_mask) {
 	assert(zconfigs.z_cfgs[cfg] != nullptr);
-	Render.ctx->OMSetDepthStencilState(zconfigs.z_cfgs[cfg], 255);
+	Render.ctx->OMSetDepthStencilState(zconfigs.z_cfgs[cfg], color_mask);
 }
 
 void activateRSConfig(enum RSConfig cfg) {

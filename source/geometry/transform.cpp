@@ -18,11 +18,11 @@ bool CTransform::load(const json& j) {
         float angle_rad = deg2rad(angle_deg);
         setRotation(QUAT::CreateFromAxisAngle(axis, angle_rad));
     }
-	if (j.count("scale")) 
-		scale = loadVEC3(j["scale"]);
-	//scale = VEC3::One;
-	
-        
+
+    if (j.count("scale")) {
+        scale = loadVEC3(j["scale"]);
+    }
+
     return true;
 }
 
@@ -76,7 +76,6 @@ bool CTransform::debugInMenu() {
     pos.x = posfloat[0];
     pos.y = posfloat[1];
     pos.z = posfloat[2];
-
 	changed |= ImGui::DragFloat3("Scale", scalefloat, 0.025f, -1000.f, 1000.f);
 	scale.x = scalefloat[0];
 	scale.y = scalefloat[1];

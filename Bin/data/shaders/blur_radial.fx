@@ -26,7 +26,7 @@ float4 PS(
   float2 distance2center = length( v2c );
   v2c = normalize( v2c );
 
-  float amount = smoothstep( 0, blur_d.y, distance2center );      // 0.. comp.radius
+  float amount = smoothstep( 0, blur_d.y, distance2center.x );      // 0.. comp.radius
   amount *= blur_d.x;                                             // comp.amount 
   //return amount;
 

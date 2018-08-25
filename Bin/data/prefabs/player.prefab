@@ -5,76 +5,147 @@
 				"pos": "0 0 0"
 			},
 			"render": [{
-				"mesh": "data/skeletons/player/body.mesh",
-				"materials": [
-					"data/materials/characters/mtl_player_main.material"
-				]
-			}, {
-				"mesh": "data/skeletons/player/bolsa_cinturon.mesh",
-				"materials": [
-					"data/materials/characters/mtl_player_main.material"
-				]
-			}, {
-				"mesh": "data/skeletons/player/buff_exterior.mesh",
-				"materials": [
-					"data/materials/characters/mtl_player_main.material"
-				]
-			}, {
-				"mesh": "data/skeletons/player/capsula_energia.mesh",
-				"materials": [
-					"data/materials/characters/mtl_player_main.material"
-				]
-			}, {
-				"mesh": "data/skeletons/player/cinturon_capsula1.mesh",
-				"materials": [
-					"data/materials/characters/mtl_player_main.material"
-				]
-			}, {
-				"mesh": "data/skeletons/player/cinturon_capsula2.mesh",
-				"materials": [
-					"data/materials/characters/mtl_player_main.material"
-				]
-			}, {
-				"mesh": "data/skeletons/player/cinturon_capsula3.mesh",
-				"materials": [
-					"data/materials/characters/mtl_player_main.material"
-				]
-			}, {
-				"mesh": "data/skeletons/player/cinturon_capsula4.mesh",
-				"materials": [
-					"data/materials/characters/mtl_player_main.material"
-				]
-			}, {
-				"mesh": "data/skeletons/player/cruzado_capsula1.mesh",
-				"materials": [
-					"data/materials/characters/mtl_player_main.material"
-				]
-			}, {
-				"mesh": "data/skeletons/player/cruzado_capsula2.mesh",
-				"materials": [
-					"data/materials/characters/mtl_player_main.material"
-				]
-			}, {
-				"mesh": "data/skeletons/player/cruzado_capsula3.mesh",
-				"materials": [
-					"data/materials/characters/mtl_player_main.material"
-				]
-			}, {
-				"mesh": "data/skeletons/player/hood.mesh",
-				"materials": [
-					"data/materials/characters/mtl_player_main.material"
-				]
-			}, {
-				"mesh": "data/skeletons/player/tira_L.mesh",
-				"materials": [
-					"data/materials/characters/mtl_player_main.material"
-				]
-			}, {
-				"mesh": "data/skeletons/player/tira_R.mesh",
-				"materials": [
-					"data/materials/characters/mtl_player_main.material"
-				]
-			}],
+					"mesh": "data/skeletons/player/body.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/body.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/bolsa_cinturon.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/bolsa_cinturon.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/buff_exterior.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/buff_exterior.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/capsula_energia.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/capsula_energia.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula1.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula1.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula2.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula2.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula3.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula3.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula4.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cinturon_capsula4.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cruzado_capsula1.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cruzado_capsula1.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cruzado_capsula2.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cruzado_capsula2.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cruzado_capsula3.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/cruzado_capsula3.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/hood.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/hood.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/tira_L.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/tira_L.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/tira_R.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main_env.material"
+					]
+				}, {
+					"mesh": "data/skeletons/player/tira_R.mesh",
+					"materials": [
+						"data/materials/characters/mtl_player_main.material"
+					]
+				}
+			],
 			"fade_controller": {
 				"fade_color": "0.0 1.0 1.0 1.0",
 				"fade_time": 0.6,
@@ -87,8 +158,8 @@
 			},
 			"sonar_controller": {
 				"tags": "enemy",
-				"alive_time": 1.0,
-				"cooldown_time": 10.0
+				"alive_time": 3.0,
+				"cooldown_time": 1.0
 			},
 			"player_animator": true,
 			"collider": {
@@ -126,9 +197,11 @@
 				"decrStaminaVertical": 15,
 				"minStaminaChange": 15,
 				"auxCamera": "SMCameraAux",
-				"timesRemoveInhibitorKeyPressed": 5
+				"timesRemoveInhibitorKeyPressed": 5,
+				"weapon_disk_time": 1
 			},
 			"noclip_controller": {},
+			"glitch_controller": {},
 			"emission_controller": {
 				"initial": "1.0 1.0 1.0 1.0",
 				"intensity": 1.25
@@ -139,7 +212,7 @@
 			"tags": [
 				"player"
 			],
-			"particles" : {
+			"particles": {
 				"cores":
 				[
 					"data/particles/sm_ground.particles",
@@ -151,24 +224,20 @@
 			},
 			"audio": {}
 		}
-	},
-	{
-		"entity":
-		{
-	  		"name": "PropPlayer",
+	}, {
+		"entity": {
+			"name": "PropPlayer",
 			"hierarchy": {
-		    	"parent": "The Player",
-		    	"pos": "0 0 0"
+				"parent": "The Player",
+				"pos": "0 0 0"
 			},
 			"transform": {},
-			"render" : {
-				"mesh" : "axis.mesh"
+			"render": {
+				"mesh": "axis.mesh"
 			}
 		}
-	},
-	{
-		"entity":
-		{
+	}, {
+		"entity": {
 			"name": "Player_landing",
 			"transform": "0 0 0",
 			"render": {
@@ -177,7 +246,7 @@
 			"landing": {
 				"parent": "The Player"
 			},
-			"particles" : {
+			"particles": {
 				"cores":
 				[
 					"data/particles/sm_ground.particles",
@@ -187,6 +256,56 @@
 					"data/particles/sm_top_trail.particles"
 				]
 			}
+		}
+	}, {
+		"entity": {
+			"name": "weapon_disc_left",
+			"transform": {
+				"pos": "0 0 0",
+				"lookat": "0 0 0"
+			},
+			"bone_tracker": {
+				"bone": "Bip001 L Hand",
+				"parent": "The Player"
+			},
+			"render":
+			[{
+					"self_intensity": 0.65,
+					"self_color": "0 1 1 1",
+					"mesh": "data/meshes/weapon_disc.mesh",
+					"materials":
+					[
+						"data/materials/mtl_weapon_disc.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
+			"name": "weapon_disc_right",
+			"transform": {
+				"pos": "0 0 0",
+				"lookat": "0 0 0"
+			},
+			"bone_tracker": {
+				"bone": "Bip001 R Hand",
+				"parent": "The Player"
+			},
+			"render":
+			[{
+					"self_intensity": 0.65,
+					"self_color": "0 1 1 1",
+					"mesh": "data/meshes/weapon_disc.mesh",
+					"materials":
+					[
+						"data/materials/mtl_weapon_disc.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
 		}
 	}
 ]

@@ -49,10 +49,10 @@ void TCompRigidbody::update(float dt) {
         if (is_controller) {
 
             if (is_gravity) {
-              if (is_grounded) totalDownForce = physx::PxVec3(0, 0, 0);
-              actualDownForce = physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z);
-              velocity += (actualDownForce + totalDownForce);
-              totalDownForce += 3.f * actualDownForce * dt;
+                if (is_grounded) totalDownForce = physx::PxVec3(0, 0, 0);
+                actualDownForce = physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z);
+                velocity += (actualDownForce + totalDownForce);
+                totalDownForce += 3.f * actualDownForce * dt;
             }
 
             physx::PxControllerCollisionFlags col = controller->move(velocity * dt, 0.f, dt, filters);
@@ -74,13 +74,13 @@ void TCompRigidbody::update(float dt) {
             physx::PxTransform pxTransform(pxPos, pxQuat);
             actor->setKinematicTarget(pxTransform);
           }*/
-            //VEC3 vel = (transform->getPosition() - lastFramePosition) / dt;
-            //physx::PxRigidBody * rigidbody = (physx::PxRigidBody*) c_collider->config->actor;
-            //const physx::PxVec3 pxVel = VEC3_TO_PXVEC3(vel);
-            //rigidbody->setLinearVelocity(pxVel, true);
+          //VEC3 vel = (transform->getPosition() - lastFramePosition) / dt;
+          //physx::PxRigidBody * rigidbody = (physx::PxRigidBody*) c_collider->config->actor;
+          //const physx::PxVec3 pxVel = VEC3_TO_PXVEC3(vel);
+          //rigidbody->setLinearVelocity(pxVel, true);
 
-          //setRigidBodyFlag
-            
+        //setRigidBodyFlag
+
             VEC3 pos = transform->getPosition() + PXVEC3_TO_VEC3(c_collider->config->center);
             QUAT quat = transform->getRotation();
             c_collider->setGlobalPose(pos, quat, false);
@@ -103,108 +103,108 @@ void TCompRigidbody::registerMsgs() {
 
 void TCompRigidbody::setLinearVelocity(VEC3 vel, bool autowake)
 {
-  if (is_controller) {
-    /* We dont support this at the moment */
-  }
-  else {
-    TCompCollider * c_collider = get<TCompCollider>();
-    physx::PxRigidBody * rigidbody = (physx::PxRigidBody*) c_collider->config->actor;
-    const physx::PxVec3 pxVel = VEC3_TO_PXVEC3(vel);
-    rigidbody->setLinearVelocity(pxVel, autowake);
-  }
+    if (is_controller) {
+        /* We dont support this at the moment */
+    }
+    else {
+        TCompCollider * c_collider = get<TCompCollider>();
+        physx::PxRigidBody * rigidbody = (physx::PxRigidBody*) c_collider->config->actor;
+        const physx::PxVec3 pxVel = VEC3_TO_PXVEC3(vel);
+        rigidbody->setLinearVelocity(pxVel, autowake);
+    }
 }
 
 void TCompRigidbody::addForce(VEC3 force)
 {
-	TCompCollider * c_collider = get<TCompCollider>();
-	physx::PxRigidBody * rigidbody = (physx::PxRigidBody*) c_collider->config->actor;
-	physx::PxVec3 pxforce = VEC3_TO_PXVEC3(force);
-	rigidbody->addForce(pxforce, physx::PxForceMode::eFORCE);
+    TCompCollider * c_collider = get<TCompCollider>();
+    physx::PxRigidBody * rigidbody = (physx::PxRigidBody*) c_collider->config->actor;
+    physx::PxVec3 pxforce = VEC3_TO_PXVEC3(force);
+    rigidbody->addForce(pxforce, physx::PxForceMode::eFORCE);
 }
 
 void TCompRigidbody::setKinematic(bool isKinematic)
 {
-  if (!is_controller) {
-    TCompCollider* c_collider = get<TCompCollider>();
-    physx::PxRigidBody* actor = (physx::PxRigidBody*)c_collider->config->actor;
-    actor->setRigidBodyFlag(physx::PxRigidBodyFlag::eKINEMATIC, isKinematic);
-    is_kinematic = isKinematic;
-  }
+    if (!is_controller) {
+        TCompCollider* c_collider = get<TCompCollider>();
+        physx::PxRigidBody* actor = (physx::PxRigidBody*)c_collider->config->actor;
+        actor->setRigidBodyFlag(physx::PxRigidBodyFlag::eKINEMATIC, isKinematic);
+        is_kinematic = isKinematic;
+    }
 }
 
 void TCompRigidbody::createJoint(CHandle entityToJoin)
 {
-  /* TODO: Not tested */
-  if (joint == nullptr) {
-    assert(entityToJoin.isValid());
-    CEntity* eEntityToJoin = entityToJoin;
+    /* TODO: Not tested */
+    if (joint == nullptr) {
+        assert(entityToJoin.isValid());
+        CEntity* eEntityToJoin = entityToJoin;
 
-    TCompCollider * my_collider = get<TCompCollider>();
-    TCompCollider * other_collider = eEntityToJoin->get<TCompCollider>();
+        TCompCollider * my_collider = get<TCompCollider>();
+        TCompCollider * other_collider = eEntityToJoin->get<TCompCollider>();
 
-    assert(my_collider && other_collider);
+        assert(my_collider && other_collider);
 
-    TCompTransform * my_transform = get<TCompTransform>();
-    TCompTransform * other_transform = eEntityToJoin->get<TCompTransform>();
+        TCompTransform * my_transform = get<TCompTransform>();
+        TCompTransform * other_transform = eEntityToJoin->get<TCompTransform>();
 
-    physx::PxVec3 pxPos = VEC3_TO_PXVEC3(my_transform->getPosition());
-    physx::PxQuat pxRot = QUAT_TO_PXQUAT(my_transform->getRotation());
-    physx::PxTransform myPxTrans = physx::PxTransform(pxPos, pxRot);
+        physx::PxVec3 pxPos = VEC3_TO_PXVEC3(my_transform->getPosition());
+        physx::PxQuat pxRot = QUAT_TO_PXQUAT(my_transform->getRotation());
+        physx::PxTransform myPxTrans = physx::PxTransform(pxPos, pxRot);
 
-    pxPos = VEC3_TO_PXVEC3(other_transform->getPosition());
-    pxRot = QUAT_TO_PXQUAT(other_transform->getRotation());
-    physx::PxTransform otherPxTrans = physx::PxTransform(pxPos, pxRot);
+        pxPos = VEC3_TO_PXVEC3(other_transform->getPosition());
+        pxRot = QUAT_TO_PXQUAT(other_transform->getRotation());
+        physx::PxTransform otherPxTrans = physx::PxTransform(pxPos, pxRot);
 
-    joint = EnginePhysics.CreateDistanceJoint(my_collider->config->actor, myPxTrans, other_collider->config->actor, otherPxTrans);
-    assert(joint);
-  }
+        joint = EnginePhysics.CreateDistanceJoint(my_collider->config->actor, myPxTrans, other_collider->config->actor, otherPxTrans);
+        assert(joint);
+    }
 }
 
 void TCompRigidbody::releaseJoint()
 {
-  /* TODO: Not tested */
-  if (joint != nullptr) {
-    joint->release();
-    joint = nullptr;
-  }
+    /* TODO: Not tested */
+    if (joint != nullptr) {
+        joint->release();
+        joint = nullptr;
+    }
 }
 
 void TCompRigidbody::createController()
 {
-  TCompCollider * c_collider = get<TCompCollider>();
-  TCompTransform * c_transform = get<TCompTransform>();
-  lastFramePosition = c_transform->getPosition();
+    TCompCollider * c_collider = get<TCompCollider>();
+    TCompTransform * c_transform = get<TCompTransform>();
+    lastFramePosition = c_transform->getPosition();
 
-  controller = c_collider->config->createController(c_transform);
-  c_collider->config->actor->userData = CHandle(c_collider).asVoidPtr();
-  c_collider->config->is_controller = true;
-  is_controller = true;
+    controller = c_collider->config->createController(c_transform);
+    c_collider->config->actor->userData = CHandle(c_collider).asVoidPtr();
+    c_collider->config->is_controller = true;
+    is_controller = true;
 }
 
 void TCompRigidbody::createDynamicRigidbody()
 {
-  TCompCollider * c_collider = get<TCompCollider>();
-  TCompTransform * c_transform = get<TCompTransform>();
+    TCompCollider * c_collider = get<TCompCollider>();
+    TCompTransform * c_transform = get<TCompTransform>();
 
-  physx::PxShape * shape = c_collider->config->createShape();
-  c_collider->config->createDynamic(shape, c_transform, mass);
-  c_collider->config->actor->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, !is_gravity);
-  c_collider->config->actor->userData = CHandle(c_collider).asVoidPtr();
+    physx::PxShape * shape = c_collider->config->createShape();
+    c_collider->config->createDynamic(shape, c_transform, mass);
+    c_collider->config->actor->setActorFlag(physx::PxActorFlag::eDISABLE_GRAVITY, !is_gravity);
+    c_collider->config->actor->userData = CHandle(c_collider).asVoidPtr();
 }
 
 void TCompRigidbody::destroyController() {
-  TCompCollider * c_collider = get<TCompCollider>();
+    TCompCollider * c_collider = get<TCompCollider>();
 
-  is_controller = false;
-  c_collider->config->is_controller = false;
-  controller->release();
+    is_controller = false;
+    c_collider->config->is_controller = false;
+    controller->release();
 }
 
 void TCompRigidbody::destroyDynamicRigidbody() {
-  TCompCollider * c_collider = get<TCompCollider>();
+    TCompCollider * c_collider = get<TCompCollider>();
 
-  c_collider->config->actor->release();
-  c_collider->config->actor = nullptr;
+    c_collider->config->actor->release();
+    c_collider->config->actor = nullptr;
 }
 
 void TCompRigidbody::createRigidbody() {
@@ -244,19 +244,19 @@ void TCompRigidbody::onCreate(const TMsgEntityCreated& msg) {
     // Let the rigidbody handle the creation if it exists..
     if (c_collider != nullptr)
     {
-      createRigidbody();
+        createRigidbody();
     }
 }
 
 void TCompRigidbody::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
-  
-  TCompCollider * c_collider = get<TCompCollider>();
 
-  // Let the rigidbody handle the creation if it exists..
-  if (c_collider != nullptr && c_collider->config->actor == nullptr)
-  {
-    createRigidbody();
-  }
+    TCompCollider * c_collider = get<TCompCollider>();
+
+    // Let the rigidbody handle the creation if it exists..
+    if (c_collider != nullptr && c_collider->config->actor == nullptr)
+    {
+        createRigidbody();
+    }
 }
 
 void TCompRigidbody::Resize(float new_size)
@@ -298,15 +298,15 @@ void TCompRigidbody::setNormalGravity(VEC3 newGravity) {
 
 void TCompRigidbody::setGlobalPose(VEC3 pos, QUAT rot)
 {
-  TCompCollider * c_collider = get<TCompCollider>();
-  if (is_controller) {
-    physx::PxExtendedVec3 pxPos = physx::PxExtendedVec3(pos.x, pos.y, pos.z);
-    controller->setFootPosition(pxPos);
-    lastFramePosition = pos;
-  }
-  else {
-    c_collider->setGlobalPose(pos, rot, false);
-  }
+    TCompCollider * c_collider = get<TCompCollider>();
+    if (is_controller) {
+        physx::PxExtendedVec3 pxPos = physx::PxExtendedVec3(pos.x, pos.y, pos.z);
+        controller->setFootPosition(pxPos);
+        lastFramePosition = pos;
+    }
+    else {
+        c_collider->setGlobalPose(pos, rot, false);
+    }
 }
 
 

@@ -1,0 +1,13 @@
+{
+  "technique": "pbr_decals.tech"
+  ,
+  "shadows": false
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/blood.dds",
+    "normal": "data/textures/null_normal.dds",
+    "metallic": "data/textures/blood.dds",
+    "roughness": "data/textures/blood.dds"
+  }
+}
