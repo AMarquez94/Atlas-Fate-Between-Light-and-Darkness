@@ -25,7 +25,7 @@ void TCompHierarchy::convertTotalTransformToRelative(VEC3 objPosition, QUAT objR
 
     MAT44 myMatrix = c_parent_transform->asMatrix();
 
-    resultScale = objScale / c_parent_transform->getScale();
+    resultScale = objScale / c_parent_transform->getScale().x;
 
     VEC3 delta_pos_rotated = (objPosition - c_parent_transform->getPosition()) / c_parent_transform->getScale();
     QUAT parentRotation = c_parent_transform->getRotation();

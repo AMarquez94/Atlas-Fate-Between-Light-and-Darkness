@@ -37,8 +37,13 @@ public:
 	ID3D11RenderTargetView* getRenderTargetView() {
 		return render_target_view;
 	}
+    ID3D11DepthStencilView* getDepthStencilView() {
+        return depth_stencil_view;
+    }
+
 	CTexture* getZTexture() { return ztexture; }
     static CRenderToTexture* getCurrentRT() { return current_rt; }
+    static void setNullRT();
 
 	void debugInMenu() override;
 };

@@ -78,18 +78,18 @@ void TCompRender::debugInMenu() {
 void TCompRender::renderDebug() {
 
     activateRSConfig(RSCFG_WIREFRAME);
-    TCompTransform * transform = get<TCompTransform>();
-    assert(transform);
-    
-    //If we have an skeleton, make sure the required bones are actived and updated
-    TCompSkeleton* skel = get<TCompSkeleton>();
-    if (skel) {
-    	skel->updateCtesBones();
-    	skel->cb_bones.activate();
-    }
-
-    for (auto& mwm : meshes)
-    	renderMesh(mwm.mesh, transform->asMatrix(), color);
+    //TCompTransform * transform = get<TCompTransform>();
+    //assert(transform);
+    //
+    ////If we have an skeleton, make sure the required bones are actived and updated
+    //TCompSkeleton* skel = get<TCompSkeleton>();
+    //if (skel) {
+    //	skel->updateCtesBones();
+    //	skel->cb_bones.activate();
+    //}
+     
+    //for (auto& mwm : meshes)
+    //	renderMesh(mwm.mesh, transform->asMatrix(), color);
     activateRSConfig(RSCFG_DEFAULT);
 }
 
@@ -125,7 +125,12 @@ void TCompRender::loadMesh(const json& j, TEntityParseContext& ctx) {
     if (j.count("color"))
         color = loadVEC4(j["color"]);
 
-    //self_intensity = j.value("self_intensity", 1.0f);
+    if (j.count("self_color"))
+        self_color = loadVEC4(j["self_color"]);
+
+    self_intensity = j.value("self_intensity", 1.0f);
+    self_opacity = 0;
+
     AABB::CreateMerged(aabb, aabb, mwm.mesh->getAABB());
 
     meshes.push_back(mwm);
@@ -151,8 +156,6 @@ void TCompRender::load(const json& j, TEntityParseContext& ctx) {
 
     if (j.count("COLOR"))
         color = loadVEC4(j["color"]);
-
-    self_color = j.count("self_color") ? loadVEC4(j["self_color"]) : VEC4(1, 1, 1, 1);
 }
 
 void TCompRender::refreshMeshesInRenderManager(bool delete_me_from_keys) {

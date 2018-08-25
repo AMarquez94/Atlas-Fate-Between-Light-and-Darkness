@@ -3,44 +3,56 @@
 #include "gui_params.h"
 #include "gui_effect.h"
 
-namespace GUI
-{
-  class CWidget;
-  using VWidgets = std::vector<CWidget*>;
+namespace GUI {
 
-  class CWidget
-  {
-  public:
-    CWidget();
+    class CWidget;
+    using VWidgets = std::vector<CWidget*>;
 
-    void addChild(CWidget* wdgt);
-    void removeChild(CWidget* wdgt);
-    CWidget* getChild(const std::string& name, bool recursive = false) const;
-    const std::string& getName() const;
-    virtual TImageParams* getImageParams() { return nullptr; }
-	virtual TBarParams* getBarParams() { return nullptr; }
-    virtual TTextParams* getTextParams() { return nullptr; }
+    struct ConfigParams {
+        VEC2 minUV;
+        VEC2 maxUV;
+        VEC4 color;
+        float var;
+    };
 
-    void addEffect(CEffect* fx);
+    class CWidget {
 
-    void computeLocal();
-    void computeAbsolute();
+    public:
+        CWidget();
 
-    void updateAll(float delta);
-    void renderAll();
+        void addChild(CWidget* wdgt);
+        void removeChild(CWidget* wdgt);
+        CWidget* getChild(const std::string& name, bool recursive = false) const;
+        const std::string& getName() const;
+        virtual TImageParams* getImageParams() { return nullptr; }
+        virtual TBarParams* getBarParams() { return nullptr; }
+        virtual TTextParams* getTextParams() { return nullptr; }
+        virtual TParams* getTParams() { return nullptr; }
 
-    virtual void update(float delta);
-    virtual void render();
+        void addEffect(CEffect* fx);
 
-  protected:
-    std::string _name;
-    VWidgets _children;
-    VEffects _effects;
-    CWidget* _parent = nullptr;
-    TParams _params;
-    MAT44 _local;
-    MAT44 _absolute;
+        void computeLocal();
+        void computeAbsolute();
 
-    friend class CParser;
-  };
+        void updateAll(float delta);
+        void renderAll();
+        void enable(bool status = true);
+
+        virtual void update(float delta);
+        virtual void render();
+
+        MAT44 getAbsolute() { return _absolute; };
+
+    protected:
+        std::string _name;
+        VWidgets _children;
+        VEffects _effects;
+        CWidget* _parent = nullptr;
+        TParams _params;
+        MAT44 _local;
+        MAT44 _absolute;
+        bool enabled;
+
+        friend class CParser;
+    };
 }

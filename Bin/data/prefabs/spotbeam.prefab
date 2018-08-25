@@ -1,0 +1,64 @@
+[{
+		"entity": {
+			"name": "Spotbeam",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	},  {
+    "entity":
+    {
+      "name": "SpotlightBeam"
+      ,
+      "transform":
+      {
+        "pos": "0 0 0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Spotlight_Beam2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_shaft_flare.material"
+            ,
+            "data/materials/mtl_shaft_beams.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }, {
+		"entity": {
+			"name": "FlashLight",
+			"transform": {
+				"pos": "0 0 0",
+				"lookat": "0 -1 0"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 8,
+				"angle": 45,
+				"inner_cut": 20,
+				"outer_cut": 45,
+				"color": "1.0 1.0 1.0 1.0",
+				"intensity": 1.5,
+				"volume" : false,
+				"volume_intensity": 5.5,
+				"shadows": true,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 256,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
+]

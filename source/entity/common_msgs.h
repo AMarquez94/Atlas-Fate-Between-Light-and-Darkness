@@ -24,6 +24,11 @@ struct TMsgEntityDestroyed {
 	DECL_MSG_ID();
 };
 
+struct TMsgGlitchController {
+    bool revert;
+    DECL_MSG_ID();
+};
+
 struct TMsgAssignBulletOwner {
 	CHandle h_owner;
 	DECL_MSG_ID();
@@ -154,6 +159,12 @@ struct TMsgAnimationCallback {
 	DECL_MSG_ID();
 };
 
+struct TMsgAnimationAudioCallback {
+    std::string audioName;
+    bool isRelativeToPlayer;
+    DECL_MSG_ID();
+};
+
 struct TMsgTimeOut {
 	DECL_MSG_ID();
 };
@@ -266,6 +277,11 @@ struct TMsgPlayerAIEnabled {
 };
 
 struct TMsgStopAudioComponent {
+    DECL_MSG_ID();
+};
+
+struct TMsgEntityCanLandSM {
+    bool canSM;
     DECL_MSG_ID();
 };
 

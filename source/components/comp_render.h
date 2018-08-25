@@ -19,7 +19,7 @@ public:
     VEC4               color = VEC4(1, 1, 1, 1);
     AABB               aabb;
 
-    float              self_opacity = 1.f;
+    float              self_opacity = 0.f;
     float              self_intensity = 1.f;
     VEC4               self_color = VEC4(1, 1, 1, 1);
 

@@ -3,7 +3,7 @@
 		"entity": {
 			"name": "Capsules",
 			"dynamic_capsules_manager": {
-				"start_point": "20.134 30.263 -319.048920",
+				"start_point": "18.134 30.263 -300.048920",
 				"end_point": "20.107 30.248 -397.403259",
 				"capsule_offset": "0 0 0",
 				"number": 8,

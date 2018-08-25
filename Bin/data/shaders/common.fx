@@ -11,8 +11,9 @@ Texture2D    txEmissive       SLOT(TS_EMISSIVE);
 Texture2D    txAOcclusion     SLOT(TS_AOCCLUSION);
 Texture2D    txHeight         SLOT(TS_HEIGHT);
 Texture2D    txNoiseMap       SLOT(TS_NOISE_MAP);
-Texture2D    txNoiseMap2       SLOT(TS_NOISE_MAP2);
+Texture2D    txNoiseMap2      SLOT(TS_NOISE_MAP2);
 Texture3D    txLUT            SLOT(TS_LUT_COLOR_GRADING);
+Texture2D    txLuminance      SLOT(TS_LUMINANCE);
 
 // from the light and env
 Texture2D    txLightProjector SLOT(TS_LIGHT_PROJECTOR);
@@ -27,6 +28,7 @@ Texture2D    txGBufferNormals     SLOT(TS_DEFERRED_NORMALS);
 Texture2D    txGBufferLinearDepth SLOT(TS_DEFERRED_LINEAR_DEPTH);
 Texture2D    txAccLights          SLOT(TS_DEFERRED_ACC_LIGHTS);
 Texture2D    txSelfIllum          SLOT(TS_DEFERRED_SELF_ILLUMINATION);
+Texture2D    txOutlines           SLOT(TS_DEFERRED_OUTLINE);
 Texture2D    txAO                 SLOT(TS_DEFERRED_AO);
 
 // 2nd material
@@ -59,6 +61,8 @@ SamplerState samClampBilinear   : register(s5);
 SamplerState samClampPoint    : register(s6);
 SamplerState samCount   			: register(s7);
 
+static const float PI = 3.14159265f;
+
 //--------------------------------------------------------------------------------------
 // 
 //--------------------------------------------------------------------------------------
@@ -85,6 +89,11 @@ float4x4 getSkinMtx(int4 iBones, float4 iWeights) {
 
 //--------------------------------------------------------------------------------------
 float2 hash2(float n) { return frac(sin(float2(n, n + 1.0))*float2(43758.5453123, 22578.1459123)); }
+
+float nrand(float x, float y) {
+
+	return frac(sin(dot(float2(x, y), float2(12.9898, 78.233))) * 43758.5453);
+}
 
 // ----------------------------------------
 float shadowsTap(float2 homo_coord, float coord_z) {
@@ -190,6 +199,18 @@ float3 computeNormalMap(float3 inputN, float4 inputT, float2 inUV) {
   return wN;
 }
 
+float3 computeNormalDistortion(float3 inputN, float4 inputT, float2 noise) {
+
+  // You might want to normalize input.N and input.T.xyz
+  float3x3 TBN = computeTBN(inputN, inputT);
+
+  // Add some noise to the calculus
+  float3 normal_color = float3( noise.xy, 1.5 );
+  float3 wN = mul(normal_color, TBN);
+  wN = normalize(wN);
+
+  return wN;
+}
 
 // ------------------------------------------------------
 // screen_coords va entre 0..1024
@@ -284,8 +305,15 @@ float4 projectColor(float3 wPos) {
 
 
 // ----------------------------------------
-float randNoise2D(float2 c){
+float randNoise2D(float2 c)
+{
   return frac(sin(dot(c.xy,float2(12.9898,78.233))) * 43758.5453);
+}
+
+float window_cubic(float x, float c, float r)
+{
+	x = min(abs(x - c) / r, 1.0);
+	return 1.0 - x * x * (3.0 - 2.0 * x);
 }
 
 float2 parallaxMappingB(float2 texCoords, float3 view_dir) {

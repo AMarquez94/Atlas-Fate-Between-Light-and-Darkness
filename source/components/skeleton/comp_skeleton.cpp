@@ -256,7 +256,7 @@ void TCompSkeleton::renderDebug() {
     VEC3 lines[MAX_SUPPORTED_BONES][2];
     int nrLines = model->getSkeleton()->getBoneLines(&lines[0][0].x);
     TCompTransform* transform = get<TCompTransform>();
-    //VEC scale = transform->getScale();
+    float scale = transform->getScale().x;
     //for (int currLine = 0; currLine < nrLines; currLine++)
     //    renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale, VEC4(1, 1, 1, 1));
 }
@@ -272,7 +272,7 @@ void TCompSkeleton::changeCyclicAnimation(int anim1Id, float speed, int anim2Id,
     if (anim2Id != -1) {
         model->getMixer()->blendCycle(anim2Id, 1.f - weight, in_delay);
     }
-
+	model->getMixer()->setAnimationTime(0.0f);
     actualCycleAnimId[0] = anim1Id;
     actualCycleAnimId[1] = anim2Id;
 
@@ -407,9 +407,14 @@ std::vector<VEC3> TCompSkeleton::getFeetPositions() {
 
 VEC3 TCompSkeleton::getBonePosition(const std::string & name) {
 
-    VEC3 bonePos;
     int bone_id = model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(name);
     return Cal2DX(model->getSkeleton()->getBone(bone_id)->getTranslationAbsolute());
+}
+
+QUAT TCompSkeleton::getBoneRotation(const std::string & name) {
+
+    int bone_id = model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(name);
+    return Cal2DX(model->getSkeleton()->getBone(bone_id)->getRotationAbsolute());
 }
 
 float TCompSkeleton::getAnimationDuration(int animId) {

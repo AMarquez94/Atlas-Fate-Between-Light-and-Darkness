@@ -1,61 +1,36 @@
-[
-  {
-    "entity":
-    {
-      "name": "intro_light"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Direct001_intro"
-      ,
-      "transform":
-      {
-        "pos": "62.2808 140.168 62.3874"
-        ,
-        "lookat": "-69.8796 -73.9601 -66.2179"
-      }
-      ,
-      "light_dir":
-      {
-        "type": "directional"
-        ,
-        "color": "1.0 1.0 1.0 1.0"
-        ,
-        "intensity": 1.0
-        ,
-        "proj_type": "ortographic"
-        ,
-        "z_near": 0.01
-        ,
-        "z_far": 282.589
-        ,
-        "ortosize": 95.0
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.5
-        ,
-        "shadows_resolution": 4096
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
+[{
+		"entity": {
+			"name": "intro_light",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Direct001_intro",
+			"transform": {
+				"pos": "62.2808 140.168 62.3874",
+				"lookat": "-69.8796 -73.9601 -66.2179"
+			},
+			"light_dir": {
+				"type": "directional",
+				"proj_type": "ortographic",
+				"color": "0.256 0.3 0.58 1.0",
+				"intensity": 1.5,
+				"z_near": 0.1,
+				"z_far": 282.671,
+				"ortosize": 95.0,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 4096,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"tags":
+			[
+				"light"
+			]
+		}
+	}
 ]

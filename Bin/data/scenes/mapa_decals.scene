@@ -1,0 +1,265 @@
+[
+  {
+    "entity":
+    {
+      "name": "mapa_decals"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "QuadPatch002",
+      "transform":
+      {
+        "pos": "-53.1694 4.51593 -86.6661"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+        ,
+        "scale": "2.0 0.1 3.0"
+      }
+      ,
+      "instance":
+      {
+        "mesh": "data/meshes/decal_test1.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/mtl_decal_test1.material"
+        ]
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "QuadPatch001",
+      "transform":
+      {
+        "pos": "-53.6317 1.54492 -92.9774"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        ,
+        "scale": "2.0 0.1 3.0"
+      }
+      ,
+      "instance":
+      {
+        "mesh": "data/meshes/decal_test1.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/mtl_decal_test1.material"
+        ]
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "QuadPatch009",
+      "transform":
+      {
+        "pos": "-51.5407 0.980587 -86.7167"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+        ,
+        "scale": "1.5 0.1 1.5"
+      }
+      ,
+      "instance":
+      {
+        "mesh": "data/meshes/decal_brick1.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/mtl_decal_brick1.material"
+        ]
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "QuadPatch004",
+      "transform":
+      {
+        "pos": "-48.5 -0.0117228 -89.899"
+        ,
+        "rotation": "0.0 0.34202 0.0 -0.939693"
+        ,
+        "scale": "2.7 0.1 3"
+      }
+      ,
+      "instance":
+      {
+        "mesh": "data/meshes/decal_puddle1.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/mtl_decal_puddle1.material"
+        ]
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "QuadPatch003",
+      "transform":
+      {
+        "pos": "-58.9174 -0.0117227 -90.2987"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+        ,
+        "scale": "1.0 0.1 2.0"
+      }
+      ,
+      "instance":
+      {
+        "mesh": "data/meshes/decal_puddle1.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/mtl_decal_puddle1.material"
+        ]
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "QuadPatch006",
+      "transform":
+      {
+        "pos": "-86.4435 -0.0117229 -95.0484"
+        ,
+        "rotation": "0.0 0.34202 0.0 -0.939693"
+        ,
+        "scale": "1.0 0.1 2.0"
+      }
+      ,
+      "instance":
+      {
+        "mesh": "data/meshes/decal_puddle1.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/mtl_decal_puddle1.material"
+        ]
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "QuadPatch005",
+      "transform":
+      {
+        "pos": "-54.6901 -0.0117236 -110.442"
+        ,
+        "rotation": "0.0 -0.130526 0.0 -0.991445"
+        ,
+        "scale": "2.0 0.1 3.0"
+      }
+      ,
+      "instance":
+      {
+        "mesh": "data/meshes/decal_puddle1.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/mtl_decal_puddle1.material"
+        ]
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "QuadPatch007",
+      "transform":
+      {
+        "pos": "-64.0002 4.97509 -86.6946"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 -1.60155e-07"
+        ,
+        "scale": "9.70523 0.1 2.16359"
+      }
+      ,
+      "instance":
+      {
+        "mesh": "data/meshes/decal_mud1.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/mtl_decal_mud1.material"
+        ]
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "QuadPatch008",
+      "transform":
+      {
+        "pos": "-58.9107 4.97509 -81.7694"
+        ,
+        "rotation": "-0.5 -0.5 0.5 -0.5"
+        ,
+        "scale": "9.00523 0.1 2.16359"
+      }
+      ,
+      "instance":
+      {
+        "mesh": "data/meshes/decal_mud1.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/mtl_decal_mud1.material"
+        ]
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

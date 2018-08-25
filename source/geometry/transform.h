@@ -6,7 +6,7 @@
 class CTransform {
     QUAT rot;
     VEC3 pos;
-    VEC3 scale = VEC3(1.f, 1.f, 1.f);
+    VEC3 scale = VEC3(1, 1, 1);
 
 public:
 

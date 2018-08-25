@@ -1,0 +1,8 @@
+{
+	"technique": "pbr_shaft_spotlight.tech",
+	"shadows": false,
+	"textures": {
+		"albedo": "data/textures/tx_spotlight_falloff.dds",
+		"emissive": "data/textures/tx_spotlight_beam.dds"
+	}
+}

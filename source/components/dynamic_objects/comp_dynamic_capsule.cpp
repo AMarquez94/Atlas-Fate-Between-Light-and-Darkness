@@ -35,6 +35,8 @@ void TCompDynamicCapsule::update(float dt) {
         if (VEC3::Distance(myPos->getPosition(), end_point) < speed * dt) {
             myPos->setPosition(start_point);
         }
+        //if (dir.Dot(facing_dir) < 0)
+        //    myPos->setPosition(start_point);
     }
 }
 

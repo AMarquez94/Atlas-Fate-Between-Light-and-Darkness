@@ -2,11 +2,47 @@
 	"name":"player",
 	"anims" : [
 		{ "name" : "idle"},
-		{ "name" : "walk"},
-		{ "name" : "run"},
+		{ "name" : "walk", 
+			"audio_callbacks":[
+			{
+				"time_to_call" : 0.18,
+				"audio_name" : "event:/Sounds/Player/Steps/NormalSteps",
+				"relative_to_player" : false
+			},
+			{
+				"time_to_call" : 0.48,
+				"audio_name" : "event:/Sounds/Player/Steps/NormalSteps",
+				"relative_to_player" : false
+			}]
+		},
+		{ "name" : "run", 
+			"audio_callbacks":[
+			{
+				"time_to_call" : 0.2,
+				"audio_name" : "event:/Sounds/Player/Steps/NormalSteps",
+				"relative_to_player" : false
+			},
+			{
+				"time_to_call" : 0.5,
+				"audio_name" : "event:/Sounds/Player/Steps/NormalSteps",
+				"relative_to_player" : false
+			}]
+		},
 		{ "name" : "attack"},
 		{ "name" : "crouch"},
-		{ "name" : "crouch_walk"},
+		{ "name" : "crouch_walk", 
+			"audio_callbacks":[
+			{
+				"time_to_call" : 0.1666,
+				"audio_name" : "event:/Sounds/Player/Steps/NormalSteps",
+				"relative_to_player" : false
+			},
+			{
+				"time_to_call" : 0.716,
+				"audio_name" : "event:/Sounds/Player/Steps/NormalSteps",
+				"relative_to_player" : false
+			}]
+		},
 		{ "name" : "crouch_walk_slow"},
 		{ "name" : "fall"},
 		{ "name" : "hit_back"},

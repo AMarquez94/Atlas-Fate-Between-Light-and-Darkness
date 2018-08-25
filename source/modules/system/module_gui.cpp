@@ -14,8 +14,6 @@ CModuleGUI::CModuleGUI(const std::string& name)
 
 bool CModuleGUI::start()
 {
-	const float width = 1080;
-	const float height = 640;
 	_orthoCamera.setOrthographicGUI(width, height);
 
 	_technique = Resources.get("gui.tech")->as<CRenderTechnique>();
@@ -183,6 +181,15 @@ void CModuleGUI::deactivateWidget(EGUIWidgets wdgt)
 	}
 }
 
+void CModuleGUI::enableWidget(const std::string& name, bool status)
+{
+    // Maybe we should replace this with the deactivateWidget 
+    CWidget* widgt = getWidget(name, true);
+
+    if(widgt)
+        widgt->enable(status); 
+}
+
 void CModuleGUI::registerController(GUI::CController* controller)
 {
 	auto it = std::find(_controllers.begin(), _controllers.end(), controller);
@@ -221,7 +228,7 @@ void CModuleGUI::renderTexture(const MAT44& world, const CTexture* texture, cons
 
 	cb_gui.minUV = minUV;
 	cb_gui.maxUV = maxUV;
-	cb_gui.tint_color = color;
+	cb_gui.tint_color = color; 
 	cb_gui.updateGPU();
 
 	_technique->activate();
@@ -229,6 +236,30 @@ void CModuleGUI::renderTexture(const MAT44& world, const CTexture* texture, cons
 		texture->activate(TS_ALBEDO);
 
 	_quadMesh->activateAndRender();
+}
+
+void CModuleGUI::renderCustomTexture(const std::string & tech, const MAT44& world, const CTexture* texture, const ConfigParams & params)
+{
+    assert(_technique && _quadMesh);
+
+    cb_object.obj_world = world;
+    cb_object.obj_color = VEC4(1, 1, 1, 1);
+    cb_object.updateGPU();
+
+    cb_gui.minUV = params.minUV;
+    cb_gui.maxUV = params.maxUV;
+    cb_gui.tint_color = params.color;
+    cb_gui.gui_var1 = params.var;
+    cb_gui.updateGPU();
+
+    const CRenderTechnique * c_technique = Resources.get(tech)->as<CRenderTechnique>();
+    assert(c_technique);
+    c_technique->activate();
+
+    if (texture)
+        texture->activate(TS_ALBEDO);
+
+    _quadMesh->activateAndRender();
 }
 
 void CModuleGUI::renderText(const MAT44& world, const std::string& text, const VEC4& color)

@@ -46,9 +46,18 @@ TTextParams* CButton::getTextParams()
   return &_states[_currentState]._textParams;
 }
 
+TParams * CButton::getTParams()
+{
+    return &_states[_currentState]._params;
+}
+
 void CButton::setCurrentState(EState newState)
 {
-	this;
   _currentState = newState;
+}
+
+CButton::EState GUI::CButton::getCurrentState()
+{
+    return _currentState;
 }
 

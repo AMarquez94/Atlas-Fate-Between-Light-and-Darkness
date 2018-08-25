@@ -111,6 +111,8 @@
     <ClCompile Include="components\comp_gpu_particles.cpp" />
     <ClCompile Include="components\comp_lod.cpp" />
     <ClCompile Include="components\comp_particles.cpp" />
+    <ClCompile Include="components\comp_render_cube.cpp" />
+    <ClCompile Include="components\comp_rt_camera.cpp" />
     <ClCompile Include="components\dynamic_objects\comp_dynamic_capsule.cpp" />
     <ClCompile Include="components\dynamic_objects\comp_dynamic_capsules_manager.cpp" />
     <ClCompile Include="components\ia\comp_bt_drone.cpp" />
@@ -119,9 +121,12 @@
     <ClCompile Include="components\ia\comp_patrol_animator.cpp" />
     <ClCompile Include="components\lighting\comp_fade_controller.cpp" />
     <ClCompile Include="components\lighting\comp_projector.cpp" />
+    <ClCompile Include="components\object_controller\comp_billboard.cpp" />
+    <ClCompile Include="components\object_controller\comp_bone_controller.cpp" />
     <ClCompile Include="components\object_controller\comp_button.cpp" />
     <ClCompile Include="components\object_controller\comp_inhibitor.cpp" />
     <ClCompile Include="components\object_controller\comp_instance.cpp" />
+    <ClCompile Include="components\object_controller\comp_landing.cpp" />
     <ClCompile Include="components\object_controller\comp_laser.cpp" />
     <ClCompile Include="components\object_controller\comp_movable_object.cpp" />
     <ClCompile Include="components\object_controller\comp_noise_emitter.cpp" />
@@ -132,6 +137,7 @@
     <ClCompile Include="components\object_controller\comp_shooter.cpp" />
     <ClCompile Include="components\object_controller\comp_speaker.cpp" />
     <ClCompile Include="components\object_controller\comp_trigger_checkpoint.cpp" />
+    <ClCompile Include="components\player_controller\comp_glitch_controller.cpp" />
     <ClCompile Include="components\player_controller\comp_noclip_controller.cpp" />
     <ClCompile Include="components\player_controller\comp_player_animator.cpp" />
     <ClCompile Include="components\comp_fsm.cpp" />
@@ -160,8 +166,13 @@
     <ClCompile Include="components\postfx\comp_fog.cpp" />
     <ClCompile Include="components\postfx\comp_render_ao.cpp" />
     <ClCompile Include="components\postfx\comp_render_bloom.cpp" />
+    <ClCompile Include="components\postfx\comp_render_environment.cpp" />
+    <ClCompile Include="components\postfx\comp_render_flares.cpp" />
+    <ClCompile Include="components\postfx\comp_render_focus.cpp" />
+    <ClCompile Include="components\postfx\comp_render_motion_blur.cpp" />
     <ClCompile Include="components\postfx\comp_render_outlines.cpp" />
     <ClCompile Include="components\postfx\comp_antialiasing.cpp" />
+    <ClCompile Include="components\postfx\comp_vignette.cpp" />
     <ClCompile Include="components\skeleton\comp_animator.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
@@ -189,6 +200,7 @@
     <ClCompile Include="gui\widgets\gui_bar.cpp" />
     <ClCompile Include="gui\widgets\gui_button.cpp" />
     <ClCompile Include="gui\widgets\gui_image.cpp" />
+    <ClCompile Include="gui\widgets\gui_radial_bar.cpp" />
     <ClCompile Include="gui\widgets\gui_text.cpp" />
     <ClCompile Include="handle\handle_def.cpp" />
     <ClCompile Include="handle\handle_manager.cpp" />
@@ -291,6 +303,7 @@
     <ClCompile Include="render\shaders\vertex_shader.cpp" />
     <ClCompile Include="render\texture\DDSTextureLoader.cpp" />
     <ClCompile Include="render\texture\material.cpp" />
+    <ClCompile Include="render\texture\render_to_cube.cpp" />
     <ClCompile Include="render\texture\render_to_texture.cpp" />
     <ClCompile Include="render\texture\texture.cpp" />
     <ClCompile Include="resources\json_resource.cpp" />
@@ -321,6 +334,8 @@
     <ClInclude Include="components\comp_gpu_particles.h" />
     <ClInclude Include="components\comp_lod.h" />
     <ClInclude Include="components\comp_particles.h" />
+    <ClInclude Include="components\comp_render_cube.h" />
+    <ClInclude Include="components\comp_rt_camera.h" />
     <ClInclude Include="components\dynamic_objects\comp_dynamic_capsule.h" />
     <ClInclude Include="components\dynamic_objects\comp_dynamic_capsules_manager.h" />
     <ClInclude Include="components\ia\comp_bt_drone.h" />
@@ -329,9 +344,12 @@
     <ClInclude Include="components\ia\comp_patrol_animator.h" />
     <ClInclude Include="components\lighting\comp_fade_controller.h" />
     <ClInclude Include="components\lighting\comp_projector.h" />
+    <ClInclude Include="components\object_controller\comp_billboard.h" />
+    <ClInclude Include="components\object_controller\comp_bone_controller.h" />
     <ClInclude Include="components\object_controller\comp_button.h" />
     <ClInclude Include="components\object_controller\comp_inhibitor.h" />
     <ClInclude Include="components\object_controller\comp_instance.h" />
+    <ClInclude Include="components\object_controller\comp_landing.h" />
     <ClInclude Include="components\object_controller\comp_laser.h" />
     <ClInclude Include="components\object_controller\comp_movable_object.h" />
     <ClInclude Include="components\object_controller\comp_noise_emitter.h" />
@@ -342,6 +360,7 @@
     <ClInclude Include="components\object_controller\comp_shooter.h" />
     <ClInclude Include="components\object_controller\comp_speaker.h" />
     <ClInclude Include="components\object_controller\comp_trigger_checkpoint.h" />
+    <ClInclude Include="components\player_controller\comp_glitch_controller.h" />
     <ClInclude Include="components\player_controller\comp_noclip_controller.h" />
     <ClInclude Include="components\player_controller\comp_player_animator.h" />
     <ClInclude Include="components\comp_fsm.h" />
@@ -373,8 +392,13 @@
     <ClInclude Include="components\postfx\comp_render_bloom.h" />
     <ClInclude Include="components\postfx\comp_render_blur.h" />
     <ClInclude Include="components\postfx\comp_render_blur_radial.h" />
+    <ClInclude Include="components\postfx\comp_render_environment.h" />
+    <ClInclude Include="components\postfx\comp_render_flares.h" />
+    <ClInclude Include="components\postfx\comp_render_focus.h" />
+    <ClInclude Include="components\postfx\comp_render_motion_blur.h" />
     <ClInclude Include="components\postfx\comp_render_outlines.h" />
     <ClInclude Include="components\postfx\comp_antialiasing.h" />
+    <ClInclude Include="components\postfx\comp_vignette.h" />
     <ClInclude Include="components\skeleton\cal3d2engine.h" />
     <ClInclude Include="components\skeleton\comp_animator.h" />
     <ClInclude Include="components\skeleton\comp_bone_tracker.h" />
@@ -422,6 +446,7 @@
     <ClInclude Include="gui\widgets\gui_bar.h" />
     <ClInclude Include="gui\widgets\gui_button.h" />
     <ClInclude Include="gui\widgets\gui_image.h" />
+    <ClInclude Include="gui\widgets\gui_radial_bar.h" />
     <ClInclude Include="gui\widgets\gui_text.h" />
     <ClInclude Include="handle\handle.h" />
     <ClInclude Include="handle\handle_def.h" />
@@ -534,6 +559,7 @@
     <ClInclude Include="render\shaders\vertex_shader.h" />
     <ClInclude Include="render\texture\DDSTextureLoader.h" />
     <ClInclude Include="render\texture\material.h" />
+    <ClInclude Include="render\texture\render_to_cube.h" />
     <ClInclude Include="render\texture\render_to_texture.h" />
     <ClInclude Include="render\texture\texture.h" />
     <ClInclude Include="render\texture\texture_slots.h" />

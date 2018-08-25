@@ -2924,5 +2924,14 @@
         "light"
       ]
     }
-  }
+  }, {
+		"entity": {
+			"prefab": "data/prefabs/hologram.prefab",
+			"name": "mesh_hologram",
+			"transform": {
+				"pos": "-43.769 0 -90.612",
+				"lookat": "0 0 0"
+			}
+		}
+	}
 ]

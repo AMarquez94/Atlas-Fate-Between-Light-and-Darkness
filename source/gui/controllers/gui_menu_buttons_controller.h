@@ -21,5 +21,10 @@ namespace GUI
     };
     std::vector<TOption> _options;
     int _currentOption = 0;
+
+    bool mouse_active = false;
+    VEC2 last_mouse_pos = VEC2::Zero;
+
+    int getButtonHovered(VEC2 mouse_pos);
   };
 }
