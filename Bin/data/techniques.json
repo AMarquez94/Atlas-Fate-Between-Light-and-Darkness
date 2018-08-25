@@ -668,6 +668,21 @@
 			"noise": "data/textures/default_white.dds"
 		}
 	},
+	"pbr_hologram_skin_sw_model": {
+		"vs_file": "data/shaders/hologram.fx",
+		"ps_file": "data/shaders/hologram.fx",
+		"vs_entry_point": "VS_SKIN_GBuffer_Hologram",
+		"ps_entry_point": "PS_GBuffer_SWHologram_Model",
+		"vertex_type": "PosNUvTanSkin",
+		"uses_skin": true,
+		"category": "hologram",
+		"blend": "additive_by_src_alpha",
+		"textures": {
+			"noise": "data/textures/noise_cloud3.dds",
+			"environment": "data/textures/cubemaps/env.dds",
+			"irradiance": "data/textures/cubemaps/irradiance.dds"
+		}
+	},
 	"pbr_hologram_sw_model": {
 		"vs_file": "data/shaders/hologram.fx",
 		"ps_file": "data/shaders/hologram.fx",

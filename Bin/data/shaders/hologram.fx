@@ -35,6 +35,45 @@ void VS_GBuffer_Hologram(
 	oWorldPos = world_pos.xyz;
 }
 
+void VS_SKIN_GBuffer_Hologram(
+	float4 iPos : POSITION
+	, float3 iN : NORMAL
+	, float2 iUV : TEXCOORD
+	, float4 iTangent : TANGENT
+	, int4   iBones : BONES
+	, float4 iWeights : WEIGHTS
+
+	, out float4 oPos : SV_POSITION
+	, out float3 oNormal : NORMAL0
+	, out float4 oTangent : NORMAL1
+	, out float2 oTex0 : TEXCOORD0
+	, out float2 oTex1 : TEXCOORD1
+	, out float3 oWorldPos : TEXCOORD2
+)
+{
+
+	// Faking the verterx shader by now since we don't have tangents...
+	float4x4 skin_mtx = getSkinMtx(iBones, iWeights);
+	
+	// Regular transforms
+	float4 world_pos = mul(iPos, skin_mtx);
+	float vertex_sift = (dot(world_pos, normalize(float4(float3(0,-1,0), 1.0))) + 1) * .5;
+	float scan = frac(vertex_sift * 35 + global_world_time * 20) * 0.56;
+	float scan_shift = 1 - step(frac(vertex_sift * 6 + global_world_time), 0.65);
+	iPos.x += scan_shift * (nrand(-global_world_time, global_world_time) * 2 - 1)* 0.05;
+	
+	float4 skinned_Pos = mul(float4(iPos.xyz * BonesScale, 1), skin_mtx);
+	
+	oPos = mul(skinned_Pos, camera_view_proj); // Transform to viewproj, w_m inside skin_m
+	oNormal = mul(iN, (float3x3)skin_mtx); // Rotate the normal
+	oTangent.xyz = mul(iTangent.xyz, (float3x3)skin_mtx);
+	oTangent.w = iTangent.w;
+
+	oTex0 = iUV;
+	oTex1 = iUV;
+	oWorldPos = skinned_Pos.xyz;
+}
+
 //--------------------------------------------------------------------------------------
 // GBuffer generation pass. Pixel
 //--------------------------------------------------------------------------------------
