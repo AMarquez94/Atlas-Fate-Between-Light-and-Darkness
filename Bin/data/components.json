@@ -19,6 +19,7 @@
 		"instance",
 		"dynamic_capsule",
 		"shadow_controller",
+		"billboard",
 		"skeleton",
 		"bone_tracker",
 		"hierarchy",

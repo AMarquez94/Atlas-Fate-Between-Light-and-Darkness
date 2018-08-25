@@ -468,10 +468,14 @@
 				"z_far": 1000
 			},      
 			"rt_camera": {
-        "resolution": "256 256",
+        "resolution": "512 512",
         "color_fmt": "R8G8B8A8_UNORM",
         "depth_fmt": "none",
-        "name": "rt_camera_hologram.dds"
+        "name": "rt_camera_hologram.dds",
+				"custom_categories":
+				[
+					"hologram"
+				]
       }
 		}
 	}

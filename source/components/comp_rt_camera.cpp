@@ -57,6 +57,8 @@ void TCompRTCamera::generate(CDeferredRenderer& renderer) {
     activateCamera(*cam, resolution.x, resolution.y);
 
     if (custom_categories.size() > 0) {
+        rt->clear(VEC4(0, 0, 0, 0));
+        rt->activateRT();
         for(auto cat: custom_categories)
             CRenderManager::get().renderCategory(cat.c_str());
     }

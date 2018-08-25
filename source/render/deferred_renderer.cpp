@@ -139,6 +139,7 @@ void CDeferredRenderer::renderAccLight() {
 
     CRenderManager::get().renderCategory("hologram");
     CRenderManager::get().renderCategory("hologram_sw");
+    //CRenderManager::get().renderCategory("hologram_screen");
     CRenderManager::get().renderCategory("volume_shafts");
     CRenderManager::get().renderCategory("volume_ray_shafts");
 }
@@ -378,6 +379,7 @@ void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camer
 
     // Move this out of here when needed.
     Engine.get().getParticles().renderDeferred();
+    CRenderManager::get().renderCategory("hologram_screen");
     CRenderManager::get().renderCategory("distorsions");
 }
 

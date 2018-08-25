@@ -24,7 +24,7 @@
 			"local_aabb": true
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "hologram_mesh",
 			"transform": {
 				"pos": "0.0 0.35 0.0",
@@ -36,6 +36,27 @@
 					"materials":
 					[
 						"data/materials/mtl_hologram_sw_model.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
+			"name": "PlaneCasting",
+			"transform": {
+				"pos": "0.0 1.35 0.0",
+				"rotation": "0.0 0.707107 -0.707107 0.0",
+				"vscale": "1.0 1.0 1.0"
+			},
+			"billboard": {},
+			"render":
+			[{
+					"mesh": "data/meshes/UnitBox.mesh",
+					"materials":
+					[
+						"data/materials/mtl_rtcam_holo1.material"
 					]
 				}
 			],

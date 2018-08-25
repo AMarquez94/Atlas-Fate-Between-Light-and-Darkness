@@ -646,6 +646,15 @@
 			"irradiance": "data/textures/cubemaps/irradiance.dds"
 		}
 	},
+	"hologram_dump": {
+		"vs_file": "data/shaders/hologram.fx",
+		"vs_entry_point": "VS_HologramScreen",
+		"vertex_type": "PosNUvUvT",
+		"ps_file": "data/shaders/hologram.fx",
+		"category": "hologram_screen",
+		"ps_entry_point": "PS_HologramScreen",
+		"blend": "additive"
+	},
 	"pbr_hologram_sw": {
 		"vs_file": "data/shaders/hologram.fx",
 		"ps_file": "data/shaders/hologram.fx",
@@ -666,8 +675,8 @@
 		"ps_entry_point": "PS_GBuffer_SWHologram_Model",
 		"vertex_type": "PosNUvUvT",
 		"category": "hologram",
-		"blend": "additive_by_src_alpha",
 		"z": "test_but_no_write",
+		"blend": "additive_by_src_alpha",
 		"textures": {
 			"noise": "data/textures/tx_flicker_soft.dds"
 		}

@@ -101,7 +101,8 @@
 			"data/scenes/ZoneA/luces.scene",
 			"data/scenes/ZoneA/neones.scene",
 			"data/scenes/ZoneA/carteles.scene",
-			"data/scenes/mapa_decals.scene"
+			"data/scenes/mapa_decals.scene",
+			"data/scenes/zone_a_hologram_scenes.scene"
 		]
 	},
 	"scene_coliseo": {
