@@ -132,3 +132,7 @@ end
 function isDebug()
 	SLB.isDebug();
 end
+
+function setTutorialPlayerState(active, state)
+	SLB.setTutorialPlayerState(active, state);
+end

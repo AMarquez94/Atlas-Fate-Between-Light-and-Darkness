@@ -14,6 +14,7 @@
 #include "components/object_controller/comp_button.h"
 #include "components/ia/comp_bt_patrol.h"
 #include "components/comp_audio.h"
+#include "components/ia/comp_bt_player.h"
 
 bool CModuleLogic::start() {
 
@@ -201,6 +202,9 @@ void CModuleLogic::publishClasses() {
     // sounds
     m->set("playEvent", SLB::FuncCall::create(&playEvent));
     m->set("stopAllAudioComponents", SLB::FuncCall::create(&stopAllAudioComponents));
+
+    // tutorial
+    m->set("setTutorialPlayerState", SLB::FuncCall::create(&setTutorialPlayerState));
 
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -483,6 +487,8 @@ void sleep(float time) {
 
 void cinematicModeToggle() {
     TMsgPlayerAIEnabled msg;
+    msg.state = "cinematic";
+    msg.enableAI = true;
     CHandle h = getEntityByName("The Player");
     h.sendMsg(msg);
 }
@@ -496,6 +502,15 @@ void stopAllAudioComponents()
 {
     TMsgStopAudioComponent msg;
     EngineEntities.broadcastMsg(msg);
+}
+
+void setTutorialPlayerState(bool active, const std::string & stateName)
+{
+    CHandle h_tutorial = getEntityByName("Tutorial Player");
+    TMsgPlayerAIEnabled msg;
+    msg.state = stateName;
+    msg.enableAI = active;
+    h_tutorial.sendMsg(msg);
 }
 
 void activateScene(const std::string& scene) {

@@ -110,6 +110,9 @@ void cinematicModeToggle();
 SoundEvent playEvent(const std::string& name);
 void stopAllAudioComponents();
 
+/* Tutorial */
+void setTutorialPlayerState(bool active, const std::string& stateName);
+
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);
 void toggle_spotlight(const std::string& lightName);
