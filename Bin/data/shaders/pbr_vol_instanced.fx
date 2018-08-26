@@ -164,8 +164,8 @@ float4 PS_IVLight(
 #define NUM_SAMPLES 25//128
 #define NUM_SAMPLES_RCP 0.04//0.0078125f
 #define FACTOR_TAU 0.000001f
-#define FACTOR_PHI 1000000.0f
-#define PI_RCP 110.318309388618379067153776752674503f
+#define FACTOR_PHI 100000.0f
+#define PI_RCP 1.318309388618379067153776752674503f
 
 float4 PS_GBuffer_RayShafts(
   float4 Pos       : SV_POSITION
@@ -176,10 +176,9 @@ float4 PS_GBuffer_RayShafts(
   , float3 iWorldPos : TEXCOORD2
 ): SV_Target0
 {
-	
-	float NB_STEPS = 60;
+	float NB_STEPS = 30;
   float TAU = FACTOR_TAU * 1.1;
-  float PHI = FACTOR_PHI * 2.5;
+  float PHI = FACTOR_PHI * 4.5;
 	
 	// Clamped world position to closest fragment
 	int3 ss_load_coords = uint3(Pos.xy, 0);
@@ -187,32 +186,31 @@ float4 PS_GBuffer_RayShafts(
   float  depth = zlinear > Pos.z ? Pos.z : zlinear;
   float3 wPos = getWorldCoords(Pos.xy, depth);
 	
-  float3 rayVector = camera_pos - wPos;
-	float rayLength = length(rayVector);
-	float3 rayDirection = rayVector / rayLength;
+  float3 ray_vector = camera_pos - wPos;
+	float ray_length = length(ray_vector);
+	float3 ray_dir = ray_vector / ray_length;
 
-	float stepLength = rayLength / NB_STEPS;
-	float3 step = rayDirection * stepLength;
+	float step_length = ray_length / NB_STEPS;
+	float3 step = ray_dir * step_length;
 	
 	float3 currentPosition = wPos;
-	float accumFog = 0.0f;
-	float4 color = float4(0.0, 0.25, 0.35, 1);
-	float l = rayLength;
+	float total_fog = 0.0f;
+	float3 color = global_fog_env_color;
+	float l = ray_length;
 			
 	for (int i = 0; i < NB_STEPS; i++)
 	{
 		float shadowTerm = computeShadowFactor(currentPosition);
     float d = length(currentPosition - light_pos);
     float dRCP = rcp(d);
-    float amount = TAU*(shadowTerm*(PHI*0.25f*PI_RCP)*dRCP*dRCP)*exp(-d*TAU)*exp(-l*TAU)*stepLength;
+    float amount = TAU*(shadowTerm*(PHI*0.25f*PI_RCP)*dRCP*dRCP)*exp(-d*TAU)*exp(-l*TAU)*step_length;
 		
-		l-=stepLength;
-    accumFog += amount;
+		l-=step_length;
+    total_fog += amount;
 		currentPosition += step;
 	}
-	//accumFog /= NB_STEPS;
-	float shadowt = computeShadowFactor(wPos);
-	return float4( accumFog.xxx, 1);
+
+	return float4(total_fog.xxx, 1);
 }
 
 float4 PS_GBuffer_Shafts(
