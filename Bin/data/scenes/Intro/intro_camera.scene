@@ -13,13 +13,11 @@
 				"fov": 80
 			},
 			"render_ao": {
-				"enabled": true,
-				"active_steps": 1,
-				"gauss_filter": true
+				"enabled": true
 			},
 			"render_bloom": {
 				"enabled": true,
-				"max_steps": 4,
+				"active_steps": 1,
 				"rt_name": "Bloom"
 			},
 			"fog": {
@@ -34,6 +32,9 @@
 			"render_outlines" : {
 				"enabled" : true
 		  },
+			"render_environment" : {
+				"enabled" : true
+		  },
 			"culling": true
 		}
 	}, {
@@ -45,22 +46,27 @@
 			"camera_thirdperson": {
 				"target": "The Player",
 				"clampangle": "-40 80",
-				"offset": "0.15 1.4 2",
+				"offset": "0.15 1.3 2",
 				"speed": 1.5
 			},
 			"camera": {
-				"fov": 75,
+				"fov": 70,
 				"z_near": 0.01,
 				"z_far": 1000
 			},
 			"render_ao": {
-				"enabled": true
+				"enabled": true,
+				"max_steps": 1,
+				"gauss_filter": true
 			},
 			"render_blur": {
 				"enabled": false,
 				"global_distance": 0.1,
 				"gauss_filter": true
 			},
+			"motion_blur" : {
+				"enabled" : true
+		  },
 			"render_bloom": {
 				"enabled": true,
 				"max_steps": 4,
@@ -80,10 +86,23 @@
 			"antialiasing": {
 				"enabled": true
 			},
+			"vignette" : {
+				"enabled" : true
+		  },
+			"render_flares" : {
+				"enabled" : true,
+				"max_steps": 4
+		  },
 			"render_outlines" : {
 				"enabled" : true
 		  },
-			"tags": ["main_camera", "tp_camera"]
+			"render_environment" : {
+				"enabled" : true
+		  },
+			"render_focus": {
+        "enabled": false
+      },
+			"tags": ["main_camera","tp_camera"]
 		}
 	}, {
 		"entity": {

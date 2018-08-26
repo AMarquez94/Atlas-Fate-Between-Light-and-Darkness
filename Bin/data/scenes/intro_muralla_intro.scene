@@ -1,0 +1,332 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_muralla_intro"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_muralla_intro_muro_1"
+      ,
+      "transform":
+      {
+        "pos": "52.8496 0.0 9.5"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_muralla_intro_muro_1.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_muralla_intro_muro1.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_muralla_intro_muro_2"
+      ,
+      "transform":
+      {
+        "pos": "-59.1504 0.0 9.5"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_muralla_intro_muro_2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_muralla_intro_muro2.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_muralla_intro_ornamentos"
+      ,
+      "transform":
+      {
+        "pos": "-3.15039 0.0 11.75"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_muralla_intro_ornamentos.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla_intro.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_muralla_intro_pared_puerta"
+      ,
+      "transform":
+      {
+        "pos": "-3.15039 0.0 9.5"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_muralla_intro_pared_puerta.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_muralla_intro_pared_puerta.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_muralla_intro_pinchos"
+      ,
+      "transform":
+      {
+        "pos": "-3.15039 0.0 11.75"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_muralla_intro_pinchos.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla_intro.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_muralla_intro_pinchos_attach.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_muralla_intro_puerta_reja"
+      ,
+      "transform":
+      {
+        "pos": "-3.15039 0.0 11.75"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_muralla_intro_puerta_reja.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla_intro.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_muralla_intro_puerta_reja.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_muralla_intro_troncho"
+      ,
+      "transform":
+      {
+        "pos": "-11.6504 0.0 9.5"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_muralla_intro_troncho.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_muralla_intro_troncho003.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_muralla_intro_troncho_2"
+      ,
+      "transform":
+      {
+        "pos": "5.34961 0.0 9.5"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_muralla_intro_troncho_2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_muralla_intro_troncho004.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_muralla_intro_ventanas"
+      ,
+      "transform":
+      {
+        "pos": "2.79961 17.8211 13.3442"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_muralla_intro_ventanas.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

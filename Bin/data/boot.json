@@ -27,11 +27,12 @@
 			"data/scenes/intro_andamios.scene",
 			"data/scenes/intro_tejados.scene",
 			"data/scenes/intro_valla.scene",
-			"data/scenes/prova_intro.scene",
+			
 			"data/scenes/intro_pozo.scene",
 			"data/scenes/intro_barra_capsulas.scene",
 			"data/scenes/Intro/intro_suelo.scene",
-
+			"data/scenes/intro_containers_puerto.scene",		
+			"data/scenes/intro_muralla_intro.scene",
 			"data/scenes/Intro/debug_speaker.scene"
 		]
 	},
