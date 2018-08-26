@@ -7,7 +7,7 @@
 		}
 	},
 	{
-		"entity": {
+		"xentity": {
 			"name": "hologram_mesh",
 			"prefab": "data/prefabs/player_tutorial.prefab",
 			"transform": {

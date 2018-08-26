@@ -50,7 +50,6 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
 
 	createRoot("player", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
 	addChild("player", "goToWpt", BTNode::EType::ACTION, (BTCondition)&TCompAIPlayer::conditionHasBeenEnabled, (BTAction)&TCompAIPlayer::actionGoToWpt, nullptr);
-    addChild("player", "default", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionDefault, nullptr);
 
 	enabledPlayerAI = j.value("enabled", false);
 	_speed = j.value("speed", 1.0f);

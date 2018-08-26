@@ -4,103 +4,15 @@
 		"transform": {
 			"pos": "0 0 0"
 		},
-		"render": [{
-					"mesh": "data/skeletons/player/body.mesh",
-					"materials": [
-						"data/materials/characters/mtl_player_main_hologram.material"
-					]
-				}, {
-					"mesh": "data/skeletons/player/bolsa_cinturon.mesh",
-					"materials": [
-						"data/materials/characters/mtl_player_main_hologram.material"
-					]
-				}, {
-					"mesh": "data/skeletons/player/buff_exterior.mesh",
-					"materials": [
-						"data/materials/characters/mtl_player_main_hologram.material"
-					]
-				}, {
-					"mesh": "data/skeletons/player/capsula_energia.mesh",
-					"materials": [
-						"data/materials/characters/mtl_player_main_hologram.material"
-					]
-				}, {
-					"mesh": "data/skeletons/player/cinturon_capsula1.mesh",
-					"materials": [
-						"data/materials/characters/mtl_player_main_hologram.material"
-					]
-				}, {
-					"mesh": "data/skeletons/player/cinturon_capsula2.mesh",
-					"materials": [
-						"data/materials/characters/mtl_player_main_hologram.material"
-					]
-				}, {
-					"mesh": "data/skeletons/player/cinturon_capsula3.mesh",
-					"materials": [
-						"data/materials/characters/mtl_player_main_hologram.material"
-					]
-				}, {
-					"mesh": "data/skeletons/player/cinturon_capsula4.mesh",
-					"materials": [
-						"data/materials/characters/mtl_player_main_hologram.material"
-					]
-				}, {
-					"mesh": "data/skeletons/player/cruzado_capsula1.mesh",
-					"materials": [
-						"data/materials/characters/mtl_player_main_hologram.material"
-					]
-				}, {
-					"mesh": "data/skeletons/player/cruzado_capsula2.mesh",
-					"materials": [
-						"data/materials/characters/mtl_player_main_hologram.material"
-					]
-				}, {
-					"mesh": "data/skeletons/player/cruzado_capsula3.mesh",
-					"materials": [
-						"data/materials/characters/mtl_player_main_hologram.material"
-					]
-				}, {
-					"mesh": "data/skeletons/player/hood.mesh",
-					"materials": [
-						"data/materials/characters/mtl_player_main_hologram.material"
-					]
-				}, {
-					"mesh": "data/skeletons/player/tira_L.mesh",
-					"materials": [
-						"data/materials/characters/mtl_player_main_hologram.material"
-					]
-				}, {
-					"mesh": "data/skeletons/player/tira_R.mesh",
-					"materials": [
-						"data/materials/characters/mtl_player_main_hologram.material"
+			"render":
+			[{
+					"mesh": "data/meshes/main_player.mesh",
+					"materials":
+					[
+						"data/materials/mtl_hologram_sw_model.material"
 					]
 				}
 			],
-		"skeleton": {
-			"skeleton": "data/skeletons/player/player.skeleton",
-			"scale": 1.0
-		},
-      "ai_player": {
-        "enabled": false,
-        "speed": 4.0,
-        "rotationSpeed": 4.0,
-        "waypoints": [
-          {
-            "position": "-38.5 0 -138",
-            "lookAt": "0 0 1",
-            "minTime": 10
-          },
-          {
-            "position": "-36 0 -138",
-            "lookAt": "0 0 1",
-            "minTime": 10
-          }
-        ]
-      },
-		"player_animator": true,
-		"tags": [
-			"player_tutorial"
-		],
 		"particles": {
 			"cores": [
 				"data/particles/sm_ground.particles",

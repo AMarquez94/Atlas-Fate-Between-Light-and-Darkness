@@ -1,5 +1,5 @@
 {
-	"technique": "pbr_hologram_skin_sw_model.tech",
+	"technique": "pbr_hologram_sw_model.tech",
 	"shadows": true,
 	"textures": {
 		"albedo": "data/textures/player/Shade_mtl_BaseColor.dds",
