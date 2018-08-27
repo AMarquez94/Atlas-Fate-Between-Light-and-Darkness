@@ -30,6 +30,22 @@
   {
     "entity":
     {
+      "name": "mesh_conductocurvo_pequeno002"
+      ,
+      "prefab": "data/prefabs/conductocurvo_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.4142 10.9886 19.9438"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_conductofinal_pequeno001"
       ,
       "prefab": "data/prefabs/conductofinal_pequeno.prefab"
@@ -46,6 +62,134 @@
   {
     "entity":
     {
+      "name": "mesh_conductofinal_pequeno002"
+      ,
+      "prefab": "data/prefabs/conductofinal_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.1523 4.979 18.1233"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductofinal_pequeno003"
+      ,
+      "prefab": "data/prefabs/conductofinal_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-21.6291 12.1517 26.3515"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductofinal_pequeno004"
+      ,
+      "prefab": "data/prefabs/conductofinal_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-21.6291 11.4178 26.3515"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductofinal_pequeno005"
+      ,
+      "prefab": "data/prefabs/conductofinal_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "15.5401 12.3436 30.9721"
+        ,
+        "rotation": "-0.5 -0.5 -0.5 0.5"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductofinal_pequeno006"
+      ,
+      "prefab": "data/prefabs/conductofinal_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "15.5401 12.3436 31.7563"
+        ,
+        "rotation": "-0.5 -0.5 -0.5 0.5"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductofinal_pequeno007"
+      ,
+      "prefab": "data/prefabs/conductofinal_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-7.05309 5.99673 43.9228"
+        ,
+        "rotation": "0.707107 0.0 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductofinal_pequeno008"
+      ,
+      "prefab": "data/prefabs/conductofinal_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.8131 11.3074 13.7565"
+        ,
+        "rotation": "0.707107 -0.707107 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductofinal_pequeno009"
+      ,
+      "prefab": "data/prefabs/conductofinal_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.8131 8.44739 20.4749"
+        ,
+        "rotation": "0.5 -0.5 0.5 0.5"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_conductofinal001"
       ,
       "prefab": "data/prefabs/conductofinal.prefab"
@@ -55,6 +199,22 @@
         "pos": "-18.5515 10.3759 12.4046"
         ,
         "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductofinal002"
+      ,
+      "prefab": "data/prefabs/conductofinal.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-7.87103 9.27236 44.0146"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
@@ -142,6 +302,214 @@
   {
     "entity":
     {
+      "name": "mesh_conductorecto_pequeno006"
+      ,
+      "prefab": "data/prefabs/conductorecto_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.0027 4.979 12.9004"
+        ,
+        "rotation": "-0.707105 -0.707105 0.00173271 0.00173594"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductorecto_pequeno007"
+      ,
+      "prefab": "data/prefabs/conductorecto_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.0027 4.979 14.8276"
+        ,
+        "rotation": "-1.22224e-07 1.75609e-07 -0.707107 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductorecto_pequeno008"
+      ,
+      "prefab": "data/prefabs/conductorecto_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.0027 4.979 16.7544"
+        ,
+        "rotation": "-0.707105 -0.707105 0.0014387 0.00144159"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductorecto_pequeno009"
+      ,
+      "prefab": "data/prefabs/conductorecto_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-21.6291 12.3013 21.1287"
+        ,
+        "rotation": "0.0 -0.999997 0.00245273 2.38407e-06"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductorecto_pequeno010"
+      ,
+      "prefab": "data/prefabs/conductorecto_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-21.6291 12.3013 23.0559"
+        ,
+        "rotation": "-2.38419e-07 1.94707e-07 -1.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductorecto_pequeno011"
+      ,
+      "prefab": "data/prefabs/conductorecto_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-21.6291 12.3013 24.9827"
+        ,
+        "rotation": "0.0 -0.999998 0.00203661 2.10205e-06"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductorecto_pequeno012"
+      ,
+      "prefab": "data/prefabs/conductorecto_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-7.05309 0.773901 43.7731"
+        ,
+        "rotation": "1.76233e-06 0.705688 -0.708522 1.69358e-06"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductorecto_pequeno013"
+      ,
+      "prefab": "data/prefabs/conductorecto_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-7.05309 2.70107 43.7731"
+        ,
+        "rotation": "0.00070699 -0.707814 -0.706398 -0.000708744"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductorecto_pequeno014"
+      ,
+      "prefab": "data/prefabs/conductorecto_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-7.05309 4.62791 43.7731"
+        ,
+        "rotation": "1.42452e-06 0.705665 -0.708546 1.35704e-06"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductorecto_pequeno015"
+      ,
+      "prefab": "data/prefabs/conductorecto_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.6634 11.3074 18.9793"
+        ,
+        "rotation": "-0.00141537 -0.00141541 -0.707105 -0.707105"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductorecto_pequeno016"
+      ,
+      "prefab": "data/prefabs/conductorecto_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.6634 11.3074 17.0522"
+        ,
+        "rotation": "-0.707107 -0.707107 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductorecto_pequeno017"
+      ,
+      "prefab": "data/prefabs/conductorecto_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.6634 11.3074 15.1253"
+        ,
+        "rotation": "-0.00143898 -0.00143901 -0.707105 -0.707105"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductorecto_pequeno018"
+      ,
+      "prefab": "data/prefabs/conductorecto_pequeno.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.6634 9.81829 20.4749"
+        ,
+        "rotation": "-0.501016 0.498982 -0.501016 -0.498981"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_conductorecto001"
       ,
       "prefab": "data/prefabs/conductorecto.prefab"
@@ -167,6 +535,86 @@
         "pos": "-17.8139 10.0 11.9666"
         ,
         "rotation": "-0.5 -0.5 0.5 -0.5"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductorecto003"
+      ,
+      "prefab": "data/prefabs/conductorecto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-8.30898 4.89649 44.0477"
+        ,
+        "rotation": "0.0 -0.707107 -0.707107 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductorecto004"
+      ,
+      "prefab": "data/prefabs/conductorecto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-8.30898 8.89649 43.277"
+        ,
+        "rotation": "0.0 -0.707107 0.707107 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductorecto005"
+      ,
+      "prefab": "data/prefabs/conductorecto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-8.30898 0.896485 44.0477"
+        ,
+        "rotation": "0.0 -0.707107 -0.707107 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductorecto006"
+      ,
+      "prefab": "data/prefabs/conductorecto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-8.30898 4.89649 43.277"
+        ,
+        "rotation": "0.0 -0.707107 0.707107 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_conductorecto007"
+      ,
+      "prefab": "data/prefabs/conductorecto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-8.30898 0.896486 43.277"
+        ,
+        "rotation": "0.0 -0.707107 0.707107 0.0"
       }
     }
   }

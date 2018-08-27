@@ -1,0 +1,43 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_tubitos"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro"
+      ,
+      "transform":
+      {
+        "pos": "-2.37263 5.05369 32.116"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]
