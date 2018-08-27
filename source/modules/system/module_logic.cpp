@@ -506,7 +506,7 @@ void stopAllAudioComponents()
 
 void setTutorialPlayerState(bool active, const std::string & stateName)
 {
-    CHandle h_tutorial = getEntityByName("Tutorial Player");
+    CHandle h_tutorial = getEntityByName("Tutorial Player");    
     TMsgPlayerAIEnabled msg;
     msg.state = stateName;
     msg.enableAI = active;

@@ -322,6 +322,14 @@ BTNode::ERes TCompAIPlayer::actionStartSM(float dt)
     my_anim->playAnimation(TCompPlayerAnimator::EAnimation::SM_ENTER);
 
     CHandle(this).getOwner().sendMsg(TMsgFadeBody{ false });
+    CHandle(this).getOwner().sendMsg(TMsgFadeBody{ false });
+
+    // Replace this when weapons are finished
+    CHandle h_tutorial_weap_left = getEntityByName("tuto_weap_disc_left");
+    CHandle h_tutorial_weap_right = getEntityByName("tuto_weap_disc_right");
+    h_tutorial_weap_left.sendMsg(TMsgFadeBody{ false });
+    h_tutorial_weap_right.sendMsg(TMsgFadeBody{ false });
+
     return BTNode::ERes::LEAVE;
 }
 
@@ -345,6 +353,13 @@ BTNode::ERes TCompAIPlayer::actionEndSM(float dt)
     my_anim->playAnimation(TCompPlayerAnimator::EAnimation::IDLE);
 
     CHandle(this).getOwner().sendMsg(TMsgFadeBody{ true });
+
+    // Replace this when weapons are finished
+    CHandle h_tutorial_weap_left = getEntityByName("tuto_weap_disc_left");
+    CHandle h_tutorial_weap_right = getEntityByName("tuto_weap_disc_right");
+    h_tutorial_weap_left.sendMsg(TMsgFadeBody{ true });
+    h_tutorial_weap_right.sendMsg(TMsgFadeBody{ true });
+
     return BTNode::ERes::LEAVE;
 }
 

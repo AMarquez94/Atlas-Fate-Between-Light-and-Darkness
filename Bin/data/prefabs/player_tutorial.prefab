@@ -78,7 +78,6 @@
 		"fade_controller": {
 			"fade_color": "0.0 1.0 1.0 1.0",
 			"fade_time": 0.6,
-			"material": "data/materials/characters/mtl_player_main_shade.material",
 			"destroy": false
 		},
 		"skeleton": {
@@ -129,7 +128,7 @@
 	}
 }, {
 	"entity": {
-		"name": "weapon_disc_left",
+		"name": "tuto_weap_disc_left",
 		"transform": {
 			"pos": "0 0 0",
 			"lookat": "0 0 0"
@@ -138,12 +137,17 @@
 			"bone": "Bip001 L Hand",
 			"parent": "Tutorial Player"
 		},
+		"fade_controller": {
+			"fade_color": "0.0 1.0 1.0 1.0",
+			"fade_time": 0.6,
+			"destroy": false
+		},
 		"render": [{
 			"self_intensity": 0.65,
 			"self_color": "0 1 1 1",
 			"mesh": "data/meshes/weapon_disc.mesh",
 			"materials": [
-				"data/materials/mtl_hologram_sw_model.material"
+				"data/materials/characters/mtl_player_main_hologram_solid.material"
 			]
 		}],
 		"abs_aabb": true,
@@ -151,7 +155,7 @@
 	}
 }, {
 	"entity": {
-		"name": "weapon_disc_right",
+		"name": "tuto_weap_disc_right",
 		"transform": {
 			"pos": "0 0 0",
 			"lookat": "0 0 0"
@@ -160,12 +164,17 @@
 			"bone": "Bip001 R Hand",
 			"parent": "Tutorial Player"
 		},
+		"fade_controller": {
+			"fade_color": "0.0 1.0 1.0 1.0",
+			"fade_time": 0.6,
+			"destroy": false
+		},
 		"render": [{
 			"self_intensity": 0.65,
 			"self_color": "0 1 1 1",
 			"mesh": "data/meshes/weapon_disc.mesh",
 			"materials": [
-				"data/materials/mtl_hologram_sw_model.material"
+				"data/materials/characters/mtl_player_main_hologram_solid.material"
 			]
 		}],
 		"abs_aabb": true,
