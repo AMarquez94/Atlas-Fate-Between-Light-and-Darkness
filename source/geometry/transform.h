@@ -6,7 +6,7 @@
 class CTransform {
     QUAT rot;
     VEC3 pos;
-    VEC3 scale = VEC3(1.f, 1.f, 1.f);
+    VEC3 scale = VEC3(1, 1, 1);
 
 public:
 
@@ -28,6 +28,10 @@ public:
             * MAT44::CreateFromQuaternion(rot)
             * MAT44::CreateTranslation(pos)
             ;
+    }
+
+    MAT44 asWorldMatrix() const {
+        return MAT44::CreateWorld(pos, getFront(), getUp());
     }
 
     // -------------------------------------------

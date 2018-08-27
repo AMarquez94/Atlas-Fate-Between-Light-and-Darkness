@@ -5,13 +5,16 @@
 
 class CModuleGameManager : public IModule
 {
-    enum PauseState { none, main, win, defeat, editor1, editor2 };
+    enum PauseState { none, main, win, defeat, editor1, editor1unpaused, editor2 };
     PauseState _currentstate;
 
     /* Mantain a handle of the player */
     CHandle _player;
     CHandle _fly_camera;
     CCheckpoint* lastCheckpoint;
+
+    /* Maintain the sound for ambient sound */
+    SoundEvent ambient;
 
     // Menu window related variables.
     ImGuiWindowFlags window_flags;

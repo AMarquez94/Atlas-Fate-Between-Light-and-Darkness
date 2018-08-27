@@ -20,6 +20,7 @@
 		"instance",
 		"dynamic_capsule",
 		"shadow_controller",
+		"billboard",
 		"skeleton",
 		"bone_tracker",
 		"hierarchy",
@@ -31,6 +32,7 @@
 		"collider",
 		"noise_emitter",
 		"player_attack_cast",
+		"landing",
 		"light_dir",
 		"light_spot",
 		"light_point",
@@ -46,6 +48,7 @@
 		"camera",
 		"laser",
 		"fsm",
+		"glitch_controller",
 		"player_animator",
 		"player_input",
 		"movable_object",
@@ -53,7 +56,8 @@
 		"emission_controller",
 		"fade_controller",
 		"rotator",
-		"lod"
+		"lod",
+		"audio"
 	],
 	"render_debug": [
 		"player_tempcontroller",

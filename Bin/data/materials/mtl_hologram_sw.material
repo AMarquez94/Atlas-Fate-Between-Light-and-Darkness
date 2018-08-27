@@ -1,0 +1,12 @@
+{
+	"technique": "pbr_hologram_sw.tech",
+	"shadows": true,
+	"textures": {
+		"albedo": "data/textures/tx_gradient.dds",
+		"metallic": "data/textures/tx_drone_met.dds",
+		"roughness": "data/textures/tx_drone_rgh.dds",
+		"normal": "data/textures/tx_drone_nml.dds",
+		"height": "data/textures/tx_drone_hgt.dds",
+		"emissive": "data/textures/tx_dron_emi.dds"
+	}
+}

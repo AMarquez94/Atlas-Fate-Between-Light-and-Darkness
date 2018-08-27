@@ -169,11 +169,13 @@ bool CTexture::create(
 	return true;
 }
 
-void CTexture::setDXParams(int new_xres, int new_yres, ID3D11Texture2D* new_texture, ID3D11ShaderResourceView* new_srv) {
+void CTexture::setDXParams(int new_xres, int new_yres, ID3D11Resource* new_texture, ID3D11ShaderResourceView* new_srv) {
 	xres = new_xres;
 	yres = new_yres;
-	texture = new_texture;
 	shader_resource_view = new_srv;
-	new_texture->AddRef();
 	new_srv->AddRef();
+    if (new_texture) {
+        texture = new_texture;
+        new_texture->AddRef();
+    }
 }

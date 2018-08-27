@@ -1,0 +1,109 @@
+[{
+		"entity": {
+			"name": "zone_a_test",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "SpotlightBeam",
+			"prefab": "data/prefabs/spotbeam.prefab",
+			"transform": {
+				"pos": "-49.306 5.625 -90.335"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "test_camera_curve",
+			"transform": {
+				"pos": "5 25 0",
+				"lookat": "0 0 0"
+			},
+			"curve_controller": {
+				"curve": "data/curves/test_curve.curve",
+				"speed": 0.25,
+				"loop": true,
+				"target": "The Player"
+			},
+			"render": {},
+			"camera": {
+				"fov": 60
+			}
+		}
+	},  {
+    "entity":
+    {
+      "name": "Ray Shaft"
+      ,
+      "transform":
+      {
+        "pos": "-49.306 5.625 -90.335"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/volume_test_shaft.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ray_shaft.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  },  {
+    "entity":
+    {
+      "name": "PlaneCasting"
+      ,
+      "transform":
+      {
+        "pos": "-40.306 1.125 -87.335",
+        "rotation": "0.0 0.707107 -0.707107 0.0",
+        "scale": "2.0 2.0 2.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/UnitBox.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_rtcam_holo1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  },
+	{
+		"xentity": {
+			"name": "hologram_mesh",
+			"transform": {
+				"pos": "-40.306 1.125 -90.335",
+				"scale": "1.7 1.7 1.7"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/main_player.mesh",
+					"materials":
+					[
+						"data/materials/mtl_hologram_sw_model.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
+]

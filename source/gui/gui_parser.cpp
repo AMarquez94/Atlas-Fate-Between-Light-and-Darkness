@@ -5,6 +5,7 @@
 #include "gui/widgets/gui_bar.h"
 #include "gui/widgets/gui_button.h"
 #include "gui/effects/gui_animate_uv.h"
+#include "gui/widgets/gui_radial_bar.h"
 
 namespace
 {
@@ -61,6 +62,7 @@ CWidget* CParser::parseWidget(const json& data, CWidget* parent)
   if (type == "image")        wdgt = parseImage(data);
   else if (type == "text")    wdgt = parseText(data);
   else if (type == "bar")     wdgt = parseBar(data);
+  else if (type == "radialbar")     wdgt = parseRadialBar(data);
   else if (type == "button")  wdgt = parseButton(data);
   else                        wdgt = parseWidget(data);
 
@@ -175,6 +177,16 @@ CWidget* CParser::parseBar(const json& data) {
   parseBarParams(wdgt->_barParams, data);
 
   return wdgt;
+}
+
+CWidget* CParser::parseRadialBar(const json& data) {
+    CRadialBar* wdgt = new CRadialBar();
+
+    parseParams(wdgt->_params, data);
+    parseImageParams(wdgt->_imageParams, data);
+    parseBarParams(wdgt->_barParams, data);
+
+    return wdgt;
 }
 
 void CParser::parseParams(TParams& params, const json& data)

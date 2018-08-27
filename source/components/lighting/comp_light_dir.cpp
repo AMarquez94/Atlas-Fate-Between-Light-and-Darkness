@@ -150,7 +150,7 @@ void TCompLightDir::generateVolume() {
     for (int i = 0; i < num_samples * .5f; i++) {
 
         VEC3 pos = c_transform->getPosition();      
-        VEC3 plane_pos = midpos + camera->getFront() * p_distance * i;
+        VEC3 plane_pos = midpos + camera->getFront() * p_distance * (float)i;
         //VEC3 plane_pos = VEC3(0, 0, i * 0.1f);
         MAT44 bb = MAT44::CreateWorld(plane_pos, -camera->getUp(), -camera->getFront());
         MAT44 sc = MAT44::CreateScale(50.f);
@@ -165,7 +165,7 @@ void TCompLightDir::generateVolume() {
     for (int i = 0; i < num_samples * .5f; i++) {
 
         VEC3 pos = c_transform->getPosition();
-        VEC3 plane_pos = midpos + -camera->getFront() * p_distance * i;
+        VEC3 plane_pos = midpos + -camera->getFront() * p_distance * (float)i;
         //VEC3 plane_pos = VEC3(0, 0, i * 0.1f);
         MAT44 bb = MAT44::CreateWorld(plane_pos, -camera->getUp(), -camera->getFront());
         MAT44 sc = MAT44::CreateScale(50.f);

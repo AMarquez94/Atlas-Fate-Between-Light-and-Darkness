@@ -21,6 +21,7 @@ bool CModuleGameManager::start() {
 
     _player = getEntityByName("The Player");
     _fly_camera = getEntityByName("test_camera_flyover");
+    //ambient = EngineSound.playEvent("event:/Ambiance/Intro_Ambiance");
 
     lastCheckpoint = new CCheckpoint();
     _currentstate = PauseState::none;
@@ -39,7 +40,7 @@ void CModuleGameManager::setPauseState(PauseState pause) {
 
         // Determine if whole scene is paused
         TMsgScenePaused msg;
-        msg.isPaused = pause != PauseState::none ? true : false;
+        msg.isPaused = pause != PauseState::none && pause != PauseState::editor1unpaused ? true : false;
         EngineEntities.broadcastMsg(msg);
         EngineCameras.getCurrentCamera().sendMsg(msg);
 
@@ -81,11 +82,13 @@ void CModuleGameManager::switchState(PauseState pause) {
         mouse->setLockMouse(false);
         EngineRender.setDebugMode(true);
     }break;
+    case PauseState::editor1unpaused: {
+        mouse->setLockMouse(false);
+        EngineRender.setDebugMode(true);
+    }break;
     case PauseState::editor2: {
-
         mouse->setLockMouse(false);
         Engine.get().getParticles().particles_enabled = true;
-
     }break;
     }
 
@@ -129,6 +132,11 @@ void CModuleGameManager::update(float delta) {
         // F4 button, particles
         if (EngineInput["btDebugParticles"].getsPressed()) {
             setPauseState(PauseState::editor2);
+        }
+
+        // F5 button, inspector unpaused
+        if (EngineInput["btDebugModeUnpaused"].getsPressed()) {
+            setPauseState(PauseState::editor1unpaused);
         }
     }
 
@@ -275,6 +283,7 @@ void CModuleGameManager::renderMain() {
         ImGui::Selectable("Exit game", menuPosition == 3);
         if (ImGui::IsItemClicked() || (menuPosition == 3 && EngineInput["btMenuConfirm"].getsPressed()))
         {
+            ambient.stop();
             exit(0);
         }
 

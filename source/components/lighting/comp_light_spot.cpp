@@ -25,6 +25,7 @@ void TCompLightSpot::debugInMenu() {
     ImGui::DragFloat("Cut Out", &inner_cut, 0.5f, 1.f, angle);
     ImGui::DragFloat("Range", &range, 0.5f, 1.f, 120.f);
     ImGui::DragFloat("Shadow step", &shadows_step, 0.01f, 0.f, 10.f);
+    ImGui::DragInt("Num Samples", &num_samples, 1, 0, 250);
 }
 
 void TCompLightSpot::renderDebug() {
@@ -45,7 +46,7 @@ void TCompLightSpot::load(const json& j, TEntityParseContext& ctx) {
 
     volume_enabled = j.value("volume", true);
     casts_shadows = j.value("shadows", true);
-    num_samples = j.value("n_samples", 80.f);
+    num_samples = j.value("n_samples", 80);
     angle = j.value("angle", 45.f);
     range = j.value("range", 10.f);
     inner_cut = j.value("inner_cut", angle);
@@ -262,7 +263,7 @@ void TCompLightSpot::generateVolume() {
 
     for (int i = 0; i < num_samples; i++) {
 
-        VEC3 plane_pos = endpos - camera->getFront() * spot_offset * i;
+        VEC3 plane_pos = endpos - camera->getFront() * spot_offset * (float)i;
         MAT44 bb = MAT44::CreateWorld(plane_pos, -camera->getUp(), -camera->getFront());
         MAT44 sc = MAT44::CreateScale(range, range, range*2);
         MAT44 res = sc * bb;

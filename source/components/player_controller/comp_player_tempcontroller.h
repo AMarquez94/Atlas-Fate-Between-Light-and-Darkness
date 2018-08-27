@@ -121,7 +121,6 @@ class TCompTempPlayerController : public TCompBase
     void onShadowChange(const TMsgShadowChange& msg);
     void onInfiniteStamina(const TMsgInfiniteStamina& msg);
     void onPlayerImmortal(const TMsgPlayerImmortal& msg);
-    void onPlayerInShadows(const TMsgPlayerInShadows& msg);
     void onSpeedBoost(const TMsgSpeedBoost& msg);
     void onPlayerInvisible(const TMsgPlayerInvisible& msg);
     void onMsgNoClipToggle(const TMsgNoClipToggle& msg);
@@ -135,7 +134,6 @@ public:
     bool infiniteStamina;
     bool isImmortal;
     bool isInvisible;
-    bool hackShadows;
     bool isInNoClipMode = false;
     float speedBoost = 1.0f;
     std::string dbCameraState;
@@ -145,6 +143,8 @@ public:
 
     bool isMerged;
     bool isGrounded;
+    bool canMergeFall;
+    bool pressedMergeFallInTime;
     bool isInhibited;
     bool canAttack;
     bool canRemoveInhibitor;
@@ -175,6 +175,7 @@ public:
     const bool convexTest(void);
     const bool onMergeTest(float dt);
     const bool groundTest(float dt);
+    const bool canMergeFallTest(float dt);
     const bool canAttackTest(float dt);
     const bool canSonarPunch();
 
@@ -189,6 +190,7 @@ public:
     void invertAxis(VEC3 old_up, bool type);
     void getDamage(float dmg);
     void die();
+    void activateCanLandSM(bool activate);
 
     VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
 

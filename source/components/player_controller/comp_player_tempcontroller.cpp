@@ -21,11 +21,11 @@
 #include "comp_player_input.h"
 #include "components/comp_group.h"
 #include "render/render_utils.h"
-
 #include "render/render_objects.h"
 #include "render/render_utils.h"
-
 #include "components/ia/comp_bt_player.h"
+#include "components/comp_audio.h"
+#include "components/object_controller/comp_landing.h"
 
 
 DECL_OBJ_MANAGER("player_tempcontroller", TCompTempPlayerController);
@@ -35,36 +35,36 @@ void TCompTempPlayerController::debugInMenu() {
 
 void TCompTempPlayerController::renderDebug() {
     /*
-    //UI Window's Size
-    ImGui::SetNextWindowSize(ImVec2((float)CApp::get().xres, (float)CApp::get().yres), ImGuiCond_Always);
-    //UI Window's Position
-    ImGui::SetNextWindowPos(ImVec2(0, 0));
-    //Transparent background - ergo alpha = 0 (RGBA)
-    ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
-    //Some style added
-    ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2);
-    ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1);
-    ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(255.0f, 255.0f, 0.0f, 1.0f));
+        //UI Window's Size
+        ImGui::SetNextWindowSize(ImVec2((float)CApp::get().xres, (float)CApp::get().yres), ImGuiCond_Always);
+        //UI Window's Position
+        ImGui::SetNextWindowPos(ImVec2(0, 0));
+        //Transparent background - ergo alpha = 0 (RGBA)
+        ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
+        //Some style added
+        ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2);
+        ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1);
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(255.0f, 255.0f, 0.0f, 1.0f));
 
-    ImGui::Begin("UI", NULL,
-        ImGuiWindowFlags_::ImGuiWindowFlags_NoMove |
-        ImGuiWindowFlags_::ImGuiWindowFlags_NoInputs |
-        ImGuiWindowFlags_::ImGuiWindowFlags_NoResize |
-        ImGuiWindowFlags_::ImGuiWindowFlags_NoTitleBar);
-    {
-        ImGui::SetCursorPos(ImVec2(CApp::get().xres * 0.02f, CApp::get().yres * 0.06f));
-        ImGui::Text("Stamina:");
-        ImGui::SetCursorPos(ImVec2(CApp::get().xres * 0.05f + 25, CApp::get().yres * 0.05f));
-        ImGui::ProgressBar(stamina / maxStamina, ImVec2(CApp::get().xres / 5.f, CApp::get().yres / 30.f));
-        ImGui::Text("State: %s", dbCameraState.c_str());
-    //ImGui::Text("VECTOR DIR: (%f - %f - %f)", debugDir.x, debugDir.y, debugDir.z);
-    //ImGui::Text("VECTOR FRONT: (%f - %f - %f)", debugMyFront.x, debugMyFront.y, debugMyFront.z);
+        ImGui::Begin("UI", NULL,
+            ImGuiWindowFlags_::ImGuiWindowFlags_NoMove |
+            ImGuiWindowFlags_::ImGuiWindowFlags_NoInputs |
+            ImGuiWindowFlags_::ImGuiWindowFlags_NoResize |
+            ImGuiWindowFlags_::ImGuiWindowFlags_NoTitleBar);
+        {
+            ImGui::SetCursorPos(ImVec2(CApp::get().xres * 0.02f, CApp::get().yres * 0.06f));
+            ImGui::Text("Stamina:");
+            ImGui::SetCursorPos(ImVec2(CApp::get().xres * 0.05f + 25, CApp::get().yres * 0.05f));
+            ImGui::ProgressBar(stamina / maxStamina, ImVec2(CApp::get().xres / 5.f, CApp::get().yres / 30.f));
+            ImGui::Text("State: %s", dbCameraState.c_str());
+        //ImGui::Text("VECTOR DIR: (%f - %f - %f)", debugDir.x, debugDir.y, debugDir.z);
+        //ImGui::Text("VECTOR FRONT: (%f - %f - %f)", debugMyFront.x, debugMyFront.y, debugMyFront.z);
 
-    }
+        }
 
-    ImGui::End();
-    ImGui::PopStyleVar(2);
-    ImGui::PopStyleColor(2);*/
+        ImGui::End();
+        ImGui::PopStyleVar(2);
+        ImGui::PopStyleColor(2);*/
 }
 
 void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
@@ -101,6 +101,9 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
     paused = true;
     canAttack = false;
     canRemoveInhibitor = false;
+
+    // Move the stamina string to the json
+    EngineGUI.enableWidget("stamina_bar_general", false);
 }
 
 /* Player controller main update */
@@ -126,7 +129,8 @@ void TCompTempPlayerController::update(float dt) {
     // Update player global speed into the shader.
     float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
     cb_globals.global_player_speed = (inputSpeed * currentSpeed) / 6.f; // Maximum speed, change this in the future. 
-    //cb_globals.updateGPU();
+    cb_player.player_disk_radius = clamp(1, 0, 1); // Replace this with a lerp when we have the animation
+    cb_player.updateGPU();
 }
 
 void TCompTempPlayerController::registerMsgs() {
@@ -143,7 +147,6 @@ void TCompTempPlayerController::registerMsgs() {
     DECL_MSG(TCompTempPlayerController, TMsgShadowChange, onShadowChange);
     DECL_MSG(TCompTempPlayerController, TMsgInfiniteStamina, onInfiniteStamina);
     DECL_MSG(TCompTempPlayerController, TMsgPlayerImmortal, onPlayerImmortal);
-    DECL_MSG(TCompTempPlayerController, TMsgPlayerInShadows, onPlayerInShadows);
     DECL_MSG(TCompTempPlayerController, TMsgSpeedBoost, onSpeedBoost);
     DECL_MSG(TCompTempPlayerController, TMsgPlayerInvisible, onPlayerInvisible);
     DECL_MSG(TCompTempPlayerController, TMsgNoClipToggle, onMsgNoClipToggle);
@@ -152,6 +155,8 @@ void TCompTempPlayerController::registerMsgs() {
 
 void TCompTempPlayerController::onShadowChange(const TMsgShadowChange& msg) {
 
+    cb_player.player_shadowed = msg.is_shadowed;
+    cb_player.updateGPU();
     //VEC4 merged_color = msg.is_shadowed ? playerColor.colorMerge : playerColor.colorIdle;
 
     //TCompEmissionController * e_controller = get<TCompEmissionController>();
@@ -166,11 +171,6 @@ void TCompTempPlayerController::onInfiniteStamina(const TMsgInfiniteStamina & ms
 void TCompTempPlayerController::onPlayerImmortal(const TMsgPlayerImmortal & msg)
 {
     isImmortal = !isImmortal;
-}
-
-void TCompTempPlayerController::onPlayerInShadows(const TMsgPlayerInShadows & msg)
-{
-    hackShadows = !hackShadows;
 }
 
 void TCompTempPlayerController::onSpeedBoost(const TMsgSpeedBoost& msg) {
@@ -287,6 +287,11 @@ void TCompTempPlayerController::onPlayerInhibited(const TMsgInhibitorShot & msg)
 {
     if (!isInhibited) {
         isInhibited = true;
+
+        CEntity* player = CHandle(this).getOwner();
+        TMsgGlitchController msg;
+        msg.revert = true;
+        player->sendMsg(msg);
     }
     timesRemoveInhibitorKeyPressed = initialTimesToPressInhibitorRemoveKey;
 }
@@ -335,23 +340,6 @@ void TCompTempPlayerController::walkState(float dt) {
     VEC3 normal_norm = c_my_transform->getUp();
     VEC3 proj = projectVector(up, normal_norm);
     VEC3 dir = getMotionDir(proj, normal_norm.Cross(-proj));
-
-    //TODO: Destroy this shiat-----------------------------------------------------------------------
-
-    float factor = 1.0f;
-    if (EngineInput["btRun"].isPressed()) factor = 0.95f;
-
-    if (currentSpeed <= 1.8f) {
-        factor = 1.3f;
-    }
-    stepTimer += dt;
-    if (stepTimer > 0.33f * factor) {
-
-        Engine.getSound().exeStepSound();
-        stepRight = !stepRight;
-        stepTimer = 0.0f;
-    }
-    //Destroy this shiat-----------------------------------------------------------------------
 
     if (dir == VEC3::Zero) dir = proj;
 
@@ -496,6 +484,10 @@ void TCompTempPlayerController::removingInhibitorState(float dt) {
 
             timesRemoveInhibitorKeyPressed = initialTimesToPressInhibitorRemoveKey;
             isInhibited = false;
+
+            TMsgGlitchController msg;
+            msg.revert = false;
+            player->sendMsg(msg);
 
             TMsgSetFSMVariable finished;
             finished.variant.setName("inhibitor_removed");
@@ -657,6 +649,20 @@ void TCompTempPlayerController::die()
     }
 }
 
+void TCompTempPlayerController::activateCanLandSM(bool activate)
+{
+    TCompGroup* group = get<TCompGroup>();
+    CEntity* e_landing = group->getHandleByName("Player_landing");
+    if (e_landing) {
+        TCompLanding* c_landing = e_landing->get<TCompLanding>();
+        if (c_landing->isActive() != activate) {
+            TMsgEntityCanLandSM msg;
+            msg.canSM = canMergeFall;
+            e_landing->sendMsg(msg);
+        }
+    }
+}
+
 /* Concave test, this determines if there is a surface normal change on concave angles */
 const bool TCompTempPlayerController::concaveTest(void) {
 
@@ -741,26 +747,29 @@ const bool TCompTempPlayerController::onMergeTest(float dt) {
 
     // Tests: inShadows + minStamina + grounded + button hold -> sent to fsm
     bool mergeTest = true;
-    bool mergefall = fallingDistance > 0 && fallingDistance < maxFallingDistance;
+    //bool mergefall = fallingDistance > 0.01f && fallingDistance < maxFallingDistance;
 
-    if (!hackShadows) {
-        mergeTest &= shadow_oracle->is_shadow;
-    }
+    mergeTest &= shadow_oracle->is_shadow;
     mergeTest &= stamina > minStamina;
     mergeTest &= !isInhibited;
 
     // If we are not merged.
     if (!isMerged) {
         mergeTest &= stamina > minStaminaChange;
-        mergeTest &= EngineInput["btShadowMerging"].hasChanged();
+        //mergeTest &= EngineInput["btShadowMerging"].hasChanged();
 
-        TMsgSetFSMVariable onFallMsg;
-        onFallMsg.variant.setName("onFallMerge");
-        mergefall &= mergeTest;
-        mergefall &= EngineInput["btShadowMerging"].isPressed();
-        onFallMsg.variant.setBool(mergefall);
-        e->sendMsg(onFallMsg);
+        //TMsgSetFSMVariable onFallMsg;
+        //onFallMsg.variant.setName("onFallMerge");
+        ////mergefall &= mergeTest;
+        //mergefall &= EngineInput["btShadowMerging"].isPressed();
+        //if (mergefall) {
+        //    dbg("Merge Fall\n");
+        //}
+        //onFallMsg.variant.setBool(mergefall);
+        //e->sendMsg(onFallMsg);
     }
+
+    //dbg("On fall msg: %s\n", mergefall ? "TRUE" : "FALSE");
 
     mergeTest &= EngineInput["btShadowMerging"].isPressed();
     mergeTest &= isGrounded;
@@ -774,6 +783,8 @@ const bool TCompTempPlayerController::onMergeTest(float dt) {
         groundMsg.variant.setBool(mergeTest);
         e->sendMsg(groundMsg);
         c_my_rigidbody->filters.mFilterData = isMerged == true ? pxPlayerFilterData : pxShadowFilterData;
+
+        EngineGUI.enableWidget("stamina_bar_general", mergeTest);
     }
 
     return mergeTest;
@@ -784,9 +795,14 @@ const bool TCompTempPlayerController::groundTest(float dt) {
 
     TCompRigidbody *c_my_collider = get<TCompRigidbody>();
 
-    if (isGrounded != c_my_collider->is_grounded) {
+    if (isGrounded != c_my_collider->is_grounded/* && c_my_collider->is_grounded*/) {
 
         CEntity* e = CHandle(this).getOwner();
+
+        TMsgSetFSMVariable mergeFall;
+        mergeFall.variant.setName("onFallMerge");
+        mergeFall.variant.setBool(canMergeFall && pressedMergeFallInTime && EngineInput["btShadowMerging"].isPressed());
+        e->sendMsg(mergeFall);
 
         TMsgSetFSMVariable groundMsg;
         groundMsg.variant.setName("onGround");
@@ -801,9 +817,6 @@ const bool TCompTempPlayerController::groundTest(float dt) {
         TMsgSetFSMVariable hardLanded;
         hardLanded.variant.setName("onHardLanded");
         hardLanded.variant.setBool(c_my_collider->is_grounded & (fallingTime > hardFallingTime && fallingTime < maxFallingTime) & !isMerged);
-        if (hardLanded.variant.getBool()) {
-            getDamage(30.f);
-        }
         e->sendMsg(hardLanded);
 
         TMsgSetFSMVariable crouch;
@@ -811,7 +824,9 @@ const bool TCompTempPlayerController::groundTest(float dt) {
         crouch.variant.setBool(false);
         e->sendMsg(crouch);
 
-        //dbg("falling time %f\n", fallingTime);
+        pressedMergeFallInTime = false;
+        canMergeFall = false;
+        activateCanLandSM(false);
         fallingTime = 0.f;
     }
 
@@ -826,9 +841,30 @@ const bool TCompTempPlayerController::groundTest(float dt) {
         if (EnginePhysics.Raycast(c_my_transform->getPosition(), -c_my_transform->getUp(), 1000, hit, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery)) {
             fallingDistance = hit.distance;
         }
+
+        if (fallingDistance > 0.01f && fallingDistance < maxFallingDistance) {
+            TCompShadowController* shadow_oracle = get<TCompShadowController>();
+            VEC3 hitpos = PXVEC3_TO_VEC3(hit.position);
+            canMergeFall = shadow_oracle->IsPointInShadows(hitpos) && stamina > minStamina && !isInhibited && !isDead();
+            if (canMergeFall) {
+                if (pressedMergeFallInTime) {
+                    pressedMergeFallInTime &= !EngineInput["btShadowmerging"].getsReleased();
+                }
+                else {
+                    pressedMergeFallInTime = EngineInput["btShadowMerging"].getsPressed();
+                }
+            }
+
+            activateCanLandSM(canMergeFall);
+        }
     }
 
     return c_my_collider->is_grounded;
+}
+
+const bool TCompTempPlayerController::canMergeFallTest(float dt)
+{
+    return false;
 }
 
 const bool TCompTempPlayerController::canAttackTest(float dt)
@@ -1005,4 +1041,9 @@ void TCompTempPlayerController::resetMerge() {
     hardFallMsg.variant.setName("onHardLanded");
     hardFallMsg.variant.setBool(false);
     e->sendMsg(hardFallMsg);
+
+    //TMsgSetFSMVariable fallMergeMsg;
+    //fallMergeMsg.variant.setName("onFallMerge");
+    //fallMergeMsg.variant.setBool(false);
+    //e->sendMsg(fallMergeMsg);
 }

@@ -1,0 +1,18 @@
+[{
+		"entity": {
+			"name": "Hologram_scene",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/player_tutorial.prefab",
+			"transform": {
+				"pos": "-40.306 1.125 -90.335",
+				"scale": "1.7 1.7 1.7"
+			}
+		}
+	}
+]

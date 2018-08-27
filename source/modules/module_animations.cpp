@@ -25,9 +25,22 @@ void AnimationCallback::AnimationUpdate(float anim_time, CalModel *model) {
 	TMsgAnimationCallback msg;
 	msg.function_to_call = this->luaFunction;
 	e->sendMsg(msg);
-	dbg("module:     %f\n", anim_time);
+	//dbg("module:     %f\n", anim_time);
 }
 
 void AnimationCallback::AnimationComplete(CalModel *model) {
 
+}
+
+void AnimationAudioCallback::AnimationUpdate(float anim_time, CalModel * model)
+{
+    CHandle owner = EngineAnimations.mapModelToHandle[model];
+    TMsgAnimationAudioCallback msg;
+    msg.audioName = this->audioName;
+    msg.isRelativeToPlayer = this->relativeToPlayer;
+    owner.sendMsg(msg);
+}
+
+void AnimationAudioCallback::AnimationComplete(CalModel * model)
+{
 }

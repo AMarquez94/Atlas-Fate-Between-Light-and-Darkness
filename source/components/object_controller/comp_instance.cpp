@@ -25,12 +25,10 @@ void TCompInstance::registerMsgs() {
 void TCompInstance::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
     TCompTransform * self_transform = get<TCompTransform>();
-    MAT44 w_matrix = self_transform->asMatrix();
-    _index = EngineInstancing.addInstance(_instance_mesh, w_matrix);
+    _index = EngineInstancing.addInstance(_instance_mesh, self_transform->asMatrix());
 }
 
 void TCompInstance::onMsgEntityCreated(const TMsgEntityCreated& msg) {
-
 
     //TCompTransform * self_transform = get<TCompTransform>();
     //MAT44 w_matrix = self_transform->asMatrix();
@@ -41,6 +39,5 @@ void TCompInstance::onMsgEntityCreated(const TMsgEntityCreated& msg) {
 void TCompInstance::update(float dt) {
 
     TCompTransform * self_transform = get<TCompTransform>();
-    //_instance->world = self_transform->asMatrix();
     EngineInstancing.updateInstance(_instance_mesh, _index, self_transform->asMatrix());
 }

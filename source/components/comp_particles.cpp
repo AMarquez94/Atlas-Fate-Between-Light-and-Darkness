@@ -44,13 +44,21 @@ void TCompParticles::onCreated(const TMsgEntityCreated&) {
 
     // Launch the set of cores
     for (auto p : _cores) {
-        _cores[p.first] = Engine.getParticles().launchSystem(p.first, CHandle(this).getOwner());
+        if (_cores[p.first] == 0)
+            _cores[p.first] = Engine.getParticles().launchSystem(p.first, CHandle(this).getOwner());
     }
 }
 
 void TCompParticles::onGroupCreated(const TMsgEntitiesGroupCreated&) {
+
     if (_core && !_particles) {
         _particles = Engine.getParticles().launchSystem(_core, CHandle(this).getOwner());
+    }
+
+    // Launch the set of cores
+    for (auto p : _cores) {
+        if(_cores[p.first] == 0)
+            _cores[p.first] = Engine.getParticles().launchSystem(p.first, CHandle(this).getOwner());
     }
 }
 

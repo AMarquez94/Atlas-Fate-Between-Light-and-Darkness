@@ -158,5 +158,26 @@ std::string stringify(VEC4 pos) {
 }
 
 float mapInRange(float result_from, float result_to, float current_from, float current_to, float value) {
-    return (result_to - result_from) * ((value - current_from) / (current_to - current_from)) + result_from;
+    float factor = result_from <= result_to ? 1.f : -1.f;
+    return factor * ((result_to - result_from) * ((value - current_from) / (current_to - current_from)) + result_from);
 }
+
+bool isPointInRectangle(VEC2 point, VEC2 rectangle_size, VEC2 rectangle_position) {
+    VEC2 point2d = point - rectangle_position;
+    return point2d.x >= 0.f && point2d.x <= rectangle_size.x && point2d.y >= 0.f && point2d.y <= rectangle_size.y;
+}
+
+VEC2 getMouseInRange(float min_x, float max_x, float min_y, float max_y)
+{
+    POINT mouse_loc;
+    GetCursorPos(&mouse_loc);
+    ScreenToClient(CApp::get().getWnd(), &mouse_loc);
+    VEC2 mouse_pos = VEC2((float)Clamp((int)mouse_loc.x, 0, CApp::get().xres), (float)Clamp((int)mouse_loc.y, 0, CApp::get().yres));
+
+    mouse_pos.x = (float)mapInRange(min_x, max_x, 0, CApp::get().xres, mouse_pos.x);
+    mouse_pos.y = (float)mapInRange(min_y, max_y, 0, CApp::get().yres, mouse_pos.y);
+
+    return mouse_pos;
+}
+
+

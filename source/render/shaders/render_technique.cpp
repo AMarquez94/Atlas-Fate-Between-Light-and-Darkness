@@ -65,6 +65,49 @@ bool CRenderTechnique::reloadPS() {
 }
 
 // ----------------------------------------------------------
+void TTextureSlots::load(const std::string& name, const json& j) {
+
+    // Load textures associated to this technique
+    if (j.count("textures")) {
+        auto& j_textures = j["textures"];
+        for (auto it = j_textures.begin(); it != j_textures.end(); ++it) {
+            TSlot s;
+            std::string k = it.key();
+            if (k == "environment")
+                s.slot = TS_ENVIRONMENT_MAP;
+            else if (k == "irradiance")
+                s.slot = TS_IRRADIANCE_MAP;
+            else if (k == "noise")
+                s.slot = TS_NOISE_MAP;
+            else if (k == "noise2")
+                s.slot = TS_NOISE_MAP2;
+ 
+            if (k == "albedo")
+                s.slot = TS_ALBEDO;
+            else if (k == "normal")
+                s.slot = TS_NORMAL;
+            else if (k == "metallic")
+                s.slot = TS_METALLIC;
+            else if (k == "roughness")
+                s.slot = TS_ROUGHNESS;
+
+            if (s.slot == -1) {
+                fatal("Invalid key '%s' in textures for %s\n", k.c_str(), name.c_str());
+                continue;
+            }
+
+            s.texture = Resources.get(it.value())->as<CTexture>();
+            textures.push_back(s);
+        }
+    }
+}
+
+void TTextureSlots::activate() const {
+    for (auto& t : textures)
+        t.texture->activate(t.slot);
+}
+
+// ----------------------------------------------------------
 bool CRenderTechnique::create(const std::string& name, json& j) {
 
 	// --------------------------------------------
@@ -74,6 +117,7 @@ bool CRenderTechnique::create(const std::string& name, json& j) {
 	vertex_type = j.value("vertex_type", "");
 	ps_file = j.value("ps_file", vs_file);
 	ps_entry_point = j.value("ps_entry_point", "PS");
+    color_mask = j.value("color_mask", 255);
 
 	if (!reloadVS())
 		return false;
@@ -89,30 +133,7 @@ bool CRenderTechnique::create(const std::string& name, json& j) {
 	z_config = ZConfigFromString(j.value("z", "default"));
 	blend_config = BlendConfigFromString(j.value("blend", "default"));
 
-	  // Load textures associated to this technique
-	if (j.count("textures")) {
-		auto& j_textures = j["textures"];
-		for (auto it = j_textures.begin(); it != j_textures.end(); ++it) {
-			TSlot s;
-			if (it.key() == "environment") {
-				s.slot = TS_ENVIRONMENT_MAP;
-			}
-			else if (it.key() == "irradiance")
-				s.slot = TS_IRRADIANCE_MAP;
-			else if (it.key() == "noise")
-				s.slot = TS_NOISE_MAP;
-            else if (it.key() == "noise2")
-                s.slot = TS_NOISE_MAP2;
-			else {
-				fatal("Invalid key '%s' in textures for technique %s\n", it.key().c_str(), name.c_str());
-				continue;
-			}
-
-			s.texture = Resources.get(it.value())->as<CTexture>();
-			textures.push_back(s);
-		}
-	}
-
+    texture_slots.load(name, j);
 	setNameAndClass(name, getResourceClassOf<CRenderTechnique>());
 
 	return true;
@@ -126,6 +147,7 @@ void CRenderTechnique::destroy() {
 }
 
 void CRenderTechnique::activate() const {
+
 	// If I'm the current active tech, no need to reactive myself in DX
 	if (current == this)
 		return;
@@ -140,12 +162,11 @@ void CRenderTechnique::activate() const {
 		Render.ctx->PSSetShader(nullptr, nullptr, 0);
 	
 	activateRSConfig(rs_config);
-	activateZConfig(z_config);
+	activateZConfig(z_config, color_mask);
 	activateBlendConfig(blend_config);
 
 	// Activate the textures associated to this technique
-		for (auto& t : textures)
-			t.texture->activate(t.slot);
+    texture_slots.activate();
 
 	// Save me as the current active technique
 	current = this;

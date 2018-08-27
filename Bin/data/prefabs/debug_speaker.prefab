@@ -1,0 +1,27 @@
+[{
+	"entity": {
+		"name": "Speaker",
+		"transform": {
+			"pos": "0 0 0",
+			"rotation": "0.0 0.0 0.0 -1.0"
+		},
+		"render":
+		[
+		{
+		  "mesh": "data/meshes/DEBUG_SPEAKER.mesh"
+		  ,
+		  "materials":
+		  [
+			"data/materials/mtl_whitebox.material"
+		  ]
+		}
+		],
+		"audio": {
+		},
+		"speaker": {
+			"soundEventName": "event:/Sounds/Debug/Helicopter"
+		},
+		"abs_aabb": true,
+		"local_aabb": true
+	}
+}]

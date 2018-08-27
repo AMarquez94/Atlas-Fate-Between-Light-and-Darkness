@@ -3,14 +3,3 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/tx_porcho_cupula_alb.dds"
-    ,
-    "metallic": "data/textures/tx_porcho_cupula_met.dds"
-    ,
-    "roughness": "data/textures/tx_porcho_cupula_rgh.dds"
-    ,
-    "normal": "data/textures/tx_porcho_cupula_nml.dds"
-    ,
-    "height": "data/textures/tx_porcho_cupula_hgt.dds"
-  }
-}

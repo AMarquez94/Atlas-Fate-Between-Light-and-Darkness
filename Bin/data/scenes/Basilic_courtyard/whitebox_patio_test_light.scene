@@ -1,57 +1,60 @@
-[
-  {
-    "entity":
-    {
-      "name": "whitebox_patio_test_light"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Direct002"
-      ,
-      "transform":
-      {
-        "pos": "51.2737 154.491 -463.005"
-        ,
-        "lookat": "0.747929 -27.172 -341.24"
-      }
-      ,
-      "light_dir":
-      {
-        "type": "directional"
-        ,
-        "color": "1.0 1.0 1.0 1.0"
-        ,
-        "intensity": 1.0
-        ,
-        "proj_type": "ortographic"
-        ,
-        "z_near": 0.01
-        ,
-        "z_far": 224.457
-        ,
-        "ortosize": 95.0
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.5
-        ,
-        "shadows_resolution": 4096
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
+[{
+		"entity": {
+			"name": "whitebox_patio_test_light",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Direct002",
+			"transform": {
+				"pos": "119.625 184.885 -219.947",
+				"lookat": "-37.4391 -2.59014 -405.002"
+			},
+			"light_dir": {
+				"type": "directional",
+				"color": "1.0 1.0 1.0 1.0",
+				"intensity": 1.0,
+				"proj_type": "ortographic",
+				"z_near": 0.01,
+				"z_far": 306.694,
+				"ortosize": 200.0,
+				"casts_shadows": true,
+				"shadows_step": 1.5,
+				"shadows_resolution": 4096,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"xentity": {
+			"name": "Direct002",
+			"transform": {
+				"pos": "51.2737 154.491 -463.005",
+				"lookat": "0.747929 -27.172 -341.24"
+			},
+			"light_dir": {
+				"type": "directional",
+				"color": "1.0 1.0 1.0 1.0",
+				"intensity": 1.0,
+				"proj_type": "ortographic",
+				"z_near": 0.01,
+				"z_far": 224.457,
+				"ortosize": 95.0,
+				"casts_shadows": true,
+				"shadows_step": 1.5,
+				"shadows_resolution": 4096,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"tags": [
+				"light"
+			]
+		}
+	}
 ]

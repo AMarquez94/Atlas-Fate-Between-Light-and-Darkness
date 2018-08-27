@@ -1,0 +1,13 @@
+{	
+	"technique": "pbr_disk.tech",
+	"shadows": true,
+	"textures": {
+		"albedo": "data/textures/tx_swap.dds",
+		"metallic": "data/textures/white.dds",
+		"roughness": "data/textures/white.dds",
+		"normal": "data/textures/white.dds",
+		"height": "data/textures/white.dds",
+		"emissive": "data/textures/white.dds"
+	},
+	"self_color" : "0 1 1 1"
+}

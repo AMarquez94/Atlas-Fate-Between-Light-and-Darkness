@@ -1,20 +1,5 @@
 [
   {
-    "name": "red",
-    "all": false,
-    "buttons": [ "pad_a", "mouse_right", "r" ]
-  },
-  {
-    "name": "green",
-    "all": true,
-    "buttons": [ "pad_x", "pad_y" ]
-  },
-  {
-    "name": "blue",
-    "all": false,
-    "buttons": [ "pad_lanalogx" ]
-  },
-  {
     "name": "btUp",
     "all": false,
     "buttons": [ "w", "pad_lanalogy" , "pad_up"]
@@ -108,6 +93,11 @@
     "name": "btDebugParticles",
     "all": false,
     "buttons":  ["f4"]
+  },
+	{
+    "name": "btDebugModeUnpaused",
+    "all": false,
+    "buttons":  ["f5"]
   },
   {
     "name": "btPause",

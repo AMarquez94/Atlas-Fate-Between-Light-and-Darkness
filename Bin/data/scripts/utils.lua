@@ -113,22 +113,26 @@ function renderNavmeshToggle()
 	SLB.renderNavmeshToggle()
 end
 
-function playSound2D(soundName)
-	SLB.playSound2D(soundName)
-end
-
-function exeShootImpactSound()
-	SLB.exeShootImpactSound()
-end
-
 function cinematicModeToggle()
 	SLB.cinematicModeToggle()
 end
 
+function playEvent(name)
+	return SLB.playEvent(name);
+end
+
+function stopAllAudioComponents()
+	SLB.stopAllAudioComponents();
+end
+
 function getEntityByName(entity_name)
-	SLB.getEntityByName(entity_name);
+	return SLB.getEntityByName(entity_name);
 end
 
 function isDebug()
 	SLB.isDebug();
+end
+
+function setTutorialPlayerState(active, state)
+	SLB.setTutorialPlayerState(active, state);
 end
