@@ -129,7 +129,7 @@ void TCompTempPlayerController::update(float dt) {
     // Update player global speed into the shader.
     float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
     cb_globals.global_player_speed = (inputSpeed * currentSpeed) / 6.f; // Maximum speed, change this in the future. 
-    cb_player.player_disk_radius = clamp(1, 0, 1); // Replace this with a lerp when we have the animation
+    cb_player.player_disk_radius = clamp(1.f, 0.f, 1.f); // Replace this with a lerp when we have the animation
     cb_player.updateGPU();
 }
 
