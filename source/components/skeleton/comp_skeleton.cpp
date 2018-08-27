@@ -124,14 +124,17 @@ void TCompSkeleton::update(float dt) {
 	if (movingRoot) {
 
 		if (isExecutingActionAnimation(animationToRootName)) {
-			CalVector actualRootPos = DX2Cal(tmx->getPosition()) - model->getSkeleton()->getBone(0)->getTranslation();
-			VEC3 diff = rootPosition - Cal2DX(actualRootPos);
+			CalVector actualRootPos = model->getSkeleton()->getBone(0)->getTranslation();
+			acum = Cal2DX( model->getSkeleton()->getBone(0)->getTranslation() )- tmx->getPosition();
+			diff = acum - lastAcum;
 			dbg("%f		%f		%f\n", diff.x,diff.y,diff.z);
-			tmx->setPosition(tmx->getPosition() + diff * dt);
+			tmx->setPosition(tmx->getPosition() + diff);
 			VEC3 pos = tmx->getPosition();
 			model->getSkeleton()->getBone(0)->setTranslation(CalVector(pos.x, pos.y, pos.z));
 			model->getSkeleton()->getBone(0)->calculateState();
 			rootPosition = Cal2DX(actualRootPos);
+			lastDiff = diff;
+			lastAcum = acum;
 			//Fer el que s'hagi de fer
 		}
 		else {
@@ -316,6 +319,8 @@ void TCompSkeleton::executeActionAnimation(int animId, float speed, bool rootMov
 		movingRoot = true;
 		animationToRootName = model->getCoreModel()->getCoreAnimation(animId)->getName();
 		rootPosition = VEC3(0,0,0);
+		acum = VEC3(0, 0, 0);
+		lastAcum = VEC3(0, 0, 0);
 	}
     if (speed != 1.0f) {
         std::list<CalAnimationAction *>::iterator iteratorAnimationAction;
