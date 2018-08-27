@@ -122,18 +122,22 @@ void TCompSkeleton::update(float dt) {
         model->update(dt);
     }
 	if (movingRoot) {
-
+		//ROOT_DEV
 		if (isExecutingActionAnimation(animationToRootName)) {
-			CalVector actualRootPos = model->getSkeleton()->getBone(0)->getTranslation();
-			acum = Cal2DX( model->getSkeleton()->getBone(0)->getTranslation() )- tmx->getPosition();
-			diff = acum - lastAcum;
-			dbg("%f		%f		%f\n", diff.x,diff.y,diff.z);
+			VEC3 acum = Cal2DX( model->getSkeleton()->getBone(1)->getTranslation() );
+			VEC3 diff = acum - lastAcum;
+			//acum = Cal2DX( model->getSkeleton()->getBone(0)->getTranslation() )- tmx->getPosition();
+			//diff = acum - lastAcum;
+			dbg("diff : %f		%f		%f    acum:  %f		%f		%f    \n", diff.x, diff.y, diff.z, acum.x, acum.y, acum.z);
+
 			tmx->setPosition(tmx->getPosition() + diff);
+
 			VEC3 pos = tmx->getPosition();
-			model->getSkeleton()->getBone(0)->setTranslation(CalVector(pos.x, pos.y, pos.z));
-			model->getSkeleton()->getBone(0)->calculateState();
-			rootPosition = Cal2DX(actualRootPos);
-			lastDiff = diff;
+			model->getSkeleton()->getBone(1)->setTranslation(CalVector( 0, 0, 0 ));
+			model->getSkeleton()->getBone(1)->calculateState();
+
+			//rootPosition = Cal2DX(actualRootPos);
+			//lastDiff = diff;
 			lastAcum = acum;
 			//Fer el que s'hagi de fer
 		}
@@ -310,16 +314,19 @@ void TCompSkeleton::changeCyclicAnimation(int anim1Id, float speed, int anim2Id,
 void TCompSkeleton::executeActionAnimation(int animId, float speed, bool rootMovement, float in_delay, float out_delay) {
 
     bool auto_lock = false;
+	if (isExecutingActionAnimation(animId))
+		return;
     for (auto a : model->getMixer()->getAnimationActionList()) {
         a->remove(out_delay);
     }
+	
     model->getMixer()->executeAction(animId, in_delay, out_delay, 1.0f, auto_lock);
 
 	if (rootMovement) {
 		movingRoot = true;
+		//ROOT_DEV
+		dbg("RESEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEET\n");
 		animationToRootName = model->getCoreModel()->getCoreAnimation(animId)->getName();
-		rootPosition = VEC3(0,0,0);
-		acum = VEC3(0, 0, 0);
 		lastAcum = VEC3(0, 0, 0);
 	}
     if (speed != 1.0f) {
@@ -381,6 +388,20 @@ bool TCompSkeleton::isExecutingActionAnimation(std::string animName) {
         iteratorAnimationAction++;
     }
     return false;
+}
+
+bool TCompSkeleton::isExecutingActionAnimation(int animId) {
+
+	std::list<CalAnimationAction *>::iterator iteratorAnimationAction;
+	iteratorAnimationAction = model->getMixer()->getAnimationActionList().begin();
+	while (iteratorAnimationAction != model->getMixer()->getAnimationActionList().end())
+	{
+		if (stringAnimationIdMap[(*iteratorAnimationAction)->getCoreAnimation()->getName()] == animId) {
+			return true;
+		}
+		iteratorAnimationAction++;
+	}
+	return false;
 }
 
 //Returns the n bones that are positioned lowest by the y axis.

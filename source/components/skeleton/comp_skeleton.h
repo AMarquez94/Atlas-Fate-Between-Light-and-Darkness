@@ -21,10 +21,6 @@ struct TCompSkeleton : public TCompBase {
 	//Variables to root movement
 	std::string animationToRootName = "";
 	bool movingRoot = false;
-	VEC3 rootPosition;
-	VEC3 diff = VEC3(0,0,0);
-	VEC3 lastDiff = VEC3(0, 0, 0);
-	VEC3 acum = VEC3(0, 0, 0);
 	VEC3 lastAcum = VEC3(0, 0, 0);
 
 	TCompSkeleton();
@@ -50,6 +46,7 @@ struct TCompSkeleton : public TCompBase {
 	bool actionAnimationOnExecution();
 	bool isExecutingCyclicAnimation(int animId);
 	bool isExecutingActionAnimation(std::string animName);
+	bool isExecutingActionAnimation(int animId);
 	float getAnimationDuration(int animId);
 	void guessFeetBonesId(int feetNum);
 	void setFeetId(std::vector<int> feetId);
