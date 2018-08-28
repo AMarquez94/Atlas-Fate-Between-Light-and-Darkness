@@ -35,6 +35,7 @@ void TCompSkeleton::registerMsgs()
 {
 	DECL_MSG(TCompSkeleton, TMsgEntityCreated, onMsgEntityCreated);
 	DECL_MSG(TCompSkeleton, TMsgAnimationCallback, onMsgAnimationCallback);
+	DECL_MSG(TCompSkeleton, TMsgAnimationCompleted, onMsgAnimationCallback);
 }
 
 // --------------------------------------------------------------------
@@ -509,4 +510,8 @@ void TCompSkeleton::onMsgEntityCreated(const TMsgEntityCreated& msg) {
 void TCompSkeleton::onMsgAnimationCallback(const TMsgAnimationCallback& msg) {
 	//Call the LUA function for the callback
 	EngineLogic.execScript(msg.function_to_call + "(" + CHandle(this).getOwner().asString() + ")");
+}
+
+void TCompSkeleton::onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) {
+	
 }

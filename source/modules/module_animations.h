@@ -5,6 +5,7 @@
 
 struct AnimationCallback : public CalAnimationCallback {
 	std::string luaFunction;
+	std::string animationName;
 	void AnimationUpdate(float anim_time, CalModel *model);
 	void AnimationComplete(CalModel *model);
 };
