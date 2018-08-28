@@ -88,6 +88,43 @@
   {
     "entity":
     {
+      "name": "mesh_muralla_intro_muro_003"
+      ,
+      "transform":
+      {
+        "pos": "2.21082 0.0 -77.5"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_muralla_intro_muro_003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_muralla_intro_muro003.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_muralla_intro_ornamentos"
       ,
       "transform":
@@ -320,6 +357,66 @@
           "materials":
           [
             "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_estandarte001"
+      ,
+      "transform":
+      {
+        "pos": "-11.6093 11.9242 15.6442"
+        ,
+        "rotation": "-0.000893312 -0.707438 -0.706773 -0.001271"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_estandarte001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_estandarte"
+      ,
+      "transform":
+      {
+        "pos": "5.39879 11.9242 15.6442"
+        ,
+        "rotation": "-0.000893312 -0.707438 -0.706773 -0.001271"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_estandarte.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
           ]
         }
       ]
