@@ -35,6 +35,7 @@
 #include "components/postfx/comp_render_motion_blur.h"
 #include "components/postfx/comp_render_flares.h"
 #include "components/postfx/comp_render_environment.h"
+#include "components/postfx/comp_ssr.h"
 
 //--------------------------------------------------------------------------------------
 
@@ -430,6 +431,10 @@ void CModuleRender::postProcessingStack() {
         TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
         if (c_render_outlines && cb_outline.outline_alpha > 0)
             curr_rt = c_render_outlines->apply(curr_rt);
+
+        TCompSSR* c_srr = e_cam->get< TCompSSR >();
+        if (c_srr)
+            curr_rt = c_srr->apply(curr_rt);
 
         TCompVignette* c_vignette = e_cam->get< TCompVignette >();
         if (c_vignette)

@@ -252,6 +252,40 @@ float4 PS_GBuffer_SWHologram_Model(
 	return scan * float4(0,0.25,1,1) * theta + glow * 0.12 * scan; 
 }
 
+float4 PS_GBuffer_SWPlayer(
+  float4 Pos       : SV_POSITION
+  , float3 iNormal : NORMAL0
+  , float4 iTangent : NORMAL1
+  , float2 iTex0 : TEXCOORD0
+  , float2 iTex1 : TEXCOORD1
+  , float3 iWorldPos : TEXCOORD2
+	, float3 iModelPos : TEXCOORD3
+	, float  iMaxHeight : TEXCOORD4
+): SV_Target0
+{
+	// Compute the scanline
+	float4 noise0 = txNoiseMap.Sample(samLinear, iTex0);
+	float vertex_sift = (dot(iWorldPos, normalize(float3(0,-1,0))) + 1) * .5;
+	float scan = frac(vertex_sift * 80) * 0.86;
+	
+	float3 dir = normalize(iWorldPos.xyz - camera_pos);
+	float theta = abs(1- pow(dot(dir, iNormal), 2));
+	
+	float4 flicker = txNoiseMap.Sample(samLinear, iTex0 * global_world_time);
+	
+	// Compute the glow factor
+	float glow = 1 - step(frac(vertex_sift * 6 + global_world_time), 0.95);	
+	clip(noise0.x - self_opacity);
+	float4 color = float4(0,0.25,1,1);
+
+	if((noise0.x - self_opacity) < 0.1f){
+		color = float4(1,1,1,1);
+	}
+	
+	return scan * color * theta + glow * 0.12 * scan; 
+}
+
+
 void VS_HologramScreen(
 	in float4 iPos     : POSITION
 	, in float3 iNormal : NORMAL0

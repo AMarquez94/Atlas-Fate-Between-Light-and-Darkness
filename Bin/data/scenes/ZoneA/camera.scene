@@ -89,6 +89,9 @@
 			"vignette" : {
 				"enabled" : true
 		  },
+			"ssr" : {
+				"enabled" : true
+		  },
 			"render_flares" : {
 				"enabled" : true,
 				"max_steps": 4
