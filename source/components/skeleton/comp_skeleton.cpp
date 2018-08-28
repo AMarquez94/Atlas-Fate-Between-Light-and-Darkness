@@ -124,10 +124,9 @@ void TCompSkeleton::update(float dt) {
 	if (movingRoot) {
 		//ROOT_DEV
 		if (isExecutingActionAnimation(animationToRootName)) {
+
 			VEC3 acum = Cal2DX( model->getSkeleton()->getBone(1)->getTranslation() );
 			VEC3 diff = acum - lastAcum;
-			//acum = Cal2DX( model->getSkeleton()->getBone(0)->getTranslation() )- tmx->getPosition();
-			//diff = acum - lastAcum;
 			dbg("diff : %f		%f		%f    acum:  %f		%f		%f    \n", diff.x, diff.y, diff.z, acum.x, acum.y, acum.z);
 
 			tmx->setPosition(tmx->getPosition() + diff);
@@ -136,10 +135,7 @@ void TCompSkeleton::update(float dt) {
 			model->getSkeleton()->getBone(1)->setTranslation(CalVector( 0, 0, 0 ));
 			model->getSkeleton()->getBone(1)->calculateState();
 
-			//rootPosition = Cal2DX(actualRootPos);
-			//lastDiff = diff;
 			lastAcum = acum;
-			//Fer el que s'hagi de fer
 		}
 		else {
 			movingRoot = false;
@@ -458,7 +454,6 @@ std::vector<VEC3> TCompSkeleton::getFeetPositions() {
         float z = model->getSkeleton()->getBone(feetBonesId[i])->getTranslationAbsolute().z;
         feetPositions.push_back(VEC3(x, y, z));
     }
-    dbg("");
     return feetPositions;
 }
 
@@ -467,6 +462,12 @@ VEC3 TCompSkeleton::getBonePosition(const std::string & name) {
     VEC3 bonePos;
     int bone_id = model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(name);
     return Cal2DX(model->getSkeleton()->getBone(bone_id)->getTranslationAbsolute());
+}
+
+QUAT TCompSkeleton::getBoneRotation(const std::string & name) {
+
+	int bone_id = model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(name);
+	return Cal2DX(model->getSkeleton()->getBone(bone_id)->getRotationAbsolute());
 }
 
 VEC3 TCompSkeleton::getBonePositionById(int id) {

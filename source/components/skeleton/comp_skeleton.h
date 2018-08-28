@@ -53,6 +53,7 @@ struct TCompSkeleton : public TCompBase {
 	std::vector<VEC3> getFeetPositions();
     VEC3 getBonePosition(const std::string & name);
 	VEC3 getBonePositionById(int id);
+	QUAT getBoneRotation(const std::string & name);
 	void setBonePositionById(int id, VEC3 position);
 
 
