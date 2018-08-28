@@ -48,11 +48,14 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
 
     /* TODO: */
     // crouch => DONE
-    // sm => ALMOST (shader)
-    // sm ver => ALMOST (shader, wall, floor)
-    // sm fall => ALMOST (shader, floor)
+    // sm => ALMOST (floor)
+    // sm ver => ALMOST (wall, floor)
+    // sm fall => ALMOST (floor)
     // attack => ALMOST (enemy)
     // inhibitor => DONE
+    // press button
+    // caja
+    // sonar
 
 	createRoot("player", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
     addChild("player", "playerActivated", BTNode::EType::PRIORITY, (BTCondition)&TCompAIPlayer::conditionHasBeenEnabled, nullptr, nullptr);
@@ -196,6 +199,15 @@ TCompAIPlayer::EState TCompAIPlayer::getStateEnumFromString(const std::string & 
     }
     else if (stateName.compare("sm_ver_tutorial") == 0) {
         return TCompAIPlayer::EState::TUT_SM_VER;
+    }
+    else if (stateName.compare("button_tutorial") == 0) {
+        return TCompAIPlayer::EState::TUT_BUTTON;
+    }
+    else if (stateName.compare("box_tutorial") == 0) {
+        return TCompAIPlayer::EState::TUT_BOX;
+    }
+    else if (stateName.compare("sonar_tutorial") == 0) {
+        return TCompAIPlayer::EState::TUT_SONAR;
     }
     else {
         return TCompAIPlayer::EState::NUM_STATES;
@@ -485,6 +497,21 @@ bool TCompAIPlayer::conditionSMFallTutorial(float dt)
 bool TCompAIPlayer::conditionSMVerTutorial(float dt)
 {
     return _currentState == TCompAIPlayer::EState::TUT_SM_VER;
+}
+
+bool TCompAIPlayer::conditionButtonTutorial(float dt)
+{
+    return _currentState == TCompAIPlayer::EState::TUT_BUTTON;
+}
+
+bool TCompAIPlayer::conditionBoxTutorial(float dt)
+{
+    return _currentState == TCompAIPlayer::EState::TUT_BOX;
+}
+
+bool TCompAIPlayer::conditionSonarTutorial(float dt)
+{
+    return _currentState == TCompAIPlayer::EState::TUT_SONAR;
 }
 
 /* ASSERTS */
