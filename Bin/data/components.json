@@ -38,6 +38,7 @@
 		"light_point",
 		"projector",
 		"camera_flyover",
+		"rigid_anim",
 		"curve_controller",
 		"trigger_camera",
 		"trigger_checkpoint",
