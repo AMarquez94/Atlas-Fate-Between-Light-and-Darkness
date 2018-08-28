@@ -195,11 +195,12 @@ const std::string& CalCoreAnimation::getName(void) const
   *
   *****************************************************************************/
 
-void CalCoreAnimation::registerCallback(CalAnimationCallback *callback,float min_interval)
+void CalCoreAnimation::registerCallback(CalAnimationCallback *callback,float min_interval, bool animationCompletedCallback)
 {
   CallbackRecord record;
   record.callback     = callback;
   record.min_interval = min_interval;
+  record.animationCompletedCallback = animationCompletedCallback;
 
   m_listCallbacks.push_back(record);
 }

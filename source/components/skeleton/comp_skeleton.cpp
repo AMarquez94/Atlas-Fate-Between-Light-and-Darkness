@@ -123,7 +123,7 @@ void TCompSkeleton::update(float dt) {
     }
 	if (movingRoot) {
 		//ROOT_DEV
-		if (isExecutingActionAnimation(animationToRootName)) {
+		if (isExecutingActionAnimationForRoot(animationToRootName)) {
 
 			VEC3 acum = Cal2DX( model->getSkeleton()->getBone(1)->getTranslation() );
 			VEC3 diff = acum - lastAcum;
@@ -393,6 +393,21 @@ bool TCompSkeleton::isExecutingActionAnimation(int animId) {
 	while (iteratorAnimationAction != model->getMixer()->getAnimationActionList().end())
 	{
 		if (stringAnimationIdMap[(*iteratorAnimationAction)->getCoreAnimation()->getName()] == animId) {
+			return true;
+		}
+		iteratorAnimationAction++;
+	}
+	return false;
+}
+
+bool TCompSkeleton::isExecutingActionAnimationForRoot(std::string animName) {
+
+	std::list<CalAnimationAction *>::iterator iteratorAnimationAction;
+	iteratorAnimationAction = model->getMixer()->getAnimationActionList().begin();
+	while (iteratorAnimationAction != model->getMixer()->getAnimationActionList().end())
+	{
+		std::string itName = (*iteratorAnimationAction)->getCoreAnimation()->getName();
+		if (itName.compare(animName) == 0 && (*iteratorAnimationAction)->getState() != CalAnimation::State::STATE_OUT) {
 			return true;
 		}
 		iteratorAnimationAction++;
