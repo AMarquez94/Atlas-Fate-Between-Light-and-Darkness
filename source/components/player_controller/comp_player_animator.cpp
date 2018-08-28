@@ -44,7 +44,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 		"idle",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
@@ -54,7 +55,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 		"walk",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
   /* TODO: Meter animación para andar despacio (ahora es la de andar pero a menos velocidad) */
@@ -65,7 +67,8 @@ void TCompPlayerAnimator::initializeAnimations() {
     "walk",
     "",
     1.0f,
-    0.5f
+    0.5f,
+	  false
   );
 
 	initializeAnimation(
@@ -75,7 +78,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 		"run",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
@@ -85,7 +89,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 		"attack",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
@@ -95,7 +100,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 		"die",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
@@ -105,7 +111,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 		"dead",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
@@ -115,7 +122,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 		"crouch",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
@@ -125,7 +133,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 		"fall",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
@@ -135,7 +144,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 		"crouch_walk",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
@@ -145,7 +155,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 		"crouch_walk_slow",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
@@ -155,7 +166,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 		"land_soft",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
   initializeAnimation(
@@ -165,7 +177,8 @@ void TCompPlayerAnimator::initializeAnimations() {
     "crouch",
     "",
     1.0f,
-    1.0f
+    1.0f,
+	  false
   );
 
 	initializeAnimation(
@@ -175,7 +188,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 		"walk",
 		"run",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
@@ -185,7 +199,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 		"metralla_start",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
@@ -195,7 +210,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 		"metralla_middle",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
@@ -205,7 +221,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 		"metralla_finish",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
@@ -215,7 +232,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 		"sm_enter",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
@@ -225,7 +243,8 @@ void TCompPlayerAnimator::initializeAnimations() {
 		"sm_pose",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 }
 

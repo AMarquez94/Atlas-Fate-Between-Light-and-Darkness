@@ -108,13 +108,41 @@ void TCompSkeleton::update(float dt) {
         model->getMixer()->blendCycle(actualCycleAnimId[1], 1.f - cyclicAnimationWeight, 0.f);
     }
 
+	//VEC3 posti = this->getBonePositionById(0);
+	//dbg("%f	 %f	 %f\n", posti.x, posti.y, posti.z);
+
+	
+
     TCompTransform* tmx = get<TCompTransform>();
     if (tmx != NULL) {
         VEC3 pos = tmx->getPosition();
         QUAT rot = tmx->getRotation();
         model->getMixer()->setWorldTransform(DX2Cal(pos), DX2Cal(rot));
+		
         model->update(dt);
     }
+	if (movingRoot) {
+		//ROOT_DEV
+		if (isExecutingActionAnimationForRoot(animationToRootName)) {
+
+			VEC3 acum = Cal2DX( model->getSkeleton()->getBone(1)->getTranslation() );
+			VEC3 diff = acum - lastAcum;
+			dbg("diff : %f		%f		%f    acum:  %f		%f		%f    \n", diff.x, diff.y, diff.z, acum.x, acum.y, acum.z);
+
+			tmx->setPosition(tmx->getPosition() + diff);
+
+			VEC3 pos = tmx->getPosition();
+			model->getSkeleton()->getBone(1)->setTranslation(CalVector( 0, 0, 0 ));
+			model->getSkeleton()->getBone(1)->calculateState();
+
+			lastAcum = acum;
+		}
+		else {
+			movingRoot = false;
+			animationToRootName = "";
+		}
+
+	}
     lastFrameCyclicAnimationWeight = cyclicAnimationWeight;
 }
 
@@ -256,7 +284,7 @@ void TCompSkeleton::renderDebug() {
     VEC3 lines[MAX_SUPPORTED_BONES][2];
     int nrLines = model->getSkeleton()->getBoneLines(&lines[0][0].x);
     TCompTransform* transform = get<TCompTransform>();
-    float scale = transform->getScale().x;
+    //VEC scale = transform->getScale();
     //for (int currLine = 0; currLine < nrLines; currLine++)
     //    renderLine(lines[currLine][0] * scale, lines[currLine][1] * scale, VEC4(1, 1, 1, 1));
 }
@@ -272,21 +300,31 @@ void TCompSkeleton::changeCyclicAnimation(int anim1Id, float speed, int anim2Id,
     if (anim2Id != -1) {
         model->getMixer()->blendCycle(anim2Id, 1.f - weight, in_delay);
     }
-	model->getMixer()->setAnimationTime(0.0f);
+
     actualCycleAnimId[0] = anim1Id;
     actualCycleAnimId[1] = anim2Id;
 
     model->getMixer()->setTimeFactor(speed);
 }
 
-void TCompSkeleton::executeActionAnimation(int animId, float speed, float in_delay, float out_delay) {
+void TCompSkeleton::executeActionAnimation(int animId, float speed, bool rootMovement, float in_delay, float out_delay) {
 
     bool auto_lock = false;
+	if (isExecutingActionAnimation(animId))
+		return;
     for (auto a : model->getMixer()->getAnimationActionList()) {
         a->remove(out_delay);
     }
+	
     model->getMixer()->executeAction(animId, in_delay, out_delay, 1.0f, auto_lock);
 
+	if (rootMovement) {
+		movingRoot = true;
+		//ROOT_DEV
+		dbg("RESEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEET\n");
+		animationToRootName = model->getCoreModel()->getCoreAnimation(animId)->getName();
+		lastAcum = VEC3(0, 0, 0);
+	}
     if (speed != 1.0f) {
         std::list<CalAnimationAction *>::iterator iteratorAnimationAction;
         iteratorAnimationAction = model->getMixer()->getAnimationActionList().begin();
@@ -338,6 +376,7 @@ bool TCompSkeleton::isExecutingActionAnimation(std::string animName) {
     iteratorAnimationAction = model->getMixer()->getAnimationActionList().begin();
     while (iteratorAnimationAction != model->getMixer()->getAnimationActionList().end())
     {
+		//dbg("%d\n",(*iteratorAnimationAction)->getCoreAnimation()->getRefCount());
         std::string itName = (*iteratorAnimationAction)->getCoreAnimation()->getName();
         if (itName.compare(animName) == 0) {
             return true;
@@ -345,6 +384,35 @@ bool TCompSkeleton::isExecutingActionAnimation(std::string animName) {
         iteratorAnimationAction++;
     }
     return false;
+}
+
+bool TCompSkeleton::isExecutingActionAnimation(int animId) {
+
+	std::list<CalAnimationAction *>::iterator iteratorAnimationAction;
+	iteratorAnimationAction = model->getMixer()->getAnimationActionList().begin();
+	while (iteratorAnimationAction != model->getMixer()->getAnimationActionList().end())
+	{
+		if (stringAnimationIdMap[(*iteratorAnimationAction)->getCoreAnimation()->getName()] == animId) {
+			return true;
+		}
+		iteratorAnimationAction++;
+	}
+	return false;
+}
+
+bool TCompSkeleton::isExecutingActionAnimationForRoot(std::string animName) {
+
+	std::list<CalAnimationAction *>::iterator iteratorAnimationAction;
+	iteratorAnimationAction = model->getMixer()->getAnimationActionList().begin();
+	while (iteratorAnimationAction != model->getMixer()->getAnimationActionList().end())
+	{
+		std::string itName = (*iteratorAnimationAction)->getCoreAnimation()->getName();
+		if (itName.compare(animName) == 0 && (*iteratorAnimationAction)->getState() != CalAnimation::State::STATE_OUT) {
+			return true;
+		}
+		iteratorAnimationAction++;
+	}
+	return false;
 }
 
 //Returns the n bones that are positioned lowest by the y axis.
@@ -401,20 +469,29 @@ std::vector<VEC3> TCompSkeleton::getFeetPositions() {
         float z = model->getSkeleton()->getBone(feetBonesId[i])->getTranslationAbsolute().z;
         feetPositions.push_back(VEC3(x, y, z));
     }
-    dbg("");
     return feetPositions;
 }
 
 VEC3 TCompSkeleton::getBonePosition(const std::string & name) {
 
+    VEC3 bonePos;
     int bone_id = model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(name);
     return Cal2DX(model->getSkeleton()->getBone(bone_id)->getTranslationAbsolute());
 }
 
 QUAT TCompSkeleton::getBoneRotation(const std::string & name) {
 
-    int bone_id = model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(name);
-    return Cal2DX(model->getSkeleton()->getBone(bone_id)->getRotationAbsolute());
+	int bone_id = model->getCoreModel()->getCoreSkeleton()->getCoreBoneId(name);
+	return Cal2DX(model->getSkeleton()->getBone(bone_id)->getRotationAbsolute());
+}
+
+VEC3 TCompSkeleton::getBonePositionById(int id) {
+	VEC3 pos = Cal2DX( model->getSkeleton()->getBone(id)->getTranslationAbsolute() );
+	return pos;
+}
+
+void TCompSkeleton::setBonePositionById(int id, VEC3 position) {
+	model->getSkeleton()->getBone(id)->setTranslation(DX2Cal(position));
 }
 
 float TCompSkeleton::getAnimationDuration(int animId) {

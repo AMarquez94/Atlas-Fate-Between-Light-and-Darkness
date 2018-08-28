@@ -3,7 +3,7 @@
 			"name": "Enemies"
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/patrol.prefab",
 			"name": "The Enemy 1",
 			"transform": {
@@ -70,7 +70,7 @@
 			}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/mimetic.prefab",
 			"name": "Mimetic 1",
 			"transform": {
