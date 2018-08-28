@@ -1,0 +1,36 @@
+[{
+		"entity": {
+			"name": "Tutorial Patrol",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [
+				{
+					"mesh": "data/skeletons/patrol/Mech_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_player_main_hologram.material"
+					]
+				},
+				{
+					"mesh": "data/skeletons/patrol/Mech_low.mesh",
+					"materials":
+					[
+						"data/materials/characters/mtl_player_main_hologram.material"
+					]
+				}
+			],
+			"fade_controller": {
+				"fade_color": "0.0 1.0 1.0 1.0",
+				"fade_time": 4.0,
+				"fall_speed": 0.3
+			},
+			"skeleton": {
+				"skeleton": "data/skeletons/patrol/patrol.skeleton",
+				"scale": 1.4
+			},
+			"patrol_animator": true,
+			"tags": ["patrol_tutorial"]
+		}
+	}
+]

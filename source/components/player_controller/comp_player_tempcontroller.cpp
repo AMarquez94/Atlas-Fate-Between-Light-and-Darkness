@@ -122,6 +122,7 @@ void TCompTempPlayerController::update(float dt) {
 		updateShader(dt); // Move this to player render component...
 		timeInhib += dt;
 		canAttack = canAttackTest(dt);
+        EngineGUI.enableWidget("stamina_bar_general", stamina / maxStamina != 1.f);
 		Engine.getGUI().getVariables().setVariant("staminaBarFactor", stamina / maxStamina);	 
         Engine.getGUI().getVariables().setVariant("lifeBarFactor", life / maxLife);
     }
@@ -641,11 +642,17 @@ void TCompTempPlayerController::die()
 {
     if (!isImmortal && !isDead()) {
         CEntity* e = CHandle(this).getOwner();
+
+        TMsgGlitchController msg;
+        msg.revert = false;
+        e->sendMsg(msg);
+
         TMsgSetFSMVariable groundMsg;
         groundMsg.variant.setName("onDead");
         groundMsg.variant.setBool(true);
         e->sendMsg(groundMsg);
         life = 0;
+
     }
 }
 
@@ -783,8 +790,6 @@ const bool TCompTempPlayerController::onMergeTest(float dt) {
         groundMsg.variant.setBool(mergeTest);
         e->sendMsg(groundMsg);
         c_my_rigidbody->filters.mFilterData = isMerged == true ? pxPlayerFilterData : pxShadowFilterData;
-
-        EngineGUI.enableWidget("stamina_bar_general", mergeTest);
     }
 
     return mergeTest;

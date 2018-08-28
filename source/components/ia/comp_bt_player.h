@@ -28,6 +28,9 @@ public:
     BTNode::ERes actionResetTimersAttackTutorial(float dt);
     BTNode::ERes actionResetTimersSMFallTutorial(float dt);
     BTNode::ERes actionResetTimersSMVerTutorial(float dt);
+    BTNode::ERes actionResetTimersBoxTutorial(float dt);
+    BTNode::ERes actionResetTimersSonarTutorial(float dt);
+    BTNode::ERes actionResetTimersButtonTutorial(float dt);
     BTNode::ERes actionResetBT(float dt);
     BTNode::ERes actionAnimationWalk(float dt);
     BTNode::ERes actionAnimationCrouch(float dt);
@@ -40,9 +43,17 @@ public:
     BTNode::ERes actionAnimationInhibitorFinnish(float dt);
     BTNode::ERes actionAnimationStandingCrouch(float dt);
     BTNode::ERes actionAnimationAttack(float dt);
+    BTNode::ERes actionWaitAttack(float dt);
     BTNode::ERes actionWait(float dt);
     BTNode::ERes actionAnimationFalling(float dt);
     BTNode::ERes actionSMVerMove(float dt);
+    BTNode::ERes actionSMVerMoveFront(float dt);
+    BTNode::ERes actionSMVerTurn(float dt);
+    BTNode::ERes actionAnimationWalkWithMovement(float dt);
+    BTNode::ERes actionAnimationGrabBox(float dt);
+    BTNode::ERes actionAnimationWalkBox(float dt);
+    BTNode::ERes actionAnimationSonar(float dt);
+    BTNode::ERes actionAnimationPressButton(float dt);
 
     bool conditionHasBeenEnabled(float dt);
     bool conditionCinematicMode(float dt);
@@ -73,6 +84,7 @@ private:
 
 	void onMsgPlayerAIEnabled(const TMsgPlayerAIEnabled& msg);
 	void onMsgEntityCreated(const TMsgEntityCreated& msg);
+	void onMsgEntityGroupCreated(const TMsgEntitiesGroupCreated& msg);
 
 	//load
 	void loadActions() override;
@@ -80,6 +92,7 @@ private:
 	void loadAsserts() override;
 
     TCompAIPlayer::EState getStateEnumFromString(const std::string& stateName);
+    CHandle h_sm_tutorial;
 
     DECL_SIBLING_ACCESS();
 };

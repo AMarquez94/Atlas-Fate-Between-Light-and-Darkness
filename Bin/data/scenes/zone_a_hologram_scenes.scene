@@ -14,5 +14,14 @@
 				"scale": "1.7 1.7 1.7"
 			}
 		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/patrol_tutorial.prefab",
+			"transform": {
+				"pos": "-40.306 1.125 -87",
+				"scale": "1.7 1.7 1.7"
+			}
+		}
 	}
 ]

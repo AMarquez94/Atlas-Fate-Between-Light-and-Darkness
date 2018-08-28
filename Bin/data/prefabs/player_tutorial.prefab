@@ -87,32 +87,10 @@
 		"ai_player": {
 			"enabled": false,
 			"speed": 4.0,
-			"rotationSpeed": 4.0,
-			"waypoints": [{
-					"position": "-38.5 0 -138",
-					"lookAt": "0 0 1",
-					"minTime": 10
-				},
-				{
-					"position": "-36 0 -138",
-					"lookAt": "0 0 1",
-					"minTime": 10
-				}
-			]
+			"rotationSpeed": 4.0
 		},
 		"player_animator": true,
-		"tags": [
-			"player_tutorial"
-		],
-		"particles": {
-			"cores": [
-				"data/particles/sm_ground.particles",
-				"data/particles/sm_top.particles",
-				"data/particles/sm_whisps.particles",
-				"data/particles/sm_whisps2.particles",
-				"data/particles/sm_top_trail.particles"
-			]
-		}
+		"tags": ["player_tutorial"]
 	}
 }, {
 	"entity": {
@@ -177,6 +155,32 @@
 				"data/materials/characters/mtl_player_main_hologram_solid.material"
 			]
 		}],
+		"abs_aabb": true,
+		"local_aabb": true
+	}
+}, {
+	"entity": {
+		"name": "Tutorial SM",
+		"transform": {
+			"pos": "0 0 0",
+			"lookat": "0 0 0"
+		},
+		"fade_controller": {
+			"fade_color": "0.0 1.0 1.0 1.0",
+			"fade_time": 0.6,
+			"destroy": false
+		},
+		"render": [{
+			"self_intensity": 0.65,
+			"self_color": "0 1 1 1",
+			"mesh": "data/meshes/pj_shadowmerge.mesh",
+			"materials": [
+				"data/materials/characters/mtl_player_main_hologram_solid.material"
+			]
+		}],
+		"hierarchy": {
+			"parent": "Tutorial Player"
+		},
 		"abs_aabb": true,
 		"local_aabb": true
 	}

@@ -1,5 +1,5 @@
 function onSceneStart_scene_zone_a()
-	setTutorialPlayerState(true, "sm_fall_tutorial");
+	setTutorialPlayerState(true, "sm_ver_tutorial");
 end
 
 function transition_zone_a_to_coliseum()

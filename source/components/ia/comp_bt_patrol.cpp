@@ -36,11 +36,13 @@ void TCompAIPatrol::preUpdate(float dt)
 
     CEntity * parent = CHandle(this).getOwner();
     TCompGroup * group = parent->get<TCompGroup>();
-    CEntity * light = group->handles[1];
-    TCompHierarchy * t_hier = light->get<TCompHierarchy>();
-    MAT44 parent_pos = my_trans->asMatrix().Invert();
-    VEC3 new_pos = VEC3::Transform(pos, parent_pos);
-    t_hier->setPosition(new_pos);
+    if (group) {
+        CEntity * light = group->handles[1];
+        TCompHierarchy * t_hier = light->get<TCompHierarchy>();
+        MAT44 parent_pos = my_trans->asMatrix().Invert();
+        VEC3 new_pos = VEC3::Transform(pos, parent_pos);
+        t_hier->setPosition(new_pos);
+    }
 }
 
 void TCompAIPatrol::postUpdate(float dt)
@@ -79,6 +81,9 @@ void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
     enemyColor.colorAlert = j.count("colorAlert") ? loadVEC4(j["colorAlert"]) : VEC4(1, 0, 0, 1);
     enemyColor.colorDead = j.count("colorDead") ? loadVEC4(j["colorDead"]) : VEC4(0, 0, 0, 0);
 
+    is_tutorial = j.value("is_tutorial", false);
+    tutorial_name = j.value("tutorial_name", "");
+
     btType = BTType::PATROL;
 }
 
@@ -105,7 +110,9 @@ void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
     myHandle = CHandle(this);
 
     TCompEmissionController *eController = get<TCompEmissionController>();
-    eController->blend(enemyColor.colorNormal, 0.001f);
+    if (eController) {
+        eController->blend(enemyColor.colorNormal, 0.001f);
+    }
 }
 
 void TCompAIPatrol::onMsgPlayerDead(const TMsgPlayerDead& msg) {
@@ -325,6 +332,10 @@ void TCompAIPatrol::loadActions() {
     actions_initializer["actionWarnClosestDrone"] = (BTAction)&TCompAIPatrol::actionWarnClosestDrone;
     actions_initializer["actionRotateTowardsUnreachablePlayer"] = (BTAction)&TCompAIPatrol::actionRotateTowardsUnreachablePlayer;
 
+    actions_initializer["actionResetTimersAttackTutorial"] = (BTAction)&TCompAIPatrol::actionResetTimersAttackTutorial;
+    actions_initializer["actionWait"] = (BTAction)&TCompAIPatrol::actionWait;
+    actions_initializer["actionAnimationStunned"] = (BTAction)&TCompAIPatrol::actionAnimationStunned;
+    actions_initializer["actionResetBT"] = (BTAction)&TCompAIPatrol::actionResetBT;
 }
 
 void TCompAIPatrol::loadConditions() {
@@ -345,6 +356,10 @@ void TCompAIPatrol::loadConditions() {
     conditions_initializer["conditionChase"] = (BTCondition)&TCompAIPatrol::conditionChase;
     conditions_initializer["conditionPlayerAttacked"] = (BTCondition)&TCompAIPatrol::conditionPlayerAttacked;
     conditions_initializer["conditionIsDestUnreachable"] = (BTCondition)&TCompAIPatrol::conditionIsDestUnreachable;
+
+    conditions_initializer["conditionIsTutorial"] = (BTCondition)&TCompAIPatrol::conditionIsTutorial;
+    conditions_initializer["conditionAttackTutorial"] = (BTCondition)&TCompAIPatrol::conditionAttackTutorial;
+    conditions_initializer["conditionSMEnemyTutorial"] = (BTCondition)&TCompAIPatrol::conditionSMEnemyTutorial;
 }
 
 void TCompAIPatrol::loadAsserts() {
@@ -990,6 +1005,50 @@ BTNode::ERes TCompAIPatrol::actionMarkPatrolAsLost(float dt)
     return BTNode::ERes::LEAVE;
 }
 
+BTNode::ERes TCompAIPatrol::actionResetTimersAttackTutorial(float dt)
+{
+    timer = 0.f;
+    maxTimer = 1.f;
+    TCompPatrolAnimator* my_anim = get<TCompPatrolAnimator>();
+    my_anim->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+    return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPatrol::actionWait(float dt)
+{
+    timer += dt;
+    if (timer > maxTimer) {
+        timer = 0.f;
+        return BTNode::ERes::LEAVE;
+    }
+    else {
+        return BTNode::ERes::STAY;
+    }
+}
+
+BTNode::ERes TCompAIPatrol::actionAnimationStunned(float dt)
+{
+    timer += dt;
+
+    if (timer > 0.7f) {
+        TCompPatrolAnimator* my_anim = get<TCompPatrolAnimator>();
+        my_anim->playAnimation(TCompPatrolAnimator::EAnimation::DIE);
+
+        CEntity* player_tutorial = getEntityByName("Tutorial Player");
+        if (player_tutorial) {
+            TCompPlayerAnimator* player_anim = player_tutorial->get<TCompPlayerAnimator>();
+            maxTimer = player_anim->getAnimationDuration((TCompAnimator::EAnimation)TCompPlayerAnimator::EAnimation::ATTACK) + 2.f - timer;
+        }
+        return BTNode::ERes::LEAVE;
+    }
+}
+
+BTNode::ERes TCompAIPatrol::actionResetBT(float dt)
+{
+    setCurrent(nullptr);
+    return BTNode::ERes::LEAVE;
+}
+
 
 /* CONDITIONS */
 
@@ -1091,6 +1150,21 @@ bool TCompAIPatrol::conditionPlayerAttacked(float dt)
 bool TCompAIPatrol::conditionIsDestUnreachable(float dt)
 {
     return !isCurrentDestinationReachable();
+}
+
+bool TCompAIPatrol::conditionIsTutorial(float dt)
+{
+    return is_tutorial;
+}
+
+bool TCompAIPatrol::conditionAttackTutorial(float dt)
+{
+    return tutorial_name.compare("attack_tutorial") == 0;
+}
+
+bool TCompAIPatrol::conditionSMEnemyTutorial(float dt)
+{
+    return tutorial_name.compare("sm_tutorial") == 0;
 }
 
 /* ASSERTS */
