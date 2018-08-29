@@ -123,7 +123,7 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
     addChild("smVerTutorial", "turnSMVerTutorial_1", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionSMVerTurn, nullptr);
     addChild("smVerTutorial", "moveFrontSMVerTutorial_2", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionSMVerMoveFront, nullptr);
     addChild("smVerTutorial", "turnSMVerTutorial_2", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionSMVerTurn, nullptr);
-    addChild("smVerTutorial", "moveFrontSMVerTutorial_2", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionSMVerMoveFront, nullptr);
+    addChild("smVerTutorial", "moveFrontSMVerTutorial_3", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionSMVerMoveFront, nullptr);
     addChild("smVerTutorial", "exitsmSMVerTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionEndSM, nullptr);
     addChild("smVerTutorial", "waitSMVerTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionWait, nullptr);
     addChild("smVerTutorial", "resetBTSMVerTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
@@ -157,7 +157,7 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
     addChild("smFenceTutorial", "movesmSMFenceTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionSMVerMoveFront, nullptr);
     addChild("smFenceTutorial", "endsmSMFenceTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionEndSM, nullptr);
     addChild("smFenceTutorial", "waitSMFenceTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionWait, nullptr);
-    addChild("smFenceTutorial", "resetBTSMTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
+    addChild("smFenceTutorial", "resetBTFenceTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
 
 	addChild("playerActivated", "goToWpt", BTNode::EType::ACTION, (BTCondition)&TCompAIPlayer::conditionCinematicMode, (BTAction)&TCompAIPlayer::actionGoToWpt, nullptr);
     //addChild("playerActivated", "default", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionDefault, nullptr);
@@ -188,6 +188,11 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
 void TCompAIPlayer::onMsgPlayerAIEnabled(const TMsgPlayerAIEnabled& msg) {
 	enabledPlayerAI = msg.enableAI;
     _currentState = getStateEnumFromString(msg.state);
+    TCompTransform* my_pos = get<TCompTransform>();
+    initial_pos = my_pos->getPosition();
+    initial_rot = my_pos->getRotation();
+    setCurrent(nullptr);
+    _timer = 0.f;
 }
 
 void TCompAIPlayer::onMsgEntityCreated(const TMsgEntityCreated& msg) {
@@ -288,6 +293,8 @@ BTNode::ERes TCompAIPlayer::actionResetTimersCrouchTutorial(float dt)
 {
     _timer = 0.f;
     _maxTimer = 1.f;
+    TCompTransform* mypos = get<TCompTransform>();
+    mypos->setPosition(initial_pos);
     return BTNode::ERes::LEAVE;
 }
 
@@ -295,6 +302,8 @@ BTNode::ERes TCompAIPlayer::actionResetTimersSMTutorial(float dt)
 {
     _timer = 0.f;
     _maxTimer = 1.f;
+    TCompTransform* mypos = get<TCompTransform>();
+    mypos->setPosition(initial_pos);
     return BTNode::ERes::LEAVE;
 }
 
@@ -302,6 +311,8 @@ BTNode::ERes TCompAIPlayer::actionResetTimersRemoveInhibitorTutorial(float dt)
 {
     _timer = 0.f;
     _maxTimer = 1.f;
+    TCompTransform* mypos = get<TCompTransform>();
+    mypos->setPosition(initial_pos);
     return BTNode::ERes::LEAVE;
 }
 
@@ -309,6 +320,8 @@ BTNode::ERes TCompAIPlayer::actionResetTimersAttackTutorial(float dt)
 {
     _timer = 0.f;
     _maxTimer = 1.f;
+    TCompTransform* mypos = get<TCompTransform>();
+    mypos->setPosition(initial_pos);
     CEntity* patrol_tutorial = getEntityByName("Tutorial Patrol");
     if (patrol_tutorial) {
         TCompPatrolAnimator *patrol_anim = patrol_tutorial->get<TCompPatrolAnimator>();
@@ -339,6 +352,8 @@ BTNode::ERes TCompAIPlayer::actionResetTimersBoxTutorial(float dt)
 {
     _timer = 0.f;
     _maxTimer = 1.f;
+    TCompTransform* mypos = get<TCompTransform>();
+    mypos->setPosition(initial_pos);
     return BTNode::ERes::LEAVE;
 }
 
@@ -346,6 +361,8 @@ BTNode::ERes TCompAIPlayer::actionResetTimersSonarTutorial(float dt)
 {
     _timer = 0.f;
     _maxTimer = 1.f;
+    TCompTransform* mypos = get<TCompTransform>();
+    mypos->setPosition(initial_pos);
     return BTNode::ERes::LEAVE;
 }
 
@@ -353,6 +370,8 @@ BTNode::ERes TCompAIPlayer::actionResetTimersButtonTutorial(float dt)
 {
     _timer = 0.f;
     _maxTimer = 1.f;
+    TCompTransform* mypos = get<TCompTransform>();
+    mypos->setPosition(initial_pos);
     return BTNode::ERes::LEAVE;
 }
 

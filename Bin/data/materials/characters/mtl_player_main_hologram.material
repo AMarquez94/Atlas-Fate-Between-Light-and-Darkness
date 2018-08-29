@@ -1,6 +1,6 @@
 {
 	"technique": "pbr_hologram_sw_player.tech",
-	"shadows": true,
+	"shadows": false,
 	"textures": {
 		"albedo": "data/textures/player/Shade_mtl_BaseColor.dds",
 		"normal": "data/textures/player/Shade_mtl_Normal.dds",

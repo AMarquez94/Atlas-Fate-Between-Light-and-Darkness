@@ -16,14 +16,31 @@
 	},
 	{
 		"entity": {
-			"name": "CrouchTutorial",
+			"name": "SMTutorial",
 			"transform": {
-				"pos": "-3.36 0 21"
+				"pos": "-3.6 0 26.5"
 			},
 			"collider":
 			{
 				"shape": "box",
-				"size": "2 2 2",
+				"size": "15 2 3",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "SMVerTutorial",
+			"transform": {
+				"pos": "-3.6 0 19"
+			},
+			"collider":
+			{
+				"shape": "box",
+				"size": "15 2 3",
 				"is_trigger": true,
 				"is_dynamic": false,
 				"is_controller": false,

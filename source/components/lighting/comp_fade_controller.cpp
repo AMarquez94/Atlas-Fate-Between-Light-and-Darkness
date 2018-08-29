@@ -64,9 +64,6 @@ void TCompFadeController::update(float dt) {
 
 /* Used to blend between two colors at a given time */
 void TCompFadeController::launch(const TMsgFadeBody& msg) {
-    
-
-    dbg("Received and starting\n");
 
     TCompRender * c_my_render = get<TCompRender>();
     assert(c_my_render);

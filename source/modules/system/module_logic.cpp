@@ -144,7 +144,8 @@ void CModuleLogic::publishClasses() {
         .set("setPosition", &TCompTransform::setPosition)
         .set("getPosition", &TCompTransform::getPosition)
         .set("setRotation", &TCompTransform::setRotation)
-        .set("getRotation", &TCompTransform::getRotation);
+        .set("getRotation", &TCompTransform::getRotation)
+        .set("lookAt", &TCompTransform::lookAt);
 
     SLB::Class <CHandle>("CHandle", m)
         .comment("CHandle wrapper")
@@ -481,6 +482,10 @@ CHandle spawn(const std::string & name, const VEC3 & pos) {
     TEntityParseContext ctxSpawn;
     parseScene("data/prefabs/" + name + ".prefab", ctxSpawn);
     CHandle h = ctxSpawn.entities_loaded[0];
+    CEntity* e = h;
+    dbg("PARSEADA %s\n", e->getName());
+    TCompTransform* e_pos = e->get<TCompTransform>();
+    e_pos->setPosition(pos);
     return h;
 }
 
@@ -561,11 +566,6 @@ void pausePlayerToggle() {
 void debugToggle()
 {
     EngineRender.setDebugMode(!EngineRender.getDebugMode());
-}
-
-void destroy() {
-
-
 }
 
 void bind(const std::string& key, const std::string& script) {
