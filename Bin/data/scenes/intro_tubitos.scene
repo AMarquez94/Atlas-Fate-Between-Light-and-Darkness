@@ -2294,6 +2294,1446 @@
   {
     "entity":
     {
+      "name": "mesh_tubitos_det_intro_086"
+      ,
+      "transform":
+      {
+        "pos": "11.0931 1.73713 11.8394"
+        ,
+        "rotation": "0.0 -1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_086.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_087"
+      ,
+      "transform":
+      {
+        "pos": "9.6297 7.00805 12.1324"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_087.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_088"
+      ,
+      "transform":
+      {
+        "pos": "7.69002 1.95592 12.835"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_088.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_089"
+      ,
+      "transform":
+      {
+        "pos": "-13.1999 3.51024 12.0725"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_089.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_090"
+      ,
+      "transform":
+      {
+        "pos": "-14.1659 1.4658 13.1518"
+        ,
+        "rotation": "0.0 -0.707107 -0.707107 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_090.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_091"
+      ,
+      "transform":
+      {
+        "pos": "-12.3943 7.90429 15.6645"
+        ,
+        "rotation": "-1.0 0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_091.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_092"
+      ,
+      "transform":
+      {
+        "pos": "-15.6625 9.11749 12.1193"
+        ,
+        "rotation": "-0.707107 0.707107 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_092.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_093"
+      ,
+      "transform":
+      {
+        "pos": "-9.02417 12.5576 13.273"
+        ,
+        "rotation": "0.707107 0.0 -0.707107 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_093.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_094"
+      ,
+      "transform":
+      {
+        "pos": "-9.28935 3.43952 12.9329"
+        ,
+        "rotation": "-0.5 -0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_094.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_095"
+      ,
+      "transform":
+      {
+        "pos": "-11.8575 0.868482 15.49"
+        ,
+        "rotation": "-0.707107 -0.707107 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_095.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_096"
+      ,
+      "transform":
+      {
+        "pos": "-14.2956 6.79962 12.6662"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_096.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_097"
+      ,
+      "transform":
+      {
+        "pos": "-14.2299 14.374 12.195"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_097.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_098"
+      ,
+      "transform":
+      {
+        "pos": "8.01445 15.6578 12.5644"
+        ,
+        "rotation": "-0.5 0.5 0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_098.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_099"
+      ,
+      "transform":
+      {
+        "pos": "5.365 12.9366 15.3526"
+        ,
+        "rotation": "-1.19209e-07 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_099.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_101"
+      ,
+      "transform":
+      {
+        "pos": "-8.32258 4.65978 12.1746"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_101.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_102"
+      ,
+      "transform":
+      {
+        "pos": "-8.49725 -0.194994 11.987"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_102.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_103"
+      ,
+      "transform":
+      {
+        "pos": "2.18802 2.0744 12.128"
+        ,
+        "rotation": "0.5 0.5 0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_103.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_104"
+      ,
+      "transform":
+      {
+        "pos": "2.55564 8.39875 11.8109"
+        ,
+        "rotation": "-0.707107 0.707107 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_104.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_105"
+      ,
+      "transform":
+      {
+        "pos": "-5.14582 13.053 11.8468"
+        ,
+        "rotation": "0.0 -1.50996e-07 -1.50996e-07 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_105.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_106"
+      ,
+      "transform":
+      {
+        "pos": "-10.8886 14.7933 15.3467"
+        ,
+        "rotation": "-1.50996e-07 0.0 -1.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_106.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_107"
+      ,
+      "transform":
+      {
+        "pos": "2.69899 4.36114 13.0531"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_107.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_108"
+      ,
+      "transform":
+      {
+        "pos": "0.637627 13.677 11.9731"
+        ,
+        "rotation": "-2.1495e-07 0.0 0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_108.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_109"
+      ,
+      "transform":
+      {
+        "pos": "2.72122 11.112 12.3395"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_109.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_110"
+      ,
+      "transform":
+      {
+        "pos": "6.37502 3.5504 15.6439"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_110.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_111"
+      ,
+      "transform":
+      {
+        "pos": "-17.4034 1.73713 7.15392"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_111.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_112"
+      ,
+      "transform":
+      {
+        "pos": "-15.94 7.00805 6.86092"
+        ,
+        "rotation": "0.0 1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_112.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_113"
+      ,
+      "transform":
+      {
+        "pos": "-14.0004 1.95592 6.15831"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_113.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_114"
+      ,
+      "transform":
+      {
+        "pos": "6.88954 3.51024 6.92081"
+        ,
+        "rotation": "-0.707107 0.707107 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_114.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_115"
+      ,
+      "transform":
+      {
+        "pos": "7.85556 1.4658 5.84151"
+        ,
+        "rotation": "0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_115.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_116"
+      ,
+      "transform":
+      {
+        "pos": "6.08395 7.90429 3.3288"
+        ,
+        "rotation": "1.19209e-07 0.0 -1.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_116.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_117"
+      ,
+      "transform":
+      {
+        "pos": "9.35219 9.11749 6.87405"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_117.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_118"
+      ,
+      "transform":
+      {
+        "pos": "2.71383 12.5576 5.72036"
+        ,
+        "rotation": "-0.707107 0.0 -0.707107 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_118.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_119"
+      ,
+      "transform":
+      {
+        "pos": "2.97901 3.43952 6.06041"
+        ,
+        "rotation": "-0.5 -0.5 0.5 0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_119.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_120"
+      ,
+      "transform":
+      {
+        "pos": "5.5472 0.868482 3.50338"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_120.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_121"
+      ,
+      "transform":
+      {
+        "pos": "7.98528 6.79962 6.32716"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_121.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_122"
+      ,
+      "transform":
+      {
+        "pos": "7.91953 14.374 6.79835"
+        ,
+        "rotation": "0.0 1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_122.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_123"
+      ,
+      "transform":
+      {
+        "pos": "-14.3248 15.6578 6.42897"
+        ,
+        "rotation": "-0.5 0.5 -0.5 0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_123.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_124"
+      ,
+      "transform":
+      {
+        "pos": "-11.6753 12.9366 3.64074"
+        ,
+        "rotation": "0.0 -1.0 1.62921e-07 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_124.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_125"
+      ,
+      "transform":
+      {
+        "pos": "2.01224 4.65978 6.81874"
+        ,
+        "rotation": "0.0 1.62921e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_125.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_126"
+      ,
+      "transform":
+      {
+        "pos": "2.18691 -0.194995 7.00631"
+        ,
+        "rotation": "0.707107 -0.707107 0.0 -1.22224e-07"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_126.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_127"
+      ,
+      "transform":
+      {
+        "pos": "-8.49836 2.0744 6.86533"
+        ,
+        "rotation": "0.5 -0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_127.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_128"
+      ,
+      "transform":
+      {
+        "pos": "-8.86599 8.39875 7.18245"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_128.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_129"
+      ,
+      "transform":
+      {
+        "pos": "-1.16452 13.053 7.14653"
+        ,
+        "rotation": "-1.50996e-07 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_129.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_130"
+      ,
+      "transform":
+      {
+        "pos": "4.57822 14.7933 3.64665"
+        ,
+        "rotation": "-1.0 0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_130.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_131"
+      ,
+      "transform":
+      {
+        "pos": "-9.00933 4.36114 5.9402"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_131.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_132"
+      ,
+      "transform":
+      {
+        "pos": "-6.94797 13.677 7.02018"
+        ,
+        "rotation": "0.707107 -0.707107 0.0 -2.68335e-07"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_132.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_133"
+      ,
+      "transform":
+      {
+        "pos": "-9.03157 11.112 6.65378"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_133.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_134"
+      ,
+      "transform":
+      {
+        "pos": "-12.6854 3.5504 3.34941"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_134.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_tubitos_det_intro001"
       ,
       "transform":
