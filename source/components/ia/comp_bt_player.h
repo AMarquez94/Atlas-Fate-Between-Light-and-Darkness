@@ -8,7 +8,7 @@ class TCompAIPlayer : public TCompIAController {
 
 public:
 
-    enum EState { TUT_CROUCH = 0, TUT_SM, TUT_INHIBITOR, TUT_ATTACK, TUT_SM_FALL, TUT_SM_VER, TUT_BOX, TUT_SONAR, TUT_BUTTON, CINEMATIC, NUM_STATES };
+    enum EState { TUT_CROUCH = 0, TUT_SM, TUT_INHIBITOR, TUT_ATTACK, TUT_SM_FALL, TUT_SM_VER, TUT_BOX, TUT_SONAR, TUT_BUTTON, TUT_SM_FENCE, CINEMATIC, NUM_STATES };
 
     bool enabledPlayerAI;
 
@@ -31,6 +31,7 @@ public:
     BTNode::ERes actionResetTimersBoxTutorial(float dt);
     BTNode::ERes actionResetTimersSonarTutorial(float dt);
     BTNode::ERes actionResetTimersButtonTutorial(float dt);
+    BTNode::ERes actionResetTimersSMFenceTutorial(float dt);
     BTNode::ERes actionResetBT(float dt);
     BTNode::ERes actionAnimationWalk(float dt);
     BTNode::ERes actionAnimationCrouch(float dt);
@@ -66,6 +67,7 @@ public:
     bool conditionButtonTutorial(float dt);
     bool conditionBoxTutorial(float dt);
     bool conditionSonarTutorial(float dt);
+    bool conditionSMFenceTutorial(float dt);
 
     //Auxiliar
     bool move(float dt);

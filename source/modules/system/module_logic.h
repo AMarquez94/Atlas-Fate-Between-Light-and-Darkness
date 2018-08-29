@@ -94,7 +94,7 @@ void lanternsDisable(bool disable);
 void blendInCamera(const std::string& cameraName, float blendInTime);
 void blendOutCamera(const std::string& cameraName, float blendOutTime);
 void blendOutActiveCamera(float blendOutTime);
-void spawn(const std::string & name, const VEC3 & pos);
+CHandle spawn(const std::string & name, const VEC3 & pos);
 void bind(const std::string& key, const std::string& script);
 void loadscene(const std::string &level);
 void unloadscene();

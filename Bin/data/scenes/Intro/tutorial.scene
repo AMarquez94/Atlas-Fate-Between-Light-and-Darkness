@@ -10,7 +10,24 @@
 		"entity": {
 			"prefab": "data/prefabs/tutorial/player_tutorial.prefab",
 			"transform": {
-				"pos": "-40.306 1.125 -90.335"
+				"pos": "0 -30.0 0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "CrouchTutorial",
+			"transform": {
+				"pos": "-3.36 0 21"
+			},
+			"collider":
+			{
+				"shape": "box",
+				"size": "2 2 2",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
 			}
 		}
 	},

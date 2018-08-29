@@ -15,6 +15,7 @@
 #include "components/ia/comp_bt_patrol.h"
 #include "components/comp_audio.h"
 #include "components/ia/comp_bt_player.h"
+#include "entity/entity_parser.h"
 
 bool CModuleLogic::start() {
 
@@ -138,10 +139,18 @@ void CModuleLogic::publishClasses() {
         .comment("This is our wrapper of the patrol controller")
         .set("launchInhibitor", &TCompAIPatrol::launchInhibitor);
 
+    SLB::Class<TCompTransform>("Transform", m)
+        .comment("This is our wrapper of the transform controller")
+        .set("setPosition", &TCompTransform::setPosition)
+        .set("getPosition", &TCompTransform::getPosition)
+        .set("setRotation", &TCompTransform::setRotation)
+        .set("getRotation", &TCompTransform::getRotation);
+
     SLB::Class <CHandle>("CHandle", m)
         .comment("CHandle wrapper")
         .constructor()
-        .set("fromUnsigned", &CHandle::fromUnsigned);
+        .set("fromUnsigned", &CHandle::fromUnsigned)
+        .set("destroy", &CHandle::destroy);
 
     SLB::Class <CEntity>("CEntity", m)
         .comment("CEntity wrapper")
@@ -468,9 +477,11 @@ void blendOutActiveCamera(float blendOutTime) {
 }
 
 /* Spawn item on given position */
-void spawn(const std::string & name, const VEC3 & pos) {
-
-
+CHandle spawn(const std::string & name, const VEC3 & pos) {
+    TEntityParseContext ctxSpawn;
+    parseScene("data/prefabs/" + name + ".prefab", ctxSpawn);
+    CHandle h = ctxSpawn.entities_loaded[0];
+    return h;
 }
 
 void loadscene(const std::string &level) {

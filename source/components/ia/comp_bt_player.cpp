@@ -26,7 +26,9 @@ void TCompAIPlayer::debugInMenu() {
 
 
 	ImGui::Text("My Pos: (%f, %f, %f)", tpos->getPosition().x, tpos->getPosition().y, tpos->getPosition().z);
-	ImGui::Text("Waypoint: (%f, %f, %f)", _waypoints[0].position.x, _waypoints[0].position.y, _waypoints[0].position.z);
+    if (_waypoints.size() > 0) {
+	    ImGui::Text("Waypoint: (%f, %f, %f)", _waypoints[0].position.x, _waypoints[0].position.y, _waypoints[0].position.z);
+    }
 	ImGui::Text("Enabled player AI: %s", enabledPlayerAI ? "TRUE" : "FALSE");
 	ImGui::Text("Speed: %f", _speed);
 	ImGui::Text("Rotation Speed: %f", _rotationSpeed);
@@ -49,9 +51,10 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
 
     /* TODO: */
     // crouch => DONE
-    // sm => ALMOST (floor)
-    // sm ver => ALMOST (wall, floor)
-    // sm fall => ALMOST (floor)
+    // sm => DONE
+    // sm ver => DONE
+    // sm fall => DONE
+    // sm fence => DONE
     // attack => DONE
     // sm enemy => TODO
     // inhibitor => DONE
@@ -146,6 +149,15 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
     addChild("buttonTutorial", "pressButtonButtonTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationPressButton, nullptr);
     addChild("buttonTutorial", "waitButtonTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionWait, nullptr);
     addChild("buttonTutorial", "resetBTButtonTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
+
+    addChild("playerActivated", "smFenceTutorial", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionSMFenceTutorial, nullptr, nullptr);
+    addChild("smFenceTutorial", "resetTimersSMFenceTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersSMFenceTutorial, nullptr);
+    addChild("smFenceTutorial", "smSMFenceTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionStartSM, nullptr);
+    addChild("smFenceTutorial", "smAnimSMVerTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSM, nullptr);
+    addChild("smFenceTutorial", "movesmSMFenceTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionSMVerMoveFront, nullptr);
+    addChild("smFenceTutorial", "endsmSMFenceTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionEndSM, nullptr);
+    addChild("smFenceTutorial", "waitSMFenceTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionWait, nullptr);
+    addChild("smFenceTutorial", "resetBTSMTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
 
 	addChild("playerActivated", "goToWpt", BTNode::EType::ACTION, (BTCondition)&TCompAIPlayer::conditionCinematicMode, (BTAction)&TCompAIPlayer::actionGoToWpt, nullptr);
     //addChild("playerActivated", "default", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionDefault, nullptr);
@@ -246,6 +258,9 @@ TCompAIPlayer::EState TCompAIPlayer::getStateEnumFromString(const std::string & 
     else if (stateName.compare("sonar_tutorial") == 0) {
         return TCompAIPlayer::EState::TUT_SONAR;
     }
+    else if (stateName.compare("sm_fence_tutorial") == 0) {
+        return TCompAIPlayer::EState::TUT_SM_FENCE;
+    }
     else {
         return TCompAIPlayer::EState::NUM_STATES;
     }
@@ -338,6 +353,15 @@ BTNode::ERes TCompAIPlayer::actionResetTimersButtonTutorial(float dt)
 {
     _timer = 0.f;
     _maxTimer = 1.f;
+    return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersSMFenceTutorial(float dt)
+{
+    _timer = 0.f;
+    _maxTimer = 0.6f;
+    TCompTransform* mypos = get<TCompTransform>();
+    mypos->setPosition(initial_pos);
     return BTNode::ERes::LEAVE;
 }
 
@@ -700,6 +724,11 @@ bool TCompAIPlayer::conditionBoxTutorial(float dt)
 bool TCompAIPlayer::conditionSonarTutorial(float dt)
 {
     return _currentState == TCompAIPlayer::EState::TUT_SONAR;
+}
+
+bool TCompAIPlayer::conditionSMFenceTutorial(float dt)
+{
+    return _currentState == TCompAIPlayer::EState::TUT_SM_FENCE;
 }
 
 /* ASSERTS */
