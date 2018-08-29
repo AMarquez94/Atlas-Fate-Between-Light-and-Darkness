@@ -40,7 +40,7 @@ void TCompRigidAnim::update(float dt) {
   TCompTransform* c_trans = get< TCompTransform >();
   c_trans->setPosition(k.pos);
   c_trans->setRotation(k.rot);
-  c_trans->setScale(k.scale);
+  c_trans->setScale(VEC3(k.scale, k.scale, k.scale));
 
   if (has_finished) {
     if( loops )
