@@ -1,0 +1,125 @@
+[
+  {
+    "entity":
+    {
+      "name": "AniBox001"
+      ,
+      "transform":
+      {
+        "pos": "0.0 4.37114e-07 10.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/AniBox001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/piedras1.material"
+          ]
+        }
+      ]
+      ,
+      "rigid_anim" : 
+      {
+        "src" : "data/rigid_anims/rigid_anim2.anims"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "AniBox002"
+      ,
+      "transform":
+      {
+        "pos": "2.24891 4.37114e-07 10.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/AniBox002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/piedras1.material"
+          ]
+        }
+      ]
+      ,
+      "rigid_anim" : 
+      {
+        "src" : "data/rigid_anims/rigid_anim2.anims"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "AniBox003"
+      ,
+      "transform":
+      {
+        "pos": "2.24891 4.37114e-07 10.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/AniBox002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/piedras1.material"
+          ]
+        }
+      ]
+      ,
+      "rigid_anim" : 
+      {
+        "src" : "data/rigid_anims/rigid_anim2.anims"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "AniBox004"
+      ,
+      "transform":
+      {
+        "pos": "2.24891 4.37114e-07 10.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/AniBox002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/piedras1.material"
+          ]
+        }
+      ]
+      ,
+      "rigid_anim" : 
+      {
+        "src" : "data/rigid_anims/rigid_anim2.anims"
+      }
+    }
+  }
+]
