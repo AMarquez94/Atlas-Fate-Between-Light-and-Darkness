@@ -1,0 +1,18 @@
+{	"technique": "pbr_parallax.tech",
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_suelo_intro_alb.dds"
+    ,
+    "metallic": "data/textures/tx_suelo_intro_met.dds"
+    ,
+    "roughness": "data/textures/tx_suelo_intro_rgh.dds"
+    ,
+    "normal": "data/textures/tx_suelo_intro_nml.dds"
+    ,
+    "height": "data/textures/tx_suelo_intro_hgt.dds"
+    ,
+    "aocclusion": "data/textures/tx_suelo_intro_ao.dds"
+  }
+}
