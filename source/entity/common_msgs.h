@@ -272,16 +272,18 @@ struct TMsgButtonActivated {
     DECL_MSG_ID();
 };
 
-struct TMsgPlayerAIEnabled {
-    DECL_MSG_ID();
-};
-
 struct TMsgStopAudioComponent {
     DECL_MSG_ID();
 };
 
 struct TMsgEntityCanLandSM {
     bool canSM;
+    DECL_MSG_ID();
+};
+
+struct TMsgPlayerAIEnabled {
+    std::string state;
+    bool enableAI;
     DECL_MSG_ID();
 };
 

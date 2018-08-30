@@ -18,6 +18,11 @@ struct TCompSkeleton : public TCompBase {
 	CRenderCte<CCteSkinBones> cb_bones;
 	CalModel* model = nullptr;
 
+	//Variables to root movement
+	std::string animationToRootName = "";
+	bool movingRoot = false;
+	VEC3 lastAcum = VEC3(0, 0, 0);
+
 	TCompSkeleton();
 	~TCompSkeleton();
 
@@ -33,7 +38,7 @@ struct TCompSkeleton : public TCompBase {
 	void onMsgAnimationCallback(const TMsgAnimationCallback& msg);
 
 	void changeCyclicAnimation(int anim1Id, float speed = 1.0f, int anim2Id = -1, float weight = 1.0f, float in_delay = 0.15f, float out_delay = 0.15f);
-	void executeActionAnimation(int animId, float speed = 1.0f, float in_delay = 0.15f, float out_delay = 0.15f);
+	void executeActionAnimation(int animId, float speed = 1.0f, bool rootMovement = false, float in_delay = 0.15f, float out_delay = 0.15f);
 
 	void setCyclicAnimationWeight(float new_value);
 	float getCyclicAnimationWeight();
@@ -41,12 +46,21 @@ struct TCompSkeleton : public TCompBase {
 	bool actionAnimationOnExecution();
 	bool isExecutingCyclicAnimation(int animId);
 	bool isExecutingActionAnimation(std::string animName);
+	bool isExecutingActionAnimationForRoot(std::string animName);
+	bool isExecutingActionAnimation(int animId);
 	float getAnimationDuration(int animId);
 	void guessFeetBonesId(int feetNum);
 	void setFeetId(std::vector<int> feetId);
 	std::vector<VEC3> getFeetPositions();
     VEC3 getBonePosition(const std::string & name);
-    QUAT getBoneRotation(const std::string & name);
+	VEC3 getBonePositionById(int id);
+	QUAT getBoneRotation(const std::string & name);
+	void setBonePositionById(int id, VEC3 position);
+
+
+
+	
+
 	DECL_SIBLING_ACCESS();
 };
 

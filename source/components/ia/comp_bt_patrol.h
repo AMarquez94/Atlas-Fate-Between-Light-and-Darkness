@@ -17,6 +17,11 @@ private:
     bool disabledLanterns = false;
     std::vector<CHandle> ignoredPatrols;
 
+    bool is_tutorial = false;
+    std::string tutorial_name = "";
+    float timer = 0.f;
+    float maxTimer = 0.f;
+
     DECL_SIBLING_ACCESS();
 
     void onMsgEntityCreated(const TMsgEntityCreated& msg);
@@ -64,12 +69,10 @@ public:
     BTNode::ERes actionMarkPlayerAsSeen(float dt);
     BTNode::ERes actionShootInhibitor(float dt);
     BTNode::ERes actionGenerateNavmeshChase(float dt);
-
     BTNode::ERes actionWarnClosestDrone(float dt);
     BTNode::ERes actionRotateTowardsUnreachablePlayer(float dt);
     BTNode::ERes actionGoToUnreachablePoint(float dt);
     BTNode::ERes actionResetUnreachableTimers(float dt);
-
     BTNode::ERes actionChasePlayer(float dt);
     BTNode::ERes actionAttack(float dt);
     BTNode::ERes actionRotateToNoiseSource(float dt);
@@ -80,6 +83,11 @@ public:
     BTNode::ERes actionGoToPatrol(float dt);
     BTNode::ERes actionFixPatrol(float dt);
     BTNode::ERes actionMarkPatrolAsLost(float dt);
+
+    BTNode::ERes actionResetTimersAttackTutorial(float dt);
+    BTNode::ERes actionWait(float dt);
+    BTNode::ERes actionAnimationStunned(float dt);
+    BTNode::ERes actionResetBT(float dt);
 
     bool conditionManageStun(float dt);
     bool conditionEndAlert(float dt);
@@ -96,6 +104,10 @@ public:
     bool conditionChase(float dt);
     bool conditionPlayerAttacked(float dt);
     bool conditionIsDestUnreachable(float dt);
+
+    bool conditionIsTutorial(float dt);
+    bool conditionAttackTutorial(float dt);
+    bool conditionSMEnemyTutorial(float dt);
 
     bool assertPlayerInFov(float dt);
     bool assertPlayerNotInFov(float dt);

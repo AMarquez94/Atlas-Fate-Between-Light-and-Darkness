@@ -19,6 +19,9 @@ void TCompMimeticAnimator::debugInMenu() {
 	if (ImGui::SmallButton("Death")) {
 		playAnimation(EAnimation::DEATH, speed);
 	}
+	if (ImGui::SmallButton("Die")) {
+		playAnimation(EAnimation::DIE, speed);
+	}
 
 	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);
 	TCompSkeleton * compSkeleton = get<TCompSkeleton>();
@@ -34,127 +37,141 @@ void TCompMimeticAnimator::initializeAnimations() {
 		"idle",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
+
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::RUN,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"run",
+		"idle",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::WALK,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"walk",
+		"idle",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::DEATH,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"walk",
+		"idle",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::DIE,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"walk",
+		"root",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		true
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::ALARM,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"alert",
+		"idle",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::JUMP_TO_WALL,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"walk",
+		"idle",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::LOOKING_FOR_PLAYER,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"walk",
+		"idle",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::PLAYER_FOUNDED,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"walk",
+		"idle",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::QUIT_WALL,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"walk",
+		"idle",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::TURN_LEFT,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"walk",
+		"idle",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::TURN_RIGHT,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"walk",
+		"idle",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::SUSPECTING,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"walk",
+		"idle",
 		"",
 		1.0f,
-		1.0f
+		1.0f,
+		false
 	);
 }
 

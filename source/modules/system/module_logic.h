@@ -94,7 +94,7 @@ void lanternsDisable(bool disable);
 void blendInCamera(const std::string& cameraName, float blendInTime);
 void blendOutCamera(const std::string& cameraName, float blendOutTime);
 void blendOutActiveCamera(float blendOutTime);
-void spawn(const std::string & name, const VEC3 & pos);
+CHandle spawn(const std::string & name, const VEC3 & pos, const VEC3& lookat);
 void bind(const std::string& key, const std::string& script);
 void loadscene(const std::string &level);
 void unloadscene();
@@ -109,6 +109,9 @@ void cinematicModeToggle();
 /* Sounds */
 SoundEvent playEvent(const std::string& name);
 void stopAllAudioComponents();
+
+/* Tutorial */
+void setTutorialPlayerState(bool active, const std::string& stateName);
 
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);

@@ -8,6 +8,57 @@
 		},
 	"children": [{
 			"parent": "patrol",
+			"name": "isTutorial",
+			"type": "priority",
+			"condition": "conditionIsTutorial",
+			"action": "",
+			"assert": ""
+		},{
+			"parent": "isTutorial",
+			"name": "attackTutorial",
+			"type": "sequence",
+			"condition": "conditionAttackTutorial",
+			"action": "",
+			"assert": ""
+		},{
+			"parent": "attackTutorial",
+			"name": "resetTimersAttackTutorial",
+			"type": "action",
+			"condition": "",
+			"action": "actionResetTimersAttackTutorial",
+			"assert": ""
+		},{
+			"parent": "attackTutorial",
+			"name": "waitAttackTutorial",
+			"type": "action",
+			"condition": "",
+			"action": "actionWait",
+			"assert": ""
+		},{
+			"parent": "attackTutorial",
+			"name": "stunnedAttackTutorial",
+			"type": "action",
+			"condition": "",
+			"action": "actionAnimationStunned",
+			"assert": ""
+		},
+		{
+			"parent": "attackTutorial",
+			"name": "waitAttackTutorial_2",
+			"type": "action",
+			"condition": "",
+			"action": "actionWait",
+			"assert": ""
+		},
+		{
+			"parent": "attackTutorial",
+			"name": "resetBTAttackTutorial",
+			"type": "action",
+			"condition": "",
+			"action": "actionResetBT",
+			"assert": ""
+		},{
+			"parent": "patrol",
 			"name": "manageStun",
 			"type": "priority",
 			"condition": "conditionManageStun",

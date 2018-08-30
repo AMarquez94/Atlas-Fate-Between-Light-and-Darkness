@@ -162,7 +162,8 @@ void CalAnimation::checkCallbacks(float animationTime,CalModel *model)
 		  m_lastCallbackTimes.push_back(animationTime);
 		  m_lastCallbackDone.push_back(false);
 	  }
-    //list[i].callback->AnimationUpdate(animationTime, model);
+	  if (list[i].animationCompletedCallback) continue;
+
 	  if (animationTime > 0 && animationTime < m_lastCallbackTimes[i]) {  // looped
 		 // m_lastCallbackTimes[i] -= m_pCoreAnimation->getDuration();
 		  m_lastCallbackDone[i] = false;
@@ -184,8 +185,10 @@ void CalAnimation::checkCallbacks(float animationTime,CalModel *model)
 void CalAnimation::completeCallbacks(CalModel *model)
 {
   std::vector<CalCoreAnimation::CallbackRecord>& list = m_pCoreAnimation->getCallbackList();
-  for (size_t i=0; i<list.size(); i++)
-    list[i].callback->AnimationComplete(model);
+  for (size_t i = 0; i < list.size(); i++) {
+	  if(list[i].animationCompletedCallback)	list[i].callback->AnimationComplete(model);
+  }
+
 }
 
 //****************************************************************************//

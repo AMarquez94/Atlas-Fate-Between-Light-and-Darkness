@@ -232,12 +232,15 @@ void CRenderManager::renderCategory(const char* category_name) {
 
         //Is our material using skinning data?
         if (using_skin) {
-            CEntity* e = it->h_render_owner.getOwner();
-            assert(e);
-            TCompSkeleton* cs = e->get<TCompSkeleton>();
-            assert(cs);
-            cs->updateCtesBones();
-            cs->cb_bones.activate();
+            CHandle h = it->h_render_owner.getOwner();
+            if (h.isValid()) {
+                CEntity* e = h;
+                assert(e);
+                TCompSkeleton* cs = e->get<TCompSkeleton>();
+                assert(cs);
+                cs->updateCtesBones();
+                cs->cb_bones.activate();
+            }
         }
 
         //if (uses_capa) {

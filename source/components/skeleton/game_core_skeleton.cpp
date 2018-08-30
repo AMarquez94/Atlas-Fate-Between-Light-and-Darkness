@@ -378,8 +378,16 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
 			std::string function_to_call = it.value().value("function_to_call", "");
 			new_callback->luaFunction = function_to_call;
 			CalCoreAnimation *core_anim = getCoreAnimation(anim_id);
-			core_anim->registerCallback(new_callback, timeToCall);
+			core_anim->registerCallback(new_callback, timeToCall, false);
 		}
+	}
+
+	if (anim.count("animation_completed_callback")) {
+
+		AnimationCallback *new_callback = new AnimationCallback();
+		new_callback->luaFunction = "";
+		CalCoreAnimation *core_anim = getCoreAnimation(anim_id);
+		core_anim->registerCallback(new_callback, 9999999.99f, true);		
 	}
 
     if (anim.count("audio_callbacks")) {
@@ -391,7 +399,7 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
             bool relative_to_player = it.value().value("relative_to_player", true);
             new_audio_callback->audioName = audio_name;
             CalCoreAnimation *core_anim = getCoreAnimation(anim_id);
-            core_anim->registerCallback(new_audio_callback, timeToCall);
+            core_anim->registerCallback(new_audio_callback, timeToCall, false);
         }
     }
   }

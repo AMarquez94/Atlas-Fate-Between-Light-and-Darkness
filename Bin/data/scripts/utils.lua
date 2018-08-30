@@ -105,8 +105,8 @@ function cg_drawlights(type)
 	SLB.cg_drawlights(type)
 end
 
-function spawn()
-	SLB.spawn()
+function spawn(name, pos, lookat)
+	return SLB.spawn(name, pos, lookat)
 end
 
 function renderNavmeshToggle()
@@ -131,4 +131,8 @@ end
 
 function isDebug()
 	SLB.isDebug();
+end
+
+function setTutorialPlayerState(active, state)
+	SLB.setTutorialPlayerState(active, state);
 end

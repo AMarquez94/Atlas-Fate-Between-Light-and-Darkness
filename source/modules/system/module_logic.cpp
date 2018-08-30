@@ -14,6 +14,8 @@
 #include "components/object_controller/comp_button.h"
 #include "components/ia/comp_bt_patrol.h"
 #include "components/comp_audio.h"
+#include "components/ia/comp_bt_player.h"
+#include "entity/entity_parser.h"
 
 bool CModuleLogic::start() {
 
@@ -137,10 +139,19 @@ void CModuleLogic::publishClasses() {
         .comment("This is our wrapper of the patrol controller")
         .set("launchInhibitor", &TCompAIPatrol::launchInhibitor);
 
+    SLB::Class<TCompTransform>("Transform", m)
+        .comment("This is our wrapper of the transform controller")
+        .set("setPosition", &TCompTransform::setPosition)
+        .set("getPosition", &TCompTransform::getPosition)
+        .set("setRotation", &TCompTransform::setRotation)
+        .set("getRotation", &TCompTransform::getRotation)
+        .set("lookAt", &TCompTransform::lookAt);
+
     SLB::Class <CHandle>("CHandle", m)
         .comment("CHandle wrapper")
         .constructor()
-        .set("fromUnsigned", &CHandle::fromUnsigned);
+        .set("fromUnsigned", &CHandle::fromUnsigned)
+        .set("destroy", &CHandle::destroy);
 
     SLB::Class <CEntity>("CEntity", m)
         .comment("CEntity wrapper")
@@ -201,6 +212,9 @@ void CModuleLogic::publishClasses() {
     // sounds
     m->set("playEvent", SLB::FuncCall::create(&playEvent));
     m->set("stopAllAudioComponents", SLB::FuncCall::create(&stopAllAudioComponents));
+
+    // tutorial
+    m->set("setTutorialPlayerState", SLB::FuncCall::create(&setTutorialPlayerState));
 
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -464,9 +478,15 @@ void blendOutActiveCamera(float blendOutTime) {
 }
 
 /* Spawn item on given position */
-void spawn(const std::string & name, const VEC3 & pos) {
-
-
+CHandle spawn(const std::string & name, const VEC3 & pos, const VEC3& lookat) {
+    TEntityParseContext ctxSpawn;
+    parseScene("data/prefabs/" + name + ".prefab", ctxSpawn);
+    CHandle h = ctxSpawn.entities_loaded[0];
+    CEntity* e = h;
+    dbg("PARSEADA %s\n", e->getName());
+    TCompTransform* e_pos = e->get<TCompTransform>();
+    e_pos->lookAt(pos, lookat);
+    return h;
 }
 
 void loadscene(const std::string &level) {
@@ -483,6 +503,8 @@ void sleep(float time) {
 
 void cinematicModeToggle() {
     TMsgPlayerAIEnabled msg;
+    msg.state = "cinematic";
+    msg.enableAI = true;
     CHandle h = getEntityByName("The Player");
     h.sendMsg(msg);
 }
@@ -496,6 +518,15 @@ void stopAllAudioComponents()
 {
     TMsgStopAudioComponent msg;
     EngineEntities.broadcastMsg(msg);
+}
+
+void setTutorialPlayerState(bool active, const std::string & stateName)
+{
+    CHandle h_tutorial = getEntityByName("Tutorial Player");    
+    TMsgPlayerAIEnabled msg;
+    msg.state = stateName;
+    msg.enableAI = active;
+    h_tutorial.sendMsg(msg);
 }
 
 void activateScene(const std::string& scene) {
@@ -535,11 +566,6 @@ void pausePlayerToggle() {
 void debugToggle()
 {
     EngineRender.setDebugMode(!EngineRender.getDebugMode());
-}
-
-void destroy() {
-
-
 }
 
 void bind(const std::string& key, const std::string& script) {

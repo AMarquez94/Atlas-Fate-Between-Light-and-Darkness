@@ -386,7 +386,7 @@ BTNode::ERes TCompAIMimetic::actionObserveLeft(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::TURN_LEFT);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
     if (isEntityInFov(entityToChase, fov, maxChaseDistance)) {
         return BTNode::ERes::LEAVE;
     }
@@ -406,7 +406,7 @@ BTNode::ERes TCompAIMimetic::actionObserveRight(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::TURN_RIGHT);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
     if (isEntityInFov(entityToChase, fov, maxChaseDistance)) {
         return BTNode::ERes::LEAVE;
     }
@@ -474,7 +474,7 @@ BTNode::ERes TCompAIMimetic::actionGoToWpt(float dt)
         return BTNode::ERes::LEAVE;
 
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::WALK);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
     return moveToPoint(speed, rotationSpeedPatrolling, getWaypoint().position, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
 
@@ -524,7 +524,7 @@ BTNode::ERes TCompAIMimetic::actionSuspect(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::SUSPECTING);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
     TCompEmissionController *eController = get<TCompEmissionController>();
     eController->blend(enemyColor.colorSuspect, 0.1f);
     // chase
@@ -567,7 +567,7 @@ BTNode::ERes TCompAIMimetic::actionRotateToNoiseSource(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::WALK);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
     TCompTransform *myPos = get<TCompTransform>();
     bool isInObjective = rotateTowardsVec(noiseSource, rotationSpeedNoise, dt);
     return isInObjective ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
@@ -634,7 +634,7 @@ BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::RUN);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
 
     TCompTransform *mypos = get<TCompTransform>();
     CEntity *player = getEntityByName(entityToChase);
@@ -717,7 +717,7 @@ BTNode::ERes TCompAIMimetic::actionGoToNoiseSource(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::RUN);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
 
     CEntity * ePlayer = getEntityByName(entityToChase);
     TCompTransform * ppos = get<TCompTransform>();
@@ -776,7 +776,7 @@ BTNode::ERes TCompAIMimetic::actionGoToPlayerLastPos(float dt)
 
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::RUN);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
     if (moveToPoint(speed, rotationSpeedChase, lastPlayerKnownPos, dt)) {
         return BTNode::ERes::LEAVE;
     }
@@ -830,7 +830,7 @@ BTNode::ERes TCompAIMimetic::actionGoToInitialPos(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::WALK);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
     TCompTransform *mypos = get<TCompTransform>();
     VEC3 initialPosWithMyY = VEC3(initialPos.x, mypos->getPosition().y, initialPos.z);
 
@@ -841,7 +841,7 @@ BTNode::ERes TCompAIMimetic::actionRotateToInitialPos(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::WALK);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
     TCompTransform *myPos = get<TCompTransform>();
     bool isInObjective = rotateTowardsVec(myPos->getPosition() + initialLookAt, rotationSpeedObservation, dt);
     return isInObjective ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
@@ -851,7 +851,7 @@ BTNode::ERes TCompAIMimetic::actionJumpWall(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::JUMP_TO_WALL);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
     TCompRigidbody *tCollider = get<TCompRigidbody>();
     tCollider->Jump(VEC3(0, 25.f, 0));
     return BTNode::ERes::LEAVE;

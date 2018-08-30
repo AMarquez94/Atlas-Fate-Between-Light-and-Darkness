@@ -40,7 +40,8 @@
 			"data/scenes/intro_conductos.scene",
 			"data/scenes/intro_tubitos.scene",
 			"data/scenes/intro_props.scene",
-			"data/scenes/Intro/debug_speaker.scene"
+			"data/scenes/Intro/debug_speaker.scene",
+			"data/scenes/Intro/tutorial.scene"
 		]
 	},
 	"scene_map_intro": {

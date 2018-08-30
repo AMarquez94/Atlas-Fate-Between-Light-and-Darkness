@@ -1,0 +1,161 @@
+[{
+		"entity": {
+			"name": "Hologram_scene",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/tutorial/player_tutorial.prefab",
+			"transform": {
+				"pos": "0 -30.0 0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "SMTutorial",
+			"transform": {
+				"pos": "-3.6 0 26.5"
+			},
+			"collider":
+			{
+				"shape": "box",
+				"size": "15 2 3",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "SMVerTutorial",
+			"transform": {
+				"pos": "-3.6 0 15"
+			},
+			"collider":
+			{
+				"shape": "box",
+				"size": "15 2 5",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "SMFallTutorial",
+			"transform": {
+				"pos": "-3.2 16 10"
+			},
+			"collider":
+			{
+				"shape": "box",
+				"size": "15 2 3",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "CrouchTutorial",
+			"transform": {
+				"pos": "-7 0 -9"
+			},
+			"collider":
+			{
+				"shape": "box",
+				"size": "15 2 5",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "InhibitorTutorial",
+			"transform": {
+				"pos": "-15 0 -38"
+			},
+			"collider":
+			{
+				"shape": "box",
+				"size": "3 1.5 8",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "SMFenceTutorial",
+			"transform": {
+				"pos": "-7 0 -42"
+			},
+			"collider":
+			{
+				"shape": "box",
+				"size": "4 1.5 4",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "AttackTutorial",
+			"transform": {
+				"pos": "-8 0 -50"
+			},
+			"collider":
+			{
+				"shape": "box",
+				"size": "4 1.5 3",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			}
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/tutorial/patrol_tutorial.prefab",
+			"transform": {
+				"pos": "-40.306 1.125 -87",
+				"scale": "1.7 1.7 1.7"
+			}
+		}
+	},
+	{
+		"xentity": {
+			"prefab": "data/prefabs/tutorial/fence_tutorial.prefab",
+			"transform": {
+				"pos": "-40.306 1.125 -88"
+			}
+		}
+	},
+	{
+		"xentity": {
+			"prefab": "data/prefabs/tutorial/container_tutorial.prefab",
+			"transform": {
+				"pos": "-40.306 1.125 -89"
+			}
+		}
+	}
+]
