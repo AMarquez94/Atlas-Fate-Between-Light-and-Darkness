@@ -478,14 +478,14 @@ void blendOutActiveCamera(float blendOutTime) {
 }
 
 /* Spawn item on given position */
-CHandle spawn(const std::string & name, const VEC3 & pos) {
+CHandle spawn(const std::string & name, const VEC3 & pos, const VEC3& lookat) {
     TEntityParseContext ctxSpawn;
     parseScene("data/prefabs/" + name + ".prefab", ctxSpawn);
     CHandle h = ctxSpawn.entities_loaded[0];
     CEntity* e = h;
     dbg("PARSEADA %s\n", e->getName());
     TCompTransform* e_pos = e->get<TCompTransform>();
-    e_pos->setPosition(pos);
+    e_pos->lookAt(pos, lookat);
     return h;
 }
 

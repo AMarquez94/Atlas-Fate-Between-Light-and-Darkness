@@ -90,9 +90,9 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
     addChild("removeInhibitorTutorial", "waitInhibitorTutorial_3", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionWait, nullptr);
     addChild("removeInhibitorTutorial", "inhibitorMiddleInhibitorTutorial_3", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationInhibitorMiddle, nullptr);
     addChild("removeInhibitorTutorial", "waitInhibitorTutorial_4", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionWait, nullptr);
-    addChild("removeInhibitorTutorial", "inhibitorMiddleInhibitorTutorial_5", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationInhibitorMiddle, nullptr);
+    addChild("removeInhibitorTutorial", "inhibitorMiddleInhibitorTutorial_4", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationInhibitorMiddle, nullptr);
     addChild("removeInhibitorTutorial", "waitInhibitorTutorial_5", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionWait, nullptr);
-    addChild("removeInhibitorTutorial", "inhibitorMiddleInhibitorTutorial_6", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationInhibitorMiddle, nullptr);
+    addChild("removeInhibitorTutorial", "inhibitorMiddleInhibitorTutorial_5", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationInhibitorMiddle, nullptr);
     addChild("removeInhibitorTutorial", "waitInhibitorTutorial_6", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionWait, nullptr);
     addChild("removeInhibitorTutorial", "inhibitorFinnishInhibitorTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationInhibitorFinnish, nullptr);
     addChild("removeInhibitorTutorial", "waitInhibitorTutorial_7", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionWait, nullptr);
@@ -191,6 +191,15 @@ void TCompAIPlayer::onMsgPlayerAIEnabled(const TMsgPlayerAIEnabled& msg) {
     TCompTransform* my_pos = get<TCompTransform>();
     initial_pos = my_pos->getPosition();
     initial_rot = my_pos->getRotation();
+
+    CHandle(this).getOwner().sendMsg(TMsgFadeBody{ true });
+    h_sm_tutorial.sendMsg(TMsgFadeBody{ false });
+    // Replace this when weapons are finished
+    CHandle h_tutorial_weap_left = getEntityByName("tuto_weap_disc_left");
+    CHandle h_tutorial_weap_right = getEntityByName("tuto_weap_disc_right");
+    h_tutorial_weap_left.sendMsg(TMsgFadeBody{ true });
+    h_tutorial_weap_right.sendMsg(TMsgFadeBody{ true });
+
     setCurrent(nullptr);
     _timer = 0.f;
 }
@@ -439,7 +448,6 @@ BTNode::ERes TCompAIPlayer::actionStartSM(float dt)
     my_anim->playAnimation(TCompPlayerAnimator::EAnimation::SM_POSE);
     my_anim->playAnimation(TCompPlayerAnimator::EAnimation::SM_ENTER);
 
-    CHandle(this).getOwner().sendMsg(TMsgFadeBody{ false });
     CHandle(this).getOwner().sendMsg(TMsgFadeBody{ false });
     h_sm_tutorial.sendMsg(TMsgFadeBody{ true });
 

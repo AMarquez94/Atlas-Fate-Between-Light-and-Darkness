@@ -105,8 +105,8 @@ function cg_drawlights(type)
 	SLB.cg_drawlights(type)
 end
 
-function spawn(name, pos)
-	return SLB.spawn(name, pos)
+function spawn(name, pos, lookat)
+	return SLB.spawn(name, pos, lookat)
 end
 
 function renderNavmeshToggle()
