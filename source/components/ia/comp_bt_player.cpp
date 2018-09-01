@@ -159,6 +159,15 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
     addChild("smFenceTutorial", "waitSMFenceTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionWait, nullptr);
     addChild("smFenceTutorial", "resetBTFenceTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
 
+    addChild("playerActivated", "smEnemyTutorial", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionSMEnemyTutorial, nullptr, nullptr);
+    addChild("smEnemyTutorial", "resetTimersSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersSMEnemyTutorial, nullptr);
+    addChild("smEnemyTutorial", "idleSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdle, nullptr);
+    addChild("smEnemyTutorial", "grabenemySMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationGrabEnemy, nullptr);
+    addChild("smEnemyTutorial", "beginSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionStartSMEnemy, nullptr);
+    addChild("smEnemyTutorial", "smSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSM, nullptr);
+    addChild("smEnemyTutorial", "exitSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionEndSM, nullptr);
+    addChild("smEnemyTutorial", "resetBTSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
+
 	addChild("playerActivated", "goToWpt", BTNode::EType::ACTION, (BTCondition)&TCompAIPlayer::conditionCinematicMode, (BTAction)&TCompAIPlayer::actionGoToWpt, nullptr);
     //addChild("playerActivated", "default", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionDefault, nullptr);
 
@@ -275,6 +284,9 @@ TCompAIPlayer::EState TCompAIPlayer::getStateEnumFromString(const std::string & 
     else if (stateName.compare("sm_fence_tutorial") == 0) {
         return TCompAIPlayer::EState::TUT_SM_FENCE;
     }
+    else if (stateName.compare("sm_enemy_tutorial") == 0) {
+        return TCompAIPlayer::EState::TUT_SM_ENEMY;
+    }
     else {
         return TCompAIPlayer::EState::NUM_STATES;
     }
@@ -390,6 +402,21 @@ BTNode::ERes TCompAIPlayer::actionResetTimersSMFenceTutorial(float dt)
     _maxTimer = 0.6f;
     TCompTransform* mypos = get<TCompTransform>();
     mypos->setPosition(initial_pos);
+    return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersSMEnemyTutorial(float dt)
+{
+    _timer = 0.f;
+    _maxTimer = 1.f;
+    TCompTransform* mypos = get<TCompTransform>();
+    mypos->setPosition(initial_pos);
+    CEntity* patrol_tutorial = getEntityByName("Tutorial Patrol");
+    if (patrol_tutorial) {
+        TCompPatrolAnimator *patrol_anim = patrol_tutorial->get<TCompPatrolAnimator>();
+        patrol_anim->playAnimation(TCompPatrolAnimator::EAnimation::DEAD);
+        patrol_tutorial->sendMsg(TMsgFadeBody{ true });
+    }
     return BTNode::ERes::LEAVE;
 }
 
@@ -697,6 +724,35 @@ BTNode::ERes TCompAIPlayer::actionAnimationPressButton(float dt)
     return BTNode::ERes::LEAVE;
 }
 
+BTNode::ERes TCompAIPlayer::actionAnimationGrabEnemy(float dt)
+{
+    // TODO: Implement
+    return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionStartSMEnemy(float dt)
+{
+    TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+    my_anim->playAnimation(TCompPlayerAnimator::EAnimation::SM_POSE);
+    my_anim->playAnimation(TCompPlayerAnimator::EAnimation::SM_ENTER);
+
+    CHandle(this).getOwner().sendMsg(TMsgFadeBody{ false });
+    h_sm_tutorial.sendMsg(TMsgFadeBody{ true });
+
+    // Replace this when weapons are finished
+    CHandle h_tutorial_weap_left = getEntityByName("tuto_weap_disc_left");
+    CHandle h_tutorial_weap_right = getEntityByName("tuto_weap_disc_right");
+    h_tutorial_weap_left.sendMsg(TMsgFadeBody{ false });
+    h_tutorial_weap_right.sendMsg(TMsgFadeBody{ false });
+
+    CHandle tutorial_patrol = getEntityByName("Tutorial Patrol");
+    if (tutorial_patrol.isValid()) {
+        tutorial_patrol.sendMsg(TMsgFadeBody{ false });
+    }
+
+    return BTNode::ERes::LEAVE;
+}
+
 /* CONDITIONS */
 
 bool TCompAIPlayer::conditionHasBeenEnabled(float dt) {
@@ -756,6 +812,11 @@ bool TCompAIPlayer::conditionSonarTutorial(float dt)
 bool TCompAIPlayer::conditionSMFenceTutorial(float dt)
 {
     return _currentState == TCompAIPlayer::EState::TUT_SM_FENCE;
+}
+
+bool TCompAIPlayer::conditionSMEnemyTutorial(float dt)
+{
+    return _currentState == TCompAIPlayer::EState::TUT_SM_ENEMY;
 }
 
 /* ASSERTS */

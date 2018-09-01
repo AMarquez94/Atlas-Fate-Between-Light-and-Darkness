@@ -38,7 +38,8 @@ public:
         SCENE_END,
         TRIGGER_ENTER,
         TRIGGER_EXIT,
-        ENEMY_KILLED,
+        PATROL_STUNNED,
+        PATROL_KILLED,
         PLAYER_ON_SHADOW_ENTER,
         NUM_EVENTS
     };

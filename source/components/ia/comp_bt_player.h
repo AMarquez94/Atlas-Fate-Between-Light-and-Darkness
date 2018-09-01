@@ -8,7 +8,18 @@ class TCompAIPlayer : public TCompIAController {
 
 public:
 
-    enum EState { TUT_CROUCH = 0, TUT_SM, TUT_INHIBITOR, TUT_ATTACK, TUT_SM_FALL, TUT_SM_VER, TUT_BOX, TUT_SONAR, TUT_BUTTON, TUT_SM_FENCE, CINEMATIC, NUM_STATES };
+    enum EState { TUT_CROUCH = 0, 
+        TUT_SM, TUT_INHIBITOR, 
+        TUT_ATTACK, 
+        TUT_SM_FALL, 
+        TUT_SM_VER, 
+        TUT_BOX, 
+        TUT_SONAR, 
+        TUT_BUTTON, 
+        TUT_SM_FENCE, 
+        TUT_SM_ENEMY,
+        CINEMATIC, 
+        NUM_STATES };
 
     bool enabledPlayerAI;
 
@@ -32,6 +43,7 @@ public:
     BTNode::ERes actionResetTimersSonarTutorial(float dt);
     BTNode::ERes actionResetTimersButtonTutorial(float dt);
     BTNode::ERes actionResetTimersSMFenceTutorial(float dt);
+    BTNode::ERes actionResetTimersSMEnemyTutorial(float dt);
     BTNode::ERes actionResetBT(float dt);
     BTNode::ERes actionAnimationWalk(float dt);
     BTNode::ERes actionAnimationCrouch(float dt);
@@ -55,6 +67,8 @@ public:
     BTNode::ERes actionAnimationWalkBox(float dt);
     BTNode::ERes actionAnimationSonar(float dt);
     BTNode::ERes actionAnimationPressButton(float dt);
+    BTNode::ERes actionAnimationGrabEnemy(float dt);
+    BTNode::ERes actionStartSMEnemy(float dt);
 
     bool conditionHasBeenEnabled(float dt);
     bool conditionCinematicMode(float dt);
@@ -68,6 +82,7 @@ public:
     bool conditionBoxTutorial(float dt);
     bool conditionSonarTutorial(float dt);
     bool conditionSMFenceTutorial(float dt);
+    bool conditionSMEnemyTutorial(float dt);
 
     //Auxiliar
     bool move(float dt);

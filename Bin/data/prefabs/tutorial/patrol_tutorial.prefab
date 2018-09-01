@@ -22,7 +22,8 @@
 			],
 			"fade_controller": {
 				"fade_color": "0.0 1.0 1.0 1.0",
-				"fade_time": 4.0,
+				"fade_time": 0.6,
+				"destroy": false,
 				"fall_speed": 0.3
 			},
 			"skeleton": {

@@ -152,6 +152,12 @@ void TCompAIPatrol::onMsgPatrolStunned(const TMsgEnemyStunned & msg)
     /* Tell the other patrols I am stunned */
     CEngine::get().getIA().patrolSB.stunnedPatrols.emplace_back(CHandle(this).getOwner());
 
+    TCompName* tName = get<TCompName>();
+    std::string myName = tName->getName();
+    myName.erase(remove(myName.begin(), myName.end(), ' '), myName.end());
+    std::string params = myName + "()";
+    EngineLogic.execEvent(CModuleLogic::Events::PATROL_STUNNED, params);
+
     current = nullptr;
 }
 
