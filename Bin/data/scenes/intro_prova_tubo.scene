@@ -14,19 +14,19 @@
   {
     "entity":
     {
-      "name": "Cylinder009"
+      "name": "Cylinder010"
       ,
       "transform":
       {
-        "pos": "-30.7508 0.373719 22.3898"
+        "pos": "-7.77878 25.0868 14.1822"
         ,
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "0.477715 -0.521334 0.477714 -0.521334"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/Cylinder009.mesh"
+          "mesh": "data/meshes/Cylinder010.mesh"
           ,
           "materials":
           [
@@ -44,19 +44,19 @@
   {
     "entity":
     {
-      "name": "Cylinder002"
+      "name": "Cylinder012"
       ,
       "transform":
       {
-        "pos": "-7.82375 24.0902 22.3898"
+        "pos": "-11.9158 24.3774 22.2908"
         ,
-        "rotation": "0.0 0.0 -0.707107 -0.707107"
+        "rotation": "-0.706434 -0.706434 -0.0308435 0.0308434"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/Cylinder002.mesh"
+          "mesh": "data/meshes/Cylinder012.mesh"
           ,
           "materials":
           [
@@ -74,79 +74,19 @@
   {
     "entity":
     {
-      "name": "Cylinder004"
+      "name": "Cylinder013"
       ,
       "transform":
       {
-        "pos": "-7.82375 19.3253 22.3898"
+        "pos": "-37.45 24.3774 22.2908"
         ,
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "0.706434 -0.706434 -0.0308436 -0.0308436"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/Cylinder004.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Cylinder003"
-      ,
-      "transform":
-      {
-        "pos": "-7.86132 24.313 23.7394"
-        ,
-        "rotation": "0.67559 0.0 0.0 -0.737277"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/Cylinder003.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "capsula_medida"
-      ,
-      "transform":
-      {
-        "pos": "-7.70047 22.4322 4.87557"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/capsula_medida.mesh"
+          "mesh": "data/meshes/Cylinder013.mesh"
           ,
           "materials":
           [

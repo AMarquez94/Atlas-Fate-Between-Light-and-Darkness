@@ -43,6 +43,8 @@ void TCompFadeController::update(float dt) {
     if (_is_active) {
 
         TCompRender * c_my_render = get<TCompRender>();
+        if (!c_my_render)
+            return;
 
         // Notify it has finished
         if (c_my_render->self_opacity > 1 || c_my_render->self_opacity < 0) {

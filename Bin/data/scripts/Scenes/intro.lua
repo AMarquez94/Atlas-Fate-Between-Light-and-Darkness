@@ -1,6 +1,7 @@
 function onSceneStart_scene_intro()
 	--playerController = getPlayerController();	--no need. We will do it always in each loading scene
 	--blendInCamera("Camera Follow Drone", 0);
+	show_tutorial_sm_enemy = false;
 	if(ambiance == nil or not ambiance:isValid()) then
 		ambiance = playEvent("event:/Ambiance/Intro_Ambiance");
 	end
@@ -70,13 +71,23 @@ function onTriggerExit_SMFenceTutorial_player()
 end
 
 function onTriggerEnter_AttackTutorial_player()
-	moveTutorialPlayer(VEC3(-6.3, 0, -49), VEC3(-6.3, 0, -51), true, "attack_tutorial");
-	patrol = spawn("tutorial/patrol_tutorial", VEC3(-6.3, 0, -50.5), VEC3(-6.3, 0, -52));
+	if not show_tutorial_sm_enemy then
+		moveTutorialPlayer(VEC3(-6.3, 0, -49), VEC3(-6.3, 0, -51), true, "attack_tutorial");
+		patrol = spawn("tutorial/patrol_tutorial", VEC3(-6.3, 0, -50.5), VEC3(-6.3, 0, -52));
+	else
+		moveTutorialPlayer(VEC3(-6.3, 0, -49), VEC3(-6.3, 0, -51), true, "sm_enemy_tutorial");
+		patrol = spawn("tutorial/patrol_tutorial", VEC3(-6.3, 0, -50.5), VEC3(-6.3, 0, -52));
+	end
 end
 
 function onTriggerExit_AttackTutorial_player()
 	moveTutorialPlayer(VEC3(0,-30,0), VEC3(0,0,25), false, "");
 	patrol:destroy();
+end
+
+function onPatrolStunned_IntroPatrol()
+	show_tutorial_sm_enemy = true;
+	moveTutorialPlayer(VEC3(-6.3, 0, -49), VEC3(-6.3, 0, -51), true, "sm_enemy_tutorial");
 end
 
 

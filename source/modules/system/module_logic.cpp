@@ -303,7 +303,12 @@ bool CModuleLogic::execEvent(Events event, const std::string & params, float del
         }
         break;
     case Events::GAME_END:
-
+        if (delay > 0) {
+            return execScriptDelayed("onGameEnd()", delay);
+        }
+        else {
+            return execScript("onGameEnd()").success;
+        }
         break;
     case Events::SCENE_START:
         if (delay > 0) {
@@ -336,6 +341,22 @@ bool CModuleLogic::execEvent(Events event, const std::string & params, float del
         }
         else {
             return execScript("onTriggerExit_" + params).success;
+        }
+        break;
+    case Events::PATROL_STUNNED:
+        if (delay > 0) {
+            return execScriptDelayed("onPatrolStunned_" + params, delay);
+        }
+        else {
+            return execScript("onPatrolStunned_" + params).success;
+        }
+        break;
+    case Events::PATROL_KILLED:
+        if (delay > 0) {
+            return execScriptDelayed("onPatrolKilled_" + params, delay);
+        }
+        else {
+            return execScript("onPatrolKilled_" + params).success;
         }
         break;
     default:
