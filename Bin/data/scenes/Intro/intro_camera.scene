@@ -64,6 +64,9 @@
 				"global_distance": 0.1,
 				"gauss_filter": true
 			},
+			"ssr" : {
+				"enabled" : true
+		  },
 			"motion_blur" : {
 				"enabled" : true
 		  },
@@ -304,6 +307,9 @@
 			"fog": {
 				"enabled": true
 			},
+			"ssr" : {
+				"enabled" : true
+		  },
 			"antialiasing": {
 				"enabled": true
 			},

@@ -318,6 +318,9 @@
 				"amount": 0.25,
 				"lut": "data/textures/lut/lut5.dds"
 			},
+			"ssr" : {
+				"enabled" : true
+		  },
 			"chromatic_aberration": {
 				"enabled": true
 			},
