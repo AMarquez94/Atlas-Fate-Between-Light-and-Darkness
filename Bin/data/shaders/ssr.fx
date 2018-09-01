@@ -1,14 +1,9 @@
 //--------------------------------------------------------------------------------------
 #include "pbr.fx"
 
-static const int MAX_RAY_STEPS = 100;
-static const int MAX_BIN_STEPS = 20;
-static const float rayStep = 0.45f;
-static const float CB_STRIDE = 2.0f;
-static const float CB_MAXDISTANCE = 1000.0f;
-static const int CB_MAXSTEPS = 20;
-static const float CB_STRIDECUTOFF = 1.0f;
-static const float CB_ZTHICK = 1.0f;
+static const int MAX_RAY_STEPS = 80;
+static const int MAX_BIN_STEPS = 10;
+static const float RAY_STEP = 0.25f;
 
 float4 BinarySearch(inout float3 reflected_ray, float3 hit_coord)
 {
@@ -46,7 +41,7 @@ float4 RayMarching(float3 reflected_ray, float3 hit_coord)
 	float depth = 0;
 	float depth_diff = 0;
 	float4 projectedCoord;
-	reflected_ray *= rayStep;
+	reflected_ray *= RAY_STEP;
 	
 	for (int i = 0; i < MAX_RAY_STEPS; i++)
 	{
@@ -57,52 +52,63 @@ float4 RayMarching(float3 reflected_ray, float3 hit_coord)
 		depth = txGBufferLinearDepth.Load(uint3(projectedCoord.xy / camera_inv_resolution, 0)).x;			
 		float3 wPos = getWorldCoords(projectedCoord.xy / camera_inv_resolution, depth);
     depth = mul(float4(wPos, 1.f), camera_view).z;
-		
+
 		if(projectedCoord.x < 0 || projectedCoord.x > 1 || projectedCoord.y < 0 || projectedCoord.y > 1) 
-			return float4(0.f, 0.f, 0.f, 0.f);
+			return float4(0, 0, 0, 0);	
 		
 		depth_diff = (hit_coord.z - depth);
 		
 		if(depth_diff < 0.0){
-			//return BinarySearch(reflected_ray, hit_coord);
+			return BinarySearch(reflected_ray, hit_coord);
 			return float4(projectedCoord.xy , depth, 1.0);	
 		}
 	}
 
-    return float4(0, 0 , depth, 1.0);	
+    return float4(projectedCoord.xy, depth, 0);	
 }
 
 float4 PS(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
 {
+  int3 ss_load_coords = uint3(iPosition.xy, 0);
+
+	
 	// Decode GBuffer information
 	float  roughness;
 	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
 
 	decodeGBuffer(iPosition.xy, wPos, N, albedo, specular_color, roughness, reflected_dir, view_dir);
-	float reflectance = 1 - pow(roughness, 1);
+	float3 env_fresnel = Specular_F_Roughness(specular_color, 1. - pow(roughness, 2), N, view_dir);
 			
 	float4 view_normal = mul(float4(N, 0), camera_view);
 	float4 view_pos = mul(float4(wPos, 1), camera_view);
 	float3 reflected = normalize(reflect(view_pos, view_normal).xyz);
-	
-	float4 coords = RayMarching(reflected, view_pos);
-	float rDotV = dot(reflected, -view_normal);
-		
-	float4 color = txAlbedo.Sample(samClampLinear, iTex0); 
-  float2 d_coords = float2(1, 1) - pow(saturate(abs(coords.xy - float2(0.5f, 0.5f)) * 2), 6);
-  float edge_factor = saturate(min(d_coords.x, d_coords.y));
-	float3 env_fresnel = Specular_F_Roughness(specular_color, reflectance, N, view_dir);
-	float multiplier = edge_factor * saturate(-reflected.z) * coords.w;
 
+	float4 coords = RayMarching(reflected, view_pos);	
+	float4 color = txAlbedo.Sample(samClampLinear, iTex0); 
+  float2 d_coords = float2(1, 1) - pow(saturate(abs(coords.xy - float2(0.5f, 0.5f)) * 2), 4);
+  float edge_factor = saturate(min(d_coords.x, d_coords.y));
+	float multiplier = clamp(edge_factor * saturate(-reflected.z), 0, 0.9);
+	float depth = txGBufferLinearDepth.Load(ss_load_coords).x;	
+	
 	float4 ssr = txAlbedo.SampleLevel(samClampLinear, coords.xy, 0); 
-								
-	return coords;//color + ssr * multiplier * env_fresnel.xyzz;//color + ssr * multiplier* env_fresnel.xyzz * rDotV ;//color + ssr * multiplier * env_fresnel.xyzz;
+	float alpha = multiplier * float4(env_fresnel, coords.w) * (depth > 0.99 ? 0 : 1);
+	
+	return ((1 - alpha) * color) + ssr * alpha;
 }
 
 
 
 /*
 Sample from McGuire. Tried to improve the results but were not good enough
+
+
+static const float CB_STRIDE = 2.0f;
+static const float CB_MAXDISTANCE = 1000.0f;
+static const int CB_MAXSTEPS = 20;
+static const float CB_STRIDECUTOFF = 1.0f;
+static const float CB_ZTHICK = 1.0f;
+
+
 float distanceSquared(float2 a, float2 b)
 {
 		a -= b;
