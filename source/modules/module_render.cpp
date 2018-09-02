@@ -145,7 +145,7 @@ bool CModuleRender::start()
 	cb_globals.global_hdr_enabled = 1.f;
 	cb_globals.global_gamma_correction_enabled = 1.f;
 	cb_globals.global_tone_mapping_mode = 1.f;
-    cb_globals.global_fog_density = 0.033f;
+    cb_globals.global_fog_density = 0.031f;
     cb_globals.global_fog_color = VEC3(0.76,0.93,0.93);
     cb_globals.global_fog_env_color = VEC3(0.0, 0.171, 0.34);
     cb_globals.global_self_intensity = 10.f;
@@ -424,13 +424,13 @@ void CModuleRender::postProcessingStack() {
         if (c_chroma_aberration)
             curr_rt = c_chroma_aberration->apply(curr_rt);
 
-        TCompRenderEnvironment * c_render_enviornment = e_cam->get< TCompRenderEnvironment >();
-        if (c_render_enviornment)
-            curr_rt = c_render_enviornment->apply(curr_rt);
-
         TCompSSR* c_srr = e_cam->get< TCompSSR >();
         if (c_srr)
             curr_rt = c_srr->apply(curr_rt);
+
+        TCompRenderEnvironment * c_render_enviornment = e_cam->get< TCompRenderEnvironment >();
+        if (c_render_enviornment)
+            curr_rt = c_render_enviornment->apply(curr_rt);
 
         TCompRenderOutlines* c_render_outlines = e_cam->get< TCompRenderOutlines >();
         if (c_render_outlines && cb_outline.outline_alpha > 0)

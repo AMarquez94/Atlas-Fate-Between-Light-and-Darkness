@@ -10,10 +10,6 @@ DECL_OBJ_MANAGER("ssr", TCompSSR);
 void TCompSSR::debugInMenu() {
 
     ImGui::Checkbox("Enabled", &enabled);
-    ImGui::DragFloat("Amount", &amount, 0.01f, 0.0f, 1.0f);
-    ImGui::DragFloat("Inner Radius", &amount, 0.01f, 0.0f, 1.0f);
-    ImGui::DragFloat("Outer Radius", &amount, 0.01f, 0.0f, 1.0f);
-    ImGui::DragFloat("Opacity", &amount, 0.01f, 0.0f, 1.0f);
 }
 
 void TCompSSR::load(const json& j, TEntityParseContext& ctx) {

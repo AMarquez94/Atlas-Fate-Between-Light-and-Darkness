@@ -105,5 +105,25 @@
 			"abs_aabb": true,
 			"local_aabb": true
 		}
+	},
+	{
+		"xentity": {
+			"name": "hologram_plane",
+			"transform": {
+				"pos": "-40.306 0.2 -90.335",
+				"scale": "1.0 1.0 1.0"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/Plane001.mesh",
+					"materials":
+					[
+						"data/materials/mtl_test_reflection.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
 	}
 ]

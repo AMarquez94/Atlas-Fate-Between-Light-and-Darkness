@@ -102,7 +102,7 @@ void PS(
   float4 decal_color = txAlbedo.Sample(samBorderLinear, float2(amount_of_x,amount_of_z));
 	float roughness = txRoughness.Sample(samLinear, float2(amount_of_x,amount_of_z)).r;	
 	float3 N = computeNormalMap(input.normal, input.tangent, float2(amount_of_x,amount_of_z));
-	o_normal = encodeNormal(N, roughness * decal_color.a);
+	o_normal = encodeNormal(float3(0,1,0), 1 * decal_color.a);
   o_albedo.xyz = decal_color.xyz;
   o_albedo.a = decal_color.a;//txMetallic.Sample(samLinear, float2(amount_of_x,amount_of_z)).r;
  

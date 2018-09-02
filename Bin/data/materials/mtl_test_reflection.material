@@ -1,0 +1,14 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/white.dds"
+    ,
+    "metallic": "data/textures/white.dds"
+    ,
+    "roughness": "data/textures/tx_casa1_met.dds"
+    ,
+    "normal": "data/textures/null_normal.dds"
+  }
+}

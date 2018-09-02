@@ -1,7 +1,7 @@
 //--------------------------------------------------------------------------------------
 #include "pbr.fx"
 
-static const int MAX_RAY_STEPS = 80;
+static const int MAX_RAY_STEPS = 40;
 static const int MAX_BIN_STEPS = 10;
 static const float RAY_STEP = 0.25f;
 
@@ -22,7 +22,7 @@ float4 BinarySearch(inout float3 reflected_ray, float3 hit_coord)
 		depth_diff = hit_coord.z - depth;
 
 		reflected_ray *= 0.5;
-		hit_coord += reflected_ray * ((depth_diff > 0.f) - (depth_diff < 0.f));
+		hit_coord += reflected_ray * ((depth_diff > 0.f) - (depth_diff < 0.f));   
 	}
 
 	projectedCoord = mul(float4(hit_coord, 1.f), camera_proj);
@@ -33,7 +33,7 @@ float4 BinarySearch(inout float3 reflected_ray, float3 hit_coord)
   depth = mul(float4(worldCoords, 1.f), camera_view).z;	
 	depth_diff = hit_coord.z - depth;
 		
-	return float4(projectedCoord.xy, depth, 1.0) * (abs(depth_diff) < 0.05 ? 1.f : 0.f);
+	return float4(projectedCoord.xy, depth, 1.0);// * (abs(depth_diff) < 0.05 ? 1.f : 0.f);
 }
 
 float4 RayMarching(float3 reflected_ray, float3 hit_coord)
@@ -71,7 +71,6 @@ float4 PS(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_
 {
   int3 ss_load_coords = uint3(iPosition.xy, 0);
 
-	
 	// Decode GBuffer information
 	float  roughness;
 	float3 wPos, N, albedo, specular_color, reflected_dir, view_dir;
@@ -82,8 +81,8 @@ float4 PS(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_
 	float4 view_normal = mul(float4(N, 0), camera_view);
 	float4 view_pos = mul(float4(wPos, 1), camera_view);
 	float3 reflected = normalize(reflect(view_pos, view_normal).xyz);
-
-	float4 coords = RayMarching(reflected, view_pos);	
+	
+	float4 coords = RayMarching(reflected , view_pos);	
 	float4 color = txAlbedo.Sample(samClampLinear, iTex0); 
   float2 d_coords = float2(1, 1) - pow(saturate(abs(coords.xy - float2(0.5f, 0.5f)) * 2), 4);
   float edge_factor = saturate(min(d_coords.x, d_coords.y));

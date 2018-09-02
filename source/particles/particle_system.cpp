@@ -301,7 +301,7 @@ namespace Particles
         technique2->activate();
 
         _core->n_renderer.texture->activate(TS_ALBEDO1);
-        CRenderManager::get().renderCategory("particles_volume");
+        CRenderManager::get().renderCategory("gbuffer_particles_instanced");
     }
 
     void CSystem::emit()
