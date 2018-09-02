@@ -652,7 +652,6 @@ void TCompTempPlayerController::die()
         groundMsg.variant.setBool(true);
         e->sendMsg(groundMsg);
         life = 0;
-
     }
 }
 

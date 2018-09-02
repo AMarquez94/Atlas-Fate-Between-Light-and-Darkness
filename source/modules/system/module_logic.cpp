@@ -15,6 +15,7 @@
 #include "components/ia/comp_bt_patrol.h"
 #include "components/comp_audio.h"
 #include "components/ia/comp_bt_player.h"
+#include "components/physics/comp_rigidbody.h"
 #include "entity/entity_parser.h"
 
 bool CModuleLogic::start() {
@@ -216,11 +217,15 @@ void CModuleLogic::publishClasses() {
     // tutorial
     m->set("setTutorialPlayerState", SLB::FuncCall::create(&setTutorialPlayerState));
 
+    // cinematic
+    m->set("setCinematicPlayerState", SLB::FuncCall::create(&setCinematicPlayerState));
+
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
     m->set("shadowsToggle", SLB::FuncCall::create(&shadowsToggle));
     m->set("debugToggle", SLB::FuncCall::create(&debugToggle));
     m->set("spawn", SLB::FuncCall::create(&spawn));
+    m->set("move", SLB::FuncCall::create(&move));
     m->set("bind", SLB::FuncCall::create(&bind));
     m->set("loadCheckpoint", SLB::FuncCall::create(&loadCheckpoint));
     m->set("loadScene", SLB::FuncCall::create(&loadscene));
@@ -504,10 +509,27 @@ CHandle spawn(const std::string & name, const VEC3 & pos, const VEC3& lookat) {
     parseScene("data/prefabs/" + name + ".prefab", ctxSpawn);
     CHandle h = ctxSpawn.entities_loaded[0];
     CEntity* e = h;
-    dbg("PARSEADA %s\n", e->getName());
     TCompTransform* e_pos = e->get<TCompTransform>();
     e_pos->lookAt(pos, lookat);
     return h;
+}
+
+void move(const std::string & name, const VEC3 & pos, const VEC3 & lookat)
+{
+    CHandle h_to_move = getEntityByName(name);
+    if (h_to_move.isValid()) {
+        CEntity* e_to_move = h_to_move;
+        TCompTransform* e_pos = e_to_move->get<TCompTransform>();
+        e_pos->lookAt(pos, lookat);
+        TCompCollider* e_collider = e_to_move->get<TCompCollider>();
+        TCompRigidbody* e_rigidbody = e_to_move->get<TCompRigidbody>();
+        if (e_rigidbody) {
+            e_rigidbody->setGlobalPose(pos, e_pos->getRotation());
+        }
+        else if (e_collider) {
+            e_collider->setGlobalPose(pos, e_pos->getRotation());
+        }
+    }
 }
 
 void loadscene(const std::string &level) {
@@ -544,6 +566,15 @@ void stopAllAudioComponents()
 void setTutorialPlayerState(bool active, const std::string & stateName)
 {
     CHandle h_tutorial = getEntityByName("Tutorial Player");    
+    TMsgPlayerAIEnabled msg;
+    msg.state = stateName;
+    msg.enableAI = active;
+    h_tutorial.sendMsg(msg);
+}
+
+void setCinematicPlayerState(bool active, const std::string & stateName)
+{
+    CHandle h_tutorial = getEntityByName("The Player");
     TMsgPlayerAIEnabled msg;
     msg.state = stateName;
     msg.enableAI = active;

@@ -1,10 +1,13 @@
 function onSceneStart_scene_intro()
-	--playerController = getPlayerController();	--no need. We will do it always in each loading scene
-	--blendInCamera("Camera Follow Drone", 0);
 	show_tutorial_sm_enemy = false;
 	if(ambiance == nil or not ambiance:isValid()) then
 		ambiance = playEvent("event:/Ambiance/Intro_Ambiance");
 	end
+	
+	-- First Cinematic --
+	move("The Player", VEC3(-7.5, 12.115, 34.2), VEC3(-7.5, 12.115, 33.2));
+	--setCinematicPlayerState(true, "crouch_cinematic")
+	setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
 end
 
 function onSceneEnd_scene_intro()
@@ -17,6 +20,10 @@ function transition_map_intro_to_coliseum()
 	execScriptDelayed("cinematicModeToggle()", 2);
 	execScriptDelayed("loadScene(\"scene_coliseo\")", 5);
 end
+
+
+
+-- # Trigger tutorials # --
 
 function onTriggerEnter_SMTutorial_player()
 	moveTutorialPlayer(VEC3(0,0,26), VEC3(0,0,25), true, "sm_tutorial");

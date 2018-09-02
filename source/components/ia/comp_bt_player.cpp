@@ -15,6 +15,7 @@
 #include "render/render_objects.h"
 #include "components/player_controller/comp_player_animator.h"
 #include "components/ia/comp_patrol_animator.h"
+#include "components/comp_particles.h"
 
 DECL_OBJ_MANAGER("ai_player", TCompAIPlayer);
 
@@ -170,6 +171,27 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
 
 	addChild("playerActivated", "goToWpt", BTNode::EType::ACTION, (BTCondition)&TCompAIPlayer::conditionCinematicMode, (BTAction)&TCompAIPlayer::actionGoToWpt, nullptr);
     //addChild("playerActivated", "default", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionDefault, nullptr);
+       
+    addChild("playerActivated", "walkFallSMCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicWalkFall, nullptr, nullptr);
+    addChild("walkFallSMCinematic", "resetTimersWalkFallCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersCinematicWalkFall, nullptr);
+    addChild("walkFallSMCinematic", "crouchFallCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationStandingCrouch, nullptr);
+    addChild("walkFallSMCinematic", "crouchWalkFallCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionCrouchWalk, (BTAssert)&TCompAIPlayer::assertIsGrounded);
+    
+    addChild("playerActivated", "FallSMCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicFallSM, nullptr, nullptr);
+    addChild("FallSMCinematic", "resetTimersFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersCinematicFallSM, nullptr);
+    addChild("FallSMCinematic", "fallFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionFallSM, nullptr);
+    addChild("FallSMCinematic", "smenterFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionStartSM, nullptr);    //addChild("playerActivated", "fallSMCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicWalkFall, nullptr, nullptr);
+    addChild("FallSMCinematic", "smFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSM, nullptr);    //addChild("playerActivated", "fallSMCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicWalkFall, nullptr, nullptr);
+    addChild("FallSMCinematic", "smexitFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionEndSM, nullptr);    //addChild("playerActivated", "fallSMCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicWalkFall, nullptr, nullptr);
+    addChild("FallSMCinematic", "idleFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdle, nullptr);    //addChild("playerActivated", "fallSMCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicWalkFall, nullptr, nullptr);
+    addChild("FallSMCinematic", "endCinematicFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::endCinematic, nullptr);    //addChild("playerActivated", "fallSMCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicWalkFall, nullptr, nullptr);
+    //addChild("fallSMCinematic", "resetTimersWalkFallCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersCinematicWalkFall, nullptr);
+    //addChild("fallSMCinematic", "crouchWalkFallCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionCrouchWalk, nullptr);
+    //addChild("walkFallSMCinematic", "grabenemySMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationGrabEnemy, nullptr);
+    //addChild("walkFallSMCinematic", "beginSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionStartSMEnemy, nullptr);
+    //addChild("walkFallSMCinematic", "smSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSM, nullptr);
+    //addChild("walkFallSMCinematic", "exitSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionEndSM, nullptr);
+    //addChild("walkFallSMCinematic", "resetBTSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
 
 	enabledPlayerAI = j.value("enabled", false);
 	_speed = j.value("speed", 1.0f);
@@ -283,6 +305,15 @@ TCompAIPlayer::EState TCompAIPlayer::getStateEnumFromString(const std::string & 
     }
     else if (stateName.compare("sm_fence_tutorial") == 0) {
         return TCompAIPlayer::EState::TUT_SM_FENCE;
+    }
+    else if (stateName.compare("sm_enemy_tutorial") == 0) {
+        return TCompAIPlayer::EState::TUT_SM_ENEMY;
+    }
+    else if (stateName.compare("crouchwalkfallsm_cinematic") == 0) {
+        return TCompAIPlayer::EState::CINEMATIC_CROUCH_WALK;
+    }
+    else if (stateName.compare("fallsm_cinematic") == 0) {
+        return TCompAIPlayer::EState::CINEMATIC_FALLSM;
     }
     else if (stateName.compare("sm_enemy_tutorial") == 0) {
         return TCompAIPlayer::EState::TUT_SM_ENEMY;
@@ -484,6 +515,14 @@ BTNode::ERes TCompAIPlayer::actionStartSM(float dt)
     h_tutorial_weap_left.sendMsg(TMsgFadeBody{ false });
     h_tutorial_weap_right.sendMsg(TMsgFadeBody{ false });
 
+    TCompParticles * my_particles = get<TCompParticles>();
+    if (my_particles) {
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", CHandle(this).getOwner());
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash2.particles", CHandle(this).getOwner());
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", CHandle(this).getOwner());
+        my_particles->setSystemState(true);
+    }
+
     return BTNode::ERes::LEAVE;
 }
 
@@ -514,6 +553,14 @@ BTNode::ERes TCompAIPlayer::actionEndSM(float dt)
     CHandle h_tutorial_weap_right = getEntityByName("tuto_weap_disc_right");
     h_tutorial_weap_left.sendMsg(TMsgFadeBody{ true });
     h_tutorial_weap_right.sendMsg(TMsgFadeBody{ true });
+
+    TCompParticles * my_particles = get<TCompParticles>();
+    if (my_particles) {
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", CHandle(this).getOwner());
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash2.particles", CHandle(this).getOwner());
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", CHandle(this).getOwner());
+        my_particles->setSystemState(false);
+    }
 
     return BTNode::ERes::LEAVE;
 }
@@ -753,6 +800,48 @@ BTNode::ERes TCompAIPlayer::actionStartSMEnemy(float dt)
     return BTNode::ERes::LEAVE;
 }
 
+BTNode::ERes TCompAIPlayer::actionResetTimersCinematicWalkFall(float dt)
+{
+    _currentState = EState::CINEMATIC_FALLSM;
+    _maxTimer = 1.f;
+    return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersCinematicFallSM(float dt)
+{
+    _maxTimer = 1.f;
+    return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionCrouchWalk(float dt)
+{
+    TCompTransform* my_pos = get<TCompTransform>();
+    my_pos->setPosition(my_pos->getPosition() + my_pos->getFront() * dt * 1.75f);
+    TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+    my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CROUCH_WALK);
+    return BTNode::ERes::STAY;
+}
+
+BTNode::ERes TCompAIPlayer::actionFallSM(float dt)
+{
+    TCompPlayerAnimator *my_anim = get<TCompPlayerAnimator>();
+    my_anim->playAnimation(TCompPlayerAnimator::EAnimation::FALL);
+
+    TCompRigidbody* my_rigidbody = get<TCompRigidbody>();
+    if (my_rigidbody && my_rigidbody->is_grounded) {
+        return BTNode::ERes::LEAVE;
+    }
+
+    return BTNode::ERes::STAY;
+}
+
+BTNode::ERes TCompAIPlayer::endCinematic(float dt)
+{
+    enabledPlayerAI = false;
+    _currentState = getStateEnumFromString("");
+    return BTNode::ERes::LEAVE;
+}
+
 /* CONDITIONS */
 
 bool TCompAIPlayer::conditionHasBeenEnabled(float dt) {
@@ -817,6 +906,27 @@ bool TCompAIPlayer::conditionSMFenceTutorial(float dt)
 bool TCompAIPlayer::conditionSMEnemyTutorial(float dt)
 {
     return _currentState == TCompAIPlayer::EState::TUT_SM_ENEMY;
+}
+
+bool TCompAIPlayer::conditionCinematicWalkFall(float dt)
+{
+    return _currentState == TCompAIPlayer::EState::CINEMATIC_CROUCH_WALK;
+}
+
+bool TCompAIPlayer::conditionCinematicFallSM(float dt)
+{
+    return _currentState == EState::CINEMATIC_FALLSM;
+}
+
+bool TCompAIPlayer::assertIsGrounded(float dt)
+{
+    TCompRigidbody* my_rigidbody = get<TCompRigidbody>();
+    if (my_rigidbody) {
+        return my_rigidbody->is_grounded;
+    }
+    else {
+        return true;
+    }
 }
 
 /* ASSERTS */

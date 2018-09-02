@@ -136,3 +136,11 @@ end
 function setTutorialPlayerState(active, state)
 	SLB.setTutorialPlayerState(active, state);
 end
+
+function setCinematicPlayerState(active, state)
+	SLB.setCinematicPlayerState(active, state);
+end
+
+function move(name, pos, lookat)
+	SLB.move(name, pos, lookat);
+end

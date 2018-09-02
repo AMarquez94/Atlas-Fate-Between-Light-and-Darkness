@@ -17,8 +17,6 @@ void TCompLanding::onMsgEntityCanLandSM(const TMsgEntityCanLandSM & msg)
     is_active = msg.canSM;
     TCompParticles * c_e_particle = get<TCompParticles>();
     c_e_particle->setSystemState(is_active);
-
-    dbg("Received msg now I'm %s\n", is_active ? "ACTIVE" : "NO");
 }
 
 void TCompLanding::debugInMenu()

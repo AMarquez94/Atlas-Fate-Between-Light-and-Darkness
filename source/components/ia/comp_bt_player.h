@@ -8,17 +8,20 @@ class TCompAIPlayer : public TCompIAController {
 
 public:
 
-    enum EState { TUT_CROUCH = 0, 
-        TUT_SM, TUT_INHIBITOR, 
-        TUT_ATTACK, 
-        TUT_SM_FALL, 
-        TUT_SM_VER, 
-        TUT_BOX, 
-        TUT_SONAR, 
-        TUT_BUTTON, 
-        TUT_SM_FENCE, 
+    enum EState {
+        TUT_CROUCH = 0,
+        TUT_SM, TUT_INHIBITOR,
+        TUT_ATTACK,
+        TUT_SM_FALL,
+        TUT_SM_VER,
+        TUT_BOX,
+        TUT_SONAR,
+        TUT_BUTTON,
+        TUT_SM_FENCE,
         TUT_SM_ENEMY,
-        CINEMATIC, 
+        CINEMATIC,
+        CINEMATIC_CROUCH_WALK,
+        CINEMATIC_FALLSM,
         NUM_STATES };
 
     bool enabledPlayerAI;
@@ -70,6 +73,12 @@ public:
     BTNode::ERes actionAnimationGrabEnemy(float dt);
     BTNode::ERes actionStartSMEnemy(float dt);
 
+    BTNode::ERes actionResetTimersCinematicWalkFall(float dt);
+    BTNode::ERes actionResetTimersCinematicFallSM(float dt);
+    BTNode::ERes actionCrouchWalk(float dt);
+    BTNode::ERes actionFallSM(float dt);
+    BTNode::ERes endCinematic(float dt);
+
     bool conditionHasBeenEnabled(float dt);
     bool conditionCinematicMode(float dt);
     bool conditionCrouchTutorial(float dt);
@@ -83,6 +92,12 @@ public:
     bool conditionSonarTutorial(float dt);
     bool conditionSMFenceTutorial(float dt);
     bool conditionSMEnemyTutorial(float dt);
+
+    bool conditionCinematicWalkFall(float dt);
+    bool conditionCinematicFallSM(float dt);
+
+
+    bool assertIsGrounded(float dt);
 
     //Auxiliar
     bool move(float dt);

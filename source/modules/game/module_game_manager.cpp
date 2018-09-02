@@ -171,6 +171,7 @@ void CModuleGameManager::updateGameCondition() {
         CEntity* e = _player;
         TCompTempPlayerController *playerCont = e->get<TCompTempPlayerController>();
         if (playerCont->isDead()) {
+            Engine.getGUI().getVariables().setVariant("lifeBarFactor", 0);
             setPauseState(PauseState::defeat);
         }
     }
