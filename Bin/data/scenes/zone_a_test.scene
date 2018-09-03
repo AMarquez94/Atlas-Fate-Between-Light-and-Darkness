@@ -21,7 +21,7 @@
 				"lookat": "0 0 0"
 			},
 			"curve_controller": {
-				"curve": "data/curves/test_curve.curve",
+				"curve": "data/curves/curve_test1.curve",
 				"speed": 0.25,
 				"loop": true,
 				"target": "The Player"

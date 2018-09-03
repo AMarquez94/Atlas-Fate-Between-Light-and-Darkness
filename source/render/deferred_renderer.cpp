@@ -362,17 +362,11 @@ void CDeferredRenderer::renderGBufferParticles() {
     // Disable the gbuffer textures as we are going to update them
     // Can't render to those textures and have them active in some slot...
     CTexture::setNullTexture(TS_DEFERRED_ALBEDOS);
-    CTexture::setNullTexture(TS_DEFERRED_NORMALS);
-    CTexture::setNullTexture(TS_DEFERRED_LINEAR_DEPTH);
-    CTexture::setNullTexture(TS_DEFERRED_SELF_ILLUMINATION);
 
     // Activate el multi-render-target MRT
-    const int nrender_targets = 4;
+    const int nrender_targets = 1;
     ID3D11RenderTargetView* rts[nrender_targets] = {
-        rt_albedos->getRenderTargetView(),
-        rt_normals->getRenderTargetView(),
-        rt_depth->getRenderTargetView(),
-        rt_self_illum->getRenderTargetView()
+        rt_albedos->getRenderTargetView()
         // No Z as we need to read to reconstruct the position
     };
 
@@ -389,9 +383,6 @@ void CDeferredRenderer::renderGBufferParticles() {
 
     // Activate the gbuffer textures to other shaders
     rt_albedos->activate(TS_DEFERRED_ALBEDOS);
-    rt_normals->activate(TS_DEFERRED_NORMALS);
-    rt_self_illum->activate(TS_DEFERRED_SELF_ILLUMINATION);
-    rt_depth->activate(TS_DEFERRED_LINEAR_DEPTH);
 }
 
 // --------------------------------------
@@ -401,8 +392,9 @@ void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camer
 
     renderGBuffer();
     renderGBufferDecals();
-    renderGBufferParticles();
+    //renderGBufferParticles();
 	renderAO(h_camera);
+    Engine.get().getParticles().renderDeferred();
 
 	// Do the same with the acc light
 	CTexture::setNullTexture(TS_DEFERRED_ACC_LIGHTS);
