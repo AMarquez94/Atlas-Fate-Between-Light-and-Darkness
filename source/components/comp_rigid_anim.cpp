@@ -6,19 +6,8 @@
 DECL_OBJ_MANAGER("rigid_anim", TCompRigidAnim);
 
 void TCompRigidAnim::load(const json& j, TEntityParseContext& ctx) {
-  controller.track_name = j.value( "track", "" );
-  if (controller.track_name.empty()) {
-    CEntity* e = ctx.current_entity;
-    assert(e);
-    controller.track_name = e->getName();
-  }
-  assert(j.count("src") > 0);
-  controller.anims = Resources.get(j["src"])->as<RigidAnims::CRigidAnimResource>();
-  controller.track_index = controller.anims->findTrackIndexByName(controller.track_name);
-  assert(controller.track_index != RigidAnims::CController::invalid_track_index);
-  current_time = 0;
-  speed_factor = j.value("speed_factor", 1.0f);
-  loops = j.value("loops", true);
+	
+	
 }
 
 void TCompRigidAnim::debugInMenu() {
@@ -28,17 +17,17 @@ void TCompRigidAnim::debugInMenu() {
 }
 
 void TCompRigidAnim::update(float dt) {
-
+	/*
   if (!is_moving)
     return;
 
   // Sample the animation in the current time
   RigidAnims::TKey k;
-  bool has_finished = controller.sample(&k, current_time);
+  bool has_finished = controllers[0].sample(&k, current_time);
 
   // Transfer the key data to the comp transform
   TCompTransform* c_trans = get< TCompTransform >();
-  c_trans->setPosition(k.pos);
+  c_trans->setPosition(k.pos + parent_position);
   c_trans->setRotation(k.rot);
   c_trans->setScale(VEC3(k.scale, k.scale, k.scale));
 
@@ -50,4 +39,5 @@ void TCompRigidAnim::update(float dt) {
 
   // Advance the time
   current_time += dt * speed_factor;
+  */
 }

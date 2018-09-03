@@ -7,11 +7,14 @@
 class CRigidAnimResource;
 
 struct TCompRigidAnim : public TCompBase {
-  RigidAnims::CController controller;
+  std::vector<RigidAnims::CController> controllers;
   float                   current_time = 0.f;
   bool                    loops = true;
   bool                    is_moving = true;
   float                   speed_factor = 1.0f;
+  VEC3					  parent_position;
+
+
   void load(const json& j, TEntityParseContext& ctx);
   void update(float dt);
   void debugInMenu();
