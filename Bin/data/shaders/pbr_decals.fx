@@ -63,7 +63,7 @@ VS_TEXTURED_OUTPUT VS(
   output.decal_axis_x = decal_x * decal_inv_size_x;
   output.decal_axis_z = decal_z * decal_inv_size_z;
 
-	float3x3 fMatrix = { decal_z / length(decal_z), decal_y/ length(decal_y), decal_x/length(decal_x) };   
+	float3x3 fMatrix = { decal_x / length(decal_x), decal_y/ length(decal_y), decal_z/length(decal_z) };   
 									 
   // Blendout in the last TimeBlendingOut secs of TimeToLife
   //float TimeToLife = InstanceXtras.x;

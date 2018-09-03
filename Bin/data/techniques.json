@@ -525,7 +525,7 @@
 		"category": "particles_gbuffer_combinative",
 		"z": "test_but_no_write",
 		"rs_config": "cull_none",
-		"blend": "combinative"
+		"blend": "multiplicative_gbuffer"
 	},
 	"pbr_instanced_volume": {
 		"vs_file": "data/shaders/pbr_vol_instanced.fx",
