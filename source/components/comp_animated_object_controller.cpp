@@ -14,30 +14,32 @@ void TCompAnimatedObjController::debugInMenu() {
 }
 
 void TCompAnimatedObjController::load(const json& j, TEntityParseContext& ctx) {
-	/*
-	if (j.count("animations")) {
-		auto& j_animations = j["animations"];
-		for (auto it = j_animations.begin(); it != j_animations.end(); ++it) {
-			RigidAnims::CController controller;
-			controller.track_name = it.value().value("track", "");
-			if (controller.track_name.empty()) {
-				CEntity* e = ctx.current_entity;
-				assert(e);
-				controller.track_name = e->getName();
-			}
-			assert(it.value().count("src") > 0);
-			controller.anims = Resources.get(it.value()["src"])->as<RigidAnims::CRigidAnimResource>();
-			controller.track_index = controller.anims->findTrackIndexByName(controller.track_name);
-			assert(controller.track_index != RigidAnims::CController::invalid_track_index);
-			current_time = 0;
-			speed_factor = it.value().value("speed_factor", 1.0f);
-			loops = it.value().value("loops", true);
-			controllers.push_back(controller);
+
+	if (j.count("reference_names")) {
+		auto& j_references = j["reference_names"];
+		for (auto it = j_references.begin(); it != j_references.end(); ++it) {
+
+			std::string name = it.value().value("name", "");
+			dbg("");
 
 		}
 	}
-	parent_position = VEC3(0, 0, -20);
-	*/
+
+	if (j.count("animations")) {
+		auto& j_animations = j["animations"];
+		for (auto it = j_animations.begin(); it != j_animations.end(); ++it) {
+			AnimationInfo ainfo;
+
+			ainfo.track_name = it.value().value("track", "");
+			assert(it.value().count("src") > 0);
+			ainfo.source = it.value().value("src","");
+			ainfo.speedFactor = it.value().value("speed_factor", 1.0f);
+			ainfo.loop = it.value().value("loops", true);
+
+			animationInfos.push_back(ainfo);
+		}
+	}
+
 }
 
 void TCompAnimatedObjController::update(float dt) {

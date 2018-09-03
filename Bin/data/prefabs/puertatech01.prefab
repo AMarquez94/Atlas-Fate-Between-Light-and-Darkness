@@ -7,7 +7,17 @@
       "transform":
       {
         "pos": "0.0 0.0 0.0"
-      }
+      },
+      "animated_object_controller" : {
+        "reference_names":[
+          {
+            "name" : "quepacha"
+          },
+          {
+            "name" : "quepachins"
+          }
+          ]  
+      }         
     }
   }
   ,

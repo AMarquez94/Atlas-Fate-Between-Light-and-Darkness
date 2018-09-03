@@ -10,6 +10,16 @@ class TCompAnimatedObjController : public TCompBase
 
 public:
 
+	struct AnimationInfo {
+
+		std::string animationName = "";
+		std::string track_name = "";
+		std::string source = "";
+		float speedFactor = 1.0f;
+		bool loop = false;
+	};
+
+	std::vector<AnimationInfo> animationInfos;
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
