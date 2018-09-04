@@ -287,6 +287,12 @@ struct TMsgPlayerAIEnabled {
     DECL_MSG_ID();
 };
 
+struct TMsgCinematicState {
+    std::string state;
+    bool enableCinematic;
+    DECL_MSG_ID();
+};
+
 //struct TMsgSpotlightsToggle {
 //    DECL_MSG_ID();
 //};

@@ -81,9 +81,6 @@ void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
     enemyColor.colorAlert = j.count("colorAlert") ? loadVEC4(j["colorAlert"]) : VEC4(1, 0, 0, 1);
     enemyColor.colorDead = j.count("colorDead") ? loadVEC4(j["colorDead"]) : VEC4(0, 0, 0, 0);
 
-    is_tutorial = j.value("is_tutorial", false);
-    tutorial_name = j.value("tutorial_name", "");
-
     btType = BTType::PATROL;
 }
 
@@ -276,6 +273,13 @@ void TCompAIPatrol::onMsgLanternsDisable(const TMsgLanternsDisable & msg)
     disabledLanterns = msg.disable;
 }
 
+void TCompAIPatrol::onMsgCinematicState(const TMsgCinematicState & msg)
+{
+    _enabledCinematicAI = msg.enableCinematic;
+    _currentCinematicState = getStateEnumFromString(msg.state);
+    setCurrent(nullptr);
+}
+
 const std::string TCompAIPatrol::getStateForCheckpoint()
 {
     if (current) {
@@ -302,6 +306,7 @@ void TCompAIPatrol::registerMsgs()
     DECL_MSG(TCompAIPatrol, TMsgPatrolFixed, onMsgPatrolFixed);
     DECL_MSG(TCompAIPatrol, TMsgNoiseMade, onMsgNoiseListened);
     DECL_MSG(TCompAIPatrol, TMsgLanternsDisable, onMsgLanternsDisable);
+    DECL_MSG(TCompAIPatrol, TMsgCinematicState, onMsgCinematicState);
 }
 
 void TCompAIPatrol::loadActions() {
@@ -338,10 +343,12 @@ void TCompAIPatrol::loadActions() {
     actions_initializer["actionWarnClosestDrone"] = (BTAction)&TCompAIPatrol::actionWarnClosestDrone;
     actions_initializer["actionRotateTowardsUnreachablePlayer"] = (BTAction)&TCompAIPatrol::actionRotateTowardsUnreachablePlayer;
 
-    actions_initializer["actionResetTimersAttackTutorial"] = (BTAction)&TCompAIPatrol::actionResetTimersAttackTutorial;
-    actions_initializer["actionWait"] = (BTAction)&TCompAIPatrol::actionWait;
-    actions_initializer["actionAnimationStunned"] = (BTAction)&TCompAIPatrol::actionAnimationStunned;
+    actions_initializer["actionDieAnimation"] = (BTAction)&TCompAIPatrol::actionDieAnimation;
+    actions_initializer["actionDeadAnimation"] = (BTAction)&TCompAIPatrol::actionDeadAnimation;
     actions_initializer["actionResetBT"] = (BTAction)&TCompAIPatrol::actionResetBT;
+    actions_initializer["actionResetInhibitorCinematicTimers"] = (BTAction)&TCompAIPatrol::actionResetInhibitorCinematicTimers;
+    actions_initializer["actionWait"] = (BTAction)&TCompAIPatrol::actionWait;
+    actions_initializer["actionAnimationShootInhibitor"] = (BTAction)&TCompAIPatrol::actionAnimationShootInhibitor;
 }
 
 void TCompAIPatrol::loadConditions() {
@@ -363,9 +370,9 @@ void TCompAIPatrol::loadConditions() {
     conditions_initializer["conditionPlayerAttacked"] = (BTCondition)&TCompAIPatrol::conditionPlayerAttacked;
     conditions_initializer["conditionIsDestUnreachable"] = (BTCondition)&TCompAIPatrol::conditionIsDestUnreachable;
 
-    conditions_initializer["conditionIsTutorial"] = (BTCondition)&TCompAIPatrol::conditionIsTutorial;
-    conditions_initializer["conditionAttackTutorial"] = (BTCondition)&TCompAIPatrol::conditionAttackTutorial;
-    conditions_initializer["conditionSMEnemyTutorial"] = (BTCondition)&TCompAIPatrol::conditionSMEnemyTutorial;
+    conditions_initializer["conditionIsCinematic"] = (BTCondition)&TCompAIPatrol::conditionIsCinematic;
+    conditions_initializer["conditionDeadCinematic"] = (BTCondition)&TCompAIPatrol::conditionDeadCinematic;
+    conditions_initializer["conditionInhibitorCinematic"] = (BTCondition)&TCompAIPatrol::conditionInhibitorCinematic;
 }
 
 void TCompAIPatrol::loadAsserts() {
@@ -1011,20 +1018,45 @@ BTNode::ERes TCompAIPatrol::actionMarkPatrolAsLost(float dt)
     return BTNode::ERes::LEAVE;
 }
 
-BTNode::ERes TCompAIPatrol::actionResetTimersAttackTutorial(float dt)
+BTNode::ERes TCompAIPatrol::actionDieAnimation(float dt)
 {
-    timer = 0.f;
-    maxTimer = 1.f;
     TCompPatrolAnimator* my_anim = get<TCompPatrolAnimator>();
-    my_anim->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+    my_anim->playAnimation(TCompPatrolAnimator::DIE);
+    TCompEmissionController* my_emission = get<TCompEmissionController>();
+    my_emission->blend(enemyColor.colorDead, 0.001f);
+    return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPatrol::actionDeadAnimation(float dt)
+{
+    TCompPatrolAnimator* my_anim = get<TCompPatrolAnimator>();
+    my_anim->playAnimation(TCompPatrolAnimator::DEAD);
+    return BTNode::ERes::STAY;
+}
+
+BTNode::ERes TCompAIPatrol::actionResetBT(float dt)
+{
+    setCurrent(nullptr);
+    return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPatrol::actionResetInhibitorCinematicTimers(float dt)
+{
+    _cinematicTimer = 0.f;
+    _cinematicMaxTime = 1.f;
+    _currentCinematicState = EState::CINEMATIC_DEAD;
+    TCompPatrolAnimator* my_anim = get<TCompPatrolAnimator>();
+    my_anim->playAnimation(TCompPatrolAnimator::IDLE);
+    TCompEmissionController* my_emission = get<TCompEmissionController>();
+    my_emission->blend(enemyColor.colorSuspect, 0.5f);
     return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIPatrol::actionWait(float dt)
 {
-    timer += dt;
-    if (timer > maxTimer) {
-        timer = 0.f;
+    _cinematicTimer += dt;
+    if (_cinematicTimer > _cinematicMaxTime) {
+        _cinematicTimer = 0.f;
         return BTNode::ERes::LEAVE;
     }
     else {
@@ -1032,26 +1064,12 @@ BTNode::ERes TCompAIPatrol::actionWait(float dt)
     }
 }
 
-BTNode::ERes TCompAIPatrol::actionAnimationStunned(float dt)
+BTNode::ERes TCompAIPatrol::actionAnimationShootInhibitor(float dt)
 {
-    timer += dt;
+    //TODO: Play shoot inhibitor animation
+    TCompEmissionController* my_emission = get<TCompEmissionController>();
+    EngineLogic.execScript("animation_LaunchInhibitor(" + CHandle(this).getOwner().asString() + ")");
 
-    if (timer > 0.7f) {
-        TCompPatrolAnimator* my_anim = get<TCompPatrolAnimator>();
-        my_anim->playAnimation(TCompPatrolAnimator::EAnimation::DIE);
-
-        CEntity* player_tutorial = getEntityByName("Tutorial Player");
-        if (player_tutorial) {
-            TCompPlayerAnimator* player_anim = player_tutorial->get<TCompPlayerAnimator>();
-            maxTimer = player_anim->getAnimationDuration((TCompAnimator::EAnimation)TCompPlayerAnimator::EAnimation::ATTACK) + 2.f - timer;
-        }
-        return BTNode::ERes::LEAVE;
-    }
-}
-
-BTNode::ERes TCompAIPatrol::actionResetBT(float dt)
-{
-    setCurrent(nullptr);
     return BTNode::ERes::LEAVE;
 }
 
@@ -1158,19 +1176,19 @@ bool TCompAIPatrol::conditionIsDestUnreachable(float dt)
     return !isCurrentDestinationReachable();
 }
 
-bool TCompAIPatrol::conditionIsTutorial(float dt)
+bool TCompAIPatrol::conditionIsCinematic(float dt)
 {
-    return is_tutorial;
+    return _enabledCinematicAI;
 }
 
-bool TCompAIPatrol::conditionAttackTutorial(float dt)
+bool TCompAIPatrol::conditionDeadCinematic(float dt)
 {
-    return tutorial_name.compare("attack_tutorial") == 0;
+    return _currentCinematicState == TCompAIPatrol::EState::CINEMATIC_DEAD;
 }
 
-bool TCompAIPatrol::conditionSMEnemyTutorial(float dt)
+bool TCompAIPatrol::conditionInhibitorCinematic(float dt)
 {
-    return tutorial_name.compare("sm_tutorial") == 0;
+    return _currentCinematicState == TCompAIPatrol::EState::CINEMATIC_INHIBITOR;
 }
 
 /* ASSERTS */
@@ -1351,6 +1369,17 @@ float TCompAIPatrol::getMaxChaseDistance()
     float maxChaseDistance = arguments["maxChaseDistance_actionSuspect_suspect"].getFloat();
     assert(arguments.find("dcrSuspectO_Meter_actionSuspect_suspect") != arguments.end());
     return maxChaseDistance;
+}
+
+TCompAIPatrol::EState TCompAIPatrol::getStateEnumFromString(const std::string& stateName)
+{
+    if (stateName.compare("inhibitor_cinematic") == 0) {
+        return TCompAIPatrol::EState::CINEMATIC_INHIBITOR;
+    }
+    else if (stateName.compare("dead_cinematic") == 0) {
+        return TCompAIPatrol::EState::CINEMATIC_DEAD;
+    }
+    return TCompAIPatrol::EState::NUM_STATES;
 }
 
 void TCompAIPatrol::launchInhibitor()

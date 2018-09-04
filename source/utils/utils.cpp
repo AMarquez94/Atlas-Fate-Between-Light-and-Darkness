@@ -174,8 +174,8 @@ VEC2 getMouseInRange(float min_x, float max_x, float min_y, float max_y)
     ScreenToClient(CApp::get().getWnd(), &mouse_loc);
     VEC2 mouse_pos = VEC2((float)Clamp((int)mouse_loc.x, 0, CApp::get().xres), (float)Clamp((int)mouse_loc.y, 0, CApp::get().yres));
 
-    mouse_pos.x = (float)mapInRange(min_x, max_x, 0, CApp::get().xres, mouse_pos.x);
-    mouse_pos.y = (float)mapInRange(min_y, max_y, 0, CApp::get().yres, mouse_pos.y);
+    mouse_pos.x = (float)mapInRange(min_x, max_x, 0.f, (float)CApp::get().xres, mouse_pos.x);
+    mouse_pos.y = (float)mapInRange(min_y, max_y, 0.f, (float)CApp::get().yres, mouse_pos.y);
 
     return mouse_pos;
 }

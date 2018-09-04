@@ -219,6 +219,7 @@ void CModuleLogic::publishClasses() {
 
     // cinematic
     m->set("setCinematicPlayerState", SLB::FuncCall::create(&setCinematicPlayerState));
+    m->set("setAIState", SLB::FuncCall::create(&setAIState));
 
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -482,11 +483,11 @@ void lanternsDisable(bool disable) {
     }
 }
 
-void blendInCamera(const std::string & cameraName, float blendInTime) {
+void blendInCamera(const std::string & cameraName, float blendInTime, const std::string& mode) {
 
     CHandle camera = getEntityByName(cameraName);
     if (camera.isValid()) {
-        EngineCameras.blendInCamera(camera, blendInTime, CModuleCameras::EPriority::TEMPORARY);
+        EngineCameras.blendInCamera(camera, blendInTime, EngineCameras.getPriorityFromString(mode));
     }
     //TODO: implement
 }
@@ -579,6 +580,17 @@ void setCinematicPlayerState(bool active, const std::string & stateName)
     msg.state = stateName;
     msg.enableAI = active;
     h_tutorial.sendMsg(msg);
+}
+
+void setAIState(const std::string & name, bool active, const std::string & stateName)
+{
+    CHandle h = getEntityByName(name);
+    if (h.isValid()) {
+        TMsgCinematicState msg;
+        msg.enableCinematic = active;
+        msg.state = stateName;
+        h.sendMsg(msg);
+    }
 }
 
 void activateScene(const std::string& scene) {

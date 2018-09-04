@@ -7,7 +7,9 @@ function onSceneStart_scene_intro()
 	-- First Cinematic --
 	move("The Player", VEC3(-7.5, 12.115, 34.2), VEC3(-7.5, 12.115, 33.2));
 	--setCinematicPlayerState(true, "crouch_cinematic")
-	setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
+	--blendInCamera("test_camera_curve", 2.0, "cinematic");
+	--setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
+	setAIState("Patrol_Cinematic_Inhibitor", true, "dead_cinematic");
 end
 
 function onSceneEnd_scene_intro()
@@ -15,12 +17,19 @@ function onSceneEnd_scene_intro()
 end
 
 function transition_map_intro_to_coliseum()
-	execScriptDelayed("blendInCamera(\"scene_transition\", 1.0)", 2);
+	execScriptDelayed("blendInCamera(\"scene_transition\", 1.0, \"cinematic\")", 2);
 	execScriptDelayed("pausePlayerToggle()", 2);
 	execScriptDelayed("cinematicModeToggle()", 2);
 	execScriptDelayed("loadScene(\"scene_coliseo\")", 5);
 end
 
+-- # Trigger cinematic # --
+
+function onTriggerEnter_Trigger_Inhibitor_Cinematic_player()
+	setAIState("Patrol_Cinematic_Inhibitor", true, "inhibitor_cinematic");
+	temp = getEntityByName("Trigger_Inhibitor_Cinematic");
+	temp:destroy();
+end
 
 
 -- # Trigger tutorials # --
@@ -96,7 +105,6 @@ function onPatrolStunned_IntroPatrol()
 	show_tutorial_sm_enemy = true;
 	moveTutorialPlayer(VEC3(-6.3, 0, -49), VEC3(-6.3, 0, -51), true, "sm_enemy_tutorial");
 end
-
 
 function moveTutorialPlayer(position, lookAt, active, tutorial_state)
 	h_tutorial_player = getEntityByName("Tutorial Player");

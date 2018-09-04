@@ -29,12 +29,12 @@
 			"chromatic_aberration": {
 				"enabled": true
 			},
-			"render_outlines" : {
-				"enabled" : true
-		  },
-			"render_environment" : {
-				"enabled" : true
-		  },
+			"render_outlines": {
+				"enabled": true
+			},
+			"render_environment": {
+				"enabled": true
+			},
 			"culling": true
 		}
 	}, {
@@ -64,9 +64,9 @@
 				"global_distance": 0.1,
 				"gauss_filter": true
 			},
-			"motion_blur" : {
-				"enabled" : true
-		  },
+			"motion_blur": {
+				"enabled": true
+			},
 			"render_bloom": {
 				"enabled": true,
 				"max_steps": 4,
@@ -86,23 +86,23 @@
 			"antialiasing": {
 				"enabled": true
 			},
-			"vignette" : {
-				"enabled" : true
-		  },
-			"render_flares" : {
-				"enabled" : true,
+			"vignette": {
+				"enabled": true
+			},
+			"render_flares": {
+				"enabled": true,
 				"max_steps": 4
-		  },
-			"render_outlines" : {
-				"enabled" : true
-		  },
-			"render_environment" : {
-				"enabled" : true
-		  },
+			},
+			"render_outlines": {
+				"enabled": true
+			},
+			"render_environment": {
+				"enabled": true
+			},
 			"render_focus": {
-        "enabled": false
-      },
-			"tags": ["main_camera","tp_camera"]
+				"enabled": false
+			},
+			"tags": ["main_camera", "tp_camera"]
 		}
 	}, {
 		"entity": {
@@ -148,9 +148,9 @@
 			"antialiasing": {
 				"enabled": true
 			},
-			"render_outlines" : {
-				"enabled" : true
-		  },
+			"render_outlines": {
+				"enabled": true
+			},
 			"tags": ["main_camera", "tp_camera"]
 		}
 	}, {
@@ -307,21 +307,21 @@
 			"antialiasing": {
 				"enabled": true
 			},
-			"render_outlines" : {
-				"enabled" : true
-		  }
+			"render_outlines": {
+				"enabled": true
+			}
 		}
 	},
 	{
 		"entity": {
-		  "name": "scene_transition",
-		  "transform": {
-			"pos": "-10 10 130",
-			"lookat": "-10 0 145"
-		  },
-		  "camera": {
-			"fov": 80
-		  },
+			"name": "scene_transition",
+			"transform": {
+				"pos": "-10 10 130",
+				"lookat": "-10 0 145"
+			},
+			"camera": {
+				"fov": 80
+			},
 			"render_ao": {
 				"enabled": true
 			},
@@ -349,9 +349,75 @@
 			"antialiasing": {
 				"enabled": true
 			},
-			"render_outlines" : {
-				"enabled" : true
-		  }
+			"render_outlines": {
+				"enabled": true
+			}
+		}
+	}, {
+		"entity": {
+			"name": "test_camera_curve",
+			"transform": {
+				"pos": "-8.20126 1.49488e-06 34.1988",
+				"rotation": "0.0 0.976105 0 0.2173"
+			},
+			"curve_controller": {
+				"curve": "data/curves/IN_Spline_intro.curve",
+				"target": "The Player",
+				"speed": 0.1
+			},
+			"camera": {
+				"fov": 70,
+				"z_near": 0.01,
+				"z_far": 1000
+			},
+			"render_ao": {
+				"enabled": true,
+				"max_steps": 1,
+				"gauss_filter": true
+			},
+			"render_blur": {
+				"enabled": false,
+				"global_distance": 0.1,
+				"gauss_filter": true
+			},
+			"motion_blur": {
+				"enabled": true
+			},
+			"render_bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"rt_name": "Bloom"
+			},
+			"color_grading": {
+				"enabled": true,
+				"amount": 0.25,
+				"lut": "data/textures/lut/lut5.dds"
+			},
+			"chromatic_aberration": {
+				"enabled": true
+			},
+			"fog": {
+				"enabled": true
+			},
+			"antialiasing": {
+				"enabled": true
+			},
+			"vignette": {
+				"enabled": true
+			},
+			"render_flares": {
+				"enabled": true,
+				"max_steps": 4
+			},
+			"render_outlines": {
+				"enabled": true
+			},
+			"render_environment": {
+				"enabled": true
+			},
+			"render_focus": {
+				"enabled": false
+			}
 		}
 	}
 ]

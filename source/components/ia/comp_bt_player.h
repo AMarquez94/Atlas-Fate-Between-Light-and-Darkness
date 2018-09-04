@@ -10,7 +10,8 @@ public:
 
     enum EState {
         TUT_CROUCH = 0,
-        TUT_SM, TUT_INHIBITOR,
+        TUT_SM, 
+        TUT_INHIBITOR,
         TUT_ATTACK,
         TUT_SM_FALL,
         TUT_SM_VER,

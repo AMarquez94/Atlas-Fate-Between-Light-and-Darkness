@@ -809,7 +809,7 @@ BTNode::ERes TCompAIPlayer::actionResetTimersCinematicWalkFall(float dt)
 
 BTNode::ERes TCompAIPlayer::actionResetTimersCinematicFallSM(float dt)
 {
-    _maxTimer = 1.f;
+    _maxTimer = 4.f;
     return BTNode::ERes::LEAVE;
 }
 

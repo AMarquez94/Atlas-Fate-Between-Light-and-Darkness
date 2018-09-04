@@ -33,8 +33,8 @@ function postFXToggle()
 	SLB.postFXToggle()
 end
 
-function blendInCamera(cameraName, blendInTime)
-	SLB.blendInCamera(cameraName, blendInTime)
+function blendInCamera(cameraName, blendInTime, mode)
+	SLB.blendInCamera(cameraName, blendInTime, mode)
 end
 
 function blendOutCamera(cameraName, blendOutTime)
@@ -139,6 +139,10 @@ end
 
 function setCinematicPlayerState(active, state)
 	SLB.setCinematicPlayerState(active, state);
+end
+
+function setAIState(e_name, active, state)
+	SLB.setAIState(e_name, active, state);
 end
 
 function move(name, pos, lookat)

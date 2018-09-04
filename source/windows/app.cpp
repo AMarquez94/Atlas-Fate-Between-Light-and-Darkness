@@ -201,8 +201,8 @@ void CApp::mainLoop() {
             if (resetMouse)
             {
                 POINT pt;
-                pt.x = xres * .5f;
-                pt.y = yres * .5f;
+                pt.x = (LONG)xres * .5f;
+                pt.y = (LONG)yres * .5f;
                 ClientToScreen(hWnd, &pt);
                 SetCursorPos(pt.x, pt.y);
                 resetMouse = false;

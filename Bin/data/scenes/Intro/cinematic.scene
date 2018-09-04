@@ -1,0 +1,36 @@
+[
+  {
+    "entity": {
+      "name": "Cinematic_Scene",
+      "transform": {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  },
+  {
+    "entity": {
+      "prefab": "data/prefabs/patrol.prefab",
+      "name": "Patrol_Cinematic_Inhibitor",
+      "transform": {
+        "pos": "-26.8 0 -35.0",
+        "lookat": "-25.8 0 -35.0"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Trigger_Inhibitor_Cinematic",
+      "transform": {
+        "pos": "-23.6837 0.0 -38.9918",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "collider": {
+        "shape": "box",
+        "size": "6.62319 0.0831085 6.1289",
+		"is_trigger": true
+      },
+      "abs_aabb": true,
+      "local_aabb": true
+    }
+  }
+]

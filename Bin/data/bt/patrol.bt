@@ -8,51 +8,70 @@
 		},
 	"children": [{
 			"parent": "patrol",
-			"name": "isTutorial",
+			"name": "isCinematic",
 			"type": "priority",
-			"condition": "conditionIsTutorial",
+			"condition": "conditionIsCinematic",
 			"action": "",
 			"assert": ""
 		},{
-			"parent": "isTutorial",
-			"name": "attackTutorial",
+			"parent": "isCinematic",
+			"name": "deadCinematic",
 			"type": "sequence",
-			"condition": "conditionAttackTutorial",
+			"condition": "conditionDeadCinematic",
 			"action": "",
 			"assert": ""
 		},{
-			"parent": "attackTutorial",
-			"name": "resetTimersAttackTutorial",
+			"parent": "deadCinematic",
+			"name": "dieDeadCinematic",
 			"type": "action",
 			"condition": "",
-			"action": "actionResetTimersAttackTutorial",
+			"action": "actionDieAnimation",
 			"assert": ""
 		},{
-			"parent": "attackTutorial",
-			"name": "waitAttackTutorial",
+			"parent": "deadCinematic",
+			"name": "deadDeadCinematic",
+			"type": "action",
+			"condition": "",
+			"action": "actionDeadAnimation",
+			"assert": ""
+		}, {
+			"parent": "isCinematic",
+			"name": "inhibitorCinematic",
+			"type": "sequence",
+			"condition": "conditionInhibitorCinematic",
+			"action": "",
+			"assert": ""
+		}, {
+			"parent": "inhibitorCinematic",
+			"name": "resetInhibitorCinematicTimers",
+			"type": "action",
+			"condition": "",
+			"action": "actionResetInhibitorCinematicTimers",
+			"assert": ""
+		}, {
+			"parent": "inhibitorCinematic",
+			"name": "waitInhibitorCinematic",
 			"type": "action",
 			"condition": "",
 			"action": "actionWait",
 			"assert": ""
-		},{
-			"parent": "attackTutorial",
-			"name": "stunnedAttackTutorial",
+		}, {
+			"parent": "inhibitorCinematic",
+			"name": "shootInhibitorInhibitorCinematic",
 			"type": "action",
 			"condition": "",
-			"action": "actionAnimationStunned",
+			"action": "actionAnimationShootInhibitor",
 			"assert": ""
-		},
-		{
-			"parent": "attackTutorial",
-			"name": "waitAttackTutorial_2",
+		}, {
+			"parent": "inhibitorCinematic",
+			"name": "waitInhibitorCinematic_2",
 			"type": "action",
 			"condition": "",
 			"action": "actionWait",
 			"assert": ""
-		},
-		{
-			"parent": "attackTutorial",
-			"name": "resetBTAttackTutorial",
+		}, {
+			"parent": "inhibitorCinematic",
+			"name": "resetBTInhibitorCinematic",
 			"type": "action",
 			"condition": "",
 			"action": "actionResetBT",

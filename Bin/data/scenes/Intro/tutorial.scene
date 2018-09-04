@@ -86,12 +86,12 @@
 		"entity": {
 			"name": "InhibitorTutorial",
 			"transform": {
-				"pos": "-15 0 -38"
+				"pos": "-20 0 -38"
 			},
 			"collider":
 			{
 				"shape": "box",
-				"size": "3 1.5 8",
+				"size": "7 1.5 7",
 				"is_trigger": true,
 				"is_dynamic": false,
 				"is_controller": false,
@@ -134,7 +134,7 @@
 		}
 	},
 	{
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/tutorial/patrol_tutorial.prefab",
 			"transform": {
 				"pos": "-40.306 1.125 -87",

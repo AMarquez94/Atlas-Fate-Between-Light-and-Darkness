@@ -90,7 +90,7 @@ void TCompCameraFlyover::setStatus(bool status) {
     paused = status;
 
     if (!paused) {
-        Engine.getCameras().blendInCamera(CHandle(this).getOwner(), 1.f, CModuleCameras::EPriority::TEMPORARY);
+        Engine.getCameras().blendInCamera(CHandle(this).getOwner(), 1.f, CModuleCameras::EPriority::DEBUG);
     }
     else {
         Engine.getCameras().blendOutCamera(CHandle(this).getOwner(), 1.0f);

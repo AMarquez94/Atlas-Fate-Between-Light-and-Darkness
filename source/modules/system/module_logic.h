@@ -92,7 +92,7 @@ void speedBoost(const float speed);
 void playerInvisible();
 void noClipToggle();
 void lanternsDisable(bool disable);
-void blendInCamera(const std::string& cameraName, float blendInTime);
+void blendInCamera(const std::string& cameraName, float blendInTime, const std::string& mode = "cinematic");
 void blendOutCamera(const std::string& cameraName, float blendOutTime);
 void blendOutActiveCamera(float blendOutTime);
 CHandle spawn(const std::string & name, const VEC3 & pos, const VEC3& lookat);
@@ -117,6 +117,7 @@ void setTutorialPlayerState(bool active, const std::string& stateName);
 
 /* Cinematic */
 void setCinematicPlayerState(bool active, const std::string & stateName);
+void setAIState(const std::string& name, bool active, const std::string & stateName);
 
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);
