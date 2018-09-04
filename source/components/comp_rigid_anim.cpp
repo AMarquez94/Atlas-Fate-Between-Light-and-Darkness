@@ -15,6 +15,9 @@ void TCompRigidAnim::debugInMenu() {
   ImGui::DragFloat("Speed Factor", &speed_factor, 0.01f, 0.f, 5.0f);
   ImGui::Checkbox("Loops", &loops);
 }
+void TCompRigidAnim::registerAnimation() {
+	dbg("");
+}
 
 void TCompRigidAnim::update(float dt) {
 	/*

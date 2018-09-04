@@ -20,9 +20,12 @@ public:
 	};
 
 	std::vector<AnimationInfo> animationInfos;
+	std::vector<std::string> object_names;
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
+
+	void onGroupCreated(const TMsgEntitiesGroupCreated &msg);
 
 };

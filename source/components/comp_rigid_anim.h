@@ -18,6 +18,8 @@ struct TCompRigidAnim : public TCompBase {
   void load(const json& j, TEntityParseContext& ctx);
   void update(float dt);
   void debugInMenu();
+
+  void registerAnimation();
   DECL_SIBLING_ACCESS();
 };
 

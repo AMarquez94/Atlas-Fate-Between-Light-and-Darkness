@@ -1,12 +1,26 @@
 #include "mcv_platform.h"
 #include "comp_animated_object_controller.h"
 #include "components/comp_transform.h"
+#include "comp_rigid_anim.h"
 #include "components/comp_fsm.h"
 
 DECL_OBJ_MANAGER("animated_object_controller", TCompAnimatedObjController);
 
 void TCompAnimatedObjController::registerMsgs() {
+	DECL_MSG(TCompAnimatedObjController, TMsgEntitiesGroupCreated, onGroupCreated);
+}
 
+void TCompAnimatedObjController::onGroupCreated(const TMsgEntitiesGroupCreated &msg) {
+	for (int i = 0; i < object_names.size(); i++) {
+		CEntity* e = getEntityByName(object_names[i]);
+		if (e != nullptr) {
+			TCompRigidAnim* comp_rigid = e->get<TCompRigidAnim>();
+			if (comp_rigid != nullptr) {
+				comp_rigid->registerAnimation();
+			}
+		}
+		
+	}
 }
 
 void TCompAnimatedObjController::debugInMenu() {
@@ -20,7 +34,7 @@ void TCompAnimatedObjController::load(const json& j, TEntityParseContext& ctx) {
 		for (auto it = j_references.begin(); it != j_references.end(); ++it) {
 
 			std::string name = it.value().value("name", "");
-			dbg("");
+			object_names.push_back(name);
 
 		}
 	}
