@@ -1,0 +1,52 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_tubo_capsulas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubo_capsulas"
+      ,
+      "transform":
+      {
+        "pos": "-12.09 24.3774 22.3634"
+        ,
+        "rotation": "-0.706434 -0.706434 -0.0308435 0.0308434"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubo_capsulas.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_gloryhole.material"
+            ,
+            "data/materials/mtl_tubo_capsulas_props.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_tubo_capsulas.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]
