@@ -58,5 +58,8 @@ FilterGroup getFilterByName(const std::string & name)
     else if (strcmp("button", name.c_str()) == 0) {
         return FilterGroup::Button;
     }
+    else if (strcmp("noncastshadow", name.c_str()) == 0) {
+        return FilterGroup::NonCastShadows;
+    }
     return FilterGroup::All;
 }

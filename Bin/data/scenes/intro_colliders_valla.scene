@@ -1,0 +1,364 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_colliders_valla"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_intro_valla_1"
+      ,
+      "transform":
+      {
+        "pos": "-10.5433 0.0 -45.6782"
+        ,
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.725 0.5 0.575239"
+        ,
+        "group": "All"
+        ,
+        "mask": ""
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_intro_valla_002"
+      ,
+      "transform":
+      {
+        "pos": "-18.4558 0.0 -44.9695"
+        ,
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.725 0.5 0.575239"
+        ,
+        "group": "All"
+        ,
+        "mask": ""
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_intro_valla_003"
+      ,
+      "transform":
+      {
+        "pos": "-26.4824 -0.015749 -44.2845"
+        ,
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.725 0.5 0.575239"
+        ,
+        "group": "All"
+        ,
+        "mask": ""
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_intro_valla_004"
+      ,
+      "transform":
+      {
+        "pos": "-3.54005 0.0 -46.4723"
+        ,
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.725 0.5 0.575239"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_intro_valla_005"
+      ,
+      "transform":
+      {
+        "pos": "-27.5014 0.984249 -44.1954"
+        ,
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.417105 2.91235 0.575239"
+        ,
+        "group": "All"
+        ,
+        "mask": ""
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_intro_valla_006"
+      ,
+      "transform":
+      {
+        "pos": "-25.4504 0.984249 -44.3748"
+        ,
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.417105 2.91235 0.575239"
+        ,
+        "group": "All"
+        ,
+        "mask": ""
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_intro_valla_007"
+      ,
+      "transform":
+      {
+        "pos": "-19.4679 0.984249 -44.8982"
+        ,
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.417105 2.91235 0.575239"
+        ,
+        "group": "All"
+        ,
+        "mask": ""
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_intro_valla_008"
+      ,
+      "transform":
+      {
+        "pos": "-17.4459 0.984249 -45.0751"
+        ,
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.417105 2.91235 0.575239"
+        ,
+        "group": "All"
+        ,
+        "mask": ""
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_intro_valla_009"
+      ,
+      "transform":
+      {
+        "pos": "-11.5391 0.984249 -45.5919"
+        ,
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.417105 2.91235 0.575239"
+        ,
+        "group": "All"
+        ,
+        "mask": ""
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_intro_valla_010"
+      ,
+      "transform":
+      {
+        "pos": "-9.51543 0.984249 -45.7689"
+        ,
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.417105 2.91235 0.575239"
+        ,
+        "group": "All"
+        ,
+        "mask": ""
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_intro_valla_fence_004"
+      ,
+      "transform":
+      {
+        "pos": "-18.8169 0.0 -44.985"
+        ,
+        "rotation": "0.0 -0.0436194 0.0 -0.999048"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "15.2805 2.8302 0.465"
+        ,
+        "group": "noncastshadow"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+]

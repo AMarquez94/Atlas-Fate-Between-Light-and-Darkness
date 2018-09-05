@@ -37,7 +37,7 @@
       ,
       "collider":
       {
-        "shape": "convex"
+        "shape": "mesh"
         ,
         "name": "data/colliders/collider_muralla_intro_muro003.collider"
       }
