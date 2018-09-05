@@ -7,8 +7,9 @@ function onSceneStart_scene_intro()
 	-- First Cinematic --
 	move("The Player", VEC3(-7.5, 12.115, 34.2), VEC3(-7.5, 12.115, 33.2));
 	--setCinematicPlayerState(true, "crouch_cinematic")
-	--blendInCamera("test_camera_curve", 2.0, "cinematic");
-	--setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
+	blendInCamera("Camera_Cinematic_Intro", 0.0, "cinematic");
+	setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_End\", 0.65, \"cinematic\")", 2.5);
 	setAIState("Patrol_Cinematic_Inhibitor", true, "dead_cinematic");
 end
 

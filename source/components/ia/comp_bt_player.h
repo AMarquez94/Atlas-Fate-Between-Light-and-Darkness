@@ -75,6 +75,8 @@ public:
     BTNode::ERes actionStartSMEnemy(float dt);
 
     BTNode::ERes actionResetTimersCinematicWalkFall(float dt);
+    BTNode::ERes actionResetTimersBeforeSMCinematicFallSM(float dt);
+    BTNode::ERes actionSlowMotionCinematicFallSM(float dt);
     BTNode::ERes actionResetTimersCinematicFallSM(float dt);
     BTNode::ERes actionCrouchWalk(float dt);
     BTNode::ERes actionFallSM(float dt);
@@ -118,6 +120,7 @@ private:
 	void onMsgPlayerAIEnabled(const TMsgPlayerAIEnabled& msg);
 	void onMsgEntityCreated(const TMsgEntityCreated& msg);
 	void onMsgEntityGroupCreated(const TMsgEntitiesGroupCreated& msg);
+	void onMsgScenePaused(const TMsgScenePaused& msg);
 
 	//load
 	void loadActions() override;

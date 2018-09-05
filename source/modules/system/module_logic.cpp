@@ -34,20 +34,22 @@ bool CModuleLogic::stop() {
 }
 
 void CModuleLogic::update(float delta) {
-    for (unsigned int i = 0; i < delayedScripts.size(); i++) {
-        delayedScripts[i].remainingTime -= delta;
-        if (delayedScripts[i].remainingTime <= 0) {
-            execScript(delayedScripts[i].script);
-            delayedScripts.erase(delayedScripts.begin() + i);
+    if (!paused) {
+        for (unsigned int i = 0; i < delayedScripts.size(); i++) {
+            delayedScripts[i].remainingTime -= delta;
+            if (delayedScripts[i].remainingTime <= 0) {
+                execScript(delayedScripts[i].script);
+                delayedScripts.erase(delayedScripts.begin() + i);
+            }
         }
-    }
 
-    for (auto k : _bindings) {
-        Input::TButton button = EngineInput.keyboard().key(k.first);
-        if (button.getsPressed()) {
-            std::string current_value = k.second;
-            execCvar(current_value);
-            execScript(current_value);
+        for (auto k : _bindings) {
+            Input::TButton button = EngineInput.keyboard().key(k.first);
+            if (button.getsPressed()) {
+                std::string current_value = k.second;
+                execCvar(current_value);
+                execScript(current_value);
+            }
         }
     }
 }

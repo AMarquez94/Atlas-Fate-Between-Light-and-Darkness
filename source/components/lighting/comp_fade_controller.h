@@ -27,5 +27,11 @@ public:
 	void launch(const TMsgFadeBody& msg);
     void destroy(void);
 
+    void setFadeTime(float new_time) { _fade_time = new_time; };
+    float getFadeTime() { return _fade_time; };
+
+    void setFallSpeed(float new_speed) { _fall_speed = new_speed; };
+    float getFallSpeed() { return _fall_speed; };
+
     static void registerMsgs();
 };

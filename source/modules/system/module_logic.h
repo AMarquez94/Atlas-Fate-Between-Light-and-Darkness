@@ -59,6 +59,7 @@ public:
     bool execScriptDelayed(const std::string& script, float delay);
     bool execEvent(Events event, const std::string& params = "", float delay = 0.f);
     void printLog();
+    void setPause(bool paused) { this->paused = paused; }
 
 private:
 
@@ -72,6 +73,7 @@ private:
     void loadScriptsInFolder(char * path);
 
     bool started = false;
+    bool paused = false;
 };
 
 /* Auxiliar functions */

@@ -1,5 +1,4 @@
-[
-  {
+[{
     "entity": {
       "name": "Cinematic_Scene",
       "transform": {
@@ -27,10 +26,134 @@
       "collider": {
         "shape": "box",
         "size": "6.62319 0.0831085 6.1289",
-		"is_trigger": true
+        "is_trigger": true
       },
       "abs_aabb": true,
       "local_aabb": true
+    }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Intro",
+      "transform": {
+        "pos": "-0.85 5.75 28.6",
+        "rotation": "-0.24 -0.5 -0.15 0.8"
+      },
+      "camera": {
+        "fov": 70,
+        "z_near": 0.01,
+        "z_far": 1000
+      },
+      "render_ao": {
+        "enabled": true,
+        "max_steps": 1,
+        "gauss_filter": true
+      },
+      "render_blur": {
+        "enabled": false,
+        "global_distance": 0.1,
+        "gauss_filter": true
+      },
+      "motion_blur": {
+        "enabled": true
+      },
+      "render_bloom": {
+        "enabled": true,
+        "max_steps": 4,
+        "rt_name": "Bloom"
+      },
+      "color_grading": {
+        "enabled": true,
+        "amount": 0.25,
+        "lut": "data/textures/lut/lut5.dds"
+      },
+      "chromatic_aberration": {
+        "enabled": true
+      },
+      "fog": {
+        "enabled": true
+      },
+      "antialiasing": {
+        "enabled": true
+      },
+      "vignette": {
+        "enabled": true
+      },
+      "render_flares": {
+        "enabled": true,
+        "max_steps": 4
+      },
+      "render_outlines": {
+        "enabled": true
+      },
+      "render_environment": {
+        "enabled": true
+      },
+      "render_focus": {
+        "enabled": false
+      }
+    }
+  },
+    {
+    "entity": {
+      "name": "Camera_Cinematic_Intro_End",
+      "transform": {
+        "pos": "-7.6 1 29",
+        "rotation": "0 0 0 1"
+      },
+      "camera": {
+        "fov": 70,
+        "z_near": 0.01,
+        "z_far": 1000
+      },
+      "render_ao": {
+        "enabled": true,
+        "max_steps": 1,
+        "gauss_filter": true
+      },
+      "render_blur": {
+        "enabled": false,
+        "global_distance": 0.1,
+        "gauss_filter": true
+      },
+      "motion_blur": {
+        "enabled": true
+      },
+      "render_bloom": {
+        "enabled": true,
+        "max_steps": 4,
+        "rt_name": "Bloom"
+      },
+      "color_grading": {
+        "enabled": true,
+        "amount": 0.25,
+        "lut": "data/textures/lut/lut5.dds"
+      },
+      "chromatic_aberration": {
+        "enabled": true
+      },
+      "fog": {
+        "enabled": true
+      },
+      "antialiasing": {
+        "enabled": true
+      },
+      "vignette": {
+        "enabled": true
+      },
+      "render_flares": {
+        "enabled": true,
+        "max_steps": 4
+      },
+      "render_outlines": {
+        "enabled": true
+      },
+      "render_environment": {
+        "enabled": true
+      },
+      "render_focus": {
+        "enabled": false
+      }
     }
   }
 ]
