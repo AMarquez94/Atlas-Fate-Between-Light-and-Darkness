@@ -1,0 +1,18 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_fuente_alb.dds"
+    ,
+    "metallic": "data/textures/tx_fuente_met.dds"
+    ,
+    "roughness": "data/textures/tx_fuente_rgh.dds"
+    ,
+    "normal": "data/textures/tx_fuente_nml.dds"
+    ,
+    "height": "data/textures/tx_fuente_hgt.dds"
+    ,
+    "aocclusion": "data/textures/tx_fuente_ao.dds"
+  }
+}

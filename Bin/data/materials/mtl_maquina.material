@@ -1,0 +1,20 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_maquina_alb.dds"
+    ,
+    "metallic": "data/textures/tx_maquina_met.dds"
+    ,
+    "roughness": "data/textures/tx_maquina_rgh.dds"
+    ,
+    "normal": "data/textures/tx_maquina_nml.dds"
+    ,
+    "height": "data/textures/tx_maquina_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_maquina_emi.dds"
+    ,
+    "aocclusion": "data/textures/tx_maquina_ao.dds"
+  }
+}
