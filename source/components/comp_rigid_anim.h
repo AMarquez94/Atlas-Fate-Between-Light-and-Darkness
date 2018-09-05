@@ -7,11 +7,22 @@
 class CRigidAnimResource;
 
 struct TCompRigidAnim : public TCompBase {
-  std::vector<RigidAnims::CController> controllers;
+
+  struct RigidAnimation {
+
+	std::string animation_name;
+	int animation_id;
+	RigidAnims::CController controller;
+  	float speed_factor = 1.0f;
+	bool loops = false;
+  };
+
+
+  std::vector<RigidAnimation> registeredAnimations;
+
+  int					  current_animation_id = -1;
   float                   current_time = 0.f;
-  bool                    loops = true;
   bool                    is_moving = true;
-  float                   speed_factor = 1.0f;
   VEC3					  parent_position;
 
 
@@ -19,7 +30,11 @@ struct TCompRigidAnim : public TCompBase {
   void update(float dt);
   void debugInMenu();
 
-  void registerAnimation();
+  bool playAnimation(int anim_id);
+  void cancelAnimation();
+
+
+  void registerAnimation(std::string animationName, std::string track_name, std::string source, float speedFactor, bool loop, int animation_id);
   DECL_SIBLING_ACCESS();
 };
 

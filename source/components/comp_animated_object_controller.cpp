@@ -11,15 +11,22 @@ void TCompAnimatedObjController::registerMsgs() {
 }
 
 void TCompAnimatedObjController::onGroupCreated(const TMsgEntitiesGroupCreated &msg) {
+
 	for (int i = 0; i < object_names.size(); i++) {
 		CEntity* e = getEntityByName(object_names[i]);
+
 		if (e != nullptr) {
 			TCompRigidAnim* comp_rigid = e->get<TCompRigidAnim>();
+			object_handles.push_back(e);
+
 			if (comp_rigid != nullptr) {
-				comp_rigid->registerAnimation();
+
+				for (int j = 0; j < animationInfos.size(); j++) {
+					comp_rigid->registerAnimation(animationInfos[j].animationName, animationInfos[j].track_name, animationInfos[j].source, animationInfos[j].speedFactor, animationInfos[j].loop,j);
+					name_to_id_animations[animationInfos[j].animationName] = j;
+				}		
 			}
-		}
-		
+		}		
 	}
 }
 
@@ -44,6 +51,7 @@ void TCompAnimatedObjController::load(const json& j, TEntityParseContext& ctx) {
 		for (auto it = j_animations.begin(); it != j_animations.end(); ++it) {
 			AnimationInfo ainfo;
 
+			ainfo.animationName = it.value().value("name", "");
 			ainfo.track_name = it.value().value("track", "");
 			assert(it.value().count("src") > 0);
 			ainfo.source = it.value().value("src","");
@@ -58,5 +66,14 @@ void TCompAnimatedObjController::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompAnimatedObjController::update(float dt) {
 	//Crec que no s'utilitzara, pero nose lol jajaja omg que nup
+}
+
+void TCompAnimatedObjController::playAnimation(std::string anim_name) {
+	int id = name_to_id_animations[anim_name];
+	for (int i = 0; i < object_handles.size(); i++) {
+		CEntity *e = object_handles[i];
+		TCompRigidAnim *rigid_anim = e->get<TCompRigidAnim>();
+		rigid_anim->playAnimation(id);
+	}
 }
 
