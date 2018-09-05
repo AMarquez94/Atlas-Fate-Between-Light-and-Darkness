@@ -22,7 +22,6 @@ struct TCompRigidAnim : public TCompBase {
 
   int					  current_animation_id = -1;
   float                   current_time = 0.f;
-  bool                    is_moving = true;
   VEC3					  parent_position;
 
 
@@ -33,6 +32,7 @@ struct TCompRigidAnim : public TCompBase {
   bool playAnimation(int anim_id);
   void cancelAnimation();
 
+  void registerParentPosition(VEC3 pos);
 
   void registerAnimation(std::string animationName, std::string track_name, std::string source, float speedFactor, bool loop, int animation_id);
   DECL_SIBLING_ACCESS();

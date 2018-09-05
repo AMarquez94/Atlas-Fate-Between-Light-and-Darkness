@@ -23,15 +23,27 @@ void TCompAnimatedObjController::onGroupCreated(const TMsgEntitiesGroupCreated &
 
 				for (int j = 0; j < animationInfos.size(); j++) {
 					comp_rigid->registerAnimation(animationInfos[j].animationName, animationInfos[j].track_name, animationInfos[j].source, animationInfos[j].speedFactor, animationInfos[j].loop,j);
+					CEntity *ownEntity = CHandle(this).getOwner();
+					TCompTransform *comp_transform = ownEntity->get<TCompTransform>();
+					comp_rigid->registerParentPosition(comp_transform->getPosition());
 					name_to_id_animations[animationInfos[j].animationName] = j;
 				}		
 			}
 		}		
 	}
+
+	if (starting_animation.size() > 0) playAnimation(starting_animation);
 }
 
 void TCompAnimatedObjController::debugInMenu() {
-
+	for (int i = 0; i < animationInfos.size(); i++) {
+		
+		if (ImGui::SmallButton(animationInfos[i].animationName.c_str())) {
+			playAnimation(animationInfos[i].animationName);
+		}
+		
+	}
+	
 }
 
 void TCompAnimatedObjController::load(const json& j, TEntityParseContext& ctx) {
@@ -51,13 +63,14 @@ void TCompAnimatedObjController::load(const json& j, TEntityParseContext& ctx) {
 		for (auto it = j_animations.begin(); it != j_animations.end(); ++it) {
 			AnimationInfo ainfo;
 
+			assert(it.value().count("name") > 0);
 			ainfo.animationName = it.value().value("name", "");
 			ainfo.track_name = it.value().value("track", "");
 			assert(it.value().count("src") > 0);
 			ainfo.source = it.value().value("src","");
 			ainfo.speedFactor = it.value().value("speed_factor", 1.0f);
 			ainfo.loop = it.value().value("loops", true);
-
+			if(it.value().value("on_start", false)) starting_animation = ainfo.animationName;
 			animationInfos.push_back(ainfo);
 		}
 	}

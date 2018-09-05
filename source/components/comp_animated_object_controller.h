@@ -25,6 +25,8 @@ public:
 
 	std::map<std::string, int> name_to_id_animations;
 
+	std::string starting_animation;
+
 	static void registerMsgs();
 	void debugInMenu();
 	void load(const json& j, TEntityParseContext& ctx);

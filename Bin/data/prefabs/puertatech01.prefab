@@ -14,9 +14,16 @@
             "name" : "doortop"
           },
           {
-            "name" : "quepachins"
+            "name" : "doorbottom"
           }
-          ]  
+        ],
+        "animations":[
+          {
+            "name" : "abrir",
+            "src" : "data/rigid_anims/puertatech01.anims",
+            "loops" : false
+          }
+        ] 
       }         
     }
   }

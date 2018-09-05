@@ -4,7 +4,9 @@
     {
       "name": "puertatech01"
       ,
-      "prefab": "data/prefabs/puertatech01.prefab"
+      "xprefab": "data/prefabs/puertatech01.prefab"
+      ,
+      "prefab": "data/prefabs/fuente_central.prefab"
       ,
       "transform":
       {
