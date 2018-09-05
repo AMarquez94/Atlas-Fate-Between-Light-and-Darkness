@@ -1,0 +1,147 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_mezquita"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_tejados"
+      ,
+      "transform":
+      {
+        "pos": "-12.5078 22.0 -420.616"
+        ,
+        "rotation": "0.0 -0.193621 0.0 -0.981076"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_tejados.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tejados.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_BC_cupula_pequena_low.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_pared_capsulas"
+      ,
+      "transform":
+      {
+        "pos": "22.0384 22.0 -402.069"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_pared_capsulas.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_cupulayventanas"
+      ,
+      "transform":
+      {
+        "pos": "-21.2165 20.5326 -403.005"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_cupulayventanas.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ventanasycupulas.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_BC_cupula_mediana_low.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_ventana_cupulas_lat"
+      ,
+      "transform":
+      {
+        "pos": "-22.6002 23.2025 -397.611"
+        ,
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_ventana_cupulas_lat.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_central.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

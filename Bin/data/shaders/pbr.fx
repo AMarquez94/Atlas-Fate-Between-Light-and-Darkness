@@ -408,7 +408,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	// How much the environment we see
 	float3 env_fresnel = Specular_F_Roughness(specular_color, 1. - roughness * roughness, N, view_dir);
 
-	float g_ReflectionIntensity = 2.0;
+	float g_ReflectionIntensity = 1.0;
 	float g_AmbientLightIntensity = 1.0;
 
 	float ao = txAO.Sample( samLinear, iUV).x;
@@ -422,7 +422,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 
 	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
 	final_color = final_color * global_ambient_adjustment * ao * self_illum.a;
-	final_color = lerp(float4(env,1), final_color, visibility) + float4(self_illum.xyz, 1) * global_ambient_adjustment * global_self_intensity;
+	final_color = lerp(final_color, final_color, visibility) + float4(self_illum.xyz, 1) * global_ambient_adjustment * global_self_intensity;
 	return float4(final_color.xyz, 1);
 }
 
