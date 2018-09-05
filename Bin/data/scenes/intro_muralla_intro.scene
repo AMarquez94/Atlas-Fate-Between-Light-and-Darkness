@@ -37,9 +37,21 @@
       ,
       "collider":
       {
-        "shape": "convex"
+        "shape": "mesh"
         ,
         "name": "data/colliders/collider_muralla_intro_muro1.collider"
+        ,
+        "group": "All"
+        ,
+        "mask": ""
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
       }
       ,
       "abs_aabb": true
@@ -74,7 +86,7 @@
       ,
       "collider":
       {
-        "shape": "convex"
+        "shape": "mesh"
         ,
         "name": "data/colliders/collider_muralla_intro_muro2.collider"
       }
@@ -111,7 +123,7 @@
       ,
       "collider":
       {
-        "shape": "convex"
+        "shape": "mesh"
         ,
         "name": "data/colliders/collider_muralla_intro_muro003.collider"
       }
@@ -178,7 +190,7 @@
       ,
       "collider":
       {
-        "shape": "convex"
+        "shape": "mesh"
         ,
         "name": "data/colliders/collider_muralla_intro_pared_puerta.collider"
       }
@@ -289,7 +301,7 @@
       ,
       "collider":
       {
-        "shape": "convex"
+        "shape": "mesh"
         ,
         "name": "data/colliders/collider_muralla_intro_troncho003.collider"
       }
@@ -326,7 +338,7 @@
       ,
       "collider":
       {
-        "shape": "convex"
+        "shape": "mesh"
         ,
         "name": "data/colliders/collider_muralla_intro_troncho004.collider"
       }
