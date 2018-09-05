@@ -45,8 +45,8 @@ CModuleRender::CModuleRender(const std::string& name)
 
 //--------------------------------------------------------------------------------------
 // All techs are loaded from this json file
-bool parseTechniques() {
 	json j = loadJson("data/techniques.json");
+bool parseTechniques() {
 	for (auto it = j.begin(); it != j.end(); ++it) {
 
 		std::string tech_name = it.key() + ".tech";
@@ -145,10 +145,11 @@ bool CModuleRender::start()
 	cb_globals.global_hdr_enabled = 1.f;
 	cb_globals.global_gamma_correction_enabled = 1.f;
 	cb_globals.global_tone_mapping_mode = 1.f;
-    cb_globals.global_fog_density = 0.031f;
+    cb_globals.global_fog_density = 0.024f;
     cb_globals.global_fog_color = VEC3(0.76,0.93,0.93);
     cb_globals.global_fog_env_color = VEC3(0.0, 0.171, 0.34);
     cb_globals.global_self_intensity = 10.f;
+    cb_globals.global_delta_time = 0.f;
 
 	cb_light.activate();
 	cb_object.activate();
@@ -207,6 +208,7 @@ void CModuleRender::update(float delta)
 	// Notify ImGUI that we are starting a new frame
 	ImGui_ImplDX11_NewFrame();
 
+    cb_globals.global_delta_time = delta;
 	cb_globals.global_world_time += delta;
 }
 
@@ -451,7 +453,7 @@ void CModuleRender::postProcessingStack() {
         TCompAntiAliasing* c_antialiasing = e_cam->get< TCompAntiAliasing >();
         if (c_antialiasing)
             curr_rt = c_antialiasing->apply(curr_rt);
-
+        
         CEntity* e_camera = h_e_camera;
         TCompCamera * t_cam = e_camera->get<TCompCamera>();
         cb_camera.prev_camera_view_proj = t_cam->getViewProjection();

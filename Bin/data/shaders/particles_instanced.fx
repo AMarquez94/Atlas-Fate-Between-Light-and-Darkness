@@ -87,14 +87,13 @@ void PS_GBuffer_Particles(
 	, in float4 iWorldPos : TEXCOORD4
 	, out float4 o_albedo : SV_Target0
 	, out float4 o_normal : SV_Target1
-	, out float1 o_depth : SV_Target2
-	, out float4 o_selfIllum : SV_Target3
   )
 {
   float2 finalUV = lerp(iMinUv, iMaxUv, iTex0);
   float4 oDiffuse = txAlbedo1.Sample(samLinear, finalUV);
-  float4 finalColor = float4(oDiffuse.rgb * iColorP.rgb, oDiffuse.a * iColorP.a * 0.025);
+  float4 finalColor = float4(oDiffuse.rgb * iColorP.rgb, 1);
 	o_albedo = finalColor;
+	o_normal = float4(1,1,1,1);
 	//o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 	
 	/*o_selfIllum =  txEmissive.Sample(samLinear, iTex0) * self_intensity;

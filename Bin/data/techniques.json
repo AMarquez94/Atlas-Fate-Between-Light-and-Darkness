@@ -523,10 +523,17 @@
 		"ps_entry_point": "PS_GBuffer_Particles",
 		"vertex_type": "PosClr_x_CpuParticleInstance",
 		"category": "particles_gbuffer_combinative",
-		"z": "test_but_no_write",
+		"z": "default",
 		"rs_config": "cull_none",
-		"blend": "multiplicative_gbuffer"
+		"blend": "default"
 	},
+	"gpu_particles": {
+    "vs_file": "data/shaders/compute_particles.fx",
+    "vertex_type": "Pos_x_GpuParticleInstance",
+    "category": "cp_particles",
+    "blend": "combinative",
+    "z": "test_but_no_write"
+  },
 	"pbr_instanced_volume": {
 		"vs_file": "data/shaders/pbr_vol_instanced.fx",
 		"ps_file": "data/shaders/pbr_vol_instanced.fx",

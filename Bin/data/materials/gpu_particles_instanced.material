@@ -1,0 +1,10 @@
+{
+  "technique": "gpu_particles.tech"
+  ,
+  "shadows": false
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/star.dds"
+  }
+}

@@ -297,10 +297,12 @@ namespace Particles
 
         instanced_particle->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(Particles::TIParticle));
         
-        auto technique2 = Resources.get("particles_gbuffer_combinative.tech")->as<CRenderTechnique>();
+        auto technique2 = Resources.get("particles_instanced_combinative.tech")->as<CRenderTechnique>();
         technique2->activate();
 
         _core->n_renderer.texture->activate(TS_ALBEDO1);
+        instanced_particle->activateAndRender();
+
         CRenderManager::get().renderCategory("particles_gbuffer_combinative");
     }
 

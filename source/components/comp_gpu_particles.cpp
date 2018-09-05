@@ -9,17 +9,20 @@ DECL_OBJ_MANAGER("gpu_particles", TCompGPUParticles);
 CRenderMeshInstanced* particles_instances_mesh = nullptr;
 
 void TCompGPUParticles::debugInMenu() {
+
     assert(system_instance);
     system_instance->debugInMenu();
 }
 
 void TCompGPUParticles::load(const json& j, TEntityParseContext& ctx) {
+
     system_instance = new GPUParticles::TSystemInstance();
     bool is_ok = system_instance->create(j);
     assert(is_ok);
 }
 
 void TCompGPUParticles::update(float dt) {
+
     assert(system_instance);
     TCompTransform* c_trans = get<TCompTransform>();
     assert(c_trans);
@@ -41,8 +44,7 @@ void TCompGPUParticles::update(float dt) {
         // Render.ctx->CopyResource( instances_mesh->getVB(), system_instance->curr_render.buffer );
 
         // So, use a copy subresource
-        Render.ctx->CopySubresourceRegion(instances_mesh->getVB(), 0, 0, 0, 0,
-            system_instance->curr_render.buffer, 0, nullptr);
+        Render.ctx->CopySubresourceRegion(instances_mesh->getVB(), 0, 0, 0, 0, system_instance->curr_render.buffer, 0, nullptr);
     }
 }
 

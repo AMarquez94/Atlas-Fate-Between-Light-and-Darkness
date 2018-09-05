@@ -8,7 +8,7 @@ float2 ComputeParallax(float2 texCoords, float3 view_dir, out float p_height) {
 	float numLayers = lerp(maxLayers, minLayers, abs(dot(float3(0.0, 0.0, 1.0), view_dir)));
 	float layerDepth = 1.0 / numLayers;
 	float currentLayerDepth = 0.0;
-	float2 P = view_dir.xy * 0.075;
+	float2 P = view_dir.xy * 0.125;
 	float2 deltaTexCoords = P / numLayers;
 
 	float2 currentTexCoords = texCoords;

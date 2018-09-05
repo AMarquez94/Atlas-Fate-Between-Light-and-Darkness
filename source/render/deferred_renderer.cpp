@@ -41,7 +41,7 @@ void CDeferredRenderer::renderGBuffer() {
 
 	// Clear output buffers, some can be removed if we intend to fill all the screen
 	// with new data.
-	rt_albedos->clear(VEC4(1, 0, 0, 1));
+	rt_albedos->clear(VEC4(0, 0, 0, 1));
 	rt_normals->clear(VEC4(0, 0, 1, 1));
 	rt_depth->clear(VEC4(1, 1, 1, 1));
 	rt_self_illum->clear(VEC4(0, 0, 0, 1));
@@ -137,11 +137,13 @@ void CDeferredRenderer::renderAccLight() {
 	renderDirectionalLights();
 	renderSkyBox();
 
+
     CRenderManager::get().renderCategory("hologram");
     CRenderManager::get().renderCategory("hologram_sw");
     //CRenderManager::get().renderCategory("hologram_screen");
     CRenderManager::get().renderCategory("volume_shafts");
     CRenderManager::get().renderCategory("volume_ray_shafts");
+    CRenderManager::get().renderCategory("cp_particles");
 }
 
 
@@ -362,11 +364,13 @@ void CDeferredRenderer::renderGBufferParticles() {
     // Disable the gbuffer textures as we are going to update them
     // Can't render to those textures and have them active in some slot...
     CTexture::setNullTexture(TS_DEFERRED_ALBEDOS);
+    CTexture::setNullTexture(TS_DEFERRED_NORMALS);
 
     // Activate el multi-render-target MRT
-    const int nrender_targets = 1;
+    const int nrender_targets = 2;
     ID3D11RenderTargetView* rts[nrender_targets] = {
-        rt_albedos->getRenderTargetView()
+        rt_albedos->getRenderTargetView(),
+        rt_normals->getRenderTargetView()
         // No Z as we need to read to reconstruct the position
     };
 
@@ -374,7 +378,8 @@ void CDeferredRenderer::renderGBufferParticles() {
     Render.ctx->OMSetRenderTargets(nrender_targets, rts, rt_acc_light->getDepthStencilView());
     rt_albedos->activateViewport(); // Any rt will do...
 
-    Engine.get().getParticles().renderDeferred();
+    //Engine.get().getParticles().renderDeferred();
+    CRenderManager::get().renderCategory("cp_particles");
 
     // Disable rendering to all render targets.
     ID3D11RenderTargetView* rt_nulls[nrender_targets];
@@ -383,6 +388,7 @@ void CDeferredRenderer::renderGBufferParticles() {
 
     // Activate the gbuffer textures to other shaders
     rt_albedos->activate(TS_DEFERRED_ALBEDOS);
+    rt_normals->activate(TS_DEFERRED_NORMALS);
 }
 
 // --------------------------------------
@@ -394,7 +400,6 @@ void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camer
     renderGBufferDecals();
     //renderGBufferParticles();
 	renderAO(h_camera);
-    Engine.get().getParticles().renderDeferred();
 
 	// Do the same with the acc light
 	CTexture::setNullTexture(TS_DEFERRED_ACC_LIGHTS);
@@ -411,6 +416,7 @@ void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camer
     rt_prev_acc_light = rt_acc_light;
 
     // Move this out of here when needed.
+
     CRenderManager::get().renderCategory("hologram_screen");
     CRenderManager::get().renderCategory("distorsions");
 }

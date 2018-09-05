@@ -146,7 +146,7 @@ float4 PS_IVLight(
 		float shadow_factor = computeVolumeShadowFactorLight(iViewProj, iWorldPos);
 	
     float camera_dist = length(iWorldPos - iLightPos.xyz);
-    float val = 1 / (1.5 + (camera_dist * camera_dist) * iLightValues.w);
+    float val = 1 / (0.25 + (camera_dist * camera_dist) * iLightValues.w);
 
     // From wPos to Light
     float3 light_dir_full = iLightPos.xyz - iWorldPos;
@@ -161,11 +161,11 @@ float4 PS_IVLight(
     return float4(light_color.xyz, clamp_spot * val * noise0.x) * shadow_factor;// * projectColor(iWorldPos);
 }
 
-#define NUM_SAMPLES 25//128
-#define NUM_SAMPLES_RCP 0.04//0.0078125f
+#define NUM_SAMPLES 25
+#define NUM_SAMPLES_RCP 0.04
 #define FACTOR_TAU 0.000001f
 #define FACTOR_PHI 100000.0f
-#define PI_RCP 1.318309388618379067153776752674503f
+#define PI_RCP 1.318f
 
 float4 PS_GBuffer_RayShafts(
   float4 Pos       : SV_POSITION

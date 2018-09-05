@@ -48,6 +48,7 @@
 		"camera",
 		"laser",
 		"fsm",
+		"gpu_particles",
 		"glitch_controller",
 		"player_animator",
 		"player_input",

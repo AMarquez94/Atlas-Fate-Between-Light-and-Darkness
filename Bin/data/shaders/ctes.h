@@ -183,7 +183,7 @@ CB_DEF(CCteGlobals, CB_GLOBALS)   // Generates the b1
     float global_fog_end3;
 
     VEC3 global_fog_env_color;
-    float global_dummy_value1;
+    float global_delta_time;
 };
 
 CB_DEF(CCteMaterial, CB_MATERIAL)

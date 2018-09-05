@@ -84,7 +84,7 @@ float4 PS(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_
 	
 	float4 coords = RayMarching(reflected , view_pos);	
 	float4 color = txAlbedo.Sample(samClampLinear, iTex0); 
-  float2 d_coords = float2(1, 1) - pow(saturate(abs(coords.xy - float2(0.5f, 0.5f)) * 2), 4);
+  float2 d_coords = float2(1, 1) - pow(saturate(abs(coords.xy - float2(0.5f, 0.5f)) * 2), 2);
   float edge_factor = saturate(min(d_coords.x, d_coords.y));
 	float multiplier = clamp(edge_factor * saturate(-reflected.z), 0, 0.9);
 	float depth = txGBufferLinearDepth.Load(ss_load_coords).x;	
