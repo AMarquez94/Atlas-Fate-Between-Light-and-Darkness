@@ -22,7 +22,6 @@ struct TCompGPUParticles : public TCompBase {
     void onCreated(const TMsgEntityCreated&);
     void onGroupCreated(const TMsgEntitiesGroupCreated&);
     void onDestroyed(const TMsgEntityDestroyed&);
-    void debugInMenu();
 
     void playSystem();
     void setSystemState(bool state);
