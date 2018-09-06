@@ -390,7 +390,7 @@ void CModuleRender::postProcessingStack() {
 
     if (camera_render.isValid() && _generatePostFX) {
         CEntity * e_cam = camera_render;
-
+        
         // The bloom blurs the given input
         TCompRenderBloom* c_render_bloom = e_cam->get< TCompRenderBloom >();
         if (c_render_bloom) {
