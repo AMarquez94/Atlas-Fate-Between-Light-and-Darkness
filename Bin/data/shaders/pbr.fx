@@ -237,6 +237,7 @@ void PS_GBufferMix(
 , out float4 o_albedo : SV_Target0
 , out float4 o_normal : SV_Target1
 , out float1 o_depth : SV_Target2
+, out float4 o_selfIllum : SV_Target3
 )
 {
 
@@ -255,6 +256,12 @@ void PS_GBufferMix(
 	// Use the weight to 'blend' the albedo colors
   float4 albedo = albedoR * w1 + albedoG * w2 + albedoB * w3;
   o_albedo.xyz = albedo.xyz;
+	o_selfIllum.xyz *= self_color.xyz;
+	//float aoR = txAOcclusion.Sample(samLinear, iTex0).r;
+	//float aoG = txAOcclusion1.Sample(samLinear, iTex0).r;
+	//float aoB = txAOcclusion2.Sample(samLinear, iTex0).r;
+	//float ao_color = aoR * w1 + aoG * w2 + aoB * w3; 
+  o_selfIllum = float4(0,0,0,1);//ao_color;
 	
   // This isMix the normal
   float3 normalR = txNormal.Sample(samLinear, iTex0).xyz * 2.0 - 1.0;

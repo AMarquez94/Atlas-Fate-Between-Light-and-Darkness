@@ -367,7 +367,8 @@
 		"vs_entry_point": "VS_GBuffer",
 		"ps_entry_point": "PS_GBufferMix",
 		"vertex_type": "PosNUvUvT",
-		"category": "gbuffer"
+		"category": "gbuffer",
+		"blend": "default"
 	},
 	"outlines": {
 		"vs_file": "data/shaders/screen_quad.fx",
