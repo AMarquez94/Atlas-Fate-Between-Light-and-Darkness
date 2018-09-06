@@ -310,8 +310,8 @@ void TCompSkeleton::changeCyclicAnimation(int anim1Id, float speed, int anim2Id,
 void TCompSkeleton::executeActionAnimation(int animId, float speed, bool rootMovement, float in_delay, float out_delay) {
 
     bool auto_lock = false;
-	if (isExecutingActionAnimation(animId))
-		return;
+	//if (isExecutingActionAnimation(animId))
+		//return;
     for (auto a : model->getMixer()->getAnimationActionList()) {
         a->remove(out_delay);
     }
@@ -321,7 +321,7 @@ void TCompSkeleton::executeActionAnimation(int animId, float speed, bool rootMov
 	if (rootMovement) {
 		movingRoot = true;
 		//ROOT_DEV
-		dbg("RESEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEET\n");
+
 		animationToRootName = model->getCoreModel()->getCoreAnimation(animId)->getName();
 		lastAcum = VEC3(0, 0, 0);
 	}

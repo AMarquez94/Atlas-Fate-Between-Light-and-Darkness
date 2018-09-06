@@ -26,7 +26,7 @@ void TCompTriggerCamera::registerMsgs()
 void TCompTriggerCamera::onMsgTriggerEnter(const TMsgTriggerEnter & msg)
 {
 	if (!used) {
-		Engine.getCameras().blendInCamera(_targetCamera, _blendInTime, CModuleCameras::EPriority::TEMPORARY);
+		Engine.getCameras().blendInCamera(_targetCamera, _blendInTime, CModuleCameras::EPriority::CINEMATIC);
 		TMsgScenePaused stopPlayer;
 		stopPlayer.isPaused = true;
 		EngineEntities.broadcastMsg(stopPlayer);

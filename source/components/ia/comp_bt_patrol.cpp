@@ -36,11 +36,13 @@ void TCompAIPatrol::preUpdate(float dt)
 
     CEntity * parent = CHandle(this).getOwner();
     TCompGroup * group = parent->get<TCompGroup>();
-    CEntity * light = group->handles[1];
-    TCompHierarchy * t_hier = light->get<TCompHierarchy>();
-    MAT44 parent_pos = my_trans->asMatrix().Invert();
-    VEC3 new_pos = VEC3::Transform(pos, parent_pos);
-    t_hier->setPosition(new_pos);
+    if (group) {
+        CEntity * light = group->handles[1];
+        TCompHierarchy * t_hier = light->get<TCompHierarchy>();
+        MAT44 parent_pos = my_trans->asMatrix().Invert();
+        VEC3 new_pos = VEC3::Transform(pos, parent_pos);
+        t_hier->setPosition(new_pos);
+    }
 }
 
 void TCompAIPatrol::postUpdate(float dt)
@@ -105,7 +107,9 @@ void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
     myHandle = CHandle(this);
 
     TCompEmissionController *eController = get<TCompEmissionController>();
-    eController->blend(enemyColor.colorNormal, 0.001f);
+    if (eController) {
+        eController->blend(enemyColor.colorNormal, 0.001f);
+    }
 }
 
 void TCompAIPatrol::onMsgPlayerDead(const TMsgPlayerDead& msg) {
@@ -144,6 +148,12 @@ void TCompAIPatrol::onMsgPatrolStunned(const TMsgEnemyStunned & msg)
 
     /* Tell the other patrols I am stunned */
     CEngine::get().getIA().patrolSB.stunnedPatrols.emplace_back(CHandle(this).getOwner());
+
+    TCompName* tName = get<TCompName>();
+    std::string myName = tName->getName();
+    myName.erase(remove(myName.begin(), myName.end(), ' '), myName.end());
+    std::string params = myName + "()";
+    EngineLogic.execEvent(CModuleLogic::Events::PATROL_STUNNED, params);
 
     current = nullptr;
 }
@@ -263,6 +273,13 @@ void TCompAIPatrol::onMsgLanternsDisable(const TMsgLanternsDisable & msg)
     disabledLanterns = msg.disable;
 }
 
+void TCompAIPatrol::onMsgCinematicState(const TMsgCinematicState & msg)
+{
+    _enabledCinematicAI = msg.enableCinematic;
+    _currentCinematicState = getStateEnumFromString(msg.state);
+    setCurrent(nullptr);
+}
+
 const std::string TCompAIPatrol::getStateForCheckpoint()
 {
     if (current) {
@@ -289,6 +306,7 @@ void TCompAIPatrol::registerMsgs()
     DECL_MSG(TCompAIPatrol, TMsgPatrolFixed, onMsgPatrolFixed);
     DECL_MSG(TCompAIPatrol, TMsgNoiseMade, onMsgNoiseListened);
     DECL_MSG(TCompAIPatrol, TMsgLanternsDisable, onMsgLanternsDisable);
+    DECL_MSG(TCompAIPatrol, TMsgCinematicState, onMsgCinematicState);
 }
 
 void TCompAIPatrol::loadActions() {
@@ -325,6 +343,12 @@ void TCompAIPatrol::loadActions() {
     actions_initializer["actionWarnClosestDrone"] = (BTAction)&TCompAIPatrol::actionWarnClosestDrone;
     actions_initializer["actionRotateTowardsUnreachablePlayer"] = (BTAction)&TCompAIPatrol::actionRotateTowardsUnreachablePlayer;
 
+    actions_initializer["actionDieAnimation"] = (BTAction)&TCompAIPatrol::actionDieAnimation;
+    actions_initializer["actionDeadAnimation"] = (BTAction)&TCompAIPatrol::actionDeadAnimation;
+    actions_initializer["actionResetBT"] = (BTAction)&TCompAIPatrol::actionResetBT;
+    actions_initializer["actionResetInhibitorCinematicTimers"] = (BTAction)&TCompAIPatrol::actionResetInhibitorCinematicTimers;
+    actions_initializer["actionWait"] = (BTAction)&TCompAIPatrol::actionWait;
+    actions_initializer["actionAnimationShootInhibitor"] = (BTAction)&TCompAIPatrol::actionAnimationShootInhibitor;
 }
 
 void TCompAIPatrol::loadConditions() {
@@ -345,6 +369,10 @@ void TCompAIPatrol::loadConditions() {
     conditions_initializer["conditionChase"] = (BTCondition)&TCompAIPatrol::conditionChase;
     conditions_initializer["conditionPlayerAttacked"] = (BTCondition)&TCompAIPatrol::conditionPlayerAttacked;
     conditions_initializer["conditionIsDestUnreachable"] = (BTCondition)&TCompAIPatrol::conditionIsDestUnreachable;
+
+    conditions_initializer["conditionIsCinematic"] = (BTCondition)&TCompAIPatrol::conditionIsCinematic;
+    conditions_initializer["conditionDeadCinematic"] = (BTCondition)&TCompAIPatrol::conditionDeadCinematic;
+    conditions_initializer["conditionInhibitorCinematic"] = (BTCondition)&TCompAIPatrol::conditionInhibitorCinematic;
 }
 
 void TCompAIPatrol::loadAsserts() {
@@ -990,6 +1018,61 @@ BTNode::ERes TCompAIPatrol::actionMarkPatrolAsLost(float dt)
     return BTNode::ERes::LEAVE;
 }
 
+BTNode::ERes TCompAIPatrol::actionDieAnimation(float dt)
+{
+    TCompPatrolAnimator* my_anim = get<TCompPatrolAnimator>();
+    my_anim->playAnimation(TCompPatrolAnimator::DIE);
+    TCompEmissionController* my_emission = get<TCompEmissionController>();
+    my_emission->blend(enemyColor.colorDead, 0.001f);
+    return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPatrol::actionDeadAnimation(float dt)
+{
+    TCompPatrolAnimator* my_anim = get<TCompPatrolAnimator>();
+    my_anim->playAnimation(TCompPatrolAnimator::DEAD);
+    return BTNode::ERes::STAY;
+}
+
+BTNode::ERes TCompAIPatrol::actionResetBT(float dt)
+{
+    setCurrent(nullptr);
+    return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPatrol::actionResetInhibitorCinematicTimers(float dt)
+{
+    _cinematicTimer = 0.f;
+    _cinematicMaxTime = 1.f;
+    _currentCinematicState = EState::CINEMATIC_DEAD;
+    TCompPatrolAnimator* my_anim = get<TCompPatrolAnimator>();
+    my_anim->playAnimation(TCompPatrolAnimator::IDLE);
+    TCompEmissionController* my_emission = get<TCompEmissionController>();
+    my_emission->blend(enemyColor.colorSuspect, 0.5f);
+    return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPatrol::actionWait(float dt)
+{
+    _cinematicTimer += dt;
+    if (_cinematicTimer > _cinematicMaxTime) {
+        _cinematicTimer = 0.f;
+        return BTNode::ERes::LEAVE;
+    }
+    else {
+        return BTNode::ERes::STAY;
+    }
+}
+
+BTNode::ERes TCompAIPatrol::actionAnimationShootInhibitor(float dt)
+{
+    //TODO: Play shoot inhibitor animation
+    TCompEmissionController* my_emission = get<TCompEmissionController>();
+    EngineLogic.execScript("animation_LaunchInhibitor(" + CHandle(this).getOwner().asString() + ")");
+
+    return BTNode::ERes::LEAVE;
+}
+
 
 /* CONDITIONS */
 
@@ -1091,6 +1174,21 @@ bool TCompAIPatrol::conditionPlayerAttacked(float dt)
 bool TCompAIPatrol::conditionIsDestUnreachable(float dt)
 {
     return !isCurrentDestinationReachable();
+}
+
+bool TCompAIPatrol::conditionIsCinematic(float dt)
+{
+    return _enabledCinematicAI;
+}
+
+bool TCompAIPatrol::conditionDeadCinematic(float dt)
+{
+    return _currentCinematicState == TCompAIPatrol::EState::CINEMATIC_DEAD;
+}
+
+bool TCompAIPatrol::conditionInhibitorCinematic(float dt)
+{
+    return _currentCinematicState == TCompAIPatrol::EState::CINEMATIC_INHIBITOR;
 }
 
 /* ASSERTS */
@@ -1271,6 +1369,17 @@ float TCompAIPatrol::getMaxChaseDistance()
     float maxChaseDistance = arguments["maxChaseDistance_actionSuspect_suspect"].getFloat();
     assert(arguments.find("dcrSuspectO_Meter_actionSuspect_suspect") != arguments.end());
     return maxChaseDistance;
+}
+
+TCompAIPatrol::EState TCompAIPatrol::getStateEnumFromString(const std::string& stateName)
+{
+    if (stateName.compare("inhibitor_cinematic") == 0) {
+        return TCompAIPatrol::EState::CINEMATIC_INHIBITOR;
+    }
+    else if (stateName.compare("dead_cinematic") == 0) {
+        return TCompAIPatrol::EState::CINEMATIC_DEAD;
+    }
+    return TCompAIPatrol::EState::NUM_STATES;
 }
 
 void TCompAIPatrol::launchInhibitor()

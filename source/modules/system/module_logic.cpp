@@ -15,6 +15,8 @@
 #include "components/ia/comp_bt_patrol.h"
 #include "components/comp_audio.h"
 #include "components/ia/comp_bt_player.h"
+#include "components/physics/comp_rigidbody.h"
+#include "entity/entity_parser.h"
 
 bool CModuleLogic::start() {
 
@@ -32,20 +34,22 @@ bool CModuleLogic::stop() {
 }
 
 void CModuleLogic::update(float delta) {
-    for (unsigned int i = 0; i < delayedScripts.size(); i++) {
-        delayedScripts[i].remainingTime -= delta;
-        if (delayedScripts[i].remainingTime <= 0) {
-            execScript(delayedScripts[i].script);
-            delayedScripts.erase(delayedScripts.begin() + i);
+    if (!paused) {
+        for (unsigned int i = 0; i < delayedScripts.size(); i++) {
+            delayedScripts[i].remainingTime -= delta;
+            if (delayedScripts[i].remainingTime <= 0) {
+                execScript(delayedScripts[i].script);
+                delayedScripts.erase(delayedScripts.begin() + i);
+            }
         }
-    }
 
-    for (auto k : _bindings) {
-        Input::TButton button = EngineInput.keyboard().key(k.first);
-        if (button.getsPressed()) {
-            std::string current_value = k.second;
-            execCvar(current_value);
-            execScript(current_value);
+        for (auto k : _bindings) {
+            Input::TButton button = EngineInput.keyboard().key(k.first);
+            if (button.getsPressed()) {
+                std::string current_value = k.second;
+                execCvar(current_value);
+                execScript(current_value);
+            }
         }
     }
 }
@@ -138,10 +142,19 @@ void CModuleLogic::publishClasses() {
         .comment("This is our wrapper of the patrol controller")
         .set("launchInhibitor", &TCompAIPatrol::launchInhibitor);
 
+    SLB::Class<TCompTransform>("Transform", m)
+        .comment("This is our wrapper of the transform controller")
+        .set("setPosition", &TCompTransform::setPosition)
+        .set("getPosition", &TCompTransform::getPosition)
+        .set("setRotation", &TCompTransform::setRotation)
+        .set("getRotation", &TCompTransform::getRotation)
+        .set("lookAt", &TCompTransform::lookAt);
+
     SLB::Class <CHandle>("CHandle", m)
         .comment("CHandle wrapper")
         .constructor()
-        .set("fromUnsigned", &CHandle::fromUnsigned);
+        .set("fromUnsigned", &CHandle::fromUnsigned)
+        .set("destroy", &CHandle::destroy);
 
     SLB::Class <CEntity>("CEntity", m)
         .comment("CEntity wrapper")
@@ -206,11 +219,16 @@ void CModuleLogic::publishClasses() {
     // tutorial
     m->set("setTutorialPlayerState", SLB::FuncCall::create(&setTutorialPlayerState));
 
+    // cinematic
+    m->set("setCinematicPlayerState", SLB::FuncCall::create(&setCinematicPlayerState));
+    m->set("setAIState", SLB::FuncCall::create(&setAIState));
+
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
     m->set("shadowsToggle", SLB::FuncCall::create(&shadowsToggle));
     m->set("debugToggle", SLB::FuncCall::create(&debugToggle));
     m->set("spawn", SLB::FuncCall::create(&spawn));
+    m->set("move", SLB::FuncCall::create(&move));
     m->set("bind", SLB::FuncCall::create(&bind));
     m->set("loadCheckpoint", SLB::FuncCall::create(&loadCheckpoint));
     m->set("loadScene", SLB::FuncCall::create(&loadscene));
@@ -293,7 +311,12 @@ bool CModuleLogic::execEvent(Events event, const std::string & params, float del
         }
         break;
     case Events::GAME_END:
-
+        if (delay > 0) {
+            return execScriptDelayed("onGameEnd()", delay);
+        }
+        else {
+            return execScript("onGameEnd()").success;
+        }
         break;
     case Events::SCENE_START:
         if (delay > 0) {
@@ -326,6 +349,22 @@ bool CModuleLogic::execEvent(Events event, const std::string & params, float del
         }
         else {
             return execScript("onTriggerExit_" + params).success;
+        }
+        break;
+    case Events::PATROL_STUNNED:
+        if (delay > 0) {
+            return execScriptDelayed("onPatrolStunned_" + params, delay);
+        }
+        else {
+            return execScript("onPatrolStunned_" + params).success;
+        }
+        break;
+    case Events::PATROL_KILLED:
+        if (delay > 0) {
+            return execScriptDelayed("onPatrolKilled_" + params, delay);
+        }
+        else {
+            return execScript("onPatrolKilled_" + params).success;
         }
         break;
     default:
@@ -446,11 +485,11 @@ void lanternsDisable(bool disable) {
     }
 }
 
-void blendInCamera(const std::string & cameraName, float blendInTime) {
+void blendInCamera(const std::string & cameraName, float blendInTime, const std::string& mode) {
 
     CHandle camera = getEntityByName(cameraName);
     if (camera.isValid()) {
-        EngineCameras.blendInCamera(camera, blendInTime, CModuleCameras::EPriority::TEMPORARY);
+        EngineCameras.blendInCamera(camera, blendInTime, EngineCameras.getPriorityFromString(mode));
     }
     //TODO: implement
 }
@@ -468,9 +507,32 @@ void blendOutActiveCamera(float blendOutTime) {
 }
 
 /* Spawn item on given position */
-void spawn(const std::string & name, const VEC3 & pos) {
+CHandle spawn(const std::string & name, const VEC3 & pos, const VEC3& lookat) {
+    TEntityParseContext ctxSpawn;
+    parseScene("data/prefabs/" + name + ".prefab", ctxSpawn);
+    CHandle h = ctxSpawn.entities_loaded[0];
+    CEntity* e = h;
+    TCompTransform* e_pos = e->get<TCompTransform>();
+    e_pos->lookAt(pos, lookat);
+    return h;
+}
 
-
+void move(const std::string & name, const VEC3 & pos, const VEC3 & lookat)
+{
+    CHandle h_to_move = getEntityByName(name);
+    if (h_to_move.isValid()) {
+        CEntity* e_to_move = h_to_move;
+        TCompTransform* e_pos = e_to_move->get<TCompTransform>();
+        e_pos->lookAt(pos, lookat);
+        TCompCollider* e_collider = e_to_move->get<TCompCollider>();
+        TCompRigidbody* e_rigidbody = e_to_move->get<TCompRigidbody>();
+        if (e_rigidbody) {
+            e_rigidbody->setGlobalPose(pos, e_pos->getRotation());
+        }
+        else if (e_collider) {
+            e_collider->setGlobalPose(pos, e_pos->getRotation());
+        }
+    }
 }
 
 void loadscene(const std::string &level) {
@@ -513,6 +575,26 @@ void setTutorialPlayerState(bool active, const std::string & stateName)
     h_tutorial.sendMsg(msg);
 }
 
+void setCinematicPlayerState(bool active, const std::string & stateName)
+{
+    CHandle h_tutorial = getEntityByName("The Player");
+    TMsgPlayerAIEnabled msg;
+    msg.state = stateName;
+    msg.enableAI = active;
+    h_tutorial.sendMsg(msg);
+}
+
+void setAIState(const std::string & name, bool active, const std::string & stateName)
+{
+    CHandle h = getEntityByName(name);
+    if (h.isValid()) {
+        TMsgCinematicState msg;
+        msg.enableCinematic = active;
+        msg.state = stateName;
+        h.sendMsg(msg);
+    }
+}
+
 void activateScene(const std::string& scene) {
     //EngineScene.setActiveScene()
 }
@@ -550,11 +632,6 @@ void pausePlayerToggle() {
 void debugToggle()
 {
     EngineRender.setDebugMode(!EngineRender.getDebugMode());
-}
-
-void destroy() {
-
-
 }
 
 void bind(const std::string& key, const std::string& script) {

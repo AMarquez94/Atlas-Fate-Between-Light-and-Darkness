@@ -8,6 +8,76 @@
 		},
 	"children": [{
 			"parent": "patrol",
+			"name": "isCinematic",
+			"type": "priority",
+			"condition": "conditionIsCinematic",
+			"action": "",
+			"assert": ""
+		},{
+			"parent": "isCinematic",
+			"name": "deadCinematic",
+			"type": "sequence",
+			"condition": "conditionDeadCinematic",
+			"action": "",
+			"assert": ""
+		},{
+			"parent": "deadCinematic",
+			"name": "dieDeadCinematic",
+			"type": "action",
+			"condition": "",
+			"action": "actionDieAnimation",
+			"assert": ""
+		},{
+			"parent": "deadCinematic",
+			"name": "deadDeadCinematic",
+			"type": "action",
+			"condition": "",
+			"action": "actionDeadAnimation",
+			"assert": ""
+		}, {
+			"parent": "isCinematic",
+			"name": "inhibitorCinematic",
+			"type": "sequence",
+			"condition": "conditionInhibitorCinematic",
+			"action": "",
+			"assert": ""
+		}, {
+			"parent": "inhibitorCinematic",
+			"name": "resetInhibitorCinematicTimers",
+			"type": "action",
+			"condition": "",
+			"action": "actionResetInhibitorCinematicTimers",
+			"assert": ""
+		}, {
+			"parent": "inhibitorCinematic",
+			"name": "waitInhibitorCinematic",
+			"type": "action",
+			"condition": "",
+			"action": "actionWait",
+			"assert": ""
+		}, {
+			"parent": "inhibitorCinematic",
+			"name": "shootInhibitorInhibitorCinematic",
+			"type": "action",
+			"condition": "",
+			"action": "actionAnimationShootInhibitor",
+			"assert": ""
+		}, {
+			"parent": "inhibitorCinematic",
+			"name": "waitInhibitorCinematic_2",
+			"type": "action",
+			"condition": "",
+			"action": "actionWait",
+			"assert": ""
+		}, {
+			"parent": "inhibitorCinematic",
+			"name": "resetBTInhibitorCinematic",
+			"type": "action",
+			"condition": "",
+			"action": "actionResetBT",
+			"assert": ""
+		},{
+			"parent": "patrol",
 			"name": "manageStun",
 			"type": "priority",
 			"condition": "conditionManageStun",

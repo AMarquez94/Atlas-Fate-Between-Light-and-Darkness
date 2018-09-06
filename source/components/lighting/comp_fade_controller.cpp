@@ -43,6 +43,8 @@ void TCompFadeController::update(float dt) {
     if (_is_active) {
 
         TCompRender * c_my_render = get<TCompRender>();
+        if (!c_my_render)
+            return;
 
         // Notify it has finished
         if (c_my_render->self_opacity > 1 || c_my_render->self_opacity < 0) {
@@ -64,9 +66,6 @@ void TCompFadeController::update(float dt) {
 
 /* Used to blend between two colors at a given time */
 void TCompFadeController::launch(const TMsgFadeBody& msg) {
-    
-
-    dbg("Received and starting\n");
 
     TCompRender * c_my_render = get<TCompRender>();
     assert(c_my_render);

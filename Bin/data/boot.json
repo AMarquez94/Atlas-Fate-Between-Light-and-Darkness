@@ -27,12 +27,25 @@
 			"data/scenes/intro_andamios.scene",
 			"data/scenes/intro_tejados.scene",
 			"data/scenes/intro_valla.scene",
-			"data/scenes/prova_intro.scene",
+			"data/scenes/intro_colliders_valla.scene",
+
+
+			"data/scenes/intro_tubo_capsulas.scene",
+			
 			"data/scenes/intro_pozo.scene",
 			"data/scenes/intro_barra_capsulas.scene",
 			"data/scenes/Intro/intro_suelo.scene",
+			"data/scenes/intro_containers_puerto.scene",		
+			"data/scenes/intro_muralla_intro.scene",
+			"data/scenes/intro_muralla_fin.scene",
+			"data/scenes/intro_conductos.scene",
+			"data/scenes/intro_tubitos.scene",
+			"data/scenes/intro_props.scene",
+			"data/scenes/Intro/debug_speaker.scene",
+			"data/scenes/Intro/tutorial.scene",
+			"data/scenes/Intro/enemy.scene",
+			"data/scenes/Intro/cinematic.scene"
 
-			"data/scenes/Intro/debug_speaker.scene"
 		]
 	},
 	"scene_map_intro": {

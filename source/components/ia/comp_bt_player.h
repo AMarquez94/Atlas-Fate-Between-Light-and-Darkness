@@ -8,7 +8,22 @@ class TCompAIPlayer : public TCompIAController {
 
 public:
 
-    enum EState { TUT_CROUCH = 0, TUT_SM, TUT_INHIBITOR, TUT_ATTACK, TUT_SM_FALL, TUT_SM_VER, TUT_BOX, TUT_SONAR, TUT_BUTTON, CINEMATIC, NUM_STATES };
+    enum EState {
+        TUT_CROUCH = 0,
+        TUT_SM, 
+        TUT_INHIBITOR,
+        TUT_ATTACK,
+        TUT_SM_FALL,
+        TUT_SM_VER,
+        TUT_BOX,
+        TUT_SONAR,
+        TUT_BUTTON,
+        TUT_SM_FENCE,
+        TUT_SM_ENEMY,
+        CINEMATIC,
+        CINEMATIC_CROUCH_WALK,
+        CINEMATIC_FALLSM,
+        NUM_STATES };
 
     bool enabledPlayerAI;
 
@@ -28,6 +43,11 @@ public:
     BTNode::ERes actionResetTimersAttackTutorial(float dt);
     BTNode::ERes actionResetTimersSMFallTutorial(float dt);
     BTNode::ERes actionResetTimersSMVerTutorial(float dt);
+    BTNode::ERes actionResetTimersBoxTutorial(float dt);
+    BTNode::ERes actionResetTimersSonarTutorial(float dt);
+    BTNode::ERes actionResetTimersButtonTutorial(float dt);
+    BTNode::ERes actionResetTimersSMFenceTutorial(float dt);
+    BTNode::ERes actionResetTimersSMEnemyTutorial(float dt);
     BTNode::ERes actionResetBT(float dt);
     BTNode::ERes actionAnimationWalk(float dt);
     BTNode::ERes actionAnimationCrouch(float dt);
@@ -40,9 +60,27 @@ public:
     BTNode::ERes actionAnimationInhibitorFinnish(float dt);
     BTNode::ERes actionAnimationStandingCrouch(float dt);
     BTNode::ERes actionAnimationAttack(float dt);
+    BTNode::ERes actionWaitAttack(float dt);
     BTNode::ERes actionWait(float dt);
     BTNode::ERes actionAnimationFalling(float dt);
     BTNode::ERes actionSMVerMove(float dt);
+    BTNode::ERes actionSMVerMoveFront(float dt);
+    BTNode::ERes actionSMVerTurn(float dt);
+    BTNode::ERes actionAnimationWalkWithMovement(float dt);
+    BTNode::ERes actionAnimationGrabBox(float dt);
+    BTNode::ERes actionAnimationWalkBox(float dt);
+    BTNode::ERes actionAnimationSonar(float dt);
+    BTNode::ERes actionAnimationPressButton(float dt);
+    BTNode::ERes actionAnimationGrabEnemy(float dt);
+    BTNode::ERes actionStartSMEnemy(float dt);
+
+    BTNode::ERes actionResetTimersCinematicWalkFall(float dt);
+    BTNode::ERes actionResetTimersBeforeSMCinematicFallSM(float dt);
+    BTNode::ERes actionSlowMotionCinematicFallSM(float dt);
+    BTNode::ERes actionResetTimersCinematicFallSM(float dt);
+    BTNode::ERes actionCrouchWalk(float dt);
+    BTNode::ERes actionFallSM(float dt);
+    BTNode::ERes endCinematic(float dt);
 
     bool conditionHasBeenEnabled(float dt);
     bool conditionCinematicMode(float dt);
@@ -55,6 +93,14 @@ public:
     bool conditionButtonTutorial(float dt);
     bool conditionBoxTutorial(float dt);
     bool conditionSonarTutorial(float dt);
+    bool conditionSMFenceTutorial(float dt);
+    bool conditionSMEnemyTutorial(float dt);
+
+    bool conditionCinematicWalkFall(float dt);
+    bool conditionCinematicFallSM(float dt);
+
+
+    bool assertIsGrounded(float dt);
 
     //Auxiliar
     bool move(float dt);
@@ -73,6 +119,8 @@ private:
 
 	void onMsgPlayerAIEnabled(const TMsgPlayerAIEnabled& msg);
 	void onMsgEntityCreated(const TMsgEntityCreated& msg);
+	void onMsgEntityGroupCreated(const TMsgEntitiesGroupCreated& msg);
+	void onMsgScenePaused(const TMsgScenePaused& msg);
 
 	//load
 	void loadActions() override;
@@ -80,6 +128,7 @@ private:
 	void loadAsserts() override;
 
     TCompAIPlayer::EState getStateEnumFromString(const std::string& stateName);
+    CHandle h_sm_tutorial;
 
     DECL_SIBLING_ACCESS();
 };

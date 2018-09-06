@@ -175,6 +175,26 @@ CHandle CModuleCameras::getCurrentCamera()
 	return _currentCamera;
 }
 
+CModuleCameras::EPriority CModuleCameras::getPriorityFromString(const std::string & priority)
+{
+    if (priority.compare("default") == 0) {
+        return EPriority::DEFAULT;
+    }
+    else if (priority.compare("gameplay") == 0) {
+        return EPriority::GAMEPLAY;
+    }
+    else if (priority.compare("temporary") == 0) {
+        return EPriority::TEMPORARY;
+    }
+    else if (priority.compare("cinematic") == 0) {
+        return EPriority::CINEMATIC;
+    }
+    else if (priority.compare("debug") == 0) {
+        return EPriority::DEBUG;
+    }
+    return EPriority::NUM_PRIORITIES;
+}
+
 void CModuleCameras::blendOutCamera(CHandle camera, float blendTime)
 {
 	TMixedCamera* mc = getMixedCamera(camera);

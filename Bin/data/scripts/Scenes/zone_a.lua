@@ -1,10 +1,10 @@
 function onSceneStart_scene_zone_a()
-	setTutorialPlayerState(true, "sm_fall_tutorial");
+	setTutorialPlayerState(true, "sm_ver_tutorial");
 end
 
 function transition_zone_a_to_coliseum()
 	toggleButtonCanBePressed("Button End Scene", false);
-	execScriptDelayed("blendInCamera(\"scene_transition\", 1.0)", 2);
+	execScriptDelayed("blendInCamera(\"scene_transition\", 1.0, \"cinematic\")", 2);
 	execScriptDelayed("pausePlayerToggle()", 2);
 	execScriptDelayed("cinematicModeToggle()", 2);
 	execScriptDelayed("loadScene(\"scene_coliseo_2\")", 4);

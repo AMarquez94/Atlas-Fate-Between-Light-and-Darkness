@@ -122,6 +122,7 @@ void TCompTempPlayerController::update(float dt) {
 		updateShader(dt); // Move this to player render component...
 		timeInhib += dt;
 		canAttack = canAttackTest(dt);
+        EngineGUI.enableWidget("stamina_bar_general", stamina / maxStamina != 1.f);
 		Engine.getGUI().getVariables().setVariant("staminaBarFactor", stamina / maxStamina);	 
         Engine.getGUI().getVariables().setVariant("lifeBarFactor", life / maxLife);
     }
@@ -199,7 +200,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 
     pxShadowFilterData = new physx::PxFilterData();
     pxShadowFilterData->word0 = c_my_collider->config->group;
-    pxShadowFilterData->word1 = FilterGroup::Wall;
+    pxShadowFilterData->word1 = FilterGroup::NonCastShadows;
 
     pxPlayerFilterData = new physx::PxFilterData();
     pxPlayerFilterData->word0 = c_my_collider->config->group;
@@ -207,7 +208,6 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 
     physx::PxFilterData pxFilterData;
     pxFilterData.word1 = FilterGroup::Scenario;
-    //pxFilterData.word1 = FilterGroup::Scenario | FilterGroup::MovableObject/*  | FilterGroup::MovableObject | FilterGroup::DItem*/;
     PxPlayerDiscardQuery.data = pxFilterData;
 
     /* Initial reset messages */
@@ -641,6 +641,11 @@ void TCompTempPlayerController::die()
 {
     if (!isImmortal && !isDead()) {
         CEntity* e = CHandle(this).getOwner();
+
+        TMsgGlitchController msg;
+        msg.revert = false;
+        e->sendMsg(msg);
+
         TMsgSetFSMVariable groundMsg;
         groundMsg.variant.setName("onDead");
         groundMsg.variant.setBool(true);
@@ -783,8 +788,6 @@ const bool TCompTempPlayerController::onMergeTest(float dt) {
         groundMsg.variant.setBool(mergeTest);
         e->sendMsg(groundMsg);
         c_my_rigidbody->filters.mFilterData = isMerged == true ? pxPlayerFilterData : pxShadowFilterData;
-
-        EngineGUI.enableWidget("stamina_bar_general", mergeTest);
     }
 
     return mergeTest;

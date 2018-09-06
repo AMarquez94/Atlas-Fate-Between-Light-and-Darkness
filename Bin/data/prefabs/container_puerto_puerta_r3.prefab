@@ -1,0 +1,48 @@
+[
+  {
+    "entity":
+    {
+      "name": "container_puerto_puerta_r3"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_container_puerto_puerta_r3"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_container_puerto_puerta_r3.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_low.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_container_puerto_puerta_r3.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

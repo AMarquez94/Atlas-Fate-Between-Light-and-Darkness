@@ -1,0 +1,16 @@
+[{
+		"entity": {
+			"name": "Tutorial Container",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [{
+				"mesh": "data/meshes/mesh_container_m2.mesh",
+				"materials": [
+					"data/materials/characters/mtl_player_main_hologram_solid.material"
+				]
+			}],
+			"tags": ["container_tutorial"]
+		}
+	}
+]

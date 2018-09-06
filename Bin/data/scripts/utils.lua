@@ -33,8 +33,8 @@ function postFXToggle()
 	SLB.postFXToggle()
 end
 
-function blendInCamera(cameraName, blendInTime)
-	SLB.blendInCamera(cameraName, blendInTime)
+function blendInCamera(cameraName, blendInTime, mode)
+	SLB.blendInCamera(cameraName, blendInTime, mode)
 end
 
 function blendOutCamera(cameraName, blendOutTime)
@@ -105,8 +105,8 @@ function cg_drawlights(type)
 	SLB.cg_drawlights(type)
 end
 
-function spawn()
-	SLB.spawn()
+function spawn(name, pos, lookat)
+	return SLB.spawn(name, pos, lookat)
 end
 
 function renderNavmeshToggle()
@@ -135,4 +135,16 @@ end
 
 function setTutorialPlayerState(active, state)
 	SLB.setTutorialPlayerState(active, state);
+end
+
+function setCinematicPlayerState(active, state)
+	SLB.setCinematicPlayerState(active, state);
+end
+
+function setAIState(e_name, active, state)
+	SLB.setAIState(e_name, active, state);
+end
+
+function move(name, pos, lookat)
+	SLB.move(name, pos, lookat);
 end

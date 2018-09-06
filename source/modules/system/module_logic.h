@@ -38,7 +38,8 @@ public:
         SCENE_END,
         TRIGGER_ENTER,
         TRIGGER_EXIT,
-        ENEMY_KILLED,
+        PATROL_STUNNED,
+        PATROL_KILLED,
         PLAYER_ON_SHADOW_ENTER,
         NUM_EVENTS
     };
@@ -58,6 +59,7 @@ public:
     bool execScriptDelayed(const std::string& script, float delay);
     bool execEvent(Events event, const std::string& params = "", float delay = 0.f);
     void printLog();
+    void setPause(bool paused) { this->paused = paused; }
 
 private:
 
@@ -71,6 +73,7 @@ private:
     void loadScriptsInFolder(char * path);
 
     bool started = false;
+    bool paused = false;
 };
 
 /* Auxiliar functions */
@@ -91,10 +94,11 @@ void speedBoost(const float speed);
 void playerInvisible();
 void noClipToggle();
 void lanternsDisable(bool disable);
-void blendInCamera(const std::string& cameraName, float blendInTime);
+void blendInCamera(const std::string& cameraName, float blendInTime, const std::string& mode = "cinematic");
 void blendOutCamera(const std::string& cameraName, float blendOutTime);
 void blendOutActiveCamera(float blendOutTime);
-void spawn(const std::string & name, const VEC3 & pos);
+CHandle spawn(const std::string & name, const VEC3 & pos, const VEC3& lookat);
+void move(const std::string & name, const VEC3 & pos, const VEC3& lookat);
 void bind(const std::string& key, const std::string& script);
 void loadscene(const std::string &level);
 void unloadscene();
@@ -112,6 +116,10 @@ void stopAllAudioComponents();
 
 /* Tutorial */
 void setTutorialPlayerState(bool active, const std::string& stateName);
+
+/* Cinematic */
+void setCinematicPlayerState(bool active, const std::string & stateName);
+void setAIState(const std::string& name, bool active, const std::string & stateName);
 
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);

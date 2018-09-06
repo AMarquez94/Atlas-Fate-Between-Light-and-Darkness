@@ -506,7 +506,7 @@ struct TSceneExporter (
 					fs.writeComma()
 					fs.writeKeyValue "name" (cols_path + obj.name + ".collider")
 				) else (
-					fs.writeKeyValue "shape" "convex" 
+					fs.writeKeyValue "shape" "mesh" 
 					fs.writeComma()
 					fs.writeKeyValue "name" (cols_path + obj.name + ".collider")
 				)
