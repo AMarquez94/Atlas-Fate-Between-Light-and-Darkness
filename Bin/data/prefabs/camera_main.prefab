@@ -1,5 +1,4 @@
-[
-	{
+[{
 		"entity": {
 			"camera": {
 				"fov": 80
@@ -21,12 +20,12 @@
 			"chromatic_aberration": {
 				"enabled": true
 			},
-			"render_outlines" : {
-				"enabled" : true
-		  },
-			"render_environment" : {
-				"enabled" : true
-		  },
+			"render_outlines": {
+				"enabled": true
+			},
+			"render_environment": {
+				"enabled": true
+			},
 			"culling": true
 		}
 	}
