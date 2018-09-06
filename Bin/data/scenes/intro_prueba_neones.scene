@@ -1,0 +1,73 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_prueba_neones"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "pantalla2_low002"
+      ,
+      "transform":
+      {
+        "pos": "2.22852 2.10034 29.8699"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pantalla2_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "pantalla2_low001"
+      ,
+      "transform":
+      {
+        "pos": "-9.00525 2.10034 17.1087"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pantalla2_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]
