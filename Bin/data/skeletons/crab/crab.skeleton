@@ -2,7 +2,8 @@
 	"name":"crab",
 	"anims" : [
 		{"name": "root"},
-		{"name": "idle"}
+		{"name": "idle"},
+		{"name": "pose_pared"}
 
 	]
 }

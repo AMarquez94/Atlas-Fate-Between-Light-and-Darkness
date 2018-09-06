@@ -173,6 +173,17 @@ void TCompMimeticAnimator::initializeAnimations() {
 		1.0f,
 		false
 	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::IDLE_WALL,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"pose_pared",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
 }
 
 void TCompMimeticAnimator::registerMsgs() {
