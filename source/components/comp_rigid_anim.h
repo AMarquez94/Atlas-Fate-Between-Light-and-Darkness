@@ -20,10 +20,12 @@ struct TCompRigidAnim : public TCompBase {
 
   std::vector<RigidAnimation> registeredAnimations;
 
+  int					  next_animation_id = -1;
   int					  current_animation_id = -1;
   float                   current_time = 0.f;
-  VEC3					  parent_position;
 
+  VEC3					  parent_position;
+  QUAT					  parent_rotation;
 
   void load(const json& j, TEntityParseContext& ctx);
   void update(float dt);
@@ -32,7 +34,7 @@ struct TCompRigidAnim : public TCompBase {
   bool playAnimation(int anim_id);
   void cancelAnimation();
 
-  void registerParentPosition(VEC3 pos);
+  void registerParentTransform(VEC3 pos, QUAT rot);
 
   void registerAnimation(std::string animationName, std::string track_name, std::string source, float speedFactor, bool loop, int animation_id);
   DECL_SIBLING_ACCESS();

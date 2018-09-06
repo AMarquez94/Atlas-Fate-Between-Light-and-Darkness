@@ -25,7 +25,7 @@ void TCompAnimatedObjController::onGroupCreated(const TMsgEntitiesGroupCreated &
 					comp_rigid->registerAnimation(animationInfos[j].animationName, animationInfos[j].track_name, animationInfos[j].source, animationInfos[j].speedFactor, animationInfos[j].loop,j);
 					CEntity *ownEntity = CHandle(this).getOwner();
 					TCompTransform *comp_transform = ownEntity->get<TCompTransform>();
-					comp_rigid->registerParentPosition(comp_transform->getPosition());
+					comp_rigid->registerParentTransform(comp_transform->getPosition(), comp_transform->getRotation());
 					name_to_id_animations[animationInfos[j].animationName] = j;
 				}		
 			}

@@ -17,8 +17,9 @@ void TCompRigidAnim::debugInMenu() {
   //ImGui::Checkbox("Loops", &loops);
 }
 
-void TCompRigidAnim::registerParentPosition(VEC3 pos) {
+void TCompRigidAnim::registerParentTransform(VEC3 pos, QUAT rot) {
 	parent_position = pos;
+	parent_rotation = rot;
 }
 
 void TCompRigidAnim::registerAnimation(std::string animationName, std::string track_name, std::string source, float speedFactor, bool loop, int animation_id) {
@@ -56,14 +57,16 @@ void TCompRigidAnim::update(float dt) {
   // Transfer the key data to the comp transform
   TCompTransform* c_trans = get< TCompTransform >();
   c_trans->setPosition(k.pos + parent_position);
-  c_trans->setRotation(k.rot);
+  c_trans->setRotation(k.rot * parent_rotation);
 
-  //dbg("%f   %f   %f  \n", k.pos.x, k.pos.y, k.pos.z);
   c_trans->setScale(VEC3(k.scale, k.scale, k.scale));
 
-  dbg("%f\n", current_time);
-
   if (has_finished) {
+	if (next_animation_id != -1) {
+		current_animation_id = next_animation_id;
+		next_animation_id = -1;
+		current_time = 0.0f;
+	}
     if(current_anim.loops )
       current_time = 0.0f;
     // loop, change direction?, set is_moving = false...
@@ -78,8 +81,14 @@ bool TCompRigidAnim::playAnimation(int anim_id) {
 
 	if (registeredAnimations.size() - 1 < anim_id)
 		return false;
-	current_time = 0.0f;
-	current_animation_id = anim_id;
+	if (current_animation_id == -1) {
+		current_animation_id = anim_id;
+		current_time = 0.0f;
+	}
+	else 
+	{ 
+		next_animation_id = anim_id; 
+	}
 	return true;
 }
 
