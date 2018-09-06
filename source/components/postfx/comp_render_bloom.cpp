@@ -14,7 +14,7 @@ TCompRenderBloom::TCompRenderBloom()
 	bool is_ok = cte_bloom.create(CB_BLOOM);
 	assert(is_ok);
 	// How we mix each downsampled scale
-	add_weights = VEC4(1.140f, 0.2f, 1.380f, 1.148f);
+	add_weights = VEC4(0.360f, 0.660f, 0.300f, 1.660f);
 }
 
 TCompRenderBloom::~TCompRenderBloom() {

@@ -163,7 +163,6 @@ namespace Particles
 
     bool CSystem::update(float delta)
     {
-        /*
         if (!_enabled || !_entity.isValid()) return true;
         
         // Handle start delay
@@ -246,14 +245,13 @@ namespace Particles
             _lastSystemPosition = c_ent_transform->getPosition();
         }
 
-        return fadeRatio > 0.f && (!_particles.empty() || _core->n_system.looping);*/
-        return true;
+        return fadeRatio > 0.f && (!_particles.empty() || _core->n_system.looping);
     }
 
     // To update this with the compute shader.
     void CSystem::render()
     {
-        /*
+        
         if (!_enabled || !_entity.isValid()) return;
         if (_deploy_time < _core->n_system.start_delay) return;
 
@@ -304,9 +302,7 @@ namespace Particles
         technique2->activate();
 
         _core->n_renderer.texture->activate(TS_ALBEDO1);
-        instanced_particle->activateAndRender();
-
-        CRenderManager::get().renderCategory("particles_gbuffer_combinative");*/
+        CRenderManager::get().renderCategory("particles_instanced_combinative");
     }
 
     void CSystem::emit()

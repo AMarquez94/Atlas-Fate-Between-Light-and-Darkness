@@ -14,7 +14,7 @@
 			}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "test_camera_curve",
 			"transform": {
 				"pos": "5 25 0",
@@ -32,7 +32,7 @@
 			}
 		}
 	},  {
-    "entity":
+    "xentity":
     {
       "name": "Ray Shaft"
       ,
@@ -58,7 +58,7 @@
       "local_aabb": true
     }
   },  {
-    "entity":
+    "xentity":
     {
       "name": "PlaneCasting"
       ,

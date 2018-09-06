@@ -1,0 +1,13 @@
+[
+  {
+    "entity":
+    {
+      "name": "player_cameras"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+]
