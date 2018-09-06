@@ -18,6 +18,7 @@
 #include "fsm/fsm.h"
 
 #include "geometry/geometry.h"
+#include "geometry/rigid_anim.h"
 #include "render/texture/render_to_texture.h"
 
 #include "components/comp_tags.h"
@@ -80,7 +81,7 @@ bool CModuleRender::start()
 	Resources.registerResourceClass(getResourceClassOf<CGameCoreSkeleton>());
 	Resources.registerResourceClass(getResourceClassOf<CPhysicsMesh>());
 	Resources.registerResourceClass(getResourceClassOf<CCurve>());
-
+	Resources.registerResourceClass(getResourceClassOf<RigidAnims::CRigidAnimResource>());
 
 	if (!createRenderObjects())
 		return false;
