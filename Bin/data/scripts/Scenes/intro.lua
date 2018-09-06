@@ -5,16 +5,23 @@ function onSceneStart_scene_intro()
 	end
 	
 	-- First Cinematic --
-	move("The Player", VEC3(-7.5, 12.115, 34.2), VEC3(-7.5, 12.115, 33.2));
-	--setCinematicPlayerState(true, "crouch_cinematic")
-	--blendInCamera("Camera_Cinematic_Intro", 0.0, "cinematic");
-	--setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
-	--execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_End\", 0.65, \"cinematic\")", 2.5);
+	--intro_intro_cinematic();
+	
 	setAIState("Patrol_Cinematic_Inhibitor", true, "dead_cinematic");
 end
 
 function onSceneEnd_scene_intro()
 	--ambiance:stop(true);
+end
+
+function intro_intro_cinematic()
+	move("The Player", VEC3(-7.5, 12.115, 34.2), VEC3(-7.5, 12.115, 33.2));
+	--setCinematicPlayerState(true, "crouch_cinematic")
+	blendInCamera("Camera_Cinematic_Intro", 0.0, "cinematic");
+	setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_End\", 0.65, \"cinematic\")", 2.5);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro\", 0)", 3.2);
+	--execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_End\", 0)", 3.5);
 end
 
 function transition_map_intro_to_coliseum()
@@ -28,8 +35,14 @@ end
 
 function onTriggerEnter_Trigger_Inhibitor_Cinematic_player()
 	setAIState("Patrol_Cinematic_Inhibitor", true, "inhibitor_cinematic");
+	intro_inhibitor_cinematic();
 	temp = getEntityByName("Trigger_Inhibitor_Cinematic");
 	temp:destroy();
+end
+
+function intro_inhibitor_cinematic()
+	setCinematicPlayerState(true, "inhibitor_cinematic");
+	execScriptDelayed("setCinematicPlayerState(false, \"\")", 2);
 end
 
 
@@ -44,13 +57,13 @@ function onTriggerExit_SMTutorial_player()
 end
 
 function onTriggerEnter_SMVerTutorial_player()
-	moveTutorialPlayer(VEC3(4.6, 0, 19), VEC3(4.6,0,15), true, "sm_ver_tutorial");
-	container = spawn("tutorial/container_tutorial", VEC3(4.6, 0, 17.2), VEC3(4.6, 0, 18));
+	moveTutorialPlayer(VEC3(1.7, 0, 13), VEC3(1.7, 0, 12), true, "sm_ver_tutorial");
+	--container = spawn("tutorial/container_tutorial", VEC3(4.6, 0, 17.2), VEC3(4.6, 0, 18));
 end
 
 function onTriggerExit_SMVerTutorial_player()
 	moveTutorialPlayer(VEC3(0,-30,0), VEC3(0,0,25), false, "");
-	container:destroy();
+	--container:destroy();
 end
 
 function onTriggerEnter_SMFallTutorial_player()
@@ -70,7 +83,7 @@ function onTriggerExit_CrouchTutorial_player()
 end
 
 function onTriggerEnter_InhibitorTutorial_player()
-	moveTutorialPlayer(VEC3(-13, 0, -37), VEC3(-13, 0, -38), true, "remove_inhibitor_tutorial");
+	moveTutorialPlayer(VEC3(-16, 0, -41), VEC3(-16, 0, -40), true, "remove_inhibitor_tutorial");
 end
 
 function onTriggerExit_InhibitorTutorial_player()

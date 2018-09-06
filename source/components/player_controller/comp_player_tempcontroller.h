@@ -109,6 +109,7 @@ class TCompTempPlayerController : public TCompBase
     float attackTimer = 0.f;    //HARD FIX: TODO: Remove
 
     void onCreate(const TMsgEntityCreated& msg);
+    void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
     void onStateStart(const TMsgStateStart& msg);
     void onStateFinish(const TMsgStateFinish& msg);
 

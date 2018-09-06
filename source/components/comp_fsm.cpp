@@ -51,6 +51,7 @@ void TCompFSM::registerMsgs() {
   DECL_MSG(TCompFSM, TMsgScenePaused, onPaused); 
   DECL_MSG(TCompFSM, TMsgConsoleOn, onConsoleChanged);
   DECL_MSG(TCompFSM, TMsgNoClipToggle, onMsgNoClipToggle);
+  DECL_MSG(TCompFSM, TMsgPlayerAIEnabled, onMsgAIMode);
 }
 
 const std::string TCompFSM::getStateName()
@@ -69,7 +70,7 @@ void TCompFSM::load(const json& j, TEntityParseContext& ctx)
 
 void TCompFSM::update(float dt) 
 {
-	if (!paused && !isConsoleOn && !isInNoClipMode) {
+	if (!paused && !isConsoleOn && !isInNoClipMode && !isInAIMode) {
 		_context.update(dt);
         addActionToHistoric(_context.getCurrentState()->getName());
 	}
@@ -98,6 +99,11 @@ void TCompFSM::onConsoleChanged(const TMsgConsoleOn & msg)
 void TCompFSM::onMsgNoClipToggle(const TMsgNoClipToggle & msg)
 {
     isInNoClipMode = !isInNoClipMode;
+}
+
+void TCompFSM::onMsgAIMode(const TMsgPlayerAIEnabled & msg)
+{
+    isInAIMode = msg.enableAI;
 }
 
 

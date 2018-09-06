@@ -130,8 +130,6 @@ void TCompTempPlayerController::update(float dt) {
     // Update player global speed into the shader.
     float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
     cb_globals.global_player_speed = (inputSpeed * currentSpeed) / 6.f; // Maximum speed, change this in the future. 
-    cb_player.player_disk_radius = clamp(1.f, 0.f, 1.f); // Replace this with a lerp when we have the animation
-    cb_player.updateGPU();
 }
 
 void TCompTempPlayerController::registerMsgs() {
@@ -139,6 +137,7 @@ void TCompTempPlayerController::registerMsgs() {
     DECL_MSG(TCompTempPlayerController, TMsgStateStart, onStateStart);
     DECL_MSG(TCompTempPlayerController, TMsgStateFinish, onStateFinish);
     DECL_MSG(TCompTempPlayerController, TMsgEntityCreated, onCreate);
+    DECL_MSG(TCompTempPlayerController, TMsgEntitiesGroupCreated, onGroupCreated);
     DECL_MSG(TCompTempPlayerController, TMsgPlayerHit, onPlayerHit);
     DECL_MSG(TCompTempPlayerController, TMsgPlayerDead, onPlayerKilled);
     DECL_MSG(TCompTempPlayerController, TMsgInhibitorShot, onPlayerInhibited);
@@ -228,6 +227,12 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
     TCompParticles * c_e_particle = get<TCompParticles>();
     assert(c_e_particle);
     c_e_particle->setSystemState(false);
+}
+
+void TCompTempPlayerController::onGroupCreated(const TMsgEntitiesGroupCreated & msg)
+{
+    cb_player.player_disk_radius = clamp(0.f, 0.f, 1.f);
+    cb_player.updateGPU();
 }
 
 /* Call this function once the state has been changed */

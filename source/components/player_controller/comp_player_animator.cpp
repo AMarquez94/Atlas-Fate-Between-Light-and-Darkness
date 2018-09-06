@@ -28,6 +28,15 @@ void TCompPlayerAnimator::debugInMenu() {
 	if (ImGui::SmallButton("prova")) {
 		playAnimation(EAnimation::HIT_BACK, speed);
 	}
+    if (ImGui::SmallButton("FALL")) {
+        playAnimation(EAnimation::FALL, speed);
+    }
+    if (ImGui::SmallButton("SM_ENTER")) {
+        playAnimation(EAnimation::SM_ENTER, speed);
+    }
+    if (ImGui::SmallButton("SM_POSE")) {
+        playAnimation(EAnimation::SM_POSE, speed);
+    }
 
 
 	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);
