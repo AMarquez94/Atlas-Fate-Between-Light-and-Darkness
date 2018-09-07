@@ -53,17 +53,20 @@
 #define TS_FIRST_SLOT_MATERIAL_0      TS_ALBEDO
 #define TS_FIRST_SLOT_MATERIAL_1      TS_ALBEDO1
 #define TS_FIRST_SLOT_MATERIAL_2      TS_ALBEDO2
+#define TS_FIRST_SLOT_MATERIAL_3      TS_ALBEDO3
 
 #define TS_ALBEDO1     25
 #define TS_NORMAL1     26
 #define TS_METALLIC1   27
 #define TS_ROUGHNESS1  28
-#define TS_ALBEDO2     29
-#define TS_NORMAL2     30
-#define TS_METALLIC2   31
-#define TS_ROUGHNESS2  32
+#define TS_HEIGHT1     29
+#define TS_ALBEDO2     30
+#define TS_NORMAL2     31
+#define TS_METALLIC2   32
+#define TS_ROUGHNESS2  33
+#define TS_HEIGHT2     34
 
-#define TS_MIX_BLEND_WEIGHTS          33
+#define TS_MIX_BLEND_WEIGHTS          35
 
 // -------------------------------------------------
 #define RO_COMPLETE     0

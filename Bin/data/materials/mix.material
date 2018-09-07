@@ -1,5 +1,5 @@
 {
-  "technique": "pbr_mix.tech",
+  "technique": "pbr_mix_parallax.tech",
   "type": "mix",
   "shadows": true,
   "textures":

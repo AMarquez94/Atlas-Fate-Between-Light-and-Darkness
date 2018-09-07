@@ -420,7 +420,7 @@ void CModuleRender::postProcessingStack() {
         // Check if we have a color grading component
         TCompFog * c_render_fog = e_cam->get< TCompFog >();
         if (c_render_fog)
-            curr_rt = c_render_fog->apply(curr_rt);
+            curr_rt = c_render_fog->apply(curr_rt, deferred.rt_acc_light);
 
         TCompChromaticAberration* c_chroma_aberration = e_cam->get< TCompChromaticAberration >();
         if (c_chroma_aberration)

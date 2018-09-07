@@ -125,6 +125,7 @@ float4 PS_PostFX_ExpFog(float4 iPosition, float2 iTex0, float4 in_color)
 	float depth = txGBufferLinearDepth.Load(uint3(iPosition.xy, 0)).x;
 	float3 wPos = getWorldCoords(iPosition.xy, depth);
   //float4 in_color = txAlbedo.Sample(samClampLinear, iTex0.xy);
+	float4 in_light_color = txAlbedo1.Sample(samClampLinear, iTex0.xy);
 	
 	float3 frag_dir = (wPos - camera_pos.xyz);
 	float dist = abs(length(frag_dir));
@@ -133,6 +134,7 @@ float4 PS_PostFX_ExpFog(float4 iPosition, float2 iTex0, float4 in_color)
 	//fog_factor = fog_factor * (1 - smoothstep(0.928, 1.1, depth));
 	if(depth > 0.99) fog_factor = 0.9;
 	
+	float4 lerp_color = lerp(float4(global_fog_env_color,1), in_color, pow(in_light_color.r, 0.5));
 	float4 final_color = lerp(float4(global_fog_env_color,1), in_color, fog_factor);
 		
 	return float4(final_color);

@@ -370,6 +370,15 @@
 		"category": "gbuffer",
 		"blend": "default"
 	},
+		"pbr_mix_parallax": {
+		"vs_file": "data/shaders/parallax.fx",
+		"ps_file": "data/shaders/parallax.fx",
+		"vs_entry_point": "VS_GBuffer",
+		"ps_entry_point": "PS_GBufferMix",
+		"vertex_type": "PosNUvUvT",
+		"category": "gbuffer",
+		"blend": "default"
+	},
 	"outlines": {
 		"vs_file": "data/shaders/screen_quad.fx",
 		"ps_file": "data/shaders/outlines.fx",

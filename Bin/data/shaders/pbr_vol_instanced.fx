@@ -144,7 +144,7 @@ float4 PS_IVLight(
 {
     // Sampling planes volumetric lights based shader.
 		float shadow_factor = computeVolumeShadowFactorLight(iViewProj, iWorldPos);
-	
+
     float camera_dist = length(iWorldPos - iLightPos.xyz);
     float val = 1 / (0.25 + (camera_dist * camera_dist) * iLightValues.w);
 
@@ -153,7 +153,8 @@ float4 PS_IVLight(
     float  distance_to_light = length(light_dir_full);
     float3 light_dir = light_dir_full / distance_to_light;
     float4 noise0 = txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.06 * global_world_time * float2(.5, 0));
-		
+		    //float4 noise1 = txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.06 * global_world_time * float2(.5, 0));
+				
     float theta = dot(light_dir, -iLightDir.xyz);
     float att_spot = clamp((theta - iLightValues.z) / 0.18, 0, 1);
     float clamp_spot = theta > iLightValues.x ? att_spot : 0.0; // spot factor 
@@ -176,7 +177,7 @@ float4 PS_GBuffer_RayShafts(
   , float3 iWorldPos : TEXCOORD2
 ): SV_Target0
 {
-	float NB_STEPS = 30;
+	float NB_STEPS = 10;
   float TAU = FACTOR_TAU * 1.1;
   float PHI = FACTOR_PHI * 4.5;
 	
@@ -200,7 +201,7 @@ float4 PS_GBuffer_RayShafts(
 			
 	for (int i = 0; i < NB_STEPS; i++)
 	{
-		float shadowTerm = computeShadowFactor(currentPosition);
+		float shadowTerm = computeShadowFactorLight(currentPosition);
     float d = length(currentPosition - light_pos);
     float dRCP = rcp(d);
     float amount = TAU*(shadowTerm*(PHI*0.25f*PI_RCP)*dRCP*dRCP)*exp(-d*TAU)*exp(-l*TAU)*step_length;

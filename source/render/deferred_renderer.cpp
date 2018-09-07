@@ -264,8 +264,8 @@ void CDeferredRenderer::renderVolumes() {
 		    setWorldTransform(c->getViewProjection().Invert());
             mesh->render();
         }
-    });*/
-
+    });
+    */
     
     auto rmesh = Resources.get("data/meshes/quad_volume.instanced_mesh")->as<CRenderMesh>();
     TCompLightSpot::volume_instance = (CRenderMeshInstanced*)rmesh;
