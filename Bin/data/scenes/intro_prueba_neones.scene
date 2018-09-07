@@ -14,11 +14,371 @@
   {
     "entity":
     {
+      "name": "neon_rectangulo_coses003"
+      ,
+      "transform":
+      {
+        "pos": "4.44376 3.85529 29.798"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/neon_rectangulo_coses003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_rectangulo_coses004"
+      ,
+      "transform":
+      {
+        "pos": "-0.525169 3.85529 30.1097"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/neon_rectangulo_coses004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_rectangulo_coses005"
+      ,
+      "transform":
+      {
+        "pos": "5.80595 3.85529 29.6505"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/neon_rectangulo_coses005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_rectangulo_low003"
+      ,
+      "transform":
+      {
+        "pos": "4.93742 2.71289 29.7849"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/neon_rectangulo_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_rectangulo_low004"
+      ,
+      "transform":
+      {
+        "pos": "-0.031517 2.71289 30.0966"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/neon_rectangulo_low004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_rectangulo_low005"
+      ,
+      "transform":
+      {
+        "pos": "6.2996 2.71289 29.6374"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/neon_rectangulo_low005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "palo1_low001"
+      ,
+      "transform":
+      {
+        "pos": "0.706607 2.78943 29.8577"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/palo1_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "palo2_low001"
+      ,
+      "transform":
+      {
+        "pos": "0.706607 2.63636 29.8577"
+        ,
+        "rotation": "-0.707107 -0.707107 4.03208e-07 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/palo2_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "palo3_low002"
+      ,
+      "transform":
+      {
+        "pos": "2.91547 2.78943 29.7954"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/palo3_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "palo3_low003"
+      ,
+      "transform":
+      {
+        "pos": "1.87299 2.78943 29.7896"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/palo3_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "palo4_low002"
+      ,
+      "transform":
+      {
+        "pos": "2.91547 2.63636 29.7954"
+        ,
+        "rotation": "-0.707107 -0.707107 4.03208e-07 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/palo4_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "palo4_low003"
+      ,
+      "transform":
+      {
+        "pos": "1.87299 2.63636 29.7896"
+        ,
+        "rotation": "-0.707107 -0.707107 4.03208e-07 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/palo4_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "pantalla2_low002"
       ,
       "transform":
       {
-        "pos": "2.22852 2.10034 29.8699"
+        "pos": "3.33679 2.71289 29.7386"
         ,
         "rotation": "-0.707107 0.0 0.0 -0.707107"
       }
@@ -44,11 +404,371 @@
   {
     "entity":
     {
+      "name": "pantalla2_low003"
+      ,
+      "transform":
+      {
+        "pos": "2.29431 2.71289 29.7327"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pantalla2_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "pantalla_low001"
+      ,
+      "transform":
+      {
+        "pos": "1.12793 2.71289 29.8008"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pantalla_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "palo1_low"
+      ,
+      "transform":
+      {
+        "pos": "-11.7108 2.78943 19.2053"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/palo1_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "palo2_low"
+      ,
+      "transform":
+      {
+        "pos": "-11.7108 2.63635 19.2053"
+        ,
+        "rotation": "-0.707107 -0.707107 4.03208e-07 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/palo2_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "pantalla_low"
+      ,
+      "transform":
+      {
+        "pos": "-11.2894 2.71289 19.1484"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pantalla_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_rectangulo_low001"
+      ,
+      "transform":
+      {
+        "pos": "-12.4489 2.71289 19.4443"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/neon_rectangulo_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_rectangulo_coses001"
+      ,
+      "transform":
+      {
+        "pos": "-12.9425 3.85529 19.4574"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/neon_rectangulo_coses001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "palo4_low"
+      ,
+      "transform":
+      {
+        "pos": "-9.50189 2.63635 19.1431"
+        ,
+        "rotation": "-0.707107 -0.707107 4.03208e-07 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/palo4_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "pantalla2_low"
+      ,
+      "transform":
+      {
+        "pos": "-9.08057 2.71289 19.0862"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pantalla2_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "palo3_low"
+      ,
+      "transform":
+      {
+        "pos": "-9.50189 2.78943 19.1431"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/palo3_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "palo3_low001"
+      ,
+      "transform":
+      {
+        "pos": "-10.5444 2.78943 19.1372"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/palo3_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "palo4_low001"
+      ,
+      "transform":
+      {
+        "pos": "-10.5444 2.63635 19.1372"
+        ,
+        "rotation": "-0.707107 -0.707107 4.03208e-07 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/palo4_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "pantalla2_low001"
       ,
       "transform":
       {
-        "pos": "-9.00525 2.10034 17.1087"
+        "pos": "-10.123 2.71289 19.0804"
         ,
         "rotation": "-0.707107 0.0 0.0 -0.707107"
       }
@@ -57,6 +777,126 @@
       [
         {
           "mesh": "data/meshes/pantalla2_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_rectangulo_coses"
+      ,
+      "transform":
+      {
+        "pos": "-7.97359 3.85529 19.1456"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/neon_rectangulo_coses.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_rectangulo_coses002"
+      ,
+      "transform":
+      {
+        "pos": "-6.61141 3.85529 18.9982"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/neon_rectangulo_coses002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_rectangulo_low002"
+      ,
+      "transform":
+      {
+        "pos": "-6.11776 2.71289 18.985"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/neon_rectangulo_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones_juntos_1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_rectangulo_low"
+      ,
+      "transform":
+      {
+        "pos": "-7.47994 2.71289 19.1325"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/neon_rectangulo_low.mesh"
           ,
           "materials":
           [
