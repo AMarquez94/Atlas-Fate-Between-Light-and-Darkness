@@ -3,7 +3,7 @@
 			"name": "Mimeticus",
 			"transform": {
 				"pos": "-8.850 1.65 13.64",
-				"axis": "0.0 0.0 0.0"
+				"lookat": "0.0 1.65 13.64"
 			},
 			"prefab": "data/prefabs/mimetic.prefab",
 			"ai_mimetic": {
