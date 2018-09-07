@@ -84,18 +84,7 @@ void TCompCameraThirdPerson::onMsgCameraSetActive(const TMsgSetCameraActive & ms
 
 void TCompCameraThirdPerson::onMsgCameraReset(const TMsgCameraReset & msg)
 {
-    if (msg.both_angles) {
-        //_current_euler = _original_euler;
-        _current_euler.x = _original_euler.x;
-        _current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, _original_euler.y);
-    }
-    else if (msg.only_y) {
-        //_current_euler.y = _original_euler.y;
-        _current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, _original_euler.y);
-    }
-    else {
-        _current_euler.x = _original_euler.x;
-    }
+    resetCamera(msg.both_angles, msg.only_y);
 }
 
 void TCompCameraThirdPerson::update(float dt)
@@ -149,6 +138,22 @@ void TCompCameraThirdPerson::setCurrentEuler(float euler_x, float euler_y)
 {
     if (euler_x != INFINITY) _current_euler.x = euler_x;
     if (euler_y != INFINITY) _current_euler.y = euler_y;
+}
+
+void TCompCameraThirdPerson::resetCamera(bool both_angles, bool only_y)
+{
+    if (both_angles) {
+        //_current_euler = _original_euler;
+        _current_euler.x = _original_euler.x;
+        _current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, _original_euler.y);
+    }
+    else if (only_y) {
+        //_current_euler.y = _original_euler.y;
+        _current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, _original_euler.y);
+    }
+    else {
+        _current_euler.x = _original_euler.x;
+    }
 }
 
 void TCompCameraThirdPerson::onPause(const TMsgScenePaused& msg) {

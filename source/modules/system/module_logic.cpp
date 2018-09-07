@@ -17,6 +17,7 @@
 #include "components/ia/comp_bt_player.h"
 #include "components/physics/comp_rigidbody.h"
 #include "entity/entity_parser.h"
+#include "components/camera_controller/comp_camera_thirdperson.h"
 
 bool CModuleLogic::start() {
 
@@ -150,6 +151,10 @@ void CModuleLogic::publishClasses() {
         .set("getRotation", &TCompTransform::getRotation)
         .set("lookAt", &TCompTransform::lookAt);
 
+    SLB::Class<TCompCameraThirdPerson>("TPCamera", m)
+        .comment("This is our wrapper of the Third Person Camera")
+        .set("resetCamera", &TCompCameraThirdPerson::resetCamera);
+
     SLB::Class <CHandle>("CHandle", m)
         .comment("CHandle wrapper")
         .constructor()
@@ -250,6 +255,7 @@ void CModuleLogic::publishClasses() {
     m->set("toTransform", SLB::FuncCall::create(&toTransform));
     m->set("toAIPatrol", SLB::FuncCall::create(&toAIPatrol));
     m->set("toAudio", SLB::FuncCall::create(&toAudio));
+    m->set("toTPCamera", SLB::FuncCall::create(&toTPCamera));
 }
 
 /* Check if it is a fast format command */
@@ -706,6 +712,12 @@ TCompAIPatrol* toAIPatrol(CHandle h)
 TCompAudio* toAudio(CHandle h)
 {
     TCompAudio* t = h;
+    return t;
+}
+
+TCompCameraThirdPerson * toTPCamera(CHandle h)
+{
+    TCompCameraThirdPerson* t = h;
     return t;
 }
 

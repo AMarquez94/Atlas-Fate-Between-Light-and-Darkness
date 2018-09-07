@@ -10,6 +10,7 @@
 #include "components/ia/comp_bt_patrol.h"
 #include "components/comp_transform.h"
 #include "components/comp_audio.h"
+#include "components/camera_controller/comp_camera_thirdperson.h"
 
 class CModuleLogic : public IModule
 {
@@ -134,3 +135,4 @@ CEntity* toEntity(CHandle h);
 TCompTransform* toTransform(CHandle h);
 TCompAIPatrol* toAIPatrol(CHandle h);
 TCompAudio* toAudio(CHandle h);
+TCompCameraThirdPerson* toTPCamera(CHandle h);

@@ -17,6 +17,7 @@
 #include "components/ia/comp_patrol_animator.h"
 #include "components/comp_particles.h"
 #include "components/lighting/comp_fade_controller.h"
+#include "components/object_controller/comp_landing.h"
 
 DECL_OBJ_MANAGER("ai_player", TCompAIPlayer);
 
@@ -842,6 +843,16 @@ BTNode::ERes TCompAIPlayer::actionResetTimersBeforeSMCinematicFallSM(float dt)
 BTNode::ERes TCompAIPlayer::actionResetTimersInhibitorCinematic(float dt)
 {
     _maxTimer = 0.5f;
+
+    TCompGroup* group = get<TCompGroup>();
+    if (group) {
+        CEntity* e_landing = group->getHandleByName("Player_landing");
+        if (e_landing) {
+            TMsgEntityCanLandSM msg;
+            msg.canSM = false;
+            e_landing->sendMsg(msg);
+        }
+    }
     return BTNode::ERes::LEAVE;
 }
 

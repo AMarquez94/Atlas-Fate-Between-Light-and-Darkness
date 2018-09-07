@@ -70,7 +70,7 @@ void TCompFSM::load(const json& j, TEntityParseContext& ctx)
 
 void TCompFSM::update(float dt) 
 {
-	if (!paused && !isConsoleOn && !isInNoClipMode && !isInAIMode) {
+	if (!paused && !isConsoleOn && !isInNoClipMode  /*&& !isInAIMode*/) {
 		_context.update(dt);
         addActionToHistoric(_context.getCurrentState()->getName());
 	}
@@ -104,6 +104,9 @@ void TCompFSM::onMsgNoClipToggle(const TMsgNoClipToggle & msg)
 void TCompFSM::onMsgAIMode(const TMsgPlayerAIEnabled & msg)
 {
     isInAIMode = msg.enableAI;
+    if (isInAIMode) {
+        _context.restart();
+    }
 }
 
 

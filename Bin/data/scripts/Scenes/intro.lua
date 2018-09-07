@@ -6,7 +6,7 @@ function onSceneStart_scene_intro()
 	
 	-- First Cinematic --
 	--intro_intro_cinematic();
-	
+	move("The Player", VEC3(-19, 6, -30), VEC3(-19, 6, -29));
 	setAIState("Patrol_Cinematic_Inhibitor", true, "dead_cinematic");
 end
 
@@ -42,7 +42,24 @@ end
 
 function intro_inhibitor_cinematic()
 	setCinematicPlayerState(true, "inhibitor_cinematic");
-	execScriptDelayed("setCinematicPlayerState(false, \"\")", 2);
+	blendInCamera("Camera_Cinematic_Inhibitor_Patrol" ,0,"cinematic");
+	--move player to patrol
+	player = getEntityByName("The Player");
+	e_player = toEntity(player);
+	patrol_cinematic = getEntityByName("Patrol_Cinematic_Inhibitor");
+	e_patrol_cinematic = toEntity(patrol_cinematic);
+	t_patrol = toTransform(e_patrol_cinematic:getCompByName("transform"));
+	t_player = toTransform(e_player:getCompByName("transform"));
+	t_player:lookAt(t_player:getPosition(), t_patrol:getPosition());
+	camera = getEntityByName("TPCamera");
+	e_camera = toEntity(camera);
+	t_tp_camera = toTPCamera(e_camera:getCompByName("camera_thirdperson"));
+	t_tp_camera:resetCamera(true, false);
+	--end
+	execScriptDelayed("setCinematicPlayerState(false, \"\")", 2.5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Inhibitor_Patrol_End\",0.8,\"cinematic\")", 0.7);	
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Inhibitor_Patrol\",0)", 1.5);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Inhibitor_Patrol_End\",0.5)", 2);
 end
 
 

@@ -172,7 +172,12 @@ CHandle CModuleCameras::getOutputCamera()
 
 CHandle CModuleCameras::getCurrentCamera()
 {
-	return _currentCamera;
+    if (_currentCamera.isValid()) {
+	    return _currentCamera;
+    }
+    else {
+        return _defaultCamera;
+    }
 }
 
 CModuleCameras::EPriority CModuleCameras::getPriorityFromString(const std::string & priority)
