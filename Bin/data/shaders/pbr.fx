@@ -435,7 +435,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	visibility = saturate(visibility);
 
 	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
-	final_color = final_color * global_ambient_adjustment * ao * self_illum.a;
+	final_color = final_color * global_ambient_adjustment * ao * pow(self_illum.a, 2);
 	final_color = lerp(final_color, final_color, visibility) + float4(self_illum.xyz, 1) * global_ambient_adjustment * global_self_intensity;
 	return float4(final_color.xyz, 1);
 }

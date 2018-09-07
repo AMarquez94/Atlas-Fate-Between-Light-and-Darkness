@@ -130,7 +130,7 @@ float4 PS_PostFX_ExpFog(float4 iPosition, float2 iTex0, float4 in_color)
 	float dist = abs(length(frag_dir));
 
 	float fog_factor = exp( (dist * -global_fog_density * .75)* (dist* global_fog_density * .75));	
-	//fog_factor = fog_factor * (1 - smoothstep(0.98, 1.1, depth));
+	//fog_factor = fog_factor * (1 - smoothstep(0.928, 1.1, depth));
 	if(depth > 0.99) fog_factor = 0.9;
 	
 	float4 final_color = lerp(float4(global_fog_env_color,1), in_color, fog_factor);

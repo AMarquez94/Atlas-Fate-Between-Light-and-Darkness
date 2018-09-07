@@ -1,7 +1,7 @@
 [{
 		"entity": {
 			"camera": {
-				"fov": 80
+				"fov": 70
 			},
 			"render_ao": {
 				"enabled": true

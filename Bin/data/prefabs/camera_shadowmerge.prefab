@@ -1,6 +1,9 @@
 [
 	{
 		"entity": {
+			"transform": {
+				"pos": "0 0 0"
+			},
 			"camera": {
 				"fov": 90,
 				"z_near": 0.01,
@@ -13,11 +16,15 @@
 				"enabled": false
 			},
 			"render_blur_radial": {
+				"enabled": true,
+				"radius": 1.5
+			},
+			"motion_blur": {
 				"enabled": true
 			},
 			"color_grading": {
 				"enabled": true,
-				"amount": 0.6,
+				"amount": 0.8,
 				"lut": "data/textures/lut/lut1.dds"
 			},
 			"fog": {
@@ -28,7 +35,7 @@
 			},
 			"antialiasing": {
 				"enabled": true
-			},
+			}
 		}
 	}
 ]

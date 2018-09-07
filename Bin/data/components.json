@@ -10,6 +10,7 @@
 	"update": [
 		"circular_controller",
 		"player_tempcontroller",
+		"camera_thirdperson",
 		"noclip_controller",
 		"ai_patrol",
 		"ai_mimetic",
@@ -41,7 +42,6 @@
 		"curve_controller",
 		"trigger_camera",
 		"trigger_checkpoint",
-		"camera_thirdperson",
 		"camera_shadowmerge",
 		"auxcamera_shadowmerge",
 		"camera_follow",

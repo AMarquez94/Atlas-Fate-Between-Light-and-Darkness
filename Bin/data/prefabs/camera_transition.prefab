@@ -1,11 +1,11 @@
 [
-{
+	{
 		"entity": {
 			"transform": {
 				"pos": "0 0 0"
 			},
 			"camera": {
-				"fov": 70,
+				"fov": 80,
 				"z_near": 0.01,
 				"z_far": 1000
 			},
