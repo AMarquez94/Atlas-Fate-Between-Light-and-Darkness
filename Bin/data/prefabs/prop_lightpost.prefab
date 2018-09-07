@@ -1,0 +1,89 @@
+[{
+		"entity": {
+			"name": "prop_lightpost",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "prop_lightpost",
+			"transform": {
+				"pos": "-0.0725327 -0.689261 -1.58236"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/prop_lightpost.mesh",
+					"materials":
+					[
+						"data/materials/mtl_props_plaza.material"
+					]
+				}
+			],
+			"collider": {
+				"shape": "box",
+				"size": "0.15 2.75 0.15"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
+			"name": "Lightpost_Light",
+			"transform": {
+				"pos": "-0.109732 5.21197 -0.00636743",
+				"lookat": "-0.0443211 -0.719238 -0.0315081"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 8.93162,
+				"angle": 45.0,
+				"inner_cut": 38.0,
+				"z_far": 8.93162,
+				"volume": false,
+				"color": "1.0 1.0 1.0 1.0",
+				"intensity": 1.0,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 128,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/Lightpost_Light.collider",
+				"is_trigger": true
+			},
+			"tags":
+			[
+				"light"
+			]
+		}
+	}, {
+		"entity": {
+			"name": "prop_lightpose_cone",
+			"hierarchy": {
+				"parent": "prop_lightpost",
+				"pos": "0.013202 5.0 -0.0162885",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"transform": {
+				"pos": "0.013202 5.0 -0.0162885"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/prop_lightpose_cone.mesh",
+					"materials":
+					[
+						"data/materials/mtl_lightpost_shaft.material",
+						"data/materials/mtl_lightpost_flare.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
+]

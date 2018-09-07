@@ -153,8 +153,7 @@ float4 PS_IVLight(
     float  distance_to_light = length(light_dir_full);
     float3 light_dir = light_dir_full / distance_to_light;
     float4 noise0 = txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.06 * global_world_time * float2(.5, 0));
-		    //float4 noise1 = txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.06 * global_world_time * float2(.5, 0));
-				
+		
     float theta = dot(light_dir, -iLightDir.xyz);
     float att_spot = clamp((theta - iLightValues.z) / 0.18, 0, 1);
     float clamp_spot = theta > iLightValues.x ? att_spot : 0.0; // spot factor 
@@ -226,7 +225,7 @@ float4 PS_GBuffer_Shafts(
 	// Fresnel component
 	float3 dir_to_eye = normalize(camera_pos.xyz - iWorldPos.xyz);
 	float3 N = normalize(iNormal.xyz);
-	float fresnel = dot(N, dir_to_eye);
+	float fresnel = dot(N, -dir_to_eye);
 
 	float4 color = float4(0.8, 0.8, 0.8, 1);	
 	color.a = txAlbedo.Sample(samLinear, iTex0).r;
@@ -243,7 +242,7 @@ float4 PS_GBuffer_Shafts(
 	color.a *= saturate(delta_z * camera_zfar);
 	color.a *= 1 - saturate(1/(delta_c * delta_c)) * 0.88;
 		
-	color.a *= pow(abs(fresnel), 4) * 0.8;
+	color.a *= pow(abs(fresnel), 8) * 0.8;
 	return color;
 }
 
@@ -261,5 +260,5 @@ float4 PS_GBuffer_Beam(
 	color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.1 * global_world_time * float2(.5, 0)).r;
 	color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 - 0.1 * global_world_time * float2(.5, 0)).r;
 	
-	return color * (0.65 + sin(global_world_time) * .15);
+	return 1.4 * color * (0.65 + sin(global_world_time) * .15);
 }

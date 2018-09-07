@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_zone_a",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -87,7 +87,6 @@
 			"data/scenes/zona_a_tubos.scene",
 			"data/scenes/zone_a_tubitos.scene",
 			"data/scenes/zone_a_cables.scene",
-			"data/scenes/zone_a_farolas.scene",
 			"data/scenes/zone_a_hologramas.scene",
 			"data/scenes/zona_a_colliders_barandillas.scene",
 			"data/scenes/zone_a_colliders_valla_luz.scene",
