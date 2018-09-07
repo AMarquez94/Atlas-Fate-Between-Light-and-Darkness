@@ -408,6 +408,20 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
   if(json["bone_ids_to_debug"].is_array())
     bone_ids_to_debug = json["bone_ids_to_debug"].get< std::vector< int > >();
 
+  if (json.count("lookat_corrections")) {
+
+	  auto& jcorrs = json["lookat_corrections"];
+	  assert(jcorrs.is_array());
+	  for (int i = 0; i < jcorrs.size();i++) {
+		  TBoneCorrection c;
+		  c.load(jcorrs[i]);
+
+		  c.bone_id = getCoreSkeleton()->getCoreBoneId(c.bone_name);
+		  lookat_corrections.push_back(c);
+	  }
+
+  }
+
   return true;
 }
 
