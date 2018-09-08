@@ -206,8 +206,8 @@ void CModuleGameManager::renderMain() {
                 return;
             }
             TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
-            if (playerCont->isDead())
-                setPauseState(PauseState::none);
+            //if (playerCont->isDead())
+            setPauseState(PauseState::none);
 
             EngineScene.loadScene(EngineScene.getActiveScene()->name);
         }
@@ -221,8 +221,8 @@ void CModuleGameManager::renderMain() {
                 return;
             }
             TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
-            if (playerCont->isDead())
-                setPauseState(PauseState::none);
+            //if (playerCont->isDead())
+            setPauseState(PauseState::none);
 
             lastCheckpoint->deleteCheckPoint();
             EngineScene.loadScene(EngineScene.getActiveScene()->name);
@@ -261,8 +261,8 @@ void CModuleGameManager::renderMain() {
                 return;
             }
             TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
-            if (playerCont->isDead())
-                setPauseState(PauseState::none);
+            //if (playerCont->isDead())
+            setPauseState(PauseState::none);
 
             EngineScene.loadScene(EngineScene.getActiveScene()->name);
         }
@@ -275,8 +275,8 @@ void CModuleGameManager::renderMain() {
                 return;
             }
             TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
-            if (playerCont->isDead())
-                setPauseState(PauseState::none);
+            //if (playerCont->isDead())
+            setPauseState(PauseState::none);
 
             lastCheckpoint->deleteCheckPoint();
             EngineScene.loadScene(EngineScene.getActiveScene()->name);

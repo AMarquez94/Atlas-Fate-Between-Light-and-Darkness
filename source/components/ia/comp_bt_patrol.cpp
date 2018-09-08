@@ -1043,12 +1043,12 @@ BTNode::ERes TCompAIPatrol::actionResetBT(float dt)
 BTNode::ERes TCompAIPatrol::actionResetInhibitorCinematicTimers(float dt)
 {
     _cinematicTimer = 0.f;
-    _cinematicMaxTime = 1.f;
+    _cinematicMaxTime = 2.f;
     _currentCinematicState = EState::CINEMATIC_DEAD;
     TCompPatrolAnimator* my_anim = get<TCompPatrolAnimator>();
     my_anim->playAnimation(TCompPatrolAnimator::IDLE);
     TCompEmissionController* my_emission = get<TCompEmissionController>();
-    my_emission->blend(enemyColor.colorSuspect, 0.5f);
+    my_emission->blend(enemyColor.colorSuspect, 1.5f);
     return BTNode::ERes::LEAVE;
 }
 

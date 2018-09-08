@@ -27,6 +27,7 @@ public:
 	VEC3 getResultPos() { return resultPos; };
 
     EPriority getPriorityFromString(const std::string& priority);
+    Interpolator::IInterpolator* getInterpolatorFromString(const std::string& interpolator);
 
 private:
 	void renderInMenu();

@@ -110,6 +110,7 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 void TCompTempPlayerController::update(float dt) {
 
     TCompAIPlayer* playerAI = get<TCompAIPlayer>();
+
     if (!paused && !isConsoleOn && !isInNoClipMode && !playerAI->enabledPlayerAI) {
 
         (this->*state)(dt);

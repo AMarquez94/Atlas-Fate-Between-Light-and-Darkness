@@ -240,6 +240,12 @@ void TCompAIPlayer::onMsgPlayerAIEnabled(const TMsgPlayerAIEnabled& msg) {
 
     setCurrent(nullptr);
     _timer = 0.f;
+
+    CEntity* e_me = myHandle.getOwner();
+    if (std::strcmp(e_me->getName(), "The Player") == 0) {
+        EngineGUI.enableWidget("stamina_bar_general", !enabledPlayerAI);
+        EngineGUI.enableWidget("life_bar", !enabledPlayerAI);
+    }
 }
 
 void TCompAIPlayer::onMsgEntityCreated(const TMsgEntityCreated& msg) {

@@ -3,6 +3,7 @@
 #include "comp_camera_thirdperson.h"
 #include "components/comp_transform.h"
 #include "components/comp_tags.h"
+#include "components/ia/comp_bt_player.h"
 
 DECL_OBJ_MANAGER("camera_thirdperson", TCompCameraThirdPerson);
 const Input::TInterface_Mouse& mouse = EngineInput.mouse();
@@ -44,6 +45,7 @@ void TCompCameraThirdPerson::registerMsgs()
     DECL_MSG(TCompCameraThirdPerson, TMsgSetCameraActive, onMsgCameraSetActive);
     DECL_MSG(TCompCameraThirdPerson, TMsgScenePaused, onPause);
     DECL_MSG(TCompCameraThirdPerson, TMsgCameraReset, onMsgCameraReset);
+    DECL_MSG(TCompCameraThirdPerson, TMsgCameraResetTargetPos, onMsgCameraResetTargetPos);
 }
 
 void TCompCameraThirdPerson::onMsgCameraActive(const TMsgCameraActivated & msg)
@@ -87,6 +89,11 @@ void TCompCameraThirdPerson::onMsgCameraReset(const TMsgCameraReset & msg)
     resetCamera(msg.both_angles, msg.only_y);
 }
 
+void TCompCameraThirdPerson::onMsgCameraResetTargetPos(const TMsgCameraResetTargetPos & msg)
+{
+    resetCameraTargetPos();
+}
+
 void TCompCameraThirdPerson::update(float dt)
 {
     if (!paused) {
@@ -105,9 +112,13 @@ void TCompCameraThirdPerson::update(float dt)
         if (EngineInput["MouseY"].isPressed()) vertical_delta = EngineInput["MouseY"].value;
 
         // Verbose code
-        _current_euler.x -= horizontal_delta * _speed * dt;
-        _current_euler.y += vertical_delta * _speed * dt;
-        _current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
+        CEntity* e_target = _h_target;
+        TCompAIPlayer* ai_player = e_target->get<TCompAIPlayer>();
+        if (!(ai_player && ai_player->enabledPlayerAI)) {
+            _current_euler.x -= horizontal_delta * _speed * dt;
+            _current_euler.y += vertical_delta * _speed * dt;
+            _current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
+        }
 
         // EulerAngles method based on mcv class
         VEC3 vertical_offset = VEC3::Up * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)
@@ -154,6 +165,17 @@ void TCompCameraThirdPerson::resetCamera(bool both_angles, bool only_y)
     else {
         _current_euler.x = _original_euler.x;
     }
+}
+
+void TCompCameraThirdPerson::resetCameraTargetPos()
+{
+    _h_target = getEntityByName(_target_name);
+    TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>();
+
+    float yaw, pitch;
+    target_transform->getYawPitchRoll(&yaw, &pitch);
+    _current_euler.x = yaw;
+    _current_euler.y = _original_euler.y;
 }
 
 void TCompCameraThirdPerson::onPause(const TMsgScenePaused& msg) {

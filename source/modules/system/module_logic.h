@@ -13,6 +13,7 @@
 //#include "components/camera_controller/comp_camera_thirdperson.h"
 
 class TCompCameraThirdPerson;
+class TCompRender;
 
 class CModuleLogic : public IModule
 {
@@ -97,9 +98,10 @@ void speedBoost(const float speed);
 void playerInvisible();
 void noClipToggle();
 void lanternsDisable(bool disable);
-void blendInCamera(const std::string& cameraName, float blendInTime, const std::string& mode = "cinematic");
+void blendInCamera(const std::string& cameraName, float blendInTime, const std::string& mode = "cinematic", const std::string& interpolator = "");
 void blendOutCamera(const std::string& cameraName, float blendOutTime);
 void blendOutActiveCamera(float blendOutTime);
+void resetMainCameras();
 CHandle spawn(const std::string & name, const VEC3 & pos, const VEC3& lookat);
 void move(const std::string & name, const VEC3 & pos, const VEC3& lookat);
 void bind(const std::string& key, const std::string& script);
@@ -138,3 +140,4 @@ TCompTransform* toTransform(CHandle h);
 TCompAIPatrol* toAIPatrol(CHandle h);
 TCompAudio* toAudio(CHandle h);
 TCompCameraThirdPerson* toTPCamera(CHandle h);
+TCompRender* toRender(CHandle h);

@@ -30,6 +30,7 @@ private:
     void onMsgCameraDeprecated(const TMsgCameraDeprecated &msg);
     void onMsgCameraSetActive(const TMsgSetCameraActive &msg);
     void onMsgCameraReset(const TMsgCameraReset &msg);
+    void onMsgCameraResetTargetPos(const TMsgCameraResetTargetPos &msg);
 
 
 public:
@@ -41,6 +42,7 @@ public:
     float CameraClipping(const VEC3 & origin, const VEC3 & dir);
     void setCurrentEuler(float euler_x = INFINITY, float euler_y = INFINITY);
     void resetCamera(bool both_angles, bool only_y);
+    void resetCameraTargetPos();
 
     static void registerMsgs();
 };
