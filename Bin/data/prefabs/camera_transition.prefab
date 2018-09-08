@@ -1,0 +1,65 @@
+[
+	{
+		"entity": {
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"camera": {
+				"fov": 80,
+				"z_near": 0.01,
+				"z_far": 1000
+			},
+			"render_ao": {
+				"enabled": true,
+				"max_steps": 1,
+				"gauss_filter": true
+			},
+			"render_blur": {
+				"enabled": false,
+				"global_distance": 0.1,
+				"gauss_filter": true
+			},
+			"motion_blur": {
+				"enabled": true
+			},
+			"render_bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"rt_name": "Bloom"
+			},
+			"color_grading": {
+				"enabled": true,
+				"amount": 0.25,
+				"lut": "data/textures/lut/lut5.dds"
+			},
+			"chromatic_aberration": {
+				"enabled": true
+			},
+			"fog": {
+				"enabled": true
+			},
+			"antialiasing": {
+				"enabled": true
+			},
+			"vignette": {
+				"enabled": true
+			},
+			"ssr": {
+				"enabled": true
+			},
+			"render_flares": {
+				"enabled": true,
+				"max_steps": 4
+			},
+			"render_outlines": {
+				"enabled": true
+			},
+			"render_environment": {
+				"enabled": true
+			},
+			"render_focus": {
+				"enabled": false
+			}
+		}
+	}
+]

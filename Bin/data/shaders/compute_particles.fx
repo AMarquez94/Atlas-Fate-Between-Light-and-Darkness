@@ -52,7 +52,7 @@ void move_particles(
   float3 v_perp = float3(v.z, 0, -v.x);   // Rotate 90o
   v_perp = normalize(v_perp) * 25;
 
-  outState[id].pos = inState[id].pos + v_perp * dt;
+  outState[id].pos = inState[id].pos;// + v_perp * dt;
   outState[id].size = inState[id].size;
   outState[id].speed = v_perp;
   outState[id].unit_time = inState[id].unit_time + dt * inState[id].time_factor;
@@ -61,9 +61,6 @@ void move_particles(
   outRender[id].pos = outState[id].pos;
   outRender[id].size = outState[id].size;
 }
-
-
-
 
 //--------------------------------------------------------------------------------------
 // Vertex Shader
@@ -87,8 +84,7 @@ void VS(
 
   float2 uv = iPos.xy;
 
-  float4 world_pos = float4(
-    iCenter.xyz
+  float4 world_pos = float4(iCenter.xyz + float3(0,40,0) + camera_pos
     + (local_pos.x * camera_left + local_pos.y * camera_up)
     , 1);
 
@@ -105,7 +101,7 @@ float4 PS(
 ) : SV_Target
 {
   float a = txAlbedo.Sample(samLinear, iUV).r;
-  return pow( a, 4 );
+  return pow( a, 4 ) * sin(global_world_time * 3) * 2;
   float4 texture_color = iColor;
   return texture_color;
 }

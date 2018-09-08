@@ -251,6 +251,7 @@ namespace Particles
     // To update this with the compute shader.
     void CSystem::render()
     {
+        
         if (!_enabled || !_entity.isValid()) return;
         if (_deploy_time < _core->n_system.start_delay) return;
 
@@ -297,11 +298,11 @@ namespace Particles
 
         instanced_particle->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(Particles::TIParticle));
         
-        auto technique2 = Resources.get("Instanced_particles.tech")->as<CRenderTechnique>();
+        auto technique2 = Resources.get("particles_instanced_combinative.tech")->as<CRenderTechnique>();
         technique2->activate();
 
         _core->n_renderer.texture->activate(TS_ALBEDO1);
-        CRenderManager::get().renderCategory("particles_volume");
+        CRenderManager::get().renderCategory("particles_instanced_combinative");
     }
 
     void CSystem::emit()

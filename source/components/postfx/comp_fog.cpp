@@ -33,7 +33,7 @@ void TCompFog::load(const json& j, TEntityParseContext& ctx) {
     mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 }
 
-CTexture* TCompFog::apply(CTexture* in_texture) {
+CTexture* TCompFog::apply(CTexture* in_texture, CTexture* in_texture_light) {
 
     if (!enabled)
         return in_texture;
@@ -43,6 +43,7 @@ CTexture* TCompFog::apply(CTexture* in_texture) {
 
     rt->activateRT();
     in_texture->activate(TS_ALBEDO);
+    in_texture_light->activate(TS_ALBEDO1);
     tech->activate();
     mesh->activateAndRender();
 

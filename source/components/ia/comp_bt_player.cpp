@@ -65,6 +65,7 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
     // sonar => ALMOST (animations)
 
 	createRoot("player", BTNode::EType::PRIORITY, nullptr, nullptr, nullptr);
+	
     addChild("player", "playerActivated", BTNode::EType::PRIORITY, (BTCondition)&TCompAIPlayer::conditionHasBeenEnabled, nullptr, nullptr);
 
     addChild("playerActivated", "crouchTutorial", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCrouchTutorial, nullptr, nullptr);

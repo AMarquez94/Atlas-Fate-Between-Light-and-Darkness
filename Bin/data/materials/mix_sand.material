@@ -5,7 +5,7 @@
   {
     "albedo": "data/textures/mix/Ground_10_COLOR.dds",
     "normal": "data/textures/mix/Ground_10_NRM.dds",
-    "metallic": "data/textures/pbr/metallic.dds",
-    "roughness": "data/textures/pbr/roughness.dds"
+    "metallic": "data/textures/m2/tx_ground1-m.dds",
+    "roughness": "data/textures/m2/tx_ground1-r.dds"
   }
 }

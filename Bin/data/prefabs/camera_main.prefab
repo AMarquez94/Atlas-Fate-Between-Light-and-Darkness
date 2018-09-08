@@ -1,0 +1,32 @@
+[{
+		"entity": {
+			"camera": {
+				"fov": 70
+			},
+			"render_ao": {
+				"enabled": true
+			},
+			"render_bloom": {
+				"enabled": true,
+				"active_steps": 1,
+				"rt_name": "Bloom"
+			},
+			"fog": {
+				"enabled": true
+			},
+			"antialiasing": {
+				"enabled": true
+			},
+			"chromatic_aberration": {
+				"enabled": true
+			},
+			"render_outlines": {
+				"enabled": true
+			},
+			"render_environment": {
+				"enabled": true
+			},
+			"culling": true
+		}
+	}
+]

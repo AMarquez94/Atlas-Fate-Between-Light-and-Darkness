@@ -46,7 +46,7 @@ void TCompLightSpot::load(const json& j, TEntityParseContext& ctx) {
 
     volume_enabled = j.value("volume", true);
     casts_shadows = j.value("shadows", true);
-    num_samples = j.value("n_samples", 80);
+    num_samples = j.value("n_samples", 45);
     angle = j.value("angle", 45.f);
     range = j.value("range", 10.f);
     inner_cut = j.value("inner_cut", angle);

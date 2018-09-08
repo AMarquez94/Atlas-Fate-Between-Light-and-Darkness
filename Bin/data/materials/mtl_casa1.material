@@ -7,9 +7,9 @@
     ,
     "metallic": "data/textures/tx_casa1_met.dds"
     ,
-    "roughness": "data/textures/tx_casa1_rgh.dds"
+    "roughness": "data/textures/tx_casa3_met.dds"
     ,
-    "normal": "data/textures/tx_casa1_nml.dds"
+    "normal": "data/textures/null_normal.dds"
     ,
     "height": "data/textures/tx_casa1_hgt.dds"
     ,

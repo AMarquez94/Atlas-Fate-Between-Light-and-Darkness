@@ -1,5 +1,5 @@
 {
-  "technique": "Instanced_particles.tech"
+  "technique": "particles_instanced_combinative.tech"
   ,
   "shadows": false
   ,

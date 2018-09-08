@@ -84,7 +84,7 @@ float4 PS_MOTION(in float4 iPosition : SV_POSITION, in float2 iTex0 : TEXCOORD0)
 
   float2 velocity = mblur_blur_speed * (currentPos.xy - previousPos.xy) / (mblur_blur_samples * 2);  
   iTex0 -= velocity * mblur_blur_samples * .5; 
-	
+
   for(float i = 0; i < mblur_blur_samples ; ++i, iTex0 += velocity)  
   {  
 		float4 currentColor = txAlbedo.Sample(samClampPoint, iTex0);  
