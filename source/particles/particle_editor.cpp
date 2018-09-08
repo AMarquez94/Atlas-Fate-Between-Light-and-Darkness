@@ -255,7 +255,7 @@ void ParticlesEditor::debugNoise() {
 
     if (ImGui::CollapsingHeader("Noise")) {
 
-        ImGui::DragFloat3("WIP [NOT WORKING YET]", &_main_system->life.duration, 0.01f, 0.f, 50.f);
+        //ImGui::DragFloat3("WIP [NOT WORKING YET]", &_main_system->life.duration, 0.01f, 0.f, 50.f);
 
     }
 }

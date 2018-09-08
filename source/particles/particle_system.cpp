@@ -78,7 +78,7 @@ namespace Particles
 
         ImGui::Checkbox("Enabled", &_enabled);
 
-        if (ImGui::CollapsingHeader("Life")) {
+        /*if (ImGui::CollapsingHeader("Life")) {
 
             ImGui::DragFloat("Duration", &system->life.duration, 0.01f, 0.f, 50.f);
             ImGui::DragFloat("Duration Variation", &system->life.durationVariation, 0.01f, 0.f, 100.f);
@@ -158,35 +158,42 @@ namespace Particles
             // Reset the resource to it's original values
         }
 
-        _core = system;
+        _core = system;*/
     }
 
     bool CSystem::update(float delta)
     {
-        if (!_enabled || !_entity.isValid()) return true;
-        
-        // Handle start delay
-        _deploy_time += delta;
-        if (_deploy_time < _core->n_system.start_delay) return true;
-
-        const VEC3& kWindVelocity = Engine.get().getParticles().getWindVelocity();
-
-        float fadeRatio = 1.f;
-        if (_fadeDuration != 0.f)
+        // Handle deployment
         {
-            _fadeTime += delta;
-            fadeRatio = 1.f - (_fadeTime / _fadeDuration);
+            if (!_enabled || !_entity.isValid()) return true;
+
+            // Handle start delay
+            _deploy_time += delta;
+            if (_deploy_time < _core->n_system.start_delay) return true;
         }
 
-        delta *= _core->n_system.simulation_speed;
+        // Handle core update
+        {
+            updateFading(delta);
+            delta *= _core->n_system.simulation_speed;
+
+            updateSystem(delta);
+            updateEmission(delta);
+        }
+
+        return _fadeRatio > 0.f && (!_particles.empty() || _core->n_system.looping);
+    }
+
+    void CSystem::updateSystem(float delta) {
+
+        const VEC3& kWindVelocity = EngineParticles.getWindVelocity();
 
         auto it = _particles.begin();
         while (it != _particles.end())
         {
             TParticle& p = *it;
-
             p.lifetime += delta;
-           
+
             if (p.max_lifetime > 0.f && p.lifetime >= p.max_lifetime)
             {
                 it = _particles.erase(it);
@@ -210,7 +217,7 @@ namespace Particles
                 if (_core->n_collision.collision)
                     p.position.y = std::max(0.f, p.position.y);
 
-                p.color = _core->n_color.colors.get(life_ratio) * fadeRatio;
+                p.color = _core->n_color.colors.get(life_ratio) * _fadeRatio;
                 p.color.w *= _core->n_color.opacity;
                 p.size = _core->n_size.sizes.get(life_ratio);
 
@@ -220,6 +227,9 @@ namespace Particles
                 ++it;
             }
         }
+    }
+
+    void CSystem::updateEmission(float delta) {
 
         // Rate over time
         if (_core->n_system.looping && _core->n_emission.interval > 0.f) {
@@ -244,65 +254,17 @@ namespace Particles
 
             _lastSystemPosition = c_ent_transform->getPosition();
         }
-
-        return fadeRatio > 0.f && (!_particles.empty() || _core->n_system.looping);
     }
 
-    // To update this with the compute shader.
-    void CSystem::render()
-    {
-        
-        if (!_enabled || !_entity.isValid()) return;
-        if (_deploy_time < _core->n_system.start_delay) return;
+    void CSystem::updateFading(float delta) {
 
-        CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
-        assert(eCurrentCamera);
-        TCompCamera* camera = eCurrentCamera->get<TCompCamera>();
-        assert(camera);
-
-        VEC3 cameraPos = camera->getPosition();
-        VEC3 cameraUp = camera->getUp();
-
-        //Hardcoded, move it from here.
-        CEntity * ent = _entity;
-        TCompTransform * c_ent_transform = ent->get<TCompTransform>();
-        if (_core->n_renderer.mode == TCoreSystem::TNRenderer::EMODE::HORIZONTAL) {
-            cameraPos = c_ent_transform->getPosition() + c_ent_transform->getUp();
-            cameraUp = c_ent_transform->getFront();
-        }
-
-        const int frameCols = static_cast<int>(_core->n_renderer.frameSize.x);
-
-        auto rmesh = Resources.get("data/meshes/quad_volume_particles.instanced_mesh")->as<CRenderMesh>();
-        CRenderMeshInstanced* instanced_particle = (CRenderMeshInstanced*)rmesh;
-        instanced_particle->vtx_decl = CVertexDeclManager::get().getByName("CpuParticleInstance");
-
-        std::vector<Particles::TIParticle> particles_instances;
-        particles_instances.reserve(_particles.size());
-
-        for (auto& p : _particles)
+        if (_fadeDuration != 0.f)
         {
-            VEC3 pos = p.is_update ? c_ent_transform->getPosition() + p.position : p.position;
-            MAT44 bb = MAT44::CreateBillboard(pos, cameraPos, cameraUp);
-            MAT44 sc = MAT44::CreateScale(p.size * p.scale);
-            MAT44 rt = MAT44::CreateFromYawPitchRoll(p.rotation.x, p.rotation.y, p.rotation.z);
-
-            int row = p.frame / frameCols;
-            int col = p.frame % frameCols;
-            VEC2 minUV = VEC2(col * (1/_core->n_renderer.frameSize.x), row * (1 / _core->n_renderer.frameSize.y));
-            VEC2 maxUV = minUV + VEC2(1/_core->n_renderer.frameSize.x, 1/ _core->n_renderer.frameSize.y);
-
-            Particles::TIParticle t_struct = { rt * sc * bb, minUV, maxUV, p.color };
-            particles_instances.push_back(t_struct);
+            _fadeTime += delta;
+            _fadeRatio = (1.f - (_fadeTime / _fadeDuration));
         }
 
-        instanced_particle->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(Particles::TIParticle));
-        
-        auto technique2 = Resources.get("particles_instanced_combinative.tech")->as<CRenderTechnique>();
-        technique2->activate();
-
-        _core->n_renderer.texture->activate(TS_ALBEDO1);
-        CRenderManager::get().renderCategory("particles_instanced_combinative");
+        _fadeRatio = 1.0f;
     }
 
     void CSystem::emit()
@@ -468,6 +430,64 @@ namespace Particles
 
         return generateDirection() * velocity;
     }
+
+    // To update this with the compute shader.
+    void CSystem::render()
+    {
+
+        if (!_enabled || !_entity.isValid()) return;
+        if (_deploy_time < _core->n_system.start_delay) return;
+
+        CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
+        assert(eCurrentCamera);
+        TCompCamera* camera = eCurrentCamera->get<TCompCamera>();
+        assert(camera);
+
+        VEC3 cameraPos = camera->getPosition();
+        VEC3 cameraUp = camera->getUp();
+
+        //Hardcoded, move it from here.
+        CEntity * ent = _entity;
+        TCompTransform * c_ent_transform = ent->get<TCompTransform>();
+        if (_core->n_renderer.mode == TCoreSystem::TNRenderer::EMODE::HORIZONTAL) {
+            cameraPos = c_ent_transform->getPosition() + c_ent_transform->getUp();
+            cameraUp = c_ent_transform->getFront();
+        }
+
+        const int frameCols = static_cast<int>(_core->n_renderer.frameSize.x);
+
+        auto rmesh = Resources.get("data/meshes/quad_volume_particles.instanced_mesh")->as<CRenderMesh>();
+        CRenderMeshInstanced* instanced_particle = (CRenderMeshInstanced*)rmesh;
+        instanced_particle->vtx_decl = CVertexDeclManager::get().getByName("CpuParticleInstance");
+
+        std::vector<Particles::TIParticle> particles_instances;
+        particles_instances.reserve(_particles.size());
+
+        for (auto& p : _particles)
+        {
+            VEC3 pos = p.is_update ? c_ent_transform->getPosition() + p.position : p.position;
+            MAT44 bb = MAT44::CreateBillboard(pos, cameraPos, cameraUp);
+            MAT44 sc = MAT44::CreateScale(p.size * p.scale);
+            MAT44 rt = MAT44::CreateFromYawPitchRoll(p.rotation.x, p.rotation.y, p.rotation.z);
+
+            int row = p.frame / frameCols;
+            int col = p.frame % frameCols;
+            VEC2 minUV = VEC2(col * (1 / _core->n_renderer.frameSize.x), row * (1 / _core->n_renderer.frameSize.y));
+            VEC2 maxUV = minUV + VEC2(1 / _core->n_renderer.frameSize.x, 1 / _core->n_renderer.frameSize.y);
+
+            Particles::TIParticle t_struct = { rt * sc * bb, minUV, maxUV, p.color };
+            particles_instances.push_back(t_struct);
+        }
+
+        instanced_particle->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(Particles::TIParticle));
+
+        auto technique2 = Resources.get("particles_instanced_combinative.tech")->as<CRenderTechnique>();
+        technique2->activate();
+
+        _core->n_renderer.texture->activate(TS_ALBEDO1);
+        CRenderManager::get().renderCategory("particles_instanced_combinative");
+    }
+
 
     TParticleHandle CSystem::getHandle() const
     {

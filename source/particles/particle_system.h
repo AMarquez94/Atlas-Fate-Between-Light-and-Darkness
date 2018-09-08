@@ -102,6 +102,17 @@ namespace Particles
             float frameSpeed = 0.f;            // frame change speed
         };
 
+        TNSystem        n_system;
+        TNEmission      n_emission;
+        TNShape         n_shape;
+        TNVelocity      n_velocity;
+        TNColor         n_color;
+        TNSize          n_size;
+        TNoise          n_noise;
+        TNCollision     n_collision;
+        TNRenderer      n_renderer;
+
+        /*
         //-----------------------------------------------------------------
         struct TLife
         {
@@ -156,22 +167,12 @@ namespace Particles
             float opacity = 1.f;            // opacity factor
         };
 
-        TNSystem        n_system;
-        TNEmission      n_emission;
-        TNShape         n_shape;
-        TNVelocity      n_velocity;
-        TNColor         n_color; 
-        TNSize          n_size;
-        TNoise          n_noise;
-        TNCollision     n_collision;
-        TNRenderer      n_renderer;
-
         TLife           life;
         TEmission       emission;
         TMovement       movement;
         TRender         render;
         TSize           size;
-        TColor          color;
+        TColor          color;*/
     };
 
     class CSystem
@@ -194,9 +195,14 @@ namespace Particles
         void emit();
         void emit(int amount);
 
+        void  updateSystem(float delta);
+        void  updateFading(float delta);
+        void  updateEmission(float delta);
+
         VEC3 generatePosition() const;
         VEC3 generateVelocity() const;
         VEC3 generateDirection() const;
+
         VEC3 AddNoiseOnAngle(float min, float max);
 
         CHandle             _entity;
@@ -208,6 +214,7 @@ namespace Particles
         float               _deploy_time = 0.f;
         float               _fadeDuration = 0.f;
         float               _fadeTime = 0.f;
+        float               _fadeRatio = 0.f;
         bool                _enabled;
 
         float _deploy_distance;
