@@ -156,7 +156,7 @@ namespace RigidAnims {
     auto prev_key = &keys[key_index];
     auto next_key = &keys[key_index+1];
     out_key->pos = lerp(prev_key->pos, next_key->pos, amount_of_next_key);
-    out_key->rot = lerp(prev_key->rot, next_key->rot, amount_of_next_key);
+    out_key->rot = QUAT::Slerp(prev_key->rot, next_key->rot, amount_of_next_key);
     out_key->scale = lerp(prev_key->scale, next_key->scale, amount_of_next_key);
     return false;
   }
