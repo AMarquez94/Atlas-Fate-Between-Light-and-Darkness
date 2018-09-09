@@ -22,6 +22,7 @@
 		"shadow_controller",
 		"billboard",
 		"skeleton",
+		"skel_lookat",
 		"bone_tracker",
 		"hierarchy",
 		"local_aabb",

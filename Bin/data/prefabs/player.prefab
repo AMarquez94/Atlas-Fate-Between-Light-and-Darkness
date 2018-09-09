@@ -206,6 +206,10 @@
 				"initial": "1.0 1.0 1.0 1.0",
 				"intensity": 1.25
 			},
+			"skel_lookat" : {
+				"target_entity_name" : "Mimeticus",
+				"amount" : 1
+			},
 			"noise_emitter": {
 				"radius": -1
 			},
@@ -306,6 +310,13 @@
 			],
 			"abs_aabb": true,
 			"local_aabb": true
+		}
+	}, {
+		"entity": {
+			"name": "Jugador Target",
+			"transform": {
+				"pos": "0 0 0"
+			}
 		}
 	}
 ]
