@@ -48,12 +48,14 @@ namespace Particles
     TParticleHandle CSystem::_lastHandle = 0;
 
     void Particles::TCoreSystem::onFileChanged(const std::string& filename) {
-        if (filename != getName())
+        std::string fname = getName();
+        if (filename != fname)
             return;
 
         destroy();
         Particles::CParser parser;
-        Particles::TCoreSystem* res = parser.parseParticlesFile(filename);
+        *this = *(parser.parseParticlesFile(filename));
+        this->setNameAndClass(filename, getResourceClassOf<Particles::TCoreSystem>());
     }
 
     CSystem::CSystem(const TCoreSystem* core, CHandle entity)
@@ -69,7 +71,6 @@ namespace Particles
         _enabled = true;
         _time = 0.f;
         _deploy_time = 0.f;
-        emit();
     }
 
     void CSystem::debugInMenu() {
@@ -186,10 +187,22 @@ namespace Particles
 
     void CSystem::updateSystem(float delta) {
 
+        MAT44 world = MAT44::Identity;
+        MAT44 world_rot = MAT44::Identity;
+
+        if (_entity.isValid())
+        {
+            CEntity* e = _entity;
+            TCompTransform* e_transform = e->get<TCompTransform>();
+            world = e_transform->asMatrix();
+
+            if(_core->n_velocity.type == 0) // Local coordinates...
+                world_rot = MAT44::CreateFromQuaternion(e_transform->getRotation());
+        }
+
         const VEC3& kWindVelocity = EngineParticles.getWindVelocity();
 
-        auto it = _particles.begin();
-        while (it != _particles.end())
+        for (auto it = _particles.begin(); it != _particles.end();)
         {
             TParticle& p = *it;
             p.lifetime += delta;
@@ -200,22 +213,18 @@ namespace Particles
             }
             else
             {
-                CEntity * ent = _entity;
-                TCompTransform * c_ent_transform = ent->get<TCompTransform>();
-
                 float life_ratio = p.max_lifetime > 0.f ? clamp(p.lifetime / p.max_lifetime, 0.f, 1.f) : 1.f;
 
                 VEC3 dir = p.velocity;
                 dir.Normalize();
-                p.velocity += dir * _core->n_velocity.acceleration * delta * _core->n_velocity.velocity.get(life_ratio); //Velocity over lifetime
+                p.velocity = p.origin_velocity;
+                p.velocity += VEC3::Transform(_core->n_velocity.velocity.get(life_ratio), world_rot) * _core->n_velocity.acceleration * delta;
                 p.velocity += kGravity * _core->n_system.gravity * delta;
-                p.velocity += AddNoiseOnAngle(-180, 180) * _core->n_noise.strength;
+                //p.velocity += AddNoiseOnAngle(-180, 180) * _core->n_noise.strength;
+                
                 p.position += p.velocity * delta;
                 p.position += kWindVelocity * _core->n_velocity.wind * delta;
-                p.rotation += delta * _core->n_velocity.rotation.get(life_ratio);
-
-                if (_core->n_collision.collision)
-                    p.position.y = std::max(0.f, p.position.y);
+                p.rotation += VEC3::Transform(_core->n_velocity.rotation.get(life_ratio), world_rot) * delta; // Based on local coordinates, apply transform...
 
                 p.color = _core->n_color.colors.get(life_ratio) * _fadeRatio;
                 p.color.w *= _core->n_color.opacity;
@@ -231,28 +240,52 @@ namespace Particles
 
     void CSystem::updateEmission(float delta) {
 
-        // Rate over time
-        if (_core->n_system.looping && _core->n_emission.interval > 0.f) {
+        // Rate over time (time elpased)
+        if (_core->n_system.looping && _core->n_emission.rate_time > 0.f) {
             _time += delta;
-            if (_time > _core->n_emission.interval) {
-                emit();
-                _time -= _core->n_emission.interval;
+
+            if (_time > _core->n_emission.time_ratio) {
+
+                _time = 0;
+                emit(1);
             }
         }
 
-        // Rate over distance
+        // Rate over distance (unit elapsed)
         if (_core->n_emission.rate_distance > 0) {
 
             CEntity * ent = _entity;
             TCompTransform * c_ent_transform = ent->get<TCompTransform>();
             _deploy_distance += (_lastSystemPosition - c_ent_transform->getPosition()).Length();
-            if (_deploy_distance > 0.05)
+
+            if (_deploy_distance > EngineParticles.rate_min_dist)
             {
                 _deploy_distance = 0;
                 emit(_core->n_emission.rate_distance);
             }
 
             _lastSystemPosition = c_ent_transform->getPosition();
+        }
+
+        // Bursts (concrete deploy)
+        for (auto it = _core->n_emission.bursts.begin(); it != _core->n_emission.bursts.end();)
+        {
+            Particles::TCoreSystem::TNEmission::TNBurst& p = *it;
+
+            if (_deploy_time > p.time) {
+                p.i_elapsed += delta; // Update the burst
+                                      // New burst to be deployed
+                if (p.i_elapsed > p.interval) {
+
+                    p.cycles--;
+                    p.i_elapsed = 0;
+                    emit(p.count);
+
+                    // Remove the burst, it's finished
+                    if (p.cycles < 1) it = _core->n_emission.bursts.erase(it);
+                    else ++it;
+                }
+            }
         }
     }
 
@@ -267,57 +300,38 @@ namespace Particles
         _fadeRatio = 1.0f;
     }
 
-    void CSystem::emit()
-    {
-        MAT44 world = MAT44::Identity;
-        QUAT rotation = QUAT::Identity;
-        if (_entity.isValid())
-        {
-            CEntity* e = _entity;
-            TCompTransform* e_transform = e->get<TCompTransform>();
-            world = e_transform->asMatrix();
-            rotation = e_transform->getRotation();
-        }
+    void CSystem::updateCollision(float delta) {
 
-        for (int i = 0; i < _core->n_emission.rate_time && _particles.size() < _core->n_system.max_particles; ++i)
-        {
-            TParticle particle;
-            particle.position = VEC3::Transform(generatePosition() + _core->n_system.offset, rotation);
-            particle.velocity = generateVelocity();
-            particle.color = _core->n_color.colors.get(0.f);
-            particle.size = _core->n_system.start_size;
-            particle.scale = _core->n_size.scale + random(-_core->n_size.scale_variation, _core->n_size.scale_variation);
-            particle.frame = _core->n_renderer.initialFrame;
-            particle.rotation = (1 - _core->n_system.random_rotation) * M_PI * VEC3(deg2rad(_core->n_system.start_rotation.x), deg2rad(_core->n_system.start_rotation.y), deg2rad(_core->n_system.start_rotation.z));
-            particle.lifetime = 0.f;
-            particle.max_lifetime = _core->n_system.duration + random(-_core->n_emission.variation, _core->n_emission.variation);
-            particle.init_frame = random(0, _core->n_renderer.numFrames);
-            _particles.push_back(particle);
-        }
+
     }
 
     // Emit given a concrete amount
     void CSystem::emit(int amount)
     {
         MAT44 world = MAT44::Identity;
-        QUAT rotation = QUAT::Identity;
+        MAT44 world_rot = MAT44::Identity;
+
         if (_entity.isValid())
         {
             CEntity* e = _entity;
             TCompTransform* e_transform = e->get<TCompTransform>();
             world = e_transform->asMatrix();
-            rotation = e_transform->getRotation();
+            world_rot = MAT44::CreateFromQuaternion(e_transform->getRotation());
         }
 
+        // Emit given an amount with the default initial values.
         for (int i = 0; i < amount && _particles.size() < _core->n_system.max_particles; ++i)
         {
             TParticle particle;
             particle.position = VEC3::Transform(generatePosition() + _core->n_system.offset, world);
-            particle.velocity = generateVelocity();
+            particle.velocity = VEC3::Transform(generateVelocity(), world_rot);
+            particle.origin_velocity = particle.velocity;
             particle.color = _core->n_color.colors.get(0.f);
             particle.size = _core->n_size.sizes.get(0.f);
             particle.scale = _core->n_size.scale + random(-_core->n_size.scale_variation, _core->n_size.scale_variation);
             particle.frame = _core->n_renderer.initialFrame;
+            particle.init_frame = random(0, _core->n_renderer.numFrames);
+            //particle.rotation = (1 - _core->n_system.random_rotation) * M_PI * VEC3(deg2rad(_core->n_system.start_rotation.x), deg2rad(_core->n_system.start_rotation.y), deg2rad(_core->n_system.start_rotation.z));
             particle.rotation = _core->n_system.random_rotation * M_PI * _core->n_system.start_rotation;
             particle.lifetime = 0.f;
             particle.max_lifetime = _core->n_system.duration + random(-_core->n_emission.variation, _core->n_emission.variation);
@@ -378,13 +392,13 @@ namespace Particles
                 return VEC3::Up;
 
             case TCoreSystem::TNShape::Line:
-                return VEC3::Right;
+                return VEC3::Up;
 
             case TCoreSystem::TNShape::Square:
                 return VEC3::Up;
 
             case TCoreSystem::TNShape::Box:
-                return VEC3::Up;
+                return VEC3::Forward;
 
             case TCoreSystem::TNShape::Sphere:
             {
@@ -402,7 +416,6 @@ namespace Particles
 
             case TCoreSystem::TNShape::Cone:
             {                
-                //return VEC3::Up;
                 float angle = 1 - (rad2deg(_core->n_shape.angle) / 90);
                 VEC3 dir(random(angle, 1), 1, random(angle, 1));
                 dir.Normalize();
@@ -418,7 +431,7 @@ namespace Particles
         const float& angle = _core->n_shape.angle;
         const VEC3 velocity = _core->n_velocity.constant_velocity; // TO-REFACTOR
 
-        if (angle != 0.f)
+        /*if (angle != 0.f)
         {
             float radius = tan(angle);
             float x = sqrtf(radius) * cosf(angle) * random(-1, 1);
@@ -426,9 +439,9 @@ namespace Particles
             VEC3 pos(x, 1.f, z);
             pos.Normalize();
             return pos * velocity;
-        }
+        }*/
 
-        return generateDirection() * velocity;
+        return generateDirection();// *velocity;
     }
 
     // To update this with the compute shader.

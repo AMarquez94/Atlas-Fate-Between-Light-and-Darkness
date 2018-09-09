@@ -168,7 +168,7 @@ void ParticlesEditor::debugEmission() {
         ImGui::DragFloat("Rate over Time", &_main_system->n_emission.rate_time, 0.01f, 0.f, 50.f);
         ImGui::DragFloat("Rate over Distance", &_main_system->n_emission.rate_distance, 0.01f, 0.f, 100.f);
         ImGui::DragFloat("Variation", &_main_system->n_emission.variation, 0.01f, 0.f, 50.f);
-        ImGui::DragFloat("Interval", &_main_system->n_emission.interval, 0.01f, 0.f, 100.f);
+        //ImGui::DragFloat("Interval", &_main_system->n_emission.interval, 0.01f, 0.f, 100.f);
     }
 }
 
@@ -295,7 +295,10 @@ void ParticlesEditor::debugRender() {
         case Particles::TCoreSystem::TNShape::Line:
         {
             auto mesh = Resources.get("line_center.mesh")->as<CRenderMesh>();
-            renderMesh(mesh, mat, VEC4(0, 1, 1, 1));
+            MAT44 sc2 = MAT44::CreateScale(e_transform->getScale() *_main_system->n_shape.size * .5);
+            MAT44 rt2 = MAT44::CreateFromQuaternion(e_transform->getRotation() + QUAT::CreateFromAxisAngle(VEC3(0,1,0), deg2rad(90)));
+            MAT44 mat2 = sc2 * rt2 * tr;
+            renderMesh(mesh, mat2, VEC4(0, 1, 1, 1));
         } break;
 
         case Particles::TCoreSystem::TNShape::Square:

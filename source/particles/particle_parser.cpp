@@ -29,7 +29,7 @@ namespace Particles
     TCoreSystem* CParser::parseParticleSystem(const json& data)
     {
         TCoreSystem* cps = new TCoreSystem();
-
+        
         const json& system = data["system"];
         {
             cps->n_system.duration = system.value("duration", cps->n_system.duration);
@@ -53,8 +53,9 @@ namespace Particles
         {
             cps->n_emission.rate_time = emission.value("rate_time", cps->n_emission.rate_time);
             cps->n_emission.rate_distance = emission.value("rate_distance", cps->n_emission.rate_distance);
-            cps->n_emission.interval = emission.value("interval", cps->n_emission.interval);
+            //cps->n_emission.interval = emission.value("interval", cps->n_emission.interval);
             cps->n_emission.variation = emission.value("variation", cps->n_emission.variation);
+            cps->n_emission.time_ratio = 1 / cps->n_emission.rate_time;
             // Add bursts support
         }
         
@@ -95,6 +96,7 @@ namespace Particles
 
             cps->n_velocity.acceleration = velocity.value("acceleration", cps->n_velocity.acceleration);
             cps->n_velocity.wind = velocity.value("wind", cps->n_velocity.wind);
+            cps->n_velocity.type = velocity.value("type", cps->n_velocity.type);
         }
 
         // render
@@ -187,7 +189,7 @@ namespace Particles
             jsonfile["emission"]["rate_time"] = E_ROUND(system->n_emission.rate_time);
             jsonfile["emission"]["rate_distance"] = E_ROUND(system->n_emission.rate_distance);
             jsonfile["emission"]["variation"] = E_ROUND(system->n_emission.variation);
-            jsonfile["emission"]["interval"] = E_ROUND(system->n_emission.interval);
+            //jsonfile["emission"]["interval"] = E_ROUND(system->n_emission.interval);
         }
 
         // Write shape

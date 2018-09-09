@@ -38,7 +38,17 @@ namespace Particles
             float rate_time = 10.f;
             float rate_distance = 0.f;
             float variation = 0.1f;
-            float interval = 0.f;
+
+            struct TNBurst {
+                float   time;
+                int     count;
+                int     cycles;
+                float   interval;
+                float   i_elapsed;
+            };
+
+            mutable float time_ratio;
+            mutable std::vector<TNBurst> bursts;
             // Add Bursts in the future.
         };
 
@@ -53,6 +63,8 @@ namespace Particles
         struct TNVelocity {
 
             enum EType { LOCAL = 0, WORLD };
+            EType type = LOCAL;             // type of emissor
+
             VEC3 constant_velocity = VEC3::Zero;
             TTrack<VEC3> velocity;
             TTrack<VEC3> rotation;
@@ -192,12 +204,12 @@ namespace Particles
 
     private:
 
-        void emit();
         void emit(int amount);
 
         void  updateSystem(float delta);
         void  updateFading(float delta);
         void  updateEmission(float delta);
+        void  updateCollision(float delta);
 
         VEC3 generatePosition() const;
         VEC3 generateVelocity() const;
