@@ -16,6 +16,10 @@ private:
     VEC2 _original_euler;
     VEC3 _clipping_offset;
 
+    float _timer_fov = 0.f;
+    float _max_time_fov = 1.f;
+    float _target_fov = 70.f;
+
     bool active;
 
     const Input::TButton& btHorizontal = EngineInput["MouseX"];
@@ -31,6 +35,9 @@ private:
     void onMsgCameraSetActive(const TMsgSetCameraActive &msg);
     void onMsgCameraReset(const TMsgCameraReset &msg);
     void onMsgCameraResetTargetPos(const TMsgCameraResetTargetPos &msg);
+    void onMsgCameraFov(const TMsgCameraFov &msg);
+
+    float getFovUpdated(float dt);
 
 
 public:

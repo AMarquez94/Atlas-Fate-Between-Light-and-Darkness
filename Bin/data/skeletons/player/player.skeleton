@@ -29,7 +29,17 @@
 				"relative_to_player" : false
 			}]
 		},
-		{ "name" : "attack"},
+		{ "name" : "attack",
+			"callbacks":[
+			  {
+				"time_to_call" : 0.0,
+				"function_to_call" : "animation_attack_start"
+			  },
+			  {
+				"time_to_call" : 0.7,
+				"function_to_call" : "animation_attack_attack"
+			  }
+			]},
 		{ "name" : "crouch"},
 		{ "name" : "crouch_walk", 
 			"audio_callbacks":[

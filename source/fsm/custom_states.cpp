@@ -16,6 +16,7 @@ namespace FSM
         target->name = jData["target"];
         target->blendIn = jData.value("blendIn", 0.01f);
         target->blendOut = jData.value("blendOut", 0.01f);
+        target->fov = jData.value("fov", 70.f);
 
         return target;
     }
@@ -569,7 +570,7 @@ namespace FSM
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::ATTACK , 1.0f });
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::attackState, _speed, _size, _radius, _target, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
     }
 
     void AttackState::onFinish(CContext& ctx) const {

@@ -81,7 +81,7 @@
 			"destroy": false
 		},
 		"skeleton": {
-			"skeleton": "data/skeletons/player/player.skeleton",
+			"skeleton": "data/skeletons/player/player_tutorial.skeleton",
 			"scale": 1.0
 		},
 		"ai_player": {

@@ -123,6 +123,7 @@ void TCompTempPlayerController::update(float dt) {
 		updateShader(dt); // Move this to player render component...
 		timeInhib += dt;
 		canAttack = canAttackTest(dt);
+        updateWeapons(dt);
         EngineGUI.enableWidget("stamina_bar_general", stamina / maxStamina != 1.f);
 		Engine.getGUI().getVariables().setVariant("staminaBarFactor", stamina / maxStamina);	 
         Engine.getGUI().getVariables().setVariant("lifeBarFactor", life / maxLife);
@@ -262,6 +263,10 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg) {
             }
             target_camera = new_camera;
             Engine.getCameras().blendInCamera(target_camera, msg.target_camera->blendIn, CModuleCameras::EPriority::GAMEPLAY);
+            TMsgCameraFov msg_fov;
+            msg_fov.blend_time = 1.f;
+            msg_fov.new_fov = msg.target_camera->fov;
+            target_camera.sendMsg(msg_fov);
         }
         else {
             target_camera = getEntityByName("TPCamera"); //replace this
@@ -674,6 +679,32 @@ void TCompTempPlayerController::activateCanLandSM(bool activate)
     }
 }
 
+void TCompTempPlayerController::pauseEnemy()
+{
+    TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
+    CHandle closestEnemy;
+    bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
+
+    TMsgAIPaused msg;
+    closestEnemy.sendMsg(msg);
+}
+
+void TCompTempPlayerController::stunEnemy()
+{
+    TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
+    CHandle closestEnemy;
+    bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
+
+    if (enemyFound) {
+        TMsgAIPaused msgPaused;
+        closestEnemy.sendMsg(msgPaused);
+
+        TMsgEnemyStunned msg;
+        msg.h_sender = CHandle(this).getOwner();
+        closestEnemy.sendMsg(msg);
+    }
+}
+
 /* Concave test, this determines if there is a surface normal change on concave angles */
 const bool TCompTempPlayerController::concaveTest(void) {
 
@@ -919,40 +950,6 @@ void TCompTempPlayerController::updateStamina(float dt) {
 }
 
 /* Attack state, kills the closest enemy if true*/
-void TCompTempPlayerController::attackState(float dt) {
-
-    if (attackTimer == 0) {
-        TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
-        CHandle closestEnemy;
-        bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
-        
-        TMsgAIPaused msg;
-        closestEnemy.sendMsg(msg);
-    }
-
-    if (attackTimer > 0.7f) {   //TODO: Remove this. Only a fix for milestone 2
-        TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
-        CHandle closestEnemy;
-        bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
-
-        if (enemyFound) {
-            TMsgAIPaused msgPaused;
-            closestEnemy.sendMsg(msgPaused);
-
-            TMsgEnemyStunned msg;
-            msg.h_sender = CHandle(this).getOwner();
-            closestEnemy.sendMsg(msg);
-        }
-
-        attackTimer = 0.f;
-        state = (actionhandler)&TCompTempPlayerController::idleState;
-    }
-    else {
-        attackTimer += dt;
-    }
-}
-
-/* Attack state, kills the closest enemy if true*/
 void TCompTempPlayerController::mergeEnemy() {
 
     TCompPlayerAttackCast * tAttackCast = get<TCompPlayerAttackCast>();
@@ -1000,6 +997,19 @@ void TCompTempPlayerController::updateLife(float dt)
             life = Clamp(life + lifeIncr * dt, 0.f, maxLife);
         }
     }
+}
+
+void TCompTempPlayerController::updateWeapons(float dt)
+{
+    TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+    if (canAttack && !isMerged || my_anim->isPlayingAnimation((TCompAnimator::EAnimation)TCompPlayerAnimator::ATTACK)) {
+        attackTimer = Clamp(attackTimer + dt, 0.f, timeToDeployWeapons);
+    }
+    else {
+        attackTimer = Clamp(attackTimer - dt, 0.f, timeToDeployWeapons);
+    }
+    cb_player.player_disk_radius = lerp(0.f, 1.f, attackTimer / timeToDeployWeapons);
+    cb_player.updateGPU();
 }
 
 VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & left) {

@@ -46,6 +46,7 @@ void TCompCameraThirdPerson::registerMsgs()
     DECL_MSG(TCompCameraThirdPerson, TMsgScenePaused, onPause);
     DECL_MSG(TCompCameraThirdPerson, TMsgCameraReset, onMsgCameraReset);
     DECL_MSG(TCompCameraThirdPerson, TMsgCameraResetTargetPos, onMsgCameraResetTargetPos);
+    DECL_MSG(TCompCameraThirdPerson, TMsgCameraFov, onMsgCameraFov);
 }
 
 void TCompCameraThirdPerson::onMsgCameraActive(const TMsgCameraActivated & msg)
@@ -94,6 +95,22 @@ void TCompCameraThirdPerson::onMsgCameraResetTargetPos(const TMsgCameraResetTarg
     resetCameraTargetPos();
 }
 
+void TCompCameraThirdPerson::onMsgCameraFov(const TMsgCameraFov & msg)
+{
+    _target_fov = msg.new_fov;
+    _max_time_fov = msg.blend_time;
+    _timer_fov = 0.f;
+}
+
+float TCompCameraThirdPerson::getFovUpdated(float dt)
+{
+    _timer_fov = Clamp(_timer_fov + dt, 0.f, _max_time_fov);
+    float new_fov = lerp(getFov(), deg2rad(_target_fov), _timer_fov / _max_time_fov);
+    dbg("===================================================================================\n");
+    dbg("UPDATING FOV: %f\n", rad2deg(new_fov));
+    return new_fov;
+}
+
 void TCompCameraThirdPerson::update(float dt)
 {
     if (!paused) {
@@ -130,9 +147,10 @@ void TCompCameraThirdPerson::update(float dt)
         VEC3 new_pos = target_position + z_distance * -self_transform->getFront();
         self_transform->setPosition(new_pos);
 
-        float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
-        float current_fov = 70 + inputSpeed * 30; // Just doing some testing with the fov and speed
-        setPerspective(deg2rad(current_fov), 0.1f, 1000.f);
+        //float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
+        //float current_fov = 70 + inputSpeed * 30; // Just doing some testing with the fov and speed
+        setPerspective(getFovUpdated(dt), 0.1f, 1000.f);
+        dbg("Setting perspective TP() - new fov: %f\n", rad2deg(getFov()));
     }
 }
 

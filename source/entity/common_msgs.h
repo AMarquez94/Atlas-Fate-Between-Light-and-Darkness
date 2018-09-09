@@ -297,6 +297,12 @@ struct TMsgCinematicState {
     DECL_MSG_ID();
 };
 
+struct TMsgCameraFov {
+    float new_fov;
+    float blend_time;
+    DECL_MSG_ID();
+};
+
 //struct TMsgSpotlightsToggle {
 //    DECL_MSG_ID();
 //};

@@ -130,7 +130,10 @@ void CModuleLogic::publishClasses() {
     SLB::Class< TCompTempPlayerController >("PlayerController", m)
         .comment("This is our wrapper of the player controller component")
         .property("inhibited", &TCompTempPlayerController::isInhibited)
-        .set("die", &TCompTempPlayerController::die);
+        .set("die", &TCompTempPlayerController::die)
+        .set("pauseEnemy", &TCompTempPlayerController::pauseEnemy)
+        .set("stunEnemy", &TCompTempPlayerController::stunEnemy)
+        ;
 
     SLB::Class<TCompLightSpot>("SpotLight", m)
         .comment("This is our wrapper of the spotlight controller")

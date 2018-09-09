@@ -9,7 +9,8 @@
 			"camera": {
 				"target": "TPCamera",
 				"blendOut": 0.4,
-				"blendIn": 0.4
+				"blendIn": 0.4,
+				"fov": 70
 			}
 		},
 		{
@@ -20,7 +21,8 @@
 			"camera": {
 				"target": "TPCamera",
 				"blendOut": 0.4,
-				"blendIn": 0.4
+				"blendIn": 0.4,
+				"fov": 70
 			}
 		},
 		{
@@ -39,7 +41,8 @@
 			"camera": {
 				"target": "TPCamera",
 				"blendOut": 0.4,
-				"blendIn": 0.4
+				"blendIn": 0.4,
+				"fov": 75
 			}
 		},
 		{
@@ -58,7 +61,8 @@
 			"camera": {
 				"target": "TPCamera",
 				"blendOut": 0.4,
-				"blendIn": 0.4
+				"blendIn": 0.4,
+				"fov": 72
 			}
 		},
 		{
@@ -77,7 +81,8 @@
 			"camera": {
 				"target": "TPCamera",
 				"blendOut": 0.4,
-				"blendIn": 0.4
+				"blendIn": 0.4,
+				"fov": 80
 			}
 		},
 		{
@@ -90,7 +95,8 @@
 			"camera": {
 				"target": "TPCameraCrouched",
 				"blendOut": 0.4,
-				"blendIn": 0.4
+				"blendIn": 0.4,
+				"fov": 60
 			}
 		},
 		{
@@ -103,7 +109,8 @@
 			"camera": {
 				"target": "TPCameraCrouched",
 				"blendOut": 0.4,
-				"blendIn": 0.4
+				"blendIn": 0.4,
+				"fov": 65
 			}
 		},
 		{
@@ -116,7 +123,8 @@
 			"camera": {
 				"target": "TPCameraCrouched",
 				"blendOut": 0.4,
-				"blendIn": 0.4
+				"blendIn": 0.4,
+				"fov": 68
 			}
 		},
 		{
@@ -158,7 +166,8 @@
 			"camera": {
 				"target": "TPCamera",
 				"blendOut": 0.4,
-				"blendIn": 0.4
+				"blendIn": 0.4,
+				"fov": 75
 			}
 		},
 		{
@@ -172,7 +181,8 @@
 			"camera": {
 				"target": "TPCameraCrouched",
 				"blendOut": 0.4,
-				"blendIn": 0.4
+				"blendIn": 0.4,
+				"fov": 65
 			}
 		},
 		{
@@ -184,7 +194,8 @@
 			"camera": {
 				"target": "TPCamera",
 				"blendOut": 0.4,
-				"blendIn": 0.4
+				"blendIn": 0.4,
+				"fov": 70
 			}
 		},
 		{
@@ -215,7 +226,8 @@
 			"camera": {
 				"target": "TPCameraCrouched",
 				"blendOut": 0.4,
-				"blendIn": 0.2
+				"blendIn": 0.2,
+				"fov": 60
 			}
 		},
 		{
@@ -228,7 +240,8 @@
 			"camera": {
 				"target": "TPCamera",
 				"blendOut": 0.4,
-				"blendIn": 0.4
+				"blendIn": 0.4,
+				"fov": 80
 			}
 		},
 		{
@@ -240,7 +253,8 @@
 			"camera": {
 				"target": "TPCamera",
 				"blendOut": 0.4,
-				"blendIn": 0.4
+				"blendIn": 0.4,
+				"fov": 70
 			}
 		},
 		{
@@ -252,7 +266,8 @@
 			"camera": {
 				"target": "TPCamera",
 				"blendOut": 0.4,
-				"blendIn": 0.4
+				"blendIn": 0.4,
+				"fov": 70
 			}
 		},
 		{
@@ -264,7 +279,8 @@
 			"camera": {
 				"target": "TPCamera",
 				"blendOut": 0.4,
-				"blendIn": 0.4
+				"blendIn": 0.4,
+				"fov": 70
 			}
 		},
 		{
@@ -276,7 +292,8 @@
 			"camera": {
 				"target": "TPCamera",
 				"blendOut": 0.4,
-				"blendIn": 0.4
+				"blendIn": 0.4,
+				"fov": 70
 			}
 		},
 		{
@@ -288,7 +305,8 @@
 			"camera": {
 				"target": "TPCamera",
 				"blendOut": 0.4,
-				"blendIn": 0.4
+				"blendIn": 0.4,
+				"fov": 70
 			}
 		},
 		{
@@ -324,11 +342,11 @@
 			}
 		},
 		{
-		  "name": "pressingButton",
-		  "type": "PressingButtonState",
-		  "animation": "idle",
-		  "speed": 0,
-		  "size": 1
+			"name": "pressingButton",
+			"type": "PressingButtonState",
+			"animation": "idle",
+			"speed": 0,
+			"size": 1
 		}
 	],
 	"transitions": [{
@@ -539,23 +557,23 @@
 			}
 		},
 		{
-		  "type": "VariableTransition",
-		  "source": "idle",
-		  "target": "sonarEnemy",
-		  "variable": {
-			"name": "sonar",
-			"type": "bool",
-			"value": true
-		  }
+			"type": "VariableTransition",
+			"source": "idle",
+			"target": "sonarEnemy",
+			"variable": {
+				"name": "sonar",
+				"type": "bool",
+				"value": true
+			}
 		},
 		{
 			"type": "VariableTransition",
 			"source": "crouch",
 			"target": "sonarEnemy",
 			"variable": {
-			"name": "sonar",
-			"type": "bool",
-			"value": true
+				"name": "sonar",
+				"type": "bool",
+				"value": true
 			}
 		},
 		{
@@ -1269,9 +1287,9 @@
 			"source": "idle",
 			"target": "pressingButton",
 			"variable": {
-			"name": "buttonPressed",
-			"type": "bool",
-			"value": true
+				"name": "buttonPressed",
+				"type": "bool",
+				"value": true
 			}
 		},
 		{

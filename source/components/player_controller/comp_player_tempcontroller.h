@@ -16,6 +16,7 @@ struct TargetCamera {
     std::string name;
     float blendIn;
     float blendOut;
+    float fov;
 };
 
 struct Noise {
@@ -106,7 +107,8 @@ class TCompTempPlayerController : public TCompBase
     float timeToPressAgain = 0.7f;
     float timeInhib = 0.0f;
 
-    float attackTimer = 0.f;    //HARD FIX: TODO: Remove
+    float attackTimer = 0.f;
+    float timeToDeployWeapons = 0.5f;
 
     void onCreate(const TMsgEntityCreated& msg);
     void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
@@ -163,7 +165,6 @@ public:
     void idleState(float dt);
     void deadState(float dt);
     void mergeState(float dt);
-    void attackState(float dt);
     void resetState(float dt);
     void exitMergeState(float dt);
     void removingInhibitorState(float dt);
@@ -184,6 +185,7 @@ public:
     void updateStamina(float dt);
     void updateShader(float dt);
     void updateLife(float dt);
+    void updateWeapons(float dt);
     void mergeEnemy();
     void resetMerge();
     bool isDead();
@@ -192,6 +194,8 @@ public:
     void getDamage(float dmg);
     void die();
     void activateCanLandSM(bool activate);
+    void pauseEnemy();
+    void stunEnemy();
 
     VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
 

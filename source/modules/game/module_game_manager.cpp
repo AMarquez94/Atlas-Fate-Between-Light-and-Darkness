@@ -194,7 +194,7 @@ void CModuleGameManager::renderMain() {
         ImGui::Selectable("Resume game", menuPosition == 0);
         if (ImGui::IsItemClicked() || (menuPosition == 0 && EngineInput["btMenuConfirm"].getsPressed()))
         {
-            resetState();
+            setPauseState(PauseState::none);
         }
 
         ImGui::Selectable("Restart from last checkpoint", menuPosition == 1);
