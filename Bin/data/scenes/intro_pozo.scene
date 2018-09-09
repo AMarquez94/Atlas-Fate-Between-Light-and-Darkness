@@ -14,86 +14,19 @@
   {
     "entity":
     {
-      "name": "punete_pozo_low004"
+      "name": "valla_pozo005"
       ,
       "transform":
       {
-        "pos": "-9.01884 -0.142873 -29.2009"
+        "pos": "-9.77559 -0.626998 -20.6837"
         ,
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "rotation": "0.266517 0.622992 -0.327821 -0.658319"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/punete_pozo_low004.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubos_pozo.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/collider_puente_pozo2.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "punete_pozo_low005"
-      ,
-      "transform":
-      {
-        "pos": "-7.41884 -0.142872 -26.0009"
-        ,
-        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/punete_pozo_low005.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubos_pozo.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "valla_pozo011"
-      ,
-      "transform":
-      {
-        "pos": "-6.70099 0.068251 -28.3847"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/valla_pozo011.mesh"
+          "mesh": "data/meshes/valla_pozo005.mesh"
           ,
           "materials":
           [
@@ -106,215 +39,7 @@
       {
         "shape": "mesh"
         ,
-        "name": "data/colliders/collider_valla_pozo011.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "valla_pozo010"
-      ,
-      "transform":
-      {
-        "pos": "-6.70099 0.068251 -26.7613"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/valla_pozo010.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubos_pozo.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_valla_pozo010.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "punete_pozo_low007"
-      ,
-      "transform":
-      {
-        "pos": "-7.41884 -0.142872 -26.0009"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/punete_pozo_low007.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubos_pozo.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "punete_pozo_low006"
-      ,
-      "transform":
-      {
-        "pos": "-9.01884 -0.142872 -26.0009"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/punete_pozo_low006.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubos_pozo.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "valla_pozo015"
-      ,
-      "transform":
-      {
-        "pos": "-9.61359 -0.428819 -25.2307"
-        ,
-        "rotation": "-0.212631 0.67438 0.212631 -0.67438"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/valla_pozo015.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubos_pozo.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_valla_pozo015.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "valla_pozo012"
-      ,
-      "transform":
-      {
-        "pos": "-9.73818 0.068251 -26.7613"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/valla_pozo012.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubos_pozo.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_valla_pozo012.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "valla_pozo013"
-      ,
-      "transform":
-      {
-        "pos": "-9.73818 0.068251 -28.3847"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/valla_pozo013.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubos_pozo.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_valla_pozo013.collider"
+        "name": "data/colliders/collider_valla_pozo005.collider"
       }
       ,
       "abs_aabb": true
@@ -363,11 +88,11 @@
   {
     "entity":
     {
-      "name": "punete_pozo_low002"
+      "name": "punete_pozo_low"
       ,
       "transform":
       {
-        "pos": "-7.41884 -0.142871 -19.9991"
+        "pos": "-7.41884 -0.142871 -16.7991"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -375,37 +100,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/punete_pozo_low002.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubos_pozo.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "valla_pozo001"
-      ,
-      "transform":
-      {
-        "pos": "-6.70099 0.0682533 -19.2353"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/valla_pozo001.mesh"
+          "mesh": "data/meshes/punete_pozo_low.mesh"
           ,
           "materials":
           [
@@ -418,7 +113,7 @@
       {
         "shape": "mesh"
         ,
-        "name": "data/colliders/collider_valla_pozo001.collider"
+        "name": "data/colliders/collider_puente_pozo1.collider"
       }
       ,
       "abs_aabb": true
@@ -460,6 +155,36 @@
   {
     "entity":
     {
+      "name": "punete_pozo_low002"
+      ,
+      "transform":
+      {
+        "pos": "-7.41884 -0.142871 -19.9991"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/punete_pozo_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubos_pozo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "punete_pozo_low003"
       ,
       "transform":
@@ -473,6 +198,126 @@
       [
         {
           "mesh": "data/meshes/punete_pozo_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubos_pozo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "punete_pozo_low004"
+      ,
+      "transform":
+      {
+        "pos": "-9.01884 -0.142873 -29.2009"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/punete_pozo_low004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubos_pozo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "punete_pozo_low005"
+      ,
+      "transform":
+      {
+        "pos": "-7.41884 -0.142872 -26.0009"
+        ,
+        "rotation": "1.50494e-07 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/punete_pozo_low005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubos_pozo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "punete_pozo_low006"
+      ,
+      "transform":
+      {
+        "pos": "-9.01884 -0.142872 -26.0009"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/punete_pozo_low006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubos_pozo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "punete_pozo_low007"
+      ,
+      "transform":
+      {
+        "pos": "-7.41884 -0.142872 -26.0009"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/punete_pozo_low007.mesh"
           ,
           "materials":
           [
@@ -527,19 +372,19 @@
   {
     "entity":
     {
-      "name": "punete_pozo_low"
+      "name": "valla_pozo001"
       ,
       "transform":
       {
-        "pos": "-7.41884 -0.142871 -16.7991"
+        "pos": "-6.70099 0.0682533 -19.2353"
         ,
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "0.0 0.707107 0.0 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/punete_pozo_low.mesh"
+          "mesh": "data/meshes/valla_pozo001.mesh"
           ,
           "materials":
           [
@@ -550,9 +395,9 @@
       ,
       "collider":
       {
-        "shape": "convex"
+        "shape": "mesh"
         ,
-        "name": "data/colliders/collider_puente_pozo1.collider"
+        "name": "data/colliders/collider_valla_pozo001.collider"
       }
       ,
       "abs_aabb": true
@@ -675,19 +520,19 @@
   {
     "entity":
     {
-      "name": "valla_pozo005"
+      "name": "valla_pozo013"
       ,
       "transform":
       {
-        "pos": "-9.77559 -0.626998 -20.6837"
+        "pos": "-9.73818 0.068251 -28.3847"
         ,
-        "rotation": "0.266517 0.622992 -0.327821 -0.658319"
+        "rotation": "0.0 0.707107 0.0 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/valla_pozo005.mesh"
+          "mesh": "data/meshes/valla_pozo013.mesh"
           ,
           "materials":
           [
@@ -700,7 +545,162 @@
       {
         "shape": "mesh"
         ,
-        "name": "data/colliders/collider_valla_pozo005.collider"
+        "name": "data/colliders/collider_valla_pozo013.collider"
+      }
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_pozo_prueba.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "valla_pozo010"
+      ,
+      "transform":
+      {
+        "pos": "-6.70099 0.068251 -26.7613"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/valla_pozo010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubos_pozo.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_valla_pozo010.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "valla_pozo011"
+      ,
+      "transform":
+      {
+        "pos": "-6.70099 0.068251 -28.3847"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/valla_pozo011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubos_pozo.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_valla_pozo011.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "valla_pozo012"
+      ,
+      "transform":
+      {
+        "pos": "-9.73818 0.068251 -26.7613"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/valla_pozo012.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubos_pozo.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_valla_pozo012.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "valla_pozo015"
+      ,
+      "transform":
+      {
+        "pos": "-9.61359 -0.428819 -25.2307"
+        ,
+        "rotation": "-0.212631 0.67438 0.212631 -0.67438"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/valla_pozo015.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubos_pozo.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_valla_pozo015.collider"
       }
       ,
       "abs_aabb": true
@@ -734,43 +734,6 @@
           ]
         }
       ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "vallas_pozo_intro"
-      ,
-      "transform":
-      {
-        "pos": "-8.22348 -0.636475 -23.0"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/vallas_pozo_intro.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubos_pozo.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_vallas_pozo_intro.collider"
-      }
       ,
       "abs_aabb": true
       ,
@@ -826,6 +789,38 @@
       [
         {
           "mesh": "data/meshes/pozo_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_gloryhole.material"
+            ,
+            "data/materials/mtl_tubos_pozo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "pozo_low002"
+      ,
+      "transform":
+      {
+        "pos": "-8.22348 -12.6365 -23.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pozo_low002.mesh"
           ,
           "materials":
           [
@@ -909,11 +904,11 @@
   {
     "entity":
     {
-      "name": "pozo_low002"
+      "name": "vallas_pozo_intro"
       ,
       "transform":
       {
-        "pos": "-8.22348 -12.6365 -23.0"
+        "pos": "-8.22348 -0.636475 -23.0"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -921,13 +916,144 @@
       "render":
       [
         {
-          "mesh": "data/meshes/pozo_low002.mesh"
+          "mesh": "data/meshes/vallas_pozo_intro.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubos_pozo.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_vallas_pozo_intro.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "pozo_low005"
+      ,
+      "transform":
+      {
+        "pos": "-8.22348 -24.6365 -23.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pozo_low005.mesh"
           ,
           "materials":
           [
             "data/materials/mtl_gloryhole.material"
             ,
             "data/materials/mtl_tubos_pozo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "pozo_low006"
+      ,
+      "transform":
+      {
+        "pos": "-8.22348 -28.6365 -23.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pozo_low006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_gloryhole.material"
+            ,
+            "data/materials/mtl_tubos_pozo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "pozo_low007"
+      ,
+      "transform":
+      {
+        "pos": "-8.22348 -32.6365 -23.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pozo_low007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_gloryhole.material"
+            ,
+            "data/materials/mtl_tubos_pozo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Box036"
+      ,
+      "transform":
+      {
+        "pos": "-8.47194 -33.101 -22.9707"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box036.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_gloryhole.material"
           ]
         }
       ]

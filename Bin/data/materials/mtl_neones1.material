@@ -1,0 +1,18 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_neones_juntos_1_alb.dds"
+    ,
+    "metallic": "data/textures/tx_neones_juntos_1_met.dds"
+    ,
+    "roughness": "data/textures/tx_neones_juntos_1_rgh.dds"
+    ,
+    "normal": "data/textures/tx_neones_juntos_1_nml.dds"
+    ,
+    "height": "data/textures/tx_neones_juntos_1_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_neones_juntos_1_emi.dds"
+  }
+}
