@@ -34,7 +34,7 @@ void TCompRigidAnim::registerAnimation(std::string animationName, std::string tr
 	}
 	aux_anim.controller.anims = Resources.get(source)->as<RigidAnims::CRigidAnimResource>();
 	aux_anim.controller.track_index = aux_anim.controller.anims->findTrackIndexByName(aux_anim.controller.track_name);
-	assert(controller.track_index != RigidAnims::CController::invalid_track_index);
+	assert(aux_anim.controller.track_index != RigidAnims::CController::invalid_track_index);
 	current_time = 0;
 	aux_anim.speed_factor = speedFactor;
 	aux_anim.loops = loop;
