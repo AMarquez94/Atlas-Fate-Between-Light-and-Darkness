@@ -3,18 +3,18 @@
 #include "components/ia/comp_bt.h"
 
 struct EnemyStatus {
-	std::string enemyName;
-	std::string enemyIAStateName;
-	TCompIAController::BTType enemyType;
-	VEC3 enemyPosition;
-	QUAT enemyRotation;
-	bool saved = false;
+    std::string enemyName;
+    std::string enemyIAStateName;
+    TCompIAController::BTType enemyType;
+    VEC3 enemyPosition;
+    QUAT enemyRotation;
+    bool saved = false;
 };
 
 struct PlayerStatus {
-	VEC3 playerPos;
-	QUAT playerRot;
-	bool saved = false;
+    VEC3 playerPos;
+    QUAT playerRot;
+    bool saved = false;
 };
 
 struct EntityStatus {
@@ -28,19 +28,20 @@ class CCheckpoint {
 
 public:
 
-	CCheckpoint();
+    CCheckpoint();
 
-	//bool init();
-	bool saveCheckPoint(VEC3 playerPos, QUAT playerRotation);
-	bool loadCheckPoint();
-	bool deleteCheckPoint();
-  void debugInMenu();
+    //bool init();
+    bool saveCheckPoint(VEC3 playerPos, QUAT playerRotation);
+    bool loadCheckPoint();
+    bool deleteCheckPoint();
+    const bool isSaved() { return saved; };
+    void debugInMenu();
 
 private:
 
-	PlayerStatus player;
-	std::vector<EnemyStatus> enemies;
-	std::vector<EntityStatus> entities;
-	bool saved;
+    PlayerStatus player;
+    std::vector<EnemyStatus> enemies;
+    std::vector<EntityStatus> entities;
+    bool saved;
 
 };

@@ -6,7 +6,9 @@ function onSceneStart_scene_intro()
 	
 	-- First Cinematic --
 	--move("The Player", VEC3(-19, 6, -30), VEC3(-19, 6, -29));
-	intro_intro_cinematic();
+	if(not isCheckpointSaved()) then
+		intro_intro_cinematic();
+	end
 	setAIState("Patrol_Cinematic_Inhibitor", true, "dead_cinematic");
 end
 

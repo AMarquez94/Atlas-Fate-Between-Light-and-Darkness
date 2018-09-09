@@ -152,3 +152,7 @@ end
 function move(name, pos, lookat)
 	SLB.move(name, pos, lookat);
 end
+
+function isCheckpointSaved()
+	return SLB.isCheckpointSaved();
+end

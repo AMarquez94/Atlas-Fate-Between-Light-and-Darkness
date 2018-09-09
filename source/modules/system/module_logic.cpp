@@ -253,6 +253,7 @@ void CModuleLogic::publishClasses() {
     m->set("renderNavmeshToggle", SLB::FuncCall::create(&renderNavmeshToggle));
     m->set("sleep", SLB::FuncCall::create(&sleep));
     m->set("cinematicModeToggle", SLB::FuncCall::create(&cinematicModeToggle));
+    m->set("isCheckpointSaved", SLB::FuncCall::create(&isCheckpointSaved));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -579,6 +580,12 @@ void cinematicModeToggle() {
     msg.enableAI = true;
     CHandle h = getEntityByName("The Player");
     h.sendMsg(msg);
+}
+
+bool isCheckpointSaved()
+{
+    CModuleGameManager gameManager = CEngine::get().getGameManager();
+    return gameManager.isCheckpointSaved();
 }
 
 SoundEvent playEvent(const std::string & name)

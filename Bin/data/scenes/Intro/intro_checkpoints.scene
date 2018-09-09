@@ -1,0 +1,51 @@
+[{
+		"entity": {
+			"name": "intro_checkpoints",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "Checkpoint_fence",
+			"transform": {
+				"pos": "-7.74252 0.0 -43.5463",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "3.75461 0.824032 2.15465",
+				"group": "All",
+				"mask": "",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			},
+			"trigger_checkpoint": {},
+			"tags": ["checkpoint"]
+		}
+	},
+	{
+		"entity": {
+			"name": "Checkpoint_start",
+			"transform": {
+				"pos": "-3.73765 0.0 27.6506",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "11.1702 0.751292 4.97027",
+				"group": "All",
+				"mask": "",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			},
+			"trigger_checkpoint": {},
+			"tags": ["checkpoint"]
+		}
+	}
+]

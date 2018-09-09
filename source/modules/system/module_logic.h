@@ -114,6 +114,7 @@ void postFXToggle();
 void renderNavmeshToggle();
 void sleep(float time);
 void cinematicModeToggle();
+bool isCheckpointSaved();
 
 /* Sounds */
 SoundEvent playEvent(const std::string& name);
