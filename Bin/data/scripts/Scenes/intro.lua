@@ -1,12 +1,15 @@
 function onSceneStart_scene_intro()
+	
 	show_tutorial_sm_enemy = false;
 	if(ambiance == nil or not ambiance:isValid()) then
 		ambiance = playEvent("event:/Ambiance/Intro_Ambiance");
 	end
 	
+	cinematicsEnabled = false;
+	
 	-- First Cinematic --
 	--move("The Player", VEC3(-19, 6, -30), VEC3(-19, 6, -29));
-	if(not isCheckpointSaved()) then
+	if(cinematicsEnabled and not isCheckpointSaved()) then
 		intro_intro_cinematic();
 	end
 	setAIState("Patrol_Cinematic_Inhibitor", true, "dead_cinematic");
@@ -37,7 +40,9 @@ end
 
 function onTriggerEnter_Trigger_Inhibitor_Cinematic_player()
 	setAIState("Patrol_Cinematic_Inhibitor", true, "inhibitor_cinematic");
-	intro_inhibitor_cinematic();
+	if(cinematicsEnabled) then
+		intro_inhibitor_cinematic();
+	end
 	temp = getEntityByName("Trigger_Inhibitor_Cinematic");
 	temp:destroy();
 end
