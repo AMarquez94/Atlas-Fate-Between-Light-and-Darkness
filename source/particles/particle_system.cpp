@@ -6,6 +6,8 @@
 #include "components/comp_transform.h"
 #include <random>
 #include "render/render_manager.h"
+#include "noise/FastNoiseSIMD.h"
+
 // ----------------------------------------------
 class CParticleResourceClass : public CResourceClass {
 public:
@@ -215,16 +217,15 @@ namespace Particles
             {
                 float life_ratio = p.max_lifetime > 0.f ? clamp(p.lifetime / p.max_lifetime, 0.f, 1.f) : 1.f;
 
-                VEC3 dir = p.velocity;
-                dir.Normalize();
                 p.velocity = p.origin_velocity;
+                float noise_amount = abs(_core->n_noise.noise_values[it - _particles.begin()]);
                 p.velocity += VEC3::Transform(_core->n_velocity.velocity.get(life_ratio), world_rot) * _core->n_velocity.acceleration * delta;
                 p.velocity += kGravity * _core->n_system.gravity * delta;
-                //p.velocity += AddNoiseOnAngle(-180, 180) * _core->n_noise.strength;
-                
+                //p.velocity += p.origin_velocity * _core->n_noise.strength * noise_amount;
+
                 p.position += p.velocity * delta;
                 p.position += kWindVelocity * _core->n_velocity.wind * delta;
-                p.rotation += VEC3::Transform(_core->n_velocity.rotation.get(life_ratio) / M_PI, world_rot) * delta;
+                p.rotation += _core->n_velocity.rotation.get(life_ratio) * delta;
 
                 p.color = _core->n_color.colors.get(life_ratio) * _fadeRatio;
                 p.color.w *= _core->n_color.opacity;

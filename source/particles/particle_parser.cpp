@@ -2,6 +2,8 @@
 #include "particle_parser.h"
 #include "particles/particle_system.h"
 
+#include "Noise/FastNoiseSIMD.h"
+
 namespace Particles
 {
     void CParser::parseFile(const std::string& filename)
@@ -138,6 +140,9 @@ namespace Particles
             cps->n_noise.scroll_speed = noise.value("num_frames", cps->n_noise.scroll_speed);
             cps->n_noise.damping = noise.value("num_frames", cps->n_noise.damping);
             cps->n_noise.octaves = noise.value("frame_speed", cps->n_noise.octaves);
+
+            cps->n_noise.noise_core = FastNoiseSIMD::NewFastNoiseSIMD();
+            cps->n_noise.noise_values = cps->n_noise.noise_core->GetSimplexFractalSet(0, 0, 0, 16, 16, 16);
         }
 
         // collision

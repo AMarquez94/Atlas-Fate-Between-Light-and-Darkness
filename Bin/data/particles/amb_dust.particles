@@ -9,7 +9,7 @@
 		"start_rotation": "0 0 0",
 		"random_rotation": 0.0,
 		"start_color": "1 0 0 1",
-		"gravity": 0.0,
+		"gravity": 0.5,
 		"simulation_speed": 1,
 		"max_particles": 2000
 	},
@@ -18,11 +18,11 @@
 		"rate_distance": 0.0,
 		"variation" : 0.0,
 		"bursts" : [
-      [0,100,100,2]
+      [0,100,100,20]
     ] 
 	},
 	"shape": {
-		"type": "box",
+		"type": "cone",
 		"size": "1 1 1",
 		"angle": 0
 		
@@ -36,14 +36,14 @@
     ],
 		"rotation" : [
 		  [0.0, "0.0 0.0 0.0"],
-      [1.0, "0.0 0.0 45.0"]
+      [1.0, "0.0 0.0 0.5"]
     ],
 		"acceleration": 1,
 		"wind": 0
 	},
 	"noise": {
 		"texture": "data/textures/particles/fx_smoke1.dds",
-		"strength": 0.0025,
+		"strength": 212.2,
 		"frequency": 0.5,
 		"scroll_speed": 0.0,
 		"damping": true,
@@ -53,7 +53,7 @@
 		"collision": true
 	},
 	"renderer": {
-			"mode": "stretched",
+			"mode": "billboard",
 			"texture": "data/textures/particles/glow.dds",
       "frame_size" : "1 1",
       "initial_frame" : 0,
@@ -65,7 +65,7 @@
     "scale_variation" : 0,
     "sizes" : [
 		  [0.0, "0.1 0.1 0.1"],
-			[0.0, "0.1 0.1 0.1"]
+			[1.0, "0.1 0.1 0.1"]
     ]
   },
   "color" : {

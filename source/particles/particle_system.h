@@ -4,13 +4,16 @@
 #include "utils/track.h"
 #include "resources/resource.h"
 
+class FastNoiseSIMD;
+
 namespace Particles
 {
     using TParticlesHandle = int;
     using VParticles = std::vector<TParticle>;
-
+    
     struct TCoreSystem : public IResource
     {
+
         void onFileChanged(const std::string& filename) override;
 
         struct TNSystem 
@@ -89,6 +92,9 @@ namespace Particles
 
         struct TNoise
         {       
+            FastNoiseSIMD * noise_core = nullptr;
+            float* noise_values = nullptr;
+
             const CTexture* texture = nullptr; // particle texture
             float strength = 0.f;
             float frequency = 0.5f;
