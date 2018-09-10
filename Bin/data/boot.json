@@ -172,7 +172,18 @@
 			"data/scenes/Basilic_courtyard/test_instancing.scene",
 			"data/scenes/Basilic_courtyard/buttons.scene",
 			"data/scenes/Basilic_courtyard/capsules.scene",
-			"data/scenes/Basilic_courtyard_whitebox10.scene"
+			"data/scenes/Basilic_courtyard/BC_mezquita.scene",
+			"data/scenes/Basilic_courtyard/BC_props_whitebox.scene",
+			"data/scenes/Basilic_courtyard/BC_alminares.scene",
+			"data/scenes/Basilic_courtyard/BC_paredes.scene",
+			"data/scenes/Basilic_courtyard/BC_arcos.scene",
+			"data/scenes/Basilic_courtyard/BC_fuente.scene",
+			"data/scenes/Basilic_courtyard/BC_suelo.scene"
+
+
+
+
+			
 		]
 	},
 	"scene_basilic_interior": {
