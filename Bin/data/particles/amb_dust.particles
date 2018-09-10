@@ -4,8 +4,8 @@
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
-		"start_speed": 0.5,
-		"start_size": "0.1 0.1 0.1",
+		"start_speed": 1,
+		"start_size": "1 1 1",
 		"start_rotation": "0 0 0",
 		"random_rotation": 0.0,
 		"start_color": "1 0 0 1",
@@ -14,9 +14,12 @@
 		"max_particles": 2000
 	},
 	"emission": {
-		"rate_time": 200.0,
+		"rate_time": 10.0,
 		"rate_distance": 0.0,
-		"variation" : 0.0
+		"variation" : 0.0,
+		"bursts" : [
+      [0,100,100,2]
+    ] 
 	},
 	"shape": {
 		"type": "box",
@@ -33,7 +36,7 @@
     ],
 		"rotation" : [
 		  [0.0, "0.0 0.0 0.0"],
-      [1.0, "0.0 0.0 0.0"]
+      [1.0, "0.0 0.0 45.0"]
     ],
 		"acceleration": 1,
 		"wind": 0
@@ -50,7 +53,7 @@
 		"collision": true
 	},
 	"renderer": {
-			"mode": "billboard",
+			"mode": "stretched",
 			"texture": "data/textures/particles/glow.dds",
       "frame_size" : "1 1",
       "initial_frame" : 0,
@@ -59,15 +62,16 @@
 	},
   "size" : {
     "scale" : 1,
-    "scale_variation" : 0.1,
+    "scale_variation" : 0,
     "sizes" : [
-		  [0.0, "0.1 0.1 0.1"]
+		  [0.0, "0.1 0.1 0.1"],
+			[0.0, "0.1 0.1 0.1"]
     ]
   },
   "color" : {
-    "opacity" : 0.25,
+    "opacity" : 1,
     "colors" : [
-      [0.0, "0.7 0.7 0.7 0.0"],
+      [0.0, "0.7 0.0 0.0 1.0"],
 			[0.2, "0.7 0.7 0.7 1.0"],
 			[0.8, "0.7 0.7 0.7 1.0"],
 			[1.0, "0.7 0.7 0.7 0.0"]

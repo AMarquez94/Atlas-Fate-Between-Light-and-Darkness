@@ -56,7 +56,20 @@ namespace Particles
             //cps->n_emission.interval = emission.value("interval", cps->n_emission.interval);
             cps->n_emission.variation = emission.value("variation", cps->n_emission.variation);
             cps->n_emission.time_ratio = 1 / cps->n_emission.rate_time;
-            // Add bursts support
+
+            // bursts support
+
+            if (emission.count("bursts")) {
+                for (auto& raw_burst : emission["bursts"])
+                {
+                    TCoreSystem::TNEmission::TNBurst burst;
+                    burst.time = raw_burst[0];
+                    burst.count = raw_burst[1];
+                    burst.cycles = raw_burst[2];
+                    burst.interval = raw_burst[3];
+                    cps->n_emission.bursts.push_back(burst);
+                }
+            }
         }
         
         // shape
@@ -111,6 +124,7 @@ namespace Particles
             cps->n_renderer.frameSize = loadVEC2(render.value("frame_size", "1 1"));
             cps->n_renderer.numFrames = render.value("num_frames", cps->n_renderer.numFrames);
             cps->n_renderer.frameSpeed = render.value("frame_speed", cps->n_renderer.frameSpeed);
+            cps->n_renderer.length = render.value("length", cps->n_renderer.length);
             cps->n_renderer.texture = Resources.get(render.value("texture", ""))->as<CTexture>();
         }
 

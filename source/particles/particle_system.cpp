@@ -224,7 +224,7 @@ namespace Particles
                 
                 p.position += p.velocity * delta;
                 p.position += kWindVelocity * _core->n_velocity.wind * delta;
-                p.rotation += VEC3::Transform(_core->n_velocity.rotation.get(life_ratio), world_rot) * delta; // Based on local coordinates, apply transform...
+                p.rotation += VEC3::Transform(_core->n_velocity.rotation.get(life_ratio) / M_PI, world_rot) * delta;
 
                 p.color = _core->n_color.colors.get(life_ratio) * _fadeRatio;
                 p.color.w *= _core->n_color.opacity;
@@ -282,10 +282,14 @@ namespace Particles
                     emit(p.count);
 
                     // Remove the burst, it's finished
-                    if (p.cycles < 1) it = _core->n_emission.bursts.erase(it);
-                    else ++it;
+                    if (p.cycles < 1) {
+                        it = _core->n_emission.bursts.erase(it);
+                        continue;
+                    }
                 }
             }
+
+            ++it;
         }
     }
 
@@ -324,15 +328,15 @@ namespace Particles
         {
             TParticle particle;
             particle.position = VEC3::Transform(generatePosition() + _core->n_system.offset, world);
-            particle.velocity = VEC3::Transform(generateVelocity(), world_rot);
+            particle.velocity = _core->n_system.start_speed * VEC3::Transform(generateVelocity(), world_rot);
             particle.origin_velocity = particle.velocity;
             particle.color = _core->n_color.colors.get(0.f);
-            particle.size = _core->n_size.sizes.get(0.f);
+            particle.size = _core->n_system.start_size * _core->n_size.sizes.get(0.f);
             particle.scale = _core->n_size.scale + random(-_core->n_size.scale_variation, _core->n_size.scale_variation);
             particle.frame = _core->n_renderer.initialFrame;
             particle.init_frame = random(0, _core->n_renderer.numFrames);
             //particle.rotation = (1 - _core->n_system.random_rotation) * M_PI * VEC3(deg2rad(_core->n_system.start_rotation.x), deg2rad(_core->n_system.start_rotation.y), deg2rad(_core->n_system.start_rotation.z));
-            particle.rotation = _core->n_system.random_rotation * M_PI * _core->n_system.start_rotation;
+            particle.rotation = _core->n_system.start_rotation + _core->n_system.random_rotation * M_PI * _core->n_system.start_rotation;
             particle.lifetime = 0.f;
             particle.max_lifetime = _core->n_system.duration + random(-_core->n_emission.variation, _core->n_emission.variation);
             particle.is_update = false;
@@ -416,8 +420,8 @@ namespace Particles
 
             case TCoreSystem::TNShape::Cone:
             {                
-                float angle = 1 - (rad2deg(_core->n_shape.angle) / 90);
-                VEC3 dir(random(angle, 1), 1, random(angle, 1));
+                float angle = _core->n_shape.angle / M_PI_2;
+                VEC3 dir(random(-angle, angle), 1, random(-angle, angle));
                 dir.Normalize();
                 return dir;
             }
@@ -451,56 +455,83 @@ namespace Particles
         if (!_enabled || !_entity.isValid()) return;
         if (_deploy_time < _core->n_system.start_delay) return;
 
-        CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
-        assert(eCurrentCamera);
-        TCompCamera* camera = eCurrentCamera->get<TCompCamera>();
-        assert(camera);
-
-        VEC3 cameraPos = camera->getPosition();
-        VEC3 cameraUp = camera->getUp();
-
         //Hardcoded, move it from here.
         CEntity * ent = _entity;
         TCompTransform * c_ent_transform = ent->get<TCompTransform>();
-        if (_core->n_renderer.mode == TCoreSystem::TNRenderer::EMODE::HORIZONTAL) {
-            cameraPos = c_ent_transform->getPosition() + c_ent_transform->getUp();
-            cameraUp = c_ent_transform->getFront();
-        }
-
-        const int frameCols = static_cast<int>(_core->n_renderer.frameSize.x);
-
-        auto rmesh = Resources.get("data/meshes/quad_volume_particles.instanced_mesh")->as<CRenderMesh>();
-        CRenderMeshInstanced* instanced_particle = (CRenderMeshInstanced*)rmesh;
-        instanced_particle->vtx_decl = CVertexDeclManager::get().getByName("CpuParticleInstance");
 
         std::vector<Particles::TIParticle> particles_instances;
         particles_instances.reserve(_particles.size());
 
+        float frameX = 1 / _core->n_renderer.frameSize.x;
+        float frameY = 1 / _core->n_renderer.frameSize.y;
+        const int frameCols = static_cast<int>(_core->n_renderer.frameSize.x);
+
+        float length = 1;
+        VEC3 camera_pos, camera_up;
+        getRenderMode(camera_pos, camera_up, length);
+
         for (auto& p : _particles)
         {
             VEC3 pos = p.is_update ? c_ent_transform->getPosition() + p.position : p.position;
-            MAT44 bb = MAT44::CreateBillboard(pos, cameraPos, cameraUp);
-            MAT44 sc = MAT44::CreateScale(p.size * p.scale);
+            MAT44 bb = MAT44::CreateBillboard(pos, pos + camera_pos, camera_up);
+            MAT44 sc = MAT44::CreateScale(p.size * p.scale * VEC3(length, 1, 1));
             MAT44 rt = MAT44::CreateFromYawPitchRoll(p.rotation.x, p.rotation.y, p.rotation.z);
 
             int row = p.frame / frameCols;
             int col = p.frame % frameCols;
-            VEC2 minUV = VEC2(col * (1 / _core->n_renderer.frameSize.x), row * (1 / _core->n_renderer.frameSize.y));
-            VEC2 maxUV = minUV + VEC2(1 / _core->n_renderer.frameSize.x, 1 / _core->n_renderer.frameSize.y);
+            VEC2 minUV = VEC2(col * frameX, row * frameY);
+            VEC2 maxUV = minUV + VEC2(frameX, frameY);
 
             Particles::TIParticle t_struct = { rt * sc * bb, minUV, maxUV, p.color };
             particles_instances.push_back(t_struct);
         }
 
-        instanced_particle->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(Particles::TIParticle));
+        // Replace this when needed.
+        {
+            auto rmesh = Resources.get("data/meshes/quad_volume_particles.instanced_mesh")->as<CRenderMesh>();
+            CRenderMeshInstanced* instanced_particle = (CRenderMeshInstanced*)rmesh;
+            instanced_particle->vtx_decl = CVertexDeclManager::get().getByName("CpuParticleInstance");
+            instanced_particle->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(Particles::TIParticle));
 
-        auto technique2 = Resources.get("particles_instanced_combinative.tech")->as<CRenderTechnique>();
-        technique2->activate();
+            auto technique2 = Resources.get("particles_instanced_combinative.tech")->as<CRenderTechnique>();
+            technique2->activate();
 
-        _core->n_renderer.texture->activate(TS_ALBEDO1);
-        CRenderManager::get().renderCategory("particles_instanced_combinative");
+            _core->n_renderer.texture->activate(TS_ALBEDO1);
+            CRenderManager::get().renderCategory("particles_instanced_combinative");
+        }
     }
 
+
+    void CSystem::getRenderMode(VEC3 & camera_pos, VEC3 & camera_up, float & length)
+    {
+        CEntity * ent = _entity;
+        TCompTransform * c_ent_transform = ent->get<TCompTransform>();
+        assert(c_ent_transform);
+
+        CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
+        assert(eCurrentCamera);
+        TCompCamera* camera = eCurrentCamera->get<TCompCamera>();
+        assert(camera);
+
+        if (_core->n_renderer.mode == TCoreSystem::TNRenderer::EMODE::HORIZONTAL) {
+            camera_pos = VEC3(0, 1, 0);
+            camera_up = VEC3(1,0,0);
+        }
+        else if (_core->n_renderer.mode == TCoreSystem::TNRenderer::EMODE::VERTICAL) {
+            camera_pos = VEC3(-camera->getFront().x, 0, -camera->getFront().z);
+            camera_up = VEC3(0, 1, 0);
+        }
+        else if (_core->n_renderer.mode == TCoreSystem::TNRenderer::EMODE::STRETCHED) {
+            camera_pos = -camera->getFront();
+            camera_up = c_ent_transform->getFront();
+            length = _core->n_renderer.length;
+        }
+        else {
+            camera_pos = -camera->getFront();
+            camera_up = camera->getUp();
+        }
+
+    }
 
     TParticleHandle CSystem::getHandle() const
     {

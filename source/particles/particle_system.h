@@ -104,14 +104,15 @@ namespace Particles
 
         struct TNRenderer
         {
-            enum EMODE { BILLBOARD = 0, HORIZONTAL, VERTICAL };
-            EMODE mode;
+            enum EMODE { BILLBOARD = 0, HORIZONTAL, VERTICAL, STRETCHED };
+            EMODE mode = BILLBOARD;
 
             const CTexture* texture = nullptr; // particle texture
             VEC2 frameSize = VEC2(1, 1);       // size of frame in the texture (in UV coords)
             int numFrames = 1;                 // number of animation frames
             int initialFrame = 0;              // initial frame
             float frameSpeed = 0.f;            // frame change speed
+            float length = 1;
         };
 
         TNSystem        n_system;
@@ -214,6 +215,7 @@ namespace Particles
         VEC3 generatePosition() const;
         VEC3 generateVelocity() const;
         VEC3 generateDirection() const;
+        void getRenderMode(VEC3 & camera_pos, VEC3 & camera_up, float & length);
 
         VEC3 AddNoiseOnAngle(float min, float max);
 

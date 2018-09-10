@@ -72,7 +72,7 @@ float4 PS_Particles(
 {
   float2 finalUV = lerp(iMinUv, iMaxUv, iTex0);
   float4 oDiffuse = txAlbedo1.Sample(samLinear, finalUV);
-	return float4(1,1,1,1);
+	return iColorP;
   float4 finalColor = float4(oDiffuse.rgb * iColorP.rgb, oDiffuse.a * iColorP.a);
   return finalColor;
 }
