@@ -1,0 +1,50 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_suelo"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_suelo"
+      ,
+      "transform":
+      {
+        "pos": "5.10233 -1.00002 -355.59"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_suelo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "43.8229 0.5 46.43"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

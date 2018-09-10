@@ -1,0 +1,18 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_cupulasyventanas_alb.dds"
+    ,
+    "metallic": "data/textures/tx_cupulasyventanas_met.dds"
+    ,
+    "roughness": "data/textures/tx_cupulasyventanas_rgh.dds"
+    ,
+    "normal": "data/textures/tx_cupulasyventanas_nml.dds"
+    ,
+    "height": "data/textures/tx_cupulasyventanas_hgt.dds"
+    ,
+    "aocclusion": "data/textures/tx_cupulasyventanas_ao.dds"
+  }
+}

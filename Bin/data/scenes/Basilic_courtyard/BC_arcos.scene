@@ -1,0 +1,110 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_arcos"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_arco_low001"
+      ,
+      "transform":
+      {
+        "pos": "1.18158 9.19744 -385.342"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_arco_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_BC_arco_low001.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_barandilla_low"
+      ,
+      "transform":
+      {
+        "pos": "-25.8349 17.9316 -388.643"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_barandilla_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_central.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_barra_low001"
+      ,
+      "transform":
+      {
+        "pos": "-2.29257 9.93571 -385.271"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_barra_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_central.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]
