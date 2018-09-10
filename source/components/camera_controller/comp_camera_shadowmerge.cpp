@@ -30,7 +30,7 @@ void TCompCameraShadowMerge::load(const json& j, TEntityParseContext& ctx)
     _starting_pitch = deg2rad(j.value("starting_pitch", 0.f));
 
     // Load the target and set his axis as our axis.
-    _h_target = ctx.findEntityByName(_target_name);
+    _h_target = getEntityByName(_target_name);
     TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>();
 
     float yaw, pitch, roll;

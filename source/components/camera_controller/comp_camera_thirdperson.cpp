@@ -25,8 +25,7 @@ void TCompCameraThirdPerson::load(const json& j, TEntityParseContext& ctx)
     _clipping_offset = loadVEC3(j["offset"]);
     _clamp_angle = VEC2(deg2rad(_clamp_angle.x), deg2rad(_clamp_angle.y));
 
-    // Load the target and set his axis as our axis.
-    _h_target = ctx.findEntityByName(_target_name);
+    _h_target = getEntityByName(_target_name);
     TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>();
 
     float yaw, pitch, roll;
@@ -45,6 +44,8 @@ void TCompCameraThirdPerson::registerMsgs()
     DECL_MSG(TCompCameraThirdPerson, TMsgSetCameraActive, onMsgCameraSetActive);
     DECL_MSG(TCompCameraThirdPerson, TMsgScenePaused, onPause);
     DECL_MSG(TCompCameraThirdPerson, TMsgCameraReset, onMsgCameraReset);
+    DECL_MSG(TCompCameraThirdPerson, TMsgEntityCreated, onMsgCameraCreated);
+    DECL_MSG(TCompCameraThirdPerson, TMsgEntitiesGroupCreated, onMsgCameraGroupCreated);
     DECL_MSG(TCompCameraThirdPerson, TMsgCameraResetTargetPos, onMsgCameraResetTargetPos);
     DECL_MSG(TCompCameraThirdPerson, TMsgCameraFov, onMsgCameraFov);
 }
@@ -64,6 +65,30 @@ void TCompCameraThirdPerson::onMsgCameraActive(const TMsgCameraActivated & msg)
             v_tp_cameras[i].sendMsg(msg);
         }
     }
+}
+
+void TCompCameraThirdPerson::onMsgCameraGroupCreated(const TMsgEntitiesGroupCreated & msg) {
+
+    // Load the target and set his axis as our axis.
+    //_h_target = getEntityByName(_target_name);
+    //TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>();
+
+    //float yaw, pitch, roll;
+    //target_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+    //_current_euler = VEC2(yaw, pitch);
+    //_original_euler = _current_euler;
+}
+
+void TCompCameraThirdPerson::onMsgCameraCreated(const TMsgEntityCreated & msg) {
+
+    // Load the target and set his axis as our axis.
+    //_h_target = getEntityByName(_target_name);
+    //TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>();
+
+    //float yaw, pitch, roll;
+    //target_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+    //_current_euler = VEC2(yaw, pitch);
+    //_original_euler = _current_euler;
 }
 
 void TCompCameraThirdPerson::onMsgCameraFullActive(const TMsgCameraFullyActivated & msg)

@@ -95,12 +95,6 @@ void PS_GBuffer(
 	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
 	o_normal = encodeNormal(N, roughness);
 	
-	if (scalar_metallic >= 0.f)
-		o_albedo.a = scalar_metallic;
-		
-	if (scalar_roughness >= 0.f)
-		o_normal.a = scalar_roughness;
-		
 	// Compute the Z in linear space, and normalize it in the range 0...1
 	// In the range z=0 to z=zFar of the camera (not zNear)
 	float3 camera2wpos = iWorldPos - camera_pos;
@@ -138,12 +132,6 @@ void PS_GBuffer_Player(
 	float3 N = computeNormalDistortion(iNormal, iTangent, noiseF);
 	o_normal = encodeNormal(N, roughness);
 	
-	if (scalar_metallic >= 0.f)
-		o_albedo.a = scalar_metallic;
-		
-	if (scalar_roughness >= 0.f)
-		o_normal.a = scalar_roughness;
-		
 	// Compute the Z in linear space, and normalize it in the range 0...1
 	// In the range z=0 to z=zFar of the camera (not zNear)
 	float3 camera2wpos = iWorldPos - camera_pos;
@@ -244,35 +232,61 @@ void PS_GBufferMix(
 , float3 iNormal : NORMAL0
 , float4 iTangent : NORMAL1
 , float2 iTex0 : TEXCOORD0
-, float3 iWorldPos : TEXCOORD1
+, float2 iTex1 : TEXCOORD1
+, float3 iWorldPos : TEXCOORD2
 , out float4 o_albedo : SV_Target0
 , out float4 o_normal : SV_Target1
 , out float1 o_depth : SV_Target2
+, out float4 o_selfIllum : SV_Target3
 )
 {
 
   // This is different -----------------------------------------
-  // iTex0 *= 4;
+	float4 weight_texture_boost = txMixBlendWeights.Sample(samLinear, iTex1);
   float4 albedoR = txAlbedo.Sample(samLinear, iTex0);
   float4 albedoG = txAlbedo1.Sample(samLinear, iTex0);
   float4 albedoB = txAlbedo2.Sample(samLinear, iTex0);
-	
+		
   float w1, w2, w3;
-  computeBlendWeights( albedoR.a + mix_boost_r
-                     , albedoG.a + mix_boost_g
-                     , albedoB.a + mix_boost_b
+  computeBlendWeights( albedoR.a + mix_boost_r + weight_texture_boost.r
+                     , albedoG.a + mix_boost_g + weight_texture_boost.g
+                     , albedoB.a + mix_boost_b + weight_texture_boost.b
                      , w1, w2, w3 );
   
+	// Use the weight to 'blend' the albedo colors
   float4 albedo = albedoR * w1 + albedoG * w2 + albedoB * w3;
   o_albedo.xyz = albedo.xyz;
+	o_selfIllum.xyz *= self_color.xyz;
+	//float aoR = txAOcclusion.Sample(samLinear, iTex0).r;
+	//float aoG = txAOcclusion1.Sample(samLinear, iTex0).r;
+	//float aoB = txAOcclusion2.Sample(samLinear, iTex0).r;
+	//float ao_color = aoR * w1 + aoG * w2 + aoB * w3; 
+  o_selfIllum = float4(0,0,0,1);//ao_color;
+	
+  // This isMix the normal
+  float3 normalR = txNormal.Sample(samLinear, iTex0).xyz * 2.0 - 1.0;
+  float3 normalG = txNormal1.Sample(samLinear, iTex0).xyz * 2.0 - 1.0;
+  float3 normalB = txNormal2.Sample(samLinear, iTex0).xyz * 2.0 - 1.0;
+  float3 normal_color = normalR * w1 + normalG * w2 + normalB * w3; 
+  float3x3 TBN = computeTBN( iNormal, iTangent );
 
-  // This is the same -----------------------------------------
-  o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
-  float3 N = computeNormalMap( iNormal, iTangent, iTex0 );
+  // Normal map comes in the range 0..1. Recover it in the range -1..1
+  float3 wN = mul( normal_color, TBN );
+  float3 N = normalize( wN );
+
+  float metallicR = txMetallic.Sample(samLinear, iTex0).r;
+	float metallicG = txMetallic1.Sample(samLinear, iTex0).r;
+	float metallicB = txMetallic2.Sample(samLinear, iTex0).r;
+  float metallic_color = metallicR * w1 + metallicG * w2 + metallicB * w3; 
+  o_albedo.a = metallic_color;
 
   // Save roughness in the alpha coord of the N render target
-  float roughness = txRoughness.Sample(samLinear, iTex0).r;
-  o_normal = encodeNormal( N, roughness );
+  float roughnessR = txRoughness.Sample(samLinear, iTex0).r;
+	float roughnessG = txRoughness1.Sample(samLinear, iTex0).r;
+	float roughnessB = txRoughness2.Sample(samLinear, iTex0).r;
+  float roughness_color = roughnessR * w1 + roughnessG * w2 + roughnessB * w3; 
+	
+  o_normal = encodeNormal( N, roughness_color );
 
   // Compute the Z in linear space, and normalize it in the range 0...1
   // In the range z=0 to z=zFar of the camera (not zNear)
@@ -408,7 +422,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	// How much the environment we see
 	float3 env_fresnel = Specular_F_Roughness(specular_color, 1. - roughness * roughness, N, view_dir);
 
-	float g_ReflectionIntensity = 2.0;
+	float g_ReflectionIntensity = 1.0;
 	float g_AmbientLightIntensity = 1.0;
 
 	float ao = txAO.Sample( samLinear, iUV).x;
@@ -417,11 +431,11 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	// Compute global fog on ambient.
 	float3 pixel_depth = camera_pos.xyz - wPos;
 	float distancet = length(pixel_depth);
-	float visibility = exp(distancet * distancet * -global_fog_density * global_fog_density * 0.42695);
+	float visibility = exp(distancet * distancet * -global_fog_density * global_fog_density * 0.12695);
 	visibility = saturate(visibility);
 
 	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
-	final_color = final_color * global_ambient_adjustment * ao * self_illum.a;
+	final_color = final_color * global_ambient_adjustment * ao * pow(self_illum.a, 2);
 	final_color = lerp(float4(env,1), final_color, visibility) + float4(self_illum.xyz, 1) * global_ambient_adjustment * global_self_intensity;
 	return float4(final_color.xyz, 1);
 }

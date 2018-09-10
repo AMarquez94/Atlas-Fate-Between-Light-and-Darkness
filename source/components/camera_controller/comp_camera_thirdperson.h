@@ -25,6 +25,7 @@ private:
     const Input::TButton& btHorizontal = EngineInput["MouseX"];
     const Input::TButton& btVertical = EngineInput["MouseY"];
     const Input::TButton& btDebugPause = EngineInput["btDebugPause"];
+    void onPause(const TMsgScenePaused& msg);
 
     DECL_SIBLING_ACCESS();
 

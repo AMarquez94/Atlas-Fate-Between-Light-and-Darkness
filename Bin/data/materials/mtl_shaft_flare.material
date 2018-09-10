@@ -2,7 +2,7 @@
 	"technique": "pbr_shaft_spotlight.tech",
 	"shadows": false,
 	"textures": {
-		"albedo": "data/textures/tx_spotlight_falloff.dds",
-		"emissive": "data/textures/tx_spotlight_beam.dds"
+		"albedo": "data/textures/tx_shaft_flare.dds",
+		"normal": "data/textures/null_normal.dds"
 	}
 }

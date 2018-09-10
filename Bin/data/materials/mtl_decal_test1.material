@@ -8,5 +8,6 @@
     "albedo": "data/textures/decals/tx_decal_wall1.dds"
     ,
     "normal": "data/textures/decals/tx_decal_wall1_nml.dds"
+
   }
 }

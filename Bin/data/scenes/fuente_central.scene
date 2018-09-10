@@ -1,0 +1,2293 @@
+[
+  {
+    "entity":
+    {
+      "name": "fuente_central"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_arco_low"
+      ,
+      "transform":
+      {
+        "pos": "1.83936 5.22084 1.79855"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_arco_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_columna_low"
+      ,
+      "transform":
+      {
+        "pos": "1.01374 0.3563 2.43777"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_columna_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_bola"
+      ,
+      "transform":
+      {
+        "pos": "0.0 11.4353 0.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_bola.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low021"
+      ,
+      "transform":
+      {
+        "pos": "-2.58963 1.8323 -0.92804"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low021.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_tech_low"
+      ,
+      "transform":
+      {
+        "pos": "0.0219755 7.00604 -0.0955508"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_tech_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low"
+      ,
+      "transform":
+      {
+        "pos": "-0.809352 1.8323 2.52808"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_madera_low"
+      ,
+      "transform":
+      {
+        "pos": "-0.0548515 1.91008 2.46933"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_madera_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_madera_grande_low"
+      ,
+      "transform":
+      {
+        "pos": "-0.0548515 2.30976 2.46933"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_madera_grande_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_base_low"
+      ,
+      "transform":
+      {
+        "pos": "1.77768 0.356298 1.69821"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_base_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_moldura_low"
+      ,
+      "transform":
+      {
+        "pos": "1.80413 5.22084 1.76364"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_moldura_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low020"
+      ,
+      "transform":
+      {
+        "pos": "-2.60332 1.8323 0.721832"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low020.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_moldura_low001"
+      ,
+      "transform":
+      {
+        "pos": "-0.0544672 5.22084 2.53662"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_moldura_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_arco_low002"
+      ,
+      "transform":
+      {
+        "pos": "-1.95021 5.22084 1.80429"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_arco_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_moldura_low002"
+      ,
+      "transform":
+      {
+        "pos": "-1.91528 5.22084 1.76904"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_moldura_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_arco_low003"
+      ,
+      "transform":
+      {
+        "pos": "-2.73792 5.22084 -0.0893557"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_arco_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_moldura_low003"
+      ,
+      "transform":
+      {
+        "pos": "-2.68829 5.22084 -0.0895998"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_moldura_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_arco_low004"
+      ,
+      "transform":
+      {
+        "pos": "-1.95592 5.22084 -1.98535"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_arco_low004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_moldura_low004"
+      ,
+      "transform":
+      {
+        "pos": "-1.92066 5.22084 -1.95044"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_moldura_low004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_arco_low005"
+      ,
+      "transform":
+      {
+        "pos": "-0.0623188 5.22084 -2.77301"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_arco_low005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_moldura_low005"
+      ,
+      "transform":
+      {
+        "pos": "-0.0620728 5.22084 -2.72339"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_moldura_low005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_arco_low006"
+      ,
+      "transform":
+      {
+        "pos": "1.83365 5.22084 -1.99106"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_arco_low006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_moldura_low006"
+      ,
+      "transform":
+      {
+        "pos": "1.79874 5.22084 -1.95581"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_moldura_low006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_arco_low007"
+      ,
+      "transform":
+      {
+        "pos": "2.62137 5.22084 -0.0974429"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_arco_low007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_moldura_low007"
+      ,
+      "transform":
+      {
+        "pos": "2.57176 5.22084 -0.0971987"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_moldura_low007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_columna_low001"
+      ,
+      "transform":
+      {
+        "pos": "-1.1295 0.3563 2.43777"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_columna_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_columna_low002"
+      ,
+      "transform":
+      {
+        "pos": "-2.6263 0.356299 0.972748"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_columna_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_columna_low003"
+      ,
+      "transform":
+      {
+        "pos": "-2.60337 0.356299 -1.17535"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_columna_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_columna_low004"
+      ,
+      "transform":
+      {
+        "pos": "-1.15982 0.356299 -2.63644"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_columna_low004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_columna_low005"
+      ,
+      "transform":
+      {
+        "pos": "1.00847 0.356299 -2.62289"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_columna_low005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_columna_low006"
+      ,
+      "transform":
+      {
+        "pos": "2.49046 0.356299 -1.14612"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_columna_low006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_columna_low007"
+      ,
+      "transform":
+      {
+        "pos": "2.54651 0.356299 0.945435"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_columna_low007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_base_low001"
+      ,
+      "transform":
+      {
+        "pos": "-0.0766349 0.356299 2.42139"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_base_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_base_low002"
+      ,
+      "transform":
+      {
+        "pos": "-1.84959 0.356298 1.75912"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_base_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_base_low003"
+      ,
+      "transform":
+      {
+        "pos": "-2.65362 0.356298 -0.101105"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_base_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_base_low004"
+      ,
+      "transform":
+      {
+        "pos": "-1.91395 0.356298 -1.91632"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_base_low004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_base_low005"
+      ,
+      "transform":
+      {
+        "pos": "2.5399 0.356298 -0.128082"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_base_low005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_base_low006"
+      ,
+      "transform":
+      {
+        "pos": "1.74986 0.356298 -1.9231"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_base_low006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low001"
+      ,
+      "transform":
+      {
+        "pos": "0.736877 1.8323 2.52808"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low002"
+      ,
+      "transform":
+      {
+        "pos": "1.28146 1.8323 2.2847"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low003"
+      ,
+      "transform":
+      {
+        "pos": "2.41406 1.8323 1.15198"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low004"
+      ,
+      "transform":
+      {
+        "pos": "-2.42096 1.8323 -1.38251"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low005"
+      ,
+      "transform":
+      {
+        "pos": "-1.31642 1.8323 -2.46768"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low006"
+      ,
+      "transform":
+      {
+        "pos": "-0.809352 4.4749 2.57236"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low007"
+      ,
+      "transform":
+      {
+        "pos": "-0.809352 4.4749 -2.64343"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low008"
+      ,
+      "transform":
+      {
+        "pos": "-2.44454 4.4749 -1.39542"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low008.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low009"
+      ,
+      "transform":
+      {
+        "pos": "1.29602 4.4749 2.31467"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low010"
+      ,
+      "transform":
+      {
+        "pos": "2.60016 4.4749 0.644836"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low011"
+      ,
+      "transform":
+      {
+        "pos": "-2.6006 4.4749 0.644836"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low012"
+      ,
+      "transform":
+      {
+        "pos": "-1.31281 4.4749 2.27301"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low012.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low013"
+      ,
+      "transform":
+      {
+        "pos": "2.35121 4.4749 -1.44504"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low013.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_madera_grande_low001"
+      ,
+      "transform":
+      {
+        "pos": "1.80494 1.87479 1.70096"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_madera_grande_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_madera_low001"
+      ,
+      "transform":
+      {
+        "pos": "1.79392 2.94587 1.71338"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_madera_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low014"
+      ,
+      "transform":
+      {
+        "pos": "2.58484 1.89368 0.670166"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low014.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low015"
+      ,
+      "transform":
+      {
+        "pos": "2.58476 1.8323 -0.931641"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low015.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_madera_low002"
+      ,
+      "transform":
+      {
+        "pos": "2.54072 1.92015 -0.125397"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_madera_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_madera_low003"
+      ,
+      "transform":
+      {
+        "pos": "2.54072 2.27138 -0.125397"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_madera_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_madera_low004"
+      ,
+      "transform":
+      {
+        "pos": "2.54072 2.68678 -0.125397"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_madera_low004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_madera_low005"
+      ,
+      "transform":
+      {
+        "pos": "2.54072 3.08656 -0.125397"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_madera_low005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_madera_low006"
+      ,
+      "transform":
+      {
+        "pos": "-1.80524 1.92015 1.71075"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_madera_low006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_madera_low008"
+      ,
+      "transform":
+      {
+        "pos": "-1.80524 2.68678 1.71075"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_madera_low008.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_madera_low009"
+      ,
+      "transform":
+      {
+        "pos": "-1.83763 3.36758 1.68332"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_madera_low009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_madera_low010"
+      ,
+      "transform":
+      {
+        "pos": "-1.83763 2.63531 1.68332"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_madera_low010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_madera_grande_low002"
+      ,
+      "transform":
+      {
+        "pos": "-2.63054 2.30976 -0.121552"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_madera_grande_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_madera_low011"
+      ,
+      "transform":
+      {
+        "pos": "-2.63054 1.91008 -0.121552"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_madera_low011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_madera_grande_low003"
+      ,
+      "transform":
+      {
+        "pos": "1.72285 1.87479 -1.90546"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_madera_grande_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_madera_low012"
+      ,
+      "transform":
+      {
+        "pos": "1.73527 2.94587 -1.89441"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_madera_low012.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_madera_low013"
+      ,
+      "transform":
+      {
+        "pos": "-1.96377 2.27138 -1.91718"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_madera_low013.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_madera_low014"
+      ,
+      "transform":
+      {
+        "pos": "-1.96377 2.68678 -1.91718"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_madera_low014.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low016"
+      ,
+      "transform":
+      {
+        "pos": "-2.39566 1.8323 1.20233"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low016.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low017"
+      ,
+      "transform":
+      {
+        "pos": "-1.30231 1.8323 2.29568"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low017.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low018"
+      ,
+      "transform":
+      {
+        "pos": "2.33916 1.8323 -1.37125"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low018.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_barra_low019"
+      ,
+      "transform":
+      {
+        "pos": "1.20645 1.8323 -2.50385"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_barra_low019.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_suelo_low"
+      ,
+      "transform":
+      {
+        "pos": "0.0141273 -0.0437025 -0.0776367"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_suelo_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_anillo_int_low"
+      ,
+      "transform":
+      {
+        "pos": "0.0 11.4353 0.0"
+        ,
+        "rotation": "0.0 0.241075 0.0 -0.970506"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_anillo_int_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_anillo_ext_low"
+      ,
+      "transform":
+      {
+        "pos": "0.0 11.4353 0.0"
+        ,
+        "rotation": "-0.0131666 0.00327059 0.241053 -0.970417"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_anillo_ext_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_arco_low001"
+      ,
+      "transform":
+      {
+        "pos": "-0.0542436 5.22084 2.58624"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_arco_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

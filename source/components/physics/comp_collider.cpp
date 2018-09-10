@@ -32,9 +32,6 @@ void TCompCollider::debugInMenu() {
 
 void TCompCollider::renderDebug() {
 
-    activateRSConfig(RSCFG_WIREFRAME);
-    //renderColliders(onlyDynamics);
-    activateRSConfig(RSCFG_DEFAULT);
 }
 
 void TCompCollider::load(const json& j, TEntityParseContext& ctx) {

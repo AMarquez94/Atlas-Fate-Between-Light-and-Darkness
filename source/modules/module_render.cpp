@@ -18,6 +18,7 @@
 #include "fsm/fsm.h"
 
 #include "geometry/geometry.h"
+#include "geometry/rigid_anim.h"
 #include "render/texture/render_to_texture.h"
 
 #include "components/comp_tags.h"
@@ -35,6 +36,7 @@
 #include "components/postfx/comp_render_motion_blur.h"
 #include "components/postfx/comp_render_flares.h"
 #include "components/postfx/comp_render_environment.h"
+#include "components/postfx/comp_ssr.h"
 
 //--------------------------------------------------------------------------------------
 
@@ -44,8 +46,8 @@ CModuleRender::CModuleRender(const std::string& name)
 
 //--------------------------------------------------------------------------------------
 // All techs are loaded from this json file
-bool parseTechniques() {
 	json j = loadJson("data/techniques.json");
+bool parseTechniques() {
 	for (auto it = j.begin(); it != j.end(); ++it) {
 
 		std::string tech_name = it.key() + ".tech";
@@ -80,7 +82,7 @@ bool CModuleRender::start()
 	Resources.registerResourceClass(getResourceClassOf<CGameCoreSkeleton>());
 	Resources.registerResourceClass(getResourceClassOf<CPhysicsMesh>());
 	Resources.registerResourceClass(getResourceClassOf<CCurve>());
-
+	Resources.registerResourceClass(getResourceClassOf<RigidAnims::CRigidAnimResource>());
 
 	if (!createRenderObjects())
 		return false;
@@ -144,10 +146,11 @@ bool CModuleRender::start()
 	cb_globals.global_hdr_enabled = 1.f;
 	cb_globals.global_gamma_correction_enabled = 1.f;
 	cb_globals.global_tone_mapping_mode = 1.f;
-    cb_globals.global_fog_density = 0.023f;
+    cb_globals.global_fog_density = 0.024f;
     cb_globals.global_fog_color = VEC3(0.76,0.93,0.93);
     cb_globals.global_fog_env_color = VEC3(0.0, 0.171, 0.34);
     cb_globals.global_self_intensity = 10.f;
+    cb_globals.global_delta_time = 0.f;
 
 	cb_light.activate();
 	cb_object.activate();
@@ -206,6 +209,7 @@ void CModuleRender::update(float delta)
 	// Notify ImGUI that we are starting a new frame
 	ImGui_ImplDX11_NewFrame();
 
+    cb_globals.global_delta_time = delta;
 	cb_globals.global_world_time += delta;
 }
 
@@ -387,7 +391,7 @@ void CModuleRender::postProcessingStack() {
 
     if (camera_render.isValid() && _generatePostFX) {
         CEntity * e_cam = camera_render;
-
+        
         // The bloom blurs the given input
         TCompRenderBloom* c_render_bloom = e_cam->get< TCompRenderBloom >();
         if (c_render_bloom) {
@@ -417,11 +421,15 @@ void CModuleRender::postProcessingStack() {
         // Check if we have a color grading component
         TCompFog * c_render_fog = e_cam->get< TCompFog >();
         if (c_render_fog)
-            curr_rt = c_render_fog->apply(curr_rt);
+            curr_rt = c_render_fog->apply(curr_rt, deferred.rt_acc_light);
 
         TCompChromaticAberration* c_chroma_aberration = e_cam->get< TCompChromaticAberration >();
         if (c_chroma_aberration)
             curr_rt = c_chroma_aberration->apply(curr_rt);
+
+        TCompSSR* c_srr = e_cam->get< TCompSSR >();
+        if (c_srr)
+            curr_rt = c_srr->apply(curr_rt);
 
         TCompRenderEnvironment * c_render_enviornment = e_cam->get< TCompRenderEnvironment >();
         if (c_render_enviornment)
@@ -446,7 +454,7 @@ void CModuleRender::postProcessingStack() {
         TCompAntiAliasing* c_antialiasing = e_cam->get< TCompAntiAliasing >();
         if (c_antialiasing)
             curr_rt = c_antialiasing->apply(curr_rt);
-
+        
         CEntity* e_camera = h_e_camera;
         TCompCamera * t_cam = e_camera->get<TCompCamera>();
         cb_camera.prev_camera_view_proj = t_cam->getViewProjection();

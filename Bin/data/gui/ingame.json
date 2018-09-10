@@ -12,13 +12,13 @@
 					{
 						"name" : "background",
 						"type" : "image",
-						"size" : "40 40",
+						"size" : "32 32",
 						"texture" : "data/textures/gui/hud_stamina_background.dds"
 					},
 					{
 						"name" : "staminar_bar",
 						"type" : "radialbar",
-						"size" : "40 40",
+						"size" : "32 32",
 						"color" : "0.05 1 0.25 1",
 						"texture" : "data/textures/gui/hud_stamina_bar.dds",
 						"variable" : "staminaBarFactor"

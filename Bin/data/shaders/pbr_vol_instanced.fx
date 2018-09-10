@@ -144,9 +144,9 @@ float4 PS_IVLight(
 {
     // Sampling planes volumetric lights based shader.
 		float shadow_factor = computeVolumeShadowFactorLight(iViewProj, iWorldPos);
-	
+
     float camera_dist = length(iWorldPos - iLightPos.xyz);
-    float val = 1 / (1.5 + (camera_dist * camera_dist) * iLightValues.w);
+    float val = 1 / (0.25 + (camera_dist * camera_dist) * iLightValues.w);
 
     // From wPos to Light
     float3 light_dir_full = iLightPos.xyz - iWorldPos;
@@ -161,11 +161,11 @@ float4 PS_IVLight(
     return float4(light_color.xyz, clamp_spot * val * noise0.x) * shadow_factor;// * projectColor(iWorldPos);
 }
 
-#define NUM_SAMPLES 25//128
-#define NUM_SAMPLES_RCP 0.04//0.0078125f
+#define NUM_SAMPLES 25
+#define NUM_SAMPLES_RCP 0.04
 #define FACTOR_TAU 0.000001f
-#define FACTOR_PHI 1000000.0f
-#define PI_RCP 110.318309388618379067153776752674503f
+#define FACTOR_PHI 100000.0f
+#define PI_RCP 1.318f
 
 float4 PS_GBuffer_RayShafts(
   float4 Pos       : SV_POSITION
@@ -176,10 +176,9 @@ float4 PS_GBuffer_RayShafts(
   , float3 iWorldPos : TEXCOORD2
 ): SV_Target0
 {
-	
-	float NB_STEPS = 60;
+	float NB_STEPS = 10;
   float TAU = FACTOR_TAU * 1.1;
-  float PHI = FACTOR_PHI * 2.5;
+  float PHI = FACTOR_PHI * 4.5;
 	
 	// Clamped world position to closest fragment
 	int3 ss_load_coords = uint3(Pos.xy, 0);
@@ -187,32 +186,31 @@ float4 PS_GBuffer_RayShafts(
   float  depth = zlinear > Pos.z ? Pos.z : zlinear;
   float3 wPos = getWorldCoords(Pos.xy, depth);
 	
-  float3 rayVector = camera_pos - wPos;
-	float rayLength = length(rayVector);
-	float3 rayDirection = rayVector / rayLength;
+  float3 ray_vector = camera_pos - wPos;
+	float ray_length = length(ray_vector);
+	float3 ray_dir = ray_vector / ray_length;
 
-	float stepLength = rayLength / NB_STEPS;
-	float3 step = rayDirection * stepLength;
+	float step_length = ray_length / NB_STEPS;
+	float3 step = ray_dir * step_length;
 	
 	float3 currentPosition = wPos;
-	float accumFog = 0.0f;
-	float4 color = float4(0.0, 0.25, 0.35, 1);
-	float l = rayLength;
+	float total_fog = 0.0f;
+	float3 color = global_fog_env_color;
+	float l = ray_length;
 			
 	for (int i = 0; i < NB_STEPS; i++)
 	{
-		float shadowTerm = computeShadowFactor(currentPosition);
+		float shadowTerm = computeShadowFactorLight(currentPosition);
     float d = length(currentPosition - light_pos);
     float dRCP = rcp(d);
-    float amount = TAU*(shadowTerm*(PHI*0.25f*PI_RCP)*dRCP*dRCP)*exp(-d*TAU)*exp(-l*TAU)*stepLength;
+    float amount = TAU*(shadowTerm*(PHI*0.25f*PI_RCP)*dRCP*dRCP)*exp(-d*TAU)*exp(-l*TAU)*step_length;
 		
-		l-=stepLength;
-    accumFog += amount;
+		l-=step_length;
+    total_fog += amount;
 		currentPosition += step;
 	}
-	//accumFog /= NB_STEPS;
-	float shadowt = computeShadowFactor(wPos);
-	return float4( accumFog.xxx, 1);
+
+	return float4(total_fog.xxx, 1);
 }
 
 float4 PS_GBuffer_Shafts(
@@ -227,7 +225,7 @@ float4 PS_GBuffer_Shafts(
 	// Fresnel component
 	float3 dir_to_eye = normalize(camera_pos.xyz - iWorldPos.xyz);
 	float3 N = normalize(iNormal.xyz);
-	float fresnel = dot(N, dir_to_eye);
+	float fresnel = dot(N, -dir_to_eye);
 
 	float4 color = float4(0.8, 0.8, 0.8, 1);	
 	color.a = txAlbedo.Sample(samLinear, iTex0).r;
@@ -244,7 +242,7 @@ float4 PS_GBuffer_Shafts(
 	color.a *= saturate(delta_z * camera_zfar);
 	color.a *= 1 - saturate(1/(delta_c * delta_c)) * 0.88;
 		
-	color.a *= pow(abs(fresnel), 4) * 0.8;
+	color.a *= pow(abs(fresnel), 8) * 0.8;
 	return color;
 }
 
@@ -262,5 +260,5 @@ float4 PS_GBuffer_Beam(
 	color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.1 * global_world_time * float2(.5, 0)).r;
 	color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 - 0.1 * global_world_time * float2(.5, 0)).r;
 	
-	return color * (0.65 + sin(global_world_time) * .15);
+	return 1.4 * color * (0.65 + sin(global_world_time) * .15);
 }

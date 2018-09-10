@@ -75,19 +75,6 @@ bool CModuleInstancing::start() {
         e->set(h_group.getType(), h_group);
     }
 
-    {
-        //compute_result = new CTexture();
-        //compute_result->setNameAndClass("output_bw.dds", getResourceClassOf<CTexture>());
-        //if (!compute_result->create(256, 256, DXGI_FORMAT_R8G8B8A8_UNORM, CTexture::CREATE_COMPUTE_OUTPUT))
-        //    return false;
-
-        //json j = loadJson("data/compute_task.json");
-        //if (!compute_task.create(j))
-        //    return false;
-        // Missing
-        // compute_task.destroy();
-    }
-
     return true;
 }
 
@@ -206,9 +193,6 @@ void CModuleInstancing::renderMain() {
     //blood_instances_mesh->setInstancesData(blood_instances.data(), blood_instances.size(), sizeof(TInstanceBlood));
 
     particles_instances_mesh->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(TRenderParticle));
-
-    //compute_task.debugInMenu();
-    //compute_task.run();
 }
 
 void CModuleInstancing::render() {

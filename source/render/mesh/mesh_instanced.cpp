@@ -65,6 +65,7 @@ void CRenderMeshInstanced::setInstancesData(
     assert(bytes_per_instance > 0);
     assert(bytes_per_instance == getVertexDecl()->bytes_per_vertex);
     reserveGPUInstances(total_instances);
+
     if (data)
         updateFromCPU(data, total_instances * bytes_per_instance);
     setSubGroupSize(0, (uint32_t)total_instances);
@@ -87,6 +88,7 @@ void CRenderMeshInstanced::renderSubMesh(uint32_t sub_group_idx) const {
     assert(instanced_mesh);
     assert(instanced_mesh->isValid());
     assert(sub_group_idx < subgroups.size());
+    //auto& sb = instanced_mesh->getSubGroups()[sub_group_idx];
 
     auto& sb = subgroups[sub_group_idx];
     if (sb.num_indices == 0)

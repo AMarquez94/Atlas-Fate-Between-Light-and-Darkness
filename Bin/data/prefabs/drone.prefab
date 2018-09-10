@@ -78,7 +78,7 @@
 			"angle": 20,
 			"inner_cut": 15,
 			"outer_cut": 20,
-			"n_samples": 200,
+			"n_samples": 120,
 			"volume_intensity": 0.1,
 			"color": "0.3 1.0 1.0 1.0",
 			"intensity": 5.0,

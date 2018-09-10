@@ -105,6 +105,7 @@
     <ClCompile Include="components\camera_controller\comp_circular_controller.cpp" />
     <ClCompile Include="components\camera_controller\comp_curve_controller.cpp" />
     <ClCompile Include="components\comp_aabb.cpp" />
+    <ClCompile Include="components\comp_animated_object_controller.cpp" />
     <ClCompile Include="components\comp_audio.cpp" />
     <ClCompile Include="components\comp_camera.cpp" />
     <ClCompile Include="components\comp_culling.cpp" />
@@ -112,6 +113,7 @@
     <ClCompile Include="components\comp_lod.cpp" />
     <ClCompile Include="components\comp_particles.cpp" />
     <ClCompile Include="components\comp_render_cube.cpp" />
+    <ClCompile Include="components\comp_rigid_anim.cpp" />
     <ClCompile Include="components\comp_rt_camera.cpp" />
     <ClCompile Include="components\dynamic_objects\comp_dynamic_capsule.cpp" />
     <ClCompile Include="components\dynamic_objects\comp_dynamic_capsules_manager.cpp" />
@@ -172,6 +174,7 @@
     <ClCompile Include="components\postfx\comp_render_motion_blur.cpp" />
     <ClCompile Include="components\postfx\comp_render_outlines.cpp" />
     <ClCompile Include="components\postfx\comp_antialiasing.cpp" />
+    <ClCompile Include="components\postfx\comp_ssr.cpp" />
     <ClCompile Include="components\postfx\comp_vignette.cpp" />
     <ClCompile Include="components\skeleton\comp_animator.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur.cpp" />
@@ -191,6 +194,7 @@
     <ClCompile Include="geometry\angular.cpp" />
     <ClCompile Include="geometry\curve.cpp" />
     <ClCompile Include="geometry\geometry.cpp" />
+    <ClCompile Include="geometry\rigid_anim.cpp" />
     <ClCompile Include="geometry\SimpleMath.cpp" />
     <ClCompile Include="geometry\transform.cpp" />
     <ClCompile Include="gui\controllers\gui_menu_buttons_controller.cpp" />
@@ -327,6 +331,7 @@
     <ClInclude Include="components\camera_controller\comp_circular_controller.h" />
     <ClInclude Include="components\camera_controller\comp_curve_controller.h" />
     <ClInclude Include="components\comp_aabb.h" />
+    <ClInclude Include="components\comp_animated_object_controller.h" />
     <ClInclude Include="components\comp_audio.h" />
     <ClInclude Include="components\comp_base.h" />
     <ClInclude Include="components\comp_camera.h" />
@@ -335,6 +340,7 @@
     <ClInclude Include="components\comp_lod.h" />
     <ClInclude Include="components\comp_particles.h" />
     <ClInclude Include="components\comp_render_cube.h" />
+    <ClInclude Include="components\comp_rigid_anim.h" />
     <ClInclude Include="components\comp_rt_camera.h" />
     <ClInclude Include="components\dynamic_objects\comp_dynamic_capsule.h" />
     <ClInclude Include="components\dynamic_objects\comp_dynamic_capsules_manager.h" />
@@ -398,6 +404,7 @@
     <ClInclude Include="components\postfx\comp_render_motion_blur.h" />
     <ClInclude Include="components\postfx\comp_render_outlines.h" />
     <ClInclude Include="components\postfx\comp_antialiasing.h" />
+    <ClInclude Include="components\postfx\comp_ssr.h" />
     <ClInclude Include="components\postfx\comp_vignette.h" />
     <ClInclude Include="components\skeleton\cal3d2engine.h" />
     <ClInclude Include="components\skeleton\comp_animator.h" />
@@ -434,6 +441,7 @@
     <ClInclude Include="geometry\curve.h" />
     <ClInclude Include="geometry\geometry.h" />
     <ClInclude Include="geometry\interpolators.h" />
+    <ClInclude Include="geometry\rigid_anim.h" />
     <ClInclude Include="geometry\SimpleMath.h" />
     <ClInclude Include="geometry\transform.h" />
     <ClInclude Include="gui\controllers\gui_menu_buttons_controller.h" />

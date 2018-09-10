@@ -1,0 +1,82 @@
+[{
+	"entity": {
+		"name": "Tutorial Player",
+		"transform": {
+			"pos": "0 0 0"
+		},
+			"render":
+			[{
+					"mesh": "data/meshes/main_player.mesh",
+					"materials":
+					[
+						"data/materials/mtl_hologram_sw_model.material"
+					]
+				}
+			],
+		"particles": {
+			"cores": [
+				"data/particles/sm_ground.particles",
+				"data/particles/sm_top.particles",
+				"data/particles/sm_whisps.particles",
+				"data/particles/sm_whisps2.particles",
+				"data/particles/sm_top_trail.particles"
+			]
+		}
+	}
+}, {
+	"entity": {
+		"name": "PropPlayer",
+		"hierarchy": {
+			"parent": "Tutorial Player",
+			"pos": "0 0 0"
+		},
+		"transform": {},
+		"render": {
+			"mesh": "axis.mesh"
+		}
+	}
+}, {
+	"entity": {
+		"name": "weapon_disc_left",
+		"transform": {
+			"pos": "0 0 0",
+			"lookat": "0 0 0"
+		},
+		"bone_tracker": {
+			"bone": "Bip001 L Hand",
+			"parent": "Tutorial Player"
+		},
+		"render": [{
+			"self_intensity": 0.65,
+			"self_color": "0 1 1 1",
+			"mesh": "data/meshes/weapon_disc.mesh",
+			"materials": [
+				"data/materials/mtl_hologram_sw_model.material"
+			]
+		}],
+		"abs_aabb": true,
+		"local_aabb": true
+	}
+}, {
+	"entity": {
+		"name": "weapon_disc_right",
+		"transform": {
+			"pos": "0 0 0",
+			"lookat": "0 0 0"
+		},
+		"bone_tracker": {
+			"bone": "Bip001 R Hand",
+			"parent": "Tutorial Player"
+		},
+		"render": [{
+			"self_intensity": 0.65,
+			"self_color": "0 1 1 1",
+			"mesh": "data/meshes/weapon_disc.mesh",
+			"materials": [
+				"data/materials/mtl_hologram_sw_model.material"
+			]
+		}],
+		"abs_aabb": true,
+		"local_aabb": true
+	}
+}]

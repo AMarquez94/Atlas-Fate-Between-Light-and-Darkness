@@ -1,0 +1,98 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_prueba_neones"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "prueba_pantalla"
+      ,
+      "transform":
+      {
+        "pos": "11.6894 12.2325 24.188"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/prueba_pantalla.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.1 1.7 2.125"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_redondo_amarillo001"
+      ,
+      "prefab": "data/prefabs/cartel_redondo_amarillo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-4.9425 0.977052 19.5334"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_redondo_azul001"
+      ,
+      "prefab": "data/prefabs/cartel_redondo_azul.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-2.81836 0.977052 19.3936"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_redondo_verde001"
+      ,
+      "prefab": "data/prefabs/cartel_redondo_verde.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-1.33752 0.977052 19.4937"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+    }
+  }
+]
