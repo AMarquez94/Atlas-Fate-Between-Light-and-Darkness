@@ -1095,5 +1095,41 @@
       ,
       "local_aabb": true
     }
+  },
+  {
+    "entity":
+    {
+      "name": "mesh_fondo_pozo"
+      ,
+      "transform":
+      {
+        "pos": "-8.47194 -33.101 -22.9707"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_fondo_pozo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_gloryhole.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_pozo_estructura.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
   }
 ]

@@ -72,7 +72,7 @@ void CResourceManager::registerResource(IResource* new_res) {
     assert(!new_res->getName().empty());
     assert(new_res->getClass());
     // The name must be unique
-    assert(all_resources.find(new_res->getName()) == all_resources.end());
+    //assert(all_resources.find(new_res->getName()) == all_resources.end());
     all_resources[new_res->getName()] = new_res;
 }
 
