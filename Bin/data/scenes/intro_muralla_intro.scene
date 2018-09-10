@@ -275,14 +275,14 @@
     }
   }
   ,
-  {
+   {
     "entity":
     {
       "name": "mesh_muralla_intro_troncho"
       ,
       "transform":
       {
-        "pos": "-11.6504 0.0 9.5"
+        "pos": "-11.6943 0.0 9.5"
         ,
         "rotation": "0.0 -1.0 0.0 0.0"
       }
@@ -303,7 +303,7 @@
       {
         "shape": "mesh"
         ,
-        "name": "data/colliders/collider_muralla_intro_troncho003.collider"
+        "name": "data/colliders/collider_mesh_muralla_intro_troncho.collider"
       }
       ,
       "abs_aabb": true
@@ -340,7 +340,7 @@
       {
         "shape": "mesh"
         ,
-        "name": "data/colliders/collider_muralla_intro_troncho004.collider"
+        "name": "data/colliders/collider_mesh_muralla_intro_troncho_2.collider"
       }
       ,
       "abs_aabb": true
