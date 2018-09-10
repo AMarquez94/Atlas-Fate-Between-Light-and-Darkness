@@ -196,6 +196,7 @@ public:
     void activateCanLandSM(bool activate);
     void pauseEnemy();
     void stunEnemy();
+    const bool isStaminaFull() { return stamina / maxStamina != 1.f; };
 
     VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
 

@@ -244,7 +244,8 @@ void TCompAIPlayer::onMsgPlayerAIEnabled(const TMsgPlayerAIEnabled& msg) {
 
     CEntity* e_me = myHandle.getOwner();
     if (std::strcmp(e_me->getName(), "The Player") == 0) {
-        EngineGUI.enableWidget("stamina_bar_general", !enabledPlayerAI);
+        TCompTempPlayerController* p_controller = get<TCompTempPlayerController>();
+        EngineGUI.enableWidget("stamina_bar_general", !p_controller->isStaminaFull() && !enabledPlayerAI);
         EngineGUI.enableWidget("life_bar", !enabledPlayerAI);
     }
 }

@@ -25,7 +25,6 @@ private:
     const Input::TButton& btHorizontal = EngineInput["MouseX"];
     const Input::TButton& btVertical = EngineInput["MouseY"];
     const Input::TButton& btDebugPause = EngineInput["btDebugPause"];
-    void onPause(const TMsgScenePaused& msg);
 
     DECL_SIBLING_ACCESS();
 
@@ -37,6 +36,8 @@ private:
     void onMsgCameraReset(const TMsgCameraReset &msg);
     void onMsgCameraResetTargetPos(const TMsgCameraResetTargetPos &msg);
     void onMsgCameraFov(const TMsgCameraFov &msg);
+    void onMsgCameraCreated(const TMsgEntityCreated &msg);
+    void onMsgCameraGroupCreated(const TMsgEntitiesGroupCreated &msg);
 
     float getFovUpdated(float dt);
 
