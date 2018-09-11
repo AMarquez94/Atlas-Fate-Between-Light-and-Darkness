@@ -1,3 +1,13 @@
+function onSceneStart_scene_coliseo()
+	toggleButtonCanBePressed("COL_mesh_terminal02", true);
+	toggleButtonCanBePressed("COL_mesh_terminal01", false);
+end
+
+function onSceneStart_scene_coliseo_2()
+	toggleButtonCanBePressed("COL_mesh_terminal02", false);
+	toggleButtonCanBePressed("COL_mesh_terminal01", true);
+end
+
 function transition_coliseum_to_zone_a()
 	toggleButtonCanBePressed("Button Open ZoneA", false);
 	execScriptDelayed("blendInCamera(\"scene_transition_zone_a\", 1.0, \"cinematic\", \"\")", 2);
