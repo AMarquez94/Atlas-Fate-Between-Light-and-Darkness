@@ -4,26 +4,23 @@
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
-		"start_speed": 1,
+		"start_speed": 0.0,
 		"start_size": "1 1 1",
 		"start_rotation": "0 0 0",
 		"random_rotation": 0.0,
 		"start_color": "1 0 0 1",
-		"gravity": 0.5,
+		"gravity": 0.0,
 		"simulation_speed": 1,
-		"max_particles": 2000
+		"max_particles": 300
 	},
 	"emission": {
-		"rate_time": 10.0,
+		"rate_time": 100.0,
 		"rate_distance": 0.0,
-		"variation" : 0.0,
-		"bursts" : [
-      [0,100,100,20]
-    ] 
-	},
+		"variation" : 0.0
+	},	
 	"shape": {
-		"type": "cone",
-		"size": "1 1 1",
+		"type": "box",
+		"size": "10 3 10",
 		"angle": 0
 		
 	},
@@ -36,14 +33,14 @@
     ],
 		"rotation" : [
 		  [0.0, "0.0 0.0 0.0"],
-      [1.0, "0.0 0.0 0.5"]
+      [1.0, "0.0 0.0 0.0"]
     ],
 		"acceleration": 1,
 		"wind": 0
 	},
 	"noise": {
 		"texture": "data/textures/particles/fx_smoke1.dds",
-		"strength": 212.2,
+		"strength": 12.1,
 		"frequency": 0.5,
 		"scroll_speed": 0.0,
 		"damping": true,
@@ -62,19 +59,19 @@
 	},
   "size" : {
     "scale" : 1,
-    "scale_variation" : 0,
+    "scale_variation" : 0.1,
     "sizes" : [
-		  [0.0, "0.1 0.1 0.1"],
-			[1.0, "0.1 0.1 0.1"]
+		  [0.0, "0.045 0.045 0.045"],
+			[1.0, "0.045 0.045 0.045"]
     ]
   },
   "color" : {
-    "opacity" : 1,
+    "opacity" : 0.15,
     "colors" : [
-      [0.0, "0.7 0.0 0.0 1.0"],
-			[0.2, "0.7 0.7 0.7 1.0"],
-			[0.8, "0.7 0.7 0.7 1.0"],
-			[1.0, "0.7 0.7 0.7 0.0"]
+      [0.0, "1.0 1.0 1.0 0.0"],
+			[0.3, "1.0 1.0 1.0 1.0"],
+			[0.8, "1.0 1.0 1.0 1.0"],
+			[1.0, "1.0 1.0 1.0 0.0"]
     ] 
   }
 }

@@ -60,6 +60,11 @@ namespace Particles
         this->setNameAndClass(filename, getResourceClassOf<Particles::TCoreSystem>());
     }
 
+    void Particles::TCoreSystem::destroy()
+    {
+        FastNoiseSIMD::FreeNoiseSet(n_noise.noise_values);
+    }
+
     CSystem::CSystem(const TCoreSystem* core, CHandle entity)
         : _core(core)
         , _entity(entity)
@@ -197,45 +202,60 @@ namespace Particles
             CEntity* e = _entity;
             TCompTransform* e_transform = e->get<TCompTransform>();
             world = e_transform->asMatrix();
+            VEC3 proj_vector = e_transform->getFront();
 
             if(_core->n_velocity.type == 0) // Local coordinates...
                 world_rot = MAT44::CreateFromQuaternion(e_transform->getRotation());
-        }
 
-        const VEC3& kWindVelocity = EngineParticles.getWindVelocity();
+            const VEC3& kWindVelocity = EngineParticles.getWindVelocity();
 
-        for (auto it = _particles.begin(); it != _particles.end();)
-        {
-            TParticle& p = *it;
-            p.lifetime += delta;
-
-            if (p.max_lifetime > 0.f && p.lifetime >= p.max_lifetime)
+            int amount = 0;
+            for (auto it = _particles.begin(); it != _particles.end();)
             {
-                it = _particles.erase(it);
+                TParticle& p = *it;
+                p.lifetime += delta;
+
+                if (p.max_lifetime > 0.f && p.lifetime >= p.max_lifetime)
+                {
+                    it = _particles.erase(it);
+                }
+                else
+                {
+                    float life_ratio = p.max_lifetime > 0.f ? clamp(p.lifetime / p.max_lifetime, 0.f, 1.f) : 1.f;
+                    p.velocity = _core->n_system.start_speed * p.origin_velocity;
+                    p.velocity += VEC3::Transform(_core->n_velocity.velocity.get(life_ratio), world_rot) * _core->n_velocity.acceleration * delta;
+                    p.velocity += kGravity * _core->n_system.gravity * delta;
+
+                    // Compute the noise, disable if it gives bad fps
+                    if(_core->n_noise.strength > 0)
+                    {          
+                        /*float noise_amountx = clamp(_core->n_noise.noise_values[amount] * 10, 0.0f , 1.0f);
+                        float noise_amounty = clamp(_core->n_noise.noise_values[amount+1] * 10, 0.0f, 1.0f);
+                        float noise_amountz = clamp(_core->n_noise.noise_values[amount+2] * 10, 0.0f, 1.0f);
+
+                        VEC3 p_dir = p.origin_velocity.Cross(proj_vector);
+                        VEC3 n_dir = VEC3(p.origin_velocity.x * noise_amountx, p.origin_velocity.y * noise_amounty, p.origin_velocity.z * noise_amountz);*/
+                        VEC3 r_dir = p.random_direction * random(0, 1);
+                        p.velocity += r_dir * _core->n_noise.strength * delta;
+                    }
+
+                    p.position += p.velocity * delta;
+                    p.position += kWindVelocity * _core->n_velocity.wind * delta;
+                    p.rotation += _core->n_velocity.rotation.get(life_ratio) * delta;
+
+                    p.color = _core->n_color.colors.get(life_ratio) * _fadeRatio;
+                    p.color.w *= _core->n_color.opacity;
+                    p.size = _core->n_size.sizes.get(life_ratio);
+
+                    int frame_idx = (int)(p.lifetime * _core->n_renderer.frameSpeed);
+                    p.frame = p.init_frame + _core->n_renderer.initialFrame + (frame_idx % _core->n_renderer.numFrames);
+
+                    ++it;
+                }
+
+                amount = amount + 3;
             }
-            else
-            {
-                float life_ratio = p.max_lifetime > 0.f ? clamp(p.lifetime / p.max_lifetime, 0.f, 1.f) : 1.f;
 
-                p.velocity = p.origin_velocity;
-                float noise_amount = abs(_core->n_noise.noise_values[it - _particles.begin()]);
-                p.velocity += VEC3::Transform(_core->n_velocity.velocity.get(life_ratio), world_rot) * _core->n_velocity.acceleration * delta;
-                p.velocity += kGravity * _core->n_system.gravity * delta;
-                //p.velocity += p.origin_velocity * _core->n_noise.strength * noise_amount;
-
-                p.position += p.velocity * delta;
-                p.position += kWindVelocity * _core->n_velocity.wind * delta;
-                p.rotation += _core->n_velocity.rotation.get(life_ratio) * delta;
-
-                p.color = _core->n_color.colors.get(life_ratio) * _fadeRatio;
-                p.color.w *= _core->n_color.opacity;
-                p.size = _core->n_size.sizes.get(life_ratio);
-
-                int frame_idx = (int)(p.lifetime * _core->n_renderer.frameSpeed);
-                p.frame = p.init_frame + _core->n_renderer.initialFrame + (frame_idx % _core->n_renderer.numFrames);
-
-                ++it;
-            }
         }
     }
 
@@ -329,7 +349,8 @@ namespace Particles
         {
             TParticle particle;
             particle.position = VEC3::Transform(generatePosition() + _core->n_system.offset, world);
-            particle.velocity = _core->n_system.start_speed * VEC3::Transform(generateVelocity(), world_rot);
+            particle.velocity = VEC3::Transform(generateVelocity(), world_rot);
+            particle.random_direction = AddNoiseOnAngle(-180, 180);
             particle.origin_velocity = particle.velocity;
             particle.color = _core->n_color.colors.get(0.f);
             particle.size = _core->n_system.start_size * _core->n_size.sizes.get(0.f);

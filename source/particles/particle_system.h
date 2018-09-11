@@ -13,7 +13,7 @@ namespace Particles
     
     struct TCoreSystem : public IResource
     {
-
+        void destroy() override;
         void onFileChanged(const std::string& filename) override;
 
         struct TNSystem 
@@ -204,6 +204,7 @@ namespace Particles
         void render();
         void launch();
         void debugInMenu();
+        void destroy();
 
         void fadeOut(float duration);
         void setActive(bool active);

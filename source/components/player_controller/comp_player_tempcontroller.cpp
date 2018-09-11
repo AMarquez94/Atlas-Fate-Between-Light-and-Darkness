@@ -709,6 +709,7 @@ const bool TCompTempPlayerController::concaveTest(void) {
 const bool TCompTempPlayerController::convexTest(void) {
 
     physx::PxRaycastHit hit;
+    physx::PxRaycastHit hit2;
     TCompTransform *c_my_transform = get<TCompTransform>();
     TCompRigidbody *rigidbody = get<TCompRigidbody>();
     VEC3 old_up = c_my_transform->getUp();
@@ -724,6 +725,14 @@ const bool TCompTempPlayerController::convexTest(void) {
 
         if (hit.distance > .015f && EnginePhysics.gravity.Dot(hit_normal) < .01f)
         {
+            EnginePhysics.Raycast(upwards_offset, -old_up, 100.f, hit2, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery);
+            
+            // Little trick to avoid bug.
+            if (hit2.distance < SM_THRESHOLD_MAX && hit2.distance > SM_THRESHOLD_MAX) {
+                c_my_transform->setPosition(VEC3(hit2.position.x, hit2.position.y, hit2.position.z));
+                return false;
+            }
+
             VEC3 new_forward = -hit_normal.Cross(c_my_transform->getLeft());
             VEC3 target = hit_point + new_forward;
 

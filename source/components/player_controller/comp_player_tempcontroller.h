@@ -6,6 +6,9 @@
 #include "components/player_controller/comp_player_animator.h"
 #include "gui/gui_widget.h"
 
+#define SM_THRESHOLD_MIN 0.05f
+#define SM_THRESHOLD_MAX 0.2f
+ 
 class TCompTempPlayerController;
 
 typedef void (TCompTempPlayerController::*actionfinish)();

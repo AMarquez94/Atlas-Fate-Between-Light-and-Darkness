@@ -142,7 +142,7 @@ namespace Particles
             cps->n_noise.octaves = noise.value("frame_speed", cps->n_noise.octaves);
 
             cps->n_noise.noise_core = FastNoiseSIMD::NewFastNoiseSIMD();
-            cps->n_noise.noise_values = cps->n_noise.noise_core->GetSimplexFractalSet(0, 0, 0, 16, 16, 16);
+            cps->n_noise.noise_values = cps->n_noise.noise_core->GetPerlinSet(0, 0, 0, 24, 24, 24);
         }
 
         // collision
