@@ -1,0 +1,333 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_coberturas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto001"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "4.38921 -1.46318e-05 -334.738"
+        ,
+        "rotation": "0.0 -0.608762 0.0 -0.793353"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto002"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.38201 -1.46529e-05 -335.219"
+        ,
+        "rotation": "0.0 0.793353 0.0 -0.608762"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto003"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "0.514059 -1.46798e-05 -335.834"
+        ,
+        "rotation": "0.0 -0.608762 0.0 -0.793353"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto004"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-1.45683 -1.46993e-05 -336.28"
+        ,
+        "rotation": "0.0 0.793353 0.0 -0.608762"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto005"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-3.38383 -1.47246e-05 -336.86"
+        ,
+        "rotation": "0.0 -0.608761 0.0 -0.793353"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto006"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-0.386186 -1.63765e-05 -374.652"
+        ,
+        "rotation": "0.0 -0.819152 0.0 -0.573576"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto007"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-2.30678 -1.63435e-05 -373.895"
+        ,
+        "rotation": "0.0 0.573576 0.0 -0.819152"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto008"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-4.18926 -1.63186e-05 -373.327"
+        ,
+        "rotation": "0.0 -0.819152 0.0 -0.573576"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto009"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-6.05994 -1.62852e-05 -372.562"
+        ,
+        "rotation": "0.0 0.573576 0.0 -0.819152"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto010"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-7.97103 -1.62577e-05 -371.932"
+        ,
+        "rotation": "0.0 -0.819152 0.0 -0.573576"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto013"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-7.80254 -1.55482e-05 -355.701"
+        ,
+        "rotation": "0.0 -0.422619 0.0 -0.906308"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto014"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-9.40003 -1.56023e-05 -356.939"
+        ,
+        "rotation": "0.0 -0.906308 0.0 0.422618"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto015"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-10.9014 -1.56608e-05 -358.278"
+        ,
+        "rotation": "0.0 -0.422618 0.0 -0.906308"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto016"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-3.30125 -1.44029e-05 -329.499"
+        ,
+        "rotation": "0.0 -0.766045 0.0 -0.642787"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto017"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.32405 -1.43849e-05 -329.088"
+        ,
+        "rotation": "0.0 0.642787 0.0 -0.766045"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto018"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-7.27659 -1.43747e-05 -328.855"
+        ,
+        "rotation": "0.0 -0.766045 0.0 -0.642787"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto019"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.1412 -1.62238e-05 -371.156"
+        ,
+        "rotation": "0.0 -0.087156 0.0 -0.996195"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto020"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "16.5072 -1.69368e-05 -387.468"
+        ,
+        "rotation": "0.0 -0.422619 0.0 -0.906308"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto021"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "14.9097 -1.69909e-05 -388.706"
+        ,
+        "rotation": "0.0 -0.906308 0.0 0.422618"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_piezaconcreto022"
+      ,
+      "prefab": "data/prefabs/piezaconcreto.prefab"
+      ,
+      "transform":
+      {
+        "pos": "13.4083 -1.70494e-05 -390.046"
+        ,
+        "rotation": "0.0 -0.422618 0.0 -0.906308"
+      }
+    }
+  }
+]

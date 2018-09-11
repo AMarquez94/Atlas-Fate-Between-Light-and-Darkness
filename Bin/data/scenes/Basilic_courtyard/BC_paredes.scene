@@ -14,43 +14,6 @@
   {
     "entity":
     {
-      "name": "bc_aux_pared_1"
-      ,
-      "transform":
-      {
-        "pos": "36.4091 -1.56223e-05 -357.397"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/bc_aux_pared_1.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_mezquita.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_bc_aux_pared_1.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "bc_aux_pared_2"
       ,
       "transform":
@@ -88,19 +51,19 @@
   {
     "entity":
     {
-      "name": "BC_pared_puerta"
+      "name": "bc_aux_pared_1"
       ,
       "transform":
       {
-        "pos": "8.50616 8.80538 -323.952"
+        "pos": "36.4091 -1.56223e-05 -357.397"
         ,
-        "rotation": "-0.5 0.5 -0.5 0.5"
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/BC_pared_puerta.mesh"
+          "mesh": "data/meshes/bc_aux_pared_1.mesh"
           ,
           "materials":
           [
@@ -113,8 +76,105 @@
       {
         "shape": "mesh"
         ,
-        "name": "data/colliders/collider_BC_pared_puerta.collider"
+        "name": "data/colliders/collider_bc_aux_pared_1.collider"
       }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_pared_entrada"
+      ,
+      "transform":
+      {
+        "pos": "4.60642 -1.86072e-05 -425.683"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_pared_entrada.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_BC_pared_entrada.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "collider_bc_aux_pared_4"
+      ,
+      "transform":
+      {
+        "pos": "4.59927 -1.71446e-05 -392.223"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/collider_bc_aux_pared_4.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_barandilla_low"
+      ,
+      "transform":
+      {
+        "pos": "-25.8349 17.9316 -388.643"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_barandilla_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_central.material"
+          ]
+        }
+      ]
       ,
       "abs_aabb": true
       ,
@@ -162,11 +222,11 @@
   {
     "entity":
     {
-      "name": "BC_barandilla_low"
+      "name": "BC_filo_basilica_low"
       ,
       "transform":
       {
-        "pos": "-25.8349 17.9316 -388.643"
+        "pos": "4.60642 22.835 -391.56"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -174,7 +234,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/BC_barandilla_low.mesh"
+          "mesh": "data/meshes/BC_filo_basilica_low.mesh"
           ,
           "materials":
           [
@@ -182,6 +242,13 @@
           ]
         }
       ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_BC_filo_basilica_low.collider"
+      }
       ,
       "abs_aabb": true
       ,
@@ -229,36 +296,6 @@
   {
     "entity":
     {
-      "name": "collider_bc_aux_pared_4"
-      ,
-      "transform":
-      {
-        "pos": "4.59927 -1.71446e-05 -392.223"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/collider_bc_aux_pared_4.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_mezquita.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "BC_pared_lat_2"
       ,
       "transform":
@@ -296,19 +333,19 @@
   {
     "entity":
     {
-      "name": "BC_pared_entrada"
+      "name": "BC_pared_puerta"
       ,
       "transform":
       {
-        "pos": "4.60642 -1.86072e-05 -425.683"
+        "pos": "8.50616 8.80538 -323.952"
         ,
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "-0.5 0.5 -0.5 0.5"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/BC_pared_entrada.mesh"
+          "mesh": "data/meshes/BC_pared_puerta.mesh"
           ,
           "materials":
           [
@@ -321,7 +358,7 @@
       {
         "shape": "mesh"
         ,
-        "name": "data/colliders/collider_BC_pared_entrada.collider"
+        "name": "data/colliders/collider_BC_pared_puerta.collider"
       }
       ,
       "abs_aabb": true
