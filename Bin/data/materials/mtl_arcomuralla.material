@@ -1,0 +1,18 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_arcomuralla_alb.dds"
+    ,
+    "metallic": "data/textures/tx_arcomuralla_met.dds"
+    ,
+    "roughness": "data/textures/tx_arcomuralla_rgh.dds"
+    ,
+    "normal": "data/textures/tx_arcomuralla_nml.dds"
+    ,
+    "height": "data/textures/tx_arcomuralla_hgt.dds"
+    ,
+    "aocclusion": "data/textures/tx_arcomuralla_ao.dds"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_terminal_alb.dds"
+    ,
+    "metallic": "data/textures/tx_terminal_met.dds"
+    ,
+    "roughness": "data/textures/tx_terminal_rgh.dds"
+    ,
+    "normal": "data/textures/tx_terminal_nml.dds"
+    ,
+    "height": "data/textures/tx_terminal_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_terminal_emi.dds"
+    ,
+    "aocclusion": "data/textures/tx_terminal_ao.dds"
+  }
+}

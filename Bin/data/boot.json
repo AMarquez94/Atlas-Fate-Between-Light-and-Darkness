@@ -126,19 +126,13 @@
 		},
 		"scene_group": [
 			"data/scenes/Coliseo/player2_fsm.scene",
-			"data/scenes/main_cameras.scene",
-			"data/scenes/Coliseo/coliseo_suelo.scene",
-			"data/scenes/Coliseo/coliseo_arcos.scene",
-			"data/scenes/Coliseo/coliseo_pared.scene",
-			"data/scenes/Coliseo/coliseo_generador.scene",
-			"data/scenes/Coliseo/coliseo_maquinas.scene",
-			"data/scenes/Coliseo/coliseo_props.scene",
-			"data/scenes/Coliseo/coliseo_conductos.scene",
 			"data/scenes/Coliseo/test_instancing.scene",
+			"data/scenes/Coliseo/camera.scene",
 			"data/scenes/Coliseo/coliseo_particles.scene",
-			"data/scenes/Coliseo/coliseo_farolas.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
-			"data/scenes/Coliseo/buttons.scene"
+			"data/scenes/Coliseo/buttons.scene",
+			
+			"data/scenes/Coliseo/coliseo_structures.scene"
 		]
 	},
 	"scene_coliseo_2": {
@@ -148,7 +142,6 @@
 		"scene_group": [
 			"data/scenes/Coliseo/player2_fsm2.scene",
 			"data/scenes/main_cameras.scene",
-			"data/scenes/Coliseo/coliseo_suelo.scene",
 			"data/scenes/Coliseo/coliseo_arcos.scene",
 			"data/scenes/Coliseo/coliseo_pared.scene",
 			"data/scenes/Coliseo/coliseo_generador.scene",
@@ -159,7 +152,9 @@
 			"data/scenes/Coliseo/coliseo_particles.scene",
 			"data/scenes/Coliseo/coliseo_farolas.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
-			"data/scenes/Coliseo/buttons2.scene"
+			"data/scenes/Coliseo/buttons2.scene",
+			
+			"data/scenes/Coliseo/coliseo_structures.scene"
 		]
 	},
 	"scene_basilic_courtyard": {

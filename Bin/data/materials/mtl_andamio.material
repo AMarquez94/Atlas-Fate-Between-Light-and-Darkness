@@ -12,5 +12,7 @@
     "normal": "data/textures/tx_andamio_nml.dds"
     ,
     "height": "data/textures/tx_andamio_hgt.dds"
+    ,
+    "aocclusion": "data/textures/tx_andamio_ao.dds"
   }
 }
