@@ -3,7 +3,7 @@
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
-			"navmesh": "data/navmeshes/milestone2_navmesh.bin"
+			"navmesh": "data/navmeshes/intro_navmesh.bin"
 		},
 		"scene_group": [
 			"data/scenes/Intro/player_intro_fsm.scene",
