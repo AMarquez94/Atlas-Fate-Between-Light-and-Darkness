@@ -36,6 +36,14 @@ function transition_map_intro_to_coliseum()
 	execScriptDelayed("loadScene(\"scene_coliseo\")", 5);
 end
 
+-- # Transition cinematic # --
+function transition_intro_to_coliseum()
+	--execScriptDelayed("blendInCamera(\"scene_transition\", 1.0, \"cinematic\", \"\")", 2);
+	execScriptDelayed("pausePlayerToggle()", 2);
+	--execScriptDelayed("cinematicModeToggle()", 2);
+	execScriptDelayed("loadScene(\"scene_coliseo\")", 2);
+end
+
 -- # Trigger cinematic # --
 
 function onTriggerEnter_Trigger_Inhibitor_Cinematic_player()

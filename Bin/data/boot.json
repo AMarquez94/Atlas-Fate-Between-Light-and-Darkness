@@ -47,7 +47,8 @@
 			"data/scenes/Intro/enemy.scene",
 			"data/scenes/Intro/cinematic.scene",
 			"data/scenes/Intro/intro_checkpoints.scene",
-			"data/scenes/Intro/intro_trigger_kill.scene"
+			"data/scenes/Intro/intro_trigger_kill.scene",
+			"data/scenes/Intro/intro_buttons.scene"
 
 		]
 	},

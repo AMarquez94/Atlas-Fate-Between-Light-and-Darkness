@@ -338,7 +338,7 @@
 		}
 	},
 	{
-		"entity": {
+		"xentity": {
 			"name": "scene_transition",
 			"transform": {
 				"pos": "-10 10 130",
