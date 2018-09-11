@@ -377,6 +377,7 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
 			float timeToCall = it.value().value("time_to_call", 0.0f);
 			std::string function_to_call = it.value().value("function_to_call", "");
 			new_callback->luaFunction = function_to_call;
+			new_callback->animationName = anim_name;
 			CalCoreAnimation *core_anim = getCoreAnimation(anim_id);
 			core_anim->registerCallback(new_callback, timeToCall, false);
 		}
@@ -386,6 +387,7 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
 
 		AnimationCallback *new_callback = new AnimationCallback();
 		new_callback->luaFunction = "";
+		new_callback->animationName = anim_name;
 		CalCoreAnimation *core_anim = getCoreAnimation(anim_id);
 		core_anim->registerCallback(new_callback, 9999999.99f, true);		
 	}
