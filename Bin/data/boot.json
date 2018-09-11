@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_basilic_courtyard",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -46,7 +46,8 @@
 			"data/scenes/Intro/tutorial.scene",
 			"data/scenes/Intro/enemy.scene",
 			"data/scenes/Intro/cinematic.scene",
-			"data/scenes/Intro/intro_checkpoints.scene"
+			"data/scenes/Intro/intro_checkpoints.scene",
+			"data/scenes/Intro/intro_trigger_kill.scene"
 
 		]
 	},

@@ -84,7 +84,7 @@ end
 -- # Trigger tutorials # --
 
 function onTriggerEnter_SMTutorial_player()
-	moveTutorialPlayer(VEC3(0,0,26), VEC3(0,0,25), true, "sm_tutorial");
+	moveTutorialPlayer(VEC3(-7,0,25.2), VEC3(-7,0,23.2), true, "sm_tutorial");
 end
 
 function onTriggerExit_SMTutorial_player()

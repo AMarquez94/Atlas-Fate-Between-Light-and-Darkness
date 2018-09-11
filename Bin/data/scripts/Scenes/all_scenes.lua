@@ -16,3 +16,7 @@ function onSceneEnd()
 	particles:killAll();
 	stopAllAudioComponents();
 end
+
+function onTriggerEnter_TriggerKill_player()
+	playerController:die();
+end
