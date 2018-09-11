@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_basilic_courtyard",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -174,10 +174,17 @@
 			"data/scenes/Basilic_courtyard/buttons.scene",
 			"data/scenes/Basilic_courtyard/capsules.scene",
 			"data/scenes/Basilic_courtyard/BC_mezquita.scene",
-			"data/scenes/Basilic_courtyard/BC_props_whitebox.scene",
+			
 			"data/scenes/Basilic_courtyard/BC_alminares.scene",
 			"data/scenes/Basilic_courtyard/BC_paredes.scene",
-			"data/scenes/Basilic_courtyard/BC_arcos.scene",
+			"data/scenes/BC_arcos.scene",
+			"data/scenes/BC_andamios.scene",
+			"data/scenes/BC_coberturas.scene",
+			"data/scenes/BC_containers.scene",
+			"data/scenes/BC_props.scene",
+
+			"data/scenes/BC_maderas_whitebox.scene",
+
 			"data/scenes/Basilic_courtyard/BC_fuente.scene",
 			"data/scenes/Basilic_courtyard/BC_suelo.scene"
 
