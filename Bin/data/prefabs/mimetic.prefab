@@ -221,6 +221,10 @@
 				"skeleton": "data/skeletons/crab/crab.skeleton",
 				"scale": 1.0
 			},
+			"skel_lookat" : {
+				"target_entity_name" : "The Player",
+				"amount" : 1
+			},
 			"emission_controller": {
 				"initial": "0.0 1.0 1.0 1.0"
 			},
@@ -254,7 +258,7 @@
 			}
 		}
 	}, {
-		"xentity": {
+		"entity": {
 			"name": "Laserus",
 			"transform": {
 				"pos": "0.0 0.0 0.0"
@@ -270,8 +274,16 @@
 			"bone_tracker":{
 				"parent": "Mimetic",
 				"bone": "Eye",
-				"rotation_offset_axis" : "0.0 1.0 0.0",
+				"rotation_offset_axis" : "0.0 0.0 1.0",
 				"angle" : 90
+			}
+		}
+
+	}, {
+		"entity": {
+			"name": "Target Laser",
+			"transform": {
+				"pos": "0.0 -1.5 3.0"
 			}
 		}
 

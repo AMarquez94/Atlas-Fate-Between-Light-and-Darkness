@@ -11,5 +11,17 @@
 		{"name": "pose_pared"},
 		{"name": "death"}
 
+	],
+	"lookat_corrections" : [
+		{
+			"bone" : "Eye",
+			"local_axis_to_correct" : "1 0 0", 
+			"amount" : 1.0
+		},
+		{
+			"bone" : "Ctrl_Eye",
+			"local_axis_to_correct" : "1 0 0", 
+			"amount" : 1.0
+		}
 	]
 }
