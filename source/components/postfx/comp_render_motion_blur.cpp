@@ -27,7 +27,7 @@ void TCompRenderMotionBlur::load(const json& j, TEntityParseContext& ctx) {
 
     enabled = j.value("enabled", true);
     cb_blur.mblur_blur_samples = j.value("blur_samples", 8.f);
-    cb_blur.mblur_blur_speed = j.value("blur_speed", 0.5f);
+    cb_blur.mblur_blur_speed = j.value("blur_speed", 0.35f);
     cb_blur.mblur_samples = j.value("samples", 8.f);
 
     tech = Resources.get("postfx_motion_blur.tech")->as<CRenderTechnique>();
