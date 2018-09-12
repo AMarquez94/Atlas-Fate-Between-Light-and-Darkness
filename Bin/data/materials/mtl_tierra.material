@@ -1,0 +1,18 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_tierrapiedras_alb.dds"
+    ,
+    "metallic": "data/textures/tx_tierrapiedras_met.dds"
+    ,
+    "roughness": "data/textures/tx_tierrapiedras_rgh.dds"
+    ,
+    "normal": "data/textures/tx_tierrapiedras_nml.dds"
+    ,
+    "height": "data/textures/tx_tierrapiedras_hgt.dds"
+    ,
+    "aocclusion": "data/textures/tx_tierrapiedras_ao.dds"
+  }
+}

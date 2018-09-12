@@ -17,9 +17,9 @@ struct TRigidAnimKey (
 
 struct TRigidAnimExporter (
 
-	project_path = "d:/code/mcv_2018/engine/bin/",
+	project_path = "D:/DeepShadows/Bin/",
 	base_path = "data/",
-	anims_path = base_path + "anims/",
+	anims_path = base_path + "rigid_anims/",
 	
 	fn isValidName aname = (
 		return findString aname " " == undefined 

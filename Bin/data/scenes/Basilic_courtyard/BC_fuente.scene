@@ -67,7 +67,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_fuente.material"
+            "data/materials/characters/mtl_player_main_hologram_solid.material"
           ]
         }
       ]
@@ -85,6 +85,37 @@
     }
   }
   ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_controlador"
+      ,
+      "transform":
+      {
+        "pos": "0 0 0"
+        ,
+        "rotation": "0 0 0 1"
+      },
+      "animated_object_controller":{
+        "reference_names":[
+          {
+            "name" : "BC_fuente_anillo_ext_low"
+          },
+          {
+            "name" : "BC_fuente_anillo_int_low"
+          }
+        ],
+        "animations":[
+          {
+            "name" : "parar",
+            "src" : "data/rigid_anims/Patio_basilica_final63.anims",
+            "loops" : true,
+            "on_start" : true
+          }
+        ]
+      }
+    }
+  },
   {
     "entity":
     {
@@ -107,8 +138,8 @@
             "data/materials/mtl_arco_central.material"
           ]
         }
-      ]
-      ,
+      ],
+      "rigid_anim" : true,
       "collider":
       {
         "shape": "mesh"
@@ -146,6 +177,7 @@
         }
       ]
       ,
+      "rigid_anim" : true,
       "collider":
       {
         "shape": "mesh"

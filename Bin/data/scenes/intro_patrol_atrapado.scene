@@ -1,0 +1,64 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_patrol_atrapado"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_patrol_atrapado"
+      ,
+      "transform":
+      {
+        "pos": "-26.5779 0.0 -36.2341"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_patrol_atrapado.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tierra.material"
+            ,
+            "data/materials/mtl_patrol_estatico.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_patrol_atrapado.collider"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]
