@@ -22,6 +22,7 @@ struct TCompSkeleton : public TCompBase {
 	std::string animationToRootName = "";
 	bool movingRoot = false;
 	VEC3 lastAcum = VEC3(0, 0, 0);
+	bool endingRoot = false;
 
 	TCompSkeleton();
 	~TCompSkeleton();

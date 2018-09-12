@@ -109,12 +109,8 @@ void TCompSkeleton::update(float dt) {
         model->getMixer()->blendCycle(actualCycleAnimId[1], 1.f - cyclicAnimationWeight, 0.f);
     }
 
-	//VEC3 posti = this->getBonePositionById(0);
-	//dbg("%f	 %f	 %f\n", posti.x, posti.y, posti.z);
-
-	
-
     TCompTransform* tmx = get<TCompTransform>();
+	
     if (tmx != NULL) {
         VEC3 pos = tmx->getPosition();
         QUAT rot = tmx->getRotation();
@@ -127,14 +123,14 @@ void TCompSkeleton::update(float dt) {
 		if (isExecutingActionAnimationForRoot(animationToRootName)) {
 
 			VEC3 acum = Cal2DX( model->getSkeleton()->getBone(1)->getTranslation() );
-			VEC3 diff = acum - lastAcum;
-			//dbg("diff : %f		%f		%f    acum:  %f		%f		%f    \n", diff.x, diff.y, diff.z, acum.x, acum.y, acum.z);
-			VEC3 prev_pos = tmx->getPosition();
-			dbg("prev : %f		%f		%f\n", prev_pos.x, prev_pos.y, prev_pos.z);
-			tmx->setPosition(tmx->getPosition() + diff);
+			VEC3 aux_diff = acum - lastAcum;
 
-			VEC3 late_pos = tmx->getPosition();
-			dbg("late : %f		%f		%f\n", late_pos.x, late_pos.y, late_pos.z);
+			VEC3 diff = VEC3(aux_diff.x, aux_diff.z, -aux_diff.y);
+			
+			tmx->setPosition(tmx->getPosition() + tmx->getFront() * diff.z);
+			tmx->setPosition(tmx->getPosition() + tmx->getLeft() * diff.x);
+			tmx->setPosition(tmx->getPosition() + tmx->getUp() * diff.y);
+
 			model->getSkeleton()->getBone(1)->setTranslation(CalVector( 0, 0, 0 ));
 			model->getSkeleton()->getBone(1)->calculateState();
 
@@ -142,10 +138,23 @@ void TCompSkeleton::update(float dt) {
 		}
 		else {
 			movingRoot = false;
-			animationToRootName = "";
+			endingRoot = true;
 		}
 
 	}
+
+	if (endingRoot) {
+		if (isExecutingActionAnimation(animationToRootName)) {
+			model->getSkeleton()->getBone(1)->setTranslation(CalVector(0, 0, 0));
+			model->getSkeleton()->getBone(1)->calculateState();
+		}
+		else {
+			animationToRootName = "";
+			endingRoot = false;
+		}
+
+	}
+
     lastFrameCyclicAnimationWeight = cyclicAnimationWeight;
 }
 
