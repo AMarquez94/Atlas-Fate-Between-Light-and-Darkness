@@ -3,7 +3,13 @@
 	"anims" : [
 		{"name": "root"},
 		{"name": "idle"},
-		{"name": "pose_pared"}
+		{"name": "walk"},
+		{"name": "run"},
+		{"name": "death"},
+		{"name": "wakeup"},
+		{"name": "rotate"},
+		{"name": "pose_pared"},
+		{"name": "death"}
 
 	]
 }
