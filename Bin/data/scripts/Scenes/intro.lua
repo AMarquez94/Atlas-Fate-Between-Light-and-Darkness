@@ -5,7 +5,7 @@ function onSceneStart_scene_intro()
 		ambiance = playEvent("event:/Ambiance/Intro_Ambiance");
 	end
 	
-	cinematicsEnabled = false;
+	cinematicsEnabled = true;
 	
 	-- First Cinematic --
 	--move("The Player", VEC3(-19, 6, -30), VEC3(-19, 6, -29));
@@ -68,15 +68,24 @@ function intro_inhibitor_cinematic()
 	t_player:lookAt(t_player:getPosition(), t_patrol:getPosition());
 	resetMainCameras();
 	--hide tutorial while in cinematic
-	e_tutorial_player = toEntity(getEntityByName( "Tutorial Player"));
+	e_tutorial_player = toEntity(getEntityByName("Tutorial Player"));
 	render_tutorial_player = toRender(e_tutorial_player:getCompByName("render"));
 	render_tutorial_player.visible = false;
+	e_tutorial_weapon_left = toEntity(getEntityByName("tuto_weap_disc_left"));
+	render_tutorial_weapon_left = toRender(e_tutorial_weapon_left:getCompByName("render"));
+	render_tutorial_weapon_left.visible = false;
+	e_tutorial_weapon_right = toEntity(getEntityByName("tuto_weap_disc_right"));
+	render_tutorial_weapon_right = toRender(e_tutorial_weapon_right:getCompByName("render"));
+	render_tutorial_weapon_right.visible = false;
 	--end
 	execScriptDelayed("setCinematicPlayerState(false, \"\")", 3.5);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Inhibitor_Patrol_End\",0.5,\"cinematic\", \"cubicinout\")", 1.4);	
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Inhibitor_Patrol\",0)", 2.0);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Inhibitor_Patrol_End\",0.5)", 3.0);
 	execScriptDelayed("render_tutorial_player.visible = true", 3.5);
+	execScriptDelayed("render_tutorial_weapon_left.visible = true", 3.5);
+	execScriptDelayed("render_tutorial_weapon_right.visible = true", 3.5);
+
 end
 
 function onTriggerEnter_Trigger_Capsules_Cinematic_player()
