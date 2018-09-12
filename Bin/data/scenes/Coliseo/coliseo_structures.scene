@@ -735,7 +735,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_fuente.material"
+            "data/materials/mtl_fuente_coliseo.material"
           ]
         }
       ]
