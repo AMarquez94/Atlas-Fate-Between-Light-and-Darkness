@@ -1,6 +1,6 @@
 {
 	"system": {
-		"duration": 4.0,
+		"duration": 6.0,
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
@@ -10,18 +10,21 @@
 		"random_rotation": 0.0,
 		"start_color": "1 0 0 1",
 		"gravity": 0.0,
-		"simulation_speed": 2,
-		"max_particles": 26
+		"simulation_speed": 8,
+		"max_particles": 10
 	},
 	"emission": {
-		"rate_time": 16.0,
+		"rate_time": 3.0,
 		"rate_distance": 0.0,
-		"variation" : 2.0
+		"variation" : 5.0,
+		"bursts" :[
+		  [0.0, 4.0, 500.0, 1.0]
+		]
 	},	
 	"shape": {
 		"type": "cone",
-		"size": "0.03 0.03 0.03",
-		"angle": 20
+		"size": "0.01 0.01 0.01",
+		"angle": 5
 		
 	},
 	"velocity": {
@@ -40,7 +43,7 @@
 	},
 	"noise": {
 		"texture": "data/textures/particles/fx_smoke1.dds",
-		"strength": 44.0,
+		"strength": 4.0,
 		"frequency": 0.5,
 		"scroll_speed": 0.0,
 		"damping": true,
@@ -61,8 +64,8 @@
     "scale" : 1,
     "scale_variation" : 0.1,
     "sizes" : [
-		  [0.0, "0.01 0.01 0.01"],
-		  [1.0, "0.01 0.2 0.01"]
+		  [0.0, "0.03 0.03 0.03"],
+		  [1.0, "0.03 0.8 0.03"]
     ]
   },
   "color" : {

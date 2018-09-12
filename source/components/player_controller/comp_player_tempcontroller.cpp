@@ -158,6 +158,13 @@ void TCompTempPlayerController::onShadowChange(const TMsgShadowChange& msg) {
 
     cb_player.player_shadowed = msg.is_shadowed;
     cb_player.updateGPU();
+
+    // Temporal stuff for the demo
+    CEntity * ent = getEntityByName("Player_Idle_SM");
+    TCompParticles * c_e_particle = ent->get<TCompParticles>();
+    assert(c_e_particle);
+    c_e_particle->setSystemState(msg.is_shadowed);
+
     //VEC4 merged_color = msg.is_shadowed ? playerColor.colorMerge : playerColor.colorIdle;
 
     //TCompEmissionController * e_controller = get<TCompEmissionController>();

@@ -6,6 +6,7 @@
 #include "components/lighting/comp_projector.h"
 #include "components/comp_render.h"
 #include "components/comp_particles.h"
+#include "components/player_controller/comp_shadow_controller.h"
 
 // Refactor this after Milestone3, move everything unnecessary to player class
 namespace FSM
@@ -304,6 +305,10 @@ namespace FSM
         TCompParticles * c_e_particle = e->get<TCompParticles>();
         c_e_particle->setSystemState(true);
 
+        CEntity * ent = getEntityByName("Player_Idle_SM");
+        TCompParticles * c_e_particle2 = ent->get<TCompParticles>();
+        assert(c_e_particle2);
+        c_e_particle2->setSystemState(false);
     }
 
     void EnterMergeState::onFinish(CContext& ctx) const {
@@ -409,6 +414,12 @@ namespace FSM
 
         TCompRender * render = e->get<TCompRender>();
         render->visible = true;
+
+        TCompShadowController * shadow = e->get<TCompShadowController>();
+        CEntity * ent = getEntityByName("Player_Idle_SM");
+        TCompParticles * c_e_particle2 = ent->get<TCompParticles>();
+        assert(c_e_particle2);
+        c_e_particle2->setSystemState(shadow->is_shadow);
     }
 
 	bool ExitMergeCrouchedState::load(const json & jData)
@@ -455,6 +466,12 @@ namespace FSM
 
 		TCompRender * render = e->get<TCompRender>();
 		render->visible = true;
+
+        TCompShadowController * shadow = e->get<TCompShadowController>();
+        CEntity * ent = getEntityByName("Player_Idle_SM");
+        TCompParticles * c_e_particle2 = ent->get<TCompParticles>();
+        assert(c_e_particle2);
+        c_e_particle2->setSystemState(shadow->is_shadow);
 	}
 
     bool LandMergeState::load(const json& jData) {
