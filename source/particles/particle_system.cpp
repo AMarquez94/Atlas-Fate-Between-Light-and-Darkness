@@ -353,7 +353,7 @@ namespace Particles
             TParticle particle;
             particle.position = VEC3::Transform(generatePosition() + _core->n_system.offset, world);
             particle.velocity = VEC3::Transform(generateVelocity(), world_rot);
-            particle.random_direction = AddNoiseOnAngle(-180, 180);
+            particle.random_direction = AddNoiseOnAngle(-90, 90);
             particle.origin_velocity = particle.velocity;
             particle.color = _core->n_color.colors.get(0.f);
             particle.size = _core->n_system.start_size * _core->n_size.sizes.get(0.f);

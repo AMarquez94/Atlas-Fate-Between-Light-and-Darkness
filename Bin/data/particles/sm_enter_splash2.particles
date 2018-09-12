@@ -9,7 +9,7 @@
 		"start_rotation": "0 0 0",
 		"random_rotation": 360.0,
 		"start_color": "1 1 1 1",
-		"gravity": 50.0,
+		"gravity": 2.0,
 		"simulation_speed": 1,
 		"max_particles": 1,
 		"offset": "0 0.45 0"
