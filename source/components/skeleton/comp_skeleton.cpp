@@ -35,7 +35,7 @@ void TCompSkeleton::registerMsgs()
 {
 	DECL_MSG(TCompSkeleton, TMsgEntityCreated, onMsgEntityCreated);
 	DECL_MSG(TCompSkeleton, TMsgAnimationCallback, onMsgAnimationCallback);
-	DECL_MSG(TCompSkeleton, TMsgAnimationCompleted, onMsgAnimationCallback);
+	DECL_MSG(TCompSkeleton, TMsgAnimationCompleted, onMsgAnimationCompleted);
 }
 
 // --------------------------------------------------------------------
