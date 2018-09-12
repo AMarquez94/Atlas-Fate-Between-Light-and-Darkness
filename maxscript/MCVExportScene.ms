@@ -551,6 +551,8 @@ struct TSceneExporter (
 			fs.writeKeyValue "shadows_resolution" 4096
 			fs.writeComma()
 			fs.writeKeyValue "shadows_fmt" "R32_TYPELESS"
+			fs.writeComma()
+			fs.writeKeyValue "volume" false
 			fs.endObj()			
 			return true
 		)
@@ -569,6 +571,8 @@ struct TSceneExporter (
 			fs.writeKeyValue "inner_cut" obj.hotspot
 			fs.writeComma()
 			fs.writeKeyValue "z_far" (distance target.pos obj.pos)
+						fs.writeComma()
+			fs.writeKeyValue "volume" false
 			fs.writeComma()	
 		)
 		else if classof obj == Omnilight   then (

@@ -1,0 +1,61 @@
+[
+  {
+    "entity":
+    {
+      "name": "Coliseo/coliseo_luces"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Direct001"
+      ,
+      "transform":
+      {
+        "pos": "21.6944 59.0157 61.4632"
+        ,
+        "lookat": "-21.195 -13.5905 -62.5783"
+      }
+      ,
+      "light_dir":
+      {
+        "type": "directional"
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "proj_type": "ortographic"
+        ,
+        "z_near": 0.01
+        ,
+        "z_far": 149.991
+        ,
+        "ortosize": 70.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.5
+        ,
+        "shadows_resolution": 4096
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+]
