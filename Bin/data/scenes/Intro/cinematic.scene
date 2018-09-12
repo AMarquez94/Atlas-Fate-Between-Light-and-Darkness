@@ -8,11 +8,11 @@
   },
   {
     "entity": {
-      "prefab": "data/prefabs/patrol.prefab",
+      "prefab": "data/prefabs/tutorial/patrol_inhibitor.prefab",
       "name": "Patrol_Cinematic_Inhibitor",
       "transform": {
-        "pos": "-26.8 0 -35.0",
-        "lookat": "-25.8 0 -35.0"
+        "pos": "-27.5 -1.225 -36",
+        "lookat": "-26.5 -1.225 -36"
       }
     }
   },
@@ -254,8 +254,8 @@
     "entity": {
       "name": "Camera_Cinematic_Inhibitor_Patrol",
       "transform": {
-        "pos": "-23.8 3.219 -37.5",
-        "rotation": "0.216797 -0.271688 0.06296 0.935532"
+        "pos": "-23.733 2.941 -39.651",
+        "rotation": "0.156680 -0.244306 0.040035 0.956119"
       },
       "camera": {
         "fov": 70,
