@@ -1,41 +1,42 @@
 {
 	"system": {
-		"duration": 0.5,
-		"looping": false,
+		"duration": 2.0,
+		"looping": true,
 		"start_delay": 0.0,
-		"start_lifetime": 1,
-		"start_speed": 0,
-		"start_size": "1 1 1",
+		"start_lifetime": 2.0,
+		"start_speed": 0.5,
+		"start_size": "0.75 0.75 0.75",
 		"start_rotation": "0 0 0",
 		"random_rotation": 0.0,
 		"start_color": "1 1 1 1",
-		"gravity": 0.4,
-		"simulation_speed": 1,
-		"max_particles": 100,
-		"offset": "0 0.6 0"
+		"gravity": 0,
+		"simulation_speed": 0.6,
+		"max_particles": 300
 	},
 	"emission": {
-		"rate_time": 25.0,
+		"rate_time": 40.0,
 		"rate_distance": 0.0,
-		"variation" : 0.0
+		"variation" : 0.0,
+		"interval" : 0.5
 	},
 	"shape": {
-		"type": "box",
-		"size": "1 1 1",
-		"angle": 0.0
+		"type": "cone",
+		"size": "0.3 0.3 0.3",
+		"angle": 89.0
 		
 	},
 	"velocity": {
 		"constant_velocity": "0.0 0.0 0.0",
 		"velocity" : [
       [0.0, "0.0 0.0 0.0"],
-			[1.0, "0.0 0.0 0.0"]
+			[0.5, "0.5 0.5 0.5"],
+			[1.0, "1.0 1.0 1.0"]
     ],
 		"rotation" : [
-		  [0.0, "0.0 0.0 0.0"],
-      [1.0, "0.0 0.0 0.0"]
+		  [0.0, "0.0 0.0 1.0"],
+      [1.0, "0.0 0.0 4.0"]
     ],
-		"acceleration": 1.0,
+		"acceleration": 0.0,
 		"wind": 0.0
 	},
 	"noise": {
@@ -61,20 +62,18 @@
     "scale" : 1.0,
     "scale_variation" : 0.2,
     "sizes" : [
-		  [0.0, "0 0 0"],
-			[0.2, "0.65 0.8 0.65"],
-			[0.5, "0.65 0.9 0.8"],
-			[0.8, "0.65 0.8 0.65"],
-      [1.0, "0 0 0"]
+		  [0.0, "0.75 0.75 0.75"],
+			[0.8, "0.75 0.75 0.75"],
+      [1.0, "0.75 0.75 0.25"]
     ]
   },
   "color" : {
     "opacity" : 0.2,
     "colors" : [
       [0.0, "1 1 1 0"],
-      [0.2, "0 0 0 1"],
-      [0.6, "0 0 0 1"],
-			[1.0, "0 0 0 0"]
+      [0.01, "0 0 0 0.24"],
+      [0.99, "0 0 0 0.26"],
+			[1.0, "0 0 0 0.14"]
     ] 
   }
 }

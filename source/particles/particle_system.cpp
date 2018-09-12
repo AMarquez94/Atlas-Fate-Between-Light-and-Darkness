@@ -78,6 +78,9 @@ namespace Particles
         _enabled = true;
         _time = 0.f;
         _deploy_time = 0.f;
+
+        if(!_core->n_system.looping)
+            emit(_core->n_emission.rate_time);
     }
 
     void CSystem::debugInMenu() {
@@ -173,7 +176,7 @@ namespace Particles
     {
         // Handle deployment
         {
-            if (!_enabled || !_entity.isValid()) return true;
+            if (!_entity.isValid()) return true;
 
             // Handle start delay
             _deploy_time += delta;

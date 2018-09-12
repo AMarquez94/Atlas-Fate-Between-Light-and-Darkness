@@ -146,8 +146,8 @@ bool CModuleRender::start()
 	cb_globals.global_hdr_enabled = 1.f;
 	cb_globals.global_gamma_correction_enabled = 1.f;
 	cb_globals.global_tone_mapping_mode = 1.f;
-    cb_globals.global_fog_density = 0.024f;
-    cb_globals.global_fog_color = VEC3(0.76,0.93,0.93);
+    cb_globals.global_fog_density = 0.018f;
+    cb_globals.global_fog_color = VEC3(0.47,0.51,0.84);
     cb_globals.global_fog_env_color = VEC3(0.0, 0.171, 0.34);
     cb_globals.global_self_intensity = 10.f;
     cb_globals.global_delta_time = 0.f;
