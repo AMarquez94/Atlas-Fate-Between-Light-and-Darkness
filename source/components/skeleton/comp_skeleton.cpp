@@ -128,11 +128,13 @@ void TCompSkeleton::update(float dt) {
 
 			VEC3 acum = Cal2DX( model->getSkeleton()->getBone(1)->getTranslation() );
 			VEC3 diff = acum - lastAcum;
-			dbg("diff : %f		%f		%f    acum:  %f		%f		%f    \n", diff.x, diff.y, diff.z, acum.x, acum.y, acum.z);
-
+			//dbg("diff : %f		%f		%f    acum:  %f		%f		%f    \n", diff.x, diff.y, diff.z, acum.x, acum.y, acum.z);
+			VEC3 prev_pos = tmx->getPosition();
+			dbg("prev : %f		%f		%f\n", prev_pos.x, prev_pos.y, prev_pos.z);
 			tmx->setPosition(tmx->getPosition() + diff);
 
-			VEC3 pos = tmx->getPosition();
+			VEC3 late_pos = tmx->getPosition();
+			dbg("late : %f		%f		%f\n", late_pos.x, late_pos.y, late_pos.z);
 			model->getSkeleton()->getBone(1)->setTranslation(CalVector( 0, 0, 0 ));
 			model->getSkeleton()->getBone(1)->calculateState();
 
