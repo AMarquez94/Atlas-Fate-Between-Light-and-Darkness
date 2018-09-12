@@ -66,13 +66,13 @@ void TCompMimeticAnimator::initializeAnimations() {
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::DEATH,
-		EAnimationType::CYCLIC,
+		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"idle",
+		"root",
 		"",
 		1.0f,
 		1.0f,
-		false
+		true
 	);
 
 	initializeAnimation(
@@ -83,7 +83,7 @@ void TCompMimeticAnimator::initializeAnimations() {
 		"",
 		1.0f,
 		1.0f,
-		true
+		false
 	);
 
 	initializeAnimation(

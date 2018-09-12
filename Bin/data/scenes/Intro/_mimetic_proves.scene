@@ -8,7 +8,7 @@
 			"prefab": "data/prefabs/mimetic.prefab",
 			"ai_mimetic": {
 				"startLightsOn": false,
-				"type": "wall",
+				"type": "floor",
 				"isSlept": false
 			}
 		}	

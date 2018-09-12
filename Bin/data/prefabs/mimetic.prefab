@@ -254,7 +254,7 @@
 			}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "Laserus",
 			"transform": {
 				"pos": "0.0 0.0 0.0"

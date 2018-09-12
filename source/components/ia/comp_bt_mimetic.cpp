@@ -386,8 +386,7 @@ BTNode::ERes TCompAIMimetic::actionObserveLeft(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE_WALL);
-	return BTNode::ERes::STAY;
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
     if (isEntityInFov(entityToChase, fov, maxChaseDistance)) {
         return BTNode::ERes::LEAVE;
     }
@@ -407,8 +406,7 @@ BTNode::ERes TCompAIMimetic::actionObserveRight(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-	myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE_WALL);
-	return BTNode::ERes::STAY;
+	myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
     if (isEntityInFov(entityToChase, fov, maxChaseDistance)) {
         return BTNode::ERes::LEAVE;
     }
