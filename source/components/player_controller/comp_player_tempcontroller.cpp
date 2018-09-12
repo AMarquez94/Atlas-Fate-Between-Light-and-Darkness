@@ -159,6 +159,13 @@ void TCompTempPlayerController::onShadowChange(const TMsgShadowChange& msg) {
 
     cb_player.player_shadowed = msg.is_shadowed;
     cb_player.updateGPU();
+
+    // Temporal stuff for the demo
+    CEntity * ent = getEntityByName("Player_Idle_SM");
+    TCompParticles * c_e_particle = ent->get<TCompParticles>();
+    assert(c_e_particle);
+    c_e_particle->setSystemState(msg.is_shadowed);
+
     //VEC4 merged_color = msg.is_shadowed ? playerColor.colorMerge : playerColor.colorIdle;
 
     //TCompEmissionController * e_controller = get<TCompEmissionController>();
@@ -746,6 +753,7 @@ const bool TCompTempPlayerController::concaveTest(void) {
 const bool TCompTempPlayerController::convexTest(void) {
 
     physx::PxRaycastHit hit;
+    physx::PxRaycastHit hit2;
     TCompTransform *c_my_transform = get<TCompTransform>();
     TCompRigidbody *rigidbody = get<TCompRigidbody>();
     VEC3 old_up = c_my_transform->getUp();
@@ -761,6 +769,14 @@ const bool TCompTempPlayerController::convexTest(void) {
 
         if (hit.distance > .015f && EnginePhysics.gravity.Dot(hit_normal) < .01f)
         {
+            EnginePhysics.Raycast(upwards_offset, -old_up, 100.f, hit2, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery);
+            
+            // Little trick to avoid bug.
+            if (hit2.distance < SM_THRESHOLD_MAX && hit2.distance > SM_THRESHOLD_MAX) {
+                c_my_transform->setPosition(VEC3(hit2.position.x, hit2.position.y, hit2.position.z));
+                return false;
+            }
+
             VEC3 new_forward = -hit_normal.Cross(c_my_transform->getLeft());
             VEC3 target = hit_point + new_forward;
 

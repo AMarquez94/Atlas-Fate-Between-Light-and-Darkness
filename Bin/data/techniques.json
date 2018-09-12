@@ -106,6 +106,19 @@
 			"irradiance": "data/textures/cubemaps/irradiance.dds"
 		}
 	},
+	"pbr_no_cull": {
+		"vs_file": "data/shaders/pbr.fx",
+		"ps_file": "data/shaders/pbr.fx",
+		"vs_entry_point": "VS_GBuffer",
+		"ps_entry_point": "PS_GBuffer",
+		"vertex_type": "PosNUvUvT",
+		"category": "gbuffer",
+		"rs_config": "cull_none",
+		"textures": {
+			"environment": "data/textures/cubemaps/env.dds",
+			"irradiance": "data/textures/cubemaps/irradiance.dds"
+		}
+	},
 	"pbr_disk": {
 		"vs_file": "data/shaders/pbr.fx",
 		"ps_file": "data/shaders/pbr.fx",
@@ -520,7 +533,7 @@
 	"particles_instanced_combinative": {
 		"vs_file": "data/shaders/particles_instanced.fx",
 		"vs_entry_point": "VS_Particles",
-		"ps_entry_point": "PS_Particles",
+		"ps_entry_point": "PS_Particles_Soft",
 		"vertex_type": "PosClr_x_CpuParticleInstance",
 		"category": "particles_instanced_combinative",
 		"z": "test_but_no_write",

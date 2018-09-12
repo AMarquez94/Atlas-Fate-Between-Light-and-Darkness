@@ -58,7 +58,7 @@
 		"entity": {
 			"name": "Instanced Capsules",
 			"transform": {
-				"pos": "0 0 0"
+				"pos": "0 -1 0"
 			},
 			"render": [{
 					"mesh": "data/meshes/capsule.instanced_mesh",

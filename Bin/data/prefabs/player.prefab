@@ -307,5 +307,23 @@
 			"abs_aabb": true,
 			"local_aabb": true
 		}
+	},{
+		"entity": {
+			"name": "Player_Idle_SM",
+			"transform": "0 0 0",
+			"hierarchy": {
+				"parent": "The Player",
+				"pos": "0 0 0"
+			},
+			"render": {
+				"mesh": "axis.mesh"
+			},
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_sm_idle.particles"
+				]
+			}
+		}
 	}
 ]

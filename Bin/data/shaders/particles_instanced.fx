@@ -13,6 +13,7 @@ void VS_Particles(
 	, out float2 oMinUv : TEXCOORD1
   , out float2 oMaxUv : TEXCOORD2
   , out float4 oColorP : TEXCOORD3
+	, out float3 oWorldPos : TEXCOORD4
   )
 {
 
@@ -22,6 +23,7 @@ void VS_Particles(
   float4 world_pos = mul(pos, instance_world);
   oPos = mul(world_pos, camera_view_proj);
   oTex0  = iPos.xy;
+	oWorldPos = world_pos;
 	
 	oMinUv = iMinUv;
 	oMaxUv = iMaxUv;
@@ -72,11 +74,38 @@ float4 PS_Particles(
 {
   float2 finalUV = lerp(iMinUv, iMaxUv, iTex0);
   float4 oDiffuse = txAlbedo1.Sample(samLinear, finalUV);
+
   float4 finalColor = float4(oDiffuse.rgb * iColorP.rgb, oDiffuse.a * iColorP.a);
   return finalColor;
 }
 
 
+float computeDepth( float3 iWorldPos : TEXCOORD1 ) {
+  float3 camera2wpos = iWorldPos - camera_pos.xyz;
+  return dot( camera_front.xyz, camera2wpos) / camera_zfar;
+}
+
+float4 PS_Particles_Soft(
+	  in float4 iPos : SV_POSITION
+	, in float2 iTex0 : TEXCOORD0
+	, in float2 iMinUv : TEXCOORD1
+  , in float2 iMaxUv : TEXCOORD2
+  , in float4 iColorP : TEXCOORD3
+	, in float3 iWorldPos : TEXCOORD4
+  ) : SV_Target
+{
+  int3 ss_load_coords = uint3(iPos.xy, 0);
+  float2 finalUV = lerp(iMinUv, iMaxUv, iTex0);
+  float4 oDiffuse = txAlbedo1.Sample(samLinear, finalUV);
+	
+	float  zLinear  = txGBufferLinearDepth.Load(ss_load_coords).x;
+  float  wDepth = dot( camera_front.xyz, (iWorldPos - camera_pos.xyz)) / camera_zfar;
+  float  intersect = saturate((zLinear - wDepth) * camera_zfar);
+
+  float4 finalColor = float4(oDiffuse.rgb * iColorP.rgb, oDiffuse.a * iColorP.a);
+  return finalColor;
+}
+	
 // ----------------------------------------
 void PS_GBuffer_Particles(
 	  in float4 iPos : SV_POSITION

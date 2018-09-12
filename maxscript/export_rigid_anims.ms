@@ -17,9 +17,9 @@ struct TRigidAnimKey (
 
 struct TRigidAnimExporter (
 
-	project_path = "D:/DeepShadows/Bin/",
+	project_path = "d:/code/mcv_2018/engine/bin/",
 	base_path = "data/",
-	anims_path = base_path + "rigid_anims/",
+	anims_path = base_path + "anims/",
 	
 	fn isValidName aname = (
 		return findString aname " " == undefined 
@@ -28,7 +28,7 @@ struct TRigidAnimExporter (
 	-- ----------------------------------------------------------
 	fn writeFixedStr fs str max_bytes = (
 		-- Write the vertex type as 32 bytes string with zero paddings
-		format "Wringing name '%'\n" str
+		format "Writing name '%'\n" str
 		WriteString fs str
 		for i = str.count+1 to ( max_bytes - 1 ) do WriteByte fs 0
 	),
@@ -42,7 +42,7 @@ struct TRigidAnimExporter (
 		writeFloat fs k.rot.x
 		writeFloat fs k.rot.y
 		writeFloat fs k.rot.z
-		writeFloat fs k.rot.w
+		writeFloat fs -k.rot.w
 	),
 		
 	-- ----------------------------------------------------------
@@ -63,7 +63,8 @@ struct TRigidAnimExporter (
 		limits = expandLimits limits obj.scale.controller.keys
 		limits = expandLimits limits obj.rotation.controller.keys
 		
-		format "Limits of % are %\n" obj.name limits
+		local dt = 1.0 / fps * frameRate
+		format "Limits of % are %. Delta is %\n" obj.name limits dt
 		
 		local max2mcv = rotateXMatrix -90
 		local mcv2max = rotateXMatrix 90
@@ -78,13 +79,15 @@ struct TRigidAnimExporter (
 				local mcv_transform = mcv2max * obj.transform * max2mcv
 				
 				k.pos = obj.pos * max2mcv 
-				k.rot = inverse (mcv_transform.rotationPart as quat)
+				k.rot = mcv_transform.rotationPart as quat
 				k.scale = obj.scale.x
 				
 			)
 			append keys k
-			t += 1.0 / fps
+			t += dt
 		)
+		format "Track has % keys\n" keys.count
+		
 		struct track_info ( keys, limits )
 		local tinfo = track_info()
 		tinfo.keys = keys
@@ -99,9 +102,10 @@ struct TRigidAnimExporter (
 		t.track_name = obj.name
 		t.keys = track_info.keys
 		local frames_to_second = 1.0 / (float) frameRate
+		format "fps % frameRate %\n" frames_to_second frameRate
 		t.begin_time = (track_info.limits.x as integer )* frames_to_second
 		t.end_time = (track_info.limits.y as integer) * frames_to_second
-		format "Track % has length %\n" t.track_name t.end_time
+		format "Track % (%) has length %..%s\n" t.track_name track_info.limits t.begin_time t.end_time
 		return t
 	),
 			
@@ -181,7 +185,7 @@ struct TRigidAnimExporter (
 )
 
 exporter = TRigidAnimExporter()
-exporter.exportAll ($* as array)
+exporter.exportAll (#($BC_fuente_anillo_ext_low,$BC_fuente_anillo_int_low))
 
 
 
