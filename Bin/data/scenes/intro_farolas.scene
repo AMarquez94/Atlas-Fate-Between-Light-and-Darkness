@@ -1,0 +1,189 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_farolas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "prop_lightpost001"
+      ,
+      "prefab": "data/prefabs/prop_lightpost.prefab"
+      ,
+      "transform":
+      {
+        "pos": "10.2726 -0.68926 28.4741"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "prop_lightpost002"
+      ,
+      "prefab": "data/prefabs/prop_lightpost.prefab"
+      ,
+      "transform":
+      {
+        "pos": "8.65296 -0.689261 17.1838"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "prop_lightpost003"
+      ,
+      "prefab": "data/prefabs/prop_lightpost.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-12.6637 -0.689261 19.1574"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "prop_lightpost004"
+      ,
+      "prefab": "data/prefabs/prop_lightpost.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-13.2139 -0.68926 27.2613"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "prop_lightpost005"
+      ,
+      "prefab": "data/prefabs/prop_lightpost.prefab"
+      ,
+      "transform":
+      {
+        "pos": "7.5201 -0.689261 0.400913"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "prop_lightpost006"
+      ,
+      "prefab": "data/prefabs/prop_lightpost.prefab"
+      ,
+      "transform":
+      {
+        "pos": "9.11818 -0.689262 -11.0084"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "prop_lightpost007"
+      ,
+      "prefab": "data/prefabs/prop_lightpost.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.36067 -0.689262 -18.2726"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "prop_lightpost008"
+      ,
+      "prefab": "data/prefabs/prop_lightpost.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-6.25896 -0.689263 -37.9544"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "prop_lightpost009"
+      ,
+      "prefab": "data/prefabs/prop_lightpost.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-28.4173 -0.689263 -35.4978"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "prop_lightpost010"
+      ,
+      "prefab": "data/prefabs/prop_lightpost.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-12.0667 -0.689264 -62.1311"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "prop_lightpost011"
+      ,
+      "prefab": "data/prefabs/prop_lightpost.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-24.2128 -0.689264 -62.1311"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+]

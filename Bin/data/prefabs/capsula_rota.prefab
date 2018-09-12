@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "intro_prueba_neones"
+      "name": "capsula_rota"
       ,
       "transform":
       {
@@ -14,32 +14,30 @@
   {
     "entity":
     {
-      "name": "prueba_pantalla"
+      "name": "mesh_capsula_rota"
       ,
       "transform":
       {
-        "pos": "11.6894 12.2325 24.188"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "0.0 0.0 0.0"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/prueba_pantalla.mesh"
+          "mesh": "data/meshes/mesh_capsula_rota.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_capsula.material"
           ]
         }
       ]
       ,
       "collider":
       {
-        "shape": "box"
+        "shape": "mesh"
         ,
-        "size": "0.1 1.7 2.125"
+        "name": "data/colliders/collider_capsula_rota.collider"
       }
       ,
       "abs_aabb": true

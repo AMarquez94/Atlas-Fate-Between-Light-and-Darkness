@@ -33,6 +33,9 @@
 
 			"data/scenes/intro_tubo_capsulas.scene",
 			
+			"data/scenes/intro_farolas.scene",
+
+
 			"data/scenes/intro_pozo.scene",
 			"data/scenes/intro_barra_capsulas.scene",
 			"data/scenes/Intro/intro_suelo.scene",
