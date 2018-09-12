@@ -9,7 +9,7 @@
     ,
     "roughness": "data/textures/tx_casa3_met.dds"
     ,
-    "normal": "data/textures/null_normal.dds"
+    "normal": "data/textures/tx_casa3_nml.dds"
     ,
     "height": "data/textures/tx_casa1_hgt.dds"
     ,

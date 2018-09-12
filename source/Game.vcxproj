@@ -279,6 +279,13 @@
     <ClCompile Include="navmesh\recast\RecastMeshDetail.cpp" />
     <ClCompile Include="navmesh\recast\RecastRasterization.cpp" />
     <ClCompile Include="navmesh\recast\RecastRegion.cpp" />
+    <ClCompile Include="particles\Noise\FastNoiseSIMD.cpp" />
+    <ClCompile Include="particles\Noise\FastNoiseSIMD_avx2.cpp" />
+    <ClCompile Include="particles\Noise\FastNoiseSIMD_avx512.cpp" />
+    <ClCompile Include="particles\Noise\FastNoiseSIMD_internal.cpp" />
+    <ClCompile Include="particles\Noise\FastNoiseSIMD_neon.cpp" />
+    <ClCompile Include="particles\Noise\FastNoiseSIMD_sse2.cpp" />
+    <ClCompile Include="particles\Noise\FastNoiseSIMD_sse41.cpp" />
     <ClCompile Include="particles\particle_editor.cpp" />
     <ClCompile Include="particles\particle_parser.cpp" />
     <ClCompile Include="particles\particle_system.cpp" />
@@ -536,6 +543,8 @@
     <ClInclude Include="navmesh\recast\RecastAssert.h" />
     <ClInclude Include="navmesh\recast\RecastDebugDraw.h" />
     <ClInclude Include="navmesh\recast\RecastDump.h" />
+    <ClInclude Include="particles\Noise\FastNoiseSIMD.h" />
+    <ClInclude Include="particles\Noise\FastNoiseSIMD_internal.h" />
     <ClInclude Include="particles\particle.h" />
     <ClInclude Include="particles\particle_editor.h" />
     <ClInclude Include="particles\particle_parser.h" />

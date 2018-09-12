@@ -1,143 +1,193 @@
-[
-	{
+[{
 		"entity": {
 			"name": "Particles_Master",
 			"transform": {
 				"pos": "0 0 0"
 			}
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "particles_fog",
 			"transform": {
-				"pos": "-61 1.2 -101"
+				"pos": "-55.7 1 -88.7"
 			},
-			"particles" : {
-				"core" : "data/particles/amb_fog2_30x30.particles"
+			"particles": {
+				"core": "data/particles/def_amb_fog_30x30.particles"
 			}
 		}
-	},
-		{
+	}, {
 		"entity": {
 			"name": "particles_fog",
 			"transform": {
-				"pos": "-68 1.2 -142"
+				"pos": "-61 1 -112"
 			},
-			"particles" : {
-				"core" : "data/particles/amb_fog2_30x30.particles"
+			"particles": {
+				"core": "data/particles/def_amb_fog_30x30.particles"
 			}
 		}
-	},
-			{
+	}, {
 		"entity": {
 			"name": "particles_fog",
 			"transform": {
-				"pos": "-106 1.2 -140"
+				"pos": "-68 1.2 -137.6"
 			},
-			"particles" : {
-				"core" : "data/particles/amb_fog2_30x30.particles"
+			"particles": {
+				"core": "data/particles/def_amb_fog_30x30.particles"
 			}
 		}
-	},
-				{
+	}, {
 		"entity": {
 			"name": "particles_single_fog",
 			"transform": {
-				"pos": "-84 0.3 -109"
+				"pos": "-107 0.3 -137"
 			},
-			"particles" : {
-				"core" : "data/particles/amb_fog2_10x10.particles"
+			"particles": {
+				"core": "data/particles/def_amb_fog_30x30.particles"
 			}
 		}
-	},
-			{
-		"entity": {
-			"name": "particles_single_fog",
-			"transform": {
-				"pos": "-46 0.3 -90"
-			},
-			"particles" : {
-				"core" : "data/particles/amb_fog2_10x10.particles"
-			}
-		}
-	},
-				{
+	}, {
 		"entity": {
 			"name": "particles_dust",
 			"transform": {
-				"pos": "-46 1 -90"
+				"pos": "-55.7 1 -88.7"
 			},
-			"particles" : {
-				"core" : "data/particles/amb_dust.particles"
+			"particles": {
+				"core": "data/particles/def_amb_dust_30x30.particles"
 			}
 		}
-	},
-			{
+	}, {
 		"entity": {
 			"name": "particles_dust",
 			"transform": {
-				"pos": "-49 1 -90"
+				"pos": "-61 1 -112"
 			},
-			"particles" : {
-				"core" : "data/particles/amb_dust.particles"
+			"particles": {
+				"core": "data/particles/def_amb_dust_30x30.particles"
 			}
 		}
-	},
-				{
+	}, {
 		"entity": {
 			"name": "particles_dust",
 			"transform": {
-				"pos": "-56 1 -155"
+				"pos": "-68 1.2 -137.6"
 			},
-			"particles" : {
-				"core" : "data/particles/amb_dust.particles"
+			"particles": {
+				"core": "data/particles/def_amb_dust_30x30.particles"
 			}
 		}
-	},
-					{
+	}, {
 		"entity": {
 			"name": "particles_dust",
 			"transform": {
-				"pos": "-56 1 -139"
+				"pos": "-107 0.3 -137"
 			},
-			"particles" : {
-				"core" : "data/particles/amb_dust.particles"
+			"particles": {
+				"core": "data/particles/def_amb_dust_30x30.particles"
 			}
 		}
-	},
-						{
+	}, {
 		"entity": {
-			"name": "particles_dust",
+			"name": "particles_smoke",
 			"transform": {
-				"pos": "-73 1 -135"
+				"pos": "-67.5 16 -81.9"
 			},
-			"particles" : {
-				"core" : "data/particles/amb_dust.particles"
+			"particles": {
+				"core": "data/particles/def_amb_fire_smoke.particles"
 			}
 		}
-	}
-		,
-			{
+	}, {
 		"entity": {
-			"name": "particles_dust",
+			"name": "particles_smoke",
 			"transform": {
-				"pos": "-69 1 -90"
+				"pos": "-90.0 16.3 -107.1"
 			},
-			"particles" : {
-				"core" : "data/particles/amb_dust.particles"
+			"particles": {
+				"core": "data/particles/def_amb_fire_smoke.particles"
 			}
 		}
-	}
-			,
-			{
+	}, {
 		"entity": {
-			"name": "particles_dust",
+			"name": "particles_smoke",
 			"transform": {
-				"pos": "-67 1 -112"
+				"pos": "-123.0 16.3 -129.8"
 			},
-			"particles" : {
-				"core" : "data/particles/amb_dust.particles"
+			"particles": {
+				"core": "data/particles/def_amb_fire_smoke.particles"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "particles_smoke",
+			"transform": {
+				"pos": "-102.4 16.3 -158.9"
+			},
+			"particles": {
+				"core": "data/particles/def_amb_fire_smoke.particles"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "particles_smoke",
+			"transform": {
+				"pos": "-65.8 16.3 -149.3"
+			},
+			"particles": {
+				"core": "data/particles/def_amb_fire_smoke.particles"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "particles_whisps",
+			"transform": {
+				"pos": "-62.2 5.2 -89.5",
+				"rotation": "0.009 0 -1 0"
+			},
+			"particles": {
+				"core": "data/particles/def_amb_whisps.particles"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "particles_whisps",
+			"transform": {
+				"pos": "-52.8 5.2 -88.3",
+				"rotation": "0.009 0 -1 0"
+			},
+			"particles": {
+				"core": "data/particles/def_amb_whisps.particles"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "particles_whisps",
+			"transform": {
+				"pos": "-62 5.2 -116.5",
+				"rotation": "0.009 0 -1 0"
+			},
+			"particles": {
+				"core": "data/particles/def_amb_whisps.particles"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "particles_whisps",
+			"transform": {
+				"pos": "-102 5.3 -108.4",
+				"rotation": "0.009 0 -1 0"
+			},
+			"particles": {
+				"core": "data/particles/def_amb_whisps.particles"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "particles_whisps",
+			"transform": {
+				"pos": "-67.7 6.7 -136.4",
+				"rotation": "0.009 0 -1 0"
+			},
+			"particles": {
+				"core": "data/particles/def_amb_whisps.particles"
 			}
 		}
 	}
