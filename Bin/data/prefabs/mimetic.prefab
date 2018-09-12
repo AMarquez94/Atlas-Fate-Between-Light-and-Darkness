@@ -222,8 +222,8 @@
 				"scale": 1.0
 			},
 			"skel_lookat" : {
-				"target_entity_name" : "The Player",
-				"amount" : 1
+				"target_entity_name" : "Target Laser",
+				"amount" : 1.0
 			},
 			"emission_controller": {
 				"initial": "0.0 1.0 1.0 1.0"
