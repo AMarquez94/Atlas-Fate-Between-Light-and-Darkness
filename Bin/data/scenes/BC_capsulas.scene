@@ -1,0 +1,61 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_capsulas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_capsula_rota001"
+      ,
+      "prefab": "data/prefabs/capsula_rota.prefab"
+      ,
+      "transform":
+      {
+        "pos": "27.5544 1.64574 -368.606"
+        ,
+        "rotation": "-0.73097 0.0881823 -0.096234 -0.66981"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_capsula_rota002"
+      ,
+      "prefab": "data/prefabs/capsula_rota.prefab"
+      ,
+      "transform":
+      {
+        "pos": "26.6063 0.735213 -373.887"
+        ,
+        "rotation": "-0.25 -0.75 0.433013 -0.433013"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_capsula_rota003"
+      ,
+      "prefab": "data/prefabs/capsula_rota.prefab"
+      ,
+      "transform":
+      {
+        "pos": "27.3703 4.64793 -391.656"
+        ,
+        "rotation": "-0.786566 0.0794594 -0.103553 -0.603553"
+      }
+    }
+  }
+]

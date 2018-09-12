@@ -171,6 +171,8 @@
 			"data/scenes/BC_containers.scene",
 			"data/scenes/BC_props.scene",
 
+			"data/scenes/BC_capsulas.scene",
+
 			"data/scenes/BC_maderas_whitebox.scene",
 
 			"data/scenes/Basilic_courtyard/BC_fuente.scene",
