@@ -11,4 +11,5 @@ public:
 	void load(const json& j, TEntityParseContext& ctx);
 	void update(float dt);
 	static void registerMsgs();
+	bool isPlayerOnLaser();
 };

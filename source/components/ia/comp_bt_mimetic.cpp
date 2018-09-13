@@ -6,6 +6,7 @@
 #include "components/player_controller/comp_player_tempcontroller.h"
 #include "components/comp_render.h"
 #include "components/comp_group.h"
+#include "components/object_controller/comp_laser.h"
 #include "components/object_controller/comp_cone_of_light.h"
 #include "geometry/angular.h"
 #include "components/physics/comp_rigidbody.h"
@@ -61,13 +62,10 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
     addChild("manageInactiveTypeSleep", "wakeUp", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWakeUp, nullptr);
 
     addChild("manageInactiveTypeWall", "manageObserveTypeWall", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionIsNotPlayerInFovAndNotNoise, nullptr, nullptr);
-    addChild("manageInactiveTypeWall", "setActiveTypewall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetActive, nullptr);
+    addChild("manageInactiveTypeWall", "setActiveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetActiveOnWall, nullptr);
 
     addChild("manageObserveTypeWall", "resetVariablesObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionResetObserveVariables, nullptr);
-    addChild("manageObserveTypeWall", "turnLeftObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionObserveLeft, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
-    addChild("manageObserveTypeWall", "waitLeftObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitObserving, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
-    addChild("manageObserveTypeWall", "turnRightObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionObserveRight, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
-    addChild("manageObserveTypeWall", "waitRightObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitObserving, (BTAssert)&TCompAIMimetic::assertNotPlayerInFovNorNoise);
+    addChild("manageObserveTypeWall", "waitTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionObserveLeft, (BTAssert)&TCompAIMimetic::assertNotPlayerInRaycastNorNoise);
 
     addChild("manageInactiveTypeFloor", "manageInactiveBehaviour", BTNode::EType::PRIORITY, (BTCondition)&TCompAIMimetic::conditionIsNotPlayerInFovAndNotNoise, nullptr, nullptr);
     addChild("manageInactiveTypeFloor", "setActiveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetActive, nullptr);
@@ -382,6 +380,11 @@ BTNode::ERes TCompAIMimetic::actionResetObserveVariables(float dt)
     return BTNode::ERes::LEAVE;
 }
 
+BTNode::ERes TCompAIMimetic::actionWaitOnWall(float dt) {
+	//TO-DO: Animacion pose_pared
+	return BTNode::ERes::LEAVE;
+}
+
 BTNode::ERes TCompAIMimetic::actionObserveLeft(float dt)
 {
     //Animation To Change
@@ -444,6 +447,12 @@ BTNode::ERes TCompAIMimetic::actionSetActive(float dt)
 {
     isActive = true;
     return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIMimetic::actionSetActiveOnWall(float dt) {
+	//TO-DO: Animacion de salto
+	isActive = true;
+	return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIMimetic::actionJumpFloor(float dt)
@@ -974,6 +983,10 @@ bool TCompAIMimetic::assertNotPlayerInFovNorNoise(float dt)
     return !hasHeardArtificialNoise && !hasHeardNaturalNoise && !isEntityInFov(entityToChase, fov, maxChaseDistance);
 }
 
+bool TCompAIMimetic::assertNotPlayerInRaycastNorNoise(float dt) {
+	return !hasHeardArtificialNoise && !hasHeardNaturalNoise && !isEntityInFov(entityToChase, fov, maxChaseDistance);
+}
+
 bool TCompAIMimetic::assertNotPlayerInFov(float dt)
 {
     return !isEntityInFov(entityToChase, fov, maxChaseDistance);
@@ -1036,8 +1049,25 @@ TCompAIMimetic::EType TCompAIMimetic::parseStringMimeticType(const std::string &
     }
 }
 
+bool TCompAIMimetic::isPlayerOnLaser() {
+	if (!laser_handle.isValid()) return false;
+
+	CEntity* e = laser_handle.getOwner();
+	TCompLaser* c_laser = e->get<TCompLaser>();
+
+	if (c_laser == nullptr) return false;
+
+	return c_laser->isPlayerOnLaser();
+
+
+}
+
 void TCompAIMimetic::playAnimationByName(const std::string & animationName)
 {
     TCompMimeticAnimator * myAnimator = get<TCompMimeticAnimator>();
     myAnimator->playAnimationConverted(myAnimator->getAnimationByName(animationName));
+}
+
+void TCompAIMimetic::registerLaserHandle(CHandle h_laser) {
+	laser_handle = h_laser;
 }

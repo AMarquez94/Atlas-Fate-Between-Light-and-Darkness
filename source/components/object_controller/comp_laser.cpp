@@ -27,3 +27,7 @@ void TCompLaser::update(float dt) {
 void TCompLaser::registerMsgs() {
 
 }
+
+bool TCompLaser::isPlayerOnLaser() {
+	return false;
+}
