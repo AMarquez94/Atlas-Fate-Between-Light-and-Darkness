@@ -130,8 +130,12 @@ void TCompTempPlayerController::update(float dt) {
     }
 
     // Update player global speed into the shader.
-    float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
-    cb_globals.global_player_speed = (inputSpeed * currentSpeed) / 6.f; // Maximum speed, change this in the future. 
+    {
+        float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
+        cb_globals.global_player_speed = (inputSpeed * currentSpeed) / 6.f; // Maximum speed, change this in the future. 
+        cb_player.player_health = life != maxLife ? (life/ maxLife) : 1;
+        dbg("result %f\n", cb_player.player_health);
+    }
 }
 
 void TCompTempPlayerController::registerMsgs() {
