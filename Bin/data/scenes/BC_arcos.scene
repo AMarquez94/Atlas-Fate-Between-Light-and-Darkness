@@ -14,23 +14,53 @@
   {
     "entity":
     {
-      "name": "BC_screen003"
+      "name": "plataforma_cupula_low"
       ,
       "transform":
       {
-        "pos": "-9.26964 15.1664 -386.865"
+        "pos": "4.37873 17.9268 -388.702"
         ,
-        "rotation": "0.707107 0.0 0.0 -0.707107"
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/BC_screen003.mesh"
+          "mesh": "data/meshes/plataforma_cupula_low.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_prop_test.material"
+            "data/materials/mtl_arco_central.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_cupula_arco_low"
+      ,
+      "transform":
+      {
+        "pos": "4.37695 19.8545 -388.78"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_cupula_arco_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_central.material"
           ]
         }
       ]
@@ -39,7 +69,7 @@
       {
         "shape": "mesh"
         ,
-        "name": "data/colliders/collider_BC_screen003.collider"
+        "name": "data/colliders/collider_BC_cupula_arco_low.collider"
       }
       ,
       "abs_aabb": true
@@ -88,11 +118,11 @@
   {
     "entity":
     {
-      "name": "BC_cupula_arco_low"
+      "name": "BC_interior_cupula_low"
       ,
       "transform":
       {
-        "pos": "4.37695 19.8545 -388.78"
+        "pos": "4.37873 16.9716 -388.789"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -100,7 +130,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/BC_cupula_arco_low.mesh"
+          "mesh": "data/meshes/BC_interior_cupula_low.mesh"
           ,
           "materials":
           [
@@ -108,13 +138,6 @@
           ]
         }
       ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_BC_cupula_arco_low.collider"
-      }
       ,
       "abs_aabb": true
       ,
