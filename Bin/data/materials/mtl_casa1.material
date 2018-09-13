@@ -7,12 +7,10 @@
     ,
     "metallic": "data/textures/tx_casa1_met.dds"
     ,
-    "roughness": "data/textures/tx_casa3_met.dds"
+    "roughness": "data/textures/tx_casa1_rgh.dds"
     ,
-    "normal": "data/textures/tx_casa3_nml.dds"
+    "normal": "data/textures/tx_casa1_nml.dds"
     ,
     "height": "data/textures/tx_casa1_hgt.dds"
-    ,
-    "aocclusion": "data/textures/tx_casa1_ao.dds"
   }
 }
