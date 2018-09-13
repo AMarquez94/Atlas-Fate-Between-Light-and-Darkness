@@ -8,31 +8,13 @@
 		{"name": "death"},
 		{"name": "wakeup"},
 		{"name": "rotate"},
-		{"name": "pose_pared"},
-		{"name": "death"}
+		{"name": "pose_pared"}
 
 	],
 	"lookat_corrections" : [
 		{
 			"bone" : "Eye",
-			"local_axis_to_correct" : "0 0 1", 
-			"amount" : 1.0
-		},
-		{
-			"bone" : "EndBone",
-			"local_axis_to_correct" : "0 0 1", 
-			"amount" : 1.0
-		}
-		,
-		{
-			"bone" : "Cabeza_nub",
-			"local_axis_to_correct" : "0 0 1", 
-			"amount" : 1.0
-		}
-		,
-		{
-			"bone" : "Cabeza",
-			"local_axis_to_correct" : "0 0 1", 
+			"local_axis_to_correct" : "1 0 0", 
 			"amount" : 1.0
 		}
 	]

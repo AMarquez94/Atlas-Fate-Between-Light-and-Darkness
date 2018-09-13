@@ -206,7 +206,7 @@
 				"initial": "1.0 1.0 1.0 1.0",
 				"intensity": 1.25
 			},
-			"skel_lookat" : {
+			"xskel_lookat" : {
 				"target_entity_name" : "Mimeticus",
 				"amount" : 1
 			},

@@ -223,7 +223,7 @@
 			},
 			"skel_lookat" : {
 				"target_entity_name" : "Target Laser",
-				"amount" : 1.0
+				"amount" : 1
 			},
 			"emission_controller": {
 				"initial": "0.0 1.0 1.0 1.0"
