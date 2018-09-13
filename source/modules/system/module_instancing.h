@@ -16,7 +16,6 @@ struct TInstanceVolume {
     VEC3 light_pos;
 };
 
-
 class CModuleInstancing : public IModule {
 
     // Static instances, for testing purposes

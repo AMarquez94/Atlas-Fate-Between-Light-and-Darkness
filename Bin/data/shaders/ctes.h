@@ -275,7 +275,7 @@ CB_DEF(CCtePlayer, CB_PLAYER)
     float  player_disk_radius;
 
     float  player_shadowed;
-    float  player_dummy1;
+    float  player_health;
     float  player_dummy2;
     float  player_dummy3;
 };
@@ -288,6 +288,11 @@ CB_DEF(CCtePostFX, CB_POSTFX)
     float  postfx_scan_amount;
     VEC2   postfx_scan_drift;
     VEC2   postfx_scan_jitter;
+
+    float  postfx_vignette;
+    float  postfx_dummy1;
+    float  postfx_dummy2;
+    float  postfx_dummy3;
 };
 
 CB_DEF(CCteFocus, CB_FOCUS)
