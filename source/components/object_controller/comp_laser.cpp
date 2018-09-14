@@ -28,6 +28,7 @@ void TCompLaser::update(float dt) {
 	playerDetected = false;
 
 	CEntity* e = CHandle(this).getOwner();
+	if (e == nullptr) return;
 	TCompTransform *mypos = e->get<TCompTransform>();
 	physx::PxRaycastHit hit;
 	VEC3 origin = mypos->getPosition();
