@@ -276,6 +276,11 @@ struct TMsgButtonActivated {
     DECL_MSG_ID();
 };
 
+struct TMsgWeaponsActivated {
+    bool activate;
+    DECL_MSG_ID();
+};
+
 struct TMsgStopAudioComponent {
     DECL_MSG_ID();
 };

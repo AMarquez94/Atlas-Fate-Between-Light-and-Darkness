@@ -135,6 +135,7 @@
     <ClCompile Include="components\lighting\comp_emission_controller.cpp" />
     <ClCompile Include="components\lighting\comp_light_point.cpp" />
     <ClCompile Include="components\lighting\comp_light_spot.cpp" />
+    <ClCompile Include="components\object_controller\comp_player_weapon.cpp" />
     <ClCompile Include="components\object_controller\comp_rotator.cpp" />
     <ClCompile Include="components\object_controller\comp_shooter.cpp" />
     <ClCompile Include="components\object_controller\comp_speaker.cpp" />
@@ -369,6 +370,7 @@
     <ClInclude Include="components\lighting\comp_emission_controller.h" />
     <ClInclude Include="components\lighting\comp_light_point.h" />
     <ClInclude Include="components\lighting\comp_light_spot.h" />
+    <ClInclude Include="components\object_controller\comp_player_weapon.h" />
     <ClInclude Include="components\object_controller\comp_rotator.h" />
     <ClInclude Include="components\object_controller\comp_shooter.h" />
     <ClInclude Include="components\object_controller\comp_speaker.h" />
