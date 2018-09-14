@@ -267,7 +267,7 @@
 				"mesh": "data/meshes/laser.mesh",
 				"materials":
 				[
-					"data/materials/mtl_tubo_capsulas.material"
+					"data/materials/mtl_laser.material"
 				]
 			}],
 			"laser":{

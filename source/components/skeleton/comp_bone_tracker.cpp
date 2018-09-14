@@ -51,7 +51,7 @@ void TCompBoneTracker::update(float dt) {
 
     // Access to the bone 'bone_id' of the skeleton
     auto cal_bone = c_skel->model->getSkeleton()->getBone(bone_id);
-    QUAT rot = Cal2DX(cal_bone->getRotationAbsolute()) * rot_offset;
+    QUAT rot = rot_offset * Cal2DX(cal_bone->getRotationAbsolute());
     VEC3 pos = Cal2DX(cal_bone->getTranslationAbsolute());
 
     // Apply the cal3d pos&rot to my entity owner

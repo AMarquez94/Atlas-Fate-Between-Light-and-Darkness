@@ -1,0 +1,12 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/default_texture.dds"
+    ,
+    "normal": "data/textures/null_normal.dds"
+    ,
+    "emissive": "data/textures/default_white.dds"
+  }
+}

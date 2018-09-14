@@ -32,9 +32,9 @@ void TCompLaser::update(float dt) {
 	TCompTransform *mypos = e->get<TCompTransform>();
 	physx::PxRaycastHit hit;
 	VEC3 origin = mypos->getPosition();
-	VEC3 dir = mypos->getFront();
+	VEC3 dir = -mypos->getUp();
 	if (EnginePhysics.Raycast(origin, dir, 40.0f, hit, (physx::PxQueryFlag::eSTATIC | physx::PxQueryFlag::eDYNAMIC), laserFilter)) {
-		mypos->setScale( VEC3( 1, 1, (float)hit.distance ) );
+		mypos->setScale( VEC3( 1, (float)hit.distance, 1 ) );
 		CHandle possible_player;
 		possible_player.fromVoidPtr(hit.actor->userData);
 		possible_player = possible_player.getOwner();
@@ -46,7 +46,7 @@ void TCompLaser::update(float dt) {
 		
 	}
 	else {
-		mypos->setScale(VEC3(1, 1, 40));
+		mypos->setScale(VEC3(1, 40.0, 0));
 	}
 		
 }
