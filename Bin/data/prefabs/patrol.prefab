@@ -48,7 +48,8 @@
 			"tags": ["enemy", "patrol"],
 			"ai_patrol": {
 				"bt": "data/bt/patrol.bt"
-			}
+			},
+			"audio":true
 		}
 	}, {
 		"entity": {
