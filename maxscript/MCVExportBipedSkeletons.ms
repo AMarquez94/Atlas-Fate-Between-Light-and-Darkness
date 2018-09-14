@@ -1,7 +1,7 @@
 clearListener()
 
 struct  TSkeletonsExporter (
-	project_path = "D:/Games/Deep_Shadows/Bin/data/skeletons/patrol/",
+	project_path = "D:/DeepShadows/Bin/data/skeletons/patrol/",
 	skel_name = "patrol",			-- smurf
 	skel_root_path,					-- "C:/../bin/data/skeletons/smurf/,
 	skel_file, 						-- "C:/../bin/data/skeletons/smurf/smurf.csf"
