@@ -204,6 +204,8 @@ public:
     void pauseEnemy();
     void stunEnemy();
     const bool isStaminaFull() { return stamina / maxStamina != 1.f; };
+    CHandle getLeftWeapon() { return weaponLeft; };
+    CHandle getRightWeapon() { return weaponRight; };
 
     VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
 

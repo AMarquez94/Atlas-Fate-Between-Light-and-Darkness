@@ -134,6 +134,8 @@ void CModuleLogic::publishClasses() {
         .set("pauseEnemy", &TCompTempPlayerController::pauseEnemy)
         .set("stunEnemy", &TCompTempPlayerController::stunEnemy)
         .set("die", &TCompTempPlayerController::die)
+        .set("getLeftWeapon", &TCompTempPlayerController::getLeftWeapon)
+        .set("getRightWeapon", &TCompTempPlayerController::getRightWeapon)
         ;
 
     SLB::Class<TCompLightSpot>("SpotLight", m)

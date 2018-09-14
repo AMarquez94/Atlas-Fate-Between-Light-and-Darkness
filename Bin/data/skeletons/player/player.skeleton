@@ -36,6 +36,14 @@
 				"function_to_call" : "animation_attack_start"
 			  },
 			  {
+				"time_to_call" : 0.5,
+				"function_to_call" : "animation_attack_swingRight"
+			  },
+			  {
+				"time_to_call" : 0.7,
+				"function_to_call" : "animation_attack_swingLeft"
+			  },
+			  {
 				"time_to_call" : 0.7,
 				"function_to_call" : "animation_attack_attack"
 			  }

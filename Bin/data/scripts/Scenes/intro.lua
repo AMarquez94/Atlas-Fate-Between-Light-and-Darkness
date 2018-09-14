@@ -8,7 +8,7 @@ function onSceneStart_scene_intro()
 	cinematicsEnabled = false;
 	
 	--#Debug position for start
-	move("The Player", VEC3(-19, 6, -30), VEC3(-19, 6, -29));
+	move("The Player", VEC3(-7, 0, -43), VEC3(-7, 0, -44));
 
 	-- First Cinematic --
 	if(cinematicsEnabled and not isCheckpointSaved()) then
