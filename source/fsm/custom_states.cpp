@@ -310,6 +310,8 @@ namespace FSM
         TCompParticles * c_e_particle2 = ent->get<TCompParticles>();
         assert(c_e_particle2);
         c_e_particle2->setSystemState(false);
+
+        EngineLogic.execScript("animation_enter_merge()");
     }
 
     void EnterMergeState::onFinish(CContext& ctx) const {
@@ -364,6 +366,8 @@ namespace FSM
         //e->sendMsg(TMsgAnimation{ "crouch" });
 
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::mergeState, _speed, _size, _radius, _target, _noise });
+
+        EngineLogic.execScript("animation_exit_merge()");
     }
 
     void ExitMergeInterruptedState::onFinish(CContext& ctx) const {
@@ -406,6 +410,8 @@ namespace FSM
 
         TCompParticles * c_e_particle = e->get<TCompParticles>();
         c_e_particle->setSystemState(false);
+
+        EngineLogic.execScript("animation_exit_merge()");
     }
 
     void ExitMergeState::onFinish(CContext& ctx) const {

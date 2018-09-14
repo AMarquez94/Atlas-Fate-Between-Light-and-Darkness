@@ -19,3 +19,17 @@ function animation_attack_swingRight(sender)
 	t_audio = toAudio(e:getCompByName("audio"));
 	t_audio:playEvent("event:/Sounds/Player/Weapons/WeaponAttack_2", true);
 end
+
+function animation_enter_merge()
+	h = getEntityByName("The Player");
+	e = toEntity(h);
+	t_audio = toAudio(e:getCompByName("audio"));
+	t_audio:playEvent("event:/Sounds/Player/SM/EnterMerge", true);
+end
+
+function animation_exit_merge()
+	h = getEntityByName("The Player");
+	e = toEntity(h);
+	t_audio = toAudio(e:getCompByName("audio"));
+	t_audio:playEvent("event:/Sounds/Player/SM/ExitMerge", true);
+end
