@@ -7,6 +7,8 @@
 		{"name": "run"},
 		{"name": "death"},
 		{"name": "wakeup"},
+		{"name": "wakeup_jump", 
+		"animation_completed_callback": true},
 		{"name": "rotate"},
 		{"name": "pose_pared"}
 

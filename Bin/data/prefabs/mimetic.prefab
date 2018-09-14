@@ -270,7 +270,9 @@
 					"data/materials/mtl_tubo_capsulas.material"
 				]
 			}],
-			"laser":true,
+			"laser":{
+				"parent" : "Mimetic"
+			},
 			"bone_tracker":{
 				"parent": "Mimetic",
 				"bone": "Eye",

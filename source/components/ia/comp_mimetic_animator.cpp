@@ -101,11 +101,11 @@ void TCompMimeticAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::JUMP_TO_WALL,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"wakeup",
+		"wakeup_jump",
 		"",
 		1.0f,
 		1.0f,
-		false
+		true
 	);
 
 	initializeAnimation(
@@ -202,7 +202,6 @@ void TCompMimeticAnimator::onCreated(const TMsgEntityCreated& msg) {
 }
 
 bool TCompMimeticAnimator::playAnimation(TCompMimeticAnimator::EAnimation animation, float speed) {
-
 	return playAnimationConverted((TCompAnimator::EAnimation)animation, speed);
 }
 

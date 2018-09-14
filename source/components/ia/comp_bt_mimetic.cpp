@@ -61,11 +61,11 @@ void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
     addChild("manageInactiveTypeSleep", "sleep", BTNode::EType::ACTION, (BTCondition)&TCompAIMimetic::conditionNotListenedNoise, (BTAction)&TCompAIMimetic::actionSleep, nullptr);
     addChild("manageInactiveTypeSleep", "wakeUp", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWakeUp, nullptr);
 
-    addChild("manageInactiveTypeWall", "manageObserveTypeWall", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionIsNotPlayerInFovAndNotNoise, nullptr, nullptr);
+    addChild("manageInactiveTypeWall", "manageObserveTypeWall", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIMimetic::conditionIsNotPlayerInRaycastAndNotNoise, nullptr, nullptr);
     addChild("manageInactiveTypeWall", "setActiveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetActiveOnWall, nullptr);
 
     addChild("manageObserveTypeWall", "resetVariablesObserveTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionResetObserveVariables, nullptr);
-    addChild("manageObserveTypeWall", "waitTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionObserveLeft, (BTAssert)&TCompAIMimetic::assertNotPlayerInRaycastNorNoise);
+    addChild("manageObserveTypeWall", "waitTypeWall", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionWaitOnWall, (BTAssert)&TCompAIMimetic::assertNotPlayerInRaycastNorNoise);
 
     addChild("manageInactiveTypeFloor", "manageInactiveBehaviour", BTNode::EType::PRIORITY, (BTCondition)&TCompAIMimetic::conditionIsNotPlayerInFovAndNotNoise, nullptr, nullptr);
     addChild("manageInactiveTypeFloor", "setActiveTypeFloor", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIMimetic::actionSetActive, nullptr);
@@ -265,6 +265,13 @@ void TCompAIMimetic::onMsgPhysxContact(const TMsgPhysxContact & msg)
     }
 }
 
+void TCompAIMimetic::onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) {
+
+	if (msg.animation_name.compare("wakeup_jump") == 0) {
+		wakeUpJumpAnimationcompleted = true;
+	}
+}
+
 
 /* TODO: REVISAR MUY MUCHO */
 const std::string TCompAIMimetic::getStateForCheckpoint()
@@ -334,6 +341,7 @@ void TCompAIMimetic::registerMsgs()
     DECL_MSG(TCompAIMimetic, TMsgEnemyStunned, onMsgMimeticStunned);
     DECL_MSG(TCompAIMimetic, TMsgNoiseMade, onMsgNoiseListened);
     DECL_MSG(TCompAIMimetic, TMsgPhysxContact, onMsgPhysxContact);
+	DECL_MSG(TCompAIMimetic, TMsgAnimationCompleted, onMsgAnimationCompleted);
 }
 
 void TCompAIMimetic::loadActions() {
@@ -381,8 +389,19 @@ BTNode::ERes TCompAIMimetic::actionResetObserveVariables(float dt)
 }
 
 BTNode::ERes TCompAIMimetic::actionWaitOnWall(float dt) {
-	//TO-DO: Animacion pose_pared
-	return BTNode::ERes::LEAVE;
+
+	TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
+	myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE_WALL);
+	if (!isPlayerOnLaser()) {
+		return BTNode::ERes::STAY;
+	}
+	else {
+		CEntity *e = getEntityByName(entityToChase);
+		TCompTransform * c_trans = e->get<TCompTransform>();
+		lastPlayerKnownPos = c_trans->getPosition();
+		return BTNode::ERes::LEAVE;
+	}
+	
 }
 
 BTNode::ERes TCompAIMimetic::actionObserveLeft(float dt)
@@ -450,9 +469,23 @@ BTNode::ERes TCompAIMimetic::actionSetActive(float dt)
 }
 
 BTNode::ERes TCompAIMimetic::actionSetActiveOnWall(float dt) {
+
+	TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
+	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompMimeticAnimator::EAnimation::JUMP_TO_WALL) && !wakeUpJumpAnimationcompleted) {
+		myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
+		myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::JUMP_TO_WALL);
+
+	}
 	//TO-DO: Animacion de salto
-	isActive = true;
-	return BTNode::ERes::LEAVE;
+	if (wakeUpJumpAnimationcompleted) {
+		wakeUpJumpAnimationcompleted = false;
+		isActive = true;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		return BTNode::ERes::STAY;
+	}
+	
 }
 
 BTNode::ERes TCompAIMimetic::actionJumpFloor(float dt)
@@ -911,6 +944,10 @@ bool TCompAIMimetic::conditionIsNotPlayerInFovAndNotNoise(float dt)
     return !hasHeardNaturalNoise && !hasHeardArtificialNoise && !isEntityInFov(entityToChase, fov, maxChaseDistance);
 }
 
+bool TCompAIMimetic::conditionIsNotPlayerInRaycastAndNotNoise(float dt) {
+	return !hasHeardNaturalNoise && !hasHeardArtificialNoise && !isPlayerOnLaser();
+}
+
 bool TCompAIMimetic::conditionIsNotActive(float dt)
 {
     return !isActive;
@@ -984,7 +1021,7 @@ bool TCompAIMimetic::assertNotPlayerInFovNorNoise(float dt)
 }
 
 bool TCompAIMimetic::assertNotPlayerInRaycastNorNoise(float dt) {
-	return !hasHeardArtificialNoise && !hasHeardNaturalNoise && !isEntityInFov(entityToChase, fov, maxChaseDistance);
+	return !hasHeardArtificialNoise && !hasHeardNaturalNoise;
 }
 
 bool TCompAIMimetic::assertNotPlayerInFov(float dt)
@@ -1052,7 +1089,7 @@ TCompAIMimetic::EType TCompAIMimetic::parseStringMimeticType(const std::string &
 bool TCompAIMimetic::isPlayerOnLaser() {
 	if (!laser_handle.isValid()) return false;
 
-	CEntity* e = laser_handle.getOwner();
+	CEntity* e = laser_handle;
 	TCompLaser* c_laser = e->get<TCompLaser>();
 
 	if (c_laser == nullptr) return false;

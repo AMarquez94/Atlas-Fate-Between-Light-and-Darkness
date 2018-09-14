@@ -25,6 +25,10 @@ private:
     float incrBaseSuspectO_Meter = .5f;
     float distToAttack = 1.5f;
 
+	/* Completed Animations Checkers */
+
+	bool wakeUpJumpAnimationcompleted = false;
+
     /* Timers */
     float timerWaitingInObservation = 0.f;
     float timerToExplode = 0.f;
@@ -57,6 +61,7 @@ private:
     void onMsgMimeticStunned(const TMsgEnemyStunned& msg);
     void onMsgNoiseListened(const TMsgNoiseMade& msg);
     void onMsgPhysxContact(const TMsgPhysxContact& msg);
+	void onMsgAnimationCompleted(const TMsgAnimationCompleted& msg);
 
     /* Aux functions */
     void setGravityToFaceWall();
@@ -117,6 +122,7 @@ public:
     bool conditionHasBeenStunned(float dt);
     bool conditionIsTypeWall(float dt);
     bool conditionIsNotPlayerInFovAndNotNoise(float dt);
+	bool conditionIsNotPlayerInRaycastAndNotNoise(float dt);
     bool conditionIsNotActive(float dt);
     bool conditionHasWpts(float dt);
     bool conditionIsTypeFloor(float dt);
