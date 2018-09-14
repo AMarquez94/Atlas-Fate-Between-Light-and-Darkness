@@ -114,6 +114,9 @@
 			"data/scenes/zone_a_colliders_valla_luz.scene",
 			"data/scenes/zone_a_test.scene",
 
+
+			"data/scenes/zone_a_edificios_segunda.scene",
+
 			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene",
 			"data/scenes/ZoneA/test_instancing.scene",
