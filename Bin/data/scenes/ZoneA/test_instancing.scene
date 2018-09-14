@@ -1,5 +1,5 @@
 [{
-		"entity": {
+		"xentity": {
 			"name": "Instanced meshes",
 			"transform": {
 				"pos": "0 0 0"
@@ -27,7 +27,7 @@
 			]
 		}
 	}, {
-		"xentity": {
+		"entity": {
 			"name": "Instanced Grass",
 			"transform": {
 				"pos": "0 0 0"

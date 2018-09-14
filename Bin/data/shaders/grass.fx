@@ -19,8 +19,6 @@ void VS(
 
 )
 {
-  // iPos goes from 0...1
-  // local_pos goes from -1 ... 1
   float3 local_pos = iPos.xyz * 2. - 1.;
   local_pos.y += 1.0;
 
@@ -31,8 +29,7 @@ void VS(
   float z_start_fadeout = 150; 
   float alpha = 1.0 - smoothstep( z_start_fadeout, z_start_fadeout + 50, length ( iCenter.xyz - camera_pos.xyz ) );
 
-  float scale_factor = 2.0f + 2.0f * unit_rand_val;
-
+  float scale_factor = unit_rand_val;
   local_pos *= scale_factor * alpha;
 
   float2 uv = iPos.xy;
@@ -42,9 +39,6 @@ void VS(
 
   // Base position is the position of the instance
   float4 world_pos = iCenter;
-  // Option1 : Align to the camera
-  // world_pos.xyz += ( local_pos.x * camera_left + local_pos.y * camera_up );
-  // Option2 : Add a random orientation around the vertical axis
   world_pos.xyz += 2 * ( local_pos.x * float3(cos(3*iInstancedID),0, sin(3*iInstancedID)) + local_pos.y * float3(0,1,0));
 
   oPos = mul(world_pos, camera_view_proj);

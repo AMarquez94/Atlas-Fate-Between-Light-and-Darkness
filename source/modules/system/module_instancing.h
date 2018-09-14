@@ -7,38 +7,24 @@ class TInstance;
 class TCompTransform;
 class TEntityParseContext;
 
-struct TInstance {
-    MAT44 world;
-};
-
-struct TInstanceVolume {
-    MAT44 world;
-    VEC3 light_pos;
-};
-
+// We should use a template here instead of differentiating the types
 class CModuleInstancing : public IModule {
 
-    // Static instances, for testing purposes
-    CHandle scene_group;
+    // -------------------------------------------------------------------
+    struct TInstance {
+        MAT44 world;
+    };
+
+    // -------------------------------------------------------------------
+    struct TInstanceVolume {
+        MAT44 world;
+        VEC3 light_pos;
+    };
 
     // -------------------------------------------------------------------
     struct TGrassParticle {
         VEC3  pos;
     };
-    CRenderMeshInstanced* grass_instances_mesh = nullptr;
-    std::vector< TGrassParticle > grass_instances;
-
-    // -------------------------------------------------------------------
-    CRenderMeshInstanced* instances_mesh = nullptr;
-    std::vector< TInstance > instances;
-
-    // -------------------------------------------------------------------
-    struct TInstanceBlood {
-        MAT44 world;
-        VEC4  color;
-    };
-    CRenderMeshInstanced* blood_instances_mesh = nullptr;
-    std::vector<TInstanceBlood> blood_instances;
 
     // -------------------------------------------------------------------
     struct TRenderParticle {
@@ -49,6 +35,18 @@ class CModuleInstancing : public IModule {
         float scale_y;
         float nframe;
     };
+
+    // Static instances, for testing purposes
+    CHandle scene_group;
+
+    CRenderMeshInstanced* grass_instances_mesh = nullptr;
+    std::vector< TGrassParticle > grass_instances;
+
+    // -------------------------------------------------------------------
+    CRenderMeshInstanced* instances_mesh = nullptr;
+    std::vector< TInstance > instances;
+
+    // -------------------------------------------------------------------
     CRenderMeshInstanced* particles_instances_mesh = nullptr;
     std::vector<TRenderParticle> particles_instances;
 
@@ -72,7 +70,8 @@ public:
     void update(float delta) override;
     void renderMain();
 
-    int addInstance(const std::string & name, MAT44 w_matrix);
+    int addInstance(const std::string & name, const std::string & type, MAT44 w_matrix);
+    int addCustomInstance(const std::string & name, const std::string & type, MAT44 w_matrix);
     void removeInstance(TInstance* instance);
     void updateInstance(const std::string& name, int index, const MAT44& w_matrix);
     void clearInstance(const std::string& name);
