@@ -1,6 +1,26 @@
 //--------------------------------------------------------------------------------------
 #include "common.fx"
 
+//--------------------------------------------------------------------------------------
+void computeBlendWeights2( float t1_a
+                        , float t2_a
+                        , float t3_a
+                        , out float w1
+                        , out float w2 
+                        , out float w3 
+                        ) {
+  float depth = 0.35;
+  float ma = max( t1_a, max( t2_a, t3_a ) ) - depth;
+  float b1 = max( t1_a - ma, 0 );
+  float b2 = max( t2_a - ma, 0 );
+  float b3 = max( t3_a - ma, 0 );
+  float b_total = b1 + b2 + b3;
+  w1 = b1 / ( b_total );
+  w2 = b2 / ( b_total );
+  w3 = b3 / ( b_total );
+}
+
+
 float2 ComputeWeightedParallax(float2 texCoords, float3 view_dir, float2 iTex1) {
 
 	float4 weight_texture_boost = txMixBlendWeights.Sample(samLinear, iTex1);
@@ -9,9 +29,9 @@ float2 ComputeWeightedParallax(float2 texCoords, float3 view_dir, float2 iTex1) 
   float albedoB = txAlbedo2.Sample(samLinear, texCoords).a;
 		
   float w1, w2, w3;
-  computeBlendWeights( albedoR + mix_boost_r + weight_texture_boost.r
-                     , albedoG + mix_boost_g + weight_texture_boost.g
-                     , albedoB + mix_boost_b + weight_texture_boost.b
+  computeBlendWeights2( albedoR + weight_texture_boost.r
+                     , albedoG + weight_texture_boost.g
+                     , albedoB + weight_texture_boost.b
                      , w1, w2, w3 );
 										 
 	const float minLayers = 15.0;
@@ -252,27 +272,25 @@ void PS_GBufferMix(
 	iTex0 = ComputeWeightedParallax(iTex0, view_dir, iTex1);
 	
   // This is different -----------------------------------------
-
-  // This is different -----------------------------------------
 	float4 weight_texture_boost = txMixBlendWeights.Sample(samLinear, iTex1);
   float4 albedoR = txAlbedo.Sample(samLinear, iTex0);
   float4 albedoG = txAlbedo1.Sample(samLinear, iTex0);
   float4 albedoB = txAlbedo2.Sample(samLinear, iTex0);
 		
   float w1, w2, w3;
-  computeBlendWeights( albedoR.a + mix_boost_r + weight_texture_boost.r
-                     , albedoG.a + mix_boost_g + weight_texture_boost.g
-                     , albedoB.a + mix_boost_b + weight_texture_boost.b
+  computeBlendWeights2( albedoR.a + weight_texture_boost.r
+                     , albedoG.a + weight_texture_boost.g
+                     , albedoB.a + weight_texture_boost.b
                      , w1, w2, w3 );
   
 	// Use the weight to 'blend' the albedo colors
   float4 albedo = albedoR * w1 + albedoG * w2 + albedoB * w3;
   o_albedo.xyz = albedo.xyz;
-	o_selfIllum.xyz *= self_color.xyz;
-	//float aoR = txAOcclusion.Sample(samLinear, iTex0).r;
-	//float aoG = txAOcclusion1.Sample(samLinear, iTex0).r;
-	//float aoB = txAOcclusion2.Sample(samLinear, iTex0).r;
-	//float ao_color = aoR * w1 + aoG * w2 + aoB * w3; 
+  o_selfIllum.xyz *= self_color.xyz;
+  //float aoR = txAOcclusion.Sample(samLinear, iTex0).r;
+  //float aoG = txAOcclusion1.Sample(samLinear, iTex0).r;
+  //float aoB = txAOcclusion2.Sample(samLinear, iTex0).r;
+  //float ao_color = aoR * w1 + aoG * w2 + aoB * w3; 
   o_selfIllum = float4(0,0,0,1);//ao_color;
 	
   // This isMix the normal

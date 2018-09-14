@@ -101,6 +101,7 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
     paused = true;
     canAttack = false;
     canRemoveInhibitor = false;
+    life = maxLife;
 
     // Move the stamina string to the json
     EngineGUI.enableWidget("stamina_bar_general", false);
@@ -134,7 +135,6 @@ void TCompTempPlayerController::update(float dt) {
         float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
         cb_globals.global_player_speed = (inputSpeed * currentSpeed) / 6.f; // Maximum speed, change this in the future. 
         cb_player.player_health = life != maxLife ? (life/ maxLife) : 1;
-        dbg("result %f\n", cb_player.player_health);
     }
 }
 

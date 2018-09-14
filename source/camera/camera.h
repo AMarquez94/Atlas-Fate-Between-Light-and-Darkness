@@ -69,6 +69,10 @@ public:
 		return view_proj;
 	}
 
+    void setFov(float new_fov) {
+        fov_vertical = new_fov;
+    }
+
 	// -------------------------------------
 	float getFov() const { return fov_vertical; }
 	float getZNear() const { return z_near; }

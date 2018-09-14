@@ -5,9 +5,9 @@
   "textures":
   { },
   "mats":[
-    "data/materials/mtl_suelo_intro.material",
-    "data/materials/mix_sand.material",
-    "data/materials/mtl_suelo_plaza.material"
+    "data/materials/mix_intro_red.material",
+    "data/materials/mix_intro_green.material",
+    "data/materials/mix_intro_blue.material"
 ],
-  "mix_blend_weights" : "data/textures/mix/mixing_blend.dds"
+  "mix_blend_weights" : "data/textures/mix/blending_intro/blending_mask.dds"
 }

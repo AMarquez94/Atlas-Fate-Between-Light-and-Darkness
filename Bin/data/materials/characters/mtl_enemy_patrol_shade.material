@@ -2,11 +2,11 @@
 	"technique": "pbr_shade_skin.tech",
 	"shadows": true,
 	"textures": {
-		"albedo": "data/textures/enemy/Mech_low_1001_BaseColor.dds",
-		"normal": "data/textures/enemy/Mech_low_1001_Normal.dds",
-		"metallic": "data/textures/enemy/Mech_low_1001_Metallic.dds",
-		"roughness": "data/textures/enemy/Mech_low_1001_Roughness.dds",
-		"emissive": "data/textures/enemy/Mech_low_1001_Emissive.dds"
+		"albedo": "data/textures/enemy/tx_patrol_alb.dds",
+		"normal": "data/textures/enemy/tx_patrol_nml.dds",
+		"metallic": "data/textures/enemy/tx_patrol_met.dds",
+		"roughness": "data/textures/enemy/tx_patrol_rgh.dds",
+		"emissive": "data/textures/enemy/tx_patrol_emi.dds"
 	},
 	"self_color": "0.0 1.0 1.0 1.0"
 }

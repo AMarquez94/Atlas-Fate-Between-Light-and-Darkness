@@ -1,0 +1,13 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/mix/blending_intro/blue/tx_arena_basecolor.dds",
+    "normal": "data/textures/mix/blending_intro/blue/tx_arena_normal.dds",
+    "metallic": "data/textures/mix/blending_intro/blue/tx_arena_metallic.dds",
+    "roughness": "data/textures/mix/blending_intro/blue/tx_arena_roughness.dds",
+	"height": "data/textures/mix/blending_intro/blue/tx_arena_height.dds",
+	"aocclusion": "data/textures/mix/blending_intro/blue/tx_arena_ao.dds"
+  }
+}
