@@ -184,6 +184,16 @@ void TCompMimeticAnimator::initializeAnimations() {
 		1.0f,
 		false
 	);
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::WAKE_UP,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"wakeup",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
 }
 
 void TCompMimeticAnimator::registerMsgs() {

@@ -27,7 +27,12 @@ private:
 
 	/* Completed Animations Checkers */
 
-	bool wakeUpJumpAnimationcompleted = false;
+
+
+	bool wakeUpJumpAnimationCompleted = false;
+	bool wakeUpAnimationCompleted = false;
+
+
 
     /* Timers */
     float timerWaitingInObservation = 0.f;
@@ -152,5 +157,7 @@ public:
     void playAnimationByName(const std::string & animationName) override;
 
 	void registerLaserHandle(CHandle h_laser);
+
+	void setLaserState(bool state);
 
 };

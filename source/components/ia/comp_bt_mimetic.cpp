@@ -268,7 +268,10 @@ void TCompAIMimetic::onMsgPhysxContact(const TMsgPhysxContact & msg)
 void TCompAIMimetic::onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) {
 
 	if (msg.animation_name.compare("wakeup_jump") == 0) {
-		wakeUpJumpAnimationcompleted = true;
+		wakeUpJumpAnimationCompleted = true;
+	}
+	if (msg.animation_name.compare("wakeup") == 0) {
+		wakeUpAnimationCompleted = true;
 	}
 }
 
@@ -471,15 +474,27 @@ BTNode::ERes TCompAIMimetic::actionSetActive(float dt)
 BTNode::ERes TCompAIMimetic::actionSetActiveOnWall(float dt) {
 
 	TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompMimeticAnimator::EAnimation::JUMP_TO_WALL) && !wakeUpJumpAnimationcompleted) {
+
+	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompMimeticAnimator::EAnimation::WAKE_UP) && !wakeUpAnimationCompleted) {	
+		myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::WAKE_UP);
+
+	}
+	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompMimeticAnimator::EAnimation::JUMP_TO_WALL) && !wakeUpJumpAnimationCompleted && wakeUpAnimationCompleted) {
+		setLaserState(false);
 		myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
 		myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::JUMP_TO_WALL);
 
 	}
 	//TO-DO: Animacion de salto
-	if (wakeUpJumpAnimationcompleted) {
-		wakeUpJumpAnimationcompleted = false;
+	if (wakeUpJumpAnimationCompleted) {
+
+		wakeUpAnimationCompleted = false;
+		wakeUpJumpAnimationCompleted = false;
+
+		TCompRigidbody *tCollider = get<TCompRigidbody>();
+		tCollider->setNormalGravity(VEC3(0, -9.8f, 0));
 		isActive = true;
+
 		return BTNode::ERes::LEAVE;
 	}
 	else {
@@ -490,16 +505,8 @@ BTNode::ERes TCompAIMimetic::actionSetActiveOnWall(float dt) {
 
 BTNode::ERes TCompAIMimetic::actionJumpFloor(float dt)
 {
-    TCompRigidbody *tCollider = get<TCompRigidbody>();
-
-    tCollider->setNormalGravity(VEC3(0, -9.8f, 0));
-
-    if (tCollider->is_grounded) {
-        return BTNode::ERes::LEAVE;
-    }
-    else {
-        return BTNode::ERes::STAY;
-    }
+	//TO-DO: Erase this shiat
+    return BTNode::ERes::LEAVE;
     
     
 }
@@ -891,19 +898,21 @@ BTNode::ERes TCompAIMimetic::actionRotateToInitialPos(float dt)
     return isInObjective ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
 
+//JUMPING
 BTNode::ERes TCompAIMimetic::actionJumpWall(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
-    TCompRigidbody *tCollider = get<TCompRigidbody>();
-    tCollider->Jump(VEC3(0, 25.f, 0));
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::RETURN_TO_WALL);
     return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIMimetic::actionHoldOnWall(float dt)
 {
-
+	TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
+	if (myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompMimeticAnimator::EAnimation::RETURN_TO_WALL)) {
+		return BTNode::ERes::STAY;
+	}
     TCompTransform * tTransform = get<TCompTransform>();
     if (tTransform->getPosition().y >= initialPos.y) {
         tTransform->setPosition(initialPos);
@@ -1107,4 +1116,12 @@ void TCompAIMimetic::playAnimationByName(const std::string & animationName)
 
 void TCompAIMimetic::registerLaserHandle(CHandle h_laser) {
 	laser_handle = h_laser;
+}
+
+void TCompAIMimetic::setLaserState(bool state) {
+	CEntity *e = laser_handle;
+	TCompRender * render_comp = e->get<TCompRender>();
+	TCompLaser * laser_comp = e->get<TCompLaser>();
+	laser_comp->paused = !state;
+	render_comp->visible = state;
 }

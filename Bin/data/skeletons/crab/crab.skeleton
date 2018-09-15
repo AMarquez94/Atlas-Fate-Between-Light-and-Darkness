@@ -6,11 +6,15 @@
 		{"name": "walk"},
 		{"name": "run"},
 		{"name": "death"},
-		{"name": "wakeup"},
+		{"name": "wakeup", 
+		"animation_completed_callback": true},
 		{"name": "wakeup_jump", 
 		"animation_completed_callback": true},
 		{"name": "rotate"},
-		{"name": "pose_pared"}
+		{"name": "pose_pared"},
+		{"name": "rest_jump"},
+		{"name": "rest_wall"}
+		
 
 	],
 	"lookat_corrections" : [
