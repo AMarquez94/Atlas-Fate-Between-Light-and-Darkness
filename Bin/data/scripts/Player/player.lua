@@ -20,6 +20,20 @@ function animation_attack_swingRight(sender)
 	t_audio:playEvent("event:/Sounds/Player/Weapons/WeaponAttack_2", true);
 end
 
+function animation_attack_strikeLeft(sender)
+	h = playerController:getRightWeapon();
+	e = toEntity(h);
+	t_audio = toAudio(e:getCompByName("audio"));
+	t_audio:playEvent("event:/Sounds/Player/Weapons/WeaponClash_1", true);
+end
+
+function animation_attack_strikeRight(sender)
+	h = playerController:getRightWeapon();
+	e = toEntity(h);
+	t_audio = toAudio(e:getCompByName("audio"));
+	t_audio:playEvent("event:/Sounds/Player/Weapons/WeaponClash_2", true);
+end
+
 function animation_enter_merge()
 	h = getEntityByName("The Player");
 	e = toEntity(h);

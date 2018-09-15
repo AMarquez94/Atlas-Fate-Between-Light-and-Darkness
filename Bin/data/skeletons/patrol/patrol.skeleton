@@ -13,6 +13,11 @@
 					"time_to_call": 0,
 					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolDead",
 					"relative_to_player": true
+				},
+				{
+					"time_to_call": 0,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolShutdown",
+					"relative_to_player": true
 				}
 			]
 		},

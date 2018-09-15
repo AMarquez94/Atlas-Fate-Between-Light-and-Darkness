@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.10.00">
     <object class="Event" id="{dcce8564-7e4e-40e6-9473-548ca875b681}">
         <property name="name">
-            <value>PatrolDead</value>
+            <value>PatrolDead_test</value>
         </property>
         <property name="outputFormat">
             <value>2</value>
@@ -72,9 +72,6 @@
         </relationship>
     </object>
     <object class="EventMixerMaster" id="{33469902-7689-4bf2-8f10-f258430fc5f3}">
-        <property name="volume">
-            <value>10</value>
-        </property>
         <relationship name="effectChain">
             <destination>{1042424e-ea93-4c7a-ad5f-1a286e21de92}</destination>
         </relationship>
