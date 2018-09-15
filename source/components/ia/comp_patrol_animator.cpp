@@ -102,6 +102,28 @@ void TCompPatrolAnimator::initializeAnimations() {
 		false
 	);
 
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::TURN_RIGHT,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"turn_right",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::TURN_LEFT,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"turn_right",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
 }
 
 void TCompPatrolAnimator::registerMsgs() {

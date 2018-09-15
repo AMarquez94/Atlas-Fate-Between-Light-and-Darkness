@@ -5,6 +5,7 @@
 		{ "name" : "walk" },
 		{ "name" : "die" },
 		{ "name" : "dead" },
+		{ "name" : "turn_right" },
 		{ "name" : "attack" }
 	]
 }
