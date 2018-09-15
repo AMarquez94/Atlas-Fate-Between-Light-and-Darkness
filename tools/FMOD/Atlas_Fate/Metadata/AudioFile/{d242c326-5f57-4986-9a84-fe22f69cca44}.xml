@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{d242c326-5f57-4986-9a84-fe22f69cca44}">
+        <property name="assetPath">
+            <value>soundclips/player/sonar_punch.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>1</value>
+        </property>
+        <property name="length">
+            <value>2.0908390022675736</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{7934f37e-95bd-414b-beb2-417a7b01c5d0}</destination>
+        </relationship>
+    </object>
+</objects>

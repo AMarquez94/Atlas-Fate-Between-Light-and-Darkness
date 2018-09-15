@@ -244,6 +244,9 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 
 void TCompTempPlayerController::onGroupCreated(const TMsgEntitiesGroupCreated & msg)
 {
+    TCompGroup* my_group = get<TCompGroup>();
+    weaponLeft = my_group->getHandleByName("weapon_disc_left");
+    weaponRight = my_group->getHandleByName("weapon_disc_right");
     cb_player.player_disk_radius = clamp(0.f, 0.f, 1.f);
     cb_player.updateGPU();
 }
@@ -1023,10 +1026,22 @@ void TCompTempPlayerController::updateWeapons(float dt)
 {
     TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
     if (canAttack && !isMerged || my_anim->isPlayingAnimation((TCompAnimator::EAnimation)TCompPlayerAnimator::ATTACK)) {
+        if (!weaponsActive) {
+            TMsgWeaponsActivated msg{ true };
+            weaponLeft.sendMsg(msg);
+            weaponRight.sendMsg(msg);
+        }
         attackTimer = Clamp(attackTimer + dt, 0.f, timeToDeployWeapons);
+        weaponsActive = true;
     }
     else {
+        if (weaponsActive) {
+            TMsgWeaponsActivated msg{ false };
+            weaponLeft.sendMsg(msg);
+            weaponRight.sendMsg(msg);
+        }
         attackTimer = Clamp(attackTimer - dt, 0.f, timeToDeployWeapons);
+        weaponsActive = false;
     }
     cb_player.player_disk_radius = lerp(0.f, 1.f, attackTimer / timeToDeployWeapons);
     cb_player.updateGPU();

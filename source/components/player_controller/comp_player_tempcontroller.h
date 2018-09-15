@@ -110,6 +110,10 @@ class TCompTempPlayerController : public TCompBase
     float timeToPressAgain = 0.7f;
     float timeInhib = 0.0f;
 
+
+    CHandle weaponLeft;
+    CHandle weaponRight;
+    bool weaponsActive = false;
     float attackTimer = 0.f;
     float timeToDeployWeapons = 0.5f;
 
@@ -200,6 +204,8 @@ public:
     void pauseEnemy();
     void stunEnemy();
     const bool isStaminaFull() { return stamina / maxStamina != 1.f; };
+    CHandle getLeftWeapon() { return weaponLeft; };
+    CHandle getRightWeapon() { return weaponRight; };
 
     VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
 

@@ -5,10 +5,12 @@ function onSceneStart_scene_intro()
 		ambiance = playEvent("event:/Ambiance/Intro_Ambiance");
 	end
 	
-	cinematicsEnabled = true;
+	cinematicsEnabled = false;
 	
+	--#Debug position for start
+	move("The Player", VEC3(-7, 0, -43), VEC3(-7, 0, -44));
+
 	-- First Cinematic --
-	--move("The Player", VEC3(-19, 6, -30), VEC3(-19, 6, -29));
 	if(cinematicsEnabled and not isCheckpointSaved()) then
 		intro_intro_cinematic();
 	end
