@@ -51,11 +51,11 @@ bool CModuleInstancing::start() {
         auto rmesh = Resources.get("data/meshes/particles.instanced_mesh")->as<CRenderMesh>();
         particles_instances_mesh = (CRenderMeshInstanced*)rmesh;
     }
-    {
-        auto rmesh = Resources.get("data/meshes/grass.instanced_mesh")->as<CRenderMesh>();
-        grass_instances_mesh = (CRenderMeshInstanced*)rmesh;
-        grass_instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TGrassParticle));
-    }
+    //{
+    //    auto rmesh = Resources.get("data/meshes/grass.instanced_mesh")->as<CRenderMesh>();
+    //    grass_instances_mesh = (CRenderMeshInstanced*)rmesh;
+    //    grass_instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TInstance));
+    //}
 
     // Create a scene entity to hold all global instances.
     {
@@ -143,9 +143,6 @@ void CModuleInstancing::update(float delta) {
 // Method used to add global instances
 int CModuleInstancing::addInstance(const std::string & name, const std::string & type, MAT44 w_matrix) {
 
-    if (type != "default")
-        return addCustomInstance(name, type, w_matrix);
-    
     // Add the instance collector if it's not in our database
     if (_global_instances.find(name) == _global_instances.end()) {
 
@@ -165,11 +162,15 @@ int CModuleInstancing::addInstance(const std::string & name, const std::string &
     return _global_instances[name]._instances.size() - 1;
 }
 
-// Method used to add global instances
+// Method used to add custom instances
 int CModuleInstancing::addCustomInstance(const std::string & name, const std::string & type, MAT44 w_matrix) {
 
+    // TO-DO
+
     if (type == "grass") {
-        
+        TInstance new_instance;
+        new_instance.world = w_matrix;
+        grass_instances.push_back(new_instance);
     }
 
     return 1;
@@ -211,7 +212,7 @@ void CModuleInstancing::renderMain() {
         p.second._instances_mesh->setInstancesData(p.second._instances.data(), p.second._instances.size(), sizeof(TInstance));
 
     // Static instances, particles and grass
-    grass_instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TGrassParticle));
+    //grass_instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TInstance));
     particles_instances_mesh->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(TRenderParticle));
 }
 
@@ -270,28 +271,29 @@ void CModuleInstancing::render() {
         // ----------------------------------------------
         if (ImGui::TreeNode("Grass")) {
             bool changed = false;
-            ImGui::Text("Num Instances: %ld / %ld. GPU:%d", grass_instances.size(), grass_instances.capacity(), grass_instances_mesh->getVertexsCount());
+            TInstanceCollector grass_collector = _global_instances["grass.instanced_mesh"];
+            ImGui::Text("Num Instances: %ld / %ld. GPU:%d", grass_collector._instances.size(), grass_collector._instances.capacity(), grass_collector._instances_mesh->getVertexsCount());
             int num_changed = num * 100;
             if (ImGui::Button("Add 100")) {
                 for (int i = 0; i < num_changed; ++i) {
-                    TGrassParticle new_instance;
-                    new_instance.pos = VEC3(randomFloat(-sz, sz), 0, randomFloat(-sz, sz));
-                    grass_instances.push_back(new_instance);
+                    TInstance new_instance;
+                    new_instance.world = MAT44::CreateTranslation(VEC3(randomFloat(-sz, sz), 0, randomFloat(-sz, sz)));
+                    grass_collector._instances.push_back(new_instance);
                 }
                 changed = true;
             }
             ImGui::SameLine();
-            if (ImGui::Button("Del") && !grass_instances.empty()) {
-                if (num_changed < grass_instances.size())
-                    num_changed = grass_instances.size();
-                grass_instances.resize(grass_instances.size() - num_changed);
+            if (ImGui::Button("Del") && !grass_collector._instances.empty()) {
+                if (num_changed < grass_collector._instances.size())
+                    num_changed = grass_collector._instances.size();
+                grass_collector._instances.resize(grass_instances.size() - num_changed);
                 changed = true;
             }
             ImGui::TreePop();
 
             // Update GPU with the new CPU
             if (changed)
-                grass_instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TGrassParticle));
+                grass_collector._instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TInstance));
         }
 
         ImGui::TreePop();

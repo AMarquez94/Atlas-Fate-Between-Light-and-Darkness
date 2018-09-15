@@ -22,11 +22,6 @@ class CModuleInstancing : public IModule {
     };
 
     // -------------------------------------------------------------------
-    struct TGrassParticle {
-        VEC3  pos;
-    };
-
-    // -------------------------------------------------------------------
     struct TRenderParticle {
         VEC3  pos;      // Maps to iCenter.xyz
         float angle;    // Maps to iCenter.w
@@ -40,7 +35,7 @@ class CModuleInstancing : public IModule {
     CHandle scene_group;
 
     CRenderMeshInstanced* grass_instances_mesh = nullptr;
-    std::vector< TGrassParticle > grass_instances;
+    std::vector< TInstance > grass_instances;
 
     // -------------------------------------------------------------------
     CRenderMeshInstanced* instances_mesh = nullptr;

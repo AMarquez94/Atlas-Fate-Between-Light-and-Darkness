@@ -70,7 +70,7 @@ float4 RayMarching(float3 reflected_ray, float3 hit_coord)
 float4 PS(in float4 iPosition : SV_POSITION, in float2 iTex0 : TEXCOORD0) : SV_Target
 {
     float4 color = txAlbedo.Sample(samClampLinear, iTex0);
-	return color;
+		return color;
     int3 ss_load_coords = uint3(iPosition.xy, 0);
 
     // Decode GBuffer information
@@ -88,7 +88,7 @@ float4 PS(in float4 iPosition : SV_POSITION, in float2 iTex0 : TEXCOORD0) : SV_T
 
     float2 d_coords = float2(1, 1) - pow(saturate(abs(coords.xy - float2(0.5f, 0.5f)) * 2), 2);
     float edge_factor = saturate(min(d_coords.x, d_coords.y));
-    float multiplier = clamp(edge_factor * saturate(-reflected.z), 0, 0.9);
+    float multiplier = clamp(edge_factor * saturate(-reflected.z) * coords.w, 0, 0.9);
     float depth = txGBufferLinearDepth.Load(ss_load_coords).x;
 
     float4 ssr = txAlbedo.SampleLevel(samClampLinear, coords.xy, 0);
