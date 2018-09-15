@@ -546,6 +546,8 @@ namespace FSM
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::LAND_SOFT , 1.0f });
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+
+        EngineLogic.execScript("animation_soft_land()");
     }
 
     void SoftLandState::onFinish(CContext& ctx) const {
@@ -570,6 +572,7 @@ namespace FSM
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
         TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
         playerController->getDamage(30.f);
+        EngineLogic.execScript("animation_hard_land()");
     }
 
     void HardLandState::onFinish(CContext& ctx) const {

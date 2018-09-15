@@ -47,3 +47,17 @@ function animation_exit_merge()
 	t_audio = toAudio(e:getCompByName("audio"));
 	t_audio:playEvent("event:/Sounds/Player/SM/ExitMerge", true);
 end
+
+function animation_soft_land()
+	h = getEntityByName("The Player");
+	e = toEntity(h);
+	t_audio = toAudio(e:getCompByName("audio"));
+	t_audio:playEvent("event:/Sounds/Player/Steps/NormalSteps", false);
+end
+
+function animation_hard_land()
+	h = getEntityByName("The Player");
+	e = toEntity(h);
+	t_audio = toAudio(e:getCompByName("audio"));
+	t_audio:playEvent("event:/Sounds/Player/Land/Land", false);
+end
