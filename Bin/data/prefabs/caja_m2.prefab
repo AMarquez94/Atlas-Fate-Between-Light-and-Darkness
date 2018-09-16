@@ -38,6 +38,18 @@
         "shape": "box"
         ,
         "size": "0.365 0.365 0.365"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
       }
       ,
       "abs_aabb": true

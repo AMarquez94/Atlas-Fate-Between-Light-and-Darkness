@@ -14,6 +14,66 @@
   {
     "entity":
     {
+      "name": "mesh_estandarte"
+      ,
+      "transform":
+      {
+        "pos": "5.39879 11.9242 15.6442"
+        ,
+        "rotation": "-0.000893312 -0.707438 -0.706773 -0.001271"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_estandarte.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_estandarte001"
+      ,
+      "transform":
+      {
+        "pos": "-11.6093 11.9242 15.6442"
+        ,
+        "rotation": "-0.000893312 -0.707438 -0.706773 -0.001271"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_estandarte001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_muralla_intro_muro_1"
       ,
       "transform":
@@ -245,7 +305,7 @@
       ,
       "transform":
       {
-        "pos": "-3.15039 0.0 11.75"
+        "pos": "-3.15039 -0.189391 7.89015"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -264,9 +324,70 @@
       ,
       "collider":
       {
-        "shape": "mesh"
+        "shape": "box"
         ,
-        "name": "data/colliders/collider_mesh_muralla_intro_puerta_reja.collider"
+        "size": "1.54256 3.29702 0.0350002"
+        ,
+        "group": "noncastshadow"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_muralla_intro_puerta_reja_001"
+      ,
+      "transform":
+      {
+        "pos": "-3.15039 -0.189391 11.0766"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_muralla_intro_puerta_reja_001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_muralla_intro.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "1.54256 3.29702 0.035"
+        ,
+        "group": "noncastshadow"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
       }
       ,
       "abs_aabb": true
@@ -282,7 +403,7 @@
       ,
       "transform":
       {
-        "pos": "-11.6504 0.0 9.5"
+        "pos": "-11.6943 0.0 9.5"
         ,
         "rotation": "0.0 -1.0 0.0 0.0"
       }
@@ -303,7 +424,7 @@
       {
         "shape": "mesh"
         ,
-        "name": "data/colliders/collider_muralla_intro_troncho003.collider"
+        "name": "data/colliders/collider_mesh_muralla_intro_troncho.collider"
       }
       ,
       "abs_aabb": true
@@ -340,7 +461,7 @@
       {
         "shape": "mesh"
         ,
-        "name": "data/colliders/collider_muralla_intro_troncho004.collider"
+        "name": "data/colliders/collider_mesh_muralla_intro_troncho_2.collider"
       }
       ,
       "abs_aabb": true
@@ -369,66 +490,6 @@
           "materials":
           [
             "data/materials/mtl_ornamentos_casa.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_estandarte001"
-      ,
-      "transform":
-      {
-        "pos": "-11.6093 11.9242 15.6442"
-        ,
-        "rotation": "-0.000893312 -0.707438 -0.706773 -0.001271"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_estandarte001.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubo_estandarte.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_estandarte"
-      ,
-      "transform":
-      {
-        "pos": "5.39879 11.9242 15.6442"
-        ,
-        "rotation": "-0.000893312 -0.707438 -0.706773 -0.001271"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_estandarte.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubo_estandarte.material"
           ]
         }
       ]

@@ -23,7 +23,7 @@ struct VS_TEXTURED_OUTPUT
 VS_TEXTURED_OUTPUT VS(
 
   // From stream 0 we read the instanced mesh (the billboard)
-  in float3 iPos     : POSITION           // Stream 0
+  in float4 iPos     : POSITION           // Stream 0
 , in float3 iNormal  : NORMAL0
 , in float2 iTex0    : TEXCOORD0
 , in float2 iTex1    : TEXCOORD1
@@ -40,7 +40,7 @@ VS_TEXTURED_OUTPUT VS(
   float4x4 instance_world = getWorldOfInstance(instance_data);
 
   // Transform local vertex of the box to the world coordinates
-  float4 world_pos = mul(float4(iPos,1), instance_world);
+  float4 world_pos = mul(float4(iPos.xyz,1), instance_world);
  
   // Concatenate with the instance world transform  
   // world_pos = mul(world_pos, obj_world);
@@ -63,6 +63,8 @@ VS_TEXTURED_OUTPUT VS(
   output.decal_axis_x = decal_x * decal_inv_size_x;
   output.decal_axis_z = decal_z * decal_inv_size_z;
 
+	float3x3 fMatrix = { decal_x / length(decal_x), decal_y/ length(decal_y), decal_z/length(decal_z) };   
+									 
   // Blendout in the last TimeBlendingOut secs of TimeToLife
   //float TimeToLife = InstanceXtras.x;
   //float TimeBlendingOut = InstanceXtras.y;
@@ -70,8 +72,8 @@ VS_TEXTURED_OUTPUT VS(
   output.opacity = 1;
   output.color = InstanceColor;
 
-	output.normal = mul(iNormal, (float3x3)instance_world);
-	output.tangent.xyz = mul(iTangent.xyz, (float3x3)instance_world);
+	output.normal = mul(iNormal, (float3x3)fMatrix);
+	output.tangent.xyz = mul(iTangent.xyz, (float3x3)fMatrix);
 	output.tangent.w = iTangent.w;
   output.uv = iTex0;
 

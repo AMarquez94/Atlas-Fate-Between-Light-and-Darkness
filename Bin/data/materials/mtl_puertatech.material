@@ -3,8 +3,18 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/default_texture.dds"
+    "albedo": "data/textures/tx_puertatech_alb.dds"
     ,
-    "normal": "data/textures/null_normal.dds"
+    "metallic": "data/textures/tx_puertatech_met.dds"
+    ,
+    "roughness": "data/textures/tx_puertatech_rgh.dds"
+    ,
+    "normal": "data/textures/tx_puertatech_nml.dds"
+    ,
+    "height": "data/textures/tx_puertatech_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_puertatech_emi.dds"
+    ,
+    "aocclusion": "data/textures/tx_puertatech_ao.dds"
   }
 }

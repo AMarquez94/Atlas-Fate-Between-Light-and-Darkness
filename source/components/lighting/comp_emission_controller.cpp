@@ -23,7 +23,7 @@ void TCompEmissionController::load(const json& j, TEntityParseContext& ctx) {
 	if (j.count("initial"))
 		_current_color = loadVEC4(j["initial"]);
 
-    _intensity = j.value("intensity", 10.0f);
+    _intensity = j.value("intensity", 1.0f);
 	_desired_color = _current_color;
 	_original_color = _current_color;
 }

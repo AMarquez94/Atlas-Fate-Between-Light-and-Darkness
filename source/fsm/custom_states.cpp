@@ -6,6 +6,7 @@
 #include "components/lighting/comp_projector.h"
 #include "components/comp_render.h"
 #include "components/comp_particles.h"
+#include "components/player_controller/comp_shadow_controller.h"
 
 // Refactor this after Milestone3, move everything unnecessary to player class
 namespace FSM
@@ -16,6 +17,7 @@ namespace FSM
         target->name = jData["target"];
         target->blendIn = jData.value("blendIn", 0.01f);
         target->blendOut = jData.value("blendOut", 0.01f);
+        target->fov = jData.value("fov", 70.f);
 
         return target;
     }
@@ -304,6 +306,12 @@ namespace FSM
         TCompParticles * c_e_particle = e->get<TCompParticles>();
         c_e_particle->setSystemState(true);
 
+        CEntity * ent = getEntityByName("Player_Idle_SM");
+        TCompParticles * c_e_particle2 = ent->get<TCompParticles>();
+        assert(c_e_particle2);
+        c_e_particle2->setSystemState(false);
+
+        EngineLogic.execScript("animation_enter_merge()");
     }
 
     void EnterMergeState::onFinish(CContext& ctx) const {
@@ -400,6 +408,8 @@ namespace FSM
 
         TCompParticles * c_e_particle = e->get<TCompParticles>();
         c_e_particle->setSystemState(false);
+
+        EngineLogic.execScript("animation_exit_merge()");
     }
 
     void ExitMergeState::onFinish(CContext& ctx) const {
@@ -409,6 +419,12 @@ namespace FSM
 
         TCompRender * render = e->get<TCompRender>();
         render->visible = true;
+
+        TCompShadowController * shadow = e->get<TCompShadowController>();
+        CEntity * ent = getEntityByName("Player_Idle_SM");
+        TCompParticles * c_e_particle2 = ent->get<TCompParticles>();
+        assert(c_e_particle2);
+        c_e_particle2->setSystemState(shadow->is_shadow);
     }
 
 	bool ExitMergeCrouchedState::load(const json & jData)
@@ -445,6 +461,8 @@ namespace FSM
 
         TCompParticles * c_e_particle = e->get<TCompParticles>();
         c_e_particle->setSystemState(false);
+
+        EngineLogic.execScript("animation_exit_merge()");
 	}
 
 	void ExitMergeCrouchedState::onFinish(CContext & ctx) const
@@ -455,6 +473,12 @@ namespace FSM
 
 		TCompRender * render = e->get<TCompRender>();
 		render->visible = true;
+
+        TCompShadowController * shadow = e->get<TCompShadowController>();
+        CEntity * ent = getEntityByName("Player_Idle_SM");
+        TCompParticles * c_e_particle2 = ent->get<TCompParticles>();
+        assert(c_e_particle2);
+        c_e_particle2->setSystemState(shadow->is_shadow);
 	}
 
     bool LandMergeState::load(const json& jData) {
@@ -522,6 +546,8 @@ namespace FSM
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::LAND_SOFT , 1.0f });
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+
+        EngineLogic.execScript("animation_soft_land()");
     }
 
     void SoftLandState::onFinish(CContext& ctx) const {
@@ -546,6 +572,7 @@ namespace FSM
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
         TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
         playerController->getDamage(30.f);
+        EngineLogic.execScript("animation_hard_land()");
     }
 
     void HardLandState::onFinish(CContext& ctx) const {
@@ -569,7 +596,7 @@ namespace FSM
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::ATTACK , 1.0f });
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::attackState, _speed, _size, _radius, _target, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
     }
 
     void AttackState::onFinish(CContext& ctx) const {

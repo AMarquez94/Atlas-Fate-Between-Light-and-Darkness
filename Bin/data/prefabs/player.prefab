@@ -206,10 +206,6 @@
 				"initial": "1.0 1.0 1.0 1.0",
 				"intensity": 1.25
 			},
-			"xskel_lookat" : {
-				"target_entity_name" : "Mimeticus",
-				"amount" : 1
-			},
 			"noise_emitter": {
 				"radius": -1
 			},
@@ -283,6 +279,11 @@
 					]
 				}
 			],
+			"player_weapon": {
+				"weapons_on_event":	"event:/Sounds/Player/Weapons/WeaponsOn",
+				"weapons_off_event": "event:/Sounds/Player/Weapons/WeaponsOff"
+			},
+			"audio": {},
 			"abs_aabb": true,
 			"local_aabb": true
 		}
@@ -308,14 +309,30 @@
 					]
 				}
 			],
+			"player_weapon": {
+				"weapons_on_event":	"event:/Sounds/Player/Weapons/WeaponsOn",
+				"weapons_off_event": "event:/Sounds/Player/Weapons/WeaponsOff"
+			},
+			"audio": {},
 			"abs_aabb": true,
 			"local_aabb": true
 		}
-	}, {
+	},{
 		"entity": {
-			"name": "Jugador Target",
-			"transform": {
+			"name": "Player_Idle_SM",
+			"transform": "0 0 0",
+			"hierarchy": {
+				"parent": "The Player",
 				"pos": "0 0 0"
+			},
+			"render": {
+				"mesh": "axis.mesh"
+			},
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_sm_idle.particles"
+				]
 			}
 		}
 	}

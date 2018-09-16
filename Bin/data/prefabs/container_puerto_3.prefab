@@ -28,14 +28,14 @@
           ,
           "materials":
           [
-            "data/materials/mtl_low.material"
+            "data/materials/mtl_containers_puerto.material"
           ]
         }
       ]
       ,
       "collider":
       {
-        "shape": "convex"
+        "shape": "mesh"
         ,
         "name": "data/colliders/collider_container_puerto_3.collider"
       }

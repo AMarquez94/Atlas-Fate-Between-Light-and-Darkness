@@ -13,8 +13,6 @@
     ,
     "height": "data/textures/tx_fuente_hgt.dds"
     ,
-    "emissive": "data/textures/tx_fuente_emi.dds"
-    ,
     "aocclusion": "data/textures/tx_fuente_ao.dds"
   }
 }

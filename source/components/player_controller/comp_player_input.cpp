@@ -21,8 +21,7 @@ void TCompPlayerInput::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompPlayerInput::update(float dt)
 {
-    TCompAIPlayer* playerAI = get<TCompAIPlayer>();
-    if (!paused && !isConsoleOn && !isInNoClipMode && !playerAI->enabledPlayerAI) {
+    if (!paused && !isConsoleOn && !isInNoClipMode && !_playerAIEnabled) {
         CEntity* e = CHandle(this).getOwner();
         _time += dt;
 
@@ -230,10 +229,27 @@ void TCompPlayerInput::update(float dt)
 
 void TCompPlayerInput::registerMsgs()
 {
-    DECL_MSG(TCompFSM, TMsgNoClipToggle, onMsgNoClipToggle);
+    DECL_MSG(TCompPlayerInput, TMsgNoClipToggle, onMsgNoClipToggle);
+    DECL_MSG(TCompPlayerInput, TMsgPlayerAIEnabled, onMsgPlayerAIEnabled);
 }
 
 void TCompPlayerInput::onMsgNoClipToggle(const TMsgNoClipToggle & msg)
 {
     isInNoClipMode = !isInNoClipMode;
+}
+
+void TCompPlayerInput::onMsgPlayerAIEnabled(const TMsgPlayerAIEnabled & msg)
+{
+    _playerAIEnabled = msg.enableAI;
+
+    if (_playerAIEnabled) {
+        CEntity* e = CHandle(this).getOwner();
+        TMsgSetFSMVariable walkMsg;
+        walkMsg.variant.setName("speed");
+        walkMsg.variant.setFloat(0);
+        e->sendMsg(walkMsg);
+
+        TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
+        c_my_player->upButtonReselased();
+    }
 }

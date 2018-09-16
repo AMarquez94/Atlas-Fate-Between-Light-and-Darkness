@@ -265,8 +265,8 @@ float4 PS_GBuffer_SWPlayer(
 {
 	// Compute the scanline
 	float4 noise0 = txNoiseMap.Sample(samLinear, iTex0);
-	float vertex_sift = (dot(iWorldPos, normalize(float3(0,-1,0))) + 1) * .5;
-	float scan = frac(vertex_sift * 80) * 0.86;
+	float vertex_sift = (dot(iWorldPos, normalize(float3(0,-1,0))) + 1) * .35;
+	float scan = frac(vertex_sift * 120) * 1.6;
 	
 	float3 dir = normalize(iWorldPos.xyz - camera_pos);
 	float theta = abs(1- pow(dot(dir, iNormal), 2));
@@ -282,7 +282,7 @@ float4 PS_GBuffer_SWPlayer(
 		color = float4(1,1,1,1);
 	}
 	
-	return scan * color * theta + glow * 0.12 * scan; 
+	return scan * color * theta + glow * scan * 0.24; 
 }
 
 

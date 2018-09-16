@@ -33,8 +33,8 @@ function postFXToggle()
 	SLB.postFXToggle()
 end
 
-function blendInCamera(cameraName, blendInTime, mode)
-	SLB.blendInCamera(cameraName, blendInTime, mode)
+function blendInCamera(cameraName, blendInTime, mode, interpolator)
+	SLB.blendInCamera(cameraName, blendInTime, mode, interpolator)
 end
 
 function blendOutCamera(cameraName, blendOutTime)
@@ -43,6 +43,10 @@ end
 
 function blendOutActiveCamera(blendOutTime)
 	SLB.blendOutActiveCamera(blendOutTime)
+end
+
+function resetMainCameras()
+	SLB.resetMainCameras();
 end
 
 function setPlayerInhibited(inhibited)
@@ -147,4 +151,8 @@ end
 
 function move(name, pos, lookat)
 	SLB.move(name, pos, lookat);
+end
+
+function isCheckpointSaved()
+	return SLB.isCheckpointSaved();
 end

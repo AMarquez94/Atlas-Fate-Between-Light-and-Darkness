@@ -110,6 +110,7 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 void TCompTempPlayerController::update(float dt) {
 
     TCompAIPlayer* playerAI = get<TCompAIPlayer>();
+
     if (!paused && !isConsoleOn && !isInNoClipMode && !playerAI->enabledPlayerAI) {
 
         (this->*state)(dt);
@@ -122,16 +123,19 @@ void TCompTempPlayerController::update(float dt) {
 		updateShader(dt); // Move this to player render component...
 		timeInhib += dt;
 		canAttack = canAttackTest(dt);
+        updateWeapons(dt);
         EngineGUI.enableWidget("stamina_bar_general", stamina / maxStamina != 1.f);
 		Engine.getGUI().getVariables().setVariant("staminaBarFactor", stamina / maxStamina);	 
         Engine.getGUI().getVariables().setVariant("lifeBarFactor", life / maxLife);
     }
 
     // Update player global speed into the shader.
-    float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
-    cb_globals.global_player_speed = (inputSpeed * currentSpeed) / 6.f; // Maximum speed, change this in the future. 
-    cb_player.player_disk_radius = clamp(1.f, 0.f, 1.f); // Replace this with a lerp when we have the animation
-    cb_player.updateGPU();
+    {
+        float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
+        cb_globals.global_player_speed = (inputSpeed * currentSpeed) / 6.f; // Maximum speed, change this in the future. 
+        cb_player.player_health = life != maxLife ? (life/ maxLife) : 1;
+        dbg("result %f\n", cb_player.player_health);
+    }
 }
 
 void TCompTempPlayerController::registerMsgs() {
@@ -139,6 +143,7 @@ void TCompTempPlayerController::registerMsgs() {
     DECL_MSG(TCompTempPlayerController, TMsgStateStart, onStateStart);
     DECL_MSG(TCompTempPlayerController, TMsgStateFinish, onStateFinish);
     DECL_MSG(TCompTempPlayerController, TMsgEntityCreated, onCreate);
+    DECL_MSG(TCompTempPlayerController, TMsgEntitiesGroupCreated, onGroupCreated);
     DECL_MSG(TCompTempPlayerController, TMsgPlayerHit, onPlayerHit);
     DECL_MSG(TCompTempPlayerController, TMsgPlayerDead, onPlayerKilled);
     DECL_MSG(TCompTempPlayerController, TMsgInhibitorShot, onPlayerInhibited);
@@ -158,6 +163,13 @@ void TCompTempPlayerController::onShadowChange(const TMsgShadowChange& msg) {
 
     cb_player.player_shadowed = msg.is_shadowed;
     cb_player.updateGPU();
+
+    // Temporal stuff for the demo
+    CEntity * ent = getEntityByName("Player_Idle_SM");
+    TCompParticles * c_e_particle = ent->get<TCompParticles>();
+    assert(c_e_particle);
+    c_e_particle->setSystemState(msg.is_shadowed);
+
     //VEC4 merged_color = msg.is_shadowed ? playerColor.colorMerge : playerColor.colorIdle;
 
     //TCompEmissionController * e_controller = get<TCompEmissionController>();
@@ -230,6 +242,15 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
     c_e_particle->setSystemState(false);
 }
 
+void TCompTempPlayerController::onGroupCreated(const TMsgEntitiesGroupCreated & msg)
+{
+    TCompGroup* my_group = get<TCompGroup>();
+    weaponLeft = my_group->getHandleByName("weapon_disc_left");
+    weaponRight = my_group->getHandleByName("weapon_disc_right");
+    cb_player.player_disk_radius = clamp(0.f, 0.f, 1.f);
+    cb_player.updateGPU();
+}
+
 /* Call this function once the state has been changed */
 void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg) {
 
@@ -256,6 +277,10 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg) {
             }
             target_camera = new_camera;
             Engine.getCameras().blendInCamera(target_camera, msg.target_camera->blendIn, CModuleCameras::EPriority::GAMEPLAY);
+            TMsgCameraFov msg_fov;
+            msg_fov.blend_time = 1.f;
+            msg_fov.new_fov = msg.target_camera->fov;
+            target_camera.sendMsg(msg_fov);
         }
         else {
             target_camera = getEntityByName("TPCamera"); //replace this
@@ -668,6 +693,32 @@ void TCompTempPlayerController::activateCanLandSM(bool activate)
     }
 }
 
+void TCompTempPlayerController::pauseEnemy()
+{
+    TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
+    CHandle closestEnemy;
+    bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
+
+    TMsgAIPaused msg;
+    closestEnemy.sendMsg(msg);
+}
+
+void TCompTempPlayerController::stunEnemy()
+{
+    TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
+    CHandle closestEnemy;
+    bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
+
+    if (enemyFound) {
+        TMsgAIPaused msgPaused;
+        closestEnemy.sendMsg(msgPaused);
+
+        TMsgEnemyStunned msg;
+        msg.h_sender = CHandle(this).getOwner();
+        closestEnemy.sendMsg(msg);
+    }
+}
+
 /* Concave test, this determines if there is a surface normal change on concave angles */
 const bool TCompTempPlayerController::concaveTest(void) {
 
@@ -709,6 +760,7 @@ const bool TCompTempPlayerController::concaveTest(void) {
 const bool TCompTempPlayerController::convexTest(void) {
 
     physx::PxRaycastHit hit;
+    physx::PxRaycastHit hit2;
     TCompTransform *c_my_transform = get<TCompTransform>();
     TCompRigidbody *rigidbody = get<TCompRigidbody>();
     VEC3 old_up = c_my_transform->getUp();
@@ -724,6 +776,14 @@ const bool TCompTempPlayerController::convexTest(void) {
 
         if (hit.distance > .015f && EnginePhysics.gravity.Dot(hit_normal) < .01f)
         {
+            EnginePhysics.Raycast(upwards_offset, -old_up, 100.f, hit2, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery);
+            
+            // Little trick to avoid bug.
+            if (hit2.distance < SM_THRESHOLD_MAX && hit2.distance > SM_THRESHOLD_MAX) {
+                c_my_transform->setPosition(VEC3(hit2.position.x, hit2.position.y, hit2.position.z));
+                return false;
+            }
+
             VEC3 new_forward = -hit_normal.Cross(c_my_transform->getLeft());
             VEC3 target = hit_point + new_forward;
 
@@ -913,40 +973,6 @@ void TCompTempPlayerController::updateStamina(float dt) {
 }
 
 /* Attack state, kills the closest enemy if true*/
-void TCompTempPlayerController::attackState(float dt) {
-
-    if (attackTimer == 0) {
-        TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
-        CHandle closestEnemy;
-        bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
-        
-        TMsgAIPaused msg;
-        closestEnemy.sendMsg(msg);
-    }
-
-    if (attackTimer > 0.7f) {   //TODO: Remove this. Only a fix for milestone 2
-        TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
-        CHandle closestEnemy;
-        bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
-
-        if (enemyFound) {
-            TMsgAIPaused msgPaused;
-            closestEnemy.sendMsg(msgPaused);
-
-            TMsgEnemyStunned msg;
-            msg.h_sender = CHandle(this).getOwner();
-            closestEnemy.sendMsg(msg);
-        }
-
-        attackTimer = 0.f;
-        state = (actionhandler)&TCompTempPlayerController::idleState;
-    }
-    else {
-        attackTimer += dt;
-    }
-}
-
-/* Attack state, kills the closest enemy if true*/
 void TCompTempPlayerController::mergeEnemy() {
 
     TCompPlayerAttackCast * tAttackCast = get<TCompPlayerAttackCast>();
@@ -994,6 +1020,31 @@ void TCompTempPlayerController::updateLife(float dt)
             life = Clamp(life + lifeIncr * dt, 0.f, maxLife);
         }
     }
+}
+
+void TCompTempPlayerController::updateWeapons(float dt)
+{
+    TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+    if (canAttack && !isMerged || my_anim->isPlayingAnimation((TCompAnimator::EAnimation)TCompPlayerAnimator::ATTACK)) {
+        if (!weaponsActive) {
+            TMsgWeaponsActivated msg{ true };
+            weaponLeft.sendMsg(msg);
+            weaponRight.sendMsg(msg);
+        }
+        attackTimer = Clamp(attackTimer + dt, 0.f, timeToDeployWeapons);
+        weaponsActive = true;
+    }
+    else {
+        if (weaponsActive) {
+            TMsgWeaponsActivated msg{ false };
+            weaponLeft.sendMsg(msg);
+            weaponRight.sendMsg(msg);
+        }
+        attackTimer = Clamp(attackTimer - dt, 0.f, timeToDeployWeapons);
+        weaponsActive = false;
+    }
+    cb_player.player_disk_radius = lerp(0.f, 1.f, attackTimer / timeToDeployWeapons);
+    cb_player.updateGPU();
 }
 
 VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & left) {

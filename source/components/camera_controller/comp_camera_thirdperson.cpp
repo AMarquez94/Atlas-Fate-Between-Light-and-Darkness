@@ -3,6 +3,7 @@
 #include "comp_camera_thirdperson.h"
 #include "components/comp_transform.h"
 #include "components/comp_tags.h"
+#include "components/ia/comp_bt_player.h"
 
 DECL_OBJ_MANAGER("camera_thirdperson", TCompCameraThirdPerson);
 const Input::TInterface_Mouse& mouse = EngineInput.mouse();
@@ -24,8 +25,7 @@ void TCompCameraThirdPerson::load(const json& j, TEntityParseContext& ctx)
     _clipping_offset = loadVEC3(j["offset"]);
     _clamp_angle = VEC2(deg2rad(_clamp_angle.x), deg2rad(_clamp_angle.y));
 
-    // Load the target and set his axis as our axis.
-    _h_target = ctx.findEntityByName(_target_name);
+    _h_target = getEntityByName(_target_name);
     TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>();
 
     float yaw, pitch, roll;
@@ -44,6 +44,10 @@ void TCompCameraThirdPerson::registerMsgs()
     DECL_MSG(TCompCameraThirdPerson, TMsgSetCameraActive, onMsgCameraSetActive);
     DECL_MSG(TCompCameraThirdPerson, TMsgScenePaused, onPause);
     DECL_MSG(TCompCameraThirdPerson, TMsgCameraReset, onMsgCameraReset);
+    DECL_MSG(TCompCameraThirdPerson, TMsgEntityCreated, onMsgCameraCreated);
+    DECL_MSG(TCompCameraThirdPerson, TMsgEntitiesGroupCreated, onMsgCameraGroupCreated);
+    DECL_MSG(TCompCameraThirdPerson, TMsgCameraResetTargetPos, onMsgCameraResetTargetPos);
+    DECL_MSG(TCompCameraThirdPerson, TMsgCameraFov, onMsgCameraFov);
 }
 
 void TCompCameraThirdPerson::onMsgCameraActive(const TMsgCameraActivated & msg)
@@ -61,6 +65,30 @@ void TCompCameraThirdPerson::onMsgCameraActive(const TMsgCameraActivated & msg)
             v_tp_cameras[i].sendMsg(msg);
         }
     }
+}
+
+void TCompCameraThirdPerson::onMsgCameraGroupCreated(const TMsgEntitiesGroupCreated & msg) {
+
+    // Load the target and set his axis as our axis.
+    //_h_target = getEntityByName(_target_name);
+    //TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>();
+
+    //float yaw, pitch, roll;
+    //target_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+    //_current_euler = VEC2(yaw, pitch);
+    //_original_euler = _current_euler;
+}
+
+void TCompCameraThirdPerson::onMsgCameraCreated(const TMsgEntityCreated & msg) {
+
+    // Load the target and set his axis as our axis.
+    //_h_target = getEntityByName(_target_name);
+    //TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>();
+
+    //float yaw, pitch, roll;
+    //target_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+    //_current_euler = VEC2(yaw, pitch);
+    //_original_euler = _current_euler;
 }
 
 void TCompCameraThirdPerson::onMsgCameraFullActive(const TMsgCameraFullyActivated & msg)
@@ -84,18 +112,28 @@ void TCompCameraThirdPerson::onMsgCameraSetActive(const TMsgSetCameraActive & ms
 
 void TCompCameraThirdPerson::onMsgCameraReset(const TMsgCameraReset & msg)
 {
-    if (msg.both_angles) {
-        //_current_euler = _original_euler;
-        _current_euler.x = _original_euler.x;
-        _current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, _original_euler.y);
-    }
-    else if (msg.only_y) {
-        //_current_euler.y = _original_euler.y;
-        _current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, _original_euler.y);
-    }
-    else {
-        _current_euler.x = _original_euler.x;
-    }
+    resetCamera(msg.both_angles, msg.only_y);
+}
+
+void TCompCameraThirdPerson::onMsgCameraResetTargetPos(const TMsgCameraResetTargetPos & msg)
+{
+    resetCameraTargetPos();
+}
+
+void TCompCameraThirdPerson::onMsgCameraFov(const TMsgCameraFov & msg)
+{
+    _target_fov = msg.new_fov;
+    _max_time_fov = msg.blend_time;
+    _timer_fov = 0.f;
+}
+
+float TCompCameraThirdPerson::getFovUpdated(float dt)
+{
+    _timer_fov = Clamp(_timer_fov + dt, 0.f, _max_time_fov);
+    float new_fov = lerp(getFov(), deg2rad(_target_fov), _timer_fov / _max_time_fov);
+    //dbg("===================================================================================\n");
+    //dbg("UPDATING FOV: %f\n", rad2deg(new_fov));
+    return new_fov;
 }
 
 void TCompCameraThirdPerson::update(float dt)
@@ -116,9 +154,13 @@ void TCompCameraThirdPerson::update(float dt)
         if (EngineInput["MouseY"].isPressed()) vertical_delta = EngineInput["MouseY"].value;
 
         // Verbose code
-        _current_euler.x -= horizontal_delta * _speed * dt;
-        _current_euler.y += vertical_delta * _speed * dt;
-        _current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
+        CEntity* e_target = _h_target;
+        TCompAIPlayer* ai_player = e_target->get<TCompAIPlayer>();
+        if (!(ai_player && ai_player->enabledPlayerAI)) {
+            _current_euler.x -= horizontal_delta * _speed * dt;
+            _current_euler.y += vertical_delta * _speed * dt;
+            _current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
+        }
 
         // EulerAngles method based on mcv class
         VEC3 vertical_offset = VEC3::Up * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)
@@ -130,9 +172,10 @@ void TCompCameraThirdPerson::update(float dt)
         VEC3 new_pos = target_position + z_distance * -self_transform->getFront();
         self_transform->setPosition(new_pos);
 
-        float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
-        float current_fov = 70 + inputSpeed * 30; // Just doing some testing with the fov and speed
-        setPerspective(deg2rad(current_fov), 0.1f, 1000.f);
+        //float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
+        //float current_fov = 70 + inputSpeed * 30; // Just doing some testing with the fov and speed
+        setPerspective(getFovUpdated(dt), 0.1f, 1000.f);
+        //dbg("Setting perspective TP() - new fov: %f\n", rad2deg(getFov()));
     }
 }
 
@@ -149,6 +192,33 @@ void TCompCameraThirdPerson::setCurrentEuler(float euler_x, float euler_y)
 {
     if (euler_x != INFINITY) _current_euler.x = euler_x;
     if (euler_y != INFINITY) _current_euler.y = euler_y;
+}
+
+void TCompCameraThirdPerson::resetCamera(bool both_angles, bool only_y)
+{
+    if (both_angles) {
+        //_current_euler = _original_euler;
+        _current_euler.x = _original_euler.x;
+        _current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, _original_euler.y);
+    }
+    else if (only_y) {
+        //_current_euler.y = _original_euler.y;
+        _current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, _original_euler.y);
+    }
+    else {
+        _current_euler.x = _original_euler.x;
+    }
+}
+
+void TCompCameraThirdPerson::resetCameraTargetPos()
+{
+    _h_target = getEntityByName(_target_name);
+    TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>();
+
+    float yaw, pitch;
+    target_transform->getYawPitchRoll(&yaw, &pitch);
+    _current_euler.x = yaw;
+    _current_euler.y = _original_euler.y;
 }
 
 void TCompCameraThirdPerson::onPause(const TMsgScenePaused& msg) {

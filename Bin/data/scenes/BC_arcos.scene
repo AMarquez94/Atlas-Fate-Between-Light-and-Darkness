@@ -1,0 +1,177 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_arcos"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "plataforma_cupula_low"
+      ,
+      "transform":
+      {
+        "pos": "4.37873 17.9268 -388.702"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/plataforma_cupula_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_central.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_cupula_arco_low"
+      ,
+      "transform":
+      {
+        "pos": "4.37695 19.8545 -388.78"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_cupula_arco_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_central.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_BC_cupula_arco_low.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_arco_low001"
+      ,
+      "transform":
+      {
+        "pos": "1.18158 9.19744 -385.342"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_arco_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_BC_arco_low001.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_interior_cupula_low"
+      ,
+      "transform":
+      {
+        "pos": "4.37873 16.9716 -388.789"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_interior_cupula_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_central.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_barra_low001"
+      ,
+      "transform":
+      {
+        "pos": "-2.29257 9.93571 -385.271"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_barra_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_central.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

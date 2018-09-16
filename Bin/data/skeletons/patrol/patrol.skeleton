@@ -1,11 +1,34 @@
 {
-	"name":"patrol",
-	"anims" : [
-		{ "name" : "idle" },
-		{ "name" : "walk" },
-		{ "name" : "die" },
-		{ "name" : "dead" },
-		{ "name" : "turn_right" },
-		{ "name" : "attack" }
+	"name": "patrol",
+	"anims": [
+		{
+			"name": "idle"
+		},
+		{
+			"name": "walk"
+		},
+		{
+			"name": "die",
+			"audio_callbacks": [{
+					"time_to_call": 0,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolDead",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 0,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolShutdown",
+					"relative_to_player": true
+				}
+			]
+		},
+		{
+			"name": "dead"
+		},
+		{
+			"name": "attack"
+		},
+		{
+			"name": "turn_right"
+		}
 	]
 }

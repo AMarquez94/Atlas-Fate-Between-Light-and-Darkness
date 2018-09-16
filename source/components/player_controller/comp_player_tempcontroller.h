@@ -6,6 +6,9 @@
 #include "components/player_controller/comp_player_animator.h"
 #include "gui/gui_widget.h"
 
+#define SM_THRESHOLD_MIN 0.025f
+#define SM_THRESHOLD_MAX 0.2f
+ 
 class TCompTempPlayerController;
 
 typedef void (TCompTempPlayerController::*actionfinish)();
@@ -16,6 +19,7 @@ struct TargetCamera {
     std::string name;
     float blendIn;
     float blendOut;
+    float fov;
 };
 
 struct Noise {
@@ -106,9 +110,15 @@ class TCompTempPlayerController : public TCompBase
     float timeToPressAgain = 0.7f;
     float timeInhib = 0.0f;
 
-    float attackTimer = 0.f;    //HARD FIX: TODO: Remove
+
+    CHandle weaponLeft;
+    CHandle weaponRight;
+    bool weaponsActive = false;
+    float attackTimer = 0.f;
+    float timeToDeployWeapons = 0.5f;
 
     void onCreate(const TMsgEntityCreated& msg);
+    void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
     void onStateStart(const TMsgStateStart& msg);
     void onStateFinish(const TMsgStateFinish& msg);
 
@@ -162,7 +172,6 @@ public:
     void idleState(float dt);
     void deadState(float dt);
     void mergeState(float dt);
-    void attackState(float dt);
     void resetState(float dt);
     void exitMergeState(float dt);
     void removingInhibitorState(float dt);
@@ -183,6 +192,7 @@ public:
     void updateStamina(float dt);
     void updateShader(float dt);
     void updateLife(float dt);
+    void updateWeapons(float dt);
     void mergeEnemy();
     void resetMerge();
     bool isDead();
@@ -191,6 +201,11 @@ public:
     void getDamage(float dmg);
     void die();
     void activateCanLandSM(bool activate);
+    void pauseEnemy();
+    void stunEnemy();
+    const bool isStaminaFull() { return stamina / maxStamina != 1.f; };
+    CHandle getLeftWeapon() { return weaponLeft; };
+    CHandle getRightWeapon() { return weaponRight; };
 
     VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
 

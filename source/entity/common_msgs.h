@@ -154,6 +154,10 @@ struct TMsgCameraReset {
   DECL_MSG_ID();
 };
 
+struct TMsgCameraResetTargetPos {
+    DECL_MSG_ID();
+};
+
 struct TMsgAnimationCallback {
 	std::string function_to_call;
 	DECL_MSG_ID();
@@ -277,6 +281,11 @@ struct TMsgButtonActivated {
     DECL_MSG_ID();
 };
 
+struct TMsgWeaponsActivated {
+    bool activate;
+    DECL_MSG_ID();
+};
+
 struct TMsgStopAudioComponent {
     DECL_MSG_ID();
 };
@@ -295,6 +304,12 @@ struct TMsgPlayerAIEnabled {
 struct TMsgCinematicState {
     std::string state;
     bool enableCinematic;
+    DECL_MSG_ID();
+};
+
+struct TMsgCameraFov {
+    float new_fov;
+    float blend_time;
     DECL_MSG_ID();
 };
 

@@ -1,0 +1,20 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_grancartel_alb.dds"
+    ,
+    "metallic": "data/textures/tx_grancartel_met.dds"
+    ,
+    "roughness": "data/textures/tx_grancartel_rgh.dds"
+    ,
+    "normal": "data/textures/tx_grancartel_nml.dds"
+    ,
+    "height": "data/textures/tx_grancartel_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_grancartel_emi.dds"
+    ,
+    "aocclusion": "data/textures/tx_grancartel_ao.dds"
+  }
+}

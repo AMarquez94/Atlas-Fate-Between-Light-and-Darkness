@@ -14,7 +14,7 @@
 				"pos": "0 1 0"
 			},
 			"particles" : {
-				"core" : "data/particles/amb_fog2_80x80.particles"
+				"core" : "data/particles/def_amb_fog_50x50.particles"
 			}
 		}
 	},
@@ -25,7 +25,7 @@
 				"pos": "0 1 0"
 			},
 			"particles" : {
-				"core" : "data/particles/amb_dust_80x80.particles"
+				"core" : "data/particles/def_amb_dust_50x50.particles"
 			}
 		}
 	}

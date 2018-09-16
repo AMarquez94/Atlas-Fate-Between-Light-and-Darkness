@@ -70,6 +70,10 @@ void TCompFadeController::launch(const TMsgFadeBody& msg) {
     TCompRender * c_my_render = get<TCompRender>();
     assert(c_my_render);
 
+    if (msg.is_exit == 1 && c_my_render->self_opacity <= 0 || msg.is_exit == 0 && c_my_render->self_opacity >= 1) {
+        return;
+    }
+
     _is_active = true;
     _elapsed_time = 0.f;
     _invert_fade = msg.is_exit ? -1 : 1;

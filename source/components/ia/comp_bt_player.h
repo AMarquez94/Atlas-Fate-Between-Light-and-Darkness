@@ -10,7 +10,7 @@ public:
 
     enum EState {
         TUT_CROUCH = 0,
-        TUT_SM, 
+        TUT_SM,
         TUT_INHIBITOR,
         TUT_ATTACK,
         TUT_SM_FALL,
@@ -23,6 +23,7 @@ public:
         CINEMATIC,
         CINEMATIC_CROUCH_WALK,
         CINEMATIC_FALLSM,
+        CINEMATIC_INHIBITOR,
         NUM_STATES };
 
     bool enabledPlayerAI;
@@ -76,11 +77,13 @@ public:
 
     BTNode::ERes actionResetTimersCinematicWalkFall(float dt);
     BTNode::ERes actionResetTimersBeforeSMCinematicFallSM(float dt);
+    BTNode::ERes actionResetTimersInhibitorCinematic(float dt);
     BTNode::ERes actionSlowMotionCinematicFallSM(float dt);
     BTNode::ERes actionResetTimersCinematicFallSM(float dt);
     BTNode::ERes actionCrouchWalk(float dt);
     BTNode::ERes actionFallSM(float dt);
     BTNode::ERes endCinematic(float dt);
+
 
     bool conditionHasBeenEnabled(float dt);
     bool conditionCinematicMode(float dt);
@@ -98,6 +101,9 @@ public:
 
     bool conditionCinematicWalkFall(float dt);
     bool conditionCinematicFallSM(float dt);
+    bool conditionCinematicInhibitor(float dt);
+
+    bool conditionIsLanded(float dt);
 
 
     bool assertIsGrounded(float dt);
@@ -114,6 +120,7 @@ private:
     float _maxTimer = 0;
     VEC3 initial_pos = VEC3::Zero;
     QUAT initial_rot = VEC4::Zero;
+    bool is_main_character;
 
     TCompAIPlayer::EState _currentState;
 
@@ -128,7 +135,11 @@ private:
 	void loadAsserts() override;
 
     TCompAIPlayer::EState getStateEnumFromString(const std::string& stateName);
+    void fadeWeapons(bool fade);
+
     CHandle h_sm_tutorial;
+    CHandle h_weapon_left;
+    CHandle h_weapon_right;
 
     DECL_SIBLING_ACCESS();
 };

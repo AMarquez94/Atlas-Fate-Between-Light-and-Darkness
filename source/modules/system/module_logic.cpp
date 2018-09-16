@@ -17,6 +17,8 @@
 #include "components/ia/comp_bt_player.h"
 #include "components/physics/comp_rigidbody.h"
 #include "entity/entity_parser.h"
+#include "components/camera_controller/comp_camera_thirdperson.h"
+#include "components/comp_render.h"
 
 bool CModuleLogic::start() {
 
@@ -128,7 +130,13 @@ void CModuleLogic::publishClasses() {
     SLB::Class< TCompTempPlayerController >("PlayerController", m)
         .comment("This is our wrapper of the player controller component")
         .property("inhibited", &TCompTempPlayerController::isInhibited)
-        .set("die", &TCompTempPlayerController::die);
+        .set("die", &TCompTempPlayerController::die)
+        .set("pauseEnemy", &TCompTempPlayerController::pauseEnemy)
+        .set("stunEnemy", &TCompTempPlayerController::stunEnemy)
+        .set("die", &TCompTempPlayerController::die)
+        .set("getLeftWeapon", &TCompTempPlayerController::getLeftWeapon)
+        .set("getRightWeapon", &TCompTempPlayerController::getRightWeapon)
+        ;
 
     SLB::Class<TCompLightSpot>("SpotLight", m)
         .comment("This is our wrapper of the spotlight controller")
@@ -149,6 +157,11 @@ void CModuleLogic::publishClasses() {
         .set("setRotation", &TCompTransform::setRotation)
         .set("getRotation", &TCompTransform::getRotation)
         .set("lookAt", &TCompTransform::lookAt);
+
+    SLB::Class<TCompCameraThirdPerson>("TPCamera", m)
+        .comment("This is our wrapper of the Third Person Camera")
+        .set("resetCamera", &TCompCameraThirdPerson::resetCamera)
+        .set("resetCameraTargetPos", &TCompCameraThirdPerson::resetCameraTargetPos);
 
     SLB::Class <CHandle>("CHandle", m)
         .comment("CHandle wrapper")
@@ -181,6 +194,10 @@ void CModuleLogic::publishClasses() {
         .comment("This is our wrapper of the audio controller")
         .set("playEvent", &TCompAudio::playEvent);
 
+    SLB::Class<TCompRender>("Render", m)
+        .comment("This is our wrapper of the render controller")
+        .property("visible", &TCompRender::visible);
+
 
     /* Global functions */
 
@@ -199,6 +216,7 @@ void CModuleLogic::publishClasses() {
     m->set("blendInCamera", SLB::FuncCall::create(&blendInCamera));
     m->set("blendOutCamera", SLB::FuncCall::create(&blendOutCamera));
     m->set("blendOutActiveCamera", SLB::FuncCall::create(&blendOutActiveCamera));
+    m->set("resetMainCameras", SLB::FuncCall::create(&resetMainCameras));
 
     // Player hacks
     m->set("pausePlayerToggle", SLB::FuncCall::create(&pausePlayerToggle));
@@ -238,6 +256,7 @@ void CModuleLogic::publishClasses() {
     m->set("renderNavmeshToggle", SLB::FuncCall::create(&renderNavmeshToggle));
     m->set("sleep", SLB::FuncCall::create(&sleep));
     m->set("cinematicModeToggle", SLB::FuncCall::create(&cinematicModeToggle));
+    m->set("isCheckpointSaved", SLB::FuncCall::create(&isCheckpointSaved));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -250,6 +269,8 @@ void CModuleLogic::publishClasses() {
     m->set("toTransform", SLB::FuncCall::create(&toTransform));
     m->set("toAIPatrol", SLB::FuncCall::create(&toAIPatrol));
     m->set("toAudio", SLB::FuncCall::create(&toAudio));
+    m->set("toTPCamera", SLB::FuncCall::create(&toTPCamera));
+    m->set("toRender", SLB::FuncCall::create(&toRender));
 }
 
 /* Check if it is a fast format command */
@@ -485,11 +506,11 @@ void lanternsDisable(bool disable) {
     }
 }
 
-void blendInCamera(const std::string & cameraName, float blendInTime, const std::string& mode) {
+void blendInCamera(const std::string & cameraName, float blendInTime, const std::string& mode, const std::string& interpolator) {
 
     CHandle camera = getEntityByName(cameraName);
     if (camera.isValid()) {
-        EngineCameras.blendInCamera(camera, blendInTime, EngineCameras.getPriorityFromString(mode));
+        EngineCameras.blendInCamera(camera, blendInTime, EngineCameras.getPriorityFromString(mode), EngineCameras.getInterpolatorFromString(interpolator));
     }
     //TODO: implement
 }
@@ -504,6 +525,15 @@ void blendOutCamera(const std::string & cameraName, float blendOutTime) {
 
 void blendOutActiveCamera(float blendOutTime) {
     EngineCameras.blendOutCamera(EngineCameras.getCurrentCamera(), blendOutTime);
+}
+
+void resetMainCameras()
+{
+    std::vector<CHandle> v_cameras = CTagsManager::get().getAllEntitiesByTag(getID("main_camera"));
+    for (int i = 0; i < v_cameras.size(); i++) {
+        TMsgCameraResetTargetPos msg;
+        v_cameras[i].sendMsg(msg);
+    }
 }
 
 /* Spawn item on given position */
@@ -553,6 +583,12 @@ void cinematicModeToggle() {
     msg.enableAI = true;
     CHandle h = getEntityByName("The Player");
     h.sendMsg(msg);
+}
+
+bool isCheckpointSaved()
+{
+    CModuleGameManager gameManager = CEngine::get().getGameManager();
+    return gameManager.isCheckpointSaved();
 }
 
 SoundEvent playEvent(const std::string & name)
@@ -706,6 +742,18 @@ TCompAIPatrol* toAIPatrol(CHandle h)
 TCompAudio* toAudio(CHandle h)
 {
     TCompAudio* t = h;
+    return t;
+}
+
+TCompCameraThirdPerson * toTPCamera(CHandle h)
+{
+    TCompCameraThirdPerson* t = h;
+    return t;
+}
+
+TCompRender * toRender(CHandle h)
+{
+    TCompRender* t = h;
     return t;
 }
 

@@ -32,6 +32,9 @@ private:
   bool _enemyStunned = false;
   bool _buttonPressed = false;
 
+  bool _playerAIEnabled = false;
+
   void onMsgNoClipToggle(const TMsgNoClipToggle& msg);
+  void onMsgPlayerAIEnabled(const TMsgPlayerAIEnabled& msg);
 };
 

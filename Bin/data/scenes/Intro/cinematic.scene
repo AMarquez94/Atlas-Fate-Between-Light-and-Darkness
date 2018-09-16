@@ -8,11 +8,11 @@
   },
   {
     "entity": {
-      "prefab": "data/prefabs/patrol.prefab",
+      "prefab": "data/prefabs/tutorial/patrol_inhibitor.prefab",
       "name": "Patrol_Cinematic_Inhibitor",
       "transform": {
-        "pos": "-26.8 0 -35.0",
-        "lookat": "-25.8 0 -35.0"
+        "pos": "-27.5 -1.225 -36",
+        "lookat": "-26.5 -1.225 -36"
       }
     }
   },
@@ -100,6 +100,224 @@
       "transform": {
         "pos": "-7.6 1 29",
         "rotation": "0 0 0 1"
+      },
+      "camera": {
+        "fov": 70,
+        "z_near": 0.01,
+        "z_far": 1000
+      },
+      "render_ao": {
+        "enabled": true,
+        "max_steps": 1,
+        "gauss_filter": true
+      },
+      "render_blur": {
+        "enabled": false,
+        "global_distance": 0.1,
+        "gauss_filter": true
+      },
+      "motion_blur": {
+        "enabled": true
+      },
+      "render_bloom": {
+        "enabled": true,
+        "max_steps": 4,
+        "rt_name": "Bloom"
+      },
+      "color_grading": {
+        "enabled": true,
+        "amount": 0.25,
+        "lut": "data/textures/lut/lut5.dds"
+      },
+      "chromatic_aberration": {
+        "enabled": true
+      },
+      "fog": {
+        "enabled": true
+      },
+      "antialiasing": {
+        "enabled": true
+      },
+      "vignette": {
+        "enabled": true
+      },
+      "render_flares": {
+        "enabled": true,
+        "max_steps": 4
+      },
+      "render_outlines": {
+        "enabled": true
+      },
+      "render_environment": {
+        "enabled": true
+      },
+      "render_focus": {
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Trigger_Capsules_Cinematic"
+      ,
+      "transform":
+      {
+        "pos": "-8.35522 -0.132325 -18.7696"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "2.42471 0.605901 3.37197"
+        ,
+        "group": "All"
+        ,
+        "mask": ""
+        ,
+        "is_trigger": true
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Capsules",
+      "transform": {
+        "pos": "-2.8 10.3 -29.5",
+        "rotation": "0.168968 -0.405319 0.076507 0.895161"
+      },
+      "camera": {
+        "fov": 70,
+        "z_near": 0.01,
+        "z_far": 1000
+      },
+      "render_ao": {
+        "enabled": true,
+        "max_steps": 1,
+        "gauss_filter": true
+      },
+      "render_blur": {
+        "enabled": false,
+        "global_distance": 0.1,
+        "gauss_filter": true
+      },
+      "motion_blur": {
+        "enabled": true
+      },
+      "render_bloom": {
+        "enabled": true,
+        "max_steps": 4,
+        "rt_name": "Bloom"
+      },
+      "color_grading": {
+        "enabled": true,
+        "amount": 0.25,
+        "lut": "data/textures/lut/lut5.dds"
+      },
+      "chromatic_aberration": {
+        "enabled": true
+      },
+      "fog": {
+        "enabled": true
+      },
+      "antialiasing": {
+        "enabled": true
+      },
+      "vignette": {
+        "enabled": true
+      },
+      "render_flares": {
+        "enabled": true,
+        "max_steps": 4
+      },
+      "render_outlines": {
+        "enabled": true
+      },
+      "render_environment": {
+        "enabled": true
+      },
+      "render_focus": {
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Inhibitor_Patrol",
+      "transform": {
+        "pos": "-23.733 2.941 -39.651",
+        "rotation": "0.156680 -0.244306 0.040035 0.956119"
+      },
+      "camera": {
+        "fov": 70,
+        "z_near": 0.01,
+        "z_far": 1000
+      },
+      "render_ao": {
+        "enabled": true,
+        "max_steps": 1,
+        "gauss_filter": true
+      },
+      "render_blur": {
+        "enabled": false,
+        "global_distance": 0.1,
+        "gauss_filter": true
+      },
+      "motion_blur": {
+        "enabled": true
+      },
+      "render_bloom": {
+        "enabled": true,
+        "max_steps": 4,
+        "rt_name": "Bloom"
+      },
+      "color_grading": {
+        "enabled": true,
+        "amount": 0.25,
+        "lut": "data/textures/lut/lut5.dds"
+      },
+      "chromatic_aberration": {
+        "enabled": true
+      },
+      "fog": {
+        "enabled": true
+      },
+      "antialiasing": {
+        "enabled": true
+      },
+      "vignette": {
+        "enabled": true
+      },
+      "render_flares": {
+        "enabled": true,
+        "max_steps": 4
+      },
+      "render_outlines": {
+        "enabled": true
+      },
+      "render_environment": {
+        "enabled": true
+      },
+      "render_focus": {
+        "enabled": false
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Inhibitor_Patrol_End",
+      "transform": {
+        "pos": "-19.32 1.9 -40",
+        "rotation": "0.070597 -0.223259 0.016214 0.972064"
       },
       "camera": {
         "fov": 70,

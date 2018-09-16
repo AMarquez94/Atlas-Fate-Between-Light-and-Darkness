@@ -45,6 +45,7 @@ public:
     bool saveCheckpoint(VEC3 playerPos, QUAT playerRot);
     bool loadCheckpoint();
     bool deleteCheckpoint();
+    bool isCheckpointSaved() { return lastCheckpoint != nullptr && lastCheckpoint->isSaved(); };
     bool isPaused() const;
 
     PauseState getCurrentState();

@@ -1,0 +1,23 @@
+{
+	"name":"player",
+	"anims" : [
+		{ "name" : "idle"},
+		{ "name" : "walk"},
+		{ "name" : "run"},
+		{ "name" : "attack"},
+		{ "name" : "crouch"},
+		{ "name" : "crouch_walk"},
+		{ "name" : "crouch_walk_slow"},
+		{ "name" : "fall"},
+		{ "name" : "hit_back"},
+		{ "name" : "hit_front"},
+		{ "name" : "metralla_start"},
+		{ "name" : "metralla_middle"},
+		{ "name" : "metralla_finish"},
+		{ "name" : "sm_enter"},
+		{ "name" : "sm_pose"},
+		{ "name" : "land_soft"},
+		{ "name" : "die"},
+		{ "name" : "dead"}
+	]
+}

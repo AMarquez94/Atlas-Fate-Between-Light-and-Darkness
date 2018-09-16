@@ -38,6 +38,18 @@
         "shape": "convex"
         ,
         "name": "data/colliders/collider_barril.collider"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
       }
       ,
       "abs_aabb": true

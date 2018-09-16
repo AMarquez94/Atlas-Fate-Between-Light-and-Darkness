@@ -4,13 +4,16 @@
 #include "utils/track.h"
 #include "resources/resource.h"
 
+class FastNoiseSIMD;
+
 namespace Particles
 {
     using TParticlesHandle = int;
     using VParticles = std::vector<TParticle>;
-
+    
     struct TCoreSystem : public IResource
     {
+        void destroy() override;
         void onFileChanged(const std::string& filename) override;
 
         struct TNSystem 
@@ -38,7 +41,17 @@ namespace Particles
             float rate_time = 10.f;
             float rate_distance = 0.f;
             float variation = 0.1f;
-            float interval = 0.f;
+
+            struct TNBurst {
+                float   time;
+                int     count;
+                int     cycles;
+                float   interval;
+                float   i_elapsed;
+            };
+
+            mutable float time_ratio;
+            mutable std::vector<TNBurst> bursts;
             // Add Bursts in the future.
         };
 
@@ -53,6 +66,8 @@ namespace Particles
         struct TNVelocity {
 
             enum EType { LOCAL = 0, WORLD };
+            EType type = LOCAL;             // type of emissor
+
             VEC3 constant_velocity = VEC3::Zero;
             TTrack<VEC3> velocity;
             TTrack<VEC3> rotation;
@@ -77,6 +92,9 @@ namespace Particles
 
         struct TNoise
         {       
+            FastNoiseSIMD * noise_core = nullptr;
+            float* noise_values = nullptr;
+
             const CTexture* texture = nullptr; // particle texture
             float strength = 0.f;
             float frequency = 0.5f;
@@ -92,16 +110,28 @@ namespace Particles
 
         struct TNRenderer
         {
-            enum EMODE { BILLBOARD = 0, HORIZONTAL, VERTICAL };
-            EMODE mode;
+            enum EMODE { BILLBOARD = 0, HORIZONTAL, VERTICAL, STRETCHED };
+            EMODE mode = BILLBOARD;
 
             const CTexture* texture = nullptr; // particle texture
             VEC2 frameSize = VEC2(1, 1);       // size of frame in the texture (in UV coords)
             int numFrames = 1;                 // number of animation frames
             int initialFrame = 0;              // initial frame
             float frameSpeed = 0.f;            // frame change speed
+            float length = 1;
         };
 
+        TNSystem        n_system;
+        TNEmission      n_emission;
+        TNShape         n_shape;
+        TNVelocity      n_velocity;
+        TNColor         n_color;
+        TNSize          n_size;
+        TNoise          n_noise;
+        TNCollision     n_collision;
+        TNRenderer      n_renderer;
+
+        /*
         //-----------------------------------------------------------------
         struct TLife
         {
@@ -156,22 +186,12 @@ namespace Particles
             float opacity = 1.f;            // opacity factor
         };
 
-        TNSystem        n_system;
-        TNEmission      n_emission;
-        TNShape         n_shape;
-        TNVelocity      n_velocity;
-        TNColor         n_color; 
-        TNSize          n_size;
-        TNoise          n_noise;
-        TNCollision     n_collision;
-        TNRenderer      n_renderer;
-
         TLife           life;
         TEmission       emission;
         TMovement       movement;
         TRender         render;
         TSize           size;
-        TColor          color;
+        TColor          color;*/
     };
 
     class CSystem
@@ -184,6 +204,7 @@ namespace Particles
         void render();
         void launch();
         void debugInMenu();
+        void destroy();
 
         void fadeOut(float duration);
         void setActive(bool active);
@@ -191,12 +212,18 @@ namespace Particles
 
     private:
 
-        void emit();
         void emit(int amount);
+
+        void  updateSystem(float delta);
+        void  updateFading(float delta);
+        void  updateEmission(float delta);
+        void  updateCollision(float delta);
 
         VEC3 generatePosition() const;
         VEC3 generateVelocity() const;
         VEC3 generateDirection() const;
+        void getRenderMode(VEC3 & camera_pos, VEC3 & camera_up, float & length);
+
         VEC3 AddNoiseOnAngle(float min, float max);
 
         CHandle             _entity;
@@ -208,6 +235,7 @@ namespace Particles
         float               _deploy_time = 0.f;
         float               _fadeDuration = 0.f;
         float               _fadeTime = 0.f;
+        float               _fadeRatio = 0.f;
         bool                _enabled;
 
         float _deploy_distance;

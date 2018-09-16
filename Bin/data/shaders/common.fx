@@ -34,14 +34,16 @@ Texture2D    txAO                 SLOT(TS_DEFERRED_AO);
 // 2nd material
 Texture2D    txAlbedo1         SLOT( TS_ALBEDO1 );
 Texture2D    txNormal1         SLOT( TS_NORMAL1 );
-//Texture2D    txMetallic1       SLOT( (TS_FIRST_SLOT_MATERIAL_1 + TS_METALLIC) );
-//Texture2D    txRoughness1      SLOT( (TS_FIRST_SLOT_MATERIAL_1 + TS_ROUGHNESS) );
+Texture2D    txMetallic1       SLOT( TS_METALLIC1 );
+Texture2D    txRoughness1      SLOT( TS_ROUGHNESS1 );
+Texture2D    txHeight1     		 SLOT( TS_HEIGHT1 );
 
 // 3rd material
 Texture2D    txAlbedo2         SLOT( TS_ALBEDO2 );
 Texture2D    txNormal2         SLOT( TS_NORMAL2 );
-//Texture2D    txMetallic2       SLOT( (TS_FIRST_SLOT_MATERIAL_2 + TS_METALLIC) );
-//Texture2D    txRoughness2      SLOT( (TS_FIRST_SLOT_MATERIAL_2 + TS_ROUGHNESS) );
+Texture2D    txMetallic2       SLOT( TS_METALLIC2 );
+Texture2D    txRoughness2      SLOT( TS_ROUGHNESS2 );
+Texture2D    txHeight2     		 SLOT( TS_HEIGHT2 );
 
 Texture2D    txMixBlendWeights SLOT( TS_MIX_BLEND_WEIGHTS );
 

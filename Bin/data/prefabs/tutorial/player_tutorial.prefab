@@ -81,7 +81,7 @@
 			"destroy": false
 		},
 		"skeleton": {
-			"skeleton": "data/skeletons/player/player.skeleton",
+			"skeleton": "data/skeletons/player/player_tutorial.skeleton",
 			"scale": 1.0
 		},
 		"ai_player": {
@@ -167,7 +167,7 @@
 		},
 		"fade_controller": {
 			"fade_color": "0.0 1.0 1.0 1.0",
-			"fade_time": 0.6,
+			"fade_time": 0.2,
 			"destroy": false
 		},
 		"render": [{

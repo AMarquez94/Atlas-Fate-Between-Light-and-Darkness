@@ -3,19 +3,15 @@
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
-			"navmesh": "data/navmeshes/milestone2_navmesh.bin"
+			"navmesh": "data/navmeshes/intro_navmesh.bin"
 		},
 		"scene_group": [
 			"data/scenes/Intro/player_intro_fsm.scene",
+			"data/scenes/main_cameras.scene",
 			"data/scenes/Intro/intro_test_instancing.scene",
 
 			"data/scenes/Map_Intro/checkpoints.scene",
 			"data/scenes/Map_Intro/movable_objects.scene",
-			"data/scenes/Map_Intro/milestone2_map_particles.scene",
-
-			"data/scenes/Intro/_mimetic_proves.scene",
-
-			"data/scenes/Intro/intro_camera.scene",
 			"data/scenes/Intro/intro_columnas.scene",
 			"data/scenes/Intro/intro_puertas.scene",
 			"data/scenes/Intro/intro_casas.scene",
@@ -24,16 +20,25 @@
 			"data/scenes/Intro/intro_salientes.scene",
 			"data/scenes/Intro/intro_colliders_salientes.scene",
 			"data/scenes/Intro/intro_capsules.scene",
-			"data/scenes/intro_light.scene",
+			"data/scenes/intro_light2.scene",
 			"data/scenes/Intro/intro_puentes_chapa.scene",
 			"data/scenes/intro_andamios.scene",
 			"data/scenes/intro_tejados.scene",
 			"data/scenes/intro_valla.scene",
 			"data/scenes/intro_colliders_valla.scene",
 
+			"data/scenes/intro_prueba_neones.scene",
 
 			"data/scenes/intro_tubo_capsulas.scene",
 			
+			"data/scenes/intro_farolas.scene",
+
+			"data/scenes/intro_patrol_atrapado.scene",
+
+			"data/scenes/intro_edificios_segunda_1.scene",
+			"data/scenes/intro_edificios_segunda_2.scene",
+
+
 			"data/scenes/intro_pozo.scene",
 			"data/scenes/intro_barra_capsulas.scene",
 			"data/scenes/Intro/intro_suelo.scene",
@@ -43,10 +48,13 @@
 			"data/scenes/intro_conductos.scene",
 			"data/scenes/intro_tubitos.scene",
 			"data/scenes/intro_props.scene",
-			"data/scenes/Intro/debug_speaker.scene",
 			"data/scenes/Intro/tutorial.scene",
 			"data/scenes/Intro/enemy.scene",
-			"data/scenes/Intro/cinematic.scene"
+			"data/scenes/Intro/cinematic.scene",
+			"data/scenes/Intro/intro_checkpoints.scene",
+			"data/scenes/Intro/intro_trigger_kill.scene",
+			"data/scenes/Intro/intro_buttons.scene",
+			"data/scenes/Intro/intro_particles.scene"
 
 		]
 	},
@@ -57,13 +65,13 @@
 		},
 		"scene_group": [
 			"data/scenes/Map_Intro/player_fsm.scene",
+			"data/scenes/main_cameras.scene",
 			"data/scenes/Map_Intro/enemy.scene",
 			"data/scenes/Map_Intro/milestone2_map_pre.scene",
 			"data/scenes/Map_Intro/milestone2_map_lights2.scene",
 			"data/scenes/Map_Intro/milestone2_map_colliders.scene",
 			"data/scenes/Map_Intro/test_instancing.scene",
 			"data/scenes/Map_Intro/capsules.scene",
-			"data/scenes/Map_Intro/camera.scene",
 			"data/scenes/Map_Intro/checkpoints.scene",
 			"data/scenes/Map_Intro/movable_objects.scene",
 			"data/scenes/Map_Intro/milestone2_map_particles.scene",
@@ -78,7 +86,7 @@
 		},
 		"scene_group": [
 			"data/scenes/ZoneA/player2_fsm.scene",
-			"data/scenes/ZoneA/camera.scene",
+			"data/scenes/main_cameras.scene",
 			"data/scenes/ZoneA/zone_a_aceras.scene",
 			"data/scenes/ZoneA/zone_a_suelo.scene",
 			"data/scenes/ZoneA/zone_a_casas.scene",
@@ -101,11 +109,13 @@
 			"data/scenes/zona_a_tubos.scene",
 			"data/scenes/zone_a_tubitos.scene",
 			"data/scenes/zone_a_cables.scene",
-			"data/scenes/zone_a_farolas.scene",
 			"data/scenes/zone_a_hologramas.scene",
 			"data/scenes/zona_a_colliders_barandillas.scene",
 			"data/scenes/zone_a_colliders_valla_luz.scene",
 			"data/scenes/zone_a_test.scene",
+
+
+			"data/scenes/zone_a_edificios_segunda.scene",
 
 			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene",
@@ -115,8 +125,7 @@
 			"data/scenes/ZoneA/luces.scene",
 			"data/scenes/ZoneA/neones.scene",
 			"data/scenes/ZoneA/carteles.scene",
-			"data/scenes/mapa_decals.scene",
-			"data/scenes/zone_a_hologram_scenes.scene"
+			"data/scenes/mapa_decals.scene"
 		]
 	},
 	"scene_coliseo": {
@@ -125,19 +134,11 @@
 		},
 		"scene_group": [
 			"data/scenes/Coliseo/player2_fsm.scene",
-			"data/scenes/Coliseo/coliseo_suelo.scene",
-			"data/scenes/Coliseo/coliseo_arcos.scene",
-			"data/scenes/Coliseo/coliseo_pared.scene",
-			"data/scenes/Coliseo/coliseo_generador.scene",
-			"data/scenes/Coliseo/coliseo_maquinas.scene",
-			"data/scenes/Coliseo/coliseo_props.scene",
-			"data/scenes/Coliseo/coliseo_conductos.scene",
 			"data/scenes/Coliseo/test_instancing.scene",
 			"data/scenes/Coliseo/camera.scene",
 			"data/scenes/Coliseo/coliseo_particles.scene",
-			"data/scenes/Coliseo/coliseo_farolas.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
-			"data/scenes/Coliseo/buttons.scene"
+			"data/scenes/Coliseo/coliseo_structures.scene"
 		]
 	},
 	"scene_coliseo_2": {
@@ -146,19 +147,11 @@
 		},
 		"scene_group": [
 			"data/scenes/Coliseo/player2_fsm2.scene",
-			"data/scenes/Coliseo/coliseo_suelo.scene",
-			"data/scenes/Coliseo/coliseo_arcos.scene",
-			"data/scenes/Coliseo/coliseo_pared.scene",
-			"data/scenes/Coliseo/coliseo_generador.scene",
-			"data/scenes/Coliseo/coliseo_maquinas.scene",
-			"data/scenes/Coliseo/coliseo_props.scene",
-			"data/scenes/Coliseo/coliseo_conductos.scene",
 			"data/scenes/Coliseo/test_instancing.scene",
 			"data/scenes/Coliseo/camera.scene",
 			"data/scenes/Coliseo/coliseo_particles.scene",
-			"data/scenes/Coliseo/coliseo_farolas.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
-			"data/scenes/Coliseo/buttons2.scene"
+			"data/scenes/Coliseo/coliseo_structures.scene"
 		]
 	},
 	"scene_basilic_courtyard": {
@@ -168,13 +161,33 @@
 		},
 		"scene_group": [
 			"data/scenes/Basilic_courtyard/player.scene",
+			"data/scenes/main_cameras.scene",
 			"data/scenes/Basilic_courtyard/enemy.scene",
 			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
 			"data/scenes/Basilic_courtyard/test_instancing.scene",
-			"data/scenes/Basilic_courtyard/camera.scene",
 			"data/scenes/Basilic_courtyard/buttons.scene",
 			"data/scenes/Basilic_courtyard/capsules.scene",
-			"data/scenes/Basilic_courtyard_whitebox10.scene"
+			"data/scenes/Basilic_courtyard/BC_mezquita.scene",
+			
+			"data/scenes/Basilic_courtyard/BC_alminares.scene",
+			"data/scenes/Basilic_courtyard/BC_paredes.scene",
+			"data/scenes/BC_arcos.scene",
+			"data/scenes/BC_andamios.scene",
+			"data/scenes/BC_coberturas.scene",
+			"data/scenes/BC_containers.scene",
+			"data/scenes/BC_props.scene",
+
+			"data/scenes/BC_capsulas.scene",
+
+			"data/scenes/BC_maderas_whitebox.scene",
+
+			"data/scenes/Basilic_courtyard/BC_fuente.scene",
+			"data/scenes/Basilic_courtyard/BC_suelo.scene"
+
+
+
+
+			
 		]
 	},
 	"scene_basilic_interior": {
@@ -184,9 +197,9 @@
 		},
 		"scene_group": [
 			"data/scenes/Basilic_interior/player.scene",
+			"data/scenes/main_cameras.scene",
 			"data/scenes/Basilic_interior/enemy.scene",
 			"data/scenes/Basilic_interior/test_instancing.scene",
-			"data/scenes/Basilic_interior/camera.scene",
 			"data/scenes/Basilic_interior/map_basilic_interior.scene",
 			"data/scenes/Basilic_interior/map_basilic_interior_lights.scene",
 			"data/scenes/Basilic_interior/objects.scene",

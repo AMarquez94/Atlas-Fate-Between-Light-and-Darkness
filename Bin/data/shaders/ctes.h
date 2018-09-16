@@ -53,13 +53,20 @@
 #define TS_FIRST_SLOT_MATERIAL_0      TS_ALBEDO
 #define TS_FIRST_SLOT_MATERIAL_1      TS_ALBEDO1
 #define TS_FIRST_SLOT_MATERIAL_2      TS_ALBEDO2
+#define TS_FIRST_SLOT_MATERIAL_3      TS_ALBEDO3
 
-#define TS_ALBEDO1 25
-#define TS_NORMAL1 26
-#define TS_ALBEDO2 27
-#define TS_NORMAL2 28
+#define TS_ALBEDO1     25
+#define TS_NORMAL1     26
+#define TS_METALLIC1   27
+#define TS_ROUGHNESS1  28
+#define TS_HEIGHT1     29
+#define TS_ALBEDO2     30
+#define TS_NORMAL2     31
+#define TS_METALLIC2   32
+#define TS_ROUGHNESS2  33
+#define TS_HEIGHT2     34
 
-#define TS_MIX_BLEND_WEIGHTS          29
+#define TS_MIX_BLEND_WEIGHTS          35
 
 // -------------------------------------------------
 #define RO_COMPLETE     0
@@ -183,7 +190,7 @@ CB_DEF(CCteGlobals, CB_GLOBALS)   // Generates the b1
     float global_fog_end3;
 
     VEC3 global_fog_env_color;
-    float global_dummy_value1;
+    float global_delta_time;
 };
 
 CB_DEF(CCteMaterial, CB_MATERIAL)
@@ -268,7 +275,7 @@ CB_DEF(CCtePlayer, CB_PLAYER)
     float  player_disk_radius;
 
     float  player_shadowed;
-    float  player_dummy1;
+    float  player_health;
     float  player_dummy2;
     float  player_dummy3;
 };
@@ -281,6 +288,11 @@ CB_DEF(CCtePostFX, CB_POSTFX)
     float  postfx_scan_amount;
     VEC2   postfx_scan_drift;
     VEC2   postfx_scan_jitter;
+
+    float  postfx_vignette;
+    float  postfx_dummy1;
+    float  postfx_dummy2;
+    float  postfx_dummy3;
 };
 
 CB_DEF(CCteFocus, CB_FOCUS)

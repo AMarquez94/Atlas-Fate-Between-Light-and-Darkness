@@ -169,6 +169,7 @@ namespace GPUParticles {
 
     // --------------------------------------------------
     void TSystemInstance::debugInMenu() {
+
         ImGui::Checkbox("Use CPU to update", &use_cpu_update);
         if (ImGui::SmallButton("Reset")) {
             curr_state_idx = 0;
