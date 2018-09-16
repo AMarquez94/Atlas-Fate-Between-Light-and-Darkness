@@ -846,16 +846,8 @@ BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
 
 BTNode::ERes TCompAIPatrol::actionAttack(float dt)
 {
-    assert(arguments.find("entityToChase_actionAttack_attack") != arguments.end());
-    std::string entityToChase = arguments["entityToChase_actionAttack_attack"].getString();
-
-    CEntity *player = getEntityByName(entityToChase);
-    TCompTransform * ppos = player->get<TCompTransform>();
 
     /* TODO: always hit at the moment - change this */
-    TMsgPlayerHit msg;
-    msg.h_sender = CHandle(this).getOwner();
-    player->sendMsg(msg);
     return BTNode::ERes::LEAVE;
 }
 
@@ -1406,6 +1398,15 @@ void TCompAIPatrol::launchInhibitor()
     parseScene("data/prefabs/inhibitor.prefab", ctxInhibitor);
     TCompGroup* myGroup = get<TCompGroup>();
     myGroup->add(ctxInhibitor.entities_loaded[0]);
+}
+
+void TCompAIPatrol::attackPlayer()
+{
+    CEntity* player = getEntityByName("The Player");
+
+    TMsgPlayerHit msg;
+    msg.h_sender = CHandle(this).getOwner();
+    player->sendMsg(msg);
 }
 
 void TCompAIPatrol::playAnimationByName(const std::string & animationName)

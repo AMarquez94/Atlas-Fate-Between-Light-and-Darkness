@@ -145,6 +145,7 @@ public:
 
     /* LUA functions */
     void launchInhibitor();
+    void attackPlayer();
 
 	void playAnimationByName(const std::string & animationName) override;
 
