@@ -36,6 +36,13 @@ void TCompAudio::debugInMenu()
 
 void TCompAudio::load(const json & j, TEntityParseContext & ctx)
 {
+    //if (j.count("onStart") > 0) {
+    //    auto& j_onStart = j["onStart"];
+    //    for (auto it = j_onStart.begin(); it != j_onStart.end(); ++it) {
+    //        //TODO: Test
+    //        playEvent(it.value().value("eventName", ""), it.value().value("relativeToPlayer", true));
+    //    }
+    //}
 }
 
 void TCompAudio::update(float dt)

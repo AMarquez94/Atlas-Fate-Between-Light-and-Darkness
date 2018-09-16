@@ -655,6 +655,10 @@ void TCompTempPlayerController::getDamage(float dmg)
         if (life <= 0.f) {
             die();
         }
+        else {
+            TCompAudio* my_audio = get<TCompAudio>();
+            my_audio->playEvent("event:/Sounds/Player/Hurt/Hurt", false);
+        }
     }
 }
 
