@@ -338,6 +338,11 @@
 					"variable_type": "float",
 					"variable_value": 90.0,
 					"variable_op": ""
+				}, {
+					"variable_name": "walkingFast",
+					"variable_type": "bool",
+					"variable_value": false,
+					"variable_op": ""
 				}
 			],
 			"assert": "assertPlayerAndPatrolNotInFovNotNoise"

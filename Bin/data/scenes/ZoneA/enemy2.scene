@@ -79,7 +79,19 @@
 						"lookAt": "-1 0 0",
 						"minTime": 7
 					}
-				]
+				],
+				"argAct": [{
+					"nodeName": "goToWpt",
+					"actionName": "actionGoToWpt",
+					"variableName": "walkingFast",
+					"newValue": true
+				},
+				{
+					"nodeName": "goToWpt",
+					"actionName": "actionGoToWpt",
+					"variableName": "speed",
+					"newValue": 3.8
+				}]
 			}
 		}
 	},  {

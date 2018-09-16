@@ -571,10 +571,18 @@ BTNode::ERes TCompAIPatrol::actionGoToWpt(float dt)
     float speed = arguments["speed_actionGoToWpt_goToWpt"].getFloat();
     assert(arguments.find("rotationSpeed_actionGoToWpt_goToWpt") != arguments.end());
     float rotationSpeed = deg2rad(arguments["rotationSpeed_actionGoToWpt_goToWpt"].getFloat());
+    assert(arguments.find("walkingFast_actionGoToWpt_goToWpt") != arguments.end());
+    bool walkingFast = deg2rad(arguments["walkingFast_actionGoToWpt_goToWpt"].getBool());
 
     //Animation To Change
-    TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
+    if (!walkingFast) {
+        TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+        myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
+    }
+    else {
+        TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+        myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::RUN);
+    }
 
     return moveToPoint(speed, rotationSpeed, getWaypoint().position, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
