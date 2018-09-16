@@ -25,8 +25,8 @@ void TCompPatrolAnimator::debugInMenu() {
 	if (ImGui::SmallButton("Die")) {
 		playAnimation(EAnimation::DIE, speed);
 	}
-	if (ImGui::SmallButton("Attack")) {
-		playAnimation(EAnimation::ATTACK, speed);
+	if (ImGui::SmallButton("inhibitor")) {
+		playAnimation(EAnimation::SHOOT_INHIBITOR, speed);
 	}
 
 	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);

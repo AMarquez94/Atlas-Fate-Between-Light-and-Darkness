@@ -32,7 +32,13 @@
 		},
 		{
 			"name": "inhibidor",
-			"animation_completed_callback": true
+			"animation_completed_callback": true,
+			"callbacks":[
+				{
+					"time_to_call" : 0.5,
+					"function_to_call" : "animation_LaunchInhibitor"
+				}
+			]
 		},
 		{
 			"name": "turn_right"

@@ -681,28 +681,30 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 {
     //play animation shoot inhibitor
     //
+	assert(arguments.find("entityToChase_actionShootInhibitor_shootInhibitor") != arguments.end());
+	std::string entityToChase = arguments["entityToChase_actionShootInhibitor_shootInhibitor"].getString();
+
+	CEntity *player = getEntityByName(entityToChase);
+	TCompTempPlayerController *pController = player->get<TCompTempPlayerController>();
 
 	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+
+	if (pController->isInhibited && !myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR)) {
+
+		TCompEmissionController *eController = get<TCompEmissionController>();
+		eController->blend(enemyColor.colorAlert, 0.1f);
+		return BTNode::ERes::LEAVE;
+	}
+	
 	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR) && !inhibitorAnimationCompleted) {
 		myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR);
 	}
 	
 	if (inhibitorAnimationCompleted) {
-		//TODO: if !animationBeingPlayed and PlayerInhibited => LEAVE; else => normal
-		assert(arguments.find("entityToChase_actionShootInhibitor_shootInhibitor") != arguments.end());
-		std::string entityToChase = arguments["entityToChase_actionShootInhibitor_shootInhibitor"].getString();
-
-		CEntity *player = getEntityByName(entityToChase);
-		TCompTempPlayerController *pController = player->get<TCompTempPlayerController>();
 
 		TCompEmissionController *eController = get<TCompEmissionController>();
 		eController->blend(enemyColor.colorAlert, 0.1f);
 
-		if (!pController->isInhibited) {
-
-			timeAnimating = 0.0f;
-			EngineLogic.execScript("animation_LaunchInhibitor(" + CHandle(this).getOwner().asString() + ")");
-		}
 		return BTNode::ERes::LEAVE;
 	}
 	else {
