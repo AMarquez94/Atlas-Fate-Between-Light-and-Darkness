@@ -12,3 +12,9 @@ swing_2-> https://www.youtube.com/watch?v=odZUuVfv8Ko
 sonar_ping-> https://freesound.org/people/unfa/sounds/215415/
 sonar_punch-> https://www.youtube.com/watch?v=yTcqyR3Qozg
 land-> https://freesound.org/people/qubodup/sounds/172960/
+neon_hum-> https://freesound.org/people/Kinoton/sounds/351430/
+patrol_cyberstep-> https://www.youtube.com/watch?v=o1nUoaXfWtY
+patrol_step_impact-> https://www.youtube.com/watch?v=H8HjnWK7Pno
+patrol_step_run_test-> https://www.youtube.com/watch?v=o1nUoaXfWtY
+patrol_step_pre-> https://youtu.be/85zOPbPzkpQ
+
