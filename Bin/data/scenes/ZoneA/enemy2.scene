@@ -3,7 +3,7 @@
 			"name": "Enemies"
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/patrol.prefab",
 			"name": "Patrol 1",
 			"transform": {
@@ -37,7 +37,7 @@
 			}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/patrol.prefab",
 			"name": "Patrol 3",
 			"transform": {
@@ -49,7 +49,7 @@
 			}
 		}
 	},  {
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/patrol.prefab",
 			"name": "Patrol 4",
 			"transform": {
@@ -61,7 +61,7 @@
 			}
 		}
 	},  {
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/patrol.prefab",
 			"name": "Patrol 5",
 			"transform": {
@@ -95,7 +95,7 @@
 			}
 		}
 	},  {
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/patrol.prefab",
 			"name": "Patrol 6",
 			"transform": {
@@ -107,7 +107,7 @@
 			}
 		}
 	},  {
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/patrol.prefab",
 			"name": "Patrol 7",
 			"transform": {
@@ -129,7 +129,7 @@
 			}
 		}
 	},  {
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/mimetic.prefab",
 			"name": "Mimetic 1",
 			"transform": {
@@ -143,7 +143,7 @@
 			}
 		}
 	},{
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/drone.prefab",
 			"name": "Drone 1",
 			"transform": {

@@ -5,7 +5,18 @@
 			"name": "idle"
 		},
 		{
-			"name": "walk"
+			"name": "walk",
+			"audio_callbacks": [{
+					"time_to_call": 0,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolStep",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 1.8,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolStep",
+					"relative_to_player": true
+				}
+			]
 		},
 		{
 			"name": "walk_fast"
