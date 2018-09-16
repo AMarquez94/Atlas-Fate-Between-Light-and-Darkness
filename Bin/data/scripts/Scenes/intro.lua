@@ -5,7 +5,7 @@ function onSceneStart_scene_intro()
 		ambiance = playEvent("event:/Ambiance/Intro_Ambiance");
 	end
 	
-	cinematicsEnabled = true;
+	cinematicsEnabled = false;
 	
 	-- First Cinematic --
 	--move("The Player", VEC3(-19, 6, -30), VEC3(-19, 6, -29));

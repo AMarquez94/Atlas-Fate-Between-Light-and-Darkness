@@ -232,12 +232,12 @@ namespace Particles
                     // Compute the noise, disable if it gives bad fps
                     if(_core->n_noise.strength > 0)
                     {          
-                        /*float noise_amountx = clamp(_core->n_noise.noise_values[amount] * 10, 0.0f , 1.0f);
-                        float noise_amounty = clamp(_core->n_noise.noise_values[amount+1] * 10, 0.0f, 1.0f);
-                        float noise_amountz = clamp(_core->n_noise.noise_values[amount+2] * 10, 0.0f, 1.0f);
+                        //float noise_amountx = clamp(_core->n_noise.noise_values[amount] * 10, 0.0f , 1.0f);
+                        //float noise_amounty = clamp(_core->n_noise.noise_values[amount+1] * 10, 0.0f, 1.0f);
+                        //float noise_amountz = clamp(_core->n_noise.noise_values[amount+2] * 10, 0.0f, 1.0f);
 
-                        VEC3 p_dir = p.origin_velocity.Cross(proj_vector);
-                        VEC3 n_dir = VEC3(p.origin_velocity.x * noise_amountx, p.origin_velocity.y * noise_amounty, p.origin_velocity.z * noise_amountz);*/
+                        //VEC3 p_dir = p.origin_velocity.Cross(proj_vector);
+                        //VEC3 n_dir = VEC3(p.origin_velocity.x * noise_amountx, p.origin_velocity.y * noise_amounty, p.origin_velocity.z * noise_amountz);
                         VEC3 r_dir = p.random_direction * random(0, 1) * delta;
                         p.velocity += r_dir * _core->n_noise.strength;
                     }
@@ -303,15 +303,15 @@ namespace Particles
                                       // New burst to be deployed
                 if (p.i_elapsed > p.interval) {
 
-                    p.cycles--;
-                    p.i_elapsed = 0;
-                    emit(p.count);
-
                     // Remove the burst, it's finished
                     if (p.cycles < 1) {
                         it = _core->n_emission.bursts.erase(it);
                         continue;
                     }
+
+                    emit(p.count);
+                    p.cycles--;
+                    p.i_elapsed = 0;
                 }
             }
 
@@ -479,13 +479,13 @@ namespace Particles
     // To update this with the compute shader.
     void CSystem::render()
     {
-
         if (!_enabled || !_entity.isValid()) return;
         if (_deploy_time < _core->n_system.start_delay) return;
 
         //Hardcoded, move it from here.
         CEntity * ent = _entity;
         TCompTransform * c_ent_transform = ent->get<TCompTransform>();
+        VEC3 proj_vector = c_ent_transform->getFront();
 
         std::vector<Particles::TIParticle> particles_instances;
         particles_instances.reserve(_particles.size());
@@ -500,6 +500,14 @@ namespace Particles
 
         for (auto& p : _particles)
         {
+            // We need to update the strecthed billboard with the given info for each particle.
+            if (_core->n_renderer.mode == TCoreSystem::TNRenderer::EMODE::STRETCHED)
+            {
+                camera_up = p.velocity;
+                camera_up.Normalize();
+                camera_pos = proj_vector.Cross(camera_up);
+            }
+
             VEC3 pos = p.is_update ? c_ent_transform->getPosition() + p.position : p.position;
             MAT44 bb = MAT44::CreateBillboard(pos, pos + camera_pos, camera_up);
             MAT44 sc = MAT44::CreateScale(p.size * p.scale * VEC3(length, 1, 1));
@@ -521,11 +529,11 @@ namespace Particles
             instanced_particle->vtx_decl = CVertexDeclManager::get().getByName("CpuParticleInstance");
             instanced_particle->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(Particles::TIParticle));
 
-            auto technique2 = Resources.get("particles_instanced_combinative.tech")->as<CRenderTechnique>();
+            auto technique2 = Resources.get(_core->n_renderer.tech)->as<CRenderTechnique>();
             technique2->activate();
 
             _core->n_renderer.texture->activate(TS_ALBEDO1);
-            CRenderManager::get().renderCategory("particles_instanced_combinative");
+            CRenderManager::get().renderCategory("particles_instanced");
         }
     }
 
@@ -550,7 +558,7 @@ namespace Particles
             camera_up = VEC3(0, 1, 0);
         }
         else if (_core->n_renderer.mode == TCoreSystem::TNRenderer::EMODE::STRETCHED) {
-            camera_pos = -camera->getFront();
+            camera_pos = VEC3(0, 1, 0);
             camera_up = c_ent_transform->getFront();
             length = _core->n_renderer.length;
         }
@@ -582,6 +590,9 @@ namespace Particles
         float xNoise = random(min, max);
         float yNoise = random(min, max);
         float zNoise = random(min, max);
+        //VEC3 noize = VEC3(xNoise, yNoise, zNoise);
+        //noize.Normalize();
+        //return noize;
 
         // Convert Angle to Vector3
         VEC3 noise = VEC3(

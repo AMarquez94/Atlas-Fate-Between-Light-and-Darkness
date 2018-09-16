@@ -3,6 +3,7 @@
 #include "components/comp_transform.h"
 #include "render/render_objects.h"
 #include "entity/entity_parser.h"
+#include "components/comp_render.h"
 
 DECL_OBJ_MANAGER("inhibitor", TCompInhibitor);
 
@@ -61,7 +62,10 @@ void TCompInhibitor::update(float dt) {
             playerWasInhibited = true;
         }
         else {
-            CHandle(this).getOwner().destroy();
+            //execDelayedScript("");
+            TCompRender * render = get<TCompRender>();
+            render->visible = false;
+            //CHandle(this).getOwner().destroy();
         }
     }
 }

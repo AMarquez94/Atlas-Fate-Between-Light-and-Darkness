@@ -122,6 +122,7 @@ namespace Particles
             if (renderMode == "billboard")        cps->n_renderer.mode = TCoreSystem::TNRenderer::BILLBOARD;
             if (renderMode == "horizontal")        cps->n_renderer.mode = TCoreSystem::TNRenderer::HORIZONTAL;
             if (renderMode == "vertical")        cps->n_renderer.mode = TCoreSystem::TNRenderer::VERTICAL;
+            if (renderMode == "stretched")        cps->n_renderer.mode = TCoreSystem::TNRenderer::STRETCHED;
 
             cps->n_renderer.initialFrame = render.value("initial_frame", cps->n_renderer.initialFrame);
             cps->n_renderer.frameSize = loadVEC2(render.value("frame_size", "1 1"));
@@ -130,6 +131,7 @@ namespace Particles
             cps->n_renderer.length = render.value("length", cps->n_renderer.length);
             cps->n_renderer.texture = Resources.get(render.value("texture", ""))->as<CTexture>();
             cps->n_renderer.softness = render.value("soft", cps->n_renderer.softness);
+            cps->n_renderer.tech = render.value("tech", "particles_instanced_combinative.tech");
         }
 
         // noise

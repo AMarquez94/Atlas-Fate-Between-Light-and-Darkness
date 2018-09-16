@@ -532,12 +532,22 @@
 		"rs_config": "cull_none",
 		"blend": "combinative"
 	},
+	"particles_instanced_additive": {
+		"vs_file": "data/shaders/particles_instanced.fx",
+		"vs_entry_point": "VS_Particles",
+		"ps_entry_point": "PS_Particles_Soft",
+		"vertex_type": "PosClr_x_CpuParticleInstance",
+		"category": "particles_instanced",
+		"z": "test_but_no_write",
+		"rs_config": "cull_none",
+		"blend": "combinative"
+	},
 	"particles_instanced_combinative": {
 		"vs_file": "data/shaders/particles_instanced.fx",
 		"vs_entry_point": "VS_Particles",
 		"ps_entry_point": "PS_Particles_Soft",
 		"vertex_type": "PosClr_x_CpuParticleInstance",
-		"category": "particles_instanced_combinative",
+		"category": "particles_instanced",
 		"z": "test_but_no_write",
 		"rs_config": "cull_none",
 		"blend": "combinative"

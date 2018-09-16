@@ -13,8 +13,17 @@
 			]
 		}],
 		"inhibitor": {
-			"speed": 15.0
+			"speed": 30.0
 		},
+		"particles": {
+				"cores":
+				[
+					"data/particles/def_projectile_trail.particles",
+					"data/particles/def_projectile_trail_main.particles",
+					"data/particles/def_projectile_trail_main2.particles",
+					"data/particles/def_projectile_flare.particles"
+				]
+			},
 		"abs_aabb": true,
 		"local_aabb": true
 	}

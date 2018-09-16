@@ -121,6 +121,8 @@ namespace Particles
             float frameSpeed = 0.f;            // frame change speed
             float length = 1;
             float softness = 1;
+
+            std::string tech;
         };
 
         TNSystem        n_system;
