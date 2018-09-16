@@ -285,6 +285,9 @@ void TCompAIPatrol::onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) {
 	if (msg.animation_name.compare("inhibidor") == 0) {
 		inhibitorAnimationCompleted = true;
 	}
+	if (msg.animation_name.compare("attack") == 0) {
+		attackAnimationCompleted = true;
+	}
 }
 
 const std::string TCompAIPatrol::getStateForCheckpoint()
@@ -698,7 +701,7 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
 
 	if (pController->isInhibited && !myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR)) {
-
+		resetAnimationCompletedBooleans();
 		TCompEmissionController *eController = get<TCompEmissionController>();
 		eController->blend(enemyColor.colorAlert, 0.1f);
 		return BTNode::ERes::LEAVE;
@@ -712,7 +715,7 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 
 		TCompEmissionController *eController = get<TCompEmissionController>();
 		eController->blend(enemyColor.colorAlert, 0.1f);
-
+		resetAnimationCompletedBooleans();
 		return BTNode::ERes::LEAVE;
 	}
 	else {
@@ -856,8 +859,19 @@ BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
 
 BTNode::ERes TCompAIPatrol::actionAttack(float dt)
 {
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::ATTACK) && !attackAnimationCompleted) {
+		myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::ATTACK);
+	}
 
-    /* TODO: always hit at the moment - change this */
+	if (attackAnimationCompleted) {
+		resetAnimationCompletedBooleans();
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		return BTNode::ERes::STAY;
+	}
+
     return BTNode::ERes::LEAVE;
 }
 
@@ -1427,4 +1441,5 @@ void TCompAIPatrol::playAnimationByName(const std::string & animationName)
 
 void TCompAIPatrol::resetAnimationCompletedBooleans() {
 	inhibitorAnimationCompleted = false;
+	attackAnimationCompleted = false;
 }

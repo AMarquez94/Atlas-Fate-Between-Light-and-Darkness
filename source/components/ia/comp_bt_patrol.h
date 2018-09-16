@@ -58,7 +58,7 @@ private:
 	/* Completed Animations Checkers */
 
 	bool inhibitorAnimationCompleted = false;
-
+	bool attackAnimationCompleted = false;
 
     //load
     void loadActions() override;
