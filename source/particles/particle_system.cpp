@@ -227,7 +227,8 @@ namespace Particles
                     float life_ratio = p.max_lifetime > 0.f ? clamp(p.lifetime / p.max_lifetime, 0.f, 1.f) : 1.f;
                     p.velocity = _core->n_system.start_speed * p.origin_velocity;
                     p.velocity += VEC3::Transform(_core->n_velocity.velocity.get(life_ratio), world_rot) * _core->n_velocity.acceleration * delta;
-                    p.velocity += kGravity * _core->n_system.gravity * delta;
+                    p.downforce += kGravity * _core->n_system.gravity * delta;
+                    p.velocity += p.downforce;
 
                     // Compute the noise, disable if it gives bad fps
                     if(_core->n_noise.strength > 0)

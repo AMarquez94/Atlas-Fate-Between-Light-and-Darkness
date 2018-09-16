@@ -76,6 +76,8 @@ namespace Particles
             float acceleration = 0.f;
             float wind = 0.f;
             bool inherit_velocity = false;
+
+            mutable float downforce = 0;
         };
 
         struct TNColor {

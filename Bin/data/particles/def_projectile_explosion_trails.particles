@@ -1,6 +1,6 @@
 {
 	"system": {
-		"duration": 1,
+		"duration": 3,
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
@@ -9,27 +9,27 @@
 		"start_rotation": "0 0 0",
 		"random_rotation": 0.0, 
 		"start_color": "1 0 0 1",
-		"gravity": 0.0,
-		"simulation_speed": 0.1, 
+		"gravity": 1.4, 
+		"simulation_speed": 1, 
 		"max_particles": 1000   
-	},  
-	"emission": { 
+	},   
+	"emission": {    
 		"rate_time": 0.0, 
 		"rate_distance": 0.0,
-		"variation" : 0.0,
-		"bursts" : [     
+		"variation" : 0.0, 
+		"bursts" : [      
 			[0, 300, 1, 0.010],   
 			[0.55, 500, 1, 0.010], 
-			[0.30, 300, 1, 0.010],     
-			[0.650, 1000, 1, 0.010]				
+			[0.30, 300, 1, 0.010],      
+			[0.650, 1000, 1, 0.010]				 
 		] 
-	},	
+	},	 
 	"shape": { 
 		"type": "sphere",
 		"size": "0.1 0.1 0.1",
 		"angle": 0	
 	}, 
-	"velocity" : { 
+	"velocity" : {  
 		"constant_velocity": "0.0 0.0 0.0",
 		"velocity" : [  
       [0.0, "0.0 0.0 0.0"],   

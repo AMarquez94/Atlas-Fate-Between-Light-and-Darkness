@@ -17,6 +17,7 @@ namespace Particles
         float lifetime = 0.f;
         float max_lifetime = 0.f;
         float scale = 1.f;
+        VEC3 downforce = VEC3::Zero;
         int frame = 0;
         int init_frame = 0;
         bool is_update = true;
