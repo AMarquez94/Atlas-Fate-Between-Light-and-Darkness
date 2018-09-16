@@ -51,7 +51,7 @@ void TCompPatrolAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::WALK,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"run",
+		"walk",
 		"",
 		1.0f,
 		1.0f,
