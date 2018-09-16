@@ -273,6 +273,13 @@ void TCompAIMimetic::onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) 
 	if (msg.animation_name.compare("wakeup") == 0) {
 		wakeUpAnimationCompleted = true;
 	}
+	if (msg.animation_name.compare("rest_jump") == 0) {
+		restJumpAnimationCompleted = true;
+	}
+	if (msg.animation_name.compare("rest_wall") == 0) {
+		restAnimationCompleted = true;
+	}
+
 }
 
 
@@ -485,11 +492,10 @@ BTNode::ERes TCompAIMimetic::actionSetActiveOnWall(float dt) {
 		myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::JUMP_TO_WALL);
 
 	}
-	//TO-DO: Animacion de salto
+	
 	if (wakeUpJumpAnimationCompleted) {
 
-		wakeUpAnimationCompleted = false;
-		wakeUpJumpAnimationCompleted = false;
+		resetAnimationCompletedBooleans();
 
 		TCompRigidbody *tCollider = get<TCompRigidbody>();
 		tCollider->setNormalGravity(VEC3(0, -9.8f, 0));
@@ -903,6 +909,7 @@ BTNode::ERes TCompAIMimetic::actionJumpWall(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
+	setGravityToFaceWall();
     myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::RETURN_TO_WALL);
     return BTNode::ERes::LEAVE;
 }
@@ -913,12 +920,19 @@ BTNode::ERes TCompAIMimetic::actionHoldOnWall(float dt)
 	if (myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompMimeticAnimator::EAnimation::RETURN_TO_WALL)) {
 		return BTNode::ERes::STAY;
 	}
-    TCompTransform * tTransform = get<TCompTransform>();
-    if (tTransform->getPosition().y >= initialPos.y) {
-        tTransform->setPosition(initialPos);
-        setGravityToFaceWall();
-        return BTNode::ERes::LEAVE;
-    }
+	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompMimeticAnimator::EAnimation::REST_IN_WALL) && !restAnimationCompleted) {
+		myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE_WALL);
+		myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::REST_IN_WALL);
+	}
+	if (restAnimationCompleted) {
+		setLaserState(true);
+		resetAnimationCompletedBooleans();
+		
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		return BTNode::ERes::STAY;
+	}
     return BTNode::ERes::STAY;
 }
 
@@ -1124,4 +1138,13 @@ void TCompAIMimetic::setLaserState(bool state) {
 	TCompLaser * laser_comp = e->get<TCompLaser>();
 	laser_comp->paused = !state;
 	render_comp->visible = state;
+}
+void TCompAIMimetic::resetAnimationCompletedBooleans() {
+
+	wakeUpJumpAnimationCompleted = false;
+	wakeUpAnimationCompleted = false;
+
+	restJumpAnimationCompleted = false;
+	restAnimationCompleted = false;
+
 }

@@ -17,10 +17,10 @@ void TCompMimeticAnimator::debugInMenu() {
 		playAnimation(EAnimation::WALK, speed);
 	}
 	if (ImGui::SmallButton("Death")) {
-		playAnimation(EAnimation::DEATH, speed);
+		playAnimation(EAnimation::RETURN_TO_WALL, speed);
 	}
 	if (ImGui::SmallButton("Die")) {
-		playAnimation(EAnimation::DIE, speed);
+		playAnimation(EAnimation::REST_IN_WALL, speed);
 	}
 
 	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);
@@ -194,6 +194,29 @@ void TCompMimeticAnimator::initializeAnimations() {
 		1.0f,
 		false
 	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::RETURN_TO_WALL,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"rest_jump",
+		"",
+		1.0f,
+		1.0f,
+		true
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::REST_IN_WALL,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"rest_wall",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
 }
 
 void TCompMimeticAnimator::registerMsgs() {

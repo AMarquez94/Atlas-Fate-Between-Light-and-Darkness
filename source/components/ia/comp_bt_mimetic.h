@@ -32,6 +32,8 @@ private:
 	bool wakeUpJumpAnimationCompleted = false;
 	bool wakeUpAnimationCompleted = false;
 
+	bool restJumpAnimationCompleted = false;
+	bool restAnimationCompleted = false;
 
 
     /* Timers */
@@ -159,5 +161,7 @@ public:
 	void registerLaserHandle(CHandle h_laser);
 
 	void setLaserState(bool state);
+
+	void resetAnimationCompletedBooleans();
 
 };

@@ -12,8 +12,10 @@
 		"animation_completed_callback": true},
 		{"name": "rotate"},
 		{"name": "pose_pared"},
-		{"name": "rest_jump"},
-		{"name": "rest_wall"}
+		{"name": "rest_jump", 
+		"animation_completed_callback": true},
+		{"name": "rest_wall", 
+		"animation_completed_callback": true}
 		
 
 	],

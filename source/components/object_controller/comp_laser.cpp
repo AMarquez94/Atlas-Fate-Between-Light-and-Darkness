@@ -38,8 +38,9 @@ void TCompLaser::update(float dt) {
 		CHandle possible_player;
 		possible_player.fromVoidPtr(hit.actor->userData);
 		possible_player = possible_player.getOwner();
-		CEntity *e = possible_player;
-		TCompTempPlayerController * c_player = e->get<TCompTempPlayerController>();
+		CEntity *e_player = possible_player;
+		if (e_player == nullptr) return;
+		TCompTempPlayerController * c_player = e_player->get<TCompTempPlayerController>();
 		if (c_player != nullptr) {
 			playerDetected = true;
 		}
