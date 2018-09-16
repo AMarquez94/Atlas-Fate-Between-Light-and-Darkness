@@ -8,6 +8,9 @@
 			"name": "walk"
 		},
 		{
+			"name": "walk_fast"
+		},
+		{
 			"name": "run"
 		},
 		{

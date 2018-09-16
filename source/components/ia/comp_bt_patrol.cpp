@@ -581,7 +581,7 @@ BTNode::ERes TCompAIPatrol::actionGoToWpt(float dt)
     }
     else {
         TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-        myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::RUN);
+        myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK_FAST);
     }
 
     return moveToPoint(speed, rotationSpeed, getWaypoint().position, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;

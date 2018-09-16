@@ -90,7 +90,7 @@
 					"nodeName": "goToWpt",
 					"actionName": "actionGoToWpt",
 					"variableName": "speed",
-					"newValue": 3.8
+					"newValue": 3.5
 				}]
 			}
 		}
