@@ -163,6 +163,11 @@ struct TMsgAnimationCallback {
 	DECL_MSG_ID();
 };
 
+struct TMsgAnimationCompleted {
+	std::string animation_name;
+	DECL_MSG_ID();
+};
+
 struct TMsgAnimationAudioCallback {
     std::string audioName;
     bool isRelativeToPlayer;

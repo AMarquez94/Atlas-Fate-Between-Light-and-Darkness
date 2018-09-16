@@ -15,6 +15,14 @@ void TCompBoneTracker::load(const json& j, TEntityParseContext& ctx) {
     assert(!bone_name.empty());
     assert(!parent_name.empty());
 
+	rot_offset = QUAT::Identity;
+	if (j.count("rotation_offset_axis")) {
+		VEC3 rot_offset_axis = loadVEC3(j["rotation_offset_axis"]);
+		float angle_deg = j.value("angle", 0.f);
+		float angle_rad = deg2rad(angle_deg);
+		rot_offset = QUAT::CreateFromAxisAngle(rot_offset_axis, angle_rad);
+	}
+
     CEntity* e_parent = ctx.findEntityByName(parent_name);
     if (e_parent)
         h_skeleton = e_parent->get<TCompSkeleton>();
@@ -43,7 +51,7 @@ void TCompBoneTracker::update(float dt) {
 
     // Access to the bone 'bone_id' of the skeleton
     auto cal_bone = c_skel->model->getSkeleton()->getBone(bone_id);
-    QUAT rot = Cal2DX(cal_bone->getRotationAbsolute());
+    QUAT rot = rot_offset * Cal2DX(cal_bone->getRotationAbsolute());
     VEC3 pos = Cal2DX(cal_bone->getTranslationAbsolute());
 
     // Apply the cal3d pos&rot to my entity owner

@@ -35,6 +35,7 @@ void TCompSkeleton::registerMsgs()
 {
 	DECL_MSG(TCompSkeleton, TMsgEntityCreated, onMsgEntityCreated);
 	DECL_MSG(TCompSkeleton, TMsgAnimationCallback, onMsgAnimationCallback);
+	DECL_MSG(TCompSkeleton, TMsgAnimationCompleted, onMsgAnimationCompleted);
 }
 
 // --------------------------------------------------------------------
@@ -108,12 +109,8 @@ void TCompSkeleton::update(float dt) {
         model->getMixer()->blendCycle(actualCycleAnimId[1], 1.f - cyclicAnimationWeight, 0.f);
     }
 
-	//VEC3 posti = this->getBonePositionById(0);
-	//dbg("%f	 %f	 %f\n", posti.x, posti.y, posti.z);
-
-	
-
     TCompTransform* tmx = get<TCompTransform>();
+	
     if (tmx != NULL) {
         VEC3 pos = tmx->getPosition();
         QUAT rot = tmx->getRotation();
@@ -126,12 +123,14 @@ void TCompSkeleton::update(float dt) {
 		if (isExecutingActionAnimationForRoot(animationToRootName)) {
 
 			VEC3 acum = Cal2DX( model->getSkeleton()->getBone(1)->getTranslation() );
-			VEC3 diff = acum - lastAcum;
-			dbg("diff : %f		%f		%f    acum:  %f		%f		%f    \n", diff.x, diff.y, diff.z, acum.x, acum.y, acum.z);
+			VEC3 aux_diff = acum - lastAcum;
 
-			tmx->setPosition(tmx->getPosition() + diff);
+			VEC3 diff = VEC3(aux_diff.x, aux_diff.z, -aux_diff.y);
+			
+			tmx->setPosition(tmx->getPosition() + tmx->getFront() * diff.z);
+			tmx->setPosition(tmx->getPosition() + tmx->getLeft() * diff.x);
+			tmx->setPosition(tmx->getPosition() + tmx->getUp() * diff.y);
 
-			VEC3 pos = tmx->getPosition();
 			model->getSkeleton()->getBone(1)->setTranslation(CalVector( 0, 0, 0 ));
 			model->getSkeleton()->getBone(1)->calculateState();
 
@@ -139,10 +138,23 @@ void TCompSkeleton::update(float dt) {
 		}
 		else {
 			movingRoot = false;
-			animationToRootName = "";
+			endingRoot = true;
 		}
 
 	}
+
+	if (endingRoot) {
+		if (isExecutingActionAnimation(animationToRootName)) {
+			model->getSkeleton()->getBone(1)->setTranslation(CalVector(0, 0, 0));
+			model->getSkeleton()->getBone(1)->calculateState();
+		}
+		else {
+			animationToRootName = "";
+			endingRoot = false;
+		}
+
+	}
+
     lastFrameCyclicAnimationWeight = cyclicAnimationWeight;
 }
 
@@ -509,4 +521,8 @@ void TCompSkeleton::onMsgEntityCreated(const TMsgEntityCreated& msg) {
 void TCompSkeleton::onMsgAnimationCallback(const TMsgAnimationCallback& msg) {
 	//Call the LUA function for the callback
 	EngineLogic.execScript(msg.function_to_call + "(" + CHandle(this).getOwner().asString() + ")");
+}
+
+void TCompSkeleton::onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) {
+	
 }

@@ -8,6 +8,12 @@
 			"name": "walk"
 		},
 		{
+			"name": "walk_fast"
+		},
+		{
+			"name": "run"
+		},
+		{
 			"name": "die",
 			"audio_callbacks": [{
 					"time_to_call": 0,
@@ -25,7 +31,27 @@
 			"name": "dead"
 		},
 		{
-			"name": "attack"
+			"name": "attack",
+			"animation_completed_callback": true,
+			"callbacks":[
+				{
+					"time_to_call" : 1.2,
+					"function_to_call" : "animation_Attack"
+				}
+			]
+		},
+		{
+			"name": "inhibidor",
+			"animation_completed_callback": true,
+			"callbacks":[
+				{
+					"time_to_call" : 0.5,
+					"function_to_call" : "animation_LaunchInhibitor"
+				}
+			]
+		},
+		{
+			"name": "turn_right"
 		}
 	]
 }

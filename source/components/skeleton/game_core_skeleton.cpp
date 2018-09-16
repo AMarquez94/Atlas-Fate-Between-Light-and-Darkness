@@ -377,6 +377,7 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
 			float timeToCall = it.value().value("time_to_call", 0.0f);
 			std::string function_to_call = it.value().value("function_to_call", "");
 			new_callback->luaFunction = function_to_call;
+			new_callback->animationName = anim_name;
 			CalCoreAnimation *core_anim = getCoreAnimation(anim_id);
 			core_anim->registerCallback(new_callback, timeToCall, false);
 		}
@@ -386,6 +387,7 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
 
 		AnimationCallback *new_callback = new AnimationCallback();
 		new_callback->luaFunction = "";
+		new_callback->animationName = anim_name;
 		CalCoreAnimation *core_anim = getCoreAnimation(anim_id);
 		core_anim->registerCallback(new_callback, 9999999.99f, true);		
 	}
@@ -407,6 +409,20 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
   // Array of bone ids to debug (auto conversion from array of json to array of ints)
   if(json["bone_ids_to_debug"].is_array())
     bone_ids_to_debug = json["bone_ids_to_debug"].get< std::vector< int > >();
+
+  if (json.count("lookat_corrections")) {
+
+	  auto& jcorrs = json["lookat_corrections"];
+	  assert(jcorrs.is_array());
+	  for (int i = 0; i < jcorrs.size();i++) {
+		  TBoneCorrection c;
+		  c.load(jcorrs[i]);
+
+		  c.bone_id = getCoreSkeleton()->getCoreBoneId(c.bone_name);
+		  lookat_corrections.push_back(c);
+	  }
+
+  }
 
   return true;
 }

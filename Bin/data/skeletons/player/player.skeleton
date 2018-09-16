@@ -82,5 +82,27 @@
 		{ "name" : "land_soft"},
 		{ "name" : "die"},
 		{ "name" : "dead"}
+	],
+	"lookat_corrections" : [
+		{
+			"bone" : "Bip001 Spine1",
+			"local_axis_to_correct" : "0 1 0", 
+			"amount" : 0.2
+		},
+		{
+			"bone" : "Bip001 Spine2",
+			"local_axis_to_correct" : "0.3 1 0", 
+			"amount" : 0.2
+		},
+		{
+			"bone" : "Bip001 Neck",
+			"local_axis_to_correct" : "0.5 0.5 0", 
+			"amount" : 0.3
+		},
+		{
+			"bone" : "Bip001 Head",
+			"local_axis_to_correct" : "0 1 0", 
+			"amount" : 1.0
+		}
 	]
 }

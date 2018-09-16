@@ -169,7 +169,7 @@
 			"actionArg": [{
 					"variable_name": "speed",
 					"variable_type": "float",
-					"variable_value": 3.5,
+					"variable_value": 0.9,
 					"variable_op": ""
 				}, {
 					"variable_name": "rotationSpeed",
@@ -331,12 +331,17 @@
 			"actionArg": [{
 					"variable_name": "speed",
 					"variable_type": "float",
-					"variable_value": 3.5,
+					"variable_value": 0.9,
 					"variable_op": ""
 				}, {
 					"variable_name": "rotationSpeed",
 					"variable_type": "float",
 					"variable_value": 90.0,
+					"variable_op": ""
+				}, {
+					"variable_name": "walkingFast",
+					"variable_type": "bool",
+					"variable_value": false,
 					"variable_op": ""
 				}
 			],
@@ -504,7 +509,7 @@
 			"actionArg": [{
 					"variable_name": "speed",
 					"variable_type": "float",
-					"variable_value": 3.5,
+					"variable_value": 3.8,
 					"variable_op": ""
 				}, {
 					"variable_name": "rotationSpeed",
@@ -621,7 +626,7 @@
 			"actionArg": [{
 					"variable_name": "speed",
 					"variable_type": "float",
-					"variable_value": 3.5,
+					"variable_value": 0.9,
 					"variable_op": ""
 				}, {
 					"variable_name": "rotationSpeed",
@@ -731,7 +736,7 @@
 			"actionArg": [{
 					"variable_name": "speed",
 					"variable_type": "float",
-					"variable_value": 3.5,
+					"variable_value": 0.9,
 					"variable_op": ""
 				}, {
 					"variable_name": "rotationSpeed",

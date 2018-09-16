@@ -29,7 +29,11 @@ void AnimationCallback::AnimationUpdate(float anim_time, CalModel *model) {
 }
 
 void AnimationCallback::AnimationComplete(CalModel *model) {
-
+	CHandle owner = EngineAnimations.mapModelToHandle[model];
+	CEntity* e = owner;
+	TMsgAnimationCompleted msg;
+	msg.animation_name = this->animationName;
+	e->sendMsg(msg);
 }
 
 void AnimationAudioCallback::AnimationUpdate(float anim_time, CalModel * model)

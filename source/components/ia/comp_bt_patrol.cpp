@@ -280,6 +280,16 @@ void TCompAIPatrol::onMsgCinematicState(const TMsgCinematicState & msg)
     setCurrent(nullptr);
 }
 
+void TCompAIPatrol::onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) {
+
+	if (msg.animation_name.compare("inhibidor") == 0) {
+		inhibitorAnimationCompleted = true;
+	}
+	if (msg.animation_name.compare("attack") == 0) {
+		attackAnimationCompleted = true;
+	}
+}
+
 const std::string TCompAIPatrol::getStateForCheckpoint()
 {
     if (current) {
@@ -307,6 +317,7 @@ void TCompAIPatrol::registerMsgs()
     DECL_MSG(TCompAIPatrol, TMsgNoiseMade, onMsgNoiseListened);
     DECL_MSG(TCompAIPatrol, TMsgLanternsDisable, onMsgLanternsDisable);
     DECL_MSG(TCompAIPatrol, TMsgCinematicState, onMsgCinematicState);
+	DECL_MSG(TCompAIPatrol, TMsgAnimationCompleted, onMsgAnimationCompleted);
 }
 
 void TCompAIPatrol::loadActions() {
@@ -563,10 +574,18 @@ BTNode::ERes TCompAIPatrol::actionGoToWpt(float dt)
     float speed = arguments["speed_actionGoToWpt_goToWpt"].getFloat();
     assert(arguments.find("rotationSpeed_actionGoToWpt_goToWpt") != arguments.end());
     float rotationSpeed = deg2rad(arguments["rotationSpeed_actionGoToWpt_goToWpt"].getFloat());
+    assert(arguments.find("walkingFast_actionGoToWpt_goToWpt") != arguments.end());
+    bool walkingFast = deg2rad(arguments["walkingFast_actionGoToWpt_goToWpt"].getBool());
 
     //Animation To Change
-    TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
+    if (!walkingFast) {
+        TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+        myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
+    }
+    else {
+        TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+        myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK_FAST);
+    }
 
     return moveToPoint(speed, rotationSpeed, getWaypoint().position, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
@@ -593,7 +612,7 @@ BTNode::ERes TCompAIPatrol::actionWaitInWpt(float dt)
             myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
         }
         else {
-            myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
+            myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_LEFT);
         }
         return BTNode::ERes::STAY;
     }
@@ -673,25 +692,36 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 {
     //play animation shoot inhibitor
     //
+	assert(arguments.find("entityToChase_actionShootInhibitor_shootInhibitor") != arguments.end());
+	std::string entityToChase = arguments["entityToChase_actionShootInhibitor_shootInhibitor"].getString();
 
-    //TODO: if !animationBeingPlayed and PlayerInhibited => LEAVE; else => normal
-    assert(arguments.find("entityToChase_actionShootInhibitor_shootInhibitor") != arguments.end());
-    std::string entityToChase = arguments["entityToChase_actionShootInhibitor_shootInhibitor"].getString();
+	CEntity *player = getEntityByName(entityToChase);
+	TCompTempPlayerController *pController = player->get<TCompTempPlayerController>();
 
-    CEntity *player = getEntityByName(entityToChase);
-    TCompTempPlayerController *pController = player->get<TCompTempPlayerController>();
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
 
-    TCompEmissionController *eController = get<TCompEmissionController>();
-    eController->blend(enemyColor.colorAlert, 0.1f);
+	if (pController->isInhibited && !myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR)) {
+		resetAnimationCompletedBooleans();
+		TCompEmissionController *eController = get<TCompEmissionController>();
+		eController->blend(enemyColor.colorAlert, 0.1f);
+		return BTNode::ERes::LEAVE;
+	}
+	
+	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR) && !inhibitorAnimationCompleted) {
+		myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR);
+	}
+	
+	if (inhibitorAnimationCompleted) {
 
-    if (!pController->isInhibited) {
-
-        timeAnimating = 0.0f;
-        EngineLogic.execScript("animation_LaunchInhibitor(" + CHandle(this).getOwner().asString() + ")");
-    }
-
-
-    return BTNode::ERes::LEAVE;
+		TCompEmissionController *eController = get<TCompEmissionController>();
+		eController->blend(enemyColor.colorAlert, 0.1f);
+		resetAnimationCompletedBooleans();
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		return BTNode::ERes::STAY;
+	}
+    
 }
 
 BTNode::ERes TCompAIPatrol::actionGenerateNavmeshChase(float dt)
@@ -796,7 +826,7 @@ BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
     TCompTransform *ppos = player->get<TCompTransform>();
 
     TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
+    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::RUN);
 
     isStunnedPatrolInFov(fov, maxChaseDistance);
 
@@ -829,16 +859,19 @@ BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
 
 BTNode::ERes TCompAIPatrol::actionAttack(float dt)
 {
-    assert(arguments.find("entityToChase_actionAttack_attack") != arguments.end());
-    std::string entityToChase = arguments["entityToChase_actionAttack_attack"].getString();
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::ATTACK) && !attackAnimationCompleted) {
+		myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::ATTACK);
+	}
 
-    CEntity *player = getEntityByName(entityToChase);
-    TCompTransform * ppos = player->get<TCompTransform>();
+	if (attackAnimationCompleted) {
+		resetAnimationCompletedBooleans();
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		return BTNode::ERes::STAY;
+	}
 
-    /* TODO: always hit at the moment - change this */
-    TMsgPlayerHit msg;
-    msg.h_sender = CHandle(this).getOwner();
-    player->sendMsg(msg);
     return BTNode::ERes::LEAVE;
 }
 
@@ -1391,8 +1424,22 @@ void TCompAIPatrol::launchInhibitor()
     myGroup->add(ctxInhibitor.entities_loaded[0]);
 }
 
+void TCompAIPatrol::attackPlayer()
+{
+    CEntity* player = getEntityByName("The Player");
+
+    TMsgPlayerHit msg;
+    msg.h_sender = CHandle(this).getOwner();
+    player->sendMsg(msg);
+}
+
 void TCompAIPatrol::playAnimationByName(const std::string & animationName)
 {
     TCompPatrolAnimator * myAnimator = get<TCompPatrolAnimator>();
     myAnimator->playAnimationConverted(myAnimator->getAnimationByName(animationName));
+}
+
+void TCompAIPatrol::resetAnimationCompletedBooleans() {
+	inhibitorAnimationCompleted = false;
+	attackAnimationCompleted = false;
 }

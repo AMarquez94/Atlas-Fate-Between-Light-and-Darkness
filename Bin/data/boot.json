@@ -35,7 +35,8 @@
 
 			"data/scenes/intro_patrol_atrapado.scene",
 
-			"data/scenes/intro_edificios_segunda.scene",
+			"data/scenes/intro_edificios_segunda_1.scene",
+			"data/scenes/intro_edificios_segunda_2.scene",
 
 
 			"data/scenes/intro_pozo.scene",
@@ -112,6 +113,9 @@
 			"data/scenes/zona_a_colliders_barandillas.scene",
 			"data/scenes/zone_a_colliders_valla_luz.scene",
 			"data/scenes/zone_a_test.scene",
+
+
+			"data/scenes/zone_a_edificios_segunda.scene",
 
 			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene",

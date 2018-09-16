@@ -134,36 +134,6 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_5"
-      ,
-      "transform":
-      {
-        "pos": "-16.1847 0.995909 4.43382"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_5.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_tubitos_det_intro_6"
       ,
       "transform":
@@ -2294,71 +2264,11 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_086"
+      "name": "mesh_tubitos_det_intro_143"
       ,
       "transform":
       {
-        "pos": "11.0931 1.73713 11.8394"
-        ,
-        "rotation": "0.0 -1.19209e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_086.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_087"
-      ,
-      "transform":
-      {
-        "pos": "9.6297 7.00805 12.1324"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_087.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_088"
-      ,
-      "transform":
-      {
-        "pos": "7.69002 1.95592 12.835"
+        "pos": "7.72063 1.95592 12.5919"
         ,
         "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
@@ -2366,7 +2276,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_088.mesh"
+          "mesh": "data/meshes/mesh_tubitos_det_intro_143.mesh"
           ,
           "materials":
           [
@@ -2384,11 +2294,11 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_089"
+      "name": "mesh_tubitos_det_intro_144"
       ,
       "transform":
       {
-        "pos": "-13.1999 3.51024 12.0725"
+        "pos": "-13.1853 3.51024 11.926"
         ,
         "rotation": "0.0 0.0 0.707107 -0.707107"
       }
@@ -2396,7 +2306,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_089.mesh"
+          "mesh": "data/meshes/mesh_tubitos_det_intro_144.mesh"
           ,
           "materials":
           [
@@ -2414,11 +2324,11 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_090"
+      "name": "mesh_tubitos_det_intro_145"
       ,
       "transform":
       {
-        "pos": "-14.1659 1.4658 13.1518"
+        "pos": "-14.1514 1.4658 13.0053"
         ,
         "rotation": "0.0 -0.707107 -0.707107 0.0"
       }
@@ -2426,7 +2336,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_090.mesh"
+          "mesh": "data/meshes/mesh_tubitos_det_intro_145.mesh"
           ,
           "materials":
           [
@@ -2444,11 +2354,11 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_091"
+      "name": "mesh_tubitos_det_intro_146"
       ,
       "transform":
       {
-        "pos": "-12.3943 7.90429 15.6645"
+        "pos": "1.5163 2.7141 12.1586"
         ,
         "rotation": "-1.0 0.0 0.0 0.0"
       }
@@ -2456,7 +2366,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_091.mesh"
+          "mesh": "data/meshes/mesh_tubitos_det_intro_146.mesh"
           ,
           "materials":
           [
@@ -2474,11 +2384,11 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_092"
+      "name": "mesh_tubitos_det_intro_147"
       ,
       "transform":
       {
-        "pos": "-15.6625 9.11749 12.1193"
+        "pos": "-15.4374 9.11749 12.2451"
         ,
         "rotation": "-0.707107 0.707107 0.0 0.0"
       }
@@ -2486,7 +2396,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_092.mesh"
+          "mesh": "data/meshes/mesh_tubitos_det_intro_147.mesh"
           ,
           "materials":
           [
@@ -2504,11 +2414,11 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_093"
+      "name": "mesh_tubitos_det_intro_148"
       ,
       "transform":
       {
-        "pos": "-9.02417 12.5576 13.273"
+        "pos": "-9.01279 14.8486 12.9819"
         ,
         "rotation": "0.707107 0.0 -0.707107 0.0"
       }
@@ -2516,7 +2426,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_093.mesh"
+          "mesh": "data/meshes/mesh_tubitos_det_intro_148.mesh"
           ,
           "materials":
           [
@@ -2534,11 +2444,11 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_094"
+      "name": "mesh_tubitos_det_intro_149"
       ,
       "transform":
       {
-        "pos": "-9.28935 3.43952 12.9329"
+        "pos": "-9.27797 5.73054 12.6418"
         ,
         "rotation": "-0.5 -0.5 -0.5 -0.5"
       }
@@ -2546,7 +2456,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_094.mesh"
+          "mesh": "data/meshes/mesh_tubitos_det_intro_149.mesh"
           ,
           "materials":
           [
@@ -2564,41 +2474,11 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_095"
+      "name": "mesh_tubitos_det_intro_151"
       ,
       "transform":
       {
-        "pos": "-11.8575 0.868482 15.49"
-        ,
-        "rotation": "-0.707107 -0.707107 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_095.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_096"
-      ,
-      "transform":
-      {
-        "pos": "-14.2956 6.79962 12.6662"
+        "pos": "-14.2811 6.79962 12.5196"
         ,
         "rotation": "0.0 0.707107 -0.707107 0.0"
       }
@@ -2606,7 +2486,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_096.mesh"
+          "mesh": "data/meshes/mesh_tubitos_det_intro_151.mesh"
           ,
           "materials":
           [
@@ -2624,11 +2504,11 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_097"
+      "name": "mesh_tubitos_det_intro_152"
       ,
       "transform":
       {
-        "pos": "-14.2299 14.374 12.195"
+        "pos": "-14.2153 14.374 12.0484"
         ,
         "rotation": "0.0 -1.0 0.0 0.0"
       }
@@ -2636,7 +2516,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_097.mesh"
+          "mesh": "data/meshes/mesh_tubitos_det_intro_152.mesh"
           ,
           "materials":
           [
@@ -2654,11 +2534,11 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_098"
+      "name": "mesh_tubitos_det_intro_153"
       ,
       "transform":
       {
-        "pos": "8.01445 15.6578 12.5644"
+        "pos": "8.04506 15.6578 12.3213"
         ,
         "rotation": "-0.5 0.5 0.5 -0.5"
       }
@@ -2666,7 +2546,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_098.mesh"
+          "mesh": "data/meshes/mesh_tubitos_det_intro_153.mesh"
           ,
           "materials":
           [
@@ -2684,19 +2564,19 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_099"
+      "name": "mesh_tubitos_det_intro_158"
       ,
       "transform":
       {
-        "pos": "5.365 12.9366 15.3526"
+        "pos": "1.86667 3.16706 11.8674"
         ,
-        "rotation": "-1.19209e-07 0.0 0.0 -1.0"
+        "rotation": "0.0 -1.0 0.0 1.19209e-07"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_099.mesh"
+          "mesh": "data/meshes/mesh_tubitos_det_intro_158.mesh"
           ,
           "materials":
           [
@@ -2714,191 +2594,11 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_101"
+      "name": "mesh_tubitos_det_intro_161"
       ,
       "transform":
       {
-        "pos": "-8.32258 4.65978 12.1746"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_101.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_102"
-      ,
-      "transform":
-      {
-        "pos": "-8.49725 -0.194994 11.987"
-        ,
-        "rotation": "0.0 0.0 0.707107 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_102.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_103"
-      ,
-      "transform":
-      {
-        "pos": "2.18802 2.0744 12.128"
-        ,
-        "rotation": "0.5 0.5 0.5 -0.5"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_103.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_104"
-      ,
-      "transform":
-      {
-        "pos": "2.55564 8.39875 11.8109"
-        ,
-        "rotation": "-0.707107 0.707107 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_104.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_105"
-      ,
-      "transform":
-      {
-        "pos": "-5.14582 13.053 11.8468"
-        ,
-        "rotation": "0.0 -1.50996e-07 -1.50996e-07 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_105.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_106"
-      ,
-      "transform":
-      {
-        "pos": "-10.8886 14.7933 15.3467"
-        ,
-        "rotation": "-1.50996e-07 0.0 -1.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_106.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_107"
-      ,
-      "transform":
-      {
-        "pos": "2.69899 4.36114 13.0531"
+        "pos": "2.71123 4.36114 13.0388"
         ,
         "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
@@ -2906,7 +2606,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_107.mesh"
+          "mesh": "data/meshes/mesh_tubitos_det_intro_161.mesh"
           ,
           "materials":
           [
@@ -2924,11 +2624,11 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_108"
+      "name": "mesh_tubitos_det_intro_162"
       ,
       "transform":
       {
-        "pos": "0.637627 13.677 11.9731"
+        "pos": "-2.0506 13.414 11.9707"
         ,
         "rotation": "-2.1495e-07 0.0 0.707107 -0.707107"
       }
@@ -2936,7 +2636,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_108.mesh"
+          "mesh": "data/meshes/mesh_tubitos_det_intro_162.mesh"
           ,
           "materials":
           [
@@ -2954,19 +2654,19 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_109"
+      "name": "mesh_tubitos_det_intro_190"
       ,
       "transform":
       {
-        "pos": "2.72122 11.112 12.3395"
+        "pos": "-7.82603 2.7141 11.9082"
         ,
-        "rotation": "0.0 0.707107 -0.707107 0.0"
+        "rotation": "-1.50996e-07 0.0 -1.0 0.0"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_109.mesh"
+          "mesh": "data/meshes/mesh_tubitos_det_intro_190.mesh"
           ,
           "materials":
           [
@@ -2984,611 +2684,11 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_110"
+      "name": "mesh_tubitos_det_intro_191"
       ,
       "transform":
       {
-        "pos": "6.37502 3.5504 15.6439"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_110.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_111"
-      ,
-      "transform":
-      {
-        "pos": "-17.4034 1.73713 7.15392"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_111.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_112"
-      ,
-      "transform":
-      {
-        "pos": "-15.94 7.00805 6.86092"
-        ,
-        "rotation": "0.0 1.50996e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_112.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_113"
-      ,
-      "transform":
-      {
-        "pos": "-14.0004 1.95592 6.15831"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_113.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_114"
-      ,
-      "transform":
-      {
-        "pos": "6.88954 3.51024 6.92081"
-        ,
-        "rotation": "-0.707107 0.707107 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_114.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_115"
-      ,
-      "transform":
-      {
-        "pos": "7.85556 1.4658 5.84151"
-        ,
-        "rotation": "0.707107 0.0 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_115.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_116"
-      ,
-      "transform":
-      {
-        "pos": "6.08395 7.90429 3.3288"
-        ,
-        "rotation": "1.19209e-07 0.0 -1.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_116.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_117"
-      ,
-      "transform":
-      {
-        "pos": "9.35219 9.11749 6.87405"
-        ,
-        "rotation": "0.0 0.0 0.707107 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_117.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_118"
-      ,
-      "transform":
-      {
-        "pos": "2.71383 12.5576 5.72036"
-        ,
-        "rotation": "-0.707107 0.0 -0.707107 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_118.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_119"
-      ,
-      "transform":
-      {
-        "pos": "2.97901 3.43952 6.06041"
-        ,
-        "rotation": "-0.5 -0.5 0.5 0.5"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_119.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_120"
-      ,
-      "transform":
-      {
-        "pos": "5.5472 0.868482 3.50338"
-        ,
-        "rotation": "0.0 0.0 -0.707107 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_120.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_121"
-      ,
-      "transform":
-      {
-        "pos": "7.98528 6.79962 6.32716"
-        ,
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_121.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_122"
-      ,
-      "transform":
-      {
-        "pos": "7.91953 14.374 6.79835"
-        ,
-        "rotation": "0.0 1.50996e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_122.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_123"
-      ,
-      "transform":
-      {
-        "pos": "-14.3248 15.6578 6.42897"
-        ,
-        "rotation": "-0.5 0.5 -0.5 0.5"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_123.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_124"
-      ,
-      "transform":
-      {
-        "pos": "-11.6753 12.9366 3.64074"
-        ,
-        "rotation": "0.0 -1.0 1.62921e-07 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_124.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_125"
-      ,
-      "transform":
-      {
-        "pos": "2.01224 4.65978 6.81874"
-        ,
-        "rotation": "0.0 1.62921e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_125.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_126"
-      ,
-      "transform":
-      {
-        "pos": "2.18691 -0.194995 7.00631"
-        ,
-        "rotation": "0.707107 -0.707107 0.0 -1.22224e-07"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_126.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_127"
-      ,
-      "transform":
-      {
-        "pos": "-8.49836 2.0744 6.86533"
-        ,
-        "rotation": "0.5 -0.5 -0.5 -0.5"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_127.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_128"
-      ,
-      "transform":
-      {
-        "pos": "-8.86599 8.39875 7.18245"
-        ,
-        "rotation": "0.0 0.0 0.707107 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_128.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_129"
-      ,
-      "transform":
-      {
-        "pos": "-1.16452 13.053 7.14653"
-        ,
-        "rotation": "-1.50996e-07 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_129.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubitos.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_tubitos_det_intro_130"
-      ,
-      "transform":
-      {
-        "pos": "4.57822 14.7933 3.64665"
+        "pos": "4.64014 2.29174 15.6622"
         ,
         "rotation": "-1.0 0.0 0.0 0.0"
       }
@@ -3596,7 +2696,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_130.mesh"
+          "mesh": "data/meshes/mesh_tubitos_det_intro_191.mesh"
           ,
           "materials":
           [
@@ -3614,11 +2714,161 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_131"
+      "name": "mesh_tubitos_det_intro_192"
       ,
       "transform":
       {
-        "pos": "-9.00933 4.36114 5.9402"
+        "pos": "-10.9256 2.29174 15.389"
+        ,
+        "rotation": "-1.50996e-07 0.0 -1.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_192.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_193"
+      ,
+      "transform":
+      {
+        "pos": "-8.21676 3.16706 12.1594"
+        ,
+        "rotation": "0.0 -1.94707e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_193.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_194"
+      ,
+      "transform":
+      {
+        "pos": "2.69585 13.6989 12.8196"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_194.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_195"
+      ,
+      "transform":
+      {
+        "pos": "11.3638 1.72834 11.8582"
+        ,
+        "rotation": "0.0 -1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_195.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_196"
+      ,
+      "transform":
+      {
+        "pos": "9.90046 6.99926 12.1512"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_196.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_197"
+      ,
+      "transform":
+      {
+        "pos": "-13.9909 1.95592 6.44113"
         ,
         "rotation": "0.0 0.707107 0.0 -0.707107"
       }
@@ -3626,7 +2876,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_131.mesh"
+          "mesh": "data/meshes/mesh_tubitos_det_intro_197.mesh"
           ,
           "materials":
           [
@@ -3644,19 +2894,19 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_132"
+      "name": "mesh_tubitos_det_intro_198"
       ,
       "transform":
       {
-        "pos": "-6.94797 13.677 7.02018"
+        "pos": "6.91507 3.51024 7.10709"
         ,
-        "rotation": "0.707107 -0.707107 0.0 -2.68335e-07"
+        "rotation": "-0.707107 0.707107 0.0 0.0"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_132.mesh"
+          "mesh": "data/meshes/mesh_tubitos_det_intro_198.mesh"
           ,
           "materials":
           [
@@ -3674,11 +2924,161 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_133"
+      "name": "mesh_tubitos_det_intro_199"
       ,
       "transform":
       {
-        "pos": "-9.03157 11.112 6.65378"
+        "pos": "7.88109 1.4658 6.02779"
+        ,
+        "rotation": "0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_199.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_200"
+      ,
+      "transform":
+      {
+        "pos": "-7.78657 2.7141 6.87443"
+        ,
+        "rotation": "-1.50996e-07 0.0 -1.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_200.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_201"
+      ,
+      "transform":
+      {
+        "pos": "9.16708 9.11749 6.78797"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_201.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_202"
+      ,
+      "transform":
+      {
+        "pos": "2.74251 14.8486 6.05116"
+        ,
+        "rotation": "-0.707107 0.0 -0.707107 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_202.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_203"
+      ,
+      "transform":
+      {
+        "pos": "3.0077 5.73054 6.39121"
+        ,
+        "rotation": "0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_203.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_204"
+      ,
+      "transform":
+      {
+        "pos": "8.0108 6.79962 6.51344"
         ,
         "rotation": "-0.707107 0.0 0.0 -0.707107"
       }
@@ -3686,7 +3086,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_133.mesh"
+          "mesh": "data/meshes/mesh_tubitos_det_intro_204.mesh"
           ,
           "materials":
           [
@@ -3704,19 +3104,349 @@
   {
     "entity":
     {
-      "name": "mesh_tubitos_det_intro_134"
+      "name": "mesh_tubitos_det_intro_205"
       ,
       "transform":
       {
-        "pos": "-12.6854 3.5504 3.34941"
+        "pos": "7.94505 14.374 6.98463"
         ,
-        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_tubitos_det_intro_134.mesh"
+          "mesh": "data/meshes/mesh_tubitos_det_intro_205.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_206"
+      ,
+      "transform":
+      {
+        "pos": "-14.3153 15.6578 6.71179"
+        ,
+        "rotation": "-0.5 0.5 -0.5 0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_206.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_207"
+      ,
+      "transform":
+      {
+        "pos": "-8.13694 3.16706 7.16562"
+        ,
+        "rotation": "0.0 -1.94707e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_207.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_208"
+      ,
+      "transform":
+      {
+        "pos": "-8.9815 4.36114 5.9942"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_208.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_209"
+      ,
+      "transform":
+      {
+        "pos": "-4.21968 13.414 7.06234"
+        ,
+        "rotation": "-0.707107 0.707107 0.0 2.03712e-07"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_209.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_210"
+      ,
+      "transform":
+      {
+        "pos": "1.55576 2.7141 7.12489"
+        ,
+        "rotation": "-1.0 0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_210.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_211"
+      ,
+      "transform":
+      {
+        "pos": "-10.9104 2.29174 3.37089"
+        ,
+        "rotation": "-1.50996e-07 0.0 -1.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_211.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_212"
+      ,
+      "transform":
+      {
+        "pos": "4.65535 2.29174 3.64409"
+        ,
+        "rotation": "-1.0 0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_212.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_213"
+      ,
+      "transform":
+      {
+        "pos": "1.94649 3.16706 6.87362"
+        ,
+        "rotation": "0.0 -1.0 0.0 1.50996e-07"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_213.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_214"
+      ,
+      "transform":
+      {
+        "pos": "-8.96612 13.6989 6.21346"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_214.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_215"
+      ,
+      "transform":
+      {
+        "pos": "-17.6341 1.72834 7.17488"
+        ,
+        "rotation": "0.0 -1.0 0.0 1.94707e-07"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_215.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubitos_det_intro_216"
+      ,
+      "transform":
+      {
+        "pos": "-16.1707 6.99926 6.88189"
+        ,
+        "rotation": "0.0 -1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubitos_det_intro_216.mesh"
           ,
           "materials":
           [
