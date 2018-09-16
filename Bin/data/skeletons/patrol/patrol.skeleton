@@ -8,6 +8,9 @@
 			"name": "walk"
 		},
 		{
+			"name": "run"
+		},
+		{
 			"name": "die",
 			"audio_callbacks": [{
 					"time_to_call": 0,
@@ -26,6 +29,10 @@
 		},
 		{
 			"name": "attack"
+		},
+		{
+			"name": "inhibidor",
+			"animation_completed_callback": true
 		},
 		{
 			"name": "turn_right"

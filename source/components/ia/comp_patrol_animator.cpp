@@ -51,7 +51,7 @@ void TCompPatrolAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::WALK,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"walk",
+		"run",
 		"",
 		1.0f,
 		1.0f,
@@ -118,6 +118,28 @@ void TCompPatrolAnimator::initializeAnimations() {
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
 		"turn_right",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::RUN,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"run",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::SHOOT_INHIBITOR,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"inhibidor",
 		"",
 		1.0f,
 		1.0f,

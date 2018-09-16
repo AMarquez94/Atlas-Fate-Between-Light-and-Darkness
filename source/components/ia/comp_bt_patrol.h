@@ -44,6 +44,7 @@ private:
     void onMsgNoiseListened(const TMsgNoiseMade& msg);
     void onMsgLanternsDisable(const TMsgLanternsDisable& msg);
     void onMsgCinematicState(const TMsgCinematicState& msg);
+	void onMsgAnimationCompleted(const TMsgAnimationCompleted& msg);
 
     /* Aux functions */
     void turnOnLight();
@@ -53,6 +54,11 @@ private:
     CHandle getPatrolInPos(VEC3 lastPos);
     float getMaxChaseDistance();
     TCompAIPatrol::EState getStateEnumFromString(const std::string& stateName);
+
+	/* Completed Animations Checkers */
+
+	bool inhibitorAnimationCompleted = false;
+
 
     //load
     void loadActions() override;
@@ -141,4 +147,6 @@ public:
     void launchInhibitor();
 
 	void playAnimationByName(const std::string & animationName) override;
+
+	void resetAnimationCompletedBooleans();
 };

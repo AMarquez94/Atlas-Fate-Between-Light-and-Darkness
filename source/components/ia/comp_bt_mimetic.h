@@ -27,8 +27,6 @@ private:
 
 	/* Completed Animations Checkers */
 
-
-
 	bool wakeUpJumpAnimationCompleted = false;
 	bool wakeUpAnimationCompleted = false;
 
