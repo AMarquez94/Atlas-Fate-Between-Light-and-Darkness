@@ -25,8 +25,8 @@ namespace Particles
     struct TIParticle
     {
         MAT44 world;
-        VEC2 particle_minUV;
-        VEC2 particle_maxUV;
+        VEC3 particle_minUV;
+        VEC3 particle_maxUV;
         VEC4 particle_color;
     };
 }

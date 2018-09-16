@@ -338,6 +338,7 @@ void CModuleRender::generateFrame() {
 
         activateMainCamera();
         deferred.render(rt_main, h_e_camera);
+        Engine.get().getParticles().renderDeferred();
         postProcessingStack();
     }
 
@@ -418,7 +419,7 @@ void CModuleRender::postProcessingStack() {
         if (c_color_grading)
             curr_rt = c_color_grading->apply(curr_rt);
 
-        // Check if we have a color grading component
+        // Check if we have fog
         TCompFog * c_render_fog = e_cam->get< TCompFog >();
         if (c_render_fog)
             curr_rt = c_render_fog->apply(curr_rt, deferred.rt_acc_light);

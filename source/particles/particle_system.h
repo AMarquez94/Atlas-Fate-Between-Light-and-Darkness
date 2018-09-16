@@ -75,6 +75,7 @@ namespace Particles
             float angular = 0.f;
             float acceleration = 0.f;
             float wind = 0.f;
+            bool inherit_velocity = false;
         };
 
         struct TNColor {
@@ -119,6 +120,7 @@ namespace Particles
             int initialFrame = 0;              // initial frame
             float frameSpeed = 0.f;            // frame change speed
             float length = 1;
+            float softness = 1;
         };
 
         TNSystem        n_system;

@@ -238,10 +238,12 @@ namespace Particles
 
                         VEC3 p_dir = p.origin_velocity.Cross(proj_vector);
                         VEC3 n_dir = VEC3(p.origin_velocity.x * noise_amountx, p.origin_velocity.y * noise_amounty, p.origin_velocity.z * noise_amountz);*/
-                        VEC3 r_dir = p.random_direction * random(0, 1);
-                        p.velocity += r_dir * _core->n_noise.strength * delta;
+                        VEC3 r_dir = p.random_direction * random(0, 1) * delta;
+                        p.velocity += r_dir * _core->n_noise.strength;
                     }
 
+                    // Inherit velocity if needed
+                    p.position = _core->n_velocity.inherit_velocity ? VEC3::Transform(p.origin_position, world) : p.position;
                     p.position += p.velocity * delta;
                     p.position += kWindVelocity * _core->n_velocity.wind * delta;
                     p.rotation += _core->n_velocity.rotation.get(life_ratio) * delta;
@@ -351,9 +353,10 @@ namespace Particles
         for (int i = 0; i < amount && _particles.size() < _core->n_system.max_particles; ++i)
         {
             TParticle particle;
-            particle.position = VEC3::Transform(generatePosition() + _core->n_system.offset, world);
+            particle.origin_position = generatePosition() + _core->n_system.offset;
+            particle.position = VEC3::Transform(particle.origin_position, world);
             particle.velocity = VEC3::Transform(generateVelocity(), world_rot);
-            particle.random_direction = AddNoiseOnAngle(-90, 90);
+            particle.random_direction = AddNoiseOnAngle(-180, 180);
             particle.origin_velocity = particle.velocity;
             particle.color = _core->n_color.colors.get(0.f);
             particle.size = _core->n_system.start_size * _core->n_size.sizes.get(0.f);
@@ -504,8 +507,8 @@ namespace Particles
 
             int row = p.frame / frameCols;
             int col = p.frame % frameCols;
-            VEC2 minUV = VEC2(col * frameX, row * frameY);
-            VEC2 maxUV = minUV + VEC2(frameX, frameY);
+            VEC3 minUV = VEC3(col * frameX, row * frameY, 0);
+            VEC3 maxUV = minUV + VEC3(frameX, frameY, _core->n_renderer.softness);
 
             Particles::TIParticle t_struct = { rt * sc * bb, minUV, maxUV, p.color };
             particles_instances.push_back(t_struct);

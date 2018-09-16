@@ -112,6 +112,7 @@ namespace Particles
             cps->n_velocity.acceleration = velocity.value("acceleration", cps->n_velocity.acceleration);
             cps->n_velocity.wind = velocity.value("wind", cps->n_velocity.wind);
             cps->n_velocity.type = velocity.value("type", cps->n_velocity.type);
+            cps->n_velocity.inherit_velocity = velocity.value("inherit", cps->n_velocity.inherit_velocity);
         }
 
         // render
@@ -128,6 +129,7 @@ namespace Particles
             cps->n_renderer.frameSpeed = render.value("frame_speed", cps->n_renderer.frameSpeed);
             cps->n_renderer.length = render.value("length", cps->n_renderer.length);
             cps->n_renderer.texture = Resources.get(render.value("texture", ""))->as<CTexture>();
+            cps->n_renderer.softness = render.value("soft", cps->n_renderer.softness);
         }
 
         // noise

@@ -56,7 +56,8 @@
       "frame_size" : "8 8",
       "initial_frame" : 0,
       "num_frames" : 64,
-      "frame_speed" : 64.0
+      "frame_speed" : 64.0,
+			"soft" : 0
 	},
   "size" : {
     "scale" : 1.0,
