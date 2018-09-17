@@ -14,6 +14,14 @@ void TCompCameraThirdPerson::debugInMenu()
     ImGui::DragFloat2("Angles", &_clamp_angle.x, 0.1f, -90.f, 90.f);
     ImGui::DragFloat("Speed", &_speed, 0.1f, 0.f, 20.f);
     ImGui::Text("Current euler %f - %f", rad2deg(_current_euler.x), rad2deg(_current_euler.y));
+
+	ImGui::DragFloat("Time To Stop", &time_to_stop_shake, 0.1f, 0.f, 5.f);
+	ImGui::DragFloat("Amount", &amount_shak, 0.01f, 0.f, 5.0f);
+	ImGui::DragFloat("Speed_Shake", &speed_shak, 1.5f, 0.f, 200.f);
+	if(ImGui::SmallButton("Shake")) {
+		activate_shake = true;
+	}
+
 }
 
 void TCompCameraThirdPerson::load(const json& j, TEntityParseContext& ctx)
@@ -171,6 +179,32 @@ void TCompCameraThirdPerson::update(float dt)
         float z_distance = CameraClipping(target_position, -self_transform->getFront());
         VEC3 new_pos = target_position + z_distance * -self_transform->getFront();
         self_transform->setPosition(new_pos);
+
+
+
+		
+
+		if (activate_shake) {
+			_time_shaking += dt;
+			float percentage = (time_to_stop_shake - _time_shaking) / time_to_stop_shake;
+			float x_amount = sin(_time_shaking * speed_shak) * amount_shak * percentage;
+			VEC3 shaking_pos = self_transform->getPosition();
+			shaking_pos += self_transform->getUp() * x_amount;
+			self_transform->setPosition(shaking_pos);
+			if ((time_to_stop_shake - _time_shaking) <= 0.0f) {
+				activate_shake = false;
+				_time_shaking = 0.0f;
+			}
+
+		}
+		
+
+
+
+
+
+
+
 
         //float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
         //float current_fov = 70 + inputSpeed * 30; // Just doing some testing with the fov and speed
