@@ -975,7 +975,6 @@ void TCompTempPlayerController::updateStamina(float dt) {
     }
 }
 
-/* Attack state, kills the closest enemy if true*/
 void TCompTempPlayerController::mergeEnemy() {
 
     TCompPlayerAttackCast * tAttackCast = get<TCompPlayerAttackCast>();
