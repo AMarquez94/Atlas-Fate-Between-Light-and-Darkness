@@ -4,12 +4,21 @@
 
 DECL_OBJ_MANAGER("audio", TCompAudio);
 
+TCompAudio::~TCompAudio() {
+    stopAudioComponent();
+}
+
 void TCompAudio::onAnimationAudioCallback(const TMsgAnimationAudioCallback & msg)
 {
     playEvent(msg.audioName, msg.isRelativeToPlayer);
 }
 
 void TCompAudio::onStopAudioComponent(const TMsgStopAudioComponent & msg)
+{
+    stopAudioComponent();
+}
+
+void TCompAudio::stopAudioComponent()
 {
     for (auto audio : my2DEvents) {
         if (audio.isValid()) {

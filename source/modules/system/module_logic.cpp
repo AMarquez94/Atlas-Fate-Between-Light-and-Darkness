@@ -405,6 +405,11 @@ void CModuleLogic::printLog()
     dbg("End printing log\n");
 }
 
+void CModuleLogic::clearDelayedScripts()
+{
+    delayedScripts.clear();
+}
+
 /* Auxiliar functions */
 CModuleLogic * getLogic() { return EngineLogic.getPointer(); }
 
