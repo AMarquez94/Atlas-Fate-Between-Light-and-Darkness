@@ -60,4 +60,5 @@ function animation_hard_land()
 	e = toEntity(h);
 	t_audio = toAudio(e:getCompByName("audio"));
 	t_audio:playEvent("event:/Sounds/Player/Land/Land", false);
+	t_audio:playEvent("event:/Sounds/Player/Hurt/Hurt", false);
 end
