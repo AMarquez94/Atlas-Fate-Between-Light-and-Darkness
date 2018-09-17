@@ -47,6 +47,7 @@ private:
     void onMsgCameraFov(const TMsgCameraFov &msg);
     void onMsgCameraCreated(const TMsgEntityCreated &msg);
     void onMsgCameraGroupCreated(const TMsgEntitiesGroupCreated &msg);
+	void onMsgCameraShaked(const TMsgCameraShake &msg);
 
     float getFovUpdated(float dt);
 
@@ -61,6 +62,7 @@ public:
     void setCurrentEuler(float euler_x = INFINITY, float euler_y = INFINITY);
     void resetCamera(bool both_angles, bool only_y);
     void resetCameraTargetPos();
+	void activateCameraShake(float amount_shake, float speed_shake, float time_to_stop);
 
     static void registerMsgs();
 };

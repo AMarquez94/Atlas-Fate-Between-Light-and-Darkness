@@ -19,7 +19,14 @@ void TCompCameraThirdPerson::debugInMenu()
 	ImGui::DragFloat("Amount", &amount_shak, 0.01f, 0.f, 5.0f);
 	ImGui::DragFloat("Speed_Shake", &speed_shak, 1.5f, 0.f, 200.f);
 	if(ImGui::SmallButton("Shake")) {
-		activate_shake = true;
+		VHandles v_tp_cameras = CTagsManager::get().getAllEntitiesByTag(getID("tp_camera"));
+		TMsgCameraShake msg;
+		msg.amount = amount_shak;
+		msg.speed = speed_shak;
+		msg.time_to_stop = time_to_stop_shake;
+		for (int i = 0; i < v_tp_cameras.size(); i++) {
+			v_tp_cameras[i].sendMsg(msg);
+		}
 	}
 
 }
@@ -56,6 +63,7 @@ void TCompCameraThirdPerson::registerMsgs()
     DECL_MSG(TCompCameraThirdPerson, TMsgEntitiesGroupCreated, onMsgCameraGroupCreated);
     DECL_MSG(TCompCameraThirdPerson, TMsgCameraResetTargetPos, onMsgCameraResetTargetPos);
     DECL_MSG(TCompCameraThirdPerson, TMsgCameraFov, onMsgCameraFov);
+	DECL_MSG(TCompCameraThirdPerson, TMsgCameraShake, onMsgCameraShaked);
 }
 
 void TCompCameraThirdPerson::onMsgCameraActive(const TMsgCameraActivated & msg)
@@ -85,6 +93,10 @@ void TCompCameraThirdPerson::onMsgCameraGroupCreated(const TMsgEntitiesGroupCrea
     //target_transform->getYawPitchRoll(&yaw, &pitch, &roll);
     //_current_euler = VEC2(yaw, pitch);
     //_original_euler = _current_euler;
+}
+
+void TCompCameraThirdPerson::onMsgCameraShaked(const TMsgCameraShake &msg) {
+	activateCameraShake(msg.amount, msg.speed, msg.time_to_stop);
 }
 
 void TCompCameraThirdPerson::onMsgCameraCreated(const TMsgEntityCreated & msg) {
@@ -180,11 +192,12 @@ void TCompCameraThirdPerson::update(float dt)
         VEC3 new_pos = target_position + z_distance * -self_transform->getFront();
         self_transform->setPosition(new_pos);
 
-
-
-		
+		CEntity* e = CHandle(this).getOwner();
+		dbg("%s before activate\n", e->getName());
 
 		if (activate_shake) {
+			
+			dbg("%s on activate\n", e->getName());
 			_time_shaking += dt;
 			float percentage = (time_to_stop_shake - _time_shaking) / time_to_stop_shake;
 			float x_amount = sin(_time_shaking * speed_shak) * amount_shak * percentage;
@@ -253,6 +266,17 @@ void TCompCameraThirdPerson::resetCameraTargetPos()
     target_transform->getYawPitchRoll(&yaw, &pitch);
     _current_euler.x = yaw;
     _current_euler.y = _original_euler.y;
+}
+
+void TCompCameraThirdPerson::activateCameraShake(float amount_shake, float speed_shake, float time_to_stop) {
+
+	activate_shake = true;
+	_time_shaking = 0.0f;
+
+	amount_shak = amount_shake;
+	speed_shak = speed_shake;
+	time_to_stop_shake = time_to_stop;
+
 }
 
 void TCompCameraThirdPerson::onPause(const TMsgScenePaused& msg) {
