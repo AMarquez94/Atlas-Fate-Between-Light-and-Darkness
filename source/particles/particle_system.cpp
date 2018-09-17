@@ -208,7 +208,7 @@ namespace Particles
             updateEmission(delta);
         }
 
-        return _fadeRatio > 0.f && (!_particles.empty() || _core->n_system.looping || _core->n_emission.bursts.size() > 0);
+        return _fadeRatio > 0.f && (!_particles.empty() || _core->n_system.looping);
     }
 
     void CSystem::updateSystem(float delta) {
