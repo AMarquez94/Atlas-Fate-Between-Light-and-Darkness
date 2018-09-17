@@ -17,4 +17,6 @@ patrol_cyberstep-> https://www.youtube.com/watch?v=o1nUoaXfWtY
 patrol_step_impact-> https://www.youtube.com/watch?v=H8HjnWK7Pno
 patrol_step_run_test-> https://www.youtube.com/watch?v=o1nUoaXfWtY
 patrol_step_pre-> https://youtu.be/85zOPbPzkpQ
+patrol_inhibitor-> https://freesound.org/people/JarAxe/sounds/165041/
+patrol_inhibitor_test-> https://freesound.org/people/ST303/sounds/338783/
 
