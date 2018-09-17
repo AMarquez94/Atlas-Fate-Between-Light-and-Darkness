@@ -18,7 +18,7 @@ void TCompAnimator::initializeAnimations() {
 	
 }
 
-bool TCompAnimator::initializeAnimation(EAnimation animation, EAnimationType animationType, EAnimationSize animationSize, std::string animationName, std::string secondAnimationName, float weight, float speed, bool rootMovement) {
+bool TCompAnimator::initializeAnimation(EAnimation animation, EAnimationType animationType, EAnimationSize animationSize, std::string animationName, std::string secondAnimationName, float weight, float speed, bool rootMovement, bool rootRotationMovement) {
 	
 	CEntity* e = ownHandle;
 	TCompSkeleton * compSkeleton = e->get<TCompSkeleton>();
@@ -41,6 +41,7 @@ bool TCompAnimator::initializeAnimation(EAnimation animation, EAnimationType ani
 	auxAnimSet.weight = weight;
 	auxAnimSet.speed = speed;
 	auxAnimSet.rootMovement = rootMovement;
+	auxAnimSet.rootRotationMovement = rootRotationMovement;
 
 	stringToAnimationsMap[animationName] = animation;
 	animationsMap[animation] = auxAnimSet;
@@ -72,6 +73,7 @@ bool TCompAnimator::playAnimationConverted(EAnimation animation, float speed) {
 	float weight = animSet.weight;
 	float aux_speed = animSet.speed;
 	bool rootMov = animSet.rootMovement;
+	bool rootRot = animSet.rootRotationMovement;
 	if (speed != 1.0f) aux_speed = speed;
 
 	switch (animSet.animationType)
@@ -81,7 +83,7 @@ bool TCompAnimator::playAnimationConverted(EAnimation animation, float speed) {
             return true;
 		    break;
 	    case EAnimationType::ACTION:
-		    compSkeleton->executeActionAnimation(anim1id, aux_speed, rootMov);
+		    compSkeleton->executeActionAnimation(anim1id, aux_speed, rootMov, rootRot);
             return true;
 		    break;
         default:

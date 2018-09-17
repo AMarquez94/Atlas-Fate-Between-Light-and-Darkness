@@ -121,20 +121,31 @@ void TCompSkeleton::update(float dt) {
 	if (movingRoot) {
 		//ROOT_DEV
 		if (isExecutingActionAnimationForRoot(animationToRootName)) {
-
-			VEC3 acum = Cal2DX( model->getSkeleton()->getBone(1)->getTranslation() );
-			VEC3 aux_diff = acum - lastAcum;
-
-			VEC3 diff = VEC3(aux_diff.x, aux_diff.z, -aux_diff.y);
 			
-			tmx->setPosition(tmx->getPosition() + tmx->getFront() * diff.z);
-			tmx->setPosition(tmx->getPosition() + tmx->getLeft() * diff.x);
-			tmx->setPosition(tmx->getPosition() + tmx->getUp() * diff.y);
 
-			model->getSkeleton()->getBone(1)->setTranslation(CalVector( 0, 0, 0 ));
-			model->getSkeleton()->getBone(1)->calculateState();
+			if (rotatingRoot) {
+				Quaternion aux_quaternion = Quaternion::CreateFromYawPitchRoll(deg2rad(45), deg2rad(135), deg2rad(90));
+				model->getSkeleton()->getBone(0)->setRotation(DX2Cal(tmx->getRotation() * Quaternion(aux_quaternion.x, aux_quaternion.y, aux_quaternion.z, aux_quaternion.w)));
+				model->getSkeleton()->getBone(0)->calculateState();
+			}
+			else {
+				VEC3 acum = Cal2DX(model->getSkeleton()->getBone(1)->getTranslation());
+				VEC3 aux_diff = acum - lastAcum;
 
-			lastAcum = acum;
+				VEC3 diff = VEC3(aux_diff.x, aux_diff.z, -aux_diff.y);
+
+				tmx->setPosition(tmx->getPosition() + tmx->getFront() * diff.z);
+				tmx->setPosition(tmx->getPosition() + tmx->getLeft() * diff.x);
+				tmx->setPosition(tmx->getPosition() + tmx->getUp() * diff.y);
+
+
+
+				model->getSkeleton()->getBone(1)->setTranslation(CalVector(0, 0, 0));
+				model->getSkeleton()->getBone(1)->calculateState();
+
+				lastAcum = acum;
+			}
+		
 		}
 		else {
 			movingRoot = false;
@@ -145,12 +156,22 @@ void TCompSkeleton::update(float dt) {
 
 	if (endingRoot) {
 		if (isExecutingActionAnimation(animationToRootName)) {
-			model->getSkeleton()->getBone(1)->setTranslation(CalVector(0, 0, 0));
-			model->getSkeleton()->getBone(1)->calculateState();
+
+			if (rotatingRoot) {
+				Quaternion aux_quaternion = Quaternion::CreateFromYawPitchRoll(deg2rad(45), deg2rad(135), deg2rad(90));
+				model->getSkeleton()->getBone(0)->setRotation(DX2Cal(tmx->getRotation() * Quaternion(aux_quaternion.x, aux_quaternion.y, aux_quaternion.z, aux_quaternion.w)));
+				model->getSkeleton()->getBone(0)->calculateState();
+			}
+			else {
+				model->getSkeleton()->getBone(1)->setTranslation(CalVector(0, 0, 0));
+				model->getSkeleton()->getBone(1)->calculateState();
+			}
+				
 		}
 		else {
 			animationToRootName = "";
 			endingRoot = false;
+			rotatingRoot = false;
 		}
 
 	}
@@ -319,7 +340,7 @@ void TCompSkeleton::changeCyclicAnimation(int anim1Id, float speed, int anim2Id,
     model->getMixer()->setTimeFactor(speed);
 }
 
-void TCompSkeleton::executeActionAnimation(int animId, float speed, bool rootMovement, float in_delay, float out_delay) {
+void TCompSkeleton::executeActionAnimation(int animId, float speed, bool rootMovement, bool rootRot, float in_delay, float out_delay) {
 
     bool auto_lock = false;
 	//if (isExecutingActionAnimation(animId))
@@ -330,9 +351,15 @@ void TCompSkeleton::executeActionAnimation(int animId, float speed, bool rootMov
 	
     model->getMixer()->executeAction(animId, in_delay, out_delay, 1.0f, auto_lock);
 
+	if (rootRot) {
+		movingRoot = true;
+		rotatingRoot = true;
+		animationToRootName = model->getCoreModel()->getCoreAnimation(animId)->getName();
+		lastAcum = VEC3(0, 0, 0);
+	}
+
 	if (rootMovement) {
 		movingRoot = true;
-		//ROOT_DEV
 
 		animationToRootName = model->getCoreModel()->getCoreAnimation(animId)->getName();
 		lastAcum = VEC3(0, 0, 0);

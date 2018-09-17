@@ -36,6 +36,9 @@
 			]
 		},
 		{
+			"name": "pruebas"
+		},
+		{
 			"name": "die",
 			"audio_callbacks": [{
 					"time_to_call": 0,

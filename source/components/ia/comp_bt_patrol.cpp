@@ -490,7 +490,7 @@ BTNode::ERes TCompAIPatrol::actionGoToNoiseSource(float dt)
     float fov = deg2rad(arguments["fov_actionGoToNoiseSource_goToArtificialNoiseSource"].getFloat());
 
     TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
+    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::RUN);
 
     CEntity * ePlayer = getEntityByName(entityToChase);
     TCompTransform * ppos = get<TCompTransform>();
@@ -915,7 +915,7 @@ BTNode::ERes TCompAIPatrol::actionGoToPlayerLastPos(float dt)
 
     //Animation To Change
     TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
+    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::RUN);
 
     isStunnedPatrolInFov(fov, maxChaseDistance);
 

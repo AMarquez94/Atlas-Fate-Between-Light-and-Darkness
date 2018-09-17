@@ -25,10 +25,10 @@ void TCompPatrolAnimator::debugInMenu() {
 	if (ImGui::SmallButton("Die")) {
 		playAnimation(EAnimation::DIE, speed);
 	}
-	if (ImGui::SmallButton("inhibitor")) {
-		playAnimation(EAnimation::SHOOT_INHIBITOR, speed);
+	if (ImGui::SmallButton("proves")) {
+		playAnimation(EAnimation::BEING_REPARED, speed);
 	}
-
+	//playAnimation(EAnimation::BEING_REPARED, speed);
 	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);
 	TCompSkeleton * compSkeleton = get<TCompSkeleton>();
 	compSkeleton->setCyclicAnimationWeight(delta_movement);
@@ -155,6 +155,18 @@ void TCompPatrolAnimator::initializeAnimations() {
 		1.0f,
 		1.0f,
 		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::BEING_REPARED,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"pruebas",
+		"",
+		1.0f,
+		1.0f,
+		false,
+		true
 	);
 
 }
