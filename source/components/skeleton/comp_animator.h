@@ -28,6 +28,7 @@ public:
 		float weight = 1.0f;
 		float speed = 1.0f;
 		bool rootMovement = false;
+		bool rootRotationMovement = false;
 	};
 
 	CHandle ownHandle;
@@ -43,7 +44,17 @@ public:
 	void update(float dt);
 	void initializeAnimations();
 
-	bool initializeAnimation(EAnimation animation, EAnimationType animationType, EAnimationSize animationSize, std::string animationName, std::string secondAnimationName, float weight, float speed, bool rootMovement);
+	bool initializeAnimation(
+		EAnimation animation,
+		EAnimationType animationType,
+		EAnimationSize animationSize,
+		std::string animationName,
+		std::string secondAnimationName,
+		float weight,
+		float speed,
+		bool rootMovement,
+		bool rootRotationMovement = false);
+
 	bool playAnimationConverted(EAnimation animation, float speed = 1.0f);
 	bool isCyclic(EAnimation animation);
 	bool isComposed(EAnimation animation);

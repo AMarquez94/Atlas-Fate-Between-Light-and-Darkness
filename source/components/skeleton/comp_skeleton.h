@@ -20,6 +20,7 @@ struct TCompSkeleton : public TCompBase {
 
 	//Variables to root movement
 	std::string animationToRootName = "";
+	bool rotatingRoot = false;
 	bool movingRoot = false;
 	VEC3 lastAcum = VEC3(0, 0, 0);
 	bool endingRoot = false;
@@ -40,7 +41,7 @@ struct TCompSkeleton : public TCompBase {
 	void onMsgAnimationCompleted(const TMsgAnimationCompleted& msg);
 
 	void changeCyclicAnimation(int anim1Id, float speed = 1.0f, int anim2Id = -1, float weight = 1.0f, float in_delay = 0.15f, float out_delay = 0.15f);
-	void executeActionAnimation(int animId, float speed = 1.0f, bool rootMovement = false, float in_delay = 0.15f, float out_delay = 0.15f);
+	void executeActionAnimation(int animId, float speed = 1.0f, bool rootMovement = false, bool rootRot = false, float in_delay = 0.15f, float out_delay = 0.15f);
 
 	void setCyclicAnimationWeight(float new_value);
 	float getCyclicAnimationWeight();
