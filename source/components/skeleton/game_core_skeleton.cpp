@@ -367,7 +367,7 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
     std::string caf = root_path + anim_name + ".caf";
     int anim_id = loadCoreAnimation(caf, anim_name);
     if (anim_id < 0)
-      return false;
+      continue;
 
 	// read other metadata associated to the anim
 	if (anim.count("callbacks")) {
