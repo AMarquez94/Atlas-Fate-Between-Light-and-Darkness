@@ -64,7 +64,7 @@ namespace Particles
             if (emission.count("bursts")) {
                 for (auto& raw_burst : emission["bursts"])
                 {
-                    TCoreSystem::TNEmission::TNBurst burst;
+                    Particles::TNBurst burst;
                     burst.time = raw_burst[0];
                     burst.count = raw_burst[1];
                     burst.cycles = raw_burst[2];

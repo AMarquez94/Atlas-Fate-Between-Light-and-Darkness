@@ -82,6 +82,21 @@ namespace Particles
 
         if(!_core->n_system.looping)
             emit(_core->n_emission.rate_time);
+
+        // Copy the bursts to our structure
+        for (auto it = _core->n_emission.bursts.begin(); it != _core->n_emission.bursts.end();)
+        {
+            // Do a deep copy instead of this...
+            Particles::TNBurst p = Particles::TNBurst();
+            p.count = it->count;
+            p.cycles = it->cycles;
+            p.interval = it->interval;
+            p.i_elapsed = it->i_elapsed;
+            p.time = it->time;
+
+            bursts.push_back(p);
+            ++it;
+        }
     }
 
     void CSystem::debugInMenu() {
@@ -193,7 +208,7 @@ namespace Particles
             updateEmission(delta);
         }
 
-        return _fadeRatio > 0.f && (!_particles.empty() || _core->n_system.looping);
+        return _fadeRatio > 0.f && (!_particles.empty() || _core->n_system.looping || _core->n_emission.bursts.size() > 0);
     }
 
     void CSystem::updateSystem(float delta) {
@@ -293,22 +308,18 @@ namespace Particles
         // Bursts (concrete deploy)
         for (auto it = _core->n_emission.bursts.begin(); it != _core->n_emission.bursts.end();)
         {
-            Particles::TCoreSystem::TNEmission::TNBurst& p = *it;
+            Particles::TNBurst p = *it;
+            Particles::TNBurst & c = bursts[it - _core->n_emission.bursts.begin()];
 
             if (_deploy_time > p.time) {
-                p.i_elapsed += delta; // Update the burst
-                                      // New burst to be deployed
-                if (p.i_elapsed > p.interval) {
+                c.i_elapsed += delta; // Update the burst
 
-                    // Remove the burst, it's finished
-                    if (p.cycles < 1) {
-                        it = _core->n_emission.bursts.erase(it);
-                        continue;
-                    }
+                // New burst to be deployed
+                if (c.i_elapsed > p.interval && c.cycles > 0) {
 
                     emit(p.count);
-                    p.cycles--;
-                    p.i_elapsed = 0;
+                    c.cycles--;
+                    c.i_elapsed = 0;
                 }
             }
 

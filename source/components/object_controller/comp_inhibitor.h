@@ -9,8 +9,12 @@ class TCompInhibitor : public TCompBase {
 
     CHandle h_parent;
     float speed;
+    float fading_speed;
+    float initial_intensity;
+
     VEC3 dest;
     bool exploding = false;
+    bool fading = false;
 
     bool playerWasInhibited = false;
     /* TODO: bool playerWasInhibited = false;

@@ -4,6 +4,7 @@
 #include "render/render_objects.h"
 #include "entity/entity_parser.h"
 #include "components/comp_render.h"
+#include "components/lighting/comp_light_point.h"
 
 DECL_OBJ_MANAGER("inhibitor", TCompInhibitor);
 
@@ -19,6 +20,11 @@ void TCompInhibitor::onMsgEntityCreated(const TMsgEntityCreated & msg)
     TCompTransform* playerPos = player->get<TCompTransform>();
     dest = playerPos->getPosition() + VEC3(0,1.5f,0);
 
+    parent = CHandle(this).getOwner();
+    TCompLightPoint * point = parent->get<TCompLightPoint>();
+    assert(point);
+    initial_intensity = point->getIntensity();
+
     c_my_trans->lookAt(c_my_trans->getPosition(), dest);
 }
 
@@ -29,48 +35,60 @@ void TCompInhibitor::debugInMenu() {
 void TCompInhibitor::load(const json& j, TEntityParseContext& ctx) {
     h_parent = ctx.entity_starting_the_parse;
     speed = j.value("speed", 15.0f);
+    fading_speed = j.value("fade_speed", 1.5f);
 }
 
 void TCompInhibitor::registerMsgs() {
+
     DECL_MSG(TCompInhibitor, TMsgEntityCreated, onMsgEntityCreated);
 }
 
 void TCompInhibitor::update(float dt) {
-    if (!exploding) {
-        TCompTransform* mypos = get<TCompTransform>();
-        mypos->setPosition(mypos->getPosition() + mypos->getFront() * speed * dt);
-        if (VEC3::Distance(mypos->getPosition(), dest) < speed * dt) {
-            exploding = true;
+
+    CHandle parent = CHandle(this).getOwner();
+    if (parent.isValid()) {
+        if (fading) {
+            CEntity * t_parent = parent;
+            TCompLightPoint * point = t_parent->get<TCompLightPoint>();
+            float new_intensity = Clamp(point->getIntensity() - ((dt / fading_speed) * initial_intensity), 0.f, initial_intensity);
+            point->setIntensity(new_intensity);
         }
-    }
-    else {
-        /* manageExplosion */
-        /* TODO: in each update, test if the player is inside the explosion range or the explosion has reached it's maximum. 
-        Destroy the entity after this. */
-
-        /* if(!playerInhibited && distance(playerpos, mypos) < actualRange) => setPlayerInhibited 
-           if(actualRange >= maxRange) => destroy() */
-
-
-        if (!playerWasInhibited) {
-            CHandle player = getEntityByName("The Player");
-            if (player.isValid()) {
-                TMsgInhibitorShot msg;
-                msg.h_sender = CHandle(this).getOwner();
-                player.sendMsg(msg);
+        else if (!exploding) {
+            TCompTransform* mypos = get<TCompTransform>();
+            mypos->setPosition(mypos->getPosition() + mypos->getFront() * speed * dt);
+            if (VEC3::Distance(mypos->getPosition(), dest) < speed * dt) {
+                exploding = true;
             }
-            playerWasInhibited = true;
         }
         else {
-            //execDelayedScript("");
-            TCompRender * render = get<TCompRender>();
-            render->visible = false;
+            /* manageExplosion */
+            /* TODO: in each update, test if the player is inside the explosion range or the explosion has reached it's maximum.
+            Destroy the entity after this. */
 
-            Engine.get().getParticles().launchSystem("data/particles/def_projectile_explosion.particles", CHandle(this).getOwner());
-            Engine.get().getParticles().launchSystem("data/particles/def_projectile_explosion_trails.particles", CHandle(this).getOwner());
-            Engine.get().getParticles().launchSystem("data/particles/def_projectile_explosion_trails_large.particles", CHandle(this).getOwner());
-            //execDelayedScript("");
-            //CHandle(this).getOwner().destroy();
+            /* if(!playerInhibited && distance(playerpos, mypos) < actualRange) => setPlayerInhibited
+            if(actualRange >= maxRange) => destroy() */
+
+
+            if (!playerWasInhibited) {
+                CHandle player = getEntityByName("The Player");
+                if (player.isValid()) {
+                    TMsgInhibitorShot msg;
+                    msg.h_sender = CHandle(this).getOwner();
+                    player.sendMsg(msg);
+                }
+                playerWasInhibited = true;
+            }
+            else {
+                //execDelayedScript("");
+                TCompRender * render = get<TCompRender>();
+                render->visible = false;
+                this->fading = true;
+
+                Engine.get().getParticles().launchSystem("data/particles/def_projectile_explosion.particles", CHandle(this).getOwner());
+                Engine.get().getParticles().launchSystem("data/particles/def_projectile_explosion_trails.particles", CHandle(this).getOwner());
+                Engine.get().getParticles().launchSystem("data/particles/def_projectile_explosion_trails_large.particles", CHandle(this).getOwner());
+                execDelayedScript("destroyHandle(" + CHandle(this).getOwner().asString() + ")", 6);
+            }
         }
     }
 }

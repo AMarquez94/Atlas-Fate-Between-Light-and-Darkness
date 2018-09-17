@@ -91,6 +91,7 @@ Particles::TParticleHandle CModuleParticles::launchSystem(const Particles::TCore
     Particles::CSystem* ps = new Particles::CSystem(cps, entity);
     ps->launch();
     _activeSystems.push_back(ps);
+    //dbg("total size %d\n", _activeSystems.size());
 
     return ps->getHandle();
 }
@@ -118,6 +119,17 @@ void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {
 
 void CModuleParticles::killAll()
 {
+    for (auto it = _activeSystems.begin(); it != _activeSystems.end();)
+    {
+        Particles::CSystem* ps = *it;
+
+        if (ps)
+        {
+            delete ps;
+            it = _activeSystems.erase(it);
+        }
+    }
+
     _activeSystems.clear();
 }
 

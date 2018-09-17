@@ -163,3 +163,13 @@ void TCompLightPoint::setColor(VEC4 new_color) {
 
     color = new_color;
 }
+
+void TCompLightPoint::setIntensity(float new_int)
+{
+    intensity = new_int;
+}
+
+float TCompLightPoint::getIntensity()
+{
+    return intensity;
+}
