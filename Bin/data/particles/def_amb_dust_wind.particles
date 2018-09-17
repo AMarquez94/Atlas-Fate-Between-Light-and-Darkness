@@ -40,7 +40,7 @@
 	},
 	"noise": {
 		"texture": "data/textures/particles/fx_smoke1.dds",
-		"strength": 65.0,
+		"strength": 1.0,
 		"frequency": 0.5,
 		"scroll_speed": 0.0,
 		"damping": true,

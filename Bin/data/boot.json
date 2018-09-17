@@ -26,7 +26,7 @@
 			"data/scenes/intro_tejados.scene",
 			"data/scenes/intro_valla.scene",
 			"data/scenes/intro_colliders_valla.scene",
-
+			"data/scenes/Intro/intro_particles.scene",
 			"data/scenes/intro_prueba_neones.scene",
 
 			"data/scenes/intro_tubo_capsulas.scene",

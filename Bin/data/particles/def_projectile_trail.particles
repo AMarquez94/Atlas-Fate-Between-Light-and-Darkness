@@ -8,7 +8,7 @@
 		"start_size": "1 1 1",
 		"start_rotation": "0 0 0",
 		"random_rotation": 0.0,
-		"start_color": "1 0 0 1",
+		"start_color": "1 0 0 1", 
 		"gravity": 0.0,
 		"simulation_speed": 1,
 		"max_particles": 1000
@@ -19,7 +19,7 @@
 		"variation" : 0.0
 	},	
 	"shape": {
-		"type": "sphere",
+		"type": "sphere", 
 		"size": "0.025 0.025 0.025",
 		"angle": 0
 		

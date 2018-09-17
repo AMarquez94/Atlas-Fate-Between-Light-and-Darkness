@@ -15,6 +15,18 @@
 		"inhibitor": {
 			"speed": 30.0
 		},
+		      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.3157
+        ,
+        "outer_cut": 3.07496
+        ,
+        "color": "0.137255 0.654902 0.94902 1.0"
+        ,
+        "intensity": 15.0
+      },
 		"particles": {
 				"cores":
 				[

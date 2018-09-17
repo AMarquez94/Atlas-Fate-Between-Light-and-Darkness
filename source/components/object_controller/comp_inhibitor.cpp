@@ -65,6 +65,11 @@ void TCompInhibitor::update(float dt) {
             //execDelayedScript("");
             TCompRender * render = get<TCompRender>();
             render->visible = false;
+
+            Engine.get().getParticles().launchSystem("data/particles/def_projectile_explosion.particles", CHandle(this).getOwner());
+            Engine.get().getParticles().launchSystem("data/particles/def_projectile_explosion_trails.particles", CHandle(this).getOwner());
+            Engine.get().getParticles().launchSystem("data/particles/def_projectile_explosion_trails_large.particles", CHandle(this).getOwner());
+            //execDelayedScript("");
             //CHandle(this).getOwner().destroy();
         }
     }

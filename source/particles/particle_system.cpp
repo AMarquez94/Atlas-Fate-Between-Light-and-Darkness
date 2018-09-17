@@ -7,6 +7,7 @@
 #include <random>
 #include "render/render_manager.h"
 #include "noise/FastNoiseSIMD.h"
+#include "noise/Perlin.h"
 
 // ----------------------------------------------
 class CParticleResourceClass : public CResourceClass {
@@ -199,6 +200,7 @@ namespace Particles
 
         MAT44 world = MAT44::Identity;
         MAT44 world_rot = MAT44::Identity;
+        const siv::PerlinNoise perlin(12345);
 
         if (_entity.isValid())
         {
@@ -226,21 +228,15 @@ namespace Particles
                 {
                     float life_ratio = p.max_lifetime > 0.f ? clamp(p.lifetime / p.max_lifetime, 0.f, 1.f) : 1.f;
                     p.velocity = _core->n_system.start_speed * p.origin_velocity;
+                    // Compute the noise, disable if it gives bad fps
                     p.velocity += VEC3::Transform(_core->n_velocity.velocity.get(life_ratio), world_rot) * _core->n_velocity.acceleration * delta;
                     p.downforce += kGravity * _core->n_system.gravity * delta;
                     p.velocity += p.downforce;
 
-                    // Compute the noise, disable if it gives bad fps
-                    if(_core->n_noise.strength > 0)
-                    {          
-                        //float noise_amountx = clamp(_core->n_noise.noise_values[amount] * 10, 0.0f , 1.0f);
-                        //float noise_amounty = clamp(_core->n_noise.noise_values[amount+1] * 10, 0.0f, 1.0f);
-                        //float noise_amountz = clamp(_core->n_noise.noise_values[amount+2] * 10, 0.0f, 1.0f);
-
-                        //VEC3 p_dir = p.origin_velocity.Cross(proj_vector);
-                        //VEC3 n_dir = VEC3(p.origin_velocity.x * noise_amountx, p.origin_velocity.y * noise_amounty, p.origin_velocity.z * noise_amountz);
-                        VEC3 r_dir = p.random_direction * random(0, 1) * delta;
-                        p.velocity += r_dir * _core->n_noise.strength;
+                    if (_core->n_noise.strength > 0)
+                    {
+                        p.random_direction = VEC3(p.random_direction.x + random(-0.1, 0.1), p.random_direction.y + random(-0.1, 0.1), p.random_direction.z + random(-0.1, 0.1));
+                        p.velocity += p.random_direction * _core->n_noise.strength * delta;
                     }
 
                     // Inherit velocity if needed
@@ -502,15 +498,17 @@ namespace Particles
         for (auto& p : _particles)
         {
             // We need to update the strecthed billboard with the given info for each particle.
+            VEC3 pos = p.is_update ? c_ent_transform->getPosition() + p.position : p.position;
+            VEC3 def_position = pos + camera_pos;
+
             if (_core->n_renderer.mode == TCoreSystem::TNRenderer::EMODE::STRETCHED)
             {
                 camera_up = p.velocity;
                 camera_up.Normalize();
-                camera_pos = proj_vector.Cross(camera_up);
+                def_position = camera_pos;
             }
 
-            VEC3 pos = p.is_update ? c_ent_transform->getPosition() + p.position : p.position;
-            MAT44 bb = MAT44::CreateBillboard(pos, pos + camera_pos, camera_up);
+            MAT44 bb = MAT44::CreateBillboard(pos, def_position, camera_up);
             MAT44 sc = MAT44::CreateScale(p.size * p.scale * VEC3(length, 1, 1));
             MAT44 rt = MAT44::CreateFromYawPitchRoll(p.rotation.x, p.rotation.y, p.rotation.z);
 
@@ -559,8 +557,8 @@ namespace Particles
             camera_up = VEC3(0, 1, 0);
         }
         else if (_core->n_renderer.mode == TCoreSystem::TNRenderer::EMODE::STRETCHED) {
-            camera_pos = VEC3(0, 1, 0);
-            camera_up = c_ent_transform->getFront();
+            camera_pos = camera->getPosition();
+            camera_up = camera->getUp();
             length = _core->n_renderer.length;
         }
         else {

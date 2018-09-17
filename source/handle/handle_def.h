@@ -88,9 +88,9 @@ public:
     operator TObj*() const {
         // std::remove_const<T>::type returns the TObj without const
         // Used when TObj is const*. We want the manager of <TLife> objs
-        // not the manager of <const TLife>, so we use the remove_const
+        // not the manager of <const TLife>, so we use the remove_constw
         auto hm = getObjectManager< std::remove_const<TObj>::type >();
-        return hm->getAddrFromHandle(*this);
+        return hm->getAddrFromHandle(*this); 
     }
 
     void    setOwner(CHandle new_owner);
