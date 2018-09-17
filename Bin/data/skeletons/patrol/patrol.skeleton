@@ -5,13 +5,35 @@
 			"name": "idle"
 		},
 		{
-			"name": "walk"
+			"name": "walk",
+			"audio_callbacks": [{
+					"time_to_call": 0.25,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolStep",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 1.45,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolStep",
+					"relative_to_player": true
+				}
+			]
 		},
 		{
 			"name": "walk_fast"
 		},
 		{
-			"name": "run"
+			"name": "run",
+			"audio_callbacks": [{
+					"time_to_call": 0.05,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolStepRunTest",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 0.43,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolStepRunTest",
+					"relative_to_player": true
+				}
+			]
 		},
 		{
 			"name": "pruebas"
@@ -41,6 +63,12 @@
 					"time_to_call" : 1.2,
 					"function_to_call" : "animation_Attack"
 				}
+			],
+			"audio_callbacks": [{
+					"time_to_call": 0.1,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolAttack",
+					"relative_to_player": true
+				}
 			]
 		},
 		{
@@ -50,6 +78,17 @@
 				{
 					"time_to_call" : 0.5,
 					"function_to_call" : "animation_LaunchInhibitor"
+				}
+			],
+			"audio_callbacks": [{
+					"time_to_call": 0,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolInhibitorTest",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 0.66,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolLowStep",
+					"relative_to_player": true
 				}
 			]
 		},

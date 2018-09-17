@@ -9,7 +9,6 @@
 			"data/scenes/Intro/player_intro_fsm.scene",
 			"data/scenes/main_cameras.scene",
 			"data/scenes/Intro/intro_test_instancing.scene",
-
 			"data/scenes/Map_Intro/checkpoints.scene",
 			"data/scenes/Map_Intro/movable_objects.scene",
 			"data/scenes/Intro/intro_columnas.scene",
@@ -26,19 +25,12 @@
 			"data/scenes/intro_tejados.scene",
 			"data/scenes/intro_valla.scene",
 			"data/scenes/intro_colliders_valla.scene",
-
 			"data/scenes/intro_prueba_neones.scene",
-
 			"data/scenes/intro_tubo_capsulas.scene",
-			
 			"data/scenes/intro_farolas.scene",
-
 			"data/scenes/intro_patrol_atrapado.scene",
-
 			"data/scenes/intro_edificios_segunda_1.scene",
 			"data/scenes/intro_edificios_segunda_2.scene",
-
-
 			"data/scenes/intro_pozo.scene",
 			"data/scenes/intro_barra_capsulas.scene",
 			"data/scenes/Intro/intro_suelo.scene",
@@ -55,7 +47,6 @@
 			"data/scenes/Intro/intro_trigger_kill.scene",
 			"data/scenes/Intro/intro_buttons.scene",
 			"data/scenes/Intro/intro_particles.scene"
-
 		]
 	},
 	"scene_map_intro": {
@@ -96,7 +87,6 @@
 			"data/scenes/ZoneA/zone_a_columnas.scene",
 			"data/scenes/ZoneA/zone_a_colliders_salientes.scene",
 			"data/scenes/zone_a_barandillas.scene",
-
 			"data/scenes/zona_a_salientes.scene",
 			"data/scenes/zona_a_muralla.scene",
 			"data/scenes/zona_a_valla_torre.scene",
@@ -113,10 +103,7 @@
 			"data/scenes/zona_a_colliders_barandillas.scene",
 			"data/scenes/zone_a_colliders_valla_luz.scene",
 			"data/scenes/zone_a_test.scene",
-
-
 			"data/scenes/zone_a_edificios_segunda.scene",
-
 			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene",
 			"data/scenes/ZoneA/test_instancing.scene",
@@ -125,7 +112,8 @@
 			"data/scenes/ZoneA/luces.scene",
 			"data/scenes/ZoneA/neones.scene",
 			"data/scenes/ZoneA/carteles.scene",
-			"data/scenes/mapa_decals.scene"
+			"data/scenes/mapa_decals.scene",
+			"data/scenes/ZoneA/_mimetic_PRUEBAS.scene"
 		]
 	},
 	"scene_coliseo": {

@@ -1099,11 +1099,24 @@ BTNode::ERes TCompAIPatrol::actionWait(float dt)
 
 BTNode::ERes TCompAIPatrol::actionAnimationShootInhibitor(float dt)
 {
-    //TODO: Play shoot inhibitor animation
-    TCompEmissionController* my_emission = get<TCompEmissionController>();
-    EngineLogic.execScript("animation_LaunchInhibitor(" + CHandle(this).getOwner().asString() + ")");
+    if (_cinematicTimer == 0) {
+        TCompAudio* my_audio = get<TCompAudio>();
+        my_audio->playEvent("event:/Sounds/Enemies/Patrol/PatrolInhibitorTest");
+    }
 
-    return BTNode::ERes::LEAVE;
+    if (_cinematicTimer > 0.6f) {
+        _cinematicTimer = 0.f;
+        TCompEmissionController* my_emission = get<TCompEmissionController>();
+        EngineLogic.execScript("animation_LaunchInhibitor(" + CHandle(this).getOwner().asString() + ")");
+        return BTNode::ERes::LEAVE;
+    }
+    else {
+        _cinematicTimer += dt;
+        return BTNode::ERes::STAY;
+    }
+
+
+
 }
 
 

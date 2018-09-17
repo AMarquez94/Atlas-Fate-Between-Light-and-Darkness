@@ -80,7 +80,14 @@
 		{ "name" : "sm_enter"},
 		{ "name" : "sm_pose"},
 		{ "name" : "land_soft"},
-		{ "name" : "die"},
+		{ "name" : "die",
+			"audio_callbacks":[
+			{
+				"time_to_call" : 0,
+				"audio_name" : "event:/Sounds/Player/Hurt/Dead",
+				"relative_to_player" : true
+			}]
+		},
 		{ "name" : "dead"}
 	],
 	"lookat_corrections" : [

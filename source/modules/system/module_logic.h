@@ -64,6 +64,7 @@ public:
     bool execEvent(Events event, const std::string& params = "", float delay = 0.f);
     void printLog();
     void setPause(bool paused) { this->paused = paused; }
+    void clearDelayedScripts();
 
 private:
 

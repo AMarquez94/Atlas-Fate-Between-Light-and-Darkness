@@ -4,12 +4,21 @@
 
 DECL_OBJ_MANAGER("audio", TCompAudio);
 
+TCompAudio::~TCompAudio() {
+    stopAudioComponent();
+}
+
 void TCompAudio::onAnimationAudioCallback(const TMsgAnimationAudioCallback & msg)
 {
     playEvent(msg.audioName, msg.isRelativeToPlayer);
 }
 
 void TCompAudio::onStopAudioComponent(const TMsgStopAudioComponent & msg)
+{
+    stopAudioComponent();
+}
+
+void TCompAudio::stopAudioComponent()
 {
     for (auto audio : my2DEvents) {
         if (audio.isValid()) {
@@ -36,6 +45,13 @@ void TCompAudio::debugInMenu()
 
 void TCompAudio::load(const json & j, TEntityParseContext & ctx)
 {
+    //if (j.count("onStart") > 0) {
+    //    auto& j_onStart = j["onStart"];
+    //    for (auto it = j_onStart.begin(); it != j_onStart.end(); ++it) {
+    //        //TODO: Test
+    //        playEvent(it.value().value("eventName", ""), it.value().value("relativeToPlayer", true));
+    //    }
+    //}
 }
 
 void TCompAudio::update(float dt)
