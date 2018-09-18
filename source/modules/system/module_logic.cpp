@@ -210,6 +210,7 @@ void CModuleLogic::publishClasses() {
     m->set("execScriptDelayed", SLB::FuncCall::create(&execDelayedScript));
     m->set("pauseGame", SLB::FuncCall::create(&pauseGame));
     m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
+    m->set("pauseEnemyEntities", SLB::FuncCall::create(&pauseEnemyEntities));
     m->set("deleteEnemies", SLB::FuncCall::create(&deleteEnemies));
     m->set("isDebug", SLB::FuncCall::create(&isDebug));
 
@@ -436,6 +437,15 @@ void pauseEnemies(bool pause) {
 
     std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
     TMsgAIPaused msg;
+    msg.isPaused = pause;
+    for (int i = 0; i < enemies.size(); i++) {
+        enemies[i].sendMsg(msg);
+    }
+}
+
+void pauseEnemyEntities(bool pause) {
+    std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+    TMsgScenePaused msg;
     msg.isPaused = pause;
     for (int i = 0; i < enemies.size(); i++) {
         enemies[i].sendMsg(msg);

@@ -693,7 +693,9 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
     //play animation shoot inhibitor
     //
 	assert(arguments.find("entityToChase_actionShootInhibitor_shootInhibitor") != arguments.end());
-	std::string entityToChase = arguments["entityToChase_actionShootInhibitor_shootInhibitor"].getString();
+	std::string entityToChase = arguments["entityToChase_actionShootInhibitor_shootInhibitor"].getString(); 
+    assert(arguments.find("rotationSpeed_actionChasePlayer_ChasePlayer") != arguments.end());
+    float rotationSpeed = deg2rad(arguments["rotationSpeed_actionChasePlayer_ChasePlayer"].getFloat());
 
 	CEntity *player = getEntityByName(entityToChase);
 	TCompTempPlayerController *pController = player->get<TCompTempPlayerController>();
@@ -719,6 +721,8 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 		return BTNode::ERes::LEAVE;
 	}
 	else {
+        TCompTransform* ppos = player->get<TCompTransform>();
+        rotateTowardsVec(ppos->getPosition(), dt, rotationSpeed);
 		return BTNode::ERes::STAY;
 	}
     

@@ -88,6 +88,7 @@ CModuleParticles* getParticles();
 TCompTempPlayerController* getPlayerController();
 void execDelayedScript(const std::string& script, float delay);
 void pauseEnemies(bool pause);
+void pauseEnemyEntities(bool pause);
 void deleteEnemies();
 bool isDebug();
 void pauseGame(bool pause);

@@ -474,19 +474,6 @@ void TCompTempPlayerController::exitMergeState(float dt) {
     eCamera->sendMsg(msg);
 }
 
-/* Player dead state */
-void TCompTempPlayerController::deadState(float dt) {
-    TMsgPlayerDead newMsg;
-    newMsg.h_sender = CHandle(this).getOwner();
-    auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
-    for (auto h : handles) {
-        CEntity* enemy = h;
-        enemy->sendMsg(newMsg);
-    }
-
-    state = (actionhandler)&TCompTempPlayerController::idleState;
-}
-
 void TCompTempPlayerController::removingInhibitorState(float dt) {
 
     CEntity* player = CHandle(this).getOwner();
@@ -679,6 +666,17 @@ void TCompTempPlayerController::die()
         groundMsg.variant.setBool(true);
         e->sendMsg(groundMsg);
         life = 0;
+
+        cb_player.player_health = 0;
+        cb_player.updateGPU();
+
+        TMsgPlayerDead newMsg;
+        newMsg.h_sender = CHandle(this).getOwner();
+        auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+        for (auto h : handles) {
+            CEntity* enemy = h;
+            enemy->sendMsg(newMsg);
+        }
     }
 }
 

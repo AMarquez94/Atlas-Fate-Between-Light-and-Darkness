@@ -170,7 +170,6 @@ public:
     /* State functions */
     void walkState(float dt);
     void idleState(float dt);
-    void deadState(float dt);
     void mergeState(float dt);
     void resetState(float dt);
     void exitMergeState(float dt);

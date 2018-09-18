@@ -43,6 +43,7 @@ void CModuleGameManager::setPauseState(PauseState pause) {
         msg.isPaused = pause != PauseState::none && pause != PauseState::editor1unpaused ? true : false;
         EngineEntities.broadcastMsg(msg);
         EngineCameras.getCurrentCamera().sendMsg(msg);
+        pauseEnemyEntities(msg.isPaused && pause != PauseState::defeat);
         EngineLogic.setPause(msg.isPaused);
 
         // Determine if player is paused
