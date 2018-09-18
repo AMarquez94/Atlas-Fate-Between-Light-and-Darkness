@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_basilic_courtyard",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -27,7 +27,7 @@
 			"data/scenes/intro_valla.scene",
 			"data/scenes/intro_colliders_valla.scene",
 
-			"data/scenes/intro_prueba_neones.scene",
+			"data/scenes/neones.scene",
 
 			"data/scenes/intro_tubo_capsulas.scene",
 			

@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "neon_amarillo_1"
+      "name": "neon_redondo_amarillo"
       ,
       "transform":
       {
@@ -14,11 +14,11 @@
   {
     "entity":
     {
-      "name": "luz_neon_amarillo_1"
+      "name": "luz_neon_redondo_amarillo"
       ,
       "transform":
       {
-        "pos": "1.7488 1.17804 0.22556"
+        "pos": "0.568262 0.0 0.209016"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -27,11 +27,11 @@
       {
         "type": "pointlight"
         ,
-        "inner_cut": 3.0
+        "inner_cut": 2.0
         ,
-        "outer_cut": 5.0
+        "outer_cut": 3.0
         ,
-        "color": "1.0 1.0 0.156863 1.0"
+        "color": "0.992157 1.0 0.411765 1.0"
         ,
         "intensity": 1.0
         ,
@@ -52,7 +52,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 4.0
+        "radius": 2.5
         ,
         "is_trigger": true
       }
@@ -67,7 +67,7 @@
   {
     "entity":
     {
-      "name": "neon_cartel_amarillo_1"
+      "name": "mesh_neon_redondo_amarillo"
       ,
       "transform":
       {
@@ -77,11 +77,11 @@
       "render":
       [
         {
-          "mesh": "data/meshes/neon_cartel_amarillo_1.mesh"
+          "mesh": "data/meshes/mesh_neon_redondo_amarillo.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_neones2.material"
+            "data/materials/mtl_neones1.material"
           ]
         }
       ]
@@ -90,7 +90,7 @@
       {
         "shape": "mesh"
         ,
-        "name": "data/colliders/collider_cartel_amarillo_1.collider"
+        "name": "data/colliders/collider_neon_redondo_amarillo.collider"
       }
       ,
       "abs_aabb": true
