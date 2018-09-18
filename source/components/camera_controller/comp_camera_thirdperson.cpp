@@ -193,11 +193,11 @@ void TCompCameraThirdPerson::update(float dt)
         self_transform->setPosition(new_pos);
 
 		CEntity* e = CHandle(this).getOwner();
-		dbg("%s before activate\n", e->getName());
+		//dbg("%s before activate\n", e->getName());
 
 		if (activate_shake) {
 			
-			dbg("%s on activate\n", e->getName());
+			//dbg("%s on activate\n", e->getName());
 			_time_shaking += dt;
 			float percentage = (time_to_stop_shake - _time_shaking) / time_to_stop_shake;
 			float x_amount = sin(_time_shaking * speed_shak) * amount_shak * percentage;

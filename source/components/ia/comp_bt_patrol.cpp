@@ -290,6 +290,14 @@ void TCompAIPatrol::onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) {
 	}
 }
 
+void TCompAIPatrol::onMsgWarned(const TMsgWarnEnemy & msg)
+{
+    current = nullptr;
+    TCompEmissionController *eController = get<TCompEmissionController>();
+    eController->blend(enemyColor.colorSuspect, 0.1f);
+    lastPlayerKnownPos = msg.playerPosition;
+}
+
 const std::string TCompAIPatrol::getStateForCheckpoint()
 {
     if (current) {
@@ -318,6 +326,7 @@ void TCompAIPatrol::registerMsgs()
     DECL_MSG(TCompAIPatrol, TMsgLanternsDisable, onMsgLanternsDisable);
     DECL_MSG(TCompAIPatrol, TMsgCinematicState, onMsgCinematicState);
 	DECL_MSG(TCompAIPatrol, TMsgAnimationCompleted, onMsgAnimationCompleted);
+	DECL_MSG(TCompAIPatrol, TMsgWarnEnemy, onMsgWarned);
 }
 
 void TCompAIPatrol::loadActions() {
@@ -857,6 +866,7 @@ BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
         return BTNode::ERes::LEAVE;
     }
     else {
+        warnClosestPatrols();
         return moveToPoint(speed, rotationSpeed, ppos->getPosition(), dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
     }
 }
@@ -1430,6 +1440,54 @@ TCompAIPatrol::EState TCompAIPatrol::getStateEnumFromString(const std::string& s
         return TCompAIPatrol::EState::CINEMATIC_DEAD;
     }
     return TCompAIPatrol::EState::NUM_STATES;
+}
+
+void TCompAIPatrol::warnClosestPatrols()
+{
+    std::vector<CHandle> enemies_in_range;
+
+    physx::PxSphereGeometry geometryAttack;
+    geometryAttack.radius = 2.f;
+
+    if (geometryAttack.isValid()) {
+
+        TCompTransform* tPos = get<TCompTransform>();
+
+        physx::PxFilterData pxFilterData;
+        pxFilterData.word0 = FilterGroup::Enemy;
+        physx::PxQueryFilterData PxEnemyWarnFilterData;
+        PxEnemyWarnFilterData.data = pxFilterData;
+        PxEnemyWarnFilterData.flags = physx::PxQueryFlag::eDYNAMIC;
+        std::vector<physx::PxOverlapHit> hits;
+        if (EnginePhysics.Overlap(geometryAttack, tPos->getPosition(), hits, PxEnemyWarnFilterData)) {
+            for (int i = 0; i < hits.size(); i++) {
+                CHandle hitCollider;
+                hitCollider.fromVoidPtr(hits[i].actor->userData);
+                if (hitCollider.isValid()) {
+                    CHandle enemy = hitCollider.getOwner();
+                    if (enemy.isValid() && enemy != myHandle.getOwner()) {
+                        enemies_in_range.push_back(enemy);
+                    }
+                }
+            }
+        }
+    }
+
+    for (int i = 0; i < enemies_in_range.size(); i++) {
+        CEntity * enemy = enemies_in_range[i];
+        TCompTransform *ePos = enemy->get<TCompTransform>();
+        TCompTags * eTag = enemy->get<TCompTags>();
+
+        if (eTag->hasTag(getID("patrol"))) {
+            TCompAIPatrol* tPatrol = enemy->get<TCompAIPatrol>();
+            if (tPatrol->isNodeSonOf(tPatrol->current, "managePatrolGoToWpt")
+                || tPatrol->isNodeSonOf(tPatrol->current, "waitInWpt")){
+                TMsgWarnEnemy msg;
+                msg.playerPosition = lastPlayerKnownPos;
+                enemy->sendMsg(msg);
+            }
+        }
+    }
 }
 
 void TCompAIPatrol::launchInhibitor()

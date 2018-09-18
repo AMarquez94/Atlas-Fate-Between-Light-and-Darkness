@@ -314,6 +314,11 @@ struct TMsgCinematicState {
     DECL_MSG_ID();
 };
 
+struct TMsgWarnEnemy {
+    VEC3 playerPosition;
+    DECL_MSG_ID();
+};
+
 struct TMsgCameraFov {
     float new_fov;
     float blend_time;

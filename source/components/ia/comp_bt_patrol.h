@@ -45,6 +45,7 @@ private:
     void onMsgLanternsDisable(const TMsgLanternsDisable& msg);
     void onMsgCinematicState(const TMsgCinematicState& msg);
 	void onMsgAnimationCompleted(const TMsgAnimationCompleted& msg);
+	void onMsgWarned(const TMsgWarnEnemy& msg);
 
     /* Aux functions */
     void turnOnLight();
@@ -54,6 +55,7 @@ private:
     CHandle getPatrolInPos(VEC3 lastPos);
     float getMaxChaseDistance();
     TCompAIPatrol::EState getStateEnumFromString(const std::string& stateName);
+    void warnClosestPatrols();
 
 	/* Completed Animations Checkers */
 
