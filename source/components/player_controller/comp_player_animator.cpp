@@ -179,17 +179,17 @@ void TCompPlayerAnimator::initializeAnimations() {
 		false
 	);
 
-  initializeAnimation(
-    (TCompAnimator::EAnimation)EAnimation::LAND_HARD,
-    EAnimationType::ACTION,
-    EAnimationSize::SINGLE,
-    "crouch",
-    "",
-    1.0f,
-    1.0f,
-	  false
-  );
-
+	  initializeAnimation(
+	    (TCompAnimator::EAnimation)EAnimation::LAND_HARD,
+	    EAnimationType::ACTION,
+	    EAnimationSize::SINGLE,
+	    "land_hard",
+	    "",
+	    1.0f,
+	    1.0f,
+		false
+	  );
+	
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::HIT_BACK,
 		EAnimationType::CYCLIC,
