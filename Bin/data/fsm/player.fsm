@@ -1021,6 +1021,26 @@
 			}
 		},
 		{
+			"type": "VariableTransition",
+			"source": "pressingButton",
+			"target": "die",
+			"variable": {
+				"name": "onDead",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "grabEnemy",
+			"target": "die",
+			"variable": {
+				"name": "onDead",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
 			"type": "AnimationTransition",
 			"source": "attack",
 			"target": "idle",
@@ -1075,6 +1095,26 @@
 		{
 			"type": "VariableTransition",
 			"source": "crouch",
+			"target": "die",
+			"variable": {
+				"name": "onDead",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "crouchwalk",
+			"target": "die",
+			"variable": {
+				"name": "onDead",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "crouchwalkslow",
 			"target": "die",
 			"variable": {
 				"name": "onDead",
