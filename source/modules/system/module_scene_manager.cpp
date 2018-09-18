@@ -145,7 +145,8 @@ bool CModuleSceneManager::unLoadActiveScene() {
     // Warning: persistent data will need to avoid deletion
     if (_activeScene != nullptr) {
 
-        Engine.getLogic().execEvent(EngineLogic.SCENE_END, _activeScene->name);
+        EngineLogic.clearDelayedScripts();
+        EngineLogic.execEvent(EngineLogic.SCENE_END, _activeScene->name);
 
         EngineEntities.destroyAllEntities();
         EngineCameras.deleteAllCameras();

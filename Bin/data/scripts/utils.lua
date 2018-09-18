@@ -156,3 +156,7 @@ end
 function isCheckpointSaved()
 	return SLB.isCheckpointSaved();
 end
+
+function destroyHandle(handle)
+	SLB.destroyHandle(handle);
+end

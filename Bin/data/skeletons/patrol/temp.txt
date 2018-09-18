@@ -1,0 +1,10 @@
+{
+					"time_to_call": 1,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolStepTest",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 2.2,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolStepTest",
+					"relative_to_player": true
+				}

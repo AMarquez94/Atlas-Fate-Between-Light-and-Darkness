@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{5dc3f3f7-e0a1-4328-83f1-ddda39eae1e5}">
+        <property name="assetPath">
+            <value>soundclips/enemies/patrol_step_pre.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>1</value>
+        </property>
+        <property name="length">
+            <value>0.86507936507936511</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{7934f37e-95bd-414b-beb2-417a7b01c5d0}</destination>
+        </relationship>
+    </object>
+</objects>

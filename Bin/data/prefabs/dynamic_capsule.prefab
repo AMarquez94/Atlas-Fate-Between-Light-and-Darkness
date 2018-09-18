@@ -5,7 +5,7 @@
 				"pos": "0 0 0",
 				"rotation": "0.0 0.0 0.0 -1.0"
 			},
-      "instance" : 
+			"instance" : 
 			{
 				"mesh": "data/meshes/capsule.instanced_mesh",
 				"materials": [
@@ -28,7 +28,8 @@
 				"speed": 0,
 				"start_point": "0 0 0",
 				"end_point": "1 1 1"
-			}
+			},
+			"audio":{}
 		}
 	}
 ]

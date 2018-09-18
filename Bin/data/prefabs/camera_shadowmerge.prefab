@@ -27,9 +27,6 @@
 				"amount": 0.8,
 				"lut": "data/textures/lut/lut1.dds"
 			},
-			"fog": {
-				"enabled": true
-			},
 			"vignette": {
 				"enabled": true
 			},

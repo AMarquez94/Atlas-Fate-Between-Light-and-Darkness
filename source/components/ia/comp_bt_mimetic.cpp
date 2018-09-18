@@ -665,7 +665,7 @@ BTNode::ERes TCompAIMimetic::actionRotateTowardsPlayerWithNoise(float dt)
     if (isEntityInFov(entityToChase, fov, maxChaseDistance)) {
         CEntity* player = getEntityByName(entityToChase);
         TCompTransform* ppos = player->get<TCompTransform>();
-        rotateTowardsVec(ppos->getPosition(), dt, rotationSpeedChase);
+        rotateTowardsVec(ppos->getPosition(), rotationSpeedChase, dt);
         TCompTransform* mypos = get<TCompTransform>();
         if (lastPlayerKnownPos != ppos->getPosition()) {
             generateNavmesh(mypos->getPosition(), ppos->getPosition());

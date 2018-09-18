@@ -64,7 +64,7 @@ namespace Particles
             if (emission.count("bursts")) {
                 for (auto& raw_burst : emission["bursts"])
                 {
-                    TCoreSystem::TNEmission::TNBurst burst;
+                    Particles::TNBurst burst;
                     burst.time = raw_burst[0];
                     burst.count = raw_burst[1];
                     burst.cycles = raw_burst[2];
@@ -112,6 +112,7 @@ namespace Particles
             cps->n_velocity.acceleration = velocity.value("acceleration", cps->n_velocity.acceleration);
             cps->n_velocity.wind = velocity.value("wind", cps->n_velocity.wind);
             cps->n_velocity.type = velocity.value("type", cps->n_velocity.type);
+            cps->n_velocity.inherit_velocity = velocity.value("inherit", cps->n_velocity.inherit_velocity);
         }
 
         // render
@@ -121,6 +122,7 @@ namespace Particles
             if (renderMode == "billboard")        cps->n_renderer.mode = TCoreSystem::TNRenderer::BILLBOARD;
             if (renderMode == "horizontal")        cps->n_renderer.mode = TCoreSystem::TNRenderer::HORIZONTAL;
             if (renderMode == "vertical")        cps->n_renderer.mode = TCoreSystem::TNRenderer::VERTICAL;
+            if (renderMode == "stretched")        cps->n_renderer.mode = TCoreSystem::TNRenderer::STRETCHED;
 
             cps->n_renderer.initialFrame = render.value("initial_frame", cps->n_renderer.initialFrame);
             cps->n_renderer.frameSize = loadVEC2(render.value("frame_size", "1 1"));
@@ -128,6 +130,8 @@ namespace Particles
             cps->n_renderer.frameSpeed = render.value("frame_speed", cps->n_renderer.frameSpeed);
             cps->n_renderer.length = render.value("length", cps->n_renderer.length);
             cps->n_renderer.texture = Resources.get(render.value("texture", ""))->as<CTexture>();
+            cps->n_renderer.softness = render.value("soft", cps->n_renderer.softness);
+            cps->n_renderer.tech = render.value("tech", "particles_instanced_combinative.tech");
         }
 
         // noise
@@ -142,7 +146,7 @@ namespace Particles
             cps->n_noise.octaves = noise.value("frame_speed", cps->n_noise.octaves);
 
             cps->n_noise.noise_core = FastNoiseSIMD::NewFastNoiseSIMD();
-            cps->n_noise.noise_values = cps->n_noise.noise_core->GetPerlinSet(0, 0, 0, 24, 24, 24);
+            cps->n_noise.noise_values = cps->n_noise.noise_core->GetSimplexSet(0, 0, 0, 24, 24, 24);
         }
 
         // collision

@@ -1,0 +1,15 @@
+[{
+		"entity": {
+			"name": "Mimeticus",
+			"transform": {
+				"pos": "-8.850 1.5 13.64",
+				"lookat": "0.0 1.65 13.64"
+			},
+			"prefab": "data/prefabs/mimetic.prefab",
+			"ai_mimetic": {
+				"startLightsOn": false,
+				"type": "wall",
+				"isSlept": false
+			}
+		}	
+}]

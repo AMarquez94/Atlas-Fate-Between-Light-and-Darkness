@@ -197,6 +197,13 @@ struct TMsgScenePaused {
 	DECL_MSG_ID();
 };
 
+struct TMsgCameraShake {
+	float time_to_stop;
+	float amount;
+	float speed;
+	DECL_MSG_ID();
+};
+
 struct TMsgAIPaused {
     bool isPaused;
     DECL_MSG_ID();
@@ -304,6 +311,11 @@ struct TMsgPlayerAIEnabled {
 struct TMsgCinematicState {
     std::string state;
     bool enableCinematic;
+    DECL_MSG_ID();
+};
+
+struct TMsgWarnEnemy {
+    VEC3 playerPosition;
     DECL_MSG_ID();
 };
 

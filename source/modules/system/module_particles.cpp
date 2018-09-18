@@ -41,6 +41,10 @@ void CModuleParticles::update(float delta)
         bool active = ps->update(delta);
         if (!active)
         {
+            // Destroy the entity if it's marked as destroyable entity
+            //if (ps->_destroy_entity)
+                //EngineLogic.execScript("destroyHandle(" + std::to_string(ps->getHandle()) + ")");
+
             delete ps;
             it = _activeSystems.erase(it);
         }
@@ -95,6 +99,32 @@ Particles::TParticleHandle CModuleParticles::launchSystem(const Particles::TCore
     return ps->getHandle();
 }
 
+Particles::TParticleHandle CModuleParticles::launchDynamicSystem(const std::string& name, VEC3 pos)
+{
+    const Particles::TCoreSystem* cps = Resources.get(name)->as<Particles::TCoreSystem>();
+    assert(cps);
+    
+    CHandle h_e;
+    h_e.create< CEntity >();
+    CEntity* e = h_e;
+
+    CHandle h_comp;
+    h_comp = getObjectManager<TCompTransform>()->createHandle();
+    e->set(h_comp.getType(), h_comp);
+
+    Particles::CSystem* ps = new Particles::CSystem(cps, h_e);
+    ps->_destroy_entity = true;
+    ps->launch();
+
+    // Finally we set the desired position and rotation
+    TCompTransform * c_transform = e->get<TCompTransform>();
+    c_transform->setPosition(pos);
+
+    _activeSystems.push_back(ps);
+
+    return ps->getHandle();
+}
+
 void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {
 
     auto it = std::find_if(_activeSystems.begin(), _activeSystems.end(), [&ph](const Particles::CSystem* ps)
@@ -118,6 +148,17 @@ void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {
 
 void CModuleParticles::killAll()
 {
+    for (auto it = _activeSystems.begin(); it != _activeSystems.end();)
+    {
+        Particles::CSystem* ps = *it;
+
+        if (ps)
+        {
+            delete ps;
+            it = _activeSystems.erase(it);
+        }
+    }
+
     _activeSystems.clear();
 }
 

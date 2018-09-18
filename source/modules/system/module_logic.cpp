@@ -149,7 +149,8 @@ void CModuleLogic::publishClasses() {
     SLB::Class<TCompAIPatrol>("AIPatrol", m)
         .comment("This is our wrapper of the patrol controller")
         .set("launchInhibitor", &TCompAIPatrol::launchInhibitor)
-		.set("attackPlayer", &TCompAIPatrol::attackPlayer);
+		.set("attackPlayer", &TCompAIPatrol::attackPlayer)
+        .set("playStepParticle", &TCompAIPatrol::playStepParticle);
 
     SLB::Class<TCompTransform>("Transform", m)
         .comment("This is our wrapper of the transform controller")
@@ -210,6 +211,7 @@ void CModuleLogic::publishClasses() {
     m->set("execScriptDelayed", SLB::FuncCall::create(&execDelayedScript));
     m->set("pauseGame", SLB::FuncCall::create(&pauseGame));
     m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
+    m->set("pauseEnemyEntities", SLB::FuncCall::create(&pauseEnemyEntities));
     m->set("deleteEnemies", SLB::FuncCall::create(&deleteEnemies));
     m->set("isDebug", SLB::FuncCall::create(&isDebug));
 
@@ -258,6 +260,7 @@ void CModuleLogic::publishClasses() {
     m->set("sleep", SLB::FuncCall::create(&sleep));
     m->set("cinematicModeToggle", SLB::FuncCall::create(&cinematicModeToggle));
     m->set("isCheckpointSaved", SLB::FuncCall::create(&isCheckpointSaved));
+    m->set("destroyHandle", SLB::FuncCall::create(&destroyHandle));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -405,6 +408,11 @@ void CModuleLogic::printLog()
     dbg("End printing log\n");
 }
 
+void CModuleLogic::clearDelayedScripts()
+{
+    delayedScripts.clear();
+}
+
 /* Auxiliar functions */
 CModuleLogic * getLogic() { return EngineLogic.getPointer(); }
 
@@ -431,6 +439,15 @@ void pauseEnemies(bool pause) {
 
     std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
     TMsgAIPaused msg;
+    msg.isPaused = pause;
+    for (int i = 0; i < enemies.size(); i++) {
+        enemies[i].sendMsg(msg);
+    }
+}
+
+void pauseEnemyEntities(bool pause) {
+    std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+    TMsgScenePaused msg;
     msg.isPaused = pause;
     for (int i = 0; i < enemies.size(); i++) {
         enemies[i].sendMsg(msg);
@@ -590,6 +607,13 @@ bool isCheckpointSaved()
 {
     CModuleGameManager gameManager = CEngine::get().getGameManager();
     return gameManager.isCheckpointSaved();
+}
+
+void destroyHandle(unsigned int h)
+{
+    CHandle handle;
+    handle.fromUnsigned(h);
+    handle.destroy();
 }
 
 SoundEvent playEvent(const std::string & name)

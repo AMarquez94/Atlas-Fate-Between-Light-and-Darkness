@@ -8,6 +8,7 @@
 #include "entity/entity_parser.h"
 #include "components/physics/comp_collider.h"
 #include "physics/physics_collider.h"
+#include "components/comp_audio.h"
 
 DECL_OBJ_MANAGER("dynamic_capsules_manager", TCompDynamicCapsulesManager);
 
@@ -64,6 +65,9 @@ void TCompDynamicCapsulesManager::load(const json & j, TEntityParseContext & ctx
 			cDynamicCapsule->setStartPoint(start_point + temp_offset);
 			cDynamicCapsule->setEndPoint(end_point + temp_offset);
 			cDynamicCapsule->setSpeed(speed);
+
+            TCompAudio *cAudio = eCapsule->get<TCompAudio>();
+            cAudio->playEvent("event:/Sounds/Objects/Capsules/Caspule");
 		}
 	}
 }

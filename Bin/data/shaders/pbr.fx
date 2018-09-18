@@ -436,7 +436,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 
 	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
 	final_color = final_color * global_ambient_adjustment * ao * pow(self_illum.a, 2);
-	final_color = lerp(float4(env,1), final_color, visibility) + float4(self_illum.xyz, 1) * global_ambient_adjustment * global_self_intensity;
+	final_color = final_color + float4(self_illum.xyz, 1) * global_ambient_adjustment * global_self_intensity;
 	return float4(final_color.xyz, 1);
 }
 
@@ -486,11 +486,10 @@ float4 shade(float4 iPosition, out float3 light_dir, bool use_shadows)
 	float3 cSpec = Specular(specular_color, h, view_dir, light_dir, a, NdL, NdV, NdH, VdH, LdV);
 
 	float  att = (1. - smoothstep(inner_atten, far_atten, distance_to_light / light_radius)); // Att, point light
-	//att *= 1 / distance_to_light;
 	
 	// Spotlight attenuation
 	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.; // shadow factor
-
+	
 	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor;
 	return float4(final_color, 1);
 }

@@ -1,0 +1,82 @@
+{
+	"system": {
+		"duration": 2,
+		"looping": false,
+		"start_delay": 0.0,
+		"start_lifetime": 1.0,
+		"start_speed": 1.5,
+		"start_size": "1 1 1",
+		"start_rotation": "0 0 0",
+		"random_rotation": 0.0, 
+		"start_color": "1 0 0 1",
+		"gravity": 0.3,
+		"simulation_speed": 1.5,  
+		"max_particles": 1500  
+	}, 
+	"emission": { 
+		"rate_time": 0.0, 
+		"rate_distance": 0.0,
+		"variation" : 0.0,
+		"bursts" : [    
+			[0, 10, 1, 0.010],  
+			[0.55, 20, 1, 0.010], 
+			[0.30, 40, 1, 0.010],     
+			[0.650, 10, 1, 0.010]				
+		] 
+	},	 
+	"shape": {
+		"type": "sphere",
+		"size": "0.1 0.1 0.1",
+		"angle": 0	
+	}, 
+	"velocity": {
+		"constant_velocity": "0.0 0.0 0.0",  
+		"velocity" : [ 
+      [0.0, "0.0 0.0 0.0"],
+			[0.5, "0.0 -100.0 0.0"], 
+			[1.0, "0.0 -100.0 0.0"] 
+    ],
+		"rotation" : [
+		  [0.0, "0.0 0.0 0.0"],
+      [1.0, "0.0 0.0 0.0"] 
+    ],
+		"acceleration": 2.12,
+		"wind": 0
+	}, 
+	"noise": {
+		"texture": "data/textures/particles/fx_smoke1.dds",
+		"strength": 64.0, 
+		"frequency": 0.5, 
+		"scroll_speed": 0.0,
+		"damping": true, 
+		"octaves": 1 
+	},
+	"collision": { 
+		"collision": true 
+	},
+	"renderer": {   
+			"mode": "billboard",
+			"texture": "data/textures/particles/glow_firefly.dds",  
+      "frame_size" : "1 1",  
+      "initial_frame" : 0,
+      "num_frames" : 1, 
+      "frame_speed" : 0.0 
+	},   
+  "size" : { 
+    "scale" : 1,
+    "scale_variation" : 0.6,
+    "sizes" : [
+		  [0.0, "0.09 0.09 0.09"],
+			[1.0, "0.025 0.025 0.025"]
+    ]
+  },
+  "color" : {
+    "opacity" : 1,
+    "colors" : [
+      [0.0, "0.7 0.9 1.1 0.0"],
+			[0.1, "0.7 0.9 1.1 1.0"],
+			[0.4, "0.7 0.9 1.1 1.2"],
+			[1.0, "0.7 0.9 1.1 0.0"]
+    ] 
+  }
+}

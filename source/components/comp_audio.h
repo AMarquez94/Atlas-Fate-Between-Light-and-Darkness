@@ -15,7 +15,11 @@ private:
     void onAnimationAudioCallback(const TMsgAnimationAudioCallback& msg);
     void onStopAudioComponent(const TMsgStopAudioComponent& msg);
 
+    void stopAudioComponent();
+
 public:
+
+    ~TCompAudio();
 
     void debugInMenu();
     void load(const json& j, TEntityParseContext& ctx);

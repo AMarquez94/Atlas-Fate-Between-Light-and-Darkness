@@ -20,6 +20,15 @@ private:
     float _max_time_fov = 1.f;
     float _target_fov = 70.f;
 
+
+	float amount_shak = 0.02f;
+	float speed_shak = 60.0f;
+	float time_to_stop_shake = 1.0f;
+
+	bool activate_shake = false;
+	float _time_shaking = 0.0f;
+
+
     bool active;
 
     const Input::TButton& btHorizontal = EngineInput["MouseX"];
@@ -38,6 +47,7 @@ private:
     void onMsgCameraFov(const TMsgCameraFov &msg);
     void onMsgCameraCreated(const TMsgEntityCreated &msg);
     void onMsgCameraGroupCreated(const TMsgEntitiesGroupCreated &msg);
+	void onMsgCameraShaked(const TMsgCameraShake &msg);
 
     float getFovUpdated(float dt);
 
@@ -52,6 +62,7 @@ public:
     void setCurrentEuler(float euler_x = INFINITY, float euler_y = INFINITY);
     void resetCamera(bool both_angles, bool only_y);
     void resetCameraTargetPos();
+	void activateCameraShake(float amount_shake, float speed_shake, float time_to_stop);
 
     static void registerMsgs();
 };

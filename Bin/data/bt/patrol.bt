@@ -331,7 +331,7 @@
 			"actionArg": [{
 					"variable_name": "speed",
 					"variable_type": "float",
-					"variable_value": 0.9,
+					"variable_value": 1.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "rotationSpeed",

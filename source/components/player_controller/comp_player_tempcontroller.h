@@ -169,8 +169,8 @@ public:
 
     /* State functions */
     void walkState(float dt);
+    void fallState(float dt);
     void idleState(float dt);
-    void deadState(float dt);
     void mergeState(float dt);
     void resetState(float dt);
     void exitMergeState(float dt);
@@ -207,7 +207,7 @@ public:
     CHandle getLeftWeapon() { return weaponLeft; };
     CHandle getRightWeapon() { return weaponRight; };
 
-    VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
+    VEC3 getMotionDir(const VEC3 & front, const VEC3 & left, bool default = true);
 
     static void registerMsgs();
 };

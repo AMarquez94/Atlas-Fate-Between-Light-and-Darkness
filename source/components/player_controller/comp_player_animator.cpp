@@ -179,17 +179,17 @@ void TCompPlayerAnimator::initializeAnimations() {
 		false
 	);
 
-  initializeAnimation(
-    (TCompAnimator::EAnimation)EAnimation::LAND_HARD,
-    EAnimationType::ACTION,
-    EAnimationSize::SINGLE,
-    "crouch",
-    "",
-    1.0f,
-    1.0f,
-	  false
-  );
-
+	  initializeAnimation(
+	    (TCompAnimator::EAnimation)EAnimation::LAND_HARD,
+	    EAnimationType::ACTION,
+	    EAnimationSize::SINGLE,
+	    "land_hard",
+	    "",
+	    1.0f,
+	    1.0f,
+		false
+	  );
+	
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::HIT_BACK,
 		EAnimationType::CYCLIC,
@@ -255,6 +255,28 @@ void TCompPlayerAnimator::initializeAnimations() {
 		1.0f,
 		false
 	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::GRAB_ENEMY,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"touch_enemy",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::GRABING_ENEMY,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"touching_enemy",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
 }
 
 void TCompPlayerAnimator::registerMsgs() {

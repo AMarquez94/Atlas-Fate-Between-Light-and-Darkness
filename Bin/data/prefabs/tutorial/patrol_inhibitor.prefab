@@ -36,7 +36,8 @@
       "patrol_animator": true,
       "ai_patrol": {
         "bt": "data/bt/patrol.bt"
-      }
+      },
+      "audio": {}
     }
   }, {
     "entity": {

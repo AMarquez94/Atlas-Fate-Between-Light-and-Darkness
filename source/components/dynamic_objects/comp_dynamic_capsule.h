@@ -7,6 +7,7 @@ class TCompDynamicCapsule : public TCompBase {
     DECL_SIBLING_ACCESS();
 
     float speed;
+    float elapsed_time;
     VEC3 start_point;
     VEC3 end_point;
     VEC3 offset;

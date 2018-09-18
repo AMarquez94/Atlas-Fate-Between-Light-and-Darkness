@@ -163,7 +163,7 @@ namespace FSM
         // Send a message to the player controller
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::FALL , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, _target, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::fallState, _speed, _size, _radius, _target, _noise });
     }
 
     void FallState::onFinish(CContext& ctx) const {
@@ -669,7 +669,7 @@ namespace FSM
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::DEATH , 1.0f });
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::DEAD , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::deadState, _speed, _size, _radius, _target, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
     }
 
     void DieState::onFinish(CContext& ctx) const {
@@ -712,7 +712,8 @@ namespace FSM
     void GrabEnemyState::onStart(CContext& ctx) const {
 
         CEntity* e = ctx.getOwner();
-        e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
+        //e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::GRAB_ENEMY , 1.0f });
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::GRABING_ENEMY , 1.0f });
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, nullptr, _noise });
 
     }

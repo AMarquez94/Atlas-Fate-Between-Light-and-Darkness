@@ -912,7 +912,7 @@
 			"type": "AnimationTransition",
 			"source": "hardLand",
 			"target": "idle",
-			"animation_name": "crouch"
+			"animation_name": "land_hard"
 		},
 		{
 			"type": "VariableTransition",
