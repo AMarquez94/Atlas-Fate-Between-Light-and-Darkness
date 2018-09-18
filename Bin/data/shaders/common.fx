@@ -290,18 +290,11 @@ float4 projectColor(float3 wPos) {
   float4 pos_in_light_proj_space = mul(float4(wPos, 1), light_view_proj_offset);
   float3 pos_in_light_homo_space = pos_in_light_proj_space.xyz / pos_in_light_proj_space.w; // -1..1
 
-  // Use these coords to access the projector texture of the light dir
-  //float2 t_uv = pos_in_light_homo_space.xy;
-  //float distortionOffset = -global_world_time * 0.25;
-
-  //float2 distort_uv = float2(t_uv.x + sin((t_uv.y + distortionOffset) * 20) * 0.05, t_uv.y + sin((t_uv.x + distortionOffset) * 20) * 0.05);
   float4 light_projector_color = txLightProjector.Sample(samBorderLinear, pos_in_light_homo_space.xy);
 
   if (pos_in_light_proj_space.z < 0.)
       light_projector_color = float4(0, 0, 0, 0); //return 1.f;
 
-  // Fade to zero in the last 1% of the zbuffer of the light
-  //light_projector_color *= smoothstep(1.0f, 0.15f, pos_in_light_homo_space.z);
   return light_projector_color;
 }
 

@@ -88,6 +88,10 @@ void TCompInhibitor::update(float dt) {
                 Engine.get().getParticles().launchSystem("data/particles/def_projectile_explosion_trails.particles", CHandle(this).getOwner());
                 Engine.get().getParticles().launchSystem("data/particles/def_projectile_explosion_trails_large.particles", CHandle(this).getOwner());
                 execDelayedScript("destroyHandle(" + CHandle(this).getOwner().asString() + ")", 6);
+                CEntity * player = getEntityByName("The Player");
+                TCompTransform* mypos = player->get<TCompTransform>();
+
+                EngineInstancing.addDynamicInstance("data/meshes/decal_test1.instanced_mesh", "data/materials/mtl_decal_test1.material", mypos->asMatrix(), 4);
             }
         }
     }

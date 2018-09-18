@@ -15,6 +15,12 @@ class CModuleInstancing : public IModule {
         MAT44 world;
     };
 
+    struct TDynInstance {
+        MAT44 world;
+        float time;
+        float total_time;
+    };
+
     // -------------------------------------------------------------------
     struct TInstanceVolume {
         MAT44 world;
@@ -52,8 +58,16 @@ class CModuleInstancing : public IModule {
         CRenderMeshInstanced* _instances_mesh;
     };
     
+    struct TDynInstanceCollector {
+        std::vector<TDynInstance> _instances;
+        CRenderMeshInstanced* _instances_mesh;
+    };
+
     std::map<std::string, std::string> _global_names;
     std::map<std::string, TInstanceCollector> _global_instances;
+    std::map<std::string, TDynInstanceCollector> _dynamic_instances;
+
+    void updateTimedInstances(float dt);
 
 public:
 
@@ -65,7 +79,9 @@ public:
     void update(float delta) override;
     void renderMain();
 
+    int addDynamicInstance(const std::string & name, const std::string & mat, MAT44 w_matrix, float time);
     int addInstance(const std::string & name, const std::string & type, MAT44 w_matrix);
+
     int addCustomInstance(const std::string & name, const std::string & type, MAT44 w_matrix);
     void removeInstance(TInstance* instance);
     void updateInstance(const std::string& name, int index, const MAT44& w_matrix);

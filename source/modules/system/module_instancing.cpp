@@ -5,8 +5,10 @@
 #include "components/comp_name.h"
 #include "components/comp_group.h"
 #include "components/comp_transform.h"
+#include "components/comp_render.h"
 #include "render/compute/compute_task.h"
-
+#include "render/render_manager.h"
+#include "render/texture/material.h"
 static CComputeTask compute_task;
 static CTexture*    compute_result;
 
@@ -138,6 +140,82 @@ void CModuleInstancing::update(float delta) {
     //for (auto p : _dynamic_instances)
     //    for (auto q : p.second)
     //            q->world = q->world * _dynamic_transform[q]->asMatrix();
+
+    updateTimedInstances(delta);
+}
+
+void CModuleInstancing::updateTimedInstances(float dt)
+{
+    // Loop through and remove instance from vector.
+    for (auto& p : _dynamic_instances) {
+        for (auto it = p.second._instances.begin(); it != p.second._instances.end(); it++) {
+            (*it).time -= (dt / (*it).total_time);
+        }
+    }
+}
+
+int CModuleInstancing::addDynamicInstance(const std::string & name, const std::string & mat, MAT44 w_matrix, float time)
+{
+    /*if (_global_names.find(name) == _global_names.end()) {
+
+        CHandle h_e;
+        h_e.create< CEntity >();
+        CEntity* e = h_e;
+
+        TEntityParseContext ctx_temp;
+        ctx_temp.current_entity = e;
+        // Bind it to me
+        auto om = CHandleManager::getByName("render");
+        CHandle h_comp = om->createHandle();
+
+        e->set(h_comp.getType(), h_comp);
+
+        h_comp = getObjectManager<TCompTransform>()->createHandle();
+        e->set(h_comp.getType(), h_comp);
+
+        h_comp = getObjectManager<TCompName>()->createHandle();
+        e->set(h_comp.getType(), h_comp);
+
+        std::size_t pos = name.find("meshes/") + 7;
+        std::string sub_name = name.substr(pos);
+        TCompName * c_name = e->get<TCompName>();
+        c_name->setName(sub_name.c_str());
+
+        TCompRender * c_render = e->get<TCompRender>();
+        TCompRender::CMeshWithMaterials mwm;
+        mwm.mesh = Resources.get(name)->as<CRenderMesh>();
+        const CMaterial* material = (const CMaterial*)Resources.get(mat)->as<CMaterial>();
+        mwm.materials.push_back(material);
+        c_render->meshes.push_back(mwm);
+
+        if (scene_group.isValid()) {
+            CEntity * t_group = scene_group;
+            TCompGroup* c_group = t_group->get<TCompGroup>();
+            c_group->add(h_e);
+        }
+
+        _global_names.insert(std::pair<std::string, std::string>(name, name));
+    }*/
+
+
+    // Add the instance collector if it's not in our database
+    if (_dynamic_instances.find(name) == _dynamic_instances.end()) {
+
+        auto rmesh = (CRenderMeshInstanced*)Resources.get(name)->as<CRenderMesh>();
+        TDynInstanceCollector collector;
+        collector._instances_mesh = rmesh;
+        _dynamic_instances.insert(std::pair<std::string, TDynInstanceCollector>(name, collector));
+
+        // Add the generic group entity into the scene dynamically?
+    }
+
+    // Create the new instance and add it to the set
+    TDynInstance static_instance;
+    static_instance.world = w_matrix;
+    static_instance.time = time;
+    _dynamic_instances[name]._instances.push_back(static_instance);
+
+    return _dynamic_instances[name]._instances.size() - 1;
 }
 
 // Method used to add global instances
@@ -207,9 +285,13 @@ void CModuleInstancing::updateInstance(const std::string& name, int index, const
 
 void CModuleInstancing::renderMain() {
 
-    // Dynamic global instances
+    // Static global instances
     for (auto p : _global_instances)
         p.second._instances_mesh->setInstancesData(p.second._instances.data(), p.second._instances.size(), sizeof(TInstance));
+
+    // Dynamic global instances
+    for (auto p : _dynamic_instances)
+        p.second._instances_mesh->setInstancesData(p.second._instances.data(), p.second._instances.size(), sizeof(TDynInstance));
 
     // Static instances, particles and grass
     //grass_instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TInstance));
