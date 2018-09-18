@@ -617,7 +617,7 @@ BTNode::ERes TCompAIPatrol::actionWaitInWpt(float dt)
     else {
         timerWaitingInWpt += dt;
         TCompTransform *mypos = get<TCompTransform>();
-        if (rotateTowardsVec(mypos->getPosition() + getWaypoint().lookAt, dt, rotationSpeed)) {
+        if (rotateTowardsVec(mypos->getPosition() + getWaypoint().lookAt, rotationSpeed, dt)) {
             myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
         }
         else {
@@ -665,11 +665,11 @@ BTNode::ERes TCompAIPatrol::actionSuspect(float dt)
 
     if (distanceToPlayer <= autoChaseDistance && isEntityInFov(entityToChase, fov, maxChaseDistance)) {
         suspectO_Meter = 1.f;
-        rotateTowardsVec(ppos->getPosition(), dt, rotationSpeed);
+        rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt);
     }
     else if (distanceToPlayer <= maxChaseDistance && isEntityInFov(entityToChase, fov, maxChaseDistance)) {
         suspectO_Meter = Clamp(suspectO_Meter + dt * incrBaseSuspectO_Meter, 0.f, 1.f);							//TODO: increment more depending distance and noise
-        rotateTowardsVec(ppos->getPosition(), dt, rotationSpeed);
+        rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt);
     }
     else {
         suspectO_Meter = Clamp(suspectO_Meter - dt * dcrSuspectO_Meter, 0.f, 1.f);
@@ -731,7 +731,7 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 	}
 	else {
         TCompTransform* ppos = player->get<TCompTransform>();
-        rotateTowardsVec(ppos->getPosition(), dt, rotationSpeed);
+        rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt);
 		return BTNode::ERes::STAY;
 	}
     
@@ -802,7 +802,7 @@ BTNode::ERes TCompAIPatrol::actionRotateTowardsUnreachablePlayer(float dt)
     if (isEntityInFov(entityToChase, fov, maxChaseDistance)) {
         CEntity* player = getEntityByName(entityToChase);
         TCompTransform* ppos = player->get<TCompTransform>();
-        rotateTowardsVec(ppos->getPosition(), dt, rotationSpeed);
+        rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt);
         TCompTransform* mypos = get<TCompTransform>();
         if (lastPlayerKnownPos != ppos->getPosition()) {
             generateNavmesh(mypos->getPosition(), ppos->getPosition());

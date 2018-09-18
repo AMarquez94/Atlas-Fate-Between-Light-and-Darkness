@@ -7,8 +7,8 @@
 			"prefab": "data/prefabs/patrol.prefab",
 			"name": "Patrol 1",
 			"transform": {
-				"pos": "-77 0 -86.25",
-				"lookat": "-77 0 -87"
+				"pos": "-77.8 0 -86.25",
+				"lookat": "-77.8 0 -87"
 			},
 			"ai_patrol": {
 				"startLightsOn": true
