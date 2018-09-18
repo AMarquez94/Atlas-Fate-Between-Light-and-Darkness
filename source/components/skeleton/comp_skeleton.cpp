@@ -118,17 +118,18 @@ void TCompSkeleton::update(float dt) {
 		
         model->update(dt);
     }
+
 	if (movingRoot) {
 		//ROOT_DEV
 		if (isExecutingActionAnimationForRoot(animationToRootName)) {
 			
-
 			if (rotatingRoot) {
 				Quaternion aux_quaternion = Quaternion::CreateFromYawPitchRoll(deg2rad(-90), deg2rad(-90), deg2rad(0));
 				model->getSkeleton()->getBone(0)->setRotation(DX2Cal(aux_quaternion * tmx->getRotation() ));
 				model->getSkeleton()->getBone(0)->calculateState();
 			}
-			else {
+			else 
+			{
 				VEC3 acum = Cal2DX(model->getSkeleton()->getBone(1)->getTranslation());
 				VEC3 aux_diff = acum - lastAcum;
 
@@ -155,6 +156,7 @@ void TCompSkeleton::update(float dt) {
 	}
 
 	if (endingRoot) {
+
 		if (isExecutingActionAnimation(animationToRootName)) {
 
 			if (rotatingRoot) {
