@@ -17,7 +17,9 @@
 		{ "name" : "sm_enter"},
 		{ "name" : "sm_pose"},
 		{ "name" : "land_soft"},
+		{ "name" : "touch_player"},
 		{ "name" : "die"},
-		{ "name" : "dead"}
+		{ "name" : "dead"},
+		{ "name" : "land_hard"}
 	]
 }
