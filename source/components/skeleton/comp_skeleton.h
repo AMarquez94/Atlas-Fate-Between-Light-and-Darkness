@@ -17,6 +17,7 @@ struct TCompSkeleton : public TCompBase {
 	float lastFrameCyclicAnimationWeight;
 	CRenderCte<CCteSkinBones> cb_bones;
 	CalModel* model = nullptr;
+	std::list<int> cyclicPartialAnimationsPlaying;
 
 	//Variables to root movement
 	std::string animationToRootName = "";
@@ -42,6 +43,11 @@ struct TCompSkeleton : public TCompBase {
 
 	void changeCyclicAnimation(int anim1Id, float speed = 1.0f, int anim2Id = -1, float weight = 1.0f, float in_delay = 0.15f, float out_delay = 0.15f);
 	void executeActionAnimation(int animId, float speed = 1.0f, bool rootMovement = false, bool rootRot = false, float in_delay = 0.15f, float out_delay = 0.15f);
+
+	void playPartialCyclicAnimation(int animId, float in_delay = 0.15f);
+	void clearPartialCyclicAnimation(int animId, float out_delay = 0.15f);
+	void clearAllPartialCyclicAnimation(float out_delay = 0.15f);
+
 
 	void setCyclicAnimationWeight(float new_value);
 	float getCyclicAnimationWeight();

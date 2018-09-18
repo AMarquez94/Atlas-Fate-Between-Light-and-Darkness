@@ -328,6 +328,29 @@ void TCompSkeleton::executeActionAnimation(int animId, float speed, bool rootMov
     }
 }
 
+void TCompSkeleton::playPartialCyclicAnimation(int animId, float in_delay) {
+
+	model->getMixer()->blendCycle(animId, 1.0f, in_delay);
+	cyclicPartialAnimationsPlaying.push_back(animId);
+}
+
+void TCompSkeleton::clearPartialCyclicAnimation(int animId, float out_delay) {
+
+	model->getMixer()->clearCycle(animId, out_delay);
+	cyclicPartialAnimationsPlaying.remove(animId);
+}
+
+void TCompSkeleton::clearAllPartialCyclicAnimation(float out_delay) {
+
+	std::list<int>::iterator iteratorCyclicPartial;
+	while (iteratorCyclicPartial != cyclicPartialAnimationsPlaying.end()) {
+		model->getMixer()->clearCycle((*iteratorCyclicPartial), out_delay);
+		iteratorCyclicPartial++;
+	}
+	cyclicPartialAnimationsPlaying.clear();
+}
+
+
 //Set the weight added to a combination of twi cyclic animations
 void TCompSkeleton::setCyclicAnimationWeight(float new_value) {
 

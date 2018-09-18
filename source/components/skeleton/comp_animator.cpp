@@ -86,6 +86,9 @@ bool TCompAnimator::playAnimationConverted(EAnimation animation, float speed) {
 		    compSkeleton->executeActionAnimation(anim1id, aux_speed, rootMov, rootRot);
             return true;
 		    break;
+		case EAnimationType::CYCLIC_PARTIAL:
+			compSkeleton->playPartialCyclicAnimation(anim1id);
+			break;
         default:
             return false;
             break;
