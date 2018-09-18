@@ -149,7 +149,8 @@ void CModuleLogic::publishClasses() {
     SLB::Class<TCompAIPatrol>("AIPatrol", m)
         .comment("This is our wrapper of the patrol controller")
         .set("launchInhibitor", &TCompAIPatrol::launchInhibitor)
-		.set("attackPlayer", &TCompAIPatrol::attackPlayer);
+		.set("attackPlayer", &TCompAIPatrol::attackPlayer)
+        .set("playStepParticle", &TCompAIPatrol::playStepParticle);
 
     SLB::Class<TCompTransform>("Transform", m)
         .comment("This is our wrapper of the transform controller")

@@ -82,11 +82,13 @@ void TCompAudio::update(float dt)
     TCompTransform* mypos = get<TCompTransform>();
     for (auto& event : my3DEvents) {
         if (event.isValid()) {
-            if (event.isRelativeToCameraOnly()) {
-                event.set3DAttributes(*mypos);
-            }
-            else {
-                event.set3DAttributes(EngineSound.getVirtual3DAttributes(*mypos));
+            if (CHandle(this).getOwner().isValid()) {
+                if (event.isRelativeToCameraOnly()) {
+                    event.set3DAttributes(*mypos);
+                }
+                else {
+                    event.set3DAttributes(EngineSound.getVirtual3DAttributes(*mypos));
+                }
             }
         }
     }

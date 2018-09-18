@@ -356,7 +356,7 @@ void TCompTempPlayerController::walkState(float dt) {
     CEntity *player_camera = target_camera;
     TCompTransform *c_my_transform = get<TCompTransform>();
     TCompTransform * trans_camera = player_camera->get<TCompTransform>();
-    c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+    c_my_transform->getYawPitchRoll(&yaw, &pitch);
 
     //float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
     float player_accel = currentSpeed * dt;
@@ -374,6 +374,31 @@ void TCompTempPlayerController::walkState(float dt) {
     Quaternion quat = Quaternion::Lerp(my_rotation, new_rotation, rotationSpeed * dt);
     c_my_transform->setRotation(quat);
     c_my_transform->setPosition(c_my_transform->getPosition() + dir * player_accel);
+}
+
+/* Main thirdperson player motion movement handled here */
+void TCompTempPlayerController::fallState(float dt) {
+
+    // Player movement and rotation related method.
+    float yaw, pitch, roll;
+    CEntity *player_camera = target_camera;
+    TCompTransform *c_my_transform = get<TCompTransform>();
+    TCompTransform * trans_camera = player_camera->get<TCompTransform>();
+    c_my_transform->getYawPitchRoll(&yaw, &pitch);
+
+    float player_accel = currentSpeed * dt;
+
+    VEC3 up = trans_camera->getFront();
+    VEC3 normal_norm = c_my_transform->getUp();
+    VEC3 proj = projectVector(up, normal_norm);
+    VEC3 dir = getMotionDir(proj, normal_norm.Cross(-proj), false);
+
+    if (dir != VEC3::Zero) {
+        float delta_yaw = c_my_transform->getDeltaYawToAimTo(c_my_transform->getPosition() + dir);
+        float new_yaw = lerp(yaw, yaw + delta_yaw, rotationSpeed * dt);
+        c_my_transform->setYawPitchRoll(new_yaw, pitch);
+        c_my_transform->setPosition(c_my_transform->getPosition() + dir * player_accel);
+    }   
 }
 
 /* Player motion movement when is shadow merged, tests included */
@@ -1048,7 +1073,7 @@ void TCompTempPlayerController::updateWeapons(float dt)
     cb_player.updateGPU();
 }
 
-VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & left) {
+VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & left, bool default) {
 
     VEC3 dir = VEC3::Zero;
     TCompPlayerInput *player_input = get<TCompPlayerInput>();
@@ -1057,7 +1082,7 @@ VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & le
     dir += player_input->movementValue.x * left;
     dir.Normalize();
 
-    if (dir == VEC3::Zero) return front;
+    if (default && dir == VEC3::Zero) return front;
 
     return dir;
 }

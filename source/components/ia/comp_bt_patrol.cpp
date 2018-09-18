@@ -1508,14 +1508,13 @@ void TCompAIPatrol::attackPlayer()
     player->sendMsg(msg);
 }
 
-void TCompAIPatrol::playStepParticle()
+void TCompAIPatrol::playStepParticle(bool left)
 {
-    // Dirty and nasty way of doing this.
-    TCompSkeleton * skeleton = get<TCompSkeleton>();
-    VEC3 right_pos = skeleton->getBonePosition("Bip001 R Foot");
-    VEC3 left_pos = skeleton->getBonePosition("Bip001 L Foot");
-
-    Engine.get().getParticles().launchSystem("data/particles/def_amb_ground_slam.particles", CHandle(this).getOwner());
+    TCompGroup* my_group = get<TCompGroup>();
+    if (my_group) {
+        CHandle foot = left ? my_group->getHandleByName("left_foot") : my_group->getHandleByName("right_foot");
+        EngineParticles.launchSystem("data/particles/def_amb_ground_slam.particles", foot);
+    }
 }
 
 void TCompAIPatrol::playAnimationByName(const std::string & animationName)
