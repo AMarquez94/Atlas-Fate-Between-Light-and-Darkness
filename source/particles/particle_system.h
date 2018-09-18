@@ -201,6 +201,8 @@ namespace Particles
     class CSystem
     {
     public:
+        
+        bool                _destroy_entity = false;
 
         CSystem(const TCoreSystem* core, CHandle entity);
 

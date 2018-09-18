@@ -540,7 +540,7 @@
 		"category": "particles_instanced",
 		"z": "test_but_no_write",
 		"rs_config": "cull_none",
-		"blend": "combinative"
+		"blend": "additive_by_src_alpha"
 	},
 	"particles_instanced_combinative": {
 		"vs_file": "data/shaders/particles_instanced.fx",

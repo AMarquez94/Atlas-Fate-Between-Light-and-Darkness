@@ -91,7 +91,7 @@ void TCompInhibitor::update(float dt) {
                 CEntity * player = getEntityByName("The Player");
                 TCompTransform* mypos = player->get<TCompTransform>();
 
-                EngineInstancing.addDynamicInstance("data/meshes/decal_test1.instanced_mesh", "data/materials/mtl_decal_test1.material", mypos->asMatrix(), 4);
+                EngineInstancing.addDynamicInstance("data/meshes/decal_damage.instanced_mesh", "data/materials/mtl_decal_damage.material", mypos->asMatrix(), 4);
             }
         }
     }

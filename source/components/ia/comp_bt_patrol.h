@@ -44,7 +44,7 @@ private:
     void onMsgNoiseListened(const TMsgNoiseMade& msg);
     void onMsgLanternsDisable(const TMsgLanternsDisable& msg);
     void onMsgCinematicState(const TMsgCinematicState& msg);
-
+    
     /* Aux functions */
     void turnOnLight();
     void turnOffLight();
@@ -139,6 +139,7 @@ public:
 
     /* LUA functions */
     void launchInhibitor();
+    void playStepParticle();
 
 	void playAnimationByName(const std::string & animationName) override;
 };

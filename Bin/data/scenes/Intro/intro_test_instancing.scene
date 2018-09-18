@@ -19,9 +19,9 @@
 				"pos": "0 0 0"
 			},
 			"render": [{
-					"mesh": "data/meshes/decal_test1.instanced_mesh",
+					"mesh": "data/meshes/decal_damage.instanced_mesh",
 					"materials": [
-						"data/materials/mtl_decal_test1.material"
+						"data/materials/mtl_decal_damage.material"
 					]
 				}
 			]
