@@ -120,62 +120,13 @@ void TCompSkeleton::update(float dt) {
     }
 
 	if (movingRoot) {
-		//ROOT_DEV
-		if (isExecutingActionAnimationForRoot(animationToRootName)) {
-			
-			if (rotatingRoot) {
-				Quaternion aux_quaternion = Quaternion::CreateFromYawPitchRoll(deg2rad(-90), deg2rad(-90), deg2rad(0));
-				model->getSkeleton()->getBone(0)->setRotation(DX2Cal(aux_quaternion * tmx->getRotation() ));
-				model->getSkeleton()->getBone(0)->calculateState();
-			}
-			else 
-			{
-				VEC3 acum = Cal2DX(model->getSkeleton()->getBone(1)->getTranslation());
-				VEC3 aux_diff = acum - lastAcum;
 
-				VEC3 diff = VEC3(aux_diff.x, aux_diff.z, -aux_diff.y);
-
-				tmx->setPosition(tmx->getPosition() + tmx->getFront() * diff.z);
-				tmx->setPosition(tmx->getPosition() + tmx->getLeft() * diff.x);
-				tmx->setPosition(tmx->getPosition() + tmx->getUp() * diff.y);
-
-
-
-				model->getSkeleton()->getBone(1)->setTranslation(CalVector(0, 0, 0));
-				model->getSkeleton()->getBone(1)->calculateState();
-
-				lastAcum = acum;
-			}
-		
-		}
-		else {
-			movingRoot = false;
-			endingRoot = true;
-		}
-
+		executingMoveRootAnimation();
 	}
 
 	if (endingRoot) {
 
-		if (isExecutingActionAnimation(animationToRootName)) {
-
-			if (rotatingRoot) {
-				Quaternion aux_quaternion = Quaternion::CreateFromYawPitchRoll(deg2rad(-90), deg2rad(-90), deg2rad(0));
-				model->getSkeleton()->getBone(0)->setRotation(DX2Cal(aux_quaternion * tmx->getRotation() ));
-				model->getSkeleton()->getBone(0)->calculateState();
-			}
-			else {
-				model->getSkeleton()->getBone(1)->setTranslation(CalVector(0, 0, 0));
-				model->getSkeleton()->getBone(1)->calculateState();
-			}
-				
-		}
-		else {
-			animationToRootName = "";
-			endingRoot = false;
-			rotatingRoot = false;
-		}
-
+		endingMoveRootAnimation();
 	}
 
     lastFrameCyclicAnimationWeight = cyclicAnimationWeight;
@@ -533,6 +484,64 @@ VEC3 TCompSkeleton::getBonePositionById(int id) {
 
 void TCompSkeleton::setBonePositionById(int id, VEC3 position) {
 	model->getSkeleton()->getBone(id)->setTranslation(DX2Cal(position));
+}
+
+void TCompSkeleton::executingMoveRootAnimation() {
+
+	TCompTransform* tmx = get<TCompTransform>();
+	if (isExecutingActionAnimationForRoot(animationToRootName)) {
+
+		if (rotatingRoot) {
+			Quaternion aux_quaternion = Quaternion::CreateFromYawPitchRoll(deg2rad(-90), deg2rad(-90), deg2rad(0));
+			model->getSkeleton()->getBone(0)->setRotation(DX2Cal(aux_quaternion * tmx->getRotation()));
+			model->getSkeleton()->getBone(0)->calculateState();
+		}
+		else {
+			VEC3 acum = Cal2DX(model->getSkeleton()->getBone(1)->getTranslation());
+			VEC3 aux_diff = acum - lastAcum;
+
+			VEC3 diff = VEC3(aux_diff.x, aux_diff.z, -aux_diff.y);
+
+			tmx->setPosition(tmx->getPosition() + tmx->getFront() * diff.z);
+			tmx->setPosition(tmx->getPosition() + tmx->getLeft() * diff.x);
+			tmx->setPosition(tmx->getPosition() + tmx->getUp() * diff.y);
+
+
+
+			model->getSkeleton()->getBone(1)->setTranslation(CalVector(0, 0, 0));
+			model->getSkeleton()->getBone(1)->calculateState();
+
+			lastAcum = acum;
+		}
+
+	}
+	else {
+		movingRoot = false;
+		endingRoot = true;
+	}
+}
+
+void TCompSkeleton::endingMoveRootAnimation() {
+
+	TCompTransform* tmx = get<TCompTransform>();
+	if (isExecutingActionAnimation(animationToRootName)) {
+
+		if (rotatingRoot) {
+			Quaternion aux_quaternion = Quaternion::CreateFromYawPitchRoll(deg2rad(-90), deg2rad(-90), deg2rad(0));
+			model->getSkeleton()->getBone(0)->setRotation(DX2Cal(aux_quaternion * tmx->getRotation()));
+			model->getSkeleton()->getBone(0)->calculateState();
+		}
+		else {
+			model->getSkeleton()->getBone(1)->setTranslation(CalVector(0, 0, 0));
+			model->getSkeleton()->getBone(1)->calculateState();
+		}
+
+	}
+	else {
+		animationToRootName = "";
+		endingRoot = false;
+		rotatingRoot = false;
+	}
 }
 
 float TCompSkeleton::getAnimationDuration(int animId) {

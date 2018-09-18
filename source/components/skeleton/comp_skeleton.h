@@ -52,14 +52,18 @@ struct TCompSkeleton : public TCompBase {
 	bool isExecutingActionAnimationForRoot(std::string animName);
 	bool isExecutingActionAnimation(int animId);
 	float getAnimationDuration(int animId);
+
 	void guessFeetBonesId(int feetNum);
 	void setFeetId(std::vector<int> feetId);
+
 	std::vector<VEC3> getFeetPositions();
     VEC3 getBonePosition(const std::string & name);
 	VEC3 getBonePositionById(int id);
 	QUAT getBoneRotation(const std::string & name);
 	void setBonePositionById(int id, VEC3 position);
 
+	void executingMoveRootAnimation();
+	void endingMoveRootAnimation();
 
 
 	
