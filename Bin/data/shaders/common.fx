@@ -158,6 +158,7 @@ float computeShadowFactor(float3 wPos) {
   }
   //return shadowsTap(homo_space.xy, homo_space.z);
   // Divide by the number of taps
+  
   return shadow_factor / 12.f;
 }
 
