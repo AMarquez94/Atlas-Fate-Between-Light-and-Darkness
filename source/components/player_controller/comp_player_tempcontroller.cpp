@@ -978,7 +978,7 @@ void TCompTempPlayerController::updateStamina(float dt) {
 void TCompTempPlayerController::mergeEnemy() {
 
     TCompPlayerAttackCast * tAttackCast = get<TCompPlayerAttackCast>();
-    CHandle enemy = tAttackCast->closestEnemyToMerge();
+    CHandle enemy = tAttackCast->closestEnemyToMerge(true);
     if (isMerged) {
         if (enemy.isValid()) {
             TMsgPatrolShadowMerged msg;
