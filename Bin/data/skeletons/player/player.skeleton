@@ -78,9 +78,11 @@
 		{ "name" : "metralla_middle"},
 		{ "name" : "metralla_finish"},
 		{ "name" : "sm_enter"},
+		{ "name" : "touch_player"},
 		{ "name" : "sm_pose"},
 		{ "name" : "land_soft"},
-		{ "name" : "die",
+		{ "name" : "die"},
+		{ "name" : "dead",
 			"audio_callbacks":[
 			{
 				"time_to_call" : 0,
@@ -88,7 +90,7 @@
 				"relative_to_player" : true
 			}]
 		},
-		{ "name" : "dead"}
+		{ "name" : "land_hard"}
 	],
 	"lookat_corrections" : [
 		{
