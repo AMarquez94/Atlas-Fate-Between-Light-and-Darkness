@@ -84,13 +84,14 @@ void TCompInhibitor::update(float dt) {
                 render->visible = false;
                 this->fading = true;
 
-                Engine.get().getParticles().launchSystem("data/particles/def_projectile_explosion.particles", CHandle(this).getOwner());
-                Engine.get().getParticles().launchSystem("data/particles/def_projectile_explosion_trails.particles", CHandle(this).getOwner());
-                Engine.get().getParticles().launchSystem("data/particles/def_projectile_explosion_trails_large.particles", CHandle(this).getOwner());
+                EngineParticles.launchSystem("data/particles/def_projectile_explosion.particles", CHandle(this).getOwner());
+                EngineParticles.launchSystem("data/particles/def_projectile_explosion_trails.particles", CHandle(this).getOwner());
+                EngineParticles.launchSystem("data/particles/def_projectile_explosion_trails_large.particles", CHandle(this).getOwner());
                 execDelayedScript("destroyHandle(" + CHandle(this).getOwner().asString() + ")", 6);
                 CEntity * player = getEntityByName("The Player");
-                TCompTransform* mypos = player->get<TCompTransform>();
 
+                TCompTransform* mypos = player->get<TCompTransform>();
+                //EngineParticles.launchDynamicSystem("data/particles/def_amb_ground_slam.particles", mypos->getPosition());
                 EngineInstancing.addDynamicInstance("data/meshes/decal_damage.instanced_mesh", "data/materials/mtl_decal_damage.material", mypos->asMatrix(), 4);
             }
         }
