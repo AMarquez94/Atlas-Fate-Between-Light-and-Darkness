@@ -255,6 +255,28 @@ void TCompPlayerAnimator::initializeAnimations() {
 		1.0f,
 		false
 	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::GRAB_ENEMY,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"touch_enemy",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::GRABING_ENEMY,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"touching_enemy",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
 }
 
 void TCompPlayerAnimator::registerMsgs() {

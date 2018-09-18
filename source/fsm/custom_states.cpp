@@ -712,7 +712,8 @@ namespace FSM
     void GrabEnemyState::onStart(CContext& ctx) const {
 
         CEntity* e = ctx.getOwner();
-        e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
+        //e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::GRAB_ENEMY , 1.0f });
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::GRABING_ENEMY , 1.0f });
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, nullptr, _noise });
 
     }
