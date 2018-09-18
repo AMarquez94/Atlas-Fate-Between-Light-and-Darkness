@@ -101,6 +101,7 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
     paused = true;
     canAttack = false;
     canRemoveInhibitor = false;
+    life = maxLife;
 
     // Move the stamina string to the json
     EngineGUI.enableWidget("stamina_bar_general", false);

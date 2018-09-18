@@ -11,7 +11,6 @@ struct VS_TEXTURED_OUTPUT
 
   float  opacity: TEXCOORD3;
   float2 uv:      TEXCOORD4;
-  float4 color:   TEXCOORD5;
 	
 	float3 normal:   NORMAL0;
 	float4 tangent:   NORMAL1;
@@ -31,7 +30,6 @@ VS_TEXTURED_OUTPUT VS(
 
   // From stream 1 we read the instance information 
 , in TInstanceWorldData instance_data     // Stream 1
-, in float4 InstanceColor   : TEXCOORD6   // TimeToLife, TimeBlendingOut, ...  
 )
 {
   VS_TEXTURED_OUTPUT output = (VS_TEXTURED_OUTPUT)0;
@@ -70,7 +68,6 @@ VS_TEXTURED_OUTPUT VS(
   //float TimeBlendingOut = InstanceXtras.y;
   //output.opacity = smoothstep( 0, TimeBlendingOut, TimeToLife );
   output.opacity = 1;
-  output.color = InstanceColor;
 
 	output.normal = mul(iNormal, (float3x3)fMatrix);
 	output.tangent.xyz = mul(iTangent.xyz, (float3x3)fMatrix);
@@ -109,7 +106,7 @@ void PS(
   o_albedo.a = decal_color.a;//txMetallic.Sample(samLinear, float2(amount_of_x,amount_of_z)).r;
  
   // Change to true 'see' the boxes 
-  if( false ) {
+  if( true ) {
     o_albedo.a += 0.3;
    
     if( (input.uv.x < 0.01 || input.uv.x > 0.99 ) || (input.uv.y < 0.01 || input.uv.y > 0.99 ) )

@@ -7,6 +7,7 @@ class TInstance;
 class TCompInstance : public TCompBase
 {
     int _index;
+    std::string _type;
     std::string _instance_mesh;
 
     DECL_SIBLING_ACCESS();

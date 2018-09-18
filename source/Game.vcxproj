@@ -551,6 +551,7 @@
     <ClInclude Include="navmesh\recast\RecastDump.h" />
     <ClInclude Include="particles\Noise\FastNoiseSIMD.h" />
     <ClInclude Include="particles\Noise\FastNoiseSIMD_internal.h" />
+    <ClInclude Include="particles\Noise\Perlin.h" />
     <ClInclude Include="particles\particle.h" />
     <ClInclude Include="particles\particle_editor.h" />
     <ClInclude Include="particles\particle_parser.h" />

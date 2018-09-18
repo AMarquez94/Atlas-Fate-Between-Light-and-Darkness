@@ -153,6 +153,12 @@ float TCompCameraThirdPerson::getFovUpdated(float dt)
     float new_fov = lerp(getFov(), deg2rad(_target_fov), _timer_fov / _max_time_fov);
     //dbg("===================================================================================\n");
     //dbg("UPDATING FOV: %f\n", rad2deg(new_fov));
+    //
+    //float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
+    //float current_fov = 70 + inputSpeed * 30; // Just doing some testing with the fov and speed
+    //                                          //setPerspective(getFovUpdated(dt), 0.1f, 1000.f);
+    //                                          //dbg("Fov %f %f\n", current_fov, inputSpeed);
+
     return new_fov;
 }
 
@@ -211,14 +217,6 @@ void TCompCameraThirdPerson::update(float dt)
 
 		}
 		
-
-
-
-
-
-
-
-
         //float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
         //float current_fov = 70 + inputSpeed * 30; // Just doing some testing with the fov and speed
         setPerspective(getFovUpdated(dt), 0.1f, 1000.f);

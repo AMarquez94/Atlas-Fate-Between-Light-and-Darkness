@@ -1508,6 +1508,16 @@ void TCompAIPatrol::attackPlayer()
     player->sendMsg(msg);
 }
 
+void TCompAIPatrol::playStepParticle()
+{
+    // Dirty and nasty way of doing this.
+    TCompSkeleton * skeleton = get<TCompSkeleton>();
+    VEC3 right_pos = skeleton->getBonePosition("Bip001 R Foot");
+    VEC3 left_pos = skeleton->getBonePosition("Bip001 L Foot");
+
+    Engine.get().getParticles().launchSystem("data/particles/def_amb_ground_slam.particles", CHandle(this).getOwner());
+}
+
 void TCompAIPatrol::playAnimationByName(const std::string & animationName)
 {
     TCompPatrolAnimator * myAnimator = get<TCompPatrolAnimator>();

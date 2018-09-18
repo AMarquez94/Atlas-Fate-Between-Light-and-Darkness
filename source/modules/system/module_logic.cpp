@@ -259,6 +259,7 @@ void CModuleLogic::publishClasses() {
     m->set("sleep", SLB::FuncCall::create(&sleep));
     m->set("cinematicModeToggle", SLB::FuncCall::create(&cinematicModeToggle));
     m->set("isCheckpointSaved", SLB::FuncCall::create(&isCheckpointSaved));
+    m->set("destroyHandle", SLB::FuncCall::create(&destroyHandle));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -605,6 +606,13 @@ bool isCheckpointSaved()
 {
     CModuleGameManager gameManager = CEngine::get().getGameManager();
     return gameManager.isCheckpointSaved();
+}
+
+void destroyHandle(unsigned int h)
+{
+    CHandle handle;
+    handle.fromUnsigned(h);
+    handle.destroy();
 }
 
 SoundEvent playEvent(const std::string & name)

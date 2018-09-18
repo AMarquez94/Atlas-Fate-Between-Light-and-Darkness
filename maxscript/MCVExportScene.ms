@@ -322,6 +322,25 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
+	fn exportTransformNormal obj = (
+		fs.writeKey "transform" 
+		
+		local max2mcv = rotateXMatrix -90
+		local mcv2max = rotateXMatrix 90
+		local mcv_position = obj.pos * max2mcv
+		print obj.pos
+		local mcv_transform = obj.transform * max2mcv
+		local mcv_quat = mcv_transform.rotationPart as quat
+		local mcv_final_position = checkPoint mcv_position
+		fs.beginObj()
+			fs.writeKeyValue "pos" mcv_final_position
+			fs.writeComma()
+			fs.writeKeyValue "rotation" mcv_quat
+			fs.writeComma()
+			fs.writeKeyValue "scale" [obj.width, obj.length, 1]
+		fs.endObj()
+	),
+	
 		-- ----------------------------------------------------------
 	fn exportTransformPrefab obj = (
 		fs.writeKey "transform" 
@@ -759,6 +778,33 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
+		-- Export an entity which is an xref object as a prefab
+	fn exportEntityGrass obj = (
+		
+		-- We must ignore those which are 
+		if (nitems > 0) then fs.writeComma()
+		
+		local exported_mesh_path = mesh_path + "grass.instanced_mesh"
+		local exported_materials = #(mats_path + "grass_instanced.material")
+				
+		fs.beginObj()
+		fs.writeKey "entity"
+			fs.beginObj()
+			exportName obj 
+			fs.writeComma()
+			exportTransformNormal obj
+			fs.writeComma()
+			fs.writeKey "instance" 
+			fs.beginObj()
+			fs.writeKeyValue "mesh" exported_mesh_path
+			fs.writeComma()
+			fs.writeKey "materials"
+			fs.arrayOfStrings exported_materials
+			fs.endObj()
+			fs.endObj()
+		fs.endObj()
+	),
+	
 	-- ----------------------------------------------------------
 	fn exportEntity obj = (
 		
@@ -766,7 +812,7 @@ struct TSceneExporter (
 		if classof obj == Targetobject then (return false )
 		if isCollider obj and  obj.parent != undefined then (return false )
 		if classof obj == QuadPatch then (return exportEntityDecal obj)
-		if classof obj == xrefobject then (return exportEntityPrefab obj)
+		if classof obj == TriPatch then (return exportEntityGrass obj)
 		
 		if (nitems > 0) then fs.writeComma()
 		

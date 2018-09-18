@@ -2897,6 +2897,8 @@
         ,
         "intensity": 15.0
         ,
+				"projector" : "textures/decals/square_cookie.dds"
+				,
         "casts_shadows": true
         ,
         "shadows_step": 1.0
