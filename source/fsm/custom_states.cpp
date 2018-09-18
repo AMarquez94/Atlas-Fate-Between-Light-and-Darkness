@@ -320,6 +320,7 @@ namespace FSM
 
         TCompRender * render = e->get<TCompRender>();
         render->visible = false;
+        e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::resetMergeFall });
     }
 
     bool MergeState::load(const json& jData) {
@@ -497,7 +498,7 @@ namespace FSM
         // Send a message to the player controller
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::FALL , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, _target, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::mergeFallState, _speed, _size, _radius, _target, _noise });
 
         //CEntity* e = ctx.getOwner();
         //e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::LAND_SOFT , 1.0f });

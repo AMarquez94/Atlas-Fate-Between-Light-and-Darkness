@@ -173,7 +173,8 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
     addChild("playerActivated", "smEnemyTutorial", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionSMEnemyTutorial, nullptr, nullptr);
     addChild("smEnemyTutorial", "resetTimersSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersSMEnemyTutorial, nullptr);
     addChild("smEnemyTutorial", "idleSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdle, nullptr);
-    addChild("smEnemyTutorial", "grabenemySMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationGrabEnemy, nullptr);
+    addChild("smEnemyTutorial", "grabSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationGrab, nullptr);
+    //addChild("smEnemyTutorial", "grabenemySMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationGrabEnemy, nullptr);
     addChild("smEnemyTutorial", "beginSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionStartSMEnemy, nullptr);
     addChild("smEnemyTutorial", "smSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSM, nullptr);
     addChild("smEnemyTutorial", "exitSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionEndSM, nullptr);
@@ -485,7 +486,7 @@ BTNode::ERes TCompAIPlayer::actionResetTimersSMFenceTutorial(float dt)
 BTNode::ERes TCompAIPlayer::actionResetTimersSMEnemyTutorial(float dt)
 {
     _timer = 0.f;
-    _maxTimer = 1.f;
+    _maxTimer = 0.5f;
     TCompTransform* mypos = get<TCompTransform>();
     mypos->setPosition(initial_pos);
     CEntity* patrol_tutorial = getEntityByName("Tutorial Patrol");
@@ -902,6 +903,20 @@ BTNode::ERes TCompAIPlayer::actionFallSM(float dt)
     }
 
     return BTNode::ERes::STAY;
+}
+
+BTNode::ERes TCompAIPlayer::actionAnimationGrab(float dt)
+{
+    _timer += dt;
+    if (_timer > _maxTimer) {
+        _timer = 0.f;
+        return BTNode::ERes::LEAVE;
+    }
+    else {
+        TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+        my_anim->playAnimation(TCompPlayerAnimator::EAnimation::GRABING_ENEMY);
+        return BTNode::ERes::STAY;
+    }
 }
 
 BTNode::ERes TCompAIPlayer::endCinematic(float dt)

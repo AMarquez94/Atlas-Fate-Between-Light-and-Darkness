@@ -154,6 +154,7 @@ public:
     bool isMerged;
     bool isGrounded;
     bool canMergeFall;
+    bool isMergeFalling;
     bool pressedMergeFallInTime;
     bool isInhibited;
     bool canAttack;
@@ -170,6 +171,7 @@ public:
     /* State functions */
     void walkState(float dt);
     void fallState(float dt);
+    void mergeFallState(float dt);
     void idleState(float dt);
     void mergeState(float dt);
     void resetState(float dt);
@@ -178,6 +180,7 @@ public:
     void movingObjectState(float dt);
     void resetRemoveInhibitor();
     void markObjectAsMoving(bool isBeingMoved, VEC3 newDirection = VEC3::Zero, float speed = 0);
+    void resetMergeFall();
 
     /* Player condition tests */
     const bool concaveTest(void);

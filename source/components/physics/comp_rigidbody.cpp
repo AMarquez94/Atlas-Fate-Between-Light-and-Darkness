@@ -267,8 +267,10 @@ void TCompRigidbody::Resize(float new_size)
     if (!c_collider || !c_collider->config->actor)
         return;
 
-    if (controller != NULL)
+    if (controller != NULL) {
         controller->resize((physx::PxReal)new_size);
+        controller->invalidateCache();
+    }
 }
 
 void TCompRigidbody::SetUpVector(VEC3 new_up)

@@ -117,8 +117,8 @@ void TCompTempPlayerController::update(float dt) {
         (this->*state)(dt);
 
 		// Methods that always must be running on background
-		isGrounded = groundTest(dt);
 		isMerged = onMergeTest(dt);
+		isGrounded = groundTest(dt);
 		updateStamina(dt);
         updateLife(dt);
 		updateShader(dt); // Move this to player render component...
@@ -352,7 +352,7 @@ void TCompTempPlayerController::idleState(float dt) {
 void TCompTempPlayerController::walkState(float dt) {
 
     // Player movement and rotation related method.
-    float yaw, pitch, roll;
+    float yaw, pitch;
     CEntity *player_camera = target_camera;
     TCompTransform *c_my_transform = get<TCompTransform>();
     TCompTransform * trans_camera = player_camera->get<TCompTransform>();
@@ -380,7 +380,7 @@ void TCompTempPlayerController::walkState(float dt) {
 void TCompTempPlayerController::fallState(float dt) {
 
     // Player movement and rotation related method.
-    float yaw, pitch, roll;
+    float yaw, pitch;
     CEntity *player_camera = target_camera;
     TCompTransform *c_my_transform = get<TCompTransform>();
     TCompTransform * trans_camera = player_camera->get<TCompTransform>();
@@ -399,6 +399,11 @@ void TCompTempPlayerController::fallState(float dt) {
         c_my_transform->setYawPitchRoll(new_yaw, pitch);
         c_my_transform->setPosition(c_my_transform->getPosition() + dir * player_accel);
     }   
+}
+
+void TCompTempPlayerController::mergeFallState(float dt)
+{
+    isMergeFalling = true;
 }
 
 /* Player motion movement when is shadow merged, tests included */
@@ -616,6 +621,11 @@ void TCompTempPlayerController::markObjectAsMoving(bool isBeingMoved, VEC3 newDi
     directionMovableObject = VEC3::Zero;
     movingObjectSpeed = 0;
   }
+}
+
+void TCompTempPlayerController::resetMergeFall()
+{
+    isMergeFalling = false;
 }
 
 
@@ -848,7 +858,7 @@ const bool TCompTempPlayerController::onMergeTest(float dt) {
     // If we are not merged.
     if (!isMerged) {
         mergeTest &= stamina > minStaminaChange;
-        //mergeTest &= EngineInput["btShadowMerging"].hasChanged();
+        mergeTest &= EngineInput["btShadowMerging"].hasChanged() || isMergeFalling;
 
         //TMsgSetFSMVariable onFallMsg;
         //onFallMsg.variant.setName("onFallMerge");

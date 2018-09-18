@@ -74,6 +74,7 @@ public:
     BTNode::ERes actionAnimationPressButton(float dt);
     BTNode::ERes actionAnimationGrabEnemy(float dt);
     BTNode::ERes actionStartSMEnemy(float dt);
+    BTNode::ERes actionAnimationGrab(float dt);
 
     BTNode::ERes actionResetTimersCinematicWalkFall(float dt);
     BTNode::ERes actionResetTimersBeforeSMCinematicFallSM(float dt);
