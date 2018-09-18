@@ -124,8 +124,8 @@ void TCompSkeleton::update(float dt) {
 			
 
 			if (rotatingRoot) {
-				Quaternion aux_quaternion = Quaternion::CreateFromYawPitchRoll(deg2rad(45), deg2rad(135), deg2rad(90));
-				model->getSkeleton()->getBone(0)->setRotation(DX2Cal(tmx->getRotation() * Quaternion(aux_quaternion.x, aux_quaternion.y, aux_quaternion.z, aux_quaternion.w)));
+				Quaternion aux_quaternion = Quaternion::CreateFromYawPitchRoll(deg2rad(-90), deg2rad(-90), deg2rad(0));
+				model->getSkeleton()->getBone(0)->setRotation(DX2Cal(aux_quaternion * tmx->getRotation() ));
 				model->getSkeleton()->getBone(0)->calculateState();
 			}
 			else {
@@ -158,8 +158,8 @@ void TCompSkeleton::update(float dt) {
 		if (isExecutingActionAnimation(animationToRootName)) {
 
 			if (rotatingRoot) {
-				Quaternion aux_quaternion = Quaternion::CreateFromYawPitchRoll(deg2rad(45), deg2rad(135), deg2rad(90));
-				model->getSkeleton()->getBone(0)->setRotation(DX2Cal(tmx->getRotation() * Quaternion(aux_quaternion.x, aux_quaternion.y, aux_quaternion.z, aux_quaternion.w)));
+				Quaternion aux_quaternion = Quaternion::CreateFromYawPitchRoll(deg2rad(-90), deg2rad(-90), deg2rad(0));
+				model->getSkeleton()->getBone(0)->setRotation(DX2Cal(aux_quaternion * tmx->getRotation() ));
 				model->getSkeleton()->getBone(0)->calculateState();
 			}
 			else {
