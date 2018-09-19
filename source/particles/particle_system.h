@@ -11,6 +11,14 @@ namespace Particles
     using TParticlesHandle = int;
     using VParticles = std::vector<TParticle>;
     
+    struct TNBurst {
+        float   time;
+        int     count;
+        int     cycles;
+        float   interval;
+        float   i_elapsed = 0;
+    };
+
     struct TCoreSystem : public IResource
     {
         void destroy() override;
@@ -42,16 +50,8 @@ namespace Particles
             float rate_distance = 0.f;
             float variation = 0.1f;
 
-            struct TNBurst {
-                float   time;
-                int     count;
-                int     cycles;
-                float   interval;
-                float   i_elapsed;
-            };
-
-            mutable float time_ratio;
-            mutable std::vector<TNBurst> bursts;
+            float time_ratio;
+            std::vector<TNBurst> bursts;
             // Add Bursts in the future.
         };
 
@@ -75,6 +75,7 @@ namespace Particles
             float angular = 0.f;
             float acceleration = 0.f;
             float wind = 0.f;
+            bool inherit_velocity = false;
         };
 
         struct TNColor {
@@ -119,6 +120,9 @@ namespace Particles
             int initialFrame = 0;              // initial frame
             float frameSpeed = 0.f;            // frame change speed
             float length = 1;
+            float softness = 1;
+
+            std::string tech;
         };
 
         TNSystem        n_system;
@@ -197,6 +201,8 @@ namespace Particles
     class CSystem
     {
     public:
+        
+        bool                _destroy_entity = false;
 
         CSystem(const TCoreSystem* core, CHandle entity);
 
@@ -242,6 +248,9 @@ namespace Particles
         VEC3 _lastSystemPosition;
 
         static TParticlesHandle _lastHandle;
+
+        float time_ratio;
+        std::vector<TNBurst> bursts;
     };
 
 }

@@ -12,6 +12,7 @@ DECL_OBJ_MANAGER("instance", TCompInstance);
 
 void TCompInstance::load(const json& j, TEntityParseContext& ctx) {
 
+    _type = j.value("type", "default");
     _instance_mesh = j.value("mesh", "data/meshes/GeoSphere001.instanced_mesh");
     EngineInstancing.parseInstance(j, ctx);
 }
@@ -25,7 +26,7 @@ void TCompInstance::registerMsgs() {
 void TCompInstance::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
     TCompTransform * self_transform = get<TCompTransform>();
-    _index = EngineInstancing.addInstance(_instance_mesh, self_transform->asMatrix());
+    _index = EngineInstancing.addInstance(_instance_mesh, _type, self_transform->asMatrix());
 }
 
 void TCompInstance::onMsgEntityCreated(const TMsgEntityCreated& msg) {

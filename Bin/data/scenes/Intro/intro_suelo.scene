@@ -30,7 +30,7 @@
           ,
           "materials":
           [
-            "data/materials/mix.material"
+            "data/materials/mix_intro1.material"
           ]
         }
       ]
@@ -67,7 +67,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_suelo_intro.material"
+            "data/materials/mix_intro2.material"
           ]
         }
       ]

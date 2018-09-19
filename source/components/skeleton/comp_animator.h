@@ -13,7 +13,7 @@ class TCompAnimator : public TCompBase
 public:
 
 	enum EAnimation { DEFAULT = 0 };
-	enum EAnimationType { ACTION = 0, CYCLIC };
+	enum EAnimationType { ACTION = 0, CYCLIC, CYCLIC_PARTIAL };
 	enum EAnimationSize { SINGLE = 0, DOUBLE };
 
 	struct AnimationSet {
@@ -60,6 +60,8 @@ public:
 	bool isComposed(EAnimation animation);
 	EAnimation actualAnimation();
 	bool isPlayingAnimation(EAnimation animation);
+
+	void removeAction(EAnimation animation);
 
 	EAnimation getAnimationByName(std::string animation_name);
 	float getAnimationDuration(EAnimation animation);

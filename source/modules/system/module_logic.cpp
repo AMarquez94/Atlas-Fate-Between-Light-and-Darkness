@@ -149,7 +149,8 @@ void CModuleLogic::publishClasses() {
     SLB::Class<TCompAIPatrol>("AIPatrol", m)
         .comment("This is our wrapper of the patrol controller")
         .set("launchInhibitor", &TCompAIPatrol::launchInhibitor)
-		.set("attackPlayer", &TCompAIPatrol::attackPlayer);
+		.set("attackPlayer", &TCompAIPatrol::attackPlayer)
+        .set("playStepParticle", &TCompAIPatrol::playStepParticle);
 
     SLB::Class<TCompTransform>("Transform", m)
         .comment("This is our wrapper of the transform controller")
@@ -259,6 +260,7 @@ void CModuleLogic::publishClasses() {
     m->set("sleep", SLB::FuncCall::create(&sleep));
     m->set("cinematicModeToggle", SLB::FuncCall::create(&cinematicModeToggle));
     m->set("isCheckpointSaved", SLB::FuncCall::create(&isCheckpointSaved));
+    m->set("destroyHandle", SLB::FuncCall::create(&destroyHandle));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -419,7 +421,7 @@ CModuleParticles * getParticles() { return EngineParticles.getPointer(); }
 TCompTempPlayerController * getPlayerController()
 {
     TCompTempPlayerController * playerController = nullptr;
-    CEntity* e = getEntityByName("The Player");
+    CEntity* e = EngineEntities.getPlayerHandle();
     if (e) {
         playerController = e->get<TCompTempPlayerController>();
     }
@@ -478,38 +480,38 @@ void pauseGame(bool pause) {
 
 void infiniteStamineToggle() {
     TMsgInfiniteStamina msg;
-    CHandle h = getEntityByName("The Player");
+    CHandle h = EngineEntities.getPlayerHandle();
     h.sendMsg(msg);
 }
 
 void immortal() {
-    CHandle h = getEntityByName("The Player");
+    CHandle h = EngineEntities.getPlayerHandle();
     TMsgPlayerImmortal msg;
     h.sendMsg(msg);
 }
 
 void inShadows() {
-    CHandle h = getEntityByName("The Player");
+    CHandle h = EngineEntities.getPlayerHandle();
     TMsgPlayerInShadows msg;
     h.sendMsg(msg);
 }
 
 void speedBoost(const float speed) {
-    CHandle h = getEntityByName("The Player");
+    CHandle h = EngineEntities.getPlayerHandle();
     TMsgSpeedBoost msg;
     msg.speedBoost = speed;
     h.sendMsg(msg);
 }
 
 void playerInvisible() {
-    CHandle h = getEntityByName("The Player");
+    CHandle h = EngineEntities.getPlayerHandle();
     TMsgPlayerInvisible msg;
     h.sendMsg(msg);
 }
 
 void noClipToggle()
 {
-    CHandle h = getEntityByName("The Player");
+    CHandle h = EngineEntities.getPlayerHandle();
     TMsgSystemNoClipToggle msg;
     h.sendMsg(msg);
 }
@@ -597,7 +599,7 @@ void cinematicModeToggle() {
     TMsgPlayerAIEnabled msg;
     msg.state = "cinematic";
     msg.enableAI = true;
-    CHandle h = getEntityByName("The Player");
+    CHandle h = EngineEntities.getPlayerHandle();
     h.sendMsg(msg);
 }
 
@@ -605,6 +607,13 @@ bool isCheckpointSaved()
 {
     CModuleGameManager gameManager = CEngine::get().getGameManager();
     return gameManager.isCheckpointSaved();
+}
+
+void destroyHandle(unsigned int h)
+{
+    CHandle handle;
+    handle.fromUnsigned(h);
+    handle.destroy();
 }
 
 SoundEvent playEvent(const std::string & name)
@@ -629,7 +638,7 @@ void setTutorialPlayerState(bool active, const std::string & stateName)
 
 void setCinematicPlayerState(bool active, const std::string & stateName)
 {
-    CHandle h_tutorial = getEntityByName("The Player");
+    CHandle h_tutorial = EngineEntities.getPlayerHandle();
     TMsgPlayerAIEnabled msg;
     msg.state = stateName;
     msg.enableAI = active;
@@ -673,7 +682,7 @@ void postFXToggle() {
 }
 
 void pausePlayerToggle() {
-    CEntity* p = getEntityByName("The Player");
+    CEntity* p = EngineEntities.getPlayerHandle();
     TCompTempPlayerController* player = p->get<TCompTempPlayerController>();
 
     TMsgScenePaused stopPlayer;
@@ -778,7 +787,7 @@ void sendOrderToDrone(const std::string & droneName, VEC3 position)
     CEntity* drone = getEntityByName(droneName);
     TMsgOrderReceived msg;
     msg.position = position;
-    msg.hOrderSource = getEntityByName("The Player");
+    msg.hOrderSource = EngineEntities.getPlayerHandle();
     drone->sendMsg(msg);
 }
 

@@ -26,7 +26,7 @@ void TCompPatrolAnimator::debugInMenu() {
 		playAnimation(EAnimation::DIE, speed);
 	}
 	if (ImGui::SmallButton("proves")) {
-		playAnimation(EAnimation::BEING_REPARED, speed);
+		playAnimation(EAnimation::TURN_RIGHT, speed);
 	}
 	//playAnimation(EAnimation::BEING_REPARED, speed);
 	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);
@@ -115,24 +115,26 @@ void TCompPatrolAnimator::initializeAnimations() {
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::TURN_RIGHT,
-		EAnimationType::CYCLIC,
+		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
 		"turn_right",
 		"",
 		1.0f,
 		1.0f,
-		false
+		false,
+		true
 	);
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::TURN_LEFT,
-		EAnimationType::CYCLIC,
+		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
 		"turn_right",
 		"",
 		1.0f,
 		1.0f,
-		false
+		false,
+		true
 	);
 
 	initializeAnimation(

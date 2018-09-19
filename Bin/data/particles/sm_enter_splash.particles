@@ -51,7 +51,7 @@
 		"collision": false
 	},
 	"renderer": {
-			"mode": "billboard",
+			"mode": "vertical",
 			"texture": "data/textures/particles/shadow_smoke.dds",
       "frame_size" : "2 2",
       "initial_frame" : 0,
@@ -59,7 +59,7 @@
       "frame_speed" : 2.0
 	},
   "size" : {
-    "scale" : 1.0,
+    "scale" : 0.6,
     "scale_variation" : 0.2,
     "sizes" : [
 		  [0.0, "1.5 3 1.5"],

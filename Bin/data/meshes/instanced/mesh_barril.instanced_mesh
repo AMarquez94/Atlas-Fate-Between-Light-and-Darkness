@@ -1,0 +1,5 @@
+{
+  "instanced_mesh" : "data/meshes/mesh_barril.mesh",
+  "instances_type" : "Instance",
+  "num_instances_reserved" : 20
+}

@@ -9,12 +9,12 @@
 		"start_rotation": "0 0 0",
 		"random_rotation": 0.0,
 		"start_color": "1 0 0 1",
-		"gravity": -0.2,
+		"gravity": -0.0,
 		"simulation_speed": 1.0,
 		"max_particles": 100
 	},
 	"emission": {
-		"rate_time": 1.0,
+		"rate_time": 50.0,
 		"rate_distance": 0.0,
 		"variation" : 0.0,
 		"interval" : 0.32

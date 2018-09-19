@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_zone_a",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -9,6 +9,7 @@
 			"data/scenes/Intro/player_intro_fsm.scene",
 			"data/scenes/main_cameras.scene",
 			"data/scenes/Intro/intro_test_instancing.scene",
+			"data/scenes/Intro/cinematic.scene",
 			"data/scenes/Map_Intro/checkpoints.scene",
 			"data/scenes/Map_Intro/movable_objects.scene",
 			"data/scenes/Intro/intro_columnas.scene",
@@ -25,12 +26,15 @@
 			"data/scenes/intro_tejados.scene",
 			"data/scenes/intro_valla.scene",
 			"data/scenes/intro_colliders_valla.scene",
-			"data/scenes/intro_prueba_neones.scene",
+
+			"data/scenes/neones.scene",
+
 			"data/scenes/intro_tubo_capsulas.scene",
 			"data/scenes/intro_farolas.scene",
 			"data/scenes/intro_patrol_atrapado.scene",
 			"data/scenes/intro_edificios_segunda_1.scene",
 			"data/scenes/intro_edificios_segunda_2.scene",
+
 			"data/scenes/intro_pozo.scene",
 			"data/scenes/intro_barra_capsulas.scene",
 			"data/scenes/Intro/intro_suelo.scene",
@@ -42,11 +46,11 @@
 			"data/scenes/intro_props.scene",
 			"data/scenes/Intro/tutorial.scene",
 			"data/scenes/Intro/enemy.scene",
-			"data/scenes/Intro/cinematic.scene",
 			"data/scenes/Intro/intro_checkpoints.scene",
 			"data/scenes/Intro/intro_trigger_kill.scene",
 			"data/scenes/Intro/intro_buttons.scene",
-			"data/scenes/Intro/intro_particles.scene"
+			"data/scenes/Intro/intro_particles.scene",
+			"data/scenes/Intro/intro_grass.scene"
 		]
 	},
 	"scene_map_intro": {
@@ -145,7 +149,7 @@
 	"scene_basilic_courtyard": {
 		"static_data": {
 			"initial_script": "basilic_courtyard",
-			"navmesh": "data/navmeshes/basilic_courtyard_navmesh.bin"
+			"navmesh": "data/navmeshes/basilic_courtyard.bin"
 		},
 		"scene_group": [
 			"data/scenes/Basilic_courtyard/player.scene",
@@ -172,7 +176,7 @@
 			"data/scenes/BC_maderas_whitebox.scene",
 
 			"data/scenes/Basilic_courtyard/BC_fuente.scene",
-			"data/scenes/Basilic_courtyard/BC_suelo.scene"
+			"data/scenes/suelo_mezquita.scene"
 
 
 

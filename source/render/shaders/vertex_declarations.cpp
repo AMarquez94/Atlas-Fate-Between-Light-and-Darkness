@@ -140,9 +140,9 @@ bool CVertexDeclManager::create() {
             { "TEXCOORD", 3, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 16, D3D11_INPUT_PER_VERTEX_DATA, 1 },    // world1
             { "TEXCOORD", 4, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 32, D3D11_INPUT_PER_VERTEX_DATA, 1 },    // world2
             { "TEXCOORD", 5, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 48, D3D11_INPUT_PER_VERTEX_DATA, 1 },    // world3
-            { "TEXCOORD", 6, DXGI_FORMAT_R32G32_FLOAT, 1, 64, D3D11_INPUT_PER_VERTEX_DATA, 1 },    // MinUv
-            { "TEXCOORD", 7, DXGI_FORMAT_R32G32_FLOAT, 1, 72, D3D11_INPUT_PER_VERTEX_DATA, 1 },    // MaxUv
-            { "TEXCOORD", 8, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 80, D3D11_INPUT_PER_VERTEX_DATA, 1 },    // life, time_blending_out
+            { "TEXCOORD", 6, DXGI_FORMAT_R32G32B32_FLOAT, 1, 64, D3D11_INPUT_PER_VERTEX_DATA, 1 },    // MinUv
+            { "TEXCOORD", 7, DXGI_FORMAT_R32G32B32_FLOAT, 1, 76, D3D11_INPUT_PER_VERTEX_DATA, 1 },    // MaxUv
+            { "TEXCOORD", 8, DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 88, D3D11_INPUT_PER_VERTEX_DATA, 1 },    // life, time_blending_out
         };
         createNew("CpuParticleInstance", layout, ARRAYSIZE(layout));
     }
@@ -177,7 +177,10 @@ bool CVertexDeclManager::create() {
 
     {
         static D3D11_INPUT_ELEMENT_DESC layout[] = {
-            { "POSITION", 1, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+            { "TEXCOORD", 2, DXGI_FORMAT_R32G32B32A32_FLOAT, 0,  0, D3D11_INPUT_PER_VERTEX_DATA, 0 },    // world0
+            { "TEXCOORD", 3, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 16, D3D11_INPUT_PER_VERTEX_DATA, 0 },    // world1
+            { "TEXCOORD", 4, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 32, D3D11_INPUT_PER_VERTEX_DATA, 0 },    // world2
+            { "TEXCOORD", 5, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 48, D3D11_INPUT_PER_VERTEX_DATA, 0 },    // world3
         };
         createNew("InstancedPos", layout, ARRAYSIZE(layout));
     }

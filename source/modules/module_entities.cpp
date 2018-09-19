@@ -121,6 +121,17 @@ void CModuleEntities::render()
     ImGui::Separator();
 }
 
+CHandle CModuleEntities::getPlayerHandle() {
+
+	if (player_handle.isValid()) {
+		return player_handle;
+	}
+	else {
+		player_handle = getEntityByName("The Player");
+		return player_handle;
+	}
+}
+
 void CModuleEntities::renderDebugOfComponents() {
     PROFILE_FUNCTION("renderDebugOfComponents");
     // Change the technique to some debug solid
