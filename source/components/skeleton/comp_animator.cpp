@@ -86,6 +86,9 @@ bool TCompAnimator::playAnimationConverted(EAnimation animation, float speed) {
 		    compSkeleton->executeActionAnimation(anim1id, aux_speed, rootMov, rootRot);
             return true;
 		    break;
+		case EAnimationType::CYCLIC_PARTIAL:
+			compSkeleton->playPartialCyclicAnimation(anim1id);
+			break;
         default:
             return false;
             break;
@@ -174,4 +177,12 @@ bool TCompAnimator::isPlayingAnimation(EAnimation animation) {
 TCompAnimator::EAnimation TCompAnimator::getAnimationByName(std::string animation_name) {
 
 	return stringToAnimationsMap[animation_name];
+}
+
+void TCompAnimator::removeAction(EAnimation animation) {
+
+	AnimationSet aux_animSet = animationsMap[animation];
+	CEntity* e = ownHandle;
+	TCompSkeleton * compSkeleton = e->get<TCompSkeleton>();
+	compSkeleton->removeActionAnimation(aux_animSet.animationId);
 }
