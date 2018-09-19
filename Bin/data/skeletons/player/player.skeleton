@@ -80,6 +80,8 @@
 		{ "name" : "sm_enter"},
 		{ "name" : "open_weapons"},
 		{ "name" : "touch_enemy"},
+		{ "name" : "sonda_normal"},
+		{ "name" : "sonda_crouch"},
 		{ "name" : "touching_enemy"},
 		{ "name" : "sm_pose"},
 		{ "name" : "land_soft"},

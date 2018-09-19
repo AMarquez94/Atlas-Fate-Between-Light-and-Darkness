@@ -40,7 +40,12 @@ void TCompPlayerAnimator::debugInMenu() {
 	if (ImGui::SmallButton("stop SM")) {
 		removeAction((TCompAnimator::EAnimation)EAnimation::SM_ENTER);
 	}
-
+	if (ImGui::SmallButton("sonda")) {
+		playAnimation(EAnimation::SONDA_NORMAL, speed);
+	}
+	if (ImGui::SmallButton("sonda_crouch")) {
+		playAnimation(EAnimation::SONDA_CROUCH, speed);
+	}
 
 
 	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);
@@ -155,6 +160,28 @@ void TCompPlayerAnimator::initializeAnimations() {
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
 		"crouch_walk",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::SONDA_NORMAL,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"sonda_normal",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::SONDA_CROUCH,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"sonda_crouch",
 		"",
 		1.0f,
 		1.0f,

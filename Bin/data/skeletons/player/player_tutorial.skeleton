@@ -19,6 +19,8 @@
 		{ "name" : "open_weapons"},
 		{ "name" : "land_soft"},
 		{ "name" : "touch_enemy"},
+		{ "name" : "sonda_normal"},
+		{ "name" : "sonda_crouch"},
 		{ "name" : "touching_enemy"},
 		{ "name" : "die"},
 		{ "name" : "dead"},
