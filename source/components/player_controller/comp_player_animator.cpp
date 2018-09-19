@@ -34,9 +34,18 @@ void TCompPlayerAnimator::debugInMenu() {
     if (ImGui::SmallButton("SM_ENTER")) {
         playAnimation(EAnimation::SM_ENTER, speed);
     }
-    if (ImGui::SmallButton("SM_POSE")) {
-        playAnimation(EAnimation::SM_POSE, speed);
+    if (ImGui::SmallButton("OPEN_WEAPONS")) {
+        playAnimation(EAnimation::OPEN_WEAPONS, speed);
     }
+	if (ImGui::SmallButton("stop SM")) {
+		removeAction((TCompAnimator::EAnimation)EAnimation::SM_ENTER);
+	}
+	if (ImGui::SmallButton("sonda")) {
+		playAnimation(EAnimation::SONDA_NORMAL, speed);
+	}
+	if (ImGui::SmallButton("sonda_crouch")) {
+		playAnimation(EAnimation::SONDA_CROUCH, speed);
+	}
 
 
 	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);
@@ -158,6 +167,28 @@ void TCompPlayerAnimator::initializeAnimations() {
 	);
 
 	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::SONDA_NORMAL,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"sonda_normal",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::SONDA_CROUCH,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"sonda_crouch",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::CROUCH_WALK_SLOW,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
@@ -271,6 +302,17 @@ void TCompPlayerAnimator::initializeAnimations() {
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
 		"touching_enemy",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::OPEN_WEAPONS,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"open_weapons",
 		"",
 		1.0f,
 		1.0f,
