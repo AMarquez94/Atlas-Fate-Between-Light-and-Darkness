@@ -14,6 +14,22 @@
   {
     "entity":
     {
+      "name": "mesh_neon_mcv"
+      ,
+      "prefab": "data/prefabs/neon_mcv.prefab"
+      ,
+      "transform":
+      {
+        "pos": "53.8551 0.0617135 27.4016"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_neon_mcv001"
       ,
       "prefab": "data/prefabs/neon_mcv.prefab"
@@ -30,31 +46,15 @@
   {
     "entity":
     {
-      "name": "mesh_neon_mcv002"
+      "name": "mesh_neon_rectangulo_amarillo"
       ,
-      "prefab": "data/prefabs/neon_mcv.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-15.9984 2.77022 22.9676"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_mcv003"
-      ,
-      "prefab": "data/prefabs/neon_mcv.prefab"
+      "prefab": "data/prefabs/neon_rectangulo_amarillo.prefab"
       ,
       "transform":
       {
-        "pos": "-3.17517 8.1698 7.17591"
+        "pos": "81.3722 0.0 26.1656"
         ,
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
@@ -84,9 +84,9 @@
       ,
       "transform":
       {
-        "pos": "-22.1687 5.9661 26.647"
+        "pos": "-23.0292 1.89914 29.5168"
         ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
     }
   }
@@ -94,13 +94,13 @@
   {
     "entity":
     {
-      "name": "mesh_neon_rectangulo_amarillo003"
+      "name": "mesh_neon_rectangulo_azul"
       ,
-      "prefab": "data/prefabs/neon_rectangulo_amarillo.prefab"
+      "prefab": "data/prefabs/neon_rectangulo_azul.prefab"
       ,
       "transform":
       {
-        "pos": "-16.6555 1.5178 -32.6184"
+        "pos": "76.4131 0.0 33.2025"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -126,15 +126,15 @@
   {
     "entity":
     {
-      "name": "mesh_neon_rectangulo_azul003"
+      "name": "mesh_neon_rectangulo_verde"
       ,
-      "prefab": "data/prefabs/neon_rectangulo_azul.prefab"
+      "prefab": "data/prefabs/neon_rectangulo_verde.prefab"
       ,
       "transform":
       {
-        "pos": "-11.4088 7.88968 37.5654"
+        "pos": "77.014 0.0 38.8274"
         ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
@@ -148,41 +148,9 @@
       ,
       "transform":
       {
-        "pos": "-7.58836 7.44339 42.6389"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_rectangulo_verde002"
-      ,
-      "prefab": "data/prefabs/neon_rectangulo_verde.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-14.6771 8.4142 5.43646"
+        "pos": "-5.88595 1.74 42.0511"
         ,
         "rotation": "0.0 -1.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_rectangulo_verde003"
-      ,
-      "prefab": "data/prefabs/neon_rectangulo_verde.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-14.6684 2.24469 -12.589"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
@@ -222,31 +190,15 @@
   {
     "entity":
     {
-      "name": "mesh_neon_redondo_amarillo001"
+      "name": "mesh_neon_redondo_amarillo"
       ,
       "prefab": "data/prefabs/neon_redondo_amarillo.prefab"
       ,
       "transform":
       {
-        "pos": "-3.22858 6.12245 9.44812"
+        "pos": "84.0814 0.530519 25.9274"
         ,
-        "rotation": "0.5 -0.5 -0.5 0.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_redondo_amarillo002"
-      ,
-      "prefab": "data/prefabs/neon_redondo_amarillo.prefab"
-      ,
-      "transform":
-      {
-        "pos": "14.0355 7.75797 33.538"
-        ,
-        "rotation": "0.5 0.5 -0.5 0.5"
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
       }
     }
   }
@@ -260,9 +212,25 @@
       ,
       "transform":
       {
-        "pos": "-20.6567 0.915406 -33.3075"
+        "pos": "-20.6567 1.77272 -33.3075"
         ,
         "rotation": "0.5 0.5 -0.5 0.5"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_redondo_azul"
+      ,
+      "prefab": "data/prefabs/neon_redondo_azul.prefab"
+      ,
+      "transform":
+      {
+        "pos": "79.5543 0.0 33.0724"
+        ,
+        "rotation": "-0.707108 -1.8966e-07 4.00395e-07 -0.707106"
       }
     }
   }
@@ -286,61 +254,13 @@
   {
     "entity":
     {
-      "name": "mesh_neon_redondo_azul002"
-      ,
-      "prefab": "data/prefabs/neon_redondo_azul.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-16.8005 2.57617 29.6394"
-        ,
-        "rotation": "0.500001 0.499999 -0.500001 0.499999"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_redondo_azul003"
-      ,
-      "prefab": "data/prefabs/neon_redondo_azul.prefab"
-      ,
-      "transform":
-      {
-        "pos": "11.5192 0.981462 29.6329"
-        ,
-        "rotation": "0.5 0.499999 -0.500001 0.499999"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_redondo_azul004"
-      ,
-      "prefab": "data/prefabs/neon_redondo_azul.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-20.8386 2.57617 29.6394"
-        ,
-        "rotation": "0.500001 0.499999 -0.500001 0.499999"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_neon_redondo_azul005"
       ,
       "prefab": "data/prefabs/neon_redondo_azul.prefab"
       ,
       "transform":
       {
-        "pos": "-21.3969 10.5852 -8.57124"
+        "pos": "-20.8775 10.5852 -8.76021"
         ,
         "rotation": "-0.500001 0.499999 -0.500001 -0.499999"
       }
@@ -350,47 +270,15 @@
   {
     "entity":
     {
-      "name": "mesh_neon_redondo_azul006"
-      ,
-      "prefab": "data/prefabs/neon_redondo_azul.prefab"
-      ,
-      "transform":
-      {
-        "pos": "3.36787 8.53759 -22.5693"
-        ,
-        "rotation": "-3.68084e-07 0.707106 -0.707108 -1.99495e-07"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_redondo_verde001"
+      "name": "mesh_neon_redondo_verde"
       ,
       "prefab": "data/prefabs/neon_redondo_verde.prefab"
       ,
       "transform":
       {
-        "pos": "-5.60729 2.84463 40.6625"
+        "pos": "80.5915 0.0 38.9933"
         ,
-        "rotation": "0.0 0.707107 -0.707107 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_redondo_verde002"
-      ,
-      "prefab": "data/prefabs/neon_redondo_verde.prefab"
-      ,
-      "transform":
-      {
-        "pos": "12.4808 4.0007 16.9866"
-        ,
-        "rotation": "0.0 0.707107 -0.707107 0.0"
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
       }
     }
   }
@@ -414,15 +302,15 @@
   {
     "entity":
     {
-      "name": "mesh_neon_amarillo_007"
+      "name": "mesh_neon_amarilllo_3"
       ,
-      "prefab": "data/prefabs/neon_amarillo_4.prefab"
+      "prefab": "data/prefabs/neon_amarillo_3.prefab"
       ,
       "transform":
       {
-        "pos": "-16.3963 8.64997 37.6099"
+        "pos": "71.7663 0.0 25.8817"
         ,
-        "rotation": "0.0 -0.67559 0.0 -0.737277"
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
@@ -430,15 +318,79 @@
   {
     "entity":
     {
-      "name": "mesh_neon_amarillo_010"
+      "name": "mesh_neon_amarilllo_004"
+      ,
+      "prefab": "data/prefabs/neon_amarillo_3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "10.0103 2.05322 -1.16753"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_amarillo_2"
       ,
       "prefab": "data/prefabs/neon_amarillo_2.prefab"
       ,
       "transform":
       {
-        "pos": "-18.1788 8.7354 13.7275"
+        "pos": "68.3616 0.0 25.868"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_amarillo_4"
+      ,
+      "prefab": "data/prefabs/neon_amarillo_4.prefab"
+      ,
+      "transform":
+      {
+        "pos": "74.7457 0.0 25.7787"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_amarillo_5"
+      ,
+      "prefab": "data/prefabs/neon_amarillo_5.prefab"
+      ,
+      "transform":
+      {
+        "pos": "77.1328 0.0 25.9971"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_amarillo_007"
+      ,
+      "prefab": "data/prefabs/neon_amarillo_4.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-14.3884 8.28421 37.6099"
+        ,
+        "rotation": "0.0 -0.67559 0.0 -0.737277"
       }
     }
   }
@@ -468,7 +420,7 @@
       ,
       "transform":
       {
-        "pos": "-16.1315 0.61483 -2.6986"
+        "pos": "-14.8174 2.47916 -7.38071"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -484,9 +436,73 @@
       ,
       "transform":
       {
-        "pos": "4.72425 8.36394 -27.0147"
+        "pos": "4.46336 9.0514 -27.1084"
         ,
-        "rotation": "0.0 -0.707106 0.0 -0.707107"
+        "rotation": "-0.707107 0.0 0.707106 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_azul_1"
+      ,
+      "prefab": "data/prefabs/neon_azul_1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "61.8281 0.0 33.0494"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_azul_2"
+      ,
+      "prefab": "data/prefabs/neon_azul_2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "65.46 0.0 32.8777"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_azul_3"
+      ,
+      "prefab": "data/prefabs/neon_azul_3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "68.2915 0.0 32.9253"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_azul_4"
+      ,
+      "prefab": "data/prefabs/neon_azul_4.prefab"
+      ,
+      "transform":
+      {
+        "pos": "71.2199 0.0 33.0211"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
@@ -500,9 +516,9 @@
       ,
       "transform":
       {
-        "pos": "-17.9967 10.2459 33.7701"
+        "pos": "-17.8987 10.2459 33.7701"
         ,
-        "rotation": "0.5 -0.5 -0.5 0.5"
+        "rotation": "0.5 -0.5 0.5 -0.5"
       }
     }
   }
@@ -548,9 +564,9 @@
       ,
       "transform":
       {
-        "pos": "-10.5698 1.28109 15.3648"
+        "pos": "8.44236 1.28109 13.6251"
         ,
-        "rotation": "0.0 0.0 -0.707107 -0.707107"
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
@@ -590,22 +606,6 @@
   {
     "entity":
     {
-      "name": "mesh_neon_azul_011"
-      ,
-      "prefab": "data/prefabs/neon_azul_1.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-19.2917 4.13478 -6.6858"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_neon_azul_012"
       ,
       "prefab": "data/prefabs/neon_azul_2.prefab"
@@ -628,9 +628,41 @@
       ,
       "transform":
       {
-        "pos": "4.60065 7.01607 -32.4536"
+        "pos": "3.46291 2.06661 -22.4056"
         ,
-        "rotation": "0.0 0.707106 0.0 -0.707107"
+        "rotation": "0.0 -1.0 0.0 7.90754e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_azul_014"
+      ,
+      "prefab": "data/prefabs/neon_azul_1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-25.9105 1.63882 -70.1654"
+        ,
+        "rotation": "-1.50996e-07 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_baby"
+      ,
+      "prefab": "data/prefabs/neon_baby.prefab"
+      ,
+      "transform":
+      {
+        "pos": "57.2731 0.0 29.1927"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
@@ -654,13 +686,45 @@
   {
     "entity":
     {
+      "name": "mesh_neon_baby004"
+      ,
+      "prefab": "data/prefabs/neon_baby.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-14.6453 3.43416 -16.4043"
+        ,
+        "rotation": "0.0 1.50996e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_ignatius"
+      ,
+      "prefab": "data/prefabs/neon_ignatius.prefab"
+      ,
+      "transform":
+      {
+        "pos": "61.8882 0.0 25.5994"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_neon_ignatius001"
       ,
       "prefab": "data/prefabs/neon_ignatius.prefab"
       ,
       "transform":
       {
-        "pos": "-15.9439 0.835648 14.1511"
+        "pos": "-15.9439 2.41708 14.1511"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -686,13 +750,61 @@
   {
     "entity":
     {
-      "name": "mesh_neon_verde_005"
+      "name": "mesh_neon_verde_1"
       ,
       "prefab": "data/prefabs/neon_verde_1.prefab"
       ,
       "transform":
       {
-        "pos": "8.29978 4.21762 13.7386"
+        "pos": "61.8693 0.0 38.8914"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_verde_2"
+      ,
+      "prefab": "data/prefabs/neon_verde_2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "64.8486 0.0 39.0531"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_verde_3"
+      ,
+      "prefab": "data/prefabs/neon_verde_3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "68.1686 0.0 39.0516"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_verde_4"
+      ,
+      "prefab": "data/prefabs/neon_verde_4.prefab"
+      ,
+      "transform":
+      {
+        "pos": "71.6525 0.0 39.4301"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -708,9 +820,57 @@
       ,
       "transform":
       {
-        "pos": "3.36974 11.4726 -20.0103"
+        "pos": "3.36974 11.4726 -21.7974"
         ,
         "rotation": "0.5 -0.5 -0.5 0.5"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_verde_008"
+      ,
+      "prefab": "data/prefabs/neon_verde_1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.7023 9.25178 -6.67476"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_verde_011"
+      ,
+      "prefab": "data/prefabs/neon_verde_3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-4.46032 3.91748 -39.6726"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_cartel_amarillo_1"
+      ,
+      "prefab": "data/prefabs/neon_amarillo_1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "65.5107 0.0 25.8671"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
@@ -728,6 +888,388 @@
         ,
         "rotation": "0.0 1.50996e-07 0.0 -1.0"
       }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "neon_cartel_amarillo_003"
+      ,
+      "prefab": "data/prefabs/neon_amarillo_1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-4.10597 1.55804 9.43791"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot001"
+      ,
+      "transform":
+      {
+        "pos": "8.68117 0.681507 12.5603"
+        ,
+        "lookat": "9.06763 0.930742 30.1268"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 17.5725
+        ,
+        "angle": 34.0
+        ,
+        "inner_cut": 14.6
+        ,
+        "z_far": 17.5725
+        ,
+        "volume": false
+        ,
+        "color": "0.0392157 0.0862745 1.0 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot001.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot002"
+      ,
+      "transform":
+      {
+        "pos": "-5.83897 1.28039 43.2541"
+        ,
+        "lookat": "-8.40927 1.50302 28.7666"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 14.7154
+        ,
+        "angle": 21.5
+        ,
+        "inner_cut": 9.3
+        ,
+        "z_far": 14.7154
+        ,
+        "volume": false
+        ,
+        "color": "0.0156863 0.388235 0.0 1.0"
+        ,
+        "intensity": 1.7
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot002.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot003"
+      ,
+      "transform":
+      {
+        "pos": "-22.6582 1.39575 29.258"
+        ,
+        "lookat": "-8.93422 0.715489 27.1021"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 13.9089
+        ,
+        "angle": 21.5
+        ,
+        "inner_cut": 9.3
+        ,
+        "z_far": 13.9089
+        ,
+        "volume": false
+        ,
+        "color": "0.768628 0.54902 0.0705882 1.0"
+        ,
+        "intensity": 1.7
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot003.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot004"
+      ,
+      "transform":
+      {
+        "pos": "9.96431 1.99313 -1.22002"
+        ,
+        "lookat": "-3.08762 0.356502 -5.01581"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 13.6909
+        ,
+        "angle": 21.5
+        ,
+        "inner_cut": 9.3
+        ,
+        "z_far": 13.6909
+        ,
+        "volume": false
+        ,
+        "color": "0.768628 0.54902 0.0705882 1.0"
+        ,
+        "intensity": 1.7
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot004.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot005"
+      ,
+      "transform":
+      {
+        "pos": "-25.9549 1.39575 -70.8061"
+        ,
+        "lookat": "-25.0335 0.361071 -54.8611"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 16.005
+        ,
+        "angle": 21.5
+        ,
+        "inner_cut": 9.3
+        ,
+        "z_far": 16.005
+        ,
+        "volume": false
+        ,
+        "color": "0.768628 0.54902 0.0705882 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot005.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot006"
+      ,
+      "transform":
+      {
+        "pos": "-3.83329 1.39575 10.115"
+        ,
+        "lookat": "-4.18439 0.715487 -5.21896"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 15.3531
+        ,
+        "angle": 21.5
+        ,
+        "inner_cut": 9.3
+        ,
+        "z_far": 15.3531
+        ,
+        "volume": false
+        ,
+        "color": "0.768628 0.54902 0.0705882 1.0"
+        ,
+        "intensity": 1.7
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot006.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
     }
   }
 ]
