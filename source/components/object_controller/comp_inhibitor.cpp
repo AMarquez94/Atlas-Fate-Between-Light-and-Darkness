@@ -16,7 +16,7 @@ void TCompInhibitor::onMsgEntityCreated(const TMsgEntityCreated & msg)
     TCompTransform *c_my_trans = get<TCompTransform>();
     c_my_trans->setPosition(c_parent_trans->getPosition() + VEC3(0, 2, 0));
 
-    CEntity* player = getEntityByName("The Player");
+    CEntity* player = EngineEntities.getPlayerHandle();
     TCompTransform* playerPos = player->get<TCompTransform>();
     dest = playerPos->getPosition() + VEC3(0,1.5f,0);
 
@@ -70,7 +70,7 @@ void TCompInhibitor::update(float dt) {
 
 
             if (!playerWasInhibited) {
-                CHandle player = getEntityByName("The Player");
+                CHandle player = EngineEntities.getPlayerHandle();
                 if (player.isValid()) {
                     TMsgInhibitorShot msg;
                     msg.h_sender = CHandle(this).getOwner();
@@ -88,7 +88,7 @@ void TCompInhibitor::update(float dt) {
                 EngineParticles.launchSystem("data/particles/def_projectile_explosion_trails.particles", CHandle(this).getOwner());
                 EngineParticles.launchSystem("data/particles/def_projectile_explosion_trails_large.particles", CHandle(this).getOwner());
                 execDelayedScript("destroyHandle(" + CHandle(this).getOwner().asString() + ")", 6);
-                CEntity * player = getEntityByName("The Player");
+                CEntity * player = EngineEntities.getPlayerHandle();
 
                 TCompTransform* mypos = player->get<TCompTransform>();
                 //EngineParticles.launchDynamicSystem("data/particles/def_amb_ground_slam.particles", mypos->getPosition());

@@ -48,7 +48,7 @@ void CModuleGameConsole::update(float delta)
         *command = 0;
         historicCommandsPos = (int)historicCommands.size();
 
-        CHandle hPlayer = getEntityByName("The Player");
+        CHandle hPlayer = EngineEntities.getPlayerHandle();
         if (hPlayer.isValid()) {
             CEntity * ePlayer = hPlayer;
             TMsgConsoleOn msg;
