@@ -86,6 +86,7 @@ namespace Particles
             else if (emitterType == "circle") cps->n_shape.type = TCoreSystem::TNShape::Circle;
             else                              cps->n_shape.type = TCoreSystem::TNShape::Point;
 
+            cps->n_shape.shell_emit = shape.value("shell", false);
             cps->n_shape.size = loadVEC3(shape.value("size", "1 1 1"));
             cps->n_shape.angle = deg2rad(shape.value("angle", rad2deg(cps->n_shape.angle)));
         }

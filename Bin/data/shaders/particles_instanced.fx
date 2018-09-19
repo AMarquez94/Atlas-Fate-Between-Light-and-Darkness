@@ -102,7 +102,7 @@ float4 PS_Particles_Soft(
   float  wDepth = dot( camera_front.xyz, (iWorldPos - camera_pos.xyz)) / camera_zfar;
   float  intersect = saturate((zLinear - wDepth) * camera_zfar) * iMaxUv.z;
 	intersect = lerp(1, intersect, iMaxUv.z);
-	
+	//return float4(1,1,1,1);
   float4 finalColor = float4(oDiffuse.rgb * iColorP.rgb, oDiffuse.a * iColorP.a * intersect);
 	return finalColor;
 }
