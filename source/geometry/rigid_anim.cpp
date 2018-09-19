@@ -142,6 +142,8 @@ namespace RigidAnims {
     // keys to interpolate
     if (ut >= 1.0f) {
       // Copy my last key
+	  if (track->num_keys == 0) return false;
+
       *out_key = keys[track->first_key + track->num_keys - 1];
       // Return true only when the whole animation has loop
       return t >= this->total_duration;

@@ -14,5 +14,20 @@
 				"startLightsOn": false
 			}
 		}
-	}
+	}  ,
+  {
+    "entity":
+    {
+      "name": "puerta"
+      ,
+      "prefab": "data/prefabs/puerta_tech.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-0.0 0.0 0.0"
+        ,
+        "rotation": "0.0 0.0 -0.0 1.0"
+      }
+    }
+  }
 ]

@@ -23,6 +23,8 @@ public:
 	std::vector<std::string> object_names;
 	std::vector<CHandle> object_handles;
 
+	bool getNames = false;
+
 	std::map<std::string, int> name_to_id_animations;
 
 	std::string starting_animation;
