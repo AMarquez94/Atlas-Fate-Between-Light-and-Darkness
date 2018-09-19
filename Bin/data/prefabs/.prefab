@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "neones"
+      "name": ""
       ,
       "transform":
       {
@@ -52,9 +52,9 @@
       ,
       "transform":
       {
-        "pos": "11.3478 3.06047 -8.69138"
+        "pos": "-3.17517 8.1698 7.17591"
         ,
-        "rotation": "-0.5 -0.5 0.5 0.5"
+        "rotation": "0.0 -1.0 0.0 0.0"
       }
     }
   }
@@ -110,38 +110,6 @@
   {
     "entity":
     {
-      "name": "mesh_neon_rectangulo_amarillo004"
-      ,
-      "prefab": "data/prefabs/neon_rectangulo_amarillo.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-14.8122 7.08661 5.5003"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_rectangulo_amarillo005"
-      ,
-      "prefab": "data/prefabs/neon_rectangulo_amarillo.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-8.53036 12.1385 4.7809"
-        ,
-        "rotation": "0.0 1.50996e-07 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_neon_rectangulo_azul002"
       ,
       "prefab": "data/prefabs/neon_rectangulo_azul.prefab"
@@ -190,6 +158,38 @@
   {
     "entity":
     {
+      "name": "mesh_neon_rectangulo_verde002"
+      ,
+      "prefab": "data/prefabs/neon_rectangulo_verde.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-14.6771 8.4142 5.43646"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_rectangulo_verde003"
+      ,
+      "prefab": "data/prefabs/neon_rectangulo_verde.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-14.6684 2.24469 -12.589"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_cartel_redondo_amarillo"
       ,
       "prefab": "data/prefabs/cartel_redondo_amarillo.prefab"
@@ -215,6 +215,22 @@
         "pos": "177.764 0.0 -70.1697"
         ,
         "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_redondo_amarillo001"
+      ,
+      "prefab": "data/prefabs/neon_redondo_amarillo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-3.22858 6.12245 9.44812"
+        ,
+        "rotation": "0.5 -0.5 -0.5 0.5"
       }
     }
   }
@@ -340,7 +356,7 @@
       ,
       "transform":
       {
-        "pos": "3.44657 8.14601 -19.3554"
+        "pos": "3.36787 8.53759 -22.5693"
         ,
         "rotation": "-3.68084e-07 0.707106 -0.707108 -1.99495e-07"
       }
@@ -391,22 +407,6 @@
         "pos": "-15.8486 1.28136 6.18476"
         ,
         "rotation": "-0.707107 0.0 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_amarilllo_004"
-      ,
-      "prefab": "data/prefabs/neon_amarillo_3.prefab"
-      ,
-      "transform":
-      {
-        "pos": "8.05526 5.82803 5.59275"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
@@ -468,7 +468,7 @@
       ,
       "transform":
       {
-        "pos": "-14.8174 0.745694 -7.38071"
+        "pos": "-16.1315 0.61483 -2.6986"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -484,9 +484,9 @@
       ,
       "transform":
       {
-        "pos": "4.46336 9.0514 -27.1084"
+        "pos": "4.72425 8.36394 -27.0147"
         ,
-        "rotation": "-0.707107 0.0 0.707106 0.0"
+        "rotation": "0.0 -0.707106 0.0 -0.707107"
       }
     }
   }
@@ -628,9 +628,9 @@
       ,
       "transform":
       {
-        "pos": "3.46291 2.06661 -22.4056"
+        "pos": "4.60065 7.01607 -32.4536"
         ,
-        "rotation": "0.0 -1.0 0.0 7.90754e-07"
+        "rotation": "0.0 0.707106 0.0 -0.707107"
       }
     }
   }
@@ -647,38 +647,6 @@
         "pos": "-2.60558 2.08563 31.7158"
         ,
         "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_baby003"
-      ,
-      "prefab": "data/prefabs/neon_baby.prefab"
-      ,
-      "transform":
-      {
-        "pos": "9.53584 0.581625 5.42275"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_baby004"
-      ,
-      "prefab": "data/prefabs/neon_baby.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-14.811 0.581624 -16.723"
-        ,
-        "rotation": "0.0 1.50996e-07 0.0 -1.0"
       }
     }
   }
@@ -740,73 +708,9 @@
       ,
       "transform":
       {
-        "pos": "3.36974 11.4726 -23.1489"
+        "pos": "3.36974 11.4726 -20.0103"
         ,
         "rotation": "0.5 -0.5 -0.5 0.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_verde_007"
-      ,
-      "prefab": "data/prefabs/neon_verde_4.prefab"
-      ,
-      "transform":
-      {
-        "pos": "10.4392 7.31355 0.72543"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_verde_008"
-      ,
-      "prefab": "data/prefabs/neon_verde_1.prefab"
-      ,
-      "transform":
-      {
-        "pos": "12.7023 9.25178 -6.67476"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_verde_009"
-      ,
-      "prefab": "data/prefabs/neon_verde_4.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-0.882299 6.89308 6.97882"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_verde_010"
-      ,
-      "prefab": "data/prefabs/neon_verde_1.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-5.46675 8.94006 6.98194"
-        ,
-        "rotation": "-1.0 0.0 0.0 0.0"
       }
     }
   }
@@ -823,22 +727,6 @@
         "pos": "5.06343 2.42279 34.182"
         ,
         "rotation": "0.0 1.50996e-07 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "neon_cartel_amarillo_003"
-      ,
-      "prefab": "data/prefabs/neon_amarillo_1.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-8.76718 1.05727 5.3984"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
