@@ -1401,6 +1401,17 @@ void TCompAIPatrol::playStepParticle()
     Engine.get().getParticles().launchSystem("data/particles/def_amb_ground_slam.particles", CHandle(this).getOwner());
 }
 
+void TCompAIPatrol::playSlamParticle()
+{
+    // Sacalo al json si te apetece.
+    EngineParticles.launchSystem("data/particles/def_patrol_slam.particles", CHandle(this).getOwner());
+    EngineParticles.launchSystem("data/particles/def_patrol_slam_core.particles", CHandle(this).getOwner());
+    EngineParticles.launchSystem("data/particles/def_patrol_slam_sphere.particles", CHandle(this).getOwner());
+
+    EngineParticles.launchSystem("data/particles/def_patrol_slam_trails.particles", CHandle(this).getOwner());
+    EngineParticles.launchSystem("data/particles/def_patrol_slam_trails_core.particles", CHandle(this).getOwner());
+}
+
 void TCompAIPatrol::playAnimationByName(const std::string & animationName)
 {
     TCompPatrolAnimator * myAnimator = get<TCompPatrolAnimator>();

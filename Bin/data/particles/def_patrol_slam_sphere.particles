@@ -1,7 +1,7 @@
 {
 	"system": {
-		"duration": 0.45,
-		"looping": false,
+		"duration": 0.8,
+		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
 		"start_speed": 0.0,
@@ -23,7 +23,7 @@
 	},	
 	"shape": {
 		"type": "circle",
-		"size": "0.04 0.04 0.04",
+		"size": "0.01 0.01 0.01",
 		"angle": 0
 		 
 	},
@@ -53,16 +53,16 @@
 		"collision": true
 	},
 	"renderer": {
-		"mode": "horizontal",
-		"texture": "data/textures/particles/glow.dds",
-		"frame_size" : "1 1",
+		"mode": "billboard",
+		"texture": "data/textures/particles/magic_wave2.dds",
+		"frame_size" : "8 4",
 		"initial_frame" : 0,
-		"num_frames" : 1,
-		"frame_speed" : 0.0,
+		"num_frames" : 32,
+		"frame_speed" : 32.0,
 		"tech" : "particles_instanced_additive.tech"
 	}, 
   "size" : {
-		"scale" : 1,
+		"scale" : 3,
 		"scale_variation" : 0.1, 
 		"sizes" : [
 		  [0.0, "0 0 0"],
@@ -72,10 +72,10 @@
   "color" : {
     "opacity" : 1,
     "colors" : [
-		[0.0, "2 2 1 0.0"],
-		[0.1,"1.5 2 2 0.5"],
-		[0.7,"0.0 2 2 0.4"],
-		[1.0, "1 2 2 0.0"]
+		[0.0, "0.5 0.75 1 0.0"],
+		[0.1,"0.5 0.75 1 1"],
+		[0.7,"0.5 0.75 1 0.8"],
+		[1.0, "0.5 0.75 1 0.0"]
     ] 
   }
 }

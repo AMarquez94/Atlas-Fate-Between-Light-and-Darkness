@@ -1,0 +1,84 @@
+{
+	"system": {
+		"duration": 2,
+		"looping": false,
+		"start_delay": 0.0, 
+		"start_lifetime": 1.0, 
+		"start_speed": 0.5,
+		"start_size": "1 1 1",
+		"start_rotation": "0 0 0", 
+		"random_rotation": 0.0,  
+		"start_color": "1 0 0 1",
+		"gravity": 0.0,  
+		"simulation_speed": 3,
+		"max_particles": 1500     
+	},       
+	"emission": {         
+		"rate_time": 0.0,      
+		"rate_distance": 0.0,     
+		"variation" : 0.0,     
+		"bursts" : [             
+			[0, 500, 1, 0.010],       
+			[0.15, 100, 1, 0.010],     
+			[0.330, 200, 1, 0.010],          
+			[0.550, 400, 1, 0.010]			 	    
+		]  
+	},	    
+	"shape": {     
+		"type": "sphere", 
+		"size": "0.1 0.1 0.1",
+		"angle": 0	     
+	},    
+	"velocity" : {   
+		"constant_velocity": "0.0 0.0 0.0", 
+		"velocity" : [   
+      [0.0, "0.0 0.0 0.0"],     
+			[0.5, "0.0 0.0 0.0"],       
+			[1.0, "0.0 0.0 0.0"]       
+    ],   
+		"rotation" : [      
+		  [0.0, "0.0 0.0 0.0"], 
+      [1.0, "0.0 0.0 0.0"]    
+    ],        
+		"acceleration": 1,    
+		"wind": 0  
+	},     
+	"noise": {      
+		"texture": "data/textures/particles/fx_smoke1.dds",  
+		"strength":34.1,        
+		"frequency": 0.5,    
+		"scroll_speed": 0.0,      
+		"damping": true,   
+		"octaves": 1     
+	},        
+	"collision": {        
+		"collision": true     
+	},  
+	"renderer": {   
+			"mode": "stretched",    
+			"texture": "data/textures/particles/fire_sparkle_electric.dds",  
+      "frame_size" : "1 1", 
+      "initial_frame" : 0,
+      "num_frames" : 1,   
+      "frame_speed" : 0.0,    
+			"tech" : "particles_instanced_additive.tech"
+	},        
+  "size" : {     
+    "scale" : 1.2,
+    "scale_variation" : 1.6,   
+    "sizes" : [ 
+		  [0.0, "0.01 0.01 0.01"],
+			[0.1, "0.2 0.2 0.2"], 
+			[1.0, "0.0 0.0 0.0"]     
+    ] 
+  },    
+  "color" : { 
+    "opacity" : 1, 
+    "colors" : [ 
+      [0.0, "1 1 1 0.0"],
+			[0.1, "1 1 1. 1.0"],
+			[0.4, "1 1 1 1.2"],
+			[1.0, "1 1 1 0.0"]
+    ] 
+  }
+}

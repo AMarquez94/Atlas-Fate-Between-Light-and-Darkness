@@ -92,7 +92,7 @@ void TCompInhibitor::update(float dt) {
 
                 TCompTransform* mypos = player->get<TCompTransform>();
                 //EngineParticles.launchDynamicSystem("data/particles/def_amb_ground_slam.particles", mypos->getPosition());
-                EngineInstancing.addDynamicInstance("data/meshes/decal_damage.instanced_mesh", "data/materials/mtl_decal_damage.material", mypos->asMatrix(), 4);
+                //EngineInstancing.addDynamicInstance("data/meshes/decal_damage.instanced_mesh", "data/materials/mtl_decal_damage.material", mypos->asMatrix(), 4);
             }
         }
     }

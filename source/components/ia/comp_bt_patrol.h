@@ -140,6 +140,7 @@ public:
     /* LUA functions */
     void launchInhibitor();
     void playStepParticle();
+    void playSlamParticle();
 
 	void playAnimationByName(const std::string & animationName) override;
 };
