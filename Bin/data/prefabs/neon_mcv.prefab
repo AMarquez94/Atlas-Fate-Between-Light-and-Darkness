@@ -31,9 +31,62 @@
         ,
         "outer_cut": 4.0
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "1.0 1.0 0.768628 1.0"
         ,
-        "intensity": 1.0
+        "intensity": 1.7
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 3.5
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_neon_mcv2"
+      ,
+      "transform":
+      {
+        "pos": "-1.40228 0.230713 1.10923"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 3.0
+        ,
+        "outer_cut": 4.0
+        ,
+        "color": "1.0 1.0 0.760784 1.0"
+        ,
+        "intensity": 1.7
         ,
         "casts_shadows": true
         ,
@@ -89,59 +142,6 @@
       "abs_aabb": true
       ,
       "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "luz_neon_mcv2"
-      ,
-      "transform":
-      {
-        "pos": "-1.40228 0.230713 1.10923"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "light_point":
-      {
-        "type": "pointlight"
-        ,
-        "inner_cut": 3.0
-        ,
-        "outer_cut": 4.0
-        ,
-        "color": "1.0 1.0 1.0 1.0"
-        ,
-        "intensity": 1.0
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "sphere"
-        ,
-        "radius": 3.5
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
     }
   }
 ]

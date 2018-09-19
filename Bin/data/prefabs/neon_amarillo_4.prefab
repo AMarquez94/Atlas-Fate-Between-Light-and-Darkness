@@ -31,9 +31,9 @@
         ,
         "outer_cut": 5.0
         ,
-        "color": "1.0 1.0 0.470588 1.0"
+        "color": "0.988235 1.0 0.0901961 1.0"
         ,
-        "intensity": 1.0
+        "intensity": 1.7
         ,
         "casts_shadows": true
         ,
@@ -61,6 +61,41 @@
       [
         "light"
       ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_amarillo_4"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_neon_amarillo_4.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_neones2.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_cartel_amarilla_4.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
     }
   }
 ]

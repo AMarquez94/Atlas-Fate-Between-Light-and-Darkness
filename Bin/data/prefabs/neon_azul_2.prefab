@@ -27,13 +27,13 @@
       {
         "type": "pointlight"
         ,
-        "inner_cut": 2.0
+        "inner_cut": 3.0
         ,
-        "outer_cut": 3.2
+        "outer_cut": 5.0
         ,
-        "color": "0.470588 1.0 0.917647 1.0"
+        "color": "0.0 0.0980392 1.0 1.0"
         ,
-        "intensity": 1.0
+        "intensity": 1.7
         ,
         "casts_shadows": true
         ,
@@ -52,7 +52,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 2.6
+        "radius": 4.0
         ,
         "is_trigger": true
       }

@@ -31,9 +31,9 @@
         ,
         "outer_cut": 3.0
         ,
-        "color": "0.678431 1.0 0.47451 1.0"
+        "color": "0.631373 1.0 0.0352941 1.0"
         ,
-        "intensity": 1.0
+        "intensity": 1.7
         ,
         "casts_shadows": true
         ,

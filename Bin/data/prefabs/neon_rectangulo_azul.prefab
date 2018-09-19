@@ -14,11 +14,11 @@
   {
     "entity":
     {
-      "name": "luz_neon_rectangulo_azul1"
+      "name": "luz_neon_rectangulo_azul2"
       ,
       "transform":
       {
-        "pos": "0.972783 1.78815 0.221347"
+        "pos": "0.972783 -0.334717 0.221347"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -31,9 +31,9 @@
         ,
         "outer_cut": 4.0
         ,
-        "color": "0.360784 1.0 0.94902 1.0"
+        "color": "0.0 0.156863 1.0 1.0"
         ,
-        "intensity": 1.0
+        "intensity": 1.7
         ,
         "casts_shadows": true
         ,
@@ -67,11 +67,11 @@
   {
     "entity":
     {
-      "name": "luz_neon_rectangulo_azul2"
+      "name": "luz_neon_rectangulo_azul1"
       ,
       "transform":
       {
-        "pos": "0.972783 -0.334717 0.221347"
+        "pos": "0.972783 1.78815 0.221347"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -84,9 +84,9 @@
         ,
         "outer_cut": 4.0
         ,
-        "color": "0.360784 1.0 0.94902 1.0"
+        "color": "0.0 0.156863 1.0 1.0"
         ,
-        "intensity": 1.0
+        "intensity": 1.7
         ,
         "casts_shadows": true
         ,
