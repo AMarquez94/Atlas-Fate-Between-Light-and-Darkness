@@ -205,8 +205,8 @@ void TCompCameraThirdPerson::update(float dt)
 			
 			//dbg("%s on activate\n", e->getName());
 			_time_shaking += dt;
-			float percentage = (time_to_stop_shake - _time_shaking) / time_to_stop_shake;
-			float x_amount = sin(_time_shaking * speed_shak) * amount_shak * percentage;
+			shake_percentage = (time_to_stop_shake - _time_shaking) / time_to_stop_shake;
+			float x_amount = sin(_time_shaking * speed_shak) * amount_shak * shake_percentage;
 			VEC3 shaking_pos = self_transform->getPosition();
 			shaking_pos += self_transform->getUp() * x_amount;
 			self_transform->setPosition(shaking_pos);
@@ -267,14 +267,13 @@ void TCompCameraThirdPerson::resetCameraTargetPos()
 }
 
 void TCompCameraThirdPerson::activateCameraShake(float amount_shake, float speed_shake, float time_to_stop) {
-
-	activate_shake = true;
-	_time_shaking = 0.0f;
-
-	amount_shak = amount_shake;
-	speed_shak = speed_shake;
-	time_to_stop_shake = time_to_stop;
-
+    if (amount_shak * shake_percentage < amount_shake) {
+	    activate_shake = true;
+	    _time_shaking = 0.0f;
+        amount_shak = amount_shake;
+        speed_shak = speed_shake;
+        time_to_stop_shake = time_to_stop;
+    }
 }
 
 void TCompCameraThirdPerson::onPause(const TMsgScenePaused& msg) {

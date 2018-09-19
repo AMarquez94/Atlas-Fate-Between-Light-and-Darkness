@@ -149,6 +149,7 @@ public:
     void launchInhibitor();
     void attackPlayer();
     void playStepParticle(bool left);
+    void shakeCamera();
 
 	void playAnimationByName(const std::string & animationName) override;
 
