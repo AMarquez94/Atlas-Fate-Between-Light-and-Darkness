@@ -99,7 +99,7 @@ bool TCompAIEnemy::isEntityInFov(const std::string& entityToChase, float fov, fl
     CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
     float myY = mypos->getPosition().y;
 
-    CHandle hPlayer = getEntityByName(entityToChase);
+    CHandle hPlayer = EngineEntities.getPlayerHandle();
     if (hPlayer.isValid()) {
         CEntity *ePlayer = hPlayer;
         TCompTransform *ppos = ePlayer->get<TCompTransform>();

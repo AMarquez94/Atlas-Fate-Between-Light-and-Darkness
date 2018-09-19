@@ -20,7 +20,7 @@ void TCompTriggerCheckpoint::registerMsgs()
 void TCompTriggerCheckpoint::onMsgTriggerEnter(const TMsgTriggerEnter & msg)
 {
 	if (!used) {
-		CHandle h_player = getEntityByName("The Player");
+		CHandle h_player = EngineEntities.getPlayerHandle();
 		if (h_player == msg.h_other_entity) {
 			CModuleGameManager gameManager = CEngine::get().getGameManager();
 			CEntity* e_player = h_player;

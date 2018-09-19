@@ -406,7 +406,7 @@ BTNode::ERes TCompAIMimetic::actionWaitOnWall(float dt) {
 		return BTNode::ERes::STAY;
 	}
 	else {
-		CEntity *e = getEntityByName(entityToChase);
+		CEntity *e = EngineEntities.getPlayerHandle();
 		TCompTransform * c_trans = e->get<TCompTransform>();
 		lastPlayerKnownPos = c_trans->getPosition();
 		return BTNode::ERes::LEAVE;
@@ -586,7 +586,7 @@ BTNode::ERes TCompAIMimetic::actionSuspect(float dt)
     eController->blend(enemyColor.colorSuspect, 0.1f);
     // chase
     TCompTransform *mypos = get<TCompTransform>();
-    CEntity *player = getEntityByName(entityToChase);
+    CEntity *player = EngineEntities.getPlayerHandle();
     TCompTransform *ppos = player->get<TCompTransform>();
 
     /* Distance to player */
@@ -652,7 +652,7 @@ BTNode::ERes TCompAIMimetic::actionResetVariablesChase(float dt)
     noiseEmitter->makeNoise(20.f, .4f, true, false, true);
 
     TCompTransform *tpos = get<TCompTransform>();
-    CEntity *player = getEntityByName(entityToChase);
+    CEntity *player = EngineEntities.getPlayerHandle();
     TCompTransform *ppos = player->get<TCompTransform>();
 
     generateNavmesh(tpos->getPosition(), ppos->getPosition());
@@ -663,7 +663,7 @@ BTNode::ERes TCompAIMimetic::actionResetVariablesChase(float dt)
 BTNode::ERes TCompAIMimetic::actionRotateTowardsPlayerWithNoise(float dt)
 {
     if (isEntityInFov(entityToChase, fov, maxChaseDistance)) {
-        CEntity* player = getEntityByName(entityToChase);
+        CEntity* player = EngineEntities.getPlayerHandle();
         TCompTransform* ppos = player->get<TCompTransform>();
         rotateTowardsVec(ppos->getPosition(), rotationSpeedChase, dt);
         TCompTransform* mypos = get<TCompTransform>();
@@ -694,7 +694,7 @@ BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
     myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
 
     TCompTransform *mypos = get<TCompTransform>();
-    CEntity *player = getEntityByName(entityToChase);
+    CEntity *player = EngineEntities.getPlayerHandle();
     TCompTransform *ppos = player->get<TCompTransform>();
 
     hasHeardArtificialNoise = false;
@@ -776,7 +776,7 @@ BTNode::ERes TCompAIMimetic::actionGoToNoiseSource(float dt)
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
     myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
 
-    CEntity * ePlayer = getEntityByName(entityToChase);
+    CEntity * ePlayer = EngineEntities.getPlayerHandle();
     TCompTransform * ppos = get<TCompTransform>();
     VEC3 pp = ppos->getPosition();
 
@@ -808,7 +808,7 @@ BTNode::ERes TCompAIMimetic::actionWaitInNoiseSource(float dt)
     myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
     TCompTransform *mypos = get<TCompTransform>();
     VEC3 vp = mypos->getPosition();
-    CEntity * ePlayer = getEntityByName(entityToChase);
+    CEntity * ePlayer = EngineEntities.getPlayerHandle();
     TCompTransform * ppos = get<TCompTransform>();
     VEC3 pp = ppos->getPosition();
 
