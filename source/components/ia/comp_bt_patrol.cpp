@@ -705,6 +705,8 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 	std::string entityToChase = arguments["entityToChase_actionShootInhibitor_shootInhibitor"].getString(); 
     assert(arguments.find("rotationSpeed_actionChasePlayer_ChasePlayer") != arguments.end());
     float rotationSpeed = deg2rad(arguments["rotationSpeed_actionChasePlayer_ChasePlayer"].getFloat());
+    assert(arguments.find("distToAttack_actionChasePlayer_ChasePlayer") != arguments.end());
+    float distToAttack = arguments["distToAttack_actionChasePlayer_ChasePlayer"].getFloat();
 
 	CEntity *player = EngineEntities.getPlayerHandle();
 	TCompTempPlayerController *pController = player->get<TCompTempPlayerController>();
@@ -719,7 +721,15 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 	}
 	
 	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR) && !inhibitorAnimationCompleted) {
-		myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR);
+        TCompTransform * my_pos = get<TCompTransform>();
+        CEntity* player = EngineEntities.getPlayerHandle();
+        TCompTransform* ppos = player->get<TCompTransform>();
+        if (VEC3::Distance(ppos->getPosition(), my_pos->getPosition()) < distToAttack - 0.1f) {
+            return BTNode::ERes::LEAVE;
+        }
+        else {
+		    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR);
+        }
 	}
 	
 	if (inhibitorAnimationCompleted) {
@@ -1340,7 +1350,17 @@ void TCompAIPatrol::turnOnLight()
             CEntity* eCone = cGroup->getHandleByName("FlashLight");
             TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
             cConeController->turnOnLight();
-            EngineIA.patrolSB.patrolsWithLight.push_back(CHandle(this).getOwner());
+
+            bool found = false;
+            for (int i = 0; i < EngineIA.patrolSB.patrolsWithLight.size(); i++) {
+                if (EngineIA.patrolSB.patrolsWithLight[i] == myHandle.getOwner()) {
+                    found = true;
+                }
+            }
+
+            if (!found) {
+                EngineIA.patrolSB.patrolsWithLight.push_back(myHandle.getOwner());
+            }
         }
     }
 }
@@ -1350,8 +1370,13 @@ void TCompAIPatrol::turnOffLight() {
     CEntity* eCone = cGroup->getHandleByName("FlashLight");
     TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
     cConeController->turnOffLight();
-    if (auto it = std::find(EngineIA.patrolSB.patrolsWithLight.begin(), EngineIA.patrolSB.patrolsWithLight.end(), CHandle(this).getOwner()) != EngineIA.patrolSB.patrolsWithLight.end()) {
-        EngineIA.patrolSB.patrolsWithLight.erase(EngineIA.patrolSB.patrolsWithLight.begin() + it);
+
+    bool found = false;
+    for (int i = 0; i < EngineIA.patrolSB.patrolsWithLight.size(); i++) {
+        if (EngineIA.patrolSB.patrolsWithLight[i] == myHandle.getOwner()) {
+            found = true;
+            EngineIA.patrolSB.patrolsWithLight.erase(EngineIA.patrolSB.patrolsWithLight.begin() + i);
+        }
     }
 }
 
