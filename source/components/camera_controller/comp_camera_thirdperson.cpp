@@ -200,27 +200,30 @@ void TCompCameraThirdPerson::update(float dt)
 
 		CEntity* e = CHandle(this).getOwner();
 		//dbg("%s before activate\n", e->getName());
-
-		if (activate_shake) {
-			
-			//dbg("%s on activate\n", e->getName());
-			_time_shaking += dt;
-			shake_percentage = (time_to_stop_shake - _time_shaking) / time_to_stop_shake;
-			float x_amount = sin(_time_shaking * speed_shak) * amount_shak * shake_percentage;
-			VEC3 shaking_pos = self_transform->getPosition();
-			shaking_pos += self_transform->getUp() * x_amount;
-			self_transform->setPosition(shaking_pos);
-			if ((time_to_stop_shake - _time_shaking) <= 0.0f) {
-				activate_shake = false;
-				_time_shaking = 0.0f;
-			}
-
-		}
 		
         //float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
         //float current_fov = 70 + inputSpeed * 30; // Just doing some testing with the fov and speed
         setPerspective(getFovUpdated(dt), 0.1f, 1000.f);
         //dbg("Setting perspective TP() - new fov: %f\n", rad2deg(getFov()));
+    }
+
+    if (!paused || activate_shake && CEngine::get().getGameManager().getCurrentState() == CModuleGameManager::PauseState::defeat) {
+        if (activate_shake) {
+
+            //dbg("%s on activate\n", e->getName());
+            TCompTransform* self_transform = get<TCompTransform>();
+            _time_shaking += dt;
+            shake_percentage = (time_to_stop_shake - _time_shaking) / time_to_stop_shake;
+            float x_amount = sin(_time_shaking * speed_shak) * amount_shak * shake_percentage;
+            VEC3 shaking_pos = self_transform->getPosition();
+            shaking_pos += self_transform->getUp() * x_amount;
+            self_transform->setPosition(shaking_pos);
+            if ((time_to_stop_shake - _time_shaking) <= 0.0f) {
+                activate_shake = false;
+                _time_shaking = 0.0f;
+            }
+
+        }
     }
 }
 

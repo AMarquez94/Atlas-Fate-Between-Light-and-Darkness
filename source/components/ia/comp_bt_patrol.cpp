@@ -1542,7 +1542,7 @@ void TCompAIPatrol::playStepParticle(bool left)
     }
 }
 
-void TCompAIPatrol::shakeCamera()
+void TCompAIPatrol::shakeCamera(float max_amount, float max_distance, float duration)
 {
     VHandles v_tp_cameras = CTagsManager::get().getAllEntitiesByTag(getID("tp_camera"));
     TCompTransform* my_pos = get<TCompTransform>();
@@ -1550,12 +1550,12 @@ void TCompAIPatrol::shakeCamera()
     TCompTransform* ppos = e_player->get<TCompTransform>();
 
     float distance = VEC3::Distance(ppos->getPosition(), my_pos->getPosition());
-    distance = Clamp(distance, 0.f, 10.f);
+    distance = Clamp(distance, 0.f, max_distance);
 
     TMsgCameraShake msg;
-    msg.amount = lerp(0.7f, 0.f, distance/10.f);
+    msg.amount = lerp(max_amount, 0.f, distance/ max_distance);
     msg.speed = 140.f;
-    msg.time_to_stop = 0.2f;
+    msg.time_to_stop = duration;
     for (int i = 0; i < v_tp_cameras.size(); i++) {
         v_tp_cameras[i].sendMsg(msg);
     }
