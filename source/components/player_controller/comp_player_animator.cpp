@@ -37,6 +37,10 @@ void TCompPlayerAnimator::debugInMenu() {
     if (ImGui::SmallButton("OPEN_WEAPONS")) {
         playAnimation(EAnimation::OPEN_WEAPONS, speed);
     }
+	if (ImGui::SmallButton("stop SM")) {
+		removeAction((TCompAnimator::EAnimation)EAnimation::SM_ENTER);
+	}
+
 
 
 	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);

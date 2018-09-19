@@ -178,3 +178,11 @@ TCompAnimator::EAnimation TCompAnimator::getAnimationByName(std::string animatio
 
 	return stringToAnimationsMap[animation_name];
 }
+
+void TCompAnimator::removeAction(EAnimation animation) {
+
+	AnimationSet aux_animSet = animationsMap[animation];
+	CEntity* e = ownHandle;
+	TCompSkeleton * compSkeleton = e->get<TCompSkeleton>();
+	compSkeleton->removeActionAnimation(aux_animSet.animationId);
+}

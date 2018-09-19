@@ -61,6 +61,8 @@ public:
 	EAnimation actualAnimation();
 	bool isPlayingAnimation(EAnimation animation);
 
+	void removeAction(EAnimation animation);
+
 	EAnimation getAnimationByName(std::string animation_name);
 	float getAnimationDuration(EAnimation animation);
 
