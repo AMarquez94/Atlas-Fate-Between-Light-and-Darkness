@@ -14,22 +14,6 @@
   {
     "entity":
     {
-      "name": "mesh_neon_mcv"
-      ,
-      "prefab": "data/prefabs/neon_mcv.prefab"
-      ,
-      "transform":
-      {
-        "pos": "53.8551 0.0617135 27.4016"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_neon_mcv001"
       ,
       "prefab": "data/prefabs/neon_mcv.prefab"
@@ -37,22 +21,6 @@
       "transform":
       {
         "pos": "-3.16365 10.1946 12.3376"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_rectangulo_amarillo"
-      ,
-      "prefab": "data/prefabs/neon_rectangulo_amarillo.prefab"
-      ,
-      "transform":
-      {
-        "pos": "81.3722 0.0 26.1656"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -94,22 +62,6 @@
   {
     "entity":
     {
-      "name": "mesh_neon_rectangulo_azul"
-      ,
-      "prefab": "data/prefabs/neon_rectangulo_azul.prefab"
-      ,
-      "transform":
-      {
-        "pos": "76.4131 0.0 33.2025"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_neon_rectangulo_azul002"
       ,
       "prefab": "data/prefabs/neon_rectangulo_azul.prefab"
@@ -126,29 +78,13 @@
   {
     "entity":
     {
-      "name": "mesh_neon_rectangulo_verde"
-      ,
-      "prefab": "data/prefabs/neon_rectangulo_verde.prefab"
-      ,
-      "transform":
-      {
-        "pos": "77.014 0.0 38.8274"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_neon_rectangulo_verde001"
       ,
       "prefab": "data/prefabs/neon_rectangulo_verde.prefab"
       ,
       "transform":
       {
-        "pos": "-5.88595 1.74 42.0511"
+        "pos": "-5.88595 2.16689 42.0511"
         ,
         "rotation": "0.0 -1.0 0.0 0.0"
       }
@@ -190,29 +126,13 @@
   {
     "entity":
     {
-      "name": "mesh_neon_redondo_amarillo"
-      ,
-      "prefab": "data/prefabs/neon_redondo_amarillo.prefab"
-      ,
-      "transform":
-      {
-        "pos": "84.0814 0.530519 25.9274"
-        ,
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_neon_redondo_amarillo003"
       ,
       "prefab": "data/prefabs/neon_redondo_amarillo.prefab"
       ,
       "transform":
       {
-        "pos": "-20.6567 1.77272 -33.3075"
+        "pos": "-20.6567 8.78144 -33.3075"
         ,
         "rotation": "0.5 0.5 -0.5 0.5"
       }
@@ -238,22 +158,6 @@
   {
     "entity":
     {
-      "name": "mesh_neon_redondo_azul"
-      ,
-      "prefab": "data/prefabs/neon_redondo_azul.prefab"
-      ,
-      "transform":
-      {
-        "pos": "79.5543 0.0 33.0724"
-        ,
-        "rotation": "-0.707108 -1.8966e-07 4.00395e-07 -0.707106"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_neon_redondo_azul005"
       ,
       "prefab": "data/prefabs/neon_redondo_azul.prefab"
@@ -263,22 +167,6 @@
         "pos": "-20.8775 10.5852 -8.76021"
         ,
         "rotation": "-0.500001 0.499999 -0.500001 -0.499999"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_redondo_verde"
-      ,
-      "prefab": "data/prefabs/neon_redondo_verde.prefab"
-      ,
-      "transform":
-      {
-        "pos": "80.5915 0.0 38.9933"
-        ,
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
       }
     }
   }
@@ -318,22 +206,6 @@
   {
     "entity":
     {
-      "name": "mesh_neon_amarilllo_3"
-      ,
-      "prefab": "data/prefabs/neon_amarillo_3.prefab"
-      ,
-      "transform":
-      {
-        "pos": "71.7663 0.0 25.8817"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_neon_amarilllo_004"
       ,
       "prefab": "data/prefabs/neon_amarillo_3.prefab"
@@ -343,54 +215,6 @@
         "pos": "10.0103 2.05322 -1.16753"
         ,
         "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_amarillo_2"
-      ,
-      "prefab": "data/prefabs/neon_amarillo_2.prefab"
-      ,
-      "transform":
-      {
-        "pos": "68.3616 0.0 25.868"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_amarillo_4"
-      ,
-      "prefab": "data/prefabs/neon_amarillo_4.prefab"
-      ,
-      "transform":
-      {
-        "pos": "74.7457 0.0 25.7787"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_amarillo_5"
-      ,
-      "prefab": "data/prefabs/neon_amarillo_5.prefab"
-      ,
-      "transform":
-      {
-        "pos": "77.1328 0.0 25.9971"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
@@ -462,61 +286,13 @@
   {
     "entity":
     {
-      "name": "mesh_neon_azul_1"
+      "name": "mesh_neon_amarillo_014"
       ,
-      "prefab": "data/prefabs/neon_azul_1.prefab"
-      ,
-      "transform":
-      {
-        "pos": "61.8281 0.0 33.0494"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_azul_2"
-      ,
-      "prefab": "data/prefabs/neon_azul_2.prefab"
+      "prefab": "data/prefabs/neon_amarillo_2.prefab"
       ,
       "transform":
       {
-        "pos": "65.46 0.0 32.8777"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_azul_3"
-      ,
-      "prefab": "data/prefabs/neon_azul_3.prefab"
-      ,
-      "transform":
-      {
-        "pos": "68.2915 0.0 32.9253"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_azul_4"
-      ,
-      "prefab": "data/prefabs/neon_azul_4.prefab"
-      ,
-      "transform":
-      {
-        "pos": "71.2199 0.0 33.0211"
+        "pos": "-25.9821 7.12108 -57.2204"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -670,22 +446,6 @@
   {
     "entity":
     {
-      "name": "mesh_neon_baby"
-      ,
-      "prefab": "data/prefabs/neon_baby.prefab"
-      ,
-      "transform":
-      {
-        "pos": "57.2731 0.0 29.1927"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_neon_baby002"
       ,
       "prefab": "data/prefabs/neon_baby.prefab"
@@ -718,22 +478,6 @@
   {
     "entity":
     {
-      "name": "mesh_neon_ignatius"
-      ,
-      "prefab": "data/prefabs/neon_ignatius.prefab"
-      ,
-      "transform":
-      {
-        "pos": "61.8882 0.0 25.5994"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_neon_ignatius001"
       ,
       "prefab": "data/prefabs/neon_ignatius.prefab"
@@ -756,73 +500,9 @@
       ,
       "transform":
       {
-        "pos": "-20.9182 6.6736 -3.3905"
+        "pos": "-20.9182 3.44635 -3.3905"
         ,
         "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_verde_1"
-      ,
-      "prefab": "data/prefabs/neon_verde_1.prefab"
-      ,
-      "transform":
-      {
-        "pos": "61.8693 0.0 38.8914"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_verde_2"
-      ,
-      "prefab": "data/prefabs/neon_verde_2.prefab"
-      ,
-      "transform":
-      {
-        "pos": "64.8486 0.0 39.0531"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_verde_3"
-      ,
-      "prefab": "data/prefabs/neon_verde_3.prefab"
-      ,
-      "transform":
-      {
-        "pos": "68.1686 0.0 39.0516"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_verde_4"
-      ,
-      "prefab": "data/prefabs/neon_verde_4.prefab"
-      ,
-      "transform":
-      {
-        "pos": "71.6525 0.0 39.4301"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
@@ -855,22 +535,6 @@
         "pos": "-4.46032 3.91748 -39.6726"
         ,
         "rotation": "0.0 -1.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "neon_cartel_amarillo_1"
-      ,
-      "prefab": "data/prefabs/neon_amarillo_1.prefab"
-      ,
-      "transform":
-      {
-        "pos": "65.5107 0.0 25.8671"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
       }
     }
   }
@@ -975,7 +639,7 @@
       ,
       "transform":
       {
-        "pos": "-5.83897 1.28039 43.2541"
+        "pos": "-5.83897 0.876932 43.2541"
         ,
         "lookat": "-8.09084 1.54554 29.0752"
       }
@@ -986,19 +650,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 14.359
+        "range": 14.3721
         ,
         "angle": 33.1
         ,
         "inner_cut": 13.1
         ,
-        "z_far": 14.359
+        "z_far": 14.3721
         ,
         "volume": false
         ,
         "color": "0.0156863 0.388235 0.0 1.0"
         ,
-        "intensity": 1.7
+        "intensity": 0.3
         ,
         "casts_shadows": true
         ,
@@ -1036,7 +700,7 @@
       ,
       "transform":
       {
-        "pos": "-23.2183 1.39575 29.5369"
+        "pos": "-23.2183 1.2864 29.5369"
         ,
         "lookat": "-5.49021 0.715489 26.2921"
       }
@@ -1047,19 +711,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 18.0354
+        "range": 18.0316
         ,
-        "angle": 32.3
+        "angle": 33.6
         ,
-        "inner_cut": 14.4
+        "inner_cut": 20.0
         ,
-        "z_far": 18.0354
+        "z_far": 18.0316
         ,
         "volume": false
         ,
         "color": "0.768628 0.54902 0.0705882 1.0"
         ,
-        "intensity": 1.7
+        "intensity": 0.3
         ,
         "casts_shadows": true
         ,
@@ -1120,7 +784,7 @@
         ,
         "color": "0.00392157 0.0823529 0.658824 1.0"
         ,
-        "intensity": 2.0
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -1181,7 +845,7 @@
         ,
         "color": "0.768628 0.54902 0.0705882 1.0"
         ,
-        "intensity": 1.7
+        "intensity": 1.2
         ,
         "casts_shadows": true
         ,
@@ -1242,7 +906,7 @@
         ,
         "color": "0.0156863 0.388235 0.0 1.0"
         ,
-        "intensity": 1.7
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
