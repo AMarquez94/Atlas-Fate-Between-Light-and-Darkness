@@ -621,7 +621,8 @@ BTNode::ERes TCompAIPatrol::actionWaitInWpt(float dt)
             myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
         }
         else {
-            myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_LEFT);
+			if(!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_LEFT))
+				myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_LEFT);
         }
         return BTNode::ERes::STAY;
     }
@@ -1540,6 +1541,36 @@ void TCompAIPatrol::playStepParticle(bool left)
         CHandle foot = left ? my_group->getHandleByName("left_foot") : my_group->getHandleByName("right_foot");
         EngineParticles.launchSystem("data/particles/def_amb_ground_slam.particles", foot);
     }
+}
+
+void TCompAIPatrol::shakeCamera(float max_amount, float max_distance, float duration)
+{
+    VHandles v_tp_cameras = CTagsManager::get().getAllEntitiesByTag(getID("tp_camera"));
+    TCompTransform* my_pos = get<TCompTransform>();
+    CEntity* e_player = EngineEntities.getPlayerHandle();
+    TCompTransform* ppos = e_player->get<TCompTransform>();
+
+    float distance = VEC3::Distance(ppos->getPosition(), my_pos->getPosition());
+    distance = Clamp(distance, 0.f, max_distance);
+
+    TMsgCameraShake msg;
+    msg.amount = lerp(max_amount, 0.f, distance/ max_distance);
+    msg.speed = 140.f;
+    msg.time_to_stop = duration;
+    for (int i = 0; i < v_tp_cameras.size(); i++) {
+        v_tp_cameras[i].sendMsg(msg);
+    }
+}
+
+void TCompAIPatrol::playSlamParticle()
+{
+    // Sacalo al json si te apetece.
+    EngineParticles.launchSystem("data/particles/def_patrol_slam.particles", CHandle(this).getOwner());
+    EngineParticles.launchSystem("data/particles/def_patrol_slam_core.particles", CHandle(this).getOwner());
+    EngineParticles.launchSystem("data/particles/def_patrol_slam_sphere.particles", CHandle(this).getOwner());
+
+    EngineParticles.launchSystem("data/particles/def_patrol_slam_trails.particles", CHandle(this).getOwner());
+    EngineParticles.launchSystem("data/particles/def_patrol_slam_trails_core.particles", CHandle(this).getOwner());
 }
 
 void TCompAIPatrol::playAnimationByName(const std::string & animationName)

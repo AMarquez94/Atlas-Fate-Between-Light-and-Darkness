@@ -49,7 +49,7 @@ struct TCompSkeleton : public TCompBase {
 	void clearAllPartialCyclicAnimation(float out_delay = 0.15f);
 
 
-	float removeActionAnimation(int animId);
+	bool removeActionAnimation(int animId);
 	void setCyclicAnimationWeight(float new_value);
 	float getCyclicAnimationWeight();
 	int getAnimationIdByName(std::string animName);

@@ -5,7 +5,7 @@
 
 class CModuleGameManager : public IModule
 {
-    enum PauseState { none, main, win, defeat, editor1, editor1unpaused, editor2 };
+    enum PauseState;
     PauseState _currentstate;
 
     /* Mantain a handle of the player */
@@ -30,6 +30,8 @@ class CModuleGameManager : public IModule
     void switchState(PauseState pause);
 
 public:
+
+    enum PauseState { none, main, win, defeat, editor1, editor1unpaused, editor2 };
 
     struct ConfigPublic {
         bool drawfps = true;

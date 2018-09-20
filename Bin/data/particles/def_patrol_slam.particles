@@ -1,0 +1,81 @@
+{
+	"system": {
+		"duration": 0.8,
+		"looping": true,
+		"start_delay": 0.0,
+		"start_lifetime": 1.0,
+		"start_speed": 0.0,
+		"start_size": "1 1 1",
+		"start_rotation": "0 0 0",
+		"random_rotation": 0.0,
+		"start_color": "1 0 0 1", 
+		"gravity": 0.0,
+		"simulation_speed": 1,
+		"max_particles": 70
+	},
+	"emission": {
+		"rate_time": 0.0,
+		"rate_distance": 0.0,
+		"variation" : 0.0,
+		"bursts" : [    
+			[0, 1, 1, 0.01]			
+		] 
+	},	
+	"shape": {
+		"type": "circle",
+		"size": "0.01 0.01 0.01",
+		"angle": 0
+		 
+	},
+	"velocity": {
+		"constant_velocity": "0.0 0.0 0.0",
+		"velocity" : [
+			[0.0, "0.0 0 0.0"],
+			[0.5, "0 0 0"],
+			[1.0, "0 0 0"]
+    ],
+	"rotation" : [
+		  [0.0, "0.0 0.0 0.0"], 
+      [1.0, "0.0 0.0 -1.0"]
+    ],
+		"acceleration": 0,
+		"wind": 0
+	}, 
+	"noise": {
+		"texture": "data/textures/particles/fx_smoke1.dds",
+		"strength": 0.0,
+		"frequency": 0.5,
+		"scroll_speed": 0.0,
+		"damping": true,
+		"octaves": 1
+	},
+	"collision": {
+		"collision": true
+	},
+	"renderer": {
+		"mode": "horizontal",
+		"texture": "data/textures/particles/magic_wave.dds",
+		"frame_size" : "8 4",
+		"initial_frame" : 0,
+		"num_frames" : 32,
+		"frame_speed" : 32.0,
+		"tech" : "particles_instanced_additive.tech"
+	}, 
+  "size" : {
+		"scale" : 3,
+		"scale_variation" : 0.1, 
+		"sizes" : [
+		  [0.0, "0 0 0"],
+		  [1.0, "1 1 1"]
+		]
+  },
+  "color" : {
+    "opacity" : 1,
+    "colors" : [
+		[0.0, "1.0 1 1 0.0"],
+		[0.1,"1.0 1 1 1"],
+		[0.7,"1.0 1 1 0.8"],
+		[1.0, "1 1 1 0.0"]
+    ] 
+  }
+}

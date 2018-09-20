@@ -24,6 +24,7 @@ private:
 	float amount_shak = 0.02f;
 	float speed_shak = 60.0f;
 	float time_to_stop_shake = 1.0f;
+	float shake_percentage = 0.f;
 
 	bool activate_shake = false;
 	float _time_shaking = 0.0f;

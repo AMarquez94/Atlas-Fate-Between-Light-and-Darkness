@@ -147,8 +147,11 @@ public:
 
     /* LUA functions */
     void launchInhibitor();
+
     void attackPlayer();
     void playStepParticle(bool left);
+    void shakeCamera(float max_amount, float max_distance, float duration);
+    void playSlamParticle();
 
 	void playAnimationByName(const std::string & animationName) override;
 

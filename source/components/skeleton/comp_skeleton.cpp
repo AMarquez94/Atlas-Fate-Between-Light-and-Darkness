@@ -350,9 +350,9 @@ void TCompSkeleton::clearAllPartialCyclicAnimation(float out_delay) {
 	cyclicPartialAnimationsPlaying.clear();
 }
 
-float TCompSkeleton::removeActionAnimation(int animId) {
+bool TCompSkeleton::removeActionAnimation(int animId) {
 
-	model->getMixer()->removeAction(animId);
+	return model->getMixer()->removeAction(animId);
 }
 
 //Set the weight added to a combination of twi cyclic animations
