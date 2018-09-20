@@ -193,7 +193,7 @@ void CRenderManager::renderCategory(const char* category_name) {
 
     // For each key in the range of keys
     while (it != last) {
-        PROFILE_FUNCTION("Key");
+        //PROFILE_FUNCTION("Key");
 
         TCompRender * c_render = it->h_render_owner;
 
