@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "cartel_redondo_azul"
+      "name": "cajafusibles"
       ,
       "transform":
       {
@@ -14,7 +14,7 @@
   {
     "entity":
     {
-      "name": "mesh_cartel_redondo_azul"
+      "name": "mesh_cajafusibles"
       ,
       "transform":
       {
@@ -24,20 +24,20 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_cartel_redondo_azul.mesh"
+          "mesh": "data/meshes/mesh_cajafusibles.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_carteles1.material"
+            "data/materials/mtl_spotlights.material"
           ]
         }
       ]
       ,
       "collider":
       {
-        "shape": "mesh"
+        "shape": "box"
         ,
-        "name": "data/colliders/collider_mesh_cartel_redondo_azul.collider"
+        "size": "0.15 0.2 0.0587891"
       }
       ,
       "abs_aabb": true

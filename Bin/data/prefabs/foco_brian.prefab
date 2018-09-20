@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "cartel_redondo_azul"
+      "name": "foco_brian"
       ,
       "transform":
       {
@@ -14,7 +14,7 @@
   {
     "entity":
     {
-      "name": "mesh_cartel_redondo_azul"
+      "name": "mesh_spotlight"
       ,
       "transform":
       {
@@ -24,11 +24,11 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_cartel_redondo_azul.mesh"
+          "mesh": "data/meshes/mesh_spotlight.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_carteles1.material"
+            "data/materials/mtl_spotlights.material"
           ]
         }
       ]
@@ -37,7 +37,7 @@
       {
         "shape": "mesh"
         ,
-        "name": "data/colliders/collider_mesh_cartel_redondo_azul.collider"
+        "name": "data/colliders/collider_spotlight.collider"
       }
       ,
       "abs_aabb": true
