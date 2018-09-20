@@ -74,3 +74,7 @@ function animation_hard_land()
 	playerController:playLandParticles(true);
 	playerController:playLandParticles(false);
 end
+
+function animation_grab_enemy()
+	playerController:playSMSpirals();
+end
