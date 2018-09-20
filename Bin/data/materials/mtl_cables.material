@@ -3,7 +3,7 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/Muro_top_metallic.dds"
+    "albedo": "data/textures/cable_alb.dds"
     ,
     "normal": "data/textures/null_normal.dds"
   }

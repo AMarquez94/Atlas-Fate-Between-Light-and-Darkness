@@ -14,11 +14,11 @@
   {
     "entity":
     {
-      "name": "COL_mesh_cables"
+      "name": "COL_Circle001"
       ,
       "transform":
       {
-        "pos": "-7.36561 0.0 32.1455"
+        "pos": "-0.0941859 4.29138 0.922904"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -26,11 +26,11 @@
       "render":
       [
         {
-          "mesh": "data/meshes/COL_mesh_cables.mesh"
+          "mesh": "data/meshes/COL_Circle001.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_cable.material"
+            "data/materials/mtl_cables.material"
           ]
         }
       ]
@@ -467,7 +467,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotlight.material"
+            "data/materials/mtl_spotlightbrian.material"
           ]
         }
       ]
@@ -504,7 +504,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotlight.material"
+            "data/materials/mtl_spotlightbrian.material"
           ]
         }
       ]
@@ -534,7 +534,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotlight.material"
+            "data/materials/mtl_spotlightbrian.material"
           ]
         }
       ]
@@ -564,7 +564,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotlight.material"
+            "data/materials/mtl_spotlightbrian.material"
           ]
         }
       ]
@@ -594,7 +594,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotlight.material"
+            "data/materials/mtl_spotlightbrian.material"
           ]
         }
       ]
@@ -624,7 +624,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotlight.material"
+            "data/materials/mtl_spotlightbrian.material"
           ]
         }
       ]
@@ -654,7 +654,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotlight.material"
+            "data/materials/mtl_spotlightbrian.material"
           ]
         }
       ]
@@ -3173,7 +3173,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotlight.material"
+            "data/materials/mtl_spotlightbrian.material"
           ]
         }
       ]
@@ -3247,7 +3247,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotlight.material"
+            "data/materials/mtl_spotlightbrian.material"
           ]
         }
       ]
@@ -3433,7 +3433,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotlight.material"
+            "data/materials/mtl_spotlightbrian.material"
           ]
         }
       ]
@@ -3463,7 +3463,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotlight.material"
+            "data/materials/mtl_spotlightbrian.material"
           ]
         }
       ]
@@ -3493,7 +3493,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotlight.material"
+            "data/materials/mtl_spotlightbrian.material"
           ]
         }
       ]
@@ -3523,7 +3523,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotlight.material"
+            "data/materials/mtl_spotlightbrian.material"
           ]
         }
       ]
@@ -3553,7 +3553,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotlight.material"
+            "data/materials/mtl_spotlightbrian.material"
           ]
         }
       ]
@@ -3583,7 +3583,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotlight.material"
+            "data/materials/mtl_spotlightbrian.material"
           ]
         }
       ]
@@ -3613,7 +3613,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotlight.material"
+            "data/materials/mtl_spotlightbrian.material"
           ]
         }
       ]
@@ -3733,7 +3733,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotlight.material"
+            "data/materials/mtl_spotlightbrian.material"
           ]
         }
       ]
@@ -3770,7 +3770,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotlight.material"
+            "data/materials/mtl_spotlightbrian.material"
           ]
         }
       ]

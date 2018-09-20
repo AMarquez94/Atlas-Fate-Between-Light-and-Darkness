@@ -14,7 +14,7 @@
   {
     "entity":
     {
-      "name": "Direct001"
+      "name": "COL_Direct001"
       ,
       "transform":
       {
@@ -64,7 +64,7 @@
   {
     "entity":
     {
-      "name": "Spot001"
+      "name": "COL_Spot001"
       ,
       "transform":
       {
@@ -110,7 +110,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot001.collider"
+        "name": "data/colliders/COL_Spot001.collider"
         ,
         "is_trigger": true
       }
@@ -125,7 +125,7 @@
   {
     "entity":
     {
-      "name": "Spot002"
+      "name": "COL_Spot002"
       ,
       "transform":
       {
@@ -171,7 +171,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot002.collider"
+        "name": "data/colliders/COL_Spot002.collider"
         ,
         "is_trigger": true
       }
@@ -186,7 +186,7 @@
   {
     "entity":
     {
-      "name": "Spot003"
+      "name": "COL_Spot003"
       ,
       "transform":
       {
@@ -232,7 +232,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot003.collider"
+        "name": "data/colliders/COL_Spot003.collider"
         ,
         "is_trigger": true
       }
@@ -247,7 +247,7 @@
   {
     "entity":
     {
-      "name": "Spot006"
+      "name": "COL_Spot006"
       ,
       "transform":
       {
@@ -293,7 +293,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot006.collider"
+        "name": "data/colliders/COL_Spot006.collider"
         ,
         "is_trigger": true
       }
@@ -308,7 +308,7 @@
   {
     "entity":
     {
-      "name": "Spot007"
+      "name": "COL_Spot007"
       ,
       "transform":
       {
@@ -354,7 +354,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot007.collider"
+        "name": "data/colliders/COL_Spot007.collider"
         ,
         "is_trigger": true
       }
@@ -369,7 +369,7 @@
   {
     "entity":
     {
-      "name": "Spot008"
+      "name": "COL_Spot008"
       ,
       "transform":
       {
@@ -415,7 +415,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot008.collider"
+        "name": "data/colliders/COL_Spot008.collider"
         ,
         "is_trigger": true
       }
@@ -430,7 +430,7 @@
   {
     "entity":
     {
-      "name": "Spot011"
+      "name": "COL_Spot011"
       ,
       "transform":
       {
@@ -476,7 +476,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot011.collider"
+        "name": "data/colliders/COL_Spot011.collider"
         ,
         "is_trigger": true
       }
@@ -491,7 +491,7 @@
   {
     "entity":
     {
-      "name": "Spot014"
+      "name": "COL_Spot014"
       ,
       "transform":
       {
@@ -537,7 +537,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot014.collider"
+        "name": "data/colliders/COL_Spot014.collider"
         ,
         "is_trigger": true
       }
@@ -552,7 +552,7 @@
   {
     "entity":
     {
-      "name": "Spot015"
+      "name": "COL_Spot015"
       ,
       "transform":
       {
@@ -598,7 +598,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot015.collider"
+        "name": "data/colliders/COL_Spot015.collider"
         ,
         "is_trigger": true
       }
@@ -613,7 +613,7 @@
   {
     "entity":
     {
-      "name": "Spot017"
+      "name": "COL_Spot017"
       ,
       "transform":
       {
@@ -659,7 +659,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot017.collider"
+        "name": "data/colliders/COL_Spot017.collider"
         ,
         "is_trigger": true
       }
@@ -674,7 +674,7 @@
   {
     "entity":
     {
-      "name": "Spot020"
+      "name": "COL_Spot020"
       ,
       "transform":
       {
@@ -720,7 +720,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot020.collider"
+        "name": "data/colliders/COL_Spot020.collider"
         ,
         "is_trigger": true
       }
@@ -735,7 +735,7 @@
   {
     "entity":
     {
-      "name": "Spot021"
+      "name": "COL_Spot021"
       ,
       "transform":
       {
@@ -781,7 +781,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot021.collider"
+        "name": "data/colliders/COL_Spot021.collider"
         ,
         "is_trigger": true
       }
@@ -796,7 +796,7 @@
   {
     "entity":
     {
-      "name": "Spot022"
+      "name": "COL_Spot022"
       ,
       "transform":
       {
@@ -842,7 +842,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot022.collider"
+        "name": "data/colliders/COL_Spot022.collider"
         ,
         "is_trigger": true
       }
@@ -857,7 +857,7 @@
   {
     "entity":
     {
-      "name": "Spot023"
+      "name": "COL_Spot023"
       ,
       "transform":
       {
@@ -903,7 +903,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot023.collider"
+        "name": "data/colliders/COL_Spot023.collider"
         ,
         "is_trigger": true
       }
@@ -918,7 +918,7 @@
   {
     "entity":
     {
-      "name": "Spot024"
+      "name": "COL_Spot024"
       ,
       "transform":
       {
@@ -964,7 +964,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot024.collider"
+        "name": "data/colliders/COL_Spot024.collider"
         ,
         "is_trigger": true
       }
@@ -979,7 +979,7 @@
   {
     "entity":
     {
-      "name": "Spot025"
+      "name": "COL_Spot025"
       ,
       "transform":
       {
@@ -1025,7 +1025,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot025.collider"
+        "name": "data/colliders/COL_Spot025.collider"
         ,
         "is_trigger": true
       }
@@ -1040,7 +1040,7 @@
   {
     "entity":
     {
-      "name": "Spot026"
+      "name": "COL_Spot026"
       ,
       "transform":
       {
@@ -1086,7 +1086,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot026.collider"
+        "name": "data/colliders/COL_Spot026.collider"
         ,
         "is_trigger": true
       }
@@ -1101,7 +1101,7 @@
   {
     "entity":
     {
-      "name": "Spot027"
+      "name": "COL_Spot027"
       ,
       "transform":
       {
@@ -1147,7 +1147,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot027.collider"
+        "name": "data/colliders/COL_Spot027.collider"
         ,
         "is_trigger": true
       }
@@ -1162,7 +1162,7 @@
   {
     "entity":
     {
-      "name": "Spot028"
+      "name": "COL_Spot028"
       ,
       "transform":
       {
@@ -1208,7 +1208,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot028.collider"
+        "name": "data/colliders/COL_Spot028.collider"
         ,
         "is_trigger": true
       }
@@ -1223,7 +1223,7 @@
   {
     "entity":
     {
-      "name": "Spot029"
+      "name": "COL_Spot029"
       ,
       "transform":
       {
@@ -1269,7 +1269,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot029.collider"
+        "name": "data/colliders/COL_Spot029.collider"
         ,
         "is_trigger": true
       }
@@ -1284,7 +1284,7 @@
   {
     "entity":
     {
-      "name": "Spot030"
+      "name": "COL_Spot030"
       ,
       "transform":
       {
@@ -1330,7 +1330,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot030.collider"
+        "name": "data/colliders/COL_Spot030.collider"
         ,
         "is_trigger": true
       }
@@ -1345,7 +1345,7 @@
   {
     "entity":
     {
-      "name": "Spot031"
+      "name": "COL_Spot031"
       ,
       "transform":
       {
@@ -1391,7 +1391,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot031.collider"
+        "name": "data/colliders/COL_Spot031.collider"
         ,
         "is_trigger": true
       }
@@ -1406,7 +1406,7 @@
   {
     "entity":
     {
-      "name": "Spot032"
+      "name": "COL_Spot032"
       ,
       "transform":
       {
@@ -1452,7 +1452,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot032.collider"
+        "name": "data/colliders/COL_Spot032.collider"
         ,
         "is_trigger": true
       }
@@ -1467,7 +1467,7 @@
   {
     "entity":
     {
-      "name": "Spot033"
+      "name": "COL_Spot033"
       ,
       "transform":
       {
@@ -1513,7 +1513,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot033.collider"
+        "name": "data/colliders/COL_Spot033.collider"
         ,
         "is_trigger": true
       }
@@ -1528,7 +1528,7 @@
   {
     "entity":
     {
-      "name": "Spot034"
+      "name": "COL_Spot034"
       ,
       "transform":
       {
@@ -1574,7 +1574,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot034.collider"
+        "name": "data/colliders/COL_Spot034.collider"
         ,
         "is_trigger": true
       }
@@ -1589,7 +1589,7 @@
   {
     "entity":
     {
-      "name": "Spot035"
+      "name": "COL_Spot035"
       ,
       "transform":
       {
@@ -1635,7 +1635,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot035.collider"
+        "name": "data/colliders/COL_Spot035.collider"
         ,
         "is_trigger": true
       }
@@ -1650,7 +1650,7 @@
   {
     "entity":
     {
-      "name": "Spot036"
+      "name": "COL_Spot036"
       ,
       "transform":
       {
@@ -1696,7 +1696,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot036.collider"
+        "name": "data/colliders/COL_Spot036.collider"
         ,
         "is_trigger": true
       }
@@ -1711,7 +1711,7 @@
   {
     "entity":
     {
-      "name": "Spot037"
+      "name": "COL_Spot037"
       ,
       "transform":
       {
@@ -1757,7 +1757,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot037.collider"
+        "name": "data/colliders/COL_Spot037.collider"
         ,
         "is_trigger": true
       }
@@ -1772,7 +1772,7 @@
   {
     "entity":
     {
-      "name": "Spot038"
+      "name": "COL_Spot038"
       ,
       "transform":
       {
@@ -1818,7 +1818,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot038.collider"
+        "name": "data/colliders/COL_Spot038.collider"
         ,
         "is_trigger": true
       }
@@ -1833,7 +1833,7 @@
   {
     "entity":
     {
-      "name": "Spot039"
+      "name": "COL_Spot039"
       ,
       "transform":
       {
@@ -1879,7 +1879,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot039.collider"
+        "name": "data/colliders/COL_Spot039.collider"
         ,
         "is_trigger": true
       }
@@ -1894,7 +1894,7 @@
   {
     "entity":
     {
-      "name": "Spot040"
+      "name": "COL_Spot040"
       ,
       "transform":
       {
@@ -1940,7 +1940,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot040.collider"
+        "name": "data/colliders/COL_Spot040.collider"
         ,
         "is_trigger": true
       }
@@ -1955,7 +1955,7 @@
   {
     "entity":
     {
-      "name": "Spot041"
+      "name": "COL_Spot041"
       ,
       "transform":
       {
@@ -2001,7 +2001,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot041.collider"
+        "name": "data/colliders/COL_Spot041.collider"
         ,
         "is_trigger": true
       }
@@ -2016,7 +2016,7 @@
   {
     "entity":
     {
-      "name": "Spot042"
+      "name": "COL_Spot042"
       ,
       "transform":
       {
@@ -2062,7 +2062,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot042.collider"
+        "name": "data/colliders/COL_Spot042.collider"
         ,
         "is_trigger": true
       }
@@ -2077,7 +2077,7 @@
   {
     "entity":
     {
-      "name": "Spot043"
+      "name": "COL_Spot043"
       ,
       "transform":
       {
@@ -2123,7 +2123,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot043.collider"
+        "name": "data/colliders/COL_Spot043.collider"
         ,
         "is_trigger": true
       }
@@ -2138,7 +2138,7 @@
   {
     "entity":
     {
-      "name": "Spot044"
+      "name": "COL_Spot044"
       ,
       "transform":
       {
@@ -2184,7 +2184,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot044.collider"
+        "name": "data/colliders/COL_Spot044.collider"
         ,
         "is_trigger": true
       }
@@ -2199,7 +2199,7 @@
   {
     "entity":
     {
-      "name": "Spot045"
+      "name": "COL_Spot045"
       ,
       "transform":
       {
@@ -2245,7 +2245,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot045.collider"
+        "name": "data/colliders/COL_Spot045.collider"
         ,
         "is_trigger": true
       }
