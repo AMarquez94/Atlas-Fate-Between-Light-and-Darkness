@@ -1,0 +1,367 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_cables"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "134.352 0.0 -54.2458"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica001"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-12.563 18.8172 15.389"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica002"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-13.5709 11.971 38.4125"
+        ,
+        "rotation": "-0.521334 0.477714 -0.521334 0.477714"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica003"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-20.9752 11.6702 23.8354"
+        ,
+        "rotation": "2.48591e-07 2.04922e-07 -0.999048 -0.0436193"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica004"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.72708 11.5725 34.9062"
+        ,
+        "rotation": "-0.706434 -0.0308434 -0.706434 -0.0308437"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica005"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "15.6707 11.8828 30.4946"
+        ,
+        "rotation": "0.5 -0.5 0.5 -0.5"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica006"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "6.46614 18.8172 15.389"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica007"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.9304 6.5784 18.0755"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica008"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-0.855698 5.50125 32.0943"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_intro_cable"
+      ,
+      "transform":
+      {
+        "pos": "37.8197 0.0 19.6012"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_intro_cable.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_intro_cable001"
+      ,
+      "transform":
+      {
+        "pos": "6.6889 0.0 18.7135"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_intro_cable001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_intro_cable002"
+      ,
+      "transform":
+      {
+        "pos": "-8.07334 0.0 19.6012"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_intro_cable002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_intro_cable003"
+      ,
+      "transform":
+      {
+        "pos": "5.2935 0.0 19.6012"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_intro_cable003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_intro_cable004"
+      ,
+      "transform":
+      {
+        "pos": "5.57677 0.0 19.6012"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_intro_cable004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_intro_cable005"
+      ,
+      "transform":
+      {
+        "pos": "7.72546 17.3577 25.3804"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_intro_cable005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_intro_cable006"
+      ,
+      "transform":
+      {
+        "pos": "-4.39754 0.0 22.0444"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_intro_cable006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

@@ -27,9 +27,15 @@ void TCompCircularController::onCreate(const TMsgEntityCreated& msg) {
     curr_height = c_my_transform->getPosition().y;
 }
 
+void TCompCircularController::onNewTarget(const TMsgCircularControllerTarget & msg)
+{
+    h_target = msg.new_target;
+}
+
 void TCompCircularController::registerMsgs() {
 
     DECL_MSG(TCompCircularController, TMsgEntityCreated, onCreate);
+    DECL_MSG(TCompCircularController, TMsgCircularControllerTarget, onNewTarget);
 }
 
 void TCompCircularController::load(const json& j, TEntityParseContext& ctx) {

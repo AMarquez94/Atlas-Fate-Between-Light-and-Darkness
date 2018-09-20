@@ -214,7 +214,8 @@ public:
 
     /* Lua functions */
     void playPlayerStep(bool left);
-    void playLandParticles(bool left);
+    void playLandParticles(bool left); 
+    void playSMSpirals();
 
     static void registerMsgs();
 };

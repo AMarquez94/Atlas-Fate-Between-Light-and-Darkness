@@ -77,7 +77,14 @@
 		{ "name" : "metralla_finish"},
 		{ "name" : "sm_enter"},
 		{ "name" : "open_weapons"},
-		{ "name" : "touch_enemy"},
+		{ "name" : "touch_enemy",
+			"callbacks":[
+			  {
+				"time_to_call" : 0.1,
+				"function_to_call" : "animation_grab_enemy"
+			  }
+			  ]
+		},
 		{ "name" : "sonda_normal"},
 		{ "name" : "sonda_crouch"},
 		{ "name" : "touching_enemy"},
