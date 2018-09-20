@@ -317,8 +317,20 @@
 			"size": 1
 		},
 		{
-			"name": "sonarEnemy",
-			"type": "SonarState",
+			"name": "sonarEnemyUp",
+			"type": "SonarStateUp",
+			"animation": "inhibitorRemoved",
+			"speed": 0,
+			"noise": {
+				"is_only_once": true,
+				"radius": 10.0,
+				"time_to_repeat": 0.5,
+				"is_artificial": true
+			}
+		},
+		{
+			"name": "sonarEnemyCrouch",
+			"type": "SonarStateCrouch",
 			"animation": "inhibitorRemoved",
 			"speed": 0,
 			"noise": {
@@ -559,7 +571,7 @@
 		{
 			"type": "VariableTransition",
 			"source": "idle",
-			"target": "sonarEnemy",
+			"target": "sonarEnemyUp",
 			"variable": {
 				"name": "sonar",
 				"type": "bool",
@@ -569,7 +581,7 @@
 		{
 			"type": "VariableTransition",
 			"source": "crouch",
-			"target": "sonarEnemy",
+			"target": "sonarEnemyCrouch",
 			"variable": {
 				"name": "sonar",
 				"type": "bool",
@@ -578,7 +590,17 @@
 		},
 		{
 			"type": "VariableTransition",
-			"source": "sonarEnemy",
+			"source": "sonarEnemyCrouch",
+			"target": "die",
+			"variable": {
+				"name": "onDead",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "sonarEnemyUp",
 			"target": "die",
 			"variable": {
 				"name": "onDead",
@@ -588,8 +610,14 @@
 		},
 		{
 			"type": "TimeTransition",
-			"source": "sonarEnemy",
+			"source": "sonarEnemyCrouch",
 			"target": "crouch",
+			"time": 1
+		},
+				{
+			"type": "TimeTransition",
+			"source": "sonarEnemyUp",
+			"target": "idle",
 			"time": 1
 		},
 		{
