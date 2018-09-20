@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_zone_a",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -80,7 +80,6 @@
 		"scene_group": [
 			"data/scenes/ZoneA/player2_fsm.scene",
 			"data/scenes/main_cameras.scene",
-			"data/scenes/ZoneA/zone_a_aceras.scene",
 			"data/scenes/ZoneA/zone_a_suelo.scene",
 			"data/scenes/ZoneA/zone_a_casas.scene",
 			"data/scenes/ZoneA/zone_a_puertas.scene",

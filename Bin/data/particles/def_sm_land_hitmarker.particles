@@ -1,6 +1,6 @@
 {
 	"system": {
-		"duration": 100,
+		"duration": 10,
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
@@ -51,11 +51,11 @@
 	},
 	"renderer": {
 		"mode": "horizontal",
-		"texture": "data/textures/particles/magic_radius.dds",
-		"frame_size" : "1 1",
+		"texture": "data/textures/particles/ground_shadow.dds",
+		"frame_size" : "8 4",
 		"initial_frame" : 0,
-		"num_frames" : 1,
-		"frame_speed" : 0.0,
+		"num_frames" : 32,
+		"frame_speed" : 32,
 		"tech" : "particles_instanced_additive.tech"
 	}, 
   "size" : {
@@ -69,10 +69,10 @@
   "color" : {
     "opacity" : 1,
     "colors" : [
-		[0.0, "0 0 0 1"],
-		[0.1, "0 0 0 1"],
-		[0.7, "0 0 0 1"],
-		[1.0, "0 0 0 1"]
+		[0.0, "0.9 1 1 1"],
+		[0.1, "0.9 1 1 1"],
+		[0.7, "0.9 1 1 1"],
+		[1.0, "0.9 1 1 1"]
     ] 
   }
 }

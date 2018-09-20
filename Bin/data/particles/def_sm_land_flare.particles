@@ -15,7 +15,7 @@
 		"offset": "0 1 0"
 	},      
 	"emission": {         
-		"rate_time": 300.0,    
+		"rate_time": 600.0,    
 		"rate_distance": 0.0,    
 		"variation" : 0.0
 	},	    
@@ -61,7 +61,7 @@
 		"tech" : "particles_instanced_additive.tech"
 	},        
   "size" : {     
-    "scale" : 1,
+    "scale" : 0.75,
     "scale_variation" : 0.4,  
     "sizes" : [ 
 		  [0.0, "1 1 1"],
