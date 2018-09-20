@@ -19,6 +19,7 @@
 #include "components/lighting/comp_fade_controller.h"
 #include "entity/entity_parser.h"
 #include "components/comp_tags.h"
+#include "components/comp_particles.h"
 
 DECL_OBJ_MANAGER("ai_patrol", TCompAIPatrol);
 
@@ -298,6 +299,16 @@ void TCompAIPatrol::onMsgWarned(const TMsgWarnEnemy & msg)
     lastPlayerKnownPos = msg.playerPosition;
 }
 
+void TCompAIPatrol::onMsgResetPatrolLights(const TMsgResetPatrolLights & msg)
+{
+    if (startLightsOn) {
+        turnOnLight();
+    }
+    else {
+        turnOffLight();
+    }
+}
+
 const std::string TCompAIPatrol::getStateForCheckpoint()
 {
     if (current) {
@@ -327,6 +338,7 @@ void TCompAIPatrol::registerMsgs()
     DECL_MSG(TCompAIPatrol, TMsgCinematicState, onMsgCinematicState);
 	DECL_MSG(TCompAIPatrol, TMsgAnimationCompleted, onMsgAnimationCompleted);
 	DECL_MSG(TCompAIPatrol, TMsgWarnEnemy, onMsgWarned);
+	DECL_MSG(TCompAIPatrol, TMsgResetPatrolLights, onMsgResetPatrolLights);
 }
 
 void TCompAIPatrol::loadActions() {
@@ -1352,6 +1364,9 @@ void TCompAIPatrol::turnOnLight()
             TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
             cConeController->turnOnLight();
 
+            TCompParticles* flashParticles = eCone->get<TCompParticles>();
+            flashParticles->setSystemState(true);
+
             bool found = false;
             for (int i = 0; i < EngineIA.patrolSB.patrolsWithLight.size(); i++) {
                 if (EngineIA.patrolSB.patrolsWithLight[i] == myHandle.getOwner()) {
@@ -1371,6 +1386,8 @@ void TCompAIPatrol::turnOffLight() {
     CEntity* eCone = cGroup->getHandleByName("FlashLight");
     TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
     cConeController->turnOffLight();
+    TCompParticles* flashParticles = eCone->get<TCompParticles>();
+    flashParticles->setSystemState(false);
 
     bool found = false;
     for (int i = 0; i < EngineIA.patrolSB.patrolsWithLight.size(); i++) {
@@ -1564,13 +1581,15 @@ void TCompAIPatrol::shakeCamera(float max_amount, float max_distance, float dura
 
 void TCompAIPatrol::playSlamParticle()
 {
+    TCompGroup* my_group = get<TCompGroup>();
+    CHandle foot = my_group->getHandleByName("right_foot");
     // Sacalo al json si te apetece.
-    EngineParticles.launchSystem("data/particles/def_patrol_slam.particles", CHandle(this).getOwner());
-    EngineParticles.launchSystem("data/particles/def_patrol_slam_core.particles", CHandle(this).getOwner());
-    EngineParticles.launchSystem("data/particles/def_patrol_slam_sphere.particles", CHandle(this).getOwner());
+    EngineParticles.launchSystem("data/particles/def_patrol_slam.particles", foot);
+    EngineParticles.launchSystem("data/particles/def_patrol_slam_core.particles", foot);
+    EngineParticles.launchSystem("data/particles/def_patrol_slam_sphere.particles", foot);
 
-    EngineParticles.launchSystem("data/particles/def_patrol_slam_trails.particles", CHandle(this).getOwner());
-    EngineParticles.launchSystem("data/particles/def_patrol_slam_trails_core.particles", CHandle(this).getOwner());
+    EngineParticles.launchSystem("data/particles/def_patrol_slam_trails.particles", foot);
+    EngineParticles.launchSystem("data/particles/def_patrol_slam_trails_core.particles", foot);
 }
 
 void TCompAIPatrol::playAnimationByName(const std::string & animationName)

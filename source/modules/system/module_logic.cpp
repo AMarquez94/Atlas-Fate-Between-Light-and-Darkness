@@ -136,6 +136,8 @@ void CModuleLogic::publishClasses() {
         .set("die", &TCompTempPlayerController::die)
         .set("getLeftWeapon", &TCompTempPlayerController::getLeftWeapon)
         .set("getRightWeapon", &TCompTempPlayerController::getRightWeapon)
+        .set("playPlayerStep", &TCompTempPlayerController::playPlayerStep)
+        .set("playLandParticles", &TCompTempPlayerController::playLandParticles)
         ;
 
     SLB::Class<TCompLightSpot>("SpotLight", m)
@@ -152,6 +154,7 @@ void CModuleLogic::publishClasses() {
 		.set("attackPlayer", &TCompAIPatrol::attackPlayer)
         .set("playStepParticle", &TCompAIPatrol::playStepParticle)
         .set("shakeCamera", &TCompAIPatrol::shakeCamera)
+        .set("playSlamParticle", &TCompAIPatrol::playSlamParticle)
         ;
 
     SLB::Class<TCompTransform>("Transform", m)
@@ -263,6 +266,7 @@ void CModuleLogic::publishClasses() {
     m->set("cinematicModeToggle", SLB::FuncCall::create(&cinematicModeToggle));
     m->set("isCheckpointSaved", SLB::FuncCall::create(&isCheckpointSaved));
     m->set("destroyHandle", SLB::FuncCall::create(&destroyHandle));
+    m->set("resetPatrolLights", SLB::FuncCall::create(&resetPatrolLights));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -616,6 +620,15 @@ void destroyHandle(unsigned int h)
     CHandle handle;
     handle.fromUnsigned(h);
     handle.destroy();
+}
+
+void resetPatrolLights()
+{
+    VHandles patrols = CTagsManager::get().getAllEntitiesByTag(getID("patrol"));
+    TMsgResetPatrolLights msg;
+    for (int i = 0; i < patrols.size(); i++) {
+        patrols[i].sendMsg(msg);
+    }
 }
 
 SoundEvent playEvent(const std::string & name)

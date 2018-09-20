@@ -13,6 +13,7 @@ function animation_Attack(sender)
 	ai_patrol = toAIPatrol(e_patrol:getCompByName("ai_patrol"));
 	ai_patrol:attackPlayer();	
 	ai_patrol:shakeCamera(0.7, 10, 0.2);
+	ai_patrol:playSlamParticle();
 end
 
 function animation_Patrol_Walk_Left(sender)

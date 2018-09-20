@@ -6,6 +6,14 @@ function animation_attack_attack(sender)
 	playerController:stunEnemy();
 end
 
+function animation_step_left(sender)
+	playerController:playPlayerStep(true);
+end
+
+function animation_step_right(sender)
+	playerController:playPlayerStep(false);
+end
+
 function animation_attack_swingLeft(sender)
 	h = playerController:getLeftWeapon();
 	e = toEntity(h);
@@ -53,6 +61,8 @@ function animation_soft_land()
 	e = toEntity(h);
 	t_audio = toAudio(e:getCompByName("audio"));
 	t_audio:playEvent("event:/Sounds/Player/Steps/NormalSteps", false);
+	playerController:playLandParticles(true);
+	playerController:playLandParticles(false);
 end
 
 function animation_hard_land()
@@ -61,4 +71,6 @@ function animation_hard_land()
 	t_audio = toAudio(e:getCompByName("audio"));
 	t_audio:playEvent("event:/Sounds/Player/Land/Land", false);
 	t_audio:playEvent("event:/Sounds/Player/Hurt/Hurt", false);
+	playerController:playLandParticles(true);
+	playerController:playLandParticles(false);
 end

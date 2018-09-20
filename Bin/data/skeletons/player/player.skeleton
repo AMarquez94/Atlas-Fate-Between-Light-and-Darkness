@@ -4,16 +4,14 @@
 		{ "name" : "idle"},
 		{ "name" : "walk", 
 			"animation_completed_callback": true,
-			"audio_callbacks":[
+			"callbacks":[
 			{
 				"time_to_call" : 0.18,
-				"audio_name" : "event:/Sounds/Player/Steps/NormalSteps",
-				"relative_to_player" : false
+				"function_to_call" : "animation_step_left"
 			},
 			{
 				"time_to_call" : 0.48,
-				"audio_name" : "event:/Sounds/Player/Steps/NormalSteps",
-				"relative_to_player" : false
+				"function_to_call" : "animation_step_right"
 			}]
 		},
 		{ "name" : "run", 

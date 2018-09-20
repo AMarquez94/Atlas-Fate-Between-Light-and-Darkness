@@ -23,6 +23,7 @@ void TCompParticles::load(const json& j, TEntityParseContext& ctx) {
     _fadeout = j.value("fade_out", 0.f);
     _on_start = j.value("on_start", true);
 
+
     if(j.count("core"))
         _core = Resources.get(j.value("core", ""))->as<Particles::TCoreSystem>();
 
@@ -47,6 +48,10 @@ void TCompParticles::onCreated(const TMsgEntityCreated&) {
         if (_cores[p.first] == 0)
             _cores[p.first] = Engine.getParticles().launchSystem(p.first, CHandle(this).getOwner());
     }
+
+    if (!_on_start) {
+        setSystemState(false);
+    }
 }
 
 void TCompParticles::onGroupCreated(const TMsgEntitiesGroupCreated&) {
@@ -59,6 +64,10 @@ void TCompParticles::onGroupCreated(const TMsgEntitiesGroupCreated&) {
     for (auto p : _cores) {
         if(_cores[p.first] == 0)
             _cores[p.first] = Engine.getParticles().launchSystem(p.first, CHandle(this).getOwner());
+    }
+
+    if (!_on_start) {
+        setSystemState(false);
     }
 }
 

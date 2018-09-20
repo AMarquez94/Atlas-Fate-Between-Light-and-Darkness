@@ -118,6 +118,7 @@ void sleep(float time);
 void cinematicModeToggle();
 bool isCheckpointSaved();
 void destroyHandle(unsigned int h);
+void resetPatrolLights();
 
 /* Sounds */
 SoundEvent playEvent(const std::string& name);

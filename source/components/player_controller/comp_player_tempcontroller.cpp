@@ -138,6 +138,26 @@ void TCompTempPlayerController::update(float dt) {
     }
 }
 
+void TCompTempPlayerController::playPlayerStep(bool left)
+{
+    TCompGroup* my_group = get<TCompGroup>();
+    TCompAudio* my_audio = get<TCompAudio>();
+    if (my_group) {
+        CHandle foot = left ? my_group->getHandleByName("left_foot") : my_group->getHandleByName("right_foot");
+        EngineParticles.launchSystem("data/particles/def_amb_ground_step.particles", foot);
+    }
+    my_audio->playEvent("event:/Sounds/Player/Steps/NormalSteps", false);
+}
+
+void TCompTempPlayerController::playLandParticles(bool left)
+{
+    TCompGroup* my_group = get<TCompGroup>();
+    if (my_group) {
+        CHandle foot = left ? my_group->getHandleByName("left_foot") : my_group->getHandleByName("right_foot");
+        EngineParticles.launchSystem("data/particles/def_amb_ground_hit.particles", foot);
+    }
+}
+
 void TCompTempPlayerController::registerMsgs() {
 
     DECL_MSG(TCompTempPlayerController, TMsgStateStart, onStateStart);
