@@ -11,9 +11,7 @@ void TCompVignette::debugInMenu() {
 
     ImGui::Checkbox("Enabled", &enabled);
     ImGui::DragFloat("Amount", &amount, 0.01f, 0.0f, 1.0f);
-    ImGui::DragFloat("Inner Radius", &amount, 0.01f, 0.0f, 1.0f);
-    ImGui::DragFloat("Outer Radius", &amount, 0.01f, 0.0f, 1.0f);
-    ImGui::DragFloat("Opacity", &amount, 0.01f, 0.0f, 1.0f);
+    ImGui::DragFloat("Lut Amount", &lut_amount, 0.01f, 0.0f, 1.0f);
 }
 
 void TCompVignette::load(const json& j, TEntityParseContext& ctx) {
@@ -22,7 +20,7 @@ void TCompVignette::load(const json& j, TEntityParseContext& ctx) {
     int yres = Render.height;
 
     enabled = j.value("enabled", true);
-    amount = j.value("amount", 1.0f);
+    amount = j.value("amount", 0.35f);
 
     if (!rt) {
         rt = new CRenderToTexture;
@@ -32,6 +30,9 @@ void TCompVignette::load(const json& j, TEntityParseContext& ctx) {
         bool is_ok = rt->createRT(rt_name, xres, yres, DXGI_FORMAT_B8G8R8A8_UNORM);
         assert(is_ok);
     }
+
+    //std::string lut_name = j.value("lut", "");
+    //lut1 = Resources.get(lut_name)->as<CTexture>();
 
     tech = Resources.get("postfx_vignette.tech")->as<CRenderTechnique>();
     mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
@@ -43,9 +44,13 @@ CTexture* TCompVignette::apply(CTexture* in_texture) {
         return in_texture;
 
     CTraceScoped scope("TCompVignette");
+    cb_postfx.postfx_vignette = amount;
+    cb_globals.global_shared_fx_amount = amount;
     cb_globals.updateGPU();
+    cb_postfx.updateGPU();
 
     rt->activateRT();
+    //lut1->activate(TS_LUT_COLOR_GRADING);
     in_texture->activate(TS_ALBEDO);
 
     tech->activate();

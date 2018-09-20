@@ -32,6 +32,8 @@ public:
 	MAT44 getWorld();
     VEC4 getColor() const;
     void setColor(VEC4 new_color);
+    void setIntensity(float new_int);
+    float getIntensity();
 
     static void registerMsgs();
 };

@@ -4,6 +4,10 @@
 
 DECL_OBJ_MANAGER("audio", TCompAudio);
 
+TCompAudio::~TCompAudio() {
+    stopAudioComponent();
+}
+
 void TCompAudio::onAnimationAudioCallback(const TMsgAnimationAudioCallback & msg)
 {
     playEvent(msg.audioName, msg.isRelativeToPlayer);
@@ -11,15 +15,20 @@ void TCompAudio::onAnimationAudioCallback(const TMsgAnimationAudioCallback & msg
 
 void TCompAudio::onStopAudioComponent(const TMsgStopAudioComponent & msg)
 {
+    stopAudioComponent();
+}
+
+void TCompAudio::stopAudioComponent()
+{
     for (auto audio : my2DEvents) {
         if (audio.isValid()) {
-            audio.stop(true);
+            audio.stop();
         }
     }
 
     for (auto audio : my3DEvents) {
         if (audio.isValid()) {
-            audio.stop(true);
+            audio.stop();
         }
     }
 }
@@ -36,6 +45,13 @@ void TCompAudio::debugInMenu()
 
 void TCompAudio::load(const json & j, TEntityParseContext & ctx)
 {
+    //if (j.count("onStart") > 0) {
+    //    auto& j_onStart = j["onStart"];
+    //    for (auto it = j_onStart.begin(); it != j_onStart.end(); ++it) {
+    //        //TODO: Test
+    //        playEvent(it.value().value("eventName", ""), it.value().value("relativeToPlayer", true));
+    //    }
+    //}
 }
 
 void TCompAudio::update(float dt)
@@ -66,11 +82,13 @@ void TCompAudio::update(float dt)
     TCompTransform* mypos = get<TCompTransform>();
     for (auto& event : my3DEvents) {
         if (event.isValid()) {
-            if (event.isRelativeToCameraOnly()) {
-                event.set3DAttributes(*mypos);
-            }
-            else {
-                event.set3DAttributes(EngineSound.getVirtual3DAttributes(*mypos));
+            if (CHandle(this).getOwner().isValid()) {
+                if (event.isRelativeToCameraOnly()) {
+                    event.set3DAttributes(*mypos);
+                }
+                else {
+                    event.set3DAttributes(EngineSound.getVirtual3DAttributes(*mypos));
+                }
             }
         }
     }

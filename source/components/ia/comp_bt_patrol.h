@@ -44,6 +44,9 @@ private:
     void onMsgNoiseListened(const TMsgNoiseMade& msg);
     void onMsgLanternsDisable(const TMsgLanternsDisable& msg);
     void onMsgCinematicState(const TMsgCinematicState& msg);
+	void onMsgAnimationCompleted(const TMsgAnimationCompleted& msg);
+	void onMsgWarned(const TMsgWarnEnemy& msg);
+	void onMsgResetPatrolLights(const TMsgResetPatrolLights& msg);
 
     /* Aux functions */
     void turnOnLight();
@@ -53,6 +56,12 @@ private:
     CHandle getPatrolInPos(VEC3 lastPos);
     float getMaxChaseDistance();
     TCompAIPatrol::EState getStateEnumFromString(const std::string& stateName);
+    void warnClosestPatrols();
+
+	/* Completed Animations Checkers */
+
+	bool inhibitorAnimationCompleted = false;
+	bool attackAnimationCompleted = false;
 
     //load
     void loadActions() override;
@@ -140,5 +149,12 @@ public:
     /* LUA functions */
     void launchInhibitor();
 
+    void attackPlayer();
+    void playStepParticle(bool left);
+    void shakeCamera(float max_amount, float max_distance, float duration);
+    void playSlamParticle();
+
 	void playAnimationByName(const std::string & animationName) override;
+
+	void resetAnimationCompletedBooleans();
 };

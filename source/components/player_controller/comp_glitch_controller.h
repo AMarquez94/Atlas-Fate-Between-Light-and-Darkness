@@ -9,10 +9,12 @@ class TCompGlitchController : public TCompBase {
     void onGlitchDeploy(const TMsgGlitchController & msg);
 
     CTimer time_controller;
+    SoundEvent glitch_sound;
 
     DECL_SIBLING_ACCESS();
 public:
 
+    ~TCompGlitchController();
     float fade_time;
     float fade_multiplier;
 

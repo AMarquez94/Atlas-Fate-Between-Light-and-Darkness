@@ -50,6 +50,9 @@ void TCompSonarController::onSonarActive(const TMsgSonarActive & msg) {
     sonar.variant.setBool(false);
     e->sendMsg(sonar);
 
+    TCompAudio* my_audio = get<TCompAudio>();
+    my_audio->playEvent("event:/Sounds/Player/Sonar/Sonar");
+
     /* Enable this in case we want to hold the alpha value by material
     for (auto p : target_handles) {
         CEntity * c_entity = p;

@@ -1,0 +1,13 @@
+{"technique": "pbr_parallax.tech",
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/mix/blending_mezquita/blue/tx_arena_mezquita_alb.dds",
+    "normal": "data/textures/mix/blending_mezquita/blue/tx_arena_mezquita_nml.dds",
+    "metallic": "data/textures/mix/blending_mezquita/blue/tx_arena_mezquita_mtl.dds",
+    "roughness": "data/textures/mix/blending_mezquita/blue/tx_arena_mezquita_rgh.dds",
+	"height": "data/textures/mix/blending_mezquita/blue/tx_arena_mezquita_hgt.dds",
+	"aocclusion": "data/textures/mix/blending_mezquita/blue/tx_arena_mezquita_ao.dds"
+  }
+}

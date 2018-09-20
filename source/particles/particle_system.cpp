@@ -7,6 +7,7 @@
 #include <random>
 #include "render/render_manager.h"
 #include "noise/FastNoiseSIMD.h"
+#include "noise/Perlin.h"
 
 // ----------------------------------------------
 class CParticleResourceClass : public CResourceClass {
@@ -81,6 +82,21 @@ namespace Particles
 
         if(!_core->n_system.looping)
             emit(_core->n_emission.rate_time);
+
+        // Copy the bursts to our structure
+        for (auto it = _core->n_emission.bursts.begin(); it != _core->n_emission.bursts.end();)
+        {
+            // Do a deep copy instead of this...
+            Particles::TNBurst p = Particles::TNBurst();
+            p.count = it->count;
+            p.cycles = it->cycles;
+            p.interval = it->interval;
+            p.i_elapsed = it->i_elapsed;
+            p.time = it->time;
+
+            bursts.push_back(p);
+            ++it;
+        }
     }
 
     void CSystem::debugInMenu() {
@@ -199,6 +215,7 @@ namespace Particles
 
         MAT44 world = MAT44::Identity;
         MAT44 world_rot = MAT44::Identity;
+        const siv::PerlinNoise perlin(12345);
 
         if (_entity.isValid())
         {
@@ -226,22 +243,19 @@ namespace Particles
                 {
                     float life_ratio = p.max_lifetime > 0.f ? clamp(p.lifetime / p.max_lifetime, 0.f, 1.f) : 1.f;
                     p.velocity = _core->n_system.start_speed * p.origin_velocity;
-                    p.velocity += VEC3::Transform(_core->n_velocity.velocity.get(life_ratio), world_rot) * _core->n_velocity.acceleration * delta;
-                    p.velocity += kGravity * _core->n_system.gravity * delta;
-
                     // Compute the noise, disable if it gives bad fps
-                    if(_core->n_noise.strength > 0)
-                    {          
-                        /*float noise_amountx = clamp(_core->n_noise.noise_values[amount] * 10, 0.0f , 1.0f);
-                        float noise_amounty = clamp(_core->n_noise.noise_values[amount+1] * 10, 0.0f, 1.0f);
-                        float noise_amountz = clamp(_core->n_noise.noise_values[amount+2] * 10, 0.0f, 1.0f);
+                    p.velocity += VEC3::Transform(_core->n_velocity.velocity.get(life_ratio), world_rot) * _core->n_velocity.acceleration * delta;
+                    p.downforce += kGravity * _core->n_system.gravity * delta;
+                    p.velocity += p.downforce;
 
-                        VEC3 p_dir = p.origin_velocity.Cross(proj_vector);
-                        VEC3 n_dir = VEC3(p.origin_velocity.x * noise_amountx, p.origin_velocity.y * noise_amounty, p.origin_velocity.z * noise_amountz);*/
-                        VEC3 r_dir = p.random_direction * random(0, 1);
-                        p.velocity += r_dir * _core->n_noise.strength * delta;
+                    if (_core->n_noise.strength > 0)
+                    {
+                        p.random_direction = VEC3(p.random_direction.x + random(-0.1, 0.1), p.random_direction.y + random(-0.1, 0.1), p.random_direction.z + random(-0.1, 0.1));
+                        p.velocity += p.random_direction * _core->n_noise.strength * delta;
                     }
 
+                    // Inherit velocity if needed
+                    p.position = _core->n_velocity.inherit_velocity ? VEC3::Transform(p.origin_position, world) : p.position;
                     p.position += p.velocity * delta;
                     p.position += kWindVelocity * _core->n_velocity.wind * delta;
                     p.rotation += _core->n_velocity.rotation.get(life_ratio) * delta;
@@ -294,22 +308,18 @@ namespace Particles
         // Bursts (concrete deploy)
         for (auto it = _core->n_emission.bursts.begin(); it != _core->n_emission.bursts.end();)
         {
-            Particles::TCoreSystem::TNEmission::TNBurst& p = *it;
+            Particles::TNBurst p = *it;
+            Particles::TNBurst & c = bursts[it - _core->n_emission.bursts.begin()];
 
             if (_deploy_time > p.time) {
-                p.i_elapsed += delta; // Update the burst
-                                      // New burst to be deployed
-                if (p.i_elapsed > p.interval) {
+                c.i_elapsed += delta; // Update the burst
 
-                    p.cycles--;
-                    p.i_elapsed = 0;
+                // New burst to be deployed
+                if (c.i_elapsed > p.interval && c.cycles > 0) {
+
                     emit(p.count);
-
-                    // Remove the burst, it's finished
-                    if (p.cycles < 1) {
-                        it = _core->n_emission.bursts.erase(it);
-                        continue;
-                    }
+                    c.cycles--;
+                    c.i_elapsed = 0;
                 }
             }
 
@@ -351,9 +361,10 @@ namespace Particles
         for (int i = 0; i < amount && _particles.size() < _core->n_system.max_particles; ++i)
         {
             TParticle particle;
-            particle.position = VEC3::Transform(generatePosition() + _core->n_system.offset, world);
+            particle.origin_position = generatePosition() + _core->n_system.offset;
+            particle.position = VEC3::Transform(particle.origin_position, world);
             particle.velocity = VEC3::Transform(generateVelocity(), world_rot);
-            particle.random_direction = AddNoiseOnAngle(-90, 90);
+            particle.random_direction = AddNoiseOnAngle(-180, 180);
             particle.origin_velocity = particle.velocity;
             particle.color = _core->n_color.colors.get(0.f);
             particle.size = _core->n_system.start_size * _core->n_size.sizes.get(0.f);
@@ -392,21 +403,21 @@ namespace Particles
             {
                 VEC3 dir(random(-1, 1), random(-1, 1), random(-1, 1));
                 dir.Normalize();
-                return dir * random(0, size.x);
+                return _core->n_shape.shell_emit ? dir  * size.x : dir * random(0, size.x);
             }
 
             case TCoreSystem::TNShape::Circle:
             {
                 VEC3 dir(random(-1, 1), 0, random(-1, 1));
                 dir.Normalize();
-                return dir * random(0, size.x);
+                return _core->n_shape.shell_emit ? dir * size.x : dir * random(0, size.x);
             }
 
             case TCoreSystem::TNShape::Cone:
             {
                 VEC3 dir(random(-1, 1), 0, random(-1, 1));
                 dir.Normalize();
-                return dir * random(0, size.x);
+                return _core->n_shape.shell_emit ? dir * size.x : dir * random(0, size.x);
             }
         }
 
@@ -476,13 +487,13 @@ namespace Particles
     // To update this with the compute shader.
     void CSystem::render()
     {
-
         if (!_enabled || !_entity.isValid()) return;
         if (_deploy_time < _core->n_system.start_delay) return;
 
         //Hardcoded, move it from here.
         CEntity * ent = _entity;
         TCompTransform * c_ent_transform = ent->get<TCompTransform>();
+        VEC3 proj_vector = c_ent_transform->getFront();
 
         std::vector<Particles::TIParticle> particles_instances;
         particles_instances.reserve(_particles.size());
@@ -497,17 +508,29 @@ namespace Particles
 
         for (auto& p : _particles)
         {
+            // We need to update the strecthed billboard with the given info for each particle.
             VEC3 pos = p.is_update ? c_ent_transform->getPosition() + p.position : p.position;
-            MAT44 bb = MAT44::CreateBillboard(pos, pos + camera_pos, camera_up);
-            MAT44 sc = MAT44::CreateScale(p.size * p.scale * VEC3(length, 1, 1));
+            VEC3 def_position = pos + camera_pos;
+
+            if (_core->n_renderer.mode == TCoreSystem::TNRenderer::EMODE::STRETCHED)
+            {
+                camera_up = p.velocity;
+                camera_up.Normalize();
+                def_position = p.velocity.Cross(camera_pos);
+                def_position.Normalize();
+                def_position = p.position + def_position;
+            }
+
+            MAT44 bb = MAT44::CreateBillboard(pos, def_position, camera_up);
+            MAT44 sc = MAT44::CreateScale(p.size * p.scale * VEC3(1, length, 1));
             MAT44 rt = MAT44::CreateFromYawPitchRoll(p.rotation.x, p.rotation.y, p.rotation.z);
 
             int row = p.frame / frameCols;
             int col = p.frame % frameCols;
-            VEC2 minUV = VEC2(col * frameX, row * frameY);
-            VEC2 maxUV = minUV + VEC2(frameX, frameY);
+            VEC3 minUV = VEC3(col * frameX, row * frameY, 0);
+            VEC3 maxUV = minUV + VEC3(frameX, frameY, _core->n_renderer.softness);
 
-            Particles::TIParticle t_struct = { rt * sc * bb, minUV, maxUV, p.color };
+            Particles::TIParticle t_struct = { sc * rt * bb, minUV, maxUV, p.color };
             particles_instances.push_back(t_struct);
         }
 
@@ -518,11 +541,11 @@ namespace Particles
             instanced_particle->vtx_decl = CVertexDeclManager::get().getByName("CpuParticleInstance");
             instanced_particle->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(Particles::TIParticle));
 
-            auto technique2 = Resources.get("particles_instanced_combinative.tech")->as<CRenderTechnique>();
+            auto technique2 = Resources.get(_core->n_renderer.tech)->as<CRenderTechnique>();
             technique2->activate();
 
             _core->n_renderer.texture->activate(TS_ALBEDO1);
-            CRenderManager::get().renderCategory("particles_instanced_combinative");
+            CRenderManager::get().renderCategory("particles_instanced");
         }
     }
 
@@ -547,8 +570,8 @@ namespace Particles
             camera_up = VEC3(0, 1, 0);
         }
         else if (_core->n_renderer.mode == TCoreSystem::TNRenderer::EMODE::STRETCHED) {
-            camera_pos = -camera->getFront();
-            camera_up = c_ent_transform->getFront();
+            camera_pos = camera->getLeft();
+            camera_up = camera->getUp();
             length = _core->n_renderer.length;
         }
         else {
@@ -579,6 +602,9 @@ namespace Particles
         float xNoise = random(min, max);
         float yNoise = random(min, max);
         float zNoise = random(min, max);
+        //VEC3 noize = VEC3(xNoise, yNoise, zNoise);
+        //noize.Normalize();
+        //return noize;
 
         // Convert Angle to Vector3
         VEC3 noise = VEC3(

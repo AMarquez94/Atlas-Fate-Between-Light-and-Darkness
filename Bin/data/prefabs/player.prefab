@@ -249,11 +249,9 @@
 			"particles": {
 				"cores":
 				[
-					"data/particles/sm_ground.particles",
-					"data/particles/sm_top.particles",
-					"data/particles/sm_whisps.particles",
-					"data/particles/sm_whisps2.particles",
-					"data/particles/sm_top_trail.particles"
+					"data/particles/def_sm_land_hitmarker.particles",
+					"data/particles/def_sm_land_flare.particles",
+					"data/particles/def_sm_land_core.particles"
 				]
 			}
 		}
@@ -279,6 +277,11 @@
 					]
 				}
 			],
+			"player_weapon": {
+				"weapons_on_event":	"event:/Sounds/Player/Weapons/WeaponsOn",
+				"weapons_off_event": "event:/Sounds/Player/Weapons/WeaponsOff"
+			},
+			"audio": {},
 			"abs_aabb": true,
 			"local_aabb": true
 		}
@@ -304,10 +307,48 @@
 					]
 				}
 			],
+			"player_weapon": {
+				"weapons_on_event":	"event:/Sounds/Player/Weapons/WeaponsOn",
+				"weapons_off_event": "event:/Sounds/Player/Weapons/WeaponsOff"
+			},
+			"audio": {},
 			"abs_aabb": true,
 			"local_aabb": true
 		}
-	},{
+	},  
+	{
+		"entity": {
+			"name": "left_foot",
+			"transform": {
+				"pos": "0 0 0",
+				"lookat": "0 0 0"
+			},
+			"bone_tracker": {
+				"bone": "Bip001 L Foot",
+				"parent": "The Player"
+			},
+			"audio": {},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},  
+	{
+		"entity": {
+			"name": "right_foot",
+			"transform": {
+				"pos": "0 0 0",
+				"lookat": "0 0 0"
+			},
+			"bone_tracker": {
+				"bone": "Bip001 R Foot",
+				"parent": "The Player"
+			},
+			"audio": {},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
 		"entity": {
 			"name": "Player_Idle_SM",
 			"transform": "0 0 0",

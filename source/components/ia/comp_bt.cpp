@@ -346,25 +346,25 @@ void TCompIAController::loadParameters(const json& j) {
 			switch (type) {
 			case CVariant::EType::BOOL:
 			{
-				arguments[argCondName].setBool(it.value()["newValue"]);
+				arguments[argActName].setBool(it.value()["newValue"]);
 
 				break;
 			}
 			case CVariant::EType::FLOAT:
 			{
-				arguments[argCondName].setFloat(it.value()["newValue"]);
+				arguments[argActName].setFloat(it.value()["newValue"]);
 
 				break;
 			}
 			case CVariant::EType::INT:
 			{
-				arguments[argCondName].setInt(it.value()["newValue"]);
+				arguments[argActName].setInt(it.value()["newValue"]);
 
 				break;
 			}
 			case CVariant::EType::STRING:
 			{
-				arguments[argCondName].setString(it.value()["newValue"]);
+				arguments[argActName].setString(it.value()["newValue"]);
 
 				break;
 			}

@@ -1,6 +1,6 @@
 [{
-		"entity": {
-			"name": "Instanced Spheres",
+		"xentity": {
+			"name": "Instanced meshes",
 			"transform": {
 				"pos": "0 0 0"
 			},
@@ -13,7 +13,7 @@
 			]
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "Instanced Blood",
 			"transform": {
 				"pos": "0 0 0"
@@ -55,7 +55,7 @@
 			]
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "Instanced Capsules",
 			"transform": {
 				"pos": "0 0 0"
@@ -71,7 +71,7 @@
 		}
 	},
 	{
-		"xentity": {
+		"entity": {
 			"name": "Instanced House",
 			"transform": {
 				"pos": "0 0 0"

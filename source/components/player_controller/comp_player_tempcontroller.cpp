@@ -101,6 +101,7 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
     paused = true;
     canAttack = false;
     canRemoveInhibitor = false;
+    life = maxLife;
 
     // Move the stamina string to the json
     EngineGUI.enableWidget("stamina_bar_general", false);
@@ -116,8 +117,8 @@ void TCompTempPlayerController::update(float dt) {
         (this->*state)(dt);
 
 		// Methods that always must be running on background
-		isGrounded = groundTest(dt);
 		isMerged = onMergeTest(dt);
+		isGrounded = groundTest(dt);
 		updateStamina(dt);
         updateLife(dt);
 		updateShader(dt); // Move this to player render component...
@@ -130,8 +131,31 @@ void TCompTempPlayerController::update(float dt) {
     }
 
     // Update player global speed into the shader.
-    float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
-    cb_globals.global_player_speed = (inputSpeed * currentSpeed) / 6.f; // Maximum speed, change this in the future. 
+    {
+        float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
+        cb_globals.global_player_speed = (inputSpeed * currentSpeed) / 6.f; // Maximum speed, change this in the future. 
+        cb_player.player_health = life != maxLife ? (life/ maxLife) : 1;
+    }
+}
+
+void TCompTempPlayerController::playPlayerStep(bool left)
+{
+    TCompGroup* my_group = get<TCompGroup>();
+    TCompAudio* my_audio = get<TCompAudio>();
+    if (my_group) {
+        CHandle foot = left ? my_group->getHandleByName("left_foot") : my_group->getHandleByName("right_foot");
+        EngineParticles.launchSystem("data/particles/def_amb_ground_step.particles", foot);
+    }
+    my_audio->playEvent("event:/Sounds/Player/Steps/NormalSteps", false);
+}
+
+void TCompTempPlayerController::playLandParticles(bool left)
+{
+    TCompGroup* my_group = get<TCompGroup>();
+    if (my_group) {
+        CHandle foot = left ? my_group->getHandleByName("left_foot") : my_group->getHandleByName("right_foot");
+        EngineParticles.launchSystem("data/particles/def_amb_ground_hit.particles", foot);
+    }
 }
 
 void TCompTempPlayerController::registerMsgs() {
@@ -240,6 +264,9 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 
 void TCompTempPlayerController::onGroupCreated(const TMsgEntitiesGroupCreated & msg)
 {
+    TCompGroup* my_group = get<TCompGroup>();
+    weaponLeft = my_group->getHandleByName("weapon_disc_left");
+    weaponRight = my_group->getHandleByName("weapon_disc_right");
     cb_player.player_disk_radius = clamp(0.f, 0.f, 1.f);
     cb_player.updateGPU();
 }
@@ -345,11 +372,11 @@ void TCompTempPlayerController::idleState(float dt) {
 void TCompTempPlayerController::walkState(float dt) {
 
     // Player movement and rotation related method.
-    float yaw, pitch, roll;
+    float yaw, pitch;
     CEntity *player_camera = target_camera;
     TCompTransform *c_my_transform = get<TCompTransform>();
     TCompTransform * trans_camera = player_camera->get<TCompTransform>();
-    c_my_transform->getYawPitchRoll(&yaw, &pitch, &roll);
+    c_my_transform->getYawPitchRoll(&yaw, &pitch);
 
     //float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
     float player_accel = currentSpeed * dt;
@@ -367,6 +394,36 @@ void TCompTempPlayerController::walkState(float dt) {
     Quaternion quat = Quaternion::Lerp(my_rotation, new_rotation, rotationSpeed * dt);
     c_my_transform->setRotation(quat);
     c_my_transform->setPosition(c_my_transform->getPosition() + dir * player_accel);
+}
+
+/* Main thirdperson player motion movement handled here */
+void TCompTempPlayerController::fallState(float dt) {
+
+    // Player movement and rotation related method.
+    float yaw, pitch;
+    CEntity *player_camera = target_camera;
+    TCompTransform *c_my_transform = get<TCompTransform>();
+    TCompTransform * trans_camera = player_camera->get<TCompTransform>();
+    c_my_transform->getYawPitchRoll(&yaw, &pitch);
+
+    float player_accel = currentSpeed * dt;
+
+    VEC3 up = trans_camera->getFront();
+    VEC3 normal_norm = c_my_transform->getUp();
+    VEC3 proj = projectVector(up, normal_norm);
+    VEC3 dir = getMotionDir(proj, normal_norm.Cross(-proj), false);
+
+    if (dir != VEC3::Zero) {
+        float delta_yaw = c_my_transform->getDeltaYawToAimTo(c_my_transform->getPosition() + dir);
+        float new_yaw = lerp(yaw, yaw + delta_yaw, rotationSpeed * dt);
+        c_my_transform->setYawPitchRoll(new_yaw, pitch);
+        c_my_transform->setPosition(c_my_transform->getPosition() + dir * player_accel);
+    }   
+}
+
+void TCompTempPlayerController::mergeFallState(float dt)
+{
+    isMergeFalling = true;
 }
 
 /* Player motion movement when is shadow merged, tests included */
@@ -466,19 +523,6 @@ void TCompTempPlayerController::exitMergeState(float dt) {
     TMsgSetCameraCancelled msg;
     CEntity * eCamera = getEntityByName(auxCamera);
     eCamera->sendMsg(msg);
-}
-
-/* Player dead state */
-void TCompTempPlayerController::deadState(float dt) {
-    TMsgPlayerDead newMsg;
-    newMsg.h_sender = CHandle(this).getOwner();
-    auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
-    for (auto h : handles) {
-        CEntity* enemy = h;
-        enemy->sendMsg(newMsg);
-    }
-
-    state = (actionhandler)&TCompTempPlayerController::idleState;
 }
 
 void TCompTempPlayerController::removingInhibitorState(float dt) {
@@ -599,6 +643,11 @@ void TCompTempPlayerController::markObjectAsMoving(bool isBeingMoved, VEC3 newDi
   }
 }
 
+void TCompTempPlayerController::resetMergeFall()
+{
+    isMergeFalling = false;
+}
+
 
 /* Method used to determine control invert */
 void TCompTempPlayerController::invertAxis(VEC3 old_up, bool type) {
@@ -652,6 +701,10 @@ void TCompTempPlayerController::getDamage(float dmg)
         if (life <= 0.f) {
             die();
         }
+        else {
+            TCompAudio* my_audio = get<TCompAudio>();
+            my_audio->playEvent("event:/Sounds/Player/Hurt/Hurt", false);
+        }
     }
 }
 
@@ -669,6 +722,17 @@ void TCompTempPlayerController::die()
         groundMsg.variant.setBool(true);
         e->sendMsg(groundMsg);
         life = 0;
+
+        cb_player.player_health = 0;
+        cb_player.updateGPU();
+
+        TMsgPlayerDead newMsg;
+        newMsg.h_sender = CHandle(this).getOwner();
+        auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+        for (auto h : handles) {
+            CEntity* enemy = h;
+            enemy->sendMsg(newMsg);
+        }
     }
 }
 
@@ -814,7 +878,7 @@ const bool TCompTempPlayerController::onMergeTest(float dt) {
     // If we are not merged.
     if (!isMerged) {
         mergeTest &= stamina > minStaminaChange;
-        //mergeTest &= EngineInput["btShadowMerging"].hasChanged();
+        mergeTest &= EngineInput["btShadowMerging"].hasChanged() || isMergeFalling;
 
         //TMsgSetFSMVariable onFallMsg;
         //onFallMsg.variant.setName("onFallMerge");
@@ -965,11 +1029,10 @@ void TCompTempPlayerController::updateStamina(float dt) {
     }
 }
 
-/* Attack state, kills the closest enemy if true*/
 void TCompTempPlayerController::mergeEnemy() {
 
     TCompPlayerAttackCast * tAttackCast = get<TCompPlayerAttackCast>();
-    CHandle enemy = tAttackCast->closestEnemyToMerge();
+    CHandle enemy = tAttackCast->closestEnemyToMerge(true);
     if (isMerged) {
         if (enemy.isValid()) {
             TMsgPatrolShadowMerged msg;
@@ -1019,16 +1082,28 @@ void TCompTempPlayerController::updateWeapons(float dt)
 {
     TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
     if (canAttack && !isMerged || my_anim->isPlayingAnimation((TCompAnimator::EAnimation)TCompPlayerAnimator::ATTACK)) {
+        if (!weaponsActive) {
+            TMsgWeaponsActivated msg{ true };
+            weaponLeft.sendMsg(msg);
+            weaponRight.sendMsg(msg);
+        }
         attackTimer = Clamp(attackTimer + dt, 0.f, timeToDeployWeapons);
+        weaponsActive = true;
     }
     else {
+        if (weaponsActive) {
+            TMsgWeaponsActivated msg{ false };
+            weaponLeft.sendMsg(msg);
+            weaponRight.sendMsg(msg);
+        }
         attackTimer = Clamp(attackTimer - dt, 0.f, timeToDeployWeapons);
+        weaponsActive = false;
     }
     cb_player.player_disk_radius = lerp(0.f, 1.f, attackTimer / timeToDeployWeapons);
     cb_player.updateGPU();
 }
 
-VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & left) {
+VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & left, bool default) {
 
     VEC3 dir = VEC3::Zero;
     TCompPlayerInput *player_input = get<TCompPlayerInput>();
@@ -1037,7 +1112,7 @@ VEC3 TCompTempPlayerController::getMotionDir(const VEC3 & front, const VEC3 & le
     dir += player_input->movementValue.x * left;
     dir.Normalize();
 
-    if (dir == VEC3::Zero) return front;
+    if (default && dir == VEC3::Zero) return front;
 
     return dir;
 }

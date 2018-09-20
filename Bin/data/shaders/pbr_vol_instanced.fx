@@ -243,7 +243,7 @@ float4 PS_GBuffer_Shafts(
 	//color.a *= saturate(delta_z * camera_zfar);
 	//color.a *= 1 - saturate(1/(delta_c * delta_c)) * 0.88;
 		
-	color.a *= pow(abs(fresnel), 8) * 0.8;
+	color.a *= pow(abs(fresnel), 4) * 0.4;
 	return color;
 }
 

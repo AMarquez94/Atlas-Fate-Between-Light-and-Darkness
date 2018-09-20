@@ -1,0 +1,13 @@
+{
+  "technique": "pbr_mix_parallax.tech",
+  "type": "mix",
+  "shadows": true,
+  "textures":
+  { },
+  "mats":[
+    "data/materials/mix_zonea_red.material",
+    "data/materials/mix_zonea_green.material",
+    "data/materials/mix_zonea_blue.material"
+],
+  "mix_blend_weights" : "data/textures/mix/blending_zone_a/blending_mask.dds"
+}

@@ -130,49 +130,6 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
 		/* TODO: Comprobar que se sigue en la misma escena */
 		gameManager.loadCheckpoint();
         Engine.getLogic().execEvent(EngineLogic.SCENE_START, current_scene->name);
-
-        // TO REMOVE.
-        // Guarrada maxima color neones
-        {
-            CHandle p_group = getEntityByName("neones");
-            CEntity * parent_group = p_group;
-            if (p_group.isValid()) {
-                TCompGroup * neon_group = parent_group->get<TCompGroup>();
-                for (auto p : neon_group->handles) {
-                    CEntity * neon = p;
-                    TCompTransform * t_trans = neon->get<TCompTransform>();
-                    VEC3 pos = t_trans->getPosition();
-                    CEntity * to_catch = nullptr;
-                    float maxDistance = 9999999;
-                    getObjectManager<TCompLightPoint>()->forEach([pos, &to_catch, &maxDistance](TCompLightPoint* c) {
-                        CEntity * ent = CHandle(c).getOwner();
-                        TCompTransform * c_trans = ent->get<TCompTransform>();
-                        float t_distance = VEC3::Distance(pos, c_trans->getPosition());
-
-                        if (t_distance < maxDistance) {
-                            to_catch = ent;
-                            maxDistance = t_distance;
-                        }
-                    });
-
-                    if (to_catch != nullptr) {
-                        TCompLightPoint * point_light = to_catch->get<TCompLightPoint>();
-                        VEC4 neon_color = point_light->getColor();
-                        TCompRender * l_render = neon->get<TCompRender>();
-                        l_render->self_color = neon_color;
-                        l_render->self_intensity = 10.0f;
-                        /*for (auto p : l_render->meshes) {
-                            for (auto t : p.materials) {
-                                CMaterial * mat = const_cast<CMaterial*>(t);
-                                mat->setSelfColor(VEC4(1,0,0,1));
-                                dbg("changed color");
-                            }
-                        }*/
-                    }
-                }
-            }
-        }
-
         return true;
     }
 
@@ -188,7 +145,8 @@ bool CModuleSceneManager::unLoadActiveScene() {
     // Warning: persistent data will need to avoid deletion
     if (_activeScene != nullptr) {
 
-        Engine.getLogic().execEvent(EngineLogic.SCENE_END, _activeScene->name);
+        EngineLogic.clearDelayedScripts();
+        EngineLogic.execEvent(EngineLogic.SCENE_END, _activeScene->name);
 
         EngineEntities.destroyAllEntities();
         EngineCameras.deleteAllCameras();

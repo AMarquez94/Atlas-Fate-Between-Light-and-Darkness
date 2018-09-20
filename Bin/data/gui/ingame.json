@@ -7,41 +7,15 @@
 			{
 				"name" : "stamina_bar_general",
 				"type" : "widget",
-				"position" : "480 200",
+				"position" : "490 220",
 				"children" : [
-					{
-						"name" : "background",
-						"type" : "image",
-						"size" : "32 32",
-						"texture" : "data/textures/gui/hud_stamina_background.dds"
-					},
 					{
 						"name" : "staminar_bar",
 						"type" : "radialbar",
 						"size" : "32 32",
-						"color" : "0.05 1 0.25 1",
+						"color" : "0 1 1 0.6",
 						"texture" : "data/textures/gui/hud_stamina_bar.dds",
 						"variable" : "staminaBarFactor"
-					}
-				]
-			},
-			{
-				"name" : "life_bar",
-				"type" : "widget",
-				"position" : "50 40",
-				"children" : [
-					{
-						"name" : "blackground",
-						"type" : "image",
-						"size" : "320 64",
-						"texture" : "data/textures/gui/staminabar_empty.dds"
-					},
-					{
-						"name" : "life_bar",
-						"type" : "bar",
-						"size" : "320 64",
-						"texture" : "data/textures/gui/staminabar_full.dds",
-						"variable" : "lifeBarFactor"
 					}
 				]
 			}

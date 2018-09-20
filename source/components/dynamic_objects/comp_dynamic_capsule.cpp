@@ -21,6 +21,8 @@ void TCompDynamicCapsule::load(const json& j, TEntityParseContext& ctx) {
 
     director = end_point - start_point;
     director.Normalize();
+
+    elapsed_time = 0;
 }
 
 void TCompDynamicCapsule::update(float dt) {
@@ -31,6 +33,11 @@ void TCompDynamicCapsule::update(float dt) {
 
         TCompTransform *myPos = get<TCompTransform>();
         myPos->setPosition(myPos->getPosition() + dir * speed * dt);
+        
+        elapsed_time += dt;
+        float yaw, pitch;
+        //myPos->getYawPitchRoll(&yaw, &pitch, &roll);
+        //myPos->setYawPitchRoll(yaw, pitch + sin(elapsed_time) * 0.1, roll);
 
         if (VEC3::Distance(myPos->getPosition(), end_point) < speed * dt) {
             myPos->setPosition(start_point);

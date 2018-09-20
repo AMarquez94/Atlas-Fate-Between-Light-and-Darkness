@@ -33,6 +33,7 @@ class CModuleSound : public IModule
     CHandle h_listener;
 
     void registerAllSoundClipsInPath(char* path);
+    const std::string getPlayingState(FMOD::Studio::EventInstance* ei);
 
 
 protected:

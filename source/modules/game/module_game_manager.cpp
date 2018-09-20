@@ -19,7 +19,7 @@ bool CModuleGameManager::start() {
     window_width = 250;
     window_height = 150;
 
-    _player = getEntityByName("The Player");
+    _player = EngineEntities.getPlayerHandle();
     _fly_camera = getEntityByName("test_camera_flyover");
     //ambient = EngineSound.playEvent("event:/Ambiance/Intro_Ambiance");
 
@@ -35,7 +35,7 @@ void CModuleGameManager::setPauseState(PauseState pause) {
         pause = PauseState::none;
 
     {
-        _player = getEntityByName("The Player");
+        _player = EngineEntities.getPlayerHandle();
         _fly_camera = getEntityByName("test_camera_flyover");
 
         // Determine if whole scene is paused
@@ -43,6 +43,7 @@ void CModuleGameManager::setPauseState(PauseState pause) {
         msg.isPaused = pause != PauseState::none && pause != PauseState::editor1unpaused ? true : false;
         EngineEntities.broadcastMsg(msg);
         EngineCameras.getCurrentCamera().sendMsg(msg);
+        pauseEnemyEntities(msg.isPaused && pause != PauseState::defeat);
         EngineLogic.setPause(msg.isPaused);
 
         // Determine if player is paused
@@ -154,7 +155,7 @@ void CModuleGameManager::update(float delta) {
 
 void CModuleGameManager::updateGameCondition() {
 
-    _player = getEntityByName("The Player");
+    _player = EngineEntities.getPlayerHandle();
     _fly_camera = getEntityByName("test_camera_flyover");
     auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("victory_trigger"));
 
@@ -201,7 +202,7 @@ void CModuleGameManager::renderMain() {
         if (ImGui::IsItemClicked() || (menuPosition == 1 && EngineInput["btMenuConfirm"].getsPressed()))
         {
             resetState();
-            CEntity* e = getEntityByName("The Player");
+            CEntity* e = EngineEntities.getPlayerHandle();
             if (!e) {
                 return;
             }
@@ -216,7 +217,7 @@ void CModuleGameManager::renderMain() {
         if (ImGui::IsItemClicked() || (menuPosition == 2 && EngineInput["btMenuConfirm"].getsPressed()))
         {
             resetState();
-            CEntity* e = getEntityByName("The Player");
+            CEntity* e = EngineEntities.getPlayerHandle();
             if (!e) {
                 return;
             }
@@ -256,7 +257,7 @@ void CModuleGameManager::renderMain() {
         ImGui::Selectable("Restart from last checkpoint", menuPosition == 1);
         if (ImGui::IsItemClicked() || (menuPosition == 1 && EngineInput["btMenuConfirm"].getsPressed()))
         {
-            CEntity* e = getEntityByName("The Player");
+            CEntity* e = EngineEntities.getPlayerHandle();
             if (!e) {
                 return;
             }
@@ -270,7 +271,7 @@ void CModuleGameManager::renderMain() {
         ImGui::Selectable("Restart level", menuPosition == 2);
         if (ImGui::IsItemClicked() || (menuPosition == 2 && EngineInput["btMenuConfirm"].getsPressed()))
         {
-            CEntity* e = getEntityByName("The Player");
+            CEntity* e = EngineEntities.getPlayerHandle();
             if (!e) {
                 return;
             }

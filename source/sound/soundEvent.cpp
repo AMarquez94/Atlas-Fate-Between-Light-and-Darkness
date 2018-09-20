@@ -143,6 +143,16 @@ CTransform SoundEvent::get3DAttributes()
     return t;
 }
 
+bool SoundEvent::isPlaying()
+{
+    FMOD_STUDIO_PLAYBACK_STATE ei_state;
+    auto event = EngineSound.getEventInstance(myID);
+    if (event) {
+        event->getPlaybackState(&ei_state);
+    }
+    return ei_state == FMOD_STUDIO_PLAYBACK_PLAYING;
+}
+
 bool SoundEvent::isRelativeToCameraOnly() const
 {
     return relativeToCameraOnly;

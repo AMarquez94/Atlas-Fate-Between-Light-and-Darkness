@@ -9,6 +9,7 @@
 #include "components/comp_tags.h"
 #include "components/ia/comp_bt_patrol.h"
 #include "components/ia/comp_bt_mimetic.h"
+#include "components/player_controller/comp_shadow_controller.h"
 
 DECL_OBJ_MANAGER("player_attack_cast", TCompPlayerAttackCast);
 
@@ -108,7 +109,7 @@ const bool TCompPlayerAttackCast::canAttackEnemiesInRange(CHandle& closestEnemyT
   return canAttackNow;
 }
 
-CHandle TCompPlayerAttackCast::closestEnemyToMerge()
+CHandle TCompPlayerAttackCast::closestEnemyToMerge(bool goingToMerge)
 {
     CHandle closestEnemy = CHandle();
     const std::vector<CHandle> enemies = getEnemiesInRange();
@@ -123,7 +124,9 @@ CHandle TCompPlayerAttackCast::closestEnemyToMerge()
   
       if (eTag->hasTag(getID("patrol"))) {
         TCompAIPatrol * cPatrol = enemy->get<TCompAIPatrol>();
-        if (mypos->isInHorizontalFov(ePos->getPosition(), attack_fov) && cPatrol->isStunned()) {
+        TCompShadowController* shadow_controller = get<TCompShadowController>();
+        if (mypos->isInHorizontalFov(ePos->getPosition(), attack_fov) && cPatrol->isStunned() && 
+            (!goingToMerge || (goingToMerge && shadow_controller->IsPointInShadows(ePos->getPosition() + VEC3(0, 0.1f, 0) , false)))) {
           closestEnemy = enemies[i];
         }
       }

@@ -163,7 +163,7 @@ namespace FSM
         // Send a message to the player controller
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::FALL , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, _target, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::fallState, _speed, _size, _radius, _target, _noise });
     }
 
     void FallState::onFinish(CContext& ctx) const {
@@ -310,6 +310,8 @@ namespace FSM
         TCompParticles * c_e_particle2 = ent->get<TCompParticles>();
         assert(c_e_particle2);
         c_e_particle2->setSystemState(false);
+
+        EngineLogic.execScript("animation_enter_merge()");
     }
 
     void EnterMergeState::onFinish(CContext& ctx) const {
@@ -318,6 +320,7 @@ namespace FSM
 
         TCompRender * render = e->get<TCompRender>();
         render->visible = false;
+        e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::resetMergeFall });
     }
 
     bool MergeState::load(const json& jData) {
@@ -362,7 +365,9 @@ namespace FSM
         // Send a message to the player controller
         CEntity* e = ctx.getOwner();
         //e->sendMsg(TMsgAnimation{ "crouch" });
-
+		TCompPlayerAnimator *c_animator = e->get<TCompPlayerAnimator>();
+		if(c_animator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPlayerAnimator::EAnimation::SM_ENTER))
+			c_animator->removeAction((TCompAnimator::EAnimation)TCompPlayerAnimator::EAnimation::SM_ENTER);
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::mergeState, _speed, _size, _radius, _target, _noise });
     }
 
@@ -406,6 +411,8 @@ namespace FSM
 
         TCompParticles * c_e_particle = e->get<TCompParticles>();
         c_e_particle->setSystemState(false);
+
+        EngineLogic.execScript("animation_exit_merge()");
     }
 
     void ExitMergeState::onFinish(CContext& ctx) const {
@@ -457,6 +464,8 @@ namespace FSM
 
         TCompParticles * c_e_particle = e->get<TCompParticles>();
         c_e_particle->setSystemState(false);
+
+        EngineLogic.execScript("animation_exit_merge()");
 	}
 
 	void ExitMergeCrouchedState::onFinish(CContext & ctx) const
@@ -491,7 +500,7 @@ namespace FSM
         // Send a message to the player controller
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::FALL , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, _target, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::mergeFallState, _speed, _size, _radius, _target, _noise });
 
         //CEntity* e = ctx.getOwner();
         //e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::LAND_SOFT , 1.0f });
@@ -540,6 +549,8 @@ namespace FSM
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::LAND_SOFT , 1.0f });
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+
+        EngineLogic.execScript("animation_soft_land()");
     }
 
     void SoftLandState::onFinish(CContext& ctx) const {
@@ -564,6 +575,7 @@ namespace FSM
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
         TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
         playerController->getDamage(30.f);
+        EngineLogic.execScript("animation_hard_land()");
     }
 
     void HardLandState::onFinish(CContext& ctx) const {
@@ -660,7 +672,7 @@ namespace FSM
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::DEATH , 1.0f });
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::DEAD , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::deadState, _speed, _size, _radius, _target, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
     }
 
     void DieState::onFinish(CContext& ctx) const {
@@ -703,7 +715,8 @@ namespace FSM
     void GrabEnemyState::onStart(CContext& ctx) const {
 
         CEntity* e = ctx.getOwner();
-        e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
+        //e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::GRAB_ENEMY , 1.0f });
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::GRABING_ENEMY , 1.0f });
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, nullptr, _noise });
 
     }

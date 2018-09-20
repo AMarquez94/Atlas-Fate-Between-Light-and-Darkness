@@ -4,14 +4,14 @@
 void VS_Particles(
 	  in float4 iPos   : POSITION
  	, in TInstanceWorldData instance_data
-	, in float2 iMinUv   : TEXCOORD6   // 
-	, in float2 iMaxUv   : TEXCOORD7  // 
+	, in float3 iMinUv   : TEXCOORD6   // 
+	, in float3 iMaxUv   : TEXCOORD7  // 
 	, in float4 iColorP   : TEXCOORD8   // 
 	
 	, out float4 oPos : SV_POSITION
 	, out float2 oTex0 : TEXCOORD0
-	, out float2 oMinUv : TEXCOORD1
-  , out float2 oMaxUv : TEXCOORD2
+	, out float3 oMinUv : TEXCOORD1
+  , out float3 oMaxUv : TEXCOORD2
   , out float4 oColorP : TEXCOORD3
 	, out float3 oWorldPos : TEXCOORD4
   )
@@ -88,11 +88,11 @@ float computeDepth( float3 iWorldPos : TEXCOORD1 ) {
 float4 PS_Particles_Soft(
 	  in float4 iPos : SV_POSITION
 	, in float2 iTex0 : TEXCOORD0
-	, in float2 iMinUv : TEXCOORD1
-  , in float2 iMaxUv : TEXCOORD2
+	, in float3 iMinUv : TEXCOORD1
+  , in float3 iMaxUv : TEXCOORD2
   , in float4 iColorP : TEXCOORD3
 	, in float3 iWorldPos : TEXCOORD4
-  ) : SV_Target
+  ): SV_Target
 {
   int3 ss_load_coords = uint3(iPos.xy, 0);
   float2 finalUV = lerp(iMinUv, iMaxUv, iTex0);
@@ -100,10 +100,11 @@ float4 PS_Particles_Soft(
 	
 	float  zLinear  = txGBufferLinearDepth.Load(ss_load_coords).x;
   float  wDepth = dot( camera_front.xyz, (iWorldPos - camera_pos.xyz)) / camera_zfar;
-  float  intersect = saturate((zLinear - wDepth) * camera_zfar);
-
-  float4 finalColor = float4(oDiffuse.rgb * iColorP.rgb, oDiffuse.a * iColorP.a);
-  return finalColor;
+  float  intersect = saturate((zLinear - wDepth) * camera_zfar) * iMaxUv.z;
+	intersect = lerp(1, intersect, iMaxUv.z);
+	//return float4(1,1,1,1);
+  float4 finalColor = float4(oDiffuse.rgb * iColorP.rgb, oDiffuse.a * iColorP.a * intersect);
+	return finalColor;
 }
 	
 // ----------------------------------------
@@ -116,6 +117,8 @@ void PS_GBuffer_Particles(
 	, in float4 iWorldPos : TEXCOORD4
 	, out float4 o_albedo : SV_Target0
 	, out float4 o_normal : SV_Target1
+	, out float1 o_depth : SV_Target2
+	, out float4 o_selfIllum : SV_Target3
   )
 {
   float2 finalUV = lerp(iMinUv, iMaxUv, iTex0);

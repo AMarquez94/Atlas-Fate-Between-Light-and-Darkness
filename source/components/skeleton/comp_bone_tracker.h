@@ -12,6 +12,7 @@ struct TCompBoneTracker : public TCompBase {
     int         bone_id = -1;      // Id of the bone of the skeleton to track
     std::string bone_name;
     std::string parent_name;
+	QUAT rot_offset;
 
     void load(const json& j, TEntityParseContext& ctx);
     void update(float dt);

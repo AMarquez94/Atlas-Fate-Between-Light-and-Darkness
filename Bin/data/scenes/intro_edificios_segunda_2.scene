@@ -1,0 +1,4077 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_edificios_segunda_2"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_barandilla519"
+      ,
+      "transform":
+      {
+        "pos": "-39.0911 16.6416 -2.07559"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_barandilla519.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_barandilla528"
+      ,
+      "transform":
+      {
+        "pos": "-38.9362 10.6416 7.00858"
+        ,
+        "rotation": "0.0 -3.42528e-06 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_barandilla528.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_barandilla531"
+      ,
+      "transform":
+      {
+        "pos": "20.8741 15.093 -52.3021"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_barandilla531.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_barandilla532"
+      ,
+      "transform":
+      {
+        "pos": "11.79 9.09299 -52.1472"
+        ,
+        "rotation": "0.0 0.707104 0.0 -0.707109"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_barandilla532.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_barandilla533"
+      ,
+      "transform":
+      {
+        "pos": "-61.6831 20.1872 -66.019"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_barandilla533.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_barandilla534"
+      ,
+      "transform":
+      {
+        "pos": "-70.7672 14.1872 -65.8641"
+        ,
+        "rotation": "0.0 0.707104 0.0 -0.707109"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_barandilla534.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_caja_juanlu041"
+      ,
+      "transform":
+      {
+        "pos": "-38.0169 10.5145 2.94303"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707106"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_caja_juanlu041.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_caja_juanlu.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_casa1_6x041"
+      ,
+      "transform":
+      {
+        "pos": "-41.9411 10.6416 -17.0756"
+        ,
+        "rotation": "2.38418e-07 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_casa1_6x041.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa1.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_casa1_6x045"
+      ,
+      "transform":
+      {
+        "pos": "35.8742 9.09301 -55.1521"
+        ,
+        "rotation": "1.68587e-07 -0.707107 1.99496e-07 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_casa1_6x045.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa1.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_casa1_6x047"
+      ,
+      "transform":
+      {
+        "pos": "-46.683 14.1872 -68.869"
+        ,
+        "rotation": "1.68587e-07 -0.707107 1.99496e-07 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_casa1_6x047.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa1.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_casa2_6x033"
+      ,
+      "transform":
+      {
+        "pos": "-41.9411 10.6416 1.9244"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_casa2_6x033.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa2.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_casa2_6x035"
+      ,
+      "transform":
+      {
+        "pos": "16.8742 9.09301 -55.1521"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_casa2_6x035.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa2.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_casa2_6x036"
+      ,
+      "transform":
+      {
+        "pos": "-65.683 14.1872 -68.869"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_casa2_6x036.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa2.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_casa3_8x017"
+      ,
+      "transform":
+      {
+        "pos": "-37.9411 10.6416 -8.07563"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_casa3_8x017.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa2.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_casa3_8x019"
+      ,
+      "transform":
+      {
+        "pos": "26.8742 9.093 -51.1521"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_casa3_8x019.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa2.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_casa3_8x020"
+      ,
+      "transform":
+      {
+        "pos": "-55.683 14.1872 -64.869"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_casa3_8x020.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa2.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_chimenea025"
+      ,
+      "transform":
+      {
+        "pos": "-40.2976 16.5506 -4.80654"
+        ,
+        "rotation": "0.0 -1.78814e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_chimenea025.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_chimeneas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_chimenea027"
+      ,
+      "transform":
+      {
+        "pos": "23.6051 15.002 -53.5086"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_chimenea027.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_chimeneas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_chimenea028"
+      ,
+      "transform":
+      {
+        "pos": "-58.9521 20.0962 -67.2255"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_chimenea028.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_chimeneas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_columna037"
+      ,
+      "transform":
+      {
+        "pos": "-44.7422 10.6137 -20.8961"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_columna037.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_columna039"
+      ,
+      "transform":
+      {
+        "pos": "39.6946 9.06515 -57.9532"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_columna039.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_columna040"
+      ,
+      "transform":
+      {
+        "pos": "-42.8626 14.1594 -71.6701"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_columna040.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_porcho_cupula007"
+      ,
+      "transform":
+      {
+        "pos": "-42.6336 16.5126 -0.0807121"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_porcho_cupula007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_porcho_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_porcho_cupula009"
+      ,
+      "transform":
+      {
+        "pos": "35.209 14.964 -55.4456"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_porcho_cupula009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_porcho_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_porcho_cupula010"
+      ,
+      "transform":
+      {
+        "pos": "-63.6779 20.0582 -69.5615"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_porcho_cupula010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_porcho_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_saliente260"
+      ,
+      "transform":
+      {
+        "pos": "-33.9434 15.9488 -10.0656"
+        ,
+        "rotation": "0.0 -0.707101 0.0 -0.707112"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_saliente260.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_saliente262"
+      ,
+      "transform":
+      {
+        "pos": "28.8642 14.4002 -47.1544"
+        ,
+        "rotation": "0.0 7.86781e-06 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_saliente262.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_saliente263"
+      ,
+      "transform":
+      {
+        "pos": "-53.693 19.4944 -60.8713"
+        ,
+        "rotation": "0.0 7.86781e-06 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_saliente263.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_tubitos_009"
+      ,
+      "transform":
+      {
+        "pos": "131.057 4.74157 -78.0757"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_tubitos_009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_tubitos_011"
+      ,
+      "transform":
+      {
+        "pos": "96.8742 3.193 117.846"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_tubitos_011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_mesh_tubitos_012"
+      ,
+      "transform":
+      {
+        "pos": "14.317 8.28724 104.129"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_mesh_tubitos_012.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_pasarela_cupula_low032"
+      ,
+      "transform":
+      {
+        "pos": "-35.8784 16.6416 -8.14439"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_pasarela_cupula_low032.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_pasarela_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_pasarela_cupula_low034"
+      ,
+      "transform":
+      {
+        "pos": "27.4812 15.093 -60.7724"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_pasarela_cupula_low034.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_pasarela_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_1_pasarela_cupula_low035"
+      ,
+      "transform":
+      {
+        "pos": "-55.6143 20.1872 -62.8063"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_1_pasarela_cupula_low035.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_pasarela_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_barandilla577"
+      ,
+      "transform":
+      {
+        "pos": "-56.6585 16.7335 -49.7415"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_barandilla577.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_barandilla578"
+      ,
+      "transform":
+      {
+        "pos": "-44.2794 16.7335 -51.7596"
+        ,
+        "rotation": "0.0 -1.0 0.0 6.39359e-06"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_barandilla578.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_barandilla579"
+      ,
+      "transform":
+      {
+        "pos": "25.6172 11.9 -0.924368"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_barandilla579.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_barandilla580"
+      ,
+      "transform":
+      {
+        "pos": "27.6353 11.9 11.4547"
+        ,
+        "rotation": "0.0 -0.707111 0.0 -0.707102"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_barandilla580.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_barandilla581"
+      ,
+      "transform":
+      {
+        "pos": "11.3253 18.7572 -65.3603"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_barandilla581.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_barandilla582"
+      ,
+      "transform":
+      {
+        "pos": "23.7044 18.7572 -67.3784"
+        ,
+        "rotation": "0.0 -1.0 0.0 6.39359e-06"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_barandilla582.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_barandilla585"
+      ,
+      "transform":
+      {
+        "pos": "47.5585 17.2988 -13.5586"
+        ,
+        "rotation": "0.0 0.843391 0.0 -0.5373"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_barandilla585.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_barandilla586"
+      ,
+      "transform":
+      {
+        "pos": "44.1559 17.2988 -1.4865"
+        ,
+        "rotation": "0.0 -0.537305 0.0 -0.843388"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_barandilla586.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_casa1_6x043"
+      ,
+      "transform":
+      {
+        "pos": "-52.2719 10.7335 -51.6695"
+        ,
+        "rotation": "0.0 2.38419e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_casa1_6x043.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa1.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_casa1_6x044"
+      ,
+      "transform":
+      {
+        "pos": "27.5451 5.9 3.46214"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_casa1_6x044.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa1.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_casa1_6x045"
+      ,
+      "transform":
+      {
+        "pos": "15.7118 12.7572 -67.2882"
+        ,
+        "rotation": "0.0 2.38419e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_casa1_6x045.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa1.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_casa1_6x047"
+      ,
+      "transform":
+      {
+        "pos": "47.452 11.2988 -8.76834"
+        ,
+        "rotation": "0.0 0.843392 0.0 -0.537299"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_casa1_6x047.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa1.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_casa2_6x038"
+      ,
+      "transform":
+      {
+        "pos": "-60.2719 10.7304 -50.6694"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_casa2_6x038.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa2.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_casa2_6x039"
+      ,
+      "transform":
+      {
+        "pos": "-41.2719 10.7335 -54.6864"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_casa2_6x039.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_casa2_6x041"
+      ,
+      "transform":
+      {
+        "pos": "26.545 5.89692 -4.53785"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_casa2_6x041.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa2.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_casa2_6x042"
+      ,
+      "transform":
+      {
+        "pos": "30.562 5.90001 14.4621"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_casa2_6x042.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_casa2_6x044"
+      ,
+      "transform":
+      {
+        "pos": "7.71181 12.7541 -66.2882"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_casa2_6x044.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa2.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_casa2_6x045"
+      ,
+      "transform":
+      {
+        "pos": "26.7118 12.7572 -70.3051"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_casa2_6x045.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_casa2_6x050"
+      ,
+      "transform":
+      {
+        "pos": "49.9266 11.2957 -16.4414"
+        ,
+        "rotation": "0.0 -0.5373 0.0 -0.843391"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_casa2_6x050.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa2.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_casa2_6x051"
+      ,
+      "transform":
+      {
+        "pos": "45.5374 11.2988 2.47605"
+        ,
+        "rotation": "0.0 -0.5373 0.0 -0.843391"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_casa2_6x051.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_casa3_4x024"
+      ,
+      "transform":
+      {
+        "pos": "-47.282 10.7335 -53.6864"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_casa3_4x024.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa2.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_casa3_4x026"
+      ,
+      "transform":
+      {
+        "pos": "20.7018 12.7572 -69.3052"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_casa3_4x026.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa2.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_casa3_4x028"
+      ,
+      "transform":
+      {
+        "pos": "47.1711 11.2988 -3.39347"
+        ,
+        "rotation": "0.0 0.843391 0.0 -0.5373"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_casa3_4x028.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa2.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_chimenea029"
+      ,
+      "transform":
+      {
+        "pos": "-63.7324 16.8335 -52.1614"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_chimenea029.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_chimeneas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_chimenea030"
+      ,
+      "transform":
+      {
+        "pos": "28.0371 12.0 -7.99832"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_chimenea030.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_chimeneas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_chimenea031"
+      ,
+      "transform":
+      {
+        "pos": "4.25134 18.8572 -67.7802"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_chimenea031.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_chimeneas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_chimenea033"
+      ,
+      "transform":
+      {
+        "pos": "52.7413 17.3988 -18.9471"
+        ,
+        "rotation": "0.0 0.843391 0.0 -0.5373"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_chimenea033.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_chimeneas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_container_m031"
+      ,
+      "transform":
+      {
+        "pos": "24.6442 11.8853 -8.72519"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_container_m031.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_props_m2.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_container_m038"
+      ,
+      "transform":
+      {
+        "pos": "49.0427 17.2692 -5.11209"
+        ,
+        "rotation": "0.0 -0.976296 0.0 -0.21644"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_container_m038.mesh"
+          ,
+          "materials":
+          [
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_container_m039"
+      ,
+      "transform":
+      {
+        "pos": "49.7315 17.2692 -6.58937"
+        ,
+        "rotation": "0.0 -0.976296 0.0 -0.21644"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_container_m039.mesh"
+          ,
+          "materials":
+          [
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_cupula_abierta009"
+      ,
+      "transform":
+      {
+        "pos": "-40.1844 16.7335 -54.9801"
+        ,
+        "rotation": "0.0 0.34202 0.0 -0.939693"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_cupula_abierta009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cupula_abierta.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_cupula_abierta010"
+      ,
+      "transform":
+      {
+        "pos": "30.8557 11.9 15.5497"
+        ,
+        "rotation": "0.0 -0.906308 0.0 0.422619"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_cupula_abierta010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cupula_abierta.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_cupula_abierta011"
+      ,
+      "transform":
+      {
+        "pos": "27.7994 18.7572 -70.5988"
+        ,
+        "rotation": "0.0 0.34202 0.0 -0.939693"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_cupula_abierta011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cupula_abierta.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_cupula_abierta013"
+      ,
+      "transform":
+      {
+        "pos": "45.344 17.2988 3.58586"
+        ,
+        "rotation": "0.0 -0.976296 0.0 0.21644"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_cupula_abierta013.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cupula_abierta.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_porcho_cupula009"
+      ,
+      "transform":
+      {
+        "pos": "-59.5026 16.6582 -50.4107"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_porcho_cupula009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_porcho_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_porcho_cupula010"
+      ,
+      "transform":
+      {
+        "pos": "26.2863 11.8247 -3.76848"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_porcho_cupula010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_porcho_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_porcho_cupula011"
+      ,
+      "transform":
+      {
+        "pos": "8.48117 18.6819 -66.0295"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_porcho_cupula011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_porcho_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_porcho_cupula013"
+      ,
+      "transform":
+      {
+        "pos": "49.367 17.2235 -15.8535"
+        ,
+        "rotation": "0.0 0.843391 0.0 -0.5373"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_porcho_cupula013.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_porcho_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_saliente296"
+      ,
+      "transform":
+      {
+        "pos": "-62.272 16.3573 -47.6695"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_saliente296.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_saliente297"
+      ,
+      "transform":
+      {
+        "pos": "23.5451 11.5238 -6.53789"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_saliente297.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_saliente298"
+      ,
+      "transform":
+      {
+        "pos": "5.71176 18.381 -63.2882"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_saliente298.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_saliente300"
+      ,
+      "transform":
+      {
+        "pos": "48.053 16.9226 -19.5219"
+        ,
+        "rotation": "0.0 0.843391 0.0 -0.5373"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_saliente300.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_separador_madera112"
+      ,
+      "transform":
+      {
+        "pos": "-55.2683 10.7335 -47.7197"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_separador_madera112.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_separador_madera113"
+      ,
+      "transform":
+      {
+        "pos": "23.5954 5.9 0.46583"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_separador_madera113.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_separador_madera114"
+      ,
+      "transform":
+      {
+        "pos": "12.7155 12.7572 -63.3385"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_separador_madera114.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_separador_madera116"
+      ,
+      "transform":
+      {
+        "pos": "45.1386 11.2988 -13.1531"
+        ,
+        "rotation": "0.0 0.843391 0.0 -0.5373"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_separador_madera116.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_tubitos_011"
+      ,
+      "transform":
+      {
+        "pos": "-53.3332 10.6364 -48.0362"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_tubitos_011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_tubitos_012"
+      ,
+      "transform":
+      {
+        "pos": "23.9118 5.80286 2.40092"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_tubitos_012.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_tubitos_013"
+      ,
+      "transform":
+      {
+        "pos": "14.6506 12.66 -63.655"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_tubitos_013.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_mesh_tubitos_015"
+      ,
+      "transform":
+      {
+        "pos": "44.6076 11.2017 -11.2656"
+        ,
+        "rotation": "0.0 0.843391 0.0 -0.5373"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_mesh_tubitos_015.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_pasarela_cupula_low034"
+      ,
+      "transform":
+      {
+        "pos": "-54.971 16.7335 -51.8851"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_pasarela_cupula_low034.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_pasarela_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_pasarela_cupula_low035"
+      ,
+      "transform":
+      {
+        "pos": "27.7608 11.9 0.76304"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_pasarela_cupula_low035.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_pasarela_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_pasarela_cupula_low036"
+      ,
+      "transform":
+      {
+        "pos": "13.0127 18.7572 -67.5039"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_pasarela_cupula_low036.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_pasarela_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_2_pasarela_cupula_low038"
+      ,
+      "transform":
+      {
+        "pos": "48.7882 17.2988 -11.1234"
+        ,
+        "rotation": "0.0 0.843391 0.0 -0.5373"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_2_pasarela_cupula_low038.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_pasarela_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_barandilla604"
+      ,
+      "transform":
+      {
+        "pos": "18.972 11.9 -32.3798"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_barandilla604.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_barandilla605"
+      ,
+      "transform":
+      {
+        "pos": "23.6893 11.9 -37.3904"
+        ,
+        "rotation": "0.0 -6.34988e-06 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_barandilla605.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_barandilla606"
+      ,
+      "transform":
+      {
+        "pos": "-59.6464 22.9491 -30.8294"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_barandilla606.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_barandilla607"
+      ,
+      "transform":
+      {
+        "pos": "-64.3637 22.9491 -25.8187"
+        ,
+        "rotation": "0.0 -1.0 0.0 6.5128e-06"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_barandilla607.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_casa1_4x029"
+      ,
+      "transform":
+      {
+        "pos": "25.822 5.9 -35.3797"
+        ,
+        "rotation": "0.0 0.707106 -1.25738e-07 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_casa1_4x029.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa2.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_casa1_4x030"
+      ,
+      "transform":
+      {
+        "pos": "-66.4964 16.9491 -27.8294"
+        ,
+        "rotation": "0.0 -0.707107 1.25739e-07 -0.707106"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_casa1_4x030.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa2.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_casa2_8x029"
+      ,
+      "transform":
+      {
+        "pos": "22.822 5.9 -29.3797"
+        ,
+        "rotation": "1.68587e-07 0.707106 1.37679e-07 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_casa2_8x029.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa1.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_casa2_8x031"
+      ,
+      "transform":
+      {
+        "pos": "-63.4964 16.9491 -33.8294"
+        ,
+        "rotation": "1.68587e-07 -0.707107 -1.37679e-07 -0.707106"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_casa2_8x031.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa1.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_casa3_6x038"
+      ,
+      "transform":
+      {
+        "pos": "29.5709 5.89999 -40.3797"
+        ,
+        "rotation": "0.0 0.0 2.38418e-07 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_casa3_6x038.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa2.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_casa3_6x040"
+      ,
+      "transform":
+      {
+        "pos": "-70.2453 16.9491 -22.8294"
+        ,
+        "rotation": "2.38418e-07 -1.0 0.0 1.62921e-07"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_casa3_6x040.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa2.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_casa1.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_chimenea030"
+      ,
+      "transform":
+      {
+        "pos": "27.3302 11.809 -34.9689"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_chimenea030.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_chimeneas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_chimenea031"
+      ,
+      "transform":
+      {
+        "pos": "-68.0047 22.8581 -28.2402"
+        ,
+        "rotation": "0.0 -1.78814e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_chimenea031.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_chimeneas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_cupula_abierta010"
+      ,
+      "transform":
+      {
+        "pos": "23.0121 11.9 -30.1088"
+        ,
+        "rotation": "0.0 -0.0436195 0.0 -0.999048"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_cupula_abierta010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cupula_abierta.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_cupula_abierta011"
+      ,
+      "transform":
+      {
+        "pos": "-63.6865 22.9491 -33.1003"
+        ,
+        "rotation": "0.0 -0.999048 0.0 0.0436197"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_cupula_abierta011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cupula_abierta.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_porcho_cupula010"
+      ,
+      "transform":
+      {
+        "pos": "29.6661 11.6241 -40.0816"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_porcho_cupula010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_porcho_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_porcho_cupula011"
+      ,
+      "transform":
+      {
+        "pos": "-70.3406 22.6732 -23.1275"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_porcho_cupula011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_porcho_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_saliente312"
+      ,
+      "transform":
+      {
+        "pos": "26.5709 11.2072 -43.3773"
+        ,
+        "rotation": "0.0 -1.0 0.0 -8.03073e-06"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_saliente312.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_saliente313"
+      ,
+      "transform":
+      {
+        "pos": "-67.2453 22.2563 -19.8318"
+        ,
+        "rotation": "0.0 7.92742e-06 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_saliente313.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_tubitos003"
+      ,
+      "transform":
+      {
+        "pos": "21.5266 5.49689 -42.2108"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_tubitos003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_mesh_tubitos004"
+      ,
+      "transform":
+      {
+        "pos": "-62.201 16.546 -20.9983"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_mesh_tubitos004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_separador_piedra_low090"
+      ,
+      "transform":
+      {
+        "pos": "25.5713 5.7904 -43.3117"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_separador_piedra_low090.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_3_separador_piedra_low091"
+      ,
+      "transform":
+      {
+        "pos": "-66.2457 16.8395 -19.8974"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_3_separador_piedra_low091.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_barandilla2_intro146"
+      ,
+      "transform":
+      {
+        "pos": "-46.6822 13.3776 -25.9732"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_barandilla2_intro146.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_barandilla2_intro148"
+      ,
+      "transform":
+      {
+        "pos": "21.4566 14.7959 -16.8382"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_barandilla2_intro148.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_caja_juanlu001_intro019"
+      ,
+      "transform":
+      {
+        "pos": "-47.7683 7.37756 -42.5572"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_caja_juanlu001_intro019.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_caja_juanlu.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_caja_juanlu001_intro021"
+      ,
+      "transform":
+      {
+        "pos": "38.0406 8.7959 -17.9243"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_caja_juanlu001_intro021.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_caja_juanlu.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_casa1_6x6_intro009"
+      ,
+      "transform":
+      {
+        "pos": "-48.6822 7.37756 -28.8482"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_casa1_6x6_intro009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_casa1_6x6_intro011"
+      ,
+      "transform":
+      {
+        "pos": "24.3316 8.7959 -18.8382"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_casa1_6x6_intro011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_casa2_6x8_intro009"
+      ,
+      "transform":
+      {
+        "pos": "-48.1347 7.37756 -34.8482"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_casa2_6x8_intro009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_casa2_6x8_intro011"
+      ,
+      "transform":
+      {
+        "pos": "30.3316 8.7959 -18.2907"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_casa2_6x8_intro011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_casa3_6x6_intro006"
+      ,
+      "transform":
+      {
+        "pos": "-51.8816 7.37756 -40.8481"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_casa3_6x6_intro006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_casa3_6x6_intro008"
+      ,
+      "transform":
+      {
+        "pos": "36.3315 8.7959 -22.0376"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_casa3_6x6_intro008.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_casa3.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_chimenea_intro013"
+      ,
+      "transform":
+      {
+        "pos": "-50.1266 13.3776 -36.2148"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_chimenea_intro013.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_chimeneas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_chimenea_intro015"
+      ,
+      "transform":
+      {
+        "pos": "31.6982 14.7959 -20.2826"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_chimenea_intro015.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_chimeneas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_cupula_abierta_intro009"
+      ,
+      "transform":
+      {
+        "pos": "-52.2786 13.3776 -40.8119"
+        ,
+        "rotation": "0.0 -0.707106 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_cupula_abierta_intro009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cupula_abierta.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_cupula_abierta_intro011"
+      ,
+      "transform":
+      {
+        "pos": "36.2953 14.7959 -22.4346"
+        ,
+        "rotation": "0.0 4.76837e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_cupula_abierta_intro011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cupula_abierta.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_pasarela_cupula_intro032"
+      ,
+      "transform":
+      {
+        "pos": "-49.2666 13.3776 -28.7406"
+        ,
+        "rotation": "0.0 -1.0 0.0 -4.01339e-07"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_pasarela_cupula_intro032.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_pasarela_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_pasarela_cupula_intro034"
+      ,
+      "transform":
+      {
+        "pos": "24.224 14.7959 -19.4225"
+        ,
+        "rotation": "0.0 -0.707106 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_pasarela_cupula_intro034.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_pasarela_cupula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_saliente3_intro086"
+      ,
+      "transform":
+      {
+        "pos": "-44.1371 12.6848 -36.8377"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_saliente3_intro086.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_saliente3_intro088"
+      ,
+      "transform":
+      {
+        "pos": "32.3211 14.1031 -14.2931"
+        ,
+        "rotation": "0.0 1.19209e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_saliente3_intro088.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_separador_madera_intro048"
+      ,
+      "transform":
+      {
+        "pos": "-44.161 1.26379 -33.7677"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_separador_madera_intro048.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_separador_madera_intro050"
+      ,
+      "transform":
+      {
+        "pos": "29.251 2.68213 -14.317"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_separador_madera_intro050.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_columnas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_tubitos_det_intro_138"
+      ,
+      "transform":
+      {
+        "pos": "-45.8385 10.0905 -30.2214"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_tubitos_det_intro_138.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_esf_4_mesh_tubitos_det_intro_140"
+      ,
+      "transform":
+      {
+        "pos": "25.7048 11.5088 -15.9945"
+        ,
+        "rotation": "-0.5 -0.5 0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_esf_4_mesh_tubitos_det_intro_140.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubitos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

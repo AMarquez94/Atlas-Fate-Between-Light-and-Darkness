@@ -17,6 +17,13 @@ DECL_OBJ_MANAGER("glitch_controller", TCompGlitchController);
 // Here we handle the screen glitch
 // In case some extra gameplay needs to be added related to the glitch, do it here
 
+TCompGlitchController::~TCompGlitchController()
+{
+    if (glitch_sound.isValid()) {
+        glitch_sound.stop();
+    }
+}
+
 void TCompGlitchController::debugInMenu() {
 
 }
@@ -36,6 +43,15 @@ void TCompGlitchController::update(float dt) {
     cb_postfx.postfx_scan_amount += (dt / fade_time) * fade_multiplier;
     cb_postfx.postfx_scan_amount = Clamp(cb_postfx.postfx_scan_amount, 0.f, 1.f);
     cb_outline.updateGPU();
+
+    if (glitch_sound.isValid() && glitch_sound.isPlaying()) {
+        if (cb_postfx.postfx_scan_amount == 0) {
+            glitch_sound.stop(false);
+        }
+        else {
+            glitch_sound.setVolume(cb_postfx.postfx_scan_amount);
+        }
+    }
 }
 
 void TCompGlitchController::onGlitchDeploy(const TMsgGlitchController & msg) {
@@ -47,6 +63,8 @@ void TCompGlitchController::onGlitchDeploy(const TMsgGlitchController & msg) {
     else {
         cb_postfx.postfx_scan_amount = 1;
         fade_multiplier = 1;
+        TCompAudio* my_audio = get<TCompAudio>();
+        glitch_sound = my_audio->playEvent("event:/Ambiance/Glitches");
     }
 }
 

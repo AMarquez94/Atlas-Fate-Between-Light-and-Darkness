@@ -90,7 +90,7 @@ bool CCheckpoint::loadCheckPoint()
     if (saved) {
 
         /* Player loading */
-        CHandle h_player = getEntityByName("The Player");
+        CHandle h_player = EngineEntities.getPlayerHandle();
         if (h_player.isValid() && player.saved) {
             CEntity * e_player = h_player;
             TCompTransform * playerTransform = e_player->get<TCompTransform>();

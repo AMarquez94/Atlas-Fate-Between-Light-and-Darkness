@@ -163,6 +163,11 @@ struct TMsgAnimationCallback {
 	DECL_MSG_ID();
 };
 
+struct TMsgAnimationCompleted {
+	std::string animation_name;
+	DECL_MSG_ID();
+};
+
 struct TMsgAnimationAudioCallback {
     std::string audioName;
     bool isRelativeToPlayer;
@@ -189,6 +194,13 @@ struct TMsgSpawnAt {
 
 struct TMsgScenePaused {
 	bool isPaused;
+	DECL_MSG_ID();
+};
+
+struct TMsgCameraShake {
+	float time_to_stop;
+	float amount;
+	float speed;
 	DECL_MSG_ID();
 };
 
@@ -276,6 +288,11 @@ struct TMsgButtonActivated {
     DECL_MSG_ID();
 };
 
+struct TMsgWeaponsActivated {
+    bool activate;
+    DECL_MSG_ID();
+};
+
 struct TMsgStopAudioComponent {
     DECL_MSG_ID();
 };
@@ -294,6 +311,15 @@ struct TMsgPlayerAIEnabled {
 struct TMsgCinematicState {
     std::string state;
     bool enableCinematic;
+    DECL_MSG_ID();
+};
+
+struct TMsgWarnEnemy {
+    VEC3 playerPosition;
+    DECL_MSG_ID();
+};
+
+struct TMsgResetPatrolLights {
     DECL_MSG_ID();
 };
 

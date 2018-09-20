@@ -19,6 +19,7 @@
 #include "components/lighting/comp_fade_controller.h"
 #include "entity/entity_parser.h"
 #include "components/comp_tags.h"
+#include "components/comp_particles.h"
 
 DECL_OBJ_MANAGER("ai_patrol", TCompAIPatrol);
 
@@ -280,6 +281,34 @@ void TCompAIPatrol::onMsgCinematicState(const TMsgCinematicState & msg)
     setCurrent(nullptr);
 }
 
+void TCompAIPatrol::onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) {
+
+	if (msg.animation_name.compare("inhibidor") == 0) {
+		inhibitorAnimationCompleted = true;
+	}
+	if (msg.animation_name.compare("attack") == 0) {
+		attackAnimationCompleted = true;
+	}
+}
+
+void TCompAIPatrol::onMsgWarned(const TMsgWarnEnemy & msg)
+{
+    current = nullptr;
+    TCompEmissionController *eController = get<TCompEmissionController>();
+    eController->blend(enemyColor.colorSuspect, 0.1f);
+    lastPlayerKnownPos = msg.playerPosition;
+}
+
+void TCompAIPatrol::onMsgResetPatrolLights(const TMsgResetPatrolLights & msg)
+{
+    if (startLightsOn) {
+        turnOnLight();
+    }
+    else {
+        turnOffLight();
+    }
+}
+
 const std::string TCompAIPatrol::getStateForCheckpoint()
 {
     if (current) {
@@ -307,6 +336,9 @@ void TCompAIPatrol::registerMsgs()
     DECL_MSG(TCompAIPatrol, TMsgNoiseMade, onMsgNoiseListened);
     DECL_MSG(TCompAIPatrol, TMsgLanternsDisable, onMsgLanternsDisable);
     DECL_MSG(TCompAIPatrol, TMsgCinematicState, onMsgCinematicState);
+	DECL_MSG(TCompAIPatrol, TMsgAnimationCompleted, onMsgAnimationCompleted);
+	DECL_MSG(TCompAIPatrol, TMsgWarnEnemy, onMsgWarned);
+	DECL_MSG(TCompAIPatrol, TMsgResetPatrolLights, onMsgResetPatrolLights);
 }
 
 void TCompAIPatrol::loadActions() {
@@ -479,9 +511,9 @@ BTNode::ERes TCompAIPatrol::actionGoToNoiseSource(float dt)
     float fov = deg2rad(arguments["fov_actionGoToNoiseSource_goToArtificialNoiseSource"].getFloat());
 
     TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
+    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::RUN);
 
-    CEntity * ePlayer = getEntityByName(entityToChase);
+    CEntity * ePlayer = EngineEntities.getPlayerHandle();
     TCompTransform * ppos = get<TCompTransform>();
     VEC3 pp = ppos->getPosition();
 
@@ -525,7 +557,7 @@ BTNode::ERes TCompAIPatrol::actionWaitInNoiseSource(float dt)
 
     TCompTransform *mypos = get<TCompTransform>();
     VEC3 vp = mypos->getPosition();
-    CEntity * ePlayer = getEntityByName(entityToChase);
+    CEntity * ePlayer = EngineEntities.getPlayerHandle();
     TCompTransform * ppos = get<TCompTransform>();
     VEC3 pp = ppos->getPosition();
     //Animation To Change
@@ -563,10 +595,18 @@ BTNode::ERes TCompAIPatrol::actionGoToWpt(float dt)
     float speed = arguments["speed_actionGoToWpt_goToWpt"].getFloat();
     assert(arguments.find("rotationSpeed_actionGoToWpt_goToWpt") != arguments.end());
     float rotationSpeed = deg2rad(arguments["rotationSpeed_actionGoToWpt_goToWpt"].getFloat());
+    assert(arguments.find("walkingFast_actionGoToWpt_goToWpt") != arguments.end());
+    bool walkingFast = deg2rad(arguments["walkingFast_actionGoToWpt_goToWpt"].getBool());
 
     //Animation To Change
-    TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
+    if (!walkingFast) {
+        TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+        myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
+    }
+    else {
+        TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+        myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK_FAST);
+    }
 
     return moveToPoint(speed, rotationSpeed, getWaypoint().position, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
@@ -589,11 +629,12 @@ BTNode::ERes TCompAIPatrol::actionWaitInWpt(float dt)
     else {
         timerWaitingInWpt += dt;
         TCompTransform *mypos = get<TCompTransform>();
-        if (rotateTowardsVec(mypos->getPosition() + getWaypoint().lookAt, dt, rotationSpeed)) {
+        if (rotateTowardsVec(mypos->getPosition() + getWaypoint().lookAt, rotationSpeed, dt)) {
             myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
         }
         else {
-            myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
+			if(!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_LEFT))
+				myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_LEFT);
         }
         return BTNode::ERes::STAY;
     }
@@ -629,7 +670,7 @@ BTNode::ERes TCompAIPatrol::actionSuspect(float dt)
     TCompEmissionController * e_controller = get<TCompEmissionController>();
     e_controller->blend(enemyColor.colorSuspect, 0.1f);
     TCompTransform *mypos = get<TCompTransform>();
-    CEntity *player = getEntityByName(entityToChase);
+    CEntity *player = EngineEntities.getPlayerHandle();
     TCompTransform *ppos = player->get<TCompTransform>();
 
     /* Distance to player */
@@ -637,11 +678,11 @@ BTNode::ERes TCompAIPatrol::actionSuspect(float dt)
 
     if (distanceToPlayer <= autoChaseDistance && isEntityInFov(entityToChase, fov, maxChaseDistance)) {
         suspectO_Meter = 1.f;
-        rotateTowardsVec(ppos->getPosition(), dt, rotationSpeed);
+        rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt);
     }
     else if (distanceToPlayer <= maxChaseDistance && isEntityInFov(entityToChase, fov, maxChaseDistance)) {
         suspectO_Meter = Clamp(suspectO_Meter + dt * incrBaseSuspectO_Meter, 0.f, 1.f);							//TODO: increment more depending distance and noise
-        rotateTowardsVec(ppos->getPosition(), dt, rotationSpeed);
+        rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt);
     }
     else {
         suspectO_Meter = Clamp(suspectO_Meter - dt * dcrSuspectO_Meter, 0.f, 1.f);
@@ -663,7 +704,7 @@ BTNode::ERes TCompAIPatrol::actionMarkPlayerAsSeen(float dt)
     assert(arguments.find("entityToChase_actionMarkPlayerAsSeen_markPlayerAsSeen") != arguments.end());
     std::string entityToChase = arguments["entityToChase_actionMarkPlayerAsSeen_markPlayerAsSeen"].getString();
 
-    CEntity *player = getEntityByName(entityToChase);
+    CEntity *player = EngineEntities.getPlayerHandle();
     TCompTransform * ppos = player->get<TCompTransform>();
     lastPlayerKnownPos = ppos->getPosition();
     return BTNode::ERes::LEAVE;
@@ -673,25 +714,50 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 {
     //play animation shoot inhibitor
     //
+	assert(arguments.find("entityToChase_actionShootInhibitor_shootInhibitor") != arguments.end());
+	std::string entityToChase = arguments["entityToChase_actionShootInhibitor_shootInhibitor"].getString(); 
+    assert(arguments.find("rotationSpeed_actionChasePlayer_ChasePlayer") != arguments.end());
+    float rotationSpeed = deg2rad(arguments["rotationSpeed_actionChasePlayer_ChasePlayer"].getFloat());
+    assert(arguments.find("distToAttack_actionChasePlayer_ChasePlayer") != arguments.end());
+    float distToAttack = arguments["distToAttack_actionChasePlayer_ChasePlayer"].getFloat();
 
-    //TODO: if !animationBeingPlayed and PlayerInhibited => LEAVE; else => normal
-    assert(arguments.find("entityToChase_actionShootInhibitor_shootInhibitor") != arguments.end());
-    std::string entityToChase = arguments["entityToChase_actionShootInhibitor_shootInhibitor"].getString();
+	CEntity *player = EngineEntities.getPlayerHandle();
+	TCompTempPlayerController *pController = player->get<TCompTempPlayerController>();
 
-    CEntity *player = getEntityByName(entityToChase);
-    TCompTempPlayerController *pController = player->get<TCompTempPlayerController>();
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
 
-    TCompEmissionController *eController = get<TCompEmissionController>();
-    eController->blend(enemyColor.colorAlert, 0.1f);
+	if (pController->isInhibited && !myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR)) {
+		resetAnimationCompletedBooleans();
+		TCompEmissionController *eController = get<TCompEmissionController>();
+		eController->blend(enemyColor.colorAlert, 0.1f);
+		return BTNode::ERes::LEAVE;
+	}
+	
+	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR) && !inhibitorAnimationCompleted) {
+        TCompTransform * my_pos = get<TCompTransform>();
+        CEntity* player = EngineEntities.getPlayerHandle();
+        TCompTransform* ppos = player->get<TCompTransform>();
+        if (VEC3::Distance(ppos->getPosition(), my_pos->getPosition()) < distToAttack - 0.1f) {
+            return BTNode::ERes::LEAVE;
+        }
+        else {
+		    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR);
+        }
+	}
+	
+	if (inhibitorAnimationCompleted) {
 
-    if (!pController->isInhibited) {
-
-        timeAnimating = 0.0f;
-        EngineLogic.execScript("animation_LaunchInhibitor(" + CHandle(this).getOwner().asString() + ")");
-    }
-
-
-    return BTNode::ERes::LEAVE;
+		TCompEmissionController *eController = get<TCompEmissionController>();
+		eController->blend(enemyColor.colorAlert, 0.1f);
+		resetAnimationCompletedBooleans();
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+        TCompTransform* ppos = player->get<TCompTransform>();
+        rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt);
+		return BTNode::ERes::STAY;
+	}
+    
 }
 
 BTNode::ERes TCompAIPatrol::actionGenerateNavmeshChase(float dt)
@@ -699,7 +765,7 @@ BTNode::ERes TCompAIPatrol::actionGenerateNavmeshChase(float dt)
     assert(arguments.find("entityToChase_actionChasePlayer_ChasePlayer") != arguments.end());
     std::string entityToChase = arguments["entityToChase_actionChasePlayer_ChasePlayer"].getString();
 
-    CEntity *player = getEntityByName(entityToChase);
+    CEntity *player = EngineEntities.getPlayerHandle();
     TCompTransform *ppos = player->get<TCompTransform>();
 
     TCompTransform *tpos = get<TCompTransform>();
@@ -716,7 +782,7 @@ BTNode::ERes TCompAIPatrol::actionWarnClosestDrone(float dt)
     std::string entityToChase = arguments["entityToChase_actionWarnClosestDrone_warnClosestDrone"].getString();
 
     /* Prepare msg */
-    CEntity* player = getEntityByName(entityToChase);
+    CEntity* player = EngineEntities.getPlayerHandle();
     TCompTransform* ppos = player->get<TCompTransform>();
     TMsgOrderReceived msg;
     msg.hOrderSource = CHandle(this).getOwner();
@@ -757,9 +823,9 @@ BTNode::ERes TCompAIPatrol::actionRotateTowardsUnreachablePlayer(float dt)
     float rotationSpeed = deg2rad(arguments["rotationSpeed_actionRotateTowardsUnreachablePlayer_rotateTowardsUnreachablePlayer"].getFloat());
 
     if (isEntityInFov(entityToChase, fov, maxChaseDistance)) {
-        CEntity* player = getEntityByName(entityToChase);
+        CEntity* player = EngineEntities.getPlayerHandle();
         TCompTransform* ppos = player->get<TCompTransform>();
-        rotateTowardsVec(ppos->getPosition(), dt, rotationSpeed);
+        rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt);
         TCompTransform* mypos = get<TCompTransform>();
         if (lastPlayerKnownPos != ppos->getPosition()) {
             generateNavmesh(mypos->getPosition(), ppos->getPosition());
@@ -792,11 +858,11 @@ BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
     std::string entityToChase = arguments["entityToChase_actionChasePlayer_ChasePlayer"].getString();
 
     TCompTransform *mypos = get<TCompTransform>();
-    CEntity *player = getEntityByName(entityToChase);
+    CEntity *player = EngineEntities.getPlayerHandle();
     TCompTransform *ppos = player->get<TCompTransform>();
 
     TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
+    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::RUN);
 
     isStunnedPatrolInFov(fov, maxChaseDistance);
 
@@ -823,22 +889,26 @@ BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
         return BTNode::ERes::LEAVE;
     }
     else {
+        warnClosestPatrols();
         return moveToPoint(speed, rotationSpeed, ppos->getPosition(), dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
     }
 }
 
 BTNode::ERes TCompAIPatrol::actionAttack(float dt)
 {
-    assert(arguments.find("entityToChase_actionAttack_attack") != arguments.end());
-    std::string entityToChase = arguments["entityToChase_actionAttack_attack"].getString();
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::ATTACK) && !attackAnimationCompleted) {
+		myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::ATTACK);
+	}
 
-    CEntity *player = getEntityByName(entityToChase);
-    TCompTransform * ppos = player->get<TCompTransform>();
+	if (attackAnimationCompleted) {
+		resetAnimationCompletedBooleans();
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		return BTNode::ERes::STAY;
+	}
 
-    /* TODO: always hit at the moment - change this */
-    TMsgPlayerHit msg;
-    msg.h_sender = CHandle(this).getOwner();
-    player->sendMsg(msg);
     return BTNode::ERes::LEAVE;
 }
 
@@ -882,7 +952,7 @@ BTNode::ERes TCompAIPatrol::actionGoToPlayerLastPos(float dt)
 
     //Animation To Change
     TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
+    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::RUN);
 
     isStunnedPatrolInFov(fov, maxChaseDistance);
 
@@ -912,7 +982,7 @@ BTNode::ERes TCompAIPatrol::actionLookForPlayer(float dt)
     std::string entityToChase = arguments["entityToChase_actionLookForPlayer_lookForPlayerSeen"].getString();
 
     TCompTransform *mypos = get<TCompTransform>();
-    CEntity *player = (CEntity *)getEntityByName(entityToChase);
+    CEntity *player = (CEntity *)EngineEntities.getPlayerHandle();
     TCompTransform *ppos = player->get<TCompTransform>();
     //Animation To Change
     TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
@@ -1066,11 +1136,24 @@ BTNode::ERes TCompAIPatrol::actionWait(float dt)
 
 BTNode::ERes TCompAIPatrol::actionAnimationShootInhibitor(float dt)
 {
-    //TODO: Play shoot inhibitor animation
-    TCompEmissionController* my_emission = get<TCompEmissionController>();
-    EngineLogic.execScript("animation_LaunchInhibitor(" + CHandle(this).getOwner().asString() + ")");
+    if (_cinematicTimer == 0) {
+        TCompAudio* my_audio = get<TCompAudio>();
+        my_audio->playEvent("event:/Sounds/Enemies/Patrol/PatrolInhibitorTest");
+    }
 
-    return BTNode::ERes::LEAVE;
+    if (_cinematicTimer > 0.6f) {
+        _cinematicTimer = 0.f;
+        TCompEmissionController* my_emission = get<TCompEmissionController>();
+        EngineLogic.execScript("animation_LaunchInhibitor(" + CHandle(this).getOwner().asString() + ")");
+        return BTNode::ERes::LEAVE;
+    }
+    else {
+        _cinematicTimer += dt;
+        return BTNode::ERes::STAY;
+    }
+
+
+
 }
 
 
@@ -1164,7 +1247,7 @@ bool TCompAIPatrol::conditionPlayerAttacked(float dt)
     float distToAttack = arguments["distToAttack_conditionPlayerAttacked_managePlayerAttacked"].getFloat();
 
     TCompTransform *mypos = get<TCompTransform>();
-    CEntity *player = (CEntity *)getEntityByName(entityToChase);
+    CEntity *player = EngineEntities.getPlayerHandle();
     TCompTransform *ppos = player->get<TCompTransform>();
 
     float distToPlayer = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
@@ -1280,7 +1363,20 @@ void TCompAIPatrol::turnOnLight()
             CEntity* eCone = cGroup->getHandleByName("FlashLight");
             TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
             cConeController->turnOnLight();
-            EngineIA.patrolSB.patrolsWithLight.push_back(CHandle(this).getOwner());
+
+            TCompParticles* flashParticles = eCone->get<TCompParticles>();
+            flashParticles->setSystemState(true);
+
+            bool found = false;
+            for (int i = 0; i < EngineIA.patrolSB.patrolsWithLight.size(); i++) {
+                if (EngineIA.patrolSB.patrolsWithLight[i] == myHandle.getOwner()) {
+                    found = true;
+                }
+            }
+
+            if (!found) {
+                EngineIA.patrolSB.patrolsWithLight.push_back(myHandle.getOwner());
+            }
         }
     }
 }
@@ -1290,8 +1386,15 @@ void TCompAIPatrol::turnOffLight() {
     CEntity* eCone = cGroup->getHandleByName("FlashLight");
     TCompConeOfLightController* cConeController = eCone->get<TCompConeOfLightController>();
     cConeController->turnOffLight();
-    if (auto it = std::find(EngineIA.patrolSB.patrolsWithLight.begin(), EngineIA.patrolSB.patrolsWithLight.end(), CHandle(this).getOwner()) != EngineIA.patrolSB.patrolsWithLight.end()) {
-        EngineIA.patrolSB.patrolsWithLight.erase(EngineIA.patrolSB.patrolsWithLight.begin() + it);
+    TCompParticles* flashParticles = eCone->get<TCompParticles>();
+    flashParticles->setSystemState(false);
+
+    bool found = false;
+    for (int i = 0; i < EngineIA.patrolSB.patrolsWithLight.size(); i++) {
+        if (EngineIA.patrolSB.patrolsWithLight[i] == myHandle.getOwner()) {
+            found = true;
+            EngineIA.patrolSB.patrolsWithLight.erase(EngineIA.patrolSB.patrolsWithLight.begin() + i);
+        }
     }
 }
 
@@ -1382,6 +1485,54 @@ TCompAIPatrol::EState TCompAIPatrol::getStateEnumFromString(const std::string& s
     return TCompAIPatrol::EState::NUM_STATES;
 }
 
+void TCompAIPatrol::warnClosestPatrols()
+{
+    std::vector<CHandle> enemies_in_range;
+
+    physx::PxSphereGeometry geometryAttack;
+    geometryAttack.radius = 2.f;
+
+    if (geometryAttack.isValid()) {
+
+        TCompTransform* tPos = get<TCompTransform>();
+
+        physx::PxFilterData pxFilterData;
+        pxFilterData.word0 = FilterGroup::Enemy;
+        physx::PxQueryFilterData PxEnemyWarnFilterData;
+        PxEnemyWarnFilterData.data = pxFilterData;
+        PxEnemyWarnFilterData.flags = physx::PxQueryFlag::eDYNAMIC;
+        std::vector<physx::PxOverlapHit> hits;
+        if (EnginePhysics.Overlap(geometryAttack, tPos->getPosition(), hits, PxEnemyWarnFilterData)) {
+            for (int i = 0; i < hits.size(); i++) {
+                CHandle hitCollider;
+                hitCollider.fromVoidPtr(hits[i].actor->userData);
+                if (hitCollider.isValid()) {
+                    CHandle enemy = hitCollider.getOwner();
+                    if (enemy.isValid() && enemy != myHandle.getOwner()) {
+                        enemies_in_range.push_back(enemy);
+                    }
+                }
+            }
+        }
+    }
+
+    for (int i = 0; i < enemies_in_range.size(); i++) {
+        CEntity * enemy = enemies_in_range[i];
+        TCompTransform *ePos = enemy->get<TCompTransform>();
+        TCompTags * eTag = enemy->get<TCompTags>();
+
+        if (eTag->hasTag(getID("patrol"))) {
+            TCompAIPatrol* tPatrol = enemy->get<TCompAIPatrol>();
+            if (tPatrol->isNodeSonOf(tPatrol->current, "managePatrolGoToWpt")
+                || tPatrol->isNodeSonOf(tPatrol->current, "waitInWpt")){
+                TMsgWarnEnemy msg;
+                msg.playerPosition = lastPlayerKnownPos;
+                enemy->sendMsg(msg);
+            }
+        }
+    }
+}
+
 void TCompAIPatrol::launchInhibitor()
 {
     TEntityParseContext ctxInhibitor;
@@ -1391,8 +1542,63 @@ void TCompAIPatrol::launchInhibitor()
     myGroup->add(ctxInhibitor.entities_loaded[0]);
 }
 
+void TCompAIPatrol::attackPlayer()
+{
+    CEntity* player = EngineEntities.getPlayerHandle();
+
+    TMsgPlayerHit msg;
+    msg.h_sender = CHandle(this).getOwner();
+    player->sendMsg(msg);
+}
+
+void TCompAIPatrol::playStepParticle(bool left)
+{
+    TCompGroup* my_group = get<TCompGroup>();
+    if (my_group) {
+        CHandle foot = left ? my_group->getHandleByName("left_foot") : my_group->getHandleByName("right_foot");
+        EngineParticles.launchSystem("data/particles/def_amb_ground_slam.particles", foot);
+    }
+}
+
+void TCompAIPatrol::shakeCamera(float max_amount, float max_distance, float duration)
+{
+    VHandles v_tp_cameras = CTagsManager::get().getAllEntitiesByTag(getID("tp_camera"));
+    TCompTransform* my_pos = get<TCompTransform>();
+    CEntity* e_player = EngineEntities.getPlayerHandle();
+    TCompTransform* ppos = e_player->get<TCompTransform>();
+
+    float distance = VEC3::Distance(ppos->getPosition(), my_pos->getPosition());
+    distance = Clamp(distance, 0.f, max_distance);
+
+    TMsgCameraShake msg;
+    msg.amount = lerp(max_amount, 0.f, distance/ max_distance);
+    msg.speed = 140.f;
+    msg.time_to_stop = duration;
+    for (int i = 0; i < v_tp_cameras.size(); i++) {
+        v_tp_cameras[i].sendMsg(msg);
+    }
+}
+
+void TCompAIPatrol::playSlamParticle()
+{
+    TCompGroup* my_group = get<TCompGroup>();
+    CHandle foot = my_group->getHandleByName("right_foot");
+    // Sacalo al json si te apetece.
+    EngineParticles.launchSystem("data/particles/def_patrol_slam.particles", foot);
+    EngineParticles.launchSystem("data/particles/def_patrol_slam_core.particles", foot);
+    EngineParticles.launchSystem("data/particles/def_patrol_slam_sphere.particles", foot);
+
+    EngineParticles.launchSystem("data/particles/def_patrol_slam_trails.particles", foot);
+    EngineParticles.launchSystem("data/particles/def_patrol_slam_trails_core.particles", foot);
+}
+
 void TCompAIPatrol::playAnimationByName(const std::string & animationName)
 {
     TCompPatrolAnimator * myAnimator = get<TCompPatrolAnimator>();
     myAnimator->playAnimationConverted(myAnimator->getAnimationByName(animationName));
+}
+
+void TCompAIPatrol::resetAnimationCompletedBooleans() {
+	inhibitorAnimationCompleted = false;
+	attackAnimationCompleted = false;
 }

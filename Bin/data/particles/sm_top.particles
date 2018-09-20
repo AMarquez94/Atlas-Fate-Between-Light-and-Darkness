@@ -37,7 +37,8 @@
       [1.0, "0.0 0.0 0.0"]
     ],
 		"acceleration": 0.0,
-		"wind": 0.0
+		"wind": 0.0,
+		"inherit" : false
 	},
 	"noise": {
 		"texture": "data/textures/particles/fx_smoke1.dds",
@@ -56,7 +57,8 @@
       "frame_size" : "8 4",
       "initial_frame" : 0,
       "num_frames" : 32,
-      "frame_speed" : 1.0
+      "frame_speed" : 1.0,
+			"soft" : 0
 	},
   "size" : {
     "scale" : 1.0,

@@ -4,16 +4,14 @@
 		{ "name" : "idle"},
 		{ "name" : "walk", 
 			"animation_completed_callback": true,
-			"audio_callbacks":[
+			"callbacks":[
 			{
 				"time_to_call" : 0.18,
-				"audio_name" : "event:/Sounds/Player/Steps/NormalSteps",
-				"relative_to_player" : false
+				"function_to_call" : "animation_step_left"
 			},
 			{
 				"time_to_call" : 0.48,
-				"audio_name" : "event:/Sounds/Player/Steps/NormalSteps",
-				"relative_to_player" : false
+				"function_to_call" : "animation_step_right"
 			}]
 		},
 		{ "name" : "run", 
@@ -36,8 +34,24 @@
 				"function_to_call" : "animation_attack_start"
 			  },
 			  {
-				"time_to_call" : 0.7,
+				"time_to_call" : 0.3,
+				"function_to_call" : "animation_attack_swingLeft"
+			  },
+			  {
+				"time_to_call" : 0.5,
+				"function_to_call" : "animation_attack_swingRight"
+			  },
+			  {
+				"time_to_call" : 0.5,
+				"function_to_call" : "animation_attack_strikeLeft"
+			  },
+			  {
+				"time_to_call" : 0.55,
 				"function_to_call" : "animation_attack_attack"
+			  },
+			  {
+				"time_to_call" : 0.7,
+				"function_to_call" : "animation_attack_strikeRight"
 			  }
 			]},
 		{ "name" : "crouch"},
@@ -62,9 +76,44 @@
 		{ "name" : "metralla_middle"},
 		{ "name" : "metralla_finish"},
 		{ "name" : "sm_enter"},
+		{ "name" : "open_weapons"},
+		{ "name" : "touch_enemy"},
+		{ "name" : "sonda_normal"},
+		{ "name" : "sonda_crouch"},
+		{ "name" : "touching_enemy"},
 		{ "name" : "sm_pose"},
 		{ "name" : "land_soft"},
 		{ "name" : "die"},
-		{ "name" : "dead"}
+		{ "name" : "dead",
+			"audio_callbacks":[
+			{
+				"time_to_call" : 0,
+				"audio_name" : "event:/Sounds/Player/Hurt/Dead",
+				"relative_to_player" : true
+			}]
+		},
+		{ "name" : "land_hard"}
+	],
+	"lookat_corrections" : [
+		{
+			"bone" : "Bip001 Spine1",
+			"local_axis_to_correct" : "0 1 0", 
+			"amount" : 0.2
+		},
+		{
+			"bone" : "Bip001 Spine2",
+			"local_axis_to_correct" : "0.3 1 0", 
+			"amount" : 0.2
+		},
+		{
+			"bone" : "Bip001 Neck",
+			"local_axis_to_correct" : "0.5 0.5 0", 
+			"amount" : 0.3
+		},
+		{
+			"bone" : "Bip001 Head",
+			"local_axis_to_correct" : "0 1 0", 
+			"amount" : 1.0
+		}
 	]
 }

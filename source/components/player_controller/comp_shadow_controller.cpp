@@ -78,6 +78,9 @@ void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
     physx::PxFilterData pxFilterData;
     pxFilterData.word0 = FilterGroup::Scenario | FilterGroup::DItem | FilterGroup::Enemy | FilterGroup::MovableObject;
     shadowDetectionFilter.data = pxFilterData;
+
+    pxFilterData.word0 = FilterGroup::Scenario | FilterGroup::DItem | FilterGroup::MovableObject;
+    shadowDetectionFilterEnemy.data = pxFilterData;
 }
 
 void TCompShadowController::onPlayerExposed(const TMsgPlayerIlluminated& msg) {
@@ -111,7 +114,7 @@ void TCompShadowController::registerMsgs() {
 }
 
 // We can also use this public method from outside this class.
-bool TCompShadowController::IsPointInShadows(const VEC3 & point)
+bool TCompShadowController::IsPointInShadows(const VEC3 & point, bool player)
 {
     if (hackShadows) {
         return true;
@@ -129,8 +132,22 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point)
         TCompTransform * c_trans = c_entity->get<TCompTransform>();
 
         float distance = VEC3::Distance(c_trans->getPosition(), point);
-        if (!EnginePhysics.Raycast(point, -c_trans->getFront(), distance, hit, (physx::PxQueryFlag::eSTATIC | physx::PxQueryFlag::eDYNAMIC), shadowDetectionFilter))
-            return false;
+
+        if (player) {
+            if (!EnginePhysics.Raycast(point, -c_trans->getFront(), distance, hit, (physx::PxQueryFlag::eSTATIC | physx::PxQueryFlag::eDYNAMIC), shadowDetectionFilter))
+                return false;
+        }
+        else {
+            if (EnginePhysics.Raycast(point, -c_trans->getFront(), distance, hit, (physx::PxQueryFlag::eSTATIC | physx::PxQueryFlag::eDYNAMIC), shadowDetectionFilterEnemy)) {
+                CHandle h;
+                h.fromVoidPtr(hit.actor->userData);
+                CEntity* e = h.getOwner();
+                dbg("Collided with %s\n", e->getName());
+            }
+
+            if (!EnginePhysics.Raycast(point, -c_trans->getFront(), distance, hit, (physx::PxQueryFlag::eSTATIC | physx::PxQueryFlag::eDYNAMIC), shadowDetectionFilterEnemy))
+                return false;
+        }
     }
 
     for (unsigned int i = 0; i < dynamic_lights.size(); i++)

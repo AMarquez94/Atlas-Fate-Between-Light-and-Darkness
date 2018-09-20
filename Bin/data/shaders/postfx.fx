@@ -109,13 +109,17 @@ float4 PS_PostFX_Flares(in float4 iPosition : SV_POSITION , in float2 iTex0 : TE
 float4 PS_PostFX_Vignette(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
 {
 	float4 color = txAlbedo.Sample(samClampLinear, iTex0); 
+	//float4 grade_color = txLUT.Sample(samClampLinear, color.xyz);
 	float2 position = (iPosition.xy * camera_inv_resolution) - float2(0.5f,0.5f);
-	//position.x *= camera_aspect_ratio;
-
+	//color = lerp( color, grade_color, global_shared_fx_amount );
+	
 	float len = length(position);
-	float vignette = smoothstep(0.95, 0.95 - 0.65, len);
+	float vignette = smoothstep(0.95, postfx_vignette - (1 - player_health) , len);
 	color.rgb = lerp(color.rgb, color.rgb * vignette, 0.95);
-
+	
+	float4 greyscale = (color.r + color.g + color.b) * .333;
+	color = lerp( color, greyscale, 1 - player_health);
+	
 	return color;
 }
 

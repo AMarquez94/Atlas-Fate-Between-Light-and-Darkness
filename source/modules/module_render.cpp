@@ -147,8 +147,8 @@ bool CModuleRender::start()
 	cb_globals.global_gamma_correction_enabled = 1.f;
 	cb_globals.global_tone_mapping_mode = 1.f;
     cb_globals.global_fog_density = 0.018f;
-    cb_globals.global_fog_color = VEC3(0.47,0.51,0.84);
-    cb_globals.global_fog_env_color = VEC3(0.0, 0.171, 0.34);
+    cb_globals.global_fog_color = VEC3(0.47f,0.51f,0.84f);
+    cb_globals.global_fog_env_color = VEC3(0.0f, 0.171f, 0.34f);
     cb_globals.global_self_intensity = 10.f;
     cb_globals.global_delta_time = 0.f;
 
@@ -338,6 +338,7 @@ void CModuleRender::generateFrame() {
 
         activateMainCamera();
         deferred.render(rt_main, h_e_camera);
+        Engine.get().getParticles().renderDeferred();
         postProcessingStack();
     }
 
@@ -395,7 +396,7 @@ void CModuleRender::postProcessingStack() {
         // The bloom blurs the given input
         TCompRenderBloom* c_render_bloom = e_cam->get< TCompRenderBloom >();
         if (c_render_bloom) {
-            c_render_bloom->generateHighlights(deferred.rt_acc_light);
+            c_render_bloom->generateHighlights(curr_rt);
             c_render_bloom->addBloom();
         }
 
@@ -418,7 +419,7 @@ void CModuleRender::postProcessingStack() {
         if (c_color_grading)
             curr_rt = c_color_grading->apply(curr_rt);
 
-        // Check if we have a color grading component
+        // Check if we have fog
         TCompFog * c_render_fog = e_cam->get< TCompFog >();
         if (c_render_fog)
             curr_rt = c_render_fog->apply(curr_rt, deferred.rt_acc_light);

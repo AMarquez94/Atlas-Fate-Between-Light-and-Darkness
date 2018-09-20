@@ -24,7 +24,7 @@ DECL_OBJ_MANAGER("ai_player", TCompAIPlayer);
 void TCompAIPlayer::debugInMenu() {
 
 	TCompIAController::debugInMenu();
-	CEntity * me = getEntityByName("The Player");
+	CEntity * me = EngineEntities.getPlayerHandle();
 	TCompTransform *tpos = me->get<TCompTransform>();
 
 
@@ -88,8 +88,8 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
     addChild("playerActivated", "removeInhibitorTutorial", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionRemoveInhibitorTutorial, nullptr, nullptr);
     addChild("removeInhibitorTutorial", "resetTimersInhibitorTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersRemoveInhibitorTutorial, nullptr);
     addChild("removeInhibitorTutorial", "idleInhibitorTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdle, nullptr);
-    addChild("removeInhibitorTutorial", "inhibitorStartInhibitorTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationInhibitor, nullptr);
-    addChild("removeInhibitorTutorial", "waitInhibitorTutorial_1", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionWait, nullptr);
+    //addChild("removeInhibitorTutorial", "inhibitorStartInhibitorTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationInhibitor, nullptr);
+    //addChild("removeInhibitorTutorial", "waitInhibitorTutorial_1", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionWait, nullptr);
     addChild("removeInhibitorTutorial", "inhibitorMiddleInhibitorTutorial_1", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationInhibitorMiddle, nullptr);
     addChild("removeInhibitorTutorial", "waitInhibitorTutorial_2", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionWait, nullptr);
     addChild("removeInhibitorTutorial", "inhibitorMiddleInhibitorTutorial_2", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationInhibitorMiddle, nullptr);
@@ -173,7 +173,8 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
     addChild("playerActivated", "smEnemyTutorial", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionSMEnemyTutorial, nullptr, nullptr);
     addChild("smEnemyTutorial", "resetTimersSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersSMEnemyTutorial, nullptr);
     addChild("smEnemyTutorial", "idleSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdle, nullptr);
-    addChild("smEnemyTutorial", "grabenemySMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationGrabEnemy, nullptr);
+    addChild("smEnemyTutorial", "grabSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationGrab, nullptr);
+    //addChild("smEnemyTutorial", "grabenemySMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationGrabEnemy, nullptr);
     addChild("smEnemyTutorial", "beginSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionStartSMEnemy, nullptr);
     addChild("smEnemyTutorial", "smSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSM, nullptr);
     addChild("smEnemyTutorial", "exitSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionEndSM, nullptr);
@@ -485,7 +486,7 @@ BTNode::ERes TCompAIPlayer::actionResetTimersSMFenceTutorial(float dt)
 BTNode::ERes TCompAIPlayer::actionResetTimersSMEnemyTutorial(float dt)
 {
     _timer = 0.f;
-    _maxTimer = 1.f;
+    _maxTimer = 0.5f;
     TCompTransform* mypos = get<TCompTransform>();
     mypos->setPosition(initial_pos);
     CEntity* patrol_tutorial = getEntityByName("Tutorial Patrol");
@@ -602,14 +603,6 @@ BTNode::ERes TCompAIPlayer::actionEndSM(float dt)
         my_particles->setSystemState(false);
     }
 
-    return BTNode::ERes::LEAVE;
-}
-
-BTNode::ERes TCompAIPlayer::actionAnimationInhibitor(float dt)
-{
-    TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
-    my_anim->playAnimation(TCompPlayerAnimator::EAnimation::METRALLA_START);
-    _maxTimer = my_anim->getAnimationDuration((TCompAnimator::EAnimation)TCompPlayerAnimator::EAnimation::METRALLA_START) / 2.f;
     return BTNode::ERes::LEAVE;
 }
 
@@ -902,6 +895,20 @@ BTNode::ERes TCompAIPlayer::actionFallSM(float dt)
     }
 
     return BTNode::ERes::STAY;
+}
+
+BTNode::ERes TCompAIPlayer::actionAnimationGrab(float dt)
+{
+    _timer += dt;
+    if (_timer > _maxTimer) {
+        _timer = 0.f;
+        return BTNode::ERes::LEAVE;
+    }
+    else {
+        TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+        my_anim->playAnimation(TCompPlayerAnimator::EAnimation::GRABING_ENEMY);
+        return BTNode::ERes::STAY;
+    }
 }
 
 BTNode::ERes TCompAIPlayer::endCinematic(float dt)

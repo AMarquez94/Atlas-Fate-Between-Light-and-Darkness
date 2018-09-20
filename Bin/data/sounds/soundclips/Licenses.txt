@@ -1,1 +1,24 @@
 drone_shot-> http://soundbible.com/2004-Gun-Shot.html
+patrol_dead-> https://www.youtube.com/audiolibrary/soundeffects (Metal Breaking Appart)
+patrol_shutdown-> https://freesound.org/people/psychedelic_hands/
+entermerge-> https://freesound.org/people/Timbre/sounds/161918/
+exitmerge-> https://freesound.org/people/Timbre/sounds/161918/
+weapons_clash_1-> https://www.youtube.com/watch?v=7YAaVvmhYdo
+weapons_clash_2-> https://www.youtube.com/watch?v=7YAaVvmhYdo
+weapons_on_test-> https://youtu.be/jZFLPA7Lsi4 (modified)
+weapons_off-> https://youtu.be/jZFLPA7Lsi4
+swing_1-> https://www.youtube.com/watch?v=odZUuVfv8Ko
+swing_2-> https://www.youtube.com/watch?v=odZUuVfv8Ko
+sonar_ping-> https://freesound.org/people/unfa/sounds/215415/
+sonar_punch-> https://www.youtube.com/watch?v=yTcqyR3Qozg
+land-> https://freesound.org/people/qubodup/sounds/172960/
+neon_hum-> https://freesound.org/people/Kinoton/sounds/351430/
+patrol_cyberstep-> https://www.youtube.com/watch?v=o1nUoaXfWtY
+patrol_step_impact-> https://www.youtube.com/watch?v=H8HjnWK7Pno
+patrol_step_run_test-> https://www.youtube.com/watch?v=o1nUoaXfWtY
+patrol_step_pre-> https://youtu.be/85zOPbPzkpQ
+patrol_inhibitor-> https://freesound.org/people/JarAxe/sounds/165041/
+patrol_inhibitor_test-> https://freesound.org/people/ST303/sounds/338783/
+capsules-> https://freesound.org/people/EnduringAutomotive/sounds/170248/
+patrol_inhibitor_explosion-> https://freesound.org/people/OnlyTheGhosts/sounds/251431/
+glitches-> https://www.youtube.com/watch?v=O13d7KxKL48 and https://www.youtube.com/watch?v=aV8DEJ8ydJQ (modified)
