@@ -94,6 +94,12 @@
 				"dist": 15,
 				"target": "The Player"
 			},
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_flare_spotlight.particles"
+				]
+			},
 			"abs_aabb": true
 			  ,
 			  "local_aabb": true
