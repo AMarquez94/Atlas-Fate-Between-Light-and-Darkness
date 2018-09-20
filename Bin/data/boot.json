@@ -35,6 +35,8 @@
 			"data/scenes/intro_edificios_segunda_1.scene",
 			"data/scenes/intro_edificios_segunda_2.scene",
 
+			"data/scenes/intro_carteles.scene",
+
 			"data/scenes/intro_pozo.scene",
 			"data/scenes/intro_barra_capsulas.scene",
 			"data/scenes/Intro/intro_suelo.scene",
