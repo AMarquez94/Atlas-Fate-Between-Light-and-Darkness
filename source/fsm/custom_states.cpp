@@ -198,7 +198,7 @@ namespace FSM
         playerController->canRemoveInhibitor = false;
     }
 
-    bool SonarState::load(const json& jData) {
+    bool SonarStateCrouch::load(const json& jData) {
 
         _animationName = jData["animation"];
         _speed = jData.value("speed", 3.f);
@@ -211,17 +211,42 @@ namespace FSM
         return true;
     }
 
-    void SonarState::onStart(CContext& ctx) const {
+    void SonarStateCrouch::onStart(CContext& ctx) const {
 
         CEntity* e = ctx.getOwner();
-        e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::CROUCH_IDLE , 1.0f });
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::SONDA_CROUCH , 1.0f });        
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
         e->sendMsg(TMsgSonarActive{ 1.f });
     }
 
-    void SonarState::onFinish(CContext& ctx) const {
+    void SonarStateCrouch::onFinish(CContext& ctx) const {
 
     }
+
+	bool SonarStateUp::load(const json& jData) {
+
+		_animationName = jData["animation"];
+		_speed = jData.value("speed", 3.f);
+		_size = jData.value("size", 1.f);
+		_radius = jData.value("radius", 0.3f);
+		_rotation_speed = jData.value("rotationSpeed", 10.f);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+		_target = jData.count("camera") ? getTargetCamera(jData["camera"]) : nullptr;
+
+		return true;
+	}
+
+	void SonarStateUp::onStart(CContext& ctx) const {
+
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::SONDA_NORMAL , 1.0f });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+		e->sendMsg(TMsgSonarActive{ 1.f });
+	}
+
+	void SonarStateUp::onFinish(CContext& ctx) const {
+
+	}
 
     bool CrouchWalkState::load(const json& jData) {
 

@@ -45,7 +45,8 @@ bool CModuleFSM::start()
     _factory.registerInstancer("TimeTransition", new FSM::TransitionInstancer<FSM::TimeTransition>());
     _factory.registerInstancer("MultipleVariableTransition", new FSM::TransitionInstancer<FSM::MultipleVariableTransition>());
     _factory.registerInstancer("AnimationTransition", new FSM::TransitionInstancer<FSM::AnimationTransition>());
-    _factory.registerInstancer("SonarState", new FSM::StateInstancer<FSM::SonarState>());
+    _factory.registerInstancer("SonarStateUp", new FSM::StateInstancer<FSM::SonarStateUp>());
+	_factory.registerInstancer("SonarStateCrouch", new FSM::StateInstancer<FSM::SonarStateCrouch>());
     _factory.registerInstancer("PressingButtonState", new FSM::StateInstancer<FSM::PressingButtonState>());
 
 
