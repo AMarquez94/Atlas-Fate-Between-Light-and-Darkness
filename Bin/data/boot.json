@@ -28,7 +28,9 @@
 			"data/scenes/intro_valla.scene",
 			"data/scenes/intro_colliders_valla.scene",
 			"data/scenes/neones.scene",
-			
+
+			"data/scenes/intro_cables.scene",
+
 			"data/scenes/intro_tubo_capsulas.scene",
 			"data/scenes/intro_farolas.scene",
 			"data/scenes/intro_patrol_atrapado.scene",

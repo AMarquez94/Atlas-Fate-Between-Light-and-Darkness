@@ -14,11 +14,11 @@
   {
     "entity":
     {
-      "name": "COL_mesh_verjafuente"
+      "name": "COL_Circle001"
       ,
       "transform":
       {
-        "pos": "-0.0379448 1.48486 0.976923"
+        "pos": "-0.0941859 4.29138 0.922904"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -26,3190 +26,14 @@
       "render":
       [
         {
-          "mesh": "data/meshes/COL_mesh_verjafuente.mesh"
+          "mesh": "data/meshes/COL_Circle001.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_conexiones.material"
+            "data/materials/mtl_cables.material"
           ]
         }
       ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_verjafuente.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_tubospared"
-      ,
-      "transform":
-      {
-        "pos": "0.112819 7.7077 1.03168"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_tubospared.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mat_tubospared.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_tubospared.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_tubolargo011"
-      ,
-      "transform":
-      {
-        "pos": "0.0177277 11.0539 -23.7086"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_tubolargo011.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_conexiones.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_tubolargo04.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_tubolargo010"
-      ,
-      "transform":
-      {
-        "pos": "0.0177277 9.74362 -23.7086"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_tubolargo010.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_conexiones.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_tubolargo05.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_tubolargo009"
-      ,
-      "transform":
-      {
-        "pos": "0.0177277 8.43331 -23.7086"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_tubolargo009.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_conexiones.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_tubolargo06.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_tubolargo007"
-      ,
-      "transform":
-      {
-        "pos": "14.6317 8.44444 13.2414"
-        ,
-        "rotation": "1.50494e-07 -1.50996e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_tubolargo007.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_conexiones.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_tubolargo03.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_tubolargo02"
-      ,
-      "transform":
-      {
-        "pos": "-13.2261 8.31576 -11.5543"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_tubolargo02.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_conexiones.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_tubolargo02.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_tubolargo01"
-      ,
-      "transform":
-      {
-        "pos": "-17.2524 7.44773 8.49525"
-        ,
-        "rotation": "1.43898e-07 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_tubolargo01.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_conexiones.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_tubolargo01.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_terminal03"
-      ,
-      "transform":
-      {
-        "pos": "25.1566 0.984931 6.321"
-        ,
-        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_terminal03.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_terminal.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_terminal03.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_terminal02"
-      ,
-      "transform":
-      {
-        "pos": "-24.8874 0.984931 -5.56652"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_terminal02.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_terminal.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_terminal02.collider"
-		,
-		"group": "button"
-      },
-      "button": {
-        "script": "transition_coliseum_to_zone_a()",
-		"canBePressed": true
-      },
-      "tags": [ "button" ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_terminal01"
-      ,
-      "transform":
-      {
-        "pos": "6.34737 0.98493 -23.8924"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_terminal01.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_terminal.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_terminal01.collider"
-		,
-		"group": "button"
-      },
-      "button": {
-        "script": "transition_coliseum_to_courtyard()",
-		"canBePressed": false
-      }
-	  ,
-      "tags": [ "button" ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_palanca002"
-      ,
-      "transform":
-      {
-        "pos": "24.5552 2.01133 5.9993"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_palanca002.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_terminal.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_palanca001"
-      ,
-      "transform":
-      {
-        "pos": "-24.3129 2.01133 -5.19886"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_palanca001.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_terminal.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_palanca"
-      ,
-      "transform":
-      {
-        "pos": "6.03994 2.01133 -23.2836"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_palanca.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_terminal.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_maquina04"
-      ,
-      "transform":
-      {
-        "pos": "0.0 2.11655 1.05377"
-        ,
-        "rotation": "1.50494e-07 -1.50996e-07 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_maquina04.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_maquina.material"
-            ,
-            "data/materials/mtl_props_plaza.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_maquina04.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_maquina03"
-      ,
-      "transform":
-      {
-        "pos": "0.0 2.11655 1.05377"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_maquina03.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_maquina_tubos.material"
-            ,
-            "data/materials/mtl_tubo_estandarte.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_maquina03.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_maquina02"
-      ,
-      "transform":
-      {
-        "pos": "0.0 2.11655 1.05377"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_maquina02.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_maquina.material"
-            ,
-            "data/materials/mtl_props_plaza.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_maquina02.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_maquina01"
-      ,
-      "transform":
-      {
-        "pos": "0.0 2.11655 1.05377"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_maquina01.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_maquina.material"
-            ,
-            "data/materials/mtl_props_plaza.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_maquina01.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_generador"
-      ,
-      "transform":
-      {
-        "pos": "0.0 2.11655 1.05376"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_generador.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_generador.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_generador.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_fuente"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.950048 1.05376"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_fuente.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_fuente_coliseo.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_fuente.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_framedoor003"
-      ,
-      "transform":
-      {
-        "pos": "0.0152328 1.03403 -23.7271"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_framedoor003.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_framedoor003.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_framedoor002"
-      ,
-      "transform":
-      {
-        "pos": "-0.0712196 1.03403 25.6775"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_framedoor002.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_framedoor002.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_framedoor001"
-      ,
-      "transform":
-      {
-        "pos": "24.6825 1.03403 -0.120246"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_framedoor001.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_framedoor001.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_framedoor"
-      ,
-      "transform":
-      {
-        "pos": "-24.7045 1.03403 0.878615"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_framedoor.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_framedoor.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_enchufebase004"
-      ,
-      "transform":
-      {
-        "pos": "24.0294 3.39369 11.8043"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_enchufebase004.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_conexiones.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_enchufebase004.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_enchufebase003"
-      ,
-      "transform":
-      {
-        "pos": "-24.5031 4.95635 10.4227"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_enchufebase003.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_conexiones.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_enchufebase003.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_enchufebase002"
-      ,
-      "transform":
-      {
-        "pos": "-23.7042 3.38892 -10.6844"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_enchufebase002.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_conexiones.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_enchufebase002.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_enchufebase001"
-      ,
-      "transform":
-      {
-        "pos": "-13.8643 3.15031 -22.226"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_enchufebase001.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_conexiones.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_enchufebase001.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_enchufebase"
-      ,
-      "transform":
-      {
-        "pos": "7.95942 3.40675 26.165"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_enchufebase.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_conexiones.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_enchufebase.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop003"
-      ,
-      "transform":
-      {
-        "pos": "0.0152328 4.23403 -23.7271"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop003.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_doortop003.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop002"
-      ,
-      "transform":
-      {
-        "pos": "-0.0712196 4.23403 26.86"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop002.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_doortop002.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop001"
-      ,
-      "transform":
-      {
-        "pos": "24.6825 4.23403 -0.120246"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop001.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain020"
-      ,
-      "transform":
-      {
-        "pos": "1.11523 2.87213 -24.8948"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain020.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain019"
-      ,
-      "transform":
-      {
-        "pos": "0.415233 2.87213 -24.8948"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain019.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain018"
-      ,
-      "transform":
-      {
-        "pos": "-0.284766 2.87213 -24.8948"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain018.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain017"
-      ,
-      "transform":
-      {
-        "pos": "-0.984767 2.87213 -24.8948"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain017.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain016"
-      ,
-      "transform":
-      {
-        "pos": "-3.38477 2.87213 -24.8948"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain016.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain015"
-      ,
-      "transform":
-      {
-        "pos": "-1.17122 2.87213 26.8452"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain015.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain014"
-      ,
-      "transform":
-      {
-        "pos": "-0.471219 2.87213 26.8452"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain014.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain013"
-      ,
-      "transform":
-      {
-        "pos": "0.22878 2.87213 26.8452"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain013.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain012"
-      ,
-      "transform":
-      {
-        "pos": "0.92878 2.87213 26.8452"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain012.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain011"
-      ,
-      "transform":
-      {
-        "pos": "3.32878 2.87213 26.8452"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain011.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain010"
-      ,
-      "transform":
-      {
-        "pos": "25.8799 2.87213 0.947298"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain010.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain009"
-      ,
-      "transform":
-      {
-        "pos": "25.8607 2.87213 0.24756"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain009.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain008"
-      ,
-      "transform":
-      {
-        "pos": "25.8415 2.87213 -0.452175"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain008.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain007"
-      ,
-      "transform":
-      {
-        "pos": "25.8223 2.87213 -1.15191"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain007.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain006"
-      ,
-      "transform":
-      {
-        "pos": "25.7565 2.87213 -3.55101"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain006.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain05"
-      ,
-      "transform":
-      {
-        "pos": "-25.8369 2.87213 -0.257638"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain05.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain04"
-      ,
-      "transform":
-      {
-        "pos": "-25.859 2.87213 0.442015"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain04.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain03"
-      ,
-      "transform":
-      {
-        "pos": "-25.881 2.87213 1.14167"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain03.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain02"
-      ,
-      "transform":
-      {
-        "pos": "-25.9031 2.87213 1.84132"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain02.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop_chain01"
-      ,
-      "transform":
-      {
-        "pos": "-25.9787 2.87213 4.24013"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop_chain01.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doortop"
-      ,
-      "transform":
-      {
-        "pos": "-25.8703 4.23403 0.878615"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doortop.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_doortop.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle003"
-      ,
-      "transform":
-      {
-        "pos": "-2.28477 2.73827 -24.848"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle003.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle002"
-      ,
-      "transform":
-      {
-        "pos": "2.22878 2.73828 26.7984"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle002.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle001"
-      ,
-      "transform":
-      {
-        "pos": "25.7399 2.73828 -2.45014"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle001.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle_chain016"
-      ,
-      "transform":
-      {
-        "pos": "-1.95813 2.53808 -24.8286"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle_chain016.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle_chain015"
-      ,
-      "transform":
-      {
-        "pos": "-2.61141 2.53808 -24.8286"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle_chain015.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle_chain014"
-      ,
-      "transform":
-      {
-        "pos": "-1.95813 2.9215 -24.8286"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle_chain014.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle_chain013"
-      ,
-      "transform":
-      {
-        "pos": "-2.61141 2.9215 -24.8286"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle_chain013.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle_chain012"
-      ,
-      "transform":
-      {
-        "pos": "1.90214 2.53809 26.779"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle_chain012.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle_chain011"
-      ,
-      "transform":
-      {
-        "pos": "2.55542 2.53809 26.779"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle_chain011.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle_chain010"
-      ,
-      "transform":
-      {
-        "pos": "1.90214 2.9215 26.779"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle_chain010.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle_chain009"
-      ,
-      "transform":
-      {
-        "pos": "2.55542 2.9215 26.779"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle_chain009.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle_chain008"
-      ,
-      "transform":
-      {
-        "pos": "25.7295 2.53808 -2.12309"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle_chain008.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle_chain007"
-      ,
-      "transform":
-      {
-        "pos": "25.7115 2.53808 -2.77613"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle_chain007.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle_chain006"
-      ,
-      "transform":
-      {
-        "pos": "25.7295 2.9215 -2.12309"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle_chain006.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle_chain005"
-      ,
-      "transform":
-      {
-        "pos": "25.7115 2.9215 -2.77613"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle_chain005.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle_chain04"
-      ,
-      "transform":
-      {
-        "pos": "-25.8676 2.53808 2.81628"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle_chain04.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle_chain03"
-      ,
-      "transform":
-      {
-        "pos": "-25.8882 2.53808 3.46924"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle_chain03.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle_chain02"
-      ,
-      "transform":
-      {
-        "pos": "-25.8676 2.9215 2.81628"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle_chain02.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle_chain01"
-      ,
-      "transform":
-      {
-        "pos": "-25.8882 2.9215 3.46924"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle_chain01.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorhandle"
-      ,
-      "transform":
-      {
-        "pos": "-25.8973 2.73828 3.14215"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorhandle.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom003"
-      ,
-      "transform":
-      {
-        "pos": "0.0152328 1.03403 -24.8149"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom003.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_doorbottom003.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom002"
-      ,
-      "transform":
-      {
-        "pos": "-0.0712196 1.03403 26.7653"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom002.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_doorbottom002.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom001"
-      ,
-      "transform":
-      {
-        "pos": "24.6825 1.03403 -0.120246"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom001.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain020"
-      ,
-      "transform":
-      {
-        "pos": "1.11523 2.23403 -24.8948"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain020.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain019"
-      ,
-      "transform":
-      {
-        "pos": "0.415233 2.23403 -24.8948"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain019.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain018"
-      ,
-      "transform":
-      {
-        "pos": "-0.284766 2.23403 -24.8948"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain018.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain017"
-      ,
-      "transform":
-      {
-        "pos": "-0.984767 2.23403 -24.8948"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain017.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain016"
-      ,
-      "transform":
-      {
-        "pos": "-3.38477 2.23403 -24.8948"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain016.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain015"
-      ,
-      "transform":
-      {
-        "pos": "-1.17122 2.23403 26.8452"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain015.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain014"
-      ,
-      "transform":
-      {
-        "pos": "-0.471219 2.23403 26.8452"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain014.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain013"
-      ,
-      "transform":
-      {
-        "pos": "0.22878 2.23403 26.8452"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain013.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain012"
-      ,
-      "transform":
-      {
-        "pos": "0.92878 2.23403 26.8452"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain012.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain011"
-      ,
-      "transform":
-      {
-        "pos": "3.32878 2.23403 26.8452"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain011.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain010"
-      ,
-      "transform":
-      {
-        "pos": "25.8799 2.23403 0.947298"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain010.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain009"
-      ,
-      "transform":
-      {
-        "pos": "25.8607 2.23403 0.24756"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain009.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain008"
-      ,
-      "transform":
-      {
-        "pos": "25.8415 2.23403 -0.452175"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain008.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain007"
-      ,
-      "transform":
-      {
-        "pos": "25.8223 2.23403 -1.15191"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain007.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain006"
-      ,
-      "transform":
-      {
-        "pos": "25.7565 2.23403 -3.55101"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain006.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain05"
-      ,
-      "transform":
-      {
-        "pos": "-25.8369 2.23403 -0.257638"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain05.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain04"
-      ,
-      "transform":
-      {
-        "pos": "-25.859 2.23403 0.442015"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain04.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain03"
-      ,
-      "transform":
-      {
-        "pos": "-25.881 2.23403 1.14167"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain03.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain02"
-      ,
-      "transform":
-      {
-        "pos": "-25.9031 2.23403 1.84132"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain02.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom_chain01"
-      ,
-      "transform":
-      {
-        "pos": "-25.9787 2.23403 4.24013"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom_chain01.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_doorbottom"
-      ,
-      "transform":
-      {
-        "pos": "-25.7756 1.03403 0.878615"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_doorbottom.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_doorbottom.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "COL_mesh_andamio"
-      ,
-      "transform":
-      {
-        "pos": "15.8578 0.989014 6.87363"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_andamio.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_andamio.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_andamio.collider"
-        ,
-        "group": "fence"
-        ,
-        "mask": "player"
-        ,
-        "is_trigger": false
-        ,
-        "is_dynamic": false
-        ,
-        "is_controller": false
-        ,
-        "is_gravity": false
-      }
       ,
       "abs_aabb": true
       ,
@@ -3300,7 +124,7 @@
       {
         "pos": "0.0 9.49762 0.0"
         ,
-        "rotation": "1.43898e-07 0.0 0.0 -1.0"
+        "rotation": "2.98756e-07 0.0 0.0 -1.0"
       }
       ,
       "render":
@@ -3321,6 +145,66 @@
         ,
         "name": "data/colliders/COL_collider_arcoroto.collider"
       }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_arcoroto_cover"
+      ,
+      "transform":
+      {
+        "pos": "-0.154758 12.1994 -0.52"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_arcoroto_cover.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_bordillos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_bordillo"
+      ,
+      "transform":
+      {
+        "pos": "0.0 1.08962 1.05377"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_bordillo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_bordillos.material"
+          ]
+        }
+      ]
       ,
       "abs_aabb": true
       ,
@@ -3405,43 +289,6 @@
   {
     "entity":
     {
-      "name": "COL_mesh_grancupula"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.901 -27.0"
-        ,
-        "rotation": "2.09766e-07 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/COL_mesh_grancupula.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_grancupula.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_grancupula.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "COL_mesh_grancartel03"
       ,
       "transform":
@@ -3479,11 +326,48 @@
   {
     "entity":
     {
+      "name": "COL_mesh_grancupula"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.901 -27.0"
+        ,
+        "rotation": "2.09766e-07 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_grancupula.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_grancupula.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_grancupula.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "COL_mesh_suelopared"
       ,
       "transform":
       {
-        "pos": "0.0 0.0 0.0"
+        "pos": "0.0 -0.00610352 0.0"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -3507,6 +391,3795 @@
         "shape": "mesh"
         ,
         "name": "data/colliders/COL_collider_suelopared.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_andamio"
+      ,
+      "transform":
+      {
+        "pos": "15.8578 0.989014 6.87363"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_andamio.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_andamio.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_andamio.collider"
+        ,
+        "group": "fence"
+        ,
+        "mask": "player"
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_baselargalectrica"
+      ,
+      "transform":
+      {
+        "pos": "18.3498 8.34103 -9.72552"
+        ,
+        "rotation": "0.0 -0.258819 0.0 -0.965926"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_baselargalectrica.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlightbrian.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_baselargalectrica.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_baselargalectrica001"
+      ,
+      "transform":
+      {
+        "pos": "13.1066 8.47952 -15.8008"
+        ,
+        "rotation": "0.0 -0.422618 0.0 -0.906308"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_baselargalectrica001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlightbrian.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_baselargalectrica002"
+      ,
+      "transform":
+      {
+        "pos": "17.4923 16.3229 -11.0803"
+        ,
+        "rotation": "0.0 -0.258819 0.0 -0.965926"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_baselargalectrica002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlightbrian.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_baselargalectrica003"
+      ,
+      "transform":
+      {
+        "pos": "14.3659 16.4614 -14.7238"
+        ,
+        "rotation": "0.0 -0.422618 0.0 -0.906308"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_baselargalectrica003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlightbrian.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_baselargalectrica004"
+      ,
+      "transform":
+      {
+        "pos": "19.2027 16.3229 9.19681"
+        ,
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_baselargalectrica004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlightbrian.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_baselargalectrica005"
+      ,
+      "transform":
+      {
+        "pos": "13.7726 16.3229 16.3798"
+        ,
+        "rotation": "0.0 0.422618 0.0 -0.906308"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_baselargalectrica005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlightbrian.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_baselargalectrica006"
+      ,
+      "transform":
+      {
+        "pos": "-18.4484 16.3229 9.30071"
+        ,
+        "rotation": "0.0 -0.984808 0.0 0.173648"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_baselargalectrica006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlightbrian.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom"
+      ,
+      "transform":
+      {
+        "pos": "-25.7756 1.03403 0.878615"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_doorbottom.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain01"
+      ,
+      "transform":
+      {
+        "pos": "-25.9787 2.23403 4.24013"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain01.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain02"
+      ,
+      "transform":
+      {
+        "pos": "-25.9031 2.23403 1.84132"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain02.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain03"
+      ,
+      "transform":
+      {
+        "pos": "-25.881 2.23403 1.14167"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain03.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain04"
+      ,
+      "transform":
+      {
+        "pos": "-25.859 2.23403 0.442015"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain04.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain05"
+      ,
+      "transform":
+      {
+        "pos": "-25.8369 2.23403 -0.257638"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain05.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain006"
+      ,
+      "transform":
+      {
+        "pos": "25.7565 2.23403 -3.55101"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain007"
+      ,
+      "transform":
+      {
+        "pos": "25.8223 2.23403 -1.15191"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain008"
+      ,
+      "transform":
+      {
+        "pos": "25.8415 2.23403 -0.452175"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain008.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain009"
+      ,
+      "transform":
+      {
+        "pos": "25.8607 2.23403 0.24756"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain010"
+      ,
+      "transform":
+      {
+        "pos": "25.8799 2.23403 0.947298"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain011"
+      ,
+      "transform":
+      {
+        "pos": "3.32878 2.23403 26.8452"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain012"
+      ,
+      "transform":
+      {
+        "pos": "0.92878 2.23403 26.8452"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain012.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain013"
+      ,
+      "transform":
+      {
+        "pos": "0.22878 2.23403 26.8452"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain013.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain014"
+      ,
+      "transform":
+      {
+        "pos": "-0.471219 2.23403 26.8452"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain014.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain015"
+      ,
+      "transform":
+      {
+        "pos": "-1.17122 2.23403 26.8452"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain015.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain016"
+      ,
+      "transform":
+      {
+        "pos": "-3.38477 2.23403 -24.8948"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain016.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain017"
+      ,
+      "transform":
+      {
+        "pos": "-0.984767 2.23403 -24.8948"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain017.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain018"
+      ,
+      "transform":
+      {
+        "pos": "-0.284766 2.23403 -24.8948"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain018.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain019"
+      ,
+      "transform":
+      {
+        "pos": "0.415233 2.23403 -24.8948"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain019.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom_chain020"
+      ,
+      "transform":
+      {
+        "pos": "1.11523 2.23403 -24.8948"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom_chain020.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom001"
+      ,
+      "transform":
+      {
+        "pos": "24.6825 1.03403 -0.120246"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom002"
+      ,
+      "transform":
+      {
+        "pos": "-0.0712196 1.03403 26.7653"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_doorbottom002.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorbottom003"
+      ,
+      "transform":
+      {
+        "pos": "0.0152328 1.03403 -24.8149"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorbottom003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_doorbottom003.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle"
+      ,
+      "transform":
+      {
+        "pos": "-25.8973 2.73828 3.14215"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle_chain01"
+      ,
+      "transform":
+      {
+        "pos": "-25.8882 2.9215 3.46924"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle_chain01.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle_chain02"
+      ,
+      "transform":
+      {
+        "pos": "-25.8676 2.9215 2.81628"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle_chain02.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle_chain03"
+      ,
+      "transform":
+      {
+        "pos": "-25.8882 2.53808 3.46924"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle_chain03.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle_chain04"
+      ,
+      "transform":
+      {
+        "pos": "-25.8676 2.53808 2.81628"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle_chain04.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle_chain005"
+      ,
+      "transform":
+      {
+        "pos": "25.7115 2.9215 -2.77613"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle_chain005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle_chain006"
+      ,
+      "transform":
+      {
+        "pos": "25.7295 2.9215 -2.12309"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle_chain006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle_chain007"
+      ,
+      "transform":
+      {
+        "pos": "25.7115 2.53808 -2.77613"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle_chain007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle_chain008"
+      ,
+      "transform":
+      {
+        "pos": "25.7295 2.53808 -2.12309"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle_chain008.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle_chain009"
+      ,
+      "transform":
+      {
+        "pos": "2.55542 2.9215 26.779"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle_chain009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle_chain010"
+      ,
+      "transform":
+      {
+        "pos": "1.90214 2.9215 26.779"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle_chain010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle_chain011"
+      ,
+      "transform":
+      {
+        "pos": "2.55542 2.53809 26.779"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle_chain011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle_chain012"
+      ,
+      "transform":
+      {
+        "pos": "1.90214 2.53809 26.779"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle_chain012.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle_chain013"
+      ,
+      "transform":
+      {
+        "pos": "-2.61141 2.9215 -24.8286"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle_chain013.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle_chain014"
+      ,
+      "transform":
+      {
+        "pos": "-1.95813 2.9215 -24.8286"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle_chain014.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle_chain015"
+      ,
+      "transform":
+      {
+        "pos": "-2.61141 2.53808 -24.8286"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle_chain015.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle_chain016"
+      ,
+      "transform":
+      {
+        "pos": "-1.95813 2.53808 -24.8286"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle_chain016.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle001"
+      ,
+      "transform":
+      {
+        "pos": "25.7399 2.73828 -2.45014"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle002"
+      ,
+      "transform":
+      {
+        "pos": "2.22878 2.73828 26.7984"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doorhandle003"
+      ,
+      "transform":
+      {
+        "pos": "-2.28477 2.73827 -24.848"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doorhandle003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop"
+      ,
+      "transform":
+      {
+        "pos": "-25.8703 4.23403 0.878615"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_doortop.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain01"
+      ,
+      "transform":
+      {
+        "pos": "-25.9787 2.87213 4.24013"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain01.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain02"
+      ,
+      "transform":
+      {
+        "pos": "-25.9031 2.87213 1.84132"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain02.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain03"
+      ,
+      "transform":
+      {
+        "pos": "-25.881 2.87213 1.14167"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain03.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain04"
+      ,
+      "transform":
+      {
+        "pos": "-25.859 2.87213 0.442015"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain04.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain05"
+      ,
+      "transform":
+      {
+        "pos": "-25.8369 2.87213 -0.257638"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain05.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain006"
+      ,
+      "transform":
+      {
+        "pos": "25.7565 2.87213 -3.55101"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain007"
+      ,
+      "transform":
+      {
+        "pos": "25.8223 2.87213 -1.15191"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain008"
+      ,
+      "transform":
+      {
+        "pos": "25.8415 2.87213 -0.452175"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain008.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain009"
+      ,
+      "transform":
+      {
+        "pos": "25.8607 2.87213 0.24756"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain010"
+      ,
+      "transform":
+      {
+        "pos": "25.8799 2.87213 0.947298"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain011"
+      ,
+      "transform":
+      {
+        "pos": "3.32878 2.87213 26.8452"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain012"
+      ,
+      "transform":
+      {
+        "pos": "0.92878 2.87213 26.8452"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain012.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain013"
+      ,
+      "transform":
+      {
+        "pos": "0.22878 2.87213 26.8452"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain013.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain014"
+      ,
+      "transform":
+      {
+        "pos": "-0.471219 2.87213 26.8452"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain014.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain015"
+      ,
+      "transform":
+      {
+        "pos": "-1.17122 2.87213 26.8452"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain015.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain016"
+      ,
+      "transform":
+      {
+        "pos": "-3.38477 2.87213 -24.8948"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain016.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain017"
+      ,
+      "transform":
+      {
+        "pos": "-0.984767 2.87213 -24.8948"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain017.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain018"
+      ,
+      "transform":
+      {
+        "pos": "-0.284766 2.87213 -24.8948"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain018.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain019"
+      ,
+      "transform":
+      {
+        "pos": "0.415233 2.87213 -24.8948"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain019.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop_chain020"
+      ,
+      "transform":
+      {
+        "pos": "1.11523 2.87213 -24.8948"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop_chain020.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop001"
+      ,
+      "transform":
+      {
+        "pos": "24.6825 4.23403 -0.120246"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop002"
+      ,
+      "transform":
+      {
+        "pos": "-0.0712196 4.23403 26.86"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_doortop002.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_doortop003"
+      ,
+      "transform":
+      {
+        "pos": "0.0152328 4.23403 -23.7271"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_doortop003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_doortop003.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_enchufebase"
+      ,
+      "transform":
+      {
+        "pos": "7.95942 3.40675 26.165"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_enchufebase.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_conexiones.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_enchufebase.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_enchufebase001"
+      ,
+      "transform":
+      {
+        "pos": "-13.8643 3.15031 -22.226"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_enchufebase001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_conexiones.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_enchufebase001.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_enchufebase002"
+      ,
+      "transform":
+      {
+        "pos": "-23.7042 3.38892 -10.6844"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_enchufebase002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_conexiones.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_enchufebase002.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_enchufebase003"
+      ,
+      "transform":
+      {
+        "pos": "-24.5031 4.95635 10.4227"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_enchufebase003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_conexiones.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_enchufebase003.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_enchufebase004"
+      ,
+      "transform":
+      {
+        "pos": "24.0294 3.39369 11.8043"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_enchufebase004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_conexiones.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_enchufebase004.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_framedoor"
+      ,
+      "transform":
+      {
+        "pos": "-24.7045 1.03403 0.878615"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_framedoor.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_framedoor.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_framedoor001"
+      ,
+      "transform":
+      {
+        "pos": "24.6825 1.03403 -0.120246"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_framedoor001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_framedoor001.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_framedoor002"
+      ,
+      "transform":
+      {
+        "pos": "-0.0712196 1.03403 25.6775"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_framedoor002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_framedoor002.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_framedoor003"
+      ,
+      "transform":
+      {
+        "pos": "0.0152328 1.03403 -23.7271"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_framedoor003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_framedoor003.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_fuente"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.528829 1.05376"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_fuente.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_fuentecoliseo.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_fuente.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_generador"
+      ,
+      "transform":
+      {
+        "pos": "0.0 1.69533 1.05376"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_generador.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_generador.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_generador.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_littlespotlight"
+      ,
+      "transform":
+      {
+        "pos": "4.22541 2.10399 12.9277"
+        ,
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_littlespotlight.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlightbrian.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_mesh_littlespotlight.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_littlespotlight"
+      ,
+      "transform":
+      {
+        "pos": "1.3 0.0 -0.0469004"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_littlespotlight.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlights.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_mesh_littlespotlight001.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_littlespotlight001"
+      ,
+      "transform":
+      {
+        "pos": "5.98801 2.10399 12.1285"
+        ,
+        "rotation": "0.0 -0.258819 0.0 -0.965926"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_littlespotlight001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlightbrian.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_maquina01"
+      ,
+      "transform":
+      {
+        "pos": "0.0 2.11655 1.05377"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_maquina01.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_maquina.material"
+            ,
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_maquina01.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_maquina02"
+      ,
+      "transform":
+      {
+        "pos": "0.0 2.11655 1.05377"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_maquina02.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_maquina.material"
+            ,
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_maquina02.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_maquina03"
+      ,
+      "transform":
+      {
+        "pos": "0.0 2.11655 1.05377"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_maquina03.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_maquina.material"
+            ,
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_maquina03.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_maquina04"
+      ,
+      "transform":
+      {
+        "pos": "0.0 2.11655 1.05377"
+        ,
+        "rotation": "1.50494e-07 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_maquina04.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_maquina.material"
+            ,
+            "data/materials/mtl_props_plaza.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_maquina04.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_mastilelectrico001"
+      ,
+      "transform":
+      {
+        "pos": "5.54204 16.6103 20.5741"
+        ,
+        "rotation": "0.704416 -0.0616284 -0.0616284 -0.704416"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_mastilelectrico001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlightbrian.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_mastilelectrico002"
+      ,
+      "transform":
+      {
+        "pos": "2.72484 16.6103 21.1053"
+        ,
+        "rotation": "0.704416 -0.0616284 -0.0616284 -0.704416"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_mastilelectrico002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlightbrian.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_mastilelectrico003"
+      ,
+      "transform":
+      {
+        "pos": "-2.00508 16.6103 21.1091"
+        ,
+        "rotation": "0.704416 0.0616284 0.0616284 -0.704416"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_mastilelectrico003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlightbrian.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_mastilelectrico004"
+      ,
+      "transform":
+      {
+        "pos": "-6.11371 16.6103 20.1987"
+        ,
+        "rotation": "0.704416 0.0616284 0.0616284 -0.704416"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_mastilelectrico004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlightbrian.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_mastilelectrico005"
+      ,
+      "transform":
+      {
+        "pos": "-17.5284 8.6113 10.9192"
+        ,
+        "rotation": "0.612372 0.353553 0.353553 -0.612372"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_mastilelectrico005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlightbrian.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_mastilelectrico006"
+      ,
+      "transform":
+      {
+        "pos": "-14.86 8.6113 14.5513"
+        ,
+        "rotation": "0.640856 0.298836 0.298836 -0.640856"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_mastilelectrico006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlightbrian.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_mastilelectrico007"
+      ,
+      "transform":
+      {
+        "pos": "-11.596 8.6113 17.4382"
+        ,
+        "rotation": "0.664463 0.241845 0.241845 -0.664463"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_mastilelectrico007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlightbrian.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_palanca"
+      ,
+      "transform":
+      {
+        "pos": "6.03994 2.01133 -23.2836"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_palanca.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_terminal.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_palanca001"
+      ,
+      "transform":
+      {
+        "pos": "-24.3129 2.01133 -5.19886"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_palanca001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_terminal.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_palanca002"
+      ,
+      "transform":
+      {
+        "pos": "24.5552 2.01133 5.9993"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_palanca002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_terminal.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_spotlight"
+      ,
+      "transform":
+      {
+        "pos": "14.2094 0.993896 8.09738"
+        ,
+        "rotation": "0.0 1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_spotlight.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlightbrian.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_spotlight.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_spotlight001"
+      ,
+      "transform":
+      {
+        "pos": "15.7557 0.993896 9.17336"
+        ,
+        "rotation": "0.0 -0.996195 0.0 -0.0871557"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_spotlight001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlightbrian.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_terminal01"
+      ,
+      "transform":
+      {
+        "pos": "6.34737 0.98493 -23.8924"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_terminal01.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_terminal.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_terminal01.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_terminal02"
+      ,
+      "transform":
+      {
+        "pos": "-24.8874 0.984931 -5.56652"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_terminal02.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_terminal.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_terminal02.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_terminal03"
+      ,
+      "transform":
+      {
+        "pos": "25.1566 0.984931 6.321"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_terminal03.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_terminal.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_terminal03.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_tubolargo01"
+      ,
+      "transform":
+      {
+        "pos": "-17.2524 7.44773 8.49525"
+        ,
+        "rotation": "1.43898e-07 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_tubolargo01.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_conexiones.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_tubolargo01.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_tubolargo02"
+      ,
+      "transform":
+      {
+        "pos": "-13.2261 8.31576 -11.5543"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_tubolargo02.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_conexiones.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_tubolargo02.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_tubolargo007"
+      ,
+      "transform":
+      {
+        "pos": "14.6317 8.44444 13.2414"
+        ,
+        "rotation": "1.50494e-07 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_tubolargo007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_conexiones.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_tubolargo03.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_tubolargo009"
+      ,
+      "transform":
+      {
+        "pos": "0.0177277 7.4929 -24.127"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_tubolargo009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_conexiones.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_tubolargo06.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_tubolargo010"
+      ,
+      "transform":
+      {
+        "pos": "0.0177277 8.80321 -24.127"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_tubolargo010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_conexiones.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_tubolargo05.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_tubolargo011"
+      ,
+      "transform":
+      {
+        "pos": "0.0177277 10.1135 -24.127"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_tubolargo011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_conexiones.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_tubolargo04.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_tubospared"
+      ,
+      "transform":
+      {
+        "pos": "0.112819 7.7077 1.03168"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_tubospared.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mat_tubospared.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_tubospared.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_verjafuente"
+      ,
+      "transform":
+      {
+        "pos": "-0.0379448 1.48486 0.976923"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_verjafuente.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_conexiones.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_verjafuente.collider"
       }
       ,
       "abs_aabb": true
