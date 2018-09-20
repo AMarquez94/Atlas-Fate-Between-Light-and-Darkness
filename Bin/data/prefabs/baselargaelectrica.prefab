@@ -1,0 +1,48 @@
+[
+  {
+    "entity":
+    {
+      "name": "baselargaelectrica"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_baselargalectrica.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlights.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_baselargalectrica.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

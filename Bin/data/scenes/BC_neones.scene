@@ -1,0 +1,691 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_neones"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  
+  {
+    "entity":
+    {
+      "name": "Spot011"
+      ,
+      "transform":
+      {
+        "pos": "44.3059 46.5471 -397.922"
+        ,
+        "lookat": "43.8196 61.1665 -398.25"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 14.6312
+        ,
+        "angle": 31.6
+        ,
+        "inner_cut": 25.8
+        ,
+        "z_far": 14.6312
+        ,
+        "volume": false
+        ,
+        "color": "1.0 0.647059 0.0235294 1.0"
+        ,
+        "intensity": 3.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot011.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot010"
+      ,
+      "transform":
+      {
+        "pos": "19.694 22.5649 -392.942"
+        ,
+        "lookat": "5.60394 26.0074 -405.261"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 19.0295
+        ,
+        "angle": 45.2
+        ,
+        "inner_cut": 33.9
+        ,
+        "z_far": 19.0295
+        ,
+        "volume": false
+        ,
+        "color": "1.0 0.647059 0.0235294 1.0"
+        ,
+        "intensity": 3.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot010.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot009"
+      ,
+      "transform":
+      {
+        "pos": "-33.5106 46.5471 -397.922"
+        ,
+        "lookat": "-33.9969 61.1665 -398.25"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 14.6312
+        ,
+        "angle": 31.6
+        ,
+        "inner_cut": 25.8
+        ,
+        "z_far": 14.6312
+        ,
+        "volume": false
+        ,
+        "color": "1.0 0.647059 0.0235294 1.0"
+        ,
+        "intensity": 3.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot009.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot007"
+      ,
+      "transform":
+      {
+        "pos": "34.6358 1.84583 -366.416"
+        ,
+        "lookat": "15.8199 -0.160222 -374.037"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 20.3997
+        ,
+        "angle": 26.4
+        ,
+        "inner_cut": 19.6
+        ,
+        "z_far": 20.3997
+        ,
+        "volume": false
+        ,
+        "color": "0.0 0.521569 0.0235294 1.0"
+        ,
+        "intensity": 0.4
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot007.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot006"
+      ,
+      "transform":
+      {
+        "pos": "14.63 0.876301 -391.028"
+        ,
+        "lookat": "-3.42441 1.2442 -390.598"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 18.0633
+        ,
+        "angle": 19.2
+        ,
+        "inner_cut": 4.5
+        ,
+        "z_far": 18.0633
+        ,
+        "volume": false
+        ,
+        "color": "0.0 0.0745098 0.768628 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot006.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot005"
+      ,
+      "transform":
+      {
+        "pos": "-11.8409 22.5649 -389.671"
+        ,
+        "lookat": "2.99835 26.0074 -405.261"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 21.7966
+        ,
+        "angle": 36.5
+        ,
+        "inner_cut": 28.3
+        ,
+        "z_far": 21.7966
+        ,
+        "volume": false
+        ,
+        "color": "1.0 0.647059 0.0235294 1.0"
+        ,
+        "intensity": 3.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot005.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot003"
+      ,
+      "transform":
+      {
+        "pos": "27.8063 0.608566 -324.558"
+        ,
+        "lookat": "5.168 0.88885 -326.283"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 22.7057
+        ,
+        "angle": 39.5
+        ,
+        "inner_cut": 27.7
+        ,
+        "z_far": 22.7057
+        ,
+        "volume": false
+        ,
+        "color": "1.0 0.647059 0.0235294 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot003.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot002"
+      ,
+      "transform":
+      {
+        "pos": "-13.7224 0.612617 -324.558"
+        ,
+        "lookat": "5.168 0.88885 -326.353"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 18.9775
+        ,
+        "angle": 39.5
+        ,
+        "inner_cut": 24.1
+        ,
+        "z_far": 18.9775
+        ,
+        "volume": false
+        ,
+        "color": "1.0 0.647059 0.0235294 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot002.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot001"
+      ,
+      "transform":
+      {
+        "pos": "-24.8569 1.11017 -378.843"
+        ,
+        "lookat": "-24.1459 0.888849 -357.933"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 20.924
+        ,
+        "angle": 26.4
+        ,
+        "inner_cut": 4.5
+        ,
+        "z_far": 20.924
+        ,
+        "volume": false
+        ,
+        "color": "0.0 0.521569 0.0235294 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot001.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_verde_005"
+      ,
+      "prefab": "data/prefabs/neon_verde_4.prefab"
+      ,
+      "transform":
+      {
+        "pos": "34.6814 2.16712 -366.376"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_redondo_azul001"
+      ,
+      "prefab": "data/prefabs/neon_redondo_azul.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-12.2359 19.466 -391.445"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_rectangulo_verde001"
+      ,
+      "prefab": "data/prefabs/neon_rectangulo_verde.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-25.3022 2.48755 -376.778"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_azul_007"
+      ,
+      "prefab": "data/prefabs/neon_azul_2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "27.7414 13.8306 -378.259"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_azul_006"
+      ,
+      "prefab": "data/prefabs/neon_azul_4.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.6066 13.1366 -343.97"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_azul_005"
+      ,
+      "prefab": "data/prefabs/neon_azul_4.prefab"
+      ,
+      "transform":
+      {
+        "pos": "13.4712 2.36722 -391.301"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_amarillo_006"
+      ,
+      "prefab": "data/prefabs/neon_amarillo_5.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-13.4439 4.1039 -324.183"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_amarilllo_004"
+      ,
+      "prefab": "data/prefabs/neon_amarillo_3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "27.5036 3.46782 -324.292"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+]

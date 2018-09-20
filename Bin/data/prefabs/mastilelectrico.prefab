@@ -1,0 +1,48 @@
+[
+  {
+    "entity":
+    {
+      "name": "mastilelectrico"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_mastilelectrico"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_mastilelectrico.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_spotlights.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.0804859 0.470481 0.0765466"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]
