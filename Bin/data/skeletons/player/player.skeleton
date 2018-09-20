@@ -80,7 +80,7 @@
 		{ "name" : "touch_enemy",
 			"callbacks":[
 			  {
-				"time_to_call" : 0.1,
+				"time_to_call" : 0.35,
 				"function_to_call" : "animation_grab_enemy"
 			  }
 			  ]
