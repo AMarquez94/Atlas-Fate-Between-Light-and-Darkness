@@ -11,8 +11,7 @@
 DECL_OBJ_MANAGER("rotator", TCompRotator);
 
 void TCompRotator::debugInMenu() {
-
-
+    ImGui::DragFloat("Speed", &_speed, 0.1f, 0.f, 10.f);
 }
 
 void TCompRotator::load(const json& j, TEntityParseContext& ctx) {

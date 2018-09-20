@@ -7,37 +7,8 @@
       "transform":
       {
         "pos": "0.0 0.0 0.0"
-      },
-      "animated_object_controller":{
-        "reference_names":[
-          {
-          "name" : "BC_alminar_atlas_low001"
-          }
-        ],
-        "animations":[
-          {
-            "name":"rotate",
-            "src" : "data/rigid_anims/holograma_alminar.anims",
-            "loops" : true,
-            "on_start" : true
-
-          }
-        ]
       }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "BC_alminar_atlas_low001"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      },
-      "rigid_anim":true
-      ,
+	  ,
       "render":
       [
         {
@@ -49,6 +20,10 @@
           ]
         }
       ]
+	  ,
+	  "rotator":{
+		"speed": 0.7
+	  }
       ,
       "abs_aabb": true
       ,
