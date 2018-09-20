@@ -225,10 +225,11 @@ float4 PS_GBuffer_Shafts(
 	// Fresnel component
 	float3 dir_to_eye = normalize(camera_pos.xyz - iWorldPos.xyz);
 	float3 N = normalize(iNormal.xyz);
-	float fresnel = dot(N, -dir_to_eye);
+	float fresnel = dot(-N, -dir_to_eye);
 
 	float4 color = float4(0.8, 0.8, 0.8, 1);	
 	color.a = txAlbedo.Sample(samLinear, iTex0).r;
+	
 	color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.02 * global_world_time * float2(.5, 0)).r;
 	//color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 - 0.04 * global_world_time * float2(.5, 0));
 	
@@ -239,8 +240,8 @@ float4 PS_GBuffer_Shafts(
 	
 	float delta_c = length(camera_pos - iWorldPos);
 	float delta_z = abs(linear_depth - fragment_depth);
-	color.a *= saturate(delta_z * camera_zfar);
-	color.a *= 1 - saturate(1/(delta_c * delta_c)) * 0.88;
+	//color.a *= saturate(delta_z * camera_zfar);
+	//color.a *= 1 - saturate(1/(delta_c * delta_c)) * 0.88;
 		
 	color.a *= pow(abs(fresnel), 8) * 0.8;
 	return color;

@@ -3,16 +3,16 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/tx_fuente_coliseo_alb.dds"
+    "albedo": "data/textures/tx_fuentecoliseo_alb.dds"
     ,
-    "metallic": "data/textures/tx_fuente_coliseo_met.dds"
+    "metallic": "data/textures/tx_fuentecoliseo_met.dds"
     ,
-    "roughness": "data/textures/tx_fuente_coliseo_rgh.dds"
+    "roughness": "data/textures/tx_fuentecoliseo_rgh.dds"
     ,
-    "normal": "data/textures/tx_fuente_coliseo_nml.dds"
+    "normal": "data/textures/tx_fuentecoliseo_nml.dds"
     ,
-    "height": "data/textures/tx_fuente_coliseo_hgt.dds"
+    "height": "data/textures/tx_fuentecoliseo_hgt.dds"
     ,
-    "aocclusion": "data/textures/tx_fuente_coliseo_ao.dds"
+    "aocclusion": "data/textures/tx_fuentecoliseo_ao.dds"
   }
 }

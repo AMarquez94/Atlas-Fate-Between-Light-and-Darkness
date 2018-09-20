@@ -18,9 +18,9 @@
       ,
       "transform":
       {
-        "pos": "21.6944 64.5334 65.0"
+        "pos": "21.6944 59.0157 61.4632"
         ,
-        "lookat": "-21.195 -8.07282 -59.0414"
+        "lookat": "-21.195 -13.5905 -62.5783"
       }
       ,
       "light_dir":
@@ -68,9 +68,9 @@
       ,
       "transform":
       {
-        "pos": "-8.85956 12.3892 -15.5359"
+        "pos": "-8.15363 12.506 -16.1738"
         ,
-        "lookat": "-1.30235 24.6777 -27.0482"
+        "lookat": "-2.90768 23.329 -23.6256"
       }
       ,
       "light_spot":
@@ -79,17 +79,17 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 18.4567
+        "range": 14.1488
         ,
         "angle": 78.5
         ,
         "inner_cut": 0.5
         ,
-        "z_far": 18.4567
+        "z_far": 14.1488
         ,
         "volume": false
         ,
-        "color": "0.545098 0.458824 0.231373 1.0"
+        "color": "0.0 0.513726 0.996079 1.0"
         ,
         "intensity": 4.1536
         ,
@@ -129,9 +129,9 @@
       ,
       "transform":
       {
-        "pos": "-0.109176 11.4385 -13.5729"
+        "pos": "-0.109176 12.4133 -13.5729"
         ,
-        "lookat": "-0.92708 21.7303 -28.4121"
+        "lookat": "-0.354885 19.6985 -20.5753"
       }
       ,
       "light_spot":
@@ -140,17 +140,17 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 18.0774
+        "range": 10.1078
         ,
         "angle": 78.5
         ,
         "inner_cut": 0.5
         ,
-        "z_far": 18.0774
+        "z_far": 10.1078
         ,
         "volume": false
         ,
-        "color": "0.639216 0.52549 0.211765 1.0"
+        "color": "0.0 0.458824 0.972549 1.0"
         ,
         "intensity": 4.1536
         ,
@@ -190,9 +190,9 @@
       ,
       "transform":
       {
-        "pos": "8.05783 11.4045 -16.0997"
+        "pos": "8.09396 12.4836 -15.5829"
         ,
-        "lookat": "0.963904 27.8574 -23.6054"
+        "lookat": "1.25838 21.1527 -23.9991"
       }
       ,
       "light_spot":
@@ -201,17 +201,17 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 19.4257
+        "range": 13.8821
         ,
-        "angle": 78.5
+        "angle": 68.4
         ,
-        "inner_cut": 0.5
+        "inner_cut": 6.5
         ,
-        "z_far": 19.4257
+        "z_far": 13.8821
         ,
         "volume": false
         ,
-        "color": "0.596078 0.498039 0.262745 1.0"
+        "color": "0.0 0.560784 0.996079 1.0"
         ,
         "intensity": 4.1536
         ,
@@ -253,7 +253,7 @@
       {
         "pos": "-23.359 6.91629 1.02104"
         ,
-        "lookat": "-22.6911 -3.6268 1.02104"
+        "lookat": "-23.1852 -7.59429 1.02104"
       }
       ,
       "light_spot":
@@ -262,19 +262,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 10.5642
+        "range": 14.5116
         ,
         "angle": 66.1
         ,
         "inner_cut": 7.4
         ,
-        "z_far": 10.5642
+        "z_far": 14.5116
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "1.0 0.329412 0.0 1.0"
         ,
-        "intensity": 1.36064
+        "intensity": 3.0
         ,
         "casts_shadows": true
         ,
@@ -314,7 +314,7 @@
       {
         "pos": "-22.7328 6.69546 7.53394"
         ,
-        "lookat": "-22.0451 -3.95971 7.53395"
+        "lookat": "-22.559 -7.59945 7.53395"
       }
       ,
       "light_spot":
@@ -323,19 +323,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 10.6773
+        "range": 14.296
         ,
         "angle": 67.2
         ,
         "inner_cut": 13.5
         ,
-        "z_far": 10.6773
+        "z_far": 14.296
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "1.0 0.282353 0.0 1.0"
         ,
-        "intensity": 0.839666
+        "intensity": 3.0
         ,
         "casts_shadows": true
         ,
@@ -375,7 +375,7 @@
       {
         "pos": "-22.7328 6.92361 -5.61931"
         ,
-        "lookat": "-22.1081 -2.89614 -5.61931"
+        "lookat": "-22.559 -7.53216 -5.61931"
       }
       ,
       "light_spot":
@@ -384,19 +384,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 9.83961
+        "range": 14.4568
         ,
         "angle": 68.1
         ,
         "inner_cut": 20.7
         ,
-        "z_far": 9.83961
+        "z_far": 14.4568
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "1.0 0.329412 0.0 1.0"
         ,
-        "intensity": 1.27222
+        "intensity": 3.0
         ,
         "casts_shadows": true
         ,
@@ -430,13 +430,13 @@
   {
     "entity":
     {
-      "name": "Spot014"
+      "name": "Spot011"
       ,
       "transform":
       {
-        "pos": "12.6166 1.1019 7.80962"
+        "pos": "-6.16297 3.70501 -3.82791"
         ,
-        "lookat": "34.7916 3.62345 -15.4948"
+        "lookat": "3.56179 5.19811 4.84912"
       }
       ,
       "light_spot":
@@ -445,19 +445,80 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 32.2673
+        "range": 13.1184
+        ,
+        "angle": 134.3
+        ,
+        "inner_cut": 64.8
+        ,
+        "z_far": 13.1184
+        ,
+        "volume": false
+        ,
+        "color": "0.0 0.027451 0.12549 1.0"
+        ,
+        "intensity": 1.18856
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot011.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot014"
+      ,
+      "transform":
+      {
+        "pos": "15.0193 2.52695 8.95376"
+        ,
+        "lookat": "60.9861 3.62345 -39.2573"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 66.6218
         ,
         "angle": 110.5
         ,
         "inner_cut": 72.8
         ,
-        "z_far": 32.2673
+        "z_far": 66.6218
         ,
         "volume": false
         ,
-        "color": "0.788235 0.694118 0.447059 1.0"
+        "color": "0.988235 0.0705882 0.0 1.0"
         ,
-        "intensity": 1.38464
+        "intensity": 4.0
         ,
         "casts_shadows": true
         ,
@@ -497,7 +558,7 @@
       {
         "pos": "6.35128 6.03875 -22.9406"
         ,
-        "lookat": "6.35128 -1.1903 -23.2318"
+        "lookat": "6.35128 -14.0622 -23.2318"
       }
       ,
       "light_spot":
@@ -506,19 +567,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 7.23491
+        "range": 20.103
         ,
         "angle": 52.1
         ,
         "inner_cut": 0.5
         ,
-        "z_far": 7.23491
+        "z_far": 20.103
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "1.0 0.4 0.0 1.0"
         ,
-        "intensity": 1.09386
+        "intensity": 3.0
         ,
         "casts_shadows": true
         ,
@@ -556,9 +617,9 @@
       ,
       "transform":
       {
-        "pos": "-6.44586 3.79134 -23.5735"
+        "pos": "-6.44586 3.941 -22.0667"
         ,
-        "lookat": "7.81635 21.3401 -20.925"
+        "lookat": "14.855 20.6453 -25.4238"
       }
       ,
       "light_spot":
@@ -567,19 +628,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 22.768
+        "range": 27.2769
         ,
         "angle": 96.3
         ,
         "inner_cut": 35.9
         ,
-        "z_far": 22.768
+        "z_far": 27.2769
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "1.0 0.376471 0.0 1.0"
         ,
-        "intensity": 2.41339
+        "intensity": 4.0
         ,
         "casts_shadows": true
         ,
@@ -619,7 +680,7 @@
       {
         "pos": "14.4382 6.40709 -15.9134"
         ,
-        "lookat": "14.114 -1.71936 -18.445"
+        "lookat": "11.4217 -11.6157 -17.2887"
       }
       ,
       "light_spot":
@@ -628,19 +689,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 8.51783
+        "range": 18.3252
         ,
         "angle": 119.6
         ,
         "inner_cut": 0.5
         ,
-        "z_far": 8.51783
+        "z_far": 18.3252
         ,
         "volume": false
         ,
-        "color": "0.788235 0.694118 0.447059 1.0"
+        "color": "1.0 0.0470588 0.0 1.0"
         ,
-        "intensity": 0.153081
+        "intensity": 2.0
         ,
         "casts_shadows": true
         ,
@@ -680,7 +741,7 @@
       {
         "pos": "19.6477 6.40709 -11.5205"
         ,
-        "lookat": "19.8365 -2.03973 -12.5967"
+        "lookat": "17.1441 -11.6573 -13.9307"
       }
       ,
       "light_spot":
@@ -689,19 +750,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 8.51719
+        "range": 18.3956
         ,
         "angle": 119.6
         ,
         "inner_cut": 0.5
         ,
-        "z_far": 8.51719
+        "z_far": 18.3956
         ,
         "volume": false
         ,
-        "color": "0.788235 0.694118 0.447059 1.0"
+        "color": "1.0 0.0705882 0.0 1.0"
         ,
-        "intensity": 0.153081
+        "intensity": 2.0
         ,
         "casts_shadows": true
         ,
@@ -741,7 +802,7 @@
       {
         "pos": "21.3515 5.69987 -6.45388"
         ,
-        "lookat": "21.5403 -2.56607 -6.72959"
+        "lookat": "21.5403 -11.8338 -6.72959"
       }
       ,
       "light_spot":
@@ -750,19 +811,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 8.27269
+        "range": 17.5369
         ,
         "angle": 119.6
         ,
         "inner_cut": 0.5
         ,
-        "z_far": 8.27269
+        "z_far": 17.5369
         ,
         "volume": false
         ,
-        "color": "0.788235 0.694118 0.447059 1.0"
+        "color": "1.0 0.0705882 0.0 1.0"
         ,
-        "intensity": 0.153081
+        "intensity": 2.0
         ,
         "casts_shadows": true
         ,
@@ -802,7 +863,7 @@
       {
         "pos": "4.09449 1.07134 17.3136"
         ,
-        "lookat": "14.2643 6.81471 17.7086"
+        "lookat": "35.3096 19.5175 21.1935"
       }
       ,
       "light_spot":
@@ -811,17 +872,17 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 11.6862
+        "range": 36.465
         ,
-        "angle": 52.0
+        "angle": 61.9
         ,
-        "inner_cut": 50.0
+        "inner_cut": 47.2
         ,
-        "z_far": 11.6862
+        "z_far": 36.465
         ,
         "volume": false
         ,
-        "color": "0.486275 0.623529 0.431373 1.0"
+        "color": "1.0 0.329412 0.0 1.0"
         ,
         "intensity": 3.0
         ,
@@ -863,7 +924,7 @@
       {
         "pos": "14.2358 7.89503 13.4812"
         ,
-        "lookat": "16.3833 -1.49641 16.4722"
+        "lookat": "14.2358 -9.20159 18.4614"
       }
       ,
       "light_spot":
@@ -872,19 +933,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 10.0874
+        "range": 17.8072
         ,
         "angle": 96.5
         ,
         "inner_cut": 0.5
         ,
-        "z_far": 10.0874
+        "z_far": 17.8072
         ,
         "volume": false
         ,
-        "color": "0.486275 0.623529 0.431373 1.0"
+        "color": "1.0 0.329412 0.0 1.0"
         ,
-        "intensity": 0.37
+        "intensity": 2.0
         ,
         "casts_shadows": true
         ,
@@ -924,7 +985,7 @@
       {
         "pos": "7.95117 7.89503 18.0402"
         ,
-        "lookat": "7.45019 -0.0223179 22.0668"
+        "lookat": "6.20813 -9.6103 20.266"
       }
       ,
       "light_spot":
@@ -933,19 +994,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 8.89657
+        "range": 17.7322
         ,
         "angle": 110.9
         ,
         "inner_cut": 0.5
         ,
-        "z_far": 8.89657
+        "z_far": 17.7322
         ,
         "volume": false
         ,
-        "color": "0.486275 0.623529 0.431373 1.0"
+        "color": "0.72549 0.239216 0.0 1.0"
         ,
-        "intensity": 0.41
+        "intensity": 2.0
         ,
         "casts_shadows": true
         ,
@@ -985,7 +1046,7 @@
       {
         "pos": "-17.4714 2.37173 0.676316"
         ,
-        "lookat": "-27.9094 2.5852 0.730958"
+        "lookat": "-39.2535 2.5852 0.730957"
       }
       ,
       "light_spot":
@@ -994,19 +1055,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 10.4403
+        "range": 21.7832
         ,
         "angle": 121.3
         ,
         "inner_cut": 56.2
         ,
-        "z_far": 10.4403
+        "z_far": 21.7832
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "1.0 0.352941 0.0 1.0"
         ,
-        "intensity": 0.397055
+        "intensity": 2.0
         ,
         "casts_shadows": true
         ,
@@ -1046,7 +1107,7 @@
       {
         "pos": "-18.0129 3.56153 0.100864"
         ,
-        "lookat": "-30.3021 14.5657 13.7888"
+        "lookat": "-22.2459 6.70073 7.42137"
       }
       ,
       "light_spot":
@@ -1055,19 +1116,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 21.4354
+        "range": 9.02015
         ,
         "angle": 65.9
         ,
         "inner_cut": 8.50001
         ,
-        "z_far": 21.4354
+        "z_far": 9.02015
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "0.545098 0.180392 0.0 1.0"
         ,
-        "intensity": 0.397055
+        "intensity": 2.0
         ,
         "casts_shadows": true
         ,
@@ -1107,7 +1168,7 @@
       {
         "pos": "-18.0129 3.56153 -0.354096"
         ,
-        "lookat": "-31.9758 13.6814 -5.49645"
+        "lookat": "-22.2459 6.43555 -5.49645"
       }
       ,
       "light_spot":
@@ -1116,19 +1177,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 17.995
+        "range": 7.25414
         ,
         "angle": 76.1
         ,
         "inner_cut": 8.50001
         ,
-        "z_far": 17.995
+        "z_far": 7.25414
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "0.513726 0.180392 0.0 1.0"
         ,
-        "intensity": 0.397055
+        "intensity": 2.0
         ,
         "casts_shadows": true
         ,
@@ -1168,7 +1229,7 @@
       {
         "pos": "-0.129469 6.06804 22.9742"
         ,
-        "lookat": "-0.129469 -1.13739 22.9742"
+        "lookat": "-0.129469 -13.0536 22.9742"
       }
       ,
       "light_spot":
@@ -1177,17 +1238,17 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 7.20543
+        "range": 19.1216
         ,
         "angle": 63.0
         ,
         "inner_cut": 20.0
         ,
-        "z_far": 7.20543
+        "z_far": 19.1216
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "1.0 0.329412 0.0 1.0"
         ,
         "intensity": 1.13307
         ,
@@ -1229,7 +1290,7 @@
       {
         "pos": "6.47497 6.06804 22.124"
         ,
-        "lookat": "6.47497 2.20795 22.124"
+        "lookat": "6.47497 -13.2773 22.124"
       }
       ,
       "light_spot":
@@ -1238,17 +1299,17 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 3.86009
+        "range": 19.3453
         ,
         "angle": 72.8
         ,
         "inner_cut": 5.9
         ,
-        "z_far": 3.86009
+        "z_far": 19.3453
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "0.913726 0.301961 0.0 1.0"
         ,
         "intensity": 0.257083
         ,
@@ -1290,7 +1351,7 @@
       {
         "pos": "-6.75289 6.06804 22.124"
         ,
-        "lookat": "-6.75289 -1.13739 22.124"
+        "lookat": "-6.75289 -13.8526 22.124"
       }
       ,
       "light_spot":
@@ -1299,17 +1360,17 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 7.20543
+        "range": 19.9207
         ,
         "angle": 60.0
         ,
         "inner_cut": 0.5
         ,
-        "z_far": 7.20543
+        "z_far": 19.9207
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "1.0 0.329412 0.0 1.0"
         ,
         "intensity": 1.98785
         ,
@@ -1351,7 +1412,7 @@
       {
         "pos": "-0.208953 2.92118 17.5066"
         ,
-        "lookat": "-0.208953 0.150935 23.0319"
+        "lookat": "-0.208953 -4.15198 41.6137"
       }
       ,
       "light_spot":
@@ -1360,19 +1421,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 6.18084
+        "range": 25.1233
         ,
         "angle": 125.2
         ,
         "inner_cut": 9.1
         ,
-        "z_far": 6.18084
+        "z_far": 25.1233
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "0.894118 0.294118 0.0 1.0"
         ,
-        "intensity": 0.715625
+        "intensity": 2.0
         ,
         "casts_shadows": true
         ,
@@ -1412,7 +1473,7 @@
       {
         "pos": "-0.230118 1.86181 16.0466"
         ,
-        "lookat": "14.3488 14.782 36.5322"
+        "lookat": "5.93629 4.38159 35.9632"
       }
       ,
       "light_spot":
@@ -1421,19 +1482,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 28.2689
+        "range": 21.001
         ,
         "angle": 55.9
         ,
         "inner_cut": 9.1
         ,
-        "z_far": 28.2689
+        "z_far": 21.001
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "0.713726 0.235294 0.0 1.0"
         ,
-        "intensity": 0.715625
+        "intensity": 2.0
         ,
         "casts_shadows": true
         ,
@@ -1473,7 +1534,7 @@
       {
         "pos": "-1.17486 1.95775 15.9548"
         ,
-        "lookat": "-3.69019 9.93304 32.787"
+        "lookat": "-0.570436 5.19281 37.6072"
       }
       ,
       "light_spot":
@@ -1482,19 +1543,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 18.795
+        "range": 21.9011
         ,
-        "angle": 71.5
+        "angle": 67.8
         ,
-        "inner_cut": 2.8
+        "inner_cut": 2.5
         ,
-        "z_far": 18.795
+        "z_far": 21.9011
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "0.733333 0.243137 0.0 1.0"
         ,
-        "intensity": 0.615625
+        "intensity": 2.0
         ,
         "casts_shadows": true
         ,
@@ -1534,7 +1595,7 @@
       {
         "pos": "-9.72936 3.8083 14.0115"
         ,
-        "lookat": "-14.9159 2.18254 7.28687"
+        "lookat": "-16.8894 3.50994 4.79858"
       }
       ,
       "light_spot":
@@ -1543,19 +1604,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 8.64667
+        "range": 11.6719
         ,
         "angle": 70.1
         ,
         "inner_cut": 9.1
         ,
-        "z_far": 8.64667
+        "z_far": 11.6719
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "0.176471 0.662745 1.0 1.0"
         ,
-        "intensity": 0.715625
+        "intensity": 2.0
         ,
         "casts_shadows": true
         ,
@@ -1595,7 +1656,7 @@
       {
         "pos": "-16.3238 3.8083 5.89362"
         ,
-        "lookat": "-11.723 2.28059 12.4194"
+        "lookat": "-8.16784 3.44622 15.3464"
       }
       ,
       "light_spot":
@@ -1604,19 +1665,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 8.12942
+        "range": 12.4902
         ,
         "angle": 70.1
         ,
         "inner_cut": 9.1
         ,
-        "z_far": 8.12942
+        "z_far": 12.4902
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "0.0117647 0.576471 0.839216 1.0"
         ,
-        "intensity": 0.715625
+        "intensity": 2.0
         ,
         "casts_shadows": true
         ,
@@ -1656,7 +1717,7 @@
       {
         "pos": "-15.8031 3.8083 -4.00671"
         ,
-        "lookat": "-12.6889 2.74954 -8.02808"
+        "lookat": "-9.61675 3.35112 -13.0222"
       }
       ,
       "light_spot":
@@ -1665,19 +1726,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 5.19527
+        "range": 10.9435
         ,
         "angle": 70.1
         ,
         "inner_cut": 9.1
         ,
-        "z_far": 5.19527
+        "z_far": 10.9435
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "0.0 0.635294 1.0 1.0"
         ,
-        "intensity": 0.715625
+        "intensity": 2.0
         ,
         "casts_shadows": true
         ,
@@ -1717,7 +1778,7 @@
       {
         "pos": "-9.86793 3.8083 -12.9323"
         ,
-        "lookat": "-13.0001 2.23832 -8.42393"
+        "lookat": "-16.6279 3.30461 -4.03696"
       }
       ,
       "light_spot":
@@ -1726,19 +1787,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 5.70969
+        "range": 11.1838
         ,
         "angle": 70.1
         ,
         "inner_cut": 9.1
         ,
-        "z_far": 5.70969
+        "z_far": 11.1838
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "0.0 0.729412 1.0 1.0"
         ,
-        "intensity": 0.715625
+        "intensity": 2.0
         ,
         "casts_shadows": true
         ,
@@ -1778,7 +1839,7 @@
       {
         "pos": "9.75682 3.8083 -11.766"
         ,
-        "lookat": "14.9317 2.14201 -5.34665"
+        "lookat": "15.1008 3.35112 -6.30527"
       }
       ,
       "light_spot":
@@ -1787,19 +1848,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 8.41207
+        "range": 7.65415
         ,
         "angle": 70.1
         ,
         "inner_cut": 9.1
         ,
-        "z_far": 8.41207
+        "z_far": 7.65415
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "0.0823529 0.709804 1.0 1.0"
         ,
-        "intensity": 0.715625
+        "intensity": 2.0
         ,
         "casts_shadows": true
         ,
@@ -1839,7 +1900,7 @@
       {
         "pos": "9.97032 3.8083 14.287"
         ,
-        "lookat": "14.5567 1.72808 8.40964"
+        "lookat": "15.9053 3.37895 6.33371"
       }
       ,
       "light_spot":
@@ -1848,19 +1909,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 7.73984
+        "range": 9.93292
         ,
         "angle": 70.1
         ,
         "inner_cut": 9.1
         ,
-        "z_far": 7.73984
+        "z_far": 9.93292
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "0.0 0.682353 1.0 1.0"
         ,
-        "intensity": 0.715625
+        "intensity": 2.0
         ,
         "casts_shadows": true
         ,
@@ -1900,7 +1961,7 @@
       {
         "pos": "15.7513 3.8083 5.95981"
         ,
-        "lookat": "11.1145 2.14336 13.3369"
+        "lookat": "9.90193 3.37895 15.3456"
       }
       ,
       "light_spot":
@@ -1909,19 +1970,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 8.87101
+        "range": 11.0677
         ,
         "angle": 70.1
         ,
         "inner_cut": 9.1
         ,
-        "z_far": 8.87101
+        "z_far": 11.0677
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "0.0117647 0.686275 1.0 1.0"
         ,
-        "intensity": 0.715625
+        "intensity": 2.0
         ,
         "casts_shadows": true
         ,
@@ -1961,7 +2022,7 @@
       {
         "pos": "0.254136 9.88119 19.2159"
         ,
-        "lookat": "0.614732 -0.111193 0.378754"
+        "lookat": "0.614732 -3.34111 -7.9823"
       }
       ,
       "light_spot":
@@ -1970,19 +2031,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 21.3265
+        "range": 30.2441
         ,
         "angle": 80.7
         ,
         "inner_cut": 9.1
         ,
-        "z_far": 21.3265
+        "z_far": 30.2441
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "1.0 0.0705882 0.0 1.0"
         ,
-        "intensity": 1.5
+        "intensity": 8.0
         ,
         "casts_shadows": true
         ,
@@ -2022,7 +2083,7 @@
       {
         "pos": "-0.172503 12.8996 0.0"
         ,
-        "lookat": "-0.172503 9.08664 35.0592"
+        "lookat": "-0.172503 14.4874 54.5031"
       }
       ,
       "light_spot":
@@ -2031,19 +2092,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 35.2659
+        "range": 54.5262
         ,
-        "angle": 47.2
+        "angle": 34.1
         ,
         "inner_cut": 9.1
         ,
-        "z_far": 35.2659
+        "z_far": 54.5262
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "0.560784 0.0 0.0 1.0"
         ,
-        "intensity": 0.554791
+        "intensity": 3.0
         ,
         "casts_shadows": true
         ,
@@ -2083,7 +2144,7 @@
       {
         "pos": "-20.1035 10.2653 1.66601"
         ,
-        "lookat": "-12.0393 -1.75226 1.66601"
+        "lookat": "-5.15061 -15.9903 1.66601"
       }
       ,
       "light_spot":
@@ -2092,19 +2153,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 14.4725
+        "range": 30.215
         ,
         "angle": 59.1
         ,
         "inner_cut": 5.6
         ,
-        "z_far": 14.4725
+        "z_far": 30.215
         ,
         "volume": false
         ,
-        "color": "1.0 1.0 1.0 1.0"
+        "color": "0.0 0.682353 1.0 1.0"
         ,
-        "intensity": 0.554791
+        "intensity": 2.0
         ,
         "casts_shadows": true
         ,
@@ -2138,13 +2199,13 @@
   {
     "entity":
     {
-      "name": "Spot046"
+      "name": "Spot045"
       ,
       "transform":
       {
-        "pos": "-8.70007 9.26149 1.43069"
+        "pos": "-11.4617 7.33719 0.800271"
         ,
-        "lookat": "-44.3229 11.1309 1.30559"
+        "lookat": "-54.7617 18.9127 0.800271"
       }
       ,
       "light_spot":
@@ -2153,80 +2214,19 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 35.672
+        "range": 44.8206
         ,
-        "angle": 74.3
-        ,
-        "inner_cut": 7.3
-        ,
-        "z_far": 35.672
-        ,
-        "volume": false
-        ,
-        "color": "1.0 1.0 1.0 1.0"
-        ,
-        "intensity": 0.67
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot046.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot047"
-      ,
-      "transform":
-      {
-        "pos": "21.3515 5.69987 2.57462"
-        ,
-        "lookat": "21.5403 0.127626 2.29891"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 5.58226
-        ,
-        "angle": 119.6
+        "angle": 69.0
         ,
         "inner_cut": 0.5
         ,
-        "z_far": 5.58226
+        "z_far": 44.8206
         ,
         "volume": false
         ,
-        "color": "0.788235 0.694118 0.447059 1.0"
+        "color": "0.0 0.415686 0.611765 1.0"
         ,
-        "intensity": 0.153081
+        "intensity": 3.0
         ,
         "casts_shadows": true
         ,
@@ -2245,68 +2245,7 @@
       {
         "shape": "convex"
         ,
-        "name": "data/colliders/Spot047.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot048"
-      ,
-      "transform":
-      {
-        "pos": "-0.109176 20.2549 -6.74584"
-        ,
-        "lookat": "-1.07465 14.6847 -43.1481"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 36.8387
-        ,
-        "angle": 78.5
-        ,
-        "inner_cut": 0.5
-        ,
-        "z_far": 36.8387
-        ,
-        "volume": false
-        ,
-        "color": "0.639216 0.52549 0.211765 1.0"
-        ,
-        "intensity": 2.32602
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot048.collider"
+        "name": "data/colliders/Spot045.collider"
         ,
         "is_trigger": true
       }

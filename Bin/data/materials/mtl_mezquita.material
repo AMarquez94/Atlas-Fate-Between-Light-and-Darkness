@@ -13,6 +13,6 @@
     ,
     "height": "data/textures/tx_mezquita_hgt.dds"
     ,
-    "aocclusion": "data/textures/tx_mezquita_hgt.dds"
+    "aocclusion": "data/textures/tx_mezquita_ao.dds"
   }
 }

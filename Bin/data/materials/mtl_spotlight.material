@@ -1,0 +1,20 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_spotlight_alb.dds"
+    ,
+    "metallic": "data/textures/tx_spotlight_met.dds"
+    ,
+    "roughness": "data/textures/tx_spotlight_rgh.dds"
+    ,
+    "normal": "data/textures/tx_spotlight_nml.dds"
+    ,
+    "height": "data/textures/tx_spotlight_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_spotlight_emi.dds"
+    ,
+    "aocclusion": "data/textures/tx_spotlight_ao.dds"
+  }
+}
