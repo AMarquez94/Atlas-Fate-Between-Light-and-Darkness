@@ -331,6 +331,7 @@ struct TMsgCameraFov {
 
 struct TMsgCircularControllerTarget {
     CHandle new_target;
+    DECL_MSG_ID();
 };
 
 //struct TMsgSpotlightsToggle {

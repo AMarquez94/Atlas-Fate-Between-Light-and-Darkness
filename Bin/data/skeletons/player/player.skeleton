@@ -80,9 +80,10 @@
 		{ "name" : "touch_enemy",
 			"callbacks":[
 			  {
-				"time_to_call" : 0.35,
+				"time_to_call" : 0.1,
 				"function_to_call" : "animation_grab_enemy"
 			  }
+			  ]
 		},
 		{ "name" : "sonda_normal"},
 		{ "name" : "sonda_crouch"},
