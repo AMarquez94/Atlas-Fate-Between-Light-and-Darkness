@@ -396,7 +396,7 @@ void CModuleRender::postProcessingStack() {
         // The bloom blurs the given input
         TCompRenderBloom* c_render_bloom = e_cam->get< TCompRenderBloom >();
         if (c_render_bloom) {
-            c_render_bloom->generateHighlights(deferred.rt_acc_light);
+            c_render_bloom->generateHighlights(curr_rt);
             c_render_bloom->addBloom();
         }
 
