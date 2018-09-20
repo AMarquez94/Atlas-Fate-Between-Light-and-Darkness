@@ -1,0 +1,58 @@
+[
+  {
+    "entity":
+    {
+      "name": "holograma_alminar"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar_atlas_low001"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      },
+      "rigid_anim":true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_alminar_atlas_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/characters/mtl_player_main_hologram_solid.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true,
+      "animated_object_controller":{
+        "reference_names":[
+          {
+          "name" : "BC_alminar_atlas_low001"
+          }
+        ],
+        "animations":[
+          {
+            "name":"rotate",
+            "src" : "data/rigid_anims/holograma_alminar.anims",
+            "loops" : true,
+            "on_start" : true
+
+          }
+        ]
+      }
+    }
+  }
+]
