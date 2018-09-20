@@ -166,7 +166,13 @@ bool TCompAnimator::isPlayingAnimation(EAnimation animation) {
 	AnimationSet animSet = animationsMap[animation];
 	bool toReturn = false;
 	if (animSet.animationType == TCompAnimator::EAnimationType::ACTION) {
-		toReturn = compSkeleton->isExecutingActionAnimation(animSet.animationName);
+		if (animSet.rootRotationMovement) {
+			toReturn = compSkeleton->isExecutingActionAnimationForRoot(animSet.animationName);
+		}
+		else {
+			toReturn = compSkeleton->isExecutingActionAnimation(animSet.animationName);
+		}
+		
 	}
 	if (animSet.animationType == TCompAnimator::EAnimationType::CYCLIC) {
 		toReturn = compSkeleton->isExecutingCyclicAnimation(animSet.animationId);

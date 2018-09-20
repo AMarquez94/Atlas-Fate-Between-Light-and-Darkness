@@ -621,7 +621,8 @@ BTNode::ERes TCompAIPatrol::actionWaitInWpt(float dt)
             myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
         }
         else {
-            myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_LEFT);
+			if(!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_LEFT))
+				myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_LEFT);
         }
         return BTNode::ERes::STAY;
     }
