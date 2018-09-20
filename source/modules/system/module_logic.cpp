@@ -138,6 +138,7 @@ void CModuleLogic::publishClasses() {
         .set("getRightWeapon", &TCompTempPlayerController::getRightWeapon)
         .set("playPlayerStep", &TCompTempPlayerController::playPlayerStep)
         .set("playLandParticles", &TCompTempPlayerController::playLandParticles)
+        .set("playSMSpirals", &TCompTempPlayerController::playSMSpirals)
         ;
 
     SLB::Class<TCompLightSpot>("SpotLight", m)

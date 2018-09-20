@@ -158,6 +158,43 @@ void TCompTempPlayerController::playLandParticles(bool left)
     }
 }
 
+void TCompTempPlayerController::playSMSpirals() {
+    TCompGroup* my_group = get<TCompGroup>();
+    if (my_group) {
+
+        /* Set particle transform */
+        CEntity* spiral_1 = my_group->getHandleByName("SM_Spiral_1");
+        CEntity* spiral_2 = my_group->getHandleByName("SM_Spiral_2");
+        TCompTransform* spiral_1_pos = spiral_1->get<TCompTransform>();
+        TCompTransform* spiral_2_pos = spiral_2->get<TCompTransform>();
+
+        CEntity* e_weapon_right = weaponRight;
+        TCompTransform* weapon_right_pos = e_weapon_right->get<TCompTransform>();
+        VEC3 init_pos = weapon_right_pos->getPosition();
+
+        spiral_1_pos->setPosition(init_pos);
+        spiral_2_pos->setPosition(init_pos);
+
+        /* Set target */
+        TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
+        CHandle closestEnemy;
+        bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
+
+        TMsgCircularControllerTarget msg;
+        if (enemyFound) {
+            msg.new_target = closestEnemy;
+        }
+        spiral_1->sendMsg(msg);
+        spiral_2->sendMsg(msg);
+
+        /* Play particles */
+        TCompParticles* spiral_particles_1 = spiral_1->get<TCompParticles>();
+        TCompParticles* spiral_particles_2 = spiral_2->get<TCompParticles>();
+        spiral_particles_1->setSystemState(true);
+        spiral_particles_2->setSystemState(true);
+    }
+}
+
 void TCompTempPlayerController::registerMsgs() {
 
     DECL_MSG(TCompTempPlayerController, TMsgStateStart, onStateStart);
