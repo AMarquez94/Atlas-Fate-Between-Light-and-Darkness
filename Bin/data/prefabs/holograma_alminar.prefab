@@ -7,6 +7,22 @@
       "transform":
       {
         "pos": "0.0 0.0 0.0"
+      },
+      "animated_object_controller":{
+        "reference_names":[
+          {
+          "name" : "BC_alminar_atlas_low001"
+          }
+        ],
+        "animations":[
+          {
+            "name":"rotate",
+            "src" : "data/rigid_anims/holograma_alminar.anims",
+            "loops" : true,
+            "on_start" : true
+
+          }
+        ]
       }
     }
   }
@@ -36,23 +52,7 @@
       ,
       "abs_aabb": true
       ,
-      "local_aabb": true,
-      "animated_object_controller":{
-        "reference_names":[
-          {
-          "name" : "BC_alminar_atlas_low001"
-          }
-        ],
-        "animations":[
-          {
-            "name":"rotate",
-            "src" : "data/rigid_anims/holograma_alminar.anims",
-            "loops" : true,
-            "on_start" : true
-
-          }
-        ]
-      }
+      "local_aabb": true
     }
   }
 ]
