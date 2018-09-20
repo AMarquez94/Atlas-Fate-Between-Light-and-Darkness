@@ -368,7 +368,7 @@
 		}
 	},
 	{
-		"xentity": {
+		"entity": {
 			"name": "SM_Spiral_1",
 			"transform": {
 				"pos": "0 0 0"
@@ -381,6 +381,7 @@
 				"vertical_speed" : -0.0001
 			},
 			"particles": {
+				"on_start":false,
 				"cores":
 				[
 					"data/particles/def_sm_enemy_spiral.particles",
@@ -390,7 +391,7 @@
 		}
 	},
 	{
-		"xentity": {
+		"entity": {
 			"name": "SM_Spiral_2",
 			"transform": {
 				"pos": "0 0 0"
@@ -403,6 +404,7 @@
 				"vertical_speed" : -0.0001
 			},
 			"particles": {
+				"on_start":false,
 				"cores":
 				[
 					"data/particles/def_sm_enemy_spiral.particles",
