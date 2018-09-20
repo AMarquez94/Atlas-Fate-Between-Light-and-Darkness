@@ -56,7 +56,6 @@ public:
     BTNode::ERes actionStartSM(float dt);
     BTNode::ERes actionAnimationSM(float dt);
     BTNode::ERes actionEndSM (float dt);
-    BTNode::ERes actionAnimationInhibitor(float dt);
     BTNode::ERes actionAnimationInhibitorMiddle(float dt);
     BTNode::ERes actionAnimationInhibitorFinnish(float dt);
     BTNode::ERes actionAnimationStandingCrouch(float dt);
