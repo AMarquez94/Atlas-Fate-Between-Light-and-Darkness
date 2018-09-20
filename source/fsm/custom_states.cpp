@@ -365,7 +365,9 @@ namespace FSM
         // Send a message to the player controller
         CEntity* e = ctx.getOwner();
         //e->sendMsg(TMsgAnimation{ "crouch" });
-
+		TCompPlayerAnimator *c_animator = e->get<TCompPlayerAnimator>();
+		if(c_animator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPlayerAnimator::EAnimation::SM_ENTER))
+			c_animator->removeAction((TCompAnimator::EAnimation)TCompPlayerAnimator::EAnimation::SM_ENTER);
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::mergeState, _speed, _size, _radius, _target, _noise });
     }
 

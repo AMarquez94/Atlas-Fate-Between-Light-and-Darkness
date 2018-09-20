@@ -56,6 +56,8 @@ void TCompBoneTracker::update(float dt) {
 
     // Apply the cal3d pos&rot to my entity owner
     TCompTransform* tmx = get<TCompTransform>();
-    tmx->setPosition(pos);
-    tmx->setRotation(rot);
+    if (tmx) {
+        tmx->setPosition(pos);
+        tmx->setRotation(rot);
+    }
 }

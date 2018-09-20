@@ -1,0 +1,317 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_carteles"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_amarilllo_004"
+      ,
+      "prefab": "data/prefabs/cartel_amarillo_3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.7557 7.68237 17.4554"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_amarillo_006"
+      ,
+      "prefab": "data/prefabs/cartel_amarillo_1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.7404 9.59692 17.4478"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_amarillo_007"
+      ,
+      "prefab": "data/prefabs/cartel_amarillo_2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "0.899868 0.0 17.747"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_amarillo_008"
+      ,
+      "prefab": "data/prefabs/cartel_amarillo_4.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.1357 2.69522 19.4621"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_amarillo_009"
+      ,
+      "prefab": "data/prefabs/cartel_amarillo_5.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-8.55963 3.93701 33.8441"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_azul_009"
+      ,
+      "prefab": "data/prefabs/cartel_azul_1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.0789 3.56854 19.4903"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_azul_010"
+      ,
+      "prefab": "data/prefabs/cartel_azul_2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-17.9338 9.85563 30.3298"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_azul_011"
+      ,
+      "prefab": "data/prefabs/cartel_azul_3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-14.1562 4.24414 30.6148"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_azul_012"
+      ,
+      "prefab": "data/prefabs/cartel_azul_4.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-20.2308 9.15382 29.8906"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_azul_013"
+      ,
+      "prefab": "data/prefabs/cartel_azul_2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "15.2392 9.85563 29.8372"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_baby001"
+      ,
+      "prefab": "data/prefabs/cartel_baby.prefab"
+      ,
+      "transform":
+      {
+        "pos": "0.135871 0.0 24.5868"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_ignatius001"
+      ,
+      "prefab": "data/prefabs/cartel_ignatius.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.5066 3.03096 26.0719"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_redondo_amarillo001"
+      ,
+      "prefab": "data/prefabs/cartel_redondo_amarillo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.8542 11.161 20.2445"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_redondo_verde001"
+      ,
+      "prefab": "data/prefabs/cartel_redondo_verde.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-12.6557 11.1355 37.6823"
+        ,
+        "rotation": "0.5 0.5 -0.5 0.5"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_verde_005"
+      ,
+      "prefab": "data/prefabs/cartel_verde_1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.2864 9.80957 19.1926"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_verde_006"
+      ,
+      "prefab": "data/prefabs/cartel_verde_2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.5149 4.1093 26.1469"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_verde_007"
+      ,
+      "prefab": "data/prefabs/cartel_verde_3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-12.6178 9.26416 37.9232"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_verde_008"
+      ,
+      "prefab": "data/prefabs/cartel_verde_4.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-6.86222 0.0 22.7884"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_redondo_azul006"
+      ,
+      "prefab": "data/prefabs/cartel_redondo_azul.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.836 10.6324 20.242"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+    }
+  }
+]

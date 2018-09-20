@@ -24,7 +24,7 @@ DECL_OBJ_MANAGER("ai_player", TCompAIPlayer);
 void TCompAIPlayer::debugInMenu() {
 
 	TCompIAController::debugInMenu();
-	CEntity * me = getEntityByName("The Player");
+	CEntity * me = EngineEntities.getPlayerHandle();
 	TCompTransform *tpos = me->get<TCompTransform>();
 
 

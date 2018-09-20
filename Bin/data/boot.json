@@ -35,6 +35,8 @@
 			"data/scenes/intro_edificios_segunda_1.scene",
 			"data/scenes/intro_edificios_segunda_2.scene",
 
+			"data/scenes/intro_carteles.scene",
+
 			"data/scenes/intro_pozo.scene",
 			"data/scenes/intro_barra_capsulas.scene",
 			"data/scenes/Intro/intro_suelo.scene",
@@ -149,7 +151,7 @@
 	"scene_basilic_courtyard": {
 		"static_data": {
 			"initial_script": "basilic_courtyard",
-			"navmesh": "data/navmeshes/basilic_courtyard_navmesh.bin"
+			"navmesh": "data/navmeshes/basilic_courtyard.bin"
 		},
 		"scene_group": [
 			"data/scenes/Basilic_courtyard/player.scene",
