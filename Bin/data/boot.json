@@ -23,11 +23,12 @@
 			"data/scenes/intro_light2.scene",
 			"data/scenes/Intro/intro_puentes_chapa.scene",
 			"data/scenes/intro_andamios.scene",
+			"data/scenes/intro_basilica.scene",
 			"data/scenes/intro_tejados.scene",
 			"data/scenes/intro_valla.scene",
 			"data/scenes/intro_colliders_valla.scene",
 			"data/scenes/neones.scene",
-
+			
 			"data/scenes/intro_tubo_capsulas.scene",
 			"data/scenes/intro_farolas.scene",
 			"data/scenes/intro_patrol_atrapado.scene",
@@ -168,7 +169,7 @@
 			"data/scenes/BC_coberturas.scene",
 			"data/scenes/BC_containers.scene",
 			"data/scenes/BC_props.scene",
-                        "data/scenes/BC_cables.scene",
+            "data/scenes/BC_cables.scene",
 			"data/scenes/BC_tubos.scene",
 			"data/scenes/BC_neones.scene",
 			"data/scenes/BC_capsulas.scene",

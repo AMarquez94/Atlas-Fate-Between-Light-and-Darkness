@@ -1,0 +1,109 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_alminar_holograma"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar_atlas_low004"
+      ,
+      "prefab": "data/prefabs/holograma_alminar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-33.8338 80.0919 -397.717"
+        ,
+        "rotation": "0.579227 -0.640857 0.405582 0.298833"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar_atlas_low005"
+      ,
+      "prefab": "data/prefabs/holograma_alminar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-33.8341 80.0919 -329.914"
+        ,
+        "rotation": "0.153049 0.521331 -0.690346 0.477716"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar_atlas_low003"
+      ,
+      "prefab": "data/prefabs/holograma_alminar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-37.4403 80.0919 -458.091"
+        ,
+        "rotation": "-0.627213 0.0308464 0.326503 -0.706433"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar_atlas_low002"
+      ,
+      "prefab": "data/prefabs/holograma_alminar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "43.8015 80.092 -458.092"
+        ,
+        "rotation": "-0.704416 0.405582 -0.0616315 -0.579226"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar_atlas_low006"
+      ,
+      "prefab": "data/prefabs/holograma_alminar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "41.6036 80.092 -327.402"
+        ,
+        "rotation": "-0.560988 -0.0922926 0.430457 -0.701057"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar_atlas_low001"
+      ,
+      "prefab": "data/prefabs/holograma_alminar.prefab"
+      ,
+      "transform":
+      {
+        "pos": "43.8026 80.092 -398.184"
+        ,
+        "rotation": "0.212628 -0.690344 0.674381 -0.153049"
+      }
+    }
+  }
+]
