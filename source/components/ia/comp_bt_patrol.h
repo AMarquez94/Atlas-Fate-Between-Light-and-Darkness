@@ -46,6 +46,7 @@ private:
     void onMsgCinematicState(const TMsgCinematicState& msg);
 	void onMsgAnimationCompleted(const TMsgAnimationCompleted& msg);
 	void onMsgWarned(const TMsgWarnEnemy& msg);
+	void onMsgResetPatrolLights(const TMsgResetPatrolLights& msg);
 
     /* Aux functions */
     void turnOnLight();

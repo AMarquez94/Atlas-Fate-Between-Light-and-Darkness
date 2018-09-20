@@ -129,11 +129,11 @@ function onTriggerExit_SMFallTutorial_player()
 end
 
 function onTriggerEnter_CrouchTutorial_player()
-	moveTutorialPlayer(VEC3(-0.8, 0, -11), VEC3(-0.8, 0, -12), true, "crouch_tutorial");
+	--moveTutorialPlayer(VEC3(-0.8, 0, -11), VEC3(-0.8, 0, -12), true, "crouch_tutorial");
 end
 
 function onTriggerExit_CrouchTutorial_player()
-	moveTutorialPlayer(VEC3(0,-30,0), VEC3(0,0,25), false, "");
+	--moveTutorialPlayer(VEC3(0,-30,0), VEC3(0,0,25), false, "");
 end
 
 function onTriggerEnter_InhibitorTutorial_player()

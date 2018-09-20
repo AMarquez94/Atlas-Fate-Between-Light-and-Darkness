@@ -96,6 +96,7 @@
 				"target": "The Player"
 			},
 			"particles": {
+				"on_start": false,
 				"cores":
 				[
 					"data/particles/def_amb_flare_spotlight.particles"

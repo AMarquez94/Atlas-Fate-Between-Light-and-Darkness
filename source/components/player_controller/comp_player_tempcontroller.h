@@ -212,6 +212,10 @@ public:
 
     VEC3 getMotionDir(const VEC3 & front, const VEC3 & left, bool default = true);
 
+    /* Lua functions */
+    void playPlayerStep(bool left);
+    void playLandParticles(bool left);
+
     static void registerMsgs();
 };
 

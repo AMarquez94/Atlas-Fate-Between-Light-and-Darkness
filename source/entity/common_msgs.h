@@ -319,6 +319,10 @@ struct TMsgWarnEnemy {
     DECL_MSG_ID();
 };
 
+struct TMsgResetPatrolLights {
+    DECL_MSG_ID();
+};
+
 struct TMsgCameraFov {
     float new_fov;
     float blend_time;
