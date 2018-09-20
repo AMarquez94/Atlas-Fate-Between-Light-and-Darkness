@@ -61,6 +61,7 @@ namespace Particles
             EType type = Point;             // type of emissor
             VEC3 size = VEC3(1, 1, 1);      // emissor size
             float angle = 0.f;              // emission angle
+            bool shell_emit = false;
         };
 
         struct TNVelocity {

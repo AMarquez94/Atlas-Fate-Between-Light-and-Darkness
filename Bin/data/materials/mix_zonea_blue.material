@@ -1,0 +1,11 @@
+{	"technique": "pbr_parallax.tech",
+	"shadows": true,
+	"textures": {
+		"albedo": "data/textures/mix/blending_zone_a/blue/tx_arena_adoquines_alb.dds",
+		"metallic": "data/textures/mix/blending_zone_a/blue/tx_arena_adoquines_met.dds",
+		"roughness": "data/textures/mix/blending_zone_a/blue/tx_arena_adoquines_rgh.dds",
+		"normal": "data/textures/mix/blending_zone_a/blue/tx_arena_adoquines_nml.dds",
+		"height": "data/textures/mix/blending_zone_a/blue/tx_arena_adoquines_hgt.dds",
+		"aocclusion": "data/textures/mix/blending_zone_a/blue/tx_arena_adoquines_ao.dds"
+	}
+}

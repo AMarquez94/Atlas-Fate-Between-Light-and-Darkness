@@ -403,21 +403,21 @@ namespace Particles
             {
                 VEC3 dir(random(-1, 1), random(-1, 1), random(-1, 1));
                 dir.Normalize();
-                return dir * random(0, size.x);
+                return _core->n_shape.shell_emit ? dir  * size.x : dir * random(0, size.x);
             }
 
             case TCoreSystem::TNShape::Circle:
             {
                 VEC3 dir(random(-1, 1), 0, random(-1, 1));
                 dir.Normalize();
-                return dir * random(0, size.x);
+                return _core->n_shape.shell_emit ? dir * size.x : dir * random(0, size.x);
             }
 
             case TCoreSystem::TNShape::Cone:
             {
                 VEC3 dir(random(-1, 1), 0, random(-1, 1));
                 dir.Normalize();
-                return dir * random(0, size.x);
+                return _core->n_shape.shell_emit ? dir * size.x : dir * random(0, size.x);
             }
         }
 
@@ -516,11 +516,13 @@ namespace Particles
             {
                 camera_up = p.velocity;
                 camera_up.Normalize();
-                def_position = camera_pos;
+                def_position = p.velocity.Cross(camera_pos);
+                def_position.Normalize();
+                def_position = p.position + def_position;
             }
 
             MAT44 bb = MAT44::CreateBillboard(pos, def_position, camera_up);
-            MAT44 sc = MAT44::CreateScale(p.size * p.scale * VEC3(length, 1, 1));
+            MAT44 sc = MAT44::CreateScale(p.size * p.scale * VEC3(1, length, 1));
             MAT44 rt = MAT44::CreateFromYawPitchRoll(p.rotation.x, p.rotation.y, p.rotation.z);
 
             int row = p.frame / frameCols;
@@ -528,7 +530,7 @@ namespace Particles
             VEC3 minUV = VEC3(col * frameX, row * frameY, 0);
             VEC3 maxUV = minUV + VEC3(frameX, frameY, _core->n_renderer.softness);
 
-            Particles::TIParticle t_struct = { rt * sc * bb, minUV, maxUV, p.color };
+            Particles::TIParticle t_struct = { sc * rt * bb, minUV, maxUV, p.color };
             particles_instances.push_back(t_struct);
         }
 
@@ -568,7 +570,7 @@ namespace Particles
             camera_up = VEC3(0, 1, 0);
         }
         else if (_core->n_renderer.mode == TCoreSystem::TNRenderer::EMODE::STRETCHED) {
-            camera_pos = camera->getPosition();
+            camera_pos = camera->getLeft();
             camera_up = camera->getUp();
             length = _core->n_renderer.length;
         }
