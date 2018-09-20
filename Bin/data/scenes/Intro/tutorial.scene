@@ -159,7 +159,7 @@
 		}
 	},
 	{
-		"entity": {
+		"xentity": {
 			"name": "SM_SPIRAL1",
 			"transform": {
 				"pos": "0 0 0"
@@ -181,7 +181,7 @@
 		}
 	},
 	{
-		"entity": {
+		"xentity": {
 			"name": "SM_SPIRAL2",
 			"transform": {
 				"pos": "0 0 0"
