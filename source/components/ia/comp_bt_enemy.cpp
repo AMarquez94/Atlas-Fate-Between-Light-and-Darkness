@@ -174,8 +174,8 @@ void TCompAIEnemy::generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc)
         VEC3 lastNavmeshPoint = navmeshPath[navmeshPath.size() - 1];
         float diff = VEC3::Distance(destPos, lastNavmeshPoint);
         float diffY = fabsf(destPos.y - lastNavmeshPoint.y);
-        dbg("Can arrive to destination by its long %s\n", diff < 1.5f ? "YES" : "NO");
-        dbg("Can arrive to destination by its height %s\n", diffY < 0.3f ? "YES" : "NO");
+        //dbg("Can arrive to destination by its long %s\n", diff < 1.5f ? "YES" : "NO");
+        //dbg("Can arrive to destination by its height %s\n", diffY < 0.3f ? "YES" : "NO");
         canArriveToDestination = diff < 1.5f && diffY < 0.3f;
     }
     else {
@@ -208,8 +208,8 @@ void TCompAIEnemy::generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc)
         defaultFilter.data = pxFilterData;
 
         bool sweephit = EnginePhysics.Sweep(mycol->config->getGeometry().any(), initPos + offsetY, mypos->getRotation(), (destPos - initPos).Normalized(), diff, hits, (physx::PxQueryFlag::eSTATIC | physx::PxQueryFlag::eDYNAMIC), defaultFilter);
-        dbg("Can arrive to destination by its sweep - Zero navmesh %s\n", !sweephit ? "YES" : "NO");
-        dbg("Can arrive to destination by its height - Zero navmesh %s\n", diffY < 0.3f ? "YES" : "NO");
+        //dbg("Can arrive to destination by its sweep - Zero navmesh %s\n", !sweephit ? "YES" : "NO");
+        //dbg("Can arrive to destination by its height - Zero navmesh %s\n", diffY < 0.3f ? "YES" : "NO");
 
         bool realHit = false;
 

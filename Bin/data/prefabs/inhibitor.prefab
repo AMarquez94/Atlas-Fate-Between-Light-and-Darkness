@@ -32,6 +32,8 @@
 					"data/particles/def_projectile_flare.particles"
 				]
 			},
+			"audio": {}
+			,
 			"abs_aabb": true,
 			"local_aabb": true
 		}

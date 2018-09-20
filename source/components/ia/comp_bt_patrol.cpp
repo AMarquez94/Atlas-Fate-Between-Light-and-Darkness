@@ -1543,6 +1543,25 @@ void TCompAIPatrol::playStepParticle(bool left)
     }
 }
 
+void TCompAIPatrol::shakeCamera(float max_amount, float max_distance, float duration)
+{
+    VHandles v_tp_cameras = CTagsManager::get().getAllEntitiesByTag(getID("tp_camera"));
+    TCompTransform* my_pos = get<TCompTransform>();
+    CEntity* e_player = EngineEntities.getPlayerHandle();
+    TCompTransform* ppos = e_player->get<TCompTransform>();
+
+    float distance = VEC3::Distance(ppos->getPosition(), my_pos->getPosition());
+    distance = Clamp(distance, 0.f, max_distance);
+
+    TMsgCameraShake msg;
+    msg.amount = lerp(max_amount, 0.f, distance/ max_distance);
+    msg.speed = 140.f;
+    msg.time_to_stop = duration;
+    for (int i = 0; i < v_tp_cameras.size(); i++) {
+        v_tp_cameras[i].sendMsg(msg);
+    }
+}
+
 void TCompAIPatrol::playAnimationByName(const std::string & animationName)
 {
     TCompPatrolAnimator * myAnimator = get<TCompPatrolAnimator>();

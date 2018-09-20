@@ -22,13 +22,13 @@ void TCompAudio::stopAudioComponent()
 {
     for (auto audio : my2DEvents) {
         if (audio.isValid()) {
-            audio.stop(true);
+            audio.stop();
         }
     }
 
     for (auto audio : my3DEvents) {
         if (audio.isValid()) {
-            audio.stop(true);
+            audio.stop();
         }
     }
 }

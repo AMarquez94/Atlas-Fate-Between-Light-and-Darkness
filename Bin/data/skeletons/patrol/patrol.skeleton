@@ -43,6 +43,16 @@
 					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolStepRunTest",
 					"relative_to_player": true
 				}
+			],
+			"callbacks":[
+				{
+					"time_to_call" : 0.05,
+					"function_to_call" : "animation_Patrol_Run_Left"
+				},
+				{
+					"time_to_call" : 0.43,
+					"function_to_call" : "animation_Patrol_Run_Right"
+				}
 			]
 		},
 		{
