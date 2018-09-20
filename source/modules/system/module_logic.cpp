@@ -826,5 +826,7 @@ void toggleButtonCanBePressed(const std::string & buttonName, bool canBePressed)
     }
     CEntity* button = hButton;
     TCompButton* comp_button = button->get<TCompButton>();
-    comp_button->canBePressed = canBePressed;
+	if (comp_button) {
+		comp_button->canBePressed = canBePressed;
+	}
 }

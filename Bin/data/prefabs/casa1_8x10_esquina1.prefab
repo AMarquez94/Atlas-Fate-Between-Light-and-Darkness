@@ -31,13 +31,15 @@
             "data/materials/mtl_casa1.material"
             ,
             "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_suelomadera.material"
           ]
         }
       ]
       ,
       "collider":
       {
-        "shape": "convex"
+        "shape": "mesh"
         ,
         "name": "data/colliders/collider_casa1_8x10_esquina1.collider"
       }

@@ -1,0 +1,10 @@
+{
+	"technique": "pbr_shaft_spotlight.tech",
+	"shadows": false,
+  "textures":
+  {
+    "albedo": "data/textures/volumetricafake_alb.dds"
+    ,
+    "normal": "data/textures/null_normal.dds"
+  }
+}
