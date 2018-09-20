@@ -94,6 +94,10 @@ namespace RigidAnims {
     return anims->sample(track_index, out_key, t);
   }
 
+  bool CController::isEmpty() {
+	  return anims->isEmpty(track_index);
+  }
+
   uint32_t CRigidAnimResource::findTrackIndexByName(const std::string& name) const {
     uint32_t idx = 0;
     for (auto& t : tracks) {
@@ -142,7 +146,13 @@ namespace RigidAnims {
     // keys to interpolate
     if (ut >= 1.0f) {
       // Copy my last key
-	  if (track->num_keys == 0) return false;
+		if (track->num_keys == 0) {
+			
+			out_key->pos = VEC3(0,0,0);
+			out_key->rot = QUAT(0,0,0,1);
+			out_key->scale = 1.0f;
+			return false;
+		}
 
       *out_key = keys[track->first_key + track->num_keys - 1];
       // Return true only when the whole animation has loop
@@ -161,6 +171,11 @@ namespace RigidAnims {
     out_key->rot = QUAT::Slerp(prev_key->rot, next_key->rot, amount_of_next_key);
     out_key->scale = lerp(prev_key->scale, next_key->scale, amount_of_next_key);
     return false;
+  }
+
+  bool CRigidAnimResource::isEmpty(uint32_t track_index) const{
+	  auto track = &tracks[track_index];
+	  return track->num_keys == 0;
   }
 
 }

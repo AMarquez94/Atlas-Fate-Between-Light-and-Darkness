@@ -35,6 +35,7 @@ void TCompRigidAnim::registerAnimation(std::string animationName, std::string tr
 	aux_anim.controller.anims = Resources.get(source)->as<RigidAnims::CRigidAnimResource>();
 	aux_anim.controller.track_index = aux_anim.controller.anims->findTrackIndexByName(aux_anim.controller.track_name);
 	assert(aux_anim.controller.track_index != RigidAnims::CController::invalid_track_index);
+	if (aux_anim.controller.isEmpty()) withoutKeys = true;
 	current_time = 0;
 	aux_anim.speed_factor = speedFactor;
 	aux_anim.loops = loop;
@@ -46,7 +47,7 @@ void TCompRigidAnim::registerAnimation(std::string animationName, std::string tr
 
 void TCompRigidAnim::update(float dt) {
 	
-  if (current_animation_id == -1)
+  if (current_animation_id == -1 || withoutKeys)
 	return;
 
   RigidAnimation current_anim = registeredAnimations[current_animation_id];
@@ -56,9 +57,9 @@ void TCompRigidAnim::update(float dt) {
 
   // Transfer the key data to the comp transform
   TCompTransform* c_trans = get< TCompTransform >();
+
   c_trans->setPosition(k.pos + parent_position);
   c_trans->setRotation(k.rot * parent_rotation);
-
   c_trans->setScale(VEC3(k.scale, k.scale, k.scale));
 
   if (has_finished) {
