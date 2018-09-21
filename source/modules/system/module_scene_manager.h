@@ -18,7 +18,8 @@ public:
     float scene_ambient;
     float scene_tone_mapping;
     float scene_gamma;
-    
+    float scene_shadow_intensity;
+
     std::string name;
     std::string navmesh;
     std::string initial_script_name;

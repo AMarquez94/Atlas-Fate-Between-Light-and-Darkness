@@ -676,7 +676,7 @@ struct TSceneExporter (
 			if dist == undefined then ( dist = obj.baseObject.targetDistance )
 			local int_radius = tan(obj.falloff * .5f) * dist
 			local totalsides = clamp 12 32 ((int_radius * .25f) as integer)
-			local collider = cone radius1:int_radius radius2:0 height:dist heightsegs:1 sides:totalsides
+			local collider = cone radius1:int_radius radius2:0 height:obj.farAttenStart heightsegs:1 sides:totalsides
 			collider.transform = obj.transform
 			collider.position = (obj.position - obj.dir * dist)
 			collider = convertToMesh collider

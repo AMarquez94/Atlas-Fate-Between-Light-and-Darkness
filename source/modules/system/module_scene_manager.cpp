@@ -48,6 +48,7 @@ void CModuleSceneManager::loadJsonScenes(const std::string filepath) {
         scene->scene_ambient = data.value("ambient", cb_globals.global_ambient_adjustment);
         scene->scene_gamma = data.value("gamma", cb_globals.global_gamma_correction_enabled);
         scene->scene_tone_mapping = data.value("tone_mapping", cb_globals.global_tone_mapping_mode);
+        scene->scene_shadow_intensity = data.value("shadow_intensity", cb_globals.global_shadow_intensity);
 
         _scenes.insert(std::pair<std::string, Scene*>(scene_name, scene));
     }
@@ -150,6 +151,7 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
         cb_globals.global_ambient_adjustment = current_scene->scene_ambient;
         cb_globals.global_gamma_correction_enabled = current_scene->scene_gamma;
         cb_globals.global_tone_mapping_mode = current_scene->scene_tone_mapping;
+        cb_globals.global_shadow_intensity = current_scene->scene_shadow_intensity;
 
         cb_globals.updateGPU();
 

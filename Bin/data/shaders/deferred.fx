@@ -123,7 +123,7 @@ float4 compute(float4 iPosition, float2 iUV)
   float4 oAlbedo = txGBufferAlbedos.Load(ss_load_coords);
   //return txAO.Sample(samLinear, iUV);
 	//return txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
-	 //return txSelfIllum.Load(uint3(iPosition.xy,0)).a;
+	//return txSelfIllum.Load(uint3(iPosition.xy,0)).a;
   float4 N_rt = txGBufferNormals.Load(ss_load_coords);
   float4 oNormal = float4(decodeNormal( N_rt.xyz ), 1);
 
