@@ -5,6 +5,7 @@
 #include "entity/entity_parser.h"
 #include "components/comp_render.h"
 #include "components/lighting/comp_light_point.h"
+#include "components/comp_audio.h"
 
 DECL_OBJ_MANAGER("inhibitor", TCompInhibitor);
 
@@ -16,7 +17,7 @@ void TCompInhibitor::onMsgEntityCreated(const TMsgEntityCreated & msg)
     TCompTransform *c_my_trans = get<TCompTransform>();
     c_my_trans->setPosition(c_parent_trans->getPosition() + VEC3(0, 2, 0));
 
-    CEntity* player = getEntityByName("The Player");
+    CEntity* player = EngineEntities.getPlayerHandle();
     TCompTransform* playerPos = player->get<TCompTransform>();
     dest = playerPos->getPosition() + VEC3(0,1.5f,0);
 
@@ -70,7 +71,7 @@ void TCompInhibitor::update(float dt) {
 
 
             if (!playerWasInhibited) {
-                CHandle player = getEntityByName("The Player");
+                CHandle player = EngineEntities.getPlayerHandle();
                 if (player.isValid()) {
                     TMsgInhibitorShot msg;
                     msg.h_sender = CHandle(this).getOwner();
@@ -84,13 +85,16 @@ void TCompInhibitor::update(float dt) {
                 render->visible = false;
                 this->fading = true;
 
+                TCompAudio* my_audio = get<TCompAudio>();
+                my_audio->playEvent("event:/Sounds/Enemies/Patrol/InhibitorExplosion");
+
                 EngineParticles.launchSystem("data/particles/def_projectile_explosion.particles", CHandle(this).getOwner());
                 EngineParticles.launchSystem("data/particles/def_projectile_explosion_trails.particles", CHandle(this).getOwner());
                 EngineParticles.launchSystem("data/particles/def_projectile_explosion_trails_large.particles", CHandle(this).getOwner());
                 execDelayedScript("destroyHandle(" + CHandle(this).getOwner().asString() + ")", 6);
-                CEntity * player = getEntityByName("The Player");
-
-                TCompTransform* mypos = player->get<TCompTransform>();
+                
+                //CEntity * player = EngineEntities.getPlayerHandle();
+                //TCompTransform* mypos = player->get<TCompTransform>();
                 //EngineParticles.launchDynamicSystem("data/particles/def_amb_ground_slam.particles", mypos->getPosition());
                 //EngineInstancing.addDynamicInstance("data/meshes/decal_damage.instanced_mesh", "data/materials/mtl_decal_damage.material", mypos->asMatrix(), 4);
             }

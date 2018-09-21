@@ -813,7 +813,8 @@ struct TSceneExporter (
 		if isCollider obj and  obj.parent != undefined then (return false )
 		if classof obj == QuadPatch then (return exportEntityDecal obj)
 		if classof obj == TriPatch then (return exportEntityGrass obj)
-		
+		if classof obj == xrefobject then (return exportEntityPrefab obj)
+				
 		if (nitems > 0) then fs.writeComma()
 		
 		fs.beginObj()

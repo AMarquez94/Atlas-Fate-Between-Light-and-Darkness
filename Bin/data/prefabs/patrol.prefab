@@ -48,7 +48,8 @@
 			"tags": ["enemy", "patrol"],
 			"ai_patrol": {
 				"bt": "data/bt/patrol.bt"
-			}
+			},
+			"audio":true
 		}
 	}, {
 		"entity": {
@@ -95,6 +96,7 @@
 				"target": "The Player"
 			},
 			"particles": {
+				"on_start": false,
 				"cores":
 				[
 					"data/particles/def_amb_flare_spotlight.particles"
@@ -103,6 +105,34 @@
 			"abs_aabb": true
 			  ,
 			  "local_aabb": true
+		}
+	},  {
+		"entity": {
+			"name": "right_foot",
+			"transform": {
+				"pos": "0 0 0",
+				"lookat": "0 0 0"
+			},
+			"bone_tracker": {
+				"bone": "Bip001 R Foot",
+				"parent": "The Enemy"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},  {
+		"entity": {
+			"name": "left_foot",
+			"transform": {
+				"pos": "0 0 0",
+				"lookat": "0 0 0"
+			},
+			"bone_tracker": {
+				"bone": "Bip001 L Foot",
+				"parent": "The Enemy"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
 		}
 	}
 ]

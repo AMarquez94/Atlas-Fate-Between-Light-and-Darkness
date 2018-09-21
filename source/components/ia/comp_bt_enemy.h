@@ -53,7 +53,7 @@ protected:
     const Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }
     void addWaypoint(const Waypoint& wpt) { _waypoints.push_back(wpt); };
     void getClosestWpt();
-    bool rotateTowardsVec(VEC3 objective, float dt, float rotationSpeed);
+    bool rotateTowardsVec(VEC3 objective, float rotationSpeed, float dt);
     bool isEntityInFov(const std::string& entityToChase, float fov, float maxChaseDistance);
     bool isEntityHidden(CHandle hEntity);
     void generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc = false);

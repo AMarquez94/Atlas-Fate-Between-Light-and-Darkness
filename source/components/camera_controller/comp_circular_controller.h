@@ -22,6 +22,7 @@ class TCompCircularController : public TCompBase {
   float       oscilation_range = 0.f;
 
   void onCreate(const TMsgEntityCreated& msg);
+  void onNewTarget(const TMsgCircularControllerTarget& msg);
 
   DECL_SIBLING_ACCESS();
 

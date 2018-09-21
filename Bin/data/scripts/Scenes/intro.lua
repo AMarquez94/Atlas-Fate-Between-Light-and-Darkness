@@ -7,8 +7,10 @@ function onSceneStart_scene_intro()
 	
 	cinematicsEnabled = false;
 	
+	--#Debug position for start
+	move("The Player", VEC3(-7, 0, -43), VEC3(-7, 0, -44));
+
 	-- First Cinematic --
-	--move("The Player", VEC3(-19, 6, -30), VEC3(-19, 6, -29));
 	if(cinematicsEnabled and not isCheckpointSaved()) then
 		intro_intro_cinematic();
 	end
@@ -127,11 +129,11 @@ function onTriggerExit_SMFallTutorial_player()
 end
 
 function onTriggerEnter_CrouchTutorial_player()
-	moveTutorialPlayer(VEC3(-0.8, 0, -11), VEC3(-0.8, 0, -12), true, "crouch_tutorial");
+	--moveTutorialPlayer(VEC3(-0.8, 0, -11), VEC3(-0.8, 0, -12), true, "crouch_tutorial");
 end
 
 function onTriggerExit_CrouchTutorial_player()
-	moveTutorialPlayer(VEC3(0,-30,0), VEC3(0,0,25), false, "");
+	--moveTutorialPlayer(VEC3(0,-30,0), VEC3(0,0,25), false, "");
 end
 
 function onTriggerEnter_InhibitorTutorial_player()
@@ -154,10 +156,10 @@ end
 
 function onTriggerEnter_AttackTutorial_player()
 	if not show_tutorial_sm_enemy then
-		moveTutorialPlayer(VEC3(-6.3, 0, -49), VEC3(-6.3, 0, -51), true, "attack_tutorial");
+		moveTutorialPlayer(VEC3(-6.3, 0, -49.2), VEC3(-6.3, 0, -51), true, "attack_tutorial");
 		patrol = spawn("tutorial/patrol_tutorial", VEC3(-6.3, 0, -50.5), VEC3(-6.3, 0, -52));
 	else
-		moveTutorialPlayer(VEC3(-6.3, 0, -49), VEC3(-6.3, 0, -51), true, "sm_enemy_tutorial");
+		moveTutorialPlayer(VEC3(-6.3, 0, -49.2), VEC3(-6.3, 0, -51), true, "sm_enemy_tutorial");
 		patrol = spawn("tutorial/patrol_tutorial", VEC3(-6.3, 0, -50.5), VEC3(-6.3, 0, -52));
 	end
 end
@@ -169,7 +171,7 @@ end
 
 function onPatrolStunned_IntroPatrol()
 	show_tutorial_sm_enemy = true;
-	moveTutorialPlayer(VEC3(-6.3, 0, -49), VEC3(-6.3, 0, -51), true, "sm_enemy_tutorial");
+	moveTutorialPlayer(VEC3(-6.3, 0, -49.2), VEC3(-6.3, 0, -51), true, "sm_enemy_tutorial");
 end
 
 function moveTutorialPlayer(position, lookAt, active, tutorial_state)

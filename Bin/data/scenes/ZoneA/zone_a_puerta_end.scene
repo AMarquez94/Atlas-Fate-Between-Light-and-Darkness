@@ -1,0 +1,43 @@
+[
+  {
+    "entity":
+    {
+      "name": "Final_Door"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Final_Door_01",
+	  "prefab": "data/prefabs/puerta_tech.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-36.7 -0.4 -91"
+        ,
+        "rotation": "0 -0.7071 0 0.7071"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Final_Door_02",
+	  "prefab": "data/prefabs/puerta_tech.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-36.7 -0.4 -137.5"
+        ,
+        "rotation": "0 -0.7071 0 0.7071"
+      }
+    }
+  }
+]

@@ -64,6 +64,7 @@ public:
     bool execEvent(Events event, const std::string& params = "", float delay = 0.f);
     void printLog();
     void setPause(bool paused) { this->paused = paused; }
+    void clearDelayedScripts();
 
 private:
 
@@ -87,6 +88,7 @@ CModuleParticles* getParticles();
 TCompTempPlayerController* getPlayerController();
 void execDelayedScript(const std::string& script, float delay);
 void pauseEnemies(bool pause);
+void pauseEnemyEntities(bool pause);
 void deleteEnemies();
 bool isDebug();
 void pauseGame(bool pause);
@@ -116,6 +118,7 @@ void sleep(float time);
 void cinematicModeToggle();
 bool isCheckpointSaved();
 void destroyHandle(unsigned int h);
+void resetPatrolLights();
 
 /* Sounds */
 SoundEvent playEvent(const std::string& name);

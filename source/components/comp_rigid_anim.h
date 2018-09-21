@@ -15,14 +15,15 @@ struct TCompRigidAnim : public TCompBase {
 	RigidAnims::CController controller;
   	float speed_factor = 1.0f;
 	bool loops = false;
-  };
 
+  };
 
   std::vector<RigidAnimation> registeredAnimations;
 
   int					  next_animation_id = -1;
   int					  current_animation_id = -1;
   float                   current_time = 0.f;
+  bool withoutKeys = false;
 
   VEC3					  parent_position;
   QUAT					  parent_rotation;

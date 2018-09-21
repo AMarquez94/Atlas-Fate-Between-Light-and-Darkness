@@ -135,6 +135,7 @@
     <ClCompile Include="components\lighting\comp_emission_controller.cpp" />
     <ClCompile Include="components\lighting\comp_light_point.cpp" />
     <ClCompile Include="components\lighting\comp_light_spot.cpp" />
+    <ClCompile Include="components\object_controller\comp_player_weapon.cpp" />
     <ClCompile Include="components\object_controller\comp_rotator.cpp" />
     <ClCompile Include="components\object_controller\comp_shooter.cpp" />
     <ClCompile Include="components\object_controller\comp_speaker.cpp" />
@@ -176,12 +177,14 @@
     <ClCompile Include="components\postfx\comp_antialiasing.cpp" />
     <ClCompile Include="components\postfx\comp_ssr.cpp" />
     <ClCompile Include="components\postfx\comp_vignette.cpp" />
+    <ClCompile Include="components\skeleton\bone_correction.cpp" />
     <ClCompile Include="components\skeleton\comp_animator.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur.cpp" />
     <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
     <ClCompile Include="components\skeleton\comp_bone_tracker.cpp" />
     <ClCompile Include="components\ia\comp_mimetic_animator.cpp" />
     <ClCompile Include="components\skeleton\comp_skeleton.cpp" />
+    <ClCompile Include="components\skeleton\comp_skel_lookat.cpp" />
     <ClCompile Include="components\skeleton\game_core_skeleton.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="entity\entity.cpp" />
@@ -369,6 +372,7 @@
     <ClInclude Include="components\lighting\comp_emission_controller.h" />
     <ClInclude Include="components\lighting\comp_light_point.h" />
     <ClInclude Include="components\lighting\comp_light_spot.h" />
+    <ClInclude Include="components\object_controller\comp_player_weapon.h" />
     <ClInclude Include="components\object_controller\comp_rotator.h" />
     <ClInclude Include="components\object_controller\comp_shooter.h" />
     <ClInclude Include="components\object_controller\comp_speaker.h" />
@@ -413,11 +417,13 @@
     <ClInclude Include="components\postfx\comp_antialiasing.h" />
     <ClInclude Include="components\postfx\comp_ssr.h" />
     <ClInclude Include="components\postfx\comp_vignette.h" />
+    <ClInclude Include="components\skeleton\bone_correction.h" />
     <ClInclude Include="components\skeleton\cal3d2engine.h" />
     <ClInclude Include="components\skeleton\comp_animator.h" />
     <ClInclude Include="components\skeleton\comp_bone_tracker.h" />
     <ClInclude Include="components\ia\comp_mimetic_animator.h" />
     <ClInclude Include="components\skeleton\comp_skeleton.h" />
+    <ClInclude Include="components\skeleton\comp_skel_lookat.h" />
     <ClInclude Include="components\skeleton\game_core_skeleton.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="entity\common_msgs.h" />

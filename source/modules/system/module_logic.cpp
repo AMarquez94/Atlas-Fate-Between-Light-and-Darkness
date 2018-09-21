@@ -134,6 +134,11 @@ void CModuleLogic::publishClasses() {
         .set("pauseEnemy", &TCompTempPlayerController::pauseEnemy)
         .set("stunEnemy", &TCompTempPlayerController::stunEnemy)
         .set("die", &TCompTempPlayerController::die)
+        .set("getLeftWeapon", &TCompTempPlayerController::getLeftWeapon)
+        .set("getRightWeapon", &TCompTempPlayerController::getRightWeapon)
+        .set("playPlayerStep", &TCompTempPlayerController::playPlayerStep)
+        .set("playLandParticles", &TCompTempPlayerController::playLandParticles)
+        .set("playSMSpirals", &TCompTempPlayerController::playSMSpirals)
         ;
 
     SLB::Class<TCompLightSpot>("SpotLight", m)
@@ -146,7 +151,12 @@ void CModuleLogic::publishClasses() {
 
     SLB::Class<TCompAIPatrol>("AIPatrol", m)
         .comment("This is our wrapper of the patrol controller")
-        .set("launchInhibitor", &TCompAIPatrol::launchInhibitor);
+        .set("launchInhibitor", &TCompAIPatrol::launchInhibitor)
+		.set("attackPlayer", &TCompAIPatrol::attackPlayer)
+        .set("playStepParticle", &TCompAIPatrol::playStepParticle)
+        .set("shakeCamera", &TCompAIPatrol::shakeCamera)
+        .set("playSlamParticle", &TCompAIPatrol::playSlamParticle)
+        ;
 
     SLB::Class<TCompTransform>("Transform", m)
         .comment("This is our wrapper of the transform controller")
@@ -207,6 +217,7 @@ void CModuleLogic::publishClasses() {
     m->set("execScriptDelayed", SLB::FuncCall::create(&execDelayedScript));
     m->set("pauseGame", SLB::FuncCall::create(&pauseGame));
     m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
+    m->set("pauseEnemyEntities", SLB::FuncCall::create(&pauseEnemyEntities));
     m->set("deleteEnemies", SLB::FuncCall::create(&deleteEnemies));
     m->set("isDebug", SLB::FuncCall::create(&isDebug));
 
@@ -256,6 +267,7 @@ void CModuleLogic::publishClasses() {
     m->set("cinematicModeToggle", SLB::FuncCall::create(&cinematicModeToggle));
     m->set("isCheckpointSaved", SLB::FuncCall::create(&isCheckpointSaved));
     m->set("destroyHandle", SLB::FuncCall::create(&destroyHandle));
+    m->set("resetPatrolLights", SLB::FuncCall::create(&resetPatrolLights));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -403,6 +415,11 @@ void CModuleLogic::printLog()
     dbg("End printing log\n");
 }
 
+void CModuleLogic::clearDelayedScripts()
+{
+    delayedScripts.clear();
+}
+
 /* Auxiliar functions */
 CModuleLogic * getLogic() { return EngineLogic.getPointer(); }
 
@@ -411,7 +428,7 @@ CModuleParticles * getParticles() { return EngineParticles.getPointer(); }
 TCompTempPlayerController * getPlayerController()
 {
     TCompTempPlayerController * playerController = nullptr;
-    CEntity* e = getEntityByName("The Player");
+    CEntity* e = EngineEntities.getPlayerHandle();
     if (e) {
         playerController = e->get<TCompTempPlayerController>();
     }
@@ -429,6 +446,15 @@ void pauseEnemies(bool pause) {
 
     std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
     TMsgAIPaused msg;
+    msg.isPaused = pause;
+    for (int i = 0; i < enemies.size(); i++) {
+        enemies[i].sendMsg(msg);
+    }
+}
+
+void pauseEnemyEntities(bool pause) {
+    std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+    TMsgScenePaused msg;
     msg.isPaused = pause;
     for (int i = 0; i < enemies.size(); i++) {
         enemies[i].sendMsg(msg);
@@ -461,38 +487,38 @@ void pauseGame(bool pause) {
 
 void infiniteStamineToggle() {
     TMsgInfiniteStamina msg;
-    CHandle h = getEntityByName("The Player");
+    CHandle h = EngineEntities.getPlayerHandle();
     h.sendMsg(msg);
 }
 
 void immortal() {
-    CHandle h = getEntityByName("The Player");
+    CHandle h = EngineEntities.getPlayerHandle();
     TMsgPlayerImmortal msg;
     h.sendMsg(msg);
 }
 
 void inShadows() {
-    CHandle h = getEntityByName("The Player");
+    CHandle h = EngineEntities.getPlayerHandle();
     TMsgPlayerInShadows msg;
     h.sendMsg(msg);
 }
 
 void speedBoost(const float speed) {
-    CHandle h = getEntityByName("The Player");
+    CHandle h = EngineEntities.getPlayerHandle();
     TMsgSpeedBoost msg;
     msg.speedBoost = speed;
     h.sendMsg(msg);
 }
 
 void playerInvisible() {
-    CHandle h = getEntityByName("The Player");
+    CHandle h = EngineEntities.getPlayerHandle();
     TMsgPlayerInvisible msg;
     h.sendMsg(msg);
 }
 
 void noClipToggle()
 {
-    CHandle h = getEntityByName("The Player");
+    CHandle h = EngineEntities.getPlayerHandle();
     TMsgSystemNoClipToggle msg;
     h.sendMsg(msg);
 }
@@ -580,7 +606,7 @@ void cinematicModeToggle() {
     TMsgPlayerAIEnabled msg;
     msg.state = "cinematic";
     msg.enableAI = true;
-    CHandle h = getEntityByName("The Player");
+    CHandle h = EngineEntities.getPlayerHandle();
     h.sendMsg(msg);
 }
 
@@ -595,6 +621,15 @@ void destroyHandle(unsigned int h)
     CHandle handle;
     handle.fromUnsigned(h);
     handle.destroy();
+}
+
+void resetPatrolLights()
+{
+    VHandles patrols = CTagsManager::get().getAllEntitiesByTag(getID("patrol"));
+    TMsgResetPatrolLights msg;
+    for (int i = 0; i < patrols.size(); i++) {
+        patrols[i].sendMsg(msg);
+    }
 }
 
 SoundEvent playEvent(const std::string & name)
@@ -619,7 +654,7 @@ void setTutorialPlayerState(bool active, const std::string & stateName)
 
 void setCinematicPlayerState(bool active, const std::string & stateName)
 {
-    CHandle h_tutorial = getEntityByName("The Player");
+    CHandle h_tutorial = EngineEntities.getPlayerHandle();
     TMsgPlayerAIEnabled msg;
     msg.state = stateName;
     msg.enableAI = active;
@@ -663,7 +698,7 @@ void postFXToggle() {
 }
 
 void pausePlayerToggle() {
-    CEntity* p = getEntityByName("The Player");
+    CEntity* p = EngineEntities.getPlayerHandle();
     TCompTempPlayerController* player = p->get<TCompTempPlayerController>();
 
     TMsgScenePaused stopPlayer;
@@ -768,7 +803,7 @@ void sendOrderToDrone(const std::string & droneName, VEC3 position)
     CEntity* drone = getEntityByName(droneName);
     TMsgOrderReceived msg;
     msg.position = position;
-    msg.hOrderSource = getEntityByName("The Player");
+    msg.hOrderSource = EngineEntities.getPlayerHandle();
     drone->sendMsg(msg);
 }
 
@@ -791,5 +826,7 @@ void toggleButtonCanBePressed(const std::string & buttonName, bool canBePressed)
     }
     CEntity* button = hButton;
     TCompButton* comp_button = button->get<TCompButton>();
-    comp_button->canBePressed = canBePressed;
+	if (comp_button) {
+		comp_button->canBePressed = canBePressed;
+	}
 }

@@ -110,6 +110,10 @@ class TCompTempPlayerController : public TCompBase
     float timeToPressAgain = 0.7f;
     float timeInhib = 0.0f;
 
+
+    CHandle weaponLeft;
+    CHandle weaponRight;
+    bool weaponsActive = false;
     float attackTimer = 0.f;
     float timeToDeployWeapons = 0.5f;
 
@@ -150,6 +154,7 @@ public:
     bool isMerged;
     bool isGrounded;
     bool canMergeFall;
+    bool isMergeFalling;
     bool pressedMergeFallInTime;
     bool isInhibited;
     bool canAttack;
@@ -165,8 +170,9 @@ public:
 
     /* State functions */
     void walkState(float dt);
+    void fallState(float dt);
+    void mergeFallState(float dt);
     void idleState(float dt);
-    void deadState(float dt);
     void mergeState(float dt);
     void resetState(float dt);
     void exitMergeState(float dt);
@@ -174,6 +180,7 @@ public:
     void movingObjectState(float dt);
     void resetRemoveInhibitor();
     void markObjectAsMoving(bool isBeingMoved, VEC3 newDirection = VEC3::Zero, float speed = 0);
+    void resetMergeFall();
 
     /* Player condition tests */
     const bool concaveTest(void);
@@ -200,8 +207,15 @@ public:
     void pauseEnemy();
     void stunEnemy();
     const bool isStaminaFull() { return stamina / maxStamina != 1.f; };
+    CHandle getLeftWeapon() { return weaponLeft; };
+    CHandle getRightWeapon() { return weaponRight; };
 
-    VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
+    VEC3 getMotionDir(const VEC3 & front, const VEC3 & left, bool default = true);
+
+    /* Lua functions */
+    void playPlayerStep(bool left);
+    void playLandParticles(bool left); 
+    void playSMSpirals();
 
     static void registerMsgs();
 };

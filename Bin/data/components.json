@@ -10,6 +10,7 @@
 	"update": [
 		"circular_controller",
 		"player_tempcontroller",
+		"player_weapon",
 		"camera_thirdperson",
 		"noclip_controller",
 		"ai_patrol",
@@ -23,6 +24,7 @@
 		"shadow_controller",
 		"billboard",
 		"skeleton",
+		"skel_lookat",
 		"bone_tracker",
 		"hierarchy",
 		"local_aabb",

@@ -136,16 +136,16 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
 	bool bal = cal_sm->isTangentsEnabled(0);
 	auto& call_all_tng = cal_sm->getVectorVectorTangentSpace();
 
-	//if (call_all_tng[0].empty() && call_all_tng[1].empty()) {
+	if (call_all_tng[0].empty() && call_all_tng[1].empty()) {
 
-	//	call_all_tng.resize(1);
-	//	call_all_tng[0].resize(num_vtxs);
-	//}
+		call_all_tng.resize(1);
+		call_all_tng[0].resize(num_vtxs);
+	}
 
-	//auto& cal_tan0 = call_all_tng[0];
-	//if (cal_tan0.empty()) cal_tan0 = call_all_tng[1];
+	auto& cal_tan0 = call_all_tng[0];
+	if (cal_tan0.empty()) cal_tan0 = call_all_tng[1];
 	
-    std::vector<VEC4> tangents = computeTangent(cal_sm);
+   // std::vector<VEC4> tangents = computeTangent(cal_sm);
     // Process the vtxs
     for (int vid = 0; vid < num_vtxs; ++vid) {
       CalCoreSubmesh::Vertex& cal_vtx = cal_vtxs[vid];
@@ -157,10 +157,10 @@ bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, con
       // Pos & Normal
       skin_vtx.pos = Cal2DX(cal_vtx.position);
       skin_vtx.normal = Cal2DX(cal_vtx.normal);
-      skin_vtx.tangent.x = tangents[vid].x;//cal_tan0[vid].tangent.x;
-      skin_vtx.tangent.y = tangents[vid].y;// cal_tan0[vid].tangent.y;
-      skin_vtx.tangent.z = tangents[vid].z;// cal_tan0[vid].tangent.z;
-      skin_vtx.tangent.w = tangents[vid].w;// cal_tan0[vid].crossFactor;
+      skin_vtx.tangent.x = cal_tan0[vid].tangent.x;
+      skin_vtx.tangent.y = cal_tan0[vid].tangent.y;
+      skin_vtx.tangent.z = cal_tan0[vid].tangent.z;
+      skin_vtx.tangent.w = cal_tan0[vid].crossFactor;
 
       // Texture coords
       skin_vtx.uv.x = cal_uvs0[vid].u;
@@ -367,7 +367,7 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
     std::string caf = root_path + anim_name + ".caf";
     int anim_id = loadCoreAnimation(caf, anim_name);
     if (anim_id < 0)
-      return false;
+      continue;
 
 	// read other metadata associated to the anim
 	if (anim.count("callbacks")) {
@@ -377,6 +377,7 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
 			float timeToCall = it.value().value("time_to_call", 0.0f);
 			std::string function_to_call = it.value().value("function_to_call", "");
 			new_callback->luaFunction = function_to_call;
+			new_callback->animationName = anim_name;
 			CalCoreAnimation *core_anim = getCoreAnimation(anim_id);
 			core_anim->registerCallback(new_callback, timeToCall, false);
 		}
@@ -386,6 +387,7 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
 
 		AnimationCallback *new_callback = new AnimationCallback();
 		new_callback->luaFunction = "";
+		new_callback->animationName = anim_name;
 		CalCoreAnimation *core_anim = getCoreAnimation(anim_id);
 		core_anim->registerCallback(new_callback, 9999999.99f, true);		
 	}
@@ -407,6 +409,20 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
   // Array of bone ids to debug (auto conversion from array of json to array of ints)
   if(json["bone_ids_to_debug"].is_array())
     bone_ids_to_debug = json["bone_ids_to_debug"].get< std::vector< int > >();
+
+  if (json.count("lookat_corrections")) {
+
+	  auto& jcorrs = json["lookat_corrections"];
+	  assert(jcorrs.is_array());
+	  for (int i = 0; i < jcorrs.size();i++) {
+		  TBoneCorrection c;
+		  c.load(jcorrs[i]);
+
+		  c.bone_id = getCoreSkeleton()->getCoreBoneId(c.bone_name);
+		  lookat_corrections.push_back(c);
+	  }
+
+  }
 
   return true;
 }

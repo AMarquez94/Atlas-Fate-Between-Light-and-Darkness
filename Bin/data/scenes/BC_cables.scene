@@ -1,0 +1,379 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_cables"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_cables"
+      ,
+      "transform":
+      {
+        "pos": "3.41876 8.04115 -359.247"
+        ,
+        "rotation": "-0.575106 0.516413 -0.0970526 -0.627018"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_cables.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica001"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-29.7919 38.4675 -396.209"
+        ,
+        "rotation": "0.0 -0.999048 0.0 -0.0436297"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica002"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-19.0945 14.9254 -340.349"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.05659e-05"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica003"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-32.1786 31.1427 -332.107"
+        ,
+        "rotation": "0.0 -0.923884 0.0 0.382674"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica004"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-30.9749 33.8729 -329.782"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.05659e-05"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica005"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "38.7588 33.1641 -327.955"
+        ,
+        "rotation": "0.0 1.07288e-05 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica006"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "39.0041 33.1641 -329.057"
+        ,
+        "rotation": "0.0 0.382693 0.0 -0.923875"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica007"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "43.1284 33.7904 -395.092"
+        ,
+        "rotation": "0.0 -0.707099 0.0 -0.707114"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica008"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "40.9756 34.2103 -397.636"
+        ,
+        "rotation": "0.0 1.07288e-05 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica009"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "25.1539 33.6243 -404.728"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.05659e-05"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica010"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-1.47505 54.2796 -421.689"
+        ,
+        "rotation": "0.0 -0.537291 0.0 -0.843397"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajafusibles001"
+      ,
+      "prefab": "data/prefabs/cajafusibles.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-19.4727 10.6867 -330.947"
+        ,
+        "rotation": "5.47571e-07 -0.984808 0.173648 -2.95732e-06"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajafusibles002"
+      ,
+      "prefab": "data/prefabs/cajafusibles.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.8567 10.6867 -330.325"
+        ,
+        "rotation": "-0.122788 -0.696362 0.122788 -0.696366"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajafusibles003"
+      ,
+      "prefab": "data/prefabs/cajafusibles.prefab"
+      ,
+      "transform":
+      {
+        "pos": "34.9648 10.6867 -330.325"
+        ,
+        "rotation": "-0.122788 0.696366 -0.122788 -0.696362"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajafusibles004"
+      ,
+      "prefab": "data/prefabs/cajafusibles.prefab"
+      ,
+      "transform":
+      {
+        "pos": "28.7676 10.9277 -331.014"
+        ,
+        "rotation": "5.44952e-07 -0.984808 0.173648 -3.07791e-06"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajafusibles005"
+      ,
+      "prefab": "data/prefabs/cajafusibles.prefab"
+      ,
+      "transform":
+      {
+        "pos": "28.7925 10.9541 -384.697"
+        ,
+        "rotation": "-0.173648 3.23731e-06 5.10738e-07 -0.984808"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajafusibles006"
+      ,
+      "prefab": "data/prefabs/cajafusibles.prefab"
+      ,
+      "transform":
+      {
+        "pos": "34.9174 10.7641 -385.169"
+        ,
+        "rotation": "-0.122788 0.696367 -0.122788 -0.696362"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajafusibles007"
+      ,
+      "prefab": "data/prefabs/cajafusibles.prefab"
+      ,
+      "transform":
+      {
+        "pos": "35.0046 10.5441 -385.61"
+        ,
+        "rotation": "-0.122788 0.696367 -0.122788 -0.696362"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajafusibles008"
+      ,
+      "prefab": "data/prefabs/cajafusibles.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.8273 10.6072 -385.35"
+        ,
+        "rotation": "-0.122788 -0.696362 0.122788 -0.696367"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajafusibles009"
+      ,
+      "prefab": "data/prefabs/cajafusibles.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-19.2194 10.5206 -384.776"
+        ,
+        "rotation": "-0.173648 3.46699e-06 4.40283e-07 -0.984808"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajafusibles010"
+      ,
+      "prefab": "data/prefabs/cajafusibles.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-19.6829 10.7248 -384.776"
+        ,
+        "rotation": "-0.173648 3.46698e-06 4.40244e-07 -0.984808"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_mastilelectrico001"
+      ,
+      "prefab": "data/prefabs/mastilelectrico.prefab"
+      ,
+      "transform":
+      {
+        "pos": "4.37712 24.552 -388.788"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+]

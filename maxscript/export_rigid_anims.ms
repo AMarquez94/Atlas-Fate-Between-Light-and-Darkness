@@ -17,7 +17,7 @@ struct TRigidAnimKey (
 
 struct TRigidAnimExporter (
 
-	project_path = "D:/DeepShadows/Bin/",
+	project_path = "D:/DeepShadows/bin/",
 	base_path = "data/",
 	anims_path = base_path + "rigid_anims/",
 	
@@ -185,7 +185,7 @@ struct TRigidAnimExporter (
 )
 
 exporter = TRigidAnimExporter()
-exporter.exportAll (#($BC_fuente_anillo_ext_low,$BC_fuente_anillo_int_low))
+exporter.exportAll ($* as array)
 
 
 

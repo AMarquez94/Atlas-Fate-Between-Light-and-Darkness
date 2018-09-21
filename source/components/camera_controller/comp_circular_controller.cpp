@@ -21,15 +21,20 @@ void TCompCircularController::debugInMenu() {
 }
 
 void TCompCircularController::onCreate(const TMsgEntityCreated& msg) {
-
-    dbg("Hi, I'm TCompCircularController at onCreate\n");
     TCompTransform *c_my_transform = get<TCompTransform>();
     curr_height = c_my_transform->getPosition().y;
+}
+
+void TCompCircularController::onNewTarget(const TMsgCircularControllerTarget & msg)
+{
+    h_target = msg.new_target;
+    CEntity* e_test = h_target;
 }
 
 void TCompCircularController::registerMsgs() {
 
     DECL_MSG(TCompCircularController, TMsgEntityCreated, onCreate);
+    DECL_MSG(TCompCircularController, TMsgCircularControllerTarget, onNewTarget);
 }
 
 void TCompCircularController::load(const json& j, TEntityParseContext& ctx) {

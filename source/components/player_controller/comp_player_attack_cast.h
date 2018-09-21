@@ -15,7 +15,7 @@ public:
 
   const std::vector<CHandle> getEnemiesInRange();
   const bool canAttackEnemiesInRange(CHandle& closestEnemyToAttack = CHandle());
-  CHandle closestEnemyToMerge();
+  CHandle closestEnemyToMerge(bool goingToMerge);
 
   const std::vector<CHandle> getMovableObjectsInRange();
   CHandle getClosestMovableObjectInRange();

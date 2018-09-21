@@ -25,10 +25,10 @@ void TCompPatrolAnimator::debugInMenu() {
 	if (ImGui::SmallButton("Die")) {
 		playAnimation(EAnimation::DIE, speed);
 	}
-	if (ImGui::SmallButton("Attack")) {
-		playAnimation(EAnimation::ATTACK, speed);
+	if (ImGui::SmallButton("proves")) {
+		playAnimation(EAnimation::TURN_RIGHT, speed);
 	}
-
+	//playAnimation(EAnimation::BEING_REPARED, speed);
 	ImGui::DragFloat("Delta Movement", &delta_movement, 0.01f, 0, 1.f);
 	TCompSkeleton * compSkeleton = get<TCompSkeleton>();
 	compSkeleton->setCyclicAnimationWeight(delta_movement);
@@ -55,6 +55,17 @@ void TCompPatrolAnimator::initializeAnimations() {
 		"",
 		1.0f,
 		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::WALK_FAST,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"run",
+		"",
+		1.0f,
+		0.7f,
 		false
 	);
 
@@ -100,6 +111,64 @@ void TCompPatrolAnimator::initializeAnimations() {
 		1.0f,
 		1.0f,
 		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::TURN_RIGHT,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"turn_right",
+		"",
+		1.0f,
+		1.0f,
+		false,
+		true
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::TURN_LEFT,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"turn_right",
+		"",
+		1.0f,
+		1.0f,
+		false,
+		true
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::RUN,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"run",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::SHOOT_INHIBITOR,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"inhibidor",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::BEING_REPARED,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"pruebas",
+		"",
+		1.0f,
+		1.0f,
+		false,
+		true
 	);
 
 }

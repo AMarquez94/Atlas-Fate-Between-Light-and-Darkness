@@ -1,0 +1,25 @@
+{
+  "shadows": true
+  ,
+  "technique": "pbr_hologram_sw_playersolid.tech"
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_cartelholo_alb.dds"
+    ,
+    "metallic": "data/textures/tx_cartelholo_met.dds"
+    ,
+    "roughness": "data/textures/tx_cartelholo_rgh.dds"
+    ,
+    "normal": "data/textures/tx_cartelholo_nml.dds"
+    ,
+    "height": "data/textures/tx_cartelholo_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_cartelholo_emi.dds"
+    ,
+    "aocclusion": "data/textures/tx_cartelholo_ao.dds"
+  }
+  ,
+	"self_color": "0.0 1.0 1.0 1.0",
+	"emission" : 12
+}

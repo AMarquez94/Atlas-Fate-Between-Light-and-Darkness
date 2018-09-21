@@ -35,7 +35,7 @@ void TCompDynamicCapsule::update(float dt) {
         myPos->setPosition(myPos->getPosition() + dir * speed * dt);
         
         elapsed_time += dt;
-        float yaw, pitch, roll;
+        float yaw, pitch;
         //myPos->getYawPitchRoll(&yaw, &pitch, &roll);
         //myPos->setYawPitchRoll(yaw, pitch + sin(elapsed_time) * 0.1, roll);
 

@@ -7,8 +7,8 @@
 			"prefab": "data/prefabs/patrol.prefab",
 			"name": "Patrol 1",
 			"transform": {
-				"pos": "-77 0 -86.25",
-				"lookat": "-77 0 -87"
+				"pos": "-77.8 0 -86.25",
+				"lookat": "-77.8 0 -87"
 			},
 			"ai_patrol": {
 				"startLightsOn": true
@@ -79,7 +79,19 @@
 						"lookAt": "-1 0 0",
 						"minTime": 7
 					}
-				]
+				],
+				"argAct": [{
+					"nodeName": "goToWpt",
+					"actionName": "actionGoToWpt",
+					"variableName": "walkingFast",
+					"newValue": true
+				},
+				{
+					"nodeName": "goToWpt",
+					"actionName": "actionGoToWpt",
+					"variableName": "speed",
+					"newValue": 3.5
+				}]
 			}
 		}
 	},  {
@@ -117,7 +129,7 @@
 			}
 		}
 	},  {
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/mimetic.prefab",
 			"name": "Mimetic 1",
 			"transform": {

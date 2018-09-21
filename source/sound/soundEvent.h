@@ -27,7 +27,6 @@ public:
     void setPitch(float pitch);
     void setParameter(const std::string& name, float value);
 
-
     bool getPaused() const;
     float getVolume() const;
     float getPitch() const;
@@ -37,6 +36,8 @@ public:
     void set3DAttributes(const CTransform& transform, const VEC3& vel = VEC3::Zero);
     void set3DAttributes(const VEC3& pos, const VEC3& front, const VEC3& up, const VEC3& vel = VEC3::Zero);
     CTransform get3DAttributes();
+
+    bool isPlaying();
 
     bool isRelativeToCameraOnly() const;
     void setIsRelativeToCameraOnly(bool relativeToCameraOnly);

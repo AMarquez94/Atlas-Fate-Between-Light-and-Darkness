@@ -142,7 +142,6 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
 		/* TODO: Comprobar que se sigue en la misma escena */
 		gameManager.loadCheckpoint();
         Engine.getLogic().execEvent(EngineLogic.SCENE_START, current_scene->name);
-
         cb_globals.global_fog_color = current_scene->ground_fog;
         cb_globals.global_fog_env_color = current_scene->env_fog;
         cb_globals.global_fog_density = current_scene->env_fog_density;
@@ -170,7 +169,8 @@ bool CModuleSceneManager::unLoadActiveScene() {
     // Warning: persistent data will need to avoid deletion
     if (_activeScene != nullptr) {
 
-        Engine.getLogic().execEvent(EngineLogic.SCENE_END, _activeScene->name);
+        EngineLogic.clearDelayedScripts();
+        EngineLogic.execEvent(EngineLogic.SCENE_END, _activeScene->name);
 
         EngineEntities.destroyAllEntities();
         EngineCameras.deleteAllCameras();

@@ -43,6 +43,32 @@ void CModuleSound::registerAllSoundClipsInPath(char * path)
     //}
 }
 
+const std::string CModuleSound::getPlayingState(FMOD::Studio::EventInstance* ei)
+{
+    FMOD_STUDIO_PLAYBACK_STATE ei_state;
+    ei->getPlaybackState(&ei_state);
+
+    std::string name;
+    switch (ei_state) {
+    case FMOD_STUDIO_PLAYBACK_PLAYING:
+        name = "Playing";
+        break;
+    case FMOD_STUDIO_PLAYBACK_SUSTAINING:
+        name = "Sustaining";
+        break;
+    case FMOD_STUDIO_PLAYBACK_STOPPED:
+        name = "Stopped";
+        break;
+    case FMOD_STUDIO_PLAYBACK_STARTING:
+        name = "Starting";
+        break;
+    case FMOD_STUDIO_PLAYBACK_STOPPING:
+        name = "Stopping";
+        break;
+    }
+    return name;
+}
+
 unsigned int CModuleSound::sNextID = 0;
 
 // Just adding an ambient sound to the game for milestone 2
@@ -52,7 +78,7 @@ bool CModuleSound::start() {
 
     result = FMOD::Studio::System::create(&_system);
     assert(result == FMOD_OK);
-    result = _system->initialize(1024, FMOD_STUDIO_INIT_NORMAL, FMOD_INIT_3D_RIGHTHANDED, _extradriverdata);
+    result = _system->initialize(1024, FMOD_STUDIO_INIT_LIVEUPDATE, FMOD_INIT_3D_RIGHTHANDED, _extradriverdata);
     assert(result == FMOD_OK);
     if (result != FMOD_OK) {
         fatal("Failed to initialize FMOD system %s\n", FMOD_ErrorString(result));
@@ -141,6 +167,8 @@ void CModuleSound::render()
                 ei.second->getDescription(&mydes);
                 mydes->getPath(path, 512, nullptr);
                 ImGui::Text(path);
+                ImGui::SameLine();
+                ImGui::Text(" - %s", getPlayingState(ei.second).c_str());
                 ImGui::SameLine();
                 if (ImGui::Button(("Stop " + std::to_string(index)).c_str())) {
                     SoundEvent* test;   //TODO: Not working atm

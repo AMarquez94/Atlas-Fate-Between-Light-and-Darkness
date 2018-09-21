@@ -9,7 +9,7 @@
 			"gamma": 1,
 			"tone_mapping": 1,
 			"shadow_intensity": 0,
-			"env_fog": "0.0117 0.015 0.062",
+			"env_fog": "0.0 0.0 0.023",
 			"ground_fog": "0.47 0.51 0.84",
 			"env_fog_density": 0.272,
 			"ground_fog_density": 1
@@ -33,16 +33,21 @@
 			"data/scenes/intro_light2.scene",
 			"data/scenes/Intro/intro_puentes_chapa.scene",
 			"data/scenes/intro_andamios.scene",
+			"data/scenes/intro_basilica.scene",
 			"data/scenes/intro_tejados.scene",
 			"data/scenes/intro_valla.scene",
 			"data/scenes/intro_colliders_valla.scene",
-			"data/scenes/intro_prueba_neones.scene",
+			"data/scenes/neones.scene",
+
+			"data/scenes/intro_cables.scene",
 
 			"data/scenes/intro_tubo_capsulas.scene",
-			
 			"data/scenes/intro_farolas.scene",
-
 			"data/scenes/intro_patrol_atrapado.scene",
+			"data/scenes/intro_edificios_segunda_1.scene",
+			"data/scenes/intro_edificios_segunda_2.scene",
+
+			"data/scenes/intro_carteles.scene",
 
 			"data/scenes/intro_pozo.scene",
 			"data/scenes/intro_barra_capsulas.scene",
@@ -58,7 +63,9 @@
 			"data/scenes/Intro/intro_checkpoints.scene",
 			"data/scenes/Intro/intro_trigger_kill.scene",
 			"data/scenes/Intro/intro_buttons.scene",
-			"data/scenes/Intro/intro_grass.scene"
+			"data/scenes/Intro/intro_particles.scene",
+			"data/scenes/Intro/intro_grass.scene",
+			"data/scenes/Intro/intro_puerta_end.scene"
 		]
 	},
 	"scene_map_intro": {
@@ -70,7 +77,7 @@
 			"gamma": 1,
 			"tone_mapping": 1,
 			"shadow_intensity": 0,
-			"env_fog": "0.0117 0.015 0.062",
+			"env_fog": "0.0 0.0 0.023",
 			"ground_fog": "0.47 0.51 0.84",
 			"env_fog_density": 0.272,
 			"ground_fog_density": 1
@@ -100,7 +107,7 @@
 			"gamma": 1,
 			"tone_mapping": 1,
 			"shadow_intensity": 0,
-			"env_fog": "0.0117 0.015 0.062",
+			"env_fog": "0.0 0.0 0.023",
 			"ground_fog": "0.47 0.51 0.84",
 			"env_fog_density": 0.272,
 			"ground_fog_density": 1
@@ -116,7 +123,6 @@
 			"data/scenes/ZoneA/zone_a_columnas.scene",
 			"data/scenes/ZoneA/zone_a_colliders_salientes.scene",
 			"data/scenes/zone_a_barandillas.scene",
-
 			"data/scenes/zona_a_salientes.scene",
 			"data/scenes/zona_a_muralla.scene",
 			"data/scenes/zona_a_valla_torre.scene",
@@ -133,16 +139,19 @@
 			"data/scenes/zona_a_colliders_barandillas.scene",
 			"data/scenes/zone_a_colliders_valla_luz.scene",
 			"data/scenes/zone_a_test.scene",
+			"data/scenes/zone_a_edificios_segunda.scene",
+			"data/scenes/zone_a_neones.scene",
 
 			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene",
 			"data/scenes/ZoneA/test_instancing.scene",
 			"data/scenes/ZoneA/zone_a_particles.scene",
 			"data/scenes/ZoneA/buttons.scene",
-			"data/scenes/ZoneA/luces.scene",
-			"data/scenes/ZoneA/neones.scene",
+			
 			"data/scenes/ZoneA/carteles.scene",
-			"data/scenes/mapa_decals.scene"
+			"data/scenes/mapa_decals.scene",
+			"data/scenes/ZoneA/_mimetic_PRUEBAS.scene",
+			"data/scenes/ZoneA/zone_a_puerta_end.scene"
 		]
 	},
 	"scene_coliseo": {
@@ -153,7 +162,7 @@
 			"gamma": 1,
 			"tone_mapping": 1,
 			"shadow_intensity": 0,
-			"env_fog": "0.0117 0.015 0.062",
+			"env_fog": "0.0 0.0 0.023",
 			"ground_fog": "0.47 0.51 0.84",
 			"env_fog_density": 0.272,
 			"ground_fog_density": 1
@@ -175,7 +184,7 @@
 			"gamma": 1,
 			"tone_mapping": 1,
 			"shadow_intensity": 0,
-			"env_fog": "0.0117 0.015 0.062",
+			"env_fog": "0.0 0.0 0.023",
 			"ground_fog": "0.47 0.51 0.84",
 			"env_fog_density": 0.272,
 			"ground_fog_density": 1
@@ -192,13 +201,13 @@
 	"scene_basilic_courtyard": {
 		"static_data": {
 			"initial_script": "basilic_courtyard",
-			"navmesh": "data/navmeshes/basilic_courtyard_navmesh.bin",
+			"navmesh": "data/navmeshes/basilic_courtyard.bin",
 			"exposure": 1.57,
 			"ambient": 0.1,
 			"gamma": 1,
 			"tone_mapping": 1,
 			"shadow_intensity": 0,
-			"env_fog": "0.0117 0.015 0.062",
+			"env_fog": "0.0 0.0 0.023",
 			"ground_fog": "0.47 0.51 0.84",
 			"env_fog_density": 0.272,
 			"ground_fog_density": 1
@@ -220,18 +229,17 @@
 			"data/scenes/BC_coberturas.scene",
 			"data/scenes/BC_containers.scene",
 			"data/scenes/BC_props.scene",
-
+            "data/scenes/BC_cables.scene",
+			"data/scenes/BC_tubos.scene",
+			"data/scenes/BC_neones.scene",
 			"data/scenes/BC_capsulas.scene",
 
 			"data/scenes/BC_maderas_whitebox.scene",
 
 			"data/scenes/Basilic_courtyard/BC_fuente.scene",
-			"data/scenes/suelo_mezquita.scene"
-
-
-
-
-			
+			"data/scenes/suelo_mezquita.scene",
+			"data/scenes/Basilic_courtyard/almibars.scene",
+			"data/scenes/Basilic_courtyard/BC_face_cartel.scene"
 		]
 	},
 	"scene_basilic_interior": {
@@ -243,7 +251,7 @@
 			"gamma": 1,
 			"tone_mapping": 1,
 			"shadow_intensity": 0,
-			"env_fog": "0.0117 0.015 0.062",
+			"env_fog": "0.0 0.0 0.023",
 			"ground_fog": "0.47 0.51 0.84",
 			"env_fog_density": 0.272,
 			"ground_fog_density": 1

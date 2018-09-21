@@ -1,0 +1,550 @@
+[
+  {
+    "entity":
+    {
+      "name": "puerta_tech"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      },
+      "xanimated_object_controller":{
+      	"reference_names":[
+      		{
+      		"get_names_auto" : true
+      		}
+      	],
+      	"animations":[
+      		{
+      			"name":"open",
+      			"src" : "data/rigid_anims/puerta_tech.anims",
+      			"loops" : false
+
+      		}
+      	]
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "framedoor"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.4 0.0"
+      },
+      "xrigid_anim":true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/framedoor.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "doorhandle"
+      ,
+      "transform":
+      {
+        "pos": "-2.3 2.10424 -1.12088"
+      },
+      "xrigid_anim":true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/doorhandle.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "doorhandle_chain01"
+      ,
+      "transform":
+      {
+        "pos": "-2.62664 2.28747 -1.10152"
+      },
+      "xrigid_anim":true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/doorhandle_chain01.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "doorhandle_chain02"
+      ,
+      "transform":
+      {
+        "pos": "-1.97336 2.28747 -1.10152"
+      },
+      "xrigid_anim":true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/doorhandle_chain02.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "doorhandle_chain03"
+      ,
+      "transform":
+      {
+        "pos": "-2.62664 1.90405 -1.10152"
+      },
+      "xrigid_anim":true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/doorhandle_chain03.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "doorhandle_chain04"
+      ,
+      "transform":
+      {
+        "pos": "-1.97336 1.90405 -1.10152"
+      },
+      "xrigid_anim":true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/doorhandle_chain04.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "doortop_chain01"
+      ,
+      "transform":
+      {
+        "pos": "-3.4 2.23809 -1.16768"
+      },
+      "xrigid_anim":true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/doortop_chain01.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "doortop_chain02"
+      ,
+      "transform":
+      {
+        "pos": "-1.0 2.23809 -1.16768"
+      },
+      "xrigid_anim":true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/doortop_chain02.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "doortop_chain03"
+      ,
+      "transform":
+      {
+        "pos": "-0.3 2.23809 -1.16768"
+      },
+      "xrigid_anim":true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/doortop_chain03.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "doortop_chain04"
+      ,
+      "transform":
+      {
+        "pos": "0.4 2.23809 -1.16768"
+      },
+      "xrigid_anim":true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/doortop_chain04.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "doortop_chain05"
+      ,
+      "transform":
+      {
+        "pos": "1.1 2.23809 -1.16768"
+      },
+      "xrigid_anim":true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/doortop_chain05.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "doortop_chain06"
+      ,
+      "transform":
+      {
+        "pos": "-1.0 1.6 -1.16768"
+      },
+      "xrigid_anim":true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/doortop_chain06.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "doortop_chain07"
+      ,
+      "transform":
+      {
+        "pos": "-0.3 1.6 -1.16768"
+      },
+      "xrigid_anim":true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/doortop_chain07.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "doortop_chain08"
+      ,
+      "transform":
+      {
+        "pos": "0.4 1.6 -1.16768"
+      },
+      "xrigid_anim":true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/doortop_chain08.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "doortop_chain09"
+      ,
+      "transform":
+      {
+        "pos": "1.1 1.6 -1.16768"
+      },
+      "xrigid_anim":true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/doortop_chain09.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "doortop_chain05"
+      ,
+      "transform":
+      {
+        "pos": "-3.4 1.6 -1.16768"
+      },
+      "xrigid_anim":true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/doortop_chain05.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "doortop"
+      ,
+      "transform":
+      {
+        "pos": "0.0 3.6 0.0"
+      },
+      "xrigid_anim":true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/doortop.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "doorbottom"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.4 0.0"
+      },
+      "xrigid_anim":true
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/doorbottom.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_puertatech.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

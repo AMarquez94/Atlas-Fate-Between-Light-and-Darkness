@@ -78,7 +78,7 @@ void TCompCameraFlyover::registerMsgs() {
 
 void TCompCameraFlyover::onMsgActivatedMyself(const TMsgCameraActivated & msg) {
 
-	CEntity * player = getEntityByName("The Player");
+	CEntity * player = EngineEntities.getPlayerHandle();
 	TCompTransform* c_player_transform = player->get<TCompTransform>();
 	TCompTransform* c_transform = get<TCompTransform>();
 	c_transform->setPosition(c_player_transform->getPosition() + Vector3::Up * 2.0f);

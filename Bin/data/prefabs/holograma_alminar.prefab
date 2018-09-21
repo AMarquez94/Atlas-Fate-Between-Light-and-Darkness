@@ -1,0 +1,33 @@
+[
+  {
+    "entity":
+    {
+      "name": "holograma_alminar"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+	  ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_alminar_atlas_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/characters/mtl_player_main_hologram_solid.material"
+          ]
+        }
+      ]
+	  ,
+	  "rotator":{
+		"speed": 0.7
+	  }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

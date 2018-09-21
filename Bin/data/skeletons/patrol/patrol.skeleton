@@ -1,10 +1,119 @@
 {
-	"name":"patrol",
-	"anims" : [
-		{ "name" : "idle" },
-		{ "name" : "walk" },
-		{ "name" : "die" },
-		{ "name" : "dead" },
-		{ "name" : "attack" }
+	"name": "patrol",
+	"anims": [
+		{
+			"name": "idle"
+		},
+		{
+			"name": "walk",
+			"audio_callbacks": [{
+					"time_to_call": 0.25,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolStep",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 1.45,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolStep",
+					"relative_to_player": true
+				}
+			],
+			"callbacks":[
+				{
+					"time_to_call" : 1,
+					"function_to_call" : "animation_Patrol_Walk_Left"
+				},
+				{
+					"time_to_call" : 2.2,
+					"function_to_call" : "animation_Patrol_Walk_Right"
+				}
+			]
+		},
+		{
+			"name": "walk_fast"
+		},
+		{
+			"name": "run",
+			"audio_callbacks": [{
+					"time_to_call": 0.05,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolStepRunTest",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 0.43,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolStepRunTest",
+					"relative_to_player": true
+				}
+			],
+			"callbacks":[
+				{
+					"time_to_call" : 0.05,
+					"function_to_call" : "animation_Patrol_Run_Left"
+				},
+				{
+					"time_to_call" : 0.43,
+					"function_to_call" : "animation_Patrol_Run_Right"
+				}
+			]
+		},
+		{
+			"name": "pruebas"
+		},
+		{
+			"name": "die",
+			"audio_callbacks": [{
+					"time_to_call": 0,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolDead",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 0,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolShutdown",
+					"relative_to_player": true
+				}
+			]
+		},
+		{
+			"name": "dead"
+		},
+		{
+			"name": "attack",
+			"animation_completed_callback": true,
+			"callbacks":[
+				{
+					"time_to_call" : 1.2,
+					"function_to_call" : "animation_Attack"
+				}
+			],
+			"audio_callbacks": [{
+					"time_to_call": 0.1,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolAttack",
+					"relative_to_player": true
+				}
+			]
+		},
+		{
+			"name": "inhibidor",
+			"animation_completed_callback": true,
+			"callbacks":[
+				{
+					"time_to_call" : 0.5,
+					"function_to_call" : "animation_LaunchInhibitor"
+				}
+			],
+			"audio_callbacks": [{
+					"time_to_call": 0,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolInhibitorTest",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 0.66,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolLowStep",
+					"relative_to_player": true
+				}
+			]
+		},
+		{
+			"name": "turn_right"
+		}
 	]
 }
