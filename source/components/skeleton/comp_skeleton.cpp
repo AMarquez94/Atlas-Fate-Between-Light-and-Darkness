@@ -36,6 +36,7 @@ void TCompSkeleton::registerMsgs()
 	DECL_MSG(TCompSkeleton, TMsgEntityCreated, onMsgEntityCreated);
 	DECL_MSG(TCompSkeleton, TMsgAnimationCallback, onMsgAnimationCallback);
 	DECL_MSG(TCompSkeleton, TMsgAnimationCompleted, onMsgAnimationCompleted);
+	DECL_MSG(TCompSkeleton, TMsgScenePaused, onMsgSceneStop);
 }
 
 // --------------------------------------------------------------------
@@ -115,8 +116,8 @@ void TCompSkeleton::update(float dt) {
         VEC3 pos = tmx->getPosition();
         QUAT rot = tmx->getRotation();
         model->getMixer()->setWorldTransform(DX2Cal(pos), DX2Cal(rot));
-		
-        model->update(dt);
+		if(!this->paused)
+			model->update(dt);
     }
 
 	if (movingRoot) {
@@ -590,4 +591,9 @@ void TCompSkeleton::onMsgAnimationCallback(const TMsgAnimationCallback& msg) {
 
 void TCompSkeleton::onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) {
 	
+}
+
+void TCompSkeleton::onMsgSceneStop(const TMsgScenePaused& msg) {
+	TCompSkeleton* e = CHandle(this);
+	e->paused = msg.isPaused;
 }

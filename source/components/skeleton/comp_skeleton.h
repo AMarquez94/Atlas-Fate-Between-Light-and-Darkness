@@ -40,7 +40,8 @@ struct TCompSkeleton : public TCompBase {
 	void onMsgEntityCreated(const TMsgEntityCreated& msg);
 	void onMsgAnimationCallback(const TMsgAnimationCallback& msg);
 	void onMsgAnimationCompleted(const TMsgAnimationCompleted& msg);
-
+	void onMsgSceneStop(const TMsgScenePaused& msg);
+	
 	void changeCyclicAnimation(int anim1Id, float speed = 1.0f, int anim2Id = -1, float weight = 1.0f, float in_delay = 0.15f, float out_delay = 0.15f);
 	void executeActionAnimation(int animId, float speed = 1.0f, bool rootMovement = false, bool rootRot = false, float in_delay = 0.15f, float out_delay = 0.15f);
 
