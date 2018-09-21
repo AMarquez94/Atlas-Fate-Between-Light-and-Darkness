@@ -41,7 +41,7 @@ void CModuleSceneManager::loadJsonScenes(const std::string filepath) {
         scene->env_fog = data.count("env_fog") ? loadVEC3(data["env_fog"]) : cb_globals.global_fog_env_color;
         scene->ground_fog = data.count("ground_fog") ? loadVEC3(data["ground_fog"]) : cb_globals.global_fog_color;
 
-        scene->env_fog_density = data.value("fog_density", cb_globals.global_fog_density);
+        scene->env_fog_density = data.value("env_fog_density", cb_globals.global_fog_density);
         scene->ground_fog_density = data.value("ground_fog_density", cb_globals.global_fog_ground_density);
 
         scene->scene_exposure = data.value("exposure", cb_globals.global_exposure_adjustment);

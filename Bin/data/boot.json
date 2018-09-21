@@ -9,10 +9,10 @@
 			"gamma": 1,
 			"tone_mapping": 1,
 			"shadow_intensity": 0,
-			"env_fog": "0.0 0.0 0.023",
-			"ground_fog": "0.47 0.51 0.84",
+			"ground_fog_density": 1,
 			"env_fog_density": 0.272,
-			"ground_fog_density": 1
+			"ground_fog": "0.47 0.51 0.84",
+			"env_fog": "0.0 0.0 0.023"
 			
 		},
 		"scene_group": [
@@ -77,10 +77,10 @@
 			"gamma": 1,
 			"tone_mapping": 1,
 			"shadow_intensity": 0,
-			"env_fog": "0.0 0.0 0.023",
-			"ground_fog": "0.47 0.51 0.84",
+			"ground_fog_density": 1,
 			"env_fog_density": 0.272,
-			"ground_fog_density": 1
+			"ground_fog": "0.47 0.51 0.84",
+			"env_fog": "0.0 0.0 0.023"
 		},
 		"scene_group": [
 			"data/scenes/Map_Intro/player_fsm.scene",
@@ -107,10 +107,10 @@
 			"gamma": 0.9,
 			"tone_mapping": 0.5,
 			"shadow_intensity": 0,
-			"env_fog": "0.004 0.004 0.043",
-			"ground_fog": "0.26 0.784 0.752",
 			"ground_fog_density": 0.23,
-			"fog_density": 0.131
+			"env_fog_density": 0.131,
+			"ground_fog": "0.26 0.784 0.752",
+			"env_fog": "0.004 0.004 0.043"
 
 		},
 		"scene_group": [
@@ -163,10 +163,10 @@
 			"gamma": 1,
 			"tone_mapping": 1,
 			"shadow_intensity": 0,
-			"env_fog": "0.0 0.0 0.023",
-			"ground_fog": "0.47 0.51 0.84",
-			"env_fog_density": 0.272,
-			"ground_fog_density": 1
+			"ground_fog_density": 0.23,
+			"env_fog_density": 0.131,
+			"ground_fog": "0.26 0.784 0.752",
+			"env_fog": "0.004 0.004 0.043"
 		},
 		"scene_group": [
 			"data/scenes/Coliseo/player2_fsm.scene",
@@ -185,10 +185,10 @@
 			"gamma": 1,
 			"tone_mapping": 1,
 			"shadow_intensity": 0,
-			"env_fog": "0.0 0.0 0.023",
-			"ground_fog": "0.47 0.51 0.84",
-			"env_fog_density": 0.272,
-			"ground_fog_density": 1
+			"ground_fog_density": 0.23,
+			"env_fog_density": 0.131,
+			"ground_fog": "0.26 0.784 0.752",
+			"env_fog": "0.004 0.004 0.043"
 		},
 		"scene_group": [
 			"data/scenes/Coliseo/player2_fsm2.scene",
@@ -208,10 +208,10 @@
 			"gamma": 1,
 			"tone_mapping": 1,
 			"shadow_intensity": 0,
-			"env_fog": "0.0 0.0 0.023",
-			"ground_fog": "0.47 0.51 0.84",
-			"env_fog_density": 0.272,
-			"ground_fog_density": 1
+			"ground_fog_density": 0.23,
+			"env_fog_density": 0.131,
+			"ground_fog": "0.26 0.784 0.752",
+			"env_fog": "0.004 0.004 0.043"
 		},
 		"scene_group": [
 			"data/scenes/Basilic_courtyard/player.scene",
@@ -252,10 +252,10 @@
 			"gamma": 1,
 			"tone_mapping": 1,
 			"shadow_intensity": 0,
-			"env_fog": "0.0 0.0 0.023",
-			"ground_fog": "0.47 0.51 0.84",
-			"env_fog_density": 0.272,
-			"ground_fog_density": 1
+			"ground_fog_density": 0.23,
+			"env_fog_density": 0.131,
+			"ground_fog": "0.26 0.784 0.752",
+			"env_fog": "0.004 0.004 0.043"
 		},
 		"scene_group": [
 			"data/scenes/Basilic_interior/player.scene",
