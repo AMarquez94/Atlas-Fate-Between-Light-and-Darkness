@@ -31,6 +31,8 @@
             "data/materials/mtl_casa1.material"
             ,
             "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_suelomadera.material"
           ]
         }
       ]
