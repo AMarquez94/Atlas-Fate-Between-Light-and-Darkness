@@ -14,66 +14,6 @@
   {
     "entity":
     {
-      "name": "mesh_estandarte"
-      ,
-      "transform":
-      {
-        "pos": "5.39879 11.9242 15.6442"
-        ,
-        "rotation": "-0.000893312 -0.707438 -0.706773 -0.001271"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_estandarte.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubo_estandarte.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_estandarte001"
-      ,
-      "transform":
-      {
-        "pos": "-11.6093 11.9242 15.6442"
-        ,
-        "rotation": "-0.000893312 -0.707438 -0.706773 -0.001271"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_estandarte001.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_tubo_estandarte.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_muralla_intro_muro_1"
       ,
       "transform":
@@ -490,6 +430,126 @@
           "materials":
           [
             "data/materials/mtl_ornamentos_casa.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_estandarte003"
+      ,
+      "transform":
+      {
+        "pos": "5.28402 11.9242 3.36696"
+        ,
+        "rotation": "0.706773 0.00127103 -0.000893281 -0.707438"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_estandarte003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_estandarte002"
+      ,
+      "transform":
+      {
+        "pos": "-11.7241 11.9242 3.36697"
+        ,
+        "rotation": "0.706773 0.00127103 -0.000893281 -0.707438"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_estandarte002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_estandarte001"
+      ,
+      "transform":
+      {
+        "pos": "-11.6093 11.9242 15.6442"
+        ,
+        "rotation": "-0.000893312 -0.707438 -0.706773 -0.001271"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_estandarte001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_estandarte"
+      ,
+      "transform":
+      {
+        "pos": "5.39879 11.9242 15.6442"
+        ,
+        "rotation": "-0.000893312 -0.707438 -0.706773 -0.001271"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_estandarte.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
           ]
         }
       ]
