@@ -1,5 +1,5 @@
 [{
-		"entity": {
+		"xentity": {
 			"name": "Instanced Spheres",
 			"transform": {
 				"pos": "0 0 0"
@@ -13,7 +13,7 @@
 			]
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "Instanced Blood",
 			"transform": {
 				"pos": "0 0 0"
