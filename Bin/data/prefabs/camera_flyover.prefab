@@ -25,6 +25,11 @@
 			"render_bloom": {
 				"enabled": true,
 				"max_steps": 4,
+				"global_distance": 1,
+				"threshold_min": 0.89,
+				"threshold_max": 0.77,
+				"multiplier": 1,
+				"weights" : "0.360 0.520 0.300 0.720",
 				"rt_name": "Bloom"
 			},
 			"color_grading": {

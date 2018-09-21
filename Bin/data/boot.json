@@ -3,7 +3,16 @@
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
-			"navmesh": "data/navmeshes/intro_navmesh.bin"
+			"navmesh": "data/navmeshes/intro_navmesh.bin",
+			"exposure": 1.57,
+			"ambient": 0.1,
+			"gamma": 1,
+			"tone_mapping": 1,
+			"env_fog": "0.0117 0.015 0.062",
+			"ground_fog": "0.47 0.51 0.84",
+			"env_fog_density": 0.272,
+			"ground_fog_density": 1
+			
 		},
 		"scene_group": [
 			"data/scenes/Intro/player_intro_fsm.scene",
@@ -54,7 +63,15 @@
 	"scene_map_intro": {
 		"static_data": {
 			"initial_script": "map_intro",
-			"navmesh": "data/navmeshes/milestone2_navmesh.bin"
+			"navmesh": "data/navmeshes/milestone2_navmesh.bin",
+			"exposure": 2,
+			"ambient": 0.15,
+			"gamma": 1,
+			"tone_mapping": 1,
+			"env_fog": "0.0117 0.015 0.062",
+			"ground_fog": "0.47 0.51 0.84",
+			"env_fog_density": 0.272,
+			"ground_fog_density": 1
 		},
 		"scene_group": [
 			"data/scenes/Map_Intro/player_fsm.scene",
@@ -75,7 +92,15 @@
 	"scene_zone_a": {
 		"static_data": {
 			"initial_script": "zone_a",
-			"navmesh": "data/navmeshes/scene_a.bin"
+			"navmesh": "data/navmeshes/scene_a.bin",
+			"exposure": 2,
+			"ambient": 0.15,
+			"gamma": 1,
+			"tone_mapping": 1,
+			"env_fog": "0.0117 0.015 0.062",
+			"ground_fog": "0.47 0.51 0.84",
+			"env_fog_density": 0.272,
+			"ground_fog_density": 1
 		},
 		"scene_group": [
 			"data/scenes/ZoneA/player2_fsm.scene",
@@ -119,7 +144,15 @@
 	},
 	"scene_coliseo": {
 		"static_data": {
-			"initial_script": "coliseo"
+			"initial_script": "coliseo",
+			"exposure": 2,
+			"ambient": 0.15,
+			"gamma": 1,
+			"tone_mapping": 1,
+			"env_fog": "0.0117 0.015 0.062",
+			"ground_fog": "0.47 0.51 0.84",
+			"env_fog_density": 0.272,
+			"ground_fog_density": 1
 		},
 		"scene_group": [
 			"data/scenes/Coliseo/player2_fsm.scene",
@@ -132,7 +165,15 @@
 	},
 	"scene_coliseo_2": {
 		"static_data": {
-			"initial_script": "coliseo2"
+			"initial_script": "coliseo2",
+			"exposure": 2,
+			"ambient": 0.15,
+			"gamma": 1,
+			"tone_mapping": 1,
+			"env_fog": "0.0117 0.015 0.062",
+			"ground_fog": "0.47 0.51 0.84",
+			"env_fog_density": 0.272,
+			"ground_fog_density": 1
 		},
 		"scene_group": [
 			"data/scenes/Coliseo/player2_fsm2.scene",
@@ -146,7 +187,15 @@
 	"scene_basilic_courtyard": {
 		"static_data": {
 			"initial_script": "basilic_courtyard",
-			"navmesh": "data/navmeshes/basilic_courtyard_navmesh.bin"
+			"navmesh": "data/navmeshes/basilic_courtyard_navmesh.bin",
+			"exposure": 2,
+			"ambient": 0.15,
+			"gamma": 1,
+			"tone_mapping": 1,
+			"env_fog": "0.0117 0.015 0.062",
+			"ground_fog": "0.47 0.51 0.84",
+			"env_fog_density": 0.272,
+			"ground_fog_density": 1
 		},
 		"scene_group": [
 			"data/scenes/Basilic_courtyard/player.scene",
@@ -182,7 +231,15 @@
 	"scene_basilic_interior": {
 		"static_data": {
 			"initial_script": "basilic_interior",
-			"navmesh": "data/navmeshes/basilic_interior_navmesh.bin"
+			"navmesh": "data/navmeshes/basilic_interior_navmesh.bin",
+			"exposure": 2,
+			"ambient": 0.15,
+			"gamma": 1,
+			"tone_mapping": 1,
+			"env_fog": "0.0117 0.015 0.062",
+			"ground_fog": "0.47 0.51 0.84",
+			"env_fog_density": 0.272,
+			"ground_fog_density": 1
 		},
 		"scene_group": [
 			"data/scenes/Basilic_interior/player.scene",

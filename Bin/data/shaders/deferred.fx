@@ -54,7 +54,7 @@ float4 environment_fog(float4 iPosition, float2 iTex0, float3 in_color)
 	float dist = abs(length(frag_dir));
 	
 	float fog_factor = 1 - exp( (dist * -global_fog_density * .075)* (dist* global_fog_density * .075));	
-	if(depth > 0.92) fog_factor = 0.0;
+	if(depth > 0.92) fog_factor = 0.2;
 
 	float3 color = lerp(in_color, global_fog_env_color, saturate(fog_factor));
 	//float3 color = in_color + global_fog_env_color * fog_factor;
@@ -76,7 +76,7 @@ float4 ground_fog(float4 iPosition, float2 iTex0, float3 in_color)
 	float be = 0.045 * smoothstep(0.0, 2.0, 60.0 - wPos.y);
 	float bi = 0.075* smoothstep(0.0, 80, 10.0 - wPos.y);
 	
-	float fog_factor = exp(-dist * be) * (1 - exp(-dist * bi));
+	float fog_factor = exp(-dist * be) * (1 - exp(-dist * bi)) * global_fog_ground_density;
 	float3 color = in_color * ( 1 - fog_factor) + global_fog_color * fog_factor;
 		
 	return float4(color,1);
@@ -123,11 +123,12 @@ float4 compute(float4 iPosition, float2 iUV)
   float4 oAlbedo = txGBufferAlbedos.Load(ss_load_coords);
   //return txAO.Sample(samLinear, iUV);
 	//return txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
-	  
+	 //return txSelfIllum.Load(uint3(iPosition.xy,0)).a;
   float4 N_rt = txGBufferNormals.Load(ss_load_coords);
   float4 oNormal = float4(decodeNormal( N_rt.xyz ), 1);
 
   float3 hdrColor = txAccLights.Load(ss_load_coords).xyz;
+	//hdrColor *= txSelfIllum.Load(uint3(iPosition.xy,0)).a;
 	hdrColor = environment_fog(iPosition, iUV, hdrColor);
 	hdrColor = ground_fog(iPosition, iUV, hdrColor);
 		

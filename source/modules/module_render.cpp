@@ -140,17 +140,19 @@ bool CModuleRender::start()
     if (!cb_postfx.create(CB_POSTFX))
         return false;
 
-	cb_globals.global_exposure_adjustment = 2.010f;
-	cb_globals.global_ambient_adjustment = 0.150f;
+	cb_globals.global_exposure_adjustment = 1.570f;
+	cb_globals.global_ambient_adjustment = 0.100f;
 	cb_globals.global_world_time = 0.f;
 	cb_globals.global_hdr_enabled = 1.f;
 	cb_globals.global_gamma_correction_enabled = 1.f;
 	cb_globals.global_tone_mapping_mode = 1.f;
-    cb_globals.global_fog_density = 0.018f;
+    cb_globals.global_fog_density = 0.272f;
+    cb_globals.global_fog_ground_density = 1.f;
     cb_globals.global_fog_color = VEC3(0.47,0.51,0.84);
     cb_globals.global_fog_env_color = VEC3(0.0117, 0.015, 0.062);
     cb_globals.global_self_intensity = 10.f;
     cb_globals.global_delta_time = 0.f;
+    cb_globals.global_shadow_intensity = 0.f;
 
 	cb_light.activate();
 	cb_object.activate();
@@ -230,12 +232,16 @@ void CModuleRender::render()
 		
 	if (ImGui::TreeNode("Lighting")) {
 
+        // Lighting settings edition
 		ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.1f, 32.f);
 		ImGui::DragFloat("Ambient Adjustment", &cb_globals.global_ambient_adjustment, 0.01f, 0.0f, 1.f);
-		ImGui::DragFloat("HDR", &cb_globals.global_hdr_enabled, 0.01f, 0.0f, 1.f);
+		//ImGui::DragFloat("HDR", &cb_globals.global_hdr_enabled, 0.01f, 0.0f, 1.f);
 		ImGui::DragFloat("Gamma Correction", &cb_globals.global_gamma_correction_enabled, 0.01f, 0.0f, 1.f);
 		ImGui::DragFloat("Reinhard vs Uncharted2", &cb_globals.global_tone_mapping_mode, 0.01f, 0.0f, 1.f);
-        ImGui::DragFloat("Fog density", &cb_globals.global_fog_density, 0.0001f, 0.0f, 1.f);
+        ImGui::DragFloat("Global shadow intensity", &cb_globals.global_shadow_intensity, 0.001f, 0.0f, 1.f);
+        // Fog settings edition
+        ImGui::DragFloat("Fog Ground density", &cb_globals.global_fog_ground_density, 0.001f, 0.0f, 1.f);
+        ImGui::DragFloat("Fog Environment density", &cb_globals.global_fog_density, 0.001f, 0.0f, 1.f);
         ImGui::ColorEdit4("Fog Ground Color", &cb_globals.global_fog_color.x, 0.0001f);
         ImGui::ColorEdit4("Fog Environment Color", &cb_globals.global_fog_env_color.x, 0.0001f);
 

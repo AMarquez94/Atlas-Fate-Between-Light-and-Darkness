@@ -9,7 +9,7 @@
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
 #include "render/texture/material.h"
-
+#include "render/render_objects.h"
 // for convenience
 using json = nlohmann::json;
 
@@ -37,6 +37,17 @@ void CModuleSceneManager::loadJsonScenes(const std::string filepath) {
         auto& data = jboot[scene_name]["static_data"];
         scene->navmesh = data.value("navmesh", "");
         scene->initial_script_name = data.value("initial_script", "");
+
+        scene->env_fog = data.count("env_fog") ? loadVEC3(data["env_fog"]) : cb_globals.global_fog_env_color;
+        scene->ground_fog = data.count("ground_fog") ? loadVEC3(data["ground_fog"]) : cb_globals.global_fog_color;
+
+        scene->env_fog_density = data.value("fog_density", cb_globals.global_fog_density);
+        scene->ground_fog_density = data.value("ground_fog_density", cb_globals.global_fog_ground_density);
+
+        scene->scene_exposure = data.value("exposure", cb_globals.global_exposure_adjustment);
+        scene->scene_ambient = data.value("ambient", cb_globals.global_ambient_adjustment);
+        scene->scene_gamma = data.value("gamma", cb_globals.global_gamma_correction_enabled);
+        scene->scene_tone_mapping = data.value("tone_mapping", cb_globals.global_tone_mapping_mode);
 
         _scenes.insert(std::pair<std::string, Scene*>(scene_name, scene));
     }
@@ -131,47 +142,16 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
 		gameManager.loadCheckpoint();
         Engine.getLogic().execEvent(EngineLogic.SCENE_START, current_scene->name);
 
-        // TO REMOVE.
-        // Guarrada maxima color neones
-        {
-            CHandle p_group = getEntityByName("neones");
-            CEntity * parent_group = p_group;
-            if (p_group.isValid()) {
-                TCompGroup * neon_group = parent_group->get<TCompGroup>();
-                for (auto p : neon_group->handles) {
-                    CEntity * neon = p;
-                    TCompTransform * t_trans = neon->get<TCompTransform>();
-                    VEC3 pos = t_trans->getPosition();
-                    CEntity * to_catch = nullptr;
-                    float maxDistance = 9999999;
-                    getObjectManager<TCompLightPoint>()->forEach([pos, &to_catch, &maxDistance](TCompLightPoint* c) {
-                        CEntity * ent = CHandle(c).getOwner();
-                        TCompTransform * c_trans = ent->get<TCompTransform>();
-                        float t_distance = VEC3::Distance(pos, c_trans->getPosition());
+        cb_globals.global_fog_color = current_scene->ground_fog;
+        cb_globals.global_fog_env_color = current_scene->env_fog;
+        cb_globals.global_fog_density = current_scene->env_fog_density;
+        cb_globals.global_fog_ground_density = current_scene->ground_fog_density;
+        cb_globals.global_exposure_adjustment = current_scene->scene_exposure;
+        cb_globals.global_ambient_adjustment = current_scene->scene_ambient;
+        cb_globals.global_gamma_correction_enabled = current_scene->scene_gamma;
+        cb_globals.global_tone_mapping_mode = current_scene->scene_tone_mapping;
 
-                        if (t_distance < maxDistance) {
-                            to_catch = ent;
-                            maxDistance = t_distance;
-                        }
-                    });
-
-                    if (to_catch != nullptr) {
-                        TCompLightPoint * point_light = to_catch->get<TCompLightPoint>();
-                        VEC4 neon_color = point_light->getColor();
-                        TCompRender * l_render = neon->get<TCompRender>();
-                        l_render->self_color = neon_color;
-                        l_render->self_intensity = 10.0f;
-                        /*for (auto p : l_render->meshes) {
-                            for (auto t : p.materials) {
-                                CMaterial * mat = const_cast<CMaterial*>(t);
-                                mat->setSelfColor(VEC4(1,0,0,1));
-                                dbg("changed color");
-                            }
-                        }*/
-                    }
-                }
-            }
-        }
+        cb_globals.updateGPU();
 
         return true;
     }

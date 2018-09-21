@@ -187,7 +187,12 @@ CB_DEF(CCteGlobals, CB_GLOBALS)   // Generates the b1
     float global_fog_start;
     float global_fog_end;
     float global_player_speed;
-    float global_fog_end3;
+    float global_fog_ground_density;
+
+    float global_shadow_intensity;
+    float global_shadow_dummy1;
+    float global_shadow_dummy2;
+    float global_shadow_dummy3;
 
     VEC3 global_fog_env_color;
     float global_delta_time;
