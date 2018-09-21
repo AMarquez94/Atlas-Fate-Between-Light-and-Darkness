@@ -32,7 +32,9 @@ void TCompCameraFlyover::update(float dt)
         float deltaSpeed = _speed * dt;
         if (EngineInput["btRun"].isPressed())
             deltaSpeed *= 3.f;
-
+		
+		if (EngineInput["btSecAction"].isPressed())
+			deltaSpeed *= .3f;
 		VEC3 pos = c_transform->getPosition();
 		VEC3 front = c_transform->getFront();
 		VEC3 left = c_transform->getLeft();

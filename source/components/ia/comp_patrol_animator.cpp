@@ -65,7 +65,7 @@ void TCompPatrolAnimator::initializeAnimations() {
 		"run",
 		"",
 		1.0f,
-		0.7f,
+		0.55f,
 		false
 	);
 
