@@ -1,0 +1,82 @@
+[
+  {
+    "entity":
+    {
+      "name": "Face_Cartel"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_low"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_cartel_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cartelholo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_holografic_low"
+      ,
+      "hierarchy":
+      {
+        "parent": "mesh_cartel_low"
+        ,
+        "pos": "0.184401 -4.36853 7.80283"
+        ,
+        "rotation": "-0.21644 -1.33231e-07 0.0 -0.976296"
+      }
+      ,
+      "transform":
+      {
+        "pos": "0.184401 -4.36853 7.80283"
+        ,
+        "rotation": "-0.21644 -1.33231e-07 0.0 -0.976296"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_holografic_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cartelholo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]
