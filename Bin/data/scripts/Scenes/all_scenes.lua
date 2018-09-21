@@ -2,7 +2,7 @@ function onSceneStart()
 	playerController = getPlayerController();
 	immortal();
 	execScriptDelayed("immortal()", 1);
-	resetPatrolLights();
+	execScriptDelayed("resetPatrolLights()", 0.5);
 	
 	if isDebug() then
 		lanternsDisable(true);

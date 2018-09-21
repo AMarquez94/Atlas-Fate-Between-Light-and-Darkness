@@ -99,11 +99,11 @@ void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
         //wpt.lookAt = trueLookAt != VEC3::Zero ? trueLookAt : tPos->getFront();
         wpt.minTime = 1.f;
         addWaypoint(wpt);
-    }
+    }/*
 
     if (startLightsOn) {
         turnOnLight();
-    }
+    }*/
 
     myHandle = CHandle(this);
 
