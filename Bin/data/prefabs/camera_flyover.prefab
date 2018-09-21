@@ -26,15 +26,15 @@
 				"enabled": true,
 				"max_steps": 4,
 				"global_distance": 1,
-				"threshold_min": 0.89,
-				"threshold_max": 0.77,
-				"multiplier": 1,
+				"threshold_min": 0.53,
+				"threshold_max": 0.64,
+				"multiplier": 0.8,
 				"weights" : "0.360 0.520 0.300 0.720",
 				"rt_name": "Bloom"
 			},
 			"color_grading": {
 				"enabled": true,
-				"amount": 0.25,
+				"amount": 0.1,
 				"lut": "data/textures/lut/lut5.dds"
 			},
 			"chromatic_aberration": {

@@ -102,15 +102,16 @@
 		"static_data": {
 			"initial_script": "zone_a",
 			"navmesh": "data/navmeshes/scene_a.bin",
-			"exposure": 1.57,
-			"ambient": 0.1,
-			"gamma": 1,
-			"tone_mapping": 1,
+			"exposure": 1.2,
+			"ambient": 0.11,
+			"gamma": 0.9,
+			"tone_mapping": 0.5,
 			"shadow_intensity": 0,
-			"env_fog": "0.0 0.0 0.023",
-			"ground_fog": "0.47 0.51 0.84",
-			"env_fog_density": 0.272,
-			"ground_fog_density": 1
+			"env_fog": "0.004 0.004 0.043",
+			"ground_fog": "0.26 0.784 0.752",
+			"ground_fog_density": 0.23,
+			"fog_density": 0.131
+
 		},
 		"scene_group": [
 			"data/scenes/ZoneA/player2_fsm.scene",
