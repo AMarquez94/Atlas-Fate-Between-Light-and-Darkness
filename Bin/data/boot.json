@@ -111,13 +111,14 @@
 			"data/scenes/zone_a_colliders_valla_luz.scene",
 			"data/scenes/zone_a_test.scene",
 			"data/scenes/zone_a_edificios_segunda.scene",
+			"data/scenes/zone_a_neones.scene",
+
 			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene",
 			"data/scenes/ZoneA/test_instancing.scene",
 			"data/scenes/ZoneA/zone_a_particles.scene",
 			"data/scenes/ZoneA/buttons.scene",
-			"data/scenes/ZoneA/luces.scene",
-			"data/scenes/ZoneA/neones.scene",
+			
 			"data/scenes/ZoneA/carteles.scene",
 			"data/scenes/mapa_decals.scene",
 			"data/scenes/ZoneA/_mimetic_PRUEBAS.scene"
