@@ -5,7 +5,7 @@
     }
   },
   {
-    "entity": {
+    "xentity": {
       "name": "Button End Scene",
       "transform": {
         "pos": "-38.6 1 -133",
@@ -32,7 +32,7 @@
     }
   },
   {
-    "entity": {
+    "xentity": {
       "name": "Button Open Exit",
       "transform": {
         "pos": "-106 1.1 -133.5",

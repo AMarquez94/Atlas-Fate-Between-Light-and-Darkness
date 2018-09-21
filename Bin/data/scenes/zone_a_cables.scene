@@ -14,19 +14,1059 @@
   {
     "entity":
     {
-      "name": "cable002"
+      "name": "mesh_baselargalectrica001"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-48.0991 11.4588 -84.5837"
+        "pos": "-38.0443 11.4692 -86.6417"
         ,
-        "rotation": "0.701057 -0.092296 -0.092296 -0.701057"
+        "rotation": "-0.707167 0.00462179 -0.707017 -0.00442498"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica002"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-46.3329 11.0715 -84.678"
+        ,
+        "rotation": "-0.71132 0.000702356 -0.702868 -0.000513877"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica003"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-45.5642 11.834 -72.7738"
+        ,
+        "rotation": "-0.706696 -0.0262285 -0.706538 0.0264192"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica004"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-50.0206 11.9651 -78.9141"
+        ,
+        "rotation": "0.518213 -0.518213 -0.480974 0.481222"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica005"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-59.4012 11.9297 -76.0396"
+        ,
+        "rotation": "-0.0262579 0.026258 0.706495 -0.706743"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica006"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-65.0736 11.3503 -82.7144"
+        ,
+        "rotation": "5.96419e-06 -0.0371316 -0.99931 0.000175387"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica007"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-73.3335 11.8264 -79.4758"
+        ,
+        "rotation": "-0.707082 0.00471504 -0.707102 -0.00446758"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica008"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-69.9204 11.9419 -83.12"
+        ,
+        "rotation": "0.481547 -0.481547 0.517678 -0.517915"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica009"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-80.4202 8.99609 -78.6355"
+        ,
+        "rotation": "-0.707169 0.00466813 -0.707015 -0.0044754"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica010"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-61.2263 6.91845 -86.6368"
+        ,
+        "rotation": "-0.707169 0.00466847 -0.707015 -0.00447507"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica011"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-47.7694 5.42602 -86.6368"
+        ,
+        "rotation": "-0.70717 0.00466864 -0.707014 -0.0044749"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica012"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-85.0304 11.053 -85.778"
+        ,
+        "rotation": "-0.382777 0.00602581 -0.923818 -0.00234743"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica013"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-93.4242 10.884 -90.9338"
+        ,
+        "rotation": "-0.382777 0.0060259 -0.923818 -0.00234721"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica014"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-98.711 11.9207 -95.661"
+        ,
+        "rotation": "0.26054 -0.274678 0.657329 -0.651606"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica015"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-95.2531 5.79931 -96.0472"
+        ,
+        "rotation": "-0.382776 0.00602621 -0.923819 -0.00234707"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica016"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-102.811 5.77148 -108.999"
+        ,
+        "rotation": "-0.000155156 -0.00426507 -0.999936 -0.010444"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica017"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-103.042 11.9246 -108.885"
+        ,
+        "rotation": "-0.00290808 0.00324958 0.714446 -0.699677"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica018"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-113.121 11.3894 -117.582"
+        ,
+        "rotation": "-0.706434 0.00543112 -0.707739 -0.00510426"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica019"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-111.809 8.37377 -115.99"
+        ,
+        "rotation": "-0.000154198 -0.00426518 -0.999936 -0.0104428"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica020"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-121.75 8.01904 -126.062"
+        ,
+        "rotation": "-0.000154196 -0.00426518 -0.999936 -0.0104423"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica021"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-122.037 11.821 -131.13"
+        ,
+        "rotation": "-0.00304217 0.00317097 0.683245 -0.730176"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica022"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-122.339 10.9924 -141.639"
+        ,
+        "rotation": "-0.000154199 -0.00426578 -0.999936 -0.0104416"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica023"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-121.067 7.48022 -148.333"
+        ,
+        "rotation": "-0.000154196 -0.00426578 -0.999936 -0.0104409"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica024"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-113.027 11.517 -153.191"
+        ,
+        "rotation": "0.706955 -0.0107942 -0.70713 -0.0080461"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica025"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-99.1365 11.3292 -157.293"
+        ,
+        "rotation": "0.706955 -0.0107947 -0.70713 -0.00804593"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica026"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-105.548 11.8348 -153.605"
+        ,
+        "rotation": "0.494875 -0.507811 -0.503085 0.494098"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica027"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-87.4713 11.1986 -157.965"
+        ,
+        "rotation": "0.706955 -0.0107955 -0.70713 -0.00804644"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica028"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-72.5166 11.8314 -157.421"
+        ,
+        "rotation": "0.494553 -0.507815 -0.503406 0.49409"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica029"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-64.6269 11.8314 -152.666"
+        ,
+        "rotation": "0.699048 -0.715069 0.00270862 -0.000750038"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica030"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-75.0791 11.4243 -153.07"
+        ,
+        "rotation": "0.000208851 -0.00371756 -0.999936 -0.0106995"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica031"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-84.9053 11.3353 -149.848"
+        ,
+        "rotation": "-0.999932 0.0116326 0.00010076 0.000406278"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica032"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-78.4967 11.2814 -148.124"
+        ,
+        "rotation": "0.706957 -0.0106084 -0.707132 -0.00804412"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica033"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-69.0828 5.6339 -143.071"
+        ,
+        "rotation": "0.706957 -0.0106087 -0.707132 -0.00804404"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica034"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-65.594 11.1468 -143.071"
+        ,
+        "rotation": "0.706957 -0.0106087 -0.707131 -0.00804413"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica035"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-58.0508 12.6173 -148.073"
+        ,
+        "rotation": "0.706958 -0.0106088 -0.70713 -0.00804423"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica036"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-60.6714 11.4459 -157.062"
+        ,
+        "rotation": "0.706958 -0.0106094 -0.70713 -0.00804414"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica037"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-52.8834 11.0076 -154.347"
+        ,
+        "rotation": "-0.999917 0.0128574 0.000109703 -0.000773175"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica038"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-46.9872 11.6483 -147.219"
+        ,
+        "rotation": "-0.999917 0.0128574 0.000109703 -0.000773175"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica039"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-41.4352 10.6735 -142.375"
+        ,
+        "rotation": "0.706962 -0.0103022 -0.707131 -0.00804323"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica040"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-45.924 9.89465 -132.908"
+        ,
+        "rotation": "-0.707131 0.008077 -0.706975 -0.00933165"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica041"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-63.7887 11.6771 -124.968"
+        ,
+        "rotation": "-0.707131 0.00807751 -0.706975 -0.00933115"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica042"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-71.8702 5.3446 -124.968"
+        ,
+        "rotation": "-0.707131 0.00807768 -0.706975 -0.00933098"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica043"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-83.758 11.4579 -120.901"
+        ,
+        "rotation": "-0.707131 0.00807886 -0.706975 -0.0093298"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica044"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-88.1179 5.89208 -122.926"
+        ,
+        "rotation": "-0.70713 0.00807987 -0.706975 -0.00932878"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica045"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-92.0966 11.7579 -109.276"
+        ,
+        "rotation": "-0.999921 0.0125255 0.000116032 -0.00137497"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica046"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-90.1379 11.5316 -116.046"
+        ,
+        "rotation": "-0.999921 0.0125259 0.000116034 -0.00137509"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica047"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-89.5296 5.45471 -104.455"
+        ,
+        "rotation": "-0.923764 0.0118922 0.382764 0.00325253"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica048"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-82.4805 5.45471 -97.3422"
+        ,
+        "rotation": "-0.923764 0.0118922 0.382764 0.00325264"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica049"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-84.2541 11.7223 -99.1476"
+        ,
+        "rotation": "-0.923764 0.0118923 0.382764 0.00325275"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica050"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-70.1354 11.8264 -94.1921"
+        ,
+        "rotation": "-0.999979 0.000138201 0.000110218 -0.00646119"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica051"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-64.8963 11.8264 -93.056"
+        ,
+        "rotation": "0.707014 0.00447049 -0.70717 0.00466698"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica052"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-51.2397 11.8264 -95.0829"
+        ,
+        "rotation": "0.707014 0.00447016 -0.70717 0.00466731"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica053"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-50.2506 8.69653 -96.4432"
+        ,
+        "rotation": "-0.000109586 0.00646115 -0.999979 0.00014059"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica054"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-41.9271 11.4519 -99.2905"
+        ,
+        "rotation": "0.707015 0.00447049 -0.707169 0.00466698"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica055"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-42.96 11.5815 -106.395"
+        ,
+        "rotation": "-0.999979 0.000138684 0.000109268 -0.00646119"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica056"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-55.1446 5.34667 -104.966"
+        ,
+        "rotation": "-0.707168 0.00466646 -0.707016 -0.00447101"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica057"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-59.655 11.7942 -104.966"
+        ,
+        "rotation": "-0.707168 0.00466646 -0.707016 -0.00447101"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica058"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-45.9661 11.7285 -114.123"
+        ,
+        "rotation": "0.707015 0.00447099 -0.707169 0.00466648"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica059"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-50.0906 6.19995 -114.123"
+        ,
+        "rotation": "0.707016 0.00447115 -0.707168 0.00466632"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica060"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-70.3051 11.7942 -102.106"
+        ,
+        "rotation": "-0.000105754 0.00646115 -0.999979 0.000137992"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica061"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-76.2272 11.1116 -109.169"
+        ,
+        "rotation": "-0.000105751 0.00646114 -0.999979 0.000137515"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica062"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-65.0061 11.4595 -117.081"
+        ,
+        "rotation": "0.707017 0.00447115 -0.707167 0.00466632"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica063"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-68.8846 11.1936 -122.089"
+        ,
+        "rotation": "-0.999979 0.000137514 0.000105946 -0.00646119"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica064"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-39.0769 11.7285 -119.271"
+        ,
+        "rotation": "-0.999979 0.000138211 0.000108601 -0.00646119"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica065"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-53.0387 11.6174 -122.449"
+        ,
+        "rotation": "-0.000108736 0.00646115 -0.999979 0.000138211"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable001"
+      ,
+      "transform":
+      {
+        "pos": "-40.2426 15.761 -93.5916"
+        ,
+        "rotation": "-0.579228 -0.579228 -0.40558 -0.40558"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable002.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable001.mesh"
           ,
           "materials":
           [
@@ -44,19 +1084,19 @@
   {
     "entity":
     {
-      "name": "cable003"
+      "name": "mesh_zone_a_cable002"
       ,
       "transform":
       {
-        "pos": "-64.9143 11.3669 -83.3122"
+        "pos": "-41.2623 15.761 -93.5916"
         ,
-        "rotation": "0.683013 0.183013 0.183013 -0.683013"
+        "rotation": "-0.579228 -0.579228 -0.40558 -0.40558"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable003.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable002.mesh"
           ,
           "materials":
           [
@@ -74,19 +1114,19 @@
   {
     "entity":
     {
-      "name": "cable004"
+      "name": "mesh_zone_a_cable003"
       ,
       "transform":
       {
-        "pos": "-62.6013 4.51395 -89.7871"
+        "pos": "-43.2369 15.761 -93.5916"
         ,
-        "rotation": "0.683013 0.183013 0.183013 -0.683013"
+        "rotation": "-0.579228 -0.579228 -0.40558 -0.40558"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable004.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable003.mesh"
           ,
           "materials":
           [
@@ -104,19 +1144,19 @@
   {
     "entity":
     {
-      "name": "cable005"
+      "name": "mesh_zone_a_cable004"
       ,
       "transform":
       {
-        "pos": "-52.585 4.51395 -89.5684"
+        "pos": "-42.4817 15.761 -93.5916"
         ,
-        "rotation": "0.653282 0.270598 0.270598 -0.653281"
+        "rotation": "-0.579228 -0.579228 -0.40558 -0.40558"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable005.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable004.mesh"
           ,
           "materials":
           [
@@ -134,19 +1174,19 @@
   {
     "entity":
     {
-      "name": "cable006"
+      "name": "mesh_zone_a_cable005"
       ,
       "transform":
       {
-        "pos": "-52.8832 11.6308 -83.7904"
+        "pos": "-43.2369 19.1999 -93.5916"
         ,
-        "rotation": "0.430459 -0.560986 -0.560985 -0.430459"
+        "rotation": "-0.579228 -0.579228 -0.40558 -0.40558"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable006.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable005.mesh"
           ,
           "materials":
           [
@@ -164,19 +1204,19 @@
   {
     "entity":
     {
-      "name": "cable007"
+      "name": "mesh_zone_a_cable006"
       ,
       "transform":
       {
-        "pos": "-52.1917 4.29184 -77.0832"
+        "pos": "-44.0388 19.1999 -93.5916"
         ,
-        "rotation": "0.683013 0.183013 0.183013 -0.683013"
+        "rotation": "-0.579228 -0.579228 -0.40558 -0.40558"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable007.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable006.mesh"
           ,
           "materials":
           [
@@ -194,19 +1234,19 @@
   {
     "entity":
     {
-      "name": "cable008"
+      "name": "mesh_zone_a_cable008"
       ,
       "transform":
       {
-        "pos": "-51.2991 4.20153 -76.9692"
+        "pos": "-39.51 15.761 -87.8783"
         ,
-        "rotation": "-0.477714 -0.521334 -0.521334 0.477714"
+        "rotation": "-0.379928 -0.379928 -0.596368 -0.596368"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable008.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable008.mesh"
           ,
           "materials":
           [
@@ -224,19 +1264,19 @@
   {
     "entity":
     {
-      "name": "cable009"
+      "name": "mesh_zone_a_cable009"
       ,
       "transform":
       {
-        "pos": "-62.0002 10.3702 -101.009"
+        "pos": "-36.6183 19.1999 -86.6249"
         ,
-        "rotation": "-0.379928 -0.596368 -0.596368 0.379928"
+        "rotation": "-0.579228 -0.579228 -0.40558 -0.40558"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable009.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable009.mesh"
           ,
           "materials":
           [
@@ -254,19 +1294,19 @@
   {
     "entity":
     {
-      "name": "cable010"
+      "name": "mesh_zone_a_cable010"
       ,
       "transform":
       {
-        "pos": "-43.9595 6.47158 -79.4382"
+        "pos": "-42.9696 19.1999 -93.7549"
         ,
-        "rotation": "0.653282 -0.270598 -0.270598 -0.653281"
+        "rotation": "-0.579228 -0.579228 -0.40558 -0.40558"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable010.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable010.mesh"
           ,
           "materials":
           [
@@ -284,19 +1324,19 @@
   {
     "entity":
     {
-      "name": "cable011"
+      "name": "mesh_zone_a_cable012"
       ,
       "transform":
       {
-        "pos": "-83.1446 11.6308 -82.1448"
+        "pos": "-38.0487 19.1999 -93.5916"
         ,
-        "rotation": "-0.477714 -0.521334 -0.521334 0.477714"
+        "rotation": "-0.579228 -0.579228 -0.40558 -0.40558"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable011.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable012.mesh"
           ,
           "materials":
           [
@@ -314,19 +1354,19 @@
   {
     "entity":
     {
-      "name": "cable013"
+      "name": "mesh_zone_a_cable013"
       ,
       "transform":
       {
-        "pos": "-80.0348 9.12815 -88.2481"
+        "pos": "-39.0903 19.1999 -96.7188"
         ,
-        "rotation": "-0.0308437 -0.706434 -0.706434 0.0308437"
+        "rotation": "-0.270598 -0.270598 -0.653282 -0.653281"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable013.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable013.mesh"
           ,
           "materials":
           [
@@ -344,19 +1384,19 @@
   {
     "entity":
     {
-      "name": "cable014"
+      "name": "mesh_zone_a_cable014"
       ,
       "transform":
       {
-        "pos": "-88.9244 9.37591 -100.084"
+        "pos": "-51.5134 14.2898 -76.7448"
         ,
-        "rotation": "0.326505 -0.627212 -0.627211 -0.326505"
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable014.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable014.mesh"
           ,
           "materials":
           [
@@ -374,19 +1414,19 @@
   {
     "entity":
     {
-      "name": "cable015"
+      "name": "mesh_zone_a_cable015"
       ,
       "transform":
       {
-        "pos": "-87.9047 4.15718 -93.7084"
+        "pos": "-51.0771 14.2898 -77.389"
         ,
-        "rotation": "0.5 0.5 0.5 -0.5"
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable015.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable015.mesh"
           ,
           "materials":
           [
@@ -404,19 +1444,19 @@
   {
     "entity":
     {
-      "name": "cable016"
+      "name": "mesh_zone_a_cable016"
       ,
       "transform":
       {
-        "pos": "-70.3525 9.12815 -111.757"
+        "pos": "-52.5002 14.2898 -77.3052"
         ,
-        "rotation": "0.241845 -0.664463 -0.664463 -0.241845"
+        "rotation": "-0.596368 -0.596368 0.379928 0.379928"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable016.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable016.mesh"
           ,
           "materials":
           [
@@ -434,19 +1474,19 @@
   {
     "entity":
     {
-      "name": "cable017"
+      "name": "mesh_zone_a_cable017"
       ,
       "transform":
       {
-        "pos": "-50.6581 5.06922 -109.535"
+        "pos": "-55.4977 14.2898 -82.4898"
         ,
-        "rotation": "0.706434 0.0308436 0.0308436 -0.706434"
+        "rotation": "-0.596368 -0.596368 0.379928 0.379928"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable017.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable017.mesh"
           ,
           "materials":
           [
@@ -464,19 +1504,19 @@
   {
     "entity":
     {
-      "name": "cable018"
+      "name": "mesh_zone_a_cable018"
       ,
       "transform":
       {
-        "pos": "-62.6041 4.10466 -113.0"
+        "pos": "-55.3379 14.2898 -81.4311"
         ,
-        "rotation": "0.704416 0.0616284 0.0616284 -0.704416"
+        "rotation": "-0.596368 -0.596368 0.379928 0.379928"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable018.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable018.mesh"
           ,
           "materials":
           [
@@ -494,19 +1534,19 @@
   {
     "entity":
     {
-      "name": "cable019"
+      "name": "mesh_zone_a_cable019"
       ,
       "transform":
       {
-        "pos": "-66.8809 9.12815 -134.204"
+        "pos": "-57.1123 14.2898 -81.1868"
         ,
-        "rotation": "-0.0308437 -0.706434 -0.706434 0.0308437"
+        "rotation": "-0.696364 -0.696364 0.122788 0.122788"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable019.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable019.mesh"
           ,
           "materials":
           [
@@ -524,19 +1564,19 @@
   {
     "entity":
     {
-      "name": "cable020"
+      "name": "mesh_zone_a_cable021"
       ,
       "transform":
       {
-        "pos": "-47.0892 3.79803 -137.703"
+        "pos": "-56.0994 14.2898 -85.0954"
         ,
-        "rotation": "0.67559 0.0 0.0 -0.737277"
+        "rotation": "0.454519 0.454519 -0.541675 -0.541675"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable020.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable021.mesh"
           ,
           "materials":
           [
@@ -554,19 +1594,19 @@
   {
     "entity":
     {
-      "name": "cable021"
+      "name": "mesh_zone_a_cable022"
       ,
       "transform":
       {
-        "pos": "-49.2195 8.08866 -141.347"
+        "pos": "-51.5 14.2898 -77.1636"
         ,
-        "rotation": "0.0721186 -0.732729 -0.674762 -0.0510204"
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable021.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable022.mesh"
           ,
           "materials":
           [
@@ -584,19 +1624,19 @@
   {
     "entity":
     {
-      "name": "cable022"
+      "name": "mesh_zone_a_cable023"
       ,
       "transform":
       {
-        "pos": "-51.7395 5.86077 -75.4302"
+        "pos": "-61.8625 16.0889 -87.1743"
         ,
-        "rotation": "0.541675 -0.454519 -0.45452 -0.541675"
+        "rotation": "-0.560986 -0.560986 -0.430459 -0.430459"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable022.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable023.mesh"
           ,
           "materials":
           [
@@ -614,19 +1654,19 @@
   {
     "entity":
     {
-      "name": "cable023"
+      "name": "mesh_zone_a_cable025"
       ,
       "transform":
       {
-        "pos": "-97.2819 9.12815 -111.472"
+        "pos": "-58.685 16.0889 -93.9931"
         ,
-        "rotation": "0.379928 -0.596368 -0.596368 -0.379928"
+        "rotation": "-0.706434 -0.706434 0.0308435 0.0308435"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable023.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable025.mesh"
           ,
           "materials":
           [
@@ -644,19 +1684,19 @@
   {
     "entity":
     {
-      "name": "cable024"
+      "name": "mesh_zone_a_cable028"
       ,
       "transform":
       {
-        "pos": "-97.5911 4.15718 -108.868"
+        "pos": "-69.7833 17.2729 -89.1631"
         ,
-        "rotation": "-0.326506 -0.627211 -0.627211 0.326506"
+        "rotation": "-0.430459 -0.430459 -0.560986 -0.560986"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable024.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable028.mesh"
           ,
           "materials":
           [
@@ -674,19 +1714,19 @@
   {
     "entity":
     {
-      "name": "cable025"
+      "name": "mesh_zone_a_cable029"
       ,
       "transform":
       {
-        "pos": "-118.794 4.15718 -125.795"
+        "pos": "-56.873 12.6298 -88.3286"
         ,
-        "rotation": "-0.092296 -0.701057 -0.701057 0.092296"
+        "rotation": "0.212631 0.212631 -0.67438 -0.67438"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable025.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable029.mesh"
           ,
           "materials":
           [
@@ -704,19 +1744,19 @@
   {
     "entity":
     {
-      "name": "cable026"
+      "name": "mesh_zone_a_cable030"
       ,
       "transform":
       {
-        "pos": "-108.46 9.03894 -114.144"
+        "pos": "-70.9927 15.9929 -89.8573"
         ,
-        "rotation": "-0.158762 -0.55845 -0.678057 0.450741"
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable026.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable030.mesh"
           ,
           "materials":
           [
@@ -734,19 +1774,19 @@
   {
     "entity":
     {
-      "name": "cable027"
+      "name": "mesh_zone_a_cable031"
       ,
       "transform":
       {
-        "pos": "-80.9779 3.57464 -134.232"
+        "pos": "-72.6263 15.9929 -90.7433"
         ,
-        "rotation": "0.0308437 -0.706434 -0.706434 -0.0308437"
+        "rotation": "-0.454519 -0.45452 -0.541675 -0.541675"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable027.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable031.mesh"
           ,
           "materials":
           [
@@ -764,19 +1804,19 @@
   {
     "entity":
     {
-      "name": "cable028"
+      "name": "mesh_zone_a_cable032"
       ,
       "transform":
       {
-        "pos": "-101.095 9.12815 -114.956"
+        "pos": "-73.8054 15.9929 -90.9162"
         ,
-        "rotation": "0.454519 -0.541675 -0.541675 -0.454519"
+        "rotation": "-0.454519 -0.45452 -0.541675 -0.541675"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable028.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable032.mesh"
           ,
           "materials":
           [
@@ -794,19 +1834,19 @@
   {
     "entity":
     {
-      "name": "cable029"
+      "name": "mesh_zone_a_cable033"
       ,
       "transform":
       {
-        "pos": "-89.6284 9.7611 -154.605"
+        "pos": "-75.7831 15.9929 -83.4981"
         ,
-        "rotation": "0.653282 -0.270598 -0.270598 -0.653281"
+        "rotation": "0.183013 0.183013 -0.683013 -0.683013"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable029.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable033.mesh"
           ,
           "materials":
           [
@@ -824,19 +1864,19 @@
   {
     "entity":
     {
-      "name": "cable030"
+      "name": "mesh_zone_a_cable034"
       ,
       "transform":
       {
-        "pos": "-50.2755 10.4226 -125.915"
+        "pos": "-75.364 15.9929 -84.2794"
         ,
-        "rotation": "-0.477714 -0.521334 -0.521334 0.477714"
+        "rotation": "0.183013 0.183013 -0.683013 -0.683013"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable030.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable034.mesh"
           ,
           "materials":
           [
@@ -854,19 +1894,19 @@
   {
     "entity":
     {
-      "name": "cable031"
+      "name": "mesh_zone_a_cable035"
       ,
       "transform":
       {
-        "pos": "-57.5495 10.4094 -110.282"
+        "pos": "-81.418 15.9929 -91.7277"
         ,
-        "rotation": "0.704416 0.0616284 0.0616284 -0.704416"
+        "rotation": "-0.379928 -0.379928 -0.596368 -0.596368"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable031.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable035.mesh"
           ,
           "materials":
           [
@@ -884,19 +1924,19 @@
   {
     "entity":
     {
-      "name": "cable032"
+      "name": "mesh_zone_a_cable036"
       ,
       "transform":
       {
-        "pos": "-115.557 9.12815 -142.352"
+        "pos": "-77.1833 15.9929 -92.0442"
         ,
-        "rotation": "0.153046 -0.690346 -0.690346 -0.153046"
+        "rotation": "-0.5 -0.5 -0.5 -0.5"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable032.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable036.mesh"
           ,
           "materials":
           [
@@ -914,19 +1954,319 @@
   {
     "entity":
     {
-      "name": "cable033"
+      "name": "mesh_zone_a_cable037"
       ,
       "transform":
       {
-        "pos": "-72.6159 10.4226 -118.378"
+        "pos": "-81.418 10.6687 -91.7277"
         ,
-        "rotation": "-0.40558 -0.579228 -0.579228 0.40558"
+        "rotation": "-0.379928 -0.379928 -0.596368 -0.596368"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable033.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable037.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable038"
+      ,
+      "transform":
+      {
+        "pos": "-75.037 11.3274 -93.944"
+        ,
+        "rotation": "0.153046 0.153046 -0.690346 -0.690346"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable038.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable039"
+      ,
+      "transform":
+      {
+        "pos": "-80.6219 11.3274 -88.0846"
+        ,
+        "rotation": "0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable039.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable040"
+      ,
+      "transform":
+      {
+        "pos": "-80.6219 11.3274 -88.0846"
+        ,
+        "rotation": "-0.706434 -0.706434 0.0308436 0.0308436"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable040.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable041"
+      ,
+      "transform":
+      {
+        "pos": "-88.2517 12.4285 -97.1017"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable041.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable042"
+      ,
+      "transform":
+      {
+        "pos": "-87.855 12.4285 -95.2473"
+        ,
+        "rotation": "-0.183013 -0.183013 -0.683013 -0.683013"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable042.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable043"
+      ,
+      "transform":
+      {
+        "pos": "-88.5268 12.4285 -98.26"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable043.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable044"
+      ,
+      "transform":
+      {
+        "pos": "-92.2162 7.15185 -101.013"
+        ,
+        "rotation": "-0.183013 -0.183013 -0.683013 -0.683013"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable044.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable045"
+      ,
+      "transform":
+      {
+        "pos": "-93.801 7.15185 -103.778"
+        ,
+        "rotation": "-0.326506 -0.326506 -0.627211 -0.627211"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable045.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable046"
+      ,
+      "transform":
+      {
+        "pos": "-89.7262 12.4285 -96.8193"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable046.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable047"
+      ,
+      "transform":
+      {
+        "pos": "-88.3493 12.4285 -90.3644"
+        ,
+        "rotation": "0.326506 0.326506 -0.627211 -0.627211"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable047.mesh"
           ,
           "materials":
           [

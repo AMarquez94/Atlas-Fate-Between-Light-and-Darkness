@@ -1,0 +1,15 @@
+[{
+		"entity": {
+			"name": "Face_Cartel"
+		}
+	}, {
+		"entity": {
+			"prefab": "data/prefabs/face_cartel.prefab",
+			"name": "Face_Cartel_1",
+			"transform": {
+				"pos": "4.309658 16.176472 -384.663483",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			}
+		}
+	}
+]
