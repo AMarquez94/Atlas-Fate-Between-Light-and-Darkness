@@ -148,7 +148,7 @@ bool CModuleRender::start()
 	cb_globals.global_tone_mapping_mode = 1.f;
     cb_globals.global_fog_density = 0.018f;
     cb_globals.global_fog_color = VEC3(0.47,0.51,0.84);
-    cb_globals.global_fog_env_color = VEC3(0.0, 0.171, 0.34);
+    cb_globals.global_fog_env_color = VEC3(0.0117, 0.015, 0.062);
     cb_globals.global_self_intensity = 10.f;
     cb_globals.global_delta_time = 0.f;
 
@@ -236,7 +236,7 @@ void CModuleRender::render()
 		ImGui::DragFloat("Gamma Correction", &cb_globals.global_gamma_correction_enabled, 0.01f, 0.0f, 1.f);
 		ImGui::DragFloat("Reinhard vs Uncharted2", &cb_globals.global_tone_mapping_mode, 0.01f, 0.0f, 1.f);
         ImGui::DragFloat("Fog density", &cb_globals.global_fog_density, 0.0001f, 0.0f, 1.f);
-        ImGui::ColorEdit4("Fog Color", &cb_globals.global_fog_color.x, 0.0001f);
+        ImGui::ColorEdit4("Fog Ground Color", &cb_globals.global_fog_color.x, 0.0001f);
         ImGui::ColorEdit4("Fog Environment Color", &cb_globals.global_fog_env_color.x, 0.0001f);
 
 		// Must be in the same order as the RO_* ctes
@@ -420,9 +420,10 @@ void CModuleRender::postProcessingStack() {
             curr_rt = c_color_grading->apply(curr_rt);
 
         // Check if we have fog
+        /*
         TCompFog * c_render_fog = e_cam->get< TCompFog >();
         if (c_render_fog)
-            curr_rt = c_render_fog->apply(curr_rt, deferred.rt_acc_light);
+            curr_rt = c_render_fog->apply(curr_rt, deferred.rt_acc_light);*/
 
         TCompChromaticAberration* c_chroma_aberration = e_cam->get< TCompChromaticAberration >();
         if (c_chroma_aberration)

@@ -192,7 +192,7 @@ namespace Particles
     {
         // Handle deployment
         {
-            if (!_entity.isValid()) return true;
+            if (!_entity.isValid() || !_enabled) return true;
 
             // Handle start delay
             _deploy_time += delta;
@@ -545,6 +545,7 @@ namespace Particles
             technique2->activate();
 
             _core->n_renderer.texture->activate(TS_ALBEDO1);
+            //instanced_particle->activateAndRender();
             CRenderManager::get().renderCategory("particles_instanced");
         }
     }

@@ -24,6 +24,7 @@ enum RSConfig {
 	, RSCFG_CULL_NONE
 	, RSCFG_SHADOWS
 	, RSCFG_WIREFRAME
+    , RSCFG_DEPTH_BIAS
 	, RSCFG_COUNT
 };
 void activateRSConfig(RSConfig cfg);

@@ -143,6 +143,19 @@
 			"irradiance": "data/textures/cubemaps/irradiance.dds"
 		}
 	},
+	"pbr_parallax_equal": {
+		"vs_file": "data/shaders/parallax.fx",
+		"ps_file": "data/shaders/parallax.fx",
+		"vs_entry_point": "VS_GBuffer",
+		"ps_entry_point": "PS_GBuffer_Parallax",
+		"vertex_type": "PosNUvUvT",
+		"category": "gbuffer",
+		"rs_config": "depth_bias",
+		"textures": {
+			"environment": "data/textures/cubemaps/env.dds",
+			"irradiance": "data/textures/cubemaps/irradiance.dds"
+		}
+	},
 	"pbr_skin": {
 		"vs_file": "data/shaders/pbr.fx",
 		"ps_file": "data/shaders/pbr.fx",
@@ -334,14 +347,6 @@
 		"vs_file": "data/shaders/screen_quad.fx",
 		"ps_file": "data/shaders/blur.fx",
 		"ps_entry_point": "PS_MOTION",
-		"vertex_type": "PosClr",
-		"category": "fx",
-		"z": "disable_all"
-	},
-	"postfx_fog": {
-		"vs_file": "data/shaders/screen_quad.fx",
-		"ps_file": "data/shaders/postfx.fx",
-		"ps_entry_point": "PS_PostFXFog",
 		"vertex_type": "PosClr",
 		"category": "fx",
 		"z": "disable_all"
