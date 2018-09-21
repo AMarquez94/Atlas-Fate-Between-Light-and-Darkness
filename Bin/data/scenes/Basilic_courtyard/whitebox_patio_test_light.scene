@@ -14,7 +14,7 @@
 			},
 			"light_dir": {
 				"type": "directional",
-				"color": "1.0 1.0 1.0 1.0",
+				"color": "0.92 0.94 0.627 1.0",
 				"intensity": 1.0,
 				"proj_type": "ortographic",
 				"z_near": 0.01,
