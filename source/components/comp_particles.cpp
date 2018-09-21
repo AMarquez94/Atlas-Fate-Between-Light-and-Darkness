@@ -99,7 +99,7 @@ void TCompParticles::setSystemState(bool state) {
 
     for (auto p : _cores) {
         Particles::CSystem * system = Engine.get().getParticles().getSystem(p.second);
-        if (system)
+        if (system != nullptr)
             system->setActive(state);
     }
 }
