@@ -62,10 +62,10 @@ void TCompPatrolAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::WALK_FAST,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
-		"walk_fast",
+		"run",
 		"",
 		1.0f,
-		1.0f,
+		0.7f,
 		false
 	);
 
