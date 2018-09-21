@@ -1,19 +1,18 @@
 {
-	"default_scene": "scene_zone_a",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
 			"navmesh": "data/navmeshes/intro_navmesh.bin",
-			"exposure": 1.57,
-			"ambient": 0.1,
-			"gamma": 1,
-			"tone_mapping": 1,
+			"exposure": 1.2,
+			"ambient": 0.11,
+			"gamma": 0.9,
+			"tone_mapping": 0.5,
 			"shadow_intensity": 0,
-			"ground_fog_density": 1,
-			"env_fog_density": 0.272,
-			"ground_fog": "0.47 0.51 0.84",
-			"env_fog": "0.0 0.0 0.023"
-			
+			"ground_fog_density": 0.23,
+			"env_fog_density": 0.131,
+			"ground_fog": "0.26 0.784 0.752",
+			"env_fog": "0.004 0.004 0.043"	
 		},
 		"scene_group": [
 			"data/scenes/Intro/player_intro_fsm.scene",
@@ -37,7 +36,7 @@
 			"data/scenes/intro_tejados.scene",
 			"data/scenes/intro_valla.scene",
 			"data/scenes/intro_colliders_valla.scene",
-			"data/scenes/neones.scene",
+			"data/scenes/intro_neones.scene",
 
 			"data/scenes/intro_cables.scene",
 
@@ -158,10 +157,10 @@
 	"scene_coliseo": {
 		"static_data": {
 			"initial_script": "coliseo",
-			"exposure": 1.57,
-			"ambient": 0.1,
-			"gamma": 1,
-			"tone_mapping": 1,
+			"exposure": 1.2,
+			"ambient": 0.11,
+			"gamma": 0.9,
+			"tone_mapping": 0.5,
 			"shadow_intensity": 0,
 			"ground_fog_density": 0.23,
 			"env_fog_density": 0.131,
@@ -203,10 +202,10 @@
 		"static_data": {
 			"initial_script": "basilic_courtyard",
 			"navmesh": "data/navmeshes/basilic_courtyard.bin",
-			"exposure": 1.57,
-			"ambient": 0.1,
-			"gamma": 1,
-			"tone_mapping": 1,
+			"exposure": 1.2,
+			"ambient": 0.11,
+			"gamma": 0.9,
+			"tone_mapping": 0.5,
 			"shadow_intensity": 0,
 			"ground_fog_density": 0.23,
 			"env_fog_density": 0.131,
