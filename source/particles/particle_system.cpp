@@ -192,7 +192,7 @@ namespace Particles
     {
         // Handle deployment
         {
-            if (!_entity.isValid()) return true;
+            if (!_entity.isValid() || !_enabled) return true;
 
             // Handle start delay
             _deploy_time += delta;
