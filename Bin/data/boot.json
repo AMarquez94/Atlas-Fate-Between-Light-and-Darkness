@@ -16,7 +16,7 @@
 		},
 		"scene_group": [
 			"data/scenes/Intro/player_intro_fsm.scene",
-			"data/scenes/main_cameras.scene",
+			"data/scenes/Intro/main_cameras.scene",
 			"data/scenes/Intro/intro_test_instancing.scene",
 			"data/scenes/Intro/cinematic.scene",
 			"data/scenes/Map_Intro/checkpoints.scene",
