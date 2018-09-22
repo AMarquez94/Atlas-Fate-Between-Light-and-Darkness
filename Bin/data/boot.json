@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_basilic_courtyard",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -12,7 +12,8 @@
 			"ground_fog_density": 0.23,
 			"env_fog_density": 0.131,
 			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.043"	
+			"env_fog": "0.004 0.004 0.043"
+			
 		},
 		"scene_group": [
 			"data/scenes/Intro/player_intro_fsm.scene",
@@ -202,13 +203,13 @@
 		"static_data": {
 			"initial_script": "basilic_courtyard",
 			"navmesh": "data/navmeshes/basilic_courtyard.bin",
-			"exposure": 1.2,
+			"exposure": 1.49,
 			"ambient": 0.11,
-			"gamma": 0.9,
-			"tone_mapping": 0.5,
+			"gamma": 0.98,
+			"tone_mapping": 0.59,
 			"shadow_intensity": 0,
-			"ground_fog_density": 0.23,
-			"env_fog_density": 0.131,
+			"ground_fog_density": 0.061,
+			"env_fog_density": 0.083,
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.043"
 		},
