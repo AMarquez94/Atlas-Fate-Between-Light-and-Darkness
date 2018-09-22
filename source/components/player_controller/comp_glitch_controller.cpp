@@ -63,8 +63,11 @@ void TCompGlitchController::onGlitchDeploy(const TMsgGlitchController & msg) {
     else {
         cb_postfx.postfx_scan_amount = 1;
         fade_multiplier = 1;
-        TCompAudio* my_audio = get<TCompAudio>();
-        glitch_sound = my_audio->playEvent("event:/Ambiance/Glitches");
+
+        if (!glitch_sound.isValid()) {
+            TCompAudio* my_audio = get<TCompAudio>();
+            glitch_sound = my_audio->playEvent("event:/Ambiance/Glitches");
+        }
     }
 }
 
