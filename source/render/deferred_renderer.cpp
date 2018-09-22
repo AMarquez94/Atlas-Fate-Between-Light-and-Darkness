@@ -137,6 +137,8 @@ void CDeferredRenderer::renderAccLight() {
 	renderDirectionalLights();
 	renderSkyBox();
 
+    CRenderManager::get().renderCategory("hologram_screen");
+    CRenderManager::get().renderCategory("distorsions");
 
     CRenderManager::get().renderCategory("hologram");
     CRenderManager::get().renderCategory("hologram_sw");
@@ -405,15 +407,11 @@ void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camer
 	// Now dump contents to the destination buffer.
 	rt_destination->activateRT();
 	rt_acc_light->activate(TS_DEFERRED_ACC_LIGHTS);
-    rt_prev_acc_light->activate(TS_LUMINANCE);
+    //rt_prev_acc_light->activate(TS_LUMINANCE);
 
 	// Combine the results
 	renderFullScreenQuad("gbuffer_resolve.tech", nullptr);
-    rt_prev_acc_light = rt_acc_light;
-
-    // Move this out of here when needed.
-    CRenderManager::get().renderCategory("hologram_screen");
-    CRenderManager::get().renderCategory("distorsions");
+    //rt_prev_acc_light = rt_acc_light;
 }
 
 // --------------------------------------

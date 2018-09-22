@@ -44,6 +44,44 @@ float3 toneMappingReinhard(float3 hdr, float k = 1.0)
   return hdr / (hdr + k);
 }
 
+// PostFX Exponential distance fog.
+float4 environment_fog(float4 iPosition, float2 iTex0, float3 in_color)
+{
+	float depth = txGBufferLinearDepth.Load(uint3(iPosition.xy, 0)).x;
+	float3 wPos = getWorldCoords(iPosition.xy, depth);
+	
+	float3 frag_dir = (wPos - camera_pos.xyz);
+	float dist = abs(length(frag_dir));
+	
+	float fog_factor = 1 - exp( (dist * -global_fog_density * .075)* (dist* global_fog_density * .075));	
+	if(depth > 0.92) fog_factor = 0.2;
+
+	float3 color = lerp(in_color, global_fog_env_color, saturate(fog_factor));
+	//float3 color = in_color + global_fog_env_color * fog_factor;
+	
+	return float4(color,1);
+}
+
+// PostFX Exponential ground distance fog.
+float4 ground_fog(float4 iPosition, float2 iTex0, float3 in_color)
+{
+	int3 ss_load_coords = uint3(iPosition.xy, 0);
+	float depth = txGBufferLinearDepth.Load(ss_load_coords).x;
+	float3 wPos = getWorldCoords(iPosition.xy, depth);
+
+	float3 frag_dir = (wPos - camera_pos.xyz);
+	float dist = abs(length(frag_dir));
+
+	//You have to tweak this values
+	float be = 0.045 * smoothstep(0.0, 2.0, 60.0 - wPos.y);
+	float bi = 0.075* smoothstep(0.0, 80, 10.0 - wPos.y);
+	
+	float fog_factor = exp(-dist * be) * (1 - exp(-dist * bi)) * global_fog_ground_density;
+	float3 color = in_color * ( 1 - fog_factor) + global_fog_color * fog_factor;
+		
+	return float4(color,1);
+}
+
 float3 Uncharted2Tonemap(float3 x)
 {
   float A = 0.15;
@@ -83,22 +121,31 @@ float4 compute(float4 iPosition, float2 iUV)
 {
   int3 ss_load_coords = uint3(iPosition.xy, 0);
   float4 oAlbedo = txGBufferAlbedos.Load(ss_load_coords);
-
+  //return txAO.Sample(samLinear, iUV);
+	//return txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
+	//return txSelfIllum.Load(uint3(iPosition.xy,0)).a;
   float4 N_rt = txGBufferNormals.Load(ss_load_coords);
   float4 oNormal = float4(decodeNormal( N_rt.xyz ), 1);
 
   float3 hdrColor = txAccLights.Load(ss_load_coords).xyz;
-  hdrColor *= global_exposure_adjustment;
-
-  // In Low Dynamic Range we could not go beyond the value 1
+	//hdrColor *= txSelfIllum.Load(uint3(iPosition.xy,0)).a;
+	hdrColor = environment_fog(iPosition, iUV, hdrColor);
+	hdrColor = ground_fog(iPosition, iUV, hdrColor);
+		
+  //hdrColor *= PS_PostFXFog(iPosition, iUV);
+	//hdrColor *= txAO.Sample(samLinear, iUV);
+	hdrColor *= global_exposure_adjustment;
+	//hdrColor *= txAO.Sample(samLinear, iUV);	
+  
+	// In Low Dynamic Range we could not go beyond the value 1
   //float3 ldrColor = min(hdrColor,float3(1,1,1));
   //hdrColor = lerp( ldrColor, hdrColor, global_hdr_enabled  );
 
 	// Preparing the eye adaption
-	float3 prev_lum = txLuminance.Load(ss_load_coords).xyz;
+	//float3 prev_lum = txLuminance.Load(ss_load_coords).xyz;
 	//hdrColor = prev_lum + (hdrColor - prev_lum) * (1 - exp(-0.25 * 1.5));
 	
-	float pixelLuminance = CalculateLuminance(hdrColor);
+	//float pixelLuminance = CalculateLuminance(hdrColor);
   //hdrColor = CalculateExposedColor(hdrColor, avg_lum, 0, 0);	
 	//float3 tmColor = toneMapFilmicALU(hdrColor);
 	

@@ -12,7 +12,7 @@
 		"gravity": 0.0,
 		"simulation_speed": 1,
 		"max_particles": 20,
-		"offset": "0 0.0 0.4"
+		"offset": "0 0.0 0.2"
 	},
 	"emission": {
 		"rate_time": 1.0,
@@ -21,7 +21,7 @@
 	},	
 	"shape": {
 		"type": "box",
-		"size": "0.1 0.1 0.1",
+		"size": "0.01 0.01 0.01",
 		"angle": 0
 		
 	},
@@ -61,10 +61,10 @@
 	},
   "size" : {
     "scale" : 2,
-    "scale_variation" : 0.1,
+    "scale_variation" : 0,
     "sizes" : [
-		  [0.0, "5 4 3"],
-			[1.0, "5 4 3"]
+		  [0.0, "6 4 6"],
+			[1.0, "6 4 6"]
     ]
   },
   "color" : {

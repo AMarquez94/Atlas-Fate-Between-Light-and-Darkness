@@ -9,7 +9,7 @@
 #include "components/comp_render.h"
 #include "components/comp_transform.h"
 #include "render/texture/material.h"
-
+#include "render/render_objects.h"
 // for convenience
 using json = nlohmann::json;
 
@@ -37,6 +37,18 @@ void CModuleSceneManager::loadJsonScenes(const std::string filepath) {
         auto& data = jboot[scene_name]["static_data"];
         scene->navmesh = data.value("navmesh", "");
         scene->initial_script_name = data.value("initial_script", "");
+
+        scene->env_fog = data.count("env_fog") ? loadVEC3(data["env_fog"]) : cb_globals.global_fog_env_color;
+        scene->ground_fog = data.count("ground_fog") ? loadVEC3(data["ground_fog"]) : cb_globals.global_fog_color;
+
+        scene->env_fog_density = data.value("env_fog_density", cb_globals.global_fog_density);
+        scene->ground_fog_density = data.value("ground_fog_density", cb_globals.global_fog_ground_density);
+
+        scene->scene_exposure = data.value("exposure", cb_globals.global_exposure_adjustment);
+        scene->scene_ambient = data.value("ambient", cb_globals.global_ambient_adjustment);
+        scene->scene_gamma = data.value("gamma", cb_globals.global_gamma_correction_enabled);
+        scene->scene_tone_mapping = data.value("tone_mapping", cb_globals.global_tone_mapping_mode);
+        scene->scene_shadow_intensity = data.value("shadow_intensity", cb_globals.global_shadow_intensity);
 
         _scenes.insert(std::pair<std::string, Scene*>(scene_name, scene));
     }
@@ -130,6 +142,18 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
 		/* TODO: Comprobar que se sigue en la misma escena */
 		gameManager.loadCheckpoint();
         Engine.getLogic().execEvent(EngineLogic.SCENE_START, current_scene->name);
+        cb_globals.global_fog_color = current_scene->ground_fog;
+        cb_globals.global_fog_env_color = current_scene->env_fog;
+        cb_globals.global_fog_density = current_scene->env_fog_density;
+        cb_globals.global_fog_ground_density = current_scene->ground_fog_density;
+        cb_globals.global_exposure_adjustment = current_scene->scene_exposure;
+        cb_globals.global_ambient_adjustment = current_scene->scene_ambient;
+        cb_globals.global_gamma_correction_enabled = current_scene->scene_gamma;
+        cb_globals.global_tone_mapping_mode = current_scene->scene_tone_mapping;
+        cb_globals.global_shadow_intensity = current_scene->scene_shadow_intensity;
+
+        cb_globals.updateGPU();
+
         return true;
     }
 
