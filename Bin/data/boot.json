@@ -229,9 +229,8 @@
 			"data/scenes/BC_coberturas.scene",
 			"data/scenes/BC_containers.scene",
 			"data/scenes/BC_props.scene",
-            "data/scenes/BC_cables.scene",
+      "data/scenes/BC_cables.scene",
 			"data/scenes/BC_tubos.scene",
-			"data/scenes/BC_neones.scene",
 			"data/scenes/BC_capsulas.scene",
 
 			"data/scenes/BC_maderas_whitebox.scene",

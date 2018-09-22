@@ -76,67 +76,6 @@
   {
     "entity":
     {
-      "name": "Spot010"
-      ,
-      "transform":
-      {
-        "pos": "19.694 22.5649 -392.942"
-        ,
-        "lookat": "5.60394 26.0074 -405.261"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 19.0295
-        ,
-        "angle": 45.2
-        ,
-        "inner_cut": 33.9
-        ,
-        "z_far": 19.0295
-        ,
-        "volume": false
-        ,
-        "color": "1.0 0.647059 0.0235294 1.0"
-        ,
-        "intensity": 3.0
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot010.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "Spot009"
       ,
       "transform":
@@ -306,67 +245,6 @@
         "shape": "convex"
         ,
         "name": "data/colliders/Spot006.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot005"
-      ,
-      "transform":
-      {
-        "pos": "-11.8409 22.5649 -389.671"
-        ,
-        "lookat": "2.99835 26.0074 -405.261"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 21.7966
-        ,
-        "angle": 36.5
-        ,
-        "inner_cut": 28.3
-        ,
-        "z_far": 21.7966
-        ,
-        "volume": false
-        ,
-        "color": "1.0 0.647059 0.0235294 1.0"
-        ,
-        "intensity": 3.0
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot005.collider"
         ,
         "is_trigger": true
       }
