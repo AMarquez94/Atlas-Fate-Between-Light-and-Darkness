@@ -718,7 +718,7 @@
 			"name": "closestWptUnreachableGoToPatrol",
 			"type": "action",
 			"condition": "",
-			"action": "closestWpt",
+			"action": "actionClosestWpt",
 			"assert": ""
 		}, {
 			"parent": "manageGoToPatrol",
