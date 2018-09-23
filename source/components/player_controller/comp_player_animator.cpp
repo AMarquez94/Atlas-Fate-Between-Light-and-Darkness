@@ -329,7 +329,7 @@ void TCompPlayerAnimator::registerMsgs() {
 }
 
 void TCompPlayerAnimator::onSceneStop(const TMsgScenePaused& msg) {
-	playAnimation(EAnimation::IDLE);
+	//playAnimation(EAnimation::IDLE);
 }
 
 void TCompPlayerAnimator::onMsgNoClipToggle(const TMsgNoClipToggle & msg)

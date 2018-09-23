@@ -86,8 +86,8 @@ void PS_GBuffer(
 {
 	o_albedo = txAlbedo.Sample(samLinear, iTex0);
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
-	o_selfIllum =  txEmissive.Sample(samLinear, iTex0) * self_intensity;
-	o_selfIllum.xyz *= self_color.xyz;
+	o_selfIllum =  txEmissive.Sample(samLinear, iTex0);
+	o_selfIllum.xyz *= self_color.xyz * self_intensity;
 	o_selfIllum.a = txAOcclusion.Sample(samLinear, iTex0).r;
 	
 	// Save roughness in the alpha coord of the N render target
@@ -123,8 +123,8 @@ void PS_GBuffer_Player(
 	
 	o_albedo = txAlbedo.Sample(samLinear, iTex0);
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
-	o_selfIllum =  txEmissive.Sample(samLinear, iTex0) * self_intensity;
-	o_selfIllum.xyz *= self_color.xyz;
+	o_selfIllum =  txEmissive.Sample(samLinear, iTex0);
+	o_selfIllum.xyz *= self_color.xyz * self_intensity;
 	o_selfIllum.a = txAOcclusion.Sample(samLinear, iTex0).r;
 	
 	// Save roughness in the alpha coord of the N render target
@@ -428,15 +428,9 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	float ao = txAO.Sample( samLinear, iUV).x;
 	float4 self_illum = txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
 
-	// Compute global fog on ambient.
-	float3 pixel_depth = camera_pos.xyz - wPos;
-	float distancet = length(pixel_depth);
-	float visibility = exp(distancet * distancet * -global_fog_density * global_fog_density * 0.04695);
-	visibility = saturate(visibility);
-
 	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
-	final_color = final_color * global_ambient_adjustment * ao * pow(self_illum.a, 2);
-	final_color = final_color + float4(self_illum.xyz, 1) * global_ambient_adjustment * global_self_intensity;
+	final_color *= global_ambient_adjustment * ao;
+	final_color += float4(self_illum.xyz, 1);
 	return float4(final_color.xyz, 1);
 }
 
@@ -489,6 +483,7 @@ float4 shade(float4 iPosition, out float3 light_dir, bool use_shadows)
 	
 	// Spotlight attenuation
 	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.; // shadow factor
+	shadow_factor = lerp(shadow_factor, 1, global_shadow_intensity);
 	
 	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor;
 	return float4(final_color, 1);

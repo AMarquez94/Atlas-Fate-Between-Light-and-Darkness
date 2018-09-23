@@ -32,13 +32,11 @@ void TCompRenderBloom::debugInMenu() {
 void TCompRenderBloom::load(const json& j, TEntityParseContext& ctx) {
 	TCompRenderBlur::load(j, ctx);
 	if (j.count("weights"))
-		cte_bloom.bloom_weights = loadVEC4(j["weights"]);
+        add_weights = loadVEC4(j["weights"]);
 
 	threshold_min = j.value("threshold_min", threshold_min);
 	threshold_max = j.value("threshold_max", threshold_max);
-	multiplier = j.value("multiplier", multiplier);
-
-    global_distance = 0.960f;
+    global_distance = j.value("global_distance", 1);
     weights = VEC4(70, 56, 28, 8);
 
 	rt_highlights = new CRenderToTexture();

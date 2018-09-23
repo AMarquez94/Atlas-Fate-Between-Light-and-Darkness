@@ -38,8 +38,10 @@ void TCompRenderAO::load(const json& j, TEntityParseContext& ctx) {
 }
 
 const CTexture* TCompRenderAO::compute(CTexture* linear_depth_texture) {
+
 	if (!enabled)
 		return white;
+
 	CTraceScoped scope("AO");
 
 	rt_output->activateRT();

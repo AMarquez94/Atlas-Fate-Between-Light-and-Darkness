@@ -9,9 +9,21 @@ public:
     bool isLoaded;
     CHandle root;
 
+    VEC3 env_fog;
+    VEC3 ground_fog;
+    float env_fog_density;
+    float ground_fog_density;
+    
+    float scene_exposure;
+    float scene_ambient;
+    float scene_tone_mapping;
+    float scene_gamma;
+    float scene_shadow_intensity;
+
     std::string name;
     std::string navmesh;
     std::string initial_script_name;
+
     std::vector<std::string> groups_subscenes;
 };
 
@@ -44,3 +56,4 @@ private:
     void loadJsonScenes(const std::string filepath);
     void setActiveScene(Scene* scene);
 };
+ 
