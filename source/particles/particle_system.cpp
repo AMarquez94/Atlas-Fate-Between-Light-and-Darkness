@@ -545,8 +545,7 @@ namespace Particles
             technique2->activate();
 
             _core->n_renderer.texture->activate(TS_ALBEDO1);
-            //instanced_particle->activateAndRender();
-            CRenderManager::get().renderCategory("particles_instanced");
+            instanced_particle->renderSubMesh(instanced_particle->subgroups[0].first_idx);
         }
     }
 
