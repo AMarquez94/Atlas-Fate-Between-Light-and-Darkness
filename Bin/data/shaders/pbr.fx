@@ -484,8 +484,9 @@ float4 shade(float4 iPosition, out float3 light_dir, bool use_shadows)
 	// Spotlight attenuation
 	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.; // shadow factor
 	shadow_factor = lerp(shadow_factor, 1, global_shadow_intensity);
+	float3 final_light_color = lerp(global_shadow_color, light_color.xyz, shadow_factor);
+	float3 final_color = final_light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att;
 	
-	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor;
 	return float4(final_color, 1);
 }
 

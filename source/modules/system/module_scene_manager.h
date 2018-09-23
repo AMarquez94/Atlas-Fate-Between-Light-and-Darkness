@@ -11,6 +11,7 @@ public:
 
     VEC3 env_fog;
     VEC3 ground_fog;
+    VEC3 shadow_color;
     float env_fog_density;
     float ground_fog_density;
     

@@ -151,7 +151,7 @@ bool CModuleRender::start()
     cb_globals.global_fog_ground_density = 1.f;
     cb_globals.global_fog_color = VEC3(0.47,0.51,0.84);
     cb_globals.global_fog_env_color = VEC3(0.0117, 0.015, 0.062);
-
+    cb_globals.global_shadow_color = VEC3(0.0f, 0.0f, 0.0f);
     cb_globals.global_self_intensity = 10.f;
     cb_globals.global_delta_time = 0.f;
     cb_globals.global_shadow_intensity = 0.f;
@@ -244,6 +244,7 @@ void CModuleRender::render()
         // Fog settings edition
         ImGui::DragFloat("Fog Ground density", &cb_globals.global_fog_ground_density, 0.001f, 0.0f, 1.f);
         ImGui::DragFloat("Fog Environment density", &cb_globals.global_fog_density, 0.001f, 0.0f, 1.f);
+        ImGui::ColorEdit4("Shadow Color", &cb_globals.global_shadow_color.x, 0.0001f);
         ImGui::ColorEdit4("Fog Ground Color", &cb_globals.global_fog_color.x, 0.0001f);
         ImGui::ColorEdit4("Fog Environment Color", &cb_globals.global_fog_env_color.x, 0.0001f);
 

@@ -190,11 +190,9 @@ CB_DEF(CCteGlobals, CB_GLOBALS)   // Generates the b1
     float global_fog_ground_density;
 
     float global_shadow_intensity;
-    float global_shadow_dummy1;
-    float global_shadow_dummy2;
-    float global_shadow_dummy3;
+    VEC3  global_shadow_color;
 
-    VEC3 global_fog_env_color;
+    VEC3  global_fog_env_color;
     float global_delta_time;
 };
 

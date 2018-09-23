@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_basilic_courtyard",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -11,6 +11,7 @@
 			"shadow_intensity": 0,
 			"ground_fog_density": 0.23,
 			"env_fog_density": 0.131,
+			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.043"
 			
@@ -79,6 +80,7 @@
 			"shadow_intensity": 0,
 			"ground_fog_density": 1,
 			"env_fog_density": 0.272,
+			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.47 0.51 0.84",
 			"env_fog": "0.0 0.0 0.023"
 		},
@@ -109,6 +111,7 @@
 			"shadow_intensity": 0,
 			"ground_fog_density": 0.23,
 			"env_fog_density": 0.131,
+			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.043"
 
@@ -164,6 +167,7 @@
 			"shadow_intensity": 0,
 			"ground_fog_density": 0.23,
 			"env_fog_density": 0.131,
+			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.043"
 		},
@@ -186,6 +190,7 @@
 			"shadow_intensity": 0,
 			"ground_fog_density": 0.23,
 			"env_fog_density": 0.131,
+			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.043"
 		},
@@ -209,6 +214,7 @@
 			"shadow_intensity": 0,
 			"ground_fog_density": 0.061,
 			"env_fog_density": 0.083,
+			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.043"
 		},
@@ -252,6 +258,7 @@
 			"shadow_intensity": 0,
 			"ground_fog_density": 0.23,
 			"env_fog_density": 0.131,
+			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.043"
 		},

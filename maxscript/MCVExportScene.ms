@@ -698,9 +698,10 @@ struct TSceneExporter (
 		else if classof obj == omnilight then ( 
 			fs.writeKey "collider" 
 			fs.beginObj()
-			fs.writeKeyValue "shape" "sphere" 
+			fs.writeKeyValue "shape" "sphere"
 			fs.writeComma()
-			fs.writeKeyValue "radius" ((obj.farAttenEnd - obj.farAttenStart) * .5 + obj.farAttenStart) 
+			fs.writeComma()
+			fs.writeKeyValue "radius" obj.nearAttenEnd
 			fs.writeComma()
 			fs.writeKeyValue "is_trigger" true
 			fs.endObj()
