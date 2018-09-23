@@ -65,11 +65,6 @@ void CModuleParticles::renderDeferred()
 
 void CModuleParticles::renderMain()
 {
-    //for (auto& ps : _activeSystems)
-    //{
-    //    ps->render();
-    //};
-
     if(particles_enabled)
         p_editor->debugMenu();
 }
