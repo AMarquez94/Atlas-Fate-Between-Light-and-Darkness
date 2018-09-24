@@ -209,6 +209,7 @@
 			"noise_emitter": {
 				"radius": -1
 			},
+			"suspect_manager": {},
 			"tags": [
 				"player"
 			],

@@ -139,6 +139,7 @@
     <ClCompile Include="components\object_controller\comp_rotator.cpp" />
     <ClCompile Include="components\object_controller\comp_shooter.cpp" />
     <ClCompile Include="components\object_controller\comp_speaker.cpp" />
+    <ClCompile Include="components\object_controller\comp_suspect_element.cpp" />
     <ClCompile Include="components\object_controller\comp_trigger_checkpoint.cpp" />
     <ClCompile Include="components\player_controller\comp_glitch_controller.cpp" />
     <ClCompile Include="components\player_controller\comp_noclip_controller.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="components\player_controller\comp_player_tempcontroller.cpp" />
     <ClCompile Include="components\player_controller\comp_shadow_controller.cpp" />
     <ClCompile Include="components\player_controller\comp_sonar_controller.cpp" />
+    <ClCompile Include="components\player_controller\comp_suspect_manager.cpp" />
     <ClCompile Include="components\postfx\comp_chrom_aberration.cpp" />
     <ClCompile Include="components\postfx\comp_color_grading.cpp" />
     <ClCompile Include="components\postfx\comp_fog.cpp" />
@@ -376,6 +378,7 @@
     <ClInclude Include="components\object_controller\comp_rotator.h" />
     <ClInclude Include="components\object_controller\comp_shooter.h" />
     <ClInclude Include="components\object_controller\comp_speaker.h" />
+    <ClInclude Include="components\object_controller\comp_suspect_element.h" />
     <ClInclude Include="components\object_controller\comp_trigger_checkpoint.h" />
     <ClInclude Include="components\player_controller\comp_glitch_controller.h" />
     <ClInclude Include="components\player_controller\comp_noclip_controller.h" />
@@ -402,6 +405,7 @@
     <ClInclude Include="components\player_controller\comp_player_tempcontroller.h" />
     <ClInclude Include="components\player_controller\comp_shadow_controller.h" />
     <ClInclude Include="components\player_controller\comp_sonar_controller.h" />
+    <ClInclude Include="components\player_controller\comp_suspect_manager.h" />
     <ClInclude Include="components\postfx\comp_chrom_aberration.h" />
     <ClInclude Include="components\postfx\comp_color_grading.h" />
     <ClInclude Include="components\postfx\comp_fog.h" />

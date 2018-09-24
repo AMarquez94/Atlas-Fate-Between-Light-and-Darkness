@@ -19,7 +19,9 @@ protected:
     std::vector<Waypoint> _waypoints;
     int currentWaypoint;
 
+    /* Suspect */
     float suspectO_Meter = 0.f;
+    bool isSuspectingAndSeeingPlayer = false;
     bool isLastPlayerKnownDirLeft = false;
     VEC3 lastPlayerKnownPos = VEC3::Zero;
     bool alarmEnded = true;
@@ -59,7 +61,7 @@ protected:
     void generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc = false);
     bool moveToPoint(float speed, float rotationSpeed, VEC3 destPoint, float dt);
     bool isCurrentDestinationReachable();
-
+    void sendSuspectingMsg(bool isSuspecting);
 
     /* TODO: Delete */
     float maxDiff = 0;

@@ -314,7 +314,13 @@
 			"type": "GrabEnemyState",
 			"animation": "idle",
 			"speed": 0,
-			"size": 1
+			"size": 1,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4,
+				"fov": 70
+			}
 		},
 		{
 			"name": "sonarEnemyUp",

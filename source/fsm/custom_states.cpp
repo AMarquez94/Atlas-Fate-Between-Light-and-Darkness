@@ -742,7 +742,7 @@ namespace FSM
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::GRAB_ENEMY , 1.0f });
 		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::GRABING_ENEMY , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, nullptr, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
 
     }
 
@@ -768,7 +768,7 @@ namespace FSM
       e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
       TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
       playerController->markObjectAsMoving(true);
-      e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::movingObjectState, _speed, _size, _radius, nullptr, _noise });
+      e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::movingObjectState, _speed, _size, _radius, _target, _noise });
     }
 
     void MovingObjectState::onFinish(CContext& ctx) const {

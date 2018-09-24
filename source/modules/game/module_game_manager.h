@@ -34,7 +34,7 @@ public:
     enum PauseState { none, main, win, defeat, editor1, editor1unpaused, editor2 };
 
     struct ConfigPublic {
-        bool drawfps = false;
+        bool drawfps = true;
 
     }config;
 

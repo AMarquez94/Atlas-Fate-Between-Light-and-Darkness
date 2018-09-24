@@ -288,3 +288,15 @@ bool TCompAIEnemy::isCurrentDestinationReachable()
 {
     return canArriveToDestination && isDestinationCloseEnough;
 }
+
+void TCompAIEnemy::sendSuspectingMsg(bool isSuspecting)
+{
+    if (isSuspecting != isSuspectingAndSeeingPlayer) {
+        CEntity* e_player = EngineEntities.getPlayerHandle();
+        TMsgEnemySuspecting msg;
+        msg.enemy_suspecting = myHandle.getOwner();
+        msg.is_suspecting = isSuspecting;
+        e_player->sendMsg(msg);
+        isSuspectingAndSeeingPlayer = isSuspecting;
+    }
+}

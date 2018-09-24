@@ -334,6 +334,12 @@ struct TMsgCircularControllerTarget {
     DECL_MSG_ID();
 };
 
+struct TMsgEnemySuspecting {
+    CHandle enemy_suspecting;
+    bool is_suspecting;
+    DECL_MSG_ID();
+};
+
 //struct TMsgSpotlightsToggle {
 //    DECL_MSG_ID();
 //};
