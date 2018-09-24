@@ -1092,12 +1092,12 @@ void TCompTempPlayerController::updateShader(float dt) {
     if (isDead()) {
         e_controller->blend(playerColor.colorDead, 1.f);
     }
-    else if (canAttack) {       //TEMP: TODO: Delete
+    /*else if (canAttack) {       //TEMP: TODO: Delete
         e_controller->blend(VEC4(1.f, 0.f, 0.f, 1.f), 0.1f);
     }
     else if (isInhibited) {
         e_controller->blend(playerColor.colorInhib, 0.1f);
-    }
+    }*/
     else if (shadow_oracle->is_shadow) {
         e_controller->blend(playerColor.colorMerge, 0.5f);
     }
