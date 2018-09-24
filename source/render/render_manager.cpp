@@ -89,7 +89,7 @@ void CRenderManager::addRenderKey(
             shadow_mat = Resources.get("data/materials/shadows_skin.material")->as<CMaterial>();
         }
         else if (material->tech->usesInstancing()) {
-            if (material->tech->vs->getVertexDecl()->name == "Pos_x_InstancedPos")
+            if (material->tech->vs->getVertexDecl()->name == "PosNUvUvT_x_InstancedPos")
                 shadow_mat = Resources.get("data/materials/shadows_grass_instanced.material")->as<CMaterial>();
             else
                 shadow_mat = Resources.get("data/materials/shadows_instanced.material")->as<CMaterial>();
