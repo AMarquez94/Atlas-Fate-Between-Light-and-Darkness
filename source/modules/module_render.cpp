@@ -347,7 +347,7 @@ void CModuleRender::generateFrame() {
 
         activateMainCamera();
         deferred.render(rt_main, h_e_camera);
-        Engine.get().getParticles().renderDeferred();
+        Engine.get().getParticles().renderCombinative();
         postProcessingStack();
     }
 

@@ -1,0 +1,43 @@
+[
+  {
+    "entity":
+    {
+      "name": "prueba_bush"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Plane005"
+      ,
+      "transform":
+      {
+        "pos": "-8.55411 -0.149371 -65.4801"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Plane005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/Material #301.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

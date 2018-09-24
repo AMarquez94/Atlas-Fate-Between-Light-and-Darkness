@@ -146,6 +146,7 @@ void CDeferredRenderer::renderAccLight() {
     CRenderManager::get().renderCategory("volume_shafts");
     CRenderManager::get().renderCategory("volume_ray_shafts");
     CRenderManager::get().renderCategory("cp_particles");
+    Engine.get().getParticles().renderAdditive();
 }
 
 // -------------------------------------------------------------------------
@@ -378,7 +379,7 @@ void CDeferredRenderer::renderGBufferParticles(CRenderToTexture* rt_destination)
     Render.ctx->OMSetRenderTargets(nrender_targets, rts, rt_acc_light->getDepthStencilView());
     rt_albedos->activateViewport(); // Any rt will do...
 
-    Engine.get().getParticles().renderDeferred();
+    Engine.get().getParticles().renderAdditive();
     //CRenderManager::get().renderCategory("cp_particles");
 
     // Disable rendering to all render targets.

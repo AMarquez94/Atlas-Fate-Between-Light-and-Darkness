@@ -14,7 +14,7 @@
 		"max_particles": 600
 	},
 	"emission": {
-		"rate_time": 300.0,
+		"rate_time": 60.0,
 		"rate_distance": 0.0,
 		"variation" : 0.4
 	},	
@@ -55,18 +55,19 @@
       "frame_size" : "8 8",
       "initial_frame" : 0,
       "num_frames" : 64,
-      "frame_speed" : 1.0
+      "frame_speed" : 0.0,
+			"tech" : "particles_instanced_additive.tech"
 	},
   "size" : {
     "scale" : 1,
     "scale_variation" : 1.4,
     "sizes" : [
-		  [0.0, "3 3 3"],
-			[1.0, "3 3 3"]
+		  [0.0, "3 2 3"],
+			[1.0, "3 2 3"]
     ]
   },
   "color" : {
-    "opacity" : 0.05,
+    "opacity" : 0.005,
     "colors" : [
       [0.0, "1.0 1.0 1.0 0.0"],
 			[0.3, "1.0 1.0 1.0 0.5"],
