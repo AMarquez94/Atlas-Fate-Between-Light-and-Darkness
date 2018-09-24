@@ -1,0 +1,43 @@
+[
+  {
+    "entity":
+    {
+      "name": "zone_a_decal"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "QuadPatch001"
+      ,
+      "transform":
+      {
+        "pos": "-38.0 0.349993 -86.7057"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+        ,
+        "scale": "6.0 0.1 0.72"
+      }
+      ,
+      "instance":
+      {
+        "mesh": "data/meshes/Material #302.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/Material #302.material"
+        ]
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

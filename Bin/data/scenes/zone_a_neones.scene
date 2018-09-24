@@ -2400,39 +2400,7 @@
       ,
       "transform":
       {
-        "pos": "-58.0143 8.52367 -147.618"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_amarillo_016"
-      ,
-      "prefab": "data/prefabs/neon_amarillo_2.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-46.5595 9.65673 -145.9"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_amarillo_017"
-      ,
-      "prefab": "data/prefabs/neon_amarillo_4.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-50.2802 9.05615 -148.616"
+        "pos": "-58.0143 9.32812 -147.618"
         ,
         "rotation": "0.0 0.707107 0.0 -0.707107"
       }
@@ -2785,22 +2753,6 @@
       "transform":
       {
         "pos": "-90.586 9.84106 -118.709"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_ignatius003"
-      ,
-      "prefab": "data/prefabs/neon_ignatius.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-43.34 9.22607 -143.736"
         ,
         "rotation": "0.0 -1.0 0.0 0.0"
       }
@@ -3315,6 +3267,54 @@
         "pos": "-104.577 8.62621 -154.375"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_verde_021"
+      ,
+      "prefab": "data/prefabs/neon_verde_1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-46.2358 8.15002 -145.822"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_verde_022"
+      ,
+      "prefab": "data/prefabs/neon_verde_2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-43.3306 8.28954 -142.761"
+        ,
+        "rotation": "0.0 -1.0 0.0 -6.71544e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_neon_verde_023"
+      ,
+      "prefab": "data/prefabs/neon_verde_3.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-52.5642 8.28027 -148.69"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
       }
     }
   }
