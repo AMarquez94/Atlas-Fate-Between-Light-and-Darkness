@@ -18,11 +18,11 @@
       ,
       "transform":
       {
-        "pos": "-38.0 0.349993 -86.7057"
+        "pos": "-38.0 0.978777 -86.7057"
         ,
-        "rotation": "0.0 0.707107 -0.707107 0.0"
+        "rotation": "0.0 -0.707107 0.707107 0.0"
         ,
-        "scale": "6.0 0.1 0.72"
+        "scale": "6.0 0.1 2.0"
       }
       ,
       "instance":
@@ -32,6 +32,36 @@
         "materials":
         [
           "data/materials/Material #302.material"
+        ]
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "QuadPatch002"
+      ,
+      "transform":
+      {
+        "pos": "-45.5932 0.696163 -86.3119"
+        ,
+        "rotation": "0.270598 0.653281 -0.653282 0.270598"
+        ,
+        "scale": "5.00016 0.1 2.02637"
+      }
+      ,
+      "instance":
+      {
+        "mesh": "data/meshes/Material #312.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/Material #312.material"
         ]
       }
       ,
