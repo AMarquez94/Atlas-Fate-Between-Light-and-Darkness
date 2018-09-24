@@ -12,5 +12,7 @@
     "normal": "data/textures/tx_casa1_nml.dds"
     ,
     "height": "data/textures/tx_casa1_hgt.dds"
+    ,
+    "aocclusion": "data/textures/tx_casa1_ao.dds"
   }
 }

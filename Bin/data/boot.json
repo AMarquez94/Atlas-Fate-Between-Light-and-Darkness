@@ -1,4 +1,4 @@
-{
+	{
 	"default_scene": "scene_zone_a",
 	"scene_intro": {
 		"static_data": {
@@ -122,7 +122,7 @@
 			"data/scenes/ZoneA/zone_a_suelo.scene",
 			"data/scenes/ZoneA/zone_a_casas.scene",
 			"data/scenes/ZoneA/zone_a_puertas.scene",
-			"data/scenes/ZoneA/zone_a_puentes.scene",
+			"data/scenes/zone_a_puentes.scene",
 			"data/scenes/ZoneA/zone_a_tejados.scene",
 			"data/scenes/ZoneA/zone_a_columnas.scene",
 			"data/scenes/ZoneA/zone_a_colliders_salientes.scene",

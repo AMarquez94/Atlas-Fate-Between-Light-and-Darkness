@@ -4027,8 +4027,7 @@
         ,
         "group": "fence"
         ,
-        "mask": "player
-player"
+        "mask": "player"
         ,
         "is_trigger": false
         ,
