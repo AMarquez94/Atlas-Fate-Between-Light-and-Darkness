@@ -5,8 +5,8 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/grieta.dds"
+    "albedo": "data/textures/grieta_alb.dds"
     ,
-    "normal": "data/textures/null_normal.dds"
+    "normal": "data/textures/grieta_nml.dds"
   }
 }
