@@ -17,6 +17,8 @@
 		"ai_mimetic",
 		"ai_drone",
 		"ai_player",
+		"suspect_ui_element",
+		"suspect_manager",
 		"inhibitor",
 		"shooter",
 		"instance",

@@ -476,6 +476,7 @@ BTNode::ERes TCompAIPatrol::actionEndAlert(float dt)
     e_controller->blend(enemyColor.colorNormal, 0.1f);
     lastPlayerKnownPos = VEC3::Zero;
     alarmEnded = true;
+    sendSuspectingMsg(false);
     return BTNode::ERes::LEAVE;
 }
 
@@ -685,6 +686,7 @@ BTNode::ERes TCompAIPatrol::actionSuspect(float dt)
         rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt);
     }
     else {
+        sendSuspectingMsg(false);
         suspectO_Meter = Clamp(suspectO_Meter - dt * dcrSuspectO_Meter, 0.f, 1.f);
     }
 
@@ -692,9 +694,11 @@ BTNode::ERes TCompAIPatrol::actionSuspect(float dt)
         if (suspectO_Meter <= 0) {
             e_controller->blend(enemyColor.colorNormal, 0.1f);
         }
+        sendSuspectingMsg(false);
         return BTNode::ERes::LEAVE;
     }
     else {
+        sendSuspectingMsg(true);
         return BTNode::ERes::STAY;
     }
 }
@@ -838,6 +842,7 @@ BTNode::ERes TCompAIPatrol::actionRotateTowardsUnreachablePlayer(float dt)
         TCompEmissionController * e_controller = get<TCompEmissionController>();
         e_controller->blend(enemyColor.colorNormal, 0.1f);
         lastPlayerKnownPos = VEC3::Zero;
+        suspectO_Meter = 0.f;
         return BTNode::ERes::LEAVE;
     }
 }
