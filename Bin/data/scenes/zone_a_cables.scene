@@ -4334,4 +4334,424 @@
       "local_aabb": true
     }
   }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable118"
+      ,
+      "transform":
+      {
+        "pos": "-51.542 6.08911 -111.713"
+        ,
+        "rotation": "-0.241845 -0.241845 -0.664463 -0.664463"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable118.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable119"
+      ,
+      "transform":
+      {
+        "pos": "-51.0963 6.08911 -111.713"
+        ,
+        "rotation": "-0.241845 -0.241845 -0.664463 -0.664463"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable119.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable120"
+      ,
+      "transform":
+      {
+        "pos": "-51.0963 6.08911 -111.713"
+        ,
+        "rotation": "-0.454519 -0.45452 -0.541675 -0.541675"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable120.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable121"
+      ,
+      "transform":
+      {
+        "pos": "-52.5611 6.08911 -112.83"
+        ,
+        "rotation": "-0.122788 -0.122788 -0.696364 -0.696364"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable121.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable122"
+      ,
+      "transform":
+      {
+        "pos": "-48.3399 6.08911 -107.326"
+        ,
+        "rotation": "-0.521334 -0.521334 -0.477714 -0.477714"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable122.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable123"
+      ,
+      "transform":
+      {
+        "pos": "-45.6683 6.08911 -108.987"
+        ,
+        "rotation": "-0.640856 -0.640856 -0.298836 -0.298836"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable123.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable124"
+      ,
+      "transform":
+      {
+        "pos": "-58.7531 6.08911 -110.575"
+        ,
+        "rotation": "-0.477714 -0.477714 -0.521334 -0.521334"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable124.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable125"
+      ,
+      "transform":
+      {
+        "pos": "-61.178 6.08911 -116.999"
+        ,
+        "rotation": "-0.153046 -0.153046 -0.690346 -0.690346"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable125.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable126"
+      ,
+      "transform":
+      {
+        "pos": "-41.5942 16.697 -114.693"
+        ,
+        "rotation": "-0.379928 -0.379928 -0.596368 -0.596368"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable126.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable127"
+      ,
+      "transform":
+      {
+        "pos": "-44.2668 16.697 -120.78"
+        ,
+        "rotation": "0.153046 0.153046 -0.690346 -0.690346"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable127.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable128"
+      ,
+      "transform":
+      {
+        "pos": "-44.2668 17.4338 -120.78"
+        ,
+        "rotation": "0.153046 0.153046 -0.690346 -0.690346"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable128.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable129"
+      ,
+      "transform":
+      {
+        "pos": "-44.6074 17.4338 -124.96"
+        ,
+        "rotation": "-0.0308436 -0.0308436 -0.706434 -0.706434"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable129.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable130"
+      ,
+      "transform":
+      {
+        "pos": "-40.7458 17.4338 -124.789"
+        ,
+        "rotation": "-0.5 -0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable130.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable131"
+      ,
+      "transform":
+      {
+        "pos": "-45.8903 9.63201 -106.612"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_zone_a_cable131.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
 ]

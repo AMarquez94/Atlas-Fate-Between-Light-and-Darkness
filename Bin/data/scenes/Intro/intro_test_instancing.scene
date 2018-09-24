@@ -40,6 +40,20 @@
 				}
 			]
 		}
+	},{
+		"entity": {
+			"name": "Instanced Grass2",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [{
+					"mesh": "data/meshes/grass2.instanced_mesh",
+					"materials": [
+						"data/materials/grass_instanced2.material"
+					]
+				}
+			]
+		}
 	}, {
 		"entity": {
 			"name": "Instanced Particles",

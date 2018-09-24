@@ -50,28 +50,29 @@
 		"collision": true
 	},
 	"renderer": {
-			"mode": "billboard",
-			"texture": "data/textures/particles/glow.dds",
+			"mode": "vertical",
+			"texture": "data/textures/square_cookie.dds",
       "frame_size" : "1 1",
       "initial_frame" : 0,
       "num_frames" : 1,
-      "frame_speed" : 0.0
+      "frame_speed" : 0.0,
+			"tech" : "particles_instanced_additive.tech"
 	},
   "size" : {
     "scale" : 1,
     "scale_variation" : 0.1,
     "sizes" : [
-		  [0.0, "3 4 1"],
-			[1.0, "3 4 1"]
+		  [0.0, "2 4 1"],
+			[1.0, "2 4 1"]
     ]
   },
   "color" : {
-    "opacity" : 0.2,
+    "opacity" : 1,
     "colors" : [
-      [0.0, "0.0 1.0 1.0 0.0"],
-			[0.1, "0.0 1.0 1.0 1.0"],
-			[0.8, "0.0 1.0 1.0 1.0"],
-			[1.0, "0.0 1.0 1.0 0.0"]
+      [0.0, "1.0 0.02 0.08 0.0"],
+			[0.1, "1.0 0.02 0.1 1.0"],
+			[0.8, "1.0 0.02 0.1 1.0"],
+			[1.0, "1.0 0.02 0.1 0.0"]
     ] 
   }
 }

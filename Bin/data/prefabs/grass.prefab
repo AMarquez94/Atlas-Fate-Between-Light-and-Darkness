@@ -1,0 +1,35 @@
+[
+  {
+    "entity":
+    {
+      "name": "prueba_bush"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Plane003"
+      ,
+      "transform":
+      {
+        "pos": "0 0.0 0"
+      }
+			,
+      "instance":
+      {
+        "mesh": "data/meshes/grass2.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/grass_instanced2.material"
+        ]
+      }
+    }
+  }
+]

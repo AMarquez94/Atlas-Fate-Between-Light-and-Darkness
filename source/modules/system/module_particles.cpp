@@ -19,6 +19,11 @@ bool CModuleParticles::start()
     const Particles::TCoreSystem* fire = Resources.get("data/particles/fire.particles")->as<Particles::TCoreSystem>();
     launchSystem(fire);*/
 
+    // Set the particle billboard mesh to be globaly used.
+    auto rmesh = Resources.get("data/meshes/quad_volume_particles.instanced_mesh")->as<CRenderMesh>();
+    instanced_particle = (CRenderMeshInstanced*)rmesh;
+    instanced_particle->vtx_decl = CVertexDeclManager::get().getByName("CpuParticleInstance");
+
     _windVelocity = VEC3(1, 0, 0);
 
     p_editor = new ParticlesEditor();
@@ -55,11 +60,27 @@ void CModuleParticles::update(float delta)
     }
 }
 
-void CModuleParticles::renderDeferred()
+void CModuleParticles::renderAdditive()
 {
+    auto technique = Resources.get("particles_instanced_additive.tech")->as<CRenderTechnique>();
+    technique->activate();
+
     for (auto& ps : _activeSystems)
     {
-        ps->render();
+        if (ps->type == Particles::CSystem::ADD)
+            ps->render();
+    };
+}
+
+void CModuleParticles::renderCombinative()
+{
+    auto technique = Resources.get("particles_instanced_combinative.tech")->as<CRenderTechnique>();
+    technique->activate();
+
+    for (auto& ps : _activeSystems)
+    {
+        if (ps->type != Particles::CSystem::ADD)
+            ps->render();
     };
 }
 
