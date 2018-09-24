@@ -2,6 +2,7 @@
 
 #include "modules/module.h"
 class ParticlesEditor;
+class CRenderMeshInstanced;
 
 namespace Particles
 {
@@ -15,6 +16,7 @@ class CModuleParticles : public IModule
 public:
 
     ParticlesEditor * p_editor;
+    CRenderMeshInstanced* instanced_particle;
 
     float rate_min_time = 1.0f;
     float rate_min_dist = 0.05f;
@@ -24,8 +26,10 @@ public:
     bool start() override;
     bool stop() override;
     void update(float delta) override;
+
     void renderMain();
-    void renderDeferred();
+    void renderAdditive();
+    void renderCombinative();
 
     Particles::TParticleHandle launchSystem(const std::string& name, CHandle entity = CHandle());
     Particles::TParticleHandle launchSystem(const Particles::TCoreSystem* cps, CHandle entity = CHandle());

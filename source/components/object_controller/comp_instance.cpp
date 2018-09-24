@@ -7,6 +7,7 @@
 #include "physics/physics_collider.h"
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
+#include "entity/entity_parser.h"
 
 DECL_OBJ_MANAGER("instance", TCompInstance);
 
@@ -26,14 +27,14 @@ void TCompInstance::registerMsgs() {
 void TCompInstance::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
     TCompTransform * self_transform = get<TCompTransform>();
+    const CTransform r_transform = msg.ctx.root_transform;
+   
+    //dbg(" %s %f %f %f \n", _instance_mesh, pos.x, pos.y, pos.z);
     _index = EngineInstancing.addInstance(_instance_mesh, _type, self_transform->asMatrix());
 }
 
 void TCompInstance::onMsgEntityCreated(const TMsgEntityCreated& msg) {
 
-    //TCompTransform * self_transform = get<TCompTransform>();
-    //MAT44 w_matrix = self_transform->asMatrix();
-    //_index = EngineInstancing.addInstance(_instance_mesh, w_matrix);
 }
 
 /* Update the world matrix of the given instance */

@@ -63,7 +63,7 @@ namespace Particles
 
     void Particles::TCoreSystem::destroy()
     {
-        FastNoiseSIMD::FreeNoiseSet(n_noise.noise_values);
+
     }
 
     CSystem::CSystem(const TCoreSystem* core, CHandle entity)
@@ -97,6 +97,11 @@ namespace Particles
             bursts.push_back(p);
             ++it;
         }
+
+        // Fast trick to determine additive type. Find an smarter way.
+        if (_core->n_renderer.tech.find("additive") != std::string::npos)
+            this->type = ADD;
+        
     }
 
     void CSystem::debugInMenu() {
@@ -536,16 +541,9 @@ namespace Particles
 
         // Replace this when needed.
         {
-            auto rmesh = Resources.get("data/meshes/quad_volume_particles.instanced_mesh")->as<CRenderMesh>();
-            CRenderMeshInstanced* instanced_particle = (CRenderMeshInstanced*)rmesh;
-            instanced_particle->vtx_decl = CVertexDeclManager::get().getByName("CpuParticleInstance");
-            instanced_particle->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(Particles::TIParticle));
-
-            auto technique2 = Resources.get(_core->n_renderer.tech)->as<CRenderTechnique>();
-            technique2->activate();
-
             _core->n_renderer.texture->activate(TS_ALBEDO1);
-            instanced_particle->renderSubMesh(instanced_particle->subgroups[0].first_idx);
+            EngineParticles.instanced_particle->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(Particles::TIParticle));
+            EngineParticles.instanced_particle->renderSubMesh(EngineParticles.instanced_particle->subgroups[0].first_idx);
         }
     }
 
