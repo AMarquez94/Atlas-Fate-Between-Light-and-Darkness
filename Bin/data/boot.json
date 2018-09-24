@@ -65,7 +65,7 @@
 			"data/scenes/Intro/intro_trigger_kill.scene",
 			"data/scenes/Intro/intro_buttons.scene",
 			"data/scenes/Intro/intro_particles.scene",
-			"data/scenes/Intro/intro_grass.scene",
+			"data/scenes/intro_grass.scene",
 			"data/scenes/Intro/intro_puerta_end.scene"
 		]
 	},
