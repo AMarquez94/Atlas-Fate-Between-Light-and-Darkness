@@ -490,7 +490,7 @@
 	},
 	"grass": {
 		"vs_file": "data/shaders/grass.fx",
-		"vertex_type": "Pos_x_InstancedPos",
+		"vertex_type": "PosNUvUvT_x_InstancedPos",
 		"category": "gbuffer",
 		"rs_config": "cull_none",
 		"textures": {
@@ -500,7 +500,7 @@
 	},
 	"shadows_grass_instanced": {
 		"vs_file": "data/shaders/grass.fx",
-		"vertex_type": "Pos_x_InstancedPos",
+		"vertex_type": "PosNUvUvT_x_InstancedPos",
 		"ps_entry_point": "PS_Shadows",
 		"category": "shadows",
 		"blend": "default",

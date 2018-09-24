@@ -51,7 +51,7 @@
 	},
 	"renderer": {
 			"mode": "billboard",
-			"texture": "data/textures/particles/glow.dds",
+			"texture": "data/textures/particles/dust_spore.dds",
       "frame_size" : "1 1",
       "initial_frame" : 0,
       "num_frames" : 1,

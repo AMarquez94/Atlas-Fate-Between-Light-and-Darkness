@@ -9,7 +9,7 @@
 		"start_rotation": "0 0 0",
 		"random_rotation": 0.0,
 		"start_color": "1 0 0 1", 
-		"gravity": 1.0,
+		"gravity": -0.01,
 		"simulation_speed": 1,
 		"max_particles": 70,
 		"offset" : "0 0.25 0"
@@ -19,7 +19,7 @@
 		"rate_distance": 0.0,
 		"variation" : 0.0,
 		"bursts" : [    
-			[0, 60, 1, 0.01]			
+			[0, 10, 1, 0.01]			
 		] 
 	},	
 	"shape": {
@@ -44,7 +44,7 @@
 	}, 
 	"noise": {
 		"texture": "data/textures/particles/fx_smoke1.dds",
-		"strength": 0.0,
+		"strength": 4.0,
 		"frequency": 0.5,
 		"scroll_speed": 0.0,
 		"damping": true,
@@ -63,7 +63,7 @@
 		"tech" : "particles_instanced_additive.tech"
 	}, 
   "size" : {
-    "scale" : 0.87,
+    "scale" : 0.47,
     "scale_variation" : 0.1, 
     "sizes" : [
 		  [0.0, "1 1 1"],

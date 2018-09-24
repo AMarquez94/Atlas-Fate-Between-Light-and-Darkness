@@ -6,7 +6,11 @@
 //--------------------------------------------------------------------------------------
 void VS(
   // From Stream 0 from unit_quad_pos_xy.mesh
-  in float4 iPos : POSITION0
+	in float4 iPos     : POSITION0
+	, in float3 iNormal : NORMAL0
+	, in float2 iTex0 : TEXCOORD0
+	, in float2 iTex1 : TEXCOORD1
+	, in float4 iTangent : NORMAL1
 , in uint   iInstancedID : SV_InstanceID
 
   // From stream 1 we read the instance information 
@@ -42,10 +46,10 @@ void VS(
   //world_pos.xyz += 2 * ( local_pos.x * float3(cos(3*iInstancedID),0, sin(3*iInstancedID)) + local_pos.y * float3(0,1,0));
 
   oPos = mul(world_pos, camera_view_proj);
-  oUV = 1-iPos;
+  oUV = iTex0;
 
   // Remove the color for the fire sample
-  oColor = float4( 1,0.65 -(sin(iInstancedID) * 0.01),1,alpha); //float4( iColor.xyz, 1 );
+  oColor = float4( 1,0.85 -(sin(iInstancedID) * 0.01),1,alpha); //float4( iColor.xyz, 1 );
 
 
   // To compute the shadows in the PS
@@ -67,7 +71,7 @@ void PS(
 {
   float4 texture_color = txAlbedo.Sample(samLinear, iUV) * iColor;
 
-  if ( texture_color.a < 0.3 ) 
+  if ( texture_color.a < 0.2 ) 
     discard;
 
   o_albedo.xyz = texture_color.xyz;
@@ -102,7 +106,7 @@ float4 PS_Shadows(
 {
   float4 texture_color = txAlbedo.Sample(samLinear, iUV) * iColor;
 
-  if ( texture_color.a < 0.3 ) 
+  if ( texture_color.a < 0.1 ) 
     discard;
 
   return float4(1,1,1,1);

@@ -143,6 +143,15 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
         }
 
         CEntity* e_trigger = h_trigger_comp_collider.getOwner();
+        //TCompCollider * c_collider = e_trigger->get<TCompCollider>();
+        //TCompTransform * c_transform = e_trigger->get<TCompTransform>();
+
+        //// Special trigger message for the player
+        //if (c_collider->config->group & FilterGroup::Player)
+        //{
+        //    if (EnginePhysics.Raycast(origin, dir, _clipping_offset.z, hit, physx::PxQueryFlag::eSTATIC, cameraFilter))
+        //        dbg("pos %f %f %f\n", c_transform->getPosition().x, c_transform->getPosition().y, c_transform->getPosition().z);
+        //}
 
         if (pairs[i].flags & (PxTriggerPairFlag::eREMOVED_SHAPE_TRIGGER | PxTriggerPairFlag::eREMOVED_SHAPE_OTHER))
         {
@@ -152,7 +161,6 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
             continue;
         }
 
-        //dbg("trigger touch\n");
         if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_FOUND)
         {
             e_trigger->sendMsg(TMsgTriggerEnter{ h_other_comp_collider.getOwner() });

@@ -6,7 +6,7 @@ class TInstance;
 
 class TCompInstance : public TCompBase
 {
-    int _index;
+    int _index = -1;
     std::string _type;
     std::string _instance_mesh;
 
