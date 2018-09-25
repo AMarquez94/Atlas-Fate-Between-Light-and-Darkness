@@ -829,21 +829,50 @@ struct TSceneExporter (
 		
 	),
 	
-	fn exportContainerEntity filename items = (
+	fn exportContainerEntity filename items mesh_name mat_name = (
+		
+		local max2mcv = rotateXMatrix -90
+		local mcv2max = rotateXMatrix 90
+		local internal_count = 0
 		
 		fs.beginObj()
 		fs.writeKey "instance_container"
+		
 			fs.beginObj()
-			fs.writeKeyValue "name" filename
+			fs.writeKeyValue "name" (filename as string)
 			fs.writeComma()
-			fs.writeKey "instances" 
+			
+			-- Export instanced Mesh
+			fs.writeKey "instance_data" 
 			fs.beginObj()
-				fs.beginArray()
-				fs.writeKeyValue "pos" "0.0 0.0 0.0"
-				fs.writeKeyValue "rotation" "0.0 0.0 0.0"
-				fs.writeKeyValue "scale" "0.0 0.0 0.0"
-				fs.endArray()
+				fs.writeKeyValue "mesh" mesh_name
+				fs.writeComma()
+				fs.writeKey "materials"
+				fs.arrayOfStrings #(mat_name)
 			fs.endObj()
+		
+			fs.writeKey "instances" 
+			fs.beginArray()
+			for p in items do (
+				local mcv_position = p.pos * max2mcv
+				local mcv_transform = mcv2max * p.transform * max2mcv
+				local mcv_quat = mcv_transform.rotationPart as quat
+				local mcv_final_position = checkPoint mcv_position
+				if (internal_count > 0) then fs.writeComma()
+				fs.beginObj()
+					fs.writeKeyValue "pos" mcv_final_position
+					fs.writeComma()
+					fs.writeKeyValue "rotation" mcv_quat
+					fs.writeComma()
+					if classof p == QuadPatch then (
+						fs.writeKeyValue "scale" [p.width, 0.1, p.length]
+					) else (
+						fs.writeKeyValue "scale" "1 1 1"
+					)
+				fs.endObj()
+				internal_count += 1
+			)
+			fs.endArray()
 		fs.endObj()
 		fs.endObj()
 	),
@@ -975,12 +1004,42 @@ struct TSceneExporter (
 				SetDictValue container_types ref_type dict_value
 			)
 			
+			/*if classof obj == xrefobject then (
+				local ref_type = (getFilenameFile obj.filename) as name
+				
+				local has_value = HasDictValue container_types ref_type
+				if has_value == false then (
+					container_types[ref_type] = #()
+				)
+				
+				-- Get the array and set the values
+				local dict_value = GetDictValue container_types ref_type
+				append dict_value obj
+				SetDictValue container_types ref_type dict_value
+			)*/
+			
 			nitems = nitems + 1
 			prg.value = (nitems + 1) * prg_step
 		)
 		
 		for p in container_types do (
-			exportContainerEntity filename p.value
+
+			-- First, export the instanced mesh file
+			local mesh_name = (mesh_path + local_path + p.key) + ".mesh"
+			local imesh_name = (mesh_path + local_path + p.key) + ".instanced_mesh"
+			exportInstancedMesh imesh_name mesh_name		
+			exportMeshObject p.value[1] mesh_name
+						
+			local mat = p.value[1].material
+			local mat_path = mats_path + p.value[1].material.name + ".material"
+			
+			if mat != undefined then (
+				local me = TMaterialExporter project_path:project_path base_path:base_path
+				me.exportStdMaterial mat.overrideMaterial mat_path "pbr_grass.tech" false
+			)
+		
+			-- Export the scene container
+			exportContainerEntity p.key p.value imesh_name mat_path
 		)
 		
 		free container_types

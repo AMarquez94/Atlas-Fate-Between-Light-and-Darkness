@@ -129,6 +129,8 @@ bool CModuleInstancing::parseContainer(const json& j, TEntityParseContext& ctx) 
     auto& j_instance_data = j["instance_data"];
     auto& j_instances = j["instances"];
 
+    parseInstance(j_instance_data, ctx);
+
     for (auto& p : j_instances) {
 
         QUAT rot;
