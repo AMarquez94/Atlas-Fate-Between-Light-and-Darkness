@@ -40,6 +40,12 @@ namespace GUI
 	std::string _variable;
   };
 
+  struct TSpriteParams 
+  {
+	  VEC2 _frame_size;
+	  int _frames_per_second;
+  };
+
   struct TButtonParams
   {
     TParams _params;

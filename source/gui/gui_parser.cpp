@@ -3,6 +3,7 @@
 #include "gui/widgets/gui_image.h"
 #include "gui/widgets/gui_text.h"
 #include "gui/widgets/gui_bar.h"
+#include "gui/widgets/gui_sprite.h"
 #include "gui/widgets/gui_button.h"
 #include "gui/effects/gui_animate_uv.h"
 #include "gui/widgets/gui_radial_bar.h"
@@ -64,6 +65,7 @@ CWidget* CParser::parseWidget(const json& data, CWidget* parent)
   else if (type == "bar")     wdgt = parseBar(data);
   else if (type == "radialbar")     wdgt = parseRadialBar(data);
   else if (type == "button")  wdgt = parseButton(data);
+  else if (type == "sprite")  wdgt = parseSprite(data);
   else                        wdgt = parseWidget(data);
 
   wdgt->_name = name;
@@ -111,6 +113,16 @@ CWidget* CParser::parseImage(const json& data) {
   parseImageParams(wdgt->_imageParams, data);
 
   return wdgt;
+}
+
+CWidget* CParser::parseSprite(const json& data) {
+	CSprite* wdgt = new CSprite();
+
+	parseParams(wdgt->_params, data);
+	parseImageParams(wdgt->_imageParams, data);
+	parseSpriteParams(wdgt->_spriteParams, data);
+	wdgt->initializeSprite();
+	return wdgt;
 }
 
 CWidget* CParser::parseText(const json& data) {
@@ -228,4 +240,10 @@ void CParser::parseBarParams(TBarParams& params, const json& data)
   params._processValue = data.value("progress_bar", 1.0f);
   const std::string direction = data.value("direction", "horizontal");
   params._direction = direction == "vertical" ? TBarParams::Vertical : TBarParams::Horizontal;
+}
+
+void CParser::parseSpriteParams(TSpriteParams& params, const json& data) {
+	params._frame_size = loadVEC2(data.value("frame_size", "64 64"));
+	params._frames_per_second = data.value("fps", 12);
+	dbg("");
 }
