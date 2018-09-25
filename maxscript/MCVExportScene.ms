@@ -829,6 +829,25 @@ struct TSceneExporter (
 		
 	),
 	
+	fn exportContainerEntity filename items = (
+		
+		fs.beginObj()
+		fs.writeKey "instance_container"
+			fs.beginObj()
+			fs.writeKeyValue "name" filename
+			fs.writeComma()
+			fs.writeKey "instances" 
+			fs.beginObj()
+				fs.beginArray()
+				fs.writeKeyValue "pos" "0.0 0.0 0.0"
+				fs.writeKeyValue "rotation" "0.0 0.0 0.0"
+				fs.writeKeyValue "scale" "0.0 0.0 0.0"
+				fs.endArray()
+			fs.endObj()
+		fs.endObj()
+		fs.endObj()
+	),
+	
 	fn exportRoot filename = (
 		
 		fs.beginObj()
@@ -933,21 +952,27 @@ struct TSceneExporter (
 		fs.begin full_path
 		fs.beginArray()
 		
-		exportRoot ofilename -- Export root
 		format "Exporting to %\n" full_path
 		
 		nitems = 0
 		local prg_step = 100 / (nodes.count + 1)
-		local container_types = dotNetObject "System.Collections.Hashtable"
-		container_types.Add "Key" "Value"
+		local container_types = Dictionary()
 		
 		-- Loop through all xref
 		for obj in nodes do (
 			
 			if classof obj == xrefobject then (
-				local ref_type = obj.filename
+				local ref_type = (getFilenameFile obj.filename) as name
 				
-			
+				local has_value = HasDictValue container_types ref_type
+				if has_value == false then (
+					container_types[ref_type] = #()
+				)
+				
+				-- Get the array and set the values
+				local dict_value = GetDictValue container_types ref_type
+				append dict_value obj
+				SetDictValue container_types ref_type dict_value
 			)
 			
 			nitems = nitems + 1
@@ -955,9 +980,10 @@ struct TSceneExporter (
 		)
 		
 		for p in container_types do (
-			print p
+			exportContainerEntity filename p.value
 		)
 		
+		free container_types
 		prg.value = 100
 		fs.endArray()
 		fs.end()	
