@@ -24,6 +24,7 @@ CHandle TEntityParseContext::findEntityByName(const std::string& name) const {
 }
 
 TEntityParseContext::TEntityParseContext(TEntityParseContext& another_ctx, const CTransform& delta_transform) {
+
 	parent = &another_ctx;
 	recursion_level = another_ctx.recursion_level + 1;
 	entity_starting_the_parse = another_ctx.entity_starting_the_parse;
@@ -105,10 +106,18 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 
 			ctx.entities_loaded.push_back(h_e);
 		}
+
+        // To parse static instancing containers
+        if (j_item.count("instance_container")) {
+            auto& j_entity = j_item["instance_container"];
+
+            EngineInstancing.parseContainer(j_entity, ctx);
+        }
 	}
 
 	// Create a comp_group automatically if there is more than one entity
 	if (ctx.entities_loaded.size() > 1) {
+
 		// The first entity becomes the head of the group. He is NOT in the group
 		CHandle h_root_of_group = ctx.entities_loaded[0];
 		CEntity* e_root_of_group = h_root_of_group;
@@ -123,17 +132,17 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 			c_group->add(ctx.entities_loaded[i]);
 	}
 
-  /* Just for hierarchies - Notifies its parent */
-  TMsgHierarchyGroupCreated msgHierarchy = { ctx };
-  for (auto h : ctx.entities_loaded) {
+    /* Just for hierarchies - Notifies its parent */
+    TMsgHierarchyGroupCreated msgHierarchy = { ctx };
+    for (auto h : ctx.entities_loaded) {
     h.sendMsg(msgHierarchy);
-  }
+    }
 
-	// Notify each entity created that we have finished
-	// processing this file
-  if (!ctx.is_prefab && ctx.entities_loaded.size() > 0) {
+    // Notify each entity created that we have finished
+    // processing this file
+    if (!ctx.is_prefab && ctx.entities_loaded.size() > 0) {
     sendMsgChildren(ctx.entities_loaded[0], ctx);
-  }
+    }
 
 
 	return true;
@@ -141,13 +150,13 @@ bool parseScene(const std::string& filename, TEntityParseContext& ctx) {
 
 void sendMsgChildren(CHandle hEntity, TEntityParseContext& ctx)
 {
-  TMsgEntitiesGroupCreated msg = { ctx };
-  CEntity* eEntity = hEntity;
-  eEntity->sendMsg(msg);
-  TCompGroup* group = eEntity->get<TCompGroup>();
-  if (group) {
-    for (auto h : group->handles) {
-      sendMsgChildren(h, ctx);
+    TMsgEntitiesGroupCreated msg = { ctx };
+    CEntity* eEntity = hEntity;
+    eEntity->sendMsg(msg);
+    TCompGroup* group = eEntity->get<TCompGroup>();
+    if (group) {
+        for (auto h : group->handles) {
+            sendMsgChildren(h, ctx);
+        }
     }
-  }
 }

@@ -278,7 +278,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
     pxPlayerFilterData->word1 = FilterGroup::All;
 
     physx::PxFilterData pxFilterData;
-    pxFilterData.word1 = FilterGroup::Scenario;
+    pxFilterData.word0 = FilterGroup::Scenario;
     PxPlayerDiscardQuery.data = pxFilterData;
 
     /* Initial reset messages */
@@ -501,6 +501,7 @@ void TCompTempPlayerController::mergeState(float dt) {
         angle_test = fabs(EnginePhysics.gravity.Dot(postUp));
         float angle_amount = fabsf(acosf(prevUp.Dot(postUp)));
         std::string target_name = angle_test > mergeAngle ? "SMCameraHor" : "SMCameraVer"; // WARN: Watch this if gives problems...  
+        dbg(" TEST PASSED \n");
 
         if (angle_amount > deg2rad(30.f) || target_name.compare(dbCameraState) != 0) {
 

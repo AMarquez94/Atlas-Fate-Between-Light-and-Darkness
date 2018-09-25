@@ -1,5 +1,6 @@
-	{
-	"default_scene": "scene_zone_a",
+
+{
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",

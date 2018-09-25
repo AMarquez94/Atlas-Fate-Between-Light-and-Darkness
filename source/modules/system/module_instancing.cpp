@@ -123,6 +123,35 @@ bool CModuleInstancing::parseInstance(const json& j, TEntityParseContext& ctx) {
     return true;
 }
 
+bool CModuleInstancing::parseContainer(const json& j, TEntityParseContext& ctx) {
+
+    // Create a new fresh entity
+    auto& j_instance_data = j["instance_data"];
+    auto& j_instances = j["instances"];
+
+    for (auto& p : j_instances) {
+
+        QUAT rot;
+        VEC3 pos, scale;
+
+        if (j.count("pos"))
+            pos = loadVEC3(j["pos"]);
+
+        if (j.count("rotation"))
+            rot = loadQUAT(j["rotation"]);
+
+        if (j.count("scale"))
+            scale = loadVEC3(j["scale"]);
+
+        MAT44 tr = MAT44::CreateTranslation(pos);
+        MAT44 sc = MAT44::CreateScale(scale);
+        MAT44 rt = MAT44::CreateFromQuaternion(rot);
+        MAT44 mvp = sc * rt * tr;
+
+        EngineInstancing.addInstance(j_instance_data["mesh"], "default", mvp);
+    }
+}
+
 void CModuleInstancing::update(float delta) {
 
     // Rotate the particles
