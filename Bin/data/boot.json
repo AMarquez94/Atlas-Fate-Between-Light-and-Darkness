@@ -68,7 +68,8 @@
 			"data/scenes/Intro/intro_buttons.scene",
 			"data/scenes/Intro/intro_particles.scene",
 			
-			"data/scenes/Intro/intro_puerta_end.scene"
+			"data/scenes/Intro/intro_puerta_end.scene",
+			"data/scenes/intro_tuto_sm.scene"
 		]
 	},
 	"scene_map_intro": {

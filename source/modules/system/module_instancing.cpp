@@ -150,6 +150,8 @@ bool CModuleInstancing::parseContainer(const json& j, TEntityParseContext& ctx) 
 
         EngineInstancing.addInstance(j_instance_data["mesh"], "default", mvp);
     }
+
+    return true;
 }
 
 void CModuleInstancing::update(float delta) {
