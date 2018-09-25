@@ -722,7 +722,7 @@
 		"ps_file": "data/shaders/hologram.fx",
 		"category": "hologram_screen",
 		"ps_entry_point": "PS_HologramScreen",
-		"blend": "additive"
+		"blend": "additive_by_src_alpha"
 	},
 	"pbr_hologram_sw": {
 		"vs_file": "data/shaders/hologram.fx",

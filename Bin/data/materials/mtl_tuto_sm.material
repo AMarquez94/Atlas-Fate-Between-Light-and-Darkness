@@ -1,6 +1,6 @@
 {
   "shadows": false,
-  "technique": "pbr_hologram_sw_model.tech",
+  "technique": "hologram_dump.tech",
   "textures": {
     "albedo": "data/textures/tx_tuto_sm.dds"
   }
