@@ -38,6 +38,7 @@ bool CModuleFSM::start()
     _factory.registerInstancer("InhibitorRemovedState", new FSM::StateInstancer<FSM::InhibitorRemovedState>());
     _factory.registerInstancer("InhibitorTryToRemoveState", new FSM::StateInstancer<FSM::InhibitorTryToRemoveState>());
     _factory.registerInstancer("DieState", new FSM::StateInstancer<FSM::DieState>());
+    _factory.registerInstancer("FallDieState", new FSM::StateInstancer<FSM::FallDieState>());
     _factory.registerInstancer("DeadState", new FSM::StateInstancer<FSM::DeadState>());
     _factory.registerInstancer("GrabEnemyState", new FSM::StateInstancer<FSM::GrabEnemyState>());
     _factory.registerInstancer("MovingObjectState", new FSM::StateInstancer<FSM::MovingObjectState>());

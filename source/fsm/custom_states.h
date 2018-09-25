@@ -40,6 +40,22 @@ namespace FSM
 		std::string _animationName;
 	};
 
+    class FallDieState : public IState
+    {
+        virtual void onStart(CContext& ctx) const override;
+        virtual void onFinish(CContext& ctx) const override;
+        virtual bool load(const json& jData);
+
+    private:
+        TargetCamera * _target = nullptr;
+        Noise * _noise = nullptr;
+        float _force = 1.f;
+        float _speed = 1.f;
+        float _size = 1.f;
+        float _radius = 0.3f;
+        std::string _animationName;
+    };
+
 	class WalkState : public IState
 	{
 		virtual void onStart(CContext& ctx) const override;

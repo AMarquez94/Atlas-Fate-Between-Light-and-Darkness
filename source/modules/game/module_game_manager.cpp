@@ -51,7 +51,7 @@ void CModuleGameManager::setPauseState(PauseState pause) {
         CEntity * e_camera = _fly_camera;
         TCompCameraFlyover * flyover = e_camera->get<TCompCameraFlyover>();
         TMsgScenePaused msg2;
-        msg2.isPaused = (!msg.isPaused && flyover->paused) ? false : true;
+        msg2.isPaused = (!msg.isPaused && flyover->paused) ? false : true && pause != PauseState::defeat;
         e_player->sendMsg(msg2);
         dbg("current state %d and message %d\n", _currentstate, msg.isPaused);
     }
@@ -103,14 +103,16 @@ void CModuleGameManager::update(float delta) {
 
     {
         // Escape button
-        if (EngineInput["btPause"].getsPressed()) {
+        if (EngineInput["btPause"].getsPressed() && _currentstate != PauseState::defeat) {
             setPauseState(PauseState::main);
         }
 
         // Lost focus
         if (CApp::get().lostFocus) {
             CApp::get().lostFocus = false;  
-            setPauseState(PauseState::main);
+            if (_currentstate != PauseState::defeat) {
+                setPauseState(PauseState::main);
+            }
         }
 
         // F1 button, flyover, special case
