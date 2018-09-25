@@ -258,6 +258,18 @@
 			}
 		},
 		{
+			"name": "fallDie",
+			"type": "FallDieState",
+			"animation": "dead",
+			"size": 1,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.4,
+				"fov": 70
+			}
+		},
+		{
 			"name": "dead",
 			"type": "DeadState",
 			"animation": "dead",
@@ -925,7 +937,7 @@
 		{
 			"type": "VariableTransition",
 			"source": "hardLand",
-			"target": "die",
+			"target": "fallDie",
 			"variable": {
 				"name": "onFallDead",
 				"type": "bool",
@@ -951,6 +963,16 @@
 		{
 			"type": "VariableTransition",
 			"source": "softLand",
+			"target": "fallDie",
+			"variable": {
+				"name": "onFallDead",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "fallDie",
 			"target": "die",
 			"variable": {
 				"name": "onFallDead",
