@@ -128,8 +128,7 @@ bool CModuleInstancing::parseContainer(const json& j, TEntityParseContext& ctx) 
     // Create a new fresh entity
     auto& j_instance_data = j["instance_data"];
     auto& j_instances = j["instances"];
-
-    parseInstance(j_instance_data, ctx);
+    parseInstance(j_instance_data, ctx); // Add the mesh to the set if not created
 
     for (auto& p : j_instances) {
 
@@ -148,7 +147,7 @@ bool CModuleInstancing::parseContainer(const json& j, TEntityParseContext& ctx) 
         MAT44 tr = MAT44::CreateTranslation(pos);
         MAT44 sc = MAT44::CreateScale(scale);
         MAT44 rt = MAT44::CreateFromQuaternion(rot);
-        MAT44 mvp = tr;
+        MAT44 mvp = sc * rt * tr;
 
         EngineInstancing.addInstance(j_instance_data["mesh"], "default", mvp);
     }

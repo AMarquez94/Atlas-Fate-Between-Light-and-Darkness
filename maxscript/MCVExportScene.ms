@@ -850,7 +850,7 @@ struct TSceneExporter (
 				fs.writeKey "materials"
 				fs.arrayOfStrings #(mat_name)
 			fs.endObj()
-		
+			fs.writeComma()
 			fs.writeKey "instances" 
 			fs.beginArray()
 			for p in items do (
@@ -1022,13 +1022,16 @@ struct TSceneExporter (
 			prg.value = (nitems + 1) * prg_step
 		)
 		
+		local titems = 0
 		for p in container_types do (
 
+			if (titems > 0) then fs.writeComma()
+			
 			-- First, export the instanced mesh file
 			local mesh_name = (mesh_path + local_path + p.key) + ".mesh"
 			local imesh_name = (mesh_path + local_path + p.key) + ".instanced_mesh"
 			exportInstancedMesh imesh_name mesh_name		
-			exportMeshObject p.value[1] mesh_name
+			exportMeshObject p.value[1] (project_path + mesh_name)
 						
 			local mat = p.value[1].material
 			local mat_path = mats_path + p.value[1].material.name + ".material"
@@ -1040,6 +1043,7 @@ struct TSceneExporter (
 		
 			-- Export the scene container
 			exportContainerEntity p.key p.value imesh_name mat_path
+			titems += 1
 		)
 		
 		free container_types
