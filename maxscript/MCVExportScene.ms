@@ -903,6 +903,66 @@ struct TSceneExporter (
 		fs.end()	
 		
 		messageBox ("Scene SUCCESFULLY exported at location: \n\n" + full_path)		
+	),
+	
+	fn exportContainer nodes ofilename prg = (
+		
+		-------------------------------------------------------------------------
+		local req_path = findstring project_path "\bin"
+		if req_path == undefined then (
+			messageBox "Path is not located at /bin.\nPlease, provide a correct path."
+			return false				
+		)
+		-------------------------------------------------------------------------
+		local_path = getFilenamePath ofilename
+		
+		-- Create the folders if they doesn't exist
+		doesFolderExist (project_path + base_path) create:true
+		doesFolderExist (project_path + scenes_path + local_path) create:true
+		doesFolderExist (project_path + prefabs_path + local_path) create:true
+		doesFolderExist (project_path + mesh_path + local_path) create:true
+		doesFolderExist (project_path + mats_path + local_path ) create:true
+		doesFolderExist (project_path + cols_path + local_path) create:true
+		doesFolderExist (project_path + tex_path + local_path) create:true
+		doesFolderExist (project_path + curve_path + local_path) create:true
+		
+		-- Decide output filename based on .max filename
+		local full_path = project_path + scenes_path + ofilename + ".scene"
+		
+		-- Begin to write
+		fs.begin full_path
+		fs.beginArray()
+		
+		exportRoot ofilename -- Export root
+		format "Exporting to %\n" full_path
+		
+		nitems = 0
+		local prg_step = 100 / (nodes.count + 1)
+		local container_types = dotNetObject "System.Collections.Hashtable"
+		container_types.Add "Key" "Value"
+		
+		-- Loop through all xref
+		for obj in nodes do (
+			
+			if classof obj == xrefobject then (
+				local ref_type = obj.filename
+				
+			
+			)
+			
+			nitems = nitems + 1
+			prg.value = (nitems + 1) * prg_step
+		)
+		
+		for p in container_types do (
+			print p
+		)
+		
+		prg.value = 100
+		fs.endArray()
+		fs.end()	
+		
+		messageBox ("Scene container SUCCESFULLY exported at location: \n\n" + full_path)		
 	)
 )
 

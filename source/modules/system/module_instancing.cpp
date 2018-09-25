@@ -146,7 +146,7 @@ bool CModuleInstancing::parseContainer(const json& j, TEntityParseContext& ctx) 
         MAT44 tr = MAT44::CreateTranslation(pos);
         MAT44 sc = MAT44::CreateScale(scale);
         MAT44 rt = MAT44::CreateFromQuaternion(rot);
-        MAT44 mvp = sc * rt * tr;
+        MAT44 mvp = tr;
 
         EngineInstancing.addInstance(j_instance_data["mesh"], "default", mvp);
     }
@@ -267,20 +267,6 @@ int CModuleInstancing::addInstance(const std::string & name, const std::string &
     _global_instances[name]._instances.push_back(static_instance);
 
     return _global_instances[name]._instances.size() - 1;
-}
-
-// Method used to add custom instances
-int CModuleInstancing::addCustomInstance(const std::string & name, const std::string & type, MAT44 w_matrix) {
-
-    // TO-DO
-
-    if (type == "grass") {
-        TInstance new_instance;
-        new_instance.world = w_matrix;
-        grass_instances.push_back(new_instance);
-    }
-
-    return 1;
 }
 
 void CModuleInstancing::removeInstance(TInstance* instance) {

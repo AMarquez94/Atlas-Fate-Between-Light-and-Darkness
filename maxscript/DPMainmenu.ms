@@ -105,7 +105,7 @@ rollout SBExport "Export Tools" width:474 height:469
 	button 'btn41' "Button" pos:[160,75] width:2 height:70 align:#left
 	edittext 'scene_name' "Name" pos:[191,300] width:234 height:19 align:#left
 	checkbox 'chk5' "Generate Colliders" pos:[28,380] width:108 height:14 align:#left
-	checkbox 'chk6' "Generate LODS" pos:[28,355] width:97 height:14 align:#left
+	checkbox 'chk6' "Generate as Container" pos:[28,355] width:97 height:14 align:#left
 	checkbox 'chk7' "Generate Textures" pos:[28,329] width:107 height:14 checked:true align:#left
 	checkbox 'chk8' "Generate Materials" pos:[28,304] width:111 height:14 checked:true align:#left
 	checkbox 'chk9' "Rewrite existing files" pos:[307,331] width:120 height:14 checked:true align:#left
