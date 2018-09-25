@@ -102,6 +102,25 @@
 			"data/scenes/ZoneA/debug_navmeshes.scene"
 		]
 	},
+	"scene_main_menu": {
+		"static_data": {
+			"initial_script": "main_menu",
+			"exposure": 1.3,
+			"ambient": 0.05,
+			"gamma": 1,
+			"tone_mapping": 1,
+			"shadow_intensity": 0,
+			"ground_fog_density": 0.1,
+			"env_fog_density": 0.1,
+			"shadow_color": "0.0 0.0 0.0",
+			"ground_fog": "0.47 0.51 0.84",
+			"env_fog": "0.0 0.0 0.023"
+		},
+		"scene_group": [
+			"data/scenes/Main_menu/player_fsm.scene",
+			"data/scenes/Main_menu/main_cameras.scene"
+		]
+	},
 	"scene_zone_a": {
 		"static_data": {
 			"initial_script": "zone_a",

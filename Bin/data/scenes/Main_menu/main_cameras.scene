@@ -1,0 +1,27 @@
+[
+	{
+		"entity": {
+			"name": "Cameras"
+		}
+	}, {
+		"entity": {
+			"name": "main_camera",
+			"prefab": "data/prefabs/camera_main.prefab",
+			"transform": {
+				"pos": "0 0 0",
+				"lookat": "0 0 0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "test_camera_flyover",
+			"prefab": "data/prefabs/camera_flyover.prefab",
+			"transform": {
+				"pos": "0.5 -0.125 -0.375",
+				"axis" : "0 1 0",
+				"angle" : -80
+			},
+			"camera_flyover": {}		
+		}
+	}
+]

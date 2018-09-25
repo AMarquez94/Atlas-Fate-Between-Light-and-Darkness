@@ -1,0 +1,11 @@
+[{
+	"entity": {
+		"prefab": "data/prefabs/visual_player.prefab",
+		"name": "The Player",
+		"transform": {
+				"pos": "-1.0 -0.85 -1.2",
+				"axis": "0 1 0",
+				"angle" : 48
+		}
+	}
+}]
