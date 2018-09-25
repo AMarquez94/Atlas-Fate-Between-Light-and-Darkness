@@ -15,8 +15,10 @@ public:
 
 	float test_amount;
 	float test_levels;
+    physx::PxQueryFilterData lightDetectionFilter;
 	physx::PxQueryFilterData shadowDetectionFilter;
 	physx::PxQueryFilterData shadowDetectionFilterEnemy;
+    physx::PxSphereGeometry shadow_sphere;
 
 	bool is_shadow;
     bool hackShadows = false;

@@ -6,6 +6,9 @@
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
 
+#include "components/lighting/comp_light_point.h"
+#include "components/lighting/comp_light_spot.h"
+
 DECL_OBJ_MANAGER("collider", TCompCollider);
 
 TCompCollider::~TCompCollider(){
@@ -90,13 +93,28 @@ void TCompCollider::registerMsgs() {
 
 void TCompCollider::createCollider()
 {
-  TCompTransform * compTransform = get<TCompTransform>();
+    TCompTransform * compTransform = get<TCompTransform>();
 
-  TCompName * name = get<TCompName>();
-  // Create the shape, the actor and set the user data
-  physx::PxShape * shape = config->createShape();
-  config->createStatic(shape, compTransform);
-  config->actor->userData = CHandle(this).asVoidPtr();
+    TCompName * name = get<TCompName>();
+    // Create the shape, the actor and set the user data
+    physx::PxShape * shape = config->createShape();
+
+    {
+        // Very dirty trick for light detection..
+        // Move this somewhere else
+        CEntity * ent = CHandle(this).getOwner();
+        TCompLightPoint * point = ent->get<TCompLightPoint>();
+        TCompLightSpot * spot = ent->get<TCompLightSpot>();
+
+        if (point != nullptr || spot != nullptr) {
+
+            config->group = Light;
+            shape->setFlag(physx::PxShapeFlag::eSCENE_QUERY_SHAPE, true);
+        }
+    }
+
+    config->createStatic(shape, compTransform);
+    config->actor->userData = CHandle(this).asVoidPtr();
 }
 
 void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
@@ -106,7 +124,7 @@ void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
 	// Let the rigidbody handle the creation if it exists..
 	if (c_rigidbody == nullptr)
 	{
-    createCollider();
+        createCollider();
 	}
 }
 

@@ -179,7 +179,7 @@ void TCompCameraShadowMerge::update(float dt)
 float TCompCameraShadowMerge::CameraClipping(const VEC3 & origin, const VEC3 & dir)
 {
     physx::PxRaycastHit hit;
-    if (EnginePhysics.Raycast(origin, dir, _clipping_offset.z, hit, physx::PxQueryFlag::eSTATIC, cameraFilter))
+    if (EnginePhysics.Raycast(origin, dir, _clipping_offset.z, hit, physx::PxQueryFlag::eSTATIC))
         return Clamp(hit.distance - 0.3f, 0.f, _clipping_offset.z);
 
     return _clipping_offset.z;
