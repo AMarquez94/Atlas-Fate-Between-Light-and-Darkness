@@ -89,4 +89,5 @@ public:
     void clearInstances();
 
     bool parseInstance(const json& j, TEntityParseContext& ctx);
+    bool parseContainer(const json& j, TEntityParseContext& ctx);
 };
