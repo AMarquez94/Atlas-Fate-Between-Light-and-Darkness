@@ -155,7 +155,7 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point, bool player)
         CEntity * c_entity = dynamic_lights[i];
 
         //Checking for hacks regarding spotlights and pointlights activation
-        TCompLightSpot* c_light_spot = c_entity->get<TCompLightSpot>();
+         TCompLightSpot* c_light_spot = c_entity->get<TCompLightSpot>();
         TCompLightPoint* c_light_point = c_entity->get<TCompLightPoint>();
         if ((!c_light_spot && !c_light_point) ||
             (c_light_spot && !c_light_spot->isEnabled) ||
