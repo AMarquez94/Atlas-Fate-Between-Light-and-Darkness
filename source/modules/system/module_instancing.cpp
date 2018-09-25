@@ -135,14 +135,14 @@ bool CModuleInstancing::parseContainer(const json& j, TEntityParseContext& ctx) 
         QUAT rot;
         VEC3 pos, scale;
 
-        if (j.count("pos"))
-            pos = loadVEC3(j["pos"]);
+        if (p.count("pos"))
+            pos = loadVEC3(p["pos"]);
 
-        if (j.count("rotation"))
-            rot = loadQUAT(j["rotation"]);
+        if (p.count("rotation"))
+            rot = loadQUAT(p["rotation"]);
 
-        if (j.count("scale"))
-            scale = loadVEC3(j["scale"]);
+        if (p.count("scale"))
+            scale = loadVEC3(p["scale"]);
 
         MAT44 tr = MAT44::CreateTranslation(pos);
         MAT44 sc = MAT44::CreateScale(scale);
@@ -151,6 +151,8 @@ bool CModuleInstancing::parseContainer(const json& j, TEntityParseContext& ctx) 
 
         EngineInstancing.addInstance(j_instance_data["mesh"], "default", mvp);
     }
+
+    return true;
 }
 
 void CModuleInstancing::update(float delta) {

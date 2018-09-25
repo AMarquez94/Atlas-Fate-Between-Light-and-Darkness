@@ -1,0 +1,61 @@
+[
+  {
+    "instance_container":
+    {
+      "name": "grass_peq"
+      ,
+      "instance_data":
+      {
+        "mesh": "data/meshes/grass_peq.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/mtl_grass_test.material"
+        ]
+      }
+      ,
+      "instances":
+      [
+        {
+          "pos": "0.0 0.0 0.0"
+          ,
+          "rotation": "0.0 0.0 0.0 -1.0"
+          ,
+          "scale": "1 1 1"
+        }
+        ,
+        {
+          "pos": "0.0 3.0 0.0"
+          ,
+          "rotation": "0.0 0.0 0.0 -1.0"
+          ,
+          "scale": "1 1 1"
+        }
+        ,
+        {
+          "pos": "0.0 6.0 0.0"
+          ,
+          "rotation": "0.0 0.0 0.0 -1.0"
+          ,
+          "scale": "1 1 1"
+        }
+        ,
+        {
+          "pos": "0.0 0.0 0.0"
+          ,
+          "rotation": "0.0 0.0 0.0 -1.0"
+          ,
+          "scale": "1 1 1"
+        }
+        ,
+        {
+          "pos": "0.0 0.0 0.0"
+          ,
+          "rotation": "0.0 0.0 0.0 -1.0"
+          ,
+          "scale": "1 1 1"
+        }
+      ]
+    }
+  }
+]
