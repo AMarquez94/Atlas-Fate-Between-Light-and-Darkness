@@ -1,6 +1,6 @@
 
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_basilic_courtyard",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -240,9 +240,10 @@
 			"data/scenes/BC_coberturas.scene",
 			"data/scenes/BC_containers.scene",
 			"data/scenes/BC_props.scene",
-      "data/scenes/BC_cables.scene",
+      			"data/scenes/BC_cables.scene",
 			"data/scenes/BC_tubos.scene",
 			"data/scenes/BC_capsulas.scene",
+			"data/scenes/BC_neones.scene",
 
 			"data/scenes/BC_maderas.scene",
 
