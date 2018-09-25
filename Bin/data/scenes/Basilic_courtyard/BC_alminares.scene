@@ -51,6 +51,66 @@
   {
     "entity":
     {
+      "name": "BC_alminar2"
+      ,
+      "transform":
+      {
+        "pos": "44.3536 20.3416 -397.574"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_alminar2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_alminar_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar3"
+      ,
+      "transform":
+      {
+        "pos": "45.033 20.3416 -458.382"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_alminar3.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_alminar_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "BC_alminar4"
       ,
       "transform":
@@ -111,36 +171,6 @@
   {
     "entity":
     {
-      "name": "BC_alminar2"
-      ,
-      "transform":
-      {
-        "pos": "43.9744 20.3416 -398.026"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/BC_alminar2.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_alminar_mezquita.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "BC_alminar6"
       ,
       "transform":
@@ -154,36 +184,6 @@
       [
         {
           "mesh": "data/meshes/BC_alminar6.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_alminar_mezquita.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "BC_alminar3"
-      ,
-      "transform":
-      {
-        "pos": "45.033 20.3416 -458.382"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/BC_alminar3.mesh"
           ,
           "materials":
           [
