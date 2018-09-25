@@ -244,6 +244,8 @@ void CParser::parseBarParams(TBarParams& params, const json& data)
 
 void CParser::parseSpriteParams(TSpriteParams& params, const json& data) {
 	params._frame_size = loadVEC2(data.value("frame_size", "64 64"));
+	params._original_image_size = loadVEC2(data.value("original_size", "256 256"));
 	params._frames_per_second = data.value("fps", 12);
-	dbg("");
+	params._num_frames = data.value("num_frames", 99);
+
 }

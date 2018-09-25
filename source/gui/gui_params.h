@@ -43,7 +43,9 @@ namespace GUI
   struct TSpriteParams 
   {
 	  VEC2 _frame_size;
+	  VEC2 _original_image_size;
 	  int _frames_per_second;
+	  int _num_frames;
   };
 
   struct TButtonParams

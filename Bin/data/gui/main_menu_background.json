@@ -22,11 +22,13 @@
 					{
 						"name" : "bebe",
 						"type" : "sprite",
-						"size" : "256 256",
+						"size" : "64 64",
 						"minUV" : "0 0",
 						"maxUV" : "0.5 0.5",
-						"frame_size" : "128 128",
-						"fps" : 1,
+						"frame_size" : "188 188",
+						"fps" : 30,
+						"num_frames" : 48,
+						"original_size" : "2256 752",
 						"texture" : "data/textures/gui/robot_bebe.dds",
 						"xeffects" : [
 							{

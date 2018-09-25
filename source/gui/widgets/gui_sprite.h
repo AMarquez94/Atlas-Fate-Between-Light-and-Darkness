@@ -22,6 +22,7 @@ namespace GUI {
 		float _time_since_start = 0.f;
 		int _actual_horizontal_frame = 0;
 		int _actual_vertical_frame = 0;
+		int _actual_frame = 1;
 		friend class CParser;
 		
 	};
