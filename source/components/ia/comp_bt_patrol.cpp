@@ -109,7 +109,7 @@ void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)
 
     TCompEmissionController *eController = get<TCompEmissionController>();
     if (eController) {
-        eController->blend(enemyColor.colorNormal, 0.001f);
+        eController->blend(enemyColor.colorNormal, 0.1f);
     }
 }
 
