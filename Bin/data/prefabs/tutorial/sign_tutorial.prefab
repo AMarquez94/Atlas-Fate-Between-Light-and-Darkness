@@ -1,0 +1,19 @@
+[
+{
+    "entity":
+    {
+      "name": "tutorial_sign"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+	  ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+	  ,
+	  "billboard": {}
+    }
+}
+]

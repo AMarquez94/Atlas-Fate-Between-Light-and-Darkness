@@ -20,8 +20,7 @@
 			"transform": {
 				"pos": "-3.6 0 26.5"
 			},
-			"collider":
-			{
+			"collider": {
 				"shape": "box",
 				"size": "15 2 3",
 				"is_trigger": true,
@@ -37,8 +36,7 @@
 			"transform": {
 				"pos": "-3.6 0 15"
 			},
-			"collider":
-			{
+			"collider": {
 				"shape": "box",
 				"size": "15 2 5",
 				"is_trigger": true,
@@ -54,8 +52,7 @@
 			"transform": {
 				"pos": "-3.2 16 10"
 			},
-			"collider":
-			{
+			"collider": {
 				"shape": "box",
 				"size": "15 2 3",
 				"is_trigger": true,
@@ -71,8 +68,7 @@
 			"transform": {
 				"pos": "-7 0 -9"
 			},
-			"collider":
-			{
+			"collider": {
 				"shape": "box",
 				"size": "15 2 5",
 				"is_trigger": true,
@@ -88,8 +84,7 @@
 			"transform": {
 				"pos": "-20 0 -38"
 			},
-			"collider":
-			{
+			"collider": {
 				"shape": "box",
 				"size": "7 1.5 7",
 				"is_trigger": true,
@@ -105,8 +100,7 @@
 			"transform": {
 				"pos": "-7 0 -42"
 			},
-			"collider":
-			{
+			"collider": {
 				"shape": "box",
 				"size": "4 1.5 4",
 				"is_trigger": true,
@@ -122,8 +116,7 @@
 			"transform": {
 				"pos": "-8 0 -50"
 			},
-			"collider":
-			{
+			"collider": {
 				"shape": "box",
 				"size": "4 1.5 3",
 				"is_trigger": true,
@@ -131,6 +124,111 @@
 				"is_controller": false,
 				"is_gravity": false
 			}
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
+			"name": "tutorial_sign_sm",
+			"transform": {
+				"pos": "-7 1.8 25.2"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
+				"materials": [
+					"data/materials/mtl_tuto_sm.material"
+				]
+			}]
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
+			"name": "tutorial_sign_ver_sm",
+			"transform": {
+				"pos": "1.7 1.8 13"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
+				"materials": [
+					"data/materials/mtl_tuto_sm.material"
+				]
+			}]
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
+			"name": "tutorial_sign_fall_sm",
+			"transform": {
+				"pos": "1.4 17.8 8"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
+				"materials": [
+					"data/materials/mtl_tuto_sm.material"
+				]
+			}]
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
+			"name": "tutorial_sign_inhibitor",
+			"transform": {
+				"pos": "-25 1.8 -38"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
+				"materials": [
+					"data/materials/mtl_tuto_sm.material"
+				]
+			}]
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
+			"name": "tutorial_sign_obstacles",
+			"transform": {
+				"pos": "-10 1.8 -43"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
+				"materials": [
+					"data/materials/mtl_tuto_sm.material"
+				]
+			}]
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
+			"name": "tutorial_sign_attack",
+			"transform": {
+				"pos": "-6.3 1.8 -49.2"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
+				"materials": [
+					"data/materials/mtl_tuto_sm.material"
+				]
+			}]
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
+			"name": "tutorial_sign_enemy_sm",
+			"transform": {
+				"pos": "-6.3 1.8 -49.2"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
+				"materials": [
+					"data/materials/mtl_tuto_sm.material"
+				]
+			}]
 		}
 	},
 	{
@@ -155,50 +253,6 @@
 			"prefab": "data/prefabs/tutorial/container_tutorial.prefab",
 			"transform": {
 				"pos": "-40.306 1.125 -89"
-			}
-		}
-	},
-	{
-		"xentity": {
-			"name": "SM_SPIRAL1",
-			"transform": {
-				"pos": "0 0 0"
-			},
-			"circular_controller": {
-				"vradius" : "0.8 1",
-				"target" : "The Player",
-				"speed" : 2,
-				"oscilation_speed" : 8,
-				"vertical_speed" : -0.0001
-			},
-			"particles": {
-				"cores":
-				[
-					"data/particles/def_sm_enemy_spiral.particles",
-					"data/particles/def_sm_enemy_spiral_core.particles"
-				]
-			}
-		}
-	},
-	{
-		"xentity": {
-			"name": "SM_SPIRAL2",
-			"transform": {
-				"pos": "0 0 0"
-			},
-			"circular_controller": {
-				"vradius" : "0.8 1.1",
-				"target" : "The Player",
-				"speed" : -2,
-				"oscilation_speed" : 15,
-				"vertical_speed" : -0.0001
-			},
-			"particles": {
-				"cores":
-				[
-					"data/particles/def_sm_enemy_spiral.particles",
-					"data/particles/def_sm_enemy_spiral_core.particles"
-				]
 			}
 		}
 	}
