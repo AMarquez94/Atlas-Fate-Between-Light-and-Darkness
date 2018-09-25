@@ -180,6 +180,12 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
     addChild("smEnemyTutorial", "exitSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionEndSM, nullptr);
     addChild("smEnemyTutorial", "resetBTSMEnemyTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
 
+    addChild("playerActivated", "walkRunTutorial", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionWalkRunTutorial, nullptr, nullptr);
+    addChild("walkRunTutorial", "resetTimersWalkRunTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersWalkRunTutorial, nullptr);
+    addChild("walkRunTutorial", "runWalkRunTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationRun, nullptr);
+    addChild("walkRunTutorial", "crouchWalkRunTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationCrouch, nullptr);
+    addChild("walkRunTutorial", "resetBTWalkRunTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
+
 	addChild("playerActivated", "goToWpt", BTNode::EType::ACTION, (BTCondition)&TCompAIPlayer::conditionCinematicMode, (BTAction)&TCompAIPlayer::actionGoToWpt, nullptr);
     //addChild("playerActivated", "default", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionDefault, nullptr);
        
@@ -203,7 +209,7 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
     addChild("InhibitorCinematic", "resetTimersInhibitorCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersInhibitorCinematic, nullptr);
     addChild("InhibitorCinematic", "idleAnimationInhibitorCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdle, nullptr);
     addChild("InhibitorCinematic", "resetBTInhibitorCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
-    
+   
     /*addChild("playerActivated", "LandPlayer", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionIsLanded, nullptr, nullptr);
     addChild("LandPlayer", "landPlayer", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionFallSM, nullptr);*/
 
@@ -356,6 +362,9 @@ TCompAIPlayer::EState TCompAIPlayer::getStateEnumFromString(const std::string & 
     else if (stateName.compare("sm_enemy_tutorial") == 0) {
         return TCompAIPlayer::EState::TUT_SM_ENEMY;
     }
+    else if (stateName.compare("walk_run_tutorial") == 0) {
+        return TCompAIPlayer::EState::TUT_WALK_RUN;
+    }
     else if (stateName.compare("inhibitor_cinematic") == 0) {
         return TCompAIPlayer::EState::CINEMATIC_INHIBITOR;
     }
@@ -495,6 +504,15 @@ BTNode::ERes TCompAIPlayer::actionResetTimersSMEnemyTutorial(float dt)
         patrol_anim->playAnimation(TCompPatrolAnimator::EAnimation::DEAD);
         patrol_tutorial->sendMsg(TMsgFadeBody{ true });
     }
+    return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersWalkRunTutorial(float dt)
+{
+    _timer = 0.f;
+    _maxTimer = 2.f;
+    TCompTransform* mypos = get<TCompTransform>();
+    mypos->setPosition(initial_pos);
     return BTNode::ERes::LEAVE;
 }
 
@@ -911,6 +929,20 @@ BTNode::ERes TCompAIPlayer::actionAnimationGrab(float dt)
     }
 }
 
+BTNode::ERes TCompAIPlayer::actionAnimationRun(float dt)
+{
+    _timer += dt;
+    if (_timer > _maxTimer) {
+        _timer = 0.f;
+        return BTNode::ERes::LEAVE;
+    }
+    else {
+        TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+        my_anim->playAnimation(TCompPlayerAnimator::EAnimation::RUN);
+        return BTNode::ERes::STAY;
+    }
+}
+
 BTNode::ERes TCompAIPlayer::endCinematic(float dt)
 {
     TCompFadeController* my_fade = get<TCompFadeController>();
@@ -991,6 +1023,11 @@ bool TCompAIPlayer::conditionSMFenceTutorial(float dt)
 bool TCompAIPlayer::conditionSMEnemyTutorial(float dt)
 {
     return _currentState == TCompAIPlayer::EState::TUT_SM_ENEMY;
+}
+
+bool TCompAIPlayer::conditionWalkRunTutorial(float dt)
+{
+    return _currentState == TCompAIPlayer::EState::TUT_WALK_RUN;
 }
 
 bool TCompAIPlayer::conditionCinematicWalkFall(float dt)

@@ -64,13 +64,13 @@
 	},
 	{
 		"entity": {
-			"name": "CrouchTutorial",
+			"name": "RunCrouchTutorial",
 			"transform": {
-				"pos": "-7 0 -9"
+				"pos": "-9 0 -2.5"
 			},
 			"collider": {
 				"shape": "box",
-				"size": "15 2 5",
+				"size": "15 2 6",
 				"is_trigger": true,
 				"is_dynamic": false,
 				"is_controller": false,
@@ -162,6 +162,21 @@
 			"name": "tutorial_sign_fall_sm",
 			"transform": {
 				"pos": "1.4 17.8 8"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
+				"materials": [
+					"data/materials/mtl_tuto_sm.material"
+				]
+			}]
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
+			"name": "tutorial_sign_run_crouch",
+			"transform": {
+				"pos": "-11 1.8 -6.6"
 			},
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",

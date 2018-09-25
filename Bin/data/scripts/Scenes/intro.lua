@@ -135,12 +135,14 @@ function onTriggerExit_SMFallTutorial_player()
 	render_smfall_sign.visible = false;
 end
 
-function onTriggerEnter_CrouchTutorial_player()
-	--moveTutorialPlayer(VEC3(-0.8, 0, -11), VEC3(-0.8, 0, -12), true, "crouch_tutorial");
+function onTriggerEnter_RunCrouchTutorial_player()
+	moveTutorialPlayer(VEC3(-11, 0, -6.6), VEC3(-11, 0, -7), true, "walk_run_tutorial");
+	render_runcrouch_sign.visible = true;
 end
 
-function onTriggerExit_CrouchTutorial_player()
-	--moveTutorialPlayer(VEC3(0,-30,0), VEC3(0,0,25), false, "");
+function onTriggerExit_RunCrouchTutorial_player()
+	moveTutorialPlayer(VEC3(0,-30,0), VEC3(0,0,25), false, "");
+	render_runcrouch_sign.visible = false;
 end
 
 function onTriggerEnter_InhibitorTutorial_player()
@@ -207,6 +209,8 @@ function getSignRendersForIntro()
 	render_smver_sign.visible = false;
 	render_smfall_sign = toRender(toEntity(getEntityByName("tutorial_sign_fall_sm")):getCompByName("render"));
 	render_smfall_sign.visible = false;
+	render_runcrouch_sign = toRender(toEntity(getEntityByName("tutorial_sign_run_crouch")):getCompByName("render"));
+	render_runcrouch_sign.visible = false;
 	render_inhibitor_sign = toRender(toEntity(getEntityByName("tutorial_sign_inhibitor")):getCompByName("render"));
 	render_inhibitor_sign.visible = false;
 	render_smobstacles_sign = toRender(toEntity(getEntityByName("tutorial_sign_obstacles")):getCompByName("render"));
