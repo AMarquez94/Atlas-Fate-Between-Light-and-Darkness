@@ -154,7 +154,12 @@ rollout SBExport "Export Tools" width:474 height:469
 		local objs_selected = selection as array
 		local scene_exporter = TSceneExporter()
 		scene_exporter.project_path = asset_dir.text +"\\"
-		scene_exporter.exportAll objs_selected scene_name.text pb6 true
+		
+		if chk6.state == true then (
+			scene_exporter.exportContainer objs_selected scene_name.text pb6
+		) else (
+			scene_exporter.exportAll objs_selected scene_name.text pb6 true
+		)
 	)
 		
 	on btn40 pressed do
