@@ -131,7 +131,7 @@
 			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
 			"name": "tutorial_sign_sm",
 			"transform": {
-				"pos": "-7 1.8 25.2"
+				"pos": "-7 1.6 25.2"
 			},
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
@@ -146,7 +146,7 @@
 			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
 			"name": "tutorial_sign_ver_sm",
 			"transform": {
-				"pos": "1.7 1.8 13"
+				"pos": "1.7 1.6 13"
 			},
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
@@ -161,7 +161,7 @@
 			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
 			"name": "tutorial_sign_fall_sm",
 			"transform": {
-				"pos": "1.4 17.8 8"
+				"pos": "1.4 17.6 8"
 			},
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
@@ -176,7 +176,7 @@
 			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
 			"name": "tutorial_sign_run_crouch",
 			"transform": {
-				"pos": "-11 1.8 -6.6"
+				"pos": "-11 1.6 -6.6"
 			},
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
@@ -191,7 +191,7 @@
 			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
 			"name": "tutorial_sign_inhibitor",
 			"transform": {
-				"pos": "-25 1.8 -38"
+				"pos": "-25 1.6 -38"
 			},
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
@@ -206,7 +206,7 @@
 			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
 			"name": "tutorial_sign_obstacles",
 			"transform": {
-				"pos": "-10 1.8 -43"
+				"pos": "-10 1.6 -43"
 			},
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
@@ -221,7 +221,7 @@
 			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
 			"name": "tutorial_sign_attack",
 			"transform": {
-				"pos": "-6.3 1.8 -49.2"
+				"pos": "-6.3 1.6 -49.2"
 			},
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
@@ -236,7 +236,7 @@
 			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
 			"name": "tutorial_sign_enemy_sm",
 			"transform": {
-				"pos": "-6.3 1.8 -49.2"
+				"pos": "-6.3 1.6 -49.2"
 			},
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",

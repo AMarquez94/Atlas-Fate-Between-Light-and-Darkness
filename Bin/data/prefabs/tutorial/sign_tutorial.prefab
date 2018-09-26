@@ -6,7 +6,8 @@
       ,
       "transform":
       {
-        "pos": "0.0 0.0 0.0"
+        "pos": "0.0 0.0 0.0",
+		"scale": "0.9 0.9 0.9"
       }
 	  ,
       "abs_aabb": true
