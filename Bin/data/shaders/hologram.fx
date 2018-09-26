@@ -324,7 +324,9 @@ float4 PS_HologramScreen(
   ): SV_Target0
 {
 	float vertex_sift = (dot(iWorldPos, normalize(float3(0,-1,0)))  + global_world_time);
-	float scan = frac(vertex_sift * 200) * 3.2;
-	float4 color = float4(0,0.25,1,1);
-	return txAlbedo.Sample(samLinear, iTex0) * color * scan;
+	float scan = frac(vertex_sift * 100) * 3.2;
+	float4 color = float4(0,0.15,1,1);
+	float4 albedo = txAlbedo.Sample(samLinear, iTex0);
+	
+	return albedo * color * scan * albedo.a;
 }

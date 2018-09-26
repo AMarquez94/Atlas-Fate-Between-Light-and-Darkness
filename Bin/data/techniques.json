@@ -721,6 +721,7 @@
 		"vertex_type": "PosNUvUvT",
 		"ps_file": "data/shaders/hologram.fx",
 		"category": "hologram_screen",
+		"z": "test_but_no_write",
 		"ps_entry_point": "PS_HologramScreen",
 		"blend": "additive_by_src_alpha"
 	},
