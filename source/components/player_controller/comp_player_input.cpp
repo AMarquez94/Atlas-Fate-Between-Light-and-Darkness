@@ -91,15 +91,6 @@ void TCompPlayerInput::update(float dt)
                     e->sendMsg(attack);
                     attackButtonJustPressed = true;
                 }
-                else if (c_my_player->canSonarPunch()) {
-
-                    TMsgSetFSMVariable sonar;
-                    sonar.variant.setName("sonar");
-                    sonar.variant.setBool(true);
-                    e->sendMsg(sonar);
-                    attackButtonJustPressed = true;
-                }
-
             }
             else if (attackButtonJustPressed) {
                 TMsgSetFSMVariable attack;
@@ -107,12 +98,26 @@ void TCompPlayerInput::update(float dt)
                 attack.variant.setBool(false);
                 e->sendMsg(attack);
 
+                attackButtonJustPressed = false;
+            }
+
+            if (EngineInput["btSonar"].getsPressed()) {
+                TCompTempPlayerController* c_my_player = get<TCompTempPlayerController>();
+                if (c_my_player->canSonarPunch()) {
+                    TMsgSetFSMVariable sonar;
+                    sonar.variant.setName("sonar");
+                    sonar.variant.setBool(true);
+                    e->sendMsg(sonar);
+                    sonarButtonJustPressed = true;
+                }
+            }
+            else if (sonarButtonJustPressed) {
                 TMsgSetFSMVariable sonar;
                 sonar.variant.setName("sonar");
                 sonar.variant.setBool(false);
                 e->sendMsg(sonar);
 
-                attackButtonJustPressed = false;
+                sonarButtonJustPressed = false;
             }
 
             if (EngineInput["btCrouch"].getsPressed() && !EngineInput["btRun"].isPressed())

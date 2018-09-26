@@ -22,7 +22,7 @@
   {
     "name": "btShadowMerging",
     "all": false,
-    "buttons": [ "mouse_right", "pad_r1" ]
+    "buttons": [ "mouse_right", "pad_r2" ]
   },
   {
     "name": "btAttack",
@@ -33,11 +33,6 @@
     "name": "btRun",
     "all": false,
     "buttons": [ "shift", "pad_l2" ]
-  },
-  {
-    "name": "btSlow",
-    "all": false,
-    "buttons": [ "control" ]
   },
   {
     "name": "MouseX",
@@ -62,7 +57,7 @@
   {
     "name": "btAction",
     "all": false,
-    "buttons": [ "e", "pad_y" ]
+    "buttons": [ "e", "pad_a" ]
   },
   {
     "name": "btCrouch",
@@ -72,7 +67,12 @@
   {
     "name": "btSecAction",
     "all": false,
-    "buttons":  ["space", "pad_a"]
+    "buttons":  ["space", "pad_y"]
+  },
+  {
+	"name": "btSonar",
+	"all": false,
+	"buttons": ["q", "pad_r3"]
   },
   {
     "name": "btDebugPause",
