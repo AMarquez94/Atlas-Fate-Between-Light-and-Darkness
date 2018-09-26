@@ -1,0 +1,10 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/video/test_monkey.h264"
+    ,
+    "normal": "data/textures/null_normal.dds"
+  }
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "entity":
+    {
+      "name": "Video"
+      ,
+      "transform":
+      {
+        "pos": "10.0 10 10.0"
+        ,
+        "rotation": "0.0 0.0 0.0 1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Box001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/video.material"
+          ]
+        }
+      ]
+    }
+  }
+]

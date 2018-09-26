@@ -1,17 +1,25 @@
 #include "mcv_platform.h"
 #include "texture.h"
 #include "DDSTextureLoader.h"
+#include "render/video/video_texture.h"
 
 // ----------------------------------------------
 class CTexturesResourceClass : public CResourceClass {
 public:
 	CTexturesResourceClass() {
 		class_name = "Textures";
-		extensions = { ".dds" };
+		extensions = { ".dds", ".h264" };
 	}
 	IResource* create(const std::string& name) const override {
 		dbg("Creating texture %s\n", name.c_str());
-		CTexture* res = new CTexture();
+        CTexture* res;
+        
+        std::string ext = name.substr(name.length() - 5);
+        if (ext == ".h264")
+            res = new CVideoTexture();
+        else
+            res = new CTexture();
+
 		bool is_ok = res->create(name);
 		assert(is_ok);
 		return res;
@@ -164,7 +172,9 @@ bool CTexture::create(
 
 	setNameAndClass(getName(), getResourceClassOf<CTexture>());
 
-	Resources.registerResource(this);
+    // Autoregister render targets only
+    if (options == TCreateOptions::CREATE_RENDER_TARGET)
+	    Resources.registerResource(this);
 
 	return true;
 }
