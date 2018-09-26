@@ -6,12 +6,12 @@ extern "C" {
 
 class CVideoTexture : public CTexture {
 
-  storage_t *decoder = NULL;
-  u32 status = H264BSD_RDY;
+    storage_t *decoder = NULL;
+    u32 status = H264BSD_RDY;
 
 public:
-  bool open(const char* filename);
-  void close();
-  void update();
+    bool open(const char* filename);
+    void close();
+    void update();
 };
 

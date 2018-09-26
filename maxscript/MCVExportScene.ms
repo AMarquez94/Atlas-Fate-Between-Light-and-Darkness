@@ -986,7 +986,8 @@ struct TSceneExporter (
 		nitems = 0
 		local prg_step = 100 / (nodes.count + 1)
 		local container_types = Dictionary()
-		
+		local container_decals = Dictionary()
+				
 		-- Loop through all xref
 		for obj in nodes do (
 			
@@ -1004,19 +1005,19 @@ struct TSceneExporter (
 				SetDictValue container_types ref_type dict_value
 			)
 			
-			/*if classof obj == xrefobject then (
-				local ref_type = (getFilenameFile obj.filename) as name
+			if classof obj == QuadPatch then (
+				local ref_type = obj.material.name + ".material"
 				
-				local has_value = HasDictValue container_types ref_type
+				local has_value = HasDictValue container_decals ref_type
 				if has_value == false then (
-					container_types[ref_type] = #()
+					container_decals[ref_type] = #()
 				)
 				
 				-- Get the array and set the values
-				local dict_value = GetDictValue container_types ref_type
+				local dict_value = GetDictValue container_decals ref_type
 				append dict_value obj
-				SetDictValue container_types ref_type dict_value
-			)*/
+				SetDictValue container_decals ref_type dict_value
+			)
 			
 			nitems = nitems + 1
 			prg.value = (nitems + 1) * prg_step
@@ -1038,7 +1039,7 @@ struct TSceneExporter (
 			
 			if mat != undefined then (
 				local me = TMaterialExporter project_path:project_path base_path:base_path
-				me.exportStdMaterial mat.overrideMaterial mat_path "pbr_grass.tech" false
+				me.exportStdMaterial mat.overrideMaterial mat_path "grass.tech" true
 			)
 		
 			-- Export the scene container
