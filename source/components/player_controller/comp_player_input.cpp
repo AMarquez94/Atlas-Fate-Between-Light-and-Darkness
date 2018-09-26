@@ -131,12 +131,6 @@ void TCompPlayerInput::update(float dt)
 
             if (EngineInput["btAction"].hasChanged())
             {
-                TMsgSetFSMVariable action;
-                action.variant.setName("action");
-                action.variant.setBool(true);
-                e->sendMsg(action);
-            }
-            {
                 TCompPlayerAttackCast* playerCast = e->get<TCompPlayerAttackCast>();
                 CHandle button = playerCast->getClosestButtonInRange();
                 //GrabEnemy messages

@@ -80,6 +80,11 @@
     "buttons":  ["f1"]
   },
   {
+    "name": "btControl",
+    "all": false,
+    "buttons":  ["control"]
+  },
+  {
     "name": "btDebugShadows",
     "all": false,
     "buttons":  ["f2"]

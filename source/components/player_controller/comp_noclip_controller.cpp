@@ -99,7 +99,7 @@ void TCompNoClipController::update(float dt)
             dir.Normalize();
             player_accel = speed * dt;
         }
-        else if (EngineInput["btSlow"].isPressed()) {
+        else if (EngineInput["btControl"].isPressed()) {
             
             /* CTRL to go down */
             dir += VEC3(0, -1, 0);

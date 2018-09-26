@@ -131,7 +131,7 @@
 			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
 			"name": "tutorial_sign_sm",
 			"transform": {
-				"pos": "-7 1.6 25.2"
+				"pos": "-7 1.6 24.2"
 			},
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
@@ -151,7 +151,7 @@
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
 				"materials": [
-					"data/materials/mtl_tuto_sm.material"
+					"data/materials/mtl_tuto_versm.material"
 				]
 			}]
 		}
@@ -166,7 +166,7 @@
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
 				"materials": [
-					"data/materials/mtl_tuto_sm.material"
+					"data/materials/mtl_tuto_fallsm.material"
 				]
 			}]
 		}
@@ -181,7 +181,7 @@
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
 				"materials": [
-					"data/materials/mtl_tuto_sm.material"
+					"data/materials/mtl_tuto_runcrouch.material"
 				]
 			}]
 		}
@@ -196,7 +196,7 @@
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
 				"materials": [
-					"data/materials/mtl_tuto_sm.material"
+					"data/materials/mtl_tuto_inhibitor.material"
 				]
 			}]
 		}
@@ -206,12 +206,12 @@
 			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
 			"name": "tutorial_sign_obstacles",
 			"transform": {
-				"pos": "-10 1.6 -43"
+				"pos": "-10 1.6 -42.5"
 			},
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
 				"materials": [
-					"data/materials/mtl_tuto_sm.material"
+					"data/materials/mtl_tuto_smobstacles.material"
 				]
 			}]
 		}
@@ -221,12 +221,12 @@
 			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
 			"name": "tutorial_sign_attack",
 			"transform": {
-				"pos": "-6.3 1.6 -49.475"
+				"pos": "-8 1.6 -50.5"
 			},
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
 				"materials": [
-					"data/materials/mtl_tuto_sm.material"
+					"data/materials/mtl_tuto_attack.material"
 				]
 			}]
 		}
@@ -236,12 +236,12 @@
 			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
 			"name": "tutorial_sign_enemy_sm",
 			"transform": {
-				"pos": "-6.3 1.6 -49.475"
+				"pos": "-8 1.6 -50.5"
 			},
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
 				"materials": [
-					"data/materials/mtl_tuto_sm.material"
+					"data/materials/mtl_tuto_enemysm.material"
 				]
 			}]
 		}
