@@ -132,7 +132,7 @@ void TCompPlayerInput::update(float dt)
             if (EngineInput["btAction"].hasChanged())
             {
                 TCompPlayerAttackCast* playerCast = e->get<TCompPlayerAttackCast>();
-                CHandle button = playerCast->getClosestButtonInRange();
+                CHandle button = playerCast->getClosestButton();
                 //GrabEnemy messages
                 if (EngineInput["btAction"].getsPressed() && playerCast->closestEnemyToMerge(false).isValid()) {
                     _enemyStunned = true;
@@ -157,7 +157,6 @@ void TCompPlayerInput::update(float dt)
                     e->sendMsg(activatingButton);
 
                     TMsgButtonActivated msg;
-                    CEntity * b = button.getOwner();
                     button.sendMsg(msg);
                 }
 

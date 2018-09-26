@@ -18,6 +18,19 @@
 						"variable" : "staminaBarFactor"
 					}
 				]
+			},
+			{
+				"name" : "press_button_a",
+				"type" : "widget",
+				"position" : "615 424",
+				"children" : [
+					{
+						"name" : "button_a",
+						"type" : "image",
+						"size" : "96 96",
+						"texture" : "data/textures/gui/press_button_A.dds"
+					}
+				]
 			}
 		]
 	}

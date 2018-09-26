@@ -10,6 +10,7 @@
 #include "components/ia/comp_bt_patrol.h"
 #include "components/ia/comp_bt_mimetic.h"
 #include "components/player_controller/comp_shadow_controller.h"
+#include "components/object_controller/comp_button.h"
 
 DECL_OBJ_MANAGER("player_attack_cast", TCompPlayerAttackCast);
 
@@ -17,170 +18,172 @@ void TCompPlayerAttackCast::debugInMenu() {
 }
 
 void TCompPlayerAttackCast::load(const json& j, TEntityParseContext& ctx) {
-  geometryAttack.radius = j.value("radiusAttack", 2.f);
-  geometryMoveObjects.radius = j.value("radiusMoveObject", 1.f);
-  geometryButtons.radius = j.value("radiusPressButton", 1.0f);
-  attack_fov = deg2rad(j.value("attack_fov", 120.f));
-  moveObjects_fov = deg2rad(j.value("moveObjects_fov", 20.f));
-  button_fov = deg2rad(j.value("button_fov", 60.f));
+    geometryAttack.radius = j.value("radiusAttack", 2.f);
+    geometryMoveObjects.radius = j.value("radiusMoveObject", 1.f);
+    geometryButtons.radius = j.value("radiusPressButton", 1.0f);
+    attack_fov = deg2rad(j.value("attack_fov", 120.f));
+    moveObjects_fov = deg2rad(j.value("moveObjects_fov", 20.f));
+    button_fov = deg2rad(j.value("button_fov", 60.f));
 
-  physx::PxFilterData pxFilterData;
+    physx::PxFilterData pxFilterData;
 
-  pxFilterData.word0 = FilterGroup::Enemy;
-  PxPlayerAttackQueryFilterData.data = pxFilterData;
-  PxPlayerAttackQueryFilterData.flags = physx::PxQueryFlag::eDYNAMIC;
+    pxFilterData.word0 = FilterGroup::Enemy;
+    PxPlayerAttackQueryFilterData.data = pxFilterData;
+    PxPlayerAttackQueryFilterData.flags = physx::PxQueryFlag::eDYNAMIC;
 
-  pxFilterData.word0 = FilterGroup::MovableObject;
-  PxPlayerMoveObjectsQueryFilterData.data = pxFilterData;
-  PxPlayerMoveObjectsQueryFilterData.flags = physx::PxQueryFlag::eDYNAMIC;
+    pxFilterData.word0 = FilterGroup::MovableObject;
+    PxPlayerMoveObjectsQueryFilterData.data = pxFilterData;
+    PxPlayerMoveObjectsQueryFilterData.flags = physx::PxQueryFlag::eDYNAMIC;
 
-  pxFilterData.word0 = FilterGroup::Button;
-  PxPlayerButtonInteractQueryFilterData.data = pxFilterData;
-  PxPlayerButtonInteractQueryFilterData.flags = physx::PxQueryFlag::eSTATIC;
+    pxFilterData.word0 = FilterGroup::Button;
+    PxPlayerButtonInteractQueryFilterData.data = pxFilterData;
+    PxPlayerButtonInteractQueryFilterData.flags = physx::PxQueryFlag::eSTATIC;
+
+    EngineGUI.enableWidget("press_button_a", false);
 }
 
 void TCompPlayerAttackCast::registerMsgs()
 {
-	DECL_MSG(TCompPlayerAttackCast, TMsgScenePaused, onMsgScenePaused);
+    DECL_MSG(TCompPlayerAttackCast, TMsgScenePaused, onMsgScenePaused);
 }
 
 void TCompPlayerAttackCast::onMsgScenePaused(const TMsgScenePaused & msg)
 {
-	paused = msg.isPaused;
+    paused = msg.isPaused;
 }
 
 const std::vector<CHandle> TCompPlayerAttackCast::getEnemiesInRange()
 {
-  std::vector<CHandle> enemies_in_range;
+    std::vector<CHandle> enemies_in_range;
 
-  TCompTransform* tPos = get<TCompTransform>();
-  
-  if (geometryAttack.isValid()) {
+    TCompTransform* tPos = get<TCompTransform>();
 
-    std::vector<physx::PxOverlapHit> hits;
-    if (EnginePhysics.Overlap(geometryAttack, tPos->getPosition(), hits, PxPlayerAttackQueryFilterData)) {
-      for (int i = 0; i < hits.size(); i++) {
-        CHandle hitCollider;
-        hitCollider.fromVoidPtr(hits[i].actor->userData);
-        if (hitCollider.isValid()) {
-          CHandle enemy = hitCollider.getOwner();
-          if (enemy.isValid()) {
-            enemies_in_range.push_back(enemy);
-          }
+    if (geometryAttack.isValid()) {
+
+        std::vector<physx::PxOverlapHit> hits;
+        if (EnginePhysics.Overlap(geometryAttack, tPos->getPosition(), hits, PxPlayerAttackQueryFilterData)) {
+            for (int i = 0; i < hits.size(); i++) {
+                CHandle hitCollider;
+                hitCollider.fromVoidPtr(hits[i].actor->userData);
+                if (hitCollider.isValid()) {
+                    CHandle enemy = hitCollider.getOwner();
+                    if (enemy.isValid()) {
+                        enemies_in_range.push_back(enemy);
+                    }
+                }
+            }
         }
-      }
     }
-  }
 
-  return enemies_in_range;
+    return enemies_in_range;
 }
 
 const bool TCompPlayerAttackCast::canAttackEnemiesInRange(CHandle& closestEnemyToAttack)
 {
-  bool canAttackNow = false;
-  const std::vector<CHandle> enemies = getEnemiesInRange();
-  closestEnemyToAttack = CHandle();
+    bool canAttackNow = false;
+    const std::vector<CHandle> enemies = getEnemiesInRange();
+    closestEnemyToAttack = CHandle();
 
-  TCompTransform * mypos = get<TCompTransform>();
+    TCompTransform * mypos = get<TCompTransform>();
 
-  for (int i = 0; i < enemies.size() && !canAttackNow; i++) {
+    for (int i = 0; i < enemies.size() && !canAttackNow; i++) {
 
-    CEntity * enemy = enemies[i];
-    TCompTransform *ePos = enemy->get<TCompTransform>();
-    TCompTags * eTag = enemy->get<TCompTags>();
+        CEntity * enemy = enemies[i];
+        TCompTransform *ePos = enemy->get<TCompTransform>();
+        TCompTags * eTag = enemy->get<TCompTags>();
 
-    if (eTag->hasTag(getID("patrol"))) {
-      TCompAIPatrol * cPatrol = enemy->get<TCompAIPatrol>();
-      if (mypos->isInHorizontalFov(ePos->getPosition(), attack_fov) &&
-        !ePos->isInFront(mypos->getPosition()) &&
-        !cPatrol->isStunned()) {
-        canAttackNow = true;
-        closestEnemyToAttack = enemies[i];
-      }
+        if (eTag->hasTag(getID("patrol"))) {
+            TCompAIPatrol * cPatrol = enemy->get<TCompAIPatrol>();
+            if (mypos->isInHorizontalFov(ePos->getPosition(), attack_fov) &&
+                !ePos->isInFront(mypos->getPosition()) &&
+                !cPatrol->isStunned()) {
+                canAttackNow = true;
+                closestEnemyToAttack = enemies[i];
+            }
+        }
+        else if (eTag->hasTag(getID("mimetic"))) {
+            TCompAIMimetic * cMimetic = enemy->get<TCompAIMimetic>();
+            if (mypos->isInHorizontalFov(ePos->getPosition(), attack_fov) && !cMimetic->isStunned()) {
+                canAttackNow = true;
+                closestEnemyToAttack = enemies[i];
+            }
+        }
     }
-    else if (eTag->hasTag(getID("mimetic"))) {
-      TCompAIMimetic * cMimetic = enemy->get<TCompAIMimetic>();
-      if (mypos->isInHorizontalFov(ePos->getPosition(), attack_fov) && !cMimetic->isStunned()) {
-        canAttackNow = true;
-        closestEnemyToAttack = enemies[i];
-      }
-    }
-  }
-  return canAttackNow;
+    return canAttackNow;
 }
 
 CHandle TCompPlayerAttackCast::closestEnemyToMerge(bool goingToMerge)
 {
     CHandle closestEnemy = CHandle();
     const std::vector<CHandle> enemies = getEnemiesInRange();
-  
+
     TCompTransform * mypos = get<TCompTransform>();
-  
+
     for (int i = 0; i < enemies.size() && !closestEnemy.isValid(); i++) {
-  
-      CEntity * enemy = enemies[i];
-      TCompTransform *ePos = enemy->get<TCompTransform>();
-      TCompTags * eTag = enemy->get<TCompTags>();
-  
-      if (eTag->hasTag(getID("patrol"))) {
-        TCompAIPatrol * cPatrol = enemy->get<TCompAIPatrol>();
-        TCompShadowController* shadow_controller = get<TCompShadowController>();
-        if (mypos->isInHorizontalFov(ePos->getPosition(), attack_fov) && cPatrol->isStunned() && 
-            (!goingToMerge || (goingToMerge && shadow_controller->IsPointInShadows(ePos->getPosition() + VEC3(0, 0.1f, 0) , false)))) {
-          closestEnemy = enemies[i];
+
+        CEntity * enemy = enemies[i];
+        TCompTransform *ePos = enemy->get<TCompTransform>();
+        TCompTags * eTag = enemy->get<TCompTags>();
+
+        if (eTag->hasTag(getID("patrol"))) {
+            TCompAIPatrol * cPatrol = enemy->get<TCompAIPatrol>();
+            TCompShadowController* shadow_controller = get<TCompShadowController>();
+            if (mypos->isInHorizontalFov(ePos->getPosition(), attack_fov) && cPatrol->isStunned() &&
+                (!goingToMerge || (goingToMerge && shadow_controller->IsPointInShadows(ePos->getPosition() + VEC3(0, 0.1f, 0), false)))) {
+                closestEnemy = enemies[i];
+            }
         }
-      }
     }
-  
+
     return closestEnemy;
 }
 
 const std::vector<CHandle> TCompPlayerAttackCast::getMovableObjectsInRange()
 {
-  std::vector<CHandle> movable_objects_in_range;
+    std::vector<CHandle> movable_objects_in_range;
 
-  TCompTransform* tPos = get<TCompTransform>();
+    TCompTransform* tPos = get<TCompTransform>();
 
-  if (geometryMoveObjects.isValid()) {
+    if (geometryMoveObjects.isValid()) {
 
-    std::vector<physx::PxOverlapHit> hits;
-    if (EnginePhysics.Overlap(geometryMoveObjects, tPos->getPosition(), hits, PxPlayerMoveObjectsQueryFilterData)) {
-      for (int i = 0; i < hits.size(); i++) {
-        CHandle hitCollider;
-        hitCollider.fromVoidPtr(hits[i].actor->userData);
-        if (hitCollider.isValid()) {
-          CHandle object = hitCollider.getOwner();
-          if (object.isValid()) {
-            movable_objects_in_range.push_back(object);
-          }
+        std::vector<physx::PxOverlapHit> hits;
+        if (EnginePhysics.Overlap(geometryMoveObjects, tPos->getPosition(), hits, PxPlayerMoveObjectsQueryFilterData)) {
+            for (int i = 0; i < hits.size(); i++) {
+                CHandle hitCollider;
+                hitCollider.fromVoidPtr(hits[i].actor->userData);
+                if (hitCollider.isValid()) {
+                    CHandle object = hitCollider.getOwner();
+                    if (object.isValid()) {
+                        movable_objects_in_range.push_back(object);
+                    }
+                }
+            }
         }
-      }
     }
-  }
 
-  return movable_objects_in_range;
+    return movable_objects_in_range;
 }
 
 CHandle TCompPlayerAttackCast::getClosestMovableObjectInRange()
 {
-  bool found = false;
-  CHandle closestMovableObject = CHandle();
-  const std::vector<CHandle> movable_objects = getMovableObjectsInRange();
+    bool found = false;
+    CHandle closestMovableObject = CHandle();
+    const std::vector<CHandle> movable_objects = getMovableObjectsInRange();
 
-  TCompTransform * mypos = get<TCompTransform>();
+    TCompTransform * mypos = get<TCompTransform>();
 
-  for (int i = 0; i < movable_objects.size() && !found; i++) {
+    for (int i = 0; i < movable_objects.size() && !found; i++) {
 
-    CEntity * movable_object = movable_objects[i];
-    TCompTransform *ePos = movable_object->get<TCompTransform>();
-    TCompRigidbody *eRigidbody = movable_object->get<TCompRigidbody>();
+        CEntity * movable_object = movable_objects[i];
+        TCompTransform *ePos = movable_object->get<TCompTransform>();
+        TCompRigidbody *eRigidbody = movable_object->get<TCompRigidbody>();
 
-    if (mypos->isInHorizontalFov(ePos->getPosition(), moveObjects_fov) && eRigidbody->is_grounded) {
-      found = true;
-      closestMovableObject = movable_objects[i];
+        if (mypos->isInHorizontalFov(ePos->getPosition(), moveObjects_fov) && eRigidbody->is_grounded) {
+            found = true;
+            closestMovableObject = movable_objects[i];
+        }
     }
-  }
-  return closestMovableObject;
+    return closestMovableObject;
 }
 
 const std::vector<CHandle> TCompPlayerAttackCast::getButtonsInRange() {
@@ -224,15 +227,28 @@ CHandle TCompPlayerAttackCast::getClosestButtonInRange() {
     for (int i = 0; i < buttons.size() && !found; i++) {
 
         CEntity * button = buttons[i];
-        TCompTransform *ePos = button->get<TCompTransform>();
-
-        if (mypos->isInHorizontalFov(ePos->getPosition(), button_fov)) {
-            found = true;
-            closestButton = buttons[i];
+        TCompButton* tButton = button->get <TCompButton>();
+        if (tButton && tButton->canBePressed) {
+            TCompTransform *ePos = button->get<TCompTransform>();
+            if (mypos->isInHorizontalFov(ePos->getPosition(), button_fov)) {
+                found = true;
+                closestButton = buttons[i];
+            }
         }
     }
     return closestButton;
 }
 
 void TCompPlayerAttackCast::update(float dt)
-{}
+{
+    CHandle newClosestButton = getClosestButtonInRange();
+    if (newClosestButton.isValid() && !closestButton.isValid()) {
+        /* Activate gui button */
+        EngineGUI.enableWidget("press_button_a", true);
+    }
+    else if (closestButton.isValid() && !newClosestButton.isValid()) {
+        /* Deactivate gui button */
+        EngineGUI.enableWidget("press_button_a", false);
+    }
+    closestButton = newClosestButton;
+}

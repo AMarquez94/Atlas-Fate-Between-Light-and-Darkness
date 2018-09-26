@@ -221,7 +221,7 @@
 			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
 			"name": "tutorial_sign_attack",
 			"transform": {
-				"pos": "-8 1.6 -50.5"
+				"pos": "-8.525 1.6 -49.675"
 			},
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
@@ -236,7 +236,7 @@
 			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
 			"name": "tutorial_sign_enemy_sm",
 			"transform": {
-				"pos": "-8 1.6 -50.5"
+				"pos": "-8.525 1.6 -49.675"
 			},
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",

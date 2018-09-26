@@ -23,6 +23,8 @@ public:
   const std::vector<CHandle> getButtonsInRange();
   CHandle getClosestButtonInRange();
 
+  CHandle getClosestButton() { return closestButton; }
+
 private:
 
   physx::PxQueryFilterData PxPlayerAttackQueryFilterData;
@@ -36,5 +38,7 @@ private:
   float button_fov;
 
   void onMsgScenePaused(const TMsgScenePaused & msg);
+
+  CHandle closestButton;
 };
 
