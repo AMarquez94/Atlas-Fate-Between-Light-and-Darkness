@@ -1006,7 +1006,7 @@ struct TSceneExporter (
 			)
 			
 			if classof obj == QuadPatch then (
-				local ref_type = obj.material.name + ".material"
+				local ref_type = (obj.material.name) as name
 				
 				local has_value = HasDictValue container_decals ref_type
 				if has_value == false then (
@@ -1024,6 +1024,7 @@ struct TSceneExporter (
 		)
 		
 		local titems = 0
+		-- Little bit repetitive, change this later on.
 		for p in container_types do (
 
 			if (titems > 0) then fs.writeComma()
@@ -1040,6 +1041,28 @@ struct TSceneExporter (
 			if mat != undefined then (
 				local me = TMaterialExporter project_path:project_path base_path:base_path
 				me.exportStdMaterial mat.overrideMaterial mat_path "grass.tech" true
+			)
+		
+			-- Export the scene container
+			exportContainerEntity p.key p.value imesh_name mat_path
+			titems += 1
+		)
+		
+		for p in container_decals do (
+
+			if (titems > 0) then fs.writeComma()
+			
+			-- First, export the instanced mesh file
+			local mesh_name = (mesh_path + local_path + "UnitBox") + ".mesh"
+			local imesh_name = (mesh_path + local_path + p.key) + ".instanced_mesh"
+			exportInstancedMesh imesh_name mesh_name		
+						
+			local mat = p.value[1].material
+			local mat_path = mats_path + p.value[1].material.name + ".material"
+			
+			if mat != undefined then (
+				local me = TMaterialExporter project_path:project_path base_path:base_path
+				me.exportStdMaterial mat mat_path "pbr_decal.tech" false
 			)
 		
 			-- Export the scene container
