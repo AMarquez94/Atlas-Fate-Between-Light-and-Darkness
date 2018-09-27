@@ -1,0 +1,152 @@
+[
+  {
+    "entity":
+    {
+      "name": "Video"
+      ,
+      "transform":
+      {
+        "pos": "0.0 10 20.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/video_tv.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/video.material"
+          ]
+        }
+      ]
+    }
+  },
+	{
+    "entity":
+    {
+      "name": "Video"
+      ,
+      "transform":
+      {
+        "pos": "5.0 10 20.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/video_tv.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/video.material"
+          ]
+        }
+      ]
+    }
+  },
+	{
+    "entity":
+    {
+      "name": "Video"
+      ,
+      "transform":
+      {
+        "pos": "-5.0 10 20.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/video_tv.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/video.material"
+          ]
+        }
+      ]
+    }
+  },
+	{
+    "entity":
+    {
+      "name": "Video"
+      ,
+      "transform":
+      {
+        "pos": "0.0 7 20.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/video_tv.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/video.material"
+          ]
+        }
+      ]
+    }
+  },
+	{
+    "entity":
+    {
+      "name": "Video"
+      ,
+      "transform":
+      {
+        "pos": "5.0 7 20.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/video_tv.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/video.material"
+          ]
+        }
+      ]
+    }
+  },
+	{
+    "entity":
+    {
+      "name": "Video"
+      ,
+      "transform":
+      {
+        "pos": "-5.0 7 20.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/video_tv.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/video.material"
+          ]
+        }
+      ]
+    }
+  }
+]
