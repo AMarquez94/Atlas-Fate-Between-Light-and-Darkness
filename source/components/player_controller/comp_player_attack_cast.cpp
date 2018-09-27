@@ -247,7 +247,12 @@ void TCompPlayerAttackCast::update(float dt)
     CHandle newClosestButton = getClosestButtonInRange();
     if (newClosestButton.isValid() && !closestButton.isValid()) {
         /* Activate gui button */
-        EngineGUI.enableWidget("press_button_e", true);
+        if (!EngineInput.pad().connected) {
+            EngineGUI.enableWidget("press_button_e", true);
+        }
+        else {
+            EngineGUI.enableWidget("press_button_a", true);
+        }
     }
     else if (closestButton.isValid() && !newClosestButton.isValid()) {
         /* Deactivate gui button */
@@ -263,7 +268,12 @@ void TCompPlayerAttackCast::update(float dt)
         newClosestEnemyToMerge = closestEnemyToMerge(true);
         if (newClosestEnemyToMerge.isValid() && !closestEnemyMergeable.isValid()) {
             /* Activate gui button */
-            EngineGUI.enableWidget("grab_enemy_e", true);
+            if (!EngineInput.pad().connected) {
+                EngineGUI.enableWidget("grab_enemy_e", true);
+            }
+            else {
+                EngineGUI.enableWidget("grab_enemy_a", true);
+            }
         }
     }
 

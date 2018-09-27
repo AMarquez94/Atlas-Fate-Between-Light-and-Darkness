@@ -146,11 +146,6 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point, bool player)
                 return false;
         }
         else {
-         /*   if (EnginePhysics.Raycast(point, -c_trans->getFront(), distance, hit, (physx::PxQueryFlag::eSTATIC | physx::PxQueryFlag::eDYNAMIC), shadowDetectionFilterEnemy)) {
-                CHandle h;
-                h.fromVoidPtr(hit.actor->userData);
-                CEntity* e = h.getOwner();
-            }*/
 
             if (!EnginePhysics.Raycast(point, -c_trans->getFront(), distance, hit, (physx::PxQueryFlag::eSTATIC | physx::PxQueryFlag::eDYNAMIC), shadowDetectionFilterEnemy))
                 return false;

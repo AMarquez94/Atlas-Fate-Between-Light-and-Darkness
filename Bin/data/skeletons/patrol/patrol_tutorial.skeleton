@@ -1,0 +1,35 @@
+{
+	"name": "patrol",
+	"anims": [
+		{
+			"name": "idle"
+		},
+		{
+			"name": "walk"
+		},
+		{
+			"name": "walk_fast"
+		},
+		{
+			"name": "run"
+		},
+		{
+			"name": "pruebas"
+		},
+		{
+			"name": "die"
+		},
+		{
+			"name": "dead"
+		},
+		{
+			"name": "attack"
+		},
+		{
+			"name": "inhibidor"
+		},
+		{
+			"name": "turn_right"
+		}
+	]
+}
