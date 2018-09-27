@@ -22,7 +22,7 @@
 			"camera_thirdperson": {
 				"target": "The Player",
 				"clampangle": "-50 80",
-				"offset": "0 1.35 2",
+				"offset": "0.15 1.35 2",
 				"speed": 1.5
 			},
 			"tags": ["main_camera","tp_camera"]
@@ -37,7 +37,7 @@
 			"camera_thirdperson": {
 				"target": "The Player",
 				"clampangle": "-40 80",
-				"offset": "0 0.8 2",
+				"offset": "0.15 0.8 2",
 				"speed": 1.5
 			},
 			"tags": ["main_camera","tp_camera"]

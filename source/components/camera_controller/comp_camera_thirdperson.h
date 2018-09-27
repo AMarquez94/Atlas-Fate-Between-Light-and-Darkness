@@ -4,7 +4,7 @@
 #include "camera/camera.h"
 #include "entity/common_msgs.h"
 
-class TCompCameraThirdPerson : public CCamera, public TCompBase
+class TCompCameraThirdPerson : public TCompBase
 {
 private:
     CHandle     _h_target;
@@ -17,7 +17,7 @@ private:
     VEC3 _clipping_offset;
 
     float _timer_fov = 0.f;
-    float _max_time_fov = 1.f;
+    float _max_time_fov = 2.f;
     float _target_fov = 70.f;
 
 

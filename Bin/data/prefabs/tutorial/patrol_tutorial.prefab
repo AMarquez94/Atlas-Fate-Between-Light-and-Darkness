@@ -27,7 +27,7 @@
 				"fall_speed": 0.3
 			},
 			"skeleton": {
-				"skeleton": "data/skeletons/patrol/patrol.skeleton",
+				"skeleton": "data/skeletons/patrol/patrol_tutorial.skeleton",
 				"scale": 0.98
 			},
 			"patrol_animator": true,

@@ -4,6 +4,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_tags.h"
 #include "components/ia/comp_bt_player.h"
+#include "components/comp_camera.h"
 
 DECL_OBJ_MANAGER("camera_thirdperson", TCompCameraThirdPerson);
 const Input::TInterface_Mouse& mouse = EngineInput.mouse();
@@ -149,10 +150,10 @@ void TCompCameraThirdPerson::onMsgCameraFov(const TMsgCameraFov & msg)
 
 float TCompCameraThirdPerson::getFovUpdated(float dt)
 {
+    TCompCamera* my_camera = get<TCompCamera>();
     _timer_fov = Clamp(_timer_fov + dt, 0.f, _max_time_fov);
-    float new_fov = lerp(getFov(), deg2rad(_target_fov), _timer_fov / _max_time_fov);
+    float new_fov = lerp(my_camera->getFov(), deg2rad(_target_fov), _timer_fov / _max_time_fov);
     //dbg("===================================================================================\n");
-    //dbg("UPDATING FOV: %f\n", rad2deg(new_fov));
     //
     //float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
     //float current_fov = 70 + inputSpeed * 30; // Just doing some testing with the fov and speed
@@ -203,7 +204,8 @@ void TCompCameraThirdPerson::update(float dt)
 		
         //float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
         //float current_fov = 70 + inputSpeed * 30; // Just doing some testing with the fov and speed
-        setPerspective(getFovUpdated(dt), 0.1f, 1000.f);
+        TCompCamera* my_camera = get<TCompCamera>();
+        my_camera->setPerspective(getFovUpdated(dt), 0.1f, 1000.f);
         //dbg("Setting perspective TP() - new fov: %f\n", rad2deg(getFov()));
     }
 
