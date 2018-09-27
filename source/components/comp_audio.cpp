@@ -54,6 +54,7 @@ void TCompAudio::debugInMenu()
 
 void TCompAudio::load(const json & j, TEntityParseContext & ctx)
 {
+    startingSoundEvents.clear();
     if (j.count("clips") > 0) {
         auto& j_onStart = j["clips"];
         for (auto it = j_onStart.begin(); it != j_onStart.end(); ++it) {
