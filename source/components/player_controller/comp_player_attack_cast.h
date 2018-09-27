@@ -24,6 +24,8 @@ public:
   CHandle getClosestButtonInRange();
 
   CHandle getClosestButton() { return closestButton; }
+  CHandle getClosestEnemy() { return closestEnemy; }
+  CHandle getClosestEnemyMergeable() { return closestEnemyMergeable; }
 
 private:
 
@@ -40,5 +42,7 @@ private:
   void onMsgScenePaused(const TMsgScenePaused & msg);
 
   CHandle closestButton;
+  CHandle closestEnemy;
+  CHandle closestEnemyMergeable;
 };
 

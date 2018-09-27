@@ -164,7 +164,7 @@ void TCompTempPlayerController::playSMSpirals() {
 
         /* Set target */
         TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
-        CHandle closestEnemy = cAttackCast->closestEnemyToMerge(true);
+        CHandle closestEnemy = cAttackCast->getClosestEnemyMergeable();
 
         if (closestEnemy.isValid()) {
 
@@ -1071,7 +1071,7 @@ void TCompTempPlayerController::updateStamina(float dt) {
 void TCompTempPlayerController::mergeEnemy() {
 
     TCompPlayerAttackCast * tAttackCast = get<TCompPlayerAttackCast>();
-    CHandle enemy = tAttackCast->closestEnemyToMerge(true);
+    CHandle enemy = tAttackCast->getClosestEnemyMergeable();
     if (isMerged) {
         if (enemy.isValid()) {
             TMsgPatrolShadowMerged msg;

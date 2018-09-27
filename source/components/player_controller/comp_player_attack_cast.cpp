@@ -39,7 +39,10 @@ void TCompPlayerAttackCast::load(const json& j, TEntityParseContext& ctx) {
     PxPlayerButtonInteractQueryFilterData.data = pxFilterData;
     PxPlayerButtonInteractQueryFilterData.flags = physx::PxQueryFlag::eSTATIC;
 
+    EngineGUI.enableWidget("press_button_e", false);
     EngineGUI.enableWidget("press_button_a", false);
+    EngineGUI.enableWidget("grab_enemy_e", false);
+    EngineGUI.enableWidget("grab_enemy_a", false);
 }
 
 void TCompPlayerAttackCast::registerMsgs()
@@ -244,11 +247,35 @@ void TCompPlayerAttackCast::update(float dt)
     CHandle newClosestButton = getClosestButtonInRange();
     if (newClosestButton.isValid() && !closestButton.isValid()) {
         /* Activate gui button */
-        EngineGUI.enableWidget("press_button_a", true);
+        EngineGUI.enableWidget("press_button_e", true);
     }
     else if (closestButton.isValid() && !newClosestButton.isValid()) {
         /* Deactivate gui button */
+        EngineGUI.enableWidget("press_button_e", false);
         EngineGUI.enableWidget("press_button_a", false);
     }
     closestButton = newClosestButton;
+
+    CHandle newClosestEnemy = closestEnemyToMerge(false);
+    CHandle newClosestEnemyToMerge = CHandle();
+
+    if (newClosestEnemy.isValid()) {
+        newClosestEnemyToMerge = closestEnemyToMerge(true);
+        //dbg("ENTRAMOS %s\n", newClosestEnemyToMerge.isValid() ? "true" : "false");
+        if (newClosestEnemyToMerge.isValid() && !closestEnemyMergeable.isValid()) {
+            /* Activate gui button */
+            //dbg("AQUI ACTIVARIAMOS BOTON\n");
+            EngineGUI.enableWidget("grab_enemy_e", true);
+        }
+    }
+
+    if (closestEnemyMergeable.isValid() && !newClosestEnemyToMerge.isValid()) {
+        /* Deactivate gui button */
+        //dbg("AQUI DESACTIVARIAMOS BOTON\n");
+        EngineGUI.enableWidget("grab_enemy_e", false);
+        EngineGUI.enableWidget("grab_enemy_a", false);
+    }
+
+    closestEnemy = newClosestEnemy;
+    closestEnemyMergeable = newClosestEnemyToMerge;
 }
