@@ -2,8 +2,8 @@
 		"entity": {
 			"name": "Mimeticus",
 			"transform": {
-				"pos": "-8.850 1.5 13.64",
-				"lookat": "0.0 1.65 13.64"
+				"pos": "-100 1.65 -126.361",
+				"lookat": "-100 1.65 0"
 			},
 			"prefab": "data/prefabs/mimetic.prefab",
 			"ai_mimetic": {
