@@ -293,8 +293,8 @@ struct TSceneExporter (
 			fs.writeComma()
 			fs.writeKey "tags"
 			fs.arrayOfStrings final_tags
+			fs.writeComma()
 		)
-		fs.writeComma()
 	),
 
 	function writeColliderComponent obj = (
