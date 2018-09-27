@@ -133,12 +133,8 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
         if (h_camera.isValid())
             Engine.getCameras().setOutputCamera(h_camera);
 
-        auto om = getObjectManager<CEntity>();
-        om->forEach([](CEntity* e) {
-            TMsgSceneCreated msg;
-            CHandle h_e(e);
-            h_e.sendMsg(msg);
-        });
+        TMsgSceneCreated msg;
+        EngineEntities.broadcastMsg(msg);
 
 		CModuleGameManager gameManager = CEngine::get().getGameManager();
 		/* TODO: Comprobar que se sigue en la misma escena */
