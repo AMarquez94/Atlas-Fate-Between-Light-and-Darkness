@@ -128,20 +128,21 @@ bool CModuleInstancing::parseContainer(const json& j, TEntityParseContext& ctx) 
     // Create a new fresh entity
     auto& j_instance_data = j["instance_data"];
     auto& j_instances = j["instances"];
+    parseInstance(j_instance_data, ctx); // Add the mesh to the set if not created
 
     for (auto& p : j_instances) {
 
         QUAT rot;
         VEC3 pos, scale;
 
-        if (j.count("pos"))
-            pos = loadVEC3(j["pos"]);
+        if (p.count("pos"))
+            pos = loadVEC3(p["pos"]);
 
-        if (j.count("rotation"))
-            rot = loadQUAT(j["rotation"]);
+        if (p.count("rotation"))
+            rot = loadQUAT(p["rotation"]);
 
-        if (j.count("scale"))
-            scale = loadVEC3(j["scale"]);
+        if (p.count("scale"))
+            scale = loadVEC3(p["scale"]);
 
         MAT44 tr = MAT44::CreateTranslation(pos);
         MAT44 sc = MAT44::CreateScale(scale);
@@ -269,20 +270,6 @@ int CModuleInstancing::addInstance(const std::string & name, const std::string &
     _global_instances[name]._instances.push_back(static_instance);
 
     return _global_instances[name]._instances.size() - 1;
-}
-
-// Method used to add custom instances
-int CModuleInstancing::addCustomInstance(const std::string & name, const std::string & type, MAT44 w_matrix) {
-
-    // TO-DO
-
-    if (type == "grass") {
-        TInstance new_instance;
-        new_instance.world = w_matrix;
-        grass_instances.push_back(new_instance);
-    }
-
-    return 1;
 }
 
 void CModuleInstancing::removeInstance(TInstance* instance) {
