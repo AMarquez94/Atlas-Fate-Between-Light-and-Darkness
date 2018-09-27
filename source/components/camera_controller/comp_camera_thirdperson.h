@@ -16,9 +16,10 @@ private:
     VEC2 _original_euler;
     VEC3 _clipping_offset;
 
-    float _timer_fov = 0.f;
-    float _max_time_fov = 2.f;
+    float _timer_fov = 2.f;
+    float _max_time_fov = .5f;
     float _target_fov = 70.f;
+    float _previous_fov = 70.f;
 
 
 	float amount_shak = 0.02f;
