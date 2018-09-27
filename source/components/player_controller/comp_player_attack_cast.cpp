@@ -261,17 +261,14 @@ void TCompPlayerAttackCast::update(float dt)
 
     if (newClosestEnemy.isValid()) {
         newClosestEnemyToMerge = closestEnemyToMerge(true);
-        //dbg("ENTRAMOS %s\n", newClosestEnemyToMerge.isValid() ? "true" : "false");
         if (newClosestEnemyToMerge.isValid() && !closestEnemyMergeable.isValid()) {
             /* Activate gui button */
-            //dbg("AQUI ACTIVARIAMOS BOTON\n");
             EngineGUI.enableWidget("grab_enemy_e", true);
         }
     }
 
     if (closestEnemyMergeable.isValid() && !newClosestEnemyToMerge.isValid()) {
         /* Deactivate gui button */
-        //dbg("AQUI DESACTIVARIAMOS BOTON\n");
         EngineGUI.enableWidget("grab_enemy_e", false);
         EngineGUI.enableWidget("grab_enemy_a", false);
     }

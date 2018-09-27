@@ -28,7 +28,7 @@
 			},
 			"skeleton": {
 				"skeleton": "data/skeletons/patrol/patrol.skeleton",
-				"scale": 0.98
+				"scale": 1.4
 			},
 			"patrol_animator": true,
 			"tags": ["patrol_tutorial"]
