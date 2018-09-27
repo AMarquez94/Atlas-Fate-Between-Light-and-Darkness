@@ -25,17 +25,37 @@
 						"size" : "64 64",
 						"minUV" : "0 0",
 						"maxUV" : "0.5 0.5",
-						"frame_size" : "188 188",
-						"fps" : 30,
-						"num_frames" : 48,
-						"original_size" : "2256 752",
-						"texture" : "data/textures/gui/robot_bebe.dds",
-						"xeffects" : [
-							{
-								"type" : "animate_uv",
-								"speed" : "0.025 0"
-							}
-						]
+						"frame_size" : "512 512",
+						"fps" : 80,
+						"num_frames" : 16,
+						"original_size" : "2048 2048",
+						"texture" : "data/textures/gui/radar.dds"
+					},
+					{
+						"name" : "bebe_2",
+						"position" : "100 100",
+						"type" : "sprite",
+						"size" : "64 64",
+						"minUV" : "0 0",
+						"maxUV" : "0.5 0.5",
+						"frame_size" : "512 512",
+						"fps" : 60,
+						"num_frames" : 12,
+						"original_size" : "2048 2048",
+						"texture" : "data/textures/gui/radar_walk.dds"
+					},
+					{
+						"name" : "bebe_3",
+						"position" : "200 200",
+						"type" : "sprite",
+						"size" : "64 64",
+						"minUV" : "0 0",
+						"maxUV" : "0.5 0.5",
+						"frame_size" : "512 512",
+						"fps" : 40,
+						"num_frames" : 8,
+						"original_size" : "2048 2048",
+						"texture" : "data/textures/gui/radar_slow.dds"
 					},
 					{
 						"name" : "foreground",
