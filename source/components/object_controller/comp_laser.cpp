@@ -17,7 +17,8 @@ void TCompLaser::load(const json& j, TEntityParseContext& ctx) {
 	parent_name = j.value("parent","Mimetic");
 
 	physx::PxFilterData pxFilterData;
-	pxFilterData.word0 = FilterGroup::All;
+	pxFilterData.word0 = FilterGroup::Button | FilterGroup::Characters | FilterGroup::DItem | FilterGroup::Enemy | FilterGroup::Fence | FilterGroup::Floor | FilterGroup::Ignore
+		| FilterGroup::MovableObject | FilterGroup::NonCastShadows | FilterGroup::Player | FilterGroup::Scenario | FilterGroup::Wall;
 	laserFilter.data = pxFilterData;
 
 	h_parent = ctx.findEntityByName(parent_name);
