@@ -207,7 +207,7 @@ rollout SBUtils "Utils Tools" width:469 height:263
 	checkbox 'chk1' "As Entity" pos:[105,74] width:72 height:16 align:#left
 	
 	GroupBox 'grp5' "Component Generator" pos:[8,130] width:453 height:107 align:#left
-	dropdownList 'ddl2' "" pos:[93,162] width:93 height:21 items:#("tag", "collider", "prefab") align:#left
+	dropdownList 'ddl2' "" pos:[93,162] width:93 height:21 items:#("tag", "collider", "prefab", "technique", "audio", "particles", "rotator", "neon") align:#left
 	label 'lbl4' "Type" pos:[63,164] width:29 height:17 align:#left
 	button 'btn3' "Generate Selection" pos:[247,163] width:156 height:20 align:#left	
 	button 'btn7' "Remove Selection" pos:[247,197] width:156 height:20 align:#left

@@ -181,7 +181,6 @@ struct TSceneExporter (
 	),
 	
 	fn exportAABB obj = (
-		fs.writeComma()
 		fs.writeKeyValue "abs_aabb" true
 		fs.writeComma()
 		fs.writeKeyValue "local_aabb" true
@@ -194,6 +193,91 @@ struct TSceneExporter (
 		writeColliderComponent obj
 	),
 
+	function writeAudioComponent obj = (
+	
+		c_values = retrieveComponent obj component_audio
+			
+		if c_values != undefined then (
+			local f_items = filterString c_values.audio_file "\n"
+			
+			fs.writeKey "audio" 
+			fs.beginObj()
+			fs.writeKey "clips"
+			fs.beginArray()
+			for p in f_items do (
+				local relative = false
+				local f_file = filterString p "_x_"
+				if f_file.count > 1 then ( relative = (f_file[2] as boolean))
+				
+				fs.beginObj()
+					fs.writeKeyValue "eventName" f_file[1]
+					fs.writeComma()
+					fs.writeKeyValue "relativeToPlayer" relative
+				fs.endObj()
+			)
+			fs.endArray()
+			fs.endObj()
+			fs.writeComma()
+		)
+	),
+	
+		function writeParticlesComponent obj = (
+	
+		c_values = retrieveComponent obj component_particles
+			
+		if c_values != undefined then (
+			local f_items = filterString c_values.particles_files "\n"
+			local t_particles = #()
+			for p in f_items do (
+				append t_particles p
+			)
+			
+			fs.writeKey "particles" 
+			fs.beginObj()
+			fs.writeKey "core"
+			fs.arrayOfStrings t_particles
+			fs.endObj()
+			fs.writeComma()
+		)
+	),
+	
+	function writeRotatorComponent obj = (
+	
+		c_values = retrieveComponent obj component_rotator
+			
+		if c_values != undefined then (
+			fs.writeKey "rotator" 
+			fs.beginObj()
+			fs.writeKeyValue "speed" c_values.r_speed
+			fs.endObj()
+			fs.writeComma()
+		)
+	),
+	
+	function writeNeonComponent obj = (
+	
+		c_values = retrieveComponent obj component_neon
+			
+		if c_values != undefined then (
+			fs.writeKey "neon_controller" 
+			fs.beginObj()
+			fs.writeKeyValue "flicker" c_values.flicker
+			fs.writeComma()
+			fs.writeKeyValue "fluctuate" c_values.fluctuate
+			fs.endObj()
+			fs.writeComma()
+		)
+	),
+	
+	function writeCustomComponents obj = (
+		
+		-- Prepare comps to be serialized.
+		writeAudioComponent obj
+		writeParticlesComponent obj
+		writeRotatorComponent obj
+		writeNeonComponent obj
+	),
+	
 	function writeTagComponent obj = (
 		
 		c_values = retrieveComponent obj component_tag
@@ -206,12 +290,11 @@ struct TSceneExporter (
 				if tag != "" then ( append final_Tags tag )
 			)
 			
-			total_tags
 			fs.writeComma()
 			fs.writeKey "tags"
 			fs.arrayOfStrings final_tags
 		)
-
+		fs.writeComma()
 	),
 
 	function writeColliderComponent obj = (
@@ -377,6 +460,15 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
+	fn determineTechnique obj mat = (
+		
+		c_values = retrieveComponent obj component_technique
+		if mat.twoSided == true then ( return "pbr_no_cull.tech" )
+		else if c_values != undefined then ( return c_values.techtype )
+		
+		return undefined
+	),
+	
 	-- ----------------------------------------------------------
 	fn exportRenderMesh obj = (
 		
@@ -402,7 +494,8 @@ struct TSceneExporter (
 		
 			if mat != undefined then (
 				local me = TMaterialExporter project_path:project_path base_path:base_path
-				exported_materials = me.exportMaterial mat f_mats_path obj undefined true
+				local tech = determineTechnique obj mat
+				exported_materials = me.exportMaterial mat f_mats_path obj tech true
 			)
 			
 			fs.writeKey "materials"
@@ -647,14 +740,13 @@ struct TSceneExporter (
 			fs.beginObj()
 			exportRenderInstance obj
 			fs.endObj()			
-		) else (
+		) else if classof obj != Dummy then(
 			fs.writeComma()
 			fs.writeKey "render" 
 			fs.beginArray()
 			exportRenderMesh obj
 			fs.endArray()
 		)
-	
 		
 		for child in obj.children do (
 			if isCollider child then (
@@ -662,7 +754,8 @@ struct TSceneExporter (
 				exportCompCollider child
 			)
 		)
-		
+		fs.writeComma()
+		writeCustomComponents obj
 		writeTagComponent obj
 		exportAABB obj
 	),
@@ -699,7 +792,6 @@ struct TSceneExporter (
 			fs.writeKey "collider" 
 			fs.beginObj()
 			fs.writeKeyValue "shape" "sphere"
-			fs.writeComma()
 			fs.writeComma()
 			fs.writeKeyValue "radius" obj.nearAttenEnd
 			fs.writeComma()
