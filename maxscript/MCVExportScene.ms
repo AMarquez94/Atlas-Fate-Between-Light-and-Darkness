@@ -207,7 +207,7 @@ struct TSceneExporter (
 			for p in f_items do (
 				local relative = false
 				local f_file = filterString p "_x_"
-				if f_file.count > 1 then ( relative = (f_file[2] as boolean))
+				if f_file.count > 1 then ( relative = (f_file[2] as booleanClass))
 				
 				fs.beginObj()
 					fs.writeKeyValue "eventName" f_file[1]

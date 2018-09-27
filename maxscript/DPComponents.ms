@@ -113,7 +113,7 @@ component_audio = attributes component_audio
 		
 		on btn1 pressed do
 		(
-			audio_file += "\n" + edt1.text 
+			audio_file += edt1.text + "\n" 
 			local h_items = filterString audio_file "\n"
 			lbx1.items = h_items
 		)
@@ -135,8 +135,8 @@ component_particles = attributes component_particles
 		
 		on btn1 pressed do
 		(
+			particles_files += edt1.text + "\n"
 			local h_items = filterString particles_files "\n"
-			particles_files += "\n" + edt1.text 
 			lbx1.items = h_items
 		)
 	)
