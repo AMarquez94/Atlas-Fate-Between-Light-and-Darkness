@@ -243,9 +243,24 @@ void CParser::parseBarParams(TBarParams& params, const json& data)
 }
 
 void CParser::parseSpriteParams(TSpriteParams& params, const json& data) {
-	params._frame_size = loadVEC2(data.value("frame_size", "64 64"));
-	params._original_image_size = loadVEC2(data.value("original_size", "256 256"));
-	params._frames_per_second = data.value("fps", 12);
-	params._num_frames = data.value("num_frames", 99);
+	//params._frame_size = loadVEC2(data.value("frame_size", "64 64"));
+	//params._frames_per_second = data.value("fps", 12);
+	//params._num_frames = data.value("num_frames", 99);
+
+	if (data.count("sprite_textures")) {
+
+		auto& j_references = data["sprite_textures"];
+		for (auto it = j_references.begin(); it != j_references.end(); ++it) {
+
+			std::string textureFile = it.value().value("texture_name", "");
+			params._textures.push_back( Resources.get(textureFile)->as<CTexture>() );
+			params._frame_size.push_back(loadVEC2(it.value().value("frame_size", "64 64")));
+			params._original_image_size.push_back( loadVEC2(it.value().value("original_size", "256 256")) );
+			params._frames_per_second.push_back(it.value().value("fps", 12) );
+			params._num_frames.push_back(it.value().value("num_frames", 99) );
+		}
+		
+	}
+
 
 }

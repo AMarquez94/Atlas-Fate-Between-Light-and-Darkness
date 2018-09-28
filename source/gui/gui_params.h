@@ -42,10 +42,12 @@ namespace GUI
 
   struct TSpriteParams 
   {
-	  VEC2 _frame_size;
-	  VEC2 _original_image_size;
-	  int _frames_per_second;
-	  int _num_frames;
+	  std::vector<VEC2> _frame_size;
+	  std::vector<VEC2> _original_image_size;
+	  std::vector<int> _frames_per_second;
+	  std::vector<int> _num_frames;
+	  int _playing_sprite = 1;
+	  std::vector<const CTexture*> _textures;
   };
 
   struct TButtonParams
