@@ -103,6 +103,7 @@ void TCompRenderBlur::load(const json& j, TEntityParseContext& ctx) {
 }
 
 CTexture* TCompRenderBlur::apply(CTexture* in_texture) {
+
     if (!enabled)
         return in_texture;
     CTraceScoped scope("CompBlur");

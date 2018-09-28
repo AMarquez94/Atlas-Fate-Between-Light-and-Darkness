@@ -13,6 +13,7 @@ struct TCompBoneTracker : public TCompBase {
     std::string bone_name;
     std::string parent_name;
 	QUAT rot_offset;
+    bool rot_update = true;
 
     void load(const json& j, TEntityParseContext& ctx);
     void update(float dt);

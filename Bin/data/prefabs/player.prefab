@@ -326,7 +326,8 @@
 			},
 			"bone_tracker": {
 				"bone": "Bip001 L Foot",
-				"parent": "The Player"
+				"parent": "The Player",
+				"rotation_update" : false
 			},
 			"audio": {},
 			"abs_aabb": true,
@@ -342,7 +343,8 @@
 			},
 			"bone_tracker": {
 				"bone": "Bip001 R Foot",
-				"parent": "The Player"
+				"parent": "The Player",
+				"rotation_update" : false
 			},
 			"audio": {},
 			"abs_aabb": true,

@@ -115,7 +115,8 @@
 			},
 			"bone_tracker": {
 				"bone": "Bip001 R Foot",
-				"parent": "The Enemy"
+				"parent": "The Enemy",
+				"rotation_update" : false
 			},
 			"abs_aabb": true,
 			"local_aabb": true
@@ -129,7 +130,8 @@
 			},
 			"bone_tracker": {
 				"bone": "Bip001 L Foot",
-				"parent": "The Enemy"
+				"parent": "The Enemy",
+				"rotation_update" : false
 			},
 			"abs_aabb": true,
 			"local_aabb": true

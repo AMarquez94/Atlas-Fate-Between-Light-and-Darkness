@@ -1,17 +1,17 @@
 {
 	"system": {
-		"duration": 0.65,
+		"duration": 0.55,
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
-		"start_speed": 1.0,
+		"start_speed": 1,
 		"start_size": "1 1 1",
 		"start_rotation": "0 0 0",
 		"random_rotation": 0.0,
 		"start_color": "1 0 0 1", 
 		"gravity": -0.01,
-		"simulation_speed": 1,
-		"max_particles": 70,
+		"simulation_speed": 1.5,
+		"max_particles": 170,
 		"offset" : "0 0.25 0"
 	},
 	"emission": {
@@ -19,7 +19,7 @@
 		"rate_distance": 0.0,
 		"variation" : 0.0,
 		"bursts" : [    
-			[0, 10, 1, 0.01]			
+			[0, 120, 1, 0.01]			
 		] 
 	},	
 	"shape": {
@@ -59,15 +59,14 @@
 		"frame_size" : "8 8",
 		"initial_frame" : 0,
 		"num_frames" : 64,
-		"frame_speed" : 0.0,
-		"tech" : "particles_instanced_additive.tech"
+		"frame_speed" : 0.0
 	}, 
   "size" : {
-    "scale" : 0.47,
+    "scale" : 1,
     "scale_variation" : 0.1, 
     "sizes" : [
 		  [0.0, "1 1 1"],
-		  [1.0, "1 1 1"]
+		  [1.0, "0.25 0.25 0.25"]
     ]
   },
   "color" : {
