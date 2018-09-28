@@ -26,7 +26,7 @@ class CModuleGameManager : public IModule
     void resetState();
     void debugRender();
     void updateGameCondition();
-    void setPauseState(PauseState pause);
+    
     void switchState(PauseState pause);
 
 public:
@@ -44,11 +44,13 @@ public:
     void update(float delta) override;
     void renderMain();
 
+	void setPauseState(PauseState pause);
     bool saveCheckpoint(VEC3 playerPos, QUAT playerRot);
     bool loadCheckpoint();
     bool deleteCheckpoint();
     bool isCheckpointSaved() { return lastCheckpoint != nullptr && lastCheckpoint->isSaved(); };
     bool isPaused() const;
-
+	void resetLevel();
+	void resetToCheckpoint();
     PauseState getCurrentState();
 };

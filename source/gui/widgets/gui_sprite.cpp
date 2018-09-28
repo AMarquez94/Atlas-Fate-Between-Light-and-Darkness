@@ -39,6 +39,7 @@ void CSprite::update(float dt) {
 		_actual_horizontal_frame++;
 		_actual_frame++;
 		if (_actual_frame > _spriteParams._num_frames[_spriteParams._playing_sprite]) {
+			_spriteParams._playing_sprite = 0;
 			_actual_frame = 1;
 			_actual_horizontal_frame = 0;
 			_actual_vertical_frame = 0;
