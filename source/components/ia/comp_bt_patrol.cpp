@@ -309,6 +309,28 @@ void TCompAIPatrol::onMsgResetPatrolLights(const TMsgResetPatrolLights & msg)
     }
 }
 
+void TCompAIPatrol::onMsgEnemyNothingHere(const TMsgEnemyNothingHere & msg)
+{
+    if (navmeshPath.size() > 0) {
+        if (VEC3::Distance(navmeshPath[navmeshPath.size() - 1], msg.position) < 3.f ) {
+            if (isNodeSonOf(current, "managePlayerAttacked") || isNodeSonOf(current, "managePlayerWasSeen")) {
+                lastPlayerKnownPos = VEC3::Zero;
+                setCurrent(nullptr);
+            }
+            else if (isNodeSonOf(current, "manageArtificialNoise")) {
+                noiseSource = VEC3::Zero;
+                hasHeardArtificialNoise = false;
+                hasHeardNaturalNoise = false;
+                setCurrent(nullptr);
+            }
+            else if (isNodeSonOf(current, "managePatrolLost")) {
+                lastStunnedPatrolKnownPos = VEC3::Zero;
+                setCurrent(nullptr);
+            }
+        }
+    }
+}
+
 const std::string TCompAIPatrol::getStateForCheckpoint()
 {
     if (current) {
@@ -339,6 +361,7 @@ void TCompAIPatrol::registerMsgs()
 	DECL_MSG(TCompAIPatrol, TMsgAnimationCompleted, onMsgAnimationCompleted);
 	DECL_MSG(TCompAIPatrol, TMsgWarnEnemy, onMsgWarned);
 	DECL_MSG(TCompAIPatrol, TMsgResetPatrolLights, onMsgResetPatrolLights);
+	DECL_MSG(TCompAIPatrol, TMsgEnemyNothingHere, onMsgEnemyNothingHere);
 }
 
 void TCompAIPatrol::loadActions() {
@@ -477,6 +500,8 @@ BTNode::ERes TCompAIPatrol::actionEndAlert(float dt)
     lastPlayerKnownPos = VEC3::Zero;
     alarmEnded = true;
     sendSuspectingMsg(false);
+
+    sendNothingHereMsg();
     return BTNode::ERes::LEAVE;
 }
 
@@ -538,6 +563,7 @@ BTNode::ERes TCompAIPatrol::actionGoToNoiseSource(float dt)
     if (moveToPoint(speed, rotationSpeed, noiseSource, dt)) {
         //dbg("LEAVE (is in position) - ");
         //dbg("MyPos: (%f, %f, %f) - NoiseSource: (%f, %f, %f)\n", pp.x, pp.y, pp.z, noiseSource.x, noiseSource.y, noiseSource.z);
+        sendNothingHereMsg();
         return BTNode::ERes::LEAVE;
     }
     else {
@@ -572,6 +598,7 @@ BTNode::ERes TCompAIPatrol::actionWaitInNoiseSource(float dt)
 
     timerWaitingInNoise += dt;
     if (timerWaitingInNoise > 3.f) {
+        sendNothingHereMsg();
         return BTNode::ERes::LEAVE;
     }
     else {
@@ -1001,6 +1028,7 @@ BTNode::ERes TCompAIPatrol::actionLookForPlayer(float dt)
         TCompEmissionController *eController = get<TCompEmissionController>();
         eController->blend(enemyColor.colorNormal, 0.1f);
         amountRotated = 0.f;
+        sendNothingHereMsg();
         return BTNode::ERes::LEAVE;
     }
     else {
@@ -1082,6 +1110,7 @@ BTNode::ERes TCompAIPatrol::actionFixPatrol(float dt)
         msg.h_sender = CHandle(this).getOwner();
         eStunnedPatrol->sendMsg(msg);
         lastStunnedPatrolKnownPos = VEC3::Zero;
+        sendNothingHereMsg();
     }
 
     return BTNode::ERes::LEAVE;

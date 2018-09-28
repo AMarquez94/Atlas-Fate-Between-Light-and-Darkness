@@ -340,6 +340,12 @@ struct TMsgEnemySuspecting {
     DECL_MSG_ID();
 };
 
+struct TMsgEnemyNothingHere {
+    CHandle enemy;
+    VEC3 position;
+    DECL_MSG_ID();
+};
+
 //struct TMsgSpotlightsToggle {
 //    DECL_MSG_ID();
 //};

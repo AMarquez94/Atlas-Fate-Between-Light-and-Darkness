@@ -62,6 +62,7 @@ protected:
     bool moveToPoint(float speed, float rotationSpeed, VEC3 destPoint, float dt);
     bool isCurrentDestinationReachable();
     void sendSuspectingMsg(bool isSuspecting);
+    void sendNothingHereMsg();
 
     /* TODO: Delete */
     float maxDiff = 0;
