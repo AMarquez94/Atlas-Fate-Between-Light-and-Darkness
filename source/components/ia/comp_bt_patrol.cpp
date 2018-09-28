@@ -367,6 +367,15 @@ void TCompAIPatrol::onMsgPhysxContact(const TMsgPhysxContact & msg)
     }
 }
 
+void TCompAIPatrol::onMsgPhysxContactLost(const TMsgPhysxContactLost & msg)
+{
+    CEntity* other = msg.other_entity;
+    TCompTags * otherTags = other->get <TCompTags>();
+    if (otherTags && otherTags->hasTag(getID("patrol"))) {
+        isPushing = false;
+    }
+}
+
 const std::string TCompAIPatrol::getStateForCheckpoint()
 {
     if (current) {
@@ -399,6 +408,7 @@ void TCompAIPatrol::registerMsgs()
 	DECL_MSG(TCompAIPatrol, TMsgResetPatrolLights, onMsgResetPatrolLights);
 	DECL_MSG(TCompAIPatrol, TMsgEnemyNothingHere, onMsgEnemyNothingHere);
     DECL_MSG(TCompAIPatrol, TMsgPhysxContact, onMsgPhysxContact);
+    DECL_MSG(TCompAIPatrol, TMsgPhysxContactLost, onMsgPhysxContactLost);
 }
 
 void TCompAIPatrol::loadActions() {

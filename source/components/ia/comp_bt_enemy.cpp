@@ -45,6 +45,8 @@ void TCompAIEnemy::debugInMenu() {
 
     ImGui::Text("Time waited at unreachable point: %f", timerWaitingInUnreachablePoint);
     ImGui::Text("Navmesh size: %d - My point %d", navmeshPath.size(), navmeshPathPoint);
+
+    ImGui::Text("Is Pushing %s", isPushing ? "YES" : "NO");
 }
 
 void TCompAIEnemy::getClosestWpt()

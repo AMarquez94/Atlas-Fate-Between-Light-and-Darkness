@@ -124,6 +124,11 @@ struct TMsgPhysxContact {
 	DECL_MSG_ID();
 };
 
+struct TMsgPhysxContactLost {
+    CHandle other_entity;
+    DECL_MSG_ID();
+};
+
 struct TMsgSetCameraActive {
 	std::string previousCamera;
 	std::string actualCamera;
