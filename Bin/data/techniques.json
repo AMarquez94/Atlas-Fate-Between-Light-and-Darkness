@@ -106,6 +106,19 @@
 			"irradiance": "data/textures/cubemaps/irradiance.dds"
 		}
 	},
+	"pbr_opacity": {
+		"vs_file": "data/shaders/pbr.fx",
+		"ps_file": "data/shaders/pbr.fx",
+		"vs_entry_point": "VS_GBuffer",
+		"ps_entry_point": "PS_GBuffer",
+		"vertex_type": "PosNUvUvT",
+		"category": "gbuffer",
+		"blend": "combinative_gbuffer",
+		"textures": {
+			"environment": "data/textures/cubemaps/env.dds",
+			"irradiance": "data/textures/cubemaps/irradiance.dds"
+		}
+	},
 	"pbr_no_cull": {
 		"vs_file": "data/shaders/pbr.fx",
 		"ps_file": "data/shaders/pbr.fx",
@@ -239,6 +252,19 @@
 		"ps_entry_point": "PS_ambient",
 		"vertex_type": "PosClr",
 		"category": "pbr_proc",
+		"z": "disable_all",
+		"textures": {
+			"noise": "data/textures/noise_cloud3.dds",
+			"environment": "data/textures/cubemaps/env.dds",
+			"irradiance": "data/textures/cubemaps/irradiance.dds"
+		}
+	},
+	"hdr_fog": {
+		"vs_file": "data/shaders/screen_quad.fx",
+		"ps_file": "data/shaders/deferred.fx",
+		"ps_entry_point": "PS_Fog",
+		"vertex_type": "PosClr",
+		"category": "helper",
 		"z": "disable_all",
 		"textures": {
 			"noise": "data/textures/noise_cloud3.dds",

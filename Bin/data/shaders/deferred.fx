@@ -116,6 +116,19 @@ float4 PS_Luminance(
   return float4(luminance, 1.0f, 1.0f, 1.0f);
 }
 
+float4 PS_Fog(  
+	in float4 iPosition : SV_Position        // Screen coord, 0...800, 0..600
+, in float2 iUV : TEXCOORD0
+  ) : SV_Target
+{
+  int3 ss_load_coords = uint3(iPosition.xy, 0);
+  float3 hdrColor = txAlbedo.Sample(samLinear, iUV).xyz;
+	//hdrColor = environment_fog(iPosition, iUV, hdrColor);
+	//hdrColor = ground_fog(iPosition, iUV, hdrColor);
+	
+	return 0;// float4(hdrColor, 1);
+}
+
 // ----------------------------------------
 float4 compute(float4 iPosition, float2 iUV)
 {
@@ -129,8 +142,8 @@ float4 compute(float4 iPosition, float2 iUV)
 
   float3 hdrColor = txAccLights.Load(ss_load_coords).xyz;
 	//hdrColor *= txSelfIllum.Load(uint3(iPosition.xy,0)).a;
-	hdrColor = environment_fog(iPosition, iUV, hdrColor);
-	hdrColor = ground_fog(iPosition, iUV, hdrColor);
+	//hdrColor = environment_fog(iPosition, iUV, hdrColor);
+	//hdrColor = ground_fog(iPosition, iUV, hdrColor);
 		
   //hdrColor *= PS_PostFXFog(iPosition, iUV);
 	//hdrColor *= txAO.Sample(samLinear, iUV);
