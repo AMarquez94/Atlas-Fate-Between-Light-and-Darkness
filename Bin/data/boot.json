@@ -153,6 +153,8 @@
 			"data/scenes/ZoneA/test_instancing.scene",
 			"data/scenes/ZoneA/zone_a_particles.scene",
 			"data/scenes/ZoneA/buttons.scene",
+
+			"data/scenes/zone_a_carteles.scene",
 			
 			"data/scenes/ZoneA/carteles.scene",
 			"data/scenes/ZoneA/_mimetic_PRUEBAS.scene",
