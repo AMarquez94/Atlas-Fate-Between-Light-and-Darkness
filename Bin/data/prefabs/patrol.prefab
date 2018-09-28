@@ -84,6 +84,10 @@
 				"shadows_resolution": 256,
 				"shadows_fmt": "R32_TYPELESS"
 			},
+			"xbone_tracker": {
+				"bone": "Bip001 Laser",
+				"parent": "The Enemy"
+			},
 			"hierarchy": {
 				"parent": "The Enemy",
 				"pos": "0 1.75 0.85",

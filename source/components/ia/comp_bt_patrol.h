@@ -48,6 +48,7 @@ private:
 	void onMsgWarned(const TMsgWarnEnemy& msg);
 	void onMsgResetPatrolLights(const TMsgResetPatrolLights& msg);
 	void onMsgEnemyNothingHere(const TMsgEnemyNothingHere& msg);
+	void onMsgPhysxContact(const TMsgPhysxContact& msg);
 
     /* Aux functions */
     void turnOnLight();

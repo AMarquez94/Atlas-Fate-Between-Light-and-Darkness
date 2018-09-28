@@ -44,6 +44,12 @@ void TCompAIPatrol::preUpdate(float dt)
         VEC3 new_pos = VEC3::Transform(pos, parent_pos);
         t_hier->setPosition(new_pos);
     }
+
+    TCompTransform* myPos = get<TCompTransform>();
+    myPos->setPosition(myPos->getPosition() + pushedDirection * 0.05f);
+    /* TODO: Avoid hardcodeadas */
+    pushedDirection = VEC3::Lerp(pushedDirection, VEC3::Zero, Clamp(pushedTime, 0.f, 1.f));
+    pushedTime = pushedTime * 2.f + dt;
 }
 
 void TCompAIPatrol::postUpdate(float dt)
@@ -331,6 +337,36 @@ void TCompAIPatrol::onMsgEnemyNothingHere(const TMsgEnemyNothingHere & msg)
     }
 }
 
+void TCompAIPatrol::onMsgPhysxContact(const TMsgPhysxContact & msg)
+{
+    CEntity* other = msg.other_entity;
+    TCompTags * otherTags = other->get <TCompTags>();
+    if (otherTags && otherTags->hasTag(getID("patrol"))) {
+
+        TCompTransform * otherTransform = other->get<TCompTransform>();
+        TCompTransform * myTransform = get<TCompTransform>();
+        TCompAIPatrol* otherPatrol = other->get<TCompAIPatrol>();
+        if (otherPatrol->isPushing) {
+            if (VEC3::Distance(myTransform->getPosition(), otherTransform->getPosition()) < 2) {
+                VEC3 direction = myTransform->getPosition() - otherTransform->getPosition();
+                direction.Normalize();
+
+                if (fabsf(direction.Dot(otherTransform->getFront())) > 0.8f) {
+                    if (otherTransform->isInLeft(myTransform->getPosition())) {
+                        direction = direction + myTransform->getLeft();
+                        direction.Normalize();
+                    }
+                }
+                pushedDirection = direction;
+                pushedTime = 0.f;
+            }
+        }
+        else {
+            isPushing = true;
+        }
+    }
+}
+
 const std::string TCompAIPatrol::getStateForCheckpoint()
 {
     if (current) {
@@ -362,6 +398,7 @@ void TCompAIPatrol::registerMsgs()
 	DECL_MSG(TCompAIPatrol, TMsgWarnEnemy, onMsgWarned);
 	DECL_MSG(TCompAIPatrol, TMsgResetPatrolLights, onMsgResetPatrolLights);
 	DECL_MSG(TCompAIPatrol, TMsgEnemyNothingHere, onMsgEnemyNothingHere);
+    DECL_MSG(TCompAIPatrol, TMsgPhysxContact, onMsgPhysxContact);
 }
 
 void TCompAIPatrol::loadActions() {
