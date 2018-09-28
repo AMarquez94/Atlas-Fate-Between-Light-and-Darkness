@@ -60,6 +60,7 @@ void TCompRigidAnim::update(float dt) {
 
   c_trans->setPosition(k.pos + parent_position);
   c_trans->setRotation(k.rot * parent_rotation);
+  //parent_rotation
   c_trans->setScale(VEC3(k.scale, k.scale, k.scale));
 
   if (has_finished) {

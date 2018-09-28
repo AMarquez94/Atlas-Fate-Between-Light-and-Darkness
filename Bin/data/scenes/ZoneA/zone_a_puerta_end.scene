@@ -27,7 +27,7 @@
   }
   ,
   {
-    "entity":
+    "xentity":
     {
       "name": "Final_Door_02",
 	  "prefab": "data/prefabs/puerta_tech.prefab"
