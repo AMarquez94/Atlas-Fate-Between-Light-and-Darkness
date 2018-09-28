@@ -28,7 +28,7 @@ bool CModuleMapIntro::start() {
 	mouse->setLockMouse(true);
 
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::INGAME_STAMINA_BAR);
-
+	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH);
 	//Engine.getGUI().activateWidget("ingame");
 
 	return true;
