@@ -143,6 +143,8 @@ void TCompCameraThirdPerson::onMsgCameraResetTargetPos(const TMsgCameraResetTarg
 
 void TCompCameraThirdPerson::onMsgCameraFov(const TMsgCameraFov & msg)
 {
+    TCompCamera* my_camera = get<TCompCamera>();
+    _previous_fov = my_camera->getFov();
     _target_fov = msg.new_fov;
     _max_time_fov = msg.blend_time;
     _timer_fov = 0.f;
@@ -152,7 +154,7 @@ float TCompCameraThirdPerson::getFovUpdated(float dt)
 {
     TCompCamera* my_camera = get<TCompCamera>();
     _timer_fov = Clamp(_timer_fov + dt, 0.f, _max_time_fov);
-    float new_fov = lerp(my_camera->getFov(), deg2rad(_target_fov), _timer_fov / _max_time_fov);
+    float new_fov = lerp(_previous_fov, deg2rad(_target_fov), _timer_fov / _max_time_fov);
     //dbg("===================================================================================\n");
     //
     //float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);

@@ -42,7 +42,7 @@
 				"target": "TPCamera",
 				"blendOut": 0.4,
 				"blendIn": 0.4,
-				"fov": 75
+				"fov": 70
 			}
 		},
 		{
@@ -62,7 +62,7 @@
 				"target": "TPCamera",
 				"blendOut": 0.4,
 				"blendIn": 0.4,
-				"fov": 72
+				"fov": 70
 			}
 		},
 		{
@@ -124,7 +124,7 @@
 				"target": "TPCameraCrouched",
 				"blendOut": 0.4,
 				"blendIn": 0.4,
-				"fov": 68
+				"fov": 70
 			}
 		},
 		{
@@ -167,7 +167,7 @@
 				"target": "TPCamera",
 				"blendOut": 0.4,
 				"blendIn": 0.4,
-				"fov": 75
+				"fov": 70
 			}
 		},
 		{
