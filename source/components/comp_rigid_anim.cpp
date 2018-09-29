@@ -59,7 +59,11 @@ void TCompRigidAnim::update(float dt) {
   TCompTransform* c_trans = get< TCompTransform >();
 
   c_trans->setPosition(k.pos + parent_position);
-  c_trans->setRotation(k.rot * parent_rotation);
+  c_trans->setRotation( k.rot * parent_rotation );
+
+  float yaw, pitch, roll;
+  parent_rotation.toEulerAngle(yaw,pitch,roll);
+  //c_trans->rotateAround(parent_position,pitch);
   //parent_rotation
   c_trans->setScale(VEC3(k.scale, k.scale, k.scale));
 
