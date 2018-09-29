@@ -309,6 +309,17 @@ void TCompPlayerAnimator::initializeAnimations() {
 	);
 
 	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::HACK,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"hack",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::OPEN_WEAPONS,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
