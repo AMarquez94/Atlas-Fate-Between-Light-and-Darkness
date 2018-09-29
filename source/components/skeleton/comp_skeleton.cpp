@@ -611,6 +611,7 @@ void TCompSkeleton::onMsgPlacedAnimation(const TMsgAnimationPlaced& msg) {
 	CEntity *e = CHandle(this).getOwner();
 	TCompTransform *comp_trans = e->get<TCompTransform>();
 	initial_pos_from_lerp = comp_trans->getPosition();
+	initial_rot_from_lerp = comp_trans->getRotation();
 	time_lerping = 0.0f;
 }
 
@@ -623,7 +624,8 @@ void TCompSkeleton::lerpingToAnimationPlaced(float dt) {
 
 	CEntity *e = CHandle(this).getOwner();
 	TCompTransform *comp_trans = e->get<TCompTransform>();
-	comp_trans->setPosition( VEC3::Lerp(initial_pos_from_lerp, point_to_move , Clamp(time_lerping * 4 ,0.0f,1.0f)) );
+	comp_trans->setPosition( VEC3::Lerp(initial_pos_from_lerp, point_to_move , Clamp(time_lerping * 7 ,0.0f,1.0f)) );
+	comp_trans->setRotation( QUAT::Slerp(initial_rot_from_lerp, rot_to_look, Clamp(time_lerping * 7, 0.0f, 1.0f)) );
 	time_lerping += dt;
 
 }

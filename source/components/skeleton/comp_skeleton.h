@@ -32,6 +32,7 @@ struct TCompSkeleton : public TCompBase {
 	bool placed_animation_active = false;
 	float time_lerping = 0.0f;
 	VEC3 initial_pos_from_lerp;
+	QUAT initial_rot_from_lerp;
 
 	TCompSkeleton();
 	~TCompSkeleton();
