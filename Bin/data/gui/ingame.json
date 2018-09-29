@@ -106,7 +106,21 @@
 						"name" : "inhib_space",
 						"type" : "image",
 						"size" : "256 32",
-						"texture" : "data/textures/gui/remove_Space.dds"
+						"texture" : "data/textures/gui/remove_Space.dds",
+						"effects": [
+							{
+								"type":	"change_textures",
+								"textures": [
+									{
+										"name": "data/textures/gui/remove_Space.dds"
+									},
+									{
+										"name": "data/textures/gui/remove_Y.dds"
+									}
+								],
+								"timeToChange": 0.2
+							}
+						]
 					}
 				]
 			},
@@ -119,7 +133,10 @@
 						"name" : "inhib_y",
 						"type" : "image",
 						"size" : "256 32",
-						"texture" : "data/textures/gui/remove_Y.dds"
+						"texture" : "data/textures/gui/remove_Y.dds",
+						"effects": [
+						
+						]
 					}
 				]
 			}
