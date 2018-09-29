@@ -18,6 +18,7 @@
 		{ "name" : "sm_pose"},
 		{ "name" : "open_weapons"},
 		{ "name" : "land_soft"},
+		{ "name" : "hack"},
 		{ "name" : "touch_enemy"},
 		{ "name" : "sonda_normal"},
 		{ "name" : "sonda_crouch"},

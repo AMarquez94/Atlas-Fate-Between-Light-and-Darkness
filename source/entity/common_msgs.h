@@ -168,6 +168,12 @@ struct TMsgAnimationCallback {
 	DECL_MSG_ID();
 };
 
+struct TMsgAnimationPlaced {
+	VEC3 point_to_move;
+	QUAT rot_to_point;
+	DECL_MSG_ID();
+};
+
 struct TMsgAnimationCompleted {
 	std::string animation_name;
 	DECL_MSG_ID();

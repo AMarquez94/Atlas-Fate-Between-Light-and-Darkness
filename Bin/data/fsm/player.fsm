@@ -1392,7 +1392,7 @@
 			"type": "AnimationTransition",
 			"source": "pressingButton",
 			"target": "idle",
-			"animation_name": "metralla_finish"
+			"animation_name": "hack"
 		}
 	],
 	"variables": [{
