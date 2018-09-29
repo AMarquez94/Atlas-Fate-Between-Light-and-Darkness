@@ -11,55 +11,7 @@
       "animated_object_controller":{
       	"reference_names":[
       		{
-      			"name" : "doortop"
-      		},
-      		{
-      			"name" : "doorbottom"
-      		},
-      		{
-      			"name" : "doorhandle"
-      		},
-      		{
-      			"name" : "doorhandle_chain01"
-      		},
-      		{
-      			"name" : "doorhandle_chain02"
-      		},
-      		{
-      			"name" : "doorhandle_chain03"
-      		},
-      		{
-      			"name" : "doorhandle_chain04"
-      		},
-      		{
-      			"name" : "doortop_chain01"
-      		},
-      		{
-      			"name" : "doortop_chain02"
-      		},
-      		{
-      			"name" : "doortop_chain03"
-      		},
-      		{
-      			"name" : "doortop_chain04"
-      		},
-      		{
-      			"name" : "doortop_chain05"
-      		},
-      		{
-      			"name" : "doortop_chain06"
-      		},
-      		{
-      			"name" : "doortop_chain07"
-      		},
-      		{
-      			"name" : "doortop_chain08"
-      		},
-      		{
-      			"name" : "doortop_chain09"
-      		},
-      		{
-      			"name" : "doortop_chain10"
+      			"get_names_auto" : true
       		}
       	],
       	"animations":[
