@@ -35,7 +35,11 @@ void TCompRigidAnim::registerAnimation(std::string animationName, std::string tr
 	aux_anim.controller.anims = Resources.get(source)->as<RigidAnims::CRigidAnimResource>();
 	aux_anim.controller.track_index = aux_anim.controller.anims->findTrackIndexByName(aux_anim.controller.track_name);
 	assert(aux_anim.controller.track_index != RigidAnims::CController::invalid_track_index);
-	if (aux_anim.controller.isEmpty()) withoutKeys = true;
+	if (aux_anim.controller.isEmpty()) {
+		withoutKeys.push_back(true);
+	} else {
+		withoutKeys.push_back(false);
+	}
 	current_time = 0;
 	aux_anim.speed_factor = speedFactor;
 	aux_anim.loops = loop;
@@ -47,7 +51,7 @@ void TCompRigidAnim::registerAnimation(std::string animationName, std::string tr
 
 void TCompRigidAnim::update(float dt) {
 	
-  if (current_animation_id == -1 || withoutKeys)
+  if (current_animation_id == -1 || withoutKeys[current_animation_id])
 	return;
 
   RigidAnimation current_anim = registeredAnimations[current_animation_id];
@@ -61,8 +65,10 @@ void TCompRigidAnim::update(float dt) {
   c_trans->setPosition(k.pos + parent_position);
   c_trans->setRotation( k.rot * parent_rotation );
 
-  float yaw, pitch, roll;
-  parent_rotation.toEulerAngle(yaw,pitch,roll);
+  
+
+  //float yaw, pitch, roll;
+  //parent_rotation.toEulerAngle(yaw,pitch,roll);
   //c_trans->rotateAround(parent_position,pitch);
   //parent_rotation
   c_trans->setScale(VEC3(k.scale, k.scale, k.scale));
