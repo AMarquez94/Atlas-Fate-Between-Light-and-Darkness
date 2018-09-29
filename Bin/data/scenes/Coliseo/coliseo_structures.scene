@@ -3846,8 +3846,14 @@
       {
         "shape": "mesh"
         ,
-        "name": "data/colliders/COL_collider_terminal02.collider"
-      }
+        "name": "data/colliders/COL_collider_terminal02.collider",
+		"group": "button"
+      },
+      "button": {
+        "script": "transition_coliseum_to_zone_a()",
+		"canBePressed": true
+      },
+      "tags": [ "button" ]
       ,
       "abs_aabb": true
       ,
@@ -3883,8 +3889,15 @@
       {
         "shape": "mesh"
         ,
-        "name": "data/colliders/COL_collider_terminal03.collider"
+        "name": "data/colliders/COL_collider_terminal03.collider",
+		"group": "button"
+      },
+      "button": {
+        "script": "transition_coliseum_to_courtyard()",
+		"canBePressed": false
       }
+	  ,
+      "tags": [ "button" ]
       ,
       "abs_aabb": true
       ,
