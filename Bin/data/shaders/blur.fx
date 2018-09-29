@@ -52,7 +52,7 @@ float4 PS(
     + (cp3 + cn3) * blur_w.w
     ;
 
-  return 0;// cfinal;
+  return cfinal;
 }
 
 float4 PS_PostBlur(in float4 iPosition : SV_POSITION, in float2 iTex0 : TEXCOORD0) : SV_Target
