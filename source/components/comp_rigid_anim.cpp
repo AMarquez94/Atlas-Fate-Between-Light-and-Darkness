@@ -18,6 +18,9 @@ void TCompRigidAnim::debugInMenu() {
 }
 
 void TCompRigidAnim::registerParentTransform(VEC3 pos, QUAT rot) {
+	CEntity * en = CHandle(this).getOwner();
+	TCompTransform *comp_trans = en->get<TCompTransform>();
+	
 	parent_position = pos;
 	parent_rotation = rot;
 }
@@ -35,7 +38,11 @@ void TCompRigidAnim::registerAnimation(std::string animationName, std::string tr
 	aux_anim.controller.anims = Resources.get(source)->as<RigidAnims::CRigidAnimResource>();
 	aux_anim.controller.track_index = aux_anim.controller.anims->findTrackIndexByName(aux_anim.controller.track_name);
 	assert(aux_anim.controller.track_index != RigidAnims::CController::invalid_track_index);
-	if (aux_anim.controller.isEmpty()) withoutKeys = true;
+	if (aux_anim.controller.isEmpty()) {
+		withoutKeys.push_back(true);
+	} else {
+		withoutKeys.push_back(false);
+	}
 	current_time = 0;
 	aux_anim.speed_factor = speedFactor;
 	aux_anim.loops = loop;
@@ -47,19 +54,30 @@ void TCompRigidAnim::registerAnimation(std::string animationName, std::string tr
 
 void TCompRigidAnim::update(float dt) {
 	
-  if (current_animation_id == -1 || withoutKeys)
+  if (current_animation_id == -1 || withoutKeys[current_animation_id])
 	return;
 
   RigidAnimation current_anim = registeredAnimations[current_animation_id];
   // Sample the animation in the current time
   RigidAnims::TKey k;
   bool has_finished = current_anim.controller.sample(&k, current_time);
+  
+  if (current_time == 0.0f) {
+	  last_k_pos = k.pos;
+  }
 
-  // Transfer the key data to the comp transform
   TCompTransform* c_trans = get< TCompTransform >();
 
-  c_trans->setPosition(k.pos + parent_position);
-  c_trans->setRotation(k.rot * parent_rotation);
+  VEC3 delta_k_movement = k.pos - last_k_pos;
+  //SETTING-POSITIOM
+  c_trans->setPosition( c_trans->getPosition() + c_trans->getLeft() * delta_k_movement.x);
+  c_trans->setPosition( c_trans->getPosition() + c_trans->getUp() * delta_k_movement.y);
+  c_trans->setPosition( c_trans->getPosition() + c_trans->getFront() * delta_k_movement.z);
+
+  //SETTING-ROTATION
+  c_trans->setRotation( k.rot * parent_rotation );
+
+  //SETTING-SCALE
   c_trans->setScale(VEC3(k.scale, k.scale, k.scale));
 
   if (has_finished) {
@@ -72,7 +90,7 @@ void TCompRigidAnim::update(float dt) {
       current_time = 0.0f;
     // loop, change direction?, set is_moving = false...
   }
-
+  last_k_pos = k.pos;
   // Advance the time
   current_time += dt * current_anim.speed_factor;
   

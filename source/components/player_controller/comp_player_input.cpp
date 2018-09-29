@@ -91,15 +91,6 @@ void TCompPlayerInput::update(float dt)
                     e->sendMsg(attack);
                     attackButtonJustPressed = true;
                 }
-                else if (c_my_player->canSonarPunch()) {
-
-                    TMsgSetFSMVariable sonar;
-                    sonar.variant.setName("sonar");
-                    sonar.variant.setBool(true);
-                    e->sendMsg(sonar);
-                    attackButtonJustPressed = true;
-                }
-
             }
             else if (attackButtonJustPressed) {
                 TMsgSetFSMVariable attack;
@@ -107,12 +98,26 @@ void TCompPlayerInput::update(float dt)
                 attack.variant.setBool(false);
                 e->sendMsg(attack);
 
+                attackButtonJustPressed = false;
+            }
+
+            if (EngineInput["btSonar"].getsPressed()) {
+                TCompTempPlayerController* c_my_player = get<TCompTempPlayerController>();
+                if (c_my_player->canSonarPunch()) {
+                    TMsgSetFSMVariable sonar;
+                    sonar.variant.setName("sonar");
+                    sonar.variant.setBool(true);
+                    e->sendMsg(sonar);
+                    sonarButtonJustPressed = true;
+                }
+            }
+            else if (sonarButtonJustPressed) {
                 TMsgSetFSMVariable sonar;
                 sonar.variant.setName("sonar");
                 sonar.variant.setBool(false);
                 e->sendMsg(sonar);
 
-                attackButtonJustPressed = false;
+                sonarButtonJustPressed = false;
             }
 
             if (EngineInput["btCrouch"].getsPressed() && !EngineInput["btRun"].isPressed())
@@ -126,16 +131,10 @@ void TCompPlayerInput::update(float dt)
 
             if (EngineInput["btAction"].hasChanged())
             {
-                TMsgSetFSMVariable action;
-                action.variant.setName("action");
-                action.variant.setBool(true);
-                e->sendMsg(action);
-            }
-            {
                 TCompPlayerAttackCast* playerCast = e->get<TCompPlayerAttackCast>();
-                CHandle button = playerCast->getClosestButtonInRange();
+                CHandle button = playerCast->getClosestButton();
                 //GrabEnemy messages
-                if (EngineInput["btAction"].getsPressed() && playerCast->closestEnemyToMerge(false).isValid()) {
+                if (EngineInput["btAction"].getsPressed() && playerCast->getClosestMergingEnemy().isValid()) {
                     _enemyStunned = true;
                     TMsgSetFSMVariable grabEnemy;
                     grabEnemy.variant.setName("grabEnemy");
@@ -158,7 +157,6 @@ void TCompPlayerInput::update(float dt)
                     e->sendMsg(activatingButton);
 
                     TMsgButtonActivated msg;
-                    CEntity * b = button.getOwner();
                     button.sendMsg(msg);
                 }
 
@@ -182,7 +180,7 @@ void TCompPlayerInput::update(float dt)
                     }
                 }
 
-                if (_enemyStunned && !playerCast->closestEnemyToMerge(false).isValid()) {
+                if (_enemyStunned && !playerCast->getClosestMergingEnemy().isValid()) {
                     _enemyStunned = false;
                     TMsgSetFSMVariable grabEnemy;
                     grabEnemy.variant.setName("grabEnemy");

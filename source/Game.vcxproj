@@ -185,6 +185,7 @@
     <ClCompile Include="components\postfx\comp_render_blur_radial.cpp" />
     <ClCompile Include="components\skeleton\comp_bone_tracker.cpp" />
     <ClCompile Include="components\ia\comp_mimetic_animator.cpp" />
+    <ClCompile Include="components\skeleton\comp_player_animation_placer.cpp" />
     <ClCompile Include="components\skeleton\comp_skeleton.cpp" />
     <ClCompile Include="components\skeleton\comp_skel_lookat.cpp" />
     <ClCompile Include="components\skeleton\game_core_skeleton.cpp" />
@@ -322,6 +323,8 @@
     <ClCompile Include="render\texture\render_to_cube.cpp" />
     <ClCompile Include="render\texture\render_to_texture.cpp" />
     <ClCompile Include="render\texture\texture.cpp" />
+    <ClCompile Include="render\video\background_player.cpp" />
+    <ClCompile Include="render\video\video_texture.cpp" />
     <ClCompile Include="resources\json_resource.cpp" />
     <ClCompile Include="resources\resources_manager.cpp" />
     <ClCompile Include="sound\soundEvent.cpp" />
@@ -426,6 +429,7 @@
     <ClInclude Include="components\skeleton\comp_animator.h" />
     <ClInclude Include="components\skeleton\comp_bone_tracker.h" />
     <ClInclude Include="components\ia\comp_mimetic_animator.h" />
+    <ClInclude Include="components\skeleton\comp_player_animation_placer.h" />
     <ClInclude Include="components\skeleton\comp_skeleton.h" />
     <ClInclude Include="components\skeleton\comp_skel_lookat.h" />
     <ClInclude Include="components\skeleton\game_core_skeleton.h" />
@@ -591,6 +595,8 @@
     <ClInclude Include="render\texture\render_to_texture.h" />
     <ClInclude Include="render\texture\texture.h" />
     <ClInclude Include="render\texture\texture_slots.h" />
+    <ClInclude Include="render\video\background_player.h" />
+    <ClInclude Include="render\video\video_texture.h" />
     <ClInclude Include="resources\json_resource.h" />
     <ClInclude Include="resources\resource.h" />
     <ClInclude Include="resources\resources_manager.h" />

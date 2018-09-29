@@ -37,6 +37,7 @@ void TCompSkeleton::registerMsgs()
 	DECL_MSG(TCompSkeleton, TMsgAnimationCallback, onMsgAnimationCallback);
 	DECL_MSG(TCompSkeleton, TMsgAnimationCompleted, onMsgAnimationCompleted);
 	DECL_MSG(TCompSkeleton, TMsgScenePaused, onMsgSceneStop);
+	DECL_MSG(TCompSkeleton, TMsgAnimationPlaced, onMsgPlacedAnimation);
 }
 
 // --------------------------------------------------------------------
@@ -119,6 +120,10 @@ void TCompSkeleton::update(float dt) {
 		if(!this->paused)
 			model->update(dt);
     }
+
+	if (placed_animation_active) {
+		lerpingToAnimationPlaced(dt);
+	}
 
 	if (movingRoot) {
 
@@ -596,4 +601,57 @@ void TCompSkeleton::onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) {
 void TCompSkeleton::onMsgSceneStop(const TMsgScenePaused& msg) {
 	TCompSkeleton* e = CHandle(this);
 	e->paused = msg.isPaused;
+}
+
+void TCompSkeleton::onMsgPlacedAnimation(const TMsgAnimationPlaced& msg) {
+
+	point_to_move = msg.point_to_move;
+	rot_to_look = msg.rot_to_point;
+	placed_animation_active = true;
+	CEntity *e = CHandle(this).getOwner();
+	TCompTransform *comp_trans = e->get<TCompTransform>();
+	initial_pos_from_lerp = comp_trans->getPosition();
+	initial_rot_from_lerp = comp_trans->getRotation();
+	time_lerping = 0.0f;
+}
+
+void TCompSkeleton::lerpingToAnimationPlaced(float dt) {
+
+	if (time_lerping >= 1.0f) {
+		placed_animation_active = false;
+		return;
+	}
+
+	CEntity *e = CHandle(this).getOwner();
+	TCompTransform *comp_trans = e->get<TCompTransform>();
+	comp_trans->setPosition( VEC3::Lerp(initial_pos_from_lerp, point_to_move , Clamp(time_lerping * 7 ,0.0f,1.0f)) );
+	comp_trans->setRotation( QUAT::Slerp(initial_rot_from_lerp, rot_to_look, Clamp(time_lerping * 7, 0.0f, 1.0f)) );
+	time_lerping += dt;
+
+}
+
+
+bool TCompSkeleton::rotateTowardsVec(VEC3 objective, float rotationSpeed, float dt){
+	CEntity * me = CHandle(this).getOwner();
+	bool isInObjective = false;
+	TCompTransform *mypos = me->get<TCompTransform>();
+	float y, r, p;
+	mypos->getYawPitchRoll(&y, &p, &r);
+
+	float deltaYaw = mypos->getDeltaYawToAimTo(objective);
+	if (fabsf(deltaYaw) <= rotationSpeed * dt) {
+		y += deltaYaw;
+		isInObjective = true;
+	}
+	else {
+		if (mypos->isInLeft(objective))
+		{
+			y += rotationSpeed * dt;
+		}
+		else {
+			y -= rotationSpeed * dt;
+		}
+	}
+	mypos->setYawPitchRoll(y, p, r);
+	return isInObjective;
 }

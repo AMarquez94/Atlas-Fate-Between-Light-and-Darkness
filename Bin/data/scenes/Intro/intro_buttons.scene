@@ -5,7 +5,7 @@
     }
   },
   {
-    "xentity": {
+    "entity": {
       "name": "Button 1",
       "transform": {
         "pos": "-23 1 -74.5",

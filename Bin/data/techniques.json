@@ -208,12 +208,25 @@
 		"vertex_type": "PosNUvUvT_x_Instance",
 		"category": "gbuffer"
 	},
+	"decals": {
+		"vs_file": "data/shaders/pbr_decals.fx",
+		"vertex_type": "PosNUvUvT_x_InstanceColored",
+		"ps_entry_point": "PS_default",
+		"category": "decals",
+		"z": "test_but_no_write",
+		"blend": "combinative",
+		"textures": {
+			"noise": "data/textures/noise_cloud3.dds",
+			"environment": "data/textures/cubemaps/env.dds",
+			"irradiance": "data/textures/cubemaps/irradiance.dds"
+		}
+	},
 	"pbr_decals": {
 		"vs_file": "data/shaders/pbr_decals.fx",
 		"vertex_type": "PosNUvUvT_x_InstanceColored",
 		"category": "gbuffer_decals",
 		"z": "test_but_no_write",
-		"blend": "combinative_gbuffer",
+		"blend": "multiplicative_gbuffer",
 		"textures": {
 			"noise": "data/textures/noise_cloud3.dds",
 			"environment": "data/textures/cubemaps/env.dds",
@@ -721,8 +734,17 @@
 		"vertex_type": "PosNUvUvT",
 		"ps_file": "data/shaders/hologram.fx",
 		"category": "hologram_screen",
+		"z": "test_but_no_write",
 		"ps_entry_point": "PS_HologramScreen",
-		"blend": "additive"
+		"blend": "additive_by_src_alpha"
+	},
+	"hologram_tv": {
+		"vs_file": "data/shaders/hologram.fx",
+		"vs_entry_point": "VS_HologramScreen",
+		"vertex_type": "PosNUvUvT",
+		"ps_file": "data/shaders/hologram.fx",
+		"category": "hologram_screen",
+		"ps_entry_point": "PS_HologramScreen"
 	},
 	"pbr_hologram_sw": {
 		"vs_file": "data/shaders/hologram.fx",

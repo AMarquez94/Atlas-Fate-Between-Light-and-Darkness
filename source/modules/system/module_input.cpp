@@ -291,11 +291,12 @@ void CModuleInput::renderInMenu()
 				if (ImGui::TreeNode("Mouse"))
 				{
           auto& mouse = host.mouse();
+                    VEC2 mouse_pos = getMouseInRange(0, EngineGUI.width, 0, EngineGUI.height);
 					ImGui::Text("Position");
 					ImGui::SameLine();
-					ImGui::Value("X", mouse._position.x);
+					ImGui::Value("X", mouse_pos.x);
 					ImGui::SameLine();
-					ImGui::Value("Y", mouse._position.y);
+					ImGui::Value("Y", mouse_pos.y);
 					ImGui::Value("Wheel", mouse._wheel_delta);
 					for (int i = 0; i < Input::MOUSE_BUTTONS; ++i)
 					{

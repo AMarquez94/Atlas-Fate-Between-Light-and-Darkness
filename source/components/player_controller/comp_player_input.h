@@ -8,7 +8,8 @@ class TCompPlayerInput : public TCompBase
 	/* Trick to save button state values */
 	int inhibition = 0;
 	bool crouchButton = false;
-	bool attackButtonJustPressed = false;
+	bool attackButtonJustPressed = false; 
+    bool sonarButtonJustPressed = false;
 
     bool isInNoClipMode = false;
 

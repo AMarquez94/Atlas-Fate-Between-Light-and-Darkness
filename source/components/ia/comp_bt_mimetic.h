@@ -56,9 +56,6 @@ private:
 
 	CHandle laser_handle;
 
-    VEC3 pushedDirection = VEC3::Zero;
-    float pushedTime = 0.f;
-
     DECL_SIBLING_ACCESS();
 
     void onMsgEntityCreated(const TMsgEntityCreated& msg);

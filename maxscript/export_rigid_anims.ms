@@ -17,7 +17,7 @@ struct TRigidAnimKey (
 
 struct TRigidAnimExporter (
 
-	project_path = "D:/DeepShadows/bin/",
+	project_path = "D:/Games/Deep_Shadows/bin/",
 	base_path = "data/",
 	anims_path = base_path + "rigid_anims/",
 	

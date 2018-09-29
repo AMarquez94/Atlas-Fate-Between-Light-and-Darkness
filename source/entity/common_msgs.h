@@ -124,6 +124,11 @@ struct TMsgPhysxContact {
 	DECL_MSG_ID();
 };
 
+struct TMsgPhysxContactLost {
+    CHandle other_entity;
+    DECL_MSG_ID();
+};
+
 struct TMsgSetCameraActive {
 	std::string previousCamera;
 	std::string actualCamera;
@@ -160,6 +165,12 @@ struct TMsgCameraResetTargetPos {
 
 struct TMsgAnimationCallback {
 	std::string function_to_call;
+	DECL_MSG_ID();
+};
+
+struct TMsgAnimationPlaced {
+	VEC3 point_to_move;
+	QUAT rot_to_point;
 	DECL_MSG_ID();
 };
 
@@ -337,6 +348,12 @@ struct TMsgCircularControllerTarget {
 struct TMsgEnemySuspecting {
     CHandle enemy_suspecting;
     bool is_suspecting;
+    DECL_MSG_ID();
+};
+
+struct TMsgEnemyNothingHere {
+    CHandle enemy;
+    VEC3 position;
     DECL_MSG_ID();
 };
 

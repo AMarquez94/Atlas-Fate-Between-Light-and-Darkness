@@ -297,6 +297,7 @@ void VS_HologramScreen(
 	, out float4 oTangent : NORMAL1
 	, out float2 oTex0 : TEXCOORD0
 	, out float2 oTex1 : TEXCOORD1
+	, out float3 oWorldPos : TEXCOORD2
 )
 {
 	float4 world_pos = mul(iPos, obj_world);
@@ -310,6 +311,7 @@ void VS_HologramScreen(
 	// Las uv's se pasan directamente al ps
 	oTex0 = iTex0;
 	oTex1 = iTex1;
+	oWorldPos = world_pos.xyz;
 }
 
 float4 PS_HologramScreen(  
@@ -317,7 +319,14 @@ float4 PS_HologramScreen(
   , float3 iNormal : NORMAL0
   , float4 iTangent : NORMAL1
   , float2 iTex0 : TEXCOORD0
-  , float2 iTex1 : TEXCOORD1): SV_Target0
+  , float2 iTex1 : TEXCOORD1
+  , float2 iWorldPos : TEXCOORD
+  ): SV_Target0
 {
-  return txAlbedo.Sample(samLinear, iTex0);
+	float vertex_sift = (dot(iWorldPos, normalize(float3(0,-1,0)))  + global_world_time);
+	float scan = frac(vertex_sift * 100) * 3.2;
+	float4 color = float4(0,0.15,1,1);
+	float4 albedo = txAlbedo.Sample(samLinear, iTex0);
+	
+	return albedo * color * scan * albedo.a;
 }

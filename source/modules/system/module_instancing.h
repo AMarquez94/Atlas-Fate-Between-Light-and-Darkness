@@ -82,7 +82,6 @@ public:
     int addDynamicInstance(const std::string & name, const std::string & mat, MAT44 w_matrix, float time);
     int addInstance(const std::string & name, const std::string & type, MAT44 w_matrix);
 
-    int addCustomInstance(const std::string & name, const std::string & type, MAT44 w_matrix);
     void removeInstance(TInstance* instance);
     void updateInstance(const std::string& name, int index, const MAT44& w_matrix);
     void clearInstance(const std::string& name);

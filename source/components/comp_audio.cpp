@@ -18,6 +18,15 @@ void TCompAudio::onStopAudioComponent(const TMsgStopAudioComponent & msg)
     stopAudioComponent();
 }
 
+void TCompAudio::onSceneCreated(const TMsgSceneCreated & msg)
+{
+    for (int i = 0; i < startingSoundEvents.size(); i++) {
+        playEvent(startingSoundEvents[i].name, startingSoundEvents[i].relativeToPlayer);
+    }
+
+    startingSoundEvents.clear();
+}
+
 void TCompAudio::stopAudioComponent()
 {
     for (auto audio : my2DEvents) {
@@ -45,13 +54,17 @@ void TCompAudio::debugInMenu()
 
 void TCompAudio::load(const json & j, TEntityParseContext & ctx)
 {
-    //if (j.count("onStart") > 0) {
-    //    auto& j_onStart = j["onStart"];
-    //    for (auto it = j_onStart.begin(); it != j_onStart.end(); ++it) {
-    //        //TODO: Test
-    //        playEvent(it.value().value("eventName", ""), it.value().value("relativeToPlayer", true));
-    //    }
-    //}
+    startingSoundEvents.clear();
+    if (j.count("clips") > 0) {
+        auto& j_onStart = j["clips"];
+        for (auto it = j_onStart.begin(); it != j_onStart.end(); ++it) {
+            //TODO: Test
+            StartingSoundEvents newSoundEvent;
+            newSoundEvent.name = it.value().value("eventName", "");
+            newSoundEvent.relativeToPlayer = it.value().value("relativeToPlayer", true);
+            startingSoundEvents.push_back(newSoundEvent);
+        }
+    }
 }
 
 void TCompAudio::update(float dt)
@@ -98,6 +111,7 @@ void TCompAudio::registerMsgs()
 {
     DECL_MSG(TCompAudio, TMsgAnimationAudioCallback, onAnimationAudioCallback);
     DECL_MSG(TCompAudio, TMsgStopAudioComponent, onStopAudioComponent);
+    DECL_MSG(TCompAudio, TMsgSceneCreated, onSceneCreated);
 }
 
 SoundEvent TCompAudio::playEvent(const std::string & name, bool relativeToPlayer)

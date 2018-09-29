@@ -37,6 +37,7 @@
 #include "components/postfx/comp_render_flares.h"
 #include "components/postfx/comp_render_environment.h"
 #include "components/postfx/comp_ssr.h"
+#include "render/video/background_player.h"
 
 //--------------------------------------------------------------------------------------
 
@@ -304,6 +305,8 @@ void CModuleRender::generateFrame() {
         activateMainCamera();
         cb_globals.updateGPU();
     }
+
+    uploadAllVideoTexturesReady();
 
     {
         // SHADOW GENERATION

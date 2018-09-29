@@ -190,6 +190,16 @@ void CModuleGUI::enableWidget(const std::string& name, bool status)
         widgt->enable(status); 
 }
 
+bool CModuleGUI::getWidgetStatus(const std::string& name)
+{
+    CWidget* widgt = getWidget(name, true);
+
+    if (widgt)
+        return widgt->isEnabled();
+
+    return false;
+}
+
 void CModuleGUI::registerController(GUI::CController* controller)
 {
 	auto it = std::find(_controllers.begin(), _controllers.end(), controller);

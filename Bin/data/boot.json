@@ -1,6 +1,5 @@
-
 {
-	"default_scene": "scene_basilic_courtyard",
+	"default_scene": "scene_zone_a",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -41,7 +40,6 @@
 			"data/scenes/intro_colliders_valla.scene",
 			"data/scenes/intro_neones.scene",
 			"data/scenes/intro_mosaico.scene",
-
 			"data/scenes/intro_cables.scene",
 
 			"data/scenes/intro_tubo_capsulas.scene",
@@ -67,7 +65,8 @@
 			"data/scenes/Intro/intro_trigger_kill.scene",
 			"data/scenes/Intro/intro_buttons.scene",
 			"data/scenes/Intro/intro_particles.scene",
-			
+			"data/scenes/grass_container.scene",
+			"data/scenes/decal_test.scene",
 			"data/scenes/Intro/intro_puerta_end.scene"
 		]
 	},
@@ -147,14 +146,15 @@
 			"data/scenes/zone_a_test.scene",
 			"data/scenes/zone_a_edificios_segunda.scene",
 			"data/scenes/zone_a_neones.scene",
-      			"data/scenes/zone_a_decal.scene",
+      "data/scenes/zone_a_decal.scene",
 			"data/scenes/zone_a_mosaico.scene",
-
 			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene",
 			"data/scenes/ZoneA/test_instancing.scene",
 			"data/scenes/ZoneA/zone_a_particles.scene",
 			"data/scenes/ZoneA/buttons.scene",
+
+			"data/scenes/zone_a_carteles.scene",
 			
 			"data/scenes/ZoneA/carteles.scene",
 			"data/scenes/ZoneA/_mimetic_PRUEBAS.scene",

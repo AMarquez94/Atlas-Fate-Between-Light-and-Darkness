@@ -20,6 +20,7 @@ public:
         TUT_BUTTON,
         TUT_SM_FENCE,
         TUT_SM_ENEMY,
+        TUT_WALK_RUN,
         CINEMATIC,
         CINEMATIC_CROUCH_WALK,
         CINEMATIC_FALLSM,
@@ -49,6 +50,7 @@ public:
     BTNode::ERes actionResetTimersButtonTutorial(float dt);
     BTNode::ERes actionResetTimersSMFenceTutorial(float dt);
     BTNode::ERes actionResetTimersSMEnemyTutorial(float dt);
+    BTNode::ERes actionResetTimersWalkRunTutorial(float dt);
     BTNode::ERes actionResetBT(float dt);
     BTNode::ERes actionAnimationWalk(float dt);
     BTNode::ERes actionAnimationCrouch(float dt);
@@ -74,6 +76,7 @@ public:
     BTNode::ERes actionAnimationGrabEnemy(float dt);
     BTNode::ERes actionStartSMEnemy(float dt);
     BTNode::ERes actionAnimationGrab(float dt);
+    BTNode::ERes actionAnimationRun(float dt);
 
     BTNode::ERes actionResetTimersCinematicWalkFall(float dt);
     BTNode::ERes actionResetTimersBeforeSMCinematicFallSM(float dt);
@@ -98,6 +101,7 @@ public:
     bool conditionSonarTutorial(float dt);
     bool conditionSMFenceTutorial(float dt);
     bool conditionSMEnemyTutorial(float dt);
+    bool conditionWalkRunTutorial(float dt);
 
     bool conditionCinematicWalkFall(float dt);
     bool conditionCinematicFallSM(float dt);

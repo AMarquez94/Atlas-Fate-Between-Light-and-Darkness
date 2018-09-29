@@ -181,7 +181,6 @@ struct TSceneExporter (
 	),
 	
 	fn exportAABB obj = (
-		fs.writeComma()
 		fs.writeKeyValue "abs_aabb" true
 		fs.writeComma()
 		fs.writeKeyValue "local_aabb" true
@@ -194,6 +193,91 @@ struct TSceneExporter (
 		writeColliderComponent obj
 	),
 
+	function writeAudioComponent obj = (
+	
+		c_values = retrieveComponent obj component_audio
+			
+		if c_values != undefined then (
+			local f_items = filterString c_values.audio_file "\n"
+			
+			fs.writeKey "audio" 
+			fs.beginObj()
+			fs.writeKey "clips"
+			fs.beginArray()
+			for p in f_items do (
+				local relative = false
+				local f_file = filterString p "_x_"
+				if f_file.count > 1 then ( relative = (f_file[2] as booleanClass))
+				
+				fs.beginObj()
+					fs.writeKeyValue "eventName" f_file[1]
+					fs.writeComma()
+					fs.writeKeyValue "relativeToPlayer" relative
+				fs.endObj()
+			)
+			fs.endArray()
+			fs.endObj()
+			fs.writeComma()
+		)
+	),
+	
+		function writeParticlesComponent obj = (
+	
+		c_values = retrieveComponent obj component_particles
+			
+		if c_values != undefined then (
+			local f_items = filterString c_values.particles_files "\n"
+			local t_particles = #()
+			for p in f_items do (
+				append t_particles p
+			)
+			
+			fs.writeKey "particles" 
+			fs.beginObj()
+			fs.writeKey "core"
+			fs.arrayOfStrings t_particles
+			fs.endObj()
+			fs.writeComma()
+		)
+	),
+	
+	function writeRotatorComponent obj = (
+	
+		c_values = retrieveComponent obj component_rotator
+			
+		if c_values != undefined then (
+			fs.writeKey "rotator" 
+			fs.beginObj()
+			fs.writeKeyValue "speed" c_values.r_speed
+			fs.endObj()
+			fs.writeComma()
+		)
+	),
+	
+	function writeNeonComponent obj = (
+	
+		c_values = retrieveComponent obj component_neon
+			
+		if c_values != undefined then (
+			fs.writeKey "neon_controller" 
+			fs.beginObj()
+			fs.writeKeyValue "flicker" c_values.flicker
+			fs.writeComma()
+			fs.writeKeyValue "fluctuate" c_values.fluctuate
+			fs.endObj()
+			fs.writeComma()
+		)
+	),
+	
+	function writeCustomComponents obj = (
+		
+		-- Prepare comps to be serialized.
+		writeAudioComponent obj
+		writeParticlesComponent obj
+		writeRotatorComponent obj
+		writeNeonComponent obj
+	),
+	
 	function writeTagComponent obj = (
 		
 		c_values = retrieveComponent obj component_tag
@@ -206,12 +290,11 @@ struct TSceneExporter (
 				if tag != "" then ( append final_Tags tag )
 			)
 			
-			total_tags
 			fs.writeComma()
 			fs.writeKey "tags"
 			fs.arrayOfStrings final_tags
+			fs.writeComma()
 		)
-
 	),
 
 	function writeColliderComponent obj = (
@@ -377,6 +460,15 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
+	fn determineTechnique obj mat = (
+		
+		c_values = retrieveComponent obj component_technique
+		if mat.twoSided == true then ( return "pbr_no_cull.tech" )
+		else if c_values != undefined then ( return c_values.techtype )
+		
+		return undefined
+	),
+	
 	-- ----------------------------------------------------------
 	fn exportRenderMesh obj = (
 		
@@ -402,7 +494,8 @@ struct TSceneExporter (
 		
 			if mat != undefined then (
 				local me = TMaterialExporter project_path:project_path base_path:base_path
-				exported_materials = me.exportMaterial mat f_mats_path obj undefined true
+				local tech = determineTechnique obj mat
+				exported_materials = me.exportMaterial mat f_mats_path obj tech true
 			)
 			
 			fs.writeKey "materials"
@@ -647,14 +740,13 @@ struct TSceneExporter (
 			fs.beginObj()
 			exportRenderInstance obj
 			fs.endObj()			
-		) else (
+		) else if classof obj != Dummy then(
 			fs.writeComma()
 			fs.writeKey "render" 
 			fs.beginArray()
 			exportRenderMesh obj
 			fs.endArray()
 		)
-	
 		
 		for child in obj.children do (
 			if isCollider child then (
@@ -662,7 +754,8 @@ struct TSceneExporter (
 				exportCompCollider child
 			)
 		)
-		
+		fs.writeComma()
+		writeCustomComponents obj
 		writeTagComponent obj
 		exportAABB obj
 	),
@@ -699,7 +792,6 @@ struct TSceneExporter (
 			fs.writeKey "collider" 
 			fs.beginObj()
 			fs.writeKeyValue "shape" "sphere"
-			fs.writeComma()
 			fs.writeComma()
 			fs.writeKeyValue "radius" obj.nearAttenEnd
 			fs.writeComma()
@@ -829,6 +921,54 @@ struct TSceneExporter (
 		
 	),
 	
+	fn exportContainerEntity filename items mesh_name mat_name = (
+		
+		local max2mcv = rotateXMatrix -90
+		local mcv2max = rotateXMatrix 90
+		local internal_count = 0
+		
+		fs.beginObj()
+		fs.writeKey "instance_container"
+		
+			fs.beginObj()
+			fs.writeKeyValue "name" (filename as string)
+			fs.writeComma()
+			
+			-- Export instanced Mesh
+			fs.writeKey "instance_data" 
+			fs.beginObj()
+				fs.writeKeyValue "mesh" mesh_name
+				fs.writeComma()
+				fs.writeKey "materials"
+				fs.arrayOfStrings #(mat_name)
+			fs.endObj()
+			fs.writeComma()
+			fs.writeKey "instances" 
+			fs.beginArray()
+			for p in items do (
+				local mcv_position = p.pos * max2mcv
+				local mcv_transform = mcv2max * p.transform * max2mcv
+				local mcv_quat = mcv_transform.rotationPart as quat
+				local mcv_final_position = checkPoint mcv_position
+				if (internal_count > 0) then fs.writeComma()
+				fs.beginObj()
+					fs.writeKeyValue "pos" mcv_final_position
+					fs.writeComma()
+					fs.writeKeyValue "rotation" mcv_quat
+					fs.writeComma()
+					if classof p == QuadPatch then (
+						fs.writeKeyValue "scale" [p.width, 0.1, p.length]
+					) else (
+						fs.writeKeyValue "scale" "1 1 1"
+					)
+				fs.endObj()
+				internal_count += 1
+			)
+			fs.endArray()
+		fs.endObj()
+		fs.endObj()
+	),
+	
 	fn exportRoot filename = (
 		
 		fs.beginObj()
@@ -903,6 +1043,131 @@ struct TSceneExporter (
 		fs.end()	
 		
 		messageBox ("Scene SUCCESFULLY exported at location: \n\n" + full_path)		
+	),
+	
+	fn exportContainer nodes ofilename prg = (
+		
+		-------------------------------------------------------------------------
+		local req_path = findstring project_path "\bin"
+		if req_path == undefined then (
+			messageBox "Path is not located at /bin.\nPlease, provide a correct path."
+			return false				
+		)
+		-------------------------------------------------------------------------
+		local_path = getFilenamePath ofilename
+		
+		-- Create the folders if they doesn't exist
+		doesFolderExist (project_path + base_path) create:true
+		doesFolderExist (project_path + scenes_path + local_path) create:true
+		doesFolderExist (project_path + prefabs_path + local_path) create:true
+		doesFolderExist (project_path + mesh_path + local_path) create:true
+		doesFolderExist (project_path + mats_path + local_path ) create:true
+		doesFolderExist (project_path + cols_path + local_path) create:true
+		doesFolderExist (project_path + tex_path + local_path) create:true
+		doesFolderExist (project_path + curve_path + local_path) create:true
+		
+		-- Decide output filename based on .max filename
+		local full_path = project_path + scenes_path + ofilename + ".scene"
+		
+		-- Begin to write
+		fs.begin full_path
+		fs.beginArray()
+		
+		format "Exporting to %\n" full_path
+		
+		nitems = 0
+		local prg_step = 100 / (nodes.count + 1)
+		local container_types = Dictionary()
+		local container_decals = Dictionary()
+				
+		-- Loop through all xref
+		for obj in nodes do (
+			
+			if classof obj == xrefobject then (
+				local ref_type = (getFilenameFile obj.filename) as name
+				
+				local has_value = HasDictValue container_types ref_type
+				if has_value == false then (
+					container_types[ref_type] = #()
+				)
+				
+				-- Get the array and set the values
+				local dict_value = GetDictValue container_types ref_type
+				append dict_value obj
+				SetDictValue container_types ref_type dict_value
+			)
+			
+			if classof obj == QuadPatch then (
+				local ref_type = (obj.material.name) as name
+				
+				local has_value = HasDictValue container_decals ref_type
+				if has_value == false then (
+					container_decals[ref_type] = #()
+				)
+				
+				-- Get the array and set the values
+				local dict_value = GetDictValue container_decals ref_type
+				append dict_value obj
+				SetDictValue container_decals ref_type dict_value
+			)
+			
+			nitems = nitems + 1
+			prg.value = (nitems + 1) * prg_step
+		)
+		
+		local titems = 0
+		-- Little bit repetitive, change this later on.
+		for p in container_types do (
+
+			if (titems > 0) then fs.writeComma()
+			
+			-- First, export the instanced mesh file
+			local mesh_name = (mesh_path + local_path + p.key) + ".mesh"
+			local imesh_name = (mesh_path + local_path + p.key) + ".instanced_mesh"
+			exportInstancedMesh imesh_name mesh_name		
+			exportMeshObject p.value[1] (project_path + mesh_name)
+						
+			local mat = p.value[1].material
+			local mat_path = mats_path + p.value[1].material.name + ".material"
+			
+			if mat != undefined then (
+				local me = TMaterialExporter project_path:project_path base_path:base_path
+				me.exportStdMaterial mat.overrideMaterial mat_path "grass.tech" true
+			)
+		
+			-- Export the scene container
+			exportContainerEntity p.key p.value imesh_name mat_path
+			titems += 1
+		)
+		
+		for p in container_decals do (
+
+			if (titems > 0) then fs.writeComma()
+			
+			-- First, export the instanced mesh file
+			local mesh_name = (mesh_path + local_path + "UnitBox") + ".mesh"
+			local imesh_name = (mesh_path + local_path + p.key) + ".instanced_mesh"
+			exportInstancedMesh imesh_name mesh_name		
+						
+			local mat = p.value[1].material
+			local mat_path = mats_path + p.value[1].material.name + ".material"
+			
+			if mat != undefined then (
+				local me = TMaterialExporter project_path:project_path base_path:base_path
+				me.exportStdMaterial mat mat_path "pbr_decal.tech" false
+			)
+		
+			-- Export the scene container
+			exportContainerEntity p.key p.value imesh_name mat_path
+			titems += 1
+		)
+		
+		free container_types
+		prg.value = 100
+		fs.endArray()
+		fs.end()	
+		
+		messageBox ("Scene container SUCCESFULLY exported at location: \n\n" + full_path)		
 	)
 )
 

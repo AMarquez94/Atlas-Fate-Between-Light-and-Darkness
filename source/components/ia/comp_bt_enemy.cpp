@@ -45,6 +45,8 @@ void TCompAIEnemy::debugInMenu() {
 
     ImGui::Text("Time waited at unreachable point: %f", timerWaitingInUnreachablePoint);
     ImGui::Text("Navmesh size: %d - My point %d", navmeshPath.size(), navmeshPathPoint);
+
+    ImGui::Text("Is Pushing %s", isPushing ? "YES" : "NO");
 }
 
 void TCompAIEnemy::getClosestWpt()
@@ -299,4 +301,45 @@ void TCompAIEnemy::sendSuspectingMsg(bool isSuspecting)
         e_player->sendMsg(msg);
         isSuspectingAndSeeingPlayer = isSuspecting;
     }
+}
+
+void TCompAIEnemy::sendNothingHereMsg()
+{
+    //physx::PxSphereGeometry geometry;
+    //geometry.radius = 3.f;
+    //physx::PxQueryFilterData PxEnemyNothingHereData;
+    //physx::PxFilterData pxFilterData;
+    //pxFilterData.word0 = FilterGroup::Enemy;
+    //PxEnemyNothingHereData.data = pxFilterData;
+    //PxEnemyNothingHereData.flags = physx::PxQueryFlag::eDYNAMIC;
+
+    CEntity* me = myHandle.getOwner();
+    TCompTransform* pos = me->get<TCompTransform>();
+    VHandles v_enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+
+    for (int i = 0; i < v_enemies.size(); i++) {
+        TMsgEnemyNothingHere msg;
+        msg.enemy = myHandle.getOwner();
+        msg.position = pos->getPosition();
+        if (v_enemies[i].isValid() && v_enemies[i] != myHandle.getOwner()) {
+            v_enemies[i].sendMsg(msg);
+        }
+    }
+    //
+    //std::vector<physx::PxOverlapHit> hits;
+    //if (EnginePhysics.Overlap(geometry, pos->getPosition(), hits, PxEnemyNothingHereData)) {
+    //    for (int i = 0; i < hits.size(); i++) {
+    //        TMsgEnemyNothingHere msg;
+    //        msg.enemy = myHandle.getOwner();
+    //        msg.position = pos->getPosition();
+    //        CHandle hitCollider;
+    //        hitCollider.fromVoidPtr(hits[i].actor->userData);
+    //        if (hitCollider.isValid()) {
+    //            CHandle otherEnemy = hitCollider.getOwner();
+    //            if (otherEnemy.isValid() && otherEnemy != myHandle.getOwner()) {
+    //                otherEnemy.sendMsg(msg);
+    //            }
+    //        }
+    //    }
+    //}
 }

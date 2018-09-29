@@ -666,6 +666,8 @@ struct Quaternion : public XMFLOAT4
     void Normalize();
     void Normalize( Quaternion& result ) const;
 
+	void toEulerAngle(float& yaw, float& pitch, float& roll);
+
     void Conjugate();
     void Conjugate( Quaternion& result ) const;
 
