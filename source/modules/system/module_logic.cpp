@@ -19,6 +19,7 @@
 #include "entity/entity_parser.h"
 #include "components/camera_controller/comp_camera_thirdperson.h"
 #include "components/comp_render.h"
+#include "components/object_controller/comp_noise_emitter.h"
 
 bool CModuleLogic::start() {
 
@@ -141,6 +142,11 @@ void CModuleLogic::publishClasses() {
         .set("playSMSpirals", &TCompTempPlayerController::playSMSpirals)
         ;
 
+    SLB::Class< TCompNoiseEmitter >("NoiseEmitter", m)
+        .comment("This is our wrapper of the noise emitter component")
+        .set("makeNoise", &TCompNoiseEmitter::makeNoise)
+        ;
+
     SLB::Class<TCompLightSpot>("SpotLight", m)
         .comment("This is our wrapper of the spotlight controller")
         .property("isEnabled", &TCompLightSpot::isEnabled);
@@ -214,6 +220,7 @@ void CModuleLogic::publishClasses() {
     m->set("getLogic", SLB::FuncCall::create(&getLogic));
     m->set("getParticles", SLB::FuncCall::create(&getParticles));
     m->set("getPlayerController", SLB::FuncCall::create(&getPlayerController));
+    m->set("getPlayerNoiseEmitter", SLB::FuncCall::create(&getPlayerNoiseEmitter));
     m->set("execScriptDelayed", SLB::FuncCall::create(&execDelayedScript));
     m->set("pauseGame", SLB::FuncCall::create(&pauseGame));
     m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
@@ -268,6 +275,7 @@ void CModuleLogic::publishClasses() {
     m->set("isCheckpointSaved", SLB::FuncCall::create(&isCheckpointSaved));
     m->set("destroyHandle", SLB::FuncCall::create(&destroyHandle));
     m->set("resetPatrolLights", SLB::FuncCall::create(&resetPatrolLights));
+    m->set("animateSoundGraph", SLB::FuncCall::create(&animateSoundGraph));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -433,6 +441,16 @@ TCompTempPlayerController * getPlayerController()
         playerController = e->get<TCompTempPlayerController>();
     }
     return playerController;
+}
+
+TCompNoiseEmitter * getPlayerNoiseEmitter()
+{
+    TCompNoiseEmitter * playerNoiseEmitter = nullptr;
+    CEntity* e = EngineEntities.getPlayerHandle();
+    if (e) {
+        playerNoiseEmitter = e->get<TCompNoiseEmitter>();
+    }
+    return playerNoiseEmitter;
 }
 
 CModuleGameConsole * getConsole() { return EngineConsole.getPointer(); }
@@ -630,6 +648,10 @@ void resetPatrolLights()
     for (int i = 0; i < patrols.size(); i++) {
         patrols[i].sendMsg(msg);
     }
+}
+
+void animateSoundGraph(int value) {
+
 }
 
 SoundEvent playEvent(const std::string & name)

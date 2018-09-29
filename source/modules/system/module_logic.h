@@ -14,6 +14,7 @@
 
 class TCompCameraThirdPerson;
 class TCompRender;
+class TCompNoiseEmitter;
 
 class CModuleLogic : public IModule
 {
@@ -86,6 +87,7 @@ CModuleGameConsole* getConsole();
 CModuleLogic* getLogic();
 CModuleParticles* getParticles();
 TCompTempPlayerController* getPlayerController();
+TCompNoiseEmitter* getPlayerNoiseEmitter();
 void execDelayedScript(const std::string& script, float delay);
 void pauseEnemies(bool pause);
 void pauseEnemyEntities(bool pause);
@@ -119,6 +121,7 @@ void cinematicModeToggle();
 bool isCheckpointSaved();
 void destroyHandle(unsigned int h);
 void resetPatrolLights();
+void animateSoundGraph(int value);
 
 /* Sounds */
 SoundEvent playEvent(const std::string& name);

@@ -15,16 +15,14 @@
 			}]
 		},
 		{ "name" : "run", 
-			"audio_callbacks":[
+			"callbacks":[
 			{
 				"time_to_call" : 0.2,
-				"audio_name" : "event:/Sounds/Player/Steps/NormalSteps",
-				"relative_to_player" : false
+				"function_to_call": "animation_run_step_left"
 			},
 			{
 				"time_to_call" : 0.5,
-				"audio_name" : "event:/Sounds/Player/Steps/NormalSteps",
-				"relative_to_player" : false
+				"function_to_call": "animation_run_step_right"
 			}]
 		},
 		{ "name" : "attack",
@@ -85,8 +83,22 @@
 			  }
 			  ]
 		},
-		{ "name" : "sonda_normal"},
-		{ "name" : "sonda_crouch"},
+		{ "name" : "sonda_normal",
+			"callbacks":[
+			  {
+				"time_to_call" : 0,
+				"function_to_call" : "animation_sonda_normal"
+			  }
+			  ]
+		},
+		{ "name" : "sonda_crouch",
+			"callbacks":[
+			  {
+				"time_to_call" : 0,
+				"function_to_call" : "animation_sonda_crouch"
+			  }
+			  ]
+		},
 		{ "name" : "touching_enemy"},
 		{ "name" : "sm_pose"},
 		{ "name" : "land_soft"},

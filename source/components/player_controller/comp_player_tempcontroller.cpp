@@ -338,9 +338,9 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg) {
             target_camera = getEntityByName("TPCamera"); //replace this
         }
 
-        /* Noise emitter */
-        TCompNoiseEmitter * noiseEmitter = get<TCompNoiseEmitter>();
-        noiseEmitter->makeNoise(msg.noise->noiseRadius, msg.noise->timeToRepeat, msg.noise->isNoise, msg.noise->isOnlyOnce, msg.noise->isArtificial);
+        ///* Noise emitter */
+        //TCompNoiseEmitter * noiseEmitter = get<TCompNoiseEmitter>();
+        //noiseEmitter->makeNoise(msg.noise->noiseRadius, msg.noise->timeToRepeat, msg.noise->isNoise, msg.noise->isOnlyOnce, msg.noise->isArtificial);
     }
 }
 
