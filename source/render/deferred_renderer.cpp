@@ -142,10 +142,11 @@ void CDeferredRenderer::renderAccLight() {
 
     CRenderManager::get().renderCategory("hologram");
     CRenderManager::get().renderCategory("hologram_sw");
-    CRenderManager::get().renderCategory("volume_shafts");
-    CRenderManager::get().renderCategory("volume_ray_shafts");
     CRenderManager::get().renderCategory("cp_particles");
     Engine.get().getParticles().renderAdditive();
+
+    CRenderManager::get().renderCategory("volume_shafts");
+    CRenderManager::get().renderCategory("volume_ray_shafts");
 }
 
 // -------------------------------------------------------------------------

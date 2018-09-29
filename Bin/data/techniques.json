@@ -857,8 +857,8 @@
 		"ps_file": "data/shaders/pbr_vol_instanced.fx",
 		"ps_entry_point": "PS_GBuffer_RayShafts",
 		"vertex_type": "PosClr",
-		"blend": "additive",
-		"rs_config": "cull_none",
+		"blend": "additive_by_src_alpha",
+		"rs_config": "reverse_culling",
 		"z": "disable_all",
 		"textures": {
 			"noise": "data/textures/noise_light.dds"
