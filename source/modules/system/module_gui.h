@@ -36,6 +36,7 @@ public:
 	void activateWidget(EGUIWidgets wdgt);
 	void deactivateWidget(EGUIWidgets wdgt);
     void enableWidget(const std::string& name, bool status = true);
+    bool getWidgetStatus(const std::string& name);
 
 	// controller management
 	void registerController(GUI::CController* controller);

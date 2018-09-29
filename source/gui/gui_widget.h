@@ -43,6 +43,8 @@ namespace GUI {
 
         MAT44 getAbsolute() { return _absolute; };
 
+        bool isEnabled() { return enabled; };
+
     protected:
         std::string _name;
         VWidgets _children;

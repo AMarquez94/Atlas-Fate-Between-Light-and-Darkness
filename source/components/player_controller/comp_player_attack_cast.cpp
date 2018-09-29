@@ -11,6 +11,7 @@
 #include "components/ia/comp_bt_mimetic.h"
 #include "components/player_controller/comp_shadow_controller.h"
 #include "components/object_controller/comp_button.h"
+#include "components/player_controller/comp_player_tempcontroller.h"
 
 DECL_OBJ_MANAGER("player_attack_cast", TCompPlayerAttackCast);
 
@@ -43,6 +44,8 @@ void TCompPlayerAttackCast::load(const json& j, TEntityParseContext& ctx) {
     EngineGUI.enableWidget("press_button_a", false);
     EngineGUI.enableWidget("grab_enemy_e", false);
     EngineGUI.enableWidget("grab_enemy_a", false);
+    EngineGUI.enableWidget("attack_enemy_mouse", false);
+    EngineGUI.enableWidget("attack_enemy_x", false);
 }
 
 void TCompPlayerAttackCast::registerMsgs()
@@ -244,8 +247,18 @@ CHandle TCompPlayerAttackCast::getClosestButtonInRange() {
 
 void TCompPlayerAttackCast::update(float dt)
 {
-    CHandle newClosestButton = getClosestButtonInRange();
-    if (newClosestButton.isValid() && !closestButton.isValid()) {
+    TCompTempPlayerController* player_controller = get<TCompTempPlayerController>();
+    bool isMerged = player_controller->isMerged;
+    bool isDead = player_controller->isDead();
+    bool isGrounded = player_controller->isGrounded;
+    bool isInhibited = player_controller->isInhibited;
+
+    /* Button gui */
+    CHandle newClosestButton;
+    if (!isMerged && !isDead && isGrounded) {
+        newClosestButton = getClosestButtonInRange();
+    }
+    if (!isInhibited && newClosestButton.isValid()) {
         /* Activate gui button */
         if (!EngineInput.pad().connected) {
             EngineGUI.enableWidget("press_button_e", true);
@@ -254,19 +267,63 @@ void TCompPlayerAttackCast::update(float dt)
             EngineGUI.enableWidget("press_button_a", true);
         }
     }
-    else if (closestButton.isValid() && !newClosestButton.isValid()) {
-        /* Deactivate gui button */
+    else {
         EngineGUI.enableWidget("press_button_e", false);
         EngineGUI.enableWidget("press_button_a", false);
     }
+    //if (newClosestButton.isValid() && !closestButton.isValid()) {
+    //    /* Activate gui button */
+    //    if (!EngineInput.pad().connected) {
+    //        EngineGUI.enableWidget("press_button_e", true);
+    //    }
+    //    else {
+    //        EngineGUI.enableWidget("press_button_a", true);
+    //    }
+    //}
+    //else if (closestButton.isValid() && !newClosestButton.isValid()) {
+    //    /* Deactivate gui button */
+    //    EngineGUI.enableWidget("press_button_e", false);
+    //    EngineGUI.enableWidget("press_button_a", false);
+    //}
     closestButton = newClosestButton;
 
-    CHandle newClosestEnemy = closestEnemyToMerge(false);
-    CHandle newClosestEnemyToMerge = CHandle();
+    /* Attack gui */
+    CHandle newEnemyToAttack;
+    if (!isMerged && !isDead && isGrounded) {
+        canAttackEnemiesInRange(newEnemyToAttack);
+    }
+    if(!isInhibited && newEnemyToAttack.isValid()){
+    //if (newEnemyToAttack.isValid() && !closestEnemyToAttack.isValid()) {
+        /* Activate gui button */
+        if (!EngineInput.pad().connected) {
+            EngineGUI.enableWidget("attack_enemy_mouse", true);
+        }
+        else {
+            EngineGUI.enableWidget("attack_enemy_x", true);
+        }
+    }
+    else{ /*if (closestEnemyToAttack.isValid() && !newEnemyToAttack.isValid()) {*/
+        /* Deactivate gui button */
+        EngineGUI.enableWidget("attack_enemy_mouse", false);
+        EngineGUI.enableWidget("attack_enemy_x", false);
+    }
+    closestEnemyToAttack = newEnemyToAttack;
 
+
+    /* Grab gui */
+    CHandle newClosestEnemy;
+    if (!isDead) {
+        newClosestEnemy = closestEnemyToMerge(false);
+    }
+    CHandle newClosestEnemyToMerge = CHandle();
+    CHandle newClosestMergingEnemy = CHandle();
     if (newClosestEnemy.isValid()) {
-        newClosestEnemyToMerge = closestEnemyToMerge(true);
-        if (newClosestEnemyToMerge.isValid() && !closestEnemyMergeable.isValid()) {
+        newClosestMergingEnemy = closestEnemyToMerge(true);
+        if (!isMerged) {
+            newClosestEnemyToMerge = newClosestMergingEnemy;
+        }
+        if(!isInhibited && newClosestEnemyToMerge.isValid()){
+        //if (newClosestEnemyToMerge.isValid() && !closestEnemyMergeable.isValid()) {
             /* Activate gui button */
             if (!EngineInput.pad().connected) {
                 EngineGUI.enableWidget("grab_enemy_e", true);
@@ -276,13 +333,13 @@ void TCompPlayerAttackCast::update(float dt)
             }
         }
     }
-
-    if (closestEnemyMergeable.isValid() && !newClosestEnemyToMerge.isValid()) {
+    if(isInhibited || !newClosestEnemyToMerge.isValid()){
+    //if (closestEnemyMergeable.isValid() && !newClosestEnemyToMerge.isValid()) {
         /* Deactivate gui button */
         EngineGUI.enableWidget("grab_enemy_e", false);
         EngineGUI.enableWidget("grab_enemy_a", false);
     }
-
-    closestEnemy = newClosestEnemy;
+    closestEnemyToGrab = newClosestEnemy;
     closestEnemyMergeable = newClosestEnemyToMerge;
+    closestMergingEnemy = newClosestMergingEnemy;
 }

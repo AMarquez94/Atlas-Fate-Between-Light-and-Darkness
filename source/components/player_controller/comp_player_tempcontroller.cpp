@@ -105,6 +105,8 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 
     // Move the stamina string to the json
     EngineGUI.enableWidget("stamina_bar_general", false);
+    EngineGUI.enableWidget("inhibited_space", false);
+    EngineGUI.enableWidget("inhibited_y", false);
 }
 
 /* Player controller main update */
@@ -164,7 +166,7 @@ void TCompTempPlayerController::playSMSpirals() {
 
         /* Set target */
         TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
-        CHandle closestEnemy = cAttackCast->getClosestEnemyMergeable();
+        CHandle closestEnemy = cAttackCast->getClosestMergingEnemy();
 
         if (closestEnemy.isValid()) {
 
@@ -363,8 +365,14 @@ void TCompTempPlayerController::onPlayerKilled(const TMsgPlayerDead & msg)
 void TCompTempPlayerController::onPlayerInhibited(const TMsgInhibitorShot & msg)
 {
     if (!isInhibited) {
-        isInhibited = true;
+        if (!EngineInput.pad().connected) {
+            EngineGUI.enableWidget("inhibited_space", true);
+        }
+        else {
+            EngineGUI.enableWidget("inhibited_y", true);
+        }
 
+        isInhibited = true;
         CEntity* player = CHandle(this).getOwner();
         TMsgGlitchController msg;
         msg.revert = true;
@@ -580,6 +588,9 @@ void TCompTempPlayerController::removingInhibitorState(float dt) {
             timesRemoveInhibitorKeyPressed = initialTimesToPressInhibitorRemoveKey;
             isInhibited = false;
 
+            EngineGUI.enableWidget("inhibited_space", false);
+            EngineGUI.enableWidget("inhibited_y", false);
+
             TMsgGlitchController msg;
             msg.revert = false;
             player->sendMsg(msg);
@@ -792,8 +803,7 @@ void TCompTempPlayerController::activateCanLandSM(bool activate)
 void TCompTempPlayerController::pauseEnemy()
 {
     TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
-    CHandle closestEnemy;
-    bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
+    CHandle closestEnemy = cAttackCast->getClosestEnemyToAttack();
 
     TMsgAIPaused msg;
     closestEnemy.sendMsg(msg);
@@ -802,10 +812,9 @@ void TCompTempPlayerController::pauseEnemy()
 void TCompTempPlayerController::stunEnemy()
 {
     TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
-    CHandle closestEnemy;
-    bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
+    CHandle closestEnemy = cAttackCast->getClosestEnemyToAttack();
 
-    if (enemyFound) {
+    if (closestEnemy.isValid()) {
         TMsgAIPaused msgPaused;
         closestEnemy.sendMsg(msgPaused);
 
@@ -1031,7 +1040,7 @@ const bool TCompTempPlayerController::canAttackTest(float dt)
     bool canAttackNow = false;
     if (!isDead() && !isMerged && isGrounded) {
         TCompPlayerAttackCast* comp_attack_cast = get<TCompPlayerAttackCast>();
-        canAttackNow = comp_attack_cast->canAttackEnemiesInRange();
+        canAttackNow = comp_attack_cast->getClosestEnemyToAttack().isValid();
     }
 
     return canAttackNow;
@@ -1071,7 +1080,7 @@ void TCompTempPlayerController::updateStamina(float dt) {
 void TCompTempPlayerController::mergeEnemy() {
 
     TCompPlayerAttackCast * tAttackCast = get<TCompPlayerAttackCast>();
-    CHandle enemy = tAttackCast->getClosestEnemyMergeable();
+    CHandle enemy = tAttackCast->getClosestMergingEnemy();
     if (isMerged) {
         if (enemy.isValid()) {
             TMsgPatrolShadowMerged msg;

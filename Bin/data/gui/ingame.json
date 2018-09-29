@@ -70,6 +70,58 @@
 						"texture" : "data/textures/gui/grab_enemy_A.dds"
 					}
 				]
+			},
+			{
+				"name" : "attack_enemy_mouse",
+				"type" : "widget",
+				"position" : "615 424",
+				"children" : [
+					{
+						"name" : "enemy_mouse",
+						"type" : "image",
+						"size" : "128 32",
+						"texture" : "data/textures/gui/stun_enemy_mouse.dds"
+					}
+				]
+			},
+			{
+				"name" : "attack_enemy_x",
+				"type" : "widget",
+				"position" : "615 424",
+				"children" : [
+					{
+						"name" : "enemy_x",
+						"type" : "image",
+						"size" : "128 32",
+						"texture" : "data/textures/gui/stun_enemy_X.dds"
+					}
+				]
+			},
+			{
+				"name" : "inhibited_space",
+				"type" : "widget",
+				"position" : "615 424",
+				"children" : [
+					{
+						"name" : "inhib_space",
+						"type" : "image",
+						"size" : "256 32",
+						"texture" : "data/textures/gui/remove_Space.dds"
+					}
+				]
+			},
+			{
+				"name" : "inhibited_y",
+				"type" : "widget",
+				"position" : "615 424",
+				"children" : [
+					{
+						"name" : "inhib_y",
+						"type" : "image",
+						"size" : "256 32",
+						"texture" : "data/textures/gui/remove_Y.dds"
+					}
+				]
 			}
 		]
 	}
