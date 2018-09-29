@@ -71,7 +71,7 @@ float4 ComputeHalo(float2 iTex0)
 	float2 shift_uv = (iTex0 - c_offset) / float2(camera_aspect_ratio, 1.0) + c_offset;
 	float d = distance(shift_uv, float2(0.5, 0.5));
 	
-	vhalo *= halo_radius;
+	vhalo *= float2(0.25, 0.55);
 	float halo_weight = window_cubic(d, halo_radius, halo_thickness); 
 	
 	float4 light_beam = ComputeColorCA(iTex0 + vhalo);
