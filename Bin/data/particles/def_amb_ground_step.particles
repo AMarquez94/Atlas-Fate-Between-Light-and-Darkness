@@ -1,10 +1,10 @@
 {
 	"system": {
-		"duration": 0.25,
+		"duration": 0.85,
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
-		"start_speed": 0.7,
+		"start_speed": 0.2,
 		"start_size": "1 1 1",
 		"start_rotation": "0 0 0",
 		"random_rotation": 0.0,

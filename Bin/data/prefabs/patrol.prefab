@@ -21,7 +21,7 @@
 				}
 			],
 			"fade_controller": {
-				"fade_color": "1.0 0.0 0.0 1.0",
+				"fade_color": "0.0 1.0 1.0 1.0",
 				"fade_time": 4.5,
 				"fall_speed": 0.5
 			},

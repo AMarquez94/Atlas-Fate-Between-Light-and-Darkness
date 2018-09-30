@@ -1,25 +1,25 @@
 {
 	"system": {
-		"duration": 0.55,
+		"duration": 2.55,
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
-		"start_speed": 1,
+		"start_speed": 0.2,
 		"start_size": "1 1 1",
 		"start_rotation": "0 0 0",
 		"random_rotation": 0.0,
 		"start_color": "1 0 0 1", 
-		"gravity": -0.01,
-		"simulation_speed": 1.5,
+		"gravity": 0.0,
+		"simulation_speed": 1,
 		"max_particles": 170,
-		"offset" : "0 0.25 0"
+		"offset" : "0 0.025 0"
 	},
 	"emission": {
 		"rate_time": 0.0,
 		"rate_distance": 0.0,
 		"variation" : 0.0,
 		"bursts" : [    
-			[0, 120, 1, 0.01]			
+			[0, 50, 1, 0.01]			
 		] 
 	},	
 	"shape": {
@@ -62,7 +62,7 @@
 		"frame_speed" : 0.0
 	}, 
   "size" : {
-    "scale" : 1,
+    "scale" : 2,
     "scale_variation" : 0.1, 
     "sizes" : [
 		  [0.0, "1 1 1"],
@@ -70,14 +70,14 @@
     ]
   },
   "color" : {
-    "opacity" : 0.17,
+    "opacity" : 0.4,
     "colors" : [
-      [0.0, "0.25 0.25 0.2 0.0"],
-			[0.15, "0.25 0.25 0.2 0.7"],
-			[0.3, "0.25 0.25 0.2 0.5"],
-			[0.5, "0.25 0.25 0.2 0.45"],
-			[0.8, "0.25 0.25 0.2 0.15"],
-			[1.0, "0.25 0.25 0.2 0.0"]
+      [0.0, "0.2 0.2 0.2 0.0"],
+			[0.15, "0.2 0.2 0.2 0.7"],
+			[0.3, "0.2 0.2 0.2 0.5"],
+			[0.5, "0.2 0.2 0.2 0.45"],
+			[0.8, "0.2 0.2 0.2 0.15"],
+			[1.0, "0.2 0.2 0.2 0.0"]
     ] 
   }
 }

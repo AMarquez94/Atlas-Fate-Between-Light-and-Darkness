@@ -183,9 +183,8 @@ void TCompAIPatrol::onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged & msg)
     // Sets particles and calls the finishing state.
     CHandle patrol = CHandle(this).getOwner();
 
-    Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand_enemy.particles", patrol);
-    Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash.particles", patrol);
-    Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", patrol);
+    Engine.get().getParticles().launchSystem("data/particles/def_sm_enemy_core.particles", patrol);
+    Engine.get().getParticles().launchSystem("data/particles/def_sm_enemy_smoke.particles", patrol);
 
     CHandle my_rigidbody = get<TCompRigidbody>();
     CHandle my_collider = get<TCompCollider>();
