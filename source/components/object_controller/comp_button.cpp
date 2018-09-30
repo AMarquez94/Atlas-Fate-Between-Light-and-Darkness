@@ -23,8 +23,8 @@ void TCompButton::onMsgButtonActivated(const TMsgButtonActivated& msg) {
 }
 void TCompButton::onMsgGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 	CEntity *e = CHandle(this).getOwner();
-	TCompPlayerAnimatorPlacer *comp_placer = e->get<TCompPlayerAnimatorPlacer>();
-	assert(comp_placer);
+	//TCompPlayerAnimatorPlacer *comp_placer = e->get<TCompPlayerAnimatorPlacer>();
+	//assert(comp_placer);
 }
 
 

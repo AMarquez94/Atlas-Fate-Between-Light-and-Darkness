@@ -1449,7 +1449,7 @@
 		},
 		{
 			"type": "VariableTransition",
-			"source": "crouch_walk",
+			"source": "crouchwalk",
 			"target": "stunned",
 			"variable": {
 				"name": "stunned",
