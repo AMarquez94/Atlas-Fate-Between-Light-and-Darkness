@@ -70,11 +70,14 @@ void CModuleGameManager::switchState(PauseState pause) {
     switch (pause) {
     case PauseState::none: {
         mouse->setLockMouse(true);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
     }break;
     case PauseState::main: {
         mouse->setLockMouse(false);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE);
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
+
     }break;
     case PauseState::win: {
         mouse->setLockMouse(false);
