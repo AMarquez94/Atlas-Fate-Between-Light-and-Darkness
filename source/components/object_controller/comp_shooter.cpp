@@ -36,7 +36,7 @@ void TCompShooter::load(const json& j, TEntityParseContext& ctx) {
     state = EShooterState::STOPPED;
 
     physx::PxFilterData filterdata;
-    filterdata.word0 = FilterGroup::All;
+    filterdata.word0 = FilterGroup::NonLight;
     pxQueryFilterData.data = filterdata;
 }
 
