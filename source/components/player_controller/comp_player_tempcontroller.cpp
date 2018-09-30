@@ -159,7 +159,9 @@ void TCompTempPlayerController::playLandParticles(bool left)
 }
 
 void TCompTempPlayerController::playSMSpirals() {
+
     TCompGroup* my_group = get<TCompGroup>();
+
     if (my_group) {
 
         /* Set target */
@@ -192,7 +194,6 @@ void TCompTempPlayerController::playSMSpirals() {
             TCompParticles* spiral_particles_2 = spiral_2->get<TCompParticles>();
             spiral_particles_1->setSystemState(true);
             spiral_particles_2->setSystemState(true);
-
         }
     }
 }
