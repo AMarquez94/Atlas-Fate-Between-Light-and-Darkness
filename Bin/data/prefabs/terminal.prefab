@@ -15,6 +15,9 @@
 				"name": "data/colliders/COL_collider_terminal02.collider",
 				"group": "button"
 			},
+			"player_animator_placer" : {
+				"relative_position" : "-0.1 0 1.45"
+			},
 			"button": {
 				"script": "",
 				"canBePressed": false
