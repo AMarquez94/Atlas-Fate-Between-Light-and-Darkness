@@ -772,6 +772,9 @@ void TCompTempPlayerController::die()
         assert(c_e_particle);
         c_e_particle->setSystemState(false);
 
+        EngineGUI.enableWidget("inhibited_space", false);
+        EngineGUI.enableWidget("inhibited_y", false);
+
         cb_player.player_shadowed = false;
         cb_player.player_health = 0;
         cb_player.updateGPU();
