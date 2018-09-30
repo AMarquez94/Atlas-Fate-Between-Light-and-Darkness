@@ -716,6 +716,7 @@ struct TSceneExporter (
 		fs.writeComma()
 		fs.writeKeyValue "shadows_fmt" "R32_TYPELESS"
 		fs.endObj()
+		fs.writeComma()
 	),
 
 	-- ----------------------------------------------------------
@@ -946,7 +947,7 @@ struct TSceneExporter (
 			fs.writeKey "instances" 
 			fs.beginArray()
 			for p in items do (
-				local mcv_position = p.pos * max2mcv
+				local mcv_position = p.transform.pos * max2mcv
 				local mcv_transform = mcv2max * p.transform * max2mcv
 				local mcv_quat = mcv_transform.rotationPart as quat
 				local mcv_final_position = checkPoint mcv_position
@@ -1079,7 +1080,7 @@ struct TSceneExporter (
 		local prg_step = 100 / (nodes.count + 1)
 		local container_types = Dictionary()
 		local container_decals = Dictionary()
-				
+
 		-- Loop through all xref
 		for obj in nodes do (
 			
@@ -1090,7 +1091,7 @@ struct TSceneExporter (
 				if has_value == false then (
 					container_types[ref_type] = #()
 				)
-				
+
 				-- Get the array and set the values
 				local dict_value = GetDictValue container_types ref_type
 				append dict_value obj
