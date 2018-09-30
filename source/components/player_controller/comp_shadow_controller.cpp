@@ -29,7 +29,7 @@ void TCompShadowController::load(const json& j, TEntityParseContext& ctx) {
 void TCompShadowController::update(float dt) {
 
     TCompTransform * c_my_transform = get<TCompTransform>();
-    VEC3 new_pos = c_my_transform->getPosition() + 0.01f * c_my_transform->getUp();
+    VEC3 new_pos = c_my_transform->getPosition() + 0.15f * c_my_transform->getUp();
     bool shadow_test = IsPointInShadows(new_pos) && enemies_illuminating_me.size() == 0;
     //dbg("bool test %d\n", shadow_test);
 
