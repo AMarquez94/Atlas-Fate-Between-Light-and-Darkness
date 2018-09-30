@@ -12,6 +12,7 @@ void TCompBoneTracker::load(const json& j, TEntityParseContext& ctx) {
 
     bone_name = j.value("bone", "");
     parent_name = j.value("parent", "");
+    rot_update = j.value("rotation_update", true);
     assert(!bone_name.empty());
     assert(!parent_name.empty());
 
@@ -58,6 +59,6 @@ void TCompBoneTracker::update(float dt) {
     TCompTransform* tmx = get<TCompTransform>();
     if (tmx) {
         tmx->setPosition(pos);
-        tmx->setRotation(rot);
+        if(rot_update) tmx->setRotation(rot);
     }
 }

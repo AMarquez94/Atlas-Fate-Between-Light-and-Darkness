@@ -1,7 +1,7 @@
 {
 	"system": {
 		"duration": 1.0,
-		"looping": true,
+		"looping": false,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
 		"start_speed": 0.0,
@@ -11,8 +11,7 @@
 		"start_color": "1 0 0 1", 
 		"gravity": -0.1,
 		"simulation_speed": 1,
-		"max_particles": 1000,
-		"offset" : "0 1 0"
+		"max_particles": 1000
 	},
 	"emission": {
 		"rate_time": 0.0,
@@ -56,8 +55,7 @@
       "frame_size" : "8 4",
       "initial_frame" : 0,
       "num_frames" : 32,
-      "frame_speed" : 32, 
-			"tech" : "particles_instanced_additive.tech"
+      "frame_speed" : 32
 	},
   "size" : {
     "scale" : 0.6,

@@ -248,7 +248,7 @@ float4 PS_GBuffer_SWHologram_Model(
 	
 	// Compute the glow factor
 	float glow = 1 - step(frac(vertex_sift * 6 + global_world_time), 0.95);
-	
+
 	return scan * float4(0,0.25,1,1) * theta + glow * 0.12 * scan; 
 }
 

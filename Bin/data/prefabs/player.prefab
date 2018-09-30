@@ -326,7 +326,8 @@
 			},
 			"bone_tracker": {
 				"bone": "Bip001 L Foot",
-				"parent": "The Player"
+				"parent": "The Player",
+				"rotation_update" : false
 			},
 			"audio": {},
 			"abs_aabb": true,
@@ -342,7 +343,8 @@
 			},
 			"bone_tracker": {
 				"bone": "Bip001 R Foot",
-				"parent": "The Player"
+				"parent": "The Player",
+				"rotation_update" : false
 			},
 			"audio": {},
 			"abs_aabb": true,
@@ -375,10 +377,10 @@
 				"pos": "0 0 0"
 			},
 			"circular_controller": {
-				"vradius" : "0.8 1",
+				"vradius" : "1 1.3",
 				"target" : "The Player",
 				"speed" : 2,
-				"oscilation_speed" : 8,
+				"oscilation_speed" : 15,
 				"vertical_speed" : -0.0001
 			},
 			"particles": {
@@ -398,7 +400,7 @@
 				"pos": "0 0 0"
 			},
 			"circular_controller": {
-				"vradius" : "0.8 1.1",
+				"vradius" : "1 1.3",
 				"target" : "The Player",
 				"speed" : -2,
 				"oscilation_speed" : 15,

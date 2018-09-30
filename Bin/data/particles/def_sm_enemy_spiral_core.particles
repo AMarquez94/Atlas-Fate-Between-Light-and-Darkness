@@ -11,8 +11,7 @@
 		"start_color": "1 0 0 1", 
 		"gravity": -0.15,
 		"simulation_speed": 1,
-		"max_particles": 1000,
-		"offset" : "0 1 0"
+		"max_particles": 1000
 	},
 	"emission": {
 		"rate_time": 0.0,
@@ -60,7 +59,7 @@
 			"tech" : "particles_instanced_additive.tech"
 	},
   "size" : {
-    "scale" : 0.1,
+    "scale" : 0.4,
     "scale_variation" : 0.1,
     "sizes" : [
 		  [0.0, "1 1 1"],
