@@ -156,12 +156,14 @@ void TCompTempPlayerController::playLandParticles(bool left)
     TCompGroup* my_group = get<TCompGroup>();
     if (my_group) {
         CHandle foot = left ? my_group->getHandleByName("left_foot") : my_group->getHandleByName("right_foot");
-        EngineParticles.launchSystem("data/particles/def_amb_ground_hit.particles", foot);
+        EngineParticles.launchSystem("data/particles/def_amb_ground_hit.particles", CHandle(this).getOwner());
     }
 }
 
 void TCompTempPlayerController::playSMSpirals() {
+
     TCompGroup* my_group = get<TCompGroup>();
+
     if (my_group) {
 
         /* Set target */
@@ -194,7 +196,6 @@ void TCompTempPlayerController::playSMSpirals() {
             TCompParticles* spiral_particles_2 = spiral_2->get<TCompParticles>();
             spiral_particles_1->setSystemState(true);
             spiral_particles_2->setSystemState(true);
-
         }
     }
 }
@@ -511,8 +512,7 @@ void TCompTempPlayerController::mergeState(float dt) {
         angle_test = fabs(EnginePhysics.gravity.Dot(postUp));
         float angle_amount = fabsf(acosf(prevUp.Dot(postUp)));
         std::string target_name = angle_test > mergeAngle ? "SMCameraHor" : "SMCameraVer"; // WARN: Watch this if gives problems...  
-        //dbg(" TEST PASSED \n");
-
+				
         if (angle_amount > deg2rad(30.f) || target_name.compare(dbCameraState) != 0) {
 
             /* Only "change" cameras when the amount of degrees turned is more than 30º */

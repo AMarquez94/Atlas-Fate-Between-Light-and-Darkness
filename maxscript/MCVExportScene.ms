@@ -234,7 +234,7 @@ struct TSceneExporter (
 			
 			fs.writeKey "particles" 
 			fs.beginObj()
-			fs.writeKey "core"
+			fs.writeKey "cores"
 			fs.arrayOfStrings t_particles
 			fs.endObj()
 			fs.writeComma()
@@ -757,7 +757,7 @@ struct TSceneExporter (
 		fs.writeComma()
 		writeCustomComponents obj
 		writeTagComponent obj
-		exportAABB obj
+		exportAABB obj 
 	),
 	
 	-- Automatic light collider generation depending on light type

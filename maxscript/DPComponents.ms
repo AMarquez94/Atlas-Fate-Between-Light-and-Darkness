@@ -108,12 +108,19 @@ component_audio = attributes component_audio
 	rollout cmp_audio "Component Audio" width:162 height:174
 	(
 		button 'btn1' "Add" pos:[15,52] width:135 height:22 align:#center
-		listBox 'lbx1' "Audio Files" pos:[14,91] width:135 height:12 align:#center
+		button 'btn2' "Refresh" pos:[15,81] width:135 height:22 align:#center
+		listBox 'lbx1' "Audio Files" pos:[14,122] width:135 height:12 align:#center
 		editText 'edt1' "" pos:[14,20] width:133 height:23 align:#center
 		
 		on btn1 pressed do
 		(
 			audio_file += edt1.text + "\n" 
+			local h_items = filterString audio_file "\n"
+			lbx1.items = h_items
+		)
+		
+		on btn2 pressed do
+		(
 			local h_items = filterString audio_file "\n"
 			lbx1.items = h_items
 		)
@@ -124,18 +131,34 @@ component_particles = attributes component_particles
 (
 	parameters cmp_particles rollout:cmp_particles
 	(
-		particles_files type: #string default:""
+		particles_files type: #string default:"data/particles/"
 	)
 	
 	rollout cmp_particles "Component Particles" width:162 height:174
 	(
-		button 'btn1' "Add" pos:[15,52] width:135 height:22 align:#center
-		listBox 'lbx1' "Particle Files" pos:[14,91] width:135 height:12 align:#center
+		button 'btn1' "Add" pos:[15,51] width:135 height:22 align:#center
+		button 'btn2' "Rename" pos:[15,71] width:135 height:22 align:#center
+		button 'btn3' "Refresh" pos:[15,91] width:135 height:22 align:#center
+		listBox 'lbx1' "Particle Files" pos:[14,122] width:135 height:12 align:#center
 		editText 'edt1' "" pos:[14,20] width:133 height:23 align:#center
 		
 		on btn1 pressed do
 		(
 			particles_files += edt1.text + "\n"
+			local h_items = filterString particles_files "\n"
+			lbx1.items = h_items
+		)
+		
+		on btn2 pressed do
+		(
+			local h_items = filterString particles_files "\n"
+			local str_replace = h_items[lbx1.selection]
+			h_items[lbx1.selection] = edt1.text
+			lbx1.items = h_items
+		)
+		
+		on btn3 pressed do
+		(
 			local h_items = filterString particles_files "\n"
 			lbx1.items = h_items
 		)

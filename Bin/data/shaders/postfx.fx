@@ -114,7 +114,7 @@ float4 PS_PostFX_Vignette(in float4 iPosition : SV_POSITION , in float2 iTex0 : 
 	//color = lerp( color, grade_color, global_shared_fx_amount );
 	
 	float len = length(position);
-	float vignette = smoothstep(0.95, postfx_vignette - (1 - player_health) , len);
+	float vignette = smoothstep(0.9, postfx_vignette - (1 - player_health) , len);
 	color.rgb = lerp(color.rgb, color.rgb * vignette, 0.95);
 	
 	float4 greyscale = (color.r + color.g + color.b) * .333;
