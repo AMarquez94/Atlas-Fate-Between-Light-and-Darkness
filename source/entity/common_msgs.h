@@ -169,8 +169,10 @@ struct TMsgAnimationCallback {
 };
 
 struct TMsgAnimationPlaced {
-	VEC3 point_to_move;
-	QUAT rot_to_point;
+	DECL_MSG_ID();
+};
+
+struct TMsgSkeletonPlaceAnimation {
 	DECL_MSG_ID();
 };
 
