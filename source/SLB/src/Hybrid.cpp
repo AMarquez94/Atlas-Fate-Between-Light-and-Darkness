@@ -42,8 +42,8 @@ namespace SLB {
     const ClassInfo  *CI = obj->getClassInfo();
     std::ostringstream out;
 
-    out << "Invalid Method '" << CI->getName() << "::" <<
-      c << "' NOT FOUND!" << std::endl;
+    //out << "Invalid Method '" << CI->getName() << "::" <<
+    //  c << "' NOT FOUND!" << std::endl;
     
     _what = out.str();
   }

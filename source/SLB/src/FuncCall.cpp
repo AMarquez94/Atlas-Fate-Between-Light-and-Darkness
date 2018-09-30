@@ -63,7 +63,7 @@ namespace SLB {
     }
     catch ( std::exception &e )
     {
-      luaL_error(L, e.what());
+      //luaL_error(L, e.what());
       return 0;
     }
   }
