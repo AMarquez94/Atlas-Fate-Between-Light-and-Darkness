@@ -142,8 +142,8 @@ float4 compute(float4 iPosition, float2 iUV)
 
   float3 hdrColor = txAccLights.Load(ss_load_coords).xyz;
 	//hdrColor *= txSelfIllum.Load(uint3(iPosition.xy,0)).a;
-	//hdrColor = environment_fog(iPosition, iUV, hdrColor);
-	//hdrColor = ground_fog(iPosition, iUV, hdrColor);
+	hdrColor = environment_fog(iPosition, iUV, hdrColor);
+	hdrColor = ground_fog(iPosition, iUV, hdrColor);
 		
   //hdrColor *= PS_PostFXFog(iPosition, iUV);
 	//hdrColor *= txAO.Sample(samLinear, iUV);

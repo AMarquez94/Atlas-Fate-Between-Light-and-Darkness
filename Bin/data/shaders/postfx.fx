@@ -71,7 +71,7 @@ float4 ComputeHalo(float2 iTex0)
 	float2 shift_uv = (iTex0 - c_offset) / float2(camera_aspect_ratio, 1.0) + c_offset;
 	float d = distance(shift_uv, float2(0.5, 0.5));
 	
-	vhalo *= float2(0.25, 0.55);
+	vhalo *= halo_radius;
 	float halo_weight = window_cubic(d, halo_radius, halo_thickness); 
 	
 	float4 light_beam = ComputeColorCA(iTex0 + vhalo);
@@ -114,7 +114,7 @@ float4 PS_PostFX_Vignette(in float4 iPosition : SV_POSITION , in float2 iTex0 : 
 	//color = lerp( color, grade_color, global_shared_fx_amount );
 	
 	float len = length(position);
-	float vignette = smoothstep(0.95, postfx_vignette - (1 - player_health) , len);
+	float vignette = smoothstep(0.9, postfx_vignette - (1 - player_health) , len);
 	color.rgb = lerp(color.rgb, color.rgb * vignette, 0.95);
 	
 	float4 greyscale = (color.r + color.g + color.b) * .333;
