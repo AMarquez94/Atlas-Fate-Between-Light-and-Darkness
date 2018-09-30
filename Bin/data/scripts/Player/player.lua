@@ -31,6 +31,22 @@ function animation_run_step_right(sender)
 	animateSoundGraph(3);
 end
 
+function animation_crouch_step_left(sender)
+	h = playerController:getLeftWeapon();
+	t_audio = toAudio(toEntity(h):getCompByName("audio"));
+	t_audio:playEvent("event:/Sounds/Player/Steps/NormalSteps", true);
+	animateSoundGraph(1);
+end
+
+function animation_crouch_step_right(sender)
+	--playerController:playPlayerStep(false);
+	--playerNoiseEmitter:makeNoise(2.0, 10.0, true, true, false);
+	h = playerController:getLeftWeapon();
+	t_audio = toAudio(toEntity(h):getCompByName("audio"));
+	t_audio:playEvent("event:/Sounds/Player/Steps/NormalSteps", true);
+	animateSoundGraph(1);
+end
+
 function animation_attack_swingLeft(sender)
 	h = playerController:getLeftWeapon();
 	e = toEntity(h);

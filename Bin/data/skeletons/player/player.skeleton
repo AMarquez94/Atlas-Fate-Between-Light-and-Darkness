@@ -54,16 +54,14 @@
 			]},
 		{ "name" : "crouch"},
 		{ "name" : "crouch_walk", 
-			"audio_callbacks":[
+			"callbacks":[
 			{
 				"time_to_call" : 0.1666,
-				"audio_name" : "event:/Sounds/Player/Steps/NormalSteps",
-				"relative_to_player" : false
+				"function_to_call" : "animation_crouch_step_left"
 			},
 			{
 				"time_to_call" : 0.716,
-				"audio_name" : "event:/Sounds/Player/Steps/NormalSteps",
-				"relative_to_player" : false
+				"function_to_call" : "animation_crouch_step_right"
 			}]
 		},
 		{ "name" : "crouch_walk_slow"},
