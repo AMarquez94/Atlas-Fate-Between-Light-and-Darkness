@@ -716,6 +716,7 @@ struct TSceneExporter (
 		fs.writeComma()
 		fs.writeKeyValue "shadows_fmt" "R32_TYPELESS"
 		fs.endObj()
+		fs.writeComma()
 	),
 
 	-- ----------------------------------------------------------
