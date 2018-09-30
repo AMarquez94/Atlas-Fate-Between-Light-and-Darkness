@@ -80,8 +80,12 @@
 			"animation_completed_callback": true,
 			"callbacks":[
 				{
+					"time_to_call": 0,
+					"function_to_call": "animation_Attack_Stun"
+				},
+				{
 					"time_to_call" : 1.2,
-					"function_to_call" : "animation_Attack"
+					"function_to_call" : "animation_Attack_Attack"
 				}
 			],
 			"audio_callbacks": [{

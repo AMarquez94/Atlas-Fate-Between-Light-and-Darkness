@@ -49,6 +49,7 @@ bool CModuleFSM::start()
     _factory.registerInstancer("SonarStateUp", new FSM::StateInstancer<FSM::SonarStateUp>());
 	_factory.registerInstancer("SonarStateCrouch", new FSM::StateInstancer<FSM::SonarStateCrouch>());
     _factory.registerInstancer("PressingButtonState", new FSM::StateInstancer<FSM::PressingButtonState>());
+    _factory.registerInstancer("StunnedState", new FSM::StateInstancer<FSM::StunnedState>());
 
 
     //const FSM::CMachine* myFsm = Resources.get("data/fsm/character.fsm")->as<FSM::CMachine>();

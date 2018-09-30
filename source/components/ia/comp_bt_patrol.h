@@ -152,6 +152,7 @@ public:
     /* LUA functions */
     void launchInhibitor();
 
+    void stunPlayer();
     void attackPlayer();
     void playStepParticle(bool left);
     void shakeCamera(float max_amount, float max_distance, float duration);

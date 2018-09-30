@@ -1623,6 +1623,15 @@ void TCompAIPatrol::launchInhibitor()
     myGroup->add(ctxInhibitor.entities_loaded[0]);
 }
 
+void TCompAIPatrol::stunPlayer()
+{
+    CEntity* player = EngineEntities.getPlayerHandle();
+
+    TMsgPlayerStunned msg;
+    msg.h_sender = CHandle(this).getOwner();
+    player->sendMsg(msg);
+}
+
 void TCompAIPatrol::attackPlayer()
 {
     CEntity* player = EngineEntities.getPlayerHandle();

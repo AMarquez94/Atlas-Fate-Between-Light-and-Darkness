@@ -377,6 +377,19 @@
 			"animation": "idle",
 			"speed": 0,
 			"size": 1
+		},
+		{
+			"name": "stunned",
+			"type": "StunnedState",
+			"animation": "idle",
+			"speed": 0,
+			"size": 1,
+			"camera": {
+				"target": "TPCamera",
+				"blendOut": 0.4,
+				"blendIn": 0.2,
+				"fov": 70
+			}
 		}
 	],
 	"transitions": [{
@@ -1393,6 +1406,172 @@
 			"source": "pressingButton",
 			"target": "idle",
 			"animation_name": "hack"
+		},
+		{
+			"type": "VariableTransition",
+			"source": "idle",
+			"target": "stunned",
+			"variable": {
+				"name": "stunned",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "walk",
+			"target": "stunned",
+			"variable": {
+				"name": "stunned",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "crouch",
+			"target": "stunned",
+			"variable": {
+				"name": "stunned",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "run",
+			"target": "stunned",
+			"variable": {
+				"name": "stunned",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "crouch_walk",
+			"target": "stunned",
+			"variable": {
+				"name": "stunned",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "attack",
+			"target": "stunned",
+			"variable": {
+				"name": "stunned",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "hardLand",
+			"target": "stunned",
+			"variable": {
+				"name": "stunned",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "hardLand",
+			"target": "stunned",
+			"variable": {
+				"name": "stunned",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "hardLand",
+			"target": "stunned",
+			"variable": {
+				"name": "stunned",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "inhibitorRemoved",
+			"target": "stunned",
+			"variable": {
+				"name": "stunned",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "inhibitorTryToRemove",
+			"target": "stunned",
+			"variable": {
+				"name": "stunned",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "grabEnemy",
+			"target": "stunned",
+			"variable": {
+				"name": "stunned",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "sonarEnemyUp",
+			"target": "stunned",
+			"variable": {
+				"name": "stunned",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "sonarEnemyCrouch",
+			"target": "stunned",
+			"variable": {
+				"name": "stunned",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "pressingButton",
+			"target": "stunned",
+			"variable": {
+				"name": "stunned",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "stunned",
+			"target": "die",
+			"variable": {
+				"name": "onDead",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "TimeTransition",
+			"source": "stunned",
+			"target": "idle",
+			"time": 3
 		}
 	],
 	"variables": [{
@@ -1482,6 +1661,11 @@
 		},
 		{
 			"name": "buttonPressed",
+			"type": "bool",
+			"value": false
+		},
+		{
+			"name": "stunned",
 			"type": "bool",
 			"value": false
 		}

@@ -206,6 +206,7 @@ void TCompTempPlayerController::registerMsgs() {
     DECL_MSG(TCompTempPlayerController, TMsgEntityCreated, onCreate);
     DECL_MSG(TCompTempPlayerController, TMsgEntitiesGroupCreated, onGroupCreated);
     DECL_MSG(TCompTempPlayerController, TMsgPlayerHit, onPlayerHit);
+    DECL_MSG(TCompTempPlayerController, TMsgPlayerStunned, onPlayerStunned);
     DECL_MSG(TCompTempPlayerController, TMsgPlayerDead, onPlayerKilled);
     DECL_MSG(TCompTempPlayerController, TMsgInhibitorShot, onPlayerInhibited);
     DECL_MSG(TCompTempPlayerController, TMsgPlayerIlluminated, onPlayerExposed);
@@ -357,6 +358,14 @@ void TCompTempPlayerController::onPlayerHit(const TMsgPlayerHit & msg)
     die();
 }
 
+void TCompTempPlayerController::onPlayerStunned(const TMsgPlayerStunned & msg)
+{
+    TMsgSetFSMVariable stunnedMsg;
+    stunnedMsg.variant.setName("stunned");
+    stunnedMsg.variant.setBool(true);
+    CHandle(this).getOwner().sendMsg(stunnedMsg);
+}
+
 void TCompTempPlayerController::onPlayerKilled(const TMsgPlayerDead & msg)
 {
     die();
@@ -364,7 +373,7 @@ void TCompTempPlayerController::onPlayerKilled(const TMsgPlayerDead & msg)
 
 void TCompTempPlayerController::onPlayerInhibited(const TMsgInhibitorShot & msg)
 {
-    if (!isInhibited) {
+    if (!isDead() && !isInhibited) {
         if (!EngineInput.pad().connected) {
             EngineGUI.enableWidget("inhibited_space", true);
         }
@@ -502,7 +511,7 @@ void TCompTempPlayerController::mergeState(float dt) {
         angle_test = fabs(EnginePhysics.gravity.Dot(postUp));
         float angle_amount = fabsf(acosf(prevUp.Dot(postUp)));
         std::string target_name = angle_test > mergeAngle ? "SMCameraHor" : "SMCameraVer"; // WARN: Watch this if gives problems...  
-        dbg(" TEST PASSED \n");
+        //dbg(" TEST PASSED \n");
 
         if (angle_amount > deg2rad(30.f) || target_name.compare(dbCameraState) != 0) {
 
@@ -628,6 +637,14 @@ void TCompTempPlayerController::movingObjectState(float dt)
   markObjectAsMoving(true, dir, currentSpeed);
 
   player_trans->setPosition(player_trans->getPosition() + dir * currentSpeed * dt);
+}
+
+void TCompTempPlayerController::stunnedState(float dt)
+{
+    TMsgSetFSMVariable stunnedMsg;
+    stunnedMsg.variant.setName("stunned");
+    stunnedMsg.variant.setBool(false);
+    CHandle(this).getOwner().sendMsg(stunnedMsg);
 }
 
 void TCompTempPlayerController::resetRemoveInhibitor()

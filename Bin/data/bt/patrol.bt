@@ -475,7 +475,7 @@
 			"conditionArg": [{
 					"variable_name": "distToAttack",
 					"variable_type": "float",
-					"variable_value": 2.0,
+					"variable_value": 3.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "entityToChase",
@@ -529,7 +529,7 @@
 				}, {
 					"variable_name": "distToAttack",
 					"variable_type": "float",
-					"variable_value": 1.5,
+					"variable_value": 3.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "entityToChase",
@@ -746,7 +746,7 @@
 				}, {
 					"variable_name": "distToAttack",
 					"variable_type": "float",
-					"variable_value": 1.5,
+					"variable_value": 3.0,
 					"variable_op": ""
 				}
 			],
