@@ -8,7 +8,7 @@ class CMaterial;
 class CRenderToTexture;
 class TCompLightSpot;
 
-class TCompEmissionController : public TCompCamera {
+class TCompLightController : public TCompCamera {
 
 	//std::vector<CMaterial*> _temp_materials;
 	std::vector<TCompLightSpot*> _temp_lights;

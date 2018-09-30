@@ -205,7 +205,7 @@ void TCompAIEnemy::generateNavmesh(VEC3 initPos, VEC3 destPos, bool recalc)
 
         // Set a default filter to do query checks
         physx::PxFilterData pxFilterData;
-        pxFilterData.word0 = FilterGroup::All;
+        pxFilterData.word0 = FilterGroup::NonLight;
         physx::PxQueryFilterData defaultFilter;
         defaultFilter.data = pxFilterData;
 
