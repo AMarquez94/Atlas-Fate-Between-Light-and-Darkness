@@ -13,8 +13,8 @@ namespace GUI
 
     private:
         std::vector<const CTexture*> textures;
+        std::vector<float> timers;
         int _index;
-        float _timeToChange;
         float _timer;
 
         friend class CParser;

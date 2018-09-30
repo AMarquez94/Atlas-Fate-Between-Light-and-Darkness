@@ -6,7 +6,7 @@ namespace GUI
     void CChangeTexture::update(float delta)
     {
         _timer += delta;
-        if (_timer > _timeToChange) {
+        if (_timer > timers[_index]) {
             _timer = 0.f;
             _index = (_index + 1) % textures.size();
             TImageParams* params = _widget->getImageParams();

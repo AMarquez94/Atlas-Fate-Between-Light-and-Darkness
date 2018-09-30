@@ -112,13 +112,14 @@
 								"type":	"change_textures",
 								"textures": [
 									{
-										"name": "data/textures/gui/remove_Space.dds"
+										"name": "data/textures/gui/remove_Space.dds",
+										"time": 0.175
 									},
 									{
-										"name": "data/textures/gui/remove_Y.dds"
+										"name": "data/textures/gui/remove_Space_inv.dds",
+										"time": 0.1
 									}
-								],
-								"timeToChange": 0.2
+								]
 							}
 						]
 					}
@@ -135,7 +136,19 @@
 						"size" : "256 32",
 						"texture" : "data/textures/gui/remove_Y.dds",
 						"effects": [
-						
+							{
+								"type":	"change_textures",
+								"textures": [
+									{
+										"name": "data/textures/gui/remove_Y.dds",
+										"time": 0.175
+									},
+									{
+										"name": "data/textures/gui/remove_Y_inv.dds",
+										"time": 0.1
+									}
+								]
+							}
 						]
 					}
 				]

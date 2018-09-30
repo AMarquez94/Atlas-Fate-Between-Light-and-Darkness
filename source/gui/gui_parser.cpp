@@ -176,12 +176,12 @@ CEffect* CParser::parseChangeTexturesEffect(const json& data)
     CChangeTexture* fx = new CChangeTexture();
 
     fx->_timer = 0;
-    fx->_timeToChange = data.value("timeToChange", 0.5f);
     fx->_index = 0;
 
     auto& texture_names = data["textures"];
     for (auto it = texture_names.begin(); it != texture_names.end(); ++it) {
         fx->textures.push_back(Resources.get(it.value().value("name", ""))->as<CTexture>());
+        fx->timers.push_back(it.value().value("time", 0.1f));
     }
 
     return fx;
