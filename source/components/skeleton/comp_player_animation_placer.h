@@ -7,7 +7,7 @@ class TCompPlayerAnimatorPlacer : public TCompBase {
 	DECL_SIBLING_ACCESS();
 
 	VEC3 pointPosition;
-	QUAT pointRotation;
+	VEC3 pointToLookAt;
 
 public:
 	void debugInMenu();
@@ -16,5 +16,8 @@ public:
 	static void registerMsgs();
 
 	VEC3 getPointPosition();
-	QUAT getPointRotation();
+	VEC3 getPointToLookAt();
+	void setPointToLookAt(VEC3 point);
+
+	void onMsgGroupCreated(const TMsgEntitiesGroupCreated& msg);
 };

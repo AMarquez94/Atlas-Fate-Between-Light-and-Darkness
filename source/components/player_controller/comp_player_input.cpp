@@ -134,7 +134,7 @@ void TCompPlayerInput::update(float dt)
                 TCompPlayerAttackCast* playerCast = e->get<TCompPlayerAttackCast>();
                 CHandle button = playerCast->getClosestButton();
                 //GrabEnemy messages
-                if (EngineInput["btAction"].getsPressed() && playerCast->getClosestMergingEnemy().isValid()) {
+                if (EngineInput["btAction"].getsPressed() && playerCast->getClosestEnemyToGrab().isValid()) {
                     _enemyStunned = true;
                     TMsgSetFSMVariable grabEnemy;
                     grabEnemy.variant.setName("grabEnemy");
@@ -180,7 +180,7 @@ void TCompPlayerInput::update(float dt)
                     }
                 }
 
-                if (_enemyStunned && !playerCast->getClosestMergingEnemy().isValid()) {
+                if (_enemyStunned && !playerCast->getClosestEnemyToGrab().isValid()) {
                     _enemyStunned = false;
                     TMsgSetFSMVariable grabEnemy;
                     grabEnemy.variant.setName("grabEnemy");

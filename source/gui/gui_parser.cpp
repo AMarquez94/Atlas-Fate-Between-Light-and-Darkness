@@ -5,6 +5,7 @@
 #include "gui/widgets/gui_bar.h"
 #include "gui/widgets/gui_button.h"
 #include "gui/effects/gui_animate_uv.h"
+#include "gui/effects/gui_change_textures.h"
 #include "gui/widgets/gui_radial_bar.h"
 
 namespace
@@ -150,6 +151,7 @@ CEffect* CParser::parseEffect(const json& data, CWidget* wdgt)
 
   // create and parse the widget
   if (type == "animate_uv")   fx = parseAnimateUVEffect(data);
+  if (type == "change_textures")   fx = parseChangeTexturesEffect(data);
 
   // add to parent
   if (wdgt && fx)
@@ -167,6 +169,22 @@ CEffect* CParser::parseAnimateUVEffect(const json& data)
   fx->_speed = loadVEC2(data.value("speed", "0 0"));
 
   return fx;
+}
+
+CEffect* CParser::parseChangeTexturesEffect(const json& data)
+{
+    CChangeTexture* fx = new CChangeTexture();
+
+    fx->_timer = 0;
+    fx->_index = 0;
+
+    auto& texture_names = data["textures"];
+    for (auto it = texture_names.begin(); it != texture_names.end(); ++it) {
+        fx->textures.push_back(Resources.get(it.value().value("name", ""))->as<CTexture>());
+        fx->timers.push_back(it.value().value("time", 0.1f));
+    }
+
+    return fx;
 }
 
 CWidget* CParser::parseBar(const json& data) {

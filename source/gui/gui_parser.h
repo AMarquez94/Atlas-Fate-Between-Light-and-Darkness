@@ -22,6 +22,7 @@ namespace GUI
 
     CEffect* parseEffect(const json& data, CWidget* wdgt);
     CEffect* parseAnimateUVEffect(const json& data);
+    CEffect* parseChangeTexturesEffect(const json& data);
 
     void parseParams(TParams& params, const json& data);
     void parseImageParams(TImageParams& params, const json& data);
