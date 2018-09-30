@@ -28,7 +28,7 @@ struct TCompSkeleton : public TCompBase {
 
 	//Variables to Placed Animations
 	VEC3 point_to_move;
-	QUAT rot_to_look;
+	VEC3 point_to_look;
 	bool placed_animation_active = false;
 	float time_lerping = 0.0f;
 	VEC3 initial_pos_from_lerp;
