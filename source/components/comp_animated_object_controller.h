@@ -25,6 +25,8 @@ public:
 
 	bool getNames = false;
 
+	bool getHandlesOnGroup = true;
+
 	std::map<std::string, int> name_to_id_animations;
 
 	std::string starting_animation;

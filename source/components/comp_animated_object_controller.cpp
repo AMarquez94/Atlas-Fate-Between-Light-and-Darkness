@@ -17,8 +17,13 @@ void TCompAnimatedObjController::onGroupCreated(const TMsgEntitiesGroupCreated &
 	TCompGroup *group = controller_entity->get<TCompGroup>();
 
 	for (int i = 0; i < object_names.size(); i++) {
-		
-		CEntity* e = group->getHandleByName(object_names[i]);
+		CEntity* e;
+		if (getHandlesOnGroup) {
+			e = group->getHandleByName(object_names[i]);
+		}
+		else {
+			e = getEntityByName(object_names[i]);
+		}
 
 		if (e != nullptr) {
 			TCompRigidAnim* comp_rigid = e->get<TCompRigidAnim>();
@@ -74,6 +79,8 @@ void TCompAnimatedObjController::debugInMenu() {
 }
 
 void TCompAnimatedObjController::load(const json& j, TEntityParseContext& ctx) {
+
+	getHandlesOnGroup = j.value("get_on_group", true);
 
 	if (j.count("reference_names")) {
 		auto& j_references = j["reference_names"];
