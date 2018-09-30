@@ -651,7 +651,7 @@ void resetPatrolLights()
 }
 
 void animateSoundGraph(int value) {
-
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getChild("sound_sprite")->getSpriteParams()->_playing_sprite = value;
 }
 
 SoundEvent playEvent(const std::string & name)
