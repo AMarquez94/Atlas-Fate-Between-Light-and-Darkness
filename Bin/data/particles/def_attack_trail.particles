@@ -1,6 +1,6 @@
 {
 	"system": {
-		"duration": 2,
+		"duration": 0.2,
 		"looping": true,
 		"start_delay": 0.0, 
 		"start_lifetime": 1.0, 
@@ -11,16 +11,17 @@
 		"start_color": "1 0 0 1",
 		"gravity": 0.01,  
 		"simulation_speed": 3,
-		"max_particles": 500     
+		"max_particles": 500,
+		"offset": "0.1 0 0"
 	},       
 	"emission": {         
 		"rate_time": 0.0,      
-		"rate_distance": 5.0,     
+		"rate_distance": 10.0,     
 		"variation" : 0.0
 	},	    
 	"shape": {     
 		"type": "cone", 
-		"size": "0.01 0.01 0.01",
+		"size": "0.001 0.001 0.001",
 		"angle": 0	     
 	},    
 	"velocity" : {   
@@ -39,7 +40,7 @@
 	},     
 	"noise": {      
 		"texture": "data/textures/particles/fx_smoke1.dds",  
-		"strength":14.1,        
+		"strength":0.0,        
 		"frequency": 0.5,    
 		"scroll_speed": 0.0,      
 		"damping": true,   
@@ -49,8 +50,8 @@
 		"collision": true     
 	},  
 	"renderer": {   
-			"mode": "stretched",    
-			"texture": "data/textures/particles/particle_cloud.dds",  
+			"mode": "billboard",    
+			"texture": "data/textures/particles/glow.dds",  
       "frame_size" : "1 1", 
       "initial_frame" : 0,
       "num_frames" : 1,   
@@ -58,20 +59,20 @@
 			"tech" : "particles_instanced_additive.tech"
 	},        
   "size" : {     
-    "scale" : 0.6,
-    "scale_variation" : 1.6,   
+    "scale" : 0.15,
+    "scale_variation" : 0,   
     "sizes" : [ 
-		  [0.0, "0.01 0.01 0.01"],
-			[0.7, "0.01 0.4 0.01"], 
-			[1.0, "0.0 0.0 0.0"]     
+		  [0.0, "1 1 1"],
+			[0.6, "1 1 1"], 
+			[1.0, "0.0 0.5 0.0"]     
     ] 
   },    
   "color" : { 
-    "opacity" : 1, 
+    "opacity" : 0.05, 
     "colors" : [ 
       [0.0, "0.2 1 1 0.0"],
-			[0.1, "0.2 1 1. 1.0"],
-			[0.4, "0.2 1 1 1.2"],
+			[0.1, "0.2 1 1 1.0"],
+			[0.4, "0.2 1 1 1.0"],
 			[1.0, "0.2 1 1 0.0"]
     ] 
   }

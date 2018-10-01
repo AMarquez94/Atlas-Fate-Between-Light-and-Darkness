@@ -119,6 +119,15 @@ struct TMaterialExporter (
 		fs.end()
 	),
 	
+	fn determineTechnique obj mat = (
+		
+		c_values = retrieveComponent obj component_technique
+		if mat != undefined and mat.twoSided == true then ( return "pbr_no_cull.tech" )
+		else if c_values != undefined then ( return c_values.techtype )
+		
+		return undefined
+	),
+	
 	-- Will return an array of all the materials names used by obj and exported by us
 	fn exportMaterial mat base_name obj tech sdw = (
 		
@@ -126,8 +135,9 @@ struct TMaterialExporter (
 		
 		if classof mat == StandardMaterial then (
 			local mat_name = base_name + mat.name + ".material"
-			append exported_materials mat_name
-			exportStdMaterial mat mat_name tech sdw
+			append exported_materials mat_name 
+			local d_tech = determineTechnique obj mat
+			exportStdMaterial mat mat_name d_tech sdw
 			
 		) else if classof mat == MultiMaterial then (
 			local multi_mat = mat
@@ -136,13 +146,13 @@ struct TMaterialExporter (
 			for mat_idx = 1 to materials_of_mesh.count do (
 				if materials_of_mesh[ mat_idx ] == undefined then continue
 				local mat_of_mesh = multi_mat[ mat_idx ]
-				
+				local d_tech = determineTechnique obj mat_of_mesh
 				if mat_of_mesh == undefined then throw ("Mesh " + obj.name + " is using a multimaterial in slot " + (mat_idx as string)+ " but the multimat does not have this submat")
 				if classof mat_of_mesh != StandardMaterial then throw ("Mesh " + obj.name + " is using a multimaterial in slot " + (mat_idx as string) + " but the multimat in this slot is not a stdMaterial")
 				
 				local mat_name = base_name + mat_of_mesh.name + ".material"
 				append exported_materials mat_name
-				exportStdMaterial mat_of_mesh mat_name tech sdw
+				exportStdMaterial mat_of_mesh mat_name d_tech sdw
 			)
 		) else if classof mat == Blend then (
 			local mat_name = base_name + mat.name + ".material"
@@ -460,15 +470,6 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
-	fn determineTechnique obj mat = (
-		
-		c_values = retrieveComponent obj component_technique
-		if mat.twoSided == true then ( return "pbr_no_cull.tech" )
-		else if c_values != undefined then ( return c_values.techtype )
-		
-		return undefined
-	),
-	
 	-- ----------------------------------------------------------
 	fn exportRenderMesh obj = (
 		
@@ -494,8 +495,7 @@ struct TSceneExporter (
 		
 			if mat != undefined then (
 				local me = TMaterialExporter project_path:project_path base_path:base_path
-				local tech = determineTechnique obj mat
-				exported_materials = me.exportMaterial mat f_mats_path obj tech true
+				exported_materials = me.exportMaterial mat f_mats_path obj undefined true
 			)
 			
 			fs.writeKey "materials"
