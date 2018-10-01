@@ -50,12 +50,15 @@
 
 			"data/scenes/intro_carteles.scene",
 
+			"data/scenes/intro_pasillo.scene",
+			"data/scenes/intro_muralla.scene",
+
 			"data/scenes/intro_pozo.scene",
 			"data/scenes/intro_barra_capsulas.scene",
 			"data/scenes/Intro/intro_suelo.scene",
 			"data/scenes/intro_containers_puerto.scene",		
-			"data/scenes/intro_muralla_intro.scene",
-			"data/scenes/intro_muralla_fin.scene",
+			
+			
 			"data/scenes/intro_conductos.scene",
 			"data/scenes/intro_tubitos.scene",
 			"data/scenes/intro_props.scene",

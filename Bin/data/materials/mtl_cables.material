@@ -3,7 +3,7 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/Muro_top_metallic.dds"
+    "albedo": "data/textures/tx_alminar_mezquita_met.dds"
     ,
     "normal": "data/textures/null_normal.dds"
   }
