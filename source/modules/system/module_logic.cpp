@@ -171,7 +171,9 @@ void CModuleLogic::publishClasses() {
         .set("getPosition", &TCompTransform::getPosition)
         .set("setRotation", &TCompTransform::setRotation)
         .set("getRotation", &TCompTransform::getRotation)
-        .set("lookAt", &TCompTransform::lookAt);
+        .set("lookAt", &TCompTransform::lookAt)
+        .set("getDeltaYawToAimTo", &TCompTransform::getDeltaYawToAimTo)
+        ;
 
     SLB::Class<TCompCameraThirdPerson>("TPCamera", m)
         .comment("This is our wrapper of the Third Person Camera")

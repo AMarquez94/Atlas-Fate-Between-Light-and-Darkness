@@ -338,7 +338,7 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg) {
             target_camera = new_camera;
             Engine.getCameras().blendInCamera(target_camera, msg.target_camera->blendIn, CModuleCameras::EPriority::GAMEPLAY);
             TMsgCameraFov msg_fov;
-            msg_fov.blend_time = 0.5f;
+            msg_fov.blend_time = 1.f;
             msg_fov.new_fov = msg.target_camera->fov;
             target_camera.sendMsg(msg_fov);
         }

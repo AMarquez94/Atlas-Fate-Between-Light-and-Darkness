@@ -5,7 +5,7 @@ function onSceneStart_scene_intro()
 		ambiance = playEvent("event:/Ambiance/Intro_Ambiance");
 	end
 	
-	cinematicsEnabled = true;
+	cinematicsEnabled = false;
 	
 	--#Debug position for start
 	--move("The Player", VEC3(-7, 0, -43), VEC3(-7, 0, -44));
@@ -70,7 +70,8 @@ function intro_inhibitor_cinematic()
 	e_patrol_cinematic = toEntity(patrol_cinematic);
 	t_patrol = toTransform(e_patrol_cinematic:getCompByName("transform"));
 	t_player = toTransform(e_player:getCompByName("transform"));
-	t_player:lookAt(t_player:getPosition(), t_patrol:getPosition());
+	patrol_pos = t_patrol:getPosition();
+	t_player:lookAt(t_player:getPosition(), VEC3(patrol_pos.x, 0, patrol_pos.z));
 	resetMainCameras();
 	--hide tutorial while in cinematic
 	e_tutorial_player = toEntity(getEntityByName("Tutorial Player"));
