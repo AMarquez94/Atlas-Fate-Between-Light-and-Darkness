@@ -620,26 +620,26 @@ void TCompTempPlayerController::removingInhibitorState(float dt) {
 
 void TCompTempPlayerController::movingObjectState(float dt)
 {
-  float player_accel = currentSpeed * dt;
+    float player_accel = currentSpeed * dt;
 
-  /* Set noise radius */
-  TCompNoiseEmitter * noiseEmitter = get<TCompNoiseEmitter>();
-  if (currentSpeed == 0) {
+    /* Set noise radius */
+    TCompNoiseEmitter * noiseEmitter = get<TCompNoiseEmitter>();
+    if (currentSpeed == 0) {
     noiseEmitter->changeNoiseRadius(0);
-  }
-  else {
+    }
+    else {
     noiseEmitter->changeNoiseRadius(10);
-  }
+    }
 
-  TCompPlayerInput * player_input = get<TCompPlayerInput>();
-  TCompTransform * player_trans = get<TCompTransform>();
+    TCompPlayerInput * player_input = get<TCompPlayerInput>();
+    TCompTransform * player_trans = get<TCompTransform>();
 
-  VEC3 front = player_trans->getFront();
-  VEC3 dir = player_input->movementValue.y * front;
+    VEC3 front = player_trans->getFront();
+    VEC3 dir = player_input->movementValue.y * front;
 
-  markObjectAsMoving(true, dir, currentSpeed);
+    markObjectAsMoving(true, dir, currentSpeed);
 
-  player_trans->setPosition(player_trans->getPosition() + dir * currentSpeed * dt);
+    player_trans->setPosition(player_trans->getPosition() + dir * currentSpeed * dt);
 }
 
 void TCompTempPlayerController::stunnedState(float dt)
@@ -1157,6 +1157,10 @@ void TCompTempPlayerController::updateWeapons(float dt)
             TMsgWeaponsActivated msg{ true };
             weaponLeft.sendMsg(msg);
             weaponRight.sendMsg(msg);
+            CEntity * ent1 = getEntityByName("weapon_disc_right");
+            CEntity * ent2 = getEntityByName("weapon_disc_left");
+            EngineParticles.launchSystem("data/particles/def_attack_trail.particles", ent1);
+            EngineParticles.launchSystem("data/particles/def_attack_trail.particles", ent2);
         }
         attackTimer = Clamp(attackTimer + dt, 0.f, timeToDeployWeapons);
         weaponsActive = true;
