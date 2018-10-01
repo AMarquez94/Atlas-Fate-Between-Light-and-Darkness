@@ -2,6 +2,7 @@
 #include "comp_player_weapon.h"
 #include "components/comp_transform.h"
 #include "entity/common_msgs.h"
+#include "components/comp_particles.h"
 
 DECL_OBJ_MANAGER("player_weapon", TCompPlayerWeapon);
 
@@ -16,10 +17,15 @@ void TCompPlayerWeapon::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompPlayerWeapon::onMsgWeaponsActivated(const TMsgWeaponsActivated& msg) {
+
     TCompAudio* my_audio = get<TCompAudio>();
+    TCompParticles * particle_system = get<TCompParticles>();
 
     switch (_currentState) {
     case EState::DEACTIVATED:
+
+        particle_system->setSystemState(true);
+
         if (msg.activate) {
             if (weaponsOff.isValid()) {
                 weaponsOff.stop();
@@ -29,6 +35,9 @@ void TCompPlayerWeapon::onMsgWeaponsActivated(const TMsgWeaponsActivated& msg) {
         }
         break;
     case EState::ACTIVATED:
+
+        particle_system->setSystemState(false);
+
         if (!msg.activate) {
             weaponsOn.stop();
             weaponsOff = my_audio->playEvent(weapons_off_event);
@@ -36,6 +45,7 @@ void TCompPlayerWeapon::onMsgWeaponsActivated(const TMsgWeaponsActivated& msg) {
         }
         break;
     case EState::TURNING_OFF:
+
         if (msg.activate) {
             weaponsOff.stop();
             weaponsOn = my_audio->playEvent(weapons_on_event);

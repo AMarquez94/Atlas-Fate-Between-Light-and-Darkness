@@ -18,6 +18,7 @@ private:
     enum EState { DEACTIVATED = 0, ACTIVATED, TURNING_OFF };
 
     void onMsgWeaponsActivated(const TMsgWeaponsActivated& msg);
+
     SoundEvent currentSound;
     SoundEvent weaponsOn;
     SoundEvent weaponsOff;

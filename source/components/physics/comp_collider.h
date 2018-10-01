@@ -10,8 +10,6 @@ class TCompTransform;
 class TCompCollider : public TCompBase {
 
     std::string shapeName = "";
-    std::string groupName = "";
-    std::string maskName = "";
 
     void createCollider();
 
@@ -24,6 +22,8 @@ class TCompCollider : public TCompBase {
     DECL_SIBLING_ACCESS();
 
 public:
+    std::string groupName = "";
+    std::string maskName = "";
 
     bool player_inside;
     bool player_full_inside;

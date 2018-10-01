@@ -270,16 +270,15 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
     TCompCollider * c_my_collider = get<TCompCollider>();
 
     pxShadowFilterData = new physx::PxFilterData();
-    pxShadowFilterData->word0 = c_my_collider->config->group;
+    pxShadowFilterData->word0 = c_my_collider->config->group | FilterGroup::Fence;
     pxShadowFilterData->word1 = FilterGroup::NonCastShadows;
 
     pxPlayerFilterData = new physx::PxFilterData();
     pxPlayerFilterData->word0 = c_my_collider->config->group;
     pxPlayerFilterData->word1 = FilterGroup::All;
 
-    physx::PxFilterData pxFilterData;
-    pxFilterData.word0 = FilterGroup::Scenario;
-    PxPlayerDiscardQuery.data = pxFilterData;
+    PxPlayerDiscardQuery = physx::PxQueryFilterData();
+    PxPlayerDiscardQuery.data.word0 = FilterGroup::Scenario;
 
     /* Initial reset messages */
     hitPoints = 0;
@@ -858,6 +857,13 @@ const bool TCompTempPlayerController::concaveTest(void) {
 
     if (EnginePhysics.Raycast(upwards_offset, c_my_transform->getFront(), 0.175f, hit, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery))
     {
+        CHandle col;
+        col.fromVoidPtr(hit.actor->userData);
+        TCompCollider* my_col = col;
+        col = col.getOwner();
+        CEntity *e_col = col;
+        dbg("COLISION CONVEX 2 %s with group %s and mask %s\n", e_col->getName(), my_col->groupName, my_col->maskName);
+
         VEC3 hit_normal = VEC3(hit.normal.x, hit.normal.y, hit.normal.z);
         VEC3 hit_point = VEC3(hit.position.x, hit.position.y, hit.position.z);
         if (hit_normal == c_my_transform->getUp()) return false;
@@ -1159,8 +1165,6 @@ void TCompTempPlayerController::updateWeapons(float dt)
             weaponRight.sendMsg(msg);
             CEntity * ent1 = getEntityByName("weapon_disc_right");
             CEntity * ent2 = getEntityByName("weapon_disc_left");
-            EngineParticles.launchSystem("data/particles/def_attack_trail.particles", ent1);
-            EngineParticles.launchSystem("data/particles/def_attack_trail.particles", ent2);
         }
         attackTimer = Clamp(attackTimer + dt, 0.f, timeToDeployWeapons);
         weaponsActive = true;
