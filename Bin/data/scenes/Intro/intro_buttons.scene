@@ -4,8 +4,22 @@
       "name": "Buttons"
     }
   },
+	{
+		"entity": {
+			"name": "Intro_terminal_01",
+			"prefab": "data/prefabs/terminal.prefab",
+			"transform": {
+				"pos": "-12.2 0 -74.675",
+				"lookat": "-12.458819 0 -73.709074"
+			},
+			"button": {
+				"script": "transition_intro_to_coliseum()",
+				"canBePressed": true
+			}
+		}
+	},
   {
-    "entity": {
+    "xentity": {
       "name": "Button 1",
       "transform": {
         "pos": "-23 1 -74.5",

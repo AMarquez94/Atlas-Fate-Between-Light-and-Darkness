@@ -140,6 +140,7 @@ void TCompTempPlayerController::update(float dt) {
 
         cb_globals.global_exposure_adjustment = clamp(cb_globals.global_exposure_adjustment, EngineScene.getActiveScene()->scene_exposure, 3.0f);
         cb_player.player_health = life != maxLife ? (life/ maxLife) : 1;
+        cb_player.updateGPU();
     }
 }
 

@@ -24,11 +24,13 @@ end
 
 function intro_intro_cinematic()
 	move("The Player", VEC3(-7.5, 12.115, 34.2), VEC3(-7.5, 12.115, 33.2));
+	resetMainCameras();
 	--setCinematicPlayerState(true, "crouch_cinematic")
 	blendInCamera("Camera_Cinematic_Intro", 0.0, "cinematic", "");
 	setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_End\", 1.2, \"cinematic\", \"cubicinout\")", 2.3);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro\", 0)", 4);
+	--execScriptDelayed("blendInCamera(\"Camera_Cinematic)
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_End\", 3)", 5);
 end
 
@@ -80,6 +82,7 @@ function intro_inhibitor_cinematic()
 	e_tutorial_weapon_right = toEntity(getEntityByName("tuto_weap_disc_right"));
 	render_tutorial_weapon_right = toRender(e_tutorial_weapon_right:getCompByName("render"));
 	render_tutorial_weapon_right.visible = false;
+	render_inhibitor_sign.visible = false;	
 	--end
 	execScriptDelayed("setCinematicPlayerState(false, \"\")", 3.5);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Inhibitor_Patrol_End\",0.5,\"cinematic\", \"cubicinout\")", 1.4);	
@@ -88,7 +91,7 @@ function intro_inhibitor_cinematic()
 	execScriptDelayed("render_tutorial_player.visible = true", 3.5);
 	execScriptDelayed("render_tutorial_weapon_left.visible = true", 3.5);
 	execScriptDelayed("render_tutorial_weapon_right.visible = true", 3.5);
-
+	execScriptDelayed("render_inhibitor_sign.visible = true", 3.5);
 end
 
 function onTriggerEnter_Trigger_Capsules_Cinematic_player()
