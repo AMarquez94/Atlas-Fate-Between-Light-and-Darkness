@@ -1,12 +1,12 @@
 [{
-		"entity": {
+		"xentity": {
 			"name": "zone_a_test",
 			"transform": {
 				"pos": "0.0 0.0 0.0"
 			}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "SpotlightBeam",
 			"prefab": "data/prefabs/prop_lightpost.prefab",
 			"transform": {
