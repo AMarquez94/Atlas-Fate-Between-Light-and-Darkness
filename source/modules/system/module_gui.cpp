@@ -70,8 +70,10 @@ void CModuleGUI::initializeWidgetStructure() {
 	mmc->registerOption("exit", mm_exitCB);
 	mmc->setCurrentOption(0);
 	
+
 	CMenuButtonsController* pmc = new CMenuButtonsController();
 	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS, "data/gui/pause_menu_buttons.json", pmc);
+
 	pmc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
 	pmc->registerOption("resume_game", pm_resumeGame);
 	pmc->registerOption("restart", pm_restartLevel);
@@ -80,10 +82,20 @@ void CModuleGUI::initializeWidgetStructure() {
 	pmc->registerOption("pause_exit", pm_Exit);
 	pmc->setCurrentOption(0);
 
+
+	CMenuButtonsController* dmc = new CMenuButtonsController();
+	registerWigdetStruct(EGUIWidgets::DEAD_MENU_BUTTONS, "data/gui/dead_menu_buttons.json", dmc);
+	dmc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::DEAD_MENU_BUTTONS);
+	dmc->registerOption("restart_dead", pm_restartLevel);
+	dmc->registerOption("dead_exit", pm_Exit);
+	dmc->setCurrentOption(0);
+
+
 	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json");
 	registerWigdetStruct(EGUIWidgets::SOUND_GRAPH, "data/gui/sound_graph.json");
 	registerWigdetStruct(EGUIWidgets::INGAME_STAMINA_BAR, "data/gui/ingame.json");
 	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE, "data/gui/pause_menu_background.json");
+	
 
 }
 

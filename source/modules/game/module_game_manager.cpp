@@ -72,6 +72,8 @@ void CModuleGameManager::switchState(PauseState pause) {
         mouse->setLockMouse(true);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS);
+
     }break;
     case PauseState::main: {
         mouse->setLockMouse(false);
@@ -84,6 +86,8 @@ void CModuleGameManager::switchState(PauseState pause) {
     }break;
     case PauseState::defeat: {
         mouse->setLockMouse(false);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS);
     }break;
     case PauseState::editor1: {
         mouse->setLockMouse(false);
@@ -256,7 +260,7 @@ void CModuleGameManager::renderMain() {
     }
     else if (_currentstate == PauseState::defeat) {
 
-        ImGui::SetNextWindowSize(ImVec2((float)window_width * 1.2f, (float)window_height));
+        /*ImGui::SetNextWindowSize(ImVec2((float)window_width * 1.2f, (float)window_height));
         ImGui::Begin("YOU DIED! WHAT WOULD YOU DO?", false, window_flags);
         ImGui::CaptureMouseFromApp(false);
         ImGui::SetWindowPos("YOU DIED! WHAT WOULD YOU DO?", ImVec2(menu_position.x, menu_position.y));
@@ -297,7 +301,7 @@ void CModuleGameManager::renderMain() {
             exit(0);
         }
 
-        ImGui::End();
+        ImGui::End();*/
 
     }
 
