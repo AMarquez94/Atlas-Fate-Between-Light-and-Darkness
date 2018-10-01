@@ -125,6 +125,12 @@ void CModuleGUI::update(float delta)
 
 }
 
+bool CModuleGUI::getWidgetStructureEnabled(EGUIWidgets wdgt) {
+
+	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt];
+	return wdgt_struct.enabled;
+}
+
 void CModuleGUI::renderGUI()
 {
 	for (auto& wdgt : _activeWidgets)
@@ -183,9 +189,13 @@ GUI::CController* CModuleGUI::getWidgetController(EGUIWidgets wdgt_type) {
 void CModuleGUI::activateWidget(EGUIWidgets wdgt)
 {
 	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt];
+	if (wdgt_struct.enabled) return;
 	CWidget* widgt = getWidget(wdgt_struct._widgetName);
 	if (widgt)
 	{
+		wdgt_struct.enabled = true;
+		_widgetStructureMap[wdgt] = wdgt_struct;
+
 		_activeWidgets.push_back(widgt);
 	}
 	if (wdgt_struct._controller != nullptr) {
@@ -204,7 +214,8 @@ void CModuleGUI::deactivateWidget(EGUIWidgets wdgt)
 		}
 		it++;
 	}
-
+	wdgt_struct.enabled = false;
+	_widgetStructureMap[wdgt] = wdgt_struct;
 	if (wdgt_struct._controller != nullptr) {
 		unregisterController(wdgt_struct._controller);
 	}

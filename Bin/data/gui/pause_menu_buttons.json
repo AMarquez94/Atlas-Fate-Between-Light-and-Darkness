@@ -14,12 +14,12 @@
 						"type" : "button",
 						"position" : "0 0",
 						"size" : "186 36",
-						"texture" : "data/textures/gui/new_game.dds",
+						"texture" : "data/textures/gui/pausemenu_resume.dds",
 						"selected" : {
-							"texture" : "data/textures/gui/new_game_selected.dds"
+							"texture" : "data/textures/gui/pausemenu_resume_selected.dds"
 						},
 						"pressed" : {
-							"texture" : "data/textures/gui/new_game_pressed.dds"
+							"texture" : "data/textures/gui/pausemenu_resume_pressed.dds"
 						}
 					},
 					{
@@ -27,44 +27,18 @@
 						"type" : "button",
 						"position" : "0 30",
 						"size" : "186 36",
-						"texture" : "data/textures/gui/continue.dds",
+						"texture" : "data/textures/gui/pausemenu_restart.dds",
 						"selected" : {
-							"texture" : "data/textures/gui/continue_selected.dds"
+							"texture" : "data/textures/gui/pausemenu_restart_selected.dds"
 						},
 						"pressed" : {
-							"texture" : "data/textures/gui/continue_pressed.dds"
-						}
-					},
-					{
-						"name" : "restart_checkpoint",
-						"type" : "button",
-						"position" : "0 60",
-						"size" : "186 36",
-						"texture" : "data/textures/gui/continue.dds",
-						"selected" : {
-							"texture" : "data/textures/gui/continue_selected.dds"
-						},
-						"pressed" : {
-							"texture" : "data/textures/gui/continue_pressed.dds"
-						}
-					},
-					{
-						"name" : "pause_options",
-						"type" : "button",
-						"position" : "0 90",
-						"size" : "186 36",
-						"texture" : "data/textures/gui/options.dds",
-						"selected" : {
-							"texture" : "data/textures/gui/options_selected.dds"
-						},
-						"pressed" : {
-							"texture" : "data/textures/gui/options_pressed.dds"
+							"texture" : "data/textures/gui/pausemenu_restart_pressed.dds"
 						}
 					},
 					{
 						"name" : "pause_exit",
 						"type" : "button",
-						"position" : "0 120",
+						"position" : "0 60",
 						"size" : "186 36",
 						"texture" : "data/textures/gui/exit.dds",
 						"selected" : {

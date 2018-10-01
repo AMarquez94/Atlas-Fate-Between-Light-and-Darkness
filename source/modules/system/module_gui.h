@@ -15,6 +15,7 @@ public:
 		std::string _widgetName;
 		GUI::CWidget *_widget;
 		GUI::CController *_controller;
+		bool enabled = false;
 	};
 
     const float width = 1080;
@@ -36,6 +37,7 @@ public:
 	void activateWidget(EGUIWidgets wdgt);
 	void deactivateWidget(EGUIWidgets wdgt);
     void enableWidget(const std::string& name, bool status = true);
+	bool getWidgetStructureEnabled(EGUIWidgets wdgt);
 
 	// controller management
 	void registerController(GUI::CController* controller);
