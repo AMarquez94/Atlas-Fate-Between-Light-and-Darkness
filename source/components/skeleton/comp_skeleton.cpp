@@ -615,6 +615,10 @@ void TCompSkeleton::onMsgPlacedAnimation(const TMsgAnimationPlaced& msg) {
 	TCompPlayerAttackCast* playerCast = e_player->get<TCompPlayerAttackCast>();
 
 	CHandle h_button = playerCast->getClosestButton();
+    if (!h_button.isValid()) {
+        dbg("NOT VALID\n");
+        return;
+    }
 	CEntity *e_button = h_button;
 	TCompPlayerAnimatorPlacer *anim_placer = e_button->get<TCompPlayerAnimatorPlacer>();
 
