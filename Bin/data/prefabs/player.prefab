@@ -278,6 +278,13 @@
 					]
 				}
 			],
+			"particles": {
+				"on_start":false,
+				"cores":
+				[
+					"data/particles/def_attack_trail.particles"
+				]
+			},
 			"player_weapon": {
 				"weapons_on_event":	"event:/Sounds/Player/Weapons/WeaponsOn",
 				"weapons_off_event": "event:/Sounds/Player/Weapons/WeaponsOff"
@@ -308,6 +315,13 @@
 					]
 				}
 			],
+			"particles": {
+				"on_start":false,
+				"cores":
+				[
+					"data/particles/def_attack_trail.particles"
+				]
+			},
 			"player_weapon": {
 				"weapons_on_event":	"event:/Sounds/Player/Weapons/WeaponsOn",
 				"weapons_off_event": "event:/Sounds/Player/Weapons/WeaponsOff"

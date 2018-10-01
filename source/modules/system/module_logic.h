@@ -15,6 +15,7 @@
 class TCompCameraThirdPerson;
 class TCompRender;
 class TCompNoiseEmitter;
+class TCompParticles;
 
 class CModuleLogic : public IModule
 {
@@ -150,3 +151,4 @@ TCompAIPatrol* toAIPatrol(CHandle h);
 TCompAudio* toAudio(CHandle h);
 TCompCameraThirdPerson* toTPCamera(CHandle h);
 TCompRender* toRender(CHandle h);
+TCompParticles* toParticles(CHandle h);

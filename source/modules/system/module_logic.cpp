@@ -19,6 +19,7 @@
 #include "entity/entity_parser.h"
 #include "components/camera_controller/comp_camera_thirdperson.h"
 #include "components/comp_render.h"
+#include "components/comp_particles.h"
 #include "components/object_controller/comp_noise_emitter.h"
 
 bool CModuleLogic::start() {
@@ -215,6 +216,9 @@ void CModuleLogic::publishClasses() {
         .comment("This is our wrapper of the render controller")
         .property("visible", &TCompRender::visible);
 
+    //SLB::Class<TCompParticles>("Particles", m)
+    //    .comment("This is our wrapper of the particle controller")
+    //    .set("setSystemState", &TCompParticles::setSystemState);
 
     /* Global functions */
 
@@ -813,6 +817,12 @@ TCompAIPatrol* toAIPatrol(CHandle h)
 TCompAudio* toAudio(CHandle h)
 {
     TCompAudio* t = h;
+    return t;
+}
+
+TCompParticles* toParticles(CHandle h)
+{
+    TCompParticles* t = h;
     return t;
 }
 

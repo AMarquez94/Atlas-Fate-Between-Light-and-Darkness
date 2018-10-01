@@ -37,6 +37,9 @@ FilterGroup getFilterByName(const std::string & name)
     else if (strcmp("characters", name.c_str()) == 0) {
         return FilterGroup::Characters;
     }
+    else if (strcmp("fence", name.c_str()) == 0) {
+        return FilterGroup::Fence;
+    }
     else if (strcmp("wall", name.c_str()) == 0) {
         return FilterGroup::Wall;
     }
