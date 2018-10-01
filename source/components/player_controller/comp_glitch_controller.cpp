@@ -24,7 +24,7 @@ TCompGlitchController::~TCompGlitchController()
     }
 
     cb_postfx.postfx_scan_amount = 0; // Disable the scan.
-    cb_postfx.updateGPU();
+    //cb_postfx.updateGPU();
 }
 
 void TCompGlitchController::debugInMenu() {
