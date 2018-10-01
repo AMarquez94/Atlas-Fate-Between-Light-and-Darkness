@@ -153,6 +153,17 @@ namespace Particles
             cps->n_collision.collision = collision.value("collision", cps->n_collision.collision);
         }
 
+        // light
+        const json& light = data["light"];
+        {
+            cps->n_light.color = loadVEC4(system.value("color", "1 1 1 1"));
+            cps->n_light.active = render.value("active", false);
+            cps->n_light.intensity = render.value("intensity", 1);
+            cps->n_light.radius = loadVEC2(system.value("radius", "1 1"));
+            cps->n_light.fadeTime = loadVEC2(system.value("fade", "1 1"));
+            cps->n_light.time = render.value("time", 1);
+        }
+
         // color
         const json& color = data["color"];
         {

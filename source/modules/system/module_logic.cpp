@@ -208,9 +208,9 @@ void CModuleLogic::publishClasses() {
         .comment("This is our wrapper of the render controller")
         .property("visible", &TCompRender::visible);
 
-    //SLB::Class<TCompParticles>("Particles", m)
-    //    .comment("This is our wrapper of the particle controller")
-    //    .set("setSystemState", &TCompParticles::setSystemState);
+    SLB::Class<TCompParticles>("Particles", m)
+        .comment("This is our wrapper of the particle controller")
+        .set("setSystemState", &TCompParticles::setSystemState);
 
     /* Global functions */
 

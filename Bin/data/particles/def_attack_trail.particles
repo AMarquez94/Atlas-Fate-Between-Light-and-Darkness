@@ -32,8 +32,8 @@
 			[1.0, "0.0 0.0 0.0"]       
     ],   
 		"rotation" : [      
-		  [0.0, "0.0 0.0 0.0"], 
-      [1.0, "0.0 0.0 0.0"]    
+		  [0.0, "0.0 0.5 0.0"], 
+      [1.0, "0.0 0.5 0.0"]    
     ],        
 		"acceleration": 1,    
 		"wind": 0  
@@ -51,7 +51,7 @@
 	},  
 	"renderer": {   
 			"mode": "billboard",    
-			"texture": "data/textures/particles/glow.dds",  
+			"texture": "data/textures/particles/fire_sparkle_electric.dds",  
       "frame_size" : "1 1", 
       "initial_frame" : 0,
       "num_frames" : 1,   

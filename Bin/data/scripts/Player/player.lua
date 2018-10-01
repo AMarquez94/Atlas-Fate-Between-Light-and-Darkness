@@ -18,9 +18,11 @@ function animation_attack_swingLeft(sender)
 	h = playerController:getLeftWeapon();
 	e = toEntity(h);
 	t_audio = toAudio(e:getCompByName("audio"));
-	--t_particles = toParticles(e:getCompByName("particles"));
-		
 	t_audio:playEvent("event:/Sounds/Player/Weapons/WeaponAttack_1", true);
+	
+	t_particles = toParticles(e:getCompByName("particles"));
+	t_particles:setSystemState(true);
+	
 end
 
 function animation_attack_swingRight(sender)
@@ -28,6 +30,10 @@ function animation_attack_swingRight(sender)
 	e = toEntity(h);
 	t_audio = toAudio(e:getCompByName("audio"));
 	t_audio:playEvent("event:/Sounds/Player/Weapons/WeaponAttack_2", true);
+	
+	t_particles = toParticles(e:getCompByName("particles"));
+	t_particles:setSystemState(true);
+	
 end
 
 function animation_attack_strikeLeft(sender)
@@ -35,6 +41,10 @@ function animation_attack_strikeLeft(sender)
 	e = toEntity(h);
 	t_audio = toAudio(e:getCompByName("audio"));
 	t_audio:playEvent("event:/Sounds/Player/Weapons/WeaponClash_1", true);
+	
+	t_particles = toParticles(e:getCompByName("particles"));
+	t_particles:setSystemState(false);
+	
 end
 
 function animation_attack_strikeRight(sender)
@@ -42,6 +52,10 @@ function animation_attack_strikeRight(sender)
 	e = toEntity(h);
 	t_audio = toAudio(e:getCompByName("audio"));
 	t_audio:playEvent("event:/Sounds/Player/Weapons/WeaponClash_2", true);
+	
+	t_particles = toParticles(e:getCompByName("particles"));
+	t_particles:setSystemState(false);
+	
 end
 
 function animation_enter_merge()

@@ -24,8 +24,6 @@ void TCompPlayerWeapon::onMsgWeaponsActivated(const TMsgWeaponsActivated& msg) {
     switch (_currentState) {
     case EState::DEACTIVATED:
 
-        particle_system->setSystemState(true);
-
         if (msg.activate) {
             if (weaponsOff.isValid()) {
                 weaponsOff.stop();
@@ -35,8 +33,6 @@ void TCompPlayerWeapon::onMsgWeaponsActivated(const TMsgWeaponsActivated& msg) {
         }
         break;
     case EState::ACTIVATED:
-
-        particle_system->setSystemState(false);
 
         if (!msg.activate) {
             weaponsOn.stop();
