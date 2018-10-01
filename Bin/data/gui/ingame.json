@@ -18,6 +18,140 @@
 						"variable" : "staminaBarFactor"
 					}
 				]
+			},
+			{
+				"name" : "press_button_e",
+				"type" : "widget",
+				"position" : "615 424",
+				"children" : [
+					{
+						"name" : "button_a",
+						"type" : "image",
+						"size" : "128 32",
+						"texture" : "data/textures/gui/press_button_E.dds"
+					}
+				]
+			},
+			{
+				"name" : "press_button_a",
+				"type" : "widget",
+				"position" : "615 424",
+				"children" : [
+					{
+						"name" : "button_x",
+						"type" : "image",
+						"size" : "128 32",
+						"texture" : "data/textures/gui/press_button_A.dds"
+					}
+				]
+			},
+			{
+				"name" : "grab_enemy_e",
+				"type" : "widget",
+				"position" : "615 424",
+				"children" : [
+					{
+						"name" : "enemy_a",
+						"type" : "image",
+						"size" : "128 32",
+						"texture" : "data/textures/gui/grab_enemy_E.dds"
+					}
+				]
+			},
+			{
+				"name" : "grab_enemy_a",
+				"type" : "widget",
+				"position" : "615 424",
+				"children" : [
+					{
+						"name" : "enemy_x",
+						"type" : "image",
+						"size" : "128 32",
+						"texture" : "data/textures/gui/grab_enemy_A.dds"
+					}
+				]
+			},
+			{
+				"name" : "attack_enemy_mouse",
+				"type" : "widget",
+				"position" : "615 424",
+				"children" : [
+					{
+						"name" : "enemy_mouse",
+						"type" : "image",
+						"size" : "128 32",
+						"texture" : "data/textures/gui/stun_enemy_mouse.dds"
+					}
+				]
+			},
+			{
+				"name" : "attack_enemy_x",
+				"type" : "widget",
+				"position" : "615 424",
+				"children" : [
+					{
+						"name" : "enemy_x",
+						"type" : "image",
+						"size" : "128 32",
+						"texture" : "data/textures/gui/stun_enemy_X.dds"
+					}
+				]
+			},
+			{
+				"name" : "inhibited_space",
+				"type" : "widget",
+				"position" : "615 424",
+				"children" : [
+					{
+						"name" : "inhib_space",
+						"type" : "image",
+						"size" : "256 32",
+						"texture" : "data/textures/gui/remove_Space.dds",
+						"effects": [
+							{
+								"type":	"change_textures",
+								"textures": [
+									{
+										"name": "data/textures/gui/remove_Space.dds",
+										"time": 0.175
+									},
+									{
+										"name": "data/textures/gui/remove_Space_inv.dds",
+										"time": 0.1
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			{
+				"name" : "inhibited_y",
+				"type" : "widget",
+				"position" : "615 424",
+				"children" : [
+					{
+						"name" : "inhib_y",
+						"type" : "image",
+						"size" : "256 32",
+						"texture" : "data/textures/gui/remove_Y.dds",
+						"effects": [
+							{
+								"type":	"change_textures",
+								"textures": [
+									{
+										"name": "data/textures/gui/remove_Y.dds",
+										"time": 0.175
+									},
+									{
+										"name": "data/textures/gui/remove_Y_inv.dds",
+										"time": 0.1
+									}
+								]
+							}
+						]
+					}
+				]
 			}
 		]
 	}

@@ -816,12 +816,34 @@ namespace FSM
     void PressingButtonState::onStart(CContext& ctx) const {
 
         CEntity* e = ctx.getOwner();
-        e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::METRALLA_FINISH , 1.0f });
-        //e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
-        //e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+        e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::HACK , 1.0f });
+		e->sendMsg(TMsgAnimationPlaced{});
+
     }
 
     void PressingButtonState::onFinish(CContext& ctx) const {
+
+    }
+
+    bool StunnedState::load(const json& jData) {
+
+        _animationName = jData["animation"];
+        _speed = jData.value("speed", 2.f);
+        _size = jData.value("size", 1.f);
+        _radius = jData.value("radius", 0.3f);
+        _noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+        if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+        return true;
+    }
+
+    void StunnedState::onStart(CContext& ctx) const {
+
+        CEntity* e = ctx.getOwner();
+        e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::stunnedState, _speed, _size, _radius, _target, _noise });
+    }
+
+    void StunnedState::onFinish(CContext& ctx) const {
 
     }
 }

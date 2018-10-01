@@ -22,9 +22,8 @@
 			],
 			"fade_controller": {
 				"fade_color": "0.0 1.0 1.0 1.0",
-				"fade_time": 0.6,
-				"fall_speed": 3.0,
-				"material": "data/materials/characters/mtl_enemy_patrol_shade.material"
+				"fade_time": 4.5,
+				"fall_speed": 0.5
 			},
 			"skeleton": {
 				"skeleton": "data/skeletons/patrol/patrol.skeleton",
@@ -84,6 +83,10 @@
 				"shadows_resolution": 256,
 				"shadows_fmt": "R32_TYPELESS"
 			},
+			"xbone_tracker": {
+				"bone": "Bip001 Laser",
+				"parent": "The Enemy"
+			},
 			"hierarchy": {
 				"parent": "The Enemy",
 				"pos": "0 1.75 0.85",
@@ -115,7 +118,8 @@
 			},
 			"bone_tracker": {
 				"bone": "Bip001 R Foot",
-				"parent": "The Enemy"
+				"parent": "The Enemy",
+				"rotation_update" : false
 			},
 			"abs_aabb": true,
 			"local_aabb": true
@@ -129,7 +133,8 @@
 			},
 			"bone_tracker": {
 				"bone": "Bip001 L Foot",
-				"parent": "The Enemy"
+				"parent": "The Enemy",
+				"rotation_update" : false
 			},
 			"abs_aabb": true,
 			"local_aabb": true

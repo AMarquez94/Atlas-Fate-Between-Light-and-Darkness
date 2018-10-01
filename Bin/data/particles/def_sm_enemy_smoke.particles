@@ -1,6 +1,6 @@
 {
 	"system": {
-		"duration": 0.5,
+		"duration": 1,
 		"looping": true,
 		"start_delay": 0.0, 
 		"start_lifetime": 1.0,
@@ -11,17 +11,17 @@
 		"start_color": "1 0 0 1",
 		"gravity": -0.4,  
 		"simulation_speed":1,
-		"max_particles": 1500,
+		"max_particles": 900,
 		"offset": "0 1 0"
 	},      
 	"emission": {         
-		"rate_time": 300.0,    
+		"rate_time": 200.0,    
 		"rate_distance": 0.0,    
 		"variation" : 0.0
 	},	    
 	"shape": {    
 		"type": "cone",
-		"size": "0.75 0.75 0.75",
+		"size": "1.5 1.5 1.5",
 		"angle": 0,
 		"shell": true
 	},   
@@ -57,8 +57,7 @@
 		"initial_frame" : 0,
 		"num_frames" : 16,  
 		"frame_speed" : 16,   
-		"length" : 1,
-		"tech" : "particles_instanced_additive.tech"
+		"length" : 1
 	},        
   "size" : {     
     "scale" : 1,

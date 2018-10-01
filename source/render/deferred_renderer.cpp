@@ -142,11 +142,11 @@ void CDeferredRenderer::renderAccLight() {
 
     CRenderManager::get().renderCategory("hologram");
     CRenderManager::get().renderCategory("hologram_sw");
-    //CRenderManager::get().renderCategory("hologram_screen");
-    CRenderManager::get().renderCategory("volume_shafts");
-    CRenderManager::get().renderCategory("volume_ray_shafts");
     CRenderManager::get().renderCategory("cp_particles");
     Engine.get().getParticles().renderAdditive();
+
+    CRenderManager::get().renderCategory("volume_shafts");
+    CRenderManager::get().renderCategory("volume_ray_shafts");
 }
 
 // -------------------------------------------------------------------------
@@ -399,7 +399,7 @@ void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camer
     renderGBuffer();
     renderGBufferDecals();
 	renderAO(h_camera);
-
+    CRenderManager::get().renderCategory("decals");
 	// Do the same with the acc light
 	CTexture::setNullTexture(TS_DEFERRED_ACC_LIGHTS);
 	renderAccLight();

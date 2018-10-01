@@ -35,6 +35,11 @@ protected:
     CHandle hNoiseSource = CHandle();
     std::chrono::steady_clock::time_point lastTimeNoiseWasHeard;
 
+    /* Pushed */
+    VEC3 pushedDirection = VEC3::Zero;
+    float pushedTime = 0.f;
+    bool isPushing = false;
+
     std::string validState = "";
 
     /* Navmesh management */
@@ -62,6 +67,7 @@ protected:
     bool moveToPoint(float speed, float rotationSpeed, VEC3 destPoint, float dt);
     bool isCurrentDestinationReachable();
     void sendSuspectingMsg(bool isSuspecting);
+    void sendNothingHereMsg();
 
     /* TODO: Delete */
     float maxDiff = 0;

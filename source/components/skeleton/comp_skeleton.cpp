@@ -7,6 +7,9 @@
 #include "components/comp_transform.h"
 #include "cal3d/animcallback.h"
 #include "components/comp_name.h"
+#include "components/object_controller/comp_button.h"
+#include "components/skeleton/comp_player_animation_placer.h"
+#include "components/player_controller/comp_player_attack_cast.h"
 
 DECL_OBJ_MANAGER("skeleton", TCompSkeleton);
 
@@ -37,6 +40,9 @@ void TCompSkeleton::registerMsgs()
 	DECL_MSG(TCompSkeleton, TMsgAnimationCallback, onMsgAnimationCallback);
 	DECL_MSG(TCompSkeleton, TMsgAnimationCompleted, onMsgAnimationCompleted);
 	DECL_MSG(TCompSkeleton, TMsgScenePaused, onMsgSceneStop);
+	DECL_MSG(TCompSkeleton, TMsgAnimationPlaced, onMsgPlacedAnimation);
+
+	
 }
 
 // --------------------------------------------------------------------
@@ -119,6 +125,10 @@ void TCompSkeleton::update(float dt) {
 		if(!this->paused)
 			model->update(dt);
     }
+
+	if (placed_animation_active) {
+		lerpingToAnimationPlaced(dt);
+	}
 
 	if (movingRoot) {
 
@@ -596,4 +606,79 @@ void TCompSkeleton::onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) {
 void TCompSkeleton::onMsgSceneStop(const TMsgScenePaused& msg) {
 	TCompSkeleton* e = CHandle(this);
 	e->paused = msg.isPaused;
+}
+
+void TCompSkeleton::onMsgPlacedAnimation(const TMsgAnimationPlaced& msg) {
+
+	CEntity *e_player = CHandle(this).getOwner();
+
+	TCompPlayerAttackCast* playerCast = e_player->get<TCompPlayerAttackCast>();
+
+	CHandle h_button = playerCast->getClosestButton();
+    if (!h_button.isValid()) {
+        dbg("NOT VALID\n");
+        return;
+    }
+	CEntity *e_button = h_button;
+	TCompPlayerAnimatorPlacer *anim_placer = e_button->get<TCompPlayerAnimatorPlacer>();
+
+	if (anim_placer == nullptr) {
+		return;
+	}
+
+	point_to_move = anim_placer->getPointPosition();
+	point_to_look = anim_placer->getPointToLookAt();
+
+	placed_animation_active = true;
+	CEntity *e = CHandle(this).getOwner();
+	TCompTransform *comp_trans = e->get<TCompTransform>();
+	initial_pos_from_lerp = comp_trans->getPosition();
+	initial_rot_from_lerp = comp_trans->getRotation();
+	time_lerping = 0.0f;
+}
+
+void TCompSkeleton::lerpingToAnimationPlaced(float dt) {
+
+	if (time_lerping >= 1.0f) {
+		placed_animation_active = false;
+		return;
+	}
+
+	CEntity *e = CHandle(this).getOwner();
+	TCompTransform *comp_trans = e->get<TCompTransform>();
+
+	comp_trans->setPosition( VEC3::Lerp(initial_pos_from_lerp, point_to_move , Clamp(time_lerping * 7 ,0.0f,1.0f)) );
+
+	VEC3 dist = point_to_look - comp_trans->getPosition();
+	comp_trans->lookAt(comp_trans->getPosition(), point_to_look);
+	//rotateTowardsVec( point_to_look, 15, dt );
+	//comp_trans->setRotation( QUAT::Slerp(initial_rot_from_lerp, prova, Clamp(time_lerping * 7, 0.0f, 1.0f)) );
+	time_lerping += dt;
+
+}
+
+
+bool TCompSkeleton::rotateTowardsVec(VEC3 objective, float rotationSpeed, float dt){
+	CEntity * me = CHandle(this).getOwner();
+	bool isInObjective = false;
+	TCompTransform *mypos = me->get<TCompTransform>();
+	float y, r, p;
+	mypos->getYawPitchRoll(&y, &p, &r);
+
+	float deltaYaw = mypos->getDeltaYawToAimTo(objective);
+	if (fabsf(deltaYaw) <= rotationSpeed * dt) {
+		y += deltaYaw;
+		isInObjective = true;
+	}
+	else {
+		if (mypos->isInLeft(objective))
+		{
+			y += rotationSpeed * dt;
+		}
+		else {
+			y -= rotationSpeed * dt;
+		}
+	}
+	mypos->setYawPitchRoll(y, p, r);
+	return isInObjective;
 }

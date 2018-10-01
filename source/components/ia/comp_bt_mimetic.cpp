@@ -460,7 +460,7 @@ BTNode::ERes TCompAIMimetic::actionWaitObserving(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE_WALL);
     timerWaitingInObservation += dt;
 
     if (timerWaitingInObservation < 2.f) {
@@ -531,7 +531,7 @@ BTNode::ERes TCompAIMimetic::actionGoToWpt(float dt)
         return BTNode::ERes::LEAVE;
 
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::WALK);
     return moveToPoint(speed, rotationSpeedPatrolling, getWaypoint().position, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
 
@@ -624,7 +624,7 @@ BTNode::ERes TCompAIMimetic::actionRotateToNoiseSource(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::TURN_LEFT);
     TCompTransform *myPos = get<TCompTransform>();
     bool isInObjective = rotateTowardsVec(noiseSource, rotationSpeedNoise, dt);
     return isInObjective ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
@@ -662,6 +662,8 @@ BTNode::ERes TCompAIMimetic::actionResetVariablesChase(float dt)
 
 BTNode::ERes TCompAIMimetic::actionRotateTowardsPlayerWithNoise(float dt)
 {
+    TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::TURN_LEFT);
     if (isEntityInFov(entityToChase, fov, maxChaseDistance)) {
         CEntity* player = EngineEntities.getPlayerHandle();
         TCompTransform* ppos = player->get<TCompTransform>();
@@ -691,7 +693,7 @@ BTNode::ERes TCompAIMimetic::actionChasePlayerWithNoise(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::RUN);
 
     TCompTransform *mypos = get<TCompTransform>();
     CEntity *player = EngineEntities.getPlayerHandle();
@@ -774,7 +776,7 @@ BTNode::ERes TCompAIMimetic::actionGoToNoiseSource(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::RUN);
 
     CEntity * ePlayer = EngineEntities.getPlayerHandle();
     TCompTransform * ppos = get<TCompTransform>();
@@ -805,7 +807,7 @@ BTNode::ERes TCompAIMimetic::actionWaitInNoiseSource(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::LOOKING_FOR_PLAYER);
     TCompTransform *mypos = get<TCompTransform>();
     VEC3 vp = mypos->getPosition();
     CEntity * ePlayer = EngineEntities.getPlayerHandle();
@@ -827,13 +829,14 @@ BTNode::ERes TCompAIMimetic::actionWaitInNoiseSource(float dt)
 
 BTNode::ERes TCompAIMimetic::actionGoToPlayerLastPos(float dt)
 {
+
     if (lastPlayerKnownPos == VEC3::Zero) {
         return BTNode::ERes::LEAVE;
     }
 
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::RUN);
     if (moveToPoint(speed, rotationSpeedChase, lastPlayerKnownPos, dt)) {
         return BTNode::ERes::LEAVE;
     }
@@ -849,7 +852,7 @@ BTNode::ERes TCompAIMimetic::actionWaitInPlayerLastPos(float dt)
     }
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::LOOKING_FOR_PLAYER);
     timerWaitingInWpt += dt;
     if (timerWaitingInWpt < waitTimeInLasPlayerPos) {
         return BTNode::STAY;
@@ -887,7 +890,7 @@ BTNode::ERes TCompAIMimetic::actionGoToInitialPos(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::WALK);
     TCompTransform *mypos = get<TCompTransform>();
     VEC3 initialPosWithMyY = VEC3(initialPos.x, mypos->getPosition().y, initialPos.z);
 
@@ -898,7 +901,7 @@ BTNode::ERes TCompAIMimetic::actionRotateToInitialPos(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::IDLE);
+    myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::TURN_LEFT);
     TCompTransform *myPos = get<TCompTransform>();
     bool isInObjective = rotateTowardsVec(myPos->getPosition() + initialLookAt, rotationSpeedObservation, dt);
     return isInObjective ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
@@ -909,7 +912,7 @@ BTNode::ERes TCompAIMimetic::actionJumpWall(float dt)
 {
     //Animation To Change
     TCompMimeticAnimator *myAnimator = get<TCompMimeticAnimator>();
-	setGravityToFaceWall();
+    setGravityToFaceWall();
     myAnimator->playAnimation(TCompMimeticAnimator::EAnimation::RETURN_TO_WALL);
     return BTNode::ERes::LEAVE;
 }
@@ -927,7 +930,7 @@ BTNode::ERes TCompAIMimetic::actionHoldOnWall(float dt)
 	if (restAnimationCompleted) {
 		setLaserState(true);
 		resetAnimationCompletedBooleans();
-		
+
 		return BTNode::ERes::LEAVE;
 	}
 	else {
@@ -1091,6 +1094,7 @@ void TCompAIMimetic::setGravityToFaceWall()
             }
         }
     }
+    //dbg("FINAL DIR (%f, %f, %f)\n", finalDir.x, finalDir.y, finalDir.z);
 
     tCollider->setNormalGravity(finalDir * 9.8f);
 }

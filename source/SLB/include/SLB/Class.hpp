@@ -407,10 +407,10 @@ namespace SLB {
         size_t max_param = fc->getNumArguments();
         if (_param >= max_param)
         {
-        std::cerr
-          << "SLB_Warning: " << fc->getInfo() <<" to many parameters (total args=" << max_param << ")" 
-          << "("  << _param << ", " << s << ")"
-          << std::endl;
+        //std::cerr
+        //  << "SLB_Warning: " << fc->getInfo() <<" to many parameters (total args=" << max_param << ")" 
+        //  << "("  << _param << ", " << s << ")"
+        //  << std::endl;
         }
         else
         {
@@ -419,10 +419,10 @@ namespace SLB {
       }
       else
       {
-        std::cerr
-          << "SLB_Warning: Can not set param info to a non-funcCall object " 
-          << "("  << _param << ", " << s << ")"
-          << std::endl;
+        //std::cerr
+        //  << "SLB_Warning: Can not set param info to a non-funcCall object " 
+        //  << "("  << _param << ", " << s << ")"
+        //  << std::endl;
       }
     }
     _param++;

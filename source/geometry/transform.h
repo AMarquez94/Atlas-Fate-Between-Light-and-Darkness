@@ -30,6 +30,15 @@ public:
             ;
     }
 
+	void rotateAround(VEC3 target, float ammount) {
+		VEC3 dir = pos - target;
+		VEC3 rotated_dir;
+		rotated_dir.x = ( dir.x * cos(ammount) ) - ( dir.z * sin(ammount) );
+		rotated_dir.z = (dir.x * sin(ammount)) + (dir.z * sin(ammount));
+		VEC3 new_pos = target + rotated_dir;
+		pos = new_pos;
+	}
+
     MAT44 asWorldMatrix() const {
         return MAT44::CreateWorld(pos, getFront(), getUp());
     }

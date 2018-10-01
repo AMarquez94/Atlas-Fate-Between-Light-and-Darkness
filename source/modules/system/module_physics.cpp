@@ -215,8 +215,21 @@ void CModulePhysics::CustomSimulationEventCallback::onContact(const physx::PxCon
 							entity2->sendMsg(msg);
 						}
 					}
-					else {
+					else if (cp.events & (PxPairFlag::eNOTIFY_TOUCH_LOST)) {
 						/* TODO: To be implemented */
+
+                        /* Only manages contact between rigidbodies */
+                        TCompRigidbody * rigidbody1 = entity1->get<TCompRigidbody>();
+                        TCompRigidbody * rigidbody2 = entity2->get<TCompRigidbody>();
+
+                        if (rigidbody1 && rigidbody2) {
+                            TMsgPhysxContactLost msg;
+                            msg.other_entity = h_actor_2.getOwner();
+                            entity1->sendMsg(msg);
+
+                            msg.other_entity = h_actor_1.getOwner();
+                            entity2->sendMsg(msg);
+                        }
 					}
 				}
         //dbg("contact found\n");

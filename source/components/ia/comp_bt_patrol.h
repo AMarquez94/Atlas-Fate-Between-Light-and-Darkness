@@ -47,6 +47,9 @@ private:
 	void onMsgAnimationCompleted(const TMsgAnimationCompleted& msg);
 	void onMsgWarned(const TMsgWarnEnemy& msg);
 	void onMsgResetPatrolLights(const TMsgResetPatrolLights& msg);
+	void onMsgEnemyNothingHere(const TMsgEnemyNothingHere& msg);
+	void onMsgPhysxContact(const TMsgPhysxContact& msg);
+	void onMsgPhysxContactLost(const TMsgPhysxContactLost& msg);
 
     /* Aux functions */
     void turnOnLight();
@@ -149,6 +152,7 @@ public:
     /* LUA functions */
     void launchInhibitor();
 
+    void stunPlayer();
     void attackPlayer();
     void playStepParticle(bool left);
     void shakeCamera(float max_amount, float max_distance, float duration);

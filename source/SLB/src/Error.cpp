@@ -147,36 +147,36 @@ void ErrorHandler::process(lua_State *L)
 
 void DefaultErrorHandler::begin(const char *error)
 {
-  _out.clear();
-  _out << "SLB Exception: "
-    << std::endl << "-------------------------------------------------------"
-    << std::endl;
-  _out << "Lua Error:" << std::endl << "\t" 
-    <<  error << std::endl
-    << "Traceback:" << std::endl;
+  //_out.clear();
+  //_out << "SLB Exception: "
+  //  << std::endl << "-------------------------------------------------------"
+  //  << std::endl;
+  //_out << "Lua Error:" << std::endl << "\t" 
+  //  <<  error << std::endl
+  //  << "Traceback:" << std::endl;
 }
 
 const char* DefaultErrorHandler::end()
 {
-  _final = _out.str();
+  //_final = _out.str();
   return _final.c_str();
 }
 
 void DefaultErrorHandler::stackElement(int level)
 {
-  _out << "\t [ " << level << " (" << SE_what() << ") ] ";
+  //_out << "\t [ " << level << " (" << SE_what() << ") ] ";
   int currentline = SE_currentLine();
   if (currentline > 0 )
   {
-    _out << SE_shortSource() << ":" << currentline; 
+    //_out << SE_shortSource() << ":" << currentline; 
   }
   const char *name = SE_name();
   if (name)
   {
-    _out << " @ " << name;
-     if (SE_nameWhat()) _out << "(" << SE_nameWhat() << ")";
+    //_out << " @ " << name;
+     //if (SE_nameWhat()) _out << "(" << SE_nameWhat() << ")";
   }
-  _out << std::endl;
+  //_out << std::endl;
 }
 
 } /* SLB */

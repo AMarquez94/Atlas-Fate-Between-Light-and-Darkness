@@ -13,13 +13,21 @@ void TCompAnimatedObjController::registerMsgs() {
 
 void TCompAnimatedObjController::onGroupCreated(const TMsgEntitiesGroupCreated &msg) {
 
+	CEntity *controller_entity = CHandle(this).getOwner();
+	TCompGroup *group = controller_entity->get<TCompGroup>();
+
 	for (int i = 0; i < object_names.size(); i++) {
-		CEntity* e = getEntityByName(object_names[i]);
+		CEntity* e;
+		if (getHandlesOnGroup) {
+			e = group->getHandleByName(object_names[i]);
+		}
+		else {
+			e = getEntityByName(object_names[i]);
+		}
 
 		if (e != nullptr) {
 			TCompRigidAnim* comp_rigid = e->get<TCompRigidAnim>();
 			object_handles.push_back(e);
-
 			if (comp_rigid != nullptr) {
 
 				for (int j = 0; j < animationInfos.size(); j++) {
@@ -72,6 +80,8 @@ void TCompAnimatedObjController::debugInMenu() {
 
 void TCompAnimatedObjController::load(const json& j, TEntityParseContext& ctx) {
 
+	getHandlesOnGroup = j.value("get_on_group", true);
+
 	if (j.count("reference_names")) {
 		auto& j_references = j["reference_names"];
 		if (j_references[0].count("get_names_auto")) {
@@ -115,7 +125,8 @@ void TCompAnimatedObjController::playAnimation(std::string anim_name) {
 	for (int i = 0; i < object_handles.size(); i++) {
 		CEntity *e = object_handles[i];
 		TCompRigidAnim *rigid_anim = e->get<TCompRigidAnim>();
-		rigid_anim->playAnimation(id);
+		if(rigid_anim != nullptr)
+			rigid_anim->playAnimation(id);
 	}
 }
 

@@ -3,7 +3,7 @@ function onSceneStart()
 	playerNoiseEmitter = getPlayerNoiseEmitter();
 	immortal();
 	execScriptDelayed("immortal()", 1);
-	execScriptDelayed("resetPatrolLights()", 0.5);
+	execScriptDelayed("resetPatrolLights()", 0.1);
 	
 	if isDebug() then
 		lanternsDisable(true);

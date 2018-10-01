@@ -23,8 +23,9 @@ struct TCompRigidAnim : public TCompBase {
   int					  next_animation_id = -1;
   int					  current_animation_id = -1;
   float                   current_time = 0.f;
-  bool withoutKeys = false;
+  std::vector<bool> withoutKeys;
 
+  VEC3					  last_k_pos;
   VEC3					  parent_position;
   QUAT					  parent_rotation;
 

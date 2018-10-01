@@ -1,1056 +1,839 @@
-[
-  {
-    "entity":
-    {
-      "name": "BC_neones"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_amarilllo_004"
-      ,
-      "prefab": "data/prefabs/neon_amarillo_3.prefab"
-      ,
-      "transform":
-      {
-        "pos": "27.5036 3.46782 -324.292"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_amarillo_006"
-      ,
-      "prefab": "data/prefabs/neon_amarillo_5.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-13.4439 4.1039 -324.183"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_azul_005"
-      ,
-      "prefab": "data/prefabs/neon_azul_4.prefab"
-      ,
-      "transform":
-      {
-        "pos": "13.4712 2.36722 -391.301"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_azul_006"
-      ,
-      "prefab": "data/prefabs/neon_azul_4.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-18.6066 13.1366 -343.97"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_azul_007"
-      ,
-      "prefab": "data/prefabs/neon_azul_2.prefab"
-      ,
-      "transform":
-      {
-        "pos": "27.7414 13.8306 -378.259"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_rectangulo_verde001"
-      ,
-      "prefab": "data/prefabs/neon_rectangulo_verde.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-25.3022 2.48755 -376.778"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_redondo_azul001"
-      ,
-      "prefab": "data/prefabs/neon_redondo_azul.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-12.2359 19.466 -391.445"
-        ,
-        "rotation": "-0.5 0.5 -0.5 -0.5"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_neon_verde_005"
-      ,
-      "prefab": "data/prefabs/neon_verde_4.prefab"
-      ,
-      "transform":
-      {
-        "pos": "34.6814 2.16712 -366.376"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot001"
-      ,
-      "transform":
-      {
-        "pos": "-24.8569 1.11017 -378.843"
-        ,
-        "lookat": "-24.1459 0.888849 -357.933"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 20.924
-        ,
-        "angle": 26.4
-        ,
-        "inner_cut": 4.5
-        ,
-        "z_far": 20.924
-        ,
-        "volume": false
-        ,
-        "color": "0.0 0.521569 0.0235294 1.0"
-        ,
-        "intensity": 1.0
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot001.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot002"
-      ,
-      "transform":
-      {
-        "pos": "-13.7224 0.612617 -324.558"
-        ,
-        "lookat": "5.168 0.88885 -326.353"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 18.9775
-        ,
-        "angle": 39.5
-        ,
-        "inner_cut": 24.1
-        ,
-        "z_far": 18.9775
-        ,
-        "volume": false
-        ,
-        "color": "1.0 0.647059 0.0235294 1.0"
-        ,
-        "intensity": 1.0
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot002.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot003"
-      ,
-      "transform":
-      {
-        "pos": "27.8063 0.608566 -324.558"
-        ,
-        "lookat": "5.168 0.88885 -326.283"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 22.7057
-        ,
-        "angle": 39.5
-        ,
-        "inner_cut": 27.7
-        ,
-        "z_far": 22.7057
-        ,
-        "volume": false
-        ,
-        "color": "1.0 0.647059 0.0235294 1.0"
-        ,
-        "intensity": 1.0
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot003.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot006"
-      ,
-      "transform":
-      {
-        "pos": "14.63 0.876301 -391.028"
-        ,
-        "lookat": "-3.42441 1.2442 -390.598"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 18.0633
-        ,
-        "angle": 19.2
-        ,
-        "inner_cut": 4.5
-        ,
-        "z_far": 18.0633
-        ,
-        "volume": false
-        ,
-        "color": "0.0 0.0745098 0.768628 1.0"
-        ,
-        "intensity": 1.0
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot006.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot007"
-      ,
-      "transform":
-      {
-        "pos": "34.6358 1.84583 -366.416"
-        ,
-        "lookat": "15.8199 -0.160222 -374.037"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 20.3997
-        ,
-        "angle": 26.4
-        ,
-        "inner_cut": 19.6
-        ,
-        "z_far": 20.3997
-        ,
-        "volume": false
-        ,
-        "color": "0.0 0.521569 0.0235294 1.0"
-        ,
-        "intensity": 0.4
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot007.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot009"
-      ,
-      "transform":
-      {
-        "pos": "-33.5106 46.5471 -397.922"
-        ,
-        "lookat": "-33.9969 61.1665 -398.25"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 14.6312
-        ,
-        "angle": 31.6
-        ,
-        "inner_cut": 25.8
-        ,
-        "z_far": 14.6312
-        ,
-        "volume": false
-        ,
-        "color": "1.0 0.647059 0.0235294 1.0"
-        ,
-        "intensity": 3.0
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot009.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot011"
-      ,
-      "transform":
-      {
-        "pos": "44.3059 46.5471 -397.922"
-        ,
-        "lookat": "43.8196 61.1665 -398.25"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 14.6312
-        ,
-        "angle": 31.6
-        ,
-        "inner_cut": 25.8
-        ,
-        "z_far": 14.6312
-        ,
-        "volume": false
-        ,
-        "color": "1.0 0.647059 0.0235294 1.0"
-        ,
-        "intensity": 3.0
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot011.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot012"
-      ,
-      "transform":
-      {
-        "pos": "-22.7504 18.1041 -340.648"
-        ,
-        "lookat": "-22.0474 -1.48977e-05 -340.819"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 18.1186
-        ,
-        "angle": 48.5
-        ,
-        "inner_cut": 33.0
-        ,
-        "z_far": 18.1186
-        ,
-        "volume": false
-        ,
-        "color": "1.0 0.709804 0.0705882 1.0"
-        ,
-        "intensity": 3.0
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot012.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot013"
-      ,
-      "transform":
-      {
-        "pos": "-22.7504 18.1041 -368.331"
-        ,
-        "lookat": "-22.0474 -1.61077e-05 -368.502"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 18.1186
-        ,
-        "angle": 40.3
-        ,
-        "inner_cut": 29.3
-        ,
-        "z_far": 18.1186
-        ,
-        "volume": false
-        ,
-        "color": "1.0 0.709804 0.0705882 1.0"
-        ,
-        "intensity": 3.0
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot013.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot014"
-      ,
-      "transform":
-      {
-        "pos": "-22.909 18.1041 -388.482"
-        ,
-        "lookat": "-22.2059 -1.69886e-05 -388.653"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 18.1186
-        ,
-        "angle": 40.3
-        ,
-        "inner_cut": 29.3
-        ,
-        "z_far": 18.1186
-        ,
-        "volume": false
-        ,
-        "color": "1.0 0.709804 0.0705882 1.0"
-        ,
-        "intensity": 3.0
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot014.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot015"
-      ,
-      "transform":
-      {
-        "pos": "4.61967 17.4598 -388.482"
-        ,
-        "lookat": "5.32272 -1.69886e-05 -388.653"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 17.4748
-        ,
-        "angle": 40.3
-        ,
-        "inner_cut": 29.3
-        ,
-        "z_far": 17.4748
-        ,
-        "volume": false
-        ,
-        "color": "1.0 0.709804 0.0705882 1.0"
-        ,
-        "intensity": 3.0
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot015.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot016"
-      ,
-      "transform":
-      {
-        "pos": "30.8951 17.4598 -388.482"
-        ,
-        "lookat": "31.5981 -1.69886e-05 -388.653"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 17.4748
-        ,
-        "angle": 40.3
-        ,
-        "inner_cut": 29.3
-        ,
-        "z_far": 17.4748
-        ,
-        "volume": false
-        ,
-        "color": "1.0 0.709804 0.0705882 1.0"
-        ,
-        "intensity": 3.0
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot016.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot017"
-      ,
-      "transform":
-      {
-        "pos": "30.8951 17.4598 -361.39"
-        ,
-        "lookat": "31.5981 -1.58043e-05 -361.56"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 17.4748
-        ,
-        "angle": 40.3
-        ,
-        "inner_cut": 29.3
-        ,
-        "z_far": 17.4748
-        ,
-        "volume": false
-        ,
-        "color": "1.0 0.709804 0.0705882 1.0"
-        ,
-        "intensity": 3.0
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot017.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot018"
-      ,
-      "transform":
-      {
-        "pos": "30.8951 17.4598 -354.728"
-        ,
-        "lookat": "31.5981 -1.55131e-05 -354.898"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 17.4748
-        ,
-        "angle": 40.3
-        ,
-        "inner_cut": 29.3
-        ,
-        "z_far": 17.4748
-        ,
-        "volume": false
-        ,
-        "color": "1.0 0.709804 0.0705882 1.0"
-        ,
-        "intensity": 3.0
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot018.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "Spot019"
-      ,
-      "transform":
-      {
-        "pos": "30.8951 17.4598 -334.112"
-        ,
-        "lookat": "31.5981 -1.4612e-05 -334.283"
-      }
-      ,
-      "light_spot":
-      {
-        "type": "spotlight"
-        ,
-        "proj_type": "perspective"
-        ,
-        "range": 17.4748
-        ,
-        "angle": 40.3
-        ,
-        "inner_cut": 29.3
-        ,
-        "z_far": 17.4748
-        ,
-        "volume": false
-        ,
-        "color": "1.0 0.709804 0.0705882 1.0"
-        ,
-        "intensity": 3.0
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "convex"
-        ,
-        "name": "data/colliders/Spot019.collider"
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
+[{
+		"entity": {
+			"name": "BC_neones",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "mesh_neon_verde_005",
+			"prefab": "data/prefabs/neon_verde_4.prefab",
+			"transform": {
+				"pos": "34.6814 2.16712 -366.376",
+				"rotation": "0.0 -1.0 0.0 0.0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "mesh_neon_redondo_azul001",
+			"prefab": "data/prefabs/neon_redondo_azul.prefab",
+			"transform": {
+				"pos": "-12.2359 19.466 -391.445",
+				"rotation": "-0.5 0.5 -0.5 -0.5"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "mesh_neon_rectangulo_verde001",
+			"prefab": "data/prefabs/neon_rectangulo_verde.prefab",
+			"transform": {
+				"pos": "-25.3022 2.48755 -376.778",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "mesh_neon_azul_007",
+			"prefab": "data/prefabs/neon_azul_2.prefab",
+			"transform": {
+				"pos": "27.7414 13.8306 -378.259",
+				"rotation": "0.0 -1.0 0.0 0.0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "mesh_neon_azul_006",
+			"prefab": "data/prefabs/neon_azul_4.prefab",
+			"transform": {
+				"pos": "-18.6066 13.1366 -343.97",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "mesh_neon_azul_005",
+			"prefab": "data/prefabs/neon_azul_4.prefab",
+			"transform": {
+				"pos": "13.4712 2.36722 -391.301",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "mesh_neon_amarillo_006",
+			"prefab": "data/prefabs/neon_amarillo_5.prefab",
+			"transform": {
+				"pos": "-13.4439 4.1039 -324.183",
+				"rotation": "0.0 -0.707107 0.0 -0.707107"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "mesh_neon_amarilllo_004",
+			"prefab": "data/prefabs/neon_amarillo_3.prefab",
+			"transform": {
+				"pos": "27.5036 3.46782 -324.292",
+				"rotation": "0.0 -0.707107 0.0 -0.707107"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Spot020",
+			"transform": {
+				"pos": "30.8951 17.4598 -354.514",
+				"lookat": "35.9235 -1.55037e-05 -354.684"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 18.1703,
+				"angle": 42.9,
+				"inner_cut": 38.4,
+				"z_far": 18.1703,
+				"volume": false,
+				"color": "1.0 0.709804 0.0705882 1.0",
+				"intensity": 1.2,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/BC_Spot020.collider",
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Spot019",
+			"transform": {
+				"pos": "30.8951 17.4598 -334.112",
+				"lookat": "35.1552 -1.4612e-05 -334.283"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 17.9728,
+				"angle": 44.6,
+				"inner_cut": 35.3,
+				"z_far": 17.9728,
+				"volume": false,
+				"color": "1.0 0.709804 0.0705882 1.0",
+				"intensity": 1.2,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/BC_Spot019.collider",
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Spot017",
+			"transform": {
+				"pos": "30.8951 17.4598 -368.351",
+				"lookat": "35.9235 -1.61086e-05 -368.522"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 18.1703,
+				"angle": 42.9,
+				"inner_cut": 38.4,
+				"z_far": 18.1703,
+				"volume": false,
+				"color": "1.0 0.709804 0.0705882 1.0",
+				"intensity": 1.2,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/BC_Spot017.collider",
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Spot016",
+			"transform": {
+				"pos": "30.8951 17.4598 -388.482",
+				"lookat": "33.6665 -1.70782e-05 -390.703"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 17.8173,
+				"angle": 51.9,
+				"inner_cut": 40.2,
+				"z_far": 17.8173,
+				"volume": false,
+				"color": "1.0 0.709804 0.0705882 1.0",
+				"intensity": 1.2,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/BC_Spot016.collider",
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Spot015",
+			"transform": {
+				"pos": "4.61967 17.4598 -388.482",
+				"lookat": "5.32272 -1.70962e-05 -391.116"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 17.6714,
+				"angle": 48.4,
+				"inner_cut": 36.7,
+				"z_far": 17.6714,
+				"volume": false,
+				"color": "1.0 0.709804 0.0705882 1.0",
+				"intensity": 1.2,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/BC_Spot015.collider",
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Spot014",
+			"transform": {
+				"pos": "-22.909 18.1041 -388.482",
+				"lookat": "-24.6284 -1.70986e-05 -391.17"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 18.3831,
+				"angle": 49.6,
+				"inner_cut": 34.4,
+				"z_far": 18.3831,
+				"volume": false,
+				"color": "1.0 0.709804 0.0705882 1.0",
+				"intensity": 1.2,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/BC_Spot014.collider",
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Spot013",
+			"transform": {
+				"pos": "-22.7504 18.1041 -368.331",
+				"lookat": "-25.5334 -1.61077e-05 -368.502"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 18.3176,
+				"angle": 37.0,
+				"inner_cut": 31.8,
+				"z_far": 18.3176,
+				"volume": false,
+				"color": "1.0 0.709804 0.0705882 1.0",
+				"intensity": 1.2,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/BC_Spot013.collider",
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Spot012",
+			"transform": {
+				"pos": "-22.7504 18.1041 -340.648",
+				"lookat": "-25.4156 -0.516128 -340.819"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 18.8108,
+				"angle": 54.5,
+				"inner_cut": 43.7,
+				"z_far": 18.8108,
+				"volume": false,
+				"color": "1.0 0.709804 0.0705882 1.0",
+				"intensity": 1.2,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/BC_Spot012.collider",
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Spot011",
+			"transform": {
+				"pos": "44.3059 46.5471 -397.922",
+				"lookat": "43.8196 61.1665 -398.25"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 14.6312,
+				"angle": 31.6,
+				"inner_cut": 25.8,
+				"z_far": 14.6312,
+				"volume": false,
+				"color": "1.0 0.647059 0.0235294 1.0",
+				"intensity": 3.0,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/BC_Spot011.collider",
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Spot009",
+			"transform": {
+				"pos": "-33.5106 46.5471 -397.922",
+				"lookat": "-33.9969 61.1665 -398.25"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 14.6312,
+				"angle": 31.6,
+				"inner_cut": 25.8,
+				"z_far": 14.6312,
+				"volume": false,
+				"color": "1.0 0.647059 0.0235294 1.0",
+				"intensity": 3.0,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/BC_Spot009.collider",
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Spot007",
+			"transform": {
+				"pos": "34.6358 1.84583 -366.416",
+				"lookat": "15.8199 -0.160222 -374.037"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 20.3997,
+				"angle": 26.4,
+				"inner_cut": 19.6,
+				"z_far": 20.3997,
+				"volume": false,
+				"color": "0.0 0.521569 0.0235294 1.0",
+				"intensity": 0.4,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/BC_Spot007.collider",
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Spot006",
+			"transform": {
+				"pos": "14.63 0.876301 -391.028",
+				"lookat": "-3.42441 1.2442 -390.598"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 18.0633,
+				"angle": 19.2,
+				"inner_cut": 4.5,
+				"z_far": 18.0633,
+				"volume": false,
+				"color": "0.0 0.0745098 0.768628 1.0",
+				"intensity": 1.0,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/BC_Spot006.collider",
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Spot003",
+			"transform": {
+				"pos": "27.8063 0.608566 -324.558",
+				"lookat": "5.168 0.88885 -326.283"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 22.7057,
+				"angle": 39.5,
+				"inner_cut": 27.7,
+				"z_far": 22.7057,
+				"volume": false,
+				"color": "1.0 0.647059 0.0235294 1.0",
+				"intensity": 1.0,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/BC_Spot003.collider",
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Spot002",
+			"transform": {
+				"pos": "-13.7224 0.612617 -324.558",
+				"lookat": "5.168 0.88885 -326.353"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 18.9775,
+				"angle": 39.5,
+				"inner_cut": 24.1,
+				"z_far": 18.9775,
+				"volume": false,
+				"color": "1.0 0.647059 0.0235294 1.0",
+				"intensity": 1.0,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/BC_Spot002.collider",
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Spot001",
+			"transform": {
+				"pos": "-24.8569 1.11017 -378.843",
+				"lookat": "-24.1459 0.888849 -357.933"
+			},
+			"light_spot": {
+				"type": "spotlight",
+				"proj_type": "perspective",
+				"range": 20.924,
+				"angle": 26.4,
+				"inner_cut": 4.5,
+				"z_far": 20.924,
+				"volume": false,
+				"color": "0.0 0.521569 0.0235294 1.0",
+				"intensity": 1.0,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/BC_Spot001.collider",
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Omni008",
+			"transform": {
+				"pos": "32.1297 14.149 -333.766",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 3.8896,
+				"outer_cut": 4.8416,
+				"color": "0.850981 0.796079 0.0 1.0",
+				"intensity": 0.6,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "sphere",
+				"radius": 2.8992,
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Omni007",
+			"transform": {
+				"pos": "32.1297 14.149 -354.305",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 3.8896,
+				"outer_cut": 4.8416,
+				"color": "0.850981 0.796079 0.0 1.0",
+				"intensity": 0.6,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "sphere",
+				"radius": 2.8992,
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Omni006",
+			"transform": {
+				"pos": "32.1297 14.149 -368.142",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 3.8896,
+				"outer_cut": 4.8416,
+				"color": "0.850981 0.796079 0.0 1.0",
+				"intensity": 0.6,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "sphere",
+				"radius": 2.8992,
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Omni005",
+			"transform": {
+				"pos": "32.1297 14.149 -388.817",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 3.8896,
+				"outer_cut": 4.8416,
+				"color": "0.850981 0.796079 0.0 1.0",
+				"intensity": 0.6,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "sphere",
+				"radius": 2.8992,
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Omni004",
+			"transform": {
+				"pos": "4.55481 14.149 -388.817",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 3.8896,
+				"outer_cut": 4.8416,
+				"color": "0.850981 0.796079 0.0 1.0",
+				"intensity": 0.6,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "sphere",
+				"radius": 2.8992,
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Omni003",
+			"transform": {
+				"pos": "-22.8804 14.149 -388.817",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 3.8896,
+				"outer_cut": 4.8416,
+				"color": "0.850981 0.796079 0.0 1.0",
+				"intensity": 0.6,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "sphere",
+				"radius": 2.8992,
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Omni002",
+			"transform": {
+				"pos": "-22.8804 14.149 -368.184",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 3.8896,
+				"outer_cut": 4.8416,
+				"color": "0.850981 0.796079 0.0 1.0",
+				"intensity": 0.6,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "sphere",
+				"radius": 2.8992,
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Omni001",
+			"transform": {
+				"pos": "-22.8804 14.149 -340.625",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 3.8896,
+				"outer_cut": 4.8416,
+				"color": "0.850981 0.796079 0.0 1.0",
+				"intensity": 0.6,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "sphere",
+				"radius": 2.8992,
+				"is_trigger": true
+			},
+			"tags": [
+				"light"
+			]
+		}
+	}
 ]

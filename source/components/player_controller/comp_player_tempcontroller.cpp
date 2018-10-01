@@ -105,6 +105,8 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 
     // Move the stamina string to the json
     EngineGUI.enableWidget("stamina_bar_general", false);
+    EngineGUI.enableWidget("inhibited_space", false);
+    EngineGUI.enableWidget("inhibited_y", false);
 }
 
 /* Player controller main update */
@@ -134,7 +136,11 @@ void TCompTempPlayerController::update(float dt) {
     {
         float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
         cb_globals.global_player_speed = (inputSpeed * currentSpeed) / 6.f; // Maximum speed, change this in the future. 
+        cb_globals.global_exposure_adjustment += 8 * dt * (isMerged ? 1 : -1); // Move to json when possible.
+
+        cb_globals.global_exposure_adjustment = clamp(cb_globals.global_exposure_adjustment, EngineScene.getActiveScene()->scene_exposure, 3.0f);
         cb_player.player_health = life != maxLife ? (life/ maxLife) : 1;
+        cb_player.updateGPU();
     }
 }
 
@@ -154,17 +160,19 @@ void TCompTempPlayerController::playLandParticles(bool left)
     TCompGroup* my_group = get<TCompGroup>();
     if (my_group) {
         CHandle foot = left ? my_group->getHandleByName("left_foot") : my_group->getHandleByName("right_foot");
-        EngineParticles.launchSystem("data/particles/def_amb_ground_hit.particles", foot);
+        EngineParticles.launchSystem("data/particles/def_amb_ground_hit.particles", CHandle(this).getOwner());
     }
 }
 
 void TCompTempPlayerController::playSMSpirals() {
+
     TCompGroup* my_group = get<TCompGroup>();
+
     if (my_group) {
 
         /* Set target */
         TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
-        CHandle closestEnemy = cAttackCast->closestEnemyToMerge(true);
+        CHandle closestEnemy = cAttackCast->getClosestMergingEnemy();
 
         if (closestEnemy.isValid()) {
 
@@ -192,7 +200,6 @@ void TCompTempPlayerController::playSMSpirals() {
             TCompParticles* spiral_particles_2 = spiral_2->get<TCompParticles>();
             spiral_particles_1->setSystemState(true);
             spiral_particles_2->setSystemState(true);
-
         }
     }
 }
@@ -204,6 +211,7 @@ void TCompTempPlayerController::registerMsgs() {
     DECL_MSG(TCompTempPlayerController, TMsgEntityCreated, onCreate);
     DECL_MSG(TCompTempPlayerController, TMsgEntitiesGroupCreated, onGroupCreated);
     DECL_MSG(TCompTempPlayerController, TMsgPlayerHit, onPlayerHit);
+    DECL_MSG(TCompTempPlayerController, TMsgPlayerStunned, onPlayerStunned);
     DECL_MSG(TCompTempPlayerController, TMsgPlayerDead, onPlayerKilled);
     DECL_MSG(TCompTempPlayerController, TMsgInhibitorShot, onPlayerInhibited);
     DECL_MSG(TCompTempPlayerController, TMsgPlayerIlluminated, onPlayerExposed);
@@ -330,7 +338,7 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg) {
             target_camera = new_camera;
             Engine.getCameras().blendInCamera(target_camera, msg.target_camera->blendIn, CModuleCameras::EPriority::GAMEPLAY);
             TMsgCameraFov msg_fov;
-            msg_fov.blend_time = 1.f;
+            msg_fov.blend_time = 0.5f;
             msg_fov.new_fov = msg.target_camera->fov;
             target_camera.sendMsg(msg_fov);
         }
@@ -355,6 +363,14 @@ void TCompTempPlayerController::onPlayerHit(const TMsgPlayerHit & msg)
     die();
 }
 
+void TCompTempPlayerController::onPlayerStunned(const TMsgPlayerStunned & msg)
+{
+    TMsgSetFSMVariable stunnedMsg;
+    stunnedMsg.variant.setName("stunned");
+    stunnedMsg.variant.setBool(true);
+    CHandle(this).getOwner().sendMsg(stunnedMsg);
+}
+
 void TCompTempPlayerController::onPlayerKilled(const TMsgPlayerDead & msg)
 {
     die();
@@ -362,9 +378,15 @@ void TCompTempPlayerController::onPlayerKilled(const TMsgPlayerDead & msg)
 
 void TCompTempPlayerController::onPlayerInhibited(const TMsgInhibitorShot & msg)
 {
-    if (!isInhibited) {
-        isInhibited = true;
+    if (!isDead() && !isInhibited) {
+        if (!EngineInput.pad().connected) {
+            EngineGUI.enableWidget("inhibited_space", true);
+        }
+        else {
+            EngineGUI.enableWidget("inhibited_y", true);
+        }
 
+        isInhibited = true;
         CEntity* player = CHandle(this).getOwner();
         TMsgGlitchController msg;
         msg.revert = true;
@@ -494,8 +516,7 @@ void TCompTempPlayerController::mergeState(float dt) {
         angle_test = fabs(EnginePhysics.gravity.Dot(postUp));
         float angle_amount = fabsf(acosf(prevUp.Dot(postUp)));
         std::string target_name = angle_test > mergeAngle ? "SMCameraHor" : "SMCameraVer"; // WARN: Watch this if gives problems...  
-        dbg(" TEST PASSED \n");
-
+				
         if (angle_amount > deg2rad(30.f) || target_name.compare(dbCameraState) != 0) {
 
             /* Only "change" cameras when the amount of degrees turned is more than 30º */
@@ -580,6 +601,9 @@ void TCompTempPlayerController::removingInhibitorState(float dt) {
             timesRemoveInhibitorKeyPressed = initialTimesToPressInhibitorRemoveKey;
             isInhibited = false;
 
+            EngineGUI.enableWidget("inhibited_space", false);
+            EngineGUI.enableWidget("inhibited_y", false);
+
             TMsgGlitchController msg;
             msg.revert = false;
             player->sendMsg(msg);
@@ -617,6 +641,14 @@ void TCompTempPlayerController::movingObjectState(float dt)
   markObjectAsMoving(true, dir, currentSpeed);
 
   player_trans->setPosition(player_trans->getPosition() + dir * currentSpeed * dt);
+}
+
+void TCompTempPlayerController::stunnedState(float dt)
+{
+    TMsgSetFSMVariable stunnedMsg;
+    stunnedMsg.variant.setName("stunned");
+    stunnedMsg.variant.setBool(false);
+    CHandle(this).getOwner().sendMsg(stunnedMsg);
 }
 
 void TCompTempPlayerController::resetRemoveInhibitor()
@@ -761,6 +793,9 @@ void TCompTempPlayerController::die()
         assert(c_e_particle);
         c_e_particle->setSystemState(false);
 
+        EngineGUI.enableWidget("inhibited_space", false);
+        EngineGUI.enableWidget("inhibited_y", false);
+
         cb_player.player_shadowed = false;
         cb_player.player_health = 0;
         cb_player.updateGPU();
@@ -792,8 +827,7 @@ void TCompTempPlayerController::activateCanLandSM(bool activate)
 void TCompTempPlayerController::pauseEnemy()
 {
     TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
-    CHandle closestEnemy;
-    bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
+    CHandle closestEnemy = cAttackCast->getClosestEnemyToAttack();
 
     TMsgAIPaused msg;
     closestEnemy.sendMsg(msg);
@@ -802,10 +836,9 @@ void TCompTempPlayerController::pauseEnemy()
 void TCompTempPlayerController::stunEnemy()
 {
     TCompPlayerAttackCast * cAttackCast = get<TCompPlayerAttackCast>();
-    CHandle closestEnemy;
-    bool enemyFound = cAttackCast->canAttackEnemiesInRange(closestEnemy);
+    CHandle closestEnemy = cAttackCast->getClosestEnemyToAttack();
 
-    if (enemyFound) {
+    if (closestEnemy.isValid()) {
         TMsgAIPaused msgPaused;
         closestEnemy.sendMsg(msgPaused);
 
@@ -1031,7 +1064,7 @@ const bool TCompTempPlayerController::canAttackTest(float dt)
     bool canAttackNow = false;
     if (!isDead() && !isMerged && isGrounded) {
         TCompPlayerAttackCast* comp_attack_cast = get<TCompPlayerAttackCast>();
-        canAttackNow = comp_attack_cast->canAttackEnemiesInRange();
+        canAttackNow = comp_attack_cast->getClosestEnemyToAttack().isValid();
     }
 
     return canAttackNow;
@@ -1071,7 +1104,7 @@ void TCompTempPlayerController::updateStamina(float dt) {
 void TCompTempPlayerController::mergeEnemy() {
 
     TCompPlayerAttackCast * tAttackCast = get<TCompPlayerAttackCast>();
-    CHandle enemy = tAttackCast->closestEnemyToMerge(true);
+    CHandle enemy = tAttackCast->getClosestMergingEnemy();
     if (isMerged) {
         if (enemy.isValid()) {
             TMsgPatrolShadowMerged msg;

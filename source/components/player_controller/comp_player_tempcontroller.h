@@ -123,6 +123,7 @@ class TCompTempPlayerController : public TCompBase
     void onStateFinish(const TMsgStateFinish& msg);
 
     void onPlayerHit(const TMsgPlayerHit& msg);
+    void onPlayerStunned(const TMsgPlayerStunned& msg);
     void onPlayerKilled(const TMsgPlayerDead& msg);
     void onPlayerInhibited(const TMsgInhibitorShot& msg);
     void onPlayerExposed(const TMsgPlayerIlluminated& msg);
@@ -178,6 +179,7 @@ public:
     void exitMergeState(float dt);
     void removingInhibitorState(float dt);
     void movingObjectState(float dt);
+    void stunnedState(float dt);
     void resetRemoveInhibitor();
     void markObjectAsMoving(bool isBeingMoved, VEC3 newDirection = VEC3::Zero, float speed = 0);
     void resetMergeFall();

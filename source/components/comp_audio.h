@@ -7,13 +7,22 @@ struct TCompAudio : public TCompBase {
 
 private:
 
+    struct StartingSoundEvents {
+        std::string name;
+        bool relativeToPlayer;
+    };
+
     DECL_SIBLING_ACCESS();
 
     std::vector<SoundEvent> my2DEvents;
     std::vector<SoundEvent> my3DEvents;
 
+    std::vector<StartingSoundEvents> startingSoundEvents;
+
     void onAnimationAudioCallback(const TMsgAnimationAudioCallback& msg);
     void onStopAudioComponent(const TMsgStopAudioComponent& msg);
+    void onSceneCreated(const TMsgSceneCreated& msg);
+
 
     void stopAudioComponent();
 

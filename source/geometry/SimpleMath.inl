@@ -3052,6 +3052,27 @@ inline void Quaternion::Normalize( Quaternion& result ) const
     XMStoreFloat4( &result, XMQuaternionNormalize( q ) );
 }
 
+inline void Quaternion::toEulerAngle(float& yaw, float& pitch, float& roll)
+{
+	// roll (x-axis rotation)
+	using namespace DirectX;
+
+	double sinr_cosp = +2.0 * (this->w * this->x + this->y * this->z);
+	double cosr_cosp = +1.0 - 2.0 * (this->x * this->x + this->y * this->y);
+	roll = atan2(sinr_cosp, cosr_cosp);
+
+	// pitch (y-axis rotation)
+	double sinp = +2.0 * (this->w * this->y - this->z * this->x);
+	if (fabs(sinp) >= 1)
+		pitch = copysign(M_PI / 2, sinp); // use 90 degrees if out of range
+	else
+		pitch = asin(sinp);
+
+	// yaw (z-axis rotation)
+	double siny_cosp = +2.0 * (this->w * this->z + this->x * this->y);
+	double cosy_cosp = +1.0 - 2.0 * (this->y * this->y + this->z * this->z);
+	yaw = atan2(siny_cosp, cosy_cosp);
+}
 inline void Quaternion::Conjugate()
 {
     using namespace DirectX;

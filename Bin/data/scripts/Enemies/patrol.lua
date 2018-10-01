@@ -6,7 +6,14 @@ function animation_LaunchInhibitor(sender)
 	ai_patrol:launchInhibitor();
 end
 
-function animation_Attack(sender)
+function animation_Attack_Stun(sender)
+	h = CHandle();
+	h:fromUnsigned(sender);
+	ai_patrol = toAIPatrol(toEntity(h):getCompByName("ai_patrol"));
+	ai_patrol:stunPlayer();
+end
+
+function animation_Attack_Attack(sender)
 	h = CHandle();
 	h:fromUnsigned(sender);
 	e_patrol = toEntity(h);

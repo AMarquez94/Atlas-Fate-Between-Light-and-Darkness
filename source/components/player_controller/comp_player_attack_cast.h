@@ -23,6 +23,12 @@ public:
   const std::vector<CHandle> getButtonsInRange();
   CHandle getClosestButtonInRange();
 
+  CHandle getClosestButton() { return closestButton; }
+  CHandle getClosestEnemyToAttack() { return closestEnemyToAttack; }
+  CHandle getClosestEnemyToGrab() { return closestEnemyToGrab; }
+  CHandle getClosestEnemyMergeable() { return closestEnemyMergeable; }
+  CHandle getClosestMergingEnemy() { return closestMergingEnemy; }
+
 private:
 
   physx::PxQueryFilterData PxPlayerAttackQueryFilterData;
@@ -36,5 +42,11 @@ private:
   float button_fov;
 
   void onMsgScenePaused(const TMsgScenePaused & msg);
+
+  CHandle closestButton;
+  CHandle closestEnemyToAttack;
+  CHandle closestEnemyToGrab;
+  CHandle closestEnemyMergeable;
+  CHandle closestMergingEnemy;
 };
 

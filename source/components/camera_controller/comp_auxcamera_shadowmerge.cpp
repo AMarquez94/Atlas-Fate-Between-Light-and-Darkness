@@ -25,10 +25,6 @@ void TCompAuxCameraShadowMerge::load(const json& j, TEntityParseContext& ctx)
 {
 	active = false;
 
-	physx::PxFilterData pxFilterData;
-	pxFilterData.word1 = FilterGroup::Scenario;
-	cameraFilter.data = pxFilterData;
-
 	_blendInTime = j.value("bendInTime", .4f);
 }
 
@@ -207,8 +203,8 @@ float TCompAuxCameraShadowMerge::CameraClipping(const VEC3 & origin, const VEC3 
 {
 	physx::PxRaycastHit hit;
 
-	if (EnginePhysics.Raycast(origin, dir, _clipping_offset.z, hit, physx::PxQueryFlag::eSTATIC, cameraFilter))
-		return Clamp(hit.distance - 0.1f, 0.5f, _clipping_offset.z);
+    if (EnginePhysics.Raycast(origin, dir, _clipping_offset.z, hit, physx::PxQueryFlag::eSTATIC))
+        return Clamp(hit.distance - 0.1f, 0.2f, _clipping_offset.z);
 
 	return _clipping_offset.z;
 }

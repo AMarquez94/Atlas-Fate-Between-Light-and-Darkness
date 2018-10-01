@@ -174,9 +174,9 @@ void PS_Shade_GBuffer(
 	o_selfIllum =  txEmissive.Sample(samLinear, iTex0) * self_intensity;
 	o_selfIllum.xyz *= self_color.xyz * (1 - self_opacity * 4);
 	o_selfIllum.a = 1;
-	if((noise0.x - self_opacity) < 0.01f){
-		o_albedo = obj_color;
-		o_selfIllum.xyz = obj_color.xyz * .7; //tune this given the bloom amount
+	if((noise0.x - self_opacity) < 0.02f){
+		o_albedo = obj_color * 1.5;
+		o_selfIllum.xyz = obj_color.xyz; //tune this given the bloom amount
 	}
 	
 	// Save roughness in the alpha coord of the N render target

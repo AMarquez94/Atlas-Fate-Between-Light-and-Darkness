@@ -14,7 +14,7 @@ protected:
 
 public:
 	void activate(int slot) const;
-	bool create(const std::string& name);
+	virtual bool create(const std::string& name);
 	void debugInMenu() override;
 	void destroy() override;
 	void onFileChanged(const std::string& filename) override;

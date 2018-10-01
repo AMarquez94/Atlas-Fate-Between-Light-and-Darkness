@@ -1,0 +1,12 @@
+{
+  "technique": "grass.tech"
+  ,
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/grass_brown_alb.dds"
+    ,
+    "normal": "data/textures/3td_Africa_Grass01_NRM.dds"
+  }
+}

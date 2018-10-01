@@ -69,6 +69,11 @@ struct TMsgPlayerHit {
 	DECL_MSG_ID();
 };
 
+struct TMsgPlayerStunned {
+    CHandle h_sender;
+    DECL_MSG_ID();
+};
+
 struct TMsgBulletHit {
     CHandle h_sender;
     float damage;
@@ -124,6 +129,11 @@ struct TMsgPhysxContact {
 	DECL_MSG_ID();
 };
 
+struct TMsgPhysxContactLost {
+    CHandle other_entity;
+    DECL_MSG_ID();
+};
+
 struct TMsgSetCameraActive {
 	std::string previousCamera;
 	std::string actualCamera;
@@ -160,6 +170,14 @@ struct TMsgCameraResetTargetPos {
 
 struct TMsgAnimationCallback {
 	std::string function_to_call;
+	DECL_MSG_ID();
+};
+
+struct TMsgAnimationPlaced {
+	DECL_MSG_ID();
+};
+
+struct TMsgSkeletonPlaceAnimation {
 	DECL_MSG_ID();
 };
 
@@ -337,6 +355,12 @@ struct TMsgCircularControllerTarget {
 struct TMsgEnemySuspecting {
     CHandle enemy_suspecting;
     bool is_suspecting;
+    DECL_MSG_ID();
+};
+
+struct TMsgEnemyNothingHere {
+    CHandle enemy;
+    VEC3 position;
     DECL_MSG_ID();
 };
 

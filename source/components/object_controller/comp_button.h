@@ -20,8 +20,10 @@ public:
     bool canBePressed;
 
 private:
+
     std::string _script;
 
     void onMsgButtonActivated(const TMsgButtonActivated& msg);
+	void onMsgGroupCreated(const TMsgEntitiesGroupCreated& msg);
 };
 

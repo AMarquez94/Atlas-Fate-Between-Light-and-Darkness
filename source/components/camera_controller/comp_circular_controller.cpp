@@ -29,6 +29,10 @@ void TCompCircularController::onNewTarget(const TMsgCircularControllerTarget & m
 {
     h_target = msg.new_target;
     CEntity* e_test = h_target;
+
+    curr_yaw = 0;
+    curr_height = 0;
+    total_time = 0;
 }
 
 void TCompCircularController::registerMsgs() {
