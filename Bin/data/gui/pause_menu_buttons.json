@@ -1,0 +1,55 @@
+[
+	{
+		"name" : "pause_menu_buttons",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "pause_main_buttons",
+				"type" : "widget",
+				"position" : "150 300",
+				"children" : [
+					{
+						"name" : "resume_game",
+						"type" : "button",
+						"position" : "0 0",
+						"size" : "186 36",
+						"texture" : "data/textures/gui/pausemenu_resume.dds",
+						"selected" : {
+							"texture" : "data/textures/gui/pausemenu_resume_selected.dds"
+						},
+						"pressed" : {
+							"texture" : "data/textures/gui/pausemenu_resume_pressed.dds"
+						}
+					},
+					{
+						"name" : "restart",
+						"type" : "button",
+						"position" : "0 30",
+						"size" : "186 36",
+						"texture" : "data/textures/gui/pausemenu_restart.dds",
+						"selected" : {
+							"texture" : "data/textures/gui/pausemenu_restart_selected.dds"
+						},
+						"pressed" : {
+							"texture" : "data/textures/gui/pausemenu_restart_pressed.dds"
+						}
+					},
+					{
+						"name" : "pause_exit",
+						"type" : "button",
+						"position" : "0 60",
+						"size" : "186 36",
+						"texture" : "data/textures/gui/exit.dds",
+						"selected" : {
+							"texture" : "data/textures/gui/exit_selected.dds"
+						},
+						"pressed" : {
+							"texture" : "data/textures/gui/exit_pressed.dds"
+						}
+					}
+				]
+			}
+		]
+	}
+]

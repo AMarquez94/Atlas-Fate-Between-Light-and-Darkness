@@ -28,6 +28,8 @@ bool CModuleGUI::start()
 void CModuleGUI::initializeWidgetStructure() {
 
 	//Initializing all the functions for the buttons of GUI
+
+	//MAIN-MENU
 	auto mm_newGameCB = []() {
 		CEngine::get().getModules().changeGameState("map_intro");
 	};
@@ -40,11 +42,25 @@ void CModuleGUI::initializeWidgetStructure() {
 	auto mm_exitCB = []() {
 		exit(0);
 	};
-	 
-	CMenuButtonsController* mmc = new CMenuButtonsController();
-
 	
-	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json");
+	//PAUSE-MENU
+	auto pm_resumeGame = []() {
+		CEngine::get().getGameManager().setPauseState(CModuleGameManager::PauseState::none);
+	};
+	auto pm_restartLevel = []() {
+		CEngine::get().getGameManager().resetLevel();
+	};
+	auto pm_RestartFromCheckPoint = []() {
+		CEngine::get().getGameManager().resetToCheckpoint();
+	};
+	auto pm_Options = []() {
+		//activateWidget("main_menu_buttons");
+	};
+	auto pm_Exit = []() {
+		exit(0);
+	};
+
+	CMenuButtonsController* mmc = new CMenuButtonsController();
 
 	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BUTTONS, "data/gui/main_menu_buttons.json", mmc);
 	mmc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::MAIN_MENU_BUTTONS);
@@ -53,8 +69,33 @@ void CModuleGUI::initializeWidgetStructure() {
 	mmc->registerOption("options", mm_optionsCB);
 	mmc->registerOption("exit", mm_exitCB);
 	mmc->setCurrentOption(0);
+	
 
+	CMenuButtonsController* pmc = new CMenuButtonsController();
+	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS, "data/gui/pause_menu_buttons.json", pmc);
+
+	pmc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
+	pmc->registerOption("resume_game", pm_resumeGame);
+	pmc->registerOption("restart", pm_restartLevel);
+	pmc->registerOption("restart_checkpoint", pm_RestartFromCheckPoint);
+	pmc->registerOption("pause_options", pm_Options);
+	pmc->registerOption("pause_exit", pm_Exit);
+	pmc->setCurrentOption(0);
+
+
+	CMenuButtonsController* dmc = new CMenuButtonsController();
+	registerWigdetStruct(EGUIWidgets::DEAD_MENU_BUTTONS, "data/gui/dead_menu_buttons.json", dmc);
+	dmc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::DEAD_MENU_BUTTONS);
+	dmc->registerOption("restart_dead", pm_restartLevel);
+	dmc->registerOption("dead_exit", pm_Exit);
+	dmc->setCurrentOption(0);
+
+
+	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json");
+	registerWigdetStruct(EGUIWidgets::SOUND_GRAPH, "data/gui/sound_graph.json");
 	registerWigdetStruct(EGUIWidgets::INGAME_STAMINA_BAR, "data/gui/ingame.json");
+	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE, "data/gui/pause_menu_background.json");
+	
 
 }
 
@@ -94,6 +135,12 @@ void CModuleGUI::update(float delta)
 		controller->update(delta);
 	}
 
+}
+
+bool CModuleGUI::getWidgetStructureEnabled(EGUIWidgets wdgt) {
+
+	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt];
+	return wdgt_struct.enabled;
 }
 
 void CModuleGUI::renderGUI()
@@ -154,9 +201,13 @@ GUI::CController* CModuleGUI::getWidgetController(EGUIWidgets wdgt_type) {
 void CModuleGUI::activateWidget(EGUIWidgets wdgt)
 {
 	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt];
+	if (wdgt_struct.enabled) return;
 	CWidget* widgt = getWidget(wdgt_struct._widgetName);
 	if (widgt)
 	{
+		wdgt_struct.enabled = true;
+		_widgetStructureMap[wdgt] = wdgt_struct;
+
 		_activeWidgets.push_back(widgt);
 	}
 	if (wdgt_struct._controller != nullptr) {
@@ -175,7 +226,8 @@ void CModuleGUI::deactivateWidget(EGUIWidgets wdgt)
 		}
 		it++;
 	}
-
+	wdgt_struct.enabled = false;
+	_widgetStructureMap[wdgt] = wdgt_struct;
 	if (wdgt_struct._controller != nullptr) {
 		unregisterController(wdgt_struct._controller);
 	}
@@ -188,16 +240,6 @@ void CModuleGUI::enableWidget(const std::string& name, bool status)
 
     if(widgt)
         widgt->enable(status); 
-}
-
-bool CModuleGUI::getWidgetStatus(const std::string& name)
-{
-    CWidget* widgt = getWidget(name, true);
-
-    if (widgt)
-        return widgt->isEnabled();
-
-    return false;
 }
 
 void CModuleGUI::registerController(GUI::CController* controller)

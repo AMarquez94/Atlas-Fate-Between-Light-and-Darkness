@@ -20,10 +20,12 @@ bool CModuleMainMenu::start()
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 	mouse->setLockMouse(false);
 
+	EngineScene.loadScene("scene_main_menu");
+
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BACKGROUND);
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
 
-	CHandle h_camera = getEntityByName("TPCamera");
+	CHandle h_camera = getEntityByName("test_camera_flyover");
 	if (h_camera.isValid())
 		Engine.getCameras().setDefaultCamera(h_camera);
 

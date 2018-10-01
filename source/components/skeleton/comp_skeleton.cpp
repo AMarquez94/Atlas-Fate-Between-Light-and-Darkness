@@ -66,7 +66,7 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
     CalLoader::setLoadingMode(LOADER_ROTATE_X_AXIS | LOADER_INVERT_V_COORD);
 
     std::string skel_name = j.value("skeleton", "");
-
+	std::string starting_anim = j.value("on_start", "idle");
     float scaleFactor = j.value("scale", 1.0f);
 
 	if (j.count("callbacks")) {
@@ -93,7 +93,7 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
     actualCycleAnimId[1] = -1;
 
     actualCycleAnimId[0] = 0;
-    model->getMixer()->blendCycle(actualCycleAnimId[0], 1.f, 0.f);
+    model->getMixer()->blendCycle(stringAnimationIdMap[starting_anim], 1.f, 0.f);
 
     cb_bones.BonesScale = scaleFactor;
     if (model->getSkeleton()->getCoreSkeleton()->getScale() != scaleFactor) {

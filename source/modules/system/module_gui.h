@@ -8,13 +8,14 @@
 class CModuleGUI : public IModule
 {
 public:
-	enum EGUIWidgets{ MAIN_MENU_BACKGROUND = 0, MAIN_MENU_BUTTONS, MAIN_MENU_OPTIONS, INGAME_STAMINA_BAR, INGAME_MENU_PAUSE, INGAME_MENU_PAUSE_BUTTONS};
+	enum EGUIWidgets{ MAIN_MENU_BACKGROUND = 0, MAIN_MENU_BUTTONS, MAIN_MENU_OPTIONS, INGAME_STAMINA_BAR, INGAME_MENU_PAUSE, INGAME_MENU_PAUSE_BUTTONS, SOUND_GRAPH, DEAD_MENU_BUTTONS};
 
 	struct WidgetStructure {
 		EGUIWidgets _type;
 		std::string _widgetName;
 		GUI::CWidget *_widget;
 		GUI::CController *_controller;
+		bool enabled = false;
 	};
 
     const float width = 1080;
@@ -36,7 +37,7 @@ public:
 	void activateWidget(EGUIWidgets wdgt);
 	void deactivateWidget(EGUIWidgets wdgt);
     void enableWidget(const std::string& name, bool status = true);
-    bool getWidgetStatus(const std::string& name);
+	bool getWidgetStructureEnabled(EGUIWidgets wdgt);
 
 	// controller management
 	void registerController(GUI::CController* controller);
