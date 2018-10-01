@@ -51,6 +51,8 @@ function animation_attack_swingLeft(sender)
 	h = playerController:getLeftWeapon();
 	e = toEntity(h);
 	t_audio = toAudio(e:getCompByName("audio"));
+	--t_particles = toParticles(e:getCompByName("particles"));
+		
 	t_audio:playEvent("event:/Sounds/Player/Weapons/WeaponAttack_1", true);
 end
 
