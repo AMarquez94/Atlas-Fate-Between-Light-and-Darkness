@@ -221,6 +221,7 @@ void CModuleLogic::publishClasses() {
     m->set("pauseEnemyEntities", SLB::FuncCall::create(&pauseEnemyEntities));
     m->set("deleteEnemies", SLB::FuncCall::create(&deleteEnemies));
     m->set("isDebug", SLB::FuncCall::create(&isDebug));
+    m->set("changeGamestate", SLB::FuncCall::create(&changeGamestate));
 
     // Camera
     m->set("blendInCamera", SLB::FuncCall::create(&blendInCamera));
@@ -477,6 +478,10 @@ bool isDebug()
     #else
         return true;
     #endif
+}
+
+void changeGamestate(const std::string& gamestate) {
+    CEngine::get().getModules().changeGameState(gamestate);
 }
 
 void pauseGame(bool pause) {

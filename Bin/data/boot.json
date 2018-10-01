@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_zone_a",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -251,7 +251,8 @@
 			"data/scenes/Basilic_courtyard/BC_fuente.scene",
 			"data/scenes/suelo_mezquita.scene",
 			"data/scenes/Basilic_courtyard/almibars.scene",
-			"data/scenes/Basilic_courtyard/BC_face_cartel.scene"
+			"data/scenes/Basilic_courtyard/BC_face_cartel.scene",
+			"data/scenes/Basilic_courtyard/BC_trigger_victory.scene"
 		]
 	},
 	"scene_basilic_interior": {

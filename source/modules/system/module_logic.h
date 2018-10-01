@@ -91,6 +91,7 @@ void pauseEnemies(bool pause);
 void pauseEnemyEntities(bool pause);
 void deleteEnemies();
 bool isDebug();
+void changeGamestate(const std::string& gamestate);
 void pauseGame(bool pause);
 void pausePlayerToggle();
 void infiniteStamineToggle();
