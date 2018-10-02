@@ -185,7 +185,8 @@ void CModuleLogic::publishClasses() {
         .comment("CHandle wrapper")
         .constructor()
         .set("fromUnsigned", &CHandle::fromUnsigned)
-        .set("destroy", &CHandle::destroy);
+        .set("destroy", &CHandle::destroy)
+        .set("isValid", &CHandle::isValid);
 
     SLB::Class <CEntity>("CEntity", m)
         .comment("CEntity wrapper")
@@ -298,6 +299,7 @@ void CModuleLogic::publishClasses() {
     m->set("toAudio", SLB::FuncCall::create(&toAudio));
     m->set("toTPCamera", SLB::FuncCall::create(&toTPCamera));
     m->set("toRender", SLB::FuncCall::create(&toRender));
+    m->set("toParticles", SLB::FuncCall::create(&toParticles));
 }
 
 /* Check if it is a fast format command */

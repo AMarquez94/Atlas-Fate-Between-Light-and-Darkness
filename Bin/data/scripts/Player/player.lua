@@ -70,7 +70,7 @@ function animation_attack_swingRight(sender)
 end
 
 function animation_attack_strikeLeft(sender)
-	h = playerController:getRightWeapon();
+	h = playerController:getLeftWeapon();
 	e = toEntity(h);
 	t_audio = toAudio(e:getCompByName("audio"));
 	t_audio:playEvent("event:/Sounds/Player/Weapons/WeaponClash_1", true);
@@ -85,7 +85,7 @@ function animation_attack_strikeRight(sender)
 	e = toEntity(h);
 	t_audio = toAudio(e:getCompByName("audio"));
 	t_audio:playEvent("event:/Sounds/Player/Weapons/WeaponClash_2", true);
-	
+
 	t_particles = toParticles(e:getCompByName("particles"));
 	t_particles:setSystemState(false);
 	
