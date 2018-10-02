@@ -26,6 +26,7 @@ class CApp {
 
 public:
 
+    bool drawfps = true;
 	int fps = 0;
 
 	int  xres = 0;

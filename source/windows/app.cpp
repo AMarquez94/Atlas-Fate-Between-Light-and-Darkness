@@ -225,6 +225,7 @@ bool CApp::readConfig() {
         xres = j.value("xres", 1280);
         yres = j.value("yres", 720);
         fullscreen = j.value("fullscreen", false);
+        drawfps = j.value("drawfps", true);
     }
     else {
         xres = 1280;

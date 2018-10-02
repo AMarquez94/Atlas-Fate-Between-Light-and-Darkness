@@ -369,7 +369,7 @@ void CModuleGameManager::debugRender() {
         {
             ImGui::SetCursorPos(ImVec2(CApp::get().xres - CApp::get().xres * 0.05f, CApp::get().yres * 0.01f));
 
-            if (config.drawfps) ImGui::Text("FPS %d", (int)CApp::get().fps);
+            if (CApp::get().drawfps) ImGui::Text("FPS %d", (int)CApp::get().fps);
         }
 
         ImGui::End();

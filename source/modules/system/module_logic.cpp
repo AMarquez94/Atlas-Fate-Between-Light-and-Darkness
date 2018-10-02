@@ -20,6 +20,7 @@
 #include "components/camera_controller/comp_camera_thirdperson.h"
 #include "components/comp_render.h"
 #include "components/comp_particles.h"
+#include "windows/app.h"
 
 bool CModuleLogic::start() {
 
@@ -741,7 +742,7 @@ void renderNavmeshToggle() {
 
 // Toggle CVARS.
 void cg_drawfps(bool value) {
-    CEngine::get().getGameManager().config.drawfps = value;
+    CApp::get().drawfps = value;
 }
 
 void cg_drawlights(int type) {
