@@ -8,6 +8,7 @@
 #include "render/render_manager.h"
 #include "noise/FastNoiseSIMD.h"
 #include "noise/Perlin.h"
+#include "components/lighting/comp_light_point.h"
 
 // ----------------------------------------------
 class CParticleResourceClass : public CResourceClass {
@@ -101,7 +102,18 @@ namespace Particles
         // Fast trick to determine additive type. Find an smarter way.
         if (_core->n_renderer.tech.find("additive") != std::string::npos)
             this->type = ADD;
-        
+
+        if (_core->n_light.active) {
+
+            CEntity * owner = _entity;
+            CHandle h_comp = getObjectManager<TCompLightPoint>()->createHandle();
+            owner->set(h_comp.getType(), h_comp);  
+            TCompLightPoint * p_light = h_comp;
+            p_light->setIntensity(_core->n_system.looping ? _core->n_light.intensity : 0);
+            p_light->setColor(_core->n_light.color);
+            p_light->inner_cut = _core->n_light.radius.x;
+            p_light->inner_cut = _core->n_light.radius.y;
+        }
     }
 
     void CSystem::debugInMenu() {
@@ -211,6 +223,7 @@ namespace Particles
 
             updateSystem(delta);
             updateEmission(delta);
+            updateLight(delta);
         }
 
         return _fadeRatio > 0.f && (!_particles.empty() || _core->n_system.looping);
@@ -322,6 +335,7 @@ namespace Particles
                 // New burst to be deployed
                 if (c.i_elapsed > p.interval && c.cycles > 0) {
 
+                    _light_time = 0;
                     emit(p.count);
                     c.cycles--;
                     c.i_elapsed = 0;
@@ -346,6 +360,25 @@ namespace Particles
     void CSystem::updateCollision(float delta) {
 
 
+    }
+
+    void CSystem::updateLight(float delta)
+    {
+        if (_core->n_light.active) {
+
+            _light_time += delta;
+            CEntity * ent = _entity;
+            TCompLightPoint * point = ent->get<TCompLightPoint>();
+            float intensity = point->getIntensity();
+
+            if (_light_time < _core->n_light.fadeTime.x) {
+                point->setIntensity(intensity + (_light_time/ _core->n_light.fadeTime.x));
+            }
+            else if (_light_time > _core->n_light.time) {
+                float t_time = _light_time - _core->n_light.time;
+                point->setIntensity(intensity - (t_time / _core->n_light.fadeTime.y));
+            }
+        }
     }
 
     // Emit given a concrete amount

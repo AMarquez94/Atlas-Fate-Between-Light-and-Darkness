@@ -20,6 +20,7 @@ namespace GUI
     CWidget* parseBar(const json& data);
     CWidget* parseRadialBar(const json& data);
 	CWidget* parseSprite(const json& data);
+    CWidget* parseUIVideo(const json& data);
 
     CEffect* parseEffect(const json& data, CWidget* wdgt);
     CEffect* parseAnimateUVEffect(const json& data);

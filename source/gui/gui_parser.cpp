@@ -8,6 +8,7 @@
 #include "gui/effects/gui_animate_uv.h"
 #include "gui/effects/gui_change_textures.h"
 #include "gui/widgets/gui_radial_bar.h"
+#include "gui/widgets/gui_video.h"
 
 namespace
 {
@@ -67,6 +68,7 @@ CWidget* CParser::parseWidget(const json& data, CWidget* parent)
   else if (type == "radialbar")     wdgt = parseRadialBar(data);
   else if (type == "button")  wdgt = parseButton(data);
   else if (type == "sprite")  wdgt = parseSprite(data);
+  else if (type == "video")   wdgt = parseUIVideo(data);
   else                        wdgt = parseWidget(data);
 
   wdgt->_name = name;
@@ -210,11 +212,22 @@ CWidget* CParser::parseBar(const json& data) {
 }
 
 CWidget* CParser::parseRadialBar(const json& data) {
+
     CRadialBar* wdgt = new CRadialBar();
 
     parseParams(wdgt->_params, data);
     parseImageParams(wdgt->_imageParams, data);
     parseBarParams(wdgt->_barParams, data);
+
+    return wdgt;
+}
+
+CWidget* CParser::parseUIVideo(const json& data) {
+
+    CUIVideo* wdgt = new CUIVideo();
+
+    parseParams(wdgt->_params, data);
+    parseImageParams(wdgt->_imageParams, data);
 
     return wdgt;
 }

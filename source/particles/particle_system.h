@@ -5,6 +5,7 @@
 #include "resources/resource.h"
 
 class FastNoiseSIMD;
+class TCompLightPoint;
 
 namespace Particles
 {
@@ -110,8 +111,17 @@ namespace Particles
             bool collision = true;
         };
 
+        // One light per entity
         struct TNLight {
 
+            bool  active = false;
+
+            float time;
+            float intensity;
+
+            VEC2  fadeTime;
+            VEC2  radius;
+            VEC4  color;
         };
 
         struct TNRenderer
@@ -139,6 +149,7 @@ namespace Particles
         TNoise          n_noise;
         TNCollision     n_collision;
         TNRenderer      n_renderer;
+        TNLight         n_light;
     };
 
     class CSystem
@@ -171,6 +182,7 @@ namespace Particles
         void updateFading(float delta);
         void updateEmission(float delta);
         void updateCollision(float delta);
+        void updateLight(float delta);
 
         VEC3 generatePosition() const;
         VEC3 generateVelocity() const;
@@ -185,6 +197,7 @@ namespace Particles
         const TCoreSystem*  _core = nullptr;
 
         float               _time = 0.f;
+        float               _light_time = 0.f;
         float               _deploy_time = 0.f;
         float               _fadeDuration = 0.f;
         float               _fadeTime = 0.f;
