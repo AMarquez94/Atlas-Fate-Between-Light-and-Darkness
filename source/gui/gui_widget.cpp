@@ -54,6 +54,10 @@ CWidget* CWidget::getChild(const std::string& name, bool recursive) const
     return nullptr;
 }
 
+VWidgets CWidget::getAllChilds() {
+	return _children;
+}
+
 const std::string& CWidget::getName() const
 {
     return _name;

@@ -23,6 +23,7 @@ namespace GUI {
         void addChild(CWidget* wdgt);
         void removeChild(CWidget* wdgt);
         CWidget* getChild(const std::string& name, bool recursive = false) const;
+		VWidgets getAllChilds();
         const std::string& getName() const;
         virtual TImageParams* getImageParams() { return nullptr; }
         virtual TBarParams* getBarParams() { return nullptr; }
