@@ -8,6 +8,7 @@
 		"navmeshes",
 		"cameras",
 		"particles",
+		"lerp",
 		"gui",
 		"logic",
 		"sound",

@@ -251,6 +251,7 @@
     <ClCompile Include="modules\system\module_game_console.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
     <ClCompile Include="modules\system\module_instancing.cpp" />
+    <ClCompile Include="modules\system\module_lerp.cpp" />
     <ClCompile Include="modules\system\module_logic.cpp" />
     <ClCompile Include="modules\system\module_particles.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
@@ -529,6 +530,7 @@
     <ClInclude Include="modules\system\module_game_console.h" />
     <ClInclude Include="modules\system\module_input.h" />
     <ClInclude Include="modules\system\module_instancing.h" />
+    <ClInclude Include="modules\system\module_lerp.h" />
     <ClInclude Include="modules\system\module_logic.h" />
     <ClInclude Include="modules\system\module_particles.h" />
     <ClInclude Include="modules\system\module_physics.h" />
