@@ -34,7 +34,7 @@ public:
 	void registerWidget(GUI::CWidget* wdgt);
 	GUI::CWidget* getWidget(const std::string& name, bool recursive = false) const;
 	GUI::CWidget* getWidget(EGUIWidgets wdgt_type);	
-	void activateWidget(EGUIWidgets wdgt);
+	GUI::CWidget* activateWidget(EGUIWidgets wdgt);
 	void deactivateWidget(EGUIWidgets wdgt);
     void enableWidget(const std::string& name, bool status = true);
 	bool getWidgetStructureEnabled(EGUIWidgets wdgt);

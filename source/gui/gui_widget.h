@@ -47,6 +47,9 @@ namespace GUI {
 
         bool isEnabled() { return enabled; };
 
+		void makeChildsFadeIn(float time_to_lerp, float time_to_start = 0.0f, bool getFromChildren = false);
+		void makeChildsFadeOut(float time_to_lerp, float time_to_start = 0.0f, bool getFromChildren = false);
+
     protected:
         std::string _name;
         VWidgets _children;

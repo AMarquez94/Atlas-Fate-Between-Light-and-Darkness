@@ -133,3 +133,36 @@ void CWidget::enable(bool status)
 {
     enabled = status;
 }
+
+void CWidget::makeChildsFadeIn(float time_to_lerp, float time_to_start, bool getFromChildren) {
+
+	if (this == nullptr) {
+		return;
+	}
+	VWidgets childs;
+	if (getFromChildren) childs = _children[0]->_children;
+	else childs = _children;
+
+	for (int i = 0; i < childs.size();i++) {
+		TImageParams* img = childs[i]->getImageParams();
+		if (img != nullptr) {
+			img->_color.w = 0.0f;
+			EngineLerp.lerpElement(&img->_color.w, 1.0f, time_to_lerp,time_to_start);
+		}
+	}
+}
+
+void CWidget::makeChildsFadeOut(float time_to_lerp, float time_to_start, bool getFromChildren) {
+	
+	VWidgets childs;
+	if (getFromChildren) childs = _children[0]->_children;
+	else childs = _children;
+
+	for (int i = 0; i < childs.size(); i++) {
+		TImageParams* img = childs[i]->getImageParams();
+		if (img != nullptr) {
+			img->_color.w = 1.0f;
+			EngineLerp.lerpElement(&img->_color.w, 0.0f, time_to_lerp, time_to_start);
+		}
+	}
+}

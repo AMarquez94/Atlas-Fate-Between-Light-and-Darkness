@@ -14,6 +14,11 @@ void CModuleLerp::update(float delta) {
 				*(*it).element_to_lerp = (*it).max_element_to_lerp + (diff * percentage);
 			}
 			(*it).current_time += delta;
+			if( ((*it).current_time - (*it).time_to_start_lerping) >= (*it).time_to_end_lerp ) {
+				*(*it).element_to_lerp = (*it).value_to_lerp;
+				_elements_to_lerp.erase(it);
+			}
+
 			it++;
 		}
 	}

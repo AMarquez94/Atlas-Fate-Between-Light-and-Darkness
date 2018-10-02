@@ -198,21 +198,26 @@ GUI::CController* CModuleGUI::getWidgetController(EGUIWidgets wdgt_type) {
 	return controller;
 }
 
-void CModuleGUI::activateWidget(EGUIWidgets wdgt)
+CWidget* CModuleGUI::activateWidget(EGUIWidgets wdgt)
 {
 	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt];
-	if (wdgt_struct.enabled) return;
+	if (wdgt_struct.enabled) return nullptr;
 	CWidget* widgt = getWidget(wdgt_struct._widgetName);
 	if (widgt)
 	{
 		wdgt_struct.enabled = true;
 		_widgetStructureMap[wdgt] = wdgt_struct;
-
 		_activeWidgets.push_back(widgt);
+		if (wdgt_struct._controller != nullptr) {
+			registerController(wdgt_struct._controller);
+		}
+		return widgt;
 	}
-	if (wdgt_struct._controller != nullptr) {
-		registerController(wdgt_struct._controller);
+	else {
+		return nullptr;
 	}
+
+	
 }
 
 void CModuleGUI::deactivateWidget(EGUIWidgets wdgt)

@@ -7,8 +7,8 @@
 			{
 				"name" : "sound_sprite",
 				"type" : "sprite",
-				"position" : "1000 550",
-				"size" : "50 50",
+				"position" : "900 550",
+				"size" : "80 80",
 				"minUV" : "0 0",
 				
 				"texture" : "data/textures/gui/soundgraph_idle.dds",
@@ -23,27 +23,24 @@
 					},
 					{
 						"texture_name" : "data/textures/gui/soundgraph_slow.dds",
-						"frame_size" : "512 512",
-						"fps" : 40,
+						"frame_size" : "256 256",
+						"fps" : 17,
 						"num_frames" : 8,
-						"maxUV" : "0.5 0.5",
-						"original_size" : "2048 2048"
+						"original_size" : "2048 512"
 					},
 					{
 						"texture_name" : "data/textures/gui/soundgraph_normal.dds",
-						"frame_size" : "512 512",
-						"fps" : 60,
-						"num_frames" : 12,
-						"maxUV" : "0.5 0.5",
-						"original_size" : "2048 2048"
+						"frame_size" : "256 256",
+						"fps" : 17,
+						"num_frames" : 8,
+						"original_size" : "2048 512"
 					},
 					{
 						"texture_name" : "data/textures/gui/soundgraph_fast.dds",
-						"frame_size" : "512 512",
-						"fps" : 80,
-						"num_frames" : 16,
-						"maxUV" : "0.5 0.5",
-						"original_size" : "2048 2048"
+						"frame_size" : "256 256",
+						"fps" : 17,
+						"num_frames" : 8,
+						"original_size" : "2048 512"
 					}
 				]
 			}
