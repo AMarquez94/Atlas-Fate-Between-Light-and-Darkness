@@ -473,7 +473,7 @@ void CModuleRender::postProcessingStack() {
 }
 
 void CModuleRender::debugDraw() {
-	return;
+	//return;
     if (!_debugMode) return;
 
     {

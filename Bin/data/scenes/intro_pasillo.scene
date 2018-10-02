@@ -573,36 +573,6 @@
   {
     "entity":
     {
-      "name": "intro_pared_aux_suelo_pasillo001"
-      ,
-      "transform":
-      {
-        "pos": "21.0815 3.51019 -105.437"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/intro_pared_aux_suelo_pasillo001.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "intro_pared_puerta_peq001"
       ,
       "transform":
@@ -623,6 +593,13 @@
           ]
         }
       ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/intro_collider_puerta_pasillo.collider"
+      }
       ,
       "abs_aabb": true
       ,

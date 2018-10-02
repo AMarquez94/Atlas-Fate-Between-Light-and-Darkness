@@ -271,7 +271,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
     TCompCollider * c_my_collider = get<TCompCollider>();
 
     pxShadowFilterData = new physx::PxFilterData();
-    pxShadowFilterData->word0 = c_my_collider->config->group/* | FilterGroup::Fence*/;
+    pxShadowFilterData->word0 = c_my_collider->config->group | FilterGroup::Fence;
     pxShadowFilterData->word1 = FilterGroup::NonCastShadows;
 
     pxPlayerFilterData = new physx::PxFilterData();
