@@ -62,7 +62,7 @@ bool CVideoTexture::uploadToVRAM() {
     if (!picData)
         return false;
 
-    PROFILE_FUNCTION("CVideoTexture::VRAM");
+    //PROFILE_FUNCTION("CVideoTexture::VRAM");
 
     D3D11_MAPPED_SUBRESOURCE sub_resource;
     HRESULT hr = Render.ctx->Map(texture, 0, D3D11_MAP_WRITE_DISCARD, 0, &sub_resource);
