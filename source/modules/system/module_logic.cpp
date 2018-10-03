@@ -21,6 +21,7 @@
 #include "components/comp_render.h"
 #include "components/comp_particles.h"
 #include "components/object_controller/comp_noise_emitter.h"
+#include "modules/game/module_game_manager.h"
 
 bool CModuleLogic::start() {
 
@@ -113,6 +114,10 @@ void CModuleLogic::publishClasses() {
     SLB::Class< CModuleParticles >("Particles", m)
         .comment("This is our wrapper of the particles class")
         .set("killAll", &CModuleParticles::killAll);
+
+	SLB::Class< CModuleGameManager >("GameManager", m)
+		.comment("salchipapa")
+		.set("resetToCheckpoint", &CModuleGameManager::resetToCheckpoint);
 
     SLB::Class< VEC3 >("VEC3", m)
         .constructor<float, float, float>()
@@ -225,6 +230,7 @@ void CModuleLogic::publishClasses() {
     // Utilities
     m->set("getConsole", SLB::FuncCall::create(&getConsole));
     m->set("getLogic", SLB::FuncCall::create(&getLogic));
+	m->set("getGameManager", SLB::FuncCall::create(&getGameManager));
     m->set("getParticles", SLB::FuncCall::create(&getParticles));
     m->set("getPlayerController", SLB::FuncCall::create(&getPlayerController));
     m->set("getPlayerNoiseEmitter", SLB::FuncCall::create(&getPlayerNoiseEmitter));
@@ -438,6 +444,8 @@ void CModuleLogic::clearDelayedScripts()
 
 /* Auxiliar functions */
 CModuleLogic * getLogic() { return EngineLogic.getPointer(); }
+
+CModuleGameManager * getGameManager() { return CEngine::get().getGameManager().getPointer(); }
 
 CModuleParticles * getParticles() { return EngineParticles.getPointer(); }
 

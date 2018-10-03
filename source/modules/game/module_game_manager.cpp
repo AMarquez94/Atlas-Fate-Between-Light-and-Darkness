@@ -348,6 +348,7 @@ void CModuleGameManager::resetLevel() {
 	TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
 	setPauseState(PauseState::none);
 
+	lastCheckpoint->deleteCheckPoint();
 	EngineScene.loadScene(EngineScene.getActiveScene()->name);
 }
 
@@ -361,7 +362,6 @@ void CModuleGameManager::resetToCheckpoint() {
 	TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
 	setPauseState(PauseState::none);
 
-	lastCheckpoint->deleteCheckPoint();
 	EngineScene.loadScene(EngineScene.getActiveScene()->name);
 }
 

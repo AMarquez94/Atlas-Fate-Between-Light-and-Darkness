@@ -1,6 +1,7 @@
 function onSceneStart()
 	playerController = getPlayerController();
 	playerNoiseEmitter = getPlayerNoiseEmitter();
+	gameManager = getGameManager();
 	immortal();
 	--cg_drawfps(false);
 	execScriptDelayed("immortal()", 1);

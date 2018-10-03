@@ -5,6 +5,7 @@
 #include <SLB/SLB.hpp>
 #include "modules/system/module_game_console.h"
 #include "modules/system/module_particles.h"
+#include "modules/game/module_game_manager.h"
 #include "input/button.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
 #include "components/ia/comp_bt_patrol.h"
@@ -86,6 +87,7 @@ private:
 /* Auxiliar functions */
 CModuleGameConsole* getConsole();
 CModuleLogic* getLogic();
+CModuleGameManager * getGameManager();
 CModuleParticles* getParticles();
 TCompTempPlayerController* getPlayerController();
 TCompNoiseEmitter* getPlayerNoiseEmitter();

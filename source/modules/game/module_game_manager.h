@@ -2,6 +2,8 @@
 
 #include "modules/module.h"
 #include "checkpoints/checkpoint.h"
+#include "sound/soundEvent.h"
+
 
 class CModuleGameManager : public IModule
 {
@@ -39,6 +41,8 @@ public:
     }config;
 
     CModuleGameManager(const std::string& name) : IModule(name) {}
+
+	CModuleGameManager* getPointer() { return this; }
 
     bool start() override;
     void update(float delta) override;
