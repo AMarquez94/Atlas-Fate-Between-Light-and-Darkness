@@ -81,6 +81,7 @@ bool CEngine::stop() {
 
 	bool ok = true;
 	ok &= _modules.stop();
+    exit(0);
 	return ok;
 }
 

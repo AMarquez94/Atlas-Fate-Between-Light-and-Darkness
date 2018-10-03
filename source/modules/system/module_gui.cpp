@@ -40,7 +40,7 @@ void CModuleGUI::initializeWidgetStructure() {
 		//activateWidget("main_menu_buttons");
 	};
 	auto mm_exitCB = []() {
-		exit(0);
+        CEngine::get().stop();
 	};
 	
 	//PAUSE-MENU
@@ -57,8 +57,10 @@ void CModuleGUI::initializeWidgetStructure() {
 		//activateWidget("main_menu_buttons");
 	};
 	auto pm_Exit = []() {
-		exit(0);
+        CEngine::get().stop();
 	};
+
+    registerWigdetStruct(EGUIWidgets::SPLASH, "data/gui/splash.json");
 
 	CMenuButtonsController* mmc = new CMenuButtonsController();
 
