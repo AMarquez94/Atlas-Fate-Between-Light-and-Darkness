@@ -51,11 +51,15 @@ public:
     void renderCustomTexture(const std::string & tech, const MAT44& world, const CTexture* texture, const GUI::ConfigParams & params);
 	void renderText(const MAT44& world, const std::string& text, const VEC4& color);
 
+	void setButtonsState(bool state);
+
 private:
 	CCamera _orthoCamera;
 	const CRenderTechnique* _technique = nullptr;
 	const CRenderMesh* _quadMesh = nullptr;
 	const CTexture* _fontTexture = nullptr;
+
+	bool buttons_state = true;
 
 	GUI::VWidgets _registeredWidgets;
 	GUI::VWidgets _activeWidgets;

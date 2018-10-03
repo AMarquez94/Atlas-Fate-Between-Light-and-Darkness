@@ -132,9 +132,11 @@ void CModuleGUI::update(float delta)
 	{
 		wdgt->updateAll(delta);
 	}
-	for (auto& controller : _controllers)
-	{
-		controller->update(delta);
+	if (buttons_state) {
+		for (auto& controller : _controllers)
+		{
+			controller->update(delta);
+		}
 	}
 
 }
@@ -343,4 +345,8 @@ void CModuleGUI::renderText(const MAT44& world, const std::string& text, const V
 
 		renderTexture(w, _fontTexture, minUV, maxUV, color);
 	}
+}
+
+void CModuleGUI::setButtonsState(bool state) {
+	buttons_state = state;
 }
