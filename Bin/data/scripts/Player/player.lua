@@ -10,32 +10,27 @@ function animation_step_left(sender)
 	playerController:playPlayerStep(true);
 	--playerNoiseEmitter:makeNoise(float noiseRadius, float timeToRepeat, bool isNoise, bool isOnlyOnce, bool isArtificial);
 	playerNoiseEmitter:makeNoise(2.0, 10.0, true, true, false);
-	animateSoundGraph(2);
 end
 
 function animation_step_right(sender)
 	playerController:playPlayerStep(false);
 	playerNoiseEmitter:makeNoise(2.0, 10.0, true, true, false);
-	animateSoundGraph(2);
 end
 
 function animation_run_step_left(sender)
 	playerController:playPlayerStep(true);
 	playerNoiseEmitter:makeNoise(2.0, 10.0, true, true, false);
-	animateSoundGraph(3);
 end
 
 function animation_run_step_right(sender)
 	playerController:playPlayerStep(false);
 	playerNoiseEmitter:makeNoise(2.0, 10.0, true, true, false);
-	animateSoundGraph(3);
 end
 
 function animation_crouch_step_left(sender)
 	h = playerController:getLeftWeapon();
 	t_audio = toAudio(toEntity(h):getCompByName("audio"));
 	t_audio:playEvent("event:/Sounds/Player/Steps/NormalSteps", true);
-	animateSoundGraph(1);
 end
 
 function animation_crouch_step_right(sender)
@@ -44,7 +39,6 @@ function animation_crouch_step_right(sender)
 	h = playerController:getLeftWeapon();
 	t_audio = toAudio(toEntity(h):getCompByName("audio"));
 	t_audio:playEvent("event:/Sounds/Player/Steps/NormalSteps", true);
-	animateSoundGraph(1);
 end
 
 function animation_attack_swingLeft(sender)
@@ -99,7 +93,6 @@ function animation_soft_land(sender)
 	playerController:playLandParticles(true);
 	playerController:playLandParticles(false);
 	playerNoiseEmitter:makeNoise(2.0, 10, true, true, false);
-	animateSoundGraph(1);
 end
 
 function animation_hard_land(sender)
@@ -111,7 +104,6 @@ function animation_hard_land(sender)
 	playerController:playLandParticles(true);
 	playerController:playLandParticles(false);
 	playerNoiseEmitter:makeNoise(7.0, 10.0, true, true, true);
-	animateSoundGraph(3);
 end
 
 function animation_grab_enemy(sender)
@@ -120,10 +112,8 @@ end
 
 function animation_sonda_normal(sender)
 	playerNoiseEmitter:makeNoise(10, 10.0, true, true, true);
-	animateSoundGraph(3);
 end
 
 function animation_sonda_crouch(sender)
 	playerNoiseEmitter:makeNoise(10, 10.0, true, true, true);
-	animateSoundGraph(3);
 end

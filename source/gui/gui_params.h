@@ -46,7 +46,7 @@ namespace GUI
 	  std::vector<VEC2> _original_image_size;
 	  std::vector<int> _frames_per_second;
 	  std::vector<int> _num_frames;
-	  int _playing_sprite = 1;
+	  int _playing_sprite = 0;
 	  std::vector<const CTexture*> _textures;
   };
 
