@@ -7,8 +7,8 @@
 			{
 				"name" : "sound_sprite",
 				"type" : "sprite",
-				"position" : "900 550",
-				"size" : "80 80",
+				"position" : "950 550",
+				"size" : "55 55",
 				"minUV" : "0 0",
 				
 				"texture" : "data/textures/gui/soundgraph_idle.dds",
