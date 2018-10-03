@@ -10,6 +10,8 @@
 #include "components/comp_transform.h"
 #include "render/texture/material.h"
 #include "render/render_objects.h"
+#include "resources/json_resource.h"
+
 // for convenience
 using json = nlohmann::json;
 
@@ -51,7 +53,6 @@ void CModuleSceneManager::loadJsonScenes(const std::string filepath) {
         scene->scene_tone_mapping = data.value("tone_mapping", cb_globals.global_tone_mapping_mode);
         scene->scene_shadow_intensity = data.value("shadow_intensity", cb_globals.global_shadow_intensity);
 
-
         _scenes.insert(std::pair<std::string, Scene*>(scene_name, scene));
     }
 }
@@ -64,6 +65,9 @@ bool CModuleSceneManager::start() {
     _persistentScene->isLoaded = true;
 
     loadJsonScenes("data/boot.json");
+    //std::async(std::launch::async, &CModuleSceneManager::sceneThreadMain, this);
+    sceneThread = std::thread(&CModuleSceneManager::sceneThreadMain, this);
+    //sceneThread.detach();
 
     return true;
 }
@@ -71,6 +75,9 @@ bool CModuleSceneManager::start() {
 bool CModuleSceneManager::stop() {
 
     unLoadActiveScene();
+
+    ending_thread = true;
+    sceneThread.join();
 
     return true;
 }
@@ -183,7 +190,6 @@ bool CModuleSceneManager::unLoadActiveScene() {
         _activeScene = nullptr;
 
 	    /* TODO: Delete checkpoint */
-
         return true;
     }
 
@@ -209,6 +215,90 @@ void CModuleSceneManager::setActiveScene(Scene* scene) {
 }
 
 std::string CModuleSceneManager::getDefaultSceneName() {
-
     return _default_scene;
+}
+
+void CModuleSceneManager::sceneThreadMain()
+{
+    while (!ending_thread) {
+
+        //Resources
+        const std::string resource = Resources.getFirstPendingResource();
+        if (resource.compare("") != 0) {
+
+            const json& j = Resources.get(resource)->as<CJsonResource>()->getJson();
+            std::vector<PreResource> scene_resources;
+            dbg("Ejecutando thread con resource %s\n", resource.c_str());
+            parseResourceScene(j, scene_resources);
+            Sleep(1);
+            for (int i = 0; i < scene_resources.size(); i++) {
+                Resources.get(scene_resources[i].name);
+                Sleep(scene_resources[i].isBig ? 1000 : 100);
+            }
+
+        }
+        Sleep(1);
+    }
+    dbg("Ending thread\n");
+}
+
+void CModuleSceneManager::preloadScene(const std::string& sceneName) {
+    auto it = _scenes.find(sceneName);
+    if (it != _scenes.end())
+    {
+        for (auto& scene_name : it->second->groups_subscenes) {
+            dbg("Preloading scene %s\n", scene_name.c_str());
+            Resources.addPendingResource(scene_name);
+        }
+    }
+}
+
+void CModuleSceneManager::parseResourceScene(const json& j, std::vector<PreResource>& scene_resources) {
+
+    assert(j.is_array());
+    for (int i = 0; i < j.size(); i++){
+
+        auto& j_item = j[i];
+
+        assert(j_item.is_object());
+
+        int n_entities = j_item.count("entity");
+        if (n_entities) {
+            auto& j_entity = j_item["entity"];
+
+            if (j_entity.count("prefab")) {
+
+                std::string prefab_src = j_entity["prefab"];
+                const json& j_prefab = Resources.get(prefab_src)->as<CJsonResource>()->getJson();
+
+                parseResourceScene(j_prefab, scene_resources);
+            }
+            else {
+                if (j_entity.count("render")) {
+                    auto& j_render = j_entity["render"];
+                    for (auto& render_item = j_render.begin(); render_item != j_render.end(); render_item++) {
+                        if (render_item.value().count("mesh")) {
+                            std::string s_mesh = render_item.value().value("mesh", "");
+                            PreResource preres{ s_mesh, false };
+                            if (s_mesh.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), preres) == scene_resources.end()) {
+                                scene_resources.push_back(preres);
+                            }
+                        }
+                        if (render_item.value().count("materials")) {
+                            std::vector<std::string> j_materials = render_item.value()["materials"];
+                            for (auto& material : j_materials) {
+                                PreResource preres{ material, true };
+                                if (material.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), preres) == scene_resources.end()) {
+                                    scene_resources.push_back(preres);
+                                }
+                            }
+                        }
+                    }
+                }
+                //if (j_entity.count("skeleton")) {
+
+                //}
+            }
+        }
+    }
 }

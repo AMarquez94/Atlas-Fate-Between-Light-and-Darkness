@@ -20,7 +20,7 @@ bool CModuleMainMenu::start()
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 	mouse->setLockMouse(false);
 
-	EngineScene.loadScene("scene_main_menu");
+	//EngineScene.loadScene("scene_main_menu");
 
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BACKGROUND);
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
@@ -32,6 +32,7 @@ bool CModuleMainMenu::start()
 	h_camera = getEntityByName("main_camera");
 	if (h_camera.isValid())
 		Engine.getCameras().setOutputCamera(h_camera);
+
 
 	//cb_light.activate();
 	//cb_object.activate();
