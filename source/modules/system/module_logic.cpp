@@ -112,8 +112,7 @@ void CModuleLogic::publishClasses() {
 
     SLB::Class< CModuleParticles >("Particles", m)
         .comment("This is our wrapper of the particles class")
-        .set("killAll", &CModuleParticles::killAll)
-        .set("launchSystem", &CModuleParticles::launchSystem);
+        .set("killAll", &CModuleParticles::killAll);
 
     SLB::Class< VEC3 >("VEC3", m)
         .constructor<float, float, float>()
