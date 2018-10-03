@@ -1,27 +1,32 @@
 {
 	"system": {
-		"duration": 0.4,
-		"looping": true,
-		"start_delay": 0.0, 
+		"duration": 3,
+		"looping": false,
+		"start_delay": 0.45, 
 		"start_lifetime": 1.0, 
 		"start_speed": 0.5,
 		"start_size": "1 1 1",
 		"start_rotation": "0 0 0", 
 		"random_rotation": 0.0,  
 		"start_color": "1 0 0 1",
-		"gravity": 0.01,  
+		"gravity": 0.15,  
 		"simulation_speed": 3,
-		"max_particles": 300,
-		"offset": "0.1 0 0"
+		"max_particles": 500     
 	},       
 	"emission": {         
-		"rate_time": 22.0,      
-		"rate_distance": 20.0,     
-		"variation" : 0.0
+		"rate_time": 0.0,      
+		"rate_distance": 0.0,     
+		"variation" : 0.0,     
+		"bursts" : [             
+			[0, 10, 1, 0.0],       
+			[0.15, 50, 1, 0.010],     
+			[0.130, 10, 1, 0.010],          
+			[0.250, 20, 1, 0.010]			 	    
+		]  
 	},	    
 	"shape": {     
-		"type": "cone", 
-		"size": "0.001 0.001 0.001",
+		"type": "sphere", 
+		"size": "0.01 0.01 0.01",
 		"angle": 0	     
 	},    
 	"velocity" : {   
@@ -32,15 +37,15 @@
 			[1.0, "0.0 0.0 0.0"]       
     ],   
 		"rotation" : [      
-		  [0.0, "0.25 0.25 0.25"], 
-      [1.0, "0.25 0.25 0.25"]    
+		  [0.0, "0.0 0.0 0.0"], 
+      [1.0, "0.0 0.0 0.0"]    
     ],        
 		"acceleration": 1,    
 		"wind": 0  
 	},     
 	"noise": {      
-		"texture": "data/textures/particles/flare_spotlight.dds",  
-		"strength":0.0,        
+		"texture": "data/textures/particles/fx_smoke1.dds",  
+		"strength":34.1,        
 		"frequency": 0.5,    
 		"scroll_speed": 0.0,      
 		"damping": true,   
@@ -50,8 +55,8 @@
 		"collision": true     
 	},  
 	"renderer": {   
-			"mode": "billboard",    
-			"texture": "data/textures/particles/glow.dds",  
+			"mode": "stretched",    
+			"texture": "data/textures/particles/fire_sparkle_electric.dds",  
       "frame_size" : "1 1", 
       "initial_frame" : 0,
       "num_frames" : 1,   
@@ -59,21 +64,21 @@
 			"tech" : "particles_instanced_additive.tech"
 	},        
   "size" : {     
-    "scale" :0.35,
-    "scale_variation" : 0,   
+    "scale" : 0.6,
+    "scale_variation" : 1.6,   
     "sizes" : [ 
-		  [0.0, "1 1 1"],
-			[0.4, "1 1 1"], 
-			[1.0, "0.1 0 0.1"]     
+		  [0.0, "0.01 0.01 0.01"],
+			[0.1, "0.2 0.2 0.2"], 
+			[1.0, "0.0 0.0 0.0"]     
     ] 
   },    
   "color" : { 
-    "opacity" : 0.005, 
+    "opacity" : 1, 
     "colors" : [ 
-      [0.0, "0.2 1 1 0.0"],
-			[0.1, "0.2 1 1 1.0"],
-			[0.4, "0.2 1 1 1.0"],
-			[1.0, "0.2 1 1 0.0"]
+      [0.0, "1 1 1 0.0"],
+			[0.1, "1 1 1. 1.0"],
+			[0.4, "1 1 1 1.2"],
+			[1.0, "1 1 1 0.0"]
     ] 
   }
 }

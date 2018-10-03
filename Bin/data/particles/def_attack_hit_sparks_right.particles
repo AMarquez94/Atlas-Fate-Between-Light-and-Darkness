@@ -1,28 +1,27 @@
 {
 	"system": {
-		"duration": 0.4,
+		"duration": 0.75,
 		"looping": true,
-		"start_delay": 0.0, 
+		"start_delay": 0.5, 
 		"start_lifetime": 1.0, 
-		"start_speed": 0.5,
+		"start_speed": 1.5,
 		"start_size": "1 1 1",
 		"start_rotation": "0 0 0", 
 		"random_rotation": 0.0,  
 		"start_color": "1 0 0 1",
 		"gravity": 0.01,  
 		"simulation_speed": 3,
-		"max_particles": 300,
-		"offset": "0.1 0 0"
+		"max_particles": 500     
 	},       
 	"emission": {         
-		"rate_time": 22.0,      
-		"rate_distance": 20.0,     
+		"rate_time": 0.0,      
+		"rate_distance": 25.0,     
 		"variation" : 0.0
 	},	    
 	"shape": {     
 		"type": "cone", 
-		"size": "0.001 0.001 0.001",
-		"angle": 0	     
+		"size": "0.01 0.01 0.01",
+		"angle": 85	     
 	},    
 	"velocity" : {   
 		"constant_velocity": "0.0 0.0 0.0", 
@@ -32,15 +31,15 @@
 			[1.0, "0.0 0.0 0.0"]       
     ],   
 		"rotation" : [      
-		  [0.0, "0.25 0.25 0.25"], 
-      [1.0, "0.25 0.25 0.25"]    
+		  [0.0, "0.0 0.0 0.0"], 
+      [1.0, "0.0 0.0 0.0"]    
     ],        
 		"acceleration": 1,    
 		"wind": 0  
 	},     
 	"noise": {      
-		"texture": "data/textures/particles/flare_spotlight.dds",  
-		"strength":0.0,        
+		"texture": "data/textures/particles/fx_smoke1.dds",  
+		"strength":14.1,        
 		"frequency": 0.5,    
 		"scroll_speed": 0.0,      
 		"damping": true,   
@@ -50,8 +49,8 @@
 		"collision": true     
 	},  
 	"renderer": {   
-			"mode": "billboard",    
-			"texture": "data/textures/particles/glow.dds",  
+			"mode": "stretched",    
+			"texture": "data/textures/particles/particle_cloud.dds",  
       "frame_size" : "1 1", 
       "initial_frame" : 0,
       "num_frames" : 1,   
@@ -59,20 +58,20 @@
 			"tech" : "particles_instanced_additive.tech"
 	},        
   "size" : {     
-    "scale" :0.35,
-    "scale_variation" : 0,   
+    "scale" : 0.6,
+    "scale_variation" : 1.6,   
     "sizes" : [ 
-		  [0.0, "1 1 1"],
-			[0.4, "1 1 1"], 
-			[1.0, "0.1 0 0.1"]     
+		  [0.0, "0.01 0.01 0.01"],
+			[0.7, "0.01 0.2 0.01"], 
+			[1.0, "0.0 0.0 0.0"]     
     ] 
   },    
   "color" : { 
-    "opacity" : 0.005, 
+    "opacity" : 4, 
     "colors" : [ 
       [0.0, "0.2 1 1 0.0"],
-			[0.1, "0.2 1 1 1.0"],
-			[0.4, "0.2 1 1 1.0"],
+			[0.1, "0.2 1 1. 1.0"],
+			[0.4, "0.2 1 1 1.2"],
 			[1.0, "0.2 1 1 0.0"]
     ] 
   }

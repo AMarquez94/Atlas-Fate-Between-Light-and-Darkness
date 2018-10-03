@@ -34,15 +34,15 @@
 				"function_to_call" : "animation_attack_start"
 			  },
 			  {
-				"time_to_call" : 0.3,
+				"time_to_call" : 0.1,
 				"function_to_call" : "animation_attack_swingLeft"
 			  },
 			  {
-				"time_to_call" : 0.5,
+				"time_to_call" : 0.3,
 				"function_to_call" : "animation_attack_swingRight"
 			  },
 			  {
-				"time_to_call" : 0.5,
+				"time_to_call" : 0.7,
 				"function_to_call" : "animation_attack_strikeLeft"
 			  },
 			  {
@@ -50,7 +50,7 @@
 				"function_to_call" : "animation_attack_attack"
 			  },
 			  {
-				"time_to_call" : 0.7,
+				"time_to_call" : 0.9,
 				"function_to_call" : "animation_attack_strikeRight"
 			  }
 			]},
