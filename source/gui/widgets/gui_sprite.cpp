@@ -32,19 +32,20 @@ TSpriteParams* CSprite::getSpriteParams() {
 }
 
 void CSprite::update(float dt) {
+
 	_time_since_start += dt;
 
-	if (_spriteParams._textures.size() - 1 < _spriteParams._playing_sprite) {
+	/*if (_spriteParams._textures.size() - 1 < _spriteParams._playing_sprite) {
 
 		_spriteParams._playing_sprite = 0;
-	}
+	}*/
 
 	if (_time_since_start >= (1.f / (float)_spriteParams._frames_per_second[_spriteParams._playing_sprite])) {
 
 		_actual_horizontal_frame++;
 		_actual_frame++;
 		if (_actual_frame > _spriteParams._num_frames[_spriteParams._playing_sprite]) {
-			_spriteParams._playing_sprite = 0;
+			//_spriteParams._playing_sprite = 0;
 			_actual_frame = 1;
 			_actual_horizontal_frame = 0;
 			_actual_vertical_frame = 0;
