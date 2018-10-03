@@ -153,7 +153,10 @@ void CWidget::makeChildsFadeIn(float time_to_lerp, float time_to_start, bool get
 }
 
 void CWidget::makeChildsFadeOut(float time_to_lerp, float time_to_start, bool getFromChildren) {
-	
+
+	if (this == nullptr) {
+		return;
+	}
 	VWidgets childs;
 	if (getFromChildren) childs = _children[0]->_children;
 	else childs = _children;
