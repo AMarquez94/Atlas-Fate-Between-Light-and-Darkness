@@ -31,8 +31,14 @@ bool CModuleGameManager::start() {
 void CModuleGameManager::setPauseState(PauseState pause) {
 
     // We are exiting the current state, disabling pause
-    if (_currentstate == pause && CApp::get().hasFocus())
-        pause = PauseState::none;
+	if (_currentstate == PauseState::main && CApp::get().hasFocus()) {
+		if (EngineGUI.getButtonsState()) {
+			EngineGUI.setButtonsState(false);
+			EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE)->makeChildsFadeOut(0.08, 0, false);
+			EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS)->makeChildsFadeOut(0.08, 0, true);
+			EngineLogic.execSystemScriptDelayed("unPauseGame();", 0.08f);
+		}	
+	}
 
     {
         _player = EngineEntities.getPlayerHandle();

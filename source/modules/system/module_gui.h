@@ -52,6 +52,7 @@ public:
 	void renderText(const MAT44& world, const std::string& text, const VEC4& color);
 
 	void setButtonsState(bool state);
+	bool getButtonsState();
 
 private:
 	CCamera _orthoCamera;

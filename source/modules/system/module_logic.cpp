@@ -280,6 +280,9 @@ void CModuleLogic::publishClasses() {
     m->set("setCinematicPlayerState", SLB::FuncCall::create(&setCinematicPlayerState));
     m->set("setAIState", SLB::FuncCall::create(&setAIState));
 
+	//GUI
+	m->set("unPauseGame", SLB::FuncCall::create(&unPauseGame));
+	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
     m->set("shadowsToggle", SLB::FuncCall::create(&shadowsToggle));
@@ -897,4 +900,10 @@ void toggleButtonCanBePressed(const std::string & buttonName, bool canBePressed)
 	if (comp_button) {
 		comp_button->canBePressed = canBePressed;
 	}
+}
+
+void unPauseGame() {
+
+	CEngine::get().getGameManager().setPauseState(CModuleGameManager::PauseState::none);
+	EngineGUI.setButtonsState(true);
 }

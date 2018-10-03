@@ -141,6 +141,10 @@ void setTutorialPlayerState(bool active, const std::string& stateName);
 void setCinematicPlayerState(bool active, const std::string & stateName);
 void setAIState(const std::string& name, bool active, const std::string & stateName);
 
+/* GUI */
+void unPauseGame();
+
+
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);
 void toggle_spotlight(const std::string& lightName);

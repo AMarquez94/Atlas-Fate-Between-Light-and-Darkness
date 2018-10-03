@@ -45,7 +45,10 @@ void CModuleGUI::initializeWidgetStructure() {
 	
 	//PAUSE-MENU
 	auto pm_resumeGame = []() {
-		CEngine::get().getGameManager().setPauseState(CModuleGameManager::PauseState::none);
+		EngineGUI.setButtonsState(false);
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE)->makeChildsFadeOut(0.08,0,false);
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS)->makeChildsFadeOut(0.08, 0, true);
+		EngineLogic.execSystemScriptDelayed("unPauseGame();",0.08f);
 	};
 	auto pm_restartLevel = []() {
         //EngineLogic.execSystemScriptDelayed("gameManager:resetToCheckpoint()", 2.f);
@@ -349,4 +352,8 @@ void CModuleGUI::renderText(const MAT44& world, const std::string& text, const V
 
 void CModuleGUI::setButtonsState(bool state) {
 	buttons_state = state;
+}
+
+bool CModuleGUI::getButtonsState() {
+	return buttons_state;
 }
