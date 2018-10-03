@@ -48,9 +48,11 @@ void CModuleGUI::initializeWidgetStructure() {
 		CEngine::get().getGameManager().setPauseState(CModuleGameManager::PauseState::none);
 	};
 	auto pm_restartLevel = []() {
+        //EngineLogic.execSystemScriptDelayed("gameManager:resetToCheckpoint()", 2.f);
 		CEngine::get().getGameManager().resetLevel();
 	};
 	auto pm_RestartFromCheckPoint = []() {
+        //EngineLogic.execSystemScriptDelayed("gameManager:resetToCheckpoint()", 2.f);
 		CEngine::get().getGameManager().resetToCheckpoint();
 	};
 	auto pm_Options = []() {

@@ -39,6 +39,14 @@ bool CModuleLogic::stop() {
 }
 
 void CModuleLogic::update(float delta) {
+    for (unsigned int i = 0; i < delayedSystemScripts.size(); i++) {
+        delayedSystemScripts[i].remainingTime -= delta;
+        if (delayedSystemScripts[i].remainingTime <= 0) {
+            execScript(delayedSystemScripts[i].script);
+            delayedSystemScripts.erase(delayedSystemScripts.begin() + i);
+        }
+    }
+
     if (!paused) {
         for (unsigned int i = 0; i < delayedScripts.size(); i++) {
             delayedScripts[i].remainingTime -= delta;
@@ -116,7 +124,7 @@ void CModuleLogic::publishClasses() {
         .set("killAll", &CModuleParticles::killAll);
 
 	SLB::Class< CModuleGameManager >("GameManager", m)
-		.comment("salchipapa")
+		.comment("This is our wrapper of the gamemanager class")
 		.set("resetToCheckpoint", &CModuleGameManager::resetToCheckpoint);
 
     SLB::Class< VEC3 >("VEC3", m)
@@ -235,6 +243,7 @@ void CModuleLogic::publishClasses() {
     m->set("getPlayerController", SLB::FuncCall::create(&getPlayerController));
     m->set("getPlayerNoiseEmitter", SLB::FuncCall::create(&getPlayerNoiseEmitter));
     m->set("execScriptDelayed", SLB::FuncCall::create(&execDelayedScript));
+    m->set("execSystemScriptDelayed", SLB::FuncCall::create(&execDelayedSystemScript));
     m->set("pauseGame", SLB::FuncCall::create(&pauseGame));
     m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
     m->set("pauseEnemyEntities", SLB::FuncCall::create(&pauseEnemyEntities));
@@ -349,6 +358,12 @@ CModuleLogic::ConsoleResult CModuleLogic::execScript(const std::string& script) 
 bool CModuleLogic::execScriptDelayed(const std::string & script, float delay)
 {
     delayedScripts.push_back(DelayedScript{ script, delay });
+    return true;
+}
+
+bool CModuleLogic::execSystemScriptDelayed(const std::string & script, float delay)
+{
+    delayedSystemScripts.push_back(DelayedScript{ script, delay });
     return true;
 }
 
@@ -474,6 +489,11 @@ CModuleGameConsole * getConsole() { return EngineConsole.getPointer(); }
 void execDelayedScript(const std::string& script, float delay)
 {
     EngineLogic.execScriptDelayed(script, delay);
+}
+
+void execDelayedSystemScript(const std::string & script, float delay)
+{
+    EngineLogic.execSystemScriptDelayed(script, delay);
 }
 
 void pauseEnemies(bool pause) {

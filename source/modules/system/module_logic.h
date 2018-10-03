@@ -64,6 +64,7 @@ public:
     void execCvar(std::string& script);
     ConsoleResult execScript(const std::string& script);
     bool execScriptDelayed(const std::string& script, float delay);
+    bool execSystemScriptDelayed(const std::string& script, float delay);
     bool execEvent(Events event, const std::string& params = "", float delay = 0.f);
     void printLog();
     void setPause(bool paused) { this->paused = paused; }
@@ -75,6 +76,7 @@ private:
     SLB::Script* s = new SLB::Script(m);
 
     std::vector<DelayedScript> delayedScripts;
+    std::vector<DelayedScript> delayedSystemScripts;
 
     void BootLuaSLB();
     void publishClasses();
@@ -92,6 +94,7 @@ CModuleParticles* getParticles();
 TCompTempPlayerController* getPlayerController();
 TCompNoiseEmitter* getPlayerNoiseEmitter();
 void execDelayedScript(const std::string& script, float delay);
+void execDelayedSystemScript(const std::string& script, float delay);
 void pauseEnemies(bool pause);
 void pauseEnemyEntities(bool pause);
 void deleteEnemies();
