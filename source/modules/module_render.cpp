@@ -47,8 +47,10 @@ CModuleRender::CModuleRender(const std::string& name)
 
 //--------------------------------------------------------------------------------------
 // All techs are loaded from this json file
-	json j = loadJson("data/techniques.json");
+json j = loadJson("data/techniques.json");
+
 bool parseTechniques() {
+
 	for (auto it = j.begin(); it != j.end(); ++it) {
 
 		std::string tech_name = it.key() + ".tech";

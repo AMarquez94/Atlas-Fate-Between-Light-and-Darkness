@@ -447,5 +447,24 @@
 				]
 			}
 		}
+	},
+	{
+		"entity": {
+			"name": "Player_Particle_Handle",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"hierarchy": {
+				"parent": "The Player"
+			},
+			"particles": {
+				"on_start":true,
+				"cores":
+				[
+					"data/particles/def_amb_rain_heavy.particles",
+					"data/particles/def_amb_rain_core_heavy.particles"
+				]
+			}
+		}
 	}
 ]
