@@ -68,10 +68,10 @@ private:
         }
     };
 
-    std::thread sceneThread;
-    bool ending_thread = false;
-    void sceneThreadMain();
-    void parseResourceScene(const json& j, std::vector<PreResource>& scene_resources);
+    //std::thread sceneThread;
+    //bool ending_thread = false;
+    //void sceneThreadMain();
+    //void parseResourceScene(const json& j, std::vector<PreResource>& scene_resources);
 
     //void sceneThreadTask();
 };

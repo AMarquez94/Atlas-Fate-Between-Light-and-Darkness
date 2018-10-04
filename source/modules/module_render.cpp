@@ -74,17 +74,6 @@ bool CModuleRender::start()
 	if (!CVertexDeclManager::get().create())
 		return false;
 
-	// Register the resource types
-	Resources.registerResourceClass(getResourceClassOf<CJsonResource>());
-	Resources.registerResourceClass(getResourceClassOf<CTexture>());
-	Resources.registerResourceClass(getResourceClassOf<CRenderMesh>());
-	Resources.registerResourceClass(getResourceClassOf<CRenderTechnique>());
-	Resources.registerResourceClass(getResourceClassOf<CMaterial>());
-	Resources.registerResourceClass(getResourceClassOf<CGameCoreSkeleton>());
-	Resources.registerResourceClass(getResourceClassOf<CPhysicsMesh>());
-	Resources.registerResourceClass(getResourceClassOf<CCurve>());
-	Resources.registerResourceClass(getResourceClassOf<RigidAnims::CRigidAnimResource>());
-
 	if (!createRenderObjects())
 		return false;
 
@@ -473,7 +462,7 @@ void CModuleRender::postProcessingStack() {
 }
 
 void CModuleRender::debugDraw() {
-	return;
+
     if (!_debugMode) return;
 
     {

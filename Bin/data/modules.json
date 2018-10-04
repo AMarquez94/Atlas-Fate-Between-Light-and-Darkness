@@ -1,6 +1,7 @@
 {
 	"update":
 	[
+		"files",
 		"input",
 		"entities",
 		"physics",

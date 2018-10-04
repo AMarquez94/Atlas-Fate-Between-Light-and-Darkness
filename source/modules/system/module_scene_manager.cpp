@@ -66,7 +66,7 @@ bool CModuleSceneManager::start() {
 
     loadJsonScenes("data/boot.json");
     //std::async(std::launch::async, &CModuleSceneManager::sceneThreadMain, this);
-    sceneThread = std::thread(&CModuleSceneManager::sceneThreadMain, this);
+    //sceneThread = std::thread(&CModuleSceneManager::sceneThreadMain, this);
     //sceneThread.detach();
 
     return true;
@@ -76,8 +76,8 @@ bool CModuleSceneManager::stop() {
 
     unLoadActiveScene();
 
-    ending_thread = true;
-    sceneThread.join();
+    //ending_thread = true;
+    //sceneThread.join();
 
     return true;
 }
@@ -218,29 +218,29 @@ std::string CModuleSceneManager::getDefaultSceneName() {
     return _default_scene;
 }
 
-void CModuleSceneManager::sceneThreadMain()
-{
-    while (!ending_thread) {
-
-        //Resources
-        const std::string resource = Resources.getFirstPendingResource();
-        if (resource.compare("") != 0) {
-
-            const json& j = Resources.get(resource)->as<CJsonResource>()->getJson();
-            std::vector<PreResource> scene_resources;
-            dbg("Ejecutando thread con resource %s\n", resource.c_str());
-            parseResourceScene(j, scene_resources);
-            Sleep(1);
-            for (int i = 0; i < scene_resources.size(); i++) {
-                Resources.get(scene_resources[i].name);
-                Sleep(scene_resources[i].isBig ? 60 : 1);
-            }
-
-        }
-        Sleep(1);
-    }
-    dbg("Ending thread\n");
-}
+//void CModuleSceneManager::sceneThreadMain()
+//{
+//    while (!ending_thread) {
+//
+//        //Resources
+//        const std::string resource = Resources.getFirstPendingResource();
+//        if (resource.compare("") != 0) {
+//
+//            const json& j = Resources.get(resource)->as<CJsonResource>()->getJson();
+//            std::vector<PreResource> scene_resources;
+//            dbg("Ejecutando thread con resource %s\n", resource.c_str());
+//            parseResourceScene(j, scene_resources);
+//            Sleep(1);
+//            for (int i = 0; i < scene_resources.size(); i++) {
+//                Resources.get(scene_resources[i].name);
+//                Sleep(scene_resources[i].isBig ? 60 : 1);
+//            }
+//
+//        }
+//        Sleep(1);
+//    }
+//    dbg("Ending thread\n");
+//}
 
 void CModuleSceneManager::preloadScene(const std::string& sceneName) {
     auto it = _scenes.find(sceneName);
@@ -249,186 +249,6 @@ void CModuleSceneManager::preloadScene(const std::string& sceneName) {
         for (auto& scene_name : it->second->groups_subscenes) {
             dbg("Preloading scene %s\n", scene_name.c_str());
             Resources.addPendingResource(scene_name);
-        }
-    }
-}
-
-void CModuleSceneManager::parseResourceScene(const json& j, std::vector<PreResource>& scene_resources) {
-
-    assert(j.is_array());
-    for (int i = 0; i < j.size(); i++){
-
-        auto& j_item = j[i];
-
-        assert(j_item.is_object());
-
-        int n_entities = j_item.count("entity");
-        if (n_entities) {
-            auto& j_entity = j_item["entity"];
-
-            if (j_entity.count("prefab")) {
-
-                std::string prefab_src = j_entity["prefab"];
-                const json& j_prefab = Resources.get(prefab_src)->as<CJsonResource>()->getJson();
-
-                parseResourceScene(j_prefab, scene_resources);
-            }
-            else {
-                if (j_entity.count("render")) {
-
-                    /* Render parser (meshes and textures) */
-                    auto& j_render = j_entity["render"];
-                    for (auto& render_item = j_render.begin(); render_item != j_render.end(); render_item++) {
-                        if (render_item.value().count("mesh")) {
-
-                            /* Mesh */
-                            std::string s_mesh = render_item.value().value("mesh", "");
-                            PreResource preres{ s_mesh, false };
-                            if (s_mesh.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), preres) == scene_resources.end()) {
-                                scene_resources.push_back(preres);
-                            }
-                        }
-                        if (render_item.value().count("materials")) {
-
-                            /* Material */
-                            std::vector<std::string> j_materials = render_item.value()["materials"];
-                            for (auto& material : j_materials) {
-                                PreResource preres{ material, false };
-                                if (material.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), preres) == scene_resources.end()) {
-                                    const json& j_material = loadJson(material);
-
-                                    /* Textures */
-                                    if (j_material.count("textures")) {
-                                        auto& j_textures = j_material["textures"];
-                                        for (auto it = j_textures.begin(); it != j_textures.end(); it++) {
-                                            std::string texture_name = it.value();
-                                            PreResource texture_preres{ texture_name, true };
-                                            if (texture_name.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), texture_preres) == scene_resources.end()) {
-                                                scene_resources.push_back(texture_preres);
-                                            }
-                                        }
-                                    }
-
-                                    /* Render technique */
-                                    if (j_material.count("technique")) {
-                                        std::string technique_name = j_material.value("technique", "");
-                                        PreResource technique_preres{ j_material.value("technique", ""), false };
-                                        if (technique_name.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), technique_preres) == scene_resources.end()) {
-                                            scene_resources.push_back(technique_preres);
-                                        }
-                                    }
-
-                                    /* Material */
-                                    scene_resources.push_back(preres);
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (j_entity.count("instance")) {
-
-                    dbg("ENTRAMOS INSTANCE\n");
-                    /* Render parser (meshes and textures) */
-                    auto& j_instance = j_entity["instance"];
-                    //for (auto& instance_item = j_instance.begin(); instance_item != j_instance.end(); instance_item++) {
-                        if (j_instance.count("mesh")) {
-                            /* Mesh */
-                            std::string s_mesh = j_instance.value("mesh", "");
-                            dbg("ENTRAMOS INSTANCE MESH %s\n", s_mesh.c_str());
-                            PreResource preres{ s_mesh, false };
-                            if (s_mesh.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), preres) == scene_resources.end()) {
-                                scene_resources.push_back(preres);
-                            }
-                        }
-                        if (j_instance.count("materials")) {
-                            dbg("ENTRAMOS INSTANCE MATERIALS\n");
-
-                            /* Material */
-                            std::vector<std::string> j_materials = j_instance["materials"];
-                            for (auto& material : j_materials) {
-                                PreResource preres{ material, false };
-                                if (material.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), preres) == scene_resources.end()) {
-                                    const json& j_material = loadJson(material);
-
-                                    /* Textures */
-                                    if (j_material.count("textures")) {
-                                        auto& j_textures = j_material["textures"];
-                                        for (auto it = j_textures.begin(); it != j_textures.end(); it++) {
-                                            std::string texture_name = it.value();
-                                            PreResource texture_preres{ texture_name, true };
-                                            dbg("TENEMOS INSTANCEEEEEEEEEEEEEEEEEEEEEEEEEEEEED %s\n", texture_name.c_str());
-
-                                            if (texture_name.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), texture_preres) == scene_resources.end()) {
-                                                scene_resources.push_back(texture_preres);
-                                            }
-                                        }
-                                    }
-
-                                    /* Render technique */
-                                    if (j_material.count("technique")) {
-                                        std::string technique_name = j_material.value("technique", "");
-                                        PreResource technique_preres{ j_material.value("technique", ""), false };
-                                        if (technique_name.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), technique_preres) == scene_resources.end()) {
-                                            scene_resources.push_back(technique_preres);
-                                        }
-                                    }
-
-                                    /* Material */
-                                    scene_resources.push_back(preres);
-                                }
-                            }
-                        //}
-                    }
-                }
-                //if (j_entity.count("skeleton")) {
-
-                //}
-            }
-        }
-        if (j_item.count("instance_container")) {
-            dbg("ENTRAMOS INSTANCE CONTAINER\n");
-
-
-            /* Instance containers */
-            auto& j_instance_container = j_item["instance_container"];
-            if (j_instance_container.count("instance_data")) {
-                auto& j_instance_data = j_instance_container["instance_data"];
-                if (j_instance_data.count("materials")) {
-                    std::vector<std::string> j_materials = j_instance_data["materials"];
-                    for (auto& material : j_materials) {
-                        PreResource preres{ material, false };
-                        if (material.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), preres) == scene_resources.end()) {
-                            const json& j_material = loadJson(material);
-
-                            /* Textures */
-                            if (j_material.count("textures")) {
-                                auto& j_textures = j_material["textures"];
-                                for (auto it = j_textures.begin(); it != j_textures.end(); it++) {
-                                    std::string texture_name = it.value();
-                                    PreResource texture_preres{ texture_name, true };
-                                    dbg("TENEMOS TEXTUREAAAAAAAAAAAAAAAAAAAAAS %s\n", texture_name.c_str());
-                                    if (texture_name.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), texture_preres) == scene_resources.end()) {
-                                        scene_resources.push_back(texture_preres);
-                                    }
-                                }
-                            }
-
-                            /* Render technique */
-                            if (j_material.count("technique")) {
-                                std::string technique_name = j_material.value("technique", "");
-                                PreResource technique_preres{ j_material.value("technique", ""), false };
-                                if (technique_name.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), technique_preres) == scene_resources.end()) {
-                                    scene_resources.push_back(technique_preres);
-                                }
-                            }
-
-                            /* Material */
-                            scene_resources.push_back(preres);
-                        }
-                    }
-                }
-            }
         }
     }
 }

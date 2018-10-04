@@ -37,15 +37,18 @@ const CResourceClass* getResourceClassOf<CTexture>() {
 // ----------------------------------------------------------
 bool CTexture::create(const std::string& name) {
 
-	wchar_t wFilename[MAX_PATH];
-	mbstowcs(wFilename, name.c_str(), name.length() + 1);
+	//wchar_t wFilename[MAX_PATH];
+	//mbstowcs(wFilename, name.c_str(), name.length() + 1);
 
-	HRESULT hr = DirectX::CreateDDSTextureFromFile(
-		Render.device,
-		wFilename,
-		&texture,
-		&shader_resource_view
-	);
+    const std::vector<char> &file_data = EngineFiles.loadResourceFile(name);
+
+    HRESULT hr = DirectX::CreateDDSTextureFromMemory(
+        Render.device,
+        (const uint8_t*)file_data.data(),
+        file_data.size(),
+        &texture,
+        &shader_resource_view);
+
 	if (FAILED(hr))
 		return false;
 
