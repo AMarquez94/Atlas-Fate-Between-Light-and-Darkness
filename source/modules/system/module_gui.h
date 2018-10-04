@@ -8,7 +8,7 @@
 class CModuleGUI : public IModule
 {
 public:
-	enum EGUIWidgets{ MAIN_MENU_BACKGROUND = 0, MAIN_MENU_BUTTONS, MAIN_MENU_OPTIONS, INGAME_STAMINA_BAR, INGAME_MENU_PAUSE, INGAME_MENU_PAUSE_BUTTONS, SOUND_GRAPH, DEAD_MENU_BUTTONS, DEAD_MENU_BACKGROUND};
+	enum EGUIWidgets{ MAIN_MENU_BACKGROUND = 0, MAIN_MENU_BUTTONS, MAIN_MENU_OPTIONS, INGAME_STAMINA_BAR, INGAME_MENU_PAUSE, INGAME_MENU_PAUSE_BUTTONS, SOUND_GRAPH, DEAD_MENU_BUTTONS, DEAD_MENU_BACKGROUND, CONTROLS, BACK_BUTTON};
 
 	struct WidgetStructure {
 		EGUIWidgets _type;
@@ -39,6 +39,9 @@ public:
     void enableWidget(const std::string& name, bool status = true);
 	bool getWidgetStructureEnabled(EGUIWidgets wdgt);
 
+	void activateController(EGUIWidgets wdgt);
+	void deactivateController(EGUIWidgets wdgt);
+
 	// controller management
 	void registerController(GUI::CController* controller);
 	void unregisterController(GUI::CController* controller);
@@ -54,6 +57,7 @@ public:
 	void setButtonsState(bool state);
 	bool getButtonsState();
 
+	void closePauseMenu();
 private:
 	CCamera _orthoCamera;
 	const CRenderTechnique* _technique = nullptr;

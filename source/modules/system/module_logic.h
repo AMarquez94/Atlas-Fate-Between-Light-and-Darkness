@@ -143,7 +143,7 @@ void setAIState(const std::string& name, bool active, const std::string & stateN
 
 /* GUI */
 void unPauseGame();
-
+void backFromControls();
 
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);

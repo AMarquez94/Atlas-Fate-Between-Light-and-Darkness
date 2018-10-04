@@ -282,6 +282,7 @@ void CModuleLogic::publishClasses() {
 
 	//GUI
 	m->set("unPauseGame", SLB::FuncCall::create(&unPauseGame));
+	m->set("backFromControls", SLB::FuncCall::create(&backFromControls));
 	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -906,4 +907,11 @@ void unPauseGame() {
 
 	CEngine::get().getGameManager().setPauseState(CModuleGameManager::PauseState::none);
 	EngineGUI.setButtonsState(true);
+}
+
+void backFromControls() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::BACK_BUTTON);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::CONTROLS);
+	EngineGUI.activateController(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
+
 }

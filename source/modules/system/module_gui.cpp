@@ -45,10 +45,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	
 	//PAUSE-MENU
 	auto pm_resumeGame = []() {
-		EngineGUI.setButtonsState(false);
-		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE)->makeChildsFadeOut(0.08,0,false);
-		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS)->makeChildsFadeOut(0.08, 0, true);
-		EngineLogic.execSystemScriptDelayed("unPauseGame();",0.08f);
+		EngineGUI.closePauseMenu();
 	};
 	auto pm_restartLevel = []() {
         //EngineLogic.execSystemScriptDelayed("gameManager:resetToCheckpoint()", 2.f);
@@ -58,11 +55,21 @@ void CModuleGUI::initializeWidgetStructure() {
         //EngineLogic.execSystemScriptDelayed("gameManager:resetToCheckpoint()", 2.f);
 		CEngine::get().getGameManager().resetToCheckpoint();
 	};
-	auto pm_Options = []() {
+	auto pm_Controls = []() {
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::CONTROLS)->makeChildsFadeIn(0.08,0,false);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BACK_BUTTON)->makeChildsFadeIn(0.08, 0, true);
+		EngineGUI.deactivateController(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
 		//activateWidget("main_menu_buttons");
 	};
 	auto pm_Exit = []() {
 		exit(0);
+	};
+
+	auto pm_Back = []() {
+		//exit(0);
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BACK_BUTTON)->makeChildsFadeOut(0.08, 0, true);
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::CONTROLS)->makeChildsFadeOut(0.08, 0, false);
+		EngineLogic.execSystemScriptDelayed("backFromControls();", 0.08f);
 	};
 
 	CMenuButtonsController* mmc = new CMenuButtonsController();
@@ -83,7 +90,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	pmc->registerOption("resume_game", pm_resumeGame);
 	pmc->registerOption("restart", pm_restartLevel);
 	pmc->registerOption("restart_checkpoint", pm_RestartFromCheckPoint);
-	pmc->registerOption("pause_options", pm_Options);
+	pmc->registerOption("controls", pm_Controls);
 	pmc->registerOption("pause_exit", pm_Exit);
 	pmc->setCurrentOption(0);
 
@@ -95,12 +102,19 @@ void CModuleGUI::initializeWidgetStructure() {
 	dmc->registerOption("dead_exit", pm_Exit);
 	dmc->setCurrentOption(0);
 
+	CMenuButtonsController* bbc = new CMenuButtonsController();
+	registerWigdetStruct(EGUIWidgets::BACK_BUTTON, "data/gui/back_button.json", bbc);
+	bbc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::BACK_BUTTON);
+	bbc->registerOption("back", pm_Back);
+	bbc->setCurrentOption(0);
+
 
 	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json");
 	registerWigdetStruct(EGUIWidgets::SOUND_GRAPH, "data/gui/sound_graph.json");
 	registerWigdetStruct(EGUIWidgets::INGAME_STAMINA_BAR, "data/gui/ingame.json");
 	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE, "data/gui/pause_menu_background.json");
 	registerWigdetStruct(EGUIWidgets::DEAD_MENU_BACKGROUND, "data/gui/dead_menu_background.json");
+	registerWigdetStruct(EGUIWidgets::CONTROLS, "data/gui/controls.json");
 
 }
 
@@ -148,6 +162,24 @@ bool CModuleGUI::getWidgetStructureEnabled(EGUIWidgets wdgt) {
 
 	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt];
 	return wdgt_struct.enabled;
+}
+
+void CModuleGUI::activateController(EGUIWidgets wdgt) {
+
+	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt];
+
+	if (wdgt_struct._controller != nullptr) {
+		registerController(wdgt_struct._controller);
+	}
+
+}
+
+void CModuleGUI::deactivateController(EGUIWidgets wdgt) {
+
+	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt];
+	if (wdgt_struct._controller != nullptr) {
+		unregisterController(wdgt_struct._controller);
+	}
 }
 
 void CModuleGUI::renderGUI()
@@ -357,4 +389,13 @@ void CModuleGUI::setButtonsState(bool state) {
 
 bool CModuleGUI::getButtonsState() {
 	return buttons_state;
+}
+
+void CModuleGUI::closePauseMenu() {
+	EngineGUI.setButtonsState(false);
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE)->makeChildsFadeOut(0.08, 0, false);
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS)->makeChildsFadeOut(0.08, 0, true);
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::CONTROLS)->makeChildsFadeOut(0.08, 0, false);
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BACK_BUTTON)->makeChildsFadeOut(0.08, 0, true);
+	EngineLogic.execSystemScriptDelayed("unPauseGame();", 0.08f);
 }
