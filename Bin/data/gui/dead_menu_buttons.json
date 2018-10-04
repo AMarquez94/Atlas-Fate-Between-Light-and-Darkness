@@ -7,7 +7,7 @@
 			{
 				"name" : "pause_main_buttons",
 				"type" : "widget",
-				"position" : "150 300",
+				"position" : "150 500",
 				"children" : [
 					{
 						"name" : "restart_dead",
