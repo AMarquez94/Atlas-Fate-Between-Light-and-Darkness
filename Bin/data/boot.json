@@ -14,7 +14,7 @@
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.043"
-			
+
 		},
 		"scene_group": [
 			"data/scenes/Intro/player_intro_fsm.scene",
@@ -53,7 +53,7 @@
 			"data/scenes/intro_pozo.scene",
 			"data/scenes/intro_barra_capsulas.scene",
 			"data/scenes/Intro/intro_suelo.scene",
-			"data/scenes/intro_containers_puerto.scene",		
+			"data/scenes/intro_containers_puerto.scene",
 			"data/scenes/intro_muralla_intro.scene",
 			"data/scenes/intro_muralla_fin.scene",
 			"data/scenes/intro_conductos.scene",
@@ -68,37 +68,6 @@
 			"data/scenes/grass_container.scene",
 			"data/scenes/decal_test.scene",
 			"data/scenes/Intro/intro_puerta_end.scene"
-		]
-	},
-	"scene_map_intro": {
-		"static_data": {
-			"initial_script": "map_intro",
-			"navmesh": "data/navmeshes/milestone2_navmesh.bin",
-			"exposure": 1.3,
-			"ambient": 0.05,
-			"gamma": 1,
-			"tone_mapping": 1,
-			"shadow_intensity": 0,
-			"ground_fog_density": 0.1,
-			"env_fog_density": 0.1,
-			"shadow_color": "0.0 0.0 0.0",
-			"ground_fog": "0.47 0.51 0.84",
-			"env_fog": "0.0 0.0 0.023"
-		},
-		"scene_group": [
-			"data/scenes/Map_Intro/player_fsm.scene",
-			"data/scenes/main_cameras.scene",
-			"data/scenes/Map_Intro/enemy.scene",
-			"data/scenes/Map_Intro/milestone2_map_pre.scene",
-			"data/scenes/Map_Intro/milestone2_map_lights2.scene",
-			"data/scenes/Map_Intro/milestone2_map_colliders.scene",
-			"data/scenes/Map_Intro/test_instancing.scene",
-			"data/scenes/Map_Intro/capsules.scene",
-			"data/scenes/Map_Intro/checkpoints.scene",
-			"data/scenes/Map_Intro/movable_objects.scene",
-			"data/scenes/Map_Intro/milestone2_map_particles.scene",
-			"data/scenes/Map_Intro/buttons.scene",
-			"data/scenes/ZoneA/debug_navmeshes.scene"
 		]
 	},
 	"scene_main_menu": {
@@ -148,7 +117,7 @@
 			"data/scenes/intro_pozo.scene",
 			"data/scenes/intro_barra_capsulas.scene",
 			"data/scenes/Intro/intro_suelo.scene",
-			"data/scenes/intro_containers_puerto.scene",		
+			"data/scenes/intro_containers_puerto.scene",
 			"data/scenes/intro_muralla_intro.scene",
 			"data/scenes/intro_muralla_fin.scene",
 			"data/scenes/intro_conductos.scene",
@@ -209,7 +178,7 @@
 			"data/scenes/zone_a_test.scene",
 			"data/scenes/zone_a_edificios_segunda.scene",
 			"data/scenes/zone_a_neones.scene",
-      			"data/scenes/zone_a_decal.scene",
+			"data/scenes/zone_a_decal.scene",
 			"data/scenes/zone_a_grass.scene",
 
 			"data/scenes/zone_a_mosaico.scene",
@@ -220,7 +189,7 @@
 			"data/scenes/ZoneA/buttons.scene",
 
 			"data/scenes/zone_a_carteles.scene",
-			
+
 			"data/scenes/ZoneA/carteles.scene",
 			"data/scenes/ZoneA/_mimetic_PRUEBAS.scene",
 			"data/scenes/ZoneA/zone_a_puerta_end.scene"
@@ -296,7 +265,7 @@
 			"data/scenes/Basilic_courtyard/buttons.scene",
 			"data/scenes/Basilic_courtyard/capsules.scene",
 			"data/scenes/Basilic_courtyard/BC_mezquita.scene",
-			
+
 			"data/scenes/Basilic_courtyard/BC_alminares.scene",
 			"data/scenes/Basilic_courtyard/BC_paredes.scene",
 			"data/scenes/BC_arcos.scene",
@@ -304,7 +273,7 @@
 			"data/scenes/BC_coberturas.scene",
 			"data/scenes/BC_containers.scene",
 			"data/scenes/BC_props.scene",
-      			"data/scenes/BC_cables.scene",
+			"data/scenes/BC_cables.scene",
 			"data/scenes/BC_tubos.scene",
 			"data/scenes/BC_capsulas.scene",
 			"data/scenes/BC_neones.scene",
@@ -315,32 +284,6 @@
 			"data/scenes/suelo_mezquita.scene",
 			"data/scenes/Basilic_courtyard/almibars.scene",
 			"data/scenes/Basilic_courtyard/BC_trigger_victory.scene"
-		]
-	},
-	"scene_basilic_interior": {
-		"static_data": {
-			"initial_script": "basilic_interior",
-			"navmesh": "data/navmeshes/basilic_interior_navmesh.bin",
-			"exposure": 1.51,
-			"ambient": 0.05,
-			"gamma": 0.92,
-			"tone_mapping": 1,
-			"shadow_intensity": 0,
-			"ground_fog_density": 0.23,
-			"env_fog_density": 0.131,
-			"shadow_color": "0.0 0.0 0.0",
-			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.043"
-		},
-		"scene_group": [
-			"data/scenes/Basilic_interior/player.scene",
-			"data/scenes/main_cameras.scene",
-			"data/scenes/Basilic_interior/enemy.scene",
-			"data/scenes/Basilic_interior/test_instancing.scene",
-			"data/scenes/Basilic_interior/map_basilic_interior.scene",
-			"data/scenes/Basilic_interior/map_basilic_interior_lights.scene",
-			"data/scenes/Basilic_interior/objects.scene",
-			"data/scenes/Basilic_interior/buttons.scene"
 		]
 	}
 }

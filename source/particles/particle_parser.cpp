@@ -8,10 +8,7 @@ namespace Particles
 {
     void CParser::parseFile(const std::string& filename)
     {
-        std::ifstream file_json(filename);
-        json json_data;
-        file_json >> json_data;
-
+        json json_data = loadJson(filename);
         for (auto& pFile : json_data)
         {
             const TCoreSystem* cps = Resources.get(pFile)->as<TCoreSystem>();
@@ -21,11 +18,12 @@ namespace Particles
 
     TCoreSystem* CParser::parseParticlesFile(const std::string& filename)
     {
-        std::ifstream file_json(filename);
-        json json_data;
-        file_json >> json_data;
+        //std::vector<char> file_data = EngineFiles.loadResourceFile.loadResourceFile(filename);
+        //std::ifstream file_json(filename);
+        //json json_data;
+        //file_json >> json_data;
 
-        return parseParticleSystem(json_data);
+        return parseParticleSystem(loadJson(filename));
     }
 
     TCoreSystem* CParser::parseParticleSystem(const json& data)

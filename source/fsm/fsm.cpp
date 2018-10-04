@@ -35,9 +35,7 @@ namespace FSM
 {
   bool CMachine::load(const std::string& filename)
   {
-    std::ifstream file_json(filename);
-    json jData;
-    file_json >> jData;
+    json jData = loadJson(filename);
 
     CFactory& factory = Engine.getFSM().getFactory();
 

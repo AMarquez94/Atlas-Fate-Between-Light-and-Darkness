@@ -24,7 +24,7 @@ bool CModuleFile::start() {
     Resources.registerResourceClass(getResourceClassOf<CCurve>());
     Resources.registerResourceClass(getResourceClassOf<RigidAnims::CRigidAnimResource>());
 
-    preloadResources(true);
+    preloadResources(false);
     
     resource_thread = std::thread(&CModuleFile::resourceThreadMain, this);
 
@@ -53,6 +53,8 @@ std::vector<char> CModuleFile::loadResourceFile(const std::string & name)
     std::vector<char> &resource_file = resource_files[name];
     if (resource_file.empty()) {
 
+        //dbg("%s loaded from disk\n", name.c_str());
+
         /* file not in the map => load it */
         std::ifstream is(name, std::ifstream::binary);
 
@@ -64,6 +66,9 @@ std::vector<char> CModuleFile::loadResourceFile(const std::string & name)
             resource_file.resize(length);
             is.read(resource_file.data(), length);
         }
+    }
+    else {
+        dbg("%s loaded from cache\n", name.c_str());
     }
 
     std::vector<char> file = resource_files[name];
@@ -178,6 +183,9 @@ void CModuleFile::parseResourceScene(const json& j, std::vector<std::string>& sc
                 std::string prefab_src = j_entity["prefab"];
                 const json& j_prefab = Resources.get(prefab_src)->as<CJsonResource>()->getJson();
 
+                if (prefab_src.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), prefab_src) == scene_resources.end()) {
+                    scene_resources.push_back(prefab_src);
+                }
                 parseResourceScene(j_prefab, scene_resources);
             }
             else {
@@ -244,6 +252,83 @@ void CModuleFile::parseResourceScene(const json& j, std::vector<std::string>& sc
                         const std::string file = j_fsm.value("file", "");
                         if (file.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), file) == scene_resources.end()) {
                             scene_resources.push_back(file);
+                        }
+                    }
+                }
+
+                if (j_entity.count("skeleton")) {
+
+                    /* Skeleton */
+                    auto& j_skel = j_entity["skeleton"];
+                    if (j_skel.count("skeleton")) {
+                        const std::string s_skeleton = j_skel.value("skeleton", "");
+                        if (s_skeleton.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), s_skeleton) == scene_resources.end()) {
+                            scene_resources.push_back(s_skeleton);
+                        }
+                    }
+                }
+
+                if (j_entity.count("collider")) {
+
+                    /* Collider */
+                    auto& j_col = j_entity["collider"];
+                    if (j_col.count("name")) {
+                        const std::string s_col = j_col.value("name", "");
+                        if (s_col.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), s_col) == scene_resources.end()) {
+                            scene_resources.push_back(s_col);
+                        }
+                    }
+                }
+
+                if (j_entity.count("particles")) {
+
+                    /* Particles */
+                    auto& j_particles = j_entity["particles"];
+                    if (j_particles.count("cores")) {
+                        const std::vector<std::string> j_cores = j_particles["cores"];
+                        for (int i = 0; i < j_cores.size(); i++) {
+                            if (j_cores[i].compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), j_cores[i]) == scene_resources.end()) {
+                                scene_resources.push_back(j_cores[i]);
+                            }
+                        }
+                    }
+                }
+
+                if (j_entity.count("curve_controller")) {
+
+                    /* Curve controller */
+                    auto& j_curve = j_entity["curve_controller"];
+                    if (j_curve.count("curve")) {
+                        const std::string s_curve = j_curve.value("curve", "");
+                        if (s_curve.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), s_curve) == scene_resources.end()) {
+                            scene_resources.push_back(s_curve);
+                        }
+                    }
+                }
+
+                if (j_entity.count("color_grading")) {
+                    
+                    /* Color grading */
+                    auto& j_color_grading = j_entity["color_grading"];
+                    if (j_color_grading.count("lut")) {
+                        const std::string s_lut = j_color_grading.value("lut", "");
+                        if (s_lut.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), s_lut) == scene_resources.end()) {
+                            scene_resources.push_back(s_lut);
+                        }
+                    }
+                }
+
+                if (j_entity.count("animated_object_controller")) {
+
+                    /* Rigid animations */
+                    auto& j_rigid_anims = j_entity["animated_object_controller"];
+                    if (j_rigid_anims.count("animations")) {
+                        auto& j_anim = j_rigid_anims["animations"];
+                        for (auto& anim_item = j_anim.begin(); anim_item != j_anim.end(); anim_item++) {
+                            const std::string s_anim = anim_item.value().value("src", "");
+                            if (s_anim.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), s_anim) == scene_resources.end()) {
+                                scene_resources.push_back(s_anim);
+                            }
                         }
                     }
                 }
