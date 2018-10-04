@@ -1,0 +1,82 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_prova_opacity"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_capsula_humano_interior"
+      ,
+      "hierarchy":
+      {
+        "parent": "mesh_capsula_humano_low"
+        ,
+        "pos": "-5.48335 0.0 -2.48288"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "transform":
+      {
+        "pos": "-5.48335 0.0 -2.48288"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_capsula_humano_interior.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_humano_capsula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_capsula_humano_low"
+      ,
+      "transform":
+      {
+        "pos": "-5.48335 0.0 -2.48288"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_capsula_humano_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_capsula_humano.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

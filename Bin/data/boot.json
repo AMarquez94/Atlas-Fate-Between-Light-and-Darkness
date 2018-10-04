@@ -42,6 +42,8 @@
 			"data/scenes/intro_mosaico.scene",
 			"data/scenes/intro_cables.scene",
 
+			"data/scenes/intro_prova_opacity.scene",
+
 			"data/scenes/intro_tubo_capsulas.scene",
 			"data/scenes/intro_farolas.scene",
 			"data/scenes/intro_patrol_atrapado.scene",
