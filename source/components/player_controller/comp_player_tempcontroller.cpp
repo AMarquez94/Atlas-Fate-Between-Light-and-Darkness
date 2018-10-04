@@ -798,7 +798,7 @@ void TCompTempPlayerController::die()
         EngineGUI.enableWidget("inhibited_y", false);
 
         cb_player.player_shadowed = false;
-		EngineLerp.lerpElement(&cb_player.player_health, 0 , 1 , 1.5);
+		//EngineLerp.lerpElement(&cb_player.player_health, 0 , 1 , 1.5);
         //cb_player.player_health = 0;
         cb_player.updateGPU();
 

@@ -8,6 +8,7 @@
 #include "windows/app.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
 #include "components/camera_controller/comp_camera_flyover.h"
+#include "render/render_objects.h"
 
 bool CModuleGameManager::start() {
 
@@ -59,7 +60,7 @@ void CModuleGameManager::setPauseState(PauseState pause) {
         TMsgScenePaused msg2;
         msg2.isPaused = (!msg.isPaused && flyover->paused) ? false : true && pause != PauseState::defeat;
         e_player->sendMsg(msg2);
-        dbg("current state %d and message %d\n", _currentstate, msg.isPaused);
+        //dbg("current state %d and message %d\n", _currentstate, msg.isPaused);
     }
     switchState(pause);
 }
@@ -79,6 +80,7 @@ void CModuleGameManager::switchState(PauseState pause) {
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND);
 
     }break;
     case PauseState::main: {
@@ -92,8 +94,9 @@ void CModuleGameManager::switchState(PauseState pause) {
     }break;
     case PauseState::defeat: {
         mouse->setLockMouse(false);
-		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND)->makeChildsFadeIn(3,4);
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS);
+		EngineLerp.lerpElement(&cb_player.player_health, 0, 2, 2);
     }break;
     case PauseState::editor1: {
         mouse->setLockMouse(false);
