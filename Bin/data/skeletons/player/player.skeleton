@@ -52,6 +52,14 @@
 			  {
 				"time_to_call" : 0.9,
 				"function_to_call" : "animation_attack_strikeRight"
+			  },
+				{
+				"time_to_call" : 0.55,
+				"function_to_call" : "animation_attack_strikeParticleLeft"
+			  },
+				{
+				"time_to_call" : 0.65,
+				"function_to_call" : "animation_attack_strikeParticleRight"
 			  }
 			]},
 		{ "name" : "crouch"},

@@ -323,8 +323,7 @@
 				[
 					"data/particles/def_attack_trail.particles",
 					"data/particles/def_attack_hit_sparks_right.particles",
-					"data/particles/def_attack_hit_sparks_core_right.particles",
-					"data/particles/def_attack_explosion.particles"
+					"data/particles/def_attack_hit_sparks_core_right.particles"
 				]
 			},
 			"player_weapon": {
@@ -400,7 +399,7 @@
 				"target" : "The Player",
 				"speed" : 2,
 				"oscilation_speed" : 15,
-				"vertical_speed" : -0.0001
+				"vertical_speed" : -0.0005
 			},
 			"particles": {
 				"on_start":false,
@@ -423,7 +422,7 @@
 				"target" : "The Player",
 				"speed" : -2,
 				"oscilation_speed" : 15,
-				"vertical_speed" : -0.0001
+				"vertical_speed" : -0.0005
 			},
 			"particles": {
 				"on_start":false,

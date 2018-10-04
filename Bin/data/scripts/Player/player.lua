@@ -47,7 +47,32 @@ function animation_attack_strikeLeft(sender)
 	
 end
 
+function animation_attack_strikeParticleLeft(sender)
+
+	h = playerController:getLeftWeapon();
+	e = toEntity(h);
+	t_transform = toTransform(e:getCompByName("transform"));	
+	pos = t_transform:getPosition();
+	particles:launchDynamicSystem("data/particles/def_attack_explosion.particles", pos);
+	particles:launchDynamicSystem("data/particles/def_attack_explosion_large.particles", pos);
+	particles:launchDynamicSystem("data/particles/def_attack_explosion_core.particles", pos);
+		
+end
+
+function animation_attack_strikeParticleRight(sender)
+
+	h = playerController:getLeftWeapon();
+	e = toEntity(h);
+	t_transform = toTransform(e:getCompByName("transform"));	
+	pos = t_transform:getPosition();
+	particles:launchDynamicSystem("data/particles/def_attack_explosion.particles", pos);
+	particles:launchDynamicSystem("data/particles/def_attack_explosion_large.particles", pos);
+	particles:launchDynamicSystem("data/particles/def_attack_explosion_core.particles", pos);
+			
+end
+
 function animation_attack_strikeRight(sender)
+
 	h = playerController:getRightWeapon();
 	e = toEntity(h);
 	t_audio = toAudio(e:getCompByName("audio"));
@@ -55,7 +80,6 @@ function animation_attack_strikeRight(sender)
 
 	t_particles = toParticles(e:getCompByName("particles"));
 	t_particles:setSystemState(false);
-	
 end
 
 function animation_enter_merge()
