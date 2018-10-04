@@ -4,6 +4,12 @@
 
 namespace GUI
 {
+
+	void CMenuButtonsController::start() {
+		mouse_active = false;	
+		//setCurrentOption(0);
+	}
+
     void CMenuButtonsController::update(float delta)
     {
         VEC2 mouse_pos = getMouseInRange(0, EngineGUI.width, 0, EngineGUI.height);

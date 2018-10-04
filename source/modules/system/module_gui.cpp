@@ -259,6 +259,7 @@ void CModuleGUI::registerController(GUI::CController* controller)
 	auto it = std::find(_controllers.begin(), _controllers.end(), controller);
 	if (it == _controllers.end())
 	{
+		controller->start();
 		_controllers.push_back(controller);
 	}
 }
