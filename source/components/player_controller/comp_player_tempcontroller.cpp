@@ -11,6 +11,7 @@
 #include "components/player_controller/comp_shadow_controller.h"
 #include "components/player_controller/comp_player_attack_cast.h"
 #include "components/lighting/comp_emission_controller.h"
+#include "components/lighting/comp_light_point.h"
 #include "components/player_controller/comp_sonar_controller.h"
 #include "components/object_controller/comp_noise_emitter.h"
 #include "components/comp_particles.h"
@@ -1158,6 +1159,8 @@ void TCompTempPlayerController::updateLife(float dt)
 void TCompTempPlayerController::updateWeapons(float dt)
 {
     TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+    TCompLightPoint * left_point = ((CEntity*)weaponLeft)->get<TCompLightPoint>();
+    TCompLightPoint * right_point = ((CEntity*)weaponRight)->get<TCompLightPoint>();
     if (canAttack && !isMerged || my_anim->isPlayingAnimation((TCompAnimator::EAnimation)TCompPlayerAnimator::ATTACK)) {
         if (!weaponsActive) {
             TMsgWeaponsActivated msg{ true };
@@ -1178,6 +1181,8 @@ void TCompTempPlayerController::updateWeapons(float dt)
         attackTimer = Clamp(attackTimer - dt, 0.f, timeToDeployWeapons);
         weaponsActive = false;
     }
+    left_point->setIntensity(3 * cb_player.player_disk_radius);
+    right_point->setIntensity(3 * cb_player.player_disk_radius);
     cb_player.player_disk_radius = lerp(0.f, 1.f, attackTimer / timeToDeployWeapons);
     cb_player.updateGPU();
 }

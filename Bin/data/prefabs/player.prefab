@@ -291,6 +291,13 @@
 				"weapons_on_event":	"event:/Sounds/Player/Weapons/WeaponsOn",
 				"weapons_off_event": "event:/Sounds/Player/Weapons/WeaponsOff"
 			},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 0.25,
+				"outer_cut": 0.5,
+				"color": "0.137255 0.654902 0.94902 1.0",
+				"intensity": 0.0
+			},
 			"audio": {},
 			"abs_aabb": true,
 			"local_aabb": true
@@ -329,6 +336,13 @@
 			"player_weapon": {
 				"weapons_on_event":	"event:/Sounds/Player/Weapons/WeaponsOn",
 				"weapons_off_event": "event:/Sounds/Player/Weapons/WeaponsOff"
+			},			
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 0.25,
+				"outer_cut": 0.5,
+				"color": "0.137255 0.654902 0.94902 1.0",
+				"intensity": 0.0
 			},
 			"audio": {},
 			"abs_aabb": true,

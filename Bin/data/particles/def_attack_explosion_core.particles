@@ -4,7 +4,7 @@
 		"looping": true,
 		"start_delay": 0.0, 
 		"start_lifetime": 1.0,
-		"start_speed": 1.5,
+		"start_speed": 0,
 		"start_size": "1 1 1",
 		"start_rotation": "0 0 0", 
 		"random_rotation": 0.0,  
@@ -64,7 +64,7 @@
 			"tech" : "particles_instanced_additive.tech"
 	},        
   "size" : {     
-    "scale" : 1,
+    "scale" : 0.6,
     "scale_variation" : 1.1,  
     "sizes" : [ 
 		  [0.0, "0.01 0.02 0.01"],
@@ -75,10 +75,10 @@
   "color" : {
     "opacity" : 1, 
     "colors" : [ 
-      [0.0, "2 2 1.1 0.0"],
-			[0.1, "2 2 1.1 1.0"],
-			[0.4, "2 2 1.1 1.2"],
-			[1.0, "2 2.2 1.1 0.0"]
+      [0.0, "1 2 2.1 0.0"],
+			[0.1, "1 2 2.1 1.0"],
+			[0.4, "1 2 2.1 1.2"],
+			[1.0, "1 2.2 1.1 0.0"]
     ] 
   }
 }
