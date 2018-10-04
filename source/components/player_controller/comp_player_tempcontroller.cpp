@@ -134,13 +134,14 @@ void TCompTempPlayerController::update(float dt) {
     }
 
     // Update player global speed into the shader.
-    {
+    if(!isDead()){
         float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
         cb_globals.global_player_speed = (inputSpeed * currentSpeed) / 6.f; // Maximum speed, change this in the future. 
         cb_globals.global_exposure_adjustment += 8 * dt * (isMerged ? 1 : -1); // Move to json when possible.
 
         cb_globals.global_exposure_adjustment = clamp(cb_globals.global_exposure_adjustment, EngineScene.getActiveScene()->scene_exposure, 3.0f);
         cb_player.player_health = life != maxLife ? (life/ maxLife) : 1;
+        cb_player.updateGPU();
     }
 }
 
@@ -337,7 +338,7 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg) {
             target_camera = new_camera;
             Engine.getCameras().blendInCamera(target_camera, msg.target_camera->blendIn, CModuleCameras::EPriority::GAMEPLAY);
             TMsgCameraFov msg_fov;
-            msg_fov.blend_time = 0.5f;
+            msg_fov.blend_time = 1.f;
             msg_fov.new_fov = msg.target_camera->fov;
             target_camera.sendMsg(msg_fov);
         }
@@ -345,9 +346,9 @@ void TCompTempPlayerController::onStateStart(const TMsgStateStart& msg) {
             target_camera = getEntityByName("TPCamera"); //replace this
         }
 
-        /* Noise emitter */
-        TCompNoiseEmitter * noiseEmitter = get<TCompNoiseEmitter>();
-        noiseEmitter->makeNoise(msg.noise->noiseRadius, msg.noise->timeToRepeat, msg.noise->isNoise, msg.noise->isOnlyOnce, msg.noise->isArtificial);
+        ///* Noise emitter */
+        //TCompNoiseEmitter * noiseEmitter = get<TCompNoiseEmitter>();
+        //noiseEmitter->makeNoise(msg.noise->noiseRadius, msg.noise->timeToRepeat, msg.noise->isNoise, msg.noise->isOnlyOnce, msg.noise->isArtificial);
     }
 }
 
@@ -777,10 +778,12 @@ void TCompTempPlayerController::die()
     if (!isImmortal && !isDead()) {
         CEntity* e = CHandle(this).getOwner();
 
-        TMsgGlitchController msg;
-        msg.revert = false;
-        e->sendMsg(msg);
-
+		if (cb_postfx.postfx_scan_amount > 0) {
+			TMsgGlitchController msg;
+			msg.revert = false;
+			e->sendMsg(msg);
+		}
+        
         TMsgSetFSMVariable groundMsg;
         groundMsg.variant.setName("onDead");
         groundMsg.variant.setBool(true);
@@ -796,7 +799,8 @@ void TCompTempPlayerController::die()
         EngineGUI.enableWidget("inhibited_y", false);
 
         cb_player.player_shadowed = false;
-        cb_player.player_health = 0;
+		//EngineLerp.lerpElement(&cb_player.player_health, 0 , 1 , 1.5);
+        //cb_player.player_health = 0;
         cb_player.updateGPU();
 
         TMsgPlayerDead newMsg;

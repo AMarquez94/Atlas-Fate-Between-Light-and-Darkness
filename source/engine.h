@@ -18,6 +18,7 @@
 #include "modules/system/module_particles.h"
 #include "modules/game/module_game_manager.h"
 #include "modules/system/module_debug.h"
+#include "modules/system/module_lerp.h"
 #include "modules/module_animations.h"
 
 class CModuleGameManager;
@@ -50,6 +51,7 @@ public:
     CModuleGUI& getGUI() { return _module_gui; }
     CModuleSceneManager& getSceneManager() { return _module_scene_manager; }
     CModuleInstancing& getInstancing() { return _module_instancing; }
+	CModuleLerp& getLerp() { return _module_lerp; }
     CModuleParticles& getParticles() { return _module_particles; }
 
     CModuleDebug& getDebug() { return _module_debug; }
@@ -73,6 +75,7 @@ private:
     CModuleGameConsole _module_game_console;
     CModuleGUI _module_gui;
     CModuleSceneManager _module_scene_manager;
+	CModuleLerp _module_lerp;
     CModuleInstancing _module_instancing;
     CModuleParticles  _module_particles;
     CModuleDebug _module_debug;
@@ -92,6 +95,7 @@ private:
 #define EngineSound CEngine::get().getSound()
 #define EngineGUI CEngine::get().getGUI()
 #define EngineScene CEngine::get().getSceneManager()
+#define EngineLerp CEngine::get().getLerp()
 #define EngineInstancing CEngine::get().getInstancing()
 #define EngineDebug CEngine::get().getDebug()
 #define EngineAnimations CEngine::get().getAnimations()

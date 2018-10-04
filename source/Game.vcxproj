@@ -212,6 +212,7 @@
     <ClCompile Include="gui\widgets\gui_button.cpp" />
     <ClCompile Include="gui\widgets\gui_image.cpp" />
     <ClCompile Include="gui\widgets\gui_radial_bar.cpp" />
+    <ClCompile Include="gui\widgets\gui_sprite.cpp" />
     <ClCompile Include="gui\widgets\gui_text.cpp" />
     <ClCompile Include="gui\widgets\gui_video.cpp" />
     <ClCompile Include="handle\handle_def.cpp" />
@@ -251,6 +252,7 @@
     <ClCompile Include="modules\system\module_game_console.cpp" />
     <ClCompile Include="modules\system\module_input.cpp" />
     <ClCompile Include="modules\system\module_instancing.cpp" />
+    <ClCompile Include="modules\system\module_lerp.cpp" />
     <ClCompile Include="modules\system\module_logic.cpp" />
     <ClCompile Include="modules\system\module_particles.cpp" />
     <ClCompile Include="modules\system\module_physics.cpp" />
@@ -479,6 +481,7 @@
     <ClInclude Include="gui\widgets\gui_button.h" />
     <ClInclude Include="gui\widgets\gui_image.h" />
     <ClInclude Include="gui\widgets\gui_radial_bar.h" />
+    <ClInclude Include="gui\widgets\gui_sprite.h" />
     <ClInclude Include="gui\widgets\gui_text.h" />
     <ClInclude Include="gui\widgets\gui_video.h" />
     <ClInclude Include="handle\handle.h" />
@@ -529,6 +532,7 @@
     <ClInclude Include="modules\system\module_game_console.h" />
     <ClInclude Include="modules\system\module_input.h" />
     <ClInclude Include="modules\system\module_instancing.h" />
+    <ClInclude Include="modules\system\module_lerp.h" />
     <ClInclude Include="modules\system\module_logic.h" />
     <ClInclude Include="modules\system\module_particles.h" />
     <ClInclude Include="modules\system\module_physics.h" />

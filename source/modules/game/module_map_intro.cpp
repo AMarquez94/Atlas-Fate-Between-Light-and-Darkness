@@ -27,15 +27,15 @@ bool CModuleMapIntro::start() {
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 	mouse->setLockMouse(true);
 
+    Engine.getGUI().enableWidget("ingame", true);
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::INGAME_STAMINA_BAR);
-
-	//Engine.getGUI().activateWidget("ingame");
+	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH);
 
 	return true;
 }
 
 bool CModuleMapIntro::stop() {
-
+    Engine.getGUI().enableWidget("ingame", false);
 	return true;
 }
 

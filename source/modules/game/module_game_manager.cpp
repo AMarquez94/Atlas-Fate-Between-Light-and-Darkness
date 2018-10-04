@@ -8,6 +8,7 @@
 #include "windows/app.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
 #include "components/camera_controller/comp_camera_flyover.h"
+#include "render/render_objects.h"
 
 bool CModuleGameManager::start() {
 
@@ -31,8 +32,11 @@ bool CModuleGameManager::start() {
 void CModuleGameManager::setPauseState(PauseState pause) {
 
     // We are exiting the current state, disabling pause
-    if (_currentstate == pause && CApp::get().hasFocus())
-        pause = PauseState::none;
+	if (_currentstate == PauseState::main && CApp::get().hasFocus()) {
+		if (EngineGUI.getButtonsState()) {
+			EngineGUI.closePauseMenu();
+		}	
+	}
 
     {
         _player = EngineEntities.getPlayerHandle();
@@ -53,7 +57,7 @@ void CModuleGameManager::setPauseState(PauseState pause) {
         TMsgScenePaused msg2;
         msg2.isPaused = (!msg.isPaused && flyover->paused) ? false : true && pause != PauseState::defeat;
         e_player->sendMsg(msg2);
-        dbg("current state %d and message %d\n", _currentstate, msg.isPaused);
+        //dbg("current state %d and message %d\n", _currentstate, msg.isPaused);
     }
     switchState(pause);
 }
@@ -70,15 +74,26 @@ void CModuleGameManager::switchState(PauseState pause) {
     switch (pause) {
     case PauseState::none: {
         mouse->setLockMouse(true);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND);
+
     }break;
     case PauseState::main: {
         mouse->setLockMouse(false);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE)->makeChildsFadeIn(0.08, 0);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS)->makeChildsFadeIn(0.08, 0, true);
+
     }break;
     case PauseState::win: {
         mouse->setLockMouse(false);
     }break;
     case PauseState::defeat: {
         mouse->setLockMouse(false);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND)->makeChildsFadeIn(3,4);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS)->makeChildsFadeIn(3, 4, true);
+		EngineLerp.lerpElement(&cb_player.player_health, 0, 2, 2);
     }break;
     case PauseState::editor1: {
         mouse->setLockMouse(false);
@@ -189,7 +204,7 @@ void CModuleGameManager::renderMain() {
     // Replace this with separated menus
     if (_currentstate == PauseState::main) {
 
-        ImGui::SetNextWindowSize(ImVec2((float)window_width, (float)window_height));
+        /*ImGui::SetNextWindowSize(ImVec2((float)window_width, (float)window_height));
         ImGui::Begin("MENU", false, window_flags);
         ImGui::CaptureMouseFromApp(false);
         ImGui::SetWindowPos("MENU", ImVec2(menu_position.x, menu_position.y));
@@ -237,7 +252,7 @@ void CModuleGameManager::renderMain() {
             exit(0);
         }
 
-        ImGui::End();
+        ImGui::End();*/
     }
     else if (_currentstate == PauseState::win) {
 
@@ -251,7 +266,7 @@ void CModuleGameManager::renderMain() {
     }
     else if (_currentstate == PauseState::defeat) {
 
-        ImGui::SetNextWindowSize(ImVec2((float)window_width * 1.2f, (float)window_height));
+        /*ImGui::SetNextWindowSize(ImVec2((float)window_width * 1.2f, (float)window_height));
         ImGui::Begin("YOU DIED! WHAT WOULD YOU DO?", false, window_flags);
         ImGui::CaptureMouseFromApp(false);
         ImGui::SetWindowPos("YOU DIED! WHAT WOULD YOU DO?", ImVec2(menu_position.x, menu_position.y));
@@ -292,7 +307,7 @@ void CModuleGameManager::renderMain() {
             exit(0);
         }
 
-        ImGui::End();
+        ImGui::End();*/
 
     }
 
@@ -327,6 +342,33 @@ bool CModuleGameManager::deleteCheckpoint() {
 bool CModuleGameManager::isPaused() const {
 
     return _currentstate == PauseState::none ? false : true;
+}
+
+void CModuleGameManager::resetLevel() {
+
+	resetState();
+	CEntity* e = EngineEntities.getPlayerHandle();
+	if (!e) {
+		return;
+	}
+	TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
+	setPauseState(PauseState::none);
+
+	lastCheckpoint->deleteCheckPoint();
+	EngineScene.loadScene(EngineScene.getActiveScene()->name);
+}
+
+void CModuleGameManager::resetToCheckpoint() {
+
+	resetState();
+	CEntity* e = EngineEntities.getPlayerHandle();
+	if (!e) {
+		return;
+	}
+	TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
+	setPauseState(PauseState::none);
+
+	EngineScene.loadScene(EngineScene.getActiveScene()->name);
 }
 
 CModuleGameManager::PauseState CModuleGameManager::getCurrentState() {

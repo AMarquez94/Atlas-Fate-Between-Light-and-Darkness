@@ -1,0 +1,20 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_puerta_peq_alb.dds"
+    ,
+    "metallic": "data/textures/tx_puerta_peq_met.dds"
+    ,
+    "roughness": "data/textures/tx_puerta_peq_rgh.dds"
+    ,
+    "normal": "data/textures/tx_puerta_peq_nml.dds"
+    ,
+    "height": "data/textures/tx_puerta_peq_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_puerta_peq_emi.dds"
+    ,
+    "aocclusion": "data/textures/tx_puerta_peq_ao.dds"
+  }
+}

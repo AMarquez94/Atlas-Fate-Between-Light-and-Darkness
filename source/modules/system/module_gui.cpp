@@ -28,6 +28,8 @@ bool CModuleGUI::start()
 void CModuleGUI::initializeWidgetStructure() {
 
 	//Initializing all the functions for the buttons of GUI
+
+	//MAIN-MENU
 	auto mm_newGameCB = []() {
 		CEngine::get().getModules().changeGameState("map_intro");
 	};
@@ -40,11 +42,37 @@ void CModuleGUI::initializeWidgetStructure() {
 	auto mm_exitCB = []() {
 		exit(0);
 	};
-	 
-	CMenuButtonsController* mmc = new CMenuButtonsController();
-
 	
-	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json");
+	//PAUSE-MENU
+	auto pm_resumeGame = []() {
+		EngineGUI.closePauseMenu();
+	};
+	auto pm_restartLevel = []() {
+        //EngineLogic.execSystemScriptDelayed("gameManager:resetToCheckpoint()", 2.f);
+		CEngine::get().getGameManager().resetLevel();
+	};
+	auto pm_RestartFromCheckPoint = []() {
+        //EngineLogic.execSystemScriptDelayed("gameManager:resetToCheckpoint()", 2.f);
+		CEngine::get().getGameManager().resetToCheckpoint();
+	};
+	auto pm_Controls = []() {
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::CONTROLS)->makeChildsFadeIn(0.08,0,false);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BACK_BUTTON)->makeChildsFadeIn(0.08, 0, true);
+		EngineGUI.deactivateController(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
+		//activateWidget("main_menu_buttons");
+	};
+	auto pm_Exit = []() {
+		exit(0);
+	};
+
+	auto pm_Back = []() {
+		//exit(0);
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BACK_BUTTON)->makeChildsFadeOut(0.08, 0, true);
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::CONTROLS)->makeChildsFadeOut(0.08, 0, false);
+		EngineLogic.execSystemScriptDelayed("backFromControls();", 0.08f);
+	};
+
+	CMenuButtonsController* mmc = new CMenuButtonsController();
 
 	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BUTTONS, "data/gui/main_menu_buttons.json", mmc);
 	mmc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::MAIN_MENU_BUTTONS);
@@ -53,8 +81,40 @@ void CModuleGUI::initializeWidgetStructure() {
 	mmc->registerOption("options", mm_optionsCB);
 	mmc->registerOption("exit", mm_exitCB);
 	mmc->setCurrentOption(0);
+	
 
+	CMenuButtonsController* pmc = new CMenuButtonsController();
+	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS, "data/gui/pause_menu_buttons.json", pmc);
+
+	pmc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
+	pmc->registerOption("resume_game", pm_resumeGame);
+	pmc->registerOption("restart", pm_restartLevel);
+	pmc->registerOption("restart_checkpoint", pm_RestartFromCheckPoint);
+	pmc->registerOption("controls", pm_Controls);
+	pmc->registerOption("pause_exit", pm_Exit);
+	pmc->setCurrentOption(0);
+
+
+	CMenuButtonsController* dmc = new CMenuButtonsController();
+	registerWigdetStruct(EGUIWidgets::DEAD_MENU_BUTTONS, "data/gui/dead_menu_buttons.json", dmc);
+	dmc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::DEAD_MENU_BUTTONS);
+	dmc->registerOption("restart_dead", pm_restartLevel);
+	dmc->registerOption("dead_exit", pm_Exit);
+	dmc->setCurrentOption(0);
+
+	CMenuButtonsController* bbc = new CMenuButtonsController();
+	registerWigdetStruct(EGUIWidgets::BACK_BUTTON, "data/gui/back_button.json", bbc);
+	bbc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::BACK_BUTTON);
+	bbc->registerOption("back", pm_Back);
+	bbc->setCurrentOption(0);
+
+
+	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json");
+	registerWigdetStruct(EGUIWidgets::SOUND_GRAPH, "data/gui/sound_graph.json");
 	registerWigdetStruct(EGUIWidgets::INGAME_STAMINA_BAR, "data/gui/ingame.json");
+	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE, "data/gui/pause_menu_background.json");
+	registerWigdetStruct(EGUIWidgets::DEAD_MENU_BACKGROUND, "data/gui/dead_menu_background.json");
+	registerWigdetStruct(EGUIWidgets::CONTROLS, "data/gui/controls.json");
 
 }
 
@@ -89,11 +149,37 @@ void CModuleGUI::update(float delta)
 	{
 		wdgt->updateAll(delta);
 	}
-	for (auto& controller : _controllers)
-	{
-		controller->update(delta);
+	if (buttons_state) {
+		for (auto& controller : _controllers)
+		{
+			controller->update(delta);
+		}
 	}
 
+}
+
+bool CModuleGUI::getWidgetStructureEnabled(EGUIWidgets wdgt) {
+
+	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt];
+	return wdgt_struct.enabled;
+}
+
+void CModuleGUI::activateController(EGUIWidgets wdgt) {
+
+	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt];
+
+	if (wdgt_struct._controller != nullptr) {
+		registerController(wdgt_struct._controller);
+	}
+
+}
+
+void CModuleGUI::deactivateController(EGUIWidgets wdgt) {
+
+	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt];
+	if (wdgt_struct._controller != nullptr) {
+		unregisterController(wdgt_struct._controller);
+	}
 }
 
 void CModuleGUI::renderGUI()
@@ -151,17 +237,26 @@ GUI::CController* CModuleGUI::getWidgetController(EGUIWidgets wdgt_type) {
 	return controller;
 }
 
-void CModuleGUI::activateWidget(EGUIWidgets wdgt)
+CWidget* CModuleGUI::activateWidget(EGUIWidgets wdgt)
 {
 	WidgetStructure wdgt_struct = _widgetStructureMap[wdgt];
+	if (wdgt_struct.enabled) return nullptr;
 	CWidget* widgt = getWidget(wdgt_struct._widgetName);
 	if (widgt)
 	{
+		wdgt_struct.enabled = true;
+		_widgetStructureMap[wdgt] = wdgt_struct;
 		_activeWidgets.push_back(widgt);
+		if (wdgt_struct._controller != nullptr) {
+			registerController(wdgt_struct._controller);
+		}
+		return widgt;
 	}
-	if (wdgt_struct._controller != nullptr) {
-		registerController(wdgt_struct._controller);
+	else {
+		return nullptr;
 	}
+
+	
 }
 
 void CModuleGUI::deactivateWidget(EGUIWidgets wdgt)
@@ -175,7 +270,8 @@ void CModuleGUI::deactivateWidget(EGUIWidgets wdgt)
 		}
 		it++;
 	}
-
+	wdgt_struct.enabled = false;
+	_widgetStructureMap[wdgt] = wdgt_struct;
 	if (wdgt_struct._controller != nullptr) {
 		unregisterController(wdgt_struct._controller);
 	}
@@ -190,21 +286,12 @@ void CModuleGUI::enableWidget(const std::string& name, bool status)
         widgt->enable(status); 
 }
 
-bool CModuleGUI::getWidgetStatus(const std::string& name)
-{
-    CWidget* widgt = getWidget(name, true);
-
-    if (widgt)
-        return widgt->isEnabled();
-
-    return false;
-}
-
 void CModuleGUI::registerController(GUI::CController* controller)
 {
 	auto it = std::find(_controllers.begin(), _controllers.end(), controller);
 	if (it == _controllers.end())
 	{
+		controller->start();
 		_controllers.push_back(controller);
 	}
 }
@@ -294,4 +381,21 @@ void CModuleGUI::renderText(const MAT44& world, const std::string& text, const V
 
 		renderTexture(w, _fontTexture, minUV, maxUV, color);
 	}
+}
+
+void CModuleGUI::setButtonsState(bool state) {
+	buttons_state = state;
+}
+
+bool CModuleGUI::getButtonsState() {
+	return buttons_state;
+}
+
+void CModuleGUI::closePauseMenu() {
+	EngineGUI.setButtonsState(false);
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE)->makeChildsFadeOut(0.08, 0, false);
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS)->makeChildsFadeOut(0.08, 0, true);
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::CONTROLS)->makeChildsFadeOut(0.08, 0, false);
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BACK_BUTTON)->makeChildsFadeOut(0.08, 0, true);
+	EngineLogic.execSystemScriptDelayed("unPauseGame();", 0.08f);
 }

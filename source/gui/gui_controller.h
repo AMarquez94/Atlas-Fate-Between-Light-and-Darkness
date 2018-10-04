@@ -7,7 +7,7 @@ namespace GUI
   class CController
   {
   public:
-
+	virtual void start() { }
     virtual void update(float delta) { (void)delta; }
   };
 

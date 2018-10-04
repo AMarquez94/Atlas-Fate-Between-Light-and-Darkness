@@ -23,12 +23,14 @@ namespace GUI {
         void addChild(CWidget* wdgt);
         void removeChild(CWidget* wdgt);
         CWidget* getChild(const std::string& name, bool recursive = false) const;
+		VWidgets getAllChilds();
         const std::string& getName() const;
         virtual TImageParams* getImageParams() { return nullptr; }
         virtual TBarParams* getBarParams() { return nullptr; }
         virtual TTextParams* getTextParams() { return nullptr; }
+		virtual TSpriteParams* getSpriteParams() { return nullptr; }
         virtual TParams* getTParams() { return nullptr; }
-
+		
         void addEffect(CEffect* fx);
 
         void computeLocal();
@@ -44,6 +46,9 @@ namespace GUI {
         MAT44 getAbsolute() { return _absolute; };
 
         bool isEnabled() { return enabled; };
+
+		void makeChildsFadeIn(float time_to_lerp, float time_to_start = 0.0f, bool getFromChildren = false);
+		void makeChildsFadeOut(float time_to_lerp, float time_to_start = 0.0f, bool getFromChildren = false);
 
     protected:
         std::string _name;
