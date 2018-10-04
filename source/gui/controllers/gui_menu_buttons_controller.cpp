@@ -32,27 +32,15 @@ namespace GUI
             mouse_active = false;
             setCurrentOption(_currentOption - 1);
         }
-        if (EngineInput[VK_SPACE].getsPressed() || EngineInput["btMenuConfirm"].getsPressed())
+        if (EngineInput[VK_SPACE].getsPressed() || EngineInput["btMenuConfirm"].getsPressed() || EngineInput["btMouseLClick"].getsPressed())
         {
             _options[_currentOption].button->setCurrentState(CButton::EState::ST_Pressed);
         }
-        else if (EngineInput["btMouseLClick"].getsPressed()) {
-            int hoveredButton = getButtonHovered(mouse_pos);
-            if (hoveredButton != -1) {
-                _options[hoveredButton].button->setCurrentState(CButton::EState::ST_Pressed);
-            }
-        }
-        if (EngineInput[VK_SPACE].getsReleased() || EngineInput["btMenuConfirm"].getsReleased())
+
+        if (EngineInput[VK_SPACE].getsReleased() || EngineInput["btMenuConfirm"].getsReleased() || EngineInput["btMouseLClick"].getsReleased())
         {
             _options[_currentOption].button->setCurrentState(CButton::EState::ST_Selected);
             _options[_currentOption].callback();
-        }
-        else if (EngineInput["btMouseLClick"].getsReleased()) {
-            int hoveredButton = getButtonHovered(mouse_pos);
-            if (hoveredButton != -1 && _options[hoveredButton].button->getCurrentState() == CButton::EState::ST_Pressed) {
-                _options[hoveredButton].button->setCurrentState(CButton::EState::ST_Selected);
-                _options[hoveredButton].callback();
-            }
         }
     }
 
