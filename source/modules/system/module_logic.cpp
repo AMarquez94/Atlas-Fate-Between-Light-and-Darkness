@@ -20,6 +20,7 @@
 #include "components/camera_controller/comp_camera_thirdperson.h"
 #include "components/comp_render.h"
 #include "components/comp_particles.h"
+#include "windows/app.h"
 #include "components/object_controller/comp_noise_emitter.h"
 #include "modules/game/module_game_manager.h"
 
@@ -121,7 +122,8 @@ void CModuleLogic::publishClasses() {
 
     SLB::Class< CModuleParticles >("Particles", m)
         .comment("This is our wrapper of the particles class")
-        .set("killAll", &CModuleParticles::killAll);
+        .set("killAll", &CModuleParticles::killAll)
+        .set("launchDynamicSystem", &CModuleParticles::launchDynamicSystem);
 
 	SLB::Class< CModuleGameManager >("GameManager", m)
 		.comment("This is our wrapper of the gamemanager class")
@@ -198,7 +200,8 @@ void CModuleLogic::publishClasses() {
         .comment("CHandle wrapper")
         .constructor()
         .set("fromUnsigned", &CHandle::fromUnsigned)
-        .set("destroy", &CHandle::destroy);
+        .set("destroy", &CHandle::destroy)
+        .set("isValid", &CHandle::isValid);
 
     SLB::Class <CEntity>("CEntity", m)
         .comment("CEntity wrapper")
@@ -229,9 +232,9 @@ void CModuleLogic::publishClasses() {
         .comment("This is our wrapper of the render controller")
         .property("visible", &TCompRender::visible);
 
-    //SLB::Class<TCompParticles>("Particles", m)
-    //    .comment("This is our wrapper of the particle controller")
-    //    .set("setSystemState", &TCompParticles::setSystemState);
+    SLB::Class<TCompParticles>("Particles", m)
+        .comment("This is our wrapper of the particle controller")
+        .set("setSystemState", &TCompParticles::setSystemState);
 
     /* Global functions */
 
@@ -320,6 +323,7 @@ void CModuleLogic::publishClasses() {
     m->set("toAudio", SLB::FuncCall::create(&toAudio));
     m->set("toTPCamera", SLB::FuncCall::create(&toTPCamera));
     m->set("toRender", SLB::FuncCall::create(&toRender));
+    m->set("toParticles", SLB::FuncCall::create(&toParticles));
 }
 
 /* Check if it is a fast format command */
@@ -803,7 +807,7 @@ void renderNavmeshToggle() {
 
 // Toggle CVARS.
 void cg_drawfps(bool value) {
-    CEngine::get().getGameManager().config.drawfps = value;
+    CApp::get().drawfps = value;
 }
 
 void cg_drawlights(int type) {

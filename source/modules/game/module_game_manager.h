@@ -35,11 +35,6 @@ public:
 
     enum PauseState { none, main, win, defeat, editor1, editor1unpaused, editor2 };
 
-    struct ConfigPublic {
-        bool drawfps = true;
-
-    }config;
-
     CModuleGameManager(const std::string& name) : IModule(name) {}
 
 	CModuleGameManager* getPointer() { return this; }

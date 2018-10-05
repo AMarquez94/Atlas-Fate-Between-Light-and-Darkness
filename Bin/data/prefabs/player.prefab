@@ -282,12 +282,21 @@
 				"on_start":false,
 				"cores":
 				[
-					"data/particles/def_attack_trail.particles"
+					"data/particles/def_attack_trail.particles",					
+					"data/particles/def_attack_hit_sparks_left.particles",
+					"data/particles/def_attack_hit_sparks_core_left.particles"
 				]
 			},
 			"player_weapon": {
 				"weapons_on_event":	"event:/Sounds/Player/Weapons/WeaponsOn",
 				"weapons_off_event": "event:/Sounds/Player/Weapons/WeaponsOff"
+			},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 0.25,
+				"outer_cut": 0.5,
+				"color": "0.137255 0.654902 0.94902 1.0",
+				"intensity": 0.0
 			},
 			"audio": {},
 			"abs_aabb": true,
@@ -319,12 +328,21 @@
 				"on_start":false,
 				"cores":
 				[
-					"data/particles/def_attack_trail.particles"
+					"data/particles/def_attack_trail.particles",
+					"data/particles/def_attack_hit_sparks_right.particles",
+					"data/particles/def_attack_hit_sparks_core_right.particles"
 				]
 			},
 			"player_weapon": {
 				"weapons_on_event":	"event:/Sounds/Player/Weapons/WeaponsOn",
 				"weapons_off_event": "event:/Sounds/Player/Weapons/WeaponsOff"
+			},			
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 0.25,
+				"outer_cut": 0.5,
+				"color": "0.137255 0.654902 0.94902 1.0",
+				"intensity": 0.0
 			},
 			"audio": {},
 			"abs_aabb": true,
@@ -395,7 +413,7 @@
 				"target" : "The Player",
 				"speed" : 2,
 				"oscilation_speed" : 15,
-				"vertical_speed" : -0.0001
+				"vertical_speed" : -0.0005
 			},
 			"particles": {
 				"on_start":false,
@@ -418,7 +436,7 @@
 				"target" : "The Player",
 				"speed" : -2,
 				"oscilation_speed" : 15,
-				"vertical_speed" : -0.0001
+				"vertical_speed" : -0.0005
 			},
 			"particles": {
 				"on_start":false,
@@ -426,6 +444,25 @@
 				[
 					"data/particles/def_sm_enemy_spiral.particles",
 					"data/particles/def_sm_enemy_spiral_core.particles"
+				]
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "Player_Particle_Handle",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"hierarchy": {
+				"parent": "The Player"
+			},
+			"particles": {
+				"on_start":true,
+				"cores":
+				[
+					"data/particles/def_amb_rain_heavy.particles",
+					"data/particles/def_amb_rain_core_heavy.particles"
 				]
 			}
 		}
