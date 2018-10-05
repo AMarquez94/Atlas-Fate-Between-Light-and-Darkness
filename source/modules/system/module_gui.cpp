@@ -33,7 +33,8 @@ void CModuleGUI::initializeWidgetStructure() {
 	auto mm_newGameCB = []() {
 		CEngine::get().getModules().changeGameState("map_intro");
 	};
-	auto mm_continueCB = []() {
+	auto mm_credits = []() {
+		dbg("execute credits\n");
 		//CEngine::get().getGUI().outOfMainMenu();
 	};
 	auto mm_optionsCB = []() {
@@ -86,7 +87,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BUTTONS, "data/gui/main_menu_buttons.json", mmc);
 	mmc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::MAIN_MENU_BUTTONS);
 	mmc->registerOption("new_game", mm_newGameCB);
-	mmc->registerOption("continue", mm_continueCB);
+	mmc->registerOption("credits", mm_credits);
 	mmc->registerOption("options", mm_optionsCB);
 	mmc->registerOption("exit", mm_exitCB);
 	mmc->setCurrentOption(0);
