@@ -405,5 +405,11 @@ void CModuleGUI::closePauseMenu() {
 	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS)->makeChildsFadeOut(0.08, 0, true);
 	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::CONTROLS)->makeChildsFadeOut(0.08, 0, false);
 	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BACK_BUTTON)->makeChildsFadeOut(0.08, 0, true);
+	GUI::CWidget *w = EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
+	if (w) {
+		float *aux_x = &w->getChild("line_pause")->getBarParams()->_ratio;
+		*aux_x = 1.0f;
+		EngineLerp.lerpElement(aux_x, 0.0f, 0.12f, 0);
+	}
 	EngineLogic.execSystemScriptDelayed("unPauseGame();", 0.08f);
 }

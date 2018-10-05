@@ -85,7 +85,12 @@ void CModuleGameManager::switchState(PauseState pause) {
     case PauseState::main: {
         mouse->setLockMouse(false);
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE)->makeChildsFadeIn(0.08, 0);
-		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE)->makeChildsFadeIn(0.08, 0);
+		GUI::CWidget *w = EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
+		if (w) {
+			float *aux_x = &w->getChild("line_pause")->getBarParams()->_ratio;
+			*aux_x = 0.0f;
+			EngineLerp.lerpElement(aux_x, 1.0f, 0.25f, 0);
+		}
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS)->makeChildsFadeIn(0.08, 0, true);
     }break;
     case PauseState::win: {

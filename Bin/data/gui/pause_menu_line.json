@@ -6,7 +6,8 @@
 		"children" : [
 			{
 				"name" : "line_pause",
-				"type" : "image",
+				"type" : "bar",
+				"ratio" : 1.0,
 				"position" : "0 355",
 				"size" : "340 28",
 				"texture" : "data/textures/gui/pausemenu_line.dds"

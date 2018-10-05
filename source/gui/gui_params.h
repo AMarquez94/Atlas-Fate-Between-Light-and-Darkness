@@ -38,6 +38,7 @@ namespace GUI
     EDirection _direction;
     float _processValue;
 	std::string _variable;
+	float _ratio = 1;
   };
 
   struct TSpriteParams 
