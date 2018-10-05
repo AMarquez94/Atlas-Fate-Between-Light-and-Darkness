@@ -116,7 +116,8 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE, "data/gui/pause_menu_background.json");
 	registerWigdetStruct(EGUIWidgets::DEAD_MENU_BACKGROUND, "data/gui/dead_menu_background.json");
 	registerWigdetStruct(EGUIWidgets::CONTROLS, "data/gui/controls.json");
-
+	registerWigdetStruct(EGUIWidgets::LOADING_SPRITE, "data/gui/loading.json");
+	
 }
 
 void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController *wdgt_controller) {
