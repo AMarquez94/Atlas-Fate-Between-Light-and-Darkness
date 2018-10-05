@@ -290,6 +290,7 @@ struct TMsgPlayerInvisible {
 };
 
 struct TMsgPlayerImmortal {
+	bool state = true;
     DECL_MSG_ID();
 };
 

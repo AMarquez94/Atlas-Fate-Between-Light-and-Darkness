@@ -560,9 +560,10 @@ void infiniteStamineToggle() {
     h.sendMsg(msg);
 }
 
-void immortal() {
+void immortal(bool state) {
     CHandle h = EngineEntities.getPlayerHandle();
     TMsgPlayerImmortal msg;
+	msg.state = state;
     h.sendMsg(msg);
 }
 

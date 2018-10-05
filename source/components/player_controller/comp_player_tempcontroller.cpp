@@ -244,7 +244,7 @@ void TCompTempPlayerController::onInfiniteStamina(const TMsgInfiniteStamina & ms
 
 void TCompTempPlayerController::onPlayerImmortal(const TMsgPlayerImmortal & msg)
 {
-    isImmortal = !isImmortal;
+    isImmortal = msg.state;
 }
 
 void TCompTempPlayerController::onSpeedBoost(const TMsgSpeedBoost& msg) {

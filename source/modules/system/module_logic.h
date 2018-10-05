@@ -103,7 +103,7 @@ void changeGamestate(const std::string& gamestate);
 void pauseGame(bool pause);
 void pausePlayerToggle();
 void infiniteStamineToggle();
-void immortal();
+void immortal(bool state);
 void inShadows();
 void speedBoost(const float speed);
 void playerInvisible();
