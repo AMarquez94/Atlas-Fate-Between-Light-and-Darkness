@@ -56,10 +56,13 @@ void CModuleGUI::initializeWidgetStructure() {
 		CEngine::get().getGameManager().resetToCheckpoint();
 	};
 	auto pm_Controls = []() {
-		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::CONTROLS)->makeChildsFadeIn(0.08,0,false);
-		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BACK_BUTTON)->makeChildsFadeIn(0.08, 0, true);
-		EngineGUI.deactivateController(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
-		//activateWidget("main_menu_buttons");
+
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
+		CEngine::get().getModules().changeGameState("main_menu");
 	};
 	auto pm_Exit = []() {
 		exit(0);
