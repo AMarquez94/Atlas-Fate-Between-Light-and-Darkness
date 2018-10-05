@@ -15,15 +15,15 @@ class CResourceManager {
   std::vector< const CResourceClass* > resource_classes_by_file_change_priority;
 
 
-  std::vector<std::string> pending_resources;
+  //std::vector<std::string> pending_resources;
 
-  std::mutex pending_resources_mutex;
-  std::recursive_mutex resources_mutex;
+  //std::mutex pending_resources_mutex;
+  //std::recursive_mutex resources_mutex;
 
 
 public:
 
-  std::condition_variable can_load_files;
+  //std::condition_variable can_load_files;
 
   void registerResourceClass(const CResourceClass* new_class);
   const IResource* get(const std::string& res_name);
@@ -35,10 +35,11 @@ public:
   void registerResource( IResource* res );
   void onFileChanged(const std::string& filename);
 
-  void addPendingResource(const std::string& pendingResource);
+  //void addPendingResource(const std::string& pendingResource);
+  //const std::string getFirstPendingResource();
 
-  const std::string getFirstPendingResource();
   const std::string getResourceName(const std::string& resourcePath);
+  const bool resourceExists(const std::string& resourceName);
 
 };
 

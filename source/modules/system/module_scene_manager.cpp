@@ -65,9 +65,6 @@ bool CModuleSceneManager::start() {
     _persistentScene->isLoaded = true;
 
     loadJsonScenes("data/boot.json");
-    //std::async(std::launch::async, &CModuleSceneManager::sceneThreadMain, this);
-    //sceneThread = std::thread(&CModuleSceneManager::sceneThreadMain, this);
-    //sceneThread.detach();
 
     return true;
 }
@@ -75,9 +72,6 @@ bool CModuleSceneManager::start() {
 bool CModuleSceneManager::stop() {
 
     unLoadActiveScene();
-
-    //ending_thread = true;
-    //sceneThread.join();
 
     return true;
 }
@@ -220,36 +214,13 @@ std::string CModuleSceneManager::getDefaultSceneName() {
     return _default_scene;
 }
 
-//void CModuleSceneManager::sceneThreadMain()
-//{
-//    while (!ending_thread) {
-//
-//        //Resources
-//        const std::string resource = Resources.getFirstPendingResource();
-//        if (resource.compare("") != 0) {
-//
-//            const json& j = Resources.get(resource)->as<CJsonResource>()->getJson();
-//            std::vector<PreResource> scene_resources;
-//            dbg("Ejecutando thread con resource %s\n", resource.c_str());
-//            parseResourceScene(j, scene_resources);
-//            Sleep(1);
-//            for (int i = 0; i < scene_resources.size(); i++) {
-//                Resources.get(scene_resources[i].name);
-//                Sleep(scene_resources[i].isBig ? 60 : 1);
-//            }
-//
-//        }
-//        Sleep(1);
-//    }
-//    dbg("Ending thread\n");
-//}
-
 void CModuleSceneManager::preloadScene(const std::string& sceneName) {
+    EngineFiles.addVectorResourceToLoad(EngineFiles.getFileResourceVector(sceneName));
 
-    const std::vector<std::string> resources = EngineFiles.getFileResourceVector(sceneName);
-    for (int i = 0; i < resources.size(); i++) {
-        Resources.addPendingResource(resources[i]);
-    }
+    //const std::vector<std::string> resources = EngineFiles.getFileResourceVector(sceneName);
+    //for (int i = 0; i < resources.size(); i++) {
+    //    EngineFiles.addResourceToLoad(resources[i]);
+    //}
 }
 
 void CModuleSceneManager::removeSceneResources(const std::string& sceneName) {

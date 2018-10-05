@@ -7,7 +7,7 @@ bool CModuleFile::start() {
     // Register the resource types
     Resources.registerResourceClass(getResourceClassOf<CJsonResource>());
 
-    preloadResources(false);
+    preloadResources(true);
     
     resource_thread = std::thread(&CModuleFile::resourceThreadMain, this);
 
@@ -23,7 +23,35 @@ bool CModuleFile::stop() {
 }
 
 void CModuleFile::update(float delta) {
+    if (areResourcesToLoad()) {
+        int amountLoaded = 0;
+        int i = 0;
 
+        /*if (!Resources.resourceExists(resources_to_load[0])) {
+            Resources.get(resources_to_load[0]);
+        }
+        resources_to_load.erase(resources_to_load.begin());*/
+
+        for (i = 0; amountLoaded <= 20 && i < resources_to_load.size(); i++) {
+
+            if (!Resources.resourceExists(resources_to_load[i])) {
+                const IResource* res = Resources.get(resources_to_load[i]);
+                dbg("PRELOADED %s\n", res->getName().c_str());
+                if (res->getClass()->class_name.compare("Textures")) {
+                    amountLoaded += 5;
+                }
+                else if (res->getClass()->class_name.compare("Materials") == 0) {
+                    amountLoaded += 20;
+                }
+                else {
+                    amountLoaded += 1;
+                }
+            }
+        }
+        dbg("ITERACIONES %d\n", i);
+
+        resources_to_load.erase(resources_to_load.begin(), resources_to_load.begin() + i);
+    }
 }
 
 void CModuleFile::render() {
@@ -76,7 +104,9 @@ void CModuleFile::writeResourcesInFile(const std::string filename, const std::ve
     std::ofstream file(filename, std::ofstream::out);
     for (int i = 0; i < resources.size(); i++) {
         file << resources[i];
-        file << std::endl;
+        if (i != resources.size() - 1) {
+            file << std::endl;
+        }
     }
     file.close();
 }
@@ -92,6 +122,7 @@ void CModuleFile::preloadResources(bool overwrite)
             std::vector< std::string > groups_subscenes = jboot[it.key()]["scene_group"];
             for (int i = 0; i < groups_subscenes.size(); i++) {
                 const json& j = Resources.get(groups_subscenes[i])->as<CJsonResource>()->getJson();
+                pending_resources_to_load.push_back(groups_subscenes[i]);
                 parseResourceScene(j, pending_resources_to_load);
             }
             writeResourcesInFile(scene_name, pending_resources_to_load);
@@ -130,6 +161,17 @@ void CModuleFile::addPendingResourceFile(const std::string & resource, bool add)
     std::unique_lock<std::mutex> lck(pending_resource_files_mutex);
     pending_resource_files.push_back(std::make_pair(resource, add));
     condition_variable.notify_one();
+}
+
+void CModuleFile::addResourceToLoad(const std::string & resourceToLoad)
+{
+    resources_to_load.push_back(resourceToLoad);
+}
+
+void CModuleFile::addVectorResourceToLoad(const std::vector<std::string>& resourcesToLoad)
+{
+    resources_to_load.insert(std::end(resources_to_load), std::begin(resourcesToLoad), std::end(resourcesToLoad));
+    //resources_to_load = resourcesToLoad;
 }
 
 const std::pair<const std::string, bool> CModuleFile::getFirstPendingResourceFile()
@@ -358,7 +400,15 @@ void CModuleFile::parseResourceScene(const json& j, std::vector<std::string>& sc
 void CModuleFile::parseMaterial(const std::string & material_path, std::vector<std::string>& scene_resources)
 {
     if (material_path.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), material_path) == scene_resources.end()) {
-        const json& j_material = Resources.get(material_path)->as<CJsonResource>()->getJson();
+        const json& j_material = loadJson(material_path);
+
+        if (j_material.count("mats")) {
+            auto& j_mats = j_material["mats"];
+
+            for (auto it = j_mats.begin(); it != j_mats.end(); it++) {
+                parseMaterial(it.value(), scene_resources);
+            }
+        }
 
         /* Textures */
         if (j_material.count("textures")) {
@@ -372,11 +422,10 @@ void CModuleFile::parseMaterial(const std::string & material_path, std::vector<s
             }
         }
 
-        /* Render technique */
-        if (j_material.count("technique")) {
-            std::string technique_name = j_material.value("technique", "");
-            if (technique_name.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), technique_name) == scene_resources.end()) {
-                scene_resources.push_back(technique_name);
+        if (j_material.count("mix_blend_weights")) {
+            const std::string weights = j_material.value("mix_blend_weights", "");
+            if (weights.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), weights) == scene_resources.end()) {
+                scene_resources.push_back(weights);
             }
         }
 

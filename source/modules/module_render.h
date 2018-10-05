@@ -48,7 +48,7 @@ private:
     int _yres;
     VEC4 _backgroundColor;
 
-    std::thread resources_thread;
+    //std::thread resources_thread;
 
-    void threadMain();
+    //void threadMain();
 };

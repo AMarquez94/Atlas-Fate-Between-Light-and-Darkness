@@ -169,7 +169,7 @@ bool CModuleRender::start()
     camera.lookAt(VEC3(12.0f, 8.0f, 8.0f), VEC3::Zero, VEC3::UnitY);
     camera.setPerspective(60.0f * 180.f / (float)M_PI, 0.1f, 1000.f);
 
-    resources_thread = std::thread(&CModuleRender::threadMain, this);
+    //resources_thread = std::thread(&CModuleRender::threadMain, this);
 
     return true;
 }
@@ -180,19 +180,19 @@ LRESULT CModuleRender::OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam
     return ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam);
 }
 
-void CModuleRender::threadMain()
-{
-    while (!EngineFiles.ending_engine) {
-
-        //Resources
-        const std::string resource = Resources.getFirstPendingResource();
-        if (resource.compare("") != 0) {
-            const IResource* res = Resources.get(resource);
-            Sleep(res->getClass()->class_name.compare("Textures") == 0 ? 60 : 1);
-        }
-    }
-    dbg("Ending thread\n");
-}
+//void CModuleRender::threadMain()
+//{
+//    while (!EngineFiles.ending_engine) {
+//
+//        //Resources
+//        const std::string resource = Resources.getFirstPendingResource();
+//        if (resource.compare("") != 0) {
+//            const IResource* res = Resources.get(resource);
+//            Sleep(res->getClass()->class_name.compare("Textures") == 0 ? 60 : 1);
+//        }
+//    }
+//    dbg("Ending thread\n");
+//}
 
 CHandle CModuleRender::getMainCamera() {
 
@@ -201,8 +201,8 @@ CHandle CModuleRender::getMainCamera() {
 
 bool CModuleRender::stop()
 {
-    Resources.can_load_files.notify_one();
-    resources_thread.join();
+    //Resources.can_load_files.notify_one();
+    //resources_thread.join();
 
     ImGui_ImplDX11_Shutdown();
 

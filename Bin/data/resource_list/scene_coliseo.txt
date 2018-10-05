@@ -1,3 +1,4 @@
+data/scenes/Coliseo/player2_fsm.scene
 data/prefabs/player.prefab
 data/skeletons/player/body.mesh
 data/textures/player/Shade_mtl_BaseColor.dds
@@ -5,9 +6,7 @@ data/textures/player/Shade_mtl_Emissive.dds
 data/textures/player/Shade_mtl_Metallic.dds
 data/textures/player/Shade_mtl_Normal.dds
 data/textures/player/Shade_mtl_Roughness.dds
-pbr_skin_shadows.tech
 data/materials/characters/mtl_player_main_env.material
-pbr_shade_skin.tech
 data/materials/characters/mtl_player_main.material
 data/skeletons/player/bolsa_cinturon.mesh
 data/skeletons/player/buff_exterior.mesh
@@ -37,15 +36,14 @@ data/meshes/weapon_disc.mesh
 data/textures/tx_swap.dds
 data/textures/white.dds
 data/textures/default_height.dds
-pbr_disk.tech
 data/materials/mtl_weapon_disc.material
 data/particles/def_attack_trail.particles
 data/particles/def_sm_idle.particles
 data/particles/def_sm_enemy_spiral.particles
 data/particles/def_sm_enemy_spiral_core.particles
+data/scenes/Coliseo/test_instancing.scene
 data/meshes/particles.instanced_mesh
 data/textures/fire.dds
-particles.tech
 data/materials/particles_fire_instanced.material
 data/meshes/capsule.instanced_mesh
 data/textures/tx_capsula_alb.dds
@@ -54,17 +52,17 @@ data/textures/tx_capsula_hgt.dds
 data/textures/tx_capsula_met.dds
 data/textures/tx_capsula_nml.dds
 data/textures/tx_capsula_rgh.dds
-pbr_instanced.tech
 data/materials/mtl_instanced_capsule.material
 data/meshes/quad_volume.instanced_mesh
 data/textures/grass/grass.dds
-pbr_instanced_volume.tech
 data/materials/volume_instanced.material
 data/meshes/quad_volume_particles.instanced_mesh
-particles_instanced_combinative.tech
 data/materials/volume_particles_instanced.material
+data/scenes/Coliseo/camera.scene
 data/textures/lut/lut5.dds
 data/textures/lut/lut1.dds
+data/scenes/Coliseo/coliseo_particles.scene
+data/scenes/Coliseo/coliseo_luces.scene
 data/colliders/COL_Spot001.collider
 data/colliders/COL_Spot002.collider
 data/colliders/COL_Spot003.collider
@@ -101,6 +99,7 @@ data/colliders/COL_Spot042.collider
 data/colliders/COL_Spot043.collider
 data/colliders/COL_Spot044.collider
 data/colliders/COL_Spot045.collider
+data/scenes/Coliseo/coliseo_structures.scene
 data/meshes/COL_Circle001.mesh
 data/textures/Muro_top_metallic.dds
 data/textures/null_normal.dds
@@ -163,7 +162,6 @@ data/textures/tx_suelo_plaza_hgt.dds
 data/textures/tx_suelo_plaza_met.dds
 data/textures/tx_suelo_plaza_nml.dds
 data/textures/tx_suelo_plaza_rgh.dds
-pbr_parallax.tech
 data/materials/mtl_suelo_plaza.material
 data/textures/tx_mezquita_alb.dds
 data/textures/tx_mezquita_ao.dds
@@ -282,7 +280,6 @@ data/textures/tx_conexiones_hgt.dds
 data/textures/tx_conexiones_met.dds
 data/textures/tx_conexiones_nml.dds
 data/textures/tx_conexiones_rgh.dds
-pbr_no_cull.tech
 data/materials/mtl_conexiones.material
 data/colliders/COL_collider_enchufebase.collider
 data/meshes/COL_mesh_enchufebase001.mesh

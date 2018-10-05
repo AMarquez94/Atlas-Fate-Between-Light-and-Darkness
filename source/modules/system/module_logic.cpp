@@ -882,4 +882,5 @@ void preloadScene(const std::string & scene)
 
 void removeSceneResources(const std::string & scene)
 {
+    EngineScene.removeSceneResources(scene);
 }

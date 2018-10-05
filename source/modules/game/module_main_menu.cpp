@@ -39,6 +39,8 @@ bool CModuleMainMenu::start()
 	//cb_camera.activate();
 	//Engine.getSound().setAmbientSound("../sounds/test.ogg");
 
+    //EngineLogic.execScriptDelayed("preloadScene(\"scene_zone_a\")", 60);
+
 	return true;
 }
 

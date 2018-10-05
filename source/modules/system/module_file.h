@@ -24,6 +24,10 @@ public:
     const std::vector<std::string> getFileResourceVector(std::string filename);
     void addPendingResourceFile(const std::string& resource, bool add = true);
 
+    void addResourceToLoad(const std::string& resourceToLoad);
+    void addVectorResourceToLoad(const std::vector<std::string>& resourcesToLoad);
+    bool areResourcesToLoad() { return resources_to_load.size() > 0; };
+
 private:
 
     /* Auxiliar methods */
@@ -43,6 +47,9 @@ private:
     std::vector<std::pair<std::string, bool>> pending_resource_files;
     std::mutex pending_resource_files_mutex;
     std::condition_variable condition_variable;
+
+    /* Pending Resources to load */
+    std::vector<std::string> resources_to_load;
 
     /* Thread */
     const std::pair<const std::string, bool> getFirstPendingResourceFile();

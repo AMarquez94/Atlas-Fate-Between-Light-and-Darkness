@@ -24,35 +24,35 @@ void CResourceManager::onFileChanged(const std::string& filename) {
     // Scan each category in the order that were registered
     for (auto& rc : resource_classes_by_file_change_priority) {
         // Give the oportunity to each resource to reload/refresh if the file has changed
-        resources_mutex.lock();
+        //resources_mutex.lock();
         for (auto& r : all_resources) {
             if (r.second->getClass() == rc)
                 r.second->onFileChanged(filename);
         }
-        resources_mutex.unlock();
+        //resources_mutex.unlock();
     }
 }
 
-void CResourceManager::addPendingResource(const std::string & pendingResource)
-{
-    std::unique_lock<std::mutex> lck(pending_resources_mutex);
-    pending_resources.push_back(pendingResource);
-    can_load_files.notify_one();
-}
-
-const std::string CResourceManager::getFirstPendingResource()
-{
-    std::unique_lock<std::mutex> lck(pending_resources_mutex);
-    can_load_files.wait(lck, [this] { return pending_resources.size() > 0 || EngineFiles.ending_engine; });
-    if (pending_resources.size() > 0 && !EngineFiles.ending_engine) {
-        const std::string temp = pending_resources[0];
-        pending_resources.erase(pending_resources.begin());
-        return temp;
-    }
-    else {
-        return "";
-    }
-}
+//void CResourceManager::addPendingResource(const std::string & pendingResource)
+//{
+//    std::unique_lock<std::mutex> lck(pending_resources_mutex);
+//    pending_resources.push_back(pendingResource);
+//    can_load_files.notify_one();
+//}
+//
+//const std::string CResourceManager::getFirstPendingResource()
+//{
+//    std::unique_lock<std::mutex> lck(pending_resources_mutex);
+//    can_load_files.wait(lck, [this] { return pending_resources.size() > 0 || EngineFiles.ending_engine; });
+//    if (pending_resources.size() > 0 && !EngineFiles.ending_engine) {
+//        const std::string temp = pending_resources[0];
+//        pending_resources.erase(pending_resources.begin());
+//        return temp;
+//    }
+//    else {
+//        return "";
+//    }
+//}
 
 const std::string CResourceManager::getResourceName(const std::string& resourcePath) {
     std::string::size_type str_pos = resourcePath.find_last_of(".");
@@ -66,16 +66,22 @@ const std::string CResourceManager::getResourceName(const std::string& resourceP
     return it_res->second->class_name;
 }
 
+const bool CResourceManager::resourceExists(const std::string & resourceName)
+{
+    auto it = all_resources.find(resourceName);
+    return it != all_resources.end();
+}
+
 
 const IResource* CResourceManager::get(const std::string& res_name) {
 
-    resources_mutex.lock();
+    //resources_mutex.lock();
     // Buscar si lo tengo
     auto it = all_resources.find(res_name);
 
     // si esta lo devuelvo
     if (it != all_resources.end()) {
-        resources_mutex.unlock();
+        //resources_mutex.unlock();
         return it->second;
     }
 
@@ -84,7 +90,7 @@ const IResource* CResourceManager::get(const std::string& res_name) {
     // Find extension of the name, will identify the type of resource
     std::string::size_type str_pos = res_name.find_last_of(".");
     if (str_pos == std::string::npos) {
-        resources_mutex.unlock();
+        //resources_mutex.unlock();
         fatal("Can't identify extension in resource %s\n", res_name.c_str());
     }
     std::string extension = res_name.substr(str_pos);
@@ -92,7 +98,7 @@ const IResource* CResourceManager::get(const std::string& res_name) {
     // Find an appropiate resource factory based on the extension
     auto it_res = resource_classes.find(extension);
     if (it_res == resource_classes.end()) {
-        resources_mutex.unlock();
+        //resources_mutex.unlock();
         fatal("Invalid resource extension %s\n", res_name.c_str());
     }
 
@@ -106,7 +112,7 @@ const IResource* CResourceManager::get(const std::string& res_name) {
     // Save it for the next time someone wants it
     //registerResource(new_res);
     all_resources[new_res->getName()] = new_res;
-    resources_mutex.unlock();
+    //resources_mutex.unlock();
 
     return new_res;
 }
@@ -117,19 +123,19 @@ void CResourceManager::registerResource(IResource* new_res) {
     assert(new_res->getClass());
     // The name must be unique
     //assert(all_resources.find(new_res->getName()) == all_resources.end());
-    resources_mutex.lock();
+    //resources_mutex.lock();
     all_resources[new_res->getName()] = new_res;
-    resources_mutex.unlock();
+    //resources_mutex.unlock();
 }
 
 void CResourceManager::destroyAll() {
-    resources_mutex.lock();
+    //resources_mutex.lock();
     for (auto it : all_resources) {
         IResource* r = it.second;
         r->destroy();
     }
     all_resources.clear();
-    resources_mutex.unlock();
+    //resources_mutex.unlock();
 }
 
 void CResourceManager::debugInMenu() {

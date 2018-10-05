@@ -49,7 +49,6 @@ public:
     bool unLoadActiveScene();
 
     std::string getDefaultSceneName();
-    //bool endThread = false;
 
 private:
     Scene * _activeScene;
@@ -68,12 +67,5 @@ private:
             return this->name.compare(rhs.name) == 0;
         }
     };
-
-    //std::thread sceneThread;
-    //bool ending_thread = false;
-    //void sceneThreadMain();
-    //void parseResourceScene(const json& j, std::vector<PreResource>& scene_resources);
-
-    //void sceneThreadTask();
 };
  
