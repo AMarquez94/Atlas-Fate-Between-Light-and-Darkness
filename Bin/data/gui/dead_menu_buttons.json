@@ -5,7 +5,7 @@
 		"size" : "1080 640",
 		"children" : [
 			{
-				"name" : "pause_main_buttons",
+				"name" : "dead_buttons",
 				"type" : "widget",
 				"position" : "150 500",
 				"children" : [
@@ -20,19 +20,6 @@
 						},
 						"pressed" : {
 							"texture" : "data/textures/gui/pausemenu_restart_pressed.dds"
-						}
-					},
-					{
-						"name" : "dead_exit",
-						"type" : "button",
-						"position" : "0 30",
-						"size" : "186 36",
-						"texture" : "data/textures/gui/exit.dds",
-						"selected" : {
-							"texture" : "data/textures/gui/exit_selected.dds"
-						},
-						"pressed" : {
-							"texture" : "data/textures/gui/exit_pressed.dds"
 						}
 					}
 				]

@@ -64,12 +64,14 @@ void CModuleGUI::initializeWidgetStructure() {
 	auto pm_Exit = []() {
 		exit(0);
 	};
-
 	auto pm_Back = []() {
-		//exit(0);
 		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BACK_BUTTON)->makeChildsFadeOut(0.08, 0, true);
 		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::CONTROLS)->makeChildsFadeOut(0.08, 0, false);
 		EngineLogic.execSystemScriptDelayed("backFromControls();", 0.08f);
+	};
+
+	auto pm_Dead = []() {
+		CEngine::get().getGameManager().resetToCheckpoint();
 	};
 
 	CMenuButtonsController* mmc = new CMenuButtonsController();
@@ -98,8 +100,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	CMenuButtonsController* dmc = new CMenuButtonsController();
 	registerWigdetStruct(EGUIWidgets::DEAD_MENU_BUTTONS, "data/gui/dead_menu_buttons.json", dmc);
 	dmc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::DEAD_MENU_BUTTONS);
-	dmc->registerOption("restart_dead", pm_restartLevel);
-	dmc->registerOption("dead_exit", pm_Exit);
+	dmc->registerOption("restart_dead", pm_Dead);
 	dmc->setCurrentOption(0);
 
 	CMenuButtonsController* bbc = new CMenuButtonsController();
