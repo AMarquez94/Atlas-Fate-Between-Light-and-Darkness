@@ -199,6 +199,21 @@ namespace FSM
 		std::string _animationName;
 	};
 
+	class FallEnterMergeState : public IState
+	{
+		virtual void onStart(CContext& ctx) const override;
+		virtual void onFinish(CContext& ctx) const override;
+		virtual bool load(const json& jData);
+
+	private:
+		TargetCamera * _target = nullptr;
+		Noise * _noise = nullptr;
+		float _size = 1.f;
+		float _speed = 1.f;
+		float _radius = 0.3f;
+		std::string _animationName;
+	};
+
 	class MergeState : public IState
 	{
 		virtual void onStart(CContext& ctx) const override;

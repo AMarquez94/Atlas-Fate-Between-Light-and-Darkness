@@ -140,6 +140,18 @@
 			}
 		},
 		{
+			"name": "fallentermerge",
+			"type": "FallEnterMergeState",
+			"animation": "fallentermerge",
+			"size": 0.1,
+			"radius": 0.01,
+			"camera": {
+				"target": "SMCameraHor",
+				"blendOut": 0.2,
+				"blendIn": 0.2
+			}
+		},
+		{
 			"name": "merge",
 			"type": "MergeState",
 			"animation": "merge",
@@ -733,6 +745,16 @@
 		},
 		{
 			"type": "VariableTransition",
+			"source": "fallentermerge",
+			"target": "exitmergeinterrupted",
+			"variable": {
+				"name": "onmerge",
+				"type": "bool",
+				"value": false
+			}
+		},
+		{
+			"type": "VariableTransition",
 			"source": "exitmergeinterrupted",
 			"target": "exitmergecrouched",
 			"variable": {
@@ -754,6 +776,12 @@
 		{
 			"type": "TimeTransition",
 			"source": "entermerge",
+			"target": "merge",
+			"time": 0.5
+		},
+		{
+			"type": "TimeTransition",
+			"source": "fallentermerge",
 			"target": "merge",
 			"time": 0.5
 		},
@@ -1002,7 +1030,7 @@
 		{
 			"type": "VariableTransition",
 			"source": "landmerge",
-			"target": "entermerge",
+			"target": "fallentermerge",
 			"variable": {
 				"name": "onGround",
 				"type": "bool",
@@ -1204,6 +1232,16 @@
 		{
 			"type": "VariableTransition",
 			"source": "entermerge",
+			"target": "die",
+			"variable": {
+				"name": "onDead",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "fallentermerge",
 			"target": "die",
 			"variable": {
 				"name": "onDead",

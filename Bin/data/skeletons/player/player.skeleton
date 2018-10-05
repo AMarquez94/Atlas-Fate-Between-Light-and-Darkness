@@ -76,6 +76,7 @@
 		{ "name" : "fall"},
 		{ "name" : "hit_back"},
 		{ "name" : "hack"},
+		{ "name" : "sm_enter_fall"},
 		{ "name" : "hit_front"},
 		{ "name" : "metralla_start"},
 		{ "name" : "metralla_middle"},

@@ -277,6 +277,17 @@ void TCompPlayerAnimator::initializeAnimations() {
 	);
 
 	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::SM_ENTER_FALL,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"sm_enter_fall",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::SM_POSE,
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
