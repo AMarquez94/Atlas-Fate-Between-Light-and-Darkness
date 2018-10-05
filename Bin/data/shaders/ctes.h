@@ -293,7 +293,7 @@ CB_DEF(CCtePostFX, CB_POSTFX)
     VEC2   postfx_scan_jitter;
 
     float  postfx_vignette;
-    float  postfx_dummy1;
+    float  postfx_vignette_softness;
     float  postfx_dummy2;
     float  postfx_dummy3;
 };

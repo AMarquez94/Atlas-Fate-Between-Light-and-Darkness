@@ -11,6 +11,7 @@ void TCompVignette::debugInMenu() {
 
     ImGui::Checkbox("Enabled", &enabled);
     ImGui::DragFloat("Amount", &amount, 0.01f, 0.0f, 1.0f);
+    ImGui::DragFloat("Softness Amount", &softness_amount, 0.01f, 0.0f, 1.0f);
     ImGui::DragFloat("Lut Amount", &lut_amount, 0.01f, 0.0f, 1.0f);
 }
 
@@ -20,7 +21,8 @@ void TCompVignette::load(const json& j, TEntityParseContext& ctx) {
     int yres = Render.height;
 
     enabled = j.value("enabled", true);
-    amount = j.value("amount", 0.35f);
+    amount = j.value("amount", 0.8f);
+    softness_amount = j.value("softness_amount", 0.66f);
 
     if (!rt) {
         rt = new CRenderToTexture;
@@ -45,7 +47,8 @@ CTexture* TCompVignette::apply(CTexture* in_texture) {
 
     CTraceScoped scope("TCompVignette");
     cb_postfx.postfx_vignette = amount;
-    cb_globals.global_shared_fx_amount = amount;
+    cb_postfx.postfx_vignette_softness = 1 - softness_amount;
+    cb_globals.global_shared_fx_amount = 1 - amount;
     cb_globals.updateGPU();
     cb_postfx.updateGPU();
 

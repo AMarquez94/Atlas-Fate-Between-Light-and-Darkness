@@ -49,8 +49,6 @@ float4 PS_FXAA(float4 position : SV_POSITION,float2 texcoord : TEXCOORD0) : SV_T
 	}else{
 		final_color = float4(rgbB,1);
 	}
-	//return final_color;
-	
-	//return postfx_vignette(position, texcoord);
-	return postfx_contrast(final_color);
+
+	return final_color;
 }
