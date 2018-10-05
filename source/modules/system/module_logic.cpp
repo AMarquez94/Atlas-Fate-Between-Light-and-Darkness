@@ -284,7 +284,9 @@ void CModuleLogic::publishClasses() {
 	m->set("unPauseGame", SLB::FuncCall::create(&unPauseGame));
 	m->set("backFromControls", SLB::FuncCall::create(&backFromControls));
 	m->set("unlockDeadButton", SLB::FuncCall::create(&unlockDeadButton));
-
+	m->set("execDeadButton", SLB::FuncCall::create(&execDeadButton));
+	m->set("takeOutBlackScreen", SLB::FuncCall::create(&takeOutBlackScreen));
+	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
     m->set("shadowsToggle", SLB::FuncCall::create(&shadowsToggle));
@@ -919,4 +921,13 @@ void backFromControls() {
 
 void unlockDeadButton() {
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS)->makeChildsFadeIn(3, 0, true);
+}
+
+void execDeadButton() {
+	EngineGUI.setButtonsState(true);
+	Engine.get().getGameManager().resetToCheckpoint();
+}
+
+void takeOutBlackScreen() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN);
 }

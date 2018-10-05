@@ -145,6 +145,8 @@ void setAIState(const std::string& name, bool active, const std::string & stateN
 void unPauseGame();
 void backFromControls();
 void unlockDeadButton();
+void execDeadButton();
+void takeOutBlackScreen();
 
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);

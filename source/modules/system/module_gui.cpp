@@ -71,7 +71,11 @@ void CModuleGUI::initializeWidgetStructure() {
 	};
 
 	auto pm_Dead = []() {
-		CEngine::get().getGameManager().resetToCheckpoint();
+		EngineLogic.execSystemScriptDelayed("execDeadButton();", 3.2f);
+		EngineLogic.execSystemScriptDelayed("takeOutBlackScreen();", 6.5f);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(3, 0, false);
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(3, 3.5, false);
+		EngineGUI.setButtonsState(false);
 	};
 
 	CMenuButtonsController* mmc = new CMenuButtonsController();
@@ -117,7 +121,8 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::DEAD_MENU_BACKGROUND, "data/gui/dead_menu_background.json");
 	registerWigdetStruct(EGUIWidgets::CONTROLS, "data/gui/controls.json");
 	registerWigdetStruct(EGUIWidgets::LOADING_SPRITE, "data/gui/loading.json");
-	
+	registerWigdetStruct(EGUIWidgets::BLACK_SCREEN, "data/gui/black_background.json");
+
 }
 
 void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController *wdgt_controller) {
