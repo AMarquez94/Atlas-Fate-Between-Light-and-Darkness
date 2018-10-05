@@ -291,7 +291,8 @@ void CModuleLogic::publishClasses() {
     m->set("toggle_spotlight", SLB::FuncCall::create(&toggle_spotlight));
     m->set("toggleButtonCanBePressed", SLB::FuncCall::create(&toggleButtonCanBePressed));
     m->set("getEntityByName", SLB::FuncCall::create(&getEntityByName));
-    m->set("sendPendingResources", SLB::FuncCall::create(&sendPendingResources));
+    m->set("preloadScene", SLB::FuncCall::create(&preloadScene));
+    m->set("removeSceneResources", SLB::FuncCall::create(&removeSceneResources));
 
     /* Handle converters */
     m->set("toEntity", SLB::FuncCall::create(&toEntity));
@@ -874,9 +875,11 @@ void toggleButtonCanBePressed(const std::string & buttonName, bool canBePressed)
 	}
 }
 
-void sendPendingResources(const std::string & resources, int times)
+void preloadScene(const std::string & scene)
 {
-    for (int i = 0; i < times; i++) {
-        Resources.addPendingResource(resources);
-    }
+    EngineScene.preloadScene(scene);
+}
+
+void removeSceneResources(const std::string & scene)
+{
 }

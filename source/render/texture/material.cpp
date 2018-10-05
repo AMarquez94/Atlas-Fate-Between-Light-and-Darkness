@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "material.h"
 #include "texture.h"
+#include "resources/json_resource.h"
 
 // ----------------------------------------------
 class CMaterialResourceClass : public CResourceClass {
@@ -12,7 +13,7 @@ public:
 	IResource* create(const std::string& name) const override {
 		dbg("Creating material %s\n", name.c_str());
 
-        auto j = loadJson(name);
+        auto j = loadJson(name); /*Resources.get(name)->as<CJsonResource>()->getJson();*/
         std::string mat_type = j.value("type", "std");
 
         CMaterial* res = nullptr;

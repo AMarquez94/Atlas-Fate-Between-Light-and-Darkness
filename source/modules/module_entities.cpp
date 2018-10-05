@@ -10,6 +10,7 @@
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
 #include "render/render_manager.h"
+#include "resources/json_resource.h"
 
 void CModuleEntities::loadListOfManagers(const json& j, std::vector< CHandleManager* > &managers) {
     managers.clear();
@@ -24,7 +25,7 @@ void CModuleEntities::loadListOfManagers(const json& j, std::vector< CHandleMana
 
 bool CModuleEntities::start()
 {
-    json j = loadJson("data/components.json");
+    json j = Resources.get("data/components.json")->as<CJsonResource>()->getJson();
 
     // Initialize the ObjManager preregistered in their constructors
     // with the amount of components defined in the data/components.json

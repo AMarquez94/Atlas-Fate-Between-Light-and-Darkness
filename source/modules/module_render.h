@@ -9,25 +9,25 @@ class CRenderToTexture;
 
 class CModuleRender : public IModule
 {
-	CDeferredRenderer deferred;
-	CRenderToTexture* rt_main = nullptr;
+    CDeferredRenderer deferred;
+    CRenderToTexture* rt_main = nullptr;
 
 public:
 
     bool _debugMode = true, _generateShadows = true, _generatePostFX = true;
 
-	CModuleRender(const std::string& name);
-	bool start() override;
-	bool stop() override;
-	void update(float delta) override;
-	void render() override;
+    CModuleRender(const std::string& name);
+    bool start() override;
+    bool stop() override;
+    void update(float delta) override;
+    void render() override;
 
-	void generateFrame();
-	void activateMainCamera();
+    void generateFrame();
+    void activateMainCamera();
 
-	void configure(int xres, int yres);
-	void setBackgroundColor(float r, float g, float b, float a);
-	void debugDraw();
+    void configure(int xres, int yres);
+    void setBackgroundColor(float r, float g, float b, float a);
+    void debugDraw();
     void postProcessingStack();
 
     bool const getDebugMode() { return _debugMode; }
@@ -38,13 +38,17 @@ public:
     void setGeneratePostFX(bool val) { _generatePostFX = val; }
     CHandle getMainCamera();
 
-	LRESULT OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) override;
+    LRESULT OnOSMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) override;
 
 private:
-	CHandle h_e_camera;
-	CCamera camera;
+    CHandle h_e_camera;
+    CCamera camera;
 
-	int _xres;
-	int _yres;
-	VEC4 _backgroundColor;
+    int _xres;
+    int _yres;
+    VEC4 _backgroundColor;
+
+    std::thread resources_thread;
+
+    void threadMain();
 };

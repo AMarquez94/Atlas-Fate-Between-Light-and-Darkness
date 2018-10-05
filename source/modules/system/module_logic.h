@@ -140,7 +140,8 @@ void setAIState(const std::string& name, bool active, const std::string & stateN
 void sendOrderToDrone(const std::string& droneName, VEC3 position);
 void toggle_spotlight(const std::string& lightName);
 void toggleButtonCanBePressed(const std::string& buttonName, bool canBePressed);
-void sendPendingResources(const std::string& resources, int times);
+void preloadScene(const std::string& scene);
+void removeSceneResources(const std::string& scene);
 
 // Extra cvar commands
 void cg_drawfps(bool value);

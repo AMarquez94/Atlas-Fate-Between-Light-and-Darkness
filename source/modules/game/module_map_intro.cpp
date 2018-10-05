@@ -31,8 +31,6 @@ bool CModuleMapIntro::start() {
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::INGAME_STAMINA_BAR);
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH);
 
-    EngineScene.preloadScene("scene_zone_a");
-
 	return true;
 }
 

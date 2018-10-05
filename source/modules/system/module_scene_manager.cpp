@@ -24,7 +24,7 @@ void CModuleSceneManager::loadJsonScenes(const std::string filepath) {
 
     sceneCount = 0;
 
-    json jboot = loadJson(filepath);
+    json jboot = Resources.get(filepath)->as<CJsonResource>()->getJson();
     _default_scene = jboot.value("default_scene","scene_intro");
 
     for (auto it = std::next(jboot.begin(),1); it != jboot.end(); ++it) {
@@ -186,6 +186,8 @@ bool CModuleSceneManager::unLoadActiveScene() {
         EngineInstancing.clearInstances();
         EngineParticles.killAll();
 
+        removeSceneResources(_activeScene->name);
+
         _activeScene->isLoaded = false;
         _activeScene = nullptr;
 
@@ -243,12 +245,17 @@ std::string CModuleSceneManager::getDefaultSceneName() {
 //}
 
 void CModuleSceneManager::preloadScene(const std::string& sceneName) {
-    auto it = _scenes.find(sceneName);
-    if (it != _scenes.end())
-    {
-        for (auto& scene_name : it->second->groups_subscenes) {
-            dbg("Preloading scene %s\n", scene_name.c_str());
-            Resources.addPendingResource(scene_name);
-        }
+
+    const std::vector<std::string> resources = EngineFiles.getFileResourceVector(sceneName);
+    for (int i = 0; i < resources.size(); i++) {
+        Resources.addPendingResource(resources[i]);
+    }
+}
+
+void CModuleSceneManager::removeSceneResources(const std::string& sceneName) {
+
+    const std::vector<std::string> resources = EngineFiles.getFileResourceVector(sceneName);
+    for (int i = 0; i < resources.size(); i++) {
+        EngineFiles.addPendingResourceFile(resources[i], false);
     }
 }

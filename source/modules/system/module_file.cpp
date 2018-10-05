@@ -1,28 +1,11 @@
 #include "mcv_platform.h"
 #include "module_file.h"
 #include "resources/json_resource.h"
-#include "render/texture/material.h"
-#include "render/texture/texture.h"
-#include "physics/physics_mesh.h"
-#include "camera/camera.h"
-#include "geometry/curve.h"
-#include "fsm/fsm.h"
-#include "geometry/geometry.h"
-#include "geometry/rigid_anim.h"
-#include "components/skeleton/game_core_skeleton.h"
 
 bool CModuleFile::start() {
 
     // Register the resource types
     Resources.registerResourceClass(getResourceClassOf<CJsonResource>());
-    Resources.registerResourceClass(getResourceClassOf<CTexture>());
-    Resources.registerResourceClass(getResourceClassOf<CRenderMesh>());
-    Resources.registerResourceClass(getResourceClassOf<CRenderTechnique>());
-    Resources.registerResourceClass(getResourceClassOf<CMaterial>());
-    Resources.registerResourceClass(getResourceClassOf<CGameCoreSkeleton>());
-    Resources.registerResourceClass(getResourceClassOf<CPhysicsMesh>());
-    Resources.registerResourceClass(getResourceClassOf<CCurve>());
-    Resources.registerResourceClass(getResourceClassOf<RigidAnims::CRigidAnimResource>());
 
     preloadResources(false);
     
@@ -53,8 +36,6 @@ std::vector<char> CModuleFile::loadResourceFile(const std::string & name)
     std::vector<char> &resource_file = resource_files[name];
     if (resource_file.empty()) {
 
-        //dbg("%s loaded from disk\n", name.c_str());
-
         /* file not in the map => load it */
         std::ifstream is(name, std::ifstream::binary);
 
@@ -67,13 +48,27 @@ std::vector<char> CModuleFile::loadResourceFile(const std::string & name)
             is.read(resource_file.data(), length);
         }
     }
-    else {
-        dbg("%s loaded from cache\n", name.c_str());
-    }
 
     std::vector<char> file = resource_files[name];
     resource_files_mutex.unlock();
     return file;
+}
+
+bool CModuleFile::removeResourceFile(const std::string & name)
+{
+    bool result = false;
+    resource_files_mutex.lock();
+    auto it = resource_files.find(name);
+    if (result = it != resource_files.end()) {
+        resource_files.erase(it);
+    }
+    resource_files_mutex.unlock();
+    return result;
+}
+
+const std::vector<std::string> CModuleFile::getFileResourceVector(std::string filename)
+{
+    return resources_by_file[filename];
 }
 
 void CModuleFile::writeResourcesInFile(const std::string filename, const std::vector<std::string>& resources)
@@ -112,6 +107,7 @@ void CModuleFile::preloadResources(bool overwrite)
             addPendingResourceFile(pending_resources_to_load[i]);
         }
 
+        resources_by_file[it.key()] = pending_resources_to_load;
         pending_resources_to_load.clear();
     }
 }
@@ -129,33 +125,40 @@ const std::vector<std::string> CModuleFile::getResourcesByFile(const std::string
     return resources;
 }
 
-void CModuleFile::addPendingResourceFile(const std::string & resource)
+void CModuleFile::addPendingResourceFile(const std::string & resource, bool add)
 {
     std::unique_lock<std::mutex> lck(pending_resource_files_mutex);
-    pending_resource_files.push_back(resource);
+    pending_resource_files.push_back(std::make_pair(resource, add));
     condition_variable.notify_one();
 }
 
-const std::string CModuleFile::getFirstPendingResourceFile()
+const std::pair<const std::string, bool> CModuleFile::getFirstPendingResourceFile()
 {
     std::unique_lock<std::mutex> lck(pending_resource_files_mutex);
     condition_variable.wait(lck, [this] { return ending_engine || pending_resource_files.size() > 0; });
-    if (ending_engine) {
-        return "";
-    }
-    else {
-        const std::string temp = pending_resource_files[0];
+    if (pending_resource_files.size() > 0 && !ending_engine) {
+        const std::pair<const std::string, bool> temp = pending_resource_files[0];
         pending_resource_files.erase(pending_resource_files.begin());
         return temp;
+    }
+    else {
+        return std::make_pair("", true);
     }
 }
 
 void CModuleFile::resourceThreadMain()
 {
     while (!ending_engine) {
-        const std::string resource = getFirstPendingResourceFile();
-        if (resource.compare("") != 0) {
-            loadResourceFile(resource);
+        const std::pair<std::string, bool> resource = getFirstPendingResourceFile();
+        if (resource.first.compare("") != 0) {
+            if (resource.second) {
+                dbg("Adding resource %s\n", resource.first.c_str());
+                loadResourceFile(resource.first);
+            }
+            else {
+                dbg("Removing resource %s\n", resource.first.c_str());
+                removeResourceFile(resource.first);
+            }
             Sleep(1);
         }
     }
@@ -164,6 +167,7 @@ void CModuleFile::resourceThreadMain()
 
 
 
+#pragma region parsers
 
 void CModuleFile::parseResourceScene(const json& j, std::vector<std::string>& scene_resources) {
 
@@ -335,7 +339,6 @@ void CModuleFile::parseResourceScene(const json& j, std::vector<std::string>& sc
             }
         }
         if (j_item.count("instance_container")) {
-            dbg("ENTRAMOS INSTANCE CONTAINER\n");
 
             /* Instance containers */
             auto& j_instance_container = j_item["instance_container"];
@@ -355,7 +358,7 @@ void CModuleFile::parseResourceScene(const json& j, std::vector<std::string>& sc
 void CModuleFile::parseMaterial(const std::string & material_path, std::vector<std::string>& scene_resources)
 {
     if (material_path.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), material_path) == scene_resources.end()) {
-        const json& j_material = loadJson(material_path);
+        const json& j_material = Resources.get(material_path)->as<CJsonResource>()->getJson();
 
         /* Textures */
         if (j_material.count("textures")) {
@@ -381,3 +384,5 @@ void CModuleFile::parseMaterial(const std::string & material_path, std::vector<s
         scene_resources.push_back(material_path);
     }
 }
+
+#pragma endregion These are the preload scene parsers

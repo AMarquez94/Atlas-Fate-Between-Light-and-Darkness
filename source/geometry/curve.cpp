@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "curve.h"
+#include "resources/json_resource.h"
 
 // ----------------------------------------------
 class CCurveResourceClass : public CResourceClass {
@@ -28,7 +29,7 @@ const CResourceClass* getResourceClassOf<CCurve>() {
 
 bool CCurve::load(const std::string& name)
 {
-	auto jData = loadJson(name);
+    auto jData = Resources.get(name)->as<CJsonResource>()->getJson();
 
 	std::string typeName = jData["type"];
 	if (typeName == "catmull-rom")

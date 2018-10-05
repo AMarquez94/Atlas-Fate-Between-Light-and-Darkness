@@ -37,13 +37,14 @@ void CResourceManager::addPendingResource(const std::string & pendingResource)
 {
     std::unique_lock<std::mutex> lck(pending_resources_mutex);
     pending_resources.push_back(pendingResource);
-    condition_variable.notify_one();
+    can_load_files.notify_one();
 }
 
 const std::string CResourceManager::getFirstPendingResource()
 {
     std::unique_lock<std::mutex> lck(pending_resources_mutex);
-    if (condition_variable.wait_for(lck, std::chrono::milliseconds(2000), [this] { return pending_resources.size() > 0; })) {
+    can_load_files.wait(lck, [this] { return pending_resources.size() > 0 || EngineFiles.ending_engine; });
+    if (pending_resources.size() > 0 && !EngineFiles.ending_engine) {
         const std::string temp = pending_resources[0];
         pending_resources.erase(pending_resources.begin());
         return temp;

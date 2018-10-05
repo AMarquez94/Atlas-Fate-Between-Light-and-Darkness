@@ -14,14 +14,16 @@ class CResourceManager {
   // To make the reload in proper order
   std::vector< const CResourceClass* > resource_classes_by_file_change_priority;
 
+
   std::vector<std::string> pending_resources;
 
   std::mutex pending_resources_mutex;
   std::recursive_mutex resources_mutex;
-  std::condition_variable condition_variable;
 
 
 public:
+
+  std::condition_variable can_load_files;
 
   void registerResourceClass(const CResourceClass* new_class);
   const IResource* get(const std::string& res_name);
