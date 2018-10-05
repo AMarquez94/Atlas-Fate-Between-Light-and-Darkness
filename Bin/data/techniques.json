@@ -110,10 +110,10 @@
 		"vs_file": "data/shaders/pbr.fx",
 		"ps_file": "data/shaders/pbr.fx",
 		"vs_entry_point": "VS_GBuffer",
-		"ps_entry_point": "PS_GBuffer",
+		"ps_entry_point": "PS_GBuffer_Opacity",
 		"vertex_type": "PosNUvUvT",
-		"category": "gbuffer",
-		"blend": "combinative_gbuffer",
+		"category": "gbuffer_opacity",
+		"blend": "default",
 		"textures": {
 			"environment": "data/textures/cubemaps/env.dds",
 			"irradiance": "data/textures/cubemaps/irradiance.dds"

@@ -265,5 +265,5 @@ float4 PS_GBuffer_Beam(
 	color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.1 * global_world_time * float2(.5, 0)).r;
 	color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 - 0.1 * global_world_time * float2(.5, 0)).r;
 	
-	return 1 * color * (0.65 + sin(global_world_time) * .15);
+	return 1 * color * (0.65 + sin(global_world_time * 2) * .15);
 }
