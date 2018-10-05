@@ -92,7 +92,7 @@ void CModuleGameManager::switchState(PauseState pause) {
     case PauseState::defeat: {
         mouse->setLockMouse(false);
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND)->makeChildsFadeIn(3,4);
-		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS)->makeChildsFadeIn(3, 4, true);
+		EngineLogic.execSystemScriptDelayed("unlockDeadButton();",4.0f);
 		EngineLerp.lerpElement(&cb_player.player_health, 0, 2, 2);
     }break;
     case PauseState::editor1: {

@@ -283,7 +283,8 @@ void CModuleLogic::publishClasses() {
 	//GUI
 	m->set("unPauseGame", SLB::FuncCall::create(&unPauseGame));
 	m->set("backFromControls", SLB::FuncCall::create(&backFromControls));
-	
+	m->set("unlockDeadButton", SLB::FuncCall::create(&unlockDeadButton));
+
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
     m->set("shadowsToggle", SLB::FuncCall::create(&shadowsToggle));
@@ -914,4 +915,8 @@ void backFromControls() {
 	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::CONTROLS);
 	EngineGUI.activateController(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
 
+}
+
+void unlockDeadButton() {
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS)->makeChildsFadeIn(3, 0, true);
 }
