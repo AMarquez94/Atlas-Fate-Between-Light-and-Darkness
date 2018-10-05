@@ -78,13 +78,15 @@ void CModuleGameManager::switchState(PauseState pause) {
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
+
 
     }break;
     case PauseState::main: {
         mouse->setLockMouse(false);
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE)->makeChildsFadeIn(0.08, 0);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE)->makeChildsFadeIn(0.08, 0);
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS)->makeChildsFadeIn(0.08, 0, true);
-
     }break;
     case PauseState::win: {
         mouse->setLockMouse(false);

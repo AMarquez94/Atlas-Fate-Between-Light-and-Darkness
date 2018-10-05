@@ -118,6 +118,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::SOUND_GRAPH, "data/gui/sound_graph.json");
 	registerWigdetStruct(EGUIWidgets::INGAME_STAMINA_BAR, "data/gui/ingame.json");
 	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE, "data/gui/pause_menu_background.json");
+	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE_LINE, "data/gui/pause_menu_line.json");
 	registerWigdetStruct(EGUIWidgets::DEAD_MENU_BACKGROUND, "data/gui/dead_menu_background.json");
 	registerWigdetStruct(EGUIWidgets::CONTROLS, "data/gui/controls.json");
 	registerWigdetStruct(EGUIWidgets::LOADING_SPRITE, "data/gui/loading.json");
