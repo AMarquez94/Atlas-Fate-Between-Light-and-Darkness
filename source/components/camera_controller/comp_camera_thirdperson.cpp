@@ -40,6 +40,7 @@ void TCompCameraThirdPerson::load(const json& j, TEntityParseContext& ctx)
     _clamp_angle = loadVEC2(j["clampangle"]);
     _clipping_offset = loadVEC3(j["offset"]);
     _clamp_angle = VEC2(deg2rad(_clamp_angle.x), deg2rad(_clamp_angle.y));
+	_original_y_offset = _clipping_offset.y;
 
     _h_target = getEntityByName(_target_name);
     TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>();
@@ -221,7 +222,8 @@ void TCompCameraThirdPerson::update(float dt)
             float x_amount = sin(_time_shaking * speed_shak) * amount_shak * shake_percentage;
             VEC3 shaking_pos = self_transform->getPosition();
             shaking_pos += self_transform->getUp() * x_amount;
-            self_transform->setPosition(shaking_pos);
+			_clipping_offset.y = _original_y_offset + x_amount;
+            //self_transform->setPosition(shaking_pos);
             if ((time_to_stop_shake - _time_shaking) <= 0.0f) {
                 activate_shake = false;
                 _time_shaking = 0.0f;
@@ -275,6 +277,7 @@ void TCompCameraThirdPerson::resetCameraTargetPos()
 
 void TCompCameraThirdPerson::activateCameraShake(float amount_shake, float speed_shake, float time_to_stop) {
     if (amount_shak * shake_percentage < amount_shake) {
+		_clipping_offset.y = _original_y_offset;
 	    activate_shake = true;
 	    _time_shaking = 0.0f;
         amount_shak = amount_shake;

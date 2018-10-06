@@ -1,0 +1,29 @@
+[
+	{
+		"name" : "back_controls_buttons",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "back_button",
+				"type" : "widget",
+				"position" : "25 580",
+				"children" : [
+					{
+						"name" : "back",
+						"type" : "button",
+						"position" : "0 0",
+						"size" : "186 36",
+						"texture" : "data/textures/gui/back_button.dds",
+						"selected" : {
+							"texture" : "data/textures/gui/back_button_selected.dds"
+						},
+						"pressed" : {
+							"texture" : "data/textures/gui/back_button_pressed.dds"
+						}
+					}
+				]
+			}
+		]
+	}
+]

@@ -1,6 +1,6 @@
 {
 	"system": {
-		"duration": 0.3,
+		"duration": 0.4,
 		"looping": true,
 		"start_delay": 0.0, 
 		"start_lifetime": 1.0, 
@@ -11,11 +11,11 @@
 		"start_color": "1 0 0 1",
 		"gravity": 0.01,  
 		"simulation_speed": 3,
-		"max_particles": 100,
+		"max_particles": 300,
 		"offset": "0.1 0 0"
 	},       
 	"emission": {         
-		"rate_time": 0.0,      
+		"rate_time": 22.0,      
 		"rate_distance": 20.0,     
 		"variation" : 0.0
 	},	    
@@ -51,7 +51,7 @@
 	},  
 	"renderer": {   
 			"mode": "billboard",    
-			"texture": "data/textures/particles/decal_hit.dds",  
+			"texture": "data/textures/particles/glow.dds",  
       "frame_size" : "1 1", 
       "initial_frame" : 0,
       "num_frames" : 1,   
@@ -59,16 +59,16 @@
 			"tech" : "particles_instanced_additive.tech"
 	},        
   "size" : {     
-    "scale" :1,
+    "scale" :0.35,
     "scale_variation" : 0,   
     "sizes" : [ 
 		  [0.0, "1 1 1"],
-			[0.6, "1 1 1"], 
-			[1.0, "1 0 1"]     
+			[0.4, "1 1 1"], 
+			[1.0, "0.1 0 0.1"]     
     ] 
   },    
   "color" : { 
-    "opacity" : 0.05, 
+    "opacity" : 0.005, 
     "colors" : [ 
       [0.0, "0.2 1 1 0.0"],
 			[0.1, "0.2 1 1 1.0"],

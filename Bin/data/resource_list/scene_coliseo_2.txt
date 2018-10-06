@@ -38,9 +38,15 @@ data/textures/white.dds
 data/textures/default_height.dds
 data/materials/mtl_weapon_disc.material
 data/particles/def_attack_trail.particles
+data/particles/def_attack_hit_sparks_left.particles
+data/particles/def_attack_hit_sparks_core_left.particles
+data/particles/def_attack_hit_sparks_right.particles
+data/particles/def_attack_hit_sparks_core_right.particles
 data/particles/def_sm_idle.particles
 data/particles/def_sm_enemy_spiral.particles
 data/particles/def_sm_enemy_spiral_core.particles
+data/particles/def_amb_rain_heavy.particles
+data/particles/def_amb_rain_core_heavy.particles
 data/scenes/Coliseo/test_instancing.scene
 data/meshes/particles.instanced_mesh
 data/textures/fire.dds
@@ -101,7 +107,7 @@ data/colliders/COL_Spot044.collider
 data/colliders/COL_Spot045.collider
 data/scenes/Coliseo/coliseo_structures.scene
 data/meshes/COL_Circle001.mesh
-data/textures/Muro_top_metallic.dds
+data/textures/tx_alminar_mezquita_met.dds
 data/textures/null_normal.dds
 data/materials/mtl_cables.material
 data/meshes/COL_mesh_arcomuralla01.mesh
@@ -198,6 +204,12 @@ data/meshes/COL_mesh_baselargalectrica005.mesh
 data/meshes/COL_mesh_baselargalectrica006.mesh
 data/meshes/COL_mesh_doorbottom.mesh
 data/textures/tx_puertatech_alb.dds
+data/textures/tx_puertatech_ao.dds
+data/textures/tx_puertatech_emi.dds
+data/textures/tx_puertatech_hgt.dds
+data/textures/tx_puertatech_met.dds
+data/textures/tx_puertatech_nml.dds
+data/textures/tx_puertatech_rgh.dds
 data/materials/mtl_puertatech.material
 data/colliders/COL_collider_doorbottom.collider
 data/meshes/COL_mesh_doorbottom_chain01.mesh

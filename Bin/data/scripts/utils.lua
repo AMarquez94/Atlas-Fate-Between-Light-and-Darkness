@@ -61,8 +61,8 @@ function infiniteStamineToggle()
 	SLB.infiniteStamineToggle()
 end
 
-function immortal()
-	SLB.immortal()
+function immortal(state)
+	SLB.immortal(state)
 end
 
 function inShadows()

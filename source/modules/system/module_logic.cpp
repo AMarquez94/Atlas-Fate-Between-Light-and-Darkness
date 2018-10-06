@@ -20,7 +20,9 @@
 #include "components/camera_controller/comp_camera_thirdperson.h"
 #include "components/comp_render.h"
 #include "components/comp_particles.h"
+#include "windows/app.h"
 #include "components/object_controller/comp_noise_emitter.h"
+#include "modules/game/module_game_manager.h"
 
 bool CModuleLogic::start() {
 
@@ -38,6 +40,14 @@ bool CModuleLogic::stop() {
 }
 
 void CModuleLogic::update(float delta) {
+    for (unsigned int i = 0; i < delayedSystemScripts.size(); i++) {
+        delayedSystemScripts[i].remainingTime -= delta;
+        if (delayedSystemScripts[i].remainingTime <= 0) {
+            execScript(delayedSystemScripts[i].script);
+            delayedSystemScripts.erase(delayedSystemScripts.begin() + i);
+        }
+    }
+
     if (!paused) {
         for (unsigned int i = 0; i < delayedScripts.size(); i++) {
             delayedScripts[i].remainingTime -= delta;
@@ -112,7 +122,12 @@ void CModuleLogic::publishClasses() {
 
     SLB::Class< CModuleParticles >("Particles", m)
         .comment("This is our wrapper of the particles class")
-        .set("killAll", &CModuleParticles::killAll);
+        .set("killAll", &CModuleParticles::killAll)
+        .set("launchDynamicSystem", &CModuleParticles::launchDynamicSystem);
+
+	SLB::Class< CModuleGameManager >("GameManager", m)
+		.comment("This is our wrapper of the gamemanager class")
+		.set("resetToCheckpoint", &CModuleGameManager::resetToCheckpoint);
 
     SLB::Class< VEC3 >("VEC3", m)
         .constructor<float, float, float>()
@@ -226,10 +241,12 @@ void CModuleLogic::publishClasses() {
     // Utilities
     m->set("getConsole", SLB::FuncCall::create(&getConsole));
     m->set("getLogic", SLB::FuncCall::create(&getLogic));
+	m->set("getGameManager", SLB::FuncCall::create(&getGameManager));
     m->set("getParticles", SLB::FuncCall::create(&getParticles));
     m->set("getPlayerController", SLB::FuncCall::create(&getPlayerController));
     m->set("getPlayerNoiseEmitter", SLB::FuncCall::create(&getPlayerNoiseEmitter));
     m->set("execScriptDelayed", SLB::FuncCall::create(&execDelayedScript));
+    m->set("execSystemScriptDelayed", SLB::FuncCall::create(&execDelayedSystemScript));
     m->set("pauseGame", SLB::FuncCall::create(&pauseGame));
     m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
     m->set("pauseEnemyEntities", SLB::FuncCall::create(&pauseEnemyEntities));
@@ -266,6 +283,13 @@ void CModuleLogic::publishClasses() {
     m->set("setCinematicPlayerState", SLB::FuncCall::create(&setCinematicPlayerState));
     m->set("setAIState", SLB::FuncCall::create(&setAIState));
 
+	//GUI
+	m->set("unPauseGame", SLB::FuncCall::create(&unPauseGame));
+	m->set("backFromControls", SLB::FuncCall::create(&backFromControls));
+	m->set("unlockDeadButton", SLB::FuncCall::create(&unlockDeadButton));
+	m->set("execDeadButton", SLB::FuncCall::create(&execDeadButton));
+	m->set("takeOutBlackScreen", SLB::FuncCall::create(&takeOutBlackScreen));
+	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
     m->set("shadowsToggle", SLB::FuncCall::create(&shadowsToggle));
@@ -347,6 +371,12 @@ CModuleLogic::ConsoleResult CModuleLogic::execScript(const std::string& script) 
 bool CModuleLogic::execScriptDelayed(const std::string & script, float delay)
 {
     delayedScripts.push_back(DelayedScript{ script, delay });
+    return true;
+}
+
+bool CModuleLogic::execSystemScriptDelayed(const std::string & script, float delay)
+{
+    delayedSystemScripts.push_back(DelayedScript{ script, delay });
     return true;
 }
 
@@ -443,6 +473,8 @@ void CModuleLogic::clearDelayedScripts()
 /* Auxiliar functions */
 CModuleLogic * getLogic() { return EngineLogic.getPointer(); }
 
+CModuleGameManager * getGameManager() { return CEngine::get().getGameManager().getPointer(); }
+
 CModuleParticles * getParticles() { return EngineParticles.getPointer(); }
 
 TCompTempPlayerController * getPlayerController()
@@ -470,6 +502,11 @@ CModuleGameConsole * getConsole() { return EngineConsole.getPointer(); }
 void execDelayedScript(const std::string& script, float delay)
 {
     EngineLogic.execScriptDelayed(script, delay);
+}
+
+void execDelayedSystemScript(const std::string & script, float delay)
+{
+    EngineLogic.execSystemScriptDelayed(script, delay);
 }
 
 void pauseEnemies(bool pause) {
@@ -525,9 +562,10 @@ void infiniteStamineToggle() {
     h.sendMsg(msg);
 }
 
-void immortal() {
+void immortal(bool state) {
     CHandle h = EngineEntities.getPlayerHandle();
     TMsgPlayerImmortal msg;
+	msg.state = state;
     h.sendMsg(msg);
 }
 
@@ -772,7 +810,7 @@ void renderNavmeshToggle() {
 
 // Toggle CVARS.
 void cg_drawfps(bool value) {
-    CEngine::get().getGameManager().config.drawfps = value;
+    CApp::get().drawfps = value;
 }
 
 void cg_drawlights(int type) {
@@ -883,4 +921,30 @@ void preloadScene(const std::string & scene)
 void removeSceneResources(const std::string & scene)
 {
     EngineScene.removeSceneResources(scene);
+}
+
+void unPauseGame() {
+
+	CEngine::get().getGameManager().setPauseState(CModuleGameManager::PauseState::none);
+	EngineGUI.setButtonsState(true);
+}
+
+void backFromControls() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::BACK_BUTTON);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::CONTROLS);
+	EngineGUI.activateController(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
+
+}
+
+void unlockDeadButton() {
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS)->makeChildsFadeIn(3, 0, true);
+}
+
+void execDeadButton() {
+	EngineGUI.setButtonsState(true);
+	Engine.get().getGameManager().resetToCheckpoint();
+}
+
+void takeOutBlackScreen() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN);
 }

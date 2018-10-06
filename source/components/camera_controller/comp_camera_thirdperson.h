@@ -29,7 +29,7 @@ private:
 
 	bool activate_shake = false;
 	float _time_shaking = 0.0f;
-
+	float _original_y_offset = 0.0f;
 
     bool active;
 

@@ -1,0 +1,17 @@
+[
+	{
+		"name" : "pause_menu_line",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "line_pause",
+				"type" : "bar",
+				"ratio" : 1.0,
+				"position" : "0 355",
+				"size" : "340 28",
+				"texture" : "data/textures/gui/pausemenu_line.dds"
+			}
+		]
+	}
+]

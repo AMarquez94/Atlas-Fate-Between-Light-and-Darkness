@@ -1,19 +1,14 @@
 [
 	{
-		"name" : "blackground",
+		"name" : "black_screen",
 		"type" : "widget",
 		"size" : "1080 640",
 		"children" : [
 			{
-				"name" : "back",
-				"children" : [
-					{
-						"name" : "background_black",
-						"type" : "image",
-						"size" : "1080 640",
-						"texture" : "data/textures/gui/background_mainmenu.dds",
-					}
-				]
+				"name" : "screen_black",
+				"type" : "image",
+				"size" : "1080 640",
+				"texture" : "data/textures/gui/black_background.dds"
 			}
 		]
 	}

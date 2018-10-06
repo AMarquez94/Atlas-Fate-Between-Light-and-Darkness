@@ -13,7 +13,7 @@
 						"name" : "new_game",
 						"type" : "button",
 						"position" : "0 0",
-						"size" : "186 36",
+						"size" : "340 29",
 						"texture" : "data/textures/gui/new_game.dds",
 						"selected" : {
 							"texture" : "data/textures/gui/new_game_selected.dds"
@@ -23,10 +23,23 @@
 						}
 					},
 					{
-						"name" : "exit",
+						"name" : "credits",
 						"type" : "button",
 						"position" : "0 30",
-						"size" : "186 36",
+						"size" : "340 29",
+						"texture" : "data/textures/gui/credits.dds",
+						"selected" : {
+							"texture" : "data/textures/gui/credits_selected.dds"
+						},
+						"pressed" : {
+							"texture" : "data/textures/gui/credits_pressed.dds"
+						}
+					},
+					{
+						"name" : "exit",
+						"type" : "button",
+						"position" : "0 60",
+						"size" : "340 29",
 						"texture" : "data/textures/gui/exit.dds",
 						"selected" : {
 							"texture" : "data/textures/gui/exit_selected.dds"

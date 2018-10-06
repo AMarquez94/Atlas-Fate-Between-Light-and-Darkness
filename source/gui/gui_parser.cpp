@@ -67,8 +67,8 @@ CWidget* CParser::parseWidget(const json& data, CWidget* parent)
   else if (type == "bar")     wdgt = parseBar(data);
   else if (type == "radialbar")     wdgt = parseRadialBar(data);
   else if (type == "button")  wdgt = parseButton(data);
-  else if (type == "sprite")  wdgt = parseSprite(data);
   else if (type == "video")   wdgt = parseUIVideo(data);
+  else if (type == "sprite")  wdgt = parseSprite(data);
   else                        wdgt = parseWidget(data);
 
   wdgt->_name = name;
@@ -268,6 +268,7 @@ void CParser::parseTextParams(TTextParams& params, const json& data)
 void CParser::parseBarParams(TBarParams& params, const json& data)
 {
   params._variable = data.value("variable", "");
+  params._ratio = data.value("ratio", 1.0f);
   params._processValue = data.value("progress_bar", 1.0f);
   const std::string direction = data.value("direction", "horizontal");
   params._direction = direction == "vertical" ? TBarParams::Vertical : TBarParams::Horizontal;

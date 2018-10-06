@@ -39,9 +39,15 @@ data/textures/white.dds
 data/textures/default_height.dds
 data/materials/mtl_weapon_disc.material
 data/particles/def_attack_trail.particles
+data/particles/def_attack_hit_sparks_left.particles
+data/particles/def_attack_hit_sparks_core_left.particles
+data/particles/def_attack_hit_sparks_right.particles
+data/particles/def_attack_hit_sparks_core_right.particles
 data/particles/def_sm_idle.particles
 data/particles/def_sm_enemy_spiral.particles
 data/particles/def_sm_enemy_spiral_core.particles
+data/particles/def_amb_rain_heavy.particles
+data/particles/def_amb_rain_core_heavy.particles
 data/scenes/main_cameras.scene
 data/prefabs/camera_main.prefab
 data/prefabs/camera_player.prefab
@@ -281,7 +287,6 @@ data/meshes/mesh_containerbasura.mesh
 data/colliders/collider_containerbasura.collider
 data/scenes/BC_cables.scene
 data/meshes/BC_cables.mesh
-data/textures/Muro_top_metallic.dds
 data/textures/null_normal.dds
 data/materials/mtl_cables.material
 data/prefabs/baselargaelectrica.prefab

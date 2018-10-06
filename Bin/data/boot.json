@@ -1,75 +1,5 @@
 {
 	"default_scene": "scene_intro",
-	"scene_intro": {
-		"static_data": {
-			"initial_script": "intro",
-			"navmesh": "data/navmeshes/intro_navmesh.bin",
-			"exposure": 1.51,
-			"ambient": 0.05,
-			"gamma": 0.92,
-			"tone_mapping": 0.5,
-			"shadow_intensity": 0,
-			"ground_fog_density": 0.1,
-			"env_fog_density": 0.1,
-			"shadow_color": "0.0 0.0 0.0",
-			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.043"
-
-		},
-		"scene_group": [
-			"data/scenes/Intro/player_intro_fsm.scene",
-			"data/scenes/Intro/main_cameras.scene",
-			"data/scenes/Intro/intro_test_instancing.scene",
-			"data/scenes/Intro/cinematic.scene",
-			"data/scenes/Map_Intro/checkpoints.scene",
-			"data/scenes/Map_Intro/movable_objects.scene",
-			"data/scenes/Intro/intro_columnas.scene",
-			"data/scenes/Intro/intro_puertas.scene",
-			"data/scenes/Intro/intro_casas.scene",
-			"data/scenes/Intro/intro_barandillas.scene",
-			"data/scenes/Intro/intro_colliders_barandillas.scene",
-			"data/scenes/Intro/intro_salientes.scene",
-			"data/scenes/Intro/intro_colliders_salientes.scene",
-			"data/scenes/Intro/intro_capsules.scene",
-			"data/scenes/intro_light2.scene",
-			"data/scenes/Intro/intro_puentes_chapa.scene",
-			"data/scenes/intro_andamios.scene",
-			"data/scenes/intro_basilica.scene",
-			"data/scenes/intro_tejados.scene",
-			"data/scenes/intro_valla.scene",
-			"data/scenes/intro_colliders_valla.scene",
-			"data/scenes/intro_neones.scene",
-			"data/scenes/intro_mosaico.scene",
-			"data/scenes/intro_cables.scene",
-
-			"data/scenes/intro_tubo_capsulas.scene",
-			"data/scenes/intro_farolas.scene",
-			"data/scenes/intro_patrol_atrapado.scene",
-			"data/scenes/intro_edificios_segunda_1.scene",
-			"data/scenes/intro_edificios_segunda_2.scene",
-			"data/scenes/video.scene",
-			"data/scenes/intro_carteles.scene",
-
-			"data/scenes/intro_pozo.scene",
-			"data/scenes/intro_barra_capsulas.scene",
-			"data/scenes/Intro/intro_suelo.scene",
-			"data/scenes/intro_containers_puerto.scene",
-			"data/scenes/intro_muralla_intro.scene",
-			"data/scenes/intro_muralla_fin.scene",
-			"data/scenes/intro_conductos.scene",
-			"data/scenes/intro_tubitos.scene",
-			"data/scenes/intro_props.scene",
-			"data/scenes/Intro/tutorial.scene",
-			"data/scenes/Intro/enemy.scene",
-			"data/scenes/Intro/intro_checkpoints.scene",
-			"data/scenes/Intro/intro_trigger_kill.scene",
-			"data/scenes/Intro/intro_buttons.scene",
-			"data/scenes/Intro/intro_particles.scene",
-			"data/scenes/grass_container.scene",
-			"data/scenes/decal_test.scene",
-			"data/scenes/Intro/intro_puerta_end.scene"
-		]
-	},
 	"scene_main_menu": {
 		"static_data": {
 			"initial_script": "main_menu",
@@ -133,6 +63,106 @@
 
 		]
 	},
+	"scene_intro": {
+		"static_data": {
+			"initial_script": "intro",
+			"navmesh": "data/navmeshes/intro_navmesh.bin",
+			"exposure": 1.51,
+			"ambient": 0.05,
+			"gamma": 0.92,
+			"tone_mapping": 0.5,
+			"shadow_intensity": 0,
+			"ground_fog_density": 0.1,
+			"env_fog_density": 0.1,
+			"shadow_color": "0.0 0.0 0.0",
+			"ground_fog": "0.26 0.784 0.752",
+			"env_fog": "0.004 0.004 0.043"
+
+		},
+		"scene_group": [
+			"data/scenes/Intro/player_intro_fsm.scene",
+			"data/scenes/Intro/main_cameras.scene",
+			"data/scenes/Intro/intro_test_instancing.scene",
+			"data/scenes/Intro/cinematic.scene",
+			"data/scenes/Map_Intro/checkpoints.scene",
+			"data/scenes/Map_Intro/movable_objects.scene",
+			"data/scenes/Intro/intro_columnas.scene",
+			"data/scenes/Intro/intro_puertas.scene",
+			"data/scenes/Intro/intro_casas.scene",
+			"data/scenes/Intro/intro_barandillas.scene",
+			"data/scenes/Intro/intro_colliders_barandillas.scene",
+			"data/scenes/Intro/intro_salientes.scene",
+			"data/scenes/Intro/intro_colliders_salientes.scene",
+			"data/scenes/Intro/intro_capsules.scene",
+			"data/scenes/intro_light2.scene",
+			"data/scenes/Intro/intro_puentes_chapa.scene",
+			"data/scenes/intro_andamios.scene",
+			"data/scenes/intro_basilica.scene",
+			"data/scenes/intro_tejados.scene",
+			"data/scenes/intro_valla.scene",
+			"data/scenes/intro_colliders_valla.scene",
+			"data/scenes/intro_neones.scene",
+			"data/scenes/intro_mosaico.scene",
+			"data/scenes/intro_cables.scene",
+
+			"data/scenes/intro_prova_opacity.scene",
+
+			"data/scenes/intro_tubo_capsulas.scene",
+			"data/scenes/intro_farolas.scene",
+			"data/scenes/intro_patrol_atrapado.scene",
+			"data/scenes/intro_edificios_segunda_1.scene",
+			"data/scenes/intro_edificios_segunda_2.scene",
+			"data/scenes/video.scene",
+			"data/scenes/intro_carteles.scene",
+
+			"data/scenes/intro_pasillo.scene",
+			"data/scenes/intro_muralla.scene",
+
+			"data/scenes/intro_pozo.scene",
+			"data/scenes/intro_barra_capsulas.scene",
+			"data/scenes/Intro/intro_suelo.scene",
+			"data/scenes/intro_containers_puerto.scene",
+			"data/scenes/intro_muralla_intro.scene",
+			"data/scenes/intro_muralla_fin.scene",
+			"data/scenes/intro_containers_puerto.scene",		
+			
+			
+			"data/scenes/intro_conductos.scene",
+			"data/scenes/intro_tubitos.scene",
+			"data/scenes/intro_props.scene",
+			"data/scenes/Intro/tutorial.scene",
+			"data/scenes/Intro/enemy.scene",
+			"data/scenes/Intro/intro_checkpoints.scene",
+			"data/scenes/Intro/intro_trigger_kill.scene",
+			"data/scenes/Intro/intro_buttons.scene",
+			"data/scenes/Intro/intro_particles.scene",
+			"data/scenes/grass_container.scene",
+			"data/scenes/decal_test.scene"
+		]
+	},
+	"scene_coliseo": {
+		"static_data": {
+			"initial_script": "coliseo",
+			"exposure": 1.3,
+			"ambient": 0.05,
+			"gamma": 0.9,
+			"tone_mapping": 0.5,
+			"shadow_intensity": 0,
+			"ground_fog_density": 0.1,
+			"env_fog_density": 0.1,
+			"shadow_color": "0.0 0.0 0.0",
+			"ground_fog": "0.26 0.784 0.752",
+			"env_fog": "0.004 0.004 0.043"
+		},
+		"scene_group": [
+			"data/scenes/Coliseo/player2_fsm.scene",
+			"data/scenes/Coliseo/test_instancing.scene",
+			"data/scenes/Coliseo/camera.scene",
+			"data/scenes/Coliseo/coliseo_particles.scene",
+			"data/scenes/Coliseo/coliseo_luces.scene",
+			"data/scenes/Coliseo/coliseo_structures.scene"
+		]
+	},
 	"scene_zone_a": {
 		"static_data": {
 			"initial_script": "zone_a",
@@ -193,29 +223,6 @@
 			"data/scenes/ZoneA/carteles.scene",
 			"data/scenes/ZoneA/_mimetic_PRUEBAS.scene",
 			"data/scenes/ZoneA/zone_a_puerta_end.scene"
-		]
-	},
-	"scene_coliseo": {
-		"static_data": {
-			"initial_script": "coliseo",
-			"exposure": 1.3,
-			"ambient": 0.05,
-			"gamma": 0.9,
-			"tone_mapping": 0.5,
-			"shadow_intensity": 0,
-			"ground_fog_density": 0.1,
-			"env_fog_density": 0.1,
-			"shadow_color": "0.0 0.0 0.0",
-			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.043"
-		},
-		"scene_group": [
-			"data/scenes/Coliseo/player2_fsm.scene",
-			"data/scenes/Coliseo/test_instancing.scene",
-			"data/scenes/Coliseo/camera.scene",
-			"data/scenes/Coliseo/coliseo_particles.scene",
-			"data/scenes/Coliseo/coliseo_luces.scene",
-			"data/scenes/Coliseo/coliseo_structures.scene"
 		]
 	},
 	"scene_coliseo_2": {

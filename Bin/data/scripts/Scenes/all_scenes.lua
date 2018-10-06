@@ -1,9 +1,10 @@
 function onSceneStart()
 	playerController = getPlayerController();
 	playerNoiseEmitter = getPlayerNoiseEmitter();
-	immortal();
+	gameManager = getGameManager();
+	immortal(true);
 	--cg_drawfps(false);
-	execScriptDelayed("immortal()", 1);
+	execScriptDelayed("immortal(false)", 1);
 	execScriptDelayed("resetPatrolLights()", 0.1);
 	
 	if isDebug() then

@@ -33,6 +33,7 @@ CEngine::CEngine()
 	, _module_scene_manager("scene_manager")
 	, _module_instancing("instancing")
 	, _module_debug("debug")
+	, _module_lerp("lerp")
     , _module_particles("particles")
 {}
 
@@ -63,6 +64,7 @@ bool CEngine::start() {
     _modules.registerSystemModule(&_module_instancing);
     _modules.registerSystemModule(&_module_debug);
     _modules.registerSystemModule(&_module_particles);
+	_modules.registerSystemModule(&_module_lerp);
 
     //IMPORTANT: ALWAYS LAST to start the ongamestarted event from here
 	_modules.registerSystemModule(&_module_logic); 

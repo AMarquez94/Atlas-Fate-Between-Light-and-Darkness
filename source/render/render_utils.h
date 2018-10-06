@@ -37,6 +37,7 @@ enum BlendConfig {
 	, BLEND_CFG_COMBINATIVE
     , BLEND_CFG_COMBINATIVE_GBUFFER
     , BLEND_CFG_MULTIPLICATIVE_GBUFFER
+    , BLEND_CFG_ALPHA_GBUFFER
 	, BLEND_CFG_COUNT
 };
 void activateBlendConfig(BlendConfig cfg);

@@ -454,7 +454,6 @@ data/textures/tx_spotlight_rgh.dds
 data/materials/mtl_spotlights.material
 data/colliders/collider_baselargalectrica.collider
 data/meshes/mesh_intro_cable.mesh
-data/textures/Muro_top_metallic.dds
 data/textures/null_normal.dds
 data/materials/mtl_cables.material
 data/meshes/mesh_intro_cable001.mesh
@@ -1199,6 +1198,12 @@ data/rigid_anims/puertatech_open.anims
 data/rigid_anims/puertatech_loading.anims
 data/meshes/doortop.mesh
 data/textures/tx_puertatech_alb.dds
+data/textures/tx_puertatech_ao.dds
+data/textures/tx_puertatech_emi.dds
+data/textures/tx_puertatech_hgt.dds
+data/textures/tx_puertatech_met.dds
+data/textures/tx_puertatech_nml.dds
+data/textures/tx_puertatech_rgh.dds
 data/materials/mtl_puertatech.material
 data/meshes/doorbottom.mesh
 data/meshes/framedoor.mesh

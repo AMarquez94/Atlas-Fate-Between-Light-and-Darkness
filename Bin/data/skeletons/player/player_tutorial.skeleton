@@ -20,6 +20,7 @@
 		{ "name" : "land_soft"},
 		{ "name" : "hack"},
 		{ "name" : "touch_enemy"},
+		{ "name" : "sm_enter_fall"},
 		{ "name" : "sonda_normal"},
 		{ "name" : "sonda_crouch"},
 		{ "name" : "touching_enemy"},

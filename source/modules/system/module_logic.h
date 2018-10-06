@@ -5,6 +5,7 @@
 #include <SLB/SLB.hpp>
 #include "modules/system/module_game_console.h"
 #include "modules/system/module_particles.h"
+#include "modules/game/module_game_manager.h"
 #include "input/button.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
 #include "components/ia/comp_bt_patrol.h"
@@ -63,6 +64,7 @@ public:
     void execCvar(std::string& script);
     ConsoleResult execScript(const std::string& script);
     bool execScriptDelayed(const std::string& script, float delay);
+    bool execSystemScriptDelayed(const std::string& script, float delay);
     bool execEvent(Events event, const std::string& params = "", float delay = 0.f);
     void printLog();
     void setPause(bool paused) { this->paused = paused; }
@@ -74,6 +76,7 @@ private:
     SLB::Script* s = new SLB::Script(m);
 
     std::vector<DelayedScript> delayedScripts;
+    std::vector<DelayedScript> delayedSystemScripts;
 
     void BootLuaSLB();
     void publishClasses();
@@ -86,10 +89,12 @@ private:
 /* Auxiliar functions */
 CModuleGameConsole* getConsole();
 CModuleLogic* getLogic();
+CModuleGameManager * getGameManager();
 CModuleParticles* getParticles();
 TCompTempPlayerController* getPlayerController();
 TCompNoiseEmitter* getPlayerNoiseEmitter();
 void execDelayedScript(const std::string& script, float delay);
+void execDelayedSystemScript(const std::string& script, float delay);
 void pauseEnemies(bool pause);
 void pauseEnemyEntities(bool pause);
 void deleteEnemies();
@@ -98,7 +103,7 @@ void changeGamestate(const std::string& gamestate);
 void pauseGame(bool pause);
 void pausePlayerToggle();
 void infiniteStamineToggle();
-void immortal();
+void immortal(bool state);
 void inShadows();
 void speedBoost(const float speed);
 void playerInvisible();
@@ -135,6 +140,13 @@ void setTutorialPlayerState(bool active, const std::string& stateName);
 /* Cinematic */
 void setCinematicPlayerState(bool active, const std::string & stateName);
 void setAIState(const std::string& name, bool active, const std::string & stateName);
+
+/* GUI */
+void unPauseGame();
+void backFromControls();
+void unlockDeadButton();
+void execDeadButton();
+void takeOutBlackScreen();
 
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);

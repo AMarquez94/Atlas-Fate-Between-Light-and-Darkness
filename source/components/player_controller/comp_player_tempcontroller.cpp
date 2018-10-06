@@ -11,6 +11,7 @@
 #include "components/player_controller/comp_shadow_controller.h"
 #include "components/player_controller/comp_player_attack_cast.h"
 #include "components/lighting/comp_emission_controller.h"
+#include "components/lighting/comp_light_point.h"
 #include "components/player_controller/comp_sonar_controller.h"
 #include "components/object_controller/comp_noise_emitter.h"
 #include "components/comp_particles.h"
@@ -133,7 +134,7 @@ void TCompTempPlayerController::update(float dt) {
     }
 
     // Update player global speed into the shader.
-    {
+    if(!isDead()){
         float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
         cb_globals.global_player_speed = (inputSpeed * currentSpeed) / 6.f; // Maximum speed, change this in the future. 
         cb_globals.global_exposure_adjustment += 8 * dt * (isMerged ? 1 : -1); // Move to json when possible.
@@ -243,7 +244,7 @@ void TCompTempPlayerController::onInfiniteStamina(const TMsgInfiniteStamina & ms
 
 void TCompTempPlayerController::onPlayerImmortal(const TMsgPlayerImmortal & msg)
 {
-    isImmortal = !isImmortal;
+    isImmortal = msg.state;
 }
 
 void TCompTempPlayerController::onSpeedBoost(const TMsgSpeedBoost& msg) {
@@ -271,7 +272,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
     TCompCollider * c_my_collider = get<TCompCollider>();
 
     pxShadowFilterData = new physx::PxFilterData();
-    pxShadowFilterData->word0 = c_my_collider->config->group/* | FilterGroup::Fence*/;
+    pxShadowFilterData->word0 = c_my_collider->config->group | FilterGroup::Fence;
     pxShadowFilterData->word1 = FilterGroup::NonCastShadows;
 
     pxPlayerFilterData = new physx::PxFilterData();
@@ -777,10 +778,12 @@ void TCompTempPlayerController::die()
     if (!isImmortal && !isDead()) {
         CEntity* e = CHandle(this).getOwner();
 
-        TMsgGlitchController msg;
-        msg.revert = false;
-        e->sendMsg(msg);
-
+		if (cb_postfx.postfx_scan_amount > 0) {
+			TMsgGlitchController msg;
+			msg.revert = false;
+			e->sendMsg(msg);
+		}
+        
         TMsgSetFSMVariable groundMsg;
         groundMsg.variant.setName("onDead");
         groundMsg.variant.setBool(true);
@@ -796,7 +799,8 @@ void TCompTempPlayerController::die()
         EngineGUI.enableWidget("inhibited_y", false);
 
         cb_player.player_shadowed = false;
-        cb_player.player_health = 0;
+		//EngineLerp.lerpElement(&cb_player.player_health, 0 , 1 , 1.5);
+        //cb_player.player_health = 0;
         cb_player.updateGPU();
 
         TMsgPlayerDead newMsg;
@@ -1159,6 +1163,8 @@ void TCompTempPlayerController::updateLife(float dt)
 void TCompTempPlayerController::updateWeapons(float dt)
 {
     TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+    TCompLightPoint * left_point = ((CEntity*)weaponLeft)->get<TCompLightPoint>();
+    TCompLightPoint * right_point = ((CEntity*)weaponRight)->get<TCompLightPoint>();
     if (canAttack && !isMerged || my_anim->isPlayingAnimation((TCompAnimator::EAnimation)TCompPlayerAnimator::ATTACK)) {
         if (!weaponsActive) {
             TMsgWeaponsActivated msg{ true };
@@ -1179,6 +1185,8 @@ void TCompTempPlayerController::updateWeapons(float dt)
         attackTimer = Clamp(attackTimer - dt, 0.f, timeToDeployWeapons);
         weaponsActive = false;
     }
+    left_point->setIntensity(3 * cb_player.player_disk_radius);
+    right_point->setIntensity(3 * cb_player.player_disk_radius);
     cb_player.player_disk_radius = lerp(0.f, 1.f, attackTimer / timeToDeployWeapons);
     cb_player.updateGPU();
 }
