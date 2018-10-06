@@ -34,7 +34,7 @@ void CModuleGUI::initializeWidgetStructure() {
 		CEngine::get().getModules().changeGameState("map_intro");
 	};
 	auto mm_credits = []() {
-		dbg("execute credits\n");
+		CEngine::get().getModules().changeGameState("credits");
 		//CEngine::get().getGUI().outOfMainMenu();
 	};
 	auto mm_optionsCB = []() {
@@ -127,6 +127,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::CONTROLS, "data/gui/controls.json");
 	registerWigdetStruct(EGUIWidgets::LOADING_SPRITE, "data/gui/loading.json");
 	registerWigdetStruct(EGUIWidgets::BLACK_SCREEN, "data/gui/black_background.json");
+	registerWigdetStruct(EGUIWidgets::CREDITS, "data/gui/credits.json");
 
 }
 
