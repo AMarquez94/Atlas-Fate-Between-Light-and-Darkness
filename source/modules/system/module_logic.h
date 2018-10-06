@@ -129,6 +129,7 @@ bool isCheckpointSaved();
 void destroyHandle(unsigned int h);
 void resetPatrolLights();
 void animateSoundGraph(int value);
+void makeVisibleByTag(const std::string& tag, bool visible);
 
 /* Sounds */
 SoundEvent playEvent(const std::string& name);

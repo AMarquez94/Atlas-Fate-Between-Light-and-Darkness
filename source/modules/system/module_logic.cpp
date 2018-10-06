@@ -171,6 +171,12 @@ void CModuleLogic::publishClasses() {
         .comment("This is our wrapper of the button controller")
         .property("canBePressed", &TCompButton::canBePressed);
 
+    SLB::Class < std::vector < CHandle> >("VHandle", m)
+        .comment("Testing this")
+        .set("size", &std::vector<CHandle>::size)
+        //.set("at", &std::vector<CHandle>::at)
+        ;
+
     SLB::Class<TCompAIPatrol>("AIPatrol", m)
         .comment("This is our wrapper of the patrol controller")
         .set("launchInhibitor", &TCompAIPatrol::launchInhibitor)
@@ -309,6 +315,7 @@ void CModuleLogic::publishClasses() {
     m->set("destroyHandle", SLB::FuncCall::create(&destroyHandle));
     m->set("resetPatrolLights", SLB::FuncCall::create(&resetPatrolLights));
     m->set("animateSoundGraph", SLB::FuncCall::create(&animateSoundGraph));
+    m->set("makeVisibleByTag", SLB::FuncCall::create(&makeVisibleByTag));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -706,6 +713,16 @@ void resetPatrolLights()
 
 void animateSoundGraph(int value) {
 	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getChild("sound_sprite")->getSpriteParams()->_playing_sprite = value;
+}
+
+void makeVisibleByTag(const std::string & tag, bool visible)
+{
+    TMsgSetVisible msg;
+    msg.visible = visible;
+    VHandles v_handles = CTagsManager::get().getAllEntitiesByTag(getID(tag.c_str()));
+    for (int i = 0; i < v_handles.size(); i++) {
+        v_handles[i].sendMsg(msg);
+    }
 }
 
 SoundEvent playEvent(const std::string & name)
