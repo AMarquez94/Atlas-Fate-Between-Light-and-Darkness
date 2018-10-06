@@ -42,7 +42,6 @@ void TCompSkeleton::registerMsgs()
 	DECL_MSG(TCompSkeleton, TMsgScenePaused, onMsgSceneStop);
 	DECL_MSG(TCompSkeleton, TMsgAnimationPlaced, onMsgPlacedAnimation);
 
-	
 }
 
 // --------------------------------------------------------------------
