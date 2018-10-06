@@ -1,0 +1,21 @@
+[
+	{
+		"name" : "credits_screen",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "screen_credits",
+				"type" : "image",
+				"size" : "1080 2560",
+				"texture" : "data/textures/gui/credits.dds",
+				"effects" : [
+							{
+								"type" : "animate_uv",
+								"speed" : "0.0 0.025"
+							}
+						]
+			}
+		]
+	}
+]

@@ -127,6 +127,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::CONTROLS, "data/gui/controls.json");
 	registerWigdetStruct(EGUIWidgets::LOADING_SPRITE, "data/gui/loading.json");
 	registerWigdetStruct(EGUIWidgets::BLACK_SCREEN, "data/gui/black_background.json");
+	registerWigdetStruct(EGUIWidgets::CREDITS, "data/gui/credits.json");
 
 }
 

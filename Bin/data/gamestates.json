@@ -11,6 +11,10 @@
 			"modules" : [ "main_menu" ]
 		},
 		{
+			"name" : "credits",
+			"modules" : [ "credits" ]
+		},
+		{
 			"name" : "game_over",
 			"modules" : [ "game_over" ]
 		},
