@@ -16,7 +16,7 @@
 			},
 			"render_blur": {
 				"enabled": false,
-				"global_distance": 0.1,
+				"global_distance": 2,
 				"gauss_filter": true
 			},
 			"motion_blur": {

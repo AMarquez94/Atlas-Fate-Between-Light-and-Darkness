@@ -51,7 +51,7 @@
       },
       "render_blur": {
         "enabled": false,
-        "global_distance": 0.1,
+        "global_distance": 0.5,
         "gauss_filter": true
       },
       "motion_blur": {
@@ -206,8 +206,8 @@
         "gauss_filter": true
       },
       "render_blur": {
-        "enabled": false,
-        "global_distance": 0.1,
+        "enabled": true,
+        "global_distance": 0.5,
         "gauss_filter": true
       },
       "motion_blur": {
@@ -246,7 +246,10 @@
         "enabled": true
       },
       "render_focus": {
-        "enabled": false
+				"z_center_in_focus": 12,
+				"z_margin_in_focus": 0,
+				"transition_distance": 20,
+        "enabled": true
       }
     }
   },
