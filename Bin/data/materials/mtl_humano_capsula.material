@@ -1,4 +1,6 @@
 {
+  "technique": "pbr_opacity.tech"
+  ,
   "shadows": true
   ,
   "textures":
