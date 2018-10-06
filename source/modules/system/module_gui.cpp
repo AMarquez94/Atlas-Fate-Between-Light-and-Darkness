@@ -34,7 +34,7 @@ void CModuleGUI::initializeWidgetStructure() {
 		CEngine::get().getModules().changeGameState("map_intro");
 	};
 	auto mm_credits = []() {
-		dbg("execute credits\n");
+		CEngine::get().getModules().changeGameState("credits");
 		//CEngine::get().getGUI().outOfMainMenu();
 	};
 	auto mm_optionsCB = []() {

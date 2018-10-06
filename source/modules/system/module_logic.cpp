@@ -289,6 +289,8 @@ void CModuleLogic::publishClasses() {
 	m->set("unlockDeadButton", SLB::FuncCall::create(&unlockDeadButton));
 	m->set("execDeadButton", SLB::FuncCall::create(&execDeadButton));
 	m->set("takeOutBlackScreen", SLB::FuncCall::create(&takeOutBlackScreen));
+	m->set("goToMainMenu", SLB::FuncCall::create(&goToMainMenu));
+	m->set("takeOutCredits", SLB::FuncCall::create(&takeOutCredits));
 	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -935,4 +937,13 @@ void execDeadButton() {
 
 void takeOutBlackScreen() {
 	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN);
+}
+
+void goToMainMenu() {
+	CEngine::get().getModules().changeGameState("main_menu");
+}
+
+void takeOutCredits() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::CREDITS);
 }

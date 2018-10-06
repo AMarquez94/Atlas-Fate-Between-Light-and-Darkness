@@ -13,9 +13,13 @@ bool CModuleCredits::start()
 
 	//EngineScene.loadScene("default");
 
-	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN);
+	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE);
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::CREDITS);
-
+	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2,10);
+	EngineLogic.execSystemScriptDelayed("takeOutCredits();", 13.0f);
+	EngineLogic.execSystemScriptDelayed("goToMainMenu();",14.0f);
+	EngineLogic.execSystemScriptDelayed("takeOutBlackScreen();", 14.5f);
+	
 	CHandle h_camera = getEntityByName("test_camera_flyover");
 	if (h_camera.isValid())
 		Engine.getCameras().setDefaultCamera(h_camera);
@@ -33,6 +37,7 @@ bool CModuleCredits::start()
 }
 
 bool CModuleCredits::stop() {
+	CEngine::get().getGUI().deactivateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN);
 	return true;
 }
 

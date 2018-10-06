@@ -8,7 +8,7 @@
 				"name" : "screen_credits",
 				"type" : "image",
 				"size" : "1080 2560",
-				"texture" : "data/textures/gui/credits.dds",
+				"texture" : "data/textures/gui/credits_finale.dds",
 				"effects" : [
 							{
 								"type" : "animate_uv",
