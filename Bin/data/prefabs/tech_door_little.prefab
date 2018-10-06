@@ -20,6 +20,12 @@
             "src" : "data/rigid_anims/tech_door_little.anims",
             "loops" : false
 
+          },
+		  {
+            "name":"close",
+            "src" : "data/rigid_anims/tech_door_little_close.anims",
+            "loops" : false
+
           }
         ]
       }
@@ -51,7 +57,8 @@
       ,
       "tags":
       [
-        "corridor"
+        "corridor",
+		"corridor_door"
       ]
       ,
       "abs_aabb": true
@@ -85,7 +92,8 @@
       ,
       "tags":
       [
-        "corridor"
+        "corridor",
+		"corridor_door"
       ]
       ,
       "abs_aabb": true
@@ -119,7 +127,8 @@
       ,
       "tags":
       [
-        "corridor"
+        "corridor",
+		"corridor_door"
       ]
       ,
       "abs_aabb": true

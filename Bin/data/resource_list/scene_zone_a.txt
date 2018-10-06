@@ -53,7 +53,7 @@ data/prefabs/camera_main.prefab
 data/prefabs/camera_player.prefab
 data/textures/lut/lut5.dds
 data/prefabs/camera_shadowmerge.prefab
-data/textures/lut/lut1.dds
+data/textures/lut/lut_sm.dds
 data/prefabs/camera_flyover.prefab
 data/prefabs/camera_transition.prefab
 data/scenes/ZoneA/zone_a_suelo.scene
