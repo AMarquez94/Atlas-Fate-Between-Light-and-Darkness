@@ -1265,9 +1265,12 @@ data/meshes/intro_cristal019.mesh
 data/meshes/intro_lampara001.mesh
 data/prefabs/tech_door_little.prefab
 data/rigid_anims/tech_door_little.anims
+data/rigid_anims/tech_door_little_close.anims
 data/meshes/intro_puerta_r001.mesh
 data/meshes/intro_puerta_l001.mesh
 data/meshes/intro_marco_puerta001.mesh
+data/meshes/intro_pared_puerta_peq001.mesh
+data/colliders/intro_collider_puerta_pasillo.collider
 data/meshes/intro_pared001.mesh
 data/textures/tx_paredes_alb.dds
 data/textures/tx_paredes_ao.dds

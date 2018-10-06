@@ -23,6 +23,7 @@
 #include "windows/app.h"
 #include "components/object_controller/comp_noise_emitter.h"
 #include "modules/game/module_game_manager.h"
+#include "components/comp_animated_object_controller.h"
 
 bool CModuleLogic::start() {
 
@@ -242,6 +243,11 @@ void CModuleLogic::publishClasses() {
         .comment("This is our wrapper of the particle controller")
         .set("setSystemState", &TCompParticles::setSystemState);
 
+    SLB::Class<TCompAnimatedObjController>("AnimatedObject", m)
+        .comment("This is our wrapper of the animated object controller")
+        .set("playAnimation", &TCompAnimatedObjController::playAnimation)
+        ;
+
     /* Global functions */
 
     // Utilities
@@ -335,6 +341,7 @@ void CModuleLogic::publishClasses() {
     m->set("toTPCamera", SLB::FuncCall::create(&toTPCamera));
     m->set("toRender", SLB::FuncCall::create(&toRender));
     m->set("toParticles", SLB::FuncCall::create(&toParticles));
+    m->set("toAnimatedObject", SLB::FuncCall::create(&toAnimatedObject));
 }
 
 /* Check if it is a fast format command */
@@ -884,6 +891,12 @@ TCompAudio* toAudio(CHandle h)
 TCompParticles* toParticles(CHandle h)
 {
     TCompParticles* t = h;
+    return t;
+}
+
+TCompAnimatedObjController* toAnimatedObject(CHandle h)
+{
+    TCompAnimatedObjController* t = h;
     return t;
 }
 

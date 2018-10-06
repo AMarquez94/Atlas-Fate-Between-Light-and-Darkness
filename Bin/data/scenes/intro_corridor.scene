@@ -347,7 +347,7 @@
 		}
 	},
 	{
-		"xentity": {
+		"entity": {
 			"name": "intro_pared_puerta_peq001",
 			"transform": {
 				"pos": "-18.3372 0.0 -75.4368",

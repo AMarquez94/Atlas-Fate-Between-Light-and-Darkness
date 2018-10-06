@@ -17,6 +17,7 @@ class TCompCameraThirdPerson;
 class TCompRender;
 class TCompNoiseEmitter;
 class TCompParticles;
+class TCompAnimatedObjController;
 
 class CModuleLogic : public IModule
 {
@@ -169,3 +170,4 @@ TCompAudio* toAudio(CHandle h);
 TCompCameraThirdPerson* toTPCamera(CHandle h);
 TCompRender* toRender(CHandle h);
 TCompParticles* toParticles(CHandle h);
+TCompAnimatedObjController* toAnimatedObject(CHandle h);

@@ -9,7 +9,7 @@ bool CModuleFile::start() {
 
     preloadResources(true);
     
-    //resource_thread = std::thread(&CModuleFile::resourceThreadMain, this);
+    resource_thread = std::thread(&CModuleFile::resourceThreadMain, this);
 
     return true;
 }
@@ -17,8 +17,8 @@ bool CModuleFile::start() {
 bool CModuleFile::stop() {
 
     ending_engine = true;
-    //condition_variable.notify_one();
-    //resource_thread.join();
+    condition_variable.notify_one();
+    resource_thread.join();
     return true;
 }
 
