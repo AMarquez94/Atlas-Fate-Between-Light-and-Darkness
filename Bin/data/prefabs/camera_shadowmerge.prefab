@@ -25,7 +25,7 @@
 			"color_grading": {
 				"enabled": true,
 				"amount": 0.8,
-				"lut": "data/textures/lut/lut1.dds"
+				"lut": "data/textures/lut/lut_sm.dds"
 			},
 			"vignette": {
 				"enabled": true

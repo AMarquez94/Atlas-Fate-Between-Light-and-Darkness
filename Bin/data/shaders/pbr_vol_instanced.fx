@@ -146,7 +146,7 @@ float4 PS_IVLight(
 		float shadow_factor = computeVolumeShadowFactorLight(iViewProj, iWorldPos);
 
     float camera_dist = length(iWorldPos - iLightPos.xyz);
-    float val = 1 / (0.25 + (camera_dist * camera_dist) * iLightValues.w);
+    float val = 1 / (0.45 + (camera_dist * camera_dist) * iLightValues.w);
 
     // From wPos to Light
     float3 light_dir_full = iLightPos.xyz - iWorldPos;

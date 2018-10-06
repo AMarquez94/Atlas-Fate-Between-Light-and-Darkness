@@ -300,7 +300,6 @@ struct TSceneExporter (
 				if tag != "" then ( append final_Tags tag )
 			)
 			
-			fs.writeComma()
 			fs.writeKey "tags"
 			fs.arrayOfStrings final_tags
 			fs.writeComma()
