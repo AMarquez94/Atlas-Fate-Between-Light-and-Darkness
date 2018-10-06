@@ -1,3 +1,4 @@
+data/navmeshes/scene_a.bin
 data/scenes/ZoneA/player2_fsm.scene
 data/prefabs/player.prefab
 data/skeletons/player/body.mesh

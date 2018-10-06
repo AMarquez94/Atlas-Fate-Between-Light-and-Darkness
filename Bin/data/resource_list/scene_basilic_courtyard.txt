@@ -1,3 +1,4 @@
+data/navmeshes/basilic_courtyard.bin
 data/scenes/Basilic_courtyard/player.scene
 data/prefabs/player.prefab
 data/skeletons/player/body.mesh

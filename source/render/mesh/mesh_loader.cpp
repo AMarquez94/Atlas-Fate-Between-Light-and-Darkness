@@ -123,6 +123,8 @@ bool TMeshLoader::load(const std::string & filename)
     if (subgroups.empty())
         subgroups.push_back({ 0, header.num_indices, 0, 0 });
 
+    EngineFiles.addPendingResourceFile(filename, false);
+
     return true;
 }
 

@@ -7,7 +7,7 @@ bool CModuleFile::start() {
     // Register the resource types
     Resources.registerResourceClass(getResourceClassOf<CJsonResource>());
 
-    preloadResources(true);
+    preloadResources(false);
     
     resource_thread = std::thread(&CModuleFile::resourceThreadMain, this);
 
@@ -34,7 +34,8 @@ void CModuleFile::update(float delta) {
 
         for (i = 0; amountLoaded <= 20 && i < resources_to_load.size(); i++) {
 
-            if (!Resources.resourceExists(resources_to_load[i])) {
+            if (resources_to_load[i].substr(resources_to_load[i].find_last_of(".") + 1).compare("bin") != 0
+                && !Resources.resourceExists(resources_to_load[i])) {
                 const IResource* res = Resources.get(resources_to_load[i]);
                 dbg("PRELOADED %s\n", res->getName().c_str());
                 if (res->getClass()->class_name.compare("Textures")) {
@@ -119,6 +120,9 @@ void CModuleFile::preloadResources(bool overwrite)
         std::string scene_name = "data/resource_list/" + it.key() + ".txt";
         std::ifstream read_file(scene_name);
         if (!read_file.is_open() || overwrite) {
+            if (jboot[it.key()]["static_data"].count("navmesh")) {
+                pending_resources_to_load.push_back(jboot[it.key()]["static_data"].value("navmesh", ""));
+            }
             std::vector< std::string > groups_subscenes = jboot[it.key()]["scene_group"];
             for (int i = 0; i < groups_subscenes.size(); i++) {
                 const json& j = Resources.get(groups_subscenes[i])->as<CJsonResource>()->getJson();

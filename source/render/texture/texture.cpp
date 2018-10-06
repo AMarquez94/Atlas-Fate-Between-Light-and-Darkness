@@ -56,6 +56,8 @@ bool CTexture::create(const std::string& name) {
 	setDXName(texture, name.c_str());
 	setDXName(shader_resource_view, name.c_str());
 
+    EngineFiles.addPendingResourceFile(name, false);
+
 	// Update the resolution from the resource
 	// ...
 
