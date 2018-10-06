@@ -789,6 +789,7 @@ void TCompTempPlayerController::die()
         groundMsg.variant.setBool(true);
         e->sendMsg(groundMsg);
         life = 0;
+		e->sendMsg(TMsgFadeBody{ false, 3.0f,VEC4(1.0f,1.0f,1.0f,0) });
 
         CEntity * ent = getEntityByName("Player_Idle_SM");
         TCompParticles * c_e_particle = ent->get<TCompParticles>();

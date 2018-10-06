@@ -8,10 +8,12 @@ class TCompFadeController : public TCompBase {
     bool _is_drownable;
     bool _is_active;
 	VEC4 _fade_color;
+	VEC4 _original_fade_color;
     std::string _material;
 
 	float _elapsed_time = 0.f;
 	float _fade_time;
+	float _original_fade_time;
     float _fall_speed;
 
     int _invert_fade;

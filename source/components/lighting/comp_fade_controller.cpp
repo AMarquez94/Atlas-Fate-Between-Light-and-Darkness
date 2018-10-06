@@ -20,11 +20,14 @@ void TCompFadeController::debugInMenu() {
 
 void TCompFadeController::load(const json& j, TEntityParseContext& ctx) {
 
-	if (j.count("fade_color"))
-        _fade_color = loadVEC4(j["fade_color"]);
+	if (j.count("fade_color")) {
+		_fade_color = loadVEC4(j["fade_color"]);
+		_original_fade_color = _fade_color;
+	}
 
     _is_drownable = j.value("destroy", true);
     _fade_time = j.value("fade_time", 6.0f);
+	_original_fade_time = _fade_time;
     _fall_speed = j.value("fall_speed", 0.1f);
     _material = j.value("material", "data/materials/characters/mtl_player_main_shade.material");
 
@@ -74,6 +77,21 @@ void TCompFadeController::launch(const TMsgFadeBody& msg) {
         return;
     }
 
+	if (msg.fade_time < 0.0f) {
+		_fade_time = _original_fade_time;
+	}
+	else {
+		_fade_time = msg.fade_time;
+	}
+
+	if (msg.fade_color.x < 0.0f) {
+		_fade_color = _original_fade_color;
+	}
+	else {
+		_fade_color = msg.fade_color;
+	}
+
+	//dbg("fade: %f\n", msg.fade_time);
     _is_active = true;
     _elapsed_time = 0.f;
     _invert_fade = msg.is_exit ? -1 : 1;
