@@ -443,11 +443,6 @@ void CModuleRender::postProcessingStack() {
         if (c_render_blur_radial)
             curr_rt = c_render_blur_radial->apply(curr_rt);
 
-        // Check if we have a color grading component
-        TCompColorGrading* c_color_grading = e_cam->get< TCompColorGrading >();
-        if (c_color_grading)
-            curr_rt = c_color_grading->apply(curr_rt);
-
         TCompChromaticAberration* c_chroma_aberration = e_cam->get< TCompChromaticAberration >();
         if (c_chroma_aberration)
             curr_rt = c_chroma_aberration->apply(curr_rt);
@@ -464,10 +459,6 @@ void CModuleRender::postProcessingStack() {
         if (c_render_outlines && cb_outline.outline_alpha > 0)
             curr_rt = c_render_outlines->apply(curr_rt);
 
-        TCompVignette* c_vignette = e_cam->get< TCompVignette >();
-        if (c_vignette)
-            curr_rt = c_vignette->apply(curr_rt);
-
         TCompRenderMotionBlur * c_render_motion_blur = e_cam->get< TCompRenderMotionBlur >();
         if (c_render_motion_blur)
             curr_rt = c_render_motion_blur->apply(curr_rt);
@@ -479,6 +470,15 @@ void CModuleRender::postProcessingStack() {
         TCompAntiAliasing* c_antialiasing = e_cam->get< TCompAntiAliasing >();
         if (c_antialiasing)
             curr_rt = c_antialiasing->apply(curr_rt);
+        
+        // Check if we have a color grading component
+        TCompColorGrading* c_color_grading = e_cam->get< TCompColorGrading >();
+        if (c_color_grading)
+            curr_rt = c_color_grading->apply(curr_rt);
+
+        TCompVignette* c_vignette = e_cam->get< TCompVignette >();
+        if (c_vignette)
+            curr_rt = c_vignette->apply(curr_rt);
 
         CEntity* e_camera = h_e_camera;
         TCompCamera * t_cam = e_camera->get<TCompCamera>();

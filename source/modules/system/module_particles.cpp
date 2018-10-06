@@ -3,6 +3,7 @@
 #include "particles/particle_system.h"
 #include "particles/particle_parser.h"
 #include "particles/particle_editor.h"
+#include "components/comp_name.h"
 
 CModuleParticles::CModuleParticles(const std::string& name)
     : IModule(name)
@@ -126,6 +127,9 @@ Particles::TParticleHandle CModuleParticles::launchDynamicSystem(const std::stri
 
     CHandle h_comp;
     h_comp = getObjectManager<TCompTransform>()->createHandle();
+    e->set(h_comp.getType(), h_comp);
+
+    h_comp = getObjectManager<TCompName>()->createHandle();
     e->set(h_comp.getType(), h_comp);
 
     Particles::CSystem* ps = new Particles::CSystem(cps, h_e);

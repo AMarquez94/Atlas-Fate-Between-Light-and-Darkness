@@ -7,6 +7,7 @@
 #include "modules/game/module_map_intro.h"
 #include "modules/game/module_level_select.h"
 #include "modules/game/module_game_manager.h"
+#include "modules/game/module_credits.h"
 
 //--------------------------------------------------------------------------------------
 CEngine& CEngine::get() {
@@ -45,6 +46,8 @@ bool CEngine::start() {
 	static CModuleGameOver module_game_over("game_over");
 	static CModuleMapIntro module_map_intro("map_intro");
 	static CModuleLevelSelect module_level_select("level_select");
+	static CModuleCredits module_credits("credits");
+
     //static CModuleTestInstancing module_test_instancing("test_instancing");
 
 	_modules.registerSystemModule(&_module_file);
@@ -74,6 +77,7 @@ bool CEngine::start() {
 	_modules.registerGameModule(&module_main_menu);
 	_modules.registerGameModule(&module_game_over);
 	_modules.registerGameModule(&module_map_intro);
+	_modules.registerGameModule(&module_credits);
 	_modules.registerGameModule(&module_level_select);
     //_modules.registerGameModule(&module_test_instancing);
 

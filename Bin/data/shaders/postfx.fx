@@ -10,7 +10,7 @@ float4 postfx_contrast(float4 color)
 	float3 intensity = float3(dotval, dotval, dotval);
 
 	float3 sat_color = lerp(intensity, color.xyz, 1.);
-	float3 con_color = lerp(avg_lum, sat_color, 1.05);
+	float3 con_color = lerp(avg_lum, color, 1.05);
 
 	return float4(con_color, 1);
 }
@@ -109,16 +109,16 @@ float4 PS_PostFX_Flares(in float4 iPosition : SV_POSITION , in float2 iTex0 : TE
 float4 PS_PostFX_Vignette(in float4 iPosition : SV_POSITION , in float2 iTex0 : TEXCOORD0) : SV_Target
 {
 	float4 color = txAlbedo.Sample(samClampLinear, iTex0); 
-	//float4 grade_color = txLUT.Sample(samClampLinear, color.xyz);
 	float2 position = (iPosition.xy * camera_inv_resolution) - float2(0.5f,0.5f);
-	//color = lerp( color, grade_color, global_shared_fx_amount );
+	color = postfx_contrast(color);
 	
 	float len = length(position);
-	float vignette = smoothstep(0.9, postfx_vignette - (1 - player_health) , len);
-	color.rgb = lerp(color.rgb, color.rgb * vignette, 0.95);
+	float v_intensity = (1 - player_health) * 0.5;
+	float vignette = smoothstep( postfx_vignette - v_intensity + postfx_vignette_softness, postfx_vignette - v_intensity, len);
+	color.rgb = lerp(color.rgb, color.rgb * vignette, 1);
 	
 	float4 greyscale = (color.r + color.g + color.b) * .333;
-	color = lerp( color, greyscale, 1 - player_health);
+	color = lerp(color, greyscale, 1 - player_health);
 	
 	return color;
 }
