@@ -4,6 +4,8 @@ function onSceneStart_scene_intro()
 	if(ambiance == nil or not ambiance:isValid()) then
 		ambiance = playEvent("event:/Ambiance/Intro_Ambiance");
 	end
+	makeVisibleByTag("corridor", false);
+	makeVisibleByTag("corridor_door", true);
 	
 	cinematicsEnabled = false;
 	
@@ -34,19 +36,15 @@ function intro_intro_cinematic()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_End\", 3)", 5);
 end
 
-function transition_map_intro_to_coliseum()
-	execScriptDelayed("blendInCamera(\"scene_transition\", 1.0, \"cinematic\", \"\")", 2);
-	execScriptDelayed("pausePlayerToggle()", 2);
-	execScriptDelayed("cinematicModeToggle()", 2);
-	execScriptDelayed("loadScene(\"scene_coliseo\")", 5);
-end
-
 -- # Transition cinematic # --
 function transition_intro_to_coliseum()
+	makeVisibleByTag("corridor", true);
+	
+	
 	--execScriptDelayed("blendInCamera(\"scene_transition\", 1.0, \"cinematic\", \"\")", 2);
-	execScriptDelayed("pausePlayerToggle()", 2);
+	--execScriptDelayed("pausePlayerToggle()", 2);
 	--execScriptDelayed("cinematicModeToggle()", 2);
-	execScriptDelayed("loadScene(\"scene_coliseo\")", 2);
+	--execScriptDelayed("loadScene(\"scene_coliseo\")", 2);
 end
 
 -- # Trigger cinematic # --

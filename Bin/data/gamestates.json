@@ -1,5 +1,5 @@
 {
-	"startup" : "main_menu",
+	"startup" : "map_intro",
 	"gamestates" : 
 	[
 		{
