@@ -1455,5 +1455,24 @@
 			"abs_aabb": true,
 			"local_aabb": true
 		}
+	},
+	{
+		"entity": {
+			"name": "intro_trigger_corridor",
+			"transform": {
+				"pos": "-18.9149 0.0 -77.4088",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "3.48643 1.34091 1.33423",
+				"group": "All",
+				"mask": "",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			}
+		}
 	}
 ]

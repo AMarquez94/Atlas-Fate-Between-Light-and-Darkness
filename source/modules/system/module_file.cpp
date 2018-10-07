@@ -27,11 +27,6 @@ void CModuleFile::update(float delta) {
         int amountLoaded = 0;
         int i = 0;
 
-        /*if (!Resources.resourceExists(resources_to_load[0])) {
-            Resources.get(resources_to_load[0]);
-        }
-        resources_to_load.erase(resources_to_load.begin());*/
-
         for (i = 0; amountLoaded <= 20 && i < resources_to_load.size(); i++) {
 
             if (resources_to_load[i].substr(resources_to_load[i].find_last_of(".") + 1).compare("bin") != 0

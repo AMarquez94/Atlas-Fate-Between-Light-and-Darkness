@@ -1,5 +1,5 @@
 data/navmeshes/basilic_courtyard.bin
-data/scenes/Basilic_courtyard/player.scene
+data/scenes/Basilic_courtyard/_player.scene
 data/prefabs/player.prefab
 data/skeletons/player/body.mesh
 data/textures/player/Shade_mtl_BaseColor.dds
@@ -48,14 +48,13 @@ data/particles/def_sm_enemy_spiral.particles
 data/particles/def_sm_enemy_spiral_core.particles
 data/particles/def_amb_rain_heavy.particles
 data/particles/def_amb_rain_core_heavy.particles
-data/scenes/main_cameras.scene
+data/scenes/_main_cameras.scene
 data/prefabs/camera_main.prefab
 data/prefabs/camera_player.prefab
 data/textures/lut/lut5.dds
 data/prefabs/camera_shadowmerge.prefab
 data/textures/lut/lut_sm.dds
 data/prefabs/camera_flyover.prefab
-data/prefabs/camera_transition.prefab
 data/scenes/Basilic_courtyard/enemy.scene
 data/prefabs/patrol.prefab
 data/skeletons/patrol/Mech_low.mesh

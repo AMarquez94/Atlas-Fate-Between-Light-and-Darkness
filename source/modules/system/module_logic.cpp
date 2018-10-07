@@ -253,6 +253,8 @@ void CModuleLogic::publishClasses() {
         .comment("This is our wrapper of the door controller")
         .set("open", &TCompDoor::open)
         .set("close", &TCompDoor::close)
+        .set("setOpenedScript", &TCompDoor::setOpenedScript)
+        .set("setClosedScript", &TCompDoor::setClosedScript)
         ;
 
     /* Global functions */

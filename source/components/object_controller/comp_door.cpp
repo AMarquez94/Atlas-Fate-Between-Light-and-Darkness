@@ -38,9 +38,9 @@ void TCompDoor::update(float dt) {
             if (timer > time_to_open) {
                 /* Collider open */
                 TCompCollider* my_col = get<TCompCollider>();
-                dbg("Puerta abierta\n");
                 my_col->setGroupAndMask("ignore", "player");
                 state = EDoorState::OPENED;
+                EngineLogic.execScript(opened_script);
                 timer = 0.f;
             }
             break;
@@ -48,10 +48,8 @@ void TCompDoor::update(float dt) {
             timer += dt;
             if (timer > time_to_close) {
                 /* Collider close */
-                TCompCollider* my_col = get<TCompCollider>();
-                dbg("Puerta cerrada\n");
-                my_col->setGroupAndMask("all", "all");
                 state = EDoorState::CLOSED;
+                EngineLogic.execScript(closed_script);
                 timer = 0.f;
             }
             break;
@@ -74,11 +72,21 @@ void TCompDoor::close() {
     TCompAnimatedObjController* anim = get<TCompAnimatedObjController>();
     anim->playAnimation(closing_anim);
     state = EDoorState::CLOSING;
+    TCompCollider* my_col = get<TCompCollider>();
+    my_col->setGroupAndMask("all", "all");
     timer = 0.f;
 }
 
-void TCompDoor::loading() {
+void TCompDoor::load() {
     //TODO
     TCompAnimatedObjController* anim = get<TCompAnimatedObjController>();
     timer = 0.f;
+}
+
+void TCompDoor::setOpenedScript(const std::string& script) {
+    opened_script = script;
+}
+
+void TCompDoor::setClosedScript(const std::string& script) {
+    opened_script = script;
 }

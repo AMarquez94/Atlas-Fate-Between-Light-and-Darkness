@@ -1,4 +1,4 @@
-data/scenes/Main_menu/player_fsm.scene
+data/scenes/Main_menu/menu_player.scene
 data/prefabs/visual_player.prefab
 data/skeletons/player/body.mesh
 data/textures/player/Shade_mtl_BaseColor.dds
@@ -22,7 +22,7 @@ data/skeletons/player/hood.mesh
 data/skeletons/player/tira_L.mesh
 data/skeletons/player/tira_R.mesh
 data/skeletons/player/player.skeleton
-data/scenes/Main_menu/main_cameras.scene
+data/scenes/Main_menu/menu_cameras.scene
 data/prefabs/camera_main.prefab
 data/prefabs/camera_main_menu.prefab
 data/textures/lut/lut5.dds

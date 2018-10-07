@@ -1,5 +1,5 @@
 data/navmeshes/scene_a.bin
-data/scenes/ZoneA/player2_fsm.scene
+data/scenes/ZoneA/_player.scene
 data/prefabs/player.prefab
 data/skeletons/player/body.mesh
 data/textures/player/Shade_mtl_BaseColor.dds
@@ -48,14 +48,13 @@ data/particles/def_sm_enemy_spiral.particles
 data/particles/def_sm_enemy_spiral_core.particles
 data/particles/def_amb_rain_heavy.particles
 data/particles/def_amb_rain_core_heavy.particles
-data/scenes/main_cameras.scene
+data/scenes/_main_cameras.scene
 data/prefabs/camera_main.prefab
 data/prefabs/camera_player.prefab
 data/textures/lut/lut5.dds
 data/prefabs/camera_shadowmerge.prefab
 data/textures/lut/lut_sm.dds
 data/prefabs/camera_flyover.prefab
-data/prefabs/camera_transition.prefab
 data/scenes/ZoneA/zone_a_suelo.scene
 data/meshes/mesh_suelo_zone_a.mesh
 data/textures/mix/blending_zone_a/red/tx_suelo_adoquines_1_alb.dds
@@ -962,7 +961,6 @@ data/materials/mtl_neon_moderdonia.material
 data/textures/default_orange.dds
 data/textures/tx_gloryhole_nml.dds
 data/materials/mtl_default.material
-data/scenes/ZoneA/_mimetic_PRUEBAS.scene
 data/scenes/ZoneA/zone_a_puerta_end.scene
 data/prefabs/puerta_tech.prefab
 data/rigid_anims/puertatech_open.anims

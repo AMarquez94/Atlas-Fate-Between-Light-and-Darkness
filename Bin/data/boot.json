@@ -15,11 +15,8 @@
 			"env_fog": "0.0 0.0 0.023"
 		},
 		"scene_group": [
-			"data/scenes/Main_menu/player_fsm.scene",
-			"data/scenes/Main_menu/main_cameras.scene",
-
-
-
+			"data/scenes/Main_menu/menu_player.scene",
+			"data/scenes/Main_menu/menu_cameras.scene",
 			"data/scenes/Intro/intro_columnas.scene",
 			"data/scenes/Intro/intro_puertas.scene",
 			"data/scenes/Intro/intro_casas.scene",
@@ -80,8 +77,8 @@
 
 		},
 		"scene_group": [
-			"data/scenes/Intro/player_intro_fsm.scene",
-			"data/scenes/Intro/main_cameras.scene",
+			"data/scenes/Intro/_player.scene",
+			"data/scenes/_main_cameras.scene",
 			"data/scenes/Intro/intro_test_instancing.scene",
 			"data/scenes/Intro/cinematic.scene",
 			"data/scenes/Map_Intro/checkpoints.scene",
@@ -104,9 +101,7 @@
 			"data/scenes/intro_neones.scene",
 			"data/scenes/intro_mosaico.scene",
 			"data/scenes/intro_cables.scene",
-
 			"data/scenes/intro_prova_opacity.scene",
-
 			"data/scenes/intro_tubo_capsulas.scene",
 			"data/scenes/intro_farolas.scene",
 			"data/scenes/intro_patrol_atrapado.scene",
@@ -115,16 +110,13 @@
 			"data/scenes/video.scene",
 			"data/scenes/intro_carteles.scene",
 			"data/scenes/intro_muralla.scene",
-
 			"data/scenes/intro_pozo.scene",
 			"data/scenes/intro_barra_capsulas.scene",
 			"data/scenes/Intro/intro_suelo.scene",
 			"data/scenes/intro_containers_puerto.scene",
 			"data/scenes/intro_muralla_intro.scene",
 			"data/scenes/intro_muralla_fin.scene",
-			"data/scenes/intro_containers_puerto.scene",		
-			
-			
+			"data/scenes/intro_containers_puerto.scene",
 			"data/scenes/intro_conductos.scene",
 			"data/scenes/intro_tubitos.scene",
 			"data/scenes/intro_props.scene",
@@ -154,9 +146,9 @@
 			"env_fog": "0.004 0.004 0.043"
 		},
 		"scene_group": [
-			"data/scenes/Coliseo/player2_fsm.scene",
+			"data/scenes/Coliseo/_player.scene",
+			"data/scenes/_main_cameras.scene",
 			"data/scenes/Coliseo/test_instancing.scene",
-			"data/scenes/Coliseo/camera.scene",
 			"data/scenes/Coliseo/coliseo_particles.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
 			"data/scenes/Coliseo/coliseo_structures.scene"
@@ -179,8 +171,8 @@
 
 		},
 		"scene_group": [
-			"data/scenes/ZoneA/player2_fsm.scene",
-			"data/scenes/main_cameras.scene",
+			"data/scenes/ZoneA/_player.scene",
+			"data/scenes/_main_cameras.scene",
 			"data/scenes/ZoneA/zone_a_suelo.scene",
 			"data/scenes/ZoneA/zone_a_casas.scene",
 			"data/scenes/ZoneA/zone_a_puertas.scene",
@@ -209,18 +201,14 @@
 			"data/scenes/zone_a_neones.scene",
 			"data/scenes/zone_a_decal.scene",
 			"data/scenes/zone_a_grass.scene",
-
 			"data/scenes/zone_a_mosaico.scene",
 			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/ZoneA/whitebox_zone_light.scene",
 			"data/scenes/ZoneA/test_instancing.scene",
 			"data/scenes/ZoneA/zone_a_particles.scene",
 			"data/scenes/ZoneA/buttons.scene",
-
 			"data/scenes/zone_a_carteles.scene",
-
 			"data/scenes/ZoneA/carteles.scene",
-			"data/scenes/ZoneA/_mimetic_PRUEBAS.scene",
 			"data/scenes/ZoneA/zone_a_puerta_end.scene"
 		]
 	},
@@ -239,9 +227,9 @@
 			"env_fog": "0.004 0.004 0.043"
 		},
 		"scene_group": [
-			"data/scenes/Coliseo/player2_fsm2.scene",
+			"data/scenes/Coliseo/_player2.scene",
+			"data/scenes/_main_cameras.scene",
 			"data/scenes/Coliseo/test_instancing.scene",
-			"data/scenes/Coliseo/camera.scene",
 			"data/scenes/Coliseo/coliseo_particles.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
 			"data/scenes/Coliseo/coliseo_structures.scene"
@@ -263,15 +251,14 @@
 			"env_fog": "0.004 0.004 0.043"
 		},
 		"scene_group": [
-			"data/scenes/Basilic_courtyard/player.scene",
-			"data/scenes/main_cameras.scene",
+			"data/scenes/Basilic_courtyard/_player.scene",
+			"data/scenes/_main_cameras.scene",
 			"data/scenes/Basilic_courtyard/enemy.scene",
 			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
 			"data/scenes/Basilic_courtyard/test_instancing.scene",
 			"data/scenes/Basilic_courtyard/buttons.scene",
 			"data/scenes/Basilic_courtyard/capsules.scene",
 			"data/scenes/Basilic_courtyard/BC_mezquita.scene",
-
 			"data/scenes/Basilic_courtyard/BC_alminares.scene",
 			"data/scenes/Basilic_courtyard/BC_paredes.scene",
 			"data/scenes/BC_arcos.scene",
@@ -283,9 +270,7 @@
 			"data/scenes/BC_tubos.scene",
 			"data/scenes/BC_capsulas.scene",
 			"data/scenes/BC_neones.scene",
-
 			"data/scenes/BC_maderas.scene",
-
 			"data/scenes/Basilic_courtyard/BC_fuente.scene",
 			"data/scenes/suelo_mezquita.scene",
 			"data/scenes/Basilic_courtyard/almibars.scene",

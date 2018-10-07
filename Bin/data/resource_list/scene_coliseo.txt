@@ -1,4 +1,4 @@
-data/scenes/Coliseo/player2_fsm.scene
+data/scenes/Coliseo/_player.scene
 data/prefabs/player.prefab
 data/skeletons/player/body.mesh
 data/textures/player/Shade_mtl_BaseColor.dds
@@ -47,6 +47,13 @@ data/particles/def_sm_enemy_spiral.particles
 data/particles/def_sm_enemy_spiral_core.particles
 data/particles/def_amb_rain_heavy.particles
 data/particles/def_amb_rain_core_heavy.particles
+data/scenes/_main_cameras.scene
+data/prefabs/camera_main.prefab
+data/prefabs/camera_player.prefab
+data/textures/lut/lut5.dds
+data/prefabs/camera_shadowmerge.prefab
+data/textures/lut/lut_sm.dds
+data/prefabs/camera_flyover.prefab
 data/scenes/Coliseo/test_instancing.scene
 data/meshes/particles.instanced_mesh
 data/textures/fire.dds
@@ -64,9 +71,6 @@ data/textures/grass/grass.dds
 data/materials/volume_instanced.material
 data/meshes/quad_volume_particles.instanced_mesh
 data/materials/volume_particles_instanced.material
-data/scenes/Coliseo/camera.scene
-data/textures/lut/lut5.dds
-data/textures/lut/lut1.dds
 data/scenes/Coliseo/coliseo_particles.scene
 data/scenes/Coliseo/coliseo_luces.scene
 data/colliders/COL_Spot001.collider

@@ -18,13 +18,11 @@ class TCompDoor : public TCompBase {
     std::string loading_anim;
     std::string closing_anim;
 
+    std::string closed_script;
+    std::string opened_script;
+
     float time_to_open;
     float time_to_close;
-
-
-
-    //physx::PxFilterData * pxPlayerFilterData;
-    //physx::PxFilterData * pxShadowFilterData;
 
     void onScenePaused(const TMsgScenePaused & msg);
 
@@ -38,5 +36,7 @@ public:
     static void registerMsgs();
     void open();
     void close();
-    void loading();
+    void load();
+    void setOpenedScript(const std::string& script);
+    void setClosedScript(const std::string& script);
 };
