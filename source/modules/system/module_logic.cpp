@@ -23,6 +23,8 @@
 #include "windows/app.h"
 #include "components/object_controller/comp_noise_emitter.h"
 #include "modules/game/module_game_manager.h"
+#include "components/postfx/comp_render_blur.h"
+#include "components/postfx/comp_render_focus.h"
 
 bool CModuleLogic::start() {
 
@@ -915,6 +917,11 @@ void toggleButtonCanBePressed(const std::string & buttonName, bool canBePressed)
 
 void unPauseGame() {
 
+	CEntity * e_current_cam = EngineCameras.getCurrentCamera();
+	TCompRenderBlur *comp_blur = e_current_cam->get<TCompRenderBlur>();
+	TCompRenderFocus *comp_focus = e_current_cam->get<TCompRenderFocus>();
+	comp_focus->enabled = false;
+	comp_blur->enabled = false;
 	CEngine::get().getGameManager().setPauseState(CModuleGameManager::PauseState::none);
 	EngineGUI.setButtonsState(true);
 }

@@ -9,6 +9,8 @@
 #include "components/player_controller/comp_player_tempcontroller.h"
 #include "components/camera_controller/comp_camera_flyover.h"
 #include "render/render_objects.h"
+#include "components/postfx/comp_render_blur.h"
+#include "components/postfx/comp_render_focus.h"
 
 bool CModuleGameManager::start() {
 
@@ -91,6 +93,15 @@ void CModuleGameManager::switchState(PauseState pause) {
 			*aux_x = 0.0f;
 			EngineLerp.lerpElement(aux_x, 1.0f, 0.25f, 0);
 		}
+		//Blur to the screen
+		CEntity * e_current_cam = EngineCameras.getCurrentCamera();
+		TCompRenderBlur *comp_blur = e_current_cam->get<TCompRenderBlur>();
+		TCompRenderFocus *comp_focus = e_current_cam->get<TCompRenderFocus>();
+		comp_focus->enabled = true;
+		comp_blur->enabled = true;
+		comp_blur->global_distance = 0.0f;
+		EngineLerp.lerpElement(&comp_blur->global_distance, 10.0f, 0.25f, 0);
+
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS)->makeChildsFadeIn(0.08, 0, true);
     }break;
     case PauseState::win: {
