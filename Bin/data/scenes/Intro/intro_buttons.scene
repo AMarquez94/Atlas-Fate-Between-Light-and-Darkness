@@ -9,8 +9,8 @@
 			"name": "Intro_terminal_01",
 			"prefab": "data/prefabs/terminal.prefab",
 			"transform": {
-				"pos": "-15 0 -75",
-				"lookat": "-14.87 0 -74.008555"
+				"pos": "-22.2 0 -75",
+				"lookat": "-22.03 0 -74.008555"
 			},
 			"button": {
 				"script": "transition_intro_to_coliseum()",

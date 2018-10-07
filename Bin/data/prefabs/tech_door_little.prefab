@@ -7,7 +7,34 @@
       "transform":
       {
         "pos": "0.0 0.0 0.0"
-      },
+      }
+	  ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_intro_marco_puerta001.collider"
+        ,
+        "group": "all"
+        ,
+        "mask": ""
+        ,
+        "is_trigger": false
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+	  ,
+	  "door": {
+		"open_anim": "open",
+		"close_anim": "close",
+		"time_to_open": 1,
+		"time_to_close": 1
+	  }
+	  ,
       "animated_object_controller":{
         "reference_names":[
           {
@@ -124,7 +151,7 @@
           ]
         }
       ]
-      ,
+	  ,
       "tags":
       [
         "corridor",

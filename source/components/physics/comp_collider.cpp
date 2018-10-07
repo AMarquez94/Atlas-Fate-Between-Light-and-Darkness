@@ -11,16 +11,16 @@
 
 DECL_OBJ_MANAGER("collider", TCompCollider);
 
-TCompCollider::~TCompCollider(){
+TCompCollider::~TCompCollider() {
 
-	// In case it's a controller, delegate it's destruction to the rigidbody.
-	if (config->actor != nullptr){
+    // In case it's a controller, delegate it's destruction to the rigidbody.
+    if (config->actor != nullptr) {
 
-		if (!config->is_controller) {
-			config->actor->release();
-			config->actor = nullptr;
-		}
-	}
+        if (!config->is_controller) {
+            config->actor->release();
+            config->actor = nullptr;
+        }
+    }
 }
 
 void TCompCollider::debugInMenu() {
@@ -39,56 +39,56 @@ void TCompCollider::renderDebug() {
 
 void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 
-	// Factory pattern inside the json loader.
-	shapeName = j["shape"].get<std::string>();
-	if (strcmp("box", shapeName.c_str()) == 0)
-	{
-		config = new CPhysicsBox();
-	}
-	else if (strcmp("sphere", shapeName.c_str()) == 0)
-	{
-		config = new CPhysicsSphere();
-	}
-	else if (strcmp("plane", shapeName.c_str()) == 0)
-	{
-		config = new CPhysicsPlane();
-	}
-	else if (strcmp("capsule", shapeName.c_str()) == 0)
-	{
-		config = new CPhysicsCapsule();
-	}
-	else if (strcmp("convex", shapeName.c_str()) == 0)
-	{
-		config = new CPhysicsConvex();
-	}
-	else if (strcmp("mesh", shapeName.c_str()) == 0)
-	{
-		config = new CPhysicsTriangleMesh();
-	}
+    // Factory pattern inside the json loader.
+    shapeName = j["shape"].get<std::string>();
+    if (strcmp("box", shapeName.c_str()) == 0)
+    {
+        config = new CPhysicsBox();
+    }
+    else if (strcmp("sphere", shapeName.c_str()) == 0)
+    {
+        config = new CPhysicsSphere();
+    }
+    else if (strcmp("plane", shapeName.c_str()) == 0)
+    {
+        config = new CPhysicsPlane();
+    }
+    else if (strcmp("capsule", shapeName.c_str()) == 0)
+    {
+        config = new CPhysicsCapsule();
+    }
+    else if (strcmp("convex", shapeName.c_str()) == 0)
+    {
+        config = new CPhysicsConvex();
+    }
+    else if (strcmp("mesh", shapeName.c_str()) == 0)
+    {
+        config = new CPhysicsTriangleMesh();
+    }
 
-  groupName = j.value("group", "all");
-  maskName = j.value("mask", "all");
+    groupName = j.value("group", "all");
+    maskName = j.value("mask", "all");
 
-	config->group = getFilterByName(groupName);
-	config->mask = getFilterByName(maskName);
-	config->is_trigger = j.value("is_trigger", false);
+    config->group = getFilterByName(groupName);
+    config->mask = getFilterByName(maskName);
+    config->is_trigger = j.value("is_trigger", false);
 
-	if (j.count("center"))
-	{
-		VEC3 center = loadVEC3(j["center"]);
-		config->center = physx::PxVec3(center.x, center.y, center.z);
-	}
+    if (j.count("center"))
+    {
+        VEC3 center = loadVEC3(j["center"]);
+        config->center = physx::PxVec3(center.x, center.y, center.z);
+    }
 
-	config->load(j, ctx);
+    config->load(j, ctx);
 }
 
 void TCompCollider::registerMsgs() {
 
-	DECL_MSG(TCompCollider, TMsgEntityCreated, onCreate);
-	DECL_MSG(TCompCollider, TMsgEntitiesGroupCreated, onGroupCreated);
-	DECL_MSG(TCompCollider, TMsgTriggerEnter, onTriggerEnter);
-	DECL_MSG(TCompCollider, TMsgTriggerExit, onTriggerExit);
-	DECL_MSG(TCompCollider, TMsgEntityDestroyed, onDestroy);
+    DECL_MSG(TCompCollider, TMsgEntityCreated, onCreate);
+    DECL_MSG(TCompCollider, TMsgEntitiesGroupCreated, onGroupCreated);
+    DECL_MSG(TCompCollider, TMsgTriggerEnter, onTriggerEnter);
+    DECL_MSG(TCompCollider, TMsgTriggerExit, onTriggerExit);
+    DECL_MSG(TCompCollider, TMsgEntityDestroyed, onDestroy);
 }
 
 void TCompCollider::createCollider()
@@ -119,50 +119,50 @@ void TCompCollider::createCollider()
 
 void TCompCollider::onCreate(const TMsgEntityCreated& msg) {
 
-	TCompRigidbody * c_rigidbody = get<TCompRigidbody>();
-	
-	// Let the rigidbody handle the creation if it exists..
-	if (c_rigidbody == nullptr)
-	{
+    TCompRigidbody * c_rigidbody = get<TCompRigidbody>();
+
+    // Let the rigidbody handle the creation if it exists..
+    if (c_rigidbody == nullptr)
+    {
         createCollider();
-	}
+    }
 }
 
 void TCompCollider::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
-  TCompRigidbody * c_rigidbody = get<TCompRigidbody>();
+    TCompRigidbody * c_rigidbody = get<TCompRigidbody>();
 
-  // Let the rigidbody handle the creation if it exists..
-  if (c_rigidbody == nullptr && config->actor == nullptr)
-  {
-    createCollider();
-  }
+    // Let the rigidbody handle the creation if it exists..
+    if (c_rigidbody == nullptr && config->actor == nullptr)
+    {
+        createCollider();
+    }
 }
 
 void TCompCollider::onDestroy(const TMsgEntityDestroyed & msg)
 {
-	//delete this;
+    //delete this;
 }
 
 void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {
 
     CEntity* e = CHandle(this).getOwner();
     std::string trigger_name = e->getName();
-	std::map<uint32_t, TCompTransform*>::iterator it = handles.begin();
-	uint32_t ext_index = msg.h_other_entity.getExternalIndex();
-	if (handles.find(ext_index) == handles.end()){
-		CEntity * c_other = msg.h_other_entity;
-		TCompCollider * c_collider = c_other->get<TCompCollider>();
-		TCompTransform * c_transform = c_other->get<TCompTransform>();
+    std::map<uint32_t, TCompTransform*>::iterator it = handles.begin();
+    uint32_t ext_index = msg.h_other_entity.getExternalIndex();
+    if (handles.find(ext_index) == handles.end()) {
+        CEntity * c_other = msg.h_other_entity;
+        TCompCollider * c_collider = c_other->get<TCompCollider>();
+        TCompTransform * c_transform = c_other->get<TCompTransform>();
 
         TCompTags* tags = c_other->get<TCompTags>();
-		assert(c_transform);
+        assert(c_transform);
 
-		handles[ext_index] = c_transform;
+        handles[ext_index] = c_transform;
 
-		if (c_collider->config->group & FilterGroup::Player)
-		{
-			player_inside = true;
-		}
+        if (c_collider->config->group & FilterGroup::Player)
+        {
+            player_inside = true;
+        }
 
         if (tags) {
             if (tags->hasTag(getID("player"))) {
@@ -175,10 +175,10 @@ void TCompCollider::onTriggerEnter(const TMsgTriggerEnter& msg) {
                 EngineLogic.execEvent(CModuleLogic::Events::TRIGGER_ENTER, params);
             }
         }
-	}
+    }
 
-	// Get all entities with given tag to test with
-	// Send a message to all of them
+    // Get all entities with given tag to test with
+    // Send a message to all of them
 }
 
 void TCompCollider::onTriggerExit(const TMsgTriggerExit& msg) {
@@ -186,18 +186,18 @@ void TCompCollider::onTriggerExit(const TMsgTriggerExit& msg) {
     CEntity* e = CHandle(this).getOwner();
     std::string trigger_name = e->getName();
 
-	auto it = handles.find(msg.h_other_entity.getExternalIndex());
-	if (it != handles.end())
-	{
-		handles.erase(it);
-		CEntity * c_other = msg.h_other_entity;
+    auto it = handles.find(msg.h_other_entity.getExternalIndex());
+    if (it != handles.end())
+    {
+        handles.erase(it);
+        CEntity * c_other = msg.h_other_entity;
         TCompTags* tags = c_other->get<TCompTags>();
-		TCompCollider * c_collider = c_other->get<TCompCollider>();
+        TCompCollider * c_collider = c_other->get<TCompCollider>();
 
-		if (c_collider->config->group & FilterGroup::Player)
-		{
-			player_inside = false;
-		}
+        if (c_collider->config->group & FilterGroup::Player)
+        {
+            player_inside = false;
+        }
 
         if (tags) {
             if (tags->hasTag(getID("player"))) {
@@ -210,7 +210,7 @@ void TCompCollider::onTriggerExit(const TMsgTriggerExit& msg) {
                 EngineLogic.execEvent(CModuleLogic::Events::TRIGGER_EXIT, params);
             }
         }
-	}
+    }
 }
 
 void TCompCollider::update(float dt) {
@@ -220,18 +220,28 @@ void TCompCollider::update(float dt) {
 
 bool TCompCollider::collisionDistance(const VEC3 & org, const VEC3 & dir, float maxDistance) {
 
-	physx::PxRaycastHit hit;
-	if (EnginePhysics.Raycast(org, dir, maxDistance, hit, physx::PxQueryFlag::eSTATIC)) {
-		return hit.distance < maxDistance ? true : false;
-	}
+    physx::PxRaycastHit hit;
+    if (EnginePhysics.Raycast(org, dir, maxDistance, hit, physx::PxQueryFlag::eSTATIC)) {
+        return hit.distance < maxDistance ? true : false;
+    }
 
-	return false;
+    return false;
 }
 
 void TCompCollider::setGlobalPose(VEC3 newPos, VEC4 newRotation, bool autowake)
 {
-  physx::PxTransform transform(physx::PxVec3(newPos.x, newPos.y, newPos.z), physx::PxQuat(newRotation.x, newRotation.y, newRotation.z, newRotation.w));
-  config->actor->setGlobalPose(transform, autowake);
+    physx::PxTransform transform(physx::PxVec3(newPos.x, newPos.y, newPos.z), physx::PxQuat(newRotation.x, newRotation.y, newRotation.z, newRotation.w));
+    config->actor->setGlobalPose(transform, autowake);
+}
+
+void TCompCollider::setGroupAndMask(const std::string& group, const std::string& mask) {
+    if (group != "") {
+        config->group = getFilterByName(group);
+    }
+    if (mask != "") {
+        config->mask = getFilterByName(mask);
+    }
+    config->setupFiltering(config->actor, config->group, config->mask);
 }
 
 //void TCompCollider::enableCollisionsAndQueries(bool enable)

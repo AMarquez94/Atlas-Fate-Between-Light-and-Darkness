@@ -39,7 +39,7 @@ end
 -- # Transition cinematic # --
 function transition_intro_to_coliseum()
 	makeVisibleByTag("corridor", true);
-	toAnimatedObject(toEntity(getEntityByName("tech_door")):getCompByName("animated_object_controller")):playAnimation("open");
+	toDoor(toEntity(getEntityByName("tech_door")):getCompByName("door")):open();
 	preloadScene("scene_coliseo");
 	
 	--execScriptDelayed("blendInCamera(\"scene_transition\", 1.0, \"cinematic\", \"\")", 2);

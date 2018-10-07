@@ -24,6 +24,7 @@
 #include "components/object_controller/comp_noise_emitter.h"
 #include "modules/game/module_game_manager.h"
 #include "components/comp_animated_object_controller.h"
+#include "components/object_controller/comp_door.h"
 
 bool CModuleLogic::start() {
 
@@ -248,6 +249,12 @@ void CModuleLogic::publishClasses() {
         .set("playAnimation", &TCompAnimatedObjController::playAnimation)
         ;
 
+    SLB::Class<TCompDoor>("Door", m)
+        .comment("This is our wrapper of the door controller")
+        .set("open", &TCompDoor::open)
+        .set("close", &TCompDoor::close)
+        ;
+
     /* Global functions */
 
     // Utilities
@@ -342,6 +349,7 @@ void CModuleLogic::publishClasses() {
     m->set("toRender", SLB::FuncCall::create(&toRender));
     m->set("toParticles", SLB::FuncCall::create(&toParticles));
     m->set("toAnimatedObject", SLB::FuncCall::create(&toAnimatedObject));
+    m->set("toDoor", SLB::FuncCall::create(&toDoor));
 }
 
 /* Check if it is a fast format command */
@@ -897,6 +905,12 @@ TCompParticles* toParticles(CHandle h)
 TCompAnimatedObjController* toAnimatedObject(CHandle h)
 {
     TCompAnimatedObjController* t = h;
+    return t;
+}
+
+TCompDoor* toDoor(CHandle h)
+{
+    TCompDoor* t = h;
     return t;
 }
 

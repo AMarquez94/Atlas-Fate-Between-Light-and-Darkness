@@ -1313,6 +1313,7 @@ data/meshes/intro_cristal018.mesh
 data/meshes/intro_cristal019.mesh
 data/meshes/intro_lampara001.mesh
 data/prefabs/tech_door_little.prefab
+data/colliders/collider_intro_marco_puerta001.collider
 data/rigid_anims/tech_door_little.anims
 data/rigid_anims/tech_door_little_close.anims
 data/meshes/intro_puerta_r001.mesh

@@ -198,11 +198,11 @@ void CModuleFile::resourceThreadMain()
         const std::pair<std::string, bool> resource = getFirstPendingResourceFile();
         if (resource.first.compare("") != 0) {
             if (resource.second) {
-                dbg("Adding resource %s\n", resource.first.c_str());
+                //dbg("Adding resource %s\n", resource.first.c_str());
                 loadResourceFile(resource.first);
             }
             else {
-                dbg("Removing resource %s\n", resource.first.c_str());
+                //dbg("Removing resource %s\n", resource.first.c_str());
                 removeResourceFile(resource.first);
             }
             Sleep(1);

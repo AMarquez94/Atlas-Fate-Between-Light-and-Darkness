@@ -273,11 +273,11 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 
     pxShadowFilterData = new physx::PxFilterData();
     pxShadowFilterData->word0 = c_my_collider->config->group | FilterGroup::Fence;
-    pxShadowFilterData->word1 = FilterGroup::NonCastShadows;
+    pxShadowFilterData->word1 = FilterGroup::NonCastShadows | FilterGroup::Ignore;
 
     pxPlayerFilterData = new physx::PxFilterData();
     pxPlayerFilterData->word0 = c_my_collider->config->group;
-    pxPlayerFilterData->word1 = FilterGroup::All;
+    pxPlayerFilterData->word1 = FilterGroup::NonCastShadows;
 
     PxPlayerDiscardQuery = physx::PxQueryFilterData();
     PxPlayerDiscardQuery.data.word0 = FilterGroup::Scenario;
