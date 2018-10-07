@@ -6,34 +6,34 @@ extern "C" {
 
 class CVideoTexture : public CTexture {
 
-  storage_t *decoder = nullptr;
-  std::vector< u8 > data;
-  u32 len = 0;
-  u32 status = H264BSD_RDY;
-  u8* byteStrm = nullptr;
-  u32 num_frame = 0;
-  u32* picData = nullptr;
-  bool finished = false;
-  bool frame_ready = false;
-  float current_time = 0.f;
-  
-  void close();
-  bool initDecoder();
-  bool decodeNextFrame();
-  bool hasFinished() const {
-    return finished;
-  }
+    storage_t *decoder = nullptr;
+    std::vector< u8 > data;
+    u32 len = 0;
+    u32 status = H264BSD_RDY;
+    u8* byteStrm = nullptr;
+    u32 num_frame = 0;
+    u32* picData = nullptr;
+    bool finished = false;
+    bool frame_ready = false;
+    CTimer chrono;
 
-  static std::vector< CVideoTexture* > playing_video_textures;
+    void close();
+    bool initDecoder();
+    bool decodeNextFrame();
+    bool hasFinished() const {
+        return finished;
+    }
+
+    static std::vector< CVideoTexture* > playing_video_textures;
 
 public:
 
-  ~CVideoTexture();
+    ~CVideoTexture();
 
-  bool create(const std::string& name) override;
-  void update(float dt);
-  bool isFrameReadyToUpload() const;
-  bool uploadToVRAM();
+    bool create(const std::string& name) override;
+    void update(float dt);
+    bool isFrameReadyToUpload() const;
+    bool uploadToVRAM();
 
 };
 

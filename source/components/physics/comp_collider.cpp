@@ -66,8 +66,8 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 		config = new CPhysicsTriangleMesh();
 	}
 
-  groupName = j.value("group", "all");
-  maskName = j.value("mask", "all");
+    groupName = j.value("group", "all");
+    maskName = j.value("mask", "all");
 
 	config->group = getFilterByName(groupName);
 	config->mask = getFilterByName(maskName);
