@@ -164,14 +164,14 @@ float TCompCameraThirdPerson::getFovUpdated(float dt)
 
 void TCompCameraThirdPerson::update(float dt)
 {
+
+	TCompTransform* self_transform = get<TCompTransform>();
+	TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>(); // we will need to consume this.
+	assert(self_transform);
+	assert(target_transform);
     if (!paused) {
 
         if (!_h_target.isValid()) return;
-
-        TCompTransform* self_transform = get<TCompTransform>();
-        TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>(); // we will need to consume this.
-        assert(self_transform);
-        assert(target_transform);
 
         // To remove in the future.
         float horizontal_delta = mouse._position_delta.x;
@@ -186,32 +186,12 @@ void TCompCameraThirdPerson::update(float dt)
             _current_euler.x -= horizontal_delta * _speed * dt;
             _current_euler.y += vertical_delta * _speed * dt;
             _current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
-        }
-
-        // EulerAngles method based on mcv class
-        VEC3 vertical_offset = VEC3::Up * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)
-        VEC3 horizontal_offset = self_transform->getLeft() * _clipping_offset.x;
-        VEC3 target_position = target_transform->getPosition() + vertical_offset + horizontal_offset;
-        self_transform->setYawPitchRoll(_current_euler.x, _current_euler.y, 0);
-
-        float z_distance = CameraClipping(target_position, -self_transform->getFront());
-        VEC3 new_pos = target_position + z_distance * -self_transform->getFront();
-        self_transform->setPosition(new_pos);
-
-		CEntity* e = CHandle(this).getOwner();
-		//dbg("%s before activate\n", e->getName());
-		
-        //float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
-        //float current_fov = 70 + inputSpeed * 30; // Just doing some testing with the fov and speed
-        TCompCamera* my_camera = get<TCompCamera>();
-        my_camera->setPerspective(getFovUpdated(dt), 0.1f, 1000.f);
-        //dbg("Setting perspective TP() - new fov: %f\n", rad2deg(getFov()));
+        }    
     }
 
     if (!paused || activate_shake && CEngine::get().getGameManager().getCurrentState() == CModuleGameManager::PauseState::defeat) {
-        if (activate_shake) {
 
-            //dbg("%s on activate\n", e->getName());
+        if (activate_shake) {
             TCompTransform* self_transform = get<TCompTransform>();
             _time_shaking += dt;
             shake_percentage = (time_to_stop_shake - _time_shaking) / time_to_stop_shake;
@@ -220,12 +200,28 @@ void TCompCameraThirdPerson::update(float dt)
             shaking_pos += self_transform->getUp() * x_amount;
 			_clipping_offset.y = _original_y_offset + x_amount;
             //self_transform->setPosition(shaking_pos);
-            if ((time_to_stop_shake - _time_shaking) <= 0.0f) {
-                activate_shake = false;
-                _time_shaking = 0.0f;
-            }
-
+			if ((time_to_stop_shake - _time_shaking) <= 0.0f) {
+				activate_shake = false;
+				_time_shaking = 0.0f;
+			}
         }
+
+		// EulerAngles method based on mcv class
+		VEC3 vertical_offset = VEC3::Up * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)
+		VEC3 horizontal_offset = self_transform->getLeft() * _clipping_offset.x;
+		VEC3 target_position = target_transform->getPosition() + vertical_offset + horizontal_offset;
+		self_transform->setYawPitchRoll(_current_euler.x, _current_euler.y, 0);
+
+		float z_distance = CameraClipping(target_position, -self_transform->getFront());
+		VEC3 new_pos = target_position + z_distance * -self_transform->getFront();
+		self_transform->setPosition(new_pos);
+
+		CEntity* e = CHandle(this).getOwner();
+
+		TCompCamera* my_camera = get<TCompCamera>();
+		my_camera->setPerspective(getFovUpdated(dt), 0.1f, 1000.f);
+		//dbg("Setting perspective TP() - new fov: %f\n", rad2deg(getFov()));
+
     }
 }
 
