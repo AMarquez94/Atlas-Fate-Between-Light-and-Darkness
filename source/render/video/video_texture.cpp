@@ -142,7 +142,6 @@ void CVideoTexture::update(float dt) {
         //dbg("Video loops\n");
 
         close();
-
         initDecoder();
 
         // Reload
