@@ -37,7 +37,8 @@ void CModuleGUI::initializeWidgetStructure() {
 		CEngine::get().getModules().changeGameState("credits");
 		//CEngine::get().getGUI().outOfMainMenu();
 	};
-	auto mm_optionsCB = []() {
+	auto mm_controlsCB = []() {
+		dbg("show controlsss!!!!");
 		//activateWidget("main_menu_buttons");
 	};
 	auto mm_exitCB = []() {
@@ -56,7 +57,7 @@ void CModuleGUI::initializeWidgetStructure() {
         //EngineLogic.execSystemScriptDelayed("gameManager:resetToCheckpoint()", 2.f);
 		CEngine::get().getGameManager().resetToCheckpoint();
 	};
-	auto pm_Controls = []() {
+	auto pm_ReturnMainMenu = []() {
 
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
@@ -88,7 +89,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	mmc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::MAIN_MENU_BUTTONS);
 	mmc->registerOption("new_game", mm_newGameCB);
 	mmc->registerOption("credits", mm_credits);
-	mmc->registerOption("options", mm_optionsCB);
+	mmc->registerOption("controls", mm_controlsCB);
 	mmc->registerOption("exit", mm_exitCB);
 	mmc->setCurrentOption(0);
 	
@@ -100,7 +101,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	pmc->registerOption("resume_game", pm_resumeGame);
 	pmc->registerOption("restart", pm_restartLevel);
 	pmc->registerOption("restart_checkpoint", pm_RestartFromCheckPoint);
-	pmc->registerOption("controls", pm_Controls);
+	pmc->registerOption("return_checkpoint", pm_ReturnMainMenu);
 	pmc->registerOption("pause_exit", pm_Exit);
 	pmc->setCurrentOption(0);
 

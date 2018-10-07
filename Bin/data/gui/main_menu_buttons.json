@@ -36,9 +36,22 @@
 						}
 					},
 					{
-						"name" : "exit",
+						"name" : "controls",
 						"type" : "button",
 						"position" : "0 60",
+						"size" : "340 29",
+						"texture" : "data/textures/gui/controls_button.dds",
+						"selected" : {
+							"texture" : "data/textures/gui/controls_button_selected.dds"
+						},
+						"pressed" : {
+							"texture" : "data/textures/gui/controls_button_pressed.dds"
+						}
+					},
+					{
+						"name" : "exit",
+						"type" : "button",
+						"position" : "0 90",
 						"size" : "340 29",
 						"texture" : "data/textures/gui/exit.dds",
 						"selected" : {
