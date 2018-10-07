@@ -422,7 +422,7 @@ void CModuleGUI::closePauseMenu() {
 	CEntity * e_current_cam = EngineCameras.getCurrentCamera();
 	TCompRenderBlur *comp_blur = e_current_cam->get<TCompRenderBlur>();
 	TCompRenderFocus *comp_focus = e_current_cam->get<TCompRenderFocus>();
-	EngineLerp.lerpElement(&comp_blur->global_distance, 0.0f, 0.25f, 0);
-
+	comp_blur->enabled = false;
+	comp_focus->enabled = false;
 	EngineLogic.execSystemScriptDelayed("unPauseGame();", 0.08f);
 }

@@ -34,9 +34,10 @@ bool CModuleGameManager::start() {
 void CModuleGameManager::setPauseState(PauseState pause) {
 
     // We are exiting the current state, disabling pause
-	if (_currentstate == PauseState::main && CApp::get().hasFocus()) {
+	if (_currentstate == PauseState::main && pause == PauseState::main && CApp::get().hasFocus()) {
 		if (EngineGUI.getButtonsState()) {
 			EngineGUI.closePauseMenu();
+			pause = PauseState::void_state;
 		}	
 	}
 
@@ -99,8 +100,7 @@ void CModuleGameManager::switchState(PauseState pause) {
 		TCompRenderFocus *comp_focus = e_current_cam->get<TCompRenderFocus>();
 		comp_focus->enabled = true;
 		comp_blur->enabled = true;
-		comp_blur->global_distance = 0.0f;
-		EngineLerp.lerpElement(&comp_blur->global_distance, 10.0f, 0.25f, 0);
+		comp_blur->global_distance = 10.0f;
 
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS)->makeChildsFadeIn(0.08, 0, true);
     }break;
