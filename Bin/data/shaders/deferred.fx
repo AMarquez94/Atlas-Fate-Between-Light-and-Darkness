@@ -123,7 +123,7 @@ float4 PS_Fog(
   float3 hdrColor = txAlbedo.Sample(samLinear, iUV).xyz;
 	hdrColor = environment_fog(iPosition, iUV, hdrColor);
 	hdrColor = ground_fog(iPosition, iUV, hdrColor);
-	
+	hdrColor *= txAO.Sample(samLinear, iUV);	
 	return float4(hdrColor, 1);
 }
 
