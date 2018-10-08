@@ -1,0 +1,32 @@
+[{
+		"entity": {
+			"name": "col_intro_corridor_logic",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			},
+			"tags": [
+				"corridor"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "little_tech_door_intro",
+			"prefab": "data/prefabs/tech_door_little.prefab",
+			"transform": {
+				"pos": "-0.0727005 1.23398 67.5282",
+				"rotation": "0 0 0 -1"
+			}
+		}
+	},
+	{
+		"xentity": {
+			"name": "tech_door_intro",
+			"prefab": "data/prefabs/puerta_tech.prefab",
+			"transform": {
+				"pos": "-0.0717659 0 27.6384",
+				"rotation": "0 0 0 1"
+			}
+		}
+	}
+]

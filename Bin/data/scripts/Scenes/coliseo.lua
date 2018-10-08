@@ -1,6 +1,10 @@
 function onSceneStart_scene_coliseo()
 	toggleButtonCanBePressed("COL_mesh_terminal02", true);
 	toggleButtonCanBePressed("COL_mesh_terminal01", false);
+	
+	tdoor_intro_corridor = toDoor(toEntity(getEntityByName("tech_door_intro")):getCompByName("door"));
+	tdoor_intro_coliseo = toDoor(toEntity(getEntityByName("tech_door_intro")):getCompByName("door"));
+
 end
 
 function onSceneStart_scene_coliseo_2()

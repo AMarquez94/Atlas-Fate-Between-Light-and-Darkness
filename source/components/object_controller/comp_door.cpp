@@ -42,7 +42,9 @@ void TCompDoor::update(float dt) {
             if (timer > time_to_open) {
                 /* Collider open */
                 TCompCollider* my_col = get<TCompCollider>();
-                my_col->setGroupAndMask("ignore", "player");
+                if (my_col) {
+                    my_col->setGroupAndMask("ignore", "player");
+                }
                 state = EDoorState::OPENED;
                 EngineLogic.execScript(opened_script);
                 timer = 0.f;
@@ -77,7 +79,9 @@ void TCompDoor::close() {
     anim->playAnimation(closing_anim);
     state = EDoorState::CLOSING;
     TCompCollider* my_col = get<TCompCollider>();
-    my_col->setGroupAndMask("all", "all");
+    if (my_col) {
+        my_col->setGroupAndMask("all", "all");
+    }
     timer = 0.f;
 }
 

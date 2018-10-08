@@ -1195,6 +1195,7 @@ data/particles/def_amb_smoke2.particles
 data/scenes/Intro/intro_puerta_end.scene
 data/prefabs/puerta_tech.prefab
 data/rigid_anims/puertatech_open.anims
+data/rigid_anims/puertatech_close.anims
 data/rigid_anims/puertatech_loading.anims
 data/meshes/doortop.mesh
 data/textures/tx_puertatech_alb.dds

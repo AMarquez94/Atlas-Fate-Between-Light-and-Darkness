@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_coliseo",
 	"scene_main_menu": {
 		"static_data": {
 			"initial_script": "main_menu",
@@ -131,7 +131,8 @@
 			"data/scenes/Intro/intro_particles.scene",
 			"data/scenes/grass_container.scene",
 			"data/scenes/decal_test.scene",
-			"data/scenes/intro_corridor.scene"
+			"data/scenes/intro_corridor_2.scene",
+			"data/scenes/intro_corridor_logic.scene"
 		]
 	},
 	"scene_coliseo": {
@@ -156,7 +157,9 @@
 			"data/scenes/Coliseo/test_instancing.scene",
 			"data/scenes/Coliseo/coliseo_particles.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
-			"data/scenes/Coliseo/coliseo_structures.scene"
+			"data/scenes/Coliseo/coliseo_structures.scene",
+			"data/scenes/col_intro_corridor.scene",
+			"data/scenes/col_intro_corridor_logic.scene"
 		]
 	},
 	"scene_zone_a": {
