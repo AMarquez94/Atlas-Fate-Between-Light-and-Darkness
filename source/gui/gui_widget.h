@@ -18,7 +18,10 @@ namespace GUI {
     class CWidget {
 
     public:
+		enum EWidgetType {WIDGET = 0, IMAGE, BAR, BUTTON, RADIAL_BAR, SPRITE, SUBTITLES, TEXT, VIDEO};
         CWidget();
+
+		EWidgetType widgt_type;
 
         void addChild(CWidget* wdgt);
         void removeChild(CWidget* wdgt);
@@ -43,6 +46,7 @@ namespace GUI {
 
         virtual void update(float delta);
         virtual void render();
+		EWidgetType getType();
 
         MAT44 getAbsolute() { return _absolute; };
 

@@ -129,6 +129,10 @@ void CWidget::render()
     // ...
 }
 
+CWidget::EWidgetType CWidget::getType() {
+	return widgt_type;
+}
+
 void CWidget::enable(bool status) 
 {
     enabled = status;

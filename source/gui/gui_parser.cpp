@@ -106,14 +106,17 @@ CWidget* CParser::parseWidget(const json& data, CWidget* parent)
 CWidget* CParser::parseWidget(const json& data) {
   CWidget* wdgt = new CWidget();
 
+  wdgt->widgt_type = CWidget::EWidgetType::WIDGET;
   parseParams(wdgt->_params, data);
 
   return wdgt;
 }
 
 CWidget* CParser::parseImage(const json& data) {
+
   CImage* wdgt = new CImage();
 
+  wdgt->widgt_type = CWidget::EWidgetType::IMAGE;
   parseParams(wdgt->_params, data);
   parseImageParams(wdgt->_imageParams, data);
 
@@ -123,6 +126,7 @@ CWidget* CParser::parseImage(const json& data) {
 CWidget* CParser::parseSprite(const json& data) {
 	CSprite* wdgt = new CSprite();
 
+	wdgt->widgt_type = CWidget::EWidgetType::SPRITE;
 	parseParams(wdgt->_params, data);
 	parseImageParams(wdgt->_imageParams, data);
 	parseSpriteParams(wdgt->_spriteParams, data);
@@ -133,6 +137,8 @@ CWidget* CParser::parseSprite(const json& data) {
 CWidget* CParser::parseSubtitles(const json& data) {
 
 	CSubtitles* wdgt = new CSubtitles();
+
+	wdgt->widgt_type = CWidget::EWidgetType::SUBTITLES;
 	parseParams(wdgt->_params, data);
 	parseImageParams(wdgt->_imageParams, data);
 	parseSubtitlesParams(wdgt->_subtitleParams,data);
@@ -143,6 +149,7 @@ CWidget* CParser::parseSubtitles(const json& data) {
 CWidget* CParser::parseText(const json& data) {
   CText* wdgt = new CText();
 
+  wdgt->widgt_type = CWidget::EWidgetType::TEXT;
   parseParams(wdgt->_params, data);
   parseTextParams(wdgt->_textParams, data);
 
@@ -152,6 +159,7 @@ CWidget* CParser::parseText(const json& data) {
 CWidget* CParser::parseButton(const json& data) {
   CButton* wdgt = new CButton();
 
+  wdgt->widgt_type = CWidget::EWidgetType::BUTTON;
   parseParams(wdgt->_params, data);
   parseParams(wdgt->_states[CButton::EState::ST_Idle]._params, data);
   parseImageParams(wdgt->_states[CButton::EState::ST_Idle]._imageParams, data);
@@ -216,6 +224,7 @@ CEffect* CParser::parseChangeTexturesEffect(const json& data)
 CWidget* CParser::parseBar(const json& data) {
   CBar* wdgt = new CBar();
 
+  wdgt->widgt_type = CWidget::EWidgetType::BAR;
   parseParams(wdgt->_params, data);
   parseImageParams(wdgt->_imageParams, data);
   parseBarParams(wdgt->_barParams, data);
@@ -227,6 +236,7 @@ CWidget* CParser::parseRadialBar(const json& data) {
 
     CRadialBar* wdgt = new CRadialBar();
 
+	wdgt->widgt_type = CWidget::EWidgetType::RADIAL_BAR;
     parseParams(wdgt->_params, data);
     parseImageParams(wdgt->_imageParams, data);
     parseBarParams(wdgt->_barParams, data);
@@ -238,6 +248,7 @@ CWidget* CParser::parseUIVideo(const json& data) {
 
     CUIVideo* wdgt = new CUIVideo();
 
+	wdgt->widgt_type = CWidget::EWidgetType::VIDEO;
     parseParams(wdgt->_params, data);
     parseImageParams(wdgt->_imageParams, data);
 
