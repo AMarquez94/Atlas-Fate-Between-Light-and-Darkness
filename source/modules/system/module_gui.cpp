@@ -40,13 +40,20 @@ void CModuleGUI::initializeWidgetStructure() {
 		//CEngine::get().getGUI().outOfMainMenu();
 	};
 	auto mm_controlsCB = []() {
-		dbg("show controlsss!!!!");
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACKGROUND);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACK);
+		EngineGUI.deactivateController(MAIN_MENU_BUTTONS);
+		//dbg("show controlsss!!!!");
 		//activateWidget("main_menu_buttons");
 	};
 	auto mm_exitCB = []() {
 		exit(0);
 	};
-	
+	auto mm_backCB = []() {
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACKGROUND);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACK);
+		EngineGUI.activateController(MAIN_MENU_BUTTONS);
+	};
 	//PAUSE-MENU
 	auto pm_resumeGame = []() {
 		EngineGUI.closePauseMenu();
@@ -95,6 +102,12 @@ void CModuleGUI::initializeWidgetStructure() {
 	mmc->registerOption("exit", mm_exitCB);
 	mmc->setCurrentOption(0);
 	
+	CMenuButtonsController*	mmcc = new CMenuButtonsController();
+	registerWigdetStruct(EGUIWidgets::MAIN_MENU_CONTROLS_BACK, "data/gui/main_menu_controls_back.json", mmcc);
+	mmcc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::MAIN_MENU_CONTROLS_BACK);
+	mmcc->registerOption("controls_back_mm", mm_backCB);
+	mmcc->setCurrentOption(0);
+
 
 	CMenuButtonsController* pmc = new CMenuButtonsController();
 	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS, "data/gui/pause_menu_buttons.json", pmc);
@@ -131,7 +144,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::LOADING_SPRITE, "data/gui/loading.json");
 	registerWigdetStruct(EGUIWidgets::BLACK_SCREEN, "data/gui/black_background.json");
 	registerWigdetStruct(EGUIWidgets::CREDITS, "data/gui/credits.json");
-
+	registerWigdetStruct(EGUIWidgets::MAIN_MENU_CONTROLS_BACKGROUND , "data/gui/main_menu_controls_background.json");
 }
 
 void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController *wdgt_controller) {
