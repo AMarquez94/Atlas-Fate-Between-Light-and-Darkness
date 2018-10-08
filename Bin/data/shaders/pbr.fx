@@ -619,7 +619,7 @@ float4 PS_VLight(
     float shadow_factor = computeShadowFactor(iWorldPos);
     float camera_dist = length(iWorldPos - light_pos.xyz);
     float val = 1 / (1 + (camera_dist * camera_dist));
-
+ 
     // From wPos to Light
     float3 light_dir_full = light_pos.xyz - iWorldPos;
     float  distance_to_light = length(light_dir_full);

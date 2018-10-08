@@ -136,12 +136,8 @@ float4 compute(float4 iPosition, float2 iUV)
   float4 oNormal = float4(decodeNormal( N_rt.xyz ), 1);
   //float3 light_col = txLuminance.Load(ss_load_coords).xyz;
   float3 hdrColor = txAccLights.Load(ss_load_coords).xyz;
-	//hdrColor *= txSelfIllum.Load(uint3(iPosition.xy,0)).a;
-	//hdrColor = environment_fog(iPosition, iUV, hdrColor);
-	//hdrColor = ground_fog(iPosition, iUV, hdrColor);
-	
+
 	hdrColor *= global_exposure_adjustment;
-	//hdrColor *= txAO.Sample(samLinear, iUV);	
   
 	// In Low Dynamic Range we could not go beyond the value 1
   //float3 ldrColor = min(hdrColor,float3(1,1,1));

@@ -3,7 +3,7 @@
     "entity": {
       "name": "Sphere00.dds",
       "transform": {
-        "pos": "10 10 0"
+        "pos": "-5 10 -8"
       },
       "cube_render": {
         "res": 512,
