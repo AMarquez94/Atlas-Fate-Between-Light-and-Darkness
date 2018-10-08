@@ -8,7 +8,7 @@ void CSubtitles::render() {
 	MAT44 sz = MAT44::CreateScale(_params._size.x, _params._size.y, 1.f);
 
 	Engine.get().getGUI().renderTexture(sz * _absolute,
-		_imageParams._texture,
+		_subtitleParams._current_texture,
 		_imageParams._minUV,
 		_imageParams._maxUV,
 		_imageParams._color);
@@ -26,4 +26,12 @@ TSubtitlesParams* CSubtitles::getSubtitleParams() {
 
 void CSubtitles::update(float dt) {
 
+}
+
+void CSubtitles::activateSubtitles(std::string subtitle_name) {
+	const CTexture* text = _subtitleParams._map_to_textures[subtitle_name];
+	if (text != nullptr) {
+		_subtitleParams._current_subtitles = subtitle_name;
+		_subtitleParams._current_texture = text;
+	}
 }

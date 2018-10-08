@@ -165,6 +165,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::CREDITS, "data/gui/credits.json");
 	registerWigdetStruct(EGUIWidgets::MAIN_MENU_CONTROLS_BACKGROUND , "data/gui/main_menu_controls_background.json");
 	registerWigdetStruct(EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND , "data/gui/main_menu_credits_background.json");
+	registerWigdetStruct(EGUIWidgets::SUBTITLES, "data/gui/subtitles_game.json");
 }
 
 void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController *wdgt_controller) {

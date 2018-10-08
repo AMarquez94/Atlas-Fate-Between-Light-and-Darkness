@@ -1,0 +1,30 @@
+[
+	{
+		"name" : "ingame_subtitles",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "subtitles_ingame",
+				"type" : "subtitles",
+				"size" : "650 100",
+				"position" : "205 510",
+				"texture" : "data/textures/gui/background-pause.dds",
+				"subtitles_textures" : [
+					{
+						"subtitle_name" : "none",
+						"texture_src" : "data/textures/gui/subtitulos/none.dds"
+					},
+					{
+						"subtitle_name" : "hola",
+						"texture_src" : "data/textures/gui/subtitulos/hola.dds"
+					},
+					{
+						"subtitle_name" : "adios",
+						"texture_src" : "data/textures/gui/subtitulos/adios.dds"
+					}
+				]
+			}
+		]
+	}
+]

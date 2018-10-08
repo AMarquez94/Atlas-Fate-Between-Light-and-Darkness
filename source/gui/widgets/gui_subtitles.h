@@ -15,6 +15,8 @@ namespace GUI {
 		TImageParams* getImageParams() override;
 		TSubtitlesParams* getSubtitleParams() override;
 
+		void activateSubtitles(std::string subtitle_name);
+
 	private:
 		TImageParams _imageParams;
 		TSubtitlesParams _subtitleParams;
