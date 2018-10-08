@@ -36,7 +36,10 @@ void CModuleGUI::initializeWidgetStructure() {
 		CEngine::get().getModules().changeGameState("map_intro");
 	};
 	auto mm_credits = []() {
-		CEngine::get().getModules().changeGameState("credits");
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND)->makeChildsFadeIn(0.25f, 0, true);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACK)->makeChildsFadeIn(0.25f, 0, true);
+		EngineGUI.deactivateController(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
+		//CEngine::get().getModules().changeGameState("credits");
 		//CEngine::get().getGUI().outOfMainMenu();
 	};
 	auto mm_controlsCB = []() {
@@ -55,6 +58,14 @@ void CModuleGUI::initializeWidgetStructure() {
 		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACK)->makeChildsFadeOut(0.25f, 0, true);
 		EngineLogic.execSystemScriptDelayed("takeOutControlsOnMainMenu();",0.25f);
 	};
+
+	auto mm_back_creditsCB = []() {
+
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND)->makeChildsFadeOut(0.25f, 0, true);
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACK)->makeChildsFadeOut(0.25f, 0, true);
+		EngineLogic.execSystemScriptDelayed("takeOutCreditsOnMainMenu();", 0.25f);
+	};
+
 	//PAUSE-MENU
 	auto pm_resumeGame = []() {
 		EngineGUI.closePauseMenu();
@@ -110,6 +121,13 @@ void CModuleGUI::initializeWidgetStructure() {
 	mmcc->setCurrentOption(0);
 
 
+	CMenuButtonsController*	mmcbc = new CMenuButtonsController();
+	registerWigdetStruct(EGUIWidgets::MAIN_MENU_CREDITS_BACK, "data/gui/main_menu_credits_back.json", mmcbc);
+	mmcbc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::MAIN_MENU_CREDITS_BACK);
+	mmcbc->registerOption("controls_credits_back_mm", mm_back_creditsCB);
+	mmcbc->setCurrentOption(0);
+
+
 	CMenuButtonsController* pmc = new CMenuButtonsController();
 	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS, "data/gui/pause_menu_buttons.json", pmc);
 
@@ -146,6 +164,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::BLACK_SCREEN, "data/gui/black_background.json");
 	registerWigdetStruct(EGUIWidgets::CREDITS, "data/gui/credits.json");
 	registerWigdetStruct(EGUIWidgets::MAIN_MENU_CONTROLS_BACKGROUND , "data/gui/main_menu_controls_background.json");
+	registerWigdetStruct(EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND , "data/gui/main_menu_credits_background.json");
 }
 
 void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController *wdgt_controller) {

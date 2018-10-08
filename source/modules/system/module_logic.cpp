@@ -294,6 +294,7 @@ void CModuleLogic::publishClasses() {
 	m->set("goToMainMenu", SLB::FuncCall::create(&goToMainMenu));
 	m->set("takeOutCredits", SLB::FuncCall::create(&takeOutCredits));
 	m->set("takeOutControlsOnMainMenu", SLB::FuncCall::create(&takeOutControlsOnMainMenu));
+	m->set("takeOutCreditsOnMainMenu", SLB::FuncCall::create(&takeOutCreditsOnMainMenu));
 	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -954,5 +955,11 @@ void takeOutCredits() {
 void takeOutControlsOnMainMenu() {
 	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACKGROUND);
 	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACK);
+	EngineGUI.activateController(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
+}
+
+void takeOutCreditsOnMainMenu() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACK);
 	EngineGUI.activateController(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
 }
