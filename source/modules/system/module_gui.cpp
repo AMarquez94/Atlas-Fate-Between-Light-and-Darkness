@@ -40,9 +40,9 @@ void CModuleGUI::initializeWidgetStructure() {
 		//CEngine::get().getGUI().outOfMainMenu();
 	};
 	auto mm_controlsCB = []() {
-		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACKGROUND);
-		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACK);
-		EngineGUI.deactivateController(MAIN_MENU_BUTTONS);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACKGROUND)->makeChildsFadeIn(0.25f,0,true);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACK)->makeChildsFadeIn(0.25f, 0, true);
+		EngineGUI.deactivateController(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
 		//dbg("show controlsss!!!!");
 		//activateWidget("main_menu_buttons");
 	};
@@ -50,9 +50,10 @@ void CModuleGUI::initializeWidgetStructure() {
 		exit(0);
 	};
 	auto mm_backCB = []() {
-		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACKGROUND);
-		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACK);
-		EngineGUI.activateController(MAIN_MENU_BUTTONS);
+
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACKGROUND)->makeChildsFadeOut(0.25f, 0, true);
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACK)->makeChildsFadeOut(0.25f, 0, true);
+		EngineLogic.execSystemScriptDelayed("takeOutControlsOnMainMenu();",0.25f);
 	};
 	//PAUSE-MENU
 	auto pm_resumeGame = []() {
