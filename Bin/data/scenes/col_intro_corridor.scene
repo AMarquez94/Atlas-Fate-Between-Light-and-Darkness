@@ -1,0 +1,1384 @@
+[{
+		"entity": {
+			"name": "col_intro_corridor",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			},
+			"tags": [
+				"corridor"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_agujero002",
+			"transform": {
+				"pos": "-0.163456 6.76203 30.948",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_agujero002.mesh",
+				"materials": [
+					"data/materials/mtl_sala.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_baseycolumna001",
+			"transform": {
+				"pos": "-0.0726967 3.41269 51.3602",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_baseycolumna001.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/intro_collider_barandillas_pasillo.collider",
+				"group": "fence",
+				"mask": "player",
+				"is_trigger": false,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			},
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_boton001",
+			"transform": {
+				"pos": "-1.6113 2.61507 67.2995",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_boton001.mesh",
+				"materials": []
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_cable_suelo001",
+			"transform": {
+				"pos": "0.0581932 1.09554 27.3602",
+				"rotation": "0.326506 -0.627212 -0.627211 0.326505"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_cable_suelo001.mesh",
+				"materials": [
+					"data/materials/mtl_default.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_cable_techo001",
+			"transform": {
+				"pos": "-0.0268288 5.96225 35.3602",
+				"rotation": "0.183013 0.683013 -0.683013 -0.183012"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_cable_techo001.mesh",
+				"materials": [
+					"data/materials/mtl_cables.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_cristal010",
+			"transform": {
+				"pos": "2.79161 1.34068 37.3579",
+				"rotation": "-0.00620191 0.70708 -0.00620194 -0.70708"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_cristal010.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_cristal011",
+			"transform": {
+				"pos": "2.79161 1.34068 42.333",
+				"rotation": "-0.00620191 0.70708 -0.00620194 -0.70708"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_cristal011.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_cristal012",
+			"transform": {
+				"pos": "2.79161 1.34068 40.3218",
+				"rotation": "-0.00620191 0.70708 -0.00620194 -0.70708"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_cristal012.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_cristal013",
+			"transform": {
+				"pos": "2.79161 1.34068 46.333",
+				"rotation": "-0.00620191 0.70708 -0.00620194 -0.70708"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_cristal013.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_cristal014",
+			"transform": {
+				"pos": "2.79161 1.34068 44.3218",
+				"rotation": "-0.00620191 0.70708 -0.00620194 -0.70708"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_cristal014.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_cristal015",
+			"transform": {
+				"pos": "2.79161 1.34068 55.333",
+				"rotation": "-0.00620191 0.70708 -0.00620194 -0.70708"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_cristal015.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_cristal016",
+			"transform": {
+				"pos": "2.79161 1.34068 53.3218",
+				"rotation": "-0.00620191 0.70708 -0.00620194 -0.70708"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_cristal016.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_cristal017",
+			"transform": {
+				"pos": "2.79161 1.34068 60.333",
+				"rotation": "-0.00620191 0.70708 -0.00620194 -0.70708"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_cristal017.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_cristal018",
+			"transform": {
+				"pos": "2.79161 1.34068 58.3218",
+				"rotation": "-0.00620191 0.70708 -0.00620194 -0.70708"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_cristal018.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_cristal019",
+			"transform": {
+				"pos": "2.79161 1.34068 35.3466",
+				"rotation": "-0.00620191 0.70708 -0.00620194 -0.70708"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_cristal019.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_lampara001",
+			"transform": {
+				"pos": "-0.0726967 5.45435 67.3291",
+				"rotation": "0.130526 0.0 0.0 -0.991445"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_lampara001.mesh",
+				"materials": []
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_pared_puerta_peq001",
+			"transform": {
+				"pos": "0.253277 1.16307 67.3602",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_pared_puerta_peq001.mesh",
+				"materials": [
+					"data/materials/mtl_puerta_peq.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/intro_collider_puerta_pasillo.collider"
+			},
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_pared001",
+			"transform": {
+				"pos": "-0.0726967 1.2449 39.3602",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_pared001.mesh",
+				"materials": [
+					"data/materials/mtl_paredes_corridor.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo028",
+			"transform": {
+				"pos": "3.20779 2.52929 36.3244",
+				"rotation": "0.212631 0.67438 0.212631 -0.67438"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo028.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo029",
+			"transform": {
+				"pos": "-3.35556 2.52929 36.3604",
+				"rotation": "0.0 -0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo029.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo030",
+			"transform": {
+				"pos": "3.20779 2.52929 38.3305",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo030.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo031",
+			"transform": {
+				"pos": "-2.75811 1.64314 38.4341",
+				"rotation": "0.368102 -0.24594 -0.662958 -0.603739"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo031.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo032",
+			"transform": {
+				"pos": "2.27269 1.13311 40.9276",
+				"rotation": "-0.752863 -0.190772 -0.515361 0.362224"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo032.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo033",
+			"transform": {
+				"pos": "-3.35556 2.52929 41.335",
+				"rotation": "0.0 -0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo033.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo034",
+			"transform": {
+				"pos": "3.20779 2.52929 43.3051",
+				"rotation": "0.0384848 0.706059 0.0384848 -0.706059"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo034.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo035",
+			"transform": {
+				"pos": "-3.35556 2.52929 43.3411",
+				"rotation": "-0.521334 0.477715 0.521334 0.477715"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo035.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo036",
+			"transform": {
+				"pos": "3.20779 2.52929 45.2988",
+				"rotation": "0.0616284 0.704416 0.0616284 -0.704416"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo036.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo037",
+			"transform": {
+				"pos": "-3.35556 2.52929 45.3348",
+				"rotation": "0.0 -0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo037.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo038",
+			"transform": {
+				"pos": "3.20779 2.52929 47.3049",
+				"rotation": "-0.626985 -0.32694 -0.626985 0.32694"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo038.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo039",
+			"transform": {
+				"pos": "-2.91765 1.85906 47.5651",
+				"rotation": "-0.449018 -0.519574 -0.479628 -0.546244"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo039.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo040",
+			"transform": {
+				"pos": "2.76522 2.11003 50.1026",
+				"rotation": "-0.183013 0.683013 0.183013 -0.683013"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo040.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo041",
+			"transform": {
+				"pos": "-3.35556 2.52929 50.3361",
+				"rotation": "0.0 -0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo041.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo042",
+			"transform": {
+				"pos": "3.20779 2.52929 52.3062",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo042.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo043",
+			"transform": {
+				"pos": "-3.35556 2.52929 52.3422",
+				"rotation": "0.329111 -0.625848 -0.329111 -0.625848"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo043.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo044",
+			"transform": {
+				"pos": "2.81863 1.92929 54.4054",
+				"rotation": "-0.0616284 0.704416 0.0616284 -0.704416"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo044.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo045",
+			"transform": {
+				"pos": "-3.35556 2.52929 54.339",
+				"rotation": "0.0675134 -0.703876 -0.0675133 -0.703876"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo045.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo046",
+			"transform": {
+				"pos": "3.20779 2.52929 56.3091",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo046.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo047",
+			"transform": {
+				"pos": "-3.35556 2.52929 56.3451",
+				"rotation": "0.0 -0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo047.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo048",
+			"transform": {
+				"pos": "3.20779 2.52929 59.3015",
+				"rotation": "0.212631 0.67438 0.212631 -0.67438"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo048.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo049",
+			"transform": {
+				"pos": "-3.35556 2.52929 59.3375",
+				"rotation": "0.430459 -0.560986 -0.430459 -0.560986"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo049.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo050",
+			"transform": {
+				"pos": "3.20779 2.52929 61.3076",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo050.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo051",
+			"transform": {
+				"pos": "-3.35556 2.52929 61.3436",
+				"rotation": "0.0 -0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo051.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo052",
+			"transform": {
+				"pos": "3.20779 2.52929 63.3007",
+				"rotation": "-0.5 -0.5 -0.5 0.5"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo052.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo053",
+			"transform": {
+				"pos": "-2.82962 1.83453 63.3367",
+				"rotation": "-0.143625 -0.70385 -0.219104 -0.660272"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo053.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo054",
+			"transform": {
+				"pos": "3.20779 2.52929 65.3068",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo054.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_puerta_tubo055",
+			"transform": {
+				"pos": "-3.35556 2.52929 65.3428",
+				"rotation": "0.0 -0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_puerta_tubo055.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_reja_techo018",
+			"transform": {
+				"pos": "1.3211 5.93666 38.216",
+				"rotation": "-0.433633 0.558536 -0.433633 -0.558536"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_reja_techo018.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_reja_techo019",
+			"transform": {
+				"pos": "-1.47637 5.93666 38.216",
+				"rotation": "0.362119 0.607346 0.362119 -0.607346"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_reja_techo019.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_reja_techo020",
+			"transform": {
+				"pos": "1.3211 5.93666 46.216",
+				"rotation": "-0.0504907 0.705302 -0.0504908 -0.705302"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_reja_techo020.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_reja_techo021",
+			"transform": {
+				"pos": "-1.47637 5.93666 46.216",
+				"rotation": "0.124942 0.695981 0.124942 -0.695981"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_reja_techo021.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_reja_techo022",
+			"transform": {
+				"pos": "2.46373 2.00248 46.3654",
+				"rotation": "-0.653023 -0.394217 -0.555488 0.33104"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_reja_techo022.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_reja_techo023",
+			"transform": {
+				"pos": "-1.47637 5.93666 50.216",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_reja_techo023.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_reja_techo024",
+			"transform": {
+				"pos": "1.3211 5.93666 54.216",
+				"rotation": "-0.00690603 0.707073 -0.00690606 -0.707073"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_reja_techo024.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_reja_techo025",
+			"transform": {
+				"pos": "-2.75106 2.82446 50.272",
+				"rotation": "-0.609837 -0.781605 -0.081418 -0.102778"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_reja_techo025.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_reja_techo026",
+			"transform": {
+				"pos": "1.3211 5.93666 58.216",
+				"rotation": "-0.0616284 0.704416 -0.0616285 -0.704416"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_reja_techo026.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_reja_techo027",
+			"transform": {
+				"pos": "-1.47637 5.93666 58.216",
+				"rotation": "0.0308436 0.706434 0.0308435 -0.706434"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_reja_techo027.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_reja_techo028",
+			"transform": {
+				"pos": "1.3211 5.93666 62.216",
+				"rotation": "-0.430459 0.560986 -0.430459 -0.560985"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_reja_techo028.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_reja_techo029",
+			"transform": {
+				"pos": "-1.47637 5.93666 62.216",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_reja_techo029.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_reja_techo030",
+			"transform": {
+				"pos": "1.3211 5.93666 66.216",
+				"rotation": "-0.0308436 0.706434 -0.0308436 -0.706434"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_reja_techo030.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_reja_techo031",
+			"transform": {
+				"pos": "-1.47637 5.93666 66.216",
+				"rotation": "0.0616284 0.704416 0.0616284 -0.704416"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_reja_techo031.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_reja_techo032",
+			"transform": {
+				"pos": "1.3211 5.93666 70.216",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_reja_techo032.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_reja_techo033",
+			"transform": {
+				"pos": "-2.79058 2.87595 65.0788",
+				"rotation": "-0.602684 -0.768809 0.195795 -0.0858464"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_reja_techo033.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_rejas001",
+			"transform": {
+				"pos": "-0.060627 4.93317 67.3118",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_rejas001.mesh",
+				"materials": []
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_sala002",
+			"transform": {
+				"pos": "0.0110283 3.22742 35.3134",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_sala002.mesh",
+				"materials": [
+					"data/materials/mtl_sala.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_suelo001",
+			"transform": {
+				"pos": "-0.0726967 1.16307 37.3602",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_suelo001.mesh",
+				"materials": [
+					"data/materials/mtl_sueloytecho.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/intro_collider_suelo_pasillo.collider"
+			},
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_techo001",
+			"transform": {
+				"pos": "-0.0726967 1.20233 38.7206",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_techo001.mesh",
+				"materials": [
+					"data/materials/mtl_sueloytecho.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_tubo_x005",
+			"transform": {
+				"pos": "1.79773 5.98367 34.7629",
+				"rotation": "0.0 0.704122 0.0 -0.710079"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_tubo_x005.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "col_intro_tubo004",
+			"transform": {
+				"pos": "3.00077 5.08999 33.3602",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/col_intro_tubo004.mesh",
+				"materials": [
+					"data/materials/mtl_sala.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
+]
