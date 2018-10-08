@@ -342,6 +342,7 @@ void CModuleLogic::publishClasses() {
     m->set("preloadScene", SLB::FuncCall::create(&preloadScene));
     m->set("removeSceneResources", SLB::FuncCall::create(&removeSceneResources));
     m->set("testingDestroy", SLB::FuncCall::create(&testingDestroy));
+    m->set("testingLoadPartialScene", SLB::FuncCall::create(&testingLoadPartialScene));
 
     /* Handle converters */
     m->set("toEntity", SLB::FuncCall::create(&toEntity));
@@ -981,6 +982,10 @@ void testingDestroy()
     for (int i = 0; i < entities_to_destroy.size(); i++) {
         entities_to_destroy[i].destroy();
     }
+}
+
+void testingLoadPartialScene() {
+    EngineScene.loadPartialScene("scene_coliseo");
 }
 
 void unPauseGame() {

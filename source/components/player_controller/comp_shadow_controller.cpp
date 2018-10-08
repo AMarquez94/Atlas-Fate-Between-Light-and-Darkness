@@ -62,6 +62,7 @@ void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
 
     // Retrieve all scene lights
     static_lights.clear();
+    dynamic_lights.clear();
     auto& light_handles = CTagsManager::get().getAllEntitiesByTag(getID("light"));
 
     for (auto h : light_handles) {

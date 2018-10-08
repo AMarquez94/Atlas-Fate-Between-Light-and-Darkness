@@ -22,8 +22,8 @@ void TCompDoor::load(const json& j, TEntityParseContext& ctx) {
     opening_anim = j.value("open_anim", "");
     closing_anim = j.value("close_anim", "");
     loading_anim = j.value("load_anim", "");
-    time_to_open = j.value("time_to_open", 1.f);
-    time_to_close = j.value("time_to_close", 1.f);
+    time_to_open = j.value("time_to_open", 2.f);
+    time_to_close = j.value("time_to_close", 3.f);
 }
 
 void TCompDoor::registerMsgs() {

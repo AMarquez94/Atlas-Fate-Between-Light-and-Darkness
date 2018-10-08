@@ -160,6 +160,7 @@ void toggleButtonCanBePressed(const std::string& buttonName, bool canBePressed);
 void preloadScene(const std::string& scene);
 void removeSceneResources(const std::string& scene);
 void testingDestroy();
+void testingLoadPartialScene();
 
 // Extra cvar commands
 void cg_drawfps(bool value);

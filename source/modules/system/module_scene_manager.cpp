@@ -11,6 +11,7 @@
 #include "render/texture/material.h"
 #include "render/render_objects.h"
 #include "resources/json_resource.h"
+#include "components/comp_tags.h"
 
 // for convenience
 using json = nlohmann::json;
@@ -177,7 +178,7 @@ bool CModuleSceneManager::loadPartialScene(const std::string & name)
         if (it != _scenes.end())
         {
 
-            unLoadActiveScene();
+            unLoadActiveScene(true);
 
             // Load the subscene
             Scene * current_scene = it->second;
@@ -196,6 +197,7 @@ bool CModuleSceneManager::loadPartialScene(const std::string & name)
             setActiveScene(current_scene);
 
             TMsgSceneCreated msg;
+
             /* Only new entities */
             EngineEntities.broadcastMsg(msg);
 
@@ -224,7 +226,7 @@ bool CModuleSceneManager::loadPartialScene(const std::string & name)
     }
 }
 
-bool CModuleSceneManager::unLoadActiveScene() {
+bool CModuleSceneManager::unLoadActiveScene(bool partial) {
 
     // This will allow us to mantain the gamestate.
 
@@ -233,22 +235,37 @@ bool CModuleSceneManager::unLoadActiveScene() {
     // Warning: persistent data will need to avoid deletion
     if (_activeScene != nullptr) {
 
-        EngineLogic.clearDelayedScripts();
-        EngineLogic.execEvent(EngineLogic.SCENE_END, _activeScene->name);
+        if (partial) {
 
-        EngineEntities.destroyAllEntities();
-        EngineCameras.deleteAllCameras();
-        EngineIA.clearSharedBoards();
-        EngineNavmeshes.destroyNavmesh();
-        EngineInstancing.clearInstances();
-        EngineParticles.killAll();
+            EngineLogic.clearDelayedScripts();
+            EngineLogic.execEvent(EngineLogic.SCENE_END, _activeScene->name);
+
+            /* Clear non persistent entities */
+            std::vector<uint32_t> tag;
+            tag.push_back(getID("persistent"));
+            VHandles non_persistent_entities = CTagsManager::get().getAllEntitiesWithoutTags(tag);
+            for (int i = 0; i < non_persistent_entities.size(); i++) {
+                non_persistent_entities[i].destroy();
+            }
+
+            EngineIA.clearSharedBoards();
+            EngineNavmeshes.destroyNavmesh();
+        }
+        else {
+
+            EngineEntities.destroyAllEntities();
+            EngineCameras.deleteAllCameras();
+            EngineIA.clearSharedBoards();
+            EngineNavmeshes.destroyNavmesh();
+            EngineInstancing.clearInstances();
+            EngineParticles.killAll();
+        }
 
         removeSceneResources(_activeScene->name);
 
         _activeScene->isLoaded = false;
         _activeScene = nullptr;
 
-	    /* TODO: Delete checkpoint */
         return true;
     }
 

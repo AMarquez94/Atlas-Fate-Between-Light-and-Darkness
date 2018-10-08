@@ -48,7 +48,7 @@ public:
     Scene* createScene(const std::string& name);
     Scene* getSceneByName(const std::string& name);
     Scene* getActiveScene();
-    bool unLoadActiveScene();
+    bool unLoadActiveScene(bool partial = false);
 
     std::string getDefaultSceneName();
 
