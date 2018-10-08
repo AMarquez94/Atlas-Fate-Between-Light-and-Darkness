@@ -70,8 +70,7 @@ void TCompRenderCube::generate(CDeferredRenderer& renderer) {
     TCompCulling * probe_culling = probe_camera->get<TCompCulling>();
     TCompTransform * probe_trans = probe_camera->get<TCompTransform>();
     probe_trans->setPosition(trans->getPosition());
-    //probe_culling->update(0.f); // very dirty trick
-    probe_culling->bits.reset();
+    CRenderManager::get().setEntityCamera(CHandle(this).getOwner());
 
     for (int i = 0; i < rt->getNSides(); ++i) {
         //CCamera camera;

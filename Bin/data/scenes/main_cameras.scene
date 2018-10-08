@@ -138,8 +138,7 @@
 			"transform": {
 				"pos": "0 0 0",
 				"lookat": "0 0 0"
-			},
-			"culling": true
+			}
 		}
 	}
 ]
