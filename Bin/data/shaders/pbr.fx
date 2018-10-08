@@ -459,7 +459,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	float4 self_illum = txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
 	
 	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
-	final_color *= global_ambient_adjustment * ao;
+	final_color *= global_ambient_adjustment * ao * self_illum.a;
 	final_color += float4(self_illum.xyz, 1);
 	return float4(final_color.xyz, 1);
 }

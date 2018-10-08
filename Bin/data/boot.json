@@ -10,10 +10,10 @@
 			"tone_mapping": 0.5,
 			"shadow_intensity": 0,
 			"ground_fog_density": 0.1,
-			"env_fog_density": 0.1,
+			"env_fog_density": 0.345,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.043"
+			"env_fog": "0.004 0.004 0.0117"
 			
 		},
 		"scene_group": [

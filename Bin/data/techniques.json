@@ -264,7 +264,7 @@
 		"ps_file": "data/shaders/deferred.fx",
 		"ps_entry_point": "PS_Fog",
 		"vertex_type": "PosClr",
-		"category": "helper",
+		"category": "pbr_proc",
 		"z": "disable_all",
 		"textures": {
 			"noise": "data/textures/noise_cloud3.dds",

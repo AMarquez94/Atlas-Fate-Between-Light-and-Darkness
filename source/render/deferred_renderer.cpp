@@ -125,18 +125,26 @@ void CDeferredRenderer::renderSkyBox() const {
 	renderFullScreenQuad("pbr_skybox.tech", nullptr);
 }
 
+void CDeferredRenderer::renderPreHDR() const
+{
+    rt_acc_light->activateRT();
+    rt_acc_light->clear(VEC4(0, 0, 0, 0));
+    renderFullScreenQuad("hdr_fog.tech", rt_prev_acc_light);
+}
+
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderAccLight() {
 
 	CTraceScoped gpu_scope("Deferred.AccLight");
-	rt_acc_light->activateRT();
-	rt_acc_light->clear(VEC4(0, 0, 0, 0));
+    rt_prev_acc_light->activateRT();
+    rt_prev_acc_light->clear(VEC4(0, 0, 0, 0));
 	renderAmbientPass();
 	renderPointLights();
 	renderSpotLights();
     renderProjectors();
 	renderDirectionalLights();
 	renderSkyBox();
+    renderPreHDR();
 
     CRenderManager::get().renderCategory("hologram_screen");
     CRenderManager::get().renderCategory("distorsions");
@@ -178,7 +186,9 @@ void CDeferredRenderer::renderPointLights() {
 
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderDirectionalLights() {
-    /*
+    
+    //rt_prev_acc_light->activateRT();
+    //rt_prev_acc_light->clear(VEC4(0, 0, 0, 0));
     auto* tech = Resources.get("pbr_ray_shafts.tech")->as<CRenderTechnique>();
     tech->activate();
 
@@ -189,21 +199,22 @@ void CDeferredRenderer::renderDirectionalLights() {
     // Para todas las luces... pintala
     getObjectManager<TCompLightDir>()->forEach([mesh](TCompLightDir* c) {
 
-        if (c->isEnabled) {
+        if (c->isEnabled && c->volumetric) {
             c->activate();
             setWorldTransform(c->getViewProjection().Invert());
             mesh->render();
         }
-    });*/
+    });
 
 	CTraceScoped gpu_scope("renderDirectionalLights");
+    //rt_acc_light->activateRT();
 
 	// Activate tech for the light dir 
-    auto* tech = Resources.get("pbr_dir_lights.tech")->as<CRenderTechnique>();
+    tech = Resources.get("pbr_dir_lights.tech")->as<CRenderTechnique>();
 	tech->activate();
 
 	// All light directional use the same mesh
-    auto* mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
+    mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 	mesh->activate();
 
 	// Para todas las luces... pintala

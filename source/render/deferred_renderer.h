@@ -4,6 +4,7 @@
 #include "render/texture/render_to_texture.h"
 
 class CRenderToCube;
+class TCompRenderBlur;
 
 class CDeferredRenderer {
 
@@ -25,6 +26,7 @@ public:
   void renderPointLights();
   void renderSpotLights();
   void renderSkyBox() const;
+  void renderPreHDR() const;
   void renderProjectors();
   void renderGBufferDecals();
   void renderGBufferParticles(CRenderToTexture* rt_destination);
@@ -37,7 +39,6 @@ public:
   void render( CRenderToTexture* rt_destination, CHandle h_e_camera );
   void renderToCubeFace(CRenderToCube* rt_destination, int face_idx);
 };
-
 
 #endif
 

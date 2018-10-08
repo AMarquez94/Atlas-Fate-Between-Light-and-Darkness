@@ -6,10 +6,12 @@
 #pragma comment(lib, "h264bsd")
 
 CVideoTexture::~CVideoTexture() {
+
     close();
 }
 
 bool CVideoTexture::initDecoder() {
+
     decoder = h264bsdAlloc();
     status = h264bsdInit(decoder, 0);
     if (status > 0) return false;
