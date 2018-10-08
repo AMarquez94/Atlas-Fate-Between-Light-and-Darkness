@@ -108,5 +108,5 @@ float4 PS(
 
 	//return (1 - occlusion / 16 );
   // Module the amount of occlusion
-  return ( 1 - global_shared_fx_amount ) + (1 - occlusion / 16 ) * global_shared_fx_amount;
+  return zlinear < 0.99 ? ( 1 - global_shared_fx_amount ) + (1 - occlusion / 16 ) * global_shared_fx_amount : 1;
 }

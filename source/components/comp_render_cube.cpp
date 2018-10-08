@@ -5,6 +5,8 @@
 #include "resources/resources_manager.h"
 #include "render/render_manager.h"
 #include "components/comp_transform.h"
+#include "components/comp_camera.h"
+#include "components/comp_culling.h"
 
 DECL_OBJ_MANAGER("cube_render", TCompRenderCube);
 
@@ -55,20 +57,28 @@ void TCompRenderCube::generate(CDeferredRenderer& renderer) {
 
     static float colors[6][4] =
     {
-    { 1.f, 0.f, 0.f, 0.f },
-    { 0.f, 1.f, 0.f, 0.f },
-    { 0.f, 0.f, 1.f, 0.f },
-    { 0.f, 1.f, 1.f, 0.f },
-    { 1.f, 0.f, 1.f, 0.f },
-    { 1.f, 1.f, 0.f, 0.f },
+        { 1.f, 0.f, 0.f, 0.f },
+        { 0.f, 1.f, 0.f, 0.f },
+        { 0.f, 0.f, 1.f, 0.f },
+        { 0.f, 1.f, 1.f, 0.f },
+        { 1.f, 0.f, 1.f, 0.f },
+        { 1.f, 1.f, 0.f, 0.f },
     };
+
+    CEntity * probe_camera = getEntityByName("camera_reflection_probe");
+    TCompCamera * probe_cam = probe_camera->get<TCompCamera>();
+    TCompCulling * probe_culling = probe_camera->get<TCompCulling>();
+    TCompTransform * probe_trans = probe_camera->get<TCompTransform>();
+    probe_trans->setPosition(trans->getPosition());
+    //probe_culling->update(0.f); // very dirty trick
+    probe_culling->bits.reset();
 
     for (int i = 0; i < rt->getNSides(); ++i) {
         //CCamera camera;
         //rt->activateFace(i, &camera);
         //rt->clearColorBuffer(i, colors[i]);
         //rt->clearDepthBuffer();
-        my_def.renderToCubeFace(rt, i);
+        my_def.renderToCubeFace(*probe_cam, rt, i);
     }
 
     CRenderToTexture::setNullRT();

@@ -37,7 +37,7 @@ public:
 
   bool create( int xres, int yres, const char* prefix);
   void render( CRenderToTexture* rt_destination, CHandle h_e_camera );
-  void renderToCubeFace(CRenderToCube* rt_destination, int face_idx);
+  void renderToCubeFace(CCamera& camera, CRenderToCube* rt_destination, int face_idx);
 };
 
 #endif

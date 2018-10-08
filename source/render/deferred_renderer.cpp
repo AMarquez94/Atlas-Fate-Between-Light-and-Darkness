@@ -428,10 +428,9 @@ void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camer
 }
 
 // --------------------------------------
-void CDeferredRenderer::renderToCubeFace(CRenderToCube* rt_destination, int face_idx) {
-    assert(rt_destination);
+void CDeferredRenderer::renderToCubeFace(CCamera& camera, CRenderToCube* rt_destination, int face_idx) {
 
-    CCamera camera;
+    assert(rt_destination);
     rt_destination->getCamera(face_idx, &camera);
     activateCamera(camera, rt_destination->getWidth(), rt_destination->getHeight());
 

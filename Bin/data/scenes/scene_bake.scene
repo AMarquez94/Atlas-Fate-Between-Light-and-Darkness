@@ -1,0 +1,25 @@
+[
+  {
+    "entity": {
+      "name": "Sphere00.dds",
+      "transform": {
+        "pos": "10 10 0"
+      },
+      "cube_render": {
+        "res": 512,
+        "color_fmt": "R8G8B8A8_UNORM",
+        "depth_fmt": "none",
+        "name": "GenCubeMap.dds",
+        "dst_texture" : "data/textures/cubemaps/env.dds"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/GeoSphere001.mesh",
+          "materials": [
+            "data/materials/gen_cubemap/gen_cubemap.material"
+          ]
+        }
+      ]
+    }
+  }
+]
