@@ -35,6 +35,10 @@ void TCompConeOfLightController::onMsgGroupCreated(const TMsgEntitiesGroupCreate
 }
 
 void TCompConeOfLightController::update(float dt) {
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     bool isPlayerIlluminatedNow = false;
     if (turnedOn) {
         CEntity* player = h_player;

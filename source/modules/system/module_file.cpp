@@ -118,7 +118,9 @@ void CModuleFile::preloadResources(bool overwrite)
             if (jboot[it.key()]["static_data"].count("navmesh")) {
                 pending_resources_to_load.push_back(jboot[it.key()]["static_data"].value("navmesh", ""));
             }
+            std::vector<std::string> persistent_subscenes = jboot[it.key()]["persistent_scenes"];
             std::vector< std::string > groups_subscenes = jboot[it.key()]["scene_group"];
+            groups_subscenes.insert(std::end(groups_subscenes), std::begin(persistent_subscenes), std::end(persistent_subscenes));
             for (int i = 0; i < groups_subscenes.size(); i++) {
                 const json& j = Resources.get(groups_subscenes[i])->as<CJsonResource>()->getJson();
                 pending_resources_to_load.push_back(groups_subscenes[i]);

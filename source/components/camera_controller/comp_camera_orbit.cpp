@@ -15,6 +15,9 @@ void TCompCameraOrbit::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompCameraOrbit::update(float dt)
 {
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
 	TCompTransform* c_transform = get<TCompTransform>();
 	VEC3 pos = c_transform->getPosition();
 	VEC3 front = c_transform->getFront();

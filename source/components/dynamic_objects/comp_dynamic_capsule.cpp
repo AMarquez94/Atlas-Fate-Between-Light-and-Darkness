@@ -27,6 +27,9 @@ void TCompDynamicCapsule::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompDynamicCapsule::update(float dt) {
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     if (!paused) {
         VEC3 dir = end_point - start_point;
         dir.Normalize();

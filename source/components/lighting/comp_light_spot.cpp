@@ -96,6 +96,9 @@ MAT44 TCompLightSpot::getWorld() {
 
 void TCompLightSpot::update(float dt) {
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     TCompTransform * c = get<TCompTransform>();
     if (!c)
         return;

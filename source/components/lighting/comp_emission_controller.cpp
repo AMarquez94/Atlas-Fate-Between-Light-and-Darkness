@@ -31,6 +31,9 @@ void TCompEmissionController::load(const json& j, TEntityParseContext& ctx) {
 /* Update the values during the given time */
 void TCompEmissionController::update(float dt) {
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
 	if (_elapsed_time < 1) {
 
 		_elapsed_time += dt / _blend_in_time;

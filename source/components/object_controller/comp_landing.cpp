@@ -32,6 +32,9 @@ void TCompLanding::load(const json & j, TEntityParseContext & ctx)
 
 void TCompLanding::update(float dt)
 {
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     if (h_parent.isValid()) {
         CEntity* e_parent = h_parent;
         TCompTransform* t_parent = e_parent->get<TCompTransform>();

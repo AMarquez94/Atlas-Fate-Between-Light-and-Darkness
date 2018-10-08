@@ -53,6 +53,9 @@ void TCompRigidAnim::registerAnimation(std::string animationName, std::string tr
 }
 
 void TCompRigidAnim::update(float dt) {
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
 	
   if (current_animation_id == -1 || withoutKeys[current_animation_id])
 	return;

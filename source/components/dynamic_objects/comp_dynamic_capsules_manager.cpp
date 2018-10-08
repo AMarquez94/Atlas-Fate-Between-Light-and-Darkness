@@ -73,5 +73,6 @@ void TCompDynamicCapsulesManager::load(const json & j, TEntityParseContext & ctx
 }
 
 void TCompDynamicCapsulesManager::update(float dt) {
-
+    if (!CHandle(this).getOwner().isValid())
+        return;
 }

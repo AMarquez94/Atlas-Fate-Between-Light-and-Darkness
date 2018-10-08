@@ -19,6 +19,10 @@ void TCompSkelLookAt::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompSkelLookAt::update(float dt) {
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
   TCompSkeleton* c_skel = h_skeleton;
 
   if (!target_entity_name.empty() && !h_target_entity.isValid()) {

@@ -3,7 +3,10 @@
 			"name": "intro_corridor",
 			"transform": {
 				"pos": "0.0 0.0 0.0"
-			}
+			},
+			"tags": [
+				"corridor"
+			]
 		}
 	},
 	{

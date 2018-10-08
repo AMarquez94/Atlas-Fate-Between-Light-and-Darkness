@@ -159,6 +159,7 @@ void toggle_spotlight(const std::string& lightName);
 void toggleButtonCanBePressed(const std::string& buttonName, bool canBePressed);
 void preloadScene(const std::string& scene);
 void removeSceneResources(const std::string& scene);
+void testingDestroy();
 
 // Extra cvar commands
 void cg_drawfps(bool value);

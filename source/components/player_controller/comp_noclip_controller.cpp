@@ -61,6 +61,9 @@ void TCompNoClipController::onMsgScenePaused(const TMsgScenePaused & msg)
 
 void TCompNoClipController::update(float dt)
 {
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     if (!paused && isInNoClipMode) {
 
         VEC2 movementValue = VEC2::Zero;

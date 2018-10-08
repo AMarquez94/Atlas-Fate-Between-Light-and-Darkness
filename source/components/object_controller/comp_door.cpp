@@ -31,6 +31,10 @@ void TCompDoor::registerMsgs() {
 }
 
 void TCompDoor::update(float dt) {
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     if (!paused) {
         switch (state) {
         case EDoorState::OPENING:
@@ -88,5 +92,5 @@ void TCompDoor::setOpenedScript(const std::string& script) {
 }
 
 void TCompDoor::setClosedScript(const std::string& script) {
-    opened_script = script;
+    closed_script = script;
 }

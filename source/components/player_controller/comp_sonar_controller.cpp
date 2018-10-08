@@ -32,6 +32,10 @@ void TCompSonarController::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompSonarController::update(float dt) {
 
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     // Move this from here on refactor
     cb_outline.linear_time += dt;
     cb_outline.outline_alpha = cb_outline.linear_time >= total_time ? cb_outline.outline_alpha  - 0.5f * dt: alpha_value;

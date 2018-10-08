@@ -113,6 +113,9 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 /* Player controller main update */
 void TCompTempPlayerController::update(float dt) {
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     TCompAIPlayer* playerAI = get<TCompAIPlayer>();
 
     if (!paused && !isConsoleOn && !isInNoClipMode && !playerAI->enabledPlayerAI) {

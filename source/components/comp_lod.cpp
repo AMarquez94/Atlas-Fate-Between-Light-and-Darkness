@@ -108,6 +108,10 @@ void TCompLOD::applyLODStatus() {
 
 void TCompLOD::update(float delta) {
 
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     if (children_dynamic || aabb_update_required)
         updateAABBFromChildren();
 

@@ -164,6 +164,9 @@ float TCompCameraThirdPerson::getFovUpdated(float dt)
 
 void TCompCameraThirdPerson::update(float dt)
 {
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     if (!paused) {
 
         if (!_h_target.isValid()) return;

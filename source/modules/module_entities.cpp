@@ -153,3 +153,15 @@ void CModuleEntities::destroyAllEntities() {
     });
     CHandleManager::destroyAllPendingObjects();
 }
+
+const VHandles CModuleEntities::getAllEntities()
+{
+    VHandles v;
+    auto om = getObjectManager<CEntity>();
+    om->forEach([&v](CEntity* e) {
+        CHandle h_e(e);
+        v.push_back(h_e);
+    });
+
+    return v;
+}

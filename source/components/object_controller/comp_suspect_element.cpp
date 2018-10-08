@@ -23,6 +23,10 @@ void TCompSuspectElement::load(const json & j, TEntityParseContext & ctx)
 
 void TCompSuspectElement::update(float dt)
 {
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     if (active && CHandle(this).isValid()) {
         TCompTransform* my_pos = get<TCompTransform>();
         if (!my_pos) {

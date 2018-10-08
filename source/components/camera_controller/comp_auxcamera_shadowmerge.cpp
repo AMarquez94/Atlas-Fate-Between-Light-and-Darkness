@@ -157,6 +157,8 @@ void TCompAuxCameraShadowMerge::onMsgScenePaused(const TMsgScenePaused & msg)
 
 void TCompAuxCameraShadowMerge::update(float dt)
 {
+    if (!CHandle(this).getOwner().isValid())
+        return;
 
 	if (!paused && active) {
 		if (!_h_target.isValid())

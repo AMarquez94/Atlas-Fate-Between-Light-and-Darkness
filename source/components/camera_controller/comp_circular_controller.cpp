@@ -61,6 +61,9 @@ void TCompCircularController::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompCircularController::update(float dt) {
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     if (!h_target.isValid())
         return;
 

@@ -172,6 +172,8 @@ void CModuleParticles::killAll()
     {
         Particles::CSystem* ps = *it;
 
+        ps->getHandle();
+
         if (ps)
         {
             delete ps;

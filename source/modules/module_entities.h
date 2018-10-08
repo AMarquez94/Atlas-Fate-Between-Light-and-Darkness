@@ -20,6 +20,7 @@ public:
 	void update(float delta) override;
 	void render() override;
 	void destroyAllEntities();
+	const VHandles getAllEntities();
 	float getTimeScale() { return time_scale_factor; }
 
 	CHandle getPlayerHandle();

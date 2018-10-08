@@ -26,6 +26,9 @@ void TCompLaser::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompLaser::update(float dt) {
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
 	playerDetected = false;
 
 	CEntity* e = CHandle(this).getOwner();

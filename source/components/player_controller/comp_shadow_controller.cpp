@@ -28,6 +28,9 @@ void TCompShadowController::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompShadowController::update(float dt) {
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     TCompTransform * c_my_transform = get<TCompTransform>();
     VEC3 new_pos = c_my_transform->getPosition() + 0.15f * c_my_transform->getUp();
     bool shadow_test = IsPointInShadows(new_pos) && enemies_illuminating_me.size() == 0;
@@ -58,6 +61,7 @@ void TCompShadowController::Init() {
 void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
 
     // Retrieve all scene lights
+    static_lights.clear();
     auto& light_handles = CTagsManager::get().getAllEntitiesByTag(getID("light"));
 
     for (auto h : light_handles) {
@@ -130,6 +134,10 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point, bool player)
 
     physx::PxRaycastHit hit;
     for (unsigned int i = 0; i < static_lights.size(); i++) {
+
+        if (!static_lights[i].isValid())
+            continue;
+
         CEntity * c_entity = static_lights[i];
         TCompLightDir* c_light_dir = c_entity->get<TCompLightDir>();
 

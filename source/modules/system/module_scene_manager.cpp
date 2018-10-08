@@ -31,10 +31,12 @@ void CModuleSceneManager::loadJsonScenes(const std::string filepath) {
    
         sceneCount++;
         std::string scene_name = it.key();
+        std::vector< std::string> persistent_subscenes = jboot[scene_name]["persistent_scenes"];
         std::vector< std::string > groups_subscenes = jboot[scene_name]["scene_group"];
         
         // Create the scene and store it
         Scene * scene = createScene(scene_name);
+        scene->persistent_subscenes = persistent_subscenes;
         scene->groups_subscenes = groups_subscenes;
         auto& data = jboot[scene_name]["static_data"];
         scene->navmesh = data.value("navmesh", "");
@@ -115,6 +117,13 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
             Engine.getNavmeshes().buildNavmesh(current_scene->navmesh);
         }
 
+        for (auto& scene_name : current_scene->persistent_subscenes) {
+            dbg("Autoloading persistent scene %s\n", scene_name.c_str());
+            TEntityParseContext ctx;
+            ctx.persistent = true;
+            parseScene(scene_name, ctx);
+        }
+
         for (auto& scene_name : current_scene->groups_subscenes) {
             dbg("Autoloading scene %s\n", scene_name.c_str());
             TEntityParseContext ctx;
@@ -159,6 +168,60 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
     }
 
     return false;
+}
+
+bool CModuleSceneManager::loadPartialScene(const std::string & name)
+{
+    if (_activeScene != nullptr && _activeScene->persistent_subscenes.size() > 0 && _activeScene->name != name) {
+        auto it = _scenes.find(name);
+        if (it != _scenes.end())
+        {
+
+            unLoadActiveScene();
+
+            // Load the subscene
+            Scene * current_scene = it->second;
+            if (current_scene->navmesh.compare("") != 0) {
+                Engine.getNavmeshes().buildNavmesh(current_scene->navmesh);
+            }
+
+            for (auto& scene_name : current_scene->groups_subscenes) {
+                dbg("Autoloading scene %s\n", scene_name.c_str());
+                TEntityParseContext ctx;
+                parseScene(scene_name, ctx);
+            }
+
+            // Renew the active scene
+            current_scene->isLoaded = true;
+            setActiveScene(current_scene);
+
+            TMsgSceneCreated msg;
+            /* Only new entities */
+            EngineEntities.broadcastMsg(msg);
+
+            Engine.getLogic().execEvent(EngineLogic.SCENE_START, current_scene->name);
+
+            // Set the global data.
+            cb_globals.global_fog_color = current_scene->ground_fog;
+            cb_globals.global_fog_env_color = current_scene->env_fog;
+            cb_globals.global_fog_density = current_scene->env_fog_density;
+            cb_globals.global_fog_ground_density = current_scene->ground_fog_density;
+            cb_globals.global_exposure_adjustment = current_scene->scene_exposure;
+            cb_globals.global_ambient_adjustment = current_scene->scene_ambient;
+            cb_globals.global_gamma_correction_enabled = current_scene->scene_gamma;
+            cb_globals.global_tone_mapping_mode = current_scene->scene_tone_mapping;
+            cb_globals.global_shadow_intensity = current_scene->scene_shadow_intensity;
+            cb_globals.global_shadow_color = current_scene->shadow_color;
+            cb_globals.updateGPU();
+
+            return true;
+        }
+
+        return false;
+    }
+    else {
+        return loadScene(name);
+    }
 }
 
 bool CModuleSceneManager::unLoadActiveScene() {

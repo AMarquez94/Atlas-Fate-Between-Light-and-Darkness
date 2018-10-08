@@ -249,6 +249,9 @@ CHandle TCompPlayerAttackCast::getClosestButtonInRange() {
 
 void TCompPlayerAttackCast::update(float dt)
 {
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     TCompTempPlayerController* player_controller = get<TCompTempPlayerController>();
     bool isMerged = player_controller->isMerged;
     bool isDead = player_controller->isDead();

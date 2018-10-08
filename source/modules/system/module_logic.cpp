@@ -341,6 +341,7 @@ void CModuleLogic::publishClasses() {
     m->set("getEntityByName", SLB::FuncCall::create(&getEntityByName));
     m->set("preloadScene", SLB::FuncCall::create(&preloadScene));
     m->set("removeSceneResources", SLB::FuncCall::create(&removeSceneResources));
+    m->set("testingDestroy", SLB::FuncCall::create(&testingDestroy));
 
     /* Handle converters */
     m->set("toEntity", SLB::FuncCall::create(&toEntity));
@@ -969,6 +970,17 @@ void preloadScene(const std::string & scene)
 void removeSceneResources(const std::string & scene)
 {
     EngineScene.removeSceneResources(scene);
+}
+
+void testingDestroy()
+{
+    std::vector<uint32_t> tags;
+    tags.push_back(getID("corridor"));
+    tags.push_back(getID("persistent"));
+    VHandles entities_to_destroy = CTagsManager::get().getAllEntitiesWithoutTags(tags);
+    for (int i = 0; i < entities_to_destroy.size(); i++) {
+        entities_to_destroy[i].destroy();
+    }
 }
 
 void unPauseGame() {

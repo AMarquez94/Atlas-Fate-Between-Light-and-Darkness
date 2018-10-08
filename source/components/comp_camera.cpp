@@ -70,6 +70,9 @@ void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompCamera::update(float dt) {
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
 	TCompTransform* c = get<TCompTransform>();
 	if (!c)
 		return;

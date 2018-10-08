@@ -25,6 +25,7 @@ public:
     std::string navmesh;
     std::string initial_script_name;
 
+    std::vector<std::string> persistent_subscenes;
     std::vector<std::string> groups_subscenes;
 };
 
@@ -43,6 +44,7 @@ public:
     void preloadScene(const std::string& sceneName);
     void removeSceneResources(const std::string& sceneName);
     bool loadScene(const std::string & name);
+    bool loadPartialScene(const std::string & name);
     Scene* createScene(const std::string& name);
     Scene* getSceneByName(const std::string& name);
     Scene* getActiveScene();
@@ -58,14 +60,5 @@ private:
 
     void loadJsonScenes(const std::string filepath);
     void setActiveScene(Scene* scene);
-
-    struct PreResource {
-        std::string name;
-        bool isBig;
-        bool operator == (const PreResource &rhs) const
-        { 
-            return this->name.compare(rhs.name) == 0;
-        }
-    };
 };
  

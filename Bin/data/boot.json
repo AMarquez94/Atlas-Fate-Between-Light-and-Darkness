@@ -14,6 +14,7 @@
 			"ground_fog": "0.47 0.51 0.84",
 			"env_fog": "0.0 0.0 0.023"
 		},
+		"persistent_scenes": [],
 		"scene_group": [
 			"data/scenes/Main_menu/menu_player.scene",
 			"data/scenes/Main_menu/menu_cameras.scene",
@@ -76,9 +77,11 @@
 			"env_fog": "0.004 0.004 0.043"
 
 		},
-		"scene_group": [
+		"persistent_scenes": [
 			"data/scenes/Intro/_player.scene",
-			"data/scenes/_main_cameras.scene",
+			"data/scenes/_main_cameras.scene"
+		],
+		"scene_group": [
 			"data/scenes/Intro/intro_test_instancing.scene",
 			"data/scenes/Intro/cinematic.scene",
 			"data/scenes/Map_Intro/checkpoints.scene",
@@ -145,9 +148,11 @@
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.043"
 		},
-		"scene_group": [
+		"persistent_scenes": [
 			"data/scenes/Coliseo/_player.scene",
-			"data/scenes/_main_cameras.scene",
+			"data/scenes/_main_cameras.scene"
+		],
+		"scene_group": [
 			"data/scenes/Coliseo/test_instancing.scene",
 			"data/scenes/Coliseo/coliseo_particles.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
@@ -170,9 +175,11 @@
 			"env_fog": "0.004 0.004 0.043"
 
 		},
-		"scene_group": [
+		"persistent_scenes": [
 			"data/scenes/ZoneA/_player.scene",
-			"data/scenes/_main_cameras.scene",
+			"data/scenes/_main_cameras.scene"
+		],
+		"scene_group": [
 			"data/scenes/ZoneA/zone_a_suelo.scene",
 			"data/scenes/ZoneA/zone_a_casas.scene",
 			"data/scenes/ZoneA/zone_a_puertas.scene",
@@ -226,9 +233,11 @@
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.043"
 		},
-		"scene_group": [
+		"persistent_scenes": [
 			"data/scenes/Coliseo/_player2.scene",
-			"data/scenes/_main_cameras.scene",
+			"data/scenes/_main_cameras.scene"
+		],		
+		"scene_group": [
 			"data/scenes/Coliseo/test_instancing.scene",
 			"data/scenes/Coliseo/coliseo_particles.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
@@ -249,10 +258,11 @@
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.043"
-		},
-		"scene_group": [
+		},"persistent_scenes": [
 			"data/scenes/Basilic_courtyard/_player.scene",
-			"data/scenes/_main_cameras.scene",
+			"data/scenes/_main_cameras.scene"
+		],
+		"scene_group": [
 			"data/scenes/Basilic_courtyard/enemy.scene",
 			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
 			"data/scenes/Basilic_courtyard/test_instancing.scene",
