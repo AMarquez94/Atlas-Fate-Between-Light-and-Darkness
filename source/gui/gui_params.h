@@ -58,5 +58,13 @@ namespace GUI
     TTextParams _textParams;
   };
 
+  struct TSubtitlesParams
+  {
+	  enum ESubtitlesQuote { NONE = 0, HOLA, ADIOS };
+	  TParams _params;
+	  TImageParams _imageParams;
+	  ESubtitlesQuote _actualSubtitle;
+  };
+
   using GUICallback = std::function<void()>;
 }

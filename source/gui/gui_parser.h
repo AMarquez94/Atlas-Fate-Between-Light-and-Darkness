@@ -20,7 +20,8 @@ namespace GUI
     CWidget* parseBar(const json& data);
     CWidget* parseRadialBar(const json& data);
     CWidget* parseUIVideo(const json& data);
-		CWidget* parseSprite(const json& data);
+	CWidget* parseSprite(const json& data);
+	CWidget* parseSubtitles(const json& data);
 
     CEffect* parseEffect(const json& data, CWidget* wdgt);
     CEffect* parseAnimateUVEffect(const json& data);
@@ -31,5 +32,6 @@ namespace GUI
     void parseTextParams(TTextParams& params, const json& data);
     void parseBarParams(TBarParams& params, const json& data);
 	void parseSpriteParams(TSpriteParams& params, const json& data);
+	void parseSubtitlesParams(TSubtitlesParams& params, const json& data);
   };
 }

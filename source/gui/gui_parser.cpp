@@ -9,6 +9,7 @@
 #include "gui/effects/gui_change_textures.h"
 #include "gui/widgets/gui_radial_bar.h"
 #include "gui/widgets/gui_video.h"
+#include "gui/widgets/gui_subtitles.h"
 
 namespace
 {
@@ -62,14 +63,15 @@ CWidget* CParser::parseWidget(const json& data, CWidget* parent)
   CWidget* wdgt = nullptr;
 
   // create and parse the widget
-  if (type == "image")        wdgt = parseImage(data);
-  else if (type == "text")    wdgt = parseText(data);
-  else if (type == "bar")     wdgt = parseBar(data);
+  if (type == "image")				wdgt = parseImage(data);
+  else if (type == "text")			wdgt = parseText(data);
+  else if (type == "bar")			wdgt = parseBar(data);
   else if (type == "radialbar")     wdgt = parseRadialBar(data);
-  else if (type == "button")  wdgt = parseButton(data);
-  else if (type == "video")   wdgt = parseUIVideo(data);
-  else if (type == "sprite")  wdgt = parseSprite(data);
-  else                        wdgt = parseWidget(data);
+  else if (type == "button")		wdgt = parseButton(data);
+  else if (type == "video")			wdgt = parseUIVideo(data);
+  else if (type == "sprite")		wdgt = parseSprite(data);
+  else if (type == "subtitles")		wdgt = parseSubtitles(data);
+  else								wdgt = parseWidget(data);
 
   wdgt->_name = name;
 
@@ -125,6 +127,16 @@ CWidget* CParser::parseSprite(const json& data) {
 	parseImageParams(wdgt->_imageParams, data);
 	parseSpriteParams(wdgt->_spriteParams, data);
 	wdgt->initializeSprite();
+	return wdgt;
+}
+
+CWidget* CParser::parseSubtitles(const json& data) {
+
+	CSubtitles* wdgt = new CSubtitles();
+	parseParams(wdgt->_params, data);
+	parseImageParams(wdgt->_imageParams, data);
+	parseSubtitlesParams(wdgt->_subtitleParams,data);
+
 	return wdgt;
 }
 
@@ -294,5 +306,9 @@ void CParser::parseSpriteParams(TSpriteParams& params, const json& data) {
 		
 	}
 
+
+}
+
+void CParser::parseSubtitlesParams(TSubtitlesParams& params, const json& data) {
 
 }

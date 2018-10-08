@@ -29,6 +29,7 @@ namespace GUI {
         virtual TBarParams* getBarParams() { return nullptr; }
         virtual TTextParams* getTextParams() { return nullptr; }
 		virtual TSpriteParams* getSpriteParams() { return nullptr; }
+		virtual TSubtitlesParams* getSubtitleParams() { return nullptr; }
         virtual TParams* getTParams() { return nullptr; }
 		
         void addEffect(CEffect* fx);
