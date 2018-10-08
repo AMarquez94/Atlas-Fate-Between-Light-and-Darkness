@@ -60,7 +60,7 @@
 			"data/scenes/Intro/intro_buttons.scene",
 			"data/scenes/Intro/intro_particles.scene",
 			"data/scenes/Intro/intro_puerta_end.scene",
-			"data/scenes/intro_corridor_2.scene"
+			"data/scenes/intro_corridor.scene"
 		]
 	},
 	"scene_intro": {
@@ -136,7 +136,7 @@
 			"data/scenes/Intro/intro_particles.scene",
 			"data/scenes/grass_container.scene",
 			"data/scenes/decal_test.scene",
-			"data/scenes/intro_corridor.scene"
+			"data/scenes/intro_corridor_2.scene"
 		]
 	},
 	"scene_coliseo": {
@@ -159,7 +159,8 @@
 			"data/scenes/Coliseo/camera.scene",
 			"data/scenes/Coliseo/coliseo_particles.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
-			"data/scenes/Coliseo/coliseo_structures.scene"
+			"data/scenes/Coliseo/coliseo_structures.scene",
+			"data/scenes/col_intro_corridor.scene"
 		]
 	},
 	"scene_zone_a": {
