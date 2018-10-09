@@ -22,7 +22,7 @@ static void decodeVideoTextures() {
         float elapsed = tm.elapsedAndReset();
         float remaining_time = (1.0f / desired_fps) - elapsed;
         if (remaining_time > 0)
-            std::this_thread::sleep_for(std::chrono::milliseconds(2 * (int)(remaining_time * 1000)));
+            std::this_thread::sleep_for(std::chrono::milliseconds((int)(remaining_time * 1000)));
     }
 }
 

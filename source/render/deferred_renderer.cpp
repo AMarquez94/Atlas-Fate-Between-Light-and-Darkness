@@ -411,7 +411,9 @@ void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camer
     renderGBuffer();
     renderGBufferDecals();
 	renderAO(h_camera);
+
     CRenderManager::get().renderCategory("decals");
+
 	// Do the same with the acc light
 	CTexture::setNullTexture(TS_DEFERRED_ACC_LIGHTS);
 	renderAccLight();
