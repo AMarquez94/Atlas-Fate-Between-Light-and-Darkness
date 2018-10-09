@@ -287,7 +287,6 @@ void CModuleInstancing::clearInstances() {
 
     for (auto& p : _global_instances) {
         p.second._instances.clear();
-        p.second._instances_mesh->setInstancesData(p.second._instances.data(), p.second._instances.size(), sizeof(TInstance));
     }
 
     //_global_instances.clear();

@@ -137,7 +137,7 @@ void TCompTempPlayerController::update(float dt) {
     if(!isDead()){
         float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
         cb_globals.global_player_speed = (inputSpeed * currentSpeed) / 6.f; // Maximum speed, change this in the future. 
-        cb_globals.global_ambient_adjustment += dt * (isMerged ? 1 : -1); // Move to json when possible.
+        cb_globals.global_ambient_adjustment += 0.1 * dt * (isMerged ? 1 : -1); // Move to json when possible.
 
         cb_globals.global_ambient_adjustment = clamp(cb_globals.global_ambient_adjustment, EngineScene.getActiveScene()->scene_ambient, 0.1f);
         cb_player.player_health = life != maxLife ? (life/ maxLife) : 1;
