@@ -10,6 +10,7 @@ public:
 	{}
   bool start() override;
   void update(float delta) override;
+  bool stop() override;
 
 private:
   float _timer;
