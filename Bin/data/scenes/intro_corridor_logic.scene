@@ -14,7 +14,7 @@
 			"name": "tech_door",
 			"prefab": "data/prefabs/tech_door_little.prefab",
 			"transform": {
-				"pos": "-18.6632 1 -75.2838",
+				"pos": "-18.6632 0 -75.2838",
 				"rotation": "0 0 0 1"
 			}
 		}

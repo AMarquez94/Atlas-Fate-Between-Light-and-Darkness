@@ -343,6 +343,7 @@ void CModuleLogic::publishClasses() {
     m->set("removeSceneResources", SLB::FuncCall::create(&removeSceneResources));
     m->set("testingDestroy", SLB::FuncCall::create(&testingDestroy));
     m->set("testingLoadPartialScene", SLB::FuncCall::create(&testingLoadPartialScene));
+    m->set("testLoco", SLB::FuncCall::create(&testLoco));
 
     /* Handle converters */
     m->set("toEntity", SLB::FuncCall::create(&toEntity));
@@ -986,6 +987,34 @@ void testingDestroy()
 
 void testingLoadPartialScene() {
     EngineScene.loadPartialScene("scene_coliseo");
+}
+
+void testLoco() {
+
+    CEntity* player = EngineEntities.getPlayerHandle();
+    TCompTransform* tplayer = player->get<TCompTransform>();
+    CEntity* suelo_intro = getEntityByName("intro_suelo001");
+    CEntity* suelo_col = getEntityByName("col_intro_suelo001");
+    TCompTransform* t_suelo_intro = suelo_intro->get<TCompTransform>();
+    TCompTransform* t_suelo_col = suelo_col->get<TCompTransform>();
+
+    MAT44 ref_trans = t_suelo_intro->asMatrix().Invert();
+    VEC3 rel_pos = VEC3::Transform(tplayer->getPosition(), ref_trans);
+
+    /* Rotate the vector */
+    QUAT rot_final = t_suelo_col->getRotation();
+    VEC3 u = VEC3(rot_final.x, rot_final.y, rot_final.z);
+    float s = rot_final.w;
+    rel_pos = 2.0f * u.Dot(rel_pos) * u
+        + (s*s - u.Dot(u)) * rel_pos
+        + 2.0f * s * u.Cross(rel_pos);
+
+    VEC3 final_pos = rel_pos + t_suelo_col->getPosition();
+    tplayer->setPosition(final_pos);
+    TCompRigidbody* my_rigidbody = player->get<TCompRigidbody>();
+    my_rigidbody->setGlobalPose(tplayer->getPosition(), tplayer->getRotation());
+
+    /* TODO: rotation */
 }
 
 void unPauseGame() {

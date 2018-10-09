@@ -161,6 +161,7 @@ void preloadScene(const std::string& scene);
 void removeSceneResources(const std::string& scene);
 void testingDestroy();
 void testingLoadPartialScene();
+void testLoco();
 
 // Extra cvar commands
 void cg_drawfps(bool value);
