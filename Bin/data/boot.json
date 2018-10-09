@@ -132,9 +132,7 @@
 			"data/scenes/grass_container.scene",
 			"data/scenes/decal_test.scene",
 			"data/scenes/intro_corridor_2.scene",
-			"data/scenes/intro_corridor_logic.scene",
-			"data/scenes/col_intro_corridor.scene",
-			"data/scenes/col_intro_corridor_logic.scene"
+			"data/scenes/intro_corridor_logic.scene"
 		]
 	},
 	"scene_coliseo": {

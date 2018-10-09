@@ -21,6 +21,7 @@
 		"level_select",
 		"game_over",
 		"instancing",
+		"scene_manager",
 		"debug"
 	],
 	"render":

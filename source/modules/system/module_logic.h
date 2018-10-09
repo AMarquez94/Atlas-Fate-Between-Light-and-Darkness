@@ -45,6 +45,8 @@ public:
         GAME_END,
         SCENE_START,
         SCENE_END,
+        SCENE_PARTIAL_START,
+        SCENE_PARTIAL_END,
         TRIGGER_ENTER,
         TRIGGER_EXIT,
         PATROL_STUNNED,
@@ -120,6 +122,7 @@ void move(const std::string & name, const VEC3 & pos, const VEC3& lookat);
 void bind(const std::string& key, const std::string& script);
 void loadscene(const std::string &level);
 void unloadscene();
+void preloadScene(const std::string& scene);
 void loadCheckpoint();
 void shadowsToggle();
 void debugToggle();
@@ -132,6 +135,8 @@ void destroyHandle(unsigned int h);
 void resetPatrolLights();
 void animateSoundGraph(int value);
 void makeVisibleByTag(const std::string& tag, bool visible);
+VEC3 getPlayerLocalCoordinatesInReferenceTo(const std::string& ref_entity);
+void movePlayerToRefPos(const std::string& ref_entity, VEC3 p_rel_pos);
 
 /* Sounds */
 SoundEvent playEvent(const std::string& name);
@@ -157,9 +162,8 @@ void takeOutCredits();
 void sendOrderToDrone(const std::string& droneName, VEC3 position);
 void toggle_spotlight(const std::string& lightName);
 void toggleButtonCanBePressed(const std::string& buttonName, bool canBePressed);
-void preloadScene(const std::string& scene);
 void removeSceneResources(const std::string& scene);
-void testingDestroy();
+void destroyPartialScene();
 void testingLoadPartialScene();
 void testLoco();
 

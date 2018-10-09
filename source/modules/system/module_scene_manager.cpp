@@ -64,6 +64,7 @@ bool CModuleSceneManager::start() {
 
     // Load a persistent scene and the listed ones
     // Store at persistent scene, inviolable data.
+    next_scene = "";
     _persistentScene = createScene("Persistent_Scene");
     _persistentScene->isLoaded = true;
 
@@ -81,6 +82,12 @@ bool CModuleSceneManager::stop() {
 
 void CModuleSceneManager::update(float delta) {
 
+    if (next_scene != "") {
+        if (!EngineFiles.areResourcesToLoad()) {
+            loadPartialScene(next_scene);
+            next_scene = "";
+        }
+    }
     // TO-DO, Maybe not needed
 }
 
@@ -201,7 +208,7 @@ bool CModuleSceneManager::loadPartialScene(const std::string & name)
             /* Only new entities */
             EngineEntities.broadcastMsg(msg);
 
-            Engine.getLogic().execEvent(EngineLogic.SCENE_START, current_scene->name);
+            Engine.getLogic().execEvent(EngineLogic.SCENE_PARTIAL_START, current_scene->name);
 
             // Set the global data.
             cb_globals.global_fog_color = current_scene->ground_fog;
@@ -235,10 +242,11 @@ bool CModuleSceneManager::unLoadActiveScene(bool partial) {
     // Warning: persistent data will need to avoid deletion
     if (_activeScene != nullptr) {
 
+        EngineLogic.clearDelayedScripts();
+
         if (partial) {
 
-            EngineLogic.clearDelayedScripts();
-            EngineLogic.execEvent(EngineLogic.SCENE_END, _activeScene->name);
+            EngineLogic.execEvent(EngineLogic.SCENE_PARTIAL_END, _activeScene->name);
 
             /* Clear non persistent entities */
             std::vector<uint32_t> tag;
@@ -247,19 +255,19 @@ bool CModuleSceneManager::unLoadActiveScene(bool partial) {
             for (int i = 0; i < non_persistent_entities.size(); i++) {
                 non_persistent_entities[i].destroy();
             }
-
-            EngineIA.clearSharedBoards();
-            EngineNavmeshes.destroyNavmesh();
         }
         else {
 
+            EngineLogic.execEvent(EngineLogic.SCENE_END, _activeScene->name);
+
             EngineEntities.destroyAllEntities();
             EngineCameras.deleteAllCameras();
-            EngineIA.clearSharedBoards();
-            EngineNavmeshes.destroyNavmesh();
             EngineInstancing.clearInstances();
             EngineParticles.killAll();
         }
+
+        EngineIA.clearSharedBoards();
+        EngineNavmeshes.destroyNavmesh();
 
         removeSceneResources(_activeScene->name);
 
@@ -296,6 +304,7 @@ std::string CModuleSceneManager::getDefaultSceneName() {
 
 void CModuleSceneManager::preloadScene(const std::string& sceneName) {
     EngineFiles.addVectorResourceToLoad(EngineFiles.getFileResourceVector(sceneName));
+    next_scene = sceneName;
 
     //const std::vector<std::string> resources = EngineFiles.getFileResourceVector(sceneName);
     //for (int i = 0; i < resources.size(); i++) {

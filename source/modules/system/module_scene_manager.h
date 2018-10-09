@@ -58,6 +58,8 @@ private:
     std::string _default_scene;
     std::map<std::string, Scene*> _scenes;
 
+    std::string next_scene;
+
     void loadJsonScenes(const std::string filepath);
     void setActiveScene(Scene* scene);
 };

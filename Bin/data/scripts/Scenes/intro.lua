@@ -24,6 +24,10 @@ function onSceneEnd_scene_intro()
 	--ambiance:stop(true);
 end
 
+function onScenePartialEnd_scene_intro()
+	i_ref_pos = getPlayerLocalCoordinatesInReferenceTo("intro_suelo001");
+end
+
 function intro_intro_cinematic()
 	move("The Player", VEC3(-7.5, 12.115, 34.2), VEC3(-7.5, 12.115, 33.2));
 	resetMainCameras();
@@ -52,8 +56,13 @@ end
 function onTriggerEnter_intro_trigger_corridor_player()
 	getEntityByName("intro_trigger_corridor"):destroy();
 	tdoor = toDoor(toEntity(getEntityByName("tech_door")):getCompByName("door"));
-	tdoor:setClosedScript("testingDestroy()");
+	tdoor:setClosedScript("destroyIntroPreloadCol()");
 	tdoor:close();
+end
+
+function destroyIntroPreloadCol()
+	destroyPartialScene();
+	execScriptDelayed("preloadScene(\"scene_coliseo\")", 0.1);
 end
 
 -- # Trigger cinematic # --

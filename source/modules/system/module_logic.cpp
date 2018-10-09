@@ -292,7 +292,6 @@ void CModuleLogic::publishClasses() {
 
     // postfx hacks
     m->set("postFXToggle", SLB::FuncCall::create(&postFXToggle));
-
     // sounds
     m->set("playEvent", SLB::FuncCall::create(&playEvent));
     m->set("stopAllAudioComponents", SLB::FuncCall::create(&stopAllAudioComponents));
@@ -323,6 +322,7 @@ void CModuleLogic::publishClasses() {
     m->set("loadCheckpoint", SLB::FuncCall::create(&loadCheckpoint));
     m->set("loadScene", SLB::FuncCall::create(&loadscene));
     m->set("unloadScene", SLB::FuncCall::create(&unloadscene));
+    m->set("preloadScene", SLB::FuncCall::create(&preloadScene));
     m->set("cg_drawfps", SLB::FuncCall::create(&cg_drawfps));
     m->set("cg_drawlights", SLB::FuncCall::create(&cg_drawlights));
     m->set("renderNavmeshToggle", SLB::FuncCall::create(&renderNavmeshToggle));
@@ -333,15 +333,16 @@ void CModuleLogic::publishClasses() {
     m->set("resetPatrolLights", SLB::FuncCall::create(&resetPatrolLights));
     m->set("animateSoundGraph", SLB::FuncCall::create(&animateSoundGraph));
     m->set("makeVisibleByTag", SLB::FuncCall::create(&makeVisibleByTag));
+    m->set("getPlayerLocalCoordinatesInReferenceTo", SLB::FuncCall::create(&getPlayerLocalCoordinatesInReferenceTo));
+    m->set("movePlayerToRefPos", SLB::FuncCall::create(&movePlayerToRefPos));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
     m->set("toggle_spotlight", SLB::FuncCall::create(&toggle_spotlight));
     m->set("toggleButtonCanBePressed", SLB::FuncCall::create(&toggleButtonCanBePressed));
     m->set("getEntityByName", SLB::FuncCall::create(&getEntityByName));
-    m->set("preloadScene", SLB::FuncCall::create(&preloadScene));
     m->set("removeSceneResources", SLB::FuncCall::create(&removeSceneResources));
-    m->set("testingDestroy", SLB::FuncCall::create(&testingDestroy));
+    m->set("destroyPartialScene", SLB::FuncCall::create(&destroyPartialScene));
     m->set("testingLoadPartialScene", SLB::FuncCall::create(&testingLoadPartialScene));
     m->set("testLoco", SLB::FuncCall::create(&testLoco));
 
@@ -445,6 +446,22 @@ bool CModuleLogic::execEvent(Events event, const std::string & params, float del
             return execScript("onSceneEnd()").success && execScript("onSceneEnd_" + params + "()").success;
         }
         break;
+    case Events::SCENE_PARTIAL_START:
+        if (delay > 0) {
+            return execScriptDelayed("onSceneStart()", delay) && execScriptDelayed("onScenePartialStart_" + params + "()", delay);
+        }
+        else {
+            return execScript("onSceneStart()").success && execScript("onScenePartialStart_" + params + "()").success;
+        }
+        break;
+    case Events::SCENE_PARTIAL_END:
+        if (delay > 0) {
+            return execScriptDelayed("onSceneEnd()", delay) && execScriptDelayed("onScenePartialEnd_" + params + "()", delay);
+        }
+        else {
+            return execScript("onSceneEnd()").success && execScript("onScenePartialEnd_" + params + "()").success;
+        }
+        break;
 
     case Events::TRIGGER_ENTER:
         if (delay > 0) {
@@ -497,6 +514,7 @@ void CModuleLogic::printLog()
 void CModuleLogic::clearDelayedScripts()
 {
     delayedScripts.clear();
+    delayedSystemScripts.clear();
 }
 
 /* Auxiliar functions */
@@ -699,6 +717,11 @@ void unloadscene() {
     EngineScene.unLoadActiveScene();
 }
 
+void preloadScene(const std::string & scene)
+{
+    EngineScene.preloadScene(scene);
+}
+
 void sleep(float time) {
     Sleep(time);
 }
@@ -745,6 +768,38 @@ void makeVisibleByTag(const std::string & tag, bool visible)
     for (int i = 0; i < v_handles.size(); i++) {
         v_handles[i].sendMsg(msg);
     }
+}
+
+VEC3 getPlayerLocalCoordinatesInReferenceTo(const std::string & ref_entity)
+{
+    CEntity* player = EngineEntities.getPlayerHandle();
+    CEntity* e_ref_entity = getEntityByName(ref_entity);
+    TCompTransform* ppos = player->get<TCompTransform>();
+    TCompTransform* ref_pos = e_ref_entity->get<TCompTransform>();
+
+    MAT44 ref_trans = ref_pos->asMatrix().Invert();
+    return VEC3::Transform(ppos->getPosition(), ref_trans);
+}
+
+void movePlayerToRefPos(const std::string & ref_entity, VEC3 p_rel_pos)
+{
+    CEntity* player = EngineEntities.getPlayerHandle();
+    TCompTransform* tplayer = player->get<TCompTransform>();
+    CEntity* final_reference = getEntityByName(ref_entity);
+    TCompTransform* t_final_reference = final_reference->get<TCompTransform>();
+
+    /* Rotate the vector */
+    QUAT rot_final = t_final_reference->getRotation();
+    VEC3 u = VEC3(rot_final.x, rot_final.y, rot_final.z);
+    float s = rot_final.w;
+    p_rel_pos = 2.0f * u.Dot(p_rel_pos) * u
+        + (s*s - u.Dot(u)) * p_rel_pos
+        + 2.0f * s * u.Cross(p_rel_pos);
+
+    VEC3 final_pos = p_rel_pos + t_final_reference->getPosition();
+    tplayer->setPosition(final_pos);
+    TCompRigidbody* my_rigidbody = player->get<TCompRigidbody>();
+    my_rigidbody->setGlobalPose(tplayer->getPosition(), tplayer->getRotation());
 }
 
 SoundEvent playEvent(const std::string & name)
@@ -964,17 +1019,12 @@ void toggleButtonCanBePressed(const std::string & buttonName, bool canBePressed)
 	}
 }
 
-void preloadScene(const std::string & scene)
-{
-    EngineScene.preloadScene(scene);
-}
-
 void removeSceneResources(const std::string & scene)
 {
     EngineScene.removeSceneResources(scene);
 }
 
-void testingDestroy()
+void destroyPartialScene()
 {
     std::vector<uint32_t> tags;
     tags.push_back(getID("corridor"));
