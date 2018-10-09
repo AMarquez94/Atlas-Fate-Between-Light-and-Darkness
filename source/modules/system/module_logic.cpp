@@ -477,6 +477,28 @@ void CModuleLogic::clearDelayedScripts()
     delayedScripts.clear();
 }
 
+void CModuleLogic::eraseDelayedScripts(std::string keyWord) {
+	
+	for (int i = delayedScripts.size() - 1; i >= 0 ; i--) {
+		CModuleLogic::DelayedScript _curr_del = delayedScripts[i];
+		std::string::size_type e = _curr_del.script.find(keyWord);
+		if ((int)e >-1) {
+			delayedScripts.erase(delayedScripts.begin() + i);
+		}	
+	}
+}
+
+void CModuleLogic::eraseSystemDelayedScripts(std::string keyWord) {
+
+	for (int i = delayedSystemScripts.size() - 1; i >= 0; i--) {
+		CModuleLogic::DelayedScript _curr_del = delayedSystemScripts[i];
+		std::string::size_type e = _curr_del.script.find(keyWord);
+		if ((int)e >-1) {
+			delayedSystemScripts.erase(delayedSystemScripts.begin() + i);
+		}
+	}
+}
+
 /* Auxiliar functions */
 CModuleLogic * getLogic() { return EngineLogic.getPointer(); }
 

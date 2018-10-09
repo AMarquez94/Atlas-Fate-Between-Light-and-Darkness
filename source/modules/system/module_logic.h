@@ -70,6 +70,9 @@ public:
     void setPause(bool paused) { this->paused = paused; }
     void clearDelayedScripts();
 
+	void eraseDelayedScripts(std::string keyWord);
+	void eraseSystemDelayedScripts(std::string keyWord);
+
 private:
 
     SLB::Manager* m = new SLB::Manager;
