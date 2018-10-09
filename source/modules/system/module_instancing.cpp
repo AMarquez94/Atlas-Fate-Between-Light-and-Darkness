@@ -285,10 +285,12 @@ void CModuleInstancing::removeInstance(TInstance* instance) {
 
 void CModuleInstancing::clearInstances() {
 
-    for (auto& p : _global_instances)
-        p.second._instances_mesh->destroy();
+    for (auto& p : _global_instances) {
+        p.second._instances.clear();
+        p.second._instances_mesh->setInstancesData(p.second._instances.data(), p.second._instances.size(), sizeof(TInstance));
+    }
 
-    _global_instances.clear();
+    //_global_instances.clear();
 }
 
 void CModuleInstancing::clearInstance(const std::string &name) {

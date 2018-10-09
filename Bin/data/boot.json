@@ -5,7 +5,7 @@
 			"initial_script": "intro",
 			"navmesh": "data/navmeshes/intro_navmesh.bin",
 			"exposure": 1.51,
-			"ambient": 0.05,
+			"ambient": 0.04,
 			"gamma": 0.92,
 			"tone_mapping": 0.5,
 			"shadow_intensity": 0,

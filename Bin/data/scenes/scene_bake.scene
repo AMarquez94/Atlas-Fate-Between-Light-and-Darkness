@@ -1,7 +1,7 @@
 [
   {
-    "entity": {
-      "name": "Sphere00.dds",
+    "xentity": {
+      "name": "ReflectionProbe",
       "transform": {
         "pos": "-5 10 -8"
       },
