@@ -131,7 +131,7 @@
 			"data/scenes/Intro/intro_particles.scene",
 			"data/scenes/grass_container.scene",
 			"data/scenes/decal_test.scene",
-			"data/scenes/intro_corridor_2.scene",
+			"data/scenes/intro_corridor_3.scene",
 			"data/scenes/intro_corridor_logic.scene"
 		]
 	},
@@ -160,6 +160,8 @@
 			"data/scenes/Coliseo/coliseo_structures.scene",
 			"data/scenes/COL_pared_suelo.scene",
 			"data/scenes/col_intro_corridor.scene",
+			"data/scenes/col_zone_a_corridor.scene",
+			"data/scenes/col_bc_corridor.scene",
 			"data/scenes/col_intro_corridor_logic.scene"
 		]
 	},
