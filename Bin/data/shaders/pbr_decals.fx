@@ -104,7 +104,7 @@ void PS(
 	//o_normal = encodeNormal(N, roughness * decal_color.a);
   o_albedo.xyz = decal_color.xyz;
   o_albedo.a = (1-decal_color.a);//txMetallic.Sample(samLinear, float2(amount_of_x,amount_of_z)).r;;
-	
+	 
   // Change to true 'see' the boxes 
   if( false ) {
     o_albedo.a += 0.3;

@@ -195,7 +195,7 @@
 		"ps_entry_point": "PS_default",
 		"category": "decals",
 		"z": "test_but_no_write",
-		"blend": "combinative",
+		"blend": "multiplicative_gbuffer",
 		"textures": {
 			"noise": "data/textures/noise_cloud3.dds"
 		}
