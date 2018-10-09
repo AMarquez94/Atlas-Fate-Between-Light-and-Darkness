@@ -1335,3 +1335,4 @@ data/colliders/intro_collider_suelo_pasillo.collider
 data/meshes/intro_techo001.mesh
 data/meshes/intro_tubo_x005.mesh
 data/meshes/intro_tubo004.mesh
+data/meshes/intro_pared_aux_suelo_pasillo001.mesh
