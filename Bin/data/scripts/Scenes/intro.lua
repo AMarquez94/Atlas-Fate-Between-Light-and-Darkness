@@ -115,7 +115,7 @@ end
 -- # Trigger tutorials # --
 
 function onTriggerEnter_SMTutorial_player()
-	moveTutorialPlayer(VEC3(-7,0,25.2), VEC3(-7,0,23.2), true, "sm_tutorial");
+	moveTutorialPlayer(VEC3(-7,0,26), VEC3(-7,0,23.2), true, "sm_tutorial");
 	render_sm_sign.visible = true;
 end
 
