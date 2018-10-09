@@ -158,6 +158,7 @@
 			"data/scenes/Coliseo/coliseo_particles.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
 			"data/scenes/Coliseo/coliseo_structures.scene",
+			"data/scenes/COL_pared_suelo.scene",
 			"data/scenes/col_intro_corridor.scene",
 			"data/scenes/col_intro_corridor_logic.scene"
 		]
