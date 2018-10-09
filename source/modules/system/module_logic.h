@@ -151,6 +151,8 @@ void goToMainMenu();
 void takeOutCredits();
 void takeOutControlsOnMainMenu();
 void takeOutCreditsOnMainMenu();
+void activateSubtitles(std::string sub_name);
+void deactivateSubtitles();
 
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);

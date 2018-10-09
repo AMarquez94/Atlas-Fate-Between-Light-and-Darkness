@@ -58,6 +58,10 @@ public:
 	bool getButtonsState();
 
 	void closePauseMenu();
+
+	void setSubtitlesToNone();
+	void setSubtitles(std::string subtitle_name);
+
 private:
 	CCamera _orthoCamera;
 	const CRenderTechnique* _technique = nullptr;

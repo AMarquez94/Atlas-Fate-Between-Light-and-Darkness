@@ -4,6 +4,7 @@
 #include "gui/gui_parser.h"
 #include "gui/controllers/gui_menu_buttons_controller.h"
 #include "gui/widgets/gui_bar.h"
+#include "gui/widgets/gui_subtitles.h"
 #include "gui/gui_controller.h"
 #include "components/postfx/comp_render_blur.h"
 #include "components/postfx/comp_render_focus.h"
@@ -459,4 +460,26 @@ void CModuleGUI::closePauseMenu() {
 	comp_blur->enabled = false;
 	comp_focus->enabled = false;
 	EngineLogic.execSystemScriptDelayed("unPauseGame();", 0.08f);
+}
+
+void CModuleGUI::setSubtitlesToNone() {
+
+	if (getWidgetStructureEnabled(CModuleGUI::EGUIWidgets::SUBTITLES)) {
+		GUI::CWidget *wdgt = EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SUBTITLES)->getAllChilds()[0];
+		if (wdgt->getType() == GUI::CWidget::EWidgetType::SUBTITLES) {
+			CSubtitles *subt = (CSubtitles*)wdgt;
+			subt->activateSubtitles("none");
+		}
+	}
+}
+
+void CModuleGUI::setSubtitles(std::string subtitle_name) {
+
+	if (getWidgetStructureEnabled(CModuleGUI::EGUIWidgets::SUBTITLES)) {
+		GUI::CWidget *wdgt = EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SUBTITLES)->getAllChilds()[0];
+		if (wdgt->getType() == GUI::CWidget::EWidgetType::SUBTITLES) {
+			CSubtitles *subt = (CSubtitles*)wdgt;
+			subt->activateSubtitles(subtitle_name);
+		}
+	}
 }

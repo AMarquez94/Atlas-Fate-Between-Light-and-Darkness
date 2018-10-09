@@ -25,6 +25,7 @@
 #include "modules/game/module_game_manager.h"
 #include "components/postfx/comp_render_blur.h"
 #include "components/postfx/comp_render_focus.h"
+#include "gui/gui_widget.h"
 
 bool CModuleLogic::start() {
 
@@ -295,6 +296,8 @@ void CModuleLogic::publishClasses() {
 	m->set("takeOutCredits", SLB::FuncCall::create(&takeOutCredits));
 	m->set("takeOutControlsOnMainMenu", SLB::FuncCall::create(&takeOutControlsOnMainMenu));
 	m->set("takeOutCreditsOnMainMenu", SLB::FuncCall::create(&takeOutCreditsOnMainMenu));
+	m->set("activateSubtitles", SLB::FuncCall::create(&activateSubtitles));
+	m->set("deactivateSubtitles", SLB::FuncCall::create(&deactivateSubtitles));
 	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -962,4 +965,13 @@ void takeOutCreditsOnMainMenu() {
 	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND);
 	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACK);
 	EngineGUI.activateController(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
+}
+
+void activateSubtitles(std::string sub_name) {
+
+	EngineGUI.setSubtitles(sub_name);
+}
+
+void deactivateSubtitles() {
+	EngineGUI.setSubtitlesToNone();
 }

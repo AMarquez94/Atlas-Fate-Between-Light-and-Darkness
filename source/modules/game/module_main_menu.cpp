@@ -24,6 +24,7 @@ bool CModuleMainMenu::start()
 
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BACKGROUND);
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
+	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::SUBTITLES);
 
 	CHandle h_camera = getEntityByName("test_camera_flyover");
 	if (h_camera.isValid())
