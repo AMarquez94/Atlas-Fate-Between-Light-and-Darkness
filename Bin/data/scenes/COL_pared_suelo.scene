@@ -74,13 +74,6 @@
       ,
       "collider":
       {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/COL_collider_suelopared.collider"
-      }
-      ,
-      "collider":
-      {
         "shape": "box"
         ,
         "size": "29.1754 0.497726 29.0391"
