@@ -86,6 +86,8 @@ void CModuleGUI::initializeWidgetStructure() {
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::SUBTITLES);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY);
 		CEngine::get().getModules().changeGameState("main_menu");
 	};
 	auto pm_Exit = []() {
