@@ -82,7 +82,7 @@ void CModuleGameManager::switchState(PauseState pause) {
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
-
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_LINE);
 
     }break;
     case PauseState::main: {
@@ -109,8 +109,21 @@ void CModuleGameManager::switchState(PauseState pause) {
     }break;
     case PauseState::defeat: {
         mouse->setLockMouse(false);
-		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND)->makeChildsFadeIn(3,4);
-		EngineLogic.execSystemScriptDelayed("unlockDeadButton();",4.0f);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND)->makeChildsFadeIn(2,3);
+
+		GUI::CWidget *w = EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_LINE);
+		if (w) {
+			float *aux_x = &w->getChild("line_dead_left")->getBarParams()->_ratio;
+			*aux_x = 0.0f;
+			EngineLerp.lerpElement(aux_x, 1.0f, 2.0f, 5.0f);
+
+			float *aux_x_r = &w->getChild("line_dead_right")->getBarParams()->_ratio;
+			*aux_x_r = 0.0f;
+			EngineLerp.lerpElement(aux_x_r, 1.0f, 2.0f, 5.0f);
+
+		}
+
+		EngineLogic.execSystemScriptDelayed("unlockDeadButton();",5.0f);
 		EngineLerp.lerpElement(&cb_player.player_health, 0, 2, 2);
     }break;
     case PauseState::editor1: {

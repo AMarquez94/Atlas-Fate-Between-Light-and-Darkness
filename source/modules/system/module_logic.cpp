@@ -956,7 +956,7 @@ void backFromControls() {
 }
 
 void unlockDeadButton() {
-	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS)->makeChildsFadeIn(3, 0, true);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS)->makeChildsFadeIn(1, 0, true);
 }
 
 void execDeadButton() {
