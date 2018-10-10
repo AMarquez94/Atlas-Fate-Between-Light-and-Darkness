@@ -1,7 +1,7 @@
 [
   {
     "entity": {
-      "name": "Buttons"
+      "name": "Terminals"
     }        
   },
   {
@@ -9,8 +9,8 @@
       "name": "Button End Scene",
 	  "prefab": "data/prefabs/terminal.prefab",
       "transform": {
-        "pos": "-38.6 0 -133.5",
-        "lookat": "-38.6 0 -200"
+        "pos": "-40 0 -133.5",
+        "lookat": "-39 0 -133.5"
       },
       "button": {
         "script": "transition_zone_a_to_coliseum()",
@@ -24,7 +24,7 @@
 	  "prefab": "data/prefabs/terminal.prefab",
       "transform": {
         "pos": "-106 0 -133",
-        "lookat": "-106 0 0"
+        "lookat": "-107 0 -133"
       },
       "button": {
         "script": "enable_button_exit()",

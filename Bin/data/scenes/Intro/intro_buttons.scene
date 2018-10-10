@@ -9,39 +9,13 @@
 			"name": "Intro_terminal_01",
 			"prefab": "data/prefabs/terminal.prefab",
 			"transform": {
-				"pos": "-22.2 0 -75",
-				"lookat": "-22.03 0 -74.008555"
+				"pos": "-22.2 0 -74.275",
+				"lookat": "-23.2 0 -74.275"
 			},
 			"button": {
 				"script": "transition_intro_to_coliseum",
 				"canBePressed": true
 			}
 		}
-	},
-  {
-    "xentity": {
-      "name": "Button 1",
-      "transform": {
-        "pos": "-23 1 -74.5",
-        "rotation": "-0.707107 0 0 0.707107"
-      },
-      "render": [
-        {
-          "mesh": "data/meshes/Buttons/Button.mesh",
-          "materials": [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ],
-      "collider": {
-        "shape": "box",
-        "size": "0.3 0.3 0.3",
-        "group": "button"
-      },
-      "button": {
-        "script": "transition_intro_to_coliseum"
-      },
-      "tags": [ "button" ]
-    }
-  }
+	}
 ]

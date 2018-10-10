@@ -158,6 +158,7 @@
 			"data/scenes/Coliseo/coliseo_particles.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
 			"data/scenes/Coliseo/coliseo_structures.scene",
+			"data/scenes/Coliseo/buttons.scene",
 			"data/scenes/COL_pared_suelo.scene",
 			"data/scenes/col_intro_corridor.scene",
 			"data/scenes/col_zone_a_corridor.scene",
@@ -248,10 +249,11 @@
 		"persistent_scenes": [
 			"data/scenes/Coliseo/_player2.scene",
 			"data/scenes/_main_cameras.scene"
-		],		
+		],
 		"scene_group": [
 			"data/scenes/Coliseo/test_instancing.scene",
 			"data/scenes/Coliseo/coliseo_particles.scene",
+			"data/scenes/Coliseo/buttons.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
 			"data/scenes/Coliseo/coliseo_structures.scene"
 		]
@@ -270,7 +272,8 @@
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.043"
-		},"persistent_scenes": [
+		},
+		"persistent_scenes": [
 			"data/scenes/Basilic_courtyard/_player.scene",
 			"data/scenes/_main_cameras.scene"
 		],

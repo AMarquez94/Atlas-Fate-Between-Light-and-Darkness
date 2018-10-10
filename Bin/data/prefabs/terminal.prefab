@@ -5,18 +5,18 @@
 				"pos": "0 0 0"
 			},
 			"render": [{
-				"mesh": "data/meshes/COL_mesh_terminal01.mesh",
+				"mesh": "data/meshes/mesh_terminal.mesh",
 				"materials": [
 					"data/materials/mtl_terminal.material"
 				]
 			}],
 			"collider": {
 				"shape": "mesh",
-				"name": "data/colliders/COL_collider_terminal02.collider",
+				"name": "data/colliders/collider_mesh_terminal.collider",
 				"group": "button"
 			},
 			"player_animator_placer" : {
-				"relative_position" : "-0.1 0 1.45"
+				"relative_position" : "1.45 0 0"
 			},
 			"button": {
 				"script": "",

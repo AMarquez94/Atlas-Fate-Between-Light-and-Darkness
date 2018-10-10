@@ -790,7 +790,7 @@
 		}
 	},
 	{
-		"entity": {
+		"xentity": {
 			"name": "COL_mesh_palanca",
 			"transform": {
 				"pos": "6.03994 2.01133 -23.2836",
@@ -807,7 +807,7 @@
 		}
 	},
 	{
-		"entity": {
+		"xentity": {
 			"name": "COL_mesh_palanca001",
 			"transform": {
 				"pos": "-24.3129 2.01133 -5.19886",
@@ -824,7 +824,7 @@
 		}
 	},
 	{
-		"entity": {
+		"xentity": {
 			"name": "COL_mesh_palanca002",
 			"transform": {
 				"pos": "24.5552 2.01133 5.9993",
@@ -876,44 +876,6 @@
 			}],
 			"abs_aabb": true,
 			"local_aabb": true
-		}
-	},
-	{
-		"entity": {
-			"name": "COL_mesh_terminal01",
-			"prefab": "data/prefabs/terminal.prefab",
-			"transform": {
-				"pos": "6.34737 0.98493 -23.8924",
-				"lookat": "6.34737 0.98493 0"
-			},
-			"button": {
-				"script": "transition_coliseum_to_courtyard()",
-				"canBePressed": false
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "COL_mesh_terminal02",
-			"prefab": "data/prefabs/terminal.prefab",
-			"transform": {
-				"pos": "-24.8874 0.984931 -5.56652",
-				"lookat": "0 0.984931 -5.56652"
-			},
-			"button": {
-				"script": "transition_coliseum_to_zone_a()",
-				"canBePressed": true
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "COL_mesh_terminal03",
-			"prefab": "data/prefabs/terminal.prefab",
-			"transform": {
-				"pos": "25.1566 0.984931 6.321",
-				"lookat": "0 0.984931 0"
-			}
 		}
 	},
 	{
