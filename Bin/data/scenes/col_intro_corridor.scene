@@ -592,6 +592,22 @@
   {
     "entity":
     {
+      "name": "col_intro_framedoor"
+      ,
+      "prefab": "data/prefabs/puerta_tech.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-0.0423794 0.743951 28.0531"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "col_intro_lampara001"
       ,
       "transform":
@@ -713,73 +729,6 @@
       "abs_aabb": true
       ,
       "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "col_intro_puerta_l001"
-      ,
-      "prefab": "data/prefabs/tech_door_little.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-0.043561 0.943894 68.221"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "col_intro_puerta_plaza001"
-      ,
-      "transform":
-      {
-        "pos": "-0.0426302 3.53239 28.3312"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/col_intro_puerta_plaza001.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "tags":
-      [
-        "corridor"
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "col_intro_puerta_r001"
-      ,
-      "prefab": "data/prefabs/tech_door_little.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-0.043561 0.943894 68.221"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
     }
   }
   ,
