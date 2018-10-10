@@ -10,7 +10,7 @@
 		}
 	},
 	{
-		"entity": {
+		"xentity": {
 			"name": "little_tech_door_intro",
 			"prefab": "data/prefabs/tech_door_little.prefab",
 			"transform": {
