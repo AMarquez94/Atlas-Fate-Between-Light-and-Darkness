@@ -156,6 +156,7 @@ void takeOutControlsOnMainMenu();
 void takeOutCreditsOnMainMenu();
 void activateSubtitles(std::string sub_name);
 void deactivateSubtitles();
+void setEnemyHudState(bool state);
 
 void activateMission(std::string sub_name);
 
