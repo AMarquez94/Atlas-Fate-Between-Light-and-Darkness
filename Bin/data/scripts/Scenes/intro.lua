@@ -43,7 +43,7 @@ end
 -- # Transition cinematic # --
 function transition_intro_to_coliseum()
 	makeVisibleByTag("corridor", true);
-	toDoor(toEntity(getEntityByName("tech_door")):getCompByName("door")):open();
+	toDoor(toEntity(getEntityByName("intro_marco_puerta001")):getCompByName("door")):open();
 	--preloadScene("scene_coliseo");
 	
 	--execScriptDelayed("blendInCamera(\"scene_transition\", 1.0, \"cinematic\", \"\")", 2);
@@ -55,7 +55,7 @@ end
 -- # Trigger loading # --
 function onTriggerEnter_intro_trigger_corridor_player()
 	getEntityByName("intro_trigger_corridor"):destroy();
-	tdoor = toDoor(toEntity(getEntityByName("tech_door")):getCompByName("door"));
+	tdoor = toDoor(toEntity(getEntityByName("intro_marco_puerta001")):getCompByName("door"));
 	tdoor:setClosedScript("destroyIntroPreloadCol()");
 	tdoor:close();
 end

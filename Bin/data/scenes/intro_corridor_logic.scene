@@ -11,16 +11,6 @@
 	},
 	{
 		"entity": {
-			"name": "tech_door",
-			"prefab": "data/prefabs/tech_door_little.prefab",
-			"transform": {
-				"pos": "-18.6632 0 -75.2838",
-				"rotation": "0 0 0 1"
-			}
-		}
-	},
-	{
-		"entity": {
 			"name": "intro_trigger_corridor",
 			"transform": {
 				"pos": "-18.9149 0.0 -77.4088",

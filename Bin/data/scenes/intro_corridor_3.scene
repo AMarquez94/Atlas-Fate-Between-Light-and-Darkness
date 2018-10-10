@@ -8,6 +8,11 @@
       {
         "pos": "0.0 0.0 0.0"
       }
+	  ,
+      "tags":
+      [
+        "corridor"
+      ]
     }
   }
   ,
@@ -135,6 +140,7 @@
           ,
           "materials":
           [
+			
           ]
         }
       ]
@@ -674,6 +680,7 @@
           ,
           "materials":
           [
+			"data/materials/mtl_puerta_peq.material"
           ]
         }
       ]
