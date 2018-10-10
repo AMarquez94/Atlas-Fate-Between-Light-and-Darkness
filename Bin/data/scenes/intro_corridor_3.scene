@@ -7,7 +7,12 @@
       "transform":
       {
         "pos": "0.0 0.0 0.0"
-      }
+      } 
+	  ,
+      "tags":
+      [
+        "corridor"
+      ]
     }
   }
   ,
@@ -674,6 +679,7 @@
           ,
           "materials":
           [
+			"data/materials/mtl_puerta_peq.material"
           ]
         }
       ]
@@ -734,22 +740,6 @@
   {
     "entity":
     {
-      "name": "intro_puerta_l001"
-      ,
-      "prefab": "data/prefabs/tech_door_little.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-18.6632 0.0709004 -75.2688"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "intro_puerta_plaza001"
       ,
       "transform":
@@ -778,22 +768,6 @@
       "abs_aabb": true
       ,
       "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "intro_puerta_r001"
-      ,
-      "prefab": "data/prefabs/tech_door_little.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-18.6632 0.0709004 -75.2688"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
     }
   }
   ,
