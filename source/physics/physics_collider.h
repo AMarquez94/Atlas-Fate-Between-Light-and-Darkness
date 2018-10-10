@@ -8,12 +8,10 @@ class TCompTransform;
 
 class CPhysicsCollider {
 
-protected:
-    physx::PxMaterial* material;
+public:
     physx::PxGeometryType shape_type;
 
-public:
-
+    physx::PxMaterial* material;
     static physx::PxMaterial* default_material;
 
     bool is_trigger = false;
