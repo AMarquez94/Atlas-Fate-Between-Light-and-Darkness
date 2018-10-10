@@ -20,7 +20,7 @@
       ,
       "transform":
       {
-        "pos": "-18.6633 -0.129042 -114.262"
+        "pos": "-18.6621 -0.129043 -114.481"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -716,40 +716,6 @@
           "materials":
           [
             "data/materials/mtl_paredes_corridor.material"
-          ]
-        }
-      ]
-      ,
-      "tags":
-      [
-        "corridor"
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "intro_puerta_plaza001"
-      ,
-      "transform":
-      {
-        "pos": "-18.6623 2.6594 -115.159"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/intro_puerta_plaza001.mesh"
-          ,
-          "materials":
-          [
           ]
         }
       ]
