@@ -14,6 +14,22 @@
   {
     "entity":
     {
+      "name": "framedoor"
+      ,
+      "prefab": "data/prefabs/puerta_tech.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.6633 -0.129042 -114.262"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "intro_agujero002"
       ,
       "transform":
@@ -718,22 +734,6 @@
   {
     "entity":
     {
-      "name": "intro_puerta_l001"
-      ,
-      "prefab": "data/prefabs/tech_door_little.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-18.6632 0.0709004 -75.2688"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "intro_puerta_plaza001"
       ,
       "transform":
@@ -750,7 +750,6 @@
           ,
           "materials":
           [
-            "data/materials/mtl_puertatech.material"
           ]
         }
       ]
@@ -763,22 +762,6 @@
       "abs_aabb": true
       ,
       "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "intro_puerta_r001"
-      ,
-      "prefab": "data/prefabs/tech_door_little.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-18.6632 0.0709004 -75.2688"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
     }
   }
   ,
@@ -2535,39 +2518,6 @@
       "abs_aabb": true
       ,
       "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "intro_trigger_corridor"
-      ,
-      "transform":
-      {
-        "pos": "-18.9149 0.0 -77.4088"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "3.48643 1.34091 1.33423"
-        ,
-        "group": "All"
-        ,
-        "mask": ""
-        ,
-        "is_trigger": true
-        ,
-        "is_dynamic": false
-        ,
-        "is_controller": false
-        ,
-        "is_gravity": false
-      }
     }
   }
 ]
