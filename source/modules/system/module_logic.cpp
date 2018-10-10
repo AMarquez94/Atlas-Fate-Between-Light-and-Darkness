@@ -299,6 +299,7 @@ void CModuleLogic::publishClasses() {
 	m->set("activateSubtitles", SLB::FuncCall::create(&activateSubtitles));
 	m->set("deactivateSubtitles", SLB::FuncCall::create(&deactivateSubtitles));
 	m->set("activateMission", SLB::FuncCall::create(&activateMission));
+	m->set("setEnemyHudState", SLB::FuncCall::create(&setEnemyHudState));
 	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -1001,4 +1002,13 @@ void deactivateSubtitles() {
 
 void activateMission(std::string sub_name) {
 	EngineGUI.setMission(sub_name);
+}
+
+void setEnemyHudState(bool state) {
+	if (state) {
+		EngineGUI.activateEnemyHUD();
+	}
+	else {
+		EngineGUI.deactivateEnemyHUD();
+	}
 }
