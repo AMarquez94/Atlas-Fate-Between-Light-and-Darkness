@@ -222,6 +222,12 @@
 			"data/scenes/ZoneA/buttons.scene",
 			"data/scenes/zone_a_carteles.scene",
 			"data/scenes/ZoneA/carteles.scene",
+
+
+			"data/scenes/zone_a_in_corridor.scene",
+			"data/scenes/zone_a_out_corridor.scene",
+
+
 			"data/scenes/ZoneA/zone_a_puerta_end.scene"
 		]
 	},
