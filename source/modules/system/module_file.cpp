@@ -8,7 +8,7 @@ bool CModuleFile::start() {
     Resources.registerResourceClass(getResourceClassOf<CJsonResource>());
 
     preloadResources(true);
-    
+
     resource_thread = std::thread(&CModuleFile::resourceThreadMain, this);
 
     return true;
@@ -334,9 +334,7 @@ void CModuleFile::parseResourceScene(const json& j, std::vector<std::string>& sc
                     if (j_particles.count("cores")) {
                         const std::vector<std::string> j_cores = j_particles["cores"];
                         for (int i = 0; i < j_cores.size(); i++) {
-                            if (j_cores[i].compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), j_cores[i]) == scene_resources.end()) {
-                                scene_resources.push_back(j_cores[i]);
-                            }
+                            parseParticle(j_cores[i], scene_resources);
                         }
                     }
                 }
@@ -354,7 +352,7 @@ void CModuleFile::parseResourceScene(const json& j, std::vector<std::string>& sc
                 }
 
                 if (j_entity.count("color_grading")) {
-                    
+
                     /* Color grading */
                     auto& j_color_grading = j_entity["color_grading"];
                     if (j_color_grading.count("lut")) {
@@ -432,6 +430,36 @@ void CModuleFile::parseMaterial(const std::string & material_path, std::vector<s
 
         /* Material */
         scene_resources.push_back(material_path);
+    }
+}
+
+void CModuleFile::parseParticle(const std::string & particle_path, std::vector<std::string>& scene_resources)
+{
+    if (particle_path.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), particle_path) == scene_resources.end()) {
+        const json& j_particle = loadJson(particle_path);
+
+        if (j_particle.count("noise")) {
+            auto& j_noise = j_particle["noise"];
+
+            std::string noise_texture = j_noise.value("texture", "");
+
+            if (noise_texture.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), noise_texture) == scene_resources.end()) {
+                scene_resources.push_back(noise_texture);
+            }
+        }
+
+        if (j_particle.count("renderer")) {
+            auto& j_renderer = j_particle["renderer"];
+
+            std::string renderer_texture = j_renderer.value("texture", "");
+
+            if (renderer_texture.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), renderer_texture) == scene_resources.end()) {
+                scene_resources.push_back(renderer_texture);
+            }
+        }
+
+        /* Material */
+        scene_resources.push_back(particle_path);
     }
 }
 

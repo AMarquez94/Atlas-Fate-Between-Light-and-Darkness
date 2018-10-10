@@ -56,4 +56,5 @@ private:
     void resourceThreadMain();
     void parseResourceScene(const json& j, std::vector<std::string>& scene_resources);
     void parseMaterial(const std::string& material_path, std::vector<std::string>& scene_resources);
+    void parseParticle(const std::string& particle_path, std::vector<std::string>& scene_resources);
 };
