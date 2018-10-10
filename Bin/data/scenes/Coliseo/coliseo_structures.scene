@@ -205,7 +205,7 @@
 		}
 	},
 	{
-		"entity": {
+		"xentity": {
 			"name": "COL_mesh_suelopared",
 			"transform": {
 				"pos": "0.0 -0.00610352 0.0",
