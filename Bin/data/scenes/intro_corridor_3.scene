@@ -8,24 +8,19 @@
       {
         "pos": "0.0 0.0 0.0"
       }
-	  ,
-      "tags":
-      [
-        "corridor"
-      ]
     }
   }
   ,
   {
     "entity":
     {
-      "name": "framedoor"
+      "name": "intro_framedoor"
       ,
       "prefab": "data/prefabs/puerta_tech.prefab"
       ,
       "transform":
       {
-        "pos": "-18.6621 -0.129043 -114.481"
+        "pos": "-18.6621 -0.129043 -115.782"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -140,7 +135,6 @@
           ,
           "materials":
           [
-			
           ]
         }
       ]
@@ -680,7 +674,6 @@
           ,
           "materials":
           [
-			"data/materials/mtl_puerta_peq.material"
           ]
         }
       ]
@@ -735,6 +728,72 @@
       "abs_aabb": true
       ,
       "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_puerta_l001"
+      ,
+      "prefab": "data/prefabs/tech_door_little.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.6632 0.0709004 -75.2688"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_puerta_plaza001"
+      ,
+      "transform":
+      {
+        "pos": "-18.6623 2.6594 -115.159"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_puerta_plaza001.mesh"
+          ,
+          "materials":
+          [
+          ]
+        }
+      ]
+      ,
+      "tags":
+      [
+        "corridor"
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_puerta_r001"
+      ,
+      "prefab": "data/prefabs/tech_door_little.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.6632 0.0709004 -75.2688"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
     }
   }
   ,
