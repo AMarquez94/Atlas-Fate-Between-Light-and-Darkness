@@ -1,0 +1,800 @@
+[
+  {
+    "entity":
+    {
+      "name": "basilic_interior_estructura"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arcosfront"
+      ,
+      "transform":
+      {
+        "pos": "-8.78404 -1.82668 35.3863"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arcosfront.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arcosleft"
+      ,
+      "transform":
+      {
+        "pos": "26.2615 -1.82668 1.61214"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arcosleft.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_arcosright"
+      ,
+      "transform":
+      {
+        "pos": "-42.9878 -1.82668 1.61214"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_arcosright.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_coberturaesquinaback_left"
+      ,
+      "transform":
+      {
+        "pos": "-8.78399 59.0967 1.61228"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_coberturaesquinaback_left.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_coberturaesquinaback_right"
+      ,
+      "transform":
+      {
+        "pos": "-8.78399 59.0967 1.61228"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_coberturaesquinaback_right.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_coberturaesquinafront_left"
+      ,
+      "transform":
+      {
+        "pos": "-8.78399 59.0967 1.61228"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_coberturaesquinafront_left.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_coberturaesquinafront_right"
+      ,
+      "transform":
+      {
+        "pos": "-8.78399 59.0967 1.61228"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_coberturaesquinafront_right.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columnabackleft"
+      ,
+      "transform":
+      {
+        "pos": "8.38901 -22.8147 -15.6776"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_columnabackleft.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columnabackright"
+      ,
+      "transform":
+      {
+        "pos": "-26.1309 -22.8147 -15.554"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_columnabackright.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columnafrontleft"
+      ,
+      "transform":
+      {
+        "pos": "8.38902 -22.8147 18.7356"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_columnafrontleft.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_columnafrontright"
+      ,
+      "transform":
+      {
+        "pos": "-26.2817 -22.8147 18.7356"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_columnafrontright.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cupulasuperior"
+      ,
+      "transform":
+      {
+        "pos": "-8.784 59.0967 1.61228"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_cupulasuperior.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_esquinabackleft"
+      ,
+      "transform":
+      {
+        "pos": "-8.784 59.0967 1.61228"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_esquinabackleft.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_esquinabackright"
+      ,
+      "transform":
+      {
+        "pos": "-8.784 59.0967 1.61228"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_esquinabackright.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_esquinafronright"
+      ,
+      "transform":
+      {
+        "pos": "-8.784 59.0967 1.61228"
+        ,
+        "rotation": "0.0 -1.0 0.0 1.62921e-07"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_esquinafronright.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_esquinafrontleft"
+      ,
+      "transform":
+      {
+        "pos": "-8.784 59.0967 1.61228"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_esquinafrontleft.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_paredback"
+      ,
+      "transform":
+      {
+        "pos": "-8.784 59.0967 1.61228"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_paredback.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_paredfront"
+      ,
+      "transform":
+      {
+        "pos": "-8.784 59.0967 1.61228"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_paredfront.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_paredleft"
+      ,
+      "transform":
+      {
+        "pos": "-8.784 59.0967 1.61228"
+        ,
+        "rotation": "0.0 1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_paredleft.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_paredright"
+      ,
+      "transform":
+      {
+        "pos": "-8.784 59.0967 1.61228"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_paredright.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pechinasuperior"
+      ,
+      "transform":
+      {
+        "pos": "-8.784 39.0832 1.61228"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_pechinasuperior.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_semicupulaback"
+      ,
+      "transform":
+      {
+        "pos": "-8.784 59.0967 1.61228"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_semicupulaback.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_semicupulafront"
+      ,
+      "transform":
+      {
+        "pos": "-8.784 59.0967 1.61228"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_semicupulafront.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_semicupulaleft"
+      ,
+      "transform":
+      {
+        "pos": "-8.784 59.0967 1.61228"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_semicupulaleft.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_semicupularight"
+      ,
+      "transform":
+      {
+        "pos": "-8.784 59.0967 1.61228"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_semicupularight.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_suelomezquitaint"
+      ,
+      "transform":
+      {
+        "pos": "-8.784 -20.2863 -0.18225"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_suelomezquitaint.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquitapared.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_suelomezquitaint.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

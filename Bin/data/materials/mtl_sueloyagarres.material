@@ -1,0 +1,18 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/sueloyagarres_alb.dds"
+    ,
+    "metallic": "data/textures/sueloyagarres_met.dds"
+    ,
+    "roughness": "data/textures/sueloyagarres_rgh.dds"
+    ,
+    "normal": "data/textures/sueloyagarres_nml.dds"
+    ,
+    "height": "data/textures/sueloyagarres_hgt.dds"
+    ,
+    "aocclusion": "data/textures/sueloyagarres_ao.dds"
+  }
+}

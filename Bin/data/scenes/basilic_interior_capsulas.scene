@@ -1,0 +1,133 @@
+[
+  {
+    "entity":
+    {
+      "name": "basilic_interior_capsulas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_capsula_humano_centro"
+      ,
+      "transform":
+      {
+        "pos": "3.08505 8.74989 22.2733"
+        ,
+        "rotation": "0.0 0.573576 -0.819152 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_capsula_humano_centro.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_capsula_humano.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_capsula_humano_drcha"
+      ,
+      "transform":
+      {
+        "pos": "-30.8607 8.4778 12.9978"
+        ,
+        "rotation": "0.584239 0.398327 -0.584239 0.398327"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_capsula_humano_drcha.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_capsula_humano.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_capsula_humano_izq"
+      ,
+      "transform":
+      {
+        "pos": "13.9175 8.5557 -9.77773"
+        ,
+        "rotation": "-0.579228 0.40558 -0.579228 -0.40558"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_capsula_humano_izq.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_capsula_humano.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_capsula_humano_suelo"
+      ,
+      "transform":
+      {
+        "pos": "-1.53859 -16.4207 -30.7425"
+        ,
+        "rotation": "0.0 -0.999048 0.0436195 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_capsula_humano_suelo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_capsula_humano.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

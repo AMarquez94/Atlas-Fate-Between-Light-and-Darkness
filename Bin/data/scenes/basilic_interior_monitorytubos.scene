@@ -1,0 +1,253 @@
+[
+  {
+    "entity":
+    {
+      "name": "basilic_interior_monitorytubos"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "monitor1"
+      ,
+      "transform":
+      {
+        "pos": "-8.89666 1.40788 5.39339"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/monitor1.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_monitorytubos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "monitor1_peq"
+      ,
+      "transform":
+      {
+        "pos": "-9.0022 1.51051 5.39339"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/monitor1_peq.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_monitorytubos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "monitor1_peq001"
+      ,
+      "transform":
+      {
+        "pos": "-6.0483 1.53483 3.68061"
+        ,
+        "rotation": "0.0 -0.328711 0.0 -0.94443"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/monitor1_peq001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_monitorytubos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "monitor1_peq002"
+      ,
+      "transform":
+      {
+        "pos": "-11.904 1.53483 3.68061"
+        ,
+        "rotation": "0.0 -0.328711 0.0 -0.94443"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/monitor1_peq002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_monitorytubos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "monitor002"
+      ,
+      "transform":
+      {
+        "pos": "-5.93367 1.4322 3.61508"
+        ,
+        "rotation": "0.0 -0.328711 0.0 -0.94443"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/monitor002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_monitorytubos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "monitor003"
+      ,
+      "transform":
+      {
+        "pos": "-11.8213 1.4322 3.61508"
+        ,
+        "rotation": "0.0 -0.328711 0.0 -0.94443"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/monitor003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_monitorytubos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "patas_teclado"
+      ,
+      "transform":
+      {
+        "pos": "-8.89666 -0.0565625 0.211475"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/patas_teclado.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_monitorytubos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "teclado"
+      ,
+      "transform":
+      {
+        "pos": "-8.89666 0.83313 0.427212"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/teclado.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_monitorytubos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

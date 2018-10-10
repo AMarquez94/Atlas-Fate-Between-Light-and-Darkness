@@ -1,0 +1,193 @@
+[
+  {
+    "entity":
+    {
+      "name": "basilic_interior_nucleo"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesa"
+      ,
+      "transform":
+      {
+        "pos": "-8.89666 0.100908 5.23732"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesa.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_nucleo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "nucleo"
+      ,
+      "transform":
+      {
+        "pos": "-8.89666 1.77219 10.2313"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nucleo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_nucleo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "nucleo_capsulas"
+      ,
+      "transform":
+      {
+        "pos": "-8.94377 27.6155 12.2326"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/nucleo_capsulas.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_powerytornillo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tornillo"
+      ,
+      "transform":
+      {
+        "pos": "-2.5967 0.127246 -1.52712"
+        ,
+        "rotation": "0.0 0.0 -2.38419e-07 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tornillo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_powerytornillo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubo"
+      ,
+      "transform":
+      {
+        "pos": "-8.96748 15.1318 13.4421"
+        ,
+        "rotation": "0.192354 0.605462 0.0632993 -0.769681"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_powerytornillo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubo_mesa"
+      ,
+      "transform":
+      {
+        "pos": "-9.97857 0.538481 4.98902"
+        ,
+        "rotation": "-0.605465 -0.605465 0.365256 -0.365256"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubo_mesa.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_powerytornillo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

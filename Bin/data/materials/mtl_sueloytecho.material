@@ -3,18 +3,8 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/tx_sueloytecho_alb.dds"
+    "albedo": "data/textures/sueloytecho_low_1001_BaseColor.dds"
     ,
-    "metallic": "data/textures/tx_sueloytecho_met.dds"
-    ,
-    "roughness": "data/textures/tx_sueloytecho_rgh.dds"
-    ,
-    "normal": "data/textures/tx_sueloytecho_nml.dds"
-    ,
-    "height": "data/textures/tx_sueloytecho_hgt.dds"
-    ,
-    "emissive": "data/textures/tx_sueloytecho_emi.dds"
-    ,
-    "aocclusion": "data/textures/tx_sueloytecho_ao.dds"
+    "normal": "data/textures/null_normal.dds"
   }
 }

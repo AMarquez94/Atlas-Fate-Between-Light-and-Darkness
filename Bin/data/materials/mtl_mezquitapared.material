@@ -1,0 +1,10 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_torre_alb.dds"
+    ,
+    "normal": "data/textures/null_normal.dds"
+  }
+}
