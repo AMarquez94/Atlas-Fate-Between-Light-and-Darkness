@@ -83,6 +83,7 @@ void CModuleGameManager::switchState(PauseState pause) {
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_LINE);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_MISSION);
 
     }break;
     case PauseState::main: {
@@ -101,7 +102,7 @@ void CModuleGameManager::switchState(PauseState pause) {
 		comp_focus->enabled = true;
 		comp_blur->enabled = true;
 		comp_blur->global_distance = 10.0f;
-
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_MISSION)->makeChildsFadeIn(0.08, 0, false);
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS)->makeChildsFadeIn(0.08, 0, true);
     }break;
     case PauseState::win: {

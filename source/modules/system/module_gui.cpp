@@ -169,6 +169,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::SUBTITLES, "data/gui/subtitles_game.json");
 	registerWigdetStruct(EGUIWidgets::SPLASH_SCREEN, "data/gui/splash_screen.json");
 	registerWigdetStruct(EGUIWidgets::DEAD_LINE, "data/gui/dead_menu_line.json");
+	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE_MISSION, "data/gui/pause_menu_mision.json");
 }
 
 void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController *wdgt_controller) {
@@ -450,6 +451,7 @@ void CModuleGUI::closePauseMenu() {
 	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS)->makeChildsFadeOut(0.08, 0, true);
 	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::CONTROLS)->makeChildsFadeOut(0.08, 0, false);
 	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BACK_BUTTON)->makeChildsFadeOut(0.08, 0, true);
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_MISSION)->makeChildsFadeOut(0.08, 0, false);
 	GUI::CWidget *w = EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
 	if (w) {
 		float *aux_x = &w->getChild("line_pause")->getBarParams()->_ratio;
@@ -483,5 +485,14 @@ void CModuleGUI::setSubtitles(std::string subtitle_name) {
 			CSubtitles *subt = (CSubtitles*)wdgt;
 			subt->activateSubtitles(subtitle_name);
 		}
+	}
+}
+
+void CModuleGUI::setMission(std::string subtitle_name) {
+
+	GUI::CWidget *wdgt = EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_MISSION)->getAllChilds()[0];
+	if (wdgt != nullptr && wdgt->getType() == GUI::CWidget::EWidgetType::SUBTITLES) {
+		CSubtitles *subt = (CSubtitles*)wdgt;
+		subt->activateSubtitles(subtitle_name);
 	}
 }

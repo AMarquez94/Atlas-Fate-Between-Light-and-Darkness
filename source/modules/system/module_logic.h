@@ -157,6 +157,8 @@ void takeOutCreditsOnMainMenu();
 void activateSubtitles(std::string sub_name);
 void deactivateSubtitles();
 
+void activateMission(std::string sub_name);
+
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);
 void toggle_spotlight(const std::string& lightName);

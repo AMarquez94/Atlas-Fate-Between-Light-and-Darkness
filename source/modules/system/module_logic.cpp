@@ -298,6 +298,7 @@ void CModuleLogic::publishClasses() {
 	m->set("takeOutCreditsOnMainMenu", SLB::FuncCall::create(&takeOutCreditsOnMainMenu));
 	m->set("activateSubtitles", SLB::FuncCall::create(&activateSubtitles));
 	m->set("deactivateSubtitles", SLB::FuncCall::create(&deactivateSubtitles));
+	m->set("activateMission", SLB::FuncCall::create(&activateMission));
 	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -996,4 +997,8 @@ void activateSubtitles(std::string sub_name) {
 
 void deactivateSubtitles() {
 	EngineGUI.setSubtitlesToNone();
+}
+
+void activateMission(std::string sub_name) {
+	EngineGUI.setMission(sub_name);
 }
