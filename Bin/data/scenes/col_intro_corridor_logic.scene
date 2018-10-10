@@ -28,5 +28,62 @@
 				"rotation": "0 0 0 1"
 			}
 		}
+	},
+	{
+		"entity": {
+			"name": "COL_trigger_corridor_intro",
+			"transform": {
+				"pos": "-0.263777 0.0 22.346",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "6.31231 1.14714 1.92169",
+				"group": "All",
+				"mask": "",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_trigger_corridor_intro01",
+			"transform": {
+				"pos": "-7.51849 0.0 27.7587",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "1.71829 1.13715 5.25371",
+				"group": "All",
+				"mask": "",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_trigger_corridor_intro02",
+			"transform": {
+				"pos": "7.30381 0.0 27.7587",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "1.71829 1.13715 5.25371",
+				"group": "All",
+				"mask": "",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			}
+		}
 	}
 ]

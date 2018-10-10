@@ -11,7 +11,7 @@
 			"door": {
 				"open_anim": "open",
 				"close_anim": "close",
-				"time_to_open": 3,
+				"time_to_open": 3.5,
 				"time_to_close": 4
 			},
 			"collider": {
