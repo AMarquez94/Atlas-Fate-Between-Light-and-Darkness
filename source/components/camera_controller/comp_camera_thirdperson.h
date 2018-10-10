@@ -4,7 +4,7 @@
 #include "camera/camera.h"
 #include "entity/common_msgs.h"
 
-class TCompCameraThirdPerson : public TCompBase
+class TCompCameraThirdPerson : public CCamera, public TCompBase
 {
 private:
     CHandle     _h_target;

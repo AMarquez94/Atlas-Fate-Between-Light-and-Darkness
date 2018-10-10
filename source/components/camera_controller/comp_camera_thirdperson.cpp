@@ -203,8 +203,7 @@ void TCompCameraThirdPerson::update(float dt)
 		
         //float inputSpeed = Clamp(fabs(btHorizontal.value) + fabs(btVertical.value), 0.f, 1.f);
         //float current_fov = 70 + inputSpeed * 30; // Just doing some testing with the fov and speed
-        TCompCamera* my_camera = get<TCompCamera>();
-        my_camera->setPerspective(getFovUpdated(dt), 0.1f, 1000.f);
+        setPerspective(getFovUpdated(dt), 0.1f, 1000.f);
         //dbg("Setting perspective TP() - new fov: %f\n", rad2deg(getFov()));
     }
 
