@@ -14,6 +14,16 @@
 				"time_to_open": 3,
 				"time_to_close": 4
 			},
+			"collider":{
+		        "shape": "box"
+		        ,
+		        "size": "5.13296 2.92882 1.43296"
+		      }
+		      ,
+		      "abs_aabb": true
+		      ,
+		      "local_aabb": true,
+		  
 			"animated_object_controller": {
 				"reference_names": [{
 					"get_names_auto": true
