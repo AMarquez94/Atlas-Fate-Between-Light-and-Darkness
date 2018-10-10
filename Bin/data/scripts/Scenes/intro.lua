@@ -41,7 +41,8 @@ function intro_intro_cinematic()
 end
 
 -- # Transition cinematic # --
-function transition_intro_to_coliseum()
+function transition_intro_to_coliseum(button_handle)
+	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
 	makeVisibleByTag("corridor", true);
 	toDoor(toEntity(getEntityByName("intro_marco_puerta001")):getCompByName("door")):open();
 	--preloadScene("scene_coliseo");
@@ -50,6 +51,12 @@ function transition_intro_to_coliseum()
 	--execScriptDelayed("pausePlayerToggle()", 2);
 	--execScriptDelayed("cinematicModeToggle()", 2);
 	--execScriptDelayed("loadScene(\"scene_coliseo\")", 2);
+end
+
+function disableButton(button_handle, is_enabled)
+	h = CHandle();
+	h:fromUnsigned(button_handle);
+	toButton(toEntity(h):getCompByName("button")):setCanBePressed(is_enabled);
 end
 
 -- # Trigger loading # --

@@ -19,6 +19,7 @@ class TCompNoiseEmitter;
 class TCompParticles;
 class TCompAnimatedObjController;
 class TCompDoor;
+class TCompButton;
 
 class CModuleLogic : public IModule
 {
@@ -180,3 +181,4 @@ TCompRender* toRender(CHandle h);
 TCompParticles* toParticles(CHandle h);
 TCompAnimatedObjController* toAnimatedObject(CHandle h);
 TCompDoor* toDoor(CHandle h);
+TCompButton* toButton(CHandle h);

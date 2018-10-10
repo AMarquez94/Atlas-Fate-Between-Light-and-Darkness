@@ -171,7 +171,9 @@ void CModuleLogic::publishClasses() {
 
     SLB::Class<TCompButton>("Button", m)
         .comment("This is our wrapper of the button controller")
-        .property("canBePressed", &TCompButton::canBePressed);
+        .property("canBePressed", &TCompButton::canBePressed)
+        .set("setCanBePressed", &TCompButton::setCanBePressed)
+        ;
 
     SLB::Class < std::vector < CHandle> >("VHandle", m)
         .comment("Testing this")
@@ -356,6 +358,7 @@ void CModuleLogic::publishClasses() {
     m->set("toParticles", SLB::FuncCall::create(&toParticles));
     m->set("toAnimatedObject", SLB::FuncCall::create(&toAnimatedObject));
     m->set("toDoor", SLB::FuncCall::create(&toDoor));
+    m->set("toButton", SLB::FuncCall::create(&toButton));
 }
 
 /* Check if it is a fast format command */
@@ -971,6 +974,12 @@ TCompAnimatedObjController* toAnimatedObject(CHandle h)
 TCompDoor* toDoor(CHandle h)
 {
     TCompDoor* t = h;
+    return t;
+}
+
+TCompButton* toButton(CHandle h)
+{
+    TCompButton* t = h;
     return t;
 }
 

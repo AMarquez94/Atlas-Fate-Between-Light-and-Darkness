@@ -13,7 +13,7 @@
 				"lookat": "-22.03 0 -74.008555"
 			},
 			"button": {
-				"script": "transition_intro_to_coliseum()",
+				"script": "transition_intro_to_coliseum",
 				"canBePressed": true
 			}
 		}
@@ -39,7 +39,7 @@
         "group": "button"
       },
       "button": {
-        "script": "transition_intro_to_coliseum()"
+        "script": "transition_intro_to_coliseum"
       },
       "tags": [ "button" ]
     }

@@ -22,6 +22,10 @@
 				"script": "",
 				"canBePressed": false
 			},
+			"emission_controller": {
+				"initial": "1.0 1.0 1.0 1.0",
+				"intensity": 0.8
+			},
 			"tags": ["button"],
 			"abs_aabb": true,
 			"local_aabb": true
