@@ -29,5 +29,68 @@
 			"abs_aabb": true,
 			"local_aabb": true
 		}
+	},
+	{
+		"entity": {
+			"name": "COL_trigger_corridor_zonea",
+			"transform": {
+				"pos": "-21.04 0.0 0.78063",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "6.31231 1.14714 1.92169",
+				"group": "All",
+				"mask": "",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_trigger_corridor_zonea01",
+			"transform": {
+				"pos": "-26.4527 0.0 -6.47408",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "1.71829 1.13715 5.25371",
+				"group": "All",
+				"mask": "",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_trigger_corridor_zonea02",
+			"transform": {
+				"pos": "-26.4527 0.0 8.34821",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "1.71829 1.13715 5.25371",
+				"group": "All",
+				"mask": "",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
 	}
 ]

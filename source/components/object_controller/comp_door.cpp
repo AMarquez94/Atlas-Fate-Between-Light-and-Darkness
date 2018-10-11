@@ -15,7 +15,13 @@ void TCompDoor::onScenePaused(const TMsgScenePaused & msg)
 }
 
 void TCompDoor::debugInMenu() {
-
+    ImGui::Text("Open anim %s", opening_anim.c_str());
+    ImGui::Text("Close anim %s", closing_anim.c_str());
+    ImGui::Text("Loading anim %s", loading_anim.c_str());
+    ImGui::Text("Open script %s", opened_script.c_str());
+    ImGui::Text("Close script %s", closed_script.c_str());
+    ImGui::Text("Open soundevent %s", open_soundevent.c_str());
+    ImGui::Text("Close soundevent %s", close_soundevent.c_str());
 }
 
 void TCompDoor::load(const json& j, TEntityParseContext& ctx) {

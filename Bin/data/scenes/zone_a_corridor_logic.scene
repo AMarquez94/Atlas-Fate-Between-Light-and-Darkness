@@ -1,0 +1,87 @@
+[
+  {
+    "entity":
+    {
+      "name": "zone_a_corridor_logic"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "ZON_Trigger_Exit_ZoneA"
+      ,
+      "transform":
+      {
+        "pos": "-28.4517 -0.386725 -137.328"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.908848 0.611367 5.00594"
+        ,
+        "group": "All"
+        ,
+        "mask": ""
+        ,
+        "is_trigger": true
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "ZON_Trigger_Enter_ZoneA"
+      ,
+      "transform":
+      {
+        "pos": "-36.6703 -0.386723 -90.8492"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.908848 0.611367 5.00594"
+        ,
+        "group": "All"
+        ,
+        "mask": ""
+        ,
+        "is_trigger": true
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

@@ -492,7 +492,7 @@ data/meshes/col_zone_a_tubo_x006.mesh
 data/meshes/col_zone_a_tubo005.mesh
 data/scenes/col_bc_corridor.scene
 data/meshes/col_bc_agujero004.mesh
-data/meshes/col_bc_tubo006.mesh
+data/meshes/col_bc_aux_pared_sombra002.mesh
 data/meshes/col_bc_baseycolumna003.mesh
 data/colliders/col_bc_collider_barandillas_pasillo002.collider
 data/meshes/col_bc_boton003.mesh
@@ -509,9 +509,9 @@ data/meshes/col_bc_cristal037.mesh
 data/meshes/col_bc_cristal038.mesh
 data/meshes/col_bc_cristal039.mesh
 data/meshes/col_bc_lampara003.mesh
-data/meshes/col_bc_pared003.mesh
 data/meshes/col_bc_pared_puerta_peq003.mesh
 data/colliders/col_bc_collider_pared_puerta_peq003.collider
+data/meshes/col_bc_pared003.mesh
 data/meshes/col_bc_puerta_tubo084.mesh
 data/meshes/col_bc_puerta_tubo085.mesh
 data/meshes/col_bc_puerta_tubo086.mesh
@@ -562,7 +562,7 @@ data/meshes/col_bc_suelo003.mesh
 data/colliders/col_bc_collider_suelo_pasillo002.collider
 data/meshes/col_bc_techo003.mesh
 data/meshes/col_bc_tubo_x007.mesh
-data/meshes/col_bc_aux_pared_sombra002.mesh
+data/meshes/col_bc_tubo006.mesh
 data/scenes/col_intro_corridor_logic.scene
 data/scenes/Coliseo/_player.scene
 data/prefabs/player.prefab

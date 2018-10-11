@@ -1,15 +1,41 @@
 function onSceneStart_scene_zone_a()
-	setTutorialPlayerState(true, "sm_ver_tutorial");
+
 end
 
-function transition_zone_a_to_coliseum()
-	--toggleButtonCanBePressed("Button End Scene", false);
-	execScriptDelayed("blendInCamera(\"scene_transition\", 1.0, \"cinematic\", \"\")", 2);
-	execScriptDelayed("	setCinematicPlayerState(true,\"cinematic\")", 2);
-	execScriptDelayed("loadScene(\"scene_coliseo_2\")", 4);
+function onScenePartialStart_scene_zone_a()
+	onSceneStart_scene_zone_a();
+	movePlayerToRefPos("zone_a_in_suelo001", i_ref_pos);
+	execScriptDelayed("toDoor(toEntity(getEntityByName(\"zone_a_in_marco_puerta001\")):getCompByName(\"door\")):open();", 0.5);
 end
 
-function enable_button_exit()
-	execScriptDelayed("toggleButtonCanBePressed(\"Button Open Exit\", false)", 0.1);
-	toggleButtonCanBePressed("Button End Scene", true);
+function onScenePartialEnd_scene_zone_a()
+	i_ref_pos = getPlayerLocalCoordinatesInReferenceTo("zone_a_outsuelo002");
+end
+
+function transition_zone_a_to_coliseum(button_handle)
+	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
+	--makeVisibleByTag("corridor", true);
+	toDoor(toEntity(getEntityByName("zone_a_outmarco_puerta002")):getCompByName("door")):open();
+end
+
+function enable_button_exit(button_handle)
+	toButton(toEntity(getEntityByName("Button End Scene")):getCompByName("button")):setCanBePressed(true);
+	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
+end
+
+function onTriggerEnter_ZON_Trigger_Enter_ZoneA_player()
+	toDoor(toEntity(getEntityByName("zone_a_in_marco_puerta001")):getCompByName("door")):close();
+	getEntityByName("ZON_Trigger_Enter_ZoneA"):destroy();
+end
+
+function onTriggerEnter_ZON_Trigger_Exit_ZoneA_player()
+	getEntityByName("ZON_Trigger_Exit_ZoneA"):destroy();
+	tdoor = toDoor(toEntity(getEntityByName("zone_a_outmarco_puerta002")):getCompByName("door"));
+	tdoor:setClosedScript("destroyZoneAPreloadCol()");
+	tdoor:close();
+end
+
+function destroyZoneAPreloadCol()
+	destroyPartialScene();
+	execScriptDelayed("preloadScene(\"scene_coliseo_2\")", 0.1);
 end

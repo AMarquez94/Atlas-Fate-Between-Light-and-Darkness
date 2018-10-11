@@ -19,7 +19,16 @@ end
 
 function onScenePartialStart_scene_coliseo_2()
 	onSceneStart_scene_coliseo_2();
-	movePlayerToRefPos("col_intro_suelo001", i_ref_pos);
+	movePlayerToRefPos("col_zone_a_suelo002", i_ref_pos);
+	execScriptDelayed("toDoor(toEntity(getEntityByName(\"col_zone_a_framedoor001\")):getCompByName(\"door\")):open();", 0.5);
+end
+
+function onScenePartialEnd_scene_coliseo()
+	i_ref_pos = getPlayerLocalCoordinatesInReferenceTo("col_zone_a_suelo002");
+end
+
+function onScenePartialEnd_scene_coliseo_2()
+	i_ref_pos = getPlayerLocalCoordinatesInReferenceTo("col_bc_suelo003");
 end
 
 function onTriggerEnter_COL_trigger_corridor_intro_player()
@@ -39,6 +48,25 @@ function closeIntroDoor()
 	getEntityByName("COL_trigger_corridor_intro"):destroy();
 	getEntityByName("COL_trigger_corridor_intro01"):destroy();
 	getEntityByName("COL_trigger_corridor_intro02"):destroy();
+end
+
+function onTriggerEnter_COL_trigger_corridor_zonea_player()
+	closeZoneADoor();
+end
+
+function onTriggerEnter_COL_trigger_corridor_zonea01_player()
+	closeZoneADoor();
+end
+
+function onTriggerEnter_COL_trigger_corridor_zonea02_player()
+	closeZoneADoor();
+end
+
+function closeZoneADoor()
+	toDoor(toEntity(getEntityByName("col_zone_a_framedoor001")):getCompByName("door")):close();
+	getEntityByName("COL_trigger_corridor_zonea"):destroy();
+	getEntityByName("COL_trigger_corridor_zonea01"):destroy();
+	getEntityByName("COL_trigger_corridor_zonea02"):destroy();
 end
 
 function transition_coliseum_to_zone_a(button_handle)

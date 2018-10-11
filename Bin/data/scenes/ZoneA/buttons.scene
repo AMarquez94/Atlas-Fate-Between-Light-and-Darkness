@@ -13,7 +13,7 @@
         "lookat": "-39 0 -133.5"
       },
       "button": {
-        "script": "transition_zone_a_to_coliseum()",
+        "script": "transition_zone_a_to_coliseum",
 		"canBePressed": false
       }
     }
@@ -27,7 +27,7 @@
         "lookat": "-107 0 -133"
       },
       "button": {
-        "script": "enable_button_exit()",
+        "script": "enable_button_exit",
 		"canBePressed": true
       }
     }
