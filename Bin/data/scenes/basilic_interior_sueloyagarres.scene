@@ -284,6 +284,36 @@
   {
     "entity":
     {
+      "name": "tubo_pasarela003"
+      ,
+      "transform":
+      {
+        "pos": "7.96949 8.28587 -10.6415"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubo_pasarela003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_pasarela.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "pasarela"
       ,
       "transform":
@@ -305,35 +335,12 @@
         }
       ]
       ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "tubo_pasarela003"
-      ,
-      "transform":
+      "collider":
       {
-        "pos": "7.96949 8.28587 -10.6415"
+        "shape": "box"
         ,
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "size": "3.855 0.131481 27.1518"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/tubo_pasarela003.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_pasarela.material"
-          ]
-        }
-      ]
       ,
       "abs_aabb": true
       ,

@@ -30,7 +30,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_cable.material"
           ]
         }
       ]
@@ -60,7 +60,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_cable.material"
           ]
         }
       ]
@@ -90,7 +90,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_cable.material"
           ]
         }
       ]
@@ -120,7 +120,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_cable.material"
           ]
         }
       ]
