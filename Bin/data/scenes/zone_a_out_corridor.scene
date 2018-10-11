@@ -14,6 +14,22 @@
   {
     "entity":
     {
+      "name": "zone_a_out_framedoor001"
+      ,
+      "prefab": "data/prefabs/puerta_tech.prefab"
+      ,
+      "transform":
+      {
+        "pos": "5.48905 -0.338646 -137.371"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "zone_a_outagujero003"
       ,
       "transform":
@@ -718,22 +734,6 @@
   {
     "entity":
     {
-      "name": "zone_a_outpuerta_l002"
-      ,
-      "prefab": "data/prefabs/tech_door_little.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-34.804 -0.138706 -137.371"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "zone_a_outpuerta_plaza002"
       ,
       "transform":
@@ -750,7 +750,6 @@
           ,
           "materials":
           [
-            "data/materials/mtl_puertatech.material"
           ]
         }
       ]
@@ -763,22 +762,6 @@
       "abs_aabb": true
       ,
       "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "zone_a_outpuerta_r002"
-      ,
-      "prefab": "data/prefabs/tech_door_little.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-34.804 -0.138706 -137.371"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
     }
   }
   ,

@@ -14,6 +14,22 @@
   {
     "entity":
     {
+      "name": "zone_a_in_framedoor"
+      ,
+      "prefab": "data/prefabs/puerta_tech.prefab"
+      ,
+      "transform":
+      {
+        "pos": "5.70881 -0.338644 -90.9952"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "zone_a_in_agujero002"
       ,
       "transform":
@@ -712,73 +728,6 @@
       "abs_aabb": true
       ,
       "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "zone_a_in_puerta_l001"
-      ,
-      "prefab": "data/prefabs/tech_door_little.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-34.804 -0.138704 -90.995"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "zone_a_in_puerta_plaza001"
-      ,
-      "transform":
-      {
-        "pos": "5.08585 2.4498 -90.9941"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/zone_a_in_puerta_plaza001.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_puertatech.material"
-          ]
-        }
-      ]
-      ,
-      "tags":
-      [
-        "corridor"
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "zone_a_in_puerta_r001"
-      ,
-      "prefab": "data/prefabs/tech_door_little.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-34.804 -0.138704 -90.995"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
     }
   }
   ,
