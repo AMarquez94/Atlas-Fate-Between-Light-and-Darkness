@@ -28,10 +28,10 @@ function intro_intro_cinematic()
 	--setCinematicPlayerState(true, "crouch_cinematic")
 	blendInCamera("Camera_Cinematic_Intro", 0.0, "cinematic", "");
 	setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
-	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_End\", 1.2, \"cinematic\", \"cubicinout\")", 2.3);
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro\", 0)", 4);
+	--execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_End\", 1.2, \"cinematic\", \"cubicinout\")", 2.3);
+	--execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro\", 0)", 4);
 	--execScriptDelayed("blendInCamera(\"Camera_Cinematic)
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_End\", 3)", 5);
+	--execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_End\", 3)", 5);
 end
 
 function transition_map_intro_to_coliseum()

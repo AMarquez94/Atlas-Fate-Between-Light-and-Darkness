@@ -91,6 +91,12 @@
       },
       "render_focus": {
         "enabled": false
+      },
+      "curve_controller":{
+        "curve": "data/curves/spline_prova.curve",
+        "speed": 0.025,
+        "target": "The Player",
+        "loop": true
       }
     }
   },
