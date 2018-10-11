@@ -49,23 +49,23 @@
   {
     "entity":
     {
-      "name": "col_bc_tubo006"
+      "name": "col_bc_aux_pared_sombra002"
       ,
       "transform":
       {
-        "pos": "-3.03619 4.7999 -32.0237"
+        "pos": "-0.151908 8.56019 -45.7587"
         ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
+        "rotation": "0.0 -1.0 0.0 0.0"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/col_bc_tubo006.mesh"
+          "mesh": "data/meshes/col_bc_aux_pared_sombra002.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_sala.material"
+            "data/materials/mtl_default.material"
           ]
         }
       ]
@@ -592,6 +592,22 @@
   {
     "entity":
     {
+      "name": "col_bc_framedoor002"
+      ,
+      "prefab": "data/prefabs/puerta_tech.prefab"
+      ,
+      "transform":
+      {
+        "pos": "0.0152347 0.743948 -25.0184"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "col_bc_lampara003"
       ,
       "transform":
@@ -642,41 +658,6 @@
   {
     "entity":
     {
-      "name": "col_bc_pared003"
-      ,
-      "transform":
-      {
-        "pos": "0.0372853 0.954816 -38.0237"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/col_bc_pared003.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_paredes_corridor.material"
-          ]
-        }
-      ]
-      ,
-      "tags":
-      [
-        "corridor"
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "col_bc_pared_puerta_peq003"
       ,
       "transform":
@@ -704,6 +685,41 @@
         ,
         "name": "data/colliders/col_bc_collider_pared_puerta_peq003.collider"
       }
+      ,
+      "tags":
+      [
+        "corridor"
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "col_bc_pared003"
+      ,
+      "transform":
+      {
+        "pos": "0.0372853 0.954816 -38.0237"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/col_bc_pared003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_paredes_corridor.material"
+          ]
+        }
+      ]
       ,
       "tags":
       [
@@ -2472,23 +2488,23 @@
   {
     "entity":
     {
-      "name": "col_bc_aux_pared_sombra002"
+      "name": "col_bc_tubo006"
       ,
       "transform":
       {
-        "pos": "-0.151908 8.56019 -45.7587"
+        "pos": "-3.03619 4.7999 -32.0237"
         ,
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/col_bc_aux_pared_sombra002.mesh"
+          "mesh": "data/meshes/col_bc_tubo006.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/mtl_sala.material"
           ]
         }
       ]
