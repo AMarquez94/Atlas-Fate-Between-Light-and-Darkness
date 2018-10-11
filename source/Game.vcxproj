@@ -122,6 +122,7 @@
     <ClCompile Include="components\ia\comp_bt_player.cpp" />
     <ClCompile Include="components\ia\comp_patrol_animator.cpp" />
     <ClCompile Include="components\lighting\comp_fade_controller.cpp" />
+    <ClCompile Include="components\lighting\comp_light_controller.cpp" />
     <ClCompile Include="components\lighting\comp_projector.cpp" />
     <ClCompile Include="components\object_controller\comp_billboard.cpp" />
     <ClCompile Include="components\object_controller\comp_bone_controller.cpp" />
@@ -369,6 +370,7 @@
     <ClInclude Include="components\ia\comp_bt_player.h" />
     <ClInclude Include="components\ia\comp_patrol_animator.h" />
     <ClInclude Include="components\lighting\comp_fade_controller.h" />
+    <ClInclude Include="components\lighting\comp_light_controller.h" />
     <ClInclude Include="components\lighting\comp_projector.h" />
     <ClInclude Include="components\object_controller\comp_billboard.h" />
     <ClInclude Include="components\object_controller\comp_bone_controller.h" />

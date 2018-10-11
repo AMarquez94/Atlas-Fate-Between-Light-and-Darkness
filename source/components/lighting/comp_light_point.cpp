@@ -173,3 +173,13 @@ float TCompLightPoint::getIntensity()
 {
     return intensity;
 }
+
+void TCompLightPoint::setRadius(float new_radius)
+{
+    inner_cut = new_radius;
+}
+
+float TCompLightPoint::getRadius()
+{
+    return inner_cut;
+}

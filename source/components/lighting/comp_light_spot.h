@@ -58,6 +58,12 @@ public:
 	void generateShadowMap();
     void generateVolume();
 
+    float getIntensity();
+    void setIntensity(float new_int);
+
+    float getAngle();
+    void setAngle(float new_ang);
+
     void cullFrame();
     bool isCulled() const;
 
