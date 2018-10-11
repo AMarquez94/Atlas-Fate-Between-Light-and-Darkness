@@ -592,6 +592,22 @@
   {
     "entity":
     {
+      "name": "col_zone_a_framedoor001"
+      ,
+      "prefab": "data/prefabs/puerta_tech.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-26.6789 0.743949 0.880454"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "col_zone_a_lampara002"
       ,
       "transform":
@@ -719,22 +735,6 @@
   {
     "entity":
     {
-      "name": "col_zone_a_puerta_l002"
-      ,
-      "prefab": "data/prefabs/tech_door_little.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-67.1917 0.943891 0.962707"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "col_zone_a_puerta_plaza002"
       ,
       "transform":
@@ -751,7 +751,6 @@
           ,
           "materials":
           [
-            "data/materials/mtl_puertatech.material"
           ]
         }
       ]
@@ -764,22 +763,6 @@
       "abs_aabb": true
       ,
       "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "col_zone_a_puerta_r002"
-      ,
-      "prefab": "data/prefabs/tech_door_little.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-67.1917 0.943891 0.962707"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
     }
   }
   ,
