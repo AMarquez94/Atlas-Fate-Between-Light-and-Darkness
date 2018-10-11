@@ -439,7 +439,7 @@ data/textures/tx_spotlight_rgh.dds
 data/materials/mtl_spotlights.material
 data/colliders/collider_baselargalectrica.collider
 data/meshes/mesh_zone_a_cable133.mesh
-data/textures/tx_alminar_mezquita_met.dds
+data/textures/default_texture.dds
 data/textures/null_normal.dds
 data/materials/mtl_cables.material
 data/scenes/zone_a_hologramas.scene
@@ -831,14 +831,12 @@ data/meshes/Drone_Lantern.mesh
 data/textures/lut/RGBTable16x1.dds
 data/scenes/ZoneA/whitebox_zone_light.scene
 data/scenes/ZoneA/test_instancing.scene
-data/meshes/grass.instanced_mesh
-data/textures/grass/grass.dds
-data/materials/grass_instanced.material
 data/meshes/particles.instanced_mesh
 data/textures/fire.dds
 data/materials/particles_fire_instanced.material
 data/meshes/mesh_casa1_4x6.instanced_mesh
 data/meshes/quad_volume.instanced_mesh
+data/textures/grass/grass.dds
 data/materials/volume_instanced.material
 data/meshes/quad_volume_particles.instanced_mesh
 data/materials/volume_particles_instanced.material
@@ -1046,13 +1044,7 @@ data/meshes/zone_a_in_reja_techo033.mesh
 data/meshes/zone_a_in_rejas001.mesh
 data/meshes/zone_a_in_sala002.mesh
 data/meshes/zone_a_in_suelo001.mesh
-data/textures/tx_sueloytecho_alb.dds
-data/textures/tx_sueloytecho_ao.dds
-data/textures/tx_sueloytecho_emi.dds
-data/textures/tx_sueloytecho_hgt.dds
-data/textures/tx_sueloytecho_met.dds
-data/textures/tx_sueloytecho_nml.dds
-data/textures/tx_sueloytecho_rgh.dds
+data/textures/sueloytecho_low_1001_BaseColor.dds
 data/materials/mtl_sueloytecho.material
 data/colliders/zone_a_in_collider_suelo_pasillo.collider
 data/meshes/zone_a_in_techo001.mesh
@@ -1194,5 +1186,5 @@ data/prefabs/camera_main.prefab
 data/prefabs/camera_player.prefab
 data/textures/lut/lut5.dds
 data/prefabs/camera_shadowmerge.prefab
-data/textures/lut/lut_sm.dds
+data/textures/lut/lut1.dds
 data/prefabs/camera_flyover.prefab

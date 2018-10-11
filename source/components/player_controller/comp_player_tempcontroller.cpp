@@ -140,9 +140,9 @@ void TCompTempPlayerController::update(float dt) {
     if(!isDead()){
         float inputSpeed = Clamp(fabs(EngineInput["Horizontal"].value) + fabs(EngineInput["Vertical"].value), 0.f, 1.f);
         cb_globals.global_player_speed = (inputSpeed * currentSpeed) / 6.f; // Maximum speed, change this in the future. 
-        cb_globals.global_exposure_adjustment += 8 * dt * (isMerged ? 1 : -1); // Move to json when possible.
+        cb_globals.global_ambient_adjustment += 0.1 * dt * (isMerged ? 1 : -1); // Move to json when possible.
 
-        cb_globals.global_exposure_adjustment = clamp(cb_globals.global_exposure_adjustment, EngineScene.getActiveScene()->scene_exposure, 3.0f);
+        cb_globals.global_ambient_adjustment = clamp(cb_globals.global_ambient_adjustment, EngineScene.getActiveScene()->scene_ambient, 0.1f);
         cb_player.player_health = life != maxLife ? (life/ maxLife) : 1;
         cb_player.updateGPU();
     }
@@ -792,6 +792,7 @@ void TCompTempPlayerController::die()
         groundMsg.variant.setBool(true);
         e->sendMsg(groundMsg);
         life = 0;
+		e->sendMsg(TMsgFadeBody{ false, 3.0f,VEC4(1.0f,1.0f,1.0f,0) });
 
         CEntity * ent = getEntityByName("Player_Idle_SM");
         TCompParticles * c_e_particle = ent->get<TCompParticles>();

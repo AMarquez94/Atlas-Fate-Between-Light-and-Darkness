@@ -110,7 +110,8 @@ struct TMsgSonarActive {
 
 struct TMsgFadeBody {
     bool is_exit;
-
+	float fade_time = -1.0f;
+	VEC4 fade_color = VEC4(-1,0,0,0);
     DECL_MSG_ID();
 };
 

@@ -224,15 +224,11 @@ bool CApp::readConfig() {
 
         xres = j.value("xres", 1280);
         yres = j.value("yres", 720);
-        fullscreen = j.value("fullscreen", false);
         drawfps = j.value("drawfps", true);
+        fixed_step = j.value("fixed_step", true);
+        fixed_fps = j.value("fixed_fps", 60);
+        fullscreen = j.value("fullscreen", false);
     }
-    else {
-        xres = 1280;
-        yres = 720;
-    }
-
-
 
     time_since_last_render.reset();
     CEngine::get().getRender().configure(xres, yres);
@@ -253,6 +249,7 @@ bool CApp::stop() {
     return CEngine::get().stop();
 }
 
+float fixed_fps = 1.f / 60.f;
 //--------------------------------------------------------------------------------------
 void CApp::doFrame() {
 
@@ -261,11 +258,7 @@ void CApp::doFrame() {
 
     float dt = time_since_last_render.elapsedAndReset();
 
-    // Avoid this frame if dt is very big
-    // This can happen when game is breakpoint stopped etc..
-    // Replace this with fixed time step..
     if (dt > 1) return;
-
     CEngine::get().update(dt);
     CEngine::get().render();
 
@@ -277,5 +270,29 @@ void CApp::doFrame() {
         fps_counter.elapsed_time = 0;
         fps_counter.n_frames = 0;
     }
+
+    float remaining_time = fixed_fps - dt;
+    if (fixed_step && remaining_time > 0)
+        std::this_thread::sleep_for(std::chrono::milliseconds((int)(remaining_time * 1000)));
+
+    /*
+    // Semi fixed time step
+    // Use this way instead of timer sleep when needed. It's more phyisically accurated
+    while (dt >= 0) {
+        float deltaTime = std::min(dt, fixed_timestep);
+        CEngine::get().update(deltaTime);
+        dt -= deltaTime;
+
+        // Adding an fps counter
+        fps_counter.n_frames++;
+        fps_counter.elapsed_time += deltaTime;
+        if (fps_counter.elapsed_time >= 1.0f) {
+            fps = fps_counter.n_frames;
+            fps_counter.elapsed_time = 0;
+            fps_counter.n_frames = 0;
+        }
+    }
+
+    CEngine::get().render();*/
 }
 

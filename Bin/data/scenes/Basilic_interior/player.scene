@@ -2,7 +2,7 @@
 	"entity": {
 		"prefab": "data/prefabs/player.prefab",
 		"transform": {
-			"pos": "142.384979 12 -394.966888",
+			"pos": "-8 10 0",
 			"lookat": "142.384979 12 -395.966888"
 		},
 		"ai_player": {

@@ -10,6 +10,9 @@ struct TCompRenderCube : public TCompBase {
 
     CRenderToCube*   rt = nullptr;
     int              resolution = 0;
+    bool             is_oneshot = true;
+    bool             is_done = false;
+
     DXGI_FORMAT      color_fmt = DXGI_FORMAT_UNKNOWN;
     DXGI_FORMAT      depth_fmt = DXGI_FORMAT_UNKNOWN;
     std::string      name;

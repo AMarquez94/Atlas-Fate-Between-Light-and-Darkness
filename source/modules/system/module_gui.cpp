@@ -4,7 +4,10 @@
 #include "gui/gui_parser.h"
 #include "gui/controllers/gui_menu_buttons_controller.h"
 #include "gui/widgets/gui_bar.h"
+#include "gui/widgets/gui_subtitles.h"
 #include "gui/gui_controller.h"
+#include "components/postfx/comp_render_blur.h"
+#include "components/postfx/comp_render_focus.h"
 
 using namespace GUI;
 
@@ -34,16 +37,36 @@ void CModuleGUI::initializeWidgetStructure() {
 		CEngine::get().getModules().changeGameState("map_intro");
 	};
 	auto mm_credits = []() {
-		CEngine::get().getModules().changeGameState("credits");
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND)->makeChildsFadeIn(0.25f, 0, true);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACK)->makeChildsFadeIn(0.25f, 0, true);
+		EngineGUI.deactivateController(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
+		//CEngine::get().getModules().changeGameState("credits");
 		//CEngine::get().getGUI().outOfMainMenu();
 	};
-	auto mm_optionsCB = []() {
+	auto mm_controlsCB = []() {
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACKGROUND)->makeChildsFadeIn(0.25f,0,true);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACK)->makeChildsFadeIn(0.25f, 0, true);
+		EngineGUI.deactivateController(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
+		//dbg("show controlsss!!!!");
 		//activateWidget("main_menu_buttons");
 	};
 	auto mm_exitCB = []() {
         CEngine::get().stop();
 	};
-	
+	auto mm_backCB = []() {
+
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACKGROUND)->makeChildsFadeOut(0.25f, 0, true);
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACK)->makeChildsFadeOut(0.25f, 0, true);
+		EngineLogic.execSystemScriptDelayed("takeOutControlsOnMainMenu();",0.25f);
+	};
+
+	auto mm_back_creditsCB = []() {
+
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND)->makeChildsFadeOut(0.25f, 0, true);
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACK)->makeChildsFadeOut(0.25f, 0, true);
+		EngineLogic.execSystemScriptDelayed("takeOutCreditsOnMainMenu();", 0.25f);
+	};
+
 	//PAUSE-MENU
 	auto pm_resumeGame = []() {
 		EngineGUI.closePauseMenu();
@@ -56,13 +79,15 @@ void CModuleGUI::initializeWidgetStructure() {
         //EngineLogic.execSystemScriptDelayed("gameManager:resetToCheckpoint()", 2.f);
 		CEngine::get().getGameManager().resetToCheckpoint();
 	};
-	auto pm_Controls = []() {
+	auto pm_ReturnMainMenu = []() {
 
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::SUBTITLES);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY);
 		CEngine::get().getModules().changeGameState("main_menu");
 	};
 	auto pm_Exit = []() {
@@ -90,10 +115,23 @@ void CModuleGUI::initializeWidgetStructure() {
 	mmc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::MAIN_MENU_BUTTONS);
 	mmc->registerOption("new_game", mm_newGameCB);
 	mmc->registerOption("credits", mm_credits);
-	mmc->registerOption("options", mm_optionsCB);
+	mmc->registerOption("controls", mm_controlsCB);
 	mmc->registerOption("exit", mm_exitCB);
 	mmc->setCurrentOption(0);
 	
+	CMenuButtonsController*	mmcc = new CMenuButtonsController();
+	registerWigdetStruct(EGUIWidgets::MAIN_MENU_CONTROLS_BACK, "data/gui/main_menu_controls_back.json", mmcc);
+	mmcc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::MAIN_MENU_CONTROLS_BACK);
+	mmcc->registerOption("controls_back_mm", mm_backCB);
+	mmcc->setCurrentOption(0);
+
+
+	CMenuButtonsController*	mmcbc = new CMenuButtonsController();
+	registerWigdetStruct(EGUIWidgets::MAIN_MENU_CREDITS_BACK, "data/gui/main_menu_credits_back.json", mmcbc);
+	mmcbc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::MAIN_MENU_CREDITS_BACK);
+	mmcbc->registerOption("controls_credits_back_mm", mm_back_creditsCB);
+	mmcbc->setCurrentOption(0);
+
 
 	CMenuButtonsController* pmc = new CMenuButtonsController();
 	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS, "data/gui/pause_menu_buttons.json", pmc);
@@ -102,7 +140,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	pmc->registerOption("resume_game", pm_resumeGame);
 	pmc->registerOption("restart", pm_restartLevel);
 	pmc->registerOption("restart_checkpoint", pm_RestartFromCheckPoint);
-	pmc->registerOption("controls", pm_Controls);
+	pmc->registerOption("return_checkpoint", pm_ReturnMainMenu);
 	pmc->registerOption("pause_exit", pm_Exit);
 	pmc->setCurrentOption(0);
 
@@ -130,7 +168,13 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::LOADING_SPRITE, "data/gui/loading.json");
 	registerWigdetStruct(EGUIWidgets::BLACK_SCREEN, "data/gui/black_background.json");
 	registerWigdetStruct(EGUIWidgets::CREDITS, "data/gui/credits.json");
-
+	registerWigdetStruct(EGUIWidgets::MAIN_MENU_CONTROLS_BACKGROUND , "data/gui/main_menu_controls_background.json");
+	registerWigdetStruct(EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND , "data/gui/main_menu_credits_background.json");
+	registerWigdetStruct(EGUIWidgets::SUBTITLES, "data/gui/subtitles_game.json");
+	registerWigdetStruct(EGUIWidgets::SPLASH_SCREEN, "data/gui/splash_screen.json");
+	registerWigdetStruct(EGUIWidgets::DEAD_LINE, "data/gui/dead_menu_line.json");
+	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE_MISSION, "data/gui/pause_menu_mision.json");
+	registerWigdetStruct(EGUIWidgets::INGAME_HUD_ENEMY, "data/gui/enemy_hud_game.json");
 }
 
 void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController *wdgt_controller) {
@@ -412,11 +456,68 @@ void CModuleGUI::closePauseMenu() {
 	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS)->makeChildsFadeOut(0.08, 0, true);
 	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::CONTROLS)->makeChildsFadeOut(0.08, 0, false);
 	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BACK_BUTTON)->makeChildsFadeOut(0.08, 0, true);
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_MISSION)->makeChildsFadeOut(0.08, 0, false);
 	GUI::CWidget *w = EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
 	if (w) {
 		float *aux_x = &w->getChild("line_pause")->getBarParams()->_ratio;
 		*aux_x = 1.0f;
 		EngineLerp.lerpElement(aux_x, 0.0f, 0.12f, 0);
 	}
+	CEntity * e_current_cam = EngineCameras.getCurrentCamera();
+	TCompRenderBlur *comp_blur = e_current_cam->get<TCompRenderBlur>();
+	TCompRenderFocus *comp_focus = e_current_cam->get<TCompRenderFocus>();
+	comp_blur->enabled = false;
+	comp_focus->enabled = false;
 	EngineLogic.execSystemScriptDelayed("unPauseGame();", 0.08f);
+}
+
+void CModuleGUI::setSubtitlesToNone() {
+
+	if (getWidgetStructureEnabled(CModuleGUI::EGUIWidgets::SUBTITLES)) {
+		GUI::CWidget *wdgt = EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SUBTITLES)->getAllChilds()[0];
+		if (wdgt->getType() == GUI::CWidget::EWidgetType::SUBTITLES) {
+			CSubtitles *subt = (CSubtitles*)wdgt;
+			subt->activateSubtitles("none");
+		}
+	}
+}
+
+void CModuleGUI::setSubtitles(std::string subtitle_name) {
+
+	if (getWidgetStructureEnabled(CModuleGUI::EGUIWidgets::SUBTITLES)) {
+		GUI::CWidget *wdgt = EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SUBTITLES)->getAllChilds()[0];
+		if (wdgt->getType() == GUI::CWidget::EWidgetType::SUBTITLES) {
+			CSubtitles *subt = (CSubtitles*)wdgt;
+			subt->activateSubtitles(subtitle_name);
+		}
+	}
+}
+
+void CModuleGUI::setMission(std::string subtitle_name) {
+
+	GUI::CWidget *wdgt = EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_MISSION)->getAllChilds()[0];
+	if (wdgt != nullptr && wdgt->getType() == GUI::CWidget::EWidgetType::SUBTITLES) {
+		CSubtitles *subt = (CSubtitles*)wdgt;
+		subt->activateSubtitles(subtitle_name);
+	}
+}
+
+void CModuleGUI::activateEnemyHUD() {
+	if (getWidgetStructureEnabled(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY)) {
+		GUI::CWidget *wdgt = EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY)->getAllChilds()[0];
+		if (wdgt->getType() == GUI::CWidget::EWidgetType::SUBTITLES) {
+			CSubtitles *subt = (CSubtitles*)wdgt;
+			subt->activateSubtitles("atlas");
+		}
+	}
+}
+
+void CModuleGUI::deactivateEnemyHUD() {
+	if (getWidgetStructureEnabled(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY)) {
+		GUI::CWidget *wdgt = EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY)->getAllChilds()[0];
+		if (wdgt->getType() == GUI::CWidget::EWidgetType::SUBTITLES) {
+			CSubtitles *subt = (CSubtitles*)wdgt;
+			subt->activateSubtitles("none");
+		}
+	}
 }

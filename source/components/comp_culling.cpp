@@ -7,6 +7,7 @@
 DECL_OBJ_MANAGER("culling", TCompCulling);
 
 void TCompCulling::debugInMenu() {
+
 	auto hm = getObjectManager<TCompAbsAABB>();
 	ImGui::Text("%d / %d AABB's visible", bits.count(), hm->size());
 }
@@ -14,6 +15,7 @@ void TCompCulling::debugInMenu() {
 // Si algun plano tiene la caja en la parte negativa
 // completamente, el aabb no esta dentro del set de planos
 bool TCompCulling::VPlanes::isVisible(const AABB* aabb) const {
+
 	auto it = begin();
 	while (it != end()) {
 		if (it->isCulled(aabb))
@@ -42,6 +44,7 @@ void TCompCulling::updateFromMatrix(MAT44 view_proj)
 }
 
 void TCompCulling::update(float dt) {
+
 	//PROFILE_FUNCTION("Updating culling");
 
 

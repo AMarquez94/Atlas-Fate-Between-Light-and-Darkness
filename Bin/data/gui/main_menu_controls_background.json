@@ -1,0 +1,27 @@
+[
+	{
+		"name" : "main_menu_background_controls",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "background_controls_mm",
+				"children" : [
+					{
+						"name" : "background_black_cont",
+						"type" : "image",
+						"size" : "1080 640",
+						"texture" : "data/textures/gui/black_background.dds"
+					},
+					{
+						"name" : "background_contr",
+						"type" : "image",
+						"size" : "1080 640",
+						"texture" : "data/textures/gui/background-pause.dds"
+					}
+					
+				]
+			}
+		]
+	}
+]

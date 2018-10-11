@@ -58,5 +58,14 @@ namespace GUI
     TTextParams _textParams;
   };
 
+  struct TSubtitlesParams
+  {
+	  TParams _params;
+	  TImageParams _imageParams;
+	  std::string _current_subtitles = "none";
+	  const CTexture* _current_texture;
+	  std::map<std::string, const CTexture*> _map_to_textures;
+  };
+
   using GUICallback = std::function<void()>;
 }

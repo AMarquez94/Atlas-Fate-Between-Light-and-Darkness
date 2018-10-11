@@ -23,6 +23,9 @@
 #include "windows/app.h"
 #include "components/object_controller/comp_noise_emitter.h"
 #include "modules/game/module_game_manager.h"
+#include "components/postfx/comp_render_blur.h"
+#include "components/postfx/comp_render_focus.h"
+#include "gui/gui_widget.h"
 #include "components/comp_animated_object_controller.h"
 #include "components/object_controller/comp_door.h"
 
@@ -313,6 +316,12 @@ void CModuleLogic::publishClasses() {
 	m->set("takeOutBlackScreen", SLB::FuncCall::create(&takeOutBlackScreen));
 	m->set("goToMainMenu", SLB::FuncCall::create(&goToMainMenu));
 	m->set("takeOutCredits", SLB::FuncCall::create(&takeOutCredits));
+	m->set("takeOutControlsOnMainMenu", SLB::FuncCall::create(&takeOutControlsOnMainMenu));
+	m->set("takeOutCreditsOnMainMenu", SLB::FuncCall::create(&takeOutCreditsOnMainMenu));
+	m->set("activateSubtitles", SLB::FuncCall::create(&activateSubtitles));
+	m->set("deactivateSubtitles", SLB::FuncCall::create(&deactivateSubtitles));
+	m->set("activateMission", SLB::FuncCall::create(&activateMission));
+	m->set("setEnemyHudState", SLB::FuncCall::create(&setEnemyHudState));
 	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -519,6 +528,28 @@ void CModuleLogic::clearDelayedScripts()
 {
     delayedScripts.clear();
     delayedSystemScripts.clear();
+}
+
+void CModuleLogic::eraseDelayedScripts(std::string keyWord) {
+	
+	for (int i = delayedScripts.size() - 1; i >= 0 ; i--) {
+		CModuleLogic::DelayedScript _curr_del = delayedScripts[i];
+		std::string::size_type e = _curr_del.script.find(keyWord);
+		if ((int)e >-1) {
+			delayedScripts.erase(delayedScripts.begin() + i);
+		}	
+	}
+}
+
+void CModuleLogic::eraseSystemDelayedScripts(std::string keyWord) {
+
+	for (int i = delayedSystemScripts.size() - 1; i >= 0; i--) {
+		CModuleLogic::DelayedScript _curr_del = delayedSystemScripts[i];
+		std::string::size_type e = _curr_del.script.find(keyWord);
+		if ((int)e >-1) {
+			delayedSystemScripts.erase(delayedSystemScripts.begin() + i);
+		}
+	}
 }
 
 /* Auxiliar functions */
@@ -1097,7 +1128,7 @@ void backFromControls() {
 }
 
 void unlockDeadButton() {
-	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS)->makeChildsFadeIn(3, 0, true);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS)->makeChildsFadeIn(1, 0, true);
 }
 
 void execDeadButton() {
@@ -1116,4 +1147,38 @@ void goToMainMenu() {
 void takeOutCredits() {
 	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE);
 	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::CREDITS);
+}
+
+void takeOutControlsOnMainMenu() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACKGROUND);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACK);
+	EngineGUI.activateController(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
+}
+
+void takeOutCreditsOnMainMenu() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACK);
+	EngineGUI.activateController(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
+}
+
+void activateSubtitles(std::string sub_name) {
+
+	EngineGUI.setSubtitles(sub_name);
+}
+
+void deactivateSubtitles() {
+	EngineGUI.setSubtitlesToNone();
+}
+
+void activateMission(std::string sub_name) {
+	EngineGUI.setMission(sub_name);
+}
+
+void setEnemyHudState(bool state) {
+	if (state) {
+		EngineGUI.activateEnemyHUD();
+	}
+	else {
+		EngineGUI.deactivateEnemyHUD();
+	}
 }

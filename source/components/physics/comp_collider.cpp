@@ -73,11 +73,20 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
     config->mask = getFilterByName(maskName);
     config->is_trigger = j.value("is_trigger", false);
 
-    if (j.count("center"))
+    if (j.count("material"))
     {
-        VEC3 center = loadVEC3(j["center"]);
-        config->center = physx::PxVec3(center.x, center.y, center.z);
+        VEC3 settings = loadVEC3(j["material"]);
+        config->material = EnginePhysics.CreateMaterial(settings);
     }
+    else {
+        config->material = CPhysicsCollider::default_material;
+    }
+
+	if (j.count("center"))
+	{
+		VEC3 center = loadVEC3(j["center"]);
+		config->center = physx::PxVec3(center.x, center.y, center.z);
+	}
 
     config->load(j, ctx);
 }

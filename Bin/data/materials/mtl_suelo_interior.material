@@ -1,0 +1,18 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_suelo_interior_alb.dds"
+    ,
+    "metallic": "data/textures/tx_suelo_interior_met.dds"
+    ,
+    "roughness": "data/textures/tx_suelo_interior_rgh.dds"
+    ,
+    "normal": "data/textures/tx_suelo_interior_nml.dds"
+    ,
+    "height": "data/textures/tx_suelo_interior_hgt.dds"
+    ,
+    "aocclusion": "data/textures/tx_suelo_interior_ao.dds"
+  }
+}

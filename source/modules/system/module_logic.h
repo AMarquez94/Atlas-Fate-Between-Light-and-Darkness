@@ -75,6 +75,9 @@ public:
     void setPause(bool paused) { this->paused = paused; }
     void clearDelayedScripts();
 
+	void eraseDelayedScripts(std::string keyWord);
+	void eraseSystemDelayedScripts(std::string keyWord);
+
 private:
 
     SLB::Manager* m = new SLB::Manager;
@@ -159,6 +162,13 @@ void execDeadButton();
 void takeOutBlackScreen();
 void goToMainMenu();
 void takeOutCredits();
+void takeOutControlsOnMainMenu();
+void takeOutCreditsOnMainMenu();
+void activateSubtitles(std::string sub_name);
+void deactivateSubtitles();
+void setEnemyHudState(bool state);
+
+void activateMission(std::string sub_name);
 
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);

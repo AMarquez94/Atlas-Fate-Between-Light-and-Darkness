@@ -9,6 +9,7 @@
 #include "gui/effects/gui_change_textures.h"
 #include "gui/widgets/gui_radial_bar.h"
 #include "gui/widgets/gui_video.h"
+#include "gui/widgets/gui_subtitles.h"
 
 namespace
 {
@@ -62,14 +63,15 @@ CWidget* CParser::parseWidget(const json& data, CWidget* parent)
   CWidget* wdgt = nullptr;
 
   // create and parse the widget
-  if (type == "image")        wdgt = parseImage(data);
-  else if (type == "text")    wdgt = parseText(data);
-  else if (type == "bar")     wdgt = parseBar(data);
+  if (type == "image")				wdgt = parseImage(data);
+  else if (type == "text")			wdgt = parseText(data);
+  else if (type == "bar")			wdgt = parseBar(data);
   else if (type == "radialbar")     wdgt = parseRadialBar(data);
-  else if (type == "button")  wdgt = parseButton(data);
-  else if (type == "video")   wdgt = parseUIVideo(data);
-  else if (type == "sprite")  wdgt = parseSprite(data);
-  else                        wdgt = parseWidget(data);
+  else if (type == "button")		wdgt = parseButton(data);
+  else if (type == "video")			wdgt = parseUIVideo(data);
+  else if (type == "sprite")		wdgt = parseSprite(data);
+  else if (type == "subtitles")		wdgt = parseSubtitles(data);
+  else								wdgt = parseWidget(data);
 
   wdgt->_name = name;
 
@@ -104,14 +106,17 @@ CWidget* CParser::parseWidget(const json& data, CWidget* parent)
 CWidget* CParser::parseWidget(const json& data) {
   CWidget* wdgt = new CWidget();
 
+  wdgt->widgt_type = CWidget::EWidgetType::WIDGET;
   parseParams(wdgt->_params, data);
 
   return wdgt;
 }
 
 CWidget* CParser::parseImage(const json& data) {
+
   CImage* wdgt = new CImage();
 
+  wdgt->widgt_type = CWidget::EWidgetType::IMAGE;
   parseParams(wdgt->_params, data);
   parseImageParams(wdgt->_imageParams, data);
 
@@ -121,6 +126,7 @@ CWidget* CParser::parseImage(const json& data) {
 CWidget* CParser::parseSprite(const json& data) {
 	CSprite* wdgt = new CSprite();
 
+	wdgt->widgt_type = CWidget::EWidgetType::SPRITE;
 	parseParams(wdgt->_params, data);
 	parseImageParams(wdgt->_imageParams, data);
 	parseSpriteParams(wdgt->_spriteParams, data);
@@ -128,9 +134,22 @@ CWidget* CParser::parseSprite(const json& data) {
 	return wdgt;
 }
 
+CWidget* CParser::parseSubtitles(const json& data) {
+
+	CSubtitles* wdgt = new CSubtitles();
+
+	wdgt->widgt_type = CWidget::EWidgetType::SUBTITLES;
+	parseParams(wdgt->_params, data);
+	parseImageParams(wdgt->_imageParams, data);
+	parseSubtitlesParams(wdgt->_subtitleParams,data);
+
+	return wdgt;
+}
+
 CWidget* CParser::parseText(const json& data) {
   CText* wdgt = new CText();
 
+  wdgt->widgt_type = CWidget::EWidgetType::TEXT;
   parseParams(wdgt->_params, data);
   parseTextParams(wdgt->_textParams, data);
 
@@ -140,6 +159,7 @@ CWidget* CParser::parseText(const json& data) {
 CWidget* CParser::parseButton(const json& data) {
   CButton* wdgt = new CButton();
 
+  wdgt->widgt_type = CWidget::EWidgetType::BUTTON;
   parseParams(wdgt->_params, data);
   parseParams(wdgt->_states[CButton::EState::ST_Idle]._params, data);
   parseImageParams(wdgt->_states[CButton::EState::ST_Idle]._imageParams, data);
@@ -204,6 +224,7 @@ CEffect* CParser::parseChangeTexturesEffect(const json& data)
 CWidget* CParser::parseBar(const json& data) {
   CBar* wdgt = new CBar();
 
+  wdgt->widgt_type = CWidget::EWidgetType::BAR;
   parseParams(wdgt->_params, data);
   parseImageParams(wdgt->_imageParams, data);
   parseBarParams(wdgt->_barParams, data);
@@ -215,6 +236,7 @@ CWidget* CParser::parseRadialBar(const json& data) {
 
     CRadialBar* wdgt = new CRadialBar();
 
+	wdgt->widgt_type = CWidget::EWidgetType::RADIAL_BAR;
     parseParams(wdgt->_params, data);
     parseImageParams(wdgt->_imageParams, data);
     parseBarParams(wdgt->_barParams, data);
@@ -226,6 +248,7 @@ CWidget* CParser::parseUIVideo(const json& data) {
 
     CUIVideo* wdgt = new CUIVideo();
 
+	wdgt->widgt_type = CWidget::EWidgetType::VIDEO;
     parseParams(wdgt->_params, data);
     parseImageParams(wdgt->_imageParams, data);
 
@@ -295,4 +318,23 @@ void CParser::parseSpriteParams(TSpriteParams& params, const json& data) {
 	}
 
 
+}
+
+void CParser::parseSubtitlesParams(TSubtitlesParams& params, const json& data) {
+
+	auto& j_references = data["subtitles_textures"];
+	bool first = true;
+	for (auto it = j_references.begin(); it != j_references.end(); ++it) {
+		std::string subtitle_name = it.value().value("subtitle_name", "");
+		std::string texture_source = it.value().value("texture_src", "");
+		const CTexture * textur = Resources.get(texture_source)->as<CTexture>();
+		if (textur != nullptr) {
+			if (first) {
+				params._current_texture = textur;
+				params._current_subtitles = subtitle_name;
+				first = false;
+			}
+			params._map_to_textures[subtitle_name] = textur;
+		}
+	}
 }

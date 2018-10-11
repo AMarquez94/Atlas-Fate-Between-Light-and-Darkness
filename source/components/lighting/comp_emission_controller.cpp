@@ -72,10 +72,10 @@ void TCompEmissionController::onSceneCreated(const TMsgSceneCreated& msg) {
 	//		_temp_lights.push_back(spotlight);
 	//}
 
-  TCompRender * self_render = get<TCompRender>();
-  assert(self_render);
-  self_render->self_color = _current_color;
-  self_render->self_intensity = _intensity;
+    TCompRender * self_render = get<TCompRender>();
+    assert(self_render);
+    self_render->self_color = _current_color;
+    self_render->self_intensity = _intensity;
 	//for (auto p : self_render->meshes)
 	//	for (auto m : p.materials)
 	//		_temp_materials.push_back(const_cast<CMaterial*>(m));

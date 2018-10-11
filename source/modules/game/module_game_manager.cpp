@@ -9,6 +9,8 @@
 #include "components/player_controller/comp_player_tempcontroller.h"
 #include "components/camera_controller/comp_camera_flyover.h"
 #include "render/render_objects.h"
+#include "components/postfx/comp_render_blur.h"
+#include "components/postfx/comp_render_focus.h"
 
 bool CModuleGameManager::start() {
 
@@ -32,9 +34,10 @@ bool CModuleGameManager::start() {
 void CModuleGameManager::setPauseState(PauseState pause) {
 
     // We are exiting the current state, disabling pause
-	if (_currentstate == PauseState::main && CApp::get().hasFocus()) {
+	if (_currentstate == PauseState::main && pause == PauseState::main && CApp::get().hasFocus()) {
 		if (EngineGUI.getButtonsState()) {
 			EngineGUI.closePauseMenu();
+			pause = PauseState::void_state;
 		}	
 	}
 
@@ -79,7 +82,8 @@ void CModuleGameManager::switchState(PauseState pause) {
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
-
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_LINE);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_MISSION);
 
     }break;
     case PauseState::main: {
@@ -91,6 +95,14 @@ void CModuleGameManager::switchState(PauseState pause) {
 			*aux_x = 0.0f;
 			EngineLerp.lerpElement(aux_x, 1.0f, 0.25f, 0);
 		}
+		//Blur to the screen
+		CEntity * e_current_cam = EngineCameras.getCurrentCamera();
+		TCompRenderBlur *comp_blur = e_current_cam->get<TCompRenderBlur>();
+		TCompRenderFocus *comp_focus = e_current_cam->get<TCompRenderFocus>();
+		comp_focus->enabled = true;
+		comp_blur->enabled = true;
+		comp_blur->global_distance = 10.0f;
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_MISSION)->makeChildsFadeIn(0.08, 0, false);
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS)->makeChildsFadeIn(0.08, 0, true);
     }break;
     case PauseState::win: {
@@ -98,8 +110,21 @@ void CModuleGameManager::switchState(PauseState pause) {
     }break;
     case PauseState::defeat: {
         mouse->setLockMouse(false);
-		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND)->makeChildsFadeIn(3,4);
-		EngineLogic.execSystemScriptDelayed("unlockDeadButton();",4.0f);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND)->makeChildsFadeIn(2,3);
+
+		GUI::CWidget *w = EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_LINE);
+		if (w) {
+			float *aux_x = &w->getChild("line_dead_left")->getBarParams()->_ratio;
+			*aux_x = 0.0f;
+			EngineLerp.lerpElement(aux_x, 1.0f, 2.0f, 5.0f);
+
+			float *aux_x_r = &w->getChild("line_dead_right")->getBarParams()->_ratio;
+			*aux_x_r = 0.0f;
+			EngineLerp.lerpElement(aux_x_r, 1.0f, 2.0f, 5.0f);
+
+		}
+
+		EngineLogic.execSystemScriptDelayed("unlockDeadButton();",5.0f);
 		EngineLerp.lerpElement(&cb_player.player_health, 0, 2, 2);
     }break;
     case PauseState::editor1: {

@@ -33,7 +33,7 @@ class CModuleGameManager : public IModule
 
 public:
 
-    enum PauseState { none, main, win, defeat, editor1, editor1unpaused, editor2 };
+    enum PauseState { none, main, win, defeat, editor1, editor1unpaused, editor2, void_state };
 
     CModuleGameManager(const std::string& name) : IModule(name) {}
 

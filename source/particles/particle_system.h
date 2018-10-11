@@ -172,6 +172,7 @@ namespace Particles
         void fadeOut(float duration);
         void setActive(bool active);
         TParticlesHandle getHandle() const;
+        CHandle getHandleEntity() const;
 
     private:
 

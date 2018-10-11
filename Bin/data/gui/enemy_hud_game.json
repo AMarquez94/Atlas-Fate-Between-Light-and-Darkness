@@ -1,0 +1,26 @@
+[
+	{
+		"name" : "ingame_enemy_hud",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "enemy_hud_ingame",
+				"type" : "subtitles",
+				"size" : "540 320",
+				"position" : "0 0",
+				"texture" : "data/textures/gui/background-pause.dds",
+				"subtitles_textures" : [
+					{
+						"subtitle_name" : "none",
+						"texture_src" : "data/textures/gui/subtitulos/none.dds"
+					},
+					{
+						"subtitle_name" : "atlas",
+						"texture_src" : "data/textures/gui/atlas_hud.dds"
+					}
+				]
+			}
+		]
+	}
+]

@@ -32,6 +32,10 @@ public:
 	MAT44 getWorld();
     VEC4 getColor() const;
     void setColor(VEC4 new_color);
+
+    void setRadius(float new_radius);
+    float getRadius();
+
     void setIntensity(float new_int);
     float getIntensity();
 

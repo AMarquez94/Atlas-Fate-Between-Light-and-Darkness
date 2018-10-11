@@ -36,7 +36,7 @@
 						}
 					},
 					{
-						"name" : "controls",
+						"name" : "return_checkpoint",
 						"type" : "button",
 						"position" : "0 60",
 						"size" : "340 29",
@@ -45,7 +45,7 @@
 							"texture" : "data/textures/gui/pausemenu_return_selected.dds"
 						},
 						"pressed" : {
-							"texture" : "data/textures/gui/pausemenu_return_selected.dds"
+							"texture" : "data/textures/gui/pausemenu_return_pressed.dds"
 						}
 					},
 					{

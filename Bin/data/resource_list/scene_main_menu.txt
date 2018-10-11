@@ -454,6 +454,7 @@ data/textures/tx_spotlight_rgh.dds
 data/materials/mtl_spotlights.material
 data/colliders/collider_baselargalectrica.collider
 data/meshes/mesh_intro_cable.mesh
+data/textures/default_texture.dds
 data/textures/null_normal.dds
 data/materials/mtl_cables.material
 data/meshes/mesh_intro_cable001.mesh
@@ -1197,6 +1198,9 @@ data/particles/def_amb_neon_fog_red.particles
 data/textures/particles/amb_fire_smoke.dds
 data/particles/def_amb_smoke.particles
 data/particles/def_amb_smoke2.particles
+data/meshes/gpu_particles.instanced_mesh
+data/textures/star.dds
+data/materials/gpu_particles_instanced.material
 data/scenes/Intro/intro_puerta_end.scene
 data/prefabs/puerta_tech.prefab
 data/colliders/collider_framedoor.collider
@@ -1329,13 +1333,7 @@ data/meshes/intro_reja_techo033.mesh
 data/meshes/intro_rejas001.mesh
 data/meshes/intro_sala002.mesh
 data/meshes/intro_suelo001.mesh
-data/textures/tx_sueloytecho_alb.dds
-data/textures/tx_sueloytecho_ao.dds
-data/textures/tx_sueloytecho_emi.dds
-data/textures/tx_sueloytecho_hgt.dds
-data/textures/tx_sueloytecho_met.dds
-data/textures/tx_sueloytecho_nml.dds
-data/textures/tx_sueloytecho_rgh.dds
+data/textures/sueloytecho_low_1001_BaseColor.dds
 data/materials/mtl_sueloytecho.material
 data/colliders/intro_collider_suelo_pasillo.collider
 data/meshes/intro_techo001.mesh
