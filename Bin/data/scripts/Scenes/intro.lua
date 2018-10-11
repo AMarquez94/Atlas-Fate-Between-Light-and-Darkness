@@ -5,7 +5,7 @@ function onSceneStart_scene_intro()
 		ambiance = playEvent("event:/Ambiance/Intro_Ambiance");
 	end
 	
-	cinematicsEnabled = false;
+	cinematicsEnabled = true;
 	
 	--#Debug position for start
 	--move("The Player", VEC3(-7, 0, -43), VEC3(-7, 0, -44));
