@@ -280,7 +280,8 @@
 			"data/scenes/basilic_interior_nucleo.scene",
 			"data/scenes/basilic_interior_sueloyagarres.scene",
 			"data/scenes/basilic_interior_luces.scene",
-			"data/scenes/main_cameras.scene"
+			"data/scenes/main_cameras.scene",
+			"data/scenes/video.scene"
 			
 		]
 	}
