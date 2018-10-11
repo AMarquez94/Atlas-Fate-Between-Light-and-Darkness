@@ -18,6 +18,7 @@
 				"shape": "mesh",
 				"name": "data/colliders/collider_framedoor.collider"
 			},
+			"audio": {},
 			"abs_aabb": true,
 			"local_aabb": true,
 

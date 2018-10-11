@@ -24,6 +24,8 @@ void TCompDoor::load(const json& j, TEntityParseContext& ctx) {
     loading_anim = j.value("load_anim", "");
     time_to_open = j.value("time_to_open", 2.f);
     time_to_close = j.value("time_to_close", 3.f);
+    open_soundevent = j.value("open_soundevent", "");
+    close_soundevent = j.value("close_soundevent", "");
 }
 
 void TCompDoor::registerMsgs() {
@@ -70,6 +72,10 @@ void TCompDoor::update(float dt) {
 void TCompDoor::open() {
     TCompAnimatedObjController* anim = get<TCompAnimatedObjController>();
     anim->playAnimation(opening_anim);
+    TCompAudio* my_audio = get<TCompAudio>();
+    if (my_audio) {
+        my_audio->playEvent(open_soundevent);
+    }
     state = EDoorState::OPENING;
     timer = 0.f;
 }
@@ -81,6 +87,10 @@ void TCompDoor::close() {
     TCompCollider* my_col = get<TCompCollider>();
     if (my_col) {
         my_col->setGroupAndMask("all", "all");
+    }
+    TCompAudio* my_audio = get<TCompAudio>();
+    if (my_audio) {
+        my_audio->playEvent(close_soundevent);
     }
     timer = 0.f;
 }

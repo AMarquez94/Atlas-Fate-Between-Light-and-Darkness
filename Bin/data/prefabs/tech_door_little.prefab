@@ -22,8 +22,11 @@
 				"open_anim": "open",
 				"close_anim": "close",
 				"time_to_open": 1,
-				"time_to_close": 4
+				"time_to_close": 4,
+				"open_soundevent": "event:/Sounds/Objects/Doors/SmallDoorOpen",
+				"close_soundevent": "event:/Sounds/Objects/Doors/SmallDoorClose"
 			},
+			"audio": {},
 			"animated_object_controller": {
 				"reference_names": [{
 					"get_names_auto": true

@@ -1175,7 +1175,7 @@ data/scenes/Intro/intro_checkpoints.scene
 data/scenes/Intro/intro_trigger_kill.scene
 data/scenes/Intro/intro_buttons.scene
 data/prefabs/terminal.prefab
-data/meshes/COL_mesh_terminal01.mesh
+data/meshes/mesh_terminal.mesh
 data/textures/tx_terminal_alb.dds
 data/textures/tx_terminal_ao.dds
 data/textures/tx_terminal_emi.dds
@@ -1184,7 +1184,7 @@ data/textures/tx_terminal_met.dds
 data/textures/tx_terminal_nml.dds
 data/textures/tx_terminal_rgh.dds
 data/materials/mtl_terminal.material
-data/colliders/COL_collider_terminal02.collider
+data/colliders/collider_mesh_terminal.collider
 data/scenes/Intro/intro_particles.scene
 data/textures/particles/dust_spore.dds
 data/particles/def_amb_dust_30x30.particles

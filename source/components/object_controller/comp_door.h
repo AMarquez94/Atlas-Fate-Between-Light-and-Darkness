@@ -21,6 +21,9 @@ class TCompDoor : public TCompBase {
     std::string closed_script;
     std::string opened_script;
 
+    std::string open_soundevent;
+    std::string close_soundevent;
+
     float time_to_open;
     float time_to_close;
 
