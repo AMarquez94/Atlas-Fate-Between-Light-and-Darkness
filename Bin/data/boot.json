@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_coliseo_2",
+	"default_scene": "scene_intro",
 	"scene_main_menu": {
 		"static_data": {
 			"initial_script": "main_menu",
@@ -132,7 +132,8 @@
 			"data/scenes/grass_container.scene",
 			"data/scenes/decal_test.scene",
 			"data/scenes/intro_corridor_3.scene",
-			"data/scenes/intro_corridor_logic.scene"
+			"data/scenes/intro_corridor_logic.scene",
+			"data/scenes/intro_col_corridor_lights.scene"
 		]
 	},
 	"scene_coliseo": {
