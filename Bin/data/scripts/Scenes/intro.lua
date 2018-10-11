@@ -6,6 +6,7 @@ function onSceneStart_scene_intro()
 	end
 	makeVisibleByTag("corridor", false);
 	makeVisibleByTag("corridor_door", true);
+	makeVisibleByTag("dir_light", true);
 	
 	cinematicsEnabled = false;
 	
