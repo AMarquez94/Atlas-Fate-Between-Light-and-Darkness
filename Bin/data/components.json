@@ -41,6 +41,7 @@
 		"light_dir",
 		"light_spot",
 		"light_point",
+		"light_controller",
 		"projector",
 		"camera_flyover",
 		"rigid_anim",

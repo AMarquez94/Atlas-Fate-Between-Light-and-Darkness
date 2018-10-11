@@ -45,9 +45,7 @@ void TCompCamera::renderDebug() {
 		setWorldTransform(world, VEC4(1, 1, 1, 1));
 		mesh->render();
 	}
-
 }
-
 
 void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
 

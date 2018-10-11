@@ -6,10 +6,12 @@
 #pragma comment(lib, "h264bsd")
 
 CVideoTexture::~CVideoTexture() {
+
     close();
 }
 
 bool CVideoTexture::initDecoder() {
+
     decoder = h264bsdAlloc();
     status = h264bsdInit(decoder, 0);
     if (status > 0) return false;
@@ -19,7 +21,6 @@ bool CVideoTexture::initDecoder() {
     num_frame = 0;
     picData = nullptr;
     finished = false;
-    current_time = 0.0f;
 
     return true;
 }
@@ -30,6 +31,7 @@ bool CVideoTexture::create(const std::string& name) {
     CFileDataProvider dp(name.c_str());
     if (!dp.isValid())
         return false;
+
     data.resize(dp.fileSize());
     dp.readBytes(data.data(), data.size());
 
@@ -85,6 +87,7 @@ bool CVideoTexture::uploadToVRAM() {
 
 // return true if the video has finished
 bool CVideoTexture::decodeNextFrame() {
+
     u32 bytesRead = 0;
 
     while (len > 0) {
@@ -99,6 +102,11 @@ bool CVideoTexture::decodeNextFrame() {
             picData = h264bsdNextOutputPictureBGRA(decoder, &picId, &isIdrPic, &numErrMbs);
             frame_ready = true;
             return false;
+        }
+        else if (status == H264BSD_HDRS_RDY) {
+            auto vui = decoder->activeSps->vuiParameters;
+            dbg("VideoDecoder: Header ready: TimeScale:%d fps:%1.2f\n", vui->timeScale, vui->timeScale * 0.5f);
+            chrono.reset();
         }
 
         else if (status == H264BSD_ERROR) {
@@ -121,6 +129,7 @@ bool CVideoTexture::decodeNextFrame() {
 }
 
 void CVideoTexture::close() {
+
     if (decoder) {
         h264bsdShutdown(decoder);
         h264bsdFree(decoder);
@@ -129,6 +138,7 @@ void CVideoTexture::close() {
 }
 
 bool CVideoTexture::isFrameReadyToUpload() const {
+
     return frame_ready;
 }
 
@@ -139,10 +149,10 @@ void CVideoTexture::update(float dt) {
 
     // Rewind those that finished.
     if (hasFinished()) {
-        //dbg("Video loops\n");
+
+        float time_to_play = chrono.elapsedAndReset();
 
         close();
-
         initDecoder();
 
         // Reload

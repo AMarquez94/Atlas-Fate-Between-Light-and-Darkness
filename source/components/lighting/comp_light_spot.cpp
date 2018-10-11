@@ -337,3 +337,24 @@ bool TCompLightSpot::isCulled() const {
 
     return cull_enabled;
 }
+
+
+void TCompLightSpot::setIntensity(float new_int)
+{
+    intensity = new_int;
+}
+
+float TCompLightSpot::getAngle()
+{
+    return angle;
+}
+
+void TCompLightSpot::setAngle(float new_ang)
+{
+    angle = new_ang;
+}
+
+float TCompLightSpot::getIntensity()
+{
+    return intensity;
+}

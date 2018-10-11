@@ -5,15 +5,15 @@
 			"initial_script": "intro",
 			"navmesh": "data/navmeshes/intro_navmesh.bin",
 			"exposure": 1.51,
-			"ambient": 0.05,
+			"ambient": 0.04,
 			"gamma": 0.92,
 			"tone_mapping": 0.5,
 			"shadow_intensity": 0,
 			"ground_fog_density": 0.1,
-			"env_fog_density": 0.1,
+			"env_fog_density": 0.345,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.043"
+			"env_fog": "0.004 0.004 0.0117"
 			
 		},
 		"scene_group": [
@@ -41,7 +41,7 @@
 			"data/scenes/intro_neones.scene",
 			"data/scenes/intro_mosaico.scene",
 			"data/scenes/intro_cables.scene",
-
+			"data/scenes/scene_bake.scene",
 			"data/scenes/intro_tubo_capsulas.scene",
 			"data/scenes/intro_farolas.scene",
 			"data/scenes/intro_patrol_atrapado.scene",

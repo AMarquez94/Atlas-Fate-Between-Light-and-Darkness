@@ -2,5 +2,7 @@
 	"xres": 1280,
 	"yres": 720,
 	"fullscreen": false,
-	"drawfps": true
+	"drawfps": true,
+	"fixed_fps": 60,
+	"fixed_step": false
 }

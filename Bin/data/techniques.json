@@ -100,11 +100,7 @@
 		"vs_entry_point": "VS_GBuffer",
 		"ps_entry_point": "PS_GBuffer",
 		"vertex_type": "PosNUvUvT",
-		"category": "gbuffer",
-		"textures": {
-			"environment": "data/textures/cubemaps/env.dds",
-			"irradiance": "data/textures/cubemaps/irradiance.dds"
-		}
+		"category": "gbuffer"
 	},
 	"pbr_opacity": {
 		"vs_file": "data/shaders/pbr.fx",
@@ -113,11 +109,7 @@
 		"ps_entry_point": "PS_GBuffer_Opacity",
 		"vertex_type": "PosNUvUvT",
 		"category": "gbuffer_opacity",
-		"blend": "default",
-		"textures": {
-			"environment": "data/textures/cubemaps/env.dds",
-			"irradiance": "data/textures/cubemaps/irradiance.dds"
-		}
+		"blend": "default"
 	},
 	"pbr_no_cull": {
 		"vs_file": "data/shaders/pbr.fx",
@@ -126,11 +118,7 @@
 		"ps_entry_point": "PS_GBuffer",
 		"vertex_type": "PosNUvUvT",
 		"category": "gbuffer",
-		"rs_config": "cull_none",
-		"textures": {
-			"environment": "data/textures/cubemaps/env.dds",
-			"irradiance": "data/textures/cubemaps/irradiance.dds"
-		}
+		"rs_config": "cull_none"
 	},
 	"pbr_disk": {
 		"vs_file": "data/shaders/pbr.fx",
@@ -138,11 +126,7 @@
 		"vs_entry_point": "VS_GBuffer",
 		"ps_entry_point": "PS_WeaponPlate_GBuffer",
 		"vertex_type": "PosNUvUvT",
-		"category": "gbuffer",
-		"textures": {
-			"environment": "data/textures/cubemaps/env.dds",
-			"irradiance": "data/textures/cubemaps/irradiance.dds"
-		}
+		"category": "gbuffer"
 	},
 	"pbr_parallax": {
 		"vs_file": "data/shaders/parallax.fx",
@@ -150,11 +134,7 @@
 		"vs_entry_point": "VS_GBuffer",
 		"ps_entry_point": "PS_GBuffer_Parallax",
 		"vertex_type": "PosNUvUvT",
-		"category": "gbuffer",
-		"textures": {
-			"environment": "data/textures/cubemaps/env.dds",
-			"irradiance": "data/textures/cubemaps/irradiance.dds"
-		}
+		"category": "gbuffer"
 	},
 	"pbr_parallax_equal": {
 		"vs_file": "data/shaders/parallax.fx",
@@ -163,11 +143,7 @@
 		"ps_entry_point": "PS_GBuffer_Parallax",
 		"vertex_type": "PosNUvUvT",
 		"category": "gbuffer",
-		"rs_config": "depth_bias",
-		"textures": {
-			"environment": "data/textures/cubemaps/env.dds",
-			"irradiance": "data/textures/cubemaps/irradiance.dds"
-		}
+		"rs_config": "depth_bias"
 	},
 	"pbr_skin": {
 		"vs_file": "data/shaders/pbr.fx",
@@ -177,11 +153,7 @@
 		"vertex_type": "PosNUvTanSkin",
 		"uses_skin": true,
 		"category": "gbuffer",
-		"rs_config": "cull_none",
-		"textures": {
-			"environment": "data/textures/cubemaps/env.dds",
-			"irradiance": "data/textures/cubemaps/irradiance.dds"
-		}
+		"rs_config": "cull_none"
 	},
 	"pbr_shade_skin": {
 		"vs_file": "data/shaders/pbr.fx",
@@ -193,9 +165,7 @@
 		"category": "gbuffer",
 		"rs_config": "cull_none",
 		"textures": {
-			"noise": "data/textures/noise_cloud3.dds",
-			"environment": "data/textures/cubemaps/env.dds",
-			"irradiance": "data/textures/cubemaps/irradiance.dds"
+			"noise": "data/textures/noise_cloud3.dds"
 		}
 	},
 	"pbr_player": {
@@ -208,9 +178,7 @@
 		"uses_skin": true,
 		"rs_config": "cull_none",
 		"textures": {
-			"noise": "data/textures/noise_cloud3.dds",
-			"environment": "data/textures/cubemaps/env.dds",
-			"irradiance": "data/textures/cubemaps/irradiance.dds"
+			"noise": "data/textures/noise_cloud3.dds"
 		}
 	},
 	"pbr_instanced": {
@@ -227,11 +195,9 @@
 		"ps_entry_point": "PS_default",
 		"category": "decals",
 		"z": "test_but_no_write",
-		"blend": "combinative",
+		"blend": "multiplicative_gbuffer",
 		"textures": {
-			"noise": "data/textures/noise_cloud3.dds",
-			"environment": "data/textures/cubemaps/env.dds",
-			"irradiance": "data/textures/cubemaps/irradiance.dds"
+			"noise": "data/textures/noise_cloud3.dds"
 		}
 	},
 	"pbr_decals": {
@@ -241,9 +207,7 @@
 		"z": "test_but_no_write",
 		"blend": "multiplicative_gbuffer",
 		"textures": {
-			"noise": "data/textures/noise_cloud3.dds",
-			"environment": "data/textures/cubemaps/env.dds",
-			"irradiance": "data/textures/cubemaps/irradiance.dds"
+			"noise": "data/textures/noise_cloud3.dds"
 		}
 	},
 	"pbr_ambient": {
@@ -264,12 +228,10 @@
 		"ps_file": "data/shaders/deferred.fx",
 		"ps_entry_point": "PS_Fog",
 		"vertex_type": "PosClr",
-		"category": "helper",
+		"category": "pbr_proc",
 		"z": "disable_all",
 		"textures": {
-			"noise": "data/textures/noise_cloud3.dds",
-			"environment": "data/textures/cubemaps/env.dds",
-			"irradiance": "data/textures/cubemaps/irradiance.dds"
+			"noise": "data/textures/noise_cloud3.dds"
 		}
 	},
 	"pbr_dir_lights": {
@@ -472,9 +434,7 @@
 		"color_mask": 240,
 		"priority": 151,
 		"textures": {
-			"noise": "data/textures/noise_cloud3.dds",
-			"environment": "data/textures/cubemaps/env.dds",
-			"irradiance": "data/textures/cubemaps/irradiance.dds"
+			"noise": "data/textures/noise_cloud3.dds"
 		}
 	},
 	"pbr_outline_drone": {
@@ -494,10 +454,6 @@
 		"ps_entry_point": "PS_GBuffer",
 		"vertex_type": "PosNUvUvT",
 		"category": "gbuffer",
-		"textures": {
-			"environment": "data/textures/cubemaps/env.dds",
-			"irradiance": "data/textures/cubemaps/irradiance.dds"
-		},
 		"priority": 160,
 		"comment": "This needs to go after the pbr_outline"
 	},
@@ -520,10 +476,6 @@
 		"vertex_type": "PosNUvTanSkin",
 		"uses_skin": true,
 		"category": "gbuffer",
-		"textures": {
-			"environment": "data/textures/cubemaps/env.dds",
-			"irradiance": "data/textures/cubemaps/irradiance.dds"
-		},
 		"priority": 160,
 		"comment": "This needs to go after the pbr_outline"
 	},
@@ -531,11 +483,7 @@
 		"vs_file": "data/shaders/grass.fx",
 		"vertex_type": "PosNUvUvT_x_InstancedPos",
 		"category": "gbuffer",
-		"rs_config": "cull_none",
-		"textures": {
-			"environment": "data/textures/cubemaps/env.dds",
-			"irradiance": "data/textures/cubemaps/irradiance.dds"
-		}
+		"rs_config": "cull_none"
 	},
 	"shadows_grass_instanced": {
 		"vs_file": "data/shaders/grass.fx",
@@ -793,9 +741,7 @@
 		"category": "hologram",
 		"blend": "additive_by_src_alpha",
 		"textures": {
-			"noise": "data/textures/noise_cloud3.dds",
-			"environment": "data/textures/cubemaps/env.dds",
-			"irradiance": "data/textures/cubemaps/irradiance.dds"
+			"noise": "data/textures/noise_cloud3.dds"
 		}
 	},
 	"pbr_hologram_sw_playersolid": {
@@ -807,9 +753,7 @@
 		"category": "hologram",
 		"blend": "additive_by_src_alpha",
 		"textures": {
-			"noise": "data/textures/noise_cloud3.dds",
-			"environment": "data/textures/cubemaps/env.dds",
-			"irradiance": "data/textures/cubemaps/irradiance.dds"
+			"noise": "data/textures/noise_cloud3.dds"
 		}
 	},
 	"pbr_hologram_sw_model": {

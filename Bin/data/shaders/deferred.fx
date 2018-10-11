@@ -53,12 +53,10 @@ float4 environment_fog(float4 iPosition, float2 iTex0, float3 in_color)
 	float3 frag_dir = (wPos - camera_pos.xyz);
 	float dist = abs(length(frag_dir));
 	
-	float fog_factor = 1 - exp( (dist * -global_fog_density * .075)* (dist* global_fog_density * .075));	
-	if(depth > 0.99) fog_factor = 0.4;
-
-	float3 color = lerp(in_color, global_fog_env_color, saturate(fog_factor));
-	//float3 color = in_color + global_fog_env_color * fog_factor;
-	
+	float fog_factor = 1 - exp( (dist * -global_fog_density * 0.075)* (dist* global_fog_density * 0.075));	
+	if(depth > 0.99) fog_factor = 0.85;
+		
+	float3 color = lerp(in_color, global_fog_env_color, saturate(fog_factor) * 0.95);
 	return float4(color,1);
 }
 
@@ -123,10 +121,12 @@ float4 PS_Fog(
 {
   int3 ss_load_coords = uint3(iPosition.xy, 0);
   float3 hdrColor = txAlbedo.Sample(samLinear, iUV).xyz;
-	//hdrColor = environment_fog(iPosition, iUV, hdrColor);
-	//hdrColor = ground_fog(iPosition, iUV, hdrColor);
+	hdrColor = environment_fog(iPosition, iUV, hdrColor);
+	hdrColor = ground_fog(iPosition, iUV, hdrColor);
+	hdrColor *= txAO.Sample(samLinear, iUV);	
+	hdrColor *= txSelfIllum.Load(uint3(iPosition.xy,0)).a; // temp 
 	
-	return 0;// float4(hdrColor, 1);
+	return float4(hdrColor, 1);
 }
 
 // ----------------------------------------
@@ -134,21 +134,12 @@ float4 compute(float4 iPosition, float2 iUV)
 {
   int3 ss_load_coords = uint3(iPosition.xy, 0);
   float4 oAlbedo = txGBufferAlbedos.Load(ss_load_coords);
-  //return txAO.Sample(samLinear, iUV);
-	//return txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
-	//return txSelfIllum.Load(uint3(iPosition.xy,0)).a;
   float4 N_rt = txGBufferNormals.Load(ss_load_coords);
   float4 oNormal = float4(decodeNormal( N_rt.xyz ), 1);
-
+  //float3 light_col = txLuminance.Load(ss_load_coords).xyz;
   float3 hdrColor = txAccLights.Load(ss_load_coords).xyz;
-	//hdrColor *= txSelfIllum.Load(uint3(iPosition.xy,0)).a;
-	hdrColor = environment_fog(iPosition, iUV, hdrColor);
-	hdrColor = ground_fog(iPosition, iUV, hdrColor);
-		
-  //hdrColor *= PS_PostFXFog(iPosition, iUV);
-	//hdrColor *= txAO.Sample(samLinear, iUV);
+
 	hdrColor *= global_exposure_adjustment;
-	//hdrColor *= txAO.Sample(samLinear, iUV);	
   
 	// In Low Dynamic Range we could not go beyond the value 1
   //float3 ldrColor = min(hdrColor,float3(1,1,1));
