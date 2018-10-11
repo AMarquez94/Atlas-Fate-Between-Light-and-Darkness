@@ -71,7 +71,6 @@ void TCompParticles::onGroupCreated(const TMsgEntitiesGroupCreated&) {
     }
 }
 
-
 void TCompParticles::onDestroyed(const TMsgEntityDestroyed&) {
 
     if (_particles) {
@@ -79,7 +78,7 @@ void TCompParticles::onDestroyed(const TMsgEntityDestroyed&) {
     }
 
     for (auto p : _cores) {
-        Engine.getParticles().kill(_particles, _fadeout);
+        Engine.getParticles().kill(p.second, _fadeout);
     }
 }
 

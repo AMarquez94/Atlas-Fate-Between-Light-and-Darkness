@@ -107,7 +107,6 @@ void CPhysicsBox::load(const json& j, TEntityParseContext& ctx) {
 
 physx::PxShape* CPhysicsBox::createShape() {
 
-    material = default_material;
     physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
 
     physx::PxShape * actor_shape = gPhysics->createShape(physx::PxBoxGeometry(size.x, size.y, size.z), *material);
@@ -121,7 +120,6 @@ physx::PxShape* CPhysicsBox::createShape() {
 
 physx::PxController* CPhysicsBox::createController(TCompTransform * c_transform) {
 
-    material = EnginePhysics.getPhysxFactory()->createMaterial(0.6f, 0.4f, 0.1f);
     physx::PxControllerDesc* cDesc;
     physx::PxBoxControllerDesc boxDesc;
     physx::PxControllerManager * gManager = EnginePhysics.getPhysxController();
@@ -165,7 +163,6 @@ void CPhysicsPlane::load(const json& j, TEntityParseContext& ctx) {
 
 physx::PxShape* CPhysicsPlane::createShape() {
 
-    material = default_material;
     physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
 
     physx::PxShape * actor_shape = gPhysics->createShape(physx::PxPlaneGeometry(), *material);
@@ -187,7 +184,6 @@ void CPhysicsSphere::load(const json& j, TEntityParseContext& ctx) {
 
 physx::PxShape* CPhysicsSphere::createShape() {
 
-    material = default_material;
     physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
 
     physx::PxShape * actor_shape = gPhysics->createShape(physx::PxSphereGeometry(radius), *material);
@@ -212,7 +208,6 @@ void CPhysicsCapsule::load(const json& j, TEntityParseContext& ctx) {
 
 physx::PxShape* CPhysicsCapsule::createShape() {
 
-    material = default_material;
     physx::PxPhysics * gPhysics = EnginePhysics.getPhysxFactory();
 
     physx::PxShape * actor_shape = gPhysics->createShape(physx::PxCapsuleGeometry(radius, height), *material);
@@ -226,7 +221,6 @@ physx::PxShape* CPhysicsCapsule::createShape() {
 
 physx::PxController* CPhysicsCapsule::createController(TCompTransform * c_transform) {
 
-    material = EnginePhysics.getPhysxFactory()->createMaterial(0.6f, 0.4f, 0.1f);
     physx::PxControllerDesc* cDesc;
     physx::PxCapsuleControllerDesc capsuleDesc;
     physx::PxControllerManager * gManager = EnginePhysics.getPhysxController();
@@ -270,7 +264,6 @@ void CPhysicsConvex::load(const json& j, TEntityParseContext& ctx) {
 
 physx::PxShape* CPhysicsConvex::createShape() {
 
-    material = default_material;
     mesh = loadPhysicsMesh(filename.c_str());
     TMeshLoader * collider_mesh = loadCollider(filename.c_str());
 
@@ -310,7 +303,6 @@ void CPhysicsTriangleMesh::load(const json& j, TEntityParseContext& ctx) {
 
 physx::PxShape* CPhysicsTriangleMesh::createShape() {
 
-    material = default_material;
     mesh = loadPhysicsMesh(filename.c_str());
     TMeshLoader * collider_mesh = loadCollider(filename.c_str());
 

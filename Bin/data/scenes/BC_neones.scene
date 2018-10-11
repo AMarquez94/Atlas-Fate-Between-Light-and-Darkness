@@ -5,8 +5,7 @@
 				"pos": "0.0 0.0 0.0"
 			}
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "mesh_neon_verde_005",
 			"prefab": "data/prefabs/neon_verde_4.prefab",
@@ -15,8 +14,7 @@
 				"rotation": "0.0 -1.0 0.0 0.0"
 			}
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "mesh_neon_redondo_azul001",
 			"prefab": "data/prefabs/neon_redondo_azul.prefab",
@@ -25,8 +23,7 @@
 				"rotation": "-0.5 0.5 -0.5 -0.5"
 			}
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "mesh_neon_rectangulo_verde001",
 			"prefab": "data/prefabs/neon_rectangulo_verde.prefab",
@@ -35,8 +32,7 @@
 				"rotation": "0.0 0.0 0.0 -1.0"
 			}
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "mesh_neon_azul_007",
 			"prefab": "data/prefabs/neon_azul_2.prefab",
@@ -45,8 +41,7 @@
 				"rotation": "0.0 -1.0 0.0 0.0"
 			}
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "mesh_neon_azul_006",
 			"prefab": "data/prefabs/neon_azul_4.prefab",
@@ -55,8 +50,7 @@
 				"rotation": "0.0 0.0 0.0 -1.0"
 			}
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "mesh_neon_azul_005",
 			"prefab": "data/prefabs/neon_azul_4.prefab",
@@ -65,8 +59,7 @@
 				"rotation": "0.0 0.707107 0.0 -0.707107"
 			}
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "mesh_neon_amarillo_006",
 			"prefab": "data/prefabs/neon_amarillo_5.prefab",
@@ -75,8 +68,7 @@
 				"rotation": "0.0 -0.707107 0.0 -0.707107"
 			}
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "mesh_neon_amarilllo_004",
 			"prefab": "data/prefabs/neon_amarillo_3.prefab",
@@ -85,8 +77,7 @@
 				"rotation": "0.0 -0.707107 0.0 -0.707107"
 			}
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Spot020",
 			"transform": {
@@ -119,8 +110,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Spot019",
 			"transform": {
@@ -153,8 +143,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Spot017",
 			"transform": {
@@ -187,8 +176,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Spot016",
 			"transform": {
@@ -221,8 +209,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Spot015",
 			"transform": {
@@ -255,8 +242,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Spot014",
 			"transform": {
@@ -289,8 +275,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Spot013",
 			"transform": {
@@ -323,8 +308,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Spot012",
 			"transform": {
@@ -357,8 +341,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Spot011",
 			"transform": {
@@ -391,8 +374,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Spot009",
 			"transform": {
@@ -425,8 +407,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Spot007",
 			"transform": {
@@ -459,8 +440,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Spot006",
 			"transform": {
@@ -493,8 +473,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Spot003",
 			"transform": {
@@ -527,8 +506,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Spot002",
 			"transform": {
@@ -561,8 +539,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Spot001",
 			"transform": {
@@ -595,8 +572,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Omni008",
 			"transform": {
@@ -625,8 +601,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Omni007",
 			"transform": {
@@ -655,8 +630,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Omni006",
 			"transform": {
@@ -685,8 +659,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Omni005",
 			"transform": {
@@ -715,8 +688,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Omni004",
 			"transform": {
@@ -745,8 +717,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Omni003",
 			"transform": {
@@ -775,8 +746,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Omni002",
 			"transform": {
@@ -805,8 +775,7 @@
 				"light"
 			]
 		}
-	},
-	{
+	}, {
 		"entity": {
 			"name": "BC_Omni001",
 			"transform": {

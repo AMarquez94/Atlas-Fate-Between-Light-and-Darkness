@@ -17,7 +17,8 @@
 			},
 			"render_blur_radial": {
 				"enabled": true,
-				"radius": 1.5
+				"amount": 3,
+				"radius": 0.9	
 			},
 			"motion_blur": {
 				"enabled": true
@@ -25,7 +26,7 @@
 			"color_grading": {
 				"enabled": true,
 				"amount": 0.8,
-				"lut": "data/textures/lut/lut_sm.dds"
+				"lut": "data/textures/lut/lut1.dds"
 			},
 			"vignette": {
 				"enabled": true

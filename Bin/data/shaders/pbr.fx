@@ -116,7 +116,7 @@ void PS_GBuffer_Opacity(
 {
 	o_albedo = txAlbedo.Sample(samLinear, iTex0);
 	
-	if(o_albedo.a < 0.5) discard;
+	if(o_albedo.a < 0.65) discard;
 	o_selfIllum =  txEmissive.Sample(samLinear, iTex0);
 	o_selfIllum.xyz *= self_color.xyz * self_intensity;
 	o_selfIllum.a = txAOcclusion.Sample(samLinear, iTex0).r;
@@ -459,7 +459,7 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	float4 self_illum = txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
 	
 	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
-	final_color *= global_ambient_adjustment * ao;
+	final_color *= global_ambient_adjustment;// * ao * self_illum.a;
 	final_color += float4(self_illum.xyz, 1);
 	return float4(final_color.xyz, 1);
 }
@@ -619,7 +619,7 @@ float4 PS_VLight(
     float shadow_factor = computeShadowFactor(iWorldPos);
     float camera_dist = length(iWorldPos - light_pos.xyz);
     float val = 1 / (1 + (camera_dist * camera_dist));
-
+ 
     // From wPos to Light
     float3 light_dir_full = light_pos.xyz - iWorldPos;
     float  distance_to_light = length(light_dir_full);

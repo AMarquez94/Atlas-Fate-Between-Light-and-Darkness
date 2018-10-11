@@ -294,8 +294,8 @@ CB_DEF(CCtePostFX, CB_POSTFX)
 
     float  postfx_vignette;
     float  postfx_vignette_softness;
-    float  postfx_dummy2;
-    float  postfx_dummy3;
+    float  postfx_contrast;
+    float  postfx_brightness;
 };
 
 CB_DEF(CCteFocus, CB_FOCUS)

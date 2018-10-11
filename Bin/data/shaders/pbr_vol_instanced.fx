@@ -161,11 +161,9 @@ float4 PS_IVLight(
     return float4(light_color.xyz, clamp_spot * val * noise0.x) * shadow_factor;// * projectColor(iWorldPos);
 }
 
-#define NUM_SAMPLES 25
-#define NUM_SAMPLES_RCP 0.04
-#define FACTOR_TAU 0.000001f
+#define FACTOR_TAU 0.0001f
 #define FACTOR_PHI 100000.0f
-#define PI_RCP 1.318f
+#define PI_RCP 1.318309388618379067153776752674503f
 
 float4 PS_GBuffer_RayShafts(
   float4 Pos       : SV_POSITION
@@ -176,12 +174,12 @@ float4 PS_GBuffer_RayShafts(
   , float3 iWorldPos : TEXCOORD2
 ): SV_Target0
 {
-	float NB_STEPS = 10;
-  float TAU = FACTOR_TAU * 1.1;
-  float PHI = FACTOR_PHI * 4.5;
+	float NB_STEPS = 40;
+  float TAU = FACTOR_TAU * 25.1;
+  float PHI = FACTOR_PHI * light_intensity * 4;
 	
 	// Clamped world position to closest fragment
-	int3 ss_load_coords = uint3(Pos.xy, 0);
+	int3   ss_load_coords = uint3(Pos.xy, 0);
   float  zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
   float  depth = zlinear > Pos.z ? Pos.z : zlinear;
   float3 wPos = getWorldCoords(Pos.xy, depth);
@@ -192,10 +190,15 @@ float4 PS_GBuffer_RayShafts(
 
 	float step_length = ray_length / NB_STEPS;
 	float3 step = ray_dir * step_length;
+
+  float4x4 ditherPattern = {{ 0.0f, 0.5f, 0.125f, 0.625f},
+                            { 0.75f, 0.22f, 0.875f, 0.375f},
+                            { 0.1875f, 0.6875f, 0.0625f, 0.5625},
+                            { 0.9375f, 0.4375f, 0.8125f, 0.3125}};
+  float ditherValue = ditherPattern[Pos.x % 4][Pos.y % 4];
 	
-	float3 currentPosition = wPos;
+	float3 currentPosition = wPos + step * ditherValue;
 	float total_fog = 0.0f;
-	float3 color = global_fog_env_color;
 	float l = ray_length;
 			
 	for (int i = 0; i < NB_STEPS; i++)
@@ -210,7 +213,7 @@ float4 PS_GBuffer_RayShafts(
 		currentPosition += step;
 	}
 
-	return float4(total_fog.xxx, 1);
+	return float4(light_color.xyz * total_fog, 1);
 }
 
 float4 PS_GBuffer_Shafts(

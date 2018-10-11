@@ -66,12 +66,21 @@ void TCompCollider::load(const json& j, TEntityParseContext& ctx) {
 		config = new CPhysicsTriangleMesh();
 	}
 
-  groupName = j.value("group", "all");
-  maskName = j.value("mask", "all");
+    groupName = j.value("group", "all");
+    maskName = j.value("mask", "all");
 
 	config->group = getFilterByName(groupName);
 	config->mask = getFilterByName(maskName);
 	config->is_trigger = j.value("is_trigger", false);
+
+    if (j.count("material"))
+    {
+        VEC3 settings = loadVEC3(j["material"]);
+        config->material = EnginePhysics.CreateMaterial(settings);
+    }
+    else {
+        config->material = CPhysicsCollider::default_material;
+    }
 
 	if (j.count("center"))
 	{

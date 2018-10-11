@@ -56,9 +56,6 @@ const CTexture* TCompRenderAO::compute(CTexture* linear_depth_texture) {
 	tech->activate();
 	mesh->activateAndRender();
 
-    // Blur the highlights
-    //CTexture* output = apply(rt_output);
-
 	ID3D11RenderTargetView* null_rt = nullptr;
 	Render.ctx->OMSetRenderTargets(1, &null_rt, nullptr);
 
