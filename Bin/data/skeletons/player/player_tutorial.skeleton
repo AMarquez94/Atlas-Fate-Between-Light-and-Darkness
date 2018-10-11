@@ -20,6 +20,8 @@
 		{ "name" : "land_soft"},
 		{ "name" : "cinematic_walk"},
 		{ "name" : "hack"},
+		{ "name" : "cinematic_listen_crouch"},
+		{ "name" : "cinematic_listen_idle"},
 		{ "name" : "touch_enemy"},
 		{ "name" : "sm_enter_fall"},
 		{ "name" : "sonda_normal"},

@@ -351,6 +351,26 @@ void TCompPlayerAnimator::initializeAnimations() {
 		1.0f,
 		false
 	);
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CINEMATIC_LISTEN_CROUCH,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"cinematic_listen_crouch",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CINEMATIC_LISTEN_IDLE,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"cinematic_listen_idle",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
 	
 }
 
