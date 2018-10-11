@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_basilic_interior",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -49,6 +49,7 @@
 			"data/scenes/intro_edificios_segunda_2.scene",
 
 			"data/scenes/intro_carteles.scene",
+			"data/scenes/intro_luna.scene",
 
 			"data/scenes/intro_pozo.scene",
 			"data/scenes/intro_barra_capsulas.scene",
