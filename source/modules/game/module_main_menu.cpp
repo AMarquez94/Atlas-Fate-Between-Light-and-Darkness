@@ -20,8 +20,9 @@ bool CModuleMainMenu::start()
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 	mouse->setLockMouse(false);
 
-	EngineScene.loadScene("scene_main_menu");
+	EngineScene.loadScene("default");
 
+	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_SCENE);
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BACKGROUND);
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(0.25,0,false);
@@ -45,6 +46,7 @@ bool CModuleMainMenu::start()
 bool CModuleMainMenu::stop() {
 
 	dbg("MODULE STOP\n");
+	CEngine::get().getGUI().deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_SCENE);
 	CEngine::get().getGUI().deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BACKGROUND);
 	CEngine::get().getGUI().deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
 	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN);

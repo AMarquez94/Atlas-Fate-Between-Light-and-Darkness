@@ -173,6 +173,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::DEAD_LINE, "data/gui/dead_menu_line.json");
 	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE_MISSION, "data/gui/pause_menu_mision.json");
 	registerWigdetStruct(EGUIWidgets::INGAME_HUD_ENEMY, "data/gui/enemy_hud_game.json");
+	registerWigdetStruct(EGUIWidgets::MAIN_MENU_SCENE, "data/gui/main_menu_scene.json");
 }
 
 void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController *wdgt_controller) {

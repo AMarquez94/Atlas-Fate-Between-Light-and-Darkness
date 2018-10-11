@@ -43,7 +43,7 @@ bool CModuleLogic::stop() {
 }
 
 void CModuleLogic::update(float delta) {
-    for (unsigned int i = 0; i < delayedSystemScripts.size(); i++) {
+    for (int i = delayedSystemScripts.size() - 1; i >= 0 ; i--) {
         delayedSystemScripts[i].remainingTime -= delta;
         if (delayedSystemScripts[i].remainingTime <= 0) {
             execScript(delayedSystemScripts[i].script);
@@ -52,7 +52,7 @@ void CModuleLogic::update(float delta) {
     }
 
     if (!paused) {
-        for (unsigned int i = 0; i < delayedScripts.size(); i++) {
+		for (int i = delayedScripts.size() - 1; i >= 0; i--) {
             delayedScripts[i].remainingTime -= delta;
             if (delayedScripts[i].remainingTime <= 0) {
                 execScript(delayedScripts[i].script);
