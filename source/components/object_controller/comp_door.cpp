@@ -26,6 +26,8 @@ void TCompDoor::load(const json& j, TEntityParseContext& ctx) {
     time_to_close = j.value("time_to_close", 3.f);
     open_soundevent = j.value("open_soundevent", "");
     close_soundevent = j.value("close_soundevent", "");
+
+    state = EDoorState::CLOSED;
 }
 
 void TCompDoor::registerMsgs() {
@@ -46,6 +48,7 @@ void TCompDoor::update(float dt) {
                 TCompCollider* my_col = get<TCompCollider>();
                 if (my_col) {
                     my_col->setGroupAndMask("ignore", "player");
+                    //EngineLogic.execScript("invalidatePlayerPhysxCache()");
                 }
                 state = EDoorState::OPENED;
                 EngineLogic.execScript(opened_script);
@@ -70,29 +73,40 @@ void TCompDoor::update(float dt) {
 }
 
 void TCompDoor::open() {
+
+    if (state == OPENED || state == OPENING) {
+        return;
+    }
+
     TCompAnimatedObjController* anim = get<TCompAnimatedObjController>();
     anim->playAnimation(opening_anim);
-    TCompAudio* my_audio = get<TCompAudio>();
-    if (my_audio) {
-        my_audio->playEvent(open_soundevent);
-    }
     state = EDoorState::OPENING;
     timer = 0.f;
+    TCompAudio* my_audio = get<TCompAudio>();
+    if (my_audio && open_soundevent != "") {
+        my_audio->playEvent(open_soundevent);
+    }
 }
 
 void TCompDoor::close() {
+
+    if (state == CLOSED || state == CLOSING) {
+        return;
+    }
+
     TCompAnimatedObjController* anim = get<TCompAnimatedObjController>();
     anim->playAnimation(closing_anim);
     state = EDoorState::CLOSING;
     TCompCollider* my_col = get<TCompCollider>();
     if (my_col) {
         my_col->setGroupAndMask("all", "all");
-    }
-    TCompAudio* my_audio = get<TCompAudio>();
-    if (my_audio) {
-        my_audio->playEvent(close_soundevent);
+        //EngineLogic.execScript("invalidatePlayerPhysxCache()");
     }
     timer = 0.f;
+    TCompAudio* my_audio = get<TCompAudio>();
+    if (my_audio && close_soundevent != "") {
+        my_audio->playEvent(close_soundevent);
+    }
 }
 
 void TCompDoor::load() {

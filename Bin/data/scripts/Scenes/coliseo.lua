@@ -1,6 +1,6 @@
 function onSceneStart_scene_coliseo()
-	toggleButtonCanBePressed("COL_mesh_terminal02", true);
-	toggleButtonCanBePressed("COL_mesh_terminal01", false);
+	toButton(toEntity(getEntityByName("COL_mesh_terminal02")):getCompByName("button")):setCanBePressed(true);
+	toButton(toEntity(getEntityByName("COL_mesh_terminal01")):getCompByName("button")):setCanBePressed(false);
 end
 
 function onScenePartialStart_scene_coliseo()
@@ -13,8 +13,8 @@ function onScenePartialStart_scene_coliseo()
 end
 
 function onSceneStart_scene_coliseo_2()
-	toggleButtonCanBePressed("COL_mesh_terminal02", false);
-	toggleButtonCanBePressed("COL_mesh_terminal01", true);
+	toButton(toEntity(getEntityByName("COL_mesh_terminal02")):getCompByName("button")):setCanBePressed(false);
+	toButton(toEntity(getEntityByName("COL_mesh_terminal01")):getCompByName("button")):setCanBePressed(true);
 end
 
 function onScenePartialStart_scene_coliseo_2()
@@ -41,18 +41,38 @@ function closeIntroDoor()
 	getEntityByName("COL_trigger_corridor_intro02"):destroy();
 end
 
-function transition_coliseum_to_zone_a()
-	toggleButtonCanBePressed("Button Open ZoneA", false);
-	execScriptDelayed("blendInCamera(\"scene_transition_zone_a\", 1.0, \"cinematic\", \"\")", 2);
-	execScriptDelayed("pausePlayerToggle()", 2);
-	--execScriptDelayed("cinematicModeToggle()", 2);
-	execScriptDelayed("loadScene(\"scene_zone_a\")", 4);
+function transition_coliseum_to_zone_a(button_handle)
+	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
+	--makeVisibleByTag("corridor", true);
+	toDoor(toEntity(getEntityByName("col_zone_a_framedoor001")):getCompByName("door")):open();
 end
 
-function transition_coliseum_to_courtyard()
-	toggleButtonCanBePressed("Button Open Courtyard", false);
-	execScriptDelayed("blendInCamera(\"scene_transition_couryard\", 1.0, \"cinematic\", \"\")", 2);
-	execScriptDelayed("pausePlayerToggle()", 2);
-	--execScriptDelayed("cinematicModeToggle()", 2);
-	execScriptDelayed("loadScene(\"scene_basilic_courtyard\")", 4);
+function transition_coliseum_to_courtyard(button_handle)
+	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
+	--makeVisibleByTag("corridor", true);
+	toDoor(toEntity(getEntityByName("col_bc_framedoor002")):getCompByName("door")):open();
+end
+
+function onTriggerEnter_COL_trigger_corridor_zone_a_player()
+	getEntityByName("COL_trigger_corridor_zone_a"):destroy();
+	tdoor = toDoor(toEntity(getEntityByName("col_zone_a_framedoor001")):getCompByName("door"));
+	tdoor:setClosedScript("destroyColPreloadZoneA()");
+	tdoor:close();
+end
+
+function destroyColPreloadZoneA()
+	destroyPartialScene();
+	execScriptDelayed("preloadScene(\"scene_zone_a\")", 0.1);
+end
+
+function onTriggerEnter_COL_trigger_corridor_bc_player()
+	getEntityByName("COL_trigger_corridor_bc"):destroy();
+	tdoor = toDoor(toEntity(getEntityByName("col_bc_framedoor002")):getCompByName("door"));
+	tdoor:setClosedScript("destroyColPreloadBC()");
+	tdoor:close();
+end
+
+function destroyColPreloadBC()
+	destroyPartialScene();
+	execScriptDelayed("preloadScene(\"scene_basilic_courtyard\")", 0.1);
 end

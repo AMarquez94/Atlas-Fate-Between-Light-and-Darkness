@@ -248,7 +248,7 @@ void TCompRigidbody::Resize(float new_size)
 
     if (controller != NULL) {
         controller->resize((physx::PxReal)new_size);
-        controller->invalidateCache();
+        invalidateCache();
     }
 }
 
@@ -287,6 +287,13 @@ void TCompRigidbody::setGlobalPose(VEC3 pos, QUAT rot)
     }
     else {
         c_collider->setGlobalPose(pos, rot, false);
+    }
+}
+
+void TCompRigidbody::invalidateCache()
+{
+    if (controller != NULL) {
+        controller->invalidateCache();
     }
 }
 

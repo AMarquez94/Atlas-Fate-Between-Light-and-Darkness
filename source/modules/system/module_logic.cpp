@@ -337,6 +337,7 @@ void CModuleLogic::publishClasses() {
     m->set("makeVisibleByTag", SLB::FuncCall::create(&makeVisibleByTag));
     m->set("getPlayerLocalCoordinatesInReferenceTo", SLB::FuncCall::create(&getPlayerLocalCoordinatesInReferenceTo));
     m->set("movePlayerToRefPos", SLB::FuncCall::create(&movePlayerToRefPos));
+    m->set("invalidatePlayerPhysxCache", SLB::FuncCall::create(&invalidatePlayerPhysxCache));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -803,6 +804,12 @@ void movePlayerToRefPos(const std::string & ref_entity, VEC3 p_rel_pos)
     tplayer->setPosition(final_pos);
     TCompRigidbody* my_rigidbody = player->get<TCompRigidbody>();
     my_rigidbody->setGlobalPose(tplayer->getPosition(), tplayer->getRotation());
+}
+
+void invalidatePlayerPhysxCache() {
+    CEntity* ePlayer = EngineEntities.getPlayerHandle();
+    TCompRigidbody* tRigidbody = ePlayer->get <TCompRigidbody>();
+    tRigidbody->invalidateCache();
 }
 
 SoundEvent playEvent(const std::string & name)

@@ -13,7 +13,7 @@
 				"lookat": "5.34737 0.98493 -24.1"
 			},
 			"button": {
-				"script": "transition_coliseum_to_courtyard()",
+				"script": "transition_coliseum_to_courtyard",
 				"canBePressed": false
 			}
 		}
@@ -27,7 +27,7 @@
 				"lookat": "-25 0.985 -4.567"
 			},
 			"button": {
-				"script": "transition_coliseum_to_zone_a()",
+				"script": "transition_coliseum_to_zone_a",
 				"canBePressed": true
 			}
 		}
