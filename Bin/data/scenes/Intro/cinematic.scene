@@ -99,6 +99,25 @@
         "loop": true
       }
     }
+  },    {
+    "entity": {
+      "name": "Camera_Cinematic_Intro_Rotation_1",
+      "transform": {
+        "pos": "-7 13.2 33",
+        "rotation": "0.0483 0.9393 -0.1487 0.3052"
+      },
+      "prefab": "data/prefabs/camera_player.prefab"
+    }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Intro_Rotation_2",
+      "transform": {
+        "pos": "-7 13.2 33",
+        "rotation": "0.0061 0.9869 -0.1563 0.0387"
+      },
+      "prefab": "data/prefabs/camera_player.prefab"
+    }
   },
     {
     "entity": {

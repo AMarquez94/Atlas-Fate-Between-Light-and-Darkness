@@ -189,6 +189,7 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
 	addChild("playerActivated", "goToWpt", BTNode::EType::ACTION, (BTCondition)&TCompAIPlayer::conditionCinematicMode, (BTAction)&TCompAIPlayer::actionGoToWpt, nullptr);
     //addChild("playerActivated", "default", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionDefault, nullptr);
        
+
     addChild("playerActivated", "walkFallSMCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicWalkFall, nullptr, nullptr);
     addChild("walkFallSMCinematic", "resetTimersWalkFallCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersCinematicWalkFall, nullptr);
     addChild("walkFallSMCinematic", "crouchFallCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationStandingCrouch, nullptr);
@@ -649,7 +650,7 @@ BTNode::ERes TCompAIPlayer::actionAnimationStandingCrouch(float dt)
     }
     else {
         TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
-        my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CROUCH_IDLE);
+        my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_LISTEN_CROUCH);
         return BTNode::ERes::STAY;
     }
 }
@@ -851,7 +852,7 @@ BTNode::ERes TCompAIPlayer::actionStartSMEnemy(float dt)
 BTNode::ERes TCompAIPlayer::actionResetTimersCinematicWalkFall(float dt)
 {
     _currentState = EState::CINEMATIC_FALLSM;
-    _maxTimer = 1.f;
+    _maxTimer = 20.f;
     return BTNode::ERes::LEAVE;
 }
 
