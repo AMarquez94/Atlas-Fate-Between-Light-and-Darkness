@@ -16,7 +16,7 @@ function onSceneStart()
 end
 
 function onSceneEnd()
-	particles:killAll();
+	--particles:killAll();
 	stopAllAudioComponents();
 end
 

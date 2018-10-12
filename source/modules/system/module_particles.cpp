@@ -97,15 +97,6 @@ Particles::TParticleHandle CModuleParticles::launchSystem(const std::string& nam
     return launchSystem(cps, entity);
 }
 
-//Particles::TParticleHandle CModuleParticles::launchSystem(const std::string& name, CHandle entity, const VEC3 offset)
-//{
-//    const Particles::TCoreSystem* cps = Resources.get(name)->as<Particles::TCoreSystem>();
-//    cps->n_system.offset = offset;
-//
-//    return launchSystem(cps, entity);
-//}
-
-
 Particles::TParticleHandle CModuleParticles::launchSystem(const Particles::TCoreSystem* cps, CHandle entity)
 {
     assert(cps);
@@ -160,8 +151,10 @@ void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {
         }
         else
         {
-            delete *it;
-            _activeSystems.erase(it);
+            if ((*it)->getHandle()) {
+                delete (*it);
+                it = _activeSystems.erase(it);
+            }
         }
     }
 }
