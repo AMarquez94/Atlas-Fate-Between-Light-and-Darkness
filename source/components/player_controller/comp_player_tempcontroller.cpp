@@ -154,7 +154,10 @@ void TCompTempPlayerController::playPlayerStep(bool left)
     TCompAudio* my_audio = get<TCompAudio>();
     if (my_group) {
         CHandle foot = left ? my_group->getHandleByName("left_foot") : my_group->getHandleByName("right_foot");
-        EngineParticles.launchSystem("data/particles/def_amb_ground_step.particles", foot);
+        CEntity* e_foot = foot;
+        TCompTransform* weapon_right_pos = e_foot->get<TCompTransform>();
+        VEC3 init_pos = weapon_right_pos->getPosition();
+        EngineParticles.launchDynamicSystem("data/particles/def_amb_ground_step.particles", init_pos);
     }
     my_audio->playEvent("event:/Sounds/Player/Steps/NormalSteps", false);
 }
