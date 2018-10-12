@@ -92,5 +92,32 @@
 			"abs_aabb": true,
 			"local_aabb": true
 		}
+	},
+	{
+		"entity": {
+			"name": "COL_trigger_opendoor_zonea",
+			"transform": {
+				"pos": "-31.6018 -0.860209 0.497086",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "4.682 3.07523 8.50663",
+				"group": "All",
+				"mask": "",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"group": "All",
+			"mask": "",
+			"is_trigger": true,
+			"is_dynamic": false,
+			"is_controller": false,
+			"is_gravity": false
+		}
 	}
 ]

@@ -535,6 +535,7 @@ data/colliders/bc_collider_suelo_pasillo.collider
 data/meshes/bc_techo001.mesh
 data/meshes/bc_tubo_x005.mesh
 data/meshes/bc_tubo004.mesh
+data/scenes/bc_corridor_logic.scene
 data/scenes/Basilic_courtyard/BC_trigger_victory.scene
 data/scenes/Basilic_courtyard/_player.scene
 data/prefabs/player.prefab

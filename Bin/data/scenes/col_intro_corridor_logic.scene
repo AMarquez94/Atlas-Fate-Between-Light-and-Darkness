@@ -87,4 +87,27 @@
 			"local_aabb": true
 		}
 	}
+
+	,
+	{
+		"entity": {
+			"name": "COL_trigger_opendoor_intro",
+			"transform": {
+				"pos": "-0.237027 -0.860207 32.4403",
+				"rotation": "0.0 -0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "4.68177 3.07523 8.50663",
+				"group": "All",
+				"mask": "",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
 ]

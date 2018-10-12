@@ -1,0 +1,49 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_Corridor_Logic"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "BC_trigger_opendoor_bc"
+      ,
+      "transform":
+      {
+        "pos": "4.33772 -1.02928 -320.929"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "5.32938 1.66396 2.19644"
+        ,
+        "group": "All"
+        ,
+        "mask": ""
+        ,
+        "is_trigger": true
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]
