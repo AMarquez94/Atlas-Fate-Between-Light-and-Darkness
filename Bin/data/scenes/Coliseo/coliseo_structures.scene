@@ -16,7 +16,7 @@
 			"render": [{
 				"mesh": "data/meshes/COL_Circle001.mesh",
 				"materials": [
-					"data/materials/mtl_cables.material"
+					"data/materials/mtl_cable.material"
 				]
 			}],
 			"abs_aabb": true,

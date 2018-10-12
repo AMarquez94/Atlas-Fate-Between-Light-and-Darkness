@@ -55,9 +55,9 @@ data/colliders/COL_Spot044.collider
 data/colliders/COL_Spot045.collider
 data/scenes/Coliseo/coliseo_structures.scene
 data/meshes/COL_Circle001.mesh
-data/textures/default_texture.dds
+data/textures/tx_cables_alb.dds
 data/textures/null_normal.dds
-data/materials/mtl_cables.material
+data/materials/mtl_cable.material
 data/meshes/COL_mesh_arcomuralla01.mesh
 data/textures/tx_arcomuralla_alb.dds
 data/textures/tx_arcomuralla_ao.dds
@@ -272,9 +272,7 @@ data/textures/tx_sala_nml.dds
 data/textures/tx_sala_rgh.dds
 data/materials/mtl_sala.material
 data/meshes/col_intro_aux_pared_sombra.mesh
-data/textures/default_orange.dds
-data/textures/default_height.dds
-data/textures/tx_gloryhole_nml.dds
+data/textures/default_texture.dds
 data/materials/mtl_default.material
 data/meshes/col_intro_baseycolumna001.mesh
 data/textures/tx_baseycolumna_alb.dds
@@ -289,6 +287,7 @@ data/colliders/intro_collider_barandillas_pasillo.collider
 data/meshes/col_intro_boton001.mesh
 data/meshes/col_intro_cable_suelo001.mesh
 data/meshes/col_intro_cable_techo001.mesh
+data/materials/mtl_cables.material
 data/meshes/col_intro_cristal010.mesh
 data/meshes/col_intro_cristal011.mesh
 data/meshes/col_intro_cristal012.mesh
@@ -601,6 +600,7 @@ data/particles/def_sm_land_core.particles
 data/meshes/weapon_disc.mesh
 data/textures/tx_swap.dds
 data/textures/white.dds
+data/textures/default_height.dds
 data/materials/mtl_weapon_disc.material
 data/textures/particles/flare_spotlight.dds
 data/particles/def_attack_trail.particles

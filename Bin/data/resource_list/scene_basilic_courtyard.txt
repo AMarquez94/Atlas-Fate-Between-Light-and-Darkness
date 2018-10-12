@@ -33,9 +33,8 @@ data/meshes/quad_volume_particles.instanced_mesh
 data/materials/volume_particles_instanced.material
 data/scenes/Basilic_courtyard/buttons.scene
 data/meshes/Buttons/Button.mesh
-data/textures/default_orange.dds
-data/textures/default_height.dds
-data/textures/tx_gloryhole_nml.dds
+data/textures/default_texture.dds
+data/textures/null_normal.dds
 data/materials/mtl_default.material
 data/scenes/Basilic_courtyard/capsules.scene
 data/scenes/Basilic_courtyard/BC_mezquita.scene
@@ -231,8 +230,7 @@ data/meshes/mesh_containerbasura.mesh
 data/colliders/collider_containerbasura.collider
 data/scenes/BC_cables.scene
 data/meshes/BC_cables.mesh
-data/textures/default_texture.dds
-data/textures/null_normal.dds
+data/textures/tx_cables_alb.dds
 data/materials/mtl_cables.material
 data/prefabs/baselargaelectrica.prefab
 data/meshes/mesh_baselargalectrica.mesh
@@ -574,6 +572,7 @@ data/particles/def_sm_land_core.particles
 data/meshes/weapon_disc.mesh
 data/textures/tx_swap.dds
 data/textures/white.dds
+data/textures/default_height.dds
 data/materials/mtl_weapon_disc.material
 data/particles/def_attack_trail.particles
 data/textures/particles/particle_cloud.dds
