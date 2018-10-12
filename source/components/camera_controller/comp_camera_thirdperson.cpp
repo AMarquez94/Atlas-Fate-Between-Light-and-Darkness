@@ -164,11 +164,10 @@ float TCompCameraThirdPerson::getFovUpdated(float dt)
 
 void TCompCameraThirdPerson::update(float dt)
 {
-
-	TCompTransform* self_transform = get<TCompTransform>();
-	TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>(); // we will need to consume this.
-	assert(self_transform);
-	assert(target_transform);
+    TCompTransform* self_transform = get<TCompTransform>();
+    TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>(); // we will need to consume this.
+    assert(self_transform);
+    assert(target_transform);
     if (!paused) {
 
         if (!_h_target.isValid()) return;
@@ -186,7 +185,7 @@ void TCompCameraThirdPerson::update(float dt)
             _current_euler.x -= horizontal_delta * _speed * dt;
             _current_euler.y += vertical_delta * _speed * dt;
             _current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
-        }    
+        }
     }
 
     if (!paused || activate_shake && CEngine::get().getGameManager().getCurrentState() == CModuleGameManager::PauseState::defeat) {
@@ -198,29 +197,29 @@ void TCompCameraThirdPerson::update(float dt)
             float x_amount = sin(_time_shaking * speed_shak) * amount_shak * shake_percentage;
             VEC3 shaking_pos = self_transform->getPosition();
             shaking_pos += self_transform->getUp() * x_amount;
-			_clipping_offset.y = _original_y_offset + x_amount;
+            _clipping_offset.y = _original_y_offset + x_amount;
             //self_transform->setPosition(shaking_pos);
-			if ((time_to_stop_shake - _time_shaking) <= 0.0f) {
-				activate_shake = false;
-				_time_shaking = 0.0f;
-			}
+            if ((time_to_stop_shake - _time_shaking) <= 0.0f) {
+                activate_shake = false;
+                _time_shaking = 0.0f;
+            }
         }
 
-		// EulerAngles method based on mcv class
-		VEC3 vertical_offset = VEC3::Up * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)
-		VEC3 horizontal_offset = self_transform->getLeft() * _clipping_offset.x;
-		VEC3 target_position = target_transform->getPosition() + vertical_offset + horizontal_offset;
-		self_transform->setYawPitchRoll(_current_euler.x, _current_euler.y, 0);
+        // EulerAngles method based on mcv class
+        VEC3 vertical_offset = VEC3::Up * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)
+        VEC3 horizontal_offset = self_transform->getLeft() * _clipping_offset.x;
+        VEC3 target_position = target_transform->getPosition() + vertical_offset + horizontal_offset;
+        self_transform->setYawPitchRoll(_current_euler.x, _current_euler.y, 0);
 
-		float z_distance = CameraClipping(target_position, -self_transform->getFront());
-		VEC3 new_pos = target_position + z_distance * -self_transform->getFront();
-		self_transform->setPosition(new_pos);
+        float z_distance = CameraClipping(target_position, -self_transform->getFront());
+        VEC3 new_pos = target_position + z_distance * -self_transform->getFront();
+        self_transform->setPosition(new_pos);
 
-		CEntity* e = CHandle(this).getOwner();
+        CEntity* e = CHandle(this).getOwner();
 
-		TCompCamera* my_camera = get<TCompCamera>();
-		my_camera->setPerspective(getFovUpdated(dt), 0.1f, 1000.f);
-		//dbg("Setting perspective TP() - new fov: %f\n", rad2deg(getFov()));
+        TCompCamera* my_camera = get<TCompCamera>();
+        //my_camera->setPerspective(getFovUpdated(dt), 0.1f, 1000.f); // Figure out why this breaks the AO, SOMETHING WRONG WITH THE MATRIX.
+        //dbg("Setting perspective TP() - new fov: %f\n", rad2deg(getFov()));
 
     }
 }

@@ -1,0 +1,350 @@
+[
+  {
+    "entity":
+    {
+      "name": "basilic_interior_sueloyagarres"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "vigas"
+      ,
+      "transform":
+      {
+        "pos": "-0.0957556 7.74576 10.8833"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/vigas.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_sueloyagarres.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "suelo_estructura001"
+      ,
+      "transform":
+      {
+        "pos": "-19.1671 -0.936876 -0.886827"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/suelo_estructura001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_sueloyagarres.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "suelo_estructura"
+      ,
+      "transform":
+      {
+        "pos": "-2.89666 -0.936876 -0.892525"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/suelo_estructura.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_sueloyagarres.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "suelo_central"
+      ,
+      "transform":
+      {
+        "pos": "-8.89666 -0.765748 0.758573"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/suelo_central.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_sueloyagarres.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "agarre_tubo001"
+      ,
+      "transform":
+      {
+        "pos": "-13.8397 11.362 10.3411"
+        ,
+        "rotation": "-0.26907 -0.00160878 -0.139237 -0.953001"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/agarre_tubo001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_sueloyagarres.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "agarre_tubo"
+      ,
+      "transform":
+      {
+        "pos": "-3.4539 11.2901 10.3411"
+        ,
+        "rotation": "-0.26907 -0.00160878 -0.139237 -0.953001"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/agarre_tubo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_sueloyagarres.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "suelo_interior001"
+      ,
+      "transform":
+      {
+        "pos": "-14.915 -0.936876 -0.886827"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/suelo_interior001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_interior.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "suelo_interior"
+      ,
+      "transform":
+      {
+        "pos": "-2.89666 -0.936876 -0.886827"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/suelo_interior.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelo_interior.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "suelo_corridor"
+      ,
+      "transform":
+      {
+        "pos": "9.10668 0.403024 -32.647"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/suelo_corridor.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_sueloytecho.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubo_pasarela003"
+      ,
+      "transform":
+      {
+        "pos": "7.96949 8.28587 -10.6415"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubo_pasarela003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_pasarela.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "pasarela"
+      ,
+      "transform":
+      {
+        "pos": "-8.85149 -0.21945 -27.3868"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/pasarela.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_pasarela.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.855 0.131481 27.1518"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

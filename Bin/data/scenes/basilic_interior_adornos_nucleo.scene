@@ -1,0 +1,163 @@
+[
+  {
+    "entity":
+    {
+      "name": "basilic_interior_adornos_nucleo"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "borde_nucleo"
+      ,
+      "transform":
+      {
+        "pos": "-8.89666 1.43427 10.6199"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/borde_nucleo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_adornos_nucleo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "borde_tubos_nucleo"
+      ,
+      "transform":
+      {
+        "pos": "-4.09815 3.37831 8.27965"
+        ,
+        "rotation": "-0.326506 0.326505 -0.627211 -0.627211"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/borde_tubos_nucleo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_adornos_nucleo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "rueda"
+      ,
+      "transform":
+      {
+        "pos": "3.12374 1.71515 10.4716"
+        ,
+        "rotation": "0.372181 -0.372181 -0.601233 -0.601233"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/rueda.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_adornos_nucleo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "rueda001"
+      ,
+      "transform":
+      {
+        "pos": "-20.8812 1.71515 10.4716"
+        ,
+        "rotation": "0.372181 -0.372181 -0.601233 -0.601233"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/rueda001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_adornos_nucleo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubo_mesa"
+      ,
+      "transform":
+      {
+        "pos": "-8.89666 4.41263 8.44965"
+        ,
+        "rotation": "-0.5 0.5 -0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubo_mesa.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_adornos_nucleo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

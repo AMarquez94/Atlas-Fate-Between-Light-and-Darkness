@@ -13,6 +13,8 @@ struct TCompVignette : public TCompBase {
     bool                          enabled = true;
     float                         amount = 0.95f;
     float                         softness_amount = 0.66f;
+    float                         contrast = 1.0f;
+    float                         brightness = 0.5f;
     float                         lut_amount = 0.6f;
     const CRenderTechnique*       tech = nullptr;
     const CRenderMesh*            mesh = nullptr;

@@ -73,7 +73,7 @@ float4 PS(
   const float zrange_discard = global_shared_fx_val2;
   const float amount_normal_z = global_shared_fx_val3;
 
-	  float OccRadiusNorm = clamp((zrange_discard - camera_znear) / (camera_zfar - camera_znear), 0, 1);
+	float OccRadiusNorm = clamp((zrange_discard - camera_znear) / (camera_zfar - camera_znear), 0, 1);
 		
   float occlusion = 0.0;
   for (int i = 0; i < 16; ++i) {
@@ -108,5 +108,5 @@ float4 PS(
 
 	//return (1 - occlusion / 16 );
   // Module the amount of occlusion
-  return ( 1 - global_shared_fx_amount ) + (1 - occlusion / 16 ) * global_shared_fx_amount;
+  return zlinear < 0.99 ? ( 1 - global_shared_fx_amount ) + (1 - occlusion / 16 ) * global_shared_fx_amount : 1;
 }

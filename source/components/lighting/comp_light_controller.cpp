@@ -1,79 +1,145 @@
 #include "mcv_platform.h"
-#include "comp_emission_controller.h"
-#include "render/render_objects.h"
-#include "render/render_utils.h"
+#include "comp_light_controller.h"
 #include "components/comp_transform.h"
 #include "components/comp_render.h"
-#include "components/comp_group.h"
 #include "components/lighting/comp_light_spot.h"
-#include "render/texture/material.h"
-#include "ctes.h" 
+#include "components/lighting/comp_light_point.h"
+#include "components/comp_group.h"
+#include "entity/entity_parser.h"
 
 DECL_OBJ_MANAGER("light_controller", TCompLightController);
 
+// Refactor this with point light and spot light superclass to avoid conditional testing.
 void TCompLightController::debugInMenu() {
 
-    ImGui::ColorEdit4("Current color: ", &_current_color.x);
-    ImGui::ColorEdit4("Desired color: ", &_desired_color.x);
+    ImGui::DragFloat("Intensity Flow: ", &_intensity_flow, 0.01, 0, 100);
+    ImGui::DragFloat("Intensity Flow Speed: ", &_intensity_flow_speed, 0.01, 0, 100);
+    ImGui::DragFloat("Radius Flow: ", &_radius_flow, 0.01, 0, 100);
+    ImGui::DragFloat("Radius Flow Speed: ", &_radius_flow_speed, 0.01, 0, 100);
+    ImGui::DragFloat("Flicker Off Time: ", &_off_time, 0.01, 0, 100);
+    ImGui::DragFloat2("Flicker Time Interval: ", &_flicker_time.x, 0.01, 0, 100);
 }
 
 void TCompLightController::load(const json& j, TEntityParseContext& ctx) {
 
-	_current_color = VEC4(1, 1, 1, 1);
+    _intensity_flow = j.value("intensity_flow", 0.0f);
+    _intensity_flow_speed = j.value("intensity_flow_speed", 0.0f);
 
-	if (j.count("initial"))
-		_current_color = loadVEC4(j["initial"]);
+    _radius_flow = j.value("radius_flow", 0.0f);
+    _radius_flow_speed = j.value("radius_flow_speed", 0.0f);
+    _emissive_intensity = j.value("emissive_intensity", 0.0f);
+    _emissive_target = j.value("emissive_target", "");
+    _flicker_time = j.count("flicker_time") ? loadVEC2(j["flicker_time"]) : VEC2::Zero;
+    _has_flicker = j.value("has_flicker", false);
+    _off_time = j.value("off_time", 0.0f);
+    _parent = ctx.entities_loaded.back();
 
-    _intensity = j.value("intensity", 1.0f);
-	_desired_color = _current_color;
-	_original_color = _current_color;
+    // Pick a random time between these two values
+    _random_time = urand(_flicker_time.x, _flicker_time.y);
 }
 
 /* Update the values during the given time */
 void TCompLightController::update(float dt) {
 
-	if (_elapsed_time < 1) {
-
-		_elapsed_time += dt / _blend_in_time;
-		_current_color = VEC4::Lerp(_original_color, _desired_color, _elapsed_time);
-
-        TCompRender * self_render = get<TCompRender>();
-        if (self_render) {
-          self_render->self_color = _current_color;
-        }
-
-        // Deprecated method, update this if color per mesh is needed.
-		//for (auto p : _temp_materials)
-		//	p->changeEmissionColor(_current_color);
-
-		//for (auto p : _temp_lights)
-		//	p->setColor(_current_color);
-	}
+    _elapsed_time += dt;
+    updateIntensity(dt);
+    updateMovement(dt);
+    updateFlicker(dt);
 }
 
 void TCompLightController::registerMsgs() {
 
-	DECL_MSG(TCompEmissionController, TMsgSceneCreated, onSceneCreated);
+	DECL_MSG(TCompLightController, TMsgSceneCreated, onSceneCreated);
+    DECL_MSG(TCompLightController, TMsgEntitiesGroupCreated, onGroupCreated);
 }
 
 /* Used to retrieve the total materials from our render component */
 void TCompLightController::onSceneCreated(const TMsgSceneCreated& msg) {
 
-    TCompRender * self_render = get<TCompRender>();
-    assert(self_render);
-    self_render->self_color = _current_color;
-    self_render->self_intensity = _intensity;
-    //for (auto p : self_render->meshes)
-    //	for (auto m : p.materials)
-    //		_temp_materials.push_back(const_cast<CMaterial*>(m));
+    CEntity * owner = CHandle(this).getOwner();
+    CEntity * parent = _parent;
+    if (_emissive_target != "") {
+        TCompGroup* cGroup = parent->get<TCompGroup>();
+        CEntity* eCone = cGroup->getHandleByName(_emissive_target);
+        if (eCone) {
+            _object_render = eCone->get<TCompRender>();
+            if (_object_render) _emissive_intensity = _object_render->self_intensity;
+        }
+    }
+
+    _spot_light = owner->get<TCompLightSpot>();
+    _point_light = owner->get<TCompLightPoint>();
+
+    if (_spot_light) {
+        _radius = _spot_light->getAngle();
+        _intensity = _spot_light->getIntensity();
+    }
+    else if (_point_light) {
+        _radius = _point_light->getRadius();
+        _intensity = _point_light->getIntensity();
+    }
+
+    if (!_object_render) {
+        _object_render = get<TCompRender>();
+        if (_object_render) _emissive_intensity = _object_render->self_intensity;
+    }
 }
 
-/* Used to blend between two colors at a given time */
-void TCompLightController::blend(VEC4 new_desired_color, float blendTime) {
+void TCompLightController::onGroupCreated(const TMsgEntitiesGroupCreated & msg)
+{
+    CEntity * owner = CHandle(this).getOwner();
+    /*if (_emissive_target != "") {
+        TCompGroup* cGroup = get<TCompGroup>();
+        CEntity* eCone = cGroup->getHandleByName(_emissive_target);
+        if (eCone) _object_render = eCone->get<TCompRender>();
+    }*/
+}
 
-	_elapsed_time = 0.0f;
-	_blend_in_time = blendTime;
+void TCompLightController::updateMovement(float dt)
+{
+    float new_radius = _radius + _radius_flow * sin(_elapsed_time * _radius_flow_speed);
 
-	_original_color = _current_color;
-	_desired_color = new_desired_color;
+    if (_point_light) _point_light->setRadius(new_radius);
+    else if (_spot_light) _spot_light->setAngle(new_radius);
+}
+
+void TCompLightController::updateIntensity(float dt)
+{
+    float variable_flow = _intensity_flow * sin(_elapsed_time * _intensity_flow_speed);
+    float new_intensity = _intensity + variable_flow;
+
+    if (_point_light) _point_light->setIntensity(new_intensity);
+    else if (_spot_light) _point_light->setIntensity(new_intensity);
+
+    //if (_object_render) {
+    //    _object_render->self_intensity = _emissive_intensity + variable_flow;
+    //}
+}
+
+void TCompLightController::updateFlicker(float dt)
+{
+    _flicker_elapsed_time += dt;
+    if (_has_flicker && _flicker_elapsed_time > _random_time) {
+
+        if (_point_light) _point_light->isEnabled = false;
+        else if (_spot_light) _spot_light->isEnabled = false;
+        if (_object_render)  _object_render->self_intensity = 0;
+
+        if (_flicker_elapsed_time > (_random_time + _off_time)) {
+            if (_point_light) {
+                _point_light->isEnabled = true;
+                _point_light->setIntensity(_intensity);
+            }
+            else if (_spot_light) {
+                _spot_light->isEnabled = true;
+                _spot_light->setIntensity(_intensity);
+            }
+
+            if (_object_render)  _object_render->self_intensity = _emissive_intensity;
+
+            _elapsed_time = 0;
+            _flicker_elapsed_time = 0;
+            _random_time = urand(_flicker_time.x, _flicker_time.y);
+        }
+    }
 }

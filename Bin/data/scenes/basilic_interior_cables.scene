@@ -1,0 +1,133 @@
+[
+  {
+    "entity":
+    {
+      "name": "basilic_interior_cables"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cable_capsula001"
+      ,
+      "transform":
+      {
+        "pos": "9.6562 11.9041 -9.55483"
+        ,
+        "rotation": "-0.298836 -0.298836 -0.640856 -0.640856"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cable_capsula001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cable.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cable_capsula003"
+      ,
+      "transform":
+      {
+        "pos": "1.94181 12.2288 15.2291"
+        ,
+        "rotation": "-0.241845 0.664463 -0.664463 -0.241845"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cable_capsula003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cable.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cable_capsula005"
+      ,
+      "transform":
+      {
+        "pos": "-28.0879 11.9041 -9.29225"
+        ,
+        "rotation": "-0.198929 -0.198929 -0.678548 -0.678548"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cable_capsula005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cable.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cables"
+      ,
+      "transform":
+      {
+        "pos": "-8.95987 13.4753 5.80568"
+        ,
+        "rotation": "-0.0406927 6.19375e-06 -2.5225e-07 -0.999172"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cables.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cable.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

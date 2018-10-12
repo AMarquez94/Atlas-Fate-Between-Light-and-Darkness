@@ -285,6 +285,10 @@ void CModuleInstancing::removeInstance(TInstance* instance) {
 
 void CModuleInstancing::clearInstances() {
 
+    for (auto& p : _global_instances) {
+        p.second._instances.clear();
+    }
+
     _global_instances.clear();
 }
 

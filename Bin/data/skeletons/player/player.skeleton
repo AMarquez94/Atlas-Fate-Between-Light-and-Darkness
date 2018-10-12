@@ -81,6 +81,7 @@
 		{ "name" : "metralla_start"},
 		{ "name" : "metralla_middle"},
 		{ "name" : "metralla_finish"},
+		{ "name" : "cinematic_walk"},
 		{ "name" : "sm_enter"},
 		{ "name" : "open_weapons"},
 		{ "name" : "touch_enemy",

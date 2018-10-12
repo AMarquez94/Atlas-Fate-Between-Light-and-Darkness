@@ -1,8 +1,9 @@
 #include "common.fx"
 
 // PostFX contrast
-float4 postfx_contrast(float4 color)
+float4 compute_contrast(float4 color)
 {
+	
 	const float3 lum_coeff = float3(0.2125, 0.7154, 0.0721);
 
 	float3 avg_lum = float3(1, 1, 1);
@@ -10,9 +11,10 @@ float4 postfx_contrast(float4 color)
 	float3 intensity = float3(dotval, dotval, dotval);
 
 	float3 sat_color = lerp(intensity, color.xyz, 1.);
-	float3 con_color = lerp(avg_lum, color, 1.05);
+	float3 colort = lerp(avg_lum, color, postfx_contrast);
+	//return (color - 0.5) * postfx_contrast + postfx_brightness;
 
-	return float4(con_color, 1);
+	return float4(colort.xyz, 1);
 }
 
 float3 ComputeThreshold(float3 color, float thresh)
@@ -110,7 +112,7 @@ float4 PS_PostFX_Vignette(in float4 iPosition : SV_POSITION , in float2 iTex0 : 
 {
 	float4 color = txAlbedo.Sample(samClampLinear, iTex0); 
 	float2 position = (iPosition.xy * camera_inv_resolution) - float2(0.5f,0.5f);
-	color = postfx_contrast(color);
+	color = compute_contrast(color);
 	
 	float len = length(position);
 	float v_intensity = (1 - player_health) * 0.5;

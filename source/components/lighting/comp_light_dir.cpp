@@ -32,6 +32,7 @@ void TCompLightDir::load(const json& j, TEntityParseContext& ctx) {
 
     intensity = j.value("intensity", 1.0f);
     color = loadVEC4(j["color"]);
+    volumetric = j.value("volumetric", false);
 
     casts_shadows = j.value("shadows", true);
     angle = j.value("angle", 45.f);

@@ -341,6 +341,17 @@ void TCompPlayerAnimator::initializeAnimations() {
 		false
 	);
 
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::WALK_CINEMATIC,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"cinematic_walk",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+	
 }
 
 void TCompPlayerAnimator::registerMsgs() {

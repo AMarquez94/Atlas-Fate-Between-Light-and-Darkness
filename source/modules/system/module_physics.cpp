@@ -237,6 +237,10 @@ void CModulePhysics::CustomSimulationEventCallback::onContact(const physx::PxCon
 }
 
 /* Auxiliar physics methods */
+physx::PxMaterial* CModulePhysics::CreateMaterial(const VEC3 & settings)
+{
+    return gPhysics->createMaterial(settings.x, settings.y, settings.z);
+}
 
 bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distance, physx::PxRaycastHit & hit, physx::PxQueryFlags flag, physx::PxQueryFilterData filterdata)
 {
@@ -295,18 +299,18 @@ bool CModulePhysics::Overlap(physx::PxGeometry& geometry, VEC3 pos, std::vector<
 
 PxFixedJoint* CModulePhysics::CreateFixedJoint(physx::PxRigidActor * dynamicActor, const physx::PxTransform & dynamicActorTransform, physx::PxRigidActor * otherActor, const physx::PxTransform & otherActorTransform)
 {
-  /* TODO: not tested */
-  physx::PxPhysics* physxFactory = getPhysxFactory();
-  physx::PxFixedJoint* joint = physx::PxFixedJointCreate(*physxFactory, dynamicActor, dynamicActorTransform, otherActor, otherActorTransform);
-  joint->setConstraintFlag(PxConstraintFlag::eVISUALIZATION, true);
-  return joint;
+    /* TODO: not tested */
+    physx::PxPhysics* physxFactory = getPhysxFactory();
+    physx::PxFixedJoint* joint = physx::PxFixedJointCreate(*physxFactory, dynamicActor, dynamicActorTransform, otherActor, otherActorTransform);
+    joint->setConstraintFlag(PxConstraintFlag::eVISUALIZATION, true);
+    return joint;
 }
 
 physx::PxDistanceJoint * CModulePhysics::CreateDistanceJoint(physx::PxRigidActor * dynamicActor, const physx::PxTransform & dynamicActorTransform, physx::PxRigidActor * otherActor, const physx::PxTransform & otherActorTransform)
 {
-  /* TODO: not tested */
-  physx::PxPhysics* physxFactory = getPhysxFactory();
-  physx::PxDistanceJoint* joint = physx::PxDistanceJointCreate(*physxFactory, dynamicActor, dynamicActorTransform, otherActor, otherActorTransform);
-  joint->setConstraintFlag(PxConstraintFlag::eVISUALIZATION, true);
-  return joint;
+    /* TODO: not tested */
+    physx::PxPhysics* physxFactory = getPhysxFactory();
+    physx::PxDistanceJoint* joint = physx::PxDistanceJointCreate(*physxFactory, dynamicActor, dynamicActorTransform, otherActor, otherActorTransform);
+    joint->setConstraintFlag(PxConstraintFlag::eVISUALIZATION, true);
+    return joint;
 }

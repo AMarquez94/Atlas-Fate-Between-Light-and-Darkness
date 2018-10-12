@@ -57,5 +57,45 @@
         "light"
       ]
     }
+  },
+  {
+    "entity":
+    {
+      "name": "Mosque_Light"
+      ,
+      "transform":
+      {
+        "pos": "3.5 71 -234"
+				,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+			"light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 110.0
+        ,
+        "outer_cut": 125.0
+        ,
+        "color": "0.92 0.94 0.627 1.0"
+        ,
+        "intensity": 15.0
+        ,
+				"projector" : "textures/decals/square_cookie.dds"
+				,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+			,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
   }
 ]

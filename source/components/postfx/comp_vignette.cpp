@@ -12,6 +12,8 @@ void TCompVignette::debugInMenu() {
     ImGui::Checkbox("Enabled", &enabled);
     ImGui::DragFloat("Amount", &amount, 0.01f, 0.0f, 1.0f);
     ImGui::DragFloat("Softness Amount", &softness_amount, 0.01f, 0.0f, 1.0f);
+    ImGui::DragFloat("Contrast", &contrast, 0.01f, 0.0f, 3.0f);
+    //ImGui::DragFloat("Brightness", &brightness, 0.01f, 0.0f, 3.0f);
 }
 
 void TCompVignette::load(const json& j, TEntityParseContext& ctx) {
@@ -22,6 +24,8 @@ void TCompVignette::load(const json& j, TEntityParseContext& ctx) {
     enabled = j.value("enabled", true);
     amount = j.value("amount", 0.32f);
     softness_amount = j.value("softness_amount", 0.52f);
+    contrast = j.value("contrast", 1.05f);
+    brightness = j.value("brightness", 0.52f);
 
     if (!rt) {
         rt = new CRenderToTexture;
@@ -47,6 +51,9 @@ CTexture* TCompVignette::apply(CTexture* in_texture) {
     CTraceScoped scope("TCompVignette");
     cb_postfx.postfx_vignette = amount;
     cb_postfx.postfx_vignette_softness = softness_amount;
+    cb_postfx.postfx_contrast = contrast;
+    cb_postfx.postfx_brightness = brightness;
+
     cb_globals.global_shared_fx_amount = amount;
     cb_globals.updateGPU();
     cb_postfx.updateGPU();
