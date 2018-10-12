@@ -1375,6 +1375,7 @@ data/meshes/intro_tubo_x005.mesh
 data/meshes/intro_tubo004.mesh
 data/scenes/intro_corridor_logic.scene
 data/scenes/intro_col_corridor_lights.scene
+data/colliders/luz_pasillo037.collider
 data/colliders/luz_pasillo.collider
 data/scenes/Intro/_player.scene
 data/prefabs/player.prefab
