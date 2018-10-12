@@ -145,7 +145,7 @@ void CDeferredRenderer::renderAccLight() {
 	renderDirectionalLights();
 	renderSkyBox();
     renderPreHDR();
-
+    
     CRenderManager::get().renderCategory("hologram_screen");
     CRenderManager::get().renderCategory("distorsions");
 

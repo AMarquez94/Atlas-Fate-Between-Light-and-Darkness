@@ -1,20 +1,13 @@
 {
-  "shadows": true
-  ,
-  "textures":
-  {
-    "albedo": "data/textures/tx_luna_alb.dds"
-    ,
-    "metallic": "data/textures/tx_luna_met.dds"
-    ,
-    "roughness": "data/textures/tx_luna_rgh.dds"
-    ,
-    "normal": "data/textures/tx_luna_nml.dds"
-    ,
-    "height": "data/textures/tx_luna_hgt.dds"
-    ,
-    "emissive": "data/textures/tx_luna_emi.dds"
-    ,
-    "aocclusion": "data/textures/tx_luna_ao.dds"
-  }
+	"technique": "env_moon.tech",
+	"shadows": false,
+	"textures": {
+		"albedo": "data/textures/tx_luna_alb.dds",
+		"metallic": "data/textures/tx_luna_met.dds",
+		"roughness": "data/textures/tx_luna_rgh.dds",
+		"normal": "data/textures/tx_luna_nml.dds",
+		"height": "data/textures/tx_luna_hgt.dds",
+		"emissive": "data/textures/tx_luna_emi.dds",
+		"aocclusion": "data/textures/tx_luna_ao.dds"
+	}
 }
