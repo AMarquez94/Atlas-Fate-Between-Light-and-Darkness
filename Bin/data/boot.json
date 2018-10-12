@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_basilic_courtyard",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -295,13 +295,13 @@
 		"scene_group": [
 			"data/scenes/Basilic_courtyard/player.scene",
 			"data/scenes/main_cameras.scene",
+	        "data/scenes/basiliclights.scene",
 			"data/scenes/Basilic_courtyard/enemy.scene",
 			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
 			"data/scenes/Basilic_courtyard/test_instancing.scene",
 			"data/scenes/Basilic_courtyard/buttons.scene",
 			"data/scenes/Basilic_courtyard/capsules.scene",
 			"data/scenes/Basilic_courtyard/BC_mezquita.scene",
-			
 			"data/scenes/Basilic_courtyard/BC_alminares.scene",
 			"data/scenes/Basilic_courtyard/BC_paredes.scene",
 			"data/scenes/BC_arcos.scene",
@@ -309,13 +309,10 @@
 			"data/scenes/BC_coberturas.scene",
 			"data/scenes/BC_containers.scene",
 			"data/scenes/BC_props.scene",
-      			"data/scenes/BC_cables.scene",
+      		"data/scenes/BC_cables.scene",
 			"data/scenes/BC_tubos.scene",
 			"data/scenes/BC_capsulas.scene",
-			"data/scenes/BC_neones.scene",
-
 			"data/scenes/BC_maderas.scene",
-
 			"data/scenes/Basilic_courtyard/BC_fuente.scene",
 			"data/scenes/suelo_mezquita.scene",
 			"data/scenes/Basilic_courtyard/almibars.scene",
