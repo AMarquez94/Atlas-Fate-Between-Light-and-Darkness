@@ -3,7 +3,7 @@
 			"name": "Face_Cartel"
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/face_cartel.prefab",
 			"name": "Face_Cartel_1",
 			"transform": {

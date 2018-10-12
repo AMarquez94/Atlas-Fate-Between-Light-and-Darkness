@@ -370,7 +370,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -423,7 +423,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -476,7 +476,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -688,7 +688,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -741,7 +741,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -794,7 +794,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -847,7 +847,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -900,7 +900,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -953,7 +953,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -1377,7 +1377,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -1430,7 +1430,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -1483,7 +1483,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -1642,7 +1642,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -1695,7 +1695,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -1748,7 +1748,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -1907,7 +1907,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -1960,7 +1960,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -2437,7 +2437,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -2490,7 +2490,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -2543,7 +2543,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -2596,7 +2596,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -2649,7 +2649,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -2702,7 +2702,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -2755,7 +2755,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -2808,7 +2808,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -2861,7 +2861,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -2914,7 +2914,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -2967,7 +2967,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -3020,7 +3020,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -3126,7 +3126,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -3179,7 +3179,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -3232,7 +3232,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -3285,7 +3285,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -3338,7 +3338,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }
@@ -3391,7 +3391,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 1.0
         ,
         "is_trigger": true
       }

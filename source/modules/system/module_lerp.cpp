@@ -4,6 +4,7 @@
 
 void CModuleLerp::update(float delta) {
 	
+    /*
 	if (_elements_to_lerp.size() > 0) {
 		std::list<LerpingElement>::iterator it = _elements_to_lerp.begin();
 		while (it != _elements_to_lerp.end()) {
@@ -21,8 +22,9 @@ void CModuleLerp::update(float delta) {
 
 			it++;
 		}
-	}
+	}*/
 }
+
 void CModuleLerp::render() {
 
 }
