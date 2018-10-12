@@ -426,6 +426,7 @@ void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camer
 
 	// Combine the results
 	renderFullScreenQuad("gbuffer_resolve.tech", nullptr);
+    CRenderManager::get().renderCategory("env_effects");
     //rt_prev_acc_light = rt_acc_light;
 }
 

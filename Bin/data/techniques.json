@@ -305,6 +305,17 @@
 			"noise": "data/textures/noise_cloud3.dds"
 		}
 	},
+	"env_moon": {
+		"vs_file": "data/shaders/env.fx",
+		"ps_file": "data/shaders/env.fx",
+		"vs_entry_point": "VS",
+		"ps_entry_point": "PS_Moon",
+		"vertex_type": "PosNUvUvT",
+		"category": "env_effects",
+		"textures": {
+			"noise": "data/textures/noise_cloud3.dds"
+		}
+	},
 	"pbr_skybox": {
 		"vs_file": "data/shaders/pbr.fx",
 		"vs_entry_point": "VS_skybox",

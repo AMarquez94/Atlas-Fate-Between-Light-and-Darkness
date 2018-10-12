@@ -380,7 +380,7 @@ void CModuleRender::generateFrame() {
             CTraceScoped gpu_scope("ImGui");
             ImGui::Render();
         }
-        /*
+        
         {
             // RENDER UI
             PROFILE_FUNCTION("GUI");
@@ -388,7 +388,7 @@ void CModuleRender::generateFrame() {
 
             activateCamera(EngineGUI.getCamera(), Render.width, Render.height);
             CEngine::get().getModules().renderGUI();
-        }*/
+        }
 
         {
             // BACKBUFFER SWAPPING
