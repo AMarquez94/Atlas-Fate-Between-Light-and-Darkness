@@ -300,6 +300,8 @@ void CModuleLogic::publishClasses() {
 	m->set("deactivateSubtitles", SLB::FuncCall::create(&deactivateSubtitles));
 	m->set("activateMission", SLB::FuncCall::create(&activateMission));
 	m->set("setEnemyHudState", SLB::FuncCall::create(&setEnemyHudState));
+	m->set("activateCinematicVideoIntro", SLB::FuncCall::create(&activateCinematicVideoIntro));
+	m->set("deactivateCinematicVideoIntro", SLB::FuncCall::create(&deactivateCinematicVideoIntro));
 	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -1011,4 +1013,12 @@ void setEnemyHudState(bool state) {
 	else {
 		EngineGUI.deactivateEnemyHUD();
 	}
+}
+
+void activateCinematicVideoIntro(float time_to_lerp, float time_to_start) {
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::CINEMATIC_INTRO)->makeChildsFadeOut(time_to_lerp, time_to_start, false);
+}
+
+void deactivateCinematicVideoIntro() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::CINEMATIC_INTRO);
 }

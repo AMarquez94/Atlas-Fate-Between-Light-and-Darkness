@@ -34,72 +34,55 @@
   },
   {
     "entity": {
-      "name": "Camera_Cinematic_Intro",
+      "name": "Camera_Cinematic_Intro_video",
       "transform": {
-        "pos": "-0.85 5.75 28.6",
+        "pos": "9.9 15.5 26",
+        "rotation": "0.0150 0.7051 -0.0149 0.7087"
+      },
+      "prefab": "data/prefabs/camera_player.prefab"
+    }
+  },  
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Intro_Muralla",
+      "transform": {
+        "pos": "7.73746 11.4223 25.3758",
         "rotation": "-0.24 -0.5 -0.15 0.8"
       },
-      "camera": {
-        "fov": 70,
-        "z_near": 0.01,
-        "z_far": 1000
-      },
-      "render_ao": {
-        "enabled": true,
-        "max_steps": 1,
-        "gauss_filter": true
-      },
-      "render_blur": {
-        "enabled": false,
-        "global_distance": 0.5,
-        "gauss_filter": true
-      },
-      "motion_blur": {
-        "enabled": true
-      },
-      "render_bloom": {
-        "enabled": true,
-        "max_steps": 4,
-        "rt_name": "Bloom"
-      },
-      "color_grading": {
-        "enabled": true,
-        "amount": 0.25,
-        "lut": "data/textures/lut/lut5.dds"
-      },
-      "chromatic_aberration": {
-        "enabled": true
-      },
-      "fog": {
-        "enabled": true
-      },
-      "antialiasing": {
-        "enabled": true
-      },
-      "vignette": {
-        "enabled": true
-      },
-      "render_flares": {
-        "enabled": true,
-        "max_steps": 4
-      },
-      "render_outlines": {
-        "enabled": true
-      },
-      "render_environment": {
-        "enabled": true
-      },
-      "render_focus": {
-        "enabled": false
-      },
-      "curve_controller":{
-        "curve": "data/curves/spline_prova.curve",
-        "speed": 0.025,
-        "target": "The Player",
-        "loop": true
-      }
+       "prefab": "data/prefabs/camera_player.prefab"
     }
-  },    {
+  },  
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Intro_Suelo",
+      "transform": {
+        "pos": "7.73746 11.4223 25.3758",
+        "rotation": "-0.24 -0.5 -0.15 0.8"
+      },
+       "prefab": "data/prefabs/camera_player.prefab"
+    }
+  }, 
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Intro_Player_Front",
+      "transform": {
+        "pos": "7.73746 11.4223 25.3758",
+        "rotation": "-0.24 -0.5 -0.15 0.8"
+      },
+       "prefab": "data/prefabs/camera_player.prefab"
+    }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Intro_Player_Back",
+      "transform": {
+        "pos": "7.73746 11.4223 25.3758",
+        "rotation": "-0.24 -0.5 -0.15 0.8"
+      },
+       "prefab": "data/prefabs/camera_player.prefab"
+    }
+  },
+  {
     "entity": {
       "name": "Camera_Cinematic_Intro_Rotation_1",
       "transform": {

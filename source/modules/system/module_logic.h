@@ -157,6 +157,8 @@ void takeOutCreditsOnMainMenu();
 void activateSubtitles(std::string sub_name);
 void deactivateSubtitles();
 void setEnemyHudState(bool state);
+void activateCinematicVideoIntro(float time_to_lerp, float time_to_start);
+void deactivateCinematicVideoIntro();
 
 void activateMission(std::string sub_name);
 

@@ -26,10 +26,14 @@ function intro_intro_cinematic()
 	move("The Player", VEC3(-6.275, 12.115, 32.7),VEC3(-6.275, 12.115, 31.7));
 	resetMainCameras();
 	--setCinematicPlayerState(true, "crouch_cinematic");
-	--blendInCamera("Camera_Cinematic_Intro", 0.0, "cinematic", "");
+	activateCinematicVideoIntro(2,10);
+	execScriptDelayed("deactivateCinematicVideoIntro();",11);
+	blendInCamera("Camera_Cinematic_Intro_video", 0.0, "cinematic", "");
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_Travelling\", 3.5, \"cinematic\", \"linear\")", 13);
 
-	blendInCamera("Camera_Cinematic_Intro_Rotation_1", 0.0, "cinematic", "");
-	blendInCamera("Camera_Cinematic_Intro_Rotation_2", 10.0, "cinematic", "");
+
+	--blendInCamera("Camera_Cinematic_Intro_Rotation_1", 0.0, "cinematic", "");
+	--blendInCamera("Camera_Cinematic_Intro_Rotation_2", 10.0, "cinematic", "");
 
 	setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
 	--execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_End\", 1.2, \"cinematic\", \"cubicinout\")", 2.3);

@@ -9,7 +9,8 @@ void CUIVideo::render()
     MAT44 w = sz * _absolute;
 
     ConfigParams c_params = ConfigParams();
-    c_params.color = VEC4(1,1,1,1);
+    c_params.color = _imageParams._color;
+	if (c_params.color.x != 1.0f || c_params.color.y != 1.0f | c_params.color.z != 1.0f) c_params.color = VEC4(1,1,1,1);
     c_params.minUV = VEC2(0,0);
     c_params.maxUV = VEC2(1, 1);
     c_params.var = 1;
