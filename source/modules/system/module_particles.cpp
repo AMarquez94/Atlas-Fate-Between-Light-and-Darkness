@@ -48,8 +48,19 @@ void CModuleParticles::update(float delta)
         if (!active)
         {
             // Destroy the entity if it's marked as destroyable entity
-            if (ps->_destroy_entity) 
-                EngineLogic.execScript("destroyHandle(" + ps->getHandleEntity().asString() + ")");
+            if (ps->_destroy_entity) {
+                CHandle h_entity = ps->getHandleEntity();
+                if (h_entity.isValid()) {
+                    CEntity* e_entity = h_entity;
+                    dbg("Destroy entity %s\n", e_entity->getName());
+                    ps->getHandleEntity().destroy();
+                }
+                else {
+                    dbg("ENTITY NOT VALID\n");
+                }
+                
+            }
+                //EngineLogic.execScript("destroyHandle(" + ps->getHandleEntity().asString() + ")");
 
             delete ps;
             it = _activeSystems.erase(it);
@@ -122,6 +133,8 @@ Particles::TParticleHandle CModuleParticles::launchDynamicSystem(const std::stri
 
     h_comp = getObjectManager<TCompName>()->createHandle();
     e->set(h_comp.getType(), h_comp);
+    TCompName* p_name = e->get<TCompName>();
+    p_name->setName(std::string("Dynamic_Particle_" + h_e.asString()).c_str());
 
     Particles::CSystem* ps = new Particles::CSystem(cps, h_e);
     ps->_destroy_entity = true;

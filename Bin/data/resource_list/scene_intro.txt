@@ -1378,7 +1378,13 @@ data/meshes/intro_reja_techo033.mesh
 data/meshes/intro_rejas001.mesh
 data/meshes/intro_sala002.mesh
 data/meshes/intro_suelo001.mesh
-data/textures/sueloyagarres_alb.dds
+data/textures/tx_sueloytecho_alb.dds
+data/textures/tx_sueloytecho_ao.dds
+data/textures/tx_sueloytecho_emi.dds
+data/textures/tx_sueloytecho_hgt.dds
+data/textures/tx_sueloytecho_met.dds
+data/textures/tx_sueloytecho_nml.dds
+data/textures/tx_sueloytecho_rgh.dds
 data/materials/mtl_sueloytecho.material
 data/colliders/intro_collider_suelo_pasillo.collider
 data/meshes/intro_techo001.mesh
