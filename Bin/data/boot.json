@@ -229,7 +229,7 @@
 			"data/scenes/Basilic_courtyard/player.scene",
 			"data/scenes/main_cameras.scene",
 	        "data/scenes/basiliclights.scene",
-			"data/scenes/Basilic_courtyard/enemy.scene",
+			
 			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
 			"data/scenes/Basilic_courtyard/test_instancing.scene",
 			"data/scenes/Basilic_courtyard/buttons.scene",
