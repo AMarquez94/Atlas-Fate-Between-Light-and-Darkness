@@ -159,7 +159,8 @@ void deactivateSubtitles();
 void setEnemyHudState(bool state);
 void activateCinematicVideoIntro(float time_to_lerp, float time_to_start);
 void deactivateCinematicVideoIntro();
-
+void setInBlackScreen(float time_to_lerp);
+void setOutBlackScreen(float time_to_lerp);
 void activateMission(std::string sub_name);
 
 /* DEBUG - TODO: Delete */

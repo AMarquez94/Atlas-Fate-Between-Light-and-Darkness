@@ -25,6 +25,7 @@ public:
         CINEMATIC_CROUCH_WALK,
         CINEMATIC_FALLSM,
         CINEMATIC_INHIBITOR,
+		CINEMATIC_CAPSULES,
         NUM_STATES };
 
     bool enabledPlayerAI;
@@ -55,6 +56,7 @@ public:
     BTNode::ERes actionAnimationWalk(float dt);
     BTNode::ERes actionAnimationCrouch(float dt);
     BTNode::ERes actionAnimationIdle(float dt);
+	BTNode::ERes actionAnimationIdleListen(float dt);
     BTNode::ERes actionStartSM(float dt);
 	BTNode::ERes actionStartFallSM(float dt);
     BTNode::ERes actionAnimationSM(float dt);
@@ -109,6 +111,7 @@ public:
     bool conditionCinematicWalkFall(float dt);
     bool conditionCinematicFallSM(float dt);
     bool conditionCinematicInhibitor(float dt);
+	bool conditionCinematicCapsules(float dt);
 
     bool conditionIsLanded(float dt);
 

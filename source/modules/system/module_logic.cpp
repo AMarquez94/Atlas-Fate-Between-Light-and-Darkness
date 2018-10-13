@@ -302,6 +302,8 @@ void CModuleLogic::publishClasses() {
 	m->set("setEnemyHudState", SLB::FuncCall::create(&setEnemyHudState));
 	m->set("activateCinematicVideoIntro", SLB::FuncCall::create(&activateCinematicVideoIntro));
 	m->set("deactivateCinematicVideoIntro", SLB::FuncCall::create(&deactivateCinematicVideoIntro));
+	m->set("setInBlackScreen", SLB::FuncCall::create(&setInBlackScreen));
+	m->set("setOutBlackScreen", SLB::FuncCall::create(&setOutBlackScreen));
 	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -1021,4 +1023,13 @@ void activateCinematicVideoIntro(float time_to_lerp, float time_to_start) {
 
 void deactivateCinematicVideoIntro() {
 	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::CINEMATIC_INTRO);
+}
+
+void setInBlackScreen(float time_to_lerp) {
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(time_to_lerp,0,false);
+}
+
+void setOutBlackScreen(float time_to_lerp) {
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(time_to_lerp, 0, false);
+	EngineLogic.execScriptDelayed("takeOutBlackScreen", time_to_lerp + 0.1f);
 }

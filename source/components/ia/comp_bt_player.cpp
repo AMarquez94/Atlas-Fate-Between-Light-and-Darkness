@@ -189,7 +189,6 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
 	addChild("playerActivated", "goToWpt", BTNode::EType::ACTION, (BTCondition)&TCompAIPlayer::conditionCinematicMode, (BTAction)&TCompAIPlayer::actionGoToWpt, nullptr);
     //addChild("playerActivated", "default", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionDefault, nullptr);
        
-	//URI
     addChild("playerActivated", "walkFallSMCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicWalkFall, nullptr, nullptr);
     addChild("walkFallSMCinematic", "resetTimersWalkFallCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersCinematicWalkFall, nullptr);
     addChild("walkFallSMCinematic", "crouchFallCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationStandingCrouch, nullptr);
@@ -213,6 +212,11 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
     addChild("InhibitorCinematic", "idleAnimationInhibitorCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdle, nullptr);
     addChild("InhibitorCinematic", "resetBTInhibitorCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
    
+	addChild("playerActivated", "CapsulesCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicInhibitor, nullptr, nullptr);
+	addChild("CapsulesCinematic", "resetTimersCapsulesCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersInhibitorCinematic, nullptr);
+	addChild("CapsulesCinematic", "idleAnimationCapsulesCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdleListen, nullptr);
+	addChild("CapsulesCinematic", "resetBTCapsulesCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
+
     /*addChild("playerActivated", "LandPlayer", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionIsLanded, nullptr, nullptr);
     addChild("LandPlayer", "landPlayer", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionFallSM, nullptr);*/
 
@@ -371,6 +375,9 @@ TCompAIPlayer::EState TCompAIPlayer::getStateEnumFromString(const std::string & 
     else if (stateName.compare("inhibitor_cinematic") == 0) {
         return TCompAIPlayer::EState::CINEMATIC_INHIBITOR;
     }
+	else if (stateName.compare("capsules_cinematic") == 0) {
+		return TCompAIPlayer::EState::CINEMATIC_CAPSULES;
+	}
     else {
         return TCompAIPlayer::EState::NUM_STATES;
     }
@@ -566,6 +573,20 @@ BTNode::ERes TCompAIPlayer::actionAnimationIdle(float dt)
         my_anim->playAnimation(TCompPlayerAnimator::EAnimation::IDLE);
         return BTNode::ERes::STAY;
     }
+}
+
+BTNode::ERes TCompAIPlayer::actionAnimationIdleListen(float dt)
+{
+	_timer += dt;
+	if (_timer > _maxTimer) {
+		_timer = 0.f;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+		my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_LISTEN_IDLE);
+		return BTNode::ERes::STAY;
+	}
 }
 
 BTNode::ERes TCompAIPlayer::actionStartSM(float dt)
@@ -1096,6 +1117,13 @@ bool TCompAIPlayer::conditionCinematicInhibitor(float dt)
     else {
         return false;
     }
+}
+
+bool TCompAIPlayer::conditionCinematicCapsules(float dt) {
+
+
+	return _currentState == EState::CINEMATIC_CAPSULES;
+
 }
 
 bool TCompAIPlayer::conditionIsLanded(float dt)
