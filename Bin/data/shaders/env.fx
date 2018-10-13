@@ -52,8 +52,9 @@ void PS_Moon(
 	float3 dir_to_eye = normalize(camera_pos.xyz - iWorldPos.xyz);
 	float3 dir_to_light = normalize( ( camera_pos + light_pos_global) - iWorldPos.xyz);
 	float falloff = dot(normalize(iNormal), dir_to_light);
+	o_albedo.xyz *= pow(1 - abs(falloff), 2);
 	o_selfIllum.xyz *= pow(1 - abs(falloff), 2);
-		
+	
 	// Save roughness in the alpha coord of the N render target
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
 	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
@@ -82,10 +83,10 @@ float4 PS_Moon_Light(
 	float3 dir_to_light = normalize( ( camera_pos + light_pos_global) - iWorldPos.xyz);
 	float3 N = normalize(iNormal.xyz);
 	float fresnel = dot(N, -dir_to_eye);
-	float falloff = dot(N, dir_to_light);
+	float falloff = clamp(dot(N, dir_to_light), 0, 1);
 		
-	color.a *= pow(abs(fresnel),1) * 4;
-	color.a *= pow(abs(-dir_to_eye),4);
+	color.a *= pow(abs(fresnel),4) * 2;
+	color.a *= falloff;
 		
 	return color;
 }
@@ -104,5 +105,5 @@ float4 PS_Moon_Atmosphere(
 	float3 dir_to_light = normalize( ( camera_pos + light_pos_global) - iWorldPos.xyz);
 	float fresnel = dot(iNormal, -dir_to_eye);
 	float flow = pow(1 - abs(dir_to_light),3);
-  return txAlbedo.Sample(samLinear, iTex0) * flow  * abs(fresnel) * 0;
+  return txAlbedo.Sample(samLinear, iTex0) * flow;
 }

@@ -17,8 +17,8 @@
       "name": "luna"
       ,
 			"tied_hierarchy": {
-				"pos": "17.7689 58.3776 65.0954",
-				"scale" : "2.5 2.5 2.5"
+				"pos": "17.7689 38.3776 65.0954",
+				"scale" : "2 2 2"
 			},
       "transform":
       {
@@ -43,13 +43,13 @@
   }
 	,
 	{
-    "xentity":
+    "entity":
     {
       "name": "luna_back"
       ,
 			"tied_hierarchy": {
-				"pos": "17.7689 58.3776 65.0954",
-				"scale" : "3 3 3"
+				"pos": "17.7689 38.3776 65.0954",
+				"scale" : "2.3 2.3 2.3"
 			},
       "transform":
       {
@@ -79,8 +79,8 @@
       "name": "luna_back_atmosphere"
       ,
 			"tied_hierarchy": {
-				"pos": "17.7689 58.3776 65.0954",
-				"scale" : "2.6 2.6 2.6"
+				"pos": "17.7689 38.3776 65.0954",
+				"scale" : "2.1 2.1 2.1"
 			},
       "transform":
       {
