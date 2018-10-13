@@ -27,6 +27,7 @@ function intro_intro_cinematic()
 	resetMainCameras();
 	setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
 
+	--Setting active and deactivating the intro cinematic video
 	activateCinematicVideoIntro(2,10);
 	execScriptDelayed("deactivateCinematicVideoIntro();",0);
 
@@ -35,6 +36,7 @@ function intro_intro_cinematic()
 
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_video\", 0)", 24);
 
+	 --Activating the subtitles
 	execScriptDelayed("activateSubtitles(\"doyouhearme\");",23.5);
 	execScriptDelayed("activateSubtitles(\"wewillbeintouch\");",25.5);
 	execScriptDelayed("activateSubtitles(\"youshoulddoyourbest\");",30);
@@ -46,21 +48,23 @@ function intro_intro_cinematic()
 	execScriptDelayed("activateSubtitles(\"thatsallfornow\");",53);
 	execScriptDelayed("deactivateSubtitles();", 56);
 
+	--Second Frame
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Player_Back\", 0)", 26.5);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_Rotation_2\", 30.0, \"cinematic\", \"\")", 26.5);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_Rotation_1\", 0.0, \"cinematic\", \"\")", 26.5);
 	
-	
-
+	--Third Frame
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_1\", 0)", 45.5);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_2\", 0)", 45.5);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_Rotation_Other_2\", 30.0, \"cinematic\", \"\")", 45.5);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_Rotation_Other_1\", 0.0, \"cinematic\", \"\")", 45.5);
 
+	--Last Frame
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_Other_2\", 0)", 56);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_Other_1\", 0)", 56);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_SM_Caida\", 0.0, \"cinematic\", \"\")", 56);
 
+	--Returning to player camera
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_SM_Caida\", 5)", 60);
 end
 
