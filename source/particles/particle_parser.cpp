@@ -151,7 +151,7 @@ namespace Particles
             cps->n_collision.collision = collision.value("collision", cps->n_collision.collision);
         }
 
-        // light
+        // light, optional parameter
         if (data.count("light")) {
             const json& light = data["light"];
             {
@@ -163,6 +163,7 @@ namespace Particles
                 cps->n_light.time = render.value("time", 1);
             }
         }
+
 
         // color
         const json& color = data["color"];

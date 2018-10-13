@@ -59,7 +59,7 @@ CTexture* TCompRenderOutlines::apply(CTexture* in_texture) {
 
     // Restore the current render target as it was
     CTexture::setNullTexture(TS_ALBEDO);
-    rt->activateRT();
+    //rt->activateRT();
 
     // Compute the fullscreen post process shockwave
     post_rt->activateRT();
