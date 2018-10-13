@@ -17,6 +17,7 @@
 		{ "name" : "sm_enter"},
 		{ "name" : "sm_pose"},
 		{ "name" : "open_weapons"},
+		{ "name" : "attack_mimetic"},
 		{ "name" : "land_soft"},
 		{ "name" : "cinematic_walk"},
 		{ "name" : "hack"},

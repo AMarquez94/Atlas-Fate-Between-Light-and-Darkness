@@ -112,6 +112,17 @@ void TCompPlayerAnimator::initializeAnimations() {
 	);
 
 	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::ATTACK_MIMETIC,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"attack_mimetic",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::DEATH,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
