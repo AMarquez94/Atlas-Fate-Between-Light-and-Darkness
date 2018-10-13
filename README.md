@@ -9,9 +9,9 @@ This game is being developed in 2017 for the Video game Creation Master of Pompe
 ## Developers:
 
 * Alex Alonso Carrillo
-* Jose Miguel del Caño Masip
-* Alejandro Márquez Ferrer
-* Juan Luis Pinto García
-* Brian Ramírez
+* Alejandro MÃ¡rquez Ferrer
+* Juan Luis Pinto GarcÃ­a
+* Brian RamÃ­rez
 * Oriol Rubiano Olives
-* Alberto Sánchez Amo
+* Alberto SÃ¡nchez Amo
+* Jose Miguel del CaÃ±o Masip
