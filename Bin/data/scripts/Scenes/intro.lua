@@ -139,12 +139,12 @@ function onTriggerEnter_Trigger_Capsules_Cinematic_player()
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_4\",10.0,\"cinematic\", \"\")", 5);	
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_3\",0.0,\"cinematic\", \"\")", 5);	
 	--blendInCamera("Camera_Cinematic_Capsules", 1.5, "cinematic", "cubicinout");
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_3\",0)", 8);
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_4\",0)", 8);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_3\",0)", 12);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_4\",0)", 12);
 
-	execScriptDelayed("setInBlackScreen(0.25);",7.65);
-	execScriptDelayed("setOutBlackScreen(0.25);",7.95);
-	execScriptDelayed("setCinematicPlayerState(false, \"\")", 8.1);
+	execScriptDelayed("setInBlackScreen(0.25);",11.6);
+	execScriptDelayed("setOutBlackScreen(0.25);",12.1);
+	execScriptDelayed("setCinematicPlayerState(false, \"\")", 12.4);
 	temp = getEntityByName("Trigger_Capsules_Cinematic");
 	temp:destroy();
 end

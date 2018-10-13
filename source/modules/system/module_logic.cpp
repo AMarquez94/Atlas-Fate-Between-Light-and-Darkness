@@ -1031,5 +1031,5 @@ void setInBlackScreen(float time_to_lerp) {
 
 void setOutBlackScreen(float time_to_lerp) {
 	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(time_to_lerp, 0, false);
-	EngineLogic.execScriptDelayed("takeOutBlackScreen", time_to_lerp + 0.1f);
+	EngineLogic.execScriptDelayed("takeOutBlackScreen();", time_to_lerp + 0.1f);
 }
