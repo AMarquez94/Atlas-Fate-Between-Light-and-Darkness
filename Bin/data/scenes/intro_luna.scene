@@ -1,0 +1,109 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_luna"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luna"
+      ,
+			"tied_hierarchy": {
+				"parent": "The Player",
+				"pos": "17.7689 58.3776 65.0954",
+				"scale" : "2.5 2.5 2.5"
+			},
+      "transform":
+      {
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/sphere_moon.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_luna.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+	,
+	{
+    "entity":
+    {
+      "name": "luna_back"
+      ,
+			"tied_hierarchy": {
+				"parent": "The Player",
+				"pos": "17.7689 58.3776 65.0954",
+				"scale" : "2.75 2.75 2.75"
+			},
+      "transform":
+      {
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/sphere_moon.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_luna_back.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+	,
+	{
+    "entity":
+    {
+      "name": "luna_back_atmosphere"
+      ,
+			"tied_hierarchy": {
+				"parent": "The Player",
+				"pos": "17.7689 58.3776 65.0954",
+				"scale" : "2.6 2.6 2.6"
+			},
+      "transform":
+      {
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/sphere_moon.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_luna_back_atmosphere.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

@@ -25,6 +25,7 @@ void CModuleLerp::update(float delta) {
 		}
 	}
 }
+
 void CModuleLerp::render() {
 
 }

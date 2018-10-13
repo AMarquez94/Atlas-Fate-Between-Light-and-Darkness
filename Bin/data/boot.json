@@ -111,6 +111,7 @@
 			"data/scenes/intro_edificios_segunda_2.scene",
 			"data/scenes/intro_carteles.scene",
 			"data/scenes/intro_muralla.scene",
+			"data/scenes/intro_luna.scene",
 			"data/scenes/intro_pozo.scene",
 			"data/scenes/intro_barra_capsulas.scene",
 			"data/scenes/Intro/intro_suelo.scene",
@@ -283,6 +284,7 @@
 			"data/scenes/_main_cameras.scene"
 		],
 		"scene_group": [
+	                "data/scenes/basiliclights.scene",
 			"data/scenes/Basilic_courtyard/enemy.scene",
 			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
 			"data/scenes/Basilic_courtyard/test_instancing.scene",
@@ -304,8 +306,8 @@
 			"data/scenes/Basilic_courtyard/BC_fuente.scene",
 			"data/scenes/suelo_mezquita.scene",
 			"data/scenes/Basilic_courtyard/almibars.scene",
-      "data/scenes/bc_corridor.scene",
-      "data/scenes/bc_corridor_logic.scene",
+      			"data/scenes/bc_corridor.scene",
+			"data/scenes/bc_corridor_logic.scene",
 			"data/scenes/Basilic_courtyard/BC_trigger_victory.scene"
 		]
 	},
