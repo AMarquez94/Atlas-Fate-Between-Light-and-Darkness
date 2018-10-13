@@ -115,7 +115,7 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
     addChild("playerActivated", "smfallTutorial", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionSMFallTutorial, nullptr, nullptr);
     addChild("smfallTutorial", "resetTimersSMFallTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersSMFallTutorial, nullptr);
     addChild("smfallTutorial", "fallingSMFallTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationFalling, nullptr);
-    addChild("smfallTutorial", "beginsmSMFallTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionStartSM, nullptr);
+    addChild("smfallTutorial", "beginsmSMFallTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionStartFallSM, nullptr);
     addChild("smfallTutorial", "smSMFallTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSM, nullptr);
     addChild("smfallTutorial", "exitsmSMFallTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionEndSM, nullptr);
     addChild("smfallTutorial", "waitSMFallTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionWait, nullptr);
@@ -189,16 +189,18 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
 	addChild("playerActivated", "goToWpt", BTNode::EType::ACTION, (BTCondition)&TCompAIPlayer::conditionCinematicMode, (BTAction)&TCompAIPlayer::actionGoToWpt, nullptr);
     //addChild("playerActivated", "default", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionDefault, nullptr);
        
-
+	//URI
     addChild("playerActivated", "walkFallSMCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicWalkFall, nullptr, nullptr);
     addChild("walkFallSMCinematic", "resetTimersWalkFallCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersCinematicWalkFall, nullptr);
     addChild("walkFallSMCinematic", "crouchFallCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationStandingCrouch, nullptr);
-    addChild("walkFallSMCinematic", "crouchWalkFallCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionCrouchWalk, (BTAssert)&TCompAIPlayer::assertIsGrounded);
+	addChild("walkFallSMCinematic", "resetTimersWalkFallCinematic2", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersCinematicWalkFall2, nullptr);
+	addChild("walkFallSMCinematic", "crouchListenFallCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationStandingCrouchListen, nullptr);
+	addChild("walkFallSMCinematic", "crouchWalkFallCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionCrouchWalk, (BTAssert)&TCompAIPlayer::assertIsGrounded);
     
     addChild("playerActivated", "FallSMCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicFallSM, nullptr, nullptr);
     addChild("FallSMCinematic", "resetTimersFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersCinematicFallSM, nullptr);
     addChild("FallSMCinematic", "fallFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionFallSM, nullptr);
-    addChild("FallSMCinematic", "smenterFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionStartSM, nullptr); 
+    addChild("FallSMCinematic", "smenterFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionStartFallSM, nullptr); 
     addChild("FallSMCinematic", "resetTimersBeforeSMFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersBeforeSMCinematicFallSM, nullptr);
     addChild("FallSMCinematic", "smFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSM, nullptr);        
     addChild("FallSMCinematic", "slowMotionSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionSlowMotionCinematicFallSM, nullptr);        
@@ -589,6 +591,29 @@ BTNode::ERes TCompAIPlayer::actionStartSM(float dt)
     return BTNode::ERes::LEAVE;
 }
 
+BTNode::ERes TCompAIPlayer::actionStartFallSM(float dt)
+{
+	TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+	my_anim->playAnimation(TCompPlayerAnimator::EAnimation::SM_POSE);
+	my_anim->playAnimation(TCompPlayerAnimator::EAnimation::SM_ENTER_FALL);
+
+	CHandle(this).getOwner().sendMsg(TMsgFadeBody{ false });
+	h_sm_tutorial.sendMsg(TMsgFadeBody{ true });
+
+	// Replace this when weapons are finished
+	fadeWeapons(false);
+
+	TCompParticles * my_particles = get<TCompParticles>();
+	if (my_particles) {
+		Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", CHandle(this).getOwner());
+		Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash2.particles", CHandle(this).getOwner());
+		Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", CHandle(this).getOwner());
+		my_particles->setSystemState(true);
+	}
+
+	return BTNode::ERes::LEAVE;
+}
+
 BTNode::ERes TCompAIPlayer::actionAnimationSM(float dt)
 {
     _timer += dt;
@@ -650,9 +675,23 @@ BTNode::ERes TCompAIPlayer::actionAnimationStandingCrouch(float dt)
     }
     else {
         TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
-        my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_LISTEN_CROUCH);
+        my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CROUCH_IDLE);
         return BTNode::ERes::STAY;
     }
+}
+
+BTNode::ERes TCompAIPlayer::actionAnimationStandingCrouchListen(float dt)
+{
+	_timer += dt;
+	if (_timer > _maxTimer) {
+		_timer = 0.f;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+		my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_LISTEN_CROUCH);
+		return BTNode::ERes::STAY;
+	}
 }
 
 BTNode::ERes TCompAIPlayer::actionAnimationAttack(float dt)
@@ -852,8 +891,15 @@ BTNode::ERes TCompAIPlayer::actionStartSMEnemy(float dt)
 BTNode::ERes TCompAIPlayer::actionResetTimersCinematicWalkFall(float dt)
 {
     _currentState = EState::CINEMATIC_FALLSM;
-    _maxTimer = 20.f;
+    _maxTimer = 22.5f;
     return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersCinematicWalkFall2(float dt)
+{
+	_currentState = EState::CINEMATIC_FALLSM;
+	_maxTimer = 33.5f;
+	return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIPlayer::actionResetTimersBeforeSMCinematicFallSM(float dt)
@@ -882,7 +928,7 @@ BTNode::ERes TCompAIPlayer::actionSlowMotionCinematicFallSM(float dt)
 {
     TCompFadeController* my_fade = get<TCompFadeController>();
     my_fade->setFadeTime(4.f);
-    _maxTimer = my_fade->getFadeTime();
+    _maxTimer = my_fade->getFadeTime() + 3.0f;
 
     // TODO: Crear bien el GetFallSpeed y estas cosas // SM fall que no pase por animación de crouch
     return BTNode::ERes::LEAVE;
