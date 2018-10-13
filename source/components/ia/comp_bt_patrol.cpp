@@ -294,6 +294,9 @@ void TCompAIPatrol::onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) {
 	if (msg.animation_name.compare("attack") == 0) {
 		attackAnimationCompleted = true;
 	}
+	if (msg.animation_name.compare("repaired") == 0) {
+		repairedAnimationCompleted = true;
+	}
 }
 
 void TCompAIPatrol::onMsgWarned(const TMsgWarnEnemy & msg)
@@ -511,6 +514,22 @@ BTNode::ERes TCompAIPatrol::actionStunned(float dt)
 
 BTNode::ERes TCompAIPatrol::actionFixed(float dt)
 {
+	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::BEING_REPARED) && !repairedAnimationCompleted) {
+		myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::BEING_REPARED);
+		myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+	}
+
+	if (repairedAnimationCompleted) {
+		resetAnimationCompletedBooleans();
+		hasBeenStunned = false;
+		hasBeenFixed = false;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		return BTNode::ERes::STAY;
+	}
+
     hasBeenStunned = false;
     hasBeenFixed = false;
     return BTNode::ERes::LEAVE;
@@ -1690,4 +1709,5 @@ void TCompAIPatrol::playAnimationByName(const std::string & animationName)
 void TCompAIPatrol::resetAnimationCompletedBooleans() {
 	inhibitorAnimationCompleted = false;
 	attackAnimationCompleted = false;
+	repairedAnimationCompleted = false;
 }

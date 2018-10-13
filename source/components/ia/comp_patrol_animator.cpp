@@ -163,12 +163,11 @@ void TCompPatrolAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::BEING_REPARED,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"pruebas",
+		"repaired",
 		"",
 		1.0f,
 		1.0f,
-		false,
-		true
+		false
 	);
 
 }

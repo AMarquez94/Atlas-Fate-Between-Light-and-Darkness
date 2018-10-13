@@ -30,6 +30,9 @@
 		},
 		{
 			"name": "turn_right"
+		},
+		{
+			"name": "repaired"
 		}
 	]
 }

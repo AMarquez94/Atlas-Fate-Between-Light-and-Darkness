@@ -118,6 +118,10 @@
 		},
 		{
 			"name": "turn_right"
+		},
+		{
+			"name": "repaired",
+			"animation_completed_callback": true
 		}
 	]
 }
