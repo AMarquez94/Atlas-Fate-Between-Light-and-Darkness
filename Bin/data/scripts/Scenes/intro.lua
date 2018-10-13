@@ -12,7 +12,7 @@ function onSceneStart_scene_intro()
 
 	-- First Cinematic --
 	if(cinematicsEnabled and not isCheckpointSaved()) then
-		intro_intro_cinematic();
+		--intro_intro_cinematic();
 	end
 	setAIState("Patrol_Cinematic_Inhibitor", true, "dead_cinematic");
 	getSignRendersForIntro();
