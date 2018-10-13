@@ -1440,6 +1440,46 @@
 			}
 		},
 		{
+			"type": "VariableTransition",
+			"source": "walk",
+			"target": "pressingButton",
+			"variable": {
+				"name": "buttonPressed",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "run",
+			"target": "pressingButton",
+			"variable": {
+				"name": "buttonPressed",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "crouch",
+			"target": "pressingButton",
+			"variable": {
+				"name": "buttonPressed",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
+			"type": "VariableTransition",
+			"source": "crouchwalk",
+			"target": "pressingButton",
+			"variable": {
+				"name": "buttonPressed",
+				"type": "bool",
+				"value": true
+			}
+		},
+		{
 			"type": "AnimationTransition",
 			"source": "pressingButton",
 			"target": "idle",

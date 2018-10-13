@@ -51,12 +51,7 @@ void CModuleParticles::update(float delta)
             if (ps->_destroy_entity) {
                 CHandle h_entity = ps->getHandleEntity();
                 if (h_entity.isValid()) {
-                    CEntity* e_entity = h_entity;
-                    dbg("Destroy entity %s\n", e_entity->getName());
-                    ps->getHandleEntity().destroy();
-                }
-                else {
-                    dbg("ENTITY NOT VALID\n");
+                    h_entity.destroy();
                 }
                 
             }

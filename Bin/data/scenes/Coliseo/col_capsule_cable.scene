@@ -1,0 +1,43 @@
+[
+  {
+    "entity":
+    {
+      "name": "col_capsule_cable"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Capsules_Cable"
+      ,
+      "transform":
+      {
+        "pos": "16.439 28.6681 -2.22229"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Capsules_Cable.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

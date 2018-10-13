@@ -615,6 +615,8 @@ data/textures/player/Shade_mtl_Normal.dds
 data/textures/player/Shade_mtl_Roughness.dds
 data/materials/characters/mtl_player_main_hologram_solid.material
 data/scenes/Coliseo/capsules.scene
+data/scenes/Coliseo/col_capsule_cable.scene
+data/meshes/COL_Capsules_Cable.mesh
 data/scenes/Coliseo/_player.scene
 data/prefabs/player.prefab
 data/skeletons/player/body.mesh
