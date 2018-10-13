@@ -3,7 +3,7 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/sueloytecho_low_1001_BaseColor.dds"
+    "albedo": "data/textures/sueloyagarres_alb.dds"
     ,
     "normal": "data/textures/null_normal.dds"
   }

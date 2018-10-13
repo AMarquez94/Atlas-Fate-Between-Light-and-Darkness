@@ -1,4 +1,11 @@
 data/navmeshes/basilic_courtyard.bin
+data/scenes/basiliclights.scene
+data/colliders/bc_Spot012.collider
+data/colliders/bc_Spot015.collider
+data/colliders/bc_Spot016.collider
+data/colliders/bc_Spot018.collider
+data/colliders/bc_Spot024.collider
+data/colliders/bc_Spot025.collider
 data/scenes/Basilic_courtyard/enemy.scene
 data/prefabs/patrol.prefab
 data/skeletons/patrol/Mech_low.mesh
@@ -33,7 +40,7 @@ data/meshes/quad_volume_particles.instanced_mesh
 data/materials/volume_particles_instanced.material
 data/scenes/Basilic_courtyard/buttons.scene
 data/meshes/Buttons/Button.mesh
-data/textures/default_texture.dds
+data/textures/tx_cables_alb.dds
 data/textures/null_normal.dds
 data/materials/mtl_default.material
 data/scenes/Basilic_courtyard/capsules.scene
@@ -230,7 +237,6 @@ data/meshes/mesh_containerbasura.mesh
 data/colliders/collider_containerbasura.collider
 data/scenes/BC_cables.scene
 data/meshes/BC_cables.mesh
-data/textures/tx_cables_alb.dds
 data/materials/mtl_cables.material
 data/prefabs/baselargaelectrica.prefab
 data/meshes/mesh_baselargalectrica.mesh
@@ -354,7 +360,7 @@ data/textures/mix/blending_mezquita/red/tx_suelo_mezquita2_nml.dds
 data/textures/mix/blending_mezquita/red/tx_suelo_mezquita2_rgh.dds
 data/materials/mix_mezquita_red.material
 data/textures/mix/blending_mezquita/green/tx_suelo_mezquita3_alb.dds
-data/textures/mix/blending_mezquita/green/tx_suelo_mezquita3_seco_ao.dds
+data/textures/mix/blending_mezquita/green/tx_suelo_mezquita3_ao.dds
 data/textures/mix/blending_mezquita/green/tx_suelo_mezquita3_hgt.dds
 data/textures/mix/blending_mezquita/green/tx_suelo_mezquita3_met.dds
 data/textures/mix/blending_mezquita/green/tx_suelo_mezquita3_nml.dds
@@ -527,7 +533,7 @@ data/meshes/bc_reja_techo033.mesh
 data/meshes/bc_rejas001.mesh
 data/meshes/bc_sala002.mesh
 data/meshes/bc_suelo001.mesh
-data/textures/sueloytecho_low_1001_BaseColor.dds
+data/textures/sueloyagarres_alb.dds
 data/materials/mtl_sueloytecho.material
 data/colliders/bc_collider_suelo_pasillo.collider
 data/meshes/bc_techo001.mesh

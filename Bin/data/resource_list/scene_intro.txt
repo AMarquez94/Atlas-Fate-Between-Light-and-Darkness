@@ -861,6 +861,19 @@ data/materials/mtl_tubo_estandarte.material
 data/meshes/mesh_estandarte002.mesh
 data/meshes/mesh_estandarte.mesh
 data/meshes/mesh_estandarte001.mesh
+data/scenes/intro_luna.scene
+data/meshes/sphere_moon.mesh
+data/textures/tx_luna_alb.dds
+data/textures/tx_luna_ao.dds
+data/textures/tx_luna_emi.dds
+data/textures/tx_luna_hgt.dds
+data/textures/tx_luna_met.dds
+data/textures/tx_luna_nml.dds
+data/textures/tx_luna_rgh.dds
+data/materials/mtl_luna.material
+data/materials/mtl_luna_back.material
+data/textures/tx_planet_clouds.dds
+data/materials/mtl_luna_back_atmosphere.material
 data/scenes/intro_pozo.scene
 data/meshes/vallas_pozo_intro.mesh
 data/textures/tx_tubos_pozo_alb.dds
@@ -905,7 +918,6 @@ data/colliders/collider_pozo_estructura.collider
 data/colliders/collider_puente_pozo002.collider
 data/scenes/intro_barra_capsulas.scene
 data/meshes/barra_capsulas_intro.mesh
-data/textures/default_texture.dds
 data/materials/mtl_default.material
 data/scenes/Intro/intro_suelo.scene
 data/meshes/mesh_suelo_intro2.mesh
@@ -1366,7 +1378,7 @@ data/meshes/intro_reja_techo033.mesh
 data/meshes/intro_rejas001.mesh
 data/meshes/intro_sala002.mesh
 data/meshes/intro_suelo001.mesh
-data/textures/sueloytecho_low_1001_BaseColor.dds
+data/textures/sueloyagarres_alb.dds
 data/materials/mtl_sueloytecho.material
 data/colliders/intro_collider_suelo_pasillo.collider
 data/meshes/intro_techo001.mesh

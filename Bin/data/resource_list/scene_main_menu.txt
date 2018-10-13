@@ -854,7 +854,6 @@ data/colliders/collider_pozo_estructura.collider
 data/colliders/collider_puente_pozo002.collider
 data/scenes/intro_barra_capsulas.scene
 data/meshes/barra_capsulas_intro.mesh
-data/textures/default_texture.dds
 data/materials/mtl_default.material
 data/scenes/Intro/intro_suelo.scene
 data/meshes/mesh_suelo_intro2.mesh
@@ -1332,7 +1331,7 @@ data/meshes/intro_reja_techo033.mesh
 data/meshes/intro_rejas001.mesh
 data/meshes/intro_sala002.mesh
 data/meshes/intro_suelo001.mesh
-data/textures/sueloytecho_low_1001_BaseColor.dds
+data/textures/sueloyagarres_alb.dds
 data/materials/mtl_sueloytecho.material
 data/colliders/intro_collider_suelo_pasillo.collider
 data/meshes/intro_techo001.mesh

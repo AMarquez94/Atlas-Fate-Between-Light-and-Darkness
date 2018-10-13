@@ -14,14 +14,6 @@ uint32_t getNextUniqueMsgID() {
 }
 
 CEntity::~CEntity() {
-
-    /*if (CHandle(this).isValid()) {
-        dbg("JAUS JUAS JUAS\n");
-    }
-    else {
-        dbg("IM NOT VALID\n");
-        return;
-    }*/
     sendMsg(TMsgEntityDestroyed());
     // Comp 0 is not valid
     for (uint32_t i = 1; i < CHandleManager::getNumDefinedTypes(); ++i) {

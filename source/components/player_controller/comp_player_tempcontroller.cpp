@@ -167,7 +167,10 @@ void TCompTempPlayerController::playLandParticles(bool left)
     TCompGroup* my_group = get<TCompGroup>();
     if (my_group) {
         CHandle foot = left ? my_group->getHandleByName("left_foot") : my_group->getHandleByName("right_foot");
-        EngineParticles.launchSystem("data/particles/def_amb_ground_hit.particles", CHandle(this).getOwner());
+        CEntity* e_foot = foot;
+        TCompTransform* foot_pos = e_foot->get<TCompTransform>();
+        VEC3 init_pos = foot_pos->getPosition();
+        EngineParticles.launchDynamicSystem("data/particles/def_amb_ground_hit.particles", init_pos);
     }
 }
 

@@ -902,7 +902,6 @@ data/textures/tx_neon_moderdonia_met.dds
 data/textures/tx_neon_moderdonia_nml.dds
 data/textures/tx_neon_moderdonia_rgh.dds
 data/materials/mtl_neon_moderdonia.material
-data/textures/default_texture.dds
 data/materials/mtl_default.material
 data/scenes/zone_a_in_corridor.scene
 data/prefabs/puerta_tech.prefab
@@ -1042,7 +1041,7 @@ data/meshes/zone_a_in_reja_techo033.mesh
 data/meshes/zone_a_in_rejas001.mesh
 data/meshes/zone_a_in_sala002.mesh
 data/meshes/zone_a_in_suelo001.mesh
-data/textures/sueloytecho_low_1001_BaseColor.dds
+data/textures/sueloyagarres_alb.dds
 data/materials/mtl_sueloytecho.material
 data/colliders/zone_a_in_collider_suelo_pasillo.collider
 data/meshes/zone_a_in_techo001.mesh

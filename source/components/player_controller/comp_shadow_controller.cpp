@@ -54,7 +54,7 @@ void TCompShadowController::update(float dt) {
 
 void TCompShadowController::Init() {
 
-    is_shadow = false;
+    is_shadow = true;
     shadow_sphere.radius = 0.05;
 }
 
