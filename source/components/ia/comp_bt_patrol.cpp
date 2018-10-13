@@ -1190,7 +1190,7 @@ BTNode::ERes TCompAIPatrol::actionMarkPatrolAsLost(float dt)
 BTNode::ERes TCompAIPatrol::actionDieAnimation(float dt)
 {
     TCompPatrolAnimator* my_anim = get<TCompPatrolAnimator>();
-    my_anim->playAnimation(TCompPatrolAnimator::DIE);
+    my_anim->playAnimation(TCompPatrolAnimator::CINEMATIC_DIE);
     TCompEmissionController* my_emission = get<TCompEmissionController>();
     my_emission->blend(enemyColor.colorDead, 0.001f);
     return BTNode::ERes::LEAVE;
@@ -1199,7 +1199,7 @@ BTNode::ERes TCompAIPatrol::actionDieAnimation(float dt)
 BTNode::ERes TCompAIPatrol::actionDeadAnimation(float dt)
 {
     TCompPatrolAnimator* my_anim = get<TCompPatrolAnimator>();
-    my_anim->playAnimation(TCompPatrolAnimator::DEAD);
+    my_anim->playAnimation(TCompPatrolAnimator::CINEMATIC_DEAD);
     return BTNode::ERes::STAY;
 }
 
