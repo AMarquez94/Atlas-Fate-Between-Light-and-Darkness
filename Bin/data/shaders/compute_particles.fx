@@ -101,7 +101,7 @@ float4 PS(
 ) : SV_Target
 {
   float a = txAlbedo.Sample(samLinear, iUV).r;
-  return pow( a, 3 );// * sin(global_world_time * 3) * 2;
+  return pow( a, 3 );// * ( 1 + abs(sin(global_world_time * 1)) * 4);
   float4 texture_color = iColor;
   return texture_color;
 }

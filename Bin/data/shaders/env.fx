@@ -16,7 +16,6 @@ void VS(
 
 )
 {
-
   float4 world_pos = mul(iPos, obj_world);
   oPos = mul(world_pos, camera_view_proj);
 
@@ -31,7 +30,42 @@ void VS(
   oWorldPos = world_pos.xyz;
 }
 
-float4 PS_Moon(
+void PS_Moon(
+	float4 Pos       : SV_POSITION
+	, float3 iNormal : NORMAL0
+	, float4 iTangent : NORMAL1
+	, float2 iTex0 : TEXCOORD0
+	, float2 iTex1 : TEXCOORD1
+	, float3 iWorldPos : TEXCOORD2
+	, out float4 o_albedo : SV_Target0
+	, out float4 o_normal : SV_Target1
+	, out float1 o_depth : SV_Target2
+	, out float4 o_selfIllum : SV_Target3
+)
+{
+	o_albedo = txAlbedo.Sample(samLinear, iTex0);
+	o_albedo.a = 0;
+	o_selfIllum =  txEmissive.Sample(samLinear, iTex0);
+	o_selfIllum.xyz *= self_color.xyz * self_intensity * 5;
+	o_selfIllum.a = txAOcclusion.Sample(samLinear, iTex0).r;
+	
+	float3 dir_to_eye = normalize(camera_pos.xyz - iWorldPos.xyz);
+	float3 dir_to_light = normalize( ( camera_pos + light_pos_global) - iWorldPos.xyz);
+	float falloff = dot(normalize(iNormal), dir_to_light);
+	o_selfIllum.xyz *= pow(1 - abs(falloff), 2);
+		
+	// Save roughness in the alpha coord of the N render target
+	float roughness = txRoughness.Sample(samLinear, iTex0).r;
+	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
+	o_normal = encodeNormal(N, roughness);
+	
+	// Compute the Z in linear space, and normalize it in the range 0...1
+	// In the range z=0 to z=zFar of the camera (not zNear)
+	float3 camera2wpos = iWorldPos - camera_pos;
+	o_depth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
+}
+
+float4 PS_Moon_Light(
 	float4 Pos : SV_POSITION
 	, float3 iNormal : NORMAL0
 	, float4 iTangent : NORMAL1
@@ -42,12 +76,17 @@ float4 PS_Moon(
 {
 	float3 viewdir = normalize(iWorldPos - camera_pos.xyz);
   float4 color = float4(1,1,1,1);
-	color.a = pow(dot(viewdir, iNormal),5);
-	//color.a *=dot(iNormal, float3(3.5, 71, -234));
-	//color.a = saturate(color.a);
 	
-	color.a = pow(color.a, 5);
-	color.a *= 0.1;
+	// Fresnel component
+	float3 dir_to_eye = normalize(camera_pos.xyz - iWorldPos.xyz);
+	float3 dir_to_light = normalize( ( camera_pos + light_pos_global) - iWorldPos.xyz);
+	float3 N = normalize(iNormal.xyz);
+	float fresnel = dot(N, -dir_to_eye);
+	float falloff = dot(N, dir_to_light);
+		
+	color.a *= pow(abs(fresnel),1) * 4;
+	color.a *= pow(abs(-dir_to_eye),4);
+		
 	return color;
 }
 
@@ -60,6 +99,10 @@ float4 PS_Moon_Atmosphere(
 	, float3 iWorldPos : TEXCOORD2
 ) : SV_Target
 {
-iTex0+= global_world_time * 0.01;
-  return txAlbedo.Sample(samLinear, iTex0) * 0.55;
+	iTex0+= global_world_time * 0.02;
+	float3 dir_to_eye = normalize(camera_pos.xyz - iWorldPos.xyz);
+	float3 dir_to_light = normalize( ( camera_pos + light_pos_global) - iWorldPos.xyz);
+	float fresnel = dot(iNormal, -dir_to_eye);
+	float flow = pow(1 - abs(dir_to_light),3);
+  return txAlbedo.Sample(samLinear, iTex0) * flow  * abs(fresnel) * 0;
 }
