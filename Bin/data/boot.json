@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_basilic_courtyard",
+	"default_scene": "scene_coliseo",
 	"scene_main_menu": {
 		"static_data": {
 			"initial_script": "main_menu",

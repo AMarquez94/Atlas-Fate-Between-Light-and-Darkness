@@ -39,5 +39,20 @@
       ,
       "local_aabb": true
     }
+  },
+  {
+    "entity":
+    {
+      "name": "col_framedoor7"
+      ,
+      "prefab": "data/prefabs/puerta_tech.prefab"
+      ,
+      "transform":
+      {
+        "pos": "25.8 0.743951 0"
+        ,
+        "lookat": "26.8 0.743951 0"
+      }
+    }
   }
 ]
