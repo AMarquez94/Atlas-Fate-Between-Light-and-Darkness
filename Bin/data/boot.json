@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_coliseo",
+	"default_scene": "scene_intro",
 	"scene_main_menu": {
 		"static_data": {
 			"initial_script": "main_menu",
@@ -118,7 +118,6 @@
 			"data/scenes/intro_containers_puerto.scene",
 			"data/scenes/intro_muralla_intro.scene",
 			"data/scenes/intro_muralla_fin.scene",
-			"data/scenes/intro_containers_puerto.scene",
 			"data/scenes/intro_conductos.scene",
 			"data/scenes/intro_tubitos.scene",
 			"data/scenes/intro_props.scene",

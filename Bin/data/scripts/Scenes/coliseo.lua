@@ -50,7 +50,9 @@ function onTriggerEnter_COL_trigger_corridor_intro02_player()
 end
 
 function closeIntroDoor()
-	toDoor(toEntity(getEntityByName("col_intro_framedoor")):getCompByName("door")):close();
+	intro_door = toDoor(toEntity(getEntityByName("col_intro_framedoor")):getCompByName("door"));
+	intro_door:setClosedScript("setCorridorInvisible()");
+	intro_door:close();
 	getEntityByName("COL_trigger_corridor_intro"):destroy();
 	getEntityByName("COL_trigger_corridor_intro01"):destroy();
 	getEntityByName("COL_trigger_corridor_intro02"):destroy();
@@ -69,7 +71,9 @@ function onTriggerEnter_COL_trigger_corridor_zonea02_player()
 end
 
 function closeZoneADoor()
-	toDoor(toEntity(getEntityByName("col_zone_a_framedoor001")):getCompByName("door")):close();
+	zonea_door = toDoor(toEntity(getEntityByName("col_zone_a_framedoor001")):getCompByName("door"));
+	zonea_door:setClosedScript("setCorridorInvisible()");
+	zonea_door:close();
 	getEntityByName("COL_trigger_corridor_zonea"):destroy();
 	getEntityByName("COL_trigger_corridor_zonea01"):destroy();
 	getEntityByName("COL_trigger_corridor_zonea02"):destroy();
@@ -77,13 +81,13 @@ end
 
 function transition_coliseum_to_zone_a(button_handle)
 	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
-	--makeVisibleByTag("corridor", true);
+	makeVisibleByTag("corridor", true);
 	toDoor(toEntity(getEntityByName("col_zone_a_framedoor001")):getCompByName("door")):open();
 end
 
 function transition_coliseum_to_courtyard(button_handle)
 	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
-	--makeVisibleByTag("corridor", true);
+	makeVisibleByTag("corridor", true);
 	toDoor(toEntity(getEntityByName("col_bc_framedoor002")):getCompByName("door")):open();
 end
 

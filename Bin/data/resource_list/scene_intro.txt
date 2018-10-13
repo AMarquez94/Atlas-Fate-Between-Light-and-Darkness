@@ -995,7 +995,6 @@ data/meshes/mesh_container_puerto4.mesh
 data/colliders/collider_container_puerto_4.collider
 data/scenes/intro_muralla_intro.scene
 data/scenes/intro_muralla_fin.scene
-data/scenes/intro_containers_puerto.scene
 data/scenes/intro_conductos.scene
 data/prefabs/conductocurvo_pequeno.prefab
 data/meshes/mesh_conductocurvo_pequeno.mesh

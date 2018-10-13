@@ -28,7 +28,7 @@
 			"abs_aabb": true,
 			"local_aabb": true,
 			"tags": [
-				"light"
+				"light", "corridor", "dir_light"
 			]
 		}
 	},
