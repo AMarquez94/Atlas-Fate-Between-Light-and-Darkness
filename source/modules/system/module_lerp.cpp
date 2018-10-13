@@ -7,7 +7,6 @@ void CModuleLerp::update(float delta) {
 	if (_elements_to_lerp.size() > 0) {
 		std::list<LerpingElement>::iterator it = _elements_to_lerp.begin();
 		while (it != _elements_to_lerp.end()) {
-
 			if ((*it).current_time >= (*it).time_to_start_lerping) {
 				float diff = (*it).value_to_lerp - (*it).max_element_to_lerp;
 				float percentage = Clamp(((((*it).current_time - (*it).time_to_start_lerping)) / (*it).time_to_end_lerp), 0.0f, 1.0f);
