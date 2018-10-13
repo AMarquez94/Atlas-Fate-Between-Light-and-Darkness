@@ -53,6 +53,7 @@ void CDeferredRenderer::renderGBuffer() {
 	// Render the solid objects that output to the G-Buffer
 	CRenderManager::get().renderCategory("gbuffer");
     CRenderManager::get().renderCategory("gbuffer_opacity");
+    CRenderManager::get().renderCategory("env_effects");
 
 	// Disable rendering to all render targets.
 	ID3D11RenderTargetView* rt_nulls[nrender_targets];
@@ -156,6 +157,7 @@ void CDeferredRenderer::renderAccLight() {
 
     CRenderManager::get().renderCategory("volume_shafts");
     CRenderManager::get().renderCategory("volume_ray_shafts");
+    CRenderManager::get().renderCategory("env_effects_atmosphere");
 }
 
 // -------------------------------------------------------------------------
@@ -426,7 +428,6 @@ void CDeferredRenderer::render(CRenderToTexture* rt_destination, CHandle h_camer
 
 	// Combine the results
 	renderFullScreenQuad("gbuffer_resolve.tech", nullptr);
-    CRenderManager::get().renderCategory("env_effects");
     //rt_prev_acc_light = rt_acc_light;
 }
 
