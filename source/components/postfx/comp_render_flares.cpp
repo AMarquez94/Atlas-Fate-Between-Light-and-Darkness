@@ -68,7 +68,6 @@ CTexture* TCompRenderFlares::apply(CTexture* in_color, CTexture * in_lights) {
 
     rt->activateRT();
 
-    in_color->activate(TS_ALBEDO);
     in_lights->activate(TS_EMISSIVE);
 
 	tech->activate();

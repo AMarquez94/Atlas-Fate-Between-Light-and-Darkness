@@ -53,6 +53,7 @@
 		"camera_follow",
 		"camera",
 		"laser",
+		"tied_hierarchy",
 		"fsm",
 		"blur_active_controller",
 		"gpu_particles",

@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_basilic_courtyard",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -248,8 +248,7 @@
 			"data/scenes/BC_maderas.scene",
 			"data/scenes/Basilic_courtyard/BC_fuente.scene",
 			"data/scenes/suelo_mezquita.scene",
-			"data/scenes/Basilic_courtyard/almibars.scene",
-			"data/scenes/Basilic_courtyard/BC_face_cartel.scene"
+			"data/scenes/Basilic_courtyard/almibars.scene"
 		]
 	},
 	"scene_basilic_interior": {
