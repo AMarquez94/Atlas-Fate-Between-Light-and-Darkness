@@ -255,6 +255,7 @@ bool CModuleSceneManager::unLoadActiveScene(bool partial) {
             for (int i = 0; i < non_persistent_entities.size(); i++) {
                 non_persistent_entities[i].destroy();
             }
+            EngineInstancing.clearInstances();
         }
         else {
 

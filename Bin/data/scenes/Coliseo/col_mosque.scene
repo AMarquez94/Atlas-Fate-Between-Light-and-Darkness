@@ -1,0 +1,311 @@
+[{
+		"entity": {
+			"name": "col_mosque",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_alminar1",
+			"transform": {
+				"pos": "36.6511 20.3416 -94.6497",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/BC_alminar1.mesh",
+				"materials": [
+					"data/materials/mtl_alminar_mezquita.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_alminar2",
+			"transform": {
+				"pos": "39.0971 20.3416 -165.046",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/BC_alminar2.mesh",
+				"materials": [
+					"data/materials/mtl_alminar_mezquita.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_alminar3",
+			"transform": {
+				"pos": "40.1557 20.3416 -225.402",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/BC_alminar3.mesh",
+				"materials": [
+					"data/materials/mtl_alminar_mezquita.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_alminar4",
+			"transform": {
+				"pos": "-38.6881 20.3416 -96.358",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/BC_alminar4.mesh",
+				"materials": [
+					"data/materials/mtl_alminar_mezquita.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_alminar5",
+			"transform": {
+				"pos": "-38.6881 20.3416 -164.797",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/BC_alminar5.mesh",
+				"materials": [
+					"data/materials/mtl_alminar_mezquita.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_alminar6",
+			"transform": {
+				"pos": "-41.9729 20.3416 -224.905",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/BC_alminar6.mesh",
+				"materials": [
+					"data/materials/mtl_alminar_mezquita.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_barandilla_low",
+			"transform": {
+				"pos": "-30.7122 17.9316 -155.663",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/BC_barandilla_low.mesh",
+				"materials": [
+					"data/materials/mtl_arco_central.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_cupula_arco_low",
+			"transform": {
+				"pos": "-0.500294 19.8546 -155.8",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/BC_cupula_arco_low.mesh",
+				"materials": [
+					"data/materials/mtl_arco_central.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_cupulayventanas",
+			"transform": {
+				"pos": "-26.0937 20.5326 -170.025",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/BC_cupulayventanas.mesh",
+				"materials": [
+					"data/materials/mtl_ventanasycupulas.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_pared_capsulas",
+			"transform": {
+				"pos": "17.1611 22.0 -169.089",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/BC_pared_capsulas.mesh",
+				"materials": [
+					"data/materials/mtl_mezquita.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_pared_entrada",
+			"transform": {
+				"pos": "-0.270824 8.08257 -154.111",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/BC_pared_entrada.mesh",
+				"materials": [
+					"data/materials/mtl_mezquita.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_tejados",
+			"transform": {
+				"pos": "-17.3851 22.0 -187.636",
+				"rotation": "0.0 -0.193621 0.0 -0.981076"
+			},
+			"render": [{
+				"mesh": "data/meshes/BC_tejados.mesh",
+				"materials": [
+					"data/materials/mtl_tejados.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "plataforma_cupula_low",
+			"transform": {
+				"pos": "-0.498521 17.9268 -155.722",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/plataforma_cupula_low.mesh",
+				"materials": [
+					"data/materials/mtl_arco_central.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "Alminar 1",
+			"prefab": "data/prefabs/holograma_alminar.prefab",
+			"transform": {
+				"pos": "36.578 80.092 -94.8088",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"rotator": {
+				"speed": 0.7
+			}
+		}
+
+	},
+	{
+		"entity": {
+			"name": "Alminar 2",
+			"prefab": "data/prefabs/holograma_alminar.prefab",
+			"transform": {
+				"pos": "39.0244 80.092 -165.205",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"rotator": {
+				"speed": 0.4
+			}
+		}
+
+	},
+	{
+		"entity": {
+			"name": "Alminar 3",
+			"prefab": "data/prefabs/holograma_alminar.prefab",
+			"transform": {
+				"pos": "40.083 80.092 -225.562",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"rotator": {
+				"speed": 0.6
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "Alminar 4",
+			"prefab": "data/prefabs/holograma_alminar.prefab",
+			"transform": {
+				"pos": "-42.046 80.092 -225.064",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"rotator": {
+				"speed": 0.8
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "Alminar 5",
+			"prefab": "data/prefabs/holograma_alminar.prefab",
+			"transform": {
+				"pos": "-38.761 80.092 -164.956",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"rotator": {
+				"speed": 0.3
+			}
+		}
+
+	},
+	{
+		"entity": {
+			"name": "Alminar 6",
+			"prefab": "data/prefabs/holograma_alminar.prefab",
+			"transform": {
+				"pos": "-38.761 80.092 -96.517",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"rotator": {
+				"speed": 0.5
+			}
+		}
+	}
+]

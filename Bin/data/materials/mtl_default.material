@@ -1,7 +1,7 @@
 {
 	"shadows": true,
 	"textures": {
-		"albedo": "data/textures/default_texture.dds",
+		"albedo": "data/textures/tx_cables_alb.dds",
 		"normal": "data/textures/null_normal.dds"
 	}
 }

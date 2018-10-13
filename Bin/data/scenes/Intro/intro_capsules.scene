@@ -4,9 +4,9 @@
 			"name": "Capsules",
 			"dynamic_capsules_manager": {
 				"start_point": "-7.513 28.574 9.597551",
-				"end_point": "-7.513 40.144 -123.035301",
+				"end_point": "-7.513 63.284 -388.301005",
 				"capsule_offset": "0 0 0",
-				"number": 10,
+				"number": 30,
 				"speed": 4
 			}
 		}
