@@ -426,6 +426,9 @@ data/meshes/mesh_tubitos_5.mesh
 data/meshes/mesh_tubitos_6.mesh
 data/meshes/mesh_tubitos_7.mesh
 data/meshes/mesh_tubitos_8.mesh
+data/scenes/ZoneA/zone_a_cinematic.scene
+data/prefabs/camera_player.prefab
+data/textures/lut/lut5.dds
 data/scenes/zone_a_cables.scene
 data/prefabs/baselargaelectrica.prefab
 data/meshes/mesh_baselargalectrica.mesh
@@ -1188,8 +1191,6 @@ data/particles/def_amb_rain_heavy.particles
 data/particles/def_amb_rain_core_heavy.particles
 data/scenes/_main_cameras.scene
 data/prefabs/camera_main.prefab
-data/prefabs/camera_player.prefab
-data/textures/lut/lut5.dds
 data/prefabs/camera_shadowmerge.prefab
 data/textures/lut/lut1.dds
 data/prefabs/camera_flyover.prefab
