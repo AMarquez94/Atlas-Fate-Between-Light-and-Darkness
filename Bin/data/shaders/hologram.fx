@@ -347,18 +347,24 @@ float4 PS_TV(
   ): SV_Target0
 {
   // Noise wave, for each pixel adding a random noise on given position
-  float noise = max(0.0, snoise(float2(global_world_time, iTex0.y * 0.3)) - 0.3) * (1.0 / 0.7);
-  noise = noise + (snoise(float2(global_world_time*10.0, iTex0.y * 2.4)) - 0.5) * 0.15;
+  float xnoise = max(0.0, snoise(float2(global_world_time, iTex0.y * 0.3)) - 0.3) * (1.0 / 0.7);
+  xnoise = xnoise + (snoise(float2(global_world_time*10.0, iTex0.y * 2.4)) - 0.5) * 0.15;
     
   // Noise displaces the horizontal coordinate per pixel
-  float xpos = iTex0.x - noise * noise * 0.15;
+  float xpos = iTex0.x - xnoise * xnoise * 0.15;
 	float4 color = txAlbedo.Sample(samLinear, float2(xpos, iTex0.y));
-    
+  float scanline = sin(iTex0.y*400.0 + global_world_time)*0.1;
+	color -= scanline;
+	
   // Mix in some random interference for lines
 	float shift_itex = iTex0.y * global_world_time;
 	float rand_interference = rand(float2(shift_itex, shift_itex));
-  float3 t_color = lerp(color.xyz, float3(rand_interference, rand_interference, rand_interference), noise * 0.8).xyz;
-
+  float3 t_color = lerp(color.xyz, float3(rand_interference, rand_interference, rand_interference), xnoise * 0.8).xyz;
+	
   // Shift green/blue channels (using the red channel)
-  return lerp(float4(t_color,1), txAlbedo.Sample(samLinear, float2(xpos + noise * 0.05, iTex0.y)).g, 0.25) * obj_color;
+  t_color.x  = lerp(t_color.x, txAlbedo.Sample(samLinear, float2(xpos + xnoise * 0.05, iTex0.y)).y, 0.25);
+	t_color.y = lerp(t_color.x, txAlbedo.Sample(samLinear, float2(xpos + xnoise * 0.05, iTex0.y)).z, 0.25);
+	
+	return float4(t_color, 1) * obj_color * 0.4;
+	
 }
