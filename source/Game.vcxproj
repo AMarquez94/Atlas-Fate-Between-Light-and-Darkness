@@ -142,6 +142,7 @@
     <ClCompile Include="components\object_controller\comp_shooter.cpp" />
     <ClCompile Include="components\object_controller\comp_speaker.cpp" />
     <ClCompile Include="components\object_controller\comp_suspect_element.cpp" />
+    <ClCompile Include="components\object_controller\comp_tied_hierarchy.cpp" />
     <ClCompile Include="components\object_controller\comp_trigger_checkpoint.cpp" />
     <ClCompile Include="components\player_controller\comp_glitch_controller.cpp" />
     <ClCompile Include="components\player_controller\comp_noclip_controller.cpp" />
@@ -392,6 +393,7 @@
     <ClInclude Include="components\object_controller\comp_shooter.h" />
     <ClInclude Include="components\object_controller\comp_speaker.h" />
     <ClInclude Include="components\object_controller\comp_suspect_element.h" />
+    <ClInclude Include="components\object_controller\comp_tied_hierarchy.h" />
     <ClInclude Include="components\object_controller\comp_trigger_checkpoint.h" />
     <ClInclude Include="components\player_controller\comp_glitch_controller.h" />
     <ClInclude Include="components\player_controller\comp_noclip_controller.h" />

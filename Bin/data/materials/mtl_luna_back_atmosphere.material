@@ -1,8 +1,8 @@
 {
-	"technique": "env_moon.tech",
+	"technique": "env_moon_atmosphere.tech",
 	"shadows": false,
 	"textures": {
-		"albedo": "data/textures/tx_luna_alb.dds",
+		"albedo": "data/textures/tx_planet_clouds.dds",
 		"metallic": "data/textures/tx_luna_met.dds",
 		"roughness": "data/textures/tx_luna_rgh.dds",
 		"normal": "data/textures/tx_luna_nml.dds",

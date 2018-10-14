@@ -23,7 +23,7 @@ void VS_Particles(
   float4 world_pos = mul(pos, instance_world);
   oPos = mul(world_pos, camera_view_proj);
   oTex0  = iPos.xy;
-	oWorldPos = world_pos;
+	oWorldPos = world_pos.xyz;
 	
 	oMinUv = iMinUv;
 	oMaxUv = iMaxUv;
@@ -34,14 +34,14 @@ void VS_Particles(
 void VS_GBuffer_Particles(
 	  in float4 iPos   : POSITION
  	, in TInstanceWorldData instance_data
-	, in float2 iMinUv   : TEXCOORD6   // 
-	, in float2 iMaxUv   : TEXCOORD7  // 
+	, in float3 iMinUv   : TEXCOORD6   // 
+	, in float3 iMaxUv   : TEXCOORD7  // 
 	, in float4 iColorP   : TEXCOORD8   // 
 	
 	, out float4 oPos : SV_POSITION
 	, out float2 oTex0 : TEXCOORD0
-	, out float2 oMinUv : TEXCOORD1
-  , out float2 oMaxUv : TEXCOORD2
+	, out float3 oMinUv : TEXCOORD1
+  , out float3 oMaxUv : TEXCOORD2
   , out float4 oColorP : TEXCOORD3
 	, out float3 oWorldPos : TEXCOORD4
   )
@@ -67,9 +67,10 @@ void VS_GBuffer_Particles(
 float4 PS_Particles(
 	  in float4 iPos : SV_POSITION
 	, in float2 iTex0 : TEXCOORD0
-	, in float2 iMinUv : TEXCOORD1
-  , in float2 iMaxUv : TEXCOORD2
+	, in float3 iMinUv : TEXCOORD1
+  , in float3 iMaxUv : TEXCOORD2
   , in float4 iColorP : TEXCOORD3
+	, in float3 iWorldPos : TEXCOORD4
   ) : SV_Target
 {
   float2 finalUV = lerp(iMinUv, iMaxUv, iTex0);
@@ -77,12 +78,6 @@ float4 PS_Particles(
 
   float4 finalColor = float4(oDiffuse.rgb * iColorP.rgb, oDiffuse.a * iColorP.a);
   return finalColor;
-}
-
-
-float computeDepth( float3 iWorldPos : TEXCOORD1 ) {
-  float3 camera2wpos = iWorldPos - camera_pos.xyz;
-  return dot( camera_front.xyz, camera2wpos) / camera_zfar;
 }
 
 float4 PS_Particles_Soft(
@@ -111,10 +106,10 @@ float4 PS_Particles_Soft(
 void PS_GBuffer_Particles(
 	  in float4 iPos : SV_POSITION
 	, in float2 iTex0 : TEXCOORD0
-	, in float2 iMinUv : TEXCOORD1
-  , in float2 iMaxUv : TEXCOORD2
+	, in float3 iMinUv : TEXCOORD1
+  , in float3 iMaxUv : TEXCOORD2
   , in float4 iColorP : TEXCOORD3
-	, in float4 iWorldPos : TEXCOORD4
+	, in float3 iWorldPos : TEXCOORD4
 	, out float4 o_albedo : SV_Target0
 	, out float4 o_normal : SV_Target1
 	, out float1 o_depth : SV_Target2

@@ -370,7 +370,7 @@ void CModuleRender::generateFrame() {
             Engine.get().getGameManager().renderMain(); // manager editor
             Engine.get().getGameConsole().renderMain(); // console
         }
-
+        
         // Debug render main modules
         debugDraw();
 
@@ -380,7 +380,7 @@ void CModuleRender::generateFrame() {
             CTraceScoped gpu_scope("ImGui");
             ImGui::Render();
         }
-
+        
         {
             // RENDER UI
             PROFILE_FUNCTION("GUI");

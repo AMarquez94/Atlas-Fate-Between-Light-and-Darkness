@@ -53,6 +53,7 @@ void CDeferredRenderer::renderGBuffer() {
 	// Render the solid objects that output to the G-Buffer
 	CRenderManager::get().renderCategory("gbuffer");
     CRenderManager::get().renderCategory("gbuffer_opacity");
+    CRenderManager::get().renderCategory("env_effects");
 
 	// Disable rendering to all render targets.
 	ID3D11RenderTargetView* rt_nulls[nrender_targets];
@@ -145,7 +146,7 @@ void CDeferredRenderer::renderAccLight() {
 	renderDirectionalLights();
 	renderSkyBox();
     renderPreHDR();
-
+    
     CRenderManager::get().renderCategory("hologram_screen");
     CRenderManager::get().renderCategory("distorsions");
 
@@ -156,6 +157,7 @@ void CDeferredRenderer::renderAccLight() {
 
     CRenderManager::get().renderCategory("volume_shafts");
     CRenderManager::get().renderCategory("volume_ray_shafts");
+    CRenderManager::get().renderCategory("env_effects_atmosphere");
 }
 
 // -------------------------------------------------------------------------
@@ -225,7 +227,7 @@ void CDeferredRenderer::renderDirectionalLights() {
 		c->activate();
 
 		setWorldTransform(c->getViewProjection().Invert());
-
+        cb_light.light_pos_global = c->getPosition();
 		// mandar a pintar una geometria que refleje los pixeles que potencialmente
 		// puede iluminar esta luz.... El Frustum solido
 		mesh->render();

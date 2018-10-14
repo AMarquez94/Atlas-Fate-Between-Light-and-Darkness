@@ -5,7 +5,10 @@ extern float unitRandom();
 extern float randomFloat(float vmin, float vmax);
 extern VEC3 randomVEC3(VEC3 vmin, VEC3 vmax);
 
+
 namespace GPUParticles {
+
+    int TSystemInstance::namount = 0;
 
     // --------------------------------------------------
     bool TSystemCore::load(const json& j) {
@@ -18,6 +21,7 @@ namespace GPUParticles {
         life_time = j.value("life_time", life_time);
         min_size = j.value("min_size", min_size);
         max_size = j.value("max_size", max_size);
+        
         return true;
     }
 
@@ -43,6 +47,11 @@ namespace GPUParticles {
         s->size = 1.0f;
         s->unit_time = 0.f;
         s->unit_time = unitRandom();
+        s->pid = TSystemInstance::namount;
+        s->rtime = randomInt(5, 1500) + randomFloat(0, 1);
+        s->etime = 0;
+        TSystemInstance::namount++;
+        dbg("total time %f\n", s->rtime);
     }
 
     // --------------------------------------------------
@@ -51,10 +60,13 @@ namespace GPUParticles {
         auto d = state.data();
         for (size_t i = state.size(); i--; ++d)
             core.initParticle(d);
+
+        //core.ratio_time = (int)randomFloat(0, nparticles);
     }
 
     // --------------------------------------------------
     void TSystemInstance::updateStatesCPU(VStates& prev, float delta, VStates& next, VRenders& render) {
+
         assert(prev.size() == next.size());
         assert(prev.size() == render.size());
         auto s = prev.data();     // source
@@ -71,17 +83,22 @@ namespace GPUParticles {
                 core.initParticle(d);
 
             // Fill render info
-            r->pos = d->pos;
-            r->size = core.min_size + (core.max_size - core.min_size) * d->unit_time;
+            r->pos = VEC4(d->pos.x, d->pos.y, d->pos.z, core.min_size + (core.max_size - core.min_size) * d->unit_time);
+            //r->size = core.min_size + (core.max_size - core.min_size) * d->unit_time;
         }
     }
-
 
     // --------------------------------------------------
     void TSystemInstance::updateStatesGPU(VStates& prev, float delta, VStates& next, VRenders& render) {
 
         // Update current CPU core values to the GPU buffer
         core.delta_time = delta;
+        core.elapsed_time += delta;
+        //core.ratio_time = core.elapsed_time > 6 ? (int)randomFloat(0, nparticles) : core.ratio_time;
+        core.elapsed_time = core.elapsed_time > 6 ? 0 : core.elapsed_time;
+        dbg("ratio %d %d\n", core.ratio_time, nparticles);
+        core.ratio_time = 200.0f;
+
         assert(gpu_core.data());
         memcpy(gpu_core.data(), &core, sizeof(core));
         gpu_core.copyCPUtoGPU();
@@ -91,8 +108,10 @@ namespace GPUParticles {
         update_task.bind("outRender", &render);
         update_task.bind("core", &gpu_core);
         int n = next.size();
+
         if (!n)
             return;
+        
         int nx = std::min(65535, n);
         int ny = std::max(1, n / 65536);
         update_task.sizes[0] = nx;

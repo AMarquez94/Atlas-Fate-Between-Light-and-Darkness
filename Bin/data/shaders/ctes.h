@@ -158,9 +158,7 @@ CB_DEF(CCteLight, CB_LIGHT)
     float far_atten;
     
     float inner_atten;
-    float dummy_light1;
-    float dummy_light2;
-    float dummy_light3;
+    VEC3  light_pos_global;
 
     MAT44 light_view_proj_offset;
     MAT44 light_view_proj;

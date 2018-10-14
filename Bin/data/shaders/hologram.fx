@@ -49,6 +49,8 @@ void VS_SKIN_GBuffer_Hologram(
 	, out float2 oTex0 : TEXCOORD0
 	, out float2 oTex1 : TEXCOORD1
 	, out float3 oWorldPos : TEXCOORD2
+	, out float3 oModelPos : TEXCOORD3
+	, out float oMax_height : TEXCOORD4
 )
 {
 
@@ -64,10 +66,12 @@ void VS_SKIN_GBuffer_Hologram(
 	
 	float4 skinned_Pos = mul(float4(iPos.xyz * BonesScale, 1), skin_mtx);
 	
+	oModelPos = float3(skin_mtx[3][0], skin_mtx[3][1], skin_mtx[3][2]);
 	oPos = mul(skinned_Pos, camera_view_proj); // Transform to viewproj, w_m inside skin_m
 	oNormal = mul(iN, (float3x3)skin_mtx); // Rotate the normal
 	oTangent.xyz = mul(iTangent.xyz, (float3x3)skin_mtx);
 	oTangent.w = iTangent.w;
+	oMax_height = 1;
 
 	oTex0 = iUV;
 	oTex1 = iUV;
@@ -128,16 +132,16 @@ void VS_GBuffer_SWHologram(
 	, out float2 oTex1 : TEXCOORD1
 	, out float3 oWorldPos : TEXCOORD2
 	, out float3 oModelPos : TEXCOORD3
-	, out float max_height : TEXCOORD4
+	, out float oMax_height : TEXCOORD4
 )
 {
 
 	// Displacement control
 	float prev_height = iPos.y;
-	max_height = 1;//abs(sin(global_world_time));
+	oMax_height = 1;//abs(sin(global_world_time));
 	float int_width = 0.75;//abs(sin(global_world_time)) * 0.5;
 
-	iPos.y *= max_height;
+	iPos.y *= oMax_height;
 	float3 disp_center = float3(0, iPos.y, 0);
 	float3 disp_dir = disp_center + (iPos.xyz - disp_center) * (1 * int_width + int_width * prev_height);
 	iPos = float4(disp_dir,1);
@@ -203,6 +207,8 @@ void VS_GBuffer_SWHologram_Model(
 	, out float2 oTex1 : TEXCOORD1
 	, out float3 oWorldPos : TEXCOORD2
 	, out float3 oModelPos : TEXCOORD3
+	, out float oMax_height : TEXCOORD4
+	
 )
 {
 	// Regular transforms
@@ -220,6 +226,7 @@ void VS_GBuffer_SWHologram_Model(
 	oNormal = mul(iNormal, (float3x3)obj_world);
 	oTangent.xyz = mul(iTangent.xyz, (float3x3)obj_world);
 	oTangent.w = iTangent.w;
+	oMax_height = 1;
 
 	oTex0 = iTex0;
 	oTex1 = iTex1;
@@ -285,7 +292,6 @@ float4 PS_GBuffer_SWPlayer(
 	return scan * color * theta + glow * scan * 0.24; 
 }
 
-
 void VS_HologramScreen(
 	in float4 iPos     : POSITION
 	, in float3 iNormal : NORMAL0
@@ -320,7 +326,7 @@ float4 PS_HologramScreen(
   , float4 iTangent : NORMAL1
   , float2 iTex0 : TEXCOORD0
   , float2 iTex1 : TEXCOORD1
-  , float2 iWorldPos : TEXCOORD
+  , float3 iWorldPos : TEXCOORD2
   ): SV_Target0
 {
 	float vertex_sift = (dot(iWorldPos, normalize(float3(0,-1,0)))  + global_world_time);
