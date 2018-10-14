@@ -56,7 +56,6 @@ data/materials/mtl_tejados.material
 data/colliders/collider_BC_cupula_pequena_low.collider
 data/meshes/BC_pared_capsulas.mesh
 data/textures/tx_mezquita_alb.dds
-data/textures/tx_mezquita_ao.dds
 data/textures/tx_mezquita_hgt.dds
 data/textures/tx_mezquita_met.dds
 data/textures/tx_mezquita_nml.dds
@@ -545,6 +544,9 @@ data/colliders/bc_collider_suelo_pasillo.collider
 data/meshes/bc_techo001.mesh
 data/meshes/bc_tubo_x005.mesh
 data/meshes/bc_tubo004.mesh
+data/scenes/bc_pasillo_entre.scene
+data/meshes/mesh_bc_pasillo_entre.mesh
+data/colliders/collider_mesh_bc_pasillo_entre.collider
 data/scenes/bc_corridor_logic.scene
 data/scenes/Basilic_courtyard/BC_trigger_victory.scene
 data/scenes/Basilic_courtyard/bc_capsule_cable.scene

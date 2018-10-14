@@ -5,6 +5,16 @@ function onGameStart()
 	logic = getLogic();
 	particles = getParticles();
 	addAllFunctionsToConsole();
+	
+	cinematicsEnabled = false;
+	
+	intro_intro_cinematicExecuted = false;
+	intro_inhibitor_cinematicExecuted = false;
+	Capsules_CinematicExecuted = false;
+	cinematicCorridorToZoneAExecuted = false;
+	cinematicCorridorToBasilicExecuted = false;
+	cinematic_enter_zone_aExecuted = false;
+	cinematic_tower_activatedExecuted = false;
 end
 
 --Add all funtions to the console in order to have autocomplete. TODO: Only add custom functions

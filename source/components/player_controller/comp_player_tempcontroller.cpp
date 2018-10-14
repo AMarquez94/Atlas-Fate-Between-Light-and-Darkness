@@ -392,11 +392,13 @@ void TCompTempPlayerController::onPlayerKilled(const TMsgPlayerDead & msg)
 void TCompTempPlayerController::onPlayerInhibited(const TMsgInhibitorShot & msg)
 {
     if (!isDead() && !isInhibited) {
-        if (!EngineInput.pad().connected) {
-            EngineGUI.enableWidget("inhibited_space", true);
-        }
-        else {
-            EngineGUI.enableWidget("inhibited_y", true);
+        if (!CEngine::get().getGameManager().isCinematicMode) {
+            if (!EngineInput.pad().connected) {
+                EngineGUI.enableWidget("inhibited_space", true);
+            }
+            else {
+                EngineGUI.enableWidget("inhibited_y", true);
+            }
         }
 
         isInhibited = true;

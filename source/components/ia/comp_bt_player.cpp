@@ -263,11 +263,11 @@ void TCompAIPlayer::onMsgPlayerAIEnabled(const TMsgPlayerAIEnabled& msg) {
     setCurrent(nullptr);
     _timer = 0.f;
 
-    CEntity* e_me = myHandle.getOwner();
-    if (std::strcmp(e_me->getName(), "The Player") == 0) {
+    if (myHandle.getOwner() == EngineEntities.getPlayerHandle()) {
         TCompTempPlayerController* p_controller = get<TCompTempPlayerController>();
         EngineGUI.enableWidget("stamina_bar_general", !p_controller->isStaminaFull() && !enabledPlayerAI);
         EngineGUI.enableWidget("life_bar", !enabledPlayerAI);
+        EngineLogic.execScript("GUI_EnableRemoveInhibitor()");
     }
 }
 

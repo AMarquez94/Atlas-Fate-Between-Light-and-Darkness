@@ -116,7 +116,8 @@ bool TCompAIEnemy::isEntityInFov(const std::string& entityToChase, float fov, fl
         //bool in_vertical_fov = mypos->isInVerticalFov(ppos->getPosition(), deg2rad(45.f));
 
         return in_fov && !pController->isInvisible && !pController->isInNoClipMode &&
-            !pController->isMerged && !pController->isDead() && dist <= maxChaseDistance && !isEntityHidden(hPlayer);
+            !pController->isMerged && !pController->isDead() && !CEngine::get().getGameManager().isCinematicMode &&
+            dist <= maxChaseDistance && !isEntityHidden(hPlayer);
     }
     else {
         return false;

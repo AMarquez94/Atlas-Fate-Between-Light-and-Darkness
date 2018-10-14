@@ -39,17 +39,23 @@ end
 
 function onTriggerEnter_COL_trigger_corridor_intro_player()
 	closeIntroDoor();
-	cinematicCorridorToZoneA();
+	if(cinematicsEnabled and not cinematicCorridorToZoneAExecuted) then
+		cinematicCorridorToZoneA();
+	end
 end
 
 function onTriggerEnter_COL_trigger_corridor_intro01_player()
 	closeIntroDoor();
-	cinematicCorridorToZoneA();
+	if(cinematicsEnabled and not cinematicCorridorToZoneAExecuted) then
+		cinematicCorridorToZoneA();
+	end
 end
 
 function onTriggerEnter_COL_trigger_corridor_intro02_player()
 	closeIntroDoor();
-	cinematicCorridorToZoneA();
+	if(cinematicsEnabled and not cinematicCorridorToZoneAExecuted) then
+		cinematicCorridorToZoneA();
+	end
 end
 
 function closeIntroDoor()
@@ -79,21 +85,28 @@ function cinematicCorridorToZoneA()
 	execScriptDelayed("resetMainCameras()",6);
 	setCinematicPlayerState(true, "inhibitor_capsules", "");
 	execScriptDelayed("setCinematicPlayerState(false, \"\")", 18);
+	cinematicCorridorToZoneAExecuted = true;
 end
 
 function onTriggerEnter_COL_trigger_corridor_zonea_player()
 	closeZoneADoor();
-	cinematicCorridorToBasilic();
+	if(cinematicsEnabled and not cinematicCorridorToBasilicExecuted) then
+		cinematicCorridorToBasilic();
+	end
 end
 
 function onTriggerEnter_COL_trigger_corridor_zonea01_player()
 	closeZoneADoor();
-	cinematicCorridorToBasilic();
+	if(cinematicsEnabled and not cinematicCorridorToBasilicExecuted) then
+		cinematicCorridorToBasilic();
+	end
 end
 
 function onTriggerEnter_COL_trigger_corridor_zonea02_player()
 	closeZoneADoor();
-	cinematicCorridorToBasilic();
+	if(cinematicsEnabled and not cinematicCorridorToBasilicExecuted) then
+		cinematicCorridorToBasilic();
+	end
 end
 
 function closeZoneADoor()
@@ -118,6 +131,9 @@ function cinematicCorridorToBasilic()
 	execScriptDelayed("resetMainCameras()",1.25);
 	setCinematicPlayerState(true, "inhibitor_capsules", "");
 	execScriptDelayed("setCinematicPlayerState(false, \"\")", 9);
+
+	cinematicCorridorToBasilicExecuted = true;
+
 end
 
 function transition_coliseum_to_zone_a(button_handle)

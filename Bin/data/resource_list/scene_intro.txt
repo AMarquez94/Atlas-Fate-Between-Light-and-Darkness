@@ -224,7 +224,6 @@ data/meshes/mesh_andamio_top.mesh
 data/scenes/intro_basilica.scene
 data/meshes/BC_pared_entrada.mesh
 data/textures/tx_mezquita_alb.dds
-data/textures/tx_mezquita_ao.dds
 data/textures/tx_mezquita_hgt.dds
 data/textures/tx_mezquita_met.dds
 data/textures/tx_mezquita_nml.dds
@@ -1394,6 +1393,7 @@ data/scenes/intro_corridor_logic.scene
 data/scenes/intro_col_corridor_lights.scene
 data/colliders/luz_pasillo037.collider
 data/colliders/luz_pasillo.collider
+data/scenes/intro_col_corridor_props.scene
 data/scenes/pantalla_intro_video.scene
 data/meshes/prueba_pantalla.mesh
 data/video/test_monkey.h264
