@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_zone_a",
+	"default_scene": "scene_basilic_courtyard",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -231,7 +231,7 @@
 			"data/scenes/Basilic_courtyard/player.scene",
 			"data/scenes/main_cameras.scene",
 	        "data/scenes/basiliclights.scene",
-			
+			"data/scenes/basiliclantern.scene",
 			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
 			"data/scenes/Basilic_courtyard/test_instancing.scene",
 			"data/scenes/Basilic_courtyard/buttons.scene",
