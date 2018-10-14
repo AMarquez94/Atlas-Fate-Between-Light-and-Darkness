@@ -6,8 +6,6 @@ function onSceneStart()
 	--cg_drawfps(false);
 	execScriptDelayed("immortal(false)", 1);
 	execScriptDelayed("resetPatrolLights()", 0.1);
-	
-	cinematicsEnabled = true;
 
 	if isDebug() then
 		lanternsDisable(true);

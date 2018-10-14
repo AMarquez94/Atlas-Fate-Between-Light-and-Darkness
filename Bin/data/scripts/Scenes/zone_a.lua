@@ -25,7 +25,9 @@ end
 
 function enable_button_exit(button_handle)
 	execScriptDelayed("toButton(toEntity(getEntityByName(\"Button End Scene\")):getCompByName(\"button\")):setCanBePressed(true)",2.25);
-	execScriptDelayed("cinematic_tower_activated()",0.5);
+	if(cinematicsEnabled and not cinematic_tower_activatedExecuted) then
+		execScriptDelayed("cinematic_tower_activated()",0.5);
+	end
 	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
 end
 
@@ -33,7 +35,9 @@ function onTriggerEnter_ZON_Trigger_Enter_ZoneA_player()
 	zonea_a_door = toDoor(toEntity(getEntityByName("zone_a_in_marco_puerta001")):getCompByName("door"));
 	zonea_a_door:setClosedScript("setCorridorInvisible()");
 	zonea_a_door:close();
-	cinematic_enter_zone_a();
+	if(cinematicsEnabled and not cinematic_enter_zone_aExecuted) then
+		cinematic_enter_zone_a();
+	end
 	getEntityByName("ZON_Trigger_Enter_ZoneA"):destroy();
 end
 
@@ -56,11 +60,12 @@ function cinematic_enter_zone_a()
 
 	setCinematicPlayerState(true, "inhibitor_capsules", "");
 	execScriptDelayed("setCinematicPlayerState(false, \"\")", 8);
+	cinematic_enter_zone_aExecuted = true;
 
 end
 
 function cinematic_tower_activated()
-
+	gameManager.isCinematicMode = true;
 	setInBlackScreen(0.25);
 	execScriptDelayed("setOutBlackScreen(0.25);",0.3);
 
@@ -71,10 +76,10 @@ function cinematic_tower_activated()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Exit_Door_1\", 0)", 11.75);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Exit_Door_2\", 0)", 11.75);
 	execScriptDelayed("setOutBlackScreen(0.25);",12.25);
-
+	cinematic_tower_activatedExecuted = true;
 	setCinematicPlayerState(true, "inhibitor_capsules", "");
 	execScriptDelayed("setCinematicPlayerState(false, \"\")", 12.75);
-
+	execScriptDelayed("gameManager.isCinematicMode = false;", 12.8);
 end
 
 function onTriggerEnter_ZON_Trigger_Exit_ZoneA_player()

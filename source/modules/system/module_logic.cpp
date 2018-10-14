@@ -132,6 +132,7 @@ void CModuleLogic::publishClasses() {
 
 	SLB::Class< CModuleGameManager >("GameManager", m)
 		.comment("This is our wrapper of the gamemanager class")
+        .property("isCinematicMode", &CModuleGameManager::isCinematicMode)
 		.set("resetToCheckpoint", &CModuleGameManager::resetToCheckpoint);
 
     SLB::Class< VEC3 >("VEC3", m)
@@ -351,6 +352,7 @@ void CModuleLogic::publishClasses() {
     m->set("getPlayerLocalCoordinatesInReferenceTo", SLB::FuncCall::create(&getPlayerLocalCoordinatesInReferenceTo));
     m->set("movePlayerToRefPos", SLB::FuncCall::create(&movePlayerToRefPos));
     m->set("invalidatePlayerPhysxCache", SLB::FuncCall::create(&invalidatePlayerPhysxCache));
+    m->set("GUI_EnableRemoveInhibitor", SLB::FuncCall::create(&GUI_EnableRemoveInhibitor));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -531,7 +533,7 @@ void CModuleLogic::printLog()
 void CModuleLogic::clearDelayedScripts()
 {
     delayedScripts.clear();
-   //delayedSystemScripts.clear();
+    //delayedSystemScripts.clear();
 }
 
 void CModuleLogic::eraseDelayedScripts(std::string keyWord) {
@@ -845,6 +847,18 @@ void invalidatePlayerPhysxCache() {
     CEntity* ePlayer = EngineEntities.getPlayerHandle();
     TCompRigidbody* tRigidbody = ePlayer->get <TCompRigidbody>();
     tRigidbody->invalidateCache();
+}
+
+void GUI_EnableRemoveInhibitor() {
+
+    CEntity* ePlayer = EngineEntities.getPlayerHandle();
+    TCompTempPlayerController* pController = ePlayer->get<TCompTempPlayerController>();
+    if (!EngineInput.pad().connected) {
+        EngineGUI.enableWidget("inhibited_space", pController->isInhibited);
+    }
+    else {
+        EngineGUI.enableWidget("inhibited_y", pController->isInhibited);
+    }
 }
 
 SoundEvent playEvent(const std::string & name)
@@ -1176,6 +1190,10 @@ void deactivateSubtitles() {
 
 void activateMission(std::string sub_name) {
 	EngineGUI.setMission(sub_name);
+}
+
+void startCinematicMode(bool start) {
+
 }
 
 void setEnemyHudState(bool state) {

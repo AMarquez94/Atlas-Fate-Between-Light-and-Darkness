@@ -116,7 +116,7 @@ void PS_GBuffer_Opacity(
 {
 	o_albedo = txAlbedo.Sample(samLinear, iTex0);
 	
-	if(o_albedo.a < 0.65) discard;
+	if(o_albedo.a < 0.85) discard;
 	o_selfIllum =  txEmissive.Sample(samLinear, iTex0);
 	o_selfIllum.xyz *= self_color.xyz * self_intensity;
 	o_selfIllum.a = txAOcclusion.Sample(samLinear, iTex0).r;

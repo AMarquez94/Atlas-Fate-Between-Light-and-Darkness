@@ -28,6 +28,8 @@ bool CModuleGameManager::start() {
 
     lastCheckpoint = new CCheckpoint();
     _currentstate = PauseState::none;
+    isCinematicMode = false;
+    EngineRender.setDebugMode(false);
     return true;
 }
 
@@ -150,12 +152,12 @@ void CModuleGameManager::update(float delta) {
 
     {
         // Escape button
-        if (EngineInput["btPause"].getsPressed() && _currentstate != PauseState::defeat) {
+        if (EngineInput["btPause"].getsPressed() && _currentstate != PauseState::defeat && !isCinematicMode) {
             setPauseState(PauseState::main);
         }
 
         // Lost focus
-        if (CApp::get().lostFocus) {
+        if (CApp::get().lostFocus && !isCinematicMode) {
             CApp::get().lostFocus = false;  
             if (_currentstate != PauseState::defeat) {
                 setPauseState(PauseState::main);
