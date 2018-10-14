@@ -227,7 +227,7 @@ void CDeferredRenderer::renderDirectionalLights() {
 		c->activate();
 
 		setWorldTransform(c->getViewProjection().Invert());
-
+        cb_light.light_pos_global = c->getPosition();
 		// mandar a pintar una geometria que refleje los pixeles que potencialmente
 		// puede iluminar esta luz.... El Frustum solido
 		mesh->render();

@@ -306,10 +306,10 @@
 		}
 	},
 	"env_moon": {
-		"vs_file": "data/shaders/pbr.fx",
-		"ps_file": "data/shaders/pbr.fx",
-		"vs_entry_point": "VS_GBuffer",
-		"ps_entry_point": "PS_GBuffer",
+		"vs_file": "data/shaders/env.fx",
+		"ps_file": "data/shaders/env.fx",
+		"vs_entry_point": "VS",
+		"ps_entry_point": "PS_Moon",
 		"vertex_type": "PosNUvUvT",
 		"category": "env_effects",
 		"textures": {
@@ -320,7 +320,7 @@
 		"vs_file": "data/shaders/env.fx",
 		"ps_file": "data/shaders/env.fx",
 		"vs_entry_point": "VS",
-		"ps_entry_point": "PS_Moon",
+		"ps_entry_point": "PS_Moon_Light",
 		"vertex_type": "PosNUvUvT",
 		"category": "env_effects_atmosphere",
 		"rs_config": "reverse_culling",
