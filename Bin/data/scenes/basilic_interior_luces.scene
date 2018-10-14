@@ -18,7 +18,7 @@
       ,
       "transform":
       {
-        "pos": "27.1745 -3.30022 12.6563"
+        "pos": "22.7817 -3.30022 12.6563"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -27,9 +27,9 @@
       {
         "type": "pointlight"
         ,
-        "inner_cut": 8.78092
+        "inner_cut": 6.85051
         ,
-        "outer_cut": 11.5572
+        "outer_cut": 8.66793
         ,
         "color": "0.847059 1.0 0.372549 1.0"
         ,
@@ -52,7 +52,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 6.78268
+        "radius": 5.22266
         ,
         "is_trigger": true
       }
@@ -71,7 +71,7 @@
       ,
       "transform":
       {
-        "pos": "25.9832 -2.28979 -9.32609"
+        "pos": "23.497 -2.28979 -9.32609"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -80,9 +80,9 @@
       {
         "type": "pointlight"
         ,
-        "inner_cut": 8.95848
+        "inner_cut": 7.28623
         ,
-        "outer_cut": 11.9446
+        "outer_cut": 9.43626
         ,
         "color": "0.847059 1.0 0.372549 1.0"
         ,
@@ -105,7 +105,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 6.87531
+        "radius": 4.74396
         ,
         "is_trigger": true
       }
@@ -124,7 +124,7 @@
       ,
       "transform":
       {
-        "pos": "-44.7984 -1.17427 12.6563"
+        "pos": "-42.507 -1.17427 12.6563"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -133,9 +133,9 @@
       {
         "type": "pointlight"
         ,
-        "inner_cut": 6.71482
+        "inner_cut": 5.77475
         ,
-        "outer_cut": 10.2014
+        "outer_cut": 7.14096
         ,
         "color": "0.847059 1.0 0.372549 1.0"
         ,
@@ -158,7 +158,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 6.19348
+        "radius": 5.51219
         ,
         "is_trigger": true
       }
@@ -177,7 +177,7 @@
       ,
       "transform":
       {
-        "pos": "-42.0489 -1.51934 -9.32609"
+        "pos": "-39.8318 -1.51934 -9.32609"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -186,9 +186,9 @@
       {
         "type": "pointlight"
         ,
-        "inner_cut": 9.49115
+        "inner_cut": 6.16924
         ,
-        "outer_cut": 12.3966
+        "outer_cut": 7.80986
         ,
         "color": "0.847059 1.0 0.372549 1.0"
         ,
@@ -211,7 +211,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 5.91943
+        "radius": 3.72924
         ,
         "is_trigger": true
       }
@@ -239,9 +239,9 @@
       {
         "type": "pointlight"
         ,
-        "inner_cut": 6.45656
+        "inner_cut": 5.10068
         ,
-        "outer_cut": 8.19983
+        "outer_cut": 6.31387
         ,
         "color": "0.847059 1.0 0.372549 1.0"
         ,
@@ -264,7 +264,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 4.16552
+        "radius": 3.58235
         ,
         "is_trigger": true
       }
@@ -292,9 +292,9 @@
       {
         "type": "pointlight"
         ,
-        "inner_cut": 6.45656
+        "inner_cut": 5.10068
         ,
-        "outer_cut": 8.19983
+        "outer_cut": 6.96986
         ,
         "color": "0.847059 1.0 0.372549 1.0"
         ,
@@ -317,7 +317,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 4.16552
+        "radius": 3.74897
         ,
         "is_trigger": true
       }
@@ -679,13 +679,13 @@
       {
         "type": "pointlight"
         ,
-        "inner_cut": 3.52838
+        "inner_cut": 4.33991
         ,
-        "outer_cut": 4.711
+        "outer_cut": 5.70031
         ,
         "color": "0.0 1.0 1.0 1.0"
         ,
-        "intensity": 1.6
+        "intensity": 7.0
         ,
         "casts_shadows": true
         ,
@@ -704,7 +704,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 2.26512
+        "radius": 3.01261
         ,
         "is_trigger": true
       }
@@ -732,13 +732,13 @@
       {
         "type": "pointlight"
         ,
-        "inner_cut": 3.52838
+        "inner_cut": 4.33991
         ,
-        "outer_cut": 4.711
+        "outer_cut": 5.70031
         ,
         "color": "0.0 1.0 1.0 1.0"
         ,
-        "intensity": 1.6
+        "intensity": 7.0
         ,
         "casts_shadows": true
         ,
@@ -757,7 +757,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 2.26512
+        "radius": 3.01261
         ,
         "is_trigger": true
       }
@@ -776,7 +776,7 @@
       ,
       "transform":
       {
-        "pos": "-8.79923 2.76767 -1.80548"
+        "pos": "-8.79923 2.98296 -1.15126"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -785,13 +785,13 @@
       {
         "type": "pointlight"
         ,
-        "inner_cut": 3.52838
+        "inner_cut": 4.33991
         ,
-        "outer_cut": 4.711
+        "outer_cut": 5.70031
         ,
         "color": "0.0 1.0 1.0 1.0"
         ,
-        "intensity": 1.6
+        "intensity": 7.0
         ,
         "casts_shadows": true
         ,
@@ -810,7 +810,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 2.26512
+        "radius": 3.01261
         ,
         "is_trigger": true
       }
@@ -829,7 +829,7 @@
       ,
       "transform":
       {
-        "pos": "-8.79923 9.57198 5.37967"
+        "pos": "-8.79923 8.90641 3.37172"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -838,13 +838,13 @@
       {
         "type": "pointlight"
         ,
-        "inner_cut": 3.52838
+        "inner_cut": 4.33991
         ,
-        "outer_cut": 4.711
+        "outer_cut": 5.70031
         ,
         "color": "0.0 1.0 1.0 1.0"
         ,
-        "intensity": 1.6
+        "intensity": 7.0
         ,
         "casts_shadows": true
         ,
@@ -863,7 +863,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 2.26512
+        "radius": 3.01261
         ,
         "is_trigger": true
       }
@@ -1109,7 +1109,7 @@
         ,
         "color": "0.0 1.0 1.0 1.0"
         ,
-        "intensity": 3.0
+        "intensity": 7.0
         ,
         "casts_shadows": true
         ,
@@ -1162,7 +1162,7 @@
         ,
         "color": "0.0 1.0 1.0 1.0"
         ,
-        "intensity": 3.0
+        "intensity": 5.0
         ,
         "casts_shadows": true
         ,
@@ -1215,7 +1215,7 @@
         ,
         "color": "0.0 1.0 1.0 1.0"
         ,
-        "intensity": 3.0
+        "intensity": 5.0
         ,
         "casts_shadows": true
         ,
@@ -1253,7 +1253,7 @@
       ,
       "transform":
       {
-        "pos": "5.54701 28.4324 10.1768"
+        "pos": "4.98513 28.4324 7.44875"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -1268,7 +1268,7 @@
         ,
         "color": "0.0 1.0 1.0 1.0"
         ,
-        "intensity": 3.0
+        "intensity": 5.0
         ,
         "casts_shadows": true
         ,
@@ -1306,7 +1306,7 @@
       ,
       "transform":
       {
-        "pos": "-22.7426 28.6807 10.0253"
+        "pos": "-22.4529 28.6807 7.57905"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -1321,7 +1321,7 @@
         ,
         "color": "0.0 1.0 1.0 1.0"
         ,
-        "intensity": 3.0
+        "intensity": 5.0
         ,
         "casts_shadows": true
         ,
@@ -1374,7 +1374,7 @@
         ,
         "color": "0.0 1.0 1.0 1.0"
         ,
-        "intensity": 2.0
+        "intensity": 4.0
         ,
         "casts_shadows": true
         ,
@@ -1427,7 +1427,7 @@
         ,
         "color": "0.0 1.0 1.0 1.0"
         ,
-        "intensity": 2.0
+        "intensity": 4.0
         ,
         "casts_shadows": true
         ,
@@ -1480,7 +1480,7 @@
         ,
         "color": "1.0 0.105882 0.0823529 1.0"
         ,
-        "intensity": 1.0
+        "intensity": 3.0
         ,
         "casts_shadows": true
         ,
@@ -1533,7 +1533,7 @@
         ,
         "color": "1.0 0.105882 0.0823529 1.0"
         ,
-        "intensity": 1.0
+        "intensity": 3.0
         ,
         "casts_shadows": true
         ,
@@ -1728,6 +1728,112 @@
         "shape": "convex"
         ,
         "name": "data/colliders/luz_lateral021.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_lateral022"
+      ,
+      "transform":
+      {
+        "pos": "-5.64488 4.20083 6.67516"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.1996
+        ,
+        "outer_cut": 2.87316
+        ,
+        "color": "1.0 0.105882 0.0823529 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.368532
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_lateral023"
+      ,
+      "transform":
+      {
+        "pos": "-12.3103 4.20083 6.67516"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.1996
+        ,
+        "outer_cut": 2.87316
+        ,
+        "color": "1.0 0.105882 0.0823529 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.368532
         ,
         "is_trigger": true
       }
@@ -3403,7 +3509,7 @@
       ,
       "transform":
       {
-        "pos": "2.97739 2.09443 3.59239"
+        "pos": "2.97739 2.5154 3.72102"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -3418,7 +3524,7 @@
         ,
         "color": "1.0 0.105882 0.0823529 1.0"
         ,
-        "intensity": 2.0
+        "intensity": 4.0
         ,
         "casts_shadows": true
         ,
@@ -3437,7 +3543,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 2.178
+        "radius": 3.31056
         ,
         "is_trigger": true
       }
@@ -3471,7 +3577,7 @@
         ,
         "color": "1.0 0.105882 0.0823529 1.0"
         ,
-        "intensity": 2.0
+        "intensity": 4.0
         ,
         "casts_shadows": true
         ,
@@ -3490,7 +3596,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 2.178
+        "radius": 3.31056
         ,
         "is_trigger": true
       }
@@ -3524,7 +3630,7 @@
         ,
         "color": "1.0 0.105882 0.0823529 1.0"
         ,
-        "intensity": 3.0
+        "intensity": 5.0
         ,
         "casts_shadows": true
         ,
@@ -3577,7 +3683,7 @@
         ,
         "color": "1.0 0.105882 0.0823529 1.0"
         ,
-        "intensity": 3.0
+        "intensity": 5.0
         ,
         "casts_shadows": true
         ,
