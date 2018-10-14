@@ -116,6 +116,7 @@ function onTriggerEnter_Trigger_Inhibitor_Cinematic_player()
 end
 
 function intro_inhibitor_cinematic()
+	gameManager.isCinematicMode = true;
 	move("The Player", VEC3(-19, 7, -33.5),VEC3(-19, 7, -35.5));
 	resetMainCameras();
 
@@ -151,6 +152,8 @@ function intro_inhibitor_cinematic()
 	execScriptDelayed("render_tutorial_weapon_left.visible = true", 5.25);
 	execScriptDelayed("render_tutorial_weapon_right.visible = true", 5.25);
 	execScriptDelayed("render_inhibitor_sign.visible = true", 5.25);
+	execScriptDelayed("gameManager.isCinematicMode = false", 5.75);
+
 	intro_inhibitor_cinematicExecuted = true;
 end
 

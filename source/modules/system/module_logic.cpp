@@ -352,6 +352,7 @@ void CModuleLogic::publishClasses() {
     m->set("getPlayerLocalCoordinatesInReferenceTo", SLB::FuncCall::create(&getPlayerLocalCoordinatesInReferenceTo));
     m->set("movePlayerToRefPos", SLB::FuncCall::create(&movePlayerToRefPos));
     m->set("invalidatePlayerPhysxCache", SLB::FuncCall::create(&invalidatePlayerPhysxCache));
+    m->set("GUI_EnableRemoveInhibitor", SLB::FuncCall::create(&GUI_EnableRemoveInhibitor));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -846,6 +847,18 @@ void invalidatePlayerPhysxCache() {
     CEntity* ePlayer = EngineEntities.getPlayerHandle();
     TCompRigidbody* tRigidbody = ePlayer->get <TCompRigidbody>();
     tRigidbody->invalidateCache();
+}
+
+void GUI_EnableRemoveInhibitor() {
+
+    CEntity* ePlayer = EngineEntities.getPlayerHandle();
+    TCompTempPlayerController* pController = ePlayer->get<TCompTempPlayerController>();
+    if (!EngineInput.pad().connected) {
+        EngineGUI.enableWidget("inhibited_space", pController->isInhibited);
+    }
+    else {
+        EngineGUI.enableWidget("inhibited_y", pController->isInhibited);
+    }
 }
 
 SoundEvent playEvent(const std::string & name)
