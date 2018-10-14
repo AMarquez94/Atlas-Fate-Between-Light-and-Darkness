@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_zone_a",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -133,7 +133,8 @@
 			"data/scenes/zona_a_muralla.scene",
 			"data/scenes/zona_a_valla_torre.scene",
 			"data/scenes/zone_a_coberturas.scene",
-			"data/scenes/zone_a_maquinas.scene",
+			"data/scenes/zone_a_electrictower.scene",
+			"data/scenes/zone_a_towerlights.scene",
 			"data/scenes/zone_a_props.scene",
 			"data/scenes/zona_a_andamios.scene",
 			"data/scenes/zone_a_conductos.scene",
@@ -147,11 +148,12 @@
 			"data/scenes/zone_a_test.scene",
 			"data/scenes/zone_a_edificios_segunda.scene",
 			"data/scenes/zone_a_neones.scene",
-      			"data/scenes/zone_a_decal.scene",
+      		"data/scenes/zone_a_decal.scene",
+			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/zone_a_grass.scene",
 
 			"data/scenes/zone_a_mosaico.scene",
-			"data/scenes/ZoneA/enemy2.scene",
+			
 			"data/scenes/ZoneA/whitebox_zone_light.scene",
 			"data/scenes/ZoneA/test_instancing.scene",
 			"data/scenes/ZoneA/zone_a_particles.scene",

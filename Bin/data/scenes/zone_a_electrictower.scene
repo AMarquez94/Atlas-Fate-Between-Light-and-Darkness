@@ -1,0 +1,91 @@
+[
+  {
+    "entity":
+    {
+      "name": "zone_a_electrictower"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "za_mesh_electrictower"
+      ,
+      "transform":
+      {
+        "pos": "-106.645 0.0 -138.407"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/za_mesh_electrictower.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_piedratorre.material"
+            ,
+            "data/materials/mtl_parchesmaquina.material"
+            ,
+            "data/materials/mtl_cablesgrandes.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_electrictower.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "za_mesh_ordenadortorre"
+      ,
+      "transform":
+      {
+        "pos": "-106.645 1.99999 -138.407"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/za_mesh_ordenadortorre.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ordenadortorre.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_ordenadortorre.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]
