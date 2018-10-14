@@ -37,5 +37,15 @@
       },
        "prefab": "data/prefabs/camera_player.prefab"
     }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Coliseo_Basilic_Door",
+      "transform": {
+        "pos": "0.0 4.18 -12.314",
+        "rotation": "0.0007 -0.9969 0.0774 0.0095"
+      },
+       "prefab": "data/prefabs/camera_player.prefab"
+    }
   }
 ]
