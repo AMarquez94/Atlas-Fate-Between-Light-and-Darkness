@@ -14,6 +14,59 @@
   {
     "entity":
     {
+      "name": "luz_pasillo069"
+      ,
+      "transform":
+      {
+        "pos": "-19.6269 0.588565 -104.065"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.79338
+        ,
+        "outer_cut": 3.73284
+        ,
+        "color": "1.0 1.0 0.486275 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.25482
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "luz_pasillo068"
       ,
       "transform":
@@ -529,7 +582,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 1.7082
+        "radius": 2.25482
         ,
         "is_trigger": true
       }
@@ -548,7 +601,7 @@
       ,
       "transform":
       {
-        "pos": "-18.6486 0.643039 -103.335"
+        "pos": "-17.795 0.588565 -104.065"
         ,
         "rotation": "0.0 0.707107 -0.707107 0.0"
       }
@@ -582,7 +635,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 1.7082
+        "radius": 2.25482
         ,
         "is_trigger": true
       }
@@ -635,7 +688,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 1.7082
+        "radius": 2.25482
         ,
         "is_trigger": true
       }
@@ -1112,7 +1165,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 1.7082
+        "radius": 2.25482
         ,
         "is_trigger": true
       }
@@ -1165,7 +1218,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 1.7082
+        "radius": 2.25482
         ,
         "is_trigger": true
       }
@@ -1218,7 +1271,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 1.7082
+        "radius": 2.25482
         ,
         "is_trigger": true
       }
@@ -1271,7 +1324,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 1.7082
+        "radius": 2.25482
         ,
         "is_trigger": true
       }
@@ -1324,7 +1377,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 1.7082
+        "radius": 2.25482
         ,
         "is_trigger": true
       }
@@ -1377,7 +1430,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 1.7082
+        "radius": 2.25482
         ,
         "is_trigger": true
       }
@@ -1430,7 +1483,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 1.7082
+        "radius": 2.25482
         ,
         "is_trigger": true
       }
@@ -1483,7 +1536,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 1.7082
+        "radius": 2.25482
         ,
         "is_trigger": true
       }
