@@ -80,6 +80,7 @@ bool CVideoTexture::uploadToVRAM() {
         dst += sub_resource.RowPitch;
         src += bytes_per_row;
     }
+
     Render.ctx->Unmap(texture, 0);
     frame_ready = false;
     return true;
@@ -108,15 +109,12 @@ bool CVideoTexture::decodeNextFrame() {
             dbg("VideoDecoder: Header ready: TimeScale:%d fps:%1.2f\n", vui->timeScale, vui->timeScale * 0.5f);
             chrono.reset();
         }
-
         else if (status == H264BSD_ERROR) {
             dbg("VideoDecoder: General Error with %i bytes left\n", len + bytesRead);
         }
-
         else if (status == H264BSD_PARAM_SET_ERROR) {
             dbg("VideoDecoder: Param Set Error with %i bytes left\n", len + bytesRead);
         }
-
         else if (status == H264BSD_MEMALLOC_ERROR) {
             dbg("VideoDecoder: Malloc Error with %i bytes left\n", len + bytesRead);
         }
