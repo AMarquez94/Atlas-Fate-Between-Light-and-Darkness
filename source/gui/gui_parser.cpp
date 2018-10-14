@@ -335,16 +335,16 @@ void CParser::parseSubtitlesParams(TSubtitlesParams& params, const json& data) {
     auto& j_references = data["subtitles_textures"];
     bool first = true;
     for (auto it = j_references.begin(); it != j_references.end(); ++it) {
-        std::string subtitle_name = it.value().value("subtitle_name", "");
+        int subtitle_num = it.value().value("subtitle_num", 0);
         std::string texture_source = it.value().value("texture_src", "");
         const CTexture * textur = Resources.get(texture_source)->as<CTexture>();
         if (textur != nullptr) {
             if (first) {
                 params._current_texture = textur;
-                params._current_subtitles = subtitle_name;
+                params._current_subtitles = subtitle_num;
                 first = false;
             }
-            params._map_to_textures[subtitle_name] = textur;
+            params._map_to_textures.push_back(textur);
         }
     }
 }

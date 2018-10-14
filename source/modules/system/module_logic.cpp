@@ -1166,17 +1166,17 @@ void takeOutCreditsOnMainMenu() {
 	EngineGUI.activateController(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
 }
 
-void activateSubtitles(std::string sub_name) {
+void activateSubtitles(int sub_num) {
 
-	EngineGUI.setSubtitles(sub_name);
+	EngineGUI.setSubtitles(sub_num);
 }
 
 void deactivateSubtitles() {
 	EngineGUI.setSubtitlesToNone();
 }
 
-void activateMission(std::string sub_name) {
-	EngineGUI.setMission(sub_name);
+void activateMission(int mission_num) {
+	EngineGUI.setMission(mission_num);
 }
 
 void startCinematicMode(bool start) {

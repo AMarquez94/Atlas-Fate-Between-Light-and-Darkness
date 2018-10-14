@@ -40,15 +40,15 @@ function intro_intro_cinematic()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_video\", 0)", 24);
 
 	 --Activating the subtitles
-	execScriptDelayed("activateSubtitles(\"doyouhearme\");",23.5);
-	execScriptDelayed("activateSubtitles(\"wewillbeintouch\");",25.5);
-	execScriptDelayed("activateSubtitles(\"youshoulddoyourbest\");",30);
-	execScriptDelayed("activateSubtitles(\"andifyoudie\");",35);
-	execScriptDelayed("activateSubtitles(\"ifyoudieyoualready\");",37.5);
-	execScriptDelayed("activateSubtitles(\"toundertakeyourtask\");",42.5);
-	execScriptDelayed("activateSubtitles(\"andremember\");",45.5);
-	execScriptDelayed("activateSubtitles(\"youshouldonly\");",48);
-	execScriptDelayed("activateSubtitles(\"thatsallfornow\");",53);
+	execScriptDelayed("activateSubtitles(1);",23.5);
+	execScriptDelayed("activateSubtitles(2);",25.5);
+	execScriptDelayed("activateSubtitles(3);",30);
+	execScriptDelayed("activateSubtitles(4);",35);
+	execScriptDelayed("activateSubtitles(5);",37.5);
+	execScriptDelayed("activateSubtitles(6);",42.5);
+	execScriptDelayed("activateSubtitles(7);",45.5);
+	execScriptDelayed("activateSubtitles(8);",48);
+	execScriptDelayed("activateSubtitles(9);",53);
 	execScriptDelayed("deactivateSubtitles();", 56);
 
 	--Second Frame

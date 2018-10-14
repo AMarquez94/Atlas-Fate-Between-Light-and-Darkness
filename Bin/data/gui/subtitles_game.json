@@ -7,57 +7,149 @@
 			{
 				"name" : "subtitles_ingame",
 				"type" : "subtitles",
-				"size" : "650 100",
-				"position" : "205 510",
+				"size" : "1080 100",
+				"position" : "0 510",
 				"texture" : "data/textures/gui/background-pause.dds",
 				"subtitles_textures" : [
 					{
-						"subtitle_name" : "none",
-						"texture_src" : "data/textures/gui/subtitulos/none.dds"
+						"subtitle_num" : 0,
+						"texture_src" : "data/textures/gui/subtitulos/0.dds"
 					},
 					{
-						"subtitle_name" : "hola",
-						"texture_src" : "data/textures/gui/subtitulos/hola.dds"
+						"subtitle_num" : 1,
+						"texture_src" : "data/textures/gui/subtitulos/1.dds"
 					},
 					{
-						"subtitle_name" : "adios",
-						"texture_src" : "data/textures/gui/subtitulos/adios.dds"
+						"subtitle_num" : 2,
+						"texture_src" : "data/textures/gui/subtitulos/2.dds"
 					},
 					{
-						"subtitle_name" : "doyouhearme",
-						"texture_src" : "data/textures/gui/subtitulos/doyouhearme.dds"
+						"subtitle_num" : 3,
+						"texture_src" : "data/textures/gui/subtitulos/3.dds"
 					},
 					{
-						"subtitle_name" : "wewillbeintouch",
-						"texture_src" : "data/textures/gui/subtitulos/wewillbeintouch.dds"
+						"subtitle_num" : 4,
+						"texture_src" : "data/textures/gui/subtitulos/4.dds"
 					},
 					{
-						"subtitle_name" : "youshoulddoyourbest",
-						"texture_src" : "data/textures/gui/subtitulos/youshoulddoyourbest.dds"
+						"subtitle_num" : 5,
+						"texture_src" : "data/textures/gui/subtitulos/5.dds"
 					},
 					{
-						"subtitle_name" : "andifyoudie",
-						"texture_src" : "data/textures/gui/subtitulos/andifyoudie.dds"
+						"subtitle_num" : 6,
+						"texture_src" : "data/textures/gui/subtitulos/6.dds"
 					},
 					{
-						"subtitle_name" : "ifyoudieyoualready",
-						"texture_src" : "data/textures/gui/subtitulos/ifyoudieyoualready.dds"
+						"subtitle_num" : 7,
+						"texture_src" : "data/textures/gui/subtitulos/7.dds"
 					},
 					{
-						"subtitle_name" : "toundertakeyourtask",
-						"texture_src" : "data/textures/gui/subtitulos/toundertakeyourtask.dds"
+						"subtitle_num" : 8,
+						"texture_src" : "data/textures/gui/subtitulos/8.dds"
 					},
 					{
-						"subtitle_name" : "andremember",
-						"texture_src" : "data/textures/gui/subtitulos/andremember.dds"
+						"subtitle_num" : 9,
+						"texture_src" : "data/textures/gui/subtitulos/9.dds"
 					},
 					{
-						"subtitle_name" : "youshouldonly",
-						"texture_src" : "data/textures/gui/subtitulos/youshouldonly.dds"
+						"subtitle_num" : 10,
+						"texture_src" : "data/textures/gui/subtitulos/10.dds"
 					},
 					{
-						"subtitle_name" : "thatsallfornow",
-						"texture_src" : "data/textures/gui/subtitulos/thatsallfornow.dds"
+						"subtitle_num" : 11,
+						"texture_src" : "data/textures/gui/subtitulos/11.dds"
+					},
+					{
+						"subtitle_num" : 12,
+						"texture_src" : "data/textures/gui/subtitulos/12.dds"
+					},
+					{
+						"subtitle_num" : 13,
+						"texture_src" : "data/textures/gui/subtitulos/13.dds"
+					},
+					{
+						"subtitle_num" : 14,
+						"texture_src" : "data/textures/gui/subtitulos/14.dds"
+					},
+					{
+						"subtitle_num" : 15,
+						"texture_src" : "data/textures/gui/subtitulos/15.dds"
+					},
+					{
+						"subtitle_num" : 16,
+						"texture_src" : "data/textures/gui/subtitulos/16.dds"
+					},
+					{
+						"subtitle_num" : 17,
+						"texture_src" : "data/textures/gui/subtitulos/17.dds"
+					},
+					{
+						"subtitle_num" : 18,
+						"texture_src" : "data/textures/gui/subtitulos/18.dds"
+					},
+					{
+						"subtitle_num" : 19,
+						"texture_src" : "data/textures/gui/subtitulos/19.dds"
+					},
+					{
+						"subtitle_num" : 20,
+						"texture_src" : "data/textures/gui/subtitulos/20.dds"
+					},
+					{
+						"subtitle_num" : 21,
+						"texture_src" : "data/textures/gui/subtitulos/21.dds"
+					},
+					{
+						"subtitle_num" : 22,
+						"texture_src" : "data/textures/gui/subtitulos/22.dds"
+					},
+					{
+						"subtitle_num" : 23,
+						"texture_src" : "data/textures/gui/subtitulos/23.dds"
+					},
+					{
+						"subtitle_num" : 24,
+						"texture_src" : "data/textures/gui/subtitulos/24.dds"
+					},
+					{
+						"subtitle_num" : 25,
+						"texture_src" : "data/textures/gui/subtitulos/25.dds"
+					},
+					{
+						"subtitle_num" : 26,
+						"texture_src" : "data/textures/gui/subtitulos/26.dds"
+					},
+					{
+						"subtitle_num" : 27,
+						"texture_src" : "data/textures/gui/subtitulos/27.dds"
+					},
+					{
+						"subtitle_num" : 28,
+						"texture_src" : "data/textures/gui/subtitulos/28.dds"
+					},
+					{
+						"subtitle_num" : 29,
+						"texture_src" : "data/textures/gui/subtitulos/29.dds"
+					},
+					{
+						"subtitle_num" : 30,
+						"texture_src" : "data/textures/gui/subtitulos/30.dds"
+					},
+					{
+						"subtitle_num" : 31,
+						"texture_src" : "data/textures/gui/subtitulos/31.dds"
+					},
+					{
+						"subtitle_num" : 32,
+						"texture_src" : "data/textures/gui/subtitulos/32.dds"
+					},
+					{
+						"subtitle_num" : 33,
+						"texture_src" : "data/textures/gui/subtitulos/33.dds"
+					},
+					{
+						"subtitle_num" : 34,
+						"texture_src" : "data/textures/gui/subtitulos/34.dds"
 					}
 				]
 			}

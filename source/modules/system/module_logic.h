@@ -164,14 +164,14 @@ void goToMainMenu();
 void takeOutCredits();
 void takeOutControlsOnMainMenu();
 void takeOutCreditsOnMainMenu();
-void activateSubtitles(std::string sub_name);
+void activateSubtitles(int sub_num);
 void deactivateSubtitles();
 void setEnemyHudState(bool state);
 void activateCinematicVideoIntro(float time_to_lerp, float time_to_start);
 void deactivateCinematicVideoIntro();
 void setInBlackScreen(float time_to_lerp);
 void setOutBlackScreen(float time_to_lerp);
-void activateMission(std::string sub_name);
+void activateMission(int mission_num);
 
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);
