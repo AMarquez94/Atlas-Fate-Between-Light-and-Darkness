@@ -10,8 +10,8 @@ function onSceneStart_scene_intro()
 	--move("The Player", VEC3(-7, 0, -43), VEC3(-7, 0, -44));
 
 	-- First Cinematic --
-	if(cinematicsEnabled and not isCheckpointSaved()) then
-		--intro_intro_cinematic();
+	if(cinematicsEnabled and not isCheckpointSaved() and not intro_intro_cinematicExecuted) then
+		intro_intro_cinematic();
 	end
 	setAIState("Patrol_Cinematic_Inhibitor", true, "dead_cinematic");
 	getSignRendersForIntro();
@@ -69,6 +69,7 @@ function intro_intro_cinematic()
 
 	--Returning to player camera
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_SM_Caida\", 5)", 60);
+	intro_intro_cinematicExecuted = true;
 end
 
 -- # Transition cinematic # --
@@ -107,7 +108,7 @@ end
 
 function onTriggerEnter_Trigger_Inhibitor_Cinematic_player()
 	setAIState("Patrol_Cinematic_Inhibitor", true, "inhibitor_cinematic");
-	if(cinematicsEnabled) then
+	if(cinematicsEnabled and not intro_inhibitor_cinematicExecuted) then
 		intro_inhibitor_cinematic();
 	end
 	temp = getEntityByName("Trigger_Inhibitor_Cinematic");
@@ -150,28 +151,32 @@ function intro_inhibitor_cinematic()
 	execScriptDelayed("render_tutorial_weapon_left.visible = true", 5.25);
 	execScriptDelayed("render_tutorial_weapon_right.visible = true", 5.25);
 	execScriptDelayed("render_inhibitor_sign.visible = true", 5.25);
+	intro_inhibitor_cinematicExecuted = true;
 end
 
 function onTriggerEnter_Trigger_Capsules_Cinematic_player()
-	setCinematicPlayerState(true, "capsules_cinematic", "");
-	setInBlackScreen(0.25);
-	execScriptDelayed("setOutBlackScreen(0.25);",0.3);
-	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_2\",10.0,\"cinematic\", \"\")", 0.27);	
-	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_1\",0.0,\"cinematic\", \"\")", 0.27);	
+	if(cinematicsEnabled and not Capsules_CinematicExecuted) then
+		setCinematicPlayerState(true, "capsules_cinematic", "");
+		setInBlackScreen(0.25);
+		execScriptDelayed("setOutBlackScreen(0.25);",0.3);
+		execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_2\",10.0,\"cinematic\", \"\")", 0.27);	
+		execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_1\",0.0,\"cinematic\", \"\")", 0.27);	
 
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_2\",0.0)", 5);	
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_1\",0.0)", 5);	
-	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_4\",10.0,\"cinematic\", \"\")", 5);	
-	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_3\",0.0,\"cinematic\", \"\")", 5);	
+		execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_2\",0.0)", 5);	
+		execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_1\",0.0)", 5);	
+		execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_4\",10.0,\"cinematic\", \"\")", 5);	
+		execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_3\",0.0,\"cinematic\", \"\")", 5);	
 
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_3\",0)", 12);
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_4\",0)", 12);
+		execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_3\",0)", 12);
+		execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_4\",0)", 12);
 
-	execScriptDelayed("setInBlackScreen(0.25);",11.6);
-	execScriptDelayed("setOutBlackScreen(0.25);",12.1);
-	execScriptDelayed("setCinematicPlayerState(false, \"\")", 12.4);
-	temp = getEntityByName("Trigger_Capsules_Cinematic");
-	temp:destroy();
+		execScriptDelayed("setInBlackScreen(0.25);",11.6);
+		execScriptDelayed("setOutBlackScreen(0.25);",12.1);
+		execScriptDelayed("setCinematicPlayerState(false, \"\")", 12.4);
+		Capsules_CinematicExecuted = true;
+		temp = getEntityByName("Trigger_Capsules_Cinematic");
+		temp:destroy();
+	end	
 end
 
 
