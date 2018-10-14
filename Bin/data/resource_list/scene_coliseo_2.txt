@@ -31,7 +31,6 @@ data/colliders/collider_mesh_terminal.collider
 data/scenes/COL_pared_suelo.scene
 data/meshes/COL_mesh_pared.mesh
 data/textures/tx_mezquita_alb.dds
-data/textures/tx_mezquita_ao.dds
 data/textures/tx_mezquita_hgt.dds
 data/textures/tx_mezquita_met.dds
 data/textures/tx_mezquita_nml.dds
@@ -262,6 +261,9 @@ data/materials/mat_tubospared.material
 data/colliders/COL_collider_tubospared.collider
 data/meshes/COL_mesh_verjafuente.mesh
 data/colliders/COL_collider_verjafuente.collider
+data/scenes/Coliseo/coliseo_cinematic.scene
+data/prefabs/camera_player.prefab
+data/textures/lut/lut5.dds
 data/scenes/col_intro_corridor.scene
 data/meshes/col_intro_agujero002.mesh
 data/textures/tx_sala_alb.dds
@@ -673,8 +675,6 @@ data/particles/def_amb_rain_heavy.particles
 data/particles/def_amb_rain_core_heavy.particles
 data/scenes/_main_cameras.scene
 data/prefabs/camera_main.prefab
-data/prefabs/camera_player.prefab
-data/textures/lut/lut5.dds
 data/prefabs/camera_shadowmerge.prefab
 data/textures/lut/lut1.dds
 data/prefabs/camera_flyover.prefab
