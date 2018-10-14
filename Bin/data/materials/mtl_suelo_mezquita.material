@@ -3,16 +3,16 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/tx_suelo_mezquita2_alb.dds"
+    "albedo": "data/textures/tx_suelo_mezquita3_alb.dds"
     ,
-    "metallic": "data/textures/tx_suelo_mezquita2_met.dds"
+    "metallic": "data/textures/tx_mezquita_met.dds"
     ,
-    "roughness": "data/textures/tx_suelo_mezquita2_rgh.dds"
+    "roughness": "data/textures/tx_suelo_mezquita3_rgh.dds"
     ,
-    "normal": "data/textures/tx_suelo_mezquita2_nml.dds"
+    "normal": "data/textures/tx_suelo_mezquita3_nml.dds"
     ,
-    "height": "data/textures/tx_suelo_mezquita2_hgt.dds"
+    "height": "data/textures/tx_suelo_mezquita3_hgt.dds"
     ,
-    "aocclusion": "data/textures/tx_suelo_mezquita2_ao.dds"
+    "aocclusion": "data/textures/tx_suelo_mezquita3_ao.dds"
   }
 }
