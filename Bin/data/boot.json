@@ -313,6 +313,7 @@
       "data/scenes/suelo_mezquita.scene",
       "data/scenes/Basilic_courtyard/almibars.scene",
       "data/scenes/bc_corridor.scene",
+      "data/scenes/bc_pasillo_entre.scene",
       "data/scenes/bc_corridor_logic.scene",
       "data/scenes/Basilic_courtyard/BC_trigger_victory.scene",
       "data/scenes/Basilic_courtyard/bc_capsule_cable.scene"
