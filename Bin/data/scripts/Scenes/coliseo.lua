@@ -39,14 +39,17 @@ end
 
 function onTriggerEnter_COL_trigger_corridor_intro_player()
 	closeIntroDoor();
+	cinematicCorridorToZoneA();
 end
 
 function onTriggerEnter_COL_trigger_corridor_intro01_player()
 	closeIntroDoor();
+	cinematicCorridorToZoneA();
 end
 
 function onTriggerEnter_COL_trigger_corridor_intro02_player()
 	closeIntroDoor();
+	cinematicCorridorToZoneA();
 end
 
 function closeIntroDoor()
@@ -56,6 +59,26 @@ function closeIntroDoor()
 	getEntityByName("COL_trigger_corridor_intro"):destroy();
 	getEntityByName("COL_trigger_corridor_intro01"):destroy();
 	getEntityByName("COL_trigger_corridor_intro02"):destroy();
+end
+
+function cinematicCorridorToZoneA()
+
+	setInBlackScreen(0.25);
+	execScriptDelayed("setOutBlackScreen(0.25);",0.3);
+	execScriptDelayed("move(\"The Player\", VEC3(0, 0.989,22),VEC3(0, 0.989,21));",0.27);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Coliseo_Rot_2\", 10.0, \"cinematic\", \"\")", 0.27);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Coliseo_Rot_1\", 0.0, \"cinematic\", \"\")", 0.27);
+
+
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Coliseo_Rot_2\", 0)", 5);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Coliseo_Rot_1\", 0)", 5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Coliseo_ZoneA_Door\", 0.0, \"cinematic\", \"\")", 5);
+
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Coliseo_ZoneA_Door\", 10)", 8);
+
+	resetMainCameras();
+	setCinematicPlayerState(true, "inhibitor_capsules", "");
+	execScriptDelayed("setCinematicPlayerState(false, \"\")", 18);
 end
 
 function onTriggerEnter_COL_trigger_corridor_zonea_player()

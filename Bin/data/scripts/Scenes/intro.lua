@@ -145,7 +145,7 @@ function intro_inhibitor_cinematic()
 	execScriptDelayed("setOutBlackScreen(0.25);",5.5);
 	execScriptDelayed("move(\"The Player\", VEC3(-20.5, 0, -35.278),VEC3(-21.95, 0, -36.118));", 5.25);
 
-
+	resetMainCameras();
 	execScriptDelayed("render_tutorial_player.visible = true", 3.5);
 	execScriptDelayed("render_tutorial_weapon_left.visible = true", 3.5);
 	execScriptDelayed("render_tutorial_weapon_right.visible = true", 3.5);
