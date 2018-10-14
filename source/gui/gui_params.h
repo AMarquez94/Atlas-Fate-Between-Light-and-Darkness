@@ -56,6 +56,7 @@ namespace GUI
     TParams _params;
     TImageParams _imageParams;
     TTextParams _textParams;
+    float ratio = 0.0f;
   };
 
   struct TSubtitlesParams

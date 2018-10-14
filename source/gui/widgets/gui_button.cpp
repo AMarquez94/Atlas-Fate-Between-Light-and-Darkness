@@ -7,7 +7,6 @@ void CButton::render()
 {
     CModuleGUI& gui = Engine.get().getGUI();
     TButtonParams& btParams = _states[_currentState];
-    //btParams._imageParams._color.w = 0.3f;
 
     // render image
     MAT44 sz = MAT44::CreateScale(_params._size.x, _params._size.y, 1.f);
@@ -18,6 +17,7 @@ void CButton::render()
         c_params.color = btParams._imageParams._color;
         c_params.minUV = btParams._imageParams._minUV;
         c_params.maxUV = btParams._imageParams._maxUV;
+        c_params.var = btParams.ratio;
 
         Engine.get().getGUI().renderCustomTexture(_technique->getName(), sz * _absolute, btParams._imageParams._texture, c_params);
     }
