@@ -32,6 +32,7 @@ T Clamp(const T& n, const T& lower, const T& upper) {
 
 void ToUpperCase(std::string&);
 float urand(float loVal, float hiVal);
+int randomInt(int min, int max);
 int Strnicmp(const char* str1, const char* str2, int n);
 const char *convert(const std::string & s);
 std::string stringify(VEC2 pos);
