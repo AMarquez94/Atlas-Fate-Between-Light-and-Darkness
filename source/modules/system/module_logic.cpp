@@ -132,6 +132,7 @@ void CModuleLogic::publishClasses() {
 
 	SLB::Class< CModuleGameManager >("GameManager", m)
 		.comment("This is our wrapper of the gamemanager class")
+        .property("isCinematicMode", &CModuleGameManager::isCinematicMode)
 		.set("resetToCheckpoint", &CModuleGameManager::resetToCheckpoint);
 
     SLB::Class< VEC3 >("VEC3", m)
@@ -1176,6 +1177,10 @@ void deactivateSubtitles() {
 
 void activateMission(std::string sub_name) {
 	EngineGUI.setMission(sub_name);
+}
+
+void startCinematicMode(bool start) {
+
 }
 
 void setEnemyHudState(bool state) {

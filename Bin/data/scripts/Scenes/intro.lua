@@ -252,7 +252,7 @@ function onTriggerEnter_AttackTutorial_player()
 		patrol = spawn("tutorial/patrol_tutorial", VEC3(-7, 0, -50.5), VEC3(-7, 0, -52));
 		render_attack_sign.visible = true;
 	else
-		moveTutorialPlayer(VEC3(-7, 0, -49.475), VEC3(-7, 0, -51), true, "sm_enemy_tutorial");
+		moveTutorialPlayer(VEC3(-7, 0, -50), VEC3(-7, 0, -51), true, "sm_enemy_tutorial");
 		patrol = spawn("tutorial/patrol_tutorial", VEC3(-7, 0, -50.5), VEC3(-7, 0, -52));
 		render_smenemy_sign.visible = true;
 	end
@@ -267,7 +267,7 @@ end
 
 function onPatrolStunned_IntroPatrol()
 	show_tutorial_sm_enemy = true;
-	moveTutorialPlayer(VEC3(-7, 0, -49.475), VEC3(-7, 0, -51), true, "sm_enemy_tutorial");
+	moveTutorialPlayer(VEC3(-7, 0, -50), VEC3(-7, 0, -51), true, "sm_enemy_tutorial");
 	render_attack_sign.visible = false;
 	render_smenemy_sign.visible = true;
 end
