@@ -531,7 +531,7 @@ void CModuleLogic::printLog()
 void CModuleLogic::clearDelayedScripts()
 {
     delayedScripts.clear();
-   //delayedSystemScripts.clear();
+    //delayedSystemScripts.clear();
 }
 
 void CModuleLogic::eraseDelayedScripts(std::string keyWord) {
