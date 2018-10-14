@@ -60,7 +60,7 @@ function cinematic_enter_zone_a()
 end
 
 function cinematic_tower_activated()
-
+	gameManager.isCinematicMode = true;
 	setInBlackScreen(0.25);
 	execScriptDelayed("setOutBlackScreen(0.25);",0.3);
 
@@ -74,7 +74,7 @@ function cinematic_tower_activated()
 
 	setCinematicPlayerState(true, "inhibitor_capsules", "");
 	execScriptDelayed("setCinematicPlayerState(false, \"\")", 12.75);
-
+	execScriptDelayed("gameManager.isCinematicMode = false;", 12.8);
 end
 
 function onTriggerEnter_ZON_Trigger_Exit_ZoneA_player()
