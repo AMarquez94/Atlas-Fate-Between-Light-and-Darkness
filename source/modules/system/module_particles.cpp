@@ -4,6 +4,7 @@
 #include "particles/particle_parser.h"
 #include "particles/particle_editor.h"
 #include "components/comp_name.h"
+#include "components/comp_tags.h"
 
 CModuleParticles::CModuleParticles(const std::string& name)
     : IModule(name)
@@ -48,8 +49,17 @@ void CModuleParticles::update(float delta)
         if (!active)
         {
             // Destroy the entity if it's marked as destroyable entity
-            if (ps->_destroy_entity) 
-                EngineLogic.execScript("destroyHandle(" + ps->getHandleEntity().asString() + ")");
+            if (ps->_destroy_entity) {
+                CHandle h_entity = ps->getHandleEntity();
+                if (h_entity.isValid()) {
+                    h_entity.destroy();
+                }
+                else {
+                    dbg("ENTITY INVALID\n");
+                }
+                
+            }
+                //EngineLogic.execScript("destroyHandle(" + ps->getHandleEntity().asString() + ")");
 
             delete ps;
             it = _activeSystems.erase(it);
@@ -107,7 +117,7 @@ Particles::TParticleHandle CModuleParticles::launchSystem(const Particles::TCore
     return ps->getHandle();
 }
 
-Particles::TParticleHandle CModuleParticles::launchDynamicSystem(const std::string& name, VEC3 pos)
+Particles::TParticleHandle CModuleParticles::launchDynamicSystem(const std::string& name, VEC3 pos, bool persistent)
 {
     const Particles::TCoreSystem* cps = Resources.get(name)->as<Particles::TCoreSystem>();
     assert(cps);
@@ -122,6 +132,18 @@ Particles::TParticleHandle CModuleParticles::launchDynamicSystem(const std::stri
 
     h_comp = getObjectManager<TCompName>()->createHandle();
     e->set(h_comp.getType(), h_comp);
+    TCompName* p_name = e->get<TCompName>();
+    p_name->setName(std::string("Dynamic_Particle_" + h_e.asString()).c_str());
+    
+    if (persistent) {
+        CHandle h_tag = getObjectManager<TCompTags>()->createHandle();
+        h_tag.setOwner(h_e);
+        e->set(h_tag.getType(), h_tag);
+        TCompTags* c_tag = h_tag;
+        CTagsManager::get().registerTagName(getID("persistent"), "persistent");
+        c_tag->addTag(getID("persistent"));
+    }
+       
 
     Particles::CSystem* ps = new Particles::CSystem(cps, h_e);
     ps->_destroy_entity = true;
@@ -134,6 +156,7 @@ Particles::TParticleHandle CModuleParticles::launchDynamicSystem(const std::stri
     _activeSystems.push_back(ps);
 
     return ps->getHandle();
+    //return Particles::TParticleHandle();
 }
 
 void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {

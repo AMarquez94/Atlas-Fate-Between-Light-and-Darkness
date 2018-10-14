@@ -23,3 +23,9 @@ end
 function onTriggerEnter_TriggerKill_player()
 	playerController:die();
 end
+
+function setCorridorInvisible()
+	makeVisibleByTag("corridor", false);
+	makeVisibleByTag("corridor_door", true);
+	makeVisibleByTag("dir_light", true);
+end

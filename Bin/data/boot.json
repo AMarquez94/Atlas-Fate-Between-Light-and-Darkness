@@ -118,7 +118,6 @@
 			"data/scenes/intro_containers_puerto.scene",
 			"data/scenes/intro_muralla_intro.scene",
 			"data/scenes/intro_muralla_fin.scene",
-			"data/scenes/intro_containers_puerto.scene",
 			"data/scenes/intro_conductos.scene",
 			"data/scenes/intro_tubitos.scene",
 			"data/scenes/intro_props.scene",
@@ -165,7 +164,8 @@
 			"data/scenes/col_bc_corridor.scene",
 			"data/scenes/col_intro_corridor_logic.scene",
 			"data/scenes/Coliseo/col_mosque.scene",
-			"data/scenes/Coliseo/capsules.scene"
+			"data/scenes/Coliseo/capsules.scene",
+			"data/scenes/Coliseo/col_capsule_cable.scene"
 		]
 	},
 	"scene_zone_a": {
@@ -250,20 +250,21 @@
 			"data/scenes/Coliseo/_player2.scene",
 			"data/scenes/_main_cameras.scene"
 		],
-    "scene_group": [
-      "data/scenes/Coliseo/test_instancing.scene",
-      "data/scenes/Coliseo/coliseo_particles.scene",
-      "data/scenes/Coliseo/buttons.scene",
-      "data/scenes/COL_pared_suelo.scene",
-      "data/scenes/Coliseo/coliseo_luces.scene",
-	  "data/scenes/Coliseo/coliseo_structures.scene",
-	  "data/scenes/col_intro_corridor.scene",
-      "data/scenes/col_zone_a_corridor.scene",
-      "data/scenes/col_bc_corridor.scene",
-      "data/scenes/col_bc_corridor_logic.scene",
-	  "data/scenes/Coliseo/col_mosque.scene",
-	  "data/scenes/Coliseo/capsules.scene"
-    ]
+		"scene_group": [
+			"data/scenes/Coliseo/test_instancing.scene",
+			"data/scenes/Coliseo/coliseo_particles.scene",
+			"data/scenes/Coliseo/buttons.scene",
+			"data/scenes/COL_pared_suelo.scene",
+			"data/scenes/Coliseo/coliseo_luces.scene",
+			"data/scenes/Coliseo/coliseo_structures.scene",
+			"data/scenes/col_intro_corridor.scene",
+			"data/scenes/col_zone_a_corridor.scene",
+			"data/scenes/col_bc_corridor.scene",
+			"data/scenes/col_bc_corridor_logic.scene",
+			"data/scenes/Coliseo/col_mosque.scene",
+			"data/scenes/Coliseo/capsules.scene",
+			"data/scenes/Coliseo/col_capsule_cable.scene"
+		]
 	},
 	"scene_basilic_courtyard": {
 		"static_data": {
@@ -284,33 +285,34 @@
 			"data/scenes/Basilic_courtyard/_player.scene",
 			"data/scenes/_main_cameras.scene"
 		],
-    "scene_group": [
-      "data/scenes/basiliclights.scene",
-      "data/scenes/Basilic_courtyard/enemy.scene",
-      "data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
-      "data/scenes/Basilic_courtyard/test_instancing.scene",
-      "data/scenes/Basilic_courtyard/buttons.scene",
-      "data/scenes/Basilic_courtyard/capsules.scene",
-      "data/scenes/Basilic_courtyard/BC_mezquita.scene",
-      "data/scenes/Basilic_courtyard/BC_alminares.scene",
-      "data/scenes/Basilic_courtyard/BC_paredes.scene",
-      "data/scenes/BC_arcos.scene",
-      "data/scenes/BC_andamios.scene",
-      "data/scenes/BC_coberturas.scene",
-      "data/scenes/BC_containers.scene",
-      "data/scenes/BC_props.scene",
-      "data/scenes/BC_cables.scene",
-      "data/scenes/BC_tubos.scene",
-      "data/scenes/BC_capsulas.scene",
-      "data/scenes/BC_neones.scene",
-      "data/scenes/BC_maderas.scene",
-      "data/scenes/Basilic_courtyard/BC_fuente.scene",
-      "data/scenes/suelo_mezquita.scene",
-      "data/scenes/Basilic_courtyard/almibars.scene",
-      "data/scenes/bc_corridor.scene",
-      "data/scenes/bc_corridor_logic.scene",
-      "data/scenes/Basilic_courtyard/BC_trigger_victory.scene"
-    ]
+		"scene_group": [
+			"data/scenes/basiliclights.scene",
+			"data/scenes/Basilic_courtyard/enemy.scene",
+			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
+			"data/scenes/Basilic_courtyard/test_instancing.scene",
+			"data/scenes/Basilic_courtyard/buttons.scene",
+			"data/scenes/Basilic_courtyard/capsules.scene",
+			"data/scenes/Basilic_courtyard/BC_mezquita.scene",
+			"data/scenes/Basilic_courtyard/BC_alminares.scene",
+			"data/scenes/Basilic_courtyard/BC_paredes.scene",
+			"data/scenes/BC_arcos.scene",
+			"data/scenes/BC_andamios.scene",
+			"data/scenes/BC_coberturas.scene",
+			"data/scenes/BC_containers.scene",
+			"data/scenes/BC_props.scene",
+			"data/scenes/BC_cables.scene",
+			"data/scenes/BC_tubos.scene",
+			"data/scenes/BC_capsulas.scene",
+			"data/scenes/BC_neones.scene",
+			"data/scenes/BC_maderas.scene",
+			"data/scenes/Basilic_courtyard/BC_fuente.scene",
+			"data/scenes/suelo_mezquita.scene",
+			"data/scenes/Basilic_courtyard/almibars.scene",
+			"data/scenes/bc_corridor.scene",
+			"data/scenes/bc_corridor_logic.scene",
+			"data/scenes/Basilic_courtyard/BC_trigger_victory.scene",
+			"data/scenes/Basilic_courtyard/bc_capsule_cable.scene"
+		]
 	},
 	"scene_basilic_interior": {
 		"static_data": {

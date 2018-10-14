@@ -4,9 +4,7 @@ function onSceneStart_scene_intro()
 	if(ambiance == nil or not ambiance:isValid()) then
 		ambiance = playEvent("event:/Ambiance/Intro_Ambiance");
 	end
-	makeVisibleByTag("corridor", false);
-	makeVisibleByTag("corridor_door", true);
-	makeVisibleByTag("dir_light", true);
+	setCorridorInvisible();
 	
 	cinematicsEnabled = false;
 	

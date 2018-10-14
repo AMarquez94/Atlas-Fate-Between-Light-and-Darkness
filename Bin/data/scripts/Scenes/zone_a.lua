@@ -1,9 +1,9 @@
 function onSceneStart_scene_zone_a()
-
+	setCorridorInvisible()
 end
 
 function onScenePartialStart_scene_zone_a()
-	onSceneStart_scene_zone_a();
+	--onSceneStart_scene_zone_a();
 	movePlayerToRefPos("zone_a_in_suelo001", i_ref_pos);
 	--execScriptDelayed("toDoor(toEntity(getEntityByName(\"zone_a_in_marco_puerta001\")):getCompByName(\"door\")):open();", 0.5);
 end
@@ -19,7 +19,7 @@ end
 
 function transition_zone_a_to_coliseum(button_handle)
 	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
-	--makeVisibleByTag("corridor", true);
+	makeVisibleByTag("corridor", true);
 	toDoor(toEntity(getEntityByName("zone_a_outmarco_puerta002")):getCompByName("door")):open();
 end
 
@@ -29,7 +29,9 @@ function enable_button_exit(button_handle)
 end
 
 function onTriggerEnter_ZON_Trigger_Enter_ZoneA_player()
-	toDoor(toEntity(getEntityByName("zone_a_in_marco_puerta001")):getCompByName("door")):close();
+	zonea_a_door = toDoor(toEntity(getEntityByName("zone_a_in_marco_puerta001")):getCompByName("door"));
+	zonea_a_door:setClosedScript("setCorridorInvisible()");
+	zonea_a_door:close();
 	getEntityByName("ZON_Trigger_Enter_ZoneA"):destroy();
 end
 

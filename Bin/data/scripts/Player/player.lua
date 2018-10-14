@@ -80,9 +80,9 @@ function animation_attack_strikeParticleLeft(sender)
 	e = toEntity(h);
 	t_transform = toTransform(e:getCompByName("transform"));	
 	pos = t_transform:getPosition();
-	particles:launchDynamicSystem("data/particles/def_attack_explosion.particles", pos);
-	particles:launchDynamicSystem("data/particles/def_attack_explosion_large.particles", pos);
-	particles:launchDynamicSystem("data/particles/def_attack_explosion_core.particles", pos);
+	particles:launchDynamicSystem("data/particles/def_attack_explosion.particles", pos, true);
+	particles:launchDynamicSystem("data/particles/def_attack_explosion_large.particles", pos, true);
+	particles:launchDynamicSystem("data/particles/def_attack_explosion_core.particles", pos, true);
 		
 end
 
@@ -92,9 +92,9 @@ function animation_attack_strikeParticleRight(sender)
 	e = toEntity(h);
 	t_transform = toTransform(e:getCompByName("transform"));	
 	pos = t_transform:getPosition();
-	particles:launchDynamicSystem("data/particles/def_attack_explosion.particles", pos);
-	particles:launchDynamicSystem("data/particles/def_attack_explosion_large.particles", pos);
-	particles:launchDynamicSystem("data/particles/def_attack_explosion_core.particles", pos);
+	particles:launchDynamicSystem("data/particles/def_attack_explosion.particles", pos, true);
+	particles:launchDynamicSystem("data/particles/def_attack_explosion_large.particles", pos, true);
+	particles:launchDynamicSystem("data/particles/def_attack_explosion_core.particles", pos, true);
 			
 end
 

@@ -157,7 +157,7 @@ void TCompTempPlayerController::playPlayerStep(bool left)
         CEntity* e_foot = foot;
         TCompTransform* weapon_right_pos = e_foot->get<TCompTransform>();
         VEC3 init_pos = weapon_right_pos->getPosition();
-        EngineParticles.launchDynamicSystem("data/particles/def_amb_ground_step.particles", init_pos);
+        EngineParticles.launchDynamicSystem("data/particles/def_amb_ground_step.particles", init_pos, true);
     }
     my_audio->playEvent("event:/Sounds/Player/Steps/NormalSteps", false);
 }
@@ -170,7 +170,7 @@ void TCompTempPlayerController::playLandParticles(bool left)
         CEntity* e_foot = foot;
         TCompTransform* foot_pos = e_foot->get<TCompTransform>();
         VEC3 init_pos = foot_pos->getPosition();
-        EngineParticles.launchDynamicSystem("data/particles/def_amb_ground_hit.particles", init_pos);
+        EngineParticles.launchDynamicSystem("data/particles/def_amb_ground_hit.particles", init_pos, true);
     }
 }
 
