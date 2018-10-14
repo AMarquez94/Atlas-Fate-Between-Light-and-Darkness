@@ -24,7 +24,10 @@ function transition_zone_a_to_coliseum(button_handle)
 end
 
 function enable_button_exit(button_handle)
-	toButton(toEntity(getEntityByName("Button End Scene")):getCompByName("button")):setCanBePressed(true);
+	execScriptDelayed("toButton(toEntity(getEntityByName(\"Button End Scene\")):getCompByName(\"button\")):setCanBePressed(true)",2.25);
+	if(cinematicsEnabled and not cinematic_tower_activatedExecuted) then
+		execScriptDelayed("cinematic_tower_activated()",0.5);
+	end
 	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
 end
 
@@ -32,7 +35,9 @@ function onTriggerEnter_ZON_Trigger_Enter_ZoneA_player()
 	zonea_a_door = toDoor(toEntity(getEntityByName("zone_a_in_marco_puerta001")):getCompByName("door"));
 	zonea_a_door:setClosedScript("setCorridorInvisible()");
 	zonea_a_door:close();
-	cinematic_enter_zone_a();
+	if(cinematicsEnabled and not cinematic_enter_zone_aExecuted) then
+		cinematic_enter_zone_a();
+	end
 	getEntityByName("ZON_Trigger_Enter_ZoneA"):destroy();
 end
 
@@ -40,11 +45,8 @@ function cinematic_enter_zone_a()
 
 	setInBlackScreen(0.25);
 	execScriptDelayed("setOutBlackScreen(0.25);",0.3);
-	--execScriptDelayed("move(\"The Player\", VEC3(-40,0,-90),VEC3(-42,0,-91));",0.27);
-	--execScriptDelayed("resetMainCameras()",0.5);
 	execScriptDelayed("move(\"The Player\", VEC3(-40,0,-90),VEC3(-41,0,-90));",3);
 
-	--execScriptDelayed("blendInCamera(\"Camera_Cinematic_ZoneA_Tower\", 10.0, \"cinematic\", \"\")", 0.27);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_ZoneA_Tower\", 0.0, \"cinematic\", \"\")", 0.27);
 
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Sonar_2\", 10.0, \"cinematic\", \"\")", 5);
@@ -55,14 +57,28 @@ function cinematic_enter_zone_a()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Sonar_2\", 0)", 7.25);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Sonar_1\", 0)", 7.25);
 	execScriptDelayed("setOutBlackScreen(0.25);",7.75);
-	--execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Coliseo_Rot_2\", 0)", 5);
-	--execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Coliseo_Rot_1\", 0)", 5);
-	--execScriptDelayed("blendInCamera(\"Camera_Cinematic_Coliseo_ZoneA_Door\", 0.0, \"cinematic\", \"\")", 5);
-
-	
 
 	setCinematicPlayerState(true, "inhibitor_capsules", "");
 	execScriptDelayed("setCinematicPlayerState(false, \"\")", 8);
+	cinematic_enter_zone_aExecuted = true;
+
+end
+
+function cinematic_tower_activated()
+
+	setInBlackScreen(0.25);
+	execScriptDelayed("setOutBlackScreen(0.25);",0.3);
+
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Exit_Door_2\", 9, \"cinematic\", \"quintinout\")", 1.5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Exit_Door_1\", 0.0, \"cinematic\", \"\")", 0.27);
+
+	execScriptDelayed("setInBlackScreen(0.25)",11.5);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Exit_Door_1\", 0)", 11.75);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Exit_Door_2\", 0)", 11.75);
+	execScriptDelayed("setOutBlackScreen(0.25);",12.25);
+	cinematic_tower_activatedExecuted = true;
+	setCinematicPlayerState(true, "inhibitor_capsules", "");
+	execScriptDelayed("setCinematicPlayerState(false, \"\")", 12.75);
 
 end
 

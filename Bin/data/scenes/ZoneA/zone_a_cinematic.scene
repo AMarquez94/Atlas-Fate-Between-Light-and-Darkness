@@ -32,5 +32,25 @@
       },
        "prefab": "data/prefabs/camera_player.prefab"
     }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Exit_Door_1",
+      "transform": {
+        "pos": "-48.743 3.49 -134.956",
+        "rotation": "0.06866 0.8036 -0.0945 0.5834"
+      },
+       "prefab": "data/prefabs/camera_player.prefab"
+    }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Exit_Door_2",
+      "transform": {
+        "pos": "-108.24 5.671 -127.020",
+        "rotation": "0.0336 0.9540 -0.1174 0.2737"
+      },
+       "prefab": "data/prefabs/camera_player.prefab"
+    }
   }
 ]
