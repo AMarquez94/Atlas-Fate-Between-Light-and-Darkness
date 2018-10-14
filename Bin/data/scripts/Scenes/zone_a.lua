@@ -32,7 +32,38 @@ function onTriggerEnter_ZON_Trigger_Enter_ZoneA_player()
 	zonea_a_door = toDoor(toEntity(getEntityByName("zone_a_in_marco_puerta001")):getCompByName("door"));
 	zonea_a_door:setClosedScript("setCorridorInvisible()");
 	zonea_a_door:close();
+	cinematic_enter_zone_a();
 	getEntityByName("ZON_Trigger_Enter_ZoneA"):destroy();
+end
+
+function cinematic_enter_zone_a()
+
+	setInBlackScreen(0.25);
+	execScriptDelayed("setOutBlackScreen(0.25);",0.3);
+	--execScriptDelayed("move(\"The Player\", VEC3(-40,0,-90),VEC3(-42,0,-91));",0.27);
+	--execScriptDelayed("resetMainCameras()",0.5);
+	execScriptDelayed("move(\"The Player\", VEC3(-40,0,-90),VEC3(-41,0,-90));",3);
+
+	--execScriptDelayed("blendInCamera(\"Camera_Cinematic_ZoneA_Tower\", 10.0, \"cinematic\", \"\")", 0.27);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_ZoneA_Tower\", 0.0, \"cinematic\", \"\")", 0.27);
+
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Sonar_2\", 10.0, \"cinematic\", \"\")", 5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Sonar_1\", 0.0, \"cinematic\", \"\")", 5);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_ZoneA_Tower\", 0)", 5.25);
+
+	execScriptDelayed("setInBlackScreen(0.25)",7);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Sonar_2\", 0)", 7.25);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Sonar_1\", 0)", 7.25);
+	execScriptDelayed("setOutBlackScreen(0.25);",7.75);
+	--execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Coliseo_Rot_2\", 0)", 5);
+	--execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Coliseo_Rot_1\", 0)", 5);
+	--execScriptDelayed("blendInCamera(\"Camera_Cinematic_Coliseo_ZoneA_Door\", 0.0, \"cinematic\", \"\")", 5);
+
+	
+
+	setCinematicPlayerState(true, "inhibitor_capsules", "");
+	execScriptDelayed("setCinematicPlayerState(false, \"\")", 8);
+
 end
 
 function onTriggerEnter_ZON_Trigger_Exit_ZoneA_player()

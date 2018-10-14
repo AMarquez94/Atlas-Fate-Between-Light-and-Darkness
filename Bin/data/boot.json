@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_zone_a",
 	"scene_main_menu": {
 		"static_data": {
 			"initial_script": "main_menu",
@@ -210,6 +210,7 @@
 			"data/scenes/zone_a_puertas_reja.scene",
 			"data/scenes/zona_a_tubos.scene",
 			"data/scenes/zone_a_tubitos.scene",
+			"data/scenes/ZoneA/zone_a_cinematic.scene",
 			"data/scenes/zone_a_cables.scene",
 			"data/scenes/zone_a_hologramas.scene",
 			"data/scenes/zona_a_colliders_barandillas.scene",
