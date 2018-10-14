@@ -22,6 +22,42 @@
 					{
 						"subtitle_name" : "adios",
 						"texture_src" : "data/textures/gui/subtitulos/adios.dds"
+					},
+					{
+						"subtitle_name" : "doyouhearme",
+						"texture_src" : "data/textures/gui/subtitulos/doyouhearme.dds"
+					},
+					{
+						"subtitle_name" : "wewillbeintouch",
+						"texture_src" : "data/textures/gui/subtitulos/wewillbeintouch.dds"
+					},
+					{
+						"subtitle_name" : "youshoulddoyourbest",
+						"texture_src" : "data/textures/gui/subtitulos/youshoulddoyourbest.dds"
+					},
+					{
+						"subtitle_name" : "andifyoudie",
+						"texture_src" : "data/textures/gui/subtitulos/andifyoudie.dds"
+					},
+					{
+						"subtitle_name" : "ifyoudieyoualready",
+						"texture_src" : "data/textures/gui/subtitulos/ifyoudieyoualready.dds"
+					},
+					{
+						"subtitle_name" : "toundertakeyourtask",
+						"texture_src" : "data/textures/gui/subtitulos/toundertakeyourtask.dds"
+					},
+					{
+						"subtitle_name" : "andremember",
+						"texture_src" : "data/textures/gui/subtitulos/andremember.dds"
+					},
+					{
+						"subtitle_name" : "youshouldonly",
+						"texture_src" : "data/textures/gui/subtitulos/youshouldonly.dds"
+					},
+					{
+						"subtitle_name" : "thatsallfornow",
+						"texture_src" : "data/textures/gui/subtitulos/thatsallfornow.dds"
 					}
 				]
 			}

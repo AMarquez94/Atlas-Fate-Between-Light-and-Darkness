@@ -7,6 +7,8 @@ function onSceneStart()
 	execScriptDelayed("immortal(false)", 1);
 	execScriptDelayed("resetPatrolLights()", 0.1);
 	
+	cinematicsEnabled = true;
+
 	if isDebug() then
 		lanternsDisable(true);
 		shadowsToggle();

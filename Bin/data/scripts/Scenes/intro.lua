@@ -6,14 +6,12 @@ function onSceneStart_scene_intro()
 	end
 	setCorridorInvisible();
 	
-	cinematicsEnabled = false;
-	
 	--#Debug position for start
 	--move("The Player", VEC3(-7, 0, -43), VEC3(-7, 0, -44));
 
 	-- First Cinematic --
 	if(cinematicsEnabled and not isCheckpointSaved()) then
-		intro_intro_cinematic();
+		--intro_intro_cinematic();
 	end
 	setAIState("Patrol_Cinematic_Inhibitor", true, "dead_cinematic");
 	getSignRendersForIntro();
@@ -28,15 +26,49 @@ function onScenePartialEnd_scene_intro()
 end
 
 function intro_intro_cinematic()
-	move("The Player", VEC3(-7.5, 12.115, 34.2), VEC3(-7.5, 12.115, 33.2));
+	move("The Player", VEC3(-6.275, 12.115, 32.7),VEC3(-6.275, 12.115, 31.7));
 	resetMainCameras();
-	--setCinematicPlayerState(true, "crouch_cinematic")
-	blendInCamera("Camera_Cinematic_Intro", 0.0, "cinematic", "");
 	setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
-	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_End\", 1.2, \"cinematic\", \"cubicinout\")", 2.3);
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro\", 0)", 4);
-	--execScriptDelayed("blendInCamera(\"Camera_Cinematic)
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_End\", 3)", 5);
+
+	--Setting active and deactivating the intro cinematic video
+	activateCinematicVideoIntro(2,10);
+	execScriptDelayed("deactivateCinematicVideoIntro();",0);
+
+	blendInCamera("Camera_Cinematic_Intro_video", 0.0, "cinematic", "");
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_Player_Back\", 20, \"cinematic\", \"sineinout\")", 1);
+
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_video\", 0)", 24);
+
+	 --Activating the subtitles
+	execScriptDelayed("activateSubtitles(\"doyouhearme\");",23.5);
+	execScriptDelayed("activateSubtitles(\"wewillbeintouch\");",25.5);
+	execScriptDelayed("activateSubtitles(\"youshoulddoyourbest\");",30);
+	execScriptDelayed("activateSubtitles(\"andifyoudie\");",35);
+	execScriptDelayed("activateSubtitles(\"ifyoudieyoualready\");",37.5);
+	execScriptDelayed("activateSubtitles(\"toundertakeyourtask\");",42.5);
+	execScriptDelayed("activateSubtitles(\"andremember\");",45.5);
+	execScriptDelayed("activateSubtitles(\"youshouldonly\");",48);
+	execScriptDelayed("activateSubtitles(\"thatsallfornow\");",53);
+	execScriptDelayed("deactivateSubtitles();", 56);
+
+	--Second Frame
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Player_Back\", 0)", 26.5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_Rotation_2\", 30.0, \"cinematic\", \"\")", 26.5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_Rotation_1\", 0.0, \"cinematic\", \"\")", 26.5);
+	
+	--Third Frame
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_1\", 0)", 45.5);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_2\", 0)", 45.5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_Rotation_Other_2\", 30.0, \"cinematic\", \"\")", 45.5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_Rotation_Other_1\", 0.0, \"cinematic\", \"\")", 45.5);
+
+	--Last Frame
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_Other_2\", 0)", 56);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_Other_1\", 0)", 56);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_SM_Caida\", 0.0, \"cinematic\", \"\")", 56);
+
+	--Returning to player camera
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_SM_Caida\", 5)", 60);
 end
 
 -- # Transition cinematic # --
@@ -83,18 +115,13 @@ function onTriggerEnter_Trigger_Inhibitor_Cinematic_player()
 end
 
 function intro_inhibitor_cinematic()
-	setCinematicPlayerState(true, "inhibitor_cinematic", "");
-	blendInCamera("Camera_Cinematic_Inhibitor_Patrol" ,0,"cinematic","");
-	--move player to patrol and orientate cameras
-	player = getEntityByName("The Player");
-	e_player = toEntity(player);
-	patrol_cinematic = getEntityByName("Patrol_Cinematic_Inhibitor");
-	e_patrol_cinematic = toEntity(patrol_cinematic);
-	t_patrol = toTransform(e_patrol_cinematic:getCompByName("transform"));
-	t_player = toTransform(e_player:getCompByName("transform"));
-	patrol_pos = t_patrol:getPosition();
-	t_player:lookAt(t_player:getPosition(), VEC3(patrol_pos.x, 0, patrol_pos.z));
+	move("The Player", VEC3(-19, 7, -33.5),VEC3(-19, 7, -35.5));
 	resetMainCameras();
+
+	setCinematicPlayerState(true, "inhibitor_cinematic", "");
+	blendInCamera("Camera_Cinematic_Inhibitor_1" ,0,"cinematic","");
+
+
 	--hide tutorial while in cinematic
 	e_tutorial_player = toEntity(getEntityByName("Tutorial Player"));
 	render_tutorial_player = toRender(e_tutorial_player:getCompByName("render"));
@@ -107,10 +134,18 @@ function intro_inhibitor_cinematic()
 	render_tutorial_weapon_right.visible = false;
 	render_inhibitor_sign.visible = false;	
 	--end
-	execScriptDelayed("setCinematicPlayerState(false, \"\")", 3.5);
-	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Inhibitor_Patrol_End\",0.5,\"cinematic\", \"cubicinout\")", 1.4);	
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Inhibitor_Patrol\",0)", 2.0);
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Inhibitor_Patrol_End\",0.5)", 3.0);
+
+
+	--execScriptDelayed("setCinematicPlayerState(false, \"\")", 3.5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Inhibitor_2\",1.5,\"cinematic\", \"expoin\")", 0.5);	
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Inhibitor_1\",0)", 2.01);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Inhibitor_2\",0)", 5.25);
+
+	execScriptDelayed("setInBlackScreen(0.5);",4.5);
+	execScriptDelayed("setOutBlackScreen(0.25);",5.5);
+	execScriptDelayed("move(\"The Player\", VEC3(-20.5, 0, -35.278),VEC3(-21.95, 0, -36.118));", 5.25);
+
+
 	execScriptDelayed("render_tutorial_player.visible = true", 3.5);
 	execScriptDelayed("render_tutorial_weapon_left.visible = true", 3.5);
 	execScriptDelayed("render_tutorial_weapon_right.visible = true", 3.5);
@@ -118,10 +153,23 @@ function intro_inhibitor_cinematic()
 end
 
 function onTriggerEnter_Trigger_Capsules_Cinematic_player()
-	setCinematicPlayerState(true, "inhibitor_cinematic", "");
-	blendInCamera("Camera_Cinematic_Capsules", 1.5, "cinematic", "cubicinout");
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules\",1.5)", 5.0);
-	execScriptDelayed("setCinematicPlayerState(false, \"\")", 6.5);
+	setCinematicPlayerState(true, "capsules_cinematic", "");
+	setInBlackScreen(0.25);
+	execScriptDelayed("setOutBlackScreen(0.25);",0.3);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_2\",10.0,\"cinematic\", \"\")", 0.27);	
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_1\",0.0,\"cinematic\", \"\")", 0.27);	
+
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_2\",0.0)", 5);	
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_1\",0.0)", 5);	
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_4\",10.0,\"cinematic\", \"\")", 5);	
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_3\",0.0,\"cinematic\", \"\")", 5);	
+
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_3\",0)", 12);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_4\",0)", 12);
+
+	execScriptDelayed("setInBlackScreen(0.25);",11.6);
+	execScriptDelayed("setOutBlackScreen(0.25);",12.1);
+	execScriptDelayed("setCinematicPlayerState(false, \"\")", 12.4);
 	temp = getEntityByName("Trigger_Capsules_Cinematic");
 	temp:destroy();
 end

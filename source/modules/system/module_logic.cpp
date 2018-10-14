@@ -45,7 +45,7 @@ bool CModuleLogic::stop() {
 }
 
 void CModuleLogic::update(float delta) {
-    for (unsigned int i = 0; i < delayedSystemScripts.size(); i++) {
+    for (int i = delayedSystemScripts.size() - 1; i >= 0 ; i--) {
         delayedSystemScripts[i].remainingTime -= delta;
         if (delayedSystemScripts[i].remainingTime <= 0) {
             execScript(delayedSystemScripts[i].script);
@@ -54,7 +54,7 @@ void CModuleLogic::update(float delta) {
     }
 
     if (!paused) {
-        for (unsigned int i = 0; i < delayedScripts.size(); i++) {
+		for (int i = delayedScripts.size() - 1; i >= 0; i--) {
             delayedScripts[i].remainingTime -= delta;
             if (delayedScripts[i].remainingTime <= 0) {
                 execScript(delayedScripts[i].script);
@@ -322,6 +322,10 @@ void CModuleLogic::publishClasses() {
 	m->set("deactivateSubtitles", SLB::FuncCall::create(&deactivateSubtitles));
 	m->set("activateMission", SLB::FuncCall::create(&activateMission));
 	m->set("setEnemyHudState", SLB::FuncCall::create(&setEnemyHudState));
+	m->set("activateCinematicVideoIntro", SLB::FuncCall::create(&activateCinematicVideoIntro));
+	m->set("deactivateCinematicVideoIntro", SLB::FuncCall::create(&deactivateCinematicVideoIntro));
+	m->set("setInBlackScreen", SLB::FuncCall::create(&setInBlackScreen));
+	m->set("setOutBlackScreen", SLB::FuncCall::create(&setOutBlackScreen));
 	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -1181,4 +1185,21 @@ void setEnemyHudState(bool state) {
 	else {
 		EngineGUI.deactivateEnemyHUD();
 	}
+}
+
+void activateCinematicVideoIntro(float time_to_lerp, float time_to_start) {
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::CINEMATIC_INTRO)->makeChildsFadeOut(time_to_lerp, time_to_start, false);
+}
+
+void deactivateCinematicVideoIntro() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::CINEMATIC_INTRO);
+}
+
+void setInBlackScreen(float time_to_lerp) {
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(time_to_lerp,0,false);
+}
+
+void setOutBlackScreen(float time_to_lerp) {
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(time_to_lerp, 0, false);
+	EngineLogic.execScriptDelayed("takeOutBlackScreen();", time_to_lerp + 0.1f);
 }

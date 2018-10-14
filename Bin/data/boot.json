@@ -131,7 +131,8 @@
 			"data/scenes/decal_test.scene",
 			"data/scenes/intro_corridor_3.scene",
 			"data/scenes/intro_corridor_logic.scene",
-			"data/scenes/intro_col_corridor_lights.scene"
+			"data/scenes/intro_col_corridor_lights.scene",
+			"data/scenes/pantalla_intro_video.scene"
 		]
 	},
 	"scene_coliseo": {
@@ -266,54 +267,54 @@
 			"data/scenes/Coliseo/col_capsule_cable.scene"
 		]
 	},
-	"scene_basilic_courtyard": {
-		"static_data": {
-			"initial_script": "basilic_courtyard",
-			"navmesh": "data/navmeshes/basilic_courtyard.bin",
-			"exposure": 1.51,
-			"ambient": 0.05,
-			"gamma": 0.92,
-			"tone_mapping": 0.59,
-			"shadow_intensity": 0,
-			"ground_fog_density": 0.061,
-			"env_fog_density": 0.083,
-			"shadow_color": "0.0 0.0 0.0",
-			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.043"
-		},
-		"persistent_scenes": [
-			"data/scenes/Basilic_courtyard/_player.scene",
-			"data/scenes/_main_cameras.scene"
-		],
-		"scene_group": [
-			"data/scenes/basiliclights.scene",
-			"data/scenes/Basilic_courtyard/enemy.scene",
-			"data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
-			"data/scenes/Basilic_courtyard/test_instancing.scene",
-			"data/scenes/Basilic_courtyard/buttons.scene",
-			"data/scenes/Basilic_courtyard/capsules.scene",
-			"data/scenes/Basilic_courtyard/BC_mezquita.scene",
-			"data/scenes/Basilic_courtyard/BC_alminares.scene",
-			"data/scenes/Basilic_courtyard/BC_paredes.scene",
-			"data/scenes/BC_arcos.scene",
-			"data/scenes/BC_andamios.scene",
-			"data/scenes/BC_coberturas.scene",
-			"data/scenes/BC_containers.scene",
-			"data/scenes/BC_props.scene",
-			"data/scenes/BC_cables.scene",
-			"data/scenes/BC_tubos.scene",
-			"data/scenes/BC_capsulas.scene",
-			"data/scenes/BC_neones.scene",
-			"data/scenes/BC_maderas.scene",
-			"data/scenes/Basilic_courtyard/BC_fuente.scene",
-			"data/scenes/suelo_mezquita.scene",
-			"data/scenes/Basilic_courtyard/almibars.scene",
-			"data/scenes/bc_corridor.scene",
-			"data/scenes/bc_corridor_logic.scene",
-			"data/scenes/Basilic_courtyard/BC_trigger_victory.scene",
-			"data/scenes/Basilic_courtyard/bc_capsule_cable.scene"
-		]
-	},
+  "scene_basilic_courtyard": {
+    "static_data": {
+      "initial_script": "basilic_courtyard",
+      "navmesh": "data/navmeshes/basilic_courtyard.bin",
+      "exposure": 1.51,
+      "ambient": 0.05,
+      "gamma": 0.92,
+      "tone_mapping": 0.59,
+      "shadow_intensity": 0,
+      "ground_fog_density": 0.061,
+      "env_fog_density": 0.083,
+      "shadow_color": "0.0 0.0 0.0",
+      "ground_fog": "0.26 0.784 0.752",
+      "env_fog": "0.004 0.004 0.043"
+    },
+    "persistent_scenes": [
+      "data/scenes/Basilic_courtyard/_player.scene",
+      "data/scenes/_main_cameras.scene"
+    ],
+    "scene_group": [
+      "data/scenes/basiliclights.scene",
+      "data/scenes/Basilic_courtyard/enemy.scene",
+      "data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene",
+      "data/scenes/Basilic_courtyard/test_instancing.scene",
+      "data/scenes/Basilic_courtyard/buttons.scene",
+      "data/scenes/Basilic_courtyard/capsules.scene",
+      "data/scenes/Basilic_courtyard/BC_mezquita.scene",
+      "data/scenes/Basilic_courtyard/BC_alminares.scene",
+      "data/scenes/Basilic_courtyard/BC_paredes.scene",
+      "data/scenes/BC_arcos.scene",
+      "data/scenes/BC_andamios.scene",
+      "data/scenes/BC_coberturas.scene",
+      "data/scenes/BC_containers.scene",
+      "data/scenes/BC_props.scene",
+      "data/scenes/BC_cables.scene",
+      "data/scenes/BC_tubos.scene",
+      "data/scenes/BC_capsulas.scene",
+      "data/scenes/BC_neones.scene",
+      "data/scenes/BC_maderas.scene",
+      "data/scenes/Basilic_courtyard/BC_fuente.scene",
+      "data/scenes/suelo_mezquita.scene",
+      "data/scenes/Basilic_courtyard/almibars.scene",
+      "data/scenes/bc_corridor.scene",
+      "data/scenes/bc_corridor_logic.scene",
+      "data/scenes/Basilic_courtyard/BC_trigger_victory.scene",
+      "data/scenes/Basilic_courtyard/bc_capsule_cable.scene"
+    ]
+  },
 	"scene_basilic_interior": {
 		"static_data": {
 			"initial_script": "basilic_interior",

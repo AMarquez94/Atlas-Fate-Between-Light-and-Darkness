@@ -65,6 +65,7 @@ private:
 
 	bool inhibitorAnimationCompleted = false;
 	bool attackAnimationCompleted = false;
+	bool repairedAnimationCompleted = false;
 
     //load
     void loadActions() override;

@@ -112,6 +112,17 @@ void TCompPlayerAnimator::initializeAnimations() {
 	);
 
 	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::ATTACK_MIMETIC,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"attack_mimetic",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::DEATH,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
@@ -346,6 +357,48 @@ void TCompPlayerAnimator::initializeAnimations() {
 		EAnimationType::CYCLIC,
 		EAnimationSize::SINGLE,
 		"cinematic_walk",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CINEMATIC_LISTEN_CROUCH,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"cinematic_listen_crouch",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CINEMATIC_LISTEN_IDLE,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"cinematic_listen_idle",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CINEMATIC_HARD_POSE,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"cinematic_hard_land_pose",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CINEMATIC_HARD_POSE_LOOKING,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"cinematic_hard_land_pose_looking",
 		"",
 		1.0f,
 		1.0f,

@@ -25,6 +25,7 @@ public:
         CINEMATIC_CROUCH_WALK,
         CINEMATIC_FALLSM,
         CINEMATIC_INHIBITOR,
+		CINEMATIC_CAPSULES,
         NUM_STATES };
 
     bool enabledPlayerAI;
@@ -55,12 +56,18 @@ public:
     BTNode::ERes actionAnimationWalk(float dt);
     BTNode::ERes actionAnimationCrouch(float dt);
     BTNode::ERes actionAnimationIdle(float dt);
+	BTNode::ERes actionAnimationIdleListen(float dt);
     BTNode::ERes actionStartSM(float dt);
+	BTNode::ERes actionStartFallSM(float dt);
     BTNode::ERes actionAnimationSM(float dt);
     BTNode::ERes actionEndSM (float dt);
     BTNode::ERes actionAnimationInhibitorMiddle(float dt);
     BTNode::ERes actionAnimationInhibitorFinnish(float dt);
-    BTNode::ERes actionAnimationStandingCrouch(float dt);
+	BTNode::ERes actionAnimationStandingCrouch(float dt);
+	BTNode::ERes actionAnimationStandingHardPose(float dt);
+	BTNode::ERes actionAnimationStandingHardPoseLooking(float dt);
+	BTNode::ERes actionAnimationStandingHardLand(float dt);
+	BTNode::ERes actionAnimationStandingCrouchListen(float dt);
     BTNode::ERes actionAnimationAttack(float dt);
     BTNode::ERes actionWaitAttack(float dt);
     BTNode::ERes actionWait(float dt);
@@ -79,8 +86,11 @@ public:
     BTNode::ERes actionAnimationRun(float dt);
 
     BTNode::ERes actionResetTimersCinematicWalkFall(float dt);
+	BTNode::ERes actionResetTimersCinematicWalkFall2(float dt);
     BTNode::ERes actionResetTimersBeforeSMCinematicFallSM(float dt);
-    BTNode::ERes actionResetTimersInhibitorCinematic(float dt);
+	BTNode::ERes actionResetTimersInhibitorCinematic(float dt);
+	BTNode::ERes actionResetTimersInhibitorCinematic2(float dt);
+	BTNode::ERes actionResetTimersCapsuleCinematic(float dt);
     BTNode::ERes actionSlowMotionCinematicFallSM(float dt);
     BTNode::ERes actionResetTimersCinematicFallSM(float dt);
     BTNode::ERes actionCrouchWalk(float dt);
@@ -106,6 +116,7 @@ public:
     bool conditionCinematicWalkFall(float dt);
     bool conditionCinematicFallSM(float dt);
     bool conditionCinematicInhibitor(float dt);
+	bool conditionCinematicCapsules(float dt);
 
     bool conditionIsLanded(float dt);
 
