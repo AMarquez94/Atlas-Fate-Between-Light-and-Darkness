@@ -336,3 +336,29 @@ float4 PS_HologramScreen(
 	
 	return albedo * color * scan * albedo.a;
 }
+
+float4 PS_TV(  
+	float4 Pos       : SV_POSITION
+  , float3 iNormal : NORMAL0
+  , float4 iTangent : NORMAL1
+  , float2 iTex0 : TEXCOORD0
+  , float2 iTex1 : TEXCOORD1
+  , float3 iWorldPos : TEXCOORD2
+  ): SV_Target0
+{
+  // Noise wave, for each pixel adding a random noise on given position
+  float noise = max(0.0, snoise(float2(global_world_time, iTex0.y * 0.3)) - 0.3) * (1.0 / 0.7);
+  noise = noise + (snoise(float2(global_world_time*10.0, iTex0.y * 2.4)) - 0.5) * 0.15;
+    
+  // Noise displaces the horizontal coordinate per pixel
+  float xpos = iTex0.x - noise * noise * 0.15;
+	float4 color = txAlbedo.Sample(samLinear, float2(xpos, iTex0.y));
+    
+  // Mix in some random interference for lines
+	float shift_itex = iTex0.y * global_world_time;
+	float rand_interference = rand(float2(shift_itex, shift_itex));
+  float3 t_color = lerp(color.xyz, float3(rand_interference, rand_interference, rand_interference), noise * 0.8).xyz;
+
+  // Shift green/blue channels (using the red channel)
+  return lerp(float4(t_color,1), txAlbedo.Sample(samLinear, float2(xpos + noise * 0.05, iTex0.y)).g, 0.25) * obj_color;
+}

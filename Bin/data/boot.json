@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_zone_a",
+	"default_scene": "scene_basilic_interior",
 	"scene_main_menu": {
 		"static_data": {
 			"initial_script": "main_menu",
