@@ -93,18 +93,13 @@ function onTriggerEnter_Trigger_Inhibitor_Cinematic_player()
 end
 
 function intro_inhibitor_cinematic()
-	setCinematicPlayerState(true, "inhibitor_cinematic", "");
-	blendInCamera("Camera_Cinematic_Inhibitor_Patrol" ,0,"cinematic","");
-	--move player to patrol and orientate cameras
-	player = getEntityByName("The Player");
-	e_player = toEntity(player);
-	patrol_cinematic = getEntityByName("Patrol_Cinematic_Inhibitor");
-	e_patrol_cinematic = toEntity(patrol_cinematic);
-	t_patrol = toTransform(e_patrol_cinematic:getCompByName("transform"));
-	t_player = toTransform(e_player:getCompByName("transform"));
-	patrol_pos = t_patrol:getPosition();
-	t_player:lookAt(t_player:getPosition(), VEC3(patrol_pos.x, 0, patrol_pos.z));
+	move("The Player", VEC3(-19, 7, -33.5),VEC3(-19, 7, -35.5));
 	resetMainCameras();
+
+	setCinematicPlayerState(true, "inhibitor_cinematic", "");
+	blendInCamera("Camera_Cinematic_Inhibitor_1" ,0,"cinematic","");
+
+
 	--hide tutorial while in cinematic
 	e_tutorial_player = toEntity(getEntityByName("Tutorial Player"));
 	render_tutorial_player = toRender(e_tutorial_player:getCompByName("render"));
@@ -117,10 +112,18 @@ function intro_inhibitor_cinematic()
 	render_tutorial_weapon_right.visible = false;
 	render_inhibitor_sign.visible = false;	
 	--end
-	execScriptDelayed("setCinematicPlayerState(false, \"\")", 3.5);
-	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Inhibitor_Patrol_End\",0.5,\"cinematic\", \"cubicinout\")", 1.4);	
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Inhibitor_Patrol\",0)", 2.0);
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Inhibitor_Patrol_End\",0.5)", 3.0);
+
+
+	--execScriptDelayed("setCinematicPlayerState(false, \"\")", 3.5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Inhibitor_2\",1.5,\"cinematic\", \"expoin\")", 0.5);	
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Inhibitor_1\",0)", 2.01);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Inhibitor_2\",0)", 5.25);
+
+	execScriptDelayed("setInBlackScreen(0.5);",4.5);
+	execScriptDelayed("setOutBlackScreen(0.25);",5.5);
+	execScriptDelayed("move(\"The Player\", VEC3(-20.5, 0, -35.278),VEC3(-21.95, 0, -36.118));", 5.25);
+
+
 	execScriptDelayed("render_tutorial_player.visible = true", 3.5);
 	execScriptDelayed("render_tutorial_weapon_left.visible = true", 3.5);
 	execScriptDelayed("render_tutorial_weapon_right.visible = true", 3.5);
@@ -138,7 +141,7 @@ function onTriggerEnter_Trigger_Capsules_Cinematic_player()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_1\",0.0)", 5);	
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_4\",10.0,\"cinematic\", \"\")", 5);	
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_3\",0.0,\"cinematic\", \"\")", 5);	
-	--blendInCamera("Camera_Cinematic_Capsules", 1.5, "cinematic", "cubicinout");
+
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_3\",0)", 12);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_4\",0)", 12);
 

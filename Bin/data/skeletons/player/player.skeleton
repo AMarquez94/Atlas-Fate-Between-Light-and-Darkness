@@ -80,6 +80,8 @@
 		{ "name" : "hit_front"},
 		{ "name" : "metralla_start"},
 		{ "name" : "attack_mimetic"},
+		{ "name" : "cinematic_hard_land_pose"},
+		{ "name" : "cinematic_hard_land_pose_looking"},
 		{ "name" : "metralla_middle"},
 		{ "name" : "metralla_finish"},
 		{ "name" : "cinematic_walk"},

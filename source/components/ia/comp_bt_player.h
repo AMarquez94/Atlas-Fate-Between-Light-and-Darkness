@@ -63,7 +63,10 @@ public:
     BTNode::ERes actionEndSM (float dt);
     BTNode::ERes actionAnimationInhibitorMiddle(float dt);
     BTNode::ERes actionAnimationInhibitorFinnish(float dt);
-    BTNode::ERes actionAnimationStandingCrouch(float dt);
+	BTNode::ERes actionAnimationStandingCrouch(float dt);
+	BTNode::ERes actionAnimationStandingHardPose(float dt);
+	BTNode::ERes actionAnimationStandingHardPoseLooking(float dt);
+	BTNode::ERes actionAnimationStandingHardLand(float dt);
 	BTNode::ERes actionAnimationStandingCrouchListen(float dt);
     BTNode::ERes actionAnimationAttack(float dt);
     BTNode::ERes actionWaitAttack(float dt);
@@ -85,7 +88,9 @@ public:
     BTNode::ERes actionResetTimersCinematicWalkFall(float dt);
 	BTNode::ERes actionResetTimersCinematicWalkFall2(float dt);
     BTNode::ERes actionResetTimersBeforeSMCinematicFallSM(float dt);
-    BTNode::ERes actionResetTimersInhibitorCinematic(float dt);
+	BTNode::ERes actionResetTimersInhibitorCinematic(float dt);
+	BTNode::ERes actionResetTimersInhibitorCinematic2(float dt);
+	BTNode::ERes actionResetTimersCapsuleCinematic(float dt);
     BTNode::ERes actionSlowMotionCinematicFallSM(float dt);
     BTNode::ERes actionResetTimersCinematicFallSM(float dt);
     BTNode::ERes actionCrouchWalk(float dt);

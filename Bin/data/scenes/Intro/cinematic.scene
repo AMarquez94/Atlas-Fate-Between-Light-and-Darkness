@@ -25,7 +25,7 @@
       },
       "collider": {
         "shape": "box",
-        "size": "6.62319 0.0831085 6.1289",
+        "size": "6.62319 10 6.1289",
         "is_trigger": true
       },
       "abs_aabb": true,
@@ -176,126 +176,22 @@
   },
   {
     "entity": {
-      "name": "Camera_Cinematic_Inhibitor_Patrol",
+      "name": "Camera_Cinematic_Inhibitor_1",
       "transform": {
-        "pos": "-23.733 2.941 -39.651",
-        "rotation": "0.156680 -0.244306 0.040035 0.956119"
+        "pos": "-18.7 0.652 -34.9",
+        "rotation": "0.04374 -0.2342 0.0105 0.9711"
       },
-      "camera": {
-        "fov": 70,
-        "z_near": 0.01,
-        "z_far": 1000
-      },
-      "render_ao": {
-        "enabled": true,
-        "max_steps": 1,
-        "gauss_filter": true
-      },
-      "render_blur": {
-        "enabled": false,
-        "global_distance": 0.1,
-        "gauss_filter": true
-      },
-      "motion_blur": {
-        "enabled": true
-      },
-      "render_bloom": {
-        "enabled": true,
-        "max_steps": 4,
-        "rt_name": "Bloom"
-      },
-      "color_grading": {
-        "enabled": true,
-        "amount": 0.25,
-        "lut": "data/textures/lut/lut5.dds"
-      },
-      "chromatic_aberration": {
-        "enabled": true
-      },
-      "fog": {
-        "enabled": true
-      },
-      "antialiasing": {
-        "enabled": true
-      },
-      "vignette": {
-        "enabled": true
-      },
-      "render_flares": {
-        "enabled": true,
-        "max_steps": 4
-      },
-      "render_outlines": {
-        "enabled": true
-      },
-      "render_environment": {
-        "enabled": true
-      },
-      "render_focus": {
-        "enabled": false
-      }
+      "prefab": "data/prefabs/camera_player.prefab"
     }
   },
   {
     "entity": {
-      "name": "Camera_Cinematic_Inhibitor_Patrol_End",
+      "name": "Camera_Cinematic_Inhibitor_2",
       "transform": {
-        "pos": "-19.32 1.9 -40",
-        "rotation": "0.070597 -0.223259 0.016214 0.972064"
+        "pos": "-18.7 0.652 -34.9",
+        "rotation": "0.0383 -0.5213 0.0234 0.8521"
       },
-      "camera": {
-        "fov": 70,
-        "z_near": 0.01,
-        "z_far": 1000
-      },
-      "render_ao": {
-        "enabled": true,
-        "max_steps": 1,
-        "gauss_filter": true
-      },
-      "render_blur": {
-        "enabled": false,
-        "global_distance": 0.1,
-        "gauss_filter": true
-      },
-      "motion_blur": {
-        "enabled": true
-      },
-      "render_bloom": {
-        "enabled": true,
-        "max_steps": 4,
-        "rt_name": "Bloom"
-      },
-      "color_grading": {
-        "enabled": true,
-        "amount": 0.25,
-        "lut": "data/textures/lut/lut5.dds"
-      },
-      "chromatic_aberration": {
-        "enabled": true
-      },
-      "fog": {
-        "enabled": true
-      },
-      "antialiasing": {
-        "enabled": true
-      },
-      "vignette": {
-        "enabled": true
-      },
-      "render_flares": {
-        "enabled": true,
-        "max_steps": 4
-      },
-      "render_outlines": {
-        "enabled": true
-      },
-      "render_environment": {
-        "enabled": true
-      },
-      "render_focus": {
-        "enabled": false
-      }
+      "prefab": "data/prefabs/camera_player.prefab"
     }
   }
 ]

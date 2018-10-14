@@ -24,6 +24,8 @@
 		{ "name" : "cinematic_listen_crouch"},
 		{ "name" : "cinematic_listen_idle"},
 		{ "name" : "touch_enemy"},
+		{ "name" : "cinematic_hard_land_pose"},
+		{ "name" : "cinematic_hard_land_pose_looking"},
 		{ "name" : "sm_enter_fall"},
 		{ "name" : "sonda_normal"},
 		{ "name" : "sonda_crouch"},

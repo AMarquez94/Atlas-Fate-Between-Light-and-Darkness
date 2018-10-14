@@ -382,6 +382,28 @@ void TCompPlayerAnimator::initializeAnimations() {
 		1.0f,
 		false
 	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CINEMATIC_HARD_POSE,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"cinematic_hard_land_pose",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CINEMATIC_HARD_POSE_LOOKING,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"cinematic_hard_land_pose_looking",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
 	
 }
 
