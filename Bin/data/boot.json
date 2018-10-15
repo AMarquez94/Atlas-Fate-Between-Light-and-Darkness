@@ -186,6 +186,7 @@
 			"data/scenes/Coliseo/camera.scene",
 			"data/scenes/Coliseo/coliseo_particles.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
+			"data/scenes/col_pantallas_distritos.scene",
 			"data/scenes/Coliseo/coliseo_structures.scene"
 		]
 	},
