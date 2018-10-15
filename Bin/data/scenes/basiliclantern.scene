@@ -1,0 +1,173 @@
+[
+  {
+    "entity":
+    {
+      "name": "basiliclantern"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_littlespotlight001"
+      ,
+      "prefab": "data/prefabs/littlespotlight.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-14.3836 2.51214 -389.63"
+        ,
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_spotlight001"
+      ,
+      "prefab": "data/prefabs/foco_brian.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-17.2659 -1.59961e-05 -365.949"
+        ,
+        "rotation": "0.0 0.707105 0.0 -0.707108"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_spotlight002"
+      ,
+      "prefab": "data/prefabs/foco_brian.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-20.2572 -1.579e-05 -361.233"
+        ,
+        "rotation": "0.0 -0.939692 0.0 0.342022"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_spotlight003"
+      ,
+      "prefab": "data/prefabs/foco_brian.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-19.6522 -1.6392e-05 -375.005"
+        ,
+        "rotation": "0.0 0.60876 0.0 -0.793355"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_spotlight004"
+      ,
+      "prefab": "data/prefabs/foco_brian.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-15.5193 -1.45606e-05 -333.107"
+        ,
+        "rotation": "0.0 0.342019 0.0 -0.939693"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_spotlight005"
+      ,
+      "prefab": "data/prefabs/foco_brian.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-17.734 -1.4665e-05 -335.495"
+        ,
+        "rotation": "0.0 0.642786 0.0 -0.766046"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_spotlight006"
+      ,
+      "prefab": "data/prefabs/foco_brian.prefab"
+      ,
+      "transform":
+      {
+        "pos": "22.8707 -1.51305e-05 -346.146"
+        ,
+        "rotation": "0.0 -0.819153 0.0 -0.573575"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_spotlight007"
+      ,
+      "prefab": "data/prefabs/foco_brian.prefab"
+      ,
+      "transform":
+      {
+        "pos": "23.9713 -1.48709e-05 -340.207"
+        ,
+        "rotation": "0.0 -0.642789 0.0 -0.766043"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_spotlight008"
+      ,
+      "prefab": "data/prefabs/foco_brian.prefab"
+      ,
+      "transform":
+      {
+        "pos": "18.9222 -1.45004e-05 -331.73"
+        ,
+        "rotation": "0.0 -1.75635e-06 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_spotlight009"
+      ,
+      "prefab": "data/prefabs/foco_brian.prefab"
+      ,
+      "transform":
+      {
+        "pos": "26.4894 -1.45365e-05 -332.556"
+        ,
+        "rotation": "0.0 -0.642789 0.0 -0.766043"
+      }
+    }
+  }
+]

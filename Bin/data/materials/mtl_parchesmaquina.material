@@ -1,0 +1,18 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_parchesmaquina_alb.dds"
+    ,
+    "metallic": "data/textures/tx_parchesmaquina_met.dds"
+    ,
+    "roughness": "data/textures/tx_cablesgrandes_rgh.dds"
+    ,
+    "normal": "data/textures/tx_parchesmaquina_nml.dds"
+    ,
+    "emissive": "data/textures/tx_parchesmaquina_emi.dds"
+    ,
+    "aocclusion": "data/textures/tx_parchesmaquina_ao.dds"
+  }
+}

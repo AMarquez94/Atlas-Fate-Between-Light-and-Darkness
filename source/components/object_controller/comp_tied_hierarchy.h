@@ -13,6 +13,7 @@ struct TCompTiedHierarchy : public CTransform, public TCompBase {
     CHandle     h_parent;
     VEC3        orig_pos;
     VEC3        orig_scale = VEC3::One;
+    VEC3        orig_rot = VEC3::Zero;
 
     void setParentEntity(CHandle new_h_parent);
     void onGroupCreated(const TMsgHierarchyGroupCreated& msg);

@@ -184,6 +184,8 @@ bool CModuleSceneManager::loadPartialScene(const std::string & name)
         auto it = _scenes.find(name);
         if (it != _scenes.end())
         {
+            CModuleGameManager gameManager = CEngine::get().getGameManager();
+            gameManager.deleteCheckpoint();
 
             unLoadActiveScene(true);
 

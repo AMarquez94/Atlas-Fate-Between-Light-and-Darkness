@@ -6,7 +6,7 @@ function onGameStart()
 	particles = getParticles();
 	addAllFunctionsToConsole();
 	
-	cinematicsEnabled = true;
+	cinematicsEnabled = false;
 	
 	intro_intro_cinematicExecuted = false;
 	intro_inhibitor_cinematicExecuted = false;
@@ -15,6 +15,9 @@ function onGameStart()
 	cinematicCorridorToBasilicExecuted = false;
 	cinematic_enter_zone_aExecuted = false;
 	cinematic_tower_activatedExecuted = false;
+
+	col_trigger_district_7Executed = false;
+	zone_a_door_activated = false;
 end
 
 --Add all funtions to the console in order to have autocomplete. TODO: Only add custom functions

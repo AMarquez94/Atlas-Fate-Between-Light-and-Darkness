@@ -1,0 +1,40 @@
+[
+  {
+    "entity":
+    {
+      "name": "zonea_triggers"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "zonea_trigger_smartass"
+      ,
+      "transform":
+      {
+        "pos": "-38.242 0.0 -137.861"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "is_trigger" :true
+        ,
+        "size": "4.50371 4.27351 5.2514"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

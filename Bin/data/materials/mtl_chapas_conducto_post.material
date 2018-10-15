@@ -1,0 +1,11 @@
+{
+	"technique": "pbr_post_outline.tech",
+	"shadows": true,
+	"textures": {
+		"albedo": "data/textures/tx_chapa_alb.dds",
+		"roughness": "data/textures/tx_chapa_rgh.dds",
+		"normal": "data/textures/tx_chapa_nml.dds",
+		"height": "data/textures/tx_chapa_hgt.dds",
+		"aocclusion": "data/textures/tx_chapa_ao.dds"
+	}
+}
