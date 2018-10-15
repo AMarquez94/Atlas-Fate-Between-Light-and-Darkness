@@ -665,6 +665,7 @@ data/materials/mtl_coberturas.material
 data/colliders/collider_barril.collider
 data/scenes/Coliseo/col_capsule_cable.scene
 data/meshes/COL_Capsules_Cable.mesh
+data/scenes/col_sub_triggers.scene
 data/scenes/Coliseo/_player.scene
 data/prefabs/player.prefab
 data/skeletons/player/body.mesh

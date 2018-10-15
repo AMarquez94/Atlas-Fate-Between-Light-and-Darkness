@@ -68,7 +68,11 @@ function closeIntroDoor()
 end
 
 function cinematicCorridorToZoneA()
-
+	subClear();
+	execScriptDelayed("activateSubtitles(17);",0.5);
+	execScriptDelayed("deactivateSubtitles();", 10);
+	execScriptDelayed("activateSubtitles(18);",18);
+	execScriptDelayed("deactivateSubtitles();", 24);
 	setInBlackScreen(0.25);
 	execScriptDelayed("setOutBlackScreen(0.25);",0.3);
 	execScriptDelayed("move(\"The Player\", VEC3(0, 0.989,22),VEC3(0, 0.989,21));",0.27);
@@ -86,6 +90,17 @@ function cinematicCorridorToZoneA()
 	setCinematicPlayerState(true, "inhibitor_capsules", "");
 	execScriptDelayed("setCinematicPlayerState(false, \"\")", 18);
 	cinematicCorridorToZoneAExecuted = true;
+end
+
+function onTriggerEnter_col_trigger_district_7_player()
+	if(not col_trigger_district_7Executed) then
+		subClear();
+		activateSubtitles(19);
+		execScriptDelayed("deactivateSubtitles();", 7);
+		col_trigger_district_7Executed = true;
+	end
+	temp = getEntityByName("col_trigger_district_7");
+	temp:destroy();
 end
 
 function onTriggerEnter_COL_trigger_corridor_zonea_player()

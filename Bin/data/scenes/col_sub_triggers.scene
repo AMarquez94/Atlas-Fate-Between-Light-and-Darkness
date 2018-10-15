@@ -1,0 +1,40 @@
+[
+  {
+    "entity":
+    {
+      "name": "col_sub_triggers"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "col_trigger_district_7"
+      ,
+      "transform":
+      {
+        "pos": "23.2605 0.0 0.230643"
+        ,
+        "rotation": "0.0 0.0871557 0.0 -0.996195"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "is_trigger" : true
+        ,
+        "size": "5.59646 3.32424 7.37371"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

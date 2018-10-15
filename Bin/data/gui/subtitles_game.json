@@ -150,6 +150,10 @@
 					{
 						"subtitle_num" : 34,
 						"texture_src" : "data/textures/gui/subtitulos/34.dds"
+					},
+					{
+						"subtitle_num" : 35,
+						"texture_src" : "data/textures/gui/subtitulos/35.dds"
 					}
 				]
 			}

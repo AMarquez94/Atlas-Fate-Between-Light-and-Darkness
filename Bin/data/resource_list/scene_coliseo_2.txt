@@ -32,6 +32,7 @@ data/textures/tx_terminal_rgh.dds
 data/materials/mtl_terminal.material
 data/materials/mtl_terminal_post.material
 data/colliders/collider_mesh_terminal.collider
+data/scenes/col_sub_triggers.scene
 data/scenes/COL_pared_suelo.scene
 data/meshes/COL_mesh_pared.mesh
 data/textures/tx_mezquita_alb.dds

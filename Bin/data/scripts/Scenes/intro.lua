@@ -219,7 +219,11 @@ function onTriggerEnter_intro_trigger_patrol_care_player()
 end
 
 function onTriggerEnter_intro_trigger_patrol_story_player()
-
+	subClear();
+	activateSubtitles(35);
+	execScriptDelayed("deactivateSubtitles();", 9);
+	temp = getEntityByName("intro_trigger_patrol_story");
+	temp:destroy();
 end
 
 -- # Trigger tutorials # --
