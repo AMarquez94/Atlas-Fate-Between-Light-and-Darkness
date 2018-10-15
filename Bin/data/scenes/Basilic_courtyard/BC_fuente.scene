@@ -37,9 +37,8 @@
       ,
       "transform":
       {
-        "pos": "7.36455 5.22082 -358.685"
-        ,
-        "rotation": "0.0 -1.0 0.0 0.0"
+        "pos": "5.53932 3.9 -360.562",
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
       ,
       "render":
@@ -56,9 +55,9 @@
       ,
       "collider":
       {
-        "shape": "convex"
+        "shape": "mesh"
         ,
-        "name": "data/colliders/collider_BC_fuente_arco_low.collider"
+        "name": "data/colliders/collider_BC_fuente.collider"
       }
       ,
       "abs_aabb": true
@@ -74,7 +73,7 @@
       ,
       "transform":
       {
-        "pos": "5.52519 11.4353 -360.484"
+        "pos": "5.52519 11.2 -360.484"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -111,7 +110,7 @@
       ,
       "transform":
       {
-        "pos": "5.52519 11.3588 -360.521"
+        "pos": "5.52519 11.1 -360.521"
         ,
         "rotation": "0.339481 -0.255921 0.607764 -0.67073"
       }
@@ -127,13 +126,7 @@
           ]
         }
       ],
-      "rigid_anim" : true,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_BC_fuente_anillo_ext_low.collider"
-      }
+      "rigid_anim" : true
       ,
       "abs_aabb": true
       ,
@@ -148,7 +141,7 @@
       ,
       "transform":
       {
-        "pos": "5.52519 11.3588 -360.521"
+        "pos": "5.52519 11.1 -360.521"
         ,
         "rotation": "0.13869 -0.195781 -0.168668 -0.956026"
       }
@@ -165,13 +158,7 @@
         }
       ]
       ,
-      "rigid_anim" : true,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_BC_fuente_anillo_int_low.collider"
-      }
+      "rigid_anim" : true
       ,
       "abs_aabb": true
       ,

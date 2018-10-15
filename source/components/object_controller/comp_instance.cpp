@@ -39,7 +39,8 @@ void TCompInstance::onMsgEntityCreated(const TMsgEntityCreated& msg) {
 
 /* Update the world matrix of the given instance */
 void TCompInstance::update(float dt) {
-
-    TCompTransform * self_transform = get<TCompTransform>();
-    EngineInstancing.updateInstance(_instance_mesh, _index, self_transform->asMatrix());
+    if(CHandle(this).getOwner().isValid()) {
+        TCompTransform * self_transform = get<TCompTransform>();
+        EngineInstancing.updateInstance(_instance_mesh, _index, self_transform->asMatrix());
+    }
 }

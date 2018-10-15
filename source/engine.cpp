@@ -17,7 +17,8 @@ CEngine& CEngine::get() {
 }
 
 CEngine::CEngine()
-	: _module_render("render")
+	: _module_file("files")
+    , _module_render("render")
 	, _module_entities("entities")
 	, _module_ia("ia")
 	, _module_animations("animations")
@@ -49,6 +50,7 @@ bool CEngine::start() {
 
     //static CModuleTestInstancing module_test_instancing("test_instancing");
 
+	_modules.registerSystemModule(&_module_file);
 	_modules.registerSystemModule(&_module_render);
 	_modules.registerSystemModule(&_module_entities);
 	_modules.registerSystemModule(&_module_ia);
@@ -61,12 +63,14 @@ bool CEngine::start() {
 	_modules.registerSystemModule(&_module_navmesh);
 	_modules.registerSystemModule(&_module_game_console);
 	_modules.registerSystemModule(&_module_gui);
-	_modules.registerSystemModule(&_module_logic);          //Always last to start the ongamestarted event from here
     _modules.registerSystemModule(&_module_scene_manager);
     _modules.registerSystemModule(&_module_instancing);
     _modules.registerSystemModule(&_module_debug);
     _modules.registerSystemModule(&_module_particles);
 	_modules.registerSystemModule(&_module_lerp);
+
+    //IMPORTANT: ALWAYS LAST to start the ongamestarted event from here
+	_modules.registerSystemModule(&_module_logic); 
 
 	_modules.registerGameModule(&module_splash);
 	_modules.registerGameModule(&module_game_manager);
@@ -87,6 +91,7 @@ bool CEngine::stop() {
 
 	bool ok = true;
 	ok &= _modules.stop();
+    exit(0);
 	return ok;
 }
 

@@ -20,7 +20,7 @@
       {
         "pos": "21.6944 59.0157 61.4632"
         ,
-        "lookat": "-21.195 -13.5905 -62.5783"
+        "lookat": "-35.6204 -13.5905 -62.5783"
       }
       ,
       "light_dir":
@@ -37,7 +37,7 @@
         ,
         "z_far": 149.991
         ,
-        "ortosize": 70.0
+        "ortosize": 100.0
         ,
         "casts_shadows": true
         ,
@@ -56,7 +56,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor", "dir_light"
       ]
     }
   }

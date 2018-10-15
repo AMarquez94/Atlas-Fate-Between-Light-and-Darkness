@@ -1,7 +1,7 @@
 {
 	"system": {
 		"duration": 2.55,
-		"looping": true,
+		"looping": false,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
 		"start_speed": 0.2,
@@ -19,7 +19,7 @@
 		"rate_distance": 0.0,
 		"variation" : 0.0,
 		"bursts" : [    
-			[0, 50, 1, 0.01]			
+			[0, 50, 1, 0.0]			
 		] 
 	},	
 	"shape": {
@@ -70,7 +70,7 @@
     ]
   },
   "color" : {
-    "opacity" : 0.4,
+    "opacity" : 0.2,
     "colors" : [
       [0.0, "0.2 0.2 0.2 0.0"],
 			[0.15, "0.2 0.2 0.2 0.7"],

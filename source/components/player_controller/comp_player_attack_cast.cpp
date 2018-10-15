@@ -38,7 +38,7 @@ void TCompPlayerAttackCast::load(const json& j, TEntityParseContext& ctx) {
 
     pxFilterData.word0 = FilterGroup::Button;
     PxPlayerButtonInteractQueryFilterData.data = pxFilterData;
-    PxPlayerButtonInteractQueryFilterData.flags = physx::PxQueryFlag::eSTATIC;
+    //PxPlayerButtonInteractQueryFilterData.flags = physx::PxQueryFlag::eSTATIC;
 
     EngineGUI.enableWidget("press_button_e", false);
     EngineGUI.enableWidget("press_button_a", false);
@@ -206,13 +206,15 @@ const std::vector<CHandle> TCompPlayerAttackCast::getButtonsInRange() {
                 hitCollider.fromVoidPtr(hits[i].actor->userData);
                 if (hitCollider.isValid()) {
                     CHandle button = hitCollider.getOwner();
-                    CEntity* e = button;
-                    //std::string name = e->getName();
-                    TCompCollider* collider_button = e->get<TCompCollider>();
+                    if (button.isValid()){
+                        CEntity* e = button;
+                        std::string name = e->getName();
+                        TCompCollider* collider_button = e->get<TCompCollider>();
 
-                    if (button.isValid() && collider_button->config->group == FilterGroup::Button) {
-                        //dbg("Name of the hit nº %d : %s \n", i, name.c_str());
-                        buttons_in_range.push_back(button);
+                        if (button.isValid() && collider_button->config->group == FilterGroup::Button) {
+                            //dbg("Name of the hit nº %d : %s \n", i, name.c_str());
+                            buttons_in_range.push_back(button);
+                        }
                     }
                 }
             }
@@ -247,6 +249,9 @@ CHandle TCompPlayerAttackCast::getClosestButtonInRange() {
 
 void TCompPlayerAttackCast::update(float dt)
 {
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     TCompTempPlayerController* player_controller = get<TCompTempPlayerController>();
     bool isMerged = player_controller->isMerged;
     bool isDead = player_controller->isDead();

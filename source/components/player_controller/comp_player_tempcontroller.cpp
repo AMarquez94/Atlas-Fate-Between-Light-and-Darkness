@@ -113,6 +113,9 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 /* Player controller main update */
 void TCompTempPlayerController::update(float dt) {
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     TCompAIPlayer* playerAI = get<TCompAIPlayer>();
 
     if (!paused && !isConsoleOn && !isInNoClipMode && !playerAI->enabledPlayerAI) {
@@ -151,7 +154,10 @@ void TCompTempPlayerController::playPlayerStep(bool left)
     TCompAudio* my_audio = get<TCompAudio>();
     if (my_group) {
         CHandle foot = left ? my_group->getHandleByName("left_foot") : my_group->getHandleByName("right_foot");
-        EngineParticles.launchSystem("data/particles/def_amb_ground_step.particles", foot);
+        CEntity* e_foot = foot;
+        TCompTransform* weapon_right_pos = e_foot->get<TCompTransform>();
+        VEC3 init_pos = weapon_right_pos->getPosition();
+        EngineParticles.launchDynamicSystem("data/particles/def_amb_ground_step.particles", init_pos, true);
     }
     my_audio->playEvent("event:/Sounds/Player/Steps/NormalSteps", false);
 }
@@ -161,7 +167,10 @@ void TCompTempPlayerController::playLandParticles(bool left)
     TCompGroup* my_group = get<TCompGroup>();
     if (my_group) {
         CHandle foot = left ? my_group->getHandleByName("left_foot") : my_group->getHandleByName("right_foot");
-        EngineParticles.launchSystem("data/particles/def_amb_ground_hit.particles", CHandle(this).getOwner());
+        CEntity* e_foot = foot;
+        TCompTransform* foot_pos = e_foot->get<TCompTransform>();
+        VEC3 init_pos = foot_pos->getPosition();
+        EngineParticles.launchDynamicSystem("data/particles/def_amb_ground_hit.particles", init_pos, true);
     }
 }
 
@@ -273,14 +282,18 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 
     pxShadowFilterData = new physx::PxFilterData();
     pxShadowFilterData->word0 = c_my_collider->config->group | FilterGroup::Fence;
-    pxShadowFilterData->word1 = FilterGroup::NonCastShadows;
+    pxShadowFilterData->word1 = FilterGroup::NonCastShadows | FilterGroup::Ignore;
 
     pxPlayerFilterData = new physx::PxFilterData();
-    pxPlayerFilterData->word0 = c_my_collider->config->group;
-    pxPlayerFilterData->word1 = FilterGroup::All;
+    pxPlayerFilterData->word0 = c_my_collider->config->group | FilterGroup::Fence | FilterGroup::NonCastShadows;
+    pxPlayerFilterData->word1 = FilterGroup::Ignore;
 
     PxPlayerDiscardQuery = physx::PxQueryFilterData();
+    PxPlayerDiscardQuery = physx::PxQueryFilterData();
     PxPlayerDiscardQuery.data.word0 = FilterGroup::Scenario;
+
+    TCompRigidbody* c_my_rigidbody = get<TCompRigidbody>();
+    c_my_rigidbody->filters.mFilterData = pxPlayerFilterData;
 
     /* Initial reset messages */
     hitPoints = 0;
@@ -379,11 +392,13 @@ void TCompTempPlayerController::onPlayerKilled(const TMsgPlayerDead & msg)
 void TCompTempPlayerController::onPlayerInhibited(const TMsgInhibitorShot & msg)
 {
     if (!isDead() && !isInhibited) {
-        if (!EngineInput.pad().connected) {
-            EngineGUI.enableWidget("inhibited_space", true);
-        }
-        else {
-            EngineGUI.enableWidget("inhibited_y", true);
+        if (!CEngine::get().getGameManager().isCinematicMode) {
+            if (!EngineInput.pad().connected) {
+                EngineGUI.enableWidget("inhibited_space", true);
+            }
+            else {
+                EngineGUI.enableWidget("inhibited_y", true);
+            }
         }
 
         isInhibited = true;
@@ -534,6 +549,9 @@ void TCompTempPlayerController::mergeState(float dt) {
             e_camera->sendMsg(msg);
         }
         dbCameraState = target_name;
+    }
+    else {
+        isMergedInMergeableZone();
     }
 }
 
@@ -852,6 +870,39 @@ void TCompTempPlayerController::stunEnemy()
     }
 }
 
+bool TCompTempPlayerController::isMergedInMergeableZone(){
+
+    TCompTransform* my_pos = get<TCompTransform>();
+    VEC3 origin = my_pos->getPosition() + my_pos->getUp();
+    physx::PxRaycastHit hit;
+    physx::PxQueryFilterData queryfilterdata;
+    physx::PxFilterData filterdata;
+    filterdata.word0 = FilterGroup::Fence;
+    queryfilterdata.data = filterdata;
+
+    if (EnginePhysics.Raycast(origin, -my_pos->getUp(), 1.1f, hit, physx::PxQueryFlag::eSTATIC, queryfilterdata)) {
+        CHandle c_h;
+        c_h.fromVoidPtr(hit.actor->userData);
+        TCompCollider * c_col = c_h;
+        if (c_col->config->group == FilterGroup::Fence && hit.distance > 0.15f) {
+            dbg("HIT DISTANCE %f\n", hit.distance);
+            CEntity* e = CHandle(this).getOwner();
+            TMsgSetFSMVariable notMergeMsg;
+            notMergeMsg.variant.setName("onmerge");
+            notMergeMsg.variant.setBool(false);
+            isMerged = false;
+            e->sendMsg(notMergeMsg);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    else {
+        return false;
+    }
+}
+
 /* Concave test, this determines if there is a surface normal change on concave angles */
 const bool TCompTempPlayerController::concaveTest(void) {
 
@@ -863,13 +914,6 @@ const bool TCompTempPlayerController::concaveTest(void) {
 
     if (EnginePhysics.Raycast(upwards_offset, c_my_transform->getFront(), 0.175f, hit, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery))
     {
-        CHandle col;
-        col.fromVoidPtr(hit.actor->userData);
-        TCompCollider* my_col = col;
-        col = col.getOwner();
-        CEntity *e_col = col;
-        dbg("COLISION CONVEX 2 %s with group %s and mask %s\n", e_col->getName(), my_col->groupName, my_col->maskName);
-
         VEC3 hit_normal = VEC3(hit.normal.x, hit.normal.y, hit.normal.z);
         VEC3 hit_point = VEC3(hit.position.x, hit.position.y, hit.position.z);
         if (hit_normal == c_my_transform->getUp()) return false;
@@ -916,6 +960,7 @@ const bool TCompTempPlayerController::convexTest(void) {
 
         if (hit.distance > .015f && EnginePhysics.gravity.Dot(hit_normal) < .01f)
         {
+
             EnginePhysics.Raycast(upwards_offset, -old_up, 100.f, hit2, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery);
             
             // Little trick to avoid bug.

@@ -22,6 +22,10 @@ void TCompCameraFlyover::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompCameraFlyover::update(float dt)
 {
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     TCompTransform* c_transform = get<TCompTransform>();
     if (!c_transform)
         return;

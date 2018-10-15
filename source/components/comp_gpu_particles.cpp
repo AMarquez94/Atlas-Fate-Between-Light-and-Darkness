@@ -23,6 +23,9 @@ void TCompGPUParticles::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompGPUParticles::update(float dt) {
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     assert(system_instance);
     TCompTransform* c_trans = get<TCompTransform>();
     assert(c_trans);

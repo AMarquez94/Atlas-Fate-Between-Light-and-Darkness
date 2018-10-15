@@ -1,0 +1,50 @@
+[
+  {
+    "entity":
+    {
+      "name": "bc_corridor_entry"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_aux_pared_2"
+      ,
+      "transform":
+      {
+        "pos": "5.26239 -1.41096e-05 -322.79"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/bc_aux_pared_2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_bc_aux_pared_2.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

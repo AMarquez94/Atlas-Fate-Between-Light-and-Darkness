@@ -25,6 +25,7 @@
 		"dynamic_capsule",
 		"shadow_controller",
 		"billboard",
+		"door",
 		"skeleton",
 		"skel_lookat",
 		"bone_tracker",

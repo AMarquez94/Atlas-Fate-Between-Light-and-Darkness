@@ -128,6 +128,7 @@
     <ClCompile Include="components\object_controller\comp_billboard.cpp" />
     <ClCompile Include="components\object_controller\comp_bone_controller.cpp" />
     <ClCompile Include="components\object_controller\comp_button.cpp" />
+    <ClCompile Include="components\object_controller\comp_door.cpp" />
     <ClCompile Include="components\object_controller\comp_inhibitor.cpp" />
     <ClCompile Include="components\object_controller\comp_instance.cpp" />
     <ClCompile Include="components\object_controller\comp_landing.cpp" />
@@ -247,6 +248,7 @@
     <ClCompile Include="modules\module_animations.cpp" />
     <ClCompile Include="modules\module_entities.cpp" />
     <ClCompile Include="modules\system\module_debug.cpp" />
+    <ClCompile Include="modules\system\module_file.cpp" />
     <ClCompile Include="modules\system\module_gui.cpp" />
     <ClCompile Include="modules\module_ia.cpp" />
     <ClCompile Include="modules\module_manager.cpp" />
@@ -379,6 +381,7 @@
     <ClInclude Include="components\object_controller\comp_billboard.h" />
     <ClInclude Include="components\object_controller\comp_bone_controller.h" />
     <ClInclude Include="components\object_controller\comp_button.h" />
+    <ClInclude Include="components\object_controller\comp_door.h" />
     <ClInclude Include="components\object_controller\comp_inhibitor.h" />
     <ClInclude Include="components\object_controller\comp_instance.h" />
     <ClInclude Include="components\object_controller\comp_landing.h" />
@@ -532,6 +535,7 @@
     <ClInclude Include="modules\module_animations.h" />
     <ClInclude Include="modules\module_entities.h" />
     <ClInclude Include="modules\system\module_debug.h" />
+    <ClInclude Include="modules\system\module_file.h" />
     <ClInclude Include="modules\system\module_gui.h" />
     <ClInclude Include="modules\module_ia.h" />
     <ClInclude Include="modules\module_manager.h" />

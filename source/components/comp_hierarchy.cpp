@@ -91,11 +91,14 @@ void TCompHierarchy::setParentEntity(CHandle new_h_parent) {
 
 void TCompHierarchy::update(float dt) {
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     // My parent world transform
     TCompTransform* c_parent_transform = h_parent_transform;
     if (!c_parent_transform)
         return;
-
+		
     // My Sibling comp transform
     TCompTransform* c_my_transform = h_my_transform;
     assert(c_my_transform);

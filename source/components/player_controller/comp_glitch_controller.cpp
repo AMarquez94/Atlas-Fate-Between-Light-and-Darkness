@@ -42,6 +42,9 @@ void TCompGlitchController::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompGlitchController::update(float dt) {
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     // Move this from here on refactor
     cb_postfx.postfx_scan_amount += (dt / fade_time) * fade_multiplier;
     cb_postfx.postfx_scan_amount = Clamp(cb_postfx.postfx_scan_amount, 0.f, 1.f);

@@ -1,0 +1,56 @@
+[{
+		"entity": {
+			"name": "Zone_a_cinematic"
+		}
+	},
+	{
+    "entity": {
+      "name": "Camera_Cinematic_ZoneA_Tower",
+      "transform": {
+        "pos": "-95.96 7.29 -124.026",
+        "rotation": "0.0137 -0.9271 0.0343 0.3729"
+      },
+       "prefab": "data/prefabs/camera_player.prefab"
+    }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Sonar_1",
+      "transform": {
+        "pos": "-39.67 0.968 -90.131",
+        "rotation": "0.21637 -0.6349 0.1917 0.7164"
+      },
+       "prefab": "data/prefabs/camera_player.prefab"
+    }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Sonar_2",
+      "transform": {
+        "pos": "-39.67 0.968 -90.131",
+        "rotation": "0.1846 -0.7365 0.2224 0.6114"
+      },
+       "prefab": "data/prefabs/camera_player.prefab"
+    }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Exit_Door_1",
+      "transform": {
+        "pos": "-48.743 3.49 -134.956",
+        "rotation": "0.06866 0.8036 -0.0945 0.5834"
+      },
+       "prefab": "data/prefabs/camera_player.prefab"
+    }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Exit_Door_2",
+      "transform": {
+        "pos": "-108.24 5.671 -127.020",
+        "rotation": "0.0336 0.9540 -0.1174 0.2737"
+      },
+       "prefab": "data/prefabs/camera_player.prefab"
+    }
+  }
+]

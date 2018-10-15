@@ -1,3 +1,7 @@
+function onSceneStart_scene_basilic_interior()
+	
+end
+
 function onTriggerEnter_BI_TriggerKill_player()
 	playerController:die();
 end

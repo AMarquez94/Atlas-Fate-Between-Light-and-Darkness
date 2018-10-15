@@ -552,6 +552,16 @@
 		"rs_config": "cull_none",
 		"blend": "combinative"
 	},
+	"gui_glitch": {
+		"vs_file": "data/shaders/gui.fx",
+		"vs_entry_point": "VS_GUI",
+		"ps_entry_point": "PS_GUI_Glitch",
+		"vertex_type": "PosClr",
+		"category": "gui",
+		"z": "disable_all",
+		"rs_config": "cull_none",
+		"blend": "combinative"
+	},
 	"gui_radial": {
 		"vs_file": "data/shaders/gui.fx",
 		"vs_entry_point": "VS_GUI",
@@ -758,6 +768,14 @@
 		"z": "test_but_no_write",
 		"ps_entry_point": "PS_HologramScreen",
 		"blend": "additive_by_src_alpha"
+	},
+	"tv_screen": {
+		"vs_file": "data/shaders/hologram.fx",
+		"vs_entry_point": "VS_HologramScreen",
+		"vertex_type": "PosNUvUvT",
+		"ps_file": "data/shaders/hologram.fx",
+		"category": "hologram_screen",
+		"ps_entry_point": "PS_TV"
 	},
 	"hologram_tv": {
 		"vs_file": "data/shaders/hologram.fx",

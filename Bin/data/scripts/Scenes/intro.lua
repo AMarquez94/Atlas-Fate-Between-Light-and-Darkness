@@ -4,14 +4,13 @@ function onSceneStart_scene_intro()
 	if(ambiance == nil or not ambiance:isValid()) then
 		ambiance = playEvent("event:/Ambiance/Intro_Ambiance");
 	end
-	
-	cinematicsEnabled = false;
+	setCorridorInvisible();
 	
 	--#Debug position for start
 	--move("The Player", VEC3(-7, 0, -43), VEC3(-7, 0, -44));
 
 	-- First Cinematic --
-	if(cinematicsEnabled and not isCheckpointSaved()) then
+	if(cinematicsEnabled and not isCheckpointSaved() and not intro_intro_cinematicExecuted) then
 		intro_intro_cinematic();
 	end
 	setAIState("Patrol_Cinematic_Inhibitor", true, "dead_cinematic");
@@ -22,38 +21,95 @@ function onSceneEnd_scene_intro()
 	--ambiance:stop(true);
 end
 
-function intro_intro_cinematic()
-	move("The Player", VEC3(-7.5, 12.115, 34.2), VEC3(-7.5, 12.115, 33.2));
-	resetMainCameras();
-	--setCinematicPlayerState(true, "crouch_cinematic")
-	blendInCamera("Camera_Cinematic_Intro", 0.0, "cinematic", "");
-	setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
-	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_End\", 1.2, \"cinematic\", \"cubicinout\")", 2.3);
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro\", 0)", 4);
-	--execScriptDelayed("blendInCamera(\"Camera_Cinematic)
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_End\", 3)", 5);
+function onScenePartialEnd_scene_intro()
+	i_ref_pos = getPlayerLocalCoordinatesInReferenceTo("intro_suelo001");
 end
 
-function transition_map_intro_to_coliseum()
-	execScriptDelayed("blendInCamera(\"scene_transition\", 1.0, \"cinematic\", \"\")", 2);
-	execScriptDelayed("pausePlayerToggle()", 2);
-	execScriptDelayed("cinematicModeToggle()", 2);
-	execScriptDelayed("loadScene(\"scene_coliseo\")", 5);
+function intro_intro_cinematic()
+	subClear();
+	move("The Player", VEC3(-6.275, 12.115, 32.7),VEC3(-6.275, 12.115, 31.7));
+	resetMainCameras();
+	setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
+
+	--Setting active and deactivating the intro cinematic video
+	activateCinematicVideoIntro(2,10);
+	execScriptDelayed("deactivateCinematicVideoIntro();",0);
+
+	blendInCamera("Camera_Cinematic_Intro_video", 0.0, "cinematic", "");
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_Player_Back\", 20, \"cinematic\", \"sineinout\")", 1);
+
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_video\", 0)", 24);
+
+	 --Activating the subtitles
+	execScriptDelayed("activateSubtitles(1);",23.5);
+	execScriptDelayed("activateSubtitles(2);",25.5);
+	execScriptDelayed("activateSubtitles(3);",30);
+	execScriptDelayed("activateSubtitles(4);",35);
+	execScriptDelayed("activateSubtitles(5);",37.5);
+	execScriptDelayed("activateSubtitles(6);",42.5);
+	execScriptDelayed("activateSubtitles(7);",45.5);
+	execScriptDelayed("activateSubtitles(8);",48);
+	execScriptDelayed("activateSubtitles(9);",53);
+	execScriptDelayed("deactivateSubtitles();", 56);
+
+	--Second Frame
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Player_Back\", 0)", 26.5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_Rotation_2\", 30.0, \"cinematic\", \"\")", 26.5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_Rotation_1\", 0.0, \"cinematic\", \"\")", 26.5);
+	
+	--Third Frame
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_1\", 0)", 45.5);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_2\", 0)", 45.5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_Rotation_Other_2\", 30.0, \"cinematic\", \"\")", 45.5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_Rotation_Other_1\", 0.0, \"cinematic\", \"\")", 45.5);
+
+	--Last Frame
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_Other_2\", 0)", 56);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_Other_1\", 0)", 56);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_SM_Caida\", 0.0, \"cinematic\", \"\")", 56);
+
+	--Returning to player camera
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_SM_Caida\", 5)", 60);
+	intro_intro_cinematicExecuted = true;
 end
 
 -- # Transition cinematic # --
-function transition_intro_to_coliseum()
+function transition_intro_to_coliseum(button_handle)
+	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
+	makeVisibleByTag("corridor", true);
+	toDoor(toEntity(getEntityByName("intro_marco_puerta001")):getCompByName("door")):open();
+	--preloadScene("scene_coliseo");
+	
 	--execScriptDelayed("blendInCamera(\"scene_transition\", 1.0, \"cinematic\", \"\")", 2);
-	execScriptDelayed("pausePlayerToggle()", 2);
+	--execScriptDelayed("pausePlayerToggle()", 2);
 	--execScriptDelayed("cinematicModeToggle()", 2);
-	execScriptDelayed("loadScene(\"scene_coliseo\")", 2);
+	--execScriptDelayed("loadScene(\"scene_coliseo\")", 2);
+end
+
+function disableButton(button_handle, is_enabled)
+	h = CHandle();
+	h:fromUnsigned(button_handle);
+	toButton(toEntity(h):getCompByName("button")):setCanBePressed(is_enabled);
+end
+
+-- # Trigger loading # --
+function onTriggerEnter_intro_trigger_corridor_player()
+	getEntityByName("intro_trigger_corridor"):destroy();
+	tdoor = toDoor(toEntity(getEntityByName("intro_marco_puerta001")):getCompByName("door"));
+	tdoor:setClosedScript("destroyIntroPreloadCol()");
+	tdoor:close();
+end
+
+function destroyIntroPreloadCol()
+	destroyPartialScene();
+	execScriptDelayed("preloadScene(\"scene_coliseo\")", 0.1);
 end
 
 -- # Trigger cinematic # --
 
 function onTriggerEnter_Trigger_Inhibitor_Cinematic_player()
 	setAIState("Patrol_Cinematic_Inhibitor", true, "inhibitor_cinematic");
-	if(cinematicsEnabled) then
+	if(cinematicsEnabled and not intro_inhibitor_cinematicExecuted) then
 		intro_inhibitor_cinematic();
 	end
 	temp = getEntityByName("Trigger_Inhibitor_Cinematic");
@@ -61,18 +117,19 @@ function onTriggerEnter_Trigger_Inhibitor_Cinematic_player()
 end
 
 function intro_inhibitor_cinematic()
-	setCinematicPlayerState(true, "inhibitor_cinematic", "");
-	blendInCamera("Camera_Cinematic_Inhibitor_Patrol" ,0,"cinematic","");
-	--move player to patrol and orientate cameras
-	player = getEntityByName("The Player");
-	e_player = toEntity(player);
-	patrol_cinematic = getEntityByName("Patrol_Cinematic_Inhibitor");
-	e_patrol_cinematic = toEntity(patrol_cinematic);
-	t_patrol = toTransform(e_patrol_cinematic:getCompByName("transform"));
-	t_player = toTransform(e_player:getCompByName("transform"));
-	patrol_pos = t_patrol:getPosition();
-	t_player:lookAt(t_player:getPosition(), VEC3(patrol_pos.x, 0, patrol_pos.z));
+	gameManager.isCinematicMode = true;
+	subClear();
+	move("The Player", VEC3(-19, 7, -33.5),VEC3(-19, 7, -35.5));
 	resetMainCameras();
+
+	execScriptDelayed("activateSubtitles(14);", 5.75);
+	execScriptDelayed("activateSubtitles(15);", 10);
+	execScriptDelayed("deactivateSubtitles();", 13);
+
+	setCinematicPlayerState(true, "inhibitor_cinematic", "");
+	blendInCamera("Camera_Cinematic_Inhibitor_1" ,0,"cinematic","");
+
+
 	--hide tutorial while in cinematic
 	e_tutorial_player = toEntity(getEntityByName("Tutorial Player"));
 	render_tutorial_player = toRender(e_tutorial_player:getCompByName("render"));
@@ -85,30 +142,90 @@ function intro_inhibitor_cinematic()
 	render_tutorial_weapon_right.visible = false;
 	render_inhibitor_sign.visible = false;	
 	--end
-	execScriptDelayed("setCinematicPlayerState(false, \"\")", 3.5);
-	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Inhibitor_Patrol_End\",0.5,\"cinematic\", \"cubicinout\")", 1.4);	
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Inhibitor_Patrol\",0)", 2.0);
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Inhibitor_Patrol_End\",0.5)", 3.0);
-	execScriptDelayed("render_tutorial_player.visible = true", 3.5);
-	execScriptDelayed("render_tutorial_weapon_left.visible = true", 3.5);
-	execScriptDelayed("render_tutorial_weapon_right.visible = true", 3.5);
-	execScriptDelayed("render_inhibitor_sign.visible = true", 3.5);
+
+
+	--execScriptDelayed("setCinematicPlayerState(false, \"\")", 3.5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Inhibitor_2\",1.5,\"cinematic\", \"expoin\")", 0.5);	
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Inhibitor_1\",0)", 2.01);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Inhibitor_2\",0)", 5.25);
+
+	execScriptDelayed("setInBlackScreen(0.5);",4.5);
+	execScriptDelayed("setOutBlackScreen(0.25);",5.5);
+	execScriptDelayed("move(\"The Player\", VEC3(-20.5, 0, -35.278),VEC3(-21.95, 0, -36.118));", 5.25);
+
+	execScriptDelayed("resetMainCameras()",5.3);
+	execScriptDelayed("render_tutorial_player.visible = true", 5.25);
+	execScriptDelayed("render_tutorial_weapon_left.visible = true", 5.25);
+	execScriptDelayed("render_tutorial_weapon_right.visible = true", 5.25);
+	execScriptDelayed("render_inhibitor_sign.visible = true", 5.25);
+	execScriptDelayed("gameManager.isCinematicMode = false", 5.75);
+
+	intro_inhibitor_cinematicExecuted = true;
 end
 
 function onTriggerEnter_Trigger_Capsules_Cinematic_player()
-	setCinematicPlayerState(true, "inhibitor_cinematic", "");
-	blendInCamera("Camera_Cinematic_Capsules", 1.5, "cinematic", "cubicinout");
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules\",1.5)", 5.0);
-	execScriptDelayed("setCinematicPlayerState(false, \"\")", 6.5);
-	temp = getEntityByName("Trigger_Capsules_Cinematic");
+	if(cinematicsEnabled and not Capsules_CinematicExecuted) then
+
+		subClear();
+		execScriptDelayed("activateSubtitles(13);", 2);
+		execScriptDelayed("deactivateSubtitles();", 10);
+		
+		setCinematicPlayerState(true, "capsules_cinematic", "");
+		setInBlackScreen(0.25);
+		execScriptDelayed("setOutBlackScreen(0.25);",0.3);
+		execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_2\",10.0,\"cinematic\", \"\")", 0.27);	
+		execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_1\",0.0,\"cinematic\", \"\")", 0.27);	
+
+		execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_2\",0.0)", 5);	
+		execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_1\",0.0)", 5);	
+		execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_4\",10.0,\"cinematic\", \"\")", 5);	
+		execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_3\",0.0,\"cinematic\", \"\")", 5);	
+
+		execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_3\",0)", 12);
+		execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_4\",0)", 12);
+
+		execScriptDelayed("setInBlackScreen(0.25);",11.6);
+		execScriptDelayed("setOutBlackScreen(0.25);",12.1);
+		execScriptDelayed("setCinematicPlayerState(false, \"\")", 12.4);
+		Capsules_CinematicExecuted = true;
+		temp = getEntityByName("Trigger_Capsules_Cinematic");
+		temp:destroy();
+	end	
+end
+-- # Subtitles tutorials # --
+function onTriggerEnter_intro_trigger_muralla_player()
+	subClear();
+	activateSubtitles(10);
+	execScriptDelayed("deactivateSubtitles();", 8);
+	temp = getEntityByName("intro_trigger_muralla");
 	temp:destroy();
 end
 
+function onTriggerEnter_intro_trigger_muralla_alto_player()
+	subClear();
+	activateSubtitles(11);
+	execScriptDelayed("activateSubtitles(12);",7);
+	execScriptDelayed("deactivateSubtitles();", 10);
+	temp = getEntityByName("intro_trigger_muralla_alto");
+	temp:destroy();
+end
+
+function onTriggerEnter_intro_trigger_patrol_care_player()
+	subClear();
+	activateSubtitles(16);
+	execScriptDelayed("deactivateSubtitles();", 8);
+	temp = getEntityByName("intro_trigger_patrol_care");
+	temp:destroy();
+end
+
+function onTriggerEnter_intro_trigger_patrol_story_player()
+
+end
 
 -- # Trigger tutorials # --
 
 function onTriggerEnter_SMTutorial_player()
-	moveTutorialPlayer(VEC3(-7,0,25.2), VEC3(-7,0,23.2), true, "sm_tutorial");
+	moveTutorialPlayer(VEC3(-7,0,26), VEC3(-7,0,23.2), true, "sm_tutorial");
 	render_sm_sign.visible = true;
 end
 
@@ -177,7 +294,7 @@ function onTriggerEnter_AttackTutorial_player()
 		patrol = spawn("tutorial/patrol_tutorial", VEC3(-7, 0, -50.5), VEC3(-7, 0, -52));
 		render_attack_sign.visible = true;
 	else
-		moveTutorialPlayer(VEC3(-7, 0, -49.475), VEC3(-7, 0, -51), true, "sm_enemy_tutorial");
+		moveTutorialPlayer(VEC3(-7, 0, -50), VEC3(-7, 0, -51), true, "sm_enemy_tutorial");
 		patrol = spawn("tutorial/patrol_tutorial", VEC3(-7, 0, -50.5), VEC3(-7, 0, -52));
 		render_smenemy_sign.visible = true;
 	end
@@ -192,7 +309,7 @@ end
 
 function onPatrolStunned_IntroPatrol()
 	show_tutorial_sm_enemy = true;
-	moveTutorialPlayer(VEC3(-7, 0, -49.475), VEC3(-7, 0, -51), true, "sm_enemy_tutorial");
+	moveTutorialPlayer(VEC3(-7, 0, -50), VEC3(-7, 0, -51), true, "sm_enemy_tutorial");
 	render_attack_sign.visible = false;
 	render_smenemy_sign.visible = true;
 end

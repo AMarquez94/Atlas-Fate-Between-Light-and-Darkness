@@ -28,10 +28,10 @@ void CSubtitles::update(float dt) {
 
 }
 
-void CSubtitles::activateSubtitles(std::string subtitle_name) {
-	const CTexture* text = _subtitleParams._map_to_textures[subtitle_name];
+void CSubtitles::activateSubtitles(int subtitle_num) {
+	const CTexture* text = _subtitleParams._map_to_textures[subtitle_num];
 	if (text != nullptr) {
-		_subtitleParams._current_subtitles = subtitle_name;
+		_subtitleParams._current_subtitles = subtitle_num;
 		_subtitleParams._current_texture = text;
 	}
 }

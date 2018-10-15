@@ -26,6 +26,9 @@ void TCompRotator::registerMsgs()
 
 void TCompRotator::update(float dt) {
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     TCompTransform * self_transform = get<TCompTransform>();
     float yaw, pitch, roll;
     self_transform->getYawPitchRoll(&yaw, &pitch, &roll);

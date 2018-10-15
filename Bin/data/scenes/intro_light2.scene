@@ -18,9 +18,9 @@
       ,
       "transform":
       {
-        "pos": "72 140.5 48"
+        "pos": "72 140.5 33"
         ,
-        "lookat": "-69.8796 -73.9601 -66.2179"
+        "lookat": "-69.8796 -73.9601 -81.2179"
       }
       ,
       "light_dir":
@@ -37,7 +37,7 @@
         ,
         "z_far": 282.589
         ,
-        "ortosize": 120.0
+        "ortosize": 125.0
         ,
         "casts_shadows": true
         ,
@@ -54,7 +54,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor", "dir_light"
       ]
     }
   },

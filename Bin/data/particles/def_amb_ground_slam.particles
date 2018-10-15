@@ -1,7 +1,7 @@
 {
 	"system": {
 		"duration": 0.65,
-		"looping": true,
+		"looping": false,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
 		"start_speed": 1.5,
@@ -19,7 +19,7 @@
 		"rate_distance": 0.0,
 		"variation" : 0.0,
 		"bursts" : [    
-			[0, 60, 1, 0.01]			
+			[0, 60, 1, 0.0]			
 		] 
 	},	
 	"shape": {

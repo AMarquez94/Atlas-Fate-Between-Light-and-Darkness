@@ -65,32 +65,11 @@ void TCompRigidbody::update(float dt) {
             lastFramePosition = new_trans_pos;
         }
         else
-        {/*
-          if (is_kinematic) {
-            TCompCollider* c_collider = get<TCompCollider>();
-            physx::PxRigidDynamic* actor = (physx::PxRigidDynamic*)c_collider->config->actor;
-            physx::PxVec3 pxPos = VEC3_TO_PXVEC3(transform->getPosition());
-            physx::PxQuat pxQuat = QUAT_TO_PXQUAT(transform->getRotation());
-            physx::PxTransform pxTransform(pxPos, pxQuat);
-            actor->setKinematicTarget(pxTransform);
-          }*/
-          //VEC3 vel = (transform->getPosition() - lastFramePosition) / dt;
-          //physx::PxRigidBody * rigidbody = (physx::PxRigidBody*) c_collider->config->actor;
-          //const physx::PxVec3 pxVel = VEC3_TO_PXVEC3(vel);
-          //rigidbody->setLinearVelocity(pxVel, true);
-
-        //setRigidBodyFlag
+        {
 
             VEC3 pos = transform->getPosition() + PXVEC3_TO_VEC3(c_collider->config->center);
             QUAT quat = transform->getRotation();
             c_collider->setGlobalPose(pos, quat, false);
-
-            //if (is_gravity) {
-              //physx::PxRigidBody * rigidbody = (physx::PxRigidBody*) c_collider->config->actor;
-              //actualDownForce = physx::PxVec3(normal_gravity.x, normal_gravity.y, normal_gravity.z);
-              //rigidbody->addForce(actualDownForce, physx::PxForceMode::eFORCE);
-            //}
-            //c_collider->config.
         }
     }
 }
@@ -269,7 +248,7 @@ void TCompRigidbody::Resize(float new_size)
 
     if (controller != NULL) {
         controller->resize((physx::PxReal)new_size);
-        controller->invalidateCache();
+        invalidateCache();
     }
 }
 
@@ -308,6 +287,13 @@ void TCompRigidbody::setGlobalPose(VEC3 pos, QUAT rot)
     }
     else {
         c_collider->setGlobalPose(pos, rot, false);
+    }
+}
+
+void TCompRigidbody::invalidateCache()
+{
+    if (controller != NULL) {
+        controller->invalidateCache();
     }
 }
 

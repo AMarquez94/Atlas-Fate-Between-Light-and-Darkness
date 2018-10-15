@@ -54,6 +54,10 @@ void TCompShooter::setIsFiring(bool isFiring, CHandle h_entityToFire)
 }
 
 void TCompShooter::update(float dt) {
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     if (!paused) {
         if (state == EShooterState::FIRING) {
             firing_timer += dt;

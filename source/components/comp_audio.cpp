@@ -69,6 +69,9 @@ void TCompAudio::load(const json & j, TEntityParseContext & ctx)
 
 void TCompAudio::update(float dt)
 {
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     // Remove invalid 2D events
     auto iter = my2DEvents.begin();
     while (iter != my2DEvents.end()) {

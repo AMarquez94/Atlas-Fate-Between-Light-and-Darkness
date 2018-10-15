@@ -110,6 +110,9 @@ void TCompSkeleton::update(float dt) {
     PROFILE_FUNCTION("updateSkel");
     assert(model);
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     if (actualCycleAnimId[1] != -1 && lastFrameCyclicAnimationWeight != cyclicAnimationWeight) {
         model->getMixer()->blendCycle(actualCycleAnimId[0], cyclicAnimationWeight, 0.f);
         model->getMixer()->blendCycle(actualCycleAnimId[1], 1.f - cyclicAnimationWeight, 0.f);

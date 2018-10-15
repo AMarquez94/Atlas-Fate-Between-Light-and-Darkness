@@ -52,6 +52,10 @@ void TCompNoiseEmitter::changeNoiseRadius(float newRadius)
 
 void TCompNoiseEmitter::update(float dt)
 {
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
 	if (!paused && emitter_sphere.isValid() && CHandle(this).getOwner().isValid()) {
 
 		_timer += dt;

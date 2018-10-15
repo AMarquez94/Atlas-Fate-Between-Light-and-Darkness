@@ -16,6 +16,7 @@
 #include "modules/system/module_scene_manager.h"
 #include "modules/system/module_instancing.h"
 #include "modules/system/module_particles.h"
+#include "modules/system/module_file.h"
 #include "modules/game/module_game_manager.h"
 #include "modules/system/module_debug.h"
 #include "modules/system/module_lerp.h"
@@ -55,6 +56,7 @@ public:
     CModuleParticles& getParticles() { return _module_particles; }
 
     CModuleDebug& getDebug() { return _module_debug; }
+    CModuleFile& getFile() { return _module_file; }
 
     // Game modules
     CModuleGameManager& getGameManager();
@@ -79,6 +81,7 @@ private:
     CModuleInstancing _module_instancing;
     CModuleParticles  _module_particles;
     CModuleDebug _module_debug;
+    CModuleFile _module_file;
 };
 
 #define Engine CEngine::get()
@@ -99,3 +102,4 @@ private:
 #define EngineInstancing CEngine::get().getInstancing()
 #define EngineDebug CEngine::get().getDebug()
 #define EngineAnimations CEngine::get().getAnimations()
+#define EngineFiles CEngine::get().getFile()

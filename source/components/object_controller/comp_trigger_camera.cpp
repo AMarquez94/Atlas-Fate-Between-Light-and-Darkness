@@ -42,6 +42,10 @@ void TCompTriggerCamera::onMsgTriggerExit(const TMsgTriggerExit & msg)
 
 void TCompTriggerCamera::update(float dt)
 {
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
 	if (onCamera) {
 		time += dt;
 		if (time >= _timeToExitCamera) {

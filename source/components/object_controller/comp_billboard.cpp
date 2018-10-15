@@ -27,6 +27,9 @@ void TCompBillBoard::registerMsgs()
 
 void TCompBillBoard::update(float dt) {
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     TCompTransform * self_transform = get<TCompTransform>();
     float yaw, pitch, roll;
     

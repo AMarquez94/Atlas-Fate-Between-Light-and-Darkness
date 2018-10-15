@@ -1,6 +1,7 @@
 #pragma once
 
 #include "resource.h"
+#include <mutex>
 
 class CResourceManager {
 
@@ -25,6 +26,8 @@ public:
   void registerResource( IResource* res );
   void onFileChanged(const std::string& filename);
 
+  const std::string getResourceName(const std::string& resourcePath);
+  const bool resourceExists(const std::string& resourceName);
 };
 
 extern CResourceManager Resources;

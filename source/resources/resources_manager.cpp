@@ -31,14 +31,35 @@ void CResourceManager::onFileChanged(const std::string& filename) {
     }
 }
 
+const std::string CResourceManager::getResourceName(const std::string& resourcePath) {
+    std::string::size_type str_pos = resourcePath.find_last_of(".");
+    if (str_pos == std::string::npos) {
+        fatal("Can't identify extension in resource %s\n", resourcePath.c_str());
+    }
+    std::string extension = resourcePath.substr(str_pos);
+
+    // Find an appropiate resource factory based on the extension
+    auto it_res = resource_classes.find(extension);
+    return it_res->second->class_name;
+}
+
+const bool CResourceManager::resourceExists(const std::string & resourceName)
+{
+    auto it = all_resources.find(resourceName);
+    return it != all_resources.end();
+}
+
+
 const IResource* CResourceManager::get(const std::string& res_name) {
 
     // Buscar si lo tengo
     auto it = all_resources.find(res_name);
 
     // si esta lo devuelvo
-    if (it != all_resources.end())
+    if (it != all_resources.end()) {
         return it->second;
+    }
+
 
     // si no .. lo creo...
     // Find extension of the name, will identify the type of resource
@@ -62,7 +83,7 @@ const IResource* CResourceManager::get(const std::string& res_name) {
     new_res->setNameAndClass(res_name, it_res->second);
 
     // Save it for the next time someone wants it
-    registerResource(new_res);
+    all_resources[new_res->getName()] = new_res;
 
     return new_res;
 }

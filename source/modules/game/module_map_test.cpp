@@ -16,10 +16,11 @@
 #include "render/render_manager.h"
 #include "input/devices/mouse.h"
 #include "input/enums.h"
+#include "resources/json_resource.h"
 
 bool CModuleMapTest::start()
 {
-	json jboot = loadJson("data/boot.json");
+    json jboot = Resources.get("data/boot.json")->as<CJsonResource>()->getJson();
 	
 	// Auto load some scenes
 	std::vector< std::string > scenes_to_auto_load = jboot["light_scenes_test"];

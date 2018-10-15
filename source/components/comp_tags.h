@@ -12,6 +12,7 @@ public:
 	void registerEntityHasTag(CHandle h, uint32_t tag);
 	void unregisterEntityHasTag(CHandle h, uint32_t tag);
 	const VHandles& getAllEntitiesByTag(uint32_t tag);
+    const VHandles getAllEntitiesWithoutTags(const std::vector<uint32_t>& tags);
 	static CTagsManager &get();
 	void debugInMenu();
 

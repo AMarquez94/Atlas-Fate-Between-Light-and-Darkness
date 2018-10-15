@@ -70,6 +70,9 @@ void TCompFSM::load(const json& j, TEntityParseContext& ctx)
 
 void TCompFSM::update(float dt) 
 {
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
 	if (!paused && !isConsoleOn && !isInNoClipMode  /*&& !isInAIMode*/) {
 		_context.update(dt);
         addActionToHistoric(_context.getCurrentState()->getName());

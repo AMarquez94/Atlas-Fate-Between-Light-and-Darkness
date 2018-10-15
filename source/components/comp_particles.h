@@ -6,6 +6,8 @@
 struct TCompParticles : public TCompBase
 {
 public:
+    ~TCompParticles();
+
     Particles::TParticlesHandle   _particles = 0;
     const Particles::TCoreSystem* _core = nullptr;
     std::map<const Particles::TCoreSystem*, Particles::TParticlesHandle> _cores;

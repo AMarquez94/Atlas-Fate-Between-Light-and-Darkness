@@ -48,6 +48,9 @@ void TCompCurve::registerMsgs() {
 
 void TCompCurve::update(float dt) {
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     if (!_curve || !_active)
         return;
 
