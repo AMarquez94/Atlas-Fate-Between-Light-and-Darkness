@@ -41,8 +41,8 @@ float2 ComputeScreenShock(float2 iTex0)
 float4 ComputeBitMap(uint s_cc, float2 uv)
 {
 		float4 glitch = txNoiseMap2.Sample(samClampPoint, uv);	
-	if(s_cc == 0xF4) return float4(1,0,0,1);
-	if(s_cc == 0xFF) return float4(0,1,1,1);
+	if(s_cc == 0xF4) return float4(1,1,0,1);
+	if(s_cc == 0xFF) return float4(1,1,1,1);
 	
 	return float4(0,0,0,0);
 }
@@ -70,20 +70,15 @@ float4 ComputeOutline(float4 color, int3 ss_load_coords, float2 uv)
 	
 	if(diff != 0)
 	{	
-		//float2 newpos = float2(iTex0.y, nrand(iTex0.x, iTex0.y));	
-		//float4 glitch = txNoiseMap2.Sample(samClampPoint, ss_load_coords.xy);	
 		return float4(0, 1, 1, 0.75) * outline_alpha;
 	}
 		
 	if(s_cc != 0)
 	{
-		//float4 in_color = txAlbedo2.Sample(samLinear, iTex0.xy);
-		//float2 newpos = float2(iTex0.y, nrand(iTex0.x, iTex0.y));
-		//float4 glitch = txNoiseMap2.Sample(samClampPoint, depth.xx);	
-		return s_color * float4(1, 1, 1, 1) * outline_alpha * float4(outline_color.xyz,0.5);
+		return s_color * float4(1, 1, 1, 1) * outline_alpha * float4(outline_color.xyz,0.25);
 	}
 		
-	return float4(color.xyz, 0.5) * outline_alpha;
+	return s_color * float4(color.xyz, 0.5) * outline_alpha;
 }
 
 float4 PS_PostFX_Wave(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : SV_Target

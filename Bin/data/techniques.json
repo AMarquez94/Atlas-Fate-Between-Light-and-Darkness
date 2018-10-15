@@ -468,7 +468,7 @@
 		"category": "gbuffer",
 		"z": "test_no_writes_mark_stencil",
 		"priority": 150,
-		"color_mask": 240,
+		"color_mask": 244,
 		"comment": "This needs to go after the pbr's solids, but just before the object to render"
 	},
 	"pbr_skin_shadows": {		
@@ -493,7 +493,6 @@
 		"vertex_type": "PosNUvUvT",
 		"category": "gbuffer",
 		"z": "test_no_writes_mark_stencil",
-		"color_mask": 244,
 		"priority": 150,
 		"comment": "This needs to go after the pbr's solids, but just before the object to render"
 	},
