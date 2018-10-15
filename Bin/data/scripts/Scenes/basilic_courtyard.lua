@@ -28,3 +28,11 @@ function onTriggerEnter_BC_trigger_closedoor_bc_player()
 	bc_bcdoor:close();
 	getEntityByName("BC_trigger_closedoor_bc"):destroy();
 end
+
+function onTriggerEnter_BC_trigger_closed_door_player()
+	subClear();
+	activateSubtitles(24);
+	execScriptDelayed("deactivateSubtitles();", 8);
+	temp = getEntityByName("BC_trigger_closed_door");
+	temp:destroy();
+end
