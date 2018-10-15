@@ -667,10 +667,8 @@ data/textures/tx_chapa_rgh.dds
 data/materials/mtl_chapas.material
 data/scenes/BC_Conducto.scene
 data/meshes/BC_Conducto.mesh
-data/scenes/BC_triggers.scene
-data/scenes/Basilic_courtyard/BC_cinematic.scene
-data/prefabs/camera_player.prefab
-data/textures/lut/lut5.dds
+data/materials/mtl_chapas_conducto.material
+data/materials/mtl_chapas_conducto_post.material
 data/scenes/Basilic_courtyard/_player.scene
 data/prefabs/player.prefab
 data/skeletons/player/body.mesh
@@ -725,6 +723,8 @@ data/particles/def_amb_rain_heavy.particles
 data/particles/def_amb_rain_core_heavy.particles
 data/scenes/_main_cameras.scene
 data/prefabs/camera_main.prefab
+data/prefabs/camera_player.prefab
+data/textures/lut/lut5.dds
 data/prefabs/camera_shadowmerge.prefab
 data/textures/lut/lut1.dds
 data/prefabs/camera_flyover.prefab

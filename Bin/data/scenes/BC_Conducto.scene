@@ -1,43 +1,34 @@
-[
-  {
-    "entity":
-    {
-      "name": "BC_Conducto"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "BC_Conducto"
-      ,
-      "transform":
-      {
-        "pos": "-8.83362 17.7035 -398.742"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/BC_Conducto.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_chapas.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
+[{
+		"entity": {
+			"name": "BC_Conducto",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "BC_Conducto",
+			"transform": {
+				"pos": "-8.83362 17.7035 -398.742",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/BC_Conducto.mesh",
+					"materials":
+					[
+						"data/materials/mtl_chapas_conducto.material"
+					]
+				}, {
+					"mesh": "data/meshes/BC_Conducto.mesh",
+					"materials":
+					[
+						"data/materials/mtl_chapas_conducto_post.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
 ]

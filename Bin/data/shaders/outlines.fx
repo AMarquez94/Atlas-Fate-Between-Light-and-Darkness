@@ -42,7 +42,7 @@ float4 ComputeBitMap(uint s_cc, float2 uv)
 {
 		float4 glitch = txNoiseMap2.Sample(samClampPoint, uv);	
 	if(s_cc == 0xF4) return float4(1,1,0,1);
-	if(s_cc == 0xFF) return float4(1,1,1,1);
+	if(s_cc == 0xFF) return float4(0,1,1,1);
 	
 	return float4(0,0,0,0);
 }
@@ -75,7 +75,7 @@ float4 ComputeOutline(float4 color, int3 ss_load_coords, float2 uv)
 		
 	if(s_cc != 0)
 	{
-		return s_color * float4(1, 1, 1, 1) * outline_alpha * float4(outline_color.xyz,0.25);
+		return 0.45 * (s_color * outline_alpha) + (0.55 * float4(outline_color.xyz,1)) * 0.5;
 	}
 		
 	return s_color * float4(color.xyz, 0.5) * outline_alpha;
