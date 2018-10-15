@@ -463,6 +463,7 @@ data/textures/tx_spotlight_rgh.dds
 data/materials/mtl_spotlights.material
 data/colliders/collider_baselargalectrica.collider
 data/meshes/mesh_intro_cable.mesh
+data/textures/tx_cables_alb.dds
 data/textures/null_normal.dds
 data/materials/mtl_cables.material
 data/meshes/mesh_intro_cable001.mesh
@@ -921,7 +922,6 @@ data/colliders/collider_pozo_estructura.collider
 data/colliders/collider_puente_pozo002.collider
 data/scenes/intro_barra_capsulas.scene
 data/meshes/barra_capsulas_intro.mesh
-data/textures/tx_cables_alb.dds
 data/materials/mtl_default.material
 data/scenes/Intro/intro_suelo.scene
 data/meshes/mesh_suelo_intro2.mesh

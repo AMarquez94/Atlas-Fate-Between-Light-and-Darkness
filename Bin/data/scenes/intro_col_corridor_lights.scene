@@ -7,7 +7,10 @@
       "transform":
       {
         "pos": "0.0 0.0 0.0"
-      }
+      },
+	  "tags": [
+		"corridor"
+	  ]
     }
   }
   ,
@@ -59,7 +62,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -112,7 +115,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -165,7 +168,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -218,7 +221,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -271,7 +274,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -324,7 +327,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -377,7 +380,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -430,7 +433,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -483,7 +486,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -536,7 +539,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -589,7 +592,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -642,7 +645,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -695,7 +698,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -748,7 +751,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -801,7 +804,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -854,7 +857,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -907,7 +910,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -960,7 +963,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -1013,7 +1016,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -1066,7 +1069,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -1119,7 +1122,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -1172,7 +1175,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -1225,7 +1228,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -1278,7 +1281,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -1331,7 +1334,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -1384,7 +1387,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -1437,7 +1440,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -1490,7 +1493,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -1543,7 +1546,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -1604,7 +1607,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -1657,7 +1660,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -1710,7 +1713,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -1763,7 +1766,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -1816,7 +1819,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -1869,7 +1872,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -1922,7 +1925,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -1975,7 +1978,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -2028,7 +2031,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -2081,7 +2084,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -2134,7 +2137,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -2187,7 +2190,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -2240,7 +2243,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -2293,7 +2296,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -2346,7 +2349,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -2399,7 +2402,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -2452,7 +2455,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -2505,7 +2508,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -2558,7 +2561,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -2611,7 +2614,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -2664,7 +2667,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -2717,7 +2720,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -2770,7 +2773,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -2823,7 +2826,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -2876,7 +2879,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -2929,7 +2932,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -2982,7 +2985,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -3035,7 +3038,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
@@ -3096,7 +3099,7 @@
       ,
       "tags":
       [
-        "light"
+        "light", "corridor"
       ]
     }
   }
