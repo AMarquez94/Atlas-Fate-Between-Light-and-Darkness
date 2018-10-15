@@ -29,7 +29,8 @@
 				"lut": "data/textures/lut/lut1.dds"
 			},
 			"vignette": {
-				"enabled": true
+				"enabled": true,
+				"amount": 0.130
 			},			
 			"render_blur": {
 				"enabled": false,
