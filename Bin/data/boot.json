@@ -71,7 +71,8 @@
 			"data/scenes/intro_corridor_3.scene",
 			"data/scenes/intro_corridor_logic.scene",
 			"data/scenes/intro_col_corridor_lights.scene",
-			"data/scenes/pantalla_intro_video.scene"
+			"data/scenes/pantalla_intro_video.scene",
+			"data/scenes/intro_subtitle_triggers.scene"
 		]
 	},
 	"scene_coliseo": {

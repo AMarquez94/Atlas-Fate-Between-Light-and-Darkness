@@ -61,6 +61,7 @@ public:
 
 	void setSubtitlesToNone();
 	void setSubtitles(int sub_num);
+	void clearSubtitles();
 	void setMission(int mission_num);
 	void activateEnemyHUD();
 	void deactivateEnemyHUD();

@@ -494,6 +494,10 @@ void CModuleGUI::setSubtitles(int sub_num) {
 		}
 	}
 }
+void CModuleGUI::clearSubtitles() {
+	EngineGUI.setSubtitlesToNone();
+	EngineLogic.eraseDelayedScripts("Subtitles(");
+}
 
 void CModuleGUI::setMission(int mission_num) {
 

@@ -327,6 +327,7 @@ void CModuleLogic::publishClasses() {
 	m->set("deactivateCinematicVideoIntro", SLB::FuncCall::create(&deactivateCinematicVideoIntro));
 	m->set("setInBlackScreen", SLB::FuncCall::create(&setInBlackScreen));
 	m->set("setOutBlackScreen", SLB::FuncCall::create(&setOutBlackScreen));
+	m->set("subClear", SLB::FuncCall::create(&subClear));
 	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -1171,6 +1172,10 @@ void activateSubtitles(int sub_num) {
 	EngineGUI.setSubtitles(sub_num);
 }
 
+void subClear() {
+	EngineGUI.clearSubtitles();
+}
+
 void deactivateSubtitles() {
 	EngineGUI.setSubtitlesToNone();
 }
@@ -1208,3 +1213,4 @@ void setOutBlackScreen(float time_to_lerp) {
 	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(time_to_lerp, 0, false);
 	EngineLogic.execScriptDelayed("takeOutBlackScreen();", time_to_lerp + 0.1f);
 }
+
