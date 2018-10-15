@@ -584,9 +584,6 @@ data/meshes/BC_madera045.mesh
 data/meshes/BC_madera046.mesh
 data/meshes/BC_madera047.mesh
 data/meshes/BC_madera048.mesh
-data/meshes/BC_madera049.mesh
-data/meshes/BC_madera050.mesh
-data/meshes/BC_madera051.mesh
 data/meshes/BC_madera053.mesh
 data/meshes/BC_madera054.mesh
 data/meshes/BC_madera055.mesh
@@ -597,6 +594,9 @@ data/meshes/BC_madera059.mesh
 data/meshes/BC_madera060.mesh
 data/meshes/BC_madera061.mesh
 data/meshes/BC_madera062.mesh
+data/meshes/BC_madera063.mesh
+data/meshes/BC_madera064.mesh
+data/meshes/BC_madera065.mesh
 data/scenes/BC_ColliderAuxEntrances.scene
 data/scenes/BC_estandarte.scene
 data/meshes/mesh_estandarte003.mesh
@@ -619,6 +619,9 @@ data/textures/tx_terminal_nml.dds
 data/textures/tx_terminal_rgh.dds
 data/materials/mtl_terminal.material
 data/colliders/collider_mesh_terminal.collider
+data/scenes/BC_Screens.scene
+data/meshes/BC_Screen01.mesh
+data/meshes/BC_Screen002.mesh
 data/scenes/Basilic_courtyard/_player.scene
 data/prefabs/player.prefab
 data/skeletons/player/body.mesh

@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_basilic_courtyard",
+	"default_scene": "scene_coliseo_2",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -262,7 +262,8 @@
       "data/scenes/BC_Maderas_Andamios.scene",
 	  "data/scenes/BC_ColliderAuxEntrances.scene",
 	  "data/scenes/BC_estandarte.scene",
-	  "data/scenes/BC_Terminal.scene"
+	  "data/scenes/BC_Terminal.scene",
+	  "data/scenes/BC_Screens.scene"
     ]
   },
 	"scene_basilic_interior": {
