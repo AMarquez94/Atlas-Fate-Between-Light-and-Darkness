@@ -39,6 +39,10 @@
 			"transform": {
 				"pos": "25.1566 0.984931 6.321",
 				"lookat": "25.3 0.984931 5.321"
+			},
+			"emission_controller": {
+				"initial": "1.0 1.0 1.0 1.0",
+				"intensity": 0
 			}
 		}
 	}
