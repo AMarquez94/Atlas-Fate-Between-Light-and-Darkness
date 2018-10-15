@@ -224,6 +224,7 @@ data/meshes/mesh_andamio_top.mesh
 data/scenes/intro_basilica.scene
 data/meshes/BC_pared_entrada.mesh
 data/textures/tx_mezquita_alb.dds
+data/textures/tx_mezquita_ao.dds
 data/textures/tx_mezquita_hgt.dds
 data/textures/tx_mezquita_met.dds
 data/textures/tx_mezquita_nml.dds
@@ -1235,6 +1236,19 @@ data/textures/grass_brown_alb.dds
 data/textures/grass_brown_nml.dds
 data/materials/mtl_grass.material
 data/materials/mtl_grass_peq.material
+data/scenes/intro_tubo_grande.scene
+data/prefabs/tubogrande_curvo.prefab
+data/meshes/mesh_tubogrande_curvo.mesh
+data/textures/tx_tubogrande_alb.dds
+data/textures/tx_tubogrande_hgt.dds
+data/textures/tx_tubogrande_met.dds
+data/textures/tx_tubogrande_nml.dds
+data/textures/tx_tubogrande_rgh.dds
+data/materials/mtl_tubogrande.material
+data/colliders/collider_tubogrande_curvo.collider
+data/prefabs/tubogrande_recto.prefab
+data/meshes/mesh_tubogrande_recto.mesh
+data/colliders/collider_tubogrande_recto.collider
 data/scenes/decal_test.scene
 data/textures/decals/tx_decal_wall1.dds
 data/materials/decal_test.material
@@ -1398,6 +1412,7 @@ data/scenes/pantalla_intro_video.scene
 data/meshes/prueba_pantalla.mesh
 data/video/test_monkey.h264
 data/materials/video_atlas.material
+data/scenes/intro_subtitle_triggers.scene
 data/scenes/Intro/_player.scene
 data/prefabs/player.prefab
 data/materials/characters/mtl_player_main_env.material

@@ -1,0 +1,71 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_estandarte",
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_estandarte_1"
+      ,
+      "transform":
+      {
+        "pos": "39.859 57.824 -330"
+        ,
+        "rotation": "-0.681003 0.19 0.19 0.681345"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_estandarte003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "mesh_estandarte_2"
+      ,
+      "transform":
+      {
+        "pos": "-32.141 57.824 -331.683"
+        ,
+        "rotation": "-0.678327 -0.2 -0.2 0.678352"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_estandarte003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubo_estandarte.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

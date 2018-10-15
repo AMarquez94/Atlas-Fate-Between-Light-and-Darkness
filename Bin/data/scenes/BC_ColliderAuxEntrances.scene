@@ -1,0 +1,63 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_ColliderAuxEntrances"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_ColliderAuxEntrance001"
+      ,
+      "transform":
+      {
+        "pos": "-9.23535 14.6848 -388.653"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.42955 0.238419 3.41216"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_ColliderAuxEntrance002"
+      ,
+      "transform":
+      {
+        "pos": "4.50841 14.6848 -388.653"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "3.42955 0.238419 3.41216"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

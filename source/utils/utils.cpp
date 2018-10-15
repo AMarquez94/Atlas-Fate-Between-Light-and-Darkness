@@ -138,6 +138,17 @@ float urand(float loVal, float hiVal)
 	return loVal + (float(rand()) / RAND_MAX)*(hiVal - loVal);
 }
 
+int randomInt(int min, int max) //range : [min, max)
+{
+    static bool first = true;
+    if (first)
+    {
+        srand(time(NULL)); //seeding for the first time only!
+        first = false;
+    }
+    return min + rand() % ((max + 1) - min);
+}
+
 void ToUpperCase(std::string& string) {
 	for (int i = 0; i < string.size(); i++) {
 		string.at(i) = toupper(string.at(i));

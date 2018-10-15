@@ -21,3 +21,10 @@ function onTriggerEnter_BC_trigger_opendoor_bc_player()
 	execScriptDelayed("toDoor(toEntity(getEntityByName(\"bc_marco_puerta001\")):getCompByName(\"door\")):open()", 0.5);
 	getEntityByName("BC_trigger_opendoor_bc"):destroy();
 end
+
+function onTriggerEnter_BC_trigger_closedoor_bc_player()
+	bc_bcdoor = toDoor(toEntity(getEntityByName("bc_marco_puerta001")):getCompByName("door"));
+	bc_bcdoor:setClosedScript("setCorridorInvisible()");
+	bc_bcdoor:close();
+	getEntityByName("BC_trigger_closedoor_bc"):destroy();
+end

@@ -211,6 +211,7 @@ public:
     const bool isStaminaFull() { return stamina / maxStamina != 1.f; };
     CHandle getLeftWeapon() { return weaponLeft; };
     CHandle getRightWeapon() { return weaponRight; };
+    bool isMergedInMergeableZone();
 
     VEC3 getMotionDir(const VEC3 & front, const VEC3 & left, bool default = true);
 
