@@ -15,6 +15,8 @@ function onGameStart()
 	cinematicCorridorToBasilicExecuted = false;
 	cinematic_enter_zone_aExecuted = false;
 	cinematic_tower_activatedExecuted = false;
+
+	col_trigger_district_7Executed = false;
 end
 
 --Add all funtions to the console in order to have autocomplete. TODO: Only add custom functions
