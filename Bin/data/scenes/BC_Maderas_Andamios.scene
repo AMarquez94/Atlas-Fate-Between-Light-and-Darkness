@@ -14,117 +14,6 @@
   {
     "entity":
     {
-      "name": "BC_madera"
-      ,
-      "transform":
-      {
-        "pos": "-2.9555 -1.68178e-05 -384.747"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/BC_madera.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_suelomadera.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.75 1.0 0.07"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "BC_madera004"
-      ,
-      "transform":
-      {
-        "pos": "-2.9555 1.99997 -384.75"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/BC_madera004.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_suelomadera.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.75 1.0 0.07"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "BC_madera005"
-      ,
-      "transform":
-      {
-        "pos": "-4.7006 3.99998 -383.61"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/BC_madera005.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_suelomadera.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.75 1.0 0.07"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "BC_madera006"
       ,
       "transform":
@@ -141,7 +30,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_suelomadera.material"
+            "data/materials/mtl_texturas_subida.material"
           ]
         }
       ]
@@ -151,80 +40,6 @@
         "shape": "box"
         ,
         "size": "0.75 1.0 0.07"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "BC_madera007"
-      ,
-      "transform":
-      {
-        "pos": "-6.2006 5.99998 -383.61"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/BC_madera007.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_suelomadera.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.75 1.0 0.07"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "BC_madera008"
-      ,
-      "transform":
-      {
-        "pos": "-3.8806 3.99999 -384.11"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/BC_madera008.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_suelomadera.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.57 0.5 0.07"
       }
       ,
       "abs_aabb": true
@@ -252,7 +67,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_suelomadera.material"
+            "data/materials/mtl_texturas_subida.material"
           ]
         }
       ]
@@ -289,7 +104,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_suelomadera.material"
+            "data/materials/mtl_texturas_subida.material"
           ]
         }
       ]
@@ -299,191 +114,6 @@
         "shape": "box"
         ,
         "size": "0.5 1.0 0.07"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "BC_madera012"
-      ,
-      "transform":
-      {
-        "pos": "-6.82839 9.99998 -383.61"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/BC_madera012.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_suelomadera.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.8778 0.5 0.07"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "BC_madera013"
-      ,
-      "transform":
-      {
-        "pos": "-5.88055 10.0 -384.11"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/BC_madera013.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_suelomadera.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.57 0.5 0.07"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "BC_madera014"
-      ,
-      "transform":
-      {
-        "pos": "-5.88055 11.0 -384.11"
-        ,
-        "rotation": "0.0 -0.707107 0.0 -0.707107"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/BC_madera014.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_suelomadera.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.57 0.5 0.07"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "BC_madera015"
-      ,
-      "transform":
-      {
-        "pos": "-6.52063 11.0 -383.61"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/BC_madera015.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_suelomadera.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.57 0.5 0.07"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "BC_madera016"
-      ,
-      "transform":
-      {
-        "pos": "-7.82839 6.99998 -383.61"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/BC_madera016.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_suelomadera.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "box"
-        ,
-        "size": "0.8778 0.5 0.07"
       }
       ,
       "abs_aabb": true
@@ -511,7 +141,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_suelomadera.material"
+            "data/materials/mtl_texturas_subida.material"
           ]
         }
       ]
@@ -532,23 +162,134 @@
   {
     "entity":
     {
-      "name": "BC_madera018"
+      "name": "BC_madera024"
       ,
       "transform":
       {
-        "pos": "-2.9506 4.06997 -384.25"
+        "pos": "-4.70061 5.99998 -383.61"
         ,
-        "rotation": "0.5 -0.5 -0.5 -0.5"
+        "rotation": "-1.0 0.0 0.0 0.0"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/BC_madera018.mesh"
+          "mesh": "data/meshes/BC_madera024.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_suelomadera.material"
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.75 1.0 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera025"
+      ,
+      "transform":
+      {
+        "pos": "-6.2006 5.99999 -383.61"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera025.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.75 1.0 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera026"
+      ,
+      "transform":
+      {
+        "pos": "-7.82839 6.99999 -383.61"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera026.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.8778 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera027"
+      ,
+      "transform":
+      {
+        "pos": "-5.9293 2.99998 -383.61"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera027.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
           ]
         }
       ]
@@ -569,23 +310,60 @@
   {
     "entity":
     {
-      "name": "BC_madera019"
+      "name": "BC_madera028"
       ,
       "transform":
       {
-        "pos": "-1.9506 4.06997 -384.25"
+        "pos": "-6.8284 9.99999 -383.61"
         ,
-        "rotation": "0.5 -0.5 -0.5 -0.5"
+        "rotation": "0.0 -1.0 0.0 0.0"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/BC_madera019.mesh"
+          "mesh": "data/meshes/BC_madera028.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_suelomadera.material"
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.8778 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera029"
+      ,
+      "transform":
+      {
+        "pos": "-6.52055 11.0 -383.61"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera029.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
           ]
         }
       ]
@@ -606,23 +384,23 @@
   {
     "entity":
     {
-      "name": "BC_madera020"
+      "name": "BC_madera030"
       ,
       "transform":
       {
-        "pos": "-5.81056 12.07 -384.11"
+        "pos": "-3.88059 3.99997 -384.11"
         ,
-        "rotation": "0.5 -0.5 -0.5 -0.5"
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/BC_madera020.mesh"
+          "mesh": "data/meshes/BC_madera030.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_suelomadera.material"
+            "data/materials/mtl_texturas_subida.material"
           ]
         }
       ]
@@ -643,23 +421,23 @@
   {
     "entity":
     {
-      "name": "BC_madera021"
+      "name": "BC_madera031"
       ,
       "transform":
       {
-        "pos": "-6.81056 12.07 -384.11"
+        "pos": "-3.95059 4.06996 -384.25"
         ,
-        "rotation": "0.5 -0.5 -0.5 -0.5"
+        "rotation": "0.5 0.5 -0.5 0.5"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/BC_madera021.mesh"
+          "mesh": "data/meshes/BC_madera031.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_suelomadera.material"
+            "data/materials/mtl_texturas_subida.material"
           ]
         }
       ]
@@ -680,23 +458,23 @@
   {
     "entity":
     {
-      "name": "BC_madera022"
+      "name": "BC_madera032"
       ,
       "transform":
       {
-        "pos": "-7.81056 12.07 -384.11"
+        "pos": "-2.95059 4.06996 -384.25"
         ,
-        "rotation": "0.5 -0.5 -0.5 -0.5"
+        "rotation": "0.5 0.5 -0.5 0.5"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/BC_madera022.mesh"
+          "mesh": "data/meshes/BC_madera032.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_suelomadera.material"
+            "data/materials/mtl_texturas_subida.material"
           ]
         }
       ]
@@ -717,23 +495,1059 @@
   {
     "entity":
     {
-      "name": "BC_madera023"
+      "name": "BC_madera033"
       ,
       "transform":
       {
-        "pos": "-8.81056 12.07 -384.11"
+        "pos": "-2.9555 1.99997 -384.75"
         ,
-        "rotation": "0.5 -0.5 -0.5 -0.5"
+        "rotation": "-1.0 0.0 0.0 0.0"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/BC_madera023.mesh"
+          "mesh": "data/meshes/BC_madera033.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_suelomadera.material"
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.75 1.0 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera034"
+      ,
+      "transform":
+      {
+        "pos": "-2.9555 3.99996 -384.75"
+        ,
+        "rotation": "1.50996e-07 0.0 -1.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera034.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.75 1.0 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera035"
+      ,
+      "transform":
+      {
+        "pos": "-7.98548 1.93193 -382.609"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera035.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.8778 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera036"
+      ,
+      "transform":
+      {
+        "pos": "-7.98549 3.55972 -382.609"
+        ,
+        "rotation": "-0.707107 0.707107 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera036.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.75 1.0 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera037"
+      ,
+      "transform":
+      {
+        "pos": "-8.98549 1.93193 -382.609"
+        ,
+        "rotation": "-0.707107 0.707107 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera037.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.8778 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera038"
+      ,
+      "transform":
+      {
+        "pos": "-10.5555 2.99998 -382.609"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera038.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.57 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera039"
+      ,
+      "transform":
+      {
+        "pos": "-11.6255 2.99998 -382.609"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera039.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.5 1.0 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera040"
+      ,
+      "transform":
+      {
+        "pos": "-12.8755 4.99998 -382.609"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera040.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.75 1.0 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera041"
+      ,
+      "transform":
+      {
+        "pos": "-16.6286 4.36779 -383.61"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera041.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.5 1.0 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera042"
+      ,
+      "transform":
+      {
+        "pos": "-15.2508 5.36779 -383.61"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera042.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.8778 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera043"
+      ,
+      "transform":
+      {
+        "pos": "-16.9184 8.75086 -383.61"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera043.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.8778 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera044"
+      ,
+      "transform":
+      {
+        "pos": "-16.9184 7.12306 -383.61"
+        ,
+        "rotation": "-0.707107 -0.707107 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera044.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.75 1.0 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera045"
+      ,
+      "transform":
+      {
+        "pos": "-15.9184 8.75086 -383.61"
+        ,
+        "rotation": "-0.707107 -0.707107 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera045.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.8778 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera046"
+      ,
+      "transform":
+      {
+        "pos": "-9.58399 9.99999 -383.61"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera046.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.8778 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera047"
+      ,
+      "transform":
+      {
+        "pos": "-5.88058 9.99999 -384.11"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera047.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.57 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera048"
+      ,
+      "transform":
+      {
+        "pos": "-5.88058 11.0 -384.11"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera048.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.57 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera049"
+      ,
+      "transform":
+      {
+        "pos": "-6.38056 12.07 -383.54"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera049.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.57 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera050"
+      ,
+      "transform":
+      {
+        "pos": "-7.52056 12.07 -384.54"
+        ,
+        "rotation": "0.0 -0.707107 -0.707107 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera050.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.57 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera051"
+      ,
+      "transform":
+      {
+        "pos": "-8.66056 12.07 -383.54"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera051.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.57 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera053"
+      ,
+      "transform":
+      {
+        "pos": "-9.27619 5.99999 -383.61"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera053.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.57 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera054"
+      ,
+      "transform":
+      {
+        "pos": "-8.05164 7.49478 -384.758"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera054.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.75 1.0 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera055"
+      ,
+      "transform":
+      {
+        "pos": "-10.0516 5.86699 -384.758"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera055.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.8778 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera056"
+      ,
+      "transform":
+      {
+        "pos": "-13.0517 5.48919 -384.758"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera056.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.5 1.0 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera057"
+      ,
+      "transform":
+      {
+        "pos": "-12.0516 5.55919 -384.758"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera057.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.57 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera058"
+      ,
+      "transform":
+      {
+        "pos": "-10.0516 7.49478 -384.758"
+        ,
+        "rotation": "-0.707107 0.707107 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera058.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.75 1.0 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera059"
+      ,
+      "transform":
+      {
+        "pos": "-11.0516 5.86699 -384.758"
+        ,
+        "rotation": "-0.707107 0.707107 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera059.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.8778 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera060"
+      ,
+      "transform":
+      {
+        "pos": "-16.1104 2.48151 -384.758"
+        ,
+        "rotation": "0.0 0.0 -0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera060.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.8778 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera061"
+      ,
+      "transform":
+      {
+        "pos": "-16.1104 3.45564 -384.758"
+        ,
+        "rotation": "-0.707107 -0.707107 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera061.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.8778 0.5 0.07"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_madera062"
+      ,
+      "transform":
+      {
+        "pos": "-3.88059 4.99998 -384.11"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_madera062.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_texturas_subida.material"
           ]
         }
       ]
