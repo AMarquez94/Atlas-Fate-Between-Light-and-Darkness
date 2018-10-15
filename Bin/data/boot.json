@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_basilic_courtyard",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -260,7 +260,9 @@
       "data/scenes/Basilic_courtyard/BC_trigger_victory.scene",
       "data/scenes/Basilic_courtyard/bc_capsule_cable.scene",
       "data/scenes/BC_Maderas_Andamios.scene",
-	  "data/scenes/BC_ColliderAuxEntrances.scene"
+	  "data/scenes/BC_ColliderAuxEntrances.scene",
+	  "data/scenes/BC_estandarte.scene",
+	  "data/scenes/BC_Terminal.scene"
     ]
   },
 	"scene_basilic_interior": {

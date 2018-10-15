@@ -1,0 +1,32 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_Terminal",
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_terminal"
+      ,
+	  "prefab": "data/prefabs/terminal.prefab",
+      "transform":
+      {
+        "pos": "5.54 0.075 -358.8"
+        ,
+        "lookat": "6.54 0.075 -358.8"
+      }
+	  ,
+      "button": {
+        "script": "shutdown_screen",
+		"canBePressed": false
+      }
+    }
+  }
+]
