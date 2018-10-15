@@ -34,6 +34,10 @@ void TCompTiedHierarchy::onGroupCreated(const TMsgHierarchyGroupCreated& msg) {
 void TCompTiedHierarchy::debugInMenu() {
 
     ImGui::LabelText("Parent Name", "%s", parent_name.c_str());
+    ImGui::DragFloat3("Pos", &orig_pos.x);
+    ImGui::DragFloat3("Rot", &orig_rot.x);
+    ImGui::DragFloat3("Scale", &orig_scale.x);
+
     CHandle h_parent_entity = h_parent_transform.getOwner();
     if (h_parent_entity.isValid())
         h_parent_entity.debugInMenu();
@@ -61,6 +65,7 @@ void TCompTiedHierarchy::update(float dt) {
     TCompTransform * pos = ent->get<TCompTransform>();
     new_t.setPosition(orig_pos + pos->getPosition());
     new_t.setScale(orig_scale);
+    new_t.setRotation(QUAT::CreateFromYawPitchRoll(orig_rot.x, orig_rot.y, orig_rot.z));
 
     c_my_transform->set(new_t);
 }

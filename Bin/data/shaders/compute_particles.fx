@@ -94,11 +94,11 @@ void VS(
 )
 {
   float3 local_pos = iPos.xyz * 2. - 1.;
-  local_pos.xy *= iCenter.w + iSize.x * 0.5;
+  local_pos.xy *= iCenter.w + iSize.x * 0.05;
 
   float2 uv = iPos.xy;
 
-  float4 world_pos = float4(iCenter.xyz + float3(0,40,0) + camera_pos
+  float4 world_pos = float4(iCenter.xyz + float3(0,45,0) + camera_pos
     + (local_pos.x * camera_left + local_pos.y * camera_up)
     , 1);
 
@@ -117,5 +117,5 @@ float4 PS(
 ) : SV_Target
 {
   float a = txAlbedo.Sample(samLinear, iUV).r;
-  return pow( a, 3 )* ( 1 + sin(iSize.x * 3) * 5);
+  return pow( a, 3 )* ( 1 + sin(iSize.x * 3) * 3);
 }

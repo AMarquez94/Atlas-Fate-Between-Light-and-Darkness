@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_basilic_courtyard",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -49,7 +49,7 @@
 			"data/scenes/intro_edificios_segunda_2.scene",
 
 			"data/scenes/intro_carteles.scene",
-			"data/scenes/intro_luna.scene",
+			"data/scenes/intro_planets.scene",
 
 			"data/scenes/intro_pozo.scene",
 			"data/scenes/intro_barra_capsulas.scene",
@@ -151,7 +151,7 @@
       		"data/scenes/zone_a_decal.scene",
 			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/zone_a_grass.scene",
-
+			"data/scenes/ZoneA/zonea_planets.scene",
 			"data/scenes/zone_a_mosaico.scene",
 			
 			"data/scenes/ZoneA/whitebox_zone_light.scene",
@@ -186,6 +186,7 @@
 			"data/scenes/Coliseo/camera.scene",
 			"data/scenes/Coliseo/coliseo_particles.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
+			"data/scenes/Coliseo/coliseo_planets.scene",
 			"data/scenes/Coliseo/coliseo_structures.scene"
 		]
 	},
@@ -209,6 +210,7 @@
 			"data/scenes/Coliseo/camera.scene",
 			"data/scenes/Coliseo/coliseo_particles.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
+			"data/scenes/Coliseo/coliseo_planets.scene",
 			"data/scenes/Coliseo/coliseo_structures.scene"
 		]
 	},
@@ -250,7 +252,9 @@
 			"data/scenes/BC_maderas.scene",
 			"data/scenes/Basilic_courtyard/BC_fuente.scene",
 			"data/scenes/suelo_mezquita.scene",
-			"data/scenes/Basilic_courtyard/almibars.scene"
+			"data/scenes/Basilic_courtyard/almibars.scene",
+			"data/scenes/Basilic_courtyard/basilic_courtyard_particles.scene",
+			"data/scenes/Basilic_courtyard/basilic_courtyard_planets.scene"
 		]
 	},
 	"scene_basilic_interior": {

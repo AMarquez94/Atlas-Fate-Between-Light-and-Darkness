@@ -316,6 +316,17 @@
 			"noise": "data/textures/noise_cloud3.dds"
 		}
 	},
+	"env_planet": {
+		"vs_file": "data/shaders/env.fx",
+		"ps_file": "data/shaders/env.fx",
+		"vs_entry_point": "VS",
+		"ps_entry_point": "PS_Planet",
+		"vertex_type": "PosNUvUvT",
+		"category": "env_effects",
+		"textures": {
+			"noise": "data/textures/noise_cloud3.dds"
+		}
+	},
 	"env_moon_backface": {
 		"vs_file": "data/shaders/env.fx",
 		"ps_file": "data/shaders/env.fx",
