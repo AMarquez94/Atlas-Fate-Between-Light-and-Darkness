@@ -4,6 +4,7 @@
 #include "entity/entity_parser.h"
 #include "components/comp_transform.h"
 #include "entity/common_msgs.h"
+#include "render/render_objects.h"
 
 DECL_OBJ_MANAGER("tied_hierarchy", TCompTiedHierarchy);
 
@@ -41,34 +42,24 @@ void TCompTiedHierarchy::debugInMenu() {
 
 void TCompTiedHierarchy::setParentEntity(CHandle new_h_parent) {
 
-    CEntity* e_parent = new_h_parent;
-    if (e_parent) {
-        // Cache the two handles: the comp_transform of the entity I'm tracing, and my comp_transform
-        h_parent_transform = e_parent->get<TCompTransform>();
-        CEntity* e_my_owner = CHandle(this).getOwner();
-        h_my_transform = e_my_owner->get<TCompTransform>();
-        parent_name = e_parent->getName();
-        h_parent = new_h_parent;
-    }
-    else {
-        // Invalidate previous contents
-        h_parent_transform = CHandle();
-        h_my_transform = CHandle();
-        h_parent = CHandle();
-    }
+    CEntity* e_my_owner = CHandle(this).getOwner();
+    h_my_transform = e_my_owner->get<TCompTransform>();
 }
 
 void TCompTiedHierarchy::update(float dt) {
 
     // My parent world transform
-    TCompTransform* c_parent_transform = h_parent_transform;
-    if (!c_parent_transform)
-        return;
+    //TCompTransform* c_parent_transform = h_parent_transform;
+    //if (!c_parent_transform)
+    //    return;
 
     // Dirty component, no time to make this clean.
     TCompTransform* c_my_transform = h_my_transform;
+
     CTransform new_t;
-    new_t.setPosition(orig_pos + c_parent_transform->getPosition());
+    CEntity * ent = EngineCameras.getCurrentCamera();
+    TCompTransform * pos = ent->get<TCompTransform>();
+    new_t.setPosition(orig_pos + pos->getPosition());
     new_t.setScale(orig_scale);
 
     c_my_transform->set(new_t);

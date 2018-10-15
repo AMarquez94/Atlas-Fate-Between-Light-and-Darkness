@@ -495,7 +495,7 @@
           "min_size" : 1,
           "max_size" : 2
         },
-        "nparticles" : 5000,
+        "nparticles" : 3000,
         "update" : {
           "name": "kernel_bw.compute",
           "cs_file": "data/shaders/compute_particles.fx",

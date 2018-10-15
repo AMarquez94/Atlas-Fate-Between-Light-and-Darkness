@@ -14,26 +14,31 @@ namespace GPUParticles {
         VEC3  vel;
         float unit_time;        // Between 0..1
         float time_factor;      // unit_time += time_factor*delta_time;
-        float dummy1;
-        float dummy2;
-        float dummy3;
+        int pid;
+
+        float rtime;
+        float etime;
     };
 
     struct TRenderInstance {
-        VEC3  pos;
-        float size;
+        VEC4   pos;
+        VEC2   data;
     };
 
     // Core parameters
     struct TSystemCore {
         VEC3  center;
         float delta_time = 0.f;
-        VEC3  speed;
+        VEC3  speed = VEC3(100,0,0);
         float radius = 10.0f;
         float height = 10.0f;
         float life_time = 1.0f;
         float min_size = 1.0f;
         float max_size = 1.0f;
+        float ratio_time = 0.0f;
+
+        float elapsed_time = 0.0f;
+
         bool load(const json& j);
         void debugInMenu();
         void initParticle(TStateInstance* s) const;
@@ -55,7 +60,7 @@ namespace GPUParticles {
 
         // To render the particles
         VRenders curr_render;
-
+        static int         namount;
         VCore    gpu_core;
 
         bool               use_cpu_update = false;

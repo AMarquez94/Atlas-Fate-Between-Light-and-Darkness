@@ -60,8 +60,9 @@ public:
 	void closePauseMenu();
 
 	void setSubtitlesToNone();
-	void setSubtitles(std::string subtitle_name);
-	void setMission(std::string subtitle_name);
+	void setSubtitles(int sub_num);
+	void clearSubtitles();
+	void setMission(int mission_num);
 	void activateEnemyHUD();
 	void deactivateEnemyHUD();
 

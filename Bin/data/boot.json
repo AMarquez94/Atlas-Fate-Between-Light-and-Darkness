@@ -1,66 +1,5 @@
 {
 	"default_scene": "scene_intro",
-	"scene_main_menu": {
-		"static_data": {
-			"initial_script": "main_menu",
-			"exposure": 1.3,
-			"ambient": 0.05,
-			"gamma": 1,
-			"tone_mapping": 1,
-			"shadow_intensity": 0,
-			"ground_fog_density": 0.1,
-			"env_fog_density": 0.1,
-			"shadow_color": "0.0 0.0 0.0",
-			"ground_fog": "0.47 0.51 0.84",
-			"env_fog": "0.0 0.0 0.023"
-		},
-		"persistent_scenes": [],
-		"scene_group": [
-			"data/scenes/Main_menu/menu_player.scene",
-			"data/scenes/Main_menu/menu_cameras.scene",
-			"data/scenes/Intro/intro_columnas.scene",
-			"data/scenes/Intro/intro_puertas.scene",
-			"data/scenes/Intro/intro_casas.scene",
-			"data/scenes/Intro/intro_barandillas.scene",
-			"data/scenes/Intro/intro_colliders_barandillas.scene",
-			"data/scenes/Intro/intro_salientes.scene",
-			"data/scenes/Intro/intro_colliders_salientes.scene",
-			"data/scenes/Intro/intro_capsules.scene",
-			"data/scenes/intro_light2.scene",
-			"data/scenes/Intro/intro_puentes_chapa.scene",
-			"data/scenes/intro_andamios.scene",
-			"data/scenes/intro_basilica.scene",
-			"data/scenes/intro_tejados.scene",
-			"data/scenes/intro_valla.scene",
-			"data/scenes/intro_colliders_valla.scene",
-			"data/scenes/intro_neones.scene",
-			"data/scenes/intro_mosaico.scene",
-			"data/scenes/intro_cables.scene",
-			"data/scenes/intro_tubo_capsulas.scene",
-			"data/scenes/intro_farolas.scene",
-			"data/scenes/intro_patrol_atrapado.scene",
-			"data/scenes/intro_edificios_segunda_1.scene",
-			"data/scenes/intro_edificios_segunda_2.scene",
-			"data/scenes/intro_carteles.scene",
-			"data/scenes/intro_pozo.scene",
-			"data/scenes/intro_barra_capsulas.scene",
-			"data/scenes/Intro/intro_suelo.scene",
-			"data/scenes/intro_containers_puerto.scene",
-			"data/scenes/intro_muralla_intro.scene",
-			"data/scenes/intro_muralla_fin.scene",
-			"data/scenes/intro_conductos.scene",
-			"data/scenes/intro_tubitos.scene",
-			"data/scenes/intro_props.scene",
-			"data/scenes/Intro/tutorial.scene",
-			"data/scenes/Intro/enemy.scene",
-			"data/scenes/Intro/intro_checkpoints.scene",
-			"data/scenes/Intro/intro_trigger_kill.scene",
-			"data/scenes/Intro/intro_buttons.scene",
-			"data/scenes/Intro/intro_particles.scene",
-			"data/scenes/Intro/intro_puerta_end.scene",
-			"data/scenes/intro_corridor_2.scene"
-		]
-	},
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -136,7 +75,8 @@
 			"data/scenes/intro_col_corridor_lights.scene",
 			"data/scenes/intro_col_corridor_props.scene",
 
-			"data/scenes/pantalla_intro_video.scene"
+			"data/scenes/pantalla_intro_video.scene",
+			"data/scenes/intro_subtitle_triggers.scene"
 		]
 	},
 	"scene_coliseo": {
@@ -312,7 +252,6 @@
       "data/scenes/BC_tubos.scene",
       "data/scenes/BC_capsulas.scene",
       "data/scenes/BC_neones.scene",
-      "data/scenes/BC_maderas.scene",
       "data/scenes/Basilic_courtyard/BC_fuente.scene",
       "data/scenes/suelo_mezquita.scene",
       "data/scenes/Basilic_courtyard/almibars.scene",
@@ -320,20 +259,25 @@
       "data/scenes/bc_pasillo_entre.scene",
       "data/scenes/bc_corridor_logic.scene",
       "data/scenes/Basilic_courtyard/BC_trigger_victory.scene",
-      "data/scenes/Basilic_courtyard/bc_capsule_cable.scene"
+      "data/scenes/Basilic_courtyard/bc_capsule_cable.scene",
+      "data/scenes/BC_Maderas_Andamios.scene",
+	  "data/scenes/BC_ColliderAuxEntrances.scene",
+	  "data/scenes/BC_estandarte.scene",
+	  "data/scenes/BC_Terminal.scene",
+	  "data/scenes/BC_Screens.scene"
     ]
   },
 	"scene_basilic_interior": {
 		"static_data": {
 			"initial_script": "basilic_interior",
 			"navmesh": "data/navmeshes/basilic_interior_navmesh.bin",
-			"exposure": 1.51,
+			"exposure": 0.59,
 			"ambient": 0.03,
-			"gamma": 0.92,
+			"gamma": 1,
 			"tone_mapping": 1,
-			"shadow_intensity": 0,
+			"shadow_intensity": 0.2,
 			"ground_fog_density": 0.1,
-			"env_fog_density": 0.1,
+			"env_fog_density": 0.25,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.043"

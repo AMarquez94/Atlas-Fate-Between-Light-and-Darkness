@@ -14,9 +14,6 @@ uint32_t getNextUniqueMsgID() {
 }
 
 CEntity::~CEntity() {
-    dbg("=======================\n");
-    dbg("DESTROY ENTITY %d: \n", CHandle(this));
-    dbg("NAME %s: \n", getName());
     sendMsg(TMsgEntityDestroyed());
     // Comp 0 is not valid
     for (uint32_t i = 1; i < CHandleManager::getNumDefinedTypes(); ++i) {

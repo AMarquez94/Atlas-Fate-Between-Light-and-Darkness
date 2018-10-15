@@ -1412,6 +1412,7 @@ data/scenes/pantalla_intro_video.scene
 data/meshes/prueba_pantalla.mesh
 data/video/test_monkey.h264
 data/materials/video_atlas.material
+data/scenes/intro_subtitle_triggers.scene
 data/scenes/Intro/_player.scene
 data/prefabs/player.prefab
 data/materials/characters/mtl_player_main_env.material

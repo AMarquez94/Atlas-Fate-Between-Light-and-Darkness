@@ -15,15 +15,16 @@ static void decodeVideoTextures() {
 
     while (true) {
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(30));
+        sem_can_decode.wait();
         for (auto t : playing_video_textures)
             t->update(0.f);   // 0.f is not correct either
         sem_can_upload.notify();
+        //std::this_thread::sleep_for(std::chrono::milliseconds(30));
 
-        //float elapsed = tm.elapsedAndReset();
-        //float remaining_time = (1.0f / desired_fps) - elapsed;
-        //if (remaining_time > 0)
-        //    std::this_thread::sleep_for(std::chrono::milliseconds((int)(remaining_time * 1000)));
+        float elapsed = tm.elapsedAndReset();
+        float remaining_time = (1.0f / desired_fps) - elapsed;
+        if (remaining_time > 0)
+            std::this_thread::sleep_for(std::chrono::milliseconds((int)(remaining_time * 1000)));
     }
 }
 
