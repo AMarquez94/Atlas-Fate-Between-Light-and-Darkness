@@ -14,11 +14,11 @@
   {
     "entity":
     {
-      "name": "BC_Screen01"
+      "name": "BC_Screen001"
       ,
       "transform":
       {
-        "pos": "-9.26964 8.2667 -384.772"
+        "pos": "-9.26964 8.26668 -384.772"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -26,11 +26,11 @@
       "render":
       [
         {
-          "mesh": "data/meshes/BC_Screen01.mesh"
+          "mesh": "data/meshes/BC_Screen001.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/video.material"
           ]
         }
       ]
@@ -39,7 +39,7 @@
       {
         "shape": "box"
         ,
-        "size": "4.0 3.44745 0.0914764"
+        "size": "4.0 3.44745 0.0914917"
       }
       ,
       "abs_aabb": true
@@ -55,7 +55,7 @@
       ,
       "transform":
       {
-        "pos": "18.5998 8.2667 -384.772"
+        "pos": "18.5998 8.26671 -384.772"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -67,7 +67,7 @@
           ,
           "materials":
           [
-            "data/materials/mtl_default.material"
+            "data/materials/video.material"
           ]
         }
       ]
@@ -76,7 +76,7 @@
       {
         "shape": "box"
         ,
-        "size": "4.0 3.44745 0.0914764"
+        "size": "4.0 3.44745 0.0914917"
       }
       ,
       "abs_aabb": true

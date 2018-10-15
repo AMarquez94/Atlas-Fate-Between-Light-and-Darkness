@@ -1,0 +1,43 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_Entrada_chapas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_chapa"
+      ,
+      "transform":
+      {
+        "pos": "-12.4741 15.1812 -389.671"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/bc_mesh_chapa.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_chapas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]
