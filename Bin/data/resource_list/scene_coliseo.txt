@@ -614,9 +614,11 @@ data/textures/player/Shade_mtl_Normal.dds
 data/textures/player/Shade_mtl_Roughness.dds
 data/materials/characters/mtl_player_main_hologram_solid.material
 data/scenes/Coliseo/capsules.scene
+data/scenes/col_zone_a_corridor_lights.scene
+data/colliders/Spot001.collider
 data/scenes/col_intro_corridor_lights.scene
-data/colliders/luz_pasillo037.collider
 data/colliders/luz_pasillo.collider
+data/colliders/luz_pasillo037.collider
 data/scenes/col_intro_corridor_props.scene
 data/meshes/intro_boton001.mesh
 data/meshes/intro_lampara001.mesh
