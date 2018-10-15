@@ -277,6 +277,7 @@ namespace FSM
 		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::SONDA_NORMAL , 1.0f });
 		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
 		e->sendMsg(TMsgSonarActive{ 1.f });
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getAllChilds()[0]->getSpriteParams()->_playing_sprite = 3;
 	}
 
 	void SonarStateUp::onFinish(CContext& ctx) const {

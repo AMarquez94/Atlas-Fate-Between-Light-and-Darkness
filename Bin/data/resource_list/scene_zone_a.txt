@@ -941,6 +941,7 @@ data/textures/tx_neon_moderdonia_rgh.dds
 data/materials/mtl_neon_moderdonia.material
 data/textures/tx_cables_alb.dds
 data/materials/mtl_default.material
+data/scenes/zonea_triggers.scene
 data/scenes/zone_a_in_corridor.scene
 data/prefabs/puerta_tech.prefab
 data/colliders/collider_framedoor.collider
