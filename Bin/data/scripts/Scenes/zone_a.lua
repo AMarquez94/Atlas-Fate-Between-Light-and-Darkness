@@ -60,9 +60,7 @@ function cinematic_enter_zone_a()
 	execScriptDelayed("activateSubtitles(20);", 0.27);
 	execScriptDelayed("activateSubtitles(21);", 5);
 	execScriptDelayed("deactivateSubtitles();", 9.5);
-	temp = getEntityByName("intro_trigger_muralla");
-	temp:destroy();
-
+	
 	setInBlackScreen(0.25);
 	execScriptDelayed("setOutBlackScreen(0.25);",0.3);
 	execScriptDelayed("move(\"The Player\", VEC3(-40,0,-90),VEC3(-41,0,-90));",3);
@@ -81,6 +79,9 @@ function cinematic_enter_zone_a()
 	setCinematicPlayerState(true, "inhibitor_capsules", "");
 	execScriptDelayed("setCinematicPlayerState(false, \"\")", 10);
 	cinematic_enter_zone_aExecuted = true;
+
+	temp = getEntityByName("intro_trigger_muralla");
+	temp:destroy();
 
 end
 

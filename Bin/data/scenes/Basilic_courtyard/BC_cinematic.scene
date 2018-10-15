@@ -1,0 +1,31 @@
+[
+  {
+    "entity": {
+      "name": "Coliseo_Cinematic",
+      "transform": {
+        "pos": "0 0 0",
+        "rotation": "0 0 0 1"
+      }
+    }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Basilic_Courtyard_Rot_1",
+      "transform": {
+        "pos": "0.890 15.47 -372.59",
+        "rotation": "0.0990 -0.8769 0.2053 0.4231"
+      },
+       "prefab": "data/prefabs/camera_player.prefab"
+    }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Basilic_Courtyard_Rot_2",
+      "transform": {
+        "pos": "0.890 15.47 -372.59",
+        "rotation": "0.070 -0.9262 0.2169 0.3001"
+      },
+       "prefab": "data/prefabs/camera_player.prefab"
+    }
+  }
+]
