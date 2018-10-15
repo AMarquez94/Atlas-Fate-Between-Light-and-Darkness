@@ -479,28 +479,32 @@ void CModuleGUI::setSubtitlesToNone() {
 		GUI::CWidget *wdgt = EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SUBTITLES)->getAllChilds()[0];
 		if (wdgt->getType() == GUI::CWidget::EWidgetType::SUBTITLES) {
 			CSubtitles *subt = (CSubtitles*)wdgt;
-			subt->activateSubtitles("none");
+			subt->activateSubtitles(0);
 		}
 	}
 }
 
-void CModuleGUI::setSubtitles(std::string subtitle_name) {
+void CModuleGUI::setSubtitles(int sub_num) {
 
 	if (getWidgetStructureEnabled(CModuleGUI::EGUIWidgets::SUBTITLES)) {
 		GUI::CWidget *wdgt = EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SUBTITLES)->getAllChilds()[0];
 		if (wdgt->getType() == GUI::CWidget::EWidgetType::SUBTITLES) {
 			CSubtitles *subt = (CSubtitles*)wdgt;
-			subt->activateSubtitles(subtitle_name);
+			subt->activateSubtitles(sub_num);
 		}
 	}
 }
+void CModuleGUI::clearSubtitles() {
+	EngineGUI.setSubtitlesToNone();
+	EngineLogic.eraseDelayedScripts("Subtitles(");
+}
 
-void CModuleGUI::setMission(std::string subtitle_name) {
+void CModuleGUI::setMission(int mission_num) {
 
 	GUI::CWidget *wdgt = EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_MISSION)->getAllChilds()[0];
 	if (wdgt != nullptr && wdgt->getType() == GUI::CWidget::EWidgetType::SUBTITLES) {
 		CSubtitles *subt = (CSubtitles*)wdgt;
-		subt->activateSubtitles(subtitle_name);
+		subt->activateSubtitles(mission_num);
 	}
 }
 
@@ -509,7 +513,7 @@ void CModuleGUI::activateEnemyHUD() {
 		GUI::CWidget *wdgt = EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY)->getAllChilds()[0];
 		if (wdgt->getType() == GUI::CWidget::EWidgetType::SUBTITLES) {
 			CSubtitles *subt = (CSubtitles*)wdgt;
-			subt->activateSubtitles("atlas");
+			subt->activateSubtitles(1);
 		}
 	}
 }
@@ -519,7 +523,7 @@ void CModuleGUI::deactivateEnemyHUD() {
 		GUI::CWidget *wdgt = EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY)->getAllChilds()[0];
 		if (wdgt->getType() == GUI::CWidget::EWidgetType::SUBTITLES) {
 			CSubtitles *subt = (CSubtitles*)wdgt;
-			subt->activateSubtitles("none");
+			subt->activateSubtitles(0);
 		}
 	}
 }

@@ -26,6 +26,7 @@ function onScenePartialEnd_scene_intro()
 end
 
 function intro_intro_cinematic()
+	subClear();
 	move("The Player", VEC3(-6.275, 12.115, 32.7),VEC3(-6.275, 12.115, 31.7));
 	resetMainCameras();
 	setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
@@ -40,15 +41,15 @@ function intro_intro_cinematic()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_video\", 0)", 24);
 
 	 --Activating the subtitles
-	execScriptDelayed("activateSubtitles(\"doyouhearme\");",23.5);
-	execScriptDelayed("activateSubtitles(\"wewillbeintouch\");",25.5);
-	execScriptDelayed("activateSubtitles(\"youshoulddoyourbest\");",30);
-	execScriptDelayed("activateSubtitles(\"andifyoudie\");",35);
-	execScriptDelayed("activateSubtitles(\"ifyoudieyoualready\");",37.5);
-	execScriptDelayed("activateSubtitles(\"toundertakeyourtask\");",42.5);
-	execScriptDelayed("activateSubtitles(\"andremember\");",45.5);
-	execScriptDelayed("activateSubtitles(\"youshouldonly\");",48);
-	execScriptDelayed("activateSubtitles(\"thatsallfornow\");",53);
+	execScriptDelayed("activateSubtitles(1);",23.5);
+	execScriptDelayed("activateSubtitles(2);",25.5);
+	execScriptDelayed("activateSubtitles(3);",30);
+	execScriptDelayed("activateSubtitles(4);",35);
+	execScriptDelayed("activateSubtitles(5);",37.5);
+	execScriptDelayed("activateSubtitles(6);",42.5);
+	execScriptDelayed("activateSubtitles(7);",45.5);
+	execScriptDelayed("activateSubtitles(8);",48);
+	execScriptDelayed("activateSubtitles(9);",53);
 	execScriptDelayed("deactivateSubtitles();", 56);
 
 	--Second Frame
@@ -117,8 +118,13 @@ end
 
 function intro_inhibitor_cinematic()
 	gameManager.isCinematicMode = true;
+	subClear();
 	move("The Player", VEC3(-19, 7, -33.5),VEC3(-19, 7, -35.5));
 	resetMainCameras();
+
+	execScriptDelayed("activateSubtitles(14);", 5.75);
+	execScriptDelayed("activateSubtitles(15);", 10);
+	execScriptDelayed("deactivateSubtitles();", 13);
 
 	setCinematicPlayerState(true, "inhibitor_cinematic", "");
 	blendInCamera("Camera_Cinematic_Inhibitor_1" ,0,"cinematic","");
@@ -159,6 +165,11 @@ end
 
 function onTriggerEnter_Trigger_Capsules_Cinematic_player()
 	if(cinematicsEnabled and not Capsules_CinematicExecuted) then
+
+		subClear();
+		execScriptDelayed("activateSubtitles(13);", 2);
+		execScriptDelayed("deactivateSubtitles();", 10);
+		
 		setCinematicPlayerState(true, "capsules_cinematic", "");
 		setInBlackScreen(0.25);
 		execScriptDelayed("setOutBlackScreen(0.25);",0.3);
@@ -181,7 +192,35 @@ function onTriggerEnter_Trigger_Capsules_Cinematic_player()
 		temp:destroy();
 	end	
 end
+-- # Subtitles tutorials # --
+function onTriggerEnter_intro_trigger_muralla_player()
+	subClear();
+	activateSubtitles(10);
+	execScriptDelayed("deactivateSubtitles();", 8);
+	temp = getEntityByName("intro_trigger_muralla");
+	temp:destroy();
+end
 
+function onTriggerEnter_intro_trigger_muralla_alto_player()
+	subClear();
+	activateSubtitles(11);
+	execScriptDelayed("activateSubtitles(12);",7);
+	execScriptDelayed("deactivateSubtitles();", 10);
+	temp = getEntityByName("intro_trigger_muralla_alto");
+	temp:destroy();
+end
+
+function onTriggerEnter_intro_trigger_patrol_care_player()
+	subClear();
+	activateSubtitles(16);
+	execScriptDelayed("deactivateSubtitles();", 8);
+	temp = getEntityByName("intro_trigger_patrol_care");
+	temp:destroy();
+end
+
+function onTriggerEnter_intro_trigger_patrol_story_player()
+
+end
 
 -- # Trigger tutorials # --
 

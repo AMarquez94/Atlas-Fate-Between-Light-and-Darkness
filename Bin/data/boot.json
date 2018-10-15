@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_coliseo_2",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -75,7 +75,8 @@
 			"data/scenes/intro_col_corridor_lights.scene",
 			"data/scenes/intro_col_corridor_props.scene",
 
-			"data/scenes/pantalla_intro_video.scene"
+			"data/scenes/pantalla_intro_video.scene",
+			"data/scenes/intro_subtitle_triggers.scene"
 		]
 	},
 	"scene_coliseo": {
