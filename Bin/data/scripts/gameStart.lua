@@ -17,6 +17,7 @@ function onGameStart()
 	cinematic_tower_activatedExecuted = false;
 
 	col_trigger_district_7Executed = false;
+	zone_a_door_activated = false;
 end
 
 --Add all funtions to the console in order to have autocomplete. TODO: Only add custom functions
