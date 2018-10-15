@@ -828,8 +828,6 @@ data/materials/mtl_muralla.material
 data/colliders/collider_muralla_intro_muro1.collider
 data/meshes/mesh_muralla_intro_muro_2.mesh
 data/colliders/collider_muralla_intro_muro2.collider
-data/meshes/mesh_muralla_intro_muro_003.mesh
-data/colliders/collider_muralla_intro_muro003.collider
 data/meshes/mesh_muralla_intro_ornamentos.mesh
 data/textures/tx_muralla_intro_alb.dds
 data/textures/tx_muralla_intro_emi.dds
@@ -995,6 +993,8 @@ data/meshes/mesh_container_puerto4.mesh
 data/colliders/collider_container_puerto_4.collider
 data/scenes/intro_muralla_intro.scene
 data/scenes/intro_muralla_fin.scene
+data/meshes/mesh_muralla_intro_muro_003.mesh
+data/colliders/collider_muralla_intro_muro003.collider
 data/scenes/intro_conductos.scene
 data/prefabs/conductocurvo_pequeno.prefab
 data/meshes/mesh_conductocurvo_pequeno.mesh
