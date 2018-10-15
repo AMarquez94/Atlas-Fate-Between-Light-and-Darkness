@@ -170,6 +170,9 @@
 			"data/scenes/col_intro_corridor_logic.scene",
 			"data/scenes/Coliseo/col_mosque.scene",
 			"data/scenes/Coliseo/capsules.scene",
+
+			"data/scenes/col_intro_corridor_lights.scene",
+
 			"data/scenes/Coliseo/col_capsule_cable.scene"
 		]
 	},
