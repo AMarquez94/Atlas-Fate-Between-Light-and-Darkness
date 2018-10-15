@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_basilic_interior",
+	"default_scene": "scene_basilic_courtyard",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -247,7 +247,6 @@
       "data/scenes/BC_tubos.scene",
       "data/scenes/BC_capsulas.scene",
       "data/scenes/BC_neones.scene",
-      "data/scenes/BC_maderas.scene",
       "data/scenes/Basilic_courtyard/BC_fuente.scene",
       "data/scenes/suelo_mezquita.scene",
       "data/scenes/Basilic_courtyard/almibars.scene",
@@ -255,7 +254,9 @@
       "data/scenes/bc_pasillo_entre.scene",
       "data/scenes/bc_corridor_logic.scene",
       "data/scenes/Basilic_courtyard/BC_trigger_victory.scene",
-      "data/scenes/Basilic_courtyard/bc_capsule_cable.scene"
+      "data/scenes/Basilic_courtyard/bc_capsule_cable.scene",
+      "data/scenes/BC_Maderas_Andamios.scene",
+	  "data/scenes/BC_ColliderAuxEntrances.scene"
     ]
   },
 	"scene_basilic_interior": {

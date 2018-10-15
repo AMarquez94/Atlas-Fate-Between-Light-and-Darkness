@@ -54,9 +54,6 @@ void CModuleParticles::update(float delta)
                 if (h_entity.isValid()) {
                     h_entity.destroy();
                 }
-                else {
-                    dbg("ENTITY INVALID\n");
-                }
                 
             }
                 //EngineLogic.execScript("destroyHandle(" + ps->getHandleEntity().asString() + ")");
