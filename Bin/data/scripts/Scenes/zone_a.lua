@@ -56,7 +56,7 @@ end
 
 function cinematic_enter_zone_a()
 
-	subClear();
+	startCinematicMode(10)
 	execScriptDelayed("activateSubtitles(20);", 0.27);
 	execScriptDelayed("activateSubtitles(21);", 5);
 	execScriptDelayed("deactivateSubtitles();", 9.5);
@@ -86,11 +86,11 @@ function cinematic_enter_zone_a()
 end
 
 function cinematic_tower_activated()
-	gameManager.isCinematicMode = true;
+	startCinematicMode(12.8);
 	setInBlackScreen(0.25);
 	execScriptDelayed("setOutBlackScreen(0.25);",0.3);
 	subClear();
-	execScriptDelayed("activateSubtitles(21);", 2.25);
+	execScriptDelayed("activateSubtitles(23);", 2.25);
 	execScriptDelayed("deactivateSubtitles();", 6);
 
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Exit_Door_2\", 9, \"cinematic\", \"quintinout\")", 1.5);
@@ -103,7 +103,6 @@ function cinematic_tower_activated()
 	cinematic_tower_activatedExecuted = true;
 	setCinematicPlayerState(true, "inhibitor_capsules", "");
 	execScriptDelayed("setCinematicPlayerState(false, \"\")", 12.75);
-	execScriptDelayed("gameManager.isCinematicMode = false;", 12.8);
 end
 
 function onTriggerEnter_ZON_Trigger_Exit_ZoneA_player()
