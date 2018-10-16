@@ -103,7 +103,7 @@
 				"lookat": "-45 0 -138"
 			},
 			"ai_patrol": {
-				"startLightsOn": false
+				"startLightsOn": true
 			}
 		}
 	},  {

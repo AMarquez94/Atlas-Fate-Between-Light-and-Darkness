@@ -66,22 +66,24 @@ void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
     auto& light_handles = CTagsManager::get().getAllEntitiesByTag(getID("light"));
 
     for (auto h : light_handles) {
-        CEntity* current_light = h;
-        TCompLightDir * c_light_dir = current_light->get<TCompLightDir>();
-        TCompLightSpot * c_light_spot = current_light->get<TCompLightSpot>();
-        TCompLightPoint* c_light_point = current_light->get<TCompLightPoint>();
+        if (h.isValid()) {
+            CEntity* current_light = h;
+            TCompLightDir * c_light_dir = current_light->get<TCompLightDir>();
+            TCompLightSpot * c_light_spot = current_light->get<TCompLightSpot>();
+            TCompLightPoint* c_light_point = current_light->get<TCompLightPoint>();
 
-        if (c_light_dir) // by now we will only retrieve directional lights
-        {
-            static_lights.push_back(h);
-        }
-        else if (c_light_spot || c_light_point) // by now we will only retrieve directional lights
-        {
-            TCompCollider * c_collider = current_light->get<TCompCollider>();
-            //c_collider->config->shape->setFlag(physx::PxShapeFlag::eSCENE_QUERY_SHAPE, true);
-            //c_collider->config->shape->setFlag(physx::PxShapeFlag::eSIMULATION_SHAPE, true);
-            if (c_collider != NULL)
-                dynamic_lights.push_back(h);
+            if (c_light_dir) // by now we will only retrieve directional lights
+            {
+                static_lights.push_back(h);
+            }
+            else if (c_light_spot || c_light_point) // by now we will only retrieve directional lights
+            {
+                TCompCollider * c_collider = current_light->get<TCompCollider>();
+                //c_collider->config->shape->setFlag(physx::PxShapeFlag::eSCENE_QUERY_SHAPE, true);
+                //c_collider->config->shape->setFlag(physx::PxShapeFlag::eSIMULATION_SHAPE, true);
+                if (c_collider != NULL)
+                    dynamic_lights.push_back(h);
+            }
         }
     }
 
@@ -166,7 +168,7 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point, bool player)
         for (int i = 0; i < hits.size(); i++) {
             CHandle hitCollider;
             hitCollider.fromVoidPtr(hits[i].actor->userData);
-            if (hitCollider.isValid()) {
+            if (hitCollider.isValid() && hitCollider.getOwner().isValid()) {
 
                 CEntity * collider = hitCollider.getOwner();
                 TCompLightSpot* c_light_spot = collider->get<TCompLightSpot>();
@@ -178,7 +180,6 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point, bool player)
                     continue;
                 }
 
-                TCompCollider * c_collider = collider->get<TCompCollider>();
                 TCompTransform * c_transform = collider->get<TCompTransform>();
                 VEC3 dir = point - c_transform->getPosition();
                 dir.Normalize();

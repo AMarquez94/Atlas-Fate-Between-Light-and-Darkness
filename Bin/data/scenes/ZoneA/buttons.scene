@@ -23,8 +23,8 @@
       "name": "Button Open Exit",
 	  "prefab": "data/prefabs/terminal.prefab",
       "transform": {
-        "pos": "-106 0 -133",
-        "lookat": "-107 0 -133"
+        "pos": "-104 0 -140.6",
+        "lookat": "-105 0 -141.6"
       },
       "button": {
         "script": "enable_button_exit",
