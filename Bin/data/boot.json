@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_coliseo",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -100,6 +100,7 @@
 			"data/scenes/Coliseo/coliseo_luces.scene",
 			"data/scenes/Coliseo/coliseo_planets.scene",
 			"data/scenes/col_pantallas_distritos.scene",
+			"data/scenes/Coliseo/coliseo_rellenoprops.scene",
 			"data/scenes/Coliseo/coliseo_structures.scene",
 			"data/scenes/Coliseo/buttons.scene",
 			"data/scenes/COL_pared_suelo.scene",
@@ -205,6 +206,7 @@
 			"data/scenes/Coliseo/coliseo_particles.scene",
 			"data/scenes/Coliseo/buttons.scene",
 			"data/scenes/col_sub_triggers.scene",
+			"data/scenes/Coliseo/coliseo_rellenoprops.scene",
 			"data/scenes/COL_pared_suelo.scene",
 			"data/scenes/col_pantallas_distritos.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
