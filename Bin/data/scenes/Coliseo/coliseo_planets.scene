@@ -82,7 +82,7 @@
 					"self_intensity": 0.21,
 					"materials":
 					[
-						"data/materials/mtl_planet1.material"
+						"data/materials/mtl_planet2.material"
 					]
 				}
 			],
@@ -104,7 +104,7 @@
 					"self_intensity": 0.0,
 					"materials":
 					[
-						"data/materials/mtl_planet1_back.material"
+						"data/materials/mtl_planet2_back.material"
 					]
 				}
 			],

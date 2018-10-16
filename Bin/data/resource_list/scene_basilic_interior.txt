@@ -168,6 +168,9 @@ data/textures/tx_box_nml.dds
 data/textures/tx_box_rgh.dds
 data/materials/mtl_caja_juanlu.material
 data/scenes/basilic_interior_monitorytubos.scene
+data/meshes/int_teclados.mesh
+data/textures/tx_int_teclado_alb.dds
+data/materials/mtl_int_teclado.material
 data/meshes/monitor1.mesh
 data/textures/tx_monitorytubos_alb.dds
 data/textures/tx_monitorytubos_ao.dds
@@ -184,6 +187,7 @@ data/meshes/monitor002.mesh
 data/meshes/monitor003.mesh
 data/meshes/patas_teclado.mesh
 data/meshes/teclado.mesh
+data/meshes/tubo_viga_peq.mesh
 data/scenes/basilic_interior_nucleo.scene
 data/meshes/mesa.mesh
 data/textures/tx_nucleo_alb.dds
