@@ -228,12 +228,15 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
 	addChild("FinalCinematic", "firstWalkFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSlowWalk, nullptr);
 	addChild("FinalCinematic", "resetTimersFinalCinematic2", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene1, nullptr);
 	addChild("FinalCinematic", "idleEnterFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdleTimed, nullptr);
+	//Comensa a caminar pel pasillo
 	addChild("FinalCinematic", "resetTimersFinalCinematic3", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene2, nullptr);
 	addChild("FinalCinematic", "secondWalkFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSlowWalk, nullptr);
+	//Arriba al final del pasillo
 	addChild("FinalCinematic", "resetTimersFinalCinematic4", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene3, nullptr);
 	addChild("FinalCinematic", "idleArrivedFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdleTimed, nullptr);
-    /*addChild("playerActivated", "LandPlayer", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionIsLanded, nullptr, nullptr);
-    addChild("LandPlayer", "landPlayer", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionFallSM, nullptr);*/
+    //Mira les capsule
+	addChild("FinalCinematic", "resetTimersFinalCinematic5", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene4, nullptr);
+	addChild("FinalCinematic", "lookAtCapsulesFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationLookCapsulesTimed, nullptr);
 
 	enabledPlayerAI = j.value("enabled", false);
 	_speed = j.value("speed", 1.0f);
@@ -316,12 +319,25 @@ void TCompAIPlayer::onMsgScenePaused(const TMsgScenePaused & msg)
     // TODO: Checkear why the fuck no lo pilla
 }
 
+void onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) {
+	if (msg.animation_name.compare("inhibidor") == 0) {
+		//inhibitorAnimationCompleted = true;
+	}
+	if (msg.animation_name.compare("attack") == 0) {
+		//attackAnimationCompleted = true;
+	}
+	if (msg.animation_name.compare("repaired") == 0) {
+		//repairedAnimationCompleted = true;
+	}
+}
+
 void TCompAIPlayer::registerMsgs()
 {
 	DECL_MSG(TCompAIPlayer, TMsgPlayerAIEnabled, onMsgPlayerAIEnabled);
 	DECL_MSG(TCompAIPlayer, TMsgEntityCreated, onMsgEntityCreated);
     DECL_MSG(TCompAIPlayer, TMsgEntitiesGroupCreated, onMsgEntityGroupCreated);
     DECL_MSG(TCompAIPlayer, TMsgScenePaused, onMsgScenePaused);
+	DECL_MSG(TCompAIPlayer, TMsgAnimationCompleted, onMsgAnimationCompleted);
 }
 
 void TCompAIPlayer::loadActions() {
@@ -596,6 +612,20 @@ BTNode::ERes TCompAIPlayer::actionAnimationIdleTimed(float dt)
 	else {
 		TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
 		my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_IDLE);
+		return BTNode::ERes::STAY;
+	}
+}
+
+BTNode::ERes TCompAIPlayer::actionAnimationLookCapsulesTimed(float dt)
+{
+	_timer += dt;
+	if (_timer > _maxTimer) {
+		_timer = 0.f;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+		my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_LOOKCAPSULES_POSE);
 		return BTNode::ERes::STAY;
 	}
 }
@@ -1038,16 +1068,21 @@ BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene2(float dt)
 
 BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene3(float dt)
 {
-	_maxTimer = 60.0f;
+	_maxTimer = 11.0f;
 	return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene4(float dt)
 {
-	_maxTimer = 4.5f;
+	_maxTimer = 400.5f;
 	return BTNode::ERes::LEAVE;
 }
 
+BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene5(float dt)
+{
+	_maxTimer = 4.5f;
+	return BTNode::ERes::LEAVE;
+}
 BTNode::ERes TCompAIPlayer::actionResetTimersCapsuleCinematic(float dt) {
 	_maxTimer = 5.f;
 

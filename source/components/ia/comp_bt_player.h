@@ -58,6 +58,7 @@ public:
     BTNode::ERes actionAnimationCrouch(float dt);
 	BTNode::ERes actionAnimationIdle(float dt);
 	BTNode::ERes actionAnimationIdleTimed(float dt);
+	BTNode::ERes actionAnimationLookCapsulesTimed(float dt);
 	BTNode::ERes actionAnimationSlowWalk(float dt);
 	BTNode::ERes actionAnimationIdleListen(float dt);
     BTNode::ERes actionStartSM(float dt);
@@ -98,6 +99,7 @@ public:
 	BTNode::ERes actionResetTimersFinalScene2(float dt);
 	BTNode::ERes actionResetTimersFinalScene3(float dt);
 	BTNode::ERes actionResetTimersFinalScene4(float dt);
+	BTNode::ERes actionResetTimersFinalScene5(float dt);
 	BTNode::ERes actionResetTimersCapsuleCinematic(float dt);
     BTNode::ERes actionSlowMotionCinematicFallSM(float dt);
     BTNode::ERes actionResetTimersCinematicFallSM(float dt);
@@ -152,6 +154,7 @@ private:
 	void onMsgEntityCreated(const TMsgEntityCreated& msg);
 	void onMsgEntityGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onMsgScenePaused(const TMsgScenePaused& msg);
+	void onMsgAnimationCompleted(const TMsgAnimationCompleted& msg);
 
 	//load
 	void loadActions() override;
