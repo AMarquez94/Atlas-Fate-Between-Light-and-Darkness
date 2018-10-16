@@ -99,6 +99,7 @@
 			"data/scenes/Coliseo/coliseo_particles.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
 			"data/scenes/Coliseo/coliseo_planets.scene",
+			"data/scenes/Coliseo/coliseo_cables.scene",
 			"data/scenes/col_pantallas_distritos.scene",
 			"data/scenes/Coliseo/coliseo_rellenoprops.scene",
 			"data/scenes/Coliseo/coliseo_structures.scene",
@@ -111,6 +112,8 @@
 			"data/scenes/col_intro_corridor_logic.scene",
 			"data/scenes/Coliseo/col_mosque.scene",
 			"data/scenes/Coliseo/capsules.scene",
+
+			"data/scenes/col_zone_a_corridor_lights.scene",
 			"data/scenes/col_intro_corridor_lights.scene",
 			"data/scenes/col_intro_corridor_props.scene",
 			"data/scenes/Coliseo/col_capsule_cable.scene",
@@ -178,8 +181,11 @@
 			"data/scenes/zone_a_carteles.scene",
 			"data/scenes/ZoneA/carteles.scene",
 			"data/scenes/zonea_triggers.scene",
+
 			"data/scenes/zone_a_in_corridor.scene",
+			"data/scenes/zone_a_in_corridor_lights.scene",
 			"data/scenes/zone_a_out_corridor.scene",
+			"data/scenes/zone_a_out_corridor_lights.scene",
 			"data/scenes/zone_a_corridor_logic.scene"
 		]
 	},
@@ -206,6 +212,7 @@
 			"data/scenes/Coliseo/coliseo_particles.scene",
 			"data/scenes/Coliseo/buttons.scene",
 			"data/scenes/col_sub_triggers.scene",
+			"data/scenes/Coliseo/coliseo_cables.scene",
 			"data/scenes/Coliseo/coliseo_rellenoprops.scene",
 			"data/scenes/COL_pared_suelo.scene",
 			"data/scenes/col_pantallas_distritos.scene",
@@ -219,6 +226,7 @@
 			"data/scenes/Coliseo/col_mosque.scene",
 			"data/scenes/Coliseo/capsules.scene",
 			"data/scenes/Coliseo/col_capsule_cable.scene",
+			"data/scenes/col_zone_a_corridor_lights.scene",
 			"data/scenes/Coliseo/coliseo_planets.scene"
 		]
 	},

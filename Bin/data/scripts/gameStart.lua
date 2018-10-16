@@ -6,16 +6,15 @@ function onGameStart()
 	particles = getParticles();
 	addAllFunctionsToConsole();
 	
-	cinematicsEnabled = false;
+	cinematicsEnabled = true;
 	
-	intro_intro_cinematicExecuted = false;
+	intro_intro_cinematicExecuted = true;
 	intro_inhibitor_cinematicExecuted = false;
 	Capsules_CinematicExecuted = false;
 	cinematicCorridorToZoneAExecuted = false;
 	cinematicCorridorToBasilicExecuted = false;
 	cinematic_enter_zone_aExecuted = false;
 	cinematic_tower_activatedExecuted = false;
-
 	col_trigger_district_7Executed = false;
 	zone_a_door_activated = false;
 end

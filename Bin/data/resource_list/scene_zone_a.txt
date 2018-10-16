@@ -314,7 +314,6 @@ data/textures/tx_ordenadortorre_rgh.dds
 data/materials/mtl_ordenadortorre.material
 data/colliders/collider_ordenadortorre.collider
 data/scenes/zone_a_towerlights.scene
-data/colliders/za_Spot001.collider
 data/scenes/zone_a_props.scene
 data/prefabs/caja_juanlu.prefab
 data/meshes/mesh_caja_juanlu.mesh
@@ -453,7 +452,7 @@ data/textures/tx_spotlight_rgh.dds
 data/materials/mtl_spotlights.material
 data/colliders/collider_baselargalectrica.collider
 data/meshes/mesh_zone_a_cable133.mesh
-data/textures/tx_alminar_mezquita_met.dds
+data/textures/tx_cables_alb.dds
 data/textures/null_normal.dds
 data/materials/mtl_cables.material
 data/scenes/zone_a_hologramas.scene
@@ -939,7 +938,6 @@ data/textures/tx_neon_moderdonia_met.dds
 data/textures/tx_neon_moderdonia_nml.dds
 data/textures/tx_neon_moderdonia_rgh.dds
 data/materials/mtl_neon_moderdonia.material
-data/textures/tx_cables_alb.dds
 data/materials/mtl_default.material
 data/scenes/zonea_triggers.scene
 data/scenes/zone_a_in_corridor.scene
@@ -1092,6 +1090,8 @@ data/colliders/zone_a_in_collider_suelo_pasillo.collider
 data/meshes/zone_a_in_techo001.mesh
 data/meshes/zone_a_in_tubo_x005.mesh
 data/meshes/zone_a_in_tubo004.mesh
+data/scenes/zone_a_in_corridor_lights.scene
+data/colliders/Spot001.collider
 data/scenes/zone_a_out_corridor.scene
 data/meshes/zone_a_outagujero003.mesh
 data/meshes/zone_a_outaux_sombras001.mesh
@@ -1166,6 +1166,8 @@ data/colliders/zone_a_outcollider_suelo_pasillo001.collider
 data/meshes/zone_a_outtecho002.mesh
 data/meshes/zone_a_outtubo_x006.mesh
 data/meshes/zone_a_outtubo005.mesh
+data/scenes/zone_a_out_corridor_lights.scene
+data/colliders/Spot002.collider
 data/scenes/zone_a_corridor_logic.scene
 data/scenes/ZoneA/_player.scene
 data/prefabs/player.prefab

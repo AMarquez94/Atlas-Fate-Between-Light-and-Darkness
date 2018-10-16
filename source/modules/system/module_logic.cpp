@@ -354,6 +354,7 @@ void CModuleLogic::publishClasses() {
     m->set("movePlayerToRefPos", SLB::FuncCall::create(&movePlayerToRefPos));
     m->set("invalidatePlayerPhysxCache", SLB::FuncCall::create(&invalidatePlayerPhysxCache));
     m->set("GUI_EnableRemoveInhibitor", SLB::FuncCall::create(&GUI_EnableRemoveInhibitor));
+    m->set("sendPlayerIlluminatedMsg", SLB::FuncCall::create(&sendPlayerIlluminatedMsg));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -861,6 +862,17 @@ void GUI_EnableRemoveInhibitor() {
         EngineGUI.enableWidget("inhibited_y", pController->isInhibited);
     }
 }
+
+void sendPlayerIlluminatedMsg(CHandle h, bool illuminated) {
+    if (h.isValid()) {
+        CHandle player = EngineEntities.getPlayerHandle();
+        TMsgPlayerIlluminated msg;
+        msg.h_sender = h;
+        msg.isIlluminated = illuminated;
+        player.sendMsg(msg);
+    }
+}
+
 
 SoundEvent playEvent(const std::string & name)
 {

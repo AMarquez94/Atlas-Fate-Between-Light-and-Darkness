@@ -7,7 +7,7 @@
 		}
 	},
 	{
-		"entity": {
+		"xentity": {
 			"name": "COL_Circle001",
 			"transform": {
 				"pos": "-0.0941859 4.29138 0.922904",
@@ -524,7 +524,7 @@
 		}
 	},
 	{
-		"xentity": {
+		"entity": {
 			"name": "COL_mesh_maquina01",
 			"transform": {
 				"pos": "0.0 2.11655 1.05377",
@@ -590,7 +590,7 @@
 		}
 	},
 	{
-		"xentity": {
+		"entity": {
 			"name": "COL_mesh_maquina04",
 			"transform": {
 				"pos": "0.0 2.11655 1.05377",
