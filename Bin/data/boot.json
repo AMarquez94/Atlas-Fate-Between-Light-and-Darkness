@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_coliseo_2",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -109,6 +109,8 @@
 			"data/scenes/col_zone_a_corridor.scene",
 			"data/scenes/Coliseo/coliseo_cinematic.scene",
 			"data/scenes/col_bc_corridor.scene",
+			
+
 			"data/scenes/col_intro_corridor_logic.scene",
 			"data/scenes/Coliseo/col_mosque.scene",
 			"data/scenes/Coliseo/capsules.scene",
@@ -223,6 +225,8 @@
 			"data/scenes/col_zone_a_corridor.scene",
 			"data/scenes/col_bc_corridor.scene",
 			"data/scenes/col_bc_corridor_logic.scene",
+			"data/scenes/col_bc_corridor_lights.scene",
+
 			"data/scenes/Coliseo/col_mosque.scene",
 			"data/scenes/Coliseo/capsules.scene",
 			"data/scenes/Coliseo/col_capsule_cable.scene",
@@ -279,6 +283,8 @@
 			"data/scenes/bc_corridor.scene",
 			"data/scenes/bc_pasillo_entre.scene",
 			"data/scenes/bc_corridor_logic.scene",
+			"data/scenes/bc_corridor_lights.scene",
+
 			"data/scenes/Basilic_courtyard/bc_capsule_cable.scene",
 			"data/scenes/BC_Maderas_Andamios.scene",
 			"data/scenes/BC_ColliderAuxEntrances.scene",
@@ -295,21 +301,21 @@
 		"static_data": {
 			"initial_script": "basilic_interior",
 			"navmesh": "data/navmeshes/basilic_interior_navmesh.bin",
-			"exposure": 1.51,
+			"exposure": 0.8,
 			"ambient": 0.03,
-			"gamma": 0.92,
-			"tone_mapping": 1,
-			"shadow_intensity": 0,
-			"ground_fog_density": 0.1,
-			"env_fog_density": 0.1,
+			"gamma": 1,
+			"tone_mapping": 0.4,
+			"shadow_intensity": 0.1,
+			"ground_fog_density": 2,
+			"env_fog_density": 0.27,
 			"shadow_color": "0.0 0.0 0.0",
-			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.043"
+			"ground_fog": "0.0 0.0 0.0",
+			"env_fog": "0.0 0.0 0.0"
 		},
 		"persistent_scenes": [],
 		"scene_group": [
 			"data/scenes/Basilic_interior/player.scene",
-			"data/scenes/_main_cameras.scene",
+			"data/scenes/Basilic_interior/_main_cameras.scene",
 			"data/scenes/basilic_interior_adornos_nucleo.scene",
 			"data/scenes/basilic_interior_estructura.scene",
 			"data/scenes/basilic_interior_cables.scene",

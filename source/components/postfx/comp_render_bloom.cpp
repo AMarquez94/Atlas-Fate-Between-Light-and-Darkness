@@ -36,7 +36,8 @@ void TCompRenderBloom::load(const json& j, TEntityParseContext& ctx) {
 
 	threshold_min = j.value("threshold_min", threshold_min);
 	threshold_max = j.value("threshold_max", threshold_max);
-    global_distance = j.value("global_distance", 1);
+    global_distance = j.value("global_distance", 1.f);
+	multiplier = j.value("multiplier", 1.f);
     weights = VEC4(70, 56, 28, 8);
 
 	rt_highlights = new CRenderToTexture();

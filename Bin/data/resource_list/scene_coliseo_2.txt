@@ -575,6 +575,8 @@ data/meshes/col_bc_techo003.mesh
 data/meshes/col_bc_tubo_x007.mesh
 data/meshes/col_bc_tubo006.mesh
 data/scenes/col_bc_corridor_logic.scene
+data/scenes/col_bc_corridor_lights.scene
+data/colliders/Spot002.collider
 data/scenes/Coliseo/col_mosque.scene
 data/meshes/BC_alminar1.mesh
 data/textures/tx_alminar_mezquita_alb.dds
