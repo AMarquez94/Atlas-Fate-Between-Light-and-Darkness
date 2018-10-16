@@ -314,7 +314,6 @@ data/textures/tx_ordenadortorre_rgh.dds
 data/materials/mtl_ordenadortorre.material
 data/colliders/collider_ordenadortorre.collider
 data/scenes/zone_a_towerlights.scene
-data/colliders/za_Spot001.collider
 data/scenes/zone_a_props.scene
 data/prefabs/caja_juanlu.prefab
 data/meshes/mesh_caja_juanlu.mesh
