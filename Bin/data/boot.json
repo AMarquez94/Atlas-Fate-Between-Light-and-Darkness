@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_basilic_courtyard",
+	"default_scene": "scene_coliseo",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -186,7 +186,8 @@
 			"data/scenes/Coliseo/camera.scene",
 			"data/scenes/Coliseo/coliseo_particles.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
-			"data/scenes/Coliseo/coliseo_structures.scene"
+			"data/scenes/Coliseo/coliseo_structures.scene",
+			"data/scenes/Coliseo/coliseo_rellenoprops.scene"
 		]
 	},
 	"scene_coliseo_2": {
