@@ -85,6 +85,7 @@
 		{ "name" : "metralla_middle"},
 		{ "name" : "metralla_finish"},
 		{ "name" : "cinematic_walk"},
+		{ "name" : "cinematic_idle"},
 		{ "name" : "cinematic_listen_crouch"},
 		{ "name" : "cinematic_listen_idle"},
 		{ "name" : "sm_enter"},

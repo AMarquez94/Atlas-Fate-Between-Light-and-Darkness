@@ -595,7 +595,7 @@ BTNode::ERes TCompAIPlayer::actionAnimationIdleTimed(float dt)
 	}
 	else {
 		TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
-		my_anim->playAnimation(TCompPlayerAnimator::EAnimation::IDLE);
+		my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_IDLE);
 		return BTNode::ERes::STAY;
 	}
 }

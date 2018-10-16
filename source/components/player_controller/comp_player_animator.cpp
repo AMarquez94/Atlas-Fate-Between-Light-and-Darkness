@@ -404,6 +404,16 @@ void TCompPlayerAnimator::initializeAnimations() {
 		1.0f,
 		false
 	);
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CINEMATIC_IDLE,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"cinematic_idle",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
 	
 }
 
