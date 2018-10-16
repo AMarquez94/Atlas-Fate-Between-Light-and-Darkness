@@ -439,7 +439,7 @@ void TCompPlayerAnimator::initializeAnimations() {
 
 	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::CINEMATIC_LOOKCAPSULES,
-		EAnimationType::CYCLIC,
+		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
 		"cinematic_look_capsules",
 		"",

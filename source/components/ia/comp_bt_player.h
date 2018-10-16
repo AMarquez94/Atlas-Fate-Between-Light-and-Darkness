@@ -58,6 +58,8 @@ public:
     BTNode::ERes actionAnimationCrouch(float dt);
 	BTNode::ERes actionAnimationIdle(float dt);
 	BTNode::ERes actionAnimationIdleTimed(float dt);
+	BTNode::ERes actionAnimationIdleCinematic(float dt);
+	BTNode::ERes actionPoseLookCapsulesAnimationIdleTimed(float dt);
 	BTNode::ERes actionAnimationLookCapsulesTimed(float dt);
 	BTNode::ERes actionAnimationSlowWalk(float dt);
 	BTNode::ERes actionAnimationIdleListen(float dt);
@@ -147,7 +149,7 @@ private:
     VEC3 initial_pos = VEC3::Zero;
     QUAT initial_rot = VEC4::Zero;
     bool is_main_character;
-
+	bool lookcapsulesAnimationCompleted = false;
     TCompAIPlayer::EState _currentState;
 
 	void onMsgPlayerAIEnabled(const TMsgPlayerAIEnabled& msg);

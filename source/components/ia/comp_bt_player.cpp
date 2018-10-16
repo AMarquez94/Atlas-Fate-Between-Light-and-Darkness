@@ -237,6 +237,11 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
     //Mira les capsule
 	addChild("FinalCinematic", "resetTimersFinalCinematic5", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene4, nullptr);
 	addChild("FinalCinematic", "lookAtCapsulesFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationLookCapsulesTimed, nullptr);
+	//Pose de mirar capsules un rato
+	addChild("FinalCinematic", "resetTimersFinalCinematic6", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene5, nullptr);
+	addChild("FinalCinematic", "lookAtCapsulesPoseFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionPoseLookCapsulesAnimationIdleTimed, nullptr);
+	//Pose final pre decisio
+	addChild("FinalCinematic", "finalIdlePoseFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdleCinematic, nullptr);
 
 	enabledPlayerAI = j.value("enabled", false);
 	_speed = j.value("speed", 1.0f);
@@ -319,15 +324,9 @@ void TCompAIPlayer::onMsgScenePaused(const TMsgScenePaused & msg)
     // TODO: Checkear why the fuck no lo pilla
 }
 
-void onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) {
-	if (msg.animation_name.compare("inhibidor") == 0) {
-		//inhibitorAnimationCompleted = true;
-	}
-	if (msg.animation_name.compare("attack") == 0) {
-		//attackAnimationCompleted = true;
-	}
-	if (msg.animation_name.compare("repaired") == 0) {
-		//repairedAnimationCompleted = true;
+void TCompAIPlayer::onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) {
+	if (msg.animation_name.compare("cinematic_look_capsules") == 0) {
+		lookcapsulesAnimationCompleted = true;
 	}
 }
 
@@ -616,7 +615,15 @@ BTNode::ERes TCompAIPlayer::actionAnimationIdleTimed(float dt)
 	}
 }
 
-BTNode::ERes TCompAIPlayer::actionAnimationLookCapsulesTimed(float dt)
+BTNode::ERes TCompAIPlayer::actionAnimationIdleCinematic(float dt)
+{
+	TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+	my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_IDLE);
+	return BTNode::ERes::STAY;
+
+}
+
+BTNode::ERes TCompAIPlayer::actionPoseLookCapsulesAnimationIdleTimed(float dt)
 {
 	_timer += dt;
 	if (_timer > _maxTimer) {
@@ -628,6 +635,30 @@ BTNode::ERes TCompAIPlayer::actionAnimationLookCapsulesTimed(float dt)
 		my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_LOOKCAPSULES_POSE);
 		return BTNode::ERes::STAY;
 	}
+}
+
+BTNode::ERes TCompAIPlayer::actionAnimationLookCapsulesTimed(float dt)
+{
+	TCompPlayerAnimator *myAnimator = get<TCompPlayerAnimator>();
+	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPlayerAnimator::EAnimation::CINEMATIC_LOOKCAPSULES) && !lookcapsulesAnimationCompleted) {
+		myAnimator->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_LOOKCAPSULES);
+	}
+
+	_timer += dt;
+	if (_timer > _maxTimer) {
+		myAnimator->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_LOOKCAPSULES_POSE);
+		_timer = 0.f;
+	}
+
+	if (lookcapsulesAnimationCompleted) {
+		lookcapsulesAnimationCompleted = false;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		return BTNode::ERes::STAY;
+	}
+
+	return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIPlayer::actionAnimationSlowWalk(float dt) {
@@ -1074,15 +1105,16 @@ BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene3(float dt)
 
 BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene4(float dt)
 {
-	_maxTimer = 400.5f;
+	_maxTimer = 0.25f;
 	return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene5(float dt)
 {
-	_maxTimer = 4.5f;
+	_maxTimer = 19.5f;
 	return BTNode::ERes::LEAVE;
 }
+
 BTNode::ERes TCompAIPlayer::actionResetTimersCapsuleCinematic(float dt) {
 	_maxTimer = 5.f;
 
