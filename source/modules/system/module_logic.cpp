@@ -357,6 +357,7 @@ void CModuleLogic::publishClasses() {
     m->set("invalidatePlayerPhysxCache", SLB::FuncCall::create(&invalidatePlayerPhysxCache));
     m->set("GUI_EnableRemoveInhibitor", SLB::FuncCall::create(&GUI_EnableRemoveInhibitor));
     m->set("sendPlayerIlluminatedMsg", SLB::FuncCall::create(&sendPlayerIlluminatedMsg));
+    m->set("isInCinematicMode", SLB::FuncCall::create(&isInCinematicMode));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -873,6 +874,12 @@ void sendPlayerIlluminatedMsg(CHandle h, bool illuminated) {
         msg.isIlluminated = illuminated;
         player.sendMsg(msg);
     }
+}
+
+void isInCinematicMode(bool isCinematic)
+{
+    dbg("SETEAMOS A %s\n", isCinematic ? "TRUE" : "FALSE");
+    CEngine::get().getGameManager().isCinematicMode = isCinematic;
 }
 
 

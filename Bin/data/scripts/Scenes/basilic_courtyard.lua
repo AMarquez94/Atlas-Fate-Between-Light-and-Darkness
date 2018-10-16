@@ -1,18 +1,14 @@
 function onSceneStart_scene_basilic_courtyard()
 	setCorridorInvisible();
-	r_shutdownscreen01 = toRender(toEntity(getEntityByName("BC_Screen001_Apagado")):getCompByName("render"));
-	r_shutdownscreen01.visible = false;
-	r_shutdownscreen02 = toRender(toEntity(getEntityByName("BC_Screen002_Apagado")):getCompByName("render"));
-	r_shutdownscreen02.visible = false;
+	toRender(toEntity(getEntityByName("BC_Screen001_Apagado")):getCompByName("render")).visible = false;
+	toRender(toEntity(getEntityByName("BC_Screen002_Apagado")):getCompByName("render")).visible = false;
 end
 
 function onScenePartialStart_scene_basilic_courtyard()
 	--onSceneStart_scene_basilic_courtyard();
 	movePlayerToRefPos("bc_suelo001", i_ref_pos);
-	r_shutdownscreen01 = toRender(toEntity(getEntityByName("BC_Screen001_Apagado")):getCompByName("render"));
-	r_shutdownscreen01.visible = false;
-	r_shutdownscreen02 = toRender(toEntity(getEntityByName("BC_Screen002_Apagado")):getCompByName("render"));
-	r_shutdownscreen02.visible = false;
+	toRender(toEntity(getEntityByName("BC_Screen001_Apagado")):getCompByName("render")).visible = false;
+	toRender(toEntity(getEntityByName("BC_Screen002_Apagado")):getCompByName("render")).visible = false;
 end
 
 function transition_basilic_courtyard_to_interior()
@@ -58,8 +54,8 @@ function bc_button_shutdown_screens_pressed(button_handle)
 	getEntityByName("BC_Trigger_ScreenLight"):destroy();
 	toRender(toEntity(getEntityByName("BC_Screen001")):getCompByName("render")).visible = false;
 	toRender(toEntity(getEntityByName("BC_Screen002")):getCompByName("render")).visible = false;
-	r_shutdownscreen01.visible = true;
-	r_shutdownscreen02.visible = true;
+	toRender(toEntity(getEntityByName("BC_Screen001_Apagado")):getCompByName("render")).visible = true;
+	toRender(toEntity(getEntityByName("BC_Screen002_Apagado")):getCompByName("render")).visible = true;
 end
 
 function look_closing_screen()

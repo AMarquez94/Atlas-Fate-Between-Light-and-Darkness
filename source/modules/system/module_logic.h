@@ -144,6 +144,7 @@ void movePlayerToRefPos(const std::string& ref_entity, VEC3 p_rel_pos);
 void invalidatePlayerPhysxCache();
 void GUI_EnableRemoveInhibitor();
 void sendPlayerIlluminatedMsg(CHandle h, bool illuminated);
+void isInCinematicMode(bool isCinematic);
 
 /* Sounds */
 SoundEvent playEvent(const std::string& name);

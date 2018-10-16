@@ -78,7 +78,7 @@
 		{ "name" : "hack",
 			"audio_callbacks":[
 			{
-				"time_to_call": 0.3,
+				"time_to_call": 0.1,
 				"audio_name": "event:/Sounds/Objects/Terminal/Terminal",
 				"relative_to_player": true
 			}
