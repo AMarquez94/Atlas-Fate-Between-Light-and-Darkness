@@ -222,6 +222,15 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
 	addChild("CapsulesCinematic", "idleAnimationCapsulesCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdleListen, nullptr);
 	addChild("CapsulesCinematic", "resetBTCapsulesCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
 
+	//URI
+	addChild("playerActivated", "FinalCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicFinale, nullptr, nullptr);
+	addChild("FinalCinematic", "resetTimersFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene, nullptr);
+	addChild("FinalCinematic", "firstWalkFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSlowWalk, nullptr);
+	addChild("FinalCinematic", "resetTimersFinalCinematic2", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene1, nullptr);
+	addChild("FinalCinematic", "idleEnterFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdleTimed, nullptr);
+	addChild("FinalCinematic", "resetTimersFinalCinematic3", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene2, nullptr);
+	addChild("FinalCinematic", "secondWalkFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSlowWalk, nullptr);
+
     /*addChild("playerActivated", "LandPlayer", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionIsLanded, nullptr, nullptr);
     addChild("LandPlayer", "landPlayer", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionFallSM, nullptr);*/
 
@@ -382,6 +391,9 @@ TCompAIPlayer::EState TCompAIPlayer::getStateEnumFromString(const std::string & 
     }
 	else if (stateName.compare("capsules_cinematic") == 0) {
 		return TCompAIPlayer::EState::CINEMATIC_CAPSULES;
+	}
+	else if (stateName.compare("final_scene_cinematic") == 0) {
+		return TCompAIPlayer::EState::CINEMATIC_FINAL_SCENE;
 	}
     else {
         return TCompAIPlayer::EState::NUM_STATES;
@@ -570,9 +582,39 @@ BTNode::ERes TCompAIPlayer::actionAnimationIdle(float dt)
 {
 	TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
 	my_anim->playAnimation(TCompPlayerAnimator::EAnimation::IDLE);
-    return BTNode::ERes::LEAVE;
-    
+    return BTNode::ERes::STAY;  
 }
+
+BTNode::ERes TCompAIPlayer::actionAnimationIdleTimed(float dt)
+{
+	_timer += dt;
+	if (_timer > _maxTimer) {
+		_timer = 0.f;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+		my_anim->playAnimation(TCompPlayerAnimator::EAnimation::IDLE);
+		return BTNode::ERes::STAY;
+	}
+}
+
+BTNode::ERes TCompAIPlayer::actionAnimationSlowWalk(float dt) {
+
+	_timer += dt;
+	if (_timer > _maxTimer) {
+		_timer = 0.f;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		TCompTransform* my_pos = get<TCompTransform>();
+		my_pos->setPosition(my_pos->getPosition() + my_pos->getFront() * dt * 0.65f);
+		TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+		my_anim->playAnimation(TCompPlayerAnimator::EAnimation::WALK_CINEMATIC);
+		return BTNode::ERes::STAY;
+	}	
+}
+
 
 BTNode::ERes TCompAIPlayer::actionAnimationIdleListen(float dt)
 {
@@ -975,6 +1017,36 @@ BTNode::ERes TCompAIPlayer::actionResetTimersInhibitorCinematic2(float dt)
 	return BTNode::ERes::LEAVE;
 }
 
+BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene(float dt)
+{
+	_maxTimer = 4.5f;
+	return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene1(float dt)
+{
+	_maxTimer = 12.0f;
+	return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene2(float dt)
+{
+	_maxTimer = 16.0f;
+	return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene3(float dt)
+{
+	_maxTimer = 4.5f;
+	return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene4(float dt)
+{
+	_maxTimer = 4.5f;
+	return BTNode::ERes::LEAVE;
+}
+
 BTNode::ERes TCompAIPlayer::actionResetTimersCapsuleCinematic(float dt) {
 	_maxTimer = 5.f;
 
@@ -1169,6 +1241,11 @@ bool TCompAIPlayer::conditionCinematicCapsules(float dt) {
 
 	return _currentState == EState::CINEMATIC_CAPSULES;
 
+}
+
+bool TCompAIPlayer::conditionCinematicFinale(float dt) {
+
+	return _currentState == EState::CINEMATIC_FINAL_SCENE;
 }
 
 bool TCompAIPlayer::conditionIsLanded(float dt)
