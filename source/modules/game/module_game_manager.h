@@ -22,6 +22,8 @@ class CModuleGameManager : public IModule
     SoundEvent ambient;
     SoundEvent persecution_theme;
     float persecution_lerp;
+    SoundEvent main_theme;
+    float main_theme_lerp;
 
     // Menu window related variables.
     ImGuiWindowFlags window_flags;
@@ -34,6 +36,8 @@ class CModuleGameManager : public IModule
     void debugRender();
     void updateGameCondition();
     void updateMusicState(float dt);
+
+    void changeMusicState(MusicState new_state);
     
     void switchState(PauseState pause);
 
@@ -41,7 +45,7 @@ public:
 
     enum PauseState { none, main, win, defeat, editor1, editor1unpaused, editor2, void_state };
 
-    enum MusicState { normal, persecution, persecution_out };
+    enum MusicState { normal, persecution, ending_persecution, player_died, no_music };
 
     CModuleGameManager(const std::string& name) : IModule(name) {}
 
@@ -61,4 +65,5 @@ public:
 	void resetToCheckpoint();
     PauseState getCurrentState();
     bool isCinematicMode;
+    void stopAllSoundEvents();
 };
