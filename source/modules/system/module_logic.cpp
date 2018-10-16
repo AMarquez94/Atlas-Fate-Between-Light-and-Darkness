@@ -236,7 +236,9 @@ void CModuleLogic::publishClasses() {
         .set("getParameter", &SoundEvent::getParameter)
         .set("is3D", &SoundEvent::is3D)
         .set("isRelativeToCameraOnly", &SoundEvent::isRelativeToCameraOnly)
-        .set("setIsRelativeToCameraOnly", &SoundEvent::setIsRelativeToCameraOnly);
+        .set("setIsRelativeToCameraOnly", &SoundEvent::setIsRelativeToCameraOnly)
+        .set("isPlaying", &SoundEvent::isPlaying)
+        ;
 
     SLB::Class<TCompAudio>("Audio", m)
         .comment("This is our wrapper of the audio controller")
@@ -354,6 +356,7 @@ void CModuleLogic::publishClasses() {
     m->set("movePlayerToRefPos", SLB::FuncCall::create(&movePlayerToRefPos));
     m->set("invalidatePlayerPhysxCache", SLB::FuncCall::create(&invalidatePlayerPhysxCache));
     m->set("GUI_EnableRemoveInhibitor", SLB::FuncCall::create(&GUI_EnableRemoveInhibitor));
+    m->set("sendPlayerIlluminatedMsg", SLB::FuncCall::create(&sendPlayerIlluminatedMsg));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -476,10 +479,10 @@ bool CModuleLogic::execEvent(Events event, const std::string & params, float del
         break;
     case Events::SCENE_PARTIAL_END:
         if (delay > 0) {
-            return execScriptDelayed("onSceneEnd()", delay) && execScriptDelayed("onScenePartialEnd_" + params + "()", delay);
+            return execScriptDelayed("onScenePartialEnd()", delay) && execScriptDelayed("onScenePartialEnd_" + params + "()", delay);
         }
         else {
-            return execScript("onSceneEnd()").success && execScript("onScenePartialEnd_" + params + "()").success;
+            return execScript("onScenePartialEnd()").success && execScript("onScenePartialEnd_" + params + "()").success;
         }
         break;
 
@@ -861,6 +864,17 @@ void GUI_EnableRemoveInhibitor() {
         EngineGUI.enableWidget("inhibited_y", pController->isInhibited);
     }
 }
+
+void sendPlayerIlluminatedMsg(CHandle h, bool illuminated) {
+    if (h.isValid()) {
+        CHandle player = EngineEntities.getPlayerHandle();
+        TMsgPlayerIlluminated msg;
+        msg.h_sender = h;
+        msg.isIlluminated = illuminated;
+        player.sendMsg(msg);
+    }
+}
+
 
 SoundEvent playEvent(const std::string & name)
 {

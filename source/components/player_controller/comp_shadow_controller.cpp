@@ -168,7 +168,7 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point, bool player)
         for (int i = 0; i < hits.size(); i++) {
             CHandle hitCollider;
             hitCollider.fromVoidPtr(hits[i].actor->userData);
-            if (hitCollider.isValid()) {
+            if (hitCollider.isValid() && hitCollider.getOwner().isValid()) {
 
                 CEntity * collider = hitCollider.getOwner();
                 TCompLightSpot* c_light_spot = collider->get<TCompLightSpot>();
@@ -180,7 +180,6 @@ bool TCompShadowController::IsPointInShadows(const VEC3 & point, bool player)
                     continue;
                 }
 
-                TCompCollider * c_collider = collider->get<TCompCollider>();
                 TCompTransform * c_transform = collider->get<TCompTransform>();
                 VEC3 dir = point - c_transform->getPosition();
                 dir.Normalize();

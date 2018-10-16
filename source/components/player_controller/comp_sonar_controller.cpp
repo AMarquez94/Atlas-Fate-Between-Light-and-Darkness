@@ -55,7 +55,7 @@ void TCompSonarController::onSonarActive(const TMsgSonarActive & msg) {
     e->sendMsg(sonar);
 
     TCompAudio* my_audio = get<TCompAudio>();
-    my_audio->playEvent("event:/Sounds/Player/Sonar/Sonar");
+    my_audio->playEvent("event:/Sounds/Player/Sonar/SonarTest");
 
     /* Enable this in case we want to hold the alpha value by material
     for (auto p : target_handles) {

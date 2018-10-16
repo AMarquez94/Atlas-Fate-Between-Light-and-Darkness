@@ -1,0 +1,48 @@
+[
+  {
+    "entity":
+    {
+      "name": "tubosgas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_tubosgas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 -0.036462 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_tubosgas.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_bordescoliseo.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.779299 1.94977 1.70244"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

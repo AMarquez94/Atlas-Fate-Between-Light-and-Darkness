@@ -75,7 +75,16 @@
 		{ "name" : "crouch_walk_slow"},
 		{ "name" : "fall"},
 		{ "name" : "hit_back"},
-		{ "name" : "hack"},
+		{ "name" : "hack",
+			"audio_callbacks":[
+			{
+				"time_to_call": 0.3,
+				"audio_name": "event:/Sounds/Objects/Terminal/Terminal",
+				"relative_to_player": true
+			}
+			]
+		
+		},
 		{ "name" : "sm_enter_fall"},
 		{ "name" : "hit_front"},
 		{ "name" : "metralla_start"},

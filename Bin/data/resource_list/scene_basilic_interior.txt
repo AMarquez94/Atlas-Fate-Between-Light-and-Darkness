@@ -58,13 +58,14 @@ data/particles/def_sm_enemy_spiral_core.particles
 data/textures/particles/rain_drop.dds
 data/particles/def_amb_rain_heavy.particles
 data/particles/def_amb_rain_core_heavy.particles
-data/scenes/_main_cameras.scene
+data/scenes/Basilic_interior/_main_cameras.scene
 data/prefabs/camera_main.prefab
-data/prefabs/camera_player.prefab
+data/prefabs/camera_player_basilic.prefab
 data/textures/lut/lut5.dds
+data/prefabs/camera_player.prefab
 data/prefabs/camera_shadowmerge.prefab
 data/textures/lut/lut1.dds
-data/prefabs/camera_flyover.prefab
+data/prefabs/camera_flyover_basilic.prefab
 data/scenes/basilic_interior_adornos_nucleo.scene
 data/meshes/borde_nucleo.mesh
 data/textures/tx_adornos_nucleo_alb.dds
@@ -168,6 +169,9 @@ data/textures/tx_box_nml.dds
 data/textures/tx_box_rgh.dds
 data/materials/mtl_caja_juanlu.material
 data/scenes/basilic_interior_monitorytubos.scene
+data/meshes/int_teclados.mesh
+data/textures/tx_int_teclado_alb.dds
+data/materials/mtl_int_teclado.material
 data/meshes/monitor1.mesh
 data/textures/tx_monitorytubos_alb.dds
 data/textures/tx_monitorytubos_ao.dds
@@ -184,6 +188,7 @@ data/meshes/monitor002.mesh
 data/meshes/monitor003.mesh
 data/meshes/patas_teclado.mesh
 data/meshes/teclado.mesh
+data/meshes/tubo_viga_peq.mesh
 data/scenes/basilic_interior_nucleo.scene
 data/meshes/mesa.mesh
 data/textures/tx_nucleo_alb.dds
@@ -251,8 +256,6 @@ data/meshes/pasarela.mesh
 data/scenes/basilic_interior_luces.scene
 data/colliders/luz_lateral.collider
 data/colliders/luz_lateral001.collider
-data/colliders/luz_lateral020.collider
-data/colliders/luz_lateral021.collider
 data/colliders/luz_pantalla.collider
 data/colliders/luz_pasarela.collider
 data/colliders/luz_pasarela001.collider

@@ -1,0 +1,332 @@
+[
+  {
+    "entity":
+    {
+      "name": "coliseo_rellenoprops"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_bordesuelo"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.261138 27.7855"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_bordesuelo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_bordescoliseo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_bordesuelo001"
+      ,
+      "transform":
+      {
+        "pos": "-26.4956 0.188279 0.819282"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_bordesuelo001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_bordescoliseo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_bordesuelo002"
+      ,
+      "transform":
+      {
+        "pos": "0.42377 0.188278 -25.4615"
+        ,
+        "rotation": "0.0 -1.50996e-07 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_bordesuelo002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_bordescoliseo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_littlespotlight"
+      ,
+      "prefab": "data/prefabs/littlespotlight.prefab"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_spotlight"
+      ,
+      "prefab": "data/prefabs/foco_brian.prefab"
+      ,
+      "transform":
+      {
+        "pos": "13.4029 0.993897 7.50832"
+        ,
+        "rotation": "0.0 -0.866025 0.0 -0.5"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_spotlight001"
+      ,
+      "prefab": "data/prefabs/foco_brian.prefab"
+      ,
+      "transform":
+      {
+        "pos": "16.2529 0.993897 9.02089"
+        ,
+        "rotation": "0.0 -0.976296 0.0 -0.21644"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_spotlight002"
+      ,
+      "prefab": "data/prefabs/foco_brian.prefab"
+      ,
+      "transform":
+      {
+        "pos": "4.08816 0.993897 16.189"
+        ,
+        "rotation": "0.0 -0.461748 0.0 -0.887011"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_tubosgas"
+      ,
+      "prefab": "data/prefabs/tubosgas.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-24.6202 4.86315 -4.88472"
+        ,
+        "rotation": "0.0 -0.991445 0.0 -0.130526"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_tubosgas001"
+      ,
+      "prefab": "data/prefabs/tubosgas.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-24.3025 4.8006 7.06097"
+        ,
+        "rotation": "0.0 -0.173648 0.0 -0.984808"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_tubosgas002"
+      ,
+      "prefab": "data/prefabs/tubosgas.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-6.40124 5.03442 25.5473"
+        ,
+        "rotation": "0.0 -0.608761 0.0 -0.793353"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_tubosgas003"
+      ,
+      "prefab": "data/prefabs/tubosgas.prefab"
+      ,
+      "transform":
+      {
+        "pos": "6.2317 5.03442 25.6354"
+        ,
+        "rotation": "0.0 -0.793353 0.0 -0.608761"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_tubosgas004"
+      ,
+      "prefab": "data/prefabs/tubosgas.prefab"
+      ,
+      "transform":
+      {
+        "pos": "24.5411 4.34743 -7.47943"
+        ,
+        "rotation": "-0.0170371 -0.982963 -0.129409 0.12941"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_tubosgas005"
+      ,
+      "prefab": "data/prefabs/tubosgas.prefab"
+      ,
+      "transform":
+      {
+        "pos": "24.9587 4.74474 5.71668"
+        ,
+        "rotation": "0.0 -0.991445 0.0 -0.130525"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_tubosgas006"
+      ,
+      "prefab": "data/prefabs/tubosgas.prefab"
+      ,
+      "transform":
+      {
+        "pos": "7.13044 4.74474 -23.0016"
+        ,
+        "rotation": "0.0 0.819151 0.0 -0.573577"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_tubosgas007"
+      ,
+      "prefab": "data/prefabs/tubosgas.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.80769 4.74474 -23.1128"
+        ,
+        "rotation": "0.0 0.608761 0.0 -0.793354"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_tubospared"
+      ,
+      "transform":
+      {
+        "pos": "0.112819 7.7077 1.03168"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_mesh_tubospared.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mat_tubospared.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/COL_collider_tubospared.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]
