@@ -1394,6 +1394,14 @@ data/textures/tx_luna_nml.dds
 data/textures/tx_luna_rgh.dds
 data/materials/mtl_luna.material
 data/materials/mtl_luna_back.material
+data/textures/tx_planeta_rojo_alb.dds
+data/textures/tx_planeta_rojo_ao.dds
+data/textures/tx_planeta_rojo_hgt.dds
+data/textures/tx_planeta_rojo_mtl.dds
+data/textures/tx_planeta_rojo_nml.dds
+data/textures/tx_planeta_rojo_rgh.dds
+data/materials/mtl_planet2.material
+data/materials/mtl_planet2_back.material
 data/textures/tx_planet_clouds.dds
 data/materials/mtl_luna_back_atmosphere.material
 data/textures/tx_planeta1_alb.dds
@@ -1452,9 +1460,6 @@ data/particles/def_sm_idle.particles
 data/particles/def_sm_enemy_spiral.particles
 data/textures/particles/shadow_smoke.dds
 data/particles/def_sm_enemy_spiral_core.particles
-data/textures/particles/rain_drop.dds
-data/particles/def_amb_rain_heavy.particles
-data/particles/def_amb_rain_core_heavy.particles
 data/scenes/_main_cameras.scene
 data/prefabs/camera_main.prefab
 data/prefabs/camera_shadowmerge.prefab
