@@ -251,8 +251,6 @@ data/meshes/pasarela.mesh
 data/scenes/basilic_interior_luces.scene
 data/colliders/luz_lateral.collider
 data/colliders/luz_lateral001.collider
-data/colliders/luz_lateral020.collider
-data/colliders/luz_lateral021.collider
 data/colliders/luz_pantalla.collider
 data/colliders/luz_pasarela.collider
 data/colliders/luz_pasarela001.collider
