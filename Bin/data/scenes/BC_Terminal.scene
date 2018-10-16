@@ -15,7 +15,7 @@
 				"lookat": "6.54 0.075 -358.8"
 			},
 			"button": {
-				"script": "shutdown_screen",
+				"script": "bc_button_shutdown_screens_pressed",
 				"canBePressed": true
 			}
 		}

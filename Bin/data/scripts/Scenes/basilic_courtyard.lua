@@ -1,13 +1,19 @@
 function onSceneStart_scene_basilic_courtyard()
 	setCorridorInvisible();
+	r_shutdownscreen01 = toRender(toEntity(getEntityByName("BC_Screen001_Apagado")):getCompByName("render"));
+	r_shutdownscreen01.visible = false;
+	r_shutdownscreen02 = toRender(toEntity(getEntityByName("BC_Screen002_Apagado")):getCompByName("render"));
+	r_shutdownscreen02.visible = false;
 end
 
 function onScenePartialStart_scene_basilic_courtyard()
 	--onSceneStart_scene_basilic_courtyard();
 	movePlayerToRefPos("bc_suelo001", i_ref_pos);
-	--execScriptDelayed("toDoor(toEntity(getEntityByName(\"bc_marco_puerta001\")):getCompByName(\"door\")):open();", 0.5);
+	r_shutdownscreen01 = toRender(toEntity(getEntityByName("BC_Screen001_Apagado")):getCompByName("render"));
+	r_shutdownscreen01.visible = false;
+	r_shutdownscreen02 = toRender(toEntity(getEntityByName("BC_Screen002_Apagado")):getCompByName("render"));
+	r_shutdownscreen02.visible = false;
 end
-
 
 function transition_basilic_courtyard_to_interior()
 	execScriptDelayed("loadScene(\"scene_basilic_interior\")", 2);
@@ -38,6 +44,24 @@ function onTriggerEnter_BC_trigger_closed_door_player()
 	temp:destroy();
 end
 
+function onTriggerEnter_BC_Trigger_ScreenLight_player()
+	sendPlayerIlluminatedMsg(getEntityByName("BC_Trigger_ScreenLight"), true);
+end
+
+function onTriggerExit_BC_Trigger_ScreenLight_player()
+	sendPlayerIlluminatedMsg(getEntityByName("BC_Trigger_ScreenLight"), false);
+end
+
+function bc_button_shutdown_screens_pressed(button_handle)
+	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
+	onTriggerExit_BC_Trigger_ScreenLight_player();
+	getEntityByName("BC_Trigger_ScreenLight"):destroy();
+	toRender(toEntity(getEntityByName("BC_Screen001")):getCompByName("render")).visible = false;
+	toRender(toEntity(getEntityByName("BC_Screen002")):getCompByName("render")).visible = false;
+	r_shutdownscreen01.visible = true;
+	r_shutdownscreen02.visible = true;
+end
+
 function look_closing_screen()
 
 	setInBlackScreen(0.25);
@@ -55,6 +79,5 @@ function look_closing_screen()
 
 	setCinematicPlayerState(true, "inhibitor_capsules", "");
 	execScriptDelayed("setCinematicPlayerState(false, \"\")", 10.25);
-	cinematic_enter_zone_aExecuted = true;
 
 end
