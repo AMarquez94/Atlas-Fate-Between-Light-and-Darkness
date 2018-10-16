@@ -26,7 +26,7 @@ void TCompButton::onMsgEntityCreated(const TMsgEntityCreated& msg) {
 
 void TCompButton::onMsgButtonActivated(const TMsgButtonActivated& msg) {
     if (canBePressed) {
-        EngineLogic.execScript(_script + "(" + CHandle(this).getOwner().asString() + ")");
+        EngineLogic.execScriptDelayed(_script + "(" + CHandle(this).getOwner().asString() + ")", 1.f);
     }
 }
 void TCompButton::onMsgGroupCreated(const TMsgEntitiesGroupCreated& msg) {

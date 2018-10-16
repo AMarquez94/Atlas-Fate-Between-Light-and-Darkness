@@ -23,7 +23,7 @@
 				"close_anim": "close",
 				"time_to_open": 1,
 				"time_to_close": 4,
-				"open_soundevent": "event:/Sounds/Objects/Doors/SmallDoorOpen",
+				"open_soundevent": "event:/Sounds/Objects/Doors/LittleTechDoorOpen",
 				"close_soundevent": "event:/Sounds/Objects/Doors/SmallDoorClose"
 			},
 			"audio": {},
