@@ -236,7 +236,9 @@ void CModuleLogic::publishClasses() {
         .set("getParameter", &SoundEvent::getParameter)
         .set("is3D", &SoundEvent::is3D)
         .set("isRelativeToCameraOnly", &SoundEvent::isRelativeToCameraOnly)
-        .set("setIsRelativeToCameraOnly", &SoundEvent::setIsRelativeToCameraOnly);
+        .set("setIsRelativeToCameraOnly", &SoundEvent::setIsRelativeToCameraOnly)
+        .set("isPlaying", &SoundEvent::isPlaying)
+        ;
 
     SLB::Class<TCompAudio>("Audio", m)
         .comment("This is our wrapper of the audio controller")
@@ -477,10 +479,10 @@ bool CModuleLogic::execEvent(Events event, const std::string & params, float del
         break;
     case Events::SCENE_PARTIAL_END:
         if (delay > 0) {
-            return execScriptDelayed("onSceneEnd()", delay) && execScriptDelayed("onScenePartialEnd_" + params + "()", delay);
+            return execScriptDelayed("onScenePartialEnd()", delay) && execScriptDelayed("onScenePartialEnd_" + params + "()", delay);
         }
         else {
-            return execScript("onSceneEnd()").success && execScript("onScenePartialEnd_" + params + "()").success;
+            return execScript("onScenePartialEnd()").success && execScript("onScenePartialEnd_" + params + "()").success;
         }
         break;
 

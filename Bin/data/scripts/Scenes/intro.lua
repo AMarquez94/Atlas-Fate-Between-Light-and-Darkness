@@ -1,9 +1,6 @@
 function onSceneStart_scene_intro()
 	
 	show_tutorial_sm_enemy = false;
-	if(ambiance == nil or not ambiance:isValid()) then
-		ambiance = playEvent("event:/Ambiance/Intro_Ambiance");
-	end
 	setCorridorInvisible();
 	
 	--#Debug position for start

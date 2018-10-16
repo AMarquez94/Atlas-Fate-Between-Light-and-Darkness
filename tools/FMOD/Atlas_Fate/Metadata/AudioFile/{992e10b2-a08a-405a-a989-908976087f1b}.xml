@@ -4,6 +4,9 @@
         <property name="assetPath">
             <value>soundclips/objects/doors/hacking_long_modified.wav</value>
         </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
         <property name="frequencyInKHz">
             <value>48</value>
         </property>
