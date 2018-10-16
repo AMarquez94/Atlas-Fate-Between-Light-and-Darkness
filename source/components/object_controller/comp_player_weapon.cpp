@@ -58,6 +58,10 @@ void TCompPlayerWeapon::registerMsgs()
 
 void TCompPlayerWeapon::update(float dt)
 {
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     switch (_currentState) {
     case EState::TURNING_OFF:
         if (!weaponsOff.isValid()) {

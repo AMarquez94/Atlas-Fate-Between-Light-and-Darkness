@@ -1,0 +1,87 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_Screens"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_Screen001"
+      ,
+      "transform":
+      {
+        "pos": "-9.26964 8.26668 -384.772"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_Screen001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/video.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 3.44745 0.0914917"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_Screen002"
+      ,
+      "transform":
+      {
+        "pos": "18.5998 8.26671 -384.772"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_Screen002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/video.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 3.44745 0.0914917"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

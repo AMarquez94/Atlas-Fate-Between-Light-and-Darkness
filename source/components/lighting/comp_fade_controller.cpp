@@ -43,6 +43,9 @@ void TCompFadeController::registerMsgs() {
 /* Update the values during the given time */
 void TCompFadeController::update(float dt) {
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     if (_is_active) {
 
         TCompRender * c_my_render = get<TCompRender>();

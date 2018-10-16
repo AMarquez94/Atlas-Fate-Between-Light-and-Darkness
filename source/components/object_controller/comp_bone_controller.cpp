@@ -39,6 +39,9 @@ void TCompBoneController::onSceneCreated(const TMsgSceneCreated& msg) {
 
 void TCompBoneController::update(float dt) {
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     // Dirty and nasty way of doing this.
     VEC3 pos = target_skeleton->getBonePosition(_bone);
     TCompTransform * my_trans = get<TCompTransform>();

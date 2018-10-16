@@ -4,6 +4,17 @@
 
 DECL_OBJ_MANAGER("particles", TCompParticles);
 
+TCompParticles::~TCompParticles()
+{
+    if (_particles) {
+        Engine.getParticles().kill(_particles, _fadeout);
+    }
+
+    for (auto p : _cores) {
+        Engine.getParticles().kill(p.second, _fadeout);
+    }
+}
+
 void TCompParticles::registerMsgs() {
 
     DECL_MSG(TCompParticles, TMsgEntityCreated, onCreated);
@@ -72,14 +83,6 @@ void TCompParticles::onGroupCreated(const TMsgEntitiesGroupCreated&) {
 }
 
 void TCompParticles::onDestroyed(const TMsgEntityDestroyed&) {
-
-    if (_particles) {
-        Engine.getParticles().kill(_particles, _fadeout);
-    }
-
-    for (auto p : _cores) {
-        Engine.getParticles().kill(p.second, _fadeout);
-    }
 }
 
 void TCompParticles::playSystem() {

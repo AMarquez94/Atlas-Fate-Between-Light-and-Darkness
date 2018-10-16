@@ -94,10 +94,6 @@ namespace GPUParticles {
         // Update current CPU core values to the GPU buffer
         core.delta_time = delta;
         core.elapsed_time += delta;
-        //core.ratio_time = core.elapsed_time > 6 ? (int)randomFloat(0, nparticles) : core.ratio_time;
-        core.elapsed_time = core.elapsed_time > 6 ? 0 : core.elapsed_time;
-        dbg("ratio %d %d\n", core.ratio_time, nparticles);
-        core.ratio_time = 200.0f;
 
         assert(gpu_core.data());
         memcpy(gpu_core.data(), &core, sizeof(core));

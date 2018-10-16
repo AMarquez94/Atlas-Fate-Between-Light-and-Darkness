@@ -1,0 +1,10 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_bc_pantalla_atlas_alb.dds"
+    ,
+    "normal": "data/textures/null_normal.dds"
+  }
+}

@@ -521,7 +521,7 @@ bool TCompAIDrone::isEntityInFovDrone(const std::string& entityToChase)
     TCompTempPlayerController *pController = ePlayer->get<TCompTempPlayerController>();
 
     return cone_controller->playerIlluminated && !pController->isInvisible && !pController->isInNoClipMode &&
-        !pController->isMerged && !pController->isDead() && !isEntityHidden(hPlayer);
+        !pController->isMerged && !pController->isDead() && !CEngine::get().getGameManager().isCinematicMode && !isEntityHidden(hPlayer);
 }
 
 void TCompAIDrone::stabilizeRotations(float dt)

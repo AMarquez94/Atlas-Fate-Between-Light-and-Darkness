@@ -68,6 +68,9 @@ void TCompLightDir::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompLightDir::update(float dt) {
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     TCompTransform * c = get<TCompTransform>();
     if (!c)
         return;

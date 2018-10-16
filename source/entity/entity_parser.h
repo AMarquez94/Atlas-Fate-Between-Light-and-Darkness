@@ -33,6 +33,8 @@ struct TEntityParseContext {
 	// True if the entity is a prefab
 	bool is_prefab = false;
 
+    bool persistent = false;
+
 	TEntityParseContext() = default;
 	TEntityParseContext(TEntityParseContext& another, const CTransform& delta_transform);
 };

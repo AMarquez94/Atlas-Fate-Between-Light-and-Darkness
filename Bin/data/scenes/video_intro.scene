@@ -1,0 +1,78 @@
+[
+  {
+    "entity":
+    {
+      "name": "Video_intro"
+      ,
+      "transform":
+      {
+        "pos": "-3.2 10.25 12.0"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107",
+        "scale" : "0.75 0.75 0.75"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/video_tv.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/video_atlas.material"
+          ]
+        }
+      ]
+    }
+  },{
+    "xentity":
+    {
+      "name": "Video_intro2"
+      ,
+      "transform":
+      {
+        "pos": "-11.675 1.475 15.150"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107",
+        "scale" : "0.0 0.45 0.45"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/video_tv.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/video_atlas.material"
+          ]
+        }
+      ]
+    }
+  },{
+    "xentity":
+    {
+      "name": "Video_intro3"
+      ,
+      "transform":
+      {
+        "pos": "5.425 1.475 15.150"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107",
+        "scale" : "0.0 0.45 0.45"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/video_tv.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/video_atlas.material"
+          ]
+        }
+      ]
+    }
+  }
+]

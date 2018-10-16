@@ -47,6 +47,11 @@ void TCompCulling::update(float dt) {
 
 	//PROFILE_FUNCTION("Updating culling");
 
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
+
 	// Conseguimos acceso al comp_camera de un sibling component
 	TCompCamera* c_camera = get<TCompCamera>();
 	if (!c_camera)

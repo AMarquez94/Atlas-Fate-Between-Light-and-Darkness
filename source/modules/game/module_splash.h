@@ -9,8 +9,8 @@ public:
 		: IModule(name)
 	{}
   bool start() override;
-  void update(float delta) override;
   bool stop() override;
+  void update(float delta) override;
 
 private:
   float _timer;

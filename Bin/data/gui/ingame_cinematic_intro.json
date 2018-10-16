@@ -1,0 +1,16 @@
+[
+	{
+		"name" : "cinematic_intro_video",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "cinematic_intro",
+				"color":"1 1 1 1",
+				"type" : "video",
+				"size" : "1080 640",
+				"texture" : "data/video/test_monkey.h264"
+			}
+		]
+	}
+]

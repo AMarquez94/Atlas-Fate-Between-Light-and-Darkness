@@ -31,6 +31,9 @@ void TCompBoneTracker::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompBoneTracker::update(float dt) {
 
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     TCompSkeleton* c_skel = h_skeleton;
 
     if (c_skel == nullptr) {

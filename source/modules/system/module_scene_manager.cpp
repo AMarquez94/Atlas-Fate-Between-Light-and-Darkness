@@ -10,6 +10,9 @@
 #include "components/comp_transform.h"
 #include "render/texture/material.h"
 #include "render/render_objects.h"
+#include "resources/json_resource.h"
+#include "components/comp_tags.h"
+
 // for convenience
 using json = nlohmann::json;
 
@@ -22,17 +25,19 @@ void CModuleSceneManager::loadJsonScenes(const std::string filepath) {
 
     sceneCount = 0;
 
-    json jboot = loadJson(filepath);
+    json jboot = Resources.get(filepath)->as<CJsonResource>()->getJson();
     _default_scene = jboot.value("default_scene","scene_intro");
 
     for (auto it = std::next(jboot.begin(),1); it != jboot.end(); ++it) {
    
         sceneCount++;
         std::string scene_name = it.key();
+        std::vector< std::string> persistent_subscenes = jboot[scene_name]["persistent_scenes"];
         std::vector< std::string > groups_subscenes = jboot[scene_name]["scene_group"];
         
         // Create the scene and store it
         Scene * scene = createScene(scene_name);
+        scene->persistent_subscenes = persistent_subscenes;
         scene->groups_subscenes = groups_subscenes;
         auto& data = jboot[scene_name]["static_data"];
         scene->navmesh = data.value("navmesh", "");
@@ -51,7 +56,6 @@ void CModuleSceneManager::loadJsonScenes(const std::string filepath) {
         scene->scene_tone_mapping = data.value("tone_mapping", cb_globals.global_tone_mapping_mode);
         scene->scene_shadow_intensity = data.value("shadow_intensity", cb_globals.global_shadow_intensity);
 
-
         _scenes.insert(std::pair<std::string, Scene*>(scene_name, scene));
     }
 }
@@ -60,6 +64,7 @@ bool CModuleSceneManager::start() {
 
     // Load a persistent scene and the listed ones
     // Store at persistent scene, inviolable data.
+    next_scene = "";
     _persistentScene = createScene("Persistent_Scene");
     _persistentScene->isLoaded = true;
 
@@ -77,6 +82,12 @@ bool CModuleSceneManager::stop() {
 
 void CModuleSceneManager::update(float delta) {
 
+    if (next_scene != "") {
+        if (!EngineFiles.areResourcesToLoad()) {
+            loadPartialScene(next_scene);
+            next_scene = "";
+        }
+    }
     // TO-DO, Maybe not needed
 }
 
@@ -112,6 +123,13 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
         Scene * current_scene = it->second;
         if (current_scene->navmesh.compare("") != 0) {
             Engine.getNavmeshes().buildNavmesh(current_scene->navmesh);
+        }
+
+        for (auto& scene_name : current_scene->persistent_subscenes) {
+            dbg("Autoloading persistent scene %s\n", scene_name.c_str());
+            TEntityParseContext ctx;
+            ctx.persistent = true;
+            parseScene(scene_name, ctx);
         }
 
         for (auto& scene_name : current_scene->groups_subscenes) {
@@ -160,7 +178,64 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
     return false;
 }
 
-bool CModuleSceneManager::unLoadActiveScene() {
+bool CModuleSceneManager::loadPartialScene(const std::string & name)
+{
+    if (_activeScene != nullptr && _activeScene->persistent_subscenes.size() > 0 && _activeScene->name != name) {
+        auto it = _scenes.find(name);
+        if (it != _scenes.end())
+        {
+            CModuleGameManager gameManager = CEngine::get().getGameManager();
+            gameManager.deleteCheckpoint();
+
+            unLoadActiveScene(true);
+
+            // Load the subscene
+            Scene * current_scene = it->second;
+            if (current_scene->navmesh.compare("") != 0) {
+                Engine.getNavmeshes().buildNavmesh(current_scene->navmesh);
+            }
+
+            for (auto& scene_name : current_scene->groups_subscenes) {
+                dbg("Autoloading scene %s\n", scene_name.c_str());
+                TEntityParseContext ctx;
+                parseScene(scene_name, ctx);
+            }
+
+            // Renew the active scene
+            current_scene->isLoaded = true;
+            setActiveScene(current_scene);
+
+            TMsgSceneCreated msg;
+
+            /* Only new entities */
+            EngineEntities.broadcastMsg(msg);
+
+            Engine.getLogic().execEvent(EngineLogic.SCENE_PARTIAL_START, current_scene->name);
+
+            // Set the global data.
+            cb_globals.global_fog_color = current_scene->ground_fog;
+            cb_globals.global_fog_env_color = current_scene->env_fog;
+            cb_globals.global_fog_density = current_scene->env_fog_density;
+            cb_globals.global_fog_ground_density = current_scene->ground_fog_density;
+            cb_globals.global_exposure_adjustment = current_scene->scene_exposure;
+            cb_globals.global_ambient_adjustment = current_scene->scene_ambient;
+            cb_globals.global_gamma_correction_enabled = current_scene->scene_gamma;
+            cb_globals.global_tone_mapping_mode = current_scene->scene_tone_mapping;
+            cb_globals.global_shadow_intensity = current_scene->scene_shadow_intensity;
+            cb_globals.global_shadow_color = current_scene->shadow_color;
+            cb_globals.updateGPU();
+
+            return true;
+        }
+
+        return false;
+    }
+    else {
+        return loadScene(name);
+    }
+}
+
+bool CModuleSceneManager::unLoadActiveScene(bool partial) {
 
     // This will allow us to mantain the gamestate.
 
@@ -170,19 +245,37 @@ bool CModuleSceneManager::unLoadActiveScene() {
     if (_activeScene != nullptr) {
 
         EngineLogic.clearDelayedScripts();
-        EngineLogic.execEvent(EngineLogic.SCENE_END, _activeScene->name);
 
-        EngineEntities.destroyAllEntities();
-        EngineCameras.deleteAllCameras();
+        if (partial) {
+
+            EngineLogic.execEvent(EngineLogic.SCENE_PARTIAL_END, _activeScene->name);
+
+            /* Clear non persistent entities */
+            std::vector<uint32_t> tag;
+            tag.push_back(getID("persistent"));
+            VHandles non_persistent_entities = CTagsManager::get().getAllEntitiesWithoutTags(tag);
+            for (int i = 0; i < non_persistent_entities.size(); i++) {
+                non_persistent_entities[i].destroy();
+            }
+            EngineInstancing.clearInstances();
+        }
+        else {
+
+            EngineLogic.execEvent(EngineLogic.SCENE_END, _activeScene->name);
+
+            EngineEntities.destroyAllEntities();
+            EngineCameras.deleteAllCameras();
+            EngineInstancing.clearInstances();
+            EngineParticles.killAll();
+        }
+
         EngineIA.clearSharedBoards();
         EngineNavmeshes.destroyNavmesh();
-        EngineInstancing.clearInstances();
-        EngineParticles.killAll();
+
+        removeSceneResources(_activeScene->name);
 
         _activeScene->isLoaded = false;
         _activeScene = nullptr;
-
-	    /* TODO: Delete checkpoint */
 
         return true;
     }
@@ -209,6 +302,23 @@ void CModuleSceneManager::setActiveScene(Scene* scene) {
 }
 
 std::string CModuleSceneManager::getDefaultSceneName() {
-
     return _default_scene;
+}
+
+void CModuleSceneManager::preloadScene(const std::string& sceneName) {
+    EngineFiles.addVectorResourceToLoad(EngineFiles.getFileResourceVector(sceneName));
+    next_scene = sceneName;
+
+    //const std::vector<std::string> resources = EngineFiles.getFileResourceVector(sceneName);
+    //for (int i = 0; i < resources.size(); i++) {
+    //    EngineFiles.addResourceToLoad(resources[i]);
+    //}
+}
+
+void CModuleSceneManager::removeSceneResources(const std::string& sceneName) {
+
+    const std::vector<std::string> resources = EngineFiles.getFileResourceVector(sceneName);
+    for (int i = 0; i < resources.size(); i++) {
+        EngineFiles.addPendingResourceFile(resources[i], false);
+    }
 }

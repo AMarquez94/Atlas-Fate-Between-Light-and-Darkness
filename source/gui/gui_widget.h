@@ -65,6 +65,7 @@ namespace GUI {
         MAT44 _absolute;
         bool enabled;
 
+        const CRenderTechnique* _technique = nullptr;
         friend class CParser;
     };
 }

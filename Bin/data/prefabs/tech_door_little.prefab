@@ -1,0 +1,113 @@
+[{
+		"entity": {
+			"name": "tech_door_little",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			},
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/collider_intro_marco_puerta001.collider",
+				"group": "all",
+				"mask": "",
+				"is_trigger": false,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			},
+			"tags": [
+				"corridor",
+				"corridor_door"
+			],
+			"door": {
+				"open_anim": "open",
+				"close_anim": "close",
+				"time_to_open": 1,
+				"time_to_close": 4,
+				"open_soundevent": "event:/Sounds/Objects/Doors/SmallDoorOpen",
+				"close_soundevent": "event:/Sounds/Objects/Doors/SmallDoorClose"
+			},
+			"audio": {},
+			"animated_object_controller": {
+				"reference_names": [{
+					"get_names_auto": true
+				}],
+				"animations": [{
+						"name": "open",
+						"src": "data/rigid_anims/tech_door_little.anims",
+						"loops": false
+
+					},
+					{
+						"name": "close",
+						"src": "data/rigid_anims/tech_door_little_close.anims",
+						"loops": false
+
+					}
+				]
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_puerta_r001",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			},
+			"rigid_anim": true,
+			"render": [{
+				"mesh": "data/meshes/intro_puerta_r001.mesh",
+				"materials": [
+					"data/materials/mtl_puerta_peq.material"
+				]
+			}],
+			"tags": [
+				"corridor",
+				"corridor_door"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_puerta_l001",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			},
+			"rigid_anim": true,
+			"render": [{
+				"mesh": "data/meshes/intro_puerta_l001.mesh",
+				"materials": [
+					"data/materials/mtl_puerta_peq.material"
+				]
+			}],
+			"tags": [
+				"corridor",
+				"corridor_door"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_marco_puerta001",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			},
+			"rigid_anim": true,
+			"render": [{
+				"mesh": "data/meshes/intro_marco_puerta001.mesh",
+				"materials": [
+					"data/materials/mtl_puerta_peq.material"
+				]
+			}],
+			"tags": [
+				"corridor",
+				"corridor_door"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
+]

@@ -7,7 +7,7 @@
 			{
 				"name" : "buttons_back_mm",
 				"type" : "widget",
-				"position" : "25 580",
+				"position" : "1525 580",
 				"children" : [
 					{
 						"name" : "controls_back_mm",

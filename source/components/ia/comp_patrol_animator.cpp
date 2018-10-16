@@ -103,6 +103,28 @@ void TCompPatrolAnimator::initializeAnimations() {
 	);
 
 	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CINEMATIC_DIE,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"die_cinematic",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CINEMATIC_DEAD,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"dead_cinematic",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::ATTACK,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
@@ -163,12 +185,11 @@ void TCompPatrolAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::BEING_REPARED,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"pruebas",
+		"repaired",
 		"",
 		1.0f,
 		1.0f,
-		false,
-		true
+		false
 	);
 
 }

@@ -52,4 +52,5 @@ public:
 	void resetLevel();
 	void resetToCheckpoint();
     PauseState getCurrentState();
+    bool isCinematicMode;
 };

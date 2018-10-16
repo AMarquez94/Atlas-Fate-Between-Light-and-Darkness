@@ -316,6 +316,17 @@
 			"noise": "data/textures/noise_cloud3.dds"
 		}
 	},
+	"env_planet": {
+		"vs_file": "data/shaders/env.fx",
+		"ps_file": "data/shaders/env.fx",
+		"vs_entry_point": "VS",
+		"ps_entry_point": "PS_Planet",
+		"vertex_type": "PosNUvUvT",
+		"category": "env_effects",
+		"textures": {
+			"noise": "data/textures/noise_cloud3.dds"
+		}
+	},
 	"env_moon_backface": {
 		"vs_file": "data/shaders/env.fx",
 		"ps_file": "data/shaders/env.fx",
@@ -451,13 +462,13 @@
 	},
 	"pbr_outline": {
 		"vs_file": "data/shaders/pbr.fx",
-		"ps_file": "data/shaders/outlines.fx",
 		"vs_entry_point": "VS_GBuffer",
-		"ps_entry_point": "",
+		"ps_entry_point": "PS_Outline_GBuffer",
 		"vertex_type": "PosNUvUvT",
-		"category": "outlines",
+		"category": "gbuffer",
 		"z": "test_no_writes_mark_stencil",
 		"priority": 150,
+		"color_mask": 244,
 		"comment": "This needs to go after the pbr's solids, but just before the object to render"
 	},
 	"pbr_skin_shadows": {		
@@ -482,7 +493,6 @@
 		"vertex_type": "PosNUvUvT",
 		"category": "gbuffer",
 		"z": "test_no_writes_mark_stencil",
-		"color_mask": 244,
 		"priority": 150,
 		"comment": "This needs to go after the pbr's solids, but just before the object to render"
 	},
@@ -536,6 +546,16 @@
 		"vs_file": "data/shaders/gui.fx",
 		"vs_entry_point": "VS_GUI",
 		"ps_entry_point": "PS_GUI",
+		"vertex_type": "PosClr",
+		"category": "gui",
+		"z": "disable_all",
+		"rs_config": "cull_none",
+		"blend": "combinative"
+	},
+	"gui_glitch": {
+		"vs_file": "data/shaders/gui.fx",
+		"vs_entry_point": "VS_GUI",
+		"ps_entry_point": "PS_GUI_Glitch",
 		"vertex_type": "PosClr",
 		"category": "gui",
 		"z": "disable_all",
@@ -748,6 +768,22 @@
 		"z": "test_but_no_write",
 		"ps_entry_point": "PS_HologramScreen",
 		"blend": "additive_by_src_alpha"
+	},
+	"tv_screen": {
+		"vs_file": "data/shaders/hologram.fx",
+		"vs_entry_point": "VS_HologramScreen",
+		"vertex_type": "PosNUvUvT",
+		"ps_file": "data/shaders/hologram.fx",
+		"category": "hologram_screen",
+		"ps_entry_point": "PS_TV"
+	},
+	"tv_screen_district": {
+		"vs_file": "data/shaders/hologram.fx",
+		"vs_entry_point": "VS_HologramScreen",
+		"vertex_type": "PosNUvUvT",
+		"ps_file": "data/shaders/hologram.fx",
+		"category": "hologram_screen",
+		"ps_entry_point": "PS_TV_District"
 	},
 	"hologram_tv": {
 		"vs_file": "data/shaders/hologram.fx",

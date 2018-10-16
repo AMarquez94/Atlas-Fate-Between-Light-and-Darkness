@@ -1,6 +1,8 @@
 #include "mcv_platform.h"
 #include "module_splash.h"
 #include "modules/system/module_gui.h"
+#include "input/devices/mouse.h"
+
 
 bool CModuleSplash::start()
 {

@@ -30,6 +30,15 @@
 		},
 		{
 			"name": "turn_right"
+		},
+		{
+			"name": "die_cinematic"
+		},
+		{
+			"name": "dead_cinematic"
+		},
+		{
+			"name": "repaired"
 		}
 	]
 }

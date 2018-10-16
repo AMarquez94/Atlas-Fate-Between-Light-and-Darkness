@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "mesh_instanced.h"
+#include "resources/json_resource.h"
 
 CRenderMesh* loadMeshInstanced(const std::string& name) {
 
@@ -8,6 +9,11 @@ CRenderMesh* loadMeshInstanced(const std::string& name) {
     json j = loadJson(name);
     mesh->configure(j);
     return mesh;
+    ////dbg("Creating instanced mesh %s\n", name.c_str());
+    //auto mesh = new CRenderMeshInstanced();
+    //json j = Resources.get(name)->as<CJsonResource>()->getJson();
+    //mesh->configure(j);
+    //return mesh;
 }
 
 // -----------------------------------------------------------------

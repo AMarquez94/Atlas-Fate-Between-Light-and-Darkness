@@ -21,6 +21,9 @@ void TCompPlayerInput::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompPlayerInput::update(float dt)
 {
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     if (!paused && !isConsoleOn && !isInNoClipMode && !_playerAIEnabled) {
         CEntity* e = CHandle(this).getOwner();
         _time += dt;

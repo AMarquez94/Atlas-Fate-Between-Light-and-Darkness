@@ -115,7 +115,7 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
     addChild("playerActivated", "smfallTutorial", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionSMFallTutorial, nullptr, nullptr);
     addChild("smfallTutorial", "resetTimersSMFallTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersSMFallTutorial, nullptr);
     addChild("smfallTutorial", "fallingSMFallTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationFalling, nullptr);
-    addChild("smfallTutorial", "beginsmSMFallTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionStartSM, nullptr);
+    addChild("smfallTutorial", "beginsmSMFallTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionStartFallSM, nullptr);
     addChild("smfallTutorial", "smSMFallTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSM, nullptr);
     addChild("smfallTutorial", "exitsmSMFallTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionEndSM, nullptr);
     addChild("smfallTutorial", "waitSMFallTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionWait, nullptr);
@@ -192,12 +192,14 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
     addChild("playerActivated", "walkFallSMCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicWalkFall, nullptr, nullptr);
     addChild("walkFallSMCinematic", "resetTimersWalkFallCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersCinematicWalkFall, nullptr);
     addChild("walkFallSMCinematic", "crouchFallCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationStandingCrouch, nullptr);
-    addChild("walkFallSMCinematic", "crouchWalkFallCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionCrouchWalk, (BTAssert)&TCompAIPlayer::assertIsGrounded);
+	addChild("walkFallSMCinematic", "resetTimersWalkFallCinematic2", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersCinematicWalkFall2, nullptr);
+	addChild("walkFallSMCinematic", "crouchListenFallCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationStandingCrouchListen, nullptr);
+	addChild("walkFallSMCinematic", "crouchWalkFallCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionCrouchWalk, (BTAssert)&TCompAIPlayer::assertIsGrounded);
     
     addChild("playerActivated", "FallSMCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicFallSM, nullptr, nullptr);
     addChild("FallSMCinematic", "resetTimersFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersCinematicFallSM, nullptr);
     addChild("FallSMCinematic", "fallFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionFallSM, nullptr);
-    addChild("FallSMCinematic", "smenterFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionStartSM, nullptr); 
+    addChild("FallSMCinematic", "smenterFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionStartFallSM, nullptr); 
     addChild("FallSMCinematic", "resetTimersBeforeSMFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersBeforeSMCinematicFallSM, nullptr);
     addChild("FallSMCinematic", "smFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSM, nullptr);        
     addChild("FallSMCinematic", "slowMotionSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionSlowMotionCinematicFallSM, nullptr);        
@@ -206,10 +208,20 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
     addChild("FallSMCinematic", "endCinematicFallSMCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::endCinematic, nullptr);  
     
     addChild("playerActivated", "InhibitorCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicInhibitor, nullptr, nullptr);
-    addChild("InhibitorCinematic", "resetTimersInhibitorCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersInhibitorCinematic, nullptr);
-    addChild("InhibitorCinematic", "idleAnimationInhibitorCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdle, nullptr);
-    addChild("InhibitorCinematic", "resetBTInhibitorCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
+	addChild("InhibitorCinematic", "fallInhibitorCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionFallSM, nullptr);
+	addChild("InhibitorCinematic", "resetTimingInhibitorCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersInhibitorCinematic, nullptr);
+    addChild("InhibitorCinematic", "hardLandAnimationInhibitorCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationStandingHardLand, nullptr);
+	addChild("InhibitorCinematic", "stayHardPoseAnimationInhibitorCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationStandingHardPose, nullptr);
+	addChild("InhibitorCinematic", "reset2TimingInhibitorCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersInhibitorCinematic2, nullptr);
+	addChild("InhibitorCinematic", "stayHardPoseLookingAnimationInhibitorCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationStandingHardPoseLooking, nullptr);
+	addChild("InhibitorCinematic", "idlefinalAnimationInhibitorCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdle, nullptr);
+	addChild("InhibitorCinematic", "resetBTInhibitorCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::endCinematic, nullptr);
    
+	addChild("playerActivated", "CapsulesCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicInhibitor, nullptr, nullptr);
+	addChild("CapsulesCinematic", "resetTimersCapsulesCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersCapsuleCinematic, nullptr);
+	addChild("CapsulesCinematic", "idleAnimationCapsulesCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdleListen, nullptr);
+	addChild("CapsulesCinematic", "resetBTCapsulesCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
+
     /*addChild("playerActivated", "LandPlayer", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionIsLanded, nullptr, nullptr);
     addChild("LandPlayer", "landPlayer", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionFallSM, nullptr);*/
 
@@ -251,11 +263,11 @@ void TCompAIPlayer::onMsgPlayerAIEnabled(const TMsgPlayerAIEnabled& msg) {
     setCurrent(nullptr);
     _timer = 0.f;
 
-    CEntity* e_me = myHandle.getOwner();
-    if (std::strcmp(e_me->getName(), "The Player") == 0) {
+    if (myHandle.getOwner() == EngineEntities.getPlayerHandle()) {
         TCompTempPlayerController* p_controller = get<TCompTempPlayerController>();
         EngineGUI.enableWidget("stamina_bar_general", !p_controller->isStaminaFull() && !enabledPlayerAI);
         EngineGUI.enableWidget("life_bar", !enabledPlayerAI);
+        EngineLogic.execScript("GUI_EnableRemoveInhibitor()");
     }
 }
 
@@ -368,6 +380,9 @@ TCompAIPlayer::EState TCompAIPlayer::getStateEnumFromString(const std::string & 
     else if (stateName.compare("inhibitor_cinematic") == 0) {
         return TCompAIPlayer::EState::CINEMATIC_INHIBITOR;
     }
+	else if (stateName.compare("capsules_cinematic") == 0) {
+		return TCompAIPlayer::EState::CINEMATIC_CAPSULES;
+	}
     else {
         return TCompAIPlayer::EState::NUM_STATES;
     }
@@ -553,16 +568,24 @@ BTNode::ERes TCompAIPlayer::actionAnimationCrouch(float dt)
 
 BTNode::ERes TCompAIPlayer::actionAnimationIdle(float dt)
 {
-    _timer += dt;
-    if (_timer > _maxTimer) {
-        _timer = 0.f;
-        return BTNode::ERes::LEAVE;
-    }
-    else {
-        TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
-        my_anim->playAnimation(TCompPlayerAnimator::EAnimation::IDLE);
-        return BTNode::ERes::STAY;
-    }
+	TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+	my_anim->playAnimation(TCompPlayerAnimator::EAnimation::IDLE);
+    return BTNode::ERes::LEAVE;
+    
+}
+
+BTNode::ERes TCompAIPlayer::actionAnimationIdleListen(float dt)
+{
+	_timer += dt;
+	if (_timer > _maxTimer) {
+		_timer = 0.f;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+		my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_LISTEN_IDLE);
+		return BTNode::ERes::STAY;
+	}
 }
 
 BTNode::ERes TCompAIPlayer::actionStartSM(float dt)
@@ -586,6 +609,29 @@ BTNode::ERes TCompAIPlayer::actionStartSM(float dt)
     }
 
     return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionStartFallSM(float dt)
+{
+	TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+	my_anim->playAnimation(TCompPlayerAnimator::EAnimation::SM_POSE);
+	my_anim->playAnimation(TCompPlayerAnimator::EAnimation::SM_ENTER_FALL);
+
+	CHandle(this).getOwner().sendMsg(TMsgFadeBody{ false });
+	h_sm_tutorial.sendMsg(TMsgFadeBody{ true });
+
+	// Replace this when weapons are finished
+	fadeWeapons(false);
+
+	TCompParticles * my_particles = get<TCompParticles>();
+	if (my_particles) {
+		Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", CHandle(this).getOwner());
+		Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash2.particles", CHandle(this).getOwner());
+		Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", CHandle(this).getOwner());
+		my_particles->setSystemState(true);
+	}
+
+	return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIPlayer::actionAnimationSM(float dt)
@@ -652,6 +698,55 @@ BTNode::ERes TCompAIPlayer::actionAnimationStandingCrouch(float dt)
         my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CROUCH_IDLE);
         return BTNode::ERes::STAY;
     }
+}
+
+BTNode::ERes TCompAIPlayer::actionAnimationStandingHardPose(float dt)
+{
+	_timer += dt;
+	if (_timer > _maxTimer) {
+		_timer = 0.f;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+		my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_HARD_POSE);
+		return BTNode::ERes::STAY;
+	}
+}
+
+BTNode::ERes TCompAIPlayer::actionAnimationStandingHardPoseLooking(float dt)
+{
+	_timer += dt;
+	if (_timer > _maxTimer) {
+		_timer = 0.f;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+		my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_HARD_POSE_LOOKING);
+		return BTNode::ERes::STAY;
+	}
+}
+
+BTNode::ERes TCompAIPlayer::actionAnimationStandingHardLand(float dt)
+{
+	TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+	my_anim->playAnimation(TCompPlayerAnimator::EAnimation::LAND_HARD);
+	return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionAnimationStandingCrouchListen(float dt)
+{
+	_timer += dt;
+	if (_timer > _maxTimer) {
+		_timer = 0.f;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+		my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_LISTEN_CROUCH);
+		return BTNode::ERes::STAY;
+	}
 }
 
 BTNode::ERes TCompAIPlayer::actionAnimationAttack(float dt)
@@ -851,8 +946,15 @@ BTNode::ERes TCompAIPlayer::actionStartSMEnemy(float dt)
 BTNode::ERes TCompAIPlayer::actionResetTimersCinematicWalkFall(float dt)
 {
     _currentState = EState::CINEMATIC_FALLSM;
-    _maxTimer = 1.f;
+    _maxTimer = 22.5f;
     return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersCinematicWalkFall2(float dt)
+{
+	_currentState = EState::CINEMATIC_FALLSM;
+	_maxTimer = 33.5f;
+	return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIPlayer::actionResetTimersBeforeSMCinematicFallSM(float dt)
@@ -863,25 +965,36 @@ BTNode::ERes TCompAIPlayer::actionResetTimersBeforeSMCinematicFallSM(float dt)
 
 BTNode::ERes TCompAIPlayer::actionResetTimersInhibitorCinematic(float dt)
 {
-    _maxTimer = 0.5f;
-
-    TCompGroup* group = get<TCompGroup>();
-    if (group) {
-        CEntity* e_landing = group->getHandleByName("Player_landing");
-        if (e_landing) {
-            TMsgEntityCanLandSM msg;
-            msg.canSM = false;
-            e_landing->sendMsg(msg);
-        }
-    }
+    _maxTimer = 1.25f;
     return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersInhibitorCinematic2(float dt)
+{
+	_maxTimer = 3.5f;
+	return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersCapsuleCinematic(float dt) {
+	_maxTimer = 5.f;
+
+	TCompGroup* group = get<TCompGroup>();
+	if (group) {
+		CEntity* e_landing = group->getHandleByName("Player_landing");
+		if (e_landing) {
+			TMsgEntityCanLandSM msg;
+			msg.canSM = false;
+			e_landing->sendMsg(msg);
+		}
+	}
+	return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIPlayer::actionSlowMotionCinematicFallSM(float dt)
 {
     TCompFadeController* my_fade = get<TCompFadeController>();
     my_fade->setFadeTime(4.f);
-    _maxTimer = my_fade->getFadeTime();
+    _maxTimer = my_fade->getFadeTime() + 3.0f;
 
     // TODO: Crear bien el GetFallSpeed y estas cosas // SM fall que no pase por animación de crouch
     return BTNode::ERes::LEAVE;
@@ -907,8 +1020,8 @@ BTNode::ERes TCompAIPlayer::actionFallSM(float dt)
     TCompPlayerAnimator *my_anim = get<TCompPlayerAnimator>();
     my_anim->playAnimation(TCompPlayerAnimator::EAnimation::FALL);
 
-    TCompRigidbody* my_rigidbody = get<TCompRigidbody>();
-    if (my_rigidbody && my_rigidbody->is_grounded) {
+    TCompTransform* my_transform = get<TCompTransform>();
+    if (my_transform->getPosition().y < 0.30f) {
         return BTNode::ERes::LEAVE;
     }
 
@@ -1049,6 +1162,13 @@ bool TCompAIPlayer::conditionCinematicInhibitor(float dt)
     else {
         return false;
     }
+}
+
+bool TCompAIPlayer::conditionCinematicCapsules(float dt) {
+
+
+	return _currentState == EState::CINEMATIC_CAPSULES;
+
 }
 
 bool TCompAIPlayer::conditionIsLanded(float dt)

@@ -25,6 +25,7 @@ public:
     std::string navmesh;
     std::string initial_script_name;
 
+    std::vector<std::string> persistent_subscenes;
     std::vector<std::string> groups_subscenes;
 };
 
@@ -40,11 +41,14 @@ public:
 	bool stop() override;
 	void update(float delta) override;
 
+    void preloadScene(const std::string& sceneName);
+    void removeSceneResources(const std::string& sceneName);
     bool loadScene(const std::string & name);
+    bool loadPartialScene(const std::string & name);
     Scene* createScene(const std::string& name);
     Scene* getSceneByName(const std::string& name);
     Scene* getActiveScene();
-    bool unLoadActiveScene();
+    bool unLoadActiveScene(bool partial = false);
 
     std::string getDefaultSceneName();
 
@@ -53,6 +57,8 @@ private:
     Scene * _persistentScene;
     std::string _default_scene;
     std::map<std::string, Scene*> _scenes;
+
+    std::string next_scene;
 
     void loadJsonScenes(const std::string filepath);
     void setActiveScene(Scene* scene);

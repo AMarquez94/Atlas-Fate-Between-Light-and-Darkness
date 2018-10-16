@@ -50,3 +50,30 @@ float4 PS_GUI_RADIAL(
   float4 oColor = float4(oDiffuse.rgb * tint_color.rgb, oDiffuse.a * tint_color.a);
   return oColor;
 }
+
+float4 PS_GUI_Glitch(
+  VS_FULL_OUTPUT input
+  ) : SV_Target
+{
+  float2 finalUV = lerp(minUV, maxUV, input.UV);
+	
+	// Doing some glitches here
+	float2 block = floor(finalUV / float2(2, 2));
+	float2 uv_noise = block / float2(12, 12);
+	uv_noise += floor(float2(global_world_time, global_world_time) * float2(1234.0, 3543.0)) / float2(32, 32);
+	
+	float block_thresh = pow(frac(global_world_time * 1236.0453), 2.0) * 0.2;
+	float line_thresh = pow(frac(global_world_time * 2236.0453), 3.0) * 0.7;
+	
+		// glitch some blocks and lines
+		float2 uv_r = finalUV;
+	if (txAlbedo.Sample(samLinear, uv_noise).r < block_thresh || txAlbedo.Sample(samLinear, float2(uv_noise.y, 0.0)).g < line_thresh) {
+
+		float2 dist = (frac(uv_noise) - 0.5) * 0.3;
+		uv_r += dist * gui_var1;
+	}
+	
+  float4 oDiffuse = txAlbedo.Sample(samLinear, uv_r);
+	float4 oColor = float4(oDiffuse.rgb * tint_color.rgb, oDiffuse.a * tint_color.a);
+	return oColor;
+}

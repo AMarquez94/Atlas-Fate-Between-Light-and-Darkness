@@ -50,6 +50,7 @@ public:
     void setNormalGravity(VEC3 newGravity);
 
     void setGlobalPose(VEC3 pos, QUAT rot);
+    void invalidateCache();
 
     static void registerMsgs();
 
