@@ -230,7 +230,8 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
 	addChild("FinalCinematic", "idleEnterFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdleTimed, nullptr);
 	addChild("FinalCinematic", "resetTimersFinalCinematic3", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene2, nullptr);
 	addChild("FinalCinematic", "secondWalkFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSlowWalk, nullptr);
-
+	addChild("FinalCinematic", "resetTimersFinalCinematic4", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene3, nullptr);
+	addChild("FinalCinematic", "idleArrivedFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdleTimed, nullptr);
     /*addChild("playerActivated", "LandPlayer", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionIsLanded, nullptr, nullptr);
     addChild("LandPlayer", "landPlayer", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionFallSM, nullptr);*/
 
@@ -1031,13 +1032,13 @@ BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene1(float dt)
 
 BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene2(float dt)
 {
-	_maxTimer = 16.0f;
+	_maxTimer = 20.5f;
 	return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene3(float dt)
 {
-	_maxTimer = 4.5f;
+	_maxTimer = 60.0f;
 	return BTNode::ERes::LEAVE;
 }
 
