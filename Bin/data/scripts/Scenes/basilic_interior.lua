@@ -1,8 +1,19 @@
 function onSceneStart_scene_basilic_interior()
-	end_cinematic_scene();
+	--pre_end_cinematic_scene();
+	--shutdown_end_cinematic_scene();
 end
 
-function end_cinematic_scene()
+function finish_job_end_cinematic_scene()
+
+end
+
+function shutdown_end_cinematic_scene()
+	setInBlackScreen(0.25);
+	execScriptDelayed("move(\"The Player\", VEC3(-7.881,0.044,-0.818),VEC3(-7.881,0.044,0.0));",0.3);
+	execScriptDelayed("setOutBlackScreen(0.25);",0.5);
+end
+
+function pre_end_cinematic_scene()
 
 	--First plane
 	move("The Player", VEC3(-8.850, 0.044, -33),VEC3(-8.850, 0.044, -30));

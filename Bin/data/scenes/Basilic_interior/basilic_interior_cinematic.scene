@@ -10,7 +10,7 @@
         "pos": "-8.850 3.642 -31.1",
         "rotation": "0.5735 0.0 0.0 0.8191"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
   {
@@ -20,7 +20,7 @@
         "pos": "-8.850 3.642 -31.1",
         "rotation": "0.4617 0.0 0.0 0.8870"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
   {
@@ -30,7 +30,7 @@
         "pos": "-9.586 1.178 -30.788",
         "rotation": "0.0 0.0799 0.0 0.996"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
   {
@@ -40,7 +40,7 @@
         "pos": "-9.586 1.178 -30.788",
         "rotation": "-0.08 0.0796 0.0066 0.9933"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
   {
@@ -50,7 +50,7 @@
         "pos": "-8.850 2.5 -32",
         "rotation": "0.1736 0.0 0.0 0.9848"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
   {
@@ -60,7 +60,7 @@
         "pos": "-8.850 2.5 -33.5",
         "rotation": "0.04362 0.0 0.0 0.9990"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
   {
@@ -70,7 +70,7 @@
         "pos": "-8.738 9.62 -23",
         "rotation": "0.5519 0.0 0.0 0.8338"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
   {
@@ -80,7 +80,7 @@
         "pos": "-8.738 9.62 -20.056",
         "rotation": "0.4848 0.0 0.0 0.8746"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
   {
@@ -90,7 +90,7 @@
         "pos": "3.21 13.8 -17.07",
         "rotation": "0.2942 -0.3965 0.1358 0.8589"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
   {
@@ -100,7 +100,7 @@
         "pos": "3.21 13.8 -17.07",
         "rotation": "0.2630 -0.3180 0.0923 0.9061"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
   {
@@ -110,7 +110,7 @@
         "pos": "-10.606 0.777 -11.975",
         "rotation": "-0.0987 0.1437 0.0144 0.9845"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
   {
@@ -120,7 +120,7 @@
         "pos": "-10.606 0.777 -11.975",
         "rotation": "-0.1893 0.1418 0.0276 0.9712"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
   {
@@ -130,7 +130,7 @@
         "pos": "-8.850 1.975 -8.775",
         "rotation": "0.0654 0.0 0.0 0.9978"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
   {
@@ -140,7 +140,7 @@
         "pos": "-8.850 1.975 -8.775",
         "rotation": "-0.1736 0.0 0.0 0.9848"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
   {
@@ -150,7 +150,7 @@
         "pos": "-9.790 1.078 -6.173",
         "rotation": "-0.1578 0.4854 0.0895 0.8552"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
     {
@@ -160,7 +160,7 @@
         "pos": "6.564 13.238 -6.201",
         "rotation": "-0.2793 0.4114 0.1340 0.8571"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
   {
@@ -170,7 +170,7 @@
         "pos": "6.564 13.238 -6.201",
         "rotation": "-0.3284 0.3384 0.1273 0.8725"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
     {
@@ -180,7 +180,7 @@
         "pos": "-8.05 1.41 -7.159",
         "rotation": "0.0237 -0.1231 -0.0479 0.9920"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
   {
@@ -190,7 +190,7 @@
         "pos": "-9.725 1.41 -7.159",
         "rotation": "0.02629 0.1186 -0.0031 0.9925"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
     {
@@ -200,7 +200,7 @@
         "pos": "-18.5 11.35 -6.5",
         "rotation": "-0.1479 -0.2825 -0.0441 0.9467"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
   {
@@ -210,7 +210,7 @@
         "pos": "-18.5 11.35 -6.5",
         "rotation": "-0.1662 -0.0812 -0.0127 0.9826"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
     {
@@ -220,7 +220,7 @@
         "pos": "-9.366 1.380 -4.852",
         "rotation": "0.0977 0.2250 -0.0227 0.9691"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
   {
@@ -230,7 +230,7 @@
         "pos": "-9.366 1.380 -4.852",
         "rotation": "0.0999 0.0931 -0.0093 0.9905"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   },
   {
@@ -240,7 +240,28 @@
         "pos": "-8.850 1.866 -5.513",
         "rotation": "0.0734 0.0 0.0 0.997298"
       },
-       "prefab": "data/prefabs/camera_player.prefab"
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
+    }
+  },
+    {
+    "entity": {
+      "name": "Camera_Cinematic_Plane_14_Rot_1",
+      "transform": {
+        "pos": "-9.366 1.380 -4.852",
+        "rotation": "0.0977 0.2250 -0.0227 0.9691"
+      },
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
+    }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Plane_14_Rot_2",
+      "transform": {
+        "pos": "-9.366 1.380 -4.852",
+        "rotation": "0.0999 0.0931 -0.0093 0.9905"
+      },
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
   }
+
 ]

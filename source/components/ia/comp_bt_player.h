@@ -27,6 +27,8 @@ public:
         CINEMATIC_INHIBITOR,
 		CINEMATIC_CAPSULES,
 		CINEMATIC_FINAL_SCENE,
+		CINEMATIC_FINAL_SHUTDOWN,
+		CINEMATIC_FINAL_ENDJOB,
         NUM_STATES };
 
     bool enabledPlayerAI;
@@ -62,6 +64,7 @@ public:
 	BTNode::ERes actionPoseLookCapsulesAnimationIdleTimed(float dt);
 	BTNode::ERes actionAnimationLookCapsulesTimed(float dt);
 	BTNode::ERes actionAnimationSlowWalk(float dt);
+	BTNode::ERes actionAnimationKeyboard(float dt);
 	BTNode::ERes actionAnimationIdleListen(float dt);
     BTNode::ERes actionStartSM(float dt);
 	BTNode::ERes actionStartFallSM(float dt);
@@ -102,6 +105,7 @@ public:
 	BTNode::ERes actionResetTimersFinalScene3(float dt);
 	BTNode::ERes actionResetTimersFinalScene4(float dt);
 	BTNode::ERes actionResetTimersFinalScene5(float dt);
+	BTNode::ERes actionResetTimersFinalScene6(float dt);
 	BTNode::ERes actionResetTimersCapsuleCinematic(float dt);
     BTNode::ERes actionSlowMotionCinematicFallSM(float dt);
     BTNode::ERes actionResetTimersCinematicFallSM(float dt);
@@ -130,7 +134,9 @@ public:
     bool conditionCinematicInhibitor(float dt);
 	bool conditionCinematicCapsules(float dt);
 	bool conditionCinematicFinale(float dt);
-
+	bool conditionCinematicEndJobFinale(float dt);
+	bool conditionCinematicShutdownFinale(float dt);
+	
     bool conditionIsLanded(float dt);
 
 

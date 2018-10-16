@@ -243,6 +243,11 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
 	//Pose final pre decisio
 	addChild("FinalCinematic", "finalIdlePoseFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdleCinematic, nullptr);
 
+	//Shutdown finale
+	addChild("playerActivated", "FinalShutdownCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicShutdownFinale, nullptr, nullptr);
+	addChild("FinalShutdownCinematic", "resetTimersFinalShutdownCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene6, nullptr);
+	addChild("FinalShutdownCinematic", "keyboardFinalShutdownCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationKeyboard, nullptr);
+
 	enabledPlayerAI = j.value("enabled", false);
 	_speed = j.value("speed", 1.0f);
 	_rotationSpeed = j.value("rotationSpeed", 1.0f);
@@ -410,6 +415,12 @@ TCompAIPlayer::EState TCompAIPlayer::getStateEnumFromString(const std::string & 
 	}
 	else if (stateName.compare("final_scene_cinematic") == 0) {
 		return TCompAIPlayer::EState::CINEMATIC_FINAL_SCENE;
+	}
+	else if (stateName.compare("final_shutdown_scene_cinematic") == 0) {
+		return TCompAIPlayer::EState::CINEMATIC_FINAL_SHUTDOWN;
+	}
+	else if (stateName.compare("final_endjob_scene_cinematic") == 0) {
+		return TCompAIPlayer::EState::CINEMATIC_FINAL_ENDJOB;
 	}
     else {
         return TCompAIPlayer::EState::NUM_STATES;
@@ -620,7 +631,6 @@ BTNode::ERes TCompAIPlayer::actionAnimationIdleCinematic(float dt)
 	TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
 	my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_IDLE);
 	return BTNode::ERes::STAY;
-
 }
 
 BTNode::ERes TCompAIPlayer::actionPoseLookCapsulesAnimationIdleTimed(float dt)
@@ -677,6 +687,19 @@ BTNode::ERes TCompAIPlayer::actionAnimationSlowWalk(float dt) {
 	}	
 }
 
+BTNode::ERes TCompAIPlayer::actionAnimationKeyboard(float dt) {
+
+	_timer += dt;
+	if (_timer > _maxTimer) {
+		_timer = 0.f;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+		my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_KEYBOARD);
+		return BTNode::ERes::STAY;
+	}
+}
 
 BTNode::ERes TCompAIPlayer::actionAnimationIdleListen(float dt)
 {
@@ -1115,6 +1138,12 @@ BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene5(float dt)
 	return BTNode::ERes::LEAVE;
 }
 
+BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene6(float dt)
+{
+	_maxTimer = 500.0f;
+	return BTNode::ERes::LEAVE;
+}
+
 BTNode::ERes TCompAIPlayer::actionResetTimersCapsuleCinematic(float dt) {
 	_maxTimer = 5.f;
 
@@ -1314,6 +1343,16 @@ bool TCompAIPlayer::conditionCinematicCapsules(float dt) {
 bool TCompAIPlayer::conditionCinematicFinale(float dt) {
 
 	return _currentState == EState::CINEMATIC_FINAL_SCENE;
+}
+
+bool TCompAIPlayer::conditionCinematicEndJobFinale(float dt) {
+
+	return _currentState == EState::CINEMATIC_FINAL_ENDJOB;
+}
+
+bool TCompAIPlayer::conditionCinematicShutdownFinale(float dt) {
+
+	return _currentState == EState::CINEMATIC_FINAL_SHUTDOWN;
 }
 
 bool TCompAIPlayer::conditionIsLanded(float dt)
