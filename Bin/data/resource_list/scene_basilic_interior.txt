@@ -58,13 +58,14 @@ data/particles/def_sm_enemy_spiral_core.particles
 data/textures/particles/rain_drop.dds
 data/particles/def_amb_rain_heavy.particles
 data/particles/def_amb_rain_core_heavy.particles
-data/scenes/_main_cameras.scene
+data/scenes/Basilic_interior/_main_cameras.scene
 data/prefabs/camera_main.prefab
-data/prefabs/camera_player.prefab
+data/prefabs/camera_player_basilic.prefab
 data/textures/lut/lut5.dds
+data/prefabs/camera_player.prefab
 data/prefabs/camera_shadowmerge.prefab
 data/textures/lut/lut1.dds
-data/prefabs/camera_flyover.prefab
+data/prefabs/camera_flyover_basilic.prefab
 data/scenes/basilic_interior_adornos_nucleo.scene
 data/meshes/borde_nucleo.mesh
 data/textures/tx_adornos_nucleo_alb.dds
@@ -255,8 +256,6 @@ data/meshes/pasarela.mesh
 data/scenes/basilic_interior_luces.scene
 data/colliders/luz_lateral.collider
 data/colliders/luz_lateral001.collider
-data/colliders/luz_lateral020.collider
-data/colliders/luz_lateral021.collider
 data/colliders/luz_pantalla.collider
 data/colliders/luz_pasarela.collider
 data/colliders/luz_pasarela001.collider

@@ -589,6 +589,8 @@ data/materials/mtl_suelo_mezquita.material
 data/colliders/collider_mesh_bc_pasillo_entre.collider
 data/meshes/BC_piedra_arco.mesh
 data/scenes/bc_corridor_logic.scene
+data/scenes/bc_corridor_lights.scene
+data/colliders/luz_corridor_bc.collider
 data/scenes/Basilic_courtyard/bc_capsule_cable.scene
 data/meshes/BC_Capsules_Cable.mesh
 data/scenes/BC_Maderas_Andamios.scene

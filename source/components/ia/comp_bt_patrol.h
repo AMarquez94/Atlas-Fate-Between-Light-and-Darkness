@@ -29,6 +29,9 @@ private:
     bool disabledLanterns = false;
     std::vector<CHandle> ignoredPatrols;
 
+    bool goingAfterPlayer = false;
+    float timeGoingAfterPlayerWithoutSeeingHim = 0.f;
+
     //bool is_tutorial = false;
     //std::string tutorial_name = "";
     //float timer = 0.f;
@@ -60,6 +63,7 @@ private:
     float getMaxChaseDistance();
     TCompAIPatrol::EState getStateEnumFromString(const std::string& stateName);
     void warnClosestPatrols();
+    void markPatrolAsGoingAfterPlayer(bool isChasing);
 
 	/* Completed Animations Checkers */
 

@@ -30,6 +30,7 @@ bool CModuleGameManager::start() {
     _currentstate = PauseState::none;
     isCinematicMode = false;
     EngineRender.setDebugMode(false);
+    main_theme = EngineSound.playEvent("event:/Ambiance/InGame");
     return true;
 }
 
@@ -150,6 +151,8 @@ void CModuleGameManager::update(float delta) {
 
     updateGameCondition();
 
+    updateMusicState(delta);
+
     {
         // Escape button
         if (EngineInput["btPause"].getsPressed() && _currentstate != PauseState::defeat && !isCinematicMode) {
@@ -228,6 +231,173 @@ void CModuleGameManager::updateGameCondition() {
             setPauseState(PauseState::defeat);
         }
     }
+}
+
+void CModuleGameManager::updateMusicState(float dt)
+{
+    if (_player.isValid()) {
+        CEntity* e = _player;
+        TCompTempPlayerController *playerCont = e->get<TCompTempPlayerController>();
+
+        switch (_musicstate) {
+        case MusicState::normal:
+
+            if (playerCont->isDead()) {
+                return changeMusicState(MusicState::player_died);
+            }
+            else {
+                if (main_theme.getVolume() < 1.f) {
+                    main_theme_lerp += dt;
+                    float volume = lerp(0.f, 1.f, main_theme_lerp / 3.f);
+                    if (volume >= 1.f) {
+                        main_theme.setVolume(1.f);
+                        main_theme_lerp = 0.f;
+                    }
+                    else {
+                        main_theme.setVolume(volume);
+                    }
+                }
+
+                if (EngineIA.patrolSB.patrolsGoingAfterPlayer.size() > 0) {
+                    persecution_theme = EngineSound.playEvent("event:/Ambiance/Persecution");
+                    return changeMusicState(MusicState::persecution);
+                }
+            }
+            break;
+
+        case MusicState::persecution:
+
+            if (playerCont->isDead()) {
+                return changeMusicState(MusicState::player_died);
+            }
+            else {
+                if (main_theme.getVolume() > 0) {
+                    main_theme_lerp += dt;
+                    float volume = lerp(1.f, 0.f, main_theme_lerp);
+                    if (volume <= 0) {
+                        main_theme.setVolume(0.f);
+                        main_theme_lerp = 0.f;
+                    }
+                    else {
+                        main_theme.setVolume(volume);
+                    }
+                }
+
+                if (EngineIA.patrolSB.patrolsGoingAfterPlayer.size() == 0) {
+                    return changeMusicState(MusicState::ending_persecution);
+                }
+            }
+            break;
+
+        case MusicState::ending_persecution:
+
+            if (playerCont->isDead()) {
+                return changeMusicState(MusicState::player_died);
+            }
+            else {
+                if (EngineIA.patrolSB.patrolsGoingAfterPlayer.size() > 0) {
+                    if (persecution_theme.isValid() && persecution_theme.isPlaying()) {
+                        persecution_theme.setVolume(1.f);
+                    }
+                    else {
+                        persecution_theme = EngineSound.playEvent("event:/Ambiance/Persecution");
+                    }
+                    return changeMusicState(MusicState::persecution);
+                }
+                else {
+                    persecution_lerp += dt;
+                    float volume = lerp(1.f, 0.f, persecution_lerp / 3.f);
+                    if (volume <= 0) {
+                        persecution_theme.stop();
+                        main_theme.setVolume(1.f);
+                        return changeMusicState(MusicState::normal);
+                    }
+                    else {
+                        persecution_theme.setVolume(volume);
+                        main_theme.setVolume(1 - volume);
+                    }
+                }
+            }
+            break;
+        case MusicState::player_died:
+
+            if (!playerCont->isDead()) {
+                return changeMusicState(MusicState::normal);
+            }
+            else {
+                if (persecution_theme.isValid() && persecution_theme.getVolume() > 0.f) {
+                    persecution_lerp += dt;
+                    float volume = lerp(1.f, 0.f, persecution_lerp / 3.f);
+                    if (volume = 0.f) {
+                        persecution_theme.stop();
+                    }
+                    else {
+                        persecution_theme.setVolume(volume);
+                    }
+                }
+
+                if (main_theme.getVolume() > 0.f) {
+                    main_theme_lerp += dt;
+                    float volume = lerp(1.f, 0.f, main_theme_lerp / 3.f);
+                    main_theme.setVolume(volume);
+                }
+            }
+            break;
+        case MusicState::no_music:
+
+            break;
+        }
+
+
+        if (EngineIA.patrolSB.patrolsGoingAfterPlayer.size() > 0 && _musicstate != MusicState::persecution) {
+            _musicstate = MusicState::persecution;
+            if (persecution_theme.isValid() && persecution_theme.isPlaying()) {
+                persecution_theme.setVolume(1.f);
+            }
+            else {
+                persecution_theme = EngineSound.playEvent("event:/Ambiance/Persecution");
+            }
+        }
+        else if (EngineIA.patrolSB.patrolsGoingAfterPlayer.size() == 0 && _musicstate == MusicState::persecution) {
+            _musicstate = MusicState::ending_persecution;
+            persecution_lerp = 0.f;
+        }
+        else if (EngineIA.patrolSB.patrolsGoingAfterPlayer.size() == 0 && _musicstate == MusicState::ending_persecution) {
+            persecution_lerp += dt;
+            float volume = lerp(1.f, 0.f, persecution_lerp / 3.f);
+            if (volume <= 0) {
+                persecution_theme.stop();
+                _musicstate = MusicState::normal;
+                persecution_lerp = 0.f;
+                main_theme.setVolume(1.f);
+            }
+            else {
+                persecution_theme.setVolume(volume);
+                main_theme.setVolume(1 - volume);
+            }
+        }
+        else if (_musicstate == MusicState::persecution && main_theme.getVolume() > 0.f) {
+            main_theme_lerp += dt;
+            float volume = lerp(1.f, 0.f, main_theme_lerp);
+            if (volume <= 0) {
+                main_theme.setVolume(0.f);
+                main_theme_lerp = 0.f;
+            }
+            else {
+                main_theme.setVolume(volume);
+            }
+        }
+    }
+    else {
+        stopAllSoundEvents();
+    }
+}
+
+void CModuleGameManager::changeMusicState(MusicState new_state)
+{
+    main_theme_lerp = 0.f;
+    persecution_lerp = 0.f;
+    _musicstate = new_state;
 }
 
 void CModuleGameManager::renderMain() {
@@ -408,6 +578,12 @@ void CModuleGameManager::resetToCheckpoint() {
 CModuleGameManager::PauseState CModuleGameManager::getCurrentState() {
 
     return _currentstate;
+}
+
+void CModuleGameManager::stopAllSoundEvents()
+{
+    persecution_theme.stop();
+    main_theme.stop();
 }
 
 void CModuleGameManager::resetState() {
