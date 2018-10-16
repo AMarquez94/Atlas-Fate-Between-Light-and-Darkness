@@ -28,7 +28,7 @@
 				"global_distance": 1,
 				"threshold_min": 0,
 				"threshold_max": 0.67,
-				"multiplier": 0.6,
+				"multiplier": 0.28,
 				"weights" : "1.22 1.36 1.34 2.1",
 				"rt_name": "Bloom"
 			},

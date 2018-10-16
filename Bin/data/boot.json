@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_basilic_interior",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
