@@ -106,6 +106,7 @@ public:
 	BTNode::ERes actionResetTimersFinalScene4(float dt);
 	BTNode::ERes actionResetTimersFinalScene5(float dt);
 	BTNode::ERes actionResetTimersFinalScene6(float dt);
+	BTNode::ERes actionResetTimersFinalScene7(float dt);
 	BTNode::ERes actionResetTimersCapsuleCinematic(float dt);
     BTNode::ERes actionSlowMotionCinematicFallSM(float dt);
     BTNode::ERes actionResetTimersCinematicFallSM(float dt);

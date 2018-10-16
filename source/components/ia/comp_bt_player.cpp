@@ -247,7 +247,8 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
 	addChild("playerActivated", "FinalShutdownCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicShutdownFinale, nullptr, nullptr);
 	addChild("FinalShutdownCinematic", "resetTimersFinalShutdownCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene6, nullptr);
 	addChild("FinalShutdownCinematic", "keyboardFinalShutdownCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationKeyboard, nullptr);
-
+	addChild("FinalShutdownCinematic", "resetTimers2FinalShutdownCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene7, nullptr);
+	addChild("FinalShutdownCinematic", "epicWalkFinalShutdownCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSlowWalk, nullptr);
 	enabledPlayerAI = j.value("enabled", false);
 	_speed = j.value("speed", 1.0f);
 	_rotationSpeed = j.value("rotationSpeed", 1.0f);
@@ -1139,6 +1140,12 @@ BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene5(float dt)
 }
 
 BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene6(float dt)
+{
+	_maxTimer = 18.0f;
+	return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene7(float dt)
 {
 	_maxTimer = 500.0f;
 	return BTNode::ERes::LEAVE;
