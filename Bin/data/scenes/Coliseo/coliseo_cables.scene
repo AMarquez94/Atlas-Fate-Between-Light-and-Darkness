@@ -1,0 +1,613 @@
+[
+  {
+    "entity":
+    {
+      "name": "coliseo_cables"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Circle001"
+      ,
+      "transform":
+      {
+        "pos": "-0.0941859 4.29138 0.922904"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Circle001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Line001"
+      ,
+      "transform":
+      {
+        "pos": "-0.0799998 16.3 20.7116"
+        ,
+        "rotation": "0.00688655 0.707073 -0.707073 0.00688655"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Line001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Line002"
+      ,
+      "transform":
+      {
+        "pos": "16.2964 16.8808 12.6395"
+        ,
+        "rotation": "0.241845 0.241845 -0.664463 -0.664463"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Line002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Line003"
+      ,
+      "transform":
+      {
+        "pos": "15.7158 16.9039 13.3315"
+        ,
+        "rotation": "0.241845 0.241845 -0.664463 -0.664463"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Line003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Line004"
+      ,
+      "transform":
+      {
+        "pos": "0.435428 15.1556 21.3918"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Line004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Line005"
+      ,
+      "transform":
+      {
+        "pos": "2.44624 15.1958 -2.03851"
+        ,
+        "rotation": "-0.683013 -0.183013 0.183013 -0.683013"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Line005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Line006"
+      ,
+      "transform":
+      {
+        "pos": "2.03776 15.1958 -2.57085"
+        ,
+        "rotation": "-0.653282 -0.270598 0.270598 -0.653282"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Line006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Line007"
+      ,
+      "transform":
+      {
+        "pos": "-2.10932 15.1958 -1.83961"
+        ,
+        "rotation": "0.153046 0.690345 -0.690346 0.153046"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Line007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Line008"
+      ,
+      "transform":
+      {
+        "pos": "-1.8853 15.1958 -2.22763"
+        ,
+        "rotation": "0.212631 0.67438 -0.67438 0.212631"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Line008.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Line010"
+      ,
+      "transform":
+      {
+        "pos": "17.7125 8.15088 -9.20164"
+        ,
+        "rotation": "-0.627211 0.326506 -0.326506 -0.627211"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Line010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Line011"
+      ,
+      "transform":
+      {
+        "pos": "11.5841 16.6995 -16.1115"
+        ,
+        "rotation": "0.241845 -0.664463 -0.664463 -0.241845"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Line011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Line013"
+      ,
+      "transform":
+      {
+        "pos": "20.3052 16.3525 -1.16001"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Line013.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Line014"
+      ,
+      "transform":
+      {
+        "pos": "-19.4122 16.3525 -1.0155"
+        ,
+        "rotation": "0.0 -0.996195 0.0 -0.0871558"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Line014.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Line015"
+      ,
+      "transform":
+      {
+        "pos": "0.0 11.2405 -15.5873"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Line015.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Line016"
+      ,
+      "transform":
+      {
+        "pos": "6.73873 11.2405 -17.6897"
+        ,
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Line016.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Line017"
+      ,
+      "transform":
+      {
+        "pos": "-6.7204 11.2232 -17.722"
+        ,
+        "rotation": "0.0 0.300706 0.0 -0.953717"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Line017.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Line018"
+      ,
+      "transform":
+      {
+        "pos": "-10.9769 11.2232 -23.3406"
+        ,
+        "rotation": "0.0 0.573576 0.0 -0.819152"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Line018.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Line019"
+      ,
+      "transform":
+      {
+        "pos": "11.0239 11.2405 -23.3574"
+        ,
+        "rotation": "0.0 -0.573576 0.0 -0.819152"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Line019.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Object001"
+      ,
+      "transform":
+      {
+        "pos": "0.347188 16.0749 20.3428"
+        ,
+        "rotation": "0.0 0.0172957 0.0 -0.99985"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Object001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_Object002"
+      ,
+      "transform":
+      {
+        "pos": "17.117 14.4 13.2653"
+        ,
+        "rotation": "0.0 -0.422618 0.0 -0.906308"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/COL_Object002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cables.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

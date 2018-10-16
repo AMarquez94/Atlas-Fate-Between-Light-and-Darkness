@@ -54,7 +54,14 @@ void TCompAIPatrol::preUpdate(float dt)
 
 void TCompAIPatrol::postUpdate(float dt)
 {
-
+    if (goingAfterPlayer) {
+        timeGoingAfterPlayerWithoutSeeingHim += dt;
+        if (timeGoingAfterPlayerWithoutSeeingHim > 10.f) {
+            markPatrolAsGoingAfterPlayer(false);
+            goingAfterPlayer = false;
+            timeGoingAfterPlayerWithoutSeeingHim = 0.f;
+        }
+    }
 }
 
 void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
@@ -123,7 +130,7 @@ void TCompAIPatrol::onMsgPlayerDead(const TMsgPlayerDead& msg) {
 
     alarmEnded = false;
     if (!isStunned()) {
-
+        markPatrolAsGoingAfterPlayer(false);
         /* We reset the timer if we are not stunned*/
         current = nullptr;
     }
@@ -155,6 +162,10 @@ void TCompAIPatrol::onMsgPatrolStunned(const TMsgEnemyStunned & msg)
 
     /* Tell the other patrols I am stunned */
     CEngine::get().getIA().patrolSB.stunnedPatrols.emplace_back(CHandle(this).getOwner());
+
+    /* Tell the other patrols I am not chasing player */
+    markPatrolAsGoingAfterPlayer(false);
+
 
     TCompName* tName = get<TCompName>();
     std::string myName = tName->getName();
@@ -288,15 +299,15 @@ void TCompAIPatrol::onMsgCinematicState(const TMsgCinematicState & msg)
 
 void TCompAIPatrol::onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) {
 
-	if (msg.animation_name.compare("inhibidor") == 0) {
-		inhibitorAnimationCompleted = true;
-	}
-	if (msg.animation_name.compare("attack") == 0) {
-		attackAnimationCompleted = true;
-	}
-	if (msg.animation_name.compare("repaired") == 0) {
-		repairedAnimationCompleted = true;
-	}
+    if (msg.animation_name.compare("inhibidor") == 0) {
+        inhibitorAnimationCompleted = true;
+    }
+    if (msg.animation_name.compare("attack") == 0) {
+        attackAnimationCompleted = true;
+    }
+    if (msg.animation_name.compare("repaired") == 0) {
+        repairedAnimationCompleted = true;
+    }
 }
 
 void TCompAIPatrol::onMsgWarned(const TMsgWarnEnemy & msg)
@@ -320,7 +331,7 @@ void TCompAIPatrol::onMsgResetPatrolLights(const TMsgResetPatrolLights & msg)
 void TCompAIPatrol::onMsgEnemyNothingHere(const TMsgEnemyNothingHere & msg)
 {
     if (navmeshPath.size() > 0) {
-        if (VEC3::Distance(navmeshPath[navmeshPath.size() - 1], msg.position) < 3.f ) {
+        if (VEC3::Distance(navmeshPath[navmeshPath.size() - 1], msg.position) < 3.f) {
             if (isNodeSonOf(current, "managePlayerAttacked") || isNodeSonOf(current, "managePlayerWasSeen")) {
                 lastPlayerKnownPos = VEC3::Zero;
                 setCurrent(nullptr);
@@ -405,10 +416,10 @@ void TCompAIPatrol::registerMsgs()
     DECL_MSG(TCompAIPatrol, TMsgNoiseMade, onMsgNoiseListened);
     DECL_MSG(TCompAIPatrol, TMsgLanternsDisable, onMsgLanternsDisable);
     DECL_MSG(TCompAIPatrol, TMsgCinematicState, onMsgCinematicState);
-	DECL_MSG(TCompAIPatrol, TMsgAnimationCompleted, onMsgAnimationCompleted);
-	DECL_MSG(TCompAIPatrol, TMsgWarnEnemy, onMsgWarned);
-	DECL_MSG(TCompAIPatrol, TMsgResetPatrolLights, onMsgResetPatrolLights);
-	DECL_MSG(TCompAIPatrol, TMsgEnemyNothingHere, onMsgEnemyNothingHere);
+    DECL_MSG(TCompAIPatrol, TMsgAnimationCompleted, onMsgAnimationCompleted);
+    DECL_MSG(TCompAIPatrol, TMsgWarnEnemy, onMsgWarned);
+    DECL_MSG(TCompAIPatrol, TMsgResetPatrolLights, onMsgResetPatrolLights);
+    DECL_MSG(TCompAIPatrol, TMsgEnemyNothingHere, onMsgEnemyNothingHere);
     DECL_MSG(TCompAIPatrol, TMsgPhysxContact, onMsgPhysxContact);
     DECL_MSG(TCompAIPatrol, TMsgPhysxContactLost, onMsgPhysxContactLost);
 }
@@ -514,21 +525,21 @@ BTNode::ERes TCompAIPatrol::actionStunned(float dt)
 
 BTNode::ERes TCompAIPatrol::actionFixed(float dt)
 {
-	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::BEING_REPARED) && !repairedAnimationCompleted) {
-		myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::BEING_REPARED);
-		myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
-	}
+    TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+    if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::BEING_REPARED) && !repairedAnimationCompleted) {
+        myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::BEING_REPARED);
+        myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+    }
 
-	if (repairedAnimationCompleted) {
-		resetAnimationCompletedBooleans();
-		hasBeenStunned = false;
-		hasBeenFixed = false;
-		return BTNode::ERes::LEAVE;
-	}
-	else {
-		return BTNode::ERes::STAY;
-	}
+    if (repairedAnimationCompleted) {
+        resetAnimationCompletedBooleans();
+        hasBeenStunned = false;
+        hasBeenFixed = false;
+        return BTNode::ERes::LEAVE;
+    }
+    else {
+        return BTNode::ERes::STAY;
+    }
 
     hasBeenStunned = false;
     hasBeenFixed = false;
@@ -726,8 +737,8 @@ BTNode::ERes TCompAIPatrol::actionWaitInWpt(float dt)
             myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
         }
         else {
-			if(!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_LEFT))
-				myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_LEFT);
+            if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_LEFT))
+                myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_LEFT);
         }
         return BTNode::ERes::STAY;
     }
@@ -810,26 +821,26 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
 {
     //play animation shoot inhibitor
     //
-	assert(arguments.find("entityToChase_actionShootInhibitor_shootInhibitor") != arguments.end());
-	std::string entityToChase = arguments["entityToChase_actionShootInhibitor_shootInhibitor"].getString(); 
+    assert(arguments.find("entityToChase_actionShootInhibitor_shootInhibitor") != arguments.end());
+    std::string entityToChase = arguments["entityToChase_actionShootInhibitor_shootInhibitor"].getString();
     assert(arguments.find("rotationSpeed_actionChasePlayer_ChasePlayer") != arguments.end());
     float rotationSpeed = deg2rad(arguments["rotationSpeed_actionChasePlayer_ChasePlayer"].getFloat());
     assert(arguments.find("distToAttack_actionChasePlayer_ChasePlayer") != arguments.end());
     float distToAttack = arguments["distToAttack_actionChasePlayer_ChasePlayer"].getFloat();
 
-	CEntity *player = EngineEntities.getPlayerHandle();
-	TCompTempPlayerController *pController = player->get<TCompTempPlayerController>();
+    CEntity *player = EngineEntities.getPlayerHandle();
+    TCompTempPlayerController *pController = player->get<TCompTempPlayerController>();
 
-	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+    TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
 
-	if (pController->isInhibited && !myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR)) {
-		resetAnimationCompletedBooleans();
-		TCompEmissionController *eController = get<TCompEmissionController>();
-		eController->blend(enemyColor.colorAlert, 0.1f);
-		return BTNode::ERes::LEAVE;
-	}
-	
-	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR) && !inhibitorAnimationCompleted) {
+    if (pController->isInhibited && !myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR)) {
+        resetAnimationCompletedBooleans();
+        TCompEmissionController *eController = get<TCompEmissionController>();
+        eController->blend(enemyColor.colorAlert, 0.1f);
+        return BTNode::ERes::LEAVE;
+    }
+
+    if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR) && !inhibitorAnimationCompleted) {
         TCompTransform * my_pos = get<TCompTransform>();
         CEntity* player = EngineEntities.getPlayerHandle();
         TCompTransform* ppos = player->get<TCompTransform>();
@@ -837,23 +848,23 @@ BTNode::ERes TCompAIPatrol::actionShootInhibitor(float dt)
             return BTNode::ERes::LEAVE;
         }
         else {
-		    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR);
+            myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::SHOOT_INHIBITOR);
         }
-	}
-	
-	if (inhibitorAnimationCompleted) {
+    }
 
-		TCompEmissionController *eController = get<TCompEmissionController>();
-		eController->blend(enemyColor.colorAlert, 0.1f);
-		resetAnimationCompletedBooleans();
-		return BTNode::ERes::LEAVE;
-	}
-	else {
+    if (inhibitorAnimationCompleted) {
+
+        TCompEmissionController *eController = get<TCompEmissionController>();
+        eController->blend(enemyColor.colorAlert, 0.1f);
+        resetAnimationCompletedBooleans();
+        return BTNode::ERes::LEAVE;
+    }
+    else {
         TCompTransform* ppos = player->get<TCompTransform>();
         rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt);
-		return BTNode::ERes::STAY;
-	}
-    
+        return BTNode::ERes::STAY;
+    }
+
 }
 
 BTNode::ERes TCompAIPatrol::actionGenerateNavmeshChase(float dt)
@@ -966,6 +977,12 @@ BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
     hasHeardArtificialNoise = false;
     hasHeardNaturalNoise = false;
 
+    if (!goingAfterPlayer) {
+        markPatrolAsGoingAfterPlayer(true);
+    }
+    goingAfterPlayer = true;
+    timeGoingAfterPlayerWithoutSeeingHim = 0;
+
     if (lastPlayerKnownPos != VEC3::Zero) {
 
         /* If we had the player's previous position, know where he is going */
@@ -993,18 +1010,18 @@ BTNode::ERes TCompAIPatrol::actionChasePlayer(float dt)
 
 BTNode::ERes TCompAIPatrol::actionAttack(float dt)
 {
-	TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::ATTACK) && !attackAnimationCompleted) {
-		myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::ATTACK);
-	}
+    TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+    if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::ATTACK) && !attackAnimationCompleted) {
+        myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::ATTACK);
+    }
 
-	if (attackAnimationCompleted) {
-		resetAnimationCompletedBooleans();
-		return BTNode::ERes::LEAVE;
-	}
-	else {
-		return BTNode::ERes::STAY;
-	}
+    if (attackAnimationCompleted) {
+        resetAnimationCompletedBooleans();
+        return BTNode::ERes::LEAVE;
+    }
+    else {
+        return BTNode::ERes::STAY;
+    }
 
     return BTNode::ERes::LEAVE;
 }
@@ -1623,12 +1640,47 @@ void TCompAIPatrol::warnClosestPatrols()
         if (eTag->hasTag(getID("patrol"))) {
             TCompAIPatrol* tPatrol = enemy->get<TCompAIPatrol>();
             if (tPatrol->isNodeSonOf(tPatrol->current, "managePatrolGoToWpt")
-                || tPatrol->isNodeSonOf(tPatrol->current, "waitInWpt")){
+                || tPatrol->isNodeSonOf(tPatrol->current, "waitInWpt")) {
                 TMsgWarnEnemy msg;
                 msg.playerPosition = lastPlayerKnownPos;
                 enemy->sendMsg(msg);
             }
         }
+    }
+}
+
+void TCompAIPatrol::markPatrolAsGoingAfterPlayer(bool isChasing)
+{
+    if (!goingAfterPlayer && isChasing) {
+
+        /* Add to the list */
+        bool found = false;
+        for (int i = 0; i < EngineIA.patrolSB.patrolsGoingAfterPlayer.size() && !found; i++) {
+            if (EngineIA.patrolSB.patrolsGoingAfterPlayer[i] == myHandle.getOwner()) {
+                found = true;
+            }
+        }
+
+        if (!found) {
+            EngineIA.patrolSB.patrolsGoingAfterPlayer.push_back(myHandle.getOwner());
+        }
+        goingAfterPlayer = true;
+    }
+    else if (goingAfterPlayer && !isChasing) {
+
+        /* Remove from the list */
+        bool found = false;
+        int i = 0;
+        for (i = 0; i < EngineIA.patrolSB.patrolsGoingAfterPlayer.size() && !found; i++) {
+            if (EngineIA.patrolSB.patrolsGoingAfterPlayer[i] == myHandle.getOwner()) {
+                found = true;
+            }
+        }
+
+        if (found) {
+            EngineIA.patrolSB.patrolsGoingAfterPlayer.erase(EngineIA.patrolSB.patrolsGoingAfterPlayer.begin() + i-1);
+        }
+        goingAfterPlayer = true;
     }
 }
 
@@ -1679,7 +1731,7 @@ void TCompAIPatrol::shakeCamera(float max_amount, float max_distance, float dura
     distance = Clamp(distance, 0.f, max_distance);
 
     TMsgCameraShake msg;
-    msg.amount = lerp(max_amount, 0.f, distance/ max_distance);
+    msg.amount = lerp(max_amount, 0.f, distance / max_distance);
     msg.speed = 140.f;
     msg.time_to_stop = duration;
     for (int i = 0; i < v_tp_cameras.size(); i++) {
@@ -1707,7 +1759,7 @@ void TCompAIPatrol::playAnimationByName(const std::string & animationName)
 }
 
 void TCompAIPatrol::resetAnimationCompletedBooleans() {
-	inhibitorAnimationCompleted = false;
-	attackAnimationCompleted = false;
-	repairedAnimationCompleted = false;
+    inhibitorAnimationCompleted = false;
+    attackAnimationCompleted = false;
+    repairedAnimationCompleted = false;
 }

@@ -14,6 +14,36 @@
   {
     "entity":
     {
+      "name": "int_teclados"
+      ,
+      "transform":
+      {
+        "pos": "-8.89666 0.83313 0.427212"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/int_teclados.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_int_teclado.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "monitor1"
       ,
       "transform":
@@ -228,7 +258,7 @@
       ,
       "transform":
       {
-        "pos": "-8.89666 0.83313 0.427212"
+        "pos": "-8.89666 0.60791 0.427212"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -237,6 +267,36 @@
       [
         {
           "mesh": "data/meshes/teclado.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_monitorytubos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubo_viga_peq"
+      ,
+      "transform":
+      {
+        "pos": "7.88069 8.26268 -9.02213"
+        ,
+        "rotation": "-0.454519 -0.541675 -0.541675 -0.45452"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubo_viga_peq.mesh"
           ,
           "materials":
           [

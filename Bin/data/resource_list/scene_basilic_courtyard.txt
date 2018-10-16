@@ -320,6 +320,10 @@ data/colliders/BC_Spot006.collider
 data/colliders/BC_Spot003.collider
 data/colliders/BC_Spot002.collider
 data/colliders/BC_Spot001.collider
+data/scenes/bc_pantalla_atlas.scene
+data/meshes/bc_mesh_pantalla_atlas.mesh
+data/textures/tx_bc_pantalla_atlas_alb.dds
+data/materials/mtl_bc_pantalla_atlas.material
 data/scenes/suelo_mezquita.scene
 data/meshes/BC_suelo.mesh
 data/textures/mix/blending_mezquita/red/tx_suelo_mezquita2_alb.dds

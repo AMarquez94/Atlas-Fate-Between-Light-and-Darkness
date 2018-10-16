@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_basilic_interior",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -99,7 +99,9 @@
 			"data/scenes/Coliseo/coliseo_particles.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
 			"data/scenes/Coliseo/coliseo_planets.scene",
+			"data/scenes/Coliseo/coliseo_cables.scene",
 			"data/scenes/col_pantallas_distritos.scene",
+			"data/scenes/Coliseo/coliseo_rellenoprops.scene",
 			"data/scenes/Coliseo/coliseo_structures.scene",
 			"data/scenes/Coliseo/buttons.scene",
 			"data/scenes/COL_pared_suelo.scene",
@@ -212,6 +214,8 @@
 			"data/scenes/Coliseo/coliseo_particles.scene",
 			"data/scenes/Coliseo/buttons.scene",
 			"data/scenes/col_sub_triggers.scene",
+			"data/scenes/Coliseo/coliseo_cables.scene",
+			"data/scenes/Coliseo/coliseo_rellenoprops.scene",
 			"data/scenes/COL_pared_suelo.scene",
 			"data/scenes/col_pantallas_distritos.scene",
 			"data/scenes/Coliseo/coliseo_luces.scene",
@@ -270,6 +274,7 @@
 			"data/scenes/BC_tubos.scene",
 			"data/scenes/BC_capsulas.scene",
 			"data/scenes/BC_neones.scene",
+			"data/scenes/bc_pantalla_atlas.scene",
 			"data/scenes/suelo_mezquita.scene",
 			"data/scenes/Basilic_courtyard/basilic_courtyard_particles.scene",
 			"data/scenes/Basilic_courtyard/basilic_courtyard_planets.scene",

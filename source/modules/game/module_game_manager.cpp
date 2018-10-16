@@ -150,6 +150,8 @@ void CModuleGameManager::update(float delta) {
 
     updateGameCondition();
 
+    updateMusicState(delta);
+
     {
         // Escape button
         if (EngineInput["btPause"].getsPressed() && _currentstate != PauseState::defeat && !isCinematicMode) {
@@ -227,6 +229,45 @@ void CModuleGameManager::updateGameCondition() {
             Engine.getGUI().getVariables().setVariant("lifeBarFactor", 0);
             setPauseState(PauseState::defeat);
         }
+    }
+}
+
+void CModuleGameManager::updateMusicState(float dt)
+{
+    if (_player.isValid()) {
+        CEntity* e = _player;
+        TCompTempPlayerController *playerCont = e->get<TCompTempPlayerController>();
+        if (EngineIA.patrolSB.patrolsGoingAfterPlayer.size() > 0 && _musicstate != MusicState::persecution) {
+            _musicstate = MusicState::persecution;
+            if (persecution_theme.isValid() && persecution_theme.isPlaying()) {
+                persecution_theme.setVolume(1.f);
+            }
+            else {
+                persecution_theme = EngineSound.playEvent("event:/Ambiance/Persecution");
+            }
+        }
+        else if (EngineIA.patrolSB.patrolsGoingAfterPlayer.size() == 0 && _musicstate == MusicState::persecution) {
+            _musicstate = MusicState::persecution_out;
+            persecution_lerp = 0.f;
+        }
+        else if (EngineIA.patrolSB.patrolsGoingAfterPlayer.size() == 0 && _musicstate == MusicState::persecution_out) {
+            persecution_lerp += dt;
+            float volume = lerp(1.f, 0.f, persecution_lerp / 3.f);
+            if (volume <= 0) {
+                persecution_theme.stop();
+                _musicstate = MusicState::normal;
+                persecution_lerp = 0.f;
+            }
+            else {
+                persecution_theme.setVolume(volume);
+            }
+        }
+    }
+    else {
+        if (persecution_theme.isValid() && persecution_theme.isPlaying()) {
+            persecution_theme.stop();
+        }
+        /* Parar musica? */
     }
 }
 

@@ -143,6 +143,7 @@ VEC3 getPlayerLocalCoordinatesInReferenceTo(const std::string& ref_entity);
 void movePlayerToRefPos(const std::string& ref_entity, VEC3 p_rel_pos);
 void invalidatePlayerPhysxCache();
 void GUI_EnableRemoveInhibitor();
+void sendPlayerIlluminatedMsg(CHandle h, bool illuminated);
 
 /* Sounds */
 SoundEvent playEvent(const std::string& name);

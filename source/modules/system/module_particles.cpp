@@ -56,7 +56,6 @@ void CModuleParticles::update(float delta)
                 }
                 
             }
-                //EngineLogic.execScript("destroyHandle(" + ps->getHandleEntity().asString() + ")");
 
             delete ps;
             it = _activeSystems.erase(it);

@@ -1,0 +1,16 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_bordescoliseo_alb.dds"
+    ,
+    "metallic": "data/textures/tx_bordescoliseo_met.dds"
+    ,
+    "roughness": "data/textures/tx_bordescoliseo_rgh.dds"
+    ,
+    "normal": "data/textures/tx_bordescoliseo_nml.dds"
+    ,
+    "aocclusion": "data/textures/tx_bordescoliseo_ao.dds"
+  }
+}

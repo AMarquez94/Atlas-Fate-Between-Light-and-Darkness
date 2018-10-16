@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "coliseo_luces"
+      "name": "tubosgas"
       ,
       "transform":
       {
@@ -14,27 +14,21 @@
   {
     "entity":
     {
-      "name": "mesh_casa1_4x4"
+      "name": "mesh_tubosgas"
       ,
       "transform":
       {
-        "pos": "0.0 0.0 0.0"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "pos": "0.0 -0.036462 0.0"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_casa1_4x4.mesh"
+          "mesh": "data/meshes/mesh_tubosgas.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_casa1.material"
-            ,
-            "data/materials/mtl_ornamentos_casa.material"
-            ,
-            "data/materials/mtl_suelomadera.material"
+            "data/materials/mtl_bordescoliseo.material"
           ]
         }
       ]
@@ -43,7 +37,7 @@
       {
         "shape": "box"
         ,
-        "size": "2.0 3.0 2.0"
+        "size": "0.779299 1.94977 1.70244"
       }
       ,
       "abs_aabb": true
