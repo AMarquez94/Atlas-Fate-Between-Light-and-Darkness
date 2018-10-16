@@ -244,7 +244,6 @@ void PS_GBuffer_Parallax(
 	o_depth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
 }
 
-
 //--------------------------------------------------------------------------------------
 void PS_GBufferMix(
   float4 Pos : SV_POSITION
@@ -262,7 +261,89 @@ void PS_GBufferMix(
 , out float4 o_selfIllum : SV_Target3
 )
 {
+	// Shift the uv's by the parallax effect
+	float3 view_dir = normalize(iTanView - iTanFrag);
+	float3 view_light = normalize(iTanLight - iTanFrag);
+	
+	float p_height = 0;
+	//iTex0 = ComputeParallax(iTex0, view_dir, p_height);
+	iTex0 = ComputeWeightedParallax(iTex0, view_dir, iTex1);
+	
+  // This is different -----------------------------------------
+	float4 weight_texture_boost = txMixBlendWeights.Sample(samLinear, iTex1);
+  float4 albedoR = txAlbedo.Sample(samLinear, iTex0);
+  float4 albedoG = txAlbedo1.Sample(samLinear, iTex0);
+  float4 albedoB = txAlbedo2.Sample(samLinear, iTex0);
+		
+  float w1, w2, w3;
+  computeBlendWeights2( albedoR.a + weight_texture_boost.r
+                     , albedoG.a + weight_texture_boost.g
+                     , albedoB.a + weight_texture_boost.b
+                     , w1, w2, w3 );
+  
+	// Use the weight to 'blend' the albedo colors
+  float4 albedo = albedoR * w1 + albedoG * w2 + albedoB * w3;
+  o_albedo.xyz = albedo.xyz;
+  o_selfIllum.xyz *= self_color.xyz;
+  //float aoR = txAOcclusion.Sample(samLinear, iTex0).r;
+  //float aoG = txAOcclusion1.Sample(samLinear, iTex0).r;
+  //float aoB = txAOcclusion2.Sample(samLinear, iTex0).r;
+  //float ao_color = aoR * w1 + aoG * w2 + aoB * w3; 
+  o_selfIllum = float4(0,0,0,1);//ao_color;
+	
+  // This isMix the normal
+  float3 normalR = txNormal.Sample(samLinear, iTex0).xyz * 2.0 - 1.0;
+  float3 normalG = txNormal1.Sample(samLinear, iTex0).xyz * 2.0 - 1.0;
+  float3 normalB = txNormal2.Sample(samLinear, iTex0).xyz * 2.0 - 1.0;
+  float3 normal_color = normalR * w1 + normalG * w2 + normalB * w3; 
+  float3x3 TBN = computeTBN( iNormal, iTangent );
 
+  // Normal map comes in the range 0..1. Recover it in the range -1..1
+  float3 wN = mul( normal_color, TBN );
+  float3 N = normalize( wN );
+
+  float metallicR = txMetallic.Sample(samLinear, iTex0).r;
+	float metallicG = txMetallic1.Sample(samLinear, iTex0).r;
+	float metallicB = txMetallic2.Sample(samLinear, iTex0).r;
+  float metallic_color = metallicR * w1 + metallicG * w2 + metallicB * w3; 
+  o_albedo.a = metallic_color;
+
+  // Save roughness in the alpha coord of the N render target
+  float roughnessR = txRoughness.Sample(samLinear, iTex0).r;
+	float roughnessG = txRoughness1.Sample(samLinear, iTex0).r;
+	float roughnessB = txRoughness2.Sample(samLinear, iTex0).r;
+  float roughness_color = roughnessR * w1 + roughnessG * w2 + roughnessB * w3; 
+	
+  o_normal = encodeNormal( N, roughness_color );
+
+  // Compute the Z in linear space, and normalize it in the range 0...1
+  // In the range z=0 to z=zFar of the camera (not zNear)
+  float3 camera2wpos = iWorldPos - camera_pos;
+  o_depth = dot( camera_front.xyz, camera2wpos ) / camera_zfar;
+}
+
+//--------------------------------------------------------------------------------------
+void PS_GBufferMix2(
+  float4 Pos : SV_POSITION
+, float3 iNormal : NORMAL0
+, float4 iTangent : NORMAL1
+, float2 iTex0 : TEXCOORD0
+, float2 iTex1 : TEXCOORD1
+, float3 iWorldPos : TEXCOORD2
+, float3 iTanView : TEXCOORD3
+, float3 iTanLight : TEXCOORD4
+, float3 iTanFrag : TEXCOORD5
+, out float4 o_albedo : SV_Target0
+, out float4 o_normal : SV_Target1
+, out float1 o_depth : SV_Target2
+, out float4 o_selfIllum : SV_Target3
+)
+{
+	// I feel very dirty to do this, but it has to be done...
+	// The floor mesh was fucked up, and no backup of the .max, shit happens...
+	if(iWorldPos.x > -34.6) 
+		discard;
+	
 	// Shift the uv's by the parallax effect
 	float3 view_dir = normalize(iTanView - iTanFrag);
 	float3 view_light = normalize(iTanLight - iTanFrag);
