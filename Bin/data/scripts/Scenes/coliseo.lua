@@ -68,7 +68,7 @@ function closeIntroDoor()
 end
 
 function cinematicCorridorToZoneA()
-	subClear();
+	startCinematicMode(18);
 	execScriptDelayed("activateSubtitles(17);",0.5);
 	execScriptDelayed("deactivateSubtitles();", 10);
 	execScriptDelayed("activateSubtitles(18);",18);
@@ -134,7 +134,7 @@ function closeZoneADoor()
 end
 
 function cinematicCorridorToBasilic()
-
+	startCinematicMode(9);
 	setInBlackScreen(0.25);
 	execScriptDelayed("setOutBlackScreen(0.25);",0.3);
 	execScriptDelayed("move(\"The Player\", VEC3(-23, 0.989, 0.4),VEC3(-21, 0.989, -4));",1);
