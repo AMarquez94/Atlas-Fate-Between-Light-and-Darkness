@@ -39,3 +39,9 @@ function setCorridorInvisible()
 	makeVisibleByTag("corridor_door", true);
 	makeVisibleByTag("dir_light", true);
 end
+
+function startCinematicMode(time_to_end)
+	subClear();
+	isInCinematicMode(true);
+	execScriptDelayed("isInCinematicMode(false);", time_to_end);
+end

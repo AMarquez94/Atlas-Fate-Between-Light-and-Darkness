@@ -417,7 +417,10 @@ void TCompTempPlayerController::onPlayerExposed(const TMsgPlayerIlluminated & ms
         TMsgSetFSMVariable notMergeMsg;
         notMergeMsg.variant.setName("onmerge");
         notMergeMsg.variant.setBool(false); // & isGrounded
-        isMerged = false;
+        //isMerged = false;
+        //TCompRigidbody* c_my_rigidbody = get<TCompRigidbody>();
+        //c_my_rigidbody->filters.mFilterData = pxShadowFilterData;
+        //c_my_rigidbody->invalidateCache();
         e->sendMsg(notMergeMsg);
     }
 }
@@ -1033,6 +1036,7 @@ const bool TCompTempPlayerController::onMergeTest(float dt) {
         groundMsg.variant.setBool(mergeTest);
         e->sendMsg(groundMsg);
         c_my_rigidbody->filters.mFilterData = isMerged == true ? pxPlayerFilterData : pxShadowFilterData;
+        c_my_rigidbody->invalidateCache();
     }
 
     return mergeTest;

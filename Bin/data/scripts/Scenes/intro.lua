@@ -23,7 +23,7 @@ function onScenePartialEnd_scene_intro()
 end
 
 function intro_intro_cinematic()
-	subClear();
+	startCinematicMode(65);
 	move("The Player", VEC3(-6.275, 12.115, 32.7),VEC3(-6.275, 12.115, 31.7));
 	resetMainCameras();
 	setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
@@ -114,8 +114,7 @@ function onTriggerEnter_Trigger_Inhibitor_Cinematic_player()
 end
 
 function intro_inhibitor_cinematic()
-	gameManager.isCinematicMode = true;
-	subClear();
+	startCinematicMode(5.75);
 	move("The Player", VEC3(-19, 7, -33.5),VEC3(-19, 7, -35.5));
 	resetMainCameras();
 
@@ -155,15 +154,13 @@ function intro_inhibitor_cinematic()
 	execScriptDelayed("render_tutorial_weapon_left.visible = true", 5.25);
 	execScriptDelayed("render_tutorial_weapon_right.visible = true", 5.25);
 	execScriptDelayed("render_inhibitor_sign.visible = true", 5.25);
-	execScriptDelayed("gameManager.isCinematicMode = false", 5.75);
 
 	intro_inhibitor_cinematicExecuted = true;
 end
 
 function onTriggerEnter_Trigger_Capsules_Cinematic_player()
 	if(cinematicsEnabled and not Capsules_CinematicExecuted) then
-
-		subClear();
+		startCinematicMode(12.4);
 		execScriptDelayed("activateSubtitles(13);", 2);
 		execScriptDelayed("deactivateSubtitles();", 10);
 		

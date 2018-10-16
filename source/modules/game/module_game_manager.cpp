@@ -28,7 +28,6 @@ bool CModuleGameManager::start() {
 
     lastCheckpoint = new CCheckpoint();
     _currentstate = PauseState::none;
-    isCinematicMode = false;
     EngineRender.setDebugMode(false);
     main_theme = EngineSound.playEvent("event:/Ambiance/InGame");
     return true;
