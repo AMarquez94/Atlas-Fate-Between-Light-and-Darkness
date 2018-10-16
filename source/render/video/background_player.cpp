@@ -12,7 +12,7 @@ static void decodeVideoTextures() {
 
     CTimer tm;
     float desired_fps = 30.f;
-
+     
     while (true) {
 
         sem_can_decode.wait();
