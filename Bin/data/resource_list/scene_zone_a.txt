@@ -1090,6 +1090,8 @@ data/colliders/zone_a_in_collider_suelo_pasillo.collider
 data/meshes/zone_a_in_techo001.mesh
 data/meshes/zone_a_in_tubo_x005.mesh
 data/meshes/zone_a_in_tubo004.mesh
+data/scenes/zone_a_in_corridor_lights.scene
+data/colliders/Spot001.collider
 data/scenes/zone_a_out_corridor.scene
 data/meshes/zone_a_outagujero003.mesh
 data/meshes/zone_a_outaux_sombras001.mesh
@@ -1164,6 +1166,8 @@ data/colliders/zone_a_outcollider_suelo_pasillo001.collider
 data/meshes/zone_a_outtecho002.mesh
 data/meshes/zone_a_outtubo_x006.mesh
 data/meshes/zone_a_outtubo005.mesh
+data/scenes/zone_a_out_corridor_lights.scene
+data/colliders/Spot002.collider
 data/scenes/zone_a_corridor_logic.scene
 data/scenes/ZoneA/_player.scene
 data/prefabs/player.prefab
