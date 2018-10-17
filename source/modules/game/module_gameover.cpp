@@ -11,6 +11,6 @@ void CModuleGameOver::update(float delta)
 {
   if (isPressed(VK_ESCAPE))
   {
-    CEngine::get().getModules().changeGameState("main_menu");
+      EngineScene.changeGameState("main_menu");
   }
 }
