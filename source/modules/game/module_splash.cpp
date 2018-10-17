@@ -6,20 +6,21 @@
 
 bool CModuleSplash::start()
 {
-  _timer = 8.f;
-  EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::SPLASH_SCREEN);
-  EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(0.25f,7.75f,false);
-  CEngine::get().getRender().setBackgroundColor(1.f, 0.f, 0.f, 1.f);
-  return true;
+    _timer = 27.0f;
+    EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::SPLASH_SCREEN);
+    //EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(0.25f,7.75f,false);
+    CEngine::get().getRender().setBackgroundColor(1.f, 0.f, 0.f, 1.f);
+    return true;
 }
 
 void CModuleSplash::update(float delta)
 {
-  _timer -= delta;
-  if (_timer <= 0.f)
-  {
+    _timer -= delta;
+    //dbg("Time atm %f\n", _timer);
+    if (_timer <= 0.f)
+    {
     CEngine::get().getModules().changeGameState("main_menu");
-  }
+    }
 }
 
 bool CModuleSplash::stop()

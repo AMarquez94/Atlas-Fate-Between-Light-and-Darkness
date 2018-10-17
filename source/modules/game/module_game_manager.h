@@ -64,6 +64,6 @@ public:
 	void resetLevel();
 	void resetToCheckpoint();
     PauseState getCurrentState();
-    bool isCinematicMode;
+    bool isCinematicMode = false;
     void stopAllSoundEvents();
 };
