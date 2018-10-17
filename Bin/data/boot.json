@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_basilic_interior",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -71,7 +71,6 @@
 			"data/scenes/intro_col_corridor_props.scene",
 			"data/scenes/pantalla_intro_video.scene",
 			"data/scenes/intro_planets.scene",
-			"data/scenes/intro_pantalla_atlas.scene",
 			"data/scenes/intro_subtitle_triggers.scene",
 			"data/scenes/intro_tubo_grande.scene"
 		]
@@ -184,7 +183,7 @@
 			"data/scenes/zone_a_carteles.scene",
 			"data/scenes/ZoneA/carteles.scene",
 			"data/scenes/zonea_triggers.scene",
-			"data/scenes/zone_a_props_torre.scene",
+
 			"data/scenes/zone_a_in_corridor.scene",
 			"data/scenes/zone_a_in_corridor_lights.scene",
 			"data/scenes/zone_a_out_corridor.scene",
