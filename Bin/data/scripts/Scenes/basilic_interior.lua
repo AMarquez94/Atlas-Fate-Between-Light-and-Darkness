@@ -29,13 +29,16 @@ function shutdown_end_cinematic_scene()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_15_Rot_1\", 0.0)",12);
 
 
-	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_17_Rot_2\", 10.0, \"cinematic\", \"\")", 17);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_17_Rot_2\", 20.0, \"cinematic\", \"\")", 17);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_17_Rot_1\", 0.0, \"cinematic\", \"\")", 17);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_16_Rot_2\", 0.0)",17);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_16_Rot_1\", 0.0)",17);
 
-	execScriptDelayed("move(\"The Player\", VEC3(-8.850, 0.044, -4.275),VEC3(-8.850, 0.044, -8));",18);
-
+	execScriptDelayed("move(\"The Player\", VEC3(-8.850, 0.044, -4.275),VEC3(-8.850, 0.044, -8));",28);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_18_Rot_2\", 20.0, \"cinematic\", \"\")", 28.5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_18_Rot_1\", 0.0, \"cinematic\", \"\")", 28.5);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_2\", 0.0)",28.5);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_1\", 0.0)",28.5);
 end
 
 function pre_end_cinematic_scene()

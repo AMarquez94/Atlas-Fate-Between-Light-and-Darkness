@@ -307,8 +307,8 @@
     "entity": {
       "name": "Camera_Cinematic_Plane_17_Rot_1",
       "transform": {
-        "pos": "-8.850 11.5 -8",
-        "rotation": "0.1218 0.0 0.0 0.9925"
+        "pos": "-8.850 8.575 -8",
+        "rotation": "0.0523 0.0 0.0 0.9986"
       },
        "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
@@ -317,8 +317,8 @@
     "entity": {
       "name": "Camera_Cinematic_Plane_17_Rot_2",
       "transform": {
-        "pos": "-8.850 11.5 -8",
-        "rotation": "-0.0436 0.0 0.0 0.9990"
+        "pos": "-8.850 8.575 -8",
+        "rotation": "-0.2164 0.0 0.0 0.9762"
       },
        "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
@@ -327,8 +327,8 @@
     "entity": {
       "name": "Camera_Cinematic_Plane_18_Rot_1",
       "transform": {
-        "pos": "-8.850 11.5 -8",
-        "rotation": "0.1218 0.0 0.0 0.9925"
+        "pos": "-8.850 1.5 -6.3",
+        "rotation": "0.0871 0.0 0.0 0.99615"
       },
        "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
@@ -337,8 +337,8 @@
     "entity": {
       "name": "Camera_Cinematic_Plane_18_Rot_2",
       "transform": {
-        "pos": "-8.850 11.5 -8",
-        "rotation": "-0.0436 0.0 0.0 0.9990"
+        "pos": "-8.850 0.5 -28.1",
+        "rotation": "-0.1175 0.0 0.0 0.993"
       },
        "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
