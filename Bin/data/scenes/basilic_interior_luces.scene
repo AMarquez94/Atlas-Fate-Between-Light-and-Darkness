@@ -685,7 +685,7 @@
         ,
         "color": "0.372549 0.607843 1.0 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 3.0
         ,
         "casts_shadows": true
         ,
@@ -738,7 +738,7 @@
         ,
         "color": "0.372549 0.607843 1.0 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 3.0
         ,
         "casts_shadows": true
         ,
@@ -776,7 +776,7 @@
       ,
       "transform":
       {
-        "pos": "-8.79923 3.32497 -1.45039"
+        "pos": "-8.79923 3.56109 -2.21501"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -791,7 +791,7 @@
         ,
         "color": "0.372549 0.607843 1.0 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 3.0
         ,
         "casts_shadows": true
         ,
@@ -842,9 +842,9 @@
         ,
         "outer_cut": 7.3534
         ,
-        "color": "0.372549 0.607843 1.0 1.0"
+        "color": "0.133333 0.439216 1.0 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 3.5
         ,
         "casts_shadows": true
         ,
@@ -1109,7 +1109,7 @@
         ,
         "color": "0.372549 0.607843 1.0 1.0"
         ,
-        "intensity": 5.0
+        "intensity": 6.0
         ,
         "casts_shadows": true
         ,
@@ -1162,7 +1162,7 @@
         ,
         "color": "1.0 0.976471 0.372549 1.0"
         ,
-        "intensity": 5.0
+        "intensity": 6.0
         ,
         "casts_shadows": true
         ,
@@ -1215,7 +1215,7 @@
         ,
         "color": "1.0 0.992157 0.372549 1.0"
         ,
-        "intensity": 5.0
+        "intensity": 6.0
         ,
         "casts_shadows": true
         ,
@@ -1268,7 +1268,7 @@
         ,
         "color": "1.0 0.976471 0.372549 1.0"
         ,
-        "intensity": 5.0
+        "intensity": 6.0
         ,
         "casts_shadows": true
         ,
@@ -1321,7 +1321,7 @@
         ,
         "color": "1.0 0.992157 0.372549 1.0"
         ,
-        "intensity": 5.0
+        "intensity": 6.0
         ,
         "casts_shadows": true
         ,
