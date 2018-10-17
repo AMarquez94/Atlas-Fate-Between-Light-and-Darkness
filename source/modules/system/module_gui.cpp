@@ -498,6 +498,7 @@ void CModuleGUI::setSubtitles(int sub_num) {
 	}
 }
 void CModuleGUI::clearSubtitles() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY);
 	EngineGUI.setSubtitlesToNone();
 	EngineLogic.eraseDelayedScripts("Subtitles(");
 }
@@ -512,21 +513,9 @@ void CModuleGUI::setMission(int mission_num) {
 }
 
 void CModuleGUI::activateEnemyHUD() {
-	if (getWidgetStructureEnabled(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY)) {
-		GUI::CWidget *wdgt = EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY)->getAllChilds()[0];
-		if (wdgt->getType() == GUI::CWidget::EWidgetType::SUBTITLES) {
-			CSubtitles *subt = (CSubtitles*)wdgt;
-			subt->activateSubtitles(1);
-		}
-	}
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY);
 }
 
 void CModuleGUI::deactivateEnemyHUD() {
-	if (getWidgetStructureEnabled(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY)) {
-		GUI::CWidget *wdgt = EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY)->getAllChilds()[0];
-		if (wdgt->getType() == GUI::CWidget::EWidgetType::SUBTITLES) {
-			CSubtitles *subt = (CSubtitles*)wdgt;
-			subt->activateSubtitles(0);
-		}
-	}
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY);
 }
