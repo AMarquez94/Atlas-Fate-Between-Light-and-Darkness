@@ -7,14 +7,14 @@
 			{
 				"name" : "radial_endjob",
 				"type" : "widget",
-				"position" : "290 300",
+				"position" : "298 292",
 				"children" : [
 					{
 						"name" : "radial_endjob_child",
 						"type" : "radialbar",
-						"size" : "32 32",
+						"size" : "48 48",
 						"color" : "1 1 1 1",
-						"texture" : "data/textures/gui/hud_stamina_bar.dds",
+						"texture" : "data/textures/gui/radial_cuadrado.dds",
 						"variable" : "radial_endjob_factor"
 					}
 				]
@@ -27,8 +27,8 @@
 					{
 						"name" : "endjob_teclado",
 						"type" : "image",
-						"size" : "128 32",
-						"texture" : "data/textures/gui/press_button_E.dds"
+						"size" : "256 32",
+						"texture" : "data/textures/gui/decision_1_A.dds"
 					}
 				]
 			},
@@ -40,22 +40,22 @@
 					{
 						"name" : "endjob_mando",
 						"type" : "image",
-						"size" : "128 32",
-						"texture" : "data/textures/gui/press_button_A.dds"
+						"size" : "256 32",
+						"texture" : "data/textures/gui/decision_1_left.dds"
 					}
 				]
 			},
 			{
 				"name" : "radial_shutdown",
 				"type" : "widget",
-				"position" : "690 300",
+				"position" : "698 292",
 				"children" : [
 					{
 						"name" : "radial_shutdown_child",
 						"type" : "radialbar",
-						"size" : "32 32",
+						"size" : "48 48",
 						"color" : "1 1 1 1",
-						"texture" : "data/textures/gui/hud_stamina_bar.dds",
+						"texture" : "data/textures/gui/radial_cuadrado.dds",
 						"variable" : "radial_shutdown_factor"
 					}
 				]
@@ -68,8 +68,8 @@
 					{
 						"name" : "shutdown_teclado",
 						"type" : "image",
-						"size" : "128 32",
-						"texture" : "data/textures/gui/press_button_E.dds"
+						"size" : "256 32",
+						"texture" : "data/textures/gui/decision_2_D.dds"
 					}
 				]
 			},
@@ -81,8 +81,8 @@
 					{
 						"name" : "shutdown_mando",
 						"type" : "image",
-						"size" : "128 32",
-						"texture" : "data/textures/gui/press_button_A.dds"
+						"size" : "256 32",
+						"texture" : "data/textures/gui/decision_2_right.dds"
 					}
 				]
 			}

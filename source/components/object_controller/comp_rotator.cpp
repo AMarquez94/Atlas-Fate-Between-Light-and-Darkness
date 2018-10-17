@@ -37,7 +37,7 @@ void TCompRotator::update(float dt) {
 
     _total_accel += _total_accel > _max_acceleration ? 0 : _acceleration * dt;
     self_transform->getYawPitchRoll(&yaw, &pitch, &roll);
-    dbg("total pitch %f\n", pitch);
+    //dbg("total pitch %f\n", pitch);
 
     if(_rotate_pitch)
         self_transform->setYawPitchRoll(yaw, pitch + (dt * _speed) + _total_accel, roll);

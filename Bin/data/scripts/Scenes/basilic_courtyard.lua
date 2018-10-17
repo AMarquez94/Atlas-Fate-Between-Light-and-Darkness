@@ -57,7 +57,7 @@ end
 
 function bc_button_shutdown_screens_pressed(button_handle)
 	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
-	execScriptDelayed("look_closing_screen()",0.75);
+	execScriptDelayed("look_closing_screen()",0.25);
 	onTriggerExit_BC_Trigger_ScreenLight_player();
 	getEntityByName("BC_Trigger_ScreenLight"):destroy();
 	

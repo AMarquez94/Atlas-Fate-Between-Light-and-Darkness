@@ -180,7 +180,7 @@ void lightUpForFinalScene(float time);
 void lightDownForFinalScene();
 void execLastAtlasScreen();
 void removeAtlasSplash();
-
+void removeTempCredits();
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);
 void toggle_spotlight(const std::string& lightName);

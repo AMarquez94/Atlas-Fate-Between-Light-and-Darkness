@@ -10,6 +10,7 @@ bool CModuleSplash::start()
     EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::SPLASH_SCREEN);
     //EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(0.25f,7.75f,false);
     CEngine::get().getRender().setBackgroundColor(1.f, 0.f, 0.f, 1.f);
+    EngineScene.preloadOnlyScene("scene_intro");
     return true;
 }
 

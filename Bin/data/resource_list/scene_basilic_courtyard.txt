@@ -667,8 +667,8 @@ data/materials/mtl_terminal_post.material
 data/colliders/collider_mesh_terminal.collider
 data/scenes/BC_Screens.scene
 data/meshes/BC_Screen001.mesh
-data/textures/default_texture.dds
-data/materials/video.material
+data/video/pantalla_atlas.h264
+data/materials/video_atlas.material
 data/meshes/BC_Screen002.mesh
 data/scenes/BC_Entrada_chapas.scene
 data/meshes/bc_mesh_chapa.mesh

@@ -339,6 +339,7 @@ void CModuleLogic::publishClasses() {
 	m->set("lightDownForFinalScene", SLB::FuncCall::create(&lightDownForFinalScene));
 	m->set("execLastAtlasScreen", SLB::FuncCall::create(&execLastAtlasScreen));
 	m->set("removeAtlasSplash", SLB::FuncCall::create(&removeAtlasSplash));
+	m->set("removeTempCredits", SLB::FuncCall::create(&removeTempCredits));
 	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -1195,7 +1196,7 @@ void goToMainMenu() {
 
 void takeOutCredits() {
 	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE);
-	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::CREDITS);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND);
 }
 
 void takeOutControlsOnMainMenu() {
@@ -1295,12 +1296,22 @@ void lightDownForFinalScene() {
 
 void execLastAtlasScreen() {
 
-	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH);
-	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2,8,false);
-	EngineLogic.execScriptDelayed("removeAtlasSplash()",10.25);
-	EngineLogic.execScriptDelayed("changeGamestate(\"credits\")",10.5);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH)->makeChildsFadeIn(0.25, 0, false);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2,25,false);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND)->makeChildsFadeIn(2, 10, true);
+	EngineLogic.execScriptDelayed("removeAtlasSplash()",12.25);
+	EngineLogic.execScriptDelayed("removeTempCredits()", 25.25);
+	EngineLogic.execScriptDelayed("changeGamestate(\"main_menu\")",25.5);
 }
 
 void removeAtlasSplash() {
 	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH);
+}
+
+void tempCredits() {
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND)->makeChildsFadeIn(2,0,true);
+}
+
+void removeTempCredits() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND);
 }

@@ -38,9 +38,10 @@ function finish_job_end_cinematic_scene()
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_18_Rot_1\", 0.0, \"cinematic\", \"\")", 28.5);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_2\", 0.0)",28.5);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_1\", 0.0)",28.5);
+	execScriptDelayed("startTransmission(7)", 38);
 	execScriptDelayed("activateSubtitles(31);",38);
 	execScriptDelayed("deactivateSubtitles();",45);
-	execScriptDelayed("execLastAtlasScreen()",47.5);
+	execScriptDelayed("execLastAtlasScreen()",50);
 end
 
 function shutdown_end_cinematic_scene()
@@ -57,6 +58,7 @@ function shutdown_end_cinematic_scene()
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_15_Rot_1\", 0.0, \"cinematic\", \"\")", 6);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_14_Rot_2\", 0.0)",6);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_14_Rot_1\", 0.0)",6);
+	execScriptDelayed("startTransmission(19)", 17);
 	execScriptDelayed("activateSubtitles(32);",17);
 	execScriptDelayed("activateSubtitles(33);",23);
 	execScriptDelayed("activateSubtitles(34);",28.5);
@@ -78,7 +80,7 @@ function shutdown_end_cinematic_scene()
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_18_Rot_1\", 0.0, \"cinematic\", \"\")", 28.5);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_2\", 0.0)",28.5);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_1\", 0.0)",28.5);
-	execScriptDelayed("execLastAtlasScreen()",47.5);
+	execScriptDelayed("execLastAtlasScreen()",50);
 
 end
 
@@ -173,6 +175,7 @@ function pre_end_cinematic_scene()
 	
 	--Final Decision
 	execScriptDelayed("setCinematicPlayerState(true,\"final_decision_cinematic\")", 87.3);
+	execScriptDelayed("startTransmission(8.5)", 89);
 	execScriptDelayed("activateSubtitles(29);",89);
 	execScriptDelayed("activateSubtitles(30);",94);
 	execScriptDelayed("deactivateSubtitles();",97.5);
