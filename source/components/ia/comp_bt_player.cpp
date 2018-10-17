@@ -1177,8 +1177,6 @@ BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene7(float dt)
 
 BTNode::ERes TCompAIPlayer::actionResetTimersFinalDecision(float dt)
 {
-    dbg("ENTRAMOS FINAL DECISION RESET TIMERS\n");
-
     _maxTimer = 10.f;
     _timer = 0.f;
 
@@ -1258,15 +1256,13 @@ BTNode::ERes TCompAIPlayer::actionFallSM(float dt)
 
 BTNode::ERes TCompAIPlayer::actionFinalDecision(float dt)
 {
-    dbg("ENTRAMOS FINAL DECISION ACTION WITH TIMER %f\n", _timer);
-
-    _timer = Clamp(_timer + dt, 0.f, _maxTimer);
     if (_timer < _maxTimer) {
+        _timer = Clamp(_timer + dt, 0.f, _maxTimer);
         if (!hasMadeDecision) {
 
             Engine.getGUI().getVariables().setVariant("radial_endjob_factor", (_maxTimer - _timer) / _maxTimer);
 
-            if (EngineInput["btLeft"].getsPressed()/* && (!EngineInput.pad().connected || EngineInput["btRight"].value <= 0.f)*/) {
+            if (EngineInput.pad().button(Input::EPadButton::PAD_LANALOG_X).value < 0.f || EngineInput["btLeft"].getsPressed() /* && (!EngineInput.pad().connected || EngineInput["btRight"].value <= 0.f)*/) {
                 hasMadeDecision = true;
                 decisionMade = EState::CINEMATIC_FINAL_ENDJOB;
 
@@ -1274,7 +1270,7 @@ BTNode::ERes TCompAIPlayer::actionFinalDecision(float dt)
                 EngineGUI.enableWidget("button_shutdown_teclado", false);
                 EngineGUI.enableWidget("button_shutdown_mando", false);
             }
-            else if (EngineInput["btRight"].getsPressed()/* && (!EngineInput.pad().connected || EngineInput["btRight"].value > 0.f)*/) {
+            else if (EngineInput.pad().button(Input::EPadButton::PAD_LANALOG_X).value > 0.f || EngineInput["btRight"].getsPressed()/* && (!EngineInput.pad().connected || EngineInput["btRight"].value > 0.f)*/) {
                 hasMadeDecision = true;
                 decisionMade = EState::CINEMATIC_FINAL_SHUTDOWN;
 
@@ -1307,6 +1303,13 @@ BTNode::ERes TCompAIPlayer::actionFinalDecision(float dt)
 
         /* Borrar toda la gui */
         EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_FINAL_DECISION);
+        EngineGUI.enableWidget("button_endjob_teclado", false);
+        EngineGUI.enableWidget("button_endjob_mando", false);
+        EngineGUI.enableWidget("button_shutdown_teclado", false);
+        EngineGUI.enableWidget("button_shutdown_mando", false);
+        EngineGUI.enableWidget("radial_endjob", false);
+        EngineGUI.enableWidget("radial_shutdown", false);
+
         if (decisionMade == EState::CINEMATIC_FINAL_SHUTDOWN) {
             EngineLogic.execScript("shutdown_end_cinematic_scene()");
         }

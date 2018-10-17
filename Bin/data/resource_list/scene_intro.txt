@@ -30,7 +30,6 @@ data/materials/characters/mtl_enemy_patrol_shade.material
 data/skeletons/patrol/patrol.skeleton
 data/prefabs/camera_player.prefab
 data/textures/lut/lut5.dds
-data/scenes/Map_Intro/checkpoints.scene
 data/scenes/Intro/intro_columnas.scene
 data/meshes/mesh_columnas_intro_attach_0.mesh
 data/textures/tx_columnas_alb.dds
@@ -1186,7 +1185,6 @@ data/scenes/Intro/enemy.scene
 data/prefabs/patrol.prefab
 data/textures/particles/flare_spotlight.dds
 data/particles/def_amb_flare_spotlight.particles
-data/scenes/Intro/intro_checkpoints.scene
 data/scenes/Intro/intro_trigger_kill.scene
 data/scenes/Intro/intro_buttons.scene
 data/prefabs/terminal.prefab
@@ -1380,7 +1378,7 @@ data/colliders/luz_pasillo037.collider
 data/colliders/luz_pasillo.collider
 data/scenes/pantalla_intro_video.scene
 data/meshes/prueba_pantalla.mesh
-data/video/test_monkey.h264
+data/video/pantalla_atlas.h264
 data/materials/video_atlas.material
 data/scenes/intro_planets.scene
 data/meshes/sphere_moon.mesh

@@ -42,6 +42,7 @@ public:
 	void update(float delta) override;
 
     void preloadScene(const std::string& sceneName);
+    void preloadOnlyScene(const std::string& sceneName);
     void removeSceneResources(const std::string& sceneName);
     bool loadScene(const std::string & name);
     bool loadPartialScene(const std::string & name);

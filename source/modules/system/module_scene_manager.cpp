@@ -322,6 +322,10 @@ void CModuleSceneManager::preloadScene(const std::string& sceneName) {
     //}
 }
 
+void CModuleSceneManager::preloadOnlyScene(const std::string& sceneName) {
+    EngineFiles.addVectorResourceToLoad(EngineFiles.getFileResourceVector(sceneName));
+}
+
 void CModuleSceneManager::removeSceneResources(const std::string& sceneName) {
 
     const std::vector<std::string> resources = EngineFiles.getFileResourceVector(sceneName);
