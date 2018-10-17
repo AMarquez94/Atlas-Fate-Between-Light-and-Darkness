@@ -11,7 +11,7 @@
 		"start_color": "1 0 0 1",
 		"gravity": 0.0,
 		"simulation_speed": 0.34,
-		"max_particles": 1200
+		"max_particles": 2200
 	},
 	"emission": {
 		"rate_time": 400.0,
@@ -20,7 +20,7 @@
 	},	
 	"shape": {
 		"type": "box",
-		"size": "30 2 30",
+		"size": "60 2 60",
 		"angle": 0
 		
 	},
@@ -59,7 +59,7 @@
 			"tech" : "particles_instanced_additive.tech"
 	},
   "size" : {
-    "scale" : 1,
+    "scale" : 2.5,
     "scale_variation" : 1.4,
     "sizes" : [
 		  [0.0, "3 3 3"],
@@ -67,7 +67,7 @@
     ]
   },
   "color" : {
-    "opacity" : 0.005,
+    "opacity" : 0.0025,
     "colors" : [
       [0.0, "1.0 1.0 1.0 0.0"],
 			[0.1, "1.0 1.0 1.0 0.5"],

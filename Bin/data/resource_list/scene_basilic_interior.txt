@@ -269,3 +269,14 @@ data/colliders/luz_pasarela011.collider
 data/colliders/luz_rueda.collider
 data/colliders/luz_rueda001.collider
 data/scenes/Basilic_interior/basilic_interior_cinematic.scene
+data/scenes/Basilic_interior/basilic_interior_particles.scene
+data/textures/particles/dust_spore.dds
+data/particles/def_amb_dust_60x60_large.particles
+data/textures/particles/amb_smoke2.dds
+data/particles/def_amb_fog_60x60_large.particles
+data/textures/particles/amb_fire_smoke.dds
+data/particles/def_amb_smoke_white.particles
+data/particles/def_amb_smoke2_white.particles
+data/scenes/Basilic_interior/basilic_interior_holograms.scene
+data/meshes/BC_alminar_atlas_low001.mesh
+data/materials/characters/mtl_player_main_hologram_solid.material
