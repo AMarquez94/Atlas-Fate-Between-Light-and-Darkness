@@ -5,9 +5,9 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/tx_capsula_humano_in_alb.dds"
+    "albedo": "data/textures/tx_box_met.dds"
     ,
-    "metallic": "data/textures/tx_capsula_humano_in_met.dds"
+    "metallic": "data/textures/tx_box_met.dds"
     ,
     "roughness": "data/textures/tx_capsula_humano_in_rgh.dds"
     ,
