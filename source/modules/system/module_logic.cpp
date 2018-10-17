@@ -49,8 +49,9 @@ void CModuleLogic::update(float delta) {
     for (int i = delayedSystemScripts.size() - 1; i >= 0 ; i--) {
         delayedSystemScripts[i].remainingTime -= delta;
         if (delayedSystemScripts[i].remainingTime <= 0) {
-            execScript(delayedSystemScripts[i].script);
+			std::string aux_call = delayedSystemScripts[i].script; 
             delayedSystemScripts.erase(delayedSystemScripts.begin() + i);
+			execScript(aux_call);
         }
     }
 
@@ -58,8 +59,9 @@ void CModuleLogic::update(float delta) {
 		for (int i = delayedScripts.size() - 1; i >= 0; i--) {
             delayedScripts[i].remainingTime -= delta;
             if (delayedScripts[i].remainingTime <= 0) {
-                execScript(delayedScripts[i].script);
+				std::string aux_call_delayed = delayedScripts[i].script;      
                 delayedScripts.erase(delayedScripts.begin() + i);
+				execScript(aux_call_delayed);
             }
         }
 
