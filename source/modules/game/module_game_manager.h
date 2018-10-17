@@ -25,6 +25,8 @@ class CModuleGameManager : public IModule
     SoundEvent main_theme;
     float main_theme_lerp;
     SoundEvent transmission;
+    SoundEvent finalScene;
+    float final_scene_lerp;
 
     // Menu window related variables.
     ImGuiWindowFlags window_flags;
@@ -46,7 +48,7 @@ public:
 
     enum PauseState { none, main, win, defeat, editor1, editor1unpaused, editor2, void_state };
 
-    enum MusicState { normal, persecution, ending_persecution, player_died, no_music };
+    enum MusicState { normal, persecution, ending_persecution, player_died, no_music, end_scene };
 
     CModuleGameManager(const std::string& name) : IModule(name) {}
 
@@ -69,4 +71,5 @@ public:
     bool isCinematicMode = false;
     void stopAllSoundEvents();
     void playTransmissionSound(bool play);
+    void changeToEndScene();
 };
