@@ -7,9 +7,9 @@
 			{
 				"name" : "enemy_hud_ingame",
 				"type" : "video",
-				"size" : "320 180",
+				"size" : "270 155",
 				"technique":"gui_video.tech",
-				"position" : "760 25",
+				"position" : "830 25",
 				"texture" : "data/textures/gui/videos/enemy_hud.h264"
 			}
 		]
