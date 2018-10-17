@@ -260,6 +260,9 @@ CWidget* CParser::parseUIVideo(const json& data) {
     wdgt->widgt_type = CWidget::EWidgetType::VIDEO;
     parseParams(wdgt->_params, data);
     parseImageParams(wdgt->_imageParams, data);
+    wdgt->_technique = data.count("technique") ?
+        Resources.get(data.value("technique", "gui.tech"))->as<CRenderTechnique>() :
+        Resources.get("gui.tech")->as<CRenderTechnique>();
 
     return wdgt;
 }
