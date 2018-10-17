@@ -324,8 +324,7 @@
 			"data/scenes/basilic_interior_monitorytubos.scene",
 			"data/scenes/basilic_interior_nucleo.scene",
 			"data/scenes/basilic_interior_sueloyagarres.scene",
-			"data/scenes/basilic_interior_luces.scene",
-			"data/scenes/video.scene"
+			"data/scenes/basilic_interior_luces.scene"
 
 		]
 	}

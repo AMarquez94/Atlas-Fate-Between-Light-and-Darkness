@@ -81,8 +81,8 @@ namespace Particles
         _time = 0.f;
         _deploy_time = 0.f;
 
-        if(!_core->n_system.looping)
-            emit(_core->n_emission.rate_time);
+        //if(!_core->n_system.looping)
+        emit(_core->n_emission.rate_time);
 
         // Copy the bursts to our structure
         for (auto it = _core->n_emission.bursts.begin(); it != _core->n_emission.bursts.end();)

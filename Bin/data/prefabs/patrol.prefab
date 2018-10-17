@@ -22,8 +22,8 @@
 			],
 			"fade_controller": {
 				"fade_color": "0.0 1.0 1.0 1.0",
-				"fade_time": 1,
-				"fall_speed": 2
+				"fade_time": 4.5,
+				"fall_speed": 0.5
 			},
 			"skeleton": {
 				"skeleton": "data/skeletons/patrol/patrol.skeleton",
