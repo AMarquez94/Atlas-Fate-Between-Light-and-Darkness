@@ -2,6 +2,7 @@
 #include "comp_capsule_final_effects.h"
 #include "components/comp_render.h"
 #include "components/comp_group.h"
+#include "components/lighting/comp_light_point.h"
 
 DECL_OBJ_MANAGER("capsule_final_effect", TCompCapsuleFinalEffects);
 
@@ -21,16 +22,24 @@ void TCompCapsuleFinalEffects::update(float dt) {
 
 void TCompCapsuleFinalEffects::registerMsgs() {
 	DECL_MSG(TCompCapsuleFinalEffects, TMsgEntityCreated, onMsgEntityCreated);
+	DECL_MSG(TCompCapsuleFinalEffects, TMsgEmisiveCapsuleState, onMsgEmisiveCapsuleState);
+	
 }
 
 void TCompCapsuleFinalEffects::onMsgEntityCreated(const TMsgEntityCreated& msg) {
 
 	CEntity* ent = CHandle(this).getOwner();
 	TCompGroup *group = ent->get<TCompGroup>();
-	CEntity* light1 = group->handles[0];
-	CEntity* light2 = group->handles[1];
 	CEntity* meshCapsula = group->handles[2];
-	secondLightHandle = meshCapsula->get<TCompRender>();
-	firstLightHandle = meshCapsula->get<TCompRender>();
 	meshRenderHandle = meshCapsula->get<TCompRender>();
+
+}
+
+void TCompCapsuleFinalEffects::onMsgEmisiveCapsuleState(const TMsgEmisiveCapsuleState& msg) {
+	active = true;
+	deactivate = msg.enable;
+
+	TCompRender* renderMesh = meshRenderHandle;
+	//rand();
+	EngineLerp.lerpElement(&renderMesh->self_intensity, 1.0, 4, 0);
 }

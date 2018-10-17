@@ -7,8 +7,9 @@ class TCompCapsuleFinalEffects : public TCompBase
 
 	DECL_SIBLING_ACCESS();
 	CHandle meshRenderHandle;
-	CHandle firstLightHandle;
-	CHandle secondLightHandle;
+
+	bool active = false;
+	bool deactivate;
 
 public:
 	void debugInMenu();
@@ -17,4 +18,5 @@ public:
 
 	static void registerMsgs();
 	void onMsgEntityCreated(const TMsgEntityCreated& msg);
+	void onMsgEmisiveCapsuleState(const TMsgEmisiveCapsuleState& msg);
 };

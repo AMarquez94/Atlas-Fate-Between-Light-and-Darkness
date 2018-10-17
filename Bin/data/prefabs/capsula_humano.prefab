@@ -138,7 +138,8 @@
             "data/materials/mtl_capsula_humano.material"
             ,
             "data/materials/mtl_humano_capsula.material"
-          ]
+          ],
+          "self_intensity" : 0.2
         }
       ]
       ,
