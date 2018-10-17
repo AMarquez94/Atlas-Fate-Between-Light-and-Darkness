@@ -136,7 +136,9 @@ void CModuleLogic::publishClasses() {
 	SLB::Class< CModuleGameManager >("GameManager", m)
 		.comment("This is our wrapper of the gamemanager class")
         .property("isCinematicMode", &CModuleGameManager::isCinematicMode)
-		.set("resetToCheckpoint", &CModuleGameManager::resetToCheckpoint);
+		.set("resetToCheckpoint", &CModuleGameManager::resetToCheckpoint)
+        .set("changeToEndScene", &CModuleGameManager::changeToEndScene) //TODO: Delete
+        ;
 
     SLB::Class< VEC3 >("VEC3", m)
         .constructor<float, float, float>()

@@ -31,6 +31,8 @@ bool CModuleMapIntro::start() {
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::INGAME_STAMINA_BAR);
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH);
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::SUBTITLES);
+
+    EngineLogic.execScript("restartCinematics()");
 	return true;
 }
 

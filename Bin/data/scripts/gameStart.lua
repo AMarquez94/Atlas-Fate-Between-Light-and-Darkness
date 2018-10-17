@@ -5,7 +5,11 @@ function onGameStart()
 	logic = getLogic();
 	particles = getParticles();
 	addAllFunctionsToConsole();
-	
+	restartCinematics();
+end
+
+function restartCinematics()
+
 	cinematicsEnabled = false;
 	
 	intro_intro_cinematicExecuted = true;
