@@ -10,9 +10,9 @@ end
 
 function restartCinematics()
 
-	cinematicsEnabled = false;
+	cinematicsEnabled = true;
 	
-	intro_intro_cinematicExecuted = true;
+	intro_intro_cinematicExecuted = false;
 	intro_inhibitor_cinematicExecuted = false;
 	Capsules_CinematicExecuted = false;
 	cinematicCorridorToZoneAExecuted = false;
