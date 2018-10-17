@@ -28,6 +28,7 @@
 #include "gui/gui_widget.h"
 #include "components/comp_animated_object_controller.h"
 #include "components/object_controller/comp_door.h"
+#include "components/postfx/comp_render_bloom.h"
 
 bool CModuleLogic::start() {
 
@@ -330,6 +331,8 @@ void CModuleLogic::publishClasses() {
 	m->set("setInBlackScreen", SLB::FuncCall::create(&setInBlackScreen));
 	m->set("setOutBlackScreen", SLB::FuncCall::create(&setOutBlackScreen));
 	m->set("subClear", SLB::FuncCall::create(&subClear));
+	m->set("lightUpForFinalScene", SLB::FuncCall::create(&lightUpForFinalScene));
+	m->set("lightDownForFinalScene", SLB::FuncCall::create(&lightDownForFinalScene));
 	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -1248,3 +1251,35 @@ void setOutBlackScreen(float time_to_lerp) {
 	EngineLogic.execScriptDelayed("takeOutBlackScreen();", time_to_lerp + 0.1f);
 }
 
+void lightUpForFinalScene(float time) {
+
+	EngineLerp.lerpElement(&cb_globals.global_exposure_adjustment,1.02, time,0);
+	EngineLerp.lerpElement(&cb_globals.global_fog_density, 0.185, time, 0);
+	CHandle h_cam = EngineCameras.getCurrentCamera();
+	CEntity *e_cam = h_cam;
+	TCompRenderBloom* comp_bloom = e_cam->get<TCompRenderBloom>();
+	EngineLerp.lerpElement(&comp_bloom->threshold_min, 0.170, time, 0);
+	EngineLerp.lerpElement(&comp_bloom->threshold_max, 0.490, time, 0);
+	EngineLerp.lerpElement(&comp_bloom->multiplier, 1.780, time, 0);
+	EngineLerp.lerpElement(&comp_bloom->add_weights.x, 1.480, time, 0);
+	EngineLerp.lerpElement(&comp_bloom->add_weights.y, 1.7, time, 0);
+	EngineLerp.lerpElement(&comp_bloom->add_weights.z, 0.360, time, 0);
+	EngineLerp.lerpElement(&comp_bloom->add_weights.w, 1.2, time, 0);
+
+	/*ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.1f, 32.f);
+	ImGui::DragFloat("Ambient Adjustment", &cb_globals.global_ambient_adjustment, 0.01f, 0.0f, 1.f);
+	//ImGui::DragFloat("HDR", &cb_globals.global_hdr_enabled, 0.01f, 0.0f, 1.f);
+	ImGui::DragFloat("Gamma Correction", &cb_globals.global_gamma_correction_enabled, 0.01f, 0.0f, 1.f);
+	ImGui::DragFloat("Reinhard vs Uncharted2", &cb_globals.global_tone_mapping_mode, 0.01f, 0.0f, 1.f);
+	ImGui::DragFloat("Global shadow intensity", &cb_globals.global_shadow_intensity, 0.001f, 0.0f, 1.f);
+	// Fog settings edition
+	ImGui::DragFloat("Fog Ground density", &cb_globals.global_fog_ground_density, 0.001f, 0.0f, 1.f);
+	ImGui::DragFloat("Fog Environment density", &cb_globals.global_fog_density, 0.001f, 0.0f, 1.f);
+	ImGui::ColorEdit4("Shadow Color", &cb_globals.global_shadow_color.x, 0.0001f);
+	ImGui::ColorEdit4("Fog Ground Color", &cb_globals.global_fog_color.x, 0.0001f);
+	ImGui::ColorEdit4("Fog Environment Color", &cb_globals.global_fog_env_color.x, 0.0001f);*/
+}
+
+void lightDownForFinalScene() {
+
+}
