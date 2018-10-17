@@ -617,9 +617,16 @@ BTNode::ERes TCompAIPlayer::actionAnimationCrouch(float dt)
 
 BTNode::ERes TCompAIPlayer::actionAnimationIdle(float dt)
 {
-	TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
-	my_anim->playAnimation(TCompPlayerAnimator::EAnimation::IDLE);
-    return BTNode::ERes::STAY;  
+    _timer += dt;
+    if (_timer > _maxTimer) {
+        _timer = 0.f;
+        return BTNode::ERes::LEAVE;
+    }
+    else {
+        TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+        my_anim->playAnimation(TCompPlayerAnimator::EAnimation::IDLE);
+        return BTNode::ERes::STAY;
+    } 
 }
 
 BTNode::ERes TCompAIPlayer::actionAnimationIdleTimed(float dt)
@@ -1091,7 +1098,7 @@ BTNode::ERes TCompAIPlayer::actionStartSMEnemy(float dt)
 BTNode::ERes TCompAIPlayer::actionResetTimersCinematicWalkFall(float dt)
 {
     _currentState = EState::CINEMATIC_FALLSM;
-    _maxTimer = 22.5f;
+    _maxTimer = 50.5f;
     return BTNode::ERes::LEAVE;
 }
 

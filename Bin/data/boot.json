@@ -22,7 +22,6 @@
 		"scene_group": [
 			"data/scenes/Intro/intro_test_instancing.scene",
 			"data/scenes/Intro/cinematic.scene",
-			"data/scenes/Map_Intro/checkpoints.scene",
 			"data/scenes/Intro/intro_columnas.scene",
 			"data/scenes/Intro/intro_puertas.scene",
 			"data/scenes/Intro/intro_casas.scene",
@@ -59,7 +58,6 @@
 			"data/scenes/intro_props.scene",
 			"data/scenes/Intro/tutorial.scene",
 			"data/scenes/Intro/enemy.scene",
-			"data/scenes/Intro/intro_checkpoints.scene",
 			"data/scenes/Intro/intro_trigger_kill.scene",
 			"data/scenes/Intro/intro_buttons.scene",
 			"data/scenes/Intro/intro_particles.scene",
@@ -325,8 +323,9 @@
 			"data/scenes/basilic_interior_nucleo.scene",
 			"data/scenes/basilic_interior_sueloyagarres.scene",
 			"data/scenes/basilic_interior_luces.scene",
-			"data/scenes/Basilic_interior/basilic_interior_cinematic.scene"
-
+			"data/scenes/Basilic_interior/basilic_interior_cinematic.scene",
+			"data/scenes/Basilic_interior/basilic_interior_particles.scene",
+			"data/scenes/Basilic_interior/basilic_interior_holograms.scene"
 		]
 	}
 }
