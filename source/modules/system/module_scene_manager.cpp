@@ -74,7 +74,7 @@ bool CModuleSceneManager::start() {
 }
 
 bool CModuleSceneManager::stop() {
-
+    next_scene = "";
     unLoadActiveScene();
 
     return true;
@@ -281,6 +281,13 @@ bool CModuleSceneManager::unLoadActiveScene(bool partial) {
     }
 
     return false;
+}
+
+void CModuleSceneManager::changeGameState(const std::string & gamestate)
+{
+    next_scene = "";
+    unLoadActiveScene();
+    CEngine::get().getModules().changeGameState(gamestate);
 }
 
 /* Some getters and setters */

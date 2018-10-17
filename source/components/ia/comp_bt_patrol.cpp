@@ -96,6 +96,7 @@ void TCompAIPatrol::load(const json& j, TEntityParseContext& ctx) {
     enemyColor.colorDead = j.count("colorDead") ? loadVEC4(j["colorDead"]) : VEC4(0, 0, 0, 0);
 
     btType = BTType::PATROL;
+    onCreate();
 }
 
 void TCompAIPatrol::onMsgEntityCreated(const TMsgEntityCreated & msg)

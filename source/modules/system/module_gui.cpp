@@ -34,8 +34,8 @@ void CModuleGUI::initializeWidgetStructure() {
 
 	//MAIN-MENU
 	auto mm_newGameCB = []() {
-		CEngine::get().getModules().changeGameState("map_intro");
-	};
+        EngineScene.changeGameState("map_intro");
+    };
 	auto mm_credits = []() {
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND)->makeChildsFadeIn(0.25f, 0, true);
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACK)->makeChildsFadeIn(0.25f, 0, true);
@@ -88,8 +88,8 @@ void CModuleGUI::initializeWidgetStructure() {
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::SUBTITLES);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY);
-		CEngine::get().getModules().changeGameState("main_menu");
-	};
+        EngineScene.changeGameState("main_menu");
+    };
 	auto pm_Exit = []() {
         CEngine::get().stop();
 	};

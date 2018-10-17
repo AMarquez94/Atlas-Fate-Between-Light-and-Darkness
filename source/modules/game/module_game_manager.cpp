@@ -29,6 +29,7 @@ bool CModuleGameManager::start() {
     lastCheckpoint = new CCheckpoint();
     _currentstate = PauseState::none;
     EngineRender.setDebugMode(false);
+    EngineLogic.setPause(false);
     main_theme = EngineSound.playEvent("event:/Ambiance/InGame");
     return true;
 }

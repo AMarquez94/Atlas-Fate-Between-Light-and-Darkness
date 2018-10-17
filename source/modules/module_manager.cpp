@@ -296,7 +296,7 @@ void CModuleManager::renderDebug()
 		ImGui::SameLine();
 		if (_startup_gs && ImGui::Button(_startup_gs->getName().c_str()))
 		{
-			changeGameState(_startup_gs->getName());
+            EngineScene.changeGameState(_startup_gs->getName());
 		}
 
 		if (ImGui::BeginCombo("Current", _current_gs ? _current_gs->getName().c_str() : "none"))
@@ -305,7 +305,7 @@ void CModuleManager::renderDebug()
 			{
 				if (ImGui::Selectable(gs->getName().c_str(), gs == _current_gs))
 				{
-					changeGameState(gs->getName());
+                    EngineScene.changeGameState(gs->getName());
 				}
 			}
 			ImGui::EndCombo();

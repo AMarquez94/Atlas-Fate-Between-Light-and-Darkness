@@ -125,6 +125,7 @@ void TCompAIDrone::load(const json& j, TEntityParseContext& ctx) {
     enemyColor.colorAlert = j.count("colorAlert") ? loadVEC4(j["colorAlert"]) : VEC4(1, 0, 0, 1);
     enemyColor.colorDead = j.count("colorDead") ? loadVEC4(j["colorDead"]) : VEC4(0, 0, 0, 0);
 
+    onCreate();
     btType = BTType::DRONE;
 }
 

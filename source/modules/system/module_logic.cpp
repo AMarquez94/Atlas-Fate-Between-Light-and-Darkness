@@ -643,7 +643,7 @@ bool isDebug()
 }
 
 void changeGamestate(const std::string& gamestate) {
-    CEngine::get().getModules().changeGameState(gamestate);
+    EngineScene.changeGameState(gamestate);
 }
 
 void pauseGame(bool pause) {
@@ -1185,7 +1185,7 @@ void takeOutBlackScreen() {
 }
 
 void goToMainMenu() {
-	CEngine::get().getModules().changeGameState("main_menu");
+    EngineScene.changeGameState("main_menu");
 }
 
 void takeOutCredits() {

@@ -130,7 +130,7 @@ function animation_soft_land(sender)
 	t_audio:playEvent("event:/Sounds/Player/Steps/NormalSteps", false);
 	playerController:playLandParticles(true);
 	playerController:playLandParticles(false);
-	playerNoiseEmitter:makeNoise(2.0, 10, true, true, false);
+	playerNoiseEmitter:makeNoise(6.0, 10, true, true, false);
 end
 
 function animation_hard_land(sender)
@@ -141,7 +141,7 @@ function animation_hard_land(sender)
 	t_audio:playEvent("event:/Sounds/Player/Hurt/Hurt", false);
 	playerController:playLandParticles(true);
 	playerController:playLandParticles(false);
-	playerNoiseEmitter:makeNoise(7.0, 10.0, true, true, true);
+	playerNoiseEmitter:makeNoise(9.0, 10.0, true, true, true);
 end
 
 function animation_grab_enemy(sender)
@@ -149,9 +149,9 @@ function animation_grab_enemy(sender)
 end
 
 function animation_sonda_normal(sender)
-	playerNoiseEmitter:makeNoise(10, 10.0, true, true, true);
+	playerNoiseEmitter:makeNoise(12, 10.0, true, true, true);
 end
 
 function animation_sonda_crouch(sender)
-	playerNoiseEmitter:makeNoise(10, 10.0, true, true, true);
+	playerNoiseEmitter:makeNoise(12, 10.0, true, true, true);
 end
