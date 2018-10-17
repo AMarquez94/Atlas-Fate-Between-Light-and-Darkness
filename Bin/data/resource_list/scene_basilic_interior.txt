@@ -256,6 +256,6 @@ data/textures/particles/dust_spore.dds
 data/particles/def_amb_dust_60x60_large.particles
 data/textures/particles/amb_smoke2.dds
 data/particles/def_amb_fog_60x60_large.particles
-data/meshes/gpu_particles.instanced_mesh
-data/textures/star.dds
-data/materials/gpu_particles_instanced.material
+data/scenes/Basilic_interior/basilic_interior_holograms.scene
+data/meshes/BC_alminar_atlas_low001.mesh
+data/materials/characters/mtl_player_main_hologram_solid.material

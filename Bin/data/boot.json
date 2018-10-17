@@ -327,7 +327,8 @@
 			"data/scenes/basilic_interior_sueloyagarres.scene",
 			"data/scenes/basilic_interior_luces.scene",
 			"data/scenes/Basilic_interior/basilic_interior_cinematic.scene",
-			"data/scenes/Basilic_interior/basilic_interior_particles.scene"
+			"data/scenes/Basilic_interior/basilic_interior_particles.scene",
+			"data/scenes/Basilic_interior/basilic_interior_holograms.scene"
 		]
 	}
 }
