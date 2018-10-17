@@ -17,6 +17,8 @@ void TCompRotator::debugInMenu() {
 void TCompRotator::load(const json& j, TEntityParseContext& ctx) {
 
     _speed = j.value("speed", .65f);
+    _acceleration = j.value("acceleration", 0.f);
+    _max_acceleration = j.value("max_acceleration", 0.f);
 }
 
 void TCompRotator::registerMsgs()
@@ -31,6 +33,8 @@ void TCompRotator::update(float dt) {
 
     TCompTransform * self_transform = get<TCompTransform>();
     float yaw, pitch, roll;
+
+    _total_accel += _total_accel > _max_acceleration ? 0 : _acceleration * dt;
     self_transform->getYawPitchRoll(&yaw, &pitch, &roll);
-    self_transform->setYawPitchRoll(yaw + (dt * _speed), pitch, roll);
+    self_transform->setYawPitchRoll(yaw + (dt * _speed) + _total_accel, pitch, roll);
 }

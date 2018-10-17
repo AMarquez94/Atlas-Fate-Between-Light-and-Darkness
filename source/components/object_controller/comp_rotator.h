@@ -5,6 +5,9 @@
 class TCompRotator : public TCompBase
 {
     float _speed;
+    float _acceleration;
+    float _total_accel = 0.f;
+    float _max_acceleration;
 
     DECL_SIBLING_ACCESS();
 

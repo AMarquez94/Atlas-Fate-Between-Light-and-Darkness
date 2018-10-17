@@ -251,3 +251,11 @@ data/meshes/vigas.mesh
 data/scenes/basilic_interior_luces.scene
 data/colliders/luz_corridor_bc.collider
 data/scenes/Basilic_interior/basilic_interior_cinematic.scene
+data/scenes/Basilic_interior/basilic_interior_particles.scene
+data/textures/particles/dust_spore.dds
+data/particles/def_amb_dust_60x60_large.particles
+data/textures/particles/amb_smoke2.dds
+data/particles/def_amb_fog_60x60_large.particles
+data/meshes/gpu_particles.instanced_mesh
+data/textures/star.dds
+data/materials/gpu_particles_instanced.material
