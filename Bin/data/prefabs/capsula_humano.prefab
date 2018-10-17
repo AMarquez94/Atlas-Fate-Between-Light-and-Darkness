@@ -7,7 +7,8 @@
       "transform":
       {
         "pos": "0.0 0.0 0.0"
-      }
+      },
+      "capsule_final_effect" : true
     }
   }
   ,
