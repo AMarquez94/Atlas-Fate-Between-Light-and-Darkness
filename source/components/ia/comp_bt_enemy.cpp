@@ -49,6 +49,13 @@ void TCompAIEnemy::debugInMenu() {
     ImGui::Text("Is Pushing %s", isPushing ? "YES" : "NO");
 }
 
+void TCompAIEnemy::onCreate()
+{
+    physx::PxFilterData pxFilterData;
+    pxFilterData.word0 = FilterGroup::Scenario | FilterGroup::Button | FilterGroup::Fence | FilterGroup::DItem;
+    visionFilter.data = pxFilterData;
+}
+
 void TCompAIEnemy::getClosestWpt()
 {
     float minDistance = INFINITY;
@@ -151,7 +158,7 @@ bool TCompAIEnemy::isEntityHidden(CHandle hEntity)
         float dist = VEC3::Distance(origin, dest);
 
         //TODO: only works when behind scenery. Make the same for other enemies, dynamic objects...
-        if (!EnginePhysics.Raycast(origin, dir, dist, hit, physx::PxQueryFlag::eSTATIC)) {
+        if (!EnginePhysics.Raycast(origin, dir, dist, hit, physx::PxQueryFlag::eSTATIC, visionFilter)) {
             isHidden = false;
         }
         i = i + (capsuleCollider->height / 2);

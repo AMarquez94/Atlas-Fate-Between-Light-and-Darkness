@@ -40,6 +40,9 @@ protected:
     float pushedTime = 0.f;
     bool isPushing = false;
 
+    /* Vision */
+    physx::PxQueryFilterData visionFilter;
+
     std::string validState = "";
 
     /* Navmesh management */
@@ -57,6 +60,7 @@ protected:
     float timerWaitingInUnreachablePoint = 0.f;
 
     /* Aux functions */
+    void onCreate();
     const Waypoint getWaypoint() { return _waypoints[currentWaypoint]; }
     void addWaypoint(const Waypoint& wpt) { _waypoints.push_back(wpt); };
     void getClosestWpt();
