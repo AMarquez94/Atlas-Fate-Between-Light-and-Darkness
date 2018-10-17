@@ -142,7 +142,7 @@ void TCompPatrolAnimator::initializeAnimations() {
 		"turn_right",
 		"",
 		1.0f,
-		1.0f,
+		0.6f,
 		false,
 		true
 	);
@@ -151,10 +151,10 @@ void TCompPatrolAnimator::initializeAnimations() {
 		(TCompAnimator::EAnimation)EAnimation::TURN_LEFT,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
-		"turn_right",
+		"turn_left",
 		"",
 		1.0f,
-		1.0f,
+		0.6f,
 		false,
 		true
 	);
