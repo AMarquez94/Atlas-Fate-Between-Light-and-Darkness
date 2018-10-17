@@ -1229,12 +1229,15 @@ void startCinematicMode(bool start) {
 }
 
 void setEnemyHudState(bool state) {
+    CModuleGameManager gameManager = CEngine::get().getGameManager();
 	if (state) {
-		EngineGUI.activateEnemyHUD();
+		EngineGUI.activateEnemyHUD();  
+        gameManager.playTransmissionSound(true);
 	}
 	else {
 		EngineGUI.deactivateEnemyHUD();
-	}
+        gameManager.playTransmissionSound(false);
+    }
 }
 
 void activateCinematicVideoIntro(float time_to_lerp, float time_to_start) {

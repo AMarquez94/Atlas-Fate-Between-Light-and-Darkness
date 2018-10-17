@@ -34,6 +34,7 @@ end
 function onTriggerEnter_BC_trigger_closed_door_player()
 	--look_closing_screen();
 	subClear();
+	startTransmission(8);
 	activateSubtitles(24);
 	execScriptDelayed("deactivateSubtitles();", 8);
 	temp = getEntityByName("BC_trigger_closed_door");

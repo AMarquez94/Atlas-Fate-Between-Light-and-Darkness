@@ -138,6 +138,7 @@ function pre_end_cinematic_scene()
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_10_Rot_1\", 0.0, \"cinematic\", \"\")", 58);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_9_Rot_2\", 0.0)",58);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_9_Rot_1\", 0.0)",58);
+	execScriptDelayed("startTransmission(26)", 60);
 	execScriptDelayed("activateSubtitles(25);",60);
 	execScriptDelayed("activateSubtitles(26);",64);
 
