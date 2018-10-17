@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_basilic_interior",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -183,6 +183,7 @@
 			"data/scenes/zone_a_carteles.scene",
 			"data/scenes/ZoneA/carteles.scene",
 			"data/scenes/zonea_triggers.scene",
+			"data/scenes/zone_a_props_torre.scene",
 
 			"data/scenes/zone_a_in_corridor.scene",
 			"data/scenes/zone_a_in_corridor_lights.scene",
