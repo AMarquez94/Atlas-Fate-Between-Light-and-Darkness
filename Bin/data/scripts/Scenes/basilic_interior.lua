@@ -7,7 +7,7 @@ function onSceneStart_scene_basilic_interior()
 end
 
 function finish_job_end_cinematic_scene()
-	execScriptDelayed("setCinematicPlayerState(true,\"final_shutdown_scene_cinematic\");",0.75);
+	execScriptDelayed("setCinematicPlayerState(true,\"final_shutdown_scene_cinematic\")",0.75);
 	setInBlackScreen(0.25);
 	execScriptDelayed("move(\"The Player\", VEC3(-7.881,0.044,-0.818),VEC3(-7.881,0.044,0.0));",0.75);
 	execScriptDelayed("setOutBlackScreen(0.25);",1);
@@ -38,11 +38,13 @@ function finish_job_end_cinematic_scene()
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_18_Rot_1\", 0.0, \"cinematic\", \"\")", 28.5);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_2\", 0.0)",28.5);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_1\", 0.0)",28.5);
+	execScriptDelayed("activateSubtitles(31);",38);
+	execScriptDelayed("deactivateSubtitles();",45);
 	execScriptDelayed("execLastAtlasScreen()",47.5);
 end
 
 function shutdown_end_cinematic_scene()
-	setCinematicPlayerState(true,"final_shutdown_scene_cinematic");
+	execScriptDelayed("setCinematicPlayerState(true,\"final_shutdown_scene_cinematic\")",0.75);
 	setInBlackScreen(0.25);
 	execScriptDelayed("move(\"The Player\", VEC3(-7.881,0.044,-0.818),VEC3(-7.881,0.044,0.0));",0.75);
 	execScriptDelayed("setOutBlackScreen(0.25);",1);
@@ -55,7 +57,10 @@ function shutdown_end_cinematic_scene()
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_15_Rot_1\", 0.0, \"cinematic\", \"\")", 6);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_14_Rot_2\", 0.0)",6);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_14_Rot_1\", 0.0)",6);
-
+	execScriptDelayed("activateSubtitles(32);",17);
+	execScriptDelayed("activateSubtitles(33);",23);
+	execScriptDelayed("activateSubtitles(34);",28.5);
+	execScriptDelayed("deactivateSubtitles();",36);
 
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_16_Rot_2\", 10.0, \"cinematic\", \"\")", 12);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_16_Rot_1\", 0.0, \"cinematic\", \"\")", 12);
@@ -168,6 +173,9 @@ function pre_end_cinematic_scene()
 	
 	--Final Decision
 	execScriptDelayed("setCinematicPlayerState(true,\"final_decision_cinematic\")", 87.3);
+	execScriptDelayed("activateSubtitles(29);",89);
+	execScriptDelayed("activateSubtitles(30);",94);
+	execScriptDelayed("deactivateSubtitles();",97.5);
 end
 
 function temp_final_decision()
