@@ -87,7 +87,7 @@
 			"env_fog_density": 0.1,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.043"
+			"env_fog": "0.004 0.004 0.0117"
 		},
 		"persistent_scenes": [
 			"data/scenes/Coliseo/_player.scene",
@@ -135,7 +135,7 @@
 			"env_fog_density": 0.1,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.043"
+			"env_fog": "0.004 0.004 0.0117"
 
 		},
 		"persistent_scenes": [
@@ -204,7 +204,7 @@
 			"env_fog_density": 0.1,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.043"
+			"env_fog": "0.004 0.004 0.0117"
 		},
 		"persistent_scenes": [
 			"data/scenes/Coliseo/_player2.scene",
@@ -248,7 +248,7 @@
 			"env_fog_density": 0.083,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.043"
+			"env_fog": "0.004 0.004 0.0117"
 		},
 		"persistent_scenes": [
 			"data/scenes/Basilic_courtyard/_player.scene",
