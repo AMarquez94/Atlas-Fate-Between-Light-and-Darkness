@@ -179,6 +179,7 @@ void activateMission(int mission_num);
 void lightUpForFinalScene(float time);
 void lightDownForFinalScene();
 void execLastAtlasScreen();
+void removeAtlasSplash();
 
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);

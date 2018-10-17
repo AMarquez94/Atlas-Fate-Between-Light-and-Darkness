@@ -68,7 +68,6 @@
 			"data/scenes/intro_corridor_3.scene",
 			"data/scenes/intro_corridor_logic.scene",
 			"data/scenes/intro_col_corridor_lights.scene",
-			"data/scenes/intro_col_corridor_props.scene",
 			"data/scenes/pantalla_intro_video.scene",
 			"data/scenes/intro_planets.scene",
 			"data/scenes/intro_subtitle_triggers.scene",
@@ -117,7 +116,6 @@
 
 			"data/scenes/col_zone_a_corridor_lights.scene",
 			"data/scenes/col_intro_corridor_lights.scene",
-			"data/scenes/col_intro_corridor_props.scene",
 			"data/scenes/Coliseo/col_capsule_cable.scene",
 			"data/scenes/col_sub_triggers.scene"
 		]

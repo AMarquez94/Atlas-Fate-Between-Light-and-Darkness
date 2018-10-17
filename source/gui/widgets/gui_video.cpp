@@ -15,7 +15,10 @@ void CUIVideo::render()
     c_params.maxUV = VEC2(1, 1);
     c_params.var = 1;
 
-    Engine.get().getGUI().renderCustomTexture("gui.tech", w, _imageParams._texture, c_params );
+    if (_technique != nullptr)
+        Engine.get().getGUI().renderCustomTexture(_technique->getName(), w, _imageParams._texture, c_params);
+    else
+        Engine.get().getGUI().renderCustomTexture("gui.tech", w, _imageParams._texture, c_params );
 }
 
 TImageParams* CUIVideo::getImageParams()
