@@ -262,7 +262,3 @@ data/colliders/luz_pasarela010.collider
 data/colliders/luz_pasarela011.collider
 data/colliders/luz_rueda.collider
 data/colliders/luz_rueda001.collider
-data/scenes/video.scene
-data/meshes/video_tv.mesh
-data/textures/default_texture.dds
-data/materials/video.material

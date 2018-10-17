@@ -302,8 +302,9 @@ namespace Particles
 
             if (_time > _core->n_emission.time_ratio) {
 
+                int total = (int)(_time / _core->n_emission.time_ratio);
                 _time = 0;
-                emit(1);
+                emit(total);
             }
         }
 
