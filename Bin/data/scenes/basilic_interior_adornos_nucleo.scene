@@ -7,6 +7,24 @@
       "transform":
       {
         "pos": "0.0 0.0 0.0"
+      },
+      "animated_object_controller": {
+        "reference_names": [{
+          "name": "rueda"
+        },
+        {
+          "name": "rueda001"
+        }
+        ],
+        "animations": [{
+            "name": "rotate",
+            "src": "data/rigid_anims/interior_mezquita407.anims",
+            "loops": true,
+            "on_start" : true,
+            "speed_factor" :0.5
+
+          }
+        ]
       }
     }
   }
@@ -142,9 +160,9 @@
         ,
         "rotation": "0.0 0.0 0.707107 -0.707107"
       },
-			"rotator": {
+			"xrotator": {
 				"speed": 0.7,
-				"rotate_pitch": false
+				"rotate_pitch": true
 			}
       ,
       "render":
@@ -161,6 +179,7 @@
       ,
       "abs_aabb": true
       ,
+      "rigid_anim":true,
       "local_aabb": true
     }
   }
@@ -176,9 +195,9 @@
         ,
         "rotation": "0.0 0.0 0.707107 -0.707107"
       },
-			"rotator": {
+			"xrotator": {
 				"speed": 0.7,
-				"rotate_pitch": false
+				"rotate_pitch": true
 			}
       ,
       "render":
@@ -195,6 +214,7 @@
       ,
       "abs_aabb": true
       ,
+      "rigid_anim":true,
       "local_aabb": true
     }
   }
