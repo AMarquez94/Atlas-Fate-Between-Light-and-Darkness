@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_basilic_interior",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -169,6 +169,7 @@
 			"data/scenes/zone_a_test.scene",
 			"data/scenes/zone_a_edificios_segunda.scene",
 			"data/scenes/zone_a_neones.scene",
+
 			"data/scenes/zone_a_decal.scene",
 			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/zone_a_grass.scene",

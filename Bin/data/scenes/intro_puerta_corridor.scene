@@ -1,0 +1,47 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_puerta_corridor"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_pared_puerta_peq001"
+      ,
+      "transform":
+      {
+        "pos": "-18.3372 0.0 -75.4368"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_pared_puerta_peq001.mesh"
+          ,
+          "materials":
+          [
+          ]
+        }
+      ]
+      ,
+      "tags":
+      [
+        "corridor"
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]
