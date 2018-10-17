@@ -23,7 +23,7 @@ function onScenePartialEnd_scene_intro()
 end
 
 function intro_intro_cinematic()
-	startCinematicMode(65);
+	startCinematicMode(88);
 	move("The Player", VEC3(-6.275, 12.115, 32.7),VEC3(-6.275, 12.115, 31.7));
 	resetMainCameras();
 	setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
@@ -142,7 +142,7 @@ function intro_inhibitor_cinematic()
 	--end
 
 
-	execScriptDelayed("setCinematicPlayerState(false, \"\")", 5.75);
+	--execScriptDelayed("setCinematicPlayerState(false, \"\")", 5.75);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Inhibitor_2\",1.5,\"cinematic\", \"expoin\")", 0.5);	
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Inhibitor_1\",0)", 2.01);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Inhibitor_2\",0)", 5.25);
