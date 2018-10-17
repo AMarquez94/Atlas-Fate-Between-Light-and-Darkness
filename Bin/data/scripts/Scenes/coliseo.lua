@@ -69,6 +69,7 @@ end
 
 function cinematicCorridorToZoneA()
 	startCinematicMode(18);
+	execScriptDelayed("startTransmission(23.5)", 0.5);
 	execScriptDelayed("activateSubtitles(17);",0.5);
 	execScriptDelayed("deactivateSubtitles();", 10);
 	execScriptDelayed("activateSubtitles(18);",18);
@@ -95,6 +96,7 @@ end
 function onTriggerEnter_col_trigger_district_7_player()
 	if(not col_trigger_district_7Executed) then
 		subClear();
+		startTransmission(7);
 		activateSubtitles(19);
 		execScriptDelayed("deactivateSubtitles();", 7);
 		col_trigger_district_7Executed = true;

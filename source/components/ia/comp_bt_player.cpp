@@ -762,6 +762,10 @@ BTNode::ERes TCompAIPlayer::actionStartFallSM(float dt)
 
 	TCompParticles * my_particles = get<TCompParticles>();
 	if (my_particles) {
+        TCompAudio* my_audio = get<TCompAudio>();
+        if (my_audio) {
+            my_audio->playEvent("event:/Sounds/Player/SM/EnterMerge");
+        }
 		Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", CHandle(this).getOwner());
 		Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash2.particles", CHandle(this).getOwner());
 		Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", CHandle(this).getOwner());
@@ -798,6 +802,10 @@ BTNode::ERes TCompAIPlayer::actionEndSM(float dt)
 
     TCompParticles * my_particles = get<TCompParticles>();
     if (my_particles) {
+        TCompAudio* my_audio = get<TCompAudio>();
+        if (my_audio) {
+            my_audio->playEvent("event:/Sounds/Player/SM/ExitMerge");
+        }
         Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", CHandle(this).getOwner());
         Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash2.particles", CHandle(this).getOwner());
         Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", CHandle(this).getOwner());
