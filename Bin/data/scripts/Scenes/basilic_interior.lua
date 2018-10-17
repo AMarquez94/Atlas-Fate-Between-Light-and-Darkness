@@ -5,7 +5,38 @@ function onSceneStart_scene_basilic_interior()
 end
 
 function finish_job_end_cinematic_scene()
+	setCinematicPlayerState(true,"final_shutdown_scene_cinematic");
+	setInBlackScreen(0.25);
+	execScriptDelayed("move(\"The Player\", VEC3(-7.881,0.044,-0.818),VEC3(-7.881,0.044,0.0));",0.75);
+	execScriptDelayed("setOutBlackScreen(0.25);",1);
 
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_14_Rot_2\", 10.0, \"cinematic\", \"\")", 0.75);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_14_Rot_1\", 0.0, \"cinematic\", \"\")", 0.75);
+
+
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_15_Rot_2\", 10.0, \"cinematic\", \"\")", 6);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_15_Rot_1\", 0.0, \"cinematic\", \"\")", 6);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_14_Rot_2\", 0.0)",6);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_14_Rot_1\", 0.0)",6);
+
+
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_16_Rot_2\", 10.0, \"cinematic\", \"\")", 12);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_16_Rot_1\", 0.0, \"cinematic\", \"\")", 12);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_15_Rot_2\", 0.0)",12);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_15_Rot_1\", 0.0)",12);
+
+
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_17_Rot_2\", 20.0, \"cinematic\", \"\")", 17);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_17_Rot_1\", 0.0, \"cinematic\", \"\")", 17);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_16_Rot_2\", 0.0)",17);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_16_Rot_1\", 0.0)",17);
+
+	execScriptDelayed("move(\"The Player\", VEC3(-8.850, 0.044, -4.275),VEC3(-8.850, 0.044, -8));",28);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_18_Rot_2\", 20.0, \"cinematic\", \"\")", 28.5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_18_Rot_1\", 0.0, \"cinematic\", \"\")", 28.5);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_2\", 0.0)",28.5);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_1\", 0.0)",28.5);
+	execScriptDelayed("execLastAtlasScreen()",47.5);
 end
 
 function shutdown_end_cinematic_scene()
@@ -40,6 +71,8 @@ function shutdown_end_cinematic_scene()
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_18_Rot_1\", 0.0, \"cinematic\", \"\")", 28.5);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_2\", 0.0)",28.5);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_1\", 0.0)",28.5);
+	execScriptDelayed("execLastAtlasScreen()",47.5);
+
 end
 
 function pre_end_cinematic_scene()

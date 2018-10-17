@@ -178,6 +178,8 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::INGAME_HUD_ENEMY, "data/gui/enemy_hud_game.json");
 	registerWigdetStruct(EGUIWidgets::MAIN_MENU_SCENE, "data/gui/main_menu_scene.json");
 	registerWigdetStruct(EGUIWidgets::CINEMATIC_INTRO, "data/gui/ingame_cinematic_intro.json");
+	registerWigdetStruct(EGUIWidgets::ATLAS_LAST_SPLASH, "data/gui/atlas_last_splash.json");
+	
 }
 
 void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController *wdgt_controller) {

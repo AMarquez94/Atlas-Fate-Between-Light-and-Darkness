@@ -333,6 +333,7 @@ void CModuleLogic::publishClasses() {
 	m->set("subClear", SLB::FuncCall::create(&subClear));
 	m->set("lightUpForFinalScene", SLB::FuncCall::create(&lightUpForFinalScene));
 	m->set("lightDownForFinalScene", SLB::FuncCall::create(&lightDownForFinalScene));
+	m->set("execLastAtlasScreen", SLB::FuncCall::create(&execLastAtlasScreen));
 	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -1282,4 +1283,11 @@ void lightUpForFinalScene(float time) {
 
 void lightDownForFinalScene() {
 
+}
+
+void execLastAtlasScreen() {
+
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2,8,false);
+	EngineLogic.execScriptDelayed("changeGamestate(\"credits\")",10.5);
 }

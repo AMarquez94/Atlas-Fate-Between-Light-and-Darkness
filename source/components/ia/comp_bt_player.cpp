@@ -1296,7 +1296,7 @@ BTNode::ERes TCompAIPlayer::actionFinalDecision(float dt)
             EngineLogic.execScript("shutdown_end_cinematic_scene()");
         }
         else {
-            EngineLogic.execScript("endjob_end_cinematic_scene()");
+            EngineLogic.execScript("finish_job_end_cinematic_scene()");
         }
         return BTNode::ERes::LEAVE;
     }

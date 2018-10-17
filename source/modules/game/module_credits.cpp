@@ -12,7 +12,9 @@ bool CModuleCredits::start()
 	mouse->setLockMouse(false);
 
 	//EngineScene.loadScene("default");
-
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(0.25,0);
+	EngineLogic.execSystemScriptDelayed("takeOutBlackScreen();", 0.5f);
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE);
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::CREDITS);
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2,10);
