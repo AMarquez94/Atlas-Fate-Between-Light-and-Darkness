@@ -141,7 +141,11 @@
         "pos": "3.12374 1.71515 10.4716"
         ,
         "rotation": "0.0 0.0 0.707107 -0.707107"
-      }
+      },
+			"rotator": {
+				"speed": 0.7,
+				"rotate_pitch": false
+			}
       ,
       "render":
       [
@@ -171,7 +175,11 @@
         "pos": "-20.8812 1.71515 10.4716"
         ,
         "rotation": "0.0 0.0 0.707107 -0.707107"
-      }
+      },
+			"rotator": {
+				"speed": 0.7,
+				"rotate_pitch": false
+			}
       ,
       "render":
       [
