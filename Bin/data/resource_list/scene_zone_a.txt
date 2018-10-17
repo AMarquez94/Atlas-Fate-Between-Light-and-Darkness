@@ -272,12 +272,12 @@ data/textures/tx_coberturas_nml.dds
 data/textures/tx_coberturas_rgh.dds
 data/materials/mtl_coberturas.material
 data/colliders/collider_containerbasura.collider
-data/prefabs/cubobasura_tapa.prefab
-data/meshes/mesh_cubobasura_tapa.mesh
-data/colliders/collider_cubobasura_tapa.collider
 data/prefabs/cubobasura.prefab
 data/meshes/mesh_cubobasura.mesh
 data/colliders/collider_basurabin.collider
+data/prefabs/cubobasura_tapa.prefab
+data/meshes/mesh_cubobasura_tapa.mesh
+data/colliders/collider_cubobasura_tapa.collider
 data/prefabs/piezaconcreto.prefab
 data/meshes/mesh_piezaconcreto.mesh
 data/colliders/collider_piezaconcreto.collider

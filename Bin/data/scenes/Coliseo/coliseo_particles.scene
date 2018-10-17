@@ -11,21 +11,21 @@
 		"entity": {
 			"name": "particles_fog",
 			"transform": {
-				"pos": "0 1 0"
+				"pos": "0 0.5 0"
 			},
 			"particles" : {
-				"core" : "data/particles/def_amb_fog_50x50.particles"
+				"core" : "data/particles/def_amb_fog_60x60.particles"
 			}
 		}
 	},
 	{
 		"entity": {
-			"name": "particles_fog",
+			"name": "particles_dust",
 			"transform": {
 				"pos": "0 1 0"
 			},
 			"particles" : {
-				"core" : "data/particles/def_amb_dust_50x50.particles"
+				"core" : "data/particles/def_amb_dust_60x60.particles"
 			}
 		}
 	},
