@@ -6,10 +6,10 @@
 		"children" : [
 			{
 				"name" : "enemy_hud_ingame",
-				"type" : "image",
-				"size" : "540 320",
-				"position" : "0 0",
-				"texture" : "data/textures/gui/atlas_hud.dds"
+				"type" : "video",
+				"size" : "320 180",
+				"position" : "760 25",
+				"texture" : "data/textures/gui/videos/enemy_hud.h264"
 			}
 		]
 	}
