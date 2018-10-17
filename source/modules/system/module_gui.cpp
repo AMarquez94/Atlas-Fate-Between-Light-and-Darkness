@@ -34,8 +34,8 @@ void CModuleGUI::initializeWidgetStructure() {
 
 	//MAIN-MENU
 	auto mm_newGameCB = []() {
-		CEngine::get().getModules().changeGameState("map_intro");
-	};
+        EngineScene.changeGameState("map_intro");
+    };
 	auto mm_credits = []() {
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND)->makeChildsFadeIn(0.25f, 0, true);
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACK)->makeChildsFadeIn(0.25f, 0, true);
@@ -88,8 +88,8 @@ void CModuleGUI::initializeWidgetStructure() {
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::SUBTITLES);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY);
-		CEngine::get().getModules().changeGameState("main_menu");
-	};
+        EngineScene.changeGameState("main_menu");
+    };
 	auto pm_Exit = []() {
         CEngine::get().stop();
 	};
@@ -161,6 +161,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::MAIN_MENU_BACKGROUND, "data/gui/main_menu_background.json");
 	registerWigdetStruct(EGUIWidgets::SOUND_GRAPH, "data/gui/sound_graph.json");
 	registerWigdetStruct(EGUIWidgets::INGAME_STAMINA_BAR, "data/gui/ingame.json");
+	registerWigdetStruct(EGUIWidgets::INGAME_FINAL_DECISION, "data/gui/final_decision.json");
 	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE, "data/gui/pause_menu_background.json");
 	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE_LINE, "data/gui/pause_menu_line.json");
 	registerWigdetStruct(EGUIWidgets::DEAD_MENU_BACKGROUND, "data/gui/dead_menu_background.json");
@@ -177,6 +178,8 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::INGAME_HUD_ENEMY, "data/gui/enemy_hud_game.json");
 	registerWigdetStruct(EGUIWidgets::MAIN_MENU_SCENE, "data/gui/main_menu_scene.json");
 	registerWigdetStruct(EGUIWidgets::CINEMATIC_INTRO, "data/gui/ingame_cinematic_intro.json");
+	registerWigdetStruct(EGUIWidgets::ATLAS_LAST_SPLASH, "data/gui/atlas_last_splash.json");
+	
 }
 
 void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController *wdgt_controller) {
@@ -495,6 +498,7 @@ void CModuleGUI::setSubtitles(int sub_num) {
 	}
 }
 void CModuleGUI::clearSubtitles() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY);
 	EngineGUI.setSubtitlesToNone();
 	EngineLogic.eraseDelayedScripts("Subtitles(");
 }
@@ -509,21 +513,9 @@ void CModuleGUI::setMission(int mission_num) {
 }
 
 void CModuleGUI::activateEnemyHUD() {
-	if (getWidgetStructureEnabled(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY)) {
-		GUI::CWidget *wdgt = EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY)->getAllChilds()[0];
-		if (wdgt->getType() == GUI::CWidget::EWidgetType::SUBTITLES) {
-			CSubtitles *subt = (CSubtitles*)wdgt;
-			subt->activateSubtitles(1);
-		}
-	}
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY);
 }
 
 void CModuleGUI::deactivateEnemyHUD() {
-	if (getWidgetStructureEnabled(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY)) {
-		GUI::CWidget *wdgt = EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY)->getAllChilds()[0];
-		if (wdgt->getType() == GUI::CWidget::EWidgetType::SUBTITLES) {
-			CSubtitles *subt = (CSubtitles*)wdgt;
-			subt->activateSubtitles(0);
-		}
-	}
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY);
 }

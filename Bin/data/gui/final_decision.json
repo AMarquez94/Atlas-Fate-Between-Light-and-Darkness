@@ -1,0 +1,91 @@
+[
+	{
+		"name" : "ingame_final_decision",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "radial_endjob",
+				"type" : "widget",
+				"position" : "290 300",
+				"children" : [
+					{
+						"name" : "radial_endjob_child",
+						"type" : "radialbar",
+						"size" : "32 32",
+						"color" : "1 1 1 1",
+						"texture" : "data/textures/gui/hud_stamina_bar.dds",
+						"variable" : "radial_endjob_factor"
+					}
+				]
+			},
+			{
+				"name" : "button_endjob_teclado",
+				"type" : "widget",
+				"position" : "290 300",
+				"children" : [
+					{
+						"name" : "endjob_teclado",
+						"type" : "image",
+						"size" : "128 32",
+						"texture" : "data/textures/gui/press_button_E.dds"
+					}
+				]
+			},
+			{
+				"name" : "button_endjob_mando",
+				"type" : "widget",
+				"position" : "290 300",
+				"children" : [
+					{
+						"name" : "endjob_mando",
+						"type" : "image",
+						"size" : "128 32",
+						"texture" : "data/textures/gui/press_button_A.dds"
+					}
+				]
+			},
+			{
+				"name" : "radial_shutdown",
+				"type" : "widget",
+				"position" : "690 300",
+				"children" : [
+					{
+						"name" : "radial_shutdown_child",
+						"type" : "radialbar",
+						"size" : "32 32",
+						"color" : "1 1 1 1",
+						"texture" : "data/textures/gui/hud_stamina_bar.dds",
+						"variable" : "radial_shutdown_factor"
+					}
+				]
+			},
+			{
+				"name" : "button_shutdown_teclado",
+				"type" : "widget",
+				"position" : "690 300",
+				"children" : [
+					{
+						"name" : "shutdown_teclado",
+						"type" : "image",
+						"size" : "128 32",
+						"texture" : "data/textures/gui/press_button_E.dds"
+					}
+				]
+			},
+			{
+				"name" : "button_shutdown_mando",
+				"type" : "widget",
+				"position" : "690 300",
+				"children" : [
+					{
+						"name" : "shutdown_mando",
+						"type" : "image",
+						"size" : "128 32",
+						"texture" : "data/textures/gui/press_button_A.dds"
+					}
+				]
+			}
+		]
+	}
+]

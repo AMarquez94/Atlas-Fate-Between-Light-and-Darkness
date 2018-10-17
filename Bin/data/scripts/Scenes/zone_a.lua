@@ -36,6 +36,7 @@ function onTriggerEnter_zonea_trigger_smartass_player()
 	
 	if(not zone_a_door_activated) then
 		subClear();
+		startTransmission(8);
 		activateSubtitles(22);
 		execScriptDelayed("deactivateSubtitles();", 8);
 		zone_a_door_activated = true;
@@ -57,6 +58,7 @@ end
 function cinematic_enter_zone_a()
 
 	startCinematicMode(10)
+	execScriptDelayed("startTransmission(9.5)", 0.27);
 	execScriptDelayed("activateSubtitles(20);", 0.27);
 	execScriptDelayed("activateSubtitles(21);", 5);
 	execScriptDelayed("deactivateSubtitles();", 9.5);
@@ -90,6 +92,7 @@ function cinematic_tower_activated()
 	setInBlackScreen(0.25);
 	execScriptDelayed("setOutBlackScreen(0.25);",0.3);
 	subClear();
+	execScriptDelayed("startTransmission(4.75)", 2.25);
 	execScriptDelayed("activateSubtitles(23);", 2.25);
 	execScriptDelayed("deactivateSubtitles();", 6);
 

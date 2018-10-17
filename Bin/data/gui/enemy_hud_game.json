@@ -6,20 +6,10 @@
 		"children" : [
 			{
 				"name" : "enemy_hud_ingame",
-				"type" : "subtitles",
+				"type" : "image",
 				"size" : "540 320",
 				"position" : "0 0",
-				"texture" : "data/textures/gui/background-pause.dds",
-				"subtitles_textures" : [
-					{
-						"subtitle_name" : "none",
-						"texture_src" : "data/textures/gui/subtitulos/none.dds"
-					},
-					{
-						"subtitle_name" : "atlas",
-						"texture_src" : "data/textures/gui/atlas_hud.dds"
-					}
-				]
+				"texture" : "data/textures/gui/atlas_hud.dds"
 			}
 		]
 	}

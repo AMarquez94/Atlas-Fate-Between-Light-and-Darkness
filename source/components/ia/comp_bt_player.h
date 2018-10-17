@@ -26,6 +26,10 @@ public:
         CINEMATIC_FALLSM,
         CINEMATIC_INHIBITOR,
 		CINEMATIC_CAPSULES,
+		CINEMATIC_FINAL_SCENE,
+        CINEMATIC_FINAL_DECISION,
+		CINEMATIC_FINAL_SHUTDOWN,
+		CINEMATIC_FINAL_ENDJOB,
         NUM_STATES };
 
     bool enabledPlayerAI;
@@ -34,6 +38,9 @@ public:
     void preUpdate(float dt) override;
     void postUpdate(float dt) override;
     void debugInMenu();
+
+    bool hasMadeDecision = false;
+    EState decisionMade = EState::CINEMATIC_FINAL_ENDJOB;
 
     static void registerMsgs();
 
@@ -55,7 +62,13 @@ public:
     BTNode::ERes actionResetBT(float dt);
     BTNode::ERes actionAnimationWalk(float dt);
     BTNode::ERes actionAnimationCrouch(float dt);
-    BTNode::ERes actionAnimationIdle(float dt);
+	BTNode::ERes actionAnimationIdle(float dt);
+	BTNode::ERes actionAnimationIdleTimed(float dt);
+	BTNode::ERes actionAnimationIdleCinematic(float dt);
+	BTNode::ERes actionPoseLookCapsulesAnimationIdleTimed(float dt);
+	BTNode::ERes actionAnimationLookCapsulesTimed(float dt);
+	BTNode::ERes actionAnimationSlowWalk(float dt);
+	BTNode::ERes actionAnimationKeyboard(float dt);
 	BTNode::ERes actionAnimationIdleListen(float dt);
     BTNode::ERes actionStartSM(float dt);
 	BTNode::ERes actionStartFallSM(float dt);
@@ -90,11 +103,21 @@ public:
     BTNode::ERes actionResetTimersBeforeSMCinematicFallSM(float dt);
 	BTNode::ERes actionResetTimersInhibitorCinematic(float dt);
 	BTNode::ERes actionResetTimersInhibitorCinematic2(float dt);
+	BTNode::ERes actionResetTimersFinalScene(float dt);
+	BTNode::ERes actionResetTimersFinalScene1(float dt);
+	BTNode::ERes actionResetTimersFinalScene2(float dt);
+	BTNode::ERes actionResetTimersFinalScene3(float dt);
+	BTNode::ERes actionResetTimersFinalScene4(float dt);
+	BTNode::ERes actionResetTimersFinalScene5(float dt);
+	BTNode::ERes actionResetTimersFinalScene6(float dt);
+	BTNode::ERes actionResetTimersFinalScene7(float dt);
+	BTNode::ERes actionResetTimersFinalDecision(float dt);
 	BTNode::ERes actionResetTimersCapsuleCinematic(float dt);
     BTNode::ERes actionSlowMotionCinematicFallSM(float dt);
     BTNode::ERes actionResetTimersCinematicFallSM(float dt);
     BTNode::ERes actionCrouchWalk(float dt);
     BTNode::ERes actionFallSM(float dt);
+    BTNode::ERes actionFinalDecision(float dt);
     BTNode::ERes endCinematic(float dt);
 
 
@@ -117,7 +140,11 @@ public:
     bool conditionCinematicFallSM(float dt);
     bool conditionCinematicInhibitor(float dt);
 	bool conditionCinematicCapsules(float dt);
-
+	bool conditionCinematicFinale(float dt);
+	bool conditionCinematicFinalDecision(float dt);
+	bool conditionCinematicEndJobFinale(float dt);
+	bool conditionCinematicShutdownFinale(float dt);
+	
     bool conditionIsLanded(float dt);
 
 
@@ -136,13 +163,14 @@ private:
     VEC3 initial_pos = VEC3::Zero;
     QUAT initial_rot = VEC4::Zero;
     bool is_main_character;
-
+	bool lookcapsulesAnimationCompleted = false;
     TCompAIPlayer::EState _currentState;
 
 	void onMsgPlayerAIEnabled(const TMsgPlayerAIEnabled& msg);
 	void onMsgEntityCreated(const TMsgEntityCreated& msg);
 	void onMsgEntityGroupCreated(const TMsgEntitiesGroupCreated& msg);
 	void onMsgScenePaused(const TMsgScenePaused& msg);
+	void onMsgAnimationCompleted(const TMsgAnimationCompleted& msg);
 
 	//load
 	void loadActions() override;

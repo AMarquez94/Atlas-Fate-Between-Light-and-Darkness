@@ -892,7 +892,7 @@ namespace FSM
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::HACK , 1.0f });
 		e->sendMsg(TMsgAnimationPlaced{});
-
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
     }
 
     void PressingButtonState::onFinish(CContext& ctx) const {

@@ -176,6 +176,9 @@ void deactivateCinematicVideoIntro();
 void setInBlackScreen(float time_to_lerp);
 void setOutBlackScreen(float time_to_lerp);
 void activateMission(int mission_num);
+void lightUpForFinalScene(float time);
+void lightDownForFinalScene();
+void execLastAtlasScreen();
 
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);

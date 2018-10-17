@@ -29,7 +29,10 @@ bool CModuleGameManager::start() {
     lastCheckpoint = new CCheckpoint();
     _currentstate = PauseState::none;
     EngineRender.setDebugMode(false);
+    EngineLogic.setPause(false);
     main_theme = EngineSound.playEvent("event:/Ambiance/InGame");
+    transmission = EngineSound.playEvent("event:/Ambiance/Transmission");
+    transmission.setVolume(0.f);
     return true;
 }
 
@@ -204,6 +207,12 @@ void CModuleGameManager::update(float delta) {
             menuPosition = (menuPosition + 1) % menuSize;
         }
     }
+}
+
+bool CModuleGameManager::stop()
+{
+    stopAllSoundEvents();
+    return true;
 }
 
 void CModuleGameManager::updateGameCondition() {
@@ -583,6 +592,17 @@ void CModuleGameManager::stopAllSoundEvents()
 {
     persecution_theme.stop();
     main_theme.stop();
+    transmission.stop();
+}
+
+void CModuleGameManager::playTransmissionSound(bool play)
+{
+    if (play) {
+        transmission.setVolume(.25f);
+    }
+    else {
+        transmission.setVolume(0.f);
+    }
 }
 
 void CModuleGameManager::resetState() {

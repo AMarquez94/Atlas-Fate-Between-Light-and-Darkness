@@ -45,3 +45,8 @@ function startCinematicMode(time_to_end)
 	isInCinematicMode(true);
 	execScriptDelayed("isInCinematicMode(false);", time_to_end);
 end
+
+function startTransmission(time_to_end)	
+	setEnemyHudState(true);
+	execScriptDelayed("setEnemyHudState(false)", time_to_end);
+end

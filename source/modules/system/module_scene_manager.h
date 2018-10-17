@@ -49,6 +49,7 @@ public:
     Scene* getSceneByName(const std::string& name);
     Scene* getActiveScene();
     bool unLoadActiveScene(bool partial = false);
+    void changeGameState(const std::string& gamestate);
 
     std::string getDefaultSceneName();
 

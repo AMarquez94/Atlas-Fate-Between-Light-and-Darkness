@@ -24,6 +24,7 @@ class CModuleGameManager : public IModule
     float persecution_lerp;
     SoundEvent main_theme;
     float main_theme_lerp;
+    SoundEvent transmission;
 
     // Menu window related variables.
     ImGuiWindowFlags window_flags;
@@ -53,6 +54,7 @@ public:
 
     bool start() override;
     void update(float delta) override;
+    bool stop() override;
     void renderMain();
 
 	void setPauseState(PauseState pause);
@@ -66,4 +68,5 @@ public:
     PauseState getCurrentState();
     bool isCinematicMode = false;
     void stopAllSoundEvents();
+    void playTransmissionSound(bool play);
 };

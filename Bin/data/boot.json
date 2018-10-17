@@ -183,6 +183,7 @@
 			"data/scenes/zone_a_carteles.scene",
 			"data/scenes/ZoneA/carteles.scene",
 			"data/scenes/zonea_triggers.scene",
+			"data/scenes/zone_a_props_torre.scene",
 
 			"data/scenes/zone_a_in_corridor.scene",
 			"data/scenes/zone_a_in_corridor_lights.scene",
@@ -324,7 +325,8 @@
 			"data/scenes/basilic_interior_monitorytubos.scene",
 			"data/scenes/basilic_interior_nucleo.scene",
 			"data/scenes/basilic_interior_sueloyagarres.scene",
-			"data/scenes/basilic_interior_luces.scene"
+			"data/scenes/basilic_interior_luces.scene",
+			"data/scenes/Basilic_interior/basilic_interior_cinematic.scene"
 
 		]
 	}

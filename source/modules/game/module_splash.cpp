@@ -19,7 +19,7 @@ void CModuleSplash::update(float delta)
     //dbg("Time atm %f\n", _timer);
     if (_timer <= 0.f)
     {
-    CEngine::get().getModules().changeGameState("main_menu");
+        EngineScene.changeGameState("main_menu");
     }
 }
 

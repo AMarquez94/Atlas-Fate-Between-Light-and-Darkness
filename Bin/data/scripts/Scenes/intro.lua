@@ -38,6 +38,7 @@ function intro_intro_cinematic()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_video\", 0)", 24);
 
 	 --Activating the subtitles
+	execScriptDelayed("startTransmission(32.7)", 23.3);
 	execScriptDelayed("activateSubtitles(1);",23.5);
 	execScriptDelayed("activateSubtitles(2);",25.5);
 	execScriptDelayed("activateSubtitles(3);",30);
@@ -47,7 +48,7 @@ function intro_intro_cinematic()
 	execScriptDelayed("activateSubtitles(7);",45.5);
 	execScriptDelayed("activateSubtitles(8);",48);
 	execScriptDelayed("activateSubtitles(9);",53);
-	execScriptDelayed("deactivateSubtitles();", 56);
+	execScriptDelayed("deactivateSubtitles();",56);
 
 	--Second Frame
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Player_Back\", 0)", 26.5);
@@ -118,6 +119,7 @@ function intro_inhibitor_cinematic()
 	move("The Player", VEC3(-19, 7, -33.5),VEC3(-19, 7, -35.5));
 	resetMainCameras();
 
+	execScriptDelayed("startTransmission(7.25)", 5.75);
 	execScriptDelayed("activateSubtitles(14);", 5.75);
 	execScriptDelayed("activateSubtitles(15);", 10);
 	execScriptDelayed("deactivateSubtitles();", 13);
@@ -161,6 +163,7 @@ end
 function onTriggerEnter_Trigger_Capsules_Cinematic_player()
 	if(cinematicsEnabled and not Capsules_CinematicExecuted) then
 		startCinematicMode(12.4);
+		execScriptDelayed("startTransmission(8)", 2);
 		execScriptDelayed("activateSubtitles(13);", 2);
 		execScriptDelayed("deactivateSubtitles();", 10);
 		
@@ -189,6 +192,7 @@ end
 -- # Subtitles tutorials # --
 function onTriggerEnter_intro_trigger_muralla_player()
 	subClear();
+	startTransmission(8);
 	activateSubtitles(10);
 	execScriptDelayed("deactivateSubtitles();", 8);
 	temp = getEntityByName("intro_trigger_muralla");
@@ -197,6 +201,7 @@ end
 
 function onTriggerEnter_intro_trigger_muralla_alto_player()
 	subClear();
+	startTransmission(17);
 	activateSubtitles(11);
 	execScriptDelayed("activateSubtitles(12);",7);
 	execScriptDelayed("deactivateSubtitles();", 10);
@@ -206,6 +211,7 @@ end
 
 function onTriggerEnter_intro_trigger_patrol_care_player()
 	subClear();
+	startTransmission(8);
 	activateSubtitles(16);
 	execScriptDelayed("deactivateSubtitles();", 8);
 	temp = getEntityByName("intro_trigger_patrol_care");
@@ -214,6 +220,7 @@ end
 
 function onTriggerEnter_intro_trigger_patrol_story_player()
 	subClear();
+	startTransmission(9);
 	activateSubtitles(35);
 	execScriptDelayed("deactivateSubtitles();", 9);
 	temp = getEntityByName("intro_trigger_patrol_story");
