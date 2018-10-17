@@ -667,7 +667,7 @@ namespace FSM
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::LAND_SOFT , 1.0f });
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
-		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getAllChilds()[0]->getSpriteParams()->_playing_sprite = 1;
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getAllChilds()[0]->getSpriteParams()->_playing_sprite = 2;
 
         EngineLogic.execScript("animation_soft_land()");
     }

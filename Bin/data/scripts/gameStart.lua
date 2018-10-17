@@ -6,9 +6,9 @@ function onGameStart()
 	particles = getParticles();
 	addAllFunctionsToConsole();
 	
-	cinematicsEnabled = true;
+	cinematicsEnabled = false;
 	
-	intro_intro_cinematicExecuted = false;
+	intro_intro_cinematicExecuted = true;
 	intro_inhibitor_cinematicExecuted = false;
 	Capsules_CinematicExecuted = false;
 	cinematicCorridorToZoneAExecuted = false;
