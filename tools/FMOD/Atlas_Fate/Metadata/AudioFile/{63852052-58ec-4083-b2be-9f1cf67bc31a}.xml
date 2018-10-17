@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{63852052-58ec-4083-b2be-9f1cf67bc31a}">
+        <property name="assetPath">
+            <value>soundclips/objects/doors/big_door_open_test.wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>1</value>
+        </property>
+        <property name="length">
+            <value>6.157482993197279</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{7934f37e-95bd-414b-beb2-417a7b01c5d0}</destination>
+        </relationship>
+    </object>
+</objects>
