@@ -64,6 +64,7 @@ data/prefabs/camera_shadowmerge.prefab
 data/textures/lut/lut1.dds
 data/prefabs/camera_flyover_basilic.prefab
 data/scenes/basilic_interior_adornos_nucleo.scene
+data/rigid_anims/interior_mezquita407.anims
 data/meshes/agarre_rueda.mesh
 data/textures/tx_adornos_nucleo_alb.dds
 data/textures/tx_adornos_nucleo_ao.dds
