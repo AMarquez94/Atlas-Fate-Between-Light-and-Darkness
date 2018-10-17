@@ -64,7 +64,7 @@ data/prefabs/camera_shadowmerge.prefab
 data/textures/lut/lut1.dds
 data/prefabs/camera_flyover_basilic.prefab
 data/scenes/basilic_interior_adornos_nucleo.scene
-data/meshes/borde_nucleo.mesh
+data/meshes/agarre_rueda.mesh
 data/textures/tx_adornos_nucleo_alb.dds
 data/textures/tx_adornos_nucleo_ao.dds
 data/textures/tx_adornos_nucleo_emi.dds
@@ -73,6 +73,8 @@ data/textures/tx_adornos_nucleo_met.dds
 data/textures/tx_adornos_nucleo_nml.dds
 data/textures/tx_adornos_nucleo_rgh.dds
 data/materials/mtl_adornos_nucleo.material
+data/meshes/agarre_rueda001.mesh
+data/meshes/borde_nucleo.mesh
 data/meshes/borde_tubos_nucleo.mesh
 data/meshes/rueda.mesh
 data/meshes/rueda001.mesh

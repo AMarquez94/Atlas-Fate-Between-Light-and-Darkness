@@ -12,7 +12,9 @@
 				"open_anim": "open",
 				"close_anim": "close",
 				"time_to_open": 3.5,
-				"time_to_close": 4
+				"time_to_close": 4,
+				"open_soundevent": "event:/Sounds/Objects/Doors/BigDoorOpen",
+				"close_soundevent": "event:/Sounds/Objects/Doors/BigDoorClose"
 			},
 			"collider": {
 				"shape": "mesh",
