@@ -243,6 +243,12 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
 	//Pose final pre decisio
 	addChild("FinalCinematic", "finalIdlePoseFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdleCinematic, nullptr);
 
+    //Momento decision
+    addChild("playerActivated", "finalDecisionCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicFinalDecision, nullptr, nullptr);
+    addChild("finalDecisionCinematic", "ResetTimersFinalDecisionCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalDecision, nullptr);
+    addChild("finalDecisionCinematic", "ActionFinalDecision", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionFinalDecision, nullptr);
+    addChild("finalDecisionCinematic", "resetBTFinalDecision", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
+
 	//Shutdown finale
 	addChild("playerActivated", "FinalShutdownCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicShutdownFinale, nullptr, nullptr);
 	addChild("FinalShutdownCinematic", "resetTimersFinalShutdownCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene6, nullptr);
@@ -417,6 +423,9 @@ TCompAIPlayer::EState TCompAIPlayer::getStateEnumFromString(const std::string & 
 	else if (stateName.compare("final_scene_cinematic") == 0) {
 		return TCompAIPlayer::EState::CINEMATIC_FINAL_SCENE;
 	}
+    else if (stateName.compare("final_decision_cinematic") == 0) {
+        return TCompAIPlayer::EState::CINEMATIC_FINAL_DECISION;
+    }
 	else if (stateName.compare("final_shutdown_scene_cinematic") == 0) {
 		return TCompAIPlayer::EState::CINEMATIC_FINAL_SHUTDOWN;
 	}
@@ -1151,6 +1160,34 @@ BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene7(float dt)
 	return BTNode::ERes::LEAVE;
 }
 
+BTNode::ERes TCompAIPlayer::actionResetTimersFinalDecision(float dt)
+{
+    dbg("ENTRAMOS FINAL DECISION RESET TIMERS\n");
+
+    _maxTimer = 10.f;
+    _timer = 0.f;
+
+    EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_FINAL_DECISION);
+    EngineGUI.enableWidget("ingame_final_decision", true);
+
+    /* Desactivo radial shutdown */
+    EngineGUI.enableWidget("radial_shutdown", false);
+
+    /* Desactivo teclado/mando */
+    if (EngineInput.pad().connected) {
+        EngineGUI.enableWidget("button_endjob_teclado", false);
+        EngineGUI.enableWidget("button_shutdown_teclado", false);
+    }
+    else {
+        EngineGUI.enableWidget("button_endjob_mando", false);
+        EngineGUI.enableWidget("button_shutdown_mando", false);
+    }
+
+    Engine.getGUI().getVariables().setVariant("radial_endjob_factor", (_maxTimer - _timer) / _maxTimer);
+
+    return BTNode::ERes::LEAVE;
+}
+
 BTNode::ERes TCompAIPlayer::actionResetTimersCapsuleCinematic(float dt) {
 	_maxTimer = 5.f;
 
@@ -1202,6 +1239,67 @@ BTNode::ERes TCompAIPlayer::actionFallSM(float dt)
     }
 
     return BTNode::ERes::STAY;
+}
+
+BTNode::ERes TCompAIPlayer::actionFinalDecision(float dt)
+{
+    dbg("ENTRAMOS FINAL DECISION ACTION WITH TIMER %f\n", _timer);
+
+    _timer = Clamp(_timer + dt, 0.f, _maxTimer);
+    if (_timer < _maxTimer) {
+        if (!hasMadeDecision) {
+
+            Engine.getGUI().getVariables().setVariant("radial_endjob_factor", (_maxTimer - _timer) / _maxTimer);
+
+            if (EngineInput["btLeft"].getsPressed()/* && (!EngineInput.pad().connected || EngineInput["btRight"].value <= 0.f)*/) {
+                hasMadeDecision = true;
+                decisionMade = EState::CINEMATIC_FINAL_ENDJOB;
+
+                /* Borro derecha (shutdown) */
+                EngineGUI.enableWidget("button_shutdown_teclado", false);
+                EngineGUI.enableWidget("button_shutdown_mando", false);
+            }
+            else if (EngineInput["btRight"].getsPressed()/* && (!EngineInput.pad().connected || EngineInput["btRight"].value > 0.f)*/) {
+                hasMadeDecision = true;
+                decisionMade = EState::CINEMATIC_FINAL_SHUTDOWN;
+
+                /* Borro izquierda (endjob) */
+                EngineGUI.enableWidget("button_endjob_teclado", false);
+                EngineGUI.enableWidget("button_endjob_mando", false);
+
+                /* Eliminar radial izquierda */
+                EngineGUI.enableWidget("radial_endjob", false);
+
+                /* Activar radial derecha */
+                EngineGUI.enableWidget("radial_shutdown", true);
+            }
+        }
+        else {
+
+            if (decisionMade == EState::CINEMATIC_FINAL_ENDJOB) {
+
+                Engine.getGUI().getVariables().setVariant("radial_endjob_factor", (_maxTimer - _timer) / _maxTimer);
+            }
+            else {
+
+                Engine.getGUI().getVariables().setVariant("radial_shutdown_factor", (_maxTimer - _timer) / _maxTimer);
+            }
+        }
+
+        return BTNode::ERes::STAY;
+    }
+    else {
+
+        /* Borrar toda la gui */
+        EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_FINAL_DECISION);
+        if (decisionMade == EState::CINEMATIC_FINAL_SHUTDOWN) {
+            EngineLogic.execScript("shutdown_end_cinematic_scene()");
+        }
+        else {
+            EngineLogic.execScript("endjob_end_cinematic_scene()");
+        }
+        return BTNode::ERes::LEAVE;
+    }
 }
 
 BTNode::ERes TCompAIPlayer::actionAnimationGrab(float dt)
@@ -1350,6 +1448,11 @@ bool TCompAIPlayer::conditionCinematicCapsules(float dt) {
 bool TCompAIPlayer::conditionCinematicFinale(float dt) {
 
 	return _currentState == EState::CINEMATIC_FINAL_SCENE;
+}
+
+bool TCompAIPlayer::conditionCinematicFinalDecision(float dt)
+{
+    return _currentState == EState::CINEMATIC_FINAL_DECISION;
 }
 
 bool TCompAIPlayer::conditionCinematicEndJobFinale(float dt) {

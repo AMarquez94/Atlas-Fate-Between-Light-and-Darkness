@@ -27,6 +27,7 @@ public:
         CINEMATIC_INHIBITOR,
 		CINEMATIC_CAPSULES,
 		CINEMATIC_FINAL_SCENE,
+        CINEMATIC_FINAL_DECISION,
 		CINEMATIC_FINAL_SHUTDOWN,
 		CINEMATIC_FINAL_ENDJOB,
         NUM_STATES };
@@ -37,6 +38,9 @@ public:
     void preUpdate(float dt) override;
     void postUpdate(float dt) override;
     void debugInMenu();
+
+    bool hasMadeDecision = false;
+    EState decisionMade = EState::CINEMATIC_FINAL_ENDJOB;
 
     static void registerMsgs();
 
@@ -107,11 +111,13 @@ public:
 	BTNode::ERes actionResetTimersFinalScene5(float dt);
 	BTNode::ERes actionResetTimersFinalScene6(float dt);
 	BTNode::ERes actionResetTimersFinalScene7(float dt);
+	BTNode::ERes actionResetTimersFinalDecision(float dt);
 	BTNode::ERes actionResetTimersCapsuleCinematic(float dt);
     BTNode::ERes actionSlowMotionCinematicFallSM(float dt);
     BTNode::ERes actionResetTimersCinematicFallSM(float dt);
     BTNode::ERes actionCrouchWalk(float dt);
     BTNode::ERes actionFallSM(float dt);
+    BTNode::ERes actionFinalDecision(float dt);
     BTNode::ERes endCinematic(float dt);
 
 
@@ -135,6 +141,7 @@ public:
     bool conditionCinematicInhibitor(float dt);
 	bool conditionCinematicCapsules(float dt);
 	bool conditionCinematicFinale(float dt);
+	bool conditionCinematicFinalDecision(float dt);
 	bool conditionCinematicEndJobFinale(float dt);
 	bool conditionCinematicShutdownFinale(float dt);
 	

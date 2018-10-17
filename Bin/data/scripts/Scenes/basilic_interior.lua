@@ -1,6 +1,7 @@
 function onSceneStart_scene_basilic_interior()
-	--pre_end_cinematic_scene();
-	shutdown_end_cinematic_scene();
+	pre_end_cinematic_scene();
+	--shutdown_end_cinematic_scene
+	--temp_final_decision();
 end
 
 function finish_job_end_cinematic_scene()
@@ -128,6 +129,22 @@ function pre_end_cinematic_scene()
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_13\", 0.0, \"cinematic\", \"\")", 87.3);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_12_Rot_2\", 0.0)",87.3);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_12_Rot_1\", 0.0)",87.3);
+	
+	--Final Decision
+	execScriptDelayed("setCinematicPlayerState(true,\"final_decision_cinematic\")", 87.3);
+end
+
+function temp_final_decision()
+	setInBlackScreen(0.25);
+	move("The Player", VEC3(-8.850, 0.044, -4.275),VEC3(-8.850, 0.044, -1));
+	setCinematicPlayerState(true,"remove_inhibitor_tutorial");
+
+	execScriptDelayed("setOutBlackScreen(0.25);",0.5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_13\", 0.0, \"cinematic\", \"\")", 0.3);
+	execScriptDelayed("setCinematicPlayerState(true,\"final_decision_cinematic\")", 0.3);
+
+	--execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_12_Rot_2\", 0.0)",0.3);
+	--execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_12_Rot_1\", 0.0)",0.3);
 end
 
 
