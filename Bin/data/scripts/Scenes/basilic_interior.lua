@@ -7,7 +7,7 @@ function onSceneStart_scene_basilic_interior()
 end
 
 function finish_job_end_cinematic_scene()
-	setCinematicPlayerState(true,"final_shutdown_scene_cinematic");
+	execScriptDelayed("setCinematicPlayerState(true,\"final_shutdown_scene_cinematic\");",0.75);
 	setInBlackScreen(0.25);
 	execScriptDelayed("move(\"The Player\", VEC3(-7.881,0.044,-0.818),VEC3(-7.881,0.044,0.0));",0.75);
 	execScriptDelayed("setOutBlackScreen(0.25);",1);

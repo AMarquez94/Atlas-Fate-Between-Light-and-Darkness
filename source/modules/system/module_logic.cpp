@@ -338,6 +338,7 @@ void CModuleLogic::publishClasses() {
 	m->set("lightUpForFinalScene", SLB::FuncCall::create(&lightUpForFinalScene));
 	m->set("lightDownForFinalScene", SLB::FuncCall::create(&lightDownForFinalScene));
 	m->set("execLastAtlasScreen", SLB::FuncCall::create(&execLastAtlasScreen));
+	m->set("removeAtlasSplash", SLB::FuncCall::create(&removeAtlasSplash));
 	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -1296,5 +1297,10 @@ void execLastAtlasScreen() {
 
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH);
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2,8,false);
+	EngineLogic.execScriptDelayed("removeAtlasSplash()",10.25);
 	EngineLogic.execScriptDelayed("changeGamestate(\"credits\")",10.5);
+}
+
+void removeAtlasSplash() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH);
 }
