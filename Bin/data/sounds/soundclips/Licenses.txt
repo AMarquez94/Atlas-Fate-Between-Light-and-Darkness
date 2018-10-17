@@ -22,3 +22,4 @@ patrol_inhibitor_test-> https://freesound.org/people/ST303/sounds/338783/
 capsules-> https://freesound.org/people/EnduringAutomotive/sounds/170248/
 patrol_inhibitor_explosion-> https://freesound.org/people/OnlyTheGhosts/sounds/251431/
 glitches-> https://www.youtube.com/watch?v=O13d7KxKL48 and https://www.youtube.com/watch?v=aV8DEJ8ydJQ (modified)
+transmission -> https://www.youtube.com/watch?v=-p-pVVp0Ibo

@@ -74,7 +74,7 @@ bool CModuleSceneManager::start() {
 }
 
 bool CModuleSceneManager::stop() {
-
+    next_scene = "";
     unLoadActiveScene();
 
     return true;

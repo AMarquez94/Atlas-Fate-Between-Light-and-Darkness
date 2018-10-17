@@ -832,6 +832,8 @@ void TCompTempPlayerController::die()
             CEntity* enemy = h;
             enemy->sendMsg(newMsg);
         }
+
+        EngineGUI.clearSubtitles();
     }
 }
 

@@ -233,7 +233,12 @@ data/textures/tx_pasarela_rgh.dds
 data/materials/mtl_pasarela.material
 data/meshes/pasarela.mesh
 data/meshes/suelo_corridor.mesh
-data/textures/sueloytecho_low_1001_BaseColor.dds
+data/textures/tx_sueloytecho_alb.dds
+data/textures/tx_sueloytecho_hgt.dds
+data/textures/tx_sueloytecho_emi.dds
+data/textures/tx_sueloytecho_met.dds
+data/textures/tx_sueloytecho_nml.dds
+data/textures/tx_sueloytecho_rgh.dds
 data/materials/mtl_sueloytecho.material
 data/meshes/suelo_interior.mesh
 data/textures/tx_suelo_interior_alb.dds
