@@ -7,7 +7,7 @@ DECL_OBJ_MANAGER("render_ao", TCompRenderAO);
 
 // ---------------------
 void TCompRenderAO::debugInMenu() {
-    TCompRenderBlur::debugInMenu();
+
 	ImGui::DragFloat("Amount", &amount, 0.01f, 0.0f, 1.0f);
 	ImGui::DragFloat("Radius", &radius, 0.01f, 0.0f, 10.0f);
 	ImGui::DragFloat("ZRange Discard", &zrange_discard, 0.001f, 0.0f, 0.1f);
@@ -15,7 +15,7 @@ void TCompRenderAO::debugInMenu() {
 }
 
 void TCompRenderAO::load(const json& j, TEntityParseContext& ctx) {
-    TCompRenderBlur::load(j, ctx);
+
 	enabled = j.value("enabled", enabled);
 	amount = j.value("amount", amount);
 	radius = j.value("radius", radius);

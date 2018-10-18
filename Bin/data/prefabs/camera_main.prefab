@@ -11,9 +11,6 @@
 				"active_steps": 1,
 				"rt_name": "Bloom"
 			},
-			"fog": {
-				"enabled": true
-			},
 			"antialiasing": {
 				"enabled": true
 			},

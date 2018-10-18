@@ -11,7 +11,7 @@ class CRenderMesh;
 class CTexture;
 
 // ------------------------------------
-class TCompRenderAO : public TCompRenderBlur {
+class TCompRenderAO : public TCompBase {
 
 	CRenderToTexture*       rt_output = nullptr;
 	const CTexture*         white = nullptr;
@@ -23,6 +23,7 @@ class TCompRenderAO : public TCompRenderBlur {
 	float                   amount_spreading = 0.960f;
 	int                     xres = 0;
 	int                     yres = 0;
+    bool enabled;
 
 public:
 

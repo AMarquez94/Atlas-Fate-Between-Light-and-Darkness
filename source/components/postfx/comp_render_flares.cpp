@@ -6,6 +6,8 @@
 
 DECL_OBJ_MANAGER("render_flares", TCompRenderFlares);
 
+CRenderToTexture* TCompRenderFlares::rt_output = nullptr;
+
 // ---------------------
 void TCompRenderFlares::debugInMenu() {
 
@@ -20,22 +22,22 @@ void TCompRenderFlares::load(const json& j, TEntityParseContext& ctx) {
 	xres = Render.width;
 	yres = Render.height;
 
-	static int g_counter = 0;
-	rt_output = new CRenderToTexture();
-	char rt_name[64];
-	sprintf(rt_name, "Flares_%02d", g_counter++);
-	bool is_ok = rt_output->createRT(rt_name, xres, yres, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
-	assert(is_ok);
-
-    rt_output2 = new CRenderToTexture();
-    is_ok = rt_output2->createRT("Flares_RTarget", xres, yres, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
-    assert(is_ok);
+    if (!rt_output) {
+        static int g_counter = 0;
+        rt_output = new CRenderToTexture();
+        char rt_name[64];
+        sprintf(rt_name, "Flares_%02d", g_counter++);
+        bool is_ok = rt_output->createRT(rt_name, xres, yres, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
+        assert(is_ok);
+    }
 
 	tech = Resources.get("postfx_flare.tech")->as<CRenderTechnique>();
 	mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
     distance_factors = VEC4(1, 1, 1, 1);
 
+    bool is_ok = true;
     static int g_blur_counter = 0;
+    
     for (int i = 0; i < 6; ++i) {
         CBlurStep* s = new CBlurStep;
 

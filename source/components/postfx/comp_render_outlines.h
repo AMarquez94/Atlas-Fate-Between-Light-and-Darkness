@@ -10,12 +10,13 @@ class CRenderToTexture;
 // ------------------------------------
 struct TCompRenderOutlines : public TCompBase {
 
+    static CRenderToTexture*             post_rt;
+
     bool                          enabled = true;
     float                         amount = 1.f;
     const CRenderTechnique*       tech = nullptr;
     const CRenderTechnique*       post_tech = nullptr;
     const CRenderMesh*            mesh = nullptr;
-    CRenderToTexture*             post_rt = nullptr;
 
     void load(const json& j, TEntityParseContext& ctx);
     void debugInMenu();

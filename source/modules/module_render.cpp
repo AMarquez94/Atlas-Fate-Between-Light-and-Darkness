@@ -317,13 +317,13 @@ void CModuleRender::activateMainCamera() {
 
 void CModuleRender::generateFrame() {
 
+    uploadAllVideoTexturesReady();
+
     // PRE CONFIGURATION
     {
         activateMainCamera();
         cb_globals.updateGPU();
     }
-
-    uploadAllVideoTexturesReady();
 
     {
         // SHADOW GENERATION
