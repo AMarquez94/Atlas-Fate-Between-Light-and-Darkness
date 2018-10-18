@@ -74,7 +74,7 @@ bool CModuleSceneManager::start() {
 }
 
 bool CModuleSceneManager::stop() {
-
+    next_scene = "";
     unLoadActiveScene();
 
     return true;
@@ -283,6 +283,13 @@ bool CModuleSceneManager::unLoadActiveScene(bool partial) {
     return false;
 }
 
+void CModuleSceneManager::changeGameState(const std::string & gamestate)
+{
+    next_scene = "";
+    unLoadActiveScene();
+    CEngine::get().getModules().changeGameState(gamestate);
+}
+
 /* Some getters and setters */
 
 Scene* CModuleSceneManager::getActiveScene() {
@@ -313,6 +320,10 @@ void CModuleSceneManager::preloadScene(const std::string& sceneName) {
     //for (int i = 0; i < resources.size(); i++) {
     //    EngineFiles.addResourceToLoad(resources[i]);
     //}
+}
+
+void CModuleSceneManager::preloadOnlyScene(const std::string& sceneName) {
+    EngineFiles.addVectorResourceToLoad(EngineFiles.getFileResourceVector(sceneName));
 }
 
 void CModuleSceneManager::removeSceneResources(const std::string& sceneName) {

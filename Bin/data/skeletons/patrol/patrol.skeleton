@@ -90,6 +90,9 @@
 			"name": "dead"
 		},
 		{
+			"name": "turn_left"
+		},
+		{
 			"name": "dead_cinematic"
 		},
 		{

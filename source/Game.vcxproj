@@ -128,6 +128,7 @@
     <ClCompile Include="components\object_controller\comp_billboard.cpp" />
     <ClCompile Include="components\object_controller\comp_bone_controller.cpp" />
     <ClCompile Include="components\object_controller\comp_button.cpp" />
+    <ClCompile Include="components\object_controller\comp_capsule_final_effects.cpp" />
     <ClCompile Include="components\object_controller\comp_door.cpp" />
     <ClCompile Include="components\object_controller\comp_inhibitor.cpp" />
     <ClCompile Include="components\object_controller\comp_instance.cpp" />
@@ -381,6 +382,7 @@
     <ClInclude Include="components\object_controller\comp_billboard.h" />
     <ClInclude Include="components\object_controller\comp_bone_controller.h" />
     <ClInclude Include="components\object_controller\comp_button.h" />
+    <ClInclude Include="components\object_controller\comp_capsule_final_effects.h" />
     <ClInclude Include="components\object_controller\comp_door.h" />
     <ClInclude Include="components\object_controller\comp_inhibitor.h" />
     <ClInclude Include="components\object_controller\comp_instance.h" />

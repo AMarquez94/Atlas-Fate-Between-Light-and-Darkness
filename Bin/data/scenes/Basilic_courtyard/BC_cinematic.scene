@@ -27,5 +27,25 @@
       },
        "prefab": "data/prefabs/camera_player.prefab"
     }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Basilic_Courtyard_Enter_Rot_1",
+      "transform": {
+        "pos": "-8.918 17.016 -384.211",
+        "rotation": "0.0 -1 0.0 0.0"
+      },
+       "prefab": "data/prefabs/camera_player.prefab"
+    }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Basilic_Courtyard_Enter_Rot_2",
+      "transform": {
+        "pos": "-8.918 17.016 -367.361",
+        "rotation": "0.0 -0.9848 -0.1736 0.0"
+      },
+       "prefab": "data/prefabs/camera_player.prefab"
+    }
   }
 ]

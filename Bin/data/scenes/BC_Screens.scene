@@ -30,7 +30,7 @@
           ,
           "materials":
           [
-            "data/materials/video.material"
+            "data/materials/video_atlas.material"
           ]
         }
       ]
@@ -97,7 +97,7 @@
           ,
           "materials":
           [
-            "data/materials/video.material"
+            "data/materials/video_atlas.material"
           ]
         }
       ]

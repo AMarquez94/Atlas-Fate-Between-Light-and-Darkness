@@ -37,6 +37,21 @@ float4 PS_GUI(
   return oColor;
 }
 
+float4 PS_GUI_Video(
+  VS_FULL_OUTPUT input
+  ) : SV_Target
+{
+  float2 finalUV = lerp(minUV, maxUV, input.UV);
+  float4 oDiffuse = txAlbedo.Sample(samLinear, finalUV);
+	
+	// The chroma
+	if(oDiffuse.x >= 0 && oDiffuse.x < 0.15 && oDiffuse.y > 0.9 && oDiffuse.y && oDiffuse.z >= 0 && oDiffuse.z < 0.15)
+		discard;
+	return oDiffuse;
+  float4 oColor = float4(oDiffuse.rgb * tint_color.rgb, oDiffuse.a * tint_color.a);
+  return oColor;
+}
+
 float4 PS_GUI_RADIAL(
   VS_FULL_OUTPUT input
   ) : SV_Target

@@ -59,7 +59,7 @@
 			"tech" : "particles_instanced_additive.tech"
 	},
   "size" : {
-    "scale" : 0.5,
+    "scale" : 1,
     "scale_variation" : 1.4,
     "sizes" : [
 		  [0.0, "3 3 3"],

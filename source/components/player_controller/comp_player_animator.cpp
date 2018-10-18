@@ -404,7 +404,49 @@ void TCompPlayerAnimator::initializeAnimations() {
 		1.0f,
 		false
 	);
-	
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CINEMATIC_IDLE,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"cinematic_idle",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CINEMATIC_KEYBOARD,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"cinematic_keyboard",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CINEMATIC_LOOKCAPSULES_POSE,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"cinematic_looking_capsules_pose",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CINEMATIC_LOOKCAPSULES,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"cinematic_look_capsules",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
 }
 
 void TCompPlayerAnimator::registerMsgs() {

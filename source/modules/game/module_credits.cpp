@@ -12,13 +12,14 @@ bool CModuleCredits::start()
 	mouse->setLockMouse(false);
 
 	//EngineScene.loadScene("default");
-
-	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE);
-	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::CREDITS);
-	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2,10);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(0.25,0);
+	EngineLogic.execSystemScriptDelayed("takeOutBlackScreen();", 0.5f);
+	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND);
+	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2,8);
 	EngineLogic.execSystemScriptDelayed("takeOutCredits();", 13.0f);
-	EngineLogic.execSystemScriptDelayed("goToMainMenu();",14.0f);
-	EngineLogic.execSystemScriptDelayed("takeOutBlackScreen();", 14.5f);
+	EngineLogic.execSystemScriptDelayed("goToMainMenu();",10.0f);
+	EngineLogic.execSystemScriptDelayed("takeOutBlackScreen();", 10.5f);
 	
 	CHandle h_camera = getEntityByName("test_camera_flyover");
 	if (h_camera.isValid())

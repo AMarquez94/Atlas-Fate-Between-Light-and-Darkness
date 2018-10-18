@@ -29,7 +29,12 @@ bool CModuleGameManager::start() {
     lastCheckpoint = new CCheckpoint();
     _currentstate = PauseState::none;
     EngineRender.setDebugMode(false);
+    EngineLogic.setPause(false);
     main_theme = EngineSound.playEvent("event:/Ambiance/InGame");
+    transmission = EngineSound.playEvent("event:/Ambiance/Transmission");
+    transmission.setVolume(0.f);
+    _musicstate = MusicState::normal;
+
     return true;
 }
 
@@ -206,6 +211,12 @@ void CModuleGameManager::update(float delta) {
     }
 }
 
+bool CModuleGameManager::stop()
+{
+    stopAllSoundEvents();
+    return true;
+}
+
 void CModuleGameManager::updateGameCondition() {
 
     _player = EngineEntities.getPlayerHandle();
@@ -342,6 +353,20 @@ void CModuleGameManager::updateMusicState(float dt)
                 }
             }
             break;
+
+        case MusicState::end_scene:
+            if (!finalScene.isValid()) {
+                persecution_theme.stop();
+                main_theme.stop();
+                finalScene = EngineSound.playEvent("event:/Ambiance/EndMusic");
+                finalScene.setVolume(0.f);
+            }
+            else if(finalScene.getVolume() < 1.f){
+                final_scene_lerp += dt;
+                float volume = lerp(0.f, 1.f, final_scene_lerp / 2.f);
+                finalScene.setVolume(volume);
+            }
+            break;
         case MusicState::no_music:
 
             break;
@@ -396,6 +421,7 @@ void CModuleGameManager::changeMusicState(MusicState new_state)
 {
     main_theme_lerp = 0.f;
     persecution_lerp = 0.f;
+    final_scene_lerp = 0.f;
     _musicstate = new_state;
 }
 
@@ -583,6 +609,23 @@ void CModuleGameManager::stopAllSoundEvents()
 {
     persecution_theme.stop();
     main_theme.stop();
+    transmission.stop();
+    finalScene.stop();
+}
+
+void CModuleGameManager::playTransmissionSound(bool play)
+{
+    if (play) {
+        transmission.setVolume(.25f);
+    }
+    else {
+        transmission.setVolume(0.f);
+    }
+}
+
+void CModuleGameManager::changeToEndScene()
+{
+    changeMusicState(MusicState::end_scene);
 }
 
 void CModuleGameManager::resetState() {

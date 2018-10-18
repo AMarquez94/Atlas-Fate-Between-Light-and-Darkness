@@ -6,7 +6,7 @@ class TCompLightPoint : public TCompBase {
 
 	// Light params
 	VEC4            color = VEC4(1, 1, 1, 1);
-	float           intensity = 1.0f;
+	
     bool            cull_enabled = false;      // Dynamic
 
     void onCreate(const TMsgEntityCreated& msg);
@@ -15,6 +15,7 @@ class TCompLightPoint : public TCompBase {
     DECL_SIBLING_ACCESS();
 
 public:
+	float           intensity = 1.0f;
     float inner_cut = 1.0f;
     float outer_cut = 1.0f;
 

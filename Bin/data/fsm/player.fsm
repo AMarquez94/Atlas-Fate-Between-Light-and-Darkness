@@ -218,7 +218,7 @@
 			"size": 1,
 			"noise": {
 				"is_only_once": true,
-				"radius": 5.0,
+				"radius": 7,
 				"time_to_repeat": 0.5,
 				"is_artificial": true
 			}
@@ -231,7 +231,7 @@
 			"size": 0.25,
 			"noise": {
 				"is_only_once": true,
-				"radius": 7.0,
+				"radius": 10.0,
 				"time_to_repeat": 0.5,
 				"is_artificial": true
 			},

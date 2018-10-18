@@ -22,7 +22,6 @@
 		"scene_group": [
 			"data/scenes/Intro/intro_test_instancing.scene",
 			"data/scenes/Intro/cinematic.scene",
-			"data/scenes/Map_Intro/checkpoints.scene",
 			"data/scenes/Intro/intro_columnas.scene",
 			"data/scenes/Intro/intro_puertas.scene",
 			"data/scenes/Intro/intro_casas.scene",
@@ -59,16 +58,17 @@
 			"data/scenes/intro_props.scene",
 			"data/scenes/Intro/tutorial.scene",
 			"data/scenes/Intro/enemy.scene",
-			"data/scenes/Intro/intro_checkpoints.scene",
 			"data/scenes/Intro/intro_trigger_kill.scene",
 			"data/scenes/Intro/intro_buttons.scene",
 			"data/scenes/Intro/intro_particles.scene",
+
+			"data/scenes/intro_puerta_corridor.scene",
+
 			"data/scenes/grass_container.scene",
 			"data/scenes/decal_test.scene",
 			"data/scenes/intro_corridor_3.scene",
 			"data/scenes/intro_corridor_logic.scene",
 			"data/scenes/intro_col_corridor_lights.scene",
-			"data/scenes/intro_col_corridor_props.scene",
 			"data/scenes/pantalla_intro_video.scene",
 			"data/scenes/intro_planets.scene",
 			"data/scenes/intro_subtitle_triggers.scene",
@@ -87,7 +87,7 @@
 			"env_fog_density": 0.1,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.043"
+			"env_fog": "0.004 0.004 0.0117"
 		},
 		"persistent_scenes": [
 			"data/scenes/Coliseo/_player.scene",
@@ -117,7 +117,6 @@
 
 			"data/scenes/col_zone_a_corridor_lights.scene",
 			"data/scenes/col_intro_corridor_lights.scene",
-			"data/scenes/col_intro_corridor_props.scene",
 			"data/scenes/Coliseo/col_capsule_cable.scene",
 			"data/scenes/col_sub_triggers.scene"
 		]
@@ -135,7 +134,7 @@
 			"env_fog_density": 0.1,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.043"
+			"env_fog": "0.004 0.004 0.0117"
 
 		},
 		"persistent_scenes": [
@@ -201,7 +200,7 @@
 			"env_fog_density": 0.1,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.043"
+			"env_fog": "0.004 0.004 0.0117"
 		},
 		"persistent_scenes": [
 			"data/scenes/Coliseo/_player2.scene",
@@ -245,7 +244,7 @@
 			"env_fog_density": 0.083,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.043"
+			"env_fog": "0.004 0.004 0.0117"
 		},
 		"persistent_scenes": [
 			"data/scenes/Basilic_courtyard/_player.scene",
@@ -322,8 +321,10 @@
 			"data/scenes/basilic_interior_monitorytubos.scene",
 			"data/scenes/basilic_interior_nucleo.scene",
 			"data/scenes/basilic_interior_sueloyagarres.scene",
+			"data/scenes/Basilic_interior/basilic_interior_particles.scene",
+			"data/scenes/Basilic_interior/basilic_interior_holograms.scene",
 			"data/scenes/basilic_interior_luces.scene",
-			"data/scenes/video.scene"
+			"data/scenes/Basilic_interior/basilic_interior_cinematic.scene"
 
 		]
 	}

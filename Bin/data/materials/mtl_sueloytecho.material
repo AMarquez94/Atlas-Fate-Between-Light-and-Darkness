@@ -13,8 +13,8 @@
     ,
     "height": "data/textures/tx_sueloytecho_hgt.dds"
     ,
-    "aocclusion": "data/textures/tx_sueloytecho_ao.dds"
-	,
-	"emissive": "data/textures/tx_sueloytecho_emi.dds"
+    "aocclusion": "data/textures/tx_sueloytecho_hgt.dds"
+        ,
+    "emissive": "data/textures/tx_sueloytecho_emi.dds"
   }
 }

@@ -222,9 +222,39 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
 	addChild("CapsulesCinematic", "idleAnimationCapsulesCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdleListen, nullptr);
 	addChild("CapsulesCinematic", "resetBTCapsulesCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
 
-    /*addChild("playerActivated", "LandPlayer", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionIsLanded, nullptr, nullptr);
-    addChild("LandPlayer", "landPlayer", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionFallSM, nullptr);*/
+	//URI
+	addChild("playerActivated", "FinalCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicFinale, nullptr, nullptr);
+	addChild("FinalCinematic", "resetTimersFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene, nullptr);
+	addChild("FinalCinematic", "firstWalkFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSlowWalk, nullptr);
+	addChild("FinalCinematic", "resetTimersFinalCinematic2", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene1, nullptr);
+	addChild("FinalCinematic", "idleEnterFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdleTimed, nullptr);
+	//Comensa a caminar pel pasillo
+	addChild("FinalCinematic", "resetTimersFinalCinematic3", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene2, nullptr);
+	addChild("FinalCinematic", "secondWalkFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSlowWalk, nullptr);
+	//Arriba al final del pasillo
+	addChild("FinalCinematic", "resetTimersFinalCinematic4", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene3, nullptr);
+	addChild("FinalCinematic", "idleArrivedFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdleTimed, nullptr);
+    //Mira les capsule
+	addChild("FinalCinematic", "resetTimersFinalCinematic5", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene4, nullptr);
+	addChild("FinalCinematic", "lookAtCapsulesFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationLookCapsulesTimed, nullptr);
+	//Pose de mirar capsules un rato
+	addChild("FinalCinematic", "resetTimersFinalCinematic6", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene5, nullptr);
+	addChild("FinalCinematic", "lookAtCapsulesPoseFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionPoseLookCapsulesAnimationIdleTimed, nullptr);
+	//Pose final pre decisio
+	addChild("FinalCinematic", "finalIdlePoseFinalCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdleCinematic, nullptr);
 
+    //Momento decision
+    addChild("playerActivated", "finalDecisionCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicFinalDecision, nullptr, nullptr);
+    addChild("finalDecisionCinematic", "ResetTimersFinalDecisionCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalDecision, nullptr);
+    addChild("finalDecisionCinematic", "ActionFinalDecision", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionFinalDecision, nullptr);
+    addChild("finalDecisionCinematic", "resetBTFinalDecision", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
+
+	//Shutdown finale
+	addChild("playerActivated", "FinalShutdownCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicShutdownFinale, nullptr, nullptr);
+	addChild("FinalShutdownCinematic", "resetTimersFinalShutdownCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene6, nullptr);
+	addChild("FinalShutdownCinematic", "keyboardFinalShutdownCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationKeyboard, nullptr);
+	addChild("FinalShutdownCinematic", "resetTimers2FinalShutdownCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalScene7, nullptr);
+	addChild("FinalShutdownCinematic", "epicWalkFinalShutdownCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSlowWalk, nullptr);
 	enabledPlayerAI = j.value("enabled", false);
 	_speed = j.value("speed", 1.0f);
 	_rotationSpeed = j.value("rotationSpeed", 1.0f);
@@ -306,12 +336,19 @@ void TCompAIPlayer::onMsgScenePaused(const TMsgScenePaused & msg)
     // TODO: Checkear why the fuck no lo pilla
 }
 
+void TCompAIPlayer::onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) {
+	if (msg.animation_name.compare("cinematic_look_capsules") == 0) {
+		lookcapsulesAnimationCompleted = true;
+	}
+}
+
 void TCompAIPlayer::registerMsgs()
 {
 	DECL_MSG(TCompAIPlayer, TMsgPlayerAIEnabled, onMsgPlayerAIEnabled);
 	DECL_MSG(TCompAIPlayer, TMsgEntityCreated, onMsgEntityCreated);
     DECL_MSG(TCompAIPlayer, TMsgEntitiesGroupCreated, onMsgEntityGroupCreated);
     DECL_MSG(TCompAIPlayer, TMsgScenePaused, onMsgScenePaused);
+	DECL_MSG(TCompAIPlayer, TMsgAnimationCompleted, onMsgAnimationCompleted);
 }
 
 void TCompAIPlayer::loadActions() {
@@ -382,6 +419,18 @@ TCompAIPlayer::EState TCompAIPlayer::getStateEnumFromString(const std::string & 
     }
 	else if (stateName.compare("capsules_cinematic") == 0) {
 		return TCompAIPlayer::EState::CINEMATIC_CAPSULES;
+	}
+	else if (stateName.compare("final_scene_cinematic") == 0) {
+		return TCompAIPlayer::EState::CINEMATIC_FINAL_SCENE;
+	}
+    else if (stateName.compare("final_decision_cinematic") == 0) {
+        return TCompAIPlayer::EState::CINEMATIC_FINAL_DECISION;
+    }
+	else if (stateName.compare("final_shutdown_scene_cinematic") == 0) {
+		return TCompAIPlayer::EState::CINEMATIC_FINAL_SHUTDOWN;
+	}
+	else if (stateName.compare("final_endjob_scene_cinematic") == 0) {
+		return TCompAIPlayer::EState::CINEMATIC_FINAL_ENDJOB;
 	}
     else {
         return TCompAIPlayer::EState::NUM_STATES;
@@ -568,10 +617,105 @@ BTNode::ERes TCompAIPlayer::actionAnimationCrouch(float dt)
 
 BTNode::ERes TCompAIPlayer::actionAnimationIdle(float dt)
 {
+    _timer += dt;
+    if (_timer > _maxTimer) {
+        _timer = 0.f;
+        return BTNode::ERes::LEAVE;
+    }
+    else {
+        TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+        my_anim->playAnimation(TCompPlayerAnimator::EAnimation::IDLE);
+        return BTNode::ERes::STAY;
+    } 
+}
+
+BTNode::ERes TCompAIPlayer::actionAnimationIdleTimed(float dt)
+{
+	_timer += dt;
+	if (_timer > _maxTimer) {
+		_timer = 0.f;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+		my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_IDLE);
+		return BTNode::ERes::STAY;
+	}
+}
+
+BTNode::ERes TCompAIPlayer::actionAnimationIdleCinematic(float dt)
+{
 	TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
-	my_anim->playAnimation(TCompPlayerAnimator::EAnimation::IDLE);
-    return BTNode::ERes::LEAVE;
-    
+	my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_IDLE);
+	return BTNode::ERes::STAY;
+}
+
+BTNode::ERes TCompAIPlayer::actionPoseLookCapsulesAnimationIdleTimed(float dt)
+{
+	_timer += dt;
+	if (_timer > _maxTimer) {
+		_timer = 0.f;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+		my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_LOOKCAPSULES_POSE);
+		return BTNode::ERes::STAY;
+	}
+}
+
+BTNode::ERes TCompAIPlayer::actionAnimationLookCapsulesTimed(float dt)
+{
+	TCompPlayerAnimator *myAnimator = get<TCompPlayerAnimator>();
+	if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPlayerAnimator::EAnimation::CINEMATIC_LOOKCAPSULES) && !lookcapsulesAnimationCompleted) {
+		myAnimator->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_LOOKCAPSULES);
+	}
+
+	_timer += dt;
+	if (_timer > _maxTimer) {
+		myAnimator->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_LOOKCAPSULES_POSE);
+		_timer = 0.f;
+	}
+
+	if (lookcapsulesAnimationCompleted) {
+		lookcapsulesAnimationCompleted = false;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		return BTNode::ERes::STAY;
+	}
+
+	return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionAnimationSlowWalk(float dt) {
+
+	_timer += dt;
+	if (_timer > _maxTimer) {
+		_timer = 0.f;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		TCompTransform* my_pos = get<TCompTransform>();
+		my_pos->setPosition(my_pos->getPosition() + my_pos->getFront() * dt * 0.65f);
+		TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+		my_anim->playAnimation(TCompPlayerAnimator::EAnimation::WALK_CINEMATIC);
+		return BTNode::ERes::STAY;
+	}	
+}
+
+BTNode::ERes TCompAIPlayer::actionAnimationKeyboard(float dt) {
+
+	_timer += dt;
+	if (_timer > _maxTimer) {
+		_timer = 0.f;
+		return BTNode::ERes::LEAVE;
+	}
+	else {
+		TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+		my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CINEMATIC_KEYBOARD);
+		return BTNode::ERes::STAY;
+	}
 }
 
 BTNode::ERes TCompAIPlayer::actionAnimationIdleListen(float dt)
@@ -625,6 +769,10 @@ BTNode::ERes TCompAIPlayer::actionStartFallSM(float dt)
 
 	TCompParticles * my_particles = get<TCompParticles>();
 	if (my_particles) {
+        TCompAudio* my_audio = get<TCompAudio>();
+        if (my_audio) {
+            my_audio->playEvent("event:/Sounds/Player/SM/EnterMerge");
+        }
 		Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", CHandle(this).getOwner());
 		Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash2.particles", CHandle(this).getOwner());
 		Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", CHandle(this).getOwner());
@@ -661,6 +809,10 @@ BTNode::ERes TCompAIPlayer::actionEndSM(float dt)
 
     TCompParticles * my_particles = get<TCompParticles>();
     if (my_particles) {
+        TCompAudio* my_audio = get<TCompAudio>();
+        if (my_audio) {
+            my_audio->playEvent("event:/Sounds/Player/SM/ExitMerge");
+        }
         Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", CHandle(this).getOwner());
         Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash2.particles", CHandle(this).getOwner());
         Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", CHandle(this).getOwner());
@@ -946,7 +1098,7 @@ BTNode::ERes TCompAIPlayer::actionStartSMEnemy(float dt)
 BTNode::ERes TCompAIPlayer::actionResetTimersCinematicWalkFall(float dt)
 {
     _currentState = EState::CINEMATIC_FALLSM;
-    _maxTimer = 22.5f;
+    _maxTimer = 50.5f;
     return BTNode::ERes::LEAVE;
 }
 
@@ -973,6 +1125,80 @@ BTNode::ERes TCompAIPlayer::actionResetTimersInhibitorCinematic2(float dt)
 {
 	_maxTimer = 3.5f;
 	return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene(float dt)
+{
+	_maxTimer = 4.5f;
+	return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene1(float dt)
+{
+	_maxTimer = 12.0f;
+	return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene2(float dt)
+{
+	_maxTimer = 20.5f;
+	return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene3(float dt)
+{
+	_maxTimer = 11.0f;
+	return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene4(float dt)
+{
+	_maxTimer = 0.25f;
+	return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene5(float dt)
+{
+	_maxTimer = 19.5f;
+	return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene6(float dt)
+{
+	_maxTimer = 18.0f;
+	return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersFinalScene7(float dt)
+{
+	_maxTimer = 500.0f;
+	return BTNode::ERes::LEAVE;
+}
+
+BTNode::ERes TCompAIPlayer::actionResetTimersFinalDecision(float dt)
+{
+    _maxTimer = 10.f;
+    _timer = 0.f;
+
+    EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_FINAL_DECISION);
+    EngineGUI.enableWidget("ingame_final_decision", true);
+
+    /* Desactivo radial shutdown */
+    EngineGUI.enableWidget("radial_shutdown", false);
+
+    /* Desactivo teclado/mando */
+    if (EngineInput.pad().connected) {
+        EngineGUI.enableWidget("button_endjob_teclado", false);
+        EngineGUI.enableWidget("button_shutdown_teclado", false);
+    }
+    else {
+        EngineGUI.enableWidget("button_endjob_mando", false);
+        EngineGUI.enableWidget("button_shutdown_mando", false);
+    }
+
+    Engine.getGUI().getVariables().setVariant("radial_endjob_factor", (_maxTimer - _timer) / _maxTimer);
+
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIPlayer::actionResetTimersCapsuleCinematic(float dt) {
@@ -1026,6 +1252,72 @@ BTNode::ERes TCompAIPlayer::actionFallSM(float dt)
     }
 
     return BTNode::ERes::STAY;
+}
+
+BTNode::ERes TCompAIPlayer::actionFinalDecision(float dt)
+{
+    if (_timer < _maxTimer) {
+        _timer = Clamp(_timer + dt, 0.f, _maxTimer);
+        if (!hasMadeDecision) {
+
+            Engine.getGUI().getVariables().setVariant("radial_endjob_factor", (_maxTimer - _timer) / _maxTimer);
+
+            if (EngineInput.pad().button(Input::EPadButton::PAD_LANALOG_X).value < 0.f || EngineInput["btLeft"].getsPressed() /* && (!EngineInput.pad().connected || EngineInput["btRight"].value <= 0.f)*/) {
+                hasMadeDecision = true;
+                decisionMade = EState::CINEMATIC_FINAL_ENDJOB;
+
+                /* Borro derecha (shutdown) */
+                EngineGUI.enableWidget("button_shutdown_teclado", false);
+                EngineGUI.enableWidget("button_shutdown_mando", false);
+            }
+            else if (EngineInput.pad().button(Input::EPadButton::PAD_LANALOG_X).value > 0.f || EngineInput["btRight"].getsPressed()/* && (!EngineInput.pad().connected || EngineInput["btRight"].value > 0.f)*/) {
+                hasMadeDecision = true;
+                decisionMade = EState::CINEMATIC_FINAL_SHUTDOWN;
+
+                /* Borro izquierda (endjob) */
+                EngineGUI.enableWidget("button_endjob_teclado", false);
+                EngineGUI.enableWidget("button_endjob_mando", false);
+
+                /* Eliminar radial izquierda */
+                EngineGUI.enableWidget("radial_endjob", false);
+
+                /* Activar radial derecha */
+                EngineGUI.enableWidget("radial_shutdown", true);
+            }
+        }
+        else {
+
+            if (decisionMade == EState::CINEMATIC_FINAL_ENDJOB) {
+
+                Engine.getGUI().getVariables().setVariant("radial_endjob_factor", (_maxTimer - _timer) / _maxTimer);
+            }
+            else {
+
+                Engine.getGUI().getVariables().setVariant("radial_shutdown_factor", (_maxTimer - _timer) / _maxTimer);
+            }
+        }
+
+        return BTNode::ERes::STAY;
+    }
+    else {
+
+        /* Borrar toda la gui */
+        EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_FINAL_DECISION);
+        EngineGUI.enableWidget("button_endjob_teclado", false);
+        EngineGUI.enableWidget("button_endjob_mando", false);
+        EngineGUI.enableWidget("button_shutdown_teclado", false);
+        EngineGUI.enableWidget("button_shutdown_mando", false);
+        EngineGUI.enableWidget("radial_endjob", false);
+        EngineGUI.enableWidget("radial_shutdown", false);
+
+        if (decisionMade == EState::CINEMATIC_FINAL_SHUTDOWN) {
+            EngineLogic.execScript("shutdown_end_cinematic_scene()");
+        }
+        else {
+            EngineLogic.execScript("finish_job_end_cinematic_scene()");
+        }
+        return BTNode::ERes::LEAVE;
+    }
 }
 
 BTNode::ERes TCompAIPlayer::actionAnimationGrab(float dt)
@@ -1169,6 +1461,26 @@ bool TCompAIPlayer::conditionCinematicCapsules(float dt) {
 
 	return _currentState == EState::CINEMATIC_CAPSULES;
 
+}
+
+bool TCompAIPlayer::conditionCinematicFinale(float dt) {
+
+	return _currentState == EState::CINEMATIC_FINAL_SCENE;
+}
+
+bool TCompAIPlayer::conditionCinematicFinalDecision(float dt)
+{
+    return _currentState == EState::CINEMATIC_FINAL_DECISION;
+}
+
+bool TCompAIPlayer::conditionCinematicEndJobFinale(float dt) {
+
+	return _currentState == EState::CINEMATIC_FINAL_ENDJOB;
+}
+
+bool TCompAIPlayer::conditionCinematicShutdownFinale(float dt) {
+
+	return _currentState == EState::CINEMATIC_FINAL_SHUTDOWN;
 }
 
 bool TCompAIPlayer::conditionIsLanded(float dt)

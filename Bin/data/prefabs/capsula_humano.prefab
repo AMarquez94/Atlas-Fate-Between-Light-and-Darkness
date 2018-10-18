@@ -7,7 +7,8 @@
       "transform":
       {
         "pos": "0.0 0.0 0.0"
-      }
+      },
+      "capsule_final_effect" : true
     }
   }
   ,
@@ -137,7 +138,8 @@
             "data/materials/mtl_capsula_humano.material"
             ,
             "data/materials/mtl_humano_capsula.material"
-          ]
+          ],
+          "self_intensity" : 0.2
         }
       ]
       ,

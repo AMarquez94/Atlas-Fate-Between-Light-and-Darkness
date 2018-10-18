@@ -328,6 +328,11 @@ struct TMsgPlayerAIEnabled {
     DECL_MSG_ID();
 };
 
+struct TMsgEmisiveCapsuleState {
+	bool enable;
+	DECL_MSG_ID();
+};
+
 struct TMsgCinematicState {
     std::string state;
     bool enableCinematic;

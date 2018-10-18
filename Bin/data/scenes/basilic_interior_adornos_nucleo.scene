@@ -7,7 +7,85 @@
       "transform":
       {
         "pos": "0.0 0.0 0.0"
+      },
+      "animated_object_controller": {
+        "reference_names": [{
+          "name": "rueda"
+        },
+        {
+          "name": "rueda001"
+        }
+        ],
+        "animations": [{
+            "name": "rotate",
+            "src": "data/rigid_anims/interior_mezquita407.anims",
+            "loops": true,
+            "on_start" : true,
+            "speed_factor" :0.5
+
+          }
+        ]
       }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "agarre_rueda"
+      ,
+      "transform":
+      {
+        "pos": "3.12374 1.71515 10.4716"
+        ,
+        "rotation": "0.372181 -0.372181 -0.601233 -0.601233"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/agarre_rueda.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_adornos_nucleo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "agarre_rueda001"
+      ,
+      "transform":
+      {
+        "pos": "-20.8812 1.71515 10.4716"
+        ,
+        "rotation": "0.372181 -0.372181 -0.601233 -0.601233"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/agarre_rueda001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_adornos_nucleo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
     }
   }
   ,
@@ -80,8 +158,12 @@
       {
         "pos": "3.12374 1.71515 10.4716"
         ,
-        "rotation": "0.372181 -0.372181 -0.601233 -0.601233"
-      }
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      },
+			"xrotator": {
+				"speed": 0.7,
+				"rotate_pitch": true
+			}
       ,
       "render":
       [
@@ -97,6 +179,7 @@
       ,
       "abs_aabb": true
       ,
+      "rigid_anim":true,
       "local_aabb": true
     }
   }
@@ -110,8 +193,12 @@
       {
         "pos": "-20.8812 1.71515 10.4716"
         ,
-        "rotation": "0.372181 -0.372181 -0.601233 -0.601233"
-      }
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      },
+			"xrotator": {
+				"speed": 0.7,
+				"rotate_pitch": true
+			}
       ,
       "render":
       [
@@ -127,6 +214,7 @@
       ,
       "abs_aabb": true
       ,
+      "rigid_anim":true,
       "local_aabb": true
     }
   }
