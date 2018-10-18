@@ -191,7 +191,7 @@
 	},
 	"decals": {
 		"vs_file": "data/shaders/pbr_decals.fx",
-		"vertex_type": "PosNUvUvT_x_InstanceColored",
+		"vertex_type": "PosNUvUvT_x_Instance",
 		"ps_entry_point": "PS_default",
 		"category": "decals",
 		"z": "test_but_no_write",
@@ -202,7 +202,7 @@
 	},
 	"pbr_decals": {
 		"vs_file": "data/shaders/pbr_decals.fx",
-		"vertex_type": "PosNUvUvT_x_InstanceColored",
+		"vertex_type": "PosNUvUvT_x_Instance",
 		"category": "gbuffer_decals",
 		"z": "test_but_no_write",
 		"blend": "multiplicative_gbuffer",
