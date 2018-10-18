@@ -6,6 +6,7 @@
 #include "render/blur_step.h"
 
 DECL_OBJ_MANAGER("render_bloom", TCompRenderBloom);
+CRenderToTexture* TCompRenderBloom::rt_highlights = nullptr;
 
 // ---------------------
 TCompRenderBloom::TCompRenderBloom()
@@ -30,7 +31,7 @@ void TCompRenderBloom::debugInMenu() {
 }
 
 void TCompRenderBloom::load(const json& j, TEntityParseContext& ctx) {
-	TCompRenderBlur::load(j, ctx);
+
 	if (j.count("weights"))
         add_weights = loadVEC4(j["weights"]);
 
@@ -40,11 +41,43 @@ void TCompRenderBloom::load(const json& j, TEntityParseContext& ctx) {
 	multiplier = j.value("multiplier", 1.f);
     weights = VEC4(70, 56, 28, 8);
 
-	rt_highlights = new CRenderToTexture();
-	char rt_name[64];
-	sprintf(rt_name, "BloomFiltered_%08x", CHandle(this).asUnsigned());
-	bool is_ok = rt_highlights->createRT(rt_name, Render.width, Render.height, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
-	assert(is_ok);
+    enabled = j.value("enabled", true);
+    global_distance = j.value("global_distance", 1.0f);
+    distance_factors = VEC4(1, 2, 3, 4);
+
+    if (j.value("box_filter", false))
+        weights = VEC4(1, 1, 1, 1);
+    else if (j.value("gauss_filter", false))
+        weights = VEC4(70, 56, 28, 8);
+
+    bool is_ok = true;
+    int nsteps = j.value("max_steps", 2);
+    int xres = Render.width;
+    int yres = Render.height;
+
+    if (!rt_highlights) {
+
+        rt_highlights = new CRenderToTexture();
+        char rt_name[64];
+        sprintf(rt_name, "BloomFiltered_%08x", CHandle(this).asUnsigned());
+        bool is_ok = rt_highlights->createRT(rt_name, Render.width, Render.height, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
+        assert(is_ok);
+
+        static int g_blur_counter = 0;
+        for (int i = 0; i < nsteps; ++i) {
+            CBlurStep* s = new CBlurStep;
+
+            char blur_name[64];
+            sprintf(blur_name, "%s_%02d", "Bloom", g_blur_counter);
+            g_blur_counter++;
+
+            is_ok &= s->create(blur_name, xres, yres);
+            assert(is_ok);
+            steps.push_back(s);
+            xres /= 2;
+            yres /= 2;
+        }
+    }
 
 	tech_filter = Resources.get("bloom_filter.tech")->as<CRenderTechnique>();
 	tech_add = Resources.get("bloom_add.tech")->as<CRenderTechnique>();

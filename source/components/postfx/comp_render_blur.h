@@ -9,6 +9,7 @@ class  CTexture;
 
 // ------------------------------------
 struct TCompRenderBlur : public TCompBase {
+
 	std::vector< CBlurStep* > steps;
 	VEC4  weights;
 	VEC4  distance_factors;     // 1 2 3 4

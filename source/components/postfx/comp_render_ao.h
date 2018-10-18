@@ -13,7 +13,8 @@ class CTexture;
 // ------------------------------------
 class TCompRenderAO : public TCompBase {
 
-	CRenderToTexture*       rt_output = nullptr;
+	static CRenderToTexture*       rt_output;
+
 	const CTexture*         white = nullptr;
 	const CRenderTechnique* tech = nullptr;
 	const CRenderMesh*      mesh = nullptr;

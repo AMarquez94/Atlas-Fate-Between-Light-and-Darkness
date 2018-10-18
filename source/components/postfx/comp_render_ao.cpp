@@ -4,6 +4,7 @@
 #include "render/render_objects.h"
 
 DECL_OBJ_MANAGER("render_ao", TCompRenderAO);
+CRenderToTexture* TCompRenderAO::rt_output = nullptr;
 
 // ---------------------
 void TCompRenderAO::debugInMenu() {
@@ -25,12 +26,14 @@ void TCompRenderAO::load(const json& j, TEntityParseContext& ctx) {
 	xres = Render.width;
 	yres = Render.height;
 
-	static int g_counter = 0;
-	rt_output = new CRenderToTexture();
-	char rt_name[64];
-	sprintf(rt_name, "AO_%02d", g_counter++);
-	bool is_ok = rt_output->createRT(rt_name, xres, yres, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
-	assert(is_ok);
+    if (!rt_output) {
+        static int g_counter = 0;
+        rt_output = new CRenderToTexture();
+        char rt_name[64];
+        sprintf(rt_name, "AO_%02d", g_counter++);
+        bool is_ok = rt_output->createRT(rt_name, xres, yres, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
+        assert(is_ok);
+    }
 
 	white = Resources.get("data/textures/white.dds")->as<CTexture>();
 	tech = Resources.get("ao.tech")->as<CRenderTechnique>();

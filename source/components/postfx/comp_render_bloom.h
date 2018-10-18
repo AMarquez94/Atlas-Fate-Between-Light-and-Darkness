@@ -9,7 +9,8 @@
 struct TCompRenderBloom : public TCompRenderBlur {
 
     CRenderCte< CCteBloom >       cte_bloom;
-    CRenderToTexture*             rt_highlights = nullptr;
+    static CRenderToTexture*             rt_highlights;
+
     const CRenderTechnique*       tech_filter = nullptr;
     const CRenderTechnique*       tech_add = nullptr;
     const CRenderMesh*            mesh = nullptr;

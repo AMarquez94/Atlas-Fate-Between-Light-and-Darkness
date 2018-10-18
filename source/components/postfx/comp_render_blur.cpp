@@ -51,6 +51,7 @@ void TCompRenderBlur::debugInMenu() {
 }
 
 void TCompRenderBlur::load(const json& j, TEntityParseContext& ctx) {
+
     enabled = j.value("enabled", true);
     global_distance = j.value("global_distance", 1.0f);
     distance_factors = VEC4(1, 2, 3, 4);
