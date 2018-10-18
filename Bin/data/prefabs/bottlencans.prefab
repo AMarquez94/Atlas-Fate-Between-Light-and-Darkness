@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "chapa_recto"
+      "name": "bottlencans"
       ,
       "transform":
       {
@@ -14,21 +14,21 @@
   {
     "entity":
     {
-      "name": "mesh_chapa_recto"
+      "name": "mesh_bottlencans"
       ,
       "transform":
       {
-        "pos": "0.0 0.0 0.0"
+        "pos": "0.1 0.0 0.0304294"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_chapa_recto.mesh"
+          "mesh": "data/meshes/mesh_bottlencans.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_chapa.material"
+            "data/materials/mtl_decalprops.material"
           ]
         }
       ]
@@ -37,7 +37,7 @@
       {
         "shape": "mesh"
         ,
-        "name": "data/colliders/collider_chapa_recto.collider"
+        "name": "data/colliders/collider_bottlencans.collider"
       }
       ,
       "abs_aabb": true

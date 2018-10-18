@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "chapa_recto"
+      "name": "can_floor"
       ,
       "transform":
       {
@@ -14,31 +14,24 @@
   {
     "entity":
     {
-      "name": "mesh_chapa_recto"
+      "name": "mesh_can_floor"
       ,
       "transform":
       {
-        "pos": "0.0 0.0 0.0"
+        "pos": "0.0 0.0 -0.1"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_chapa_recto.mesh"
+          "mesh": "data/meshes/mesh_can_floor.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_chapa.material"
+            "data/materials/mtl_decalprops.material"
           ]
         }
       ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_chapa_recto.collider"
-      }
       ,
       "abs_aabb": true
       ,

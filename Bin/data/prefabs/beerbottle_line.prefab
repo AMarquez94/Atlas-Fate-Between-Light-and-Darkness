@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "chapa_recto"
+      "name": "beerbottle_line"
       ,
       "transform":
       {
@@ -14,7 +14,7 @@
   {
     "entity":
     {
-      "name": "mesh_chapa_recto"
+      "name": "mesh_beerbottle_line"
       ,
       "transform":
       {
@@ -24,21 +24,14 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_chapa_recto.mesh"
+          "mesh": "data/meshes/mesh_beerbottle_line.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_chapa.material"
+            "data/materials/mtl_decalprops.material"
           ]
         }
       ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_chapa_recto.collider"
-      }
       ,
       "abs_aabb": true
       ,

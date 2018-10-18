@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "chapa_recto"
+      "name": "boxopen_bottle"
       ,
       "transform":
       {
@@ -14,30 +14,30 @@
   {
     "entity":
     {
-      "name": "mesh_chapa_recto"
+      "name": "mesh_boxopen_bottle"
       ,
       "transform":
       {
-        "pos": "0.0 0.0 0.0"
+        "pos": "0.0 0.0 0.10321"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_chapa_recto.mesh"
+          "mesh": "data/meshes/mesh_boxopen_bottle.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_chapa.material"
+            "data/materials/mtl_decalprops.material"
           ]
         }
       ]
       ,
       "collider":
       {
-        "shape": "mesh"
+        "shape": "box"
         ,
-        "name": "data/colliders/collider_chapa_recto.collider"
+        "size": "0.549201 0.317584 0.366907"
       }
       ,
       "abs_aabb": true

@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "chapa_recto"
+      "name": "chairjunk"
       ,
       "transform":
       {
@@ -14,7 +14,7 @@
   {
     "entity":
     {
-      "name": "mesh_chapa_recto"
+      "name": "mesh_chairjunk"
       ,
       "transform":
       {
@@ -24,11 +24,11 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_chapa_recto.mesh"
+          "mesh": "data/meshes/mesh_chairjunk.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_chapa.material"
+            "data/materials/mtl_decalprops.material"
           ]
         }
       ]
@@ -37,7 +37,7 @@
       {
         "shape": "mesh"
         ,
-        "name": "data/colliders/collider_chapa_recto.collider"
+        "name": "data/colliders/collider_chairjunk.collider"
       }
       ,
       "abs_aabb": true
